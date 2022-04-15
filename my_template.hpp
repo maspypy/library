@@ -117,7 +117,7 @@ inline bool chmin(T &a, const S &b) {
   return (a > b ? a = b, 1 : 0);
 }
 
-vi s_to_vi(string S, char first_char = 'a') {
+vi s_to_vi(const string& S, char first_char) {
   vi A(S.size());
   FOR(i, S.size()) { A[i] = S[i] - first_char; }
   return A;
@@ -132,15 +132,15 @@ vector<T> cumsum(vector<T> &A, int off = 1) {
   return B;
 }
 
-template <typename T, typename CNT = int>
-vc<CNT> bincount(vc<T> &A, int size) {
+template <typename CNT, typename T>
+vc<CNT> bincount(const vc<T> &A, int size) {
   vc<CNT> C(size);
   for (auto &&x: A) { ++C[x]; }
   return C;
 }
 
 template <typename T>
-vector<int> argsort(vector<T> &A) {
+vector<int> argsort(const vector<T> &A) {
   // stable
   vector<int> ids(A.size());
   iota(all(ids), 0);
