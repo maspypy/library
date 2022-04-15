@@ -1,3 +1,5 @@
+
+// 頂点数は渡さなくてよい
 template <typename Cap = int>
 struct MaxFlowGraph {
   const Cap INF;
