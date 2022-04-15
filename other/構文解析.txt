@@ -1,0 +1,42 @@
+ll number(string& S, int& p);
+ll factor(string& S, int& p);
+ll term(string& S, int& p);
+ll expr(string& S, int& p);
+
+ll number(string& S, int& p) {
+  ll x = 0;
+  while (p < S.size() && isdigit(S[p])) {
+    x = 10 * x + (S[p] - '0');
+    p++;
+  }
+  return x;
+}
+
+ll factor(string& S, int& p) {
+  if (isdigit(S[p])) return number(S, p);
+  assert(S[p++] == '(');
+  ll x = expr(S, p);
+  assert(S[p++] == ')');
+  return x;
+}
+
+ll term(string& S, int& p) {
+  ll x = factor(S, p);
+  while (p != S.size() && S[p] == '*') {
+    x *= term(S, ++p);
+  }
+  return x;
+}
+
+ll expr(string& S, int& p) {
+  ll x = term(S, p);
+  while (p != S.size()) {
+    char op = S[p];
+    if (op != '+' && op != '-') return x;
+    ++p;
+    ll y = term(S, p);
+    if (op == '+') x += y;
+    elif (op == '-') x -= y;
+  }
+  return x;
+}
