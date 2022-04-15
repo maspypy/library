@@ -6,18 +6,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_6_A_maxflow.test.cpp
     title: test/aoj/GRL_6_A_maxflow.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/177_maxflow.test.cpp
+    title: test/yukicoder/177_maxflow.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"flow/maxflow.hpp\"\ntemplate <typename Cap = int>\nstruct\
-    \ MaxFlowGraph {\n  const Cap INF;\n\n  struct Edge {\n    int frm, to;\n    Cap\
-    \ cap;\n    int idx;\n  };\n\n  int N;\n  vc<int> indptr;\n  vc<Edge> edges;\n\
-    \  vc<Cap> edge_flow;\n\n  vc<Edge> csr_edges;\n  vc<int> rev;\n  vc<int> level,\
-    \ deq;\n  bool calculated;\n\n  MaxFlowGraph() : INF(numeric_limits<Cap>::max()),\
-    \ N(0), calculated(0) {}\n\n  void add(int frm, int to, Cap cap) {\n    chmax(N,\
-    \ frm + 1);\n    chmax(N, to + 1);\n    edges.eb(Edge({frm, to, cap, int(edges.size())}));\n\
+  bundledCode: "#line 1 \"flow/maxflow.hpp\"\n\n// \u9802\u70B9\u6570\u306F\u6E21\u3055\
+    \u306A\u304F\u3066\u3088\u3044\ntemplate <typename Cap = int>\nstruct MaxFlowGraph\
+    \ {\n  const Cap INF;\n\n  struct Edge {\n    int frm, to;\n    Cap cap;\n   \
+    \ int idx;\n  };\n\n  int N;\n  vc<int> indptr;\n  vc<Edge> edges;\n  vc<Cap>\
+    \ edge_flow;\n\n  vc<Edge> csr_edges;\n  vc<int> rev;\n  vc<int> level, deq;\n\
+    \  bool calculated;\n\n  MaxFlowGraph() : INF(numeric_limits<Cap>::max()), N(0),\
+    \ calculated(0) {}\n\n  void add(int frm, int to, Cap cap) {\n    chmax(N, frm\
+    \ + 1);\n    chmax(N, to + 1);\n    edges.eb(Edge({frm, to, cap, int(edges.size())}));\n\
     \  }\n\n  void _build() {\n    indptr.resize(N + 1);\n    level.resize(N);\n \
     \   deq.resize(N);\n    int M = len(edges);\n    for (auto&& e: edges) { indptr[e.frm\
     \ + 1]++, indptr[e.to + 1]++; }\n    FOR(v, N) indptr[v + 1] += indptr[v];\n \
@@ -47,10 +51,11 @@ data:
     \ {\n      Cap f = edge_flow[e.idx];\n      if (f > Cap(0)) res.eb(e.frm, e.to,\
     \ f);\n    }\n    return res;\n  }\n\n  void debug() {\n    for (auto&& e: edges)\
     \ print(e.frm, e.to, e.cap);\n  }\n};\n"
-  code: "template <typename Cap = int>\nstruct MaxFlowGraph {\n  const Cap INF;\n\n\
-    \  struct Edge {\n    int frm, to;\n    Cap cap;\n    int idx;\n  };\n\n  int\
-    \ N;\n  vc<int> indptr;\n  vc<Edge> edges;\n  vc<Cap> edge_flow;\n\n  vc<Edge>\
-    \ csr_edges;\n  vc<int> rev;\n  vc<int> level, deq;\n  bool calculated;\n\n  MaxFlowGraph()\
+  code: "\n// \u9802\u70B9\u6570\u306F\u6E21\u3055\u306A\u304F\u3066\u3088\u3044\n\
+    template <typename Cap = int>\nstruct MaxFlowGraph {\n  const Cap INF;\n\n  struct\
+    \ Edge {\n    int frm, to;\n    Cap cap;\n    int idx;\n  };\n\n  int N;\n  vc<int>\
+    \ indptr;\n  vc<Edge> edges;\n  vc<Cap> edge_flow;\n\n  vc<Edge> csr_edges;\n\
+    \  vc<int> rev;\n  vc<int> level, deq;\n  bool calculated;\n\n  MaxFlowGraph()\
     \ : INF(numeric_limits<Cap>::max()), N(0), calculated(0) {}\n\n  void add(int\
     \ frm, int to, Cap cap) {\n    chmax(N, frm + 1);\n    chmax(N, to + 1);\n   \
     \ edges.eb(Edge({frm, to, cap, int(edges.size())}));\n  }\n\n  void _build() {\n\
@@ -86,9 +91,10 @@ data:
   isVerificationFile: false
   path: flow/maxflow.hpp
   requiredBy: []
-  timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-04-16 05:20:03+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/177_maxflow.test.cpp
   - test/aoj/GRL_6_A_maxflow.test.cpp
 documentation_of: flow/maxflow.hpp
 layout: document

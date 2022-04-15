@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   - icon: ':question:'
@@ -178,9 +178,10 @@ data:
     ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
     Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
-    \ 5 \"test/aoj/GRL_6_A_maxflow.test.cpp\"\n\r\n#line 1 \"flow/maxflow.hpp\"\n\
-    template <typename Cap = int>\nstruct MaxFlowGraph {\n  const Cap INF;\n\n  struct\
-    \ Edge {\n    int frm, to;\n    Cap cap;\n    int idx;\n  };\n\n  int N;\n  vc<int>\
+    \ 5 \"test/aoj/GRL_6_A_maxflow.test.cpp\"\n\r\n#line 1 \"flow/maxflow.hpp\"\n\n\
+    // \u9802\u70B9\u6570\u306F\u6E21\u3055\u306A\u304F\u3066\u3088\u3044\ntemplate\
+    \ <typename Cap = int>\nstruct MaxFlowGraph {\n  const Cap INF;\n\n  struct Edge\
+    \ {\n    int frm, to;\n    Cap cap;\n    int idx;\n  };\n\n  int N;\n  vc<int>\
     \ indptr;\n  vc<Edge> edges;\n  vc<Cap> edge_flow;\n\n  vc<Edge> csr_edges;\n\
     \  vc<int> rev;\n  vc<int> level, deq;\n  bool calculated;\n\n  MaxFlowGraph()\
     \ : INF(numeric_limits<Cap>::max()), N(0), calculated(0) {}\n\n  void add(int\
@@ -233,7 +234,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_6_A_maxflow.test.cpp
   requiredBy: []
-  timestamp: '2022-04-16 04:26:49+09:00'
+  timestamp: '2022-04-16 05:20:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_6_A_maxflow.test.cpp

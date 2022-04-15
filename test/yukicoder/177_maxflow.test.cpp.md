@@ -2,11 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: graph/base.hpp
-    title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/cycle_detection.hpp
-    title: graph/cycle_detection.hpp
+    path: flow/maxflow.hpp
+    title: flow/maxflow.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -15,24 +12,24 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/cycle_detection
+    PROBLEM: https://yukicoder.me/problems/no/177
     links:
-    - https://judge.yosupo.jp/problem/cycle_detection
-  bundledCode: "#line 1 \"test/library_checker/graph/cycle_detection.test.cpp\"\n\
-    #define PROBLEM \"https://judge.yosupo.jp/problem/cycle_detection\"\r\n\r\n#line\
-    \ 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\n\
-    using ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
-    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://yukicoder.me/problems/no/177
+  bundledCode: "#line 1 \"test/yukicoder/177_maxflow.test.cpp\"\n#define PROBLEM \"\
+    https://yukicoder.me/problems/no/177\"\n#line 1 \"my_template.hpp\"\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -181,84 +178,80 @@ data:
     ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
     Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
-    \ 5 \"test/library_checker/graph/cycle_detection.test.cpp\"\n\r\n#line 2 \"graph/base.hpp\"\
-    \n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n\
-    };\n\ntemplate <typename T = int, bool directed = false>\nstruct Graph {\n  int\
-    \ N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
-    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  bool prepared;\n\
-    \n  class OutgoingEdges {\n  public:\n    OutgoingEdges(const Graph* G, int l,\
-    \ int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n     \
-    \ if (l == r) { return 0; }\n      return &G->csr_edges[l];\n    }\n\n    const\
-    \ edge_type* end() const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n\
-    \    }\n\n  private:\n    int l, r;\n    const Graph* G;\n  };\n\n  bool is_prepared()\
-    \ { return prepared; }\n  constexpr bool is_directed() { return directed; }\n\n\
-    \  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
-    \ {}\n\n  void add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared\
-    \ && 0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm,\
-    \ to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool\
-    \ wt = false, int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int\
-    \ M, bool wt = false, int off = 1) {\n    FOR_(M) {\n      INT(a, b);\n      a\
-    \ -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n  \
-    \      T c;\n        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n\
-    \  }\n\n  void read_parent(int off = 1) {\n    FOR3(v, 1, N) {\n      INT(p);\n\
-    \      p -= off;\n      add(p, v);\n    }\n    build();\n  }\n\n  void build()\
-    \ {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
-    \    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if (!directed)\
-    \ indptr[e.to + 1]++;\n    }\n    FOR(v, N) indptr[v + 1] += indptr[v];\n    auto\
-    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
-    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
-    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
-    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
-    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  void debug() {\n    print(\"\
-    Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
-    \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
-    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 2 \"graph/cycle_detection.hpp\"\
-    \n\r\n// \u8FBA\u306E\u5217 or \u9802\u70B9\u5217\u306E vector \u3092\u8FD4\u3059\
-    \r\n// \u898B\u3064\u304B\u3089\u306A\u304B\u3063\u305F\u5834\u5408\u306B\u306F\
-    \u3001\u7A7A vector\r\ntemplate <typename Graph>\r\nvc<int> cycle_detection(Graph&\
-    \ G, bool is_edge = 0) {\r\n  assert(G.is_directed());\r\n  assert(G.is_prepared());\r\
-    \n  if (!is_edge) {\r\n    auto C = cycle_detection(G, true);\r\n    if (len(C)\
-    \ == 0) return C;\r\n    vc<int> ANS(len(C));\r\n    FOR(i, len(C)) {\r\n    \
-    \  auto e = G.edges[C[i]];\r\n      ANS[i] = e.frm;\r\n    }\r\n    return ANS;\r\
-    \n  }\r\n\r\n  int N = G.N;\r\n  vc<int> used(N);\r\n  vc<int> path; // edge\r\
-    \n  vc<pair<int, int>> par(N);\r\n  vector<int> ANS;\r\n\r\n  auto dfs = [&](auto\
-    \ self, int v) -> void {\r\n    used[v] = 1;\r\n    for (auto&& e: G[v]) {\r\n\
-    \      if (len(ANS)) return;\r\n      if (!used[e.to]) {\r\n        par[e.to]\
-    \ = {v, e.id};\r\n        self(self, e.to);\r\n      }\r\n      elif (used[e.to]\
-    \ == 1) {\r\n        ANS = {e.id};\r\n        int cur = v;\r\n        while (cur\
-    \ != e.to) {\r\n          ANS.eb(par[cur].se);\r\n          cur = par[cur].fi;\r\
-    \n        }\r\n        reverse(all(ANS));\r\n        return;\r\n      }\r\n  \
-    \  }\r\n    used[v] = 2;\r\n  };\r\n  FOR(v, N) if (!used[v]) dfs(dfs, v);\r\n\
-    \  return ANS;\r\n}\n#line 8 \"test/library_checker/graph/cycle_detection.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N, M);\r\n  Graph<int, 1> G(N);\r\n  G.read_graph(M,\
-    \ 0, 0);\r\n\r\n  auto C = cycle_detection(G, true);\r\n  if (len(C) == 0) {\r\
-    \n    print(-1);\r\n  } else {\r\n    print(len(C));\r\n    for (auto&& i: C)\
-    \ print(i);\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/cycle_detection\"\r\n\r\
-    \n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"\
-    graph/base.hpp\"\r\n#include \"graph/cycle_detection.hpp\"\r\n\r\nvoid solve()\
-    \ {\r\n  LL(N, M);\r\n  Graph<int, 1> G(N);\r\n  G.read_graph(M, 0, 0);\r\n\r\n\
-    \  auto C = cycle_detection(G, true);\r\n  if (len(C) == 0) {\r\n    print(-1);\r\
-    \n  } else {\r\n    print(len(C));\r\n    for (auto&& i: C) print(i);\r\n  }\r\
-    \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}"
+    \ 1 \"flow/maxflow.hpp\"\n\n// \u9802\u70B9\u6570\u306F\u6E21\u3055\u306A\u304F\
+    \u3066\u3088\u3044\ntemplate <typename Cap = int>\nstruct MaxFlowGraph {\n  const\
+    \ Cap INF;\n\n  struct Edge {\n    int frm, to;\n    Cap cap;\n    int idx;\n\
+    \  };\n\n  int N;\n  vc<int> indptr;\n  vc<Edge> edges;\n  vc<Cap> edge_flow;\n\
+    \n  vc<Edge> csr_edges;\n  vc<int> rev;\n  vc<int> level, deq;\n  bool calculated;\n\
+    \n  MaxFlowGraph() : INF(numeric_limits<Cap>::max()), N(0), calculated(0) {}\n\
+    \n  void add(int frm, int to, Cap cap) {\n    chmax(N, frm + 1);\n    chmax(N,\
+    \ to + 1);\n    edges.eb(Edge({frm, to, cap, int(edges.size())}));\n  }\n\n  void\
+    \ _build() {\n    indptr.resize(N + 1);\n    level.resize(N);\n    deq.resize(N);\n\
+    \    int M = len(edges);\n    for (auto&& e: edges) { indptr[e.frm + 1]++, indptr[e.to\
+    \ + 1]++; }\n    FOR(v, N) indptr[v + 1] += indptr[v];\n    auto counter = indptr;\n\
+    \n    edge_flow.resize(M);\n    csr_edges.resize(2 * M);\n    rev.resize(2 * M);\n\
+    \    for (auto&& e: edges) {\n      int i = counter[e.frm], j = counter[e.to];\n\
+    \      rev[i] = j, rev[j] = i;\n      csr_edges[i] = {e.frm, e.to, e.cap, e.idx};\n\
+    \      csr_edges[j] = {e.to, e.frm, Cap(0), ~e.idx};\n      counter[e.frm]++,\
+    \ counter[e.to]++;\n    }\n  }\n\n  bool set_level(int source, int sink) {\n \
+    \   // bfs\n    fill(all(level), -1);\n    int l = 0, r = 0;\n    deq[r++] = source;\n\
+    \    level[source] = 0;\n    while (l < r) {\n      int v = deq[l++];\n      FOR3(i,\
+    \ indptr[v], indptr[v + 1]) {\n        auto& e = csr_edges[i];\n        if (e.cap\
+    \ == 0 || level[e.to] >= 0) continue;\n        level[e.to] = level[v] + 1;\n \
+    \       if (e.to == sink) return true;\n        deq[r++] = e.to;\n      }\n  \
+    \  }\n    return false;\n  }\n\n  Cap flow_dfs(int v, int sink, Cap lim) {\n \
+    \   if (v == sink) return lim;\n    FOR3(i, indptr[v], indptr[v + 1]) {\n    \
+    \  auto& e = csr_edges[i];\n      if (e.cap == 0 || level[v] >= level[e.to]) continue;\n\
+    \      Cap x = flow_dfs(e.to, sink, min(lim, e.cap));\n      if (x > Cap(0)) {\n\
+    \        e.cap -= x;\n        int j = rev[i];\n        csr_edges[j].cap += x;\n\
+    \        if (e.idx >= 0)\n          edge_flow[e.idx] += x;\n        else\n   \
+    \       edge_flow[~e.idx] -= x;\n        return x;\n      }\n    }\n    level[v]\
+    \ = -1;\n    return 0;\n  }\n\n  Cap flow(int source, int sink) {\n    assert(!calculated);\n\
+    \    calculated = true;\n    _build();\n    Cap f = 0;\n    while (set_level(source,\
+    \ sink)) {\n      while (1) {\n        Cap x = flow_dfs(source, sink, INF);\n\
+    \        if (x == 0) break;\n        f += x;\n      }\n    }\n    return f;\n\
+    \  }\n\n  vc<tuple<int, int, Cap>> get_edges() {\n    vc<tuple<int, int, Cap>>\
+    \ res;\n    for (auto&& e: edges) {\n      Cap f = edge_flow[e.idx];\n      if\
+    \ (f > Cap(0)) res.eb(e.frm, e.to, f);\n    }\n    return res;\n  }\n\n  void\
+    \ debug() {\n    for (auto&& e: edges) print(e.frm, e.to, e.cap);\n  }\n};\n#line\
+    \ 5 \"test/yukicoder/177_maxflow.test.cpp\"\n\nvoid solve() {\n  LL(W);\n  LL(N);\n\
+    \  VEC(ll, A, N);\n  LL(M);\n  VEC(ll, C, M);\n  MaxFlowGraph<ll> G;\n  ll source\
+    \ = N + M;\n  ll sink = N + M + 1;\n  const ll INF = 1LL << 30;\n  auto left =\
+    \ [&](int i) -> int { return i; };\n  auto right = [&](int i) -> int { return\
+    \ N + i; };\n  FOR(i, N) G.add(source, left(i), A[i]);\n  FOR(i, M) G.add(right(i),\
+    \ sink, C[i]);\n  FOR(j, M) {\n    LL(n);\n    vi ok(N, 1);\n    FOR_(n) {\n \
+    \     LL(x);\n      ok[--x] = 0;\n    }\n    FOR(i, N) if (ok[i]) { G.add(left(i),\
+    \ right(j), INF); }\n  }\n  ll f = G.flow(source, sink);\n  if (f < W)\n    print(\"\
+    BANSAKUTSUKITA\");\n  else\n    print(\"SHIROBAKO\");\n}\n\nsigned main() {\n\
+    \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/177\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"flow/maxflow.hpp\"\n\nvoid solve() {\n\
+    \  LL(W);\n  LL(N);\n  VEC(ll, A, N);\n  LL(M);\n  VEC(ll, C, M);\n  MaxFlowGraph<ll>\
+    \ G;\n  ll source = N + M;\n  ll sink = N + M + 1;\n  const ll INF = 1LL << 30;\n\
+    \  auto left = [&](int i) -> int { return i; };\n  auto right = [&](int i) ->\
+    \ int { return N + i; };\n  FOR(i, N) G.add(source, left(i), A[i]);\n  FOR(i,\
+    \ M) G.add(right(i), sink, C[i]);\n  FOR(j, M) {\n    LL(n);\n    vi ok(N, 1);\n\
+    \    FOR_(n) {\n      LL(x);\n      ok[--x] = 0;\n    }\n    FOR(i, N) if (ok[i])\
+    \ { G.add(left(i), right(j), INF); }\n  }\n  ll f = G.flow(source, sink);\n  if\
+    \ (f < W)\n    print(\"BANSAKUTSUKITA\");\n  else\n    print(\"SHIROBAKO\");\n\
+    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
+    \ return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - graph/base.hpp
-  - graph/cycle_detection.hpp
+  - flow/maxflow.hpp
   isVerificationFile: true
-  path: test/library_checker/graph/cycle_detection.test.cpp
+  path: test/yukicoder/177_maxflow.test.cpp
   requiredBy: []
-  timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-04-16 05:20:14+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/graph/cycle_detection.test.cpp
+documentation_of: test/yukicoder/177_maxflow.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/graph/cycle_detection.test.cpp
-- /verify/test/library_checker/graph/cycle_detection.test.cpp.html
-title: test/library_checker/graph/cycle_detection.test.cpp
+- /verify/test/yukicoder/177_maxflow.test.cpp
+- /verify/test/yukicoder/177_maxflow.test.cpp.html
+title: test/yukicoder/177_maxflow.test.cpp
 ---
