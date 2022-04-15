@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/group_mul.hpp
     title: alg/group_mul.hpp
   _extendedRequiredBy: []

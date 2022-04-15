@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: graph/bfs01.hpp
     title: graph/bfs01.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/restore_path.hpp
     title: graph/restore_path.hpp
   _extendedRequiredBy: []

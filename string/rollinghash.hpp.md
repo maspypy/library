@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/random.hpp
     title: other/random.hpp
   _extendedRequiredBy: []

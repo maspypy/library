@@ -4,10 +4,10 @@ data:
   - icon: ':x:'
     path: linalg/spmat_min_poly.hpp
     title: linalg/spmat_min_poly.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/random.hpp
     title: other/random.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
   _extendedRequiredBy: []

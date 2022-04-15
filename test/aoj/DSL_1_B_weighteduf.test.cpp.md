@@ -71,23 +71,24 @@ data:
     \   ng = x;\n  }\n  return ok;\n}\n\ntemplate <class T, class S>\ninline bool\
     \ chmax(T &a, const S &b) {\n  return (a < b ? a = b, 1 : 0);\n}\ntemplate <class\
     \ T, class S>\ninline bool chmin(T &a, const S &b) {\n  return (a > b ? a = b,\
-    \ 1 : 0);\n}\n\nvi s_to_vi(string S, char first_char = 'a') {\n  vi A(S.size());\n\
+    \ 1 : 0);\n}\n\nvi s_to_vi(const string& S, char first_char) {\n  vi A(S.size());\n\
     \  FOR(i, S.size()) { A[i] = S[i] - first_char; }\n  return A;\n}\n\ntemplate\
     \ <typename T>\nvector<T> cumsum(vector<T> &A, int off = 1) {\n  int N = A.size();\n\
     \  vector<T> B(N + 1);\n  FOR(i, N) { B[i + 1] = B[i] + A[i]; }\n  if (off ==\
-    \ 0) B.erase(B.begin());\n  return B;\n}\n\ntemplate <typename T, typename CNT\
-    \ = int>\nvc<CNT> bincount(vc<T> &A, int size) {\n  vc<CNT> C(size);\n  for (auto\
-    \ &&x: A) { ++C[x]; }\n  return C;\n}\n\ntemplate <typename T>\nvector<int> argsort(vector<T>\
-    \ &A) {\n  // stable\n  vector<int> ids(A.size());\n  iota(all(ids), 0);\n  sort(all(ids),\n\
-    \       [&](int i, int j) { return A[i] < A[j] || (A[i] == A[j] && i < j); });\n\
-    \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
-    \ vc<T> &A, const vc<int> &I) {\n  int n = len(A);\n  assert(len(I) == n);\n \
-    \ vc<T> B(n);\n  FOR(i, n) B[i] = A[I[i]];\n  return B;\n}\n#line 1 \"other/io.hpp\"\
-    \n// based on yosupo's fastio\r\n#include <unistd.h>\r\n\r\nnamespace detail {\r\
-    \ntemplate <typename T, decltype(&T::is_modint) = &T::is_modint>\r\nstd::true_type\
-    \ check_value(int);\r\ntemplate <typename T>\r\nstd::false_type check_value(long);\r\
-    \n} // namespace detail\r\n\r\ntemplate <typename T>\r\nstruct is_modint : decltype(detail::check_value<T>(0))\
-    \ {};\r\ntemplate <typename T>\r\nusing is_modint_t = enable_if_t<is_modint<T>::value>;\r\
+    \ 0) B.erase(B.begin());\n  return B;\n}\n\ntemplate <typename CNT, typename T>\n\
+    vc<CNT> bincount(const vc<T> &A, int size) {\n  vc<CNT> C(size);\n  for (auto\
+    \ &&x: A) { ++C[x]; }\n  return C;\n}\n\ntemplate <typename T>\nvector<int> argsort(const\
+    \ vector<T> &A) {\n  // stable\n  vector<int> ids(A.size());\n  iota(all(ids),\
+    \ 0);\n  sort(all(ids),\n       [&](int i, int j) { return A[i] < A[j] || (A[i]\
+    \ == A[j] && i < j); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate\
+    \ <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I) {\n  int n =\
+    \ len(A);\n  assert(len(I) == n);\n  vc<T> B(n);\n  FOR(i, n) B[i] = A[I[i]];\n\
+    \  return B;\n}\n#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include\
+    \ <unistd.h>\r\n\r\nnamespace detail {\r\ntemplate <typename T, decltype(&T::is_modint)\
+    \ = &T::is_modint>\r\nstd::true_type check_value(int);\r\ntemplate <typename T>\r\
+    \nstd::false_type check_value(long);\r\n} // namespace detail\r\n\r\ntemplate\
+    \ <typename T>\r\nstruct is_modint : decltype(detail::check_value<T>(0)) {};\r\
+    \ntemplate <typename T>\r\nusing is_modint_t = enable_if_t<is_modint<T>::value>;\r\
     \ntemplate <typename T>\r\nusing is_not_modint_t = enable_if_t<!is_modint<T>::value>;\r\
     \n\r\nstruct Scanner {\r\n  FILE *fp;\r\n  char line[(1 << 15) + 1];\r\n  size_t\
     \ st = 0, ed = 0;\r\n  void reread() {\r\n    memmove(line, line + st, ed - st);\r\
@@ -225,7 +226,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_1_B_weighteduf.test.cpp
   requiredBy: []
-  timestamp: '2022-04-16 04:26:49+09:00'
+  timestamp: '2022-04-16 06:03:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_1_B_weighteduf.test.cpp

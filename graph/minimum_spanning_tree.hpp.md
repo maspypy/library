@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid_max.hpp
     title: alg/monoid_max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid_min.hpp
     title: alg/monoid_min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid_reverse.hpp
     title: alg/monoid_reverse.hpp
   - icon: ':heavy_check_mark:'
@@ -31,7 +31,7 @@ data:
   - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
   _extendedRequiredBy: []
