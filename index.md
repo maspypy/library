@@ -125,7 +125,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/binarytrie.hpp
       title: ds/binarytrie.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/cartesian_tree.hpp
       title: ds/cartesian_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -470,7 +470,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -546,7 +546,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/inversion.hpp
       title: other/inversion.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -658,6 +658,9 @@ data:
       path: seq/limit_poly_exp_sum.hpp
       title: seq/limit_poly_exp_sum.hpp
     - icon: ':heavy_check_mark:'
+      path: seq/longest_increasing_subsequence.hpp
+      title: seq/longest_increasing_subsequence.hpp
+    - icon: ':heavy_check_mark:'
       path: seq/stirling_number_1.hpp
       title: seq/stirling_number_1.hpp
     - icon: ':heavy_check_mark:'
@@ -745,11 +748,17 @@ data:
       path: test/aoj/DPL_1_B_kanpsack01.test.cpp
       title: test/aoj/DPL_1_B_kanpsack01.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj/DPL_1_D_lis.test.cpp
+      title: test/aoj/DPL_1_D_lis.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_1_F_kanpsack01.test.cpp
       title: test/aoj/DPL_1_F_kanpsack01.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_1_H_kanpsack01.test.cpp
       title: test/aoj/DPL_1_H_kanpsack01.test.cpp
+    - icon: ':x:'
+      path: test/aoj/DPL_3_C_maxrectangle.test.cpp
+      title: test/aoj/DPL_3_C_maxrectangle.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_1_B_weighteduf.test.cpp
       title: test/aoj/DSL_1_B_weighteduf.test.cpp
