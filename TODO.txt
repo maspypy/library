@@ -45,3 +45,7 @@ dag を作る。
 
 ・fps: sparseな場合の inv, exp, log
 任意 mod の場合も
+・sparse linear rec
+
+・maxflow
+カットの復元

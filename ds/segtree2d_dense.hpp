@@ -10,11 +10,11 @@ struct SegTree2D_dense {
   int get_idx(int x, int y) { return x * 2 * W + y; }
 
   SegTree2D_dense() : SegTree2D_dense(0, 0) {}
-  SegTree2D_dense(int H, int W) : H(H), W(W), dat(4 * H * W, Monoid::unit) {}
+  SegTree2D_dense(int H, int W) : H(H), W(W), dat(4 * H * W, Monoid::unit()) {}
   SegTree2D_dense(vc<vc<X>> &v) {
     H = len(v);
     W = (H == 0 ? 0 : len(v[0]));
-    dat.assign(4 * H * W, Monoid::unit);
+    dat.assign(4 * H * W, Monoid::unit());
     FOR(x, H) FOR(y, W) { dat[get_idx(H + x, W + y)] = v[x][y]; }
     FOR3(y, W, W + W) FOR_R(x, H) {
       dat[get_idx(x, y)]
@@ -48,7 +48,7 @@ struct SegTree2D_dense {
   }
 
   X prod_at(int x, int yl, int yr) {
-    X res = Monoid::unit;
+    X res = Monoid::unit();
     yl += W, yr += W;
     while (yl < yr) {
       if (yl & 1) res = Monoid::op(res, dat[get_idx(x, yl++)]);
@@ -61,7 +61,7 @@ struct SegTree2D_dense {
   X prod(int xl, int yl, int xr, int yr) {
     assert(0 <= xl && xl <= xr && xr <= H);
     assert(0 <= yl && yl <= yr && yr <= W);
-    X res = Monoid::unit;
+    X res = Monoid::unit();
     xl += H, xr += H;
     while (xl < xr) {
       if (xl & 1) res = Monoid::op(res, prod_at(xl++, yl, yr));
