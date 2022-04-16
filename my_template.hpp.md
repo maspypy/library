@@ -31,6 +31,15 @@ data:
     path: test/aoj/ALDS1_5_inversion.test.cpp
     title: test/aoj/ALDS1_5_inversion.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/DPL_1_B_kanpsack01.test.cpp
+    title: test/aoj/DPL_1_B_kanpsack01.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DPL_1_F_kanpsack01.test.cpp
+    title: test/aoj/DPL_1_F_kanpsack01.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DPL_1_H_kanpsack01.test.cpp
+    title: test/aoj/DPL_1_H_kanpsack01.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_1_B_weighteduf.test.cpp
     title: test/aoj/DSL_1_B_weighteduf.test.cpp
   - icon: ':heavy_check_mark:'
@@ -602,13 +611,16 @@ data:
   - test/aoj/DSL_2_I_cntsum_set_lazy.test.cpp
   - test/aoj/DSL_2_D_dualsegtree.test.cpp
   - test/aoj/GRL_6_A_maxflow.test.cpp
+  - test/aoj/DPL_1_F_kanpsack01.test.cpp
   - test/aoj/2251_dag_path_cover.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
+  - test/aoj/DPL_1_H_kanpsack01.test.cpp
   - test/aoj/ALDS1_2_A_inversion.test.cpp
   - test/aoj/NTL_1_D_eulerphi.test.cpp
   - test/aoj/2251_maxantichain.test.cpp
   - test/aoj/ITP1_9_A_split.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp
+  - test/aoj/DPL_1_B_kanpsack01.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
   - test/library_checker/matrix/matrix_det.test.cpp
   - test/library_checker/matrix/hafnian_of_matrix.test.cpp

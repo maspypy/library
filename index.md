@@ -552,6 +552,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/io2.hpp
       title: other/io2.hpp
+    - icon: ':heavy_check_mark:'
+      path: other/knapsack01.hpp
+      title: other/knapsack01.hpp
     - icon: ':warning:'
       path: other/maxplus_convolution_concave.hpp
       title: other/maxplus_convolution_concave.hpp
@@ -738,6 +741,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_5_inversion.test.cpp
       title: test/aoj/ALDS1_5_inversion.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DPL_1_B_kanpsack01.test.cpp
+      title: test/aoj/DPL_1_B_kanpsack01.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DPL_1_F_kanpsack01.test.cpp
+      title: test/aoj/DPL_1_F_kanpsack01.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DPL_1_H_kanpsack01.test.cpp
+      title: test/aoj/DPL_1_H_kanpsack01.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_1_B_weighteduf.test.cpp
       title: test/aoj/DSL_1_B_weighteduf.test.cpp
