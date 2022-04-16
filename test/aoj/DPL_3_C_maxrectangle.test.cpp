@@ -1,3 +1,4 @@
+#define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_3_C"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/cartesian_tree.hpp"
@@ -6,12 +7,7 @@ void solve() {
   LL(N);
   VEC(ll, A, N);
   CartesianTree<ll> CT(A);
-  ll ANS = 0;
-  FOR(i, N) {
-    auto [l, r] = CT.range[i];
-    chmax(ANS, A[i] * (r - l));
-  }
-  print(ANS);
+  print(CT.max_rectangle_area());
 }
 
 signed main() {
