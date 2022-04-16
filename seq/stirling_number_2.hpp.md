@@ -240,23 +240,27 @@ data:
     \ modint998>::value, vc<mint>> convolution(const vc<mint>& a, const vc<mint>&\
     \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
-    \ b);\r\n}\r\n#line 2 \"seq/stirling_number_2.hpp\"\ntemplate <typename mint>\r\
-    \nvc<mint> stirling_number_2(int n) {\r\n  vc<mint> a(n + 1), b(n + 1);\r\n  FOR(i,\
-    \ n + 1) a[i] = mint(i).pow(n);\r\n  FOR(i, n + 1) b[i] = (i % 2 == 0 ? 1 : -1);\r\
-    \n  FOR(i, n + 1) a[i] *= fact_inv<mint>(i);\r\n  FOR(i, n + 1) b[i] *= fact_inv<mint>(i);\r\
-    \n  auto f = convolution(a, b);\r\n  f.resize(n + 1);\r\n  return f;\r\n}\r\n"
-  code: "#include \"poly/convolution.hpp\"\r\ntemplate <typename mint>\r\nvc<mint>\
-    \ stirling_number_2(int n) {\r\n  vc<mint> a(n + 1), b(n + 1);\r\n  FOR(i, n +\
-    \ 1) a[i] = mint(i).pow(n);\r\n  FOR(i, n + 1) b[i] = (i % 2 == 0 ? 1 : -1);\r\
-    \n  FOR(i, n + 1) a[i] *= fact_inv<mint>(i);\r\n  FOR(i, n + 1) b[i] *= fact_inv<mint>(i);\r\
-    \n  auto f = convolution(a, b);\r\n  f.resize(n + 1);\r\n  return f;\r\n}\r\n"
+    \ b);\r\n}\r\n#line 2 \"seq/stirling_number_2.hpp\"\n\r\n// n \u500B\u306E\u3082\
+    \u306E (labeled) \u3092 k \u30B0\u30EB\u30FC\u30D7 (no label) \u306B\u5206\u3051\
+    \u308B\u65B9\u6CD5\r\ntemplate <typename mint>\r\nvc<mint> stirling_number_2(int\
+    \ n) {\r\n  vc<mint> a(n + 1), b(n + 1);\r\n  FOR(i, n + 1) a[i] = mint(i).pow(n);\r\
+    \n  FOR(i, n + 1) b[i] = (i % 2 == 0 ? 1 : -1);\r\n  FOR(i, n + 1) a[i] *= fact_inv<mint>(i);\r\
+    \n  FOR(i, n + 1) b[i] *= fact_inv<mint>(i);\r\n  auto f = convolution(a, b);\r\
+    \n  f.resize(n + 1);\r\n  return f;\r\n}\r\n"
+  code: "#include \"poly/convolution.hpp\"\r\n\r\n// n \u500B\u306E\u3082\u306E (labeled)\
+    \ \u3092 k \u30B0\u30EB\u30FC\u30D7 (no label) \u306B\u5206\u3051\u308B\u65B9\u6CD5\
+    \r\ntemplate <typename mint>\r\nvc<mint> stirling_number_2(int n) {\r\n  vc<mint>\
+    \ a(n + 1), b(n + 1);\r\n  FOR(i, n + 1) a[i] = mint(i).pow(n);\r\n  FOR(i, n\
+    \ + 1) b[i] = (i % 2 == 0 ? 1 : -1);\r\n  FOR(i, n + 1) a[i] *= fact_inv<mint>(i);\r\
+    \n  FOR(i, n + 1) b[i] *= fact_inv<mint>(i);\r\n  auto f = convolution(a, b);\r\
+    \n  f.resize(n + 1);\r\n  return f;\r\n}\r\n"
   dependsOn:
   - poly/convolution.hpp
   - mod/modint.hpp
   isVerificationFile: false
   path: seq/stirling_number_2.hpp
   requiredBy: []
-  timestamp: '2022-04-16 04:26:49+09:00'
+  timestamp: '2022-04-16 22:55:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp

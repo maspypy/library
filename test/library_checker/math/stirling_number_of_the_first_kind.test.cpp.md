@@ -7,13 +7,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
@@ -441,15 +441,14 @@ data:
     \ N) a[i] *= fact<mint>(i);\r\n  auto b = powertable_1<mint>(c, N);\r\n  FOR(i,\
     \ N) b[i] *= fact_inv<mint>(i);\r\n  reverse(all(a));\r\n  auto f = convolution(a,\
     \ b);\r\n  f.resize(N);\r\n  reverse(all(f));\r\n  FOR(i, N) f[i] *= fact_inv<mint>(i);\r\
-    \n  return f;\r\n}\r\n#line 2 \"seq/stirling_number_1.hpp\"\ntemplate <typename\
-    \ mint>\r\nvc<mint> stirling_number_1(int n) {\r\n  // x(x-1)...(x-n+1) \u306E\
-    \u4FC2\u6570 s(n, k)\r\n  // \u5206\u5272\u7D71\u6CBB + taylor shift \u3067 O(nlogn)\
-    \ \u6642\u9593\r\n  if (n == 0) return {1};\r\n  if (n == 1) return {0, 1};\r\n\
-    \  auto f = stirling_number_1<mint>(n / 2);\r\n  auto g = poly_taylor_shift(f,\
-    \ -mint(n / 2));\r\n  f = convolution(f, g);\r\n  if (n & 1) {\r\n    g = {-(n\
-    \ - 1), 1};\r\n    f = convolution(f, g);\r\n  }\r\n  return f;\r\n}\r\n#line\
-    \ 6 \"test/library_checker/math/stirling_number_of_the_first_kind.test.cpp\"\n\
-    \r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N);\r\n  auto ANS = stirling_number_1<mint>(N);\r\
+    \n  return f;\r\n}\r\n#line 2 \"seq/stirling_number_1.hpp\"\n\r\n// x(x-1)...(x-n+1)\
+    \ \u306E\u4FC2\u6570 s(n, k)\r\n// \u5206\u5272\u7D71\u6CBB + taylor shift \u3067\
+    \ O(nlogn) \u6642\u9593\r\ntemplate <typename mint>\r\nvc<mint> stirling_number_1(int\
+    \ n) {\r\n  if (n == 0) return {1};\r\n  if (n == 1) return {0, 1};\r\n  auto\
+    \ f = stirling_number_1<mint>(n / 2);\r\n  auto g = poly_taylor_shift(f, -mint(n\
+    \ / 2));\r\n  f = convolution(f, g);\r\n  if (n & 1) {\r\n    g = {-(n - 1), 1};\r\
+    \n    f = convolution(f, g);\r\n  }\r\n  return f;\r\n}\r\n#line 6 \"test/library_checker/math/stirling_number_of_the_first_kind.test.cpp\"\
+    \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N);\r\n  auto ANS = stirling_number_1<mint>(N);\r\
     \n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\
     \n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind\"\
@@ -469,7 +468,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   requiredBy: []
-  timestamp: '2022-04-16 06:03:26+09:00'
+  timestamp: '2022-04-16 22:55:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp

@@ -1,26 +1,30 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/cartesian_tree.hpp
     title: ds/cartesian_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    links: []
-  bundledCode: "#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace\
-    \ std;\n\nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\n\
-    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_3_C
+    links:
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_3_C
+  bundledCode: "#line 1 \"test/aoj/DPL_3_C_maxrectangle.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_3_C\"\n#line\
+    \ 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\n\
+    using ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
+    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
     \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
     template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
     \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
@@ -195,16 +199,15 @@ data:
     \ i) {\r\n    auto [l, r] = range[i];\r\n    return {l, r, A[i]};\r\n  }\r\n\r\
     \n  // (l, r, h)\r\n  T max_rectangle_area() {\r\n    T res = 0;\r\n    FOR(i,\
     \ n) {\r\n      auto [l, r, h] = maximum_rectangle(i);\r\n      chmax(res, (r\
-    \ - l) * h);\r\n    }\r\n    return res;\r\n  }\r\n};\r\n#line 4 \"test/aoj/DPL_3_C_maxrectangle.test.cpp\"\
+    \ - l) * h);\r\n    }\r\n    return res;\r\n  }\r\n};\r\n#line 5 \"test/aoj/DPL_3_C_maxrectangle.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  CartesianTree<ll> CT(A);\n \
-    \ ll ANS = 0;\n  FOR(i, N) {\n    auto [l, r] = CT.range[i];\n    chmax(ANS, A[i]\
-    \ * (r - l));\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \ print(CT.max_rectangle_area());\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
     \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
     \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
-  code: "#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/cartesian_tree.hpp\"\
+  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_3_C\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/cartesian_tree.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  CartesianTree<ll> CT(A);\n \
-    \ ll ANS = 0;\n  FOR(i, N) {\n    auto [l, r] = CT.range[i];\n    chmax(ANS, A[i]\
-    \ * (r - l));\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \ print(CT.max_rectangle_area());\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
     \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
     \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   dependsOn:
@@ -214,8 +217,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL_3_C_maxrectangle.test.cpp
   requiredBy: []
-  timestamp: '2022-04-16 19:33:22+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-04-16 22:54:32+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL_3_C_maxrectangle.test.cpp
 layout: document

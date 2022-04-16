@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
@@ -408,12 +408,13 @@ data:
     \ modint998>::value, vc<mint>> convolution(const vc<mint>& a, const vc<mint>&\
     \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
-    \ b);\r\n}\r\n#line 2 \"seq/stirling_number_2.hpp\"\ntemplate <typename mint>\r\
-    \nvc<mint> stirling_number_2(int n) {\r\n  vc<mint> a(n + 1), b(n + 1);\r\n  FOR(i,\
-    \ n + 1) a[i] = mint(i).pow(n);\r\n  FOR(i, n + 1) b[i] = (i % 2 == 0 ? 1 : -1);\r\
-    \n  FOR(i, n + 1) a[i] *= fact_inv<mint>(i);\r\n  FOR(i, n + 1) b[i] *= fact_inv<mint>(i);\r\
-    \n  auto f = convolution(a, b);\r\n  f.resize(n + 1);\r\n  return f;\r\n}\r\n\
-    #line 6 \"test/library_checker/math/stirling_number_of_the_second_kind.test.cpp\"\
+    \ b);\r\n}\r\n#line 2 \"seq/stirling_number_2.hpp\"\n\r\n// n \u500B\u306E\u3082\
+    \u306E (labeled) \u3092 k \u30B0\u30EB\u30FC\u30D7 (no label) \u306B\u5206\u3051\
+    \u308B\u65B9\u6CD5\r\ntemplate <typename mint>\r\nvc<mint> stirling_number_2(int\
+    \ n) {\r\n  vc<mint> a(n + 1), b(n + 1);\r\n  FOR(i, n + 1) a[i] = mint(i).pow(n);\r\
+    \n  FOR(i, n + 1) b[i] = (i % 2 == 0 ? 1 : -1);\r\n  FOR(i, n + 1) a[i] *= fact_inv<mint>(i);\r\
+    \n  FOR(i, n + 1) b[i] *= fact_inv<mint>(i);\r\n  auto f = convolution(a, b);\r\
+    \n  f.resize(n + 1);\r\n  return f;\r\n}\r\n#line 6 \"test/library_checker/math/stirling_number_of_the_second_kind.test.cpp\"\
     \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N);\r\n  auto ANS = stirling_number_2<mint>(N);\r\
     \n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\
     \n}\r\n"
@@ -431,7 +432,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   requiredBy: []
-  timestamp: '2022-04-16 06:03:26+09:00'
+  timestamp: '2022-04-16 22:55:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp

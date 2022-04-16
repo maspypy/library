@@ -68,6 +68,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/mincostcycle.hpp
     title: graph/mincostcycle.hpp
+  - icon: ':warning:'
+    path: graph/minimum_hamiltonian_cycle.hpp
+    title: graph/minimum_hamiltonian_cycle.hpp
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
@@ -123,6 +126,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_12_B_dial.test.cpp
     title: test/aoj/ALDS1_12_B_dial.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
+    title: test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_B_bellmanford.test.cpp
     title: test/aoj/GRL_1_B_bellmanford.test.cpp
@@ -207,9 +213,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/899_bfsnumbering.test.cpp
     title: test/yukicoder/899_bfsnumbering.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -282,6 +288,7 @@ data:
   isVerificationFile: false
   path: graph/base.hpp
   requiredBy:
+  - graph/minimum_hamiltonian_cycle.hpp
   - graph/centroid.hpp
   - graph/dijkstra.hpp
   - graph/dag_path_cover.hpp
@@ -320,7 +327,7 @@ data:
   - graph/tree_all_distances.hpp
   - flow/bipartite.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/899_bfsnumbering.test.cpp
   - test/yukicoder/1320_mincostcycle.test.cpp
@@ -332,6 +339,7 @@ data:
   - test/aoj/GRL_1_B_bellmanford.test.cpp
   - test/aoj/2251_dag_path_cover.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
+  - test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
   - test/aoj/2251_maxantichain.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp
   - test/library_checker/math/twosat.test.cpp

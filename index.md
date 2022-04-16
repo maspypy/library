@@ -125,7 +125,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/binarytrie.hpp
       title: ds/binarytrie.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/cartesian_tree.hpp
       title: ds/cartesian_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -263,7 +263,7 @@ data:
       title: geo/points_diameter.hpp
   - name: graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/base.hpp
       title: graph/base.hpp
     - icon: ':heavy_check_mark:'
@@ -335,6 +335,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/mincostcycle.hpp
       title: graph/mincostcycle.hpp
+    - icon: ':warning:'
+      path: graph/minimum_hamiltonian_cycle.hpp
+      title: graph/minimum_hamiltonian_cycle.hpp
     - icon: ':heavy_check_mark:'
       path: graph/minimum_spanning_tree.hpp
       title: graph/minimum_spanning_tree.hpp
@@ -470,7 +473,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -546,7 +549,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/inversion.hpp
       title: other/inversion.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -660,6 +663,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/longest_increasing_subsequence.hpp
       title: seq/longest_increasing_subsequence.hpp
+    - icon: ':warning:'
+      path: seq/partition.hpp
+      title: seq/partition.hpp
     - icon: ':heavy_check_mark:'
       path: seq/stirling_number_1.hpp
       title: seq/stirling_number_1.hpp
@@ -759,10 +765,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_1_H_kanpsack01.test.cpp
       title: test/aoj/DPL_1_H_kanpsack01.test.cpp
+    - icon: ':x:'
+      path: test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
+      title: test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_3_B_largest_ractangle.test.cpp
       title: test/aoj/DPL_3_B_largest_ractangle.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_3_C_maxrectangle.test.cpp
       title: test/aoj/DPL_3_C_maxrectangle.test.cpp
     - icon: ':heavy_check_mark:'
