@@ -13,6 +13,9 @@ data:
     path: test/aoj/2842_fenwick2d_dense.test.cpp
     title: test/aoj/2842_fenwick2d_dense.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/2842_seg2d_dense.test.cpp
+    title: test/aoj/2842_seg2d_dense.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_12_B_dial.test.cpp
     title: test/aoj/ALDS1_12_B_dial.test.cpp
   - icon: ':heavy_check_mark:'
@@ -666,6 +669,7 @@ data:
   - test/aoj/DSL_4_A_rectangle_union.test.cpp
   - test/aoj/DSL_1_B_weighteduf.test.cpp
   - test/aoj/ITP1_D_D_divisors.test.cpp
+  - test/aoj/2842_seg2d_dense.test.cpp
   - test/aoj/DSL_2_E_fenwick_raq.test.cpp
   - test/aoj/DSL_2_I_cntsum_set_lazy.test.cpp
   - test/aoj/DSL_2_D_dualsegtree.test.cpp
