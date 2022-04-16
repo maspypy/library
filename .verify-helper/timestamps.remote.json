@@ -9,6 +9,7 @@
 "test/aoj/ALDS1_2_A_inversion.test.cpp": "2022-04-16 06:03:26 +0900",
 "test/aoj/ALDS1_5_inversion.test.cpp": "2022-04-16 06:03:26 +0900",
 "test/aoj/DPL_1_B_kanpsack01.test.cpp": "2022-04-16 18:55:02 +0900",
+"test/aoj/DPL_1_D_lis.test.cpp": "2022-04-16 19:24:06 +0900",
 "test/aoj/DPL_1_F_kanpsack01.test.cpp": "2022-04-16 18:55:02 +0900",
 "test/aoj/DPL_1_H_kanpsack01.test.cpp": "2022-04-16 18:55:02 +0900",
 "test/aoj/DSL_1_B_weighteduf.test.cpp": "2022-04-16 06:03:26 +0900",
