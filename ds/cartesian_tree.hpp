@@ -5,7 +5,7 @@ struct CartesianTree {
   極大長方形アルゴリズムで線形時間構築。
   */
   int n;
-  vc<T>& A;
+  vc<T> A;
   vc<pair<int, int>> range;
   vc<int> lch, rch, par;
 
@@ -37,5 +37,21 @@ struct CartesianTree {
     }
     FOR(i, n) if (lch[i] != -1) par[lch[i]] = i;
     FOR(i, n) if (rch[i] != -1) par[rch[i]] = i;
+  }
+
+  // (l, r, h)
+  tuple<int, int, T> maximum_rectangle(int i) {
+    auto [l, r] = range[i];
+    return {l, r, A[i]};
+  }
+
+  // (l, r, h)
+  T max_rectangle_area() {
+    T res = 0;
+    FOR(i, n) {
+      auto [l, r, h] = maximum_rectangle(i);
+      chmax(res, (r - l) * h);
+    }
+    return res;
   }
 };
