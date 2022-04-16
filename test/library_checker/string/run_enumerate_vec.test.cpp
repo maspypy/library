@@ -5,7 +5,7 @@
 
 void solve() {
   STR(S);
-  auto A = s_to_vi(S); // vector の場合
+  auto A = s_to_vi(S, 'a'); // vector の場合
   auto ANS = run_enumerate(A);
   print(len(ANS));
   for (auto&& [p, l, r]: ANS) print(p, l, r);
