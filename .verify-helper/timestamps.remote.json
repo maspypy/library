@@ -13,6 +13,7 @@
 "test/aoj/DPL_1_F_kanpsack01.test.cpp": "2022-04-16 18:55:02 +0900",
 "test/aoj/DPL_1_H_kanpsack01.test.cpp": "2022-04-16 18:55:02 +0900",
 "test/aoj/DPL_3_B_largest_ractangle.test.cpp": "2022-04-16 19:33:30 +0900",
+"test/aoj/DPL_5_C_count_surjection.test.cpp": "2022-04-16 19:49:52 +0900",
 "test/aoj/DSL_1_B_weighteduf.test.cpp": "2022-04-16 06:03:26 +0900",
 "test/aoj/DSL_2_D_dualsegtree.test.cpp": "2022-04-16 06:03:26 +0900",
 "test/aoj/DSL_2_E_fenwick_raq.test.cpp": "2022-04-16 06:03:26 +0900",
