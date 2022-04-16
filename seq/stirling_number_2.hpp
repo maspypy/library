@@ -1,4 +1,6 @@
 #include "poly/convolution.hpp"
+
+// n 個のもの (labeled) を k グループ (no label) に分ける方法
 template <typename mint>
 vc<mint> stirling_number_2(int n) {
   vc<mint> a(n + 1), b(n + 1);
