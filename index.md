@@ -756,6 +756,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_1_H_kanpsack01.test.cpp
       title: test/aoj/DPL_1_H_kanpsack01.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DPL_3_B_largest_ractangle.test.cpp
+      title: test/aoj/DPL_3_B_largest_ractangle.test.cpp
     - icon: ':x:'
       path: test/aoj/DPL_3_C_maxrectangle.test.cpp
       title: test/aoj/DPL_3_C_maxrectangle.test.cpp

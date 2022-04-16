@@ -39,6 +39,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_1_H_kanpsack01.test.cpp
     title: test/aoj/DPL_1_H_kanpsack01.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DPL_3_B_largest_ractangle.test.cpp
+    title: test/aoj/DPL_3_B_largest_ractangle.test.cpp
   - icon: ':x:'
     path: test/aoj/DPL_3_C_maxrectangle.test.cpp
     title: test/aoj/DPL_3_C_maxrectangle.test.cpp
@@ -697,6 +700,7 @@ data:
   - test/aoj/DPL_1_D_lis.test.cpp
   - test/aoj/NTL_1_D_eulerphi.test.cpp
   - test/aoj/2251_maxantichain.test.cpp
+  - test/aoj/DPL_3_B_largest_ractangle.test.cpp
   - test/aoj/DPL_3_C_maxrectangle.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp
   - test/aoj/DPL_1_B_kanpsack01.test.cpp

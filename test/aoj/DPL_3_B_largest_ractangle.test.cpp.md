@@ -17,19 +17,19 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/cartesian_tree
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_3_B
     links:
-    - https://judge.yosupo.jp/problem/cartesian_tree
-  bundledCode: "#line 1 \"test/library_checker/tree/cartesian_tree.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/cartesian_tree\"\r\n#line 1 \"my_template.hpp\"\
-    \n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
-    using pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\n\
-    using u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\n\
-    using vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate\
-    \ <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
-    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_3_B
+  bundledCode: "#line 1 \"test/aoj/DPL_3_B_largest_ractangle.test.cpp\"\n#define PROBLEM\
+    \ \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_3_B\"\n\
+    #line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
+    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
+    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
+    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -199,29 +199,35 @@ data:
     \ i) {\r\n    auto [l, r] = range[i];\r\n    return {l, r, A[i]};\r\n  }\r\n\r\
     \n  // (l, r, h)\r\n  T max_rectangle_area() {\r\n    T res = 0;\r\n    FOR(i,\
     \ n) {\r\n      auto [l, r, h] = maximum_rectangle(i);\r\n      chmax(res, (r\
-    \ - l) * h);\r\n    }\r\n    return res;\r\n  }\r\n};\r\n#line 5 \"test/library_checker/tree/cartesian_tree.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(int, A, N);\r\n  CartesianTree CT(A);\r\
-    \n  auto& ANS = CT.par;\r\n  FOR(i, N) if (ANS[i] == -1) ANS[i] = i;\r\n  print(ANS);\r\
-    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/cartesian_tree\"\r\n#include\
-    \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/cartesian_tree.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(int, A, N);\r\n  CartesianTree CT(A);\r\
-    \n  auto& ANS = CT.par;\r\n  FOR(i, N) if (ANS[i] == -1) ANS[i] = i;\r\n  print(ANS);\r\
-    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
+    \ - l) * h);\r\n    }\r\n    return res;\r\n  }\r\n};\r\n#line 6 \"test/aoj/DPL_3_B_largest_ractangle.test.cpp\"\
+    \n\nvoid solve() {\n  LL(H, W);\n  vi A(W);\n  ll ANS = 0;\n  FOR(i, H) {\n  \
+    \  FOR(j, W) {\n      LL(x);\n      A[j] = (x == 0 ? A[j] + 1 : 0);\n    }\n \
+    \   CartesianTree<ll> CT(A);\n    chmax(ANS, CT.max_rectangle_area());\n  }\n\
+    \  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
+    \n  return 0;\n}\n"
+  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_3_B\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/cartesian_tree.hpp\"\
+    \n\nvoid solve() {\n  LL(H, W);\n  vi A(W);\n  ll ANS = 0;\n  FOR(i, H) {\n  \
+    \  FOR(j, W) {\n      LL(x);\n      A[j] = (x == 0 ? A[j] + 1 : 0);\n    }\n \
+    \   CartesianTree<ll> CT(A);\n    chmax(ANS, CT.max_rectangle_area());\n  }\n\
+    \  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - ds/cartesian_tree.hpp
   isVerificationFile: true
-  path: test/library_checker/tree/cartesian_tree.test.cpp
+  path: test/aoj/DPL_3_B_largest_ractangle.test.cpp
   requiredBy: []
-  timestamp: '2022-04-16 19:33:22+09:00'
+  timestamp: '2022-04-16 19:33:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library_checker/tree/cartesian_tree.test.cpp
+documentation_of: test/aoj/DPL_3_B_largest_ractangle.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/tree/cartesian_tree.test.cpp
-- /verify/test/library_checker/tree/cartesian_tree.test.cpp.html
-title: test/library_checker/tree/cartesian_tree.test.cpp
+- /verify/test/aoj/DPL_3_B_largest_ractangle.test.cpp
+- /verify/test/aoj/DPL_3_B_largest_ractangle.test.cpp.html
+title: test/aoj/DPL_3_B_largest_ractangle.test.cpp
 ---
