@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/waveletmatrix.hpp
     title: ds/waveletmatrix.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
@@ -243,7 +243,7 @@ data:
   path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   requiredBy: []
   timestamp: '2022-04-16 06:03:26+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
 layout: document

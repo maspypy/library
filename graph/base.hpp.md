@@ -95,7 +95,7 @@ data:
   - icon: ':warning:'
     path: graph/tree_dp.hpp
     title: graph/tree_dp.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/treeabelgroup.hpp
     title: graph/treeabelgroup.hpp
   - icon: ':x:'
@@ -135,7 +135,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
     title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - icon: ':x:'
