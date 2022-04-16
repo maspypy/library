@@ -3,6 +3,7 @@
 "test/aoj/2251_dag_path_cover.test.cpp": "2022-04-16 06:03:26 +0900",
 "test/aoj/2251_maxantichain.test.cpp": "2022-04-16 06:03:26 +0900",
 "test/aoj/2842_fenwick2d_dense.test.cpp": "2022-04-16 06:03:26 +0900",
+"test/aoj/2842_seg2d_dense.test.cpp": "2022-04-16 17:44:57 +0900",
 "test/aoj/ALDS1_12_B_dial.test.cpp": "2022-04-16 06:03:26 +0900",
 "test/aoj/ALDS1_1_C_primetest.test.cpp": "2022-04-16 06:03:26 +0900",
 "test/aoj/ALDS1_2_A_inversion.test.cpp": "2022-04-16 06:03:26 +0900",
