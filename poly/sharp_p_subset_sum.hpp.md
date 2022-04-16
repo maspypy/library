@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sharp_p_subset_sum.test.cpp
     title: test/library_checker/math/sharp_p_subset_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\ntemplate <u32 mod>\nstruct modint {\n\
@@ -261,18 +261,18 @@ data:
     \ m)) x[i] += f[i];\r\n    FOR(i, m) x[i] = 0;\r\n    ntt(x, 0);\r\n    FOR(i,\
     \ m + m) x[i] *= y[i];\r\n    ntt(x, 1);\r\n    b.insert(b.end(), x.begin() +\
     \ m, x.end());\r\n  }\r\n  b.resize(n);\r\n  return b;\r\n}\r\n#line 2 \"poly/sharp_p_subset_sum.hpp\"\
-    \ntemplate<typename mint>\r\nvc<mint> sharp_p_subset_sum(vc<int> S, int LIM) {\r\
-    \n  auto CNT = bincount(S, LIM);\r\n  vc<mint> logf(LIM);\r\n  FOR3(x, 1, LIM)\
-    \ {\r\n    FOR3(d, 1, (LIM-1) / x + 1) {\r\n      if (d & 1)\r\n        logf[d\
-    \ * x] += mint(CNT[x]) * inv<mint>(d);\r\n      else\r\n        logf[d * x] -=\
-    \ mint(CNT[x]) * inv<mint>(d);\r\n    }\r\n  }\r\n  return fps_exp(logf);\r\n\
-    }\r\n"
-  code: "#include \"poly/fps_exp.hpp\"\r\ntemplate<typename mint>\r\nvc<mint> sharp_p_subset_sum(vc<int>\
-    \ S, int LIM) {\r\n  auto CNT = bincount(S, LIM);\r\n  vc<mint> logf(LIM);\r\n\
-    \  FOR3(x, 1, LIM) {\r\n    FOR3(d, 1, (LIM-1) / x + 1) {\r\n      if (d & 1)\r\
-    \n        logf[d * x] += mint(CNT[x]) * inv<mint>(d);\r\n      else\r\n      \
-    \  logf[d * x] -= mint(CNT[x]) * inv<mint>(d);\r\n    }\r\n  }\r\n  return fps_exp(logf);\r\
+    \ntemplate <typename mint>\r\nvc<mint> sharp_p_subset_sum(vc<int> S, int LIM)\
+    \ {\r\n  auto CNT = bincount<int>(S, LIM);\r\n  vc<mint> logf(LIM);\r\n  FOR3(x,\
+    \ 1, LIM) {\r\n    FOR3(d, 1, (LIM - 1) / x + 1) {\r\n      if (d & 1)\r\n   \
+    \     logf[d * x] += mint(CNT[x]) * inv<mint>(d);\r\n      else\r\n        logf[d\
+    \ * x] -= mint(CNT[x]) * inv<mint>(d);\r\n    }\r\n  }\r\n  return fps_exp(logf);\r\
     \n}\r\n"
+  code: "#include \"poly/fps_exp.hpp\"\r\ntemplate <typename mint>\r\nvc<mint> sharp_p_subset_sum(vc<int>\
+    \ S, int LIM) {\r\n  auto CNT = bincount<int>(S, LIM);\r\n  vc<mint> logf(LIM);\r\
+    \n  FOR3(x, 1, LIM) {\r\n    FOR3(d, 1, (LIM - 1) / x + 1) {\r\n      if (d &\
+    \ 1)\r\n        logf[d * x] += mint(CNT[x]) * inv<mint>(d);\r\n      else\r\n\
+    \        logf[d * x] -= mint(CNT[x]) * inv<mint>(d);\r\n    }\r\n  }\r\n  return\
+    \ fps_exp(logf);\r\n}\r\n"
   dependsOn:
   - poly/fps_exp.hpp
   - poly/convolution.hpp
@@ -280,8 +280,8 @@ data:
   isVerificationFile: false
   path: poly/sharp_p_subset_sum.hpp
   requiredBy: []
-  timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-04-16 17:36:55+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
 documentation_of: poly/sharp_p_subset_sum.hpp

@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/sharp_p_subset_sum.hpp
     title: poly/sharp_p_subset_sum.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sharp_p_subset_sum
@@ -429,15 +429,15 @@ data:
     \ m)) x[i] += f[i];\r\n    FOR(i, m) x[i] = 0;\r\n    ntt(x, 0);\r\n    FOR(i,\
     \ m + m) x[i] *= y[i];\r\n    ntt(x, 1);\r\n    b.insert(b.end(), x.begin() +\
     \ m, x.end());\r\n  }\r\n  b.resize(n);\r\n  return b;\r\n}\r\n#line 2 \"poly/sharp_p_subset_sum.hpp\"\
-    \ntemplate<typename mint>\r\nvc<mint> sharp_p_subset_sum(vc<int> S, int LIM) {\r\
-    \n  auto CNT = bincount(S, LIM);\r\n  vc<mint> logf(LIM);\r\n  FOR3(x, 1, LIM)\
-    \ {\r\n    FOR3(d, 1, (LIM-1) / x + 1) {\r\n      if (d & 1)\r\n        logf[d\
-    \ * x] += mint(CNT[x]) * inv<mint>(d);\r\n      else\r\n        logf[d * x] -=\
-    \ mint(CNT[x]) * inv<mint>(d);\r\n    }\r\n  }\r\n  return fps_exp(logf);\r\n\
-    }\r\n#line 5 \"test/library_checker/math/sharp_p_subset_sum.test.cpp\"\n\r\nusing\
-    \ mint = modint998;\r\nvoid solve() {\r\n  LL(N, T);\r\n  VEC(int, S, N);\r\n\
-    \  auto f = sharp_p_subset_sum<mint>(S, T + 1);\r\n  f.erase(f.begin());\r\n \
-    \ print(f);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \ntemplate <typename mint>\r\nvc<mint> sharp_p_subset_sum(vc<int> S, int LIM)\
+    \ {\r\n  auto CNT = bincount<int>(S, LIM);\r\n  vc<mint> logf(LIM);\r\n  FOR3(x,\
+    \ 1, LIM) {\r\n    FOR3(d, 1, (LIM - 1) / x + 1) {\r\n      if (d & 1)\r\n   \
+    \     logf[d * x] += mint(CNT[x]) * inv<mint>(d);\r\n      else\r\n        logf[d\
+    \ * x] -= mint(CNT[x]) * inv<mint>(d);\r\n    }\r\n  }\r\n  return fps_exp(logf);\r\
+    \n}\r\n#line 5 \"test/library_checker/math/sharp_p_subset_sum.test.cpp\"\n\r\n\
+    using mint = modint998;\r\nvoid solve() {\r\n  LL(N, T);\r\n  VEC(int, S, N);\r\
+    \n  auto f = sharp_p_subset_sum<mint>(S, T + 1);\r\n  f.erase(f.begin());\r\n\
+    \  print(f);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
     \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sharp_p_subset_sum\"\r\n\
     #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"poly/sharp_p_subset_sum.hpp\"\
@@ -455,8 +455,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/sharp_p_subset_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-04-16 06:03:26+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-04-16 17:36:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/sharp_p_subset_sum.test.cpp
 layout: document

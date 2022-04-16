@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/run_enumerate.hpp
     title: string/run_enumerate.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/zalgorithm.hpp
     title: string/zalgorithm.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/runenumerate
@@ -212,14 +212,14 @@ data:
     \  if (chmax(r, lr.se) && !done.count(lr)) {\r\n        done.insert(lr);\r\n \
     \       res.eb(p, lr.fi, lr.se);\r\n      }\r\n    }\r\n  }\r\n  return res;\r\
     \n}\r\n#line 5 \"test/library_checker/string/run_enumerate_vec.test.cpp\"\n\r\n\
-    void solve() {\r\n  STR(S);\r\n  auto A = s_to_vi(S); // vector \u306E\u5834\u5408\
-    \r\n  auto ANS = run_enumerate(A);\r\n  print(len(ANS));\r\n  for (auto&& [p,\
-    \ l, r]: ANS) print(p, l, r);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
+    void solve() {\r\n  STR(S);\r\n  auto A = s_to_vi(S, 'a'); // vector \u306E\u5834\
+    \u5408\r\n  auto ANS = run_enumerate(A);\r\n  print(len(ANS));\r\n  for (auto&&\
+    \ [p, l, r]: ANS) print(p, l, r);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
     \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
     \n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/runenumerate\"\r\n#include\
     \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"string/run_enumerate.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  STR(S);\r\n  auto A = s_to_vi(S); // vector \u306E\
+    \r\n\r\nvoid solve() {\r\n  STR(S);\r\n  auto A = s_to_vi(S, 'a'); // vector \u306E\
     \u5834\u5408\r\n  auto ANS = run_enumerate(A);\r\n  print(len(ANS));\r\n  for\
     \ (auto&& [p, l, r]: ANS) print(p, l, r);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
     \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
@@ -232,8 +232,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/run_enumerate_vec.test.cpp
   requiredBy: []
-  timestamp: '2022-04-16 06:03:26+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-04-16 17:36:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/string/run_enumerate_vec.test.cpp
 layout: document
