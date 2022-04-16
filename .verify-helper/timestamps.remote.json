@@ -12,6 +12,7 @@
 "test/aoj/DPL_1_D_lis.test.cpp": "2022-04-16 19:24:06 +0900",
 "test/aoj/DPL_1_F_kanpsack01.test.cpp": "2022-04-16 18:55:02 +0900",
 "test/aoj/DPL_1_H_kanpsack01.test.cpp": "2022-04-16 18:55:02 +0900",
+"test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp": "2022-04-16 23:37:16 +0900",
 "test/aoj/DPL_3_B_largest_ractangle.test.cpp": "2022-04-16 19:33:30 +0900",
 "test/aoj/DPL_3_C_maxrectangle.test.cpp": "2022-04-16 22:54:32 +0900",
 "test/aoj/DPL_4_B_subset_sum_count.test.cpp": "2022-04-16 23:35:00 +0900",
