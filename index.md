@@ -6,7 +6,7 @@ data:
     - icon: ':question:'
       path: alg/group_add.hpp
       title: alg/group_add.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/group_affine.hpp
       title: alg/group_affine.hpp
     - icon: ':heavy_check_mark:'
@@ -15,7 +15,7 @@ data:
     - icon: ':x:'
       path: alg/group_mul.hpp
       title: alg/group_mul.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/group_reverse.hpp
       title: alg/group_reverse.hpp
     - icon: ':warning:'
@@ -105,7 +105,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid_or.hpp
       title: alg/monoid_or.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid_reverse.hpp
       title: alg/monoid_reverse.hpp
     - icon: ':x:'
@@ -218,7 +218,7 @@ data:
     - icon: ':question:'
       path: ds/swag.hpp
       title: ds/swag.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/unionfind.hpp
       title: ds/unionfind.hpp
     - icon: ':warning:'
@@ -232,7 +232,7 @@ data:
       title: ds/weightedunionfind.hpp
   - name: flow
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: flow/bipartite.hpp
       title: flow/bipartite.hpp
     - icon: ':question:'
@@ -243,16 +243,16 @@ data:
       title: flow/mincostflow.hpp
   - name: geo
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo/angle_sort.hpp
       title: geo/angle_sort.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo/base.hpp
       title: geo/base.hpp
     - icon: ':warning:'
       path: geo/convexhull.hpp
       title: geo/convexhull.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo/dynamicupperhull.hpp
       title: geo/dynamicupperhull.hpp
     - icon: ':warning:'
@@ -281,13 +281,13 @@ data:
     - icon: ':x:'
       path: graph/centroid.hpp
       title: graph/centroid.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/check_bipartite.hpp
       title: graph/check_bipartite.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/chromatic.hpp
       title: graph/chromatic.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/cycle_detection.hpp
       title: graph/cycle_detection.hpp
     - icon: ':heavy_check_mark:'
@@ -296,7 +296,7 @@ data:
     - icon: ':warning:'
       path: graph/decompose_complete.hpp
       title: graph/decompose_complete.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/degree.hpp
       title: graph/degree.hpp
     - icon: ':heavy_check_mark:'
@@ -308,7 +308,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/dualtreemonoid.hpp
       title: graph/dualtreemonoid.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/enumerate_triangles.hpp
       title: graph/enumerate_triangles.hpp
     - icon: ':warning:'
@@ -329,7 +329,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/maximum_antichain.hpp
       title: graph/maximum_antichain.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/maximum_independent_set.hpp
       title: graph/maximum_independent_set.hpp
     - icon: ':x:'
@@ -341,13 +341,13 @@ data:
     - icon: ':warning:'
       path: graph/rerooting_dp.hpp
       title: graph/rerooting_dp.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/restore_path.hpp
       title: graph/restore_path.hpp
     - icon: ':warning:'
       path: graph/reverse_graph.hpp
       title: graph/reverse_graph.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/scc.hpp
       title: graph/scc.hpp
     - icon: ':warning:'
@@ -371,13 +371,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/treeabelgroup.hpp
       title: graph/treeabelgroup.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/treegroup.hpp
       title: graph/treegroup.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/treemonoid.hpp
       title: graph/treemonoid.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/two_edge_component.hpp
       title: graph/two_edge_component.hpp
     - icon: ':x:'
@@ -420,7 +420,7 @@ data:
       title: linalg/vectorspace.hpp
   - name: mod
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: mod/binomial.hpp
       title: mod/binomial.hpp
     - icon: ':x:'
@@ -429,7 +429,7 @@ data:
     - icon: ':warning:'
       path: mod/factorial998.hpp
       title: mod/factorial998.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: mod/fast_div.hpp
       title: mod/fast_div.hpp
     - icon: ':warning:'
@@ -441,7 +441,7 @@ data:
     - icon: ':x:'
       path: mod/mod_kth_root.hpp
       title: mod/mod_kth_root.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: mod/mod_log.hpp
       title: mod/mod_log.hpp
     - icon: ':x:'
@@ -508,10 +508,10 @@ data:
     - icon: ':x:'
       path: nt/nim_product.hpp
       title: nt/nim_product.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: nt/primesum.hpp
       title: nt/primesum.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: nt/primetable.hpp
       title: nt/primetable.hpp
     - icon: ':question:'
@@ -528,7 +528,7 @@ data:
     - icon: ':warning:'
       path: other/ceil_range.hpp
       title: other/ceil_range.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: other/discrete_log.hpp
       title: other/discrete_log.hpp
     - icon: ':warning:'
@@ -558,7 +558,7 @@ data:
     - icon: ':warning:'
       path: other/monge_shortest_path.hpp
       title: other/monge_shortest_path.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: other/random.hpp
       title: other/random.hpp
   - name: pds
@@ -918,67 +918,67 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
       title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
       title: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
       title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
       title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
       title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
       title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - name: test/library_checker/geometry
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/geometry/convex_layers.test.cpp
       title: test/library_checker/geometry/convex_layers.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/geometry/sort_points_by_argument.test.cpp
       title: test/library_checker/geometry/sort_points_by_argument.test.cpp
   - name: test/library_checker/graph
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/bipartitematching.test.cpp
       title: test/library_checker/graph/bipartitematching.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/chromatic_number.test.cpp
       title: test/library_checker/graph/chromatic_number.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/cycle_detection.test.cpp
       title: test/library_checker/graph/cycle_detection.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/enumerate_triangles.test.cpp
       title: test/library_checker/graph/enumerate_triangles.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/maximum_independent_set.test.cpp
       title: test/library_checker/graph/maximum_independent_set.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/scc.test.cpp
       title: test/library_checker/graph/scc.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/shortest_path.test.cpp
       title: test/library_checker/graph/shortest_path.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/two_edge_component.test.cpp
       title: test/library_checker/graph/two_edge_component.test.cpp
   - name: test/library_checker/math
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/binomial_coefficient.test.cpp
       title: test/library_checker/math/binomial_coefficient.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/counting_primes.test.cpp
       title: test/library_checker/math/counting_primes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/discrete_logarithm_mod.test.cpp
       title: test/library_checker/math/discrete_logarithm_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/enumerate_primes.test.cpp
       title: test/library_checker/math/enumerate_primes.test.cpp
     - icon: ':x:'

@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid_min.hpp
     title: alg/monoid_min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_reverse.hpp
     title: alg/monoid_reverse.hpp
   - icon: ':heavy_check_mark:'
@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
   - icon: ':question:'
@@ -31,7 +31,7 @@ data:
   - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
   _extendedRequiredBy: []

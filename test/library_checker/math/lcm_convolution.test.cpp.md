@@ -10,7 +10,7 @@ data:
   - icon: ':x:'
     path: nt/lcm_convolution.hpp
     title: nt/lcm_convolution.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   - icon: ':x:'

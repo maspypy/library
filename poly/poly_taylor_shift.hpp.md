@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   - icon: ':question:'

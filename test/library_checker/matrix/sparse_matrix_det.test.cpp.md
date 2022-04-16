@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/random.hpp
     title: other/random.hpp
   - icon: ':x:'
