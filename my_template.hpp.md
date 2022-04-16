@@ -49,6 +49,9 @@ data:
     path: test/aoj/DPL_3_C_maxrectangle.test.cpp
     title: test/aoj/DPL_3_C_maxrectangle.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/DPL_5_C_count_surjection.test.cpp
+    title: test/aoj/DPL_5_C_count_surjection.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_1_B_weighteduf.test.cpp
     title: test/aoj/DSL_1_B_weighteduf.test.cpp
   - icon: ':heavy_check_mark:'
@@ -607,6 +610,7 @@ data:
   - test/aoj/ALDS1_12_B_dial.test.cpp
   - test/aoj/ITP1_6_D_matvec.test.cpp
   - test/aoj/2842_fenwick2d_dense.test.cpp
+  - test/aoj/DPL_5_C_count_surjection.test.cpp
   - test/aoj/ALDS1_1_C_primetest.test.cpp
   - test/aoj/DSL_2_F_min_set_lazy.test.cpp
   - test/aoj/GRL_1_C_warshallfloyd.test.cpp

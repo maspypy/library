@@ -672,6 +672,9 @@ data:
       path: setfunc/and_convolution.hpp
       title: setfunc/and_convolution.hpp
     - icon: ':heavy_check_mark:'
+      path: setfunc/count_surjection.hpp
+      title: setfunc/count_surjection.hpp
+    - icon: ':heavy_check_mark:'
       path: setfunc/hadamard.hpp
       title: setfunc/hadamard.hpp
     - icon: ':heavy_check_mark:'
@@ -762,6 +765,9 @@ data:
     - icon: ':x:'
       path: test/aoj/DPL_3_C_maxrectangle.test.cpp
       title: test/aoj/DPL_3_C_maxrectangle.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DPL_5_C_count_surjection.test.cpp
+      title: test/aoj/DPL_5_C_count_surjection.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_1_B_weighteduf.test.cpp
       title: test/aoj/DSL_1_B_weighteduf.test.cpp
