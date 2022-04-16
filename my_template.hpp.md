@@ -43,6 +43,9 @@ data:
     path: test/aoj/DPL_1_H_kanpsack01.test.cpp
     title: test/aoj/DPL_1_H_kanpsack01.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
+    title: test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_3_B_largest_ractangle.test.cpp
     title: test/aoj/DPL_3_B_largest_ractangle.test.cpp
   - icon: ':heavy_check_mark:'
@@ -633,6 +636,7 @@ data:
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - test/aoj/DPL_1_H_kanpsack01.test.cpp
   - test/aoj/ALDS1_2_A_inversion.test.cpp
+  - test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
   - test/aoj/DPL_1_D_lis.test.cpp
   - test/aoj/NTL_1_D_eulerphi.test.cpp
   - test/aoj/2251_maxantichain.test.cpp

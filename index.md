@@ -263,7 +263,7 @@ data:
       title: geo/points_diameter.hpp
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/base.hpp
       title: graph/base.hpp
     - icon: ':heavy_check_mark:'
@@ -335,7 +335,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/mincostcycle.hpp
       title: graph/mincostcycle.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/minimum_hamiltonian_cycle.hpp
       title: graph/minimum_hamiltonian_cycle.hpp
     - icon: ':heavy_check_mark:'
@@ -768,7 +768,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_1_H_kanpsack01.test.cpp
       title: test/aoj/DPL_1_H_kanpsack01.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
       title: test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
     - icon: ':heavy_check_mark:'
