@@ -567,6 +567,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/random.hpp
       title: other/random.hpp
+    - icon: ':heavy_check_mark:'
+      path: other/subset_sum_count.hpp
+      title: other/subset_sum_count.hpp
   - name: pds
     pages:
     - icon: ':heavy_check_mark:'
@@ -774,6 +777,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_3_C_maxrectangle.test.cpp
       title: test/aoj/DPL_3_C_maxrectangle.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DPL_4_B_subset_sum_count.test.cpp
+      title: test/aoj/DPL_4_B_subset_sum_count.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_5_C_count_surjection.test.cpp
       title: test/aoj/DPL_5_C_count_surjection.test.cpp

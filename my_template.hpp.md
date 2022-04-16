@@ -49,6 +49,9 @@ data:
     path: test/aoj/DPL_3_C_maxrectangle.test.cpp
     title: test/aoj/DPL_3_C_maxrectangle.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/DPL_4_B_subset_sum_count.test.cpp
+    title: test/aoj/DPL_4_B_subset_sum_count.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_5_C_count_surjection.test.cpp
     title: test/aoj/DPL_5_C_count_surjection.test.cpp
   - icon: ':heavy_check_mark:'
@@ -604,6 +607,7 @@ data:
   - test/yukicoder/1002_centroid.test.cpp
   - test/yukicoder/17_warshall_floyd.test.cpp
   - test/aoj/ALDS1_5_inversion.test.cpp
+  - test/aoj/DPL_4_B_subset_sum_count.test.cpp
   - test/aoj/DSL_2_G_fenwick_raq.test.cpp
   - test/aoj/DSL_2_H_min_add_lazy.test.cpp
   - test/aoj/NTL_1_E_extgcd.test.cpp
