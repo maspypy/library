@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
   - icon: ':question:'
@@ -265,12 +265,9 @@ data:
     template <class T, is_not_modint_t<T>* = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>&\
     \ A, const vc<vc<T>>& B) {\r\n  auto N = len(A), M = len(B), K = len(B[0]);\r\n\
     \  vv(T, C, N, K);\r\n  FOR(n, N) FOR(m, M) FOR(k, K) C[n][k] += A[n][m] * B[m][k];\r\
-    \n  return C;\r\n}\r\n\r\ntemplate <class T>\r\nvc<T> mat_vec_mul(const vc<vc<T>>&\
-    \ A, const vc<T>& B) {\r\n  auto N = len(A), M = len(A[0]);\r\n  assert(len(B)==M);\r\
-    \n  vc<T> C(N);\r\n  FOR(i, N) FOR(j, M) C[i] += A[i][j] * B[j];\r\n  return C;\r\
-    \n}\r\n#line 7 \"test/library_checker/matrix/matrix_product.test.cpp\"\nusing\
-    \ mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N, M, K);\r\n  VV(mint, A, N,\
-    \ M);\r\n  VV(mint, B, M, K);\r\n  auto C = mat_mul(A, B);\r\n  FOR(n, len(C))\
+    \n  return C;\r\n}\r\n#line 7 \"test/library_checker/matrix/matrix_product.test.cpp\"\
+    \nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N, M, K);\r\n  VV(mint,\
+    \ A, N, M);\r\n  VV(mint, B, M, K);\r\n  auto C = mat_mul(A, B);\r\n  FOR(n, len(C))\
     \ print(C[n]);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
     \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product\"\r\n#include\
@@ -288,7 +285,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/matrix_product.test.cpp
   requiredBy: []
-  timestamp: '2022-04-22 16:55:40+09:00'
+  timestamp: '2022-04-23 01:11:07+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/matrix/matrix_product.test.cpp

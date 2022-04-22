@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_6_D
@@ -190,12 +190,9 @@ data:
     \ = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n\
     \  auto N = len(A), M = len(B), K = len(B[0]);\r\n  vv(T, C, N, K);\r\n  FOR(n,\
     \ N) FOR(m, M) FOR(k, K) C[n][k] += A[n][m] * B[m][k];\r\n  return C;\r\n}\r\n\
-    \r\ntemplate <class T>\r\nvc<T> mat_vec_mul(const vc<vc<T>>& A, const vc<T>& B)\
-    \ {\r\n  auto N = len(A), M = len(A[0]);\r\n  assert(len(B)==M);\r\n  vc<T> C(N);\r\
-    \n  FOR(i, N) FOR(j, M) C[i] += A[i][j] * B[j];\r\n  return C;\r\n}\r\n#line 6\
-    \ \"test/aoj/ITP1_6_D_matvec.test.cpp\"\n\nvoid solve() {\n  LL(H, W);\n  VV(ll,\
-    \ A, H, W);\n  VEC(ll, B, W);\n  auto C = mat_vec_mul(A, B);\n  for (auto&& c:\
-    \ C) print(c);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    #line 6 \"test/aoj/ITP1_6_D_matvec.test.cpp\"\n\nvoid solve() {\n  LL(H, W);\n\
+    \  VV(ll, A, H, W);\n  VEC(ll, B, W);\n  auto C = mat_vec_mul(A, B);\n  for (auto&&\
+    \ c: C) print(c);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
     \n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_6_D\"\
@@ -211,8 +208,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ITP1_6_D_matvec.test.cpp
   requiredBy: []
-  timestamp: '2022-04-16 06:03:26+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-04-23 01:11:07+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/ITP1_6_D_matvec.test.cpp
 layout: document

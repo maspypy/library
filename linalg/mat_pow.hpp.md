@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
   _extendedRequiredBy: []
@@ -25,10 +25,7 @@ data:
     \ = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n\
     \  auto N = len(A), M = len(B), K = len(B[0]);\r\n  vv(T, C, N, K);\r\n  FOR(n,\
     \ N) FOR(m, M) FOR(k, K) C[n][k] += A[n][m] * B[m][k];\r\n  return C;\r\n}\r\n\
-    \r\ntemplate <class T>\r\nvc<T> mat_vec_mul(const vc<vc<T>>& A, const vc<T>& B)\
-    \ {\r\n  auto N = len(A), M = len(A[0]);\r\n  assert(len(B)==M);\r\n  vc<T> C(N);\r\
-    \n  FOR(i, N) FOR(j, M) C[i] += A[i][j] * B[j];\r\n  return C;\r\n}\r\n#line 2\
-    \ \"linalg/mat_pow.hpp\"\ntemplate<typename T>\r\nvc<vc<T>> mat_pow(vc<vc<T>>\
+    #line 2 \"linalg/mat_pow.hpp\"\ntemplate<typename T>\r\nvc<vc<T>> mat_pow(vc<vc<T>>\
     \ A, ll n){\r\n  int N = len(A);\r\n  vv(T, ret, N, N);\r\n  FOR(i, N) ret[i][i]\
     \ = T(1);\r\n  while(n){\r\n    if(n & 1) ret = mat_mul(ret, A);\r\n    n /= 2;\r\
     \n    if(n) A = mat_mul(A, A);\r\n  }\r\n  return ret;\r\n}\n"
@@ -41,7 +38,7 @@ data:
   isVerificationFile: false
   path: linalg/mat_pow.hpp
   requiredBy: []
-  timestamp: '2022-04-16 04:26:49+09:00'
+  timestamp: '2022-04-23 01:11:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1810_matpow.test.cpp
