@@ -16,7 +16,7 @@ void solve() {
     return dx * dx * dx + dy * dy * dy;
   };
   const ll INF = 1LL << 60;
-  print(shortest_path_monge<INF>(N, f).back());
+  print(monge_shortest_path<INF>(N, f).back());
 }
 
 signed main() {
