@@ -1,5 +1,6 @@
 #pragma once
 
+// https://noshi91.github.io/Library/algorithm/larsch.cpp.html
 template <class T>
 class LARSCH {
   struct reduce_row;
