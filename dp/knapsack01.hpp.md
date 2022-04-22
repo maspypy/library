@@ -2,27 +2,18 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DPL_1_B_kanpsack01.test.cpp
-    title: test/aoj/DPL_1_B_kanpsack01.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DPL_1_F_kanpsack01.test.cpp
-    title: test/aoj/DPL_1_F_kanpsack01.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DPL_1_H_kanpsack01.test.cpp
-    title: test/aoj/DPL_1_H_kanpsack01.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"other/knapsack01.hpp\"\n/*\nknapsack01 \u306E\u5168\u5217\
-    \u6319\n\u30FBO(2^n) \u3067\u3001(wt, val) \u3092\u5168\u5217\u6319 + wt \u3067\
-    \u30BD\u30FC\u30C8\n\u30FBremove extra = true \u2192 val \u304C\u5897\u52A0\u306B\
-    \u306A\u308B\u3068\u3053\u308D\u3060\u3051\u6B8B\u3059\n*/\ntemplate <typename\
-    \ WT, typename VAL>\nvc<pair<WT, VAL>> knapsack01_gen_all(vc<WT> weight, vc<VAL>\
-    \ val,\n                                     bool remove_extra) {\n  int n = len(weight);\n\
+  bundledCode: "#line 1 \"dp/knapsack01.hpp\"\n/*\nknapsack01 \u306E\u5168\u5217\u6319\
+    \n\u30FBO(2^n) \u3067\u3001(wt, val) \u3092\u5168\u5217\u6319 + wt \u3067\u30BD\
+    \u30FC\u30C8\n\u30FBremove extra = true \u2192 val \u304C\u5897\u52A0\u306B\u306A\
+    \u308B\u3068\u3053\u308D\u3060\u3051\u6B8B\u3059\n*/\ntemplate <typename WT, typename\
+    \ VAL>\nvc<pair<WT, VAL>> knapsack01_gen_all(vc<WT> weight, vc<VAL> val,\n   \
+    \                                  bool remove_extra) {\n  int n = len(weight);\n\
     \  using P = pair<WT, VAL>;\n  vc<P> dp;\n  dp.eb(0, 0);\n  FOR(i, n) {\n    vc<P>\
     \ tmp(len(dp));\n    FOR(j, len(dp)) tmp[j] = {dp[j].fi + weight[i], dp[j].se\
     \ + val[i]};\n    vc<P> res;\n    merge(all(dp), all(tmp), back_inserter(res));\n\
@@ -89,18 +80,15 @@ data:
     \ (t == t2) return sol_2();\n  return sol_3();\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: other/knapsack01.hpp
+  path: dp/knapsack01.hpp
   requiredBy: []
-  timestamp: '2022-04-16 18:55:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/DPL_1_F_kanpsack01.test.cpp
-  - test/aoj/DPL_1_H_kanpsack01.test.cpp
-  - test/aoj/DPL_1_B_kanpsack01.test.cpp
-documentation_of: other/knapsack01.hpp
+  timestamp: '2022-04-22 16:53:26+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: dp/knapsack01.hpp
 layout: document
 redirect_from:
-- /library/other/knapsack01.hpp
-- /library/other/knapsack01.hpp.html
-title: other/knapsack01.hpp
+- /library/dp/knapsack01.hpp
+- /library/dp/knapsack01.hpp.html
+title: dp/knapsack01.hpp
 ---

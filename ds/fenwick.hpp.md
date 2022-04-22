@@ -5,6 +5,9 @@ data:
     path: alg/group_add.hpp
     title: alg/group_add.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: dp/inversion.hpp
+    title: dp/inversion.hpp
   - icon: ':heavy_check_mark:'
     path: ds/fenwickraq.hpp
     title: ds/fenwickraq.hpp
@@ -14,16 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/treeabelgroup.hpp
     title: graph/treeabelgroup.hpp
-  - icon: ':heavy_check_mark:'
-    path: other/inversion.hpp
-    title: other/inversion.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_2_A_inversion.test.cpp
-    title: test/aoj/ALDS1_2_A_inversion.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_5_inversion.test.cpp
-    title: test/aoj/ALDS1_5_inversion.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_E_fenwick_raq.test.cpp
     title: test/aoj/DSL_2_E_fenwick_raq.test.cpp
@@ -113,18 +107,16 @@ data:
   isVerificationFile: false
   path: ds/fenwick.hpp
   requiredBy:
-  - other/inversion.hpp
   - graph/treeabelgroup.hpp
+  - dp/inversion.hpp
   - ds/rectanglesums.hpp
   - ds/fenwickraq.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1038_centroid.test.cpp
-  - test/aoj/ALDS1_5_inversion.test.cpp
   - test/aoj/DSL_2_G_fenwick_raq.test.cpp
   - test/aoj/DSL_2_E_fenwick_raq.test.cpp
-  - test/aoj/ALDS1_2_A_inversion.test.cpp
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   - test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp

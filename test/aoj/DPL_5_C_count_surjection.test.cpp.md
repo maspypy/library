@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
@@ -246,11 +246,14 @@ data:
     \ <= n && n < mod);\n  return get<1>(get_factorial_data<mint>(n));\n}\n\ntemplate\
     \ <typename mint>\nmint inv(int n) {\n  static constexpr int mod = mint::get_mod();\n\
     \  assert(0 <= n && n < mod);\n  return get<2>(get_factorial_data<mint>(n));\n\
-    }\n\ntemplate <typename mint>\nmint C(ll n, ll k, bool large = false) {\n  assert(n\
+    }\n\ntemplate <typename mint, bool large = false>\nmint C(ll n, ll k) {\n  assert(n\
     \ >= 0);\n  if (k < 0 || n < k) return 0;\n  if (!large) return fact<mint>(n)\
     \ * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k, n - k);\n  mint x(1);\n\
     \  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n  return x;\n}\n\
-    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    \ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n\
+    \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
+    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
+    }\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     using amint = ArbitraryModInt;\n#line 1 \"setfunc/count_surjection.hpp\"\ntemplate<typename\
     \ mint>\r\nmint count_surjection(ll n, ll m) {\r\n  if (n < m) return 0;\r\n \
     \ mint res = 0;\r\n  FOR(i, m + 1) {\r\n    mint sgn = ((m - i) & 1 ? -1 : 1);\r\
@@ -273,7 +276,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL_5_C_count_surjection.test.cpp
   requiredBy: []
-  timestamp: '2022-04-16 19:49:52+09:00'
+  timestamp: '2022-04-22 16:55:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL_5_C_count_surjection.test.cpp

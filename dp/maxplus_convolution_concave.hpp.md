@@ -8,7 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"other/maxplus_convolution_concave.hpp\"\ntemplate <typename\
+  bundledCode: "#line 1 \"dp/maxplus_convolution_concave.hpp\"\ntemplate <typename\
     \ T, T INF = 1LL << 60>\nvc<T> maxplus_convolution_concave(vc<T>& A, vc<T>& B)\
     \ {\n  ll NA = len(A), NB = len(B);\n  ll LA = 0, RA = NA, LB = 0, RB = NB;\n\
     \  while (LA < RA && A[LA] == -INF) ++LA;\n  while (LA < RA && A[RA - 1] == -INF)\
@@ -33,15 +33,15 @@ data:
     \ }\n  }\n  return C;\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: other/maxplus_convolution_concave.hpp
+  path: dp/maxplus_convolution_concave.hpp
   requiredBy: []
-  timestamp: '2022-04-16 04:26:49+09:00'
+  timestamp: '2022-04-22 16:53:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: other/maxplus_convolution_concave.hpp
+documentation_of: dp/maxplus_convolution_concave.hpp
 layout: document
 redirect_from:
-- /library/other/maxplus_convolution_concave.hpp
-- /library/other/maxplus_convolution_concave.hpp.html
-title: other/maxplus_convolution_concave.hpp
+- /library/dp/maxplus_convolution_concave.hpp
+- /library/dp/maxplus_convolution_concave.hpp.html
+title: dp/maxplus_convolution_concave.hpp
 ---

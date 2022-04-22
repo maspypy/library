@@ -8,16 +8,10 @@ data:
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_2_A_inversion.test.cpp
-    title: test/aoj/ALDS1_2_A_inversion.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_5_inversion.test.cpp
-    title: test/aoj/ALDS1_5_inversion.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group_add.hpp\"\ntemplate <class X>\r\nstruct Group_Add\
@@ -49,7 +43,7 @@ data:
     \ {\n        i += k;\n        s = AbelGroup::op(s, dat[i - 1]);\n      }\n   \
     \   k >>= 1;\n    }\n    return i;\n  }\n\n  int find_kth(E k) {\n    auto check\
     \ = [&](E x) -> bool { return x <= k; };\n    return max_right(check);\n  }\n\n\
-    \  void debug() { print(\"fenwick\", dat); }\n};\n#line 2 \"other/inversion.hpp\"\
+    \  void debug() { print(\"fenwick\", dat); }\n};\n#line 2 \"dp/inversion.hpp\"\
     \n\ntemplate <typename T>\nll inversion(vc<T>& A) {\n  auto key = A;\n  UNIQUE(key);\n\
     \  ll ANS = 0;\n  FenwickTree<Group_Add<int>> bit(len(key));\n  for (auto&& a:\
     \ A) {\n    ll x = LB(key, a);\n    ANS += bit.sum_all() - bit.sum(x + 1);\n \
@@ -62,17 +56,15 @@ data:
   - ds/fenwick.hpp
   - alg/group_add.hpp
   isVerificationFile: false
-  path: other/inversion.hpp
+  path: dp/inversion.hpp
   requiredBy: []
-  timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/ALDS1_5_inversion.test.cpp
-  - test/aoj/ALDS1_2_A_inversion.test.cpp
-documentation_of: other/inversion.hpp
+  timestamp: '2022-04-22 16:53:26+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: dp/inversion.hpp
 layout: document
 redirect_from:
-- /library/other/inversion.hpp
-- /library/other/inversion.hpp.html
-title: other/inversion.hpp
+- /library/dp/inversion.hpp
+- /library/dp/inversion.hpp.html
+title: dp/inversion.hpp
 ---

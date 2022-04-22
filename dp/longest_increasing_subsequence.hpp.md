@@ -2,16 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DPL_1_D_lis.test.cpp
-    title: test/aoj/DPL_1_D_lis.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"seq/longest_increasing_subsequence.hpp\"\n/*\ndp[i] := \u7B2C\
+  bundledCode: "#line 1 \"dp/longest_increasing_subsequence.hpp\"\n/*\ndp[i] := \u7B2C\
     \ i \u9805\u3067\u7D42\u308F\u308B lis \u9577\u306E\u6700\u5927\u5024\n\u3068\u306A\
     \u308B dp \u30C6\u30FC\u30D6\u30EB\u3092\u8FD4\u3059\u3002O(Nlog N) \u6642\u9593\
     \u3002\n\u72ED\u7FA9\u30FB\u5E83\u7FA9\u306F\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\
@@ -32,16 +29,15 @@ data:
     \ lis_rank;\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: seq/longest_increasing_subsequence.hpp
+  path: dp/longest_increasing_subsequence.hpp
   requiredBy: []
-  timestamp: '2022-04-16 19:24:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/DPL_1_D_lis.test.cpp
-documentation_of: seq/longest_increasing_subsequence.hpp
+  timestamp: '2022-04-22 16:53:26+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: dp/longest_increasing_subsequence.hpp
 layout: document
 redirect_from:
-- /library/seq/longest_increasing_subsequence.hpp
-- /library/seq/longest_increasing_subsequence.hpp.html
-title: seq/longest_increasing_subsequence.hpp
+- /library/dp/longest_increasing_subsequence.hpp
+- /library/dp/longest_increasing_subsequence.hpp.html
+title: dp/longest_increasing_subsequence.hpp
 ---
