@@ -1,14 +1,15 @@
 #include "graph/base.hpp"
 
+/*
+頂点番号の列を返す。有向・無向両対応。
+存在しない場合には、空を返す。
+辺が 0 個の場合には {0} を返す。
+*/
 template <typename T>
 vc<int> euler_walk(Graph<T>& G, int s = -1) {
-  /*
-  頂点番号の列を返す。有向・無向両対応。
-  存在しない場合には、空を返す。
-  辺が 0 個の場合には {0} を返す。
-  */
   assert(G.is_prepared());
   ll N = G.N, M = G.M;
+  if (M == 0) return {0};
 
   if (s == -1) {
     vc<int> deg(N);
@@ -19,8 +20,15 @@ vc<int> euler_walk(Graph<T>& G, int s = -1) {
         deg[e.frm]++, deg[e.to]++;
       }
     }
-    s = max_element(all(deg)) - deg.begin();
-    if (deg[s] == 0) s = G.edges[0].frm;
+    if (G.is_directed()) {
+      s = max_element(all(deg)) - deg.begin();
+      if (deg[s] == 0) s = G.edges[0].frm;
+    } else {
+      s = [&]() -> int {
+        FOR(v, N) if (deg[v] & 1) return v;
+        return G.edges[0].frm;
+      }();
+    }
   }
 
   if (M == 0) return {s};
