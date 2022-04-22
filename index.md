@@ -726,6 +726,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/run_enumerate.hpp
       title: string/run_enumerate.hpp
+    - icon: ':warning:'
+      path: string/sort_all_substring.hpp
+      title: string/sort_all_substring.hpp
     - icon: ':heavy_check_mark:'
       path: string/split.hpp
       title: string/split.hpp
