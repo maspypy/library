@@ -2,7 +2,7 @@
   "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_D"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "seq/longest_increasing_subsequence.hpp"
+#include "dp/longest_increasing_subsequence.hpp"
 
 void solve() {
   LL(N);

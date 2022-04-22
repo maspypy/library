@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "other/inversion.hpp"
+#include "dp/inversion.hpp"
 
 void solve() {
   LL(N);
