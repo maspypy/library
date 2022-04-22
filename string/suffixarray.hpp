@@ -17,26 +17,26 @@ struct SuffixArray {
     calc_LCP(s);
   }
 
-  void induced_sort(const std::vector<int>& vect, int val_range, std::vector<int>& SA, const std::vector<bool>& sl,
+  void induced_sort(const std::vector<int>& vect, int val_range,
+                    std::vector<int>& SA, const std::vector<bool>& sl,
                     const std::vector<int>& lms_idx) {
     std::vector<int> l(val_range, 0), r(val_range, 0);
-    for (int c : vect) {
+    for (int c: vect) {
       if (c + 1 < val_range) ++l[c + 1];
       ++r[c];
     }
     std::partial_sum(l.begin(), l.end(), l.begin());
     std::partial_sum(r.begin(), r.end(), r.begin());
     std::fill(SA.begin(), SA.end(), -1);
-    for (int i = (int)lms_idx.size() - 1; i >= 0; --i) SA[--r[vect[lms_idx[i]]]] = lms_idx[i];
-    for (int i : SA)
+    for (int i = (int)lms_idx.size() - 1; i >= 0; --i)
+      SA[--r[vect[lms_idx[i]]]] = lms_idx[i];
+    for (int i: SA)
       if (i >= 1 && sl[i - 1]) SA[l[vect[i - 1]]++] = i - 1;
     std::fill(r.begin(), r.end(), 0);
-    for (int c : vect) ++r[c];
+    for (int c: vect) ++r[c];
     std::partial_sum(r.begin(), r.end(), r.begin());
     for (int k = (int)SA.size() - 1, i = SA[k]; k >= 1; --k, i = SA[k])
-      if (i >= 1 && !sl[i - 1]) {
-        SA[--r[vect[i - 1]]] = i - 1;
-      }
+      if (i >= 1 && !sl[i - 1]) { SA[--r[vect[i - 1]]] = i - 1; }
   }
 
   std::vector<int> SA_IS(const std::vector<int>& vect, int val_range) {
@@ -87,10 +87,12 @@ struct SuffixArray {
     return SA;
   }
 
-  std::vector<int> calc_suffix_array(const std::string& s, const char first = 'a', const char last = 'z') {
+  std::vector<int> calc_suffix_array(const std::string& s,
+                                     const char first = 'a',
+                                     const char last = 'z') {
     std::vector<int> vect(s.size() + 1);
     std::copy(std::begin(s), std::end(s), std::begin(vect));
-    for (auto& x : vect) x -= (int)first - 1;
+    for (auto& x: vect) x -= (int)first - 1;
     vect.back() = 0;
     auto ret = SA_IS(vect, (int)last - (int)first + 2);
     ret.erase(ret.begin());
@@ -104,7 +106,8 @@ struct SuffixArray {
 
     std::vector<int> vect(s.size() + 1);
     std::copy(std::begin(s), std::end(s), std::begin(vect));
-    for (auto& x : vect) x = lower_bound(ss.begin(), ss.end(), x) - ss.begin() + 1;
+    for (auto& x: vect)
+      x = lower_bound(ss.begin(), ss.end(), x) - ss.begin() + 1;
     vect.back() = 0;
     auto ret = SA_IS(vect, *max_element(vect.begin(), vect.end()) + 2);
     ret.erase(ret.begin());
