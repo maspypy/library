@@ -24,12 +24,3 @@ vc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {
   FOR(n, N) FOR(m, M) FOR(k, K) C[n][k] += A[n][m] * B[m][k];
   return C;
 }
-
-template <class T>
-vc<T> mat_vec_mul(const vc<vc<T>>& A, const vc<T>& B) {
-  auto N = len(A), M = len(A[0]);
-  assert(len(B)==M);
-  vc<T> C(N);
-  FOR(i, N) FOR(j, M) C[i] += A[i][j] * B[j];
-  return C;
-}
