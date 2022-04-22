@@ -159,8 +159,8 @@ mint inv(int n) {
   return get<2>(get_factorial_data<mint>(n));
 }
 
-template <typename mint>
-mint C(ll n, ll k, bool large = false) {
+template <typename mint, bool large = false>
+mint C(ll n, ll k) {
   assert(n >= 0);
   if (k < 0 || n < k) return 0;
   if (!large) return fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);
@@ -169,6 +169,14 @@ mint C(ll n, ll k, bool large = false) {
   FOR(i, k) { x *= mint(n - i); }
   x *= fact_inv<mint>(k);
   return x;
+}
+
+template <typename mint, bool large = false>
+mint C_inv(ll n, ll k) {
+  assert(n >= 0);
+  assert(0 <= k && k <= n);
+  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);
+  return mint(1) / C<mint, 1>(n, k);
 }
 
 using modint107 = modint<1000000007>;
