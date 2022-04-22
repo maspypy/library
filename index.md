@@ -79,6 +79,9 @@ data:
       path: alg/monoid_cntminmincnt.hpp
       title: alg/monoid_cntminmincnt.hpp
     - icon: ':warning:'
+      path: alg/monoid_cntsum.hpp
+      title: alg/monoid_cntsum.hpp
+    - icon: ':warning:'
       path: alg/monoid_cntsummax.hpp
       title: alg/monoid_cntsummax.hpp
     - icon: ':warning:'
@@ -119,13 +122,13 @@ data:
       title: alg/monoid_xor_basis.hpp
   - name: dp
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: dp/inversion.hpp
       title: dp/inversion.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: dp/knapsack01.hpp
       title: dp/knapsack01.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: dp/longest_increasing_subsequence.hpp
       title: dp/longest_increasing_subsequence.hpp
     - icon: ':warning:'
@@ -432,7 +435,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/mat_inv.hpp
       title: linalg/mat_inv.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: linalg/mat_mul.hpp
       title: linalg/mat_mul.hpp
     - icon: ':heavy_check_mark:'
@@ -502,7 +505,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -575,7 +578,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/integer_kth_root.hpp
       title: other/integer_kth_root.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -767,16 +770,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_1_C_primetest.test.cpp
       title: test/aoj/ALDS1_1_C_primetest.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_2_A_inversion.test.cpp
       title: test/aoj/ALDS1_2_A_inversion.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_5_inversion.test.cpp
       title: test/aoj/ALDS1_5_inversion.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_1_B_kanpsack01.test.cpp
       title: test/aoj/DPL_1_B_kanpsack01.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_1_D_lis.test.cpp
       title: test/aoj/DPL_1_D_lis.test.cpp
     - icon: ':x:'
@@ -839,9 +842,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_6_A_maxflow.test.cpp
       title: test/aoj/GRL_6_A_maxflow.test.cpp
-    - icon: ':x:'
-      path: test/aoj/ITP1_6_D_matvec.test.cpp
-      title: test/aoj/ITP1_6_D_matvec.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/ITP1_9_A_split.test.cpp
       title: test/aoj/ITP1_9_A_split.test.cpp

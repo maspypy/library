@@ -23,7 +23,7 @@ data:
   - icon: ':warning:'
     path: alg/lazy_minmax_add.hpp
     title: alg/lazy_minmax_add.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: dp/inversion.hpp
     title: dp/inversion.hpp
   - icon: ':heavy_check_mark:'
@@ -57,6 +57,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2842_seg2d_dense.test.cpp
     title: test/aoj/2842_seg2d_dense.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1_2_A_inversion.test.cpp
+    title: test/aoj/ALDS1_2_A_inversion.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1_5_inversion.test.cpp
+    title: test/aoj/ALDS1_5_inversion.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_1_B_weighteduf.test.cpp
     title: test/aoj/DSL_1_B_weighteduf.test.cpp
@@ -159,6 +165,7 @@ data:
   verifiedWith:
   - test/yukicoder/899_bfsnumbering.test.cpp
   - test/yukicoder/1038_centroid.test.cpp
+  - test/aoj/ALDS1_5_inversion.test.cpp
   - test/aoj/DSL_2_G_fenwick_raq.test.cpp
   - test/aoj/DSL_2_H_min_add_lazy.test.cpp
   - test/aoj/2842_fenwick2d_dense.test.cpp
@@ -167,6 +174,7 @@ data:
   - test/aoj/2842_seg2d_dense.test.cpp
   - test/aoj/DSL_2_E_fenwick_raq.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
+  - test/aoj/ALDS1_2_A_inversion.test.cpp
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp

@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DPL_1_D_lis.test.cpp
+    title: test/aoj/DPL_1_D_lis.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"dp/longest_increasing_subsequence.hpp\"\n/*\ndp[i] := \u7B2C\
@@ -32,8 +35,9 @@ data:
   path: dp/longest_increasing_subsequence.hpp
   requiredBy: []
   timestamp: '2022-04-22 16:53:26+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj/DPL_1_D_lis.test.cpp
 documentation_of: dp/longest_increasing_subsequence.hpp
 layout: document
 redirect_from:

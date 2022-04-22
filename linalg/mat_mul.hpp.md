@@ -6,18 +6,15 @@ data:
     path: linalg/mat_pow.hpp
     title: linalg/mat_pow.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/aoj/ITP1_6_D_matvec.test.cpp
-    title: test/aoj/ITP1_6_D_matvec.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/matrix_product.test.cpp
     title: test/library_checker/matrix/matrix_product.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1810_matpow.test.cpp
     title: test/yukicoder/1810_matpow.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"linalg/mat_mul.hpp\"\n\r\ntemplate <class T, is_modint_t<T>*\
@@ -48,10 +45,9 @@ data:
   requiredBy:
   - linalg/mat_pow.hpp
   timestamp: '2022-04-23 01:11:07+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1810_matpow.test.cpp
-  - test/aoj/ITP1_6_D_matvec.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
 documentation_of: linalg/mat_mul.hpp
 layout: document

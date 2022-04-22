@@ -25,6 +25,18 @@ data:
     path: test/aoj/ALDS1_1_C_primetest.test.cpp
     title: test/aoj/ALDS1_1_C_primetest.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1_2_A_inversion.test.cpp
+    title: test/aoj/ALDS1_2_A_inversion.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1_5_inversion.test.cpp
+    title: test/aoj/ALDS1_5_inversion.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DPL_1_B_kanpsack01.test.cpp
+    title: test/aoj/DPL_1_B_kanpsack01.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DPL_1_D_lis.test.cpp
+    title: test/aoj/DPL_1_D_lis.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
     title: test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
   - icon: ':heavy_check_mark:'
@@ -78,9 +90,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_6_A_maxflow.test.cpp
     title: test/aoj/GRL_6_A_maxflow.test.cpp
-  - icon: ':x:'
-    path: test/aoj/ITP1_6_D_matvec.test.cpp
-    title: test/aoj/ITP1_6_D_matvec.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_9_A_split.test.cpp
     title: test/aoj/ITP1_9_A_split.test.cpp
@@ -453,9 +462,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/899_bfsnumbering.test.cpp
     title: test/yukicoder/899_bfsnumbering.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace\
@@ -582,7 +591,7 @@ data:
   requiredBy:
   - graph/bipartite_coloring.hpp
   timestamp: '2022-04-16 06:03:26+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/502_factorial107.test.cpp
   - test/yukicoder/1810_matpow.test.cpp
@@ -595,12 +604,12 @@ data:
   - test/yukicoder/184_xorbasis.test.cpp
   - test/yukicoder/1002_centroid.test.cpp
   - test/yukicoder/17_warshall_floyd.test.cpp
+  - test/aoj/ALDS1_5_inversion.test.cpp
   - test/aoj/DPL_4_B_subset_sum_count.test.cpp
   - test/aoj/DSL_2_G_fenwick_raq.test.cpp
   - test/aoj/DSL_2_H_min_add_lazy.test.cpp
   - test/aoj/NTL_1_E_extgcd.test.cpp
   - test/aoj/ALDS1_12_B_dial.test.cpp
-  - test/aoj/ITP1_6_D_matvec.test.cpp
   - test/aoj/2842_fenwick2d_dense.test.cpp
   - test/aoj/DPL_5_C_count_surjection.test.cpp
   - test/aoj/ALDS1_1_C_primetest.test.cpp
@@ -618,13 +627,16 @@ data:
   - test/aoj/GRL_6_A_maxflow.test.cpp
   - test/aoj/2251_dag_path_cover.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
+  - test/aoj/ALDS1_2_A_inversion.test.cpp
   - test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
+  - test/aoj/DPL_1_D_lis.test.cpp
   - test/aoj/NTL_1_D_eulerphi.test.cpp
   - test/aoj/2251_maxantichain.test.cpp
   - test/aoj/DPL_3_B_largest_ractangle.test.cpp
   - test/aoj/DPL_3_C_maxrectangle.test.cpp
   - test/aoj/ITP1_9_A_split.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp
+  - test/aoj/DPL_1_B_kanpsack01.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
   - test/library_checker/matrix/matrix_det.test.cpp
   - test/library_checker/matrix/hafnian_of_matrix.test.cpp

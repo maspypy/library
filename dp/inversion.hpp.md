@@ -8,10 +8,16 @@ data:
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1_2_A_inversion.test.cpp
+    title: test/aoj/ALDS1_2_A_inversion.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1_5_inversion.test.cpp
+    title: test/aoj/ALDS1_5_inversion.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group_add.hpp\"\ntemplate <class X>\r\nstruct Group_Add\
@@ -59,8 +65,10 @@ data:
   path: dp/inversion.hpp
   requiredBy: []
   timestamp: '2022-04-22 16:53:26+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj/ALDS1_5_inversion.test.cpp
+  - test/aoj/ALDS1_2_A_inversion.test.cpp
 documentation_of: dp/inversion.hpp
 layout: document
 redirect_from:
