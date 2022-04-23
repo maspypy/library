@@ -1,3 +1,4 @@
+#pragma once
 template <class Monoid>
 struct Monoid_Reverse {
   using value_type = typename Monoid::value_type;

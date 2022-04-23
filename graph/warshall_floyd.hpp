@@ -5,8 +5,8 @@
 負辺があっても負閉路がなければ正しく動作する。
 負閉路があるかどうかは、dist[v][v] < 0 となる v があるかどうかで判定。
 */
-template <typename T, T INF, typename Graph>
-vc<vc<T>> warshall_floyd(Graph& G) {
+template <typename T, typename Graph>
+vc<vc<T>> warshall_floyd(Graph& G, T INF) {
   ll N = G.N;
   vv(T, dist, N, N, INF);
   FOR(v, N) {
