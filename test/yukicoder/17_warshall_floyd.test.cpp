@@ -11,7 +11,7 @@ void solve() {
   G.read_graph(M, 1, 0);
 
   const ll INF = 1LL << 60;
-  auto dist = warshall_floyd<ll, INF>(G);
+  auto dist = warshall_floyd<ll>(G, INF);
 
   ll ANS = INF;
   FOR3(i, 1, N - 1) FOR3(j, 1, N - 1) if (i != j) {

@@ -9,7 +9,7 @@ void solve() {
   Graph<ll, 1> G(N);
   G.read_graph(M, 1, 0);
   const ll INF = 1LL << 60;
-  auto dist = warshall_floyd<ll, INF>(G);
+  auto dist = warshall_floyd<ll>(G, INF);
   FOR(v, N) if (dist[v][v] < 0) return print("NEGATIVE CYCLE");
   FOR(a, N) {
     string S;
