@@ -22,7 +22,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -171,7 +171,7 @@ data:
     \ sm))) {\n            sm = Monoid::op(dat[R], sm);\n            R--;\n      \
     \    }\n        }\n        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R],\
     \ sm);\n    } while ((R & -R) != R);\n    return 0;\n  }\n\n  void debug() { print(\"\
-    segtree\", dat); }\n};\n#line 1 \"alg/monoid_reverse.hpp\"\ntemplate <class Monoid>\r\
+    segtree\", dat); }\n};\n#line 2 \"alg/monoid_reverse.hpp\"\ntemplate <class Monoid>\r\
     \nstruct Monoid_Reverse {\r\n  using value_type = typename Monoid::value_type;\r\
     \n  using X = value_type;\r\n  static constexpr X op(const X &x, const X &y) {\
     \ return Monoid::op(y, x); }\r\n  static constexpr X unit() { return Monoid::unit();\
@@ -378,7 +378,7 @@ data:
   isVerificationFile: false
   path: graph/minimum_spanning_tree.hpp
   requiredBy: []
-  timestamp: '2022-04-16 04:26:49+09:00'
+  timestamp: '2022-04-23 17:49:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_2_A_mst.test.cpp

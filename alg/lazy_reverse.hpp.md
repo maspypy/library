@@ -17,7 +17,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"alg/monoid_reverse.hpp\"\ntemplate <class Monoid>\r\nstruct\
+  bundledCode: "#line 2 \"alg/monoid_reverse.hpp\"\ntemplate <class Monoid>\r\nstruct\
     \ Monoid_Reverse {\r\n  using value_type = typename Monoid::value_type;\r\n  using\
     \ X = value_type;\r\n  static constexpr X op(const X &x, const X &y) { return\
     \ Monoid::op(y, x); }\r\n  static constexpr X unit() { return Monoid::unit();\
@@ -39,7 +39,7 @@ data:
   path: alg/lazy_reverse.hpp
   requiredBy:
   - graph/lazytreemonoid.hpp
-  timestamp: '2022-04-16 04:26:49+09:00'
+  timestamp: '2022-04-23 17:49:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp

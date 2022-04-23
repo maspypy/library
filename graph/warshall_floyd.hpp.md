@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_1_C_warshallfloyd.test.cpp
     title: test/aoj/GRL_1_C_warshallfloyd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/17_warshall_floyd.test.cpp
     title: test/yukicoder/17_warshall_floyd.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -54,8 +54,8 @@ data:
     \u3051\u308C\u3070\u6B63\u3057\u304F\u52D5\u4F5C\u3059\u308B\u3002\n\u8CA0\u9589\
     \u8DEF\u304C\u3042\u308B\u304B\u3069\u3046\u304B\u306F\u3001dist[v][v] < 0 \u3068\
     \u306A\u308B v \u304C\u3042\u308B\u304B\u3069\u3046\u304B\u3067\u5224\u5B9A\u3002\
-    \n*/\ntemplate <typename T, T INF, typename Graph>\nvc<vc<T>> warshall_floyd(Graph&\
-    \ G) {\n  ll N = G.N;\n  vv(T, dist, N, N, INF);\n  FOR(v, N) {\n    dist[v][v]\
+    \n*/\ntemplate <typename T, typename Graph>\nvc<vc<T>> warshall_floyd(Graph& G,\
+    \ T INF) {\n  ll N = G.N;\n  vv(T, dist, N, N, INF);\n  FOR(v, N) {\n    dist[v][v]\
     \ = 0;\n    for (auto&& e: G[v]) dist[v][e.to] = e.cost;\n  }\n  FOR(k, N) FOR(i,\
     \ N) {\n    if (dist[i][k] == INF) continue;\n    FOR(j, N) {\n      if (dist[k][j]\
     \ == INF) continue;\n      chmin(dist[i][j], dist[i][k] + dist[k][j]);\n    }\n\
@@ -65,7 +65,7 @@ data:
     \u304F\u52D5\u4F5C\u3059\u308B\u3002\n\u8CA0\u9589\u8DEF\u304C\u3042\u308B\u304B\
     \u3069\u3046\u304B\u306F\u3001dist[v][v] < 0 \u3068\u306A\u308B v \u304C\u3042\
     \u308B\u304B\u3069\u3046\u304B\u3067\u5224\u5B9A\u3002\n*/\ntemplate <typename\
-    \ T, T INF, typename Graph>\nvc<vc<T>> warshall_floyd(Graph& G) {\n  ll N = G.N;\n\
+    \ T, typename Graph>\nvc<vc<T>> warshall_floyd(Graph& G, T INF) {\n  ll N = G.N;\n\
     \  vv(T, dist, N, N, INF);\n  FOR(v, N) {\n    dist[v][v] = 0;\n    for (auto&&\
     \ e: G[v]) dist[v][e.to] = e.cost;\n  }\n  FOR(k, N) FOR(i, N) {\n    if (dist[i][k]\
     \ == INF) continue;\n    FOR(j, N) {\n      if (dist[k][j] == INF) continue;\n\
@@ -76,8 +76,8 @@ data:
   isVerificationFile: false
   path: graph/warshall_floyd.hpp
   requiredBy: []
-  timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-04-23 17:49:11+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/17_warshall_floyd.test.cpp
   - test/aoj/GRL_1_C_warshallfloyd.test.cpp
