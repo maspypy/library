@@ -145,6 +145,7 @@
 "test/library_checker/tree/tree_diameter.test.cpp": "2022-04-16 06:03:26 +0900",
 "test/yukicoder/1002_centroid.test.cpp": "2022-04-16 06:03:26 +0900",
 "test/yukicoder/1038_centroid.test.cpp": "2022-04-16 06:03:26 +0900",
+"test/yukicoder/114_steriner_tree.test.cpp": "2022-04-23 19:29:57 +0900",
 "test/yukicoder/1320_mincostcycle.test.cpp": "2022-04-16 06:03:26 +0900",
 "test/yukicoder/177_maxflow.test.cpp": "2022-04-16 06:03:26 +0900",
 "test/yukicoder/1810_matpow.test.cpp": "2022-04-23 01:11:07 +0900",
