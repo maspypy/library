@@ -37,6 +37,12 @@ data:
     path: test/aoj/DPL_1_D_lis.test.cpp
     title: test/aoj/DPL_1_D_lis.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/DPL_1_F_kanpsack01.test.cpp
+    title: test/aoj/DPL_1_F_kanpsack01.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DPL_1_H_kanpsack01.test.cpp
+    title: test/aoj/DPL_1_H_kanpsack01.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
     title: test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
   - icon: ':heavy_check_mark:'
@@ -625,8 +631,10 @@ data:
   - test/aoj/DSL_2_I_cntsum_set_lazy.test.cpp
   - test/aoj/DSL_2_D_dualsegtree.test.cpp
   - test/aoj/GRL_6_A_maxflow.test.cpp
+  - test/aoj/DPL_1_F_kanpsack01.test.cpp
   - test/aoj/2251_dag_path_cover.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
+  - test/aoj/DPL_1_H_kanpsack01.test.cpp
   - test/aoj/ALDS1_2_A_inversion.test.cpp
   - test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
   - test/aoj/DPL_1_D_lis.test.cpp

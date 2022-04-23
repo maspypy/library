@@ -782,10 +782,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_1_D_lis.test.cpp
       title: test/aoj/DPL_1_D_lis.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_1_F_kanpsack01.test.cpp
       title: test/aoj/DPL_1_F_kanpsack01.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_1_H_kanpsack01.test.cpp
       title: test/aoj/DPL_1_H_kanpsack01.test.cpp
     - icon: ':heavy_check_mark:'

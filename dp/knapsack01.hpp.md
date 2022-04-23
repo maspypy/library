@@ -6,6 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_1_B_kanpsack01.test.cpp
     title: test/aoj/DPL_1_B_kanpsack01.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DPL_1_F_kanpsack01.test.cpp
+    title: test/aoj/DPL_1_F_kanpsack01.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DPL_1_H_kanpsack01.test.cpp
+    title: test/aoj/DPL_1_H_kanpsack01.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -88,6 +94,8 @@ data:
   timestamp: '2022-04-22 16:53:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/DPL_1_F_kanpsack01.test.cpp
+  - test/aoj/DPL_1_H_kanpsack01.test.cpp
   - test/aoj/DPL_1_B_kanpsack01.test.cpp
 documentation_of: dp/knapsack01.hpp
 layout: document
