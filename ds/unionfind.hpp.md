@@ -36,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/114_steriner_tree.test.cpp
+    title: test/yukicoder/114_steriner_tree.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -75,6 +78,7 @@ data:
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/114_steriner_tree.test.cpp
   - test/aoj/2251_dag_path_cover.test.cpp
   - test/aoj/2251_maxantichain.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp

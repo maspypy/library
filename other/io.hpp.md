@@ -436,6 +436,9 @@ data:
     path: test/yukicoder/1038_centroid.test.cpp
     title: test/yukicoder/1038_centroid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/114_steriner_tree.test.cpp
+    title: test/yukicoder/114_steriner_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1320_mincostcycle.test.cpp
     title: test/yukicoder/1320_mincostcycle.test.cpp
   - icon: ':heavy_check_mark:'
@@ -674,6 +677,7 @@ data:
   - test/yukicoder/502_factorial107.test.cpp
   - test/yukicoder/1810_matpow.test.cpp
   - test/yukicoder/899_bfsnumbering.test.cpp
+  - test/yukicoder/114_steriner_tree.test.cpp
   - test/yukicoder/705_monge_shortest_path.test.cpp
   - test/yukicoder/1320_mincostcycle.test.cpp
   - test/yukicoder/1038_centroid.test.cpp
