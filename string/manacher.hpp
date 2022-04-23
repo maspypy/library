@@ -1,12 +1,11 @@
-template <bool CALC_ALL, typename STRING>
-vector<int> longest_palindrome(STRING s) {
-  if (CALC_ALL) {
-    int n = len(s);
-    assert(n > 0);
-    s.resize(2 * n - 1);
-    FOR_R(i, n) s[2 * i] = s[i];
-    FOR(i, n - 1) s[2 * i + 1] = '-';
-  }
+// 極大回文 [L, R) を列挙する
+template <typename STRING>
+vc<pair<int, int>> manacher(STRING s) {
+  int n = len(s);
+  assert(n > 0);
+  s.resize(2 * n - 1);
+  FOR_R(i, n) s[2 * i] = s[i];
+  FOR(i, n - 1) s[2 * i + 1] = '~';
   vector<int> A(len(s));
   int i = 0, j = 0;
   while (i < len(s)) {
