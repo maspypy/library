@@ -7,6 +7,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/manacher.hpp
+    title: string/manacher.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -176,46 +179,34 @@ data:
     ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
     Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
-    \ 4 \"test/library_checker/string/enumerate_palindromes.test.cpp\"\n\r\n// \u6975\
-    \u5927\u56DE\u6587 [L, R) \u3092\u5217\u6319\u3059\u308B\r\ntemplate <typename\
-    \ STRING>\r\nvc<pair<int, int>> manacher(STRING s) {\r\n  int n = len(s);\r\n\
-    \  assert(n > 0);\r\n  s.resize(2 * n - 1);\r\n  FOR_R(i, n) s[2 * i] = s[i];\r\
-    \n  FOR(i, n - 1) s[2 * i + 1] = '~';\r\n  vector<int> dp(len(s));\r\n  int i\
-    \ = 0, j = 0;\r\n  while (i < len(s)) {\r\n    while (i - j >= 0 && i + j < len(s)\
-    \ && s[i - j] == s[i + j]) ++j;\r\n    dp[i] = j;\r\n    int k = 1;\r\n    while\
-    \ (i - k >= 0 && i + k < len(s) && k + dp[i - k] < j) {\r\n      dp[i + k] = dp[i\
-    \ - k];\r\n      ++k;\r\n    }\r\n    i += k, j -= k;\r\n  }\r\n  FOR(i, len(dp))\
-    \ if (!((i ^ dp[i]) & 1))-- dp[i];\r\n  vc<pair<int, int>> res;\r\n  res.reserve(len(dp));\r\
-    \n  FOR(i, len(dp)) {\r\n    if (dp[i] == 0) continue;\r\n    int l = (i - dp[i]\
-    \ + 1) / 2;\r\n    int r = (i + dp[i] + 1) / 2;\r\n    res.eb(l, r);\r\n  }\r\n\
-    \  return res;\r\n}\r\n\r\nvoid solve() {\r\n  STR(S);\r\n  auto LR = manacher(S);\r\
-    \n  vc<int> ANS(len(S) * 2 - 1);\r\n  for (auto&& [l, r]: LR) { ANS[l + r - 1]\
-    \ = r - l; }\r\n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n\
-    \  return 0;\r\n}\r\n"
+    \ 1 \"string/manacher.hpp\"\n// \u6975\u5927\u56DE\u6587 [L, R) \u3092\u5217\u6319\
+    \u3059\u308B\r\ntemplate <typename STRING>\r\nvc<pair<int, int>> manacher(STRING\
+    \ s) {\r\n  int n = len(s);\r\n  assert(n > 0);\r\n  s.resize(2 * n - 1);\r\n\
+    \  FOR_R(i, n) s[2 * i] = s[i];\r\n  FOR(i, n - 1) s[2 * i + 1] = '~';\r\n  vector<int>\
+    \ dp(len(s));\r\n  int i = 0, j = 0;\r\n  while (i < len(s)) {\r\n    while (i\
+    \ - j >= 0 && i + j < len(s) && s[i - j] == s[i + j]) ++j;\r\n    dp[i] = j;\r\
+    \n    int k = 1;\r\n    while (i - k >= 0 && i + k < len(s) && k + dp[i - k] <\
+    \ j) {\r\n      dp[i + k] = dp[i - k];\r\n      ++k;\r\n    }\r\n    i += k, j\
+    \ -= k;\r\n  }\r\n  FOR(i, len(dp)) if (!((i ^ dp[i]) & 1))-- dp[i];\r\n  vc<pair<int,\
+    \ int>> res;\r\n  res.reserve(len(dp));\r\n  FOR(i, len(dp)) {\r\n    if (dp[i]\
+    \ == 0) continue;\r\n    int l = (i - dp[i] + 1) / 2;\r\n    int r = (i + dp[i]\
+    \ + 1) / 2;\r\n    res.eb(l, r);\r\n  }\r\n  return res;\r\n}\r\n#line 5 \"test/library_checker/string/enumerate_palindromes.test.cpp\"\
+    \n\r\nvoid solve() {\r\n  STR(S);\r\n  auto LR = manacher(S);\r\n  vc<int> ANS(len(S)\
+    \ * 2 - 1);\r\n  for (auto&& [l, r]: LR) { ANS[l + r - 1] = r - l; }\r\n  print(ANS);\r\
+    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_palindromes\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n// \u6975\
-    \u5927\u56DE\u6587 [L, R) \u3092\u5217\u6319\u3059\u308B\r\ntemplate <typename\
-    \ STRING>\r\nvc<pair<int, int>> manacher(STRING s) {\r\n  int n = len(s);\r\n\
-    \  assert(n > 0);\r\n  s.resize(2 * n - 1);\r\n  FOR_R(i, n) s[2 * i] = s[i];\r\
-    \n  FOR(i, n - 1) s[2 * i + 1] = '~';\r\n  vector<int> dp(len(s));\r\n  int i\
-    \ = 0, j = 0;\r\n  while (i < len(s)) {\r\n    while (i - j >= 0 && i + j < len(s)\
-    \ && s[i - j] == s[i + j]) ++j;\r\n    dp[i] = j;\r\n    int k = 1;\r\n    while\
-    \ (i - k >= 0 && i + k < len(s) && k + dp[i - k] < j) {\r\n      dp[i + k] = dp[i\
-    \ - k];\r\n      ++k;\r\n    }\r\n    i += k, j -= k;\r\n  }\r\n  FOR(i, len(dp))\
-    \ if (!((i ^ dp[i]) & 1))-- dp[i];\r\n  vc<pair<int, int>> res;\r\n  res.reserve(len(dp));\r\
-    \n  FOR(i, len(dp)) {\r\n    if (dp[i] == 0) continue;\r\n    int l = (i - dp[i]\
-    \ + 1) / 2;\r\n    int r = (i + dp[i] + 1) / 2;\r\n    res.eb(l, r);\r\n  }\r\n\
-    \  return res;\r\n}\r\n\r\nvoid solve() {\r\n  STR(S);\r\n  auto LR = manacher(S);\r\
-    \n  vc<int> ANS(len(S) * 2 - 1);\r\n  for (auto&& [l, r]: LR) { ANS[l + r - 1]\
-    \ = r - l; }\r\n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n\
-    \  return 0;\r\n}\r\n"
+    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"string/manacher.hpp\"\
+    \r\n\r\nvoid solve() {\r\n  STR(S);\r\n  auto LR = manacher(S);\r\n  vc<int> ANS(len(S)\
+    \ * 2 - 1);\r\n  for (auto&& [l, r]: LR) { ANS[l + r - 1] = r - l; }\r\n  print(ANS);\r\
+    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
+  - string/manacher.hpp
   isVerificationFile: true
   path: test/library_checker/string/enumerate_palindromes.test.cpp
   requiredBy: []
-  timestamp: '2022-04-23 14:08:48+09:00'
+  timestamp: '2022-04-23 14:12:28+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/string/enumerate_palindromes.test.cpp

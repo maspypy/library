@@ -720,7 +720,7 @@ data:
     - icon: ':warning:'
       path: string/is_subseq.hpp
       title: string/is_subseq.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: string/manacher.hpp
       title: string/manacher.hpp
     - icon: ':heavy_check_mark:'
