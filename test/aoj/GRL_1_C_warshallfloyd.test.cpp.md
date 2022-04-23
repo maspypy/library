@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/warshall_floyd.hpp
     title: graph/warshall_floyd.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C
@@ -226,7 +226,7 @@ data:
     \ == INF) continue;\n      chmin(dist[i][j], dist[i][k] + dist[k][j]);\n    }\n\
     \  }\n  return dist;\n}\n#line 6 \"test/aoj/GRL_1_C_warshallfloyd.test.cpp\"\n\
     \nvoid solve() {\n  LL(N, M);\n  Graph<ll, 1> G(N);\n  G.read_graph(M, 1, 0);\n\
-    \  const ll INF = 1LL << 60;\n  auto dist = warshall_floyd<ll, INF>(G);\n  FOR(v,\
+    \  const ll INF = 1LL << 60;\n  auto dist = warshall_floyd<ll>(G, INF);\n  FOR(v,\
     \ N) if (dist[v][v] < 0) return print(\"NEGATIVE CYCLE\");\n  FOR(a, N) {\n  \
     \  string S;\n    FOR(b, N) {\n      if (b) S += \" \";\n      ll x = dist[a][b];\n\
     \      if (x == INF)\n        S += \"INF\";\n      else\n        S += to_string(x);\n\
@@ -236,7 +236,7 @@ data:
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/warshall_floyd.hpp\"\
     \n\nvoid solve() {\n  LL(N, M);\n  Graph<ll, 1> G(N);\n  G.read_graph(M, 1, 0);\n\
-    \  const ll INF = 1LL << 60;\n  auto dist = warshall_floyd<ll, INF>(G);\n  FOR(v,\
+    \  const ll INF = 1LL << 60;\n  auto dist = warshall_floyd<ll>(G, INF);\n  FOR(v,\
     \ N) if (dist[v][v] < 0) return print(\"NEGATIVE CYCLE\");\n  FOR(a, N) {\n  \
     \  string S;\n    FOR(b, N) {\n      if (b) S += \" \";\n      ll x = dist[a][b];\n\
     \      if (x == INF)\n        S += \"INF\";\n      else\n        S += to_string(x);\n\
@@ -251,8 +251,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_1_C_warshallfloyd.test.cpp
   requiredBy: []
-  timestamp: '2022-04-23 17:49:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-04-23 19:36:26+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_1_C_warshallfloyd.test.cpp
 layout: document
