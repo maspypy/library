@@ -7,6 +7,6 @@ struct Group_Xor {
   static constexpr X power(const X &x, ll n) noexcept {
     return (n & 1 ? x : 0);
   }
-  static constexpr X unit(){return X(0)};
+  static constexpr X unit(){return X(0);};
   static constexpr bool commute = true;
 };
