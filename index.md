@@ -1263,6 +1263,9 @@ data:
       path: test/yukicoder/1891_xor_sparse.test.cpp
       title: test/yukicoder/1891_xor_sparse.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yukicoder/255.test.cpp
+      title: test/yukicoder/255.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/4_modular_subset_sum.test.cpp
       title: test/yukicoder/4_modular_subset_sum.test.cpp
     - icon: ':heavy_check_mark:'
