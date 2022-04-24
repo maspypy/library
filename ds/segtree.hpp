@@ -1,4 +1,4 @@
-#pragma once
+
 template <class Monoid>
 struct SegTree {
   using X = typename Monoid::value_type;
@@ -88,6 +88,20 @@ struct SegTree {
       sm = Monoid::op(dat[R], sm);
     } while ((R & -R) != R);
     return 0;
+  }
+
+  // モノイドが可換なら、prod_{l<=i<r}A[i^x] が計算可能
+  // https://codeforces.com/contest/1401/problem/F
+  X Xor_prod(int l, int r, int xor_val) {
+    assert(Monoid::commute);
+    X x = Monoid::unit();
+    FOR(k, log + 1) {
+      if (l >= r) break;
+      if (l & 1) { x = Monoid::op(x, dat[(size >> k) + ((l++) ^ xor_val)]); }
+      if (r & 1) { x = Monoid::op(x, dat[(size >> k) + ((--r) ^ xor_val)]); }
+      l /= 2, r /= 2, xor_val /= 2;
+    }
+    return x;
   }
 
   void debug() { print("segtree", dat); }
