@@ -259,6 +259,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/weightedunionfind.hpp
       title: ds/weightedunionfind.hpp
+    - icon: ':heavy_check_mark:'
+      path: ds/xor_sparsetable.hpp
+      title: ds/xor_sparsetable.hpp
   - name: flow
     pages:
     - icon: ':heavy_check_mark:'
@@ -1244,6 +1247,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/184_xorbasis.test.cpp
       title: test/yukicoder/184_xorbasis.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1891_xor_sparse.test.cpp
+      title: test/yukicoder/1891_xor_sparse.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/4_modular_subset_sum.test.cpp
       title: test/yukicoder/4_modular_subset_sum.test.cpp

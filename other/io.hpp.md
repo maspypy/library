@@ -457,6 +457,9 @@ data:
     path: test/yukicoder/184_xorbasis.test.cpp
     title: test/yukicoder/184_xorbasis.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1891_xor_sparse.test.cpp
+    title: test/yukicoder/1891_xor_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_modular_subset_sum.test.cpp
     title: test/yukicoder/4_modular_subset_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -686,6 +689,7 @@ data:
   - test/yukicoder/1038_centroid.test.cpp
   - test/yukicoder/177_maxflow.test.cpp
   - test/yukicoder/4_modular_subset_sum.test.cpp
+  - test/yukicoder/1891_xor_sparse.test.cpp
   - test/yukicoder/184_xorbasis.test.cpp
   - test/yukicoder/1002_centroid.test.cpp
   - test/yukicoder/17_warshall_floyd.test.cpp

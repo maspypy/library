@@ -237,6 +237,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1810_matpow.test.cpp
     title: test/yukicoder/1810_matpow.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1891_xor_sparse.test.cpp
+    title: test/yukicoder/1891_xor_sparse.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -424,6 +427,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1810_matpow.test.cpp
+  - test/yukicoder/1891_xor_sparse.test.cpp
   - test/aoj/DPL_5_C_count_surjection.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
   - test/library_checker/matrix/matrix_det.test.cpp
