@@ -49,6 +49,9 @@ data:
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1036_seg_maxright_minleft.test.cpp
+    title: test/yukicoder/1036_seg_maxright_minleft.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_modular_subset_sum.test.cpp
     title: test/yukicoder/4_modular_subset_sum.test.cpp
   _isVerificationFailed: false
@@ -131,6 +134,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/4_modular_subset_sum.test.cpp
+  - test/yukicoder/1036_seg_maxright_minleft.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp
   - test/library_checker/datastructure/staticrmq_seg.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp

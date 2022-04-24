@@ -88,6 +88,9 @@ data:
       path: alg/monoid_cntsummin.hpp
       title: alg/monoid_cntsummin.hpp
     - icon: ':heavy_check_mark:'
+      path: alg/monoid_gcd.hpp
+      title: alg/monoid_gcd.hpp
+    - icon: ':heavy_check_mark:'
       path: alg/monoid_max.hpp
       title: alg/monoid_max.hpp
     - icon: ':warning:'
@@ -1226,6 +1229,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1002_centroid.test.cpp
       title: test/yukicoder/1002_centroid.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1036_seg_maxright_minleft.test.cpp
+      title: test/yukicoder/1036_seg_maxright_minleft.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1036_swag.test.cpp
+      title: test/yukicoder/1036_swag.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1038_centroid.test.cpp
       title: test/yukicoder/1038_centroid.test.cpp

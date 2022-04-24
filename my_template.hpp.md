@@ -442,6 +442,12 @@ data:
     path: test/yukicoder/1002_centroid.test.cpp
     title: test/yukicoder/1002_centroid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1036_seg_maxright_minleft.test.cpp
+    title: test/yukicoder/1036_seg_maxright_minleft.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1036_swag.test.cpp
+    title: test/yukicoder/1036_swag.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1038_centroid.test.cpp
     title: test/yukicoder/1038_centroid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -612,6 +618,7 @@ data:
   - test/yukicoder/1810_matpow.test.cpp
   - test/yukicoder/899_bfsnumbering.test.cpp
   - test/yukicoder/114_steriner_tree.test.cpp
+  - test/yukicoder/1036_swag.test.cpp
   - test/yukicoder/705_monge_shortest_path.test.cpp
   - test/yukicoder/1320_mincostcycle.test.cpp
   - test/yukicoder/1038_centroid.test.cpp
@@ -621,6 +628,7 @@ data:
   - test/yukicoder/184_xorbasis.test.cpp
   - test/yukicoder/1002_centroid.test.cpp
   - test/yukicoder/17_warshall_floyd.test.cpp
+  - test/yukicoder/1036_seg_maxright_minleft.test.cpp
   - test/aoj/ALDS1_5_inversion.test.cpp
   - test/aoj/DPL_4_B_subset_sum_count.test.cpp
   - test/aoj/DSL_2_G_fenwick_raq.test.cpp
