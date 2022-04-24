@@ -6,13 +6,10 @@
 void solve() {
   LL(N);
   VEC(ll, A, N);
-  using Mono = Monoid_XorBasis<ll, 61>;
+  using Mono = Monoid_XorBasis<ll>;
   auto sp = Mono::unit();
   for (auto&& a: A) { Mono::add_element(sp, a); }
-  int dim = 0;
-  for (auto&& x: sp)
-    if (x) ++dim;
-  print(1LL << dim);
+  print(1LL << len(sp));
 }
 
 signed main() {
