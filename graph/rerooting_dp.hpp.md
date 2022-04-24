@@ -90,23 +90,25 @@ data:
     \ LCA(a, b);\r\n    return depth[a] + depth[b] - 2 * depth[c];\r\n  }\r\n\r\n\
     \  bool in_subtree(int a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b];\
     \ }\r\n\r\n  int move(int a, int b) {\r\n    assert(a != b);\r\n    return (in_subtree(b,\
-    \ a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\r\n  }\r\n\r\n  vc<pair<int,\
-    \ int>> get_path_decomposition(int u, int v, bool edge) {\r\n    // [\u59CB\u70B9\
-    , \u7D42\u70B9] \u306E\"\u9589\"\u533A\u9593\u5217\u3002\r\n    vc<pair<int, int>>\
-    \ up, down;\r\n    while (1) {\r\n      if (head[u] == head[v]) break;\r\n   \
-    \   if (LID[u] < LID[v]) {\r\n        down.eb(LID[head[v]], LID[v]);\r\n     \
-    \   v = parent[head[v]];\r\n      } else {\r\n        up.eb(LID[u], LID[head[u]]);\r\
-    \n        u = parent[head[u]];\r\n      }\r\n    }\r\n    if (LID[u] < LID[v])\
-    \ down.eb(LID[u] + edge, LID[v]);\r\n    elif (LID[v] + edge <= LID[u]) up.eb(LID[u],\
-    \ LID[v] + edge);\r\n    reverse(all(down));\r\n    up.insert(up.end(), all(down));\r\
-    \n    return up;\r\n  }\r\n\r\n  void debug() {\r\n    print(\"V\", V);\r\n  \
-    \  print(\"LID\", LID);\r\n    print(\"RID\", RID);\r\n    print(\"parent\", parent);\r\
-    \n    print(\"depth\", depth);\r\n    print(\"head\", head);\r\n    print(\"in_tree(edge)\"\
-    , in_tree);\r\n    print(\"root\", root);\r\n  }\r\n};\r\n#line 4 \"graph/rerooting_dp.hpp\"\
-    \n\r\n// snippet \u53C2\u7167\r\ntemplate <typename Graph, typename Data, typename\
-    \ F1, typename F2, typename F3>\r\nvc<Data> rerooting_dp(Graph& G, F1 fee, F2\
-    \ fev, F3 fve, Data unit) {\r\n  using E = typename Graph::edge_type;\r\n\r\n\
-    \  int N = G.N;\r\n  HLD hld(G);\r\n  auto V = hld.V;\r\n  auto VR = V;\r\n  reverse(all(VR));\r\
+    \ a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\r\n  }\r\n\r\n  vc<int> collect_child(int\
+    \ v){\r\n    vc<int> res;\r\n    for(auto&& e : G[v]) if(e.to != parent[v]) res.eb(e.to);\r\
+    \n    return res;\r\n  }\r\n\r\n  vc<pair<int, int>> get_path_decomposition(int\
+    \ u, int v, bool edge) {\r\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\
+    \"\u533A\u9593\u5217\u3002\r\n    vc<pair<int, int>> up, down;\r\n    while (1)\
+    \ {\r\n      if (head[u] == head[v]) break;\r\n      if (LID[u] < LID[v]) {\r\n\
+    \        down.eb(LID[head[v]], LID[v]);\r\n        v = parent[head[v]];\r\n  \
+    \    } else {\r\n        up.eb(LID[u], LID[head[u]]);\r\n        u = parent[head[u]];\r\
+    \n      }\r\n    }\r\n    if (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\r\
+    \n    elif (LID[v] + edge <= LID[u]) up.eb(LID[u], LID[v] + edge);\r\n    reverse(all(down));\r\
+    \n    up.insert(up.end(), all(down));\r\n    return up;\r\n  }\r\n\r\n  void debug()\
+    \ {\r\n    print(\"V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\",\
+    \ RID);\r\n    print(\"parent\", parent);\r\n    print(\"depth\", depth);\r\n\
+    \    print(\"head\", head);\r\n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"\
+    root\", root);\r\n  }\r\n};\r\n#line 4 \"graph/rerooting_dp.hpp\"\n\r\n// snippet\
+    \ \u53C2\u7167\r\ntemplate <typename Graph, typename Data, typename F1, typename\
+    \ F2, typename F3>\r\nvc<Data> rerooting_dp(Graph& G, F1 fee, F2 fev, F3 fve,\
+    \ Data unit) {\r\n  using E = typename Graph::edge_type;\r\n\r\n  int N = G.N;\r\
+    \n  HLD hld(G);\r\n  auto V = hld.V;\r\n  auto VR = V;\r\n  reverse(all(VR));\r\
     \n  auto par = hld.parent;\r\n\r\n  vc<Data> dpv(N);\r\n  vc<Data> dpe1(N);\r\n\
     \r\n  for (auto&& v: VR) {\r\n    auto val = unit;\r\n    E e0;\r\n    for (auto&&\
     \ e: G[v]) {\r\n      if (e.to != par[v]) {\r\n        val = fee(val, dpe1[e.to]);\r\
@@ -147,7 +149,7 @@ data:
   isVerificationFile: false
   path: graph/rerooting_dp.hpp
   requiredBy: []
-  timestamp: '2022-04-16 04:26:49+09:00'
+  timestamp: '2022-04-24 15:02:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/rerooting_dp.hpp

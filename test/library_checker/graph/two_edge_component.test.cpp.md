@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -259,24 +259,26 @@ data:
     \ LCA(a, b);\r\n    return depth[a] + depth[b] - 2 * depth[c];\r\n  }\r\n\r\n\
     \  bool in_subtree(int a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b];\
     \ }\r\n\r\n  int move(int a, int b) {\r\n    assert(a != b);\r\n    return (in_subtree(b,\
-    \ a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\r\n  }\r\n\r\n  vc<pair<int,\
-    \ int>> get_path_decomposition(int u, int v, bool edge) {\r\n    // [\u59CB\u70B9\
-    , \u7D42\u70B9] \u306E\"\u9589\"\u533A\u9593\u5217\u3002\r\n    vc<pair<int, int>>\
-    \ up, down;\r\n    while (1) {\r\n      if (head[u] == head[v]) break;\r\n   \
-    \   if (LID[u] < LID[v]) {\r\n        down.eb(LID[head[v]], LID[v]);\r\n     \
-    \   v = parent[head[v]];\r\n      } else {\r\n        up.eb(LID[u], LID[head[u]]);\r\
-    \n        u = parent[head[u]];\r\n      }\r\n    }\r\n    if (LID[u] < LID[v])\
-    \ down.eb(LID[u] + edge, LID[v]);\r\n    elif (LID[v] + edge <= LID[u]) up.eb(LID[u],\
-    \ LID[v] + edge);\r\n    reverse(all(down));\r\n    up.insert(up.end(), all(down));\r\
-    \n    return up;\r\n  }\r\n\r\n  void debug() {\r\n    print(\"V\", V);\r\n  \
-    \  print(\"LID\", LID);\r\n    print(\"RID\", RID);\r\n    print(\"parent\", parent);\r\
-    \n    print(\"depth\", depth);\r\n    print(\"head\", head);\r\n    print(\"in_tree(edge)\"\
-    , in_tree);\r\n    print(\"root\", root);\r\n  }\r\n};\r\n#line 2 \"graph/two_edge_component.hpp\"\
-    \n\r\ntemplate <typename Graph>\r\npair<int, vc<int>> two_edge_component(Graph&\
-    \ G) {\r\n  HLD hld(G);\r\n  int N = G.N;\r\n  vc<int> DP(N);\r\n  for (auto&&\
-    \ e: G.edges) {\r\n    if (!hld.in_tree[e.id]) {\r\n      int a = e.frm, b = e.to;\r\
-    \n      if (hld.depth[a] < hld.depth[b]) swap(a, b);\r\n      DP[a]++, DP[b]--;\r\
-    \n    }\r\n  }\r\n  auto& V = hld.V;\r\n  FOR_R(i, len(V)) {\r\n    int v = V[i];\r\
+    \ a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\r\n  }\r\n\r\n  vc<int> collect_child(int\
+    \ v){\r\n    vc<int> res;\r\n    for(auto&& e : G[v]) if(e.to != parent[v]) res.eb(e.to);\r\
+    \n    return res;\r\n  }\r\n\r\n  vc<pair<int, int>> get_path_decomposition(int\
+    \ u, int v, bool edge) {\r\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\
+    \"\u533A\u9593\u5217\u3002\r\n    vc<pair<int, int>> up, down;\r\n    while (1)\
+    \ {\r\n      if (head[u] == head[v]) break;\r\n      if (LID[u] < LID[v]) {\r\n\
+    \        down.eb(LID[head[v]], LID[v]);\r\n        v = parent[head[v]];\r\n  \
+    \    } else {\r\n        up.eb(LID[u], LID[head[u]]);\r\n        u = parent[head[u]];\r\
+    \n      }\r\n    }\r\n    if (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\r\
+    \n    elif (LID[v] + edge <= LID[u]) up.eb(LID[u], LID[v] + edge);\r\n    reverse(all(down));\r\
+    \n    up.insert(up.end(), all(down));\r\n    return up;\r\n  }\r\n\r\n  void debug()\
+    \ {\r\n    print(\"V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\",\
+    \ RID);\r\n    print(\"parent\", parent);\r\n    print(\"depth\", depth);\r\n\
+    \    print(\"head\", head);\r\n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"\
+    root\", root);\r\n  }\r\n};\r\n#line 2 \"graph/two_edge_component.hpp\"\n\r\n\
+    template <typename Graph>\r\npair<int, vc<int>> two_edge_component(Graph& G) {\r\
+    \n  HLD hld(G);\r\n  int N = G.N;\r\n  vc<int> DP(N);\r\n  for (auto&& e: G.edges)\
+    \ {\r\n    if (!hld.in_tree[e.id]) {\r\n      int a = e.frm, b = e.to;\r\n   \
+    \   if (hld.depth[a] < hld.depth[b]) swap(a, b);\r\n      DP[a]++, DP[b]--;\r\n\
+    \    }\r\n  }\r\n  auto& V = hld.V;\r\n  FOR_R(i, len(V)) {\r\n    int v = V[i];\r\
     \n    int p = hld.parent[v];\r\n    if (p != -1) DP[p] += DP[v];\r\n  }\r\n  int\
     \ C = 0;\r\n  vc<int> comp(N, -1);\r\n  FOR(v, N) if (DP[v] == 0) comp[v] = C++;\r\
     \n  for (auto&& v: V)\r\n    if (comp[v] == -1) comp[v] = comp[hld.parent[v]];\r\
@@ -302,7 +304,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/two_edge_component.test.cpp
   requiredBy: []
-  timestamp: '2022-04-16 06:03:26+09:00'
+  timestamp: '2022-04-24 15:02:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/two_edge_component.test.cpp

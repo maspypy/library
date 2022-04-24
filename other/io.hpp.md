@@ -16,6 +16,9 @@ data:
     path: test/aoj/2842_seg2d_dense.test.cpp
     title: test/aoj/2842_seg2d_dense.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1_10_C_LCS.test.cpp
+    title: test/aoj/ALDS1_10_C_LCS.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_12_B_dial.test.cpp
     title: test/aoj/ALDS1_12_B_dial.test.cpp
   - icon: ':heavy_check_mark:'
@@ -450,7 +453,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1810_matpow.test.cpp
     title: test/yukicoder/1810_matpow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/184_xorbasis.test.cpp
     title: test/yukicoder/184_xorbasis.test.cpp
   - icon: ':heavy_check_mark:'
@@ -465,9 +468,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/899_bfsnumbering.test.cpp
     title: test/yukicoder/899_bfsnumbering.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include\
@@ -672,7 +675,7 @@ data:
   path: other/io.hpp
   requiredBy: []
   timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/502_factorial107.test.cpp
   - test/yukicoder/1810_matpow.test.cpp
@@ -692,6 +695,7 @@ data:
   - test/aoj/DSL_2_H_min_add_lazy.test.cpp
   - test/aoj/NTL_1_E_extgcd.test.cpp
   - test/aoj/ALDS1_12_B_dial.test.cpp
+  - test/aoj/ALDS1_10_C_LCS.test.cpp
   - test/aoj/2842_fenwick2d_dense.test.cpp
   - test/aoj/DPL_5_C_count_surjection.test.cpp
   - test/aoj/ALDS1_1_C_primetest.test.cpp

@@ -117,7 +117,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid_set.hpp
       title: alg/monoid_set.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: alg/monoid_xor_basis.hpp
       title: alg/monoid_xor_basis.hpp
   - name: dp
@@ -128,6 +128,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: dp/knapsack01.hpp
       title: dp/knapsack01.hpp
+    - icon: ':heavy_check_mark:'
+      path: dp/longest_common_subsequence.hpp
+      title: dp/longest_common_subsequence.hpp
     - icon: ':heavy_check_mark:'
       path: dp/longest_increasing_subsequence.hpp
       title: dp/longest_increasing_subsequence.hpp
@@ -508,7 +511,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -581,7 +584,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/integer_kth_root.hpp
       title: other/integer_kth_root.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -675,6 +678,9 @@ data:
       path: seq/find_linear_rec.hpp
       title: seq/find_linear_rec.hpp
     - icon: ':warning:'
+      path: seq/gray_code.hpp
+      title: seq/gray_code.hpp
+    - icon: ':warning:'
       path: seq/interpolate_linear_rec.hpp
       title: seq/interpolate_linear_rec.hpp
     - icon: ':heavy_check_mark:'
@@ -767,6 +773,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/2842_seg2d_dense.test.cpp
       title: test/aoj/2842_seg2d_dense.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/ALDS1_10_C_LCS.test.cpp
+      title: test/aoj/ALDS1_10_C_LCS.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_12_B_dial.test.cpp
       title: test/aoj/ALDS1_12_B_dial.test.cpp
@@ -1232,7 +1241,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1810_matpow.test.cpp
       title: test/yukicoder/1810_matpow.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/184_xorbasis.test.cpp
       title: test/yukicoder/184_xorbasis.test.cpp
     - icon: ':heavy_check_mark:'

@@ -2,11 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: ds/beats_summaxmin_chminchmax.hpp
-    title: ds/beats_summaxmin_chminchmax.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/lazysegtree_beats.hpp
-    title: ds/lazysegtree_beats.hpp
+    path: dp/longest_common_subsequence.hpp
+    title: dp/longest_common_subsequence.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -20,14 +17,14 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_10_C&lang=ja
     links:
-    - https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum
-  bundledCode: "#line 1 \"test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp\"\
-    \n#define PROBLEM \\\r\n  \"https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum\"\
-    \r\n\r\n#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace\
-    \ std;\n\nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\n\
-    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_10_C&lang=ja
+  bundledCode: "#line 1 \"test/aoj/ALDS1_10_C_LCS.test.cpp\"\n#define PROBLEM \\\n\
+    \  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_10_C&lang=ja\"\
+    \n#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
+    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
+    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
     \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
     template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
     \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
@@ -182,147 +179,50 @@ data:
     ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
     Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
-    \ 2 \"ds/lazysegtree_beats.hpp\"\n\ntemplate <typename Lazy>\nstruct LazySegTreeBeats\
-    \ {\n  using Monoid_X = typename Lazy::X_structure;\n  using Monoid_A = typename\
-    \ Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n  using A =\
-    \ typename Monoid_A::value_type;\n  int n, log, size;\n  vc<X> dat;\n  vc<A> laz;\n\
-    \n  LazySegTreeBeats() : LazySegTreeBeats(0) {}\n  LazySegTreeBeats(int n) : LazySegTreeBeats(vc<X>(n,\
-    \ Monoid_X::unit)) {}\n  LazySegTreeBeats(vc<X> v) : n(len(v)) {\n    log = 1;\n\
-    \    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
-    \ << 1, Monoid_X::unit);\n    laz.assign(size, Monoid_A::unit);\n    FOR(i, n)\
-    \ dat[size + i] = v[i];\n    FOR3_R(i, 1, size) update(i);\n  }\n\n  void update(int\
-    \ k) { dat[k] = Monoid_X::op(dat[2 * k], dat[2 * k + 1]); }\n\n  void all_apply(int\
-    \ k, A a) {\n    dat[k] = Lazy::act(dat[k], a);\n    if (k < size) {\n      laz[k]\
-    \ = Monoid_A::op(laz[k], a);\n      if (dat[k].fail) push(k), update(k);\n   \
-    \ }\n  }\n\n  void push(int k) {\n    all_apply(2 * k, laz[k]);\n    all_apply(2\
-    \ * k + 1, laz[k]);\n    laz[k] = Monoid_A::unit;\n  }\n\n  void set(int p, X\
-    \ x) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i\
-    \ >= 1; i--) push(p >> i);\n    dat[p] = x;\n    for (int i = 1; i <= log; i++)\
-    \ update(p >> i);\n  }\n\n  X get(int p) {\n    assert(0 <= p && p < n);\n   \
-    \ p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    return dat[p];\n\
-    \  }\n\n  vc<X> get_all() {\n    FOR(i, size) push(i);\n    return {dat.begin()\
-    \ + size, dat.begin() + size + n};\n  }\n\n  X prod(int l, int r) {\n    assert(0\
-    \ <= l && l <= r && r <= n);\n    if (l == r) return Monoid_X::unit;\n\n    l\
-    \ += size;\n    r += size;\n\n    for (int i = log; i >= 1; i--) {\n      if (((l\
-    \ >> i) << i) != l) push(l >> i);\n      if (((r >> i) << i) != r) push((r - 1)\
-    \ >> i);\n    }\n\n    X xl = Monoid_X::unit, xr = Monoid_X::unit;\n    while\
-    \ (l < r) {\n      if (l & 1) xl = Monoid_X::op(xl, dat[l++]);\n      if (r &\
-    \ 1) xr = Monoid_X::op(dat[--r], xr);\n      l >>= 1;\n      r >>= 1;\n    }\n\
-    \n    return Monoid_X::op(xl, xr);\n  }\n\n  X prod_all() { return dat[1]; }\n\
-    \n  void apply(int p, A a) {\n    assert(0 <= p && p < n);\n    p += size;\n \
-    \   if (!Monoid_A::commute)\n      for (int i = log; i >= 1; i--) push(p >> i);\n\
-    \    dat[p] = Lazy::act(dat[p], a);\n    for (int i = 1; i <= log; i++) update(p\
-    \ >> i);\n  }\n\n  void apply(int l, int r, A a) {\n    assert(0 <= l && l <=\
-    \ r && r <= n);\n    if (l == r) return;\n    l += size;\n    r += size;\n   \
-    \ for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l >>\
-    \ i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n    }\n\n    {\n \
-    \     int l2 = l, r2 = r;\n      while (l < r) {\n        if (l & 1) all_apply(l++,\
-    \ a);\n        if (r & 1) all_apply(--r, a);\n        l >>= 1;\n        r >>=\
-    \ 1;\n      }\n      l = l2;\n      r = r2;\n    }\n\n    for (int i = 1; i <=\
-    \ log; i++) {\n      if (((l >> i) << i) != l) update(l >> i);\n      if (((r\
-    \ >> i) << i) != r) update((r - 1) >> i);\n    }\n  }\n\n  template <typename\
-    \ C>\n  int max_right(C& check, int l) {\n    assert(0 <= l && l <= n);\n    assert(check(Monoid_X::unit));\n\
-    \    if (l == n) return n;\n    l += size;\n    for (int i = log; i >= 1; i--)\
-    \ push(l >> i);\n    X sm = Monoid_X::unit;\n    do {\n      while (l % 2 == 0)\
-    \ l >>= 1;\n      if (!check(Monoid_X::op(sm, dat[l]))) {\n        while (l <\
-    \ size) {\n          push(l);\n          l = (2 * l);\n          if (check(Monoid_X::op(sm,\
-    \ dat[l]))) {\n            sm = Monoid_X::op(sm, dat[l]);\n            l++;\n\
-    \          }\n        }\n        return l - size;\n      }\n      sm = Monoid_X::op(sm,\
-    \ dat[l]);\n      l++;\n    } while ((l & -l) != l);\n    return n;\n  }\n\n \
-    \ template <typename C>\n  int min_left(C& check, int r) {\n    assert(0 <= r\
-    \ && r <= n);\n    assert(check(Monoid_X::unit));\n    if (r == 0) return 0;\n\
-    \    r += size;\n    for (int i = log; i >= 1; i--) push((r - 1) >> i);\n    X\
-    \ sm = Monoid_X::unit;\n    do {\n      r--;\n      while (r > 1 && (r % 2)) r\
-    \ >>= 1;\n      if (!check(Monoid_X::op(dat[r], sm))) {\n        while (r < size)\
-    \ {\n          push(r);\n          r = (2 * r + 1);\n          if (check(Monoid_X::op(dat[r],\
-    \ sm))) {\n            sm = Monoid_X::op(dat[r], sm);\n            r--;\n    \
-    \      }\n        }\n        return r + 1 - size;\n      }\n      sm = Monoid_X::op(dat[r],\
-    \ sm);\n    } while ((r & -r) != r);\n    return 0;\n  }\n\n  void debug() { print(\"\
-    lazysegtree getall:\", get_all()); }\n};\n#line 2 \"ds/beats_summaxmin_chminchmax.hpp\"\
-    \n\r\nconst ll INF = 1LL << 40;\r\n\r\nstruct Beats_SumMaxMin_ChminChmax {\r\n\
-    \  struct CntSumMinMax {\r\n    struct X {\r\n      ll cnt, sum, min, max, minc,\
-    \ maxc, min2, max2;\r\n      bool fail;\r\n    };\r\n    using value_type = X;\r\
-    \n    static X op(const X& x, const X& y) {\r\n      if (x.min > x.max) return\
-    \ y;\r\n      if (y.min > y.max) return x;\r\n      X z;\r\n      z.cnt = x.cnt\
-    \ + y.cnt, z.sum = x.sum + y.sum;\r\n\r\n      z.min = min(x.min, y.min), z.max\
-    \ = max(x.max, y.max);\r\n      z.minc = (x.min == z.min ? x.minc : 0) + (y.min\
-    \ == z.min ? y.minc : 0);\r\n      z.maxc = (x.max == z.max ? x.maxc : 0) + (y.max\
-    \ == z.max ? y.maxc : 0);\r\n\r\n      z.min2 = z.max;\r\n      if (z.min < x.min\
-    \ && x.min < z.min2) z.min2 = x.min;\r\n      if (z.min < x.min2 && x.min2 < z.min2)\
-    \ z.min2 = x.min2;\r\n      if (z.min < y.min && y.min < z.min2) z.min2 = y.min;\r\
-    \n      if (z.min < y.min2 && y.min2 < z.min2) z.min2 = y.min2;\r\n\r\n      z.max2\
-    \ = z.min;\r\n      if (z.max > x.max && x.max > z.max2) z.max2 = x.max;\r\n \
-    \     if (z.max > x.max2 && x.max2 > z.max2) z.max2 = x.max2;\r\n      if (z.max\
-    \ > y.max && y.max > z.max2) z.max2 = y.max;\r\n      if (z.max > y.max2 && y.max2\
-    \ > z.max2) z.max2 = y.max2;\r\n\r\n      z.fail = 0;\r\n      return z;\r\n \
-    \   }\r\n    static constexpr X unit = {0, 0, INF, -INF, 0, 0, INF, -INF, 0};\r\
-    \n    bool commute = true;\r\n  };\r\n\r\n  struct AddChminChmax {\r\n    struct\
-    \ X {\r\n      ll add, min, max;\r\n    };\r\n    using value_type = X;\r\n  \
-    \  static constexpr X op(const X& x, const X& y) {\r\n      auto [a, b, c] = x;\r\
-    \n      auto [d, e, f] = y;\r\n      a += d, b += d, c += d;\r\n      b = min(b,\
-    \ e), c = min(c, e);\r\n      c = max(c, f);\r\n      return {a, b, c};\r\n  \
-    \  }\r\n    static constexpr X unit = {0, INF, -INF};\r\n    bool commute = false;\r\
-    \n  };\r\n  struct Lazy {\r\n    using MX = CntSumMinMax;\r\n    using MA = AddChminChmax;\r\
-    \n    using X_structure = MX;\r\n    using A_structure = MA;\r\n    using X =\
-    \ MX::value_type;\r\n    using A = MA::value_type;\r\n    static X act(X& x, const\
-    \ A& a) {\r\n      assert(!x.fail);\r\n      if (x.cnt == 0) return x;\r\n   \
-    \   x.sum += x.cnt * a.add;\r\n      x.min += a.add, x.max += a.add;\r\n     \
-    \ x.min2 += a.add, x.max2 += a.add;\r\n\r\n      if (a.min == INF && a.max ==\
-    \ -INF) return x;\r\n\r\n      ll before_min = x.min, before_max = x.max;\r\n\
-    \      x.min = min(x.min, a.min);\r\n      x.min = max(x.min, a.max);\r\n    \
-    \  x.max = min(x.max, a.min);\r\n      x.max = max(x.max, a.max);\r\n\r\n    \
-    \  if (x.min == x.max) {\r\n        x.sum = x.max * x.cnt;\r\n        x.max2 =\
-    \ x.min2 = x.max;\r\n        x.maxc = x.minc = x.cnt;\r\n      }\r\n      elif\
-    \ (x.max2 <= x.min) {\r\n        x.max2 = x.min, x.min2 = x.max;\r\n        x.minc\
-    \ = x.cnt - x.maxc;\r\n        x.sum = x.max * x.maxc + x.min * x.minc;\r\n  \
-    \    }\r\n      elif (x.min2 >= x.max) {\r\n        x.max2 = x.min, x.min2 = x.max;\r\
-    \n        x.maxc = x.cnt - x.minc;\r\n        x.sum = x.max * x.maxc + x.min *\
-    \ x.minc;\r\n      }\r\n      elif (x.min < x.min2 && x.max > x.max2) {\r\n  \
-    \      x.sum += (x.min - before_min) * x.minc;\r\n        x.sum += (x.max - before_max)\
-    \ * x.maxc;\r\n      }\r\n      else {\r\n        x.fail = 1;\r\n      }\r\n \
-    \     return x;\r\n    }\r\n  };\r\n\r\n  LazySegTreeBeats<Lazy> seg;\r\n\r\n\
-    \  Beats_SumMaxMin_ChminChmax(vc<ll>& A) {\r\n    using X = Lazy::MX::value_type;\r\
-    \n    vc<X> seg_raw(len(A));\r\n    FOR(i, len(A)) {\r\n      ll x = A[i];\r\n\
-    \      seg_raw[i] = {1, x, x, x, 1, 1, x, x, 0};\r\n    }\r\n    seg = LazySegTreeBeats<Lazy>(seg_raw);\r\
-    \n  }\r\n\r\n  void set(int i, ll x) { seg.set(i, {1, x, x, x, 1, 1, x, x, 0});\
-    \ }\r\n\r\n  Lazy::MX::value_type prod(int l, int r) {\r\n    auto e = seg.prod(l,\
-    \ r);\r\n    return e;\r\n  }\r\n\r\n  void chmin(int l, int r, ll x) { seg.apply(l,\
-    \ r, {0, x, -INF}); }\r\n\r\n  void chmax(int l, int r, ll x) { seg.apply(l, r,\
-    \ {0, INF, x}); }\r\n\r\n  void add(int l, int r, ll x) { seg.apply(l, r, {x,\
-    \ INF, -INF}); }\r\n};\r\n#line 7 \"test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  Beats_SumMaxMin_ChminChmax\
-    \ seg(A);\r\n  FOR(_, Q) {\r\n    LL(t, L, R);\r\n    if (t == 0) {\r\n      LL(x);\r\
-    \n      seg.chmin(L, R, x);\r\n    }\r\n    elif (t == 1) {\r\n      LL(x);\r\n\
-    \      seg.chmax(L, R, x);\r\n    }\r\n    elif (t == 2) {\r\n      LL(x);\r\n\
-    \      seg.add(L, R, x);\r\n    }\r\n    elif (t == 3) {\r\n      auto x = seg.prod(L,\
-    \ R);\r\n      print(x.sum);\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n \
-    \ cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
-    \n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \\\r\n  \"https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum\"\
-    \r\n\r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include\
-    \ \"ds/beats_summaxmin_chminchmax.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\
-    \n  VEC(ll, A, N);\r\n  Beats_SumMaxMin_ChminChmax seg(A);\r\n  FOR(_, Q) {\r\n\
-    \    LL(t, L, R);\r\n    if (t == 0) {\r\n      LL(x);\r\n      seg.chmin(L, R,\
-    \ x);\r\n    }\r\n    elif (t == 1) {\r\n      LL(x);\r\n      seg.chmax(L, R,\
-    \ x);\r\n    }\r\n    elif (t == 2) {\r\n      LL(x);\r\n      seg.add(L, R, x);\r\
-    \n    }\r\n    elif (t == 3) {\r\n      auto x = seg.prod(L, R);\r\n      print(x.sum);\r\
-    \n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ 1 \"dp/longest_common_subsequence.hpp\"\n\ntemplate <typename STRING>\nll longest_common_subsequence(STRING&\
+    \ A, STRING& B) {\n  int N = len(B);\n  vc<int> dp(N + 1);\n  for (auto&& a: A)\
+    \ {\n    FOR_R(i, N) if (a == B[i]) chmax(dp[i + 1], dp[i] + 1);\n    FOR(i, N)\
+    \ chmax(dp[i + 1], dp[i]);\n  }\n  return dp[N];\n}\n\n/*\n\u5FA9\u5143\u3082\u3059\
+    \u308B LCS dp\u3002\n(A[i], B[j]) \u3092\u4F7F\u3046\u3088\u3046\u306A (i, j)\
+    \ \u306E\u30DA\u30A2\u306E vector \u3092\u8FD4\u3059\u3002\n*/\ntemplate <typename\
+    \ STRING>\nvc<pair<int, int>> longest_common_subsequence_restore(STRING& A, STRING&\
+    \ B) {\n  int N = len(A), M = len(B);\n  vv(int, DP, N + 1, M + 1);\n  FOR(i,\
+    \ N) {\n    auto& dp = DP[i];\n    auto& newdp = DP[i + 1];\n    newdp = dp;\n\
+    \    FOR(j, M) {\n      chmax(newdp[j + 1], newdp[j]);\n      if (A[i] == B[j])\
+    \ chmax(newdp[j + 1], dp[j] + 1);\n    }\n  }\n  vc<pair<int, int>> res;\n  int\
+    \ n = N, m = M;\n  while (DP[n][m]) {\n    if (DP[n][m] == DP[n - 1][m]) { --n;\
+    \ }\n    elif (DP[n][m] == DP[n][m - 1]) { --m; }\n    else {\n      --n, --m;\n\
+    \      res.eb(n, m);\n    }\n  }\n  reverse(all(res));\n  return res;\n}\n#line\
+    \ 6 \"test/aoj/ALDS1_10_C_LCS.test.cpp\"\n\nvoid solve() {\n  STR(S, T);\n  ll\
+    \ LCS = longest_common_subsequence(S, T);\n  vc<pair<int, int>> pairs = longest_common_subsequence_restore(S,\
+    \ T);\n  assert(len(pairs) == LCS);\n  for (auto&& [i, j]: pairs) assert(S[i]\
+    \ == T[j]);\n  FOR(i, LCS - 1) {\n    assert(pairs[i].fi < pairs[i + 1].fi);\n\
+    \    assert(pairs[i].se < pairs[i + 1].se);\n  }\n  print(LCS);\n}\n\nsigned main()\
+    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_10_C&lang=ja\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"dp/longest_common_subsequence.hpp\"\
+    \n\nvoid solve() {\n  STR(S, T);\n  ll LCS = longest_common_subsequence(S, T);\n\
+    \  vc<pair<int, int>> pairs = longest_common_subsequence_restore(S, T);\n  assert(len(pairs)\
+    \ == LCS);\n  for (auto&& [i, j]: pairs) assert(S[i] == T[j]);\n  FOR(i, LCS -\
+    \ 1) {\n    assert(pairs[i].fi < pairs[i + 1].fi);\n    assert(pairs[i].se < pairs[i\
+    \ + 1].se);\n  }\n  print(LCS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n \
+    \ ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  LL(T);\n  FOR(_,\
+    \ T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/beats_summaxmin_chminchmax.hpp
-  - ds/lazysegtree_beats.hpp
+  - dp/longest_common_subsequence.hpp
   isVerificationFile: true
-  path: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
+  path: test/aoj/ALDS1_10_C_LCS.test.cpp
   requiredBy: []
-  timestamp: '2022-04-16 06:03:26+09:00'
+  timestamp: '2022-04-24 15:03:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
+documentation_of: test/aoj/ALDS1_10_C_LCS.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
-- /verify/test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp.html
-title: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
+- /verify/test/aoj/ALDS1_10_C_LCS.test.cpp
+- /verify/test/aoj/ALDS1_10_C_LCS.test.cpp.html
+title: test/aoj/ALDS1_10_C_LCS.test.cpp
 ---

@@ -28,10 +28,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -341,41 +341,43 @@ data:
     \ LCA(a, b);\r\n    return depth[a] + depth[b] - 2 * depth[c];\r\n  }\r\n\r\n\
     \  bool in_subtree(int a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b];\
     \ }\r\n\r\n  int move(int a, int b) {\r\n    assert(a != b);\r\n    return (in_subtree(b,\
-    \ a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\r\n  }\r\n\r\n  vc<pair<int,\
-    \ int>> get_path_decomposition(int u, int v, bool edge) {\r\n    // [\u59CB\u70B9\
-    , \u7D42\u70B9] \u306E\"\u9589\"\u533A\u9593\u5217\u3002\r\n    vc<pair<int, int>>\
-    \ up, down;\r\n    while (1) {\r\n      if (head[u] == head[v]) break;\r\n   \
-    \   if (LID[u] < LID[v]) {\r\n        down.eb(LID[head[v]], LID[v]);\r\n     \
-    \   v = parent[head[v]];\r\n      } else {\r\n        up.eb(LID[u], LID[head[u]]);\r\
-    \n        u = parent[head[u]];\r\n      }\r\n    }\r\n    if (LID[u] < LID[v])\
-    \ down.eb(LID[u] + edge, LID[v]);\r\n    elif (LID[v] + edge <= LID[u]) up.eb(LID[u],\
-    \ LID[v] + edge);\r\n    reverse(all(down));\r\n    up.insert(up.end(), all(down));\r\
-    \n    return up;\r\n  }\r\n\r\n  void debug() {\r\n    print(\"V\", V);\r\n  \
-    \  print(\"LID\", LID);\r\n    print(\"RID\", RID);\r\n    print(\"parent\", parent);\r\
-    \n    print(\"depth\", depth);\r\n    print(\"head\", head);\r\n    print(\"in_tree(edge)\"\
-    , in_tree);\r\n    print(\"root\", root);\r\n  }\r\n};\r\n#line 2 \"alg/monoid_reverse.hpp\"\
-    \ntemplate <class Monoid>\r\nstruct Monoid_Reverse {\r\n  using value_type = typename\
-    \ Monoid::value_type;\r\n  using X = value_type;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) { return Monoid::op(y, x); }\r\n  static constexpr X unit()\
-    \ { return Monoid::unit(); }\r\n  static const bool commute = Monoid::commute;\r\
-    \n};\r\n#line 2 \"alg/lazy_reverse.hpp\"\n\r\ntemplate <typename Lazy>\r\nstruct\
-    \ Lazy_Reverse {\r\n  using MX = Monoid_Reverse<typename Lazy::X_structure>;\r\
-    \n  using MA = typename Lazy::A_structure;\r\n  using X_structure = MX;\r\n  using\
-    \ A_structure = MA;\r\n  using X = typename MX::value_type;\r\n  using A = typename\
-    \ MA::value_type;\r\n  static constexpr X act(const X &x, const A &a) { return\
-    \ Lazy::act(x, a); }\r\n};\r\n#line 5 \"graph/lazytreemonoid.hpp\"\n\r\ntemplate\
-    \ <typename HLD, typename Lazy, bool edge = false>\r\nstruct LazyTreeMonoid {\r\
-    \n  using MonoX = typename Lazy::X_structure;\r\n  using MonoA = typename Lazy::A_structure;\r\
-    \n  using X = typename MonoX::value_type;\r\n  using A = typename MonoA::value_type;\r\
-    \n  using RevLazy = Lazy_Reverse<Lazy>;\r\n  HLD &hld;\r\n  int N;\r\n  LazySegTree<Lazy>\
-    \ seg;\r\n  LazySegTree<RevLazy> seg_r;\r\n\r\n  LazyTreeMonoid(HLD &hld) : hld(hld),\
-    \ N(hld.N), seg(hld.N) {\r\n    if (!MonoX::commute) seg_r = LazySegTree<RevLazy>(hld.N);\r\
-    \n  }\r\n\r\n  LazyTreeMonoid(HLD &hld, vc<X> &dat) : hld(hld), N(hld.N) {\r\n\
-    \    vc<X> seg_raw(N, MonoX::unit());\r\n    if (!edge) {\r\n      FOR(v, N) seg_raw[hld.LID[v]]\
-    \ = dat[v];\r\n    } else {\r\n      FOR(e, N - 1) {\r\n        int v = hld.e_to_v(e);\r\
-    \n        seg_raw[hld.LID[v]] = dat[e];\r\n      }\r\n    }\r\n    seg = LazySegTree<Lazy>(seg_raw);\r\
-    \n    if (!MonoX::commute) seg_r = LazySegTree<RevLazy>(seg_raw);\r\n  }\r\n\r\
-    \n  void set(int i, X x) {\r\n    if (edge) i = hld.e_to_v(i);\r\n    i = hld.LID[i];\r\
+    \ a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\r\n  }\r\n\r\n  vc<int> collect_child(int\
+    \ v){\r\n    vc<int> res;\r\n    for(auto&& e : G[v]) if(e.to != parent[v]) res.eb(e.to);\r\
+    \n    return res;\r\n  }\r\n\r\n  vc<pair<int, int>> get_path_decomposition(int\
+    \ u, int v, bool edge) {\r\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\
+    \"\u533A\u9593\u5217\u3002\r\n    vc<pair<int, int>> up, down;\r\n    while (1)\
+    \ {\r\n      if (head[u] == head[v]) break;\r\n      if (LID[u] < LID[v]) {\r\n\
+    \        down.eb(LID[head[v]], LID[v]);\r\n        v = parent[head[v]];\r\n  \
+    \    } else {\r\n        up.eb(LID[u], LID[head[u]]);\r\n        u = parent[head[u]];\r\
+    \n      }\r\n    }\r\n    if (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\r\
+    \n    elif (LID[v] + edge <= LID[u]) up.eb(LID[u], LID[v] + edge);\r\n    reverse(all(down));\r\
+    \n    up.insert(up.end(), all(down));\r\n    return up;\r\n  }\r\n\r\n  void debug()\
+    \ {\r\n    print(\"V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\",\
+    \ RID);\r\n    print(\"parent\", parent);\r\n    print(\"depth\", depth);\r\n\
+    \    print(\"head\", head);\r\n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"\
+    root\", root);\r\n  }\r\n};\r\n#line 2 \"alg/monoid_reverse.hpp\"\ntemplate <class\
+    \ Monoid>\r\nstruct Monoid_Reverse {\r\n  using value_type = typename Monoid::value_type;\r\
+    \n  using X = value_type;\r\n  static constexpr X op(const X &x, const X &y) {\
+    \ return Monoid::op(y, x); }\r\n  static constexpr X unit() { return Monoid::unit();\
+    \ }\r\n  static const bool commute = Monoid::commute;\r\n};\r\n#line 2 \"alg/lazy_reverse.hpp\"\
+    \n\r\ntemplate <typename Lazy>\r\nstruct Lazy_Reverse {\r\n  using MX = Monoid_Reverse<typename\
+    \ Lazy::X_structure>;\r\n  using MA = typename Lazy::A_structure;\r\n  using X_structure\
+    \ = MX;\r\n  using A_structure = MA;\r\n  using X = typename MX::value_type;\r\
+    \n  using A = typename MA::value_type;\r\n  static constexpr X act(const X &x,\
+    \ const A &a) { return Lazy::act(x, a); }\r\n};\r\n#line 5 \"graph/lazytreemonoid.hpp\"\
+    \n\r\ntemplate <typename HLD, typename Lazy, bool edge = false>\r\nstruct LazyTreeMonoid\
+    \ {\r\n  using MonoX = typename Lazy::X_structure;\r\n  using MonoA = typename\
+    \ Lazy::A_structure;\r\n  using X = typename MonoX::value_type;\r\n  using A =\
+    \ typename MonoA::value_type;\r\n  using RevLazy = Lazy_Reverse<Lazy>;\r\n  HLD\
+    \ &hld;\r\n  int N;\r\n  LazySegTree<Lazy> seg;\r\n  LazySegTree<RevLazy> seg_r;\r\
+    \n\r\n  LazyTreeMonoid(HLD &hld) : hld(hld), N(hld.N), seg(hld.N) {\r\n    if\
+    \ (!MonoX::commute) seg_r = LazySegTree<RevLazy>(hld.N);\r\n  }\r\n\r\n  LazyTreeMonoid(HLD\
+    \ &hld, vc<X> &dat) : hld(hld), N(hld.N) {\r\n    vc<X> seg_raw(N, MonoX::unit());\r\
+    \n    if (!edge) {\r\n      FOR(v, N) seg_raw[hld.LID[v]] = dat[v];\r\n    } else\
+    \ {\r\n      FOR(e, N - 1) {\r\n        int v = hld.e_to_v(e);\r\n        seg_raw[hld.LID[v]]\
+    \ = dat[e];\r\n      }\r\n    }\r\n    seg = LazySegTree<Lazy>(seg_raw);\r\n \
+    \   if (!MonoX::commute) seg_r = LazySegTree<RevLazy>(seg_raw);\r\n  }\r\n\r\n\
+    \  void set(int i, X x) {\r\n    if (edge) i = hld.e_to_v(i);\r\n    i = hld.LID[i];\r\
     \n    seg.set(i, x);\r\n    if (!MonoX::commute) seg_r.set(i, x);\r\n  }\r\n\r\
     \n  X prod_path(int u, int v) {\r\n    auto pd = hld.get_path_decomposition(u,\
     \ v, edge);\r\n    X val = MonoX::unit();\r\n    for (auto &&[a, b]: pd) {\r\n\
@@ -441,7 +443,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   requiredBy: []
-  timestamp: '2022-04-23 17:49:11+09:00'
+  timestamp: '2022-04-24 15:02:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_5_E_lazytreemonoid.test.cpp

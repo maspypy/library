@@ -101,28 +101,30 @@ data:
     \ LCA(a, b);\r\n    return depth[a] + depth[b] - 2 * depth[c];\r\n  }\r\n\r\n\
     \  bool in_subtree(int a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b];\
     \ }\r\n\r\n  int move(int a, int b) {\r\n    assert(a != b);\r\n    return (in_subtree(b,\
-    \ a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\r\n  }\r\n\r\n  vc<pair<int,\
-    \ int>> get_path_decomposition(int u, int v, bool edge) {\r\n    // [\u59CB\u70B9\
-    , \u7D42\u70B9] \u306E\"\u9589\"\u533A\u9593\u5217\u3002\r\n    vc<pair<int, int>>\
-    \ up, down;\r\n    while (1) {\r\n      if (head[u] == head[v]) break;\r\n   \
-    \   if (LID[u] < LID[v]) {\r\n        down.eb(LID[head[v]], LID[v]);\r\n     \
-    \   v = parent[head[v]];\r\n      } else {\r\n        up.eb(LID[u], LID[head[u]]);\r\
-    \n        u = parent[head[u]];\r\n      }\r\n    }\r\n    if (LID[u] < LID[v])\
-    \ down.eb(LID[u] + edge, LID[v]);\r\n    elif (LID[v] + edge <= LID[u]) up.eb(LID[u],\
-    \ LID[v] + edge);\r\n    reverse(all(down));\r\n    up.insert(up.end(), all(down));\r\
-    \n    return up;\r\n  }\r\n\r\n  void debug() {\r\n    print(\"V\", V);\r\n  \
-    \  print(\"LID\", LID);\r\n    print(\"RID\", RID);\r\n    print(\"parent\", parent);\r\
-    \n    print(\"depth\", depth);\r\n    print(\"head\", head);\r\n    print(\"in_tree(edge)\"\
-    , in_tree);\r\n    print(\"root\", root);\r\n  }\r\n};\r\n#line 4 \"graph/functional.hpp\"\
-    \n\r\ntemplate <typename T = int>\r\nstruct FunctionalGraph {\r\n  int N, M;\r\
-    \n  Graph<T, 1> tree; // \u65B0\u3057\u3044\u9802\u70B9 N \u3092\u6839\u3068\u3057\
-    \u3066\u8FFD\u52A0\u3057\u305F\u6709\u5411\u6728\u3002\u9006\u5411\u304D\u306E\
-    \u8FBA\u306B\u306A\u308B\u3002\r\n  // HLD<Graph<T, 1>> hld;\r\n  vc<int> TO;\r\
-    \n  vc<T> wt;\r\n  vc<int> root;\r\n\r\n  FunctionalGraph() {}\r\n  FunctionalGraph(int\
-    \ N) : N(N), M(0), TO(N, -1), wt(N), root(N, -1) {}\r\n\r\n  void add(int a, int\
-    \ b, T c = 1) {\r\n    assert(0 <= a && a < N);\r\n    assert(TO[a] == -1);\r\n\
-    \    ++M;\r\n    TO[a] = b;\r\n    wt[a] = c;\r\n  }\r\n\r\n  void build() {\r\
-    \n    assert(N == M);\r\n    UnionFind uf(N);\r\n    FOR(v, N) if (!uf.merge(v,\
+    \ a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\r\n  }\r\n\r\n  vc<int> collect_child(int\
+    \ v){\r\n    vc<int> res;\r\n    for(auto&& e : G[v]) if(e.to != parent[v]) res.eb(e.to);\r\
+    \n    return res;\r\n  }\r\n\r\n  vc<pair<int, int>> get_path_decomposition(int\
+    \ u, int v, bool edge) {\r\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\
+    \"\u533A\u9593\u5217\u3002\r\n    vc<pair<int, int>> up, down;\r\n    while (1)\
+    \ {\r\n      if (head[u] == head[v]) break;\r\n      if (LID[u] < LID[v]) {\r\n\
+    \        down.eb(LID[head[v]], LID[v]);\r\n        v = parent[head[v]];\r\n  \
+    \    } else {\r\n        up.eb(LID[u], LID[head[u]]);\r\n        u = parent[head[u]];\r\
+    \n      }\r\n    }\r\n    if (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\r\
+    \n    elif (LID[v] + edge <= LID[u]) up.eb(LID[u], LID[v] + edge);\r\n    reverse(all(down));\r\
+    \n    up.insert(up.end(), all(down));\r\n    return up;\r\n  }\r\n\r\n  void debug()\
+    \ {\r\n    print(\"V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\",\
+    \ RID);\r\n    print(\"parent\", parent);\r\n    print(\"depth\", depth);\r\n\
+    \    print(\"head\", head);\r\n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"\
+    root\", root);\r\n  }\r\n};\r\n#line 4 \"graph/functional.hpp\"\n\r\ntemplate\
+    \ <typename T = int>\r\nstruct FunctionalGraph {\r\n  int N, M;\r\n  Graph<T,\
+    \ 1> tree; // \u65B0\u3057\u3044\u9802\u70B9 N \u3092\u6839\u3068\u3057\u3066\u8FFD\
+    \u52A0\u3057\u305F\u6709\u5411\u6728\u3002\u9006\u5411\u304D\u306E\u8FBA\u306B\
+    \u306A\u308B\u3002\r\n  // HLD<Graph<T, 1>> hld;\r\n  vc<int> TO;\r\n  vc<T> wt;\r\
+    \n  vc<int> root;\r\n\r\n  FunctionalGraph() {}\r\n  FunctionalGraph(int N) :\
+    \ N(N), M(0), TO(N, -1), wt(N), root(N, -1) {}\r\n\r\n  void add(int a, int b,\
+    \ T c = 1) {\r\n    assert(0 <= a && a < N);\r\n    assert(TO[a] == -1);\r\n \
+    \   ++M;\r\n    TO[a] = b;\r\n    wt[a] = c;\r\n  }\r\n\r\n  void build() {\r\n\
+    \    assert(N == M);\r\n    UnionFind uf(N);\r\n    FOR(v, N) if (!uf.merge(v,\
     \ TO[v])) { root[v] = v; }\r\n    FOR(v, N) if (root[v] == v) root[uf[v]] = v;\r\
     \n    FOR(v, N) root[v] = root[uf[v]];\r\n\r\n    tree = Graph<T, 1>(N + 1);\r\
     \n    FOR(v, N) {\r\n      if (root[v] != v)\r\n        tree.add(TO[v], v);\r\n\
@@ -154,7 +156,7 @@ data:
   isVerificationFile: false
   path: graph/functional.hpp
   requiredBy: []
-  timestamp: '2022-04-16 04:26:49+09:00'
+  timestamp: '2022-04-24 15:02:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/functional.hpp
