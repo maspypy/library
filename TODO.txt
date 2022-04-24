@@ -13,7 +13,6 @@ doubling で作ってもよいが
 ・suffix automation
 
 ・編集距離＋復元
-・LCS＋復元
 
 ・p-recursive
 
