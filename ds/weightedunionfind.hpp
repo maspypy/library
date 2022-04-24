@@ -11,6 +11,7 @@ struct WeightedUnionFind {
     iota(all(par), 0);
   }
 
+  // (root, root=0 としたときの val)
   pair<int, E> get(int v) {
     E res = Group::unit();
     while (v != par[v]) {
