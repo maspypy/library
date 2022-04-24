@@ -116,6 +116,12 @@ struct HLD {
     return (in_subtree(b, a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);
   }
 
+  vc<int> collect_child(int v){
+    vc<int> res;
+    for(auto&& e : G[v]) if(e.to != parent[v]) res.eb(e.to);
+    return res;
+  }
+
   vc<pair<int, int>> get_path_decomposition(int u, int v, bool edge) {
     // [始点, 終点] の"閉"区間列。
     vc<pair<int, int>> up, down;
