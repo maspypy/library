@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid_min.hpp
     title: alg/monoid_min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
   _extendedRequiredBy: []
@@ -15,8 +15,8 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/1436/problem/E
-  bundledCode: "#line 1 \"ds/range_mex_query.hpp\"\n\r\n#line 2 \"ds/segtree.hpp\"\
-    \ntemplate <class Monoid>\nstruct SegTree {\n  using X = typename Monoid::value_type;\n\
+  bundledCode: "#line 1 \"ds/range_mex_query.hpp\"\n\r\n#line 1 \"ds/segtree.hpp\"\
+    \n\ntemplate <class Monoid>\nstruct SegTree {\n  using X = typename Monoid::value_type;\n\
     \  using value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() : SegTree(0)\
     \ {}\n  SegTree(int n) : SegTree(vc<X>(n, Monoid::unit())) {}\n  SegTree(vc<X>\
     \ v) : n(len(v)) {\n    log = 1;\n    while ((1 << log) < n) ++log;\n    size\
@@ -44,17 +44,24 @@ data:
     \ < size) {\n          R = 2 * R + 1;\n          if (check(Monoid::op(dat[R],\
     \ sm))) {\n            sm = Monoid::op(dat[R], sm);\n            R--;\n      \
     \    }\n        }\n        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R],\
-    \ sm);\n    } while ((R & -R) != R);\n    return 0;\n  }\n\n  void debug() { print(\"\
-    segtree\", dat); }\n};\n#line 1 \"alg/monoid_min.hpp\"\ntemplate <class X, X INF>\r\
-    \nstruct Monoid_Min {\r\n  using value_type = X;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr X unit()\
-    \ { return INF; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 4\
-    \ \"ds/range_mex_query.hpp\"\n\r\n// \u914D\u5217\u306F static\r\n// \u30AF\u30A8\
-    \u30EA\u3082\u5148\u8AAD\u307F\u3059\u308B\r\n// example: https://codeforces.com/contest/1436/problem/E\r\
-    \ntemplate <int BEGIN, typename T = ll>\r\nstruct RangeMexQuery {\r\n  vc<T>&\
-    \ A;\r\n  vc<pair<int, int>> query;\r\n\r\n  RangeMexQuery(vc<T>& A) : A(A) {}\r\
-    \n  void add(int l, int r) { query.eb(l, r); }\r\n\r\n  vc<T> calc() {\r\n   \
-    \ int N = len(A);\r\n    // segtree, value -> last idx\r\n    using Mono = Monoid_Min<int,\
+    \ sm);\n    } while ((R & -R) != R);\n    return 0;\n  }\n\n  // \u30E2\u30CE\u30A4\
+    \u30C9\u304C\u53EF\u63DB\u306A\u3089\u3001prod_{l<=i<r}A[i^x] \u304C\u8A08\u7B97\
+    \u53EF\u80FD\n  // https://codeforces.com/contest/1401/problem/F\n  X Xor_prod(int\
+    \ l, int r, int xor_val) {\n    assert(Monoid::commute);\n    X x = Monoid::unit();\n\
+    \    FOR(k, log + 1) {\n      if (l >= r) break;\n      if (l & 1) { x = Monoid::op(x,\
+    \ dat[(size >> k) + ((l++) ^ xor_val)]); }\n      if (r & 1) { x = Monoid::op(x,\
+    \ dat[(size >> k) + ((--r) ^ xor_val)]); }\n      l /= 2, r /= 2, xor_val /= 2;\n\
+    \    }\n    return x;\n  }\n\n  void debug() { print(\"segtree\", dat); }\n};\n\
+    #line 1 \"alg/monoid_min.hpp\"\ntemplate <class X, X INF>\r\nstruct Monoid_Min\
+    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
+    \ &y) noexcept { return min(x, y); }\r\n  static constexpr X unit() { return INF;\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 4 \"ds/range_mex_query.hpp\"\
+    \n\r\n// \u914D\u5217\u306F static\r\n// \u30AF\u30A8\u30EA\u3082\u5148\u8AAD\u307F\
+    \u3059\u308B\r\n// example: https://codeforces.com/contest/1436/problem/E\r\n\
+    template <int BEGIN, typename T = ll>\r\nstruct RangeMexQuery {\r\n  vc<T>& A;\r\
+    \n  vc<pair<int, int>> query;\r\n\r\n  RangeMexQuery(vc<T>& A) : A(A) {}\r\n \
+    \ void add(int l, int r) { query.eb(l, r); }\r\n\r\n  vc<T> calc() {\r\n    int\
+    \ N = len(A);\r\n    // segtree, value -> last idx\r\n    using Mono = Monoid_Min<int,\
     \ 1 << 30>;\r\n    vc<int> seg_raw(N + 2, -1);\r\n    SegTree<Mono> seg(seg_raw);\r\
     \n\r\n    int Q = len(query);\r\n    vc<T> ANS(Q);\r\n    vc<vc<int>> IDS(N +\
     \ 1);\r\n    FOR(q, Q) {\r\n      auto [L, R] = query[q];\r\n      IDS[R].eb(q);\r\
@@ -86,7 +93,7 @@ data:
   isVerificationFile: false
   path: ds/range_mex_query.hpp
   requiredBy: []
-  timestamp: '2022-04-16 04:26:49+09:00'
+  timestamp: '2022-04-24 17:24:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/range_mex_query.hpp

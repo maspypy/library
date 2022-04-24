@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_reverse.hpp
     title: alg/group_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"ds/segtree.hpp\"\ntemplate <class Monoid>\nstruct SegTree\
+  bundledCode: "#line 1 \"ds/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree\
     \ {\n  using X = typename Monoid::value_type;\n  using value_type = X;\n  vc<X>\
     \ dat;\n  int n, log, size;\n\n  SegTree() : SegTree(0) {}\n  SegTree(int n) :\
     \ SegTree(vc<X>(n, Monoid::unit())) {}\n  SegTree(vc<X> v) : n(len(v)) {\n   \
@@ -55,16 +55,23 @@ data:
     \ (check(Monoid::op(dat[R], sm))) {\n            sm = Monoid::op(dat[R], sm);\n\
     \            R--;\n          }\n        }\n        return R + 1 - size;\n    \
     \  }\n      sm = Monoid::op(dat[R], sm);\n    } while ((R & -R) != R);\n    return\
-    \ 0;\n  }\n\n  void debug() { print(\"segtree\", dat); }\n};\n#line 2 \"graph/base.hpp\"\
-    \n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n\
-    };\n\ntemplate <typename T = int, bool directed = false>\nstruct Graph {\n  int\
-    \ N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
-    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  bool prepared;\n\
-    \n  class OutgoingEdges {\n  public:\n    OutgoingEdges(const Graph* G, int l,\
-    \ int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n     \
-    \ if (l == r) { return 0; }\n      return &G->csr_edges[l];\n    }\n\n    const\
-    \ edge_type* end() const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n\
-    \    }\n\n  private:\n    int l, r;\n    const Graph* G;\n  };\n\n  bool is_prepared()\
+    \ 0;\n  }\n\n  // \u30E2\u30CE\u30A4\u30C9\u304C\u53EF\u63DB\u306A\u3089\u3001\
+    prod_{l<=i<r}A[i^x] \u304C\u8A08\u7B97\u53EF\u80FD\n  // https://codeforces.com/contest/1401/problem/F\n\
+    \  X Xor_prod(int l, int r, int xor_val) {\n    assert(Monoid::commute);\n   \
+    \ X x = Monoid::unit();\n    FOR(k, log + 1) {\n      if (l >= r) break;\n   \
+    \   if (l & 1) { x = Monoid::op(x, dat[(size >> k) + ((l++) ^ xor_val)]); }\n\
+    \      if (r & 1) { x = Monoid::op(x, dat[(size >> k) + ((--r) ^ xor_val)]); }\n\
+    \      l /= 2, r /= 2, xor_val /= 2;\n    }\n    return x;\n  }\n\n  void debug()\
+    \ { print(\"segtree\", dat); }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename\
+    \ T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename\
+    \ T = int, bool directed = false>\nstruct Graph {\n  int N, M;\n  using cost_type\
+    \ = T;\n  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int>\
+    \ indptr;\n  vector<edge_type> csr_edges;\n  bool prepared;\n\n  class OutgoingEdges\
+    \ {\n  public:\n    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l),\
+    \ r(r) {}\n\n    const edge_type* begin() const {\n      if (l == r) { return\
+    \ 0; }\n      return &G->csr_edges[l];\n    }\n\n    const edge_type* end() const\
+    \ {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n\
+    \  private:\n    int l, r;\n    const Graph* G;\n  };\n\n  bool is_prepared()\
     \ { return prepared; }\n  constexpr bool is_directed() { return directed; }\n\n\
     \  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
     \ {}\n\n  void add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared\
@@ -248,8 +255,8 @@ data:
   isVerificationFile: false
   path: graph/treegroup.hpp
   requiredBy: []
-  timestamp: '2022-04-24 15:02:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-04-24 17:24:00+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp

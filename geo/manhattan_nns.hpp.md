@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: alg/monoid_min_idx.hpp
     title: alg/monoid_min_idx.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
   _extendedRequiredBy: []
@@ -15,7 +15,7 @@ data:
   attributes:
     links:
     - https://codeforces.com/gym/103577/problem/K
-  bundledCode: "#line 2 \"ds/segtree.hpp\"\ntemplate <class Monoid>\nstruct SegTree\
+  bundledCode: "#line 1 \"ds/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree\
     \ {\n  using X = typename Monoid::value_type;\n  using value_type = X;\n  vc<X>\
     \ dat;\n  int n, log, size;\n\n  SegTree() : SegTree(0) {}\n  SegTree(int n) :\
     \ SegTree(vc<X>(n, Monoid::unit())) {}\n  SegTree(vc<X> v) : n(len(v)) {\n   \
@@ -44,24 +44,30 @@ data:
     \ (check(Monoid::op(dat[R], sm))) {\n            sm = Monoid::op(dat[R], sm);\n\
     \            R--;\n          }\n        }\n        return R + 1 - size;\n    \
     \  }\n      sm = Monoid::op(dat[R], sm);\n    } while ((R & -R) != R);\n    return\
-    \ 0;\n  }\n\n  void debug() { print(\"segtree\", dat); }\n};\n#line 1 \"alg/monoid_min_idx.hpp\"\
-    \ntemplate <typename T, T INF>\r\nstruct Monoid_Min_Idx {\r\n  using value_type\
-    \ = pair<T, ll>;\r\n  using X = value_type;\r\n  static X op(X x, X y) { return\
-    \ min(x, y); }\r\n  static constexpr X unit() { return {INF, -1}; }\r\n  static\
-    \ constexpr bool commute = true;\r\n};\r\n#line 3 \"geo/manhattan_nns.hpp\"\n\r\
-    \n// https://codeforces.com/gym/103577/problem/K\r\n// \u70B9\u7FA4 FRM \u304B\
-    \u3089\u70B9\u7FA4 TO \u3078\u306E\u6700\u8FD1\u70B9\u63A2\u7D22\r\n// vector\
-    \ \u306E pair \u3092\u8FD4\u3059\uFF1Adist, nbd_idx\r\ntemplate <typename X =\
-    \ ll>\r\npair<vc<X>, vc<int>> manhattan_nns(vc<pair<X, X>> FRM, vc<pair<X, X>>&\
-    \ TO) {\r\n  assert(len(TO) >= 1);\r\n  int N = len(FRM), M = len(TO);\r\n  vc<pair<X,\
-    \ X>> points(N + M);\r\n  FOR(i, N) points[i] = FRM[i];\r\n  FOR(i, M) points[N\
-    \ + i] = TO[i];\r\n  vc<X> Y(M);\r\n  FOR(i, M) Y[i] = TO[i].se;\r\n  UNIQUE(Y);\r\
-    \n\r\n  const X INF = numeric_limits<X>::max();\r\n\r\n  vc<int> nbd_idx(N, -1);\r\
-    \n  vc<X> dist(N, INF);\r\n\r\n  auto add_ans = [&](int i, int j) -> void {\r\n\
-    \    if (j == -1) return;\r\n    X dx = points[i].fi - points[j].fi;\r\n    X\
-    \ dy = points[i].se - points[j].se;\r\n    if (chmin(dist[i], abs(dx) + abs(dy)))\
-    \ nbd_idx[i] = j - N;\r\n  };\r\n\r\n  vc<int> I(N + M);\r\n  iota(all(I), 0);\r\
-    \n  sort(all(I), [&](auto& i, auto& j) { return (points[i].fi < points[j].fi);\
+    \ 0;\n  }\n\n  // \u30E2\u30CE\u30A4\u30C9\u304C\u53EF\u63DB\u306A\u3089\u3001\
+    prod_{l<=i<r}A[i^x] \u304C\u8A08\u7B97\u53EF\u80FD\n  // https://codeforces.com/contest/1401/problem/F\n\
+    \  X Xor_prod(int l, int r, int xor_val) {\n    assert(Monoid::commute);\n   \
+    \ X x = Monoid::unit();\n    FOR(k, log + 1) {\n      if (l >= r) break;\n   \
+    \   if (l & 1) { x = Monoid::op(x, dat[(size >> k) + ((l++) ^ xor_val)]); }\n\
+    \      if (r & 1) { x = Monoid::op(x, dat[(size >> k) + ((--r) ^ xor_val)]); }\n\
+    \      l /= 2, r /= 2, xor_val /= 2;\n    }\n    return x;\n  }\n\n  void debug()\
+    \ { print(\"segtree\", dat); }\n};\n#line 1 \"alg/monoid_min_idx.hpp\"\ntemplate\
+    \ <typename T, T INF>\r\nstruct Monoid_Min_Idx {\r\n  using value_type = pair<T,\
+    \ ll>;\r\n  using X = value_type;\r\n  static X op(X x, X y) { return min(x, y);\
+    \ }\r\n  static constexpr X unit() { return {INF, -1}; }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 3 \"geo/manhattan_nns.hpp\"\n\r\n// https://codeforces.com/gym/103577/problem/K\r\
+    \n// \u70B9\u7FA4 FRM \u304B\u3089\u70B9\u7FA4 TO \u3078\u306E\u6700\u8FD1\u70B9\
+    \u63A2\u7D22\r\n// vector \u306E pair \u3092\u8FD4\u3059\uFF1Adist, nbd_idx\r\n\
+    template <typename X = ll>\r\npair<vc<X>, vc<int>> manhattan_nns(vc<pair<X, X>>\
+    \ FRM, vc<pair<X, X>>& TO) {\r\n  assert(len(TO) >= 1);\r\n  int N = len(FRM),\
+    \ M = len(TO);\r\n  vc<pair<X, X>> points(N + M);\r\n  FOR(i, N) points[i] = FRM[i];\r\
+    \n  FOR(i, M) points[N + i] = TO[i];\r\n  vc<X> Y(M);\r\n  FOR(i, M) Y[i] = TO[i].se;\r\
+    \n  UNIQUE(Y);\r\n\r\n  const X INF = numeric_limits<X>::max();\r\n\r\n  vc<int>\
+    \ nbd_idx(N, -1);\r\n  vc<X> dist(N, INF);\r\n\r\n  auto add_ans = [&](int i,\
+    \ int j) -> void {\r\n    if (j == -1) return;\r\n    X dx = points[i].fi - points[j].fi;\r\
+    \n    X dy = points[i].se - points[j].se;\r\n    if (chmin(dist[i], abs(dx) +\
+    \ abs(dy))) nbd_idx[i] = j - N;\r\n  };\r\n\r\n  vc<int> I(N + M);\r\n  iota(all(I),\
+    \ 0);\r\n  sort(all(I), [&](auto& i, auto& j) { return (points[i].fi < points[j].fi);\
     \ });\r\n  auto calc = [&]() -> void {\r\n    SegTree<Monoid_Min_Idx<ll, INF>>\
     \ seg1(len(Y)), seg2(len(Y));\r\n    for (auto&& i: I) {\r\n      auto [x, y]\
     \ = points[i];\r\n      int idx = LB(Y, y);\r\n      if (i < N) {\r\n        add_ans(i,\
@@ -98,7 +104,7 @@ data:
   isVerificationFile: false
   path: geo/manhattan_nns.hpp
   requiredBy: []
-  timestamp: '2022-04-16 04:26:49+09:00'
+  timestamp: '2022-04-24 17:24:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/manhattan_nns.hpp

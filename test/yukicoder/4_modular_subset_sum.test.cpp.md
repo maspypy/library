@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid_rollinghash.hpp
     title: alg/monoid_rollinghash.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
   - icon: ':heavy_check_mark:'
@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modular_subset_sum.hpp
     title: mod/modular_subset_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
@@ -227,11 +227,11 @@ data:
     \ mt(chrono::steady_clock::now().time_since_epoch().count()) {}\n\n  ll operator()(ll\
     \ a, ll b) {  // [a, b)\n    uniform_int_distribution<ll> dist(a, b - 1);\n  \
     \  return dist(mt);\n  }\n\n  ll operator()(ll b) {  // [0, b)\n    return (*this)(0,\
-    \ b);\n  }\n};\n#line 2 \"ds/segtree.hpp\"\ntemplate <class Monoid>\nstruct SegTree\
-    \ {\n  using X = typename Monoid::value_type;\n  using value_type = X;\n  vc<X>\
-    \ dat;\n  int n, log, size;\n\n  SegTree() : SegTree(0) {}\n  SegTree(int n) :\
-    \ SegTree(vc<X>(n, Monoid::unit())) {}\n  SegTree(vc<X> v) : n(len(v)) {\n   \
-    \ log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
+    \ b);\n  }\n};\n#line 1 \"ds/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
+    \ SegTree {\n  using X = typename Monoid::value_type;\n  using value_type = X;\n\
+    \  vc<X> dat;\n  int n, log, size;\n\n  SegTree() : SegTree(0) {}\n  SegTree(int\
+    \ n) : SegTree(vc<X>(n, Monoid::unit())) {}\n  SegTree(vc<X> v) : n(len(v)) {\n\
+    \    log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
     \ << 1, Monoid::unit());\n    FOR(i, n) dat[size + i] = v[i];\n    FOR3_R(i, 1,\
     \ size) update(i);\n  }\n\n  X operator[](int i) { return dat[size + i]; }\n\n\
     \  void update(int i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n\n\
@@ -256,15 +256,22 @@ data:
     \ (check(Monoid::op(dat[R], sm))) {\n            sm = Monoid::op(dat[R], sm);\n\
     \            R--;\n          }\n        }\n        return R + 1 - size;\n    \
     \  }\n      sm = Monoid::op(dat[R], sm);\n    } while ((R & -R) != R);\n    return\
-    \ 0;\n  }\n\n  void debug() { print(\"segtree\", dat); }\n};\n#line 4 \"mod/modular_subset_sum.hpp\"\
-    \n\r\n/*\r\n\u8A08\u7B97\u91CF\uFF1A(|vals| + mod) * log^2(mod)\r\n\u30FBcan(x)\
-    \ \u307E\u305F\u306F [x] \u3067 bool \u3092\u8FD4\u3059\u3002\r\n\u30FBrestore(x)\
-    \ \u3067\u5FA9\u5143\u3002\r\n*/\r\nstruct Modular_Subset_Sum {\r\n  int mod;\r\
-    \n  vc<int>& vals;\r\n  vc<int> par;\r\n\r\n  Modular_Subset_Sum(int mod, vc<int>&\
-    \ vals) : mod(mod), vals(vals) {\r\n    par.assign(mod, -1);\r\n\r\n    using\
-    \ Mono = Monoid_Rolling_Hash;\r\n    RandomNumberGenerator RNG;\r\n    const ll\
-    \ base = RNG(0, (1LL << 61) - 1);\r\n    vc<pair<modint61, modint61>> seg_raw(mod\
-    \ + mod);\r\n    FOR(i, mod + mod) seg_raw[i] = {base, 0};\r\n    SegTree<Mono>\
+    \ 0;\n  }\n\n  // \u30E2\u30CE\u30A4\u30C9\u304C\u53EF\u63DB\u306A\u3089\u3001\
+    prod_{l<=i<r}A[i^x] \u304C\u8A08\u7B97\u53EF\u80FD\n  // https://codeforces.com/contest/1401/problem/F\n\
+    \  X Xor_prod(int l, int r, int xor_val) {\n    assert(Monoid::commute);\n   \
+    \ X x = Monoid::unit();\n    FOR(k, log + 1) {\n      if (l >= r) break;\n   \
+    \   if (l & 1) { x = Monoid::op(x, dat[(size >> k) + ((l++) ^ xor_val)]); }\n\
+    \      if (r & 1) { x = Monoid::op(x, dat[(size >> k) + ((--r) ^ xor_val)]); }\n\
+    \      l /= 2, r /= 2, xor_val /= 2;\n    }\n    return x;\n  }\n\n  void debug()\
+    \ { print(\"segtree\", dat); }\n};\n#line 4 \"mod/modular_subset_sum.hpp\"\n\r\
+    \n/*\r\n\u8A08\u7B97\u91CF\uFF1A(|vals| + mod) * log^2(mod)\r\n\u30FBcan(x) \u307E\
+    \u305F\u306F [x] \u3067 bool \u3092\u8FD4\u3059\u3002\r\n\u30FBrestore(x) \u3067\
+    \u5FA9\u5143\u3002\r\n*/\r\nstruct Modular_Subset_Sum {\r\n  int mod;\r\n  vc<int>&\
+    \ vals;\r\n  vc<int> par;\r\n\r\n  Modular_Subset_Sum(int mod, vc<int>& vals)\
+    \ : mod(mod), vals(vals) {\r\n    par.assign(mod, -1);\r\n\r\n    using Mono =\
+    \ Monoid_Rolling_Hash;\r\n    RandomNumberGenerator RNG;\r\n    const ll base\
+    \ = RNG(0, (1LL << 61) - 1);\r\n    vc<pair<modint61, modint61>> seg_raw(mod +\
+    \ mod);\r\n    FOR(i, mod + mod) seg_raw[i] = {base, 0};\r\n    SegTree<Mono>\
     \ seg(seg_raw);\r\n\r\n    auto add = [&](int x, int i) -> void {\r\n      par[x]\
     \ = i;\r\n      seg.set(x, {base, 1});\r\n      seg.set(x + mod, {base, 1});\r\
     \n    };\r\n\r\n    add(0, -1);\r\n\r\n    FOR(i, len(vals)) {\r\n      ll val\
@@ -305,7 +312,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/4_modular_subset_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-04-16 06:03:26+09:00'
+  timestamp: '2022-04-24 17:24:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/4_modular_subset_sum.test.cpp

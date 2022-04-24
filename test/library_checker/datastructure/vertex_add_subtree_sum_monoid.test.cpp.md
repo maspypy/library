@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
   - icon: ':heavy_check_mark:'
     path: alg/monoid_reverse.hpp
     title: alg/monoid_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
   - icon: ':heavy_check_mark:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -195,7 +195,7 @@ data:
     Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
     \ 4 \"test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp\"\
-    \n\r\n#line 2 \"ds/segtree.hpp\"\ntemplate <class Monoid>\nstruct SegTree {\n\
+    \n\r\n#line 1 \"ds/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree {\n\
     \  using X = typename Monoid::value_type;\n  using value_type = X;\n  vc<X> dat;\n\
     \  int n, log, size;\n\n  SegTree() : SegTree(0) {}\n  SegTree(int n) : SegTree(vc<X>(n,\
     \ Monoid::unit())) {}\n  SegTree(vc<X> v) : n(len(v)) {\n    log = 1;\n    while\
@@ -223,29 +223,36 @@ data:
     \ {\n        while (R < size) {\n          R = 2 * R + 1;\n          if (check(Monoid::op(dat[R],\
     \ sm))) {\n            sm = Monoid::op(dat[R], sm);\n            R--;\n      \
     \    }\n        }\n        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R],\
-    \ sm);\n    } while ((R & -R) != R);\n    return 0;\n  }\n\n  void debug() { print(\"\
-    segtree\", dat); }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\n\
-    struct Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename\
-    \ T = int, bool directed = false>\nstruct Graph {\n  int N, M;\n  using cost_type\
-    \ = T;\n  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int>\
-    \ indptr;\n  vector<edge_type> csr_edges;\n  bool prepared;\n\n  class OutgoingEdges\
-    \ {\n  public:\n    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l),\
-    \ r(r) {}\n\n    const edge_type* begin() const {\n      if (l == r) { return\
-    \ 0; }\n      return &G->csr_edges[l];\n    }\n\n    const edge_type* end() const\
-    \ {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n\
-    \  private:\n    int l, r;\n    const Graph* G;\n  };\n\n  bool is_prepared()\
-    \ { return prepared; }\n  constexpr bool is_directed() { return directed; }\n\n\
-    \  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
-    \ {}\n\n  void add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared\
-    \ && 0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm,\
-    \ to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool\
-    \ wt = false, int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int\
-    \ M, bool wt = false, int off = 1) {\n    FOR_(M) {\n      INT(a, b);\n      a\
-    \ -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n  \
-    \      T c;\n        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n\
-    \  }\n\n  void read_parent(int off = 1) {\n    FOR3(v, 1, N) {\n      INT(p);\n\
-    \      p -= off;\n      add(p, v);\n    }\n    build();\n  }\n\n  void build()\
-    \ {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
+    \ sm);\n    } while ((R & -R) != R);\n    return 0;\n  }\n\n  // \u30E2\u30CE\u30A4\
+    \u30C9\u304C\u53EF\u63DB\u306A\u3089\u3001prod_{l<=i<r}A[i^x] \u304C\u8A08\u7B97\
+    \u53EF\u80FD\n  // https://codeforces.com/contest/1401/problem/F\n  X Xor_prod(int\
+    \ l, int r, int xor_val) {\n    assert(Monoid::commute);\n    X x = Monoid::unit();\n\
+    \    FOR(k, log + 1) {\n      if (l >= r) break;\n      if (l & 1) { x = Monoid::op(x,\
+    \ dat[(size >> k) + ((l++) ^ xor_val)]); }\n      if (r & 1) { x = Monoid::op(x,\
+    \ dat[(size >> k) + ((--r) ^ xor_val)]); }\n      l /= 2, r /= 2, xor_val /= 2;\n\
+    \    }\n    return x;\n  }\n\n  void debug() { print(\"segtree\", dat); }\n};\n\
+    #line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int frm,\
+    \ to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed =\
+    \ false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n  using edge_type\
+    \ = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type>\
+    \ csr_edges;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n    OutgoingEdges(const\
+    \ Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin()\
+    \ const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[l];\n \
+    \   }\n\n    const edge_type* end() const {\n      if (l == r) { return 0; }\n\
+    \      return &G->csr_edges[r];\n    }\n\n  private:\n    int l, r;\n    const\
+    \ Graph* G;\n  };\n\n  bool is_prepared() { return prepared; }\n  constexpr bool\
+    \ is_directed() { return directed; }\n\n  Graph() : N(0), M(0), prepared(0) {}\n\
+    \  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void add(int frm, int to, T\
+    \ cost = 1, int i = -1) {\n    assert(!prepared && 0 <= frm && 0 <= to && to <\
+    \ N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n\
+    \    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool wt = false,\
+    \ int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int M, bool\
+    \ wt = false, int off = 1) {\n    FOR_(M) {\n      INT(a, b);\n      a -= off,\
+    \ b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n        T c;\n\
+    \        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n  }\n\n\
+    \  void read_parent(int off = 1) {\n    FOR3(v, 1, N) {\n      INT(p);\n     \
+    \ p -= off;\n      add(p, v);\n    }\n    build();\n  }\n\n  void build() {\n\
+    \    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
     \    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if (!directed)\
     \ indptr[e.to + 1]++;\n    }\n    FOR(v, N) indptr[v + 1] += indptr[v];\n    auto\
     \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
@@ -391,7 +398,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   requiredBy: []
-  timestamp: '2022-04-24 15:02:44+09:00'
+  timestamp: '2022-04-24 17:24:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp

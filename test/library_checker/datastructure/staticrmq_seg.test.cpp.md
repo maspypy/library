@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid_min.hpp
     title: alg/monoid_min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -182,9 +182,9 @@ data:
     ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
     Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
-    \ 2 \"ds/segtree.hpp\"\ntemplate <class Monoid>\nstruct SegTree {\n  using X =\
-    \ typename Monoid::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n,\
-    \ log, size;\n\n  SegTree() : SegTree(0) {}\n  SegTree(int n) : SegTree(vc<X>(n,\
+    \ 1 \"ds/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree {\n  using X\
+    \ = typename Monoid::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int\
+    \ n, log, size;\n\n  SegTree() : SegTree(0) {}\n  SegTree(int n) : SegTree(vc<X>(n,\
     \ Monoid::unit())) {}\n  SegTree(vc<X> v) : n(len(v)) {\n    log = 1;\n    while\
     \ ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, Monoid::unit());\n\
     \    FOR(i, n) dat[size + i] = v[i];\n    FOR3_R(i, 1, size) update(i);\n  }\n\
@@ -210,16 +210,23 @@ data:
     \ {\n        while (R < size) {\n          R = 2 * R + 1;\n          if (check(Monoid::op(dat[R],\
     \ sm))) {\n            sm = Monoid::op(dat[R], sm);\n            R--;\n      \
     \    }\n        }\n        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R],\
-    \ sm);\n    } while ((R & -R) != R);\n    return 0;\n  }\n\n  void debug() { print(\"\
-    segtree\", dat); }\n};\n#line 1 \"alg/monoid_min.hpp\"\ntemplate <class X, X INF>\r\
-    \nstruct Monoid_Min {\r\n  using value_type = X;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr X unit()\
-    \ { return INF; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 6\
-    \ \"test/library_checker/datastructure/staticrmq_seg.test.cpp\"\n\r\nvoid solve()\
-    \ {\r\n  LL(N, Q);\r\n  VEC(int, A, N);\r\n  using Mono = Monoid_Min<int, 1 <<\
-    \ 30>;\r\n  SegTree<Mono> seg(A);\r\n  FOR(_, Q) {\r\n    LL(L, R);\r\n    print(seg.prod(L,\
-    \ R));\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ sm);\n    } while ((R & -R) != R);\n    return 0;\n  }\n\n  // \u30E2\u30CE\u30A4\
+    \u30C9\u304C\u53EF\u63DB\u306A\u3089\u3001prod_{l<=i<r}A[i^x] \u304C\u8A08\u7B97\
+    \u53EF\u80FD\n  // https://codeforces.com/contest/1401/problem/F\n  X Xor_prod(int\
+    \ l, int r, int xor_val) {\n    assert(Monoid::commute);\n    X x = Monoid::unit();\n\
+    \    FOR(k, log + 1) {\n      if (l >= r) break;\n      if (l & 1) { x = Monoid::op(x,\
+    \ dat[(size >> k) + ((l++) ^ xor_val)]); }\n      if (r & 1) { x = Monoid::op(x,\
+    \ dat[(size >> k) + ((--r) ^ xor_val)]); }\n      l /= 2, r /= 2, xor_val /= 2;\n\
+    \    }\n    return x;\n  }\n\n  void debug() { print(\"segtree\", dat); }\n};\n\
+    #line 1 \"alg/monoid_min.hpp\"\ntemplate <class X, X INF>\r\nstruct Monoid_Min\
+    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
+    \ &y) noexcept { return min(x, y); }\r\n  static constexpr X unit() { return INF;\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 6 \"test/library_checker/datastructure/staticrmq_seg.test.cpp\"\
+    \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(int, A, N);\r\n  using Mono = Monoid_Min<int,\
+    \ 1 << 30>;\r\n  SegTree<Mono> seg(A);\r\n  FOR(_, Q) {\r\n    LL(L, R);\r\n \
+    \   print(seg.prod(L, R));\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
+    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
+    \n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\r\n#include\
     \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/segtree.hpp\"\
     \r\n#include \"alg/monoid_min.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\n \
@@ -235,7 +242,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/staticrmq_seg.test.cpp
   requiredBy: []
-  timestamp: '2022-04-16 06:03:26+09:00'
+  timestamp: '2022-04-24 17:24:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/staticrmq_seg.test.cpp
