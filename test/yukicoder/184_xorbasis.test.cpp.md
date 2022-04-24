@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_xor_basis.hpp
     title: alg/monoid_xor_basis.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/184
@@ -190,19 +190,18 @@ data:
     \ for (auto&& a: x) chmax(res, res ^ a);\r\n    return res;\r\n  }\r\n  static\
     \ constexpr X unit() { return X{}; };\r\n  static constexpr bool commute = true;\r\
     \n};\r\n#line 5 \"test/yukicoder/184_xorbasis.test.cpp\"\n\nvoid solve() {\n \
-    \ LL(N);\n  VEC(ll, A, N);\n  using Mono = Monoid_XorBasis<ll, 61>;\n  auto sp\
-    \ = Mono::unit();\n  for (auto&& a: A) { Mono::add_element(sp, a); }\n  int dim\
-    \ = 0;\n  for (auto&& x: sp)\n    if (x) ++dim;\n  print(1LL << dim);\n}\n\nsigned\
-    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/184\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"alg/monoid_xor_basis.hpp\"\n\nvoid solve()\
-    \ {\n  LL(N);\n  VEC(ll, A, N);\n  using Mono = Monoid_XorBasis<ll, 61>;\n  auto\
-    \ sp = Mono::unit();\n  for (auto&& a: A) { Mono::add_element(sp, a); }\n  int\
-    \ dim = 0;\n  for (auto&& x: sp)\n    if (x) ++dim;\n  print(1LL << dim);\n}\n\
-    \nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ LL(N);\n  VEC(ll, A, N);\n  using Mono = Monoid_XorBasis<ll>;\n  auto sp = Mono::unit();\n\
+    \  for (auto&& a: A) { Mono::add_element(sp, a); }\n  print(1LL << len(sp));\n\
+    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
     \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
     \ return 0;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/184\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"alg/monoid_xor_basis.hpp\"\n\nvoid solve()\
+    \ {\n  LL(N);\n  VEC(ll, A, N);\n  using Mono = Monoid_XorBasis<ll>;\n  auto sp\
+    \ = Mono::unit();\n  for (auto&& a: A) { Mono::add_element(sp, a); }\n  print(1LL\
+    \ << len(sp));\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -210,8 +209,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/184_xorbasis.test.cpp
   requiredBy: []
-  timestamp: '2022-04-24 15:03:19+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-04-24 15:21:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/184_xorbasis.test.cpp
 layout: document
