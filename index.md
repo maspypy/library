@@ -470,6 +470,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/binomial.hpp
       title: mod/binomial.hpp
+    - icon: ':warning:'
+      path: mod/comb_table.hpp
+      title: mod/comb_table.hpp
     - icon: ':heavy_check_mark:'
       path: mod/factorial107.hpp
       title: mod/factorial107.hpp
