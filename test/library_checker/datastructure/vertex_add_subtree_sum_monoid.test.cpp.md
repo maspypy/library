@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
   - icon: ':heavy_check_mark:'
     path: alg/monoid_reverse.hpp
     title: alg/monoid_reverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/hld.hpp
     title: graph/hld.hpp
   - icon: ':heavy_check_mark:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -195,7 +195,7 @@ data:
     Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
     \ 4 \"test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp\"\
-    \n\r\n#line 1 \"ds/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree {\n\
+    \n\r\n#line 2 \"ds/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree {\n\
     \  using X = typename Monoid::value_type;\n  using value_type = X;\n  vc<X> dat;\n\
     \  int n, log, size;\n\n  SegTree() : SegTree(0) {}\n  SegTree(int n) : SegTree(vc<X>(n,\
     \ Monoid::unit())) {}\n  SegTree(vc<X> v) : n(len(v)) {\n    log = 1;\n    while\
@@ -398,7 +398,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   requiredBy: []
-  timestamp: '2022-04-24 17:24:00+09:00'
+  timestamp: '2022-04-24 23:28:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp

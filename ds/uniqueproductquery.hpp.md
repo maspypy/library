@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
   - icon: ':heavy_check_mark:'
@@ -23,7 +23,7 @@ data:
     \ &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept\
     \ { return -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return\
     \ n * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 1 \"ds/segtree.hpp\"\n\ntemplate <class\
+    \ bool commute = true;\r\n};\r\n#line 2 \"ds/segtree.hpp\"\n\ntemplate <class\
     \ Monoid>\nstruct SegTree {\n  using X = typename Monoid::value_type;\n  using\
     \ value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() : SegTree(0)\
     \ {}\n  SegTree(int n) : SegTree(vc<X>(n, Monoid::unit())) {}\n  SegTree(vc<X>\
@@ -159,7 +159,7 @@ data:
   isVerificationFile: false
   path: ds/uniqueproductquery.hpp
   requiredBy: []
-  timestamp: '2022-04-24 17:24:00+09:00'
+  timestamp: '2022-04-24 23:28:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/uniqueproductquery.hpp

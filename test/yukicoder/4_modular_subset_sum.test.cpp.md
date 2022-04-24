@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid_rollinghash.hpp
     title: alg/monoid_rollinghash.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
   - icon: ':heavy_check_mark:'
@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modular_subset_sum.hpp
     title: mod/modular_subset_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
@@ -227,7 +227,7 @@ data:
     \ mt(chrono::steady_clock::now().time_since_epoch().count()) {}\n\n  ll operator()(ll\
     \ a, ll b) {  // [a, b)\n    uniform_int_distribution<ll> dist(a, b - 1);\n  \
     \  return dist(mt);\n  }\n\n  ll operator()(ll b) {  // [0, b)\n    return (*this)(0,\
-    \ b);\n  }\n};\n#line 1 \"ds/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
+    \ b);\n  }\n};\n#line 2 \"ds/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
     \ SegTree {\n  using X = typename Monoid::value_type;\n  using value_type = X;\n\
     \  vc<X> dat;\n  int n, log, size;\n\n  SegTree() : SegTree(0) {}\n  SegTree(int\
     \ n) : SegTree(vc<X>(n, Monoid::unit())) {}\n  SegTree(vc<X> v) : n(len(v)) {\n\
@@ -312,7 +312,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/4_modular_subset_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-04-24 17:24:00+09:00'
+  timestamp: '2022-04-24 23:28:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/4_modular_subset_sum.test.cpp

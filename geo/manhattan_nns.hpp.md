@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: alg/monoid_min_idx.hpp
     title: alg/monoid_min_idx.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
   _extendedRequiredBy: []
@@ -15,7 +15,7 @@ data:
   attributes:
     links:
     - https://codeforces.com/gym/103577/problem/K
-  bundledCode: "#line 1 \"ds/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree\
+  bundledCode: "#line 2 \"ds/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree\
     \ {\n  using X = typename Monoid::value_type;\n  using value_type = X;\n  vc<X>\
     \ dat;\n  int n, log, size;\n\n  SegTree() : SegTree(0) {}\n  SegTree(int n) :\
     \ SegTree(vc<X>(n, Monoid::unit())) {}\n  SegTree(vc<X> v) : n(len(v)) {\n   \
@@ -104,7 +104,7 @@ data:
   isVerificationFile: false
   path: geo/manhattan_nns.hpp
   requiredBy: []
-  timestamp: '2022-04-24 17:24:00+09:00'
+  timestamp: '2022-04-24 23:28:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/manhattan_nns.hpp

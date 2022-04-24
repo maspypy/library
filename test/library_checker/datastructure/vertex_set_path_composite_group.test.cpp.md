@@ -4,28 +4,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/group_affine.hpp
     title: alg/group_affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_reverse.hpp
     title: alg/group_reverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/treegroup.hpp
     title: graph/treegroup.hpp
   - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -270,7 +270,7 @@ data:
     \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
     \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
     }\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    using amint = ArbitraryModInt;\n#line 1 \"ds/segtree.hpp\"\n\ntemplate <class\
+    using amint = ArbitraryModInt;\n#line 2 \"ds/segtree.hpp\"\n\ntemplate <class\
     \ Monoid>\nstruct SegTree {\n  using X = typename Monoid::value_type;\n  using\
     \ value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() : SegTree(0)\
     \ {}\n  SegTree(int n) : SegTree(vc<X>(n, Monoid::unit())) {}\n  SegTree(vc<X>\
@@ -487,7 +487,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   requiredBy: []
-  timestamp: '2022-04-24 17:24:00+09:00'
+  timestamp: '2022-04-24 23:28:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp

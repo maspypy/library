@@ -16,19 +16,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
   - icon: ':heavy_check_mark:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
     path: graph/dualtreemonoid.hpp
     title: graph/dualtreemonoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/hld.hpp
     title: graph/hld.hpp
   - icon: ':heavy_check_mark:'
@@ -143,7 +143,7 @@ data:
     \ {\r\n    print(\"V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\",\
     \ RID);\r\n    print(\"parent\", parent);\r\n    print(\"depth\", depth);\r\n\
     \    print(\"head\", head);\r\n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"\
-    root\", root);\r\n  }\r\n};\r\n#line 1 \"ds/segtree.hpp\"\n\ntemplate <class Monoid>\n\
+    root\", root);\r\n  }\r\n};\r\n#line 2 \"ds/segtree.hpp\"\n\ntemplate <class Monoid>\n\
     struct SegTree {\n  using X = typename Monoid::value_type;\n  using value_type\
     \ = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() : SegTree(0) {}\n  SegTree(int\
     \ n) : SegTree(vc<X>(n, Monoid::unit())) {}\n  SegTree(vc<X> v) : n(len(v)) {\n\
@@ -386,7 +386,7 @@ data:
   isVerificationFile: false
   path: graph/minimum_spanning_tree.hpp
   requiredBy: []
-  timestamp: '2022-04-24 17:24:00+09:00'
+  timestamp: '2022-04-24 23:28:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_2_A_mst.test.cpp

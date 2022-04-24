@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: alg
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/group_add.hpp
       title: alg/group_add.hpp
     - icon: ':heavy_check_mark:'
@@ -15,7 +15,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/group_mul.hpp
       title: alg/group_mul.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/group_reverse.hpp
       title: alg/group_reverse.hpp
     - icon: ':warning:'
@@ -235,7 +235,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/rectangleunion.hpp
       title: ds/rectangleunion.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree.hpp
       title: ds/segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -298,7 +298,7 @@ data:
       title: geo/points_diameter.hpp
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/base.hpp
       title: graph/base.hpp
     - icon: ':heavy_check_mark:'
@@ -358,7 +358,7 @@ data:
     - icon: ':warning:'
       path: graph/functional.hpp
       title: graph/functional.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/hld.hpp
       title: graph/hld.hpp
     - icon: ':heavy_check_mark:'
@@ -418,7 +418,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/treeabelgroup.hpp
       title: graph/treeabelgroup.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/treegroup.hpp
       title: graph/treegroup.hpp
     - icon: ':heavy_check_mark:'
@@ -520,7 +520,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -593,7 +593,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/integer_kth_root.hpp
       title: other/integer_kth_root.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -1004,7 +1004,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
       title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
       title: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
     - icon: ':heavy_check_mark:'

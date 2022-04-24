@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_reverse.hpp
     title: alg/group_reverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/hld.hpp
     title: graph/hld.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree\
+  bundledCode: "#line 2 \"ds/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree\
     \ {\n  using X = typename Monoid::value_type;\n  using value_type = X;\n  vc<X>\
     \ dat;\n  int n, log, size;\n\n  SegTree() : SegTree(0) {}\n  SegTree(int n) :\
     \ SegTree(vc<X>(n, Monoid::unit())) {}\n  SegTree(vc<X> v) : n(len(v)) {\n   \
@@ -255,8 +255,8 @@ data:
   isVerificationFile: false
   path: graph/treegroup.hpp
   requiredBy: []
-  timestamp: '2022-04-24 17:24:00+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-04-24 23:28:36+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
