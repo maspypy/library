@@ -121,6 +121,9 @@ data:
     path: test/yukicoder/1038_centroid.test.cpp
     title: test/yukicoder/1038_centroid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/235_lazytreemonoid.test.cpp
+    title: test/yukicoder/235_lazytreemonoid.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/899_bfsnumbering.test.cpp
     title: test/yukicoder/899_bfsnumbering.test.cpp
   _isVerificationFailed: false
@@ -165,6 +168,7 @@ data:
   verifiedWith:
   - test/yukicoder/899_bfsnumbering.test.cpp
   - test/yukicoder/1038_centroid.test.cpp
+  - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/aoj/ALDS1_5_inversion.test.cpp
   - test/aoj/DSL_2_G_fenwick_raq.test.cpp
   - test/aoj/DSL_2_H_min_add_lazy.test.cpp

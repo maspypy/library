@@ -217,6 +217,9 @@ data:
     path: test/yukicoder/17_warshall_floyd.test.cpp
     title: test/yukicoder/17_warshall_floyd.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/235_lazytreemonoid.test.cpp
+    title: test/yukicoder/235_lazytreemonoid.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/899_bfsnumbering.test.cpp
     title: test/yukicoder/899_bfsnumbering.test.cpp
   _isVerificationFailed: false
@@ -342,6 +345,7 @@ data:
   - test/yukicoder/1038_centroid.test.cpp
   - test/yukicoder/1002_centroid.test.cpp
   - test/yukicoder/17_warshall_floyd.test.cpp
+  - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/aoj/ALDS1_12_B_dial.test.cpp
   - test/aoj/GRL_1_C_warshallfloyd.test.cpp
   - test/aoj/GRL_1_B_bellmanford.test.cpp

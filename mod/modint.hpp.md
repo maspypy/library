@@ -240,6 +240,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1891_xor_sparse.test.cpp
     title: test/yukicoder/1891_xor_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/235_lazytreemonoid.test.cpp
+    title: test/yukicoder/235_lazytreemonoid.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -428,6 +431,7 @@ data:
   verifiedWith:
   - test/yukicoder/1810_matpow.test.cpp
   - test/yukicoder/1891_xor_sparse.test.cpp
+  - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/aoj/DPL_5_C_count_surjection.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
   - test/library_checker/matrix/matrix_det.test.cpp

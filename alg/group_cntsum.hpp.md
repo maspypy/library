@@ -22,6 +22,9 @@ data:
     path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
     title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/235_lazytreemonoid.test.cpp
+    title: test/yukicoder/235_lazytreemonoid.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/255.test.cpp
     title: test/yukicoder/255.test.cpp
   _isVerificationFailed: false
@@ -52,6 +55,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/255.test.cpp
+  - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/aoj/DSL_2_I_cntsum_set_lazy.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - test/library_checker/datastructure/range_affine_range_sum.test.cpp

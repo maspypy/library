@@ -466,6 +466,9 @@ data:
     path: test/yukicoder/1891_xor_sparse.test.cpp
     title: test/yukicoder/1891_xor_sparse.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/235_lazytreemonoid.test.cpp
+    title: test/yukicoder/235_lazytreemonoid.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/255.test.cpp
     title: test/yukicoder/255.test.cpp
   - icon: ':heavy_check_mark:'
@@ -704,6 +707,7 @@ data:
   - test/yukicoder/184_xorbasis.test.cpp
   - test/yukicoder/1002_centroid.test.cpp
   - test/yukicoder/17_warshall_floyd.test.cpp
+  - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/1036_seg_maxright_minleft.test.cpp
   - test/aoj/ALDS1_5_inversion.test.cpp
   - test/aoj/DPL_4_B_subset_sum_count.test.cpp
