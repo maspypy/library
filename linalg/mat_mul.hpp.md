@@ -12,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1810_matpow.test.cpp
     title: test/yukicoder/1810_matpow.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/426.test.cpp
+    title: test/yukicoder/426.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -48,6 +51,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1810_matpow.test.cpp
+  - test/yukicoder/426.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
 documentation_of: linalg/mat_mul.hpp
 layout: document

@@ -2,17 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: mod/modint.hpp
-    title: mod/modint.hpp
+    path: ds/waveletmatrix.hpp
+    title: ds/waveletmatrix.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
-    path: setfunc/subset_convolution.hpp
-    title: setfunc/subset_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -20,19 +17,19 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/subset_convolution
+    PROBLEM: https://yukicoder.me/problems/no/919
     links:
-    - https://judge.yosupo.jp/problem/subset_convolution
-  bundledCode: "#line 1 \"test/library_checker/convolution/subset_convolution.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/subset_convolution\"\r\n#line\
-    \ 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\n\
-    using ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
-    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://yukicoder.me/problems/no/919
+  bundledCode: "#line 1 \"test/yukicoder/919_waveletmatrix.test.cpp\"\n#define PROBLEM\
+    \ \"https://yukicoder.me/problems/no/919\"\n#line 1 \"my_template.hpp\"\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -182,118 +179,95 @@ data:
     ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
     Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
-    \ 4 \"test/library_checker/convolution/subset_convolution.test.cpp\"\n\r\n#line\
-    \ 2 \"mod/modint.hpp\"\ntemplate <u32 mod>\nstruct modint {\n  static constexpr\
-    \ bool is_modint = true;\n  u32 val;\n  constexpr modint(const ll val = 0) noexcept\n\
-    \      : val(val >= 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const\
-    \ modint &other) const {\n    return val < other.val;\n  } // To use std::map\n\
-    \  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -=\
-    \ mod;\n    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if\
-    \ ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint\
-    \ &operator*=(const modint &p) {\n    val = (u32)(1LL * val * p.val % mod);\n\
-    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
-    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint(get_mod()\
-    \ - val); }\n  modint operator+(const modint &p) const { return modint(*this)\
-    \ += p; }\n  modint operator-(const modint &p) const { return modint(*this) -=\
-    \ p; }\n  modint operator*(const modint &p) const { return modint(*this) *= p;\
-    \ }\n  modint operator/(const modint &p) const { return modint(*this) /= p; }\n\
-    \  bool operator==(const modint &p) const { return val == p.val; }\n  bool operator!=(const\
-    \ modint &p) const { return val != p.val; }\n  modint inverse() const {\n    int\
-    \ a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n\
-    \      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n\
-    \  }\n  modint pow(int64_t n) const {\n    modint ret(1), mul(val);\n    while\
-    \ (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n\
-    \    }\n    return ret;\n  }\n  static constexpr u32 get_mod() { return mod; }\n\
-    };\n\nstruct ArbitraryModInt {\n  static constexpr bool is_modint = true;\n  u32\
-    \ val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t y)\n      :\
-    \ val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y) % get_mod())\
-    \ % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other) const {\n  \
-    \  return val < other.val;\n  } // To use std::map<ArbitraryModInt, T>\n  static\
-    \ u32 &get_mod() {\n    static u32 mod = 0;\n    return mod;\n  }\n  static void\
-    \ set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const ArbitraryModInt\
-    \ &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n    return *this;\n\
-    \  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p) {\n    if ((val\
-    \ += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return *this;\n \
-    \ }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n    unsigned long\
-    \ long a = (unsigned long long)val * p.val;\n    unsigned xh = (unsigned)(a >>\
-    \ 32), xl = (unsigned)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"\
-    (m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n\
-    \  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n    *this *=\
-    \ p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-() const {\
-    \ return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) += p;\n  }\n\
-    \  ArbitraryModInt operator-(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
-    \ -= p;\n  }\n  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n\
-    \    return ArbitraryModInt(*this) *= p;\n  }\n  ArbitraryModInt operator/(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) /= p;\n  }\n\
-    \  bool operator==(const ArbitraryModInt &p) const { return val == p.val; }\n\
-    \  bool operator!=(const ArbitraryModInt &p) const { return val != p.val; }\n\
-    \  ArbitraryModInt inverse() const {\n    int a = val, b = get_mod(), u = 1, v\
-    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
-    \ -= t * v, v);\n    }\n    return ArbitraryModInt(u);\n  }\n  ArbitraryModInt\
-    \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
-    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
-    \  }\n    return ret;\n  }\n};\n\ntemplate <typename mint>\ntuple<mint, mint,\
-    \ mint> get_factorial_data(int n) {\n  static constexpr int mod = mint::get_mod();\n\
-    \  assert(0 <= n && n < mod);\n  static vector<mint> fact = {1, 1};\n  static\
-    \ vector<mint> fact_inv = {1, 1};\n  static vector<mint> inv = {0, 1};\n  while\
-    \ (len(fact) <= n) {\n    int k = len(fact);\n    fact.eb(fact[k - 1] * mint(k));\n\
-    \    auto q = ceil(mod, k);\n    int r = k * q - mod;\n    inv.eb(inv[r] * mint(q));\n\
-    \    fact_inv.eb(fact_inv[k - 1] * inv[k]);\n  }\n  return {fact[n], fact_inv[n],\
-    \ inv[n]};\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static constexpr\
-    \ int mod = mint::get_mod();\n  assert(0 <= n);\n  if (n >= mod) return 0;\n \
-    \ return get<0>(get_factorial_data<mint>(n));\n}\n\ntemplate <typename mint>\n\
-    mint fact_inv(int n) {\n  static constexpr int mod = mint::get_mod();\n  assert(0\
-    \ <= n && n < mod);\n  return get<1>(get_factorial_data<mint>(n));\n}\n\ntemplate\
-    \ <typename mint>\nmint inv(int n) {\n  static constexpr int mod = mint::get_mod();\n\
-    \  assert(0 <= n && n < mod);\n  return get<2>(get_factorial_data<mint>(n));\n\
-    }\n\ntemplate <typename mint, bool large = false>\nmint C(ll n, ll k) {\n  assert(n\
-    \ >= 0);\n  if (k < 0 || n < k) return 0;\n  if (!large) return fact<mint>(n)\
-    \ * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k, n - k);\n  mint x(1);\n\
-    \  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n  return x;\n}\n\
-    \ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n\
-    \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
-    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
-    }\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    using amint = ArbitraryModInt;\n#line 1 \"setfunc/subset_convolution.hpp\"\ntemplate\
-    \ <typename T, int LIM = 20>\r\nvc<T> subset_convolution(vc<T>& A, vc<T>& B) {\r\
-    \n  using F = array<T, LIM + 1>;\r\n  int N = len(A);\r\n  int log = topbit(N);\r\
-    \n  assert(N == 1 << log);\r\n  vc<F> RA(N), RB(N);\r\n  FOR(s, N) RA[s][popcnt(s)]\
-    \ = A[s];\r\n  FOR(s, N) RB[s][popcnt(s)] = B[s];\r\n  // subset zeta\r\n  FOR(i,\
-    \ log) FOR(s, 1 << log) if (!(s & 1 << i)) {\r\n    int t = s | 1 << i;\r\n  \
-    \  FOR(k, log + 1) RA[t][k] += RA[s][k], RB[t][k] += RB[s][k];\r\n  }\r\n  //\
-    \ pointwise multiplication\r\n  FOR(s, 1 << log) {\r\n    auto &f = RA[s], &g\
-    \ = RB[s];\r\n    FOR_R(i, log + 1) {\r\n      FOR3(j, 1, log - i + 1) f[i + j]\
-    \ += f[i] * g[j];\r\n      f[i] *= g[0];\r\n    }\r\n  }\r\n  // subset mobius\r\
-    \n  FOR(i, log) FOR(s, 1 << log) if (!(s & 1 << i)) {\r\n    int t = s | 1 <<\
-    \ i;\r\n    FOR(k, log + 1) RA[t][k] -= RA[s][k];\r\n  }\r\n  vc<T> res(N);\r\n\
-    \  FOR(s, N) res[s] = RA[s][popcnt(s)];\r\n  return res;\r\n}\r\n#line 7 \"test/library_checker/convolution/subset_convolution.test.cpp\"\
-    \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint,\
-    \ A, 1 << N);\r\n  VEC(mint, B, 1 << N);\r\n  auto C = subset_convolution(A, B);\r\
-    \n  print(C);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/subset_convolution\"\r\n\
-    #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"mod/modint.hpp\"\
-    \r\n#include \"setfunc/subset_convolution.hpp\"\r\n\r\nusing mint = modint998;\r\
-    \n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint, A, 1 << N);\r\n  VEC(mint, B,\
-    \ 1 << N);\r\n  auto C = subset_convolution(A, B);\r\n  print(C);\r\n}\r\n\r\n\
-    signed main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n \
-    \ cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ 1 \"ds/waveletmatrix.hpp\"\n#include <immintrin.h>\r\n\r\nstruct bit_vector\
+    \ {\r\n  using u32 = uint32_t;\r\n  using i64 = int64_t;\r\n  using u64 = uint64_t;\r\
+    \n\r\n  static constexpr u32 w = 64;\r\n  vector<u64> block;\r\n  vector<u32>\
+    \ count;\r\n  u32 n, zeros;\r\n\r\n  inline u32 get(u32 i) const { return u32(block[i\
+    \ / w] >> (i % w)) & 1u; }\r\n  inline void set(u32 i) { block[i / w] |= 1LL <<\
+    \ (i % w); }\r\n\r\n  bit_vector() {}\r\n  bit_vector(int _n) { init(_n); }\r\n\
+    \  __attribute__((optimize(\"O3\", \"unroll-loops\"))) void init(int _n) {\r\n\
+    \    n = zeros = _n;\r\n    block.resize(n / w + 1, 0);\r\n    count.resize(block.size(),\
+    \ 0);\r\n  }\r\n\r\n  __attribute__((target(\"popcnt\"))) void build() {\r\n \
+    \   for (u32 i = 1; i < block.size(); ++i)\r\n      count[i] = count[i - 1] +\
+    \ _mm_popcnt_u64(block[i - 1]);\r\n    zeros = rank0(n);\r\n  }\r\n\r\n  inline\
+    \ u32 rank0(u32 i) const { return i - rank1(i); }\r\n  __attribute__((target(\"\
+    bmi2,popcnt\"))) inline u32 rank1(u32 i) const {\r\n    return count[i / w] +\
+    \ _mm_popcnt_u64(_bzhi_u64(block[i / w], i % w));\r\n  }\r\n};\r\n\r\n\r\n/*\r\
+    \n\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\uFF1Avector<T> \u3092\u6E21\u3059\
+    \r\n\u9759\u7684\u306A\u5217\u306B\u5BFE\u3057\u3066\u6B21\u304C O(log N) \u6642\
+    \u9593\u3067\u884C\u3048\u308B\r\n\u30FBfreq(l, r, lower, upper)\uFF1A[lower,\
+    \ upper) \u5185\u306E\u8981\u7D20\u306E\u6570\u3048\u4E0A\u3052\r\n\u30FBkth(l,\
+    \ r, lower, upper)\uFF1A[lower, upper) \u5185\u3092\u30BD\u30FC\u30C8\u3057\u305F\
+    \u3068\u304D\u306E k \u756A\u76EE\r\n*/\r\ntemplate <typename T>\r\nstruct WaveletMatrix\
+    \ {\r\n  using u32 = uint32_t;\r\n  using i64 = int64_t;\r\n  using u64 = uint64_t;\r\
+    \n\r\n  int n, lg;\r\n  vc<T> key;\r\n  vc<int> A;\r\n  vector<bit_vector> bv;\r\
+    \n\r\n  __attribute__((optimize(\"O3\"))) WaveletMatrix(const vc<T>& dat)\r\n\
+    \      : n(len(dat)) {\r\n    key = dat;\r\n    UNIQUE(key);\r\n    A.resize(n);\r\
+    \n    FOR(i, n) A[i] = LB(key, dat[i]);\r\n    lg = __lg(max(MAX(A), 1)) + 1;\r\
+    \n    bv.assign(lg, n);\r\n    vc<int> cur = A, nxt(n);\r\n    for (int h = lg\
+    \ - 1; h >= 0; --h) {\r\n      for (int i = 0; i < n; ++i)\r\n        if ((cur[i]\
+    \ >> h) & 1) bv[h].set(i);\r\n      bv[h].build();\r\n      array<decltype(begin(nxt)),\
+    \ 2> it{begin(nxt), begin(nxt) + bv[h].zeros};\r\n      for (int i = 0; i < n;\
+    \ ++i) *it[bv[h].get(i)]++ = cur[i];\r\n      swap(cur, nxt);\r\n    }\r\n  }\r\
+    \n\r\n  inline pair<u32, u32> succ0(int l, int r, int h) const {\r\n    return\
+    \ make_pair(bv[h].rank0(l), bv[h].rank0(r));\r\n  }\r\n\r\n  inline pair<u32,\
+    \ u32> succ1(int l, int r, int h) const {\r\n    u32 l0 = bv[h].rank0(l);\r\n\
+    \    u32 r0 = bv[h].rank0(r);\r\n    u32 zeros = bv[h].zeros;\r\n    return make_pair(l\
+    \ + zeros - l0, r + zeros - r0);\r\n  }\r\n\r\n  T kth(u32 l, u32 r, u32 k) const\
+    \ {\r\n    int res = 0;\r\n    for (int h = lg - 1; h >= 0; --h) {\r\n      u32\
+    \ l0 = bv[h].rank0(l), r0 = bv[h].rank0(r);\r\n      if (k < r0 - l0)\r\n    \
+    \    l = l0, r = r0;\r\n      else {\r\n        k -= r0 - l0;\r\n        res |=\
+    \ 1 << h;\r\n        l += bv[h].zeros - l0;\r\n        r += bv[h].zeros - r0;\r\
+    \n      }\r\n    }\r\n    return key[res];\r\n  }\r\n\r\n  int freq(int l, int\
+    \ r, T lower, T upper) {\r\n    return range_freq(l, r, upper) - range_freq(l,\
+    \ r, lower);\r\n  }\r\n\r\nprivate:\r\n  int freq_upper(int l, int r, T upper_t)\
+    \ {\r\n    int upper = LB(key, upper_t);\r\n    if (upper >= (1 << lg)) return\
+    \ r - l;\r\n    int ret = 0;\r\n    for (int h = lg - 1; h >= 0; --h) {\r\n  \
+    \    bool f = (upper >> h) & 1;\r\n      u32 l0 = bv[h].rank0(l), r0 = bv[h].rank0(r);\r\
+    \n      if (f) {\r\n        ret += r0 - l0;\r\n        l += bv[h].zeros - l0;\r\
+    \n        r += bv[h].zeros - r0;\r\n      } else {\r\n        l = l0;\r\n    \
+    \    r = r0;\r\n      }\r\n    }\r\n    return ret;\r\n  }\r\n};\n#line 5 \"test/yukicoder/919_waveletmatrix.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  WaveletMatrix<ll> WM(A);\n \
+    \ const ll INF = 1LL << 60;\n  ll ANS = -INF;\n\n  auto get = [&](ll L, ll R)\
+    \ -> ll {\n    assert(L < R);\n    ll n = R - L;\n    return WM.kth(L, R, (n -\
+    \ 1) / 2);\n  };\n\n  FOR3(K, 1, N + 1) {\n    // \u3068\u308B\u6700\u5927\u56DE\
+    \u6570\n    ll LIM = N / K;\n    vi left(LIM);\n    vi right(LIM);\n    FOR(i,\
+    \ LIM) left[i] = get(K * i, K * i + K);\n    FOR(i, LIM) right[i] = get(N - K\
+    \ * i - K, N - K * i);\n    left = cumsum(left);\n    right = cumsum(right);\n\
+    \    // x \u56DE\u4EE5\u4E0B\u3068\u308B\u3068\u304D\u306E\uFF5E\n    FOR(i, LIM)\
+    \ chmax(left[i + 1], left[i]);\n    FOR(i, LIM) chmax(right[i + 1], right[i]);\n\
+    \    FOR(i, LIM + 1) chmax(ANS, K * (left[i] + right[LIM - i]));\n  }\n  print(ANS);\n\
+    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
+    \ return 0;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/919\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"ds/waveletmatrix.hpp\"\n\nvoid solve()\
+    \ {\n  LL(N);\n  VEC(ll, A, N);\n  WaveletMatrix<ll> WM(A);\n  const ll INF =\
+    \ 1LL << 60;\n  ll ANS = -INF;\n\n  auto get = [&](ll L, ll R) -> ll {\n    assert(L\
+    \ < R);\n    ll n = R - L;\n    return WM.kth(L, R, (n - 1) / 2);\n  };\n\n  FOR3(K,\
+    \ 1, N + 1) {\n    // \u3068\u308B\u6700\u5927\u56DE\u6570\n    ll LIM = N / K;\n\
+    \    vi left(LIM);\n    vi right(LIM);\n    FOR(i, LIM) left[i] = get(K * i, K\
+    \ * i + K);\n    FOR(i, LIM) right[i] = get(N - K * i - K, N - K * i);\n    left\
+    \ = cumsum(left);\n    right = cumsum(right);\n    // x \u56DE\u4EE5\u4E0B\u3068\
+    \u308B\u3068\u304D\u306E\uFF5E\n    FOR(i, LIM) chmax(left[i + 1], left[i]);\n\
+    \    FOR(i, LIM) chmax(right[i + 1], right[i]);\n    FOR(i, LIM + 1) chmax(ANS,\
+    \ K * (left[i] + right[LIM - i]));\n  }\n  print(ANS);\n}\n\nsigned main() {\n\
+    \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - mod/modint.hpp
-  - setfunc/subset_convolution.hpp
+  - ds/waveletmatrix.hpp
   isVerificationFile: true
-  path: test/library_checker/convolution/subset_convolution.test.cpp
+  path: test/yukicoder/919_waveletmatrix.test.cpp
   requiredBy: []
-  timestamp: '2022-04-22 16:55:40+09:00'
+  timestamp: '2022-04-27 05:04:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library_checker/convolution/subset_convolution.test.cpp
+documentation_of: test/yukicoder/919_waveletmatrix.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/convolution/subset_convolution.test.cpp
-- /verify/test/library_checker/convolution/subset_convolution.test.cpp.html
-title: test/library_checker/convolution/subset_convolution.test.cpp
+- /verify/test/yukicoder/919_waveletmatrix.test.cpp
+- /verify/test/yukicoder/919_waveletmatrix.test.cpp.html
+title: test/yukicoder/919_waveletmatrix.test.cpp
 ---

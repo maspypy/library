@@ -126,6 +126,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/899_bfsnumbering.test.cpp
     title: test/yukicoder/899_bfsnumbering.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/924.test.cpp
+    title: test/yukicoder/924.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -167,6 +170,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/899_bfsnumbering.test.cpp
+  - test/yukicoder/924.test.cpp
   - test/yukicoder/1038_centroid.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/aoj/ALDS1_5_inversion.test.cpp

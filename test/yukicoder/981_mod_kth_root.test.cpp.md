@@ -33,21 +33,21 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/kth_root_mod
+    PROBLEM: https://yukicoder.me/problems/no/981
     links:
-    - https://judge.yosupo.jp/problem/kth_root_mod
-  bundledCode: "#line 1 \"test/library_checker/math/kth_root_mod.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/kth_root_mod\"\r\n#line 1 \"my_template.hpp\"\
-    \n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
-    using pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\n\
-    using u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\n\
-    using vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate\
-    \ <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    - https://yukicoder.me/problems/no/981
+  bundledCode: "#line 1 \"test/yukicoder/981_mod_kth_root.test.cpp\"\n#define PROBLEM\
+    \ \"https://yukicoder.me/problems/no/981\"\n#line 1 \"my_template.hpp\"\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
     template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
     \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
     \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
@@ -370,15 +370,16 @@ data:
     \n      pc /= p;\r\n    }\r\n    ll k = pe - mod_inv(m, pe);\r\n    k = (i128(k)\
     \ * m + 1) / pe;\r\n    ll y = mod_pow_long(b, k, mod);\r\n    x = i128(x) * y\
     \ % mod;\r\n    return x;\r\n  };\r\n\r\n  auto pf = factor(k);\r\n  for (auto&&\
-    \ [p, e]: pf) a = solve_pp(p, e, a);\r\n  return a;\r\n}\r\n#line 5 \"test/library_checker/math/kth_root_mod.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(k, y, p);\r\n  ll x = mod_kth_root(k, y % p, p);\r\
-    \n  print(x);\r\n}\r\n\r\nsigned main() {\r\n  LL(T);\r\n  FOR_(T) solve();\r\n\
-    \r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/kth_root_mod\"\r\n#include\
-    \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"mod/mod_kth_root.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  LL(k, y, p);\r\n  ll x = mod_kth_root(k, y % p, p);\r\
-    \n  print(x);\r\n}\r\n\r\nsigned main() {\r\n  LL(T);\r\n  FOR_(T) solve();\r\n\
-    \r\n  return 0;\r\n}\r\n"
+    \ [p, e]: pf) a = solve_pp(p, e, a);\r\n  return a;\r\n}\r\n#line 5 \"test/yukicoder/981_mod_kth_root.test.cpp\"\
+    \n\nvoid solve() {\n  LL(p, k, a);\n  ll ANS = mod_kth_root_long(k, a, p);\n \
+    \ print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n\
+    }\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/981\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"mod/mod_kth_root.hpp\"\n\nvoid solve()\
+    \ {\n  LL(p, k, a);\n  ll ANS = mod_kth_root_long(k, a, p);\n  print(ANS);\n}\n\
+    \nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << setprecision(15);\n\n  LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -391,15 +392,15 @@ data:
   - mod/mod_inv.hpp
   - ds/hashmap.hpp
   isVerificationFile: true
-  path: test/library_checker/math/kth_root_mod.test.cpp
+  path: test/yukicoder/981_mod_kth_root.test.cpp
   requiredBy: []
   timestamp: '2022-04-27 05:05:30+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/math/kth_root_mod.test.cpp
+documentation_of: test/yukicoder/981_mod_kth_root.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/math/kth_root_mod.test.cpp
-- /verify/test/library_checker/math/kth_root_mod.test.cpp.html
-title: test/library_checker/math/kth_root_mod.test.cpp
+- /verify/test/yukicoder/981_mod_kth_root.test.cpp
+- /verify/test/yukicoder/981_mod_kth_root.test.cpp.html
+title: test/yukicoder/981_mod_kth_root.test.cpp
 ---

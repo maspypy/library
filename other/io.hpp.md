@@ -312,7 +312,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sqrt_mod.test.cpp
     title: test/library_checker/math/sqrt_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - icon: ':heavy_check_mark:'
@@ -472,6 +472,9 @@ data:
     path: test/yukicoder/255.test.cpp
     title: test/yukicoder/255.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/426.test.cpp
+    title: test/yukicoder/426.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_modular_subset_sum.test.cpp
     title: test/yukicoder/4_modular_subset_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -483,6 +486,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/899_bfsnumbering.test.cpp
     title: test/yukicoder/899_bfsnumbering.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/919_waveletmatrix.test.cpp
+    title: test/yukicoder/919_waveletmatrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/924.test.cpp
+    title: test/yukicoder/924.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/981_mod_kth_root.test.cpp
+    title: test/yukicoder/981_mod_kth_root.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -695,11 +707,15 @@ data:
   - test/yukicoder/502_factorial107.test.cpp
   - test/yukicoder/1810_matpow.test.cpp
   - test/yukicoder/899_bfsnumbering.test.cpp
+  - test/yukicoder/981_mod_kth_root.test.cpp
   - test/yukicoder/114_steriner_tree.test.cpp
+  - test/yukicoder/919_waveletmatrix.test.cpp
+  - test/yukicoder/924.test.cpp
   - test/yukicoder/1036_swag.test.cpp
   - test/yukicoder/705_monge_shortest_path.test.cpp
   - test/yukicoder/255.test.cpp
   - test/yukicoder/1320_mincostcycle.test.cpp
+  - test/yukicoder/426.test.cpp
   - test/yukicoder/1038_centroid.test.cpp
   - test/yukicoder/177_maxflow.test.cpp
   - test/yukicoder/4_modular_subset_sum.test.cpp

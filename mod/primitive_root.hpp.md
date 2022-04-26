@@ -1,29 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/981_mod_kth_root.test.cpp
+    title: test/yukicoder/981_mod_kth_root.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n    using i64 = int64_t;\r\
@@ -87,18 +90,28 @@ data:
     \ fast_div& d) {\r\n    return n - n / d * d.m;\r\n  }\r\n  constexpr std::pair<i64,\
     \ int> divmod(u64 n) const {\r\n    u64 q = n / *this;\r\n    return {q, n - q\
     \ * m};\r\n  }\r\n\r\n  int m;\r\n  int s;\r\n  u64 x;\r\n};\r\n#line 2 \"mod/mod_pow.hpp\"\
-    \nll mod_pow(ll a, ll n, int mod){\r\n  fast_div fd(mod);\r\n  a = a % fd;\r\n\
-    \  ll p = a;\r\n  ll v = 1;\r\n  while(n){\r\n    if(n & 1) v = v * p % fd;\r\n\
-    \    p = p * p % fd;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line 3 \"\
-    mod/primitive_root.hpp\"\nint primitive_root(int p) {\r\n  auto pf = factor(p\
-    \ - 1);\r\n  auto is_ok = [&](int g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\
-    \n      if (mod_pow(g, (p - 1) / q, p) == 1) return false;\r\n    return true;\r\
-    \n  };\r\n  FOR3(x, 1, p) {\r\n    if (is_ok(x)) return x;\r\n  }\r\n  return\
-    \ -1;\r\n}\r\n"
-  code: "#include \"nt/factor.hpp\"\r\n#include \"mod/mod_pow.hpp\"\r\nint primitive_root(int\
-    \ p) {\r\n  auto pf = factor(p - 1);\r\n  auto is_ok = [&](int g) -> bool {\r\n\
-    \    for (auto&& [q, e]: pf)\r\n      if (mod_pow(g, (p - 1) / q, p) == 1) return\
-    \ false;\r\n    return true;\r\n  };\r\n  FOR3(x, 1, p) {\r\n    if (is_ok(x))\
+    \n// int\r\nll mod_pow(ll a, ll n, int mod){\r\n  fast_div fd(mod);\r\n  a = a\
+    \ % fd;\r\n  ll p = a;\r\n  ll v = 1;\r\n  while(n){\r\n    if(n & 1) v = v *\
+    \ p % fd;\r\n    p = p * p % fd;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n\
+    \r\nll mod_pow_long(ll a, ll n, ll mod){\r\n  a %= mod;\r\n  ll p = a;\r\n  ll\
+    \ v = 1;\r\n  while(n){\r\n    if(n & 1) v = i128(v) * p % mod;\r\n    p = i128(p)\
+    \ * p % mod;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line 3 \"mod/primitive_root.hpp\"\
+    \n// int\r\nint primitive_root(int p) {\r\n  auto pf = factor(p - 1);\r\n  auto\
+    \ is_ok = [&](int g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\n      if (mod_pow(g,\
+    \ (p - 1) / q, p) == 1) return false;\r\n    return true;\r\n  };\r\n  FOR3(x,\
+    \ 1, p) {\r\n    if (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n\r\nll\
+    \ primitive_root_long(ll p) {\r\n  auto pf = factor(p - 1);\r\n  auto is_ok =\
+    \ [&](ll g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\n      if (mod_pow_long(g,\
+    \ (p - 1) / q, p) == 1) return false;\r\n    return true;\r\n  };\r\n  FOR3(x,\
+    \ 1, p) {\r\n    if (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n"
+  code: "#include \"nt/factor.hpp\"\r\n#include \"mod/mod_pow.hpp\"\r\n// int\r\n\
+    int primitive_root(int p) {\r\n  auto pf = factor(p - 1);\r\n  auto is_ok = [&](int\
+    \ g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\n      if (mod_pow(g, (p - 1)\
+    \ / q, p) == 1) return false;\r\n    return true;\r\n  };\r\n  FOR3(x, 1, p) {\r\
+    \n    if (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n\r\nll primitive_root_long(ll\
+    \ p) {\r\n  auto pf = factor(p - 1);\r\n  auto is_ok = [&](ll g) -> bool {\r\n\
+    \    for (auto&& [q, e]: pf)\r\n      if (mod_pow_long(g, (p - 1) / q, p) == 1)\
+    \ return false;\r\n    return true;\r\n  };\r\n  FOR3(x, 1, p) {\r\n    if (is_ok(x))\
     \ return x;\r\n  }\r\n  return -1;\r\n}\r\n"
   dependsOn:
   - nt/factor.hpp
@@ -109,9 +122,10 @@ data:
   path: mod/primitive_root.hpp
   requiredBy:
   - mod/mod_kth_root.hpp
-  timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-04-27 05:05:30+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/981_mod_kth_root.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
 documentation_of: mod/primitive_root.hpp
 layout: document

@@ -52,6 +52,9 @@ data:
     path: test/yukicoder/1036_seg_maxright_minleft.test.cpp
     title: test/yukicoder/1036_seg_maxright_minleft.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/426.test.cpp
+    title: test/yukicoder/426.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_modular_subset_sum.test.cpp
     title: test/yukicoder/4_modular_subset_sum.test.cpp
   _isVerificationFailed: false
@@ -147,6 +150,7 @@ data:
   timestamp: '2022-04-24 23:28:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/426.test.cpp
   - test/yukicoder/4_modular_subset_sum.test.cpp
   - test/yukicoder/1036_seg_maxright_minleft.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp

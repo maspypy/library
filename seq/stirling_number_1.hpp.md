@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\nvc<ll> primetable(int LIM) {\n  ++LIM;\n\
@@ -354,7 +354,7 @@ data:
     \ mint(n / 2));\r\n    f = convolution(f, g);\r\n    if (n & 1) {\r\n      g =\
     \ {(n - 1), 1};\r\n      f = convolution(f, g);\r\n    }\r\n    return f;\r\n\
     \  };\r\n  auto f = dfs(dfs, n);\r\n  if (sgn) { FOR(i, n + 1) if ((n + i) % 2\
-    \ == 0) f[i] = -f[i]; }\r\n  return f;\r\n}\r\n\r\n// k \u3092\u56FA\u5B9A\u3057\
+    \ == 1) f[i] = -f[i]; }\r\n  return f;\r\n}\r\n\r\n// k \u3092\u56FA\u5B9A\u3057\
     \u305F\u3068\u304D\u306E c(n, k) \u306E\u5217\u6319\u3002\r\ntemplate <typename\
     \ mint>\r\nvc<mint> stirling_number_1_k(int k, int n_max, bool sgn = false) {\r\
     \n  if (n_max < k) {\r\n    vc<mint> f(n_max + 1);\r\n    return f;\r\n  }\r\n\
@@ -374,7 +374,7 @@ data:
     \ n / 2);\r\n    auto g = poly_taylor_shift(f, mint(n / 2));\r\n    f = convolution(f,\
     \ g);\r\n    if (n & 1) {\r\n      g = {(n - 1), 1};\r\n      f = convolution(f,\
     \ g);\r\n    }\r\n    return f;\r\n  };\r\n  auto f = dfs(dfs, n);\r\n  if (sgn)\
-    \ { FOR(i, n + 1) if ((n + i) % 2 == 0) f[i] = -f[i]; }\r\n  return f;\r\n}\r\n\
+    \ { FOR(i, n + 1) if ((n + i) % 2 == 1) f[i] = -f[i]; }\r\n  return f;\r\n}\r\n\
     \r\n// k \u3092\u56FA\u5B9A\u3057\u305F\u3068\u304D\u306E c(n, k) \u306E\u5217\
     \u6319\u3002\r\ntemplate <typename mint>\r\nvc<mint> stirling_number_1_k(int k,\
     \ int n_max, bool sgn = false) {\r\n  if (n_max < k) {\r\n    vc<mint> f(n_max\
@@ -396,8 +396,8 @@ data:
   isVerificationFile: false
   path: seq/stirling_number_1.hpp
   requiredBy: []
-  timestamp: '2022-04-27 03:25:13+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-04-27 05:04:01+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
 documentation_of: seq/stirling_number_1.hpp
