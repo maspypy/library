@@ -531,14 +531,14 @@ data:
     \ (i % 2 == 1) f[i] = -f[i]; }\r\n\r\n  mint cf = fact_inv<mint>(k);\r\n  vc<mint>\
     \ res(n_max + 1);\r\n  FOR(i, len(f)) res[k + i] = cf * f[i] * fact<mint>(k +\
     \ i);\r\n\r\n  return res;\r\n}\r\n#line 6 \"test/library_checker/math/stirling_number_of_the_first_kind.test.cpp\"\
-    \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N);\r\n  auto ANS = stirling_number_1<mint>(N);\r\
-    \n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\
-    \n}\r\n"
+    \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N);\r\n  auto ANS = stirling_number_1_n<mint>(N,\
+    \ true);\r\n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return\
+    \ 0;\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"seq/stirling_number_1.hpp\"\
     \r\n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N);\r\n  auto ANS =\
-    \ stirling_number_1<mint>(N);\r\n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\n\
-    \  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ stirling_number_1_n<mint>(N, true);\r\n  print(ANS);\r\n}\r\n\r\nsigned main()\
+    \ {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -555,7 +555,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   requiredBy: []
-  timestamp: '2022-04-27 03:25:13+09:00'
+  timestamp: '2022-04-27 03:36:04+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
