@@ -156,6 +156,7 @@
 "test/yukicoder/1810_matpow.test.cpp": "2022-04-23 01:11:07 +0900",
 "test/yukicoder/184_xorbasis.test.cpp": "2022-04-24 15:21:16 +0900",
 "test/yukicoder/1891_xor_sparse.test.cpp": "2022-04-24 16:42:51 +0900",
+"test/yukicoder/235_lazytreemonoid.test.cpp": "2022-04-25 01:29:01 +0900",
 "test/yukicoder/255.test.cpp": "2022-04-25 01:20:35 +0900",
 "test/yukicoder/4_modular_subset_sum.test.cpp": "2022-04-24 23:28:36 +0900",
 "test/yukicoder/502_factorial107.test.cpp": "2022-04-16 06:03:26 +0900",
