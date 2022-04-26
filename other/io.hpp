@@ -198,22 +198,22 @@ struct Printer {
   template <class A, class B, class C>
   void write(const tuple<A, B, C> &val) {
     auto &[a, b, c] = val;
-    write(a);
-    write(' ');
-    write(b);
-    write(' ');
-    write(c);
+    write(a), write(' '), write(b), write(' '), write(c);
   }
   template <class A, class B, class C, class D>
   void write(const tuple<A, B, C, D> &val) {
     auto &[a, b, c, d] = val;
-    write(a);
-    write(' ');
-    write(b);
-    write(' ');
-    write(c);
-    write(' ');
-    write(d);
+    write(a), write(' '), write(b), write(' '), write(c), write(' '), write(d);
+  }
+  template <class A, class B, class C, class D, class E>
+  void write(const tuple<A, B, C, D, E> &val) {
+    auto &[a, b, c, d, e] = val;
+    write(a), write(' '), write(b), write(' '), write(c), write(' '), write(d), write(' '), write(e);
+  }
+  template <class A, class B, class C, class D, class E, class F>
+  void write(const tuple<A, B, C, D, E, F> &val) {
+    auto &[a, b, c, d, e, f] = val;
+    write(a), write(' '), write(b), write(' '), write(c), write(' '), write(d), write(' '), write(e), write(' '), write(f);
   }
   template <class T, size_t S>
   void write(const array<T, S> &val) {
