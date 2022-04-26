@@ -1,3 +1,15 @@
+template <typename T>
+vc<T> partition_number(int N) {
+  ll M = sqrt(N) + 10;
+  vc<T> f(N + 1);
+  FOR3(x, -M, M) {
+    ll d = x * (3 * x - 1) / 2;
+    if (d > N) continue;
+    f[d] += (x % 2 == 0 ? 1 : -1);
+  }
+  return fps_inv(f);
+}
+
 // n を k 個に分割する方法 P[n][k] のテーブル
 template <typename T>
 vvc<T> partition_number_2d(int n_max, int k_max) {
