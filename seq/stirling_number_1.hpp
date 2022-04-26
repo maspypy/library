@@ -19,7 +19,7 @@ vc<mint> stirling_number_1_n(int n, bool sgn = false) {
     return f;
   };
   auto f = dfs(dfs, n);
-  if (sgn) { FOR(i, n + 1) if ((n + i) % 2 == 0) f[i] = -f[i]; }
+  if (sgn) { FOR(i, n + 1) if ((n + i) % 2 == 1) f[i] = -f[i]; }
   return f;
 }
 
