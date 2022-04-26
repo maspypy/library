@@ -7,7 +7,7 @@
 using mint = modint998;
 void solve() {
   LL(N);
-  auto ANS = stirling_number_2<mint>(N);
+  auto ANS = stirling_number_2_n<mint>(N);
   print(ANS);
 }
 
