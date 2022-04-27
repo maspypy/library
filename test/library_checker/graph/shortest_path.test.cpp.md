@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/dijkstra.hpp
     title: graph/dijkstra.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/restore_path.hpp
     title: graph/restore_path.hpp
   - icon: ':question:'
