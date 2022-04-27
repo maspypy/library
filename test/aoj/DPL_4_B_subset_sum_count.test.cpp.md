@@ -149,66 +149,73 @@ data:
     \n    }\r\n  }\r\n  template <class T, class U>\r\n  void write(const pair<T,\
     \ U> &val) {\r\n    write(val.first);\r\n    write(' ');\r\n    write(val.second);\r\
     \n  }\r\n  template <class A, class B, class C>\r\n  void write(const tuple<A,\
-    \ B, C> &val) {\r\n    auto &[a, b, c] = val;\r\n    write(a);\r\n    write('\
-    \ ');\r\n    write(b);\r\n    write(' ');\r\n    write(c);\r\n  }\r\n  template\
-    \ <class A, class B, class C, class D>\r\n  void write(const tuple<A, B, C, D>\
-    \ &val) {\r\n    auto &[a, b, c, d] = val;\r\n    write(a);\r\n    write(' ');\r\
-    \n    write(b);\r\n    write(' ');\r\n    write(c);\r\n    write(' ');\r\n   \
-    \ write(d);\r\n  }\r\n  template <class T, size_t S>\r\n  void write(const array<T,\
-    \ S> &val) {\r\n    auto n = val.size();\r\n    for (size_t i = 0; i < n; i++)\
-    \ {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\n    }\r\n  }\r\n  void\
-    \ write(i128 val) {\r\n    string s;\r\n    bool negative = 0;\r\n    if(val <\
-    \ 0){\r\n      negative = 1;\r\n      val = -val;\r\n    }\r\n    while (val)\
-    \ {\r\n      s += '0' + int(val % 10);\r\n      val /= 10;\r\n    }\r\n    if(negative)\
-    \ s += \"-\";\r\n    reverse(all(s));\r\n    if (len(s) == 0) s = \"0\";\r\n \
-    \   write(s);\r\n  }\r\n};\r\n\r\nScanner scanner = Scanner(stdin);\r\nPrinter\
-    \ printer = Printer(stdout);\r\n\r\nvoid flush() { printer.flush(); }\r\nvoid\
-    \ print() { printer.write('\\n'); }\r\ntemplate <class Head, class... Tail>\r\n\
-    void print(Head &&head, Tail &&... tail) {\r\n  printer.write(head);\r\n  if (sizeof...(Tail))\
-    \ printer.write(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\nvoid read()\
-    \ {}\r\ntemplate <class Head, class... Tail>\r\nvoid read(Head &head, Tail &...\
-    \ tail) {\r\n  scanner.read(head);\r\n  read(tail...);\r\n}\r\n\r\n#define INT(...)\
-    \   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\
-    \r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n\
-    \  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)      \\\r\
-    \n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n\
-    \  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name,\
-    \ size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define VV(type,\
-    \ name, h, w)                     \\\r\n  vector<vector<type>> name(h, vector<type>(w));\
-    \ \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
-    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
-    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
-    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
-    \ 2 \"other/subset_sum_count.hpp\"\n\n/*\nO(2^{N/2})\nsubset sum 2^N \u901A\u308A\
-    \u306E\u3046\u3061\u3001[lo, hi) \u306B\u5165\u308B\u3082\u306E\u306E\u500B\u6570\
-    \n*/\ntemplate <typename T = ll>\nll subset_sum_count(vc<T> A, T lo, T hi) {\n\
-    \  int n = len(A);\n  auto gen = [&](vc<T> A) -> vc<T> {\n    vc<T> dp = {0};\n\
-    \    for (auto&& a: A) {\n      vc<T> dp1(len(dp));\n      for (auto&& t: dp1)\
-    \ t += a;\n      vc<T> newdp;\n      merge(all(dp), all(dp1), back_inserter(newdp));\n\
-    \      swap(dp, newdp);\n    }\n    return dp;\n  };\n  vc<T> AL = {A.begin(),\
+    \ B, C> &val) {\r\n    auto &[a, b, c] = val;\r\n    write(a), write(' '), write(b),\
+    \ write(' '), write(c);\r\n  }\r\n  template <class A, class B, class C, class\
+    \ D>\r\n  void write(const tuple<A, B, C, D> &val) {\r\n    auto &[a, b, c, d]\
+    \ = val;\r\n    write(a), write(' '), write(b), write(' '), write(c), write('\
+    \ '), write(d);\r\n  }\r\n  template <class A, class B, class C, class D, class\
+    \ E>\r\n  void write(const tuple<A, B, C, D, E> &val) {\r\n    auto &[a, b, c,\
+    \ d, e] = val;\r\n    write(a), write(' '), write(b), write(' '), write(c), write('\
+    \ '), write(d), write(' '), write(e);\r\n  }\r\n  template <class A, class B,\
+    \ class C, class D, class E, class F>\r\n  void write(const tuple<A, B, C, D,\
+    \ E, F> &val) {\r\n    auto &[a, b, c, d, e, f] = val;\r\n    write(a), write('\
+    \ '), write(b), write(' '), write(c), write(' '), write(d), write(' '), write(e),\
+    \ write(' '), write(f);\r\n  }\r\n  template <class T, size_t S>\r\n  void write(const\
+    \ array<T, S> &val) {\r\n    auto n = val.size();\r\n    for (size_t i = 0; i\
+    \ < n; i++) {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\n    }\r\n\
+    \  }\r\n  void write(i128 val) {\r\n    string s;\r\n    bool negative = 0;\r\n\
+    \    if(val < 0){\r\n      negative = 1;\r\n      val = -val;\r\n    }\r\n   \
+    \ while (val) {\r\n      s += '0' + int(val % 10);\r\n      val /= 10;\r\n   \
+    \ }\r\n    if(negative) s += \"-\";\r\n    reverse(all(s));\r\n    if (len(s)\
+    \ == 0) s = \"0\";\r\n    write(s);\r\n  }\r\n};\r\n\r\nScanner scanner = Scanner(stdin);\r\
+    \nPrinter printer = Printer(stdout);\r\n\r\nvoid flush() { printer.flush(); }\r\
+    \nvoid print() { printer.write('\\n'); }\r\ntemplate <class Head, class... Tail>\r\
+    \nvoid print(Head &&head, Tail &&... tail) {\r\n  printer.write(head);\r\n  if\
+    \ (sizeof...(Tail)) printer.write(' ');\r\n  print(forward<Tail>(tail)...);\r\n\
+    }\r\n\r\nvoid read() {}\r\ntemplate <class Head, class... Tail>\r\nvoid read(Head\
+    \ &head, Tail &... tail) {\r\n  scanner.read(head);\r\n  read(tail...);\r\n}\r\
+    \n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ CHAR(...)      \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n\
+    #define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\
+    \n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
+    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
+    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
+    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
+    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
+    \ { yes(!t); }\r\n#line 2 \"other/subset_sum_count.hpp\"\n\n/*\nO(2^{N/2})\nsubset\
+    \ sum 2^N \u901A\u308A\u306E\u3046\u3061\u3001[lo, hi) \u306B\u5165\u308B\u3082\
+    \u306E\u306E\u500B\u6570\n*/\ntemplate <typename T = ll>\nll subset_sum_count(vc<T>\
+    \ A, T lo, T hi) {\n  int n = len(A);\n  auto gen = [&](vc<T> A) -> vc<T> {\n\
+    \    vc<T> dp = {0};\n    for (auto&& a: A) {\n      vc<T> dp1(len(dp));\n   \
+    \   for (auto&& t: dp1) t += a;\n      vc<T> newdp;\n      merge(all(dp), all(dp1),\
+    \ back_inserter(newdp));\n      swap(dp, newdp);\n    }\n    return dp;\n  };\n\
+    \  vc<T> AL = {A.begin(), A.begin() + n / 2};\n  vc<T> AR = {A.begin() + n / 2,\
+    \ A.end()};\n  auto dp1 = gen(AL);\n  auto dp2 = gen(AR);\n  auto f = [&](T lim)\
+    \ -> ll {\n    int q = len(dp2);\n    ll res = 0;\n    FOR(p, len(dp1)) {\n  \
+    \    while (q && dp1[p] + dp2[q - 1] >= lim) --q;\n      res += q;\n    }\n  \
+    \  return res;\n  };\n  return f(hi) - f(lo);\n}\n\n/*\nO(2^{N/2})\nsubset sum\
+    \ 2^N \u901A\u308A\u306E\u3046\u3061\u3001[lo, hi) \u306B\u5165\u308B\u3082\u306E\
+    \u306E\u500B\u6570\u3002\n\u3092\u4F7F\u3046\u500B\u6570\u3054\u3068\u306B\u6C42\
+    \u3081\u308B\u3002\n*/\ntemplate <typename T = ll>\nvc<ll> subset_sum_count_by_size(vc<T>\
+    \ A, T lo, T hi) {\n  int n = len(A);\n  using P = pair<T, int>;\n  auto gen =\
+    \ [&](vc<T> A) -> vc<vc<T>> {\n    vc<P> dp;\n    dp.eb(0, 0);\n    for (auto&&\
+    \ a: A) {\n      vc<P> dp1 = dp;\n      for (auto&& t: dp1) t.fi += a, t.se +=\
+    \ 1;\n      vc<P> newdp;\n      merge(all(dp), all(dp1), back_inserter(newdp));\n\
+    \      swap(dp, newdp);\n    }\n    vc<vc<T>> res(len(A) + 1);\n    for (auto&&\
+    \ p: dp) res[p.se].eb(p.fi);\n    return res;\n  };\n  vc<T> AL = {A.begin(),\
     \ A.begin() + n / 2};\n  vc<T> AR = {A.begin() + n / 2, A.end()};\n  auto dp1\
-    \ = gen(AL);\n  auto dp2 = gen(AR);\n  auto f = [&](T lim) -> ll {\n    int q\
-    \ = len(dp2);\n    ll res = 0;\n    FOR(p, len(dp1)) {\n      while (q && dp1[p]\
-    \ + dp2[q - 1] >= lim) --q;\n      res += q;\n    }\n    return res;\n  };\n \
-    \ return f(hi) - f(lo);\n}\n\n/*\nO(2^{N/2})\nsubset sum 2^N \u901A\u308A\u306E\
-    \u3046\u3061\u3001[lo, hi) \u306B\u5165\u308B\u3082\u306E\u306E\u500B\u6570\u3002\
-    \n\u3092\u4F7F\u3046\u500B\u6570\u3054\u3068\u306B\u6C42\u3081\u308B\u3002\n*/\n\
-    template <typename T = ll>\nvc<ll> subset_sum_count_by_size(vc<T> A, T lo, T hi)\
-    \ {\n  int n = len(A);\n  using P = pair<T, int>;\n  auto gen = [&](vc<T> A) ->\
-    \ vc<vc<T>> {\n    vc<P> dp;\n    dp.eb(0, 0);\n    for (auto&& a: A) {\n    \
-    \  vc<P> dp1 = dp;\n      for (auto&& t: dp1) t.fi += a, t.se += 1;\n      vc<P>\
-    \ newdp;\n      merge(all(dp), all(dp1), back_inserter(newdp));\n      swap(dp,\
-    \ newdp);\n    }\n    vc<vc<T>> res(len(A) + 1);\n    for (auto&& p: dp) res[p.se].eb(p.fi);\n\
-    \    return res;\n  };\n  vc<T> AL = {A.begin(), A.begin() + n / 2};\n  vc<T>\
-    \ AR = {A.begin() + n / 2, A.end()};\n  auto dp1 = gen(AL);\n  auto dp2 = gen(AR);\n\
-    \n  auto f = [&](T lim) -> vi {\n    vi res(n + 1);\n    FOR(s1, len(dp1)) FOR(s2,\
-    \ len(dp2)) {\n      auto& X = dp1[s1];\n      auto& Y = dp2[s2];\n      int q\
-    \ = len(Y);\n      ll& cnt = res[s1 + s2];\n      for (auto&& x: X) {\n      \
-    \  while (q && x + Y[q - 1] >= lim) --q;\n        cnt += q;\n      }\n    }\n\
-    \    return res;\n  };\n  auto CNT1 = f(hi);\n  auto CNT2 = f(lo);\n  FOR(i, len(CNT1))\
-    \ CNT1[i] -= CNT2[i];\n  return CNT1;\n}\n#line 6 \"test/aoj/DPL_4_B_subset_sum_count.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, K, L, R);\n  VEC(ll, A, N);\n  print(subset_sum_count_by_size(A,\
-    \ L, R + 1)[K]);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \ = gen(AL);\n  auto dp2 = gen(AR);\n\n  auto f = [&](T lim) -> vi {\n    vi res(n\
+    \ + 1);\n    FOR(s1, len(dp1)) FOR(s2, len(dp2)) {\n      auto& X = dp1[s1];\n\
+    \      auto& Y = dp2[s2];\n      int q = len(Y);\n      ll& cnt = res[s1 + s2];\n\
+    \      for (auto&& x: X) {\n        while (q && x + Y[q - 1] >= lim) --q;\n  \
+    \      cnt += q;\n      }\n    }\n    return res;\n  };\n  auto CNT1 = f(hi);\n\
+    \  auto CNT2 = f(lo);\n  FOR(i, len(CNT1)) CNT1[i] -= CNT2[i];\n  return CNT1;\n\
+    }\n#line 6 \"test/aoj/DPL_4_B_subset_sum_count.test.cpp\"\n\nvoid solve() {\n\
+    \  LL(N, K, L, R);\n  VEC(ll, A, N);\n  print(subset_sum_count_by_size(A, L, R\
+    \ + 1)[K]);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
     \n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_4_B\"\
@@ -224,7 +231,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL_4_B_subset_sum_count.test.cpp
   requiredBy: []
-  timestamp: '2022-04-16 23:35:00+09:00'
+  timestamp: '2022-04-27 05:07:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL_4_B_subset_sum_count.test.cpp

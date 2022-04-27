@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid_xor_basis.hpp
     title: alg/monoid_xor_basis.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/184
@@ -149,52 +149,58 @@ data:
     \n    }\r\n  }\r\n  template <class T, class U>\r\n  void write(const pair<T,\
     \ U> &val) {\r\n    write(val.first);\r\n    write(' ');\r\n    write(val.second);\r\
     \n  }\r\n  template <class A, class B, class C>\r\n  void write(const tuple<A,\
-    \ B, C> &val) {\r\n    auto &[a, b, c] = val;\r\n    write(a);\r\n    write('\
-    \ ');\r\n    write(b);\r\n    write(' ');\r\n    write(c);\r\n  }\r\n  template\
-    \ <class A, class B, class C, class D>\r\n  void write(const tuple<A, B, C, D>\
-    \ &val) {\r\n    auto &[a, b, c, d] = val;\r\n    write(a);\r\n    write(' ');\r\
-    \n    write(b);\r\n    write(' ');\r\n    write(c);\r\n    write(' ');\r\n   \
-    \ write(d);\r\n  }\r\n  template <class T, size_t S>\r\n  void write(const array<T,\
-    \ S> &val) {\r\n    auto n = val.size();\r\n    for (size_t i = 0; i < n; i++)\
-    \ {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\n    }\r\n  }\r\n  void\
-    \ write(i128 val) {\r\n    string s;\r\n    bool negative = 0;\r\n    if(val <\
-    \ 0){\r\n      negative = 1;\r\n      val = -val;\r\n    }\r\n    while (val)\
-    \ {\r\n      s += '0' + int(val % 10);\r\n      val /= 10;\r\n    }\r\n    if(negative)\
-    \ s += \"-\";\r\n    reverse(all(s));\r\n    if (len(s) == 0) s = \"0\";\r\n \
-    \   write(s);\r\n  }\r\n};\r\n\r\nScanner scanner = Scanner(stdin);\r\nPrinter\
-    \ printer = Printer(stdout);\r\n\r\nvoid flush() { printer.flush(); }\r\nvoid\
-    \ print() { printer.write('\\n'); }\r\ntemplate <class Head, class... Tail>\r\n\
-    void print(Head &&head, Tail &&... tail) {\r\n  printer.write(head);\r\n  if (sizeof...(Tail))\
-    \ printer.write(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\nvoid read()\
-    \ {}\r\ntemplate <class Head, class... Tail>\r\nvoid read(Head &head, Tail &...\
-    \ tail) {\r\n  scanner.read(head);\r\n  read(tail...);\r\n}\r\n\r\n#define INT(...)\
-    \   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\
-    \r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n\
-    \  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)      \\\r\
-    \n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n\
-    \  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name,\
-    \ size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define VV(type,\
-    \ name, h, w)                     \\\r\n  vector<vector<type>> name(h, vector<type>(w));\
-    \ \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
-    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
-    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
-    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
-    \ 1 \"alg/monoid_xor_basis.hpp\"\ntemplate <typename INT>\r\nstruct Monoid_XorBasis\
-    \ {\r\n  using value_type = vector<INT>;\r\n  using X = value_type;\r\n  static\
-    \ bool add_element(X& x, INT v) {\r\n    for (auto&& e: x) {\r\n      if (e ==\
-    \ 0 || v == 0) break;\r\n      chmin(v, v ^ e);\r\n    }\r\n    if (v) {\r\n \
-    \     x.eb(v);\r\n      return true;\r\n    }\r\n    return false;\r\n  }\r\n\r\
-    \n  static X op(const X& x, const X& y) {\r\n    X z = x;\r\n    for (auto v:\
-    \ y) { add_element(z, v); }\r\n    return z;\r\n  }\r\n\r\n  // x ^ v \u306E\u6700\
-    \u5927\u5024\r\n  static INT get_max(const X& x) {\r\n    INT res = 0;\r\n   \
-    \ for (auto&& a: x) chmax(res, res ^ a);\r\n    return res;\r\n  }\r\n  static\
-    \ constexpr X unit() { return X{}; };\r\n  static constexpr bool commute = true;\r\
-    \n};\r\n#line 5 \"test/yukicoder/184_xorbasis.test.cpp\"\n\nvoid solve() {\n \
-    \ LL(N);\n  VEC(ll, A, N);\n  using Mono = Monoid_XorBasis<ll>;\n  auto sp = Mono::unit();\n\
-    \  for (auto&& a: A) { Mono::add_element(sp, a); }\n  print(1LL << len(sp));\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
-    \ return 0;\n}\n"
+    \ B, C> &val) {\r\n    auto &[a, b, c] = val;\r\n    write(a), write(' '), write(b),\
+    \ write(' '), write(c);\r\n  }\r\n  template <class A, class B, class C, class\
+    \ D>\r\n  void write(const tuple<A, B, C, D> &val) {\r\n    auto &[a, b, c, d]\
+    \ = val;\r\n    write(a), write(' '), write(b), write(' '), write(c), write('\
+    \ '), write(d);\r\n  }\r\n  template <class A, class B, class C, class D, class\
+    \ E>\r\n  void write(const tuple<A, B, C, D, E> &val) {\r\n    auto &[a, b, c,\
+    \ d, e] = val;\r\n    write(a), write(' '), write(b), write(' '), write(c), write('\
+    \ '), write(d), write(' '), write(e);\r\n  }\r\n  template <class A, class B,\
+    \ class C, class D, class E, class F>\r\n  void write(const tuple<A, B, C, D,\
+    \ E, F> &val) {\r\n    auto &[a, b, c, d, e, f] = val;\r\n    write(a), write('\
+    \ '), write(b), write(' '), write(c), write(' '), write(d), write(' '), write(e),\
+    \ write(' '), write(f);\r\n  }\r\n  template <class T, size_t S>\r\n  void write(const\
+    \ array<T, S> &val) {\r\n    auto n = val.size();\r\n    for (size_t i = 0; i\
+    \ < n; i++) {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\n    }\r\n\
+    \  }\r\n  void write(i128 val) {\r\n    string s;\r\n    bool negative = 0;\r\n\
+    \    if(val < 0){\r\n      negative = 1;\r\n      val = -val;\r\n    }\r\n   \
+    \ while (val) {\r\n      s += '0' + int(val % 10);\r\n      val /= 10;\r\n   \
+    \ }\r\n    if(negative) s += \"-\";\r\n    reverse(all(s));\r\n    if (len(s)\
+    \ == 0) s = \"0\";\r\n    write(s);\r\n  }\r\n};\r\n\r\nScanner scanner = Scanner(stdin);\r\
+    \nPrinter printer = Printer(stdout);\r\n\r\nvoid flush() { printer.flush(); }\r\
+    \nvoid print() { printer.write('\\n'); }\r\ntemplate <class Head, class... Tail>\r\
+    \nvoid print(Head &&head, Tail &&... tail) {\r\n  printer.write(head);\r\n  if\
+    \ (sizeof...(Tail)) printer.write(' ');\r\n  print(forward<Tail>(tail)...);\r\n\
+    }\r\n\r\nvoid read() {}\r\ntemplate <class Head, class... Tail>\r\nvoid read(Head\
+    \ &head, Tail &... tail) {\r\n  scanner.read(head);\r\n  read(tail...);\r\n}\r\
+    \n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ CHAR(...)      \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n\
+    #define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\
+    \n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
+    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
+    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
+    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
+    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
+    \ { yes(!t); }\r\n#line 1 \"alg/monoid_xor_basis.hpp\"\ntemplate <typename INT>\r\
+    \nstruct Monoid_XorBasis {\r\n  using value_type = vector<INT>;\r\n  using X =\
+    \ value_type;\r\n  static bool add_element(X& x, INT v) {\r\n    for (auto&& e:\
+    \ x) {\r\n      if (e == 0 || v == 0) break;\r\n      chmin(v, v ^ e);\r\n   \
+    \ }\r\n    if (v) {\r\n      x.eb(v);\r\n      return true;\r\n    }\r\n    return\
+    \ false;\r\n  }\r\n\r\n  static X op(const X& x, const X& y) {\r\n    X z = x;\r\
+    \n    for (auto v: y) { add_element(z, v); }\r\n    return z;\r\n  }\r\n\r\n \
+    \ // x ^ v \u306E\u6700\u5927\u5024\r\n  static INT get_max(const X& x) {\r\n\
+    \    INT res = 0;\r\n    for (auto&& a: x) chmax(res, res ^ a);\r\n    return\
+    \ res;\r\n  }\r\n  static constexpr X unit() { return X{}; };\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 5 \"test/yukicoder/184_xorbasis.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  using Mono = Monoid_XorBasis<ll>;\n\
+    \  auto sp = Mono::unit();\n  for (auto&& a: A) { Mono::add_element(sp, a); }\n\
+    \  print(1LL << len(sp));\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
+    \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/184\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"alg/monoid_xor_basis.hpp\"\n\nvoid solve()\
     \ {\n  LL(N);\n  VEC(ll, A, N);\n  using Mono = Monoid_XorBasis<ll>;\n  auto sp\
@@ -209,8 +215,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/184_xorbasis.test.cpp
   requiredBy: []
-  timestamp: '2022-04-24 15:21:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-04-27 05:07:41+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/184_xorbasis.test.cpp
 layout: document

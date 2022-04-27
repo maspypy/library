@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
   - icon: ':heavy_check_mark:'
@@ -54,7 +54,7 @@ data:
   isVerificationFile: true
   path: test/aoj/2842_seg2d_dense.test.cpp
   requiredBy: []
-  timestamp: '2022-04-16 17:44:57+09:00'
+  timestamp: '2022-04-27 05:07:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/2842_seg2d_dense.test.cpp

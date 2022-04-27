@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/binarytrie.hpp
     title: ds/binarytrie.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/set_xor_min
@@ -149,66 +149,73 @@ data:
     \n    }\r\n  }\r\n  template <class T, class U>\r\n  void write(const pair<T,\
     \ U> &val) {\r\n    write(val.first);\r\n    write(' ');\r\n    write(val.second);\r\
     \n  }\r\n  template <class A, class B, class C>\r\n  void write(const tuple<A,\
-    \ B, C> &val) {\r\n    auto &[a, b, c] = val;\r\n    write(a);\r\n    write('\
-    \ ');\r\n    write(b);\r\n    write(' ');\r\n    write(c);\r\n  }\r\n  template\
-    \ <class A, class B, class C, class D>\r\n  void write(const tuple<A, B, C, D>\
-    \ &val) {\r\n    auto &[a, b, c, d] = val;\r\n    write(a);\r\n    write(' ');\r\
-    \n    write(b);\r\n    write(' ');\r\n    write(c);\r\n    write(' ');\r\n   \
-    \ write(d);\r\n  }\r\n  template <class T, size_t S>\r\n  void write(const array<T,\
-    \ S> &val) {\r\n    auto n = val.size();\r\n    for (size_t i = 0; i < n; i++)\
-    \ {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\n    }\r\n  }\r\n  void\
-    \ write(i128 val) {\r\n    string s;\r\n    bool negative = 0;\r\n    if(val <\
-    \ 0){\r\n      negative = 1;\r\n      val = -val;\r\n    }\r\n    while (val)\
-    \ {\r\n      s += '0' + int(val % 10);\r\n      val /= 10;\r\n    }\r\n    if(negative)\
-    \ s += \"-\";\r\n    reverse(all(s));\r\n    if (len(s) == 0) s = \"0\";\r\n \
-    \   write(s);\r\n  }\r\n};\r\n\r\nScanner scanner = Scanner(stdin);\r\nPrinter\
-    \ printer = Printer(stdout);\r\n\r\nvoid flush() { printer.flush(); }\r\nvoid\
-    \ print() { printer.write('\\n'); }\r\ntemplate <class Head, class... Tail>\r\n\
-    void print(Head &&head, Tail &&... tail) {\r\n  printer.write(head);\r\n  if (sizeof...(Tail))\
-    \ printer.write(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\nvoid read()\
-    \ {}\r\ntemplate <class Head, class... Tail>\r\nvoid read(Head &head, Tail &...\
-    \ tail) {\r\n  scanner.read(head);\r\n  read(tail...);\r\n}\r\n\r\n#define INT(...)\
-    \   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\
-    \r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n\
-    \  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)      \\\r\
-    \n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n\
-    \  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name,\
-    \ size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define VV(type,\
-    \ name, h, w)                     \\\r\n  vector<vector<type>> name(h, vector<type>(w));\
-    \ \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
-    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
-    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
-    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
-    \ 1 \"ds/binarytrie.hpp\"\ntemplate <int LOG = 30>\nstruct BinaryTrie {\n  struct\
-    \ Node {\n    ll cnt = 0;\n    int ch[2] = {-1, -1};\n  };\n  vector<Node> ns;\n\
-    \n  BinaryTrie() : ns(1) {}\n\n  ll size() const { return ns[0].cnt; }\n  ll operator[](int\
-    \ k) const { return find_kth(k, 0); }\n  ll find_kth(ll k, ll xor_add = 0) const\
-    \ {\n    assert(0 <= k && k < size());\n    ll idx = 0;\n    ll val = 0;\n   \
-    \ FOR_R(i, LOG) {\n      ll c = xor_add >> i & 1;\n      ll low_ch = ns[idx].ch[c];\n\
-    \      ll low_cnt = (low_ch >= 0 ? ns[low_ch].cnt : 0);\n      if (k < low_cnt)\
-    \ {\n        idx = low_ch;\n      } else {\n        k -= low_cnt;\n        idx\
-    \ = ns[idx].ch[c ^ 1];\n        val ^= 1LL << i;\n      }\n      assert(idx >=\
-    \ 0);\n    }\n    return val;\n  }\n\n  void add(ll val, ll cnt = 1) {\n    assert(0\
-    \ <= val && val < (1LL << LOG));\n    int idx = 0;\n    FOR_R(i, LOG) {\n    \
-    \  ns[idx].cnt += cnt;\n      assert(ns[idx].cnt >= 0);\n      int &nxt = ns[idx].ch[val\
-    \ >> i & 1];\n      if (nxt == -1) {\n        idx = nxt = ns.size();\n       \
-    \ ns.emplace_back();\n      } else {\n        idx = nxt;\n      }\n    }\n   \
-    \ ns[idx].cnt += cnt;\n    assert(ns[idx].cnt >= 0);\n    return;\n  }\n\n  ll\
-    \ lower_bound(ll val, ll xor_add = 0) {\n    assert(0 <= val);\n    if (val >=\
-    \ (1LL << LOG)) return size();\n    int idx = 0;\n    ll cnt = 0;\n    FOR_R(i,\
-    \ LOG) {\n      int b = val >> i & 1, c = xor_add >> i & 1;\n      int ch = ns[idx].ch[c];\n\
-    \      cnt += (b & (ch >= 0) ? ns[ch].cnt : 0);\n      idx = ns[idx].ch[b ^ c];\n\
-    \      if (idx < 0 or ns[idx].cnt == 0) break;\n    }\n    return cnt;\n  }\n\n\
-    \  ll count(ll val) const {\n    assert(0 <= val && val < (1LL << LOG));\n   \
-    \ int idx = 0;\n    FOR_R(i, LOG) {\n      idx = ns[idx].ch[val >> i & 1];\n \
-    \     if (idx < 0 or ns[idx].cnt == 0) return 0;\n    }\n    return ns[idx].cnt;\n\
-    \  }\n\n  ll count(ll L, ll R, ll xor_add = 0) {\n    assert(0 <= L && L <= R\
-    \ && R <= (1LL << LOG));\n    return lower_bound(R, xor_add) - lower_bound(L,\
-    \ xor_add);\n  }\n\n  ll min(ll xor_add = 0) { return find_kth(0, xor_add); }\n\
-    \  ll max(ll xor_add = 0) { return find_kth(size() - 1, xor_add); }\n\n  void\
-    \ debug() {\n    FOR(i, len(ns)) print(i, \"cnt\", ns[i].cnt, \"ch\", ns[i].ch[0],\
-    \ ns[i].ch[1]);\n  }\n};\n#line 5 \"test/library_checker/datastructure/set_xor_min.test.cpp\"\
-    \n\nvoid solve() {\n  LL(Q);\n  BinaryTrie<30> trie;\n  FOR_(Q) {\n    LL(t, x);\n\
+    \ B, C> &val) {\r\n    auto &[a, b, c] = val;\r\n    write(a), write(' '), write(b),\
+    \ write(' '), write(c);\r\n  }\r\n  template <class A, class B, class C, class\
+    \ D>\r\n  void write(const tuple<A, B, C, D> &val) {\r\n    auto &[a, b, c, d]\
+    \ = val;\r\n    write(a), write(' '), write(b), write(' '), write(c), write('\
+    \ '), write(d);\r\n  }\r\n  template <class A, class B, class C, class D, class\
+    \ E>\r\n  void write(const tuple<A, B, C, D, E> &val) {\r\n    auto &[a, b, c,\
+    \ d, e] = val;\r\n    write(a), write(' '), write(b), write(' '), write(c), write('\
+    \ '), write(d), write(' '), write(e);\r\n  }\r\n  template <class A, class B,\
+    \ class C, class D, class E, class F>\r\n  void write(const tuple<A, B, C, D,\
+    \ E, F> &val) {\r\n    auto &[a, b, c, d, e, f] = val;\r\n    write(a), write('\
+    \ '), write(b), write(' '), write(c), write(' '), write(d), write(' '), write(e),\
+    \ write(' '), write(f);\r\n  }\r\n  template <class T, size_t S>\r\n  void write(const\
+    \ array<T, S> &val) {\r\n    auto n = val.size();\r\n    for (size_t i = 0; i\
+    \ < n; i++) {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\n    }\r\n\
+    \  }\r\n  void write(i128 val) {\r\n    string s;\r\n    bool negative = 0;\r\n\
+    \    if(val < 0){\r\n      negative = 1;\r\n      val = -val;\r\n    }\r\n   \
+    \ while (val) {\r\n      s += '0' + int(val % 10);\r\n      val /= 10;\r\n   \
+    \ }\r\n    if(negative) s += \"-\";\r\n    reverse(all(s));\r\n    if (len(s)\
+    \ == 0) s = \"0\";\r\n    write(s);\r\n  }\r\n};\r\n\r\nScanner scanner = Scanner(stdin);\r\
+    \nPrinter printer = Printer(stdout);\r\n\r\nvoid flush() { printer.flush(); }\r\
+    \nvoid print() { printer.write('\\n'); }\r\ntemplate <class Head, class... Tail>\r\
+    \nvoid print(Head &&head, Tail &&... tail) {\r\n  printer.write(head);\r\n  if\
+    \ (sizeof...(Tail)) printer.write(' ');\r\n  print(forward<Tail>(tail)...);\r\n\
+    }\r\n\r\nvoid read() {}\r\ntemplate <class Head, class... Tail>\r\nvoid read(Head\
+    \ &head, Tail &... tail) {\r\n  scanner.read(head);\r\n  read(tail...);\r\n}\r\
+    \n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ CHAR(...)      \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n\
+    #define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\
+    \n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
+    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
+    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
+    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
+    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
+    \ { yes(!t); }\r\n#line 1 \"ds/binarytrie.hpp\"\ntemplate <int LOG = 30>\nstruct\
+    \ BinaryTrie {\n  struct Node {\n    ll cnt = 0;\n    int ch[2] = {-1, -1};\n\
+    \  };\n  vector<Node> ns;\n\n  BinaryTrie() : ns(1) {}\n\n  ll size() const {\
+    \ return ns[0].cnt; }\n  ll operator[](int k) const { return find_kth(k, 0); }\n\
+    \  ll find_kth(ll k, ll xor_add = 0) const {\n    assert(0 <= k && k < size());\n\
+    \    ll idx = 0;\n    ll val = 0;\n    FOR_R(i, LOG) {\n      ll c = xor_add >>\
+    \ i & 1;\n      ll low_ch = ns[idx].ch[c];\n      ll low_cnt = (low_ch >= 0 ?\
+    \ ns[low_ch].cnt : 0);\n      if (k < low_cnt) {\n        idx = low_ch;\n    \
+    \  } else {\n        k -= low_cnt;\n        idx = ns[idx].ch[c ^ 1];\n       \
+    \ val ^= 1LL << i;\n      }\n      assert(idx >= 0);\n    }\n    return val;\n\
+    \  }\n\n  void add(ll val, ll cnt = 1) {\n    assert(0 <= val && val < (1LL <<\
+    \ LOG));\n    int idx = 0;\n    FOR_R(i, LOG) {\n      ns[idx].cnt += cnt;\n \
+    \     assert(ns[idx].cnt >= 0);\n      int &nxt = ns[idx].ch[val >> i & 1];\n\
+    \      if (nxt == -1) {\n        idx = nxt = ns.size();\n        ns.emplace_back();\n\
+    \      } else {\n        idx = nxt;\n      }\n    }\n    ns[idx].cnt += cnt;\n\
+    \    assert(ns[idx].cnt >= 0);\n    return;\n  }\n\n  ll lower_bound(ll val, ll\
+    \ xor_add = 0) {\n    assert(0 <= val);\n    if (val >= (1LL << LOG)) return size();\n\
+    \    int idx = 0;\n    ll cnt = 0;\n    FOR_R(i, LOG) {\n      int b = val >>\
+    \ i & 1, c = xor_add >> i & 1;\n      int ch = ns[idx].ch[c];\n      cnt += (b\
+    \ & (ch >= 0) ? ns[ch].cnt : 0);\n      idx = ns[idx].ch[b ^ c];\n      if (idx\
+    \ < 0 or ns[idx].cnt == 0) break;\n    }\n    return cnt;\n  }\n\n  ll count(ll\
+    \ val) const {\n    assert(0 <= val && val < (1LL << LOG));\n    int idx = 0;\n\
+    \    FOR_R(i, LOG) {\n      idx = ns[idx].ch[val >> i & 1];\n      if (idx < 0\
+    \ or ns[idx].cnt == 0) return 0;\n    }\n    return ns[idx].cnt;\n  }\n\n  ll\
+    \ count(ll L, ll R, ll xor_add = 0) {\n    assert(0 <= L && L <= R && R <= (1LL\
+    \ << LOG));\n    return lower_bound(R, xor_add) - lower_bound(L, xor_add);\n \
+    \ }\n\n  ll min(ll xor_add = 0) { return find_kth(0, xor_add); }\n  ll max(ll\
+    \ xor_add = 0) { return find_kth(size() - 1, xor_add); }\n\n  void debug() {\n\
+    \    FOR(i, len(ns)) print(i, \"cnt\", ns[i].cnt, \"ch\", ns[i].ch[0], ns[i].ch[1]);\n\
+    \  }\n};\n#line 5 \"test/library_checker/datastructure/set_xor_min.test.cpp\"\n\
+    \nvoid solve() {\n  LL(Q);\n  BinaryTrie<30> trie;\n  FOR_(Q) {\n    LL(t, x);\n\
     \    if (t == 0 && trie.count(x) == 0) trie.add(x, 1);\n    if (t == 1 && trie.count(x)\
     \ == 1) trie.add(x, -1);\n    if (t == 2) { print(trie.min(x)); }\n  }\n}\n\n\
     signed main() {\n  solve();\n\n  return 0;\n}\n"
@@ -225,8 +232,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/set_xor_min.test.cpp
   requiredBy: []
-  timestamp: '2022-04-16 06:03:26+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-04-27 05:07:41+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/set_xor_min.test.cpp
 layout: document

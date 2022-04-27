@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
   - icon: ':question:'
@@ -10,14 +10,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: pds/segtree.hpp
     title: pds/segtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
@@ -152,63 +152,70 @@ data:
     \n    }\r\n  }\r\n  template <class T, class U>\r\n  void write(const pair<T,\
     \ U> &val) {\r\n    write(val.first);\r\n    write(' ');\r\n    write(val.second);\r\
     \n  }\r\n  template <class A, class B, class C>\r\n  void write(const tuple<A,\
-    \ B, C> &val) {\r\n    auto &[a, b, c] = val;\r\n    write(a);\r\n    write('\
-    \ ');\r\n    write(b);\r\n    write(' ');\r\n    write(c);\r\n  }\r\n  template\
-    \ <class A, class B, class C, class D>\r\n  void write(const tuple<A, B, C, D>\
-    \ &val) {\r\n    auto &[a, b, c, d] = val;\r\n    write(a);\r\n    write(' ');\r\
-    \n    write(b);\r\n    write(' ');\r\n    write(c);\r\n    write(' ');\r\n   \
-    \ write(d);\r\n  }\r\n  template <class T, size_t S>\r\n  void write(const array<T,\
-    \ S> &val) {\r\n    auto n = val.size();\r\n    for (size_t i = 0; i < n; i++)\
-    \ {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\n    }\r\n  }\r\n  void\
-    \ write(i128 val) {\r\n    string s;\r\n    bool negative = 0;\r\n    if(val <\
-    \ 0){\r\n      negative = 1;\r\n      val = -val;\r\n    }\r\n    while (val)\
-    \ {\r\n      s += '0' + int(val % 10);\r\n      val /= 10;\r\n    }\r\n    if(negative)\
-    \ s += \"-\";\r\n    reverse(all(s));\r\n    if (len(s) == 0) s = \"0\";\r\n \
-    \   write(s);\r\n  }\r\n};\r\n\r\nScanner scanner = Scanner(stdin);\r\nPrinter\
-    \ printer = Printer(stdout);\r\n\r\nvoid flush() { printer.flush(); }\r\nvoid\
-    \ print() { printer.write('\\n'); }\r\ntemplate <class Head, class... Tail>\r\n\
-    void print(Head &&head, Tail &&... tail) {\r\n  printer.write(head);\r\n  if (sizeof...(Tail))\
-    \ printer.write(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\nvoid read()\
-    \ {}\r\ntemplate <class Head, class... Tail>\r\nvoid read(Head &head, Tail &...\
-    \ tail) {\r\n  scanner.read(head);\r\n  read(tail...);\r\n}\r\n\r\n#define INT(...)\
-    \   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\
-    \r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n\
-    \  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)      \\\r\
-    \n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n\
-    \  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name,\
-    \ size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define VV(type,\
-    \ name, h, w)                     \\\r\n  vector<vector<type>> name(h, vector<type>(w));\
-    \ \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
-    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
-    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
-    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
-    \ 2 \"pds/segtree.hpp\"\ntemplate <class Monoid, int NODES = 20000000>\nstruct\
-    \ PersistentSegTree {\n  using X = typename Monoid::value_type;\n  using value_type\
-    \ = X;\n\n  struct Node {\n    X x;\n    Node *lch, *rch;\n    Node() {}\n   \
-    \ Node(const X &x) : x(x), lch(nullptr), rch(nullptr) {}\n  };\n\n  Node *pool;\n\
-    \  int pid;\n  ll n;\n  Node *nil;\n  vc<Node *> roots;\n\n  PersistentSegTree(int\
-    \ n) : pid(0), n(n), nil(nullptr) {\n    pool = new Node[NODES];\n    nil = new_node(Monoid::unit());\n\
-    \    nil->lch = nil->rch = nil;\n    roots.reserve(1 << 18);\n    roots.push_back(nil);\n\
-    \  }\n\nprivate:\n  Node *new_node(const X &x) {\n    pool[pid].x = x;\n    pool[pid].lch\
-    \ = pool[pid].rch = nil;\n    return &(pool[pid++]);\n  }\n\n  Node *merge(Node\
-    \ *l, Node *r) {\n    pool[pid].x = Monoid::op(l->x, r->x);\n    pool[pid].lch\
-    \ = l;\n    pool[pid].rch = r;\n    return &(pool[pid++]);\n  }\n\n  Node *set(ll\
-    \ idx, const X &x, Node *n, ll l, ll r) {\n    if (l + 1 == r) return new_node(x);\n\
-    \    ll m = (l + r) / 2;\n    if (idx < m) return merge(set(idx, x, n->lch, l,\
-    \ m), n->rch);\n    return merge(n->lch, set(idx, x, n->rch, m, r));\n  }\n\n\
-    \  X prod(ll a, ll b, Node *n, ll l, ll r) {\n    if (n == nil) return Monoid::unit();\n\
-    \    if (r <= a || b <= l) return Monoid::unit();\n    if (a <= l && r <= b) return\
-    \ n->x;\n    ll m = (l + r) / 2;\n    return Monoid::op(prod(a, b, n->lch, l,\
-    \ m), prod(a, b, n->rch, m, r));\n  }\n\npublic:\n  int time() { return len(roots)\
-    \ - 1; }\n\n  int set(int t, ll idx, const X &x) {\n    Node *root = set(idx,\
-    \ x, roots[t], 0, n);\n    roots.eb(root);\n    return time();\n  }\n\n  X prod(int\
-    \ time, ll l, ll r) { return prod(l, r, roots[time], 0, n); }\n};\n#line 2 \"\
-    alg/group_add.hpp\"\ntemplate <class X>\r\nstruct Group_Add {\r\n  using value_type\
-    \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return x\
-    \ + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\
-    \n  static constexpr X power(const X &x, ll n) noexcept { return n * x; }\r\n\
-    \  static constexpr X unit() { return X(0); }\r\n  static constexpr bool commute\
-    \ = true;\r\n};\r\n#line 6 \"test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp\"\
+    \ B, C> &val) {\r\n    auto &[a, b, c] = val;\r\n    write(a), write(' '), write(b),\
+    \ write(' '), write(c);\r\n  }\r\n  template <class A, class B, class C, class\
+    \ D>\r\n  void write(const tuple<A, B, C, D> &val) {\r\n    auto &[a, b, c, d]\
+    \ = val;\r\n    write(a), write(' '), write(b), write(' '), write(c), write('\
+    \ '), write(d);\r\n  }\r\n  template <class A, class B, class C, class D, class\
+    \ E>\r\n  void write(const tuple<A, B, C, D, E> &val) {\r\n    auto &[a, b, c,\
+    \ d, e] = val;\r\n    write(a), write(' '), write(b), write(' '), write(c), write('\
+    \ '), write(d), write(' '), write(e);\r\n  }\r\n  template <class A, class B,\
+    \ class C, class D, class E, class F>\r\n  void write(const tuple<A, B, C, D,\
+    \ E, F> &val) {\r\n    auto &[a, b, c, d, e, f] = val;\r\n    write(a), write('\
+    \ '), write(b), write(' '), write(c), write(' '), write(d), write(' '), write(e),\
+    \ write(' '), write(f);\r\n  }\r\n  template <class T, size_t S>\r\n  void write(const\
+    \ array<T, S> &val) {\r\n    auto n = val.size();\r\n    for (size_t i = 0; i\
+    \ < n; i++) {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\n    }\r\n\
+    \  }\r\n  void write(i128 val) {\r\n    string s;\r\n    bool negative = 0;\r\n\
+    \    if(val < 0){\r\n      negative = 1;\r\n      val = -val;\r\n    }\r\n   \
+    \ while (val) {\r\n      s += '0' + int(val % 10);\r\n      val /= 10;\r\n   \
+    \ }\r\n    if(negative) s += \"-\";\r\n    reverse(all(s));\r\n    if (len(s)\
+    \ == 0) s = \"0\";\r\n    write(s);\r\n  }\r\n};\r\n\r\nScanner scanner = Scanner(stdin);\r\
+    \nPrinter printer = Printer(stdout);\r\n\r\nvoid flush() { printer.flush(); }\r\
+    \nvoid print() { printer.write('\\n'); }\r\ntemplate <class Head, class... Tail>\r\
+    \nvoid print(Head &&head, Tail &&... tail) {\r\n  printer.write(head);\r\n  if\
+    \ (sizeof...(Tail)) printer.write(' ');\r\n  print(forward<Tail>(tail)...);\r\n\
+    }\r\n\r\nvoid read() {}\r\ntemplate <class Head, class... Tail>\r\nvoid read(Head\
+    \ &head, Tail &... tail) {\r\n  scanner.read(head);\r\n  read(tail...);\r\n}\r\
+    \n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ CHAR(...)      \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n\
+    #define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\
+    \n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
+    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
+    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
+    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
+    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
+    \ { yes(!t); }\r\n#line 2 \"pds/segtree.hpp\"\ntemplate <class Monoid, int NODES\
+    \ = 20000000>\nstruct PersistentSegTree {\n  using X = typename Monoid::value_type;\n\
+    \  using value_type = X;\n\n  struct Node {\n    X x;\n    Node *lch, *rch;\n\
+    \    Node() {}\n    Node(const X &x) : x(x), lch(nullptr), rch(nullptr) {}\n \
+    \ };\n\n  Node *pool;\n  int pid;\n  ll n;\n  Node *nil;\n  vc<Node *> roots;\n\
+    \n  PersistentSegTree(int n) : pid(0), n(n), nil(nullptr) {\n    pool = new Node[NODES];\n\
+    \    nil = new_node(Monoid::unit());\n    nil->lch = nil->rch = nil;\n    roots.reserve(1\
+    \ << 18);\n    roots.push_back(nil);\n  }\n\nprivate:\n  Node *new_node(const\
+    \ X &x) {\n    pool[pid].x = x;\n    pool[pid].lch = pool[pid].rch = nil;\n  \
+    \  return &(pool[pid++]);\n  }\n\n  Node *merge(Node *l, Node *r) {\n    pool[pid].x\
+    \ = Monoid::op(l->x, r->x);\n    pool[pid].lch = l;\n    pool[pid].rch = r;\n\
+    \    return &(pool[pid++]);\n  }\n\n  Node *set(ll idx, const X &x, Node *n, ll\
+    \ l, ll r) {\n    if (l + 1 == r) return new_node(x);\n    ll m = (l + r) / 2;\n\
+    \    if (idx < m) return merge(set(idx, x, n->lch, l, m), n->rch);\n    return\
+    \ merge(n->lch, set(idx, x, n->rch, m, r));\n  }\n\n  X prod(ll a, ll b, Node\
+    \ *n, ll l, ll r) {\n    if (n == nil) return Monoid::unit();\n    if (r <= a\
+    \ || b <= l) return Monoid::unit();\n    if (a <= l && r <= b) return n->x;\n\
+    \    ll m = (l + r) / 2;\n    return Monoid::op(prod(a, b, n->lch, l, m), prod(a,\
+    \ b, n->rch, m, r));\n  }\n\npublic:\n  int time() { return len(roots) - 1; }\n\
+    \n  int set(int t, ll idx, const X &x) {\n    Node *root = set(idx, x, roots[t],\
+    \ 0, n);\n    roots.eb(root);\n    return time();\n  }\n\n  X prod(int time, ll\
+    \ l, ll r) { return prod(l, r, roots[time], 0, n); }\n};\n#line 2 \"alg/group_add.hpp\"\
+    \ntemplate <class X>\r\nstruct Group_Add {\r\n  using value_type = X;\r\n  static\
+    \ constexpr X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static\
+    \ constexpr X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr\
+    \ X power(const X &x, ll n) noexcept { return n * x; }\r\n  static constexpr X\
+    \ unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n\
+    #line 6 \"test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  PersistentSegTree<Group_Add<int>> seg(N);\n\
     \  VEC(ll, A, N);\n  auto I = argsort(A);\n  vi times;\n  times.eb(seg.time());\n\
     \  FOR(k, N) { times.eb(seg.set(times.back(), I[k], 1)); }\n  FOR_(Q) {\n    LL(L,\
@@ -231,8 +238,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
   requiredBy: []
-  timestamp: '2022-04-16 06:03:26+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-04-27 05:07:41+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
 layout: document

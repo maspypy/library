@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/cht.hpp
     title: ds/cht.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/line_add_get_min
@@ -149,73 +149,79 @@ data:
     \n    }\r\n  }\r\n  template <class T, class U>\r\n  void write(const pair<T,\
     \ U> &val) {\r\n    write(val.first);\r\n    write(' ');\r\n    write(val.second);\r\
     \n  }\r\n  template <class A, class B, class C>\r\n  void write(const tuple<A,\
-    \ B, C> &val) {\r\n    auto &[a, b, c] = val;\r\n    write(a);\r\n    write('\
-    \ ');\r\n    write(b);\r\n    write(' ');\r\n    write(c);\r\n  }\r\n  template\
-    \ <class A, class B, class C, class D>\r\n  void write(const tuple<A, B, C, D>\
-    \ &val) {\r\n    auto &[a, b, c, d] = val;\r\n    write(a);\r\n    write(' ');\r\
-    \n    write(b);\r\n    write(' ');\r\n    write(c);\r\n    write(' ');\r\n   \
-    \ write(d);\r\n  }\r\n  template <class T, size_t S>\r\n  void write(const array<T,\
-    \ S> &val) {\r\n    auto n = val.size();\r\n    for (size_t i = 0; i < n; i++)\
-    \ {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\n    }\r\n  }\r\n  void\
-    \ write(i128 val) {\r\n    string s;\r\n    bool negative = 0;\r\n    if(val <\
-    \ 0){\r\n      negative = 1;\r\n      val = -val;\r\n    }\r\n    while (val)\
-    \ {\r\n      s += '0' + int(val % 10);\r\n      val /= 10;\r\n    }\r\n    if(negative)\
-    \ s += \"-\";\r\n    reverse(all(s));\r\n    if (len(s) == 0) s = \"0\";\r\n \
-    \   write(s);\r\n  }\r\n};\r\n\r\nScanner scanner = Scanner(stdin);\r\nPrinter\
-    \ printer = Printer(stdout);\r\n\r\nvoid flush() { printer.flush(); }\r\nvoid\
-    \ print() { printer.write('\\n'); }\r\ntemplate <class Head, class... Tail>\r\n\
-    void print(Head &&head, Tail &&... tail) {\r\n  printer.write(head);\r\n  if (sizeof...(Tail))\
-    \ printer.write(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\nvoid read()\
-    \ {}\r\ntemplate <class Head, class... Tail>\r\nvoid read(Head &head, Tail &...\
-    \ tail) {\r\n  scanner.read(head);\r\n  read(tail...);\r\n}\r\n\r\n#define INT(...)\
-    \   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\
-    \r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n\
-    \  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)      \\\r\
-    \n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n\
-    \  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name,\
-    \ size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define VV(type,\
-    \ name, h, w)                     \\\r\n  vector<vector<type>> name(h, vector<type>(w));\
-    \ \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
-    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
-    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
-    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
-    \ 1 \"ds/cht.hpp\"\n\r\ntemplate <typename T>\r\nstruct Line {\r\n  mutable T\
-    \ k, m, p;\r\n  bool operator<(const Line& o) const { return k < o.k; }\r\n  bool\
-    \ operator<(T x) const { return p < x; }\r\n};\r\n\r\ntemplate <typename T>\r\n\
-    T lc_inf() {\r\n  return numeric_limits<T>::max();\r\n}\r\ntemplate <>\r\nlong\
-    \ double lc_inf<long double>() {\r\n  return 1 / .0;\r\n}\r\n\r\ntemplate <typename\
-    \ T>\r\nT lc_div(T a, T b) {\r\n  return a / b - ((a ^ b) < 0 and a % b);\r\n\
-    }\r\ntemplate <>\r\nlong double lc_div(long double a, long double b) {\r\n  return\
-    \ a / b;\r\n};\r\ntemplate <>\r\ndouble lc_div(double a, double b) {\r\n  return\
-    \ a / b;\r\n};\r\n\r\ntemplate <typename T, bool MINIMIZE = true>\r\nstruct LineContainer\
-    \ : multiset<Line<T>, less<>> {\r\n  using super = multiset<Line<T>, less<>>;\r\
-    \n  using super::begin, super::end, super::insert, super::erase;\r\n  using super::empty,\
-    \ super::lower_bound;\r\n  const T inf = lc_inf<T>();\r\n  bool insect(typename\
-    \ super::iterator x, typename super::iterator y) {\r\n    if (y == end()) return\
-    \ x->p = inf, false;\r\n    if (x->k == y->k)\r\n      x->p = (x->m > y->m ? inf\
-    \ : -inf);\r\n    else\r\n      x->p = lc_div(y->m - x->m, x->k - y->k);\r\n \
-    \   return x->p >= y->p;\r\n  }\r\n  void add(T k, T m) {\r\n    if (MINIMIZE)\
-    \ { k = -k, m = -m; }\r\n    auto z = insert({k, m, 0}), y = z++, x = y;\r\n \
-    \   while (insect(y, z)) z = erase(z);\r\n    if (x != begin() and insect(--x,\
-    \ y)) insect(x, y = erase(y));\r\n    while ((y = x) != begin() and (--x)->p >=\
-    \ y->p) insect(x, erase(y));\r\n  }\r\n  T query(T x) {\r\n    assert(!empty());\r\
-    \n    auto l = *lower_bound(x);\r\n    T v = (l.k * x + l.m);\r\n    return (MINIMIZE\
-    \ ? -v : v);\r\n  }\r\n};\r\n\r\ntemplate <typename T>\r\nusing CHT_min = LineContainer<T,\
-    \ true>;\r\ntemplate <typename T>\r\nusing CHT_max = LineContainer<T, false>;\r\
-    \n\r\n/*\r\nlong long / double \u3067\u52D5\u304F\u3068\u601D\u3046\u3002\u30AF\
-    \u30A8\u30EA\u3042\u305F\u308A O(log N)\r\n\u30FBadd(a, b)\uFF1Aax + by \u306E\
-    \u8FFD\u52A0\r\n\u30FBget_max(x,y)\uFF1Amax_{a,b} (ax + by)\r\n\u30FBget_min(x,y)\uFF1A\
-    max_{a,b} (ax + by)\r\n*/\r\ntemplate <typename T>\r\nstruct CHT_xy {\r\n  using\
-    \ ld = long double;\r\n  CHT_min<ld> cht_min;\r\n  CHT_max<ld> cht_max;\r\n  T\
-    \ amax = -1e18, amin = 1e18, bmax = -1e18, bmin = 1e18;\r\n  void add(T a, T b)\
-    \ {\r\n    cht_min.add(b, a);\r\n    cht_max.add(b, a);\r\n    chmax(amax, a),\
-    \ chmin(amin, a), chmax(bmax, b), chmin(bmin, b);\r\n  }\r\n\r\n  T get_max(T\
-    \ x, T y) {\r\n    if (x == 0) { return max(bmax * y, bmin * y); }\r\n    ld z\
-    \ = ld(y) / x;\r\n    if (x > 0) {\r\n      auto l = cht_max.lower_bound(z);\r\
-    \n      ll a = l->m, b = l->k;\r\n      return a * x + b * y;\r\n    }\r\n   \
-    \ auto l = cht_min.lower_bound(z);\r\n    ll a = -(l->m), b = -(l->k);\r\n   \
-    \ return a * x + b * y;\r\n  }\r\n\r\n  T get_min(T x, T y) { return -get_max(-x,\
-    \ -y); }\r\n};\r\n#line 5 \"test/library_checker/datastructure/line_add_get_min.test.cpp\"\
+    \ B, C> &val) {\r\n    auto &[a, b, c] = val;\r\n    write(a), write(' '), write(b),\
+    \ write(' '), write(c);\r\n  }\r\n  template <class A, class B, class C, class\
+    \ D>\r\n  void write(const tuple<A, B, C, D> &val) {\r\n    auto &[a, b, c, d]\
+    \ = val;\r\n    write(a), write(' '), write(b), write(' '), write(c), write('\
+    \ '), write(d);\r\n  }\r\n  template <class A, class B, class C, class D, class\
+    \ E>\r\n  void write(const tuple<A, B, C, D, E> &val) {\r\n    auto &[a, b, c,\
+    \ d, e] = val;\r\n    write(a), write(' '), write(b), write(' '), write(c), write('\
+    \ '), write(d), write(' '), write(e);\r\n  }\r\n  template <class A, class B,\
+    \ class C, class D, class E, class F>\r\n  void write(const tuple<A, B, C, D,\
+    \ E, F> &val) {\r\n    auto &[a, b, c, d, e, f] = val;\r\n    write(a), write('\
+    \ '), write(b), write(' '), write(c), write(' '), write(d), write(' '), write(e),\
+    \ write(' '), write(f);\r\n  }\r\n  template <class T, size_t S>\r\n  void write(const\
+    \ array<T, S> &val) {\r\n    auto n = val.size();\r\n    for (size_t i = 0; i\
+    \ < n; i++) {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\n    }\r\n\
+    \  }\r\n  void write(i128 val) {\r\n    string s;\r\n    bool negative = 0;\r\n\
+    \    if(val < 0){\r\n      negative = 1;\r\n      val = -val;\r\n    }\r\n   \
+    \ while (val) {\r\n      s += '0' + int(val % 10);\r\n      val /= 10;\r\n   \
+    \ }\r\n    if(negative) s += \"-\";\r\n    reverse(all(s));\r\n    if (len(s)\
+    \ == 0) s = \"0\";\r\n    write(s);\r\n  }\r\n};\r\n\r\nScanner scanner = Scanner(stdin);\r\
+    \nPrinter printer = Printer(stdout);\r\n\r\nvoid flush() { printer.flush(); }\r\
+    \nvoid print() { printer.write('\\n'); }\r\ntemplate <class Head, class... Tail>\r\
+    \nvoid print(Head &&head, Tail &&... tail) {\r\n  printer.write(head);\r\n  if\
+    \ (sizeof...(Tail)) printer.write(' ');\r\n  print(forward<Tail>(tail)...);\r\n\
+    }\r\n\r\nvoid read() {}\r\ntemplate <class Head, class... Tail>\r\nvoid read(Head\
+    \ &head, Tail &... tail) {\r\n  scanner.read(head);\r\n  read(tail...);\r\n}\r\
+    \n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ CHAR(...)      \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n\
+    #define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\
+    \n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
+    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
+    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
+    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
+    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
+    \ { yes(!t); }\r\n#line 1 \"ds/cht.hpp\"\n\r\ntemplate <typename T>\r\nstruct\
+    \ Line {\r\n  mutable T k, m, p;\r\n  bool operator<(const Line& o) const { return\
+    \ k < o.k; }\r\n  bool operator<(T x) const { return p < x; }\r\n};\r\n\r\ntemplate\
+    \ <typename T>\r\nT lc_inf() {\r\n  return numeric_limits<T>::max();\r\n}\r\n\
+    template <>\r\nlong double lc_inf<long double>() {\r\n  return 1 / .0;\r\n}\r\n\
+    \r\ntemplate <typename T>\r\nT lc_div(T a, T b) {\r\n  return a / b - ((a ^ b)\
+    \ < 0 and a % b);\r\n}\r\ntemplate <>\r\nlong double lc_div(long double a, long\
+    \ double b) {\r\n  return a / b;\r\n};\r\ntemplate <>\r\ndouble lc_div(double\
+    \ a, double b) {\r\n  return a / b;\r\n};\r\n\r\ntemplate <typename T, bool MINIMIZE\
+    \ = true>\r\nstruct LineContainer : multiset<Line<T>, less<>> {\r\n  using super\
+    \ = multiset<Line<T>, less<>>;\r\n  using super::begin, super::end, super::insert,\
+    \ super::erase;\r\n  using super::empty, super::lower_bound;\r\n  const T inf\
+    \ = lc_inf<T>();\r\n  bool insect(typename super::iterator x, typename super::iterator\
+    \ y) {\r\n    if (y == end()) return x->p = inf, false;\r\n    if (x->k == y->k)\r\
+    \n      x->p = (x->m > y->m ? inf : -inf);\r\n    else\r\n      x->p = lc_div(y->m\
+    \ - x->m, x->k - y->k);\r\n    return x->p >= y->p;\r\n  }\r\n  void add(T k,\
+    \ T m) {\r\n    if (MINIMIZE) { k = -k, m = -m; }\r\n    auto z = insert({k, m,\
+    \ 0}), y = z++, x = y;\r\n    while (insect(y, z)) z = erase(z);\r\n    if (x\
+    \ != begin() and insect(--x, y)) insect(x, y = erase(y));\r\n    while ((y = x)\
+    \ != begin() and (--x)->p >= y->p) insect(x, erase(y));\r\n  }\r\n  T query(T\
+    \ x) {\r\n    assert(!empty());\r\n    auto l = *lower_bound(x);\r\n    T v =\
+    \ (l.k * x + l.m);\r\n    return (MINIMIZE ? -v : v);\r\n  }\r\n};\r\n\r\ntemplate\
+    \ <typename T>\r\nusing CHT_min = LineContainer<T, true>;\r\ntemplate <typename\
+    \ T>\r\nusing CHT_max = LineContainer<T, false>;\r\n\r\n/*\r\nlong long / double\
+    \ \u3067\u52D5\u304F\u3068\u601D\u3046\u3002\u30AF\u30A8\u30EA\u3042\u305F\u308A\
+    \ O(log N)\r\n\u30FBadd(a, b)\uFF1Aax + by \u306E\u8FFD\u52A0\r\n\u30FBget_max(x,y)\uFF1A\
+    max_{a,b} (ax + by)\r\n\u30FBget_min(x,y)\uFF1Amax_{a,b} (ax + by)\r\n*/\r\ntemplate\
+    \ <typename T>\r\nstruct CHT_xy {\r\n  using ld = long double;\r\n  CHT_min<ld>\
+    \ cht_min;\r\n  CHT_max<ld> cht_max;\r\n  T amax = -1e18, amin = 1e18, bmax =\
+    \ -1e18, bmin = 1e18;\r\n  void add(T a, T b) {\r\n    cht_min.add(b, a);\r\n\
+    \    cht_max.add(b, a);\r\n    chmax(amax, a), chmin(amin, a), chmax(bmax, b),\
+    \ chmin(bmin, b);\r\n  }\r\n\r\n  T get_max(T x, T y) {\r\n    if (x == 0) { return\
+    \ max(bmax * y, bmin * y); }\r\n    ld z = ld(y) / x;\r\n    if (x > 0) {\r\n\
+    \      auto l = cht_max.lower_bound(z);\r\n      ll a = l->m, b = l->k;\r\n  \
+    \    return a * x + b * y;\r\n    }\r\n    auto l = cht_min.lower_bound(z);\r\n\
+    \    ll a = -(l->m), b = -(l->k);\r\n    return a * x + b * y;\r\n  }\r\n\r\n\
+    \  T get_min(T x, T y) { return -get_max(-x, -y); }\r\n};\r\n#line 5 \"test/library_checker/datastructure/line_add_get_min.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  CHT_min<ll> cht_min;\n  CHT_max<ll> cht_max;\n\
     \  FOR_(N) {\n    LL(a, b);\n    cht_min.add(a, b);\n    cht_max.add(-a, -b);\n\
     \  }\n  FOR_(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(a, b);\n      cht_min.add(a,\
@@ -237,8 +243,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/line_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2022-04-16 06:03:26+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-04-27 05:07:41+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/line_add_get_min.test.cpp
 layout: document

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/predecessor_problem
@@ -149,70 +149,76 @@ data:
     \n    }\r\n  }\r\n  template <class T, class U>\r\n  void write(const pair<T,\
     \ U> &val) {\r\n    write(val.first);\r\n    write(' ');\r\n    write(val.second);\r\
     \n  }\r\n  template <class A, class B, class C>\r\n  void write(const tuple<A,\
-    \ B, C> &val) {\r\n    auto &[a, b, c] = val;\r\n    write(a);\r\n    write('\
-    \ ');\r\n    write(b);\r\n    write(' ');\r\n    write(c);\r\n  }\r\n  template\
-    \ <class A, class B, class C, class D>\r\n  void write(const tuple<A, B, C, D>\
-    \ &val) {\r\n    auto &[a, b, c, d] = val;\r\n    write(a);\r\n    write(' ');\r\
-    \n    write(b);\r\n    write(' ');\r\n    write(c);\r\n    write(' ');\r\n   \
-    \ write(d);\r\n  }\r\n  template <class T, size_t S>\r\n  void write(const array<T,\
-    \ S> &val) {\r\n    auto n = val.size();\r\n    for (size_t i = 0; i < n; i++)\
-    \ {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\n    }\r\n  }\r\n  void\
-    \ write(i128 val) {\r\n    string s;\r\n    bool negative = 0;\r\n    if(val <\
-    \ 0){\r\n      negative = 1;\r\n      val = -val;\r\n    }\r\n    while (val)\
-    \ {\r\n      s += '0' + int(val % 10);\r\n      val /= 10;\r\n    }\r\n    if(negative)\
-    \ s += \"-\";\r\n    reverse(all(s));\r\n    if (len(s) == 0) s = \"0\";\r\n \
-    \   write(s);\r\n  }\r\n};\r\n\r\nScanner scanner = Scanner(stdin);\r\nPrinter\
-    \ printer = Printer(stdout);\r\n\r\nvoid flush() { printer.flush(); }\r\nvoid\
-    \ print() { printer.write('\\n'); }\r\ntemplate <class Head, class... Tail>\r\n\
-    void print(Head &&head, Tail &&... tail) {\r\n  printer.write(head);\r\n  if (sizeof...(Tail))\
-    \ printer.write(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\nvoid read()\
-    \ {}\r\ntemplate <class Head, class... Tail>\r\nvoid read(Head &head, Tail &...\
-    \ tail) {\r\n  scanner.read(head);\r\n  read(tail...);\r\n}\r\n\r\n#define INT(...)\
-    \   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\
-    \r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n\
-    \  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)      \\\r\
-    \n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n\
-    \  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name,\
-    \ size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define VV(type,\
-    \ name, h, w)                     \\\r\n  vector<vector<type>> name(h, vector<type>(w));\
-    \ \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
-    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
-    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
-    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
-    \ 1 \"ds/fastset.hpp\"\n/* 64\u5206\u6728\u3002\r\ninsert, erase\r\n[]\u3067\u306E\
-    \u5B58\u5728\u5224\u5B9A\r\nnext, prev\r\n*/\r\nstruct FastSet {\r\n  using uint\
-    \ = unsigned;\r\n  using ull = unsigned long long;\r\n\r\n  int bsr(ull x) { return\
-    \ 63 - __builtin_clzll(x); }\r\n  int bsf(ull x) { return __builtin_ctzll(x);\
-    \ }\r\n\r\n  static constexpr uint B = 64;\r\n  int n, lg;\r\n  vc<vc<ull>> seg;\r\
-    \n  FastSet(int _n) : n(_n) {\r\n    do {\r\n      seg.push_back(vc<ull>((_n +\
-    \ B - 1) / B));\r\n      _n = (_n + B - 1) / B;\r\n    } while (_n > 1);\r\n \
-    \   lg = int(seg.size());\r\n  }\r\n  bool operator[](int i) const { return (seg[0][i\
-    \ / B] >> (i % B) & 1) != 0; }\r\n  void insert(int i) {\r\n    for (int h = 0;\
-    \ h < lg; h++) {\r\n      seg[h][i / B] |= 1ULL << (i % B);\r\n      i /= B;\r\
-    \n    }\r\n  }\r\n  void erase(int i) {\r\n    for (int h = 0; h < lg; h++) {\r\
-    \n      seg[h][i / B] &= ~(1ULL << (i % B));\r\n      if (seg[h][i / B]) break;\r\
-    \n      i /= B;\r\n    }\r\n  }\r\n\r\n  // x\u4EE5\u4E0A\u6700\u5C0F\u306E\u8981\
-    \u7D20\u3092\u8FD4\u3059\u3002\u5B58\u5728\u3057\u306A\u3051\u308C\u3070 n\u3002\
-    \r\n  int next(int i) {\r\n    for (int h = 0; h < lg; h++) {\r\n      if (i /\
-    \ B == seg[h].size()) break;\r\n      ull d = seg[h][i / B] >> (i % B);\r\n  \
-    \    if (!d) {\r\n        i = i / B + 1;\r\n        continue;\r\n      }\r\n \
-    \     // find\r\n      i += bsf(d);\r\n      for (int g = h - 1; g >= 0; g--)\
-    \ {\r\n        i *= B;\r\n        i += bsf(seg[g][i / B]);\r\n      }\r\n    \
-    \  return i;\r\n    }\r\n    return n;\r\n  }\r\n\r\n  // x\u4EE5\u4E0B\u6700\u5927\
-    \u306E\u8981\u7D20\u3092\u8FD4\u3059\u3002\u5B58\u5728\u3057\u306A\u3051\u308C\
-    \u3070 -1\u3002\r\n  int prev(int i) {\r\n    if (i < 0) return -1;\r\n    chmin(i,\
-    \ n - 1);\r\n    for (int h = 0; h < lg; h++) {\r\n      if (i == -1) break;\r\
-    \n      ull d = seg[h][i / B] << (63 - i % 64);\r\n      if (!d) {\r\n       \
-    \ i = i / B - 1;\r\n        continue;\r\n      }\r\n      // find\r\n      i +=\
-    \ bsr(d) - (B - 1);\r\n      for (int g = h - 1; g >= 0; g--) {\r\n        i *=\
-    \ B;\r\n        i += bsr(seg[g][i / B]);\r\n      }\r\n      return i;\r\n   \
-    \ }\r\n    return -1;\r\n  }\r\n\r\n  // [l, r) \u5185\u306E\u8981\u7D20\u3092\
-    \u5168\u90E8\u96C6\u3081\u308B\r\n  vc<int> collect(int l, int r) {\r\n    vc<int>\
-    \ res;\r\n    int x = l - 1;\r\n    while (1) {\r\n      x = next(x + 1);\r\n\
-    \      if (x >= r) break;\r\n      res.eb(x);\r\n    }\r\n    return res;\r\n\
-    \  }\r\n\r\n  void debug() {\r\n    string s;\r\n    FOR(i, n) s += ((*this)[i]\
-    \ ? '1' : '0');\r\n    print(s);\r\n  }\r\n};\r\n\r\n// for mistype\r\nusing FaseSet\
-    \ = FastSet;\n#line 5 \"test/library_checker/datastructure/predecessor_problem.test.cpp\"\
+    \ B, C> &val) {\r\n    auto &[a, b, c] = val;\r\n    write(a), write(' '), write(b),\
+    \ write(' '), write(c);\r\n  }\r\n  template <class A, class B, class C, class\
+    \ D>\r\n  void write(const tuple<A, B, C, D> &val) {\r\n    auto &[a, b, c, d]\
+    \ = val;\r\n    write(a), write(' '), write(b), write(' '), write(c), write('\
+    \ '), write(d);\r\n  }\r\n  template <class A, class B, class C, class D, class\
+    \ E>\r\n  void write(const tuple<A, B, C, D, E> &val) {\r\n    auto &[a, b, c,\
+    \ d, e] = val;\r\n    write(a), write(' '), write(b), write(' '), write(c), write('\
+    \ '), write(d), write(' '), write(e);\r\n  }\r\n  template <class A, class B,\
+    \ class C, class D, class E, class F>\r\n  void write(const tuple<A, B, C, D,\
+    \ E, F> &val) {\r\n    auto &[a, b, c, d, e, f] = val;\r\n    write(a), write('\
+    \ '), write(b), write(' '), write(c), write(' '), write(d), write(' '), write(e),\
+    \ write(' '), write(f);\r\n  }\r\n  template <class T, size_t S>\r\n  void write(const\
+    \ array<T, S> &val) {\r\n    auto n = val.size();\r\n    for (size_t i = 0; i\
+    \ < n; i++) {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\n    }\r\n\
+    \  }\r\n  void write(i128 val) {\r\n    string s;\r\n    bool negative = 0;\r\n\
+    \    if(val < 0){\r\n      negative = 1;\r\n      val = -val;\r\n    }\r\n   \
+    \ while (val) {\r\n      s += '0' + int(val % 10);\r\n      val /= 10;\r\n   \
+    \ }\r\n    if(negative) s += \"-\";\r\n    reverse(all(s));\r\n    if (len(s)\
+    \ == 0) s = \"0\";\r\n    write(s);\r\n  }\r\n};\r\n\r\nScanner scanner = Scanner(stdin);\r\
+    \nPrinter printer = Printer(stdout);\r\n\r\nvoid flush() { printer.flush(); }\r\
+    \nvoid print() { printer.write('\\n'); }\r\ntemplate <class Head, class... Tail>\r\
+    \nvoid print(Head &&head, Tail &&... tail) {\r\n  printer.write(head);\r\n  if\
+    \ (sizeof...(Tail)) printer.write(' ');\r\n  print(forward<Tail>(tail)...);\r\n\
+    }\r\n\r\nvoid read() {}\r\ntemplate <class Head, class... Tail>\r\nvoid read(Head\
+    \ &head, Tail &... tail) {\r\n  scanner.read(head);\r\n  read(tail...);\r\n}\r\
+    \n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ CHAR(...)      \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n\
+    #define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\
+    \n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
+    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
+    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
+    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
+    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
+    \ { yes(!t); }\r\n#line 1 \"ds/fastset.hpp\"\n/* 64\u5206\u6728\u3002\r\ninsert,\
+    \ erase\r\n[]\u3067\u306E\u5B58\u5728\u5224\u5B9A\r\nnext, prev\r\n*/\r\nstruct\
+    \ FastSet {\r\n  using uint = unsigned;\r\n  using ull = unsigned long long;\r\
+    \n\r\n  int bsr(ull x) { return 63 - __builtin_clzll(x); }\r\n  int bsf(ull x)\
+    \ { return __builtin_ctzll(x); }\r\n\r\n  static constexpr uint B = 64;\r\n  int\
+    \ n, lg;\r\n  vc<vc<ull>> seg;\r\n  FastSet(int _n) : n(_n) {\r\n    do {\r\n\
+    \      seg.push_back(vc<ull>((_n + B - 1) / B));\r\n      _n = (_n + B - 1) /\
+    \ B;\r\n    } while (_n > 1);\r\n    lg = int(seg.size());\r\n  }\r\n  bool operator[](int\
+    \ i) const { return (seg[0][i / B] >> (i % B) & 1) != 0; }\r\n  void insert(int\
+    \ i) {\r\n    for (int h = 0; h < lg; h++) {\r\n      seg[h][i / B] |= 1ULL <<\
+    \ (i % B);\r\n      i /= B;\r\n    }\r\n  }\r\n  void erase(int i) {\r\n    for\
+    \ (int h = 0; h < lg; h++) {\r\n      seg[h][i / B] &= ~(1ULL << (i % B));\r\n\
+    \      if (seg[h][i / B]) break;\r\n      i /= B;\r\n    }\r\n  }\r\n\r\n  //\
+    \ x\u4EE5\u4E0A\u6700\u5C0F\u306E\u8981\u7D20\u3092\u8FD4\u3059\u3002\u5B58\u5728\
+    \u3057\u306A\u3051\u308C\u3070 n\u3002\r\n  int next(int i) {\r\n    for (int\
+    \ h = 0; h < lg; h++) {\r\n      if (i / B == seg[h].size()) break;\r\n      ull\
+    \ d = seg[h][i / B] >> (i % B);\r\n      if (!d) {\r\n        i = i / B + 1;\r\
+    \n        continue;\r\n      }\r\n      // find\r\n      i += bsf(d);\r\n    \
+    \  for (int g = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += bsf(seg[g][i\
+    \ / B]);\r\n      }\r\n      return i;\r\n    }\r\n    return n;\r\n  }\r\n\r\n\
+    \  // x\u4EE5\u4E0B\u6700\u5927\u306E\u8981\u7D20\u3092\u8FD4\u3059\u3002\u5B58\
+    \u5728\u3057\u306A\u3051\u308C\u3070 -1\u3002\r\n  int prev(int i) {\r\n    if\
+    \ (i < 0) return -1;\r\n    chmin(i, n - 1);\r\n    for (int h = 0; h < lg; h++)\
+    \ {\r\n      if (i == -1) break;\r\n      ull d = seg[h][i / B] << (63 - i % 64);\r\
+    \n      if (!d) {\r\n        i = i / B - 1;\r\n        continue;\r\n      }\r\n\
+    \      // find\r\n      i += bsr(d) - (B - 1);\r\n      for (int g = h - 1; g\
+    \ >= 0; g--) {\r\n        i *= B;\r\n        i += bsr(seg[g][i / B]);\r\n    \
+    \  }\r\n      return i;\r\n    }\r\n    return -1;\r\n  }\r\n\r\n  // [l, r) \u5185\
+    \u306E\u8981\u7D20\u3092\u5168\u90E8\u96C6\u3081\u308B\r\n  vc<int> collect(int\
+    \ l, int r) {\r\n    vc<int> res;\r\n    int x = l - 1;\r\n    while (1) {\r\n\
+    \      x = next(x + 1);\r\n      if (x >= r) break;\r\n      res.eb(x);\r\n  \
+    \  }\r\n    return res;\r\n  }\r\n\r\n  void debug() {\r\n    string s;\r\n  \
+    \  FOR(i, n) s += ((*this)[i] ? '1' : '0');\r\n    print(s);\r\n  }\r\n};\r\n\r\
+    \n// for mistype\r\nusing FaseSet = FastSet;\n#line 5 \"test/library_checker/datastructure/predecessor_problem.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  FastSet ss(N);\n  STR(S);\n  FOR(x, N) {\n\
     \    if (S[x] == '1') ss.insert(x);\n  }\n\n  FOR(_, Q) {\n    LL(t, k);\n   \
     \ if (t == 0) { ss.insert(k); }\n    elif (t == 1) { ss.erase(k); }\n    elif\
@@ -236,8 +242,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/predecessor_problem.test.cpp
   requiredBy: []
-  timestamp: '2022-04-24 15:02:24+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-04-27 05:07:41+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/predecessor_problem.test.cpp
 layout: document

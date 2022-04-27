@@ -149,52 +149,58 @@ data:
     \n    }\r\n  }\r\n  template <class T, class U>\r\n  void write(const pair<T,\
     \ U> &val) {\r\n    write(val.first);\r\n    write(' ');\r\n    write(val.second);\r\
     \n  }\r\n  template <class A, class B, class C>\r\n  void write(const tuple<A,\
-    \ B, C> &val) {\r\n    auto &[a, b, c] = val;\r\n    write(a);\r\n    write('\
-    \ ');\r\n    write(b);\r\n    write(' ');\r\n    write(c);\r\n  }\r\n  template\
-    \ <class A, class B, class C, class D>\r\n  void write(const tuple<A, B, C, D>\
-    \ &val) {\r\n    auto &[a, b, c, d] = val;\r\n    write(a);\r\n    write(' ');\r\
-    \n    write(b);\r\n    write(' ');\r\n    write(c);\r\n    write(' ');\r\n   \
-    \ write(d);\r\n  }\r\n  template <class T, size_t S>\r\n  void write(const array<T,\
-    \ S> &val) {\r\n    auto n = val.size();\r\n    for (size_t i = 0; i < n; i++)\
-    \ {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\n    }\r\n  }\r\n  void\
-    \ write(i128 val) {\r\n    string s;\r\n    bool negative = 0;\r\n    if(val <\
-    \ 0){\r\n      negative = 1;\r\n      val = -val;\r\n    }\r\n    while (val)\
-    \ {\r\n      s += '0' + int(val % 10);\r\n      val /= 10;\r\n    }\r\n    if(negative)\
-    \ s += \"-\";\r\n    reverse(all(s));\r\n    if (len(s) == 0) s = \"0\";\r\n \
-    \   write(s);\r\n  }\r\n};\r\n\r\nScanner scanner = Scanner(stdin);\r\nPrinter\
-    \ printer = Printer(stdout);\r\n\r\nvoid flush() { printer.flush(); }\r\nvoid\
-    \ print() { printer.write('\\n'); }\r\ntemplate <class Head, class... Tail>\r\n\
-    void print(Head &&head, Tail &&... tail) {\r\n  printer.write(head);\r\n  if (sizeof...(Tail))\
-    \ printer.write(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\nvoid read()\
-    \ {}\r\ntemplate <class Head, class... Tail>\r\nvoid read(Head &head, Tail &...\
-    \ tail) {\r\n  scanner.read(head);\r\n  read(tail...);\r\n}\r\n\r\n#define INT(...)\
-    \   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\
-    \r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n\
-    \  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)      \\\r\
-    \n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n\
-    \  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name,\
-    \ size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define VV(type,\
-    \ name, h, w)                     \\\r\n  vector<vector<type>> name(h, vector<type>(w));\
-    \ \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
-    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
-    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
-    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
-    \ 1 \"dp/longest_common_subsequence.hpp\"\n\ntemplate <typename STRING>\nll longest_common_subsequence(STRING&\
-    \ A, STRING& B) {\n  int N = len(B);\n  vc<int> dp(N + 1);\n  for (auto&& a: A)\
-    \ {\n    FOR_R(i, N) if (a == B[i]) chmax(dp[i + 1], dp[i] + 1);\n    FOR(i, N)\
-    \ chmax(dp[i + 1], dp[i]);\n  }\n  return dp[N];\n}\n\n/*\n\u5FA9\u5143\u3082\u3059\
-    \u308B LCS dp\u3002\n(A[i], B[j]) \u3092\u4F7F\u3046\u3088\u3046\u306A (i, j)\
-    \ \u306E\u30DA\u30A2\u306E vector \u3092\u8FD4\u3059\u3002\n*/\ntemplate <typename\
-    \ STRING>\nvc<pair<int, int>> longest_common_subsequence_restore(STRING& A, STRING&\
-    \ B) {\n  int N = len(A), M = len(B);\n  vv(int, DP, N + 1, M + 1);\n  FOR(i,\
-    \ N) {\n    auto& dp = DP[i];\n    auto& newdp = DP[i + 1];\n    newdp = dp;\n\
-    \    FOR(j, M) {\n      chmax(newdp[j + 1], newdp[j]);\n      if (A[i] == B[j])\
-    \ chmax(newdp[j + 1], dp[j] + 1);\n    }\n  }\n  vc<pair<int, int>> res;\n  int\
-    \ n = N, m = M;\n  while (DP[n][m]) {\n    if (DP[n][m] == DP[n - 1][m]) { --n;\
-    \ }\n    elif (DP[n][m] == DP[n][m - 1]) { --m; }\n    else {\n      --n, --m;\n\
-    \      res.eb(n, m);\n    }\n  }\n  reverse(all(res));\n  return res;\n}\n#line\
-    \ 6 \"test/aoj/ALDS1_10_C_LCS.test.cpp\"\n\nvoid solve() {\n  STR(S, T);\n  ll\
-    \ LCS = longest_common_subsequence(S, T);\n  vc<pair<int, int>> pairs = longest_common_subsequence_restore(S,\
+    \ B, C> &val) {\r\n    auto &[a, b, c] = val;\r\n    write(a), write(' '), write(b),\
+    \ write(' '), write(c);\r\n  }\r\n  template <class A, class B, class C, class\
+    \ D>\r\n  void write(const tuple<A, B, C, D> &val) {\r\n    auto &[a, b, c, d]\
+    \ = val;\r\n    write(a), write(' '), write(b), write(' '), write(c), write('\
+    \ '), write(d);\r\n  }\r\n  template <class A, class B, class C, class D, class\
+    \ E>\r\n  void write(const tuple<A, B, C, D, E> &val) {\r\n    auto &[a, b, c,\
+    \ d, e] = val;\r\n    write(a), write(' '), write(b), write(' '), write(c), write('\
+    \ '), write(d), write(' '), write(e);\r\n  }\r\n  template <class A, class B,\
+    \ class C, class D, class E, class F>\r\n  void write(const tuple<A, B, C, D,\
+    \ E, F> &val) {\r\n    auto &[a, b, c, d, e, f] = val;\r\n    write(a), write('\
+    \ '), write(b), write(' '), write(c), write(' '), write(d), write(' '), write(e),\
+    \ write(' '), write(f);\r\n  }\r\n  template <class T, size_t S>\r\n  void write(const\
+    \ array<T, S> &val) {\r\n    auto n = val.size();\r\n    for (size_t i = 0; i\
+    \ < n; i++) {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\n    }\r\n\
+    \  }\r\n  void write(i128 val) {\r\n    string s;\r\n    bool negative = 0;\r\n\
+    \    if(val < 0){\r\n      negative = 1;\r\n      val = -val;\r\n    }\r\n   \
+    \ while (val) {\r\n      s += '0' + int(val % 10);\r\n      val /= 10;\r\n   \
+    \ }\r\n    if(negative) s += \"-\";\r\n    reverse(all(s));\r\n    if (len(s)\
+    \ == 0) s = \"0\";\r\n    write(s);\r\n  }\r\n};\r\n\r\nScanner scanner = Scanner(stdin);\r\
+    \nPrinter printer = Printer(stdout);\r\n\r\nvoid flush() { printer.flush(); }\r\
+    \nvoid print() { printer.write('\\n'); }\r\ntemplate <class Head, class... Tail>\r\
+    \nvoid print(Head &&head, Tail &&... tail) {\r\n  printer.write(head);\r\n  if\
+    \ (sizeof...(Tail)) printer.write(' ');\r\n  print(forward<Tail>(tail)...);\r\n\
+    }\r\n\r\nvoid read() {}\r\ntemplate <class Head, class... Tail>\r\nvoid read(Head\
+    \ &head, Tail &... tail) {\r\n  scanner.read(head);\r\n  read(tail...);\r\n}\r\
+    \n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ CHAR(...)      \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n\
+    #define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\
+    \n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
+    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
+    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
+    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
+    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
+    \ { yes(!t); }\r\n#line 1 \"dp/longest_common_subsequence.hpp\"\n\ntemplate <typename\
+    \ STRING>\nll longest_common_subsequence(STRING& A, STRING& B) {\n  int N = len(B);\n\
+    \  vc<int> dp(N + 1);\n  for (auto&& a: A) {\n    FOR_R(i, N) if (a == B[i]) chmax(dp[i\
+    \ + 1], dp[i] + 1);\n    FOR(i, N) chmax(dp[i + 1], dp[i]);\n  }\n  return dp[N];\n\
+    }\n\n/*\n\u5FA9\u5143\u3082\u3059\u308B LCS dp\u3002\n(A[i], B[j]) \u3092\u4F7F\
+    \u3046\u3088\u3046\u306A (i, j) \u306E\u30DA\u30A2\u306E vector \u3092\u8FD4\u3059\
+    \u3002\n*/\ntemplate <typename STRING>\nvc<pair<int, int>> longest_common_subsequence_restore(STRING&\
+    \ A, STRING& B) {\n  int N = len(A), M = len(B);\n  vv(int, DP, N + 1, M + 1);\n\
+    \  FOR(i, N) {\n    auto& dp = DP[i];\n    auto& newdp = DP[i + 1];\n    newdp\
+    \ = dp;\n    FOR(j, M) {\n      chmax(newdp[j + 1], newdp[j]);\n      if (A[i]\
+    \ == B[j]) chmax(newdp[j + 1], dp[j] + 1);\n    }\n  }\n  vc<pair<int, int>> res;\n\
+    \  int n = N, m = M;\n  while (DP[n][m]) {\n    if (DP[n][m] == DP[n - 1][m])\
+    \ { --n; }\n    elif (DP[n][m] == DP[n][m - 1]) { --m; }\n    else {\n      --n,\
+    \ --m;\n      res.eb(n, m);\n    }\n  }\n  reverse(all(res));\n  return res;\n\
+    }\n#line 6 \"test/aoj/ALDS1_10_C_LCS.test.cpp\"\n\nvoid solve() {\n  STR(S, T);\n\
+    \  ll LCS = longest_common_subsequence(S, T);\n  vc<pair<int, int>> pairs = longest_common_subsequence_restore(S,\
     \ T);\n  assert(len(pairs) == LCS);\n  for (auto&& [i, j]: pairs) assert(S[i]\
     \ == T[j]);\n  FOR(i, LCS - 1) {\n    assert(pairs[i].fi < pairs[i + 1].fi);\n\
     \    assert(pairs[i].se < pairs[i + 1].se);\n  }\n  print(LCS);\n}\n\nsigned main()\
@@ -216,7 +222,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_10_C_LCS.test.cpp
   requiredBy: []
-  timestamp: '2022-04-24 15:03:27+09:00'
+  timestamp: '2022-04-27 05:07:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_10_C_LCS.test.cpp
