@@ -3,16 +3,16 @@ data:
   libraryCategories:
   - name: alg
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/group_add.hpp
       title: alg/group_add.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/group_affine.hpp
       title: alg/group_affine.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/group_cntsum.hpp
       title: alg/group_cntsum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/group_mul.hpp
       title: alg/group_mul.hpp
     - icon: ':heavy_check_mark:'
@@ -21,16 +21,16 @@ data:
     - icon: ':warning:'
       path: alg/group_xor.hpp
       title: alg/group_xor.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy_add_mul.hpp
       title: alg/lazy_add_mul.hpp
     - icon: ':heavy_check_mark:'
       path: alg/lazy_cntminmincnt_add.hpp
       title: alg/lazy_cntminmincnt_add.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy_cntsum_add.hpp
       title: alg/lazy_cntsum_add.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy_cntsum_affine.hpp
       title: alg/lazy_cntsum_affine.hpp
     - icon: ':heavy_check_mark:'
@@ -69,7 +69,7 @@ data:
     - icon: ':warning:'
       path: alg/lazy_minmax_add.hpp
       title: alg/lazy_minmax_add.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy_reverse.hpp
       title: alg/lazy_reverse.hpp
     - icon: ':warning:'
@@ -87,7 +87,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid_cntsummin.hpp
       title: alg/monoid_cntsummin.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid_gcd.hpp
       title: alg/monoid_gcd.hpp
     - icon: ':heavy_check_mark:'
@@ -111,16 +111,16 @@ data:
     - icon: ':warning:'
       path: alg/monoid_or.hpp
       title: alg/monoid_or.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid_reverse.hpp
       title: alg/monoid_reverse.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid_rollinghash.hpp
       title: alg/monoid_rollinghash.hpp
     - icon: ':heavy_check_mark:'
       path: alg/monoid_set.hpp
       title: alg/monoid_set.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid_xor_basis.hpp
       title: alg/monoid_xor_basis.hpp
   - name: dp
@@ -140,10 +140,10 @@ data:
     - icon: ':warning:'
       path: dp/maxplus_convolution_concave.hpp
       title: dp/maxplus_convolution_concave.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: dp/monge.hpp
       title: dp/monge.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: dp/monotone_minima.hpp
       title: dp/monotone_minima.hpp
   - name: ds
@@ -181,7 +181,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwick.hpp
       title: ds/fenwick.hpp
     - icon: ':heavy_check_mark:'
@@ -202,10 +202,10 @@ data:
     - icon: ':warning:'
       path: ds/kdtree.hpp
       title: ds/kdtree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/larsch.hpp
       title: ds/larsch.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/lazysegtree.hpp
       title: ds/lazysegtree.hpp
     - icon: ':heavy_check_mark:'
@@ -235,7 +235,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/rectangleunion.hpp
       title: ds/rectangleunion.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree.hpp
       title: ds/segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -247,22 +247,22 @@ data:
     - icon: ':warning:'
       path: ds/slope.hpp
       title: ds/slope.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/swag.hpp
       title: ds/swag.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/unionfind.hpp
       title: ds/unionfind.hpp
     - icon: ':warning:'
       path: ds/uniqueproductquery.hpp
       title: ds/uniqueproductquery.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/waveletmatrix.hpp
       title: ds/waveletmatrix.hpp
     - icon: ':heavy_check_mark:'
       path: ds/weightedunionfind.hpp
       title: ds/weightedunionfind.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/xor_sparsetable.hpp
       title: ds/xor_sparsetable.hpp
   - name: flow
@@ -270,7 +270,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: flow/bipartite.hpp
       title: flow/bipartite.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: flow/maxflow.hpp
       title: flow/maxflow.hpp
     - icon: ':warning:'
@@ -298,22 +298,22 @@ data:
       title: geo/points_diameter.hpp
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/base.hpp
       title: graph/base.hpp
     - icon: ':heavy_check_mark:'
       path: graph/bellmanford.hpp
       title: graph/bellmanford.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/bfs01.hpp
       title: graph/bfs01.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/bfsnumbering.hpp
       title: graph/bfsnumbering.hpp
     - icon: ':warning:'
       path: graph/bipartite_coloring.hpp
       title: graph/bipartite_coloring.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/centroid.hpp
       title: graph/centroid.hpp
     - icon: ':heavy_check_mark:'
@@ -340,7 +340,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/dial.hpp
       title: graph/dial.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/dijkstra.hpp
       title: graph/dijkstra.hpp
     - icon: ':heavy_check_mark:'
@@ -358,10 +358,10 @@ data:
     - icon: ':warning:'
       path: graph/functional.hpp
       title: graph/functional.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/hld.hpp
       title: graph/hld.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/lazytreemonoid.hpp
       title: graph/lazytreemonoid.hpp
     - icon: ':heavy_check_mark:'
@@ -370,7 +370,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/maximum_independent_set.hpp
       title: graph/maximum_independent_set.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/mincostcycle.hpp
       title: graph/mincostcycle.hpp
     - icon: ':heavy_check_mark:'
@@ -394,7 +394,7 @@ data:
     - icon: ':warning:'
       path: graph/solve_dag_game.hpp
       title: graph/solve_dag_game.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/steiner_tree.hpp
       title: graph/steiner_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -430,7 +430,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/twosat.hpp
       title: graph/twosat.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/warshall_floyd.hpp
       title: graph/warshall_floyd.hpp
   - name: linalg
@@ -447,10 +447,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/mat_inv.hpp
       title: linalg/mat_inv.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: linalg/mat_mul.hpp
       title: linalg/mat_mul.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: linalg/mat_pow.hpp
       title: linalg/mat_pow.hpp
     - icon: ':heavy_check_mark:'
@@ -473,7 +473,7 @@ data:
     - icon: ':warning:'
       path: mod/comb_table.hpp
       title: mod/comb_table.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: mod/factorial107.hpp
       title: mod/factorial107.hpp
     - icon: ':warning:'
@@ -500,13 +500,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_sqrt.hpp
       title: mod/mod_sqrt.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint.hpp
       title: mod/modint.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint61.hpp
       title: mod/modint61.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: mod/modular_subset_sum.hpp
       title: mod/modular_subset_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -599,7 +599,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/io2.hpp
       title: other/io2.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/random.hpp
       title: other/random.hpp
     - icon: ':heavy_check_mark:'
@@ -1235,61 +1235,61 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1002_centroid.test.cpp
       title: test/yukicoder/1002_centroid.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1036_seg_maxright_minleft.test.cpp
       title: test/yukicoder/1036_seg_maxright_minleft.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1036_swag.test.cpp
       title: test/yukicoder/1036_swag.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1038_centroid.test.cpp
       title: test/yukicoder/1038_centroid.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/114_steriner_tree.test.cpp
       title: test/yukicoder/114_steriner_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1320_mincostcycle.test.cpp
       title: test/yukicoder/1320_mincostcycle.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/177_maxflow.test.cpp
       title: test/yukicoder/177_maxflow.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/17_warshall_floyd.test.cpp
       title: test/yukicoder/17_warshall_floyd.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1810_matpow.test.cpp
       title: test/yukicoder/1810_matpow.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/184_xorbasis.test.cpp
       title: test/yukicoder/184_xorbasis.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1891_xor_sparse.test.cpp
       title: test/yukicoder/1891_xor_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/235_lazytreemonoid.test.cpp
       title: test/yukicoder/235_lazytreemonoid.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/255.test.cpp
       title: test/yukicoder/255.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/426.test.cpp
       title: test/yukicoder/426.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/4_modular_subset_sum.test.cpp
       title: test/yukicoder/4_modular_subset_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/502_factorial107.test.cpp
       title: test/yukicoder/502_factorial107.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/705_monge_shortest_path.test.cpp
       title: test/yukicoder/705_monge_shortest_path.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/899_bfsnumbering.test.cpp
       title: test/yukicoder/899_bfsnumbering.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/919_waveletmatrix.test.cpp
       title: test/yukicoder/919_waveletmatrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/924.test.cpp
       title: test/yukicoder/924.test.cpp
     - icon: ':x:'

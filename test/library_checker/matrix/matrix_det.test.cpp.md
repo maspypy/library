@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/det.hpp
     title: linalg/det.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'

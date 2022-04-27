@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/modular_subset_sum.hpp
     title: mod/modular_subset_sum.hpp
   _extendedVerifiedWith:
@@ -48,18 +48,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036_seg_maxright_minleft.test.cpp
     title: test/yukicoder/1036_seg_maxright_minleft.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_modular_subset_sum.test.cpp
     title: test/yukicoder/4_modular_subset_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/contest/1401/problem/F
@@ -148,7 +148,7 @@ data:
   - ds/uniqueproductquery.hpp
   - ds/range_mex_query.hpp
   timestamp: '2022-04-24 23:28:36+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/426.test.cpp
   - test/yukicoder/4_modular_subset_sum.test.cpp

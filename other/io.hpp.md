@@ -438,61 +438,61 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1002_centroid.test.cpp
     title: test/yukicoder/1002_centroid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036_seg_maxright_minleft.test.cpp
     title: test/yukicoder/1036_seg_maxright_minleft.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036_swag.test.cpp
     title: test/yukicoder/1036_swag.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1038_centroid.test.cpp
     title: test/yukicoder/1038_centroid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/114_steriner_tree.test.cpp
     title: test/yukicoder/114_steriner_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1320_mincostcycle.test.cpp
     title: test/yukicoder/1320_mincostcycle.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/177_maxflow.test.cpp
     title: test/yukicoder/177_maxflow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/17_warshall_floyd.test.cpp
     title: test/yukicoder/17_warshall_floyd.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1810_matpow.test.cpp
     title: test/yukicoder/1810_matpow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/184_xorbasis.test.cpp
     title: test/yukicoder/184_xorbasis.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1891_xor_sparse.test.cpp
     title: test/yukicoder/1891_xor_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/235_lazytreemonoid.test.cpp
     title: test/yukicoder/235_lazytreemonoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/255.test.cpp
     title: test/yukicoder/255.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_modular_subset_sum.test.cpp
     title: test/yukicoder/4_modular_subset_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_factorial107.test.cpp
     title: test/yukicoder/502_factorial107.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/705_monge_shortest_path.test.cpp
     title: test/yukicoder/705_monge_shortest_path.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/899_bfsnumbering.test.cpp
     title: test/yukicoder/899_bfsnumbering.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/919_waveletmatrix.test.cpp
     title: test/yukicoder/919_waveletmatrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
   - icon: ':x:'

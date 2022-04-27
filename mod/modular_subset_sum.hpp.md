@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_rollinghash.hpp
     title: alg/monoid_rollinghash.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/random.hpp
     title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_modular_subset_sum.test.cpp
     title: test/yukicoder/4_modular_subset_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint61.hpp\"\nstruct modint61 {\r\n  static constexpr\
@@ -156,7 +156,7 @@ data:
   path: mod/modular_subset_sum.hpp
   requiredBy: []
   timestamp: '2022-04-24 23:28:36+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/4_modular_subset_sum.test.cpp
 documentation_of: mod/modular_subset_sum.hpp

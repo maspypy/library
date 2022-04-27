@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_affine.hpp
     title: alg/group_affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_reverse.hpp
     title: alg/monoid_reverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/hld.hpp
     title: graph/hld.hpp
   - icon: ':heavy_check_mark:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'

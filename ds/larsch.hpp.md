@@ -2,16 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: dp/monge.hpp
     title: dp/monge.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/705_monge_shortest_path.test.cpp
     title: test/yukicoder/705_monge_shortest_path.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://noshi91.github.io/Library/algorithm/larsch.cpp.html
@@ -87,7 +87,7 @@ data:
   requiredBy:
   - dp/monge.hpp
   timestamp: '2022-04-22 16:55:52+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/705_monge_shortest_path.test.cpp
 documentation_of: ds/larsch.hpp

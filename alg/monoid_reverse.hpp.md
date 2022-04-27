@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy_reverse.hpp
     title: alg/lazy_reverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
   - icon: ':heavy_check_mark:'
@@ -30,12 +30,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/235_lazytreemonoid.test.cpp
     title: test/yukicoder/235_lazytreemonoid.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid_reverse.hpp\"\ntemplate <class Monoid>\r\nstruct\
@@ -57,7 +57,7 @@ data:
   - graph/lazytreemonoid.hpp
   - alg/lazy_reverse.hpp
   timestamp: '2022-04-23 17:49:11+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
