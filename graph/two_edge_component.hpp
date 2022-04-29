@@ -1,5 +1,6 @@
 #include "graph/hld.hpp"
 
+// (成分数, 成分番号の vector)
 template <typename Graph>
 pair<int, vc<int>> two_edge_component(Graph& G) {
   HLD hld(G);
