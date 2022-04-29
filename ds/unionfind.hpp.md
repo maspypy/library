@@ -36,12 +36,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/114_steriner_tree.test.cpp
     title: test/yukicoder/114_steriner_tree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/unionfind.hpp\"\n\nstruct UnionFind {\n  int num;\n \
@@ -76,7 +76,7 @@ data:
   - graph/maximum_antichain.hpp
   - flow/bipartite.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/114_steriner_tree.test.cpp
   - test/library_checker/datastructure/unionfind.test.cpp
