@@ -16,7 +16,7 @@ data:
   - icon: ':x:'
     path: other/random.hpp
     title: other/random.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':x:'
