@@ -2,19 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/tetration.hpp
     title: mod/tetration.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/gcd_convolution.hpp
     title: nt/gcd_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/lcm_convolution.hpp
     title: nt/lcm_convolution.hpp
   - icon: ':warning:'
@@ -23,58 +23,58 @@ data:
   - icon: ':warning:'
     path: nt/mobius_table.hpp
     title: nt/mobius_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/multiplicative_sum.hpp
     title: nt/multiplicative_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/primesum.hpp
     title: nt/primesum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/stirling_number_1.hpp
     title: seq/stirling_number_1.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL_1_D_eulerphi.test.cpp
     title: test/aoj/NTL_1_D_eulerphi.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/counting_primes.test.cpp
     title: test/library_checker/math/counting_primes.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/enumerate_primes.test.cpp
     title: test/library_checker/math/enumerate_primes.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/gcd_convolution.test.cpp
     title: test/library_checker/math/gcd_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/lcm_convolution.test.cpp
     title: test/library_checker/math/lcm_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/totient_sum.test.cpp
     title: test/library_checker/math/totient_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
     title: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\nvc<ll> primetable(int LIM) {\n  ++LIM;\n\
@@ -103,32 +103,32 @@ data:
   isVerificationFile: false
   path: nt/primetable.hpp
   requiredBy:
-  - mod/tetration.hpp
-  - mod/powertable.hpp
   - poly/poly_taylor_shift.hpp
-  - seq/stirling_number_1.hpp
+  - nt/mobius_table.hpp
   - nt/lpf_table.hpp
-  - nt/multiplicative_sum.hpp
-  - nt/zeta.hpp
   - nt/primesum.hpp
   - nt/lcm_convolution.hpp
-  - nt/gcd_convolution.hpp
-  - nt/mobius_table.hpp
+  - nt/zeta.hpp
   - nt/euler_phi.hpp
+  - nt/gcd_convolution.hpp
+  - nt/multiplicative_sum.hpp
+  - seq/stirling_number_1.hpp
+  - mod/tetration.hpp
+  - mod/powertable.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/aoj/NTL_1_D_eulerphi.test.cpp
-  - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
-  - test/library_checker/math/enumerate_primes.test.cpp
-  - test/library_checker/math/gcd_convolution.test.cpp
-  - test/library_checker/math/lcm_convolution.test.cpp
-  - test/library_checker/math/totient_sum.test.cpp
-  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
-  - test/library_checker/math/counting_primes.test.cpp
-  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  - test/library_checker/math/tetration.test.cpp
   - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
+  - test/library_checker/math/tetration.test.cpp
+  - test/library_checker/math/enumerate_primes.test.cpp
+  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
+  - test/library_checker/math/totient_sum.test.cpp
+  - test/library_checker/math/lcm_convolution.test.cpp
+  - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
+  - test/library_checker/math/counting_primes.test.cpp
+  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
+  - test/library_checker/math/gcd_convolution.test.cpp
+  - test/aoj/NTL_1_D_eulerphi.test.cpp
 documentation_of: nt/primetable.hpp
 layout: document
 redirect_from:

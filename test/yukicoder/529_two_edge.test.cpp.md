@@ -1,9 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: alg/group_add.hpp
-    title: alg/group_add.hpp
+  - icon: ':x:'
+    path: alg/monoid_max_idx.hpp
+    title: alg/monoid_max_idx.hpp
   - icon: ':question:'
     path: alg/monoid_reverse.hpp
     title: alg/monoid_reverse.hpp
@@ -19,6 +19,9 @@ data:
   - icon: ':question:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
+  - icon: ':x:'
+    path: graph/two_edge_component.hpp
+    title: graph/two_edge_component.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -32,19 +35,19 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
+    PROBLEM: https://yukicoder.me/problems/no/529
     links:
-    - https://judge.yosupo.jp/problem/vertex_add_subtree_sum
-  bundledCode: "#line 1 \"test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\r\
-    \n#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
-    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
-    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://yukicoder.me/problems/no/529
+  bundledCode: "#line 1 \"test/yukicoder/529_two_edge.test.cpp\"\n#define PROBLEM\
+    \ \"https://yukicoder.me/problems/no/529\"\n#line 1 \"my_template.hpp\"\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -200,65 +203,28 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 4 \"test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp\"\
-    \n\r\n#line 2 \"ds/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree {\n\
-    \  using X = typename Monoid::value_type;\n  using value_type = X;\n  vc<X> dat;\n\
-    \  int n, log, size;\n\n  SegTree() : SegTree(0) {}\n  SegTree(int n) : SegTree(vc<X>(n,\
-    \ Monoid::unit())) {}\n  SegTree(vc<X> v) : n(len(v)) {\n    log = 1;\n    while\
-    \ ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, Monoid::unit());\n\
-    \    FOR(i, n) dat[size + i] = v[i];\n    FOR3_R(i, 1, size) update(i);\n  }\n\
-    \n  X operator[](int i) { return dat[size + i]; }\n\n  void update(int i) { dat[i]\
-    \ = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n\n  void set(int i, X x) {\n  \
-    \  assert(i < n);\n    dat[i += size] = x;\n    while (i >>= 1) update(i);\n \
-    \ }\n\n  X prod(int L, int R) {\n    assert(L <= R);\n    assert(R <= n);\n  \
-    \  X vl = Monoid::unit(), vr = Monoid::unit();\n    L += size, R += size;\n  \
-    \  while (L < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if\
-    \ (R & 1) vr = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n   \
-    \ return Monoid::op(vl, vr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  template\
-    \ <class F>\n  int max_right(F &check, int L) {\n    assert(0 <= L && L <= n &&\
-    \ check(Monoid::unit()));\n    if (L == n) return n;\n    L += size;\n    X sm\
-    \ = Monoid::unit();\n    do {\n      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm,\
-    \ dat[L]))) {\n        while (L < size) {\n          L = 2 * L;\n          if\
-    \ (check(Monoid::op(sm, dat[L]))) {\n            sm = Monoid::op(sm, dat[L]);\n\
-    \            L++;\n          }\n        }\n        return L - size;\n      }\n\
-    \      sm = Monoid::op(sm, dat[L]);\n      L++;\n    } while ((L & -L) != L);\n\
-    \    return n;\n  }\n\n  template <class F>\n  int min_left(F &check, int R) {\n\
-    \    assert(0 <= R && R <= n && check(Monoid::unit()));\n    if (R == 0) return\
-    \ 0;\n    R += size;\n    X sm = Monoid::unit();\n    do {\n      --R;\n     \
-    \ while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R], sm)))\
-    \ {\n        while (R < size) {\n          R = 2 * R + 1;\n          if (check(Monoid::op(dat[R],\
-    \ sm))) {\n            sm = Monoid::op(dat[R], sm);\n            R--;\n      \
-    \    }\n        }\n        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R],\
-    \ sm);\n    } while ((R & -R) != R);\n    return 0;\n  }\n\n  // \u30E2\u30CE\u30A4\
-    \u30C9\u304C\u53EF\u63DB\u306A\u3089\u3001prod_{l<=i<r}A[i^x] \u304C\u8A08\u7B97\
-    \u53EF\u80FD\n  // https://codeforces.com/contest/1401/problem/F\n  X Xor_prod(int\
-    \ l, int r, int xor_val) {\n    assert(Monoid::commute);\n    X x = Monoid::unit();\n\
-    \    FOR(k, log + 1) {\n      if (l >= r) break;\n      if (l & 1) { x = Monoid::op(x,\
-    \ dat[(size >> k) + ((l++) ^ xor_val)]); }\n      if (r & 1) { x = Monoid::op(x,\
-    \ dat[(size >> k) + ((--r) ^ xor_val)]); }\n      l /= 2, r /= 2, xor_val /= 2;\n\
-    \    }\n    return x;\n  }\n\n  void debug() { print(\"segtree\", dat); }\n};\n\
-    #line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int frm,\
-    \ to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed =\
-    \ false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n  using edge_type\
-    \ = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type>\
-    \ csr_edges;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n    OutgoingEdges(const\
-    \ Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin()\
-    \ const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[l];\n \
-    \   }\n\n    const edge_type* end() const {\n      if (l == r) { return 0; }\n\
-    \      return &G->csr_edges[r];\n    }\n\n  private:\n    int l, r;\n    const\
-    \ Graph* G;\n  };\n\n  bool is_prepared() { return prepared; }\n  constexpr bool\
-    \ is_directed() { return directed; }\n\n  Graph() : N(0), M(0), prepared(0) {}\n\
-    \  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void add(int frm, int to, T\
-    \ cost = 1, int i = -1) {\n    assert(!prepared && 0 <= frm && 0 <= to && to <\
-    \ N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n\
-    \    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool wt = false,\
-    \ int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int M, bool\
-    \ wt = false, int off = 1) {\n    FOR_(M) {\n      INT(a, b);\n      a -= off,\
-    \ b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n        T c;\n\
-    \        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n  }\n\n\
-    \  void read_parent(int off = 1) {\n    FOR3(v, 1, N) {\n      INT(p);\n     \
-    \ p -= off;\n      add(p, v);\n    }\n    build();\n  }\n\n  void build() {\n\
-    \    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
+    \ { yes(!t); }\r\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct\
+    \ Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int,\
+    \ bool directed = false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n\
+    \  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n\
+    \  vector<edge_type> csr_edges;\n  bool prepared;\n\n  class OutgoingEdges {\n\
+    \  public:\n    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l), r(r)\
+    \ {}\n\n    const edge_type* begin() const {\n      if (l == r) { return 0; }\n\
+    \      return &G->csr_edges[l];\n    }\n\n    const edge_type* end() const {\n\
+    \      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n  private:\n\
+    \    int l, r;\n    const Graph* G;\n  };\n\n  bool is_prepared() { return prepared;\
+    \ }\n  constexpr bool is_directed() { return directed; }\n\n  Graph() : N(0),\
+    \ M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void\
+    \ add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared && 0 <=\
+    \ frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm,\
+    \ to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool\
+    \ wt = false, int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int\
+    \ M, bool wt = false, int off = 1) {\n    FOR_(M) {\n      INT(a, b);\n      a\
+    \ -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n  \
+    \      T c;\n        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n\
+    \  }\n\n  void read_parent(int off = 1) {\n    FOR3(v, 1, N) {\n      INT(p);\n\
+    \      p -= off;\n      add(p, v);\n    }\n    build();\n  }\n\n  void build()\
+    \ {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
     \    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if (!directed)\
     \ indptr[e.to + 1]++;\n    }\n    FOR(v, N) indptr[v + 1] += indptr[v];\n    auto\
     \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
@@ -325,8 +291,54 @@ data:
     \ {\r\n    print(\"V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\",\
     \ RID);\r\n    print(\"parent\", parent);\r\n    print(\"depth\", depth);\r\n\
     \    print(\"head\", head);\r\n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"\
-    root\", root);\r\n  }\r\n};\r\n#line 2 \"alg/monoid_reverse.hpp\"\ntemplate <class\
-    \ Monoid>\r\nstruct Monoid_Reverse {\r\n  using value_type = typename Monoid::value_type;\r\
+    root\", root);\r\n  }\r\n};\r\n#line 2 \"graph/two_edge_component.hpp\"\n\r\n\
+    // (\u6210\u5206\u6570, \u6210\u5206\u756A\u53F7\u306E vector)\r\ntemplate <typename\
+    \ Graph>\r\npair<int, vc<int>> two_edge_component(Graph& G) {\r\n  HLD hld(G);\r\
+    \n  int N = G.N;\r\n  vc<int> DP(N);\r\n  for (auto&& e: G.edges) {\r\n    if\
+    \ (!hld.in_tree[e.id]) {\r\n      int a = e.frm, b = e.to;\r\n      if (hld.depth[a]\
+    \ < hld.depth[b]) swap(a, b);\r\n      DP[a]++, DP[b]--;\r\n    }\r\n  }\r\n \
+    \ auto& V = hld.V;\r\n  FOR_R(i, len(V)) {\r\n    int v = V[i];\r\n    int p =\
+    \ hld.parent[v];\r\n    if (p != -1) DP[p] += DP[v];\r\n  }\r\n  int C = 0;\r\n\
+    \  vc<int> comp(N, -1);\r\n  FOR(v, N) if (DP[v] == 0) comp[v] = C++;\r\n  for\
+    \ (auto&& v: V)\r\n    if (comp[v] == -1) comp[v] = comp[hld.parent[v]];\r\n \
+    \ return {C, comp};\r\n}\r\n#line 2 \"ds/segtree.hpp\"\n\ntemplate <class Monoid>\n\
+    struct SegTree {\n  using X = typename Monoid::value_type;\n  using value_type\
+    \ = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() : SegTree(0) {}\n  SegTree(int\
+    \ n) : SegTree(vc<X>(n, Monoid::unit())) {}\n  SegTree(vc<X> v) : n(len(v)) {\n\
+    \    log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
+    \ << 1, Monoid::unit());\n    FOR(i, n) dat[size + i] = v[i];\n    FOR3_R(i, 1,\
+    \ size) update(i);\n  }\n\n  X operator[](int i) { return dat[size + i]; }\n\n\
+    \  void update(int i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n\n\
+    \  void set(int i, X x) {\n    assert(i < n);\n    dat[i += size] = x;\n    while\
+    \ (i >>= 1) update(i);\n  }\n\n  X prod(int L, int R) {\n    assert(L <= R);\n\
+    \    assert(R <= n);\n    X vl = Monoid::unit(), vr = Monoid::unit();\n    L +=\
+    \ size, R += size;\n    while (L < R) {\n      if (L & 1) vl = Monoid::op(vl,\
+    \ dat[L++]);\n      if (R & 1) vr = Monoid::op(dat[--R], vr);\n      L >>= 1,\
+    \ R >>= 1;\n    }\n    return Monoid::op(vl, vr);\n  }\n\n  X prod_all() { return\
+    \ dat[1]; }\n\n  template <class F>\n  int max_right(F &check, int L) {\n    assert(0\
+    \ <= L && L <= n && check(Monoid::unit()));\n    if (L == n) return n;\n    L\
+    \ += size;\n    X sm = Monoid::unit();\n    do {\n      while (L % 2 == 0) L >>=\
+    \ 1;\n      if (!check(Monoid::op(sm, dat[L]))) {\n        while (L < size) {\n\
+    \          L = 2 * L;\n          if (check(Monoid::op(sm, dat[L]))) {\n      \
+    \      sm = Monoid::op(sm, dat[L]);\n            L++;\n          }\n        }\n\
+    \        return L - size;\n      }\n      sm = Monoid::op(sm, dat[L]);\n     \
+    \ L++;\n    } while ((L & -L) != L);\n    return n;\n  }\n\n  template <class\
+    \ F>\n  int min_left(F &check, int R) {\n    assert(0 <= R && R <= n && check(Monoid::unit()));\n\
+    \    if (R == 0) return 0;\n    R += size;\n    X sm = Monoid::unit();\n    do\
+    \ {\n      --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
+    \ sm))) {\n        while (R < size) {\n          R = 2 * R + 1;\n          if\
+    \ (check(Monoid::op(dat[R], sm))) {\n            sm = Monoid::op(dat[R], sm);\n\
+    \            R--;\n          }\n        }\n        return R + 1 - size;\n    \
+    \  }\n      sm = Monoid::op(dat[R], sm);\n    } while ((R & -R) != R);\n    return\
+    \ 0;\n  }\n\n  // \u30E2\u30CE\u30A4\u30C9\u304C\u53EF\u63DB\u306A\u3089\u3001\
+    prod_{l<=i<r}A[i^x] \u304C\u8A08\u7B97\u53EF\u80FD\n  // https://codeforces.com/contest/1401/problem/F\n\
+    \  X Xor_prod(int l, int r, int xor_val) {\n    assert(Monoid::commute);\n   \
+    \ X x = Monoid::unit();\n    FOR(k, log + 1) {\n      if (l >= r) break;\n   \
+    \   if (l & 1) { x = Monoid::op(x, dat[(size >> k) + ((l++) ^ xor_val)]); }\n\
+    \      if (r & 1) { x = Monoid::op(x, dat[(size >> k) + ((--r) ^ xor_val)]); }\n\
+    \      l /= 2, r /= 2, xor_val /= 2;\n    }\n    return x;\n  }\n\n  void debug()\
+    \ { print(\"segtree\", dat); }\n};\n#line 2 \"alg/monoid_reverse.hpp\"\ntemplate\
+    \ <class Monoid>\r\nstruct Monoid_Reverse {\r\n  using value_type = typename Monoid::value_type;\r\
     \n  using X = value_type;\r\n  static constexpr X op(const X &x, const X &y) {\
     \ return Monoid::op(y, x); }\r\n  static constexpr X unit() { return Monoid::unit();\
     \ }\r\n  static const bool commute = Monoid::commute;\r\n};\r\n#line 4 \"graph/treemonoid.hpp\"\
@@ -367,50 +379,64 @@ data:
     \    seg_r.debug();\r\n  }\r\n\r\n  void doc() {\r\n    print(\"HL\u5206\u89E3\
     \ + \u30BB\u30B0\u6728\u3002\");\r\n    print(\"\u90E8\u5206\u6728\u30AF\u30A8\
     \u30EA O(logN) \u6642\u9593\u3001\u30D1\u30B9\u30AF\u30A8\u30EA O(log^2N) \u6642\
-    \u9593\u3002\");\r\n  }\r\n};\r\n#line 2 \"alg/group_add.hpp\"\ntemplate <class\
-    \ X>\r\nstruct Group_Add {\r\n  using value_type = X;\r\n  static constexpr X\
-    \ op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return n * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 7 \"test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  Graph<int, 1> G(N);\r\
-    \n  FOR3(v, 1, N) {\r\n    LL(p);\r\n    G.add(p, v);\r\n  }\r\n  G.build();\r\
-    \n\r\n  HLD hld(G);\r\n  using Mono = Group_Add<ll>;\r\n\r\n  TreeMonoid<decltype(hld),\
-    \ Mono, false> TM(hld, A);\r\n\r\n  FOR(_, Q) {\r\n    LL(t);\r\n    if (t ==\
-    \ 0) {\r\n      LL(v, x);\r\n      A[v] += x;\r\n      TM.set(v, A[v]);\r\n  \
-    \  } else {\r\n      LL(u);\r\n      print(TM.prod_subtree(u));\r\n    }\r\n \
-    \ }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
-    \ \"graph/treemonoid.hpp\"\r\n#include \"alg/group_add.hpp\"\r\n\r\nvoid solve()\
-    \ {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  Graph<int, 1> G(N);\r\n  FOR3(v, 1,\
-    \ N) {\r\n    LL(p);\r\n    G.add(p, v);\r\n  }\r\n  G.build();\r\n\r\n  HLD hld(G);\r\
-    \n  using Mono = Group_Add<ll>;\r\n\r\n  TreeMonoid<decltype(hld), Mono, false>\
-    \ TM(hld, A);\r\n\r\n  FOR(_, Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n    \
-    \  LL(v, x);\r\n      A[v] += x;\r\n      TM.set(v, A[v]);\r\n    } else {\r\n\
-    \      LL(u);\r\n      print(TM.prod_subtree(u));\r\n    }\r\n  }\r\n}\r\n\r\n\
-    signed main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n \
-    \ cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \u9593\u3002\");\r\n  }\r\n};\r\n#line 2 \"alg/monoid_max_idx.hpp\"\ntemplate\
+    \ <typename T, T INF>\r\nstruct Monoid_Max_Idx {\r\n  using value_type = pair<T,\
+    \ int>;\r\n  using X = value_type;\r\n  static X op(X x, X y) { return max(x,\
+    \ y); }\r\n  static constexpr X unit() { return {-INF, -1}; }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 7 \"test/yukicoder/529_two_edge.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, M, Q);\n  Graph G0(N);\n  G0.read_graph(M);\n  auto\
+    \ [C, comp] = two_edge_component(G0);\n\n  Graph G(C);\n  for (auto&& e: G0.edges)\
+    \ {\n    ll a = e.frm, b = e.to;\n    if (comp[a] == comp[b]) continue;\n    G.add(comp[a],\
+    \ comp[b]);\n  }\n  G.build();\n\n  const ll INF = 1LL << 60;\n  using Mono =\
+    \ Monoid_Max_Idx<ll, INF>;\n\n  HLD hld(G);\n  vc<pq<ll>> wts(C);\n  vc<pair<ll,\
+    \ int>> dat(C);\n  FOR(i, C) dat[i] = {-INF, i};\n  TreeMonoid<decltype(hld),\
+    \ Mono> TM(hld, dat);\n\n  FOR_(Q) {\n    LL(t);\n    if (t == 1) {\n      LL(v,\
+    \ x);\n      --v;\n      ll c = comp[v];\n      wts[c].push(x);\n      TM.set(c,\
+    \ {wts[c].top(), c});\n    }\n    if (t == 2) {\n      LL(a, b);\n      --a, --b;\n\
+    \      a = comp[a], b = comp[b];\n      auto [x, c] = TM.prod_path(a, b);\n  \
+    \    if (x == -INF) {\n        print(-1);\n      } else {\n        print(x);\n\
+    \        wts[c].pop();\n        x = (wts[c].empty() ? -INF : wts[c].top());\n\
+    \        TM.set(c, {x, c});\n      }\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/529\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"graph/two_edge_component.hpp\"\n#include\
+    \ \"graph/treemonoid.hpp\"\n#include \"alg/monoid_max_idx.hpp\"\n\nvoid solve()\
+    \ {\n  LL(N, M, Q);\n  Graph G0(N);\n  G0.read_graph(M);\n  auto [C, comp] = two_edge_component(G0);\n\
+    \n  Graph G(C);\n  for (auto&& e: G0.edges) {\n    ll a = e.frm, b = e.to;\n \
+    \   if (comp[a] == comp[b]) continue;\n    G.add(comp[a], comp[b]);\n  }\n  G.build();\n\
+    \n  const ll INF = 1LL << 60;\n  using Mono = Monoid_Max_Idx<ll, INF>;\n\n  HLD\
+    \ hld(G);\n  vc<pq<ll>> wts(C);\n  vc<pair<ll, int>> dat(C);\n  FOR(i, C) dat[i]\
+    \ = {-INF, i};\n  TreeMonoid<decltype(hld), Mono> TM(hld, dat);\n\n  FOR_(Q) {\n\
+    \    LL(t);\n    if (t == 1) {\n      LL(v, x);\n      --v;\n      ll c = comp[v];\n\
+    \      wts[c].push(x);\n      TM.set(c, {wts[c].top(), c});\n    }\n    if (t\
+    \ == 2) {\n      LL(a, b);\n      --a, --b;\n      a = comp[a], b = comp[b];\n\
+    \      auto [x, c] = TM.prod_path(a, b);\n      if (x == -INF) {\n        print(-1);\n\
+    \      } else {\n        print(x);\n        wts[c].pop();\n        x = (wts[c].empty()\
+    \ ? -INF : wts[c].top());\n        TM.set(c, {x, c});\n      }\n    }\n  }\n}\n\
+    \nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
+    \ return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - graph/treemonoid.hpp
-  - ds/segtree.hpp
+  - graph/two_edge_component.hpp
   - graph/hld.hpp
   - graph/base.hpp
+  - graph/treemonoid.hpp
+  - ds/segtree.hpp
   - alg/monoid_reverse.hpp
-  - alg/group_add.hpp
+  - alg/monoid_max_idx.hpp
   isVerificationFile: true
-  path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  path: test/yukicoder/529_two_edge.test.cpp
   requiredBy: []
-  timestamp: '2022-04-29 17:34:08+09:00'
+  timestamp: '2022-04-29 17:34:36+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+documentation_of: test/yukicoder/529_two_edge.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-- /verify/test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp.html
-title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+- /verify/test/yukicoder/529_two_edge.test.cpp
+- /verify/test/yukicoder/529_two_edge.test.cpp.html
+title: test/yukicoder/529_two_edge.test.cpp
 ---

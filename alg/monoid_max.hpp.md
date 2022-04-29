@@ -39,10 +39,10 @@ data:
   path: alg/monoid_max.hpp
   requiredBy:
   - graph/minimum_spanning_tree.hpp
-  - alg/lazy_max_min.hpp
-  - alg/lazy_max_max.hpp
-  - alg/lazy_max_add.hpp
   - alg/lazy_max_set.hpp
+  - alg/lazy_max_add.hpp
+  - alg/lazy_max_max.hpp
+  - alg/lazy_max_min.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

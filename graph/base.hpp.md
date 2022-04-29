@@ -2,46 +2,46 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
   - icon: ':heavy_check_mark:'
     path: graph/bellmanford.hpp
     title: graph/bellmanford.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/bfs01.hpp
     title: graph/bfs01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/bfsnumbering.hpp
     title: graph/bfsnumbering.hpp
   - icon: ':warning:'
     path: graph/bipartite_coloring.hpp
     title: graph/bipartite_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/centroid.hpp
     title: graph/centroid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/cycle_detection.hpp
     title: graph/cycle_detection.hpp
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/degree.hpp
     title: graph/degree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/dial.hpp
     title: graph/dial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/dijkstra.hpp
     title: graph/dijkstra.hpp
   - icon: ':heavy_check_mark:'
     path: graph/dualtreemonoid.hpp
     title: graph/dualtreemonoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/enumerate_triangles.hpp
     title: graph/enumerate_triangles.hpp
   - icon: ':warning:'
@@ -53,19 +53,19 @@ data:
   - icon: ':warning:'
     path: graph/functional.hpp
     title: graph/functional.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/maximum_independent_set.hpp
     title: graph/maximum_independent_set.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/mincostcycle.hpp
     title: graph/mincostcycle.hpp
   - icon: ':heavy_check_mark:'
@@ -80,43 +80,43 @@ data:
   - icon: ':warning:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/scc.hpp
     title: graph/scc.hpp
   - icon: ':warning:'
     path: graph/solve_dag_game.hpp
     title: graph/solve_dag_game.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/steiner_tree.hpp
     title: graph/steiner_tree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_diameter.hpp
     title: graph/tree_diameter.hpp
   - icon: ':warning:'
     path: graph/tree_dp.hpp
     title: graph/tree_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/treeabelgroup.hpp
     title: graph/treeabelgroup.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/treegroup.hpp
     title: graph/treegroup.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/twosat.hpp
     title: graph/twosat.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/warshall_floyd.hpp
     title: graph/warshall_floyd.hpp
   _extendedVerifiedWith:
@@ -144,87 +144,90 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
     title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/cycle_detection.test.cpp
     title: test/library_checker/graph/cycle_detection.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/enumerate_triangles.test.cpp
     title: test/library_checker/graph/enumerate_triangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/maximum_independent_set.test.cpp
     title: test/library_checker/graph/maximum_independent_set.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/scc.test.cpp
     title: test/library_checker/graph/scc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/shortest_path.test.cpp
     title: test/library_checker/graph/shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/two_edge_component.test.cpp
     title: test/library_checker/graph/two_edge_component.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/twosat.test.cpp
     title: test/library_checker/math/twosat.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/tree/lca.test.cpp
     title: test/library_checker/tree/lca.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/tree/lca_directed.test.cpp
     title: test/library_checker/tree/lca_directed.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/tree/tree_diameter.test.cpp
     title: test/library_checker/tree/tree_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1002_centroid.test.cpp
     title: test/yukicoder/1002_centroid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1038_centroid.test.cpp
     title: test/yukicoder/1038_centroid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/114_steriner_tree.test.cpp
     title: test/yukicoder/114_steriner_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1320_mincostcycle.test.cpp
     title: test/yukicoder/1320_mincostcycle.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/17_warshall_floyd.test.cpp
     title: test/yukicoder/17_warshall_floyd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/235_lazytreemonoid.test.cpp
     title: test/yukicoder/235_lazytreemonoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/yukicoder/529_two_edge.test.cpp
+    title: test/yukicoder/529_two_edge.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/899_bfsnumbering.test.cpp
     title: test/yukicoder/899_bfsnumbering.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -297,82 +300,83 @@ data:
   isVerificationFile: false
   path: graph/base.hpp
   requiredBy:
-  - graph/minimum_hamiltonian_cycle.hpp
-  - graph/centroid.hpp
-  - graph/dijkstra.hpp
-  - graph/dag_path_cover.hpp
-  - graph/maximum_independent_set.hpp
-  - graph/bipartite_coloring.hpp
-  - graph/dial.hpp
-  - graph/warshall_floyd.hpp
-  - graph/degree.hpp
-  - graph/two_edge_component.hpp
-  - graph/minimum_spanning_tree.hpp
-  - graph/treeabelgroup.hpp
-  - graph/eulerwalk.hpp
-  - graph/solve_dag_game.hpp
-  - graph/maximum_antichain.hpp
-  - graph/bfsnumbering.hpp
-  - graph/twosat.hpp
-  - graph/bellmanford.hpp
-  - graph/tree_dp.hpp
   - graph/cycle_detection.hpp
-  - graph/functional.hpp
-  - graph/treegroup.hpp
-  - graph/find_nontransitive_triple.hpp
-  - graph/rerooting_dp.hpp
+  - graph/mincostcycle.hpp
+  - graph/tree_all_distances.hpp
+  - graph/toposort.hpp
   - graph/treemonoid.hpp
   - graph/check_bipartite.hpp
-  - graph/steiner_tree.hpp
-  - graph/enumerate_triangles.hpp
-  - graph/reverse_graph.hpp
-  - graph/tree_diameter.hpp
-  - graph/dualtreemonoid.hpp
-  - graph/lazytreemonoid.hpp
-  - graph/hld.hpp
   - graph/bfs01.hpp
-  - graph/mincostcycle.hpp
+  - graph/degree.hpp
+  - graph/bipartite_coloring.hpp
+  - graph/bfsnumbering.hpp
+  - graph/hld.hpp
+  - graph/two_edge_component.hpp
+  - graph/functional.hpp
+  - graph/eulerwalk.hpp
+  - graph/dial.hpp
+  - graph/lazytreemonoid.hpp
+  - graph/find_nontransitive_triple.hpp
+  - graph/maximum_independent_set.hpp
+  - graph/minimum_hamiltonian_cycle.hpp
+  - graph/dijkstra.hpp
+  - graph/dualtreemonoid.hpp
+  - graph/reverse_graph.hpp
+  - graph/minimum_spanning_tree.hpp
+  - graph/dag_path_cover.hpp
+  - graph/rerooting_dp.hpp
+  - graph/solve_dag_game.hpp
+  - graph/treegroup.hpp
+  - graph/centroid.hpp
+  - graph/warshall_floyd.hpp
+  - graph/enumerate_triangles.hpp
+  - graph/steiner_tree.hpp
+  - graph/maximum_antichain.hpp
+  - graph/tree_dp.hpp
   - graph/scc.hpp
-  - graph/toposort.hpp
-  - graph/tree_all_distances.hpp
+  - graph/treeabelgroup.hpp
+  - graph/bellmanford.hpp
+  - graph/tree_diameter.hpp
+  - graph/twosat.hpp
   - flow/bipartite.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/899_bfsnumbering.test.cpp
-  - test/yukicoder/114_steriner_tree.test.cpp
+  - test/yukicoder/529_two_edge.test.cpp
   - test/yukicoder/1320_mincostcycle.test.cpp
+  - test/yukicoder/899_bfsnumbering.test.cpp
+  - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/1038_centroid.test.cpp
   - test/yukicoder/1002_centroid.test.cpp
+  - test/yukicoder/114_steriner_tree.test.cpp
   - test/yukicoder/17_warshall_floyd.test.cpp
-  - test/yukicoder/235_lazytreemonoid.test.cpp
-  - test/aoj/ALDS1_12_B_dial.test.cpp
-  - test/aoj/GRL_1_C_warshallfloyd.test.cpp
-  - test/aoj/GRL_1_B_bellmanford.test.cpp
-  - test/aoj/2251_dag_path_cover.test.cpp
-  - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
-  - test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
-  - test/aoj/2251_maxantichain.test.cpp
-  - test/aoj/GRL_2_A_mst.test.cpp
-  - test/library_checker/math/twosat.test.cpp
-  - test/library_checker/graph/cycle_detection.test.cpp
-  - test/library_checker/graph/maximum_independent_set.test.cpp
-  - test/library_checker/graph/enumerate_triangles.test.cpp
-  - test/library_checker/graph/bipartitematching.test.cpp
-  - test/library_checker/graph/shortest_path.test.cpp
-  - test/library_checker/graph/scc.test.cpp
-  - test/library_checker/graph/chromatic_number.test.cpp
-  - test/library_checker/graph/two_edge_component.test.cpp
-  - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - test/library_checker/tree/tree_diameter.test.cpp
-  - test/library_checker/tree/lca.test.cpp
-  - test/library_checker/tree/lca_directed.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
-  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - test/library_checker/graph/maximum_independent_set.test.cpp
+  - test/library_checker/graph/shortest_path.test.cpp
+  - test/library_checker/graph/two_edge_component.test.cpp
+  - test/library_checker/graph/enumerate_triangles.test.cpp
+  - test/library_checker/graph/scc.test.cpp
+  - test/library_checker/graph/bipartitematching.test.cpp
+  - test/library_checker/graph/cycle_detection.test.cpp
+  - test/library_checker/graph/chromatic_number.test.cpp
+  - test/library_checker/tree/lca_directed.test.cpp
+  - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
+  - test/library_checker/tree/lca.test.cpp
+  - test/library_checker/tree/tree_diameter.test.cpp
+  - test/library_checker/math/twosat.test.cpp
+  - test/aoj/ALDS1_12_B_dial.test.cpp
+  - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
+  - test/aoj/GRL_1_B_bellmanford.test.cpp
+  - test/aoj/2251_dag_path_cover.test.cpp
+  - test/aoj/GRL_1_C_warshallfloyd.test.cpp
+  - test/aoj/2251_maxantichain.test.cpp
+  - test/aoj/GRL_2_A_mst.test.cpp
+  - test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
 documentation_of: graph/base.hpp
 layout: document
 redirect_from:

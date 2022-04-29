@@ -30,15 +30,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A_mst.test.cpp
     title: test/aoj/GRL_2_A_mst.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/staticrmq_seg.test.cpp
     title: test/library_checker/datastructure/staticrmq_seg.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/staticrmq_sparse.test.cpp
     title: test/library_checker/datastructure/staticrmq_sparse.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid_min.hpp\"\ntemplate <class X, X INF>\r\nstruct\
@@ -55,18 +55,18 @@ data:
   requiredBy:
   - graph/minimum_spanning_tree.hpp
   - ds/range_mex_query.hpp
-  - alg/lazy_max_min.hpp
   - alg/lazy_min_min.hpp
   - alg/lazy_min_set.hpp
+  - alg/lazy_max_min.hpp
   - alg/lazy_min_add.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/DSL_2_H_min_add_lazy.test.cpp
-  - test/aoj/DSL_2_F_min_set_lazy.test.cpp
-  - test/aoj/GRL_2_A_mst.test.cpp
   - test/library_checker/datastructure/staticrmq_seg.test.cpp
   - test/library_checker/datastructure/staticrmq_sparse.test.cpp
+  - test/aoj/DSL_2_F_min_set_lazy.test.cpp
+  - test/aoj/GRL_2_A_mst.test.cpp
+  - test/aoj/DSL_2_H_min_add_lazy.test.cpp
 documentation_of: alg/monoid_min.hpp
 layout: document
 redirect_from:

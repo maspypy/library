@@ -2,28 +2,28 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/tetration.hpp
     title: mod/tetration.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/divisors.hpp
     title: nt/divisors.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':warning:'
@@ -33,25 +33,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_1_C_primetest.test.cpp
     title: test/aoj/ALDS1_1_C_primetest.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ITP1_D_D_divisors.test.cpp
     title: test/aoj/ITP1_D_D_divisors.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL_1_D_eulerphi.test.cpp
     title: test/aoj/NTL_1_D_eulerphi.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/binomial_coefficient.test.cpp
     title: test/library_checker/math/binomial_coefficient.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/factorize.test.cpp
     title: test/library_checker/math/factorize.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
   - icon: ':x:'
@@ -130,26 +130,26 @@ data:
   path: nt/primetest.hpp
   requiredBy:
   - graph/chromatic.hpp
-  - mod/mod_kth_root.hpp
-  - mod/tetration.hpp
-  - mod/binomial.hpp
-  - mod/primitive_root.hpp
-  - nt/zeta_on_divisors.hpp
-  - nt/factor.hpp
   - nt/divisors.hpp
+  - nt/factor.hpp
+  - nt/zeta_on_divisors.hpp
   - nt/euler_phi.hpp
+  - mod/tetration.hpp
+  - mod/primitive_root.hpp
+  - mod/mod_kth_root.hpp
+  - mod/binomial.hpp
   timestamp: '2022-04-27 05:09:11+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/981_mod_kth_root.test.cpp
+  - test/library_checker/graph/chromatic_number.test.cpp
+  - test/library_checker/math/tetration.test.cpp
+  - test/library_checker/math/binomial_coefficient.test.cpp
+  - test/library_checker/math/factorize.test.cpp
+  - test/library_checker/math/kth_root_mod.test.cpp
   - test/aoj/ALDS1_1_C_primetest.test.cpp
   - test/aoj/ITP1_D_D_divisors.test.cpp
   - test/aoj/NTL_1_D_eulerphi.test.cpp
-  - test/library_checker/math/binomial_coefficient.test.cpp
-  - test/library_checker/math/kth_root_mod.test.cpp
-  - test/library_checker/math/factorize.test.cpp
-  - test/library_checker/math/tetration.test.cpp
-  - test/library_checker/graph/chromatic_number.test.cpp
 documentation_of: nt/primetest.hpp
 layout: document
 redirect_from:

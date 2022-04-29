@@ -1,16 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: alg/monoid_rollinghash.hpp
-    title: alg/monoid_rollinghash.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/segtree.hpp
-    title: ds/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/modular_subset_sum.hpp
     title: mod/modular_subset_sum.hpp
   - icon: ':question:'
@@ -19,14 +13,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/random.hpp
     title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/4
@@ -67,14 +61,14 @@ data:
     \ x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return\
     \ (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64 x) { return (x ==\
     \ 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\n\
-    int lowbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint lowbit(u32\
-    \ x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint lowbit(ll x) { return\
-    \ (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint lowbit(u64 x) { return (x ==\
-    \ 0 ? -1 : 63 - __builtin_clzll(x)); }\n\ntemplate <typename T, typename U>\n\
-    T ceil(T x, U y) {\n  return (x > 0 ? (x + y - 1) / y : x / y);\n}\n\ntemplate\
-    \ <typename T, typename U>\nT floor(T x, U y) {\n  return (x > 0 ? x / y : (x\
-    \ - y + 1) / y);\n}\n\ntemplate <typename T, typename U>\npair<T, T> divmod(T\
-    \ x, U y) {\n  T q = floor(x, y);\n  return {q, x - q * y};\n}\n\nll binary_search(function<bool(ll)>\
+    int lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(u32\
+    \ x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll x) { return (x\
+    \ == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return (x == 0 ? -1\
+    \ : __builtin_ctzll(x)); }\n\ntemplate <typename T, typename U>\nT ceil(T x, U\
+    \ y) {\n  return (x > 0 ? (x + y - 1) / y : x / y);\n}\n\ntemplate <typename T,\
+    \ typename U>\nT floor(T x, U y) {\n  return (x > 0 ? x / y : (x - y + 1) / y);\n\
+    }\n\ntemplate <typename T, typename U>\npair<T, T> divmod(T x, U y) {\n  T q =\
+    \ floor(x, y);\n  return {q, x - q * y};\n}\n\nll binary_search(function<bool(ll)>\
     \ check, ll ok, ll ng) {\n  assert(check(ok));\n  while (abs(ok - ng) > 1) {\n\
     \    auto x = (ng + ok) / 2;\n    if (check(x))\n      ok = x;\n    else\n   \
     \   ng = x;\n  }\n  return ok;\n}\n\ntemplate <class T, class S>\ninline bool\
@@ -197,102 +191,96 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"mod/modint61.hpp\"\nstruct modint61 {\r\n  static\
-    \ constexpr bool is_modint = true;\r\n  static constexpr ll mod = (1LL << 61)\
-    \ - 1;\r\n  ll val;\r\n  constexpr modint61(const ll val = 0) : val(val) {}\r\n\
-    \  bool operator<(const modint61 &other) const {\r\n    return val < other.val;\r\
-    \n  } // To use std::map\r\n  bool operator==(const modint61 &p) const { return\
-    \ val == p.val; }\r\n  bool operator!=(const modint61 &p) const { return val !=\
-    \ p.val; }\r\n  modint61 &operator+=(const modint61 &p) {\r\n    if ((val += p.val)\
-    \ >= mod) val -= mod;\r\n    return *this;\r\n  }\r\n  modint61 &operator-=(const\
-    \ modint61 &p) {\r\n    if ((val += mod - p.val) >= mod) val -= mod;\r\n    return\
-    \ *this;\r\n  }\r\n  modint61 &operator*=(const modint61 &p) {\r\n    ll a = val,\
-    \ b = p.val;\r\n    const ll MASK30 = (1LL << 30) - 1;\r\n    const ll MASK31\
-    \ = (1LL << 31) - 1;\r\n    const ll MASK61 = (1LL << 61) - 1;\r\n    ll au =\
-    \ a >> 31, ad = a & MASK31;\r\n    ll bu = b >> 31, bd = b & MASK31;\r\n    ll\
-    \ x = ad * bu + au * bd;\r\n    ll xu = x >> 30, xd = x & MASK30;\r\n    x = au\
-    \ * bu * 2 + xu + (xd << 31) + ad * bd;\r\n    xu = x >> 61, xd = x & MASK61;\r\
-    \n    x = xu + xd;\r\n    if (x >= MASK61) x -= MASK61;\r\n    val = x;\r\n  \
-    \  return *this;\r\n  }\r\n  modint61 &operator/=(const modint61 &p) {\r\n   \
-    \ *this *= p.inverse();\r\n    return *this;\r\n  }\r\n  modint61 operator+(const\
-    \ modint61 &p) const { return modint61(*this) += p; }\r\n  modint61 operator-(const\
-    \ modint61 &p) const { return modint61(*this) -= p; }\r\n  modint61 operator*(const\
-    \ modint61 &p) const { return modint61(*this) *= p; }\r\n  modint61 operator/(const\
-    \ modint61 &p) const { return modint61(*this) /= p; }\r\n\r\n  modint61 inverse()\
-    \ const {\r\n    ll a = val, b = mod, u = 1, v = 0, t;\r\n    while (b > 0) {\r\
-    \n      t = a / b;\r\n      swap(a -= t * b, b), swap(u -= t * v, v);\r\n    }\r\
-    \n    return modint61(u);\r\n  }\r\n  modint61 pow(int64_t n) const {\r\n    modint61\
-    \ ret(1), mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret = ret * mul;\r\
-    \n      mul = mul * mul;\r\n      n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\
-    \n  static constexpr ll get_mod() { return mod; }\r\n};\r\n#line 3 \"alg/monoid_rollinghash.hpp\"\
-    \n\r\nstruct Monoid_Rolling_Hash {\r\n  using value_type = pair<modint61, modint61>;\
-    \ // pow of base, val\r\n  using X = value_type;\r\n  static X op(X x, X y) {\
-    \ return {x.fi * y.fi, x.se * y.fi + y.se}; }\r\n  static constexpr X unit() {\
-    \ return {1, 0}; }\r\n  static constexpr bool commute = false;\r\n};\n#line 1\
-    \ \"other/random.hpp\"\nstruct RandomNumberGenerator {\n  mt19937 mt;\n\n  RandomNumberGenerator()\
-    \ : mt(chrono::steady_clock::now().time_since_epoch().count()) {}\n\n  ll operator()(ll\
-    \ a, ll b) {  // [a, b)\n    uniform_int_distribution<ll> dist(a, b - 1);\n  \
-    \  return dist(mt);\n  }\n\n  ll operator()(ll b) {  // [0, b)\n    return (*this)(0,\
-    \ b);\n  }\n};\n#line 2 \"ds/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
-    \ SegTree {\n  using X = typename Monoid::value_type;\n  using value_type = X;\n\
-    \  vc<X> dat;\n  int n, log, size;\n\n  SegTree() : SegTree(0) {}\n  SegTree(int\
-    \ n) : SegTree(vc<X>(n, Monoid::unit())) {}\n  SegTree(vc<X> v) : n(len(v)) {\n\
-    \    log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
-    \ << 1, Monoid::unit());\n    FOR(i, n) dat[size + i] = v[i];\n    FOR3_R(i, 1,\
-    \ size) update(i);\n  }\n\n  X operator[](int i) { return dat[size + i]; }\n\n\
-    \  void update(int i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n\n\
-    \  void set(int i, X x) {\n    assert(i < n);\n    dat[i += size] = x;\n    while\
-    \ (i >>= 1) update(i);\n  }\n\n  X prod(int L, int R) {\n    assert(L <= R);\n\
-    \    assert(R <= n);\n    X vl = Monoid::unit(), vr = Monoid::unit();\n    L +=\
-    \ size, R += size;\n    while (L < R) {\n      if (L & 1) vl = Monoid::op(vl,\
-    \ dat[L++]);\n      if (R & 1) vr = Monoid::op(dat[--R], vr);\n      L >>= 1,\
-    \ R >>= 1;\n    }\n    return Monoid::op(vl, vr);\n  }\n\n  X prod_all() { return\
-    \ dat[1]; }\n\n  template <class F>\n  int max_right(F &check, int L) {\n    assert(0\
-    \ <= L && L <= n && check(Monoid::unit()));\n    if (L == n) return n;\n    L\
-    \ += size;\n    X sm = Monoid::unit();\n    do {\n      while (L % 2 == 0) L >>=\
-    \ 1;\n      if (!check(Monoid::op(sm, dat[L]))) {\n        while (L < size) {\n\
-    \          L = 2 * L;\n          if (check(Monoid::op(sm, dat[L]))) {\n      \
-    \      sm = Monoid::op(sm, dat[L]);\n            L++;\n          }\n        }\n\
-    \        return L - size;\n      }\n      sm = Monoid::op(sm, dat[L]);\n     \
-    \ L++;\n    } while ((L & -L) != L);\n    return n;\n  }\n\n  template <class\
-    \ F>\n  int min_left(F &check, int R) {\n    assert(0 <= R && R <= n && check(Monoid::unit()));\n\
-    \    if (R == 0) return 0;\n    R += size;\n    X sm = Monoid::unit();\n    do\
-    \ {\n      --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
-    \ sm))) {\n        while (R < size) {\n          R = 2 * R + 1;\n          if\
-    \ (check(Monoid::op(dat[R], sm))) {\n            sm = Monoid::op(dat[R], sm);\n\
-    \            R--;\n          }\n        }\n        return R + 1 - size;\n    \
-    \  }\n      sm = Monoid::op(dat[R], sm);\n    } while ((R & -R) != R);\n    return\
-    \ 0;\n  }\n\n  // \u30E2\u30CE\u30A4\u30C9\u304C\u53EF\u63DB\u306A\u3089\u3001\
-    prod_{l<=i<r}A[i^x] \u304C\u8A08\u7B97\u53EF\u80FD\n  // https://codeforces.com/contest/1401/problem/F\n\
-    \  X Xor_prod(int l, int r, int xor_val) {\n    assert(Monoid::commute);\n   \
-    \ X x = Monoid::unit();\n    FOR(k, log + 1) {\n      if (l >= r) break;\n   \
-    \   if (l & 1) { x = Monoid::op(x, dat[(size >> k) + ((l++) ^ xor_val)]); }\n\
-    \      if (r & 1) { x = Monoid::op(x, dat[(size >> k) + ((--r) ^ xor_val)]); }\n\
-    \      l /= 2, r /= 2, xor_val /= 2;\n    }\n    return x;\n  }\n\n  void debug()\
-    \ { print(\"segtree\", dat); }\n};\n#line 4 \"mod/modular_subset_sum.hpp\"\n\r\
-    \n/*\r\n\u8A08\u7B97\u91CF\uFF1A(|vals| + mod) * log^2(mod)\r\n\u30FBcan(x) \u307E\
-    \u305F\u306F [x] \u3067 bool \u3092\u8FD4\u3059\u3002\r\n\u30FBrestore(x) \u3067\
-    \u5FA9\u5143\u3002\r\n*/\r\nstruct Modular_Subset_Sum {\r\n  int mod;\r\n  vc<int>&\
-    \ vals;\r\n  vc<int> par;\r\n\r\n  Modular_Subset_Sum(int mod, vc<int>& vals)\
-    \ : mod(mod), vals(vals) {\r\n    par.assign(mod, -1);\r\n\r\n    using Mono =\
-    \ Monoid_Rolling_Hash;\r\n    RandomNumberGenerator RNG;\r\n    const ll base\
-    \ = RNG(0, (1LL << 61) - 1);\r\n    vc<pair<modint61, modint61>> seg_raw(mod +\
-    \ mod);\r\n    FOR(i, mod + mod) seg_raw[i] = {base, 0};\r\n    SegTree<Mono>\
-    \ seg(seg_raw);\r\n\r\n    auto add = [&](int x, int i) -> void {\r\n      par[x]\
-    \ = i;\r\n      seg.set(x, {base, 1});\r\n      seg.set(x + mod, {base, 1});\r\
-    \n    };\r\n\r\n    add(0, -1);\r\n\r\n    FOR(i, len(vals)) {\r\n      ll val\
-    \ = vals[i];\r\n      val %= mod;\r\n      vc<pair<int, int>> LR;\r\n      LR.eb(0,\
-    \ mod);\r\n      vc<int> ADD;\r\n      while (len(LR)) {\r\n        auto [L, R]\
-    \ = LR.back();\r\n        LR.pop_back();\r\n        if (L == R) continue;\r\n\
-    \        modint61 x1 = seg.prod(L, R).se;\r\n        modint61 x2 = seg.prod(mod\
-    \ + L - val, mod + R - val).se;\r\n        if (x1 == x2) continue;\r\n       \
-    \ if (R == L + 1) {\r\n          // \u5BFE\u79F0\u5DEE L \u304C\u898B\u3064\u304B\
-    \u3063\u305F\r\n          if (!can(L)) ADD.eb(L);\r\n          continue;\r\n \
-    \       }\r\n        ll M = (L + R) / 2;\r\n        LR.eb(L, M);\r\n        LR.eb(M,\
-    \ R);\r\n      }\r\n      for (auto&& a: ADD) add(a, i);\r\n    }\r\n  }\r\n\r\
-    \n  bool can(int x) { return (x == 0 || par[x] != -1); }\r\n  bool operator[](int\
-    \ x) { return can(x); }\r\n  vc<int> restore(int x) {\r\n    vc<int> res;\r\n\
-    \    while (x) {\r\n      int i = par[x];\r\n      res.eb(i);\r\n      x -= vals[i];\r\
+    \ { yes(!t); }\r\n#line 1 \"other/random.hpp\"\nstruct RandomNumberGenerator {\n\
+    \  mt19937 mt;\n\n  RandomNumberGenerator() : mt(chrono::steady_clock::now().time_since_epoch().count())\
+    \ {}\n\n  ll operator()(ll a, ll b) {  // [a, b)\n    uniform_int_distribution<ll>\
+    \ dist(a, b - 1);\n    return dist(mt);\n  }\n\n  ll operator()(ll b) {  // [0,\
+    \ b)\n    return (*this)(0, b);\n  }\n};\n#line 2 \"mod/modint61.hpp\"\nstruct\
+    \ modint61 {\r\n  static constexpr bool is_modint = true;\r\n  static constexpr\
+    \ ll mod = (1LL << 61) - 1;\r\n  ll val;\r\n  constexpr modint61(const ll val\
+    \ = 0) : val(val) {}\r\n  bool operator<(const modint61 &other) const {\r\n  \
+    \  return val < other.val;\r\n  } // To use std::map\r\n  bool operator==(const\
+    \ modint61 &p) const { return val == p.val; }\r\n  bool operator!=(const modint61\
+    \ &p) const { return val != p.val; }\r\n  modint61 &operator+=(const modint61\
+    \ &p) {\r\n    if ((val += p.val) >= mod) val -= mod;\r\n    return *this;\r\n\
+    \  }\r\n  modint61 &operator-=(const modint61 &p) {\r\n    if ((val += mod - p.val)\
+    \ >= mod) val -= mod;\r\n    return *this;\r\n  }\r\n  modint61 &operator*=(const\
+    \ modint61 &p) {\r\n    ll a = val, b = p.val;\r\n    const ll MASK30 = (1LL <<\
+    \ 30) - 1;\r\n    const ll MASK31 = (1LL << 31) - 1;\r\n    const ll MASK61 =\
+    \ (1LL << 61) - 1;\r\n    ll au = a >> 31, ad = a & MASK31;\r\n    ll bu = b >>\
+    \ 31, bd = b & MASK31;\r\n    ll x = ad * bu + au * bd;\r\n    ll xu = x >> 30,\
+    \ xd = x & MASK30;\r\n    x = au * bu * 2 + xu + (xd << 31) + ad * bd;\r\n   \
+    \ xu = x >> 61, xd = x & MASK61;\r\n    x = xu + xd;\r\n    if (x >= MASK61) x\
+    \ -= MASK61;\r\n    val = x;\r\n    return *this;\r\n  }\r\n  modint61 &operator/=(const\
+    \ modint61 &p) {\r\n    *this *= p.inverse();\r\n    return *this;\r\n  }\r\n\
+    \  modint61 operator+(const modint61 &p) const { return modint61(*this) += p;\
+    \ }\r\n  modint61 operator-(const modint61 &p) const { return modint61(*this)\
+    \ -= p; }\r\n  modint61 operator*(const modint61 &p) const { return modint61(*this)\
+    \ *= p; }\r\n  modint61 operator/(const modint61 &p) const { return modint61(*this)\
+    \ /= p; }\r\n\r\n  modint61 inverse() const {\r\n    ll a = val, b = mod, u =\
+    \ 1, v = 0, t;\r\n    while (b > 0) {\r\n      t = a / b;\r\n      swap(a -= t\
+    \ * b, b), swap(u -= t * v, v);\r\n    }\r\n    return modint61(u);\r\n  }\r\n\
+    \  modint61 pow(int64_t n) const {\r\n    modint61 ret(1), mul(val);\r\n    while\
+    \ (n > 0) {\r\n      if (n & 1) ret = ret * mul;\r\n      mul = mul * mul;\r\n\
+    \      n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n  static constexpr ll get_mod()\
+    \ { return mod; }\r\n};\r\n#line 3 \"mod/modular_subset_sum.hpp\"\n\r\n// Faster\
+    \ Deterministic Modular Subset Sum. arXiv preprint arXiv:2012.06062.\r\n// modular\
+    \ subset sum \u306E\u305F\u3081\u306E\u3001\u30B7\u30D5\u30C8\u4ED8\u304D\u30BB\
+    \u30B0\u6728\r\n// shift \u306B\u306F 2^(N-k) \u6642\u9593\u304B\u304B\u308B\r\
+    \nstruct ShiftTree {\r\n  using M61 = modint61;\r\n  int delta;\r\n  int N, n;\r\
+    \n  M61 base;\r\n  vc<M61> dat;\r\n  vc<M61> base_pow;\r\n\r\n  ShiftTree(int\
+    \ N, ll base) : delta(0), N(N), n(topbit(N)), base(base) {\r\n    assert(N ==\
+    \ (1 << n));\r\n    dat.assign(2 * N, 0);\r\n\r\n    base_pow.assign(n, 1);\r\n\
+    \    base_pow[n - 1] = base;\r\n    FOR_R(i, n - 1) base_pow[i] = base_pow[i +\
+    \ 1] * base_pow[i + 1];\r\n  }\r\n\r\n  inline int skew(int k) { return (delta\
+    \ >> (n - k)) & 1; }\r\n\r\n  inline int left(int k, int i) {\r\n    int mask\
+    \ = (1 << (k + 1)) - 1;\r\n    return ((2 * i + 0 - skew(k + 1)) & mask) + (1\
+    \ << (k + 1));\r\n  }\r\n\r\n  inline int right(int k, int i) {\r\n    int mask\
+    \ = (1 << (k + 1)) - 1;\r\n    return ((2 * i + 1 - skew(k + 1)) & mask) + (1\
+    \ << (k + 1));\r\n  }\r\n\r\n  inline int parent(int k, int i) {\r\n    int mask\
+    \ = (1 << k) - 1;\r\n    return (((i + skew(k)) & mask) + (1 << k)) / 2;\r\n \
+    \ }\r\n\r\n  inline void update(int k, int i) {\r\n    M61 b = base_pow[k];\r\n\
+    \    dat[i] = b * dat[left(k, i)] + dat[right(k, i)];\r\n  }\r\n\r\n  inline void\
+    \ set(int i, ll x) {\r\n    i = (i + N - delta) % N + N;\r\n    dat[i] = x;\r\n\
+    \    int k = n;\r\n    while (i != 1) {\r\n      i = parent(k, i);\r\n      --k;\r\
+    \n      update(k, i);\r\n    }\r\n  }\r\n\r\n  void shift(int k) {\r\n    k %=\
+    \ N;\r\n    if (k < 0) k += N;\r\n    if (k == 0) return;\r\n    int j = lowbit(k);\r\
+    \n    delta = (delta + k) % N;\r\n    FOR_R(k, n - j) { FOR3(i, 1 << k, 2 << k)\
+    \ update(k, i); }\r\n  }\r\n\r\n  // [a,b) \u306B\u304A\u3051\u308B difference\
+    \ \u306E\u5217\u6319\u3002output sensitive\u3002\r\n  // T \u306E\u30CE\u30FC\u30C9\
+    \ i\u3001Q \u306E\u30CE\u30FC\u30C9 j \u304C (x,y) \u3092\u6307\u3059\u3068\u3059\
+    \u308B\u3002\r\n  static void find_differences(vc<int>& res, ShiftTree& T, ShiftTree&\
+    \ Q, int a,\r\n                               int b, int k, int i, int j, int\
+    \ x, int y) {\r\n    if (T.dat[i] == Q.dat[j]) return;\r\n    if (max(a, x) >=\
+    \ min(b, y)) return;\r\n    if (y == x + 1) {\r\n      res.eb(x);\r\n      return;\r\
+    \n    }\r\n    int z = (x + y) / 2;\r\n    find_differences(res, T, Q, a, b, k\
+    \ + 1, T.left(k, i), Q.left(k, j), x, z);\r\n    find_differences(res, T, Q, a,\
+    \ b, k + 1, T.right(k, i), Q.right(k, j), z,\r\n                     y);\r\n \
+    \ }\r\n\r\n  static vc<int> diff(ShiftTree& T, ShiftTree& Q, int a, int b) {\r\
+    \n    assert(T.N == Q.N);\r\n    vc<int> res;\r\n    find_differences(res, T,\
+    \ Q, a, b, 0, 1, 1, 0, T.N);\r\n    return res;\r\n  }\r\n};\r\n\r\n/*\r\n\u8A08\
+    \u7B97\u91CF\uFF1A(|vals| + mod) * log(mod)\r\n\u30FBcan(x) \u307E\u305F\u306F\
+    \ [x] \u3067 bool \u3092\u8FD4\u3059\u3002\r\n\u30FBrestore(x) \u3067\u5FA9\u5143\
+    \u3002\r\n\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u306B\u306F\u3001(mod, vals)\
+    \ \u3092\u308F\u305F\u3059\r\n*/\r\nstruct Modular_Subset_Sum {\r\n  int mod;\r\
+    \n  vc<int>& vals;\r\n  vc<int> par;\r\n\r\n  Modular_Subset_Sum(int mod, vc<int>&\
+    \ vals) : mod(mod), vals(vals) {\r\n    par.assign(mod, -1);\r\n\r\n    RandomNumberGenerator\
+    \ RNG;\r\n    const ll base = RNG(0, (1LL << 61) - 1);\r\n\r\n    int k = 1;\r\
+    \n    while ((1 << k) < 2 * mod) ++k;\r\n\r\n    int L = 1 << k;\r\n    assert(L\
+    \ >= 2 * mod);\r\n\r\n    ShiftTree T1(L, base);\r\n    ShiftTree T2(L, base);\r\
+    \n    T1.set(0, 1);\r\n    T2.set(0, 1);\r\n    T2.set(L - mod, 1);\r\n\r\n  \
+    \  auto bit_rev = [&](int i) -> int {\r\n      int x = 0;\r\n      FOR_(k) {\r\
+    \n        x = 2 * x + (i & 1);\r\n        i >>= 1;\r\n      }\r\n      return\
+    \ x;\r\n    };\r\n\r\n    vc<vi> IDS(L);\r\n    FOR(i, len(vals)) { IDS[vals[i]].eb(i);\
+    \ }\r\n\r\n    FOR3(i, 1, L) {\r\n      int x = bit_rev(i);\r\n      if (len(IDS[x])\
+    \ == 0) continue;\r\n      T2.shift(x - T2.delta);\r\n      for (auto&& idx: IDS[x])\
+    \ {\r\n        auto diff = ShiftTree::diff(T1, T2, 0, mod);\r\n        for (auto&&\
+    \ d: diff) {\r\n          if (can(d)) continue;\r\n          par[d] = idx;\r\n\
+    \          T1.set(d, 1);\r\n          T2.set((d + x) % L, 1);\r\n          T2.set((L\
+    \ + d + x - mod) % L, 1);\r\n        }\r\n      }\r\n    }\r\n  }\r\n\r\n  bool\
+    \ can(int x) { return (x == 0 || par[x] != -1); }\r\n  bool operator[](int x)\
+    \ { return can(x); }\r\n  vc<int> restore(int x) {\r\n    vc<int> res;\r\n   \
+    \ while (x) {\r\n      int i = par[x];\r\n      res.eb(i);\r\n      x -= vals[i];\r\
     \n      if (x < 0) x += mod;\r\n    }\r\n    reverse(all(res));\r\n    return\
     \ res;\r\n  }\r\n};\r\n#line 5 \"test/yukicoder/4_modular_subset_sum.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n  ll S = SUM(A);\n  Modular_Subset_Sum\
@@ -311,15 +299,13 @@ data:
   - my_template.hpp
   - other/io.hpp
   - mod/modular_subset_sum.hpp
-  - alg/monoid_rollinghash.hpp
-  - mod/modint61.hpp
   - other/random.hpp
-  - ds/segtree.hpp
+  - mod/modint61.hpp
   isVerificationFile: true
   path: test/yukicoder/4_modular_subset_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-04-27 05:07:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-04-29 17:33:35+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/4_modular_subset_sum.test.cpp
 layout: document
