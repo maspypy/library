@@ -5,6 +5,12 @@ data:
   - icon: ':x:'
     path: linalg/mat_pow.hpp
     title: linalg/mat_pow.hpp
+  - icon: ':x:'
+    path: poly/prefix_product_of_poly.hpp
+    title: poly/prefix_product_of_poly.hpp
+  - icon: ':x:'
+    path: seq/kth_term_of_p_recursive.hpp
+    title: seq/kth_term_of_p_recursive.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/library_checker/matrix/matrix_product.test.cpp
@@ -15,6 +21,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/502_p_rec.test.cpp
+    title: test/yukicoder/502_p_rec.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -47,10 +56,13 @@ data:
   path: linalg/mat_mul.hpp
   requiredBy:
   - linalg/mat_pow.hpp
+  - poly/prefix_product_of_poly.hpp
+  - seq/kth_term_of_p_recursive.hpp
   timestamp: '2022-04-23 01:11:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1810_matpow.test.cpp
+  - test/yukicoder/502_p_rec.test.cpp
   - test/yukicoder/426.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
 documentation_of: linalg/mat_mul.hpp

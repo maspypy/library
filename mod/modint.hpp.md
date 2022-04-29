@@ -5,7 +5,7 @@ data:
   - icon: ':x:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
   - icon: ':x:'
@@ -66,6 +66,9 @@ data:
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   - icon: ':x:'
+    path: poly/prefix_product_of_poly.hpp
+    title: poly/prefix_product_of_poly.hpp
+  - icon: ':x:'
     path: poly/sharp_p_subset_sum.hpp
     title: poly/sharp_p_subset_sum.hpp
   - icon: ':x:'
@@ -77,6 +80,9 @@ data:
   - icon: ':x:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
+  - icon: ':x:'
+    path: seq/kth_term_of_p_recursive.hpp
+    title: seq/kth_term_of_p_recursive.hpp
   - icon: ':x:'
     path: seq/limit_poly_exp_sum.hpp
     title: seq/limit_poly_exp_sum.hpp
@@ -138,16 +144,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/find_linear_recurrence.test.cpp
     title: test/library_checker/math/find_linear_recurrence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/gcd_convolution.test.cpp
     title: test/library_checker/math/gcd_convolution.test.cpp
   - icon: ':x:'
@@ -249,6 +255,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/502_p_rec.test.cpp
+    title: test/yukicoder/502_p_rec.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -409,6 +418,7 @@ data:
   - poly/poly_divmod.hpp
   - poly/fps_composition.hpp
   - poly/convolution_mod_2_64.hpp
+  - poly/prefix_product_of_poly.hpp
   - poly/convolution2d.hpp
   - poly/convolution.hpp
   - poly/fps_exp.hpp
@@ -428,6 +438,7 @@ data:
   - seq/stirling_number_2.hpp
   - seq/stirling_number_1.hpp
   - seq/coef_of_rational_fps.hpp
+  - seq/kth_term_of_p_recursive.hpp
   - seq/limit_poly_exp_sum.hpp
   - seq/interpolate_poly_exp_sum.hpp
   - mod/mod_log.hpp
@@ -438,6 +449,7 @@ data:
   - test/yukicoder/1810_matpow.test.cpp
   - test/yukicoder/1891_xor_sparse.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
+  - test/yukicoder/502_p_rec.test.cpp
   - test/yukicoder/426.test.cpp
   - test/library_checker/convolution/bitwise_and_convolution.test.cpp
   - test/library_checker/convolution/bitwise_or_convolution.test.cpp

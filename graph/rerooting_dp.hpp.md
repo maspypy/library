@@ -13,13 +13,11 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links:
-    - https://codeforces.com/contest/635/problem/F
-  bundledCode: "#line 1 \"graph/rerooting_dp.hpp\"\n// https://codeforces.com/contest/635/problem/F\r\
-    \n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int frm,\
-    \ to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed =\
-    \ false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n  using edge_type\
-    \ = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type>\
+    links: []
+  bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
+    \ directed = false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n  using\
+    \ edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type>\
     \ csr_edges;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n    OutgoingEdges(const\
     \ Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin()\
     \ const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[l];\n \
@@ -104,7 +102,7 @@ data:
     \ {\r\n    print(\"V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\",\
     \ RID);\r\n    print(\"parent\", parent);\r\n    print(\"depth\", depth);\r\n\
     \    print(\"head\", head);\r\n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"\
-    root\", root);\r\n  }\r\n};\r\n#line 4 \"graph/rerooting_dp.hpp\"\n\r\n// snippet\
+    root\", root);\r\n  }\r\n};\r\n#line 3 \"graph/rerooting_dp.hpp\"\n\r\n// snippet\
     \ \u53C2\u7167\r\ntemplate <typename Graph, typename Data, typename F1, typename\
     \ F2, typename F3>\r\nvc<Data> rerooting_dp(Graph& G, F1 fee, F2 fev, F3 fve,\
     \ Data unit) {\r\n  using E = typename Graph::edge_type;\r\n\r\n  int N = G.N;\r\
@@ -123,33 +121,32 @@ data:
     \ = 1;\r\n    for (auto&& e: G[v])\r\n      if (e.to != par[v]) {\r\n        auto\
     \ prod = fee(cum_l[nxt], cum_r[nxt + 1]);\r\n        ++nxt;\r\n        dpe2[e.to]\
     \ = fve(fev(prod, v), e);\r\n      }\r\n  }\r\n  return dp;\r\n}\n"
-  code: "// https://codeforces.com/contest/635/problem/F\r\n#include \"graph/base.hpp\"\
-    \r\n#include \"graph/hld.hpp\"\r\n\r\n// snippet \u53C2\u7167\r\ntemplate <typename\
-    \ Graph, typename Data, typename F1, typename F2, typename F3>\r\nvc<Data> rerooting_dp(Graph&\
-    \ G, F1 fee, F2 fev, F3 fve, Data unit) {\r\n  using E = typename Graph::edge_type;\r\
-    \n\r\n  int N = G.N;\r\n  HLD hld(G);\r\n  auto V = hld.V;\r\n  auto VR = V;\r\
-    \n  reverse(all(VR));\r\n  auto par = hld.parent;\r\n\r\n  vc<Data> dpv(N);\r\n\
-    \  vc<Data> dpe1(N);\r\n\r\n  for (auto&& v: VR) {\r\n    auto val = unit;\r\n\
-    \    E e0;\r\n    for (auto&& e: G[v]) {\r\n      if (e.to != par[v]) {\r\n  \
-    \      val = fee(val, dpe1[e.to]);\r\n      } else {\r\n        e0 = e;\r\n  \
-    \    }\r\n    }\r\n    dpv[v] = fev(val, v);\r\n    dpe1[v] = (v ? fve(dpv[v],\
-    \ e0) : unit);\r\n  }\r\n\r\n  vc<Data> dp(N);\r\n  vc<Data> dpe2(N);\r\n  dpe2[0]\
-    \ = unit;\r\n\r\n  for (auto&& v: V) {\r\n    vc<Data> tmp = {dpe2[v]};\r\n  \
-    \  for (auto&& e: G[v])\r\n      if (e.to != par[v]) { tmp.eb(dpe1[e.to]); }\r\
-    \n    int n = len(tmp);\r\n    vc<Data> cum_l(n + 1), cum_r(n + 1);\r\n    cum_l[0]\
-    \ = unit;\r\n    FOR(i, n) cum_l[i + 1] = fee(cum_l[i], tmp[i]);\r\n    cum_r[n]\
-    \ = unit;\r\n    FOR_R(i, n) cum_r[i] = fee(cum_r[i + 1], tmp[i]);\r\n    dp[v]\
-    \ = fev(cum_r[0], v);\r\n    int nxt = 1;\r\n    for (auto&& e: G[v])\r\n    \
-    \  if (e.to != par[v]) {\r\n        auto prod = fee(cum_l[nxt], cum_r[nxt + 1]);\r\
-    \n        ++nxt;\r\n        dpe2[e.to] = fve(fev(prod, v), e);\r\n      }\r\n\
-    \  }\r\n  return dp;\r\n}"
+  code: "#include \"graph/base.hpp\"\r\n#include \"graph/hld.hpp\"\r\n\r\n// snippet\
+    \ \u53C2\u7167\r\ntemplate <typename Graph, typename Data, typename F1, typename\
+    \ F2, typename F3>\r\nvc<Data> rerooting_dp(Graph& G, F1 fee, F2 fev, F3 fve,\
+    \ Data unit) {\r\n  using E = typename Graph::edge_type;\r\n\r\n  int N = G.N;\r\
+    \n  HLD hld(G);\r\n  auto V = hld.V;\r\n  auto VR = V;\r\n  reverse(all(VR));\r\
+    \n  auto par = hld.parent;\r\n\r\n  vc<Data> dpv(N);\r\n  vc<Data> dpe1(N);\r\n\
+    \r\n  for (auto&& v: VR) {\r\n    auto val = unit;\r\n    E e0;\r\n    for (auto&&\
+    \ e: G[v]) {\r\n      if (e.to != par[v]) {\r\n        val = fee(val, dpe1[e.to]);\r\
+    \n      } else {\r\n        e0 = e;\r\n      }\r\n    }\r\n    dpv[v] = fev(val,\
+    \ v);\r\n    dpe1[v] = (v ? fve(dpv[v], e0) : unit);\r\n  }\r\n\r\n  vc<Data>\
+    \ dp(N);\r\n  vc<Data> dpe2(N);\r\n  dpe2[0] = unit;\r\n\r\n  for (auto&& v: V)\
+    \ {\r\n    vc<Data> tmp = {dpe2[v]};\r\n    for (auto&& e: G[v])\r\n      if (e.to\
+    \ != par[v]) { tmp.eb(dpe1[e.to]); }\r\n    int n = len(tmp);\r\n    vc<Data>\
+    \ cum_l(n + 1), cum_r(n + 1);\r\n    cum_l[0] = unit;\r\n    FOR(i, n) cum_l[i\
+    \ + 1] = fee(cum_l[i], tmp[i]);\r\n    cum_r[n] = unit;\r\n    FOR_R(i, n) cum_r[i]\
+    \ = fee(cum_r[i + 1], tmp[i]);\r\n    dp[v] = fev(cum_r[0], v);\r\n    int nxt\
+    \ = 1;\r\n    for (auto&& e: G[v])\r\n      if (e.to != par[v]) {\r\n        auto\
+    \ prod = fee(cum_l[nxt], cum_r[nxt + 1]);\r\n        ++nxt;\r\n        dpe2[e.to]\
+    \ = fve(fev(prod, v), e);\r\n      }\r\n  }\r\n  return dp;\r\n}"
   dependsOn:
   - graph/base.hpp
   - graph/hld.hpp
   isVerificationFile: false
   path: graph/rerooting_dp.hpp
   requiredBy: []
-  timestamp: '2022-04-29 17:34:08+09:00'
+  timestamp: '2022-04-29 22:42:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/rerooting_dp.hpp

@@ -60,6 +60,9 @@ data:
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   - icon: ':x:'
+    path: poly/prefix_product_of_poly.hpp
+    title: poly/prefix_product_of_poly.hpp
+  - icon: ':x:'
     path: poly/sharp_p_subset_sum.hpp
     title: poly/sharp_p_subset_sum.hpp
   - icon: ':x:'
@@ -71,6 +74,9 @@ data:
   - icon: ':x:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
+  - icon: ':x:'
+    path: seq/kth_term_of_p_recursive.hpp
+    title: seq/kth_term_of_p_recursive.hpp
   - icon: ':x:'
     path: seq/stirling_number_1.hpp
     title: seq/stirling_number_1.hpp
@@ -159,6 +165,9 @@ data:
   - icon: ':x:'
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/502_p_rec.test.cpp
+    title: test/yukicoder/502_p_rec.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -556,6 +565,7 @@ data:
   - poly/poly_divmod.hpp
   - poly/fps_composition.hpp
   - poly/convolution_mod_2_64.hpp
+  - poly/prefix_product_of_poly.hpp
   - poly/convolution2d.hpp
   - poly/fps_exp.hpp
   - poly/sharp_p_subset_sum.hpp
@@ -574,10 +584,12 @@ data:
   - seq/stirling_number_2.hpp
   - seq/stirling_number_1.hpp
   - seq/coef_of_rational_fps.hpp
+  - seq/kth_term_of_p_recursive.hpp
   - seq/interpolate_poly_exp_sum.hpp
   timestamp: '2022-04-22 16:55:40+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/502_p_rec.test.cpp
   - test/library_checker/convolution/convolution_huge.test.cpp
   - test/library_checker/convolution/mul_mod2n_convolution.test.cpp
   - test/library_checker/convolution/multivariate_convolution.test.cpp

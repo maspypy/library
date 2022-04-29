@@ -15,8 +15,14 @@ data:
     title: poly/convolution.hpp
   _extendedRequiredBy:
   - icon: ':x:'
+    path: poly/prefix_product_of_poly.hpp
+    title: poly/prefix_product_of_poly.hpp
+  - icon: ':x:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
+  - icon: ':x:'
+    path: seq/kth_term_of_p_recursive.hpp
+    title: seq/kth_term_of_p_recursive.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
@@ -24,6 +30,9 @@ data:
   - icon: ':x:'
     path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/502_p_rec.test.cpp
+    title: test/yukicoder/502_p_rec.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -329,10 +338,13 @@ data:
   isVerificationFile: false
   path: poly/lagrange_interpolate_iota.hpp
   requiredBy:
+  - poly/prefix_product_of_poly.hpp
+  - seq/kth_term_of_p_recursive.hpp
   - seq/interpolate_poly_exp_sum.hpp
   timestamp: '2022-04-22 16:55:40+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/yukicoder/502_p_rec.test.cpp
   - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
 documentation_of: poly/lagrange_interpolate_iota.hpp
