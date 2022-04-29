@@ -1,4 +1,3 @@
-// https://codeforces.com/contest/635/problem/F
 #include "graph/base.hpp"
 #include "graph/hld.hpp"
 
