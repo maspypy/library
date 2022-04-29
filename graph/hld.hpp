@@ -10,7 +10,8 @@ template <typename Graph>
 struct HLD {
   Graph &G;
   int N;
-  vector<int> LID, RID, head, V, parent, depth, root;
+  vector<int> LID, RID, head, V, parent, root;
+  vc<ll> depth;
   vector<bool> in_tree;
 
   HLD(Graph &G, int r = -1)
@@ -99,8 +100,8 @@ struct HLD {
     }
   }
 
-  int lca(int u, int v) { return LCA(u, v);}
-  int la(int u, int v) { return LA(u, v);}
+  int lca(int u, int v) { return LCA(u, v); }
+  int la(int u, int v) { return LA(u, v); }
 
   int subtree_size(int v) { return RID[v] - LID[v]; }
 
@@ -116,9 +117,10 @@ struct HLD {
     return (in_subtree(b, a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);
   }
 
-  vc<int> collect_child(int v){
+  vc<int> collect_child(int v) {
     vc<int> res;
-    for(auto&& e : G[v]) if(e.to != parent[v]) res.eb(e.to);
+    for (auto &&e: G[v])
+      if (e.to != parent[v]) res.eb(e.to);
     return res;
   }
 
