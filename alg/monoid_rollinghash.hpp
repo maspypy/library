@@ -1,4 +1,5 @@
 #pragma once
+#include "other/random.hpp"
 #include "mod/modint61.hpp"
 
 struct Monoid_Rolling_Hash {
