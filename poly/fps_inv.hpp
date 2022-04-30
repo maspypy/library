@@ -1,3 +1,5 @@
+#pragma once
+
 #include "poly/convolution.hpp"
 
 template <typename mint>
