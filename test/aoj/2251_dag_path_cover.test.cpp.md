@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/degree.hpp
     title: graph/degree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/dijkstra.hpp
     title: graph/dijkstra.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2251
@@ -352,19 +352,19 @@ data:
     \ }\n    for (auto&& x: P) done[x] = 1;\n    paths.eb(P);\n  }\n  return paths;\n\
     };\n#line 6 \"test/aoj/2251_dag_path_cover.test.cpp\"\n\nvoid solve(ll N, ll M,\
     \ ll L) {\n  vv(ll, dist, N, N);\n  {\n    Graph<ll> G(N);\n    G.read_graph(M,\
-    \ 1, 0);\n    const ll INF = 1LL << 60;\n    FOR(v, N) { dist[v] = dijkstra<ll,\
-    \ INF>(G, v).fi; }\n  }\n  VEC(pi, PT, L);\n  N = L;\n  Graph<int, 1> G(N);\n\
-    \  FOR(a, N) FOR(b, N) {\n    if (a == b) continue;\n    auto [pa, ta] = PT[a];\n\
-    \    auto [pb, tb] = PT[b];\n    if (ta + dist[pa][pb] <= tb) G.add(a, b);\n \
-    \ }\n  G.build();\n  auto paths = dag_path_cover(G);\n  print(len(paths));\n}\n\
-    \nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  while (1) {\n    LL(N, M, L);\n    if (N + M + L ==\
-    \ 0) break;\n    solve(N, M, L);\n  }\n\n  return 0;\n}\n"
+    \ 1, 0);\n    const ll INF = 1LL << 60;\n    FOR(v, N) { dist[v] = dijkstra<ll>(G,\
+    \ v, INF).fi; }\n  }\n  VEC(pi, PT, L);\n  N = L;\n  Graph<int, 1> G(N);\n  FOR(a,\
+    \ N) FOR(b, N) {\n    if (a == b) continue;\n    auto [pa, ta] = PT[a];\n    auto\
+    \ [pb, tb] = PT[b];\n    if (ta + dist[pa][pb] <= tb) G.add(a, b);\n  }\n  G.build();\n\
+    \  auto paths = dag_path_cover(G);\n  print(len(paths));\n}\n\nsigned main() {\n\
+    \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  while (1) {\n    LL(N, M, L);\n    if (N + M + L == 0) break;\n    solve(N,\
+    \ M, L);\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2251\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/dijkstra.hpp\"\
     \n#include \"graph/dag_path_cover.hpp\"\n\nvoid solve(ll N, ll M, ll L) {\n  vv(ll,\
     \ dist, N, N);\n  {\n    Graph<ll> G(N);\n    G.read_graph(M, 1, 0);\n    const\
-    \ ll INF = 1LL << 60;\n    FOR(v, N) { dist[v] = dijkstra<ll, INF>(G, v).fi; }\n\
+    \ ll INF = 1LL << 60;\n    FOR(v, N) { dist[v] = dijkstra<ll>(G, v, INF).fi; }\n\
     \  }\n  VEC(pi, PT, L);\n  N = L;\n  Graph<int, 1> G(N);\n  FOR(a, N) FOR(b, N)\
     \ {\n    if (a == b) continue;\n    auto [pa, ta] = PT[a];\n    auto [pb, tb]\
     \ = PT[b];\n    if (ta + dist[pa][pb] <= tb) G.add(a, b);\n  }\n  G.build();\n\
@@ -386,8 +386,8 @@ data:
   isVerificationFile: true
   path: test/aoj/2251_dag_path_cover.test.cpp
   requiredBy: []
-  timestamp: '2022-05-01 01:13:26+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-01 01:24:24+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/2251_dag_path_cover.test.cpp
 layout: document

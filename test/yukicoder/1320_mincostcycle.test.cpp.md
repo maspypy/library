@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/bfs01.hpp
     title: graph/bfs01.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/dijkstra.hpp
     title: graph/dijkstra.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/mincostcycle.hpp
     title: graph/mincostcycle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1320
@@ -263,30 +263,29 @@ data:
     \ = root[e.frm];\n        par[e.to] = e.frm;\n        if (e.cost == 0)\n     \
     \     que.push_front(e.to);\n        else\n          que.push_back(e.to);\n  \
     \    }\n    }\n  }\n  return {dist, par, root};\n}\n#line 3 \"graph/mincostcycle.hpp\"\
-    \n\r\ntemplate <typename T, T INF, typename Graph>\r\nT MinCostCycle(Graph& G)\
+    \n\r\ntemplate <typename T, typename Graph>\r\nT MinCostCycle(Graph& G, T INF)\
     \ {\r\n  int M = G.M;\r\n  int N = G.N;\r\n  T mx = 0;\r\n  T res = INF;\r\n\r\
     \n  FOR(i, M) {\r\n    auto& e = G.edges[i];\r\n    T cost = e.cost;\r\n    int\
     \ frm = e.to, to = e.frm;\r\n    Graph Gi(N);\r\n    FOR(j, M) if (i != j) {\r\
     \n      auto& e = G.edges[j];\r\n      Gi.add(e.frm, e.to, e.cost);\r\n    }\r\
-    \n    Gi.build();\r\n\r\n    T x = (mx <= 1 ? bfs01(Gi, frm).fi[to] : dijkstra<T,\
-    \ INF>(Gi, frm).fi[to]);\r\n    if (x == -1) x = INF;\r\n    chmin(res, cost +\
-    \ x);\r\n  }\r\n  if (res == INF) res = -1;\r\n  return res;\r\n}\n#line 5 \"\
-    test/yukicoder/1320_mincostcycle.test.cpp\"\n\r\nvoid solve() {\r\n  LL(T, N,\
-    \ M);\r\n  const ll INF = 1LL << 60;\r\n  if (T == 0) {\r\n    Graph<ll, 0> G(N);\r\
-    \n    G.read_graph(M, true);\r\n    ll x = MinCostCycle<ll, INF>(G);\r\n    if\
-    \ (x == INF) x = -1;\r\n    print(x);\r\n  } else {\r\n    Graph<ll, 1> G(N);\r\
-    \n    G.read_graph(M, true);\r\n    ll x = MinCostCycle<ll, INF>(G);\r\n    if\
-    \ (x == INF) x = -1;\r\n    print(x);\r\n  }\r\n}\r\n\r\nsigned main() {\r\n \
-    \ cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
-    \n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\n\r\n  return 0;\r\n\
-    }\r\n"
+    \n    Gi.build();\r\n\r\n    T x = (mx <= 1 ? bfs01(Gi, frm).fi[to] : dijkstra<T>(Gi,\
+    \ frm, INF).fi[to]);\r\n    if (x == -1) x = INF;\r\n    chmin(res, cost + x);\r\
+    \n  }\r\n  if (res == INF) res = -1;\r\n  return res;\r\n}\n#line 5 \"test/yukicoder/1320_mincostcycle.test.cpp\"\
+    \n\r\nvoid solve() {\r\n  LL(T, N, M);\r\n  const ll INF = 1LL << 60;\r\n  if\
+    \ (T == 0) {\r\n    Graph<ll, 0> G(N);\r\n    G.read_graph(M, true);\r\n    ll\
+    \ x = MinCostCycle<ll>(G, INF);\r\n    if (x == INF) x = -1;\r\n    print(x);\r\
+    \n  } else {\r\n    Graph<ll, 1> G(N);\r\n    G.read_graph(M, true);\r\n    ll\
+    \ x = MinCostCycle<ll>(G, INF);\r\n    if (x == INF) x = -1;\r\n    print(x);\r\
+    \n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T)\
+    \ solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1320\"\r\n#include \"\
     my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"graph/mincostcycle.hpp\"\
     \r\n\r\nvoid solve() {\r\n  LL(T, N, M);\r\n  const ll INF = 1LL << 60;\r\n  if\
     \ (T == 0) {\r\n    Graph<ll, 0> G(N);\r\n    G.read_graph(M, true);\r\n    ll\
-    \ x = MinCostCycle<ll, INF>(G);\r\n    if (x == INF) x = -1;\r\n    print(x);\r\
+    \ x = MinCostCycle<ll>(G, INF);\r\n    if (x == INF) x = -1;\r\n    print(x);\r\
     \n  } else {\r\n    Graph<ll, 1> G(N);\r\n    G.read_graph(M, true);\r\n    ll\
-    \ x = MinCostCycle<ll, INF>(G);\r\n    if (x == INF) x = -1;\r\n    print(x);\r\
+    \ x = MinCostCycle<ll>(G, INF);\r\n    if (x == INF) x = -1;\r\n    print(x);\r\
     \n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
     \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T)\
     \ solve();\r\n\r\n  return 0;\r\n}\r\n"
@@ -300,8 +299,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1320_mincostcycle.test.cpp
   requiredBy: []
-  timestamp: '2022-05-01 01:13:26+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-01 01:24:24+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/1320_mincostcycle.test.cpp
 layout: document
