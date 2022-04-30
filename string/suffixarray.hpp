@@ -7,7 +7,12 @@ struct SuffixArray {
   vector<int> ISA;
   vector<int> LCP;
 
-  SuffixArray(string& s, const char first = 'a', const char last = 'z') {
+  SuffixArray(string& s) {
+    char first = 127, last = 0;
+    for(auto&& c : s){
+      chmin(first, c);
+      chmax(last, c);
+    }
     SA = calc_suffix_array(s, first, last);
     calc_LCP(s);
   }
