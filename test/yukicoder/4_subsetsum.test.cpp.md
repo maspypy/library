@@ -189,28 +189,28 @@ data:
     \ vals \u3092\u4F7F\u3063\u3066\u3001target \u3092\u4F5C\u308C\u308B\u304B\u3069\
     \u3046\u304B\uFF1F\n// \u4F5C\u308C\u308B\u306A\u3089\u3070\u5FA9\u5143\u3001\u305D\
     \u3046\u3067\u306A\u3044\u306A\u3089\u3070 {} \u3092\u8FD4\u3059\n// O(N max(vals))\
-    \ \u6642\u9593\nvc<int> subset_sum(vc<int>& vals, int target) {\n  if (target\
-    \ == 0) return {};\n  int n = len(vals);\n  int mx = MAX(vals);\n  int b = 0,\
-    \ sb = 0;\n  while (b < n && sb + vals[b] <= target) { sb += vals[b++]; }\n  if\
-    \ (b == n && sb != target) return {};\n\n  int off = target - mx + 1;\n  vc<int>\
-    \ dp(2 * mx, -1);\n  vv(int, PAR, n, 2 * mx, -1);\n  dp[sb - off] = b;\n  FOR3(i,\
-    \ b, n) {\n    auto newdp = dp;\n    auto& par = PAR[i];\n    int a = vals[i];\n\
-    \    FOR(j, mx) {\n      if (chmax(newdp[j + a], dp[j])) { par[j + a] = -2; }\n\
-    \    }\n    FOR3_R(j, mx, 2 * mx) {\n      FOR3_R(k, max(dp[j], 0), newdp[j])\
-    \ {\n        if (chmax(newdp[j - vals[k]], k)) par[j - vals[k]] = k;\n      }\n\
-    \    }\n    swap(dp, newdp);\n  }\n  if (dp[mx - 1] == -1) return {};\n  vc<bool>\
-    \ use(n);\n  int i = n - 1, j = mx - 1;\n  while (i >= b) {\n    int p = PAR[i][j];\n\
-    \    if (p == -2) {\n      use[i] = !use[i];\n      j -= vals[i--];\n    }\n \
-    \   elif (p == -1) { --i; }\n    else {\n      use[p] = !use[p];\n      j += vals[p];\n\
-    \    }\n  }\n  while (i >= 0) {\n    use[i] = !use[i];\n    --i;\n  }\n  vc<int>\
-    \ I;\n  FOR(i, n) if (use[i]) I.eb(i);\n\n  ll sm = 0;\n  for (auto&& i: I) sm\
-    \ += vals[i];\n  assert(sm == target);\n\n  return I;\n}\n#line 5 \"test/yukicoder/4_subsetsum.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n  ll S = SUM(A);\n  auto I =\
-    \ subset_sum(A, S / 2);\n  bool can = (S == 0 || len(I) > 0);\n  if (can && S\
-    \ % 2 == 0) {\n    print(\"possible\");\n  } else {\n    print(\"impossible\"\
-    );\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
+    \ \u6642\u9593\ntemplate<typename INT>\nvc<int> subset_sum(vc<INT>& vals, int\
+    \ target) {\n  if (target == 0) return {};\n  int n = len(vals);\n  int mx = MAX(vals);\n\
+    \  int b = 0, sb = 0;\n  while (b < n && sb + vals[b] <= target) { sb += vals[b++];\
+    \ }\n  if (b == n && sb != target) return {};\n\n  int off = target - mx + 1;\n\
+    \  vc<int> dp(2 * mx, -1);\n  vv(int, PAR, n, 2 * mx, -1);\n  dp[sb - off] = b;\n\
+    \  FOR3(i, b, n) {\n    auto newdp = dp;\n    auto& par = PAR[i];\n    int a =\
+    \ vals[i];\n    FOR(j, mx) {\n      if (chmax(newdp[j + a], dp[j])) { par[j +\
+    \ a] = -2; }\n    }\n    FOR3_R(j, mx, 2 * mx) {\n      FOR3_R(k, max(dp[j], 0),\
+    \ newdp[j]) {\n        if (chmax(newdp[j - vals[k]], k)) par[j - vals[k]] = k;\n\
+    \      }\n    }\n    swap(dp, newdp);\n  }\n  if (dp[mx - 1] == -1) return {};\n\
+    \  vc<bool> use(n);\n  int i = n - 1, j = mx - 1;\n  while (i >= b) {\n    int\
+    \ p = PAR[i][j];\n    if (p == -2) {\n      use[i] = !use[i];\n      j -= vals[i--];\n\
+    \    }\n    elif (p == -1) { --i; }\n    else {\n      use[p] = !use[p];\n   \
+    \   j += vals[p];\n    }\n  }\n  while (i >= 0) {\n    use[i] = !use[i];\n   \
+    \ --i;\n  }\n  vc<int> I;\n  FOR(i, n) if (use[i]) I.eb(i);\n\n  ll sm = 0;\n\
+    \  for (auto&& i: I) sm += vals[i];\n  assert(sm == target);\n\n  return I;\n\
+    }\n#line 5 \"test/yukicoder/4_subsetsum.test.cpp\"\n\nvoid solve() {\n  LL(N);\n\
+    \  VEC(int, A, N);\n  ll S = SUM(A);\n  auto I = subset_sum(A, S / 2);\n  bool\
+    \ can = (S == 0 || len(I) > 0);\n  if (can && S % 2 == 0) {\n    print(\"possible\"\
+    );\n  } else {\n    print(\"impossible\");\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/4\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"dp/subset_sum.hpp\"\n\nvoid solve() {\n\
     \  LL(N);\n  VEC(int, A, N);\n  ll S = SUM(A);\n  auto I = subset_sum(A, S / 2);\n\
@@ -225,7 +225,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/4_subsetsum.test.cpp
   requiredBy: []
-  timestamp: '2022-04-29 22:42:13+09:00'
+  timestamp: '2022-05-01 01:13:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/4_subsetsum.test.cpp

@@ -6,10 +6,10 @@ data:
     path: graph/bipartite_coloring.hpp
     title: graph/bipartite_coloring.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/2251_dag_path_cover.test.cpp
     title: test/aoj/2251_dag_path_cover.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/2251_maxantichain.test.cpp
     title: test/aoj/2251_maxantichain.test.cpp
   - icon: ':heavy_check_mark:'
@@ -270,7 +270,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/scc.test.cpp
     title: test/library_checker/graph/scc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/shortest_path.test.cpp
     title: test/library_checker/graph/shortest_path.test.cpp
   - icon: ':heavy_check_mark:'
@@ -456,7 +456,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/114_steriner_tree.test.cpp
     title: test/yukicoder/114_steriner_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1320_mincostcycle.test.cpp
     title: test/yukicoder/1320_mincostcycle.test.cpp
   - icon: ':heavy_check_mark:'
@@ -502,17 +502,20 @@ data:
     path: test/yukicoder/705_monge_shortest_path.test.cpp
     title: test/yukicoder/705_monge_shortest_path.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/749_lazysegtree.test.cpp
+    title: test/yukicoder/749_lazysegtree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/899_bfsnumbering.test.cpp
     title: test/yukicoder/899_bfsnumbering.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/913_cht_monotone.test.cpp
+    title: test/yukicoder/913_cht_monotone.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/919_waveletmatrix.test.cpp
     title: test/yukicoder/919_waveletmatrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/981_mod_kth_root.test.cpp
-    title: test/yukicoder/981_mod_kth_root.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -649,15 +652,16 @@ data:
   - test/yukicoder/1036_seg_maxright_minleft.test.cpp
   - test/yukicoder/1036_swag.test.cpp
   - test/yukicoder/529_two_edge.test.cpp
+  - test/yukicoder/749_lazysegtree.test.cpp
   - test/yukicoder/1320_mincostcycle.test.cpp
   - test/yukicoder/899_bfsnumbering.test.cpp
   - test/yukicoder/255.test.cpp
   - test/yukicoder/1810_matpow.test.cpp
   - test/yukicoder/502_factorial107.test.cpp
-  - test/yukicoder/981_mod_kth_root.test.cpp
   - test/yukicoder/4_subsetsum.test.cpp
   - test/yukicoder/1891_xor_sparse.test.cpp
   - test/yukicoder/705_monge_shortest_path.test.cpp
+  - test/yukicoder/913_cht_monotone.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/1038_centroid.test.cpp
   - test/yukicoder/1002_centroid.test.cpp

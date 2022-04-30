@@ -188,9 +188,10 @@ data:
     \ { yes(!t); }\r\n#line 4 \"test/library_checker/string/suffix_array_vec.test.cpp\"\
     \n\r\n#line 2 \"string/suffixarray.hpp\"\nusing namespace std;\n\n#define int\
     \ long long\nstruct SuffixArray {\n  vector<int> SA;\n  vector<int> ISA;\n  vector<int>\
-    \ LCP;\n\n  SuffixArray(string& s, const char first = 'a', const char last = 'z')\
-    \ {\n    SA = calc_suffix_array(s, first, last);\n    calc_LCP(s);\n  }\n\n  SuffixArray(vector<int>&\
-    \ s) {\n    SA = calc_suffix_array(s);\n    calc_LCP(s);\n  }\n\n  void induced_sort(const\
+    \ LCP;\n\n  SuffixArray(string& s) {\n    char first = 127, last = 0;\n    for(auto&&\
+    \ c : s){\n      chmin(first, c);\n      chmax(last, c);\n    }\n    SA = calc_suffix_array(s,\
+    \ first, last);\n    calc_LCP(s);\n  }\n\n  SuffixArray(vector<int>& s) {\n  \
+    \  SA = calc_suffix_array(s);\n    calc_LCP(s);\n  }\n\n  void induced_sort(const\
     \ std::vector<int>& vect, int val_range,\n                    std::vector<int>&\
     \ SA, const std::vector<bool>& sl,\n                    const std::vector<int>&\
     \ lms_idx) {\n    std::vector<int> l(val_range, 0), r(val_range, 0);\n    for\
@@ -265,7 +266,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/suffix_array_vec.test.cpp
   requiredBy: []
-  timestamp: '2022-04-29 17:32:58+09:00'
+  timestamp: '2022-05-01 01:12:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/string/suffix_array_vec.test.cpp

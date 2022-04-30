@@ -15,6 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A_mst.test.cpp
     title: test/aoj/GRL_2_A_mst.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/913_cht_monotone.test.cpp
+    title: test/yukicoder/913_cht_monotone.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -66,6 +69,7 @@ data:
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/913_cht_monotone.test.cpp
   - test/aoj/DSL_2_D_dualsegtree.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp
 documentation_of: ds/dualsegtree.hpp

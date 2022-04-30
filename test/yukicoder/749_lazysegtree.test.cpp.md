@@ -2,23 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: alg/group_add.hpp
-    title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
-    path: alg/group_mul.hpp
-    title: alg/group_mul.hpp
-  - icon: ':heavy_check_mark:'
-    path: alg/lazy_add_mul.hpp
-    title: alg/lazy_add_mul.hpp
-  - icon: ':heavy_check_mark:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
-  - icon: ':question:'
-    path: graph/base.hpp
-    title: graph/base.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/bfsnumbering.hpp
-    title: graph/bfsnumbering.hpp
+    path: mod/modint.hpp
+    title: mod/modint.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -32,11 +20,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/899
+    PROBLEM: https://yukicoder.me/problems/no/749
     links:
-    - https://yukicoder.me/problems/no/899
-  bundledCode: "#line 1 \"test/yukicoder/899_bfsnumbering.test.cpp\"\n#define PROBLEM\
-    \ \"https://yukicoder.me/problems/no/899\"\r\n#line 1 \"my_template.hpp\"\n#include\
+    - https://yukicoder.me/problems/no/749
+  bundledCode: "#line 1 \"test/yukicoder/749_lazysegtree.test.cpp\"\n#define PROBLEM\
+    \ \"https://yukicoder.me/problems/no/749\"\n#line 1 \"my_template.hpp\"\n#include\
     \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
     \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
     \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
@@ -200,66 +188,81 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct\
-    \ Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int,\
-    \ bool directed = false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n\
-    \  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n\
-    \  vector<edge_type> csr_edges;\n  bool prepared;\n\n  class OutgoingEdges {\n\
-    \  public:\n    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l), r(r)\
-    \ {}\n\n    const edge_type* begin() const {\n      if (l == r) { return 0; }\n\
-    \      return &G->csr_edges[l];\n    }\n\n    const edge_type* end() const {\n\
-    \      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n  private:\n\
-    \    int l, r;\n    const Graph* G;\n  };\n\n  bool is_prepared() { return prepared;\
-    \ }\n  constexpr bool is_directed() { return directed; }\n\n  Graph() : N(0),\
-    \ M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void\
-    \ add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared && 0 <=\
-    \ frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm,\
-    \ to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool\
-    \ wt = false, int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int\
-    \ M, bool wt = false, int off = 1) {\n    FOR_(M) {\n      INT(a, b);\n      a\
-    \ -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n  \
-    \      T c;\n        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n\
-    \  }\n\n  void read_parent(int off = 1) {\n    FOR3(v, 1, N) {\n      INT(p);\n\
-    \      p -= off;\n      add(p, v);\n    }\n    build();\n  }\n\n  void build()\
-    \ {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
-    \    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if (!directed)\
-    \ indptr[e.to + 1]++;\n    }\n    FOR(v, N) indptr[v + 1] += indptr[v];\n    auto\
-    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
-    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
-    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
-    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
-    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  void debug() {\n    print(\"\
-    Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
-    \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
-    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 2 \"graph/bfsnumbering.hpp\"\
-    \n\r\ntemplate <typename Graph>\r\nstruct BFSNumbering {\r\n  Graph& G;\r\n  int\
-    \ root;\r\n  vector<int> V;\r\n  vector<int> ID;\r\n  vector<int> depth;\r\n \
-    \ vector<int> parent;\r\n  vector<int> LID, RID;\r\n  vector<int> LID_seq;\r\n\
-    \  vector<int> dep_ids;\r\n  int cnt;\r\n\r\n  BFSNumbering(Graph& G, int root\
-    \ = 0) : G(G), root(root), cnt(0) { build(); }\r\n\r\n  void bfs() {\r\n    deque<int>\
-    \ que = {root};\r\n    while (!que.empty()) {\r\n      int v = que.front();\r\n\
-    \      que.pop_front();\r\n      ID[v] = V.size();\r\n      V.eb(v);\r\n     \
-    \ for(auto&& [frm,to,cost,id] : G[v]) {\r\n        if (to == parent[v]) continue;\r\
-    \n        que.emplace_back(to);\r\n        parent[to] = v;\r\n        depth[to]\
-    \ = depth[v] + 1;\r\n      }\r\n    }\r\n  }\r\n\r\n  void dfs(int v) {\r\n  \
-    \  LID[v] = cnt++;\r\n    for(auto&& [frm,to,cost,id] : G[v]) {\r\n      if (to\
-    \ == parent[v]) continue;\r\n      dfs(to);\r\n    }\r\n    RID[v] = cnt;\r\n\
-    \  }\r\n\r\n  void build() {\r\n    int N = G.N;\r\n    V.reserve(N);\r\n    parent.assign(N,\
-    \ -1);\r\n    ID.assign(N, 0);\r\n    LID.assign(N, 0);\r\n    RID.assign(N, 0);\r\
-    \n    depth.assign(N, 0);\r\n    bfs();\r\n    dfs(root);\r\n    int D = MAX(depth);\r\
-    \n    dep_ids.resize(D + 2);\r\n    FOR(v, N) dep_ids[depth[v] + 1]++;\r\n   \
-    \ FOR(d, D + 1) dep_ids[d + 1] += dep_ids[d];\r\n    LID_seq.reserve(N);\r\n \
-    \   FOR(i, N) LID_seq.eb(LID[V[i]]);\r\n  }\r\n\r\n  int bs(int L, int R, int\
-    \ x) {\r\n    while (L + 1 < R) {\r\n      int M = (L + R) / 2;\r\n      if (LID_seq[M]\
-    \ >= x)\r\n        R = M;\r\n      else\r\n        L = M;\r\n    }\r\n    return\
-    \ R;\r\n  }\r\n\r\n  pair<int, int> calc_range(int v, int dep) {\r\n    assert(dep\
-    \ >= depth[v]);\r\n    if (dep >= len(dep_ids) - 1) return {0, 0};\r\n    int\
-    \ l = LID[v], r = RID[v];\r\n    int L = dep_ids[dep], R = dep_ids[dep + 1];\r\
-    \n    int a = bs(L - 1, R, l);\r\n    int b = bs(L - 1, R, r);\r\n    return {a,\
-    \ b};\r\n  }\r\n};\r\n#line 2 \"ds/lazysegtree.hpp\"\n\ntemplate <typename Lazy>\n\
-    struct LazySegTree {\n  using Monoid_X = typename Lazy::X_structure;\n  using\
-    \ Monoid_A = typename Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n\
+    \ { yes(!t); }\r\n#line 2 \"mod/modint.hpp\"\ntemplate <u32 mod>\nstruct modint\
+    \ {\n  static constexpr bool is_modint = true;\n  u32 val;\n  constexpr modint(const\
+    \ ll val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val) % mod)\
+    \ % mod) {}\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
+    \  } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
+    \ += p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator-=(const\
+    \ modint &p) {\n    if ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n\
+    \  }\n  modint &operator*=(const modint &p) {\n    val = (u32)(1LL * val * p.val\
+    \ % mod);\n    return *this;\n  }\n  modint &operator/=(const modint &p) {\n \
+    \   *this *= p.inverse();\n    return *this;\n  }\n  modint operator-() const\
+    \ { return modint(get_mod() - val); }\n  modint operator+(const modint &p) const\
+    \ { return modint(*this) += p; }\n  modint operator-(const modint &p) const {\
+    \ return modint(*this) -= p; }\n  modint operator*(const modint &p) const { return\
+    \ modint(*this) *= p; }\n  modint operator/(const modint &p) const { return modint(*this)\
+    \ /= p; }\n  bool operator==(const modint &p) const { return val == p.val; }\n\
+    \  bool operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
+    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
+    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
+    \ return modint(u);\n  }\n  modint pow(int64_t n) const {\n    modint ret(1),\
+    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
+    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr u32 get_mod()\
+    \ { return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr bool is_modint\
+    \ = true;\n  u32 val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t\
+    \ y)\n      : val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y)\
+    \ % get_mod()) % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other)\
+    \ const {\n    return val < other.val;\n  } // To use std::map<ArbitraryModInt,\
+    \ T>\n  static u32 &get_mod() {\n    static u32 mod = 0;\n    return mod;\n  }\n\
+    \  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
+    \ ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
+    \    return *this;\n  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p)\
+    \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
+    \ *this;\n  }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n   \
+    \ unsigned long long a = (unsigned long long)val * p.val;\n    unsigned xh = (unsigned)(a\
+    \ >> 32), xl = (unsigned)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"\
+    =d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n\
+    \  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n    *this *=\
+    \ p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-() const {\
+    \ return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) += p;\n  }\n\
+    \  ArbitraryModInt operator-(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
+    \ -= p;\n  }\n  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n\
+    \    return ArbitraryModInt(*this) *= p;\n  }\n  ArbitraryModInt operator/(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) /= p;\n  }\n\
+    \  bool operator==(const ArbitraryModInt &p) const { return val == p.val; }\n\
+    \  bool operator!=(const ArbitraryModInt &p) const { return val != p.val; }\n\
+    \  ArbitraryModInt inverse() const {\n    int a = val, b = get_mod(), u = 1, v\
+    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
+    \ -= t * v, v);\n    }\n    return ArbitraryModInt(u);\n  }\n  ArbitraryModInt\
+    \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
+    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
+    \  }\n    return ret;\n  }\n};\n\ntemplate <typename mint>\ntuple<mint, mint,\
+    \ mint> get_factorial_data(int n) {\n  static constexpr int mod = mint::get_mod();\n\
+    \  assert(0 <= n && n < mod);\n  static vector<mint> fact = {1, 1};\n  static\
+    \ vector<mint> fact_inv = {1, 1};\n  static vector<mint> inv = {0, 1};\n  while\
+    \ (len(fact) <= n) {\n    int k = len(fact);\n    fact.eb(fact[k - 1] * mint(k));\n\
+    \    auto q = ceil(mod, k);\n    int r = k * q - mod;\n    inv.eb(inv[r] * mint(q));\n\
+    \    fact_inv.eb(fact_inv[k - 1] * inv[k]);\n  }\n  return {fact[n], fact_inv[n],\
+    \ inv[n]};\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static constexpr\
+    \ int mod = mint::get_mod();\n  assert(0 <= n);\n  if (n >= mod) return 0;\n \
+    \ return get<0>(get_factorial_data<mint>(n));\n}\n\ntemplate <typename mint>\n\
+    mint fact_inv(int n) {\n  static constexpr int mod = mint::get_mod();\n  assert(0\
+    \ <= n && n < mod);\n  return get<1>(get_factorial_data<mint>(n));\n}\n\ntemplate\
+    \ <typename mint>\nmint inv(int n) {\n  static constexpr int mod = mint::get_mod();\n\
+    \  assert(0 <= n && n < mod);\n  return get<2>(get_factorial_data<mint>(n));\n\
+    }\n\ntemplate <typename mint, bool large = false>\nmint C(ll n, ll k) {\n  assert(n\
+    \ >= 0);\n  if (k < 0 || n < k) return 0;\n  if (!large) return fact<mint>(n)\
+    \ * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k, n - k);\n  mint x(1);\n\
+    \  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n  return x;\n}\n\
+    \ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n\
+    \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
+    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
+    }\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    using amint = ArbitraryModInt;\n#line 2 \"ds/lazysegtree.hpp\"\n\ntemplate <typename\
+    \ Lazy>\nstruct LazySegTree {\n  using Monoid_X = typename Lazy::X_structure;\n\
+    \  using Monoid_A = typename Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n  int n, log, size;\n  vc<X> dat;\n\
     \  vc<A> laz;\n\n  LazySegTree() : LazySegTree(0) {}\n  LazySegTree(int n) : LazySegTree(vc<X>(n,\
     \ Monoid_X::unit())) {}\n  LazySegTree(vc<X> v) : n(len(v)) {\n    log = 1;\n\
@@ -315,71 +318,72 @@ data:
     \ Monoid_X::op(dat[r], sm);\n            r--;\n          }\n        }\n      \
     \  return r + 1 - size;\n      }\n      sm = Monoid_X::op(dat[r], sm);\n    }\
     \ while ((r & -r) != r);\n    return 0;\n  }\n\n  void debug() { print(\"lazysegtree\
-    \ getall:\", get_all()); }\n};\n#line 2 \"alg/group_add.hpp\"\ntemplate <class\
-    \ X>\r\nstruct Group_Add {\r\n  using value_type = X;\r\n  static constexpr X\
-    \ op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return n * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"alg/group_mul.hpp\"\
-    \ntemplate <class X>\r\nstruct Group_Mul {\r\n  using value_type = X;\r\n  static\
-    \ constexpr X op(const X &x, const X &y) noexcept { return x * y; }\r\n  static\
-    \ constexpr X inverse(const X &x) noexcept { return X(1) / x; }\r\n  static constexpr\
-    \ X unit() { return X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\
-    \n#line 3 \"alg/lazy_add_mul.hpp\"\n\r\ntemplate <typename E>\r\nstruct Lazy_Add_Mul\
-    \ {\r\n  using MX = Group_Add<E>;\r\n  using MA = Group_Mul<E>;\r\n  using X_structure\
-    \ = MX;\r\n  using A_structure = MA;\r\n  using X = typename MX::value_type;\r\
-    \n  using A = typename MA::value_type;\r\n  static constexpr X act(const X &x,\
-    \ const A &a) { return x * a; }\r\n};\r\n#line 7 \"test/yukicoder/899_bfsnumbering.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N);\r\n  Graph<int> G(N);\r\n  G.read_tree(0, 0);\r\
-    \n\r\n  BFSNumbering BFS(G);\r\n  auto &ID = BFS.ID;\r\n  vi seg_raw(N);\r\n\r\
-    \n  FOR(v, N) {\r\n    LL(a);\r\n    seg_raw[ID[v]] = a;\r\n  }\r\n\r\n  using\
-    \ Lazy = Lazy_Add_Mul<ll>;\r\n  LazySegTree<Lazy> seg(seg_raw);\r\n\r\n  LL(Q);\r\
-    \n  FOR(_, Q) {\r\n    LL(v);\r\n    ll p = BFS.parent[v];\r\n    ll pp = (p ==\
-    \ -1 ? -1 : BFS.parent[p]);\r\n    ll x = 0;\r\n    if (pp >= 0) x += seg.get(ID[pp]),\
-    \ seg.set(ID[pp], 0);\r\n    if (p >= 0) {\r\n      x += seg.get(ID[p]), seg.set(ID[p],\
-    \ 0);\r\n      auto [l, r] = BFS.calc_range(p, BFS.depth[p] + 1);\r\n      x +=\
-    \ seg.prod(l, r), seg.apply(l, r, 0);\r\n    }\r\n    FOR(d, 3) {\r\n      auto\
-    \ [l, r] = BFS.calc_range(v, BFS.depth[v] + d);\r\n      x += seg.prod(l, r),\
-    \ seg.apply(l, r, 0);\r\n    }\r\n    print(x);\r\n    seg.set(ID[v], x);\r\n\
-    \  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T)\
-    \ solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/899\"\r\n#include \"my_template.hpp\"\
-    \r\n#include \"other/io.hpp\"\r\n#include \"graph/bfsnumbering.hpp\"\r\n#include\
-    \ \"ds/lazysegtree.hpp\"\r\n#include \"alg/lazy_add_mul.hpp\"\r\n\r\nvoid solve()\
-    \ {\r\n  LL(N);\r\n  Graph<int> G(N);\r\n  G.read_tree(0, 0);\r\n\r\n  BFSNumbering\
-    \ BFS(G);\r\n  auto &ID = BFS.ID;\r\n  vi seg_raw(N);\r\n\r\n  FOR(v, N) {\r\n\
-    \    LL(a);\r\n    seg_raw[ID[v]] = a;\r\n  }\r\n\r\n  using Lazy = Lazy_Add_Mul<ll>;\r\
-    \n  LazySegTree<Lazy> seg(seg_raw);\r\n\r\n  LL(Q);\r\n  FOR(_, Q) {\r\n    LL(v);\r\
-    \n    ll p = BFS.parent[v];\r\n    ll pp = (p == -1 ? -1 : BFS.parent[p]);\r\n\
-    \    ll x = 0;\r\n    if (pp >= 0) x += seg.get(ID[pp]), seg.set(ID[pp], 0);\r\
-    \n    if (p >= 0) {\r\n      x += seg.get(ID[p]), seg.set(ID[p], 0);\r\n     \
-    \ auto [l, r] = BFS.calc_range(p, BFS.depth[p] + 1);\r\n      x += seg.prod(l,\
-    \ r), seg.apply(l, r, 0);\r\n    }\r\n    FOR(d, 3) {\r\n      auto [l, r] = BFS.calc_range(v,\
-    \ BFS.depth[v] + d);\r\n      x += seg.prod(l, r), seg.apply(l, r, 0);\r\n   \
-    \ }\r\n    print(x);\r\n    seg.set(ID[v], x);\r\n  }\r\n}\r\n\r\nsigned main()\
-    \ {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
-    \n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\n\r\n  return 0;\r\n\
-    }\r\n"
+    \ getall:\", get_all()); }\n};\n#line 6 \"test/yukicoder/749_lazysegtree.test.cpp\"\
+    \n\nusing mint = modint107;\n\n// (a,cnt,fsum)\nstruct MonoX {\n  using value_type\
+    \ = tuple<mint, mint, mint>;\n  using X = value_type;\n  static X op(X x, X y)\
+    \ {\n    auto [a, b, c] = x;\n    auto [d, e, f] = y;\n    return {a + d, b +\
+    \ e, c + f};\n  }\n  static constexpr X unit() { return {mint(0), mint(0), mint(0)};\
+    \ }\n  static constexpr bool commute = true;\n};\n\n// pa + q + rf, f\nstruct\
+    \ MonoA {\n  using value_type = tuple<mint, mint, mint>;\n  using X = value_type;\n\
+    \  static X op(X x, X y) {\n    auto [a, b, c] = y;\n    auto [d, e, f] = x;\n\
+    \    return {a * d, a * e + b, a * f + c};\n  }\n  static constexpr X unit() {\
+    \ return {mint(1), mint(0), mint(0)}; }\n  static constexpr bool commute = true;\n\
+    };\n\nstruct Lazy {\n  using MX = MonoX;\n  using MA = MonoA;\n  using X_structure\
+    \ = MX;\n  using A_structure = MA;\n  using X = typename MX::value_type;\n  using\
+    \ A = typename MA::value_type;\n  static X act(const X &x, const A &a) {\n   \
+    \ auto [sum, cnt, fsum] = x;\n    auto [p, q, r] = a;\n    return {p * sum + q\
+    \ * cnt + r * fsum, cnt, fsum};\n  }\n};\n\nvoid solve() {\n  LL(N, Q);\n  vc<mint>\
+    \ F(N);\n  F[1] = 1;\n  FOR3(i, 2, N) F[i] = F[i - 2] + F[i - 1];\n  LazySegTree<Lazy>\
+    \ seg(N);\n  FOR(i, N) seg.set(i, {mint(0), mint(1), F[i]});\n\n  FOR_(Q) {\n\
+    \    LL(t, L, R, k);\n    mint mk = k;\n    ++R;\n    if (t == 0) {\n      auto\
+    \ [sum, cnt, fsum] = seg.prod(L, R);\n      print(sum * mk);\n    }\n    if (t\
+    \ == 1) { seg.apply(L, R, {mint(0), mk, mint(0)}); }\n    if (t == 2) { seg.apply(L,\
+    \ R, {mint(1), mk, mint(0)}); }\n    if (t == 3) { seg.apply(L, R, {mk, mint(0),\
+    \ mint(0)}); }\n    if (t == 4) { seg.apply(L, R, {mint(1), mint(0), mk}); }\n\
+    \  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
+    \n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/749\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n#include \"ds/lazysegtree.hpp\"\
+    \n\nusing mint = modint107;\n\n// (a,cnt,fsum)\nstruct MonoX {\n  using value_type\
+    \ = tuple<mint, mint, mint>;\n  using X = value_type;\n  static X op(X x, X y)\
+    \ {\n    auto [a, b, c] = x;\n    auto [d, e, f] = y;\n    return {a + d, b +\
+    \ e, c + f};\n  }\n  static constexpr X unit() { return {mint(0), mint(0), mint(0)};\
+    \ }\n  static constexpr bool commute = true;\n};\n\n// pa + q + rf, f\nstruct\
+    \ MonoA {\n  using value_type = tuple<mint, mint, mint>;\n  using X = value_type;\n\
+    \  static X op(X x, X y) {\n    auto [a, b, c] = y;\n    auto [d, e, f] = x;\n\
+    \    return {a * d, a * e + b, a * f + c};\n  }\n  static constexpr X unit() {\
+    \ return {mint(1), mint(0), mint(0)}; }\n  static constexpr bool commute = true;\n\
+    };\n\nstruct Lazy {\n  using MX = MonoX;\n  using MA = MonoA;\n  using X_structure\
+    \ = MX;\n  using A_structure = MA;\n  using X = typename MX::value_type;\n  using\
+    \ A = typename MA::value_type;\n  static X act(const X &x, const A &a) {\n   \
+    \ auto [sum, cnt, fsum] = x;\n    auto [p, q, r] = a;\n    return {p * sum + q\
+    \ * cnt + r * fsum, cnt, fsum};\n  }\n};\n\nvoid solve() {\n  LL(N, Q);\n  vc<mint>\
+    \ F(N);\n  F[1] = 1;\n  FOR3(i, 2, N) F[i] = F[i - 2] + F[i - 1];\n  LazySegTree<Lazy>\
+    \ seg(N);\n  FOR(i, N) seg.set(i, {mint(0), mint(1), F[i]});\n\n  FOR_(Q) {\n\
+    \    LL(t, L, R, k);\n    mint mk = k;\n    ++R;\n    if (t == 0) {\n      auto\
+    \ [sum, cnt, fsum] = seg.prod(L, R);\n      print(sum * mk);\n    }\n    if (t\
+    \ == 1) { seg.apply(L, R, {mint(0), mk, mint(0)}); }\n    if (t == 2) { seg.apply(L,\
+    \ R, {mint(1), mk, mint(0)}); }\n    if (t == 3) { seg.apply(L, R, {mk, mint(0),\
+    \ mint(0)}); }\n    if (t == 4) { seg.apply(L, R, {mint(1), mint(0), mk}); }\n\
+    \  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - graph/bfsnumbering.hpp
-  - graph/base.hpp
+  - mod/modint.hpp
   - ds/lazysegtree.hpp
-  - alg/lazy_add_mul.hpp
-  - alg/group_add.hpp
-  - alg/group_mul.hpp
   isVerificationFile: true
-  path: test/yukicoder/899_bfsnumbering.test.cpp
+  path: test/yukicoder/749_lazysegtree.test.cpp
   requiredBy: []
-  timestamp: '2022-04-29 17:32:58+09:00'
+  timestamp: '2022-05-01 01:12:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/899_bfsnumbering.test.cpp
+documentation_of: test/yukicoder/749_lazysegtree.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/899_bfsnumbering.test.cpp
-- /verify/test/yukicoder/899_bfsnumbering.test.cpp.html
-title: test/yukicoder/899_bfsnumbering.test.cpp
+- /verify/test/yukicoder/749_lazysegtree.test.cpp
+- /verify/test/yukicoder/749_lazysegtree.test.cpp.html
+title: test/yukicoder/749_lazysegtree.test.cpp
 ---

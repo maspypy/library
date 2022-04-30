@@ -1,12 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: graph/base.hpp
-    title: graph/base.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/cycle_detection.hpp
-    title: graph/cycle_detection.hpp
+    path: alg/monoid_min.hpp
+    title: alg/monoid_min.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/cht_monotone.hpp
+    title: ds/cht_monotone.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/dualsegtree.hpp
+    title: ds/dualsegtree.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -20,19 +23,19 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/cycle_detection
+    PROBLEM: https://yukicoder.me/problems/no/913
     links:
-    - https://judge.yosupo.jp/problem/cycle_detection
-  bundledCode: "#line 1 \"test/library_checker/graph/cycle_detection.test.cpp\"\n\
-    #define PROBLEM \"https://judge.yosupo.jp/problem/cycle_detection\"\r\n\r\n#line\
-    \ 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\n\
-    using ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
-    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://yukicoder.me/problems/no/913
+  bundledCode: "#line 1 \"test/yukicoder/913_cht_monotone.test.cpp\"\n#define PROBLEM\
+    \ \"https://yukicoder.me/problems/no/913\"\n#line 1 \"my_template.hpp\"\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -188,85 +191,117 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 5 \"test/library_checker/graph/cycle_detection.test.cpp\"\
-    \n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int\
-    \ frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed\
-    \ = false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n  using edge_type\
-    \ = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type>\
-    \ csr_edges;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n    OutgoingEdges(const\
-    \ Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin()\
-    \ const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[l];\n \
-    \   }\n\n    const edge_type* end() const {\n      if (l == r) { return 0; }\n\
-    \      return &G->csr_edges[r];\n    }\n\n  private:\n    int l, r;\n    const\
-    \ Graph* G;\n  };\n\n  bool is_prepared() { return prepared; }\n  constexpr bool\
-    \ is_directed() { return directed; }\n\n  Graph() : N(0), M(0), prepared(0) {}\n\
-    \  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void add(int frm, int to, T\
-    \ cost = 1, int i = -1) {\n    assert(!prepared && 0 <= frm && 0 <= to && to <\
-    \ N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n\
-    \    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool wt = false,\
-    \ int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int M, bool\
-    \ wt = false, int off = 1) {\n    FOR_(M) {\n      INT(a, b);\n      a -= off,\
-    \ b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n        T c;\n\
-    \        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n  }\n\n\
-    \  void read_parent(int off = 1) {\n    FOR3(v, 1, N) {\n      INT(p);\n     \
-    \ p -= off;\n      add(p, v);\n    }\n    build();\n  }\n\n  void build() {\n\
-    \    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
-    \    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if (!directed)\
-    \ indptr[e.to + 1]++;\n    }\n    FOR(v, N) indptr[v + 1] += indptr[v];\n    auto\
-    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
-    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
-    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
-    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
-    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  void debug() {\n    print(\"\
-    Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
-    \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
-    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 2 \"graph/cycle_detection.hpp\"\
-    \n\r\n// \u8FBA\u306E\u5217 or \u9802\u70B9\u5217\u306E vector \u3092\u8FD4\u3059\
-    \r\n// \u898B\u3064\u304B\u3089\u306A\u304B\u3063\u305F\u5834\u5408\u306B\u306F\
-    \u3001\u7A7A vector\r\ntemplate <typename Graph>\r\nvc<int> cycle_detection(Graph&\
-    \ G, bool is_edge = 0) {\r\n  assert(G.is_directed());\r\n  assert(G.is_prepared());\r\
-    \n  if (!is_edge) {\r\n    auto C = cycle_detection(G, true);\r\n    if (len(C)\
-    \ == 0) return C;\r\n    vc<int> ANS(len(C));\r\n    FOR(i, len(C)) {\r\n    \
-    \  auto e = G.edges[C[i]];\r\n      ANS[i] = e.frm;\r\n    }\r\n    return ANS;\r\
-    \n  }\r\n\r\n  int N = G.N;\r\n  vc<int> used(N);\r\n  vc<int> path; // edge\r\
-    \n  vc<pair<int, int>> par(N);\r\n  vector<int> ANS;\r\n\r\n  auto dfs = [&](auto\
-    \ self, int v) -> void {\r\n    used[v] = 1;\r\n    for (auto&& e: G[v]) {\r\n\
-    \      if (len(ANS)) return;\r\n      if (!used[e.to]) {\r\n        par[e.to]\
-    \ = {v, e.id};\r\n        self(self, e.to);\r\n      }\r\n      elif (used[e.to]\
-    \ == 1) {\r\n        ANS = {e.id};\r\n        int cur = v;\r\n        while (cur\
-    \ != e.to) {\r\n          ANS.eb(par[cur].se);\r\n          cur = par[cur].fi;\r\
-    \n        }\r\n        reverse(all(ANS));\r\n        return;\r\n      }\r\n  \
-    \  }\r\n    used[v] = 2;\r\n  };\r\n  FOR(v, N) if (!used[v]) dfs(dfs, v);\r\n\
-    \  return ANS;\r\n}\n#line 8 \"test/library_checker/graph/cycle_detection.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N, M);\r\n  Graph<int, 1> G(N);\r\n  G.read_graph(M,\
-    \ 0, 0);\r\n\r\n  auto C = cycle_detection(G, true);\r\n  if (len(C) == 0) {\r\
-    \n    print(-1);\r\n  } else {\r\n    print(len(C));\r\n    for (auto&& i: C)\
-    \ print(i);\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/cycle_detection\"\r\n\r\
-    \n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"\
-    graph/base.hpp\"\r\n#include \"graph/cycle_detection.hpp\"\r\n\r\nvoid solve()\
-    \ {\r\n  LL(N, M);\r\n  Graph<int, 1> G(N);\r\n  G.read_graph(M, 0, 0);\r\n\r\n\
-    \  auto C = cycle_detection(G, true);\r\n  if (len(C) == 0) {\r\n    print(-1);\r\
-    \n  } else {\r\n    print(len(C));\r\n    for (auto&& i: C) print(i);\r\n  }\r\
-    \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}"
+    \ { yes(!t); }\r\n#line 2 \"ds/dualsegtree.hpp\"\n\ntemplate <typename Monoid>\n\
+    struct DualSegTree {\n  using A = typename Monoid::value_type;\n  int n, log,\
+    \ size;\n  vc<A> laz;\n\n  DualSegTree() : DualSegTree(0) {}\n  DualSegTree(int\
+    \ n) : n(n) {\n    log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 <<\
+    \ log;\n    laz.assign(size << 1, Monoid::unit());\n  }\n\n  void all_apply(int\
+    \ k, A a) { laz[k] = Monoid::op(laz[k], a); }\n\n  void push(int k) {\n    all_apply(2\
+    \ * k, laz[k]);\n    all_apply(2 * k + 1, laz[k]);\n    laz[k] = Monoid::unit();\n\
+    \  }\n\n  A get(int p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for\
+    \ (int i = log; i >= 1; i--) push(p >> i);\n    return laz[p];\n  }\n\n  vc<A>\
+    \ get_all() {\n    FOR(i, size) push(i);\n    return {laz.begin() + size, laz.begin()\
+    \ + size + n};\n  }\n\n  void apply(int l, int r, A a) {\n    assert(0 <= l &&\
+    \ l <= r && r <= n);\n    if (l == r) return;\n\n    l += size;\n    r += size;\n\
+    \n    if (!Monoid::commute) {\n      for (int i = log; i >= 1; i--) {\n      \
+    \  if (((l >> i) << i) != l) push(l >> i);\n        if (((r >> i) << i) != r)\
+    \ push((r - 1) >> i);\n      }\n    }\n\n    {\n      int l2 = l, r2 = r;\n  \
+    \    while (l < r) {\n        if (l & 1) all_apply(l++, a);\n        if (r & 1)\
+    \ all_apply(--r, a);\n        l >>= 1;\n        r >>= 1;\n      }\n      l = l2;\n\
+    \      r = r2;\n    }\n  }\n  void debug() { print(\"dualsegtree getall:\", get_all());\
+    \ }\n};\n#line 1 \"alg/monoid_min.hpp\"\ntemplate <class X, X INF>\r\nstruct Monoid_Min\
+    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
+    \ &y) noexcept { return min(x, y); }\r\n  static constexpr X unit() { return INF;\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"ds/cht_monotone.hpp\"\
+    \ntemplate <typename T, bool isMin>\r\nstruct CHT_monotone {\r\n#define F first\r\
+    \n#define S second\r\n  using P = pair<T, T>;\r\n  deque<P> H;\r\n\r\n  CHT_monotone()\
+    \ = default;\r\n\r\n  bool empty() const { return H.empty(); }\r\n\r\n  void clear()\
+    \ { H.clear(); }\r\n\r\n  inline int sgn(T x) { return x == 0 ? 0 : (x < 0 ? -1\
+    \ : 1); }\r\n\r\n  using D = long double;\r\n\r\n  inline bool check(const P &a,\
+    \ const P &b, const P &c) {\r\n    if (b.S == a.S || c.S == b.S)\r\n      return\
+    \ sgn(b.F - a.F) * sgn(c.S - b.S) >= sgn(c.F - b.F) * sgn(b.S - a.S);\r\n\r\n\
+    \    // return (b.F-a.F)*(c.S-b.S) >= (b.S-a.S)*(c.F-b.F);\r\n    return D(b.F\
+    \ - a.F) * sgn(c.S - b.S) / D(abs(b.S - a.S)) >=\r\n           D(c.F - b.F) *\
+    \ sgn(b.S - a.S) / D(abs(c.S - b.S));\r\n  }\r\n\r\n  void add(T a, T b) {\r\n\
+    \    if (!isMin) a *= -1, b *= -1;\r\n    P line(a, b);\r\n    if (empty()) {\r\
+    \n      H.emplace_front(line);\r\n      return;\r\n    }\r\n    if (H.front().F\
+    \ <= a) {\r\n      if (H.front().F == a) {\r\n        if (H.front().S <= b) return;\r\
+    \n        H.pop_front();\r\n      }\r\n      while (H.size() >= 2 && check(line,\
+    \ H.front(), H[1])) H.pop_front();\r\n      H.emplace_front(line);\r\n    } else\
+    \ {\r\n      assert(a <= H.back().F);\r\n      if (H.back().F == a) {\r\n    \
+    \    if (H.back().S <= b) return;\r\n        H.pop_back();\r\n      }\r\n    \
+    \  while (H.size() >= 2 && check(H[H.size() - 2], H.back(), line))\r\n       \
+    \ H.pop_back();\r\n      H.emplace_back(line);\r\n    }\r\n  }\r\n\r\n  inline\
+    \ T get_y(const P &a, const T &x) { return a.F * x + a.S; }\r\n\r\n  T query(T\
+    \ x) {\r\n    assert(!empty());\r\n    int l = -1, r = H.size() - 1;\r\n    while\
+    \ (l + 1 < r) {\r\n      int m = (l + r) >> 1;\r\n      if (get_y(H[m], x) >=\
+    \ get_y(H[m + 1], x))\r\n        l = m;\r\n      else\r\n        r = m;\r\n  \
+    \  }\r\n    if (isMin) return get_y(H[r], x);\r\n    return -get_y(H[r], x);\r\
+    \n  }\r\n\r\n  T query_monotone_inc(T x) {\r\n    assert(!empty());\r\n    while\
+    \ (H.size() >= 2 && get_y(H.front(), x) >= get_y(H[1], x))\r\n      H.pop_front();\r\
+    \n    if (isMin) return get_y(H.front(), x);\r\n    return -get_y(H.front(), x);\r\
+    \n  }\r\n\r\n  T query_monotone_dec(T x) {\r\n    assert(!empty());\r\n    while\
+    \ (H.size() >= 2 && get_y(H.back(), x) >= get_y(H[H.size() - 2], x))\r\n     \
+    \ H.pop_back();\r\n    if (isMin) return get_y(H.back(), x);\r\n    return -get_y(H.back(),\
+    \ x);\r\n  }\r\n\r\n#undef F\r\n#undef S\r\n};\n#line 7 \"test/yukicoder/913_cht_monotone.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  const ll INF = 1LL << 60;\n\
+    \  DualSegTree<Monoid_Min<ll, INF>> seg(N);\n\n  auto f = [&](ll L, ll M, ll R)\
+    \ -> void {\n    {\n      // \u53F3\u306B\u3064\u3044\u3066\u3001\u542B\u3080\u5834\
+    \u5408\n      // \u307E\u305A\u306F\u3001\u5DE6\u3092\u30C7\u30FC\u30BF\u306B\u633F\
+    \u5165\n      CHT_monotone<ll, 1> cht;\n      ll a = 0, b = 0;\n      cht.add(2\
+    \ * a, a * a + b);\n      FOR3_R(i, L, M) {\n        ++a;\n        b += A[i];\n\
+    \        cht.add(2 * a, a * a + b);\n      }\n\n      ll c = 0, s = 0;\n     \
+    \ FOR3(i, M, R) {\n        ++c;\n        s += A[i];\n        ll y = cht.query_monotone_inc(c)\
+    \ + c * c + s;\n        seg.apply(M, i + 1, y);\n      }\n    }\n    {\n     \
+    \ CHT_monotone<ll, 1> cht;\n      ll a = 0, b = 0;\n      cht.add(2 * a, a * a\
+    \ + b);\n      FOR3(i, M + 1, R) {\n        ++a;\n        b += A[i];\n       \
+    \ cht.add(2 * a, a * a + b);\n      }\n\n      ll c = 0, s = 0;\n      FOR3_R(i,\
+    \ L, M + 1) {\n        ++c;\n        s += A[i];\n        ll y = cht.query_monotone_inc(c)\
+    \ + c * c + s;\n        seg.apply(i, M + 1, y);\n      }\n    }\n  };\n\n  auto\
+    \ dfs = [&](auto self, ll L, ll R) -> void {\n    if (L == R) return;\n    ll\
+    \ M = (L + R) / 2;\n    f(L, M, R);\n    self(self, L, M);\n    self(self, M +\
+    \ 1, R);\n  };\n  dfs(dfs, 0, N);\n  vi ANS = seg.get_all();\n  for (auto&& x:\
+    \ ANS) print(x);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
+    \n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/913\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"ds/dualsegtree.hpp\"\n#include \"alg/monoid_min.hpp\"\
+    \n#include \"ds/cht_monotone.hpp\"\n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n\
+    \  const ll INF = 1LL << 60;\n  DualSegTree<Monoid_Min<ll, INF>> seg(N);\n\n \
+    \ auto f = [&](ll L, ll M, ll R) -> void {\n    {\n      // \u53F3\u306B\u3064\
+    \u3044\u3066\u3001\u542B\u3080\u5834\u5408\n      // \u307E\u305A\u306F\u3001\u5DE6\
+    \u3092\u30C7\u30FC\u30BF\u306B\u633F\u5165\n      CHT_monotone<ll, 1> cht;\n \
+    \     ll a = 0, b = 0;\n      cht.add(2 * a, a * a + b);\n      FOR3_R(i, L, M)\
+    \ {\n        ++a;\n        b += A[i];\n        cht.add(2 * a, a * a + b);\n  \
+    \    }\n\n      ll c = 0, s = 0;\n      FOR3(i, M, R) {\n        ++c;\n      \
+    \  s += A[i];\n        ll y = cht.query_monotone_inc(c) + c * c + s;\n       \
+    \ seg.apply(M, i + 1, y);\n      }\n    }\n    {\n      CHT_monotone<ll, 1> cht;\n\
+    \      ll a = 0, b = 0;\n      cht.add(2 * a, a * a + b);\n      FOR3(i, M + 1,\
+    \ R) {\n        ++a;\n        b += A[i];\n        cht.add(2 * a, a * a + b);\n\
+    \      }\n\n      ll c = 0, s = 0;\n      FOR3_R(i, L, M + 1) {\n        ++c;\n\
+    \        s += A[i];\n        ll y = cht.query_monotone_inc(c) + c * c + s;\n \
+    \       seg.apply(i, M + 1, y);\n      }\n    }\n  };\n\n  auto dfs = [&](auto\
+    \ self, ll L, ll R) -> void {\n    if (L == R) return;\n    ll M = (L + R) / 2;\n\
+    \    f(L, M, R);\n    self(self, L, M);\n    self(self, M + 1, R);\n  };\n  dfs(dfs,\
+    \ 0, N);\n  vi ANS = seg.get_all();\n  for (auto&& x: ANS) print(x);\n}\n\nsigned\
+    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - graph/base.hpp
-  - graph/cycle_detection.hpp
+  - ds/dualsegtree.hpp
+  - alg/monoid_min.hpp
+  - ds/cht_monotone.hpp
   isVerificationFile: true
-  path: test/library_checker/graph/cycle_detection.test.cpp
+  path: test/yukicoder/913_cht_monotone.test.cpp
   requiredBy: []
-  timestamp: '2022-04-29 17:32:58+09:00'
+  timestamp: '2022-05-01 01:12:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library_checker/graph/cycle_detection.test.cpp
+documentation_of: test/yukicoder/913_cht_monotone.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/graph/cycle_detection.test.cpp
-- /verify/test/library_checker/graph/cycle_detection.test.cpp.html
-title: test/library_checker/graph/cycle_detection.test.cpp
+- /verify/test/yukicoder/913_cht_monotone.test.cpp
+- /verify/test/yukicoder/913_cht_monotone.test.cpp.html
+title: test/yukicoder/913_cht_monotone.test.cpp
 ---

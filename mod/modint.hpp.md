@@ -258,6 +258,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_p_rec.test.cpp
     title: test/yukicoder/502_p_rec.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/749_lazysegtree.test.cpp
+    title: test/yukicoder/749_lazysegtree.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -446,6 +449,7 @@ data:
   timestamp: '2022-04-22 16:55:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/749_lazysegtree.test.cpp
   - test/yukicoder/1810_matpow.test.cpp
   - test/yukicoder/1891_xor_sparse.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
