@@ -1,8 +1,8 @@
 #pragma once
 #include "graph/base.hpp"
 
-template <typename T, T INF, typename Graph>
-pair<vc<T>, vc<int>> dijkstra(Graph& G, int v) {
+template <typename T, typename Graph>
+pair<vc<T>, vc<int>> dijkstra(Graph& G, int v, T INF) {
   auto N = G.N;
   vector<T> dist(N, INF);
   vector<int> par(N, -1);
