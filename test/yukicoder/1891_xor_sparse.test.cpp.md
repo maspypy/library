@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/xor_sparsetable.hpp
     title: ds/xor_sparsetable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
