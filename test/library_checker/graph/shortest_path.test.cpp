@@ -13,7 +13,7 @@ void solve() {
 
   const ll INF = 1LL << 60;
 
-  auto [dist, par] = dijkstra<ll, INF>(G, s);
+  auto [dist, par] = dijkstra<ll>(G, s, INF);
   if (dist[t] == INF) return print(-1);
 
   vector<int> pth = restore_path(par, t);
