@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: string/is_substring.hpp
+    title: string/is_substring.hpp
   - icon: ':heavy_check_mark:'
     path: string/run_enumerate.hpp
     title: string/run_enumerate.hpp
@@ -37,6 +40,7 @@ data:
   isVerificationFile: false
   path: string/zalgorithm.hpp
   requiredBy:
+  - string/is_substring.hpp
   - string/run_enumerate.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_ALL_AC

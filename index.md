@@ -750,6 +750,9 @@ data:
     - icon: ':warning:'
       path: string/is_subseq.hpp
       title: string/is_subseq.hpp
+    - icon: ':warning:'
+      path: string/is_substring.hpp
+      title: string/is_substring.hpp
     - icon: ':heavy_check_mark:'
       path: string/manacher.hpp
       title: string/manacher.hpp
