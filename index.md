@@ -689,6 +689,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/coef_of_rational_fps.hpp
       title: seq/coef_of_rational_fps.hpp
+    - icon: ':warning:'
+      path: seq/enumerate_partitions.hpp
+      title: seq/enumerate_partitions.hpp
     - icon: ':heavy_check_mark:'
       path: seq/find_linear_rec.hpp
       title: seq/find_linear_rec.hpp
