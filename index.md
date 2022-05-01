@@ -125,6 +125,9 @@ data:
       title: alg/monoid_xor_basis.hpp
   - name: dp
     pages:
+    - icon: ':warning:'
+      path: dp/count_subseq.hpp
+      title: dp/count_subseq.hpp
     - icon: ':heavy_check_mark:'
       path: dp/inversion.hpp
       title: dp/inversion.hpp
@@ -670,6 +673,9 @@ data:
       path: poly/multivar_convolution.hpp
       title: poly/multivar_convolution.hpp
     - icon: ':heavy_check_mark:'
+      path: poly/online_convolution.hpp
+      title: poly/online_convolution.hpp
+    - icon: ':heavy_check_mark:'
       path: poly/poly_divmod.hpp
       title: poly/poly_divmod.hpp
     - icon: ':heavy_check_mark:'
@@ -930,6 +936,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/multivariate_convolution.test.cpp
       title: test/library_checker/convolution/multivariate_convolution.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/convolution/online_convolution.test.cpp
+      title: test/library_checker/convolution/online_convolution.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/subset_convolution.test.cpp
       title: test/library_checker/convolution/subset_convolution.test.cpp

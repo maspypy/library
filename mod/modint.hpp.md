@@ -57,6 +57,9 @@ data:
     path: poly/multivar_convolution.hpp
     title: poly/multivar_convolution.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/online_convolution.hpp
+    title: poly/online_convolution.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
   - icon: ':heavy_check_mark:'
@@ -126,6 +129,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/multivariate_convolution.test.cpp
     title: test/library_checker/convolution/multivariate_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/convolution/online_convolution.test.cpp
+    title: test/library_checker/convolution/online_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution.test.cpp
     title: test/library_checker/convolution/subset_convolution.test.cpp
@@ -425,6 +431,7 @@ data:
   - poly/convolution2d.hpp
   - poly/convolution.hpp
   - poly/fps_exp.hpp
+  - poly/online_convolution.hpp
   - poly/sharp_p_subset_sum.hpp
   - poly/convolution_huge.hpp
   - poly/fps_log.hpp
@@ -461,6 +468,7 @@ data:
   - test/library_checker/convolution/convolution_huge.test.cpp
   - test/library_checker/convolution/mul_mod2n_convolution.test.cpp
   - test/library_checker/convolution/multivariate_convolution.test.cpp
+  - test/library_checker/convolution/online_convolution.test.cpp
   - test/library_checker/convolution/convolution_mod_2_64.test.cpp
   - test/library_checker/convolution/convolution_mod_107_amint.test.cpp
   - test/library_checker/convolution/subset_convolution_multivar.test.cpp
