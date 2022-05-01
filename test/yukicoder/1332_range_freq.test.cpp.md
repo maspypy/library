@@ -2,12 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: alg/group_add.hpp
-    title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/fenwick.hpp
-    title: ds/fenwick.hpp
-  - icon: ':heavy_check_mark:'
     path: ds/waveletmatrix.hpp
     title: ds/waveletmatrix.hpp
   - icon: ':heavy_check_mark:'
@@ -23,18 +17,19 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/924
+    PROBLEM: https://yukicoder.me/problems/no/1332
     links:
-    - https://yukicoder.me/problems/no/924
-  bundledCode: "#line 1 \"test/yukicoder/924.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/924\"\
-    \n#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
-    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
-    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://yukicoder.me/problems/no/1332
+  bundledCode: "#line 1 \"test/yukicoder/1332_range_freq.test.cpp\"\n#define PROBLEM\
+    \ \"https://yukicoder.me/problems/no/1332\"\n#line 1 \"my_template.hpp\"\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -237,87 +232,37 @@ data:
     \    bool f = (upper >> h) & 1;\r\n      u32 l0 = bv[h].rank0(l), r0 = bv[h].rank0(r);\r\
     \n      if (f) {\r\n        ret += r0 - l0;\r\n        l += bv[h].zeros - l0;\r\
     \n        r += bv[h].zeros - r0;\r\n      } else {\r\n        l = l0;\r\n    \
-    \    r = r0;\r\n      }\r\n    }\r\n    return ret;\r\n  }\r\n};\n#line 2 \"alg/group_add.hpp\"\
-    \ntemplate <class X>\r\nstruct Group_Add {\r\n  using value_type = X;\r\n  static\
-    \ constexpr X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static\
-    \ constexpr X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr\
-    \ X power(const X &x, ll n) noexcept { return n * x; }\r\n  static constexpr X\
-    \ unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n\
-    #line 3 \"ds/fenwick.hpp\"\n\ntemplate <typename AbelGroup>\nstruct FenwickTree\
-    \ {\n  using E = typename AbelGroup::value_type;\n  int n;\n  vector<E> dat;\n\
-    \  E total;\n\n  FenwickTree() : FenwickTree(0) {}\n  FenwickTree(int n) : n(n),\
-    \ total(AbelGroup::unit()) {\n    assert(AbelGroup::commute);\n    dat.assign(n,\
-    \ AbelGroup::unit());\n  }\n  FenwickTree(vc<E> v) : n(len(v)), total(AbelGroup::unit())\
-    \ {\n    assert(AbelGroup::commute);\n    FOR(i, n) total = AbelGroup::op(total,\
-    \ v[i]);\n    dat = v;\n    FOR3(i, 1, n + 1) {\n      int j = i + (i & -i);\n\
-    \      if (j <= n) dat[j - 1] = AbelGroup::op(dat[i - 1], dat[j - 1]);\n    }\n\
-    \  }\n\n  void reset(){\n    total = AbelGroup::unit();\n    dat.assign(n, AbelGroup::unit());\n\
-    \  }\n\n  E sum(int k) {\n    E ret = AbelGroup::unit();\n    for (; k > 0; k\
-    \ -= k & -k) ret = AbelGroup::op(ret, dat[k - 1]);\n    return ret;\n  }\n\n \
-    \ E sum(int L, int R) {\n    E pos = AbelGroup::unit();\n    while (L < R) {\n\
-    \      pos = AbelGroup::op(pos, dat[R - 1]);\n      R -= R & -R;\n    }\n    E\
-    \ neg = AbelGroup::unit();\n    while (R < L) {\n      neg = AbelGroup::op(neg,\
-    \ dat[L - 1]);\n      L -= L & -L;\n    }\n    return AbelGroup::op(pos, AbelGroup::inverse(neg));\n\
-    \  }\n\n  E sum_all() { return total; }\n\n  void add(int k, E x) {\n    total\
-    \ = AbelGroup::op(total, x);\n    for (++k; k <= n; k += k & -k) dat[k - 1] =\
-    \ AbelGroup::op(dat[k - 1], x);\n  }\n\n  template <class F>\n  int max_right(F&\
-    \ check) {\n    assert(check(E(0)));\n    ll i = 0;\n    E s = AbelGroup::unit();\n\
-    \    int k = 1;\n    int N = len(dat) + 1;\n    while (2 * k < N) k *= 2;\n  \
-    \  while (k) {\n      if (i + k < N && check(AbelGroup::op(s, dat[i + k - 1])))\
-    \ {\n        i += k;\n        s = AbelGroup::op(s, dat[i - 1]);\n      }\n   \
-    \   k >>= 1;\n    }\n    return i;\n  }\n\n  int find_kth(E k) {\n    auto check\
-    \ = [&](E x) -> bool { return x <= k; };\n    return max_right(check);\n  }\n\n\
-    \  void debug() { print(\"fenwick\", dat); }\n};\n#line 6 \"test/yukicoder/924.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  auto Ac = cumsum(A);\n  vi\
-    \ X = A;\n  UNIQUE(X);\n  for (auto&& a: A) a = LB(X, a);\n  WaveletMatrix<ll>\
-    \ WM(A);\n  VEC(pi, query, Q);\n  for (auto&& [l, r]: query) --l;\n  vc<int> med(Q);\n\
-    \  vi low_sum(Q), low_cnt(Q);\n  FOR(q, Q) {\n    auto [l, r] = query[q];\n  \
-    \  ll n = r - l;\n    med[q] = WM.kth(l, r, n / 2);\n  }\n\n  vvc<int> QID(N);\n\
-    \  FOR(q, Q) QID[med[q]].eb(q);\n\n  vvc<int> AID(N);\n  FOR(i, N) AID[A[i]].eb(i);\n\
-    \n  FenwickTree<Group_Add<ll>> bit_c(N), bit_s(N);\n\n  FOR(x, N) {\n    for (auto&&\
-    \ i: AID[x]) {\n      bit_c.add(i, 1);\n      bit_s.add(i, X[x]);\n    }\n   \
-    \ for (auto&& q: QID[x]) {\n      auto [l, r] = query[q];\n      low_cnt[q] =\
-    \ bit_c.sum(l, r);\n      low_sum[q] = bit_s.sum(l, r);\n    }\n  }\n\n  FOR(q,\
-    \ Q) {\n    auto [l, r] = query[q];\n    ll x = X[med[q]];\n    ll lc = low_cnt[q],\
-    \ ls = low_sum[q];\n    ll hc = r - l - lc;\n    ll hs = Ac[r] - Ac[l] - ls;\n\
-    \    ll ANS = 0;\n    ANS += x * lc - ls;\n    ANS += hs - x * hc;\n    //   \
-    \ print(x, lc, ls, hc, hs);\n    print(ANS);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \    r = r0;\r\n      }\r\n    }\r\n    return ret;\r\n  }\r\n};\n#line 5 \"test/yukicoder/1332_range_freq.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, X, N);\n  WaveletMatrix<ll> WM(X);\n \
+    \ const ll INF = 1LL << 60;\n  LL(Q);\n  FOR_(Q) {\n    LL(l, r, x);\n    --l;\n\
+    \    ll ANS = INF;\n    ll n = WM.freq(l, r, 0, x);\n    if (n > 0) chmin(ANS,\
+    \ abs(x - WM.kth(l, r, n - 1)));\n    if (n < r - l) chmin(ANS, abs(x - WM.kth(l,\
+    \ r, n)));\n    print(ANS);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
     \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
     \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/924\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"ds/waveletmatrix.hpp\"\n#include \"ds/fenwick.hpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  auto Ac = cumsum(A);\n  vi\
-    \ X = A;\n  UNIQUE(X);\n  for (auto&& a: A) a = LB(X, a);\n  WaveletMatrix<ll>\
-    \ WM(A);\n  VEC(pi, query, Q);\n  for (auto&& [l, r]: query) --l;\n  vc<int> med(Q);\n\
-    \  vi low_sum(Q), low_cnt(Q);\n  FOR(q, Q) {\n    auto [l, r] = query[q];\n  \
-    \  ll n = r - l;\n    med[q] = WM.kth(l, r, n / 2);\n  }\n\n  vvc<int> QID(N);\n\
-    \  FOR(q, Q) QID[med[q]].eb(q);\n\n  vvc<int> AID(N);\n  FOR(i, N) AID[A[i]].eb(i);\n\
-    \n  FenwickTree<Group_Add<ll>> bit_c(N), bit_s(N);\n\n  FOR(x, N) {\n    for (auto&&\
-    \ i: AID[x]) {\n      bit_c.add(i, 1);\n      bit_s.add(i, X[x]);\n    }\n   \
-    \ for (auto&& q: QID[x]) {\n      auto [l, r] = query[q];\n      low_cnt[q] =\
-    \ bit_c.sum(l, r);\n      low_sum[q] = bit_s.sum(l, r);\n    }\n  }\n\n  FOR(q,\
-    \ Q) {\n    auto [l, r] = query[q];\n    ll x = X[med[q]];\n    ll lc = low_cnt[q],\
-    \ ls = low_sum[q];\n    ll hc = r - l - lc;\n    ll hs = Ac[r] - Ac[l] - ls;\n\
-    \    ll ANS = 0;\n    ANS += x * lc - ls;\n    ANS += hs - x * hc;\n    //   \
-    \ print(x, lc, ls, hc, hs);\n    print(ANS);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1332\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"ds/waveletmatrix.hpp\"\n\nvoid solve()\
+    \ {\n  LL(N);\n  VEC(ll, X, N);\n  WaveletMatrix<ll> WM(X);\n  const ll INF =\
+    \ 1LL << 60;\n  LL(Q);\n  FOR_(Q) {\n    LL(l, r, x);\n    --l;\n    ll ANS =\
+    \ INF;\n    ll n = WM.freq(l, r, 0, x);\n    if (n > 0) chmin(ANS, abs(x - WM.kth(l,\
+    \ r, n - 1)));\n    if (n < r - l) chmin(ANS, abs(x - WM.kth(l, r, n)));\n   \
+    \ print(ANS);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - ds/waveletmatrix.hpp
-  - ds/fenwick.hpp
-  - alg/group_add.hpp
   isVerificationFile: true
-  path: test/yukicoder/924.test.cpp
+  path: test/yukicoder/1332_range_freq.test.cpp
   requiredBy: []
   timestamp: '2022-05-02 00:48:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/924.test.cpp
+documentation_of: test/yukicoder/1332_range_freq.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/924.test.cpp
-- /verify/test/yukicoder/924.test.cpp.html
-title: test/yukicoder/924.test.cpp
+- /verify/test/yukicoder/1332_range_freq.test.cpp
+- /verify/test/yukicoder/1332_range_freq.test.cpp.html
+title: test/yukicoder/1332_range_freq.test.cpp
 ---

@@ -1275,6 +1275,9 @@ data:
       path: test/yukicoder/1320_mincostcycle.test.cpp
       title: test/yukicoder/1320_mincostcycle.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1332_range_freq.test.cpp
+      title: test/yukicoder/1332_range_freq.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/177_maxflow.test.cpp
       title: test/yukicoder/177_maxflow.test.cpp
     - icon: ':heavy_check_mark:'

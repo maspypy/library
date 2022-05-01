@@ -457,6 +457,9 @@ data:
     path: test/yukicoder/1320_mincostcycle.test.cpp
     title: test/yukicoder/1320_mincostcycle.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1332_range_freq.test.cpp
+    title: test/yukicoder/1332_range_freq.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/177_maxflow.test.cpp
     title: test/yukicoder/177_maxflow.test.cpp
   - icon: ':heavy_check_mark:'
@@ -755,6 +758,7 @@ data:
   - test/yukicoder/1038_centroid.test.cpp
   - test/yukicoder/1002_centroid.test.cpp
   - test/yukicoder/919_waveletmatrix.test.cpp
+  - test/yukicoder/1332_range_freq.test.cpp
   - test/yukicoder/114_steriner_tree.test.cpp
   - test/yukicoder/502_p_rec.test.cpp
   - test/yukicoder/17_warshall_floyd.test.cpp

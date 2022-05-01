@@ -198,17 +198,17 @@ data:
     \ = count[i - 1] + _mm_popcnt_u64(block[i - 1]);\r\n    zeros = rank0(n);\r\n\
     \  }\r\n\r\n  inline u32 rank0(u32 i) const { return i - rank1(i); }\r\n  __attribute__((target(\"\
     bmi2,popcnt\"))) inline u32 rank1(u32 i) const {\r\n    return count[i / w] +\
-    \ _mm_popcnt_u64(_bzhi_u64(block[i / w], i % w));\r\n  }\r\n};\r\n\r\n\r\n/*\r\
-    \n\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\uFF1Avector<T> \u3092\u6E21\u3059\
-    \r\n\u9759\u7684\u306A\u5217\u306B\u5BFE\u3057\u3066\u6B21\u304C O(log N) \u6642\
-    \u9593\u3067\u884C\u3048\u308B\r\n\u30FBfreq(l, r, lower, upper)\uFF1A[lower,\
-    \ upper) \u5185\u306E\u8981\u7D20\u306E\u6570\u3048\u4E0A\u3052\r\n\u30FBkth(l,\
-    \ r, lower, upper)\uFF1A[lower, upper) \u5185\u3092\u30BD\u30FC\u30C8\u3057\u305F\
-    \u3068\u304D\u306E k \u756A\u76EE\r\n*/\r\ntemplate <typename T>\r\nstruct WaveletMatrix\
-    \ {\r\n  using u32 = uint32_t;\r\n  using i64 = int64_t;\r\n  using u64 = uint64_t;\r\
-    \n\r\n  int n, lg;\r\n  vc<T> key;\r\n  vc<int> A;\r\n  vector<bit_vector> bv;\r\
-    \n\r\n  __attribute__((optimize(\"O3\"))) WaveletMatrix(const vc<T>& dat)\r\n\
-    \      : n(len(dat)) {\r\n    key = dat;\r\n    UNIQUE(key);\r\n    A.resize(n);\r\
+    \ _mm_popcnt_u64(_bzhi_u64(block[i / w], i % w));\r\n  }\r\n};\r\n\r\n/*\r\n\u30B3\
+    \u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\uFF1Avector<T> \u3092\u6E21\u3059\r\n\u9759\
+    \u7684\u306A\u5217\u306B\u5BFE\u3057\u3066\u6B21\u304C O(log N) \u6642\u9593\u3067\
+    \u884C\u3048\u308B\r\n\u30FBfreq(l, r, lower, upper)\uFF1A[lower, upper) \u5185\
+    \u306E\u8981\u7D20\u306E\u6570\u3048\u4E0A\u3052\r\n\u30FBkth(l, r, lower, upper)\uFF1A\
+    [lower, upper) \u5185\u3092\u30BD\u30FC\u30C8\u3057\u305F\u3068\u304D\u306E k\
+    \ \u756A\u76EE\r\n*/\r\ntemplate <typename T>\r\nstruct WaveletMatrix {\r\n  using\
+    \ u32 = uint32_t;\r\n  using i64 = int64_t;\r\n  using u64 = uint64_t;\r\n\r\n\
+    \  int n, lg;\r\n  vc<T> key;\r\n  vc<int> A;\r\n  vector<bit_vector> bv;\r\n\r\
+    \n  __attribute__((optimize(\"O3\"))) WaveletMatrix(const vc<T>& dat)\r\n    \
+    \  : n(len(dat)) {\r\n    key = dat;\r\n    UNIQUE(key);\r\n    A.resize(n);\r\
     \n    FOR(i, n) A[i] = LB(key, dat[i]);\r\n    lg = __lg(max(MAX(A), 1)) + 1;\r\
     \n    bv.assign(lg, n);\r\n    vc<int> cur = A, nxt(n);\r\n    for (int h = lg\
     \ - 1; h >= 0; --h) {\r\n      for (int i = 0; i < n; ++i)\r\n        if ((cur[i]\
@@ -225,7 +225,7 @@ data:
     \    l = l0, r = r0;\r\n      else {\r\n        k -= r0 - l0;\r\n        res |=\
     \ 1 << h;\r\n        l += bv[h].zeros - l0;\r\n        r += bv[h].zeros - r0;\r\
     \n      }\r\n    }\r\n    return key[res];\r\n  }\r\n\r\n  int freq(int l, int\
-    \ r, T lower, T upper) {\r\n    return range_freq(l, r, upper) - range_freq(l,\
+    \ r, T lower, T upper) {\r\n    return freq_upper(l, r, upper) - freq_upper(l,\
     \ r, lower);\r\n  }\r\n\r\nprivate:\r\n  int freq_upper(int l, int r, T upper_t)\
     \ {\r\n    int upper = LB(key, upper_t);\r\n    if (upper >= (1 << lg)) return\
     \ r - l;\r\n    int ret = 0;\r\n    for (int h = lg - 1; h >= 0; --h) {\r\n  \
@@ -248,7 +248,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   requiredBy: []
-  timestamp: '2022-04-29 17:32:58+09:00'
+  timestamp: '2022-05-02 00:48:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
