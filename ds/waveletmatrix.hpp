@@ -33,7 +33,6 @@ struct bit_vector {
   }
 };
 
-
 /*
 コンストラクタ：vector<T> を渡す
 静的な列に対して次が O(log N) 時間で行える
@@ -98,7 +97,7 @@ struct WaveletMatrix {
   }
 
   int freq(int l, int r, T lower, T upper) {
-    return range_freq(l, r, upper) - range_freq(l, r, lower);
+    return freq_upper(l, r, upper) - freq_upper(l, r, lower);
   }
 
 private:
