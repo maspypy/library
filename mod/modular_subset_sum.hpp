@@ -93,12 +93,13 @@ struct ShiftTree {
 ・restore(x) で復元。
 コンストラクタには、(mod, vals) をわたす
 */
+template<typename INT>
 struct Modular_Subset_Sum {
   int mod;
-  vc<int>& vals;
+  vc<INT>& vals;
   vc<int> par;
 
-  Modular_Subset_Sum(int mod, vc<int>& vals) : mod(mod), vals(vals) {
+  Modular_Subset_Sum(int mod, vc<INT>& vals) : mod(mod), vals(vals) {
     par.assign(mod, -1);
 
     RandomNumberGenerator RNG;
