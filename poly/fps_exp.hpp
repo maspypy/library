@@ -6,7 +6,7 @@
 
 template <typename mint>
 enable_if_t<is_same<mint, modint998>::value, vc<mint>> fps_exp(vc<mint>& f) {
-  if (count_terms(f) <= 200) return fps_exp_sparse(f);
+  if (count_terms(f) <= 300) return fps_exp_sparse(f);
   return fps_exp_dense(f);
 }
 
@@ -29,7 +29,8 @@ vc<mint> fps_exp_sparse(vc<mint>& f) {
   FOR3(n, 1, N) {
     mint rhs = 0;
     for (auto&& [k, fk]: dat) {
-      if (k <= n - 1) rhs += fk * F[n - 1 - k];
+      if (k > n - 1) break;
+      rhs += fk * F[n - 1 - k];
     }
     F[n] = rhs * inv<mint>(n);
   }
