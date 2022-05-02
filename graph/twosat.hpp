@@ -1,4 +1,5 @@
-#include "graph/scc.hpp"
+#include "graph/strongly_connected_component.hpp"
+
 struct TwoSat {
   vc<int> values;
 
@@ -23,10 +24,10 @@ struct TwoSat {
   bool calc() {
     G.build();
     ll n = len(values);
-    SCC<Graph<int, 1>> scc(G);
+    auto [C, comp] = strongly_connected_component(G);
     FOR(i, n) {
-      if (scc[2 * i] == scc[2 * i + 1]) return false;
-      values[i] = scc[2 * i] < scc[2 * i + 1];
+      if (comp[2 * i] == comp[2 * i + 1]) return false;
+      values[i] = comp[2 * i] < comp[2 * i + 1];
     }
     return true;
   }
