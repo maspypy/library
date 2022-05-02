@@ -1,7 +1,87 @@
 #pragma once
 #include "poly/convolution.hpp"
+#include "poly/integrate.hpp"
+#include "poly/differentiate.hpp"
+#include "poly/count_terms.hpp"
+
 template <typename mint>
-vc<mint> fps_exp(vc<mint>& f) {
+enable_if_t<is_same<mint, modint998>::value, vc<mint>> fps_exp(vc<mint>& f) {
+  if (count_terms(f) <= 200) return fps_exp_sparse(f);
+  return fps_exp_dense(f);
+}
+
+template <typename mint>
+enable_if_t<!is_same<mint, modint998>::value, vc<mint>> fps_exp(vc<mint>& f) {
+  if (count_terms(f) <= 1000) return fps_exp_sparse(f);
+  return fps_exp_dense(f);
+}
+
+template <typename mint>
+vc<mint> fps_exp_sparse(vc<mint>& f) {
+  if (len(f) == 0) return {mint(1)};
+  assert(f[0] == 0);
+  int N = len(f);
+  // df を持たせる
+  vc<pair<int, mint>> dat;
+  FOR3(i, 1, N) if (f[i] != mint(0)) dat.eb(i - 1, mint(i) * f[i]);
+  vc<mint> F(N);
+  F[0] = 1;
+  FOR3(n, 1, N) {
+    mint rhs = 0;
+    for (auto&& [k, fk]: dat) {
+      if (k <= n - 1) rhs += fk * F[n - 1 - k];
+    }
+    F[n] = rhs * inv<mint>(n);
+  }
+  return F;
+}
+
+template <typename mint>
+enable_if_t<!is_same<mint, modint998>::value, vc<mint>> fps_exp_dense(
+    vc<mint> h) {
+  const int L = len(h);
+  assert(L > 0 && h[0] == mint(0));
+  int LOG = 0;
+  while (1 << LOG < L) ++LOG;
+  h.resize(1 << LOG);
+  auto dh = differentiate(h);
+  vc<mint> f = {1}, g = {1};
+  int m = 1;
+
+  vc<mint> p;
+
+  FOR_(LOG) {
+    p = convolution(f, g);
+    p.resize(m);
+    p = convolution(p, g);
+    p.resize(m);
+    g.resize(m);
+    FOR(i, m) g[i] += g[i] - p[i];
+    p = {dh.begin(), dh.begin() + m - 1};
+    p = convolution(f, p);
+    p.resize(m + m - 1);
+    FOR(i, m + m - 1) p[i] = -p[i];
+    FOR(i, m - 1) p[i] += mint(i + 1) * f[i + 1];
+    p = convolution(p, g);
+
+    p.resize(m + m - 1);
+    FOR(i, m - 1) p[i] += dh[i];
+    p = integrate(p);
+    FOR(i, m + m) p[i] = h[i] - p[i];
+    p[0] += mint(1);
+    f = convolution(f, p);
+    f.resize(m + m);
+    m += m;
+  }
+  f.resize(L);
+  return f;
+}
+
+// ntt 素数専用実装。長さ n の FFT を利用して 2n の FFT
+// を行うなどの高速化をしている。
+template <typename mint>
+enable_if_t<is_same<mint, modint998>::value, vc<mint>> fps_exp_dense(
+    vc<mint>& f) {
   const int n = len(f);
   assert(n > 0 && f[0] == mint(0));
   vc<mint> b = {1, (1 < n ? f[1] : 0)};
