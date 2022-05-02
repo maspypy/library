@@ -275,16 +275,16 @@ data:
     \ modint998>::value, vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>&\
     \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
-    \ b);\r\n}\r\n#line 2 \"poly/integrate.hpp\"\n\ntemplate <typename mint>\nvc<mint>\
-    \ integrate(const vc<mint>& f) {\n  vc<mint> g(len(f) + 1);\n  FOR3(i, 1, len(g))\
-    \ g[i] = f[i - 1] * inv<mint>(i);\n  return g;\n}\n#line 2 \"poly/differentiate.hpp\"\
-    \n\ntemplate <typename mint>\nvc<mint> differentiate(const vc<mint>& f) {\n  if\
-    \ (len(f) <= 1) return {};\n  vc<mint> g(len(f) - 1);\n  FOR(i, len(g)) g[i] =\
-    \ f[i + 1] * mint(i + 1);\n  return g;\n}\n#line 2 \"poly/count_terms.hpp\"\n\
-    template<typename mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t = 0;\r\
-    \n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 6 \"poly/fps_exp.hpp\"\
+    \ b);\r\n}\r\n#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint\
+    \ count_terms(const vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i]\
+    \ != mint(0)) ++t;\r\n  return t;\r\n}\n#line 2 \"poly/integrate.hpp\"\n\ntemplate\
+    \ <typename mint>\nvc<mint> integrate(const vc<mint>& f) {\n  vc<mint> g(len(f)\
+    \ + 1);\n  FOR3(i, 1, len(g)) g[i] = f[i - 1] * inv<mint>(i);\n  return g;\n}\n\
+    #line 2 \"poly/differentiate.hpp\"\n\ntemplate <typename mint>\nvc<mint> differentiate(const\
+    \ vc<mint>& f) {\n  if (len(f) <= 1) return {};\n  vc<mint> g(len(f) - 1);\n \
+    \ FOR(i, len(g)) g[i] = f[i + 1] * mint(i + 1);\n  return g;\n}\n#line 6 \"poly/fps_exp.hpp\"\
     \n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint, modint998>::value,\
-    \ vc<mint>> fps_exp(vc<mint>& f) {\r\n  if (count_terms(f) <= 200) return fps_exp_sparse(f);\r\
+    \ vc<mint>> fps_exp(vc<mint>& f) {\r\n  if (count_terms(f) <= 300) return fps_exp_sparse(f);\r\
     \n  return fps_exp_dense(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<!is_same<mint,\
     \ modint998>::value, vc<mint>> fps_exp(vc<mint>& f) {\r\n  if (count_terms(f)\
     \ <= 1000) return fps_exp_sparse(f);\r\n  return fps_exp_dense(f);\r\n}\r\n\r\n\
@@ -293,9 +293,9 @@ data:
     \ df \u3092\u6301\u305F\u305B\u308B\r\n  vc<pair<int, mint>> dat;\r\n  FOR3(i,\
     \ 1, N) if (f[i] != mint(0)) dat.eb(i - 1, mint(i) * f[i]);\r\n  vc<mint> F(N);\r\
     \n  F[0] = 1;\r\n  FOR3(n, 1, N) {\r\n    mint rhs = 0;\r\n    for (auto&& [k,\
-    \ fk]: dat) {\r\n      if (k <= n - 1) rhs += fk * F[n - 1 - k];\r\n    }\r\n\
-    \    F[n] = rhs * inv<mint>(n);\r\n  }\r\n  return F;\r\n}\r\n\r\ntemplate <typename\
-    \ mint>\r\nenable_if_t<!is_same<mint, modint998>::value, vc<mint>> fps_exp_dense(\r\
+    \ fk]: dat) {\r\n      if (k > n - 1) break;\r\n      rhs += fk * F[n - 1 - k];\r\
+    \n    }\r\n    F[n] = rhs * inv<mint>(n);\r\n  }\r\n  return F;\r\n}\r\n\r\ntemplate\
+    \ <typename mint>\r\nenable_if_t<!is_same<mint, modint998>::value, vc<mint>> fps_exp_dense(\r\
     \n    vc<mint> h) {\r\n  const int L = len(h);\r\n  assert(L > 0 && h[0] == mint(0));\r\
     \n  int LOG = 0;\r\n  while (1 << LOG < L) ++LOG;\r\n  h.resize(1 << LOG);\r\n\
     \  auto dh = differentiate(h);\r\n  vc<mint> f = {1}, g = {1};\r\n  int m = 1;\r\
@@ -328,58 +328,75 @@ data:
     \ + 1);\r\n    x[0] = 0;\r\n\r\n    FOR3(i, m, min(n, m + m)) x[i] += f[i];\r\n\
     \    FOR(i, m) x[i] = 0;\r\n    ntt(x, 0);\r\n    FOR(i, m + m) x[i] *= y[i];\r\
     \n    ntt(x, 1);\r\n    b.insert(b.end(), x.begin() + m, x.end());\r\n  }\r\n\
-    \  b.resize(n);\r\n  return b;\r\n}\r\n#line 2 \"poly/fps_inv.hpp\"\n\r\n#line\
-    \ 4 \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv(const\
-    \ vc<mint>& F) {\r\n  assert(F[0] != mint(0));\r\n  vc<mint> G = {mint(1) / F[0]};\r\
-    \n  G.reserve(len(F));\r\n  ll N = len(F), n = 1;\r\n  while (n < N) {\r\n   \
-    \ vc<mint> f(2 * n), g(2 * n);\r\n    FOR(i, min(N, 2 * n)) f[i] = F[i];\r\n \
-    \   FOR(i, n) g[i] = G[i];\r\n    ntt(f, false);\r\n    ntt(g, false);\r\n   \
-    \ FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\n    FOR(i, n) f[i] = 0;\r\
-    \n    ntt(f, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\
-    \n    FOR3(i, n, 2 * n) G.eb(f[i] * mint(-1));\r\n    n *= 2;\r\n  }\r\n  G.resize(N);\r\
-    \n  return G;\r\n}\r\n#line 3 \"poly/fps_log.hpp\"\n\r\ntemplate <typename mint>\r\
-    \nvc<mint> fps_log(const vc<mint>& f) {\r\n  assert(f[0] == mint(1));\r\n  ll\
-    \ N = len(f);\r\n  vc<mint> df = f;\r\n  FOR(i, N) df[i] *= mint(i);\r\n  df.erase(df.begin());\r\
-    \n  auto f_inv = fps_inv(f);\r\n  auto g = convolution(df, f_inv);\r\n  g.resize(N\
-    \ - 1);\r\n  g.insert(g.begin(), 0);\r\n  FOR(i, N) g[i] *= inv<mint>(i);\r\n\
-    \  return g;\r\n}\r\n#line 3 \"poly/fps_pow.hpp\"\n\r\n// fps \u306E k \u4E57\u3092\
-    \u6C42\u3081\u308B\u3002k >= 0 \u306E\u524D\u63D0\u3067\u3042\u308B\u3002\r\n\
-    // \u30FBdense \u306A\u5834\u5408\uFF1A log, exp \u3092\u4F7F\u3046 O(NlogN)\r\
-    \n// \u30FBsparse \u306A\u5834\u5408\uFF1A O(NK)\r\ntemplate <typename mint>\r\
-    \nvc<mint> fps_pow(const vc<mint>& f, ll k, bool force_sparse = 0) {\r\n  int\
-    \ n = len(f);\r\n  int d = n;\r\n  FOR_R(i, n) if (f[i] != 0) d = i;\r\n  ll off\
-    \ = d * k;\r\n  if (off >= n) return vc<mint>(n, 0);\r\n  mint c = f[d];\r\n \
-    \ mint c_inv = mint(1) / mint(c);\r\n  vc<mint> g(n - off);\r\n  FOR(i, n - off)\
-    \ g[i] = f[d + i] * c_inv;\r\n  g = fps_pow_1(g, mint(k), force_sparse);\r\n \
-    \ vc<mint> h(n);\r\n  c = c.pow(k);\r\n  FOR(i, len(g)) h[off + i] = g[i] * c;\r\
-    \n  return h;\r\n}\r\n\r\n// \u5B9A\u6570\u9805\u304C 1 \u306E\u5834\u5408\u9650\
-    \u5B9A\u3002\u6307\u6570\u306F modint \u306A\u306E\u3067\u3001\u8CA0\u6570\u3084\
-    \u6709\u7406\u6570\u3067\u3082\u53EF\u3002\r\n// \u30FBdense \u306A\u5834\u5408\
-    \uFF1A log, exp \u3092\u4F7F\u3046 O(NlogN)\r\n// \u30FBsparse \u306A\u5834\u5408\
-    \uFF1A O(NK)\r\ntemplate <typename mint>\r\nvc<mint> fps_pow_1(const vc<mint>&\
-    \ f, mint K, bool force_sparse = 0) {\r\n  assert(f[0] == mint(1));\r\n  int terms\
-    \ = 0;\r\n  FOR(i, len(f)) if (f[i] != mint(0))++ terms;\r\n  bool is_sparse =\
-    \ (terms <= 50) || force_sparse;\r\n  if (!is_sparse) {\r\n    auto log_f = fps_log(f);\r\
-    \n    FOR(i, len(f)) log_f[i] *= K;\r\n    return fps_exp(log_f);\r\n  }\r\n\r\
-    \n  // sparse pow\r\n  int N = len(f);\r\n  vc<pair<int, mint>> dat;\r\n  FOR3(i,\
-    \ 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\n  g[0] =\
-    \ 1;\r\n  FOR(n, N - 1) {\r\n    for (auto&& [d, cf]: dat) {\r\n      if (d ==\
-    \ 0 || d > n + 1) continue;\r\n      mint t = cf * g[n - d + 1];\r\n      g[n\
-    \ + 1] += t * (K * mint(d) - mint(n - d + 1));\r\n    }\r\n    g[n + 1] *= inv<mint>(n\
-    \ + 1);\r\n  }\r\n  return g;\r\n}\r\n#line 3 \"seq/stirling_number_2.hpp\"\n\r\
-    \n// n \u500B\u306E\u3082\u306E (labeled) \u3092 k \u30B0\u30EB\u30FC\u30D7 (no\
-    \ label) \u306B\u5206\u3051\u308B\u65B9\u6CD5\r\ntemplate <typename mint>\r\n\
-    vc<mint> stirling_number_2_n(int n) {\r\n  vc<mint> a(n + 1), b(n + 1);\r\n  FOR(i,\
-    \ n + 1) a[i] = mint(i).pow(n);\r\n  FOR(i, n + 1) b[i] = (i % 2 == 0 ? 1 : -1);\r\
-    \n  FOR(i, n + 1) a[i] *= fact_inv<mint>(i);\r\n  FOR(i, n + 1) b[i] *= fact_inv<mint>(i);\r\
-    \n  auto f = convolution(a, b);\r\n  f.resize(n + 1);\r\n  return f;\r\n}\r\n\r\
-    \n// n \u500B\u306E\u3082\u306E (labeled) \u3092 k \u30B0\u30EB\u30FC\u30D7 (no\
-    \ label) \u306B\u5206\u3051\u308B\u65B9\u6CD5\r\ntemplate <typename mint>\r\n\
-    vc<mint> stirling_number_2_k(int k, int n_max) {\r\n  if (k > n_max) { return\
-    \ vc<mint>(n_max + 1); }\r\n  int LIM = n_max - k;\r\n  vc<mint> f(LIM + 1);\r\
-    \n  FOR(i, LIM + 1) f[i] = fact_inv<mint>(i + 1);\r\n  f = fps_pow(f, k);\r\n\
-    \  mint cf = fact_inv<mint>(k);\r\n\r\n  vc<mint> res(n_max + 1);\r\n  FOR(i,\
-    \ len(f)) res[k + i] = fact<mint>(k + i) * f[i] * cf;\r\n  return res;\r\n}\r\n"
+    \  b.resize(n);\r\n  return b;\r\n}\r\n#line 3 \"poly/fps_inv.hpp\"\n\r\ntemplate\
+    \ <typename mint>\r\nenable_if_t<is_same<mint, modint998>::value, vc<mint>> fps_inv(\r\
+    \n    const vc<mint>& f) {\r\n  if (count_terms(f) <= 200) return fps_inv_sparse(f);\r\
+    \n  return fps_inv_dense(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<!is_same<mint,\
+    \ modint998>::value, vc<mint>> fps_inv(\r\n    const vc<mint>& f) {\r\n  if (count_terms(f)\
+    \ <= 700) return fps_inv_sparse(f);\r\n  return fps_inv_dense(f);\r\n}\r\n\r\n\
+    template <typename mint>\r\nvc<mint> fps_inv_sparse(const vc<mint>& f) {\r\n \
+    \ assert(f[0] != mint(0));\r\n  int N = len(f);\r\n  vc<pair<int, mint>> dat;\r\
+    \n  FOR3(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\n\
+    \  mint g0 = mint(1) / f[0];\r\n  g[0] = g0;\r\n  FOR3(n, 1, N) {\r\n    mint\
+    \ rhs = 0;\r\n    for (auto&& [k, fk]: dat) {\r\n      if (k > n) break;\r\n \
+    \     rhs -= fk * g[n - k];\r\n    }\r\n    g[n] = rhs * g0;\r\n  }\r\n  return\
+    \ g;\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint, modint998>::value,\
+    \ vc<mint>> fps_inv_dense(\r\n    const vc<mint>& F) {\r\n  assert(F[0] != mint(0));\r\
+    \n  vc<mint> G = {mint(1) / F[0]};\r\n  G.reserve(len(F));\r\n  ll N = len(F),\
+    \ n = 1;\r\n  while (n < N) {\r\n    vc<mint> f(2 * n), g(2 * n);\r\n    FOR(i,\
+    \ min(N, 2 * n)) f[i] = F[i];\r\n    FOR(i, n) g[i] = G[i];\r\n    ntt(f, false);\r\
+    \n    ntt(g, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\
+    \n    FOR(i, n) f[i] = 0;\r\n    ntt(f, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\
+    \n    ntt(f, true);\r\n    FOR3(i, n, 2 * n) G.eb(f[i] * mint(-1));\r\n    n *=\
+    \ 2;\r\n  }\r\n  G.resize(N);\r\n  return G;\r\n}\r\n\r\ntemplate <typename mint>\r\
+    \nenable_if_t<!is_same<mint, modint998>::value, vc<mint>> fps_inv_dense(\r\n \
+    \   const vc<mint>& F) {\r\n  int N = len(F);\r\n  assert(F[0] != mint(0));\r\n\
+    \  vc<mint> R = {mint(1) / F[0]};\r\n  vc<mint> p;\r\n  int m = 1;\r\n  while\
+    \ (m < N) {\r\n    p = convolution(R, R);\r\n    p.resize(m + m);\r\n    vc<mint>\
+    \ f = {F.begin(), F.begin() + min(m + m, N)};\r\n    p = convolution(p, f);\r\n\
+    \    R.resize(m + m);\r\n    FOR(i, m + m) R[i] = R[i] + R[i] - p[i];\r\n    m\
+    \ += m;\r\n  }\r\n  R.resize(N);\r\n  return R;\r\n}\r\n#line 3 \"poly/fps_log.hpp\"\
+    \n\r\ntemplate <typename mint>\r\nvc<mint> fps_log(const vc<mint>& f) {\r\n  assert(f[0]\
+    \ == mint(1));\r\n  ll N = len(f);\r\n  vc<mint> df = f;\r\n  FOR(i, N) df[i]\
+    \ *= mint(i);\r\n  df.erase(df.begin());\r\n  auto f_inv = fps_inv(f);\r\n  auto\
+    \ g = convolution(df, f_inv);\r\n  g.resize(N - 1);\r\n  g.insert(g.begin(), 0);\r\
+    \n  FOR(i, N) g[i] *= inv<mint>(i);\r\n  return g;\r\n}\r\n#line 5 \"poly/fps_pow.hpp\"\
+    \n\r\n// fps \u306E k \u4E57\u3092\u6C42\u3081\u308B\u3002k >= 0 \u306E\u524D\u63D0\
+    \u3067\u3042\u308B\u3002\r\n// \u5B9A\u6570\u9805\u304C 1 \u3067\u3001k \u304C\
+    \ mint \u306E\u5834\u5408\u306B\u306F\u3001fps_pow_1 \u3092\u4F7F\u3046\u3053\u3068\
+    \u3002\r\n// \u30FBdense \u306A\u5834\u5408\uFF1A log, exp \u3092\u4F7F\u3046\
+    \ O(NlogN)\r\n// \u30FBsparse \u306A\u5834\u5408\uFF1A O(NK)\r\ntemplate <typename\
+    \ mint>\r\nvc<mint> fps_pow(const vc<mint>& f, ll k, bool force_sparse = 0) {\r\
+    \n  int n = len(f);\r\n  int d = n;\r\n  FOR_R(i, n) if (f[i] != 0) d = i;\r\n\
+    \  ll off = d * k;\r\n  if (off >= n) return vc<mint>(n, 0);\r\n  mint c = f[d];\r\
+    \n  mint c_inv = mint(1) / mint(c);\r\n  vc<mint> g(n - off);\r\n  FOR(i, n -\
+    \ off) g[i] = f[d + i] * c_inv;\r\n  g = fps_pow_1(g, mint(k), force_sparse);\r\
+    \n  vc<mint> h(n);\r\n  c = c.pow(k);\r\n  FOR(i, len(g)) h[off + i] = g[i] *\
+    \ c;\r\n  return h;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_pow_1_sparse(const\
+    \ vc<mint>& f, mint K) {\r\n  int N = len(f);\r\n  vc<pair<int, mint>> dat;\r\n\
+    \  FOR3(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\n\
+    \  g[0] = 1;\r\n  FOR(n, N - 1) {\r\n    mint& x = g[n + 1];\r\n    for (auto&&\
+    \ [d, cf]: dat) {\r\n      if (d > n + 1) break;\r\n      mint t = cf * g[n -\
+    \ d + 1];\r\n      x += t * (K.val * d - (n - d + 1));\r\n    }\r\n    x *= inv<mint>(n\
+    \ + 1);\r\n  }\r\n  return g;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint>\
+    \ fps_pow_1_dense(const vc<mint>& f, mint K) {\r\n  assert(f[0] == mint(1));\r\
+    \n  auto log_f = fps_log(f);\r\n  FOR(i, len(f)) log_f[i] *= K;\r\n  return fps_exp(log_f);\r\
+    \n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_pow_1(const vc<mint>& f) {\r\
+    \n  if (count_terms(f) <= 100) return fps_pow_1_sparse(f);\r\n  return fps_pow_1_dense(f);\r\
+    \n}\r\n#line 3 \"seq/stirling_number_2.hpp\"\n\r\n// n \u500B\u306E\u3082\u306E\
+    \ (labeled) \u3092 k \u30B0\u30EB\u30FC\u30D7 (no label) \u306B\u5206\u3051\u308B\
+    \u65B9\u6CD5\r\ntemplate <typename mint>\r\nvc<mint> stirling_number_2_n(int n)\
+    \ {\r\n  vc<mint> a(n + 1), b(n + 1);\r\n  FOR(i, n + 1) a[i] = mint(i).pow(n);\r\
+    \n  FOR(i, n + 1) b[i] = (i % 2 == 0 ? 1 : -1);\r\n  FOR(i, n + 1) a[i] *= fact_inv<mint>(i);\r\
+    \n  FOR(i, n + 1) b[i] *= fact_inv<mint>(i);\r\n  auto f = convolution(a, b);\r\
+    \n  f.resize(n + 1);\r\n  return f;\r\n}\r\n\r\n// n \u500B\u306E\u3082\u306E\
+    \ (labeled) \u3092 k \u30B0\u30EB\u30FC\u30D7 (no label) \u306B\u5206\u3051\u308B\
+    \u65B9\u6CD5\r\ntemplate <typename mint>\r\nvc<mint> stirling_number_2_k(int k,\
+    \ int n_max) {\r\n  if (k > n_max) { return vc<mint>(n_max + 1); }\r\n  int LIM\
+    \ = n_max - k;\r\n  vc<mint> f(LIM + 1);\r\n  FOR(i, LIM + 1) f[i] = fact_inv<mint>(i\
+    \ + 1);\r\n  f = fps_pow(f, k);\r\n  mint cf = fact_inv<mint>(k);\r\n\r\n  vc<mint>\
+    \ res(n_max + 1);\r\n  FOR(i, len(f)) res[k + i] = fact<mint>(k + i) * f[i] *\
+    \ cf;\r\n  return res;\r\n}\r\n"
   code: "#include \"poly/convolution.hpp\"\r\n#include \"poly/fps_pow.hpp\"\r\n\r\n\
     // n \u500B\u306E\u3082\u306E (labeled) \u3092 k \u30B0\u30EB\u30FC\u30D7 (no\
     \ label) \u306B\u5206\u3051\u308B\u65B9\u6CD5\r\ntemplate <typename mint>\r\n\
@@ -401,16 +418,16 @@ data:
   - poly/ntt.hpp
   - poly/fft.hpp
   - poly/fps_pow.hpp
+  - poly/count_terms.hpp
   - poly/fps_exp.hpp
   - poly/integrate.hpp
   - poly/differentiate.hpp
-  - poly/count_terms.hpp
   - poly/fps_log.hpp
   - poly/fps_inv.hpp
   isVerificationFile: false
   path: seq/stirling_number_2.hpp
   requiredBy: []
-  timestamp: '2022-05-02 13:07:30+09:00'
+  timestamp: '2022-05-02 14:12:28+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp

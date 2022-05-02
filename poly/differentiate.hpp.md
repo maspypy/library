@@ -31,8 +31,14 @@ data:
     path: test/library_checker/polynomial/exp_of_fps.test.cpp
     title: test/library_checker/polynomial/exp_of_fps.test.cpp
   - icon: ':x:'
+    path: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
+    title: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
+  - icon: ':x:'
     path: test/library_checker/polynomial/pow_of_fps.test.cpp
     title: test/library_checker/polynomial/pow_of_fps.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
+    title: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -57,8 +63,10 @@ data:
   timestamp: '2022-05-02 13:06:43+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
   - test/library_checker/polynomial/exp_of_fps.test.cpp
   - test/library_checker/polynomial/pow_of_fps.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp

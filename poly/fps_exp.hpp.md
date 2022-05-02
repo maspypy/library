@@ -52,8 +52,14 @@ data:
     path: test/library_checker/polynomial/exp_of_fps.test.cpp
     title: test/library_checker/polynomial/exp_of_fps.test.cpp
   - icon: ':x:'
+    path: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
+    title: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
+  - icon: ':x:'
     path: test/library_checker/polynomial/pow_of_fps.test.cpp
     title: test/library_checker/polynomial/pow_of_fps.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
+    title: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -296,7 +302,7 @@ data:
     template<typename mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t = 0;\r\
     \n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 6 \"poly/fps_exp.hpp\"\
     \n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint, modint998>::value,\
-    \ vc<mint>> fps_exp(vc<mint>& f) {\r\n  if (count_terms(f) <= 200) return fps_exp_sparse(f);\r\
+    \ vc<mint>> fps_exp(vc<mint>& f) {\r\n  if (count_terms(f) <= 300) return fps_exp_sparse(f);\r\
     \n  return fps_exp_dense(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<!is_same<mint,\
     \ modint998>::value, vc<mint>> fps_exp(vc<mint>& f) {\r\n  if (count_terms(f)\
     \ <= 1000) return fps_exp_sparse(f);\r\n  return fps_exp_dense(f);\r\n}\r\n\r\n\
@@ -305,9 +311,9 @@ data:
     \ df \u3092\u6301\u305F\u305B\u308B\r\n  vc<pair<int, mint>> dat;\r\n  FOR3(i,\
     \ 1, N) if (f[i] != mint(0)) dat.eb(i - 1, mint(i) * f[i]);\r\n  vc<mint> F(N);\r\
     \n  F[0] = 1;\r\n  FOR3(n, 1, N) {\r\n    mint rhs = 0;\r\n    for (auto&& [k,\
-    \ fk]: dat) {\r\n      if (k <= n - 1) rhs += fk * F[n - 1 - k];\r\n    }\r\n\
-    \    F[n] = rhs * inv<mint>(n);\r\n  }\r\n  return F;\r\n}\r\n\r\ntemplate <typename\
-    \ mint>\r\nenable_if_t<!is_same<mint, modint998>::value, vc<mint>> fps_exp_dense(\r\
+    \ fk]: dat) {\r\n      if (k > n - 1) break;\r\n      rhs += fk * F[n - 1 - k];\r\
+    \n    }\r\n    F[n] = rhs * inv<mint>(n);\r\n  }\r\n  return F;\r\n}\r\n\r\ntemplate\
+    \ <typename mint>\r\nenable_if_t<!is_same<mint, modint998>::value, vc<mint>> fps_exp_dense(\r\
     \n    vc<mint> h) {\r\n  const int L = len(h);\r\n  assert(L > 0 && h[0] == mint(0));\r\
     \n  int LOG = 0;\r\n  while (1 << LOG < L) ++LOG;\r\n  h.resize(1 << LOG);\r\n\
     \  auto dh = differentiate(h);\r\n  vc<mint> f = {1}, g = {1};\r\n  int m = 1;\r\
@@ -344,7 +350,7 @@ data:
   code: "#pragma once\r\n#include \"poly/convolution.hpp\"\r\n#include \"poly/integrate.hpp\"\
     \r\n#include \"poly/differentiate.hpp\"\r\n#include \"poly/count_terms.hpp\"\r\
     \n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint, modint998>::value,\
-    \ vc<mint>> fps_exp(vc<mint>& f) {\r\n  if (count_terms(f) <= 200) return fps_exp_sparse(f);\r\
+    \ vc<mint>> fps_exp(vc<mint>& f) {\r\n  if (count_terms(f) <= 300) return fps_exp_sparse(f);\r\
     \n  return fps_exp_dense(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<!is_same<mint,\
     \ modint998>::value, vc<mint>> fps_exp(vc<mint>& f) {\r\n  if (count_terms(f)\
     \ <= 1000) return fps_exp_sparse(f);\r\n  return fps_exp_dense(f);\r\n}\r\n\r\n\
@@ -353,9 +359,9 @@ data:
     \ df \u3092\u6301\u305F\u305B\u308B\r\n  vc<pair<int, mint>> dat;\r\n  FOR3(i,\
     \ 1, N) if (f[i] != mint(0)) dat.eb(i - 1, mint(i) * f[i]);\r\n  vc<mint> F(N);\r\
     \n  F[0] = 1;\r\n  FOR3(n, 1, N) {\r\n    mint rhs = 0;\r\n    for (auto&& [k,\
-    \ fk]: dat) {\r\n      if (k <= n - 1) rhs += fk * F[n - 1 - k];\r\n    }\r\n\
-    \    F[n] = rhs * inv<mint>(n);\r\n  }\r\n  return F;\r\n}\r\n\r\ntemplate <typename\
-    \ mint>\r\nenable_if_t<!is_same<mint, modint998>::value, vc<mint>> fps_exp_dense(\r\
+    \ fk]: dat) {\r\n      if (k > n - 1) break;\r\n      rhs += fk * F[n - 1 - k];\r\
+    \n    }\r\n    F[n] = rhs * inv<mint>(n);\r\n  }\r\n  return F;\r\n}\r\n\r\ntemplate\
+    \ <typename mint>\r\nenable_if_t<!is_same<mint, modint998>::value, vc<mint>> fps_exp_dense(\r\
     \n    vc<mint> h) {\r\n  const int L = len(h);\r\n  assert(L > 0 && h[0] == mint(0));\r\
     \n  int LOG = 0;\r\n  while (1 << LOG < L) ++LOG;\r\n  h.resize(1 << LOG);\r\n\
     \  auto dh = differentiate(h);\r\n  vc<mint> f = {1}, g = {1};\r\n  int m = 1;\r\
@@ -405,11 +411,13 @@ data:
   - poly/fps_pow.hpp
   - seq/stirling_number_2.hpp
   - seq/stirling_number_1.hpp
-  timestamp: '2022-05-02 13:07:30+09:00'
+  timestamp: '2022-05-02 14:12:28+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
   - test/library_checker/polynomial/exp_of_fps.test.cpp
   - test/library_checker/polynomial/pow_of_fps.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp

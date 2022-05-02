@@ -32,69 +32,69 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"poly/fps_inv.hpp\"\n\r\n#line 2 \"mod/modint.hpp\"\ntemplate\
-    \ <u32 mod>\nstruct modint {\n  static constexpr bool is_modint = true;\n  u32\
-    \ val;\n  constexpr modint(const ll val = 0) noexcept\n      : val(val >= 0 ?\
-    \ val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint &other)\
-    \ const {\n    return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
-    \ modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n\
-    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >=\
-    \ mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint\
-    \ &p) {\n    val = (u32)(1LL * val * p.val % mod);\n    return *this;\n  }\n \
-    \ modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
-    \ *this;\n  }\n  modint operator-() const { return modint(get_mod() - val); }\n\
-    \  modint operator+(const modint &p) const { return modint(*this) += p; }\n  modint\
-    \ operator-(const modint &p) const { return modint(*this) -= p; }\n  modint operator*(const\
-    \ modint &p) const { return modint(*this) *= p; }\n  modint operator/(const modint\
-    \ &p) const { return modint(*this) /= p; }\n  bool operator==(const modint &p)\
-    \ const { return val == p.val; }\n  bool operator!=(const modint &p) const { return\
-    \ val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod, u = 1,\
-    \ v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b),\
-    \ swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
-    \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
-    \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n  static constexpr u32 get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
-    \ {\n  static constexpr bool is_modint = true;\n  u32 val;\n  ArbitraryModInt()\
-    \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
-    \                   : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
-    \ ArbitraryModInt &other) const {\n    return val < other.val;\n  } // To use\
-    \ std::map<ArbitraryModInt, T>\n  static u32 &get_mod() {\n    static u32 mod\
-    \ = 0;\n    return mod;\n  }\n  static void set_mod(int md) { get_mod() = md;\
-    \ }\n  ArbitraryModInt &operator+=(const ArbitraryModInt &p) {\n    if ((val +=\
-    \ p.val) >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt\
-    \ &operator-=(const ArbitraryModInt &p) {\n    if ((val += get_mod() - p.val)\
-    \ >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt &operator*=(const\
-    \ ArbitraryModInt &p) {\n    unsigned long long a = (unsigned long long)val *\
-    \ p.val;\n    unsigned xh = (unsigned)(a >> 32), xl = (unsigned)a, d, m;\n   \
-    \ asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"\
-    (get_mod()));\n    val = m;\n    return *this;\n  }\n  ArbitraryModInt &operator/=(const\
-    \ ArbitraryModInt &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n \
-    \ ArbitraryModInt operator-() const { return ArbitraryModInt(get_mod() - val);\
-    \ }\n  ArbitraryModInt operator+(const ArbitraryModInt &p) const {\n    return\
-    \ ArbitraryModInt(*this) += p;\n  }\n  ArbitraryModInt operator-(const ArbitraryModInt\
-    \ &p) const {\n    return ArbitraryModInt(*this) -= p;\n  }\n  ArbitraryModInt\
-    \ operator*(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
-    \ *= p;\n  }\n  ArbitraryModInt operator/(const ArbitraryModInt &p) const {\n\
-    \    return ArbitraryModInt(*this) /= p;\n  }\n  bool operator==(const ArbitraryModInt\
-    \ &p) const { return val == p.val; }\n  bool operator!=(const ArbitraryModInt\
-    \ &p) const { return val != p.val; }\n  ArbitraryModInt inverse() const {\n  \
-    \  int a = val, b = get_mod(), u = 1, v = 0, t;\n    while (b > 0) {\n      t\
-    \ = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return\
-    \ ArbitraryModInt(u);\n  }\n  ArbitraryModInt pow(int64_t n) const {\n    ArbitraryModInt\
-    \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
-    \ mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n};\n\ntemplate <typename\
-    \ mint>\ntuple<mint, mint, mint> get_factorial_data(int n) {\n  static const int\
-    \ mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint>\
-    \ fact = {1, 1};\n  static vector<mint> fact_inv = {1, 1};\n  static vector<mint>\
-    \ inv = {0, 1};\n  while (len(fact) <= n) {\n    int k = len(fact);\n    fact.eb(fact[k\
-    \ - 1] * mint(k));\n    auto q = ceil(mod, k);\n    int r = k * q - mod;\n   \
-    \ inv.eb(inv[r] * mint(q));\n    fact_inv.eb(fact_inv[k - 1] * inv[k]);\n  }\n\
-    \  return {fact[n], fact_inv[n], inv[n]};\n}\n\ntemplate <typename mint>\nmint\
-    \ fact(int n) {\n  static const int mod = mint::get_mod();\n  assert(0 <= n);\n\
-    \  if (n >= mod) return 0;\n  return get<0>(get_factorial_data<mint>(n));\n}\n\
-    \ntemplate <typename mint>\nmint fact_inv(int n) {\n  static const int mod = mint::get_mod();\n\
-    \  assert(0 <= n && n < mod);\n  return get<1>(get_factorial_data<mint>(n));\n\
-    }\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n\
+  bundledCode: "#line 2 \"mod/modint.hpp\"\ntemplate <u32 mod>\nstruct modint {\n\
+    \  static constexpr bool is_modint = true;\n  u32 val;\n  constexpr modint(const\
+    \ ll val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val) % mod)\
+    \ % mod) {}\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
+    \  } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
+    \ += p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator-=(const\
+    \ modint &p) {\n    if ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n\
+    \  }\n  modint &operator*=(const modint &p) {\n    val = (u32)(1LL * val * p.val\
+    \ % mod);\n    return *this;\n  }\n  modint &operator/=(const modint &p) {\n \
+    \   *this *= p.inverse();\n    return *this;\n  }\n  modint operator-() const\
+    \ { return modint(get_mod() - val); }\n  modint operator+(const modint &p) const\
+    \ { return modint(*this) += p; }\n  modint operator-(const modint &p) const {\
+    \ return modint(*this) -= p; }\n  modint operator*(const modint &p) const { return\
+    \ modint(*this) *= p; }\n  modint operator/(const modint &p) const { return modint(*this)\
+    \ /= p; }\n  bool operator==(const modint &p) const { return val == p.val; }\n\
+    \  bool operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
+    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
+    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
+    \ return modint(u);\n  }\n  modint pow(int64_t n) const {\n    modint ret(1),\
+    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
+    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr u32 get_mod()\
+    \ { return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr bool is_modint\
+    \ = true;\n  u32 val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t\
+    \ y)\n      : val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y)\
+    \ % get_mod()) % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other)\
+    \ const {\n    return val < other.val;\n  } // To use std::map<ArbitraryModInt,\
+    \ T>\n  static u32 &get_mod() {\n    static u32 mod = 0;\n    return mod;\n  }\n\
+    \  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
+    \ ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
+    \    return *this;\n  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p)\
+    \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
+    \ *this;\n  }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n   \
+    \ unsigned long long a = (unsigned long long)val * p.val;\n    unsigned xh = (unsigned)(a\
+    \ >> 32), xl = (unsigned)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"\
+    =d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n\
+    \  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n    *this *=\
+    \ p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-() const {\
+    \ return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) += p;\n  }\n\
+    \  ArbitraryModInt operator-(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
+    \ -= p;\n  }\n  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n\
+    \    return ArbitraryModInt(*this) *= p;\n  }\n  ArbitraryModInt operator/(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) /= p;\n  }\n\
+    \  bool operator==(const ArbitraryModInt &p) const { return val == p.val; }\n\
+    \  bool operator!=(const ArbitraryModInt &p) const { return val != p.val; }\n\
+    \  ArbitraryModInt inverse() const {\n    int a = val, b = get_mod(), u = 1, v\
+    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
+    \ -= t * v, v);\n    }\n    return ArbitraryModInt(u);\n  }\n  ArbitraryModInt\
+    \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
+    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
+    \  }\n    return ret;\n  }\n};\n\ntemplate <typename mint>\ntuple<mint, mint,\
+    \ mint> get_factorial_data(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  assert(0 <= n && n < mod);\n  static vector<mint> fact = {1, 1};\n  static\
+    \ vector<mint> fact_inv = {1, 1};\n  static vector<mint> inv = {0, 1};\n  while\
+    \ (len(fact) <= n) {\n    int k = len(fact);\n    fact.eb(fact[k - 1] * mint(k));\n\
+    \    auto q = ceil(mod, k);\n    int r = k * q - mod;\n    inv.eb(inv[r] * mint(q));\n\
+    \    fact_inv.eb(fact_inv[k - 1] * inv[k]);\n  }\n  return {fact[n], fact_inv[n],\
+    \ inv[n]};\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const\
+    \ int mod = mint::get_mod();\n  assert(0 <= n);\n  if (n >= mod) return 0;\n \
+    \ return get<0>(get_factorial_data<mint>(n));\n}\n\ntemplate <typename mint>\n\
+    mint fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  assert(0\
+    \ <= n && n < mod);\n  return get<1>(get_factorial_data<mint>(n));\n}\n\ntemplate\
+    \ <typename mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n\
     \  assert(0 <= n && n < mod);\n  return get<2>(get_factorial_data<mint>(n));\n\
     }\n\ntemplate <typename mint, bool large = false>\nmint C(ll n, ll k) {\n  assert(n\
     \ >= 0);\n  if (k < 0 || n < k) return 0;\n  if (!large) return fact<mint>(n)\
@@ -260,34 +260,53 @@ data:
     \ modint998>::value, vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>&\
     \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
-    \ b);\r\n}\r\n#line 4 \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\nvc<mint>\
-    \ fps_inv(const vc<mint>& F) {\r\n  assert(F[0] != mint(0));\r\n  vc<mint> G =\
-    \ {mint(1) / F[0]};\r\n  G.reserve(len(F));\r\n  ll N = len(F), n = 1;\r\n  while\
-    \ (n < N) {\r\n    vc<mint> f(2 * n), g(2 * n);\r\n    FOR(i, min(N, 2 * n)) f[i]\
-    \ = F[i];\r\n    FOR(i, n) g[i] = G[i];\r\n    ntt(f, false);\r\n    ntt(g, false);\r\
+    \ b);\r\n}\r\n#line 3 \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint,\
+    \ modint998>::value, vc<mint>> fps_inv(\r\n    const vc<mint>& f) {\r\n  if (count_terms(f)\
+    \ <= 200) return fps_inv_sparse(f);\r\n  return fps_inv_dense(f);\r\n}\r\n\r\n\
+    template <typename mint>\r\nenable_if_t<!is_same<mint, modint998>::value, vc<mint>>\
+    \ fps_inv(\r\n    const vc<mint>& f) {\r\n  if (count_terms(f) <= 700) return\
+    \ fps_inv_sparse(f);\r\n  return fps_inv_dense(f);\r\n}\r\n\r\ntemplate <typename\
+    \ mint>\r\nvc<mint> fps_inv_sparse(const vc<mint>& f) {\r\n  assert(f[0] != mint(0));\r\
+    \n  int N = len(f);\r\n  vc<pair<int, mint>> dat;\r\n  FOR3(i, 1, N) if (f[i]\
+    \ != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\n  mint g0 = mint(1) / f[0];\r\
+    \n  g[0] = g0;\r\n  FOR3(n, 1, N) {\r\n    mint rhs = 0;\r\n    for (auto&& [k,\
+    \ fk]: dat) {\r\n      if (k > n) break;\r\n      rhs -= fk * g[n - k];\r\n  \
+    \  }\r\n    g[n] = rhs * g0;\r\n  }\r\n  return g;\r\n}\r\n\r\ntemplate <typename\
+    \ mint>\r\nenable_if_t<is_same<mint, modint998>::value, vc<mint>> fps_inv_dense(\r\
+    \n    const vc<mint>& F) {\r\n  assert(F[0] != mint(0));\r\n  vc<mint> G = {mint(1)\
+    \ / F[0]};\r\n  G.reserve(len(F));\r\n  ll N = len(F), n = 1;\r\n  while (n <\
+    \ N) {\r\n    vc<mint> f(2 * n), g(2 * n);\r\n    FOR(i, min(N, 2 * n)) f[i] =\
+    \ F[i];\r\n    FOR(i, n) g[i] = G[i];\r\n    ntt(f, false);\r\n    ntt(g, false);\r\
     \n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\n    FOR(i, n) f[i] =\
     \ 0;\r\n    ntt(f, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\
     \n    FOR3(i, n, 2 * n) G.eb(f[i] * mint(-1));\r\n    n *= 2;\r\n  }\r\n  G.resize(N);\r\
-    \n  return G;\r\n}\r\n#line 2 \"poly/multipoint.hpp\"\n\r\ntemplate <typename\
-    \ mint>\r\nstruct SubproductTree {\r\n  int m;\r\n  int sz;\r\n  vc<vc<mint>>\
-    \ T;\r\n  SubproductTree(const vc<mint>& x) {\r\n    m = len(x);\r\n    sz = 1;\r\
-    \n    while (sz < m) sz *= 2;\r\n    T.resize(2 * sz);\r\n    FOR(i, sz) T[sz\
-    \ + i] = {1, (i < m ? -x[i] : 0)};\r\n    FOR3_R(i, 1, sz) T[i] = convolution(T[2\
-    \ * i], T[2 * i + 1]);\r\n  }\r\n\r\n  vc<mint> mid_prod(vc<mint>& a, vc<mint>&\
-    \ b) {\r\n    assert(len(a) >= len(b) && !b.empty());\r\n    if (min(len(b), len(a)\
-    \ - len(b) + 1) <= 60) {\r\n      vc<mint> res(len(a) - len(b) + 1);\r\n     \
-    \ FOR(i, len(res)) FOR(j, len(b)) res[i] += b[j] * a[i + j];\r\n      return res;\r\
-    \n    }\r\n    int n = 1 << std::__lg(2 * len(a) - 1);\r\n    vc<mint> fa(n),\
-    \ fb(n);\r\n    std::copy(a.begin(), a.end(), fa.begin());\r\n    std::copy(b.rbegin(),\
-    \ b.rend(), fb.begin());\r\n    ntt(fa, 0), ntt(fb, 0);\r\n    FOR(i, n) fa[i]\
-    \ *= fb[i];\r\n    ntt(fa, 1);\r\n    fa.resize(len(a));\r\n    fa.erase(fa.begin(),\
-    \ fa.begin() + len(b) - 1);\r\n    return fa;\r\n  }\r\n\r\n  vc<mint> evaluation(vc<mint>&\
-    \ f) {\r\n    int n = len(f);\r\n    f.resize(2 * n - 1);\r\n    vc<vc<mint>>\
-    \ g(2 * sz);\r\n    g[1] = T[1];\r\n    g[1].resize(n);\r\n    g[1] = fps_inv(g[1]);\r\
-    \n    g[1] = mid_prod(f, g[1]);\r\n    g[1].resize(sz);\r\n\r\n    FOR3(i, 1,\
-    \ sz) {\r\n      g[2 * i] = mid_prod(g[i], T[2 * i + 1]);\r\n      g[2 * i + 1]\
-    \ = mid_prod(g[i], T[2 * i]);\r\n    }\r\n    vc<mint> vals(m);\r\n    FOR(i,\
-    \ m) vals[i] = g[sz + i][0];\r\n    return vals;\r\n  }\r\n\r\n  vc<mint> interpolation(vc<mint>&\
+    \n  return G;\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<!is_same<mint,\
+    \ modint998>::value, vc<mint>> fps_inv_dense(\r\n    const vc<mint>& F) {\r\n\
+    \  int N = len(F);\r\n  assert(F[0] != mint(0));\r\n  vc<mint> R = {mint(1) /\
+    \ F[0]};\r\n  vc<mint> p;\r\n  int m = 1;\r\n  while (m < N) {\r\n    p = convolution(R,\
+    \ R);\r\n    p.resize(m + m);\r\n    vc<mint> f = {F.begin(), F.begin() + min(m\
+    \ + m, N)};\r\n    p = convolution(p, f);\r\n    R.resize(m + m);\r\n    FOR(i,\
+    \ m + m) R[i] = R[i] + R[i] - p[i];\r\n    m += m;\r\n  }\r\n  R.resize(N);\r\n\
+    \  return R;\r\n}\r\n#line 2 \"poly/multipoint.hpp\"\n\r\ntemplate <typename mint>\r\
+    \nstruct SubproductTree {\r\n  int m;\r\n  int sz;\r\n  vc<vc<mint>> T;\r\n  SubproductTree(const\
+    \ vc<mint>& x) {\r\n    m = len(x);\r\n    sz = 1;\r\n    while (sz < m) sz *=\
+    \ 2;\r\n    T.resize(2 * sz);\r\n    FOR(i, sz) T[sz + i] = {1, (i < m ? -x[i]\
+    \ : 0)};\r\n    FOR3_R(i, 1, sz) T[i] = convolution(T[2 * i], T[2 * i + 1]);\r\
+    \n  }\r\n\r\n  vc<mint> mid_prod(vc<mint>& a, vc<mint>& b) {\r\n    assert(len(a)\
+    \ >= len(b) && !b.empty());\r\n    if (min(len(b), len(a) - len(b) + 1) <= 60)\
+    \ {\r\n      vc<mint> res(len(a) - len(b) + 1);\r\n      FOR(i, len(res)) FOR(j,\
+    \ len(b)) res[i] += b[j] * a[i + j];\r\n      return res;\r\n    }\r\n    int\
+    \ n = 1 << std::__lg(2 * len(a) - 1);\r\n    vc<mint> fa(n), fb(n);\r\n    std::copy(a.begin(),\
+    \ a.end(), fa.begin());\r\n    std::copy(b.rbegin(), b.rend(), fb.begin());\r\n\
+    \    ntt(fa, 0), ntt(fb, 0);\r\n    FOR(i, n) fa[i] *= fb[i];\r\n    ntt(fa, 1);\r\
+    \n    fa.resize(len(a));\r\n    fa.erase(fa.begin(), fa.begin() + len(b) - 1);\r\
+    \n    return fa;\r\n  }\r\n\r\n  vc<mint> evaluation(vc<mint>& f) {\r\n    int\
+    \ n = len(f);\r\n    f.resize(2 * n - 1);\r\n    vc<vc<mint>> g(2 * sz);\r\n \
+    \   g[1] = T[1];\r\n    g[1].resize(n);\r\n    g[1] = fps_inv(g[1]);\r\n    g[1]\
+    \ = mid_prod(f, g[1]);\r\n    g[1].resize(sz);\r\n\r\n    FOR3(i, 1, sz) {\r\n\
+    \      g[2 * i] = mid_prod(g[i], T[2 * i + 1]);\r\n      g[2 * i + 1] = mid_prod(g[i],\
+    \ T[2 * i]);\r\n    }\r\n    vc<mint> vals(m);\r\n    FOR(i, m) vals[i] = g[sz\
+    \ + i][0];\r\n    return vals;\r\n  }\r\n\r\n  vc<mint> interpolation(vc<mint>&\
     \ y) {\r\n    assert(len(y) == m);\r\n    vc<mint> a(m);\r\n    FOR(i, m) a[i]\
     \ = T[1][m - i - 1] * (i + 1);\r\n\r\n    a = evaluation(a);\r\n    vc<vc<mint>>\
     \ t(2 * sz);\r\n    FOR(i, sz) t[sz + i] = {(i < m ? y[i] / a[i] : 0)};\r\n  \
@@ -340,7 +359,7 @@ data:
   isVerificationFile: false
   path: poly/multipoint.hpp
   requiredBy: []
-  timestamp: '2022-05-02 13:07:10+09:00'
+  timestamp: '2022-05-02 14:12:28+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
