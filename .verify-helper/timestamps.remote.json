@@ -154,6 +154,7 @@
 "test/yukicoder/1036_swag.test.cpp": "2022-04-29 17:32:58 +0900",
 "test/yukicoder/1038_centroid.test.cpp": "2022-04-29 17:32:58 +0900",
 "test/yukicoder/114_steriner_tree.test.cpp": "2022-04-29 17:32:58 +0900",
+"test/yukicoder/1288_mcf_dag_negative.test.cpp": "2022-05-03 02:50:37 +0900",
 "test/yukicoder/1320_mincostcycle.test.cpp": "2022-05-01 01:24:24 +0900",
 "test/yukicoder/1332_range_freq.test.cpp": "2022-05-02 00:48:11 +0900",
 "test/yukicoder/177_maxflow.test.cpp": "2022-04-29 17:32:58 +0900",
