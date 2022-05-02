@@ -53,7 +53,7 @@ vc<mint> fps_pow_1_dense(const vc<mint>& f, mint K) {
 }
 
 template <typename mint>
-vc<mint> fps_pow_1(const vc<mint>& f) {
-  if (count_terms(f) <= 100) return fps_pow_1_sparse(f);
-  return fps_pow_1_dense(f);
+vc<mint> fps_pow_1(const vc<mint>& f, mint K) {
+  if (count_terms(f) <= 100) return fps_pow_1_sparse(f, K);
+  return fps_pow_1_dense(f, K);
 }
