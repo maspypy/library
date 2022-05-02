@@ -11,6 +11,9 @@ data:
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
   - icon: ':question:'
+    path: poly/count_terms.hpp
+    title: poly/count_terms.hpp
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
   - icon: ':question:'
@@ -36,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/log_of_fps.test.cpp
     title: test/library_checker/polynomial/log_of_fps.test.cpp
   - icon: ':x:'
@@ -50,8 +53,10 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"mod/modint.hpp\"\ntemplate <u32 mod>\nstruct modint {\n\
-    \  static constexpr bool is_modint = true;\n  u32 val;\n  constexpr modint(const\
+  bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
+    \ vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\
+    \n  return t;\r\n}\n#line 2 \"mod/modint.hpp\"\ntemplate <u32 mod>\nstruct modint\
+    \ {\n  static constexpr bool is_modint = true;\n  u32 val;\n  constexpr modint(const\
     \ ll val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val) % mod)\
     \ % mod) {}\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
     \  } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
@@ -278,7 +283,7 @@ data:
     \ modint998>::value, vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>&\
     \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
-    \ b);\r\n}\r\n#line 3 \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint,\
+    \ b);\r\n}\r\n#line 4 \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint,\
     \ modint998>::value, vc<mint>> fps_inv(\r\n    const vc<mint>& f) {\r\n  if (count_terms(f)\
     \ <= 200) return fps_inv_sparse(f);\r\n  return fps_inv_dense(f);\r\n}\r\n\r\n\
     template <typename mint>\r\nenable_if_t<!is_same<mint, modint998>::value, vc<mint>>\
@@ -319,6 +324,7 @@ data:
     \  return g;\r\n}\r\n"
   dependsOn:
   - poly/fps_inv.hpp
+  - poly/count_terms.hpp
   - poly/convolution.hpp
   - mod/modint.hpp
   - poly/convolution_naive.hpp
@@ -330,7 +336,7 @@ data:
   - poly/fps_pow.hpp
   - seq/stirling_number_2.hpp
   - seq/stirling_number_1.hpp
-  timestamp: '2022-05-02 14:12:28+09:00'
+  timestamp: '2022-05-03 00:46:14+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/polynomial/log_of_fps.test.cpp

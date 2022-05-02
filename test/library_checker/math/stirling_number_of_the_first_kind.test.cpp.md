@@ -536,7 +536,7 @@ data:
     \ + 1);\r\n    x[0] = 0;\r\n\r\n    FOR3(i, m, min(n, m + m)) x[i] += f[i];\r\n\
     \    FOR(i, m) x[i] = 0;\r\n    ntt(x, 0);\r\n    FOR(i, m + m) x[i] *= y[i];\r\
     \n    ntt(x, 1);\r\n    b.insert(b.end(), x.begin() + m, x.end());\r\n  }\r\n\
-    \  b.resize(n);\r\n  return b;\r\n}\r\n#line 3 \"poly/fps_inv.hpp\"\n\r\ntemplate\
+    \  b.resize(n);\r\n  return b;\r\n}\r\n#line 4 \"poly/fps_inv.hpp\"\n\r\ntemplate\
     \ <typename mint>\r\nenable_if_t<is_same<mint, modint998>::value, vc<mint>> fps_inv(\r\
     \n    const vc<mint>& f) {\r\n  if (count_terms(f) <= 200) return fps_inv_sparse(f);\r\
     \n  return fps_inv_dense(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<!is_same<mint,\
@@ -641,7 +641,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   requiredBy: []
-  timestamp: '2022-05-02 14:12:28+09:00'
+  timestamp: '2022-05-03 00:46:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp

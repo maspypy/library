@@ -11,6 +11,9 @@ data:
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
   - icon: ':question:'
+    path: poly/count_terms.hpp
+    title: poly/count_terms.hpp
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
   - icon: ':question:'
@@ -21,19 +24,21 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/multipoint_evaluation.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/polynomial_interpolation.test.cpp
     title: test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"mod/modint.hpp\"\ntemplate <u32 mod>\nstruct modint {\n\
-    \  static constexpr bool is_modint = true;\n  u32 val;\n  constexpr modint(const\
+  bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
+    \ vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\
+    \n  return t;\r\n}\n#line 2 \"mod/modint.hpp\"\ntemplate <u32 mod>\nstruct modint\
+    \ {\n  static constexpr bool is_modint = true;\n  u32 val;\n  constexpr modint(const\
     \ ll val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val) % mod)\
     \ % mod) {}\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
     \  } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
@@ -260,7 +265,7 @@ data:
     \ modint998>::value, vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>&\
     \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
-    \ b);\r\n}\r\n#line 3 \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint,\
+    \ b);\r\n}\r\n#line 4 \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint,\
     \ modint998>::value, vc<mint>> fps_inv(\r\n    const vc<mint>& f) {\r\n  if (count_terms(f)\
     \ <= 200) return fps_inv_sparse(f);\r\n  return fps_inv_dense(f);\r\n}\r\n\r\n\
     template <typename mint>\r\nenable_if_t<!is_same<mint, modint998>::value, vc<mint>>\
@@ -351,6 +356,7 @@ data:
     \n}\r\n"
   dependsOn:
   - poly/fps_inv.hpp
+  - poly/count_terms.hpp
   - poly/convolution.hpp
   - mod/modint.hpp
   - poly/convolution_naive.hpp
@@ -359,8 +365,8 @@ data:
   isVerificationFile: false
   path: poly/multipoint.hpp
   requiredBy: []
-  timestamp: '2022-05-02 14:12:28+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-05-03 00:46:14+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/library_checker/polynomial/polynomial_interpolation.test.cpp

@@ -17,6 +17,9 @@ data:
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
   - icon: ':question:'
+    path: poly/count_terms.hpp
+    title: poly/count_terms.hpp
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
   - icon: ':question:'
@@ -27,9 +30,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/inv_of_formal_power_series
@@ -273,17 +276,19 @@ data:
     \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
     \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
     }\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    using amint = ArbitraryModInt;\n#line 1 \"poly/convolution_naive.hpp\"\ntemplate\
-    \ <class T>\r\nvector<T> convolution_naive(const vector<T>& a, const vector<T>&\
-    \ b) {\r\n  int n = int(a.size()), m = int(b.size());\r\n  vector<T> ans(n + m\
-    \ - 1);\r\n  if (n < m) {\r\n    FOR(j, m) FOR(i, n) ans[i + j] += a[i] * b[j];\r\
-    \n  } else {\r\n    FOR(i, n) FOR(j, m) ans[i + j] += a[i] * b[j];\r\n  }\r\n\
-    \  return ans;\r\n}\r\n#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\n\
-    struct ntt_info {\r\n  static constexpr int bsf_constexpr(unsigned int n) {\r\n\
-    \    int x = 0;\r\n    while (!(n & (1 << x))) x++;\r\n    return x;\r\n  }\r\n\
-    \r\n  static constexpr int rank2 = bsf_constexpr(mint::get_mod() - 1);\r\n  array<mint,\
-    \ rank2 + 1> root;\r\n  array<mint, rank2 + 1> iroot;\r\n  array<mint, max(0,\
-    \ rank2 - 1)> rate2;\r\n  array<mint, max(0, rank2 - 1)> irate2;\r\n  array<mint,\
+    using amint = ArbitraryModInt;\n#line 2 \"poly/count_terms.hpp\"\ntemplate<typename\
+    \ mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f))\
+    \ if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 1 \"poly/convolution_naive.hpp\"\
+    \ntemplate <class T>\r\nvector<T> convolution_naive(const vector<T>& a, const\
+    \ vector<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\n  vector<T>\
+    \ ans(n + m - 1);\r\n  if (n < m) {\r\n    FOR(j, m) FOR(i, n) ans[i + j] += a[i]\
+    \ * b[j];\r\n  } else {\r\n    FOR(i, n) FOR(j, m) ans[i + j] += a[i] * b[j];\r\
+    \n  }\r\n  return ans;\r\n}\r\n#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\
+    \nstruct ntt_info {\r\n  static constexpr int bsf_constexpr(unsigned int n) {\r\
+    \n    int x = 0;\r\n    while (!(n & (1 << x))) x++;\r\n    return x;\r\n  }\r\
+    \n\r\n  static constexpr int rank2 = bsf_constexpr(mint::get_mod() - 1);\r\n \
+    \ array<mint, rank2 + 1> root;\r\n  array<mint, rank2 + 1> iroot;\r\n  array<mint,\
+    \ max(0, rank2 - 1)> rate2;\r\n  array<mint, max(0, rank2 - 1)> irate2;\r\n  array<mint,\
     \ max(0, rank2 - 2)> rate3;\r\n  array<mint, max(0, rank2 - 2)> irate3;\r\n\r\n\
     \  ntt_info() {\r\n    int g = primitive_root(mint::get_mod());\r\n    root[rank2]\
     \ = mint(g).pow((mint::get_mod() - 1) >> rank2);\r\n    iroot[rank2] = mint(1)\
@@ -429,7 +434,7 @@ data:
     \ modint998>::value, vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>&\
     \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
-    \ b);\r\n}\r\n#line 3 \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint,\
+    \ b);\r\n}\r\n#line 4 \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint,\
     \ modint998>::value, vc<mint>> fps_inv(\r\n    const vc<mint>& f) {\r\n  if (count_terms(f)\
     \ <= 200) return fps_inv_sparse(f);\r\n  return fps_inv_dense(f);\r\n}\r\n\r\n\
     template <typename mint>\r\nenable_if_t<!is_same<mint, modint998>::value, vc<mint>>\
@@ -472,6 +477,7 @@ data:
   - other/io.hpp
   - mod/modint.hpp
   - poly/fps_inv.hpp
+  - poly/count_terms.hpp
   - poly/convolution.hpp
   - poly/convolution_naive.hpp
   - poly/ntt.hpp
@@ -479,8 +485,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/polynomial/inv_of_fps.test.cpp
   requiredBy: []
-  timestamp: '2022-05-02 14:12:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-03 00:46:14+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/polynomial/inv_of_fps.test.cpp
 layout: document
