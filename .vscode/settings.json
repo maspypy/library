@@ -38,6 +38,7 @@
         "tuple": "cpp",
         "type_traits": "cpp",
         "typeindex": "cpp",
-        "iomanip": "cpp"
+        "iomanip": "cpp",
+        "limits": "cpp"
     }
 }
