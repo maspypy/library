@@ -1,5 +1,6 @@
 #pragma once
-// atcoder library より
+
+// atcoder library のものを改変
 
 namespace internal {
 
@@ -34,7 +35,12 @@ struct simple_queue {
 
 } // namespace internal
 
-template <class Cap, class Cost>
+/*
+・atcoder library をすこし改変したもの
+・DAG = true であれば、負辺 OK （1 回目の最短路を dp で行う）
+ただし、頂点番号は toposort されていることを仮定している。
+*/
+template <class Cap, class Cost, bool DAG = false>
 struct mcf_graph {
 public:
   mcf_graph() {}
@@ -45,10 +51,19 @@ public:
     assert(0 <= from && from < _n);
     assert(0 <= to && to < _n);
     assert(0 <= cap);
-    assert(0 <= cost);
+    assert(DAG || 0 <= cost);
+    if (DAG) assert(from < to);
     int m = int(_edges.size());
     _edges.push_back({from, to, cap, 0, cost});
     return m;
+  }
+
+  void debug() {
+    print("flow graph");
+    print("frm, to, cap, cost");
+    for (auto&& [frm, to, cap, flow, cost]: _edges) {
+      print(frm, to, cap, cost);
+    }
   }
 
   struct edge {
@@ -131,6 +146,7 @@ private:
     // reduced cost (= e.cost + dual[e.from] - dual[e.to]) >= 0 for all edge
 
     // dual_dist[i] = (dual[i], dist[i])
+    if (DAG) assert(s == 0 && t == _n - 1);
     std::vector<std::pair<Cost, Cost>> dual_dist(_n);
     std::vector<int> prev_e(_n);
     std::vector<bool> vis(_n);
@@ -182,7 +198,7 @@ private:
           // |-dual[e.to] + dual[v]| <= (n-1)C
           // cost <= C - -(n-1)C + 0 = nC
           Cost cost = e.cost - dual_dist[e.to].first + dual_v;
-          if (dual_dist[e.to].second - dist_v > cost) {
+          if (dual_dist[e.to].second > dist_v + cost) {
             Cost dist_to = dist_v + cost;
             dual_dist[e.to].second = dist_to;
             prev_e[e.to] = e.rev;
@@ -207,11 +223,53 @@ private:
       }
       return true;
     };
+
+    auto dual_ref_dag = [&]() {
+      for (int i = 0; i < _n; i++) {
+        dual_dist[i].second = std::numeric_limits<Cost>::max();
+      }
+      dual_dist[s].second = 0;
+      std::fill(vis.begin(), vis.end(), false);
+      vis[0] = true;
+
+      for (int v = 0; v < _n; ++v) {
+        if (!vis[v]) continue;
+        Cost dual_v = dual_dist[v].first, dist_v = dual_dist[v].second;
+        for (int i = g.start[v]; i < g.start[v + 1]; i++) {
+          auto e = g.elist[i];
+          if (!e.cap) continue;
+          Cost cost = e.cost - dual_dist[e.to].first + dual_v;
+          if (dual_dist[e.to].second > dist_v + cost) {
+            vis[e.to] = true;
+            Cost dist_to = dist_v + cost;
+            dual_dist[e.to].second = dist_to;
+            prev_e[e.to] = e.rev;
+          }
+        }
+      }
+      if (!vis[t]) { return false; }
+
+      for (int v = 0; v < _n; v++) {
+        if (!vis[v]) continue;
+        // dual[v] = dual[v] - dist[t] + dist[v]
+        //         = dual[v] - (shortest(s, t) + dual[s] - dual[t]) +
+        //         (shortest(s, v) + dual[s] - dual[v]) = - shortest(s,
+        //         t) + dual[t] + shortest(s, v) = shortest(s, v) -
+        //         shortest(s, t) >= 0 - (n-1)C
+        dual_dist[v].first -= dual_dist[t].second - dual_dist[v].second;
+      }
+      return true;
+    };
+
     Cap flow = 0;
     Cost cost = 0, prev_cost_per_flow = -1;
     std::vector<std::pair<Cap, Cost>> result = {{Cap(0), Cost(0)}};
     while (flow < flow_limit) {
-      if (!dual_ref()) break;
+      if (DAG && flow == 0) {
+        if (!dual_ref_dag()) break;
+      } else {
+        if (!dual_ref()) break;
+      }
       Cap c = flow_limit - flow;
       for (int v = t; v != s; v = g.elist[prev_e[v]].to) {
         c = std::min(c, g.elist[g.elist[prev_e[v]].rev].cap);
