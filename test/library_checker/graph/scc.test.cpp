@@ -3,17 +3,16 @@
 #include "other/io.hpp"
 
 #include "graph/base.hpp"
-#include "graph/scc.hpp"
+#include "graph/strongly_connected_component.hpp"
 
 void solve() {
   LL(N, M);
   Graph<int, 1> G(N);
   G.read_graph(M, 0, 0);
 
-  SCC scc(G);
-  auto C = scc.cnt;
+  auto [C, comp] = strongly_connected_component(G);
   vc<vc<int>> ANS(C);
-  FOR(v, N) ANS[scc[v]].eb(v);
+  FOR(v, N) ANS[comp[v]].eb(v);
   print(len(ANS));
   for (auto&& C: ANS) print(len(C), C);
 }
