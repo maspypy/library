@@ -279,7 +279,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: flow/maxflow.hpp
       title: flow/maxflow.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: flow/mincostflow.hpp
       title: flow/mincostflow.hpp
   - name: geo
@@ -436,7 +436,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/two_edge_component.hpp
       title: graph/two_edge_component.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/twosat.hpp
       title: graph/twosat.hpp
     - icon: ':heavy_check_mark:'
@@ -1092,7 +1092,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/maximum_independent_set.test.cpp
       title: test/library_checker/graph/maximum_independent_set.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/scc.test.cpp
       title: test/library_checker/graph/scc.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1166,7 +1166,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/totient_sum.test.cpp
       title: test/library_checker/math/totient_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/twosat.test.cpp
       title: test/library_checker/math/twosat.test.cpp
   - name: test/library_checker/matrix
@@ -1304,6 +1304,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/114_steriner_tree.test.cpp
       title: test/yukicoder/114_steriner_tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1288_mcf_dag_negative.test.cpp
+      title: test/yukicoder/1288_mcf_dag_negative.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1320_mincostcycle.test.cpp
       title: test/yukicoder/1320_mincostcycle.test.cpp

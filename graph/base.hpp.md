@@ -117,6 +117,9 @@ data:
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/twosat.hpp
+    title: graph/twosat.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/warshall_floyd.hpp
     title: graph/warshall_floyd.hpp
   _extendedVerifiedWith:
@@ -181,11 +184,17 @@ data:
     path: test/library_checker/graph/maximum_independent_set.test.cpp
     title: test/library_checker/graph/maximum_independent_set.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/scc.test.cpp
+    title: test/library_checker/graph/scc.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/shortest_path.test.cpp
     title: test/library_checker/graph/shortest_path.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/two_edge_component.test.cpp
     title: test/library_checker/graph/two_edge_component.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/twosat.test.cpp
+    title: test/library_checker/math/twosat.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
@@ -335,6 +344,7 @@ data:
   - graph/bellmanford.hpp
   - graph/strongly_connected_component.hpp
   - graph/tree_diameter.hpp
+  - graph/twosat.hpp
   - flow/bipartite.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -357,6 +367,7 @@ data:
   - test/library_checker/graph/shortest_path.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
   - test/library_checker/graph/enumerate_triangles.test.cpp
+  - test/library_checker/graph/scc.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/cycle_detection.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
@@ -364,6 +375,7 @@ data:
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/tree/lca.test.cpp
   - test/library_checker/tree/tree_diameter.test.cpp
+  - test/library_checker/math/twosat.test.cpp
   - test/aoj/ALDS1_12_B_dial.test.cpp
   - test/aoj/275_dag_reachability.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp

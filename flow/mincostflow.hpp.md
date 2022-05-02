@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1288_mcf_dag_negative.test.cpp
+    title: test/yukicoder/1288_mcf_dag_negative.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"flow/mincostflow.hpp\"\n\n// atcoder library \u306E\u3082\
@@ -243,8 +246,9 @@ data:
   path: flow/mincostflow.hpp
   requiredBy: []
   timestamp: '2022-05-03 02:34:09+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yukicoder/1288_mcf_dag_negative.test.cpp
 documentation_of: flow/mincostflow.hpp
 layout: document
 redirect_from:

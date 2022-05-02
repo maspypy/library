@@ -2,14 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: graph/base.hpp
-    title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/strongly_connected_component.hpp
-    title: graph/strongly_connected_component.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/twosat.hpp
-    title: graph/twosat.hpp
+    path: flow/mincostflow.hpp
+    title: flow/mincostflow.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -23,16 +17,16 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/two_sat
+    PROBLEM: https://yukicoder.me/problems/no/1288
     links:
-    - https://judge.yosupo.jp/problem/two_sat
-  bundledCode: "#line 1 \"test/library_checker/math/twosat.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/two_sat\"\r\n#line 1 \"my_template.hpp\"\n\
-    #include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing\
-    \ pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing\
-    \ u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing\
-    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    - https://yukicoder.me/problems/no/1288
+  bundledCode: "#line 1 \"test/yukicoder/1288_mcf_dag_negative.test.cpp\"\n#define\
+    \ PROBLEM \"https://yukicoder.me/problems/no/1288\"\n#line 1 \"my_template.hpp\"\
+    \n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
+    using pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\n\
+    using u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\n\
+    using vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate\
+    \ <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
     template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
     \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
     \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
@@ -191,98 +185,166 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct\
-    \ Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int,\
-    \ bool directed = false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n\
-    \  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n\
-    \  vector<edge_type> csr_edges;\n  bool prepared;\n\n  class OutgoingEdges {\n\
-    \  public:\n    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l), r(r)\
-    \ {}\n\n    const edge_type* begin() const {\n      if (l == r) { return 0; }\n\
-    \      return &G->csr_edges[l];\n    }\n\n    const edge_type* end() const {\n\
-    \      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n  private:\n\
-    \    int l, r;\n    const Graph* G;\n  };\n\n  bool is_prepared() { return prepared;\
-    \ }\n  constexpr bool is_directed() { return directed; }\n\n  Graph() : N(0),\
-    \ M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void\
-    \ add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared && 0 <=\
-    \ frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm,\
-    \ to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool\
-    \ wt = false, int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int\
-    \ M, bool wt = false, int off = 1) {\n    FOR_(M) {\n      INT(a, b);\n      a\
-    \ -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n  \
-    \      T c;\n        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n\
-    \  }\n\n  void read_parent(int off = 1) {\n    FOR3(v, 1, N) {\n      INT(p);\n\
-    \      p -= off;\n      add(p, v);\n    }\n    build();\n  }\n\n  void build()\
-    \ {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
-    \    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if (!directed)\
-    \ indptr[e.to + 1]++;\n    }\n    FOR(v, N) indptr[v + 1] += indptr[v];\n    auto\
-    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
-    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
-    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
-    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
-    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  void debug() {\n    print(\"\
-    Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
-    \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
-    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 3 \"graph/strongly_connected_component.hpp\"\
-    \n\ntemplate <typename Graph>\npair<int, vc<int>> strongly_connected_component(Graph\
-    \ &G) {\n  assert(G.is_directed());\n  assert(G.is_prepared());\n  int N = G.N;\n\
-    \  int C = 0;\n  vc<int> comp(N);\n  vc<int> low(N);\n  vc<int> ord(N, -1);\n\
-    \  vc<int> visited;\n  int now = 0;\n\n  auto dfs = [&](auto self, int v) -> void\
-    \ {\n    low[v] = now;\n    ord[v] = now;\n    ++now;\n    visited.eb(v);\n  \
-    \  for (auto &&[frm, to, cost, id]: G[v]) {\n      if (ord[to] == -1) {\n    \
-    \    self(self, to);\n        chmin(low[v], low[to]);\n      } else {\n      \
-    \  chmin(low[v], ord[to]);\n      }\n    }\n    if (low[v] == ord[v]) {\n    \
-    \  while (1) {\n        int u = visited.back();\n        visited.pop_back();\n\
-    \        ord[u] = N;\n        comp[u] = C;\n        if (u == v) break;\n     \
-    \ }\n      ++C;\n    }\n  };\n  FOR(v, N) {\n    if (ord[v] == -1) dfs(dfs, v);\n\
-    \  }\n  FOR(v, N) comp[v] = C - 1 - comp[v];\n  return {C, comp};\n}\n#line 2\
-    \ \"graph/twosat.hpp\"\n\r\nstruct TwoSat {\r\n  vc<int> values;\r\n\r\n  Graph<int,\
-    \ 1> G;\r\n  TwoSat(ll n) : G(n + n), values(n, -1) {}\r\n  void add(int a, int\
-    \ b) {\r\n    a = (a >= 0 ? 2 * a + 1 : 2 * (~a));\r\n    b = (b >= 0 ? 2 * b\
-    \ + 1 : 2 * (~b));\r\n    G.add(a ^ 1, b);\r\n    G.add(b ^ 1, a);\r\n  }\r\n\
-    \  void set(int a) {\r\n    if (a >= 0)\r\n      values[a] = 1;\r\n    else\r\n\
-    \      values[~a] = 0;\r\n    a = (a >= 0 ? 2 * a + 1 : 2 * (~a));\r\n    G.add(a\
-    \ ^ 1, a);\r\n  }\r\n  void implies(int a, int b) { add(~a, b); }\r\n\r\n  bool\
-    \ calc() {\r\n    G.build();\r\n    ll n = len(values);\r\n    auto [C, comp]\
-    \ = strongly_connected_component(G);\r\n    FOR(i, n) {\r\n      if (comp[2 *\
-    \ i] == comp[2 * i + 1]) return false;\r\n      values[i] = comp[2 * i] < comp[2\
-    \ * i + 1];\r\n    }\r\n    return true;\r\n  }\r\n};\n#line 5 \"test/library_checker/math/twosat.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  STR(p, cnf);\r\n  LL(N, M);\r\n  TwoSat ts(N);\r\n \
-    \ FOR(i, M) {\r\n    LL(a, b, c);\r\n    a = (a > 0 ? a - 1 : a);\r\n    b = (b\
-    \ > 0 ? b - 1 : b);\r\n    ts.add(a, b);\r\n  }\r\n  bool ok = ts.calc();\r\n\
-    \  auto A = ts.values;\r\n  if (ok) {\r\n    print(\"s SATISFIABLE\");\r\n   \
-    \ vc<int> ANS(N);\r\n    FOR(i, N) ANS[i] = (A[i] ? i + 1 : -(i + 1));\r\n   \
-    \ print(\"v\", ANS, \"0\");\r\n  } else {\r\n    print(\"s UNSATISFIABLE\");\r\
-    \n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  // LL(T);\r\n  ll T = 1;\r\n  FOR(_, T)\
-    \ solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/two_sat\"\r\n#include \"\
-    my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"graph/twosat.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  STR(p, cnf);\r\n  LL(N, M);\r\n  TwoSat ts(N);\r\n\
-    \  FOR(i, M) {\r\n    LL(a, b, c);\r\n    a = (a > 0 ? a - 1 : a);\r\n    b =\
-    \ (b > 0 ? b - 1 : b);\r\n    ts.add(a, b);\r\n  }\r\n  bool ok = ts.calc();\r\
-    \n  auto A = ts.values;\r\n  if (ok) {\r\n    print(\"s SATISFIABLE\");\r\n  \
-    \  vc<int> ANS(N);\r\n    FOR(i, N) ANS[i] = (A[i] ? i + 1 : -(i + 1));\r\n  \
-    \  print(\"v\", ANS, \"0\");\r\n  } else {\r\n    print(\"s UNSATISFIABLE\");\r\
-    \n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  // LL(T);\r\n  ll T = 1;\r\n  FOR(_, T)\
-    \ solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ { yes(!t); }\r\n#line 2 \"flow/mincostflow.hpp\"\n\n// atcoder library \u306E\
+    \u3082\u306E\u3092\u6539\u5909\n\nnamespace internal {\n\ntemplate <class E>\n\
+    struct csr {\n  std::vector<int> start;\n  std::vector<E> elist;\n  explicit csr(int\
+    \ n, const std::vector<std::pair<int, E>>& edges)\n      : start(n + 1), elist(edges.size())\
+    \ {\n    for (auto e: edges) { start[e.first + 1]++; }\n    for (int i = 1; i\
+    \ <= n; i++) { start[i] += start[i - 1]; }\n    auto counter = start;\n    for\
+    \ (auto e: edges) { elist[counter[e.first]++] = e.second; }\n  }\n};\n\ntemplate\
+    \ <class T>\nstruct simple_queue {\n  std::vector<T> payload;\n  int pos = 0;\n\
+    \  void reserve(int n) { payload.reserve(n); }\n  int size() const { return int(payload.size())\
+    \ - pos; }\n  bool empty() const { return pos == int(payload.size()); }\n  void\
+    \ push(const T& t) { payload.push_back(t); }\n  T& front() { return payload[pos];\
+    \ }\n  void clear() {\n    payload.clear();\n    pos = 0;\n  }\n  void pop() {\
+    \ pos++; }\n};\n\n} // namespace internal\n\n/*\n\u30FBatcoder library \u3092\u3059\
+    \u3053\u3057\u6539\u5909\u3057\u305F\u3082\u306E\n\u30FBDAG = true \u3067\u3042\
+    \u308C\u3070\u3001\u8CA0\u8FBA OK \uFF081 \u56DE\u76EE\u306E\u6700\u77ED\u8DEF\
+    \u3092 dp \u3067\u884C\u3046\uFF09\n\u305F\u3060\u3057\u3001\u9802\u70B9\u756A\
+    \u53F7\u306F toposort \u3055\u308C\u3066\u3044\u308B\u3053\u3068\u3092\u4EEE\u5B9A\
+    \u3057\u3066\u3044\u308B\u3002\n*/\ntemplate <class Cap, class Cost, bool DAG\
+    \ = false>\nstruct mcf_graph {\npublic:\n  mcf_graph() {}\n  explicit mcf_graph(int\
+    \ n) : _n(n) {}\n\n  // frm, to, cap, cost\n  int add(int from, int to, Cap cap,\
+    \ Cost cost) {\n    assert(0 <= from && from < _n);\n    assert(0 <= to && to\
+    \ < _n);\n    assert(0 <= cap);\n    assert(DAG || 0 <= cost);\n    if (DAG) assert(from\
+    \ < to);\n    int m = int(_edges.size());\n    _edges.push_back({from, to, cap,\
+    \ 0, cost});\n    return m;\n  }\n\n  void debug() {\n    print(\"flow graph\"\
+    );\n    print(\"frm, to, cap, cost\");\n    for (auto&& [frm, to, cap, flow, cost]:\
+    \ _edges) {\n      print(frm, to, cap, cost);\n    }\n  }\n\n  struct edge {\n\
+    \    int from, to;\n    Cap cap, flow;\n    Cost cost;\n  };\n\n  edge get_edge(int\
+    \ i) {\n    int m = int(_edges.size());\n    assert(0 <= i && i < m);\n    return\
+    \ _edges[i];\n  }\n  std::vector<edge> edges() { return _edges; }\n\n  std::pair<Cap,\
+    \ Cost> flow(int s, int t) {\n    return flow(s, t, std::numeric_limits<Cap>::max());\n\
+    \  }\n  std::pair<Cap, Cost> flow(int s, int t, Cap flow_limit) {\n    return\
+    \ slope(s, t, flow_limit).back();\n  }\n  std::vector<std::pair<Cap, Cost>> slope(int\
+    \ s, int t) {\n    return slope(s, t, std::numeric_limits<Cap>::max());\n  }\n\
+    \  std::vector<std::pair<Cap, Cost>> slope(int s, int t, Cap flow_limit) {\n \
+    \   assert(0 <= s && s < _n);\n    assert(0 <= t && t < _n);\n    assert(s !=\
+    \ t);\n\n    int m = int(_edges.size());\n    std::vector<int> edge_idx(m);\n\n\
+    \    auto g = [&]() {\n      std::vector<int> degree(_n), redge_idx(m);\n    \
+    \  std::vector<std::pair<int, _edge>> elist;\n      elist.reserve(2 * m);\n  \
+    \    for (int i = 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i]\
+    \ = degree[e.from]++;\n        redge_idx[i] = degree[e.to]++;\n        elist.push_back({e.from,\
+    \ {e.to, -1, e.cap - e.flow, e.cost}});\n        elist.push_back({e.to, {e.from,\
+    \ -1, e.flow, -e.cost}});\n      }\n      auto _g = internal::csr<_edge>(_n, elist);\n\
+    \      for (int i = 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i]\
+    \ += _g.start[e.from];\n        redge_idx[i] += _g.start[e.to];\n        _g.elist[edge_idx[i]].rev\
+    \ = redge_idx[i];\n        _g.elist[redge_idx[i]].rev = edge_idx[i];\n      }\n\
+    \      return _g;\n    }();\n\n    auto result = slope(g, s, t, flow_limit);\n\
+    \n    for (int i = 0; i < m; i++) {\n      auto e = g.elist[edge_idx[i]];\n  \
+    \    _edges[i].flow = _edges[i].cap - e.cap;\n    }\n\n    return result;\n  }\n\
+    \nprivate:\n  int _n;\n  std::vector<edge> _edges;\n\n  // inside edge\n  struct\
+    \ _edge {\n    int to, rev;\n    Cap cap;\n    Cost cost;\n  };\n\n  std::vector<std::pair<Cap,\
+    \ Cost>> slope(internal::csr<_edge>& g, int s, int t,\n                      \
+    \                    Cap flow_limit) {\n    // variants (C = maxcost):\n    //\
+    \ -(n-1)C <= dual[s] <= dual[i] <= dual[t] = 0\n    // reduced cost (= e.cost\
+    \ + dual[e.from] - dual[e.to]) >= 0 for all edge\n\n    // dual_dist[i] = (dual[i],\
+    \ dist[i])\n    if (DAG) assert(s == 0 && t == _n - 1);\n    std::vector<std::pair<Cost,\
+    \ Cost>> dual_dist(_n);\n    std::vector<int> prev_e(_n);\n    std::vector<bool>\
+    \ vis(_n);\n    struct Q {\n      Cost key;\n      int to;\n      bool operator<(Q\
+    \ r) const { return key > r.key; }\n    };\n    std::vector<int> que_min;\n  \
+    \  std::vector<Q> que;\n    auto dual_ref = [&]() {\n      for (int i = 0; i <\
+    \ _n; i++) {\n        dual_dist[i].second = std::numeric_limits<Cost>::max();\n\
+    \      }\n      std::fill(vis.begin(), vis.end(), false);\n      que_min.clear();\n\
+    \      que.clear();\n\n      // que[0..heap_r) was heapified\n      size_t heap_r\
+    \ = 0;\n\n      dual_dist[s].second = 0;\n      que_min.push_back(s);\n      while\
+    \ (!que_min.empty() || !que.empty()) {\n        int v;\n        if (!que_min.empty())\
+    \ {\n          v = que_min.back();\n          que_min.pop_back();\n        } else\
+    \ {\n          while (heap_r < que.size()) {\n            heap_r++;\n        \
+    \    std::push_heap(que.begin(), que.begin() + heap_r);\n          }\n       \
+    \   v = que.front().to;\n          std::pop_heap(que.begin(), que.end());\n  \
+    \        que.pop_back();\n          heap_r--;\n        }\n        if (vis[v])\
+    \ continue;\n        vis[v] = true;\n        if (v == t) break;\n        // dist[v]\
+    \ = shortest(s, v) + dual[s] - dual[v]\n        // dist[v] >= 0 (all reduced cost\
+    \ are positive)\n        // dist[v] <= (n-1)C\n        Cost dual_v = dual_dist[v].first,\
+    \ dist_v = dual_dist[v].second;\n        for (int i = g.start[v]; i < g.start[v\
+    \ + 1]; i++) {\n          auto e = g.elist[i];\n          if (!e.cap) continue;\n\
+    \          // |-dual[e.to] + dual[v]| <= (n-1)C\n          // cost <= C - -(n-1)C\
+    \ + 0 = nC\n          Cost cost = e.cost - dual_dist[e.to].first + dual_v;\n \
+    \         if (dual_dist[e.to].second > dist_v + cost) {\n            Cost dist_to\
+    \ = dist_v + cost;\n            dual_dist[e.to].second = dist_to;\n          \
+    \  prev_e[e.to] = e.rev;\n            if (dist_to == dist_v) {\n             \
+    \ que_min.push_back(e.to);\n            } else {\n              que.push_back(Q{dist_to,\
+    \ e.to});\n            }\n          }\n        }\n      }\n      if (!vis[t])\
+    \ { return false; }\n\n      for (int v = 0; v < _n; v++) {\n        if (!vis[v])\
+    \ continue;\n        // dual[v] = dual[v] - dist[t] + dist[v]\n        //    \
+    \     = dual[v] - (shortest(s, t) + dual[s] - dual[t]) +\n        //         (shortest(s,\
+    \ v) + dual[s] - dual[v]) = - shortest(s,\n        //         t) + dual[t] + shortest(s,\
+    \ v) = shortest(s, v) -\n        //         shortest(s, t) >= 0 - (n-1)C\n   \
+    \     dual_dist[v].first -= dual_dist[t].second - dual_dist[v].second;\n     \
+    \ }\n      return true;\n    };\n\n    auto dual_ref_dag = [&]() {\n      for\
+    \ (int i = 0; i < _n; i++) {\n        dual_dist[i].second = std::numeric_limits<Cost>::max();\n\
+    \      }\n      dual_dist[s].second = 0;\n      std::fill(vis.begin(), vis.end(),\
+    \ false);\n      vis[0] = true;\n\n      for (int v = 0; v < _n; ++v) {\n    \
+    \    if (!vis[v]) continue;\n        Cost dual_v = dual_dist[v].first, dist_v\
+    \ = dual_dist[v].second;\n        for (int i = g.start[v]; i < g.start[v + 1];\
+    \ i++) {\n          auto e = g.elist[i];\n          if (!e.cap) continue;\n  \
+    \        Cost cost = e.cost - dual_dist[e.to].first + dual_v;\n          if (dual_dist[e.to].second\
+    \ > dist_v + cost) {\n            vis[e.to] = true;\n            Cost dist_to\
+    \ = dist_v + cost;\n            dual_dist[e.to].second = dist_to;\n          \
+    \  prev_e[e.to] = e.rev;\n          }\n        }\n      }\n      if (!vis[t])\
+    \ { return false; }\n\n      for (int v = 0; v < _n; v++) {\n        if (!vis[v])\
+    \ continue;\n        // dual[v] = dual[v] - dist[t] + dist[v]\n        //    \
+    \     = dual[v] - (shortest(s, t) + dual[s] - dual[t]) +\n        //         (shortest(s,\
+    \ v) + dual[s] - dual[v]) = - shortest(s,\n        //         t) + dual[t] + shortest(s,\
+    \ v) = shortest(s, v) -\n        //         shortest(s, t) >= 0 - (n-1)C\n   \
+    \     dual_dist[v].first -= dual_dist[t].second - dual_dist[v].second;\n     \
+    \ }\n      return true;\n    };\n\n    Cap flow = 0;\n    Cost cost = 0, prev_cost_per_flow\
+    \ = -1;\n    std::vector<std::pair<Cap, Cost>> result = {{Cap(0), Cost(0)}};\n\
+    \    while (flow < flow_limit) {\n      if (DAG && flow == 0) {\n        if (!dual_ref_dag())\
+    \ break;\n      } else {\n        if (!dual_ref()) break;\n      }\n      Cap\
+    \ c = flow_limit - flow;\n      for (int v = t; v != s; v = g.elist[prev_e[v]].to)\
+    \ {\n        c = std::min(c, g.elist[g.elist[prev_e[v]].rev].cap);\n      }\n\
+    \      for (int v = t; v != s; v = g.elist[prev_e[v]].to) {\n        auto& e =\
+    \ g.elist[prev_e[v]];\n        e.cap += c;\n        g.elist[e.rev].cap -= c;\n\
+    \      }\n      Cost d = -dual_dist[s].first;\n      flow += c;\n      cost +=\
+    \ c * d;\n      if (prev_cost_per_flow == d) { result.pop_back(); }\n      result.push_back({flow,\
+    \ cost});\n      prev_cost_per_flow = d;\n    }\n    return result;\n  }\n};\n\
+    #line 5 \"test/yukicoder/1288_mcf_dag_negative.test.cpp\"\n\nvoid solve() {\n\
+    \  LL(N);\n  STR(S);\n  VEC(ll, X, N);\n  auto A = [&](int i) -> int { return\
+    \ i; };\n  auto B = [&](int i) -> int { return N + 1 + i; };\n  auto C = [&](int\
+    \ i) -> int { return 2 * (N + 1) + i; };\n  auto D = [&](int i) -> int { return\
+    \ 3 * (N + 1) + i; };\n  auto E = [&](int i) -> int { return 4 * (N + 1) + i;\
+    \ };\n  mcf_graph<int, ll, true> G(5 * N + 5);\n  FOR(i, N) G.add(A(i), A(i +\
+    \ 1), N, 0);\n  FOR(i, N) G.add(B(i), B(i + 1), N, 0);\n  FOR(i, N) G.add(C(i),\
+    \ C(i + 1), N, 0);\n  FOR(i, N) G.add(D(i), D(i + 1), N, 0);\n  FOR(i, N) G.add(E(i),\
+    \ E(i + 1), N, 0);\n  FOR(i, N) {\n    if (S[i] == 'y') G.add(A(i), B(i + 1),\
+    \ 1, -X[i]);\n    if (S[i] == 'u') G.add(B(i), C(i + 1), 1, -X[i]);\n    if (S[i]\
+    \ == 'k') G.add(C(i), D(i + 1), 1, -X[i]);\n    if (S[i] == 'i') G.add(D(i), E(i\
+    \ + 1), 1, -X[i]);\n  }\n  ll ANS = 0;\n  for (auto&& [x, y]: G.slope(A(0), E(N)))\
+    \ chmax(ANS, -y);\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1288\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"flow/mincostflow.hpp\"\n\nvoid solve()\
+    \ {\n  LL(N);\n  STR(S);\n  VEC(ll, X, N);\n  auto A = [&](int i) -> int { return\
+    \ i; };\n  auto B = [&](int i) -> int { return N + 1 + i; };\n  auto C = [&](int\
+    \ i) -> int { return 2 * (N + 1) + i; };\n  auto D = [&](int i) -> int { return\
+    \ 3 * (N + 1) + i; };\n  auto E = [&](int i) -> int { return 4 * (N + 1) + i;\
+    \ };\n  mcf_graph<int, ll, true> G(5 * N + 5);\n  FOR(i, N) G.add(A(i), A(i +\
+    \ 1), N, 0);\n  FOR(i, N) G.add(B(i), B(i + 1), N, 0);\n  FOR(i, N) G.add(C(i),\
+    \ C(i + 1), N, 0);\n  FOR(i, N) G.add(D(i), D(i + 1), N, 0);\n  FOR(i, N) G.add(E(i),\
+    \ E(i + 1), N, 0);\n  FOR(i, N) {\n    if (S[i] == 'y') G.add(A(i), B(i + 1),\
+    \ 1, -X[i]);\n    if (S[i] == 'u') G.add(B(i), C(i + 1), 1, -X[i]);\n    if (S[i]\
+    \ == 'k') G.add(C(i), D(i + 1), 1, -X[i]);\n    if (S[i] == 'i') G.add(D(i), E(i\
+    \ + 1), 1, -X[i]);\n  }\n  ll ANS = 0;\n  for (auto&& [x, y]: G.slope(A(0), E(N)))\
+    \ chmax(ANS, -y);\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - graph/twosat.hpp
-  - graph/strongly_connected_component.hpp
-  - graph/base.hpp
+  - flow/mincostflow.hpp
   isVerificationFile: true
-  path: test/library_checker/math/twosat.test.cpp
+  path: test/yukicoder/1288_mcf_dag_negative.test.cpp
   requiredBy: []
-  timestamp: '2022-05-03 02:35:51+09:00'
+  timestamp: '2022-05-03 02:50:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library_checker/math/twosat.test.cpp
+documentation_of: test/yukicoder/1288_mcf_dag_negative.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/math/twosat.test.cpp
-- /verify/test/library_checker/math/twosat.test.cpp.html
-title: test/library_checker/math/twosat.test.cpp
+- /verify/test/yukicoder/1288_mcf_dag_negative.test.cpp
+- /verify/test/yukicoder/1288_mcf_dag_negative.test.cpp.html
+title: test/yukicoder/1288_mcf_dag_negative.test.cpp
 ---

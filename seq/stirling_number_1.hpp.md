@@ -399,28 +399,28 @@ data:
     \ mint \u306E\u5834\u5408\u306B\u306F\u3001fps_pow_1 \u3092\u4F7F\u3046\u3053\u3068\
     \u3002\r\n// \u30FBdense \u306A\u5834\u5408\uFF1A log, exp \u3092\u4F7F\u3046\
     \ O(NlogN)\r\n// \u30FBsparse \u306A\u5834\u5408\uFF1A O(NK)\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> fps_pow(const vc<mint>& f, ll k, bool force_sparse = 0) {\r\
-    \n  int n = len(f);\r\n  int d = n;\r\n  FOR_R(i, n) if (f[i] != 0) d = i;\r\n\
-    \  ll off = d * k;\r\n  if (off >= n) return vc<mint>(n, 0);\r\n  mint c = f[d];\r\
-    \n  mint c_inv = mint(1) / mint(c);\r\n  vc<mint> g(n - off);\r\n  FOR(i, n -\
-    \ off) g[i] = f[d + i] * c_inv;\r\n  g = fps_pow_1(g, mint(k), force_sparse);\r\
-    \n  vc<mint> h(n);\r\n  c = c.pow(k);\r\n  FOR(i, len(g)) h[off + i] = g[i] *\
-    \ c;\r\n  return h;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_pow_1_sparse(const\
-    \ vc<mint>& f, mint K) {\r\n  int N = len(f);\r\n  vc<pair<int, mint>> dat;\r\n\
-    \  FOR3(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\n\
-    \  g[0] = 1;\r\n  FOR(n, N - 1) {\r\n    mint& x = g[n + 1];\r\n    for (auto&&\
-    \ [d, cf]: dat) {\r\n      if (d > n + 1) break;\r\n      mint t = cf * g[n -\
-    \ d + 1];\r\n      x += t * (K.val * d - (n - d + 1));\r\n    }\r\n    x *= inv<mint>(n\
-    \ + 1);\r\n  }\r\n  return g;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint>\
-    \ fps_pow_1_dense(const vc<mint>& f, mint K) {\r\n  assert(f[0] == mint(1));\r\
-    \n  auto log_f = fps_log(f);\r\n  FOR(i, len(f)) log_f[i] *= K;\r\n  return fps_exp(log_f);\r\
-    \n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_pow_1(const vc<mint>& f) {\r\
-    \n  if (count_terms(f) <= 100) return fps_pow_1_sparse(f);\r\n  return fps_pow_1_dense(f);\r\
-    \n}\r\n#line 3 \"seq/stirling_number_1.hpp\"\n\r\n// x(x+1)...(x+n-1) \u306E\u4FC2\
-    \u6570 c(n, k)\r\n// [n] \u306E\u9806\u5217\u306E\u3046\u3061\u3001k \u500B\u306E\
-    \u30B5\u30A4\u30AF\u30EB\u306B\u5206\u304B\u308C\u308B\u3082\u306E\u306E\u500B\
-    \u6570\u3002\r\n// n \u3092\u56FA\u5B9A\u3057\u305F\u3068\u304D\u306E\u5217\u6319\
-    \u3092 O(n log n) \u3067\u884C\u3046\u3002\r\ntemplate <typename mint>\r\nvc<mint>\
+    \ mint>\r\nvc<mint> fps_pow(const vc<mint>& f, ll k) {\r\n  int n = len(f);\r\n\
+    \  int d = n;\r\n  FOR_R(i, n) if (f[i] != 0) d = i;\r\n  ll off = d * k;\r\n\
+    \  if (off >= n) return vc<mint>(n, 0);\r\n  mint c = f[d];\r\n  mint c_inv =\
+    \ mint(1) / mint(c);\r\n  vc<mint> g(n - off);\r\n  FOR(i, n - off) g[i] = f[d\
+    \ + i] * c_inv;\r\n  g = fps_pow_1(g, mint(k));\r\n  vc<mint> h(n);\r\n  c = c.pow(k);\r\
+    \n  FOR(i, len(g)) h[off + i] = g[i] * c;\r\n  return h;\r\n}\r\n\r\ntemplate\
+    \ <typename mint>\r\nvc<mint> fps_pow_1_sparse(const vc<mint>& f, mint K) {\r\n\
+    \  int N = len(f);\r\n  vc<pair<int, mint>> dat;\r\n  FOR3(i, 1, N) if (f[i] !=\
+    \ mint(0)) dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\n  g[0] = 1;\r\n  FOR(n, N -\
+    \ 1) {\r\n    mint& x = g[n + 1];\r\n    for (auto&& [d, cf]: dat) {\r\n     \
+    \ if (d > n + 1) break;\r\n      mint t = cf * g[n - d + 1];\r\n      x += t *\
+    \ (K.val * d - (n - d + 1));\r\n    }\r\n    x *= inv<mint>(n + 1);\r\n  }\r\n\
+    \  return g;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_pow_1_dense(const\
+    \ vc<mint>& f, mint K) {\r\n  assert(f[0] == mint(1));\r\n  auto log_f = fps_log(f);\r\
+    \n  FOR(i, len(f)) log_f[i] *= K;\r\n  return fps_exp(log_f);\r\n}\r\n\r\ntemplate\
+    \ <typename mint>\r\nvc<mint> fps_pow_1(const vc<mint>& f) {\r\n  if (count_terms(f)\
+    \ <= 100) return fps_pow_1_sparse(f);\r\n  return fps_pow_1_dense(f);\r\n}\r\n\
+    #line 3 \"seq/stirling_number_1.hpp\"\n\r\n// x(x+1)...(x+n-1) \u306E\u4FC2\u6570\
+    \ c(n, k)\r\n// [n] \u306E\u9806\u5217\u306E\u3046\u3061\u3001k \u500B\u306E\u30B5\
+    \u30A4\u30AF\u30EB\u306B\u5206\u304B\u308C\u308B\u3082\u306E\u306E\u500B\u6570\
+    \u3002\r\n// n \u3092\u56FA\u5B9A\u3057\u305F\u3068\u304D\u306E\u5217\u6319\u3092\
+    \ O(n log n) \u3067\u884C\u3046\u3002\r\ntemplate <typename mint>\r\nvc<mint>\
     \ stirling_number_1_n(int n, bool sgn = false) {\r\n  auto dfs = [&](auto self,\
     \ int n) -> vc<mint> {\r\n    if (n == 0) return {1};\r\n    if (n == 1) return\
     \ {0, 1};\r\n    auto f = self(self, n / 2);\r\n    auto g = poly_taylor_shift(f,\
@@ -475,7 +475,7 @@ data:
   isVerificationFile: false
   path: seq/stirling_number_1.hpp
   requiredBy: []
-  timestamp: '2022-05-03 00:46:14+09:00'
+  timestamp: '2022-05-03 02:37:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp

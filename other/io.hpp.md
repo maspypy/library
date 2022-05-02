@@ -268,6 +268,9 @@ data:
     path: test/library_checker/graph/maximum_independent_set.test.cpp
     title: test/library_checker/graph/maximum_independent_set.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/scc.test.cpp
+    title: test/library_checker/graph/scc.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/shortest_path.test.cpp
     title: test/library_checker/graph/shortest_path.test.cpp
   - icon: ':heavy_check_mark:'
@@ -336,6 +339,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/totient_sum.test.cpp
     title: test/library_checker/math/totient_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/twosat.test.cpp
+    title: test/library_checker/math/twosat.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/charactereistic_poly.test.cpp
     title: test/library_checker/matrix/charactereistic_poly.test.cpp
@@ -459,6 +465,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/114_steriner_tree.test.cpp
     title: test/yukicoder/114_steriner_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1288_mcf_dag_negative.test.cpp
+    title: test/yukicoder/1288_mcf_dag_negative.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1320_mincostcycle.test.cpp
     title: test/yukicoder/1320_mincostcycle.test.cpp
@@ -754,6 +763,7 @@ data:
   - test/yukicoder/1320_mincostcycle.test.cpp
   - test/yukicoder/899_bfsnumbering.test.cpp
   - test/yukicoder/255.test.cpp
+  - test/yukicoder/1288_mcf_dag_negative.test.cpp
   - test/yukicoder/1810_matpow.test.cpp
   - test/yukicoder/502_factorial107.test.cpp
   - test/yukicoder/4_subsetsum.test.cpp
@@ -822,6 +832,7 @@ data:
   - test/library_checker/graph/shortest_path.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
   - test/library_checker/graph/enumerate_triangles.test.cpp
+  - test/library_checker/graph/scc.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/cycle_detection.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
@@ -852,6 +863,7 @@ data:
   - test/library_checker/math/sqrt_mod.test.cpp
   - test/library_checker/math/partition.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
+  - test/library_checker/math/twosat.test.cpp
   - test/library_checker/math/nim_product.test.cpp
   - test/library_checker/math/totient_sum.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
