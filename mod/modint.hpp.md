@@ -5,13 +5,13 @@ data:
   - icon: ':x:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/multiplicative_convolution_mod2n.hpp
     title: nt/multiplicative_convolution_mod2n.hpp
   - icon: ':question:'
@@ -26,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/convolution_huge.hpp
     title: poly/convolution_huge.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/convolution_mod_2_64.hpp
     title: poly/convolution_mod_2_64.hpp
   - icon: ':x:'
@@ -53,10 +53,10 @@ data:
   - icon: ':x:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/multivar_convolution.hpp
     title: poly/multivar_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online_convolution.hpp
     title: poly/online_convolution.hpp
   - icon: ':x:'
@@ -86,7 +86,7 @@ data:
   - icon: ':x:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/limit_poly_exp_sum.hpp
     title: seq/limit_poly_exp_sum.hpp
   - icon: ':x:'
@@ -117,55 +117,55 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_107.test.cpp
     title: test/library_checker/convolution/convolution_mod_107.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
     title: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/convolution_mod_2_64.test.cpp
     title: test/library_checker/convolution/convolution_mod_2_64.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
     title: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/multivariate_convolution.test.cpp
     title: test/library_checker/convolution/multivariate_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/online_convolution.test.cpp
     title: test/library_checker/convolution/online_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/subset_convolution.test.cpp
     title: test/library_checker/convolution/subset_convolution.test.cpp
   - icon: ':x:'
     path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
     title: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
     title: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
     title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/find_linear_recurrence.test.cpp
     title: test/library_checker/math/find_linear_recurrence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/gcd_convolution.test.cpp
     title: test/library_checker/math/gcd_convolution.test.cpp
   - icon: ':x:'
     path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/lcm_convolution.test.cpp
     title: test/library_checker/math/lcm_convolution.test.cpp
   - icon: ':x:'
@@ -174,7 +174,7 @@ data:
   - icon: ':x:'
     path: test/library_checker/math/sharp_p_subset_sum.test.cpp
     title: test/library_checker/math/sharp_p_subset_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/sqrt_mod.test.cpp
     title: test/library_checker/math/sqrt_mod.test.cpp
   - icon: ':x:'
@@ -186,28 +186,28 @@ data:
   - icon: ':x:'
     path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/charactereistic_poly.test.cpp
     title: test/library_checker/matrix/charactereistic_poly.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/hafnian_of_matrix.test.cpp
     title: test/library_checker/matrix/hafnian_of_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/inverse_matrix.test.cpp
     title: test/library_checker/matrix/inverse_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/matrix_det.test.cpp
     title: test/library_checker/matrix/matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/matrix_product.test.cpp
     title: test/library_checker/matrix/matrix_product.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/solve_linear.test.cpp
     title: test/library_checker/matrix/solve_linear.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/sparse_matrix_det.test.cpp
     title: test/library_checker/matrix/sparse_matrix_det.test.cpp
   - icon: ':x:'
@@ -249,22 +249,22 @@ data:
   - icon: ':x:'
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1810_matpow.test.cpp
     title: test/yukicoder/1810_matpow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1891_xor_sparse.test.cpp
     title: test/yukicoder/1891_xor_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/235_lazytreemonoid.test.cpp
     title: test/yukicoder/235_lazytreemonoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
   - icon: ':x:'
     path: test/yukicoder/502_p_rec.test.cpp
     title: test/yukicoder/502_p_rec.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/749_lazysegtree.test.cpp
     title: test/yukicoder/749_lazysegtree.test.cpp
   _isVerificationFailed: true
@@ -323,18 +323,18 @@ data:
     \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
     \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
     \  }\n    return ret;\n  }\n};\n\ntemplate <typename mint>\ntuple<mint, mint,\
-    \ mint> get_factorial_data(int n) {\n  static constexpr int mod = mint::get_mod();\n\
+    \ mint> get_factorial_data(int n) {\n  static const int mod = mint::get_mod();\n\
     \  assert(0 <= n && n < mod);\n  static vector<mint> fact = {1, 1};\n  static\
     \ vector<mint> fact_inv = {1, 1};\n  static vector<mint> inv = {0, 1};\n  while\
     \ (len(fact) <= n) {\n    int k = len(fact);\n    fact.eb(fact[k - 1] * mint(k));\n\
     \    auto q = ceil(mod, k);\n    int r = k * q - mod;\n    inv.eb(inv[r] * mint(q));\n\
     \    fact_inv.eb(fact_inv[k - 1] * inv[k]);\n  }\n  return {fact[n], fact_inv[n],\
-    \ inv[n]};\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static constexpr\
+    \ inv[n]};\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const\
     \ int mod = mint::get_mod();\n  assert(0 <= n);\n  if (n >= mod) return 0;\n \
     \ return get<0>(get_factorial_data<mint>(n));\n}\n\ntemplate <typename mint>\n\
-    mint fact_inv(int n) {\n  static constexpr int mod = mint::get_mod();\n  assert(0\
+    mint fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  assert(0\
     \ <= n && n < mod);\n  return get<1>(get_factorial_data<mint>(n));\n}\n\ntemplate\
-    \ <typename mint>\nmint inv(int n) {\n  static constexpr int mod = mint::get_mod();\n\
+    \ <typename mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n\
     \  assert(0 <= n && n < mod);\n  return get<2>(get_factorial_data<mint>(n));\n\
     }\n\ntemplate <typename mint, bool large = false>\nmint C(ll n, ll k) {\n  assert(n\
     \ >= 0);\n  if (k < 0 || n < k) return 0;\n  if (!large) return fact<mint>(n)\
@@ -396,18 +396,18 @@ data:
     \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
     \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
     \  }\n    return ret;\n  }\n};\n\ntemplate <typename mint>\ntuple<mint, mint,\
-    \ mint> get_factorial_data(int n) {\n  static constexpr int mod = mint::get_mod();\n\
+    \ mint> get_factorial_data(int n) {\n  static const int mod = mint::get_mod();\n\
     \  assert(0 <= n && n < mod);\n  static vector<mint> fact = {1, 1};\n  static\
     \ vector<mint> fact_inv = {1, 1};\n  static vector<mint> inv = {0, 1};\n  while\
     \ (len(fact) <= n) {\n    int k = len(fact);\n    fact.eb(fact[k - 1] * mint(k));\n\
     \    auto q = ceil(mod, k);\n    int r = k * q - mod;\n    inv.eb(inv[r] * mint(q));\n\
     \    fact_inv.eb(fact_inv[k - 1] * inv[k]);\n  }\n  return {fact[n], fact_inv[n],\
-    \ inv[n]};\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static constexpr\
+    \ inv[n]};\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const\
     \ int mod = mint::get_mod();\n  assert(0 <= n);\n  if (n >= mod) return 0;\n \
     \ return get<0>(get_factorial_data<mint>(n));\n}\n\ntemplate <typename mint>\n\
-    mint fact_inv(int n) {\n  static constexpr int mod = mint::get_mod();\n  assert(0\
+    mint fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  assert(0\
     \ <= n && n < mod);\n  return get<1>(get_factorial_data<mint>(n));\n}\n\ntemplate\
-    \ <typename mint>\nmint inv(int n) {\n  static constexpr int mod = mint::get_mod();\n\
+    \ <typename mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n\
     \  assert(0 <= n && n < mod);\n  return get<2>(get_factorial_data<mint>(n));\n\
     }\n\ntemplate <typename mint, bool large = false>\nmint C(ll n, ll k) {\n  assert(n\
     \ >= 0);\n  if (k < 0 || n < k) return 0;\n  if (!large) return fact<mint>(n)\
@@ -453,7 +453,7 @@ data:
   - seq/interpolate_poly_exp_sum.hpp
   - mod/mod_log.hpp
   - mod/mod_sqrt.hpp
-  timestamp: '2022-04-22 16:55:40+09:00'
+  timestamp: '2022-05-02 13:07:10+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/749_lazysegtree.test.cpp

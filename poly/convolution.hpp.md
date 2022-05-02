@@ -17,7 +17,7 @@ data:
   - icon: ':x:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/multiplicative_convolution_mod2n.hpp
     title: nt/multiplicative_convolution_mod2n.hpp
   - icon: ':warning:'
@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/convolution_huge.hpp
     title: poly/convolution_huge.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/convolution_mod_2_64.hpp
     title: poly/convolution_mod_2_64.hpp
   - icon: ':x:'
@@ -56,10 +56,10 @@ data:
   - icon: ':x:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/multivar_convolution.hpp
     title: poly/multivar_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online_convolution.hpp
     title: poly/online_convolution.hpp
   - icon: ':x:'
@@ -105,19 +105,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_107.test.cpp
     title: test/library_checker/convolution/convolution_mod_107.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
     title: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/convolution_mod_2_64.test.cpp
     title: test/library_checker/convolution/convolution_mod_2_64.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
     title: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/multivariate_convolution.test.cpp
     title: test/library_checker/convolution/multivariate_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/online_convolution.test.cpp
     title: test/library_checker/convolution/online_convolution.test.cpp
   - icon: ':x:'
@@ -239,18 +239,18 @@ data:
     \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
     \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
     \  }\n    return ret;\n  }\n};\n\ntemplate <typename mint>\ntuple<mint, mint,\
-    \ mint> get_factorial_data(int n) {\n  static constexpr int mod = mint::get_mod();\n\
+    \ mint> get_factorial_data(int n) {\n  static const int mod = mint::get_mod();\n\
     \  assert(0 <= n && n < mod);\n  static vector<mint> fact = {1, 1};\n  static\
     \ vector<mint> fact_inv = {1, 1};\n  static vector<mint> inv = {0, 1};\n  while\
     \ (len(fact) <= n) {\n    int k = len(fact);\n    fact.eb(fact[k - 1] * mint(k));\n\
     \    auto q = ceil(mod, k);\n    int r = k * q - mod;\n    inv.eb(inv[r] * mint(q));\n\
     \    fact_inv.eb(fact_inv[k - 1] * inv[k]);\n  }\n  return {fact[n], fact_inv[n],\
-    \ inv[n]};\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static constexpr\
+    \ inv[n]};\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const\
     \ int mod = mint::get_mod();\n  assert(0 <= n);\n  if (n >= mod) return 0;\n \
     \ return get<0>(get_factorial_data<mint>(n));\n}\n\ntemplate <typename mint>\n\
-    mint fact_inv(int n) {\n  static constexpr int mod = mint::get_mod();\n  assert(0\
+    mint fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  assert(0\
     \ <= n && n < mod);\n  return get<1>(get_factorial_data<mint>(n));\n}\n\ntemplate\
-    \ <typename mint>\nmint inv(int n) {\n  static constexpr int mod = mint::get_mod();\n\
+    \ <typename mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n\
     \  assert(0 <= n && n < mod);\n  return get<2>(get_factorial_data<mint>(n));\n\
     }\n\ntemplate <typename mint, bool large = false>\nmint C(ll n, ll k) {\n  assert(n\
     \ >= 0);\n  if (k < 0 || n < k) return 0;\n  if (!large) return fact<mint>(n)\
@@ -513,7 +513,7 @@ data:
   - seq/coef_of_rational_fps.hpp
   - seq/kth_term_of_p_recursive.hpp
   - seq/interpolate_poly_exp_sum.hpp
-  timestamp: '2022-05-02 12:36:42+09:00'
+  timestamp: '2022-05-02 13:07:10+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/502_p_rec.test.cpp

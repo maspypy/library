@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':question:'
@@ -16,6 +16,12 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
+  - icon: ':x:'
+    path: poly/count_terms.hpp
+    title: poly/count_terms.hpp
+  - icon: ':x:'
+    path: poly/differentiate.hpp
+    title: poly/differentiate.hpp
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
@@ -31,6 +37,9 @@ data:
   - icon: ':x:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
+  - icon: ':x:'
+    path: poly/integrate.hpp
+    title: poly/integrate.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
@@ -117,19 +126,19 @@ data:
     \ ArbitraryModInt(u);\n  }\n  ArbitraryModInt pow(int64_t n) const {\n    ArbitraryModInt\
     \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
     \ mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n};\n\ntemplate <typename\
-    \ mint>\ntuple<mint, mint, mint> get_factorial_data(int n) {\n  static constexpr\
-    \ int mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint>\
+    \ mint>\ntuple<mint, mint, mint> get_factorial_data(int n) {\n  static const int\
+    \ mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint>\
     \ fact = {1, 1};\n  static vector<mint> fact_inv = {1, 1};\n  static vector<mint>\
     \ inv = {0, 1};\n  while (len(fact) <= n) {\n    int k = len(fact);\n    fact.eb(fact[k\
     \ - 1] * mint(k));\n    auto q = ceil(mod, k);\n    int r = k * q - mod;\n   \
     \ inv.eb(inv[r] * mint(q));\n    fact_inv.eb(fact_inv[k - 1] * inv[k]);\n  }\n\
     \  return {fact[n], fact_inv[n], inv[n]};\n}\n\ntemplate <typename mint>\nmint\
-    \ fact(int n) {\n  static constexpr int mod = mint::get_mod();\n  assert(0 <=\
-    \ n);\n  if (n >= mod) return 0;\n  return get<0>(get_factorial_data<mint>(n));\n\
-    }\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static constexpr int\
-    \ mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  return get<1>(get_factorial_data<mint>(n));\n\
-    }\n\ntemplate <typename mint>\nmint inv(int n) {\n  static constexpr int mod =\
-    \ mint::get_mod();\n  assert(0 <= n && n < mod);\n  return get<2>(get_factorial_data<mint>(n));\n\
+    \ fact(int n) {\n  static const int mod = mint::get_mod();\n  assert(0 <= n);\n\
+    \  if (n >= mod) return 0;\n  return get<0>(get_factorial_data<mint>(n));\n}\n\
+    \ntemplate <typename mint>\nmint fact_inv(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  assert(0 <= n && n < mod);\n  return get<1>(get_factorial_data<mint>(n));\n\
+    }\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  assert(0 <= n && n < mod);\n  return get<2>(get_factorial_data<mint>(n));\n\
     }\n\ntemplate <typename mint, bool large = false>\nmint C(ll n, ll k) {\n  assert(n\
     \ >= 0);\n  if (k < 0 || n < k) return 0;\n  if (!large) return fact<mint>(n)\
     \ * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k, n - k);\n  mint x(1);\n\
@@ -299,25 +308,61 @@ data:
     \ N) a[i] *= fact<mint>(i);\r\n  auto b = powertable_1<mint>(c, N);\r\n  FOR(i,\
     \ N) b[i] *= fact_inv<mint>(i);\r\n  reverse(all(a));\r\n  auto f = convolution(a,\
     \ b);\r\n  f.resize(N);\r\n  reverse(all(f));\r\n  FOR(i, N) f[i] *= fact_inv<mint>(i);\r\
-    \n  return f;\r\n}\r\n#line 3 \"poly/fps_exp.hpp\"\ntemplate <typename mint>\r\
-    \nvc<mint> fps_exp(vc<mint>& f) {\r\n  const int n = len(f);\r\n  assert(n > 0\
-    \ && f[0] == mint(0));\r\n  vc<mint> b = {1, (1 < n ? f[1] : 0)};\r\n  vc<mint>\
-    \ c = {1}, z1, z2 = {1, 1};\r\n  while (len(b) < n) {\r\n    int m = len(b);\r\
-    \n    auto y = b;\r\n    y.resize(2 * m);\r\n    ntt(y, 0);\r\n    z1 = z2;\r\n\
-    \    vc<mint> z(m);\r\n    FOR(i, m) z[i] = y[i] * z1[i];\r\n    ntt(z, 1);\r\n\
-    \    FOR(i, m / 2) z[i] = 0;\r\n    ntt(z, 0);\r\n    FOR(i, m) z[i] *= -z1[i];\r\
-    \n    ntt(z, 1);\r\n    c.insert(c.end(), z.begin() + m / 2, z.end());\r\n   \
-    \ z2 = c;\r\n    z2.resize(2 * m);\r\n    ntt(z2, 0);\r\n\r\n    vc<mint> x(f.begin(),\
-    \ f.begin() + m);\r\n    FOR(i, len(x) - 1) x[i] = x[i + 1] * mint(i + 1);\r\n\
-    \    x.back() = 0;\r\n    ntt(x, 0);\r\n    FOR(i, m) x[i] *= y[i];\r\n    ntt(x,\
-    \ 1);\r\n\r\n    FOR(i, m - 1) x[i] -= b[i + 1] * mint(i + 1);\r\n\r\n    x.resize(m\
-    \ + m);\r\n    FOR(i, m - 1) x[m + i] = x[i], x[i] = 0;\r\n    ntt(x, 0);\r\n\
-    \    FOR(i, m + m) x[i] *= z2[i];\r\n    ntt(x, 1);\r\n    FOR_R(i, len(x) - 1)\
-    \ x[i + 1] = x[i] * inv<mint>(i + 1);\r\n    x[0] = 0;\r\n\r\n    FOR3(i, m, min(n,\
-    \ m + m)) x[i] += f[i];\r\n    FOR(i, m) x[i] = 0;\r\n    ntt(x, 0);\r\n    FOR(i,\
-    \ m + m) x[i] *= y[i];\r\n    ntt(x, 1);\r\n    b.insert(b.end(), x.begin() +\
-    \ m, x.end());\r\n  }\r\n  b.resize(n);\r\n  return b;\r\n}\r\n#line 2 \"poly/fps_inv.hpp\"\
-    \n\r\n#line 4 \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv(const\
+    \n  return f;\r\n}\r\n#line 2 \"poly/integrate.hpp\"\n\ntemplate <typename mint>\n\
+    vc<mint> integrate(const vc<mint>& f) {\n  vc<mint> g(len(f) + 1);\n  FOR3(i,\
+    \ 1, len(g)) g[i] = f[i - 1] * inv<mint>(i);\n  return g;\n}\n#line 2 \"poly/differentiate.hpp\"\
+    \n\ntemplate <typename mint>\nvc<mint> differentiate(const vc<mint>& f) {\n  if\
+    \ (len(f) <= 1) return {};\n  vc<mint> g(len(f) - 1);\n  FOR(i, len(g)) g[i] =\
+    \ f[i + 1] * mint(i + 1);\n  return g;\n}\n#line 2 \"poly/count_terms.hpp\"\n\
+    template<typename mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t = 0;\r\
+    \n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 6 \"poly/fps_exp.hpp\"\
+    \n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint, modint998>::value,\
+    \ vc<mint>> fps_exp(vc<mint>& f) {\r\n  if (count_terms(f) <= 200) return fps_exp_sparse(f);\r\
+    \n  return fps_exp_dense(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<!is_same<mint,\
+    \ modint998>::value, vc<mint>> fps_exp(vc<mint>& f) {\r\n  if (count_terms(f)\
+    \ <= 1000) return fps_exp_sparse(f);\r\n  return fps_exp_dense(f);\r\n}\r\n\r\n\
+    template <typename mint>\r\nvc<mint> fps_exp_sparse(vc<mint>& f) {\r\n  if (len(f)\
+    \ == 0) return {mint(1)};\r\n  assert(f[0] == 0);\r\n  int N = len(f);\r\n  //\
+    \ df \u3092\u6301\u305F\u305B\u308B\r\n  vc<pair<int, mint>> dat;\r\n  FOR3(i,\
+    \ 1, N) if (f[i] != mint(0)) dat.eb(i - 1, mint(i) * f[i]);\r\n  vc<mint> F(N);\r\
+    \n  F[0] = 1;\r\n  FOR3(n, 1, N) {\r\n    mint rhs = 0;\r\n    for (auto&& [k,\
+    \ fk]: dat) {\r\n      if (k <= n - 1) rhs += fk * F[n - 1 - k];\r\n    }\r\n\
+    \    F[n] = rhs * inv<mint>(n);\r\n  }\r\n  return F;\r\n}\r\n\r\ntemplate <typename\
+    \ mint>\r\nenable_if_t<!is_same<mint, modint998>::value, vc<mint>> fps_exp_dense(\r\
+    \n    vc<mint> h) {\r\n  const int L = len(h);\r\n  assert(L > 0 && h[0] == mint(0));\r\
+    \n  int LOG = 0;\r\n  while (1 << LOG < L) ++LOG;\r\n  h.resize(1 << LOG);\r\n\
+    \  auto dh = differentiate(h);\r\n  vc<mint> f = {1}, g = {1};\r\n  int m = 1;\r\
+    \n\r\n  vc<mint> p;\r\n\r\n  FOR_(LOG) {\r\n    p = convolution(f, g);\r\n   \
+    \ p.resize(m);\r\n    p = convolution(p, g);\r\n    p.resize(m);\r\n    g.resize(m);\r\
+    \n    FOR(i, m) g[i] += g[i] - p[i];\r\n    p = {dh.begin(), dh.begin() + m -\
+    \ 1};\r\n    p = convolution(f, p);\r\n    p.resize(m + m - 1);\r\n    FOR(i,\
+    \ m + m - 1) p[i] = -p[i];\r\n    FOR(i, m - 1) p[i] += mint(i + 1) * f[i + 1];\r\
+    \n    p = convolution(p, g);\r\n\r\n    p.resize(m + m - 1);\r\n    FOR(i, m -\
+    \ 1) p[i] += dh[i];\r\n    p = integrate(p);\r\n    FOR(i, m + m) p[i] = h[i]\
+    \ - p[i];\r\n    p[0] += mint(1);\r\n    f = convolution(f, p);\r\n    f.resize(m\
+    \ + m);\r\n    m += m;\r\n  }\r\n  f.resize(L);\r\n  return f;\r\n}\r\n\r\n//\
+    \ ntt \u7D20\u6570\u5C02\u7528\u5B9F\u88C5\u3002\u9577\u3055 n \u306E FFT \u3092\
+    \u5229\u7528\u3057\u3066 2n \u306E FFT\r\n// \u3092\u884C\u3046\u306A\u3069\u306E\
+    \u9AD8\u901F\u5316\u3092\u3057\u3066\u3044\u308B\u3002\r\ntemplate <typename mint>\r\
+    \nenable_if_t<is_same<mint, modint998>::value, vc<mint>> fps_exp_dense(\r\n  \
+    \  vc<mint>& f) {\r\n  const int n = len(f);\r\n  assert(n > 0 && f[0] == mint(0));\r\
+    \n  vc<mint> b = {1, (1 < n ? f[1] : 0)};\r\n  vc<mint> c = {1}, z1, z2 = {1,\
+    \ 1};\r\n  while (len(b) < n) {\r\n    int m = len(b);\r\n    auto y = b;\r\n\
+    \    y.resize(2 * m);\r\n    ntt(y, 0);\r\n    z1 = z2;\r\n    vc<mint> z(m);\r\
+    \n    FOR(i, m) z[i] = y[i] * z1[i];\r\n    ntt(z, 1);\r\n    FOR(i, m / 2) z[i]\
+    \ = 0;\r\n    ntt(z, 0);\r\n    FOR(i, m) z[i] *= -z1[i];\r\n    ntt(z, 1);\r\n\
+    \    c.insert(c.end(), z.begin() + m / 2, z.end());\r\n    z2 = c;\r\n    z2.resize(2\
+    \ * m);\r\n    ntt(z2, 0);\r\n\r\n    vc<mint> x(f.begin(), f.begin() + m);\r\n\
+    \    FOR(i, len(x) - 1) x[i] = x[i + 1] * mint(i + 1);\r\n    x.back() = 0;\r\n\
+    \    ntt(x, 0);\r\n    FOR(i, m) x[i] *= y[i];\r\n    ntt(x, 1);\r\n\r\n    FOR(i,\
+    \ m - 1) x[i] -= b[i + 1] * mint(i + 1);\r\n\r\n    x.resize(m + m);\r\n    FOR(i,\
+    \ m - 1) x[m + i] = x[i], x[i] = 0;\r\n    ntt(x, 0);\r\n    FOR(i, m + m) x[i]\
+    \ *= z2[i];\r\n    ntt(x, 1);\r\n    FOR_R(i, len(x) - 1) x[i + 1] = x[i] * inv<mint>(i\
+    \ + 1);\r\n    x[0] = 0;\r\n\r\n    FOR3(i, m, min(n, m + m)) x[i] += f[i];\r\n\
+    \    FOR(i, m) x[i] = 0;\r\n    ntt(x, 0);\r\n    FOR(i, m + m) x[i] *= y[i];\r\
+    \n    ntt(x, 1);\r\n    b.insert(b.end(), x.begin() + m, x.end());\r\n  }\r\n\
+    \  b.resize(n);\r\n  return b;\r\n}\r\n#line 2 \"poly/fps_inv.hpp\"\n\r\n#line\
+    \ 4 \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv(const\
     \ vc<mint>& F) {\r\n  assert(F[0] != mint(0));\r\n  vc<mint> G = {mint(1) / F[0]};\r\
     \n  G.reserve(len(F));\r\n  ll N = len(F), n = 1;\r\n  while (n < N) {\r\n   \
     \ vc<mint> f(2 * n), g(2 * n);\r\n    FOR(i, min(N, 2 * n)) f[i] = F[i];\r\n \
@@ -405,12 +450,15 @@ data:
   - poly/fft.hpp
   - poly/fps_pow.hpp
   - poly/fps_exp.hpp
+  - poly/integrate.hpp
+  - poly/differentiate.hpp
+  - poly/count_terms.hpp
   - poly/fps_log.hpp
   - poly/fps_inv.hpp
   isVerificationFile: false
   path: seq/stirling_number_1.hpp
   requiredBy: []
-  timestamp: '2022-05-02 12:36:42+09:00'
+  timestamp: '2022-05-02 13:07:30+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp

@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/swag.hpp
     title: ds/swag.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
   - icon: ':question:'
@@ -118,18 +118,18 @@ data:
     \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
     \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
     \  }\n    return ret;\n  }\n};\n\ntemplate <typename mint>\ntuple<mint, mint,\
-    \ mint> get_factorial_data(int n) {\n  static constexpr int mod = mint::get_mod();\n\
+    \ mint> get_factorial_data(int n) {\n  static const int mod = mint::get_mod();\n\
     \  assert(0 <= n && n < mod);\n  static vector<mint> fact = {1, 1};\n  static\
     \ vector<mint> fact_inv = {1, 1};\n  static vector<mint> inv = {0, 1};\n  while\
     \ (len(fact) <= n) {\n    int k = len(fact);\n    fact.eb(fact[k - 1] * mint(k));\n\
     \    auto q = ceil(mod, k);\n    int r = k * q - mod;\n    inv.eb(inv[r] * mint(q));\n\
     \    fact_inv.eb(fact_inv[k - 1] * inv[k]);\n  }\n  return {fact[n], fact_inv[n],\
-    \ inv[n]};\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static constexpr\
+    \ inv[n]};\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const\
     \ int mod = mint::get_mod();\n  assert(0 <= n);\n  if (n >= mod) return 0;\n \
     \ return get<0>(get_factorial_data<mint>(n));\n}\n\ntemplate <typename mint>\n\
-    mint fact_inv(int n) {\n  static constexpr int mod = mint::get_mod();\n  assert(0\
+    mint fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  assert(0\
     \ <= n && n < mod);\n  return get<1>(get_factorial_data<mint>(n));\n}\n\ntemplate\
-    \ <typename mint>\nmint inv(int n) {\n  static constexpr int mod = mint::get_mod();\n\
+    \ <typename mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n\
     \  assert(0 <= n && n < mod);\n  return get<2>(get_factorial_data<mint>(n));\n\
     }\n\ntemplate <typename mint, bool large = false>\nmint C(ll n, ll k) {\n  assert(n\
     \ >= 0);\n  if (k < 0 || n < k) return 0;\n  if (!large) return fact<mint>(n)\
@@ -380,7 +380,7 @@ data:
   isVerificationFile: false
   path: seq/kth_term_of_p_recursive.hpp
   requiredBy: []
-  timestamp: '2022-05-02 12:36:42+09:00'
+  timestamp: '2022-05-02 13:07:10+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/502_p_rec.test.cpp

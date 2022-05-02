@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_cntsum.hpp
     title: alg/group_cntsum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/lazy_cntsum_add.hpp
     title: alg/lazy_cntsum_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/lazy_reverse.hpp
     title: alg/lazy_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid_reverse.hpp
     title: alg/monoid_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
   - icon: ':question:'
@@ -39,9 +39,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/235
@@ -466,19 +466,19 @@ data:
     \ ArbitraryModInt(u);\n  }\n  ArbitraryModInt pow(int64_t n) const {\n    ArbitraryModInt\
     \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
     \ mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n};\n\ntemplate <typename\
-    \ mint>\ntuple<mint, mint, mint> get_factorial_data(int n) {\n  static constexpr\
-    \ int mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint>\
+    \ mint>\ntuple<mint, mint, mint> get_factorial_data(int n) {\n  static const int\
+    \ mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint>\
     \ fact = {1, 1};\n  static vector<mint> fact_inv = {1, 1};\n  static vector<mint>\
     \ inv = {0, 1};\n  while (len(fact) <= n) {\n    int k = len(fact);\n    fact.eb(fact[k\
     \ - 1] * mint(k));\n    auto q = ceil(mod, k);\n    int r = k * q - mod;\n   \
     \ inv.eb(inv[r] * mint(q));\n    fact_inv.eb(fact_inv[k - 1] * inv[k]);\n  }\n\
     \  return {fact[n], fact_inv[n], inv[n]};\n}\n\ntemplate <typename mint>\nmint\
-    \ fact(int n) {\n  static constexpr int mod = mint::get_mod();\n  assert(0 <=\
-    \ n);\n  if (n >= mod) return 0;\n  return get<0>(get_factorial_data<mint>(n));\n\
-    }\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static constexpr int\
-    \ mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  return get<1>(get_factorial_data<mint>(n));\n\
-    }\n\ntemplate <typename mint>\nmint inv(int n) {\n  static constexpr int mod =\
-    \ mint::get_mod();\n  assert(0 <= n && n < mod);\n  return get<2>(get_factorial_data<mint>(n));\n\
+    \ fact(int n) {\n  static const int mod = mint::get_mod();\n  assert(0 <= n);\n\
+    \  if (n >= mod) return 0;\n  return get<0>(get_factorial_data<mint>(n));\n}\n\
+    \ntemplate <typename mint>\nmint fact_inv(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  assert(0 <= n && n < mod);\n  return get<1>(get_factorial_data<mint>(n));\n\
+    }\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  assert(0 <= n && n < mod);\n  return get<2>(get_factorial_data<mint>(n));\n\
     }\n\ntemplate <typename mint, bool large = false>\nmint C(ll n, ll k) {\n  assert(n\
     \ >= 0);\n  if (k < 0 || n < k) return 0;\n  if (!large) return fact<mint>(n)\
     \ * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k, n - k);\n  mint x(1);\n\
@@ -525,8 +525,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/235_lazytreemonoid.test.cpp
   requiredBy: []
-  timestamp: '2022-04-29 17:34:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-05-02 13:07:10+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/235_lazytreemonoid.test.cpp
 layout: document

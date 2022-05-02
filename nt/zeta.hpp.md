@@ -11,10 +11,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/gcd_convolution.hpp
     title: nt/gcd_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/lcm_convolution.hpp
     title: nt/lcm_convolution.hpp
   - icon: ':warning:'
@@ -24,18 +24,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_D_eulerphi.test.cpp
     title: test/aoj/NTL_1_D_eulerphi.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/gcd_convolution.test.cpp
     title: test/library_checker/math/gcd_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/lcm_convolution.test.cpp
     title: test/library_checker/math/lcm_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\nvc<ll> primetable(int LIM) {\n  ++LIM;\n\
@@ -83,7 +83,7 @@ data:
   - nt/gcd_convolution.hpp
   - mod/tetration.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/math/tetration.test.cpp
   - test/library_checker/math/lcm_convolution.test.cpp
