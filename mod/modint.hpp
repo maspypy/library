@@ -121,7 +121,7 @@ struct ArbitraryModInt {
 
 template <typename mint>
 tuple<mint, mint, mint> get_factorial_data(int n) {
-  static constexpr int mod = mint::get_mod();
+  static const int mod = mint::get_mod();
   assert(0 <= n && n < mod);
   static vector<mint> fact = {1, 1};
   static vector<mint> fact_inv = {1, 1};
@@ -139,7 +139,7 @@ tuple<mint, mint, mint> get_factorial_data(int n) {
 
 template <typename mint>
 mint fact(int n) {
-  static constexpr int mod = mint::get_mod();
+  static const int mod = mint::get_mod();
   assert(0 <= n);
   if (n >= mod) return 0;
   return get<0>(get_factorial_data<mint>(n));
@@ -147,14 +147,14 @@ mint fact(int n) {
 
 template <typename mint>
 mint fact_inv(int n) {
-  static constexpr int mod = mint::get_mod();
+  static const int mod = mint::get_mod();
   assert(0 <= n && n < mod);
   return get<1>(get_factorial_data<mint>(n));
 }
 
 template <typename mint>
 mint inv(int n) {
-  static constexpr int mod = mint::get_mod();
+  static const int mod = mint::get_mod();
   assert(0 <= n && n < mod);
   return get<2>(get_factorial_data<mint>(n));
 }
