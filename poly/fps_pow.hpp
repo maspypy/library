@@ -8,7 +8,7 @@
 // ・dense な場合： log, exp を使う O(NlogN)
 // ・sparse な場合： O(NK)
 template <typename mint>
-vc<mint> fps_pow(const vc<mint>& f, ll k, bool force_sparse = 0) {
+vc<mint> fps_pow(const vc<mint>& f, ll k) {
   int n = len(f);
   int d = n;
   FOR_R(i, n) if (f[i] != 0) d = i;
@@ -18,7 +18,7 @@ vc<mint> fps_pow(const vc<mint>& f, ll k, bool force_sparse = 0) {
   mint c_inv = mint(1) / mint(c);
   vc<mint> g(n - off);
   FOR(i, n - off) g[i] = f[d + i] * c_inv;
-  g = fps_pow_1(g, mint(k), force_sparse);
+  g = fps_pow_1(g, mint(k));
   vc<mint> h(n);
   c = c.pow(k);
   FOR(i, len(g)) h[off + i] = g[i] * c;
