@@ -13,6 +13,9 @@ data:
     path: test/aoj/2251_maxantichain.test.cpp
     title: test/aoj/2251_maxantichain.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/275_dag_reachability.test.cpp
+    title: test/aoj/275_dag_reachability.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2842_fenwick2d_dense.test.cpp
     title: test/aoj/2842_fenwick2d_dense.test.cpp
   - icon: ':heavy_check_mark:'
@@ -271,9 +274,6 @@ data:
     path: test/library_checker/graph/maximum_independent_set.test.cpp
     title: test/library_checker/graph/maximum_independent_set.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/scc.test.cpp
-    title: test/library_checker/graph/scc.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/shortest_path.test.cpp
     title: test/library_checker/graph/shortest_path.test.cpp
   - icon: ':heavy_check_mark:'
@@ -342,9 +342,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/totient_sum.test.cpp
     title: test/library_checker/math/totient_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/twosat.test.cpp
-    title: test/library_checker/math/twosat.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/charactereistic_poly.test.cpp
     title: test/library_checker/matrix/charactereistic_poly.test.cpp
@@ -507,7 +504,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_factorial107.test.cpp
     title: test/yukicoder/502_factorial107.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_p_rec.test.cpp
     title: test/yukicoder/502_p_rec.test.cpp
   - icon: ':heavy_check_mark:'
@@ -516,7 +513,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/705_monge_shortest_path.test.cpp
     title: test/yukicoder/705_monge_shortest_path.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/749_lazysegtree.test.cpp
     title: test/yukicoder/749_lazysegtree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -739,7 +736,6 @@ data:
   - test/library_checker/graph/shortest_path.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
   - test/library_checker/graph/enumerate_triangles.test.cpp
-  - test/library_checker/graph/scc.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/cycle_detection.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
@@ -770,7 +766,6 @@ data:
   - test/library_checker/math/sqrt_mod.test.cpp
   - test/library_checker/math/partition.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  - test/library_checker/math/twosat.test.cpp
   - test/library_checker/math/nim_product.test.cpp
   - test/library_checker/math/totient_sum.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
@@ -803,6 +798,7 @@ data:
   - test/library_checker/sample/many_aplusb.test.cpp
   - test/aoj/DPL_5_C_count_surjection.test.cpp
   - test/aoj/ALDS1_12_B_dial.test.cpp
+  - test/aoj/275_dag_reachability.test.cpp
   - test/aoj/ALDS1_1_C_primetest.test.cpp
   - test/aoj/DPL_1_B_kanpsack01.test.cpp
   - test/aoj/ITP1_D_D_divisors.test.cpp

@@ -6,15 +6,12 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: graph/twosat.hpp
-    title: graph/twosat.hpp
+    path: graph/reachability.hpp
+    title: graph/reachability.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/scc.test.cpp
-    title: test/library_checker/graph/scc.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/twosat.test.cpp
-    title: test/library_checker/math/twosat.test.cpp
+    path: test/aoj/275_dag_reachability.test.cpp
+    title: test/aoj/275_dag_reachability.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -52,49 +49,46 @@ data:
     Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
     \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
     , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 3 \"graph/scc.hpp\"\
-    \n\ntemplate <typename Graph>\nstruct SCC {\n  Graph &G;\n  int N;\n  int cnt;\n\
-    \  vc<int> comp;\n  vc<int> low;\n  vc<int> ord;\n  vc<int> visited;\n  int now\
-    \ = 0;\n\n  SCC(Graph &G)\n      : G(G), N(G.N), cnt(0), comp(G.N, 0), low(G.N,\
-    \ 0), ord(G.N, -1) {\n    assert(G.is_directed());\n    assert(G.is_prepared());\n\
-    \    build();\n  }\n\n  int operator[](int v) { return comp[v]; }\n\n  void dfs(int\
-    \ v) {\n    low[v] = now;\n    ord[v] = now;\n    ++now;\n    visited.eb(v);\n\
-    \    for (auto &&[frm, to, cost, id]: G[v]) {\n      if (ord[to] == -1) {\n  \
-    \      dfs(to);\n        chmin(low[v], low[to]);\n      } else {\n        chmin(low[v],\
-    \ ord[to]);\n      }\n    }\n    if (low[v] == ord[v]) {\n      while (1) {\n\
-    \        int u = visited.back();\n        visited.pop_back();\n        ord[u]\
-    \ = N;\n        comp[u] = cnt;\n        if (u == v) break;\n      }\n      ++cnt;\n\
-    \    }\n  }\n\n  void build() {\n    FOR(v, N) {\n      if (ord[v] == -1) dfs(v);\n\
-    \    }\n    FOR(v, N) comp[v] = cnt - 1 - comp[v];\n  }\n};\n"
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 3 \"graph/strongly_connected_component.hpp\"\
+    \n\ntemplate <typename Graph>\npair<int, vc<int>> strongly_connected_component(Graph\
+    \ &G) {\n  assert(G.is_directed());\n  assert(G.is_prepared());\n  int N = G.N;\n\
+    \  int C = 0;\n  vc<int> comp(N);\n  vc<int> low(N);\n  vc<int> ord(N, -1);\n\
+    \  vc<int> visited;\n  int now = 0;\n\n  auto dfs = [&](auto self, int v) -> void\
+    \ {\n    low[v] = now;\n    ord[v] = now;\n    ++now;\n    visited.eb(v);\n  \
+    \  for (auto &&[frm, to, cost, id]: G[v]) {\n      if (ord[to] == -1) {\n    \
+    \    self(self, to);\n        chmin(low[v], low[to]);\n      } else {\n      \
+    \  chmin(low[v], ord[to]);\n      }\n    }\n    if (low[v] == ord[v]) {\n    \
+    \  while (1) {\n        int u = visited.back();\n        visited.pop_back();\n\
+    \        ord[u] = N;\n        comp[u] = C;\n        if (u == v) break;\n     \
+    \ }\n      ++C;\n    }\n  };\n  FOR(v, N) {\n    if (ord[v] == -1) dfs(dfs, v);\n\
+    \  }\n  FOR(v, N) comp[v] = C - 1 - comp[v];\n  return {C, comp};\n}\n"
   code: "#pragma once\n#include \"graph/base.hpp\"\n\ntemplate <typename Graph>\n\
-    struct SCC {\n  Graph &G;\n  int N;\n  int cnt;\n  vc<int> comp;\n  vc<int> low;\n\
-    \  vc<int> ord;\n  vc<int> visited;\n  int now = 0;\n\n  SCC(Graph &G)\n     \
-    \ : G(G), N(G.N), cnt(0), comp(G.N, 0), low(G.N, 0), ord(G.N, -1) {\n    assert(G.is_directed());\n\
-    \    assert(G.is_prepared());\n    build();\n  }\n\n  int operator[](int v) {\
-    \ return comp[v]; }\n\n  void dfs(int v) {\n    low[v] = now;\n    ord[v] = now;\n\
-    \    ++now;\n    visited.eb(v);\n    for (auto &&[frm, to, cost, id]: G[v]) {\n\
-    \      if (ord[to] == -1) {\n        dfs(to);\n        chmin(low[v], low[to]);\n\
-    \      } else {\n        chmin(low[v], ord[to]);\n      }\n    }\n    if (low[v]\
-    \ == ord[v]) {\n      while (1) {\n        int u = visited.back();\n        visited.pop_back();\n\
-    \        ord[u] = N;\n        comp[u] = cnt;\n        if (u == v) break;\n   \
-    \   }\n      ++cnt;\n    }\n  }\n\n  void build() {\n    FOR(v, N) {\n      if\
-    \ (ord[v] == -1) dfs(v);\n    }\n    FOR(v, N) comp[v] = cnt - 1 - comp[v];\n\
-    \  }\n};\n"
+    pair<int, vc<int>> strongly_connected_component(Graph &G) {\n  assert(G.is_directed());\n\
+    \  assert(G.is_prepared());\n  int N = G.N;\n  int C = 0;\n  vc<int> comp(N);\n\
+    \  vc<int> low(N);\n  vc<int> ord(N, -1);\n  vc<int> visited;\n  int now = 0;\n\
+    \n  auto dfs = [&](auto self, int v) -> void {\n    low[v] = now;\n    ord[v]\
+    \ = now;\n    ++now;\n    visited.eb(v);\n    for (auto &&[frm, to, cost, id]:\
+    \ G[v]) {\n      if (ord[to] == -1) {\n        self(self, to);\n        chmin(low[v],\
+    \ low[to]);\n      } else {\n        chmin(low[v], ord[to]);\n      }\n    }\n\
+    \    if (low[v] == ord[v]) {\n      while (1) {\n        int u = visited.back();\n\
+    \        visited.pop_back();\n        ord[u] = N;\n        comp[u] = C;\n    \
+    \    if (u == v) break;\n      }\n      ++C;\n    }\n  };\n  FOR(v, N) {\n   \
+    \ if (ord[v] == -1) dfs(dfs, v);\n  }\n  FOR(v, N) comp[v] = C - 1 - comp[v];\n\
+    \  return {C, comp};\n}\n"
   dependsOn:
   - graph/base.hpp
   isVerificationFile: false
-  path: graph/scc.hpp
+  path: graph/strongly_connected_component.hpp
   requiredBy:
-  - graph/twosat.hpp
-  timestamp: '2022-04-16 04:26:49+09:00'
+  - graph/reachability.hpp
+  timestamp: '2022-05-02 16:22:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/graph/scc.test.cpp
-  - test/library_checker/math/twosat.test.cpp
-documentation_of: graph/scc.hpp
+  - test/aoj/275_dag_reachability.test.cpp
+documentation_of: graph/strongly_connected_component.hpp
 layout: document
 redirect_from:
-- /library/graph/scc.hpp
-- /library/graph/scc.hpp.html
-title: graph/scc.hpp
+- /library/graph/strongly_connected_component.hpp
+- /library/graph/strongly_connected_component.hpp.html
+title: graph/strongly_connected_component.hpp
 ---

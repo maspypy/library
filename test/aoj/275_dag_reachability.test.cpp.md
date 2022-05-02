@@ -2,11 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: alg/monoid_gcd.hpp
-    title: alg/monoid_gcd.hpp
+    path: graph/base.hpp
+    title: graph/base.hpp
   - icon: ':heavy_check_mark:'
-    path: ds/swag.hpp
-    title: ds/swag.hpp
+    path: graph/dijkstra.hpp
+    title: graph/dijkstra.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/reachability.hpp
+    title: graph/reachability.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/strongly_connected_component.hpp
+    title: graph/strongly_connected_component.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -20,19 +26,19 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1036
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0275
     links:
-    - https://yukicoder.me/problems/no/1036
-  bundledCode: "#line 1 \"test/yukicoder/1036_swag.test.cpp\"\n#define PROBLEM \"\
-    https://yukicoder.me/problems/no/1036\"\n#line 1 \"my_template.hpp\"\n#include\
-    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
-    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
-    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
-    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
-    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0275
+  bundledCode: "#line 1 \"test/aoj/275_dag_reachability.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0275\"\n#line 1\
+    \ \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing\
+    \ ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32\
+    \ = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\n\
+    template <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -188,50 +194,121 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 1 \"ds/swag.hpp\"\ntemplate <class Monoid>\nstruct SWAG\
-    \ {\n  using X = typename Monoid::value_type;\n  using value_type = X;\n  int\
-    \ sz = 0;\n  vc<X> dat;\n  vc<X> cum_l;\n  X cum_r;\n\n  SWAG() : cum_l({Monoid::unit()}),\
-    \ cum_r(Monoid::unit()) {}\n\n  int size() { return sz; }\n\n  void push(X x)\
-    \ {\n    ++sz;\n    cum_r = Monoid::op(cum_r, x);\n    dat.eb(x);\n  }\n\n  void\
-    \ pop() {\n    --sz;\n    cum_l.pop_back();\n    if (len(cum_l) == 0) {\n    \
-    \  cum_l = {Monoid::unit()};\n      cum_r = Monoid::unit();\n      while (len(dat)\
-    \ > 1) {\n        cum_l.eb(Monoid::op(dat.back(), cum_l.back()));\n        dat.pop_back();\n\
-    \      }\n      dat.pop_back();\n    }\n  }\n\n  X prod() { return Monoid::op(cum_l.back(),\
-    \ cum_r); }\n\n  void debug() {\n    print(\"swag\");\n    print(\"dat\", dat);\n\
-    \    print(\"cum_l\", cum_l);\n    print(\"cum_r\", cum_r);\n  }\n};\n#line 1\
-    \ \"alg/monoid_gcd.hpp\"\ntemplate <typename INT>\nstruct Monoid_Gcd {\n  using\
-    \ value_type = INT;\n  using X = value_type;\n  static X op(X x, X y) { return\
-    \ gcd(x, y); }\n  static constexpr X unit() { return 0; }\n  static constexpr\
-    \ bool commute = true;\n};\n#line 6 \"test/yukicoder/1036_swag.test.cpp\"\n\n\
-    void solve() {\n  LL(N);\n  VEC(ll, A, N);\n  SWAG<Monoid_Gcd<ll>> swag;\n  ll\
-    \ R = 0;\n  ll ANS = 0;\n  FOR(L, N) {\n    chmax(R, L);\n    while (R < N &&\
-    \ gcd(swag.prod(), A[R]) != 1) swag.push(A[R++]);\n    ANS += N - R;\n    if (len(swag))\
-    \ swag.pop();\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \ { yes(!t); }\r\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct\
+    \ Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int,\
+    \ bool directed = false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n\
+    \  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n\
+    \  vector<edge_type> csr_edges;\n  bool prepared;\n\n  class OutgoingEdges {\n\
+    \  public:\n    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l), r(r)\
+    \ {}\n\n    const edge_type* begin() const {\n      if (l == r) { return 0; }\n\
+    \      return &G->csr_edges[l];\n    }\n\n    const edge_type* end() const {\n\
+    \      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n  private:\n\
+    \    int l, r;\n    const Graph* G;\n  };\n\n  bool is_prepared() { return prepared;\
+    \ }\n  constexpr bool is_directed() { return directed; }\n\n  Graph() : N(0),\
+    \ M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void\
+    \ add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared && 0 <=\
+    \ frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm,\
+    \ to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool\
+    \ wt = false, int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int\
+    \ M, bool wt = false, int off = 1) {\n    FOR_(M) {\n      INT(a, b);\n      a\
+    \ -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n  \
+    \      T c;\n        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n\
+    \  }\n\n  void read_parent(int off = 1) {\n    FOR3(v, 1, N) {\n      INT(p);\n\
+    \      p -= off;\n      add(p, v);\n    }\n    build();\n  }\n\n  void build()\
+    \ {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
+    \    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if (!directed)\
+    \ indptr[e.to + 1]++;\n    }\n    FOR(v, N) indptr[v + 1] += indptr[v];\n    auto\
+    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
+    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
+    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
+    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
+    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  void debug() {\n    print(\"\
+    Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
+    \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
+    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 3 \"graph/strongly_connected_component.hpp\"\
+    \n\ntemplate <typename Graph>\npair<int, vc<int>> strongly_connected_component(Graph\
+    \ &G) {\n  assert(G.is_directed());\n  assert(G.is_prepared());\n  int N = G.N;\n\
+    \  int C = 0;\n  vc<int> comp(N);\n  vc<int> low(N);\n  vc<int> ord(N, -1);\n\
+    \  vc<int> visited;\n  int now = 0;\n\n  auto dfs = [&](auto self, int v) -> void\
+    \ {\n    low[v] = now;\n    ord[v] = now;\n    ++now;\n    visited.eb(v);\n  \
+    \  for (auto &&[frm, to, cost, id]: G[v]) {\n      if (ord[to] == -1) {\n    \
+    \    self(self, to);\n        chmin(low[v], low[to]);\n      } else {\n      \
+    \  chmin(low[v], ord[to]);\n      }\n    }\n    if (low[v] == ord[v]) {\n    \
+    \  while (1) {\n        int u = visited.back();\n        visited.pop_back();\n\
+    \        ord[u] = N;\n        comp[u] = C;\n        if (u == v) break;\n     \
+    \ }\n      ++C;\n    }\n  };\n  FOR(v, N) {\n    if (ord[v] == -1) dfs(dfs, v);\n\
+    \  }\n  FOR(v, N) comp[v] = C - 1 - comp[v];\n  return {C, comp};\n}\n#line 3\
+    \ \"graph/reachability.hpp\"\n\n// \u6709\u5411\u30B0\u30E9\u30D5\u306E\u5230\u9054\
+    \u53EF\u80FD\u6027\u30AF\u30A8\u30EA\u3002O((N+M)Q/w)\u3002\ntemplate <typename\
+    \ GT, typename P>\nvc<int> reachability(GT& G, vc<P> query) {\n  auto [C, comp]\
+    \ = strongly_connected_component(G);\n  Graph<int, 1> DAG(C);\n  for (auto&& e:\
+    \ G.edges) {\n    auto a = comp[e.frm], b = comp[e.to];\n    assert(a <= b);\n\
+    \    if (a < b) DAG.add(a, b);\n  }\n  DAG.build();\n\n  int Q = len(query);\n\
+    \  vc<u64> dp(C);\n  vc<int> res(Q);\n  for (int l = 0; l < Q; l += 64) {\n  \
+    \  int r = min(l + 64, Q);\n    fill(all(dp), u64(0));\n\n    FOR3(qid, l, r)\
+    \ {\n      auto v = comp[query[qid].fi];\n      dp[v] |= u64(1) << (qid - l);\n\
+    \    }\n    FOR(v, C) for (auto&& e: DAG[v]) { dp[e.to] |= dp[v]; }\n    FOR3(qid,\
+    \ l, r) {\n      auto v = comp[query[qid].se];\n      if (dp[v] & (u64(1) << (qid\
+    \ - l))) res[qid] = 1;\n    }\n  }\n  return res;\n}\n#line 3 \"graph/dijkstra.hpp\"\
+    \n\ntemplate <typename T, typename Graph>\npair<vc<T>, vc<int>> dijkstra(Graph&\
+    \ G, int v, T INF) {\n  auto N = G.N;\n  vector<T> dist(N, INF);\n  vector<int>\
+    \ par(N, -1);\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>>\
+    \ que;\n\n  dist[v] = 0;\n  que.emplace(0, v);\n  while (!que.empty()) {\n   \
+    \ auto [dv, v] = que.top();\n    que.pop();\n    if (dv > dist[v]) continue;\n\
+    \    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost))\
+    \ {\n        par[e.to] = e.frm;\n        que.emplace(dist[e.to], e.to);\n    \
+    \  }\n    }\n  }\n  return {dist, par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\
+    \u30C8\u3002[dist, par, root]\ntemplate <typename T, T INF, typename Graph>\n\
+    tuple<vc<T>, vc<int>, vc<int>> dijkstra(Graph& G, vc<int> vs) {\n  assert(G.is_prepared());\n\
+    \  int N = G.N;\n  vc<ll> dist(N, INF);\n  vc<int> par(N, -1);\n  vc<int> root(N,\
+    \ -1);\n\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>>\
+    \ que;\n\n  for (auto&& v: vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.emplace(T(0),\
+    \ v);\n  }\n\n  while (!que.empty()) {\n    auto [dv, v] = que.top();\n    que.pop();\n\
+    \    if (dv > dist[v]) continue;\n    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to],\
+    \ dist[e.frm] + e.cost)) {\n        root[e.to] = root[e.frm];\n        par[e.to]\
+    \ = e.frm;\n        que.push(mp(dist[e.to], e.to));\n      }\n    }\n  }\n  return\
+    \ {dist, par, root};\n}\n#line 6 \"test/aoj/275_dag_reachability.test.cpp\"\n\n\
+    void solve() {\n  LL(N, M);\n  Graph G(N);\n  G.read_graph(M, 1);\n  LL(a, b);\n\
+    \  --a, --b;\n  const ll INF = 1LL << 60;\n\n  auto [dist_a, par_a] = dijkstra(G,\
+    \ a, INF);\n  auto [dist_b, par_b] = dijkstra(G, b, INF);\n\n  Graph<int, 1> DG(N);\n\
+    \  ll d = dist_a[b];\n  for (auto&& e: G.edges) {\n    if (dist_a[e.frm] + e.cost\
+    \ + dist_b[e.to] == d) DG.add(e.frm, e.to);\n    if (dist_b[e.frm] + e.cost +\
+    \ dist_a[e.to] == d) DG.add(e.to, e.frm);\n  }\n  DG.build();\n\n  LL(Q);\n  VEC(pi,\
+    \ query, Q);\n  for (auto&& [a, b]: query) --a, --b;\n  auto res = reachability(DG,\
+    \ query);\n  for (auto&& yn: res) Yes(yn);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
     \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
     \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1036\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"ds/swag.hpp\"\n#include \"alg/monoid_gcd.hpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  SWAG<Monoid_Gcd<ll>> swag;\n\
-    \  ll R = 0;\n  ll ANS = 0;\n  FOR(L, N) {\n    chmax(R, L);\n    while (R < N\
-    \ && gcd(swag.prod(), A[R]) != 1) swag.push(A[R++]);\n    ANS += N - R;\n    if\
-    \ (len(swag)) swag.pop();\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0275\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/reachability.hpp\"\
+    \n#include \"graph/dijkstra.hpp\"\n\nvoid solve() {\n  LL(N, M);\n  Graph G(N);\n\
+    \  G.read_graph(M, 1);\n  LL(a, b);\n  --a, --b;\n  const ll INF = 1LL << 60;\n\
+    \n  auto [dist_a, par_a] = dijkstra(G, a, INF);\n  auto [dist_b, par_b] = dijkstra(G,\
+    \ b, INF);\n\n  Graph<int, 1> DG(N);\n  ll d = dist_a[b];\n  for (auto&& e: G.edges)\
+    \ {\n    if (dist_a[e.frm] + e.cost + dist_b[e.to] == d) DG.add(e.frm, e.to);\n\
+    \    if (dist_b[e.frm] + e.cost + dist_a[e.to] == d) DG.add(e.to, e.frm);\n  }\n\
+    \  DG.build();\n\n  LL(Q);\n  VEC(pi, query, Q);\n  for (auto&& [a, b]: query)\
+    \ --a, --b;\n  auto res = reachability(DG, query);\n  for (auto&& yn: res) Yes(yn);\n\
+    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
+    \ return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/swag.hpp
-  - alg/monoid_gcd.hpp
+  - graph/reachability.hpp
+  - graph/strongly_connected_component.hpp
+  - graph/base.hpp
+  - graph/dijkstra.hpp
   isVerificationFile: true
-  path: test/yukicoder/1036_swag.test.cpp
+  path: test/aoj/275_dag_reachability.test.cpp
   requiredBy: []
-  timestamp: '2022-04-29 17:32:58+09:00'
+  timestamp: '2022-05-02 16:25:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/1036_swag.test.cpp
+documentation_of: test/aoj/275_dag_reachability.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/1036_swag.test.cpp
-- /verify/test/yukicoder/1036_swag.test.cpp.html
-title: test/yukicoder/1036_swag.test.cpp
+- /verify/test/aoj/275_dag_reachability.test.cpp
+- /verify/test/aoj/275_dag_reachability.test.cpp.html
+title: test/aoj/275_dag_reachability.test.cpp
 ---
