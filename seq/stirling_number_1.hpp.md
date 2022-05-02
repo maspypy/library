@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':heavy_check_mark:'
@@ -10,37 +10,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':heavy_check_mark:'
@@ -414,13 +414,13 @@ data:
     \  return g;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_pow_1_dense(const\
     \ vc<mint>& f, mint K) {\r\n  assert(f[0] == mint(1));\r\n  auto log_f = fps_log(f);\r\
     \n  FOR(i, len(f)) log_f[i] *= K;\r\n  return fps_exp(log_f);\r\n}\r\n\r\ntemplate\
-    \ <typename mint>\r\nvc<mint> fps_pow_1(const vc<mint>& f) {\r\n  if (count_terms(f)\
-    \ <= 100) return fps_pow_1_sparse(f);\r\n  return fps_pow_1_dense(f);\r\n}\r\n\
-    #line 3 \"seq/stirling_number_1.hpp\"\n\r\n// x(x+1)...(x+n-1) \u306E\u4FC2\u6570\
-    \ c(n, k)\r\n// [n] \u306E\u9806\u5217\u306E\u3046\u3061\u3001k \u500B\u306E\u30B5\
-    \u30A4\u30AF\u30EB\u306B\u5206\u304B\u308C\u308B\u3082\u306E\u306E\u500B\u6570\
-    \u3002\r\n// n \u3092\u56FA\u5B9A\u3057\u305F\u3068\u304D\u306E\u5217\u6319\u3092\
-    \ O(n log n) \u3067\u884C\u3046\u3002\r\ntemplate <typename mint>\r\nvc<mint>\
+    \ <typename mint>\r\nvc<mint> fps_pow_1(const vc<mint>& f, mint K) {\r\n  if (count_terms(f)\
+    \ <= 100) return fps_pow_1_sparse(f, K);\r\n  return fps_pow_1_dense(f, K);\r\n\
+    }\r\n#line 3 \"seq/stirling_number_1.hpp\"\n\r\n// x(x+1)...(x+n-1) \u306E\u4FC2\
+    \u6570 c(n, k)\r\n// [n] \u306E\u9806\u5217\u306E\u3046\u3061\u3001k \u500B\u306E\
+    \u30B5\u30A4\u30AF\u30EB\u306B\u5206\u304B\u308C\u308B\u3082\u306E\u306E\u500B\
+    \u6570\u3002\r\n// n \u3092\u56FA\u5B9A\u3057\u305F\u3068\u304D\u306E\u5217\u6319\
+    \u3092 O(n log n) \u3067\u884C\u3046\u3002\r\ntemplate <typename mint>\r\nvc<mint>\
     \ stirling_number_1_n(int n, bool sgn = false) {\r\n  auto dfs = [&](auto self,\
     \ int n) -> vc<mint> {\r\n    if (n == 0) return {1};\r\n    if (n == 1) return\
     \ {0, 1};\r\n    auto f = self(self, n / 2);\r\n    auto g = poly_taylor_shift(f,\
@@ -475,7 +475,7 @@ data:
   isVerificationFile: false
   path: seq/stirling_number_1.hpp
   requiredBy: []
-  timestamp: '2022-05-03 02:37:27+09:00'
+  timestamp: '2022-05-03 03:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp

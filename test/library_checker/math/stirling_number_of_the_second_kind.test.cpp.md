@@ -1,46 +1,46 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':heavy_check_mark:'
@@ -555,13 +555,13 @@ data:
     \  return g;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_pow_1_dense(const\
     \ vc<mint>& f, mint K) {\r\n  assert(f[0] == mint(1));\r\n  auto log_f = fps_log(f);\r\
     \n  FOR(i, len(f)) log_f[i] *= K;\r\n  return fps_exp(log_f);\r\n}\r\n\r\ntemplate\
-    \ <typename mint>\r\nvc<mint> fps_pow_1(const vc<mint>& f) {\r\n  if (count_terms(f)\
-    \ <= 100) return fps_pow_1_sparse(f);\r\n  return fps_pow_1_dense(f);\r\n}\r\n\
-    #line 3 \"seq/stirling_number_2.hpp\"\n\r\n// n \u500B\u306E\u3082\u306E (labeled)\
-    \ \u3092 k \u30B0\u30EB\u30FC\u30D7 (no label) \u306B\u5206\u3051\u308B\u65B9\u6CD5\
-    \r\ntemplate <typename mint>\r\nvc<mint> stirling_number_2_n(int n) {\r\n  vc<mint>\
-    \ a(n + 1), b(n + 1);\r\n  FOR(i, n + 1) a[i] = mint(i).pow(n);\r\n  FOR(i, n\
-    \ + 1) b[i] = (i % 2 == 0 ? 1 : -1);\r\n  FOR(i, n + 1) a[i] *= fact_inv<mint>(i);\r\
+    \ <typename mint>\r\nvc<mint> fps_pow_1(const vc<mint>& f, mint K) {\r\n  if (count_terms(f)\
+    \ <= 100) return fps_pow_1_sparse(f, K);\r\n  return fps_pow_1_dense(f, K);\r\n\
+    }\r\n#line 3 \"seq/stirling_number_2.hpp\"\n\r\n// n \u500B\u306E\u3082\u306E\
+    \ (labeled) \u3092 k \u30B0\u30EB\u30FC\u30D7 (no label) \u306B\u5206\u3051\u308B\
+    \u65B9\u6CD5\r\ntemplate <typename mint>\r\nvc<mint> stirling_number_2_n(int n)\
+    \ {\r\n  vc<mint> a(n + 1), b(n + 1);\r\n  FOR(i, n + 1) a[i] = mint(i).pow(n);\r\
+    \n  FOR(i, n + 1) b[i] = (i % 2 == 0 ? 1 : -1);\r\n  FOR(i, n + 1) a[i] *= fact_inv<mint>(i);\r\
     \n  FOR(i, n + 1) b[i] *= fact_inv<mint>(i);\r\n  auto f = convolution(a, b);\r\
     \n  f.resize(n + 1);\r\n  return f;\r\n}\r\n\r\n// n \u500B\u306E\u3082\u306E\
     \ (labeled) \u3092 k \u30B0\u30EB\u30FC\u30D7 (no label) \u306B\u5206\u3051\u308B\
@@ -598,7 +598,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   requiredBy: []
-  timestamp: '2022-05-03 02:37:27+09:00'
+  timestamp: '2022-05-03 03:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
