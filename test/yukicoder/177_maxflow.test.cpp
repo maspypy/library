@@ -9,7 +9,7 @@ void solve() {
   VEC(ll, A, N);
   LL(M);
   VEC(ll, C, M);
-  MaxFlowGraph<ll> G;
+  MaxFlowGraph<ll> G(INF);
   ll source = N + M;
   ll sink = N + M + 1;
   const ll INF = 1LL << 30;
