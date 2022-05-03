@@ -40,7 +40,7 @@ struct simple_queue {
 ・DAG = true であれば、負辺 OK （1 回目の最短路を dp で行う）
 ただし、頂点番号は toposort されていることを仮定している。
 */
-template <class Cap, class Cost, bool DAG = false>
+template <class Cap = int, class Cost = ll, bool DAG = false>
 struct mcf_graph {
 public:
   mcf_graph() {}
