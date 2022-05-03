@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1288_mcf_dag_negative.test.cpp
     title: test/yukicoder/1288_mcf_dag_negative.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1301_mcf.test.cpp
+    title: test/yukicoder/1301_mcf.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -28,19 +31,19 @@ data:
     \u308C\u3070\u3001\u8CA0\u8FBA OK \uFF081 \u56DE\u76EE\u306E\u6700\u77ED\u8DEF\
     \u3092 dp \u3067\u884C\u3046\uFF09\n\u305F\u3060\u3057\u3001\u9802\u70B9\u756A\
     \u53F7\u306F toposort \u3055\u308C\u3066\u3044\u308B\u3053\u3068\u3092\u4EEE\u5B9A\
-    \u3057\u3066\u3044\u308B\u3002\n*/\ntemplate <class Cap, class Cost, bool DAG\
-    \ = false>\nstruct mcf_graph {\npublic:\n  mcf_graph() {}\n  explicit mcf_graph(int\
-    \ n) : _n(n) {}\n\n  // frm, to, cap, cost\n  int add(int from, int to, Cap cap,\
-    \ Cost cost) {\n    assert(0 <= from && from < _n);\n    assert(0 <= to && to\
-    \ < _n);\n    assert(0 <= cap);\n    assert(DAG || 0 <= cost);\n    if (DAG) assert(from\
-    \ < to);\n    int m = int(_edges.size());\n    _edges.push_back({from, to, cap,\
-    \ 0, cost});\n    return m;\n  }\n\n  void debug() {\n    print(\"flow graph\"\
-    );\n    print(\"frm, to, cap, cost\");\n    for (auto&& [frm, to, cap, flow, cost]:\
-    \ _edges) {\n      print(frm, to, cap, cost);\n    }\n  }\n\n  struct edge {\n\
-    \    int from, to;\n    Cap cap, flow;\n    Cost cost;\n  };\n\n  edge get_edge(int\
-    \ i) {\n    int m = int(_edges.size());\n    assert(0 <= i && i < m);\n    return\
-    \ _edges[i];\n  }\n  std::vector<edge> edges() { return _edges; }\n\n  std::pair<Cap,\
-    \ Cost> flow(int s, int t) {\n    return flow(s, t, std::numeric_limits<Cap>::max());\n\
+    \u3057\u3066\u3044\u308B\u3002\n*/\ntemplate <class Cap = int, class Cost = ll,\
+    \ bool DAG = false>\nstruct mcf_graph {\npublic:\n  mcf_graph() {}\n  explicit\
+    \ mcf_graph(int n) : _n(n) {}\n\n  // frm, to, cap, cost\n  int add(int from,\
+    \ int to, Cap cap, Cost cost) {\n    assert(0 <= from && from < _n);\n    assert(0\
+    \ <= to && to < _n);\n    assert(0 <= cap);\n    assert(DAG || 0 <= cost);\n \
+    \   if (DAG) assert(from < to);\n    int m = int(_edges.size());\n    _edges.push_back({from,\
+    \ to, cap, 0, cost});\n    return m;\n  }\n\n  void debug() {\n    print(\"flow\
+    \ graph\");\n    print(\"frm, to, cap, cost\");\n    for (auto&& [frm, to, cap,\
+    \ flow, cost]: _edges) {\n      print(frm, to, cap, cost);\n    }\n  }\n\n  struct\
+    \ edge {\n    int from, to;\n    Cap cap, flow;\n    Cost cost;\n  };\n\n  edge\
+    \ get_edge(int i) {\n    int m = int(_edges.size());\n    assert(0 <= i && i <\
+    \ m);\n    return _edges[i];\n  }\n  std::vector<edge> edges() { return _edges;\
+    \ }\n\n  std::pair<Cap, Cost> flow(int s, int t) {\n    return flow(s, t, std::numeric_limits<Cap>::max());\n\
     \  }\n  std::pair<Cap, Cost> flow(int s, int t, Cap flow_limit) {\n    return\
     \ slope(s, t, flow_limit).back();\n  }\n  std::vector<std::pair<Cap, Cost>> slope(int\
     \ s, int t) {\n    return slope(s, t, std::numeric_limits<Cap>::max());\n  }\n\
@@ -143,11 +146,11 @@ data:
     1 \u56DE\u76EE\u306E\u6700\u77ED\u8DEF\u3092 dp \u3067\u884C\u3046\uFF09\n\u305F\
     \u3060\u3057\u3001\u9802\u70B9\u756A\u53F7\u306F toposort \u3055\u308C\u3066\u3044\
     \u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\u3002\n*/\ntemplate\
-    \ <class Cap, class Cost, bool DAG = false>\nstruct mcf_graph {\npublic:\n  mcf_graph()\
-    \ {}\n  explicit mcf_graph(int n) : _n(n) {}\n\n  // frm, to, cap, cost\n  int\
-    \ add(int from, int to, Cap cap, Cost cost) {\n    assert(0 <= from && from <\
-    \ _n);\n    assert(0 <= to && to < _n);\n    assert(0 <= cap);\n    assert(DAG\
-    \ || 0 <= cost);\n    if (DAG) assert(from < to);\n    int m = int(_edges.size());\n\
+    \ <class Cap = int, class Cost = ll, bool DAG = false>\nstruct mcf_graph {\npublic:\n\
+    \  mcf_graph() {}\n  explicit mcf_graph(int n) : _n(n) {}\n\n  // frm, to, cap,\
+    \ cost\n  int add(int from, int to, Cap cap, Cost cost) {\n    assert(0 <= from\
+    \ && from < _n);\n    assert(0 <= to && to < _n);\n    assert(0 <= cap);\n   \
+    \ assert(DAG || 0 <= cost);\n    if (DAG) assert(from < to);\n    int m = int(_edges.size());\n\
     \    _edges.push_back({from, to, cap, 0, cost});\n    return m;\n  }\n\n  void\
     \ debug() {\n    print(\"flow graph\");\n    print(\"frm, to, cap, cost\");\n\
     \    for (auto&& [frm, to, cap, flow, cost]: _edges) {\n      print(frm, to, cap,\
@@ -245,10 +248,11 @@ data:
   isVerificationFile: false
   path: flow/mincostflow.hpp
   requiredBy: []
-  timestamp: '2022-05-03 02:34:09+09:00'
+  timestamp: '2022-05-04 01:14:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1288_mcf_dag_negative.test.cpp
+  - test/yukicoder/1301_mcf.test.cpp
 documentation_of: flow/mincostflow.hpp
 layout: document
 redirect_from:

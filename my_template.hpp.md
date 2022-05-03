@@ -99,7 +99,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
     title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_6_A_maxflow.test.cpp
     title: test/aoj/GRL_6_A_maxflow.test.cpp
   - icon: ':heavy_check_mark:'
@@ -475,12 +475,15 @@ data:
     path: test/yukicoder/1288_mcf_dag_negative.test.cpp
     title: test/yukicoder/1288_mcf_dag_negative.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1301_mcf.test.cpp
+    title: test/yukicoder/1301_mcf.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1320_mincostcycle.test.cpp
     title: test/yukicoder/1320_mincostcycle.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1332_range_freq.test.cpp
     title: test/yukicoder/1332_range_freq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/177_maxflow.test.cpp
     title: test/yukicoder/177_maxflow.test.cpp
   - icon: ':heavy_check_mark:'
@@ -537,9 +540,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace\
@@ -666,7 +669,7 @@ data:
   requiredBy:
   - graph/bipartite_coloring.hpp
   timestamp: '2022-04-29 17:32:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/4_modular_subset_sum.test.cpp
   - test/yukicoder/924.test.cpp
@@ -688,6 +691,7 @@ data:
   - test/yukicoder/1038_centroid.test.cpp
   - test/yukicoder/1002_centroid.test.cpp
   - test/yukicoder/919_waveletmatrix.test.cpp
+  - test/yukicoder/1301_mcf.test.cpp
   - test/yukicoder/1332_range_freq.test.cpp
   - test/yukicoder/114_steriner_tree.test.cpp
   - test/yukicoder/502_p_rec.test.cpp

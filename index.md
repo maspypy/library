@@ -273,10 +273,13 @@ data:
       title: ds/xor_sparsetable.hpp
   - name: flow
     pages:
+    - icon: ':warning:'
+      path: flow/binary_optimization.hpp
+      title: flow/binary_optimization.hpp
     - icon: ':heavy_check_mark:'
       path: flow/bipartite.hpp
       title: flow/bipartite.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: flow/maxflow.hpp
       title: flow/maxflow.hpp
     - icon: ':heavy_check_mark:'
@@ -529,7 +532,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -602,7 +605,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/integer_kth_root.hpp
       title: other/integer_kth_root.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -905,7 +908,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
       title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL_6_A_maxflow.test.cpp
       title: test/aoj/GRL_6_A_maxflow.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1308,12 +1311,15 @@ data:
       path: test/yukicoder/1288_mcf_dag_negative.test.cpp
       title: test/yukicoder/1288_mcf_dag_negative.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1301_mcf.test.cpp
+      title: test/yukicoder/1301_mcf.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1320_mincostcycle.test.cpp
       title: test/yukicoder/1320_mincostcycle.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1332_range_freq.test.cpp
       title: test/yukicoder/1332_range_freq.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/177_maxflow.test.cpp
       title: test/yukicoder/177_maxflow.test.cpp
     - icon: ':heavy_check_mark:'

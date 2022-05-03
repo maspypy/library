@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A
@@ -187,46 +187,53 @@ data:
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
     \ { yes(!t); }\r\n#line 5 \"test/aoj/GRL_6_A_maxflow.test.cpp\"\n\r\n#line 1 \"\
     flow/maxflow.hpp\"\n\n// \u9802\u70B9\u6570\u306F\u6E21\u3055\u306A\u304F\u3066\
-    \u3088\u3044\ntemplate <typename Cap = int>\nstruct MaxFlowGraph {\n  const Cap\
-    \ INF;\n\n  struct Edge {\n    int frm, to;\n    Cap cap;\n    int idx;\n  };\n\
-    \n  int N;\n  vc<int> indptr;\n  vc<Edge> edges;\n  vc<Cap> edge_flow;\n\n  vc<Edge>\
-    \ csr_edges;\n  vc<int> rev;\n  vc<int> level, deq;\n  bool calculated;\n\n  MaxFlowGraph()\
-    \ : INF(numeric_limits<Cap>::max()), N(0), calculated(0) {}\n\n  void add(int\
+    \u3088\u3044\ntemplate <typename Cap>\nstruct MaxFlowGraph {\n  const Cap INF;\n\
+    \  struct Edge {\n    int frm, to;\n    Cap cap;\n    int idx;\n  };\n\n  int\
+    \ N;\n  vc<int> indptr;\n  vc<Edge> edges;\n  vc<Cap> edge_flow;\n\n  vc<Edge>\
+    \ csr_edges;\n  vc<int> rev;\n  vc<int> level, deq;\n  Cap flow_ans;\n  bool calculated;\n\
+    \n  MaxFlowGraph(Cap INF) : INF(INF), N(0), calculated(0) {}\n\n  void add(int\
     \ frm, int to, Cap cap) {\n    chmax(N, frm + 1);\n    chmax(N, to + 1);\n   \
-    \ edges.eb(Edge({frm, to, cap, int(edges.size())}));\n  }\n\n  void _build() {\n\
-    \    indptr.resize(N + 1);\n    level.resize(N);\n    deq.resize(N);\n    int\
-    \ M = len(edges);\n    for (auto&& e: edges) { indptr[e.frm + 1]++, indptr[e.to\
-    \ + 1]++; }\n    FOR(v, N) indptr[v + 1] += indptr[v];\n    auto counter = indptr;\n\
-    \n    edge_flow.resize(M);\n    csr_edges.resize(2 * M);\n    rev.resize(2 * M);\n\
-    \    for (auto&& e: edges) {\n      int i = counter[e.frm], j = counter[e.to];\n\
-    \      rev[i] = j, rev[j] = i;\n      csr_edges[i] = {e.frm, e.to, e.cap, e.idx};\n\
-    \      csr_edges[j] = {e.to, e.frm, Cap(0), ~e.idx};\n      counter[e.frm]++,\
-    \ counter[e.to]++;\n    }\n  }\n\n  bool set_level(int source, int sink) {\n \
-    \   // bfs\n    fill(all(level), -1);\n    int l = 0, r = 0;\n    deq[r++] = source;\n\
-    \    level[source] = 0;\n    while (l < r) {\n      int v = deq[l++];\n      FOR3(i,\
-    \ indptr[v], indptr[v + 1]) {\n        auto& e = csr_edges[i];\n        if (e.cap\
-    \ == 0 || level[e.to] >= 0) continue;\n        level[e.to] = level[v] + 1;\n \
-    \       if (e.to == sink) return true;\n        deq[r++] = e.to;\n      }\n  \
-    \  }\n    return false;\n  }\n\n  Cap flow_dfs(int v, int sink, Cap lim) {\n \
-    \   if (v == sink) return lim;\n    FOR3(i, indptr[v], indptr[v + 1]) {\n    \
-    \  auto& e = csr_edges[i];\n      if (e.cap == 0 || level[v] >= level[e.to]) continue;\n\
-    \      Cap x = flow_dfs(e.to, sink, min(lim, e.cap));\n      if (x > Cap(0)) {\n\
-    \        e.cap -= x;\n        int j = rev[i];\n        csr_edges[j].cap += x;\n\
-    \        if (e.idx >= 0)\n          edge_flow[e.idx] += x;\n        else\n   \
-    \       edge_flow[~e.idx] -= x;\n        return x;\n      }\n    }\n    level[v]\
-    \ = -1;\n    return 0;\n  }\n\n  Cap flow(int source, int sink) {\n    assert(!calculated);\n\
-    \    calculated = true;\n    _build();\n    Cap f = 0;\n    while (set_level(source,\
-    \ sink)) {\n      while (1) {\n        Cap x = flow_dfs(source, sink, INF);\n\
-    \        if (x == 0) break;\n        f += x;\n      }\n    }\n    return f;\n\
-    \  }\n\n  vc<tuple<int, int, Cap>> get_edges() {\n    vc<tuple<int, int, Cap>>\
+    \ edges.eb(Edge({frm, to, cap, int(edges.size())}));\n  }\n\n  Cap flow(int source,\
+    \ int sink) {\n    if (calculated) return flow_ans;\n    calculated = true;\n\
+    \    _build();\n    flow_ans = 0;\n    while (set_level(source, sink)) {\n   \
+    \   while (1) {\n        Cap x = flow_dfs(source, sink, INF);\n        if (x ==\
+    \ 0) break;\n        flow_ans += x;\n        chmin(flow_ans, INF);\n        if\
+    \ (flow_ans == INF) return flow_ans;\n      }\n    }\n    return flow_ans;\n \
+    \ }\n\n  vc<tuple<int, int, Cap>> get_edges() {\n    vc<tuple<int, int, Cap>>\
     \ res;\n    for (auto&& e: edges) {\n      Cap f = edge_flow[e.idx];\n      if\
-    \ (f > Cap(0)) res.eb(e.frm, e.to, f);\n    }\n    return res;\n  }\n\n  void\
-    \ debug() {\n    for (auto&& e: edges) print(e.frm, e.to, e.cap);\n  }\n};\n#line\
-    \ 7 \"test/aoj/GRL_6_A_maxflow.test.cpp\"\n\r\nvoid solve() {\r\n  LL(N, M);\r\
-    \n  MaxFlowGraph<int> G;\r\n  FOR_(M) {\r\n    LL(a, b, c);\r\n    G.add(a, b,\
-    \ c);\r\n  }\r\n  print(G.flow(0, N - 1));\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
-    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  ll T\
-    \ = 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ (f > Cap(0)) res.eb(e.frm, e.to, f);\n    }\n    return res;\n  }\n\n  // \u6700\
+    \u5C0F\u30AB\u30C3\u30C8\u306E\u5024\u304A\u3088\u3073\u3001\u30AB\u30C3\u30C8\
+    \u3092\u8868\u3059 01 \u5217\u3092\u8FD4\u3059\n  pair<Cap, vc<int>> cut(int source,\
+    \ int sink) {\n    Cap f = flow(source, sink);\n    set_level(source, sink);\n\
+    \    vc<int> res(N);\n    FOR(v, N) res[v] = (level[v] >= 0 ? 0 : 1);\n    return\
+    \ {f, res};\n  }\n\n  void debug() {\n    for (auto&& e: edges) print(e.frm, e.to,\
+    \ e.cap);\n  }\n\nprivate:\n  void _build() {\n    indptr.resize(N + 1);\n   \
+    \ level.resize(N);\n    deq.resize(N);\n    int M = len(edges);\n    for (auto&&\
+    \ e: edges) { indptr[e.frm + 1]++, indptr[e.to + 1]++; }\n    FOR(v, N) indptr[v\
+    \ + 1] += indptr[v];\n    auto counter = indptr;\n\n    edge_flow.resize(M);\n\
+    \    csr_edges.resize(2 * M);\n    rev.resize(2 * M);\n    for (auto&& e: edges)\
+    \ {\n      int i = counter[e.frm], j = counter[e.to];\n      rev[i] = j, rev[j]\
+    \ = i;\n      csr_edges[i] = {e.frm, e.to, e.cap, e.idx};\n      csr_edges[j]\
+    \ = {e.to, e.frm, Cap(0), ~e.idx};\n      counter[e.frm]++, counter[e.to]++;\n\
+    \    }\n  }\n\n  bool set_level(int source, int sink) {\n    // bfs\n    fill(all(level),\
+    \ -1);\n    int l = 0, r = 0;\n    deq[r++] = source;\n    level[source] = 0;\n\
+    \    while (l < r) {\n      int v = deq[l++];\n      FOR3(i, indptr[v], indptr[v\
+    \ + 1]) {\n        auto& e = csr_edges[i];\n        if (e.cap == 0 || level[e.to]\
+    \ >= 0) continue;\n        level[e.to] = level[v] + 1;\n        if (e.to == sink)\
+    \ return true;\n        deq[r++] = e.to;\n      }\n    }\n    return false;\n\
+    \  }\n\n  Cap flow_dfs(int v, int sink, Cap lim) {\n    if (v == sink) return\
+    \ lim;\n    FOR3(i, indptr[v], indptr[v + 1]) {\n      auto& e = csr_edges[i];\n\
+    \      if (e.cap == 0 || level[v] >= level[e.to]) continue;\n      Cap x = flow_dfs(e.to,\
+    \ sink, min(lim, e.cap));\n      if (x > Cap(0)) {\n        e.cap -= x;\n    \
+    \    int j = rev[i];\n        csr_edges[j].cap += x;\n        if (e.idx >= 0)\n\
+    \          edge_flow[e.idx] += x;\n        else\n          edge_flow[~e.idx] -=\
+    \ x;\n        return x;\n      }\n    }\n    level[v] = -1;\n    return 0;\n \
+    \ }\n};\n#line 7 \"test/aoj/GRL_6_A_maxflow.test.cpp\"\n\r\nvoid solve() {\r\n\
+    \  LL(N, M);\r\n  MaxFlowGraph<int> G;\r\n  FOR_(M) {\r\n    LL(a, b, c);\r\n\
+    \    G.add(a, b, c);\r\n  }\r\n  print(G.flow(0, N - 1));\r\n}\r\n\r\nsigned main()\
+    \ {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
+    \n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\n\r\n  return 0;\r\n\
+    }\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
     \ \"flow/maxflow.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, M);\r\n  MaxFlowGraph<int>\
@@ -241,8 +248,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_6_A_maxflow.test.cpp
   requiredBy: []
-  timestamp: '2022-04-29 17:32:58+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-05-04 01:13:53+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/GRL_6_A_maxflow.test.cpp
 layout: document
