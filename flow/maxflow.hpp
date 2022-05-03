@@ -1,9 +1,8 @@
 
 // 頂点数は渡さなくてよい
-template <typename Cap = int>
+template <typename Cap>
 struct MaxFlowGraph {
   const Cap INF;
-
   struct Edge {
     int frm, to;
     Cap cap;
@@ -18,9 +17,10 @@ struct MaxFlowGraph {
   vc<Edge> csr_edges;
   vc<int> rev;
   vc<int> level, deq;
+  Cap flow_ans;
   bool calculated;
 
-  MaxFlowGraph() : INF(numeric_limits<Cap>::max()), N(0), calculated(0) {}
+  MaxFlowGraph(Cap INF) : INF(INF), N(0), calculated(0) {}
 
   void add(int frm, int to, Cap cap) {
     chmax(N, frm + 1);
@@ -28,6 +28,46 @@ struct MaxFlowGraph {
     edges.eb(Edge({frm, to, cap, int(edges.size())}));
   }
 
+  Cap flow(int source, int sink) {
+    if (calculated) return flow_ans;
+    calculated = true;
+    _build();
+    flow_ans = 0;
+    while (set_level(source, sink)) {
+      while (1) {
+        Cap x = flow_dfs(source, sink, INF);
+        if (x == 0) break;
+        flow_ans += x;
+        chmin(flow_ans, INF);
+        if (flow_ans == INF) return flow_ans;
+      }
+    }
+    return flow_ans;
+  }
+
+  vc<tuple<int, int, Cap>> get_edges() {
+    vc<tuple<int, int, Cap>> res;
+    for (auto&& e: edges) {
+      Cap f = edge_flow[e.idx];
+      if (f > Cap(0)) res.eb(e.frm, e.to, f);
+    }
+    return res;
+  }
+
+  // 最小カットの値および、カットを表す 01 列を返す
+  pair<Cap, vc<int>> cut(int source, int sink) {
+    Cap f = flow(source, sink);
+    set_level(source, sink);
+    vc<int> res(N);
+    FOR(v, N) res[v] = (level[v] >= 0 ? 0 : 1);
+    return {f, res};
+  }
+
+  void debug() {
+    for (auto&& e: edges) print(e.frm, e.to, e.cap);
+  }
+
+private:
   void _build() {
     indptr.resize(N + 1);
     level.resize(N);
@@ -87,33 +127,5 @@ struct MaxFlowGraph {
     }
     level[v] = -1;
     return 0;
-  }
-
-  Cap flow(int source, int sink) {
-    assert(!calculated);
-    calculated = true;
-    _build();
-    Cap f = 0;
-    while (set_level(source, sink)) {
-      while (1) {
-        Cap x = flow_dfs(source, sink, INF);
-        if (x == 0) break;
-        f += x;
-      }
-    }
-    return f;
-  }
-
-  vc<tuple<int, int, Cap>> get_edges() {
-    vc<tuple<int, int, Cap>> res;
-    for (auto&& e: edges) {
-      Cap f = edge_flow[e.idx];
-      if (f > Cap(0)) res.eb(e.frm, e.to, f);
-    }
-    return res;
-  }
-
-  void debug() {
-    for (auto&& e: edges) print(e.frm, e.to, e.cap);
   }
 };
