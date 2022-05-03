@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   - icon: ':question:'
@@ -229,9 +229,9 @@ data:
     \ x;\n        return x;\n      }\n    }\n    level[v] = -1;\n    return 0;\n \
     \ }\n};\n#line 5 \"test/yukicoder/177_maxflow.test.cpp\"\n\nvoid solve() {\n \
     \ LL(W);\n  LL(N);\n  VEC(ll, A, N);\n  LL(M);\n  VEC(ll, C, M);\n  MaxFlowGraph<ll>\
-    \ G;\n  ll source = N + M;\n  ll sink = N + M + 1;\n  const ll INF = 1LL << 30;\n\
-    \  auto left = [&](int i) -> int { return i; };\n  auto right = [&](int i) ->\
-    \ int { return N + i; };\n  FOR(i, N) G.add(source, left(i), A[i]);\n  FOR(i,\
+    \ G(INF);\n  ll source = N + M;\n  ll sink = N + M + 1;\n  const ll INF = 1LL\
+    \ << 30;\n  auto left = [&](int i) -> int { return i; };\n  auto right = [&](int\
+    \ i) -> int { return N + i; };\n  FOR(i, N) G.add(source, left(i), A[i]);\n  FOR(i,\
     \ M) G.add(right(i), sink, C[i]);\n  FOR(j, M) {\n    LL(n);\n    vi ok(N, 1);\n\
     \    FOR_(n) {\n      LL(x);\n      ok[--x] = 0;\n    }\n    FOR(i, N) if (ok[i])\
     \ { G.add(left(i), right(j), INF); }\n  }\n  ll f = G.flow(source, sink);\n  if\
@@ -242,9 +242,9 @@ data:
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/177\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"flow/maxflow.hpp\"\n\nvoid solve() {\n\
     \  LL(W);\n  LL(N);\n  VEC(ll, A, N);\n  LL(M);\n  VEC(ll, C, M);\n  MaxFlowGraph<ll>\
-    \ G;\n  ll source = N + M;\n  ll sink = N + M + 1;\n  const ll INF = 1LL << 30;\n\
-    \  auto left = [&](int i) -> int { return i; };\n  auto right = [&](int i) ->\
-    \ int { return N + i; };\n  FOR(i, N) G.add(source, left(i), A[i]);\n  FOR(i,\
+    \ G(INF);\n  ll source = N + M;\n  ll sink = N + M + 1;\n  const ll INF = 1LL\
+    \ << 30;\n  auto left = [&](int i) -> int { return i; };\n  auto right = [&](int\
+    \ i) -> int { return N + i; };\n  FOR(i, N) G.add(source, left(i), A[i]);\n  FOR(i,\
     \ M) G.add(right(i), sink, C[i]);\n  FOR(j, M) {\n    LL(n);\n    vi ok(N, 1);\n\
     \    FOR_(n) {\n      LL(x);\n      ok[--x] = 0;\n    }\n    FOR(i, N) if (ok[i])\
     \ { G.add(left(i), right(j), INF); }\n  }\n  ll f = G.flow(source, sink);\n  if\
@@ -259,7 +259,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/177_maxflow.test.cpp
   requiredBy: []
-  timestamp: '2022-05-04 01:13:53+09:00'
+  timestamp: '2022-05-04 02:57:19+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/177_maxflow.test.cpp
