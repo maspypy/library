@@ -2,21 +2,15 @@
 // 頂点数は渡さなくてよい
 template <typename Cap>
 struct MaxFlowGraph {
-  const Cap INF;
   struct Edge {
-    int frm, to;
+    int to, rev;
     Cap cap;
-    int idx;
   };
 
+  const Cap INF;
   int N;
-  vc<int> indptr;
-  vc<Edge> edges;
-  vc<Cap> edge_flow;
-
-  vc<Edge> csr_edges;
-  vc<int> rev;
-  vc<int> level, deq;
+  vvc<Edge> G;
+  vc<int> prog, level;
   Cap flow_ans;
   bool calculated;
 
@@ -25,15 +19,21 @@ struct MaxFlowGraph {
   void add(int frm, int to, Cap cap) {
     chmax(N, frm + 1);
     chmax(N, to + 1);
-    edges.eb(Edge({frm, to, cap, int(edges.size())}));
+    if (len(G) < N) G.resize(N);
+    G[frm].eb(Edge{to, (int)G[to].size(), cap});
+    G[to].eb(Edge{frm, (int)G[frm].size() - 1, 0});
   }
 
   Cap flow(int source, int sink) {
     if (calculated) return flow_ans;
     calculated = true;
-    _build();
+    chmax(N, source + 1);
+    chmax(N, sink + 1);
+    G.resize(N);
     flow_ans = 0;
     while (set_level(source, sink)) {
+      fill(all(prog), 0);
+      prog.assign(N, 0);
       while (1) {
         Cap x = flow_dfs(source, sink, INF);
         if (x == 0) break;
@@ -45,64 +45,29 @@ struct MaxFlowGraph {
     return flow_ans;
   }
 
-  vc<tuple<int, int, Cap>> get_edges() {
-    vc<tuple<int, int, Cap>> res;
-    for (auto&& e: edges) {
-      Cap f = edge_flow[e.idx];
-      if (f > Cap(0)) res.eb(e.frm, e.to, f);
-    }
-    return res;
-  }
-
   // 最小カットの値および、カットを表す 01 列を返す
   pair<Cap, vc<int>> cut(int source, int sink) {
     Cap f = flow(source, sink);
-    set_level(source, sink);
     vc<int> res(N);
     FOR(v, N) res[v] = (level[v] >= 0 ? 0 : 1);
     return {f, res};
   }
 
-  void debug() {
-    for (auto&& e: edges) print(e.frm, e.to, e.cap);
-  }
-
 private:
-  void _build() {
-    indptr.resize(N + 1);
-    level.resize(N);
-    deq.resize(N);
-    int M = len(edges);
-    for (auto&& e: edges) { indptr[e.frm + 1]++, indptr[e.to + 1]++; }
-    FOR(v, N) indptr[v + 1] += indptr[v];
-    auto counter = indptr;
-
-    edge_flow.resize(M);
-    csr_edges.resize(2 * M);
-    rev.resize(2 * M);
-    for (auto&& e: edges) {
-      int i = counter[e.frm], j = counter[e.to];
-      rev[i] = j, rev[j] = i;
-      csr_edges[i] = {e.frm, e.to, e.cap, e.idx};
-      csr_edges[j] = {e.to, e.frm, Cap(0), ~e.idx};
-      counter[e.frm]++, counter[e.to]++;
-    }
-  }
-
   bool set_level(int source, int sink) {
-    // bfs
-    fill(all(level), -1);
-    int l = 0, r = 0;
-    deq[r++] = source;
+    level.assign(N, -1);
     level[source] = 0;
-    while (l < r) {
-      int v = deq[l++];
-      FOR3(i, indptr[v], indptr[v + 1]) {
-        auto& e = csr_edges[i];
-        if (e.cap == 0 || level[e.to] >= 0) continue;
-        level[e.to] = level[v] + 1;
-        if (e.to == sink) return true;
-        deq[r++] = e.to;
+    queue<int> que;
+    que.push(source);
+    while (!que.empty()) {
+      int v = que.front();
+      que.pop();
+      for (auto&& e: G[v]) {
+        if (e.cap > 0 && level[e.to] == -1) {
+          level[e.to] = level[v] + 1;
+          if (e.to == sink) return true;
+          que.push(e.to);
+        }
       }
     }
     return false;
@@ -110,22 +75,20 @@ private:
 
   Cap flow_dfs(int v, int sink, Cap lim) {
     if (v == sink) return lim;
-    FOR3(i, indptr[v], indptr[v + 1]) {
-      auto& e = csr_edges[i];
-      if (e.cap == 0 || level[v] >= level[e.to]) continue;
-      Cap x = flow_dfs(e.to, sink, min(lim, e.cap));
-      if (x > Cap(0)) {
-        e.cap -= x;
-        int j = rev[i];
-        csr_edges[j].cap += x;
-        if (e.idx >= 0)
-          edge_flow[e.idx] += x;
-        else
-          edge_flow[~e.idx] -= x;
-        return x;
+    Cap res = 0;
+    for (int& i = prog[v]; i < (int)G[v].size(); ++i) {
+      auto& e = G[v][i];
+      if (e.cap > 0 && level[e.to] == level[v] + 1) {
+        Cap a = flow_dfs(e.to, sink, min(lim, e.cap));
+        if (a > 0) {
+          e.cap -= a;
+          G[e.to][e.rev].cap += a;
+          res += a;
+          lim -= a;
+          if (lim == 0) break;
+        }
       }
     }
-    level[v] = -1;
-    return 0;
+    return res;
   }
 };
