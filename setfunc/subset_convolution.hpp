@@ -1,3 +1,5 @@
+#include "setfunc/ranked_zeta.hpp"
+
 template <typename T>
 vc<T> subset_convolution(vc<T>& A, vc<T>& B) {
   auto RA = ranked_zeta(A);
