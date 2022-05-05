@@ -47,14 +47,14 @@ public:
   explicit mcf_graph(int n) : _n(n) {}
 
   // frm, to, cap, cost
-  int add(int from, int to, Cap cap, Cost cost) {
-    assert(0 <= from && from < _n);
+  int add(int frm, int to, Cap cap, Cost cost) {
+    assert(0 <= frm && frm < _n);
     assert(0 <= to && to < _n);
     assert(0 <= cap);
     assert(DAG || 0 <= cost);
-    if (DAG) assert(from < to);
+    if (DAG) assert(frm < to);
     int m = int(_edges.size());
-    _edges.push_back({from, to, cap, 0, cost});
+    _edges.push_back({frm, to, cap, 0, cost});
     return m;
   }
 
@@ -67,7 +67,7 @@ public:
   }
 
   struct edge {
-    int from, to;
+    int frm, to;
     Cap cap, flow;
     Cost cost;
   };
@@ -102,15 +102,15 @@ public:
       elist.reserve(2 * m);
       for (int i = 0; i < m; i++) {
         auto e = _edges[i];
-        edge_idx[i] = degree[e.from]++;
+        edge_idx[i] = degree[e.frm]++;
         redge_idx[i] = degree[e.to]++;
-        elist.push_back({e.from, {e.to, -1, e.cap - e.flow, e.cost}});
-        elist.push_back({e.to, {e.from, -1, e.flow, -e.cost}});
+        elist.push_back({e.frm, {e.to, -1, e.cap - e.flow, e.cost}});
+        elist.push_back({e.to, {e.frm, -1, e.flow, -e.cost}});
       }
       auto _g = internal::csr<_edge>(_n, elist);
       for (int i = 0; i < m; i++) {
         auto e = _edges[i];
-        edge_idx[i] += _g.start[e.from];
+        edge_idx[i] += _g.start[e.frm];
         redge_idx[i] += _g.start[e.to];
         _g.elist[edge_idx[i]].rev = redge_idx[i];
         _g.elist[redge_idx[i]].rev = edge_idx[i];
@@ -143,7 +143,7 @@ private:
                                           Cap flow_limit) {
     // variants (C = maxcost):
     // -(n-1)C <= dual[s] <= dual[i] <= dual[t] = 0
-    // reduced cost (= e.cost + dual[e.from] - dual[e.to]) >= 0 for all edge
+    // reduced cost (= e.cost + dual[e.frm] - dual[e.to]) >= 0 for all edge
 
     // dual_dist[i] = (dual[i], dist[i])
     if (DAG) assert(s == 0 && t == _n - 1);
