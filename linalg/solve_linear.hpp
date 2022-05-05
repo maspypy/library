@@ -1,10 +1,10 @@
+/*
+0 行目に解のひとつ。
+1～行目に解空間の基底が行ベクトルとして入る。
+解なし = empty
+*/
 template <typename T>
 vc<vc<T>> solve_linear(vc<vc<T>> a, vc<T> b) {
-  /*
-  0 行目に解のひとつ。
-  1～行目に解空間の基底が行ベクトルとして入る。
-  解なし = empty
-  */
   auto n = len(a), m = len(a[0]);
   int rk = 0;
   FOR(j, m) {
