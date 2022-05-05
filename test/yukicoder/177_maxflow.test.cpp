@@ -9,10 +9,10 @@ void solve() {
   VEC(ll, A, N);
   LL(M);
   VEC(ll, C, M);
+  ll source = N + M;
   MaxFlowGraph<ll> G(INF);
   ll source = N + M;
   ll sink = N + M + 1;
-  const ll INF = 1LL << 30;
   auto left = [&](int i) -> int { return i; };
   auto right = [&](int i) -> int { return N + i; };
   FOR(i, N) G.add(source, left(i), A[i]);
