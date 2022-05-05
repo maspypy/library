@@ -150,7 +150,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/online_convolution.test.cpp
     title: test/library_checker/convolution/online_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/subset_convolution.test.cpp
     title: test/library_checker/convolution/subset_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -492,6 +492,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1332_range_freq.test.cpp
     title: test/yukicoder/1332_range_freq.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1593_gaussian.test.cpp
+    title: test/yukicoder/1593_gaussian.test.cpp
   - icon: ':x:'
     path: test/yukicoder/177_maxflow.test.cpp
     title: test/yukicoder/177_maxflow.test.cpp
@@ -686,6 +689,7 @@ data:
   - test/yukicoder/1036_swag.test.cpp
   - test/yukicoder/529_two_edge.test.cpp
   - test/yukicoder/749_lazysegtree.test.cpp
+  - test/yukicoder/1593_gaussian.test.cpp
   - test/yukicoder/1320_mincostcycle.test.cpp
   - test/yukicoder/899_bfsnumbering.test.cpp
   - test/yukicoder/255.test.cpp

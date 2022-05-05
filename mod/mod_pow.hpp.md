@@ -11,10 +11,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/gaussian_integers.hpp
+    title: nt/gaussian_integers.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1593_gaussian.test.cpp
+    title: test/yukicoder/1593_gaussian.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -49,11 +55,13 @@ data:
   isVerificationFile: false
   path: mod/mod_pow.hpp
   requiredBy:
+  - nt/gaussian_integers.hpp
   - mod/primitive_root.hpp
   - mod/mod_kth_root.hpp
   timestamp: '2022-04-27 05:05:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1593_gaussian.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
 documentation_of: mod/mod_pow.hpp
 layout: document

@@ -1,0 +1,49 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
+  _pathExtension: hpp
+  _verificationStatusIcon: ':warning:'
+  attributes:
+    links: []
+  bundledCode: "#line 1 \"setfunc/ranked_zeta.hpp\"\n\r\ntemplate <typename T>\r\n\
+    vc<vc<T>> ranked_zeta(const vc<T>& f) {\r\n  int n = topbit(len(f));\r\n  assert(len(f)\
+    \ == 1 << n);\r\n  vv(T, Rf, 1 << n, n + 1);\r\n  for (int s = 0; s < (1 << n);\
+    \ ++s) Rf[s][popcnt(s)] = f[s];\r\n  for (int i = 0; i < n; ++i) {\r\n    for\
+    \ (int s = 0; s < (1 << n); ++s) {\r\n      int t = s | 1 << i;\r\n      if (s\
+    \ == t) continue;\r\n      for (int d = 0; d <= n; ++d) Rf[t][d] += Rf[s][d];\r\
+    \n    }\r\n  }\r\n  return Rf;\r\n}\r\n\r\ntemplate <typename T>\r\nvc<T> ranked_mobius(vc<vc<T>>&\
+    \ Rf) {\r\n  int n = topbit(len(Rf));\r\n  assert(len(Rf) == 1 << n);\r\n  for\
+    \ (int i = 0; i < n; ++i) {\r\n    for (int s = 0; s < (1 << n); ++s) {\r\n  \
+    \    int t = s | 1 << i;\r\n      if (s == t) continue;\r\n      for (int d =\
+    \ 0; d <= n; ++d) Rf[t][d] -= Rf[s][d];\r\n    }\r\n  }\r\n  vc<T> f(1 << n);\r\
+    \n  for (int s = 0; s < (1 << n); ++s) f[s] = Rf[s][popcnt(s)];\r\n  return f;\r\
+    \n}\n"
+  code: "\r\ntemplate <typename T>\r\nvc<vc<T>> ranked_zeta(const vc<T>& f) {\r\n\
+    \  int n = topbit(len(f));\r\n  assert(len(f) == 1 << n);\r\n  vv(T, Rf, 1 <<\
+    \ n, n + 1);\r\n  for (int s = 0; s < (1 << n); ++s) Rf[s][popcnt(s)] = f[s];\r\
+    \n  for (int i = 0; i < n; ++i) {\r\n    for (int s = 0; s < (1 << n); ++s) {\r\
+    \n      int t = s | 1 << i;\r\n      if (s == t) continue;\r\n      for (int d\
+    \ = 0; d <= n; ++d) Rf[t][d] += Rf[s][d];\r\n    }\r\n  }\r\n  return Rf;\r\n\
+    }\r\n\r\ntemplate <typename T>\r\nvc<T> ranked_mobius(vc<vc<T>>& Rf) {\r\n  int\
+    \ n = topbit(len(Rf));\r\n  assert(len(Rf) == 1 << n);\r\n  for (int i = 0; i\
+    \ < n; ++i) {\r\n    for (int s = 0; s < (1 << n); ++s) {\r\n      int t = s |\
+    \ 1 << i;\r\n      if (s == t) continue;\r\n      for (int d = 0; d <= n; ++d)\
+    \ Rf[t][d] -= Rf[s][d];\r\n    }\r\n  }\r\n  vc<T> f(1 << n);\r\n  for (int s\
+    \ = 0; s < (1 << n); ++s) f[s] = Rf[s][popcnt(s)];\r\n  return f;\r\n}"
+  dependsOn: []
+  isVerificationFile: false
+  path: setfunc/ranked_zeta.hpp
+  requiredBy: []
+  timestamp: '2022-05-05 18:24:09+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: setfunc/ranked_zeta.hpp
+layout: document
+redirect_from:
+- /library/setfunc/ranked_zeta.hpp
+- /library/setfunc/ranked_zeta.hpp.html
+title: setfunc/ranked_zeta.hpp
+---

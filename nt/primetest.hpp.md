@@ -26,6 +26,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/factor.hpp
     title: nt/factor.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/gaussian_integers.hpp
+    title: nt/gaussian_integers.hpp
   - icon: ':warning:'
     path: nt/zeta_on_divisors.hpp
     title: nt/zeta_on_divisors.hpp
@@ -54,6 +57,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1593_gaussian.test.cpp
+    title: test/yukicoder/1593_gaussian.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -128,6 +134,7 @@ data:
   requiredBy:
   - graph/chromatic.hpp
   - nt/divisors.hpp
+  - nt/gaussian_integers.hpp
   - nt/factor.hpp
   - nt/zeta_on_divisors.hpp
   - nt/euler_phi.hpp
@@ -138,6 +145,7 @@ data:
   timestamp: '2022-04-27 05:09:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1593_gaussian.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
   - test/library_checker/math/tetration.test.cpp
   - test/library_checker/math/binomial_coefficient.test.cpp

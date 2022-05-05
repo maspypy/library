@@ -521,7 +521,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_sqrt.hpp
       title: mod/mod_sqrt.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: mod/modint.hpp
       title: mod/modint.hpp
     - icon: ':heavy_check_mark:'
@@ -558,6 +558,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/factor.hpp
       title: nt/factor.hpp
+    - icon: ':heavy_check_mark:'
+      path: nt/gaussian_integers.hpp
+      title: nt/gaussian_integers.hpp
     - icon: ':heavy_check_mark:'
       path: nt/gcd_convolution.hpp
       title: nt/gcd_convolution.hpp
@@ -775,7 +778,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: setfunc/or_convolution.hpp
       title: setfunc/or_convolution.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
+      path: setfunc/ranked_zeta.hpp
+      title: setfunc/ranked_zeta.hpp
+    - icon: ':x:'
       path: setfunc/subset_convolution.hpp
       title: setfunc/subset_convolution.hpp
     - icon: ':heavy_check_mark:'
@@ -975,7 +981,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/online_convolution.test.cpp
       title: test/library_checker/convolution/online_convolution.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/convolution/subset_convolution.test.cpp
       title: test/library_checker/convolution/subset_convolution.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1337,6 +1343,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1332_range_freq.test.cpp
       title: test/yukicoder/1332_range_freq.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1593_gaussian.test.cpp
+      title: test/yukicoder/1593_gaussian.test.cpp
     - icon: ':x:'
       path: test/yukicoder/177_maxflow.test.cpp
       title: test/yukicoder/177_maxflow.test.cpp
