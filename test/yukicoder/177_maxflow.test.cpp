@@ -9,7 +9,6 @@ void solve() {
   VEC(ll, A, N);
   LL(M);
   VEC(ll, C, M);
-  ll source = N + M;
   const ll INF = 1LL << 60;
   MaxFlowGraph<ll> G(INF);
   ll source = N + M;
