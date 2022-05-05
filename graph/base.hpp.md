@@ -14,6 +14,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bfsnumbering.hpp
     title: graph/bfsnumbering.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/biconnected_component.hpp
+    title: graph/biconnected_component.hpp
   - icon: ':warning:'
     path: graph/bipartite_coloring.hpp
     title: graph/bipartite_coloring.hpp
@@ -168,6 +171,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/biconnected_component.test.cpp
+    title: test/library_checker/graph/biconnected_component.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
@@ -328,6 +334,7 @@ data:
   - graph/dijkstra.hpp
   - graph/dualtreemonoid.hpp
   - graph/reverse_graph.hpp
+  - graph/biconnected_component.hpp
   - graph/minimum_spanning_tree.hpp
   - graph/reachability.hpp
   - graph/dag_path_cover.hpp
@@ -368,6 +375,7 @@ data:
   - test/library_checker/graph/two_edge_component.test.cpp
   - test/library_checker/graph/enumerate_triangles.test.cpp
   - test/library_checker/graph/scc.test.cpp
+  - test/library_checker/graph/biconnected_component.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/cycle_detection.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp

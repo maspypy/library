@@ -17,11 +17,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1288
+    PROBLEM: https://judge.yosupo.jp/problem/assignment
     links:
-    - https://yukicoder.me/problems/no/1288
-  bundledCode: "#line 1 \"test/yukicoder/1288_mcf_dag_negative.test.cpp\"\n#define\
-    \ PROBLEM \"https://yukicoder.me/problems/no/1288\"\n#line 1 \"my_template.hpp\"\
+    - https://judge.yosupo.jp/problem/assignment
+  bundledCode: "#line 1 \"test/library_checker/graph/assignment_mcf.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/assignment\"\n#line 1 \"my_template.hpp\"\
     \n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
     using pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\n\
     using u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\n\
@@ -300,51 +300,45 @@ data:
     \      }\n      Cost d = -dual_dist[s].first;\n      flow += c;\n      cost +=\
     \ c * d;\n      if (prev_cost_per_flow == d) { result.pop_back(); }\n      result.push_back({flow,\
     \ cost});\n      prev_cost_per_flow = d;\n    }\n    return result;\n  }\n};\n\
-    #line 5 \"test/yukicoder/1288_mcf_dag_negative.test.cpp\"\n\nvoid solve() {\n\
-    \  LL(N);\n  STR(S);\n  VEC(ll, X, N);\n  auto A = [&](int i) -> int { return\
-    \ i; };\n  auto B = [&](int i) -> int { return N + 1 + i; };\n  auto C = [&](int\
-    \ i) -> int { return 2 * (N + 1) + i; };\n  auto D = [&](int i) -> int { return\
-    \ 3 * (N + 1) + i; };\n  auto E = [&](int i) -> int { return 4 * (N + 1) + i;\
-    \ };\n  mcf_graph<int, ll, true> G(5 * N + 5);\n  FOR(i, N) G.add(A(i), A(i +\
-    \ 1), N, 0);\n  FOR(i, N) G.add(B(i), B(i + 1), N, 0);\n  FOR(i, N) G.add(C(i),\
-    \ C(i + 1), N, 0);\n  FOR(i, N) G.add(D(i), D(i + 1), N, 0);\n  FOR(i, N) G.add(E(i),\
-    \ E(i + 1), N, 0);\n  FOR(i, N) {\n    if (S[i] == 'y') G.add(A(i), B(i + 1),\
-    \ 1, -X[i]);\n    if (S[i] == 'u') G.add(B(i), C(i + 1), 1, -X[i]);\n    if (S[i]\
-    \ == 'k') G.add(C(i), D(i + 1), 1, -X[i]);\n    if (S[i] == 'i') G.add(D(i), E(i\
-    \ + 1), 1, -X[i]);\n  }\n  ll ANS = 0;\n  for (auto&& [x, y]: G.slope(A(0), E(N)))\
-    \ chmax(ANS, -y);\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1288\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"flow/mincostflow.hpp\"\n\nvoid solve()\
-    \ {\n  LL(N);\n  STR(S);\n  VEC(ll, X, N);\n  auto A = [&](int i) -> int { return\
-    \ i; };\n  auto B = [&](int i) -> int { return N + 1 + i; };\n  auto C = [&](int\
-    \ i) -> int { return 2 * (N + 1) + i; };\n  auto D = [&](int i) -> int { return\
-    \ 3 * (N + 1) + i; };\n  auto E = [&](int i) -> int { return 4 * (N + 1) + i;\
-    \ };\n  mcf_graph<int, ll, true> G(5 * N + 5);\n  FOR(i, N) G.add(A(i), A(i +\
-    \ 1), N, 0);\n  FOR(i, N) G.add(B(i), B(i + 1), N, 0);\n  FOR(i, N) G.add(C(i),\
-    \ C(i + 1), N, 0);\n  FOR(i, N) G.add(D(i), D(i + 1), N, 0);\n  FOR(i, N) G.add(E(i),\
-    \ E(i + 1), N, 0);\n  FOR(i, N) {\n    if (S[i] == 'y') G.add(A(i), B(i + 1),\
-    \ 1, -X[i]);\n    if (S[i] == 'u') G.add(B(i), C(i + 1), 1, -X[i]);\n    if (S[i]\
-    \ == 'k') G.add(C(i), D(i + 1), 1, -X[i]);\n    if (S[i] == 'i') G.add(D(i), E(i\
-    \ + 1), 1, -X[i]);\n  }\n  ll ANS = 0;\n  for (auto&& [x, y]: G.slope(A(0), E(N)))\
-    \ chmax(ANS, -y);\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    #line 5 \"test/library_checker/graph/assignment_mcf.test.cpp\"\n\nvoid solve()\
+    \ {\n  LL(N);\n  mcf_graph<int, ll, true> G(N + N + 2);\n  int source = 0;\n \
+    \ auto left = [&](int i) -> int { return 1 + i; };\n  auto right = [&](int i)\
+    \ -> int { return 1 + N + i; };\n  int sink = right(N);\n  FOR(i, N) FOR(j, N)\
+    \ {\n    LL(x);\n    G.add(left(i), right(j), 1, x);\n  }\n  FOR(i, N) {\n   \
+    \ G.add(source, left(i), 1, 0);\n    G.add(right(i), sink, 1, 0);\n  }\n  auto\
+    \ xy = G.slope(source, sink);\n  auto edges = G.edges();\n  vi ANS(N);\n  for\
+    \ (auto&& e: edges) {\n    if (e.flow && 1 <= e.frm && e.frm <= N) {\n      ANS[e.frm\
+    \ - 1] = e.to - right(0);\n    }\n  }\n  print(xy.back().se);\n  print(ANS);\n\
+    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
+    \ return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/assignment\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"flow/mincostflow.hpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  mcf_graph<int, ll, true> G(N + N + 2);\n  int\
+    \ source = 0;\n  auto left = [&](int i) -> int { return 1 + i; };\n  auto right\
+    \ = [&](int i) -> int { return 1 + N + i; };\n  int sink = right(N);\n  FOR(i,\
+    \ N) FOR(j, N) {\n    LL(x);\n    G.add(left(i), right(j), 1, x);\n  }\n  FOR(i,\
+    \ N) {\n    G.add(source, left(i), 1, 0);\n    G.add(right(i), sink, 1, 0);\n\
+    \  }\n  auto xy = G.slope(source, sink);\n  auto edges = G.edges();\n  vi ANS(N);\n\
+    \  for (auto&& e: edges) {\n    if (e.flow && 1 <= e.frm && e.frm <= N) {\n  \
+    \    ANS[e.frm - 1] = e.to - right(0);\n    }\n  }\n  print(xy.back().se);\n \
+    \ print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - flow/mincostflow.hpp
   isVerificationFile: true
-  path: test/yukicoder/1288_mcf_dag_negative.test.cpp
+  path: test/library_checker/graph/assignment_mcf.test.cpp
   requiredBy: []
   timestamp: '2022-05-05 15:29:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/1288_mcf_dag_negative.test.cpp
+documentation_of: test/library_checker/graph/assignment_mcf.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/1288_mcf_dag_negative.test.cpp
-- /verify/test/yukicoder/1288_mcf_dag_negative.test.cpp.html
-title: test/yukicoder/1288_mcf_dag_negative.test.cpp
+- /verify/test/library_checker/graph/assignment_mcf.test.cpp
+- /verify/test/library_checker/graph/assignment_mcf.test.cpp.html
+title: test/library_checker/graph/assignment_mcf.test.cpp
 ---

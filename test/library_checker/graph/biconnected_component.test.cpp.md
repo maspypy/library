@@ -1,9 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: flow/maxflow.hpp
-    title: flow/maxflow.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/base.hpp
+    title: graph/base.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/biconnected_component.hpp
+    title: graph/biconnected_component.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -12,24 +15,24 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/177
+    PROBLEM: https://judge.yosupo.jp/problem/biconnected_components
     links:
-    - https://yukicoder.me/problems/no/177
-  bundledCode: "#line 1 \"test/yukicoder/177_maxflow.test.cpp\"\n#define PROBLEM \"\
-    https://yukicoder.me/problems/no/177\"\n#line 1 \"my_template.hpp\"\n#include\
-    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
-    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
-    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
-    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
-    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://judge.yosupo.jp/problem/biconnected_components
+  bundledCode: "#line 1 \"test/library_checker/graph/biconnected_component.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/biconnected_components\"\n\
+    #line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
+    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
+    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
+    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -185,75 +188,106 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 1 \"flow/maxflow.hpp\"\n\n// \u9802\u70B9\u6570\u306F\u6E21\
-    \u3055\u306A\u304F\u3066\u3088\u3044\ntemplate <typename Cap>\nstruct MaxFlowGraph\
-    \ {\n  struct Edge {\n    int to, rev;\n    Cap cap;\n  };\n\n  const Cap INF;\n\
-    \  int N;\n  vvc<Edge> G;\n  vc<int> prog, level;\n  Cap flow_ans;\n  bool calculated;\n\
-    \n  MaxFlowGraph(Cap INF) : INF(INF), N(0), calculated(0) {}\n\n  void add(int\
-    \ frm, int to, Cap cap) {\n    chmax(N, frm + 1);\n    chmax(N, to + 1);\n   \
-    \ if (len(G) < N) G.resize(N);\n    G[frm].eb(Edge{to, (int)G[to].size(), cap});\n\
-    \    G[to].eb(Edge{frm, (int)G[frm].size() - 1, 0});\n  }\n\n  Cap flow(int source,\
-    \ int sink) {\n    if (calculated) return flow_ans;\n    calculated = true;\n\
-    \    chmax(N, source + 1);\n    chmax(N, sink + 1);\n    G.resize(N);\n    flow_ans\
-    \ = 0;\n    while (set_level(source, sink)) {\n      fill(all(prog), 0);\n   \
-    \   prog.assign(N, 0);\n      while (1) {\n        Cap x = flow_dfs(source, sink,\
-    \ INF);\n        if (x == 0) break;\n        flow_ans += x;\n        chmin(flow_ans,\
-    \ INF);\n        if (flow_ans == INF) return flow_ans;\n      }\n    }\n    return\
-    \ flow_ans;\n  }\n\n  // \u6700\u5C0F\u30AB\u30C3\u30C8\u306E\u5024\u304A\u3088\
-    \u3073\u3001\u30AB\u30C3\u30C8\u3092\u8868\u3059 01 \u5217\u3092\u8FD4\u3059\n\
-    \  pair<Cap, vc<int>> cut(int source, int sink) {\n    Cap f = flow(source, sink);\n\
-    \    vc<int> res(N);\n    FOR(v, N) res[v] = (level[v] >= 0 ? 0 : 1);\n    return\
-    \ {f, res};\n  }\n\nprivate:\n  bool set_level(int source, int sink) {\n    level.assign(N,\
-    \ -1);\n    level[source] = 0;\n    queue<int> que;\n    que.push(source);\n \
-    \   while (!que.empty()) {\n      int v = que.front();\n      que.pop();\n   \
-    \   for (auto&& e: G[v]) {\n        if (e.cap > 0 && level[e.to] == -1) {\n  \
-    \        level[e.to] = level[v] + 1;\n          if (e.to == sink) return true;\n\
-    \          que.push(e.to);\n        }\n      }\n    }\n    return false;\n  }\n\
-    \n  Cap flow_dfs(int v, int sink, Cap lim) {\n    if (v == sink) return lim;\n\
-    \    Cap res = 0;\n    for (int& i = prog[v]; i < (int)G[v].size(); ++i) {\n \
-    \     auto& e = G[v][i];\n      if (e.cap > 0 && level[e.to] == level[v] + 1)\
-    \ {\n        Cap a = flow_dfs(e.to, sink, min(lim, e.cap));\n        if (a > 0)\
-    \ {\n          e.cap -= a;\n          G[e.to][e.rev].cap += a;\n          res\
-    \ += a;\n          lim -= a;\n          if (lim == 0) break;\n        }\n    \
-    \  }\n    }\n    return res;\n  }\n};\n#line 5 \"test/yukicoder/177_maxflow.test.cpp\"\
-    \n\nvoid solve() {\n  LL(W);\n  LL(N);\n  VEC(ll, A, N);\n  LL(M);\n  VEC(ll,\
-    \ C, M);\n  ll source = N + M;\n  MaxFlowGraph<ll> G(INF);\n  ll source = N +\
-    \ M;\n  ll sink = N + M + 1;\n  auto left = [&](int i) -> int { return i; };\n\
-    \  auto right = [&](int i) -> int { return N + i; };\n  FOR(i, N) G.add(source,\
-    \ left(i), A[i]);\n  FOR(i, M) G.add(right(i), sink, C[i]);\n  FOR(j, M) {\n \
-    \   LL(n);\n    vi ok(N, 1);\n    FOR_(n) {\n      LL(x);\n      ok[--x] = 0;\n\
-    \    }\n    FOR(i, N) if (ok[i]) { G.add(left(i), right(j), INF); }\n  }\n  ll\
-    \ f = G.flow(source, sink);\n  if (f < W)\n    print(\"BANSAKUTSUKITA\");\n  else\n\
-    \    print(\"SHIROBAKO\");\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \ { yes(!t); }\r\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct\
+    \ Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int,\
+    \ bool directed = false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n\
+    \  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n\
+    \  vector<edge_type> csr_edges;\n  bool prepared;\n\n  class OutgoingEdges {\n\
+    \  public:\n    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l), r(r)\
+    \ {}\n\n    const edge_type* begin() const {\n      if (l == r) { return 0; }\n\
+    \      return &G->csr_edges[l];\n    }\n\n    const edge_type* end() const {\n\
+    \      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n  private:\n\
+    \    int l, r;\n    const Graph* G;\n  };\n\n  bool is_prepared() { return prepared;\
+    \ }\n  constexpr bool is_directed() { return directed; }\n\n  Graph() : N(0),\
+    \ M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void\
+    \ add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared && 0 <=\
+    \ frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm,\
+    \ to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool\
+    \ wt = false, int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int\
+    \ M, bool wt = false, int off = 1) {\n    FOR_(M) {\n      INT(a, b);\n      a\
+    \ -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n  \
+    \      T c;\n        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n\
+    \  }\n\n  void read_parent(int off = 1) {\n    FOR3(v, 1, N) {\n      INT(p);\n\
+    \      p -= off;\n      add(p, v);\n    }\n    build();\n  }\n\n  void build()\
+    \ {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
+    \    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if (!directed)\
+    \ indptr[e.to + 1]++;\n    }\n    FOR(v, N) indptr[v + 1] += indptr[v];\n    auto\
+    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
+    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
+    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
+    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
+    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  void debug() {\n    print(\"\
+    Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
+    \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
+    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 2 \"graph/biconnected_component.hpp\"\
+    \n\n/*\n\u5B64\u7ACB\u70B9\u306E\u6271\u3044\u304C\u5206\u304B\u3089\u306A\u304B\
+    \u3063\u305F\u304C\u3001\u3068\u308A\u3042\u3048\u305A\u95A2\u7BC0\u70B9\u3068\
+    \u3057\u3066 BCT \u306B\u5165\u308C\u3066\u3044\u308B\nblock cut tree\u306E\u9802\
+    \u70B9\u756A\u53F7\uFF1A\n[0, n_block)\uFF1Ablock \uFF08\u8FBA\u306E\u540C\u5024\
+    \u985E\uFF09\n[n_block, n_block + n_cut)\uFF1Acut \uFF08\u95A2\u7BC0\u70B9\uFF09\
+    \n*/\ntemplate <typename GT>\nstruct Biconnected_Component {\n  GT& G;\n  vc<pair<int,\
+    \ int>> BCT_edges;\n  int n_block, n_cut;\n  vc<vc<int>> comp;\n  vc<int> BCT_idx_edge;\n\
+    \  vc<int> BCT_idx_vertex;\n\n  Biconnected_Component(GT& G) : G(G) {\n    auto\
+    \ [ord, low] = calculate_lowlink();\n    calculate_bcc(ord, low);\n    build_bct();\n\
+    \  }\n\n  int BCT_idx_v(int v) { return BCT_idx_vertex[v]; }\n  int BCT_idx_e(int\
+    \ eid) { return BCT_idx_edge[eid]; }\n  Graph<int> BCT() {\n    Graph<int> bct(n_block\
+    \ + n_cut);\n    for (auto&& [a, b]: BCT_edges) bct.add(a, b);\n    bct.build();\n\
+    \    return bct;\n  }\n  bool is_articulation(int v) { return BCT_idx_v(v) >=\
+    \ n_block; }\n\nprivate:\n  void build_bct() {\n    int n = G.N;\n    vvc<int>\
+    \ nbd(n);\n    n_block = len(comp);\n    n_cut = 0;\n    BCT_idx_edge.resize(G.M);\n\
+    \    BCT_idx_vertex.resize(G.N);\n\n    auto add = [&](int v, int c) -> void {\n\
+    \      if (len(nbd[v]) && nbd[v].back() == c) return;\n      nbd[v].eb(c);\n \
+    \   };\n\n    FOR(c, len(comp)) {\n      for (auto&& eid: comp[c]) {\n       \
+    \ BCT_idx_edge[eid] = c;\n        auto& e = G.edges[eid];\n        add(e.frm,\
+    \ c);\n        add(e.to, c);\n      }\n    }\n    FOR(v, n) {\n      if (len(nbd[v])\
+    \ != 1) {\n        BCT_idx_vertex[v] = n_block + n_cut;\n        for (auto&& c:\
+    \ nbd[v]) { BCT_edges.eb(n_block + n_cut, c); }\n        n_cut++;\n      } else\
+    \ {\n        int c = nbd[v][0];\n        BCT_idx_vertex[v] = c;\n      }\n   \
+    \ }\n  }\n\n  pair<vc<int>, vc<int>> calculate_lowlink() {\n    int n = G.N;\n\
+    \    vc<bool> used(n);\n    vc<int> low(n), ord(n);\n    int k = 0;\n    auto\
+    \ dfs = [&](auto self, int v, int eid) -> void {\n      used[v] = 1;\n      low[v]\
+    \ = ord[v] = k++;\n      for (auto&& e: G[v]) {\n        if (e.id == eid) continue;\n\
+    \        if (!used[e.to]) {\n          self(self, e.to, e.id);\n          chmin(low[v],\
+    \ low[e.to]);\n        } else {\n          chmin(low[v], ord[e.to]);\n       \
+    \ }\n      }\n    };\n    FOR(v, n) if (!used[v]) dfs(dfs, v, -1);\n    return\
+    \ {ord, low};\n  }\n\n  void calculate_bcc(vc<int>& ord, vc<int>& low) {\n   \
+    \ int n = G.N;\n    vc<bool> used(n);\n    vc<int> buf;\n    auto dfs = [&](auto\
+    \ self, int v, int eid) -> void {\n      used[v] = 1;\n      for (auto&& e: G[v])\
+    \ {\n        if (e.id == eid) continue;\n        if (!used[e.to] || ord[e.to]\
+    \ < ord[v]) buf.eb(e.id);\n        if (used[e.to]) continue;\n        self(self,\
+    \ e.to, e.id);\n        if (low[e.to] < ord[v]) continue;\n        vc<int> edges;\n\
+    \        while (1) {\n          edges.eb(buf.back());\n          buf.pop_back();\n\
+    \          if (edges.back() == e.id) break;\n        }\n        comp.eb(edges);\n\
+    \      }\n    };\n    FOR(v, n) if (!used[v]) dfs(dfs, v, -1);\n  }\n};\n#line\
+    \ 5 \"test/library_checker/graph/biconnected_component.test.cpp\"\n\nvoid solve()\
+    \ {\n  LL(N, M);\n  Graph G(N);\n  G.read_graph(M, 0, 0);\n\n  Biconnected_Component\
+    \ BC(G);\n  print(len(BC.comp));\n  for (auto&& C: BC.comp) { print(len(C), C);\
+    \ }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
     \n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/177\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"flow/maxflow.hpp\"\n\nvoid solve() {\n\
-    \  LL(W);\n  LL(N);\n  VEC(ll, A, N);\n  LL(M);\n  VEC(ll, C, M);\n  ll source\
-    \ = N + M;\n  MaxFlowGraph<ll> G(INF);\n  ll source = N + M;\n  ll sink = N +\
-    \ M + 1;\n  auto left = [&](int i) -> int { return i; };\n  auto right = [&](int\
-    \ i) -> int { return N + i; };\n  FOR(i, N) G.add(source, left(i), A[i]);\n  FOR(i,\
-    \ M) G.add(right(i), sink, C[i]);\n  FOR(j, M) {\n    LL(n);\n    vi ok(N, 1);\n\
-    \    FOR_(n) {\n      LL(x);\n      ok[--x] = 0;\n    }\n    FOR(i, N) if (ok[i])\
-    \ { G.add(left(i), right(j), INF); }\n  }\n  ll f = G.flow(source, sink);\n  if\
-    \ (f < W)\n    print(\"BANSAKUTSUKITA\");\n  else\n    print(\"SHIROBAKO\");\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
-    \ return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/biconnected_components\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/biconnected_component.hpp\"\
+    \n\nvoid solve() {\n  LL(N, M);\n  Graph G(N);\n  G.read_graph(M, 0, 0);\n\n \
+    \ Biconnected_Component BC(G);\n  print(len(BC.comp));\n  for (auto&& C: BC.comp)\
+    \ { print(len(C), C); }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - flow/maxflow.hpp
+  - graph/biconnected_component.hpp
+  - graph/base.hpp
   isVerificationFile: true
-  path: test/yukicoder/177_maxflow.test.cpp
+  path: test/library_checker/graph/biconnected_component.test.cpp
   requiredBy: []
-  timestamp: '2022-05-05 15:33:08+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-05 15:28:28+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/177_maxflow.test.cpp
+documentation_of: test/library_checker/graph/biconnected_component.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/177_maxflow.test.cpp
-- /verify/test/yukicoder/177_maxflow.test.cpp.html
-title: test/yukicoder/177_maxflow.test.cpp
+- /verify/test/library_checker/graph/biconnected_component.test.cpp
+- /verify/test/library_checker/graph/biconnected_component.test.cpp.html
+title: test/library_checker/graph/biconnected_component.test.cpp
 ---

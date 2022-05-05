@@ -273,6 +273,9 @@ data:
       title: ds/xor_sparsetable.hpp
   - name: flow
     pages:
+    - icon: ':heavy_check_mark:'
+      path: flow/bflow.hpp
+      title: flow/bflow.hpp
     - icon: ':warning:'
       path: flow/binary_optimization.hpp
       title: flow/binary_optimization.hpp
@@ -319,6 +322,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/bfsnumbering.hpp
       title: graph/bfsnumbering.hpp
+    - icon: ':heavy_check_mark:'
+      path: graph/biconnected_component.hpp
+      title: graph/biconnected_component.hpp
     - icon: ':warning:'
       path: graph/bipartite_coloring.hpp
       title: graph/bipartite_coloring.hpp
@@ -367,6 +373,9 @@ data:
     - icon: ':warning:'
       path: graph/functional.hpp
       title: graph/functional.hpp
+    - icon: ':warning:'
+      path: graph/grid_bfs.hpp
+      title: graph/grid_bfs.hpp
     - icon: ':heavy_check_mark:'
       path: graph/hld.hpp
       title: graph/hld.hpp
@@ -1081,6 +1090,12 @@ data:
   - name: test/library_checker/graph
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/library_checker/graph/assignment_mcf.test.cpp
+      title: test/library_checker/graph/assignment_mcf.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/graph/biconnected_component.test.cpp
+      title: test/library_checker/graph/biconnected_component.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/bipartitematching.test.cpp
       title: test/library_checker/graph/bipartitematching.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1095,6 +1110,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/maximum_independent_set.test.cpp
       title: test/library_checker/graph/maximum_independent_set.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/graph/min_cost_b-flow.test.cpp
+      title: test/library_checker/graph/min_cost_b-flow.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/scc.test.cpp
       title: test/library_checker/graph/scc.test.cpp

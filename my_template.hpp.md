@@ -259,6 +259,12 @@ data:
     path: test/library_checker/geometry/sort_points_by_argument.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/assignment_mcf.test.cpp
+    title: test/library_checker/graph/assignment_mcf.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/biconnected_component.test.cpp
+    title: test/library_checker/graph/biconnected_component.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
   - icon: ':heavy_check_mark:'
@@ -273,6 +279,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/maximum_independent_set.test.cpp
     title: test/library_checker/graph/maximum_independent_set.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/min_cost_b-flow.test.cpp
+    title: test/library_checker/graph/min_cost_b-flow.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/scc.test.cpp
     title: test/library_checker/graph/scc.test.cpp
@@ -751,7 +760,10 @@ data:
   - test/library_checker/graph/two_edge_component.test.cpp
   - test/library_checker/graph/enumerate_triangles.test.cpp
   - test/library_checker/graph/scc.test.cpp
+  - test/library_checker/graph/min_cost_b-flow.test.cpp
+  - test/library_checker/graph/biconnected_component.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
+  - test/library_checker/graph/assignment_mcf.test.cpp
   - test/library_checker/graph/cycle_detection.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp

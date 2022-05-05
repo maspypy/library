@@ -1,9 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: flow/maxflow.hpp
-    title: flow/maxflow.hpp
+  - icon: ':heavy_check_mark:'
+    path: flow/bflow.hpp
+    title: flow/bflow.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -12,24 +12,24 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/177
+    PROBLEM: https://judge.yosupo.jp/problem/min_cost_b_flow
     links:
-    - https://yukicoder.me/problems/no/177
-  bundledCode: "#line 1 \"test/yukicoder/177_maxflow.test.cpp\"\n#define PROBLEM \"\
-    https://yukicoder.me/problems/no/177\"\n#line 1 \"my_template.hpp\"\n#include\
-    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
-    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
-    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
-    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
-    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://judge.yosupo.jp/problem/min_cost_b_flow
+  bundledCode: "#line 1 \"test/library_checker/graph/min_cost_b-flow.test.cpp\"\n\
+    #define PROBLEM \"https://judge.yosupo.jp/problem/min_cost_b_flow\"\n#line 1 \"\
+    my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
+    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
+    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
+    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -185,75 +185,127 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 1 \"flow/maxflow.hpp\"\n\n// \u9802\u70B9\u6570\u306F\u6E21\
-    \u3055\u306A\u304F\u3066\u3088\u3044\ntemplate <typename Cap>\nstruct MaxFlowGraph\
-    \ {\n  struct Edge {\n    int to, rev;\n    Cap cap;\n  };\n\n  const Cap INF;\n\
-    \  int N;\n  vvc<Edge> G;\n  vc<int> prog, level;\n  Cap flow_ans;\n  bool calculated;\n\
-    \n  MaxFlowGraph(Cap INF) : INF(INF), N(0), calculated(0) {}\n\n  void add(int\
-    \ frm, int to, Cap cap) {\n    chmax(N, frm + 1);\n    chmax(N, to + 1);\n   \
-    \ if (len(G) < N) G.resize(N);\n    G[frm].eb(Edge{to, (int)G[to].size(), cap});\n\
-    \    G[to].eb(Edge{frm, (int)G[frm].size() - 1, 0});\n  }\n\n  Cap flow(int source,\
-    \ int sink) {\n    if (calculated) return flow_ans;\n    calculated = true;\n\
-    \    chmax(N, source + 1);\n    chmax(N, sink + 1);\n    G.resize(N);\n    flow_ans\
-    \ = 0;\n    while (set_level(source, sink)) {\n      fill(all(prog), 0);\n   \
-    \   prog.assign(N, 0);\n      while (1) {\n        Cap x = flow_dfs(source, sink,\
-    \ INF);\n        if (x == 0) break;\n        flow_ans += x;\n        chmin(flow_ans,\
-    \ INF);\n        if (flow_ans == INF) return flow_ans;\n      }\n    }\n    return\
-    \ flow_ans;\n  }\n\n  // \u6700\u5C0F\u30AB\u30C3\u30C8\u306E\u5024\u304A\u3088\
-    \u3073\u3001\u30AB\u30C3\u30C8\u3092\u8868\u3059 01 \u5217\u3092\u8FD4\u3059\n\
-    \  pair<Cap, vc<int>> cut(int source, int sink) {\n    Cap f = flow(source, sink);\n\
-    \    vc<int> res(N);\n    FOR(v, N) res[v] = (level[v] >= 0 ? 0 : 1);\n    return\
-    \ {f, res};\n  }\n\nprivate:\n  bool set_level(int source, int sink) {\n    level.assign(N,\
-    \ -1);\n    level[source] = 0;\n    queue<int> que;\n    que.push(source);\n \
-    \   while (!que.empty()) {\n      int v = que.front();\n      que.pop();\n   \
-    \   for (auto&& e: G[v]) {\n        if (e.cap > 0 && level[e.to] == -1) {\n  \
-    \        level[e.to] = level[v] + 1;\n          if (e.to == sink) return true;\n\
-    \          que.push(e.to);\n        }\n      }\n    }\n    return false;\n  }\n\
-    \n  Cap flow_dfs(int v, int sink, Cap lim) {\n    if (v == sink) return lim;\n\
-    \    Cap res = 0;\n    for (int& i = prog[v]; i < (int)G[v].size(); ++i) {\n \
-    \     auto& e = G[v][i];\n      if (e.cap > 0 && level[e.to] == level[v] + 1)\
-    \ {\n        Cap a = flow_dfs(e.to, sink, min(lim, e.cap));\n        if (a > 0)\
-    \ {\n          e.cap -= a;\n          G[e.to][e.rev].cap += a;\n          res\
-    \ += a;\n          lim -= a;\n          if (lim == 0) break;\n        }\n    \
-    \  }\n    }\n    return res;\n  }\n};\n#line 5 \"test/yukicoder/177_maxflow.test.cpp\"\
-    \n\nvoid solve() {\n  LL(W);\n  LL(N);\n  VEC(ll, A, N);\n  LL(M);\n  VEC(ll,\
-    \ C, M);\n  ll source = N + M;\n  MaxFlowGraph<ll> G(INF);\n  ll source = N +\
-    \ M;\n  ll sink = N + M + 1;\n  auto left = [&](int i) -> int { return i; };\n\
-    \  auto right = [&](int i) -> int { return N + i; };\n  FOR(i, N) G.add(source,\
-    \ left(i), A[i]);\n  FOR(i, M) G.add(right(i), sink, C[i]);\n  FOR(j, M) {\n \
-    \   LL(n);\n    vi ok(N, 1);\n    FOR_(n) {\n      LL(x);\n      ok[--x] = 0;\n\
-    \    }\n    FOR(i, N) if (ok[i]) { G.add(left(i), right(j), INF); }\n  }\n  ll\
-    \ f = G.flow(source, sink);\n  if (f < W)\n    print(\"BANSAKUTSUKITA\");\n  else\n\
-    \    print(\"SHIROBAKO\");\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/177\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"flow/maxflow.hpp\"\n\nvoid solve() {\n\
-    \  LL(W);\n  LL(N);\n  VEC(ll, A, N);\n  LL(M);\n  VEC(ll, C, M);\n  ll source\
-    \ = N + M;\n  MaxFlowGraph<ll> G(INF);\n  ll source = N + M;\n  ll sink = N +\
-    \ M + 1;\n  auto left = [&](int i) -> int { return i; };\n  auto right = [&](int\
-    \ i) -> int { return N + i; };\n  FOR(i, N) G.add(source, left(i), A[i]);\n  FOR(i,\
-    \ M) G.add(right(i), sink, C[i]);\n  FOR(j, M) {\n    LL(n);\n    vi ok(N, 1);\n\
-    \    FOR_(n) {\n      LL(x);\n      ok[--x] = 0;\n    }\n    FOR(i, N) if (ok[i])\
-    \ { G.add(left(i), right(j), INF); }\n  }\n  ll f = G.flow(source, sink);\n  if\
-    \ (f < W)\n    print(\"BANSAKUTSUKITA\");\n  else\n    print(\"SHIROBAKO\");\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
-    \ return 0;\n}\n"
+    \ { yes(!t); }\r\n#line 2 \"flow/bflow.hpp\"\nenum Objective {\n  MINIMIZE = 1,\n\
+    \  MAXIMIZE = -1,\n};\nenum class Status {\n  OPTIMAL,\n  INFEASIBLE,\n};\n\n\
+    template <class Flow = ll, class Cost = ll,\n          Objective objective = Objective::MINIMIZE,\
+    \ Flow SCALING_FACTOR = 2>\nstruct MinCostFlow {\nprivate:\n  using V_id = uint32_t;\n\
+    \  using E_id = uint32_t;\n\n  struct Edge {\n    friend struct MinCostFlow;\n\
+    \n  private:\n    V_id frm, to;\n    Flow flow, cap;\n    Cost cost;\n    E_id\
+    \ rev;\n\n  public:\n    Edge() = default;\n\n    Edge(const V_id frm, const V_id\
+    \ to, const Flow cap, const Cost cost,\n         const E_id rev)\n        : frm(frm),\
+    \ to(to), flow(0), cap(cap), cost(cost), rev(rev) {}\n\n    [[nodiscard]] Flow\
+    \ residual_cap() const { return cap - flow; }\n  };\n\npublic:\n  struct EdgePtr\
+    \ {\n    friend struct MinCostFlow;\n\n  private:\n    const MinCostFlow *instance;\n\
+    \    const V_id v;\n    const E_id e;\n\n    EdgePtr(const MinCostFlow *instance,\
+    \ const V_id v, const E_id e)\n        : instance(instance), v(v), e(e) {}\n\n\
+    \    [[nodiscard]] const Edge &edge() const { return instance->g[v][e]; }\n\n\
+    \    [[nodiscard]] const Edge &rev() const {\n      const Edge &e = edge();\n\
+    \      return instance->g[e.to][e.rev];\n    }\n\n  public:\n    [[nodiscard]]\
+    \ V_id frm() const { return rev().to; }\n\n    [[nodiscard]] V_id to() const {\
+    \ return edge().to; }\n\n    [[nodiscard]] Flow flow() const { return edge().flow;\
+    \ }\n\n    [[nodiscard]] Flow lower() const { return -rev().cap; }\n\n    [[nodiscard]]\
+    \ Flow upper() const { return edge().cap; }\n\n    [[nodiscard]] Cost cost() const\
+    \ { return edge().cost; }\n\n    [[nodiscard]] Cost gain() const { return -edge().cost;\
+    \ }\n  };\n\nprivate:\n  V_id n;\n  std::vector<std::vector<Edge>> g;\n  std::vector<Flow>\
+    \ b;\n\npublic:\n  MinCostFlow(int n) : n(n) {\n    g.resize(n);\n    b.resize(n);\n\
+    \  }\n\n  V_id add_vertex() {\n    ++n;\n    g.resize(n);\n    b.resize(n);\n\
+    \    return n - 1;\n  }\n\n  std::vector<V_id> add_vertices(const size_t size)\
+    \ {\n    std::vector<V_id> ret;\n    for (V_id i = 0; i < size; ++i) ret.emplace_back(n\
+    \ + i);\n    n += size;\n    g.resize(n);\n    b.resize(n);\n    return ret;\n\
+    \  }\n\n  void add(const V_id frm, const V_id to, const Flow lo, const Flow hi,\n\
+    \           const Cost cost) {\n    const E_id e = g[frm].size(), re = frm ==\
+    \ to ? e + 1 : g[to].size();\n    assert(lo <= hi);\n    g[frm].emplace_back(Edge{frm,\
+    \ to, hi, cost * objective, re});\n    g[to].emplace_back(Edge{to, frm, -lo, -cost\
+    \ * objective, e});\n    edges.eb(EdgePtr{this, frm, e});\n  }\n\n  void add_source(const\
+    \ V_id v, const Flow amount) { b[v] += amount; }\n\n  void add_sink(const V_id\
+    \ v, const Flow amount) { b[v] -= amount; }\n\nprivate:\n  static Cost constexpr\
+    \ unreachable = std::numeric_limits<Cost>::max();\n  Cost farthest;\n  std::vector<Cost>\
+    \ potential;\n  std::vector<Cost> dist;\n  std::vector<Edge *> parent;\n  std::priority_queue<std::pair<Cost,\
+    \ int>, std::vector<std::pair<Cost, int>>,\n                      std::greater<>>\n\
+    \      pq;\n  std::vector<V_id> excess_vs, deficit_vs;\n  std::vector<EdgePtr>\
+    \ edges;\n  Edge &rev(const Edge &e) { return g[e.to][e.rev]; }\n\n  void push(Edge\
+    \ &e, const Flow amount) {\n    e.flow += amount;\n    g[e.to][e.rev].flow -=\
+    \ amount;\n  }\n\n  Cost residual_cost(const V_id frm, const V_id to, const Edge\
+    \ &e) {\n    return e.cost + potential[frm] - potential[to];\n  }\n\n  bool dual(const\
+    \ Flow delta) {\n    dist.assign(n, unreachable);\n    parent.assign(n, nullptr);\n\
+    \    excess_vs.erase(std::remove_if(std::begin(excess_vs), std::end(excess_vs),\n\
+    \                                   [&](const V_id v) { return b[v] < delta; }),\n\
+    \                    std::end(excess_vs));\n    deficit_vs.erase(\n        std::remove_if(std::begin(deficit_vs),\
+    \ std::end(deficit_vs),\n                       [&](const V_id v) { return b[v]\
+    \ > -delta; }),\n        std::end(deficit_vs));\n    for (const auto v: excess_vs)\
+    \ pq.emplace(dist[v] = 0, v);\n    farthest = 0;\n    std::size_t deficit_count\
+    \ = 0;\n    while (!pq.empty()) {\n      const auto [d, u] = pq.top();\n     \
+    \ pq.pop();\n      if (dist[u] < d) continue;\n      farthest = d;\n      if (b[u]\
+    \ <= -delta) ++deficit_count;\n      if (deficit_count >= deficit_vs.size()) break;\n\
+    \      for (auto &e: g[u]) {\n        if (e.residual_cap() < delta) continue;\n\
+    \        const auto v = e.to;\n        const auto new_dist = d + residual_cost(u,\
+    \ v, e);\n        if (new_dist >= dist[v]) continue;\n        pq.emplace(dist[v]\
+    \ = new_dist, v);\n        parent[v] = &e;\n      }\n    }\n    pq = decltype(pq)();\n\
+    \    for (V_id v = 0; v < n; ++v) {\n      potential[v] += std::min(dist[v], farthest);\n\
+    \    }\n    return deficit_count > 0;\n  }\n\n  void primal(const Flow delta)\
+    \ {\n    for (const auto t: deficit_vs) {\n      if (dist[t] > farthest) continue;\n\
+    \      Flow f = -b[t];\n      V_id v;\n      for (v = t; parent[v] != nullptr\
+    \ && f >= delta; v = parent[v]->frm) {\n        f = std::min(f, parent[v]->residual_cap());\n\
+    \      }\n      f = std::min(f, b[v]);\n      if (f < delta) continue;\n     \
+    \ for (v = t; parent[v] != nullptr;) {\n        auto &e = *parent[v];\n      \
+    \  push(e, f);\n        const size_t u = parent[v]->frm;\n        parent[v] =\
+    \ nullptr;\n        v = u;\n      }\n      b[t] += f;\n      b[v] -= f;\n    }\n\
+    \  }\n\n  void saturate_negative(const Flow delta) {\n    excess_vs.clear();\n\
+    \    deficit_vs.clear();\n    for (auto &es: g)\n      for (auto &e: es) {\n \
+    \       const Flow rcap = e.residual_cap();\n        const Cost rcost = residual_cost(e.frm,\
+    \ e.to, e);\n        if (rcost < 0 && rcap >= delta) {\n          push(e, rcap);\n\
+    \          b[e.frm] -= rcap;\n          b[e.to] += rcap;\n        }\n      }\n\
+    \    for (V_id v = 0; v < n; ++v)\n      if (b[v] != 0) { (b[v] > 0 ? excess_vs\
+    \ : deficit_vs).emplace_back(v); }\n  }\n\npublic:\n  std::pair<Status, i128>\
+    \ solve() {\n    potential.resize(n);\n    for (auto &es: g)\n      for (auto\
+    \ &e: es) {\n        const Flow rcap = e.residual_cap();\n        if (rcap < 0)\
+    \ {\n          push(e, rcap);\n          b[e.frm] -= rcap;\n          b[e.to]\
+    \ += rcap;\n        }\n      }\n\n    Flow inf_flow = 1;\n    for (const auto\
+    \ &es: g)\n      for (const auto &e: es) inf_flow = std::max(inf_flow, e.residual_cap());\n\
+    \    Flow delta = 1;\n    while (delta <= inf_flow) delta *= SCALING_FACTOR;\n\
+    \n    for (delta /= SCALING_FACTOR; delta; delta /= SCALING_FACTOR) {\n      saturate_negative(delta);\n\
+    \      while (dual(delta)) primal(delta);\n    }\n\n    i128 value = 0;\n    for\
+    \ (const auto &es: g)\n      for (const auto &e: es) { value += e.flow * e.cost;\
+    \ }\n    value /= 2;\n\n    if (excess_vs.empty() && deficit_vs.empty()) {\n \
+    \     return {Status::OPTIMAL, value / objective};\n    } else {\n      return\
+    \ {Status::INFEASIBLE, value / objective};\n    }\n  }\n\n  template <class T>\n\
+    \  T get_result_value() {\n    T value = 0;\n    for (const auto &es: g)\n   \
+    \   for (const auto &e: es) { value += (T)(e.flow) * (T)(e.cost); }\n    value\
+    \ /= (T)2;\n    return value / objective;\n  }\n\n  std::vector<Cost> get_potential()\
+    \ {\n    std::fill(potential.begin(), potential.end(), 0);\n    for (int i = 0;\
+    \ i < (int)n; i++)\n      for (const auto &es: g)\n        for (const auto &e:\
+    \ es)\n          if (e.residual_cap() > 0)\n            potential[e.to]\n    \
+    \            = std::min(potential[e.to], potential[e.frm] + e.cost);\n    return\
+    \ potential;\n  }\n\n  std::vector<EdgePtr> get_edges() { return edges; }\n};\n\
+    #line 5 \"test/library_checker/graph/min_cost_b-flow.test.cpp\"\n\nvoid solve()\
+    \ {\n  LL(N, M);\n  MinCostFlow<ll, ll> G(N);\n  FOR(i, N) {\n    LL(b);\n   \
+    \ G.add_source(i, b);\n  }\n  FOR(i, M) {\n    LL(frm, to, lo, hi, cost);\n  \
+    \  G.add(frm, to, lo, hi, cost);\n  }\n  auto [status, cost] = G.solve();\n  if\
+    \ (status == Status::INFEASIBLE) return print(\"infeasible\");\n  print(cost);\n\
+    \  for (auto &&p: G.get_potential()) print(p);\n  for (auto &&e: G.get_edges())\
+    \ { print(e.flow()); }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/min_cost_b_flow\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"flow/bflow.hpp\"\n\
+    \nvoid solve() {\n  LL(N, M);\n  MinCostFlow<ll, ll> G(N);\n  FOR(i, N) {\n  \
+    \  LL(b);\n    G.add_source(i, b);\n  }\n  FOR(i, M) {\n    LL(frm, to, lo, hi,\
+    \ cost);\n    G.add(frm, to, lo, hi, cost);\n  }\n  auto [status, cost] = G.solve();\n\
+    \  if (status == Status::INFEASIBLE) return print(\"infeasible\");\n  print(cost);\n\
+    \  for (auto &&p: G.get_potential()) print(p);\n  for (auto &&e: G.get_edges())\
+    \ { print(e.flow()); }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - flow/maxflow.hpp
+  - flow/bflow.hpp
   isVerificationFile: true
-  path: test/yukicoder/177_maxflow.test.cpp
+  path: test/library_checker/graph/min_cost_b-flow.test.cpp
   requiredBy: []
-  timestamp: '2022-05-05 15:33:08+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-05 15:28:05+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/177_maxflow.test.cpp
+documentation_of: test/library_checker/graph/min_cost_b-flow.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/177_maxflow.test.cpp
-- /verify/test/yukicoder/177_maxflow.test.cpp.html
-title: test/yukicoder/177_maxflow.test.cpp
+- /verify/test/library_checker/graph/min_cost_b-flow.test.cpp
+- /verify/test/library_checker/graph/min_cost_b-flow.test.cpp.html
+title: test/library_checker/graph/min_cost_b-flow.test.cpp
 ---

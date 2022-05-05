@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/assignment_mcf.test.cpp
+    title: test/library_checker/graph/assignment_mcf.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1288_mcf_dag_negative.test.cpp
     title: test/yukicoder/1288_mcf_dag_negative.test.cpp
   - icon: ':heavy_check_mark:'
@@ -33,14 +36,14 @@ data:
     \u53F7\u306F toposort \u3055\u308C\u3066\u3044\u308B\u3053\u3068\u3092\u4EEE\u5B9A\
     \u3057\u3066\u3044\u308B\u3002\n*/\ntemplate <class Cap = int, class Cost = ll,\
     \ bool DAG = false>\nstruct mcf_graph {\npublic:\n  mcf_graph() {}\n  explicit\
-    \ mcf_graph(int n) : _n(n) {}\n\n  // frm, to, cap, cost\n  int add(int from,\
-    \ int to, Cap cap, Cost cost) {\n    assert(0 <= from && from < _n);\n    assert(0\
-    \ <= to && to < _n);\n    assert(0 <= cap);\n    assert(DAG || 0 <= cost);\n \
-    \   if (DAG) assert(from < to);\n    int m = int(_edges.size());\n    _edges.push_back({from,\
+    \ mcf_graph(int n) : _n(n) {}\n\n  // frm, to, cap, cost\n  int add(int frm, int\
+    \ to, Cap cap, Cost cost) {\n    assert(0 <= frm && frm < _n);\n    assert(0 <=\
+    \ to && to < _n);\n    assert(0 <= cap);\n    assert(DAG || 0 <= cost);\n    if\
+    \ (DAG) assert(frm < to);\n    int m = int(_edges.size());\n    _edges.push_back({frm,\
     \ to, cap, 0, cost});\n    return m;\n  }\n\n  void debug() {\n    print(\"flow\
     \ graph\");\n    print(\"frm, to, cap, cost\");\n    for (auto&& [frm, to, cap,\
     \ flow, cost]: _edges) {\n      print(frm, to, cap, cost);\n    }\n  }\n\n  struct\
-    \ edge {\n    int from, to;\n    Cap cap, flow;\n    Cost cost;\n  };\n\n  edge\
+    \ edge {\n    int frm, to;\n    Cap cap, flow;\n    Cost cost;\n  };\n\n  edge\
     \ get_edge(int i) {\n    int m = int(_edges.size());\n    assert(0 <= i && i <\
     \ m);\n    return _edges[i];\n  }\n  std::vector<edge> edges() { return _edges;\
     \ }\n\n  std::pair<Cap, Cost> flow(int s, int t) {\n    return flow(s, t, std::numeric_limits<Cap>::max());\n\
@@ -53,11 +56,11 @@ data:
     \    auto g = [&]() {\n      std::vector<int> degree(_n), redge_idx(m);\n    \
     \  std::vector<std::pair<int, _edge>> elist;\n      elist.reserve(2 * m);\n  \
     \    for (int i = 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i]\
-    \ = degree[e.from]++;\n        redge_idx[i] = degree[e.to]++;\n        elist.push_back({e.from,\
-    \ {e.to, -1, e.cap - e.flow, e.cost}});\n        elist.push_back({e.to, {e.from,\
+    \ = degree[e.frm]++;\n        redge_idx[i] = degree[e.to]++;\n        elist.push_back({e.frm,\
+    \ {e.to, -1, e.cap - e.flow, e.cost}});\n        elist.push_back({e.to, {e.frm,\
     \ -1, e.flow, -e.cost}});\n      }\n      auto _g = internal::csr<_edge>(_n, elist);\n\
     \      for (int i = 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i]\
-    \ += _g.start[e.from];\n        redge_idx[i] += _g.start[e.to];\n        _g.elist[edge_idx[i]].rev\
+    \ += _g.start[e.frm];\n        redge_idx[i] += _g.start[e.to];\n        _g.elist[edge_idx[i]].rev\
     \ = redge_idx[i];\n        _g.elist[redge_idx[i]].rev = edge_idx[i];\n      }\n\
     \      return _g;\n    }();\n\n    auto result = slope(g, s, t, flow_limit);\n\
     \n    for (int i = 0; i < m; i++) {\n      auto e = g.elist[edge_idx[i]];\n  \
@@ -67,7 +70,7 @@ data:
     \ Cost>> slope(internal::csr<_edge>& g, int s, int t,\n                      \
     \                    Cap flow_limit) {\n    // variants (C = maxcost):\n    //\
     \ -(n-1)C <= dual[s] <= dual[i] <= dual[t] = 0\n    // reduced cost (= e.cost\
-    \ + dual[e.from] - dual[e.to]) >= 0 for all edge\n\n    // dual_dist[i] = (dual[i],\
+    \ + dual[e.frm] - dual[e.to]) >= 0 for all edge\n\n    // dual_dist[i] = (dual[i],\
     \ dist[i])\n    if (DAG) assert(s == 0 && t == _n - 1);\n    std::vector<std::pair<Cost,\
     \ Cost>> dual_dist(_n);\n    std::vector<int> prev_e(_n);\n    std::vector<bool>\
     \ vis(_n);\n    struct Q {\n      Cost key;\n      int to;\n      bool operator<(Q\
@@ -148,13 +151,13 @@ data:
     \u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\u3002\n*/\ntemplate\
     \ <class Cap = int, class Cost = ll, bool DAG = false>\nstruct mcf_graph {\npublic:\n\
     \  mcf_graph() {}\n  explicit mcf_graph(int n) : _n(n) {}\n\n  // frm, to, cap,\
-    \ cost\n  int add(int from, int to, Cap cap, Cost cost) {\n    assert(0 <= from\
-    \ && from < _n);\n    assert(0 <= to && to < _n);\n    assert(0 <= cap);\n   \
-    \ assert(DAG || 0 <= cost);\n    if (DAG) assert(from < to);\n    int m = int(_edges.size());\n\
-    \    _edges.push_back({from, to, cap, 0, cost});\n    return m;\n  }\n\n  void\
+    \ cost\n  int add(int frm, int to, Cap cap, Cost cost) {\n    assert(0 <= frm\
+    \ && frm < _n);\n    assert(0 <= to && to < _n);\n    assert(0 <= cap);\n    assert(DAG\
+    \ || 0 <= cost);\n    if (DAG) assert(frm < to);\n    int m = int(_edges.size());\n\
+    \    _edges.push_back({frm, to, cap, 0, cost});\n    return m;\n  }\n\n  void\
     \ debug() {\n    print(\"flow graph\");\n    print(\"frm, to, cap, cost\");\n\
     \    for (auto&& [frm, to, cap, flow, cost]: _edges) {\n      print(frm, to, cap,\
-    \ cost);\n    }\n  }\n\n  struct edge {\n    int from, to;\n    Cap cap, flow;\n\
+    \ cost);\n    }\n  }\n\n  struct edge {\n    int frm, to;\n    Cap cap, flow;\n\
     \    Cost cost;\n  };\n\n  edge get_edge(int i) {\n    int m = int(_edges.size());\n\
     \    assert(0 <= i && i < m);\n    return _edges[i];\n  }\n  std::vector<edge>\
     \ edges() { return _edges; }\n\n  std::pair<Cap, Cost> flow(int s, int t) {\n\
@@ -167,11 +170,11 @@ data:
     \   std::vector<int> edge_idx(m);\n\n    auto g = [&]() {\n      std::vector<int>\
     \ degree(_n), redge_idx(m);\n      std::vector<std::pair<int, _edge>> elist;\n\
     \      elist.reserve(2 * m);\n      for (int i = 0; i < m; i++) {\n        auto\
-    \ e = _edges[i];\n        edge_idx[i] = degree[e.from]++;\n        redge_idx[i]\
-    \ = degree[e.to]++;\n        elist.push_back({e.from, {e.to, -1, e.cap - e.flow,\
-    \ e.cost}});\n        elist.push_back({e.to, {e.from, -1, e.flow, -e.cost}});\n\
+    \ e = _edges[i];\n        edge_idx[i] = degree[e.frm]++;\n        redge_idx[i]\
+    \ = degree[e.to]++;\n        elist.push_back({e.frm, {e.to, -1, e.cap - e.flow,\
+    \ e.cost}});\n        elist.push_back({e.to, {e.frm, -1, e.flow, -e.cost}});\n\
     \      }\n      auto _g = internal::csr<_edge>(_n, elist);\n      for (int i =\
-    \ 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i] += _g.start[e.from];\n\
+    \ 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i] += _g.start[e.frm];\n\
     \        redge_idx[i] += _g.start[e.to];\n        _g.elist[edge_idx[i]].rev =\
     \ redge_idx[i];\n        _g.elist[redge_idx[i]].rev = edge_idx[i];\n      }\n\
     \      return _g;\n    }();\n\n    auto result = slope(g, s, t, flow_limit);\n\
@@ -182,7 +185,7 @@ data:
     \ Cost>> slope(internal::csr<_edge>& g, int s, int t,\n                      \
     \                    Cap flow_limit) {\n    // variants (C = maxcost):\n    //\
     \ -(n-1)C <= dual[s] <= dual[i] <= dual[t] = 0\n    // reduced cost (= e.cost\
-    \ + dual[e.from] - dual[e.to]) >= 0 for all edge\n\n    // dual_dist[i] = (dual[i],\
+    \ + dual[e.frm] - dual[e.to]) >= 0 for all edge\n\n    // dual_dist[i] = (dual[i],\
     \ dist[i])\n    if (DAG) assert(s == 0 && t == _n - 1);\n    std::vector<std::pair<Cost,\
     \ Cost>> dual_dist(_n);\n    std::vector<int> prev_e(_n);\n    std::vector<bool>\
     \ vis(_n);\n    struct Q {\n      Cost key;\n      int to;\n      bool operator<(Q\
@@ -248,11 +251,12 @@ data:
   isVerificationFile: false
   path: flow/mincostflow.hpp
   requiredBy: []
-  timestamp: '2022-05-04 01:14:27+09:00'
+  timestamp: '2022-05-05 15:29:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1288_mcf_dag_negative.test.cpp
   - test/yukicoder/1301_mcf.test.cpp
+  - test/library_checker/graph/assignment_mcf.test.cpp
 documentation_of: flow/mincostflow.hpp
 layout: document
 redirect_from:
