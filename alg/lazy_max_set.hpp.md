@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_max.hpp
     title: alg/monoid_max.hpp
   - icon: ':heavy_check_mark:'
@@ -14,7 +14,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"alg/monoid_max.hpp\"\ntemplate <class X, X INF>\r\nstruct\
+  bundledCode: "#line 2 \"alg/monoid_max.hpp\"\ntemplate <class X, X INF>\r\nstruct\
     \ Monoid_Max {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x,\
     \ const X &y) noexcept { return max(x, y); }\r\n  static constexpr X unit() {\
     \ return -INF; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"\
@@ -39,7 +39,7 @@ data:
   isVerificationFile: false
   path: alg/lazy_max_set.hpp
   requiredBy: []
-  timestamp: '2022-04-16 04:26:49+09:00'
+  timestamp: '2022-05-06 16:05:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/lazy_max_set.hpp

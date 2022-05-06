@@ -4,28 +4,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid_max_idx.hpp
     title: alg/monoid_max_idx.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_reverse.hpp
     title: alg/monoid_reverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -344,7 +344,7 @@ data:
     \ {\r\n  using value_type = typename Monoid::value_type;\r\n  using X = value_type;\r\
     \n  static constexpr X op(const X &x, const X &y) { return Monoid::op(y, x); }\r\
     \n  static constexpr X unit() { return Monoid::unit(); }\r\n  static const bool\
-    \ commute = Monoid::commute;\r\n};\r\n#line 4 \"graph/treemonoid.hpp\"\n\r\ntemplate\
+    \ commute = Monoid::commute;\r\n};\r\n#line 5 \"graph/treemonoid.hpp\"\n\r\ntemplate\
     \ <typename HLD, typename Monoid, bool edge = false>\r\nstruct TreeMonoid {\r\n\
     \  using RevMonoid = Monoid_Reverse<Monoid>;\r\n  using X = typename Monoid::value_type;\r\
     \n  HLD &hld;\r\n  int N;\r\n  SegTree<Monoid> seg;\r\n  SegTree<RevMonoid> seg_r;\r\
@@ -433,7 +433,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/529_two_edge.test.cpp
   requiredBy: []
-  timestamp: '2022-05-06 13:20:48+09:00'
+  timestamp: '2022-05-06 16:05:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/529_two_edge.test.cpp

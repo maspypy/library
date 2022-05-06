@@ -7,16 +7,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/lazy_min_add.hpp
     title: alg/lazy_min_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_min.hpp
     title: alg/monoid_min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -199,7 +199,7 @@ data:
     \ const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
     \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
     \ noexcept { return n * x; }\r\n  static constexpr X unit() { return X(0); }\r\
-    \n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"alg/monoid_min.hpp\"\
+    \n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/monoid_min.hpp\"\
     \ntemplate <class X, X INF>\r\nstruct Monoid_Min {\r\n  using value_type = X;\r\
     \n  static constexpr X op(const X &x, const X &y) noexcept { return min(x, y);\
     \ }\r\n  static constexpr X unit() { return INF; }\r\n  static constexpr bool\
@@ -294,7 +294,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_H_min_add_lazy.test.cpp
   requiredBy: []
-  timestamp: '2022-04-29 17:32:58+09:00'
+  timestamp: '2022-05-06 16:05:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_H_min_add_lazy.test.cpp
