@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/subset_convolution
@@ -278,13 +278,13 @@ data:
     \  vc<T> f(1 << n);\r\n  for (int s = 0; s < (1 << n); ++s) f[s] = Rf[s][popcnt(s)];\r\
     \n  return f;\r\n}\n#line 2 \"setfunc/subset_convolution.hpp\"\n\r\ntemplate <typename\
     \ T>\r\nvc<T> subset_convolution(vc<T>& A, vc<T>& B) {\r\n  auto RA = ranked_zeta(A);\r\
-    \n  auto RB = ranked_zeta(A);\r\n  int n = len(RA[0]);\r\n  FOR(s, len(RA)) {\r\
+    \n  auto RB = ranked_zeta(B);\r\n  int n = len(RA[0]);\r\n  FOR(s, len(RA)) {\r\
     \n    vc<T> f(n + 1);\r\n    FOR(i, n + 1) FOR(j, n - i + 1) f[i + j] += RA[s][i]\
-    \ * RB[s][j];\r\n    RA[s] = f;\r\n  }\r\n  FOR(s, len(RA)) RA[s] *= RB[s];\r\n\
-    \  return ranked_mobius(RA);\r\n}\r\n#line 7 \"test/library_checker/convolution/subset_convolution.test.cpp\"\
-    \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint,\
-    \ A, 1 << N);\r\n  VEC(mint, B, 1 << N);\r\n  auto C = subset_convolution(A, B);\r\
-    \n  print(C);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \ * RB[s][j];\r\n    RA[s] = f;\r\n  }\r\n  return ranked_mobius(RA);\r\n}\r\n\
+    #line 7 \"test/library_checker/convolution/subset_convolution.test.cpp\"\n\r\n\
+    using mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint, A, 1\
+    \ << N);\r\n  VEC(mint, B, 1 << N);\r\n  auto C = subset_convolution(A, B);\r\n\
+    \  print(C);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
     \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/subset_convolution\"\r\n\
     #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"mod/modint.hpp\"\
@@ -302,8 +302,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/convolution/subset_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-05-06 03:03:48+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-06 11:34:29+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/convolution/subset_convolution.test.cpp
 layout: document
