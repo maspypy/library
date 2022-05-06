@@ -1,3 +1,4 @@
+#pragma once
 #include "ds/segtree.hpp"
 #include "graph/hld.hpp"
 #include "alg/monoid_reverse.hpp"
