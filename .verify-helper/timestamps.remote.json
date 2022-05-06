@@ -49,6 +49,7 @@
 "test/library_checker/convolution/mul_mod2n_convolution.test.cpp": "2022-05-02 13:07:10 +0900",
 "test/library_checker/convolution/multivariate_convolution.test.cpp": "2022-05-02 13:07:10 +0900",
 "test/library_checker/convolution/online_convolution.test.cpp": "2022-05-02 13:07:10 +0900",
+"test/library_checker/convolution/subset_convolution.test.cpp": "2022-05-06 11:34:29 +0900",
 "test/library_checker/convolution/subset_convolution_multivar.test.cpp": "2022-05-02 13:07:10 +0900",
 "test/library_checker/datastructure/associative_array.test.cpp": "2022-04-29 17:32:58 +0900",
 "test/library_checker/datastructure/associative_array_hashmap.test.cpp": "2022-04-29 17:32:58 +0900",
