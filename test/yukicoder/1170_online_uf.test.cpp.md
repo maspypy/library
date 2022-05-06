@@ -1,9 +1,12 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':question:'
+    path: ds/unionfind.hpp
+    title: ds/unionfind.hpp
   - icon: ':heavy_check_mark:'
-    path: ds/waveletmatrix.hpp
-    title: ds/waveletmatrix.hpp
+    path: graph/online_unionfind.hpp
+    title: graph/online_unionfind.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -17,11 +20,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/919
+    PROBLEM: https://yukicoder.me/problems/no/1170
     links:
-    - https://yukicoder.me/problems/no/919
-  bundledCode: "#line 1 \"test/yukicoder/919_waveletmatrix.test.cpp\"\n#define PROBLEM\
-    \ \"https://yukicoder.me/problems/no/919\"\n#line 1 \"my_template.hpp\"\n#include\
+    - https://yukicoder.me/problems/no/1170
+  bundledCode: "#line 1 \"test/yukicoder/1170_online_uf.test.cpp\"\n#define PROBLEM\
+    \ \"https://yukicoder.me/problems/no/1170\"\n#line 1 \"my_template.hpp\"\n#include\
     \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
     \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
     \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
@@ -185,95 +188,66 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 1 \"ds/waveletmatrix.hpp\"\n#include <immintrin.h>\r\n\
-    \r\nstruct bit_vector {\r\n  using u32 = uint32_t;\r\n  using i64 = int64_t;\r\
-    \n  using u64 = uint64_t;\r\n\r\n  static constexpr u32 w = 64;\r\n  vector<u64>\
-    \ block;\r\n  vector<u32> count;\r\n  u32 n, zeros;\r\n\r\n  inline u32 get(u32\
-    \ i) const { return u32(block[i / w] >> (i % w)) & 1u; }\r\n  inline void set(u32\
-    \ i) { block[i / w] |= 1LL << (i % w); }\r\n\r\n  bit_vector() {}\r\n  bit_vector(int\
-    \ _n) { init(_n); }\r\n  __attribute__((optimize(\"O3\", \"unroll-loops\"))) void\
-    \ init(int _n) {\r\n    n = zeros = _n;\r\n    block.resize(n / w + 1, 0);\r\n\
-    \    count.resize(block.size(), 0);\r\n  }\r\n\r\n  __attribute__((target(\"popcnt\"\
-    ))) void build() {\r\n    for (u32 i = 1; i < block.size(); ++i)\r\n      count[i]\
-    \ = count[i - 1] + _mm_popcnt_u64(block[i - 1]);\r\n    zeros = rank0(n);\r\n\
-    \  }\r\n\r\n  inline u32 rank0(u32 i) const { return i - rank1(i); }\r\n  __attribute__((target(\"\
-    bmi2,popcnt\"))) inline u32 rank1(u32 i) const {\r\n    return count[i / w] +\
-    \ _mm_popcnt_u64(_bzhi_u64(block[i / w], i % w));\r\n  }\r\n};\r\n\r\n/*\r\n\u30B3\
-    \u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\uFF1Avector<T> \u3092\u6E21\u3059\r\n\u9759\
-    \u7684\u306A\u5217\u306B\u5BFE\u3057\u3066\u6B21\u304C O(log N) \u6642\u9593\u3067\
-    \u884C\u3048\u308B\r\n\u30FBfreq(l, r, lower, upper)\uFF1A[lower, upper) \u5185\
-    \u306E\u8981\u7D20\u306E\u6570\u3048\u4E0A\u3052\r\n\u30FBkth(l, r, lower, upper)\uFF1A\
-    [lower, upper) \u5185\u3092\u30BD\u30FC\u30C8\u3057\u305F\u3068\u304D\u306E k\
-    \ \u756A\u76EE\r\n*/\r\ntemplate <typename T>\r\nstruct WaveletMatrix {\r\n  using\
-    \ u32 = uint32_t;\r\n  using i64 = int64_t;\r\n  using u64 = uint64_t;\r\n\r\n\
-    \  int n, lg;\r\n  vc<T> key;\r\n  vc<int> A;\r\n  vector<bit_vector> bv;\r\n\r\
-    \n  __attribute__((optimize(\"O3\"))) WaveletMatrix(const vc<T>& dat)\r\n    \
-    \  : n(len(dat)) {\r\n    key = dat;\r\n    UNIQUE(key);\r\n    A.resize(n);\r\
-    \n    FOR(i, n) A[i] = LB(key, dat[i]);\r\n    lg = __lg(max(MAX(A), 1)) + 1;\r\
-    \n    bv.assign(lg, n);\r\n    vc<int> cur = A, nxt(n);\r\n    for (int h = lg\
-    \ - 1; h >= 0; --h) {\r\n      for (int i = 0; i < n; ++i)\r\n        if ((cur[i]\
-    \ >> h) & 1) bv[h].set(i);\r\n      bv[h].build();\r\n      array<decltype(begin(nxt)),\
-    \ 2> it{begin(nxt), begin(nxt) + bv[h].zeros};\r\n      for (int i = 0; i < n;\
-    \ ++i) *it[bv[h].get(i)]++ = cur[i];\r\n      swap(cur, nxt);\r\n    }\r\n  }\r\
-    \n\r\n  inline pair<u32, u32> succ0(int l, int r, int h) const {\r\n    return\
-    \ make_pair(bv[h].rank0(l), bv[h].rank0(r));\r\n  }\r\n\r\n  inline pair<u32,\
-    \ u32> succ1(int l, int r, int h) const {\r\n    u32 l0 = bv[h].rank0(l);\r\n\
-    \    u32 r0 = bv[h].rank0(r);\r\n    u32 zeros = bv[h].zeros;\r\n    return make_pair(l\
-    \ + zeros - l0, r + zeros - r0);\r\n  }\r\n\r\n  T kth(u32 l, u32 r, u32 k) const\
-    \ {\r\n    int res = 0;\r\n    for (int h = lg - 1; h >= 0; --h) {\r\n      u32\
-    \ l0 = bv[h].rank0(l), r0 = bv[h].rank0(r);\r\n      if (k < r0 - l0)\r\n    \
-    \    l = l0, r = r0;\r\n      else {\r\n        k -= r0 - l0;\r\n        res |=\
-    \ 1 << h;\r\n        l += bv[h].zeros - l0;\r\n        r += bv[h].zeros - r0;\r\
-    \n      }\r\n    }\r\n    return key[res];\r\n  }\r\n\r\n  int freq(int l, int\
-    \ r, T lower, T upper) {\r\n    return freq_upper(l, r, upper) - freq_upper(l,\
-    \ r, lower);\r\n  }\r\n\r\nprivate:\r\n  int freq_upper(int l, int r, T upper_t)\
-    \ {\r\n    int upper = LB(key, upper_t);\r\n    if (upper >= (1 << lg)) return\
-    \ r - l;\r\n    int ret = 0;\r\n    for (int h = lg - 1; h >= 0; --h) {\r\n  \
-    \    bool f = (upper >> h) & 1;\r\n      u32 l0 = bv[h].rank0(l), r0 = bv[h].rank0(r);\r\
-    \n      if (f) {\r\n        ret += r0 - l0;\r\n        l += bv[h].zeros - l0;\r\
-    \n        r += bv[h].zeros - r0;\r\n      } else {\r\n        l = l0;\r\n    \
-    \    r = r0;\r\n      }\r\n    }\r\n    return ret;\r\n  }\r\n};\n#line 5 \"test/yukicoder/919_waveletmatrix.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  WaveletMatrix<ll> WM(A);\n \
-    \ const ll INF = 1LL << 60;\n  ll ANS = -INF;\n\n  auto get = [&](ll L, ll R)\
-    \ -> ll {\n    assert(L < R);\n    ll n = R - L;\n    return WM.kth(L, R, (n -\
-    \ 1) / 2);\n  };\n\n  FOR3(K, 1, N + 1) {\n    // \u3068\u308B\u6700\u5927\u56DE\
-    \u6570\n    ll LIM = N / K;\n    vi left(LIM);\n    vi right(LIM);\n    FOR(i,\
-    \ LIM) left[i] = get(K * i, K * i + K);\n    FOR(i, LIM) right[i] = get(N - K\
-    \ * i - K, N - K * i);\n    left = cumsum(left);\n    right = cumsum(right);\n\
-    \    // x \u56DE\u4EE5\u4E0B\u3068\u308B\u3068\u304D\u306E\uFF5E\n    FOR(i, LIM)\
-    \ chmax(left[i + 1], left[i]);\n    FOR(i, LIM) chmax(right[i + 1], right[i]);\n\
-    \    FOR(i, LIM + 1) chmax(ANS, K * (left[i] + right[LIM - i]));\n  }\n  print(ANS);\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
-    \ return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/919\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"ds/waveletmatrix.hpp\"\n\nvoid solve()\
-    \ {\n  LL(N);\n  VEC(ll, A, N);\n  WaveletMatrix<ll> WM(A);\n  const ll INF =\
-    \ 1LL << 60;\n  ll ANS = -INF;\n\n  auto get = [&](ll L, ll R) -> ll {\n    assert(L\
-    \ < R);\n    ll n = R - L;\n    return WM.kth(L, R, (n - 1) / 2);\n  };\n\n  FOR3(K,\
-    \ 1, N + 1) {\n    // \u3068\u308B\u6700\u5927\u56DE\u6570\n    ll LIM = N / K;\n\
-    \    vi left(LIM);\n    vi right(LIM);\n    FOR(i, LIM) left[i] = get(K * i, K\
-    \ * i + K);\n    FOR(i, LIM) right[i] = get(N - K * i - K, N - K * i);\n    left\
-    \ = cumsum(left);\n    right = cumsum(right);\n    // x \u56DE\u4EE5\u4E0B\u3068\
-    \u308B\u3068\u304D\u306E\uFF5E\n    FOR(i, LIM) chmax(left[i + 1], left[i]);\n\
-    \    FOR(i, LIM) chmax(right[i + 1], right[i]);\n    FOR(i, LIM + 1) chmax(ANS,\
-    \ K * (left[i] + right[LIM - i]));\n  }\n  print(ANS);\n}\n\nsigned main() {\n\
-    \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \ { yes(!t); }\r\n#line 2 \"ds/unionfind.hpp\"\n\nstruct UnionFind {\n  int num;\n\
+    \  int comp;\n  vc<int> size, par;\n  UnionFind(int n) : num(n), comp(n), size(n,\
+    \ 1), par(n) {\n    iota(par.begin(), par.end(), 0);\n  }\n  int find(int x) {\n\
+    \    while (par[x] != x) {\n      par[x] = par[par[x]];\n      x = par[x];\n \
+    \   }\n    return x;\n  }\n\n  int operator[](int x) { return find(x); }\n\n \
+    \ bool merge(ll x, ll y) {\n    x = find(x);\n    y = find(y);\n    if (x == y)\
+    \ { return false; }\n    comp--;\n    if (size[x] < size[y]) swap(x, y);\n   \
+    \ size[x] += size[y];\n    size[y] = 0;\n    par[y] = x;\n    return true;\n \
+    \ }\n\n  vc<int> find_all() {\n    vc<int> A(num);\n    FOR(i, num) A[i] = find(i);\n\
+    \    return A;\n  }\n\n  void reset(){\n    comp = num;\n    size.assign(num,\
+    \ 1);\n    iota(all(par), 0);\n  }\n};\n#line 2 \"graph/online_unionfind.hpp\"\
+    \n\n// \u9802\u70B9\u3092\u524A\u9664\u3057\u306A\u304C\u3089\u3001\u9069\u5F53\
+    \u306A\u30C7\u30FC\u30BF\u69CB\u9020\u306B\u3088\u308A\u6B21\u306E\u8FBA\u3092\
+    \u63A2\u3059\u3002\n// \u4E2D\u8EAB\u306F\u305F\u3060\u306E bfs \u3057\u3066\u3044\
+    \u308B\u306E\u3067\u300101 \u6700\u77ED\u8DEF\u306B\u3082\u6D41\u7528\u53EF\u80FD\
+    \ntemplate <typename F1, typename F2>\nUnionFind online_unionfind(int N, F1 set_used,\
+    \ F2 find_unused) {\n  UnionFind uf(N);\n  vc<bool> done(N);\n  deque<int> que;\n\
+    \  FOR(v, N) if (!done[v]) {\n    que.eb(v);\n    done[v] = 1;\n    set_used(v);\n\
+    \    while (!que.empty()) {\n      int x = que.front();\n      que.pop_front();\n\
+    \      set_used(x);\n      done[x] = 1;\n      while (1) {\n        int to = find_unused(x);\n\
+    \        if (to == -1) break;\n        uf.merge(v, to);\n        que.eb(to);\n\
+    \        done[to] = 1;\n        set_used(to);\n      }\n    }\n  }\n  return uf;\n\
+    }\n#line 5 \"test/yukicoder/1170_online_uf.test.cpp\"\n\nvoid solve() {\n  LL(N,\
+    \ A, B);\n  VEC(ll, X, N);\n  set<pi> ss;\n  FOR(i, N) ss.insert({X[i], i});\n\
+    \n  auto set_used = [&](int v) -> void { ss.erase({X[v], v}); };\n  auto find_unused\
+    \ = [&](int v) -> int {\n    auto it = ss.lower_bound({X[v] + A, -1});\n    if\
+    \ (it != ss.end()) {\n      auto [x, idx] = *it;\n      if (x <= X[v] + B) return\
+    \ idx;\n    }\n    it = ss.lower_bound({X[v] - A + 1, -1});\n    if (it != ss.begin())\
+    \ {\n      --it;\n      auto [x, idx] = *it;\n      if (x >= X[v] - B) return\
+    \ idx;\n    }\n    return -1;\n  };\n  auto uf = online_unionfind(N, set_used,\
+    \ find_unused);\n  FOR(v, N) print(uf.size[uf[v]]);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1170\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"graph/online_unionfind.hpp\"\n\nvoid solve()\
+    \ {\n  LL(N, A, B);\n  VEC(ll, X, N);\n  set<pi> ss;\n  FOR(i, N) ss.insert({X[i],\
+    \ i});\n\n  auto set_used = [&](int v) -> void { ss.erase({X[v], v}); };\n  auto\
+    \ find_unused = [&](int v) -> int {\n    auto it = ss.lower_bound({X[v] + A, -1});\n\
+    \    if (it != ss.end()) {\n      auto [x, idx] = *it;\n      if (x <= X[v] +\
+    \ B) return idx;\n    }\n    it = ss.lower_bound({X[v] - A + 1, -1});\n    if\
+    \ (it != ss.begin()) {\n      --it;\n      auto [x, idx] = *it;\n      if (x >=\
+    \ X[v] - B) return idx;\n    }\n    return -1;\n  };\n  auto uf = online_unionfind(N,\
+    \ set_used, find_unused);\n  FOR(v, N) print(uf.size[uf[v]]);\n}\n\nsigned main()\
+    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
     \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/waveletmatrix.hpp
+  - graph/online_unionfind.hpp
+  - ds/unionfind.hpp
   isVerificationFile: true
-  path: test/yukicoder/919_waveletmatrix.test.cpp
+  path: test/yukicoder/1170_online_uf.test.cpp
   requiredBy: []
-  timestamp: '2022-05-02 00:48:11+09:00'
+  timestamp: '2022-05-06 13:21:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/919_waveletmatrix.test.cpp
+documentation_of: test/yukicoder/1170_online_uf.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/919_waveletmatrix.test.cpp
-- /verify/test/yukicoder/919_waveletmatrix.test.cpp.html
-title: test/yukicoder/919_waveletmatrix.test.cpp
+- /verify/test/yukicoder/1170_online_uf.test.cpp
+- /verify/test/yukicoder/1170_online_uf.test.cpp.html
+title: test/yukicoder/1170_online_uf.test.cpp
 ---
