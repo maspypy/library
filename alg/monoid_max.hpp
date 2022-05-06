@@ -1,3 +1,4 @@
+#pragma once
 template <class X, X INF>
 struct Monoid_Max {
   using value_type = X;
