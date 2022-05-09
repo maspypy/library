@@ -26,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: dp/inversion.hpp
     title: dp/inversion.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   - icon: ':heavy_check_mark:'
@@ -38,9 +38,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fenwickraq.hpp
     title: ds/fenwickraq.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/rectanglesums.hpp
-    title: ds/rectanglesums.hpp
+  - icon: ':x:'
+    path: ds/rectangle_sum.hpp
+    title: ds/rectangle_sum.hpp
   - icon: ':heavy_check_mark:'
     path: ds/rectangleunion.hpp
     title: ds/rectangleunion.hpp
@@ -99,7 +99,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   - icon: ':heavy_check_mark:'
@@ -121,6 +121,9 @@ data:
     path: test/yukicoder/1038_centroid.test.cpp
     title: test/yukicoder/1038_centroid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1641_tree_abel.test.cpp
+    title: test/yukicoder/1641_tree_abel.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/235_lazytreemonoid.test.cpp
     title: test/yukicoder/235_lazytreemonoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -129,9 +132,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group_add.hpp\"\ntemplate <class X>\r\nstruct Group_Add\
@@ -152,10 +155,10 @@ data:
   requiredBy:
   - graph/treeabelgroup.hpp
   - dp/inversion.hpp
+  - ds/rectangle_sum.hpp
   - ds/fenwickraq.hpp
   - ds/fenwick.hpp
   - ds/uniqueproductquery.hpp
-  - ds/rectanglesums.hpp
   - ds/fenwick2d_dense.hpp
   - ds/rectangleunion.hpp
   - ds/fenwick2d.hpp
@@ -167,10 +170,11 @@ data:
   - alg/lazy_add_mul.hpp
   - alg/lazy_cntminmincnt_add.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/924.test.cpp
   - test/yukicoder/899_bfsnumbering.test.cpp
+  - test/yukicoder/1641_tree_abel.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/1038_centroid.test.cpp
   - test/library_checker/datastructure/point_add_range_sum.test.cpp

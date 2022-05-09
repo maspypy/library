@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: alg
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/group_add.hpp
       title: alg/group_add.hpp
     - icon: ':heavy_check_mark:'
@@ -18,7 +18,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/group_reverse.hpp
       title: alg/group_reverse.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: alg/group_xor.hpp
       title: alg/group_xor.hpp
     - icon: ':heavy_check_mark:'
@@ -135,6 +135,9 @@ data:
       path: dp/knapsack01.hpp
       title: dp/knapsack01.hpp
     - icon: ':heavy_check_mark:'
+      path: dp/knapsack_branch_bound.hpp
+      title: dp/knapsack_branch_bound.hpp
+    - icon: ':heavy_check_mark:'
       path: dp/longest_common_subsequence.hpp
       title: dp/longest_common_subsequence.hpp
     - icon: ':heavy_check_mark:'
@@ -187,7 +190,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/fenwick.hpp
       title: ds/fenwick.hpp
     - icon: ':heavy_check_mark:'
@@ -238,9 +241,9 @@ data:
     - icon: ':warning:'
       path: ds/range_xor_basis_query.hpp
       title: ds/range_xor_basis_query.hpp
-    - icon: ':heavy_check_mark:'
-      path: ds/rectanglesums.hpp
-      title: ds/rectanglesums.hpp
+    - icon: ':x:'
+      path: ds/rectangle_sum.hpp
+      title: ds/rectangle_sum.hpp
     - icon: ':heavy_check_mark:'
       path: ds/rectangleunion.hpp
       title: ds/rectangleunion.hpp
@@ -253,7 +256,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree2d_dense.hpp
       title: ds/segtree2d_dense.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/slope.hpp
       title: ds/slope.hpp
     - icon: ':heavy_check_mark:'
@@ -550,7 +553,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -626,7 +629,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/integer_kth_root.hpp
       title: other/integer_kth_root.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -1052,7 +1055,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
       title: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
       title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1341,6 +1344,12 @@ data:
       path: test/yukicoder/1038_centroid.test.cpp
       title: test/yukicoder/1038_centroid.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1077_slope.test.cpp
+      title: test/yukicoder/1077_slope.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1142_xor_conv.test.cpp
+      title: test/yukicoder/1142_xor_conv.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/114_steriner_tree.test.cpp
       title: test/yukicoder/114_steriner_tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1361,6 +1370,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1593_gaussian.test.cpp
       title: test/yukicoder/1593_gaussian.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1641_tree_abel.test.cpp
+      title: test/yukicoder/1641_tree_abel.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/177_maxflow.test.cpp
       title: test/yukicoder/177_maxflow.test.cpp
@@ -1400,6 +1412,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/529_two_edge.test.cpp
       title: test/yukicoder/529_two_edge.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/626_knapsack_branch_bound.test.cpp
+      title: test/yukicoder/626_knapsack_branch_bound.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/705_monge_shortest_path.test.cpp
       title: test/yukicoder/705_monge_shortest_path.test.cpp

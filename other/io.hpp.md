@@ -201,7 +201,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   - icon: ':heavy_check_mark:'
@@ -472,6 +472,12 @@ data:
     path: test/yukicoder/1038_centroid.test.cpp
     title: test/yukicoder/1038_centroid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1077_slope.test.cpp
+    title: test/yukicoder/1077_slope.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1142_xor_conv.test.cpp
+    title: test/yukicoder/1142_xor_conv.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/114_steriner_tree.test.cpp
     title: test/yukicoder/114_steriner_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -492,6 +498,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1593_gaussian.test.cpp
     title: test/yukicoder/1593_gaussian.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1641_tree_abel.test.cpp
+    title: test/yukicoder/1641_tree_abel.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/177_maxflow.test.cpp
     title: test/yukicoder/177_maxflow.test.cpp
@@ -532,6 +541,9 @@ data:
     path: test/yukicoder/529_two_edge.test.cpp
     title: test/yukicoder/529_two_edge.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/626_knapsack_branch_bound.test.cpp
+    title: test/yukicoder/626_knapsack_branch_bound.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/705_monge_shortest_path.test.cpp
     title: test/yukicoder/705_monge_shortest_path.test.cpp
   - icon: ':heavy_check_mark:'
@@ -549,9 +561,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include\
@@ -770,7 +782,7 @@ data:
   path: other/io.hpp
   requiredBy: []
   timestamp: '2022-04-27 05:07:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/4_modular_subset_sum.test.cpp
   - test/yukicoder/924.test.cpp
@@ -780,11 +792,13 @@ data:
   - test/yukicoder/749_lazysegtree.test.cpp
   - test/yukicoder/1593_gaussian.test.cpp
   - test/yukicoder/1320_mincostcycle.test.cpp
+  - test/yukicoder/1142_xor_conv.test.cpp
   - test/yukicoder/899_bfsnumbering.test.cpp
   - test/yukicoder/255.test.cpp
   - test/yukicoder/1288_mcf_dag_negative.test.cpp
   - test/yukicoder/1810_matpow.test.cpp
   - test/yukicoder/502_factorial107.test.cpp
+  - test/yukicoder/1641_tree_abel.test.cpp
   - test/yukicoder/4_subsetsum.test.cpp
   - test/yukicoder/1891_xor_sparse.test.cpp
   - test/yukicoder/705_monge_shortest_path.test.cpp
@@ -799,9 +813,11 @@ data:
   - test/yukicoder/502_p_rec.test.cpp
   - test/yukicoder/17_warshall_floyd.test.cpp
   - test/yukicoder/426.test.cpp
+  - test/yukicoder/626_knapsack_branch_bound.test.cpp
   - test/yukicoder/184_xorbasis.test.cpp
   - test/yukicoder/177_maxflow.test.cpp
   - test/yukicoder/1170_online_uf.test.cpp
+  - test/yukicoder/1077_slope.test.cpp
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
   - test/library_checker/geometry/convex_layers.test.cpp
   - test/library_checker/convolution/bitwise_and_convolution.test.cpp

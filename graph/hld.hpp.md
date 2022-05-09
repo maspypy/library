@@ -70,6 +70,9 @@ data:
     path: test/library_checker/tree/lca_directed.test.cpp
     title: test/library_checker/tree/lca_directed.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1641_tree_abel.test.cpp
+    title: test/yukicoder/1641_tree_abel.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/235_lazytreemonoid.test.cpp
     title: test/yukicoder/235_lazytreemonoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -245,6 +248,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/529_two_edge.test.cpp
+  - test/yukicoder/1641_tree_abel.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
