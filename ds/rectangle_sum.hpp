@@ -25,6 +25,7 @@ struct Rectangle_Sum {
 
   void compress() {
     compressed = 1;
+    int N = len(X);
     if (!SMALL) {
       UNIQUE(keyX), UNIQUE(keyY);
       add.resize(len(keyX) + 1);
@@ -34,7 +35,6 @@ struct Rectangle_Sum {
         add[x].eb(y, w);
       }
     } else {
-      int N = len(X);
       min_x = (N == 0 ? 0 : MIN(X));
       max_x = (N == 0 ? 0 : MAX(X));
       min_y = (N == 0 ? 0 : MIN(Y));
