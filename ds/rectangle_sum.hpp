@@ -15,7 +15,7 @@ struct Rectangle_Sum {
   vc<vc<tuple<int, int, int>>> query_l;
   vc<vc<tuple<int, int, int>>> query_r;
 
-  RectangleSums() : compressed(0), Q(0) {}
+  Rectangle_Sum() : compressed(0), Q(0) {}
 
   void add_pt(ll x, ll y, WT w = 1) {
     assert(!compressed);
