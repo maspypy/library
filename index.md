@@ -230,6 +230,9 @@ data:
       path: ds/parallel_binary_search.hpp
       title: ds/parallel_binary_search.hpp
     - icon: ':warning:'
+      path: ds/pbds.hpp
+      title: ds/pbds.hpp
+    - icon: ':warning:'
       path: ds/range_mex_query.hpp
       title: ds/range_mex_query.hpp
     - icon: ':warning:'
@@ -629,6 +632,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/io2.hpp
       title: other/io2.hpp
+    - icon: ':warning:'
+      path: other/kth_next_permutation.hpp
+      title: other/kth_next_permutation.hpp
     - icon: ':heavy_check_mark:'
       path: other/random.hpp
       title: other/random.hpp
