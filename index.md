@@ -666,7 +666,7 @@ data:
     - icon: ':warning:'
       path: poly/convolution2d.hpp
       title: poly/convolution2d.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: poly/convolution_all.hpp
       title: poly/convolution_all.hpp
     - icon: ':heavy_check_mark:'
@@ -755,7 +755,7 @@ data:
     - icon: ':warning:'
       path: seq/gray_code.hpp
       title: seq/gray_code.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: seq/interpolate_linear_rec.hpp
       title: seq/interpolate_linear_rec.hpp
     - icon: ':heavy_check_mark:'
@@ -779,6 +779,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/stirling_number_2.hpp
       title: seq/stirling_number_2.hpp
+    - icon: ':heavy_check_mark:'
+      path: seq/sum_of_powers.hpp
+      title: seq/sum_of_powers.hpp
   - name: setfunc
     pages:
     - icon: ':heavy_check_mark:'
@@ -1350,6 +1353,9 @@ data:
       path: test/yukicoder/1142_xor_conv.test.cpp
       title: test/yukicoder/1142_xor_conv.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1145_sum_of_powers.test.cpp
+      title: test/yukicoder/1145_sum_of_powers.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/114_steriner_tree.test.cpp
       title: test/yukicoder/114_steriner_tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1383,6 +1389,9 @@ data:
       path: test/yukicoder/1643_subseq.test.cpp
       title: test/yukicoder/1643_subseq.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1666_integer_kth_root.test.cpp
+      title: test/yukicoder/1666_integer_kth_root.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/177_maxflow.test.cpp
       title: test/yukicoder/177_maxflow.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1391,6 +1400,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1810_matpow.test.cpp
       title: test/yukicoder/1810_matpow.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1844_interpolate_c_rec.test.cpp
+      title: test/yukicoder/1844_interpolate_c_rec.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/184_xorbasis.test.cpp
       title: test/yukicoder/184_xorbasis.test.cpp

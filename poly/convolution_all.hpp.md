@@ -16,11 +16,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: seq/sum_of_powers.hpp
+    title: seq/sum_of_powers.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1145_sum_of_powers.test.cpp
+    title: test/yukicoder/1145_sum_of_powers.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\ntemplate <u32 mod>\nstruct modint {\n\
@@ -269,10 +275,12 @@ data:
   - poly/fft.hpp
   isVerificationFile: false
   path: poly/convolution_all.hpp
-  requiredBy: []
+  requiredBy:
+  - seq/sum_of_powers.hpp
   timestamp: '2022-05-02 13:07:10+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yukicoder/1145_sum_of_powers.test.cpp
 documentation_of: poly/convolution_all.hpp
 layout: document
 redirect_from:

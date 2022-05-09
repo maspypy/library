@@ -8,6 +8,9 @@ data:
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/convolution_all.hpp
+    title: poly/convolution_all.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
   - icon: ':heavy_check_mark:'
@@ -17,76 +20,16 @@ data:
     path: poly/fft.hpp
     title: poly/fft.hpp
   - icon: ':heavy_check_mark:'
-    path: poly/ntt.hpp
-    title: poly/ntt.hpp
-  _extendedRequiredBy:
+    path: poly/fps_inv.hpp
+    title: poly/fps_inv.hpp
   - icon: ':heavy_check_mark:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
   - icon: ':heavy_check_mark:'
-    path: poly/fps_pow.hpp
-    title: poly/fps_pow.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/fps_sqrt.hpp
-    title: poly/fps_sqrt.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/multipoint.hpp
-    title: poly/multipoint.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/poly_divmod.hpp
-    title: poly/poly_divmod.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/poly_gcd.hpp
-    title: poly/poly_gcd.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/stirling_number_1.hpp
-    title: seq/stirling_number_1.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/stirling_number_2.hpp
-    title: seq/stirling_number_2.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/sum_of_powers.hpp
-    title: seq/sum_of_powers.hpp
+    path: poly/ntt.hpp
+    title: poly/ntt.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/partition.test.cpp
-    title: test/library_checker/math/partition.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-    title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-    title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/inv_of_fps.test.cpp
-    title: test/library_checker/polynomial/inv_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
-    title: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/inv_of_polynomials.test.cpp
-    title: test/library_checker/polynomial/inv_of_polynomials.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/log_of_fps.test.cpp
-    title: test/library_checker/polynomial/log_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/multipoint_evaluation.test.cpp
-    title: test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/polynomial_division.test.cpp
-    title: test/library_checker/polynomial/polynomial_division.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/polynomial_interpolation.test.cpp
-    title: test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/pow_of_fps.test.cpp
-    title: test/library_checker/polynomial/pow_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-    title: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
-    title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1145_sum_of_powers.test.cpp
     title: test/yukicoder/1145_sum_of_powers.test.cpp
@@ -95,10 +38,8 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
-    \ vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\
-    \n  return t;\r\n}\n#line 2 \"mod/modint.hpp\"\ntemplate <u32 mod>\nstruct modint\
-    \ {\n  static constexpr bool is_modint = true;\n  u32 val;\n  constexpr modint(const\
+  bundledCode: "#line 2 \"mod/modint.hpp\"\ntemplate <u32 mod>\nstruct modint {\n\
+    \  static constexpr bool is_modint = true;\n  u32 val;\n  constexpr modint(const\
     \ ll val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val) % mod)\
     \ % mod) {}\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
     \  } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
@@ -325,36 +266,14 @@ data:
     \ modint998>::value, vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>&\
     \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
-    \ b);\r\n}\r\n#line 4 \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint,\
-    \ modint998>::value, vc<mint>> fps_inv(\r\n    const vc<mint>& f) {\r\n  if (count_terms(f)\
-    \ <= 200) return fps_inv_sparse(f);\r\n  return fps_inv_dense(f);\r\n}\r\n\r\n\
-    template <typename mint>\r\nenable_if_t<!is_same<mint, modint998>::value, vc<mint>>\
-    \ fps_inv(\r\n    const vc<mint>& f) {\r\n  if (count_terms(f) <= 700) return\
-    \ fps_inv_sparse(f);\r\n  return fps_inv_dense(f);\r\n}\r\n\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> fps_inv_sparse(const vc<mint>& f) {\r\n  assert(f[0] != mint(0));\r\
-    \n  int N = len(f);\r\n  vc<pair<int, mint>> dat;\r\n  FOR3(i, 1, N) if (f[i]\
-    \ != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\n  mint g0 = mint(1) / f[0];\r\
-    \n  g[0] = g0;\r\n  FOR3(n, 1, N) {\r\n    mint rhs = 0;\r\n    for (auto&& [k,\
-    \ fk]: dat) {\r\n      if (k > n) break;\r\n      rhs -= fk * g[n - k];\r\n  \
-    \  }\r\n    g[n] = rhs * g0;\r\n  }\r\n  return g;\r\n}\r\n\r\ntemplate <typename\
-    \ mint>\r\nenable_if_t<is_same<mint, modint998>::value, vc<mint>> fps_inv_dense(\r\
-    \n    const vc<mint>& F) {\r\n  assert(F[0] != mint(0));\r\n  vc<mint> G = {mint(1)\
-    \ / F[0]};\r\n  G.reserve(len(F));\r\n  ll N = len(F), n = 1;\r\n  while (n <\
-    \ N) {\r\n    vc<mint> f(2 * n), g(2 * n);\r\n    FOR(i, min(N, 2 * n)) f[i] =\
-    \ F[i];\r\n    FOR(i, n) g[i] = G[i];\r\n    ntt(f, false);\r\n    ntt(g, false);\r\
-    \n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\n    FOR(i, n) f[i] =\
-    \ 0;\r\n    ntt(f, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\
-    \n    FOR3(i, n, 2 * n) G.eb(f[i] * mint(-1));\r\n    n *= 2;\r\n  }\r\n  G.resize(N);\r\
-    \n  return G;\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<!is_same<mint,\
-    \ modint998>::value, vc<mint>> fps_inv_dense(\r\n    const vc<mint>& F) {\r\n\
-    \  int N = len(F);\r\n  assert(F[0] != mint(0));\r\n  vc<mint> R = {mint(1) /\
-    \ F[0]};\r\n  vc<mint> p;\r\n  int m = 1;\r\n  while (m < N) {\r\n    p = convolution(R,\
-    \ R);\r\n    p.resize(m + m);\r\n    vc<mint> f = {F.begin(), F.begin() + min(m\
-    \ + m, N)};\r\n    p = convolution(p, f);\r\n    R.resize(m + m);\r\n    FOR(i,\
-    \ m + m) R[i] = R[i] + R[i] - p[i];\r\n    m += m;\r\n  }\r\n  R.resize(N);\r\n\
-    \  return R;\r\n}\r\n"
-  code: "#pragma once\r\n#include \"poly/count_terms.hpp\"\r\n#include \"poly/convolution.hpp\"\
-    \r\n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint, modint998>::value,\
+    \ b);\r\n}\r\n#line 2 \"poly/convolution_all.hpp\"\n\r\ntemplate<typename T>\r\
+    \nvc<T> convolution_all(vc<vc<T>>& polys){\r\n  auto deq = deque<vc<T>>(all(polys));\r\
+    \n  while (len(deq) > 1) {\r\n    auto f = deq.front();\r\n    deq.pop_front();\r\
+    \n    auto g = deq.front();\r\n    deq.pop_front();\r\n    deq.eb(convolution(f,\
+    \ g));\r\n  }\r\n  return deq.front();\r\n}\n#line 2 \"poly/count_terms.hpp\"\n\
+    template<typename mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t = 0;\r\
+    \n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 4 \"poly/fps_inv.hpp\"\
+    \n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint, modint998>::value,\
     \ vc<mint>> fps_inv(\r\n    const vc<mint>& f) {\r\n  if (count_terms(f) <= 200)\
     \ return fps_inv_sparse(f);\r\n  return fps_inv_dense(f);\r\n}\r\n\r\ntemplate\
     \ <typename mint>\r\nenable_if_t<!is_same<mint, modint998>::value, vc<mint>> fps_inv(\r\
@@ -381,47 +300,44 @@ data:
     \ R);\r\n    p.resize(m + m);\r\n    vc<mint> f = {F.begin(), F.begin() + min(m\
     \ + m, N)};\r\n    p = convolution(p, f);\r\n    R.resize(m + m);\r\n    FOR(i,\
     \ m + m) R[i] = R[i] + R[i] - p[i];\r\n    m += m;\r\n  }\r\n  R.resize(N);\r\n\
-    \  return R;\r\n}\r\n"
+    \  return R;\r\n}\r\n#line 3 \"poly/fps_log.hpp\"\n\r\ntemplate <typename mint>\r\
+    \nvc<mint> fps_log(const vc<mint>& f) {\r\n  assert(f[0] == mint(1));\r\n  ll\
+    \ N = len(f);\r\n  vc<mint> df = f;\r\n  FOR(i, N) df[i] *= mint(i);\r\n  df.erase(df.begin());\r\
+    \n  auto f_inv = fps_inv(f);\r\n  auto g = convolution(df, f_inv);\r\n  g.resize(N\
+    \ - 1);\r\n  g.insert(g.begin(), 0);\r\n  FOR(i, N) g[i] *= inv<mint>(i);\r\n\
+    \  return g;\r\n}\r\n#line 3 \"seq/sum_of_powers.hpp\"\n\n// sum_{a in A} a^n\
+    \ \u3092\u3001n = 0, 1, ..., N \u3067\u5217\u6319\ntemplate <typename T>\nvc<T>\
+    \ sum_of_powers(const vc<T>& A, ll N) {\n  vvc<T> polys;\n  for (auto&& a: A)\
+    \ polys.eb(vc<T>({T(1), -a}));\n  auto f = convolution_all(polys);\n  f.resize(N\
+    \ + 1);\n  f = fps_log(f);\n  FOR(i, len(f)) f[i] = -f[i] * T(i);\n  f[0] = len(A);\n\
+    \  return f;\n}\n"
+  code: "#include \"poly/convolution_all.hpp\"\n#include \"poly/fps_log.hpp\"\n\n\
+    // sum_{a in A} a^n \u3092\u3001n = 0, 1, ..., N \u3067\u5217\u6319\ntemplate\
+    \ <typename T>\nvc<T> sum_of_powers(const vc<T>& A, ll N) {\n  vvc<T> polys;\n\
+    \  for (auto&& a: A) polys.eb(vc<T>({T(1), -a}));\n  auto f = convolution_all(polys);\n\
+    \  f.resize(N + 1);\n  f = fps_log(f);\n  FOR(i, len(f)) f[i] = -f[i] * T(i);\n\
+    \  f[0] = len(A);\n  return f;\n}\n"
   dependsOn:
-  - poly/count_terms.hpp
+  - poly/convolution_all.hpp
   - poly/convolution.hpp
   - mod/modint.hpp
   - poly/convolution_naive.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
-  isVerificationFile: false
-  path: poly/fps_inv.hpp
-  requiredBy:
-  - poly/fps_sqrt.hpp
-  - poly/poly_divmod.hpp
   - poly/fps_log.hpp
-  - poly/multipoint.hpp
-  - poly/fps_pow.hpp
-  - poly/poly_gcd.hpp
-  - seq/sum_of_powers.hpp
-  - seq/stirling_number_2.hpp
-  - seq/stirling_number_1.hpp
-  timestamp: '2022-05-03 00:46:14+09:00'
+  - poly/fps_inv.hpp
+  - poly/count_terms.hpp
+  isVerificationFile: false
+  path: seq/sum_of_powers.hpp
+  requiredBy: []
+  timestamp: '2022-05-09 23:19:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1145_sum_of_powers.test.cpp
-  - test/library_checker/polynomial/inv_of_polynomials.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - test/library_checker/polynomial/inv_of_fps.test.cpp
-  - test/library_checker/polynomial/inv_of_fps_amint.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - test/library_checker/polynomial/log_of_fps.test.cpp
-  - test/library_checker/polynomial/polynomial_division.test.cpp
-  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - test/library_checker/polynomial/pow_of_fps.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - test/library_checker/math/partition.test.cpp
-  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-documentation_of: poly/fps_inv.hpp
+documentation_of: seq/sum_of_powers.hpp
 layout: document
 redirect_from:
-- /library/poly/fps_inv.hpp
-- /library/poly/fps_inv.hpp.html
-title: poly/fps_inv.hpp
+- /library/seq/sum_of_powers.hpp
+- /library/seq/sum_of_powers.hpp.html
+title: seq/sum_of_powers.hpp
 ---

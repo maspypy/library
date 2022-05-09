@@ -14,7 +14,7 @@ data:
   - icon: ':warning:'
     path: poly/convolution2d.hpp
     title: poly/convolution2d.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
   - icon: ':heavy_check_mark:'
@@ -71,7 +71,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/coef_of_rational_fps.hpp
     title: seq/coef_of_rational_fps.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
   - icon: ':heavy_check_mark:'
@@ -86,6 +86,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/stirling_number_2.hpp
     title: seq/stirling_number_2.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/sum_of_powers.hpp
+    title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_huge.test.cpp
@@ -180,6 +183,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1145_sum_of_powers.test.cpp
+    title: test/yukicoder/1145_sum_of_powers.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1844_interpolate_c_rec.test.cpp
+    title: test/yukicoder/1844_interpolate_c_rec.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_p_rec.test.cpp
     title: test/yukicoder/502_p_rec.test.cpp
@@ -354,6 +363,7 @@ data:
   - poly/poly_taylor_shift.hpp
   - poly/poly_gcd.hpp
   - nt/multiplicative_convolution_mod2n.hpp
+  - seq/sum_of_powers.hpp
   - seq/interpolate_linear_rec.hpp
   - seq/stirling_number_2.hpp
   - seq/stirling_number_1.hpp
@@ -363,6 +373,8 @@ data:
   timestamp: '2022-05-02 12:36:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1844_interpolate_c_rec.test.cpp
+  - test/yukicoder/1145_sum_of_powers.test.cpp
   - test/yukicoder/502_p_rec.test.cpp
   - test/library_checker/convolution/convolution_huge.test.cpp
   - test/library_checker/convolution/mul_mod2n_convolution.test.cpp

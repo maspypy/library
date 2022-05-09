@@ -484,6 +484,9 @@ data:
     path: test/yukicoder/1142_xor_conv.test.cpp
     title: test/yukicoder/1142_xor_conv.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1145_sum_of_powers.test.cpp
+    title: test/yukicoder/1145_sum_of_powers.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/114_steriner_tree.test.cpp
     title: test/yukicoder/114_steriner_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -517,6 +520,9 @@ data:
     path: test/yukicoder/1643_subseq.test.cpp
     title: test/yukicoder/1643_subseq.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1666_integer_kth_root.test.cpp
+    title: test/yukicoder/1666_integer_kth_root.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/177_maxflow.test.cpp
     title: test/yukicoder/177_maxflow.test.cpp
   - icon: ':heavy_check_mark:'
@@ -525,6 +531,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1810_matpow.test.cpp
     title: test/yukicoder/1810_matpow.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1844_interpolate_c_rec.test.cpp
+    title: test/yukicoder/1844_interpolate_c_rec.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/184_xorbasis.test.cpp
     title: test/yukicoder/184_xorbasis.test.cpp
@@ -707,8 +716,10 @@ data:
   timestamp: '2022-04-29 17:32:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1844_interpolate_c_rec.test.cpp
   - test/yukicoder/4_modular_subset_sum.test.cpp
   - test/yukicoder/924.test.cpp
+  - test/yukicoder/1145_sum_of_powers.test.cpp
   - test/yukicoder/1036_seg_maxright_minleft.test.cpp
   - test/yukicoder/1036_swag.test.cpp
   - test/yukicoder/529_two_edge.test.cpp
@@ -720,6 +731,7 @@ data:
   - test/yukicoder/255.test.cpp
   - test/yukicoder/1288_mcf_dag_negative.test.cpp
   - test/yukicoder/1810_matpow.test.cpp
+  - test/yukicoder/1666_integer_kth_root.test.cpp
   - test/yukicoder/502_factorial107.test.cpp
   - test/yukicoder/1641_tree_abel.test.cpp
   - test/yukicoder/1344_warshall_floyd.test.cpp

@@ -32,6 +32,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/stirling_number_2.hpp
     title: seq/stirling_number_2.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/sum_of_powers.hpp
+    title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
@@ -48,6 +51,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1145_sum_of_powers.test.cpp
+    title: test/yukicoder/1145_sum_of_powers.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -334,11 +340,13 @@ data:
   path: poly/fps_log.hpp
   requiredBy:
   - poly/fps_pow.hpp
+  - seq/sum_of_powers.hpp
   - seq/stirling_number_2.hpp
   - seq/stirling_number_1.hpp
   timestamp: '2022-05-03 00:46:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1145_sum_of_powers.test.cpp
   - test/library_checker/polynomial/log_of_fps.test.cpp
   - test/library_checker/polynomial/pow_of_fps.test.cpp
   - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
