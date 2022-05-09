@@ -21,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/twosat.test.cpp
     title: test/library_checker/math/twosat.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1170_range_to_range.test.cpp
+    title: test/yukicoder/1170_range_to_range.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -94,6 +97,7 @@ data:
   timestamp: '2022-05-02 16:22:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1170_range_to_range.test.cpp
   - test/library_checker/graph/scc.test.cpp
   - test/library_checker/math/twosat.test.cpp
   - test/aoj/275_dag_reachability.test.cpp

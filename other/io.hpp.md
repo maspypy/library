@@ -487,6 +487,9 @@ data:
     path: test/yukicoder/1170_online_uf.test.cpp
     title: test/yukicoder/1170_online_uf.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1170_range_to_range.test.cpp
+    title: test/yukicoder/1170_range_to_range.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1288_mcf_dag_negative.test.cpp
     title: test/yukicoder/1288_mcf_dag_negative.test.cpp
   - icon: ':heavy_check_mark:'
@@ -821,6 +824,7 @@ data:
   - test/yukicoder/502_factorial107.test.cpp
   - test/yukicoder/1641_tree_abel.test.cpp
   - test/yukicoder/1344_warshall_floyd.test.cpp
+  - test/yukicoder/1170_range_to_range.test.cpp
   - test/yukicoder/4_subsetsum.test.cpp
   - test/yukicoder/1891_xor_sparse.test.cpp
   - test/yukicoder/705_monge_shortest_path.test.cpp

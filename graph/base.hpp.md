@@ -78,6 +78,9 @@ data:
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/range_to_range_graph.hpp
+    title: graph/range_to_range_graph.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/reachability.hpp
     title: graph/reachability.hpp
   - icon: ':warning:'
@@ -223,6 +226,9 @@ data:
     path: test/yukicoder/114_steriner_tree.test.cpp
     title: test/yukicoder/114_steriner_tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1170_range_to_range.test.cpp
+    title: test/yukicoder/1170_range_to_range.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1320_mincostcycle.test.cpp
     title: test/yukicoder/1320_mincostcycle.test.cpp
   - icon: ':heavy_check_mark:'
@@ -327,6 +333,7 @@ data:
   - graph/toposort.hpp
   - graph/treemonoid.hpp
   - graph/check_bipartite.hpp
+  - graph/range_to_range_graph.hpp
   - graph/bfs01.hpp
   - graph/degree.hpp
   - graph/bipartite_coloring.hpp
@@ -370,6 +377,7 @@ data:
   - test/yukicoder/899_bfsnumbering.test.cpp
   - test/yukicoder/1641_tree_abel.test.cpp
   - test/yukicoder/1344_warshall_floyd.test.cpp
+  - test/yukicoder/1170_range_to_range.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/1038_centroid.test.cpp
   - test/yukicoder/1002_centroid.test.cpp

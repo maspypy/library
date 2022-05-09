@@ -410,6 +410,9 @@ data:
       path: graph/online_unionfind.hpp
       title: graph/online_unionfind.hpp
     - icon: ':heavy_check_mark:'
+      path: graph/range_to_range_graph.hpp
+      title: graph/range_to_range_graph.hpp
+    - icon: ':heavy_check_mark:'
       path: graph/reachability.hpp
       title: graph/reachability.hpp
     - icon: ':warning:'
@@ -1361,6 +1364,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1170_online_uf.test.cpp
       title: test/yukicoder/1170_online_uf.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1170_range_to_range.test.cpp
+      title: test/yukicoder/1170_range_to_range.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1288_mcf_dag_negative.test.cpp
       title: test/yukicoder/1288_mcf_dag_negative.test.cpp
