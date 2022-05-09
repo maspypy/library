@@ -11,7 +11,7 @@ vc<vc<T>> warshall_floyd(Graph& G, T INF) {
   vv(T, dist, N, N, INF);
   FOR(v, N) {
     dist[v][v] = 0;
-    for (auto&& e: G[v]) dist[v][e.to] = e.cost;
+    for (auto&& e: G[v]) chmin(dist[v][e.to], e.cost);
   }
   FOR(k, N) FOR(i, N) {
     if (dist[i][k] == INF) continue;
