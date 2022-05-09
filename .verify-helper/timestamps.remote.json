@@ -163,6 +163,7 @@
 "test/yukicoder/1145_sum_of_powers.test.cpp": "2022-05-09 23:19:23 +0900",
 "test/yukicoder/114_steriner_tree.test.cpp": "2022-04-29 17:32:58 +0900",
 "test/yukicoder/1170_online_uf.test.cpp": "2022-05-06 13:21:19 +0900",
+"test/yukicoder/1170_range_to_range.test.cpp": "2022-05-10 00:08:58 +0900",
 "test/yukicoder/1288_mcf_dag_negative.test.cpp": "2022-05-05 15:29:23 +0900",
 "test/yukicoder/1301_mcf.test.cpp": "2022-05-05 15:29:23 +0900",
 "test/yukicoder/1320_mincostcycle.test.cpp": "2022-05-01 01:24:24 +0900",
