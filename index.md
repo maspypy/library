@@ -807,7 +807,7 @@ data:
       title: setfunc/zeta.hpp
   - name: string
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: string/is_subseq.hpp
       title: string/is_subseq.hpp
     - icon: ':warning:'
@@ -1373,6 +1373,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1641_tree_abel.test.cpp
       title: test/yukicoder/1641_tree_abel.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1643_subseq.test.cpp
+      title: test/yukicoder/1643_subseq.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/177_maxflow.test.cpp
       title: test/yukicoder/177_maxflow.test.cpp

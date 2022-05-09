@@ -55,7 +55,7 @@ data:
     \ bool SMALL = false>\r\nstruct Rectangle_Sum {\r\n  bool compressed;\r\n  int\
     \ Q;\r\n  vi X, Y;\r\n  vi keyX, keyY;\r\n  ll min_x, max_x, min_y, max_y;\r\n\
     \  vc<WT> wt;\r\n  vc<vc<pair<int, WT>>> add;\r\n  vc<vc<tuple<int, int, int>>>\
-    \ query_l;\r\n  vc<vc<tuple<int, int, int>>> query_r;\r\n\r\n  RectangleSums()\
+    \ query_l;\r\n  vc<vc<tuple<int, int, int>>> query_r;\r\n\r\n  Rectangle_Sum()\
     \ : compressed(0), Q(0) {}\r\n\r\n  void add_pt(ll x, ll y, WT w = 1) {\r\n  \
     \  assert(!compressed);\r\n    X.eb(x), Y.eb(y), wt.eb(w);\r\n    keyX.eb(x),\
     \ keyY.eb(y);\r\n  }\r\n\r\n  void compress() {\r\n    compressed = 1;\r\n   \
@@ -92,7 +92,7 @@ data:
     \r\ntemplate <typename WT = ll, bool SMALL = false>\r\nstruct Rectangle_Sum {\r\
     \n  bool compressed;\r\n  int Q;\r\n  vi X, Y;\r\n  vi keyX, keyY;\r\n  ll min_x,\
     \ max_x, min_y, max_y;\r\n  vc<WT> wt;\r\n  vc<vc<pair<int, WT>>> add;\r\n  vc<vc<tuple<int,\
-    \ int, int>>> query_l;\r\n  vc<vc<tuple<int, int, int>>> query_r;\r\n\r\n  RectangleSums()\
+    \ int, int>>> query_l;\r\n  vc<vc<tuple<int, int, int>>> query_r;\r\n\r\n  Rectangle_Sum()\
     \ : compressed(0), Q(0) {}\r\n\r\n  void add_pt(ll x, ll y, WT w = 1) {\r\n  \
     \  assert(!compressed);\r\n    X.eb(x), Y.eb(y), wt.eb(w);\r\n    keyX.eb(x),\
     \ keyY.eb(y);\r\n  }\r\n\r\n  void compress() {\r\n    compressed = 1;\r\n   \
@@ -127,7 +127,7 @@ data:
   isVerificationFile: false
   path: ds/rectangle_sum.hpp
   requiredBy: []
-  timestamp: '2022-05-09 20:05:22+09:00'
+  timestamp: '2022-05-09 20:34:49+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp

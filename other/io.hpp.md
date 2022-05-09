@@ -502,6 +502,9 @@ data:
     path: test/yukicoder/1641_tree_abel.test.cpp
     title: test/yukicoder/1641_tree_abel.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1643_subseq.test.cpp
+    title: test/yukicoder/1643_subseq.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/177_maxflow.test.cpp
     title: test/yukicoder/177_maxflow.test.cpp
   - icon: ':heavy_check_mark:'
@@ -817,6 +820,7 @@ data:
   - test/yukicoder/184_xorbasis.test.cpp
   - test/yukicoder/177_maxflow.test.cpp
   - test/yukicoder/1170_online_uf.test.cpp
+  - test/yukicoder/1643_subseq.test.cpp
   - test/yukicoder/1077_slope.test.cpp
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
   - test/library_checker/geometry/convex_layers.test.cpp
