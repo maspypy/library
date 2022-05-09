@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group_add.hpp\"\ntemplate <class X>\r\nstruct Group_Add\
@@ -59,10 +59,10 @@ data:
     \ : compressed(0), Q(0) {}\r\n\r\n  void add_pt(ll x, ll y, WT w = 1) {\r\n  \
     \  assert(!compressed);\r\n    X.eb(x), Y.eb(y), wt.eb(w);\r\n    keyX.eb(x),\
     \ keyY.eb(y);\r\n  }\r\n\r\n  void compress() {\r\n    compressed = 1;\r\n   \
-    \ if (!SMALL) {\r\n      UNIQUE(keyX), UNIQUE(keyY);\r\n      add.resize(len(keyX)\
-    \ + 1);\r\n      FOR(i, N) {\r\n        ll x = X[i], y = Y[i], w = wt[i];\r\n\
-    \        x = LB(keyX, x), y = LB(keyY, y);\r\n        add[x].eb(y, w);\r\n   \
-    \   }\r\n    } else {\r\n      int N = len(X);\r\n      min_x = (N == 0 ? 0 :\
+    \ int N = len(X);\r\n    if (!SMALL) {\r\n      UNIQUE(keyX), UNIQUE(keyY);\r\n\
+    \      add.resize(len(keyX) + 1);\r\n      FOR(i, N) {\r\n        ll x = X[i],\
+    \ y = Y[i], w = wt[i];\r\n        x = LB(keyX, x), y = LB(keyY, y);\r\n      \
+    \  add[x].eb(y, w);\r\n      }\r\n    } else {\r\n      min_x = (N == 0 ? 0 :\
     \ MIN(X));\r\n      max_x = (N == 0 ? 0 : MAX(X));\r\n      min_y = (N == 0 ?\
     \ 0 : MIN(Y));\r\n      max_y = (N == 0 ? 0 : MAX(Y));\r\n      add.resize(max_x\
     \ - min_x + 2);\r\n      FOR(i, N) {\r\n        ll x = X[i], y = Y[i], w = wt[i];\r\
@@ -96,10 +96,10 @@ data:
     \ : compressed(0), Q(0) {}\r\n\r\n  void add_pt(ll x, ll y, WT w = 1) {\r\n  \
     \  assert(!compressed);\r\n    X.eb(x), Y.eb(y), wt.eb(w);\r\n    keyX.eb(x),\
     \ keyY.eb(y);\r\n  }\r\n\r\n  void compress() {\r\n    compressed = 1;\r\n   \
-    \ if (!SMALL) {\r\n      UNIQUE(keyX), UNIQUE(keyY);\r\n      add.resize(len(keyX)\
-    \ + 1);\r\n      FOR(i, N) {\r\n        ll x = X[i], y = Y[i], w = wt[i];\r\n\
-    \        x = LB(keyX, x), y = LB(keyY, y);\r\n        add[x].eb(y, w);\r\n   \
-    \   }\r\n    } else {\r\n      int N = len(X);\r\n      min_x = (N == 0 ? 0 :\
+    \ int N = len(X);\r\n    if (!SMALL) {\r\n      UNIQUE(keyX), UNIQUE(keyY);\r\n\
+    \      add.resize(len(keyX) + 1);\r\n      FOR(i, N) {\r\n        ll x = X[i],\
+    \ y = Y[i], w = wt[i];\r\n        x = LB(keyX, x), y = LB(keyY, y);\r\n      \
+    \  add[x].eb(y, w);\r\n      }\r\n    } else {\r\n      min_x = (N == 0 ? 0 :\
     \ MIN(X));\r\n      max_x = (N == 0 ? 0 : MAX(X));\r\n      min_y = (N == 0 ?\
     \ 0 : MIN(Y));\r\n      max_y = (N == 0 ? 0 : MAX(Y));\r\n      add.resize(max_x\
     \ - min_x + 2);\r\n      FOR(i, N) {\r\n        ll x = X[i], y = Y[i], w = wt[i];\r\
@@ -127,8 +127,8 @@ data:
   isVerificationFile: false
   path: ds/rectangle_sum.hpp
   requiredBy: []
-  timestamp: '2022-05-09 20:34:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-05-09 21:38:16+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
 documentation_of: ds/rectangle_sum.hpp
