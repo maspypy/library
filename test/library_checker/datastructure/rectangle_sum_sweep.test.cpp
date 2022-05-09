@@ -4,11 +4,11 @@
 #include "other/io.hpp"
 
 #include "ds/fenwick.hpp"
-#include "ds/rectanglesums.hpp"
+#include "ds/rectangle_sum.hpp"
 
 void solve() {
   LL(N, Q);
-  RectangleSums RS(N);
+  Rectangle_Sum RS;
   FOR(_, N) {
     LL(x, y, w);
     RS.add_pt(x, y, w);

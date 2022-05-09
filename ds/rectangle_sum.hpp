@@ -1,9 +1,12 @@
 #include "ds/fenwick.hpp"
 
+// 点群はクエリより前に全部入力すること (add_pt)。
+// 同じ点群に対してクエリをやり直せる。
+// SMALL=true にすると、座圧をしないため少し高速
 template <typename WT = ll, bool SMALL = false>
-struct RectangleSums {
-  int N;
-  int n, Q;
+struct Rectangle_Sum {
+  bool compressed;
+  int Q;
   vi X, Y;
   vi keyX, keyY;
   ll min_x, max_x, min_y, max_y;
@@ -12,16 +15,16 @@ struct RectangleSums {
   vc<vc<tuple<int, int, int>>> query_l;
   vc<vc<tuple<int, int, int>>> query_r;
 
-  RectangleSums(int N)
-      : N(N), n(0), Q(0), X(N), Y(N), keyX(N), keyY(N), wt(N) {}
+  RectangleSums() : compressed(0), Q(0) {}
 
   void add_pt(ll x, ll y, WT w = 1) {
-    X[n] = x, Y[n] = y, wt[n] = w, keyX[n] = x, keyY[n] = y;
-    ++n;
-    if (n == N) { compress(); }
+    assert(!compressed);
+    X.eb(x), Y.eb(y), wt.eb(w);
+    keyX.eb(x), keyY.eb(y);
   }
 
   void compress() {
+    compressed = 1;
     if (!SMALL) {
       UNIQUE(keyX), UNIQUE(keyY);
       add.resize(len(keyX) + 1);
@@ -31,6 +34,7 @@ struct RectangleSums {
         add[x].eb(y, w);
       }
     } else {
+      int N = len(X);
       min_x = (N == 0 ? 0 : MIN(X));
       max_x = (N == 0 ? 0 : MAX(X));
       min_y = (N == 0 ? 0 : MIN(Y));
@@ -47,7 +51,7 @@ struct RectangleSums {
   }
 
   void add_rect(ll xl, ll yl, ll xr, ll yr) {
-    assert(n == N);
+    if (!compressed) compress();
     if (!SMALL) {
       xl = LB(keyX, xl), xr = LB(keyX, xr);
       yl = LB(keyY, yl), yr = LB(keyY, yr);
@@ -65,7 +69,7 @@ struct RectangleSums {
   }
 
   vc<WT> calc() {
-    assert(n == N);
+    assert(compressed);
     vc<WT> ANS(Q);
     int k = (SMALL ? max_y - min_y + 2 : len(keyY) + 1);
     FenwickTree<Group_Add<WT>> bit(k);
@@ -87,11 +91,5 @@ struct RectangleSums {
     }
     Q = 0;
     return ANS;
-  }
-
-  void doc() {
-    print("N 個の点は最初に決めてしまう。");
-    print("同じ点群に対してクエリをやり直せる。"); // abc233-h
-    print("SMALL=true にすると、座圧をしないため少し高速");
   }
 };
