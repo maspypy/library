@@ -226,6 +226,12 @@ data:
     path: test/yukicoder/1320_mincostcycle.test.cpp
     title: test/yukicoder/1320_mincostcycle.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1344_warshall_floyd.test.cpp
+    title: test/yukicoder/1344_warshall_floyd.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
+    title: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1641_tree_abel.test.cpp
     title: test/yukicoder/1641_tree_abel.test.cpp
   - icon: ':heavy_check_mark:'
@@ -363,10 +369,12 @@ data:
   - test/yukicoder/1320_mincostcycle.test.cpp
   - test/yukicoder/899_bfsnumbering.test.cpp
   - test/yukicoder/1641_tree_abel.test.cpp
+  - test/yukicoder/1344_warshall_floyd.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/1038_centroid.test.cpp
   - test/yukicoder/1002_centroid.test.cpp
   - test/yukicoder/114_steriner_tree.test.cpp
+  - test/yukicoder/1479_bipartite_vertex_cover.test.cpp
   - test/yukicoder/17_warshall_floyd.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp

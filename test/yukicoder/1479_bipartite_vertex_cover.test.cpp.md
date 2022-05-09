@@ -2,11 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: ds/unionfind.hpp
+    title: ds/unionfind.hpp
+  - icon: ':heavy_check_mark:'
+    path: flow/bipartite.hpp
+    title: flow/bipartite.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/warshall_floyd.hpp
-    title: graph/warshall_floyd.hpp
+    path: graph/check_bipartite.hpp
+    title: graph/check_bipartite.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -20,19 +26,19 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C
+    PROBLEM: https://yukicoder.me/problems/no/1479
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C
-  bundledCode: "#line 1 \"test/aoj/GRL_1_C_warshallfloyd.test.cpp\"\n#define PROBLEM\
-    \ \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C\"\n\
-    #line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
-    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
-    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://yukicoder.me/problems/no/1479
+  bundledCode: "#line 1 \"test/yukicoder/1479_bipartite_vertex_cover.test.cpp\"\n\
+    #define PROBLEM \"https://yukicoder.me/problems/no/1479\"\n#line 1 \"my_template.hpp\"\
+    \n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
+    using pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\n\
+    using u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\n\
+    using vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate\
+    \ <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -220,50 +226,100 @@ data:
     Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
     \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
     , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 3 \"graph/warshall_floyd.hpp\"\
-    \n\n/*\n\u8CA0\u8FBA\u304C\u3042\u3063\u3066\u3082\u8CA0\u9589\u8DEF\u304C\u306A\
-    \u3051\u308C\u3070\u6B63\u3057\u304F\u52D5\u4F5C\u3059\u308B\u3002\n\u8CA0\u9589\
-    \u8DEF\u304C\u3042\u308B\u304B\u3069\u3046\u304B\u306F\u3001dist[v][v] < 0 \u3068\
-    \u306A\u308B v \u304C\u3042\u308B\u304B\u3069\u3046\u304B\u3067\u5224\u5B9A\u3002\
-    \n*/\ntemplate <typename T, typename Graph>\nvc<vc<T>> warshall_floyd(Graph& G,\
-    \ T INF) {\n  ll N = G.N;\n  vv(T, dist, N, N, INF);\n  FOR(v, N) {\n    dist[v][v]\
-    \ = 0;\n    for (auto&& e: G[v]) chmin(dist[v][e.to], e.cost);\n  }\n  FOR(k,\
-    \ N) FOR(i, N) {\n    if (dist[i][k] == INF) continue;\n    FOR(j, N) {\n    \
-    \  if (dist[k][j] == INF) continue;\n      chmin(dist[i][j], dist[i][k] + dist[k][j]);\n\
-    \    }\n  }\n  return dist;\n}\n#line 6 \"test/aoj/GRL_1_C_warshallfloyd.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, M);\n  Graph<ll, 1> G(N);\n  G.read_graph(M, 1, 0);\n\
-    \  const ll INF = 1LL << 60;\n  auto dist = warshall_floyd<ll>(G, INF);\n  FOR(v,\
-    \ N) if (dist[v][v] < 0) return print(\"NEGATIVE CYCLE\");\n  FOR(a, N) {\n  \
-    \  string S;\n    FOR(b, N) {\n      if (b) S += \" \";\n      ll x = dist[a][b];\n\
-    \      if (x == INF)\n        S += \"INF\";\n      else\n        S += to_string(x);\n\
-    \    }\n    print(S);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 2 \"ds/unionfind.hpp\"\
+    \n\nstruct UnionFind {\n  int num;\n  int comp;\n  vc<int> size, par;\n  UnionFind(int\
+    \ n) : num(n), comp(n), size(n, 1), par(n) {\n    iota(par.begin(), par.end(),\
+    \ 0);\n  }\n  int find(int x) {\n    while (par[x] != x) {\n      par[x] = par[par[x]];\n\
+    \      x = par[x];\n    }\n    return x;\n  }\n\n  int operator[](int x) { return\
+    \ find(x); }\n\n  bool merge(ll x, ll y) {\n    x = find(x);\n    y = find(y);\n\
+    \    if (x == y) { return false; }\n    comp--;\n    if (size[x] < size[y]) swap(x,\
+    \ y);\n    size[x] += size[y];\n    size[y] = 0;\n    par[y] = x;\n    return\
+    \ true;\n  }\n\n  vc<int> find_all() {\n    vc<int> A(num);\n    FOR(i, num) A[i]\
+    \ = find(i);\n    return A;\n  }\n\n  void reset(){\n    comp = num;\n    size.assign(num,\
+    \ 1);\n    iota(all(par), 0);\n  }\n};\n#line 3 \"graph/check_bipartite.hpp\"\n\
+    \r\n// \u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A + \u5FA9\u5143\r\n// \u4E8C\u90E8\
+    \u30B0\u30E9\u30D5\u3067\u306A\u304B\u3063\u305F\u5834\u5408\u306B\u306F empty\r\
+    \ntemplate <typename Graph>\r\nvc<int> check_bipartite(Graph& G) {\r\n  assert(G.is_prepared());\r\
+    \n\r\n  int n = G.N;\r\n  UnionFind uf(2 * n);\r\n  for (auto&& e: G.edges) {\r\
+    \n    int u = e.frm, v = e.to;\r\n    if (e.cost == 0) uf.merge(u, v), uf.merge(u\
+    \ + n, v + n);\r\n    if (e.cost != 0) uf.merge(u + n, v), uf.merge(u, v + n);\r\
+    \n  }\r\n\r\n  vc<int> color(2 * n, -1);\r\n  FOR(v, n) if (uf[v] == v && color[uf[v]]\
+    \ < 0) {\r\n    color[uf[v]] = 0;\r\n    color[uf[v + n]] = 1;\r\n  }\r\n  FOR(v,\
+    \ n) color[v] = color[uf[v]];\r\n  color.resize(n);\r\n  FOR(v, n) if (uf[v] ==\
+    \ uf[v + n]) return {};\r\n  return color;\r\n}\r\n#line 3 \"flow/bipartite.hpp\"\
+    \n\r\ntemplate <typename Graph>\r\nstruct BipartiteMatching {\r\n  int N;\r\n\
+    \  Graph& G;\r\n  vc<int> color;\r\n  vc<int> dist, match;\r\n  vc<int> vis;\r\
+    \n\r\n  BipartiteMatching(Graph& G) : G(G), N(G.N), dist(G.N, -1), match(G.N,\
+    \ -1) {\r\n    color = check_bipartite(G);\r\n    assert(!color.empty());\r\n\
+    \    while (1) {\r\n      bfs();\r\n      vis.assign(N, false);\r\n      int flow\
+    \ = 0;\r\n      FOR(v, N) if (!color[v] && match[v] == -1 && dfs(v))++ flow;\r\
+    \n      if (!flow) break;\r\n    }\r\n  }\r\n\r\n  void bfs() {\r\n    dist.assign(N,\
+    \ -1);\r\n    queue<int> que;\r\n    FOR(v, N) if (!color[v] && match[v] == -1)\
+    \ que.emplace(v), dist[v] = 0;\r\n    while (!que.empty()) {\r\n      int v =\
+    \ que.front();\r\n      que.pop();\r\n      for (auto&& e: G[v]) {\r\n       \
+    \ dist[e.to] = 0;\r\n        int w = match[e.to];\r\n        if (w != -1 && dist[w]\
+    \ == -1) dist[w] = dist[v] + 1, que.emplace(w);\r\n      }\r\n    }\r\n  }\r\n\
+    \r\n  bool dfs(int v) {\r\n    vis[v] = 1;\r\n    for (auto&& e: G[v]) {\r\n \
+    \     int w = match[e.to];\r\n      if (w == -1 || (!vis[w] && dist[w] == dist[v]\
+    \ + 1 && dfs(w))) {\r\n        match[e.to] = v, match[v] = e.to;\r\n        return\
+    \ true;\r\n      }\r\n    }\r\n    return false;\r\n  }\r\n\r\n  vc<pair<int,\
+    \ int>> matching() {\r\n    vc<pair<int, int>> res;\r\n    FOR(v, N) if (v < match[v])\
+    \ res.eb(v, match[v]);\r\n    return res;\r\n  }\r\n\r\n  vc<int> vertex_cover()\
+    \ {\r\n    vc<int> res;\r\n    FOR(v, N) if (color[v] ^ (dist[v] == -1)) {\r\n\
+    \      res.eb(v);\r\n    }\r\n    return res;\r\n  }\r\n\r\n  vc<int> independent_set()\
+    \ {\r\n    vc<int> res;\r\n    FOR(v, N) if (!(color[v] ^ (dist[v] == -1))) {\r\
+    \n      res.eb(v);\r\n    }\r\n    return res;\r\n  }\r\n\r\n  vc<int> edge_cover()\
+    \ {\r\n    vc<bool> done(N);\r\n    vc<int> res;\r\n    for (auto&& e: G.edges)\
+    \ {\r\n      if (done[e.frm] || done[e.to]) continue;\r\n      if (match[e.frm]\
+    \ == e.to) {\r\n        res.eb(e.id);\r\n        done[e.frm] = done[e.to] = 1;\r\
+    \n      }\r\n    }\r\n    for (auto&& e: G.edges) {\r\n      if (!done[e.frm])\
+    \ {\r\n        res.eb(e.id);\r\n        done[e.frm] = 1;\r\n      }\r\n      if\
+    \ (!done[e.to]) {\r\n        res.eb(e.id);\r\n        done[e.to] = 1;\r\n    \
+    \  }\r\n    }\r\n    sort(all(res));\r\n    return res;\r\n  }\r\n\r\n  void debug()\
+    \ {\r\n    print(\"match\", match);\r\n    print(\"min vertex covor\", vertex_cover());\r\
+    \n    print(\"max indep set\", independent_set());\r\n    print(\"min edge cover\"\
+    , edge_cover());\r\n  }\r\n};\n#line 6 \"test/yukicoder/1479_bipartite_vertex_cover.test.cpp\"\
+    \n\nvoid solve() {\n  LL(H, W);\n  ll LIM = 500000;\n  vvc<pi> dat(LIM + 1);\n\
+    \  FOR(x, H) FOR(y, W) {\n    LL(v);\n    dat[v].eb(x, y);\n  }\n  ll ANS = 0;\n\
+    \  FOR3(v, 1, LIM + 1) {\n    auto& XY = dat[v];\n    if (len(XY) == 0) continue;\n\
+    \    vi X, Y;\n    for (auto&& [x, y]: XY) {\n      X.eb(x);\n      Y.eb(y);\n\
+    \    }\n    UNIQUE(X);\n    UNIQUE(Y);\n    Graph G(len(X) + len(Y));\n    for\
+    \ (auto&& [x, y]: XY) {\n      x = LB(X, x);\n      y = LB(Y, y);\n      G.add(x,\
+    \ len(X) + y);\n    }\n    G.build();\n    BipartiteMatching BM(G);\n    auto\
+    \ cov = BM.vertex_cover();\n    ANS += len(cov);\n    // print(v, len(cov));\n\
+    \  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
     \n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/warshall_floyd.hpp\"\
-    \n\nvoid solve() {\n  LL(N, M);\n  Graph<ll, 1> G(N);\n  G.read_graph(M, 1, 0);\n\
-    \  const ll INF = 1LL << 60;\n  auto dist = warshall_floyd<ll>(G, INF);\n  FOR(v,\
-    \ N) if (dist[v][v] < 0) return print(\"NEGATIVE CYCLE\");\n  FOR(a, N) {\n  \
-    \  string S;\n    FOR(b, N) {\n      if (b) S += \" \";\n      ll x = dist[a][b];\n\
-    \      if (x == INF)\n        S += \"INF\";\n      else\n        S += to_string(x);\n\
-    \    }\n    print(S);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1479\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"graph/base.hpp\"\n#include \"flow/bipartite.hpp\"\
+    \n\nvoid solve() {\n  LL(H, W);\n  ll LIM = 500000;\n  vvc<pi> dat(LIM + 1);\n\
+    \  FOR(x, H) FOR(y, W) {\n    LL(v);\n    dat[v].eb(x, y);\n  }\n  ll ANS = 0;\n\
+    \  FOR3(v, 1, LIM + 1) {\n    auto& XY = dat[v];\n    if (len(XY) == 0) continue;\n\
+    \    vi X, Y;\n    for (auto&& [x, y]: XY) {\n      X.eb(x);\n      Y.eb(y);\n\
+    \    }\n    UNIQUE(X);\n    UNIQUE(Y);\n    Graph G(len(X) + len(Y));\n    for\
+    \ (auto&& [x, y]: XY) {\n      x = LB(X, x);\n      y = LB(Y, y);\n      G.add(x,\
+    \ len(X) + y);\n    }\n    G.build();\n    BipartiteMatching BM(G);\n    auto\
+    \ cov = BM.vertex_cover();\n    ANS += len(cov);\n    // print(v, len(cov));\n\
+    \  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
     \n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - graph/warshall_floyd.hpp
   - graph/base.hpp
+  - flow/bipartite.hpp
+  - graph/check_bipartite.hpp
+  - ds/unionfind.hpp
   isVerificationFile: true
-  path: test/aoj/GRL_1_C_warshallfloyd.test.cpp
+  path: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
   requiredBy: []
-  timestamp: '2022-05-09 21:20:32+09:00'
+  timestamp: '2022-05-09 21:20:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/GRL_1_C_warshallfloyd.test.cpp
+documentation_of: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/GRL_1_C_warshallfloyd.test.cpp
-- /verify/test/aoj/GRL_1_C_warshallfloyd.test.cpp.html
-title: test/aoj/GRL_1_C_warshallfloyd.test.cpp
+- /verify/test/yukicoder/1479_bipartite_vertex_cover.test.cpp
+- /verify/test/yukicoder/1479_bipartite_vertex_cover.test.cpp.html
+title: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
 ---

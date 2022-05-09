@@ -1368,6 +1368,12 @@ data:
       path: test/yukicoder/1332_range_freq.test.cpp
       title: test/yukicoder/1332_range_freq.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1344_warshall_floyd.test.cpp
+      title: test/yukicoder/1344_warshall_floyd.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
+      title: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1593_gaussian.test.cpp
       title: test/yukicoder/1593_gaussian.test.cpp
     - icon: ':heavy_check_mark:'

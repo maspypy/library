@@ -227,10 +227,10 @@ data:
     \u306A\u308B v \u304C\u3042\u308B\u304B\u3069\u3046\u304B\u3067\u5224\u5B9A\u3002\
     \n*/\ntemplate <typename T, typename Graph>\nvc<vc<T>> warshall_floyd(Graph& G,\
     \ T INF) {\n  ll N = G.N;\n  vv(T, dist, N, N, INF);\n  FOR(v, N) {\n    dist[v][v]\
-    \ = 0;\n    for (auto&& e: G[v]) dist[v][e.to] = e.cost;\n  }\n  FOR(k, N) FOR(i,\
-    \ N) {\n    if (dist[i][k] == INF) continue;\n    FOR(j, N) {\n      if (dist[k][j]\
-    \ == INF) continue;\n      chmin(dist[i][j], dist[i][k] + dist[k][j]);\n    }\n\
-    \  }\n  return dist;\n}\n#line 5 \"test/yukicoder/17_warshall_floyd.test.cpp\"\
+    \ = 0;\n    for (auto&& e: G[v]) chmin(dist[v][e.to], e.cost);\n  }\n  FOR(k,\
+    \ N) FOR(i, N) {\n    if (dist[i][k] == INF) continue;\n    FOR(j, N) {\n    \
+    \  if (dist[k][j] == INF) continue;\n      chmin(dist[i][j], dist[i][k] + dist[k][j]);\n\
+    \    }\n  }\n  return dist;\n}\n#line 5 \"test/yukicoder/17_warshall_floyd.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(ll, COST, N);\n  Graph<ll> G(N);\n  LL(M);\n\
     \  G.read_graph(M, 1, 0);\n\n  const ll INF = 1LL << 60;\n  auto dist = warshall_floyd<ll>(G,\
     \ INF);\n\n  ll ANS = INF;\n  FOR3(i, 1, N - 1) FOR3(j, 1, N - 1) if (i != j)\
@@ -255,7 +255,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/17_warshall_floyd.test.cpp
   requiredBy: []
-  timestamp: '2022-04-29 17:32:58+09:00'
+  timestamp: '2022-05-09 21:20:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/17_warshall_floyd.test.cpp

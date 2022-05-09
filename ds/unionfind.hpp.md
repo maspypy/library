@@ -45,6 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1170_online_uf.test.cpp
     title: test/yukicoder/1170_online_uf.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
+    title: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -86,6 +89,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/114_steriner_tree.test.cpp
+  - test/yukicoder/1479_bipartite_vertex_cover.test.cpp
   - test/yukicoder/1170_online_uf.test.cpp
   - test/library_checker/datastructure/unionfind.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp

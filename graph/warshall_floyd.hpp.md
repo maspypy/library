@@ -10,6 +10,9 @@ data:
     path: test/aoj/GRL_1_C_warshallfloyd.test.cpp
     title: test/aoj/GRL_1_C_warshallfloyd.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1344_warshall_floyd.test.cpp
+    title: test/yukicoder/1344_warshall_floyd.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/17_warshall_floyd.test.cpp
     title: test/yukicoder/17_warshall_floyd.test.cpp
   _isVerificationFailed: false
@@ -56,10 +59,10 @@ data:
     \u306A\u308B v \u304C\u3042\u308B\u304B\u3069\u3046\u304B\u3067\u5224\u5B9A\u3002\
     \n*/\ntemplate <typename T, typename Graph>\nvc<vc<T>> warshall_floyd(Graph& G,\
     \ T INF) {\n  ll N = G.N;\n  vv(T, dist, N, N, INF);\n  FOR(v, N) {\n    dist[v][v]\
-    \ = 0;\n    for (auto&& e: G[v]) dist[v][e.to] = e.cost;\n  }\n  FOR(k, N) FOR(i,\
-    \ N) {\n    if (dist[i][k] == INF) continue;\n    FOR(j, N) {\n      if (dist[k][j]\
-    \ == INF) continue;\n      chmin(dist[i][j], dist[i][k] + dist[k][j]);\n    }\n\
-    \  }\n  return dist;\n}\n"
+    \ = 0;\n    for (auto&& e: G[v]) chmin(dist[v][e.to], e.cost);\n  }\n  FOR(k,\
+    \ N) FOR(i, N) {\n    if (dist[i][k] == INF) continue;\n    FOR(j, N) {\n    \
+    \  if (dist[k][j] == INF) continue;\n      chmin(dist[i][j], dist[i][k] + dist[k][j]);\n\
+    \    }\n  }\n  return dist;\n}\n"
   code: "#pragma once\n#include \"graph/base.hpp\"\n\n/*\n\u8CA0\u8FBA\u304C\u3042\
     \u3063\u3066\u3082\u8CA0\u9589\u8DEF\u304C\u306A\u3051\u308C\u3070\u6B63\u3057\
     \u304F\u52D5\u4F5C\u3059\u308B\u3002\n\u8CA0\u9589\u8DEF\u304C\u3042\u308B\u304B\
@@ -67,18 +70,19 @@ data:
     \u308B\u304B\u3069\u3046\u304B\u3067\u5224\u5B9A\u3002\n*/\ntemplate <typename\
     \ T, typename Graph>\nvc<vc<T>> warshall_floyd(Graph& G, T INF) {\n  ll N = G.N;\n\
     \  vv(T, dist, N, N, INF);\n  FOR(v, N) {\n    dist[v][v] = 0;\n    for (auto&&\
-    \ e: G[v]) dist[v][e.to] = e.cost;\n  }\n  FOR(k, N) FOR(i, N) {\n    if (dist[i][k]\
-    \ == INF) continue;\n    FOR(j, N) {\n      if (dist[k][j] == INF) continue;\n\
-    \      chmin(dist[i][j], dist[i][k] + dist[k][j]);\n    }\n  }\n  return dist;\n\
-    }"
+    \ e: G[v]) chmin(dist[v][e.to], e.cost);\n  }\n  FOR(k, N) FOR(i, N) {\n    if\
+    \ (dist[i][k] == INF) continue;\n    FOR(j, N) {\n      if (dist[k][j] == INF)\
+    \ continue;\n      chmin(dist[i][j], dist[i][k] + dist[k][j]);\n    }\n  }\n \
+    \ return dist;\n}"
   dependsOn:
   - graph/base.hpp
   isVerificationFile: false
   path: graph/warshall_floyd.hpp
   requiredBy: []
-  timestamp: '2022-04-23 17:49:11+09:00'
+  timestamp: '2022-05-09 21:20:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1344_warshall_floyd.test.cpp
   - test/yukicoder/17_warshall_floyd.test.cpp
   - test/aoj/GRL_1_C_warshallfloyd.test.cpp
 documentation_of: graph/warshall_floyd.hpp

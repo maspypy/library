@@ -20,19 +20,19 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C
+    PROBLEM: https://yukicoder.me/problems/no/1344
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C
-  bundledCode: "#line 1 \"test/aoj/GRL_1_C_warshallfloyd.test.cpp\"\n#define PROBLEM\
-    \ \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C\"\n\
-    #line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
-    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
-    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://yukicoder.me/problems/no/1344
+  bundledCode: "#line 1 \"test/yukicoder/1344_warshall_floyd.test.cpp\"\n#define PROBLEM\
+    \ \"https://yukicoder.me/problems/no/1344\"\n#line 1 \"my_template.hpp\"\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -230,23 +230,19 @@ data:
     \ = 0;\n    for (auto&& e: G[v]) chmin(dist[v][e.to], e.cost);\n  }\n  FOR(k,\
     \ N) FOR(i, N) {\n    if (dist[i][k] == INF) continue;\n    FOR(j, N) {\n    \
     \  if (dist[k][j] == INF) continue;\n      chmin(dist[i][j], dist[i][k] + dist[k][j]);\n\
-    \    }\n  }\n  return dist;\n}\n#line 6 \"test/aoj/GRL_1_C_warshallfloyd.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, M);\n  Graph<ll, 1> G(N);\n  G.read_graph(M, 1, 0);\n\
+    \    }\n  }\n  return dist;\n}\n#line 5 \"test/yukicoder/1344_warshall_floyd.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, M);\n  Graph<ll, 1> G(N);\n  G.read_graph(M, 1);\n\
     \  const ll INF = 1LL << 60;\n  auto dist = warshall_floyd<ll>(G, INF);\n  FOR(v,\
-    \ N) if (dist[v][v] < 0) return print(\"NEGATIVE CYCLE\");\n  FOR(a, N) {\n  \
-    \  string S;\n    FOR(b, N) {\n      if (b) S += \" \";\n      ll x = dist[a][b];\n\
-    \      if (x == INF)\n        S += \"INF\";\n      else\n        S += to_string(x);\n\
-    \    }\n    print(S);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \ N) {\n    ll ANS = 0;\n    FOR(w, N) if (dist[v][w] != INF) ANS += dist[v][w];\n\
+    \    print(ANS);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
     \n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/warshall_floyd.hpp\"\
-    \n\nvoid solve() {\n  LL(N, M);\n  Graph<ll, 1> G(N);\n  G.read_graph(M, 1, 0);\n\
-    \  const ll INF = 1LL << 60;\n  auto dist = warshall_floyd<ll>(G, INF);\n  FOR(v,\
-    \ N) if (dist[v][v] < 0) return print(\"NEGATIVE CYCLE\");\n  FOR(a, N) {\n  \
-    \  string S;\n    FOR(b, N) {\n      if (b) S += \" \";\n      ll x = dist[a][b];\n\
-    \      if (x == INF)\n        S += \"INF\";\n      else\n        S += to_string(x);\n\
-    \    }\n    print(S);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1344\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"graph/warshall_floyd.hpp\"\n\nvoid solve()\
+    \ {\n  LL(N, M);\n  Graph<ll, 1> G(N);\n  G.read_graph(M, 1);\n  const ll INF\
+    \ = 1LL << 60;\n  auto dist = warshall_floyd<ll>(G, INF);\n  FOR(v, N) {\n   \
+    \ ll ANS = 0;\n    FOR(w, N) if (dist[v][w] != INF) ANS += dist[v][w];\n    print(ANS);\n\
+    \  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
     \n  return 0;\n}\n"
   dependsOn:
@@ -255,15 +251,15 @@ data:
   - graph/warshall_floyd.hpp
   - graph/base.hpp
   isVerificationFile: true
-  path: test/aoj/GRL_1_C_warshallfloyd.test.cpp
+  path: test/yukicoder/1344_warshall_floyd.test.cpp
   requiredBy: []
-  timestamp: '2022-05-09 21:20:32+09:00'
+  timestamp: '2022-05-09 21:20:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/GRL_1_C_warshallfloyd.test.cpp
+documentation_of: test/yukicoder/1344_warshall_floyd.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/GRL_1_C_warshallfloyd.test.cpp
-- /verify/test/aoj/GRL_1_C_warshallfloyd.test.cpp.html
-title: test/aoj/GRL_1_C_warshallfloyd.test.cpp
+- /verify/test/yukicoder/1344_warshall_floyd.test.cpp
+- /verify/test/yukicoder/1344_warshall_floyd.test.cpp.html
+title: test/yukicoder/1344_warshall_floyd.test.cpp
 ---

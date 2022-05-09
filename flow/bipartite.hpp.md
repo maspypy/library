@@ -27,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
+    title: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -162,6 +165,7 @@ data:
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1479_bipartite_vertex_cover.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/aoj/2251_dag_path_cover.test.cpp
   - test/aoj/2251_maxantichain.test.cpp

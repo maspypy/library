@@ -502,6 +502,12 @@ data:
     path: test/yukicoder/1332_range_freq.test.cpp
     title: test/yukicoder/1332_range_freq.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1344_warshall_floyd.test.cpp
+    title: test/yukicoder/1344_warshall_floyd.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
+    title: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1593_gaussian.test.cpp
     title: test/yukicoder/1593_gaussian.test.cpp
   - icon: ':heavy_check_mark:'
@@ -716,6 +722,7 @@ data:
   - test/yukicoder/1810_matpow.test.cpp
   - test/yukicoder/502_factorial107.test.cpp
   - test/yukicoder/1641_tree_abel.test.cpp
+  - test/yukicoder/1344_warshall_floyd.test.cpp
   - test/yukicoder/4_subsetsum.test.cpp
   - test/yukicoder/1891_xor_sparse.test.cpp
   - test/yukicoder/705_monge_shortest_path.test.cpp
@@ -727,6 +734,7 @@ data:
   - test/yukicoder/1301_mcf.test.cpp
   - test/yukicoder/1332_range_freq.test.cpp
   - test/yukicoder/114_steriner_tree.test.cpp
+  - test/yukicoder/1479_bipartite_vertex_cover.test.cpp
   - test/yukicoder/502_p_rec.test.cpp
   - test/yukicoder/17_warshall_floyd.test.cpp
   - test/yukicoder/426.test.cpp
