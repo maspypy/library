@@ -88,5 +88,12 @@
 "test/library_checker/graph/shortest_path.test.cpp": "2022-05-11 20:22:42 +0900",
 "test/library_checker/graph/two_edge_component.test.cpp": "2022-05-11 20:22:42 +0900",
 "test/library_checker/math/counting_primes.test.cpp": "2022-05-11 21:45:09 +0900",
-"test/library_checker/math/enumerate_primes.test.cpp": "2022-05-11 19:22:25 +0900"
+"test/library_checker/math/enumerate_primes.test.cpp": "2022-05-11 19:22:25 +0900",
+"test/library_checker/math/factorize.test.cpp": "2022-05-11 19:22:25 +0900",
+"test/library_checker/math/find_linear_recurrence.test.cpp": "2022-05-11 21:07:53 +0900",
+"test/library_checker/math/gcd_convolution.test.cpp": "2022-05-11 19:22:25 +0900",
+"test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp": "2022-05-11 19:22:25 +0900",
+"test/library_checker/math/lcm_convolution.test.cpp": "2022-05-11 19:22:25 +0900",
+"test/library_checker/math/partition.test.cpp": "2022-05-11 19:22:25 +0900",
+"test/library_checker/math/sharp_p_subset_sum.test.cpp": "2022-05-11 20:46:58 +0900"
 }
