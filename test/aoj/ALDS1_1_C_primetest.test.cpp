@@ -7,7 +7,7 @@
 void solve() {
   ll ANS = 0;
   LL(N);
-  FOR_(N) {
+  FOR(N) {
     LL(p);
     ANS += primetest(p);
   }
@@ -20,7 +20,7 @@ signed main() {
   cout << setprecision(15);
 
   ll T = 1;
-  FOR(_, T) solve();
+  FOR(T) solve();
 
   return 0;
 }
