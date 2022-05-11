@@ -427,8 +427,8 @@ data:
     \      LL(v, x);\n      TM.apply_path(0, v, x);\n      // TM.apply_path(hld.parent[v],\
     \ v, x);\n    } else {\n      LL(v);\n      print(TM.prod_path(0, v).se);\n  \
     \  }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_E\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/group_add.hpp\"\
     \n#include \"graph/lazytreemonoid.hpp\"\n#include \"alg/lazy_cntsum_add.hpp\"\n\
@@ -439,8 +439,8 @@ data:
     \      LL(v, x);\n      TM.apply_path(0, v, x);\n      // TM.apply_path(hld.parent[v],\
     \ v, x);\n    } else {\n      LL(v);\n      print(TM.prod_path(0, v).se);\n  \
     \  }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -456,7 +456,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 20:22:42+09:00'
+  timestamp: '2022-05-12 01:37:15+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/GRL_5_E_lazytreemonoid.test.cpp

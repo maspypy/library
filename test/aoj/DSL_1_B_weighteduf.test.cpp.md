@@ -223,7 +223,7 @@ data:
     \    auto [rb, xb] = uf.get(b);\n      if (ra != rb)\n        print(\"?\");\n\
     \      else\n        print(xb - xa);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
     \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/group_add.hpp\"\
     \n#include \"ds/weightedunionfind.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  WeightedUnionFind<Group_Add<ll>>\
@@ -232,7 +232,7 @@ data:
     \      auto [rb, xb] = uf.get(b);\n      if (ra != rb)\n        print(\"?\");\n\
     \      else\n        print(xb - xa);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
     \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -241,7 +241,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_1_B_weighteduf.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 19:22:25+09:00'
+  timestamp: '2022-05-12 01:37:15+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DSL_1_B_weighteduf.test.cpp
