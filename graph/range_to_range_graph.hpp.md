@@ -9,6 +9,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1170_range_to_range.test.cpp
     title: test/yukicoder/1170_range_to_range.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1868_range_to_range.test.cpp
+    title: test/yukicoder/1868_range_to_range.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -94,6 +97,7 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1170_range_to_range.test.cpp
+  - test/yukicoder/1868_range_to_range.test.cpp
 documentation_of: graph/range_to_range_graph.hpp
 layout: document
 redirect_from:

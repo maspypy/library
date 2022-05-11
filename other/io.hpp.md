@@ -538,6 +538,9 @@ data:
     path: test/yukicoder/184_xorbasis.test.cpp
     title: test/yukicoder/184_xorbasis.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1868_range_to_range.test.cpp
+    title: test/yukicoder/1868_range_to_range.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/187_crt.test.cpp
     title: test/yukicoder/187_crt.test.cpp
   - icon: ':x:'
@@ -849,6 +852,7 @@ data:
   - test/yukicoder/1641_tree_abel.test.cpp
   - test/yukicoder/4_subsetsum.test.cpp
   - test/yukicoder/1036_swag.test.cpp
+  - test/yukicoder/1868_range_to_range.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/1288_mcf_dag_negative.test.cpp
   - test/yukicoder/913_cht_monotone.test.cpp

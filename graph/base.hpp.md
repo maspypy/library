@@ -244,6 +244,9 @@ data:
     path: test/yukicoder/17_warshall_floyd.test.cpp
     title: test/yukicoder/17_warshall_floyd.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1868_range_to_range.test.cpp
+    title: test/yukicoder/1868_range_to_range.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/235_lazytreemonoid.test.cpp
     title: test/yukicoder/235_lazytreemonoid.test.cpp
   - icon: ':x:'
@@ -381,6 +384,7 @@ data:
   - test/yukicoder/1170_range_to_range.test.cpp
   - test/yukicoder/1002_centroid.test.cpp
   - test/yukicoder/1641_tree_abel.test.cpp
+  - test/yukicoder/1868_range_to_range.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/899_bfsnumbering.test.cpp
   - test/yukicoder/1344_warshall_floyd.test.cpp
