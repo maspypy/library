@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/integer_kth_root.hpp
     title: other/integer_kth_root.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/kth_root_integer
@@ -203,12 +203,12 @@ data:
     \ / double(k), 0));\r\n  while (power(S{res + 1}, k).v <= a) ++res;\r\n  return\
     \ res;\r\n}\r\n#line 5 \"test/library_checker/math/kth_root_integer.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(a, k);\r\n  print(integer_kth_root(k, a));\r\n}\r\
-    \n\r\nsigned main() {\r\n  LL(T);\r\n  FOR_(T) solve();\r\n\r\n  return 0;\r\n\
+    \n\r\nsigned main() {\r\n  LL(T);\r\n  FOR(T) solve();\r\n\r\n  return 0;\r\n\
     }\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/kth_root_integer\"\r\n\
     #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"other/integer_kth_root.hpp\"\
     \r\n\r\nvoid solve() {\r\n  LL(a, k);\r\n  print(integer_kth_root(k, a));\r\n\
-    }\r\n\r\nsigned main() {\r\n  LL(T);\r\n  FOR_(T) solve();\r\n\r\n  return 0;\r\
+    }\r\n\r\nsigned main() {\r\n  LL(T);\r\n  FOR(T) solve();\r\n\r\n  return 0;\r\
     \n}\r\n"
   dependsOn:
   - my_template.hpp
@@ -217,8 +217,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/kth_root_integer.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 19:22:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-12 06:12:40+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/kth_root_integer.test.cpp
 layout: document

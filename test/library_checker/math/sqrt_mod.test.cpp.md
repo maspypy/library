@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sqrt_mod
@@ -286,17 +286,17 @@ data:
     \ g1) = mp(f0 * g0 + D * f1 * g1, f1 * g0 + f0 * g1); }\r\n    tie(f0, f1) = mp(f0\
     \ * f0 + D * f1 * f1, mint(2) * f0 * f1);\r\n    k >>= 1;\r\n  }\r\n  return g0;\r\
     \n}\r\n#line 5 \"test/library_checker/math/sqrt_mod.test.cpp\"\n\r\nusing mint\
-    \ = amint;\r\n\r\nvoid solve() {\r\n  LL(T);\r\n  FOR_(T) {\r\n    LL(y0, p);\r\
+    \ = amint;\r\n\r\nvoid solve() {\r\n  LL(T);\r\n  FOR(T) {\r\n    LL(y0, p);\r\
     \n    mint::set_mod(p);\r\n    mint y = y0;\r\n    mint r = mod_sqrt(y);\r\n \
     \   if (r * r == y)\r\n      print(r);\r\n    else\r\n      print(-1);\r\n  }\r\
     \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
     \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sqrt_mod\"\r\n#include\
     \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"mod/mod_sqrt.hpp\"\
-    \r\n\r\nusing mint = amint;\r\n\r\nvoid solve() {\r\n  LL(T);\r\n  FOR_(T) {\r\
-    \n    LL(y0, p);\r\n    mint::set_mod(p);\r\n    mint y = y0;\r\n    mint r =\
-    \ mod_sqrt(y);\r\n    if (r * r == y)\r\n      print(r);\r\n    else\r\n     \
-    \ print(-1);\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \r\n\r\nusing mint = amint;\r\n\r\nvoid solve() {\r\n  LL(T);\r\n  FOR(T) {\r\n\
+    \    LL(y0, p);\r\n    mint::set_mod(p);\r\n    mint y = y0;\r\n    mint r = mod_sqrt(y);\r\
+    \n    if (r * r == y)\r\n      print(r);\r\n    else\r\n      print(-1);\r\n \
+    \ }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
     \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
@@ -307,8 +307,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/sqrt_mod.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 19:22:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-12 06:12:40+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/sqrt_mod.test.cpp
 layout: document

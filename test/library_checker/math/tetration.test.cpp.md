@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/tetration.hpp
     title: mod/tetration.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/tetration_mod
@@ -308,14 +308,14 @@ data:
     \n#line 5 \"test/library_checker/math/tetration.test.cpp\"\n\r\nvoid solve() {\r\
     \n  LL(a, b, m);\r\n  if (a == 0) {\r\n    ll ANS = (b % 2 == 0 ? 1 : 0);\r\n\
     \    return print(ANS % m);\r\n  }\r\n  chmin(b, 64);\r\n  vi v(b, a);\r\n  print(tetration(v,\
-    \ m));\r\n}\r\n\r\nsigned main() {\r\n  LL(T);\r\n  FOR_(T) solve();\r\n\r\n \
-    \ return 0;\r\n}\r\n"
+    \ m));\r\n}\r\n\r\nsigned main() {\r\n  LL(T);\r\n  FOR(T) solve();\r\n\r\n  return\
+    \ 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tetration_mod\"\r\n#include\
     \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"mod/tetration.hpp\"\
     \r\n\r\nvoid solve() {\r\n  LL(a, b, m);\r\n  if (a == 0) {\r\n    ll ANS = (b\
     \ % 2 == 0 ? 1 : 0);\r\n    return print(ANS % m);\r\n  }\r\n  chmin(b, 64);\r\
     \n  vi v(b, a);\r\n  print(tetration(v, m));\r\n}\r\n\r\nsigned main() {\r\n \
-    \ LL(T);\r\n  FOR_(T) solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ LL(T);\r\n  FOR(T) solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -329,8 +329,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/tetration.test.cpp
   requiredBy: []
-  timestamp: '2022-05-12 00:26:23+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-12 06:12:40+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/tetration.test.cpp
 layout: document

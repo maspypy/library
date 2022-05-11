@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
   - icon: ':question:'
@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: other/discrete_log.hpp
     title: other/discrete_log.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/discrete_logarithm_mod
@@ -292,12 +292,12 @@ data:
     \n  return discrete_log<amint>(\r\n      amint(a), amint(b), mod, [](auto x) {\
     \ return x.val; }, 32);\r\n}\r\n#line 5 \"test/library_checker/math/discrete_logarithm_mod.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(x, y, mod);\r\n  print(mod_log(mod, x, y));\r\n}\r\
-    \n\r\nsigned main() {\r\n  LL(T);\r\n  FOR_(T) solve();\r\n\r\n  return 0;\r\n\
+    \n\r\nsigned main() {\r\n  LL(T);\r\n  FOR(T) solve();\r\n\r\n  return 0;\r\n\
     }\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/discrete_logarithm_mod\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"mod/mod_log.hpp\"\
     \r\n\r\nvoid solve() {\r\n  LL(x, y, mod);\r\n  print(mod_log(mod, x, y));\r\n\
-    }\r\n\r\nsigned main() {\r\n  LL(T);\r\n  FOR_(T) solve();\r\n\r\n  return 0;\r\
+    }\r\n\r\nsigned main() {\r\n  LL(T);\r\n  FOR(T) solve();\r\n\r\n  return 0;\r\
     \n}\r\n"
   dependsOn:
   - my_template.hpp
@@ -308,8 +308,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/discrete_logarithm_mod.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 19:22:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-12 06:12:40+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/discrete_logarithm_mod.test.cpp
 layout: document

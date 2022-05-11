@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/binomial_coefficient
@@ -290,12 +290,12 @@ data:
     \ / pf[s].fi;\r\n      x = x * mod_pow(y, phi - 1, fd_pp) % fd_pp;\r\n      FOR(min(e,\
     \ pf[s].se)) x *= p;\r\n      x = x % fd_pp;\r\n      ANS += x * crt_coef[s];\r\
     \n    }\r\n    return ANS % mod;\r\n  }\r\n};\r\n#line 5 \"test/library_checker/math/binomial_coefficient.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(Q, mod);\r\n  Binomial Bi(mod);\r\n  FOR_(Q) {\r\n\
+    \n\r\nvoid solve() {\r\n  LL(Q, mod);\r\n  Binomial Bi(mod);\r\n  FOR(Q) {\r\n\
     \    LL(n, k);\r\n    print(Bi.C(n, k));\r\n  }\r\n}\r\n\r\nsigned main() {\r\n\
     \  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient\"\r\
     \n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"mod/binomial.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  LL(Q, mod);\r\n  Binomial Bi(mod);\r\n  FOR_(Q) {\r\
+    \r\n\r\nvoid solve() {\r\n  LL(Q, mod);\r\n  Binomial Bi(mod);\r\n  FOR(Q) {\r\
     \n    LL(n, k);\r\n    print(Bi.C(n, k));\r\n  }\r\n}\r\n\r\nsigned main() {\r\
     \n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
@@ -308,8 +308,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/binomial_coefficient.test.cpp
   requiredBy: []
-  timestamp: '2022-05-12 00:26:23+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-12 06:12:40+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/binomial_coefficient.test.cpp
 layout: document
