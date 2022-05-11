@@ -21,7 +21,7 @@ void solve() {
   vc<pi> seg_raw(N - 1, {1, 0});
   LazyTreeMonoid<decltype(hld), Lazy_CntSum_Add<ll>, 1> TM(hld, seg_raw);
   LL(Q);
-  FOR_(Q) {
+  FOR(Q) {
     LL(t);
     if (t == 0) {
       LL(v, x);

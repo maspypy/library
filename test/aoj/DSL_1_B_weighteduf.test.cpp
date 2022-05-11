@@ -8,7 +8,7 @@
 void solve() {
   LL(N, Q);
   WeightedUnionFind<Group_Add<ll>> uf(N);
-  FOR_(Q) {
+  FOR(Q) {
     LL(t);
     if (t == 0) {
       LL(a, b, c);
