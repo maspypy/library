@@ -10,14 +10,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: pds/segtree.hpp
     title: pds/segtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
@@ -225,7 +225,7 @@ data:
     #line 6 \"test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  PersistentSegTree<Group_Add<int>> seg(N);\n\
     \  VEC(ll, A, N);\n  auto I = argsort(A);\n  vi times;\n  times.eb(seg.time());\n\
-    \  FOR(k, N) { times.eb(seg.set(times.back(), I[k], 1)); }\n  FOR_(Q) {\n    LL(L,\
+    \  FOR(k, N) { times.eb(seg.set(times.back(), I[k], 1)); }\n  FOR(Q) {\n    LL(L,\
     \ R, k);\n    auto check = [&](ll t) -> bool { return seg.prod(t, L, R) <= k;\
     \ };\n    ll t = binary_search(check, 0, N);\n    print(A[I[t]]);\n  }\n}\n\n\
     signed main() {\n  solve();\n\n  return 0;\n}\n"
@@ -233,7 +233,7 @@ data:
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"pds/segtree.hpp\"\
     \n#include \"alg/group_add.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  PersistentSegTree<Group_Add<int>>\
     \ seg(N);\n  VEC(ll, A, N);\n  auto I = argsort(A);\n  vi times;\n  times.eb(seg.time());\n\
-    \  FOR(k, N) { times.eb(seg.set(times.back(), I[k], 1)); }\n  FOR_(Q) {\n    LL(L,\
+    \  FOR(k, N) { times.eb(seg.set(times.back(), I[k], 1)); }\n  FOR(Q) {\n    LL(L,\
     \ R, k);\n    auto check = [&](ll t) -> bool { return seg.prod(t, L, R) <= k;\
     \ };\n    ll t = binary_search(check, 0, N);\n    print(A[I[t]]);\n  }\n}\n\n\
     signed main() {\n  solve();\n\n  return 0;\n}\n"
@@ -245,8 +245,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 19:22:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-12 01:39:54+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
 layout: document

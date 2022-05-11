@@ -248,9 +248,9 @@ data:
     \ add, erase, erase, out);\r\n  }\r\n};\n#line 7 \"test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  vi key = A;\r\n \
     \ UNIQUE(key);\r\n\r\n  for (auto&& x: A) x = LB(key, x);\r\n  ll K = len(key);\r\
-    \n  FenwickTree<Group_Add<int>> bit(K);\r\n\r\n  Mo mo;\r\n  vi ANS(Q);\r\n  FOR(_,\
-    \ Q) {\r\n    LL(L, R);\r\n    mo.add(L, R);\r\n  }\r\n\r\n  ll inv = 0;\r\n \
-    \ auto add_l = [&](int i) -> void {\r\n    int x = A[i];\r\n    inv += bit.sum(x);\r\
+    \n  FenwickTree<Group_Add<int>> bit(K);\r\n\r\n  Mo mo;\r\n  vi ANS(Q);\r\n  FOR(Q)\
+    \ {\r\n    LL(L, R);\r\n    mo.add(L, R);\r\n  }\r\n\r\n  ll inv = 0;\r\n  auto\
+    \ add_l = [&](int i) -> void {\r\n    int x = A[i];\r\n    inv += bit.sum(x);\r\
     \n    bit.add(x, +1);\r\n  };\r\n  auto rm_l = [&](int i) -> void {\r\n    int\
     \ x = A[i];\r\n    bit.add(x, -1);\r\n    inv -= bit.sum(x);\r\n  };\r\n  auto\
     \ add_r = [&](int i) -> void {\r\n    int x = A[i];\r\n    inv += bit.sum_all()\
@@ -265,8 +265,8 @@ data:
     \ \"ds/fenwick.hpp\"\r\n#include \"ds/mo.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N,\
     \ Q);\r\n  VEC(ll, A, N);\r\n  vi key = A;\r\n  UNIQUE(key);\r\n\r\n  for (auto&&\
     \ x: A) x = LB(key, x);\r\n  ll K = len(key);\r\n  FenwickTree<Group_Add<int>>\
-    \ bit(K);\r\n\r\n  Mo mo;\r\n  vi ANS(Q);\r\n  FOR(_, Q) {\r\n    LL(L, R);\r\n\
-    \    mo.add(L, R);\r\n  }\r\n\r\n  ll inv = 0;\r\n  auto add_l = [&](int i) ->\
+    \ bit(K);\r\n\r\n  Mo mo;\r\n  vi ANS(Q);\r\n  FOR(Q) {\r\n    LL(L, R);\r\n \
+    \   mo.add(L, R);\r\n  }\r\n\r\n  ll inv = 0;\r\n  auto add_l = [&](int i) ->\
     \ void {\r\n    int x = A[i];\r\n    inv += bit.sum(x);\r\n    bit.add(x, +1);\r\
     \n  };\r\n  auto rm_l = [&](int i) -> void {\r\n    int x = A[i];\r\n    bit.add(x,\
     \ -1);\r\n    inv -= bit.sum(x);\r\n  };\r\n  auto add_r = [&](int i) -> void\
@@ -286,7 +286,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 19:22:25+09:00'
+  timestamp: '2022-05-12 01:39:54+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp

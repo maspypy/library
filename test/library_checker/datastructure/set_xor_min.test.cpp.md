@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/binarytrie.hpp
     title: ds/binarytrie.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/set_xor_min
@@ -222,13 +222,13 @@ data:
     \ xor_add = 0) { return find_kth(size() - 1, xor_add); }\n\n  void debug() {\n\
     \    FOR(i, len(ns)) print(i, \"cnt\", ns[i].cnt, \"ch\", ns[i].ch[0], ns[i].ch[1]);\n\
     \  }\n};\n#line 5 \"test/library_checker/datastructure/set_xor_min.test.cpp\"\n\
-    \nvoid solve() {\n  LL(Q);\n  BinaryTrie<30> trie;\n  FOR_(Q) {\n    LL(t, x);\n\
+    \nvoid solve() {\n  LL(Q);\n  BinaryTrie<30> trie;\n  FOR(Q) {\n    LL(t, x);\n\
     \    if (t == 0 && trie.count(x) == 0) trie.add(x, 1);\n    if (t == 1 && trie.count(x)\
     \ == 1) trie.add(x, -1);\n    if (t == 2) { print(trie.min(x)); }\n  }\n}\n\n\
     signed main() {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/set_xor_min\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/binarytrie.hpp\"\
-    \n\nvoid solve() {\n  LL(Q);\n  BinaryTrie<30> trie;\n  FOR_(Q) {\n    LL(t, x);\n\
+    \n\nvoid solve() {\n  LL(Q);\n  BinaryTrie<30> trie;\n  FOR(Q) {\n    LL(t, x);\n\
     \    if (t == 0 && trie.count(x) == 0) trie.add(x, 1);\n    if (t == 1 && trie.count(x)\
     \ == 1) trie.add(x, -1);\n    if (t == 2) { print(trie.min(x)); }\n  }\n}\n\n\
     signed main() {\n  solve();\n\n  return 0;\n}\n"
@@ -239,8 +239,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/set_xor_min.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 19:22:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-12 01:39:54+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/set_xor_min.test.cpp
 layout: document

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/divide_conquer_range_query.hpp
     title: ds/divide_conquer_range_query.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -224,7 +224,7 @@ data:
     \    sort(all(I), [&](auto& x, auto& y) { return query[x].se < query[y].se; });\n\
     \    dfs(dfs, 0, n, I);\n  }\n};\n#line 5 \"test/library_checker/datastructure/staticrmq_dc.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  using Data = int;\n  Divide_Conquer_Range_Query<Data>\
-    \ DC(N);\n  const int INF = 1 << 30;\n  FOR_(Q) {\n    LL(l, r);\n    DC.add(l,\
+    \ DC(N);\n  const int INF = 1 << 30;\n  FOR(Q) {\n    LL(l, r);\n    DC.add(l,\
     \ r);\n  }\n\n  vc<int> ANS(Q);\n  auto add = [&](int i, Data x) -> Data { return\
     \ min(x, A[i]); };\n  auto calc = [&](int q, Data& xl, Data& xr) -> void { ANS[q]\
     \ = min(xl, xr); };\n  DC.calc(INF, add, add, calc);\n  for (auto&& x: ANS) print(x);\n\
@@ -232,7 +232,7 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n#include \"\
     my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/divide_conquer_range_query.hpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  using Data = int;\n  Divide_Conquer_Range_Query<Data>\
-    \ DC(N);\n  const int INF = 1 << 30;\n  FOR_(Q) {\n    LL(l, r);\n    DC.add(l,\
+    \ DC(N);\n  const int INF = 1 << 30;\n  FOR(Q) {\n    LL(l, r);\n    DC.add(l,\
     \ r);\n  }\n\n  vc<int> ANS(Q);\n  auto add = [&](int i, Data x) -> Data { return\
     \ min(x, A[i]); };\n  auto calc = [&](int q, Data& xl, Data& xr) -> void { ANS[q]\
     \ = min(xl, xr); };\n  DC.calc(INF, add, add, calc);\n  for (auto&& x: ANS) print(x);\n\
@@ -244,8 +244,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/staticrmq_dc.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 19:22:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-12 01:39:54+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/staticrmq_dc.test.cpp
 layout: document

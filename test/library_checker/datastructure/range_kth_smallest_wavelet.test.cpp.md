@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/waveletmatrix.hpp
     title: ds/waveletmatrix.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
@@ -241,12 +241,12 @@ data:
     \n        r += bv[h].zeros - r0;\r\n      } else {\r\n        l = l0;\r\n    \
     \    r = r0;\r\n      }\r\n    }\r\n    return ret;\r\n  }\r\n};\n#line 5 \"test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  WaveletMatrix WM(A);\n \
-    \ FOR_(Q) {\n    LL(l, r, k);\n    print(WM.kth(l, r, k));\n  }\n}\n\nsigned main()\
+    \ FOR(Q) {\n    LL(l, r, k);\n    print(WM.kth(l, r, k));\n  }\n}\n\nsigned main()\
     \ {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/waveletmatrix.hpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  WaveletMatrix WM(A);\n \
-    \ FOR_(Q) {\n    LL(l, r, k);\n    print(WM.kth(l, r, k));\n  }\n}\n\nsigned main()\
+    \ FOR(Q) {\n    LL(l, r, k);\n    print(WM.kth(l, r, k));\n  }\n}\n\nsigned main()\
     \ {\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
@@ -255,8 +255,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 19:22:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-12 01:39:54+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
 layout: document
