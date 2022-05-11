@@ -9,7 +9,7 @@ void solve() {
   using Data = int;
   Divide_Conquer_Range_Query<Data> DC(N);
   const int INF = 1 << 30;
-  FOR_(Q) {
+  FOR(Q) {
     LL(l, r);
     DC.add(l, r);
   }

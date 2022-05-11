@@ -6,7 +6,7 @@
 void solve() {
   LL(Q);
   BinaryTrie<30> trie;
-  FOR_(Q) {
+  FOR(Q) {
     LL(t, x);
     if (t == 0 && trie.count(x) == 0) trie.add(x, 1);
     if (t == 1 && trie.count(x) == 1) trie.add(x, -1);

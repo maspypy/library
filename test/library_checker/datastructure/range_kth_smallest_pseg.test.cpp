@@ -12,7 +12,7 @@ void solve() {
   vi times;
   times.eb(seg.time());
   FOR(k, N) { times.eb(seg.set(times.back(), I[k], 1)); }
-  FOR_(Q) {
+  FOR(Q) {
     LL(L, R, k);
     auto check = [&](ll t) -> bool { return seg.prod(t, L, R) <= k; };
     ll t = binary_search(check, 0, N);
