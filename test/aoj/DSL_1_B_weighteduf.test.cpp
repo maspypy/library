@@ -32,7 +32,7 @@ signed main() {
 
   ll T = 1;
   // LL(T);
-  FOR(_, T) solve();
+  FOR(T) solve();
 
   return 0;
 }
