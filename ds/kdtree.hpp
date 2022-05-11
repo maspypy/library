@@ -1,3 +1,5 @@
+// https://trap.jp/post/1489/
+// https://atcoder.jp/contests/s8pc-4/tasks/s8pc_4_g
 template <class Lazy>
 struct kDTree {
   using Monoid_X = typename Lazy::X_structure;
@@ -9,8 +11,8 @@ struct kDTree {
   X dat;
   A lazy;
   kDTree(vi xs, vi ys, vc<X> vs, bool divx = true) {
-    dat = Monoid_X::unit;
-    lazy = Monoid_A::unit;
+    dat = Monoid_X::unit();
+    lazy = Monoid_A::unit();
     const int n = len(xs);
     FOR(i, n) {
       auto x = xs[i], y = ys[i];
@@ -50,11 +52,54 @@ struct kDTree {
   }
 
   void prop() {
-    if (lazy == Monoid_A::unit) return;
+    if (lazy == Monoid_A::unit()) return;
     l->lazy = Monoid_A::op(l->lazy, lazy);
     r->lazy = Monoid_A::op(r->lazy, lazy);
     dat = Lazy::act(dat, lazy);
-    lazy = Monoid_A::unit;
+    lazy = Monoid_A::unit();
+  }
+
+  void set(ll x, ll y, const X& v) {
+    if (x < xmin || xmax < x || y < ymin || ymax < y) return;
+    if (xmin == x && xmax == x && ymin == y && ymax == y) {
+      dat = v;
+      lazy = Monoid_A::unit();
+      return;
+    }
+    prop();
+    l->set(x, y, v);
+    r->set(x, y, v);
+    X vl = Lazy::act(l->dat, l->lazy);
+    X vr = Lazy::act(r->dat, r->lazy);
+    dat = Monoid_X::op(vl, vr);
+  }
+
+  void apply(ll xl, ll yl, ll xr, ll yr, A& a) {
+    assert(xl <= xr && yl <= yr);
+    apply_cl(xl, xr - 1, yl, yr - 1, a);
+  }
+
+  X prod(ll xl, ll yl, ll xr, ll yr) {
+    assert(xl <= xr && yl <= yr);
+    return prod_cl(xl, xr - 1, yl, yr - 1);
+  }
+
+  void debug() {
+    print("(xmin,ymin)", xmin, ymin, "(xmax,ymax)", xmax, ymax);
+    print("dat", dat, "lazy", lazy);
+    if (l) l->debug();
+    if (r) r->debug();
+  }
+
+private:
+  X prod_cl(ll x1, ll x2, ll y1, ll y2) {
+    if (x2 < xmin || xmax < x1 || y2 < ymin || ymax < y1)
+      return Monoid_X::unit();
+    if (x1 <= xmin && xmax <= x2 && y1 <= ymin && ymax <= y2) {
+      return Lazy::act(dat, lazy);
+    }
+    prop();
+    return Monoid_X::op(l->prod_cl(x1, x2, y1, y2), r->prod_cl(x1, x2, y1, y2));
   }
 
   void apply_cl(ll x1, ll x2, ll y1, ll y2, A& a) {
@@ -70,19 +115,4 @@ struct kDTree {
     X vr = Lazy::act(r->dat, r->lazy);
     dat = Monoid_X::op(vl, vr);
   }
-
-  X prod_cl(ll x1, ll x2, ll y1, ll y2) {
-    if (x2 < xmin || xmax < x1 || y2 < ymin || ymax < y1) return Monoid_X::unit;
-    if (x1 <= xmin && xmax <= x2 && y1 <= ymin && ymax <= y2) {
-      return Lazy::act(dat, lazy);
-    }
-    prop();
-    return Monoid_X::op(l->prod_cl(x1, x2, y1, y2), r->prod_cl(x1, x2, y1, y2));
-  }
-
-  void apply(ll xl, ll yl, ll xr, ll yr, A& a) {
-    apply_cl(xl, xr - 1, yl, yr - 1, a);
-  }
-
-  X prod(ll xl, ll yl, ll xr, ll yr) { return prod_cl(xl, xr - 1, yl, yr - 1); }
 };
