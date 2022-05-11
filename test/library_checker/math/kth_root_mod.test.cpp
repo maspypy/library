@@ -11,7 +11,7 @@ void solve() {
 
 signed main() {
   LL(T);
-  FOR_(T) solve();
+  FOR(T) solve();
 
   return 0;
 }

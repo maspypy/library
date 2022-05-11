@@ -6,7 +6,7 @@
 void solve() {
   LL(L, R, M);
   Graph G(L + R);
-  FOR_(M) {
+  FOR(M) {
     LL(a, b);
     G.add(a, b + L);
   }

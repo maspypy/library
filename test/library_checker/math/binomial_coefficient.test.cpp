@@ -6,7 +6,7 @@
 void solve() {
   LL(Q, mod);
   Binomial Bi(mod);
-  FOR_(Q) {
+  FOR(Q) {
     LL(n, k);
     print(Bi.C(n, k));
   }
