@@ -1,15 +1,13 @@
 #include "nt/primetable.hpp"
 
+/*
+N と完全乗法的関数 f の prefix sum 関数 F を与える。
+n = floor(N/d) となる n に対する sum_{p <= n} f(p) を計算する。
+特に、p^k の和や、mod m ごとでの p^k の和が計算できる。
+Complexity: O(N^{3/4}/logN) time, O(N^{1/2}) space.
+*/
 template <typename T>
 pair<vc<T>, vc<T>> primesum_F(ll N, function<T(ll)> F) {
-  /*
-  N と完全乗法的関数 f の prefix sum 関数 F を与える。
-  n = floor(N/d) となる n に対する sum_{p <= n} f(p) を計算する。
-
-  特に、p^k の和や、mod m ごとでの p^k の和が計算できる。
-
-  Complexity: O(N^{3/4}/logN) time, O(N^{1/2}) space.
-  */
   ll sqN = sqrtl(N);
   auto primes = primetable(sqN);
   vc<T> sum_lo(sqN + 1), sum_hi(sqN + 1);
