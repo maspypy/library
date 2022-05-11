@@ -17,7 +17,7 @@ void solve() {
 
   Mo mo;
   vi ANS(Q);
-  FOR(_, Q) {
+  FOR(Q) {
     LL(L, R);
     mo.add(L, R);
   }

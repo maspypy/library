@@ -7,12 +7,12 @@ void solve() {
   LL(N, Q);
   CHT_min<ll> cht_min;
   CHT_max<ll> cht_max;
-  FOR_(N) {
+  FOR(N) {
     LL(a, b);
     cht_min.add(a, b);
     cht_max.add(-a, -b);
   }
-  FOR_(Q) {
+  FOR(Q) {
     LL(t);
     if (t == 0) {
       LL(a, b);
