@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree2d_dense.hpp
     title: ds/segtree2d_dense.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2842
@@ -37,7 +37,7 @@ data:
     \n#include \"alg/group_add.hpp\"\n\nvoid solve() {\n  LL(H, W, T, Q);\n  deque<tuple<ll,\
     \ ll, ll>> que;\n  const ll INF = 1LL << 60;\n  vv(ll, time, H, W, INF);\n\n \
     \ SegTree2D_dense<Group_Add<ll>> A(H, W);\n  SegTree2D_dense<Group_Add<ll>> B(H,\
-    \ W);\n\n  deque<tuple<ll, ll, ll>> end;\n\n  FOR_(Q) {\n    LL(t, c, x, y);\n\
+    \ W);\n\n  deque<tuple<ll, ll, ll>> end;\n\n  FOR(Q) {\n    LL(t, c, x, y);\n\
     \    --x, --y;\n    while (len(end) && get<2>(end.front()) <= t) {\n      auto\
     \ [x, y, t] = end.front();\n      end.pop_front();\n      A.set(x, y, 1);\n  \
     \    B.set(x, y, 0);\n    }\n    if (c == 0) {\n      B.set(x, y, 1);\n      end.eb(x,\
@@ -45,7 +45,7 @@ data:
     \ A.set(x, y, 0);\n    }\n    elif (c == 2) {\n      LL(x2, y2);\n      print(A.prod(x,\
     \ y, x2, y2), B.prod(x, y, x2, y2));\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
     \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}"
+    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -54,8 +54,8 @@ data:
   isVerificationFile: true
   path: test/aoj/2842_seg2d_dense.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 19:22:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-12 06:58:59+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/2842_seg2d_dense.test.cpp
 layout: document

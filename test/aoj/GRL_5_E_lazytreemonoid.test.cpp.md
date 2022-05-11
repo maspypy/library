@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: alg/group_cntsum.hpp
     title: alg/group_cntsum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/lazy_cntsum_add.hpp
     title: alg/lazy_cntsum_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/lazy_reverse.hpp
     title: alg/lazy_reverse.hpp
   - icon: ':question:'
@@ -25,7 +25,7 @@ data:
   - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_E
@@ -420,7 +420,7 @@ data:
     \ = MA;\r\n  using X = typename MX::value_type;\r\n  using A = typename MA::value_type;\r\
     \n  static constexpr X act(const X &x, const A &a) {\r\n    return {x.fi, x.se\
     \ + x.fi * a};\r\n  }\r\n};\r\n#line 8 \"test/aoj/GRL_5_E_lazytreemonoid.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  Graph G(N);\n  FOR(v, N) {\n    LL(k);\n    FOR_(k)\
+    \n\nvoid solve() {\n  LL(N);\n  Graph G(N);\n  FOR(v, N) {\n    LL(k);\n    FOR(k)\
     \ {\n      LL(to);\n      G.add(v, to);\n    }\n  }\n  G.build();\n  HLD hld(G);\n\
     \  vc<pi> seg_raw(N - 1, {1, 0});\n  LazyTreeMonoid<decltype(hld), Lazy_CntSum_Add<ll>,\
     \ 1> TM(hld, seg_raw);\n  LL(Q);\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n\
@@ -432,7 +432,7 @@ data:
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_E\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/group_add.hpp\"\
     \n#include \"graph/lazytreemonoid.hpp\"\n#include \"alg/lazy_cntsum_add.hpp\"\n\
-    \nvoid solve() {\n  LL(N);\n  Graph G(N);\n  FOR(v, N) {\n    LL(k);\n    FOR_(k)\
+    \nvoid solve() {\n  LL(N);\n  Graph G(N);\n  FOR(v, N) {\n    LL(k);\n    FOR(k)\
     \ {\n      LL(to);\n      G.add(v, to);\n    }\n  }\n  G.build();\n  HLD hld(G);\n\
     \  vc<pi> seg_raw(N - 1, {1, 0});\n  LazyTreeMonoid<decltype(hld), Lazy_CntSum_Add<ll>,\
     \ 1> TM(hld, seg_raw);\n  LL(Q);\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n\
@@ -456,8 +456,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   requiredBy: []
-  timestamp: '2022-05-12 05:52:00+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-12 06:58:59+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
 layout: document
