@@ -119,7 +119,7 @@ struct Modular_Subset_Sum {
 
     auto bit_rev = [&](int i) -> int {
       int x = 0;
-      FOR_(k) {
+      FOR(k) {
         x = 2 * x + (i & 1);
         i >>= 1;
       }
@@ -129,7 +129,7 @@ struct Modular_Subset_Sum {
     vc<vi> IDS(L);
     FOR(i, len(vals)) { IDS[vals[i]].eb(i); }
 
-    FOR3(i, 1, L) {
+    FOR(i, 1, L) {
       int x = bit_rev(i);
       if (len(IDS[x]) == 0) continue;
       T2.shift(x - T2.delta);

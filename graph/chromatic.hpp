@@ -18,7 +18,7 @@ int chromatic_number(Graph& G) {
   vi pow(1 << N);
   auto solve_p = [&](int p) -> int {
     FOR(s, 1 << N) pow[s] = ((N - popcnt(s)) & 1 ? 1 : -1);
-    FOR3(k, 1, N) {
+    FOR(k, 1, N) {
       ll sum = 0;
       FOR(s, 1 << N) {
         pow[s] = pow[s] * dp[s];
@@ -34,7 +34,7 @@ int chromatic_number(Graph& G) {
   int ANS = 0;
   chmax(ANS, solve_p(0));
 
-  FOR_(TRIAL) {
+  FOR(TRIAL) {
     RandomNumberGenerator RNG;
     int p;
     while (1) {

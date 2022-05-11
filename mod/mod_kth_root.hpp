@@ -34,9 +34,9 @@ int mod_kth_root(ll k, ll a, int mod) {
     */
     ll x = 1, b = a, c = f - e; // b ^ {mp^c} = 1
     int pc = 1;
-    FOR_(c) pc *= p;
+    FOR(c) pc *= p;
     int pe = 1;
-    FOR_(e) pe *= p;
+    FOR(e) pe *= p;
     // 必要ならば原始 p 乗根に関する離散対数問題のセットアップ
     ll G = mod_pow(g, (mod - 1) / p, mod);
     int M = 0;
@@ -115,9 +115,9 @@ ll mod_kth_root_long(ll k, ll a, ll mod) {
     */
     ll x = 1, b = a, c = f - e; // b ^ {mp^c} = 1
     ll pc = 1;
-    FOR_(c) pc *= p;
+    FOR(c) pc *= p;
     ll pe = 1;
-    FOR_(e) pe *= p;
+    FOR(e) pe *= p;
     // 必要ならば原始 p 乗根に関する離散対数問題のセットアップ
     ll G = mod_pow_long(g, (mod - 1) / p, mod);
     ll M = 0;
