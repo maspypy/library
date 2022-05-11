@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A
@@ -224,16 +224,16 @@ data:
     \     G[e.to][e.rev].cap += a;\n          res += a;\n          lim -= a;\n   \
     \       if (lim == 0) break;\n        }\n      }\n    }\n    return res;\n  }\n\
     };\n#line 7 \"test/aoj/GRL_6_A_maxflow.test.cpp\"\n\r\nvoid solve() {\r\n  LL(N,\
-    \ M);\r\n  MaxFlowGraph<int> G(1<<30);\r\n  FOR_(M) {\r\n    LL(a, b, c);\r\n\
-    \    G.add(a, b, c);\r\n  }\r\n  print(G.flow(0, N - 1));\r\n}\r\n\r\nsigned main()\
+    \ M);\r\n  MaxFlowGraph<int> G(1<<30);\r\n  FOR(M) {\r\n    LL(a, b, c);\r\n \
+    \   G.add(a, b, c);\r\n  }\r\n  print(G.flow(0, N - 1));\r\n}\r\n\r\nsigned main()\
     \ {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
     \n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(T) solve();\r\n\r\n  return 0;\r\n}\r\
     \n"
   code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
     \ \"flow/maxflow.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, M);\r\n  MaxFlowGraph<int>\
-    \ G(1<<30);\r\n  FOR_(M) {\r\n    LL(a, b, c);\r\n    G.add(a, b, c);\r\n  }\r\
-    \n  print(G.flow(0, N - 1));\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
+    \ G(1<<30);\r\n  FOR(M) {\r\n    LL(a, b, c);\r\n    G.add(a, b, c);\r\n  }\r\n\
+    \  print(G.flow(0, N - 1));\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
     \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  ll T\
     \ = 1;\r\n  // LL(T);\r\n  FOR(T) solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
@@ -243,8 +243,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_6_A_maxflow.test.cpp
   requiredBy: []
-  timestamp: '2022-05-12 01:37:15+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-12 05:52:00+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_6_A_maxflow.test.cpp
 layout: document

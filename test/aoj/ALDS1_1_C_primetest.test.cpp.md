@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_1_C
@@ -224,16 +224,16 @@ data:
     \ (u64 a: {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\r\n      if (x\
     \ <= a) return true;\r\n      if (not ok(a)) return false;\r\n    }\r\n  }\r\n\
     \  return true;\r\n}\n#line 6 \"test/aoj/ALDS1_1_C_primetest.test.cpp\"\n\nvoid\
-    \ solve() {\n  ll ANS = 0;\n  LL(N);\n  FOR_(N) {\n    LL(p);\n    ANS += primetest(p);\n\
+    \ solve() {\n  ll ANS = 0;\n  LL(N);\n  FOR(N) {\n    LL(p);\n    ANS += primetest(p);\n\
     \  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  FOR(_, T) solve();\n\n  return\
-    \ 0;\n}\n"
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  FOR(T) solve();\n\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_1_C\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/primetest.hpp\"\
-    \n\nvoid solve() {\n  ll ANS = 0;\n  LL(N);\n  FOR_(N) {\n    LL(p);\n    ANS\
-    \ += primetest(p);\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \n\nvoid solve() {\n  ll ANS = 0;\n  LL(N);\n  FOR(N) {\n    LL(p);\n    ANS +=\
+    \ primetest(p);\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
     \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -241,8 +241,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_1_C_primetest.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 19:22:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-12 05:52:00+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_1_C_primetest.test.cpp
 layout: document

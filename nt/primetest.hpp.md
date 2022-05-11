@@ -39,7 +39,7 @@ data:
     path: nt/zeta_on_divisors.hpp
     title: nt/zeta_on_divisors.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_1_C_primetest.test.cpp
     title: test/aoj/ALDS1_1_C_primetest.test.cpp
   - icon: ':heavy_check_mark:'

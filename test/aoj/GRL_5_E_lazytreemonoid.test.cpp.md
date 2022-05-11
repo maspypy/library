@@ -423,7 +423,7 @@ data:
     \n\nvoid solve() {\n  LL(N);\n  Graph G(N);\n  FOR(v, N) {\n    LL(k);\n    FOR_(k)\
     \ {\n      LL(to);\n      G.add(v, to);\n    }\n  }\n  G.build();\n  HLD hld(G);\n\
     \  vc<pi> seg_raw(N - 1, {1, 0});\n  LazyTreeMonoid<decltype(hld), Lazy_CntSum_Add<ll>,\
-    \ 1> TM(hld, seg_raw);\n  LL(Q);\n  FOR_(Q) {\n    LL(t);\n    if (t == 0) {\n\
+    \ 1> TM(hld, seg_raw);\n  LL(Q);\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n\
     \      LL(v, x);\n      TM.apply_path(0, v, x);\n      // TM.apply_path(hld.parent[v],\
     \ v, x);\n    } else {\n      LL(v);\n      print(TM.prod_path(0, v).se);\n  \
     \  }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
@@ -435,7 +435,7 @@ data:
     \nvoid solve() {\n  LL(N);\n  Graph G(N);\n  FOR(v, N) {\n    LL(k);\n    FOR_(k)\
     \ {\n      LL(to);\n      G.add(v, to);\n    }\n  }\n  G.build();\n  HLD hld(G);\n\
     \  vc<pi> seg_raw(N - 1, {1, 0});\n  LazyTreeMonoid<decltype(hld), Lazy_CntSum_Add<ll>,\
-    \ 1> TM(hld, seg_raw);\n  LL(Q);\n  FOR_(Q) {\n    LL(t);\n    if (t == 0) {\n\
+    \ 1> TM(hld, seg_raw);\n  LL(Q);\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n\
     \      LL(v, x);\n      TM.apply_path(0, v, x);\n      // TM.apply_path(hld.parent[v],\
     \ v, x);\n    } else {\n      LL(v);\n      print(TM.prod_path(0, v).se);\n  \
     \  }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
@@ -456,7 +456,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   requiredBy: []
-  timestamp: '2022-05-12 01:37:15+09:00'
+  timestamp: '2022-05-12 05:52:00+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
