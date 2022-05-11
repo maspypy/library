@@ -1,3 +1,4 @@
+#pragma once
 struct fast_div {
   // Min25 https://judge.yosupo.jp/submission/46090
   // 同じ定数で何度も除算するときの高速化に使える
