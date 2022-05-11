@@ -461,15 +461,16 @@ data:
     \ 1) A[i] = A[2 * i];\r\n    }\r\n    A.resize(len(B1) - 1);\r\n    B.resize(len(B1));\r\
     \n    N /= 2;\r\n  }\r\n  return A[0];\r\n}\n#line 5 \"seq/interpolate_linear_rec.hpp\"\
     \n\r\ntemplate <typename mint>\r\nmint interpolate_linear_rec(vector<mint>& A,\
-    \ ll N) {\r\n  auto G = find_linear_rec(A);\r\n  auto F = convolution(A, G);\r\
-    \n  F.resize(len(G) - 1);\r\n  return coef_of_rational_fps(F, G, N);\r\n}\r\n\
-    #line 6 \"test/yukicoder/1844_interpolate_c_rec.test.cpp\"\n\nusing mint = modint107;\n\
-    \nvoid solve() {\n  LL(N);\n  mint ANS = 1;\n  FOR_(N) {\n    LL(p, e);\n    vc<mint>\
-    \ A(10);\n    FOR(i, 10) A[i] = mint(p).pow(i);\n    A = cumsum(A, 0);\n    A\
-    \ = cumsum(A, 0);\n    mint x = interpolate_linear_rec<mint>(A, e);\n    ANS *=\
-    \ x;\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
+    \ ll N, int off) {\r\n  if(N < len(A)) return A[N];\r\n  A = {A.begin() + off,\
+    \ A.end()};\r\n  N -= off;\r\n  auto G = find_linear_rec(A);\r\n  auto F = convolution(A,\
+    \ G);\r\n  F.resize(len(G) - 1);\r\n  return coef_of_rational_fps(F, G, N);\r\n\
+    }\r\n#line 6 \"test/yukicoder/1844_interpolate_c_rec.test.cpp\"\n\nusing mint\
+    \ = modint107;\n\nvoid solve() {\n  LL(N);\n  mint ANS = 1;\n  FOR_(N) {\n   \
+    \ LL(p, e);\n    vc<mint> A(10);\n    FOR(i, 10) A[i] = mint(p).pow(i);\n    A\
+    \ = cumsum(A, 0);\n    A = cumsum(A, 0);\n    mint x = interpolate_linear_rec<mint>(A,\
+    \ e);\n    ANS *= x;\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1844\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n#include \"seq/interpolate_linear_rec.hpp\"\
     \n\nusing mint = modint107;\n\nvoid solve() {\n  LL(N);\n  mint ANS = 1;\n  FOR_(N)\
@@ -492,7 +493,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1844_interpolate_c_rec.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 21:07:53+09:00'
+  timestamp: '2022-05-12 01:09:27+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/1844_interpolate_c_rec.test.cpp

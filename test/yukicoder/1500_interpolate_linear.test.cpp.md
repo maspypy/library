@@ -457,18 +457,19 @@ data:
     \ 1) A[i] = A[2 * i];\r\n    }\r\n    A.resize(len(B1) - 1);\r\n    B.resize(len(B1));\r\
     \n    N /= 2;\r\n  }\r\n  return A[0];\r\n}\n#line 5 \"seq/interpolate_linear_rec.hpp\"\
     \n\r\ntemplate <typename mint>\r\nmint interpolate_linear_rec(vector<mint>& A,\
-    \ ll N) {\r\n  auto G = find_linear_rec(A);\r\n  auto F = convolution(A, G);\r\
-    \n  F.resize(len(G) - 1);\r\n  return coef_of_rational_fps(F, G, N);\r\n}\r\n\
-    #line 6 \"test/yukicoder/1500_interpolate_linear.test.cpp\"\n\nusing mint = modint107;\n\
-    \nvoid solve() {\n  vc<mint> A(20);\n  set<pi> ss;\n  ss.insert(mp(0, 0));\n \
-    \ FOR(i, 20) {\n    A[i] = len(ss);\n    set<pi> newss;\n    for (auto&& [x, y]:\
-    \ ss) {\n      newss.insert(mp(x + 3, y + 0));\n      newss.insert(mp(x + 3, y\
-    \ + 2));\n      newss.insert(mp(x + 2, y + 3));\n      newss.insert(mp(x + 0,\
-    \ y + 3));\n      newss.insert(mp(x - 2, y + 3));\n      newss.insert(mp(x - 3,\
-    \ y + 2));\n      newss.insert(mp(x - 3, y + 0));\n      newss.insert(mp(x - 3,\
-    \ y - 2));\n      newss.insert(mp(x - 2, y - 3));\n      newss.insert(mp(x - 0,\
-    \ y - 3));\n      newss.insert(mp(x + 2, y - 3));\n      newss.insert(mp(x + 3,\
-    \ y - 2));\n    }\n    swap(ss, newss);\n  }\n  LL(N);\n  // print(find_linear_rec(A));\n\
+    \ ll N, int off) {\r\n  if(N < len(A)) return A[N];\r\n  A = {A.begin() + off,\
+    \ A.end()};\r\n  N -= off;\r\n  auto G = find_linear_rec(A);\r\n  auto F = convolution(A,\
+    \ G);\r\n  F.resize(len(G) - 1);\r\n  return coef_of_rational_fps(F, G, N);\r\n\
+    }\r\n#line 6 \"test/yukicoder/1500_interpolate_linear.test.cpp\"\n\nusing mint\
+    \ = modint107;\n\nvoid solve() {\n  vc<mint> A(20);\n  set<pi> ss;\n  ss.insert(mp(0,\
+    \ 0));\n  FOR(i, 20) {\n    A[i] = len(ss);\n    set<pi> newss;\n    for (auto&&\
+    \ [x, y]: ss) {\n      newss.insert(mp(x + 3, y + 0));\n      newss.insert(mp(x\
+    \ + 3, y + 2));\n      newss.insert(mp(x + 2, y + 3));\n      newss.insert(mp(x\
+    \ + 0, y + 3));\n      newss.insert(mp(x - 2, y + 3));\n      newss.insert(mp(x\
+    \ - 3, y + 2));\n      newss.insert(mp(x - 3, y + 0));\n      newss.insert(mp(x\
+    \ - 3, y - 2));\n      newss.insert(mp(x - 2, y - 3));\n      newss.insert(mp(x\
+    \ - 0, y - 3));\n      newss.insert(mp(x + 2, y - 3));\n      newss.insert(mp(x\
+    \ + 3, y - 2));\n    }\n    swap(ss, newss);\n  }\n  LL(N);\n  // print(find_linear_rec(A));\n\
     \  // print(A);\n  print(interpolate_linear_rec(A, N));\n}\n\nsigned main() {\n\
     \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
     \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
@@ -500,7 +501,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1500_interpolate_linear.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 21:07:53+09:00'
+  timestamp: '2022-05-12 01:09:27+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/1500_interpolate_linear.test.cpp

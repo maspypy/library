@@ -283,12 +283,16 @@ data:
     \ 1) A[i] = A[2 * i];\r\n    }\r\n    A.resize(len(B1) - 1);\r\n    B.resize(len(B1));\r\
     \n    N /= 2;\r\n  }\r\n  return A[0];\r\n}\n#line 5 \"seq/interpolate_linear_rec.hpp\"\
     \n\r\ntemplate <typename mint>\r\nmint interpolate_linear_rec(vector<mint>& A,\
-    \ ll N) {\r\n  auto G = find_linear_rec(A);\r\n  auto F = convolution(A, G);\r\
-    \n  F.resize(len(G) - 1);\r\n  return coef_of_rational_fps(F, G, N);\r\n}\r\n"
+    \ ll N, int off) {\r\n  if(N < len(A)) return A[N];\r\n  A = {A.begin() + off,\
+    \ A.end()};\r\n  N -= off;\r\n  auto G = find_linear_rec(A);\r\n  auto F = convolution(A,\
+    \ G);\r\n  F.resize(len(G) - 1);\r\n  return coef_of_rational_fps(F, G, N);\r\n\
+    }\r\n"
   code: "#pragma once\r\n\r\n#include \"seq/find_linear_rec.hpp\"\r\n#include \"seq/coef_of_rational_fps.hpp\"\
     \r\n\r\ntemplate <typename mint>\r\nmint interpolate_linear_rec(vector<mint>&\
-    \ A, ll N) {\r\n  auto G = find_linear_rec(A);\r\n  auto F = convolution(A, G);\r\
-    \n  F.resize(len(G) - 1);\r\n  return coef_of_rational_fps(F, G, N);\r\n}\r\n"
+    \ A, ll N, int off) {\r\n  if(N < len(A)) return A[N];\r\n  A = {A.begin() + off,\
+    \ A.end()};\r\n  N -= off;\r\n  auto G = find_linear_rec(A);\r\n  auto F = convolution(A,\
+    \ G);\r\n  F.resize(len(G) - 1);\r\n  return coef_of_rational_fps(F, G, N);\r\n\
+    }\r\n"
   dependsOn:
   - seq/find_linear_rec.hpp
   - seq/coef_of_rational_fps.hpp
@@ -300,7 +304,7 @@ data:
   isVerificationFile: false
   path: seq/interpolate_linear_rec.hpp
   requiredBy: []
-  timestamp: '2022-05-11 21:07:53+09:00'
+  timestamp: '2022-05-12 01:09:27+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1500_interpolate_linear.test.cpp
