@@ -42,5 +42,12 @@
 "test/library_checker/convolution/mul_mod2n_convolution.test.cpp": "2022-05-11 19:22:25 +0900",
 "test/library_checker/convolution/multivariate_convolution.test.cpp": "2022-05-11 19:22:25 +0900",
 "test/library_checker/convolution/online_convolution.test.cpp": "2022-05-11 19:22:25 +0900",
-"test/library_checker/convolution/subset_convolution.test.cpp": "2022-05-11 19:22:25 +0900"
+"test/library_checker/convolution/subset_convolution.test.cpp": "2022-05-11 19:22:25 +0900",
+"test/library_checker/convolution/subset_convolution_multivar.test.cpp": "2022-05-11 19:22:25 +0900",
+"test/library_checker/datastructure/associative_array.test.cpp": "2022-05-11 19:22:25 +0900",
+"test/library_checker/datastructure/associative_array_hashmap.test.cpp": "2022-05-11 19:22:25 +0900",
+"test/library_checker/datastructure/persistent_queue.test.cpp": "2022-05-11 19:22:25 +0900",
+"test/library_checker/datastructure/persistent_unionfind.test.cpp": "2022-05-11 19:22:25 +0900",
+"test/library_checker/datastructure/point_add_range_sum.test.cpp": "2022-05-11 19:22:25 +0900",
+"test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp": "2022-05-11 19:22:25 +0900"
 }
