@@ -267,12 +267,12 @@ data:
     \ pf;\r\n  vc<int> pp;\r\n  vc<vc<int>> fact;\r\n  vc<int> crt_coef;\r\n\r\n \
     \ Binomial(int mod) : mod(mod) {\r\n    pf = factor(mod);\r\n    int S = len(pf);\r\
     \n    pp.resize(S);\r\n    fact.resize(S);\r\n    crt_coef.resize(S);\r\n    FOR(s,\
-    \ S) {\r\n      auto [p, e] = pf[s];\r\n      pp[s] = 1;\r\n      FOR_(e) pp[s]\
+    \ S) {\r\n      auto [p, e] = pf[s];\r\n      pp[s] = 1;\r\n      FOR(e) pp[s]\
     \ *= p;\r\n      auto& F = fact[s];\r\n      // mod pp \u3067\u306E fact \u306E\
     \u5468\u671F\r\n      F.resize(pp[s] * 2);\r\n      F[0] = 1;\r\n      fast_div\
-    \ fd_p(p);\r\n      fast_div fd_pp(pp[s]);\r\n      FOR3(x, 1, len(F)) {\r\n \
-    \       if (x % fd_p == 0)\r\n          F[x] = F[x - 1];\r\n        else\r\n \
-    \         F[x] = F[x - 1] * x % fd_pp;\r\n      }\r\n      int other = mod / fd_pp;\r\
+    \ fd_p(p);\r\n      fast_div fd_pp(pp[s]);\r\n      FOR(x, 1, len(F)) {\r\n  \
+    \      if (x % fd_p == 0)\r\n          F[x] = F[x - 1];\r\n        else\r\n  \
+    \        F[x] = F[x - 1] * x % fd_pp;\r\n      }\r\n      int other = mod / fd_pp;\r\
     \n      while (crt_coef[s] % fd_pp != 1) crt_coef[s] += other;\r\n    }\r\n  }\r\
     \n\r\n  int mod_pow(int a, int n, fast_div d) {\r\n    ll x = 1, p = a;\r\n  \
     \  while (n) {\r\n      if (n & 1) x = x * p % d;\r\n      p = p * p % d;\r\n\
@@ -287,7 +287,7 @@ data:
     \      };\r\n      auto a = get_fact(n);\r\n      auto b = get_fact(k);\r\n  \
     \    auto c = get_fact(n - k);\r\n      ll e = a.fi - b.fi - c.fi;\r\n      ll\
     \ x = a.se;\r\n      ll y = b.se * c.se % fd_pp;\r\n      int phi = pp[s] - pp[s]\
-    \ / pf[s].fi;\r\n      x = x * mod_pow(y, phi - 1, fd_pp) % fd_pp;\r\n      FOR_(min(e,\
+    \ / pf[s].fi;\r\n      x = x * mod_pow(y, phi - 1, fd_pp) % fd_pp;\r\n      FOR(min(e,\
     \ pf[s].se)) x *= p;\r\n      x = x % fd_pp;\r\n      ANS += x * crt_coef[s];\r\
     \n    }\r\n    return ANS % mod;\r\n  }\r\n};\r\n#line 5 \"test/library_checker/math/binomial_coefficient.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(Q, mod);\r\n  Binomial Bi(mod);\r\n  FOR_(Q) {\r\n\
@@ -308,7 +308,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/binomial_coefficient.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 19:22:25+09:00'
+  timestamp: '2022-05-11 20:46:58+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/binomial_coefficient.test.cpp

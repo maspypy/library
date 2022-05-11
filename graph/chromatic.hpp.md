@@ -60,11 +60,11 @@ data:
     \ vc<int> dp(1 << N);\r\n  dp[0] = 1;\r\n  FOR(v, N) FOR(s, 1 << v) { dp[s | 1\
     \ << v] = dp[s] + dp[s & (~nbd[v])]; }\r\n\r\n  vi pow(1 << N);\r\n  auto solve_p\
     \ = [&](int p) -> int {\r\n    FOR(s, 1 << N) pow[s] = ((N - popcnt(s)) & 1 ?\
-    \ 1 : -1);\r\n    FOR3(k, 1, N) {\r\n      ll sum = 0;\r\n      FOR(s, 1 << N)\
+    \ 1 : -1);\r\n    FOR(k, 1, N) {\r\n      ll sum = 0;\r\n      FOR(s, 1 << N)\
     \ {\r\n        pow[s] = pow[s] * dp[s];\r\n        if (p) pow[s] %= p;\r\n   \
     \     sum += pow[s];\r\n      }\r\n      if (p) sum %= p;\r\n      if (sum !=\
     \ 0) { return k; }\r\n    }\r\n    return N;\r\n  };\r\n\r\n  int ANS = 0;\r\n\
-    \  chmax(ANS, solve_p(0));\r\n\r\n  FOR_(TRIAL) {\r\n    RandomNumberGenerator\
+    \  chmax(ANS, solve_p(0));\r\n\r\n  FOR(TRIAL) {\r\n    RandomNumberGenerator\
     \ RNG;\r\n    int p;\r\n    while (1) {\r\n      p = RNG(1LL << 30, 1LL << 31);\r\
     \n      if (primetest(p)) break;\r\n    }\r\n    chmax(ANS, solve_p(p));\r\n \
     \ }\r\n  return ANS;\r\n}\r\n"
@@ -76,11 +76,11 @@ data:
     \ vc<int> dp(1 << N);\r\n  dp[0] = 1;\r\n  FOR(v, N) FOR(s, 1 << v) { dp[s | 1\
     \ << v] = dp[s] + dp[s & (~nbd[v])]; }\r\n\r\n  vi pow(1 << N);\r\n  auto solve_p\
     \ = [&](int p) -> int {\r\n    FOR(s, 1 << N) pow[s] = ((N - popcnt(s)) & 1 ?\
-    \ 1 : -1);\r\n    FOR3(k, 1, N) {\r\n      ll sum = 0;\r\n      FOR(s, 1 << N)\
+    \ 1 : -1);\r\n    FOR(k, 1, N) {\r\n      ll sum = 0;\r\n      FOR(s, 1 << N)\
     \ {\r\n        pow[s] = pow[s] * dp[s];\r\n        if (p) pow[s] %= p;\r\n   \
     \     sum += pow[s];\r\n      }\r\n      if (p) sum %= p;\r\n      if (sum !=\
     \ 0) { return k; }\r\n    }\r\n    return N;\r\n  };\r\n\r\n  int ANS = 0;\r\n\
-    \  chmax(ANS, solve_p(0));\r\n\r\n  FOR_(TRIAL) {\r\n    RandomNumberGenerator\
+    \  chmax(ANS, solve_p(0));\r\n\r\n  FOR(TRIAL) {\r\n    RandomNumberGenerator\
     \ RNG;\r\n    int p;\r\n    while (1) {\r\n      p = RNG(1LL << 30, 1LL << 31);\r\
     \n      if (primetest(p)) break;\r\n    }\r\n    chmax(ANS, solve_p(p));\r\n \
     \ }\r\n  return ANS;\r\n}\r\n"
@@ -90,7 +90,7 @@ data:
   isVerificationFile: false
   path: graph/chromatic.hpp
   requiredBy: []
-  timestamp: '2022-04-27 05:09:11+09:00'
+  timestamp: '2022-05-11 20:46:58+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/graph/chromatic_number.test.cpp

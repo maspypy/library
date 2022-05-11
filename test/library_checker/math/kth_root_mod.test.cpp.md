@@ -326,8 +326,8 @@ data:
     a / x^{p^e} = b \u3092\u7DAD\u6301\u3059\u308B\u3002\u307E\u305A\u306F\u3001b\
     \ \u304C p \u3067\u5272\u308C\u308B\u56DE\u6570\u3092\u5897\u3084\u3057\u3066\u3044\
     \u304F\u3002\r\n    */\r\n    ll x = 1, b = a, c = f - e; // b ^ {mp^c} = 1\r\n\
-    \    int pc = 1;\r\n    FOR_(c) pc *= p;\r\n    int pe = 1;\r\n    FOR_(e) pe\
-    \ *= p;\r\n    // \u5FC5\u8981\u306A\u3089\u3070\u539F\u59CB p \u4E57\u6839\u306B\
+    \    int pc = 1;\r\n    FOR(c) pc *= p;\r\n    int pe = 1;\r\n    FOR(e) pe *=\
+    \ p;\r\n    // \u5FC5\u8981\u306A\u3089\u3070\u539F\u59CB p \u4E57\u6839\u306B\
     \u95A2\u3059\u308B\u96E2\u6563\u5BFE\u6570\u554F\u984C\u306E\u30BB\u30C3\u30C8\
     \u30A2\u30C3\u30D7\r\n    ll G = mod_pow(g, (mod - 1) / p, mod);\r\n    int M\
     \ = 0;\r\n    unordered_map<ll, int> MP;\r\n    ll GM_inv = -1;\r\n    if (c)\
@@ -361,8 +361,8 @@ data:
     \u306F\u5206\u304B\u3063\u3066\u3044\u308B\r\n    \u30FBa / x^{p^e} = b \u3092\
     \u7DAD\u6301\u3059\u308B\u3002\u307E\u305A\u306F\u3001b \u304C p \u3067\u5272\u308C\
     \u308B\u56DE\u6570\u3092\u5897\u3084\u3057\u3066\u3044\u304F\u3002\r\n    */\r\
-    \n    ll x = 1, b = a, c = f - e; // b ^ {mp^c} = 1\r\n    ll pc = 1;\r\n    FOR_(c)\
-    \ pc *= p;\r\n    ll pe = 1;\r\n    FOR_(e) pe *= p;\r\n    // \u5FC5\u8981\u306A\
+    \n    ll x = 1, b = a, c = f - e; // b ^ {mp^c} = 1\r\n    ll pc = 1;\r\n    FOR(c)\
+    \ pc *= p;\r\n    ll pe = 1;\r\n    FOR(e) pe *= p;\r\n    // \u5FC5\u8981\u306A\
     \u3089\u3070\u539F\u59CB p \u4E57\u6839\u306B\u95A2\u3059\u308B\u96E2\u6563\u5BFE\
     \u6570\u554F\u984C\u306E\u30BB\u30C3\u30C8\u30A2\u30C3\u30D7\r\n    ll G = mod_pow_long(g,\
     \ (mod - 1) / p, mod);\r\n    ll M = 0;\r\n    ll GM_inv = -1;\r\n    if (c) {\r\
@@ -405,7 +405,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/kth_root_mod.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 19:22:25+09:00'
+  timestamp: '2022-05-11 20:46:58+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/kth_root_mod.test.cpp

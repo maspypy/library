@@ -277,9 +277,9 @@ data:
     \ int L = 1 << k;\r\n    assert(L >= 2 * mod);\r\n\r\n    ShiftTree T1(L, base);\r\
     \n    ShiftTree T2(L, base);\r\n    T1.set(0, 1);\r\n    T2.set(0, 1);\r\n   \
     \ T2.set(L - mod, 1);\r\n\r\n    auto bit_rev = [&](int i) -> int {\r\n      int\
-    \ x = 0;\r\n      FOR_(k) {\r\n        x = 2 * x + (i & 1);\r\n        i >>= 1;\r\
+    \ x = 0;\r\n      FOR(k) {\r\n        x = 2 * x + (i & 1);\r\n        i >>= 1;\r\
     \n      }\r\n      return x;\r\n    };\r\n\r\n    vc<vi> IDS(L);\r\n    FOR(i,\
-    \ len(vals)) { IDS[vals[i]].eb(i); }\r\n\r\n    FOR3(i, 1, L) {\r\n      int x\
+    \ len(vals)) { IDS[vals[i]].eb(i); }\r\n\r\n    FOR(i, 1, L) {\r\n      int x\
     \ = bit_rev(i);\r\n      if (len(IDS[x]) == 0) continue;\r\n      T2.shift(x -\
     \ T2.delta);\r\n      for (auto&& idx: IDS[x]) {\r\n        auto diff = ShiftTree::diff(T1,\
     \ T2, 0, mod);\r\n        for (auto&& d: diff) {\r\n          if (can(d)) continue;\r\
@@ -311,7 +311,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/4_modular_subset_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 19:22:25+09:00'
+  timestamp: '2022-05-11 20:46:58+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/4_modular_subset_sum.test.cpp

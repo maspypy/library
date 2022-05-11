@@ -123,8 +123,8 @@ data:
     \    // x \u306F\u975E\u5270\u4F59\r\n    G a(p, 0), b(x, 1);\r\n    a = G::gcd(a,\
     \ b);\r\n    assert(a.norm() == p);\r\n    return a;\r\n  };\r\n\r\n  res.eb(G(1,\
     \ 0));\r\n  for (auto &&[p, e]: pfs) {\r\n    if (p % 4 == 3) {\r\n      INT pp\
-    \ = 1;\r\n      FOR_(e / 2) pp *= p;\r\n      for (auto &&g: res) {\r\n      \
-    \  g.x *= pp;\r\n        g.y *= pp;\r\n      }\r\n      continue;\r\n    }\r\n\
+    \ = 1;\r\n      FOR(e / 2) pp *= p;\r\n      for (auto &&g: res) {\r\n       \
+    \ g.x *= pp;\r\n        g.y *= pp;\r\n      }\r\n      continue;\r\n    }\r\n\
     \    auto pi = find(p);\r\n    vc<G> pows(e + 1);\r\n    pows[0] = G(1, 0);\r\n\
     \    FOR(i, e) pows[i + 1] = pows[i] * pi;\r\n    if (p == 2) {\r\n      for (auto\
     \ &&g: res) g *= pows[e];\r\n      continue;\r\n    }\r\n    vc<G> pis(e + 1);\r\
@@ -176,7 +176,7 @@ data:
     \ -1;\r\n    }();\r\n    assert(x != -1);\r\n    // x \u306F\u975E\u5270\u4F59\
     \r\n    G a(p, 0), b(x, 1);\r\n    a = G::gcd(a, b);\r\n    assert(a.norm() ==\
     \ p);\r\n    return a;\r\n  };\r\n\r\n  res.eb(G(1, 0));\r\n  for (auto &&[p,\
-    \ e]: pfs) {\r\n    if (p % 4 == 3) {\r\n      INT pp = 1;\r\n      FOR_(e / 2)\
+    \ e]: pfs) {\r\n    if (p % 4 == 3) {\r\n      INT pp = 1;\r\n      FOR(e / 2)\
     \ pp *= p;\r\n      for (auto &&g: res) {\r\n        g.x *= pp;\r\n        g.y\
     \ *= pp;\r\n      }\r\n      continue;\r\n    }\r\n    auto pi = find(p);\r\n\
     \    vc<G> pows(e + 1);\r\n    pows[0] = G(1, 0);\r\n    FOR(i, e) pows[i + 1]\
@@ -204,7 +204,7 @@ data:
   isVerificationFile: false
   path: nt/gaussian_integers.hpp
   requiredBy: []
-  timestamp: '2022-05-05 18:23:56+09:00'
+  timestamp: '2022-05-11 20:46:58+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1593_gaussian.test.cpp
