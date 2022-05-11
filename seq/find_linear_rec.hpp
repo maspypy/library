@@ -1,3 +1,5 @@
+#pragma once
+
 template <typename mint>
 vector<mint> find_linear_rec(vector<mint>& A) {
   int N = len(A);
