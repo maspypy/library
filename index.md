@@ -193,7 +193,7 @@ data:
     - icon: ':question:'
       path: ds/fenwick.hpp
       title: ds/fenwick.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/fenwick2d.hpp
       title: ds/fenwick2d.hpp
     - icon: ':x:'
@@ -202,7 +202,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fenwickraq.hpp
       title: ds/fenwickraq.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
     - icon: ':warning:'
@@ -620,7 +620,7 @@ data:
     - icon: ':x:'
       path: other/discrete_log.hpp
       title: other/discrete_log.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: other/floor_range.hpp
       title: other/floor_range.hpp
     - icon: ':heavy_check_mark:'
@@ -649,7 +649,7 @@ data:
       title: other/subset_sum_count.hpp
   - name: pds
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: pds/array.hpp
       title: pds/array.hpp
     - icon: ':warning:'
@@ -658,7 +658,7 @@ data:
     - icon: ':x:'
       path: pds/segtree.hpp
       title: pds/segtree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: pds/unionfind.hpp
       title: pds/unionfind.hpp
   - name: poly
@@ -720,7 +720,7 @@ data:
     - icon: ':x:'
       path: poly/multipoint.hpp
       title: poly/multipoint.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/multivar_convolution.hpp
       title: poly/multivar_convolution.hpp
     - icon: ':question:'
@@ -1005,30 +1005,30 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/subset_convolution.test.cpp
       title: test/library_checker/convolution/subset_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
       title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - name: test/library_checker/datastructure
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/associative_array.test.cpp
       title: test/library_checker/datastructure/associative_array.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
       title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
     - icon: ':x:'
       path: test/library_checker/datastructure/line_add_get_min.test.cpp
       title: test/library_checker/datastructure/line_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/persistent_queue.test.cpp
       title: test/library_checker/datastructure/persistent_queue.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/persistent_unionfind.test.cpp
       title: test/library_checker/datastructure/persistent_unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/point_add_range_sum.test.cpp
       title: test/library_checker/datastructure/point_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
       title: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
     - icon: ':x:'
@@ -1386,6 +1386,9 @@ data:
       path: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
       title: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
     - icon: ':x:'
+      path: test/yukicoder/1500_interpolate_linear.test.cpp
+      title: test/yukicoder/1500_interpolate_linear.test.cpp
+    - icon: ':x:'
       path: test/yukicoder/1593_gaussian.test.cpp
       title: test/yukicoder/1593_gaussian.test.cpp
     - icon: ':x:'
@@ -1424,6 +1427,9 @@ data:
     - icon: ':x:'
       path: test/yukicoder/426.test.cpp
       title: test/yukicoder/426.test.cpp
+    - icon: ':x:'
+      path: test/yukicoder/4954_quotients.test.cpp
+      title: test/yukicoder/4954_quotients.test.cpp
     - icon: ':x:'
       path: test/yukicoder/4_modular_subset_sum.test.cpp
       title: test/yukicoder/4_modular_subset_sum.test.cpp

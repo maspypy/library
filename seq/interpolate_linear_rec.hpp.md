@@ -25,6 +25,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: test/yukicoder/1500_interpolate_linear.test.cpp
+    title: test/yukicoder/1500_interpolate_linear.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1844_interpolate_c_rec.test.cpp
     title: test/yukicoder/1844_interpolate_c_rec.test.cpp
   _isVerificationFailed: true
@@ -32,10 +35,10 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"seq/interpolate_linear_rec.hpp\"\n\r\n#line 1 \"seq/find_linear_rec.hpp\"\
-    \ntemplate <typename mint>\r\nvector<mint> find_linear_rec(vector<mint>& A) {\r\
-    \n  int N = len(A);\r\n  vc<mint> B = {1}, C = {1};\r\n  int l = 0, m = 1;\r\n\
-    \  mint p = 1;\r\n  FOR(i, N) {\r\n    mint d = A[i];\r\n    FOR3(j, 1, l + 1)\
+  bundledCode: "#line 2 \"seq/interpolate_linear_rec.hpp\"\n\r\n#line 2 \"seq/find_linear_rec.hpp\"\
+    \n\r\ntemplate <typename mint>\r\nvector<mint> find_linear_rec(vector<mint>& A)\
+    \ {\r\n  int N = len(A);\r\n  vc<mint> B = {1}, C = {1};\r\n  int l = 0, m = 1;\r\
+    \n  mint p = 1;\r\n  FOR(i, N) {\r\n    mint d = A[i];\r\n    FOR3(j, 1, l + 1)\
     \ { d += C[j] * A[i - j]; }\r\n    if (d == 0) {\r\n      ++m;\r\n      continue;\r\
     \n    }\r\n    auto tmp = C;\r\n    mint q = d / p;\r\n    if (len(C) < len(B)\
     \ + m) C.insert(C.end(), len(B) + m - len(C), 0);\r\n    FOR(j, len(B)) C[j +\
@@ -297,9 +300,10 @@ data:
   isVerificationFile: false
   path: seq/interpolate_linear_rec.hpp
   requiredBy: []
-  timestamp: '2022-05-02 13:07:10+09:00'
+  timestamp: '2022-05-11 21:07:53+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/yukicoder/1500_interpolate_linear.test.cpp
   - test/yukicoder/1844_interpolate_c_rec.test.cpp
 documentation_of: seq/interpolate_linear_rec.hpp
 layout: document

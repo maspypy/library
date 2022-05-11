@@ -153,28 +153,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution.test.cpp
     title: test/library_checker/convolution/subset_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array.test.cpp
     title: test/library_checker/datastructure/associative_array.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
     title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
   - icon: ':x:'
     path: test/library_checker/datastructure/line_add_get_min.test.cpp
     title: test/library_checker/datastructure/line_add_get_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/persistent_queue.test.cpp
     title: test/library_checker/datastructure/persistent_queue.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/persistent_unionfind.test.cpp
     title: test/library_checker/datastructure/persistent_unionfind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_range_sum.test.cpp
     title: test/library_checker/datastructure/point_add_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   - icon: ':x:'
@@ -514,6 +514,9 @@ data:
     path: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
     title: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1500_interpolate_linear.test.cpp
+    title: test/yukicoder/1500_interpolate_linear.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1593_gaussian.test.cpp
     title: test/yukicoder/1593_gaussian.test.cpp
   - icon: ':x:'
@@ -552,6 +555,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/4954_quotients.test.cpp
+    title: test/yukicoder/4954_quotients.test.cpp
   - icon: ':x:'
     path: test/yukicoder/4_modular_subset_sum.test.cpp
     title: test/yukicoder/4_modular_subset_sum.test.cpp
@@ -741,9 +747,11 @@ data:
   - test/yukicoder/502_factorial107.test.cpp
   - test/yukicoder/1301_mcf.test.cpp
   - test/yukicoder/1666_integer_kth_root.test.cpp
+  - test/yukicoder/1500_interpolate_linear.test.cpp
   - test/yukicoder/1810_matpow.test.cpp
   - test/yukicoder/1320_mincostcycle.test.cpp
   - test/yukicoder/1479_bipartite_vertex_cover.test.cpp
+  - test/yukicoder/4954_quotients.test.cpp
   - test/yukicoder/1844_interpolate_c_rec.test.cpp
   - test/yukicoder/114_steriner_tree.test.cpp
   - test/yukicoder/1332_range_freq.test.cpp

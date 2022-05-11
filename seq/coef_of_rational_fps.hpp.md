@@ -25,6 +25,9 @@ data:
     path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1500_interpolate_linear.test.cpp
+    title: test/yukicoder/1500_interpolate_linear.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1844_interpolate_c_rec.test.cpp
     title: test/yukicoder/1844_interpolate_c_rec.test.cpp
   _isVerificationFailed: true
@@ -293,6 +296,7 @@ data:
   timestamp: '2022-05-02 13:07:10+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/yukicoder/1500_interpolate_linear.test.cpp
   - test/yukicoder/1844_interpolate_c_rec.test.cpp
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
 documentation_of: seq/coef_of_rational_fps.hpp

@@ -19,27 +19,29 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/multivar_convolution.hpp
-    title: poly/multivar_convolution.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
+  - icon: ':x:'
+    path: seq/coef_of_rational_fps.hpp
+    title: seq/coef_of_rational_fps.hpp
+  - icon: ':x:'
+    path: seq/find_linear_rec.hpp
+    title: seq/find_linear_rec.hpp
+  - icon: ':x:'
+    path: seq/interpolate_linear_rec.hpp
+    title: seq/interpolate_linear_rec.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/subset_convolution
-    links:
-    - https://judge.yosupo.jp/problem/subset_convolution
-  bundledCode: "#line 1 \"test/library_checker/convolution/subset_convolution_multivar.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/subset_convolution\"\r\n#line\
-    \ 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\n\
-    using ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
-    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
+    links: []
+  bundledCode: "#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace\
+    \ std;\n\nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\n\
+    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
     \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
     template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
     \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
@@ -207,11 +209,10 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 4 \"test/library_checker/convolution/subset_convolution_multivar.test.cpp\"\
-    \n\r\n#line 2 \"mod/modint.hpp\"\ntemplate <u32 mod>\nstruct modint {\n  static\
-    \ constexpr bool is_modint = true;\n  u32 val;\n  constexpr modint(const ll val\
-    \ = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val) % mod) % mod)\
-    \ {}\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
+    \ { yes(!t); }\r\n#line 2 \"mod/modint.hpp\"\ntemplate <u32 mod>\nstruct modint\
+    \ {\n  static constexpr bool is_modint = true;\n  u32 val;\n  constexpr modint(const\
+    \ ll val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val) % mod)\
+    \ % mod) {}\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
     \  } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
     \ += p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator-=(const\
     \ modint &p) {\n    if ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n\
@@ -280,39 +281,48 @@ data:
     \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
     \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
     }\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    using amint = ArbitraryModInt;\n#line 1 \"poly/convolution_naive.hpp\"\ntemplate\
-    \ <class T>\r\nvector<T> convolution_naive(const vector<T>& a, const vector<T>&\
-    \ b) {\r\n  int n = int(a.size()), m = int(b.size());\r\n  vector<T> ans(n + m\
-    \ - 1);\r\n  if (n < m) {\r\n    FOR(j, m) FOR(i, n) ans[i + j] += a[i] * b[j];\r\
-    \n  } else {\r\n    FOR(i, n) FOR(j, m) ans[i + j] += a[i] * b[j];\r\n  }\r\n\
-    \  return ans;\r\n}\r\n#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\n\
-    struct ntt_info {\r\n  static constexpr int bsf_constexpr(unsigned int n) {\r\n\
-    \    int x = 0;\r\n    while (!(n & (1 << x))) x++;\r\n    return x;\r\n  }\r\n\
-    \r\n  static constexpr int rank2 = bsf_constexpr(mint::get_mod() - 1);\r\n  array<mint,\
-    \ rank2 + 1> root;\r\n  array<mint, rank2 + 1> iroot;\r\n  array<mint, max(0,\
-    \ rank2 - 1)> rate2;\r\n  array<mint, max(0, rank2 - 1)> irate2;\r\n  array<mint,\
-    \ max(0, rank2 - 2)> rate3;\r\n  array<mint, max(0, rank2 - 2)> irate3;\r\n\r\n\
-    \  ntt_info() {\r\n    int g = primitive_root(mint::get_mod());\r\n    root[rank2]\
-    \ = mint(g).pow((mint::get_mod() - 1) >> rank2);\r\n    iroot[rank2] = mint(1)\
-    \ / root[rank2];\r\n    FOR_R(i, rank2) {\r\n      root[i] = root[i + 1] * root[i\
-    \ + 1];\r\n      iroot[i] = iroot[i + 1] * iroot[i + 1];\r\n    }\r\n\r\n    {\r\
-    \n      mint prod = 1, iprod = 1;\r\n      for (int i = 0; i <= rank2 - 2; i++)\
-    \ {\r\n        rate2[i] = root[i + 2] * prod;\r\n        irate2[i] = iroot[i +\
-    \ 2] * iprod;\r\n        prod *= iroot[i + 2];\r\n        iprod *= root[i + 2];\r\
-    \n      }\r\n    }\r\n    {\r\n      mint prod = 1, iprod = 1;\r\n      for (int\
-    \ i = 0; i <= rank2 - 3; i++) {\r\n        rate3[i] = root[i + 3] * prod;\r\n\
-    \        irate3[i] = iroot[i + 3] * iprod;\r\n        prod *= iroot[i + 3];\r\n\
-    \        iprod *= root[i + 3];\r\n      }\r\n    }\r\n  }\r\n\r\n  constexpr int\
-    \ primitive_root(int m) {\r\n    if (m == 167772161) return 3;\r\n    if (m ==\
-    \ 469762049) return 3;\r\n    if (m == 754974721) return 11;\r\n    if (m == 880803841)\
-    \ return 26;\r\n    if (m == 998244353) return 3;\r\n    return -1;\r\n  }\r\n\
-    };\r\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>& a, bool inverse) {\r\
-    \n  int n = int(a.size());\r\n  int h = topbit(n);\r\n  assert(n == 1 << h);\r\
-    \n  static const ntt_info<mint> info;\r\n  if (!inverse) {\r\n    int len = 0;\
-    \ // a[i, i+(n>>len), i+2*(n>>len), ..] is transformed\r\n    while (len < h)\
-    \ {\r\n      if (h - len == 1) {\r\n        int p = 1 << (h - len - 1);\r\n  \
-    \      mint rot = 1;\r\n        FOR(s, 1 << len) {\r\n          int offset = s\
-    \ << (h - len);\r\n          FOR(i, p) {\r\n            auto l = a[i + offset];\r\
+    using amint = ArbitraryModInt;\n#line 2 \"seq/find_linear_rec.hpp\"\n\r\ntemplate\
+    \ <typename mint>\r\nvector<mint> find_linear_rec(vector<mint>& A) {\r\n  int\
+    \ N = len(A);\r\n  vc<mint> B = {1}, C = {1};\r\n  int l = 0, m = 1;\r\n  mint\
+    \ p = 1;\r\n  FOR(i, N) {\r\n    mint d = A[i];\r\n    FOR3(j, 1, l + 1) { d +=\
+    \ C[j] * A[i - j]; }\r\n    if (d == 0) {\r\n      ++m;\r\n      continue;\r\n\
+    \    }\r\n    auto tmp = C;\r\n    mint q = d / p;\r\n    if (len(C) < len(B)\
+    \ + m) C.insert(C.end(), len(B) + m - len(C), 0);\r\n    FOR(j, len(B)) C[j +\
+    \ m] -= q * B[j];\r\n    if (l + l <= i) {\r\n      B = tmp;\r\n      l = i +\
+    \ 1 - l, m = 1;\r\n      p = d;\r\n    } else {\r\n      ++m;\r\n    }\r\n  }\r\
+    \n  return C;\r\n}\r\n#line 2 \"seq/interpolate_linear_rec.hpp\"\n\r\n#line 1\
+    \ \"poly/convolution_naive.hpp\"\ntemplate <class T>\r\nvector<T> convolution_naive(const\
+    \ vector<T>& a, const vector<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\
+    \n  vector<T> ans(n + m - 1);\r\n  if (n < m) {\r\n    FOR(j, m) FOR(i, n) ans[i\
+    \ + j] += a[i] * b[j];\r\n  } else {\r\n    FOR(i, n) FOR(j, m) ans[i + j] +=\
+    \ a[i] * b[j];\r\n  }\r\n  return ans;\r\n}\r\n#line 2 \"poly/ntt.hpp\"\n\r\n\
+    template <class mint>\r\nstruct ntt_info {\r\n  static constexpr int bsf_constexpr(unsigned\
+    \ int n) {\r\n    int x = 0;\r\n    while (!(n & (1 << x))) x++;\r\n    return\
+    \ x;\r\n  }\r\n\r\n  static constexpr int rank2 = bsf_constexpr(mint::get_mod()\
+    \ - 1);\r\n  array<mint, rank2 + 1> root;\r\n  array<mint, rank2 + 1> iroot;\r\
+    \n  array<mint, max(0, rank2 - 1)> rate2;\r\n  array<mint, max(0, rank2 - 1)>\
+    \ irate2;\r\n  array<mint, max(0, rank2 - 2)> rate3;\r\n  array<mint, max(0, rank2\
+    \ - 2)> irate3;\r\n\r\n  ntt_info() {\r\n    int g = primitive_root(mint::get_mod());\r\
+    \n    root[rank2] = mint(g).pow((mint::get_mod() - 1) >> rank2);\r\n    iroot[rank2]\
+    \ = mint(1) / root[rank2];\r\n    FOR_R(i, rank2) {\r\n      root[i] = root[i\
+    \ + 1] * root[i + 1];\r\n      iroot[i] = iroot[i + 1] * iroot[i + 1];\r\n   \
+    \ }\r\n\r\n    {\r\n      mint prod = 1, iprod = 1;\r\n      for (int i = 0; i\
+    \ <= rank2 - 2; i++) {\r\n        rate2[i] = root[i + 2] * prod;\r\n        irate2[i]\
+    \ = iroot[i + 2] * iprod;\r\n        prod *= iroot[i + 2];\r\n        iprod *=\
+    \ root[i + 2];\r\n      }\r\n    }\r\n    {\r\n      mint prod = 1, iprod = 1;\r\
+    \n      for (int i = 0; i <= rank2 - 3; i++) {\r\n        rate3[i] = root[i +\
+    \ 3] * prod;\r\n        irate3[i] = iroot[i + 3] * iprod;\r\n        prod *= iroot[i\
+    \ + 3];\r\n        iprod *= root[i + 3];\r\n      }\r\n    }\r\n  }\r\n\r\n  constexpr\
+    \ int primitive_root(int m) {\r\n    if (m == 167772161) return 3;\r\n    if (m\
+    \ == 469762049) return 3;\r\n    if (m == 754974721) return 11;\r\n    if (m ==\
+    \ 880803841) return 26;\r\n    if (m == 998244353) return 3;\r\n    return -1;\r\
+    \n  }\r\n};\r\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>& a, bool inverse)\
+    \ {\r\n  int n = int(a.size());\r\n  int h = topbit(n);\r\n  assert(n == 1 <<\
+    \ h);\r\n  static const ntt_info<mint> info;\r\n  if (!inverse) {\r\n    int len\
+    \ = 0; // a[i, i+(n>>len), i+2*(n>>len), ..] is transformed\r\n    while (len\
+    \ < h) {\r\n      if (h - len == 1) {\r\n        int p = 1 << (h - len - 1);\r\
+    \n        mint rot = 1;\r\n        FOR(s, 1 << len) {\r\n          int offset\
+    \ = s << (h - len);\r\n          FOR(i, p) {\r\n            auto l = a[i + offset];\r\
     \n            auto r = a[i + offset + p] * rot;\r\n            a[i + offset] =\
     \ l + r;\r\n            a[i + offset + p] = l - r;\r\n          }\r\n        \
     \  rot *= info.rate2[topbit(~s & -~s)];\r\n        }\r\n        len++;\r\n   \
@@ -436,64 +446,67 @@ data:
     \ modint998>::value, vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>&\
     \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
-    \ b);\r\n}\r\n#line 2 \"poly/multivar_convolution.hpp\"\ntemplate <typename mint>\r\
-    \nvc<mint> multivar_convolution(vi ns, vc<mint>& f, vc<mint>& g) {\r\n  /*\r\n\
-    \  (n0, n1, n2, ...) \u9032\u6CD5\u3067\u306E\u7E70\u308A\u4E0A\u304C\u308A\u306E\
-    \u306A\u3044\u8DB3\u3057\u7B97\u306B\u95A2\u3059\u308B\u7573\u307F\u8FBC\u307F\
-    \r\n\r\n  example : ns = (2, 3) \u2192 1 \u306E\u4F4D\u304B\u3089\u9806\u306B\
-    \ 2, 3 \u9032\u6CD5\r\n  [a0, a1, a2, a3, a4, a5] = [a(0,0), a(1,0), a(0,1), a(1,1),\
-    \ a(0,2), a(1,2)]\r\n  [b0, b1, b2, b3, b4, b5] = [b(0,0), b(1,0), b(0,1), b(1,1),\
-    \ b(0,2), b(1,2)]\r\n  c(0,2) = a(0,0)b(0,2) + a(0,1)b(0,1) + a(0,2)b(1,1)\r\n\
-    \  c4 = a0b4 + a2b2 + a4b0\r\n\r\n  example : ns = (2, 2, ..., 2, 2)\r\n  \u2192\
-    \ subset convolution \u304C\u3053\u308C\u306E\u7279\u6B8A\u30B1\u30FC\u30B9\r\n\
-    \  */\r\n  int K = len(ns);\r\n  int N = 1;\r\n  FOR(k, K) N *= ns[k];\r\n  assert(len(f)\
-    \ == N && len(g) == N);\r\n  if (N == 1) return {f[0] * g[0]};\r\n\r\n  auto chi\
-    \ = [&](ll i) -> ll {\r\n    int x = 0;\r\n    for (auto&& n : ns) {\r\n     \
-    \ i /= n;\r\n      x += i;\r\n    }\r\n    return x % K;\r\n  };\r\n\r\n  int\
-    \ sz = 1;\r\n  while (sz < N + N) sz *= 2;\r\n  vv(mint, ff, K, sz);\r\n  vv(mint,\
-    \ gg, K, sz);\r\n\r\n  FOR(i, N) {\r\n    auto k = chi(i);\r\n    ff[k][i] = f[i];\r\
-    \n    gg[k][i] = g[i];\r\n  }\r\n\r\n  FOR(k, K) {\r\n    ntt(ff[k], false);\r\
-    \n    ntt(gg[k], false);\r\n  }\r\n\r\n  vv(mint, hh, K, sz);\r\n  FOR(a, K) FOR(b,\
-    \ K) FOR(i, sz) { hh[(a + b) % K][i] += ff[a][i] * gg[b][i]; }\r\n  FOR(k, K)\
-    \ ntt(hh[k], true);\r\n\r\n  vc<mint> h(N);\r\n  FOR(i, N) h[i] = hh[chi(i)][i];\r\
-    \n  return h;\r\n}\r\n\r\n\r\ntemplate <typename mint>\r\nvc<vc<mint>> multivar_convolution_2d(vc<vc<mint>>&\
-    \ f, vc<vc<mint>>& g) {\r\n  ll H = len(f);\r\n  ll W = len(f[0]);\r\n  assert(len(g)\
-    \ == H);\r\n  assert(len(g[0]) == W);\r\n  vc<mint> F(H * W), G(H * W);\r\n  FOR(x,\
-    \ H) FOR(y, W) F[x + H * y] = f[x][y];\r\n  FOR(x, H) FOR(y, W) G[x + H * y] =\
-    \ g[x][y];\r\n  F = multivar_convolution(vi({H, W}), F, G);\r\n  vv(mint, h, H,\
-    \ W);\r\n  FOR(x, H) FOR(y, W) h[x][y] = F[x + H * y];\r\n  return h;\r\n}\r\n\
-    #line 7 \"test/library_checker/convolution/subset_convolution_multivar.test.cpp\"\
-    \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint,\
-    \ A, 1 << N);\r\n  VEC(mint, B, 1 << N);\r\n  vi ns(N, 2);\r\n  auto C = multivar_convolution(ns,\
-    \ A, B);\r\n  print(C);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n\
-    \  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
-    \n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/subset_convolution\"\r\n\
-    #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"mod/modint.hpp\"\
-    \r\n#include \"poly/multivar_convolution.hpp\"\r\n\r\nusing mint = modint998;\r\
-    \n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint, A, 1 << N);\r\n  VEC(mint, B,\
-    \ 1 << N);\r\n  vi ns(N, 2);\r\n  auto C = multivar_convolution(ns, A, B);\r\n\
-    \  print(C);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ b);\r\n}\r\n#line 2 \"seq/coef_of_rational_fps.hpp\"\n\r\ntemplate <typename\
+    \ mint>\r\nmint coef_of_rational_fps(vector<mint> A, vector<mint> B, ll N) {\r\
+    \n  if (len(A) == 0) return 0;\r\n  assert(len(A) < len(B));\r\n  while (len(A)\
+    \ + 1 < len(B)) A.eb(0);\r\n  assert(B[0] == mint(1));\r\n  assert(len(B) == len(A)\
+    \ + 1);\r\n  while (N) {\r\n    vc<mint> B1 = B;\r\n    FOR(i, len(B1)) if (i\
+    \ & 1) B1[i] = -B1[i];\r\n    A = convolution(A, B1);\r\n    B = convolution(B,\
+    \ B1);\r\n    FOR(i, len(B1)) B[i] = B[2 * i];\r\n    if (N & 1) {\r\n      FOR(i,\
+    \ len(B1) - 1) A[i] = A[2 * i | 1];\r\n    } else {\r\n      FOR(i, len(B1) -\
+    \ 1) A[i] = A[2 * i];\r\n    }\r\n    A.resize(len(B1) - 1);\r\n    B.resize(len(B1));\r\
+    \n    N /= 2;\r\n  }\r\n  return A[0];\r\n}\n#line 5 \"seq/interpolate_linear_rec.hpp\"\
+    \n\r\ntemplate <typename mint>\r\nmint interpolate_linear_rec(vector<mint>& A,\
+    \ ll N) {\r\n  auto G = find_linear_rec(A);\r\n  auto F = convolution(A, G);\r\
+    \n  F.resize(len(G) - 1);\r\n  return coef_of_rational_fps(F, G, N);\r\n}\r\n\
+    #line 6 \"test/yukicoder/1500_interpolate_linear.test.cpp\"\n\nusing mint = modint107;\n\
+    \nvoid solve() {\n  vc<mint> A(20);\n  set<pi> ss;\n  ss.insert(mp(0, 0));\n \
+    \ FOR(i, 20) {\n    A[i] = len(ss);\n    set<pi> newss;\n    for (auto&& [x, y]:\
+    \ ss) {\n      newss.insert(mp(x + 3, y + 0));\n      newss.insert(mp(x + 3, y\
+    \ + 2));\n      newss.insert(mp(x + 2, y + 3));\n      newss.insert(mp(x + 0,\
+    \ y + 3));\n      newss.insert(mp(x - 2, y + 3));\n      newss.insert(mp(x - 3,\
+    \ y + 2));\n      newss.insert(mp(x - 3, y + 0));\n      newss.insert(mp(x - 3,\
+    \ y - 2));\n      newss.insert(mp(x - 2, y - 3));\n      newss.insert(mp(x - 0,\
+    \ y - 3));\n      newss.insert(mp(x + 2, y - 3));\n      newss.insert(mp(x + 3,\
+    \ y - 2));\n    }\n    swap(ss, newss);\n  }\n  LL(N);\n  // print(find_linear_rec(A));\n\
+    \  // print(A);\n  print(interpolate_linear_rec(A, N));\n}\n\nsigned main() {\n\
+    \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+  code: "#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\
+    \n#include \"seq/find_linear_rec.hpp\"\n#include \"seq/interpolate_linear_rec.hpp\"\
+    \n\nusing mint = modint107;\n\nvoid solve() {\n  vc<mint> A(20);\n  set<pi> ss;\n\
+    \  ss.insert(mp(0, 0));\n  FOR(i, 20) {\n    A[i] = len(ss);\n    set<pi> newss;\n\
+    \    for (auto&& [x, y]: ss) {\n      newss.insert(mp(x + 3, y + 0));\n      newss.insert(mp(x\
+    \ + 3, y + 2));\n      newss.insert(mp(x + 2, y + 3));\n      newss.insert(mp(x\
+    \ + 0, y + 3));\n      newss.insert(mp(x - 2, y + 3));\n      newss.insert(mp(x\
+    \ - 3, y + 2));\n      newss.insert(mp(x - 3, y + 0));\n      newss.insert(mp(x\
+    \ - 3, y - 2));\n      newss.insert(mp(x - 2, y - 3));\n      newss.insert(mp(x\
+    \ - 0, y - 3));\n      newss.insert(mp(x + 2, y - 3));\n      newss.insert(mp(x\
+    \ + 3, y - 2));\n    }\n    swap(ss, newss);\n  }\n  LL(N);\n  // print(find_linear_rec(A));\n\
+    \  // print(A);\n  print(interpolate_linear_rec(A, N));\n}\n\nsigned main() {\n\
+    \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - mod/modint.hpp
-  - poly/multivar_convolution.hpp
+  - seq/find_linear_rec.hpp
+  - seq/interpolate_linear_rec.hpp
+  - seq/coef_of_rational_fps.hpp
   - poly/convolution.hpp
   - poly/convolution_naive.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
   isVerificationFile: true
-  path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
+  path: test/yukicoder/1500_interpolate_linear.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 19:22:25+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-05-11 21:07:53+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/convolution/subset_convolution_multivar.test.cpp
+documentation_of: test/yukicoder/1500_interpolate_linear.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/convolution/subset_convolution_multivar.test.cpp
-- /verify/test/library_checker/convolution/subset_convolution_multivar.test.cpp.html
-title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
+- /verify/test/yukicoder/1500_interpolate_linear.test.cpp
+- /verify/test/yukicoder/1500_interpolate_linear.test.cpp.html
+title: test/yukicoder/1500_interpolate_linear.test.cpp
 ---

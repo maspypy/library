@@ -268,7 +268,7 @@ data:
     \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
     \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
     }\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    using amint = ArbitraryModInt;\n#line 1 \"seq/find_linear_rec.hpp\"\ntemplate\
+    using amint = ArbitraryModInt;\n#line 2 \"seq/find_linear_rec.hpp\"\n\r\ntemplate\
     \ <typename mint>\r\nvector<mint> find_linear_rec(vector<mint>& A) {\r\n  int\
     \ N = len(A);\r\n  vc<mint> B = {1}, C = {1};\r\n  int l = 0, m = 1;\r\n  mint\
     \ p = 1;\r\n  FOR(i, N) {\r\n    mint d = A[i];\r\n    FOR3(j, 1, l + 1) { d +=\
@@ -299,7 +299,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/find_linear_recurrence.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 19:22:25+09:00'
+  timestamp: '2022-05-11 21:07:53+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/find_linear_recurrence.test.cpp

@@ -53,7 +53,7 @@ data:
   - icon: ':x:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution.hpp
     title: poly/multivar_convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -138,7 +138,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution.test.cpp
     title: test/library_checker/convolution/subset_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - icon: ':x:'
@@ -264,6 +264,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1145_sum_of_powers.test.cpp
     title: test/yukicoder/1145_sum_of_powers.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1500_interpolate_linear.test.cpp
+    title: test/yukicoder/1500_interpolate_linear.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1810_matpow.test.cpp
     title: test/yukicoder/1810_matpow.test.cpp
@@ -476,6 +479,7 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/749_lazysegtree.test.cpp
+  - test/yukicoder/1500_interpolate_linear.test.cpp
   - test/yukicoder/1810_matpow.test.cpp
   - test/yukicoder/1844_interpolate_c_rec.test.cpp
   - test/yukicoder/502_p_rec.test.cpp

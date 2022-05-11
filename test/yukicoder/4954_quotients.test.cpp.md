@@ -2,34 +2,34 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: ds/hashmap.hpp
-    title: ds/hashmap.hpp
-  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
+  - icon: ':x:'
+    path: other/floor_range.hpp
+    title: other/floor_range.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/associative_array
+    PROBLEM: https://yukicoder.me/problems/4954
     links:
-    - https://judge.yosupo.jp/problem/associative_array
-  bundledCode: "#line 1 \"test/library_checker/datastructure/associative_array_hashmap.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/associative_array\"\r\n#line\
-    \ 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\n\
-    using ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
-    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://yukicoder.me/problems/4954
+  bundledCode: "#line 1 \"test/yukicoder/4954_quotients.test.cpp\"\n#define PROBLEM\
+    \ \"https://yukicoder.me/problems/4954\"\n#line 1 \"my_template.hpp\"\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -192,52 +192,34 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 1 \"ds/hashmap.hpp\"\ntemplate <typename Val, int LOG\
-    \ = 20>\r\nstruct HashMapLL {\r\n  int N;\r\n  ll* keys;\r\n  Val* vals;\r\n \
-    \ vc<int> IDS;\r\n  bitset<1 << LOG> used;\r\n  const int shift;\r\n  const uint64_t\
-    \ r = 11995408973635179863ULL;\r\n  HashMapLL()\r\n      : N(1 << LOG), keys(new\
-    \ ll[N]), vals(new Val[N]), shift(64 - __lg(N)) {}\r\n  int hash(ll x) {\r\n \
-    \   static const uint64_t FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
-    \n    return (uint64_t(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
-    \ ll& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && keys[i] !=\
-    \ key; (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
-    \ ll& key) {\r\n    int i = index(key);\r\n    if (!used[i]) IDS.eb(i), used[i]\
-    \ = 1, keys[i] = key, vals[i] = Val{};\r\n    return vals[i];\r\n  }\r\n\r\n \
-    \ bool contain(const ll& key) {\r\n    int i = index(key);\r\n    return used[i]\
-    \ && keys[i] == key;\r\n  }\r\n\r\n  bool count(const ll& key) {\r\n    int i\
-    \ = index(key);\r\n    return used[i] && keys[i] == key;\r\n  }\r\n\r\n  void\
-    \ reset() {\r\n    for (auto&& i: IDS) used[i] = 0;\r\n    IDS.clear();\r\n  }\r\
-    \n};\r\n\r\ntemplate <typename KEY, typename VAL>\r\nstruct HashMap {\r\n  HashMapLL<VAL,\
-    \ 20> MP;\r\n  function<ll(KEY)> f;\r\n  HashMap(function<ll(KEY)> f) : MP(),\
-    \ f(f) {}\r\n  int index(const KEY& key) { return MP.index(f(key)); }\r\n\r\n\
-    \  VAL& operator[](const KEY& key) { return MP[f(key)]; }\r\n\r\n  bool contain(const\
-    \ KEY& key) { return MP.contain(f(key)); }\r\n\r\n  bool count(const KEY& key)\
-    \ { return MP.count(f(key)); }\r\n\r\n  void reset() { MP.reset(); }\r\n};\r\n\
-    #line 5 \"test/library_checker/datastructure/associative_array_hashmap.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(Q);\r\n  HashMapLL<ll> A;\r\n  FOR(_, Q) {\r\n  \
-    \  LL(t);\r\n    if (t == 0) {\r\n      LL(k, v);\r\n      A[k] = v;\r\n    }\
-    \ else {\r\n      LL(k);\r\n      print(A[k]);\r\n    }\r\n  }\r\n}\r\n\r\nsigned\
-    \ main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/associative_array\"\r\n\
-    #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/hashmap.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  LL(Q);\r\n  HashMapLL<ll> A;\r\n  FOR(_, Q) {\r\n\
-    \    LL(t);\r\n    if (t == 0) {\r\n      LL(k, v);\r\n      A[k] = v;\r\n   \
-    \ } else {\r\n      LL(k);\r\n      print(A[k]);\r\n    }\r\n  }\r\n}\r\n\r\n\
-    signed main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ { yes(!t); }\r\n#line 1 \"other/floor_range.hpp\"\n#define floor_range(q, l,\
+    \ r, n) \\\r\n  for (ll q = 1, l = (n) / (q + 1) + 1, r = (n) / q + 1;\\\r\n \
+    \ q <= (n); q = (q == (n) ? (n) + 1 : (n) / ((n) / (q + 1))), l = (n) / (q + 1)\
+    \ + 1, r = (n) / q + 1)\r\n#line 5 \"test/yukicoder/4954_quotients.test.cpp\"\n\
+    \nvoid solve() {\n  LL(N);\n  ll ANS = 0;\n  floor_range(q, l, r, N)++ ANS;\n\
+    \  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
+    \n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/4954\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"other/floor_range.hpp\"\n\nvoid solve()\
+    \ {\n  LL(N);\n  ll ANS = 0;\n  floor_range(q, l, r, N)++ ANS;\n  print(ANS);\n\
+    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
+    \ return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/hashmap.hpp
+  - other/floor_range.hpp
   isVerificationFile: true
-  path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
+  path: test/yukicoder/4954_quotients.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 19:22:25+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-05-11 21:07:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/datastructure/associative_array_hashmap.test.cpp
+documentation_of: test/yukicoder/4954_quotients.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/datastructure/associative_array_hashmap.test.cpp
-- /verify/test/library_checker/datastructure/associative_array_hashmap.test.cpp.html
-title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
+- /verify/test/yukicoder/4954_quotients.test.cpp
+- /verify/test/yukicoder/4954_quotients.test.cpp.html
+title: test/yukicoder/4954_quotients.test.cpp
 ---
