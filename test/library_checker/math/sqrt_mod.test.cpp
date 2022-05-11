@@ -7,7 +7,7 @@ using mint = amint;
 
 void solve() {
   LL(T);
-  FOR_(T) {
+  FOR(T) {
     LL(y0, p);
     mint::set_mod(p);
     mint y = y0;

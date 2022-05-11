@@ -14,7 +14,7 @@ void solve() {
   FOR(i, m) sum_hi[i] -= sum_hi_0[i];
   auto f = [&](ll p, ll e) -> i128 {
     ll x = p - 1;
-    FOR_(e - 1) x *= p;
+    FOR(e - 1) x *= p;
     return x;
   };
   int mod = 998244353;
