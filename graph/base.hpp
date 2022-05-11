@@ -54,7 +54,7 @@ struct Graph {
   void read_tree(bool wt = false, int off = 1) { read_graph(N - 1, wt, off); }
 
   void read_graph(int M, bool wt = false, int off = 1) {
-    FOR_(M) {
+    FOR(M) {
       INT(a, b);
       a -= off, b -= off;
       if (!wt) {
