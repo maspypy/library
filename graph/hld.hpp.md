@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/dualtreemonoid.hpp
     title: graph/dualtreemonoid.hpp
   - icon: ':warning:'
@@ -14,7 +14,7 @@ data:
   - icon: ':x:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':warning:'
@@ -29,14 +29,14 @@ data:
   - icon: ':x:'
     path: graph/treegroup.hpp
     title: graph/treegroup.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
   - icon: ':x:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A_mst.test.cpp
     title: test/aoj/GRL_2_A_mst.test.cpp
   - icon: ':x:'
@@ -80,7 +80,7 @@ data:
     title: test/yukicoder/529_two_edge.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -99,7 +99,7 @@ data:
     \ N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n\
     \    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool wt = false,\
     \ int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int M, bool\
-    \ wt = false, int off = 1) {\n    FOR_(M) {\n      INT(a, b);\n      a -= off,\
+    \ wt = false, int off = 1) {\n    FOR(M) {\n      INT(a, b);\n      a -= off,\
     \ b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n        T c;\n\
     \        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n  }\n\n\
     \  void read_parent(int off = 1) {\n    FOR3(v, 1, N) {\n      INT(p);\n     \
@@ -244,8 +244,8 @@ data:
   - graph/minimum_spanning_tree.hpp
   - graph/two_edge_component.hpp
   - graph/lazytreemonoid.hpp
-  timestamp: '2022-04-29 17:34:08+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-05-11 20:22:42+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/529_two_edge.test.cpp
   - test/yukicoder/1641_tree_abel.test.cpp

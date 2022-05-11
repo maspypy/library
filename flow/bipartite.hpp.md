@@ -1,27 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2251_dag_path_cover.test.cpp
     title: test/aoj/2251_dag_path_cover.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2251_maxantichain.test.cpp
     title: test/aoj/2251_maxantichain.test.cpp
   - icon: ':x:'
@@ -32,7 +32,7 @@ data:
     title: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -51,7 +51,7 @@ data:
     \ N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n\
     \    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool wt = false,\
     \ int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int M, bool\
-    \ wt = false, int off = 1) {\n    FOR_(M) {\n      INT(a, b);\n      a -= off,\
+    \ wt = false, int off = 1) {\n    FOR(M) {\n      INT(a, b);\n      a -= off,\
     \ b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n        T c;\n\
     \        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n  }\n\n\
     \  void read_parent(int off = 1) {\n    FOR3(v, 1, N) {\n      INT(p);\n     \
@@ -162,8 +162,8 @@ data:
   requiredBy:
   - graph/maximum_antichain.hpp
   - graph/dag_path_cover.hpp
-  timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-05-11 20:22:42+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1479_bipartite_vertex_cover.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp

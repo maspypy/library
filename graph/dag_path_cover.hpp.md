@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/degree.hpp
     title: graph/degree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2251_dag_path_cover.test.cpp
     title: test/aoj/2251_dag_path_cover.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -45,7 +45,7 @@ data:
     \ N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n\
     \    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool wt = false,\
     \ int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int M, bool\
-    \ wt = false, int off = 1) {\n    FOR_(M) {\n      INT(a, b);\n      a -= off,\
+    \ wt = false, int off = 1) {\n    FOR(M) {\n      INT(a, b);\n      a -= off,\
     \ b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n        T c;\n\
     \        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n  }\n\n\
     \  void read_parent(int off = 1) {\n    FOR3(v, 1, N) {\n      INT(p);\n     \
@@ -179,8 +179,8 @@ data:
   isVerificationFile: false
   path: graph/dag_path_cover.hpp
   requiredBy: []
-  timestamp: '2022-04-30 00:51:18+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-05-11 20:22:42+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/2251_dag_path_cover.test.cpp
 documentation_of: graph/dag_path_cover.hpp

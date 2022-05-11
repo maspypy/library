@@ -13,16 +13,16 @@ data:
   - icon: ':x:'
     path: alg/lazy_reverse.hpp
     title: alg/lazy_reverse.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid_reverse.hpp
     title: alg/monoid_reverse.hpp
   - icon: ':question:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
   - icon: ':x:'
@@ -296,7 +296,7 @@ data:
     \ && 0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm,\
     \ to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool\
     \ wt = false, int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int\
-    \ M, bool wt = false, int off = 1) {\n    FOR_(M) {\n      INT(a, b);\n      a\
+    \ M, bool wt = false, int off = 1) {\n    FOR(M) {\n      INT(a, b);\n      a\
     \ -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n  \
     \      T c;\n        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n\
     \  }\n\n  void read_parent(int off = 1) {\n    FOR3(v, 1, N) {\n      INT(p);\n\
@@ -456,7 +456,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 19:22:25+09:00'
+  timestamp: '2022-05-11 20:22:42+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
