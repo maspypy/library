@@ -11,7 +11,7 @@ void solve() {
   Graph G(N);
   FOR(v, N) {
     LL(k);
-    FOR_(k) {
+    FOR(k) {
       LL(to);
       G.add(v, to);
     }

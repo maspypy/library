@@ -15,7 +15,7 @@ void solve() {
 
   deque<tuple<ll, ll, ll>> end;
 
-  FOR_(Q) {
+  FOR(Q) {
     LL(t, c, x, y);
     --x, --y;
     while (len(end) && get<2>(end.front()) <= t) {
@@ -45,7 +45,7 @@ signed main() {
 
   ll T = 1;
   // LL(T);
-  FOR(_, T) solve();
+  FOR(T) solve();
 
   return 0;
 }

@@ -11,7 +11,7 @@ void solve() {
     LL(u);
     assert(u == v);
     LL(k);
-    FOR_(k) {
+    FOR(k) {
       LL(a, b);
       G.add(v, a, b);
     }
@@ -28,7 +28,7 @@ signed main() {
 
   ll T = 1;
   // LL(T);
-  FOR(_, T) solve();
+  FOR(T) solve();
 
   return 0;
 }
