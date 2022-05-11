@@ -92,7 +92,7 @@ vc<Gaussian_Integer<INT>> solve_norm_equation_factor(vc<pi> pfs) {
   for (auto &&[p, e]: pfs) {
     if (p % 4 == 3) {
       INT pp = 1;
-      FOR_(e / 2) pp *= p;
+      FOR(e / 2) pp *= p;
       for (auto &&g: res) {
         g.x *= pp;
         g.y *= pp;

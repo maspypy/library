@@ -23,10 +23,10 @@ vc<mint> fps_exp_sparse(vc<mint>& f) {
   int N = len(f);
   // df を持たせる
   vc<pair<int, mint>> dat;
-  FOR3(i, 1, N) if (f[i] != mint(0)) dat.eb(i - 1, mint(i) * f[i]);
+  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i - 1, mint(i) * f[i]);
   vc<mint> F(N);
   F[0] = 1;
-  FOR3(n, 1, N) {
+  FOR(n, 1, N) {
     mint rhs = 0;
     for (auto&& [k, fk]: dat) {
       if (k > n - 1) break;
@@ -51,7 +51,7 @@ enable_if_t<!is_same<mint, modint998>::value, vc<mint>> fps_exp_dense(
 
   vc<mint> p;
 
-  FOR_(LOG) {
+  FOR(LOG) {
     p = convolution(f, g);
     p.resize(m);
     p = convolution(p, g);

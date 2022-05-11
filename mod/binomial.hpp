@@ -18,14 +18,14 @@ struct Binomial {
     FOR(s, S) {
       auto [p, e] = pf[s];
       pp[s] = 1;
-      FOR_(e) pp[s] *= p;
+      FOR(e) pp[s] *= p;
       auto& F = fact[s];
       // mod pp での fact の周期
       F.resize(pp[s] * 2);
       F[0] = 1;
       fast_div fd_p(p);
       fast_div fd_pp(pp[s]);
-      FOR3(x, 1, len(F)) {
+      FOR(x, 1, len(F)) {
         if (x % fd_p == 0)
           F[x] = F[x - 1];
         else
@@ -73,7 +73,7 @@ struct Binomial {
       ll y = b.se * c.se % fd_pp;
       int phi = pp[s] - pp[s] / pf[s].fi;
       x = x * mod_pow(y, phi - 1, fd_pp) % fd_pp;
-      FOR_(min(e, pf[s].se)) x *= p;
+      FOR(min(e, pf[s].se)) x *= p;
       x = x % fd_pp;
       ANS += x * crt_coef[s];
     }
