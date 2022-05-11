@@ -5,10 +5,16 @@ data:
   - icon: ':x:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
+  - icon: ':x:'
+    path: nt/crt.hpp
+    title: nt/crt.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/187_crt.test.cpp
+    title: test/yukicoder/187_crt.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -26,10 +32,12 @@ data:
   isVerificationFile: false
   path: mod/mod_inv.hpp
   requiredBy:
+  - nt/crt.hpp
   - mod/mod_kth_root.hpp
   timestamp: '2022-04-27 05:05:30+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/yukicoder/187_crt.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
 documentation_of: mod/mod_inv.hpp
 layout: document

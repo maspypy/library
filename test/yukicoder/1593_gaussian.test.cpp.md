@@ -252,7 +252,7 @@ data:
     \      ll e = 0;\n      do {\n        n /= p, e += 1;\n      } while (n % p ==\
     \ 0);\n      pf.eb(p, e);\n    }\n  }\n  while (n > 1) {\n    ll p = find_prime_factor(n);\n\
     \    ll e = 0;\n    do {\n      n /= p, e += 1;\n    } while (n % p == 0);\n \
-    \   pf.eb(p, e);\n  }\n  sort(all(pf));\n  return pf;\n}\n#line 1 \"mod/fast_div.hpp\"\
+    \   pf.eb(p, e);\n  }\n  sort(all(pf));\n  return pf;\n}\n#line 2 \"mod/fast_div.hpp\"\
     \nstruct fast_div {\r\n  // Min25 https://judge.yosupo.jp/submission/46090\r\n\
     \  // \u540C\u3058\u5B9A\u6570\u3067\u4F55\u5EA6\u3082\u9664\u7B97\u3059\u308B\
     \u3068\u304D\u306E\u9AD8\u901F\u5316\u306B\u4F7F\u3048\u308B\r\n  using i64 =\
@@ -346,7 +346,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1593_gaussian.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 20:46:58+09:00'
+  timestamp: '2022-05-12 00:26:23+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/1593_gaussian.test.cpp

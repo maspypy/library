@@ -14,6 +14,9 @@ data:
   - icon: ':x:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
+  - icon: ':x:'
+    path: nt/lcm.hpp
+    title: nt/lcm.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/library_checker/math/kth_root_mod.test.cpp
@@ -21,12 +24,15 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1593_gaussian.test.cpp
     title: test/yukicoder/1593_gaussian.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/187_crt.test.cpp
+    title: test/yukicoder/187_crt.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"mod/fast_div.hpp\"\nstruct fast_div {\r\n  // Min25 https://judge.yosupo.jp/submission/46090\r\
+  bundledCode: "#line 2 \"mod/fast_div.hpp\"\nstruct fast_div {\r\n  // Min25 https://judge.yosupo.jp/submission/46090\r\
     \n  // \u540C\u3058\u5B9A\u6570\u3067\u4F55\u5EA6\u3082\u9664\u7B97\u3059\u308B\
     \u3068\u304D\u306E\u9AD8\u901F\u5316\u306B\u4F7F\u3048\u308B\r\n  using i64 =\
     \ long long;\r\n  using u64 = unsigned long long;\r\n  using u128 = __uint128_t;\r\
@@ -56,12 +62,14 @@ data:
   path: mod/mod_pow.hpp
   requiredBy:
   - nt/gaussian_integers.hpp
+  - nt/lcm.hpp
   - mod/mod_kth_root.hpp
   - mod/primitive_root.hpp
-  timestamp: '2022-04-27 05:05:30+09:00'
+  timestamp: '2022-05-12 00:26:23+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1593_gaussian.test.cpp
+  - test/yukicoder/187_crt.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
 documentation_of: mod/mod_pow.hpp
 layout: document

@@ -17,6 +17,9 @@ data:
   - icon: ':x:'
     path: mod/tetration.hpp
     title: mod/tetration.hpp
+  - icon: ':x:'
+    path: nt/crt.hpp
+    title: nt/crt.hpp
   - icon: ':heavy_check_mark:'
     path: nt/divisors.hpp
     title: nt/divisors.hpp
@@ -26,6 +29,9 @@ data:
   - icon: ':x:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
+  - icon: ':x:'
+    path: nt/lcm.hpp
+    title: nt/lcm.hpp
   - icon: ':warning:'
     path: nt/zeta_on_divisors.hpp
     title: nt/zeta_on_divisors.hpp
@@ -51,6 +57,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1593_gaussian.test.cpp
     title: test/yukicoder/1593_gaussian.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/187_crt.test.cpp
+    title: test/yukicoder/187_crt.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -129,8 +138,10 @@ data:
   path: nt/factor.hpp
   requiredBy:
   - nt/gaussian_integers.hpp
+  - nt/lcm.hpp
   - nt/zeta_on_divisors.hpp
   - nt/euler_phi.hpp
+  - nt/crt.hpp
   - nt/divisors.hpp
   - mod/mod_kth_root.hpp
   - mod/primitive_root.hpp
@@ -140,6 +151,7 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1593_gaussian.test.cpp
+  - test/yukicoder/187_crt.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/binomial_coefficient.test.cpp
   - test/library_checker/math/tetration.test.cpp
