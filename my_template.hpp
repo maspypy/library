@@ -35,11 +35,20 @@ using pqg = priority_queue<T, vector<T>, greater<T>>;
       a, vector<vector<vector<type>>>(       \
              b, vector<vector<type>>(c, vector<type>(__VA_ARGS__))))
 
-#define FOR_(n) for (ll _ = 0; (_) < (ll)(n); ++(_))
-#define FOR(i, n) for (ll i = 0; (i) < (ll)(n); ++(i))
-#define FOR3(i, m, n) for (ll i = (m); (i) < (ll)(n); ++(i))
-#define FOR_R(i, n) for (ll i = (ll)(n)-1; (i) >= 0; --(i))
-#define FOR3_R(i, m, n) for (ll i = (ll)(n)-1; (i) >= (ll)(m); --(i))
+// https://trap.jp/post/1224/
+#define FOR1(a) for (ll i = 0; i < ll(a); ++i)
+#define FOR2(i, a) for (ll i = 0; i < ll(a); ++i)
+#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)
+#define FOR4(i, a, b, c) for (ll i = a; i < ll(b); i += (c))
+#define FOR1_R(a) for (ll i = (a)-1; i >= ll(0); --i)
+#define FOR2_R(i, a) for (ll i = (a)-1; i >= ll(0); --i)
+#define FOR3_R(i, a, b) for (ll i = (b)-1; i >= ll(a); --i)
+#define FOR4_R(i, a, b, c) for (ll i = (b)-1; i >= ll(a); i -= (c))
+#define overload4(a, b, c, d, e, ...) e
+#define FOR(...) overload4(__VA_ARGS__, FOR4, FOR3, FOR2, FOR1)(__VA_ARGS__)
+#define FOR_R(...) \
+  overload4(__VA_ARGS__, FOR4_R, FOR3_R, FOR2_R, FOR1_R)(__VA_ARGS__)
+
 #define FOR_subset(t, s) for (ll t = s; t >= 0; t = (t == 0 ? -1 : (t - 1) & s))
 #define all(x) x.begin(), x.end()
 #define len(x) ll(x.size())
@@ -59,6 +68,17 @@ T SUM(vector<T> &A) {
   for (auto &&a: A) sum += a;
   return sum;
 }
+
+template <class... T>
+constexpr auto min(T... a) {
+  return min(initializer_list<common_type_t<T...>>{a...});
+}
+
+template <class... T>
+constexpr auto max(T... a) {
+  return max(initializer_list<common_type_t<T...>>{a...});
+}
+
 #define MIN(v) *min_element(all(v))
 #define MAX(v) *max_element(all(v))
 #define LB(c, x) distance((c).begin(), lower_bound(all(c), (x)))
@@ -117,7 +137,7 @@ inline bool chmin(T &a, const S &b) {
   return (a > b ? a = b, 1 : 0);
 }
 
-vi s_to_vi(const string& S, char first_char) {
+vi s_to_vi(const string &S, char first_char) {
   vi A(S.size());
   FOR(i, S.size()) { A[i] = S[i] - first_char; }
   return A;
