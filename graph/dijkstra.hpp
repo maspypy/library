@@ -27,8 +27,8 @@ pair<vc<T>, vc<int>> dijkstra(Graph& G, int v, T INF) {
 }
 
 // 多点スタート。[dist, par, root]
-template <typename T, T INF, typename Graph>
-tuple<vc<T>, vc<int>, vc<int>> dijkstra(Graph& G, vc<int> vs) {
+template <typename T, typename Graph>
+tuple<vc<T>, vc<int>, vc<int>> dijkstra(Graph& G, vc<int> vs, T INF) {
   assert(G.is_prepared());
   int N = G.N;
   vc<ll> dist(N, INF);
