@@ -60,8 +60,5 @@
 "test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp": "2022-05-13 00:57:52 +0900",
 "test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp": "2022-05-13 00:57:52 +0900",
 "test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp": "2022-05-13 00:57:52 +0900",
-"test/library_checker/datastructure/predecessor_problem.test.cpp": "2022-05-13 00:57:52 +0900",
-"test/library_checker/datastructure/queue_operate_all_composite.test.cpp": "2022-05-13 00:57:52 +0900",
-"test/library_checker/datastructure/range_affine_range_sum.test.cpp": "2022-05-13 00:57:52 +0900",
-"test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp": "2022-05-13 00:57:52 +0900"
+"test/library_checker/datastructure/predecessor_problem.test.cpp": "2022-05-13 00:57:52 +0900"
 }
