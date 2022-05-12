@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/cartesian_tree.hpp
     title: ds/cartesian_tree.hpp
   - icon: ':question:'

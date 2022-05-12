@@ -22,31 +22,35 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/coef_of_rational_fps.hpp
     title: seq/coef_of_rational_fps.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    links: []
-  bundledCode: "#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace\
-    \ std;\n\nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\n\
-    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    PROBLEM: https://yukicoder.me/problems/no/1500
+    links:
+    - https://yukicoder.me/problems/no/1500
+  bundledCode: "#line 1 \"test/yukicoder/1500_interpolate_linear.test.cpp\"\n#define\
+    \ PROBLEM \"https://yukicoder.me/problems/no/1500\"\n#line 1 \"my_template.hpp\"\
+    \n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
+    using pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\n\
+    using u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\n\
+    using vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate\
+    \ <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -460,7 +464,7 @@ data:
     \ ll N, int off) {\r\n  if(N < len(A)) return A[N];\r\n  A = {A.begin() + off,\
     \ A.end()};\r\n  N -= off;\r\n  auto G = find_linear_rec(A);\r\n  auto F = convolution(A,\
     \ G);\r\n  F.resize(len(G) - 1);\r\n  return coef_of_rational_fps(F, G, N);\r\n\
-    }\r\n#line 6 \"test/yukicoder/1500_interpolate_linear.test.cpp\"\n\nusing mint\
+    }\r\n#line 7 \"test/yukicoder/1500_interpolate_linear.test.cpp\"\n\nusing mint\
     \ = modint107;\n\nvoid solve() {\n  vc<mint> A(20);\n  set<pi> ss;\n  ss.insert(mp(0,\
     \ 0));\n  FOR(i, 20) {\n    A[i] = len(ss);\n    set<pi> newss;\n    for (auto&&\
     \ [x, y]: ss) {\n      newss.insert(mp(x + 3, y + 0));\n      newss.insert(mp(x\
@@ -473,17 +477,18 @@ data:
     \  // print(A);\n  print(interpolate_linear_rec(A, N, 0));\n}\n\nsigned main()\
     \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
     \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
-  code: "#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\
-    \n#include \"seq/find_linear_rec.hpp\"\n#include \"seq/interpolate_linear_rec.hpp\"\
-    \n\nusing mint = modint107;\n\nvoid solve() {\n  vc<mint> A(20);\n  set<pi> ss;\n\
-    \  ss.insert(mp(0, 0));\n  FOR(i, 20) {\n    A[i] = len(ss);\n    set<pi> newss;\n\
-    \    for (auto&& [x, y]: ss) {\n      newss.insert(mp(x + 3, y + 0));\n      newss.insert(mp(x\
-    \ + 3, y + 2));\n      newss.insert(mp(x + 2, y + 3));\n      newss.insert(mp(x\
-    \ + 0, y + 3));\n      newss.insert(mp(x - 2, y + 3));\n      newss.insert(mp(x\
-    \ - 3, y + 2));\n      newss.insert(mp(x - 3, y + 0));\n      newss.insert(mp(x\
-    \ - 3, y - 2));\n      newss.insert(mp(x - 2, y - 3));\n      newss.insert(mp(x\
-    \ - 0, y - 3));\n      newss.insert(mp(x + 2, y - 3));\n      newss.insert(mp(x\
-    \ + 3, y - 2));\n    }\n    swap(ss, newss);\n  }\n  LL(N);\n  // print(find_linear_rec(A));\n\
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1500\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n#include \"seq/find_linear_rec.hpp\"\
+    \n#include \"seq/interpolate_linear_rec.hpp\"\n\nusing mint = modint107;\n\nvoid\
+    \ solve() {\n  vc<mint> A(20);\n  set<pi> ss;\n  ss.insert(mp(0, 0));\n  FOR(i,\
+    \ 20) {\n    A[i] = len(ss);\n    set<pi> newss;\n    for (auto&& [x, y]: ss)\
+    \ {\n      newss.insert(mp(x + 3, y + 0));\n      newss.insert(mp(x + 3, y + 2));\n\
+    \      newss.insert(mp(x + 2, y + 3));\n      newss.insert(mp(x + 0, y + 3));\n\
+    \      newss.insert(mp(x - 2, y + 3));\n      newss.insert(mp(x - 3, y + 2));\n\
+    \      newss.insert(mp(x - 3, y + 0));\n      newss.insert(mp(x - 3, y - 2));\n\
+    \      newss.insert(mp(x - 2, y - 3));\n      newss.insert(mp(x - 0, y - 3));\n\
+    \      newss.insert(mp(x + 2, y - 3));\n      newss.insert(mp(x + 3, y - 2));\n\
+    \    }\n    swap(ss, newss);\n  }\n  LL(N);\n  // print(find_linear_rec(A));\n\
     \  // print(A);\n  print(interpolate_linear_rec(A, N, 0));\n}\n\nsigned main()\
     \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
     \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
@@ -501,8 +506,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1500_interpolate_linear.test.cpp
   requiredBy: []
-  timestamp: '2022-05-12 11:09:10+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-12 11:49:48+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/1500_interpolate_linear.test.cpp
 layout: document

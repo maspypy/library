@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/cartesian_tree.hpp
     title: ds/cartesian_tree.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/cartesian_tree
@@ -215,14 +215,15 @@ data:
     \ res = 0;\r\n    FOR(i, n) {\r\n      auto [l, r, h] = maximum_rectangle(i);\r\
     \n      chmax(res, (r - l) * h);\r\n    }\r\n    return res;\r\n  }\r\n};\r\n\
     #line 5 \"test/library_checker/tree/cartesian_tree.test.cpp\"\n\r\nvoid solve()\
-    \ {\r\n  LL(N);\r\n  VEC(int, A, N);\r\n  CartesianTree CT(A);\r\n  auto& ANS\
-    \ = CT.par;\r\n  FOR(i, N) if (ANS[i] == -1) ANS[i] = i;\r\n  print(ANS);\r\n\
-    }\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
+    \ {\r\n  LL(N);\r\n  VEC(int, A, N);\r\n  CartesianTree<int, 1> CT(A);\r\n  auto&\
+    \ ANS = CT.par;\r\n  FOR(i, N) if (ANS[i] == -1) ANS[i] = i;\r\n  print(ANS);\r\
+    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/cartesian_tree\"\r\n#include\
     \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/cartesian_tree.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(int, A, N);\r\n  CartesianTree CT(A);\r\
-    \n  auto& ANS = CT.par;\r\n  FOR(i, N) if (ANS[i] == -1) ANS[i] = i;\r\n  print(ANS);\r\
-    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
+    \r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(int, A, N);\r\n  CartesianTree<int,\
+    \ 1> CT(A);\r\n  auto& ANS = CT.par;\r\n  FOR(i, N) if (ANS[i] == -1) ANS[i] =\
+    \ i;\r\n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\
+    \n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -230,8 +231,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/tree/cartesian_tree.test.cpp
   requiredBy: []
-  timestamp: '2022-05-12 11:09:35+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-12 11:49:43+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/tree/cartesian_tree.test.cpp
 layout: document

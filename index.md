@@ -163,7 +163,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/binarytrie.hpp
       title: ds/binarytrie.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/cartesian_tree.hpp
       title: ds/cartesian_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -752,19 +752,19 @@ data:
       title: poly/sharp_p_subset_sum.hpp
   - name: seq
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: seq/coef_of_rational_fps.hpp
       title: seq/coef_of_rational_fps.hpp
     - icon: ':warning:'
       path: seq/enumerate_partitions.hpp
       title: seq/enumerate_partitions.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: seq/find_linear_rec.hpp
       title: seq/find_linear_rec.hpp
     - icon: ':warning:'
       path: seq/gray_code.hpp
       title: seq/gray_code.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: seq/interpolate_linear_rec.hpp
       title: seq/interpolate_linear_rec.hpp
     - icon: ':heavy_check_mark:'
@@ -1326,7 +1326,7 @@ data:
       title: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - name: test/library_checker/tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/tree/cartesian_tree.test.cpp
       title: test/library_checker/tree/cartesian_tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1391,7 +1391,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
       title: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1500_interpolate_linear.test.cpp
       title: test/yukicoder/1500_interpolate_linear.test.cpp
     - icon: ':heavy_check_mark:'
