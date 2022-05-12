@@ -6,7 +6,7 @@
 void solve() {
   LL(N);
   VEC(ll, A, N);
-  CartesianTree<ll> CT(A);
+  CartesianTree<ll, 1> CT(A);
   print(CT.max_rectangle_area());
 }
 
