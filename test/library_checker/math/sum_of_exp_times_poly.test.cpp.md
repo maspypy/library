@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: alg/group_mul.hpp
     title: alg/group_mul.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/swag.hpp
     title: ds/swag.hpp
   - icon: ':question:'
