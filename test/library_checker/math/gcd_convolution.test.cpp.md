@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/gcd_convolution.hpp
     title: nt/gcd_convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   - icon: ':question:'

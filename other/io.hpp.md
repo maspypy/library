@@ -465,67 +465,67 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036_seg_maxright_minleft.test.cpp
     title: test/yukicoder/1036_seg_maxright_minleft.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036_swag.test.cpp
     title: test/yukicoder/1036_swag.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1038_centroid.test.cpp
     title: test/yukicoder/1038_centroid.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1077_slope.test.cpp
     title: test/yukicoder/1077_slope.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1142_xor_conv.test.cpp
     title: test/yukicoder/1142_xor_conv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1145_sum_of_powers.test.cpp
     title: test/yukicoder/1145_sum_of_powers.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/114_steriner_tree.test.cpp
     title: test/yukicoder/114_steriner_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1170_online_uf.test.cpp
     title: test/yukicoder/1170_online_uf.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1170_range_to_range.test.cpp
     title: test/yukicoder/1170_range_to_range.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1288_mcf_dag_negative.test.cpp
     title: test/yukicoder/1288_mcf_dag_negative.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1301_mcf.test.cpp
     title: test/yukicoder/1301_mcf.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1320_mincostcycle.test.cpp
     title: test/yukicoder/1320_mincostcycle.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1332_range_freq.test.cpp
     title: test/yukicoder/1332_range_freq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1344_warshall_floyd.test.cpp
     title: test/yukicoder/1344_warshall_floyd.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
     title: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1500_interpolate_linear.test.cpp
     title: test/yukicoder/1500_interpolate_linear.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1593_gaussian.test.cpp
     title: test/yukicoder/1593_gaussian.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1641_tree_abel.test.cpp
     title: test/yukicoder/1641_tree_abel.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1643_subseq.test.cpp
     title: test/yukicoder/1643_subseq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1666_integer_kth_root.test.cpp
     title: test/yukicoder/1666_integer_kth_root.test.cpp
   - icon: ':x:'
     path: test/yukicoder/177_maxflow.test.cpp
     title: test/yukicoder/177_maxflow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/17_warshall_floyd.test.cpp
     title: test/yukicoder/17_warshall_floyd.test.cpp
   - icon: ':x:'
@@ -534,13 +534,13 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1844_interpolate_c_rec.test.cpp
     title: test/yukicoder/1844_interpolate_c_rec.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/184_xorbasis.test.cpp
     title: test/yukicoder/184_xorbasis.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1868_range_to_range.test.cpp
     title: test/yukicoder/1868_range_to_range.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/187_crt.test.cpp
     title: test/yukicoder/187_crt.test.cpp
   - icon: ':x:'
@@ -549,13 +549,13 @@ data:
   - icon: ':x:'
     path: test/yukicoder/235_lazytreemonoid.test.cpp
     title: test/yukicoder/235_lazytreemonoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/255.test.cpp
     title: test/yukicoder/255.test.cpp
   - icon: ':x:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/4954_quotients.test.cpp
     title: test/yukicoder/4954_quotients.test.cpp
   - icon: ':x:'
