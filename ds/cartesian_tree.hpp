@@ -1,9 +1,9 @@
-template <typename T>
+/*
+辞書順で高さを unique して、木にしている。
+極大長方形アルゴリズムで線形時間構築。
+*/
+template <typename T, bool IS_MIN>
 struct CartesianTree {
-  /*
-  辞書順で高さを unique して、木にしている。
-  極大長方形アルゴリズムで線形時間構築。
-  */
   int n;
   vc<T> A;
   vc<pair<int, int>> range;
@@ -15,7 +15,8 @@ struct CartesianTree {
     rch.assign(n, -1);
     par.assign(n, -1);
     auto is_sm = [&](int i, int j) -> bool {
-      return (A[i] < A[j]) || (A[i] == A[j] && i < j);
+      if (IS_MIN) return (A[i] < A[j]) || (A[i] == A[j] && i < j);
+      return (A[i] > A[j]) || (A[i] == A[j] && i < j);
     };
     vc<int> st;
     FOR(i, n) {
@@ -47,6 +48,7 @@ struct CartesianTree {
 
   // (l, r, h)
   T max_rectangle_area() {
+    assert(IS_MIN);
     T res = 0;
     FOR(i, n) {
       auto [l, r, h] = maximum_rectangle(i);
