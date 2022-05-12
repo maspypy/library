@@ -20,7 +20,7 @@ void solve() {
   FOR(i, N) dat.eb(C[i], S[i]);
   LazyTreeMonoid<decltype(hld), Lazy, false> TM(hld, dat);
   LL(Q);
-  FOR_(Q) {
+  FOR(Q) {
     LL(t);
     if (t == 0) {
       LL(a, b, c);

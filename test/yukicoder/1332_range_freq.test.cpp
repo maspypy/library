@@ -9,7 +9,7 @@ void solve() {
   WaveletMatrix<ll> WM(X);
   const ll INF = 1LL << 60;
   LL(Q);
-  FOR_(Q) {
+  FOR(Q) {
     LL(l, r, x);
     --l;
     ll ANS = INF;

@@ -21,7 +21,7 @@ void solve() {
   Q[2] = {0, 0, 0};
   auto QP = mat_mul(Q, P);
   LL(T);
-  FOR_(T) {
+  FOR(T) {
     LL(t);
     auto X = mat_pow(QP, t / 2);
     if (t & 1) X = mat_mul(P, X);

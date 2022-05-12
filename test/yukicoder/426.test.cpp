@@ -50,7 +50,7 @@ void solve() {
   SegTree<Mono> seg(seg_raw);
 
   LL(T);
-  FOR_(T) {
+  FOR(T) {
     STR(s);
     if (s == "ga") {
       LL(idx);

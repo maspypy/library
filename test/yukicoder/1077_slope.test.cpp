@@ -6,7 +6,7 @@
 void solve() {
   LL(N);
   SlopeTrick<ll> st;
-  FOR_(N) {
+  FOR(N) {
     LL(x);
     st.add_abs(x);
     st.clear_right();
