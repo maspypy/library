@@ -16,6 +16,9 @@ data:
     path: test/library_checker/matrix/matrix_product.test.cpp
     title: test/library_checker/matrix/matrix_product.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1750_matpow.test.cpp
+    title: test/yukicoder/1750_matpow.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1810_matpow.test.cpp
     title: test/yukicoder/1810_matpow.test.cpp
   - icon: ':x:'
@@ -63,6 +66,7 @@ data:
   verifiedWith:
   - test/yukicoder/1810_matpow.test.cpp
   - test/yukicoder/502_p_rec.test.cpp
+  - test/yukicoder/1750_matpow.test.cpp
   - test/yukicoder/426.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
 documentation_of: linalg/mat_mul.hpp

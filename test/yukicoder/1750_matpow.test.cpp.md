@@ -1,44 +1,41 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':x:'
+    path: linalg/mat_mul.hpp
+    title: linalg/mat_mul.hpp
+  - icon: ':x:'
+    path: linalg/mat_pow.hpp
+    title: linalg/mat_pow.hpp
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
-    path: mod/powertable.hpp
-    title: mod/powertable.hpp
-  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
-    path: nt/primetable.hpp
-    title: nt/primetable.hpp
-  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/limit_poly_exp_sum.hpp
-    title: seq/limit_poly_exp_sum.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial_limit
+    PROBLEM: https://yukicoder.me/problems/no/1750
     links:
-    - https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial_limit
-  bundledCode: "#line 1 \"test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp\"\
-    \n#define PROBLEM \\\r\n  \"https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial_limit\"\
-    \r\n#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
-    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
-    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://yukicoder.me/problems/no/1750
+  bundledCode: "#line 1 \"test/yukicoder/1750_matpow.test.cpp\"\n#define PROBLEM \"\
+    https://yukicoder.me/problems/no/1750\"\n#line 1 \"my_template.hpp\"\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -270,64 +267,50 @@ data:
     \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
     \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
     }\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    using amint = ArbitraryModInt;\n#line 2 \"seq/limit_poly_exp_sum.hpp\"\ntemplate\
-    \ <typename mint>\r\nmint limit_poly_exp_sum(vc<mint> a, mint r) {\r\n  /*\r\n\
-    \  a[i] = (prefix sum of r^i * (polynomial of i)) \u3068\u306A\u3063\u3066\u3044\
-    \u308B\u3082\u306E\u306E\u6975\u9650\r\n  fps \u3067\u306F (1-rx)^d(1-x) \u306E\
-    \u5F62\u306E\u5206\u6BCD\u3092\u6301\u3064\u5834\u5408\u3068\u3044\u3046\u3053\
-    \u3068\u306B\u306A\u308B\r\n  f(x) = g(x) / (1-rx)^d + c / (1-x) \u3068\u3057\u3066\
-    \u3001c \u304C\u7B54\u3067\u3042\u308B\r\n  */\r\n  mint c = 0;\r\n  int d = len(a)\
-    \ - 1;\r\n  mint p = 1;\r\n  FOR(i, d + 1) {\r\n    c += a[d - i] * p * C<mint>(d,\
-    \ i);\r\n    p *= -r;\r\n  }\r\n  c /= (mint(1) - r).pow(d);\r\n  return c;\r\n\
-    }\r\n#line 2 \"nt/primetable.hpp\"\nvc<ll> primetable(int LIM) {\n  ++LIM;\n \
-    \ const int S = 32768;\n  static int done = 2;\n  static vc<ll> primes = {2},\
-    \ sieve(S + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S\
-    \ + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM)\
-    \ * 1.1));\n    vc<pi> cp;\n    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i])\
-    \ {\n        cp.eb(i, i * i / 2);\n        for (int j = i * i; j <= S; j += 2\
-    \ * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n\
-    \      array<bool, S> block{};\n      for (auto& [p, idx]: cp)\n        for (int\
-    \ i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R\
-    \ - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes,\
-    \ LIM + 1);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 3 \"mod/powertable.hpp\"\
-    \n\r\n// a^0, ..., a^{N-1}\r\ntemplate <typename mint>\r\nvc<mint> powertable_1(mint\
-    \ a, ll N) {\r\n  // table of a^i\r\n  vc<mint> f(N, 1);\r\n  FOR(i, N - 1) f[i\
-    \ + 1] = a * f[i];\r\n  return f;\r\n}\r\n\r\n// 0^e, ..., (N-1)^e\r\ntemplate\
-    \ <typename mint>\r\nvc<mint> powertable_2(ll e, ll N) {\r\n  auto primes = primetable(N);\r\
-    \n  vc<mint> f(N, 1);\r\n  f[0] = mint(0).pow(e);\r\n  for (auto&& p: primes)\
-    \ {\r\n    if (p > N) break;\r\n    mint xp = mint(p).pow(e);\r\n    ll pp = p;\r\
-    \n    while (pp < N) {\r\n      ll i = pp;\r\n      while (i < N) {\r\n      \
-    \  f[i] *= xp;\r\n        i += pp;\r\n      }\r\n      pp *= p;\r\n    }\r\n \
-    \ }\r\n  return f;\r\n}\r\n#line 7 \"test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp\"\
-    \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  mint r;\r\n  scanner.read(r);\r\
-    \n  LL(d);\r\n  int L = d + 5;\r\n  vc<mint> a = powertable_2<mint>(d, L);\r\n\
-    \  mint p = 1;\r\n  FOR(i, L) {\r\n    a[i] *= p;\r\n    p *= r;\r\n  }\r\n  a\
-    \ = cumsum(a, 0);\r\n  print(limit_poly_exp_sum(a, r));\r\n}\r\n\r\nsigned main()\
-    \ {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \\\r\n  \"https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial_limit\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"seq/limit_poly_exp_sum.hpp\"\
-    \r\n#include \"mod/powertable.hpp\"\r\n\r\nusing mint = modint998;\r\nvoid solve()\
-    \ {\r\n  mint r;\r\n  scanner.read(r);\r\n  LL(d);\r\n  int L = d + 5;\r\n  vc<mint>\
-    \ a = powertable_2<mint>(d, L);\r\n  mint p = 1;\r\n  FOR(i, L) {\r\n    a[i]\
-    \ *= p;\r\n    p *= r;\r\n  }\r\n  a = cumsum(a, 0);\r\n  print(limit_poly_exp_sum(a,\
-    \ r));\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    using amint = ArbitraryModInt;\n#line 2 \"linalg/mat_mul.hpp\"\n\r\ntemplate <class\
+    \ T, is_modint_t<T>* = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>& A, const\
+    \ vc<vc<T>>& B) {\r\n  // mod \u3092\u3068\u308B\u56DE\u6570\u3092\u6E1B\u3089\
+    \u3057\u3066\u307F\u308B\r\n  auto N = len(A), M = len(B), K = len(B[0]);\r\n\
+    \  vv(T, C, N, K);\r\n  const u64 MOD2 = 8ull * T::get_mod() * T::get_mod();\r\
+    \n  FOR(n, N) {\r\n    vc<u64> tmp(K);\r\n    FOR(m, M) FOR(k, K) {\r\n      tmp[k]\
+    \ += u64(A[n][m].val) * B[m][k].val;\r\n      if (tmp[k] >= MOD2) tmp[k] -= MOD2;\r\
+    \n    }\r\n    FOR(k, K) C[n][k] = tmp[k];\r\n  }\r\n  return C;\r\n}\r\n\r\n\
+    template <class T, is_not_modint_t<T>* = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>&\
+    \ A, const vc<vc<T>>& B) {\r\n  auto N = len(A), M = len(B), K = len(B[0]);\r\n\
+    \  vv(T, C, N, K);\r\n  FOR(n, N) FOR(m, M) FOR(k, K) C[n][k] += A[n][m] * B[m][k];\r\
+    \n  return C;\r\n}\r\n#line 2 \"linalg/mat_pow.hpp\"\ntemplate<typename T>\r\n\
+    vc<vc<T>> mat_pow(vc<vc<T>> A, ll n){\r\n  int N = len(A);\r\n  vv(T, ret, N,\
+    \ N);\r\n  FOR(i, N) ret[i][i] = T(1);\r\n  while(n){\r\n    if(n & 1) ret = mat_mul(ret,\
+    \ A);\r\n    n /= 2;\r\n    if(n) A = mat_mul(A, A);\r\n  }\r\n  return ret;\r\
+    \n}\n#line 6 \"test/yukicoder/1750_matpow.test.cpp\"\n\nusing mint = modint998;\n\
+    \nvoid solve() {\n  LL(N, M, T);\n  vv(mint, A, N, N);\n  FOR(M) {\n    LL(a,\
+    \ b);\n    A[a][b] = 1;\n    A[b][a] = 1;\n  }\n  A = mat_pow(A, T);\n  print(A[0][0]);\n\
+    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
+    \ 0;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1750\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n#include \"linalg/mat_pow.hpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, M, T);\n  vv(mint, A, N,\
+    \ N);\n  FOR(M) {\n    LL(a, b);\n    A[a][b] = 1;\n    A[b][a] = 1;\n  }\n  A\
+    \ = mat_pow(A, T);\n  print(A[0][0]);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - seq/limit_poly_exp_sum.hpp
   - mod/modint.hpp
-  - mod/powertable.hpp
-  - nt/primetable.hpp
+  - linalg/mat_pow.hpp
+  - linalg/mat_mul.hpp
   isVerificationFile: true
-  path: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
+  path: test/yukicoder/1750_matpow.test.cpp
   requiredBy: []
-  timestamp: '2022-05-13 00:57:52+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-05-13 03:41:35+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
+documentation_of: test/yukicoder/1750_matpow.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
-- /verify/test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp.html
-title: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
+- /verify/test/yukicoder/1750_matpow.test.cpp
+- /verify/test/yukicoder/1750_matpow.test.cpp.html
+title: test/yukicoder/1750_matpow.test.cpp
 ---

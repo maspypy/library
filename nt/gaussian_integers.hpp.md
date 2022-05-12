@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
   - icon: ':question:'

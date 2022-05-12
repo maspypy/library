@@ -7,6 +7,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: test/yukicoder/1750_matpow.test.cpp
+    title: test/yukicoder/1750_matpow.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1810_matpow.test.cpp
     title: test/yukicoder/1810_matpow.test.cpp
   _isVerificationFailed: true
@@ -42,6 +45,7 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1810_matpow.test.cpp
+  - test/yukicoder/1750_matpow.test.cpp
 documentation_of: linalg/mat_pow.hpp
 layout: document
 redirect_from:
