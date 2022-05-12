@@ -35,7 +35,7 @@ struct UniqueProductQuery {
     FOR(i, N) {
       ll x = key[i];
       if (pos.count(x)) {
-        seg.set(pos[x], Mono::unit);
+        seg.set(pos[x], Mono::unit());
       }
       pos[x] = i;
       seg.set(i, f(key[i]));
