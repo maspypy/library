@@ -69,16 +69,6 @@ T SUM(vector<T> &A) {
   return sum;
 }
 
-template <class... T>
-constexpr auto min(T... a) {
-  return min(initializer_list<common_type_t<T...>>{a...});
-}
-
-template <class... T>
-constexpr auto max(T... a) {
-  return max(initializer_list<common_type_t<T...>>{a...});
-}
-
 #define MIN(v) *min_element(all(v))
 #define MAX(v) *max_element(all(v))
 #define LB(c, x) distance((c).begin(), lower_bound(all(c), (x)))
