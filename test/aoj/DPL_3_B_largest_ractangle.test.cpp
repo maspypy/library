@@ -13,7 +13,7 @@ void solve() {
       LL(x);
       A[j] = (x == 0 ? A[j] + 1 : 0);
     }
-    CartesianTree<ll> CT(A);
+    CartesianTree<ll, 1> CT(A);
     chmax(ANS, CT.max_rectangle_area());
   }
   print(ANS);
