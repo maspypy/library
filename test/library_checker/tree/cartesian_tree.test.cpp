@@ -6,7 +6,7 @@
 void solve() {
   LL(N);
   VEC(int, A, N);
-  CartesianTree CT(A);
+  CartesianTree<int, 1> CT(A);
   auto& ANS = CT.par;
   FOR(i, N) if (ANS[i] == -1) ANS[i] = i;
   print(ANS);
