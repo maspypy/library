@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1332
@@ -241,7 +241,7 @@ data:
     \n        r += bv[h].zeros - r0;\r\n      } else {\r\n        l = l0;\r\n    \
     \    r = r0;\r\n      }\r\n    }\r\n    return ret;\r\n  }\r\n};\n#line 5 \"test/yukicoder/1332_range_freq.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(ll, X, N);\n  WaveletMatrix<ll> WM(X);\n \
-    \ const ll INF = 1LL << 60;\n  LL(Q);\n  FOR_(Q) {\n    LL(l, r, x);\n    --l;\n\
+    \ const ll INF = 1LL << 60;\n  LL(Q);\n  FOR(Q) {\n    LL(l, r, x);\n    --l;\n\
     \    ll ANS = INF;\n    ll n = WM.freq(l, r, 0, x);\n    if (n > 0) chmin(ANS,\
     \ abs(x - WM.kth(l, r, n - 1)));\n    if (n < r - l) chmin(ANS, abs(x - WM.kth(l,\
     \ r, n)));\n    print(ANS);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
@@ -250,8 +250,8 @@ data:
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1332\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"ds/waveletmatrix.hpp\"\n\nvoid solve()\
     \ {\n  LL(N);\n  VEC(ll, X, N);\n  WaveletMatrix<ll> WM(X);\n  const ll INF =\
-    \ 1LL << 60;\n  LL(Q);\n  FOR_(Q) {\n    LL(l, r, x);\n    --l;\n    ll ANS =\
-    \ INF;\n    ll n = WM.freq(l, r, 0, x);\n    if (n > 0) chmin(ANS, abs(x - WM.kth(l,\
+    \ 1LL << 60;\n  LL(Q);\n  FOR(Q) {\n    LL(l, r, x);\n    --l;\n    ll ANS = INF;\n\
+    \    ll n = WM.freq(l, r, 0, x);\n    if (n > 0) chmin(ANS, abs(x - WM.kth(l,\
     \ r, n - 1)));\n    if (n < r - l) chmin(ANS, abs(x - WM.kth(l, r, n)));\n   \
     \ print(ANS);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
@@ -263,8 +263,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1332_range_freq.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 19:22:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-12 11:09:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/1332_range_freq.test.cpp
 layout: document

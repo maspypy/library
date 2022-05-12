@@ -9,9 +9,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/many_aplusb
@@ -190,12 +190,12 @@ data:
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
     \ { yes(!t); }\r\n#line 4 \"test/library_checker/sample/many_aplusb.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(T);\r\n  FOR_(T) {\r\n    LL(a, b);\r\n    print(a\
+    \n\r\nvoid solve() {\r\n  LL(T);\r\n  FOR(T) {\r\n    LL(a, b);\r\n    print(a\
     \ + b);\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
     \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb\"\r\n#include\
     \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\nvoid solve() {\r\n \
-    \ LL(T);\r\n  FOR_(T) {\r\n    LL(a, b);\r\n    print(a + b);\r\n  }\r\n}\r\n\r\
+    \ LL(T);\r\n  FOR(T) {\r\n    LL(a, b);\r\n    print(a + b);\r\n  }\r\n}\r\n\r\
     \nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n\
     \  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
@@ -204,8 +204,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/sample/many_aplusb.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 19:22:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-12 11:09:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/sample/many_aplusb.test.cpp
 layout: document

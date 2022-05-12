@@ -99,7 +99,7 @@ data:
     \ + 1);\r\n    FOR(q, Q) IDS[query[q].se].eb(q);\r\n    SegTree<Mono> seg(N);\r\
     \n \r\n    unordered_map<ll, int> pos;\r\n    pos.reserve(N);\r\n \r\n    FOR(i,\
     \ N) {\r\n      ll x = key[i];\r\n      if (pos.count(x)) {\r\n        seg.set(pos[x],\
-    \ Mono::unit);\r\n      }\r\n      pos[x] = i;\r\n      seg.set(i, f(key[i]));\r\
+    \ Mono::unit());\r\n      }\r\n      pos[x] = i;\r\n      seg.set(i, f(key[i]));\r\
     \n      for (auto&& q: IDS[i + 1]) {\r\n        auto [L, R] = query[q];\r\n  \
     \      ANS[q] = seg.prod(L, R);\r\n      }\r\n    }\r\n    return ANS;\r\n  }\r\
     \n \r\n  vc<X> calc() {\r\n    auto f = [&](ll k) -> X { return 1; };\r\n    return\
@@ -135,7 +135,7 @@ data:
     \ + 1);\r\n    FOR(q, Q) IDS[query[q].se].eb(q);\r\n    SegTree<Mono> seg(N);\r\
     \n \r\n    unordered_map<ll, int> pos;\r\n    pos.reserve(N);\r\n \r\n    FOR(i,\
     \ N) {\r\n      ll x = key[i];\r\n      if (pos.count(x)) {\r\n        seg.set(pos[x],\
-    \ Mono::unit);\r\n      }\r\n      pos[x] = i;\r\n      seg.set(i, f(key[i]));\r\
+    \ Mono::unit());\r\n      }\r\n      pos[x] = i;\r\n      seg.set(i, f(key[i]));\r\
     \n      for (auto&& q: IDS[i + 1]) {\r\n        auto [L, R] = query[q];\r\n  \
     \      ANS[q] = seg.prod(L, R);\r\n      }\r\n    }\r\n    return ANS;\r\n  }\r\
     \n \r\n  vc<X> calc() {\r\n    auto f = [&](ll k) -> X { return 1; };\r\n    return\
@@ -162,7 +162,7 @@ data:
   isVerificationFile: false
   path: ds/uniqueproductquery.hpp
   requiredBy: []
-  timestamp: '2022-05-06 13:20:48+09:00'
+  timestamp: '2022-05-12 11:09:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/uniqueproductquery.hpp

@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/mat_pow.hpp
     title: linalg/mat_pow.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1810
@@ -290,7 +290,7 @@ data:
     \ read(B);\r\n  vv(mint, P, 3, 3);\r\n  vv(mint, Q, 3, 3);\r\n  P[0] = {1, 0,\
     \ 0};\r\n  P[1] = {0, 1, 0};\r\n  P[2] = {A, B, 1};\r\n  Q[0] = {0, 0, 1};\r\n\
     \  Q[1] = {1, 0, 0};\r\n  Q[2] = {0, 0, 0};\r\n  auto QP = mat_mul(Q, P);\r\n\
-    \  LL(T);\r\n  FOR_(T) {\r\n    LL(t);\r\n    auto X = mat_pow(QP, t / 2);\r\n\
+    \  LL(T);\r\n  FOR(T) {\r\n    LL(t);\r\n    auto X = mat_pow(QP, t / 2);\r\n\
     \    if (t & 1) X = mat_mul(P, X);\r\n    mint ANS = 0;\r\n    FOR(i, 3) FOR(j,\
     \ 2) ANS += X[i][j];\r\n    print(ANS);\r\n  }\r\n}\r\n\r\nsigned main() {\r\n\
     \  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
@@ -302,7 +302,7 @@ data:
     \ mint = modint107;\r\n\r\nvoid solve() {\r\n  mint A, B;\r\n  read(A), read(B);\r\
     \n  vv(mint, P, 3, 3);\r\n  vv(mint, Q, 3, 3);\r\n  P[0] = {1, 0, 0};\r\n  P[1]\
     \ = {0, 1, 0};\r\n  P[2] = {A, B, 1};\r\n  Q[0] = {0, 0, 1};\r\n  Q[1] = {1, 0,\
-    \ 0};\r\n  Q[2] = {0, 0, 0};\r\n  auto QP = mat_mul(Q, P);\r\n  LL(T);\r\n  FOR_(T)\
+    \ 0};\r\n  Q[2] = {0, 0, 0};\r\n  auto QP = mat_mul(Q, P);\r\n  LL(T);\r\n  FOR(T)\
     \ {\r\n    LL(t);\r\n    auto X = mat_pow(QP, t / 2);\r\n    if (t & 1) X = mat_mul(P,\
     \ X);\r\n    mint ANS = 0;\r\n    FOR(i, 3) FOR(j, 2) ANS += X[i][j];\r\n    print(ANS);\r\
     \n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
@@ -317,8 +317,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1810_matpow.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 19:22:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-12 11:09:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/1810_matpow.test.cpp
 layout: document

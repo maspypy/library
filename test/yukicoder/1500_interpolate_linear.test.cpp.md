@@ -28,7 +28,7 @@ data:
   - icon: ':question:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
   _extendedRequiredBy: []
@@ -470,8 +470,8 @@ data:
     \ - 3, y - 2));\n      newss.insert(mp(x - 2, y - 3));\n      newss.insert(mp(x\
     \ - 0, y - 3));\n      newss.insert(mp(x + 2, y - 3));\n      newss.insert(mp(x\
     \ + 3, y - 2));\n    }\n    swap(ss, newss);\n  }\n  LL(N);\n  // print(find_linear_rec(A));\n\
-    \  // print(A);\n  print(interpolate_linear_rec(A, N));\n}\n\nsigned main() {\n\
-    \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \  // print(A);\n  print(interpolate_linear_rec(A, N, 0));\n}\n\nsigned main()\
+    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
     \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   code: "#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\
     \n#include \"seq/find_linear_rec.hpp\"\n#include \"seq/interpolate_linear_rec.hpp\"\
@@ -484,8 +484,8 @@ data:
     \ - 3, y - 2));\n      newss.insert(mp(x - 2, y - 3));\n      newss.insert(mp(x\
     \ - 0, y - 3));\n      newss.insert(mp(x + 2, y - 3));\n      newss.insert(mp(x\
     \ + 3, y - 2));\n    }\n    swap(ss, newss);\n  }\n  LL(N);\n  // print(find_linear_rec(A));\n\
-    \  // print(A);\n  print(interpolate_linear_rec(A, N));\n}\n\nsigned main() {\n\
-    \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \  // print(A);\n  print(interpolate_linear_rec(A, N, 0));\n}\n\nsigned main()\
+    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
     \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
@@ -501,7 +501,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1500_interpolate_linear.test.cpp
   requiredBy: []
-  timestamp: '2022-05-12 01:09:27+09:00'
+  timestamp: '2022-05-12 11:09:10+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/1500_interpolate_linear.test.cpp

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_affine.hpp
     title: alg/group_affine.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/xor_sparsetable.hpp
     title: ds/xor_sparsetable.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1891
@@ -296,7 +296,7 @@ data:
     \   return Monoid::op(xl, xr);\n  }\n};\n#line 7 \"test/yukicoder/1891_xor_sparse.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  ll LOG = topbit(N);\n\
     \  using Mono = Group_Affine<mint>;\n  using X = typename Mono::value_type;\n\
-    \  VEC(X, A, N);\n  Xor_SparseTable<Mono> seg(A);\n  FOR_(Q) {\n    LL(l, r, p,\
+    \  VEC(X, A, N);\n  Xor_SparseTable<Mono> seg(A);\n  FOR(Q) {\n    LL(l, r, p,\
     \ x);\n    auto [a, b] = seg.prod(l, r, p);\n    print(a * mint(x) + b);\n  }\n\
     }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
     \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
@@ -306,8 +306,8 @@ data:
     \n#include \"ds/xor_sparsetable.hpp\"\n\nusing mint = modint998;\n\nvoid solve()\
     \ {\n  LL(N, Q);\n  ll LOG = topbit(N);\n  using Mono = Group_Affine<mint>;\n\
     \  using X = typename Mono::value_type;\n  VEC(X, A, N);\n  Xor_SparseTable<Mono>\
-    \ seg(A);\n  FOR_(Q) {\n    LL(l, r, p, x);\n    auto [a, b] = seg.prod(l, r,\
-    \ p);\n    print(a * mint(x) + b);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \ seg(A);\n  FOR(Q) {\n    LL(l, r, p, x);\n    auto [a, b] = seg.prod(l, r, p);\n\
+    \    print(a * mint(x) + b);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
     \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
     \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   dependsOn:
@@ -319,8 +319,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1891_xor_sparse.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 19:22:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-12 11:09:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/1891_xor_sparse.test.cpp
 layout: document

@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_xor.hpp
     title: alg/group_xor.hpp
   - icon: ':question:'
@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/treeabelgroup.hpp
     title: graph/treeabelgroup.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1641
@@ -368,7 +368,7 @@ data:
     \ X(0);};\r\n  static constexpr bool commute = true;\r\n};\r\n#line 6 \"test/yukicoder/1641_tree_abel.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  Graph G(N);\n  VEC(int, A, N);\n  G.read_tree();\n\
     \  HLD hld(G);\n  TreeAbelGroup<decltype(hld), Group_Xor<int>, 0, 0, 1> TA(hld,\
-    \ A);\n  FOR_(Q) {\n    LL(t, x, y);\n    --x;\n    if (t == 1) { TA.add(x, y);\
+    \ A);\n  FOR(Q) {\n    LL(t, x, y);\n    --x;\n    if (t == 1) { TA.add(x, y);\
     \ }\n    if (t == 2) { print(TA.prod_subtree(x)); }\n  }\n}\n\nsigned main() {\n\
     \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
     \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
@@ -376,11 +376,11 @@ data:
     \n#include \"other/io.hpp\"\n#include \"graph/treeabelgroup.hpp\"\n#include \"\
     alg/group_xor.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  Graph G(N);\n  VEC(int,\
     \ A, N);\n  G.read_tree();\n  HLD hld(G);\n  TreeAbelGroup<decltype(hld), Group_Xor<int>,\
-    \ 0, 0, 1> TA(hld, A);\n  FOR_(Q) {\n    LL(t, x, y);\n    --x;\n    if (t ==\
-    \ 1) { TA.add(x, y); }\n    if (t == 2) { print(TA.prod_subtree(x)); }\n  }\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
-    \ return 0;\n}\n"
+    \ 0, 0, 1> TA(hld, A);\n  FOR(Q) {\n    LL(t, x, y);\n    --x;\n    if (t == 1)\
+    \ { TA.add(x, y); }\n    if (t == 2) { print(TA.prod_subtree(x)); }\n  }\n}\n\n\
+    signed main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout <<\
+    \ setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return\
+    \ 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -393,8 +393,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1641_tree_abel.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 20:22:42+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-12 11:09:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/1641_tree_abel.test.cpp
 layout: document

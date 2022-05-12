@@ -28,14 +28,14 @@ data:
   - icon: ':question:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1844
@@ -465,18 +465,18 @@ data:
     \ A.end()};\r\n  N -= off;\r\n  auto G = find_linear_rec(A);\r\n  auto F = convolution(A,\
     \ G);\r\n  F.resize(len(G) - 1);\r\n  return coef_of_rational_fps(F, G, N);\r\n\
     }\r\n#line 6 \"test/yukicoder/1844_interpolate_c_rec.test.cpp\"\n\nusing mint\
-    \ = modint107;\n\nvoid solve() {\n  LL(N);\n  mint ANS = 1;\n  FOR_(N) {\n   \
-    \ LL(p, e);\n    vc<mint> A(10);\n    FOR(i, 10) A[i] = mint(p).pow(i);\n    A\
-    \ = cumsum(A, 0);\n    A = cumsum(A, 0);\n    mint x = interpolate_linear_rec<mint>(A,\
-    \ e);\n    ANS *= x;\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \ = modint107;\n\nvoid solve() {\n  LL(N);\n  mint ANS = 1;\n  FOR(N) {\n    LL(p,\
+    \ e);\n    vc<mint> A(10);\n    FOR(i, 10) A[i] = mint(p).pow(i);\n    A = cumsum(A,\
+    \ 0);\n    A = cumsum(A, 0);\n    mint x = interpolate_linear_rec<mint>(A, e,\
+    \ 0);\n    ANS *= x;\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
     \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
     \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1844\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n#include \"seq/interpolate_linear_rec.hpp\"\
-    \n\nusing mint = modint107;\n\nvoid solve() {\n  LL(N);\n  mint ANS = 1;\n  FOR_(N)\
+    \n\nusing mint = modint107;\n\nvoid solve() {\n  LL(N);\n  mint ANS = 1;\n  FOR(N)\
     \ {\n    LL(p, e);\n    vc<mint> A(10);\n    FOR(i, 10) A[i] = mint(p).pow(i);\n\
     \    A = cumsum(A, 0);\n    A = cumsum(A, 0);\n    mint x = interpolate_linear_rec<mint>(A,\
-    \ e);\n    ANS *= x;\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \ e, 0);\n    ANS *= x;\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
     \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
     \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   dependsOn:
@@ -493,8 +493,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1844_interpolate_c_rec.test.cpp
   requiredBy: []
-  timestamp: '2022-05-12 01:09:27+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-12 11:09:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/1844_interpolate_c_rec.test.cpp
 layout: document

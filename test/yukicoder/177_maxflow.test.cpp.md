@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/177
@@ -228,7 +228,7 @@ data:
     \ = N + M;\n  ll sink = N + M + 1;\n  auto left = [&](int i) -> int { return i;\
     \ };\n  auto right = [&](int i) -> int { return N + i; };\n  FOR(i, N) G.add(source,\
     \ left(i), A[i]);\n  FOR(i, M) G.add(right(i), sink, C[i]);\n  FOR(j, M) {\n \
-    \   LL(n);\n    vi ok(N, 1);\n    FOR_(n) {\n      LL(x);\n      ok[--x] = 0;\n\
+    \   LL(n);\n    vi ok(N, 1);\n    FOR(n) {\n      LL(x);\n      ok[--x] = 0;\n\
     \    }\n    FOR(i, N) if (ok[i]) { G.add(left(i), right(j), INF); }\n  }\n  ll\
     \ f = G.flow(source, sink);\n  if (f < W)\n    print(\"BANSAKUTSUKITA\");\n  else\n\
     \    print(\"SHIROBAKO\");\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
@@ -241,7 +241,7 @@ data:
     \ = N + M + 1;\n  auto left = [&](int i) -> int { return i; };\n  auto right =\
     \ [&](int i) -> int { return N + i; };\n  FOR(i, N) G.add(source, left(i), A[i]);\n\
     \  FOR(i, M) G.add(right(i), sink, C[i]);\n  FOR(j, M) {\n    LL(n);\n    vi ok(N,\
-    \ 1);\n    FOR_(n) {\n      LL(x);\n      ok[--x] = 0;\n    }\n    FOR(i, N) if\
+    \ 1);\n    FOR(n) {\n      LL(x);\n      ok[--x] = 0;\n    }\n    FOR(i, N) if\
     \ (ok[i]) { G.add(left(i), right(j), INF); }\n  }\n  ll f = G.flow(source, sink);\n\
     \  if (f < W)\n    print(\"BANSAKUTSUKITA\");\n  else\n    print(\"SHIROBAKO\"\
     );\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
@@ -254,8 +254,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/177_maxflow.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 19:22:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-12 11:09:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/177_maxflow.test.cpp
 layout: document

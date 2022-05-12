@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_cntsum.hpp
     title: alg/group_cntsum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy_cntsum_add.hpp
     title: alg/lazy_cntsum_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy_reverse.hpp
     title: alg/lazy_reverse.hpp
   - icon: ':question:'
@@ -25,7 +25,7 @@ data:
   - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
   - icon: ':question:'
@@ -39,9 +39,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/235
@@ -498,7 +498,7 @@ data:
     \n\nusing mint = modint107;\nusing Lazy = Lazy_CntSum_Add<mint>;\n\nvoid solve()\
     \ {\n  LL(N);\n  VEC(ll, S, N);\n  VEC(ll, C, N);\n  Graph G(N);\n  G.read_tree();\n\
     \  HLD hld(G);\n  vc<pair<mint, mint>> dat;\n  FOR(i, N) dat.eb(C[i], S[i]);\n\
-    \  LazyTreeMonoid<decltype(hld), Lazy, false> TM(hld, dat);\n  LL(Q);\n  FOR_(Q)\
+    \  LazyTreeMonoid<decltype(hld), Lazy, false> TM(hld, dat);\n  LL(Q);\n  FOR(Q)\
     \ {\n    LL(t);\n    if (t == 0) {\n      LL(a, b, c);\n      --a, --b;\n    \
     \  TM.apply_path(a, b, c);\n    } else {\n      LL(a, b);\n      --a, --b;\n \
     \     print(TM.prod_path(a, b).se);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
@@ -510,9 +510,9 @@ data:
     \ = modint107;\nusing Lazy = Lazy_CntSum_Add<mint>;\n\nvoid solve() {\n  LL(N);\n\
     \  VEC(ll, S, N);\n  VEC(ll, C, N);\n  Graph G(N);\n  G.read_tree();\n  HLD hld(G);\n\
     \  vc<pair<mint, mint>> dat;\n  FOR(i, N) dat.eb(C[i], S[i]);\n  LazyTreeMonoid<decltype(hld),\
-    \ Lazy, false> TM(hld, dat);\n  LL(Q);\n  FOR_(Q) {\n    LL(t);\n    if (t ==\
-    \ 0) {\n      LL(a, b, c);\n      --a, --b;\n      TM.apply_path(a, b, c);\n \
-    \   } else {\n      LL(a, b);\n      --a, --b;\n      print(TM.prod_path(a, b).se);\n\
+    \ Lazy, false> TM(hld, dat);\n  LL(Q);\n  FOR(Q) {\n    LL(t);\n    if (t == 0)\
+    \ {\n      LL(a, b, c);\n      --a, --b;\n      TM.apply_path(a, b, c);\n    }\
+    \ else {\n      LL(a, b);\n      --a, --b;\n      print(TM.prod_path(a, b).se);\n\
     \    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
     \n  return 0;\n}\n"
@@ -532,8 +532,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/235_lazytreemonoid.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 20:22:42+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-12 11:09:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/235_lazytreemonoid.test.cpp
 layout: document

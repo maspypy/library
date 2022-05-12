@@ -266,8 +266,8 @@ data:
     \    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost))\
     \ {\n        par[e.to] = e.frm;\n        que.emplace(dist[e.to], e.to);\n    \
     \  }\n    }\n  }\n  return {dist, par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\
-    \u30C8\u3002[dist, par, root]\ntemplate <typename T, T INF, typename Graph>\n\
-    tuple<vc<T>, vc<int>, vc<int>> dijkstra(Graph& G, vc<int> vs) {\n  assert(G.is_prepared());\n\
+    \u30C8\u3002[dist, par, root]\ntemplate <typename T, typename Graph>\ntuple<vc<T>,\
+    \ vc<int>, vc<int>> dijkstra(Graph& G, vc<int> vs, T INF) {\n  assert(G.is_prepared());\n\
     \  int N = G.N;\n  vc<ll> dist(N, INF);\n  vc<int> par(N, -1);\n  vc<int> root(N,\
     \ -1);\n\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>>\
     \ que;\n\n  for (auto&& v: vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.emplace(T(0),\
@@ -309,7 +309,7 @@ data:
   isVerificationFile: true
   path: test/aoj/275_dag_reachability.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 20:22:42+09:00'
+  timestamp: '2022-05-12 11:10:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/275_dag_reachability.test.cpp

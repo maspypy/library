@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/slope.hpp
     title: ds/slope.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1077
@@ -228,14 +228,14 @@ data:
     \ add_r);\r\n      swap(st.min_f, min_f);\r\n    }\r\n    while (not st.R.empty())\
     \ { add_x_minus_a(st.pop_R()); }\r\n    while (not st.L.empty()) { add_a_minus_x(st.pop_L());\
     \ }\r\n    min_f += st.min_f;\r\n  }\r\n};\n#line 5 \"test/yukicoder/1077_slope.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  SlopeTrick<ll> st;\n  FOR_(N) {\n    LL(x);\n\
-    \    st.add_abs(x);\n    st.clear_right();\n  }\n\n  auto [lx, rx, min_f] = st.get_min();\n\
+    \n\nvoid solve() {\n  LL(N);\n  SlopeTrick<ll> st;\n  FOR(N) {\n    LL(x);\n \
+    \   st.add_abs(x);\n    st.clear_right();\n  }\n\n  auto [lx, rx, min_f] = st.get_min();\n\
     \  print(min_f);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
     \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1077\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"ds/slope.hpp\"\n\nvoid solve() {\n  LL(N);\n\
-    \  SlopeTrick<ll> st;\n  FOR_(N) {\n    LL(x);\n    st.add_abs(x);\n    st.clear_right();\n\
+    \  SlopeTrick<ll> st;\n  FOR(N) {\n    LL(x);\n    st.add_abs(x);\n    st.clear_right();\n\
     \  }\n\n  auto [lx, rx, min_f] = st.get_min();\n  print(min_f);\n}\n\nsigned main()\
     \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
     \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
@@ -246,8 +246,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1077_slope.test.cpp
   requiredBy: []
-  timestamp: '2022-05-11 19:22:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-12 11:09:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/1077_slope.test.cpp
 layout: document
