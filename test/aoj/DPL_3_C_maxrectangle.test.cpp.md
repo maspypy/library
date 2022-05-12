@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_3_C
@@ -49,10 +49,7 @@ data:
     \ elif else if\n\n#define eb emplace_back\n#define mp make_pair\n#define mt make_tuple\n\
     #define fi first\n#define se second\n\n#define stoi stoll\n\ntemplate <typename\
     \ T>\nT SUM(vector<T> &A) {\n  T sum = T(0);\n  for (auto &&a: A) sum += a;\n\
-    \  return sum;\n}\n\ntemplate <class... T>\nconstexpr auto min(T... a) {\n  return\
-    \ min(initializer_list<common_type_t<T...>>{a...});\n}\n\ntemplate <class... T>\n\
-    constexpr auto max(T... a) {\n  return max(initializer_list<common_type_t<T...>>{a...});\n\
-    }\n\n#define MIN(v) *min_element(all(v))\n#define MAX(v) *max_element(all(v))\n\
+    \  return sum;\n}\n\n#define MIN(v) *min_element(all(v))\n#define MAX(v) *max_element(all(v))\n\
     #define LB(c, x) distance((c).begin(), lower_bound(all(c), (x)))\n#define UB(c,\
     \ x) distance((c).begin(), upper_bound(all(c), (x)))\n#define UNIQUE(x) sort(all(x)),\
     \ x.erase(unique(all(x)), x.end())\n\nint popcnt(int x) { return __builtin_popcount(x);\
@@ -215,14 +212,14 @@ data:
     \ res = 0;\r\n    FOR(i, n) {\r\n      auto [l, r, h] = maximum_rectangle(i);\r\
     \n      chmax(res, (r - l) * h);\r\n    }\r\n    return res;\r\n  }\r\n};\r\n\
     #line 5 \"test/aoj/DPL_3_C_maxrectangle.test.cpp\"\n\nvoid solve() {\n  LL(N);\n\
-    \  VEC(ll, A, N);\n  CartesianTree<ll> CT(A);\n  print(CT.max_rectangle_area());\n\
+    \  VEC(ll, A, N);\n  CartesianTree<ll, 1> CT(A);\n  print(CT.max_rectangle_area());\n\
     }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
     \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
     \ return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_3_C\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/cartesian_tree.hpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  CartesianTree<ll> CT(A);\n \
-    \ print(CT.max_rectangle_area());\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  CartesianTree<ll, 1> CT(A);\n\
+    \  print(CT.max_rectangle_area());\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
     \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
     \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   dependsOn:
@@ -232,8 +229,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL_3_C_maxrectangle.test.cpp
   requiredBy: []
-  timestamp: '2022-05-12 11:09:35+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-13 00:57:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL_3_C_maxrectangle.test.cpp
 layout: document

@@ -54,7 +54,7 @@ data:
   isVerificationFile: true
   path: test/aoj/2842_seg2d_dense.test.cpp
   requiredBy: []
-  timestamp: '2022-05-12 06:58:59+09:00'
+  timestamp: '2022-05-13 00:57:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/2842_seg2d_dense.test.cpp
