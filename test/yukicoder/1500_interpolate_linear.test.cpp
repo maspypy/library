@@ -32,7 +32,7 @@ void solve() {
   LL(N);
   // print(find_linear_rec(A));
   // print(A);
-  print(interpolate_linear_rec(A, N));
+  print(interpolate_linear_rec(A, N, 0));
 }
 
 signed main() {

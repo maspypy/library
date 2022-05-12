@@ -4,7 +4,7 @@
 
 void solve() {
   LL(T);
-  FOR_(T) {
+  FOR(T) {
     LL(a, b);
     print(a + b);
   }

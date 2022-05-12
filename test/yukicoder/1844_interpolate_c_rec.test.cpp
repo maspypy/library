@@ -9,13 +9,13 @@ using mint = modint107;
 void solve() {
   LL(N);
   mint ANS = 1;
-  FOR_(N) {
+  FOR(N) {
     LL(p, e);
     vc<mint> A(10);
     FOR(i, 10) A[i] = mint(p).pow(i);
     A = cumsum(A, 0);
     A = cumsum(A, 0);
-    mint x = interpolate_linear_rec<mint>(A, e);
+    mint x = interpolate_linear_rec<mint>(A, e, 0);
     ANS *= x;
   }
   print(ANS);

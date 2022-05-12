@@ -20,7 +20,7 @@ void solve() {
   FOR(j, M) {
     LL(n);
     vi ok(N, 1);
-    FOR_(n) {
+    FOR(n) {
       LL(x);
       ok[--x] = 0;
     }

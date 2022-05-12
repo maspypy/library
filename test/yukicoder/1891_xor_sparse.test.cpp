@@ -14,7 +14,7 @@ void solve() {
   using X = typename Mono::value_type;
   VEC(X, A, N);
   Xor_SparseTable<Mono> seg(A);
-  FOR_(Q) {
+  FOR(Q) {
     LL(l, r, p, x);
     auto [a, b] = seg.prod(l, r, p);
     print(a * mint(x) + b);

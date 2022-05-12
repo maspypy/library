@@ -11,7 +11,7 @@ void solve() {
   G.read_tree();
   HLD hld(G);
   TreeAbelGroup<decltype(hld), Group_Xor<int>, 0, 0, 1> TA(hld, A);
-  FOR_(Q) {
+  FOR(Q) {
     LL(t, x, y);
     --x;
     if (t == 1) { TA.add(x, y); }
