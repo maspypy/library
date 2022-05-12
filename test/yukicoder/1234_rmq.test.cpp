@@ -1,0 +1,31 @@
+#define PROBLEM "https://yukicoder.me/problems/no/1234"
+#include "my_template.hpp"
+#include "other/io.hpp"
+#include "alg/lazy_min_add.hpp"
+#include "ds/lazysegtree.hpp"
+
+void solve() {
+  LL(N);
+  VEC(ll, A, N);
+  const ll INF = 1LL << 60;
+  LazySegTree<Lazy_Min_Add<ll, INF>> seg(A);
+  LL(Q);
+  FOR(Q) {
+    LL(t, l, r, x);
+    --l;
+    if (t == 1) { seg.apply(l, r, x); }
+    if (t == 2) print(seg.prod(l, r));
+  }
+}
+
+signed main() {
+  cin.tie(nullptr);
+  ios::sync_with_stdio(false);
+  cout << setprecision(15);
+
+  ll T = 1;
+  // LL(T);
+  FOR(T) solve();
+
+  return 0;
+}
