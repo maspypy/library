@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
   - icon: ':x:'

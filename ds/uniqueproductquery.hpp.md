@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
   - icon: ':x:'

@@ -7,13 +7,13 @@ data:
   - icon: ':x:'
     path: alg/group_reverse.hpp
     title: alg/group_reverse.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
   - icon: ':x:'
