@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid_max.hpp
     title: alg/monoid_max.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid_min.hpp
     title: alg/monoid_min.hpp
   - icon: ':question:'
@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
   - icon: ':question:'
@@ -25,23 +25,23 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/dualtreemonoid.hpp
     title: graph/dualtreemonoid.hpp
   - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_2_A_mst.test.cpp
     title: test/aoj/GRL_2_A_mst.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/828/problem/F
@@ -317,17 +317,18 @@ data:
     \ a + 1, x));\r\n    }\r\n    return;\r\n  }\r\n\r\n  void apply_subtree(int u,\
     \ X x) {\r\n    int l = hld.LID[u], r = hld.RID[u];\r\n    return seg.apply(l\
     \ + edge, r, x);\r\n  }\r\n};\r\n#line 2 \"alg/monoid_min.hpp\"\ntemplate <class\
-    \ X, X INF>\r\nstruct Monoid_Min {\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr\
-    \ X unit() { return INF; }\r\n  static constexpr bool commute = true;\r\n};\r\n\
-    #line 2 \"alg/monoid_max.hpp\"\ntemplate <class X, X INF>\r\nstruct Monoid_Max\
-    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
-    \ &y) noexcept { return max(x, y); }\r\n  static constexpr X unit() { return -INF;\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 8 \"graph/minimum_spanning_tree.hpp\"\
-    \n\r\n// return : {T mst_cost, vc<bool> in_mst, Graph MST}\r\ntemplate <typename\
-    \ T>\r\ntuple<T, vc<bool>, Graph<T>> minimum_spanning_tree(Graph<T>& G) {\r\n\
-    \  int N = G.N;\r\n  int M = len(G.edges);\r\n  vc<pair<T, int>> edges;\r\n  FOR(i,\
-    \ M) {\r\n    auto& e = G.edges[i];\r\n    edges.eb(e.cost, i);\r\n  }\r\n  sort(all(edges));\r\
+    \ X>\r\nstruct Monoid_Min {\r\n  using value_type = X;\r\n  static constexpr X\
+    \ op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr\
+    \ X unit() { return numeric_limits<X>::max(); }\r\n  static constexpr bool commute\
+    \ = true;\r\n};\r\n#line 2 \"alg/monoid_max.hpp\"\ntemplate <class X>\r\nstruct\
+    \ Monoid_Max {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x,\
+    \ const X &y) noexcept { return max(x, y); }\r\n  static constexpr X unit() {\
+    \ return -numeric_limits<X>::lowest(); }\r\n  static constexpr bool commute =\
+    \ true;\r\n};\r\n#line 8 \"graph/minimum_spanning_tree.hpp\"\n\r\n// return :\
+    \ {T mst_cost, vc<bool> in_mst, Graph MST}\r\ntemplate <typename T>\r\ntuple<T,\
+    \ vc<bool>, Graph<T>> minimum_spanning_tree(Graph<T>& G) {\r\n  int N = G.N;\r\
+    \n  int M = len(G.edges);\r\n  vc<pair<T, int>> edges;\r\n  FOR(i, M) {\r\n  \
+    \  auto& e = G.edges[i];\r\n    edges.eb(e.cost, i);\r\n  }\r\n  sort(all(edges));\r\
     \n  vc<bool> in_mst(M);\r\n  UnionFind uf(N);\r\n  T mst_cost = T(0);\r\n  Graph<T>\
     \ MST(N);\r\n  for (auto&& [cost, i]: edges) {\r\n    auto& e = G.edges[i];\r\n\
     \    if (uf.merge(e.frm, e.to)) {\r\n      in_mst[i] = 1;\r\n      mst_cost +=\
@@ -390,8 +391,8 @@ data:
   isVerificationFile: false
   path: graph/minimum_spanning_tree.hpp
   requiredBy: []
-  timestamp: '2022-05-13 20:32:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-05-13 21:02:36+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/GRL_2_A_mst.test.cpp
 documentation_of: graph/minimum_spanning_tree.hpp

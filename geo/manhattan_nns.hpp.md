@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: alg/monoid_min_idx.hpp
     title: alg/monoid_min_idx.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
   _extendedRequiredBy: []
@@ -54,12 +54,12 @@ data:
     \ dat[(size >> k) + ((l++) ^ xor_val)]); }\n      if (r & 1) { x = Monoid::op(x,\
     \ dat[(size >> k) + ((--r) ^ xor_val)]); }\n      l /= 2, r /= 2, xor_val /= 2;\n\
     \    }\n    return x;\n  }\n\n  void debug() { print(\"segtree\", dat); }\n};\n\
-    #line 1 \"alg/monoid_min_idx.hpp\"\ntemplate <typename T, T INF>\r\nstruct Monoid_Min_Idx\
+    #line 1 \"alg/monoid_min_idx.hpp\"\ntemplate <typename T>\r\nstruct Monoid_Min_Idx\
     \ {\r\n  using value_type = pair<T, ll>;\r\n  using X = value_type;\r\n  static\
     \ X op(X x, X y) { return min(x, y); }\r\n  static constexpr X unit() { return\
-    \ {INF, -1}; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"\
-    geo/manhattan_nns.hpp\"\n\r\n// https://codeforces.com/gym/103577/problem/K\r\n\
-    // \u70B9\u7FA4 FRM \u304B\u3089\u70B9\u7FA4 TO \u3078\u306E\u6700\u8FD1\u70B9\
+    \ {numeric_limits<T>::max(), -1}; }\r\n  static constexpr bool commute = true;\r\
+    \n};\r\n#line 3 \"geo/manhattan_nns.hpp\"\n\r\n// https://codeforces.com/gym/103577/problem/K\r\
+    \n// \u70B9\u7FA4 FRM \u304B\u3089\u70B9\u7FA4 TO \u3078\u306E\u6700\u8FD1\u70B9\
     \u63A2\u7D22\r\n// vector \u306E pair \u3092\u8FD4\u3059\uFF1Adist, nbd_idx\r\n\
     template <typename X = ll>\r\npair<vc<X>, vc<int>> manhattan_nns(vc<pair<X, X>>\
     \ FRM, vc<pair<X, X>>& TO) {\r\n  assert(len(TO) >= 1);\r\n  int N = len(FRM),\
@@ -107,7 +107,7 @@ data:
   isVerificationFile: false
   path: geo/manhattan_nns.hpp
   requiredBy: []
-  timestamp: '2022-05-06 13:20:48+09:00'
+  timestamp: '2022-05-13 21:02:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/manhattan_nns.hpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid_min.hpp
     title: alg/monoid_min.hpp
   - icon: ':x:'
@@ -213,9 +213,9 @@ data:
     \    while (l < r) {\n        if (l & 1) all_apply(l++, a);\n        if (r & 1)\
     \ all_apply(--r, a);\n        l >>= 1;\n        r >>= 1;\n      }\n      l = l2;\n\
     \      r = r2;\n    }\n  }\n  void debug() { print(\"dualsegtree getall:\", get_all());\
-    \ }\n};\n#line 2 \"alg/monoid_min.hpp\"\ntemplate <class X, X INF>\r\nstruct Monoid_Min\
+    \ }\n};\n#line 2 \"alg/monoid_min.hpp\"\ntemplate <class X>\r\nstruct Monoid_Min\
     \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
-    \ &y) noexcept { return min(x, y); }\r\n  static constexpr X unit() { return INF;\
+    \ &y) noexcept { return min(x, y); }\r\n  static constexpr X unit() { return numeric_limits<X>::max();\
     \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"ds/cht_monotone.hpp\"\
     \ntemplate <typename T, bool isMin>\r\nstruct CHT_monotone {\r\n#define F first\r\
     \n#define S second\r\n  using P = pair<T, T>;\r\n  deque<P> H;\r\n\r\n  CHT_monotone()\
@@ -299,7 +299,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/913_cht_monotone.test.cpp
   requiredBy: []
-  timestamp: '2022-05-13 20:44:41+09:00'
+  timestamp: '2022-05-13 21:02:36+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/913_cht_monotone.test.cpp

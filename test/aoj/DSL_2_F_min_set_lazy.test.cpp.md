@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/lazy_min_set.hpp
     title: alg/lazy_min_set.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid_min.hpp
     title: alg/monoid_min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid_set.hpp
     title: alg/monoid_set.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F
@@ -257,25 +257,26 @@ data:
     \  return r + 1 - size;\n      }\n      sm = Monoid_X::op(dat[r], sm);\n    }\
     \ while ((r & -r) != r);\n    return 0;\n  }\n\n  void debug() { print(\"lazysegtree\
     \ getall:\", get_all()); }\n};\n#line 2 \"alg/monoid_min.hpp\"\ntemplate <class\
-    \ X, X INF>\r\nstruct Monoid_Min {\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr\
-    \ X unit() { return INF; }\r\n  static constexpr bool commute = true;\r\n};\r\n\
-    #line 1 \"alg/monoid_set.hpp\"\ntemplate <typename E, E none_val>\r\nstruct Monoid_Set\
-    \ {\r\n  using value_type = E;\r\n  using X = value_type;\r\n  static X op(X x,\
-    \ X y) { return (y == none_val ? x : y); }\r\n  static constexpr X unit() { return\
-    \ none_val; }\r\n  static constexpr bool commute = false;\r\n};\n#line 3 \"alg/lazy_min_set.hpp\"\
-    \n\r\ntemplate <typename E, E INF, E none_val>\r\nstruct Lazy_Min_Set {\r\n  using\
-    \ MX = Monoid_Min<E, INF>;\r\n  using MA = Monoid_Set<E, none_val>;\r\n  using\
-    \ X_structure = MX;\r\n  using A_structure = MA;\r\n  using X = typename MX::value_type;\r\
-    \n  using A = typename MA::value_type;\r\n  static constexpr X act(const X &x,\
-    \ const A &a) { return (a==none_val ? x : a) ;}\r\n};\r\n#line 7 \"test/aoj/DSL_2_F_min_set_lazy.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  const ll MAX = (1LL << 31) - 1;\r\n \
-    \ using Lazy = Lazy_Min_Set<ll, MAX, -1>;\r\n  LazySegTree<Lazy> seg(N);\r\n \
-    \ FOR(_, Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(L, R, x);\r\n   \
-    \   seg.apply(L, ++R, x);\r\n    } else {\r\n      LL(L, R);\r\n      print(seg.prod(L,\
-    \ ++R));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n\
-    \  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  ll T =\
-    \ 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ X>\r\nstruct Monoid_Min {\r\n  using value_type = X;\r\n  static constexpr X\
+    \ op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr\
+    \ X unit() { return numeric_limits<X>::max(); }\r\n  static constexpr bool commute\
+    \ = true;\r\n};\r\n#line 1 \"alg/monoid_set.hpp\"\ntemplate <typename E, E none_val>\r\
+    \nstruct Monoid_Set {\r\n  using value_type = E;\r\n  using X = value_type;\r\n\
+    \  static X op(X x, X y) { return (y == none_val ? x : y); }\r\n  static constexpr\
+    \ X unit() { return none_val; }\r\n  static constexpr bool commute = false;\r\n\
+    };\n#line 3 \"alg/lazy_min_set.hpp\"\n\r\ntemplate <typename E, E none_val>\r\n\
+    struct Lazy_Min_Set {\r\n  using MX = Monoid_Min<E>;\r\n  using MA = Monoid_Set<E,\
+    \ none_val>;\r\n  using X_structure = MX;\r\n  using A_structure = MA;\r\n  using\
+    \ X = typename MX::value_type;\r\n  using A = typename MA::value_type;\r\n  static\
+    \ constexpr X act(const X &x, const A &a) {\r\n    return (a == none_val ? x :\
+    \ a);\r\n  }\r\n};\r\n#line 7 \"test/aoj/DSL_2_F_min_set_lazy.test.cpp\"\n\r\n\
+    void solve() {\r\n  LL(N, Q);\r\n  const ll MAX = (1LL << 31) - 1;\r\n  using\
+    \ Lazy = Lazy_Min_Set<ll, MAX, -1>;\r\n  LazySegTree<Lazy> seg(N);\r\n  FOR(_,\
+    \ Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(L, R, x);\r\n      seg.apply(L,\
+    \ ++R, x);\r\n    } else {\r\n      LL(L, R);\r\n      print(seg.prod(L, ++R));\r\
+    \n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T)\
+    \ solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/lazysegtree.hpp\"\
     \r\n#include \"alg/lazy_min_set.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\n\
@@ -296,8 +297,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_F_min_set_lazy.test.cpp
   requiredBy: []
-  timestamp: '2022-05-13 20:44:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-05-13 21:02:36+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_F_min_set_lazy.test.cpp
 layout: document

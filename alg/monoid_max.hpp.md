@@ -14,26 +14,26 @@ data:
   - icon: ':warning:'
     path: alg/lazy_max_set.hpp
     title: alg/lazy_max_set.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_2_A_mst.test.cpp
     title: test/aoj/GRL_2_A_mst.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"alg/monoid_max.hpp\"\ntemplate <class X, X INF>\r\nstruct\
-    \ Monoid_Max {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x,\
-    \ const X &y) noexcept { return max(x, y); }\r\n  static constexpr X unit() {\
-    \ return -INF; }\r\n  static constexpr bool commute = true;\r\n};\r\n"
-  code: "#pragma once\r\ntemplate <class X, X INF>\r\nstruct Monoid_Max {\r\n  using\
-    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
-    \ { return max(x, y); }\r\n  static constexpr X unit() { return -INF; }\r\n  static\
-    \ constexpr bool commute = true;\r\n};\r\n"
+  bundledCode: "#line 2 \"alg/monoid_max.hpp\"\ntemplate <class X>\r\nstruct Monoid_Max\
+    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
+    \ &y) noexcept { return max(x, y); }\r\n  static constexpr X unit() { return -numeric_limits<X>::lowest();\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n"
+  code: "#pragma once\r\ntemplate <class X>\r\nstruct Monoid_Max {\r\n  using value_type\
+    \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return max(x,\
+    \ y); }\r\n  static constexpr X unit() { return -numeric_limits<X>::lowest();\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid_max.hpp
@@ -43,8 +43,8 @@ data:
   - alg/lazy_max_min.hpp
   - alg/lazy_max_add.hpp
   - graph/minimum_spanning_tree.hpp
-  timestamp: '2022-05-06 16:05:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-05-13 21:02:36+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/GRL_2_A_mst.test.cpp
 documentation_of: alg/monoid_max.hpp

@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: alg/monoid_gcd.hpp
     title: alg/monoid_gcd.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
   - icon: ':question:'

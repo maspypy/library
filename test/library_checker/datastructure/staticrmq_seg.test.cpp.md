@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid_min.hpp
     title: alg/monoid_min.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
   - icon: ':question:'
@@ -231,9 +231,9 @@ data:
     \ dat[(size >> k) + ((l++) ^ xor_val)]); }\n      if (r & 1) { x = Monoid::op(x,\
     \ dat[(size >> k) + ((--r) ^ xor_val)]); }\n      l /= 2, r /= 2, xor_val /= 2;\n\
     \    }\n    return x;\n  }\n\n  void debug() { print(\"segtree\", dat); }\n};\n\
-    #line 2 \"alg/monoid_min.hpp\"\ntemplate <class X, X INF>\r\nstruct Monoid_Min\
-    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
-    \ &y) noexcept { return min(x, y); }\r\n  static constexpr X unit() { return INF;\
+    #line 2 \"alg/monoid_min.hpp\"\ntemplate <class X>\r\nstruct Monoid_Min {\r\n\
+    \  using value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
+    \ { return min(x, y); }\r\n  static constexpr X unit() { return numeric_limits<X>::max();\
     \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 6 \"test/library_checker/datastructure/staticrmq_seg.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(int, A, N);\r\n  using Mono = Monoid_Min<int,\
     \ 1 << 30>;\r\n  SegTree<Mono> seg(A);\r\n  FOR(_, Q) {\r\n    LL(L, R);\r\n \
@@ -255,7 +255,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/staticrmq_seg.test.cpp
   requiredBy: []
-  timestamp: '2022-05-13 20:44:41+09:00'
+  timestamp: '2022-05-13 21:02:36+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/staticrmq_seg.test.cpp

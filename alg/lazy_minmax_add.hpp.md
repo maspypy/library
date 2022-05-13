@@ -28,21 +28,24 @@ data:
     \ {\r\n  using MX = Monoid_MinMax<E, INF>;\r\n  using MA = Group_Add<E>;\r\n \
     \ using X_structure = MX;\r\n  using A_structure = MA;\r\n  using X = typename\
     \ MX::value_type;\r\n  using A = typename MA::value_type;\r\n  static constexpr\
-    \ X act(const X &x, const A &a) { \r\n    return {min(INF, x.fi + a), max(-INF,\
-    \ x.se + a)};\r\n  }\r\n};\n"
+    \ X act(const X &x, const A &a) {\r\n    X lo = (x.fi == numeric_limits<X>::max()\
+    \ ? x.fi : x.fi + a);\r\n    X hi = (x.se == numeric_limits<X>::lowest() ? x.se\
+    \ : x.se + a);\r\n    return {lo, hi};\r\n  }\r\n};\n"
   code: "#include \"alg/group_add.hpp\"\r\n#include \"alg/monoid_minmax.hpp\"\r\n\r\
     \ntemplate <typename E, E INF>\r\nstruct Lazy_MinMax_Add {\r\n  using MX = Monoid_MinMax<E,\
     \ INF>;\r\n  using MA = Group_Add<E>;\r\n  using X_structure = MX;\r\n  using\
     \ A_structure = MA;\r\n  using X = typename MX::value_type;\r\n  using A = typename\
-    \ MA::value_type;\r\n  static constexpr X act(const X &x, const A &a) { \r\n \
-    \   return {min(INF, x.fi + a), max(-INF, x.se + a)};\r\n  }\r\n};"
+    \ MA::value_type;\r\n  static constexpr X act(const X &x, const A &a) {\r\n  \
+    \  X lo = (x.fi == numeric_limits<X>::max() ? x.fi : x.fi + a);\r\n    X hi =\
+    \ (x.se == numeric_limits<X>::lowest() ? x.se : x.se + a);\r\n    return {lo,\
+    \ hi};\r\n  }\r\n};"
   dependsOn:
   - alg/group_add.hpp
   - alg/monoid_minmax.hpp
   isVerificationFile: false
   path: alg/lazy_minmax_add.hpp
   requiredBy: []
-  timestamp: '2022-04-16 04:26:49+09:00'
+  timestamp: '2022-05-13 21:02:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/lazy_minmax_add.hpp
