@@ -22,6 +22,7 @@
 "test/aoj/DSL_1_B_weighteduf.test.cpp": "2022-05-13 20:44:41 +0900",
 "test/aoj/DSL_2_D_dualsegtree.test.cpp": "2022-05-13 20:44:41 +0900",
 "test/aoj/DSL_2_E_fenwick_raq.test.cpp": "2022-05-13 20:44:41 +0900",
+"test/aoj/DSL_2_F_min_set_lazy.test.cpp": "2022-05-14 05:23:42 +0900",
 "test/aoj/DSL_2_G_fenwick_raq.test.cpp": "2022-05-13 20:44:41 +0900",
 "test/aoj/DSL_2_H_min_add_lazy.test.cpp": "2022-05-14 04:35:25 +0900",
 "test/aoj/DSL_2_I_cntsum_set_lazy.test.cpp": "2022-05-13 20:44:41 +0900",
