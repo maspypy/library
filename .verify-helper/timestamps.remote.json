@@ -182,5 +182,11 @@
 "test/yukicoder/1810_matpow.test.cpp": "2022-05-13 00:57:52 +0900",
 "test/yukicoder/1844_interpolate_c_rec.test.cpp": "2022-05-13 00:57:52 +0900",
 "test/yukicoder/184_xorbasis.test.cpp": "2022-05-13 00:57:52 +0900",
-"test/yukicoder/1868_range_to_range.test.cpp": "2022-05-13 00:57:52 +0900"
+"test/yukicoder/1868_range_to_range.test.cpp": "2022-05-13 00:57:52 +0900",
+"test/yukicoder/187_crt.test.cpp": "2022-05-13 00:57:52 +0900",
+"test/yukicoder/1891_xor_sparse.test.cpp": "2022-05-13 00:57:52 +0900",
+"test/yukicoder/235_lazytreemonoid.test.cpp": "2022-05-13 00:57:52 +0900",
+"test/yukicoder/255.test.cpp": "2022-05-13 00:57:52 +0900",
+"test/yukicoder/426.test.cpp": "2022-05-13 00:57:52 +0900",
+"test/yukicoder/4954_quotients.test.cpp": "2022-05-13 00:57:52 +0900"
 }
