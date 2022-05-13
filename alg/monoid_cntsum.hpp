@@ -1,5 +1,4 @@
 struct Monoid_CntSum {
-  static constexpr ll INF = 1LL << 60;
   using value_type = pi;
   using X = value_type;
   static X op(X x, X y) {

@@ -9,7 +9,9 @@ struct Lazy_MinMax_Add {
   using A_structure = MA;
   using X = typename MX::value_type;
   using A = typename MA::value_type;
-  static constexpr X act(const X &x, const A &a) { 
-    return {min(INF, x.fi + a), max(-INF, x.se + a)};
+  static constexpr X act(const X &x, const A &a) {
+    X lo = (x.fi == numeric_limits<X>::max() ? x.fi : x.fi + a);
+    X hi = (x.se == numeric_limits<X>::lowest() ? x.se : x.se + a);
+    return {lo, hi};
   }
 };

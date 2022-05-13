@@ -1,9 +1,9 @@
 #include "alg/monoid_max.hpp"
 
-template <typename E, E INF>
+template <typename E>
 struct Lazy_Max_Max {
-  using MX = Monoid_Max<E, INF>;
-  using MA = Monoid_Max<E, INF>;
+  using MX = Monoid_Max<E>;
+  using MA = Monoid_Max<E>;
   using X_structure = MX;
   using A_structure = MA;
   using X = typename MX::value_type;
