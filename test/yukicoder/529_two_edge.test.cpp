@@ -19,7 +19,6 @@ void solve() {
   }
   G.build();
 
-  const ll INF = 1LL << 60;
   using Mono = Monoid_Max_Idx<ll>;
 
   HLD hld(G);
@@ -42,7 +41,7 @@ void solve() {
       --a, --b;
       a = comp[a], b = comp[b];
       auto [x, c] = TM.prod_path(a, b);
-      if (x == -INF) {
+      if (x < 0) {
         print(-1);
       } else {
         print(x);

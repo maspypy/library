@@ -7,7 +7,7 @@
 void solve() {
   LL(N);
   RectangleUnion RU;
-  FOR(_, N) {
+  FOR(N) {
     LL(a, b, c, d);
     RU.add_rect(a, b, c, d);
   }
