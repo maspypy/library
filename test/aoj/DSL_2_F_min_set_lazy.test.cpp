@@ -8,7 +8,8 @@
 void solve() {
   LL(N, Q);
   using Lazy = Lazy_Min_Set<ll, -1>;
-  LazySegTree<Lazy> seg(N);
+  vi seg_raw(N, (1LL << 31) - 1);
+  LazySegTree<Lazy> seg(seg_raw);
   FOR(_, Q) {
     LL(t);
     if (t == 0) {

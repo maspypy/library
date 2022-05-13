@@ -21,6 +21,8 @@ void solve() {
 
   using Mono = Monoid_Max_Idx<ll>;
 
+  const ll INF = 1LL << 60;
+
   HLD hld(G);
   vc<pq<ll>> wts(C);
   vc<pair<ll, int>> dat(C);
@@ -41,7 +43,7 @@ void solve() {
       --a, --b;
       a = comp[a], b = comp[b];
       auto [x, c] = TM.prod_path(a, b);
-      if (x < 0) {
+      if (x == -INF) {
         print(-1);
       } else {
         print(x);
