@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
   - icon: ':question:'
