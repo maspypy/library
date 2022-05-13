@@ -63,7 +63,7 @@ data:
     - icon: ':warning:'
       path: alg/lazy_min_min.hpp
       title: alg/lazy_min_min.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy_min_set.hpp
       title: alg/lazy_min_set.hpp
     - icon: ':warning:'
@@ -99,7 +99,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid_max_xplusa_b.hpp
       title: alg/monoid_max_xplusa_b.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid_min.hpp
       title: alg/monoid_min.hpp
     - icon: ':warning:'
@@ -117,7 +117,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid_rollinghash.hpp
       title: alg/monoid_rollinghash.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid_set.hpp
       title: alg/monoid_set.hpp
     - icon: ':heavy_check_mark:'
@@ -214,7 +214,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/larsch.hpp
       title: ds/larsch.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/lazysegtree.hpp
       title: ds/lazysegtree.hpp
     - icon: ':heavy_check_mark:'
@@ -926,7 +926,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_E_fenwick_raq.test.cpp
       title: test/aoj/DSL_2_E_fenwick_raq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_F_min_set_lazy.test.cpp
       title: test/aoj/DSL_2_F_min_set_lazy.test.cpp
     - icon: ':heavy_check_mark:'

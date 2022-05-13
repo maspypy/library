@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy_min_set.hpp
     title: alg/lazy_min_set.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_min.hpp
     title: alg/monoid_min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_set.hpp
     title: alg/monoid_set.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F
@@ -270,21 +270,22 @@ data:
     \ X = typename MX::value_type;\r\n  using A = typename MA::value_type;\r\n  static\
     \ constexpr X act(const X &x, const A &a) {\r\n    return (a == none_val ? x :\
     \ a);\r\n  }\r\n};\r\n#line 7 \"test/aoj/DSL_2_F_min_set_lazy.test.cpp\"\n\r\n\
-    void solve() {\r\n  LL(N, Q);\r\n  using Lazy = Lazy_Min_Set<ll, -1>;\r\n  LazySegTree<Lazy>\
-    \ seg(N);\r\n  FOR(_, Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(L, R,\
-    \ x);\r\n      seg.apply(L, ++R, x);\r\n    } else {\r\n      LL(L, R);\r\n  \
-    \    print(seg.prod(L, ++R));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n\
-    \  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
-    \n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\n\r\n  return 0;\r\n\
-    }\r\n"
-  code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/lazysegtree.hpp\"\
-    \r\n#include \"alg/lazy_min_set.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\n\
-    \  using Lazy = Lazy_Min_Set<ll, -1>;\r\n  LazySegTree<Lazy> seg(N);\r\n  FOR(_,\
+    void solve() {\r\n  LL(N, Q);\r\n  using Lazy = Lazy_Min_Set<ll, -1>;\r\n  vi\
+    \ seg_raw(N, (1LL << 31) - 1);\r\n  LazySegTree<Lazy> seg(seg_raw);\r\n  FOR(_,\
     \ Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(L, R, x);\r\n      seg.apply(L,\
     \ ++R, x);\r\n    } else {\r\n      LL(L, R);\r\n      print(seg.prod(L, ++R));\r\
     \n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
     \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T)\
+    \ solve();\r\n\r\n  return 0;\r\n}\r\n"
+  code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F\"\
+    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/lazysegtree.hpp\"\
+    \r\n#include \"alg/lazy_min_set.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\n\
+    \  using Lazy = Lazy_Min_Set<ll, -1>;\r\n  vi seg_raw(N, (1LL << 31) - 1);\r\n\
+    \  LazySegTree<Lazy> seg(seg_raw);\r\n  FOR(_, Q) {\r\n    LL(t);\r\n    if (t\
+    \ == 0) {\r\n      LL(L, R, x);\r\n      seg.apply(L, ++R, x);\r\n    } else {\r\
+    \n      LL(L, R);\r\n      print(seg.prod(L, ++R));\r\n    }\r\n  }\r\n}\r\n\r\
+    \nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n\
+    \  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T)\
     \ solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
@@ -296,8 +297,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_F_min_set_lazy.test.cpp
   requiredBy: []
-  timestamp: '2022-05-14 04:35:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-14 05:23:42+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_F_min_set_lazy.test.cpp
 layout: document

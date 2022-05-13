@@ -11,7 +11,7 @@ data:
   - icon: ':warning:'
     path: alg/lazy_min_min.hpp
     title: alg/lazy_min_min.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy_min_set.hpp
     title: alg/lazy_min_set.hpp
   - icon: ':warning:'
@@ -21,7 +21,7 @@ data:
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_F_min_set_lazy.test.cpp
     title: test/aoj/DSL_2_F_min_set_lazy.test.cpp
   - icon: ':heavy_check_mark:'
@@ -42,9 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/913_cht_monotone.test.cpp
     title: test/yukicoder/913_cht_monotone.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid_min.hpp\"\ntemplate <class X>\r\nstruct Monoid_Min\
@@ -66,7 +66,7 @@ data:
   - ds/range_mex_query.hpp
   - graph/minimum_spanning_tree.hpp
   timestamp: '2022-05-13 21:02:36+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1234_rmq.test.cpp
   - test/yukicoder/913_cht_monotone.test.cpp

@@ -394,35 +394,36 @@ data:
     \n\nvoid solve() {\n  LL(N, M, Q);\n  Graph G0(N);\n  G0.read_graph(M);\n  auto\
     \ [C, comp] = two_edge_component(G0);\n\n  Graph G(C);\n  for (auto&& e: G0.edges)\
     \ {\n    ll a = e.frm, b = e.to;\n    if (comp[a] == comp[b]) continue;\n    G.add(comp[a],\
-    \ comp[b]);\n  }\n  G.build();\n\n  using Mono = Monoid_Max_Idx<ll>;\n\n  HLD\
-    \ hld(G);\n  vc<pq<ll>> wts(C);\n  vc<pair<ll, int>> dat(C);\n  FOR(i, C) dat[i]\
-    \ = {-INF, i};\n  TreeMonoid<decltype(hld), Mono> TM(hld, dat);\n\n  FOR_(Q) {\n\
-    \    LL(t);\n    if (t == 1) {\n      LL(v, x);\n      --v;\n      ll c = comp[v];\n\
-    \      wts[c].push(x);\n      TM.set(c, {wts[c].top(), c});\n    }\n    if (t\
-    \ == 2) {\n      LL(a, b);\n      --a, --b;\n      a = comp[a], b = comp[b];\n\
-    \      auto [x, c] = TM.prod_path(a, b);\n      if (x < 0) {\n        print(-1);\n\
-    \      } else {\n        print(x);\n        wts[c].pop();\n        x = (wts[c].empty()\
-    \ ? -INF : wts[c].top());\n        TM.set(c, {x, c});\n      }\n    }\n  }\n}\n\
-    \nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
-    \ return 0;\n}\n"
+    \ comp[b]);\n  }\n  G.build();\n\n  using Mono = Monoid_Max_Idx<ll>;\n\n  const\
+    \ ll INF = 1LL << 60;\n\n  HLD hld(G);\n  vc<pq<ll>> wts(C);\n  vc<pair<ll, int>>\
+    \ dat(C);\n  FOR(i, C) dat[i] = {-INF, i};\n  TreeMonoid<decltype(hld), Mono>\
+    \ TM(hld, dat);\n\n  FOR_(Q) {\n    LL(t);\n    if (t == 1) {\n      LL(v, x);\n\
+    \      --v;\n      ll c = comp[v];\n      wts[c].push(x);\n      TM.set(c, {wts[c].top(),\
+    \ c});\n    }\n    if (t == 2) {\n      LL(a, b);\n      --a, --b;\n      a =\
+    \ comp[a], b = comp[b];\n      auto [x, c] = TM.prod_path(a, b);\n      if (x\
+    \ == -INF) {\n        print(-1);\n      } else {\n        print(x);\n        wts[c].pop();\n\
+    \        x = (wts[c].empty() ? -INF : wts[c].top());\n        TM.set(c, {x, c});\n\
+    \      }\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
+    \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/529\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"graph/two_edge_component.hpp\"\n#include\
     \ \"graph/treemonoid.hpp\"\n#include \"alg/monoid_max_idx.hpp\"\n\nvoid solve()\
     \ {\n  LL(N, M, Q);\n  Graph G0(N);\n  G0.read_graph(M);\n  auto [C, comp] = two_edge_component(G0);\n\
     \n  Graph G(C);\n  for (auto&& e: G0.edges) {\n    ll a = e.frm, b = e.to;\n \
     \   if (comp[a] == comp[b]) continue;\n    G.add(comp[a], comp[b]);\n  }\n  G.build();\n\
-    \n  using Mono = Monoid_Max_Idx<ll>;\n\n  HLD hld(G);\n  vc<pq<ll>> wts(C);\n\
-    \  vc<pair<ll, int>> dat(C);\n  FOR(i, C) dat[i] = {-INF, i};\n  TreeMonoid<decltype(hld),\
-    \ Mono> TM(hld, dat);\n\n  FOR_(Q) {\n    LL(t);\n    if (t == 1) {\n      LL(v,\
-    \ x);\n      --v;\n      ll c = comp[v];\n      wts[c].push(x);\n      TM.set(c,\
-    \ {wts[c].top(), c});\n    }\n    if (t == 2) {\n      LL(a, b);\n      --a, --b;\n\
-    \      a = comp[a], b = comp[b];\n      auto [x, c] = TM.prod_path(a, b);\n  \
-    \    if (x < 0) {\n        print(-1);\n      } else {\n        print(x);\n   \
-    \     wts[c].pop();\n        x = (wts[c].empty() ? -INF : wts[c].top());\n   \
-    \     TM.set(c, {x, c});\n      }\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \n  using Mono = Monoid_Max_Idx<ll>;\n\n  const ll INF = 1LL << 60;\n\n  HLD hld(G);\n\
+    \  vc<pq<ll>> wts(C);\n  vc<pair<ll, int>> dat(C);\n  FOR(i, C) dat[i] = {-INF,\
+    \ i};\n  TreeMonoid<decltype(hld), Mono> TM(hld, dat);\n\n  FOR_(Q) {\n    LL(t);\n\
+    \    if (t == 1) {\n      LL(v, x);\n      --v;\n      ll c = comp[v];\n     \
+    \ wts[c].push(x);\n      TM.set(c, {wts[c].top(), c});\n    }\n    if (t == 2)\
+    \ {\n      LL(a, b);\n      --a, --b;\n      a = comp[a], b = comp[b];\n     \
+    \ auto [x, c] = TM.prod_path(a, b);\n      if (x == -INF) {\n        print(-1);\n\
+    \      } else {\n        print(x);\n        wts[c].pop();\n        x = (wts[c].empty()\
+    \ ? -INF : wts[c].top());\n        TM.set(c, {x, c});\n      }\n    }\n  }\n}\n\
+    \nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
+    \ return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -436,7 +437,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/529_two_edge.test.cpp
   requiredBy: []
-  timestamp: '2022-05-14 04:35:25+09:00'
+  timestamp: '2022-05-14 05:23:42+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/529_two_edge.test.cpp

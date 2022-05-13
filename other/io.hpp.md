@@ -69,7 +69,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_E_fenwick_raq.test.cpp
     title: test/aoj/DSL_2_E_fenwick_raq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_F_min_set_lazy.test.cpp
     title: test/aoj/DSL_2_F_min_set_lazy.test.cpp
   - icon: ':heavy_check_mark:'
