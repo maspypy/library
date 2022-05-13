@@ -1,5 +1,3 @@
-
-// 頂点数は渡さなくてよい
 template <typename Cap>
 struct MaxFlowGraph {
   struct Edge {
@@ -14,11 +12,12 @@ struct MaxFlowGraph {
   Cap flow_ans;
   bool calculated;
 
-  MaxFlowGraph(Cap INF) : INF(INF), N(0), calculated(0) {}
+  MaxFlowGraph(int N, Cap INF) : INF(INF), N(N), calculated(0) {}
 
   void add(int frm, int to, Cap cap) {
-    chmax(N, frm + 1);
-    chmax(N, to + 1);
+    assert(0 <= frm && frm < N);
+    assert(0 <= to && to < N);
+    assert(Cap(0) <= cap);
     if (len(G) < N) G.resize(N);
     G[frm].eb(Edge{to, (int)G[to].size(), cap});
     G[to].eb(Edge{frm, (int)G[frm].size() - 1, 0});
