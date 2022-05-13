@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_max.hpp
     title: alg/monoid_max.hpp
   - icon: ':question:'
@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: alg/monoid_reverse.hpp
     title: alg/monoid_reverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/dualsegtree.hpp
     title: ds/dualsegtree.hpp
   - icon: ':question:'
@@ -19,13 +19,13 @@ data:
   - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/dualtreemonoid.hpp
     title: graph/dualtreemonoid.hpp
   - icon: ':question:'
@@ -36,12 +36,12 @@ data:
     title: graph/treemonoid.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A_mst.test.cpp
     title: test/aoj/GRL_2_A_mst.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/contest/828/problem/F
@@ -338,17 +338,16 @@ data:
     // return : {T mst_cost, vc<bool> in_mst, Graph MST, vc<T> dat}\r\n// dat : \u8FBA\
     \u3054\u3068\u306B\u3001\u4ED6\u306E\u8FBA\u3092\u4FDD\u3063\u305F\u3068\u304D\
     \u306B MST \u8FBA\u306B\u306A\u308B\u6700\u5927\u91CD\u307F\r\ntemplate <typename\
-    \ T, T INF = (1LL << 60)>\r\ntuple<T, vc<bool>, Graph<T>, vc<T>> minimum_spanning_tree_cycle_data(\r\
+    \ T>\r\ntuple<T, vc<bool>, Graph<T>, vc<T>> minimum_spanning_tree_cycle_data(\r\
     \n    Graph<T>& G) {\r\n  int N = G.N;\r\n  int M = len(G.edges);\r\n  auto [mst_cost,\
     \ in_mst, MST] = minimum_spanning_tree(G);\r\n  HLD hld(MST);\r\n  vc<T> dat;\r\
     \n  FOR(i, M) if (in_mst[i]) dat.eb(G.edges[i].cost);\r\n  TreeMonoid<decltype(hld),\
-    \ Monoid_Max<T, INF>, 1> TM1(hld, dat);\r\n  DualTreeMonoid<decltype(hld), Monoid_Min<T,\
-    \ INF>, 1> TM2(hld);\r\n  FOR(i, M) {\r\n    if (!in_mst[i]) {\r\n      auto&\
-    \ e = G.edges[i];\r\n      TM2.apply_path(e.frm, e.to, e.cost);\r\n    }\r\n \
-    \ }\r\n  vc<T> ANS(M);\r\n  int m = 0;\r\n  FOR(i, M) {\r\n    auto& e = G.edges[i];\r\
-    \n    if (in_mst[i])\r\n      ANS[i] = TM2.get(m++);\r\n    else\r\n      ANS[i]\
-    \ = TM1.prod_path(e.frm, e.to);\r\n  }\r\n  return {mst_cost, in_mst, MST, ANS};\r\
-    \n}\n"
+    \ Monoid_Max<T>, 1> TM1(hld, dat);\r\n  DualTreeMonoid<decltype(hld), Monoid_Min<T>,\
+    \ 1> TM2(hld);\r\n  FOR(i, M) {\r\n    if (!in_mst[i]) {\r\n      auto& e = G.edges[i];\r\
+    \n      TM2.apply_path(e.frm, e.to, e.cost);\r\n    }\r\n  }\r\n  vc<T> ANS(M);\r\
+    \n  int m = 0;\r\n  FOR(i, M) {\r\n    auto& e = G.edges[i];\r\n    if (in_mst[i])\r\
+    \n      ANS[i] = TM2.get(m++);\r\n    else\r\n      ANS[i] = TM1.prod_path(e.frm,\
+    \ e.to);\r\n  }\r\n  return {mst_cost, in_mst, MST, ANS};\r\n}\n"
   code: "#include \"ds/unionfind.hpp\"\r\n#include \"graph/base.hpp\"\r\n#include\
     \ \"graph/hld.hpp\"\r\n#include \"graph/treemonoid.hpp\"\r\n#include \"graph/dualtreemonoid.hpp\"\
     \r\n#include \"alg/monoid_min.hpp\"\r\n#include \"alg/monoid_max.hpp\"\r\n\r\n\
@@ -365,17 +364,16 @@ data:
     // return : {T mst_cost, vc<bool> in_mst, Graph MST, vc<T> dat}\r\n// dat : \u8FBA\
     \u3054\u3068\u306B\u3001\u4ED6\u306E\u8FBA\u3092\u4FDD\u3063\u305F\u3068\u304D\
     \u306B MST \u8FBA\u306B\u306A\u308B\u6700\u5927\u91CD\u307F\r\ntemplate <typename\
-    \ T, T INF = (1LL << 60)>\r\ntuple<T, vc<bool>, Graph<T>, vc<T>> minimum_spanning_tree_cycle_data(\r\
+    \ T>\r\ntuple<T, vc<bool>, Graph<T>, vc<T>> minimum_spanning_tree_cycle_data(\r\
     \n    Graph<T>& G) {\r\n  int N = G.N;\r\n  int M = len(G.edges);\r\n  auto [mst_cost,\
     \ in_mst, MST] = minimum_spanning_tree(G);\r\n  HLD hld(MST);\r\n  vc<T> dat;\r\
     \n  FOR(i, M) if (in_mst[i]) dat.eb(G.edges[i].cost);\r\n  TreeMonoid<decltype(hld),\
-    \ Monoid_Max<T, INF>, 1> TM1(hld, dat);\r\n  DualTreeMonoid<decltype(hld), Monoid_Min<T,\
-    \ INF>, 1> TM2(hld);\r\n  FOR(i, M) {\r\n    if (!in_mst[i]) {\r\n      auto&\
-    \ e = G.edges[i];\r\n      TM2.apply_path(e.frm, e.to, e.cost);\r\n    }\r\n \
-    \ }\r\n  vc<T> ANS(M);\r\n  int m = 0;\r\n  FOR(i, M) {\r\n    auto& e = G.edges[i];\r\
-    \n    if (in_mst[i])\r\n      ANS[i] = TM2.get(m++);\r\n    else\r\n      ANS[i]\
-    \ = TM1.prod_path(e.frm, e.to);\r\n  }\r\n  return {mst_cost, in_mst, MST, ANS};\r\
-    \n}"
+    \ Monoid_Max<T>, 1> TM1(hld, dat);\r\n  DualTreeMonoid<decltype(hld), Monoid_Min<T>,\
+    \ 1> TM2(hld);\r\n  FOR(i, M) {\r\n    if (!in_mst[i]) {\r\n      auto& e = G.edges[i];\r\
+    \n      TM2.apply_path(e.frm, e.to, e.cost);\r\n    }\r\n  }\r\n  vc<T> ANS(M);\r\
+    \n  int m = 0;\r\n  FOR(i, M) {\r\n    auto& e = G.edges[i];\r\n    if (in_mst[i])\r\
+    \n      ANS[i] = TM2.get(m++);\r\n    else\r\n      ANS[i] = TM1.prod_path(e.frm,\
+    \ e.to);\r\n  }\r\n  return {mst_cost, in_mst, MST, ANS};\r\n}"
   dependsOn:
   - ds/unionfind.hpp
   - graph/base.hpp
@@ -391,8 +389,8 @@ data:
   isVerificationFile: false
   path: graph/minimum_spanning_tree.hpp
   requiredBy: []
-  timestamp: '2022-05-13 21:02:36+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-05-14 04:35:25+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_2_A_mst.test.cpp
 documentation_of: graph/minimum_spanning_tree.hpp

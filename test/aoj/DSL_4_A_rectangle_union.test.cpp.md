@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy_cntminmincnt_add.hpp
     title: alg/lazy_cntminmincnt_add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_cntminmincnt.hpp
     title: alg/monoid_cntminmincnt.hpp
   - icon: ':question:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/rectangleunion.hpp
     title: ds/rectangleunion.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_4_A
@@ -287,7 +287,7 @@ data:
     \ vc<vc<pi>> add(N), rm(N);\r\n    for (auto &&[xl, xr, yl, yr]: rectangles) {\r\
     \n      xl = LB(X, xl), xr = LB(X, xr);\r\n      yl = LB(Y, yl), yr = LB(Y, yr);\r\
     \n      add[xl].eb(yl, yr);\r\n      rm[xr].eb(yl, yr);\r\n    }\r\n\r\n    using\
-    \ Lazy = Lazy_CntMinMincnt_Add<1LL << 60>;\r\n\r\n    vc<typename Lazy::X> seg_raw(len(Y)\
+    \ Lazy = Lazy_CntMinMincnt_Add;\r\n\r\n    vc<typename Lazy::X> seg_raw(len(Y)\
     \ - 1);\r\n    FOR(i, len(Y) - 1) seg_raw[i] = {Y[i + 1] - Y[i], 0, Y[i + 1] -\
     \ Y[i]};\r\n    LazySegTree<Lazy> seg(seg_raw);\r\n    ll ANS = 0;\r\n    FOR(i,\
     \ len(X) - 1) {\r\n      ll dx = X[i + 1] - X[i];\r\n      for (auto &&[yl, yr]:\
@@ -295,15 +295,15 @@ data:
     \ yr, -1);\r\n      auto [cnt, min, mincnt] = seg.prod_all();\r\n      ll n =\
     \ cnt;\r\n      if (min == 0) n -= mincnt;\r\n      ANS += n * dx;\r\n    }\r\n\
     \    return ANS;\r\n  }\r\n};\r\n#line 6 \"test/aoj/DSL_4_A_rectangle_union.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N);\r\n  RectangleUnion RU;\r\n  FOR(_, N) {\r\n\
-    \    LL(a, b, c, d);\r\n    RU.add_rect(a, b, c, d);\r\n  }\r\n  print(RU.calc());\r\
+    \n\r\nvoid solve() {\r\n  LL(N);\r\n  RectangleUnion RU;\r\n  FOR(N) {\r\n   \
+    \ LL(a, b, c, d);\r\n    RU.add_rect(a, b, c, d);\r\n  }\r\n  print(RU.calc());\r\
     \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
     \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T)\
     \ solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_4_A\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/rectangleunion.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  LL(N);\r\n  RectangleUnion RU;\r\n  FOR(_, N) {\r\n\
-    \    LL(a, b, c, d);\r\n    RU.add_rect(a, b, c, d);\r\n  }\r\n  print(RU.calc());\r\
+    \r\n\r\nvoid solve() {\r\n  LL(N);\r\n  RectangleUnion RU;\r\n  FOR(N) {\r\n \
+    \   LL(a, b, c, d);\r\n    RU.add_rect(a, b, c, d);\r\n  }\r\n  print(RU.calc());\r\
     \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
     \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T)\
     \ solve();\r\n\r\n  return 0;\r\n}\r\n"
@@ -318,8 +318,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_4_A_rectangle_union.test.cpp
   requiredBy: []
-  timestamp: '2022-05-13 21:03:24+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-14 04:35:25+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_4_A_rectangle_union.test.cpp
 layout: document

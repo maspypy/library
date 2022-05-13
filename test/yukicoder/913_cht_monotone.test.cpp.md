@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: alg/monoid_min.hpp
     title: alg/monoid_min.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/cht_monotone.hpp
     title: ds/cht_monotone.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/dualsegtree.hpp
     title: ds/dualsegtree.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/913
@@ -248,9 +248,31 @@ data:
     \ (H.size() >= 2 && get_y(H.back(), x) >= get_y(H[H.size() - 2], x))\r\n     \
     \ H.pop_back();\r\n    if (isMin) return get_y(H.back(), x);\r\n    return -get_y(H.back(),\
     \ x);\r\n  }\r\n\r\n#undef F\r\n#undef S\r\n};\n#line 7 \"test/yukicoder/913_cht_monotone.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  const ll INF = 1LL << 60;\n\
-    \  DualSegTree<Monoid_Min<ll, INF>> seg(N);\n\n  auto f = [&](ll L, ll M, ll R)\
-    \ -> void {\n    {\n      // \u53F3\u306B\u3064\u3044\u3066\u3001\u542B\u3080\u5834\
+    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  DualSegTree<Monoid_Min<ll>>\
+    \ seg(N);\n\n  auto f = [&](ll L, ll M, ll R) -> void {\n    {\n      // \u53F3\
+    \u306B\u3064\u3044\u3066\u3001\u542B\u3080\u5834\u5408\n      // \u307E\u305A\u306F\
+    \u3001\u5DE6\u3092\u30C7\u30FC\u30BF\u306B\u633F\u5165\n      CHT_monotone<ll,\
+    \ 1> cht;\n      ll a = 0, b = 0;\n      cht.add(2 * a, a * a + b);\n      FOR3_R(i,\
+    \ L, M) {\n        ++a;\n        b += A[i];\n        cht.add(2 * a, a * a + b);\n\
+    \      }\n\n      ll c = 0, s = 0;\n      FOR3(i, M, R) {\n        ++c;\n    \
+    \    s += A[i];\n        ll y = cht.query_monotone_inc(c) + c * c + s;\n     \
+    \   seg.apply(M, i + 1, y);\n      }\n    }\n    {\n      CHT_monotone<ll, 1>\
+    \ cht;\n      ll a = 0, b = 0;\n      cht.add(2 * a, a * a + b);\n      FOR3(i,\
+    \ M + 1, R) {\n        ++a;\n        b += A[i];\n        cht.add(2 * a, a * a\
+    \ + b);\n      }\n\n      ll c = 0, s = 0;\n      FOR3_R(i, L, M + 1) {\n    \
+    \    ++c;\n        s += A[i];\n        ll y = cht.query_monotone_inc(c) + c *\
+    \ c + s;\n        seg.apply(i, M + 1, y);\n      }\n    }\n  };\n\n  auto dfs\
+    \ = [&](auto self, ll L, ll R) -> void {\n    if (L == R) return;\n    ll M =\
+    \ (L + R) / 2;\n    f(L, M, R);\n    self(self, L, M);\n    self(self, M + 1,\
+    \ R);\n  };\n  dfs(dfs, 0, N);\n  vi ANS = seg.get_all();\n  for (auto&& x: ANS)\
+    \ print(x);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
+    \n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/913\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"ds/dualsegtree.hpp\"\n#include \"alg/monoid_min.hpp\"\
+    \n#include \"ds/cht_monotone.hpp\"\n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n\
+    \  DualSegTree<Monoid_Min<ll>> seg(N);\n\n  auto f = [&](ll L, ll M, ll R) ->\
+    \ void {\n    {\n      // \u53F3\u306B\u3064\u3044\u3066\u3001\u542B\u3080\u5834\
     \u5408\n      // \u307E\u305A\u306F\u3001\u5DE6\u3092\u30C7\u30FC\u30BF\u306B\u633F\
     \u5165\n      CHT_monotone<ll, 1> cht;\n      ll a = 0, b = 0;\n      cht.add(2\
     \ * a, a * a + b);\n      FOR3_R(i, L, M) {\n        ++a;\n        b += A[i];\n\
@@ -268,28 +290,6 @@ data:
     \ ANS) print(x);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
     \n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/913\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"ds/dualsegtree.hpp\"\n#include \"alg/monoid_min.hpp\"\
-    \n#include \"ds/cht_monotone.hpp\"\n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n\
-    \  const ll INF = 1LL << 60;\n  DualSegTree<Monoid_Min<ll, INF>> seg(N);\n\n \
-    \ auto f = [&](ll L, ll M, ll R) -> void {\n    {\n      // \u53F3\u306B\u3064\
-    \u3044\u3066\u3001\u542B\u3080\u5834\u5408\n      // \u307E\u305A\u306F\u3001\u5DE6\
-    \u3092\u30C7\u30FC\u30BF\u306B\u633F\u5165\n      CHT_monotone<ll, 1> cht;\n \
-    \     ll a = 0, b = 0;\n      cht.add(2 * a, a * a + b);\n      FOR3_R(i, L, M)\
-    \ {\n        ++a;\n        b += A[i];\n        cht.add(2 * a, a * a + b);\n  \
-    \    }\n\n      ll c = 0, s = 0;\n      FOR3(i, M, R) {\n        ++c;\n      \
-    \  s += A[i];\n        ll y = cht.query_monotone_inc(c) + c * c + s;\n       \
-    \ seg.apply(M, i + 1, y);\n      }\n    }\n    {\n      CHT_monotone<ll, 1> cht;\n\
-    \      ll a = 0, b = 0;\n      cht.add(2 * a, a * a + b);\n      FOR3(i, M + 1,\
-    \ R) {\n        ++a;\n        b += A[i];\n        cht.add(2 * a, a * a + b);\n\
-    \      }\n\n      ll c = 0, s = 0;\n      FOR3_R(i, L, M + 1) {\n        ++c;\n\
-    \        s += A[i];\n        ll y = cht.query_monotone_inc(c) + c * c + s;\n \
-    \       seg.apply(i, M + 1, y);\n      }\n    }\n  };\n\n  auto dfs = [&](auto\
-    \ self, ll L, ll R) -> void {\n    if (L == R) return;\n    ll M = (L + R) / 2;\n\
-    \    f(L, M, R);\n    self(self, L, M);\n    self(self, M + 1, R);\n  };\n  dfs(dfs,\
-    \ 0, N);\n  vi ANS = seg.get_all();\n  for (auto&& x: ANS) print(x);\n}\n\nsigned\
-    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -299,8 +299,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/913_cht_monotone.test.cpp
   requiredBy: []
-  timestamp: '2022-05-13 21:02:36+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-14 04:35:25+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/913_cht_monotone.test.cpp
 layout: document

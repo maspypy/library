@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy_cntminmincnt_add.hpp
     title: alg/lazy_cntminmincnt_add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_cntminmincnt.hpp
     title: alg/monoid_cntminmincnt.hpp
   - icon: ':question:'
@@ -15,12 +15,12 @@ data:
     title: ds/lazysegtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_4_A_rectangle_union.test.cpp
     title: test/aoj/DSL_4_A_rectangle_union.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/lazysegtree.hpp\"\n\ntemplate <typename Lazy>\nstruct\
@@ -109,7 +109,7 @@ data:
     \ vc<vc<pi>> add(N), rm(N);\r\n    for (auto &&[xl, xr, yl, yr]: rectangles) {\r\
     \n      xl = LB(X, xl), xr = LB(X, xr);\r\n      yl = LB(Y, yl), yr = LB(Y, yr);\r\
     \n      add[xl].eb(yl, yr);\r\n      rm[xr].eb(yl, yr);\r\n    }\r\n\r\n    using\
-    \ Lazy = Lazy_CntMinMincnt_Add<1LL << 60>;\r\n\r\n    vc<typename Lazy::X> seg_raw(len(Y)\
+    \ Lazy = Lazy_CntMinMincnt_Add;\r\n\r\n    vc<typename Lazy::X> seg_raw(len(Y)\
     \ - 1);\r\n    FOR(i, len(Y) - 1) seg_raw[i] = {Y[i + 1] - Y[i], 0, Y[i + 1] -\
     \ Y[i]};\r\n    LazySegTree<Lazy> seg(seg_raw);\r\n    ll ANS = 0;\r\n    FOR(i,\
     \ len(X) - 1) {\r\n      ll dx = X[i + 1] - X[i];\r\n      for (auto &&[yl, yr]:\
@@ -125,9 +125,9 @@ data:
     \n    UNIQUE(X), UNIQUE(Y);\r\n    ll N = len(X);\r\n    vc<vc<pi>> add(N), rm(N);\r\
     \n    for (auto &&[xl, xr, yl, yr]: rectangles) {\r\n      xl = LB(X, xl), xr\
     \ = LB(X, xr);\r\n      yl = LB(Y, yl), yr = LB(Y, yr);\r\n      add[xl].eb(yl,\
-    \ yr);\r\n      rm[xr].eb(yl, yr);\r\n    }\r\n\r\n    using Lazy = Lazy_CntMinMincnt_Add<1LL\
-    \ << 60>;\r\n\r\n    vc<typename Lazy::X> seg_raw(len(Y) - 1);\r\n    FOR(i, len(Y)\
-    \ - 1) seg_raw[i] = {Y[i + 1] - Y[i], 0, Y[i + 1] - Y[i]};\r\n    LazySegTree<Lazy>\
+    \ yr);\r\n      rm[xr].eb(yl, yr);\r\n    }\r\n\r\n    using Lazy = Lazy_CntMinMincnt_Add;\r\
+    \n\r\n    vc<typename Lazy::X> seg_raw(len(Y) - 1);\r\n    FOR(i, len(Y) - 1)\
+    \ seg_raw[i] = {Y[i + 1] - Y[i], 0, Y[i + 1] - Y[i]};\r\n    LazySegTree<Lazy>\
     \ seg(seg_raw);\r\n    ll ANS = 0;\r\n    FOR(i, len(X) - 1) {\r\n      ll dx\
     \ = X[i + 1] - X[i];\r\n      for (auto &&[yl, yr]: add[i]) seg.apply(yl, yr,\
     \ 1);\r\n      for (auto &&[yl, yr]: rm[i]) seg.apply(yl, yr, -1);\r\n      auto\
@@ -142,8 +142,8 @@ data:
   isVerificationFile: false
   path: ds/rectangleunion.hpp
   requiredBy: []
-  timestamp: '2022-05-13 21:03:24+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-05-14 04:35:25+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_4_A_rectangle_union.test.cpp
 documentation_of: ds/rectangleunion.hpp

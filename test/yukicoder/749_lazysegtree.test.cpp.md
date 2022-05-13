@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/749
@@ -338,8 +338,8 @@ data:
     \ auto [sum, cnt, fsum] = x;\n    auto [p, q, r] = a;\n    return {p * sum + q\
     \ * cnt + r * fsum, cnt, fsum};\n  }\n};\n\nvoid solve() {\n  LL(N, Q);\n  vc<mint>\
     \ F(N);\n  F[1] = 1;\n  FOR3(i, 2, N) F[i] = F[i - 2] + F[i - 1];\n  LazySegTree<Lazy>\
-    \ seg(N);\n  FOR(i, N) seg.set(i, {mint(0), mint(1), F[i]});\n\n  FOR_(Q) {\n\
-    \    LL(t, L, R, k);\n    mint mk = k;\n    ++R;\n    if (t == 0) {\n      auto\
+    \ seg(N);\n  FOR(i, N) seg.set(i, {mint(0), mint(1), F[i]});\n\n  FOR(Q) {\n \
+    \   LL(t, L, R, k);\n    mint mk = k;\n    ++R;\n    if (t == 0) {\n      auto\
     \ [sum, cnt, fsum] = seg.prod(L, R);\n      print(sum * mk);\n    }\n    if (t\
     \ == 1) { seg.apply(L, R, {mint(0), mk, mint(0)}); }\n    if (t == 2) { seg.apply(L,\
     \ R, {mint(1), mk, mint(0)}); }\n    if (t == 3) { seg.apply(L, R, {mk, mint(0),\
@@ -364,8 +364,8 @@ data:
     \ auto [sum, cnt, fsum] = x;\n    auto [p, q, r] = a;\n    return {p * sum + q\
     \ * cnt + r * fsum, cnt, fsum};\n  }\n};\n\nvoid solve() {\n  LL(N, Q);\n  vc<mint>\
     \ F(N);\n  F[1] = 1;\n  FOR3(i, 2, N) F[i] = F[i - 2] + F[i - 1];\n  LazySegTree<Lazy>\
-    \ seg(N);\n  FOR(i, N) seg.set(i, {mint(0), mint(1), F[i]});\n\n  FOR_(Q) {\n\
-    \    LL(t, L, R, k);\n    mint mk = k;\n    ++R;\n    if (t == 0) {\n      auto\
+    \ seg(N);\n  FOR(i, N) seg.set(i, {mint(0), mint(1), F[i]});\n\n  FOR(Q) {\n \
+    \   LL(t, L, R, k);\n    mint mk = k;\n    ++R;\n    if (t == 0) {\n      auto\
     \ [sum, cnt, fsum] = seg.prod(L, R);\n      print(sum * mk);\n    }\n    if (t\
     \ == 1) { seg.apply(L, R, {mint(0), mk, mint(0)}); }\n    if (t == 2) { seg.apply(L,\
     \ R, {mint(1), mk, mint(0)}); }\n    if (t == 3) { seg.apply(L, R, {mk, mint(0),\
@@ -381,8 +381,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/749_lazysegtree.test.cpp
   requiredBy: []
-  timestamp: '2022-05-13 20:44:41+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-14 04:35:25+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/749_lazysegtree.test.cpp
 layout: document

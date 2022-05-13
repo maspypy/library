@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: alg
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/group_add.hpp
       title: alg/group_add.hpp
     - icon: ':heavy_check_mark:'
@@ -24,7 +24,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/lazy_add_mul.hpp
       title: alg/lazy_add_mul.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy_cntminmincnt_add.hpp
       title: alg/lazy_cntminmincnt_add.hpp
     - icon: ':heavy_check_mark:'
@@ -57,7 +57,7 @@ data:
     - icon: ':warning:'
       path: alg/lazy_max_set.hpp
       title: alg/lazy_max_set.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy_min_add.hpp
       title: alg/lazy_min_add.hpp
     - icon: ':warning:'
@@ -75,7 +75,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid_cntmaxmaxcnt.hpp
       title: alg/monoid_cntmaxmaxcnt.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid_cntminmincnt.hpp
       title: alg/monoid_cntminmincnt.hpp
     - icon: ':warning:'
@@ -90,7 +90,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid_gcd.hpp
       title: alg/monoid_gcd.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid_max.hpp
       title: alg/monoid_max.hpp
     - icon: ':x:'
@@ -169,7 +169,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/cht.hpp
       title: ds/cht.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/cht_monotone.hpp
       title: ds/cht_monotone.hpp
     - icon: ':warning:'
@@ -184,7 +184,7 @@ data:
     - icon: ':warning:'
       path: ds/doubling.hpp
       title: ds/doubling.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/dualsegtree.hpp
       title: ds/dualsegtree.hpp
     - icon: ':heavy_check_mark:'
@@ -244,7 +244,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/rectangle_sum.hpp
       title: ds/rectangle_sum.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/rectangleunion.hpp
       title: ds/rectangleunion.hpp
     - icon: ':question:'
@@ -262,7 +262,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/swag.hpp
       title: ds/swag.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/unionfind.hpp
       title: ds/unionfind.hpp
     - icon: ':warning:'
@@ -288,7 +288,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: flow/bipartite.hpp
       title: flow/bipartite.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: flow/maxflow.hpp
       title: flow/maxflow.hpp
     - icon: ':heavy_check_mark:'
@@ -364,7 +364,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/dijkstra.hpp
       title: graph/dijkstra.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/dualtreemonoid.hpp
       title: graph/dualtreemonoid.hpp
     - icon: ':heavy_check_mark:'
@@ -400,7 +400,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/minimum_hamiltonian_cycle.hpp
       title: graph/minimum_hamiltonian_cycle.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/minimum_spanning_tree.hpp
       title: graph/minimum_spanning_tree.hpp
     - icon: ':warning:'
@@ -536,7 +536,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_sqrt.hpp
       title: mod/mod_sqrt.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint.hpp
       title: mod/modint.hpp
     - icon: ':heavy_check_mark:'
@@ -932,13 +932,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_G_fenwick_raq.test.cpp
       title: test/aoj/DSL_2_G_fenwick_raq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_H_min_add_lazy.test.cpp
       title: test/aoj/DSL_2_H_min_add_lazy.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_I_cntsum_set_lazy.test.cpp
       title: test/aoj/DSL_2_I_cntsum_set_lazy.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_4_A_rectangle_union.test.cpp
       title: test/aoj/DSL_4_A_rectangle_union.test.cpp
     - icon: ':heavy_check_mark:'
@@ -947,13 +947,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_1_C_warshallfloyd.test.cpp
       title: test/aoj/GRL_1_C_warshallfloyd.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_2_A_mst.test.cpp
       title: test/aoj/GRL_2_A_mst.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
       title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_6_A_maxflow.test.cpp
       title: test/aoj/GRL_6_A_maxflow.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1472,13 +1472,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/705_monge_shortest_path.test.cpp
       title: test/yukicoder/705_monge_shortest_path.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/749_lazysegtree.test.cpp
       title: test/yukicoder/749_lazysegtree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/899_bfsnumbering.test.cpp
       title: test/yukicoder/899_bfsnumbering.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/913_cht_monotone.test.cpp
       title: test/yukicoder/913_cht_monotone.test.cpp
     - icon: ':heavy_check_mark:'

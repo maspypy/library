@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy_min_add.hpp
     title: alg/lazy_min_add.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H
@@ -271,23 +271,22 @@ data:
     \  return r + 1 - size;\n      }\n      sm = Monoid_X::op(dat[r], sm);\n    }\
     \ while ((r & -r) != r);\n    return 0;\n  }\n\n  void debug() { print(\"lazysegtree\
     \ getall:\", get_all()); }\n};\n#line 8 \"test/aoj/DSL_2_H_min_add_lazy.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  using Lazy = Lazy_Min_Add<ll, 1LL << 60>;\r\n  LL(N,\
-    \ Q);\r\n  vi A(N);\r\n  LazySegTree<Lazy> seg(A);\r\n  FOR(_, Q) {\r\n    LL(t,\
-    \ L, R);\r\n    ++R;\r\n    if (t == 0) {\r\n      LL(x);\r\n      seg.apply(L,\
-    \ R, x);\r\n    } else {\r\n      print(seg.prod(L, R));\r\n    }\r\n  }\r\n}\r\
-    \n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T)\
-    \ solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \n\r\nvoid solve() {\r\n  using Lazy = Lazy_Min_Add<ll>;\r\n  LL(N, Q);\r\n  vi\
+    \ A(N);\r\n  LazySegTree<Lazy> seg(A);\r\n  FOR(Q) {\r\n    LL(t, L, R);\r\n \
+    \   ++R;\r\n    if (t == 0) {\r\n      LL(x);\r\n      seg.apply(L, R, x);\r\n\
+    \    } else {\r\n      print(seg.prod(L, R));\r\n    }\r\n  }\r\n}\r\n\r\nsigned\
+    \ main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout\
+    \ << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\
+    \n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H\"\
     \r\n\r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include\
     \ \"alg/lazy_min_add.hpp\"\r\n#include \"ds/lazysegtree.hpp\"\r\n\r\nvoid solve()\
-    \ {\r\n  using Lazy = Lazy_Min_Add<ll, 1LL << 60>;\r\n  LL(N, Q);\r\n  vi A(N);\r\
-    \n  LazySegTree<Lazy> seg(A);\r\n  FOR(_, Q) {\r\n    LL(t, L, R);\r\n    ++R;\r\
-    \n    if (t == 0) {\r\n      LL(x);\r\n      seg.apply(L, R, x);\r\n    } else\
-    \ {\r\n      print(seg.prod(L, R));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main()\
-    \ {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
-    \n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\n\r\n  return 0;\r\n\
-    }\r\n"
+    \ {\r\n  using Lazy = Lazy_Min_Add<ll>;\r\n  LL(N, Q);\r\n  vi A(N);\r\n  LazySegTree<Lazy>\
+    \ seg(A);\r\n  FOR(Q) {\r\n    LL(t, L, R);\r\n    ++R;\r\n    if (t == 0) {\r\
+    \n      LL(x);\r\n      seg.apply(L, R, x);\r\n    } else {\r\n      print(seg.prod(L,\
+    \ R));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n\
+    \  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  ll T =\
+    \ 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -298,8 +297,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_H_min_add_lazy.test.cpp
   requiredBy: []
-  timestamp: '2022-05-13 21:02:36+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-14 04:35:25+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_H_min_add_lazy.test.cpp
 layout: document
