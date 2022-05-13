@@ -8,8 +8,7 @@
 void solve() {
   LL(N);
   VEC(ll, A, N);
-  const ll INF = 1LL << 60;
-  DualSegTree<Monoid_Min<ll, INF>> seg(N);
+  DualSegTree<Monoid_Min<ll>> seg(N);
 
   auto f = [&](ll L, ll M, ll R) -> void {
     {

@@ -23,7 +23,7 @@ struct RectangleUnion {
       rm[xr].eb(yl, yr);
     }
 
-    using Lazy = Lazy_CntMinMincnt_Add<1LL << 60>;
+    using Lazy = Lazy_CntMinMincnt_Add;
 
     vc<typename Lazy::X> seg_raw(len(Y) - 1);
     FOR(i, len(Y) - 1) seg_raw[i] = {Y[i + 1] - Y[i], 0, Y[i + 1] - Y[i]};

@@ -39,7 +39,7 @@ tuple<T, vc<bool>, Graph<T>> minimum_spanning_tree(Graph<T>& G) {
 // https://codeforces.com/contest/828/problem/F
 // return : {T mst_cost, vc<bool> in_mst, Graph MST, vc<T> dat}
 // dat : 辺ごとに、他の辺を保ったときに MST 辺になる最大重み
-template <typename T, T INF = (1LL << 60)>
+template <typename T>
 tuple<T, vc<bool>, Graph<T>, vc<T>> minimum_spanning_tree_cycle_data(
     Graph<T>& G) {
   int N = G.N;
@@ -48,8 +48,8 @@ tuple<T, vc<bool>, Graph<T>, vc<T>> minimum_spanning_tree_cycle_data(
   HLD hld(MST);
   vc<T> dat;
   FOR(i, M) if (in_mst[i]) dat.eb(G.edges[i].cost);
-  TreeMonoid<decltype(hld), Monoid_Max<T, INF>, 1> TM1(hld, dat);
-  DualTreeMonoid<decltype(hld), Monoid_Min<T, INF>, 1> TM2(hld);
+  TreeMonoid<decltype(hld), Monoid_Max<T>, 1> TM1(hld, dat);
+  DualTreeMonoid<decltype(hld), Monoid_Min<T>, 1> TM2(hld);
   FOR(i, M) {
     if (!in_mst[i]) {
       auto& e = G.edges[i];

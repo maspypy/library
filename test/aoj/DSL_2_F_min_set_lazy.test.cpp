@@ -7,8 +7,7 @@
 
 void solve() {
   LL(N, Q);
-  const ll MAX = (1LL << 31) - 1;
-  using Lazy = Lazy_Min_Set<ll, MAX, -1>;
+  using Lazy = Lazy_Min_Set<ll, -1>;
   LazySegTree<Lazy> seg(N);
   FOR(_, Q) {
     LL(t);

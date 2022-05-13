@@ -54,7 +54,7 @@ void solve() {
   LazySegTree<Lazy> seg(N);
   FOR(i, N) seg.set(i, {mint(0), mint(1), F[i]});
 
-  FOR_(Q) {
+  FOR(Q) {
     LL(t, L, R, k);
     mint mk = k;
     ++R;

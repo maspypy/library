@@ -7,11 +7,11 @@
 #include "ds/lazysegtree.hpp"
 
 void solve() {
-  using Lazy = Lazy_Min_Add<ll, 1LL << 60>;
+  using Lazy = Lazy_Min_Add<ll>;
   LL(N, Q);
   vi A(N);
   LazySegTree<Lazy> seg(A);
-  FOR(_, Q) {
+  FOR(Q) {
     LL(t, L, R);
     ++R;
     if (t == 0) {
