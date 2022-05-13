@@ -7,7 +7,7 @@
 void solve() {
   LL(N, Q);
   VEC(int, A, N);
-  using Mono = Monoid_Min<int, 1 << 30>;
+  using Mono = Monoid_Min<int>;
   SegTree<Mono> seg(A);
   FOR(_, Q) {
     LL(L, R);

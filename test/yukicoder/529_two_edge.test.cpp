@@ -20,7 +20,7 @@ void solve() {
   G.build();
 
   const ll INF = 1LL << 60;
-  using Mono = Monoid_Max_Idx<ll, INF>;
+  using Mono = Monoid_Max_Idx<ll>;
 
   HLD hld(G);
   vc<pq<ll>> wts(C);

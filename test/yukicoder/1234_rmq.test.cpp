@@ -7,8 +7,7 @@
 void solve() {
   LL(N);
   VEC(ll, A, N);
-  const ll INF = 1LL << 60;
-  LazySegTree<Lazy_Min_Add<ll, INF>> seg(A);
+  LazySegTree<Lazy_Min_Add<ll>> seg(A);
   LL(Q);
   FOR(Q) {
     LL(t, l, r, x);
