@@ -1,9 +1,9 @@
 #include "alg/monoid_min.hpp"
 
-template <typename E, E INF>
+template <typename E>
 struct Lazy_Min_Min {
-  using MX = Monoid_Min<E, INF>;
-  using MA = Monoid_Min<E, INF>;
+  using MX = Monoid_Min<E>;
+  using MA = Monoid_Min<E>;
   using X_structure = MX;
   using A_structure = MA;
   using X = typename MX::value_type;
