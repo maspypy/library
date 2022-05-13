@@ -70,8 +70,5 @@
 "test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp": "2022-05-13 20:44:41 +0900",
 "test/library_checker/datastructure/staticrmq_dc.test.cpp": "2022-05-13 20:44:41 +0900",
 "test/library_checker/datastructure/unionfind.test.cpp": "2022-05-13 20:44:41 +0900",
-"test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp": "2022-05-13 20:44:41 +0900",
-"test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp": "2022-05-13 20:44:41 +0900",
-"test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp": "2022-05-13 20:44:41 +0900",
-"test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp": "2022-05-13 20:44:41 +0900"
+"test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp": "2022-05-13 20:44:41 +0900"
 }
