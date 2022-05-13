@@ -1,0 +1,48 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yukicoder/1156_solve_hukumenzan.test.cpp
+    title: test/yukicoder/1156_solve_hukumenzan.test.cpp
+  _isVerificationFailed: true
+  _pathExtension: hpp
+  _verificationStatusIcon: ':x:'
+  attributes:
+    links: []
+  bundledCode: "#line 1 \"other/solve_hukumenzan.hpp\"\n// a + b = c \u3092\u89E3\u304F\
+    \r\nvc<tuple<int, int, int>> solve_hukumenzan(string A, string B, string C) {\r\
+    \n  vc<char> v;\r\n  for (auto&& x: A + B + C) v.eb(x);\r\n  UNIQUE(v);\r\n  vc<int>\
+    \ I(10);\r\n  iota(all(I), 0);\r\n  using T = tuple<int, int, int>;\r\n  vc<T>\
+    \ res;\r\n  do {\r\n    map<char, int> MP;\r\n    FOR(i, len(v)) MP[v[i]] = I[i];\r\
+    \n    if (MP[A[0]] == 0) continue;\r\n    if (MP[B[0]] == 0) continue;\r\n   \
+    \ if (MP[C[0]] == 0) continue;\r\n    ll a = 0, b = 0, c = 0;\r\n    for (auto&&\
+    \ x: A) a = 10 * a + MP[x];\r\n    for (auto&& x: B) b = 10 * b + MP[x];\r\n \
+    \   for (auto&& x: C) c = 10 * c + MP[x];\r\n    if (a + b == c) res.eb(a, b,\
+    \ c);\r\n  } while (next_permutation(all(I)));\r\n  return res;\r\n}\n"
+  code: "// a + b = c \u3092\u89E3\u304F\r\nvc<tuple<int, int, int>> solve_hukumenzan(string\
+    \ A, string B, string C) {\r\n  vc<char> v;\r\n  for (auto&& x: A + B + C) v.eb(x);\r\
+    \n  UNIQUE(v);\r\n  vc<int> I(10);\r\n  iota(all(I), 0);\r\n  using T = tuple<int,\
+    \ int, int>;\r\n  vc<T> res;\r\n  do {\r\n    map<char, int> MP;\r\n    FOR(i,\
+    \ len(v)) MP[v[i]] = I[i];\r\n    if (MP[A[0]] == 0) continue;\r\n    if (MP[B[0]]\
+    \ == 0) continue;\r\n    if (MP[C[0]] == 0) continue;\r\n    ll a = 0, b = 0,\
+    \ c = 0;\r\n    for (auto&& x: A) a = 10 * a + MP[x];\r\n    for (auto&& x: B)\
+    \ b = 10 * b + MP[x];\r\n    for (auto&& x: C) c = 10 * c + MP[x];\r\n    if (a\
+    \ + b == c) res.eb(a, b, c);\r\n  } while (next_permutation(all(I)));\r\n  return\
+    \ res;\r\n}"
+  dependsOn: []
+  isVerificationFile: false
+  path: other/solve_hukumenzan.hpp
+  requiredBy: []
+  timestamp: '2022-05-14 00:01:13+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yukicoder/1156_solve_hukumenzan.test.cpp
+documentation_of: other/solve_hukumenzan.hpp
+layout: document
+redirect_from:
+- /library/other/solve_hukumenzan.hpp
+- /library/other/solve_hukumenzan.hpp.html
+title: other/solve_hukumenzan.hpp
+---
