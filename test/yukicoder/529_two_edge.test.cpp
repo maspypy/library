@@ -29,7 +29,7 @@ void solve() {
   FOR(i, C) dat[i] = {-INF, i};
   TreeMonoid<decltype(hld), Mono> TM(hld, dat);
 
-  FOR_(Q) {
+  FOR(Q) {
     LL(t);
     if (t == 1) {
       LL(v, x);
