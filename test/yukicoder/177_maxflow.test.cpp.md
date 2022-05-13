@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/177
@@ -36,7 +36,7 @@ data:
     \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
     \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
-    \ for (ll i = 0; i < ll(a); ++i)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
+    \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
     \ a, b, c) for (ll i = a; i < ll(b); i += (c))\n#define FOR1_R(a) for (ll i =\
     \ (a)-1; i >= ll(0); --i)\n#define FOR2_R(i, a) for (ll i = (a)-1; i >= ll(0);\
@@ -189,25 +189,25 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 1 \"flow/maxflow.hpp\"\n\n// \u9802\u70B9\u6570\u306F\u6E21\
-    \u3055\u306A\u304F\u3066\u3088\u3044\ntemplate <typename Cap>\nstruct MaxFlowGraph\
-    \ {\n  struct Edge {\n    int to, rev;\n    Cap cap;\n  };\n\n  const Cap INF;\n\
-    \  int N;\n  vvc<Edge> G;\n  vc<int> prog, level;\n  Cap flow_ans;\n  bool calculated;\n\
-    \n  MaxFlowGraph(Cap INF) : INF(INF), N(0), calculated(0) {}\n\n  void add(int\
-    \ frm, int to, Cap cap) {\n    chmax(N, frm + 1);\n    chmax(N, to + 1);\n   \
-    \ if (len(G) < N) G.resize(N);\n    G[frm].eb(Edge{to, (int)G[to].size(), cap});\n\
-    \    G[to].eb(Edge{frm, (int)G[frm].size() - 1, 0});\n  }\n\n  Cap flow(int source,\
-    \ int sink) {\n    if (calculated) return flow_ans;\n    calculated = true;\n\
-    \    chmax(N, source + 1);\n    chmax(N, sink + 1);\n    G.resize(N);\n    flow_ans\
-    \ = 0;\n    while (set_level(source, sink)) {\n      fill(all(prog), 0);\n   \
-    \   prog.assign(N, 0);\n      while (1) {\n        Cap x = flow_dfs(source, sink,\
-    \ INF);\n        if (x == 0) break;\n        flow_ans += x;\n        chmin(flow_ans,\
-    \ INF);\n        if (flow_ans == INF) return flow_ans;\n      }\n    }\n    return\
-    \ flow_ans;\n  }\n\n  // \u6700\u5C0F\u30AB\u30C3\u30C8\u306E\u5024\u304A\u3088\
-    \u3073\u3001\u30AB\u30C3\u30C8\u3092\u8868\u3059 01 \u5217\u3092\u8FD4\u3059\n\
-    \  pair<Cap, vc<int>> cut(int source, int sink) {\n    Cap f = flow(source, sink);\n\
-    \    vc<int> res(N);\n    FOR(v, N) res[v] = (level[v] >= 0 ? 0 : 1);\n    return\
-    \ {f, res};\n  }\n\nprivate:\n  bool set_level(int source, int sink) {\n    level.assign(N,\
+    \ { yes(!t); }\r\n#line 1 \"flow/maxflow.hpp\"\ntemplate <typename Cap>\nstruct\
+    \ MaxFlowGraph {\n  struct Edge {\n    int to, rev;\n    Cap cap;\n  };\n\n  const\
+    \ Cap INF;\n  int N;\n  vvc<Edge> G;\n  vc<int> prog, level;\n  Cap flow_ans;\n\
+    \  bool calculated;\n\n  MaxFlowGraph(int N, Cap INF) : INF(INF), N(N), calculated(0)\
+    \ {}\n\n  void add(int frm, int to, Cap cap) {\n    assert(0 <= frm && frm < N);\n\
+    \    assert(0 <= to && to < N);\n    assert(Cap(0) <= cap);\n    if (len(G) <\
+    \ N) G.resize(N);\n    G[frm].eb(Edge{to, (int)G[to].size(), cap});\n    G[to].eb(Edge{frm,\
+    \ (int)G[frm].size() - 1, 0});\n  }\n\n  Cap flow(int source, int sink) {\n  \
+    \  if (calculated) return flow_ans;\n    calculated = true;\n    chmax(N, source\
+    \ + 1);\n    chmax(N, sink + 1);\n    G.resize(N);\n    flow_ans = 0;\n    while\
+    \ (set_level(source, sink)) {\n      fill(all(prog), 0);\n      prog.assign(N,\
+    \ 0);\n      while (1) {\n        Cap x = flow_dfs(source, sink, INF);\n     \
+    \   if (x == 0) break;\n        flow_ans += x;\n        chmin(flow_ans, INF);\n\
+    \        if (flow_ans == INF) return flow_ans;\n      }\n    }\n    return flow_ans;\n\
+    \  }\n\n  // \u6700\u5C0F\u30AB\u30C3\u30C8\u306E\u5024\u304A\u3088\u3073\u3001\
+    \u30AB\u30C3\u30C8\u3092\u8868\u3059 01 \u5217\u3092\u8FD4\u3059\n  pair<Cap,\
+    \ vc<int>> cut(int source, int sink) {\n    Cap f = flow(source, sink);\n    vc<int>\
+    \ res(N);\n    FOR(v, N) res[v] = (level[v] >= 0 ? 0 : 1);\n    return {f, res};\n\
+    \  }\n\nprivate:\n  bool set_level(int source, int sink) {\n    level.assign(N,\
     \ -1);\n    level[source] = 0;\n    queue<int> que;\n    que.push(source);\n \
     \   while (!que.empty()) {\n      int v = que.front();\n      que.pop();\n   \
     \   for (auto&& e: G[v]) {\n        if (e.cap > 0 && level[e.to] == -1) {\n  \
@@ -251,8 +251,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/177_maxflow.test.cpp
   requiredBy: []
-  timestamp: '2022-05-13 00:57:52+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-05-13 20:44:41+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/177_maxflow.test.cpp
 layout: document

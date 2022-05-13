@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: pds/segtree.hpp
     title: pds/segtree.hpp
   _extendedRequiredBy: []
