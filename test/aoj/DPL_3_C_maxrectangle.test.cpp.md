@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/cartesian_tree.hpp
     title: ds/cartesian_tree.hpp
   - icon: ':question:'

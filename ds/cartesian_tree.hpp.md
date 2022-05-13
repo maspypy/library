@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_3_C_maxrectangle.test.cpp
     title: test/aoj/DPL_3_C_maxrectangle.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/cartesian_tree.test.cpp
     title: test/library_checker/tree/cartesian_tree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/cartesian_tree.hpp\"\n/*\r\n\u8F9E\u66F8\u9806\u3067\u9AD8\
@@ -66,7 +66,7 @@ data:
   path: ds/cartesian_tree.hpp
   requiredBy: []
   timestamp: '2022-05-12 11:09:35+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/tree/cartesian_tree.test.cpp
   - test/aoj/DPL_3_C_maxrectangle.test.cpp
