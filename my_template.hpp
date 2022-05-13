@@ -36,7 +36,7 @@ using pqg = priority_queue<T, vector<T>, greater<T>>;
              b, vector<vector<type>>(c, vector<type>(__VA_ARGS__))))
 
 // https://trap.jp/post/1224/
-#define FOR1(a) for (ll i = 0; i < ll(a); ++i)
+#define FOR1(a) for (ll _ = 0; _ < ll(a); ++_)
 #define FOR2(i, a) for (ll i = 0; i < ll(a); ++i)
 #define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)
 #define FOR4(i, a, b, c) for (ll i = a; i < ll(b); i += (c))
