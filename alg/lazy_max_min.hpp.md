@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: alg/monoid_max.hpp
     title: alg/monoid_max.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid_min.hpp
     title: alg/monoid_min.hpp
   _extendedRequiredBy: []
