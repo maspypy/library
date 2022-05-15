@@ -31,6 +31,9 @@ struct SWAG {
     }
   }
 
+  X lprod() { return cum_l.back(); }
+  X rprod() { return cum_r; }
+
   X prod() { return Monoid::op(cum_l.back(), cum_r); }
 
   void debug() {
