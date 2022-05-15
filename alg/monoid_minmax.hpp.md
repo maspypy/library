@@ -11,22 +11,24 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"alg/monoid_minmax.hpp\"\ntemplate <class X, X INF>\r\nstruct\
+  bundledCode: "#line 2 \"alg/monoid_minmax.hpp\"\n\r\ntemplate <class X>\r\nstruct\
     \ Monoid_MinMax {\r\n  using P = pair<X, X>;\r\n  using value_type = P;\r\n  static\
     \ constexpr P op(const P x, const P y) noexcept {\r\n    return {min(x.fi, y.fi),\
-    \ max(x.se, y.se)};\r\n  }\r\n  static constexpr P unit() { return {INF, -INF};\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n"
-  code: "template <class X, X INF>\r\nstruct Monoid_MinMax {\r\n  using P = pair<X,\
-    \ X>;\r\n  using value_type = P;\r\n  static constexpr P op(const P x, const P\
-    \ y) noexcept {\r\n    return {min(x.fi, y.fi), max(x.se, y.se)};\r\n  }\r\n \
-    \ static constexpr P unit() { return {INF, -INF}; }\r\n  static constexpr bool\
-    \ commute = true;\r\n};\r\n"
+    \ max(x.se, y.se)};\r\n  }\r\n  static constexpr P unit() {\r\n    return {numeric_limits<X>::max(),\
+    \ numeric_limits<X>::lowest()};\r\n  }\r\n  static constexpr bool commute = true;\r\
+    \n};\r\n"
+  code: "#pragma once\r\n\r\ntemplate <class X>\r\nstruct Monoid_MinMax {\r\n  using\
+    \ P = pair<X, X>;\r\n  using value_type = P;\r\n  static constexpr P op(const\
+    \ P x, const P y) noexcept {\r\n    return {min(x.fi, y.fi), max(x.se, y.se)};\r\
+    \n  }\r\n  static constexpr P unit() {\r\n    return {numeric_limits<X>::max(),\
+    \ numeric_limits<X>::lowest()};\r\n  }\r\n  static constexpr bool commute = true;\r\
+    \n};\r\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid_minmax.hpp
   requiredBy:
   - alg/lazy_minmax_add.hpp
-  timestamp: '2022-04-16 04:26:49+09:00'
+  timestamp: '2022-05-15 15:49:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/monoid_minmax.hpp

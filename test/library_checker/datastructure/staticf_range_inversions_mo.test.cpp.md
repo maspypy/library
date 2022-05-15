@@ -230,9 +230,9 @@ data:
     \ r) */\r\n    lr.emplace_back(l, r);\r\n  }\r\n\r\n  template <typename AL, typename\
     \ AR, typename EL, typename ER, typename O>\r\n  void calc(const AL &add_left,\
     \ const AR &add_right, const EL &erase_left,\r\n            const ER &erase_right,\
-    \ const O &out) {\r\n    int n = 1;\r\n    for (auto &&[l, r]: lr) chmax(n, r);\r\
-    \n    int q = (int)lr.size();\r\n    int bs = n / min<int>(n, sqrt(q));\r\n  \
-    \  vector<int> ord(q);\r\n    iota(begin(ord), end(ord), 0);\r\n    sort(begin(ord),\
+    \ const O &query) {\r\n    int n = 1;\r\n    for (auto &&[l, r]: lr) chmax(n,\
+    \ r);\r\n    int q = (int)lr.size();\r\n    int bs = n / min<int>(n, sqrt(q));\r\
+    \n    vector<int> ord(q);\r\n    iota(begin(ord), end(ord), 0);\r\n    sort(begin(ord),\
     \ end(ord), [&](int a, int b) {\r\n      int ablock = lr[a].first / bs, bblock\
     \ = lr[b].first / bs;\r\n      if (ablock != bblock) return ablock < bblock;\r\
     \n      return (ablock & 1) ? lr[a].second > lr[b].second\r\n                \
@@ -240,9 +240,9 @@ data:
     \n    for (auto idx: ord) {\r\n      while (l > lr[idx].first) add_left(--l);\r\
     \n      while (r < lr[idx].second) add_right(r++);\r\n      while (l < lr[idx].first)\
     \ erase_left(l++);\r\n      while (r > lr[idx].second) erase_right(--r);\r\n \
-    \     out(idx);\r\n    }\r\n  }\r\n\r\n  template <typename A, typename E, typename\
-    \ O>\r\n  void calc(const A &add, const E &erase, const O &out) {\r\n    calc(add,\
-    \ add, erase, erase, out);\r\n  }\r\n};\n#line 7 \"test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp\"\
+    \     query(idx);\r\n    }\r\n  }\r\n\r\n  template <typename A, typename E, typename\
+    \ O>\r\n  void calc(const A &add, const E &erase, const O &query) {\r\n    calc(add,\
+    \ add, erase, erase, query);\r\n  }\r\n};\n#line 7 \"test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  vi key = A;\r\n \
     \ UNIQUE(key);\r\n\r\n  for (auto&& x: A) x = LB(key, x);\r\n  ll K = len(key);\r\
     \n  FenwickTree<Group_Add<int>> bit(K);\r\n\r\n  Mo mo;\r\n  vi ANS(Q);\r\n  FOR(Q)\
@@ -283,7 +283,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
   requiredBy: []
-  timestamp: '2022-05-13 20:44:41+09:00'
+  timestamp: '2022-05-15 15:48:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
