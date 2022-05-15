@@ -7,7 +7,7 @@ struct Mo {
 
   template <typename AL, typename AR, typename EL, typename ER, typename O>
   void calc(const AL &add_left, const AR &add_right, const EL &erase_left,
-            const ER &erase_right, const O &out) {
+            const ER &erase_right, const O &query) {
     int n = 1;
     for (auto &&[l, r]: lr) chmax(n, r);
     int q = (int)lr.size();
@@ -26,12 +26,12 @@ struct Mo {
       while (r < lr[idx].second) add_right(r++);
       while (l < lr[idx].first) erase_left(l++);
       while (r > lr[idx].second) erase_right(--r);
-      out(idx);
+      query(idx);
     }
   }
 
   template <typename A, typename E, typename O>
-  void calc(const A &add, const E &erase, const O &out) {
-    calc(add, add, erase, erase, out);
+  void calc(const A &add, const E &erase, const O &query) {
+    calc(add, add, erase, erase, query);
   }
 };
