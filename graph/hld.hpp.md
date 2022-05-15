@@ -6,6 +6,9 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: graph/dsu_on_tree.hpp
+    title: graph/dsu_on_tree.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/dualtreemonoid.hpp
     title: graph/dualtreemonoid.hpp
   - icon: ':warning:'
@@ -37,6 +40,9 @@ data:
     title: graph/two_edge_component.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/2995_dsu.test.cpp
+    title: test/aoj/2995_dsu.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A_mst.test.cpp
     title: test/aoj/GRL_2_A_mst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -51,6 +57,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+    title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
@@ -237,6 +246,7 @@ data:
   - graph/treeabelgroup.hpp
   - graph/treegroup.hpp
   - graph/rerooting_dp.hpp
+  - graph/dsu_on_tree.hpp
   - graph/functional.hpp
   - graph/tree_dp.hpp
   - graph/dualtreemonoid.hpp
@@ -256,9 +266,11 @@ data:
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
+  - test/aoj/2995_dsu.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp
 documentation_of: graph/hld.hpp

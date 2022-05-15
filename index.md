@@ -365,6 +365,9 @@ data:
       path: graph/dijkstra.hpp
       title: graph/dijkstra.hpp
     - icon: ':heavy_check_mark:'
+      path: graph/dsu_on_tree.hpp
+      title: graph/dsu_on_tree.hpp
+    - icon: ':heavy_check_mark:'
       path: graph/dualtreemonoid.hpp
       title: graph/dualtreemonoid.hpp
     - icon: ':heavy_check_mark:'
@@ -876,6 +879,9 @@ data:
       path: test/aoj/2842_seg2d_dense.test.cpp
       title: test/aoj/2842_seg2d_dense.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj/2995_dsu.test.cpp
+      title: test/aoj/2995_dsu.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_10_C_LCS.test.cpp
       title: test/aoj/ALDS1_10_C_LCS.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1106,6 +1112,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
       title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+      title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
       title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp

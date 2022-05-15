@@ -31,6 +31,9 @@ data:
     path: test/aoj/2251_maxantichain.test.cpp
     title: test/aoj/2251_maxantichain.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/2995_dsu.test.cpp
+    title: test/aoj/2995_dsu.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A_mst.test.cpp
     title: test/aoj/GRL_2_A_mst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -95,6 +98,7 @@ data:
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/aoj/2251_dag_path_cover.test.cpp
   - test/aoj/2251_maxantichain.test.cpp
+  - test/aoj/2995_dsu.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp
 documentation_of: ds/unionfind.hpp
 layout: document
