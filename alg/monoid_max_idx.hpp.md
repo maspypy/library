@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: alg/lazy_maxidx_add.hpp
+    title: alg/lazy_maxidx_add.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/529_two_edge.test.cpp
@@ -11,20 +14,24 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"alg/monoid_max_idx.hpp\"\ntemplate <typename T>\r\nstruct\
-    \ Monoid_Max_Idx {\r\n  using value_type = pair<T, int>;\r\n  using X = value_type;\r\
-    \n  static X op(X x, X y) { return max(x, y); }\r\n  static constexpr X unit()\
-    \ { return {numeric_limits<T>::lowest(), -1}; }\r\n  static constexpr bool commute\
-    \ = true;\r\n};\r\n"
-  code: "#pragma once\r\ntemplate <typename T>\r\nstruct Monoid_Max_Idx {\r\n  using\
-    \ value_type = pair<T, int>;\r\n  using X = value_type;\r\n  static X op(X x,\
-    \ X y) { return max(x, y); }\r\n  static constexpr X unit() { return {numeric_limits<T>::lowest(),\
+  bundledCode: "#line 2 \"alg/monoid_max_idx.hpp\"\ntemplate <typename T, bool tie_is_left\
+    \ = true>\r\nstruct Monoid_Max_Idx {\r\n  using value_type = pair<T, int>;\r\n\
+    \  using X = value_type;\r\n  static X op(X x, X y) {\r\n    if (x.fi > y.fi)\
+    \ return x;\r\n    if (x.fi < y.fi) return y;\r\n    return (tie_is_left ? x :\
+    \ y);\r\n  }\r\n  static constexpr X unit() { return {numeric_limits<T>::lowest(),\
     \ -1}; }\r\n  static constexpr bool commute = true;\r\n};\r\n"
+  code: "#pragma once\r\ntemplate <typename T, bool tie_is_left = true>\r\nstruct\
+    \ Monoid_Max_Idx {\r\n  using value_type = pair<T, int>;\r\n  using X = value_type;\r\
+    \n  static X op(X x, X y) {\r\n    if (x.fi > y.fi) return x;\r\n    if (x.fi\
+    \ < y.fi) return y;\r\n    return (tie_is_left ? x : y);\r\n  }\r\n  static constexpr\
+    \ X unit() { return {numeric_limits<T>::lowest(), -1}; }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid_max_idx.hpp
-  requiredBy: []
-  timestamp: '2022-05-13 21:02:36+09:00'
+  requiredBy:
+  - alg/lazy_maxidx_add.hpp
+  timestamp: '2022-05-16 18:01:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/529_two_edge.test.cpp

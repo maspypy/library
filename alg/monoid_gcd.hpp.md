@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1036_dseg_minleft_maxright.test.cpp
+    title: test/yukicoder/1036_dseg_minleft_maxright.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036_seg_maxright_minleft.test.cpp
     title: test/yukicoder/1036_seg_maxright_minleft.test.cpp
   - icon: ':heavy_check_mark:'
@@ -29,6 +32,7 @@ data:
   timestamp: '2022-04-24 16:57:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1036_dseg_minleft_maxright.test.cpp
   - test/yukicoder/1036_swag.test.cpp
   - test/yukicoder/1036_seg_maxright_minleft.test.cpp
 documentation_of: alg/monoid_gcd.hpp

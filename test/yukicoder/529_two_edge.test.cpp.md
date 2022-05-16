@@ -315,11 +315,11 @@ data:
     \n  void set_all(const vc<X>& v){\n    dat.assign(size << 1, Monoid::unit());\n\
     \    FOR(i, n) dat[size + i] = v[i];\n    FOR3_R(i, 1, size) update(i);\n  }\n\
     \n  X operator[](int i) { return dat[size + i]; }\n\n  void update(int i) { dat[i]\
-    \ = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n\n  void set(int i, X x) {\n  \
-    \  assert(i < n);\n    dat[i += size] = x;\n    while (i >>= 1) update(i);\n \
-    \ }\n\n  X prod(int L, int R) {\n    assert(L <= R);\n    assert(R <= n);\n  \
-    \  X vl = Monoid::unit(), vr = Monoid::unit();\n    L += size, R += size;\n  \
-    \  while (L < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if\
+    \ = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n\n  void set(int i, const X& x)\
+    \ {\n    assert(i < n);\n    dat[i += size] = x;\n    while (i >>= 1) update(i);\n\
+    \  }\n\n  X prod(int L, int R) {\n    assert(L <= R);\n    assert(R <= n);\n \
+    \   X vl = Monoid::unit(), vr = Monoid::unit();\n    L += size, R += size;\n \
+    \   while (L < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if\
     \ (R & 1) vr = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n   \
     \ return Monoid::op(vl, vr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  template\
     \ <class F>\n  int max_right(F &check, int L) {\n    assert(0 <= L && L <= n &&\
@@ -387,25 +387,27 @@ data:
     \ + \u30BB\u30B0\u6728\u3002\");\r\n    print(\"\u90E8\u5206\u6728\u30AF\u30A8\
     \u30EA O(logN) \u6642\u9593\u3001\u30D1\u30B9\u30AF\u30A8\u30EA O(log^2N) \u6642\
     \u9593\u3002\");\r\n  }\r\n};\r\n#line 2 \"alg/monoid_max_idx.hpp\"\ntemplate\
-    \ <typename T>\r\nstruct Monoid_Max_Idx {\r\n  using value_type = pair<T, int>;\r\
-    \n  using X = value_type;\r\n  static X op(X x, X y) { return max(x, y); }\r\n\
-    \  static constexpr X unit() { return {numeric_limits<T>::lowest(), -1}; }\r\n\
-    \  static constexpr bool commute = true;\r\n};\r\n#line 7 \"test/yukicoder/529_two_edge.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, M, Q);\n  Graph G0(N);\n  G0.read_graph(M);\n  auto\
-    \ [C, comp] = two_edge_component(G0);\n\n  Graph G(C);\n  for (auto&& e: G0.edges)\
-    \ {\n    ll a = e.frm, b = e.to;\n    if (comp[a] == comp[b]) continue;\n    G.add(comp[a],\
-    \ comp[b]);\n  }\n  G.build();\n\n  using Mono = Monoid_Max_Idx<ll>;\n\n  const\
-    \ ll INF = 1LL << 60;\n\n  HLD hld(G);\n  vc<pq<ll>> wts(C);\n  vc<pair<ll, int>>\
-    \ dat(C);\n  FOR(i, C) dat[i] = {-INF, i};\n  TreeMonoid<decltype(hld), Mono>\
-    \ TM(hld, dat);\n\n  FOR(Q) {\n    LL(t);\n    if (t == 1) {\n      LL(v, x);\n\
-    \      --v;\n      ll c = comp[v];\n      wts[c].push(x);\n      TM.set(c, {wts[c].top(),\
-    \ c});\n    }\n    if (t == 2) {\n      LL(a, b);\n      --a, --b;\n      a =\
-    \ comp[a], b = comp[b];\n      auto [x, c] = TM.prod_path(a, b);\n      if (x\
-    \ == -INF) {\n        print(-1);\n      } else {\n        print(x);\n        wts[c].pop();\n\
-    \        x = (wts[c].empty() ? -INF : wts[c].top());\n        TM.set(c, {x, c});\n\
-    \      }\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
+    \ <typename T, bool tie_is_left = true>\r\nstruct Monoid_Max_Idx {\r\n  using\
+    \ value_type = pair<T, int>;\r\n  using X = value_type;\r\n  static X op(X x,\
+    \ X y) {\r\n    if (x.fi > y.fi) return x;\r\n    if (x.fi < y.fi) return y;\r\
+    \n    return (tie_is_left ? x : y);\r\n  }\r\n  static constexpr X unit() { return\
+    \ {numeric_limits<T>::lowest(), -1}; }\r\n  static constexpr bool commute = true;\r\
+    \n};\r\n#line 7 \"test/yukicoder/529_two_edge.test.cpp\"\n\nvoid solve() {\n \
+    \ LL(N, M, Q);\n  Graph G0(N);\n  G0.read_graph(M);\n  auto [C, comp] = two_edge_component(G0);\n\
+    \n  Graph G(C);\n  for (auto&& e: G0.edges) {\n    ll a = e.frm, b = e.to;\n \
+    \   if (comp[a] == comp[b]) continue;\n    G.add(comp[a], comp[b]);\n  }\n  G.build();\n\
+    \n  using Mono = Monoid_Max_Idx<ll>;\n\n  const ll INF = 1LL << 60;\n\n  HLD hld(G);\n\
+    \  vc<pq<ll>> wts(C);\n  vc<pair<ll, int>> dat(C);\n  FOR(i, C) dat[i] = {-INF,\
+    \ i};\n  TreeMonoid<decltype(hld), Mono> TM(hld, dat);\n\n  FOR(Q) {\n    LL(t);\n\
+    \    if (t == 1) {\n      LL(v, x);\n      --v;\n      ll c = comp[v];\n     \
+    \ wts[c].push(x);\n      TM.set(c, {wts[c].top(), c});\n    }\n    if (t == 2)\
+    \ {\n      LL(a, b);\n      --a, --b;\n      a = comp[a], b = comp[b];\n     \
+    \ auto [x, c] = TM.prod_path(a, b);\n      if (x == -INF) {\n        print(-1);\n\
+    \      } else {\n        print(x);\n        wts[c].pop();\n        x = (wts[c].empty()\
+    \ ? -INF : wts[c].top());\n        TM.set(c, {x, c});\n      }\n    }\n  }\n}\n\
+    \nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
+    \ return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/529\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"graph/two_edge_component.hpp\"\n#include\
     \ \"graph/treemonoid.hpp\"\n#include \"alg/monoid_max_idx.hpp\"\n\nvoid solve()\
@@ -437,7 +439,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/529_two_edge.test.cpp
   requiredBy: []
-  timestamp: '2022-05-14 05:52:24+09:00'
+  timestamp: '2022-05-16 18:02:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/529_two_edge.test.cpp

@@ -27,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/255.test.cpp
     title: test/yukicoder/255.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/789_dseg_lazy.test.cpp
+    title: test/yukicoder/789_dseg_lazy.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -55,6 +58,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/255.test.cpp
+  - test/yukicoder/789_dseg_lazy.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - test/aoj/DSL_2_I_cntsum_set_lazy.test.cpp

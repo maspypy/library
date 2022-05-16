@@ -57,6 +57,9 @@ data:
     - icon: ':warning:'
       path: alg/lazy_max_set.hpp
       title: alg/lazy_max_set.hpp
+    - icon: ':warning:'
+      path: alg/lazy_maxidx_add.hpp
+      title: alg/lazy_maxidx_add.hpp
     - icon: ':heavy_check_mark:'
       path: alg/lazy_min_add.hpp
       title: alg/lazy_min_add.hpp
@@ -66,6 +69,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/lazy_min_set.hpp
       title: alg/lazy_min_set.hpp
+    - icon: ':warning:'
+      path: alg/lazy_minidx_add.hpp
+      title: alg/lazy_minidx_add.hpp
     - icon: ':warning:'
       path: alg/lazy_minmax_add.hpp
       title: alg/lazy_minmax_add.hpp
@@ -187,6 +193,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/dualsegtree.hpp
       title: ds/dualsegtree.hpp
+    - icon: ':heavy_check_mark:'
+      path: ds/dynamic_lazysegtree.hpp
+      title: ds/dynamic_lazysegtree.hpp
+    - icon: ':heavy_check_mark:'
+      path: ds/dynamic_segtree.hpp
+      title: ds/dynamic_segtree.hpp
     - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
@@ -1359,6 +1371,9 @@ data:
       path: test/yukicoder/1002_centroid.test.cpp
       title: test/yukicoder/1002_centroid.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1036_dseg_minleft_maxright.test.cpp
+      title: test/yukicoder/1036_dseg_minleft_maxright.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1036_seg_maxright_minleft.test.cpp
       title: test/yukicoder/1036_seg_maxright_minleft.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1484,6 +1499,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/749_lazysegtree.test.cpp
       title: test/yukicoder/749_lazysegtree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/789_dseg.test.cpp
+      title: test/yukicoder/789_dseg.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/789_dseg_lazy.test.cpp
+      title: test/yukicoder/789_dseg_lazy.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/899_bfsnumbering.test.cpp
       title: test/yukicoder/899_bfsnumbering.test.cpp

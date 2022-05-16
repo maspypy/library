@@ -17,9 +17,15 @@ data:
   - icon: ':warning:'
     path: alg/lazy_max_add.hpp
     title: alg/lazy_max_add.hpp
+  - icon: ':warning:'
+    path: alg/lazy_maxidx_add.hpp
+    title: alg/lazy_maxidx_add.hpp
   - icon: ':heavy_check_mark:'
     path: alg/lazy_min_add.hpp
     title: alg/lazy_min_add.hpp
+  - icon: ':warning:'
+    path: alg/lazy_minidx_add.hpp
+    title: alg/lazy_minidx_add.hpp
   - icon: ':warning:'
     path: alg/lazy_minmax_add.hpp
     title: alg/lazy_minmax_add.hpp
@@ -133,6 +139,12 @@ data:
     path: test/yukicoder/235_lazytreemonoid.test.cpp
     title: test/yukicoder/235_lazytreemonoid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/789_dseg.test.cpp
+    title: test/yukicoder/789_dseg.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/789_dseg_lazy.test.cpp
+    title: test/yukicoder/789_dseg_lazy.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/899_bfsnumbering.test.cpp
     title: test/yukicoder/899_bfsnumbering.test.cpp
   - icon: ':heavy_check_mark:'
@@ -159,9 +171,11 @@ data:
   isVerificationFile: false
   path: alg/group_add.hpp
   requiredBy:
+  - alg/lazy_minidx_add.hpp
   - alg/lazy_cntsummin_add.hpp
   - alg/lazy_min_add.hpp
   - alg/lazy_cntminmincnt_add.hpp
+  - alg/lazy_maxidx_add.hpp
   - alg/lazy_minmax_add.hpp
   - alg/lazy_cntsum_add.hpp
   - alg/lazy_max_add.hpp
@@ -181,6 +195,8 @@ data:
   - test/yukicoder/1038_centroid.test.cpp
   - test/yukicoder/924.test.cpp
   - test/yukicoder/1234_rmq.test.cpp
+  - test/yukicoder/789_dseg_lazy.test.cpp
+  - test/yukicoder/789_dseg.test.cpp
   - test/yukicoder/1641_tree_abel.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/899_bfsnumbering.test.cpp

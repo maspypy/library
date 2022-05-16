@@ -475,6 +475,9 @@ data:
     path: test/yukicoder/1002_centroid.test.cpp
     title: test/yukicoder/1002_centroid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1036_dseg_minleft_maxright.test.cpp
+    title: test/yukicoder/1036_dseg_minleft_maxright.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036_seg_maxright_minleft.test.cpp
     title: test/yukicoder/1036_seg_maxright_minleft.test.cpp
   - icon: ':heavy_check_mark:'
@@ -600,6 +603,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/749_lazysegtree.test.cpp
     title: test/yukicoder/749_lazysegtree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/789_dseg.test.cpp
+    title: test/yukicoder/789_dseg.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/789_dseg_lazy.test.cpp
+    title: test/yukicoder/789_dseg_lazy.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/899_bfsnumbering.test.cpp
     title: test/yukicoder/899_bfsnumbering.test.cpp
@@ -766,6 +775,7 @@ data:
   - test/yukicoder/4954_quotients.test.cpp
   - test/yukicoder/1844_interpolate_c_rec.test.cpp
   - test/yukicoder/114_steriner_tree.test.cpp
+  - test/yukicoder/1036_dseg_minleft_maxright.test.cpp
   - test/yukicoder/1332_range_freq.test.cpp
   - test/yukicoder/705_monge_shortest_path.test.cpp
   - test/yukicoder/4_modular_subset_sum.test.cpp
@@ -781,9 +791,11 @@ data:
   - test/yukicoder/1145_sum_of_powers.test.cpp
   - test/yukicoder/1643_subseq.test.cpp
   - test/yukicoder/1234_rmq.test.cpp
+  - test/yukicoder/789_dseg_lazy.test.cpp
   - test/yukicoder/1750_matpow.test.cpp
   - test/yukicoder/1142_xor_conv.test.cpp
   - test/yukicoder/1170_online_uf.test.cpp
+  - test/yukicoder/789_dseg.test.cpp
   - test/yukicoder/187_crt.test.cpp
   - test/yukicoder/184_xorbasis.test.cpp
   - test/yukicoder/1641_tree_abel.test.cpp

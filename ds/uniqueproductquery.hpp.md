@@ -34,9 +34,9 @@ data:
     \ 1, Monoid::unit());\n    FOR(i, n) dat[size + i] = v[i];\n    FOR3_R(i, 1, size)\
     \ update(i);\n  }\n\n  X operator[](int i) { return dat[size + i]; }\n\n  void\
     \ update(int i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n\n  void\
-    \ set(int i, X x) {\n    assert(i < n);\n    dat[i += size] = x;\n    while (i\
-    \ >>= 1) update(i);\n  }\n\n  X prod(int L, int R) {\n    assert(L <= R);\n  \
-    \  assert(R <= n);\n    X vl = Monoid::unit(), vr = Monoid::unit();\n    L +=\
+    \ set(int i, const X& x) {\n    assert(i < n);\n    dat[i += size] = x;\n    while\
+    \ (i >>= 1) update(i);\n  }\n\n  X prod(int L, int R) {\n    assert(L <= R);\n\
+    \    assert(R <= n);\n    X vl = Monoid::unit(), vr = Monoid::unit();\n    L +=\
     \ size, R += size;\n    while (L < R) {\n      if (L & 1) vl = Monoid::op(vl,\
     \ dat[L++]);\n      if (R & 1) vr = Monoid::op(dat[--R], vr);\n      L >>= 1,\
     \ R >>= 1;\n    }\n    return Monoid::op(vl, vr);\n  }\n\n  X prod_all() { return\
@@ -162,7 +162,7 @@ data:
   isVerificationFile: false
   path: ds/uniqueproductquery.hpp
   requiredBy: []
-  timestamp: '2022-05-12 11:09:57+09:00'
+  timestamp: '2022-05-16 18:02:34+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/uniqueproductquery.hpp

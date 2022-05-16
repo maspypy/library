@@ -2,11 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: alg/monoid_gcd.hpp
-    title: alg/monoid_gcd.hpp
+    path: alg/group_add.hpp
+    title: alg/group_add.hpp
   - icon: ':heavy_check_mark:'
-    path: ds/segtree.hpp
-    title: ds/segtree.hpp
+    path: alg/group_cntsum.hpp
+    title: alg/group_cntsum.hpp
+  - icon: ':heavy_check_mark:'
+    path: alg/lazy_cntsum_add.hpp
+    title: alg/lazy_cntsum_add.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/dynamic_lazysegtree.hpp
+    title: ds/dynamic_lazysegtree.hpp
   - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
@@ -20,16 +26,16 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1036
+    PROBLEM: https://yukicoder.me/problems/no/789
     links:
-    - https://yukicoder.me/problems/no/1036
-  bundledCode: "#line 1 \"test/yukicoder/1036_seg_maxright_minleft.test.cpp\"\n#define\
-    \ PROBLEM \"https://yukicoder.me/problems/no/1036\"\n#line 1 \"my_template.hpp\"\
-    \n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
-    using pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\n\
-    using u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\n\
-    using vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate\
-    \ <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    - https://yukicoder.me/problems/no/789
+  bundledCode: "#line 1 \"test/yukicoder/789_dseg_lazy.test.cpp\"\n#define PROBLEM\
+    \ \"https://yukicoder.me/problems/no/789\"\n#line 1 \"my_template.hpp\"\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
     template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
     \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
     \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
@@ -192,82 +198,127 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"ds/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
-    \ SegTree {\n  using X = typename Monoid::value_type;\n  using value_type = X;\n\
-    \  vc<X> dat;\n  int n, log, size;\n\n  SegTree() : SegTree(0) {}\n  SegTree(int\
-    \ n) : SegTree(vc<X>(n, Monoid::unit())) {}\n  SegTree(vc<X> v) : n(len(v)) {\n\
-    \    log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
-    \ << 1, Monoid::unit());\n    FOR(i, n) dat[size + i] = v[i];\n    FOR3_R(i, 1,\
-    \ size) update(i);\n  }\n\n  void reset() { fill(all(dat), Monoid::unit()); }\n\
-    \n  void set_all(const vc<X>& v){\n    dat.assign(size << 1, Monoid::unit());\n\
-    \    FOR(i, n) dat[size + i] = v[i];\n    FOR3_R(i, 1, size) update(i);\n  }\n\
-    \n  X operator[](int i) { return dat[size + i]; }\n\n  void update(int i) { dat[i]\
-    \ = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n\n  void set(int i, const X& x)\
-    \ {\n    assert(i < n);\n    dat[i += size] = x;\n    while (i >>= 1) update(i);\n\
-    \  }\n\n  X prod(int L, int R) {\n    assert(L <= R);\n    assert(R <= n);\n \
-    \   X vl = Monoid::unit(), vr = Monoid::unit();\n    L += size, R += size;\n \
-    \   while (L < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if\
-    \ (R & 1) vr = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n   \
-    \ return Monoid::op(vl, vr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  template\
-    \ <class F>\n  int max_right(F &check, int L) {\n    assert(0 <= L && L <= n &&\
-    \ check(Monoid::unit()));\n    if (L == n) return n;\n    L += size;\n    X sm\
-    \ = Monoid::unit();\n    do {\n      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm,\
-    \ dat[L]))) {\n        while (L < size) {\n          L = 2 * L;\n          if\
-    \ (check(Monoid::op(sm, dat[L]))) {\n            sm = Monoid::op(sm, dat[L]);\n\
-    \            L++;\n          }\n        }\n        return L - size;\n      }\n\
-    \      sm = Monoid::op(sm, dat[L]);\n      L++;\n    } while ((L & -L) != L);\n\
-    \    return n;\n  }\n\n  template <class F>\n  int min_left(F &check, int R) {\n\
-    \    assert(0 <= R && R <= n && check(Monoid::unit()));\n    if (R == 0) return\
-    \ 0;\n    R += size;\n    X sm = Monoid::unit();\n    do {\n      --R;\n     \
-    \ while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R], sm)))\
-    \ {\n        while (R < size) {\n          R = 2 * R + 1;\n          if (check(Monoid::op(dat[R],\
-    \ sm))) {\n            sm = Monoid::op(dat[R], sm);\n            R--;\n      \
-    \    }\n        }\n        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R],\
-    \ sm);\n    } while ((R & -R) != R);\n    return 0;\n  }\n\n  // \u30E2\u30CE\u30A4\
-    \u30C9\u304C\u53EF\u63DB\u306A\u3089\u3001prod_{l<=i<r}A[i^x] \u304C\u8A08\u7B97\
-    \u53EF\u80FD\n  // https://codeforces.com/contest/1401/problem/F\n  X Xor_prod(int\
-    \ l, int r, int xor_val) {\n    assert(Monoid::commute);\n    X x = Monoid::unit();\n\
-    \    FOR(k, log + 1) {\n      if (l >= r) break;\n      if (l & 1) { x = Monoid::op(x,\
-    \ dat[(size >> k) + ((l++) ^ xor_val)]); }\n      if (r & 1) { x = Monoid::op(x,\
-    \ dat[(size >> k) + ((--r) ^ xor_val)]); }\n      l /= 2, r /= 2, xor_val /= 2;\n\
-    \    }\n    return x;\n  }\n\n  void debug() { print(\"segtree\", dat); }\n};\n\
-    #line 1 \"alg/monoid_gcd.hpp\"\ntemplate <typename INT>\nstruct Monoid_Gcd {\n\
-    \  using value_type = INT;\n  using X = value_type;\n  static X op(X x, X y) {\
-    \ return gcd(x, y); }\n  static constexpr X unit() { return 0; }\n  static constexpr\
-    \ bool commute = true;\n};\n#line 6 \"test/yukicoder/1036_seg_maxright_minleft.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  SegTree<Monoid_Gcd<ll>> seg(A);\n\
-    \  ll ANS1 = 0;\n  FOR(L, N) {\n    auto check = [&](auto e) -> bool { return\
-    \ e != 1; };\n    auto R = seg.max_right(check, L);\n    ANS1 += N - R;\n  }\n\
-    \  ll ANS2 = 0;\n  FOR3(R, 1, N + 1) {\n    auto check = [&](auto e) -> bool {\
-    \ return e != 1; };\n    auto L = seg.min_left(check, R);\n    ANS2 += L;\n  }\n\
-    \  assert(ANS1 == ANS2);\n  print(ANS1);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \ { yes(!t); }\r\n#line 2 \"ds/dynamic_lazysegtree.hpp\"\n\n/*\n\u30B3\u30F3\u30B9\
+    \u30C8\u30E9\u30AF\u30BF\u306B\u6E21\u3059\u3082\u306E\n\u30FBL, R\uFF1A\u6700\
+    \u5927\u306E\u7BC4\u56F2\uFF08root node \u306E\u8868\u3059\u7BC4\u56F2\uFF09\n\
+    \u30FBfunction<X(ll,ll)> defulat_fn(l,r)\uFF1A\u521D\u671F\u5024\u3067\u306E [l,r)\
+    \ \u7A4D\u306E\u8A08\u7B97\n*/\ntemplate <class Lazy, int NODES = 5'000'000>\n\
+    struct Dynamic_LazySegTree {\n  using Monoid_X = typename Lazy::X_structure;\n\
+    \  using Monoid_A = typename Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n\
+    \  using A = typename Monoid_A::value_type;\n\n  struct Node {\n    X x;\n   \
+    \ A a;\n    Node *l, *r;\n    Node() {}\n    Node(const X &x) : x(x), a(Monoid_A::unit()),\
+    \ l(nullptr), r(nullptr) {}\n    X get() { return Lazy::act(x, a); }\n  };\n\n\
+    \  Node *pool;\n  int pid;\n  ll L, R;\n  Node *root;\n  function<X(ll, ll)> default_fn;\n\
+    \n  Dynamic_LazySegTree(ll L, ll R, function<X(ll, ll)> f)\n      : pid(0), L(L),\
+    \ R(R), default_fn(f) {\n    pool = new Node[NODES];\n    root = new_node(L, R);\n\
+    \  }\n\n  void reset() {\n    pid = 0;\n    root = new_node(L, R);\n  }\n\n  void\
+    \ set(ll i, const X &x) {\n    assert(L <= i && i < R);\n    set_rec(root, L,\
+    \ R, i, x);\n  }\n\n  void apply(ll l, ll r, const A &a) {\n    assert(L <= l\
+    \ && l <= r && r <= R);\n    apply_rec(root, L, R, l, r, a);\n  }\n\n  X prod(ll\
+    \ l, ll r) {\n    assert(L <= l && l <= r && r <= R);\n    return prod_rec(root,\
+    \ L, R, l, r);\n  }\n\n  X prod_all() { return root->get(); }\n\n  template <class\
+    \ F>\n  ll max_right(const F &check, ll s) {\n    assert(L <= s && s <= R && check(Monoid_X::unit()));\n\
+    \    X p = Monoid_X::unit();\n    return max_right_rec(root, L, R, check, s, p);\n\
+    \  }\n\n  template <class F>\n  ll min_left(const F &check, ll t) {\n    assert(L\
+    \ <= t && t <= R && check(Monoid_X::unit()));\n    X p = Monoid_X::unit();\n \
+    \   return min_left_rec(root, L, R, check, t, p);\n  }\n\n  void debug() {\n \
+    \   auto dfs = [&](auto &dfs, Node *n, ll l, ll r) -> void {\n      print(\"lr\"\
+    , l, r, \"x\", n->x, \"a\", n->a);\n      ll m = (l + r) / 2;\n      if (n->l)\
+    \ dfs(dfs, n->l, l, m);\n      if (n->r) dfs(dfs, n->r, m, r);\n    };\n    dfs(dfs,\
+    \ root, L, R);\n  }\n\nprivate:\n  Node *new_node(ll node_l, ll node_r) {\n  \
+    \  pool[pid].x = default_fn(node_l, node_r);\n    pool[pid].a = Monoid_A::unit();\n\
+    \    pool[pid].l = pool[pid].r = nullptr;\n    return &(pool[pid++]);\n  }\n\n\
+    \  void prop(Node *n, ll node_l, ll node_r) {\n    if (n->a == Monoid_A::unit())\
+    \ return;\n    ll node_m = (node_l + node_r) / 2;\n    if (!n->l) n->l = new_node(node_l,\
+    \ node_m);\n    if (!n->r) n->r = new_node(node_m, node_r);\n    (n->l)->a = Monoid_A::op((n->l)->a,\
+    \ n->a);\n    (n->r)->a = Monoid_A::op((n->r)->a, n->a);\n    n->x = Lazy::act(n->x,\
+    \ n->a);\n    n->a = Monoid_A::unit();\n  }\n\n  void set_rec(Node *n, ll node_l,\
+    \ ll node_r, ll idx, const X &x) {\n    if (node_r - node_l == 1) {\n      n->x\
+    \ = x;\n      n->a = Monoid_A::unit();\n      return;\n    }\n    ll node_m =\
+    \ (node_l + node_r) / 2;\n    prop(n, node_l, node_r);\n\n    if (idx < node_m)\
+    \ {\n      if (!(n->l)) n->l = new_node(node_l, node_m);\n      set_rec(n->l,\
+    \ node_l, node_m, idx, x);\n    } else {\n      if (!(n->r)) n->r = new_node(node_m,\
+    \ node_r);\n      set_rec(n->r, node_m, node_r, idx, x);\n    }\n    X xl = (n->l\
+    \ ? (n->l)->get() : Monoid_X::unit());\n    X xr = (n->r ? (n->r)->get() : Monoid_X::unit());\n\
+    \    n->x = Monoid_X::op(xl, xr);\n  }\n\n  void apply_rec(Node *n, ll node_l,\
+    \ ll node_r, ll l, ll r, const A &a) {\n    chmax(l, node_l);\n    chmin(r, node_r);\n\
+    \    if (l >= r) return;\n    if (l == node_l && r == node_r) {\n      n->a =\
+    \ Monoid_A::op(n->a, a);\n      return;\n    }\n    ll node_m = (node_l + node_r)\
+    \ / 2;\n    prop(n, node_l, node_r);\n    if (!(n->l)) n->l = new_node(node_l,\
+    \ node_m);\n    if (!(n->r)) n->r = new_node(node_m, node_r);\n    apply_rec(n->l,\
+    \ node_l, node_m, l, r, a);\n    apply_rec(n->r, node_m, node_r, l, r, a);\n \
+    \   n->x = Monoid_X::op((n->l)->get(), (n->r)->get());\n  }\n\n  X prod_rec(Node\
+    \ *n, ll node_l, ll node_r, ll l, ll r) {\n    chmax(l, node_l);\n    chmin(r,\
+    \ node_r);\n    if (l >= r) return Monoid_X::unit();\n    if (l == node_l && r\
+    \ == node_r) return n->get();\n    ll node_m = (node_l + node_r) / 2;\n    prop(n,\
+    \ node_l, node_r);\n    X xl = (n->l ? prod_rec(n->l, node_l, node_m, l, r) :\
+    \ Monoid_X::unit());\n    X xr = (n->r ? prod_rec(n->r, node_m, node_r, l, r)\
+    \ : Monoid_X::unit());\n    return Monoid_X::op(xl, xr);\n  }\n\n  template <typename\
+    \ F>\n  ll max_right_rec(Node *n, ll node_l, ll node_r, const F &check, ll s,\
+    \ X &p) {\n    if (node_r <= s) return R;\n    if (s <= node_l) {\n      X x =\
+    \ Monoid_X::op(p, n->get());\n      if (check(x)) {\n        p = x;\n        return\
+    \ R;\n      }\n    }\n    if (node_r - node_l == 1) return node_l;\n    ll node_m\
+    \ = (node_l + node_r) / 2;\n    if (!(n->l)) n->l = new_node(node_l, node_m);\n\
+    \    if (!(n->r)) n->r = new_node(node_m, node_r);\n    prop(n, node_l, node_r);\n\
+    \    ll res = max_right_rec(n->l, node_l, node_m, check, s, p);\n    if (res !=\
+    \ R) return res;\n    return max_right_rec(n->r, node_m, node_r, check, s, p);\n\
+    \  }\n\n  template <typename F>\n  ll min_left_rec(Node *n, ll node_l, ll node_r,\
+    \ const F &check, ll t, X &p) {\n    if (t <= node_l) return L;\n    if (node_r\
+    \ <= t) {\n      X x = Monoid_X::op(n->get(), p);\n      if (check(x)) {\n   \
+    \     p = x;\n        return L;\n      }\n    }\n    if (node_r - node_l == 1)\
+    \ return node_r;\n    ll node_m = (node_l + node_r) / 2;\n    if (!(n->l)) n->l\
+    \ = new_node(node_l, node_m);\n    if (!(n->r)) n->r = new_node(node_m, node_r);\n\
+    \    prop(n, node_l, node_r);\n    ll res = min_left_rec(n->r, node_m, node_r,\
+    \ check, t, p);\n    if (res != L) return res;\n    return min_left_rec(n->l,\
+    \ node_l, node_m, check, t, p);\n  }\n};\n#line 2 \"alg/group_add.hpp\"\ntemplate\
+    \ <class X>\r\nstruct Group_Add {\r\n  using value_type = X;\r\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
+    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
+    \ X &x, ll n) noexcept { return n * x; }\r\n  static constexpr X unit() { return\
+    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"alg/group_cntsum.hpp\"\
+    \ntemplate <typename E = long long>\r\nstruct Group_CntSum {\r\n  using value_type\
+    \ = pair<E, E>;\r\n  using X = value_type;\r\n  static constexpr X op(const X\
+    \ &x, const X &y) {\r\n    return {x.fi + y.fi, x.se + y.se};\r\n  }\r\n  static\
+    \ constexpr X inverse(const X &x) { return {-x.fi, -x.se}; }\r\n  static constexpr\
+    \ X unit() { return {0, 0}; }\r\n  static constexpr bool commute = true;\r\n};\r\
+    \n#line 3 \"alg/lazy_cntsum_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Lazy_CntSum_Add\
+    \ {\r\n  using MX = Group_CntSum<E>;\r\n  using MA = Group_Add<E>;\r\n  using\
+    \ X_structure = MX;\r\n  using A_structure = MA;\r\n  using X = typename MX::value_type;\r\
+    \n  using A = typename MA::value_type;\r\n  static constexpr X act(const X &x,\
+    \ const A &a) {\r\n    return {x.fi, x.se + x.fi * a};\r\n  }\r\n};\r\n#line 6\
+    \ \"test/yukicoder/789_dseg_lazy.test.cpp\"\n\nvoid solve() {\n  auto f = [&](ll\
+    \ L, ll R) -> pi { return {R - L, 0}; };\n  Dynamic_LazySegTree<Lazy_CntSum_Add<ll>,\
+    \ 2000000> seg(0, 1LL << 30, f);\n  LL(Q);\n  ll ANS = 0;\n  FOR(Q) {\n    LL(t,\
+    \ a, b);\n    if (t == 0) { seg.apply(a, a + 1, b); }\n    if (t == 1) { ANS +=\
+    \ seg.prod(a, b + 1).se; }\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
     \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1036\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"ds/segtree.hpp\"\n#include \"alg/monoid_gcd.hpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  SegTree<Monoid_Gcd<ll>> seg(A);\n\
-    \  ll ANS1 = 0;\n  FOR(L, N) {\n    auto check = [&](auto e) -> bool { return\
-    \ e != 1; };\n    auto R = seg.max_right(check, L);\n    ANS1 += N - R;\n  }\n\
-    \  ll ANS2 = 0;\n  FOR3(R, 1, N + 1) {\n    auto check = [&](auto e) -> bool {\
-    \ return e != 1; };\n    auto L = seg.min_left(check, R);\n    ANS2 += L;\n  }\n\
-    \  assert(ANS1 == ANS2);\n  print(ANS1);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/789\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"ds/dynamic_lazysegtree.hpp\"\n#include\
+    \ \"alg/lazy_cntsum_add.hpp\"\n\nvoid solve() {\n  auto f = [&](ll L, ll R) ->\
+    \ pi { return {R - L, 0}; };\n  Dynamic_LazySegTree<Lazy_CntSum_Add<ll>, 2000000>\
+    \ seg(0, 1LL << 30, f);\n  LL(Q);\n  ll ANS = 0;\n  FOR(Q) {\n    LL(t, a, b);\n\
+    \    if (t == 0) { seg.apply(a, a + 1, b); }\n    if (t == 1) { ANS += seg.prod(a,\
+    \ b + 1).se; }\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
     \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/segtree.hpp
-  - alg/monoid_gcd.hpp
+  - ds/dynamic_lazysegtree.hpp
+  - alg/lazy_cntsum_add.hpp
+  - alg/group_add.hpp
+  - alg/group_cntsum.hpp
   isVerificationFile: true
-  path: test/yukicoder/1036_seg_maxright_minleft.test.cpp
+  path: test/yukicoder/789_dseg_lazy.test.cpp
   requiredBy: []
-  timestamp: '2022-05-16 18:02:34+09:00'
+  timestamp: '2022-05-16 18:02:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/1036_seg_maxright_minleft.test.cpp
+documentation_of: test/yukicoder/789_dseg_lazy.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/1036_seg_maxright_minleft.test.cpp
-- /verify/test/yukicoder/1036_seg_maxright_minleft.test.cpp.html
-title: test/yukicoder/1036_seg_maxright_minleft.test.cpp
+- /verify/test/yukicoder/789_dseg_lazy.test.cpp
+- /verify/test/yukicoder/789_dseg_lazy.test.cpp.html
+title: test/yukicoder/789_dseg_lazy.test.cpp
 ---
