@@ -1,29 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: mod/mod_inv.hpp
+    title: mod/mod_inv.hpp
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/online_convolution.test.cpp
     title: test/library_checker/convolution/online_convolution.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\ntemplate <u32 mod>\nstruct modint {\n\
@@ -98,39 +101,42 @@ data:
     \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
     \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
     }\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    using amint = ArbitraryModInt;\n#line 1 \"poly/convolution_naive.hpp\"\ntemplate\
-    \ <class T>\r\nvector<T> convolution_naive(const vector<T>& a, const vector<T>&\
-    \ b) {\r\n  int n = int(a.size()), m = int(b.size());\r\n  vector<T> ans(n + m\
-    \ - 1);\r\n  if (n < m) {\r\n    FOR(j, m) FOR(i, n) ans[i + j] += a[i] * b[j];\r\
-    \n  } else {\r\n    FOR(i, n) FOR(j, m) ans[i + j] += a[i] * b[j];\r\n  }\r\n\
-    \  return ans;\r\n}\r\n#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\n\
-    struct ntt_info {\r\n  static constexpr int bsf_constexpr(unsigned int n) {\r\n\
-    \    int x = 0;\r\n    while (!(n & (1 << x))) x++;\r\n    return x;\r\n  }\r\n\
-    \r\n  static constexpr int rank2 = bsf_constexpr(mint::get_mod() - 1);\r\n  array<mint,\
-    \ rank2 + 1> root;\r\n  array<mint, rank2 + 1> iroot;\r\n  array<mint, max(0,\
-    \ rank2 - 1)> rate2;\r\n  array<mint, max(0, rank2 - 1)> irate2;\r\n  array<mint,\
-    \ max(0, rank2 - 2)> rate3;\r\n  array<mint, max(0, rank2 - 2)> irate3;\r\n\r\n\
-    \  ntt_info() {\r\n    int g = primitive_root(mint::get_mod());\r\n    root[rank2]\
-    \ = mint(g).pow((mint::get_mod() - 1) >> rank2);\r\n    iroot[rank2] = mint(1)\
-    \ / root[rank2];\r\n    FOR_R(i, rank2) {\r\n      root[i] = root[i + 1] * root[i\
-    \ + 1];\r\n      iroot[i] = iroot[i + 1] * iroot[i + 1];\r\n    }\r\n\r\n    {\r\
-    \n      mint prod = 1, iprod = 1;\r\n      for (int i = 0; i <= rank2 - 2; i++)\
-    \ {\r\n        rate2[i] = root[i + 2] * prod;\r\n        irate2[i] = iroot[i +\
-    \ 2] * iprod;\r\n        prod *= iroot[i + 2];\r\n        iprod *= root[i + 2];\r\
-    \n      }\r\n    }\r\n    {\r\n      mint prod = 1, iprod = 1;\r\n      for (int\
-    \ i = 0; i <= rank2 - 3; i++) {\r\n        rate3[i] = root[i + 3] * prod;\r\n\
-    \        irate3[i] = iroot[i + 3] * iprod;\r\n        prod *= iroot[i + 3];\r\n\
-    \        iprod *= root[i + 3];\r\n      }\r\n    }\r\n  }\r\n\r\n  constexpr int\
-    \ primitive_root(int m) {\r\n    if (m == 167772161) return 3;\r\n    if (m ==\
-    \ 469762049) return 3;\r\n    if (m == 754974721) return 11;\r\n    if (m == 880803841)\
-    \ return 26;\r\n    if (m == 998244353) return 3;\r\n    return -1;\r\n  }\r\n\
-    };\r\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>& a, bool inverse) {\r\
-    \n  int n = int(a.size());\r\n  int h = topbit(n);\r\n  assert(n == 1 << h);\r\
-    \n  static const ntt_info<mint> info;\r\n  if (!inverse) {\r\n    int len = 0;\
-    \ // a[i, i+(n>>len), i+2*(n>>len), ..] is transformed\r\n    while (len < h)\
-    \ {\r\n      if (h - len == 1) {\r\n        int p = 1 << (h - len - 1);\r\n  \
-    \      mint rot = 1;\r\n        FOR(s, 1 << len) {\r\n          int offset = s\
-    \ << (h - len);\r\n          FOR(i, p) {\r\n            auto l = a[i + offset];\r\
+    using amint = ArbitraryModInt;\n#line 1 \"mod/mod_inv.hpp\"\n// long \u3067\u3082\
+    \u5927\u4E08\u592B\r\nll mod_inv(ll val, ll mod) {\r\n  ll a = val, b = mod, u\
+    \ = 1, v = 0, t;\r\n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a -= t * b,\
+    \ b), swap(u -= t * v, v);\r\n  }\r\n  if(u < 0) u += mod;\r\n  return u;\r\n\
+    }\r\n#line 1 \"poly/convolution_naive.hpp\"\ntemplate <class T>\r\nvector<T> convolution_naive(const\
+    \ vector<T>& a, const vector<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\
+    \n  vector<T> ans(n + m - 1);\r\n  if (n < m) {\r\n    FOR(j, m) FOR(i, n) ans[i\
+    \ + j] += a[i] * b[j];\r\n  } else {\r\n    FOR(i, n) FOR(j, m) ans[i + j] +=\
+    \ a[i] * b[j];\r\n  }\r\n  return ans;\r\n}\r\n#line 2 \"poly/ntt.hpp\"\n\r\n\
+    template <class mint>\r\nstruct ntt_info {\r\n  static constexpr int bsf_constexpr(unsigned\
+    \ int n) {\r\n    int x = 0;\r\n    while (!(n & (1 << x))) x++;\r\n    return\
+    \ x;\r\n  }\r\n\r\n  static constexpr int rank2 = bsf_constexpr(mint::get_mod()\
+    \ - 1);\r\n  array<mint, rank2 + 1> root;\r\n  array<mint, rank2 + 1> iroot;\r\
+    \n  array<mint, max(0, rank2 - 1)> rate2;\r\n  array<mint, max(0, rank2 - 1)>\
+    \ irate2;\r\n  array<mint, max(0, rank2 - 2)> rate3;\r\n  array<mint, max(0, rank2\
+    \ - 2)> irate3;\r\n\r\n  ntt_info() {\r\n    int g = primitive_root(mint::get_mod());\r\
+    \n    root[rank2] = mint(g).pow((mint::get_mod() - 1) >> rank2);\r\n    iroot[rank2]\
+    \ = mint(1) / root[rank2];\r\n    FOR_R(i, rank2) {\r\n      root[i] = root[i\
+    \ + 1] * root[i + 1];\r\n      iroot[i] = iroot[i + 1] * iroot[i + 1];\r\n   \
+    \ }\r\n\r\n    {\r\n      mint prod = 1, iprod = 1;\r\n      for (int i = 0; i\
+    \ <= rank2 - 2; i++) {\r\n        rate2[i] = root[i + 2] * prod;\r\n        irate2[i]\
+    \ = iroot[i + 2] * iprod;\r\n        prod *= iroot[i + 2];\r\n        iprod *=\
+    \ root[i + 2];\r\n      }\r\n    }\r\n    {\r\n      mint prod = 1, iprod = 1;\r\
+    \n      for (int i = 0; i <= rank2 - 3; i++) {\r\n        rate3[i] = root[i +\
+    \ 3] * prod;\r\n        irate3[i] = iroot[i + 3] * iprod;\r\n        prod *= iroot[i\
+    \ + 3];\r\n        iprod *= root[i + 3];\r\n      }\r\n    }\r\n  }\r\n\r\n  constexpr\
+    \ int primitive_root(int m) {\r\n    if (m == 167772161) return 3;\r\n    if (m\
+    \ == 469762049) return 3;\r\n    if (m == 754974721) return 11;\r\n    if (m ==\
+    \ 880803841) return 26;\r\n    if (m == 998244353) return 3;\r\n    return -1;\r\
+    \n  }\r\n};\r\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>& a, bool inverse)\
+    \ {\r\n  int n = int(a.size());\r\n  int h = topbit(n);\r\n  assert(n == 1 <<\
+    \ h);\r\n  static const ntt_info<mint> info;\r\n  if (!inverse) {\r\n    int len\
+    \ = 0; // a[i, i+(n>>len), i+2*(n>>len), ..] is transformed\r\n    while (len\
+    \ < h) {\r\n      if (h - len == 1) {\r\n        int p = 1 << (h - len - 1);\r\
+    \n        mint rot = 1;\r\n        FOR(s, 1 << len) {\r\n          int offset\
+    \ = s << (h - len);\r\n          FOR(i, p) {\r\n            auto l = a[i + offset];\r\
     \n            auto r = a[i + offset + p] * rot;\r\n            a[i + offset] =\
     \ l + r;\r\n            a[i + offset + p] = l - r;\r\n          }\r\n        \
     \  rot *= info.rate2[topbit(~s & -~s)];\r\n        }\r\n        len++;\r\n   \
@@ -195,7 +201,7 @@ data:
     \ k = 1; k < n; k <<= 1) {\r\n    for (int i = 0; i < n; i += 2 * k) {\r\n   \
     \   for (int j = 0; j < k; j++) {\r\n        C z = a[i + j + k] * rts[j + k];\r\
     \n        a[i + j + k] = a[i + j] - z;\r\n        a[i + j] = a[i + j] + z;\r\n\
-    \      }\r\n    }\r\n  }\r\n}\r\n} // namespace CFFT\n#line 6 \"poly/convolution.hpp\"\
+    \      }\r\n    }\r\n  }\r\n}\r\n} // namespace CFFT\n#line 7 \"poly/convolution.hpp\"\
     \n\r\ntemplate <class mint>\r\nvector<mint> convolution_ntt(vector<mint> a, vector<mint>\
     \ b) {\r\n  int n = int(a.size()), m = int(b.size());\r\n  int sz = 1;\r\n  while\
     \ (sz < n + m - 1) sz *= 2;\r\n\r\n  // sz = 2^k \u306E\u3068\u304D\u306E\u9AD8\
@@ -240,53 +246,70 @@ data:
     \ >> 1)]) * t * CFFT::rts[(sz >> 1) + i];\r\n    fa[i] = A0 + A1 * s;\r\n  }\r\
     \n  CFFT::fft(fa, sz >> 1);\r\n  vector<double> ret(need);\r\n  for (int i = 0;\
     \ i < need; i++) {\r\n    ret[i] = (i & 1 ? fa[i >> 1].y : fa[i >> 1].x);\r\n\
-    \  }\r\n  return ret;\r\n}\r\n\r\nvector<ll> convolution(const vector<ll>& a,\
-    \ const vector<ll>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return\
-    \ {};\r\n  if (min(n, m) <= 60) return convolution_naive(a, b);\r\n  ll abs_sum_a\
-    \ = 0, abs_sum_b = 0;\r\n  FOR(i, n) abs_sum_a += abs(a[i]);\r\n  FOR(i, m) abs_sum_b\
-    \ += abs(b[i]);\r\n  assert(abs_sum_a * abs_sum_b < 1e15);\r\n  vc<double> c =\
-    \ convolution_fft(a, b);\r\n  vc<ll> res(len(c));\r\n  FOR(i, len(c)) res[i] =\
-    \ ll(floor(c[i] + .5));\r\n  return res;\r\n}\r\n\r\ntemplate <typename mint>\r\
-    \nenable_if_t<is_same<mint, modint998>::value, vc<mint>> convolution(\r\n    const\
-    \ vc<mint>& a, const vc<mint>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n\
-    \ || !m) return {};\r\n  if (min(n, m) <= 60) return convolution_naive(a, b);\r\
-    \n  return convolution_ntt(a, b);\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<!is_same<mint,\
+    \  }\r\n  return ret;\r\n}\r\n\r\n// atcoder library\r\nvector<ll> convolution(const\
+    \ vector<ll>& a, const vector<ll>& b) {\r\n  int n = len(a), m = len(b);\r\n \
+    \ if (!n || !m) return {};\r\n  // if (min(n, m) <= 60) return convolution_naive(a,\
+    \ b);\r\n\r\n  static constexpr unsigned long long MOD1 = 754974721; // 2^24\r\
+    \n  static constexpr unsigned long long MOD2 = 167772161; // 2^25\r\n  static\
+    \ constexpr unsigned long long MOD3 = 469762049; // 2^26\r\n  static constexpr\
+    \ unsigned long long M2M3 = MOD2 * MOD3;\r\n  static constexpr unsigned long long\
+    \ M1M3 = MOD1 * MOD3;\r\n  static constexpr unsigned long long M1M2 = MOD1 * MOD2;\r\
+    \n  static constexpr unsigned long long M1M2M3 = MOD1 * MOD2 * MOD3;\r\n\r\n \
+    \ static const unsigned long long i1 = mod_inv(MOD2 * MOD3, MOD1);\r\n  static\
+    \ const unsigned long long i2 = mod_inv(MOD1 * MOD3, MOD2);\r\n  static const\
+    \ unsigned long long i3 = mod_inv(MOD1 * MOD2, MOD3);\r\n\r\n  using mint1 = modint<MOD1>;\r\
+    \n  using mint2 = modint<MOD2>;\r\n  using mint3 = modint<MOD3>;\r\n\r\n  vc<mint1>\
+    \ a1(n), b1(m);\r\n  vc<mint2> a2(n), b2(m);\r\n  vc<mint3> a3(n), b3(m);\r\n\
+    \  FOR(i, n) a1[i] = a[i], a2[i] = a[i], a3[i] = a[i];\r\n  FOR(i, m) b1[i] =\
+    \ b[i], b2[i] = b[i], b3[i] = b[i];\r\n\r\n  auto c1 = convolution_ntt<mint1>(a1,\
+    \ b1);\r\n  auto c2 = convolution_ntt<mint2>(a2, b2);\r\n  auto c3 = convolution_ntt<mint3>(a3,\
+    \ b3);\r\n\r\n  vc<ll> c(n + m - 1);\r\n  FOR(i, n + m - 1) {\r\n    u64 x = 0;\r\
+    \n    x += (c1[i].val * i1) % MOD1 * M2M3;\r\n    x += (c2[i].val * i2) % MOD2\
+    \ * M1M3;\r\n    x += (c3[i].val * i3) % MOD3 * M1M2;\r\n    ll diff = c1[i].val\
+    \ - ((long long)(x) % (long long)(MOD1));\r\n    if (diff < 0) diff += MOD1;\r\
+    \n    static constexpr unsigned long long offset[5]\r\n        = {0, 0, M1M2M3,\
+    \ 2 * M1M2M3, 3 * M1M2M3};\r\n    x -= offset[diff % 5];\r\n    c[i] = x;\r\n\
+    \  }\r\n  return c;\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint,\
     \ modint998>::value, vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>&\
     \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
-    \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
-    \ b);\r\n}\r\n#line 3 \"poly/online_convolution.hpp\"\n\n/*\nf[i], g[i] \u3092\
-    \u4E0E\u3048\u3066 fg[i] \u3092\u5F97\u308B\u3002\n2^{17}\uFF1A176ms\n2^{18}\uFF1A\
-    370ms\n2^{19}\uFF1A800ms\n2^{20}\uFF1A1680ms\n*/\ntemplate <typename mint>\nstruct\
-    \ Online_Convolution {\n  const int thresh = 3;\n  vc<mint> f, g, h;\n  vc<vc<mint>>\
-    \ fft_f;\n  vc<vc<mint>> fft_g;\n\n  pair<vc<mint>, vc<mint>> calc_fft(int k)\
-    \ {\n    // \u73FE\u6642\u70B9\u3067\u306E\u672B\u5C3E 2^k \u9805\u306B\u5BFE\u3059\
-    \u308B fft \u30C7\u30FC\u30BF\u3092\u5F97\u308B\n    ll L = 1 << k;\n    if (k\
-    \ <= thresh) {\n      vc<mint> f_suff(f.end() - L, f.end());\n      vc<mint> g_suff(g.end()\
-    \ - L, g.end());\n      return {f_suff, g_suff};\n    }\n    vc<mint> f_suff(2\
-    \ * L), g_suff(2 * L);\n    FOR(i, 1 << k) { f_suff[i] = f[len(f) - L + i]; }\n\
-    \    FOR(i, 1 << k) { g_suff[i] = g[len(g) - L + i]; }\n    if (k <= thresh) return\
-    \ {f_suff, g_suff};\n    ntt(f_suff, 0);\n    ntt(g_suff, 0);\n    return {f_suff,\
-    \ g_suff};\n  }\n\n  void calc(int k) {\n    // suffix \u306E \u9577\u3055 2^k\
-    \ \u307E\u308F\u308A\u306E\u7573\u307F\u8FBC\u307F\u3092 h \u306B\u52A0\u7B97\u3059\
-    \u308B\n    auto [Ff, Fg] = calc_fft(k);\n    vc<mint> Fh(1 << (k + 1));\n   \
-    \ bool square = k >= len(fft_f);\n    if (square) {\n      // \u9577\u3055 2^k\
-    \ \u306E\u306F\u3058\u3081\u3066\u306E\u584A\u3002\n      fft_f.eb(Ff);\n    \
-    \  fft_g.eb(Fg);\n    }\n\n    if (k > thresh && square) {\n      FOR(i, 1 <<\
-    \ (k + 1)) Fh[i] += Ff[i] * Fg[i];\n      ntt(Fh, 1);\n    }\n    elif (k > thresh\
-    \ && !square) {\n      FOR(i, 1 << (k + 1)) {\n        Fh[i] += Ff[i] * fft_g[k][i];\n\
-    \        Fh[i] += Fg[i] * fft_f[k][i];\n      }\n      ntt(Fh, 1);\n    }\n  \
-    \  elif (k <= thresh && square) {\n      FOR(i, 1 << k) FOR(j, 1 << k) Fh[i +\
-    \ j] += Ff[i] * Fg[j];\n    }\n    elif (k <= thresh && !square) {\n      FOR(i,\
-    \ 1 << k) FOR(j, 1 << k) Fh[i + j] += Ff[i] * fft_g[k][j];\n      FOR(i, 1 <<\
-    \ k) FOR(j, 1 << k) Fh[i + j] += Fg[i] * fft_f[k][j];\n    }\n    // \u9069\u5207\
-    \u306A\u5834\u6240\u306B\u8DB3\u3057\u3053\u3080\n    int off = len(f) - 1;\n\
-    \    FOR(i, len(Fh) - 1) {\n      if (len(h) <= off + i) h.eb(0);\n      h[off\
-    \ + i] += Fh[i];\n    }\n  }\n\n  mint query(int i, mint fi, mint gi) {\n    assert(i\
-    \ == len(f));\n    f.eb(fi);\n    g.eb(gi);\n    FOR(k, 30) {\n      // \u9577\
-    \u3055 2^k \u306E\u90E8\u5206\u3092\u51E6\u7406\u3059\u308B\u304B\u3069\u3046\u304B\
-    \uFF1F\n      // i+2 \u304C 2^k \u306E\u500D\u6570\u304B\u3064 i+2 >= 2^{k+1}\n\
-    \      ll L = 1 << k;\n      bool bl = ((i + 2) % L == 0) && (i + 2 >= 2 * L);\n\
-    \      if (!bl) continue;\n      calc(k);\n    }\n    return h[i];\n  }\n};\n"
+    \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_ntt(a,\
+    \ b);\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<!is_same<mint, modint998>::value,\
+    \ vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>& b) {\r\n  int\
+    \ n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if (min(n, m) <=\
+    \ 60) return convolution_naive(a, b);\r\n  return convolution_garner(a, b);\r\n\
+    }\r\n#line 3 \"poly/online_convolution.hpp\"\n\n/*\nf[i], g[i] \u3092\u4E0E\u3048\
+    \u3066 fg[i] \u3092\u5F97\u308B\u3002\n2^{17}\uFF1A176ms\n2^{18}\uFF1A370ms\n\
+    2^{19}\uFF1A800ms\n2^{20}\uFF1A1680ms\n*/\ntemplate <typename mint>\nstruct Online_Convolution\
+    \ {\n  const int thresh = 3;\n  vc<mint> f, g, h;\n  vc<vc<mint>> fft_f;\n  vc<vc<mint>>\
+    \ fft_g;\n\n  pair<vc<mint>, vc<mint>> calc_fft(int k) {\n    // \u73FE\u6642\u70B9\
+    \u3067\u306E\u672B\u5C3E 2^k \u9805\u306B\u5BFE\u3059\u308B fft \u30C7\u30FC\u30BF\
+    \u3092\u5F97\u308B\n    ll L = 1 << k;\n    if (k <= thresh) {\n      vc<mint>\
+    \ f_suff(f.end() - L, f.end());\n      vc<mint> g_suff(g.end() - L, g.end());\n\
+    \      return {f_suff, g_suff};\n    }\n    vc<mint> f_suff(2 * L), g_suff(2 *\
+    \ L);\n    FOR(i, 1 << k) { f_suff[i] = f[len(f) - L + i]; }\n    FOR(i, 1 <<\
+    \ k) { g_suff[i] = g[len(g) - L + i]; }\n    if (k <= thresh) return {f_suff,\
+    \ g_suff};\n    ntt(f_suff, 0);\n    ntt(g_suff, 0);\n    return {f_suff, g_suff};\n\
+    \  }\n\n  void calc(int k) {\n    // suffix \u306E \u9577\u3055 2^k \u307E\u308F\
+    \u308A\u306E\u7573\u307F\u8FBC\u307F\u3092 h \u306B\u52A0\u7B97\u3059\u308B\n\
+    \    auto [Ff, Fg] = calc_fft(k);\n    vc<mint> Fh(1 << (k + 1));\n    bool square\
+    \ = k >= len(fft_f);\n    if (square) {\n      // \u9577\u3055 2^k \u306E\u306F\
+    \u3058\u3081\u3066\u306E\u584A\u3002\n      fft_f.eb(Ff);\n      fft_g.eb(Fg);\n\
+    \    }\n\n    if (k > thresh && square) {\n      FOR(i, 1 << (k + 1)) Fh[i] +=\
+    \ Ff[i] * Fg[i];\n      ntt(Fh, 1);\n    }\n    elif (k > thresh && !square) {\n\
+    \      FOR(i, 1 << (k + 1)) {\n        Fh[i] += Ff[i] * fft_g[k][i];\n       \
+    \ Fh[i] += Fg[i] * fft_f[k][i];\n      }\n      ntt(Fh, 1);\n    }\n    elif (k\
+    \ <= thresh && square) {\n      FOR(i, 1 << k) FOR(j, 1 << k) Fh[i + j] += Ff[i]\
+    \ * Fg[j];\n    }\n    elif (k <= thresh && !square) {\n      FOR(i, 1 << k) FOR(j,\
+    \ 1 << k) Fh[i + j] += Ff[i] * fft_g[k][j];\n      FOR(i, 1 << k) FOR(j, 1 <<\
+    \ k) Fh[i + j] += Fg[i] * fft_f[k][j];\n    }\n    // \u9069\u5207\u306A\u5834\
+    \u6240\u306B\u8DB3\u3057\u3053\u3080\n    int off = len(f) - 1;\n    FOR(i, len(Fh)\
+    \ - 1) {\n      if (len(h) <= off + i) h.eb(0);\n      h[off + i] += Fh[i];\n\
+    \    }\n  }\n\n  mint query(int i, mint fi, mint gi) {\n    assert(i == len(f));\n\
+    \    f.eb(fi);\n    g.eb(gi);\n    FOR(k, 30) {\n      // \u9577\u3055 2^k \u306E\
+    \u90E8\u5206\u3092\u51E6\u7406\u3059\u308B\u304B\u3069\u3046\u304B\uFF1F\n   \
+    \   // i+2 \u304C 2^k \u306E\u500D\u6570\u304B\u3064 i+2 >= 2^{k+1}\n      ll\
+    \ L = 1 << k;\n      bool bl = ((i + 2) % L == 0) && (i + 2 >= 2 * L);\n     \
+    \ if (!bl) continue;\n      calc(k);\n    }\n    return h[i];\n  }\n};\n"
   code: "#pragma once\n#include \"poly/convolution.hpp\"\n\n/*\nf[i], g[i] \u3092\u4E0E\
     \u3048\u3066 fg[i] \u3092\u5F97\u308B\u3002\n2^{17}\uFF1A176ms\n2^{18}\uFF1A370ms\n\
     2^{19}\uFF1A800ms\n2^{20}\uFF1A1680ms\n*/\ntemplate <typename mint>\nstruct Online_Convolution\
@@ -323,14 +346,15 @@ data:
   dependsOn:
   - poly/convolution.hpp
   - mod/modint.hpp
+  - mod/mod_inv.hpp
   - poly/convolution_naive.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
   isVerificationFile: false
   path: poly/online_convolution.hpp
   requiredBy: []
-  timestamp: '2022-05-02 13:07:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-05-17 01:06:15+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/convolution/online_convolution.test.cpp
 documentation_of: poly/online_convolution.hpp
