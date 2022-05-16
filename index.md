@@ -271,6 +271,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/slope.hpp
       title: ds/slope.hpp
+    - icon: ':heavy_check_mark:'
+      path: ds/splaytree_monoid.hpp
+      title: ds/splaytree_monoid.hpp
     - icon: ':question:'
       path: ds/swag.hpp
       title: ds/swag.hpp
@@ -609,7 +612,7 @@ data:
     - icon: ':warning:'
       path: nt/mobius_table.hpp
       title: nt/mobius_table.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: nt/multiplicative_convolution_mod2n.hpp
       title: nt/multiplicative_convolution_mod2n.hpp
     - icon: ':heavy_check_mark:'
@@ -744,13 +747,13 @@ data:
     - icon: ':x:'
       path: poly/multipoint.hpp
       title: poly/multipoint.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/multivar_convolution.hpp
       title: poly/multivar_convolution.hpp
     - icon: ':question:'
       path: poly/ntt.hpp
       title: poly/ntt.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/online_convolution.hpp
       title: poly/online_convolution.hpp
     - icon: ':x:'
@@ -875,6 +878,9 @@ data:
       title: example.test.cpp
   - name: test/aoj
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/1508_splay.test.cpp
+      title: test/aoj/1508_splay.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/2251_dag_path_cover.test.cpp
       title: test/aoj/2251_dag_path_cover.test.cpp
@@ -1020,19 +1026,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/convolution_mod_2_64.test.cpp
       title: test/library_checker/convolution/convolution_mod_2_64.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
       title: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/multivariate_convolution.test.cpp
       title: test/library_checker/convolution/multivariate_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/online_convolution.test.cpp
       title: test/library_checker/convolution/online_convolution.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/subset_convolution.test.cpp
       title: test/library_checker/convolution/subset_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
       title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - name: test/library_checker/datastructure

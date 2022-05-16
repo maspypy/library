@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/1508_splay.test.cpp
+    title: test/aoj/1508_splay.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2251_dag_path_cover.test.cpp
     title: test/aoj/2251_dag_path_cover.test.cpp
   - icon: ':heavy_check_mark:'
@@ -138,19 +141,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_2_64.test.cpp
     title: test/library_checker/convolution/convolution_mod_2_64.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
     title: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/multivariate_convolution.test.cpp
     title: test/library_checker/convolution/multivariate_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/online_convolution.test.cpp
     title: test/library_checker/convolution/online_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution.test.cpp
     title: test/library_checker/convolution/subset_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1031,6 +1034,7 @@ data:
   - test/aoj/DSL_4_A_rectangle_union.test.cpp
   - test/aoj/2995_dsu.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
+  - test/aoj/1508_splay.test.cpp
   - test/aoj/DPL_1_H_kanpsack01.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp
   - test/aoj/DPL_1_F_kanpsack01.test.cpp
