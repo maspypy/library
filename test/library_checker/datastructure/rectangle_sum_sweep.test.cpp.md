@@ -230,15 +230,15 @@ data:
     \u5165\u529B\u3059\u308B\u3053\u3068 (add_pt)\u3002\r\n// \u540C\u3058\u70B9\u7FA4\
     \u306B\u5BFE\u3057\u3066\u30AF\u30A8\u30EA\u3092\u3084\u308A\u76F4\u305B\u308B\
     \u3002\r\n// SMALL=true \u306B\u3059\u308B\u3068\u3001\u5EA7\u5727\u3092\u3057\
-    \u306A\u3044\u305F\u3081\u5C11\u3057\u9AD8\u901F\r\ntemplate <typename AbelGroup\
-    \ = Group_Add<ll>, bool SMALL = false>\r\nstruct Point_Add_Rectangle_Sum {\r\n\
-    \  using WT = AbelGroup::value_type;\r\n  bool compressed;\r\n  int Q;\r\n  vi\
-    \ X, Y;\r\n  vi keyX, keyY;\r\n  ll min_x, max_x, min_y, max_y;\r\n  vc<WT> wt;\r\
-    \n  vc<vc<pair<int, WT>>> add;\r\n  vc<vc<tuple<int, int, int>>> query_l;\r\n\
-    \  vc<vc<tuple<int, int, int>>> query_r;\r\n\r\n  Rectangle_Sum() : compressed(0),\
-    \ Q(0) {}\r\n\r\n  void add_query(ll x, ll y, WT w = 1) {\r\n    assert(!compressed);\r\
-    \n    X.eb(x), Y.eb(y), wt.eb(w);\r\n    keyX.eb(x), keyY.eb(y);\r\n  }\r\n\r\n\
-    \  void compress() {\r\n    compressed = 1;\r\n    int N = len(X);\r\n    if (!SMALL)\
+    \u306A\u3044\u305F\u3081\u5C11\u3057\u9AD8\u901F\r\ntemplate <typename AbelGroup,\
+    \ bool SMALL = false>\r\nstruct Point_Add_Rectangle_Sum {\r\n  using WT = typename\
+    \ AbelGroup::value_type;\r\n  bool compressed;\r\n  int Q;\r\n  vi X, Y;\r\n \
+    \ vi keyX, keyY;\r\n  ll min_x, max_x, min_y, max_y;\r\n  vc<WT> wt;\r\n  vc<vc<pair<int,\
+    \ WT>>> add;\r\n  vc<vc<tuple<int, int, int>>> query_l;\r\n  vc<vc<tuple<int,\
+    \ int, int>>> query_r;\r\n\r\n  Rectangle_Sum() : compressed(0), Q(0) {}\r\n\r\
+    \n  void add_query(ll x, ll y, WT w = 1) {\r\n    assert(!compressed);\r\n   \
+    \ X.eb(x), Y.eb(y), wt.eb(w);\r\n    keyX.eb(x), keyY.eb(y);\r\n  }\r\n\r\n  void\
+    \ compress() {\r\n    compressed = 1;\r\n    int N = len(X);\r\n    if (!SMALL)\
     \ {\r\n      UNIQUE(keyX), UNIQUE(keyY);\r\n      add.resize(len(keyX) + 1);\r\
     \n      FOR(i, N) {\r\n        ll x = X[i], y = Y[i], w = wt[i];\r\n        x\
     \ = LB(keyX, x), y = LB(keyY, y);\r\n        add[x].eb(y, w);\r\n      }\r\n \
@@ -287,7 +287,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   requiredBy: []
-  timestamp: '2022-05-19 04:11:16+09:00'
+  timestamp: '2022-05-19 04:19:48+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
