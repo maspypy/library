@@ -16,7 +16,7 @@ struct Point_Add_Rectangle_Sum {
   vc<vc<tuple<int, int, int>>> query_l;
   vc<vc<tuple<int, int, int>>> query_r;
 
-  Rectangle_Sum() : compressed(0), Q(0) {}
+  Point_Add_Rectangle_Sum() : compressed(0), Q(0) {}
 
   void add_query(ll x, ll y, WT w = 1) {
     assert(!compressed);
