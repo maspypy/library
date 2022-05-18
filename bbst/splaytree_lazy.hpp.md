@@ -64,14 +64,15 @@ data:
     \u308B\n  void insert(Node *&root, int k, Node *n) {\n    if (!root) {\n     \
     \ assert(k == 0);\n      root = n;\n      return;\n    }\n    assert(0 <= k &&\
     \ k <= root->size);\n    auto r_root = split(root, k);\n    merge(root, n);\n\
-    \    merge(root, r_root);\n  }\n\n  // root \u304B\u3089 k \u756A\u76EE\u3092\u524A\
-    \u9664\u3002\u524A\u9664\u3057\u305F\u30CE\u30FC\u30C9\u3092\u304B\u3048\u3059\
-    \n  Node *erase(Node *&root, int k) {\n    assert(0 <= k && k < root->size);\n\
-    \    get_kth(root, k);\n    Node *l_root = root->l;\n    Node *r_root = root->r;\n\
-    \    if (l_root) l_root->p = nullptr;\n    if (r_root) r_root->p = nullptr;\n\
-    \    root->l = nullptr;\n    root->r = nullptr;\n    root->prod = root->x;\n \
-    \   root->size = 1;\n    merge(l_root, r_root);\n    swap(root, l_root);\n   \
-    \ return l_root;\n  }\n\n  void debug(Node *root) {\n    print(\"splay tree\"\
+    \    merge(root, r_root);\n  }\n\n  void insert(Node *&root, int k, const X& x)\
+    \ {\n    insert(root, k, new_node(x));\n  }\n\n  // root \u304B\u3089 k \u756A\
+    \u76EE\u3092\u524A\u9664\u3002\u524A\u9664\u3057\u305F\u30CE\u30FC\u30C9\u3092\
+    \u304B\u3048\u3059\n  Node *erase(Node *&root, int k) {\n    assert(0 <= k &&\
+    \ k < root->size);\n    get_kth(root, k);\n    Node *l_root = root->l;\n    Node\
+    \ *r_root = root->r;\n    if (l_root) l_root->p = nullptr;\n    if (r_root) r_root->p\
+    \ = nullptr;\n    root->l = nullptr;\n    root->r = nullptr;\n    root->prod =\
+    \ root->x;\n    root->size = 1;\n    merge(l_root, r_root);\n    swap(root, l_root);\n\
+    \    return l_root;\n  }\n\n  void debug(Node *root) {\n    print(\"splay tree\"\
     );\n    string s;\n    auto dfs = [&](auto &dfs, Node *n) -> void {\n      if\
     \ (!n) return;\n      if (n->l) assert(n->l->p == n);\n      if (n->r) assert(n->r->p\
     \ == n);\n      s += \"l\";\n      dfs(dfs, n->l);\n      s.pop_back();\n    \
@@ -154,17 +155,18 @@ data:
     \ \u756A\u76EE\u306B n \u3092\u633F\u5165\u3059\u308B\n  void insert(Node *&root,\
     \ int k, Node *n) {\n    if (!root) {\n      assert(k == 0);\n      root = n;\n\
     \      return;\n    }\n    assert(0 <= k && k <= root->size);\n    auto r_root\
-    \ = split(root, k);\n    merge(root, n);\n    merge(root, r_root);\n  }\n\n  //\
-    \ root \u304B\u3089 k \u756A\u76EE\u3092\u524A\u9664\u3002\u524A\u9664\u3057\u305F\
-    \u30CE\u30FC\u30C9\u3092\u304B\u3048\u3059\n  Node *erase(Node *&root, int k)\
-    \ {\n    assert(0 <= k && k < root->size);\n    get_kth(root, k);\n    Node *l_root\
-    \ = root->l;\n    Node *r_root = root->r;\n    if (l_root) l_root->p = nullptr;\n\
-    \    if (r_root) r_root->p = nullptr;\n    root->l = nullptr;\n    root->r = nullptr;\n\
-    \    root->prod = root->x;\n    root->size = 1;\n    merge(l_root, r_root);\n\
-    \    swap(root, l_root);\n    return l_root;\n  }\n\n  void debug(Node *root)\
-    \ {\n    print(\"splay tree\");\n    string s;\n    auto dfs = [&](auto &dfs,\
-    \ Node *n) -> void {\n      if (!n) return;\n      if (n->l) assert(n->l->p ==\
-    \ n);\n      if (n->r) assert(n->r->p == n);\n      s += \"l\";\n      dfs(dfs,\
+    \ = split(root, k);\n    merge(root, n);\n    merge(root, r_root);\n  }\n\n  void\
+    \ insert(Node *&root, int k, const X& x) {\n    insert(root, k, new_node(x));\n\
+    \  }\n\n  // root \u304B\u3089 k \u756A\u76EE\u3092\u524A\u9664\u3002\u524A\u9664\
+    \u3057\u305F\u30CE\u30FC\u30C9\u3092\u304B\u3048\u3059\n  Node *erase(Node *&root,\
+    \ int k) {\n    assert(0 <= k && k < root->size);\n    get_kth(root, k);\n   \
+    \ Node *l_root = root->l;\n    Node *r_root = root->r;\n    if (l_root) l_root->p\
+    \ = nullptr;\n    if (r_root) r_root->p = nullptr;\n    root->l = nullptr;\n \
+    \   root->r = nullptr;\n    root->prod = root->x;\n    root->size = 1;\n    merge(l_root,\
+    \ r_root);\n    swap(root, l_root);\n    return l_root;\n  }\n\n  void debug(Node\
+    \ *root) {\n    print(\"splay tree\");\n    string s;\n    auto dfs = [&](auto\
+    \ &dfs, Node *n) -> void {\n      if (!n) return;\n      if (n->l) assert(n->l->p\
+    \ == n);\n      if (n->r) assert(n->r->p == n);\n      s += \"l\";\n      dfs(dfs,\
     \ n->l);\n      s.pop_back();\n      print(s, \"size\", n->size, \"x\", n->x,\
     \ \"prod\", n->prod, \"apply\", n->a);\n      s += \"r\";\n      dfs(dfs, n->r);\n\
     \      s.pop_back();\n    };\n    dfs(dfs, root);\n  }\n\nprivate:\n  void prop(Node\
@@ -196,7 +198,7 @@ data:
   isVerificationFile: false
   path: bbst/splaytree_lazy.hpp
   requiredBy: []
-  timestamp: '2022-05-18 21:20:32+09:00'
+  timestamp: '2022-05-18 23:01:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp

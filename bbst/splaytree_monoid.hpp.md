@@ -56,10 +56,11 @@ data:
     \ int k, Node *n) {\n    if (!root) {\n      assert(k == 0);\n      root = n;\n\
     \      return;\n    }\n    assert(0 <= k && k <= root->size);\n    auto r_root\
     \ = split(root, k);\n    merge(root, n);\n    merge(root, r_root);\n  }\n\n  void\
-    \ set(Node *&root, int k, const X &x) {\n    get_kth(root, k);\n    root->x =\
-    \ x;\n    update(root);\n  }\n\n  // root \u304B\u3089 k \u756A\u76EE\u3092\u524A\
-    \u9664\u3002\u524A\u9664\u3057\u305F\u30CE\u30FC\u30C9\u3092\u304B\u3048\u3059\
-    \n  Node *erase(Node *&root, int k) {\n    assert(0 <= k && k < root->size);\n\
+    \ insert(Node *&root, int k, const X& x) {\n    insert(root, k, new_node(x));\n\
+    \  }\n\n  void set(Node *&root, int k, const X &x) {\n    get_kth(root, k);\n\
+    \    root->x = x;\n    update(root);\n  }\n\n  // root \u304B\u3089 k \u756A\u76EE\
+    \u3092\u524A\u9664\u3002\u524A\u9664\u3057\u305F\u30CE\u30FC\u30C9\u3092\u304B\
+    \u3048\u3059\n  Node *erase(Node *&root, int k) {\n    assert(0 <= k && k < root->size);\n\
     \    get_kth(root, k);\n    Node *l_root = root->l;\n    Node *r_root = root->r;\n\
     \    if (l_root) l_root->p = nullptr;\n    if (r_root) r_root->p = nullptr;\n\
     \    root->l = nullptr;\n    root->r = nullptr;\n    root->prod = root->x;\n \
@@ -68,9 +69,9 @@ data:
     );\n    string s;\n    auto dfs = [&](auto &dfs, Node *n) -> void {\n      if\
     \ (!n) return;\n      if (n->l) assert(n->l->p == n);\n      if (n->r) assert(n->r->p\
     \ == n);\n      s += \"l\";\n      dfs(dfs, n->l);\n      s.pop_back();\n    \
-    \  print(s, \"size\", n->size, \"x\", n->x, \"prod\", n->prod, \"apply\", n->a);\n\
-    \      s += \"r\";\n      dfs(dfs, n->r);\n      s.pop_back();\n    };\n    dfs(dfs,\
-    \ root);\n  }\n\nprivate:\n  void prop(Node *c) {\n    if (c->rev) {\n      swap(c->l,\
+    \  print(s, \"size\", n->size, \"x\", n->x, \"prod\", n->prod);\n      s += \"\
+    r\";\n      dfs(dfs, n->r);\n      s.pop_back();\n    };\n    dfs(dfs, root);\n\
+    \  }\n\nprivate:\n  void prop(Node *c) {\n    if (c->rev) {\n      swap(c->l,\
     \ c->r);\n      if (c->l) c->l->rev ^= 1;\n      if (c->r) c->r->rev ^= 1;\n \
     \     c->rev = 0;\n    }\n  }\n\n  void update(Node *c) {\n    c->size = 1;\n\
     \    c->prod = c->x;\n    if (c->l) {\n      c->size += c->l->size;\n      c->prod\
@@ -132,10 +133,11 @@ data:
     \ int k, Node *n) {\n    if (!root) {\n      assert(k == 0);\n      root = n;\n\
     \      return;\n    }\n    assert(0 <= k && k <= root->size);\n    auto r_root\
     \ = split(root, k);\n    merge(root, n);\n    merge(root, r_root);\n  }\n\n  void\
-    \ set(Node *&root, int k, const X &x) {\n    get_kth(root, k);\n    root->x =\
-    \ x;\n    update(root);\n  }\n\n  // root \u304B\u3089 k \u756A\u76EE\u3092\u524A\
-    \u9664\u3002\u524A\u9664\u3057\u305F\u30CE\u30FC\u30C9\u3092\u304B\u3048\u3059\
-    \n  Node *erase(Node *&root, int k) {\n    assert(0 <= k && k < root->size);\n\
+    \ insert(Node *&root, int k, const X& x) {\n    insert(root, k, new_node(x));\n\
+    \  }\n\n  void set(Node *&root, int k, const X &x) {\n    get_kth(root, k);\n\
+    \    root->x = x;\n    update(root);\n  }\n\n  // root \u304B\u3089 k \u756A\u76EE\
+    \u3092\u524A\u9664\u3002\u524A\u9664\u3057\u305F\u30CE\u30FC\u30C9\u3092\u304B\
+    \u3048\u3059\n  Node *erase(Node *&root, int k) {\n    assert(0 <= k && k < root->size);\n\
     \    get_kth(root, k);\n    Node *l_root = root->l;\n    Node *r_root = root->r;\n\
     \    if (l_root) l_root->p = nullptr;\n    if (r_root) r_root->p = nullptr;\n\
     \    root->l = nullptr;\n    root->r = nullptr;\n    root->prod = root->x;\n \
@@ -144,9 +146,9 @@ data:
     );\n    string s;\n    auto dfs = [&](auto &dfs, Node *n) -> void {\n      if\
     \ (!n) return;\n      if (n->l) assert(n->l->p == n);\n      if (n->r) assert(n->r->p\
     \ == n);\n      s += \"l\";\n      dfs(dfs, n->l);\n      s.pop_back();\n    \
-    \  print(s, \"size\", n->size, \"x\", n->x, \"prod\", n->prod, \"apply\", n->a);\n\
-    \      s += \"r\";\n      dfs(dfs, n->r);\n      s.pop_back();\n    };\n    dfs(dfs,\
-    \ root);\n  }\n\nprivate:\n  void prop(Node *c) {\n    if (c->rev) {\n      swap(c->l,\
+    \  print(s, \"size\", n->size, \"x\", n->x, \"prod\", n->prod);\n      s += \"\
+    r\";\n      dfs(dfs, n->r);\n      s.pop_back();\n    };\n    dfs(dfs, root);\n\
+    \  }\n\nprivate:\n  void prop(Node *c) {\n    if (c->rev) {\n      swap(c->l,\
     \ c->r);\n      if (c->l) c->l->rev ^= 1;\n      if (c->r) c->r->rev ^= 1;\n \
     \     c->rev = 0;\n    }\n  }\n\n  void update(Node *c) {\n    c->size = 1;\n\
     \    c->prod = c->x;\n    if (c->l) {\n      c->size += c->l->size;\n      c->prod\
@@ -168,7 +170,7 @@ data:
   isVerificationFile: false
   path: bbst/splaytree_monoid.hpp
   requiredBy: []
-  timestamp: '2022-05-18 21:39:21+09:00'
+  timestamp: '2022-05-18 23:01:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/1508_splay.test.cpp
