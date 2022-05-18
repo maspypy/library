@@ -3,29 +3,29 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"bbst/randomized_bst_lazy.hpp\"\n\n// reverse \u306F\u3068\
-    \u308A\u3042\u3048\u305A\u3001Monoid_X \u306E\u53EF\u63DB\u6027\u3092\u4EEE\u5B9A\
-    \u3057\u3066\u3044\u308B\uFF01\ntemplate <typename Lazy, int NODES = 1'000'000>\n\
-    struct Randomized_BST_Lazy {\n  using Monoid_X = typename Lazy::X_structure;\n\
-    \  using Monoid_A = typename Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n\
-    \  using A = typename Monoid_A::value_type;\n\n  struct Node {\n    Node *l, *r;\n\
-    \    X x, prod;\n    A a;\n    int size;\n    bool rev;\n    bool propagated;\n\
-    \  };\n\n  Node *pool;\n  int pid;\n\n  Randomized_BST_Lazy() : pid(0) { pool\
-    \ = new Node[NODES]; }\n\n  Node *new_node(const X &x) {\n    pool[pid].l = pool[pid].r\
-    \ = nullptr;\n    pool[pid].x = x;\n    pool[pid].prod = x;\n    pool[pid].a =\
-    \ Monoid_A::unit();\n    pool[pid].size = 1;\n    pool[pid].rev = 0;\n    pool[pid].propagated\
-    \ = 1;\n    return &(pool[pid++]);\n  }\n\n  Node *new_node(const vc<X> &dat)\
-    \ {\n    auto dfs = [&](auto &dfs, int l, int r) -> Node * {\n      if (l == r)\
-    \ return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n      int m\
-    \ = (l + r) / 2;\n      Node *l_root = dfs(dfs, l, m);\n      Node *r_root = dfs(dfs,\
+  bundledCode: "#line 1 \"bbst/rbst_lazy.hpp\"\n\n// reverse \u306F\u3068\u308A\u3042\
+    \u3048\u305A\u3001Monoid_X \u306E\u53EF\u63DB\u6027\u3092\u4EEE\u5B9A\u3057\u3066\
+    \u3044\u308B\uFF01\ntemplate <typename Lazy, int NODES = 1'000'000>\nstruct Randomized_BST_Lazy\
+    \ {\n  using Monoid_X = typename Lazy::X_structure;\n  using Monoid_A = typename\
+    \ Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n  using A =\
+    \ typename Monoid_A::value_type;\n\n  struct Node {\n    Node *l, *r;\n    X x,\
+    \ prod;\n    A a;\n    int size;\n    bool rev;\n    bool propagated;\n  };\n\n\
+    \  Node *pool;\n  int pid;\n\n  Randomized_BST_Lazy() : pid(0) { pool = new Node[NODES];\
+    \ }\n\n  Node *new_node(const X &x) {\n    pool[pid].l = pool[pid].r = nullptr;\n\
+    \    pool[pid].x = x;\n    pool[pid].prod = x;\n    pool[pid].a = Monoid_A::unit();\n\
+    \    pool[pid].size = 1;\n    pool[pid].rev = 0;\n    pool[pid].propagated = 1;\n\
+    \    return &(pool[pid++]);\n  }\n\n  Node *new_node(const vc<X> &dat) {\n   \
+    \ auto dfs = [&](auto &dfs, int l, int r) -> Node * {\n      if (l == r) return\
+    \ nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n      int m = (l +\
+    \ r) / 2;\n      Node *l_root = dfs(dfs, l, m);\n      Node *r_root = dfs(dfs,\
     \ m + 1, r);\n      Node *root = new_node(dat[m]);\n      root->l = l_root, root->r\
     \ = r_root;\n      update(root);\n      return root;\n    };\n    return dfs(dfs,\
     \ 0, len(dat));\n  }\n\n  // \u5DE6\u306B\u53F3\u3092\u30DE\u30FC\u30B8\n  void\
@@ -168,16 +168,16 @@ data:
     \    return {root, nr};\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: bbst/randomized_bst_lazy.hpp
+  path: bbst/rbst_lazy.hpp
   requiredBy: []
-  timestamp: '2022-05-18 23:37:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-05-19 00:38:38+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-documentation_of: bbst/randomized_bst_lazy.hpp
+documentation_of: bbst/rbst_lazy.hpp
 layout: document
 redirect_from:
-- /library/bbst/randomized_bst_lazy.hpp
-- /library/bbst/randomized_bst_lazy.hpp.html
-title: bbst/randomized_bst_lazy.hpp
+- /library/bbst/rbst_lazy.hpp
+- /library/bbst/rbst_lazy.hpp.html
+title: bbst/rbst_lazy.hpp
 ---

@@ -6,10 +6,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/group_add.hpp
       title: alg/group_add.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/group_affine.hpp
       title: alg/group_affine.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/group_cntsum.hpp
       title: alg/group_cntsum.hpp
     - icon: ':heavy_check_mark:'
@@ -30,7 +30,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/lazy_cntsum_add.hpp
       title: alg/lazy_cntsum_add.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/lazy_cntsum_affine.hpp
       title: alg/lazy_cntsum_affine.hpp
     - icon: ':heavy_check_mark:'
@@ -131,9 +131,15 @@ data:
       title: alg/monoid_xor_basis.hpp
   - name: bbst
     pages:
-    - icon: ':heavy_check_mark:'
-      path: bbst/randomized_bst_lazy.hpp
-      title: bbst/randomized_bst_lazy.hpp
+    - icon: ':warning:'
+      path: bbst/persistent_rbst_lazy.hpp
+      title: bbst/persistent_rbst_lazy.hpp
+    - icon: ':x:'
+      path: bbst/rbst_lazy.hpp
+      title: bbst/rbst_lazy.hpp
+    - icon: ':warning:'
+      path: bbst/rbst_monoid.hpp
+      title: bbst/rbst_monoid.hpp
     - icon: ':heavy_check_mark:'
       path: bbst/splaytree_lazy.hpp
       title: bbst/splaytree_lazy.hpp
@@ -562,7 +568,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_sqrt.hpp
       title: mod/mod_sqrt.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: mod/modint.hpp
       title: mod/modint.hpp
     - icon: ':heavy_check_mark:'
@@ -582,7 +588,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -664,7 +670,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/integer_kth_root.hpp
       title: other/integer_kth_root.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -1057,7 +1063,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
       title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
       title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     - icon: ':heavy_check_mark:'
