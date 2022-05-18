@@ -134,7 +134,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: bbst/splaytree_lazy.hpp
       title: bbst/splaytree_lazy.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: bbst/splaytree_monoid.hpp
       title: bbst/splaytree_monoid.hpp
   - name: dp
@@ -883,7 +883,7 @@ data:
       title: example.test.cpp
   - name: test/aoj
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/1508_splay.test.cpp
       title: test/aoj/1508_splay.test.cpp
     - icon: ':heavy_check_mark:'

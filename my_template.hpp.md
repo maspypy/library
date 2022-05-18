@@ -7,6 +7,9 @@ data:
     title: graph/bipartite_coloring.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/1508_splay.test.cpp
+    title: test/aoj/1508_splay.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2251_dag_path_cover.test.cpp
     title: test/aoj/2251_dag_path_cover.test.cpp
   - icon: ':heavy_check_mark:'
@@ -958,6 +961,7 @@ data:
   - test/aoj/DSL_4_A_rectangle_union.test.cpp
   - test/aoj/2995_dsu.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
+  - test/aoj/1508_splay.test.cpp
   - test/aoj/DPL_1_H_kanpsack01.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp
   - test/aoj/DPL_1_F_kanpsack01.test.cpp
