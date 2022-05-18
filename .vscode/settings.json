@@ -41,6 +41,8 @@
         "iomanip": "cpp",
         "limits": "cpp",
         "iostream": "cpp",
-        "numeric": "cpp"
+        "numeric": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp"
     }
 }
