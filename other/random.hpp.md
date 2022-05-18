@@ -65,10 +65,10 @@ data:
   path: other/random.hpp
   requiredBy:
   - alg/monoid_rollinghash.hpp
-  - string/rollinghash.hpp
-  - graph/chromatic.hpp
-  - mod/mod_sqrt.hpp
   - mod/modular_subset_sum.hpp
+  - mod/mod_sqrt.hpp
+  - graph/chromatic.hpp
+  - string/rollinghash.hpp
   - linalg/spmat_min_poly.hpp
   - linalg/spmat_det.hpp
   - poly/fps_sqrt.hpp
@@ -78,9 +78,9 @@ data:
   - test/yukicoder/4_modular_subset_sum.test.cpp
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
-  - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
+  - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
 documentation_of: other/random.hpp
 layout: document
 redirect_from:

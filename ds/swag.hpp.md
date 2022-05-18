@@ -63,17 +63,17 @@ data:
   isVerificationFile: false
   path: ds/swag.hpp
   requiredBy:
+  - poly/prefix_product_of_poly.hpp
+  - poly/lagrange_interpolate_iota.hpp
   - seq/kth_term_of_p_recursive.hpp
   - seq/interpolate_poly_exp_sum.hpp
-  - poly/lagrange_interpolate_iota.hpp
-  - poly/prefix_product_of_poly.hpp
   timestamp: '2022-05-15 15:48:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1036_swag.test.cpp
   - test/yukicoder/502_p_rec.test.cpp
-  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
+  - test/yukicoder/1036_swag.test.cpp
   - test/library_checker/datastructure/queue_operate_all_composite.test.cpp
+  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
 documentation_of: ds/swag.hpp
 layout: document

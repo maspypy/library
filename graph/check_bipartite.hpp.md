@@ -112,9 +112,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1479_bipartite_vertex_cover.test.cpp
+  - test/library_checker/graph/bipartitematching.test.cpp
   - test/aoj/2251_dag_path_cover.test.cpp
   - test/aoj/2251_maxantichain.test.cpp
-  - test/library_checker/graph/bipartitematching.test.cpp
 documentation_of: graph/check_bipartite.hpp
 layout: document
 redirect_from:

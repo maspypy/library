@@ -132,8 +132,14 @@ data:
   - name: bbst
     pages:
     - icon: ':warning:'
+      path: bbst/persistent_rbst.hpp
+      title: bbst/persistent_rbst.hpp
+    - icon: ':warning:'
       path: bbst/persistent_rbst_lazy.hpp
       title: bbst/persistent_rbst_lazy.hpp
+    - icon: ':warning:'
+      path: bbst/persistent_rbst_monoid.hpp
+      title: bbst/persistent_rbst_monoid.hpp
     - icon: ':heavy_check_mark:'
       path: bbst/rbst_lazy.hpp
       title: bbst/rbst_lazy.hpp
@@ -195,7 +201,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/cht_monotone.hpp
       title: ds/cht_monotone.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/cumsum2d.hpp
       title: ds/cumsum2d.hpp
     - icon: ':heavy_check_mark:'
@@ -1411,6 +1417,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1077_slope.test.cpp
       title: test/yukicoder/1077_slope.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1141_cumsum2d.test.cpp
+      title: test/yukicoder/1141_cumsum2d.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1142_xor_conv.test.cpp
       title: test/yukicoder/1142_xor_conv.test.cpp

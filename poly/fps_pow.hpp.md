@@ -465,8 +465,8 @@ data:
   verifiedWith:
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  - test/library_checker/polynomial/pow_of_fps.test.cpp
   - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
+  - test/library_checker/polynomial/pow_of_fps.test.cpp
 documentation_of: poly/fps_pow.hpp
 layout: document
 redirect_from:

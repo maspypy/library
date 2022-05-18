@@ -63,13 +63,13 @@ data:
   requiredBy:
   - nt/gaussian_integers.hpp
   - nt/lcm.hpp
-  - mod/primitive_root.hpp
   - mod/mod_kth_root.hpp
+  - mod/primitive_root.hpp
   timestamp: '2022-05-12 00:26:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/187_crt.test.cpp
   - test/yukicoder/1593_gaussian.test.cpp
+  - test/yukicoder/187_crt.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
 documentation_of: mod/mod_pow.hpp
 layout: document

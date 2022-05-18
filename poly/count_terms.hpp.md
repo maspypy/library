@@ -105,38 +105,38 @@ data:
   isVerificationFile: false
   path: poly/count_terms.hpp
   requiredBy:
-  - seq/stirling_number_2.hpp
-  - seq/sum_of_powers.hpp
-  - seq/stirling_number_1.hpp
+  - poly/poly_gcd.hpp
+  - poly/fps_exp.hpp
+  - poly/fps_pow.hpp
+  - poly/sharp_p_subset_sum.hpp
+  - poly/fps_sqrt.hpp
+  - poly/fps_inv.hpp
   - poly/fps_log.hpp
   - poly/poly_divmod.hpp
-  - poly/fps_exp.hpp
-  - poly/sharp_p_subset_sum.hpp
   - poly/multipoint.hpp
-  - poly/fps_pow.hpp
-  - poly/fps_sqrt.hpp
-  - poly/poly_gcd.hpp
-  - poly/fps_inv.hpp
+  - seq/stirling_number_2.hpp
+  - seq/stirling_number_1.hpp
+  - seq/sum_of_powers.hpp
   timestamp: '2022-05-02 13:06:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1145_sum_of_powers.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test/library_checker/math/partition.test.cpp
-  - test/library_checker/polynomial/pow_of_fps.test.cpp
-  - test/library_checker/polynomial/inv_of_fps.test.cpp
-  - test/library_checker/polynomial/exp_of_fps.test.cpp
+  - test/library_checker/math/sharp_p_subset_sum.test.cpp
+  - test/library_checker/polynomial/inv_of_fps_amint.test.cpp
   - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - test/library_checker/polynomial/inv_of_polynomials.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - test/library_checker/polynomial/inv_of_fps_amint.test.cpp
   - test/library_checker/polynomial/log_of_fps.test.cpp
-  - test/library_checker/polynomial/polynomial_division.test.cpp
   - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
+  - test/library_checker/polynomial/polynomial_division.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
+  - test/library_checker/polynomial/pow_of_fps.test.cpp
+  - test/library_checker/polynomial/inv_of_polynomials.test.cpp
+  - test/library_checker/polynomial/inv_of_fps.test.cpp
+  - test/library_checker/polynomial/exp_of_fps.test.cpp
 documentation_of: poly/count_terms.hpp
 layout: document
 redirect_from:

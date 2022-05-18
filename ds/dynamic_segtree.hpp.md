@@ -154,8 +154,8 @@ data:
   timestamp: '2022-05-16 18:02:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/789_dseg.test.cpp
   - test/yukicoder/1036_dseg_minleft_maxright.test.cpp
+  - test/yukicoder/789_dseg.test.cpp
 documentation_of: ds/dynamic_segtree.hpp
 layout: document
 redirect_from:
