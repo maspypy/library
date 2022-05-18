@@ -14,6 +14,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/point_add_rectangle_sum.hpp
     title: ds/point_add_rectangle_sum.hpp
+  - icon: ':warning:'
+    path: ds/rectangle_add_ractangle_sum.hpp
+    title: ds/rectangle_add_ractangle_sum.hpp
   - icon: ':heavy_check_mark:'
     path: graph/treeabelgroup.hpp
     title: graph/treeabelgroup.hpp
@@ -122,26 +125,27 @@ data:
   isVerificationFile: false
   path: ds/fenwick.hpp
   requiredBy:
-  - dp/inversion.hpp
+  - ds/rectangle_add_ractangle_sum.hpp
   - ds/fenwickraq.hpp
   - ds/point_add_rectangle_sum.hpp
+  - dp/inversion.hpp
   - graph/treeabelgroup.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1641_tree_abel.test.cpp
   - test/yukicoder/1038_centroid.test.cpp
   - test/yukicoder/924.test.cpp
-  - test/yukicoder/1641_tree_abel.test.cpp
+  - test/aoj/DSL_2_G_fenwick_raq.test.cpp
+  - test/aoj/ALDS1_2_A_inversion.test.cpp
+  - test/aoj/ALDS1_5_inversion.test.cpp
+  - test/aoj/DSL_2_E_fenwick_raq.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
-  - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   - test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
-  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-  - test/aoj/DSL_2_G_fenwick_raq.test.cpp
-  - test/aoj/DSL_2_E_fenwick_raq.test.cpp
-  - test/aoj/ALDS1_5_inversion.test.cpp
-  - test/aoj/ALDS1_2_A_inversion.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
 documentation_of: ds/fenwick.hpp
 layout: document
 redirect_from:

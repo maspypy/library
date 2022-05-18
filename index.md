@@ -279,6 +279,9 @@ data:
     - icon: ':warning:'
       path: ds/range_xor_basis_query.hpp
       title: ds/range_xor_basis_query.hpp
+    - icon: ':warning:'
+      path: ds/rectangle_add_ractangle_sum.hpp
+      title: ds/rectangle_add_ractangle_sum.hpp
     - icon: ':heavy_check_mark:'
       path: ds/rectangleunion.hpp
       title: ds/rectangleunion.hpp

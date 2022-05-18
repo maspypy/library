@@ -92,15 +92,15 @@ data:
   isVerificationFile: false
   path: graph/strongly_connected_component.hpp
   requiredBy:
-  - graph/reachability.hpp
   - graph/twosat.hpp
+  - graph/reachability.hpp
   timestamp: '2022-05-13 20:32:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1170_range_to_range.test.cpp
+  - test/aoj/275_dag_reachability.test.cpp
   - test/library_checker/math/twosat.test.cpp
   - test/library_checker/graph/scc.test.cpp
-  - test/aoj/275_dag_reachability.test.cpp
 documentation_of: graph/strongly_connected_component.hpp
 layout: document
 redirect_from:

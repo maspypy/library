@@ -431,20 +431,20 @@ data:
   isVerificationFile: false
   path: poly/fps_exp.hpp
   requiredBy:
-  - poly/fps_pow.hpp
-  - poly/sharp_p_subset_sum.hpp
   - seq/stirling_number_2.hpp
   - seq/stirling_number_1.hpp
+  - poly/sharp_p_subset_sum.hpp
+  - poly/fps_pow.hpp
   timestamp: '2022-05-17 01:06:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-  - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
   - test/library_checker/polynomial/pow_of_fps.test.cpp
   - test/library_checker/polynomial/exp_of_fps.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
+  - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
 documentation_of: poly/fps_exp.hpp
 layout: document
 redirect_from:

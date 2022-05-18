@@ -254,8 +254,8 @@ data:
   timestamp: '2022-05-05 15:29:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1301_mcf.test.cpp
   - test/yukicoder/1288_mcf_dag_negative.test.cpp
+  - test/yukicoder/1301_mcf.test.cpp
   - test/library_checker/graph/assignment_mcf.test.cpp
 documentation_of: flow/mincostflow.hpp
 layout: document

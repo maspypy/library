@@ -61,8 +61,8 @@ data:
   verifiedWith:
   - test/yukicoder/255.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-  - test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - test/library_checker/datastructure/range_affine_range_sum.test.cpp
 documentation_of: alg/lazy_cntsum_affine.hpp
 layout: document
 redirect_from:

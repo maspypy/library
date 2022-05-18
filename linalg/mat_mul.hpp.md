@@ -58,15 +58,15 @@ data:
   isVerificationFile: false
   path: linalg/mat_mul.hpp
   requiredBy:
+  - seq/kth_term_of_p_recursive.hpp
   - linalg/mat_pow.hpp
   - poly/prefix_product_of_poly.hpp
-  - seq/kth_term_of_p_recursive.hpp
   timestamp: '2022-04-23 01:11:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1810_matpow.test.cpp
-  - test/yukicoder/502_p_rec.test.cpp
   - test/yukicoder/1750_matpow.test.cpp
+  - test/yukicoder/502_p_rec.test.cpp
   - test/yukicoder/426.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
 documentation_of: linalg/mat_mul.hpp

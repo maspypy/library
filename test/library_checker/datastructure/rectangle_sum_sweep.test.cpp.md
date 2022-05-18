@@ -240,30 +240,31 @@ data:
     \n    X.eb(x), Y.eb(y), wt.eb(w);\r\n    keyX.eb(x), keyY.eb(y);\r\n  }\r\n\r\n\
     \  void compress() {\r\n    compressed = 1;\r\n    int N = len(X);\r\n    if (!SMALL)\
     \ {\r\n      UNIQUE(keyX), UNIQUE(keyY);\r\n      add.resize(len(keyX) + 1);\r\
-    \n      FOR(i, N) {\r\n        ll x = X[i], y = Y[i], w = wt[i];\r\n        x\
-    \ = LB(keyX, x), y = LB(keyY, y);\r\n        add[x].eb(y, w);\r\n      }\r\n \
-    \   } else {\r\n      min_x = (N == 0 ? 0 : MIN(X));\r\n      max_x = (N == 0\
-    \ ? 0 : MAX(X));\r\n      min_y = (N == 0 ? 0 : MIN(Y));\r\n      max_y = (N ==\
-    \ 0 ? 0 : MAX(Y));\r\n      add.resize(max_x - min_x + 2);\r\n      FOR(i, N)\
-    \ {\r\n        ll x = X[i], y = Y[i], w = wt[i];\r\n        x -= min_x, y -= min_y;\r\
-    \n        add[x].eb(y, w);\r\n      }\r\n    }\r\n    query_l.resize(len(add));\r\
-    \n    query_r.resize(len(add));\r\n  }\r\n\r\n  void sum_query(ll xl, ll yl, ll\
-    \ xr, ll yr) {\r\n    if (!compressed) compress();\r\n    if (!SMALL) {\r\n  \
-    \    xl = LB(keyX, xl), xr = LB(keyX, xr);\r\n      yl = LB(keyY, yl), yr = LB(keyY,\
-    \ yr);\r\n    } else {\r\n      xl -= min_x, xr -= min_x;\r\n      yl -= min_y,\
-    \ yr -= min_y;\r\n      xl = clamp(xl, 0LL, max_x - min_x + 1);\r\n      xr =\
-    \ clamp(xr, 0LL, max_x - min_x + 1);\r\n      yl = clamp(yl, 0LL, max_y - min_y\
-    \ + 1);\r\n      yr = clamp(yr, 0LL, max_y - min_y + 1);\r\n    }\r\n    query_l[xl].eb(Q,\
-    \ yl, yr);\r\n    query_r[xr].eb(Q, yl, yr);\r\n    ++Q;\r\n  }\r\n\r\n  vc<WT>\
-    \ calc() {\r\n    assert(compressed);\r\n    vc<WT> ANS(Q, AbelGroup::unit());\r\
-    \n    int k = (SMALL ? max_y - min_y + 2 : len(keyY) + 1);\r\n    FenwickTree<AbelGroup>\
-    \ bit(k);\r\n    FOR(x, len(add)) {\r\n      for (auto&& t: query_l[x]) {\r\n\
-    \        auto [q, yl, yr] = t;\r\n        ANS[q] = AbelGroup::op(ANS[q] , AbelGroup::inverse(bit.sum(yl,\
-    \ yr)));\r\n      }\r\n      for (auto&& t: query_r[x]) {\r\n        auto [q,\
-    \ yl, yr] = t;\r\n        ANS[q] = AbelGroup::op(ANS[q] , bit.sum(yl, yr));\r\n\
-    \      }\r\n      for (auto&& t: add[x]) {\r\n        auto [y, w] = t;\r\n   \
-    \     bit.add(y, w);\r\n      }\r\n      query_l[x].clear();\r\n      query_r[x].clear();\r\
-    \n    }\r\n    Q = 0;\r\n    return ANS;\r\n  }\r\n};\r\n#line 8 \"test/library_checker/datastructure/rectangle_sum_sweep.test.cpp\"\
+    \n      FOR(i, N) {\r\n        ll x = X[i], y = Y[i];\r\n        WT w = wt[i];\r\
+    \n        x = LB(keyX, x), y = LB(keyY, y);\r\n        add[x].eb(y, w);\r\n  \
+    \    }\r\n    } else {\r\n      min_x = (N == 0 ? 0 : MIN(X));\r\n      max_x\
+    \ = (N == 0 ? 0 : MAX(X));\r\n      min_y = (N == 0 ? 0 : MIN(Y));\r\n      max_y\
+    \ = (N == 0 ? 0 : MAX(Y));\r\n      add.resize(max_x - min_x + 2);\r\n      FOR(i,\
+    \ N) {\r\n        ll x = X[i], y = Y[i];\r\n        WT w = wt[i];\r\n        x\
+    \ -= min_x, y -= min_y;\r\n        add[x].eb(y, w);\r\n      }\r\n    }\r\n  \
+    \  query_l.resize(len(add));\r\n    query_r.resize(len(add));\r\n  }\r\n\r\n \
+    \ void sum_query(ll xl, ll yl, ll xr, ll yr) {\r\n    if (!compressed) compress();\r\
+    \n    if (!SMALL) {\r\n      xl = LB(keyX, xl), xr = LB(keyX, xr);\r\n      yl\
+    \ = LB(keyY, yl), yr = LB(keyY, yr);\r\n    } else {\r\n      xl -= min_x, xr\
+    \ -= min_x;\r\n      yl -= min_y, yr -= min_y;\r\n      xl = clamp(xl, 0LL, max_x\
+    \ - min_x + 1);\r\n      xr = clamp(xr, 0LL, max_x - min_x + 1);\r\n      yl =\
+    \ clamp(yl, 0LL, max_y - min_y + 1);\r\n      yr = clamp(yr, 0LL, max_y - min_y\
+    \ + 1);\r\n    }\r\n    query_l[xl].eb(Q, yl, yr);\r\n    query_r[xr].eb(Q, yl,\
+    \ yr);\r\n    ++Q;\r\n  }\r\n\r\n  vc<WT> calc() {\r\n    assert(compressed);\r\
+    \n    vc<WT> ANS(Q, AbelGroup::unit());\r\n    int k = (SMALL ? max_y - min_y\
+    \ + 2 : len(keyY) + 1);\r\n    FenwickTree<AbelGroup> bit(k);\r\n    FOR(x, len(add))\
+    \ {\r\n      for (auto&& t: query_l[x]) {\r\n        auto [q, yl, yr] = t;\r\n\
+    \        ANS[q] = AbelGroup::op(ANS[q] , AbelGroup::inverse(bit.sum(yl, yr)));\r\
+    \n      }\r\n      for (auto&& t: query_r[x]) {\r\n        auto [q, yl, yr] =\
+    \ t;\r\n        ANS[q] = AbelGroup::op(ANS[q] , bit.sum(yl, yr));\r\n      }\r\
+    \n      for (auto&& t: add[x]) {\r\n        auto [y, w] = t;\r\n        bit.add(y,\
+    \ w);\r\n      }\r\n      query_l[x].clear();\r\n      query_r[x].clear();\r\n\
+    \    }\r\n    Q = 0;\r\n    return ANS;\r\n  }\r\n};\r\n#line 8 \"test/library_checker/datastructure/rectangle_sum_sweep.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  Point_Add_Rectangle_Sum<Group_Add<ll>> RS;\n\
     \  FOR(_, N) {\n    LL(x, y, w);\n    RS.add_query(x, y, w);\n  }\n  FOR(_, Q)\
     \ {\n    LL(l, d, r, u);\n    RS.sum_query(l, d, r, u);\n  }\n  auto ANS = RS.calc();\n\
@@ -287,7 +288,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   requiredBy: []
-  timestamp: '2022-05-19 04:41:58+09:00'
+  timestamp: '2022-05-19 04:51:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp

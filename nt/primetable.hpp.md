@@ -107,32 +107,32 @@ data:
   path: nt/primetable.hpp
   requiredBy:
   - nt/lpf_table.hpp
-  - nt/euler_phi.hpp
-  - nt/gcd_convolution.hpp
-  - nt/mobius_table.hpp
   - nt/multiplicative_sum.hpp
+  - nt/gcd_convolution.hpp
   - nt/zeta.hpp
+  - nt/mobius_table.hpp
+  - nt/euler_phi.hpp
   - nt/lcm_convolution.hpp
   - nt/primesum.hpp
+  - seq/stirling_number_1.hpp
   - mod/tetration.hpp
   - mod/powertable.hpp
   - poly/poly_taylor_shift.hpp
-  - seq/stirling_number_1.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1666_integer_kth_root.test.cpp
+  - test/aoj/NTL_1_D_eulerphi.test.cpp
+  - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
+  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/gcd_convolution.test.cpp
-  - test/library_checker/math/lcm_convolution.test.cpp
+  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/math/counting_primes.test.cpp
   - test/library_checker/math/tetration.test.cpp
-  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/math/enumerate_primes.test.cpp
-  - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
   - test/library_checker/math/totient_sum.test.cpp
+  - test/library_checker/math/lcm_convolution.test.cpp
   - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
-  - test/aoj/NTL_1_D_eulerphi.test.cpp
 documentation_of: nt/primetable.hpp
 layout: document
 redirect_from:
