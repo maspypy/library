@@ -10,6 +10,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+    title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
     title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -55,6 +58,7 @@ data:
   verifiedWith:
   - test/yukicoder/255.test.cpp
   - test/library_checker/datastructure/range_affine_range_sum.test.cpp
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
 documentation_of: alg/lazy_cntsum_affine.hpp
 layout: document
 redirect_from:

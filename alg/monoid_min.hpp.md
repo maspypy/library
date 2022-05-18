@@ -22,9 +22,6 @@ data:
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/1508_splay.test.cpp
-    title: test/aoj/1508_splay.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_F_min_set_lazy.test.cpp
     title: test/aoj/DSL_2_F_min_set_lazy.test.cpp
   - icon: ':heavy_check_mark:'
@@ -77,7 +74,6 @@ data:
   - test/library_checker/datastructure/staticrmq_sparse.test.cpp
   - test/aoj/DSL_2_H_min_add_lazy.test.cpp
   - test/aoj/DSL_2_F_min_set_lazy.test.cpp
-  - test/aoj/1508_splay.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp
 documentation_of: alg/monoid_min.hpp
 layout: document

@@ -129,6 +129,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid_xor_basis.hpp
       title: alg/monoid_xor_basis.hpp
+  - name: bbst
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: bbst/splaytree_lazy.hpp
+      title: bbst/splaytree_lazy.hpp
+    - icon: ':warning:'
+      path: bbst/splaytree_monoid.hpp
+      title: bbst/splaytree_monoid.hpp
   - name: dp
     pages:
     - icon: ':warning:'
@@ -271,9 +279,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/slope.hpp
       title: ds/slope.hpp
-    - icon: ':heavy_check_mark:'
-      path: ds/splaytree_monoid.hpp
-      title: ds/splaytree_monoid.hpp
     - icon: ':heavy_check_mark:'
       path: ds/swag.hpp
       title: ds/swag.hpp
@@ -878,7 +883,7 @@ data:
       title: example.test.cpp
   - name: test/aoj
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/1508_splay.test.cpp
       title: test/aoj/1508_splay.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1049,6 +1054,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
       title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+      title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/line_add_get_min.test.cpp
       title: test/library_checker/datastructure/line_add_get_min.test.cpp

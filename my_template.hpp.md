@@ -7,9 +7,6 @@ data:
     title: graph/bipartite_coloring.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/1508_splay.test.cpp
-    title: test/aoj/1508_splay.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/aoj/2251_dag_path_cover.test.cpp
     title: test/aoj/2251_dag_path_cover.test.cpp
   - icon: ':heavy_check_mark:'
@@ -168,6 +165,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
     title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+    title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/line_add_get_min.test.cpp
     title: test/library_checker/datastructure/line_add_get_min.test.cpp
@@ -856,6 +856,7 @@ data:
   - test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - test/library_checker/datastructure/unionfind.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/associative_array_hashmap.test.cpp
   - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
@@ -957,7 +958,6 @@ data:
   - test/aoj/DSL_4_A_rectangle_union.test.cpp
   - test/aoj/2995_dsu.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
-  - test/aoj/1508_splay.test.cpp
   - test/aoj/DPL_1_H_kanpsack01.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp
   - test/aoj/DPL_1_F_kanpsack01.test.cpp

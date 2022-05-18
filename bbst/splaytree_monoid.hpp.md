@@ -2,19 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/1508_splay.test.cpp
-    title: test/aoj/1508_splay.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"ds/splaytree_monoid.hpp\"\n\n// new_node(x) \uFF1A 1\u8981\
+  bundledCode: "#line 2 \"bbst/splaytree_monoid.hpp\"\n\n// new_node(x) \uFF1A 1\u8981\
     \u7D20\u3060\u3051\u304B\u3089\u306A\u308B\u6728\n// new_node(A) \uFF1A \u5217\
     \u3092\u6728\u306B\u3059\u308B\u3001\u5148\u982D\u3092\u6839\u3068\u3059\u308B\
-    \u3002\ntemplate <typename Monoid, int NODES = 5'000'000>\nstruct SplayTree_Monoid\
+    \u3002\ntemplate <typename Monoid, int NODES = 1'000'000>\nstruct SplayTree_Monoid\
     \ {\n  using X = typename Monoid::value_type;\n\n  struct Node {\n    Node *l,\
     \ *r, *p;\n    X x;\n    X prod;\n    int size;\n    Node()\n        : l(nullptr),\n\
     \          r(nullptr),\n          p(nullptr),\n          x(Monoid::unit()),\n\
@@ -80,7 +77,7 @@ data:
   code: "#pragma once\n\n// new_node(x) \uFF1A 1\u8981\u7D20\u3060\u3051\u304B\u3089\
     \u306A\u308B\u6728\n// new_node(A) \uFF1A \u5217\u3092\u6728\u306B\u3059\u308B\
     \u3001\u5148\u982D\u3092\u6839\u3068\u3059\u308B\u3002\ntemplate <typename Monoid,\
-    \ int NODES = 5'000'000>\nstruct SplayTree_Monoid {\n  using X = typename Monoid::value_type;\n\
+    \ int NODES = 1'000'000>\nstruct SplayTree_Monoid {\n  using X = typename Monoid::value_type;\n\
     \n  struct Node {\n    Node *l, *r, *p;\n    X x;\n    X prod;\n    int size;\n\
     \    Node()\n        : l(nullptr),\n          r(nullptr),\n          p(nullptr),\n\
     \          x(Monoid::unit()),\n          prod(Monoid::unit()),\n          size(1)\
@@ -144,16 +141,15 @@ data:
     \  rotate(n);\n        rotate(n);\n      }\n    }\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: ds/splaytree_monoid.hpp
+  path: bbst/splaytree_monoid.hpp
   requiredBy: []
-  timestamp: '2022-05-17 04:29:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/1508_splay.test.cpp
-documentation_of: ds/splaytree_monoid.hpp
+  timestamp: '2022-05-18 21:20:32+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: bbst/splaytree_monoid.hpp
 layout: document
 redirect_from:
-- /library/ds/splaytree_monoid.hpp
-- /library/ds/splaytree_monoid.hpp.html
-title: ds/splaytree_monoid.hpp
+- /library/bbst/splaytree_monoid.hpp
+- /library/bbst/splaytree_monoid.hpp.html
+title: bbst/splaytree_monoid.hpp
 ---
