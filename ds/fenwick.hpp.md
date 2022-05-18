@@ -12,8 +12,8 @@ data:
     path: ds/fenwickraq.hpp
     title: ds/fenwickraq.hpp
   - icon: ':x:'
-    path: ds/rectangle_sum.hpp
-    title: ds/rectangle_sum.hpp
+    path: ds/point_add_rectangle_sum.hpp
+    title: ds/point_add_rectangle_sum.hpp
   - icon: ':heavy_check_mark:'
     path: graph/treeabelgroup.hpp
     title: graph/treeabelgroup.hpp
@@ -124,7 +124,7 @@ data:
   requiredBy:
   - dp/inversion.hpp
   - ds/fenwickraq.hpp
-  - ds/rectangle_sum.hpp
+  - ds/point_add_rectangle_sum.hpp
   - graph/treeabelgroup.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_SOME_WA

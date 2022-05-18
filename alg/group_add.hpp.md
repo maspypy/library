@@ -45,8 +45,8 @@ data:
     path: ds/fenwickraq.hpp
     title: ds/fenwickraq.hpp
   - icon: ':x:'
-    path: ds/rectangle_sum.hpp
-    title: ds/rectangle_sum.hpp
+    path: ds/point_add_rectangle_sum.hpp
+    title: ds/point_add_rectangle_sum.hpp
   - icon: ':heavy_check_mark:'
     path: ds/rectangleunion.hpp
     title: ds/rectangleunion.hpp
@@ -185,8 +185,8 @@ data:
   - ds/rectangleunion.hpp
   - ds/fenwick.hpp
   - ds/fenwickraq.hpp
+  - ds/point_add_rectangle_sum.hpp
   - ds/fenwick2d.hpp
-  - ds/rectangle_sum.hpp
   - ds/fenwick2d_dense.hpp
   - graph/treeabelgroup.hpp
   timestamp: '2022-04-16 04:26:49+09:00'

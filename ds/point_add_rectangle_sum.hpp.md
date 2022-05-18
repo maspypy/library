@@ -46,7 +46,7 @@ data:
     \ {\n        i += k;\n        s = AbelGroup::op(s, dat[i - 1]);\n      }\n   \
     \   k >>= 1;\n    }\n    return i;\n  }\n\n  int find_kth(E k) {\n    auto check\
     \ = [&](E x) -> bool { return x <= k; };\n    return max_right(check);\n  }\n\n\
-    \  void debug() { print(\"fenwick\", dat); }\n};\n#line 2 \"ds/rectangle_sum.hpp\"\
+    \  void debug() { print(\"fenwick\", dat); }\n};\n#line 2 \"ds/point_add_rectangle_sum.hpp\"\
     \n\r\n// \u70B9\u7FA4\u306F\u30AF\u30A8\u30EA\u3088\u308A\u524D\u306B\u5168\u90E8\
     \u5165\u529B\u3059\u308B\u3053\u3068 (add_pt)\u3002\r\n// \u540C\u3058\u70B9\u7FA4\
     \u306B\u5BFE\u3057\u3066\u30AF\u30A8\u30EA\u3092\u3084\u308A\u76F4\u305B\u308B\
@@ -128,16 +128,16 @@ data:
   - ds/fenwick.hpp
   - alg/group_add.hpp
   isVerificationFile: false
-  path: ds/rectangle_sum.hpp
+  path: ds/point_add_rectangle_sum.hpp
   requiredBy: []
-  timestamp: '2022-05-19 04:19:48+09:00'
+  timestamp: '2022-05-19 04:25:52+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
-documentation_of: ds/rectangle_sum.hpp
+documentation_of: ds/point_add_rectangle_sum.hpp
 layout: document
 redirect_from:
-- /library/ds/rectangle_sum.hpp
-- /library/ds/rectangle_sum.hpp.html
-title: ds/rectangle_sum.hpp
+- /library/ds/point_add_rectangle_sum.hpp
+- /library/ds/point_add_rectangle_sum.hpp.html
+title: ds/point_add_rectangle_sum.hpp
 ---

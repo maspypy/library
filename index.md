@@ -270,15 +270,15 @@ data:
     - icon: ':warning:'
       path: ds/pbds.hpp
       title: ds/pbds.hpp
+    - icon: ':x:'
+      path: ds/point_add_rectangle_sum.hpp
+      title: ds/point_add_rectangle_sum.hpp
     - icon: ':warning:'
       path: ds/range_mex_query.hpp
       title: ds/range_mex_query.hpp
     - icon: ':warning:'
       path: ds/range_xor_basis_query.hpp
       title: ds/range_xor_basis_query.hpp
-    - icon: ':x:'
-      path: ds/rectangle_sum.hpp
-      title: ds/rectangle_sum.hpp
     - icon: ':heavy_check_mark:'
       path: ds/rectangleunion.hpp
       title: ds/rectangleunion.hpp

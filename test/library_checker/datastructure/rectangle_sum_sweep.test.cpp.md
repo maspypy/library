@@ -8,8 +8,8 @@ data:
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   - icon: ':x:'
-    path: ds/rectangle_sum.hpp
-    title: ds/rectangle_sum.hpp
+    path: ds/point_add_rectangle_sum.hpp
+    title: ds/point_add_rectangle_sum.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -225,7 +225,7 @@ data:
     \ {\n        i += k;\n        s = AbelGroup::op(s, dat[i - 1]);\n      }\n   \
     \   k >>= 1;\n    }\n    return i;\n  }\n\n  int find_kth(E k) {\n    auto check\
     \ = [&](E x) -> bool { return x <= k; };\n    return max_right(check);\n  }\n\n\
-    \  void debug() { print(\"fenwick\", dat); }\n};\n#line 2 \"ds/rectangle_sum.hpp\"\
+    \  void debug() { print(\"fenwick\", dat); }\n};\n#line 2 \"ds/point_add_rectangle_sum.hpp\"\
     \n\r\n// \u70B9\u7FA4\u306F\u30AF\u30A8\u30EA\u3088\u308A\u524D\u306B\u5168\u90E8\
     \u5165\u529B\u3059\u308B\u3053\u3068 (add_pt)\u3002\r\n// \u540C\u3058\u70B9\u7FA4\
     \u306B\u5BFE\u3057\u3066\u30AF\u30A8\u30EA\u3092\u3084\u308A\u76F4\u305B\u308B\
@@ -272,22 +272,22 @@ data:
     \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/fenwick.hpp\"\
-    \n#include \"ds/rectangle_sum.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  Point_Add_Rectangle_Sum<Group_Add<ll>>\
-    \ RS;\n  FOR(_, N) {\n    LL(x, y, w);\n    RS.add_query(x, y, w);\n  }\n  FOR(_,\
-    \ Q) {\n    LL(l, d, r, u);\n    RS.sum_query(l, d, r, u);\n  }\n  auto ANS =\
-    \ RS.calc();\n  for (auto&& x: ANS) print(x);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  solve();\n\n\
-    \  return 0;\n}\n"
+    \n#include \"ds/point_add_rectangle_sum.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n\
+    \  Point_Add_Rectangle_Sum<Group_Add<ll>> RS;\n  FOR(_, N) {\n    LL(x, y, w);\n\
+    \    RS.add_query(x, y, w);\n  }\n  FOR(_, Q) {\n    LL(l, d, r, u);\n    RS.sum_query(l,\
+    \ d, r, u);\n  }\n  auto ANS = RS.calc();\n  for (auto&& x: ANS) print(x);\n}\n\
+    \nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - ds/fenwick.hpp
   - alg/group_add.hpp
-  - ds/rectangle_sum.hpp
+  - ds/point_add_rectangle_sum.hpp
   isVerificationFile: true
   path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   requiredBy: []
-  timestamp: '2022-05-19 04:19:48+09:00'
+  timestamp: '2022-05-19 04:25:52+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
