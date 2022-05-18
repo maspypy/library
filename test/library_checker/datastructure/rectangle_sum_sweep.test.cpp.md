@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/point_add_rectangle_sum.hpp
     title: ds/point_add_rectangle_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
@@ -235,10 +235,10 @@ data:
     \ AbelGroup::value_type;\r\n  bool compressed;\r\n  int Q;\r\n  vi X, Y;\r\n \
     \ vi keyX, keyY;\r\n  ll min_x, max_x, min_y, max_y;\r\n  vc<WT> wt;\r\n  vc<vc<pair<int,\
     \ WT>>> add;\r\n  vc<vc<tuple<int, int, int>>> query_l;\r\n  vc<vc<tuple<int,\
-    \ int, int>>> query_r;\r\n\r\n  Rectangle_Sum() : compressed(0), Q(0) {}\r\n\r\
-    \n  void add_query(ll x, ll y, WT w = 1) {\r\n    assert(!compressed);\r\n   \
-    \ X.eb(x), Y.eb(y), wt.eb(w);\r\n    keyX.eb(x), keyY.eb(y);\r\n  }\r\n\r\n  void\
-    \ compress() {\r\n    compressed = 1;\r\n    int N = len(X);\r\n    if (!SMALL)\
+    \ int, int>>> query_r;\r\n\r\n  Point_Add_Rectangle_Sum() : compressed(0), Q(0)\
+    \ {}\r\n\r\n  void add_query(ll x, ll y, WT w = 1) {\r\n    assert(!compressed);\r\
+    \n    X.eb(x), Y.eb(y), wt.eb(w);\r\n    keyX.eb(x), keyY.eb(y);\r\n  }\r\n\r\n\
+    \  void compress() {\r\n    compressed = 1;\r\n    int N = len(X);\r\n    if (!SMALL)\
     \ {\r\n      UNIQUE(keyX), UNIQUE(keyY);\r\n      add.resize(len(keyX) + 1);\r\
     \n      FOR(i, N) {\r\n        ll x = X[i], y = Y[i], w = wt[i];\r\n        x\
     \ = LB(keyX, x), y = LB(keyY, y);\r\n        add[x].eb(y, w);\r\n      }\r\n \
@@ -287,8 +287,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   requiredBy: []
-  timestamp: '2022-05-19 04:25:52+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-19 04:41:58+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
 layout: document
