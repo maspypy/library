@@ -1,7 +1,7 @@
 
 // reverse はとりあえず、Monoid_X の可換性を仮定している！
 template <typename Lazy, int NODES = 1'000'000>
-struct Randomized_BST_Lazy {
+struct RBST_Lazy {
   using Monoid_X = typename Lazy::X_structure;
   using Monoid_A = typename Lazy::A_structure;
   using X = typename Monoid_X::value_type;
@@ -19,7 +19,7 @@ struct Randomized_BST_Lazy {
   Node *pool;
   int pid;
 
-  Randomized_BST_Lazy() : pid(0) { pool = new Node[NODES]; }
+  RBST_Lazy() : pid(0) { pool = new Node[NODES]; }
 
   Node *new_node(const X &x) {
     pool[pid].l = pool[pid].r = nullptr;
