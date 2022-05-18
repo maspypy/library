@@ -132,6 +132,9 @@ data:
   - name: bbst
     pages:
     - icon: ':heavy_check_mark:'
+      path: bbst/randomized_bst_lazy.hpp
+      title: bbst/randomized_bst_lazy.hpp
+    - icon: ':heavy_check_mark:'
       path: bbst/splaytree_lazy.hpp
       title: bbst/splaytree_lazy.hpp
     - icon: ':heavy_check_mark:'
@@ -1054,6 +1057,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
       title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+      title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
       title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
