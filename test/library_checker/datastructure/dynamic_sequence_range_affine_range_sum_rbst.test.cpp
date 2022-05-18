@@ -5,14 +5,14 @@
 
 #include "alg/lazy_cntsum_affine.hpp"
 #include "mod/modint.hpp"
-#include "bbst/randomized_bst_lazy.hpp"
+#include "bbst/rbst_lazy.hpp"
 
 using mint = modint998;
 
 void solve() {
   LL(N, Q);
   VEC(mint, A, N);
-  Randomized_BST_Lazy<Lazy_CntSum_Affine<mint>> RBST;
+  RBST_Lazy<Lazy_CntSum_Affine<mint>> RBST;
   vc<pair<mint, mint>> seg_raw(N);
   FOR(i, N) seg_raw[i] = {mint(1), A[i]};
   auto root = RBST.new_node(seg_raw);
