@@ -3,9 +3,9 @@
 // 点群はクエリより前に全部入力すること (add_pt)。
 // 同じ点群に対してクエリをやり直せる。
 // SMALL=true にすると、座圧をしないため少し高速
-template <typename AbelGroup = Group_Add<ll>, bool SMALL = false>
+template <typename AbelGroup, bool SMALL = false>
 struct Point_Add_Rectangle_Sum {
-  using WT = AbelGroup::value_type;
+  using WT = typename AbelGroup::value_type;
   bool compressed;
   int Q;
   vi X, Y;
