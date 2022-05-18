@@ -8,14 +8,14 @@
 
 void solve() {
   LL(N, Q);
-  Rectangle_Sum RS;
+  Point_Add_Rectangle_Sum<Group_Add<ll>> RS;
   FOR(_, N) {
     LL(x, y, w);
-    RS.add_pt(x, y, w);
+    RS.add_query(x, y, w);
   }
   FOR(_, Q) {
     LL(l, d, r, u);
-    RS.add_rect(l, d, r, u);
+    RS.sum_query(l, d, r, u);
   }
   auto ANS = RS.calc();
   for (auto&& x: ANS) print(x);

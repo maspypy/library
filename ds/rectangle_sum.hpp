@@ -3,8 +3,9 @@
 // 点群はクエリより前に全部入力すること (add_pt)。
 // 同じ点群に対してクエリをやり直せる。
 // SMALL=true にすると、座圧をしないため少し高速
-template <typename WT = ll, bool SMALL = false>
-struct Rectangle_Sum {
+template <typename AbelGroup = Group_Add<ll>, bool SMALL = false>
+struct Point_Add_Rectangle_Sum {
+  using WT = AbelGroup::value_type;
   bool compressed;
   int Q;
   vi X, Y;
@@ -17,7 +18,7 @@ struct Rectangle_Sum {
 
   Rectangle_Sum() : compressed(0), Q(0) {}
 
-  void add_pt(ll x, ll y, WT w = 1) {
+  void add_query(ll x, ll y, WT w = 1) {
     assert(!compressed);
     X.eb(x), Y.eb(y), wt.eb(w);
     keyX.eb(x), keyY.eb(y);
@@ -50,7 +51,7 @@ struct Rectangle_Sum {
     query_r.resize(len(add));
   }
 
-  void add_rect(ll xl, ll yl, ll xr, ll yr) {
+  void sum_query(ll xl, ll yl, ll xr, ll yr) {
     if (!compressed) compress();
     if (!SMALL) {
       xl = LB(keyX, xl), xr = LB(keyX, xr);
@@ -70,17 +71,17 @@ struct Rectangle_Sum {
 
   vc<WT> calc() {
     assert(compressed);
-    vc<WT> ANS(Q);
+    vc<WT> ANS(Q, AbelGroup::unit());
     int k = (SMALL ? max_y - min_y + 2 : len(keyY) + 1);
-    FenwickTree<Group_Add<WT>> bit(k);
+    FenwickTree<AbelGroup> bit(k);
     FOR(x, len(add)) {
       for (auto&& t: query_l[x]) {
         auto [q, yl, yr] = t;
-        ANS[q] -= bit.sum(yl, yr);
+        ANS[q] = AbelGroup::op(ANS[q] , AbelGroup::inverse(bit.sum(yl, yr)));
       }
       for (auto&& t: query_r[x]) {
         auto [q, yl, yr] = t;
-        ANS[q] += bit.sum(yl, yr);
+        ANS[q] = AbelGroup::op(ANS[q] , bit.sum(yl, yr));
       }
       for (auto&& t: add[x]) {
         auto [y, w] = t;
