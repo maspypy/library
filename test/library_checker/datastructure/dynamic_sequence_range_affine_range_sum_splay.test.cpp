@@ -22,7 +22,7 @@ void solve() {
     // ST.debug(root);
     if (t == 0) {
       LL(i, x);
-      ST.insert(root, i, ST.new_node({mint(1), mint(x)}));
+      ST.insert(root, i, {mint(1), mint(x)});
     }
     if (t == 1) {
       LL(i);

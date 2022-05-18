@@ -126,6 +126,10 @@ struct SplayTree_Monoid {
     merge(root, r_root);
   }
 
+  void insert(Node *&root, int k, const X& x) {
+    insert(root, k, new_node(x));
+  }
+
   void set(Node *&root, int k, const X &x) {
     get_kth(root, k);
     root->x = x;
@@ -159,7 +163,7 @@ struct SplayTree_Monoid {
       s += "l";
       dfs(dfs, n->l);
       s.pop_back();
-      print(s, "size", n->size, "x", n->x, "prod", n->prod, "apply", n->a);
+      print(s, "size", n->size, "x", n->x, "prod", n->prod);
       s += "r";
       dfs(dfs, n->r);
       s.pop_back();

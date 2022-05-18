@@ -149,6 +149,10 @@ struct SplayTree_Lazy {
     merge(root, r_root);
   }
 
+  void insert(Node *&root, int k, const X& x) {
+    insert(root, k, new_node(x));
+  }
+
   // root から k 番目を削除。削除したノードをかえす
   Node *erase(Node *&root, int k) {
     assert(0 <= k && k < root->size);
