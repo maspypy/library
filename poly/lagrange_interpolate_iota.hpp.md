@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':heavy_check_mark:'
@@ -377,9 +377,9 @@ data:
   isVerificationFile: false
   path: poly/lagrange_interpolate_iota.hpp
   requiredBy:
-  - poly/prefix_product_of_poly.hpp
   - seq/kth_term_of_p_recursive.hpp
   - seq/interpolate_poly_exp_sum.hpp
+  - poly/prefix_product_of_poly.hpp
   timestamp: '2022-05-17 01:06:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -38,10 +38,10 @@ data:
   isVerificationFile: false
   path: alg/monoid_max.hpp
   requiredBy:
-  - alg/lazy_max_max.hpp
   - alg/lazy_max_set.hpp
-  - alg/lazy_max_min.hpp
   - alg/lazy_max_add.hpp
+  - alg/lazy_max_min.hpp
+  - alg/lazy_max_max.hpp
   - graph/minimum_spanning_tree.hpp
   timestamp: '2022-05-13 21:02:36+09:00'
   verificationStatus: LIBRARY_ALL_AC

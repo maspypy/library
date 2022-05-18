@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_affine.hpp
     title: alg/group_affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_cntsum.hpp
     title: alg/group_cntsum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy_cntsum_affine.hpp
     title: alg/lazy_cntsum_affine.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: bbst/rbst_lazy.hpp
     title: bbst/rbst_lazy.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
@@ -294,18 +294,18 @@ data:
     using amint = ArbitraryModInt;\n#line 1 \"bbst/rbst_lazy.hpp\"\n\n// reverse \u306F\
     \u3068\u308A\u3042\u3048\u305A\u3001Monoid_X \u306E\u53EF\u63DB\u6027\u3092\u4EEE\
     \u5B9A\u3057\u3066\u3044\u308B\uFF01\ntemplate <typename Lazy, int NODES = 1'000'000>\n\
-    struct Randomized_BST_Lazy {\n  using Monoid_X = typename Lazy::X_structure;\n\
-    \  using Monoid_A = typename Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n\
+    struct RBST_Lazy {\n  using Monoid_X = typename Lazy::X_structure;\n  using Monoid_A\
+    \ = typename Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n\n  struct Node {\n    Node *l, *r;\n\
     \    X x, prod;\n    A a;\n    int size;\n    bool rev;\n    bool propagated;\n\
-    \  };\n\n  Node *pool;\n  int pid;\n\n  Randomized_BST_Lazy() : pid(0) { pool\
-    \ = new Node[NODES]; }\n\n  Node *new_node(const X &x) {\n    pool[pid].l = pool[pid].r\
-    \ = nullptr;\n    pool[pid].x = x;\n    pool[pid].prod = x;\n    pool[pid].a =\
-    \ Monoid_A::unit();\n    pool[pid].size = 1;\n    pool[pid].rev = 0;\n    pool[pid].propagated\
-    \ = 1;\n    return &(pool[pid++]);\n  }\n\n  Node *new_node(const vc<X> &dat)\
-    \ {\n    auto dfs = [&](auto &dfs, int l, int r) -> Node * {\n      if (l == r)\
-    \ return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n      int m\
-    \ = (l + r) / 2;\n      Node *l_root = dfs(dfs, l, m);\n      Node *r_root = dfs(dfs,\
+    \  };\n\n  Node *pool;\n  int pid;\n\n  RBST_Lazy() : pid(0) { pool = new Node[NODES];\
+    \ }\n\n  Node *new_node(const X &x) {\n    pool[pid].l = pool[pid].r = nullptr;\n\
+    \    pool[pid].x = x;\n    pool[pid].prod = x;\n    pool[pid].a = Monoid_A::unit();\n\
+    \    pool[pid].size = 1;\n    pool[pid].rev = 0;\n    pool[pid].propagated = 1;\n\
+    \    return &(pool[pid++]);\n  }\n\n  Node *new_node(const vc<X> &dat) {\n   \
+    \ auto dfs = [&](auto &dfs, int l, int r) -> Node * {\n      if (l == r) return\
+    \ nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n      int m = (l +\
+    \ r) / 2;\n      Node *l_root = dfs(dfs, l, m);\n      Node *r_root = dfs(dfs,\
     \ m + 1, r);\n      Node *root = new_node(dat[m]);\n      root->l = l_root, root->r\
     \ = r_root;\n      update(root);\n      return root;\n    };\n    return dfs(dfs,\
     \ 0, len(dat));\n  }\n\n  // \u5DE6\u306B\u53F3\u3092\u30DE\u30FC\u30B8\n  void\
@@ -403,8 +403,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   requiredBy: []
-  timestamp: '2022-05-19 00:38:38+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-19 00:46:40+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
 layout: document

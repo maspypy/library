@@ -3,22 +3,22 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"bbst/rbst_lazy.hpp\"\n\n// reverse \u306F\u3068\u308A\u3042\
     \u3048\u305A\u3001Monoid_X \u306E\u53EF\u63DB\u6027\u3092\u4EEE\u5B9A\u3057\u3066\
-    \u3044\u308B\uFF01\ntemplate <typename Lazy, int NODES = 1'000'000>\nstruct Randomized_BST_Lazy\
+    \u3044\u308B\uFF01\ntemplate <typename Lazy, int NODES = 1'000'000>\nstruct RBST_Lazy\
     \ {\n  using Monoid_X = typename Lazy::X_structure;\n  using Monoid_A = typename\
     \ Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n  using A =\
     \ typename Monoid_A::value_type;\n\n  struct Node {\n    Node *l, *r;\n    X x,\
     \ prod;\n    A a;\n    int size;\n    bool rev;\n    bool propagated;\n  };\n\n\
-    \  Node *pool;\n  int pid;\n\n  Randomized_BST_Lazy() : pid(0) { pool = new Node[NODES];\
+    \  Node *pool;\n  int pid;\n\n  RBST_Lazy() : pid(0) { pool = new Node[NODES];\
     \ }\n\n  Node *new_node(const X &x) {\n    pool[pid].l = pool[pid].r = nullptr;\n\
     \    pool[pid].x = x;\n    pool[pid].prod = x;\n    pool[pid].a = Monoid_A::unit();\n\
     \    pool[pid].size = 1;\n    pool[pid].rev = 0;\n    pool[pid].propagated = 1;\n\
@@ -91,11 +91,11 @@ data:
     \    return {root, nr};\n  }\n};\n"
   code: "\n// reverse \u306F\u3068\u308A\u3042\u3048\u305A\u3001Monoid_X \u306E\u53EF\
     \u63DB\u6027\u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\uFF01\ntemplate <typename\
-    \ Lazy, int NODES = 1'000'000>\nstruct Randomized_BST_Lazy {\n  using Monoid_X\
-    \ = typename Lazy::X_structure;\n  using Monoid_A = typename Lazy::A_structure;\n\
-    \  using X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
+    \ Lazy, int NODES = 1'000'000>\nstruct RBST_Lazy {\n  using Monoid_X = typename\
+    \ Lazy::X_structure;\n  using Monoid_A = typename Lazy::A_structure;\n  using\
+    \ X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
     \n  struct Node {\n    Node *l, *r;\n    X x, prod;\n    A a;\n    int size;\n\
-    \    bool rev;\n    bool propagated;\n  };\n\n  Node *pool;\n  int pid;\n\n  Randomized_BST_Lazy()\
+    \    bool rev;\n    bool propagated;\n  };\n\n  Node *pool;\n  int pid;\n\n  RBST_Lazy()\
     \ : pid(0) { pool = new Node[NODES]; }\n\n  Node *new_node(const X &x) {\n   \
     \ pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x = x;\n    pool[pid].prod\
     \ = x;\n    pool[pid].a = Monoid_A::unit();\n    pool[pid].size = 1;\n    pool[pid].rev\
@@ -170,8 +170,8 @@ data:
   isVerificationFile: false
   path: bbst/rbst_lazy.hpp
   requiredBy: []
-  timestamp: '2022-05-19 00:38:38+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-05-19 00:46:40+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
 documentation_of: bbst/rbst_lazy.hpp

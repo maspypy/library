@@ -109,10 +109,10 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1320_mincostcycle.test.cpp
-  - test/library_checker/graph/shortest_path.test.cpp
   - test/aoj/2251_dag_path_cover.test.cpp
   - test/aoj/2251_maxantichain.test.cpp
   - test/aoj/275_dag_reachability.test.cpp
+  - test/library_checker/graph/shortest_path.test.cpp
 documentation_of: graph/dijkstra.hpp
 layout: document
 redirect_from:

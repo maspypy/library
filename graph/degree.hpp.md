@@ -77,13 +77,13 @@ data:
   path: graph/degree.hpp
   requiredBy:
   - graph/dag_path_cover.hpp
-  - graph/enumerate_triangles.hpp
   - graph/toposort.hpp
+  - graph/enumerate_triangles.hpp
   timestamp: '2022-05-13 20:32:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/graph/enumerate_triangles.test.cpp
   - test/aoj/2251_dag_path_cover.test.cpp
+  - test/library_checker/graph/enumerate_triangles.test.cpp
 documentation_of: graph/degree.hpp
 layout: document
 redirect_from:

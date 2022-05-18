@@ -51,9 +51,9 @@ data:
   isVerificationFile: false
   path: seq/find_linear_rec.hpp
   requiredBy:
+  - seq/interpolate_linear_rec.hpp
   - linalg/spmat_min_poly.hpp
   - linalg/spmat_det.hpp
-  - seq/interpolate_linear_rec.hpp
   timestamp: '2022-05-11 21:07:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
