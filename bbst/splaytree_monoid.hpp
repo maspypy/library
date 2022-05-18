@@ -2,7 +2,7 @@
 
 // new_node(x) ： 1要素だけからなる木
 // new_node(A) ： 列を木にする、先頭を根とする。
-template <typename Monoid, int NODES = 5'000'000>
+template <typename Monoid, int NODES = 1'000'000>
 struct SplayTree_Monoid {
   using X = typename Monoid::value_type;
 
