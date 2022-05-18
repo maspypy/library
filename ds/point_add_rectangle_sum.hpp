@@ -31,7 +31,8 @@ struct Point_Add_Rectangle_Sum {
       UNIQUE(keyX), UNIQUE(keyY);
       add.resize(len(keyX) + 1);
       FOR(i, N) {
-        ll x = X[i], y = Y[i], w = wt[i];
+        ll x = X[i], y = Y[i];
+        WT w = wt[i];
         x = LB(keyX, x), y = LB(keyY, y);
         add[x].eb(y, w);
       }
@@ -42,7 +43,8 @@ struct Point_Add_Rectangle_Sum {
       max_y = (N == 0 ? 0 : MAX(Y));
       add.resize(max_x - min_x + 2);
       FOR(i, N) {
-        ll x = X[i], y = Y[i], w = wt[i];
+        ll x = X[i], y = Y[i];
+        WT w = wt[i];
         x -= min_x, y -= min_y;
         add[x].eb(y, w);
       }
