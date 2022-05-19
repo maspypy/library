@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/lcm.hpp
     title: nt/lcm.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1593_gaussian.test.cpp
     title: test/yukicoder/1593_gaussian.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/187_crt.test.cpp
     title: test/yukicoder/187_crt.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/fast_div.hpp\"\nstruct fast_div {\r\n  // Min25 https://judge.yosupo.jp/submission/46090\r\
@@ -42,20 +42,20 @@ data:
     \ * d.x >> d.s) >> 64;\r\n  }\r\n  constexpr friend int operator%(u64 n, const\
     \ fast_div& d) {\r\n    return n - n / d * d.m;\r\n  }\r\n  constexpr std::pair<i64,\
     \ int> divmod(u64 n) const {\r\n    u64 q = n / *this;\r\n    return {q, n - q\
-    \ * m};\r\n  }\r\n\r\n  int m;\r\n  int s;\r\n  u64 x;\r\n};\r\n#line 2 \"mod/mod_pow.hpp\"\
+    \ * m};\r\n  }\r\n\r\n  int m;\r\n  int s;\r\n  u64 x;\r\n};\r\n#line 3 \"mod/mod_pow.hpp\"\
     \n// int\r\nll mod_pow(ll a, ll n, int mod){\r\n  fast_div fd(mod);\r\n  a = a\
     \ % fd;\r\n  ll p = a;\r\n  ll v = 1;\r\n  while(n){\r\n    if(n & 1) v = v *\
     \ p % fd;\r\n    p = p * p % fd;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n\
     \r\nll mod_pow_long(ll a, ll n, ll mod){\r\n  a %= mod;\r\n  ll p = a;\r\n  ll\
     \ v = 1;\r\n  while(n){\r\n    if(n & 1) v = i128(v) * p % mod;\r\n    p = i128(p)\
     \ * p % mod;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n"
-  code: "#include \"mod/fast_div.hpp\"\r\n// int\r\nll mod_pow(ll a, ll n, int mod){\r\
-    \n  fast_div fd(mod);\r\n  a = a % fd;\r\n  ll p = a;\r\n  ll v = 1;\r\n  while(n){\r\
-    \n    if(n & 1) v = v * p % fd;\r\n    p = p * p % fd;\r\n    n >>= 1;\r\n  }\r\
-    \n  return v;\r\n}\r\n\r\nll mod_pow_long(ll a, ll n, ll mod){\r\n  a %= mod;\r\
-    \n  ll p = a;\r\n  ll v = 1;\r\n  while(n){\r\n    if(n & 1) v = i128(v) * p %\
-    \ mod;\r\n    p = i128(p) * p % mod;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n\
-    }\r\n"
+  code: "#pragma once\r\n#include \"mod/fast_div.hpp\"\r\n// int\r\nll mod_pow(ll\
+    \ a, ll n, int mod){\r\n  fast_div fd(mod);\r\n  a = a % fd;\r\n  ll p = a;\r\n\
+    \  ll v = 1;\r\n  while(n){\r\n    if(n & 1) v = v * p % fd;\r\n    p = p * p\
+    \ % fd;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n\r\nll mod_pow_long(ll a,\
+    \ ll n, ll mod){\r\n  a %= mod;\r\n  ll p = a;\r\n  ll v = 1;\r\n  while(n){\r\
+    \n    if(n & 1) v = i128(v) * p % mod;\r\n    p = i128(p) * p % mod;\r\n    n\
+    \ >>= 1;\r\n  }\r\n  return v;\r\n}\r\n"
   dependsOn:
   - mod/fast_div.hpp
   isVerificationFile: false
@@ -65,8 +65,8 @@ data:
   - nt/lcm.hpp
   - mod/primitive_root.hpp
   - mod/mod_kth_root.hpp
-  timestamp: '2022-05-12 00:26:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-05-19 23:05:54+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/187_crt.test.cpp
   - test/yukicoder/1593_gaussian.test.cpp
