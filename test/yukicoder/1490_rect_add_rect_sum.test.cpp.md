@@ -7,9 +7,12 @@ data:
   - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/parallel_binary_search.hpp
-    title: ds/parallel_binary_search.hpp
+  - icon: ':question:'
+    path: ds/point_add_rectangle_sum.hpp
+    title: ds/point_add_rectangle_sum.hpp
+  - icon: ':x:'
+    path: ds/rectangle_add_ractangle_sum.hpp
+    title: ds/rectangle_add_ractangle_sum.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -18,24 +21,24 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
+    PROBLEM: https://yukicoder.me/problems/no/1490
     links:
-    - https://judge.yosupo.jp/problem/range_kth_smallest
-  bundledCode: "#line 1 \"test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n#line\
-    \ 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\n\
-    using ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
-    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://yukicoder.me/problems/no/1490
+  bundledCode: "#line 1 \"test/yukicoder/1490_rect_add_rect_sum.test.cpp\"\n#define\
+    \ PROBLEM \"https://yukicoder.me/problems/no/1490\"\n#line 1 \"my_template.hpp\"\
+    \n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
+    using pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\n\
+    using u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\n\
+    using vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate\
+    \ <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -195,30 +198,13 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 1 \"ds/parallel_binary_search.hpp\"\n/*\r\n\u4E26\u5217\
-    \u4E8C\u5206\u63A2\u7D22\u3002(Q, ok, ng, init, upd, check)\u3002\r\ncheck \u304C\
-    \u6210\u308A\u7ACB\u3064\u304E\u308A\u304E\u308A\u306E upd\u56DE\u6570\u3092\u8FD4\
-    \u3059\u3002\r\n\u30FBvoid upd(t)\uFF1At \u56DE\u76EE\u306E update\r\n\u30FBbool\
-    \ check(q)\uFF1A\u30AF\u30A8\u30EA q \u306E\u5224\u5B9A\r\n*/\r\ntemplate <typename\
-    \ F1, typename F2, typename F3>\r\nvc<int> parallel_binary_search(int Q, int ok,\
-    \ int ng, F1 init, F2 upd,\r\n                               F3 check) {\r\n \
-    \ int T = max(ok, ng);\r\n  vc<int> OK(Q, ok), NG(Q, ng);\r\n  while (1) {\r\n\
-    \    vc<int> check_t(Q, -1);\r\n    FOR(q, Q) {\r\n      int& t = check_t[q];\r\
-    \n      if (abs(OK[q] - NG[q]) > 1) { t = (OK[q] + NG[q]) / 2; }\r\n    }\r\n\
-    \    vc<int> indptr(T + 1);\r\n    FOR(q, Q) {\r\n      int& t = check_t[q];\r\
-    \n      if (t != -1) indptr[t + 1]++;\r\n    }\r\n    FOR(t, T) indptr[t + 1]\
-    \ += indptr[t];\r\n    int total = indptr.back();\r\n    if (total == 0) break;\r\
-    \n    auto counter = indptr;\r\n    vc<int> csr(total);\r\n    FOR(q, Q) {\r\n\
-    \      int& t = check_t[q];\r\n      if (t != -1) { csr[counter[t]++] = q; }\r\
-    \n    }\r\n\r\n    init();\r\n    int t = 0;\r\n    for (auto&& q: csr) {\r\n\
-    \      while (t < check_t[q]) { upd(t++); }\r\n      if (check(q))\r\n       \
-    \ OK[q] = t;\r\n      else\r\n        NG[q] = t;\r\n    }\r\n  }\r\n  return OK;\r\
-    \n}\n#line 2 \"alg/group_add.hpp\"\ntemplate <class X>\r\nstruct Group_Add {\r\
-    \n  using value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
-    \ { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
-    \ -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return n *\
-    \ x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr bool\
-    \ commute = true;\r\n};\r\n#line 3 \"ds/fenwick.hpp\"\n\ntemplate <typename AbelGroup>\n\
+    \ { yes(!t); }\r\n#line 2 \"ds/rectangle_add_ractangle_sum.hpp\"\n\n#line 2 \"\
+    alg/group_add.hpp\"\ntemplate <class X>\r\nstruct Group_Add {\r\n  using value_type\
+    \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return x\
+    \ + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\
+    \n  static constexpr X power(const X &x, ll n) noexcept { return n * x; }\r\n\
+    \  static constexpr X unit() { return X(0); }\r\n  static constexpr bool commute\
+    \ = true;\r\n};\r\n#line 3 \"ds/fenwick.hpp\"\n\ntemplate <typename AbelGroup>\n\
     struct FenwickTree {\n  using E = typename AbelGroup::value_type;\n  int n;\n\
     \  vector<E> dat;\n  E total;\n\n  FenwickTree() : FenwickTree(0) {}\n  FenwickTree(int\
     \ n) : n(n), total(AbelGroup::unit()) {\n    assert(AbelGroup::commute);\n   \
@@ -242,41 +228,135 @@ data:
     \ {\n        i += k;\n        s = AbelGroup::op(s, dat[i - 1]);\n      }\n   \
     \   k >>= 1;\n    }\n    return i;\n  }\n\n  int find_kth(E k) {\n    auto check\
     \ = [&](E x) -> bool { return x <= k; };\n    return max_right(check);\n  }\n\n\
-    \  void debug() { print(\"fenwick\", dat); }\n};\n#line 6 \"test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  using QT = tuple<ll, ll,\
-    \ ll>;\n  VEC(QT, query, Q);\n\n  auto I = argsort(A);\n  FenwickTree<Group_Add<int>>\
-    \ bit(N);\n  auto init = [&]() -> void { bit.reset(); };\n  auto upd = [&](int\
-    \ t) -> void { bit.add(I[t], 1); };\n  auto check = [&](int q) -> bool {\n   \
-    \ auto [l, r, k] = query[q];\n    int x = bit.sum(l, r);\n    return x > k;\n\
-    \  };\n  auto OK = parallel_binary_search(Q, N, 0, init, upd, check);\n  FOR(q,\
-    \ Q) {\n    int t = OK[q];\n    print(A[I[t - 1]]);\n  }\n}\n\nsigned main() {\n\
-    \  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/parallel_binary_search.hpp\"\
-    \n#include \"ds/fenwick.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n\
-    \  using QT = tuple<ll, ll, ll>;\n  VEC(QT, query, Q);\n\n  auto I = argsort(A);\n\
-    \  FenwickTree<Group_Add<int>> bit(N);\n  auto init = [&]() -> void { bit.reset();\
-    \ };\n  auto upd = [&](int t) -> void { bit.add(I[t], 1); };\n  auto check = [&](int\
-    \ q) -> bool {\n    auto [l, r, k] = query[q];\n    int x = bit.sum(l, r);\n \
-    \   return x > k;\n  };\n  auto OK = parallel_binary_search(Q, N, 0, init, upd,\
-    \ check);\n  FOR(q, Q) {\n    int t = OK[q];\n    print(A[I[t - 1]]);\n  }\n}\n\
-    \nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+    \  void debug() { print(\"fenwick\", dat); }\n};\n#line 2 \"ds/point_add_rectangle_sum.hpp\"\
+    \n\r\n// \u70B9\u7FA4\u306F\u30AF\u30A8\u30EA\u3088\u308A\u524D\u306B\u5168\u90E8\
+    \u5165\u529B\u3059\u308B\u3053\u3068 (add_pt)\u3002\r\n// \u540C\u3058\u70B9\u7FA4\
+    \u306B\u5BFE\u3057\u3066\u30AF\u30A8\u30EA\u3092\u3084\u308A\u76F4\u305B\u308B\
+    \u3002\r\n// SMALL=true \u306B\u3059\u308B\u3068\u3001\u5EA7\u5727\u3092\u3057\
+    \u306A\u3044\u305F\u3081\u5C11\u3057\u9AD8\u901F\r\ntemplate <typename AbelGroup,\
+    \ bool SMALL = false>\r\nstruct Point_Add_Rectangle_Sum {\r\n  using WT = typename\
+    \ AbelGroup::value_type;\r\n  bool compressed;\r\n  int Q;\r\n  vi X, Y;\r\n \
+    \ vi keyX, keyY;\r\n  ll min_x, max_x, min_y, max_y;\r\n  vc<WT> wt;\r\n  vc<vc<pair<int,\
+    \ WT>>> add;\r\n  vc<vc<tuple<int, int, int>>> query_l;\r\n  vc<vc<tuple<int,\
+    \ int, int>>> query_r;\r\n\r\n  Point_Add_Rectangle_Sum() : compressed(0), Q(0)\
+    \ {}\r\n\r\n  void add_query(ll x, ll y, WT w = 1) {\r\n    assert(!compressed);\r\
+    \n    X.eb(x), Y.eb(y), wt.eb(w);\r\n    keyX.eb(x), keyY.eb(y);\r\n  }\r\n\r\n\
+    \  void compress() {\r\n    compressed = 1;\r\n    int N = len(X);\r\n    if (!SMALL)\
+    \ {\r\n      UNIQUE(keyX), UNIQUE(keyY);\r\n      add.resize(len(keyX) + 1);\r\
+    \n      FOR(i, N) {\r\n        ll x = X[i], y = Y[i];\r\n        WT w = wt[i];\r\
+    \n        x = LB(keyX, x), y = LB(keyY, y);\r\n        add[x].eb(y, w);\r\n  \
+    \    }\r\n    } else {\r\n      min_x = (N == 0 ? 0 : MIN(X));\r\n      max_x\
+    \ = (N == 0 ? 0 : MAX(X));\r\n      min_y = (N == 0 ? 0 : MIN(Y));\r\n      max_y\
+    \ = (N == 0 ? 0 : MAX(Y));\r\n      add.resize(max_x - min_x + 2);\r\n      FOR(i,\
+    \ N) {\r\n        ll x = X[i], y = Y[i];\r\n        WT w = wt[i];\r\n        x\
+    \ -= min_x, y -= min_y;\r\n        add[x].eb(y, w);\r\n      }\r\n    }\r\n  \
+    \  query_l.resize(len(add));\r\n    query_r.resize(len(add));\r\n  }\r\n\r\n \
+    \ void sum_query(ll xl, ll yl, ll xr, ll yr) {\r\n    if (!compressed) compress();\r\
+    \n    if (!SMALL) {\r\n      xl = LB(keyX, xl), xr = LB(keyX, xr);\r\n      yl\
+    \ = LB(keyY, yl), yr = LB(keyY, yr);\r\n    } else {\r\n      xl -= min_x, xr\
+    \ -= min_x;\r\n      yl -= min_y, yr -= min_y;\r\n      xl = clamp(xl, 0LL, max_x\
+    \ - min_x + 1);\r\n      xr = clamp(xr, 0LL, max_x - min_x + 1);\r\n      yl =\
+    \ clamp(yl, 0LL, max_y - min_y + 1);\r\n      yr = clamp(yr, 0LL, max_y - min_y\
+    \ + 1);\r\n    }\r\n    query_l[xl].eb(Q, yl, yr);\r\n    query_r[xr].eb(Q, yl,\
+    \ yr);\r\n    ++Q;\r\n  }\r\n\r\n  vc<WT> calc() {\r\n    assert(compressed);\r\
+    \n    vc<WT> ANS(Q, AbelGroup::unit());\r\n    int k = (SMALL ? max_y - min_y\
+    \ + 2 : len(keyY) + 1);\r\n    FenwickTree<AbelGroup> bit(k);\r\n    FOR(x, len(add))\
+    \ {\r\n      for (auto&& t: query_l[x]) {\r\n        auto [q, yl, yr] = t;\r\n\
+    \        ANS[q] = AbelGroup::op(ANS[q] , AbelGroup::inverse(bit.sum(yl, yr)));\r\
+    \n      }\r\n      for (auto&& t: query_r[x]) {\r\n        auto [q, yl, yr] =\
+    \ t;\r\n        ANS[q] = AbelGroup::op(ANS[q] , bit.sum(yl, yr));\r\n      }\r\
+    \n      for (auto&& t: add[x]) {\r\n        auto [y, w] = t;\r\n        bit.add(y,\
+    \ w);\r\n      }\r\n      query_l[x].clear();\r\n      query_r[x].clear();\r\n\
+    \    }\r\n    Q = 0;\r\n    return ANS;\r\n  }\r\n};\r\n#line 4 \"ds/rectangle_add_ractangle_sum.hpp\"\
+    \n\ntemplate <typename AbelGroup, bool SMALL = false>\nstruct Rectangle_Add_Rectangle_Sum\
+    \ {\n  using WT = typename AbelGroup::value_type;\n  using WT4 = tuple<WT, WT,\
+    \ WT, WT>;\n\n  struct G {\n    using X = WT4;\n    using value_type = X;\n  \
+    \  static X op(const X &x, const X &y) {\n      auto &[ax, bx, cx, dx] = x;\n\
+    \      auto &[ay, by, cy, dy] = y;\n      return {AbelGroup::op(ax, ay), AbelGroup::op(bx,\
+    \ by),\n              AbelGroup::op(cx, cy), AbelGroup::op(dx, dy)};\n    }\n\
+    \    static X inverse(const X &x) {\n      auto &[ax, bx, cx, dx] = x;\n     \
+    \ return {AbelGroup::inverse(ax), AbelGroup::inverse(bx),\n              AbelGroup::inverse(cx),\
+    \ AbelGroup::inverse(dx)};\n    }\n    static X power(const X &x, ll n) {\n  \
+    \    auto &[ax, bx, cx, dx] = x;\n      return {AbelGroup::power(ax, n), AbelGroup::power(bx,\
+    \ n),\n              AbelGroup::power(cx, n), AbelGroup::power(dx, n)};\n    }\n\
+    \    static constexpr X unit() {\n      auto u = AbelGroup::unit();\n      return\
+    \ {u, u, u, u};\n    }\n    static constexpr bool commute = true;\n  };\n\n  vc<tuple<ll,\
+    \ ll, ll, ll>> query;\n  Point_Add_Rectangle_Sum<G, SMALL> X;\n  ll min_x = 0,\
+    \ min_y = 0;\n\n  void add_query(ll xl, ll yl, ll xr, ll yr, WT w) {\n    assert(xl\
+    \ <= xr && yl <= yr);\n    chmin(min_x, xl);\n    chmin(min_y, yl);\n    // (xl,yl)\
+    \ \u306B (x-xl)(y-yl) \u3092\u52A0\u7B97\n    auto nw = AbelGroup::inverse(w);\n\
+    \    X.add_query(xl, yl,\n                {w, AbelGroup::power(w, -yl), AbelGroup::power(w,\
+    \ -xl),\n                 AbelGroup::power(w, +xl * yl)});\n    // (xl,yr) \u306B\
+    \ (x-xl)(y-yr) \u3092\u6E1B\u7B97\n    X.add_query(xl, yr,\n                {nw,\
+    \ AbelGroup::power(w, +yr), AbelGroup::power(w, +xl),\n                 AbelGroup::power(w,\
+    \ -xl * yr)});\n    // (xr,yl) \u306B (x-xr)(y-yl) \u3092\u6E1B\u7B97\n    X.add_query(xr,\
+    \ yl,\n                {nw, AbelGroup::power(w, +yl), AbelGroup::power(w, +xr),\n\
+    \                 AbelGroup::power(w, -xr * yl)});\n    // (xr,yr) \u306B (x-xr)(y-yr)\
+    \ \u3092\u52A0\u7B97\n    X.add_query(xr, yr,\n                {w, AbelGroup::power(w,\
+    \ -yr), AbelGroup::power(w, -xr),\n                 AbelGroup::power(w, +xr *\
+    \ yr)});\n  }\n\n  void sum_query(ll xl, ll yl, ll xr, ll yr) {\n    assert(xl\
+    \ <= xr && yl <= yr);\n    query.eb(xl, yl, xr, yr);\n    X.sum_query(min_x, min_y,\
+    \ xl, yl);\n    X.sum_query(min_x, min_y, xl, yr);\n    X.sum_query(min_x, min_y,\
+    \ xr, yl);\n    X.sum_query(min_x, min_y, xr, yr);\n  }\n\n  vc<WT> calc() {\n\
+    \    ll Q = len(query);\n    vc<WT> ANS(Q);\n    auto tmp = X.calc();\n    assert(len(tmp)\
+    \ == 4 * Q);\n\n    FOR(q, Q) {\n      auto [xl, yl, xr, yr] = query[q];\n   \
+    \   WT p = AbelGroup::unit(), m = AbelGroup::unit();\n      {\n        auto [a,\
+    \ b, c, d] = tmp[4 * q + 0];\n        p = AbelGroup::op(p, AbelGroup::power(a,\
+    \ xl * yl));\n        p = AbelGroup::op(p, AbelGroup::power(b, xl));\n       \
+    \ p = AbelGroup::op(p, AbelGroup::power(c, yl));\n        p = AbelGroup::op(p,\
+    \ d);\n      }\n      {\n        auto [a, b, c, d] = tmp[4 * q + 1];\n       \
+    \ m = AbelGroup::op(m, AbelGroup::power(a, xl * yr));\n        m = AbelGroup::op(m,\
+    \ AbelGroup::power(b, xl));\n        m = AbelGroup::op(m, AbelGroup::power(c,\
+    \ yr));\n        m = AbelGroup::op(m, d);\n      }\n      {\n        auto [a,\
+    \ b, c, d] = tmp[4 * q + 2];\n        m = AbelGroup::op(m, AbelGroup::power(a,\
+    \ xr * yl));\n        m = AbelGroup::op(m, AbelGroup::power(b, xr));\n       \
+    \ m = AbelGroup::op(m, AbelGroup::power(c, yl));\n        m = AbelGroup::op(m,\
+    \ d);\n      }\n      {\n        auto [a, b, c, d] = tmp[4 * q + 3];\n       \
+    \ p = AbelGroup::op(p, AbelGroup::power(a, xr * yr));\n        p = AbelGroup::op(p,\
+    \ AbelGroup::power(b, xr));\n        p = AbelGroup::op(p, AbelGroup::power(c,\
+    \ yr));\n        p = AbelGroup::op(p, d);\n      }\n      ANS[q] = AbelGroup::op(p,\
+    \ AbelGroup::inverse(m));\n    }\n    return ANS;\n  }\n};\n#line 5 \"test/yukicoder/1490_rect_add_rect_sum.test.cpp\"\
+    \n\nvoid solve() {\n  LL(H, W, N, M);\n\n  using T = tuple<ll, ll, ll, ll, ll>;\n\
+    \  vc<T> dat;\n  FOR(i, N) {\n    LL(xl, xr, yl, yr, a);\n    --xl, --yl;\n  \
+    \  dat.eb(xl, yl, xr, yr, a);\n  }\n\n  Rectangle_Add_Rectangle_Sum<Group_Add<ll>,\
+    \ 1> X;\n  FOR(M) {\n    LL(x, y, b, c);\n    --x, --y;\n    ll xl = x - b, xr\
+    \ = x + b + 1;\n    ll yl = y - b, yr = y + b + 1;\n    X.add_query(xl, yl, xr,\
+    \ yr, c);\n  }\n  FOR(i, N) {\n    auto [xl, yl, xr, yr, a] = dat[i];\n    X.sum_query(xl,\
+    \ yl, xr, yr);\n  }\n  auto res = X.calc();\n  ll ANS = 0;\n  FOR(i, N) {\n  \
+    \  auto [xl, yl, xr, yr, a] = dat[i];\n    ll x = res[i];\n    if (a > x) ++ANS;\n\
+    \  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
+    \  return 0;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1490\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"ds/rectangle_add_ractangle_sum.hpp\"\n\
+    \nvoid solve() {\n  LL(H, W, N, M);\n\n  using T = tuple<ll, ll, ll, ll, ll>;\n\
+    \  vc<T> dat;\n  FOR(i, N) {\n    LL(xl, xr, yl, yr, a);\n    --xl, --yl;\n  \
+    \  dat.eb(xl, yl, xr, yr, a);\n  }\n\n  Rectangle_Add_Rectangle_Sum<Group_Add<ll>,\
+    \ 1> X;\n  FOR(M) {\n    LL(x, y, b, c);\n    --x, --y;\n    ll xl = x - b, xr\
+    \ = x + b + 1;\n    ll yl = y - b, yr = y + b + 1;\n    X.add_query(xl, yl, xr,\
+    \ yr, c);\n  }\n  FOR(i, N) {\n    auto [xl, yl, xr, yr, a] = dat[i];\n    X.sum_query(xl,\
+    \ yl, xr, yr);\n  }\n  auto res = X.calc();\n  ll ANS = 0;\n  FOR(i, N) {\n  \
+    \  auto [xl, yl, xr, yr, a] = dat[i];\n    ll x = res[i];\n    if (a > x) ++ANS;\n\
+    \  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/parallel_binary_search.hpp
+  - ds/rectangle_add_ractangle_sum.hpp
+  - ds/point_add_rectangle_sum.hpp
   - ds/fenwick.hpp
   - alg/group_add.hpp
   isVerificationFile: true
-  path: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
+  path: test/yukicoder/1490_rect_add_rect_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-05-13 20:44:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-05-20 03:30:48+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
+documentation_of: test/yukicoder/1490_rect_add_rect_sum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
-- /verify/test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp.html
-title: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
+- /verify/test/yukicoder/1490_rect_add_rect_sum.test.cpp
+- /verify/test/yukicoder/1490_rect_add_rect_sum.test.cpp.html
+title: test/yukicoder/1490_rect_add_rect_sum.test.cpp
 ---
