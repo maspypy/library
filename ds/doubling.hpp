@@ -1,8 +1,9 @@
+// 状態 a から 1 回操作すると、状態 b に遷移し、モノイドの元 x を加える。
+// 状態数 N
+// set(i, to, x) 
+// 行き先がない場合：-1 （set 不要）
 template <typename Monoid, int LOG>
 struct Doubling {
-  /*
-  状態 a から 1 回操作すると、状態 b に遷移し、モノイドの元 x を加える。
-  */
   using X = typename Monoid::value_type;
   int N;
   bool is_prepared;
@@ -11,7 +12,7 @@ struct Doubling {
 
   Doubling(int N) : N(N), is_prepared(0) {
     TO.assign(LOG, vc<int>(N, -1));
-    DP.assign(LOG, vc<X>(N, Monoid::unit));
+    DP.assign(LOG, vc<X>(N, Monoid::unit()));
   }
 
   void set(int i, int to, X x) {
@@ -40,11 +41,11 @@ struct Doubling {
 
   pair<int, X> calc(int i, ll step) {
     assert(is_prepared);
-    assert(step < (1 << LOG));
-    X x = Monoid::unit;
+    assert(step < (1LL << LOG));
+    X x = Monoid::unit();
     FOR(k, LOG) {
       if (i == -1) break;
-      if (step && 1 << k) {
+      if (step & 1LL << k) {
         x = Monoid::op(x, DP[k][i]);
         i = TO[k][i];
       }
@@ -56,14 +57,14 @@ struct Doubling {
   ll max_step(F check, int i) {
     assert(is_prepared);
     // step数
-    X x = Monoid::unit;
+    X x = Monoid::unit();
     ll step = 0;
     assert(check(x));
     FOR_R(k, LOG) {
       int j = TO[k][i];
       X y = Monoid::op(x, DP[k][i]);
       if (check(y)) {
-        step |= 1 << k;
+        step |= 1LL << k;
         i = j;
         x = y;
         assert(i != -1);
