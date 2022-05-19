@@ -1,3 +1,5 @@
+#pragma once
+
 #include "nt/factor.hpp"
 #include "mod/mod_pow.hpp"
 // int

@@ -1,3 +1,4 @@
+#pragma once
 #include "mod/fast_div.hpp"
 // int
 ll mod_pow(ll a, ll n, int mod){
