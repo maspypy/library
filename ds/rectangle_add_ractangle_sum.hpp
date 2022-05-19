@@ -2,7 +2,6 @@
 
 #include "ds/point_add_rectangle_sum.hpp"
 
-// 何も verify してない！
 template <typename AbelGroup, bool SMALL = false>
 struct Rectangle_Add_Rectangle_Sum {
   using WT = typename AbelGroup::value_type;
@@ -35,39 +34,45 @@ struct Rectangle_Add_Rectangle_Sum {
   };
 
   vc<tuple<ll, ll, ll, ll>> query;
-  Point_Add_Rectangle_Sum<G, SMALL> PARS;
+  Point_Add_Rectangle_Sum<G, SMALL> X;
+  ll min_x = 0, min_y = 0;
 
   void add_query(ll xl, ll yl, ll xr, ll yr, WT w) {
+    assert(xl <= xr && yl <= yr);
+    chmin(min_x, xl);
+    chmin(min_y, yl);
     // (xl,yl) に (x-xl)(y-yl) を加算
-    PARS.add_query(xl, yl,
-                   {w, AbelGroup::power(w, -yl), AbelGroup::power(w, -xl),
-                    AbelGroup::power(w, +xl * yl)});
+    auto nw = AbelGroup::inverse(w);
+    X.add_query(xl, yl,
+                {w, AbelGroup::power(w, -yl), AbelGroup::power(w, -xl),
+                 AbelGroup::power(w, +xl * yl)});
     // (xl,yr) に (x-xl)(y-yr) を減算
-    PARS.add_query(xl, yr,
-                   {AbelGroup::inverse(w), AbelGroup::power(w, +yr),
-                    AbelGroup::power(w, +xl), AbelGroup::power(w, -xl * yr)});
+    X.add_query(xl, yr,
+                {nw, AbelGroup::power(w, +yr), AbelGroup::power(w, +xl),
+                 AbelGroup::power(w, -xl * yr)});
     // (xr,yl) に (x-xr)(y-yl) を減算
-    PARS.add_query(xr, yl,
-                   {AbelGroup::inverse(w), AbelGroup::power(w, +yl),
-                    AbelGroup::power(w, +xr), AbelGroup::power(w, -xr * yl)});
+    X.add_query(xr, yl,
+                {nw, AbelGroup::power(w, +yl), AbelGroup::power(w, +xr),
+                 AbelGroup::power(w, -xr * yl)});
     // (xr,yr) に (x-xr)(y-yr) を加算
-    PARS.add_query(xr, yl,
-                   {w, AbelGroup::power(w, -yr), AbelGroup::power(w, -xr),
-                    AbelGroup::power(w, +xr * yr)});
+    X.add_query(xr, yr,
+                {w, AbelGroup::power(w, -yr), AbelGroup::power(w, -xr),
+                 AbelGroup::power(w, +xr * yr)});
   }
 
   void sum_query(ll xl, ll yl, ll xr, ll yr) {
+    assert(xl <= xr && yl <= yr);
     query.eb(xl, yl, xr, yr);
-    PARS.sum_query(0, 0, xl, yl);
-    PARS.sum_query(0, 0, xl, yr);
-    PARS.sum_query(0, 0, xr, yl);
-    PARS.sum_query(0, 0, xr, yr);
+    X.sum_query(min_x, min_y, xl, yl);
+    X.sum_query(min_x, min_y, xl, yr);
+    X.sum_query(min_x, min_y, xr, yl);
+    X.sum_query(min_x, min_y, xr, yr);
   }
 
   vc<WT> calc() {
     ll Q = len(query);
     vc<WT> ANS(Q);
-    auto tmp = PARS.calc();
+    auto tmp = X.calc();
     assert(len(tmp) == 4 * Q);
 
     FOR(q, Q) {
