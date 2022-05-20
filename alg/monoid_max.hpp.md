@@ -21,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A_mst.test.cpp
     title: test/aoj/GRL_2_A_mst.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1117_swag.test.cpp
+    title: test/yukicoder/1117_swag.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -46,6 +49,7 @@ data:
   timestamp: '2022-05-13 21:02:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1117_swag.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp
 documentation_of: alg/monoid_max.hpp
 layout: document
