@@ -13,8 +13,8 @@ struct SegTree2D {
     return (SMALL ? clamp(x - min_X, 0, N) : LB(keyX, x));
   }
 
-  SegTree2D(vc<XY>& X, vc<XY>& Y, vc<S>& wt = vc<S>()) {
-    if (len(wt) == 0) wt = vc<S>(len(X), S(0));
+  SegTree2D(vc<XY>& X, vc<XY>& Y, vc<S> wt = vc<S>()) {
+    if (len(wt) == 0) wt = vc<S>(len(X), Monoid::unit());
     assert(Monoid::commute); // 可換モノイドのみ
     assert(len(X) == len(Y) && len(X) == len(wt));
 
