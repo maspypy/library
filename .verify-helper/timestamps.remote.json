@@ -165,6 +165,7 @@
 "test/yukicoder/1036_swag.test.cpp": "2022-05-15 15:48:23 +0900",
 "test/yukicoder/1038_centroid.test.cpp": "2022-05-13 20:44:41 +0900",
 "test/yukicoder/1077_slope.test.cpp": "2022-05-13 20:44:41 +0900",
+"test/yukicoder/1097_doubling.test.cpp": "2022-05-20 23:56:13 +0900",
 "test/yukicoder/1117_swag.test.cpp": "2022-05-20 18:32:47 +0900",
 "test/yukicoder/1141_cumsum2d.test.cpp": "2022-05-19 03:01:20 +0900",
 "test/yukicoder/1142_xor_conv.test.cpp": "2022-05-13 20:44:41 +0900",
