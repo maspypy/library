@@ -186,6 +186,7 @@
 "test/yukicoder/1500_interpolate_linear.test.cpp": "2022-05-19 23:05:54 +0900",
 "test/yukicoder/1593_gaussian.test.cpp": "2022-05-19 23:05:54 +0900",
 "test/yukicoder/1618_conv_ll.test.cpp": "2022-05-19 23:05:54 +0900",
+"test/yukicoder/1625_kdtree.test.cpp": "2022-05-20 21:19:28 +0900",
 "test/yukicoder/1625_seg2d.test.cpp": "2022-05-20 19:42:06 +0900",
 "test/yukicoder/1641_tree_abel.test.cpp": "2022-05-13 20:44:41 +0900",
 "test/yukicoder/1643_subseq.test.cpp": "2022-05-13 20:44:41 +0900",
