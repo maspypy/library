@@ -1487,6 +1487,9 @@ data:
       path: test/yukicoder/1618_conv_ll.test.cpp
       title: test/yukicoder/1618_conv_ll.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1625_seg2d.test.cpp
+      title: test/yukicoder/1625_seg2d.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1641_tree_abel.test.cpp
       title: test/yukicoder/1641_tree_abel.test.cpp
     - icon: ':heavy_check_mark:'

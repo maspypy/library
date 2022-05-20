@@ -556,6 +556,9 @@ data:
     path: test/yukicoder/1618_conv_ll.test.cpp
     title: test/yukicoder/1618_conv_ll.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1625_seg2d.test.cpp
+    title: test/yukicoder/1625_seg2d.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1641_tree_abel.test.cpp
     title: test/yukicoder/1641_tree_abel.test.cpp
   - icon: ':heavy_check_mark:'
@@ -886,6 +889,7 @@ data:
   - test/yukicoder/1441_bbst.test.cpp
   - test/yukicoder/177_maxflow.test.cpp
   - test/yukicoder/187_crt.test.cpp
+  - test/yukicoder/1625_seg2d.test.cpp
   - test/yukicoder/17_warshall_floyd.test.cpp
   - test/yukicoder/1344_warshall_floyd.test.cpp
   - test/yukicoder/1868_range_to_range.test.cpp
