@@ -210,7 +210,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/divide_conquer_range_query.hpp
       title: ds/divide_conquer_range_query.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/doubling.hpp
       title: ds/doubling.hpp
     - icon: ':heavy_check_mark:'
@@ -244,8 +244,8 @@ data:
       path: ds/intervals.hpp
       title: ds/intervals.hpp
     - icon: ':warning:'
-      path: ds/kdtree.hpp
-      title: ds/kdtree.hpp
+      path: ds/kdtree_lazy.hpp
+      title: ds/kdtree_lazy.hpp
     - icon: ':heavy_check_mark:'
       path: ds/kdtree_monoid.hpp
       title: ds/kdtree_monoid.hpp
@@ -1423,7 +1423,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1077_slope.test.cpp
       title: test/yukicoder/1077_slope.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1097_doubling.test.cpp
       title: test/yukicoder/1097_doubling.test.cpp
     - icon: ':heavy_check_mark:'

@@ -493,6 +493,9 @@ data:
     path: test/yukicoder/1077_slope.test.cpp
     title: test/yukicoder/1077_slope.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1097_doubling.test.cpp
+    title: test/yukicoder/1097_doubling.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1117_swag.test.cpp
     title: test/yukicoder/1117_swag.test.cpp
   - icon: ':heavy_check_mark:'
@@ -874,6 +877,7 @@ data:
   timestamp: '2022-04-27 05:07:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1097_doubling.test.cpp
   - test/yukicoder/255.test.cpp
   - test/yukicoder/1641_tree_abel.test.cpp
   - test/yukicoder/1666_integer_kth_root.test.cpp
