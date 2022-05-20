@@ -25,6 +25,9 @@ data:
     path: test/yukicoder/1117_swag.test.cpp
     title: test/yukicoder/1117_swag.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1625_kdtree.test.cpp
+    title: test/yukicoder/1625_kdtree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1625_seg2d.test.cpp
     title: test/yukicoder/1625_seg2d.test.cpp
   _isVerificationFailed: false
@@ -53,6 +56,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1625_seg2d.test.cpp
+  - test/yukicoder/1625_kdtree.test.cpp
   - test/yukicoder/1117_swag.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp
 documentation_of: alg/monoid_max.hpp

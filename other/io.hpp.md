@@ -556,6 +556,9 @@ data:
     path: test/yukicoder/1618_conv_ll.test.cpp
     title: test/yukicoder/1618_conv_ll.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1625_kdtree.test.cpp
+    title: test/yukicoder/1625_kdtree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1625_seg2d.test.cpp
     title: test/yukicoder/1625_seg2d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -907,6 +910,7 @@ data:
   - test/yukicoder/1002_centroid.test.cpp
   - test/yukicoder/789_dseg.test.cpp
   - test/yukicoder/1145_sum_of_powers.test.cpp
+  - test/yukicoder/1625_kdtree.test.cpp
   - test/yukicoder/1441_rbst.test.cpp
   - test/yukicoder/749_lazysegtree.test.cpp
   - test/yukicoder/1036_dseg_minleft_maxright.test.cpp

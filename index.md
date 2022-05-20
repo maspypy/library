@@ -247,6 +247,9 @@ data:
       path: ds/kdtree.hpp
       title: ds/kdtree.hpp
     - icon: ':heavy_check_mark:'
+      path: ds/kdtree_monoid.hpp
+      title: ds/kdtree_monoid.hpp
+    - icon: ':heavy_check_mark:'
       path: ds/larsch.hpp
       title: ds/larsch.hpp
     - icon: ':heavy_check_mark:'
@@ -1486,6 +1489,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1618_conv_ll.test.cpp
       title: test/yukicoder/1618_conv_ll.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1625_kdtree.test.cpp
+      title: test/yukicoder/1625_kdtree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1625_seg2d.test.cpp
       title: test/yukicoder/1625_seg2d.test.cpp
