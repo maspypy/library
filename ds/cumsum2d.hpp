@@ -1,3 +1,5 @@
+#include "alg/group_add.hpp"
+
 template <typename Group>
 struct Cumsum2D {
   using X = typename Group::value_type;
