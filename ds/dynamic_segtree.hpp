@@ -22,6 +22,9 @@ struct Dynamic_SegTree {
   Node *root;
   function<X(ll, ll)> default_fn;
 
+  Dynamic_SegTree(ll L, ll R)
+      : Dynamic_SegTree(L, R, [](ll L, ll R){return Monoid::unit();}) {}
+
   Dynamic_SegTree(ll L, ll R, function<X(ll, ll)> f)
       : pid(0), L(L), R(R), default_fn(f) {
     pool = new Node[NODES];
@@ -38,9 +41,9 @@ struct Dynamic_SegTree {
     set_rec(root, L, R, i, x);
   }
 
-  void apply_at(ll i, const X &x) {
+  void multiply(ll i, const X &x) {
     assert(L <= i && i < R);
-    apply_at_rec(root, L, R, i, x);
+    multiply_rec(root, L, R, i, x);
   }
 
   X prod(ll l, ll r) {
@@ -100,7 +103,7 @@ private:
     n->x = Monoid::op(xl, xr);
   }
 
-  void apply_at_rec(Node *n, ll node_l, ll node_r, ll idx, const X &x) {
+  void multiply_rec(Node *n, ll node_l, ll node_r, ll idx, const X &x) {
     if (node_r - node_l == 1) {
       n->x = Monoid::op(n->x, x);
       return;
@@ -109,10 +112,10 @@ private:
 
     if (idx < node_m) {
       if (!(n->l)) n->l = new_node(node_l, node_m);
-      apply_at_rec(n->l, node_l, node_m, idx, x);
+      multiply_rec(n->l, node_l, node_m, idx, x);
     } else {
       if (!(n->r)) n->r = new_node(node_m, node_r);
-      apply_at_rec(n->r, node_m, node_r, idx, x);
+      multiply_rec(n->r, node_m, node_r, idx, x);
     }
     X xl = (n->l ? (n->l)->x : Monoid::unit());
     X xr = (n->r ? (n->r)->x : Monoid::unit());
