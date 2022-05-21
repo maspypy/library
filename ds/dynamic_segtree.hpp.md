@@ -7,11 +7,14 @@ data:
     path: test/yukicoder/1036_dseg_minleft_maxright.test.cpp
     title: test/yukicoder/1036_dseg_minleft_maxright.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1649_dynamic_seg.test.cpp
+    title: test/yukicoder/1649_dynamic_seg.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/789_dseg.test.cpp
     title: test/yukicoder/789_dseg.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/dynamic_segtree.hpp\"\n\r\n/*\r\n\u30B3\u30F3\u30B9\u30C8\
@@ -23,40 +26,41 @@ data:
     \ struct Node {\r\n    X x;\r\n    Node *l, *r;\r\n    Node() {}\r\n    Node(const\
     \ X &x) : x(x), l(nullptr), r(nullptr) {}\r\n  };\r\n\r\n  Node *pool;\r\n  int\
     \ pid;\r\n  ll L, R;\r\n  Node *root;\r\n  function<X(ll, ll)> default_fn;\r\n\
-    \r\n  Dynamic_SegTree(ll L, ll R, function<X(ll, ll)> f)\r\n      : pid(0), L(L),\
-    \ R(R), default_fn(f) {\r\n    pool = new Node[NODES];\r\n    root = new_node(L,\
-    \ R);\r\n  }\r\n\r\n  void reset() {\r\n    pid = 0;\r\n    root = new_node(L,\
-    \ R);\r\n  }\r\n\r\n  void set(ll i, const X &x) {\r\n    assert(L <= i && i <\
-    \ R);\r\n    set_rec(root, L, R, i, x);\r\n  }\r\n\r\n  void apply_at(ll i, const\
-    \ X &x) {\r\n    assert(L <= i && i < R);\r\n    apply_at_rec(root, L, R, i, x);\r\
-    \n  }\r\n\r\n  X prod(ll l, ll r) {\r\n    assert(L <= l && l <= r && r <= R);\r\
-    \n    return prod_rec(root, L, R, l, r);\r\n  }\r\n\r\n  X prod_all() { return\
-    \ root->x; }\r\n\r\n  void debug() {\r\n    auto dfs = [&](auto &dfs, Node *n,\
-    \ ll l, ll r) -> void {\r\n      print(\"lr\", l, r, \"x\", n->x, \"a\", n->a);\r\
-    \n      ll m = (l + r) / 2;\r\n      if (n->l) dfs(dfs, n->l, l, m);\r\n     \
-    \ if (n->r) dfs(dfs, n->r, m, r);\r\n    };\r\n    dfs(dfs, root, L, R);\r\n \
-    \ }\r\n\r\n  template <class F>\r\n  ll max_right(const F &check, ll s) {\r\n\
-    \    assert(L <= s && s <= R && check(Monoid::unit()));\r\n    X p = Monoid::unit();\r\
-    \n    return max_right_rec(root, L, R, check, s, p);\r\n  }\r\n\r\n  template\
-    \ <class F>\r\n  ll min_left(const F &check, ll t) {\r\n    assert(L <= t && t\
-    \ <= R && check(Monoid::unit()));\r\n    X p = Monoid::unit();\r\n    return min_left_rec(root,\
-    \ L, R, check, t, p);\r\n  }\r\n\r\nprivate:\r\n  Node *new_node(ll node_l, ll\
-    \ node_r) {\r\n    pool[pid].x = default_fn(node_l, node_r);\r\n    pool[pid].l\
-    \ = pool[pid].r = nullptr;\r\n    return &(pool[pid++]);\r\n  }\r\n\r\n  void\
-    \ set_rec(Node *n, ll node_l, ll node_r, ll idx, const X &x) {\r\n    if (node_r\
-    \ - node_l == 1) {\r\n      n->x = x;\r\n      return;\r\n    }\r\n    ll node_m\
-    \ = (node_l + node_r) / 2;\r\n\r\n    if (idx < node_m) {\r\n      if (!(n->l))\
-    \ n->l = new_node(node_l, node_m);\r\n      set_rec(n->l, node_l, node_m, idx,\
-    \ x);\r\n    } else {\r\n      if (!(n->r)) n->r = new_node(node_m, node_r);\r\
-    \n      set_rec(n->r, node_m, node_r, idx, x);\r\n    }\r\n    X xl = (n->l ?\
-    \ (n->l)->x : Monoid::unit());\r\n    X xr = (n->r ? (n->r)->x : Monoid::unit());\r\
-    \n    n->x = Monoid::op(xl, xr);\r\n  }\r\n\r\n  void apply_at_rec(Node *n, ll\
+    \r\n  Dynamic_SegTree(ll L, ll R)\r\n      : Dynamic_SegTree(L, R, [](ll L, ll\
+    \ R){return Monoid::unit();}) {}\r\n\r\n  Dynamic_SegTree(ll L, ll R, function<X(ll,\
+    \ ll)> f)\r\n      : pid(0), L(L), R(R), default_fn(f) {\r\n    pool = new Node[NODES];\r\
+    \n    root = new_node(L, R);\r\n  }\r\n\r\n  void reset() {\r\n    pid = 0;\r\n\
+    \    root = new_node(L, R);\r\n  }\r\n\r\n  void set(ll i, const X &x) {\r\n \
+    \   assert(L <= i && i < R);\r\n    set_rec(root, L, R, i, x);\r\n  }\r\n\r\n\
+    \  void multiply(ll i, const X &x) {\r\n    assert(L <= i && i < R);\r\n    multiply_rec(root,\
+    \ L, R, i, x);\r\n  }\r\n\r\n  X prod(ll l, ll r) {\r\n    assert(L <= l && l\
+    \ <= r && r <= R);\r\n    return prod_rec(root, L, R, l, r);\r\n  }\r\n\r\n  X\
+    \ prod_all() { return root->x; }\r\n\r\n  void debug() {\r\n    auto dfs = [&](auto\
+    \ &dfs, Node *n, ll l, ll r) -> void {\r\n      print(\"lr\", l, r, \"x\", n->x,\
+    \ \"a\", n->a);\r\n      ll m = (l + r) / 2;\r\n      if (n->l) dfs(dfs, n->l,\
+    \ l, m);\r\n      if (n->r) dfs(dfs, n->r, m, r);\r\n    };\r\n    dfs(dfs, root,\
+    \ L, R);\r\n  }\r\n\r\n  template <class F>\r\n  ll max_right(const F &check,\
+    \ ll s) {\r\n    assert(L <= s && s <= R && check(Monoid::unit()));\r\n    X p\
+    \ = Monoid::unit();\r\n    return max_right_rec(root, L, R, check, s, p);\r\n\
+    \  }\r\n\r\n  template <class F>\r\n  ll min_left(const F &check, ll t) {\r\n\
+    \    assert(L <= t && t <= R && check(Monoid::unit()));\r\n    X p = Monoid::unit();\r\
+    \n    return min_left_rec(root, L, R, check, t, p);\r\n  }\r\n\r\nprivate:\r\n\
+    \  Node *new_node(ll node_l, ll node_r) {\r\n    pool[pid].x = default_fn(node_l,\
+    \ node_r);\r\n    pool[pid].l = pool[pid].r = nullptr;\r\n    return &(pool[pid++]);\r\
+    \n  }\r\n\r\n  void set_rec(Node *n, ll node_l, ll node_r, ll idx, const X &x)\
+    \ {\r\n    if (node_r - node_l == 1) {\r\n      n->x = x;\r\n      return;\r\n\
+    \    }\r\n    ll node_m = (node_l + node_r) / 2;\r\n\r\n    if (idx < node_m)\
+    \ {\r\n      if (!(n->l)) n->l = new_node(node_l, node_m);\r\n      set_rec(n->l,\
+    \ node_l, node_m, idx, x);\r\n    } else {\r\n      if (!(n->r)) n->r = new_node(node_m,\
+    \ node_r);\r\n      set_rec(n->r, node_m, node_r, idx, x);\r\n    }\r\n    X xl\
+    \ = (n->l ? (n->l)->x : Monoid::unit());\r\n    X xr = (n->r ? (n->r)->x : Monoid::unit());\r\
+    \n    n->x = Monoid::op(xl, xr);\r\n  }\r\n\r\n  void multiply_rec(Node *n, ll\
     \ node_l, ll node_r, ll idx, const X &x) {\r\n    if (node_r - node_l == 1) {\r\
     \n      n->x = Monoid::op(n->x, x);\r\n      return;\r\n    }\r\n    ll node_m\
     \ = (node_l + node_r) / 2;\r\n\r\n    if (idx < node_m) {\r\n      if (!(n->l))\
-    \ n->l = new_node(node_l, node_m);\r\n      apply_at_rec(n->l, node_l, node_m,\
+    \ n->l = new_node(node_l, node_m);\r\n      multiply_rec(n->l, node_l, node_m,\
     \ idx, x);\r\n    } else {\r\n      if (!(n->r)) n->r = new_node(node_m, node_r);\r\
-    \n      apply_at_rec(n->r, node_m, node_r, idx, x);\r\n    }\r\n    X xl = (n->l\
+    \n      multiply_rec(n->r, node_m, node_r, idx, x);\r\n    }\r\n    X xl = (n->l\
     \ ? (n->l)->x : Monoid::unit());\r\n    X xr = (n->r ? (n->r)->x : Monoid::unit());\r\
     \n    n->x = Monoid::op(xl, xr);\r\n  }\r\n\r\n  X prod_rec(Node *n, ll node_l,\
     \ ll node_r, ll l, ll r) {\r\n    chmax(l, node_l);\r\n    chmin(r, node_r);\r\
@@ -89,40 +93,42 @@ data:
     \ X = typename Monoid::value_type;\r\n\r\n  struct Node {\r\n    X x;\r\n    Node\
     \ *l, *r;\r\n    Node() {}\r\n    Node(const X &x) : x(x), l(nullptr), r(nullptr)\
     \ {}\r\n  };\r\n\r\n  Node *pool;\r\n  int pid;\r\n  ll L, R;\r\n  Node *root;\r\
-    \n  function<X(ll, ll)> default_fn;\r\n\r\n  Dynamic_SegTree(ll L, ll R, function<X(ll,\
-    \ ll)> f)\r\n      : pid(0), L(L), R(R), default_fn(f) {\r\n    pool = new Node[NODES];\r\
-    \n    root = new_node(L, R);\r\n  }\r\n\r\n  void reset() {\r\n    pid = 0;\r\n\
-    \    root = new_node(L, R);\r\n  }\r\n\r\n  void set(ll i, const X &x) {\r\n \
-    \   assert(L <= i && i < R);\r\n    set_rec(root, L, R, i, x);\r\n  }\r\n\r\n\
-    \  void apply_at(ll i, const X &x) {\r\n    assert(L <= i && i < R);\r\n    apply_at_rec(root,\
-    \ L, R, i, x);\r\n  }\r\n\r\n  X prod(ll l, ll r) {\r\n    assert(L <= l && l\
-    \ <= r && r <= R);\r\n    return prod_rec(root, L, R, l, r);\r\n  }\r\n\r\n  X\
-    \ prod_all() { return root->x; }\r\n\r\n  void debug() {\r\n    auto dfs = [&](auto\
-    \ &dfs, Node *n, ll l, ll r) -> void {\r\n      print(\"lr\", l, r, \"x\", n->x,\
-    \ \"a\", n->a);\r\n      ll m = (l + r) / 2;\r\n      if (n->l) dfs(dfs, n->l,\
-    \ l, m);\r\n      if (n->r) dfs(dfs, n->r, m, r);\r\n    };\r\n    dfs(dfs, root,\
-    \ L, R);\r\n  }\r\n\r\n  template <class F>\r\n  ll max_right(const F &check,\
-    \ ll s) {\r\n    assert(L <= s && s <= R && check(Monoid::unit()));\r\n    X p\
-    \ = Monoid::unit();\r\n    return max_right_rec(root, L, R, check, s, p);\r\n\
-    \  }\r\n\r\n  template <class F>\r\n  ll min_left(const F &check, ll t) {\r\n\
-    \    assert(L <= t && t <= R && check(Monoid::unit()));\r\n    X p = Monoid::unit();\r\
-    \n    return min_left_rec(root, L, R, check, t, p);\r\n  }\r\n\r\nprivate:\r\n\
-    \  Node *new_node(ll node_l, ll node_r) {\r\n    pool[pid].x = default_fn(node_l,\
-    \ node_r);\r\n    pool[pid].l = pool[pid].r = nullptr;\r\n    return &(pool[pid++]);\r\
-    \n  }\r\n\r\n  void set_rec(Node *n, ll node_l, ll node_r, ll idx, const X &x)\
-    \ {\r\n    if (node_r - node_l == 1) {\r\n      n->x = x;\r\n      return;\r\n\
-    \    }\r\n    ll node_m = (node_l + node_r) / 2;\r\n\r\n    if (idx < node_m)\
-    \ {\r\n      if (!(n->l)) n->l = new_node(node_l, node_m);\r\n      set_rec(n->l,\
-    \ node_l, node_m, idx, x);\r\n    } else {\r\n      if (!(n->r)) n->r = new_node(node_m,\
-    \ node_r);\r\n      set_rec(n->r, node_m, node_r, idx, x);\r\n    }\r\n    X xl\
-    \ = (n->l ? (n->l)->x : Monoid::unit());\r\n    X xr = (n->r ? (n->r)->x : Monoid::unit());\r\
-    \n    n->x = Monoid::op(xl, xr);\r\n  }\r\n\r\n  void apply_at_rec(Node *n, ll\
+    \n  function<X(ll, ll)> default_fn;\r\n\r\n  Dynamic_SegTree(ll L, ll R)\r\n \
+    \     : Dynamic_SegTree(L, R, [](ll L, ll R){return Monoid::unit();}) {}\r\n\r\
+    \n  Dynamic_SegTree(ll L, ll R, function<X(ll, ll)> f)\r\n      : pid(0), L(L),\
+    \ R(R), default_fn(f) {\r\n    pool = new Node[NODES];\r\n    root = new_node(L,\
+    \ R);\r\n  }\r\n\r\n  void reset() {\r\n    pid = 0;\r\n    root = new_node(L,\
+    \ R);\r\n  }\r\n\r\n  void set(ll i, const X &x) {\r\n    assert(L <= i && i <\
+    \ R);\r\n    set_rec(root, L, R, i, x);\r\n  }\r\n\r\n  void multiply(ll i, const\
+    \ X &x) {\r\n    assert(L <= i && i < R);\r\n    multiply_rec(root, L, R, i, x);\r\
+    \n  }\r\n\r\n  X prod(ll l, ll r) {\r\n    assert(L <= l && l <= r && r <= R);\r\
+    \n    return prod_rec(root, L, R, l, r);\r\n  }\r\n\r\n  X prod_all() { return\
+    \ root->x; }\r\n\r\n  void debug() {\r\n    auto dfs = [&](auto &dfs, Node *n,\
+    \ ll l, ll r) -> void {\r\n      print(\"lr\", l, r, \"x\", n->x, \"a\", n->a);\r\
+    \n      ll m = (l + r) / 2;\r\n      if (n->l) dfs(dfs, n->l, l, m);\r\n     \
+    \ if (n->r) dfs(dfs, n->r, m, r);\r\n    };\r\n    dfs(dfs, root, L, R);\r\n \
+    \ }\r\n\r\n  template <class F>\r\n  ll max_right(const F &check, ll s) {\r\n\
+    \    assert(L <= s && s <= R && check(Monoid::unit()));\r\n    X p = Monoid::unit();\r\
+    \n    return max_right_rec(root, L, R, check, s, p);\r\n  }\r\n\r\n  template\
+    \ <class F>\r\n  ll min_left(const F &check, ll t) {\r\n    assert(L <= t && t\
+    \ <= R && check(Monoid::unit()));\r\n    X p = Monoid::unit();\r\n    return min_left_rec(root,\
+    \ L, R, check, t, p);\r\n  }\r\n\r\nprivate:\r\n  Node *new_node(ll node_l, ll\
+    \ node_r) {\r\n    pool[pid].x = default_fn(node_l, node_r);\r\n    pool[pid].l\
+    \ = pool[pid].r = nullptr;\r\n    return &(pool[pid++]);\r\n  }\r\n\r\n  void\
+    \ set_rec(Node *n, ll node_l, ll node_r, ll idx, const X &x) {\r\n    if (node_r\
+    \ - node_l == 1) {\r\n      n->x = x;\r\n      return;\r\n    }\r\n    ll node_m\
+    \ = (node_l + node_r) / 2;\r\n\r\n    if (idx < node_m) {\r\n      if (!(n->l))\
+    \ n->l = new_node(node_l, node_m);\r\n      set_rec(n->l, node_l, node_m, idx,\
+    \ x);\r\n    } else {\r\n      if (!(n->r)) n->r = new_node(node_m, node_r);\r\
+    \n      set_rec(n->r, node_m, node_r, idx, x);\r\n    }\r\n    X xl = (n->l ?\
+    \ (n->l)->x : Monoid::unit());\r\n    X xr = (n->r ? (n->r)->x : Monoid::unit());\r\
+    \n    n->x = Monoid::op(xl, xr);\r\n  }\r\n\r\n  void multiply_rec(Node *n, ll\
     \ node_l, ll node_r, ll idx, const X &x) {\r\n    if (node_r - node_l == 1) {\r\
     \n      n->x = Monoid::op(n->x, x);\r\n      return;\r\n    }\r\n    ll node_m\
     \ = (node_l + node_r) / 2;\r\n\r\n    if (idx < node_m) {\r\n      if (!(n->l))\
-    \ n->l = new_node(node_l, node_m);\r\n      apply_at_rec(n->l, node_l, node_m,\
+    \ n->l = new_node(node_l, node_m);\r\n      multiply_rec(n->l, node_l, node_m,\
     \ idx, x);\r\n    } else {\r\n      if (!(n->r)) n->r = new_node(node_m, node_r);\r\
-    \n      apply_at_rec(n->r, node_m, node_r, idx, x);\r\n    }\r\n    X xl = (n->l\
+    \n      multiply_rec(n->r, node_m, node_r, idx, x);\r\n    }\r\n    X xl = (n->l\
     \ ? (n->l)->x : Monoid::unit());\r\n    X xr = (n->r ? (n->r)->x : Monoid::unit());\r\
     \n    n->x = Monoid::op(xl, xr);\r\n  }\r\n\r\n  X prod_rec(Node *n, ll node_l,\
     \ ll node_r, ll l, ll r) {\r\n    chmax(l, node_l);\r\n    chmin(r, node_r);\r\
@@ -151,11 +157,12 @@ data:
   isVerificationFile: false
   path: ds/dynamic_segtree.hpp
   requiredBy: []
-  timestamp: '2022-05-16 18:02:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-05-21 17:43:11+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/789_dseg.test.cpp
   - test/yukicoder/1036_dseg_minleft_maxright.test.cpp
+  - test/yukicoder/1649_dynamic_seg.test.cpp
 documentation_of: ds/dynamic_segtree.hpp
 layout: document
 redirect_from:

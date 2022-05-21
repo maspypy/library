@@ -1,9 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: linalg/characteristic_poly.hpp
-    title: linalg/characteristic_poly.hpp
+  - icon: ':question:'
+    path: ds/dynamic_segtree.hpp
+    title: ds/dynamic_segtree.hpp
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
@@ -20,19 +20,19 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/characteristic_polynomial
+    PROBLEM: https://yukicoder.me/problems/no/1649
     links:
-    - https://judge.yosupo.jp/problem/characteristic_polynomial
-  bundledCode: "#line 1 \"test/library_checker/matrix/charactereistic_poly.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/characteristic_polynomial\"\
-    \r\n#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
-    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
-    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://yukicoder.me/problems/no/1649
+  bundledCode: "#line 1 \"test/yukicoder/1649_dynamic_seg.test.cpp\"\n#define PROBLEM\
+    \ \"https://yukicoder.me/problems/no/1649\"\n#line 1 \"my_template.hpp\"\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -192,41 +192,109 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"mod/modint.hpp\"\ntemplate <u32 mod>\nstruct modint\
-    \ {\n  static constexpr bool is_modint = true;\n  u32 val;\n  constexpr modint(const\
-    \ ll val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val) % mod)\
-    \ % mod) {}\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
-    \  } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
-    \ += p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator-=(const\
-    \ modint &p) {\n    if ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n\
-    \  }\n  modint &operator*=(const modint &p) {\n    val = (u32)(1LL * val * p.val\
-    \ % mod);\n    return *this;\n  }\n  modint &operator/=(const modint &p) {\n \
-    \   *this *= p.inverse();\n    return *this;\n  }\n  modint operator-() const\
-    \ { return modint(get_mod() - val); }\n  modint operator+(const modint &p) const\
-    \ { return modint(*this) += p; }\n  modint operator-(const modint &p) const {\
-    \ return modint(*this) -= p; }\n  modint operator*(const modint &p) const { return\
-    \ modint(*this) *= p; }\n  modint operator/(const modint &p) const { return modint(*this)\
-    \ /= p; }\n  bool operator==(const modint &p) const { return val == p.val; }\n\
-    \  bool operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
-    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
-    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
-    \ return modint(u);\n  }\n  modint pow(int64_t n) const {\n    modint ret(1),\
-    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
-    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr u32 get_mod()\
-    \ { return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr bool is_modint\
-    \ = true;\n  u32 val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t\
-    \ y)\n      : val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y)\
-    \ % get_mod()) % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other)\
-    \ const {\n    return val < other.val;\n  } // To use std::map<ArbitraryModInt,\
-    \ T>\n  static u32 &get_mod() {\n    static u32 mod = 0;\n    return mod;\n  }\n\
-    \  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
-    \ ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
-    \    return *this;\n  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p)\
-    \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
-    \ *this;\n  }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n   \
-    \ unsigned long long a = (unsigned long long)val * p.val;\n    unsigned xh = (unsigned)(a\
-    \ >> 32), xl = (unsigned)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"\
-    =d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n\
+    \ { yes(!t); }\r\n#line 2 \"ds/dynamic_segtree.hpp\"\n\r\n/*\r\n\u30B3\u30F3\u30B9\
+    \u30C8\u30E9\u30AF\u30BF\u306B\u6E21\u3059\u3082\u306E\r\n\u30FBL, R\uFF1A\u6700\
+    \u5927\u306E\u7BC4\u56F2\uFF08root node \u306E\u8868\u3059\u7BC4\u56F2\uFF09\r\
+    \n\u30FBfunction<X(ll,ll)> defulat_fn(l,r)\uFF1A\u521D\u671F\u5024\u3067\u306E\
+    \ [l,r) \u7A4D\u306E\u8A08\u7B97\r\n*/\r\ntemplate <class Monoid, int NODES =\
+    \ 5'000'000>\r\nstruct Dynamic_SegTree {\r\n  using X = typename Monoid::value_type;\r\
+    \n\r\n  struct Node {\r\n    X x;\r\n    Node *l, *r;\r\n    Node() {}\r\n   \
+    \ Node(const X &x) : x(x), l(nullptr), r(nullptr) {}\r\n  };\r\n\r\n  Node *pool;\r\
+    \n  int pid;\r\n  ll L, R;\r\n  Node *root;\r\n  function<X(ll, ll)> default_fn;\r\
+    \n\r\n  Dynamic_SegTree(ll L, ll R)\r\n      : Dynamic_SegTree(L, R, [](ll L,\
+    \ ll R){return Monoid::unit();}) {}\r\n\r\n  Dynamic_SegTree(ll L, ll R, function<X(ll,\
+    \ ll)> f)\r\n      : pid(0), L(L), R(R), default_fn(f) {\r\n    pool = new Node[NODES];\r\
+    \n    root = new_node(L, R);\r\n  }\r\n\r\n  void reset() {\r\n    pid = 0;\r\n\
+    \    root = new_node(L, R);\r\n  }\r\n\r\n  void set(ll i, const X &x) {\r\n \
+    \   assert(L <= i && i < R);\r\n    set_rec(root, L, R, i, x);\r\n  }\r\n\r\n\
+    \  void multiply(ll i, const X &x) {\r\n    assert(L <= i && i < R);\r\n    multiply_rec(root,\
+    \ L, R, i, x);\r\n  }\r\n\r\n  X prod(ll l, ll r) {\r\n    assert(L <= l && l\
+    \ <= r && r <= R);\r\n    return prod_rec(root, L, R, l, r);\r\n  }\r\n\r\n  X\
+    \ prod_all() { return root->x; }\r\n\r\n  void debug() {\r\n    auto dfs = [&](auto\
+    \ &dfs, Node *n, ll l, ll r) -> void {\r\n      print(\"lr\", l, r, \"x\", n->x,\
+    \ \"a\", n->a);\r\n      ll m = (l + r) / 2;\r\n      if (n->l) dfs(dfs, n->l,\
+    \ l, m);\r\n      if (n->r) dfs(dfs, n->r, m, r);\r\n    };\r\n    dfs(dfs, root,\
+    \ L, R);\r\n  }\r\n\r\n  template <class F>\r\n  ll max_right(const F &check,\
+    \ ll s) {\r\n    assert(L <= s && s <= R && check(Monoid::unit()));\r\n    X p\
+    \ = Monoid::unit();\r\n    return max_right_rec(root, L, R, check, s, p);\r\n\
+    \  }\r\n\r\n  template <class F>\r\n  ll min_left(const F &check, ll t) {\r\n\
+    \    assert(L <= t && t <= R && check(Monoid::unit()));\r\n    X p = Monoid::unit();\r\
+    \n    return min_left_rec(root, L, R, check, t, p);\r\n  }\r\n\r\nprivate:\r\n\
+    \  Node *new_node(ll node_l, ll node_r) {\r\n    pool[pid].x = default_fn(node_l,\
+    \ node_r);\r\n    pool[pid].l = pool[pid].r = nullptr;\r\n    return &(pool[pid++]);\r\
+    \n  }\r\n\r\n  void set_rec(Node *n, ll node_l, ll node_r, ll idx, const X &x)\
+    \ {\r\n    if (node_r - node_l == 1) {\r\n      n->x = x;\r\n      return;\r\n\
+    \    }\r\n    ll node_m = (node_l + node_r) / 2;\r\n\r\n    if (idx < node_m)\
+    \ {\r\n      if (!(n->l)) n->l = new_node(node_l, node_m);\r\n      set_rec(n->l,\
+    \ node_l, node_m, idx, x);\r\n    } else {\r\n      if (!(n->r)) n->r = new_node(node_m,\
+    \ node_r);\r\n      set_rec(n->r, node_m, node_r, idx, x);\r\n    }\r\n    X xl\
+    \ = (n->l ? (n->l)->x : Monoid::unit());\r\n    X xr = (n->r ? (n->r)->x : Monoid::unit());\r\
+    \n    n->x = Monoid::op(xl, xr);\r\n  }\r\n\r\n  void multiply_rec(Node *n, ll\
+    \ node_l, ll node_r, ll idx, const X &x) {\r\n    if (node_r - node_l == 1) {\r\
+    \n      n->x = Monoid::op(n->x, x);\r\n      return;\r\n    }\r\n    ll node_m\
+    \ = (node_l + node_r) / 2;\r\n\r\n    if (idx < node_m) {\r\n      if (!(n->l))\
+    \ n->l = new_node(node_l, node_m);\r\n      multiply_rec(n->l, node_l, node_m,\
+    \ idx, x);\r\n    } else {\r\n      if (!(n->r)) n->r = new_node(node_m, node_r);\r\
+    \n      multiply_rec(n->r, node_m, node_r, idx, x);\r\n    }\r\n    X xl = (n->l\
+    \ ? (n->l)->x : Monoid::unit());\r\n    X xr = (n->r ? (n->r)->x : Monoid::unit());\r\
+    \n    n->x = Monoid::op(xl, xr);\r\n  }\r\n\r\n  X prod_rec(Node *n, ll node_l,\
+    \ ll node_r, ll l, ll r) {\r\n    chmax(l, node_l);\r\n    chmin(r, node_r);\r\
+    \n    if (l >= r) return Monoid::unit();\r\n    if (l == node_l && r == node_r)\
+    \ return n->x;\r\n    ll node_m = (node_l + node_r) / 2;\r\n    X xl = (n->l ?\
+    \ prod_rec(n->l, node_l, node_m, l, r) : Monoid::unit());\r\n    X xr = (n->r\
+    \ ? prod_rec(n->r, node_m, node_r, l, r) : Monoid::unit());\r\n    return Monoid::op(xl,\
+    \ xr);\r\n  }\r\n\r\n  template <typename F>\r\n  ll max_right_rec(Node *n, ll\
+    \ node_l, ll node_r, const F &check, ll s, X &p) {\r\n    if (node_r <= s) return\
+    \ R;\r\n    if (s <= node_l) {\r\n      X x = Monoid::op(p, n->x);\r\n      if\
+    \ (check(x)) {\r\n        p = x;\r\n        return R;\r\n      }\r\n    }\r\n\
+    \    if (node_r - node_l == 1) return node_l;\r\n    ll node_m = (node_l + node_r)\
+    \ / 2;\r\n    if (!(n->l)) n->l = new_node(node_l, node_m);\r\n    ll res = max_right_rec(n->l,\
+    \ node_l, node_m, check, s, p);\r\n    if (res != R) return res;\r\n    if (!(n->r))\
+    \ n->r = new_node(node_m, node_r);\r\n    return max_right_rec(n->r, node_m, node_r,\
+    \ check, s, p);\r\n  }\r\n\r\n  template <typename F>\r\n  ll min_left_rec(Node\
+    \ *n, ll node_l, ll node_r, const F &check, ll t, X &p) {\r\n    if (t <= node_l)\
+    \ return L;\r\n    if (node_r <= t) {\r\n      X x = Monoid::op(n->x, p);\r\n\
+    \      if (check(x)) {\r\n        p = x;\r\n        return L;\r\n      }\r\n \
+    \   }\r\n    if (node_r - node_l == 1) return node_r;\r\n    ll node_m = (node_l\
+    \ + node_r) / 2;\r\n    if (!(n->r)) n->r = new_node(node_m, node_r);\r\n    ll\
+    \ res = min_left_rec(n->r, node_m, node_r, check, t, p);\r\n    if (res != L)\
+    \ return res;\r\n    if (!(n->l)) n->l = new_node(node_l, node_m);\r\n    return\
+    \ min_left_rec(n->l, node_l, node_m, check, t, p);\r\n  }\r\n};\r\n#line 2 \"\
+    mod/modint.hpp\"\ntemplate <u32 mod>\nstruct modint {\n  static constexpr bool\
+    \ is_modint = true;\n  u32 val;\n  constexpr modint(const ll val = 0) noexcept\n\
+    \      : val(val >= 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const\
+    \ modint &other) const {\n    return val < other.val;\n  } // To use std::map\n\
+    \  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -=\
+    \ mod;\n    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if\
+    \ ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint\
+    \ &operator*=(const modint &p) {\n    val = (u32)(1LL * val * p.val % mod);\n\
+    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
+    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint(get_mod()\
+    \ - val); }\n  modint operator+(const modint &p) const { return modint(*this)\
+    \ += p; }\n  modint operator-(const modint &p) const { return modint(*this) -=\
+    \ p; }\n  modint operator*(const modint &p) const { return modint(*this) *= p;\
+    \ }\n  modint operator/(const modint &p) const { return modint(*this) /= p; }\n\
+    \  bool operator==(const modint &p) const { return val == p.val; }\n  bool operator!=(const\
+    \ modint &p) const { return val != p.val; }\n  modint inverse() const {\n    int\
+    \ a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n\
+    \      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n\
+    \  }\n  modint pow(int64_t n) const {\n    modint ret(1), mul(val);\n    while\
+    \ (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n\
+    \    }\n    return ret;\n  }\n  static constexpr u32 get_mod() { return mod; }\n\
+    };\n\nstruct ArbitraryModInt {\n  static constexpr bool is_modint = true;\n  u32\
+    \ val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t y)\n      :\
+    \ val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y) % get_mod())\
+    \ % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other) const {\n  \
+    \  return val < other.val;\n  } // To use std::map<ArbitraryModInt, T>\n  static\
+    \ u32 &get_mod() {\n    static u32 mod = 0;\n    return mod;\n  }\n  static void\
+    \ set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const ArbitraryModInt\
+    \ &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n    return *this;\n\
+    \  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p) {\n    if ((val\
+    \ += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return *this;\n \
+    \ }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n    unsigned long\
+    \ long a = (unsigned long long)val * p.val;\n    unsigned xh = (unsigned)(a >>\
+    \ 32), xl = (unsigned)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"\
+    (m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n\
     \  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n    *this *=\
     \ p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-() const {\
     \ return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
@@ -264,57 +332,52 @@ data:
     \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
     \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
     }\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    using amint = ArbitraryModInt;\n#line 1 \"linalg/characteristic_poly.hpp\"\ntemplate\
-    \ <typename T>\r\nvoid to_Hessenberg_matrix(vc<vc<T>>& A) {\r\n  /*\r\n  P^{-1}AP\
-    \ \u306E\u5F62\u306E\u5909\u63DB\u3067\u3001Hessenberg \u884C\u5217\u306B\u5909\
-    \u5F62\u3059\u308B\u3002\r\n  \u7279\u5B9A\u591A\u9805\u5F0F\u306E\u8A08\u7B97\
-    \u306B\u7528\u3044\u308B\u3053\u3068\u304C\u3067\u304D\u308B\u3002\r\n  */\r\n\
-    \  int n = len(A);\r\n  FOR(k, n - 2) {\r\n    FOR3(i, k + 1, n) if (A[i][k] !=\
-    \ 0) {\r\n      if (i != k + 1) {\r\n        swap(A[i], A[k + 1]);\r\n       \
-    \ FOR(j, n) swap(A[j][i], A[j][k + 1]);\r\n      }\r\n      break;\r\n    }\r\n\
-    \    if (A[k + 1][k] == 0) continue;\r\n    FOR3(i, k + 2, n) {\r\n      T c =\
-    \ A[i][k] / A[k + 1][k];\r\n      // i \u884C\u76EE -= k+1 \u884C\u76EE * c\r\n\
-    \      FOR(j, n) A[i][j] -= A[k + 1][j] * c;\r\n      // k+1 \u5217\u76EE += i\
-    \ \u5217\u76EE * c\r\n      FOR(j, n) A[j][k + 1] += A[j][i] * c;\r\n    }\r\n\
-    \  }\r\n}\r\n\r\ntemplate <typename T>\r\nvc<T> characteristic_poly(vc<vc<T>>\
-    \ A) {\r\n  /*\r\n  \u30FBHessenberg \u884C\u5217\u306B\u5909\u5F62\r\n  \u30FB\
-    Hessenberg \u884C\u5217\u306E\u884C\u5217\u5F0F\u306F\u3001\u6700\u5F8C\u306E\u5217\
-    \u3067\u5834\u5408\u5206\u3051\u3059\u308C\u3070 dp \u3067\u304D\u308B\r\n  */\r\
-    \n  int n = len(A);\r\n  to_Hessenberg_matrix(A);\r\n  vc<vc<T>> DP(n + 1);\r\n\
-    \  DP[0] = {1};\r\n  FOR(k, n) {\r\n    DP[k + 1].resize(k + 2);\r\n    auto&\
-    \ dp = DP[k + 1];\r\n    // (k, k) \u6210\u5206\u3092\u4F7F\u3046\u5834\u5408\r\
-    \n    FOR(i, len(DP[k])) dp[i + 1] += DP[k][i];\r\n    FOR(i, len(DP[k])) dp[i]\
-    \ -= DP[k][i] * A[k][k];\r\n    // \u4E0B\u5074\u5BFE\u89D2\u306E\u7DCF\u7A4D\u3092\
-    \u7BA1\u7406\r\n    T prod = 1;\r\n    FOR_R(i, k) {\r\n      // (i, k) \u6210\
-    \u5206\u3092\u4F7F\u3046\u5834\u5408\r\n      prod *= A[i + 1][i];\r\n      T\
-    \ c = prod * A[i][k];\r\n      // DP[i] \u306E c \u500D\u3092\u52A0\u7B97\r\n\
-    \      FOR(j, len(DP[i])) dp[j] -= DP[i][j] * c;\r\n    }\r\n  }\r\n  return DP[n];\r\
-    \n}\r\n#line 6 \"test/library_checker/matrix/charactereistic_poly.test.cpp\"\n\
-    \r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VV(mint, A,\
-    \ N, N);\r\n  auto f = characteristic_poly(A);\r\n  print(f);\r\n}\r\n\r\nsigned\
-    \ main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout\
-    \ << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/characteristic_polynomial\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"mod/modint.hpp\"\
-    \r\n#include \"linalg/characteristic_poly.hpp\"\r\n\r\nusing mint = modint998;\r\
-    \n\r\nvoid solve() {\r\n  LL(N);\r\n  VV(mint, A, N, N);\r\n  auto f = characteristic_poly(A);\r\
-    \n  print(f);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}"
+    using amint = ArbitraryModInt;\n#line 6 \"test/yukicoder/1649_dynamic_seg.test.cpp\"\
+    \n\nusing mint = modint998;\n\nstruct Mono {\n  using value_type = tuple<mint,\
+    \ mint, mint>;\n  using X = value_type;\n  static X op(X x, X y) {\n    auto&\
+    \ [x0, x1, x2] = x;\n    auto& [y0, y1, y2] = y;\n    return {x0 + y0, x1 + y1,\
+    \ x2 + y2};\n  }\n  static constexpr X unit() { return {mint(0), mint(0), mint(0)};\
+    \ }\n  static constexpr bool commute = true;\n};\n\nvoid solve() {\n  LL(N);\n\
+    \  VEC(pi, XY, N);\n  ll LIM = 1 << 30;\n\n  Dynamic_SegTree<Mono, 8000000> seg(-LIM,\
+    \ LIM);\n  mint ANS = 0;\n  FOR(4) {\n    for (auto&& [x, y]: XY) tie(x, y) =\
+    \ mp(-y, x);\n    seg.reset();\n    sort(all(XY));\n    for (auto&& [x, y]: XY)\
+    \ {\n      mint x2 = (x + y) * (x + y);\n      mint x1 = x + y;\n      mint x0\
+    \ = 1;\n      auto [s0, s1, s2] = seg.prod(-LIM, y);\n      ANS += x2 * s0 - mint(2)\
+    \ * x1 * s1 + x0 * s2;\n      seg.multiply(y, {x0, x1, x2});\n    }\n  }\n  ANS\
+    \ /= mint(2);\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
+    \  return 0;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1649\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"ds/dynamic_segtree.hpp\"\n#include \"\
+    mod/modint.hpp\"\n\nusing mint = modint998;\n\nstruct Mono {\n  using value_type\
+    \ = tuple<mint, mint, mint>;\n  using X = value_type;\n  static X op(X x, X y)\
+    \ {\n    auto& [x0, x1, x2] = x;\n    auto& [y0, y1, y2] = y;\n    return {x0\
+    \ + y0, x1 + y1, x2 + y2};\n  }\n  static constexpr X unit() { return {mint(0),\
+    \ mint(0), mint(0)}; }\n  static constexpr bool commute = true;\n};\n\nvoid solve()\
+    \ {\n  LL(N);\n  VEC(pi, XY, N);\n  ll LIM = 1 << 30;\n\n  Dynamic_SegTree<Mono,\
+    \ 8000000> seg(-LIM, LIM);\n  mint ANS = 0;\n  FOR(4) {\n    for (auto&& [x, y]:\
+    \ XY) tie(x, y) = mp(-y, x);\n    seg.reset();\n    sort(all(XY));\n    for (auto&&\
+    \ [x, y]: XY) {\n      mint x2 = (x + y) * (x + y);\n      mint x1 = x + y;\n\
+    \      mint x0 = 1;\n      auto [s0, s1, s2] = seg.prod(-LIM, y);\n      ANS +=\
+    \ x2 * s0 - mint(2) * x1 * s1 + x0 * s2;\n      seg.multiply(y, {x0, x1, x2});\n\
+    \    }\n  }\n  ANS /= mint(2);\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
+  - ds/dynamic_segtree.hpp
   - mod/modint.hpp
-  - linalg/characteristic_poly.hpp
   isVerificationFile: true
-  path: test/library_checker/matrix/charactereistic_poly.test.cpp
+  path: test/yukicoder/1649_dynamic_seg.test.cpp
   requiredBy: []
-  timestamp: '2022-05-13 20:44:41+09:00'
+  timestamp: '2022-05-21 17:44:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library_checker/matrix/charactereistic_poly.test.cpp
+documentation_of: test/yukicoder/1649_dynamic_seg.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/matrix/charactereistic_poly.test.cpp
-- /verify/test/library_checker/matrix/charactereistic_poly.test.cpp.html
-title: test/library_checker/matrix/charactereistic_poly.test.cpp
+- /verify/test/yukicoder/1649_dynamic_seg.test.cpp
+- /verify/test/yukicoder/1649_dynamic_seg.test.cpp.html
+title: test/yukicoder/1649_dynamic_seg.test.cpp
 ---

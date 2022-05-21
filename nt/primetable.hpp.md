@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':heavy_check_mark:'
@@ -38,6 +38,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/stirling_number_1.hpp
     title: seq/stirling_number_1.hpp
+  - icon: ':x:'
+    path: seq/stirling_number_2.hpp
+    title: seq/stirling_number_2.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_D_eulerphi.test.cpp
@@ -57,6 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
+    title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
@@ -75,9 +81,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1666_integer_kth_root.test.cpp
     title: test/yukicoder/1666_integer_kth_root.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\nvc<ll> primetable(int LIM) {\n  ++LIM;\n\
@@ -114,16 +120,18 @@ data:
   - nt/euler_phi.hpp
   - nt/lcm_convolution.hpp
   - nt/primesum.hpp
+  - seq/stirling_number_2.hpp
   - seq/stirling_number_1.hpp
   - mod/tetration.hpp
   - mod/powertable.hpp
   - poly/poly_taylor_shift.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1666_integer_kth_root.test.cpp
   - test/aoj/NTL_1_D_eulerphi.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
+  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/gcd_convolution.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp

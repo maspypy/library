@@ -38,23 +38,25 @@ data:
     \n  X operator[](int i) { return dat[size + i]; }\n\n  void update(int i) { dat[i]\
     \ = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n\n  void set(int i, const X& x)\
     \ {\n    assert(i < n);\n    dat[i += size] = x;\n    while (i >>= 1) update(i);\n\
-    \  }\n\n  X prod(int L, int R) {\n    assert(L <= R);\n    assert(R <= n);\n \
-    \   X vl = Monoid::unit(), vr = Monoid::unit();\n    L += size, R += size;\n \
-    \   while (L < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if\
-    \ (R & 1) vr = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n   \
-    \ return Monoid::op(vl, vr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  template\
-    \ <class F>\n  int max_right(F &check, int L) {\n    assert(0 <= L && L <= n &&\
-    \ check(Monoid::unit()));\n    if (L == n) return n;\n    L += size;\n    X sm\
-    \ = Monoid::unit();\n    do {\n      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm,\
-    \ dat[L]))) {\n        while (L < size) {\n          L = 2 * L;\n          if\
-    \ (check(Monoid::op(sm, dat[L]))) {\n            sm = Monoid::op(sm, dat[L]);\n\
-    \            L++;\n          }\n        }\n        return L - size;\n      }\n\
-    \      sm = Monoid::op(sm, dat[L]);\n      L++;\n    } while ((L & -L) != L);\n\
-    \    return n;\n  }\n\n  template <class F>\n  int min_left(F &check, int R) {\n\
-    \    assert(0 <= R && R <= n && check(Monoid::unit()));\n    if (R == 0) return\
-    \ 0;\n    R += size;\n    X sm = Monoid::unit();\n    do {\n      --R;\n     \
-    \ while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R], sm)))\
-    \ {\n        while (R < size) {\n          R = 2 * R + 1;\n          if (check(Monoid::op(dat[R],\
+    \  }\n\n  void multiply(int i, const X& x){\n    assert(i < n);\n    i += size;\n\
+    \    dat[i] = Monoid::op(dat[i], x);\n    while (i >>= 1) update(i);\n  }\n\n\
+    \  X prod(int L, int R) {\n    assert(L <= R);\n    assert(R <= n);\n    X vl\
+    \ = Monoid::unit(), vr = Monoid::unit();\n    L += size, R += size;\n    while\
+    \ (L < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1)\
+    \ vr = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl,\
+    \ vr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  template <class F>\n  int\
+    \ max_right(F &check, int L) {\n    assert(0 <= L && L <= n && check(Monoid::unit()));\n\
+    \    if (L == n) return n;\n    L += size;\n    X sm = Monoid::unit();\n    do\
+    \ {\n      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L])))\
+    \ {\n        while (L < size) {\n          L = 2 * L;\n          if (check(Monoid::op(sm,\
+    \ dat[L]))) {\n            sm = Monoid::op(sm, dat[L]);\n            L++;\n  \
+    \        }\n        }\n        return L - size;\n      }\n      sm = Monoid::op(sm,\
+    \ dat[L]);\n      L++;\n    } while ((L & -L) != L);\n    return n;\n  }\n\n \
+    \ template <class F>\n  int min_left(F &check, int R) {\n    assert(0 <= R &&\
+    \ R <= n && check(Monoid::unit()));\n    if (R == 0) return 0;\n    R += size;\n\
+    \    X sm = Monoid::unit();\n    do {\n      --R;\n      while (R > 1 && (R %\
+    \ 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R], sm))) {\n        while (R\
+    \ < size) {\n          R = 2 * R + 1;\n          if (check(Monoid::op(dat[R],\
     \ sm))) {\n            sm = Monoid::op(dat[R], sm);\n            R--;\n      \
     \    }\n        }\n        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R],\
     \ sm);\n    } while ((R & -R) != R);\n    return 0;\n  }\n\n  // \u30E2\u30CE\u30A4\
@@ -258,7 +260,7 @@ data:
   isVerificationFile: false
   path: graph/treegroup.hpp
   requiredBy: []
-  timestamp: '2022-05-16 18:02:34+09:00'
+  timestamp: '2022-05-21 17:43:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
