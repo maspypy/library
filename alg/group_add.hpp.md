@@ -33,6 +33,9 @@ data:
     path: dp/inversion.hpp
     title: dp/inversion.hpp
   - icon: ':heavy_check_mark:'
+    path: ds/cumsum2d.hpp
+    title: ds/cumsum2d.hpp
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   - icon: ':heavy_check_mark:'
@@ -136,6 +139,9 @@ data:
     path: test/yukicoder/1097_doubling.test.cpp
     title: test/yukicoder/1097_doubling.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1141_cumsum2d.test.cpp
+    title: test/yukicoder/1141_cumsum2d.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1234_rmq.test.cpp
     title: test/yukicoder/1234_rmq.test.cpp
   - icon: ':heavy_check_mark:'
@@ -191,6 +197,7 @@ data:
   - ds/fenwick2d_dense.hpp
   - ds/fenwickraq.hpp
   - ds/point_add_rectangle_sum.hpp
+  - ds/cumsum2d.hpp
   - ds/fenwick.hpp
   - ds/rectangleunion.hpp
   - ds/fenwick2d.hpp
@@ -220,6 +227,7 @@ data:
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/1490_rect_add_rect_sum.test.cpp
   - test/yukicoder/789_dseg_lazy.test.cpp
+  - test/yukicoder/1141_cumsum2d.test.cpp
   - test/aoj/DSL_2_G_fenwick_raq.test.cpp
   - test/aoj/ALDS1_2_A_inversion.test.cpp
   - test/aoj/DSL_1_B_weighteduf.test.cpp
