@@ -36,6 +36,13 @@ struct SegTree {
     while (i >>= 1) update(i);
   }
 
+  void multiply(int i, const X& x){
+    assert(i < n);
+    i += size;
+    dat[i] = Monoid::op(dat[i], x);
+    while (i >>= 1) update(i);
+  }
+
   X prod(int L, int R) {
     assert(L <= R);
     assert(R <= n);
