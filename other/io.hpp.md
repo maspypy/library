@@ -520,6 +520,9 @@ data:
     path: test/yukicoder/1234_rmq.test.cpp
     title: test/yukicoder/1234_rmq.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1269_aho.test.cpp
+    title: test/yukicoder/1269_aho.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1288_mcf_dag_negative.test.cpp
     title: test/yukicoder/1288_mcf_dag_negative.test.cpp
   - icon: ':heavy_check_mark:'
@@ -928,6 +931,7 @@ data:
   - test/yukicoder/1320_mincostcycle.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/1418_rerooting.test.cpp
+  - test/yukicoder/1269_aho.test.cpp
   - test/yukicoder/1301_mcf.test.cpp
   - test/yukicoder/1170_range_to_range.test.cpp
   - test/yukicoder/1844_interpolate_c_rec.test.cpp

@@ -277,6 +277,9 @@ data:
     path: test/yukicoder/1145_sum_of_powers.test.cpp
     title: test/yukicoder/1145_sum_of_powers.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1269_aho.test.cpp
+    title: test/yukicoder/1269_aho.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1321_surj.test.cpp
     title: test/yukicoder/1321_surj.test.cpp
   - icon: ':heavy_check_mark:'
@@ -511,6 +514,7 @@ data:
   - test/yukicoder/1145_sum_of_powers.test.cpp
   - test/yukicoder/749_lazysegtree.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
+  - test/yukicoder/1269_aho.test.cpp
   - test/yukicoder/1844_interpolate_c_rec.test.cpp
   - test/yukicoder/502_p_rec.test.cpp
   - test/yukicoder/1649_dynamic_seg.test.cpp

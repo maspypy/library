@@ -893,7 +893,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/suffixarray.hpp
       title: string/suffixarray.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: string/trie.hpp
       title: string/trie.hpp
     - icon: ':heavy_check_mark:'
@@ -1453,6 +1453,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1234_rmq.test.cpp
       title: test/yukicoder/1234_rmq.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1269_aho.test.cpp
+      title: test/yukicoder/1269_aho.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1288_mcf_dag_negative.test.cpp
       title: test/yukicoder/1288_mcf_dag_negative.test.cpp
