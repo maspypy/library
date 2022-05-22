@@ -5,13 +5,12 @@
 #include "alg/group_add.hpp"
 
 void solve() {
-  auto f = [&](ll L, ll R) -> ll { return 0; };
-  Dynamic_SegTree<Group_Add<ll>> seg(0, 1LL << 30, f);
+  Dynamic_SegTree<Group_Add<ll>> seg(0, 1LL << 30);
   LL(Q);
   ll ANS = 0;
   FOR(Q) {
     LL(t, a, b);
-    if (t == 0) { seg.apply_at(a, b); }
+    if (t == 0) { seg.multiply(a, b); }
     if (t == 1) { ANS += seg.prod(a, b + 1); }
   }
   print(ANS);
