@@ -559,6 +559,9 @@ data:
     path: test/yukicoder/1500_interpolate_linear.test.cpp
     title: test/yukicoder/1500_interpolate_linear.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1548_power_sums.test.cpp
+    title: test/yukicoder/1548_power_sums.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1593_gaussian.test.cpp
     title: test/yukicoder/1593_gaussian.test.cpp
   - icon: ':heavy_check_mark:'
@@ -935,6 +938,7 @@ data:
   - test/yukicoder/1301_mcf.test.cpp
   - test/yukicoder/1170_range_to_range.test.cpp
   - test/yukicoder/1844_interpolate_c_rec.test.cpp
+  - test/yukicoder/1548_power_sums.test.cpp
   - test/yukicoder/1332_range_freq.test.cpp
   - test/yukicoder/502_p_rec.test.cpp
   - test/yukicoder/1117_swag.test.cpp

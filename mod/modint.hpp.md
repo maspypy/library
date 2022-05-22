@@ -286,6 +286,9 @@ data:
     path: test/yukicoder/1500_interpolate_linear.test.cpp
     title: test/yukicoder/1500_interpolate_linear.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1548_power_sums.test.cpp
+    title: test/yukicoder/1548_power_sums.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1618_conv_ll.test.cpp
     title: test/yukicoder/1618_conv_ll.test.cpp
   - icon: ':heavy_check_mark:'
@@ -516,6 +519,7 @@ data:
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/1269_aho.test.cpp
   - test/yukicoder/1844_interpolate_c_rec.test.cpp
+  - test/yukicoder/1548_power_sums.test.cpp
   - test/yukicoder/502_p_rec.test.cpp
   - test/yukicoder/1649_dynamic_seg.test.cpp
   - test/yukicoder/1141_cumsum2d.test.cpp

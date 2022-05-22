@@ -16,6 +16,9 @@ data:
       path: alg/group_mul.hpp
       title: alg/group_mul.hpp
     - icon: ':heavy_check_mark:'
+      path: alg/group_power_sums.hpp
+      title: alg/group_power_sums.hpp
+    - icon: ':heavy_check_mark:'
       path: alg/group_reverse.hpp
       title: alg/group_reverse.hpp
     - icon: ':heavy_check_mark:'
@@ -75,6 +78,9 @@ data:
     - icon: ':warning:'
       path: alg/lazy_minmax_add.hpp
       title: alg/lazy_minmax_add.hpp
+    - icon: ':heavy_check_mark:'
+      path: alg/lazy_powersums_set.hpp
+      title: alg/lazy_powersums_set.hpp
     - icon: ':heavy_check_mark:'
       path: alg/lazy_reverse.hpp
       title: alg/lazy_reverse.hpp
@@ -1492,6 +1498,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1500_interpolate_linear.test.cpp
       title: test/yukicoder/1500_interpolate_linear.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1548_power_sums.test.cpp
+      title: test/yukicoder/1548_power_sums.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1593_gaussian.test.cpp
       title: test/yukicoder/1593_gaussian.test.cpp
