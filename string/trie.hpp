@@ -1,4 +1,4 @@
-template <int sigma, int off='a'>
+template <int sigma>
 struct Trie {
   int n_node;
   vector<array<int, sigma>> TO;
@@ -7,22 +7,13 @@ struct Trie {
   vector<int> BFS;
   vector<int> FAIL;
 
-  Trie()
-      : n_node(1), TO({array<int, sigma>()}), PAR({-1}), node_value({0}) {
-        FOR(s, sigma) TO[0][s] = -1;
-      }
-
-  int create_node() {
-    TO.eb(array<int, sigma>());
-    FOR(s, sigma) TO.back()[s] = -1;
-    PAR.eb(-1);
-    node_value.eb(0);
-    return n_node++;
+  Trie() : n_node(1), TO({array<int, sigma>()}), PAR({-1}), node_value({0}) {
+    FOR(s, sigma) TO[0][s] = -1;
   }
 
-  int add(string S, ll val = 1) {
+  int add(string S, ll val = 1, int off = 'a') {
     int v = 0;
-    for (auto&& ss : S) {
+    for (auto&& ss: S) {
       int s = ss - off;
       if (TO[v][s] == -1) {
         TO[v][s] = create_node();
@@ -36,7 +27,7 @@ struct Trie {
 
   int add(vector<int> S, ll val = 1) {
     int v = 0;
-    for (auto&& s : S) {
+    for (auto&& s: S) {
       if (TO[v][s] == -1) {
         TO[v][s] = create_node();
         PAR[TO[v][s]] = v;
@@ -71,12 +62,21 @@ struct Trie {
           FAIL[w] = TO[f][s];
       }
     }
-    FORIN(v, BFS) {
+    for (auto&& v: BFS) {
       FOR(s, sigma) if (TO[v][s] == -1) {
         int f = FAIL[v];
         TO[v][s] = TO[f][s];
         if (TO[v][s] == -1) TO[v][s] = 0;
       }
     }
+  }
+
+private:
+  int create_node() {
+    TO.eb(array<int, sigma>());
+    FOR(s, sigma) TO.back()[s] = -1;
+    PAR.eb(-1);
+    node_value.eb(0);
+    return n_node++;
   }
 };
