@@ -89,12 +89,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/stirling_number_1.hpp
     title: seq/stirling_number_1.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/stirling_number_2.hpp
     title: seq/stirling_number_2.hpp
   - icon: ':heavy_check_mark:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/surjection.hpp
+    title: seq/surjection.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_huge.test.cpp
@@ -196,6 +199,9 @@ data:
     path: test/yukicoder/1145_sum_of_powers.test.cpp
     title: test/yukicoder/1145_sum_of_powers.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1321_surj.test.cpp
+    title: test/yukicoder/1321_surj.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1500_interpolate_linear.test.cpp
     title: test/yukicoder/1500_interpolate_linear.test.cpp
   - icon: ':heavy_check_mark:'
@@ -229,6 +235,7 @@ data:
   requiredBy:
   - nt/multiplicative_convolution_mod2n.hpp
   - nt/crt.hpp
+  - seq/surjection.hpp
   - seq/stirling_number_2.hpp
   - seq/sum_of_powers.hpp
   - seq/kth_term_of_p_recursive.hpp
@@ -261,6 +268,7 @@ data:
   timestamp: '2022-05-19 23:05:54+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1321_surj.test.cpp
   - test/yukicoder/1500_interpolate_linear.test.cpp
   - test/yukicoder/187_crt.test.cpp
   - test/yukicoder/1145_sum_of_powers.test.cpp

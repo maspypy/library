@@ -11,9 +11,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/stirling_number_1.hpp
     title: seq/stirling_number_1.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/stirling_number_2.hpp
     title: seq/stirling_number_2.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/surjection.hpp
+    title: seq/surjection.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
@@ -30,6 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
     title: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1321_surj.test.cpp
+    title: test/yukicoder/1321_surj.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -70,12 +76,14 @@ data:
   isVerificationFile: false
   path: mod/powertable.hpp
   requiredBy:
+  - seq/surjection.hpp
   - seq/stirling_number_2.hpp
   - seq/stirling_number_1.hpp
   - poly/poly_taylor_shift.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1321_surj.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp

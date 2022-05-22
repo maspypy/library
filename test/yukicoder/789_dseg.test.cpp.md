@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/dynamic_segtree.hpp
     title: ds/dynamic_segtree.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/789
@@ -265,21 +265,19 @@ data:
     \n  static constexpr X power(const X &x, ll n) noexcept { return n * x; }\r\n\
     \  static constexpr X unit() { return X(0); }\r\n  static constexpr bool commute\
     \ = true;\r\n};\r\n#line 6 \"test/yukicoder/789_dseg.test.cpp\"\n\nvoid solve()\
-    \ {\n  auto f = [&](ll L, ll R) -> ll { return 0; };\n  Dynamic_SegTree<Group_Add<ll>>\
-    \ seg(0, 1LL << 30, f);\n  LL(Q);\n  ll ANS = 0;\n  FOR(Q) {\n    LL(t, a, b);\n\
-    \    if (t == 0) { seg.apply_at(a, b); }\n    if (t == 1) { ANS += seg.prod(a,\
-    \ b + 1); }\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n \
-    \ ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n \
-    \ // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ {\n  Dynamic_SegTree<Group_Add<ll>> seg(0, 1LL << 30);\n  LL(Q);\n  ll ANS =\
+    \ 0;\n  FOR(Q) {\n    LL(t, a, b);\n    if (t == 0) { seg.multiply(a, b); }\n\
+    \    if (t == 1) { ANS += seg.prod(a, b + 1); }\n  }\n  print(ANS);\n}\n\nsigned\
+    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/789\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"ds/dynamic_segtree.hpp\"\n#include \"\
-    alg/group_add.hpp\"\n\nvoid solve() {\n  auto f = [&](ll L, ll R) -> ll { return\
-    \ 0; };\n  Dynamic_SegTree<Group_Add<ll>> seg(0, 1LL << 30, f);\n  LL(Q);\n  ll\
-    \ ANS = 0;\n  FOR(Q) {\n    LL(t, a, b);\n    if (t == 0) { seg.apply_at(a, b);\
-    \ }\n    if (t == 1) { ANS += seg.prod(a, b + 1); }\n  }\n  print(ANS);\n}\n\n\
-    signed main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout <<\
-    \ setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
-    \ 0;\n}\n"
+    alg/group_add.hpp\"\n\nvoid solve() {\n  Dynamic_SegTree<Group_Add<ll>> seg(0,\
+    \ 1LL << 30);\n  LL(Q);\n  ll ANS = 0;\n  FOR(Q) {\n    LL(t, a, b);\n    if (t\
+    \ == 0) { seg.multiply(a, b); }\n    if (t == 1) { ANS += seg.prod(a, b + 1);\
+    \ }\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -288,8 +286,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/789_dseg.test.cpp
   requiredBy: []
-  timestamp: '2022-05-21 17:43:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-22 15:16:15+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/789_dseg.test.cpp
 layout: document

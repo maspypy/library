@@ -41,9 +41,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/stirling_number_1.hpp
     title: seq/stirling_number_1.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/stirling_number_2.hpp
     title: seq/stirling_number_2.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/surjection.hpp
+    title: seq/surjection.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
@@ -57,6 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1321_surj.test.cpp
+    title: test/yukicoder/1321_surj.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -458,11 +464,13 @@ data:
   isVerificationFile: false
   path: poly/fps_pow.hpp
   requiredBy:
+  - seq/surjection.hpp
   - seq/stirling_number_2.hpp
   - seq/stirling_number_1.hpp
   timestamp: '2022-05-19 23:05:54+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1321_surj.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/polynomial/pow_of_fps.test.cpp

@@ -207,25 +207,27 @@ data:
     \u30AB\u30C3\u30C8\u306E\u5024\u304A\u3088\u3073\u3001\u30AB\u30C3\u30C8\u3092\
     \u8868\u3059 01 \u5217\u3092\u8FD4\u3059\n  pair<Cap, vc<int>> cut(int source,\
     \ int sink) {\n    Cap f = flow(source, sink);\n    vc<int> res(N);\n    FOR(v,\
-    \ N) res[v] = (level[v] >= 0 ? 0 : 1);\n    return {f, res};\n  }\n\nprivate:\n\
-    \  bool set_level(int source, int sink) {\n    level.assign(N, -1);\n    level[source]\
-    \ = 0;\n    queue<int> que;\n    que.push(source);\n    while (!que.empty()) {\n\
-    \      int v = que.front();\n      que.pop();\n      for (auto&& e: G[v]) {\n\
-    \        if (e.cap > 0 && level[e.to] == -1) {\n          level[e.to] = level[v]\
-    \ + 1;\n          if (e.to == sink) return true;\n          que.push(e.to);\n\
-    \        }\n      }\n    }\n    return false;\n  }\n\n  Cap flow_dfs(int v, int\
-    \ sink, Cap lim) {\n    if (v == sink) return lim;\n    Cap res = 0;\n    for\
-    \ (int& i = prog[v]; i < (int)G[v].size(); ++i) {\n      auto& e = G[v][i];\n\
-    \      if (e.cap > 0 && level[e.to] == level[v] + 1) {\n        Cap a = flow_dfs(e.to,\
-    \ sink, min(lim, e.cap));\n        if (a > 0) {\n          e.cap -= a;\n     \
-    \     G[e.to][e.rev].cap += a;\n          res += a;\n          lim -= a;\n   \
-    \       if (lim == 0) break;\n        }\n      }\n    }\n    return res;\n  }\n\
-    };\n#line 7 \"test/aoj/GRL_6_A_maxflow.test.cpp\"\n\r\nvoid solve() {\r\n  LL(N,\
-    \ M);\r\n  MaxFlowGraph<int> G(N, 1<<30);\r\n  FOR(M) {\r\n    LL(a, b, c);\r\n\
-    \    G.add(a, b, c);\r\n  }\r\n  print(G.flow(0, N - 1));\r\n}\r\n\r\nsigned main()\
-    \ {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
-    \n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(T) solve();\r\n\r\n  return 0;\r\n}\r\
-    \n"
+    \ N) res[v] = (level[v] >= 0 ? 0 : 1);\n    return {f, res};\n  }\n\n  // \u6B8B\
+    \u4F59\u30B0\u30E9\u30D5\u306E\u8FBA\n  vc<tuple<int, int, Cap>> get_edges() {\n\
+    \    vc<tuple<int, int, Cap>> edges;\n    FOR(v, N) for (auto&& e: G[v]) { edges.eb(v,\
+    \ e.to, e.cap); }\n    return edges;\n  }\n\nprivate:\n  bool set_level(int source,\
+    \ int sink) {\n    level.assign(N, -1);\n    level[source] = 0;\n    queue<int>\
+    \ que;\n    que.push(source);\n    while (!que.empty()) {\n      int v = que.front();\n\
+    \      que.pop();\n      for (auto&& e: G[v]) {\n        if (e.cap > 0 && level[e.to]\
+    \ == -1) {\n          level[e.to] = level[v] + 1;\n          if (e.to == sink)\
+    \ return true;\n          que.push(e.to);\n        }\n      }\n    }\n    return\
+    \ false;\n  }\n\n  Cap flow_dfs(int v, int sink, Cap lim) {\n    if (v == sink)\
+    \ return lim;\n    Cap res = 0;\n    for (int& i = prog[v]; i < (int)G[v].size();\
+    \ ++i) {\n      auto& e = G[v][i];\n      if (e.cap > 0 && level[e.to] == level[v]\
+    \ + 1) {\n        Cap a = flow_dfs(e.to, sink, min(lim, e.cap));\n        if (a\
+    \ > 0) {\n          e.cap -= a;\n          G[e.to][e.rev].cap += a;\n        \
+    \  res += a;\n          lim -= a;\n          if (lim == 0) break;\n        }\n\
+    \      }\n    }\n    return res;\n  }\n};\n#line 7 \"test/aoj/GRL_6_A_maxflow.test.cpp\"\
+    \n\r\nvoid solve() {\r\n  LL(N, M);\r\n  MaxFlowGraph<int> G(N, 1<<30);\r\n  FOR(M)\
+    \ {\r\n    LL(a, b, c);\r\n    G.add(a, b, c);\r\n  }\r\n  print(G.flow(0, N -\
+    \ 1));\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(T) solve();\r\
+    \n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
     \ \"flow/maxflow.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, M);\r\n  MaxFlowGraph<int>\
@@ -240,7 +242,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_6_A_maxflow.test.cpp
   requiredBy: []
-  timestamp: '2022-05-14 04:35:25+09:00'
+  timestamp: '2022-05-22 15:15:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_6_A_maxflow.test.cpp

@@ -46,14 +46,20 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: seq/surjection.hpp
+    title: seq/surjection.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1321_surj.test.cpp
+    title: test/yukicoder/1321_surj.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\ntemplate <u32 mod>\nstruct modint {\n\
@@ -485,10 +491,12 @@ data:
   - nt/primetable.hpp
   isVerificationFile: false
   path: seq/stirling_number_2.hpp
-  requiredBy: []
+  requiredBy:
+  - seq/surjection.hpp
   timestamp: '2022-05-21 17:44:21+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1321_surj.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
 documentation_of: seq/stirling_number_2.hpp
 layout: document

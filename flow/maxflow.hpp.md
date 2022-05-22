@@ -34,20 +34,22 @@ data:
     \u5C0F\u30AB\u30C3\u30C8\u306E\u5024\u304A\u3088\u3073\u3001\u30AB\u30C3\u30C8\
     \u3092\u8868\u3059 01 \u5217\u3092\u8FD4\u3059\n  pair<Cap, vc<int>> cut(int source,\
     \ int sink) {\n    Cap f = flow(source, sink);\n    vc<int> res(N);\n    FOR(v,\
-    \ N) res[v] = (level[v] >= 0 ? 0 : 1);\n    return {f, res};\n  }\n\nprivate:\n\
-    \  bool set_level(int source, int sink) {\n    level.assign(N, -1);\n    level[source]\
-    \ = 0;\n    queue<int> que;\n    que.push(source);\n    while (!que.empty()) {\n\
-    \      int v = que.front();\n      que.pop();\n      for (auto&& e: G[v]) {\n\
-    \        if (e.cap > 0 && level[e.to] == -1) {\n          level[e.to] = level[v]\
-    \ + 1;\n          if (e.to == sink) return true;\n          que.push(e.to);\n\
-    \        }\n      }\n    }\n    return false;\n  }\n\n  Cap flow_dfs(int v, int\
-    \ sink, Cap lim) {\n    if (v == sink) return lim;\n    Cap res = 0;\n    for\
-    \ (int& i = prog[v]; i < (int)G[v].size(); ++i) {\n      auto& e = G[v][i];\n\
-    \      if (e.cap > 0 && level[e.to] == level[v] + 1) {\n        Cap a = flow_dfs(e.to,\
-    \ sink, min(lim, e.cap));\n        if (a > 0) {\n          e.cap -= a;\n     \
-    \     G[e.to][e.rev].cap += a;\n          res += a;\n          lim -= a;\n   \
-    \       if (lim == 0) break;\n        }\n      }\n    }\n    return res;\n  }\n\
-    };\n"
+    \ N) res[v] = (level[v] >= 0 ? 0 : 1);\n    return {f, res};\n  }\n\n  // \u6B8B\
+    \u4F59\u30B0\u30E9\u30D5\u306E\u8FBA\n  vc<tuple<int, int, Cap>> get_edges() {\n\
+    \    vc<tuple<int, int, Cap>> edges;\n    FOR(v, N) for (auto&& e: G[v]) { edges.eb(v,\
+    \ e.to, e.cap); }\n    return edges;\n  }\n\nprivate:\n  bool set_level(int source,\
+    \ int sink) {\n    level.assign(N, -1);\n    level[source] = 0;\n    queue<int>\
+    \ que;\n    que.push(source);\n    while (!que.empty()) {\n      int v = que.front();\n\
+    \      que.pop();\n      for (auto&& e: G[v]) {\n        if (e.cap > 0 && level[e.to]\
+    \ == -1) {\n          level[e.to] = level[v] + 1;\n          if (e.to == sink)\
+    \ return true;\n          que.push(e.to);\n        }\n      }\n    }\n    return\
+    \ false;\n  }\n\n  Cap flow_dfs(int v, int sink, Cap lim) {\n    if (v == sink)\
+    \ return lim;\n    Cap res = 0;\n    for (int& i = prog[v]; i < (int)G[v].size();\
+    \ ++i) {\n      auto& e = G[v][i];\n      if (e.cap > 0 && level[e.to] == level[v]\
+    \ + 1) {\n        Cap a = flow_dfs(e.to, sink, min(lim, e.cap));\n        if (a\
+    \ > 0) {\n          e.cap -= a;\n          G[e.to][e.rev].cap += a;\n        \
+    \  res += a;\n          lim -= a;\n          if (lim == 0) break;\n        }\n\
+    \      }\n    }\n    return res;\n  }\n};\n"
   code: "template <typename Cap>\nstruct MaxFlowGraph {\n  struct Edge {\n    int\
     \ to, rev;\n    Cap cap;\n  };\n\n  const Cap INF;\n  int N;\n  vvc<Edge> G;\n\
     \  vc<int> prog, level;\n  Cap flow_ans;\n  bool calculated;\n\n  MaxFlowGraph(int\
@@ -65,26 +67,28 @@ data:
     \u30AB\u30C3\u30C8\u306E\u5024\u304A\u3088\u3073\u3001\u30AB\u30C3\u30C8\u3092\
     \u8868\u3059 01 \u5217\u3092\u8FD4\u3059\n  pair<Cap, vc<int>> cut(int source,\
     \ int sink) {\n    Cap f = flow(source, sink);\n    vc<int> res(N);\n    FOR(v,\
-    \ N) res[v] = (level[v] >= 0 ? 0 : 1);\n    return {f, res};\n  }\n\nprivate:\n\
-    \  bool set_level(int source, int sink) {\n    level.assign(N, -1);\n    level[source]\
-    \ = 0;\n    queue<int> que;\n    que.push(source);\n    while (!que.empty()) {\n\
-    \      int v = que.front();\n      que.pop();\n      for (auto&& e: G[v]) {\n\
-    \        if (e.cap > 0 && level[e.to] == -1) {\n          level[e.to] = level[v]\
-    \ + 1;\n          if (e.to == sink) return true;\n          que.push(e.to);\n\
-    \        }\n      }\n    }\n    return false;\n  }\n\n  Cap flow_dfs(int v, int\
-    \ sink, Cap lim) {\n    if (v == sink) return lim;\n    Cap res = 0;\n    for\
-    \ (int& i = prog[v]; i < (int)G[v].size(); ++i) {\n      auto& e = G[v][i];\n\
-    \      if (e.cap > 0 && level[e.to] == level[v] + 1) {\n        Cap a = flow_dfs(e.to,\
-    \ sink, min(lim, e.cap));\n        if (a > 0) {\n          e.cap -= a;\n     \
-    \     G[e.to][e.rev].cap += a;\n          res += a;\n          lim -= a;\n   \
-    \       if (lim == 0) break;\n        }\n      }\n    }\n    return res;\n  }\n\
-    };\n"
+    \ N) res[v] = (level[v] >= 0 ? 0 : 1);\n    return {f, res};\n  }\n\n  // \u6B8B\
+    \u4F59\u30B0\u30E9\u30D5\u306E\u8FBA\n  vc<tuple<int, int, Cap>> get_edges() {\n\
+    \    vc<tuple<int, int, Cap>> edges;\n    FOR(v, N) for (auto&& e: G[v]) { edges.eb(v,\
+    \ e.to, e.cap); }\n    return edges;\n  }\n\nprivate:\n  bool set_level(int source,\
+    \ int sink) {\n    level.assign(N, -1);\n    level[source] = 0;\n    queue<int>\
+    \ que;\n    que.push(source);\n    while (!que.empty()) {\n      int v = que.front();\n\
+    \      que.pop();\n      for (auto&& e: G[v]) {\n        if (e.cap > 0 && level[e.to]\
+    \ == -1) {\n          level[e.to] = level[v] + 1;\n          if (e.to == sink)\
+    \ return true;\n          que.push(e.to);\n        }\n      }\n    }\n    return\
+    \ false;\n  }\n\n  Cap flow_dfs(int v, int sink, Cap lim) {\n    if (v == sink)\
+    \ return lim;\n    Cap res = 0;\n    for (int& i = prog[v]; i < (int)G[v].size();\
+    \ ++i) {\n      auto& e = G[v][i];\n      if (e.cap > 0 && level[e.to] == level[v]\
+    \ + 1) {\n        Cap a = flow_dfs(e.to, sink, min(lim, e.cap));\n        if (a\
+    \ > 0) {\n          e.cap -= a;\n          G[e.to][e.rev].cap += a;\n        \
+    \  res += a;\n          lim -= a;\n          if (lim == 0) break;\n        }\n\
+    \      }\n    }\n    return res;\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: flow/maxflow.hpp
   requiredBy:
   - flow/binary_optimization.hpp
-  timestamp: '2022-05-13 20:32:13+09:00'
+  timestamp: '2022-05-22 15:15:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/177_maxflow.test.cpp

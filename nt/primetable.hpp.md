@@ -38,9 +38,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/stirling_number_1.hpp
     title: seq/stirling_number_1.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/stirling_number_2.hpp
     title: seq/stirling_number_2.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/surjection.hpp
+    title: seq/surjection.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_D_eulerphi.test.cpp
@@ -78,6 +81,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
     title: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1321_surj.test.cpp
+    title: test/yukicoder/1321_surj.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1666_integer_kth_root.test.cpp
     title: test/yukicoder/1666_integer_kth_root.test.cpp
@@ -120,6 +126,7 @@ data:
   - nt/euler_phi.hpp
   - nt/lcm_convolution.hpp
   - nt/primesum.hpp
+  - seq/surjection.hpp
   - seq/stirling_number_2.hpp
   - seq/stirling_number_1.hpp
   - mod/tetration.hpp
@@ -128,6 +135,7 @@ data:
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1321_surj.test.cpp
   - test/yukicoder/1666_integer_kth_root.test.cpp
   - test/aoj/NTL_1_D_eulerphi.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp

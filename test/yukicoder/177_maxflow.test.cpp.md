@@ -207,30 +207,33 @@ data:
     \u30AB\u30C3\u30C8\u3092\u8868\u3059 01 \u5217\u3092\u8FD4\u3059\n  pair<Cap,\
     \ vc<int>> cut(int source, int sink) {\n    Cap f = flow(source, sink);\n    vc<int>\
     \ res(N);\n    FOR(v, N) res[v] = (level[v] >= 0 ? 0 : 1);\n    return {f, res};\n\
-    \  }\n\nprivate:\n  bool set_level(int source, int sink) {\n    level.assign(N,\
-    \ -1);\n    level[source] = 0;\n    queue<int> que;\n    que.push(source);\n \
-    \   while (!que.empty()) {\n      int v = que.front();\n      que.pop();\n   \
-    \   for (auto&& e: G[v]) {\n        if (e.cap > 0 && level[e.to] == -1) {\n  \
-    \        level[e.to] = level[v] + 1;\n          if (e.to == sink) return true;\n\
-    \          que.push(e.to);\n        }\n      }\n    }\n    return false;\n  }\n\
-    \n  Cap flow_dfs(int v, int sink, Cap lim) {\n    if (v == sink) return lim;\n\
-    \    Cap res = 0;\n    for (int& i = prog[v]; i < (int)G[v].size(); ++i) {\n \
-    \     auto& e = G[v][i];\n      if (e.cap > 0 && level[e.to] == level[v] + 1)\
-    \ {\n        Cap a = flow_dfs(e.to, sink, min(lim, e.cap));\n        if (a > 0)\
-    \ {\n          e.cap -= a;\n          G[e.to][e.rev].cap += a;\n          res\
-    \ += a;\n          lim -= a;\n          if (lim == 0) break;\n        }\n    \
-    \  }\n    }\n    return res;\n  }\n};\n#line 5 \"test/yukicoder/177_maxflow.test.cpp\"\
-    \n\nvoid solve() {\n  LL(W);\n  LL(N);\n  VEC(ll, A, N);\n  LL(M);\n  VEC(ll,\
-    \ C, M);\n  const ll INF = 1LL << 60;\n  MaxFlowGraph<ll> G(N + M + 2, INF);\n\
-    \  ll source = N + M;\n  ll sink = N + M + 1;\n  auto left = [&](int i) -> int\
-    \ { return i; };\n  auto right = [&](int i) -> int { return N + i; };\n  FOR(i,\
-    \ N) G.add(source, left(i), A[i]);\n  FOR(i, M) G.add(right(i), sink, C[i]);\n\
-    \  FOR(j, M) {\n    LL(n);\n    vi ok(N, 1);\n    FOR(n) {\n      LL(x);\n   \
-    \   ok[--x] = 0;\n    }\n    FOR(i, N) if (ok[i]) { G.add(left(i), right(j), INF);\
-    \ }\n  }\n  ll f = G.flow(source, sink);\n  if (f < W)\n    print(\"BANSAKUTSUKITA\"\
-    );\n  else\n    print(\"SHIROBAKO\");\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \  }\n\n  // \u6B8B\u4F59\u30B0\u30E9\u30D5\u306E\u8FBA\n  vc<tuple<int, int,\
+    \ Cap>> get_edges() {\n    vc<tuple<int, int, Cap>> edges;\n    FOR(v, N) for\
+    \ (auto&& e: G[v]) { edges.eb(v, e.to, e.cap); }\n    return edges;\n  }\n\nprivate:\n\
+    \  bool set_level(int source, int sink) {\n    level.assign(N, -1);\n    level[source]\
+    \ = 0;\n    queue<int> que;\n    que.push(source);\n    while (!que.empty()) {\n\
+    \      int v = que.front();\n      que.pop();\n      for (auto&& e: G[v]) {\n\
+    \        if (e.cap > 0 && level[e.to] == -1) {\n          level[e.to] = level[v]\
+    \ + 1;\n          if (e.to == sink) return true;\n          que.push(e.to);\n\
+    \        }\n      }\n    }\n    return false;\n  }\n\n  Cap flow_dfs(int v, int\
+    \ sink, Cap lim) {\n    if (v == sink) return lim;\n    Cap res = 0;\n    for\
+    \ (int& i = prog[v]; i < (int)G[v].size(); ++i) {\n      auto& e = G[v][i];\n\
+    \      if (e.cap > 0 && level[e.to] == level[v] + 1) {\n        Cap a = flow_dfs(e.to,\
+    \ sink, min(lim, e.cap));\n        if (a > 0) {\n          e.cap -= a;\n     \
+    \     G[e.to][e.rev].cap += a;\n          res += a;\n          lim -= a;\n   \
+    \       if (lim == 0) break;\n        }\n      }\n    }\n    return res;\n  }\n\
+    };\n#line 5 \"test/yukicoder/177_maxflow.test.cpp\"\n\nvoid solve() {\n  LL(W);\n\
+    \  LL(N);\n  VEC(ll, A, N);\n  LL(M);\n  VEC(ll, C, M);\n  const ll INF = 1LL\
+    \ << 60;\n  MaxFlowGraph<ll> G(N + M + 2, INF);\n  ll source = N + M;\n  ll sink\
+    \ = N + M + 1;\n  auto left = [&](int i) -> int { return i; };\n  auto right =\
+    \ [&](int i) -> int { return N + i; };\n  FOR(i, N) G.add(source, left(i), A[i]);\n\
+    \  FOR(i, M) G.add(right(i), sink, C[i]);\n  FOR(j, M) {\n    LL(n);\n    vi ok(N,\
+    \ 1);\n    FOR(n) {\n      LL(x);\n      ok[--x] = 0;\n    }\n    FOR(i, N) if\
+    \ (ok[i]) { G.add(left(i), right(j), INF); }\n  }\n  ll f = G.flow(source, sink);\n\
+    \  if (f < W)\n    print(\"BANSAKUTSUKITA\");\n  else\n    print(\"SHIROBAKO\"\
+    );\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
+    \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/177\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"flow/maxflow.hpp\"\n\nvoid solve() {\n\
     \  LL(W);\n  LL(N);\n  VEC(ll, A, N);\n  LL(M);\n  VEC(ll, C, M);\n  const ll\
@@ -251,7 +254,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/177_maxflow.test.cpp
   requiredBy: []
-  timestamp: '2022-05-14 01:42:23+09:00'
+  timestamp: '2022-05-22 15:15:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/177_maxflow.test.cpp

@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: alg
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/group_add.hpp
       title: alg/group_add.hpp
     - icon: ':heavy_check_mark:'
@@ -219,7 +219,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/dynamic_lazysegtree.hpp
       title: ds/dynamic_lazysegtree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/dynamic_segtree.hpp
       title: ds/dynamic_segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -832,13 +832,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/stirling_number_1.hpp
       title: seq/stirling_number_1.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: seq/stirling_number_2.hpp
       title: seq/stirling_number_2.hpp
     - icon: ':heavy_check_mark:'
       path: seq/sum_of_powers.hpp
       title: seq/sum_of_powers.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: seq/surjection.hpp
       title: seq/surjection.hpp
   - name: setfunc
@@ -1462,7 +1462,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1320_mincostcycle.test.cpp
       title: test/yukicoder/1320_mincostcycle.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1321_surj.test.cpp
       title: test/yukicoder/1321_surj.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1576,7 +1576,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/749_lazysegtree.test.cpp
       title: test/yukicoder/749_lazysegtree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/789_dseg.test.cpp
       title: test/yukicoder/789_dseg.test.cpp
     - icon: ':heavy_check_mark:'

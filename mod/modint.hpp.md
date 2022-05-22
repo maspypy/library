@@ -92,12 +92,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/stirling_number_1.hpp
     title: seq/stirling_number_1.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/stirling_number_2.hpp
     title: seq/stirling_number_2.hpp
   - icon: ':heavy_check_mark:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/surjection.hpp
+    title: seq/surjection.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_5_C_count_surjection.test.cpp
@@ -273,7 +276,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1145_sum_of_powers.test.cpp
     title: test/yukicoder/1145_sum_of_powers.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1321_surj.test.cpp
     title: test/yukicoder/1321_surj.test.cpp
   - icon: ':heavy_check_mark:'
@@ -465,6 +468,7 @@ data:
   path: mod/modint.hpp
   requiredBy:
   - nt/multiplicative_convolution_mod2n.hpp
+  - seq/surjection.hpp
   - seq/stirling_number_2.hpp
   - seq/sum_of_powers.hpp
   - seq/kth_term_of_p_recursive.hpp

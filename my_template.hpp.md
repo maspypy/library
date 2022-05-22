@@ -534,7 +534,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1320_mincostcycle.test.cpp
     title: test/yukicoder/1320_mincostcycle.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1321_surj.test.cpp
     title: test/yukicoder/1321_surj.test.cpp
   - icon: ':heavy_check_mark:'
@@ -648,7 +648,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/749_lazysegtree.test.cpp
     title: test/yukicoder/749_lazysegtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/789_dseg.test.cpp
     title: test/yukicoder/789_dseg.test.cpp
   - icon: ':heavy_check_mark:'
