@@ -173,6 +173,7 @@
 "test/yukicoder/1170_online_uf.test.cpp": "2022-05-13 20:44:41 +0900",
 "test/yukicoder/1170_range_to_range.test.cpp": "2022-05-13 20:44:41 +0900",
 "test/yukicoder/1234_rmq.test.cpp": "2022-05-14 01:42:23 +0900",
+"test/yukicoder/1269_aho.test.cpp": "2022-05-22 15:35:27 +0900",
 "test/yukicoder/1288_mcf_dag_negative.test.cpp": "2022-05-13 20:44:41 +0900",
 "test/yukicoder/1301_mcf.test.cpp": "2022-05-13 20:44:41 +0900",
 "test/yukicoder/1320_mincostcycle.test.cpp": "2022-05-13 20:44:41 +0900",
