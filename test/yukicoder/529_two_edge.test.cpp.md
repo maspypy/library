@@ -374,62 +374,63 @@ data:
     \ a + 1)));\r\n      val = Monoid::op(val, x);\r\n    }\r\n    return val;\r\n\
     \  }\r\n\r\n  // uv path \u4E0A\u3067 prod_path(u, x) \u304C check \u3092\u6E80\
     \u305F\u3059\u6700\u5F8C\u306E x\r\n  // \u306A\u3051\u308C\u3070 -1\r\n  // https://codeforces.com/contest/1059/problem/E\r\
-    \n  template <class F>\r\n  int max_path(F &check, int u, int v) {\r\n    if (edge)\
-    \ return max_path_edge(check, u, v);\r\n    if (!check(prod_path(u, u))) return\
-    \ -1;\r\n    auto pd = hld.get_path_decomposition(u, v, edge);\r\n    X val =\
-    \ Monoid::unit();\r\n    for (auto &&[a, b]: pd) {\r\n      X x = (a <= b ? seg.prod(a,\
-    \ b + 1)\r\n                    : (Monoid::commute ? seg.prod(b, a + 1)\r\n  \
-    \                                     : seg_r.prod(b, a + 1)));\r\n      if (check(Monoid::op(val,\
-    \ x))) {\r\n        val = Monoid::op(val, x);\r\n        u = (hld.V[b]);\r\n \
-    \       continue;\r\n      }\r\n      auto check_tmp = [&](X x) -> bool { return\
-    \ check(Monoid::op(val, x)); };\r\n      if (a <= b) {\r\n        // \u4E0B\u308A\
-    \r\n        auto i = seg.max_right(check_tmp, a);\r\n        return (i == a ?\
-    \ u : hld.V[i - 1]);\r\n      } else {\r\n        // \u4E0A\u308A\r\n        auto\
-    \ i = (Monoid::commute ? seg.min_left(check_tmp, a + 1)\r\n                  \
-    \                : seg_r.min_left(check_tmp, a + 1));\r\n        if (i == a +\
-    \ 1) return u;\r\n        return hld.parent[hld.V[i]];\r\n      }\r\n    }\r\n\
-    \    return v;\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n    int l = hld.LID[u],\
-    \ r = hld.RID[u];\r\n    return seg.prod(l + edge, r);\r\n  }\r\n\r\n  void debug()\
-    \ {\r\n    print(\"tree_monoid\");\r\n    hld.debug();\r\n    seg.debug();\r\n\
-    \    seg_r.debug();\r\n  }\r\n\r\nprivate:\r\n  template <class F>\r\n  int max_path_edge(F\
-    \ &check, int u, int v) {\r\n    assert(edge);\r\n    if (!check(Monoid::unit()))\
-    \ return -1;\r\n    int lca = hld.lca(u, v);\r\n    auto pd = hld.get_path_decomposition(u,\
-    \ lca, edge);\r\n    X val = Monoid::unit();\r\n\r\n    // climb\r\n    for (auto\
-    \ &&[a, b]: pd) {\r\n      assert(a >= b);\r\n      X x = (Monoid::commute ? seg.prod(b,\
-    \ a + 1) : seg_r.prod(b, a + 1));\r\n      if (check(Monoid::op(val, x))) {\r\n\
-    \        val = Monoid::op(val, x);\r\n        u = (hld.parent[hld.V[b]]);\r\n\
-    \        continue;\r\n      }\r\n      auto check_tmp = [&](X x) -> bool { return\
-    \ check(Monoid::op(val, x)); };\r\n      auto i = (Monoid::commute ? seg.min_left(check_tmp,\
-    \ a + 1)\r\n                                : seg_r.min_left(check_tmp, a + 1));\r\
-    \n      if (i == a + 1) return u;\r\n      return hld.parent[hld.V[i]];\r\n  \
-    \  }\r\n    // down\r\n    pd = hld.get_path_decomposition(lca, v, edge);\r\n\
-    \    for (auto &&[a, b]: pd) {\r\n      assert(a <= b);\r\n      X x = seg.prod(a,\
-    \ b + 1);\r\n      if (check(Monoid::op(val, x))) {\r\n        val = Monoid::op(val,\
+    \n  // edge: https://atcoder.jp/contests/tkppc3/tasks/tkppc3_i\r\n  // edge \u304C\
+    \u7279\u306B\u602A\u3057\u3044\u304B\u3082\r\n  template <class F>\r\n  int max_path(F\
+    \ &check, int u, int v) {\r\n    if (edge) return max_path_edge(check, u, v);\r\
+    \n    if (!check(prod_path(u, u))) return -1;\r\n    auto pd = hld.get_path_decomposition(u,\
+    \ v, edge);\r\n    X val = Monoid::unit();\r\n    for (auto &&[a, b]: pd) {\r\n\
+    \      X x = (a <= b ? seg.prod(a, b + 1)\r\n                    : (Monoid::commute\
+    \ ? seg.prod(b, a + 1)\r\n                                       : seg_r.prod(b,\
+    \ a + 1)));\r\n      if (check(Monoid::op(val, x))) {\r\n        val = Monoid::op(val,\
     \ x);\r\n        u = (hld.V[b]);\r\n        continue;\r\n      }\r\n      auto\
     \ check_tmp = [&](X x) -> bool { return check(Monoid::op(val, x)); };\r\n    \
-    \  auto i = seg.max_right(check_tmp, a);\r\n      return (i == a ? u : hld.V[i\
-    \ - 1]);\r\n    }\r\n    return v;\r\n  }\r\n};\r\n#line 2 \"alg/monoid_max_idx.hpp\"\
-    \ntemplate <typename T, bool tie_is_left = true>\r\nstruct Monoid_Max_Idx {\r\n\
-    \  using value_type = pair<T, int>;\r\n  using X = value_type;\r\n  static X op(X\
-    \ x, X y) {\r\n    if (x.fi > y.fi) return x;\r\n    if (x.fi < y.fi) return y;\r\
-    \n    return (tie_is_left ? x : y);\r\n  }\r\n  static constexpr X unit() { return\
-    \ {numeric_limits<T>::lowest(), -1}; }\r\n  static constexpr bool commute = true;\r\
-    \n};\r\n#line 7 \"test/yukicoder/529_two_edge.test.cpp\"\n\nvoid solve() {\n \
-    \ LL(N, M, Q);\n  Graph G0(N);\n  G0.read_graph(M);\n  auto [C, comp] = two_edge_component(G0);\n\
-    \n  Graph G(C);\n  for (auto&& e: G0.edges) {\n    ll a = e.frm, b = e.to;\n \
-    \   if (comp[a] == comp[b]) continue;\n    G.add(comp[a], comp[b]);\n  }\n  G.build();\n\
-    \n  using Mono = Monoid_Max_Idx<ll>;\n\n  const ll INF = 1LL << 60;\n\n  HLD hld(G);\n\
-    \  vc<pq<ll>> wts(C);\n  vc<pair<ll, int>> dat(C);\n  FOR(i, C) dat[i] = {-INF,\
-    \ i};\n  TreeMonoid<decltype(hld), Mono> TM(hld, dat);\n\n  FOR(Q) {\n    LL(t);\n\
-    \    if (t == 1) {\n      LL(v, x);\n      --v;\n      ll c = comp[v];\n     \
-    \ wts[c].push(x);\n      TM.set(c, {wts[c].top(), c});\n    }\n    if (t == 2)\
-    \ {\n      LL(a, b);\n      --a, --b;\n      a = comp[a], b = comp[b];\n     \
-    \ auto [x, c] = TM.prod_path(a, b);\n      if (x == -INF) {\n        print(-1);\n\
-    \      } else {\n        print(x);\n        wts[c].pop();\n        x = (wts[c].empty()\
-    \ ? -INF : wts[c].top());\n        TM.set(c, {x, c});\n      }\n    }\n  }\n}\n\
-    \nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
-    \ return 0;\n}\n"
+    \  if (a <= b) {\r\n        // \u4E0B\u308A\r\n        auto i = seg.max_right(check_tmp,\
+    \ a);\r\n        return (i == a ? u : hld.V[i - 1]);\r\n      } else {\r\n   \
+    \     // \u4E0A\u308A\r\n        auto i = (Monoid::commute ? seg.min_left(check_tmp,\
+    \ a + 1)\r\n                                  : seg_r.min_left(check_tmp, a +\
+    \ 1));\r\n        if (i == a + 1) return u;\r\n        return hld.parent[hld.V[i]];\r\
+    \n      }\r\n    }\r\n    return v;\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n\
+    \    int l = hld.LID[u], r = hld.RID[u];\r\n    return seg.prod(l + edge, r);\r\
+    \n  }\r\n\r\n  void debug() {\r\n    print(\"tree_monoid\");\r\n    hld.debug();\r\
+    \n    seg.debug();\r\n    seg_r.debug();\r\n  }\r\n\r\nprivate:\r\n  template\
+    \ <class F>\r\n  int max_path_edge(F &check, int u, int v) {\r\n    assert(edge);\r\
+    \n    if (!check(Monoid::unit())) return -1;\r\n    int lca = hld.lca(u, v);\r\
+    \n    auto pd = hld.get_path_decomposition(u, lca, edge);\r\n    X val = Monoid::unit();\r\
+    \n\r\n    // climb\r\n    for (auto &&[a, b]: pd) {\r\n      assert(a >= b);\r\
+    \n      X x = (Monoid::commute ? seg.prod(b, a + 1) : seg_r.prod(b, a + 1));\r\
+    \n      if (check(Monoid::op(val, x))) {\r\n        val = Monoid::op(val, x);\r\
+    \n        u = (hld.parent[hld.V[b]]);\r\n        continue;\r\n      }\r\n    \
+    \  auto check_tmp = [&](X x) -> bool { return check(Monoid::op(val, x)); };\r\n\
+    \      auto i = (Monoid::commute ? seg.min_left(check_tmp, a + 1)\r\n        \
+    \                        : seg_r.min_left(check_tmp, a + 1));\r\n      if (i ==\
+    \ a + 1) return u;\r\n      return hld.parent[hld.V[i]];\r\n    }\r\n    // down\r\
+    \n    pd = hld.get_path_decomposition(lca, v, edge);\r\n    for (auto &&[a, b]:\
+    \ pd) {\r\n      assert(a <= b);\r\n      X x = seg.prod(a, b + 1);\r\n      if\
+    \ (check(Monoid::op(val, x))) {\r\n        val = Monoid::op(val, x);\r\n     \
+    \   u = (hld.V[b]);\r\n        continue;\r\n      }\r\n      auto check_tmp =\
+    \ [&](X x) -> bool { return check(Monoid::op(val, x)); };\r\n      auto i = seg.max_right(check_tmp,\
+    \ a);\r\n      return (i == a ? u : hld.V[i - 1]);\r\n    }\r\n    return v;\r\
+    \n  }\r\n};\r\n#line 2 \"alg/monoid_max_idx.hpp\"\ntemplate <typename T, bool\
+    \ tie_is_left = true>\r\nstruct Monoid_Max_Idx {\r\n  using value_type = pair<T,\
+    \ int>;\r\n  using X = value_type;\r\n  static X op(X x, X y) {\r\n    if (x.fi\
+    \ > y.fi) return x;\r\n    if (x.fi < y.fi) return y;\r\n    return (tie_is_left\
+    \ ? x : y);\r\n  }\r\n  static constexpr X unit() { return {numeric_limits<T>::lowest(),\
+    \ -1}; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 7 \"test/yukicoder/529_two_edge.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, M, Q);\n  Graph G0(N);\n  G0.read_graph(M);\n  auto\
+    \ [C, comp] = two_edge_component(G0);\n\n  Graph G(C);\n  for (auto&& e: G0.edges)\
+    \ {\n    ll a = e.frm, b = e.to;\n    if (comp[a] == comp[b]) continue;\n    G.add(comp[a],\
+    \ comp[b]);\n  }\n  G.build();\n\n  using Mono = Monoid_Max_Idx<ll>;\n\n  const\
+    \ ll INF = 1LL << 60;\n\n  HLD hld(G);\n  vc<pq<ll>> wts(C);\n  vc<pair<ll, int>>\
+    \ dat(C);\n  FOR(i, C) dat[i] = {-INF, i};\n  TreeMonoid<decltype(hld), Mono>\
+    \ TM(hld, dat);\n\n  FOR(Q) {\n    LL(t);\n    if (t == 1) {\n      LL(v, x);\n\
+    \      --v;\n      ll c = comp[v];\n      wts[c].push(x);\n      TM.set(c, {wts[c].top(),\
+    \ c});\n    }\n    if (t == 2) {\n      LL(a, b);\n      --a, --b;\n      a =\
+    \ comp[a], b = comp[b];\n      auto [x, c] = TM.prod_path(a, b);\n      if (x\
+    \ == -INF) {\n        print(-1);\n      } else {\n        print(x);\n        wts[c].pop();\n\
+    \        x = (wts[c].empty() ? -INF : wts[c].top());\n        TM.set(c, {x, c});\n\
+    \      }\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
+    \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/529\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"graph/two_edge_component.hpp\"\n#include\
     \ \"graph/treemonoid.hpp\"\n#include \"alg/monoid_max_idx.hpp\"\n\nvoid solve()\
@@ -461,7 +462,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/529_two_edge.test.cpp
   requiredBy: []
-  timestamp: '2022-05-23 16:56:22+09:00'
+  timestamp: '2022-05-23 17:34:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/529_two_edge.test.cpp

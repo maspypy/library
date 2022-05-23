@@ -391,6 +391,9 @@ data:
       path: graph/chromatic.hpp
       title: graph/chromatic.hpp
     - icon: ':warning:'
+      path: graph/compress_tree.hpp
+      title: graph/compress_tree.hpp
+    - icon: ':warning:'
       path: graph/count_tree.hpp
       title: graph/count_tree.hpp
     - icon: ':heavy_check_mark:'
