@@ -4,19 +4,19 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid_reverse.hpp
     title: alg/monoid_reverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
@@ -283,44 +283,44 @@ data:
     \u3002\r\n\u6728\u4EE5\u5916\u3001\u975E\u9023\u7D50\u3067\u3082\u4F7F\u3048\u308B\
     \u3088\u3046\u306B\u3057\u305F\u3002dfs\u9806\u5E8F\u3084\u89AA\u304C\u3068\u308C\
     \u308B\u3002\r\n*/\r\ntemplate <typename Graph>\r\nstruct HLD {\r\n  Graph &G;\r\
-    \n  using WT = typename Graph::cost_type;\r\n  int N;\r\n  vector<int> LID, RID,\
-    \ head, V, parent, root;\r\n  vc<int> depth;\r\n  vc<WT> depth_weighted;\r\n \
-    \ vector<bool> in_tree;\r\n\r\n  HLD(Graph &G, int r = -1)\r\n      : G(G),\r\n\
-    \        N(G.N),\r\n        LID(G.N),\r\n        RID(G.N),\r\n        head(G.N,\
-    \ r),\r\n        V(G.N),\r\n        parent(G.N, -1),\r\n        depth(G.N),\r\n\
-    \        depth_weighted(G.N),\r\n        root(G.N, -1),\r\n        in_tree(G.M,\
-    \ 0) {\r\n    assert(G.is_prepared());\r\n    int t1 = 0;\r\n    if (r != -1)\
-    \ {\r\n      dfs_sz(r, -1);\r\n      dfs_hld(r, t1);\r\n    } else {\r\n     \
-    \ FOR(r, N) if (parent[r] == -1) {\r\n        head[r] = r;\r\n        dfs_sz(r,\
-    \ -1);\r\n        dfs_hld(r, t1);\r\n      }\r\n    }\r\n    for (auto &&v: V)\
-    \ root[v] = (parent[v] == -1 ? v : root[parent[v]]);\r\n  }\r\n\r\n  void dfs_sz(int\
-    \ v, int p) {\r\n    auto &sz = RID;\r\n    parent[v] = p;\r\n    depth[v] = (p\
-    \ == -1 ? 0 : depth[p] + 1);\r\n    sz[v] = 1;\r\n    int l = G.indptr[v], r =\
-    \ G.indptr[v + 1];\r\n    auto &csr = G.csr_edges;\r\n    // \u4F7F\u3046\u8FBA\
-    \u304C\u3042\u308C\u3070\u5148\u982D\u306B\u3059\u308B\r\n    FOR3_R(i, l, r -\
-    \ 1) {\r\n      if (depth[csr[i + 1].to] == -1) swap(csr[i], csr[i + 1]);\r\n\
-    \    }\r\n    int hld_sz = 0;\r\n    for (int i = l; i < r; ++i) {\r\n      auto\
-    \ e = csr[i];\r\n      if (depth[e.to] != -1) continue;\r\n      in_tree[e.id]\
-    \ = 1;\r\n      depth_weighted[e.to] = depth_weighted[v] + e.cost;\r\n      dfs_sz(e.to,\
-    \ v);\r\n      sz[v] += sz[e.to];\r\n      if (chmax(hld_sz, sz[e.to]) && l <\
-    \ i) { swap(csr[l], csr[i]); }\r\n    }\r\n  }\r\n\r\n  void dfs_hld(int v, int\
-    \ &times) {\r\n    LID[v] = times++;\r\n    RID[v] += LID[v];\r\n    V[LID[v]]\
-    \ = v;\r\n    bool heavy = true;\r\n    for (auto &&e: G[v]) {\r\n      if (!in_tree[e.id]\
-    \ || depth[e.to] <= depth[v]) continue;\r\n      head[e.to] = (heavy ? head[v]\
-    \ : e.to);\r\n      heavy = false;\r\n      dfs_hld(e.to, times);\r\n    }\r\n\
-    \  }\r\n\r\n  int e_to_v(int eid) {\r\n    auto e = G.edges[eid];\r\n    return\
-    \ (parent[e.frm] == e.to ? e.frm : e.to);\r\n  }\r\n\r\n  int ELID(int v) { return\
-    \ 2 * LID[v] - depth[v]; }\r\n  int ERID(int v) { return 2 * RID[v] - depth[v]\
-    \ - 1; }\r\n\r\n  /* k: 0-indexed */\r\n  int LA(int v, int k) {\r\n    while\
-    \ (1) {\r\n      int u = head[v];\r\n      if (LID[v] - k >= LID[u]) return V[LID[v]\
-    \ - k];\r\n      k -= LID[v] - LID[u] + 1;\r\n      v = parent[u];\r\n    }\r\n\
-    \  }\r\n\r\n  int LCA(int u, int v) {\r\n    for (;; v = parent[head[v]]) {\r\n\
-    \      if (LID[u] > LID[v]) swap(u, v);\r\n      if (head[u] == head[v]) return\
-    \ u;\r\n    }\r\n  }\r\n\r\n  int lca(int u, int v) { return LCA(u, v); }\r\n\
-    \  int la(int u, int v) { return LA(u, v); }\r\n\r\n  int subtree_size(int v)\
-    \ { return RID[v] - LID[v]; }\r\n\r\n  int dist(int a, int b) {\r\n    int c =\
-    \ LCA(a, b);\r\n    return depth[a] + depth[b] - 2 * depth[c];\r\n  }\r\n\r\n\
-    \  WT dist(int a, int b, bool weighted) {\r\n    assert(weighted);\r\n    int\
+    \n  using Graph_type = Graph;\r\n  using WT = typename Graph::cost_type;\r\n \
+    \ int N;\r\n  vector<int> LID, RID, head, V, parent, root;\r\n  vc<int> depth;\r\
+    \n  vc<WT> depth_weighted;\r\n  vector<bool> in_tree;\r\n\r\n  HLD(Graph &G, int\
+    \ r = -1)\r\n      : G(G),\r\n        N(G.N),\r\n        LID(G.N),\r\n       \
+    \ RID(G.N),\r\n        head(G.N, r),\r\n        V(G.N),\r\n        parent(G.N,\
+    \ -1),\r\n        depth(G.N, -1),\r\n        depth_weighted(G.N, 0),\r\n     \
+    \   root(G.N, -1),\r\n        in_tree(G.M, 0) {\r\n    assert(G.is_prepared());\r\
+    \n    int t1 = 0;\r\n    if (r != -1) {\r\n      dfs_sz(r, -1);\r\n      dfs_hld(r,\
+    \ t1);\r\n    } else {\r\n      FOR(r, N) if (parent[r] == -1) {\r\n        head[r]\
+    \ = r;\r\n        dfs_sz(r, -1);\r\n        dfs_hld(r, t1);\r\n      }\r\n   \
+    \ }\r\n    for (auto &&v: V) root[v] = (parent[v] == -1 ? v : root[parent[v]]);\r\
+    \n  }\r\n\r\n  void dfs_sz(int v, int p) {\r\n    auto &sz = RID;\r\n    parent[v]\
+    \ = p;\r\n    depth[v] = (p == -1 ? 0 : depth[p] + 1);\r\n    sz[v] = 1;\r\n \
+    \   int l = G.indptr[v], r = G.indptr[v + 1];\r\n    auto &csr = G.csr_edges;\r\
+    \n    // \u4F7F\u3046\u8FBA\u304C\u3042\u308C\u3070\u5148\u982D\u306B\u3059\u308B\
+    \r\n    FOR3_R(i, l, r - 1) {\r\n      if (depth[csr[i + 1].to] == -1) swap(csr[i],\
+    \ csr[i + 1]);\r\n    }\r\n    int hld_sz = 0;\r\n    for (int i = l; i < r; ++i)\
+    \ {\r\n      auto e = csr[i];\r\n      if (depth[e.to] != -1) continue;\r\n  \
+    \    in_tree[e.id] = 1;\r\n      depth_weighted[e.to] = depth_weighted[v] + e.cost;\r\
+    \n      dfs_sz(e.to, v);\r\n      sz[v] += sz[e.to];\r\n      if (chmax(hld_sz,\
+    \ sz[e.to]) && l < i) { swap(csr[l], csr[i]); }\r\n    }\r\n  }\r\n\r\n  void\
+    \ dfs_hld(int v, int &times) {\r\n    LID[v] = times++;\r\n    RID[v] += LID[v];\r\
+    \n    V[LID[v]] = v;\r\n    bool heavy = true;\r\n    for (auto &&e: G[v]) {\r\
+    \n      if (!in_tree[e.id] || depth[e.to] <= depth[v]) continue;\r\n      head[e.to]\
+    \ = (heavy ? head[v] : e.to);\r\n      heavy = false;\r\n      dfs_hld(e.to, times);\r\
+    \n    }\r\n  }\r\n\r\n  int e_to_v(int eid) {\r\n    auto e = G.edges[eid];\r\n\
+    \    return (parent[e.frm] == e.to ? e.frm : e.to);\r\n  }\r\n\r\n  int ELID(int\
+    \ v) { return 2 * LID[v] - depth[v]; }\r\n  int ERID(int v) { return 2 * RID[v]\
+    \ - depth[v] - 1; }\r\n\r\n  /* k: 0-indexed */\r\n  int LA(int v, int k) {\r\n\
+    \    while (1) {\r\n      int u = head[v];\r\n      if (LID[v] - k >= LID[u])\
+    \ return V[LID[v] - k];\r\n      k -= LID[v] - LID[u] + 1;\r\n      v = parent[u];\r\
+    \n    }\r\n  }\r\n\r\n  int LCA(int u, int v) {\r\n    for (;; v = parent[head[v]])\
+    \ {\r\n      if (LID[u] > LID[v]) swap(u, v);\r\n      if (head[u] == head[v])\
+    \ return u;\r\n    }\r\n  }\r\n\r\n  int lca(int u, int v) { return LCA(u, v);\
+    \ }\r\n  int la(int u, int v) { return LA(u, v); }\r\n\r\n  int subtree_size(int\
+    \ v) { return RID[v] - LID[v]; }\r\n\r\n  int dist(int a, int b) {\r\n    int\
+    \ c = LCA(a, b);\r\n    return depth[a] + depth[b] - 2 * depth[c];\r\n  }\r\n\r\
+    \n  WT dist(int a, int b, bool weighted) {\r\n    assert(weighted);\r\n    int\
     \ c = LCA(a, b);\r\n    return depth_weighted[a] + depth_weighted[b] - 2 * depth_weighted[c];\r\
     \n  }\r\n\r\n  bool in_subtree(int a, int b) { return LID[b] <= LID[a] && LID[a]\
     \ < RID[b]; }\r\n\r\n  int move(int a, int b) {\r\n    assert(a != b);\r\n   \
@@ -363,30 +363,47 @@ data:
     \ a + 1)));\r\n      val = Monoid::op(val, x);\r\n    }\r\n    return val;\r\n\
     \  }\r\n\r\n  // uv path \u4E0A\u3067 prod_path(u, x) \u304C check \u3092\u6E80\
     \u305F\u3059\u6700\u5F8C\u306E x\r\n  // \u306A\u3051\u308C\u3070 -1\r\n  // https://codeforces.com/contest/1059/problem/E\r\
-    \n  template <class F>\r\n  int max_path(F &check, int u, int v) {\r\n    if (!check(prod_path(u,\
-    \ u))) return -1;\r\n    auto pd = hld.get_path_decomposition(u, v, edge);\r\n\
-    \    X val = Monoid::unit();\r\n    for (auto &&[a, b]: pd) {\r\n      X x = (a\
-    \ <= b ? seg.prod(a, b + 1)\r\n                    : (Monoid::commute ? seg.prod(b,\
-    \ a + 1)\r\n                                       : seg_r.prod(b, a + 1)));\r\
-    \n      if (check(Monoid::op(val, x))) {\r\n        val = Monoid::op(val, x);\r\
-    \n        u = (hld.V[b]);\r\n        continue;\r\n      }\r\n      auto check_tmp\
-    \ = [&](X x) -> bool { return check(Monoid::op(val, x)); };\r\n      if (a <=\
-    \ b) {\r\n        auto i = seg.max_right(check_tmp, a);\r\n        return (i ==\
-    \ a ? u : hld.V[i - 1]);\r\n      } else {\r\n        auto i = (Monoid::commute\
-    \ ? seg.min_left(check_tmp, a + 1)\r\n                                  : seg_r.min_left(check_tmp,\
-    \ a + 1));\r\n        return (i == a + 1 ? u : hld.V[i]);\r\n      }\r\n    }\r\
-    \n    return v;\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n    int l = hld.LID[u],\
+    \n  template <class F>\r\n  int max_path(F &check, int u, int v) {\r\n    if (edge)\
+    \ return max_path_edge(check, u, v);\r\n    if (!check(prod_path(u, u))) return\
+    \ -1;\r\n    auto pd = hld.get_path_decomposition(u, v, edge);\r\n    X val =\
+    \ Monoid::unit();\r\n    for (auto &&[a, b]: pd) {\r\n      X x = (a <= b ? seg.prod(a,\
+    \ b + 1)\r\n                    : (Monoid::commute ? seg.prod(b, a + 1)\r\n  \
+    \                                     : seg_r.prod(b, a + 1)));\r\n      if (check(Monoid::op(val,\
+    \ x))) {\r\n        val = Monoid::op(val, x);\r\n        u = (hld.V[b]);\r\n \
+    \       continue;\r\n      }\r\n      auto check_tmp = [&](X x) -> bool { return\
+    \ check(Monoid::op(val, x)); };\r\n      if (a <= b) {\r\n        // \u4E0B\u308A\
+    \r\n        auto i = seg.max_right(check_tmp, a);\r\n        return (i == a ?\
+    \ u : hld.V[i - 1]);\r\n      } else {\r\n        // \u4E0A\u308A\r\n        auto\
+    \ i = (Monoid::commute ? seg.min_left(check_tmp, a + 1)\r\n                  \
+    \                : seg_r.min_left(check_tmp, a + 1));\r\n        if (i == a +\
+    \ 1) return u;\r\n        return hld.parent[hld.V[i]];\r\n      }\r\n    }\r\n\
+    \    return v;\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n    int l = hld.LID[u],\
     \ r = hld.RID[u];\r\n    return seg.prod(l + edge, r);\r\n  }\r\n\r\n  void debug()\
     \ {\r\n    print(\"tree_monoid\");\r\n    hld.debug();\r\n    seg.debug();\r\n\
-    \    seg_r.debug();\r\n  }\r\n\r\n  void doc() {\r\n    print(\"HL\u5206\u89E3\
-    \ + \u30BB\u30B0\u6728\u3002\");\r\n    print(\"\u90E8\u5206\u6728\u30AF\u30A8\
-    \u30EA O(logN) \u6642\u9593\u3001\u30D1\u30B9\u30AF\u30A8\u30EA O(log^2N) \u6642\
-    \u9593\u3002\");\r\n  }\r\n};\r\n#line 2 \"alg/group_add.hpp\"\ntemplate <class\
-    \ X>\r\nstruct Group_Add {\r\n  using value_type = X;\r\n  static constexpr X\
-    \ op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return n * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 7 \"test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp\"\
+    \    seg_r.debug();\r\n  }\r\n\r\nprivate:\r\n  template <class F>\r\n  int max_path_edge(F\
+    \ &check, int u, int v) {\r\n    assert(edge);\r\n    if (!check(Monoid::unit()))\
+    \ return -1;\r\n    int lca = hld.lca(u, v);\r\n    auto pd = hld.get_path_decomposition(u,\
+    \ lca, edge);\r\n    X val = Monoid::unit();\r\n\r\n    // climb\r\n    for (auto\
+    \ &&[a, b]: pd) {\r\n      assert(a >= b);\r\n      X x = (Monoid::commute ? seg.prod(b,\
+    \ a + 1) : seg_r.prod(b, a + 1));\r\n      if (check(Monoid::op(val, x))) {\r\n\
+    \        val = Monoid::op(val, x);\r\n        u = (hld.parent[hld.V[b]]);\r\n\
+    \        continue;\r\n      }\r\n      auto check_tmp = [&](X x) -> bool { return\
+    \ check(Monoid::op(val, x)); };\r\n      auto i = (Monoid::commute ? seg.min_left(check_tmp,\
+    \ a + 1)\r\n                                : seg_r.min_left(check_tmp, a + 1));\r\
+    \n      if (i == a + 1) return u;\r\n      return hld.parent[hld.V[i]];\r\n  \
+    \  }\r\n    // down\r\n    pd = hld.get_path_decomposition(lca, v, edge);\r\n\
+    \    for (auto &&[a, b]: pd) {\r\n      assert(a <= b);\r\n      X x = seg.prod(a,\
+    \ b + 1);\r\n      if (check(Monoid::op(val, x))) {\r\n        val = Monoid::op(val,\
+    \ x);\r\n        u = (hld.V[b]);\r\n        continue;\r\n      }\r\n      auto\
+    \ check_tmp = [&](X x) -> bool { return check(Monoid::op(val, x)); };\r\n    \
+    \  auto i = seg.max_right(check_tmp, a);\r\n      return (i == a ? u : hld.V[i\
+    \ - 1]);\r\n    }\r\n    return v;\r\n  }\r\n};\r\n#line 2 \"alg/group_add.hpp\"\
+    \ntemplate <class X>\r\nstruct Group_Add {\r\n  using value_type = X;\r\n  static\
+    \ constexpr X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static\
+    \ constexpr X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr\
+    \ X power(const X &x, ll n) noexcept { return n * x; }\r\n  static constexpr X\
+    \ unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n\
+    #line 7 \"test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  Graph<int, 1> G(N);\r\
     \n  FOR3(v, 1, N) {\r\n    LL(p);\r\n    G.add(p, v);\r\n  }\r\n  G.build();\r\
     \n\r\n  HLD hld(G);\r\n  using Mono = Group_Add<ll>;\r\n\r\n  TreeMonoid<decltype(hld),\
@@ -418,8 +435,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   requiredBy: []
-  timestamp: '2022-05-23 13:23:30+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-23 16:56:22+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
 layout: document

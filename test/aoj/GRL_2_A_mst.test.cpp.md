@@ -1,40 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_max.hpp
     title: alg/monoid_max.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_min.hpp
     title: alg/monoid_min.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid_reverse.hpp
     title: alg/monoid_reverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/dualsegtree.hpp
     title: ds/dualsegtree.hpp
   - icon: ':question:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/dualtreemonoid.hpp
     title: graph/dualtreemonoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
   - icon: ':question:'
@@ -45,9 +45,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A
@@ -270,44 +270,44 @@ data:
     \u3002\r\n\u6728\u4EE5\u5916\u3001\u975E\u9023\u7D50\u3067\u3082\u4F7F\u3048\u308B\
     \u3088\u3046\u306B\u3057\u305F\u3002dfs\u9806\u5E8F\u3084\u89AA\u304C\u3068\u308C\
     \u308B\u3002\r\n*/\r\ntemplate <typename Graph>\r\nstruct HLD {\r\n  Graph &G;\r\
-    \n  using WT = typename Graph::cost_type;\r\n  int N;\r\n  vector<int> LID, RID,\
-    \ head, V, parent, root;\r\n  vc<int> depth;\r\n  vc<WT> depth_weighted;\r\n \
-    \ vector<bool> in_tree;\r\n\r\n  HLD(Graph &G, int r = -1)\r\n      : G(G),\r\n\
-    \        N(G.N),\r\n        LID(G.N),\r\n        RID(G.N),\r\n        head(G.N,\
-    \ r),\r\n        V(G.N),\r\n        parent(G.N, -1),\r\n        depth(G.N),\r\n\
-    \        depth_weighted(G.N),\r\n        root(G.N, -1),\r\n        in_tree(G.M,\
-    \ 0) {\r\n    assert(G.is_prepared());\r\n    int t1 = 0;\r\n    if (r != -1)\
-    \ {\r\n      dfs_sz(r, -1);\r\n      dfs_hld(r, t1);\r\n    } else {\r\n     \
-    \ FOR(r, N) if (parent[r] == -1) {\r\n        head[r] = r;\r\n        dfs_sz(r,\
-    \ -1);\r\n        dfs_hld(r, t1);\r\n      }\r\n    }\r\n    for (auto &&v: V)\
-    \ root[v] = (parent[v] == -1 ? v : root[parent[v]]);\r\n  }\r\n\r\n  void dfs_sz(int\
-    \ v, int p) {\r\n    auto &sz = RID;\r\n    parent[v] = p;\r\n    depth[v] = (p\
-    \ == -1 ? 0 : depth[p] + 1);\r\n    sz[v] = 1;\r\n    int l = G.indptr[v], r =\
-    \ G.indptr[v + 1];\r\n    auto &csr = G.csr_edges;\r\n    // \u4F7F\u3046\u8FBA\
-    \u304C\u3042\u308C\u3070\u5148\u982D\u306B\u3059\u308B\r\n    FOR3_R(i, l, r -\
-    \ 1) {\r\n      if (depth[csr[i + 1].to] == -1) swap(csr[i], csr[i + 1]);\r\n\
-    \    }\r\n    int hld_sz = 0;\r\n    for (int i = l; i < r; ++i) {\r\n      auto\
-    \ e = csr[i];\r\n      if (depth[e.to] != -1) continue;\r\n      in_tree[e.id]\
-    \ = 1;\r\n      depth_weighted[e.to] = depth_weighted[v] + e.cost;\r\n      dfs_sz(e.to,\
-    \ v);\r\n      sz[v] += sz[e.to];\r\n      if (chmax(hld_sz, sz[e.to]) && l <\
-    \ i) { swap(csr[l], csr[i]); }\r\n    }\r\n  }\r\n\r\n  void dfs_hld(int v, int\
-    \ &times) {\r\n    LID[v] = times++;\r\n    RID[v] += LID[v];\r\n    V[LID[v]]\
-    \ = v;\r\n    bool heavy = true;\r\n    for (auto &&e: G[v]) {\r\n      if (!in_tree[e.id]\
-    \ || depth[e.to] <= depth[v]) continue;\r\n      head[e.to] = (heavy ? head[v]\
-    \ : e.to);\r\n      heavy = false;\r\n      dfs_hld(e.to, times);\r\n    }\r\n\
-    \  }\r\n\r\n  int e_to_v(int eid) {\r\n    auto e = G.edges[eid];\r\n    return\
-    \ (parent[e.frm] == e.to ? e.frm : e.to);\r\n  }\r\n\r\n  int ELID(int v) { return\
-    \ 2 * LID[v] - depth[v]; }\r\n  int ERID(int v) { return 2 * RID[v] - depth[v]\
-    \ - 1; }\r\n\r\n  /* k: 0-indexed */\r\n  int LA(int v, int k) {\r\n    while\
-    \ (1) {\r\n      int u = head[v];\r\n      if (LID[v] - k >= LID[u]) return V[LID[v]\
-    \ - k];\r\n      k -= LID[v] - LID[u] + 1;\r\n      v = parent[u];\r\n    }\r\n\
-    \  }\r\n\r\n  int LCA(int u, int v) {\r\n    for (;; v = parent[head[v]]) {\r\n\
-    \      if (LID[u] > LID[v]) swap(u, v);\r\n      if (head[u] == head[v]) return\
-    \ u;\r\n    }\r\n  }\r\n\r\n  int lca(int u, int v) { return LCA(u, v); }\r\n\
-    \  int la(int u, int v) { return LA(u, v); }\r\n\r\n  int subtree_size(int v)\
-    \ { return RID[v] - LID[v]; }\r\n\r\n  int dist(int a, int b) {\r\n    int c =\
-    \ LCA(a, b);\r\n    return depth[a] + depth[b] - 2 * depth[c];\r\n  }\r\n\r\n\
-    \  WT dist(int a, int b, bool weighted) {\r\n    assert(weighted);\r\n    int\
+    \n  using Graph_type = Graph;\r\n  using WT = typename Graph::cost_type;\r\n \
+    \ int N;\r\n  vector<int> LID, RID, head, V, parent, root;\r\n  vc<int> depth;\r\
+    \n  vc<WT> depth_weighted;\r\n  vector<bool> in_tree;\r\n\r\n  HLD(Graph &G, int\
+    \ r = -1)\r\n      : G(G),\r\n        N(G.N),\r\n        LID(G.N),\r\n       \
+    \ RID(G.N),\r\n        head(G.N, r),\r\n        V(G.N),\r\n        parent(G.N,\
+    \ -1),\r\n        depth(G.N, -1),\r\n        depth_weighted(G.N, 0),\r\n     \
+    \   root(G.N, -1),\r\n        in_tree(G.M, 0) {\r\n    assert(G.is_prepared());\r\
+    \n    int t1 = 0;\r\n    if (r != -1) {\r\n      dfs_sz(r, -1);\r\n      dfs_hld(r,\
+    \ t1);\r\n    } else {\r\n      FOR(r, N) if (parent[r] == -1) {\r\n        head[r]\
+    \ = r;\r\n        dfs_sz(r, -1);\r\n        dfs_hld(r, t1);\r\n      }\r\n   \
+    \ }\r\n    for (auto &&v: V) root[v] = (parent[v] == -1 ? v : root[parent[v]]);\r\
+    \n  }\r\n\r\n  void dfs_sz(int v, int p) {\r\n    auto &sz = RID;\r\n    parent[v]\
+    \ = p;\r\n    depth[v] = (p == -1 ? 0 : depth[p] + 1);\r\n    sz[v] = 1;\r\n \
+    \   int l = G.indptr[v], r = G.indptr[v + 1];\r\n    auto &csr = G.csr_edges;\r\
+    \n    // \u4F7F\u3046\u8FBA\u304C\u3042\u308C\u3070\u5148\u982D\u306B\u3059\u308B\
+    \r\n    FOR3_R(i, l, r - 1) {\r\n      if (depth[csr[i + 1].to] == -1) swap(csr[i],\
+    \ csr[i + 1]);\r\n    }\r\n    int hld_sz = 0;\r\n    for (int i = l; i < r; ++i)\
+    \ {\r\n      auto e = csr[i];\r\n      if (depth[e.to] != -1) continue;\r\n  \
+    \    in_tree[e.id] = 1;\r\n      depth_weighted[e.to] = depth_weighted[v] + e.cost;\r\
+    \n      dfs_sz(e.to, v);\r\n      sz[v] += sz[e.to];\r\n      if (chmax(hld_sz,\
+    \ sz[e.to]) && l < i) { swap(csr[l], csr[i]); }\r\n    }\r\n  }\r\n\r\n  void\
+    \ dfs_hld(int v, int &times) {\r\n    LID[v] = times++;\r\n    RID[v] += LID[v];\r\
+    \n    V[LID[v]] = v;\r\n    bool heavy = true;\r\n    for (auto &&e: G[v]) {\r\
+    \n      if (!in_tree[e.id] || depth[e.to] <= depth[v]) continue;\r\n      head[e.to]\
+    \ = (heavy ? head[v] : e.to);\r\n      heavy = false;\r\n      dfs_hld(e.to, times);\r\
+    \n    }\r\n  }\r\n\r\n  int e_to_v(int eid) {\r\n    auto e = G.edges[eid];\r\n\
+    \    return (parent[e.frm] == e.to ? e.frm : e.to);\r\n  }\r\n\r\n  int ELID(int\
+    \ v) { return 2 * LID[v] - depth[v]; }\r\n  int ERID(int v) { return 2 * RID[v]\
+    \ - depth[v] - 1; }\r\n\r\n  /* k: 0-indexed */\r\n  int LA(int v, int k) {\r\n\
+    \    while (1) {\r\n      int u = head[v];\r\n      if (LID[v] - k >= LID[u])\
+    \ return V[LID[v] - k];\r\n      k -= LID[v] - LID[u] + 1;\r\n      v = parent[u];\r\
+    \n    }\r\n  }\r\n\r\n  int LCA(int u, int v) {\r\n    for (;; v = parent[head[v]])\
+    \ {\r\n      if (LID[u] > LID[v]) swap(u, v);\r\n      if (head[u] == head[v])\
+    \ return u;\r\n    }\r\n  }\r\n\r\n  int lca(int u, int v) { return LCA(u, v);\
+    \ }\r\n  int la(int u, int v) { return LA(u, v); }\r\n\r\n  int subtree_size(int\
+    \ v) { return RID[v] - LID[v]; }\r\n\r\n  int dist(int a, int b) {\r\n    int\
+    \ c = LCA(a, b);\r\n    return depth[a] + depth[b] - 2 * depth[c];\r\n  }\r\n\r\
+    \n  WT dist(int a, int b, bool weighted) {\r\n    assert(weighted);\r\n    int\
     \ c = LCA(a, b);\r\n    return depth_weighted[a] + depth_weighted[b] - 2 * depth_weighted[c];\r\
     \n  }\r\n\r\n  bool in_subtree(int a, int b) { return LID[b] <= LID[a] && LID[a]\
     \ < RID[b]; }\r\n\r\n  int move(int a, int b) {\r\n    assert(a != b);\r\n   \
@@ -391,74 +391,90 @@ data:
     \ a + 1)));\r\n      val = Monoid::op(val, x);\r\n    }\r\n    return val;\r\n\
     \  }\r\n\r\n  // uv path \u4E0A\u3067 prod_path(u, x) \u304C check \u3092\u6E80\
     \u305F\u3059\u6700\u5F8C\u306E x\r\n  // \u306A\u3051\u308C\u3070 -1\r\n  // https://codeforces.com/contest/1059/problem/E\r\
-    \n  template <class F>\r\n  int max_path(F &check, int u, int v) {\r\n    if (!check(prod_path(u,\
-    \ u))) return -1;\r\n    auto pd = hld.get_path_decomposition(u, v, edge);\r\n\
-    \    X val = Monoid::unit();\r\n    for (auto &&[a, b]: pd) {\r\n      X x = (a\
-    \ <= b ? seg.prod(a, b + 1)\r\n                    : (Monoid::commute ? seg.prod(b,\
-    \ a + 1)\r\n                                       : seg_r.prod(b, a + 1)));\r\
-    \n      if (check(Monoid::op(val, x))) {\r\n        val = Monoid::op(val, x);\r\
-    \n        u = (hld.V[b]);\r\n        continue;\r\n      }\r\n      auto check_tmp\
-    \ = [&](X x) -> bool { return check(Monoid::op(val, x)); };\r\n      if (a <=\
-    \ b) {\r\n        auto i = seg.max_right(check_tmp, a);\r\n        return (i ==\
-    \ a ? u : hld.V[i - 1]);\r\n      } else {\r\n        auto i = (Monoid::commute\
-    \ ? seg.min_left(check_tmp, a + 1)\r\n                                  : seg_r.min_left(check_tmp,\
-    \ a + 1));\r\n        return (i == a + 1 ? u : hld.V[i]);\r\n      }\r\n    }\r\
-    \n    return v;\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n    int l = hld.LID[u],\
+    \n  template <class F>\r\n  int max_path(F &check, int u, int v) {\r\n    if (edge)\
+    \ return max_path_edge(check, u, v);\r\n    if (!check(prod_path(u, u))) return\
+    \ -1;\r\n    auto pd = hld.get_path_decomposition(u, v, edge);\r\n    X val =\
+    \ Monoid::unit();\r\n    for (auto &&[a, b]: pd) {\r\n      X x = (a <= b ? seg.prod(a,\
+    \ b + 1)\r\n                    : (Monoid::commute ? seg.prod(b, a + 1)\r\n  \
+    \                                     : seg_r.prod(b, a + 1)));\r\n      if (check(Monoid::op(val,\
+    \ x))) {\r\n        val = Monoid::op(val, x);\r\n        u = (hld.V[b]);\r\n \
+    \       continue;\r\n      }\r\n      auto check_tmp = [&](X x) -> bool { return\
+    \ check(Monoid::op(val, x)); };\r\n      if (a <= b) {\r\n        // \u4E0B\u308A\
+    \r\n        auto i = seg.max_right(check_tmp, a);\r\n        return (i == a ?\
+    \ u : hld.V[i - 1]);\r\n      } else {\r\n        // \u4E0A\u308A\r\n        auto\
+    \ i = (Monoid::commute ? seg.min_left(check_tmp, a + 1)\r\n                  \
+    \                : seg_r.min_left(check_tmp, a + 1));\r\n        if (i == a +\
+    \ 1) return u;\r\n        return hld.parent[hld.V[i]];\r\n      }\r\n    }\r\n\
+    \    return v;\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n    int l = hld.LID[u],\
     \ r = hld.RID[u];\r\n    return seg.prod(l + edge, r);\r\n  }\r\n\r\n  void debug()\
     \ {\r\n    print(\"tree_monoid\");\r\n    hld.debug();\r\n    seg.debug();\r\n\
-    \    seg_r.debug();\r\n  }\r\n\r\n  void doc() {\r\n    print(\"HL\u5206\u89E3\
-    \ + \u30BB\u30B0\u6728\u3002\");\r\n    print(\"\u90E8\u5206\u6728\u30AF\u30A8\
-    \u30EA O(logN) \u6642\u9593\u3001\u30D1\u30B9\u30AF\u30A8\u30EA O(log^2N) \u6642\
-    \u9593\u3002\");\r\n  }\r\n};\r\n#line 2 \"ds/lazysegtree.hpp\"\n\ntemplate <typename\
-    \ Lazy>\nstruct LazySegTree {\n  using Monoid_X = typename Lazy::X_structure;\n\
-    \  using Monoid_A = typename Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n\
-    \  using A = typename Monoid_A::value_type;\n  int n, log, size;\n  vc<X> dat;\n\
-    \  vc<A> laz;\n\n  LazySegTree() : LazySegTree(0) {}\n  LazySegTree(int n) : LazySegTree(vc<X>(n,\
-    \ Monoid_X::unit())) {}\n  LazySegTree(vc<X> v) : n(len(v)) {\n    log = 1;\n\
-    \    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
-    \ << 1, Monoid_X::unit());\n    laz.assign(size, Monoid_A::unit());\n    FOR(i,\
-    \ n) dat[size + i] = v[i];\n    FOR3_R(i, 1, size) update(i);\n  }\n\n  void reset()\
-    \ {\n    fill(all(dat), Monoid_X::unit());\n    fill(all(laz), Monoid_A::unit());\n\
-    \  }\n\n  void reset(const vc<X>& v) {\n    assert(len(v) == n);\n    reset();\n\
-    \    FOR(i, n) dat[size + i] = v[i];\n    FOR3_R(i, 1, size) update(i);\n  }\n\
-    \n  void update(int k) { dat[k] = Monoid_X::op(dat[2 * k], dat[2 * k + 1]); }\n\
-    \n  void all_apply(int k, A a) {\n    dat[k] = Lazy::act(dat[k], a);\n    if (k\
-    \ < size) laz[k] = Monoid_A::op(laz[k], a);\n  }\n\n  void push(int k) {\n   \
-    \ all_apply(2 * k, laz[k]);\n    all_apply(2 * k + 1, laz[k]);\n    laz[k] = Monoid_A::unit();\n\
-    \  }\n\n  void set(int p, X x) {\n    assert(0 <= p && p < n);\n    p += size;\n\
-    \    for (int i = log; i >= 1; i--) push(p >> i);\n    dat[p] = x;\n    for (int\
-    \ i = 1; i <= log; i++) update(p >> i);\n  }\n\n  X get(int p) {\n    assert(0\
-    \ <= p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--) push(p >>\
-    \ i);\n    return dat[p];\n  }\n\n  vc<X> get_all() {\n    FOR(i, size) push(i);\n\
-    \    return {dat.begin() + size, dat.begin() + size + n};\n  }\n\n  X prod(int\
-    \ l, int r) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return\
-    \ Monoid_X::unit();\n\n    l += size;\n    r += size;\n\n    for (int i = log;\
-    \ i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l >> i);\n      if (((r\
-    \ >> i) << i) != r) push((r - 1) >> i);\n    }\n\n    X xl = Monoid_X::unit(),\
-    \ xr = Monoid_X::unit();\n    while (l < r) {\n      if (l & 1) xl = Monoid_X::op(xl,\
-    \ dat[l++]);\n      if (r & 1) xr = Monoid_X::op(dat[--r], xr);\n      l >>= 1;\n\
-    \      r >>= 1;\n    }\n\n    return Monoid_X::op(xl, xr);\n  }\n\n  X prod_all()\
-    \ { return dat[1]; }\n\n  void apply(int p, A a) {\n    assert(0 <= p && p < n);\n\
-    \    p += size;\n    dat[p] = Lazy::act(dat[p], a);\n    for (int i = 1; i <=\
-    \ log; i++) update(p >> i);\n  }\n\n  void apply(int l, int r, A a) {\n    assert(0\
-    \ <= l && l <= r && r <= n);\n    if (l == r) return;\n\n    l += size;\n    r\
+    \    seg_r.debug();\r\n  }\r\n\r\nprivate:\r\n  template <class F>\r\n  int max_path_edge(F\
+    \ &check, int u, int v) {\r\n    assert(edge);\r\n    if (!check(Monoid::unit()))\
+    \ return -1;\r\n    int lca = hld.lca(u, v);\r\n    auto pd = hld.get_path_decomposition(u,\
+    \ lca, edge);\r\n    X val = Monoid::unit();\r\n\r\n    // climb\r\n    for (auto\
+    \ &&[a, b]: pd) {\r\n      assert(a >= b);\r\n      X x = (Monoid::commute ? seg.prod(b,\
+    \ a + 1) : seg_r.prod(b, a + 1));\r\n      if (check(Monoid::op(val, x))) {\r\n\
+    \        val = Monoid::op(val, x);\r\n        u = (hld.parent[hld.V[b]]);\r\n\
+    \        continue;\r\n      }\r\n      auto check_tmp = [&](X x) -> bool { return\
+    \ check(Monoid::op(val, x)); };\r\n      auto i = (Monoid::commute ? seg.min_left(check_tmp,\
+    \ a + 1)\r\n                                : seg_r.min_left(check_tmp, a + 1));\r\
+    \n      if (i == a + 1) return u;\r\n      return hld.parent[hld.V[i]];\r\n  \
+    \  }\r\n    // down\r\n    pd = hld.get_path_decomposition(lca, v, edge);\r\n\
+    \    for (auto &&[a, b]: pd) {\r\n      assert(a <= b);\r\n      X x = seg.prod(a,\
+    \ b + 1);\r\n      if (check(Monoid::op(val, x))) {\r\n        val = Monoid::op(val,\
+    \ x);\r\n        u = (hld.V[b]);\r\n        continue;\r\n      }\r\n      auto\
+    \ check_tmp = [&](X x) -> bool { return check(Monoid::op(val, x)); };\r\n    \
+    \  auto i = seg.max_right(check_tmp, a);\r\n      return (i == a ? u : hld.V[i\
+    \ - 1]);\r\n    }\r\n    return v;\r\n  }\r\n};\r\n#line 2 \"ds/lazysegtree.hpp\"\
+    \n\ntemplate <typename Lazy>\nstruct LazySegTree {\n  using Monoid_X = typename\
+    \ Lazy::X_structure;\n  using Monoid_A = typename Lazy::A_structure;\n  using\
+    \ X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
+    \  int n, log, size;\n  vc<X> dat;\n  vc<A> laz;\n\n  LazySegTree() : LazySegTree(0)\
+    \ {}\n  LazySegTree(int n) : LazySegTree(vc<X>(n, Monoid_X::unit())) {}\n  LazySegTree(vc<X>\
+    \ v) : n(len(v)) {\n    log = 1;\n    while ((1 << log) < n) ++log;\n    size\
+    \ = 1 << log;\n    dat.assign(size << 1, Monoid_X::unit());\n    laz.assign(size,\
+    \ Monoid_A::unit());\n    FOR(i, n) dat[size + i] = v[i];\n    FOR3_R(i, 1, size)\
+    \ update(i);\n  }\n\n  void reset() {\n    fill(all(dat), Monoid_X::unit());\n\
+    \    fill(all(laz), Monoid_A::unit());\n  }\n\n  void reset(const vc<X>& v) {\n\
+    \    assert(len(v) == n);\n    reset();\n    FOR(i, n) dat[size + i] = v[i];\n\
+    \    FOR3_R(i, 1, size) update(i);\n  }\n\n  void update(int k) { dat[k] = Monoid_X::op(dat[2\
+    \ * k], dat[2 * k + 1]); }\n\n  void all_apply(int k, A a) {\n    dat[k] = Lazy::act(dat[k],\
+    \ a);\n    if (k < size) laz[k] = Monoid_A::op(laz[k], a);\n  }\n\n  void push(int\
+    \ k) {\n    all_apply(2 * k, laz[k]);\n    all_apply(2 * k + 1, laz[k]);\n   \
+    \ laz[k] = Monoid_A::unit();\n  }\n\n  void set(int p, X x) {\n    assert(0 <=\
+    \ p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n\
+    \    dat[p] = x;\n    for (int i = 1; i <= log; i++) update(p >> i);\n  }\n\n\
+    \  X get(int p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int\
+    \ i = log; i >= 1; i--) push(p >> i);\n    return dat[p];\n  }\n\n  vc<X> get_all()\
+    \ {\n    FOR(i, size) push(i);\n    return {dat.begin() + size, dat.begin() +\
+    \ size + n};\n  }\n\n  X prod(int l, int r) {\n    assert(0 <= l && l <= r &&\
+    \ r <= n);\n    if (l == r) return Monoid_X::unit();\n\n    l += size;\n    r\
     \ += size;\n\n    for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i)\
     \ != l) push(l >> i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n \
-    \   }\n\n    {\n      int l2 = l, r2 = r;\n      while (l < r) {\n        if (l\
-    \ & 1) all_apply(l++, a);\n        if (r & 1) all_apply(--r, a);\n        l >>=\
-    \ 1;\n        r >>= 1;\n      }\n      l = l2;\n      r = r2;\n    }\n\n    for\
-    \ (int i = 1; i <= log; i++) {\n      if (((l >> i) << i) != l) update(l >> i);\n\
-    \      if (((r >> i) << i) != r) update((r - 1) >> i);\n    }\n  }\n\n  template\
-    \ <typename C>\n  int max_right(C& check, int l) {\n    assert(0 <= l && l <=\
-    \ n);\n    assert(check(Monoid_X::unit()));\n    if (l == n) return n;\n    l\
-    \ += size;\n    for (int i = log; i >= 1; i--) push(l >> i);\n    X sm = Monoid_X::unit();\n\
-    \    do {\n      while (l % 2 == 0) l >>= 1;\n      if (!check(Monoid_X::op(sm,\
-    \ dat[l]))) {\n        while (l < size) {\n          push(l);\n          l = (2\
-    \ * l);\n          if (check(Monoid_X::op(sm, dat[l]))) {\n            sm = Monoid_X::op(sm,\
-    \ dat[l]);\n            l++;\n          }\n        }\n        return l - size;\n\
-    \      }\n      sm = Monoid_X::op(sm, dat[l]);\n      l++;\n    } while ((l &\
-    \ -l) != l);\n    return n;\n  }\n\n  template <typename C>\n  int min_left(C&\
-    \ check, int r) {\n    assert(0 <= r && r <= n);\n    assert(check(Monoid_X::unit()));\n\
+    \   }\n\n    X xl = Monoid_X::unit(), xr = Monoid_X::unit();\n    while (l < r)\
+    \ {\n      if (l & 1) xl = Monoid_X::op(xl, dat[l++]);\n      if (r & 1) xr =\
+    \ Monoid_X::op(dat[--r], xr);\n      l >>= 1;\n      r >>= 1;\n    }\n\n    return\
+    \ Monoid_X::op(xl, xr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  void apply(int\
+    \ p, A a) {\n    assert(0 <= p && p < n);\n    p += size;\n    dat[p] = Lazy::act(dat[p],\
+    \ a);\n    for (int i = 1; i <= log; i++) update(p >> i);\n  }\n\n  void apply(int\
+    \ l, int r, A a) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n\
+    \n    l += size;\n    r += size;\n\n    for (int i = log; i >= 1; i--) {\n   \
+    \   if (((l >> i) << i) != l) push(l >> i);\n      if (((r >> i) << i) != r) push((r\
+    \ - 1) >> i);\n    }\n\n    {\n      int l2 = l, r2 = r;\n      while (l < r)\
+    \ {\n        if (l & 1) all_apply(l++, a);\n        if (r & 1) all_apply(--r,\
+    \ a);\n        l >>= 1;\n        r >>= 1;\n      }\n      l = l2;\n      r = r2;\n\
+    \    }\n\n    for (int i = 1; i <= log; i++) {\n      if (((l >> i) << i) != l)\
+    \ update(l >> i);\n      if (((r >> i) << i) != r) update((r - 1) >> i);\n   \
+    \ }\n  }\n\n  template <typename C>\n  int max_right(C& check, int l) {\n    assert(0\
+    \ <= l && l <= n);\n    assert(check(Monoid_X::unit()));\n    if (l == n) return\
+    \ n;\n    l += size;\n    for (int i = log; i >= 1; i--) push(l >> i);\n    X\
+    \ sm = Monoid_X::unit();\n    do {\n      while (l % 2 == 0) l >>= 1;\n      if\
+    \ (!check(Monoid_X::op(sm, dat[l]))) {\n        while (l < size) {\n         \
+    \ push(l);\n          l = (2 * l);\n          if (check(Monoid_X::op(sm, dat[l])))\
+    \ {\n            sm = Monoid_X::op(sm, dat[l]);\n            l++;\n          }\n\
+    \        }\n        return l - size;\n      }\n      sm = Monoid_X::op(sm, dat[l]);\n\
+    \      l++;\n    } while ((l & -l) != l);\n    return n;\n  }\n\n  template <typename\
+    \ C>\n  int min_left(C& check, int r) {\n    assert(0 <= r && r <= n);\n    assert(check(Monoid_X::unit()));\n\
     \    if (r == 0) return 0;\n    r += size;\n    for (int i = log; i >= 1; i--)\
     \ push((r - 1) >> i);\n    X sm = Monoid_X::unit();\n    do {\n      r--;\n  \
     \    while (r > 1 && (r % 2)) r >>= 1;\n      if (!check(Monoid_X::op(dat[r],\
@@ -495,7 +511,7 @@ data:
     \n    vc<X> res;\r\n    FOR(i, N) {\r\n      if (edge && i == N - 1) break;\r\n\
     \      int v = i;\r\n      if (edge) {\r\n        auto &&e = hld.G.edges[i];\r\
     \n        v = (hld.parent[e.frm] == e.to ? e.frm : e.to);\r\n      }\r\n     \
-    \ res.eb(tmp[hld.LID[i]]);\r\n    }\r\n    return res;\r\n  }\r\n\r\n  void apply_path(int\
+    \ res.eb(tmp[hld.LID[v]]);\r\n    }\r\n    return res;\r\n  }\r\n\r\n  void apply_path(int\
     \ u, int v, X x) {\r\n    auto pd = hld.get_path_decomposition(u, v, edge);\r\n\
     \    for (auto &&[a, b]: pd) {\r\n      (a <= b ? seg.apply(a, b + 1, x) : seg.apply(b,\
     \ a + 1, x));\r\n    }\r\n    return;\r\n  }\r\n\r\n  void apply_subtree(int u,\
@@ -560,8 +576,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_2_A_mst.test.cpp
   requiredBy: []
-  timestamp: '2022-05-23 13:23:30+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-23 16:56:22+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_2_A_mst.test.cpp
 layout: document
