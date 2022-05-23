@@ -9,8 +9,8 @@ vc<mint> stirling_number_2_n(int n, int k_max) {
   vc<mint> a = powertable_2<mint>(n, k_max + 1);
   FOR(i, k_max + 1) a[i] *= fact_inv<mint>(i);
   vc<mint> b(k_max + 1);
+  FOR(i, k_max + 1) b[i] = fact_inv<mint>(i);
   FOR(i, 1, k_max + 1, 2) b[i] = -b[i];
-  FOR(i, k_max + 1) b[i] *= fact_inv<mint>(i);
   auto f = convolution(a, b);
   f.resize(k_max + 1);
   return f;
