@@ -5,7 +5,7 @@ int factorial998(ll n) {
   constexpr int mod = 998244353;
   if (n >= mod) return 0;
   auto [q, r] = divmod(n, 1 << 20);
-  ll x = factorial107table[q];
+  ll x = factorial998table[q];
   int s = q << 20;
   FOR(i, r) x = x * (s + i + 1) % mod;
   return x;
