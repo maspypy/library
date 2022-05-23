@@ -30,7 +30,7 @@ struct DualTreeMonoid {
         auto &&e = hld.G.edges[i];
         v = (hld.parent[e.frm] == e.to ? e.frm : e.to);
       }
-      res.eb(tmp[hld.LID[i]]);
+      res.eb(tmp[hld.LID[v]]);
     }
     return res;
   }
