@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/rerooting_dp.hpp
     title: graph/rerooting_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1418
@@ -232,24 +232,26 @@ data:
     \ \u306A\u3069\u306F O(logN) \u6642\u9593\u3002\r\n\u6728\u4EE5\u5916\u3001\u975E\
     \u9023\u7D50\u3067\u3082\u4F7F\u3048\u308B\u3088\u3046\u306B\u3057\u305F\u3002\
     dfs\u9806\u5E8F\u3084\u89AA\u304C\u3068\u308C\u308B\u3002\r\n*/\r\ntemplate <typename\
-    \ Graph>\r\nstruct HLD {\r\n  Graph &G;\r\n  int N;\r\n  vector<int> LID, RID,\
-    \ head, V, parent, root;\r\n  vc<ll> depth;\r\n  vector<bool> in_tree;\r\n\r\n\
-    \  HLD(Graph &G, int r = -1)\r\n      : G(G),\r\n        N(G.N),\r\n        LID(G.N),\r\
-    \n        RID(G.N),\r\n        head(G.N, r),\r\n        V(G.N),\r\n        parent(G.N,\
-    \ -1),\r\n        depth(G.N, -1),\r\n        root(G.N, -1),\r\n        in_tree(G.M,\
-    \ 0) {\r\n    assert(G.is_prepared());\r\n    int t1 = 0;\r\n    if (r != -1)\
-    \ {\r\n      dfs_sz(r, -1);\r\n      dfs_hld(r, t1);\r\n    } else {\r\n     \
-    \ FOR(r, N) if (parent[r] == -1) {\r\n        head[r] = r;\r\n        dfs_sz(r,\
-    \ -1);\r\n        dfs_hld(r, t1);\r\n      }\r\n    }\r\n    for (auto &&v: V)\
-    \ root[v] = (parent[v] == -1 ? v : root[parent[v]]);\r\n  }\r\n\r\n  void dfs_sz(int\
-    \ v, int p) {\r\n    auto &sz = RID;\r\n    parent[v] = p;\r\n    depth[v] = (p\
-    \ == -1 ? 0 : depth[p] + 1);\r\n    sz[v] = 1;\r\n    int l = G.indptr[v], r =\
-    \ G.indptr[v + 1];\r\n    auto &csr = G.csr_edges;\r\n    // \u4F7F\u3046\u8FBA\
-    \u304C\u3042\u308C\u3070\u5148\u982D\u306B\u3059\u308B\r\n    FOR3_R(i, l, r -\
-    \ 1) {\r\n      if (depth[csr[i + 1].to] == -1) swap(csr[i], csr[i + 1]);\r\n\
-    \    }\r\n    int hld_sz = 0;\r\n    for (int i = l; i < r; ++i) {\r\n      auto\
-    \ e = csr[i];\r\n      if (depth[e.to] != -1) continue;\r\n      in_tree[e.id]\
-    \ = 1;\r\n      dfs_sz(e.to, v);\r\n      sz[v] += sz[e.to];\r\n      if (chmax(hld_sz,\
+    \ Graph>\r\nstruct HLD {\r\n  Graph &G;\r\n  using WT = typename Graph::cost_type;\r\
+    \n  int N;\r\n  vector<int> LID, RID, head, V, parent, root;\r\n  vc<int> depth;\r\
+    \n  vc<WT> depth_weighted;\r\n  vector<bool> in_tree;\r\n\r\n  HLD(Graph &G, int\
+    \ r = -1)\r\n      : G(G),\r\n        N(G.N),\r\n        LID(G.N),\r\n       \
+    \ RID(G.N),\r\n        head(G.N, r),\r\n        V(G.N),\r\n        parent(G.N,\
+    \ -1),\r\n        depth(G.N),\r\n        depth_weighted(G.N),\r\n        root(G.N,\
+    \ -1),\r\n        in_tree(G.M, 0) {\r\n    assert(G.is_prepared());\r\n    int\
+    \ t1 = 0;\r\n    if (r != -1) {\r\n      dfs_sz(r, -1);\r\n      dfs_hld(r, t1);\r\
+    \n    } else {\r\n      FOR(r, N) if (parent[r] == -1) {\r\n        head[r] =\
+    \ r;\r\n        dfs_sz(r, -1);\r\n        dfs_hld(r, t1);\r\n      }\r\n    }\r\
+    \n    for (auto &&v: V) root[v] = (parent[v] == -1 ? v : root[parent[v]]);\r\n\
+    \  }\r\n\r\n  void dfs_sz(int v, int p) {\r\n    auto &sz = RID;\r\n    parent[v]\
+    \ = p;\r\n    depth[v] = (p == -1 ? 0 : depth[p] + 1);\r\n    sz[v] = 1;\r\n \
+    \   int l = G.indptr[v], r = G.indptr[v + 1];\r\n    auto &csr = G.csr_edges;\r\
+    \n    // \u4F7F\u3046\u8FBA\u304C\u3042\u308C\u3070\u5148\u982D\u306B\u3059\u308B\
+    \r\n    FOR3_R(i, l, r - 1) {\r\n      if (depth[csr[i + 1].to] == -1) swap(csr[i],\
+    \ csr[i + 1]);\r\n    }\r\n    int hld_sz = 0;\r\n    for (int i = l; i < r; ++i)\
+    \ {\r\n      auto e = csr[i];\r\n      if (depth[e.to] != -1) continue;\r\n  \
+    \    in_tree[e.id] = 1;\r\n      depth_weighted[e.to] = depth_weighted[v] + e.cost;\r\
+    \n      dfs_sz(e.to, v);\r\n      sz[v] += sz[e.to];\r\n      if (chmax(hld_sz,\
     \ sz[e.to]) && l < i) { swap(csr[l], csr[i]); }\r\n    }\r\n  }\r\n\r\n  void\
     \ dfs_hld(int v, int &times) {\r\n    LID[v] = times++;\r\n    RID[v] += LID[v];\r\
     \n    V[LID[v]] = v;\r\n    bool heavy = true;\r\n    for (auto &&e: G[v]) {\r\
@@ -267,42 +269,45 @@ data:
     \ }\r\n  int la(int u, int v) { return LA(u, v); }\r\n\r\n  int subtree_size(int\
     \ v) { return RID[v] - LID[v]; }\r\n\r\n  int dist(int a, int b) {\r\n    int\
     \ c = LCA(a, b);\r\n    return depth[a] + depth[b] - 2 * depth[c];\r\n  }\r\n\r\
-    \n  bool in_subtree(int a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b];\
-    \ }\r\n\r\n  int move(int a, int b) {\r\n    assert(a != b);\r\n    return (in_subtree(b,\
-    \ a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\r\n  }\r\n\r\n  vc<int> collect_child(int\
-    \ v) {\r\n    vc<int> res;\r\n    for (auto &&e: G[v])\r\n      if (e.to != parent[v])\
-    \ res.eb(e.to);\r\n    return res;\r\n  }\r\n\r\n  vc<pair<int, int>> get_path_decomposition(int\
-    \ u, int v, bool edge) {\r\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\
-    \"\u533A\u9593\u5217\u3002\r\n    vc<pair<int, int>> up, down;\r\n    while (1)\
-    \ {\r\n      if (head[u] == head[v]) break;\r\n      if (LID[u] < LID[v]) {\r\n\
-    \        down.eb(LID[head[v]], LID[v]);\r\n        v = parent[head[v]];\r\n  \
-    \    } else {\r\n        up.eb(LID[u], LID[head[u]]);\r\n        u = parent[head[u]];\r\
-    \n      }\r\n    }\r\n    if (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\r\
-    \n    elif (LID[v] + edge <= LID[u]) up.eb(LID[u], LID[v] + edge);\r\n    reverse(all(down));\r\
-    \n    up.insert(up.end(), all(down));\r\n    return up;\r\n  }\r\n\r\n  void debug()\
-    \ {\r\n    print(\"V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\",\
-    \ RID);\r\n    print(\"parent\", parent);\r\n    print(\"depth\", depth);\r\n\
-    \    print(\"head\", head);\r\n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"\
-    root\", root);\r\n  }\r\n};\r\n#line 3 \"graph/rerooting_dp.hpp\"\n\r\n// snippet\
-    \ \u53C2\u7167\r\ntemplate <typename Graph, typename Data, typename F1, typename\
-    \ F2, typename F3>\r\nvc<Data> rerooting_dp(Graph& G, F1 fee, F2 fev, F3 fve,\
-    \ Data unit) {\r\n  using E = typename Graph::edge_type;\r\n\r\n  int N = G.N;\r\
-    \n  HLD hld(G);\r\n  auto V = hld.V;\r\n  auto VR = V;\r\n  reverse(all(VR));\r\
-    \n  auto par = hld.parent;\r\n\r\n  vc<Data> dpv(N);\r\n  vc<Data> dpe1(N);\r\n\
-    \r\n  for (auto&& v: VR) {\r\n    auto val = unit;\r\n    E e0;\r\n    for (auto&&\
-    \ e: G[v]) {\r\n      if (e.to != par[v]) {\r\n        val = fee(val, dpe1[e.to]);\r\
-    \n      } else {\r\n        e0 = e;\r\n      }\r\n    }\r\n    dpv[v] = fev(val,\
-    \ v);\r\n    dpe1[v] = (v ? fve(dpv[v], e0) : unit);\r\n  }\r\n\r\n  vc<Data>\
-    \ dp(N);\r\n  vc<Data> dpe2(N);\r\n  dpe2[0] = unit;\r\n\r\n  for (auto&& v: V)\
-    \ {\r\n    vc<Data> tmp = {dpe2[v]};\r\n    for (auto&& e: G[v])\r\n      if (e.to\
-    \ != par[v]) { tmp.eb(dpe1[e.to]); }\r\n    int n = len(tmp);\r\n    vc<Data>\
-    \ cum_l(n + 1), cum_r(n + 1);\r\n    cum_l[0] = unit;\r\n    FOR(i, n) cum_l[i\
-    \ + 1] = fee(cum_l[i], tmp[i]);\r\n    cum_r[n] = unit;\r\n    FOR_R(i, n) cum_r[i]\
-    \ = fee(cum_r[i + 1], tmp[i]);\r\n    dp[v] = fev(cum_r[0], v);\r\n    int nxt\
-    \ = 1;\r\n    for (auto&& e: G[v])\r\n      if (e.to != par[v]) {\r\n        auto\
-    \ prod = fee(cum_l[nxt], cum_r[nxt + 1]);\r\n        ++nxt;\r\n        dpe2[e.to]\
-    \ = fve(fev(prod, v), e);\r\n      }\r\n  }\r\n  return dp;\r\n}\n#line 5 \"test/yukicoder/1418_rerooting.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  Graph G(N);\n  G.read_tree();\n\n  // \u90E8\u5206\
+    \n  WT dist(int a, int b, bool weighted) {\r\n    assert(weighted);\r\n    int\
+    \ c = LCA(a, b);\r\n    return depth_weighted[a] + depth_weighted[b] - 2 * depth_weighted[c];\r\
+    \n  }\r\n\r\n  bool in_subtree(int a, int b) { return LID[b] <= LID[a] && LID[a]\
+    \ < RID[b]; }\r\n\r\n  int move(int a, int b) {\r\n    assert(a != b);\r\n   \
+    \ return (in_subtree(b, a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\r\n\
+    \  }\r\n\r\n  vc<int> collect_child(int v) {\r\n    vc<int> res;\r\n    for (auto\
+    \ &&e: G[v])\r\n      if (e.to != parent[v]) res.eb(e.to);\r\n    return res;\r\
+    \n  }\r\n\r\n  vc<pair<int, int>> get_path_decomposition(int u, int v, bool edge)\
+    \ {\r\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\"\u533A\u9593\u5217\u3002\
+    \r\n    vc<pair<int, int>> up, down;\r\n    while (1) {\r\n      if (head[u] ==\
+    \ head[v]) break;\r\n      if (LID[u] < LID[v]) {\r\n        down.eb(LID[head[v]],\
+    \ LID[v]);\r\n        v = parent[head[v]];\r\n      } else {\r\n        up.eb(LID[u],\
+    \ LID[head[u]]);\r\n        u = parent[head[u]];\r\n      }\r\n    }\r\n    if\
+    \ (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\r\n    elif (LID[v] + edge\
+    \ <= LID[u]) up.eb(LID[u], LID[v] + edge);\r\n    reverse(all(down));\r\n    up.insert(up.end(),\
+    \ all(down));\r\n    return up;\r\n  }\r\n\r\n  void debug() {\r\n    print(\"\
+    V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\", RID);\r\n    print(\"\
+    parent\", parent);\r\n    print(\"depth\", depth);\r\n    print(\"head\", head);\r\
+    \n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"root\", root);\r\n  }\r\
+    \n};\r\n#line 3 \"graph/rerooting_dp.hpp\"\n\r\n// snippet \u53C2\u7167\r\ntemplate\
+    \ <typename Graph, typename Data, typename F1, typename F2, typename F3>\r\nvc<Data>\
+    \ rerooting_dp(Graph& G, F1 fee, F2 fev, F3 fve, Data unit) {\r\n  using E = typename\
+    \ Graph::edge_type;\r\n\r\n  int N = G.N;\r\n  HLD hld(G);\r\n  auto V = hld.V;\r\
+    \n  auto VR = V;\r\n  reverse(all(VR));\r\n  auto par = hld.parent;\r\n\r\n  vc<Data>\
+    \ dpv(N);\r\n  vc<Data> dpe1(N);\r\n\r\n  for (auto&& v: VR) {\r\n    auto val\
+    \ = unit;\r\n    E e0;\r\n    for (auto&& e: G[v]) {\r\n      if (e.to != par[v])\
+    \ {\r\n        val = fee(val, dpe1[e.to]);\r\n      } else {\r\n        e0 = e;\r\
+    \n      }\r\n    }\r\n    dpv[v] = fev(val, v);\r\n    dpe1[v] = (v ? fve(dpv[v],\
+    \ e0) : unit);\r\n  }\r\n\r\n  vc<Data> dp(N);\r\n  vc<Data> dpe2(N);\r\n  dpe2[0]\
+    \ = unit;\r\n\r\n  for (auto&& v: V) {\r\n    vc<Data> tmp = {dpe2[v]};\r\n  \
+    \  for (auto&& e: G[v])\r\n      if (e.to != par[v]) { tmp.eb(dpe1[e.to]); }\r\
+    \n    int n = len(tmp);\r\n    vc<Data> cum_l(n + 1), cum_r(n + 1);\r\n    cum_l[0]\
+    \ = unit;\r\n    FOR(i, n) cum_l[i + 1] = fee(cum_l[i], tmp[i]);\r\n    cum_r[n]\
+    \ = unit;\r\n    FOR_R(i, n) cum_r[i] = fee(cum_r[i + 1], tmp[i]);\r\n    dp[v]\
+    \ = fev(cum_r[0], v);\r\n    int nxt = 1;\r\n    for (auto&& e: G[v])\r\n    \
+    \  if (e.to != par[v]) {\r\n        auto prod = fee(cum_l[nxt], cum_r[nxt + 1]);\r\
+    \n        ++nxt;\r\n        dpe2[e.to] = fve(fev(prod, v), e);\r\n      }\r\n\
+    \  }\r\n  return dp;\r\n}\n#line 5 \"test/yukicoder/1418_rerooting.test.cpp\"\n\
+    \nvoid solve() {\n  LL(N);\n  Graph G(N);\n  G.read_tree();\n\n  // \u90E8\u5206\
     \u6728\u306E\u5927\u304D\u3055\u3001\u305D\u306E\u4E2D\u306E\u90E8\u5206\u6728\
     \u306E\u5927\u304D\u3055\u306E\u548C\n  using Data = pi;\n  Data unit = {0, 0};\n\
     \  auto fee = [&](Data x, Data y) -> Data { return {x.fi + y.fi, x.se + y.se};\
@@ -335,8 +340,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1418_rerooting.test.cpp
   requiredBy: []
-  timestamp: '2022-05-20 18:32:47+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-05-23 13:23:30+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/1418_rerooting.test.cpp
 layout: document
