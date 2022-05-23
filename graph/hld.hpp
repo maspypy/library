@@ -9,9 +9,11 @@ LCA, LA などは O(logN) 時間。
 template <typename Graph>
 struct HLD {
   Graph &G;
+  using WT = typename Graph::cost_type;
   int N;
   vector<int> LID, RID, head, V, parent, root;
-  vc<ll> depth;
+  vc<int> depth;
+  vc<WT> depth_weighted;
   vector<bool> in_tree;
 
   HLD(Graph &G, int r = -1)
@@ -22,7 +24,8 @@ struct HLD {
         head(G.N, r),
         V(G.N),
         parent(G.N, -1),
-        depth(G.N, -1),
+        depth(G.N),
+        depth_weighted(G.N),
         root(G.N, -1),
         in_tree(G.M, 0) {
     assert(G.is_prepared());
@@ -56,6 +59,7 @@ struct HLD {
       auto e = csr[i];
       if (depth[e.to] != -1) continue;
       in_tree[e.id] = 1;
+      depth_weighted[e.to] = depth_weighted[v] + e.cost;
       dfs_sz(e.to, v);
       sz[v] += sz[e.to];
       if (chmax(hld_sz, sz[e.to]) && l < i) { swap(csr[l], csr[i]); }
@@ -108,6 +112,12 @@ struct HLD {
   int dist(int a, int b) {
     int c = LCA(a, b);
     return depth[a] + depth[b] - 2 * depth[c];
+  }
+
+  WT dist(int a, int b, bool weighted) {
+    assert(weighted);
+    int c = LCA(a, b);
+    return depth_weighted[a] + depth_weighted[b] - 2 * depth_weighted[c];
   }
 
   bool in_subtree(int a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b]; }
