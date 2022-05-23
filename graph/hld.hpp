@@ -9,6 +9,7 @@ LCA, LA などは O(logN) 時間。
 template <typename Graph>
 struct HLD {
   Graph &G;
+  using Graph_type = Graph;
   using WT = typename Graph::cost_type;
   int N;
   vector<int> LID, RID, head, V, parent, root;
@@ -24,8 +25,8 @@ struct HLD {
         head(G.N, r),
         V(G.N),
         parent(G.N, -1),
-        depth(G.N),
-        depth_weighted(G.N),
+        depth(G.N, -1),
+        depth_weighted(G.N, 0),
         root(G.N, -1),
         in_tree(G.M, 0) {
     assert(G.is_prepared());
