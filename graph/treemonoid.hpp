@@ -54,6 +54,7 @@ struct TreeMonoid {
   // https://codeforces.com/contest/1059/problem/E
   template <class F>
   int max_path(F &check, int u, int v) {
+    if (edge) return max_path_edge(check, u, v);
     if (!check(prod_path(u, u))) return -1;
     auto pd = hld.get_path_decomposition(u, v, edge);
     X val = Monoid::unit();
@@ -68,12 +69,15 @@ struct TreeMonoid {
       }
       auto check_tmp = [&](X x) -> bool { return check(Monoid::op(val, x)); };
       if (a <= b) {
+        // 下り
         auto i = seg.max_right(check_tmp, a);
         return (i == a ? u : hld.V[i - 1]);
       } else {
+        // 上り
         auto i = (Monoid::commute ? seg.min_left(check_tmp, a + 1)
                                   : seg_r.min_left(check_tmp, a + 1));
-        return (i == a + 1 ? u : hld.V[i]);
+        if (i == a + 1) return u;
+        return hld.parent[hld.V[i]];
       }
     }
     return v;
@@ -91,8 +95,44 @@ struct TreeMonoid {
     seg_r.debug();
   }
 
-  void doc() {
-    print("HL分解 + セグ木。");
-    print("部分木クエリ O(logN) 時間、パスクエリ O(log^2N) 時間。");
+private:
+  template <class F>
+  int max_path_edge(F &check, int u, int v) {
+    assert(edge);
+    if (!check(Monoid::unit())) return -1;
+    int lca = hld.lca(u, v);
+    auto pd = hld.get_path_decomposition(u, lca, edge);
+    X val = Monoid::unit();
+
+    // climb
+    for (auto &&[a, b]: pd) {
+      assert(a >= b);
+      X x = (Monoid::commute ? seg.prod(b, a + 1) : seg_r.prod(b, a + 1));
+      if (check(Monoid::op(val, x))) {
+        val = Monoid::op(val, x);
+        u = (hld.parent[hld.V[b]]);
+        continue;
+      }
+      auto check_tmp = [&](X x) -> bool { return check(Monoid::op(val, x)); };
+      auto i = (Monoid::commute ? seg.min_left(check_tmp, a + 1)
+                                : seg_r.min_left(check_tmp, a + 1));
+      if (i == a + 1) return u;
+      return hld.parent[hld.V[i]];
+    }
+    // down
+    pd = hld.get_path_decomposition(lca, v, edge);
+    for (auto &&[a, b]: pd) {
+      assert(a <= b);
+      X x = seg.prod(a, b + 1);
+      if (check(Monoid::op(val, x))) {
+        val = Monoid::op(val, x);
+        u = (hld.V[b]);
+        continue;
+      }
+      auto check_tmp = [&](X x) -> bool { return check(Monoid::op(val, x)); };
+      auto i = seg.max_right(check_tmp, a);
+      return (i == a ? u : hld.V[i - 1]);
+    }
+    return v;
   }
 };
