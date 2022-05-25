@@ -1022,6 +1022,9 @@ data:
       path: test/aoj/GRL_6_A_maxflow.test.cpp
       title: test/aoj/GRL_6_A_maxflow.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj/GRO_3_A_articulation.test.cpp
+      title: test/aoj/GRO_3_A_articulation.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ITP1_9_A_split.test.cpp
       title: test/aoj/ITP1_9_A_split.test.cpp
     - icon: ':heavy_check_mark:'

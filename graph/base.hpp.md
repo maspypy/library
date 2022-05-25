@@ -163,6 +163,9 @@ data:
     path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
     title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/GRO_3_A_articulation.test.cpp
+    title: test/aoj/GRO_3_A_articulation.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - icon: ':heavy_check_mark:'
@@ -406,6 +409,7 @@ data:
   - test/aoj/2251_maxantichain.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - test/aoj/2995_dsu.test.cpp
+  - test/aoj/GRO_3_A_articulation.test.cpp
   - test/aoj/ALDS1_12_B_dial.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp
   - test/aoj/GRL_1_B_bellmanford.test.cpp

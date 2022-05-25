@@ -7,6 +7,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/GRO_3_A_articulation.test.cpp
+    title: test/aoj/GRO_3_A_articulation.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/biconnected_component.test.cpp
     title: test/library_checker/graph/biconnected_component.test.cpp
   _isVerificationFailed: false
@@ -67,11 +70,11 @@ data:
     \ (auto&& eid: comp[c]) {\n        BCT_idx_edge[eid] = c;\n        auto& e = G.edges[eid];\n\
     \        add(e.frm, c);\n        add(e.to, c);\n      }\n    }\n\n    FOR(v, n)\
     \ {\n      if (len(nbd[v]) == 0) {\n        // \u5B64\u7ACB\u70B9\u306F\u8FBA\u306E\
-    \u306A\u3044 block\n        BCT_idx_vertex[v] = ++n_block;\n      }\n    }\n \
-    \   comp.resize(n_block);\n\n    FOR(v, n) {\n      if (len(nbd[v]) == 1) {\n\
+    \u306A\u3044 block\n        BCT_idx_vertex[v] = n_block++;\n      }\n    }\n \
+    \   comp.resize(n_block);\n\n    FOR(v, n) {\n      if (len(nbd[v]) >= 2) {\n\
     \        BCT_idx_vertex[v] = n_block + n_cut;\n        for (auto&& c: nbd[v])\
     \ { BCT_edges.eb(n_block + n_cut, c); }\n        n_cut++;\n      }\n      elif\
-    \ (len(nbd[v]) >= 2) {\n        int c = nbd[v][0];\n        BCT_idx_vertex[v]\
+    \ (len(nbd[v]) == 1) {\n        int c = nbd[v][0];\n        BCT_idx_vertex[v]\
     \ = c;\n      }\n    }\n  }\n\n  pair<vc<int>, vc<int>> calculate_lowlink() {\n\
     \    int n = G.N;\n    vc<bool> used(n);\n    vc<int> low(n), ord(n);\n    int\
     \ k = 0;\n    auto dfs = [&](auto self, int v, int eid) -> void {\n      used[v]\
@@ -110,10 +113,10 @@ data:
     \ BCT_idx_edge[eid] = c;\n        auto& e = G.edges[eid];\n        add(e.frm,\
     \ c);\n        add(e.to, c);\n      }\n    }\n\n    FOR(v, n) {\n      if (len(nbd[v])\
     \ == 0) {\n        // \u5B64\u7ACB\u70B9\u306F\u8FBA\u306E\u306A\u3044 block\n\
-    \        BCT_idx_vertex[v] = ++n_block;\n      }\n    }\n    comp.resize(n_block);\n\
-    \n    FOR(v, n) {\n      if (len(nbd[v]) == 1) {\n        BCT_idx_vertex[v] =\
+    \        BCT_idx_vertex[v] = n_block++;\n      }\n    }\n    comp.resize(n_block);\n\
+    \n    FOR(v, n) {\n      if (len(nbd[v]) >= 2) {\n        BCT_idx_vertex[v] =\
     \ n_block + n_cut;\n        for (auto&& c: nbd[v]) { BCT_edges.eb(n_block + n_cut,\
-    \ c); }\n        n_cut++;\n      }\n      elif (len(nbd[v]) >= 2) {\n        int\
+    \ c); }\n        n_cut++;\n      }\n      elif (len(nbd[v]) == 1) {\n        int\
     \ c = nbd[v][0];\n        BCT_idx_vertex[v] = c;\n      }\n    }\n  }\n\n  pair<vc<int>,\
     \ vc<int>> calculate_lowlink() {\n    int n = G.N;\n    vc<bool> used(n);\n  \
     \  vc<int> low(n), ord(n);\n    int k = 0;\n    auto dfs = [&](auto self, int\
@@ -136,9 +139,10 @@ data:
   isVerificationFile: false
   path: graph/biconnected_component.hpp
   requiredBy: []
-  timestamp: '2022-05-26 02:09:19+09:00'
+  timestamp: '2022-05-26 02:23:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/GRO_3_A_articulation.test.cpp
   - test/library_checker/graph/biconnected_component.test.cpp
 documentation_of: graph/biconnected_component.hpp
 layout: document

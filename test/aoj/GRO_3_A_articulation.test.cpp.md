@@ -1,30 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: mod/modint.hpp
-    title: mod/modint.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/base.hpp
+    title: graph/base.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/biconnected_component.hpp
+    title: graph/biconnected_component.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
-    path: string/trie.hpp
-    title: string/trie.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1269
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_A
     links:
-    - https://yukicoder.me/problems/no/1269
-  bundledCode: "#line 1 \"test/yukicoder/1269_aho.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1269\"\
-    \n#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_A
+  bundledCode: "#line 1 \"test/aoj/GRO_3_A_articulation.test.cpp\"\n#define PROBLEM\
+    \ \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_A\"\n\
+    #line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
     \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
     \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
     \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
@@ -191,146 +192,106 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 1 \"string/trie.hpp\"\ntemplate <int sigma>\r\nstruct\
-    \ Trie {\r\n  int n_node;\r\n  vector<array<int, sigma>> TO;\r\n  vector<int>\
-    \ PAR;\r\n  vector<ll> node_value;\r\n  vector<int> BFS;\r\n  vector<int> FAIL;\r\
-    \n\r\n  Trie() : n_node(1), TO({array<int, sigma>()}), PAR({-1}), node_value({0})\
-    \ {\r\n    FOR(s, sigma) TO[0][s] = -1;\r\n  }\r\n\r\n  int add(string S, ll val\
-    \ = 1, int off = 'a') {\r\n    int v = 0;\r\n    for (auto&& ss: S) {\r\n    \
-    \  int s = ss - off;\r\n      if (TO[v][s] == -1) {\r\n        TO[v][s] = create_node();\r\
-    \n        PAR[TO[v][s]] = v;\r\n      }\r\n      v = TO[v][s];\r\n    }\r\n  \
-    \  node_value[v] += val;\r\n    return v;\r\n  }\r\n\r\n  int add(vector<int>\
-    \ S, ll val = 1) {\r\n    int v = 0;\r\n    for (auto&& s: S) {\r\n      if (TO[v][s]\
-    \ == -1) {\r\n        TO[v][s] = create_node();\r\n        PAR[TO[v][s]] = v;\r\
-    \n      }\r\n      v = TO[v][s];\r\n    }\r\n    node_value[v] += val;\r\n   \
-    \ return v;\r\n  }\r\n\r\n  void make_failure(bool change_TO = 1) {\r\n    FAIL.assign(n_node,\
-    \ 0);\r\n    BFS.reserve(n_node);\r\n    deque<int> que;\r\n    que.emplace_back(0);\r\
-    \n    BFS.emplace_back(0);\r\n    while (!que.empty()) {\r\n      int v = que.front();\r\
-    \n      que.pop_front();\r\n      // node_value[v] += node_value[FAIL[v]];\r\n\
-    \      for (int s = 0; s < sigma; ++s) {\r\n        if (TO[v][s] == -1) continue;\r\
-    \n        int w = TO[v][s];\r\n        que.emplace_back(w);\r\n        BFS.emplace_back(w);\r\
-    \n        if (v == 0) continue;\r\n        int f = FAIL[v];\r\n        while (f\
-    \ && TO[f][s] == -1) f = FAIL[f];\r\n        if (TO[f][s] == -1)\r\n         \
-    \ FAIL[w] = 0;\r\n        else\r\n          FAIL[w] = TO[f][s];\r\n      }\r\n\
-    \    }\r\n    if (change_TO) {\r\n      for (auto&& v: BFS) {\r\n        FOR(s,\
-    \ sigma) if (TO[v][s] == -1) {\r\n          int f = FAIL[v];\r\n          TO[v][s]\
-    \ = TO[f][s];\r\n          if (TO[v][s] == -1) TO[v][s] = 0;\r\n        }\r\n\
-    \      }\r\n    }\r\n  }\r\n\r\nprivate:\r\n  int create_node() {\r\n    TO.eb(array<int,\
-    \ sigma>());\r\n    FOR(s, sigma) TO.back()[s] = -1;\r\n    PAR.eb(-1);\r\n  \
-    \  node_value.eb(0);\r\n    return n_node++;\r\n  }\r\n};\r\n#line 2 \"mod/modint.hpp\"\
-    \ntemplate <u32 mod>\nstruct modint {\n  static constexpr bool is_modint = true;\n\
-    \  u32 val;\n  constexpr modint(const ll val = 0) noexcept\n      : val(val >=\
-    \ 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint\
-    \ &other) const {\n    return val < other.val;\n  } // To use std::map\n  modint\
-    \ &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n\
-    \    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if ((val\
-    \ += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const\
-    \ modint &p) {\n    val = (u32)(1LL * val * p.val % mod);\n    return *this;\n\
-    \  }\n  modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n   \
-    \ return *this;\n  }\n  modint operator-() const { return modint(get_mod() - val);\
-    \ }\n  modint operator+(const modint &p) const { return modint(*this) += p; }\n\
-    \  modint operator-(const modint &p) const { return modint(*this) -= p; }\n  modint\
-    \ operator*(const modint &p) const { return modint(*this) *= p; }\n  modint operator/(const\
-    \ modint &p) const { return modint(*this) /= p; }\n  bool operator==(const modint\
-    \ &p) const { return val == p.val; }\n  bool operator!=(const modint &p) const\
-    \ { return val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod,\
-    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
-    \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
-    \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
-    \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n  static constexpr u32 get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
-    \ {\n  static constexpr bool is_modint = true;\n  u32 val;\n  ArbitraryModInt()\
-    \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
-    \                   : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
-    \ ArbitraryModInt &other) const {\n    return val < other.val;\n  } // To use\
-    \ std::map<ArbitraryModInt, T>\n  static u32 &get_mod() {\n    static u32 mod\
-    \ = 0;\n    return mod;\n  }\n  static void set_mod(int md) { get_mod() = md;\
-    \ }\n  ArbitraryModInt &operator+=(const ArbitraryModInt &p) {\n    if ((val +=\
-    \ p.val) >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt\
-    \ &operator-=(const ArbitraryModInt &p) {\n    if ((val += get_mod() - p.val)\
-    \ >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt &operator*=(const\
-    \ ArbitraryModInt &p) {\n    unsigned long long a = (unsigned long long)val *\
-    \ p.val;\n    unsigned xh = (unsigned)(a >> 32), xl = (unsigned)a, d, m;\n   \
-    \ asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"\
-    (get_mod()));\n    val = m;\n    return *this;\n  }\n  ArbitraryModInt &operator/=(const\
-    \ ArbitraryModInt &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n \
-    \ ArbitraryModInt operator-() const { return ArbitraryModInt(get_mod() - val);\
-    \ }\n  ArbitraryModInt operator+(const ArbitraryModInt &p) const {\n    return\
-    \ ArbitraryModInt(*this) += p;\n  }\n  ArbitraryModInt operator-(const ArbitraryModInt\
-    \ &p) const {\n    return ArbitraryModInt(*this) -= p;\n  }\n  ArbitraryModInt\
-    \ operator*(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
-    \ *= p;\n  }\n  ArbitraryModInt operator/(const ArbitraryModInt &p) const {\n\
-    \    return ArbitraryModInt(*this) /= p;\n  }\n  bool operator==(const ArbitraryModInt\
-    \ &p) const { return val == p.val; }\n  bool operator!=(const ArbitraryModInt\
-    \ &p) const { return val != p.val; }\n  ArbitraryModInt inverse() const {\n  \
-    \  int a = val, b = get_mod(), u = 1, v = 0, t;\n    while (b > 0) {\n      t\
-    \ = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return\
-    \ ArbitraryModInt(u);\n  }\n  ArbitraryModInt pow(int64_t n) const {\n    ArbitraryModInt\
-    \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
-    \ mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n};\n\ntemplate <typename\
-    \ mint>\ntuple<mint, mint, mint> get_factorial_data(int n) {\n  static const int\
-    \ mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint>\
-    \ fact = {1, 1};\n  static vector<mint> fact_inv = {1, 1};\n  static vector<mint>\
-    \ inv = {0, 1};\n  while (len(fact) <= n) {\n    int k = len(fact);\n    fact.eb(fact[k\
-    \ - 1] * mint(k));\n    auto q = ceil(mod, k);\n    int r = k * q - mod;\n   \
-    \ inv.eb(inv[r] * mint(q));\n    fact_inv.eb(fact_inv[k - 1] * inv[k]);\n  }\n\
-    \  return {fact[n], fact_inv[n], inv[n]};\n}\n\ntemplate <typename mint>\nmint\
-    \ fact(int n) {\n  static const int mod = mint::get_mod();\n  assert(0 <= n);\n\
-    \  if (n >= mod) return 0;\n  return get<0>(get_factorial_data<mint>(n));\n}\n\
-    \ntemplate <typename mint>\nmint fact_inv(int n) {\n  static const int mod = mint::get_mod();\n\
-    \  assert(0 <= n && n < mod);\n  return get<1>(get_factorial_data<mint>(n));\n\
-    }\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n\
-    \  assert(0 <= n && n < mod);\n  return get<2>(get_factorial_data<mint>(n));\n\
-    }\n\ntemplate <typename mint, bool large = false>\nmint C(ll n, ll k) {\n  assert(n\
-    \ >= 0);\n  if (k < 0 || n < k) return 0;\n  if (!large) return fact<mint>(n)\
-    \ * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k, n - k);\n  mint x(1);\n\
-    \  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n  return x;\n}\n\
-    \ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n\
-    \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
-    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
-    }\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    using amint = ArbitraryModInt;\n#line 6 \"test/yukicoder/1269_aho.test.cpp\"\n\
-    \nusing mint = modint107;\n\nvoid solve() {\n  LL(N, L, R);\n  vi F = {1, 2};\n\
-    \  while (F.back() <= R) F.eb(F[len(F) - 2] + F[len(F) - 1]);\n  {\n    vi tmp;\n\
-    \    for (auto&& x: F)\n      if (L <= x && x <= R) tmp.eb(x);\n    F = tmp;\n\
-    \  }\n  Trie<10> X;\n  for (auto&& f: F) {\n    string s = to_string(f);\n   \
-    \ X.add(s, 1, '0');\n  }\n  X.make_failure(1);\n\n  ll n = X.n_node;\n  vc<mint>\
-    \ dp(n);\n  dp[0] = 1;\n  FOR(N) {\n    vc<mint> newdp(n);\n    FOR(v, n) {\n\
-    \      FOR(d, 10) {\n        int to = X.TO[v][d];\n        if (X.node_value[to])\
-    \ continue;\n        assert(0 <= to && to < n);\n        newdp[to] += dp[v];\n\
-    \      }\n    }\n    swap(dp, newdp);\n  }\n  print(SUM(dp) - mint(1));\n}\n\n\
-    signed main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout <<\
-    \ setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
-    \ 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1269\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"string/trie.hpp\"\n#include \"mod/modint.hpp\"\
-    \n\nusing mint = modint107;\n\nvoid solve() {\n  LL(N, L, R);\n  vi F = {1, 2};\n\
-    \  while (F.back() <= R) F.eb(F[len(F) - 2] + F[len(F) - 1]);\n  {\n    vi tmp;\n\
-    \    for (auto&& x: F)\n      if (L <= x && x <= R) tmp.eb(x);\n    F = tmp;\n\
-    \  }\n  Trie<10> X;\n  for (auto&& f: F) {\n    string s = to_string(f);\n   \
-    \ X.add(s, 1, '0');\n  }\n  X.make_failure(1);\n\n  ll n = X.n_node;\n  vc<mint>\
-    \ dp(n);\n  dp[0] = 1;\n  FOR(N) {\n    vc<mint> newdp(n);\n    FOR(v, n) {\n\
-    \      FOR(d, 10) {\n        int to = X.TO[v][d];\n        if (X.node_value[to])\
-    \ continue;\n        assert(0 <= to && to < n);\n        newdp[to] += dp[v];\n\
-    \      }\n    }\n    swap(dp, newdp);\n  }\n  print(SUM(dp) - mint(1));\n}\n\n\
-    signed main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout <<\
-    \ setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
-    \ 0;\n}\n"
+    \ { yes(!t); }\r\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct\
+    \ Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int,\
+    \ bool directed = false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n\
+    \  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n\
+    \  vector<edge_type> csr_edges;\n  bool prepared;\n\n  class OutgoingEdges {\n\
+    \  public:\n    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l), r(r)\
+    \ {}\n\n    const edge_type* begin() const {\n      if (l == r) { return 0; }\n\
+    \      return &G->csr_edges[l];\n    }\n\n    const edge_type* end() const {\n\
+    \      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n  private:\n\
+    \    int l, r;\n    const Graph* G;\n  };\n\n  bool is_prepared() { return prepared;\
+    \ }\n  constexpr bool is_directed() { return directed; }\n\n  Graph() : N(0),\
+    \ M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void\
+    \ add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n   \
+    \ assert(0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto e\
+    \ = edge_type({frm, to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  // wt,\
+    \ off\n  void read_tree(bool wt = false, int off = 1) { read_graph(N - 1, wt,\
+    \ off); }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n    FOR(M)\
+    \ {\n      INT(a, b);\n      a -= off, b -= off;\n      if (!wt) {\n        add(a,\
+    \ b);\n      } else {\n        T c;\n        read(c);\n        add(a, b, c);\n\
+    \      }\n    }\n    build();\n  }\n\n  void read_parent(int off = 1) {\n    FOR3(v,\
+    \ 1, N) {\n      INT(p);\n      p -= off;\n      add(p, v);\n    }\n    build();\n\
+    \  }\n\n  void build() {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N\
+    \ + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if\
+    \ (!directed) indptr[e.to + 1]++;\n    }\n    FOR(v, N) indptr[v + 1] += indptr[v];\n\
+    \    auto counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for\
+    \ (auto&& e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
+    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
+    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
+    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  void debug() {\n    print(\"\
+    Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
+    \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
+    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 2 \"graph/biconnected_component.hpp\"\
+    \n\n/*\n\u5B64\u7ACB\u70B9\u306F\u3001\u8FBA\u306E\u306A\u3044 component \u3067\
+    \u3001block \u306B\u306A\u308B\u3002\u95A2\u7BC0\u70B9\u3067\u306F\u306A\u3044\
+    \u3002\nblock cut tree\u306E\u9802\u70B9\u756A\u53F7\uFF1A\n[0, n_block)\uFF1A\
+    block \uFF08\u8FBA\u306E\u540C\u5024\u985E\uFF09\n[n_block, n_block + n_cut)\uFF1A\
+    cut \uFF08\u95A2\u7BC0\u70B9\uFF09\n*/\ntemplate <typename GT>\nstruct Biconnected_Component\
+    \ {\n  GT& G;\n  vc<pair<int, int>> BCT_edges;\n  int n_block, n_cut;\n  vc<vc<int>>\
+    \ comp;\n  vc<int> BCT_idx_edge;\n  vc<int> BCT_idx_vertex;\n\n  Biconnected_Component(GT&\
+    \ G) : G(G) {\n    auto [ord, low] = calculate_lowlink();\n    calculate_bcc(ord,\
+    \ low);\n    build_bct();\n  }\n\n  int BCT_idx_v(int v) { return BCT_idx_vertex[v];\
+    \ }\n  int BCT_idx_e(int eid) { return BCT_idx_edge[eid]; }\n  Graph<int> BCT()\
+    \ {\n    Graph<int> bct(n_block + n_cut);\n    for (auto&& [a, b]: BCT_edges)\
+    \ bct.add(a, b);\n    bct.build();\n    return bct;\n  }\n  bool is_articulation(int\
+    \ v) { return BCT_idx_v(v) >= n_block; }\n\nprivate:\n  void build_bct() {\n \
+    \   int n = G.N;\n    vvc<int> nbd(n);\n    n_block = len(comp);\n    n_cut =\
+    \ 0;\n    BCT_idx_edge.resize(G.M);\n    BCT_idx_vertex.resize(G.N);\n\n    auto\
+    \ add = [&](int v, int c) -> void {\n      if (len(nbd[v]) && nbd[v].back() ==\
+    \ c) return;\n      nbd[v].eb(c);\n    };\n\n    FOR(c, len(comp)) {\n      for\
+    \ (auto&& eid: comp[c]) {\n        BCT_idx_edge[eid] = c;\n        auto& e = G.edges[eid];\n\
+    \        add(e.frm, c);\n        add(e.to, c);\n      }\n    }\n\n    FOR(v, n)\
+    \ {\n      if (len(nbd[v]) == 0) {\n        // \u5B64\u7ACB\u70B9\u306F\u8FBA\u306E\
+    \u306A\u3044 block\n        BCT_idx_vertex[v] = n_block++;\n      }\n    }\n \
+    \   comp.resize(n_block);\n\n    FOR(v, n) {\n      if (len(nbd[v]) >= 2) {\n\
+    \        BCT_idx_vertex[v] = n_block + n_cut;\n        for (auto&& c: nbd[v])\
+    \ { BCT_edges.eb(n_block + n_cut, c); }\n        n_cut++;\n      }\n      elif\
+    \ (len(nbd[v]) == 1) {\n        int c = nbd[v][0];\n        BCT_idx_vertex[v]\
+    \ = c;\n      }\n    }\n  }\n\n  pair<vc<int>, vc<int>> calculate_lowlink() {\n\
+    \    int n = G.N;\n    vc<bool> used(n);\n    vc<int> low(n), ord(n);\n    int\
+    \ k = 0;\n    auto dfs = [&](auto self, int v, int eid) -> void {\n      used[v]\
+    \ = 1;\n      low[v] = ord[v] = k++;\n      for (auto&& e: G[v]) {\n        if\
+    \ (e.id == eid) continue;\n        if (!used[e.to]) {\n          self(self, e.to,\
+    \ e.id);\n          chmin(low[v], low[e.to]);\n        } else {\n          chmin(low[v],\
+    \ ord[e.to]);\n        }\n      }\n    };\n    FOR(v, n) if (!used[v]) dfs(dfs,\
+    \ v, -1);\n    return {ord, low};\n  }\n\n  void calculate_bcc(vc<int>& ord, vc<int>&\
+    \ low) {\n    int n = G.N;\n    vc<bool> used(n);\n    vc<int> buf;\n    auto\
+    \ dfs = [&](auto self, int v, int eid) -> void {\n      used[v] = 1;\n      for\
+    \ (auto&& e: G[v]) {\n        if (e.id == eid) continue;\n        if (!used[e.to]\
+    \ || ord[e.to] < ord[v]) buf.eb(e.id);\n        if (used[e.to]) continue;\n  \
+    \      self(self, e.to, e.id);\n        if (low[e.to] < ord[v]) continue;\n  \
+    \      vc<int> edges;\n        while (1) {\n          edges.eb(buf.back());\n\
+    \          buf.pop_back();\n          if (edges.back() == e.id) break;\n     \
+    \   }\n        comp.eb(edges);\n      }\n    };\n    FOR(v, n) if (!used[v]) dfs(dfs,\
+    \ v, -1);\n  }\n};\n#line 6 \"test/aoj/GRO_3_A_articulation.test.cpp\"\n\nvoid\
+    \ solve() {\n  LL(N, M);\n  Graph G(N);\n  G.read_graph(M, 0, 0);\n  Biconnected_Component\
+    \ BC(G);\n  FOR(v, N) if (BC.is_articulation(v)) print(v);\n}\n\nsigned main()\
+    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_A\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/biconnected_component.hpp\"\
+    \n\nvoid solve() {\n  LL(N, M);\n  Graph G(N);\n  G.read_graph(M, 0, 0);\n  Biconnected_Component\
+    \ BC(G);\n  FOR(v, N) if (BC.is_articulation(v)) print(v);\n}\n\nsigned main()\
+    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - string/trie.hpp
-  - mod/modint.hpp
+  - graph/biconnected_component.hpp
+  - graph/base.hpp
   isVerificationFile: true
-  path: test/yukicoder/1269_aho.test.cpp
+  path: test/aoj/GRO_3_A_articulation.test.cpp
   requiredBy: []
-  timestamp: '2022-05-26 02:11:40+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-26 02:23:24+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/1269_aho.test.cpp
+documentation_of: test/aoj/GRO_3_A_articulation.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/1269_aho.test.cpp
-- /verify/test/yukicoder/1269_aho.test.cpp.html
-title: test/yukicoder/1269_aho.test.cpp
+- /verify/test/aoj/GRO_3_A_articulation.test.cpp
+- /verify/test/aoj/GRO_3_A_articulation.test.cpp.html
+title: test/aoj/GRO_3_A_articulation.test.cpp
 ---
