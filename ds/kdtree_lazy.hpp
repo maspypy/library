@@ -29,6 +29,11 @@ struct KDTree_Lazy {
     return prod_rec(1, xl, xr, yl, yr);
   }
 
+  X prod_all() {
+    auto& [xmin, xmax, ymin, ymax] = range[1];
+    return prod(xmin, ymin, xmax + 1, ymax + 1);
+  }
+
   void apply(XY xl, XY yl, XY xr, XY yr, A a) {
     assert(xl <= xr && yl <= yr);
     return apply_rec(1, xl, xr, yl, yr, a);
