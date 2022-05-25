@@ -57,18 +57,18 @@ private:
     FOR(v, n) {
       if (len(nbd[v]) == 0) {
         // 孤立点は辺のない block
-        BCT_idx_vertex[v] = ++n_block;
+        BCT_idx_vertex[v] = n_block++;
       }
     }
     comp.resize(n_block);
 
     FOR(v, n) {
-      if (len(nbd[v]) == 1) {
+      if (len(nbd[v]) >= 2) {
         BCT_idx_vertex[v] = n_block + n_cut;
         for (auto&& c: nbd[v]) { BCT_edges.eb(n_block + n_cut, c); }
         n_cut++;
       }
-      elif (len(nbd[v]) >= 2) {
+      elif (len(nbd[v]) == 1) {
         int c = nbd[v][0];
         BCT_idx_vertex[v] = c;
       }
