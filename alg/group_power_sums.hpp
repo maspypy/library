@@ -10,6 +10,11 @@ struct Group_power_sums {
     FOR(i, K) z[i] = x[i] + y[i];
     return z;
   }
+  static X from_element(mint x) {
+    vc<mint> a(K);
+    a[0] = 1;
+    FOR(i, K - 1) a[i + 1] = a[i] * K;
+  }
   static X unit() { return vc<mint>(K, mint(0)); }
   static constexpr bool commute = 1;
 };
