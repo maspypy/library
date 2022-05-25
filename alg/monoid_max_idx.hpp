@@ -6,6 +6,7 @@ struct Monoid_Max_Idx {
   static X op(X x, X y) {
     if (x.fi > y.fi) return x;
     if (x.fi < y.fi) return y;
+    if (x.se > y.se) swap(x, y);
     return (tie_is_left ? x : y);
   }
   static constexpr X unit() { return {numeric_limits<T>::lowest(), -1}; }
