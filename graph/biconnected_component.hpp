@@ -1,7 +1,7 @@
 #include "graph/base.hpp"
 
 /*
-孤立点の扱いが分からなかったが、とりあえず関節点として BCT に入れている
+孤立点は、辺のない component で、block になる。関節点ではない。
 block cut treeの頂点番号：
 [0, n_block)：block （辺の同値類）
 [n_block, n_block + n_cut)：cut （関節点）
@@ -53,12 +53,22 @@ private:
         add(e.to, c);
       }
     }
+
     FOR(v, n) {
-      if (len(nbd[v]) != 1) {
+      if (len(nbd[v]) == 0) {
+        // 孤立点は辺のない block
+        BCT_idx_vertex[v] = ++n_block;
+      }
+    }
+    comp.resize(n_block);
+
+    FOR(v, n) {
+      if (len(nbd[v]) == 1) {
         BCT_idx_vertex[v] = n_block + n_cut;
         for (auto&& c: nbd[v]) { BCT_edges.eb(n_block + n_cut, c); }
         n_cut++;
-      } else {
+      }
+      elif (len(nbd[v]) >= 2) {
         int c = nbd[v][0];
         BCT_idx_vertex[v] = c;
       }

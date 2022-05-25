@@ -3,14 +3,18 @@
 #include "other/io.hpp"
 #include "graph/biconnected_component.hpp"
 
+
 void solve() {
   LL(N, M);
   Graph G(N);
   G.read_graph(M, 0, 0);
-
   Biconnected_Component BC(G);
-  print(len(BC.comp));
-  for (auto&& C: BC.comp) { print(len(C), C); }
+  ll K = 0;
+  for (auto&& C: BC.comp)
+    if (len(C) > 0) ++K;
+  print(K);
+  for (auto&& C: BC.comp)
+    if (len(C) > 0) { print(len(C), C); }
 }
 
 signed main() {
