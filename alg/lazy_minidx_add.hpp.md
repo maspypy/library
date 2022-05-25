@@ -21,16 +21,17 @@ data:
     \ n * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
     \ bool commute = true;\r\n};\r\n#line 1 \"alg/monoid_min_idx.hpp\"\ntemplate <typename\
     \ T, bool tie_is_left = true>\r\nstruct Monoid_Min_Idx {\r\n  using value_type\
-    \ = pair<T, ll>;\r\n  using X = value_type;\r\n  static X op(X x, X y) {\r\n \
-    \   if (x.fi < y.fi) return x;\r\n    if (x.fi > y.fi) return y;\r\n    return\
-    \ (tie_is_left ? x : y);\r\n  }\r\n  static constexpr X unit() { return {numeric_limits<T>::max(),\
-    \ -1}; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/lazy_minidx_add.hpp\"\
-    \n\r\ntemplate <typename E, bool tie_is_left = true>\r\nstruct Lazy_MinIdx_Add\
-    \ {\r\n  using MX = Monoid_Min_Idx<E, tie_is_left>;\r\n  using MA = Group_Add<E>;\r\
-    \n  using X_structure = MX;\r\n  using A_structure = MA;\r\n  using X = typename\
-    \ MX::value_type;\r\n  using A = typename MA::value_type;\r\n  static constexpr\
-    \ X act(const X &x, const A &a) {\r\n    if (x.fi == numeric_limits<E>::max())\
-    \ return x;\r\n    return {x.fi + a, x.se};\r\n  }\r\n};\r\n"
+    \ = pair<T, int>;\r\n  using X = value_type;\r\n  static X op(X x, X y) {\r\n\
+    \    if (x.fi < y.fi) return x;\r\n    if (x.fi > y.fi) return y;\r\n    if (x.se\
+    \ > y.se) swap(x, y);\r\n    return (tie_is_left ? x : y);\r\n  }\r\n  static\
+    \ constexpr X unit() { return {numeric_limits<T>::max(), -1}; }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 3 \"alg/lazy_minidx_add.hpp\"\n\r\ntemplate\
+    \ <typename E, bool tie_is_left = true>\r\nstruct Lazy_MinIdx_Add {\r\n  using\
+    \ MX = Monoid_Min_Idx<E, tie_is_left>;\r\n  using MA = Group_Add<E>;\r\n  using\
+    \ X_structure = MX;\r\n  using A_structure = MA;\r\n  using X = typename MX::value_type;\r\
+    \n  using A = typename MA::value_type;\r\n  static constexpr X act(const X &x,\
+    \ const A &a) {\r\n    if (x.fi == numeric_limits<E>::max()) return x;\r\n   \
+    \ return {x.fi + a, x.se};\r\n  }\r\n};\r\n"
   code: "#include \"alg/group_add.hpp\"\r\n#include \"alg/monoid_min_idx.hpp\"\r\n\
     \r\ntemplate <typename E, bool tie_is_left = true>\r\nstruct Lazy_MinIdx_Add {\r\
     \n  using MX = Monoid_Min_Idx<E, tie_is_left>;\r\n  using MA = Group_Add<E>;\r\
@@ -44,7 +45,7 @@ data:
   isVerificationFile: false
   path: alg/lazy_minidx_add.hpp
   requiredBy: []
-  timestamp: '2022-05-16 18:02:11+09:00'
+  timestamp: '2022-05-26 00:06:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/lazy_minidx_add.hpp

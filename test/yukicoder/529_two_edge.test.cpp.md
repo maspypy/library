@@ -22,10 +22,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -413,9 +413,10 @@ data:
     \n  }\r\n};\r\n#line 2 \"alg/monoid_max_idx.hpp\"\ntemplate <typename T, bool\
     \ tie_is_left = true>\r\nstruct Monoid_Max_Idx {\r\n  using value_type = pair<T,\
     \ int>;\r\n  using X = value_type;\r\n  static X op(X x, X y) {\r\n    if (x.fi\
-    \ > y.fi) return x;\r\n    if (x.fi < y.fi) return y;\r\n    return (tie_is_left\
-    \ ? x : y);\r\n  }\r\n  static constexpr X unit() { return {numeric_limits<T>::lowest(),\
-    \ -1}; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 7 \"test/yukicoder/529_two_edge.test.cpp\"\
+    \ > y.fi) return x;\r\n    if (x.fi < y.fi) return y;\r\n    if (x.se > y.se)\
+    \ swap(x, y);\r\n    return (tie_is_left ? x : y);\r\n  }\r\n  static constexpr\
+    \ X unit() { return {numeric_limits<T>::lowest(), -1}; }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 7 \"test/yukicoder/529_two_edge.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, M, Q);\n  Graph G0(N);\n  G0.read_graph(M);\n  auto\
     \ [C, comp] = two_edge_component(G0);\n\n  Graph G(C);\n  for (auto&& e: G0.edges)\
     \ {\n    ll a = e.frm, b = e.to;\n    if (comp[a] == comp[b]) continue;\n    G.add(comp[a],\
@@ -462,7 +463,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/529_two_edge.test.cpp
   requiredBy: []
-  timestamp: '2022-05-23 17:34:15+09:00'
+  timestamp: '2022-05-26 00:06:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/529_two_edge.test.cpp

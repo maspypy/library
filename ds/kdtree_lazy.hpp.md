@@ -21,18 +21,20 @@ data:
     \ }\r\n\r\n  void set(XY x, XY y, const X& v) { set_rec(1, x, y, v); }\r\n\r\n\
     \  void multiply(XY x, XY y, const X& v) { multiply_rec(1, x, y, v); }\r\n\r\n\
     \  X prod(XY xl, XY yl, XY xr, XY yr) {\r\n    assert(xl <= xr && yl <= yr);\r\
-    \n    return prod_rec(1, xl, xr, yl, yr);\r\n  }\r\n\r\n  void apply(XY xl, XY\
-    \ yl, XY xr, XY yr, A a) {\r\n    assert(xl <= xr && yl <= yr);\r\n    return\
-    \ apply_rec(1, xl, xr, yl, yr, a);\r\n  }\r\n\r\n  vc<tuple<XY, XY, X>> get_all()\
-    \ {\r\n    vc<tuple<XY, XY, X>> res;\r\n    auto dfs = [&](auto& dfs, int idx)\
-    \ -> void {\r\n      auto& [xmin, xmax, ymin, ymax] = range[idx];\r\n      if\
-    \ (xmin == xmax && ymin == ymax) {\r\n        res.eb(xmin, ymin, dat[idx]);\r\n\
-    \        return;\r\n      }\r\n      push(idx);\r\n      dfs(dfs, 2 * idx + 0);\r\
-    \n      dfs(dfs, 2 * idx + 1);\r\n    };\r\n    dfs(dfs, 1);\r\n    return res;\r\
-    \n  }\r\n\r\nprivate:\r\n  void build(int idx, vc<XY>& xs, vc<XY>& ys, vc<X> vs,\
-    \ bool divx = true) {\r\n    lazy[idx] = Monoid_A::unit();\r\n    int n = len(xs);\r\
-    \n    auto& [xmin, xmax, ymin, ymax] = range[idx];\r\n    xmin = numeric_limits<XY>::max();\r\
-    \n    xmax = numeric_limits<XY>::lowest();\r\n    ymin = numeric_limits<XY>::max();\r\
+    \n    return prod_rec(1, xl, xr, yl, yr);\r\n  }\r\n\r\n  X prod_all() {\r\n \
+    \   auto& [xmin, xmax, ymin, ymax] = range[1];\r\n    return prod(xmin, ymin,\
+    \ xmax + 1, ymax + 1);\r\n  }\r\n\r\n  void apply(XY xl, XY yl, XY xr, XY yr,\
+    \ A a) {\r\n    assert(xl <= xr && yl <= yr);\r\n    return apply_rec(1, xl, xr,\
+    \ yl, yr, a);\r\n  }\r\n\r\n  vc<tuple<XY, XY, X>> get_all() {\r\n    vc<tuple<XY,\
+    \ XY, X>> res;\r\n    auto dfs = [&](auto& dfs, int idx) -> void {\r\n      auto&\
+    \ [xmin, xmax, ymin, ymax] = range[idx];\r\n      if (xmin == xmax && ymin ==\
+    \ ymax) {\r\n        res.eb(xmin, ymin, dat[idx]);\r\n        return;\r\n    \
+    \  }\r\n      push(idx);\r\n      dfs(dfs, 2 * idx + 0);\r\n      dfs(dfs, 2 *\
+    \ idx + 1);\r\n    };\r\n    dfs(dfs, 1);\r\n    return res;\r\n  }\r\n\r\nprivate:\r\
+    \n  void build(int idx, vc<XY>& xs, vc<XY>& ys, vc<X> vs, bool divx = true) {\r\
+    \n    lazy[idx] = Monoid_A::unit();\r\n    int n = len(xs);\r\n    auto& [xmin,\
+    \ xmax, ymin, ymax] = range[idx];\r\n    xmin = numeric_limits<XY>::max();\r\n\
+    \    xmax = numeric_limits<XY>::lowest();\r\n    ymin = numeric_limits<XY>::max();\r\
     \n    ymax = numeric_limits<XY>::lowest();\r\n\r\n    FOR(i, n) {\r\n      auto\
     \ x = xs[i], y = ys[i];\r\n      chmin(xmin, x);\r\n      chmax(xmax, x);\r\n\
     \      chmin(ymin, y);\r\n      chmax(ymax, y);\r\n    }\r\n    if (xmin == xmax\
@@ -96,13 +98,15 @@ data:
     \ x, y, v); }\r\n\r\n  void multiply(XY x, XY y, const X& v) { multiply_rec(1,\
     \ x, y, v); }\r\n\r\n  X prod(XY xl, XY yl, XY xr, XY yr) {\r\n    assert(xl <=\
     \ xr && yl <= yr);\r\n    return prod_rec(1, xl, xr, yl, yr);\r\n  }\r\n\r\n \
-    \ void apply(XY xl, XY yl, XY xr, XY yr, A a) {\r\n    assert(xl <= xr && yl <=\
-    \ yr);\r\n    return apply_rec(1, xl, xr, yl, yr, a);\r\n  }\r\n\r\n  vc<tuple<XY,\
-    \ XY, X>> get_all() {\r\n    vc<tuple<XY, XY, X>> res;\r\n    auto dfs = [&](auto&\
-    \ dfs, int idx) -> void {\r\n      auto& [xmin, xmax, ymin, ymax] = range[idx];\r\
-    \n      if (xmin == xmax && ymin == ymax) {\r\n        res.eb(xmin, ymin, dat[idx]);\r\
-    \n        return;\r\n      }\r\n      push(idx);\r\n      dfs(dfs, 2 * idx + 0);\r\
-    \n      dfs(dfs, 2 * idx + 1);\r\n    };\r\n    dfs(dfs, 1);\r\n    return res;\r\
+    \ X prod_all() {\r\n    auto& [xmin, xmax, ymin, ymax] = range[1];\r\n    return\
+    \ prod(xmin, ymin, xmax + 1, ymax + 1);\r\n  }\r\n\r\n  void apply(XY xl, XY yl,\
+    \ XY xr, XY yr, A a) {\r\n    assert(xl <= xr && yl <= yr);\r\n    return apply_rec(1,\
+    \ xl, xr, yl, yr, a);\r\n  }\r\n\r\n  vc<tuple<XY, XY, X>> get_all() {\r\n   \
+    \ vc<tuple<XY, XY, X>> res;\r\n    auto dfs = [&](auto& dfs, int idx) -> void\
+    \ {\r\n      auto& [xmin, xmax, ymin, ymax] = range[idx];\r\n      if (xmin ==\
+    \ xmax && ymin == ymax) {\r\n        res.eb(xmin, ymin, dat[idx]);\r\n       \
+    \ return;\r\n      }\r\n      push(idx);\r\n      dfs(dfs, 2 * idx + 0);\r\n \
+    \     dfs(dfs, 2 * idx + 1);\r\n    };\r\n    dfs(dfs, 1);\r\n    return res;\r\
     \n  }\r\n\r\nprivate:\r\n  void build(int idx, vc<XY>& xs, vc<XY>& ys, vc<X> vs,\
     \ bool divx = true) {\r\n    lazy[idx] = Monoid_A::unit();\r\n    int n = len(xs);\r\
     \n    auto& [xmin, xmax, ymin, ymax] = range[idx];\r\n    xmin = numeric_limits<XY>::max();\r\
@@ -162,7 +166,7 @@ data:
   isVerificationFile: false
   path: ds/kdtree_lazy.hpp
   requiredBy: []
-  timestamp: '2022-05-20 23:55:57+09:00'
+  timestamp: '2022-05-26 00:07:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/kdtree_lazy.hpp

@@ -13,13 +13,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -339,32 +339,33 @@ data:
     \n\r\n// 0 \u4E57\u548C\u304B\u3089 K-1 \u4E57\u548C\u307E\u3067\r\ntemplate <typename\
     \ mint, int K>\r\nstruct Group_power_sums {\r\n  using value_type = vc<mint>;\r\
     \n  using X = value_type;\r\n  static X op(X x, X y) {\r\n    vc<mint> z(K);\r\
-    \n    FOR(i, K) z[i] = x[i] + y[i];\r\n    return z;\r\n  }\r\n  static X unit()\
-    \ { return vc<mint>(K, mint(0)); }\r\n  static constexpr bool commute = 1;\r\n\
-    };\n#line 5 \"alg/lazy_powersums_set.hpp\"\ntemplate <typename mint, int K>\r\n\
-    struct Lazy_Power_Sums_Set {\r\n  using MX = Group_power_sums<mint, K>;\r\n  using\
-    \ MA = Monoid_Set<int, -1>;\r\n  using X_structure = MX;\r\n  using A_structure\
-    \ = MA;\r\n  using X = typename MX::value_type;\r\n  using A = typename MA::value_type;\r\
-    \n  static X act(const X &x, const A &b) {\r\n    if (b == -1) return x;\r\n \
-    \   mint a = b;\r\n    vc<mint> y(K);\r\n    vc<mint> pow(K);\r\n    pow[0] =\
-    \ mint(1);\r\n    FOR(k, K - 1) pow[k + 1] = pow[k] * a;\r\n    FOR(i, 5) y[i]\
-    \ = x[0] * pow[i];\r\n    return y;\r\n  }\r\n};\r\n#line 7 \"test/yukicoder/1548_power_sums.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  using Mono = Group_power_sums<mint,\
-    \ 5>;\n  VEC(mint, A, N);\n  vv(mint, seg_raw, N, 5);\n  FOR(i, N) {\n    mint\
-    \ a = A[i];\n    seg_raw[i] = {1, a, a * a, a * a * a, a * a * a * a};\n  }\n\
-    \  LazySegTree<Lazy_Power_Sums_Set<mint, 5>> seg(seg_raw);\n  LL(Q);\n  FOR(Q)\
-    \ {\n    LL(t, u, v, w);\n    if (u > v) swap(u, v);\n    if (w < u || v < w)\
-    \ swap(u, v);\n    --u, --v;\n    if (t == 0) {\n      LL(b);\n      if (u < v)\
-    \ {\n        seg.apply(u, v + 1, b);\n      } else {\n        seg.apply(0, v +\
-    \ 1, b);\n        seg.apply(u, N, b);\n      }\n    } else {\n      vc<mint> e;\n\
-    \      if (u < v) {\n        e = seg.prod(u, v + 1);\n      } else {\n       \
-    \ e = Mono::op(seg.prod(0, v + 1), seg.prod(u, N));\n      }\n      // print(e);\n\
-    \      mint n = e[0];\n      mint mu = -e[1] / n;\n      ll k = t;\n      // sum\
-    \ (x+mu)^k\n      mint ans = 0;\n      FOR(i, k + 1) { ans += e[i] * mu.pow(k\
-    \ - i) * C<mint>(k, i); }\n      ans /= n;\n      print(ans);\n    }\n  }\n}\n\
-    \nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
-    \ 0;\n}\n"
+    \n    FOR(i, K) z[i] = x[i] + y[i];\r\n    return z;\r\n  }\r\n  static X from_element(mint\
+    \ x) {\r\n    vc<mint> a(K);\r\n    a[0] = 1;\r\n    FOR(i, K - 1) a[i + 1] =\
+    \ a[i] * K;\r\n  }\r\n  static X unit() { return vc<mint>(K, mint(0)); }\r\n \
+    \ static constexpr bool commute = 1;\r\n};\r\n#line 5 \"alg/lazy_powersums_set.hpp\"\
+    \ntemplate <typename mint, int K>\r\nstruct Lazy_Power_Sums_Set {\r\n  using MX\
+    \ = Group_power_sums<mint, K>;\r\n  using MA = Monoid_Set<int, -1>;\r\n  using\
+    \ X_structure = MX;\r\n  using A_structure = MA;\r\n  using X = typename MX::value_type;\r\
+    \n  using A = typename MA::value_type;\r\n  static X act(const X &x, const A &b)\
+    \ {\r\n    if (b == -1) return x;\r\n    mint a = b;\r\n    vc<mint> y(K);\r\n\
+    \    vc<mint> pow(K);\r\n    pow[0] = mint(1);\r\n    FOR(k, K - 1) pow[k + 1]\
+    \ = pow[k] * a;\r\n    FOR(i, 5) y[i] = x[0] * pow[i];\r\n    return y;\r\n  }\r\
+    \n};\r\n#line 7 \"test/yukicoder/1548_power_sums.test.cpp\"\n\nusing mint = modint998;\n\
+    \nvoid solve() {\n  LL(N);\n  using Mono = Group_power_sums<mint, 5>;\n  VEC(mint,\
+    \ A, N);\n  vv(mint, seg_raw, N, 5);\n  FOR(i, N) {\n    mint a = A[i];\n    seg_raw[i]\
+    \ = {1, a, a * a, a * a * a, a * a * a * a};\n  }\n  LazySegTree<Lazy_Power_Sums_Set<mint,\
+    \ 5>> seg(seg_raw);\n  LL(Q);\n  FOR(Q) {\n    LL(t, u, v, w);\n    if (u > v)\
+    \ swap(u, v);\n    if (w < u || v < w) swap(u, v);\n    --u, --v;\n    if (t ==\
+    \ 0) {\n      LL(b);\n      if (u < v) {\n        seg.apply(u, v + 1, b);\n  \
+    \    } else {\n        seg.apply(0, v + 1, b);\n        seg.apply(u, N, b);\n\
+    \      }\n    } else {\n      vc<mint> e;\n      if (u < v) {\n        e = seg.prod(u,\
+    \ v + 1);\n      } else {\n        e = Mono::op(seg.prod(0, v + 1), seg.prod(u,\
+    \ N));\n      }\n      // print(e);\n      mint n = e[0];\n      mint mu = -e[1]\
+    \ / n;\n      ll k = t;\n      // sum (x+mu)^k\n      mint ans = 0;\n      FOR(i,\
+    \ k + 1) { ans += e[i] * mu.pow(k - i) * C<mint>(k, i); }\n      ans /= n;\n \
+    \     print(ans);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1548\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n#include \"ds/lazysegtree.hpp\"\
     \n#include \"alg/lazy_powersums_set.hpp\"\n\nusing mint = modint998;\n\nvoid solve()\
@@ -394,7 +395,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1548_power_sums.test.cpp
   requiredBy: []
-  timestamp: '2022-05-22 16:21:03+09:00'
+  timestamp: '2022-05-26 00:08:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/1548_power_sums.test.cpp
