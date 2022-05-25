@@ -225,56 +225,60 @@ data:
     \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
     , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
     \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 2 \"graph/biconnected_component.hpp\"\
-    \n\n/*\n\u5B64\u7ACB\u70B9\u306E\u6271\u3044\u304C\u5206\u304B\u3089\u306A\u304B\
-    \u3063\u305F\u304C\u3001\u3068\u308A\u3042\u3048\u305A\u95A2\u7BC0\u70B9\u3068\
-    \u3057\u3066 BCT \u306B\u5165\u308C\u3066\u3044\u308B\nblock cut tree\u306E\u9802\
-    \u70B9\u756A\u53F7\uFF1A\n[0, n_block)\uFF1Ablock \uFF08\u8FBA\u306E\u540C\u5024\
-    \u985E\uFF09\n[n_block, n_block + n_cut)\uFF1Acut \uFF08\u95A2\u7BC0\u70B9\uFF09\
-    \n*/\ntemplate <typename GT>\nstruct Biconnected_Component {\n  GT& G;\n  vc<pair<int,\
-    \ int>> BCT_edges;\n  int n_block, n_cut;\n  vc<vc<int>> comp;\n  vc<int> BCT_idx_edge;\n\
-    \  vc<int> BCT_idx_vertex;\n\n  Biconnected_Component(GT& G) : G(G) {\n    auto\
-    \ [ord, low] = calculate_lowlink();\n    calculate_bcc(ord, low);\n    build_bct();\n\
-    \  }\n\n  int BCT_idx_v(int v) { return BCT_idx_vertex[v]; }\n  int BCT_idx_e(int\
-    \ eid) { return BCT_idx_edge[eid]; }\n  Graph<int> BCT() {\n    Graph<int> bct(n_block\
-    \ + n_cut);\n    for (auto&& [a, b]: BCT_edges) bct.add(a, b);\n    bct.build();\n\
-    \    return bct;\n  }\n  bool is_articulation(int v) { return BCT_idx_v(v) >=\
-    \ n_block; }\n\nprivate:\n  void build_bct() {\n    int n = G.N;\n    vvc<int>\
-    \ nbd(n);\n    n_block = len(comp);\n    n_cut = 0;\n    BCT_idx_edge.resize(G.M);\n\
-    \    BCT_idx_vertex.resize(G.N);\n\n    auto add = [&](int v, int c) -> void {\n\
-    \      if (len(nbd[v]) && nbd[v].back() == c) return;\n      nbd[v].eb(c);\n \
-    \   };\n\n    FOR(c, len(comp)) {\n      for (auto&& eid: comp[c]) {\n       \
-    \ BCT_idx_edge[eid] = c;\n        auto& e = G.edges[eid];\n        add(e.frm,\
-    \ c);\n        add(e.to, c);\n      }\n    }\n    FOR(v, n) {\n      if (len(nbd[v])\
-    \ != 1) {\n        BCT_idx_vertex[v] = n_block + n_cut;\n        for (auto&& c:\
-    \ nbd[v]) { BCT_edges.eb(n_block + n_cut, c); }\n        n_cut++;\n      } else\
-    \ {\n        int c = nbd[v][0];\n        BCT_idx_vertex[v] = c;\n      }\n   \
-    \ }\n  }\n\n  pair<vc<int>, vc<int>> calculate_lowlink() {\n    int n = G.N;\n\
-    \    vc<bool> used(n);\n    vc<int> low(n), ord(n);\n    int k = 0;\n    auto\
-    \ dfs = [&](auto self, int v, int eid) -> void {\n      used[v] = 1;\n      low[v]\
-    \ = ord[v] = k++;\n      for (auto&& e: G[v]) {\n        if (e.id == eid) continue;\n\
-    \        if (!used[e.to]) {\n          self(self, e.to, e.id);\n          chmin(low[v],\
-    \ low[e.to]);\n        } else {\n          chmin(low[v], ord[e.to]);\n       \
-    \ }\n      }\n    };\n    FOR(v, n) if (!used[v]) dfs(dfs, v, -1);\n    return\
-    \ {ord, low};\n  }\n\n  void calculate_bcc(vc<int>& ord, vc<int>& low) {\n   \
-    \ int n = G.N;\n    vc<bool> used(n);\n    vc<int> buf;\n    auto dfs = [&](auto\
-    \ self, int v, int eid) -> void {\n      used[v] = 1;\n      for (auto&& e: G[v])\
-    \ {\n        if (e.id == eid) continue;\n        if (!used[e.to] || ord[e.to]\
-    \ < ord[v]) buf.eb(e.id);\n        if (used[e.to]) continue;\n        self(self,\
-    \ e.to, e.id);\n        if (low[e.to] < ord[v]) continue;\n        vc<int> edges;\n\
-    \        while (1) {\n          edges.eb(buf.back());\n          buf.pop_back();\n\
-    \          if (edges.back() == e.id) break;\n        }\n        comp.eb(edges);\n\
-    \      }\n    };\n    FOR(v, n) if (!used[v]) dfs(dfs, v, -1);\n  }\n};\n#line\
-    \ 5 \"test/library_checker/graph/biconnected_component.test.cpp\"\n\nvoid solve()\
-    \ {\n  LL(N, M);\n  Graph G(N);\n  G.read_graph(M, 0, 0);\n\n  Biconnected_Component\
-    \ BC(G);\n  print(len(BC.comp));\n  for (auto&& C: BC.comp) { print(len(C), C);\
-    \ }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \n\n/*\n\u5B64\u7ACB\u70B9\u306F\u3001\u8FBA\u306E\u306A\u3044 component \u3067\
+    \u3001block \u306B\u306A\u308B\u3002\u95A2\u7BC0\u70B9\u3067\u306F\u306A\u3044\
+    \u3002\nblock cut tree\u306E\u9802\u70B9\u756A\u53F7\uFF1A\n[0, n_block)\uFF1A\
+    block \uFF08\u8FBA\u306E\u540C\u5024\u985E\uFF09\n[n_block, n_block + n_cut)\uFF1A\
+    cut \uFF08\u95A2\u7BC0\u70B9\uFF09\n*/\ntemplate <typename GT>\nstruct Biconnected_Component\
+    \ {\n  GT& G;\n  vc<pair<int, int>> BCT_edges;\n  int n_block, n_cut;\n  vc<vc<int>>\
+    \ comp;\n  vc<int> BCT_idx_edge;\n  vc<int> BCT_idx_vertex;\n\n  Biconnected_Component(GT&\
+    \ G) : G(G) {\n    auto [ord, low] = calculate_lowlink();\n    calculate_bcc(ord,\
+    \ low);\n    build_bct();\n  }\n\n  int BCT_idx_v(int v) { return BCT_idx_vertex[v];\
+    \ }\n  int BCT_idx_e(int eid) { return BCT_idx_edge[eid]; }\n  Graph<int> BCT()\
+    \ {\n    Graph<int> bct(n_block + n_cut);\n    for (auto&& [a, b]: BCT_edges)\
+    \ bct.add(a, b);\n    bct.build();\n    return bct;\n  }\n  bool is_articulation(int\
+    \ v) { return BCT_idx_v(v) >= n_block; }\n\nprivate:\n  void build_bct() {\n \
+    \   int n = G.N;\n    vvc<int> nbd(n);\n    n_block = len(comp);\n    n_cut =\
+    \ 0;\n    BCT_idx_edge.resize(G.M);\n    BCT_idx_vertex.resize(G.N);\n\n    auto\
+    \ add = [&](int v, int c) -> void {\n      if (len(nbd[v]) && nbd[v].back() ==\
+    \ c) return;\n      nbd[v].eb(c);\n    };\n\n    FOR(c, len(comp)) {\n      for\
+    \ (auto&& eid: comp[c]) {\n        BCT_idx_edge[eid] = c;\n        auto& e = G.edges[eid];\n\
+    \        add(e.frm, c);\n        add(e.to, c);\n      }\n    }\n\n    FOR(v, n)\
+    \ {\n      if (len(nbd[v]) == 0) {\n        // \u5B64\u7ACB\u70B9\u306F\u8FBA\u306E\
+    \u306A\u3044 block\n        BCT_idx_vertex[v] = ++n_block;\n      }\n    }\n \
+    \   comp.resize(n_block);\n\n    FOR(v, n) {\n      if (len(nbd[v]) == 1) {\n\
+    \        BCT_idx_vertex[v] = n_block + n_cut;\n        for (auto&& c: nbd[v])\
+    \ { BCT_edges.eb(n_block + n_cut, c); }\n        n_cut++;\n      }\n      elif\
+    \ (len(nbd[v]) >= 2) {\n        int c = nbd[v][0];\n        BCT_idx_vertex[v]\
+    \ = c;\n      }\n    }\n  }\n\n  pair<vc<int>, vc<int>> calculate_lowlink() {\n\
+    \    int n = G.N;\n    vc<bool> used(n);\n    vc<int> low(n), ord(n);\n    int\
+    \ k = 0;\n    auto dfs = [&](auto self, int v, int eid) -> void {\n      used[v]\
+    \ = 1;\n      low[v] = ord[v] = k++;\n      for (auto&& e: G[v]) {\n        if\
+    \ (e.id == eid) continue;\n        if (!used[e.to]) {\n          self(self, e.to,\
+    \ e.id);\n          chmin(low[v], low[e.to]);\n        } else {\n          chmin(low[v],\
+    \ ord[e.to]);\n        }\n      }\n    };\n    FOR(v, n) if (!used[v]) dfs(dfs,\
+    \ v, -1);\n    return {ord, low};\n  }\n\n  void calculate_bcc(vc<int>& ord, vc<int>&\
+    \ low) {\n    int n = G.N;\n    vc<bool> used(n);\n    vc<int> buf;\n    auto\
+    \ dfs = [&](auto self, int v, int eid) -> void {\n      used[v] = 1;\n      for\
+    \ (auto&& e: G[v]) {\n        if (e.id == eid) continue;\n        if (!used[e.to]\
+    \ || ord[e.to] < ord[v]) buf.eb(e.id);\n        if (used[e.to]) continue;\n  \
+    \      self(self, e.to, e.id);\n        if (low[e.to] < ord[v]) continue;\n  \
+    \      vc<int> edges;\n        while (1) {\n          edges.eb(buf.back());\n\
+    \          buf.pop_back();\n          if (edges.back() == e.id) break;\n     \
+    \   }\n        comp.eb(edges);\n      }\n    };\n    FOR(v, n) if (!used[v]) dfs(dfs,\
+    \ v, -1);\n  }\n};\n#line 5 \"test/library_checker/graph/biconnected_component.test.cpp\"\
+    \n\n\nvoid solve() {\n  LL(N, M);\n  Graph G(N);\n  G.read_graph(M, 0, 0);\n \
+    \ Biconnected_Component BC(G);\n  ll K = 0;\n  for (auto&& C: BC.comp)\n    if\
+    \ (len(C) > 0) ++K;\n  print(K);\n  for (auto&& C: BC.comp)\n    if (len(C) >\
+    \ 0) { print(len(C), C); }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
     \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/biconnected_components\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/biconnected_component.hpp\"\
-    \n\nvoid solve() {\n  LL(N, M);\n  Graph G(N);\n  G.read_graph(M, 0, 0);\n\n \
-    \ Biconnected_Component BC(G);\n  print(len(BC.comp));\n  for (auto&& C: BC.comp)\
-    \ { print(len(C), C); }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \n\n\nvoid solve() {\n  LL(N, M);\n  Graph G(N);\n  G.read_graph(M, 0, 0);\n \
+    \ Biconnected_Component BC(G);\n  ll K = 0;\n  for (auto&& C: BC.comp)\n    if\
+    \ (len(C) > 0) ++K;\n  print(K);\n  for (auto&& C: BC.comp)\n    if (len(C) >\
+    \ 0) { print(len(C), C); }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
     \n  return 0;\n}\n"
   dependsOn:
@@ -285,7 +289,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/biconnected_component.test.cpp
   requiredBy: []
-  timestamp: '2022-05-13 20:44:41+09:00'
+  timestamp: '2022-05-26 02:09:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/biconnected_component.test.cpp
