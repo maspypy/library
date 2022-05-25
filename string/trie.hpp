@@ -38,7 +38,7 @@ struct Trie {
     return v;
   }
 
-  void make_failure() {
+  void make_failure(bool change_TO = 1) {
     FAIL.assign(n_node, 0);
     BFS.reserve(n_node);
     deque<int> que;
@@ -47,7 +47,7 @@ struct Trie {
     while (!que.empty()) {
       int v = que.front();
       que.pop_front();
-      node_value[v] += node_value[FAIL[v]];
+      // node_value[v] += node_value[FAIL[v]];
       for (int s = 0; s < sigma; ++s) {
         if (TO[v][s] == -1) continue;
         int w = TO[v][s];
@@ -62,11 +62,13 @@ struct Trie {
           FAIL[w] = TO[f][s];
       }
     }
-    for (auto&& v: BFS) {
-      FOR(s, sigma) if (TO[v][s] == -1) {
-        int f = FAIL[v];
-        TO[v][s] = TO[f][s];
-        if (TO[v][s] == -1) TO[v][s] = 0;
+    if (change_TO) {
+      for (auto&& v: BFS) {
+        FOR(s, sigma) if (TO[v][s] == -1) {
+          int f = FAIL[v];
+          TO[v][s] = TO[f][s];
+          if (TO[v][s] == -1) TO[v][s] = 0;
+        }
       }
     }
   }
