@@ -589,7 +589,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_sqrt.hpp
       title: mod/mod_sqrt.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint.hpp
       title: mod/modint.hpp
     - icon: ':heavy_check_mark:'
@@ -609,7 +609,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -691,7 +691,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/integer_kth_root.hpp
       title: other/integer_kth_root.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -905,7 +905,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/suffixarray.hpp
       title: string/suffixarray.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/trie.hpp
       title: string/trie.hpp
     - icon: ':heavy_check_mark:'
@@ -1468,7 +1468,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1234_rmq.test.cpp
       title: test/yukicoder/1234_rmq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1269_aho.test.cpp
       title: test/yukicoder/1269_aho.test.cpp
     - icon: ':heavy_check_mark:'

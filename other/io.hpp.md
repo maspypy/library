@@ -522,7 +522,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1234_rmq.test.cpp
     title: test/yukicoder/1234_rmq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1269_aho.test.cpp
     title: test/yukicoder/1269_aho.test.cpp
   - icon: ':heavy_check_mark:'
@@ -669,9 +669,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include\
@@ -890,7 +890,7 @@ data:
   path: other/io.hpp
   requiredBy: []
   timestamp: '2022-04-27 05:07:41+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1321_surj.test.cpp
   - test/yukicoder/1097_doubling.test.cpp

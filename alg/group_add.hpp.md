@@ -62,6 +62,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/treeabelgroup.hpp
     title: graph/treeabelgroup.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/trie.hpp
+    title: string/trie.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2842_fenwick2d_dense.test.cpp
@@ -145,6 +148,9 @@ data:
     path: test/yukicoder/1234_rmq.test.cpp
     title: test/yukicoder/1234_rmq.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1269_aho.test.cpp
+    title: test/yukicoder/1269_aho.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1441_bbst.test.cpp
     title: test/yukicoder/1441_bbst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -210,6 +216,7 @@ data:
   - alg/lazy_min_add.hpp
   - alg/lazy_cntsum_add.hpp
   - alg/lazy_max_add.hpp
+  - string/trie.hpp
   - dp/inversion.hpp
   - graph/treeabelgroup.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
@@ -225,6 +232,7 @@ data:
   - test/yukicoder/789_dseg.test.cpp
   - test/yukicoder/1441_rbst.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
+  - test/yukicoder/1269_aho.test.cpp
   - test/yukicoder/1490_rect_add_rect_sum.test.cpp
   - test/yukicoder/789_dseg_lazy.test.cpp
   - test/yukicoder/1141_cumsum2d.test.cpp
