@@ -265,6 +265,9 @@ data:
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
+    title: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/convex_layers.test.cpp
     title: test/library_checker/geometry/convex_layers.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1024,6 +1027,7 @@ data:
   - test/library_checker/math/twosat.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test/library_checker/math/partition.test.cpp
+  - test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/tree/tree_diameter.test.cpp

@@ -717,7 +717,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: pds/array.hpp
       title: pds/array.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
+      path: pds/rollbackarray.hpp
+      title: pds/rollbackarray.hpp
+    - icon: ':heavy_check_mark:'
       path: pds/rollbackunionfind.hpp
       title: pds/rollbackunionfind.hpp
     - icon: ':heavy_check_mark:'
@@ -1192,6 +1195,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
       title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - name: test/library_checker
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
+      title: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
   - name: test/library_checker/geometry
     pages:
     - icon: ':heavy_check_mark:'

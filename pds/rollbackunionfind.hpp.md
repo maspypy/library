@@ -1,41 +1,52 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: pds/rollbackarray.hpp
+    title: pds/rollbackarray.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
+    title: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links:
-    - https://codeforces.com/contest/892/problem/E
-  bundledCode: "#line 1 \"pds/rollbackunionfind.hpp\"\n// https://codeforces.com/contest/892/problem/E\r\
-    \nstruct RollbackUnionFind {\r\n  vc<int> dat; // parent or size\r\n  vc<pair<int,\
-    \ int>> st;\r\n\r\n  RollbackUnionFind(int n) : dat(n, -1) {}\r\n\r\n  int operator[](int\
-    \ v) {\r\n    while (dat[v] >= 0) v = dat[v];\r\n    return v;\r\n  }\r\n\r\n\
-    \  int size(int v) { return -dat[(*this)[v]]; }\r\n  int time() { return len(st);\
-    \ }\r\n  void rollback(int t) {\r\n    for (int i = time(); i-- > t;) { dat[st[i].fi]\
-    \ = st[i].se; }\r\n    st.resize(t);\r\n  }\r\n  bool merge(int a, int b) {\r\n\
-    \    a = (*this)[a], b = (*this)[b];\r\n    if (a == b) return false;\r\n    if\
-    \ (dat[a] > dat[b]) swap(a, b);\r\n    st.eb(a, dat[a]);\r\n    st.eb(b, dat[b]);\r\
-    \n    dat[a] += dat[b];\r\n    dat[b] = a;\r\n    return true;\r\n  }\r\n};\r\n"
-  code: "// https://codeforces.com/contest/892/problem/E\r\nstruct RollbackUnionFind\
-    \ {\r\n  vc<int> dat; // parent or size\r\n  vc<pair<int, int>> st;\r\n\r\n  RollbackUnionFind(int\
-    \ n) : dat(n, -1) {}\r\n\r\n  int operator[](int v) {\r\n    while (dat[v] >=\
-    \ 0) v = dat[v];\r\n    return v;\r\n  }\r\n\r\n  int size(int v) { return -dat[(*this)[v]];\
-    \ }\r\n  int time() { return len(st); }\r\n  void rollback(int t) {\r\n    for\
-    \ (int i = time(); i-- > t;) { dat[st[i].fi] = st[i].se; }\r\n    st.resize(t);\r\
-    \n  }\r\n  bool merge(int a, int b) {\r\n    a = (*this)[a], b = (*this)[b];\r\
-    \n    if (a == b) return false;\r\n    if (dat[a] > dat[b]) swap(a, b);\r\n  \
-    \  st.eb(a, dat[a]);\r\n    st.eb(b, dat[b]);\r\n    dat[a] += dat[b];\r\n   \
-    \ dat[b] = a;\r\n    return true;\r\n  }\r\n};\r\n"
-  dependsOn: []
+    links: []
+  bundledCode: "#line 1 \"pds/rollbackarray.hpp\"\ntemplate <typename T>\r\nstruct\
+    \ RollbackArray {\r\n  vc<T> dat;\r\n  vc<pair<int, T>> history;\r\n\r\n  RollbackArray(vc<T>\
+    \ x) : dat(x) {}\r\n\r\n  int time() { return len(history); }\r\n  void rollback(int\
+    \ t) {\r\n    FOR_R(i, t, time()) {\r\n      auto& [idx, v] = history[i];\r\n\
+    \      dat[idx] = v;\r\n    }\r\n    history.resize(t);\r\n  }\r\n  T get(int\
+    \ idx) { return dat[idx]; }\r\n  void set(int idx, T x) {\r\n    history.eb(idx,\
+    \ dat[idx]);\r\n    dat[idx] = x;\r\n  }\r\n};\r\n#line 2 \"pds/rollbackunionfind.hpp\"\
+    \n\r\nstruct RollbackUnionFind {\r\n  RollbackArray<int> dat; // parent or size\r\
+    \n\r\n  RollbackUnionFind(int n) : dat(vc<int>(n, -1)) {}\r\n\r\n  int operator[](int\
+    \ v) {\r\n    while (dat.get(v) >= 0) v = dat.get(v);\r\n    return v;\r\n  }\r\
+    \n\r\n  int size(int v) { return -dat.get((*this)[v]); }\r\n  int time() { return\
+    \ dat.time(); }\r\n  void rollback(int t) { dat.rollback(t); }\r\n\r\n  bool merge(int\
+    \ a, int b) {\r\n    a = (*this)[a], b = (*this)[b];\r\n    if (a == b) return\
+    \ false;\r\n    if (dat.get(a) > dat.get(b)) swap(a, b);\r\n    dat.set(a, dat.get(a)\
+    \ + dat.get(b));\r\n    dat.set(b, a);\r\n    return true;\r\n  }\r\n};\r\n"
+  code: "#include \"pds/rollbackarray.hpp\"\r\n\r\nstruct RollbackUnionFind {\r\n\
+    \  RollbackArray<int> dat; // parent or size\r\n\r\n  RollbackUnionFind(int n)\
+    \ : dat(vc<int>(n, -1)) {}\r\n\r\n  int operator[](int v) {\r\n    while (dat.get(v)\
+    \ >= 0) v = dat.get(v);\r\n    return v;\r\n  }\r\n\r\n  int size(int v) { return\
+    \ -dat.get((*this)[v]); }\r\n  int time() { return dat.time(); }\r\n  void rollback(int\
+    \ t) { dat.rollback(t); }\r\n\r\n  bool merge(int a, int b) {\r\n    a = (*this)[a],\
+    \ b = (*this)[b];\r\n    if (a == b) return false;\r\n    if (dat.get(a) > dat.get(b))\
+    \ swap(a, b);\r\n    dat.set(a, dat.get(a) + dat.get(b));\r\n    dat.set(b, a);\r\
+    \n    return true;\r\n  }\r\n};\r\n"
+  dependsOn:
+  - pds/rollbackarray.hpp
   isVerificationFile: false
   path: pds/rollbackunionfind.hpp
   requiredBy: []
-  timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-05-26 23:36:13+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
 documentation_of: pds/rollbackunionfind.hpp
 layout: document
 redirect_from:
