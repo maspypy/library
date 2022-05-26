@@ -1,44 +1,43 @@
-template <int sigma>
+#include "alg/group_add.hpp"
+
+// 終端ノードに value を入れる。
+// failure link を作ると、そこが終端であるような文字列の value を
+// Monoid で集約した value が入る。
+template <int sigma, typename Monoid = Group_Add<int>>
 struct Trie {
+  using X = typename Monoid::value_type;
   int n_node;
   vector<array<int, sigma>> TO;
   vector<int> PAR;
-  vector<ll> node_value;
+  vector<X> node_value;
   vector<int> BFS;
   vector<int> FAIL;
 
-  Trie() : n_node(1), TO({array<int, sigma>()}), PAR({-1}), node_value({0}) {
+  Trie()
+      : n_node(1),
+        TO({array<int, sigma>()}),
+        PAR({-1}),
+        node_value({Monoid::unit()}) {
     FOR(s, sigma) TO[0][s] = -1;
   }
 
-  int add(string S, ll val = 1, int off = 'a') {
+  template <typename STRING>
+  int add(STRING S, int off, X val) {
     int v = 0;
     for (auto&& ss: S) {
       int s = ss - off;
+      assert(0 <= s && s < sigma);
       if (TO[v][s] == -1) {
         TO[v][s] = create_node();
         PAR[TO[v][s]] = v;
       }
       v = TO[v][s];
     }
-    node_value[v] += val;
+    node_value[v] = Monoid::op(node_value[v], val);
     return v;
   }
 
-  int add(vector<int> S, ll val = 1) {
-    int v = 0;
-    for (auto&& s: S) {
-      if (TO[v][s] == -1) {
-        TO[v][s] = create_node();
-        PAR[TO[v][s]] = v;
-      }
-      v = TO[v][s];
-    }
-    node_value[v] += val;
-    return v;
-  }
-
-  void make_failure(bool change_TO = 1) {
+  void make_failure() {
     FAIL.assign(n_node, 0);
     BFS.reserve(n_node);
     deque<int> que;
@@ -47,7 +46,7 @@ struct Trie {
     while (!que.empty()) {
       int v = que.front();
       que.pop_front();
-      // node_value[v] += node_value[FAIL[v]];
+      node_value[v] = Monoid::op(node_value[v], node_value[FAIL[v]]);
       for (int s = 0; s < sigma; ++s) {
         if (TO[v][s] == -1) continue;
         int w = TO[v][s];
@@ -62,13 +61,11 @@ struct Trie {
           FAIL[w] = TO[f][s];
       }
     }
-    if (change_TO) {
-      for (auto&& v: BFS) {
-        FOR(s, sigma) if (TO[v][s] == -1) {
-          int f = FAIL[v];
-          TO[v][s] = TO[f][s];
-          if (TO[v][s] == -1) TO[v][s] = 0;
-        }
+    for (auto&& v: BFS) {
+      FOR(s, sigma) if (TO[v][s] == -1) {
+        int f = FAIL[v];
+        TO[v][s] = TO[f][s];
+        if (TO[v][s] == -1) TO[v][s] = 0;
       }
     }
   }
@@ -78,7 +75,7 @@ private:
     TO.eb(array<int, sigma>());
     FOR(s, sigma) TO.back()[s] = -1;
     PAR.eb(-1);
-    node_value.eb(0);
+    node_value.eb(Monoid::unit());
     return n_node++;
   }
 };

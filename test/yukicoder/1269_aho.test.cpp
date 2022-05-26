@@ -19,9 +19,9 @@ void solve() {
   Trie<10> X;
   for (auto&& f: F) {
     string s = to_string(f);
-    X.add(s, 1, '0');
+    X.add(s, '0', 1);
   }
-  X.make_failure(1);
+  X.make_failure();
 
   ll n = X.n_node;
   vc<mint> dp(n);
