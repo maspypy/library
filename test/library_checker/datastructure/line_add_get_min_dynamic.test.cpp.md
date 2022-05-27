@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_min_idx.hpp
     title: alg/monoid_min_idx.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/dynamic_lichao.hpp
     title: ds/dynamic_lichao.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/line_add_get_min
@@ -246,7 +246,7 @@ data:
     \ 500'000> seg(-max, max + 1);\n  FOR(N) {\n    LL(a, b);\n    seg.add_line(a,\
     \ b);\n  }\n  const ll INF = 1LL << 60;\n  FOR(Q) {\n    LL(t);\n    if (t ==\
     \ 0) {\n      LL(a, b);\n      seg.add_line(a, b);\n    }\n    if (t == 1) {\n\
-    \      LL(x);\n      ll y = seg.query(x);\n      if (y >= INF)\n        print(\"\
+    \      LL(x);\n      ll y = seg.query(x).fi;\n      if (y >= INF)\n        print(\"\
     INFINITY\");\n      else\n        print(y);\n    }\n  }\n}\n\nsigned main() {\n\
     \  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/line_add_get_min\"\n#include\
@@ -255,7 +255,7 @@ data:
     \ 500'000> seg(-max, max + 1);\n  FOR(N) {\n    LL(a, b);\n    seg.add_line(a,\
     \ b);\n  }\n  const ll INF = 1LL << 60;\n  FOR(Q) {\n    LL(t);\n    if (t ==\
     \ 0) {\n      LL(a, b);\n      seg.add_line(a, b);\n    }\n    if (t == 1) {\n\
-    \      LL(x);\n      ll y = seg.query(x);\n      if (y >= INF)\n        print(\"\
+    \      LL(x);\n      ll y = seg.query(x).fi;\n      if (y >= INF)\n        print(\"\
     INFINITY\");\n      else\n        print(y);\n    }\n  }\n}\n\nsigned main() {\n\
     \  solve();\n\n  return 0;\n}\n"
   dependsOn:
@@ -266,8 +266,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
   requiredBy: []
-  timestamp: '2022-05-27 16:21:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-27 18:03:00+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
 layout: document
