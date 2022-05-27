@@ -10,6 +10,9 @@ data:
     title: mod/modular_subset_sum.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
+    title: test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_modular_subset_sum.test.cpp
     title: test/yukicoder/4_modular_subset_sum.test.cpp
   _isVerificationFailed: false
@@ -83,6 +86,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/4_modular_subset_sum.test.cpp
+  - test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
 documentation_of: mod/modint61.hpp
 layout: document
 redirect_from:

@@ -28,6 +28,9 @@ data:
     title: string/rollinghash.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
+    title: test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -76,6 +79,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/4_modular_subset_sum.test.cpp
+  - test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
