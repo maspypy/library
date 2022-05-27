@@ -37,32 +37,32 @@ data:
     \ T a, T b, int idx = -1) {\n    constexpr T INF = numeric_limits<T>::max();\n\
     \    if (a != 0) {\n      ll xlim = (INF - abs(b)) / abs(a);\n      assert(abs(xl)\
     \ < xlim);\n      assert(abs(xr) < xlim);\n    }\n    assert(L <= xl && xl < xr\
-    \ && xr <= R);\n    Line f(a, b);\n    if (!root) root = new_node();\n    add_segment_rec(root,\
-    \ xl, xr, f, L, R);\n  }\n\n  void add_line(T a, T b, int idx = -1) { add_segment(L,\
-    \ R, a, b, idx); }\n\n  pair<T, int> query(ll x) {\n    assert(L <= x && x < R);\n\
-    \    if (!root) return numeric_limits<T>::max();\n    return query_rec(root, x,\
-    \ L, R);\n  }\n\nprivate:\n  void add_segment_rec(Node *c, ll xl, ll xr, const\
-    \ Line &f, ll node_l,\n                       ll node_r) {\n    chmax(xl, node_l);\n\
-    \    chmin(xr, node_r);\n    if (xl >= xr) return;\n    if (node_l < xl || xr\
-    \ < node_r) {\n      ll node_m = (node_l + node_r) / 2;\n      if (!c->l) c->l\
-    \ = new_node();\n      if (!c->r) c->r = new_node();\n      add_segment_rec(c->l,\
-    \ xl, xr, f, node_l, node_m);\n      add_segment_rec(c->r, xl, xr, f, node_m,\
-    \ node_r);\n      return;\n    }\n    add_line_rec(c, f, node_l, node_r);\n  }\n\
-    \n  void add_line_rec(Node *c, const Line &f, ll node_l, ll node_r) {\n    T fl\
-    \ = f(node_l), fr = f(node_r - 1);\n    Line g = c->f;\n    T gl = g(node_l),\
-    \ gr = g(node_r - 1);\n    if (fl <= gl && fr <= gr) {\n      c->f = f;\n    \
-    \  return;\n    }\n    if (fl >= gl && fr >= gr) { return; }\n    ll node_m =\
-    \ (node_l + node_r) / 2;\n    T fm = f(node_m), gm = g(node_m);\n    if (fm <=\
-    \ gm) {\n      c->f = f;\n      if (fl < gl) {\n        if (!c->r) c->r = new_node();\n\
-    \        add_line_rec(c->r, g, node_m, node_r);\n      } else {\n        if (!c->l)\
-    \ c->l = new_node();\n        add_line_rec(c->l, g, node_l, node_m);\n      }\n\
-    \    } else {\n      if (gl < fl) {\n        if (!c->r) c->r = new_node();\n \
-    \       add_line_rec(c->r, f, node_m, node_r);\n      } else {\n        if (!c->l)\
-    \ c->l = new_node();\n        add_line_rec(c->l, f, node_l, node_m);\n      }\n\
-    \    }\n  }\n\n  pair<T, int> query_rec(Node *c, ll x, ll node_l, ll node_r) {\n\
-    \    T res = Mono::unit();\n    c->f(x);\n    ll node_m = (node_l + node_r) /\
-    \ 2;\n    if (x < node_m && c->l) res = Mono::op(res, query_rec(c->l, x, node_l,\
-    \ node_m));\n    if (x >= node_m && c->r) res = Mono::op(res, query_rec(c->r,\
+    \ && xr <= R);\n    Line f(idx, a, b);\n    if (!root) root = new_node();\n  \
+    \  add_segment_rec(root, xl, xr, f, L, R);\n  }\n\n  void add_line(T a, T b, int\
+    \ idx = -1) { add_segment(L, R, a, b, idx); }\n\n  pair<T, int> query(ll x) {\n\
+    \    assert(L <= x && x < R);\n    if (!root) return Mono::unit();\n    return\
+    \ query_rec(root, x, L, R);\n  }\n\nprivate:\n  void add_segment_rec(Node *c,\
+    \ ll xl, ll xr, const Line &f, ll node_l,\n                       ll node_r) {\n\
+    \    chmax(xl, node_l);\n    chmin(xr, node_r);\n    if (xl >= xr) return;\n \
+    \   if (node_l < xl || xr < node_r) {\n      ll node_m = (node_l + node_r) / 2;\n\
+    \      if (!c->l) c->l = new_node();\n      if (!c->r) c->r = new_node();\n  \
+    \    add_segment_rec(c->l, xl, xr, f, node_l, node_m);\n      add_segment_rec(c->r,\
+    \ xl, xr, f, node_m, node_r);\n      return;\n    }\n    add_line_rec(c, f, node_l,\
+    \ node_r);\n  }\n\n  void add_line_rec(Node *c, const Line &f, ll node_l, ll node_r)\
+    \ {\n    T fl = f(node_l), fr = f(node_r - 1);\n    Line g = c->f;\n    T gl =\
+    \ g(node_l), gr = g(node_r - 1);\n    if (fl <= gl && fr <= gr) {\n      c->f\
+    \ = f;\n      return;\n    }\n    if (fl >= gl && fr >= gr) { return; }\n    ll\
+    \ node_m = (node_l + node_r) / 2;\n    T fm = f(node_m), gm = g(node_m);\n   \
+    \ if (fm <= gm) {\n      c->f = f;\n      if (fl < gl) {\n        if (!c->r) c->r\
+    \ = new_node();\n        add_line_rec(c->r, g, node_m, node_r);\n      } else\
+    \ {\n        if (!c->l) c->l = new_node();\n        add_line_rec(c->l, g, node_l,\
+    \ node_m);\n      }\n    } else {\n      if (gl < fl) {\n        if (!c->r) c->r\
+    \ = new_node();\n        add_line_rec(c->r, f, node_m, node_r);\n      } else\
+    \ {\n        if (!c->l) c->l = new_node();\n        add_line_rec(c->l, f, node_l,\
+    \ node_m);\n      }\n    }\n  }\n\n  pair<T, int> query_rec(Node *c, ll x, ll\
+    \ node_l, ll node_r) {\n    pair<T, int> res = {c->f(x), c->f.idx};\n    ll node_m\
+    \ = (node_l + node_r) / 2;\n    if (x < node_m && c->l) res = Mono::op(res, query_rec(c->l,\
+    \ x, node_l, node_m));\n    if (x >= node_m && c->r) res = Mono::op(res, query_rec(c->r,\
     \ x, node_m, node_r));\n    return res;\n  }\n};\n"
   code: "#include \"alg/monoid_min_idx.hpp\"\n\n// x \u5EA7\u6A19\u306F long long\
     \ \u306B\u9650\u5B9A\u3057\u3066\u3044\u308B\u3002\n// \u76F4\u7DDA\u306E\u4FC2\
@@ -78,39 +78,39 @@ data:
     \ T a, T b, int idx = -1) {\n    constexpr T INF = numeric_limits<T>::max();\n\
     \    if (a != 0) {\n      ll xlim = (INF - abs(b)) / abs(a);\n      assert(abs(xl)\
     \ < xlim);\n      assert(abs(xr) < xlim);\n    }\n    assert(L <= xl && xl < xr\
-    \ && xr <= R);\n    Line f(a, b);\n    if (!root) root = new_node();\n    add_segment_rec(root,\
-    \ xl, xr, f, L, R);\n  }\n\n  void add_line(T a, T b, int idx = -1) { add_segment(L,\
-    \ R, a, b, idx); }\n\n  pair<T, int> query(ll x) {\n    assert(L <= x && x < R);\n\
-    \    if (!root) return numeric_limits<T>::max();\n    return query_rec(root, x,\
-    \ L, R);\n  }\n\nprivate:\n  void add_segment_rec(Node *c, ll xl, ll xr, const\
-    \ Line &f, ll node_l,\n                       ll node_r) {\n    chmax(xl, node_l);\n\
-    \    chmin(xr, node_r);\n    if (xl >= xr) return;\n    if (node_l < xl || xr\
-    \ < node_r) {\n      ll node_m = (node_l + node_r) / 2;\n      if (!c->l) c->l\
-    \ = new_node();\n      if (!c->r) c->r = new_node();\n      add_segment_rec(c->l,\
-    \ xl, xr, f, node_l, node_m);\n      add_segment_rec(c->r, xl, xr, f, node_m,\
-    \ node_r);\n      return;\n    }\n    add_line_rec(c, f, node_l, node_r);\n  }\n\
-    \n  void add_line_rec(Node *c, const Line &f, ll node_l, ll node_r) {\n    T fl\
-    \ = f(node_l), fr = f(node_r - 1);\n    Line g = c->f;\n    T gl = g(node_l),\
-    \ gr = g(node_r - 1);\n    if (fl <= gl && fr <= gr) {\n      c->f = f;\n    \
-    \  return;\n    }\n    if (fl >= gl && fr >= gr) { return; }\n    ll node_m =\
-    \ (node_l + node_r) / 2;\n    T fm = f(node_m), gm = g(node_m);\n    if (fm <=\
-    \ gm) {\n      c->f = f;\n      if (fl < gl) {\n        if (!c->r) c->r = new_node();\n\
-    \        add_line_rec(c->r, g, node_m, node_r);\n      } else {\n        if (!c->l)\
-    \ c->l = new_node();\n        add_line_rec(c->l, g, node_l, node_m);\n      }\n\
-    \    } else {\n      if (gl < fl) {\n        if (!c->r) c->r = new_node();\n \
-    \       add_line_rec(c->r, f, node_m, node_r);\n      } else {\n        if (!c->l)\
-    \ c->l = new_node();\n        add_line_rec(c->l, f, node_l, node_m);\n      }\n\
-    \    }\n  }\n\n  pair<T, int> query_rec(Node *c, ll x, ll node_l, ll node_r) {\n\
-    \    T res = Mono::unit();\n    c->f(x);\n    ll node_m = (node_l + node_r) /\
-    \ 2;\n    if (x < node_m && c->l) res = Mono::op(res, query_rec(c->l, x, node_l,\
-    \ node_m));\n    if (x >= node_m && c->r) res = Mono::op(res, query_rec(c->r,\
+    \ && xr <= R);\n    Line f(idx, a, b);\n    if (!root) root = new_node();\n  \
+    \  add_segment_rec(root, xl, xr, f, L, R);\n  }\n\n  void add_line(T a, T b, int\
+    \ idx = -1) { add_segment(L, R, a, b, idx); }\n\n  pair<T, int> query(ll x) {\n\
+    \    assert(L <= x && x < R);\n    if (!root) return Mono::unit();\n    return\
+    \ query_rec(root, x, L, R);\n  }\n\nprivate:\n  void add_segment_rec(Node *c,\
+    \ ll xl, ll xr, const Line &f, ll node_l,\n                       ll node_r) {\n\
+    \    chmax(xl, node_l);\n    chmin(xr, node_r);\n    if (xl >= xr) return;\n \
+    \   if (node_l < xl || xr < node_r) {\n      ll node_m = (node_l + node_r) / 2;\n\
+    \      if (!c->l) c->l = new_node();\n      if (!c->r) c->r = new_node();\n  \
+    \    add_segment_rec(c->l, xl, xr, f, node_l, node_m);\n      add_segment_rec(c->r,\
+    \ xl, xr, f, node_m, node_r);\n      return;\n    }\n    add_line_rec(c, f, node_l,\
+    \ node_r);\n  }\n\n  void add_line_rec(Node *c, const Line &f, ll node_l, ll node_r)\
+    \ {\n    T fl = f(node_l), fr = f(node_r - 1);\n    Line g = c->f;\n    T gl =\
+    \ g(node_l), gr = g(node_r - 1);\n    if (fl <= gl && fr <= gr) {\n      c->f\
+    \ = f;\n      return;\n    }\n    if (fl >= gl && fr >= gr) { return; }\n    ll\
+    \ node_m = (node_l + node_r) / 2;\n    T fm = f(node_m), gm = g(node_m);\n   \
+    \ if (fm <= gm) {\n      c->f = f;\n      if (fl < gl) {\n        if (!c->r) c->r\
+    \ = new_node();\n        add_line_rec(c->r, g, node_m, node_r);\n      } else\
+    \ {\n        if (!c->l) c->l = new_node();\n        add_line_rec(c->l, g, node_l,\
+    \ node_m);\n      }\n    } else {\n      if (gl < fl) {\n        if (!c->r) c->r\
+    \ = new_node();\n        add_line_rec(c->r, f, node_m, node_r);\n      } else\
+    \ {\n        if (!c->l) c->l = new_node();\n        add_line_rec(c->l, f, node_l,\
+    \ node_m);\n      }\n    }\n  }\n\n  pair<T, int> query_rec(Node *c, ll x, ll\
+    \ node_l, ll node_r) {\n    pair<T, int> res = {c->f(x), c->f.idx};\n    ll node_m\
+    \ = (node_l + node_r) / 2;\n    if (x < node_m && c->l) res = Mono::op(res, query_rec(c->l,\
+    \ x, node_l, node_m));\n    if (x >= node_m && c->r) res = Mono::op(res, query_rec(c->r,\
     \ x, node_m, node_r));\n    return res;\n  }\n};"
   dependsOn:
   - alg/monoid_min_idx.hpp
   isVerificationFile: false
   path: ds/dynamic_lichao.hpp
   requiredBy: []
-  timestamp: '2022-05-27 14:41:27+09:00'
+  timestamp: '2022-05-27 15:31:03+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
