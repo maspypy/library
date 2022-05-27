@@ -1,11 +1,15 @@
+#include "alg/monoid_min_idx.hpp"
+
 // x 座標は long long に限定している。
 // 直線の係数 T は double や i128 も可能。
 template <typename T, int NODES>
 struct Dynamic_LiChaoTree {
+  using Mono = Monoid_Min_Idx<T>;
   struct Line {
+    int idx;
     T a, b;
-    Line(T a, T b) : a(a), b(b) {}
-    Line() : Line(0, numeric_limits<T>::max()) {}
+    Line(int idx, T a, T b) : idx(idx), a(a), b(b) {}
+    Line() : Line(-1, 0, numeric_limits<T>::max()) {}
     T operator()(T x) const { return a * x + b; }
   };
 
@@ -28,7 +32,7 @@ struct Dynamic_LiChaoTree {
     return &(pool[pid++]);
   }
 
-  void add_segment(ll xl, ll xr, T a, T b) {
+  void add_segment(ll xl, ll xr, T a, T b, int idx = -1) {
     constexpr T INF = numeric_limits<T>::max();
     if (a != 0) {
       ll xlim = (INF - abs(b)) / abs(a);
@@ -41,9 +45,9 @@ struct Dynamic_LiChaoTree {
     add_segment_rec(root, xl, xr, f, L, R);
   }
 
-  void add_line(T a, T b) { add_segment(L, R, a, b); }
+  void add_line(T a, T b, int idx = -1) { add_segment(L, R, a, b, idx); }
 
-  T query(ll x) {
+  pair<T, int> query(ll x) {
     assert(L <= x && x < R);
     if (!root) return numeric_limits<T>::max();
     return query_rec(root, x, L, R);
@@ -97,11 +101,12 @@ private:
     }
   }
 
-  T query_rec(Node *c, ll x, ll node_l, ll node_r) {
-    T res = c->f(x);
+  pair<T, int> query_rec(Node *c, ll x, ll node_l, ll node_r) {
+    T res = Mono::unit();
+    c->f(x);
     ll node_m = (node_l + node_r) / 2;
-    if (x < node_m && c->l) chmin(res, query_rec(c->l, x, node_l, node_m));
-    if (x >= node_m && c->r) chmin(res, query_rec(c->r, x, node_m, node_r));
+    if (x < node_m && c->l) res = Mono::op(res, query_rec(c->l, x, node_l, node_m));
+    if (x >= node_m && c->r) res = Mono::op(res, query_rec(c->r, x, node_m, node_r));
     return res;
   }
 };
