@@ -244,6 +244,9 @@ data:
     path: test/yukicoder/1320_mincostcycle.test.cpp
     title: test/yukicoder/1320_mincostcycle.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1326_bct.test.cpp
+    title: test/yukicoder/1326_bct.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1344_warshall_floyd.test.cpp
     title: test/yukicoder/1344_warshall_floyd.test.cpp
   - icon: ':heavy_check_mark:'
@@ -404,6 +407,7 @@ data:
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/1418_rerooting.test.cpp
   - test/yukicoder/1170_range_to_range.test.cpp
+  - test/yukicoder/1326_bct.test.cpp
   - test/yukicoder/529_two_edge.test.cpp
   - test/aoj/2251_dag_path_cover.test.cpp
   - test/aoj/2251_maxantichain.test.cpp

@@ -12,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/biconnected_component.test.cpp
     title: test/library_checker/graph/biconnected_component.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1326_bct.test.cpp
+    title: test/yukicoder/1326_bct.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -142,6 +145,7 @@ data:
   timestamp: '2022-05-26 02:23:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1326_bct.test.cpp
   - test/aoj/GRO_3_A_articulation.test.cpp
   - test/library_checker/graph/biconnected_component.test.cpp
 documentation_of: graph/biconnected_component.hpp

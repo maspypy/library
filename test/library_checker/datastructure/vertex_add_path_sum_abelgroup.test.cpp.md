@@ -347,20 +347,17 @@ data:
     \n    }\r\n  }\r\n\r\n  void add(int i, X x) {\r\n    int v = (edge ? hld.e_to_v(i)\
     \ : i);\r\n    if (path_query) {\r\n      X inv_x = AbelGroup::inverse(x);\r\n\
     \      bit.add(hld.ELID(v), x);\r\n      bit.add(hld.ERID(v), inv_x);\r\n    }\r\
-    \n    if (subtree_query) bit_subtree.add(hld.LID[v], x);\r\n  }\r\n\r\n  X sum_path(int\
+    \n    if (subtree_query) bit_subtree.add(hld.LID[v], x);\r\n  }\r\n\r\n  X prod_path(int\
     \ frm, int to) {\r\n    assert(path_query);\r\n    int lca = hld.LCA(frm, to);\r\
     \n    // [frm, lca)\r\n    X x1 = bit.sum(hld.ELID(lca) + 1, hld.ELID(frm) + 1);\r\
     \n    // edge \u306A\u3089 (lca, to]\u3001vertex \u306A\u3089 [lca, to]\r\n  \
     \  X x2 = bit.sum(hld.ELID(lca) + edge, hld.ELID(to) + 1);\r\n    return AbelGroup::op(x1,\
     \ x2);\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n    assert(subtree_query);\r\
     \n    int l = hld.LID[u], r = hld.RID[u];\r\n    return bit_subtree.sum(l + edge,\
-    \ r);\r\n  }\r\n\r\n  void debug() {\r\n    hld.debug();\r\n    bit.debug();\r\
-    \n    bit_subtree.debug();\r\n  }\r\n\r\n  void doc() {\r\n    print(\"EulerTour\
-    \ + FenwickTree\u3002\");\r\n    print(\"\u9006\u5143\u3092\u5229\u7528\u3057\u3066\
-    \u3001\u30D1\u30B9\u30AF\u30A8\u30EA\u3092 O(logN) \u6642\u9593\u3067\u884C\u3046\
-    \u3002\");\r\n    print(\"\u90E8\u5206\u6728\u30AF\u30A8\u30EA O(logN) \u6642\u9593\
-    \u3001\u30D1\u30B9\u30AF\u30A8\u30EA O(logN) \u6642\u9593\u3002\");\r\n  }\r\n\
-    };\n#line 7 \"test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp\"\
+    \ r);\r\n  }\r\n\r\n  X sum_path(int frm, int to) { return prod_path(frm, to);\
+    \ }\r\n  X sum_subtree(int u) { return prod_subtree(u); }\r\n\r\n  void debug()\
+    \ {\r\n    hld.debug();\r\n    bit.debug();\r\n    bit_subtree.debug();\r\n  }\r\
+    \n};\n#line 7 \"test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  Graph G(N);\r\n \
     \ G.read_tree(0, 0);\r\n\r\n  HLD hld(G);\r\n  TreeAbelGroup<decltype(hld), Group_Add<ll>,\
     \ false, true, false> TA(hld, A);\r\n\r\n  FOR(_, Q) {\r\n    LL(t);\r\n    if\
@@ -389,7 +386,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   requiredBy: []
-  timestamp: '2022-05-23 16:54:27+09:00'
+  timestamp: '2022-05-27 14:31:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp

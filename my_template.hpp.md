@@ -181,6 +181,9 @@ data:
     path: test/library_checker/datastructure/line_add_get_min.test.cpp
     title: test/library_checker/datastructure/line_add_get_min.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
+    title: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/persistent_queue.test.cpp
     title: test/library_checker/datastructure/persistent_queue.test.cpp
   - icon: ':heavy_check_mark:'
@@ -228,6 +231,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/segment_add_get_min.test.cpp
     title: test/library_checker/datastructure/segment_add_get_min.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
+    title: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/set_xor_min.test.cpp
     title: test/library_checker/datastructure/set_xor_min.test.cpp
@@ -546,6 +552,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1321_surj.test.cpp
     title: test/yukicoder/1321_surj.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1326_bct.test.cpp
+    title: test/yukicoder/1326_bct.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1332_range_freq.test.cpp
     title: test/yukicoder/1332_range_freq.test.cpp
@@ -872,6 +881,7 @@ data:
   - test/yukicoder/502_p_rec.test.cpp
   - test/yukicoder/1117_swag.test.cpp
   - test/yukicoder/4_modular_subset_sum.test.cpp
+  - test/yukicoder/1326_bct.test.cpp
   - test/yukicoder/1649_dynamic_seg.test.cpp
   - test/yukicoder/1077_slope.test.cpp
   - test/yukicoder/1490_rect_add_rect_sum.test.cpp
@@ -986,12 +996,14 @@ data:
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
+  - test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
   - test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
   - test/library_checker/datastructure/staticrmq_seg.test.cpp
   - test/library_checker/datastructure/segment_add_get_min.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
   - test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
+  - test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/library_checker/datastructure/persistent_queue.test.cpp
   - test/library_checker/datastructure/range_affine_range_sum.test.cpp

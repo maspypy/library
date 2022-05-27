@@ -151,6 +151,9 @@ data:
     path: test/yukicoder/1269_aho.test.cpp
     title: test/yukicoder/1269_aho.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1326_bct.test.cpp
+    title: test/yukicoder/1326_bct.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1441_bbst.test.cpp
     title: test/yukicoder/1441_bbst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -233,6 +236,7 @@ data:
   - test/yukicoder/1441_rbst.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/1269_aho.test.cpp
+  - test/yukicoder/1326_bct.test.cpp
   - test/yukicoder/1490_rect_add_rect_sum.test.cpp
   - test/yukicoder/789_dseg_lazy.test.cpp
   - test/yukicoder/1141_cumsum2d.test.cpp

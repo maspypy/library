@@ -79,6 +79,9 @@ data:
     path: test/library_checker/tree/lca_directed.test.cpp
     title: test/library_checker/tree/lca_directed.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1326_bct.test.cpp
+    title: test/yukicoder/1326_bct.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1418_rerooting.test.cpp
     title: test/yukicoder/1418_rerooting.test.cpp
   - icon: ':heavy_check_mark:'
@@ -273,6 +276,7 @@ data:
   - test/yukicoder/1641_tree_abel.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/1418_rerooting.test.cpp
+  - test/yukicoder/1326_bct.test.cpp
   - test/yukicoder/529_two_edge.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - test/aoj/2995_dsu.test.cpp

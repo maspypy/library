@@ -226,6 +226,9 @@ data:
       path: ds/dynamic_lazysegtree.hpp
       title: ds/dynamic_lazysegtree.hpp
     - icon: ':heavy_check_mark:'
+      path: ds/dynamic_lichao.hpp
+      title: ds/dynamic_lichao.hpp
+    - icon: ':heavy_check_mark:'
       path: ds/dynamic_segtree.hpp
       title: ds/dynamic_segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -1106,6 +1109,9 @@ data:
       path: test/library_checker/datastructure/line_add_get_min.test.cpp
       title: test/library_checker/datastructure/line_add_get_min.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
+      title: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/persistent_queue.test.cpp
       title: test/library_checker/datastructure/persistent_queue.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1153,6 +1159,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/segment_add_get_min.test.cpp
       title: test/library_checker/datastructure/segment_add_get_min.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
+      title: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/set_xor_min.test.cpp
       title: test/library_checker/datastructure/set_xor_min.test.cpp
@@ -1491,6 +1500,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1321_surj.test.cpp
       title: test/yukicoder/1321_surj.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1326_bct.test.cpp
+      title: test/yukicoder/1326_bct.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1332_range_freq.test.cpp
       title: test/yukicoder/1332_range_freq.test.cpp

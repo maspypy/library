@@ -19,6 +19,9 @@ data:
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1326_bct.test.cpp
+    title: test/yukicoder/1326_bct.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1641_tree_abel.test.cpp
     title: test/yukicoder/1641_tree_abel.test.cpp
   _isVerificationFailed: false
@@ -171,20 +174,17 @@ data:
     \n    }\r\n  }\r\n\r\n  void add(int i, X x) {\r\n    int v = (edge ? hld.e_to_v(i)\
     \ : i);\r\n    if (path_query) {\r\n      X inv_x = AbelGroup::inverse(x);\r\n\
     \      bit.add(hld.ELID(v), x);\r\n      bit.add(hld.ERID(v), inv_x);\r\n    }\r\
-    \n    if (subtree_query) bit_subtree.add(hld.LID[v], x);\r\n  }\r\n\r\n  X sum_path(int\
+    \n    if (subtree_query) bit_subtree.add(hld.LID[v], x);\r\n  }\r\n\r\n  X prod_path(int\
     \ frm, int to) {\r\n    assert(path_query);\r\n    int lca = hld.LCA(frm, to);\r\
     \n    // [frm, lca)\r\n    X x1 = bit.sum(hld.ELID(lca) + 1, hld.ELID(frm) + 1);\r\
     \n    // edge \u306A\u3089 (lca, to]\u3001vertex \u306A\u3089 [lca, to]\r\n  \
     \  X x2 = bit.sum(hld.ELID(lca) + edge, hld.ELID(to) + 1);\r\n    return AbelGroup::op(x1,\
     \ x2);\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n    assert(subtree_query);\r\
     \n    int l = hld.LID[u], r = hld.RID[u];\r\n    return bit_subtree.sum(l + edge,\
-    \ r);\r\n  }\r\n\r\n  void debug() {\r\n    hld.debug();\r\n    bit.debug();\r\
-    \n    bit_subtree.debug();\r\n  }\r\n\r\n  void doc() {\r\n    print(\"EulerTour\
-    \ + FenwickTree\u3002\");\r\n    print(\"\u9006\u5143\u3092\u5229\u7528\u3057\u3066\
-    \u3001\u30D1\u30B9\u30AF\u30A8\u30EA\u3092 O(logN) \u6642\u9593\u3067\u884C\u3046\
-    \u3002\");\r\n    print(\"\u90E8\u5206\u6728\u30AF\u30A8\u30EA O(logN) \u6642\u9593\
-    \u3001\u30D1\u30B9\u30AF\u30A8\u30EA O(logN) \u6642\u9593\u3002\");\r\n  }\r\n\
-    };\n"
+    \ r);\r\n  }\r\n\r\n  X sum_path(int frm, int to) { return prod_path(frm, to);\
+    \ }\r\n  X sum_subtree(int u) { return prod_subtree(u); }\r\n\r\n  void debug()\
+    \ {\r\n    hld.debug();\r\n    bit.debug();\r\n    bit_subtree.debug();\r\n  }\r\
+    \n};\n"
   code: "#include \"ds/fenwick.hpp\"\r\n#include \"graph/hld.hpp\"\r\n\r\ntemplate\
     \ <typename HLD, typename AbelGroup, bool edge = false,\r\n          bool path_query\
     \ = true, bool subtree_query = false>\r\nstruct TreeAbelGroup {\r\n  using X =\
@@ -208,20 +208,17 @@ data:
     \  }\r\n\r\n  void add(int i, X x) {\r\n    int v = (edge ? hld.e_to_v(i) : i);\r\
     \n    if (path_query) {\r\n      X inv_x = AbelGroup::inverse(x);\r\n      bit.add(hld.ELID(v),\
     \ x);\r\n      bit.add(hld.ERID(v), inv_x);\r\n    }\r\n    if (subtree_query)\
-    \ bit_subtree.add(hld.LID[v], x);\r\n  }\r\n\r\n  X sum_path(int frm, int to)\
+    \ bit_subtree.add(hld.LID[v], x);\r\n  }\r\n\r\n  X prod_path(int frm, int to)\
     \ {\r\n    assert(path_query);\r\n    int lca = hld.LCA(frm, to);\r\n    // [frm,\
     \ lca)\r\n    X x1 = bit.sum(hld.ELID(lca) + 1, hld.ELID(frm) + 1);\r\n    //\
     \ edge \u306A\u3089 (lca, to]\u3001vertex \u306A\u3089 [lca, to]\r\n    X x2 =\
     \ bit.sum(hld.ELID(lca) + edge, hld.ELID(to) + 1);\r\n    return AbelGroup::op(x1,\
     \ x2);\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n    assert(subtree_query);\r\
     \n    int l = hld.LID[u], r = hld.RID[u];\r\n    return bit_subtree.sum(l + edge,\
-    \ r);\r\n  }\r\n\r\n  void debug() {\r\n    hld.debug();\r\n    bit.debug();\r\
-    \n    bit_subtree.debug();\r\n  }\r\n\r\n  void doc() {\r\n    print(\"EulerTour\
-    \ + FenwickTree\u3002\");\r\n    print(\"\u9006\u5143\u3092\u5229\u7528\u3057\u3066\
-    \u3001\u30D1\u30B9\u30AF\u30A8\u30EA\u3092 O(logN) \u6642\u9593\u3067\u884C\u3046\
-    \u3002\");\r\n    print(\"\u90E8\u5206\u6728\u30AF\u30A8\u30EA O(logN) \u6642\u9593\
-    \u3001\u30D1\u30B9\u30AF\u30A8\u30EA O(logN) \u6642\u9593\u3002\");\r\n  }\r\n\
-    };"
+    \ r);\r\n  }\r\n\r\n  X sum_path(int frm, int to) { return prod_path(frm, to);\
+    \ }\r\n  X sum_subtree(int u) { return prod_subtree(u); }\r\n\r\n  void debug()\
+    \ {\r\n    hld.debug();\r\n    bit.debug();\r\n    bit_subtree.debug();\r\n  }\r\
+    \n};"
   dependsOn:
   - ds/fenwick.hpp
   - alg/group_add.hpp
@@ -230,10 +227,11 @@ data:
   isVerificationFile: false
   path: graph/treeabelgroup.hpp
   requiredBy: []
-  timestamp: '2022-05-23 16:54:27+09:00'
+  timestamp: '2022-05-27 14:31:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1641_tree_abel.test.cpp
+  - test/yukicoder/1326_bct.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
 documentation_of: graph/treeabelgroup.hpp
 layout: document
