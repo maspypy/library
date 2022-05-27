@@ -21,9 +21,10 @@ data:
     \ n * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
     \ bool commute = true;\r\n};\r\n#line 1 \"alg/monoid_min_idx.hpp\"\ntemplate <typename\
     \ T, bool tie_is_left = true>\r\nstruct Monoid_Min_Idx {\r\n  using value_type\
-    \ = pair<T, int>;\r\n  using X = value_type;\r\n  static X op(X x, X y) {\r\n\
-    \    if (x.fi < y.fi) return x;\r\n    if (x.fi > y.fi) return y;\r\n    if (x.se\
-    \ > y.se) swap(x, y);\r\n    return (tie_is_left ? x : y);\r\n  }\r\n  static\
+    \ = pair<T, int>;\r\n  using X = value_type;\r\n  static constexpr bool is_small(const\
+    \ X& x, const X& y) {\r\n    if (x.fi < y.fi) return true;\r\n    if (x.fi > y.fi)\
+    \ return false;\r\n    return (tie_is_left ? (x.se < y.se) : (x.se >= y.se));\r\
+    \n  }\r\n  static X op(X x, X y) { return (is_small(x, y) ? x : y); }\r\n  static\
     \ constexpr X unit() { return {numeric_limits<T>::max(), -1}; }\r\n  static constexpr\
     \ bool commute = true;\r\n};\r\n#line 3 \"alg/lazy_minidx_add.hpp\"\n\r\ntemplate\
     \ <typename E, bool tie_is_left = true>\r\nstruct Lazy_MinIdx_Add {\r\n  using\
@@ -45,7 +46,7 @@ data:
   isVerificationFile: false
   path: alg/lazy_minidx_add.hpp
   requiredBy: []
-  timestamp: '2022-05-26 00:06:40+09:00'
+  timestamp: '2022-05-27 16:21:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/lazy_minidx_add.hpp
