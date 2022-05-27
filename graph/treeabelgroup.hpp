@@ -59,7 +59,7 @@ struct TreeAbelGroup {
     if (subtree_query) bit_subtree.add(hld.LID[v], x);
   }
 
-  X sum_path(int frm, int to) {
+  X prod_path(int frm, int to) {
     assert(path_query);
     int lca = hld.LCA(frm, to);
     // [frm, lca)
@@ -75,15 +75,12 @@ struct TreeAbelGroup {
     return bit_subtree.sum(l + edge, r);
   }
 
+  X sum_path(int frm, int to) { return prod_path(frm, to); }
+  X sum_subtree(int u) { return prod_subtree(u); }
+
   void debug() {
     hld.debug();
     bit.debug();
     bit_subtree.debug();
-  }
-
-  void doc() {
-    print("EulerTour + FenwickTree。");
-    print("逆元を利用して、パスクエリを O(logN) 時間で行う。");
-    print("部分木クエリ O(logN) 時間、パスクエリ O(logN) 時間。");
   }
 };
