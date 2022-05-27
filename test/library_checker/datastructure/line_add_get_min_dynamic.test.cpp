@@ -21,7 +21,7 @@ void solve() {
     }
     if (t == 1) {
       LL(x);
-      ll y = seg.query(x);
+      ll y = seg.query(x).fi;
       if (y >= INF)
         print("INFINITY");
       else
