@@ -10,7 +10,7 @@ struct Dynamic_LiChaoTree {
     T a, b;
     Line(int idx, T a, T b) : idx(idx), a(a), b(b) {}
     Line() : Line(-1, 0, numeric_limits<T>::max()) {}
-    T operator()(T x) const { return a * x + b; }
+    pair<T, int> operator()(T x) const { return {a * x + b, idx}; }
   };
 
   struct Node {
@@ -71,19 +71,22 @@ private:
   }
 
   void add_line_rec(Node *c, const Line &f, ll node_l, ll node_r) {
-    T fl = f(node_l), fr = f(node_r - 1);
+    auto fl = f(node_l), fr = f(node_r - 1);
     Line g = c->f;
-    T gl = g(node_l), gr = g(node_r - 1);
-    if (fl <= gl && fr <= gr) {
+    auto gl = g(node_l), gr = g(node_r - 1);
+    bool bl = Mono::is_small(fl, gl);
+    bool br = Mono::is_small(fr, gr);
+    if (bl && br) {
       c->f = f;
       return;
     }
-    if (fl >= gl && fr >= gr) { return; }
+    if (!bl && !br) { return; }
     ll node_m = (node_l + node_r) / 2;
-    T fm = f(node_m), gm = g(node_m);
-    if (fm <= gm) {
+    auto fm = f(node_m), gm = g(node_m);
+    bool bm = Mono::is_small(fm, gm);
+    if (bm) {
       c->f = f;
-      if (fl < gl) {
+      if (bl) {
         if (!c->r) c->r = new_node();
         add_line_rec(c->r, g, node_m, node_r);
       } else {
@@ -91,7 +94,7 @@ private:
         add_line_rec(c->l, g, node_l, node_m);
       }
     } else {
-      if (gl < fl) {
+      if (!bl) {
         if (!c->r) c->r = new_node();
         add_line_rec(c->r, f, node_m, node_r);
       } else {
@@ -102,7 +105,7 @@ private:
   }
 
   pair<T, int> query_rec(Node *c, ll x, ll node_l, ll node_r) {
-    pair<T, int> res = {c->f(x), c->f.idx};
+    pair<T, int> res = c->f(x);
     ll node_m = (node_l + node_r) / 2;
     if (x < node_m && c->l) res = Mono::op(res, query_rec(c->l, x, node_l, node_m));
     if (x >= node_m && c->r) res = Mono::op(res, query_rec(c->r, x, node_m, node_r));
