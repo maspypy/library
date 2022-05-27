@@ -40,7 +40,7 @@ struct Dynamic_LiChaoTree {
       assert(abs(xr) < xlim);
     }
     assert(L <= xl && xl < xr && xr <= R);
-    Line f(a, b);
+    Line f(idx, a, b);
     if (!root) root = new_node();
     add_segment_rec(root, xl, xr, f, L, R);
   }
@@ -49,7 +49,7 @@ struct Dynamic_LiChaoTree {
 
   pair<T, int> query(ll x) {
     assert(L <= x && x < R);
-    if (!root) return numeric_limits<T>::max();
+    if (!root) return Mono::unit();
     return query_rec(root, x, L, R);
   }
 
@@ -102,8 +102,7 @@ private:
   }
 
   pair<T, int> query_rec(Node *c, ll x, ll node_l, ll node_r) {
-    T res = Mono::unit();
-    c->f(x);
+    pair<T, int> res = {c->f(x), c->f.idx};
     ll node_m = (node_l + node_r) / 2;
     if (x < node_m && c->l) res = Mono::op(res, query_rec(c->l, x, node_l, node_m));
     if (x >= node_m && c->r) res = Mono::op(res, query_rec(c->r, x, node_m, node_r));
