@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: alg/monoid_min_idx.hpp
     title: alg/monoid_min_idx.hpp
   _extendedRequiredBy: []

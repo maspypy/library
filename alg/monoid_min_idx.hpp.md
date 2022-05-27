@@ -5,13 +5,22 @@ data:
   - icon: ':warning:'
     path: alg/lazy_minidx_add.hpp
     title: alg/lazy_minidx_add.hpp
+  - icon: ':x:'
+    path: ds/dynamic_lichao.hpp
+    title: ds/dynamic_lichao.hpp
   - icon: ':warning:'
     path: geo/manhattan_nns.hpp
     title: geo/manhattan_nns.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
+    title: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
+    title: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid_min_idx.hpp\"\ntemplate <typename T, bool tie_is_left\
@@ -31,11 +40,14 @@ data:
   isVerificationFile: false
   path: alg/monoid_min_idx.hpp
   requiredBy:
+  - ds/dynamic_lichao.hpp
   - alg/lazy_minidx_add.hpp
   - geo/manhattan_nns.hpp
   timestamp: '2022-05-26 00:06:40+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
+  - test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
 documentation_of: alg/monoid_min_idx.hpp
 layout: document
 redirect_from:
