@@ -281,14 +281,14 @@ data:
     \      for (int d = 0; d <= n; ++d) Rf[t][d] -= Rf[s][d];\r\n    }\r\n  }\r\n\
     \  vc<T> f(1 << n);\r\n  for (int s = 0; s < (1 << n); ++s) f[s] = Rf[s][popcnt(s)];\r\
     \n  return f;\r\n}\n#line 2 \"setfunc/subset_convolution.hpp\"\n\r\ntemplate <typename\
-    \ T>\r\nvc<T> subset_convolution(vc<T>& A, vc<T>& B) {\r\n  auto RA = ranked_zeta(A);\r\
-    \n  auto RB = ranked_zeta(B);\r\n  int n = len(RA[0]);\r\n  FOR(s, len(RA)) {\r\
-    \n    vc<T> f(n + 1);\r\n    FOR(i, n + 1) FOR(j, n - i + 1) f[i + j] += RA[s][i]\
-    \ * RB[s][j];\r\n    RA[s] = f;\r\n  }\r\n  return ranked_mobius(RA);\r\n}\r\n\
-    #line 7 \"test/library_checker/convolution/subset_convolution.test.cpp\"\n\r\n\
-    using mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint, A, 1\
-    \ << N);\r\n  VEC(mint, B, 1 << N);\r\n  auto C = subset_convolution(A, B);\r\n\
-    \  print(C);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \ T>\r\nvc<T> subset_convolution(vc<T> A, vc<T> B) {\r\n  auto RA = ranked_zeta(A);\r\
+    \n  auto RB = ranked_zeta(B);\r\n  int n = len(RA[0]) - 1;\r\n  FOR(s, len(RA))\
+    \ {\r\n    vc<T> f(n + 1);\r\n    FOR(i, n + 1) FOR(j, n - i + 1) f[i + j] +=\
+    \ RA[s][i] * RB[s][j];\r\n    RA[s] = f;\r\n  }\r\n  return ranked_mobius(RA);\r\
+    \n}\r\n#line 7 \"test/library_checker/convolution/subset_convolution.test.cpp\"\
+    \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint,\
+    \ A, 1 << N);\r\n  VEC(mint, B, 1 << N);\r\n  auto C = subset_convolution(A, B);\r\
+    \n  print(C);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
     \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/subset_convolution\"\r\n\
     #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"mod/modint.hpp\"\
@@ -306,7 +306,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/convolution/subset_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-05-13 20:44:41+09:00'
+  timestamp: '2022-05-29 02:01:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/convolution/subset_convolution.test.cpp

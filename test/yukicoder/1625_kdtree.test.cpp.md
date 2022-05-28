@@ -210,8 +210,8 @@ data:
     \ X& v) { set_rec(1, x, y, v); }\r\n\r\n  void multiply(XY x, XY y, const X& v)\
     \ { multiply_rec(1, x, y, v); }\r\n\r\n  X prod(XY xl, XY yl, XY xr, XY yr) {\r\
     \n    assert(xl <= xr && yl <= yr);\r\n    return prod_rec(1, xl, xr, yl, yr);\r\
-    \n  }\r\n\r\nprivate:\r\n  void build(int idx, vc<XY>& xs, vc<XY>& ys, vc<X> vs,\
-    \ bool divx = true) {\r\n    int n = len(xs);\r\n    auto& [xmin, xmax, ymin,\
+    \n  }\r\n\r\nprivate:\r\n  void build(int idx, vc<XY>& xs, vc<XY>& ys, vc<X>&\
+    \ vs, bool divx = true) {\r\n    int n = len(xs);\r\n    auto& [xmin, xmax, ymin,\
     \ ymax] = range[idx];\r\n    xmin = numeric_limits<XY>::max();\r\n    xmax = numeric_limits<XY>::lowest();\r\
     \n    ymin = numeric_limits<XY>::max();\r\n    ymax = numeric_limits<XY>::lowest();\r\
     \n\r\n    FOR(i, n) {\r\n      auto x = xs[i], y = ys[i];\r\n      chmin(xmin,\
@@ -293,7 +293,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1625_kdtree.test.cpp
   requiredBy: []
-  timestamp: '2022-05-20 21:19:28+09:00'
+  timestamp: '2022-05-29 02:01:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/1625_kdtree.test.cpp

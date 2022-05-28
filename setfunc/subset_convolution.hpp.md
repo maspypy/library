@@ -27,21 +27,22 @@ data:
     \ 0; d <= n; ++d) Rf[t][d] -= Rf[s][d];\r\n    }\r\n  }\r\n  vc<T> f(1 << n);\r\
     \n  for (int s = 0; s < (1 << n); ++s) f[s] = Rf[s][popcnt(s)];\r\n  return f;\r\
     \n}\n#line 2 \"setfunc/subset_convolution.hpp\"\n\r\ntemplate <typename T>\r\n\
-    vc<T> subset_convolution(vc<T>& A, vc<T>& B) {\r\n  auto RA = ranked_zeta(A);\r\
-    \n  auto RB = ranked_zeta(B);\r\n  int n = len(RA[0]);\r\n  FOR(s, len(RA)) {\r\
-    \n    vc<T> f(n + 1);\r\n    FOR(i, n + 1) FOR(j, n - i + 1) f[i + j] += RA[s][i]\
-    \ * RB[s][j];\r\n    RA[s] = f;\r\n  }\r\n  return ranked_mobius(RA);\r\n}\r\n"
+    vc<T> subset_convolution(vc<T> A, vc<T> B) {\r\n  auto RA = ranked_zeta(A);\r\n\
+    \  auto RB = ranked_zeta(B);\r\n  int n = len(RA[0]) - 1;\r\n  FOR(s, len(RA))\
+    \ {\r\n    vc<T> f(n + 1);\r\n    FOR(i, n + 1) FOR(j, n - i + 1) f[i + j] +=\
+    \ RA[s][i] * RB[s][j];\r\n    RA[s] = f;\r\n  }\r\n  return ranked_mobius(RA);\r\
+    \n}\r\n"
   code: "#include \"setfunc/ranked_zeta.hpp\"\r\n\r\ntemplate <typename T>\r\nvc<T>\
-    \ subset_convolution(vc<T>& A, vc<T>& B) {\r\n  auto RA = ranked_zeta(A);\r\n\
-    \  auto RB = ranked_zeta(B);\r\n  int n = len(RA[0]);\r\n  FOR(s, len(RA)) {\r\
-    \n    vc<T> f(n + 1);\r\n    FOR(i, n + 1) FOR(j, n - i + 1) f[i + j] += RA[s][i]\
+    \ subset_convolution(vc<T> A, vc<T> B) {\r\n  auto RA = ranked_zeta(A);\r\n  auto\
+    \ RB = ranked_zeta(B);\r\n  int n = len(RA[0]) - 1;\r\n  FOR(s, len(RA)) {\r\n\
+    \    vc<T> f(n + 1);\r\n    FOR(i, n + 1) FOR(j, n - i + 1) f[i + j] += RA[s][i]\
     \ * RB[s][j];\r\n    RA[s] = f;\r\n  }\r\n  return ranked_mobius(RA);\r\n}\r\n"
   dependsOn:
   - setfunc/ranked_zeta.hpp
   isVerificationFile: false
   path: setfunc/subset_convolution.hpp
   requiredBy: []
-  timestamp: '2022-05-06 11:34:29+09:00'
+  timestamp: '2022-05-29 02:01:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/convolution/subset_convolution.test.cpp
