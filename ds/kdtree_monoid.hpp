@@ -26,7 +26,7 @@ struct KDTree_Monoid {
   }
 
 private:
-  void build(int idx, vc<XY>& xs, vc<XY>& ys, vc<X> vs, bool divx = true) {
+  void build(int idx, vc<XY>& xs, vc<XY>& ys, vc<X>& vs, bool divx = true) {
     int n = len(xs);
     auto& [xmin, xmax, ymin, ymax] = range[idx];
     xmin = numeric_limits<XY>::max();

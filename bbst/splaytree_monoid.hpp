@@ -15,6 +15,8 @@ struct SplayTree_Monoid {
 
   SplayTree_Monoid() : pid(0) { pool = new Node[NODES]; }
 
+  void reset() { pid = 0; }
+
   Node *new_node(const X &x) {
     pool[pid].l = pool[pid].r = pool[pid].p = nullptr;
     pool[pid].x = x;
@@ -151,6 +153,18 @@ struct SplayTree_Monoid {
     merge(l_root, r_root);
     swap(root, l_root);
     return l_root;
+  }
+
+  vc<X> get_all(Node *root){
+    vc<X> res;
+    auto dfs = [&](auto &dfs, Node *n) -> void {
+      if (!n) return;
+      dfs(dfs, n->l);
+      res.eb(n->x);
+      dfs(dfs, n->r);
+    };
+    dfs(dfs, root);
+    return res;
   }
 
   void debug(Node *root) {

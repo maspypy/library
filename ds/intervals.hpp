@@ -4,7 +4,8 @@
 // コンストラクタでは T none_val を指定する
 template <typename T = ll, typename X = ll>
 struct Intervals {
-  static constexpr X INF = numeric_limits<X>::max();
+  static constexpr X LLIM = numeric_limits<X>::lowest();
+  static constexpr X RLIM = numeric_limits<X>::max();
   const T none_val;
   // none_val でない区間の個数と長さ合計
   int total_num;
@@ -12,8 +13,8 @@ struct Intervals {
   map<X, T> dat;
 
   Intervals(T none_val) : none_val(none_val), total_num(0), total_len(0) {
-    dat[-INF] = none_val;
-    dat[INF] = none_val;
+    dat[LLIM] = none_val;
+    dat[RLIM] = none_val;
   }
 
   tuple<X, X, T> get(X x) {
@@ -93,7 +94,7 @@ struct Intervals {
     auto it = prev(dat.lower_bound(L));
     while (1) {
       auto [l, t] = *it;
-      if (R < l) break;
+      if (R <= l) break;
       it = next(it);
       X r = (*it).fi;
       X l0 = max(l, L);
@@ -101,6 +102,10 @@ struct Intervals {
       if (l0 < r0) res.eb(l0, r0, t);
     }
     return res;
+  }
+
+  vc<tuple<X, X, T>> get_all() {
+    return get(LLIM + 1, RLIM);
   }
 
   void debug() {
