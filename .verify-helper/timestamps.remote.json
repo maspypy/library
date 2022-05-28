@@ -9,6 +9,7 @@
 "test/aoj/2995_dsu.test.cpp": "2022-05-23 16:54:27 +0900",
 "test/aoj/ALDS1_10_C_LCS.test.cpp": "2022-05-13 20:44:41 +0900",
 "test/aoj/ALDS1_12_B_dial.test.cpp": "2022-05-13 20:44:41 +0900",
+"test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp": "2022-05-28 05:14:51 +0900",
 "test/aoj/ALDS1_1_C_primetest.test.cpp": "2022-05-13 20:44:41 +0900",
 "test/aoj/ALDS1_2_A_inversion.test.cpp": "2022-05-13 20:44:41 +0900",
 "test/aoj/ALDS1_5_inversion.test.cpp": "2022-05-13 20:44:41 +0900",
