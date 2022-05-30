@@ -537,9 +537,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1269_aho.test.cpp
     title: test/yukicoder/1269_aho.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1274_gaussian.test.cpp
-    title: test/yukicoder/1274_gaussian.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1288_mcf_dag_negative.test.cpp
     title: test/yukicoder/1288_mcf_dag_negative.test.cpp
@@ -687,9 +684,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include\
@@ -908,7 +905,7 @@ data:
   path: other/io.hpp
   requiredBy: []
   timestamp: '2022-04-27 05:07:41+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1321_surj.test.cpp
   - test/yukicoder/1097_doubling.test.cpp
@@ -927,7 +924,6 @@ data:
   - test/yukicoder/626_knapsack_branch_bound.test.cpp
   - test/yukicoder/1810_matpow.test.cpp
   - test/yukicoder/705_monge_shortest_path.test.cpp
-  - test/yukicoder/1274_gaussian.test.cpp
   - test/yukicoder/1441_bbst.test.cpp
   - test/yukicoder/177_maxflow.test.cpp
   - test/yukicoder/187_crt.test.cpp
