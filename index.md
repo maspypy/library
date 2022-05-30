@@ -118,6 +118,9 @@ data:
       path: alg/monoid_min_idx.hpp
       title: alg/monoid_min_idx.hpp
     - icon: ':warning:'
+      path: alg/monoid_min_xplusa_b.hpp
+      title: alg/monoid_min_xplusa_b.hpp
+    - icon: ':warning:'
       path: alg/monoid_minmax.hpp
       title: alg/monoid_minmax.hpp
     - icon: ':warning:'
