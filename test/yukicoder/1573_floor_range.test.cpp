@@ -1,3 +1,4 @@
+#define PROBLEM "https://yukicoder.me/problems/no/1573"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "other/floor_range.hpp"
