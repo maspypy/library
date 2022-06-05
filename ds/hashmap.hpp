@@ -1,3 +1,4 @@
+#pragma once
 template <typename Val, int LOG = 20>
 struct HashMapLL {
   int N;

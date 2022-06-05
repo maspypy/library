@@ -1,9 +1,9 @@
 #include "ds/hashmap.hpp"
 // log_a b の計算
 // ハッシュ関数 H : X -> long long を持たせる
-// [lb, rb) の最初の解をかえす
+// [lb, ub) の最初の解をかえす
 // なければ -1
-template <typename Group, typename X>
+template <typename Group>
 ll discrete_log(typename Group::X a, typename Group::X b,
                 function<ll(typename Group::X)> H, ll lb, ll ub) {
   using X = typename Group::X;
@@ -13,7 +13,7 @@ ll discrete_log(typename Group::X a, typename Group::X b,
     X p = a;
     X x = Group::unit();
     while (n) {
-      if (n & 1) x = Group::op(x, a);
+      if (n & 1) x = Group::op(x, p);
       p = Group::op(p, p);
       n /= 2;
     }
