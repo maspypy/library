@@ -1,3 +1,4 @@
+#define PROBLEM "https://yukicoder.me/problems/no/1778"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/bracket_graph.hpp"
