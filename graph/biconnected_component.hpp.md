@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -145,8 +145,8 @@ data:
   timestamp: '2022-05-26 02:23:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1326_bct.test.cpp
   - test/aoj/GRO_3_A_articulation.test.cpp
+  - test/yukicoder/1326_bct.test.cpp
   - test/library_checker/graph/biconnected_component.test.cpp
 documentation_of: graph/biconnected_component.hpp
 layout: document

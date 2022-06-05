@@ -61,10 +61,10 @@ data:
   isVerificationFile: false
   path: mod/mod_pow.hpp
   requiredBy:
-  - nt/gaussian_integers.hpp
-  - nt/lcm.hpp
-  - mod/primitive_root.hpp
   - mod/mod_kth_root.hpp
+  - mod/primitive_root.hpp
+  - nt/lcm.hpp
+  - nt/gaussian_integers.hpp
   timestamp: '2022-05-19 23:05:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

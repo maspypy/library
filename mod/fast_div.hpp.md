@@ -74,14 +74,14 @@ data:
   isVerificationFile: false
   path: mod/fast_div.hpp
   requiredBy:
-  - nt/gaussian_integers.hpp
-  - nt/lcm.hpp
-  - nt/crt.hpp
-  - mod/tetration.hpp
-  - mod/primitive_root.hpp
   - mod/mod_pow.hpp
-  - mod/binomial.hpp
   - mod/mod_kth_root.hpp
+  - mod/primitive_root.hpp
+  - mod/tetration.hpp
+  - mod/binomial.hpp
+  - nt/lcm.hpp
+  - nt/gaussian_integers.hpp
+  - nt/crt.hpp
   timestamp: '2022-05-12 00:26:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

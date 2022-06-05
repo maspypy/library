@@ -60,9 +60,9 @@ data:
   isVerificationFile: false
   path: poly/integrate.hpp
   requiredBy:
-  - seq/surjection.hpp
   - seq/stirling_number_2.hpp
   - seq/stirling_number_1.hpp
+  - seq/surjection.hpp
   - poly/fps_exp.hpp
   - poly/sharp_p_subset_sum.hpp
   - poly/fps_pow.hpp
@@ -73,10 +73,10 @@ data:
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
-  - test/library_checker/polynomial/pow_of_fps.test.cpp
   - test/library_checker/polynomial/exp_of_fps.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
   - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
+  - test/library_checker/polynomial/pow_of_fps.test.cpp
 documentation_of: poly/integrate.hpp
 layout: document
 redirect_from:

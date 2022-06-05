@@ -37,28 +37,28 @@ data:
     links: []
   bundledCode: "#line 2 \"alg/monoid_max.hpp\"\ntemplate <class X>\r\nstruct Monoid_Max\
     \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
-    \ &y) noexcept { return max(x, y); }\r\n  static constexpr X unit() { return -numeric_limits<X>::lowest();\
+    \ &y) noexcept { return max(x, y); }\r\n  static constexpr X unit() { return numeric_limits<X>::lowest();\
     \ }\r\n  static constexpr bool commute = true;\r\n};\r\n"
   code: "#pragma once\r\ntemplate <class X>\r\nstruct Monoid_Max {\r\n  using value_type\
     \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return max(x,\
-    \ y); }\r\n  static constexpr X unit() { return -numeric_limits<X>::lowest();\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n"
+    \ y); }\r\n  static constexpr X unit() { return numeric_limits<X>::lowest(); }\r\
+    \n  static constexpr bool commute = true;\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid_max.hpp
   requiredBy:
-  - alg/lazy_max_set.hpp
-  - alg/lazy_max_add.hpp
-  - alg/lazy_max_min.hpp
-  - alg/lazy_max_max.hpp
   - graph/minimum_spanning_tree.hpp
-  timestamp: '2022-05-13 21:02:36+09:00'
+  - alg/lazy_max_add.hpp
+  - alg/lazy_max_max.hpp
+  - alg/lazy_max_set.hpp
+  - alg/lazy_max_min.hpp
+  timestamp: '2022-06-05 12:22:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1625_seg2d.test.cpp
-  - test/yukicoder/1625_kdtree.test.cpp
-  - test/yukicoder/1117_swag.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp
+  - test/yukicoder/1625_kdtree.test.cpp
+  - test/yukicoder/1625_seg2d.test.cpp
+  - test/yukicoder/1117_swag.test.cpp
 documentation_of: alg/monoid_max.hpp
 layout: document
 redirect_from:

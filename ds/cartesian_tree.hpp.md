@@ -68,8 +68,8 @@ data:
   timestamp: '2022-05-12 11:09:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DPL_3_C_maxrectangle.test.cpp
   - test/aoj/DPL_3_B_largest_ractangle.test.cpp
+  - test/aoj/DPL_3_C_maxrectangle.test.cpp
   - test/library_checker/tree/cartesian_tree.test.cpp
 documentation_of: ds/cartesian_tree.hpp
 layout: document

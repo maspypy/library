@@ -80,13 +80,13 @@ data:
   isVerificationFile: false
   path: mod/modint61.hpp
   requiredBy:
-  - alg/monoid_rollinghash.hpp
   - mod/modular_subset_sum.hpp
+  - alg/monoid_rollinghash.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/4_modular_subset_sum.test.cpp
   - test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
+  - test/yukicoder/4_modular_subset_sum.test.cpp
 documentation_of: mod/modint61.hpp
 layout: document
 redirect_from:

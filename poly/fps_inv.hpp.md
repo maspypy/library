@@ -422,16 +422,16 @@ data:
   isVerificationFile: false
   path: poly/fps_inv.hpp
   requiredBy:
-  - seq/surjection.hpp
   - seq/stirling_number_2.hpp
   - seq/sum_of_powers.hpp
   - seq/stirling_number_1.hpp
+  - seq/surjection.hpp
   - poly/fps_log.hpp
   - poly/poly_divmod.hpp
-  - poly/multipoint.hpp
   - poly/fps_pow.hpp
   - poly/fps_sqrt.hpp
   - poly/poly_gcd.hpp
+  - poly/multipoint.hpp
   timestamp: '2022-05-19 23:05:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -440,16 +440,16 @@ data:
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/partition.test.cpp
-  - test/library_checker/polynomial/pow_of_fps.test.cpp
-  - test/library_checker/polynomial/inv_of_fps.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
   - test/library_checker/polynomial/inv_of_polynomials.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/inv_of_fps_amint.test.cpp
   - test/library_checker/polynomial/log_of_fps.test.cpp
+  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
   - test/library_checker/polynomial/polynomial_division.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
+  - test/library_checker/polynomial/inv_of_fps.test.cpp
+  - test/library_checker/polynomial/pow_of_fps.test.cpp
 documentation_of: poly/fps_inv.hpp
 layout: document
 redirect_from:

@@ -285,6 +285,9 @@ data:
     - icon: ':warning:'
       path: ds/pbds.hpp
       title: ds/pbds.hpp
+    - icon: ':warning:'
+      path: ds/point_add_polygon_sum.hpp
+      title: ds/point_add_polygon_sum.hpp
     - icon: ':heavy_check_mark:'
       path: ds/point_add_rectangle_sum.hpp
       title: ds/point_add_rectangle_sum.hpp
@@ -369,13 +372,13 @@ data:
       title: geo/points_diameter.hpp
   - name: graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/base.hpp
       title: graph/base.hpp
     - icon: ':heavy_check_mark:'
       path: graph/bellmanford.hpp
       title: graph/bellmanford.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/bfs01.hpp
       title: graph/bfs01.hpp
     - icon: ':heavy_check_mark:'
@@ -387,6 +390,9 @@ data:
     - icon: ':warning:'
       path: graph/bipartite_coloring.hpp
       title: graph/bipartite_coloring.hpp
+    - icon: ':x:'
+      path: graph/bracket_graph.hpp
+      title: graph/bracket_graph.hpp
     - icon: ':heavy_check_mark:'
       path: graph/centroid.hpp
       title: graph/centroid.hpp
@@ -441,7 +447,7 @@ data:
     - icon: ':warning:'
       path: graph/grid_bfs.hpp
       title: graph/grid_bfs.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/hld.hpp
       title: graph/hld.hpp
     - icon: ':heavy_check_mark:'
@@ -474,7 +480,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/reachability.hpp
       title: graph/reachability.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/rerooting_dp.hpp
       title: graph/rerooting_dp.hpp
     - icon: ':heavy_check_mark:'
@@ -615,7 +621,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -685,7 +691,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/discrete_log.hpp
       title: other/discrete_log.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/floor_range.hpp
       title: other/floor_range.hpp
     - icon: ':heavy_check_mark:'
@@ -697,7 +703,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/integer_kth_root.hpp
       title: other/integer_kth_root.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -706,6 +712,9 @@ data:
     - icon: ':warning:'
       path: other/kth_next_permutation.hpp
       title: other/kth_next_permutation.hpp
+    - icon: ':warning:'
+      path: other/kth_root_permutation.hpp
+      title: other/kth_root_permutation.hpp
     - icon: ':heavy_check_mark:'
       path: other/random.hpp
       title: other/random.hpp
@@ -1542,6 +1551,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1548_power_sums.test.cpp
       title: test/yukicoder/1548_power_sums.test.cpp
+    - icon: ':x:'
+      path: test/yukicoder/1573_floor_range.test.cpp
+      title: test/yukicoder/1573_floor_range.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1593_gaussian.test.cpp
       title: test/yukicoder/1593_gaussian.test.cpp
@@ -1566,9 +1578,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1666_integer_kth_root.test.cpp
       title: test/yukicoder/1666_integer_kth_root.test.cpp
+    - icon: ':x:'
+      path: test/yukicoder/1718_rerooting.test.cpp
+      title: test/yukicoder/1718_rerooting.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1750_matpow.test.cpp
       title: test/yukicoder/1750_matpow.test.cpp
+    - icon: ':x:'
+      path: test/yukicoder/1778_bracket_graph.test.cpp
+      title: test/yukicoder/1778_bracket_graph.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/177_maxflow.test.cpp
       title: test/yukicoder/177_maxflow.test.cpp

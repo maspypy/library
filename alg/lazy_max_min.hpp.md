@@ -16,7 +16,7 @@ data:
     links: []
   bundledCode: "#line 2 \"alg/monoid_max.hpp\"\ntemplate <class X>\r\nstruct Monoid_Max\
     \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
-    \ &y) noexcept { return max(x, y); }\r\n  static constexpr X unit() { return -numeric_limits<X>::lowest();\
+    \ &y) noexcept { return max(x, y); }\r\n  static constexpr X unit() { return numeric_limits<X>::lowest();\
     \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/monoid_min.hpp\"\
     \ntemplate <class X>\r\nstruct Monoid_Min {\r\n  using value_type = X;\r\n  static\
     \ constexpr X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static\
@@ -39,7 +39,7 @@ data:
   isVerificationFile: false
   path: alg/lazy_max_min.hpp
   requiredBy: []
-  timestamp: '2022-05-13 21:02:36+09:00'
+  timestamp: '2022-06-05 12:22:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/lazy_max_min.hpp
