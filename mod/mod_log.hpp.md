@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_mul.hpp
     title: alg/group_mul.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/discrete_log.hpp
     title: other/discrete_log.hpp
   _extendedRequiredBy: []
@@ -131,8 +131,8 @@ data:
     \ MP[key] = k;\r\n    if (k != K) p = Group::op(p, a);\r\n  }\r\n  p = Group::inverse(p);\r\
     \n  FOR(k, K + 1) {\r\n    auto key = H(b);\r\n    if (MP.count(key)) {\r\n  \
     \    ll res = k * K + MP[key] + lb;\r\n      return (res >= ub ? -1 : res);\r\n\
-    \    }\r\n    b = Group::op(b, p);\r\n  }\r\n  return -1;\r\n}\r\n\r\n\r\n// G\
-    \ \u96C6\u5408 X \u304C\u3042\u308B\u3002\r\n// a in G, x, y in X \u306B\u5BFE\
+    \    }\r\n    b = Group::op(b, p);\r\n  }\r\n  return -1;\r\n}\r\n\r\n// yuki1648\r\
+    \n// G \u96C6\u5408 X \u304C\u3042\u308B\u3002\r\n// a in G, x, y in X \u306B\u5BFE\
     \u3057\u3066 a^nx=y \u3092\u89E3\u304F\r\n// \u30CF\u30C3\u30B7\u30E5\u95A2\u6570\
     \ H : X -> long long \u3092\u6301\u305F\u305B\u308B\r\n// [lb, ub) \u306E\u6700\
     \u521D\u306E\u89E3\u3092\u304B\u3048\u3059\r\n// \u306A\u3051\u308C\u3070 -1\r\
@@ -182,7 +182,7 @@ data:
   isVerificationFile: false
   path: mod/mod_log.hpp
   requiredBy: []
-  timestamp: '2022-06-05 16:18:21+09:00'
+  timestamp: '2022-06-05 16:37:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
