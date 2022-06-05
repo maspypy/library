@@ -288,7 +288,7 @@ data:
     \ 2 \"mod/mod_inv.hpp\"\n// long \u3067\u3082\u5927\u4E08\u592B\r\nll mod_inv(ll\
     \ val, ll mod) {\r\n  ll a = val, b = mod, u = 1, v = 0, t;\r\n  while (b > 0)\
     \ {\r\n    t = a / b;\r\n    swap(a -= t * b, b), swap(u -= t * v, v);\r\n  }\r\
-    \n  if(u < 0) u += mod;\r\n  return u;\r\n}\r\n#line 1 \"ds/hashmap.hpp\"\ntemplate\
+    \n  if(u < 0) u += mod;\r\n  return u;\r\n}\r\n#line 2 \"ds/hashmap.hpp\"\ntemplate\
     \ <typename Val, int LOG = 20>\r\nstruct HashMapLL {\r\n  int N;\r\n  ll* keys;\r\
     \n  Val* vals;\r\n  vc<int> IDS;\r\n  bitset<1 << LOG> used;\r\n  const int shift;\r\
     \n  const uint64_t r = 11995408973635179863ULL;\r\n  HashMapLL()\r\n      : N(1\
@@ -403,7 +403,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/kth_root_mod.test.cpp
   requiredBy: []
-  timestamp: '2022-05-19 23:05:54+09:00'
+  timestamp: '2022-06-05 16:08:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/kth_root_mod.test.cpp

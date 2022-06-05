@@ -95,7 +95,7 @@ data:
     \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
     \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
     }\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    using amint = ArbitraryModInt;\n#line 1 \"ds/hashmap.hpp\"\ntemplate <typename\
+    using amint = ArbitraryModInt;\n#line 2 \"ds/hashmap.hpp\"\ntemplate <typename\
     \ Val, int LOG = 20>\r\nstruct HashMapLL {\r\n  int N;\r\n  ll* keys;\r\n  Val*\
     \ vals;\r\n  vc<int> IDS;\r\n  bitset<1 << LOG> used;\r\n  const int shift;\r\n\
     \  const uint64_t r = 11995408973635179863ULL;\r\n  HashMapLL()\r\n      : N(1\
@@ -118,12 +118,12 @@ data:
     \ { return MP.count(f(key)); }\r\n\r\n  void reset() { MP.reset(); }\r\n};\r\n\
     #line 2 \"other/discrete_log.hpp\"\n// log_a b \u306E\u8A08\u7B97\r\n// \u30CF\
     \u30C3\u30B7\u30E5\u95A2\u6570 H : X -> long long \u3092\u6301\u305F\u305B\u308B\
-    \r\n// [lb, rb) \u306E\u6700\u521D\u306E\u89E3\u3092\u304B\u3048\u3059\r\n// \u306A\
-    \u3051\u308C\u3070 -1\r\ntemplate <typename Group, typename X>\r\nll discrete_log(typename\
+    \r\n// [lb, ub) \u306E\u6700\u521D\u306E\u89E3\u3092\u304B\u3048\u3059\r\n// \u306A\
+    \u3051\u308C\u3070 -1\r\ntemplate <typename Group>\r\nll discrete_log(typename\
     \ Group::X a, typename Group::X b,\r\n                function<ll(typename Group::X)>\
     \ H, ll lb, ll ub) {\r\n  using X = typename Group::X;\r\n  if (lb >= ub) return\
     \ -1;\r\n  {\r\n    ll n = lb;\r\n    X p = a;\r\n    X x = Group::unit();\r\n\
-    \    while (n) {\r\n      if (n & 1) x = Group::op(x, a);\r\n      p = Group::op(p,\
+    \    while (n) {\r\n      if (n & 1) x = Group::op(x, p);\r\n      p = Group::op(p,\
     \ p);\r\n      n /= 2;\r\n    }\r\n    x = Group::inverse(x);\r\n    b = Group::op(b,\
     \ x);\r\n  }\r\n  ll LIM = ub - lb;\r\n\r\n  ll K = 1;\r\n  while (K * K < LIM)\
     \ ++K;\r\n\r\n  static HashMapLL<int, 20> MP;\r\n  MP.reset();\r\n\r\n  X p =\
@@ -163,7 +163,7 @@ data:
   isVerificationFile: false
   path: mod/mod_log.hpp
   requiredBy: []
-  timestamp: '2022-06-05 15:27:08+09:00'
+  timestamp: '2022-06-05 16:08:48+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
