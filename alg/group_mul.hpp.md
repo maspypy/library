@@ -31,6 +31,9 @@ data:
     path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1339_discrete_log.test.cpp
+    title: test/yukicoder/1339_discrete_log.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_p_rec.test.cpp
     title: test/yukicoder/502_p_rec.test.cpp
   - icon: ':heavy_check_mark:'
@@ -66,6 +69,7 @@ data:
   verifiedWith:
   - test/yukicoder/502_p_rec.test.cpp
   - test/yukicoder/899_bfsnumbering.test.cpp
+  - test/yukicoder/1339_discrete_log.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp

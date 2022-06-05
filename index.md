@@ -1519,6 +1519,9 @@ data:
       path: test/yukicoder/1288_mcf_dag_negative.test.cpp
       title: test/yukicoder/1288_mcf_dag_negative.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1293_scc.test.cpp
+      title: test/yukicoder/1293_scc.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1301_mcf.test.cpp
       title: test/yukicoder/1301_mcf.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1533,6 +1536,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1332_range_freq.test.cpp
       title: test/yukicoder/1332_range_freq.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1339_discrete_log.test.cpp
+      title: test/yukicoder/1339_discrete_log.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1344_warshall_floyd.test.cpp
       title: test/yukicoder/1344_warshall_floyd.test.cpp

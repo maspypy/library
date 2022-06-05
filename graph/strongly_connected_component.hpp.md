@@ -24,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1170_range_to_range.test.cpp
     title: test/yukicoder/1170_range_to_range.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1293_scc.test.cpp
+    title: test/yukicoder/1293_scc.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -62,31 +65,41 @@ data:
     \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
     , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
     \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 3 \"graph/strongly_connected_component.hpp\"\
-    \n\ntemplate <typename Graph>\npair<int, vc<int>> strongly_connected_component(Graph\
-    \ &G) {\n  assert(G.is_directed());\n  assert(G.is_prepared());\n  int N = G.N;\n\
+    \n\ntemplate <typename Graph>\npair<int, vc<int>> strongly_connected_component(Graph&\
+    \ G) {\n  assert(G.is_directed());\n  assert(G.is_prepared());\n  int N = G.N;\n\
     \  int C = 0;\n  vc<int> comp(N);\n  vc<int> low(N);\n  vc<int> ord(N, -1);\n\
     \  vc<int> visited;\n  int now = 0;\n\n  auto dfs = [&](auto self, int v) -> void\
     \ {\n    low[v] = now;\n    ord[v] = now;\n    ++now;\n    visited.eb(v);\n  \
-    \  for (auto &&[frm, to, cost, id]: G[v]) {\n      if (ord[to] == -1) {\n    \
+    \  for (auto&& [frm, to, cost, id]: G[v]) {\n      if (ord[to] == -1) {\n    \
     \    self(self, to);\n        chmin(low[v], low[to]);\n      } else {\n      \
     \  chmin(low[v], ord[to]);\n      }\n    }\n    if (low[v] == ord[v]) {\n    \
     \  while (1) {\n        int u = visited.back();\n        visited.pop_back();\n\
     \        ord[u] = N;\n        comp[u] = C;\n        if (u == v) break;\n     \
     \ }\n      ++C;\n    }\n  };\n  FOR(v, N) {\n    if (ord[v] == -1) dfs(dfs, v);\n\
-    \  }\n  FOR(v, N) comp[v] = C - 1 - comp[v];\n  return {C, comp};\n}\n"
+    \  }\n  FOR(v, N) comp[v] = C - 1 - comp[v];\n  return {C, comp};\n}\n\ntemplate\
+    \ <typename GT>\nGraph<int, 1> scc_dag(GT& G, int C, vc<int>& comp) {\n  Graph<int,\
+    \ 1> DAG(C);\n  vvc<int> edges(C);\n  for (auto&& e: G.edges) {\n    int x = comp[e.frm],\
+    \ y = comp[e.to];\n    if (x == y) continue;\n    edges[x].eb(y);\n  }\n  FOR(c,\
+    \ C) {\n    UNIQUE(edges[c]);\n    for (auto&& to: edges[c]) DAG.add(c, to);\n\
+    \  }\n  DAG.build();\n  return DAG;\n}\n"
   code: "#pragma once\n#include \"graph/base.hpp\"\n\ntemplate <typename Graph>\n\
-    pair<int, vc<int>> strongly_connected_component(Graph &G) {\n  assert(G.is_directed());\n\
+    pair<int, vc<int>> strongly_connected_component(Graph& G) {\n  assert(G.is_directed());\n\
     \  assert(G.is_prepared());\n  int N = G.N;\n  int C = 0;\n  vc<int> comp(N);\n\
     \  vc<int> low(N);\n  vc<int> ord(N, -1);\n  vc<int> visited;\n  int now = 0;\n\
     \n  auto dfs = [&](auto self, int v) -> void {\n    low[v] = now;\n    ord[v]\
-    \ = now;\n    ++now;\n    visited.eb(v);\n    for (auto &&[frm, to, cost, id]:\
+    \ = now;\n    ++now;\n    visited.eb(v);\n    for (auto&& [frm, to, cost, id]:\
     \ G[v]) {\n      if (ord[to] == -1) {\n        self(self, to);\n        chmin(low[v],\
     \ low[to]);\n      } else {\n        chmin(low[v], ord[to]);\n      }\n    }\n\
     \    if (low[v] == ord[v]) {\n      while (1) {\n        int u = visited.back();\n\
     \        visited.pop_back();\n        ord[u] = N;\n        comp[u] = C;\n    \
     \    if (u == v) break;\n      }\n      ++C;\n    }\n  };\n  FOR(v, N) {\n   \
     \ if (ord[v] == -1) dfs(dfs, v);\n  }\n  FOR(v, N) comp[v] = C - 1 - comp[v];\n\
-    \  return {C, comp};\n}\n"
+    \  return {C, comp};\n}\n\ntemplate <typename GT>\nGraph<int, 1> scc_dag(GT& G,\
+    \ int C, vc<int>& comp) {\n  Graph<int, 1> DAG(C);\n  vvc<int> edges(C);\n  for\
+    \ (auto&& e: G.edges) {\n    int x = comp[e.frm], y = comp[e.to];\n    if (x ==\
+    \ y) continue;\n    edges[x].eb(y);\n  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n\
+    \    for (auto&& to: edges[c]) DAG.add(c, to);\n  }\n  DAG.build();\n  return\
+    \ DAG;\n}"
   dependsOn:
   - graph/base.hpp
   isVerificationFile: false
@@ -94,11 +107,12 @@ data:
   requiredBy:
   - graph/reachability.hpp
   - graph/twosat.hpp
-  timestamp: '2022-05-13 20:32:38+09:00'
+  timestamp: '2022-06-06 03:52:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/275_dag_reachability.test.cpp
   - test/yukicoder/1170_range_to_range.test.cpp
+  - test/yukicoder/1293_scc.test.cpp
   - test/library_checker/math/twosat.test.cpp
   - test/library_checker/graph/scc.test.cpp
 documentation_of: graph/strongly_connected_component.hpp

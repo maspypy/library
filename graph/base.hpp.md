@@ -244,6 +244,9 @@ data:
     path: test/yukicoder/1170_range_to_range.test.cpp
     title: test/yukicoder/1170_range_to_range.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1293_scc.test.cpp
+    title: test/yukicoder/1293_scc.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1320_mincostcycle.test.cpp
     title: test/yukicoder/1320_mincostcycle.test.cpp
   - icon: ':heavy_check_mark:'
@@ -429,6 +432,7 @@ data:
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/1718_rerooting.test.cpp
   - test/yukicoder/529_two_edge.test.cpp
+  - test/yukicoder/1293_scc.test.cpp
   - test/yukicoder/1344_warshall_floyd.test.cpp
   - test/yukicoder/1038_centroid.test.cpp
   - test/yukicoder/1418_rerooting.test.cpp

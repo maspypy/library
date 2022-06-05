@@ -283,6 +283,9 @@ data:
     path: test/yukicoder/1321_surj.test.cpp
     title: test/yukicoder/1321_surj.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1339_discrete_log.test.cpp
+    title: test/yukicoder/1339_discrete_log.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1500_interpolate_linear.test.cpp
     title: test/yukicoder/1500_interpolate_linear.test.cpp
   - icon: ':heavy_check_mark:'
@@ -524,6 +527,7 @@ data:
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/1750_matpow.test.cpp
   - test/yukicoder/1145_sum_of_powers.test.cpp
+  - test/yukicoder/1339_discrete_log.test.cpp
   - test/yukicoder/1649_dynamic_seg.test.cpp
   - test/yukicoder/1618_conv_ll.test.cpp
   - test/library_checker/convolution/bitwise_and_convolution.test.cpp

@@ -12,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1339_discrete_log.test.cpp
+    title: test/yukicoder/1339_discrete_log.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -115,6 +118,7 @@ data:
   timestamp: '2022-06-05 16:37:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1339_discrete_log.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
 documentation_of: other/discrete_log.hpp
 layout: document

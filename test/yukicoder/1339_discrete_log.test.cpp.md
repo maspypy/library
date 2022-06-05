@@ -2,20 +2,20 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: graph/base.hpp
-    title: graph/base.hpp
+    path: alg/group_mul.hpp
+    title: alg/group_mul.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/dijkstra.hpp
-    title: graph/dijkstra.hpp
+    path: ds/hashmap.hpp
+    title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/reachability.hpp
-    title: graph/reachability.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/strongly_connected_component.hpp
-    title: graph/strongly_connected_component.hpp
+    path: mod/modint.hpp
+    title: mod/modint.hpp
   - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
+  - icon: ':heavy_check_mark:'
+    path: other/discrete_log.hpp
+    title: other/discrete_log.hpp
   - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
@@ -26,19 +26,19 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0275
+    PROBLEM: https://yukicoder.me/problems/no/1339
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0275
-  bundledCode: "#line 1 \"test/aoj/275_dag_reachability.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0275\"\n#line 1\
-    \ \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing\
-    \ ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32\
-    \ = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\n\
-    template <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://yukicoder.me/problems/no/1339
+  bundledCode: "#line 1 \"test/yukicoder/1339_discrete_log.test.cpp\"\n#define PROBLEM\
+    \ \"https://yukicoder.me/problems/no/1339\"\n#line 1 \"my_template.hpp\"\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -198,125 +198,168 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct\
-    \ Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int,\
-    \ bool directed = false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n\
-    \  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n\
-    \  vector<edge_type> csr_edges;\n  bool prepared;\n\n  class OutgoingEdges {\n\
-    \  public:\n    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l), r(r)\
-    \ {}\n\n    const edge_type* begin() const {\n      if (l == r) { return 0; }\n\
-    \      return &G->csr_edges[l];\n    }\n\n    const edge_type* end() const {\n\
-    \      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n  private:\n\
-    \    int l, r;\n    const Graph* G;\n  };\n\n  bool is_prepared() { return prepared;\
-    \ }\n  constexpr bool is_directed() { return directed; }\n\n  Graph() : N(0),\
-    \ M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void\
-    \ add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n   \
-    \ assert(0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto e\
-    \ = edge_type({frm, to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  // wt,\
-    \ off\n  void read_tree(bool wt = false, int off = 1) { read_graph(N - 1, wt,\
-    \ off); }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n    FOR(M)\
-    \ {\n      INT(a, b);\n      a -= off, b -= off;\n      if (!wt) {\n        add(a,\
-    \ b);\n      } else {\n        T c;\n        read(c);\n        add(a, b, c);\n\
-    \      }\n    }\n    build();\n  }\n\n  void read_parent(int off = 1) {\n    FOR3(v,\
-    \ 1, N) {\n      INT(p);\n      p -= off;\n      add(p, v);\n    }\n    build();\n\
-    \  }\n\n  void build() {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N\
-    \ + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if\
-    \ (!directed) indptr[e.to + 1]++;\n    }\n    FOR(v, N) indptr[v + 1] += indptr[v];\n\
-    \    auto counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for\
-    \ (auto&& e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
-    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
-    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
-    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  void debug() {\n    print(\"\
-    Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
-    \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
-    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 3 \"graph/strongly_connected_component.hpp\"\
-    \n\ntemplate <typename Graph>\npair<int, vc<int>> strongly_connected_component(Graph&\
-    \ G) {\n  assert(G.is_directed());\n  assert(G.is_prepared());\n  int N = G.N;\n\
-    \  int C = 0;\n  vc<int> comp(N);\n  vc<int> low(N);\n  vc<int> ord(N, -1);\n\
-    \  vc<int> visited;\n  int now = 0;\n\n  auto dfs = [&](auto self, int v) -> void\
-    \ {\n    low[v] = now;\n    ord[v] = now;\n    ++now;\n    visited.eb(v);\n  \
-    \  for (auto&& [frm, to, cost, id]: G[v]) {\n      if (ord[to] == -1) {\n    \
-    \    self(self, to);\n        chmin(low[v], low[to]);\n      } else {\n      \
-    \  chmin(low[v], ord[to]);\n      }\n    }\n    if (low[v] == ord[v]) {\n    \
-    \  while (1) {\n        int u = visited.back();\n        visited.pop_back();\n\
-    \        ord[u] = N;\n        comp[u] = C;\n        if (u == v) break;\n     \
-    \ }\n      ++C;\n    }\n  };\n  FOR(v, N) {\n    if (ord[v] == -1) dfs(dfs, v);\n\
-    \  }\n  FOR(v, N) comp[v] = C - 1 - comp[v];\n  return {C, comp};\n}\n\ntemplate\
-    \ <typename GT>\nGraph<int, 1> scc_dag(GT& G, int C, vc<int>& comp) {\n  Graph<int,\
-    \ 1> DAG(C);\n  vvc<int> edges(C);\n  for (auto&& e: G.edges) {\n    int x = comp[e.frm],\
-    \ y = comp[e.to];\n    if (x == y) continue;\n    edges[x].eb(y);\n  }\n  FOR(c,\
-    \ C) {\n    UNIQUE(edges[c]);\n    for (auto&& to: edges[c]) DAG.add(c, to);\n\
-    \  }\n  DAG.build();\n  return DAG;\n}\n#line 3 \"graph/reachability.hpp\"\n\n\
-    // \u6709\u5411\u30B0\u30E9\u30D5\u306E\u5230\u9054\u53EF\u80FD\u6027\u30AF\u30A8\
-    \u30EA\u3002O((N+M)Q/w)\u3002\ntemplate <typename GT, typename P>\nvc<int> reachability(GT&\
-    \ G, vc<P> query) {\n  auto [C, comp] = strongly_connected_component(G);\n  Graph<int,\
-    \ 1> DAG(C);\n  for (auto&& e: G.edges) {\n    auto a = comp[e.frm], b = comp[e.to];\n\
-    \    assert(a <= b);\n    if (a < b) DAG.add(a, b);\n  }\n  DAG.build();\n\n \
-    \ int Q = len(query);\n  vc<u64> dp(C);\n  vc<int> res(Q);\n  for (int l = 0;\
-    \ l < Q; l += 64) {\n    int r = min(l + 64, Q);\n    fill(all(dp), u64(0));\n\
-    \n    FOR3(qid, l, r) {\n      auto v = comp[query[qid].fi];\n      dp[v] |= u64(1)\
-    \ << (qid - l);\n    }\n    FOR(v, C) for (auto&& e: DAG[v]) { dp[e.to] |= dp[v];\
-    \ }\n    FOR3(qid, l, r) {\n      auto v = comp[query[qid].se];\n      if (dp[v]\
-    \ & (u64(1) << (qid - l))) res[qid] = 1;\n    }\n  }\n  return res;\n}\n#line\
-    \ 3 \"graph/dijkstra.hpp\"\n\ntemplate <typename T, typename Graph>\npair<vc<T>,\
-    \ vc<int>> dijkstra(Graph& G, int v, T INF) {\n  auto N = G.N;\n  vector<T> dist(N,\
-    \ INF);\n  vector<int> par(N, -1);\n  using P = pair<T, int>;\n\n  priority_queue<P,\
-    \ vector<P>, greater<P>> que;\n\n  dist[v] = 0;\n  que.emplace(0, v);\n  while\
-    \ (!que.empty()) {\n    auto [dv, v] = que.top();\n    que.pop();\n    if (dv\
-    \ > dist[v]) continue;\n    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to],\
-    \ dist[e.frm] + e.cost)) {\n        par[e.to] = e.frm;\n        que.emplace(dist[e.to],\
-    \ e.to);\n      }\n    }\n  }\n  return {dist, par};\n}\n\n// \u591A\u70B9\u30B9\
-    \u30BF\u30FC\u30C8\u3002[dist, par, root]\ntemplate <typename T, typename Graph>\n\
-    tuple<vc<T>, vc<int>, vc<int>> dijkstra(Graph& G, vc<int> vs, T INF) {\n  assert(G.is_prepared());\n\
-    \  int N = G.N;\n  vc<ll> dist(N, INF);\n  vc<int> par(N, -1);\n  vc<int> root(N,\
-    \ -1);\n\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>>\
-    \ que;\n\n  for (auto&& v: vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.emplace(T(0),\
-    \ v);\n  }\n\n  while (!que.empty()) {\n    auto [dv, v] = que.top();\n    que.pop();\n\
-    \    if (dv > dist[v]) continue;\n    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to],\
-    \ dist[e.frm] + e.cost)) {\n        root[e.to] = root[e.frm];\n        par[e.to]\
-    \ = e.frm;\n        que.push(mp(dist[e.to], e.to));\n      }\n    }\n  }\n  return\
-    \ {dist, par, root};\n}\n#line 6 \"test/aoj/275_dag_reachability.test.cpp\"\n\n\
-    void solve() {\n  LL(N, M);\n  Graph G(N);\n  G.read_graph(M, 1);\n  LL(a, b);\n\
-    \  --a, --b;\n  const ll INF = 1LL << 60;\n\n  auto [dist_a, par_a] = dijkstra(G,\
-    \ a, INF);\n  auto [dist_b, par_b] = dijkstra(G, b, INF);\n\n  Graph<int, 1> DG(N);\n\
-    \  ll d = dist_a[b];\n  for (auto&& e: G.edges) {\n    if (dist_a[e.frm] + e.cost\
-    \ + dist_b[e.to] == d) DG.add(e.frm, e.to);\n    if (dist_b[e.frm] + e.cost +\
-    \ dist_a[e.to] == d) DG.add(e.to, e.frm);\n  }\n  DG.build();\n\n  LL(Q);\n  VEC(pi,\
-    \ query, Q);\n  for (auto&& [a, b]: query) --a, --b;\n  auto res = reachability(DG,\
-    \ query);\n  for (auto&& yn: res) Yes(yn);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0275\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/reachability.hpp\"\
-    \n#include \"graph/dijkstra.hpp\"\n\nvoid solve() {\n  LL(N, M);\n  Graph G(N);\n\
-    \  G.read_graph(M, 1);\n  LL(a, b);\n  --a, --b;\n  const ll INF = 1LL << 60;\n\
-    \n  auto [dist_a, par_a] = dijkstra(G, a, INF);\n  auto [dist_b, par_b] = dijkstra(G,\
-    \ b, INF);\n\n  Graph<int, 1> DG(N);\n  ll d = dist_a[b];\n  for (auto&& e: G.edges)\
-    \ {\n    if (dist_a[e.frm] + e.cost + dist_b[e.to] == d) DG.add(e.frm, e.to);\n\
-    \    if (dist_b[e.frm] + e.cost + dist_a[e.to] == d) DG.add(e.to, e.frm);\n  }\n\
-    \  DG.build();\n\n  LL(Q);\n  VEC(pi, query, Q);\n  for (auto&& [a, b]: query)\
-    \ --a, --b;\n  auto res = reachability(DG, query);\n  for (auto&& yn: res) Yes(yn);\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
-    \ return 0;\n}\n"
+    \ { yes(!t); }\r\n#line 2 \"ds/hashmap.hpp\"\ntemplate <typename Val, int LOG\
+    \ = 20>\r\nstruct HashMapLL {\r\n  int N;\r\n  ll* keys;\r\n  Val* vals;\r\n \
+    \ vc<int> IDS;\r\n  bitset<1 << LOG> used;\r\n  const int shift;\r\n  const uint64_t\
+    \ r = 11995408973635179863ULL;\r\n  HashMapLL()\r\n      : N(1 << LOG), keys(new\
+    \ ll[N]), vals(new Val[N]), shift(64 - __lg(N)) {}\r\n  int hash(ll x) {\r\n \
+    \   static const uint64_t FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
+    \n    return (uint64_t(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
+    \ ll& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && keys[i] !=\
+    \ key; (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
+    \ ll& key) {\r\n    int i = index(key);\r\n    if (!used[i]) IDS.eb(i), used[i]\
+    \ = 1, keys[i] = key, vals[i] = Val{};\r\n    return vals[i];\r\n  }\r\n\r\n \
+    \ bool contain(const ll& key) {\r\n    int i = index(key);\r\n    return used[i]\
+    \ && keys[i] == key;\r\n  }\r\n\r\n  bool count(const ll& key) {\r\n    int i\
+    \ = index(key);\r\n    return used[i] && keys[i] == key;\r\n  }\r\n\r\n  void\
+    \ reset() {\r\n    for (auto&& i: IDS) used[i] = 0;\r\n    IDS.clear();\r\n  }\r\
+    \n};\r\n\r\ntemplate <typename KEY, typename VAL>\r\nstruct HashMap {\r\n  HashMapLL<VAL,\
+    \ 20> MP;\r\n  function<ll(KEY)> f;\r\n  HashMap(function<ll(KEY)> f) : MP(),\
+    \ f(f) {}\r\n  int index(const KEY& key) { return MP.index(f(key)); }\r\n\r\n\
+    \  VAL& operator[](const KEY& key) { return MP[f(key)]; }\r\n\r\n  bool contain(const\
+    \ KEY& key) { return MP.contain(f(key)); }\r\n\r\n  bool count(const KEY& key)\
+    \ { return MP.count(f(key)); }\r\n\r\n  void reset() { MP.reset(); }\r\n};\r\n\
+    #line 2 \"other/discrete_log.hpp\"\n// log_a b \u306E\u8A08\u7B97\r\n// \u30CF\
+    \u30C3\u30B7\u30E5\u95A2\u6570 H : X -> long long \u3092\u6301\u305F\u305B\u308B\
+    \r\n// [lb, ub) \u306E\u6700\u521D\u306E\u89E3\u3092\u304B\u3048\u3059\r\n// \u306A\
+    \u3051\u308C\u3070 -1\r\ntemplate <typename Group>\r\nll discrete_log(typename\
+    \ Group::X a, typename Group::X b,\r\n                function<ll(typename Group::X)>\
+    \ H, ll lb, ll ub) {\r\n  using G = typename Group::X;\r\n  if (lb >= ub) return\
+    \ -1;\r\n  {\r\n    ll n = lb;\r\n    G p = a;\r\n    G x = Group::unit();\r\n\
+    \    while (n) {\r\n      if (n & 1) x = Group::op(x, p);\r\n      p = Group::op(p,\
+    \ p);\r\n      n /= 2;\r\n    }\r\n    x = Group::inverse(x);\r\n    b = Group::op(b,\
+    \ x);\r\n  }\r\n  ll LIM = ub - lb;\r\n\r\n  ll K = 1;\r\n  while (K * K < LIM)\
+    \ ++K;\r\n\r\n  static HashMapLL<int, 20> MP;\r\n  MP.reset();\r\n\r\n  G p =\
+    \ Group::unit();\r\n  FOR(k, K + 1) {\r\n    auto key = H(p);\r\n    if (!MP.count(key))\
+    \ MP[key] = k;\r\n    if (k != K) p = Group::op(p, a);\r\n  }\r\n  p = Group::inverse(p);\r\
+    \n  FOR(k, K + 1) {\r\n    auto key = H(b);\r\n    if (MP.count(key)) {\r\n  \
+    \    ll res = k * K + MP[key] + lb;\r\n      return (res >= ub ? -1 : res);\r\n\
+    \    }\r\n    b = Group::op(b, p);\r\n  }\r\n  return -1;\r\n}\r\n\r\n// yuki1648\r\
+    \n// G \u96C6\u5408 X \u304C\u3042\u308B\u3002\r\n// a in G, x, y in X \u306B\u5BFE\
+    \u3057\u3066 a^nx=y \u3092\u89E3\u304F\r\n// \u30CF\u30C3\u30B7\u30E5\u95A2\u6570\
+    \ H : X -> long long \u3092\u6301\u305F\u305B\u308B\r\n// [lb, ub) \u306E\u6700\
+    \u521D\u306E\u89E3\u3092\u304B\u3048\u3059\r\n// \u306A\u3051\u308C\u3070 -1\r\
+    \ntemplate <typename GSet>\r\nll discrete_log_gset(typename GSet::G a, typename\
+    \ GSet::X x, typename GSet::X y,\r\n                     function<ll(typename\
+    \ GSet::X)> H, ll lb, ll ub) {\r\n  using Group = typename GSet::Group;\r\n  using\
+    \ G = typename Group::value_type;\r\n  if (lb >= ub) return -1;\r\n  auto apow\
+    \ = [&](ll n) -> G {\r\n    G p = a;\r\n    G res = Group::unit();\r\n    while\
+    \ (n) {\r\n      if (n & 1) res = Group::op(res, p);\r\n      p = Group::op(p,\
+    \ p);\r\n      n /= 2;\r\n    }\r\n    return res;\r\n  };\r\n  x = GSet::act(apow(lb),\
+    \ x);\r\n  ll LIM = ub - lb;\r\n\r\n  ll K = 1;\r\n  while (K * K < LIM) ++K;\r\
+    \n\r\n  static HashMapLL<int, 20> MP;\r\n  MP.reset();\r\n\r\n  FOR(k, K + 1)\
+    \ {\r\n    auto key = H(x);\r\n    if (!MP.count(key)) MP[key] = k;\r\n    if\
+    \ (k != K) x = GSet::act(a, x);\r\n  }\r\n\r\n  a = Group::inverse(apow(K));\r\
+    \n  FOR(k, K + 1) {\r\n    auto key = H(y);\r\n    if (MP.count(key)) {\r\n  \
+    \    ll res = k * K + MP[key] + lb;\r\n      return (res >= ub ? -1 : res);\r\n\
+    \    }\r\n    y = GSet::act(a, y);\r\n  }\r\n  return -1;\r\n}\n#line 2 \"mod/modint.hpp\"\
+    \ntemplate <u32 mod>\nstruct modint {\n  static constexpr bool is_modint = true;\n\
+    \  u32 val;\n  constexpr modint(const ll val = 0) noexcept\n      : val(val >=\
+    \ 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint\
+    \ &other) const {\n    return val < other.val;\n  } // To use std::map\n  modint\
+    \ &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n\
+    \    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if ((val\
+    \ += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const\
+    \ modint &p) {\n    val = (u32)(1LL * val * p.val % mod);\n    return *this;\n\
+    \  }\n  modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n   \
+    \ return *this;\n  }\n  modint operator-() const { return modint(get_mod() - val);\
+    \ }\n  modint operator+(const modint &p) const { return modint(*this) += p; }\n\
+    \  modint operator-(const modint &p) const { return modint(*this) -= p; }\n  modint\
+    \ operator*(const modint &p) const { return modint(*this) *= p; }\n  modint operator/(const\
+    \ modint &p) const { return modint(*this) /= p; }\n  bool operator==(const modint\
+    \ &p) const { return val == p.val; }\n  bool operator!=(const modint &p) const\
+    \ { return val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod,\
+    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
+    \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
+    \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
+    \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
+    \  }\n  static constexpr u32 get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
+    \ {\n  static constexpr bool is_modint = true;\n  u32 val;\n  ArbitraryModInt()\
+    \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
+    \                   : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
+    \ ArbitraryModInt &other) const {\n    return val < other.val;\n  } // To use\
+    \ std::map<ArbitraryModInt, T>\n  static u32 &get_mod() {\n    static u32 mod\
+    \ = 0;\n    return mod;\n  }\n  static void set_mod(int md) { get_mod() = md;\
+    \ }\n  ArbitraryModInt &operator+=(const ArbitraryModInt &p) {\n    if ((val +=\
+    \ p.val) >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt\
+    \ &operator-=(const ArbitraryModInt &p) {\n    if ((val += get_mod() - p.val)\
+    \ >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt &operator*=(const\
+    \ ArbitraryModInt &p) {\n    unsigned long long a = (unsigned long long)val *\
+    \ p.val;\n    unsigned xh = (unsigned)(a >> 32), xl = (unsigned)a, d, m;\n   \
+    \ asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"\
+    (get_mod()));\n    val = m;\n    return *this;\n  }\n  ArbitraryModInt &operator/=(const\
+    \ ArbitraryModInt &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n \
+    \ ArbitraryModInt operator-() const { return ArbitraryModInt(get_mod() - val);\
+    \ }\n  ArbitraryModInt operator+(const ArbitraryModInt &p) const {\n    return\
+    \ ArbitraryModInt(*this) += p;\n  }\n  ArbitraryModInt operator-(const ArbitraryModInt\
+    \ &p) const {\n    return ArbitraryModInt(*this) -= p;\n  }\n  ArbitraryModInt\
+    \ operator*(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
+    \ *= p;\n  }\n  ArbitraryModInt operator/(const ArbitraryModInt &p) const {\n\
+    \    return ArbitraryModInt(*this) /= p;\n  }\n  bool operator==(const ArbitraryModInt\
+    \ &p) const { return val == p.val; }\n  bool operator!=(const ArbitraryModInt\
+    \ &p) const { return val != p.val; }\n  ArbitraryModInt inverse() const {\n  \
+    \  int a = val, b = get_mod(), u = 1, v = 0, t;\n    while (b > 0) {\n      t\
+    \ = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return\
+    \ ArbitraryModInt(u);\n  }\n  ArbitraryModInt pow(int64_t n) const {\n    ArbitraryModInt\
+    \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
+    \ mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n};\n\ntemplate <typename\
+    \ mint>\ntuple<mint, mint, mint> get_factorial_data(int n) {\n  static const int\
+    \ mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint>\
+    \ fact = {1, 1};\n  static vector<mint> fact_inv = {1, 1};\n  static vector<mint>\
+    \ inv = {0, 1};\n  while (len(fact) <= n) {\n    int k = len(fact);\n    fact.eb(fact[k\
+    \ - 1] * mint(k));\n    auto q = ceil(mod, k);\n    int r = k * q - mod;\n   \
+    \ inv.eb(inv[r] * mint(q));\n    fact_inv.eb(fact_inv[k - 1] * inv[k]);\n  }\n\
+    \  return {fact[n], fact_inv[n], inv[n]};\n}\n\ntemplate <typename mint>\nmint\
+    \ fact(int n) {\n  static const int mod = mint::get_mod();\n  assert(0 <= n);\n\
+    \  if (n >= mod) return 0;\n  return get<0>(get_factorial_data<mint>(n));\n}\n\
+    \ntemplate <typename mint>\nmint fact_inv(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  assert(0 <= n && n < mod);\n  return get<1>(get_factorial_data<mint>(n));\n\
+    }\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  assert(0 <= n && n < mod);\n  return get<2>(get_factorial_data<mint>(n));\n\
+    }\n\ntemplate <typename mint, bool large = false>\nmint C(ll n, ll k) {\n  assert(n\
+    \ >= 0);\n  if (k < 0 || n < k) return 0;\n  if (!large) return fact<mint>(n)\
+    \ * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k, n - k);\n  mint x(1);\n\
+    \  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n  return x;\n}\n\
+    \ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n\
+    \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
+    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
+    }\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    using amint = ArbitraryModInt;\n#line 1 \"alg/group_mul.hpp\"\ntemplate <class\
+    \ T>\r\nstruct Group_Mul {\r\n  using value_type = T;\r\n  using X = T;\r\n  static\
+    \ constexpr X op(const X &x, const X &y) noexcept { return x * y; }\r\n  static\
+    \ constexpr X inverse(const X &x) noexcept { return X(1) / x; }\r\n  static constexpr\
+    \ X unit() { return X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\
+    \n#line 7 \"test/yukicoder/1339_discrete_log.test.cpp\"\n\nvoid solve() {\n  LL(N);\n\
+    \  while (N % 2 == 0) N /= 2;\n  while (N % 5 == 0) N /= 5;\n  amint::set_mod(N);\n\
+    \  auto H = [&](amint x) -> ll { return x.val; };\n  ll k = discrete_log<Group_Mul<amint>>(amint(10),\
+    \ amint(1), H, 1, N + 10);\n  print(k);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << fixed << setprecision(15);\n\n  LL(T);\n\
+    \  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1339\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"other/discrete_log.hpp\"\n#include \"\
+    mod/modint.hpp\"\n#include \"alg/group_mul.hpp\"\n\nvoid solve() {\n  LL(N);\n\
+    \  while (N % 2 == 0) N /= 2;\n  while (N % 5 == 0) N /= 5;\n  amint::set_mod(N);\n\
+    \  auto H = [&](amint x) -> ll { return x.val; };\n  ll k = discrete_log<Group_Mul<amint>>(amint(10),\
+    \ amint(1), H, 1, N + 10);\n  print(k);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << fixed << setprecision(15);\n\n  LL(T);\n\
+    \  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - graph/reachability.hpp
-  - graph/strongly_connected_component.hpp
-  - graph/base.hpp
-  - graph/dijkstra.hpp
+  - other/discrete_log.hpp
+  - ds/hashmap.hpp
+  - mod/modint.hpp
+  - alg/group_mul.hpp
   isVerificationFile: true
-  path: test/aoj/275_dag_reachability.test.cpp
+  path: test/yukicoder/1339_discrete_log.test.cpp
   requiredBy: []
-  timestamp: '2022-06-06 03:52:38+09:00'
+  timestamp: '2022-06-06 03:52:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/275_dag_reachability.test.cpp
+documentation_of: test/yukicoder/1339_discrete_log.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/275_dag_reachability.test.cpp
-- /verify/test/aoj/275_dag_reachability.test.cpp.html
-title: test/aoj/275_dag_reachability.test.cpp
+- /verify/test/yukicoder/1339_discrete_log.test.cpp
+- /verify/test/yukicoder/1339_discrete_log.test.cpp.html
+title: test/yukicoder/1339_discrete_log.test.cpp
 ---

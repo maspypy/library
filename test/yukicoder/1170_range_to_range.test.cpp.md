@@ -247,27 +247,32 @@ data:
     \ new_node, wt);\n    add_to_range(new_node, to_l, to_r, T(0));\n  }\n\n  Graph<T,\
     \ 1> build() {\n    Graph<T, 1> G(n_node);\n    for (auto&& [a, b, c]: edges)\
     \ G.add(a, b, c);\n    G.build();\n    return G;\n  }\n};\n#line 3 \"graph/strongly_connected_component.hpp\"\
-    \n\ntemplate <typename Graph>\npair<int, vc<int>> strongly_connected_component(Graph\
-    \ &G) {\n  assert(G.is_directed());\n  assert(G.is_prepared());\n  int N = G.N;\n\
+    \n\ntemplate <typename Graph>\npair<int, vc<int>> strongly_connected_component(Graph&\
+    \ G) {\n  assert(G.is_directed());\n  assert(G.is_prepared());\n  int N = G.N;\n\
     \  int C = 0;\n  vc<int> comp(N);\n  vc<int> low(N);\n  vc<int> ord(N, -1);\n\
     \  vc<int> visited;\n  int now = 0;\n\n  auto dfs = [&](auto self, int v) -> void\
     \ {\n    low[v] = now;\n    ord[v] = now;\n    ++now;\n    visited.eb(v);\n  \
-    \  for (auto &&[frm, to, cost, id]: G[v]) {\n      if (ord[to] == -1) {\n    \
+    \  for (auto&& [frm, to, cost, id]: G[v]) {\n      if (ord[to] == -1) {\n    \
     \    self(self, to);\n        chmin(low[v], low[to]);\n      } else {\n      \
     \  chmin(low[v], ord[to]);\n      }\n    }\n    if (low[v] == ord[v]) {\n    \
     \  while (1) {\n        int u = visited.back();\n        visited.pop_back();\n\
     \        ord[u] = N;\n        comp[u] = C;\n        if (u == v) break;\n     \
     \ }\n      ++C;\n    }\n  };\n  FOR(v, N) {\n    if (ord[v] == -1) dfs(dfs, v);\n\
-    \  }\n  FOR(v, N) comp[v] = C - 1 - comp[v];\n  return {C, comp};\n}\n#line 6\
-    \ \"test/yukicoder/1170_range_to_range.test.cpp\"\n\nvoid solve() {\n  LL(N, A,\
-    \ B);\n  VEC(ll, X, N);\n  Range_to_Range_Graph<int> RRG(N);\n  FOR(i, N) {\n\
-    \    {\n      ll l = LB(X, X[i] - B);\n      ll r = UB(X, X[i] - A);\n      RRG.add_to_range(i,\
-    \ l, r, 1);\n    }\n    {\n      ll l = LB(X, X[i] + A);\n      ll r = UB(X, X[i]\
-    \ + B);\n      RRG.add_to_range(i, l, r, 1);\n    }\n  }\n  auto G = RRG.build();\n\
-    \  auto [C, comp] = strongly_connected_component(G);\n  vi sz(C);\n  FOR(v, N)\
-    \ sz[comp[v]]++;\n  FOR(v, N) print(sz[comp[v]]);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \  }\n  FOR(v, N) comp[v] = C - 1 - comp[v];\n  return {C, comp};\n}\n\ntemplate\
+    \ <typename GT>\nGraph<int, 1> scc_dag(GT& G, int C, vc<int>& comp) {\n  Graph<int,\
+    \ 1> DAG(C);\n  vvc<int> edges(C);\n  for (auto&& e: G.edges) {\n    int x = comp[e.frm],\
+    \ y = comp[e.to];\n    if (x == y) continue;\n    edges[x].eb(y);\n  }\n  FOR(c,\
+    \ C) {\n    UNIQUE(edges[c]);\n    for (auto&& to: edges[c]) DAG.add(c, to);\n\
+    \  }\n  DAG.build();\n  return DAG;\n}\n#line 6 \"test/yukicoder/1170_range_to_range.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, A, B);\n  VEC(ll, X, N);\n  Range_to_Range_Graph<int>\
+    \ RRG(N);\n  FOR(i, N) {\n    {\n      ll l = LB(X, X[i] - B);\n      ll r = UB(X,\
+    \ X[i] - A);\n      RRG.add_to_range(i, l, r, 1);\n    }\n    {\n      ll l =\
+    \ LB(X, X[i] + A);\n      ll r = UB(X, X[i] + B);\n      RRG.add_to_range(i, l,\
+    \ r, 1);\n    }\n  }\n  auto G = RRG.build();\n  auto [C, comp] = strongly_connected_component(G);\n\
+    \  vi sz(C);\n  FOR(v, N) sz[comp[v]]++;\n  FOR(v, N) print(sz[comp[v]]);\n}\n\
+    \nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
+    \ return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1170\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"graph/range_to_range_graph.hpp\"\n#include\
     \ \"graph/strongly_connected_component.hpp\"\n\nvoid solve() {\n  LL(N, A, B);\n\
@@ -288,7 +293,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1170_range_to_range.test.cpp
   requiredBy: []
-  timestamp: '2022-05-13 20:44:41+09:00'
+  timestamp: '2022-06-06 03:52:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/1170_range_to_range.test.cpp

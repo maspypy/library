@@ -541,6 +541,9 @@ data:
     path: test/yukicoder/1288_mcf_dag_negative.test.cpp
     title: test/yukicoder/1288_mcf_dag_negative.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1293_scc.test.cpp
+    title: test/yukicoder/1293_scc.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1301_mcf.test.cpp
     title: test/yukicoder/1301_mcf.test.cpp
   - icon: ':heavy_check_mark:'
@@ -555,6 +558,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1332_range_freq.test.cpp
     title: test/yukicoder/1332_range_freq.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1339_discrete_log.test.cpp
+    title: test/yukicoder/1339_discrete_log.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1344_warshall_floyd.test.cpp
     title: test/yukicoder/1344_warshall_floyd.test.cpp
@@ -1009,12 +1015,14 @@ data:
   - test/yukicoder/1117_swag.test.cpp
   - test/yukicoder/1036_swag.test.cpp
   - test/yukicoder/1170_online_uf.test.cpp
+  - test/yukicoder/1339_discrete_log.test.cpp
   - test/yukicoder/1142_xor_conv.test.cpp
   - test/yukicoder/1666_integer_kth_root.test.cpp
   - test/yukicoder/1718_rerooting.test.cpp
   - test/yukicoder/255.test.cpp
   - test/yukicoder/1097_doubling.test.cpp
   - test/yukicoder/529_two_edge.test.cpp
+  - test/yukicoder/1293_scc.test.cpp
   - test/yukicoder/705_monge_shortest_path.test.cpp
   - test/yukicoder/1490_rect_add_rect_sum.test.cpp
   - test/yukicoder/1332_range_freq.test.cpp
