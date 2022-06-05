@@ -46,7 +46,7 @@ ll discrete_log(typename Group::X a, typename Group::X b,
   return -1;
 }
 
-
+// yuki1648
 // G 集合 X がある。
 // a in G, x, y in X に対して a^nx=y を解く
 // ハッシュ関数 H : X -> long long を持たせる
