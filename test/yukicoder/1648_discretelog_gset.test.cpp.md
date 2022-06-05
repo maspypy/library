@@ -1,15 +1,18 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':x:'
+    path: alg/group_gl2.hpp
+    title: alg/group_gl2.hpp
   - icon: ':question:'
     path: alg/group_mul.hpp
     title: alg/group_mul.hpp
+  - icon: ':x:'
+    path: alg/gset_gl2_vec.hpp
+    title: alg/gset_gl2_vec.hpp
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
-    path: mod/mod_log.hpp
-    title: mod/mod_log.hpp
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
@@ -24,24 +27,24 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/discrete_logarithm_mod
+    PROBLEM: https://yukicoder.me/problems/no/1648
     links:
-    - https://judge.yosupo.jp/problem/discrete_logarithm_mod
-  bundledCode: "#line 1 \"test/library_checker/math/discrete_logarithm_mod.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/discrete_logarithm_mod\"\r\
-    \n#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
-    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
-    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://yukicoder.me/problems/no/1648
+  bundledCode: "#line 1 \"test/yukicoder/1648_discretelog_gset.test.cpp\"\n#define\
+    \ PROBLEM \"https://yukicoder.me/problems/no/1648\"\n#line 1 \"my_template.hpp\"\
+    \n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
+    using pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\n\
+    using u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\n\
+    using vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate\
+    \ <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -273,13 +276,31 @@ data:
     \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
     \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
     }\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    using amint = ArbitraryModInt;\n#line 2 \"ds/hashmap.hpp\"\ntemplate <typename\
-    \ Val, int LOG = 20>\r\nstruct HashMapLL {\r\n  int N;\r\n  ll* keys;\r\n  Val*\
-    \ vals;\r\n  vc<int> IDS;\r\n  bitset<1 << LOG> used;\r\n  const int shift;\r\n\
-    \  const uint64_t r = 11995408973635179863ULL;\r\n  HashMapLL()\r\n      : N(1\
-    \ << LOG), keys(new ll[N]), vals(new Val[N]), shift(64 - __lg(N)) {}\r\n  int\
-    \ hash(ll x) {\r\n    static const uint64_t FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
-    \n    return (uint64_t(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
+    using amint = ArbitraryModInt;\n#line 1 \"alg/group_mul.hpp\"\ntemplate <class\
+    \ T>\r\nstruct Group_Mul {\r\n  using value_type = T;\r\n  using X = T;\r\n  static\
+    \ constexpr X op(const X &x, const X &y) noexcept { return x * y; }\r\n  static\
+    \ constexpr X inverse(const X &x) noexcept { return X(1) / x; }\r\n  static constexpr\
+    \ X unit() { return X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\
+    \n#line 2 \"alg/group_gl2.hpp\"\n\ntemplate <typename T>\nstruct Group_GL2 {\n\
+    \  using X = array<array<T, 2>, 2>;\n  using value_type = X;\n  static X op(const\
+    \ X &x, const X &y) {\n    X z{};\n    FOR(i, 2) FOR(j, 2) FOR(k, 2) z[i][k] +=\
+    \ x[i][j] * y[j][k];\n    return z;\n  }\n  static X inverse(const X &x) {\n \
+    \   T det = x[0][0] * x[1][1] - x[0][1] * x[1][0];\n    T cf = T(1) / det;\n \
+    \   X y;\n    y[0] = {x[1][1] * cf, -x[0][1] * cf};\n    y[1] = {-x[1][0] * cf,\
+    \ x[0][0] * cf};\n    return y;\n  }\n  // static X power(const X &x, ll n) {\
+    \ return n * x; }\n  static constexpr X unit() {\n    X x;\n    x[0] = {T(1),\
+    \ T(0)};\n    x[1] = {T(0), T(1)};\n    return x;\n  }\n  static constexpr bool\
+    \ commute = 1;\n};\n#line 3 \"alg/gset_gl2_vec.hpp\"\n\ntemplate <typename T>\n\
+    struct GSet_GL2_Vec {\n  using Group = Group_GL2<T>;\n  using G = typename Group::value_type;\n\
+    \  using X = pair<T, T>;\n  static X act(const G &g, const X &x) {\n    return\
+    \ {g[0][0] * x.fi + g[0][1] * x.se, g[1][0] * x.fi + g[1][1] * x.se};\n  }\n};\n\
+    #line 2 \"ds/hashmap.hpp\"\ntemplate <typename Val, int LOG = 20>\r\nstruct HashMapLL\
+    \ {\r\n  int N;\r\n  ll* keys;\r\n  Val* vals;\r\n  vc<int> IDS;\r\n  bitset<1\
+    \ << LOG> used;\r\n  const int shift;\r\n  const uint64_t r = 11995408973635179863ULL;\r\
+    \n  HashMapLL()\r\n      : N(1 << LOG), keys(new ll[N]), vals(new Val[N]), shift(64\
+    \ - __lg(N)) {}\r\n  int hash(ll x) {\r\n    static const uint64_t FIXED_RANDOM\r\
+    \n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\n \
+    \   return (uint64_t(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
     \ ll& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && keys[i] !=\
     \ key; (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
     \ ll& key) {\r\n    int i = index(key);\r\n    if (!used[i]) IDS.eb(i), used[i]\
@@ -327,47 +348,57 @@ data:
     \ (k != K) x = GSet::act(a, x);\r\n  }\r\n\r\n  a = Group::inverse(apow(K));\r\
     \n  FOR(k, K + 1) {\r\n    auto key = H(y);\r\n    if (MP.count(key)) {\r\n  \
     \    ll res = k * K + MP[key] + lb;\r\n      return (res >= ub ? -1 : res);\r\n\
-    \    }\r\n    y = GSet::act(a, y);\r\n  }\r\n  return -1;\r\n}\n#line 1 \"alg/group_mul.hpp\"\
-    \ntemplate <class T>\r\nstruct Group_Mul {\r\n  using value_type = T;\r\n  using\
-    \ X = T;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return\
-    \ x * y; }\r\n  static constexpr X inverse(const X &x) noexcept { return X(1)\
-    \ / x; }\r\n  static constexpr X unit() { return X(1); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 4 \"mod/mod_log.hpp\"\n\r\nint mod_log(int\
-    \ mod, ll a, ll b) {\r\n  a = divmod(a, mod).se;\r\n  b = divmod(b, mod).se;\r\
-    \n  // \u307E\u305A\u7FA4\u306B\u5E30\u7740\u3059\u308B\u3002\u5C0F\u3055\u3044\
-    \u5834\u5408\u306F\u8ABF\u3079\u308B\r\n  ll p = 1 % mod;\r\n  FOR(k, 32) {\r\n\
-    \    if (p == b) return k;\r\n    p = p * a % mod;\r\n  }\r\n  if (a == 0 || b\
-    \ == 0) return -1;\r\n  ll g = gcd(mod, p);\r\n  if (b % g != 0) return -1;\r\n\
-    \  mod /= g;\r\n  a %= mod, b %= mod;\r\n  if (gcd(b, mod) > 1) return -1;\r\n\
-    \  // \u7FA4\u306B\u5E30\u7740\u3055\u308C\u305F\r\n  amint::set_mod(mod);\r\n\
-    \  return discrete_log<Group_Mul<amint>>(\r\n      amint(a), amint(b), [](auto\
-    \ x) { return x.val; }, 32, mod);\r\n}\r\n#line 5 \"test/library_checker/math/discrete_logarithm_mod.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(x, y, mod);\r\n  print(mod_log(mod, x, y));\r\n}\r\
-    \n\r\nsigned main() {\r\n  LL(T);\r\n  FOR(T) solve();\r\n\r\n  return 0;\r\n\
-    }\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/discrete_logarithm_mod\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"mod/mod_log.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  LL(x, y, mod);\r\n  print(mod_log(mod, x, y));\r\n\
-    }\r\n\r\nsigned main() {\r\n  LL(T);\r\n  FOR(T) solve();\r\n\r\n  return 0;\r\
-    \n}\r\n"
+    \    }\r\n    y = GSet::act(a, y);\r\n  }\r\n  return -1;\r\n}\n#line 8 \"test/yukicoder/1648_discretelog_gset.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  mint A, B, P, Q;\n  read(A),\
+    \ read(B), read(P), read(Q);\n  swap(P, Q);\n\n  if (B != mint(0)) {\n    using\
+    \ GSet = GSet_GL2_Vec<mint>;\n    using G = typename GSet::G;\n    using X = typename\
+    \ GSet::X;\n    // \u884C\u5217\u306F\u53EF\u9006\u306A\u306E\u3067\u3001\u96E2\
+    \u6563\u5BFE\u6570\u554F\u984C\u3067\u89E3\u3051\u308B\n    G g;\n    g[0] = {mint(0),\
+    \ mint(1)};\n    g[1] = {-B, A};\n    X x = {mint(2), A};\n    X y = {P, Q};\n\
+    \    // g^{n-1}x=y\n    auto H = [&](X x) -> ll { return (ll(x.fi.val)) << 32\
+    \ | (x.se.val); };\n    ll lb = 1;\n    ll ub = 10'000'000'000;\n    ll n = discrete_log_gset<GSet>(g,\
+    \ x, y, H, lb, ub);\n    return print(n + 1);\n  }\n  // X = A, Y = 0\n  assert(A\
+    \ * P == Q);\n  auto H = [&](mint x) -> ll { return x.val; };\n  ll lb = 1;\n\
+    \  ll ub = 10'000'000'000;\n  using Grp = Group_Mul<mint>;\n\n  ll n = discrete_log<Grp>(A,\
+    \ P, H, lb, ub);\n  print(n + 1);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << fixed << setprecision(15);\n\n  ll\
+    \ T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1648\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n#include \"alg/group_mul.hpp\"\
+    \n#include \"alg/gset_gl2_vec.hpp\"\n#include \"other/discrete_log.hpp\"\n\nusing\
+    \ mint = modint998;\n\nvoid solve() {\n  mint A, B, P, Q;\n  read(A), read(B),\
+    \ read(P), read(Q);\n  swap(P, Q);\n\n  if (B != mint(0)) {\n    using GSet =\
+    \ GSet_GL2_Vec<mint>;\n    using G = typename GSet::G;\n    using X = typename\
+    \ GSet::X;\n    // \u884C\u5217\u306F\u53EF\u9006\u306A\u306E\u3067\u3001\u96E2\
+    \u6563\u5BFE\u6570\u554F\u984C\u3067\u89E3\u3051\u308B\n    G g;\n    g[0] = {mint(0),\
+    \ mint(1)};\n    g[1] = {-B, A};\n    X x = {mint(2), A};\n    X y = {P, Q};\n\
+    \    // g^{n-1}x=y\n    auto H = [&](X x) -> ll { return (ll(x.fi.val)) << 32\
+    \ | (x.se.val); };\n    ll lb = 1;\n    ll ub = 10'000'000'000;\n    ll n = discrete_log_gset<GSet>(g,\
+    \ x, y, H, lb, ub);\n    return print(n + 1);\n  }\n  // X = A, Y = 0\n  assert(A\
+    \ * P == Q);\n  auto H = [&](mint x) -> ll { return x.val; };\n  ll lb = 1;\n\
+    \  ll ub = 10'000'000'000;\n  using Grp = Group_Mul<mint>;\n\n  ll n = discrete_log<Grp>(A,\
+    \ P, H, lb, ub);\n  print(n + 1);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << fixed << setprecision(15);\n\n  ll\
+    \ T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - mod/mod_log.hpp
   - mod/modint.hpp
+  - alg/group_mul.hpp
+  - alg/gset_gl2_vec.hpp
+  - alg/group_gl2.hpp
   - other/discrete_log.hpp
   - ds/hashmap.hpp
-  - alg/group_mul.hpp
   isVerificationFile: true
-  path: test/library_checker/math/discrete_logarithm_mod.test.cpp
+  path: test/yukicoder/1648_discretelog_gset.test.cpp
   requiredBy: []
   timestamp: '2022-06-05 16:18:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/math/discrete_logarithm_mod.test.cpp
+documentation_of: test/yukicoder/1648_discretelog_gset.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/math/discrete_logarithm_mod.test.cpp
-- /verify/test/library_checker/math/discrete_logarithm_mod.test.cpp.html
-title: test/library_checker/math/discrete_logarithm_mod.test.cpp
+- /verify/test/yukicoder/1648_discretelog_gset.test.cpp
+- /verify/test/yukicoder/1648_discretelog_gset.test.cpp.html
+title: test/yukicoder/1648_discretelog_gset.test.cpp
 ---

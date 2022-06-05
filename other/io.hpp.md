@@ -321,7 +321,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/counting_primes.test.cpp
     title: test/library_checker/math/counting_primes.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
   - icon: ':heavy_check_mark:'
@@ -600,6 +600,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1643_subseq.test.cpp
     title: test/yukicoder/1643_subseq.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1648_discretelog_gset.test.cpp
+    title: test/yukicoder/1648_discretelog_gset.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1649_dynamic_seg.test.cpp
     title: test/yukicoder/1649_dynamic_seg.test.cpp
@@ -1007,6 +1010,7 @@ data:
   - test/yukicoder/1750_matpow.test.cpp
   - test/yukicoder/1145_sum_of_powers.test.cpp
   - test/yukicoder/1117_swag.test.cpp
+  - test/yukicoder/1648_discretelog_gset.test.cpp
   - test/yukicoder/1036_swag.test.cpp
   - test/yukicoder/1170_online_uf.test.cpp
   - test/yukicoder/1142_xor_conv.test.cpp

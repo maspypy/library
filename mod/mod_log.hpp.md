@@ -10,17 +10,17 @@ data:
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/discrete_log.hpp
     title: other/discrete_log.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\ntemplate <u32 mod>\nstruct modint {\n\
@@ -121,30 +121,49 @@ data:
     \r\n// [lb, ub) \u306E\u6700\u521D\u306E\u89E3\u3092\u304B\u3048\u3059\r\n// \u306A\
     \u3051\u308C\u3070 -1\r\ntemplate <typename Group>\r\nll discrete_log(typename\
     \ Group::X a, typename Group::X b,\r\n                function<ll(typename Group::X)>\
-    \ H, ll lb, ll ub) {\r\n  using X = typename Group::X;\r\n  if (lb >= ub) return\
-    \ -1;\r\n  {\r\n    ll n = lb;\r\n    X p = a;\r\n    X x = Group::unit();\r\n\
+    \ H, ll lb, ll ub) {\r\n  using G = typename Group::X;\r\n  if (lb >= ub) return\
+    \ -1;\r\n  {\r\n    ll n = lb;\r\n    G p = a;\r\n    G x = Group::unit();\r\n\
     \    while (n) {\r\n      if (n & 1) x = Group::op(x, p);\r\n      p = Group::op(p,\
     \ p);\r\n      n /= 2;\r\n    }\r\n    x = Group::inverse(x);\r\n    b = Group::op(b,\
     \ x);\r\n  }\r\n  ll LIM = ub - lb;\r\n\r\n  ll K = 1;\r\n  while (K * K < LIM)\
-    \ ++K;\r\n\r\n  static HashMapLL<int, 20> MP;\r\n  MP.reset();\r\n\r\n  X p =\
+    \ ++K;\r\n\r\n  static HashMapLL<int, 20> MP;\r\n  MP.reset();\r\n\r\n  G p =\
     \ Group::unit();\r\n  FOR(k, K + 1) {\r\n    auto key = H(p);\r\n    if (!MP.count(key))\
     \ MP[key] = k;\r\n    if (k != K) p = Group::op(p, a);\r\n  }\r\n  p = Group::inverse(p);\r\
     \n  FOR(k, K + 1) {\r\n    auto key = H(b);\r\n    if (MP.count(key)) {\r\n  \
     \    ll res = k * K + MP[key] + lb;\r\n      return (res >= ub ? -1 : res);\r\n\
-    \    }\r\n    b = Group::op(b, p);\r\n  }\r\n  return -1;\r\n}\n#line 1 \"alg/group_mul.hpp\"\
-    \ntemplate <class X>\r\nstruct Group_Mul {\r\n  using value_type = X;\r\n  static\
-    \ constexpr X op(const X &x, const X &y) noexcept { return x * y; }\r\n  static\
-    \ constexpr X inverse(const X &x) noexcept { return X(1) / x; }\r\n  static constexpr\
-    \ X unit() { return X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\
-    \n#line 4 \"mod/mod_log.hpp\"\n\r\nint mod_log(int mod, ll a, ll b) {\r\n  a =\
-    \ divmod(a, mod).se;\r\n  b = divmod(b, mod).se;\r\n  // \u307E\u305A\u7FA4\u306B\
-    \u5E30\u7740\u3059\u308B\u3002\u5C0F\u3055\u3044\u5834\u5408\u306F\u8ABF\u3079\
-    \u308B\r\n  ll p = 1 % mod;\r\n  FOR(k, 32) {\r\n    if (p == b) return k;\r\n\
-    \    p = p * a % mod;\r\n  }\r\n  if (a == 0 || b == 0) return -1;\r\n  ll g =\
-    \ gcd(mod, p);\r\n  if (b % g != 0) return -1;\r\n  mod /= g;\r\n  a %= mod, b\
-    \ %= mod;\r\n  if (gcd(b, mod) > 1) return -1;\r\n  // \u7FA4\u306B\u5E30\u7740\
-    \u3055\u308C\u305F\r\n  amint::set_mod(mod);\r\n  return discrete_log<Group_Mul<amint>>(\r\
-    \n      amint(a), amint(b), [](auto x) { return x.val; }, 32, mod);\r\n}\r\n"
+    \    }\r\n    b = Group::op(b, p);\r\n  }\r\n  return -1;\r\n}\r\n\r\n\r\n// G\
+    \ \u96C6\u5408 X \u304C\u3042\u308B\u3002\r\n// a in G, x, y in X \u306B\u5BFE\
+    \u3057\u3066 a^nx=y \u3092\u89E3\u304F\r\n// \u30CF\u30C3\u30B7\u30E5\u95A2\u6570\
+    \ H : X -> long long \u3092\u6301\u305F\u305B\u308B\r\n// [lb, ub) \u306E\u6700\
+    \u521D\u306E\u89E3\u3092\u304B\u3048\u3059\r\n// \u306A\u3051\u308C\u3070 -1\r\
+    \ntemplate <typename GSet>\r\nll discrete_log_gset(typename GSet::G a, typename\
+    \ GSet::X x, typename GSet::X y,\r\n                     function<ll(typename\
+    \ GSet::X)> H, ll lb, ll ub) {\r\n  using Group = typename GSet::Group;\r\n  using\
+    \ G = typename Group::value_type;\r\n  if (lb >= ub) return -1;\r\n  auto apow\
+    \ = [&](ll n) -> G {\r\n    G p = a;\r\n    G res = Group::unit();\r\n    while\
+    \ (n) {\r\n      if (n & 1) res = Group::op(res, p);\r\n      p = Group::op(p,\
+    \ p);\r\n      n /= 2;\r\n    }\r\n    return res;\r\n  };\r\n  x = GSet::act(apow(lb),\
+    \ x);\r\n  ll LIM = ub - lb;\r\n\r\n  ll K = 1;\r\n  while (K * K < LIM) ++K;\r\
+    \n\r\n  static HashMapLL<int, 20> MP;\r\n  MP.reset();\r\n\r\n  FOR(k, K + 1)\
+    \ {\r\n    auto key = H(x);\r\n    if (!MP.count(key)) MP[key] = k;\r\n    if\
+    \ (k != K) x = GSet::act(a, x);\r\n  }\r\n\r\n  a = Group::inverse(apow(K));\r\
+    \n  FOR(k, K + 1) {\r\n    auto key = H(y);\r\n    if (MP.count(key)) {\r\n  \
+    \    ll res = k * K + MP[key] + lb;\r\n      return (res >= ub ? -1 : res);\r\n\
+    \    }\r\n    y = GSet::act(a, y);\r\n  }\r\n  return -1;\r\n}\n#line 1 \"alg/group_mul.hpp\"\
+    \ntemplate <class T>\r\nstruct Group_Mul {\r\n  using value_type = T;\r\n  using\
+    \ X = T;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return\
+    \ x * y; }\r\n  static constexpr X inverse(const X &x) noexcept { return X(1)\
+    \ / x; }\r\n  static constexpr X unit() { return X(1); }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 4 \"mod/mod_log.hpp\"\n\r\nint mod_log(int\
+    \ mod, ll a, ll b) {\r\n  a = divmod(a, mod).se;\r\n  b = divmod(b, mod).se;\r\
+    \n  // \u307E\u305A\u7FA4\u306B\u5E30\u7740\u3059\u308B\u3002\u5C0F\u3055\u3044\
+    \u5834\u5408\u306F\u8ABF\u3079\u308B\r\n  ll p = 1 % mod;\r\n  FOR(k, 32) {\r\n\
+    \    if (p == b) return k;\r\n    p = p * a % mod;\r\n  }\r\n  if (a == 0 || b\
+    \ == 0) return -1;\r\n  ll g = gcd(mod, p);\r\n  if (b % g != 0) return -1;\r\n\
+    \  mod /= g;\r\n  a %= mod, b %= mod;\r\n  if (gcd(b, mod) > 1) return -1;\r\n\
+    \  // \u7FA4\u306B\u5E30\u7740\u3055\u308C\u305F\r\n  amint::set_mod(mod);\r\n\
+    \  return discrete_log<Group_Mul<amint>>(\r\n      amint(a), amint(b), [](auto\
+    \ x) { return x.val; }, 32, mod);\r\n}\r\n"
   code: "#include \"mod/modint.hpp\"\r\n#include \"other/discrete_log.hpp\"\r\n#include\
     \ \"alg/group_mul.hpp\"\r\n\r\nint mod_log(int mod, ll a, ll b) {\r\n  a = divmod(a,\
     \ mod).se;\r\n  b = divmod(b, mod).se;\r\n  // \u307E\u305A\u7FA4\u306B\u5E30\u7740\
@@ -163,8 +182,8 @@ data:
   isVerificationFile: false
   path: mod/mod_log.hpp
   requiredBy: []
-  timestamp: '2022-06-05 16:08:48+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-06-05 16:18:21+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
 documentation_of: mod/mod_log.hpp

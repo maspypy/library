@@ -50,18 +50,18 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"alg/group_mul.hpp\"\ntemplate <class X>\r\nstruct Group_Mul\
-    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
-    \ &y) noexcept { return x * y; }\r\n  static constexpr X inverse(const X &x) noexcept\
-    \ { return X(1) / x; }\r\n  static constexpr X unit() { return X(1); }\r\n  static\
-    \ constexpr bool commute = true;\r\n};\r\n#line 1 \"ds/swag.hpp\"\ntemplate <class\
-    \ Monoid>\nstruct SWAG {\n  using X = typename Monoid::value_type;\n  using value_type\
-    \ = X;\n  int sz = 0;\n  vc<X> dat;\n  vc<X> cum_l;\n  X cum_r;\n\n  SWAG() :\
-    \ cum_l({Monoid::unit()}), cum_r(Monoid::unit()) {}\n\n  int size() { return sz;\
-    \ }\n\n  void push(X x) {\n    ++sz;\n    cum_r = Monoid::op(cum_r, x);\n    dat.eb(x);\n\
-    \  }\n\n  void pop() {\n    --sz;\n    cum_l.pop_back();\n    if (len(cum_l) ==\
-    \ 0) {\n      cum_l = {Monoid::unit()};\n      cum_r = Monoid::unit();\n     \
-    \ while (len(dat) > 1) {\n        cum_l.eb(Monoid::op(dat.back(), cum_l.back()));\n\
+  bundledCode: "#line 1 \"alg/group_mul.hpp\"\ntemplate <class T>\r\nstruct Group_Mul\
+    \ {\r\n  using value_type = T;\r\n  using X = T;\r\n  static constexpr X op(const\
+    \ X &x, const X &y) noexcept { return x * y; }\r\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return X(1) / x; }\r\n  static constexpr X unit() { return\
+    \ X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"ds/swag.hpp\"\
+    \ntemplate <class Monoid>\nstruct SWAG {\n  using X = typename Monoid::value_type;\n\
+    \  using value_type = X;\n  int sz = 0;\n  vc<X> dat;\n  vc<X> cum_l;\n  X cum_r;\n\
+    \n  SWAG() : cum_l({Monoid::unit()}), cum_r(Monoid::unit()) {}\n\n  int size()\
+    \ { return sz; }\n\n  void push(X x) {\n    ++sz;\n    cum_r = Monoid::op(cum_r,\
+    \ x);\n    dat.eb(x);\n  }\n\n  void pop() {\n    --sz;\n    cum_l.pop_back();\n\
+    \    if (len(cum_l) == 0) {\n      cum_l = {Monoid::unit()};\n      cum_r = Monoid::unit();\n\
+    \      while (len(dat) > 1) {\n        cum_l.eb(Monoid::op(dat.back(), cum_l.back()));\n\
     \        dat.pop_back();\n      }\n      dat.pop_back();\n    }\n  }\n\n  X lprod()\
     \ { return cum_l.back(); }\n  X rprod() { return cum_r; }\n\n  X prod() { return\
     \ Monoid::op(cum_l.back(), cum_r); }\n\n  void debug() {\n    print(\"swag\");\n\
@@ -380,7 +380,7 @@ data:
   - seq/kth_term_of_p_recursive.hpp
   - seq/interpolate_poly_exp_sum.hpp
   - poly/prefix_product_of_poly.hpp
-  timestamp: '2022-05-19 23:05:54+09:00'
+  timestamp: '2022-06-05 16:18:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/502_p_rec.test.cpp

@@ -287,13 +287,13 @@ data:
     \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
     }\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     using amint = ArbitraryModInt;\n#line 1 \"alg/group_mul.hpp\"\ntemplate <class\
-    \ X>\r\nstruct Group_Mul {\r\n  using value_type = X;\r\n  static constexpr X\
-    \ op(const X &x, const X &y) noexcept { return x * y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return X(1) / x; }\r\n  static constexpr X\
-    \ unit() { return X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\n\
-    #line 1 \"ds/swag.hpp\"\ntemplate <class Monoid>\nstruct SWAG {\n  using X = typename\
-    \ Monoid::value_type;\n  using value_type = X;\n  int sz = 0;\n  vc<X> dat;\n\
-    \  vc<X> cum_l;\n  X cum_r;\n\n  SWAG() : cum_l({Monoid::unit()}), cum_r(Monoid::unit())\
+    \ T>\r\nstruct Group_Mul {\r\n  using value_type = T;\r\n  using X = T;\r\n  static\
+    \ constexpr X op(const X &x, const X &y) noexcept { return x * y; }\r\n  static\
+    \ constexpr X inverse(const X &x) noexcept { return X(1) / x; }\r\n  static constexpr\
+    \ X unit() { return X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\
+    \n#line 1 \"ds/swag.hpp\"\ntemplate <class Monoid>\nstruct SWAG {\n  using X =\
+    \ typename Monoid::value_type;\n  using value_type = X;\n  int sz = 0;\n  vc<X>\
+    \ dat;\n  vc<X> cum_l;\n  X cum_r;\n\n  SWAG() : cum_l({Monoid::unit()}), cum_r(Monoid::unit())\
     \ {}\n\n  int size() { return sz; }\n\n  void push(X x) {\n    ++sz;\n    cum_r\
     \ = Monoid::op(cum_r, x);\n    dat.eb(x);\n  }\n\n  void pop() {\n    --sz;\n\
     \    cum_l.pop_back();\n    if (len(cum_l) == 0) {\n      cum_l = {Monoid::unit()};\n\
@@ -529,7 +529,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   requiredBy: []
-  timestamp: '2022-05-19 23:05:54+09:00'
+  timestamp: '2022-06-05 16:18:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp

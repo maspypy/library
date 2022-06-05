@@ -12,6 +12,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/group_cntsum.hpp
       title: alg/group_cntsum.hpp
+    - icon: ':x:'
+      path: alg/group_gl2.hpp
+      title: alg/group_gl2.hpp
     - icon: ':question:'
       path: alg/group_mul.hpp
       title: alg/group_mul.hpp
@@ -24,6 +27,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/group_xor.hpp
       title: alg/group_xor.hpp
+    - icon: ':x:'
+      path: alg/gset_gl2_vec.hpp
+      title: alg/gset_gl2_vec.hpp
     - icon: ':heavy_check_mark:'
       path: alg/lazy_add_mul.hpp
       title: alg/lazy_add_mul.hpp
@@ -592,7 +598,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_kth_root.hpp
       title: mod/mod_kth_root.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: mod/mod_log.hpp
       title: mod/mod_log.hpp
     - icon: ':heavy_check_mark:'
@@ -688,7 +694,7 @@ data:
     - icon: ':warning:'
       path: other/ceil_range.hpp
       title: other/ceil_range.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: other/discrete_log.hpp
       title: other/discrete_log.hpp
     - icon: ':heavy_check_mark:'
@@ -1281,7 +1287,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/counting_primes.test.cpp
       title: test/library_checker/math/counting_primes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/discrete_logarithm_mod.test.cpp
       title: test/library_checker/math/discrete_logarithm_mod.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1572,6 +1578,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1643_subseq.test.cpp
       title: test/yukicoder/1643_subseq.test.cpp
+    - icon: ':x:'
+      path: test/yukicoder/1648_discretelog_gset.test.cpp
+      title: test/yukicoder/1648_discretelog_gset.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1649_dynamic_seg.test.cpp
       title: test/yukicoder/1649_dynamic_seg.test.cpp

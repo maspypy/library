@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
   - icon: ':heavy_check_mark:'
@@ -165,7 +165,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
   - icon: ':heavy_check_mark:'
@@ -291,6 +291,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1618_conv_ll.test.cpp
     title: test/yukicoder/1618_conv_ll.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1648_discretelog_gset.test.cpp
+    title: test/yukicoder/1648_discretelog_gset.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1649_dynamic_seg.test.cpp
     title: test/yukicoder/1649_dynamic_seg.test.cpp
@@ -524,6 +527,7 @@ data:
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/1750_matpow.test.cpp
   - test/yukicoder/1145_sum_of_powers.test.cpp
+  - test/yukicoder/1648_discretelog_gset.test.cpp
   - test/yukicoder/1649_dynamic_seg.test.cpp
   - test/yukicoder/1618_conv_ll.test.cpp
   - test/library_checker/convolution/bitwise_and_convolution.test.cpp
