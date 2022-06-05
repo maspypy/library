@@ -5,16 +5,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
+  - icon: ':x:'
+    path: mod/mod_log.hpp
+    title: mod/mod_log.hpp
+  - icon: ':x:'
+    path: other/discrete_log.hpp
+    title: other/discrete_log.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
     title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/math/discrete_logarithm_mod.test.cpp
+    title: test/library_checker/math/discrete_logarithm_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/hashmap.hpp\"\ntemplate <typename Val, int LOG = 20>\r\
@@ -63,10 +72,13 @@ data:
   isVerificationFile: false
   path: ds/hashmap.hpp
   requiredBy:
+  - mod/mod_log.hpp
   - mod/mod_kth_root.hpp
+  - other/discrete_log.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/datastructure/associative_array_hashmap.test.cpp
 documentation_of: ds/hashmap.hpp

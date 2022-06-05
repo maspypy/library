@@ -5,6 +5,9 @@ data:
     path: alg/group_mul.hpp
     title: alg/group_mul.hpp
   - icon: ':question:'
+    path: ds/hashmap.hpp
+    title: ds/hashmap.hpp
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':x:'
@@ -92,21 +95,42 @@ data:
     \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
     \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
     }\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    using amint = ArbitraryModInt;\n#line 1 \"other/discrete_log.hpp\"\n// log_a b\
-    \ \u306E\u8A08\u7B97\r\n// \u30CF\u30C3\u30B7\u30E5\u95A2\u6570 H : X -> long\
-    \ long \u3092\u6301\u305F\u305B\u308B\r\n// [lb, rb) \u306E\u6700\u521D\u306E\u89E3\
-    \u3092\u304B\u3048\u3059\r\n// \u306A\u3051\u308C\u3070 -1\r\ntemplate <typename\
-    \ Group, typename X>\r\nll discrete_log(Group::X a, Group::X b, function<ll(Group::X)>\
-    \ H, ll lb, ll ub) {\r\n  if (lb >= ub) return -1;\r\n  {\r\n    ll n = lb;\r\n\
-    \    X p = a;\r\n    X x = Group::unit();\r\n    while (n) {\r\n      if (n &\
-    \ 1) x = Group::op(x, a);\r\n      p = Group::op(p, p);\r\n      n /= 2;\r\n \
-    \   }\r\n    x = Group::inverse(x);\r\n    b = Group::op(b, x);\r\n  }\r\n  ll\
-    \ LIM = ub - lb;\r\n\r\n  ll K = 1;\r\n  while (K * K < LIM) ++K;\r\n\r\n  static\
-    \ HashMapLL<int, 20> MP;\r\n  MP.reset();\r\n\r\n  X p = Group::unit();\r\n  FOR(k,\
-    \ K + 1) {\r\n    auto key = H(p);\r\n    if (!MP.count(key)) MP[key] = k;\r\n\
-    \    if (k != K) p = Group::op(p, a);\r\n  }\r\n  p = Group::inverse(p);\r\n \
-    \ FOR(k, K + 1) {\r\n    auto key = H(b);\r\n    if (MP.count(key)) {\r\n    \
-    \  ll res = k * K + MP[key] + lb;\r\n      return (res >= ub ? -1 : res);\r\n\
+    using amint = ArbitraryModInt;\n#line 1 \"ds/hashmap.hpp\"\ntemplate <typename\
+    \ Val, int LOG = 20>\r\nstruct HashMapLL {\r\n  int N;\r\n  ll* keys;\r\n  Val*\
+    \ vals;\r\n  vc<int> IDS;\r\n  bitset<1 << LOG> used;\r\n  const int shift;\r\n\
+    \  const uint64_t r = 11995408973635179863ULL;\r\n  HashMapLL()\r\n      : N(1\
+    \ << LOG), keys(new ll[N]), vals(new Val[N]), shift(64 - __lg(N)) {}\r\n  int\
+    \ hash(ll x) {\r\n    static const uint64_t FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
+    \n    return (uint64_t(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
+    \ ll& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && keys[i] !=\
+    \ key; (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
+    \ ll& key) {\r\n    int i = index(key);\r\n    if (!used[i]) IDS.eb(i), used[i]\
+    \ = 1, keys[i] = key, vals[i] = Val{};\r\n    return vals[i];\r\n  }\r\n\r\n \
+    \ bool contain(const ll& key) {\r\n    int i = index(key);\r\n    return used[i]\
+    \ && keys[i] == key;\r\n  }\r\n\r\n  bool count(const ll& key) {\r\n    int i\
+    \ = index(key);\r\n    return used[i] && keys[i] == key;\r\n  }\r\n\r\n  void\
+    \ reset() {\r\n    for (auto&& i: IDS) used[i] = 0;\r\n    IDS.clear();\r\n  }\r\
+    \n};\r\n\r\ntemplate <typename KEY, typename VAL>\r\nstruct HashMap {\r\n  HashMapLL<VAL,\
+    \ 20> MP;\r\n  function<ll(KEY)> f;\r\n  HashMap(function<ll(KEY)> f) : MP(),\
+    \ f(f) {}\r\n  int index(const KEY& key) { return MP.index(f(key)); }\r\n\r\n\
+    \  VAL& operator[](const KEY& key) { return MP[f(key)]; }\r\n\r\n  bool contain(const\
+    \ KEY& key) { return MP.contain(f(key)); }\r\n\r\n  bool count(const KEY& key)\
+    \ { return MP.count(f(key)); }\r\n\r\n  void reset() { MP.reset(); }\r\n};\r\n\
+    #line 2 \"other/discrete_log.hpp\"\n// log_a b \u306E\u8A08\u7B97\r\n// \u30CF\
+    \u30C3\u30B7\u30E5\u95A2\u6570 H : X -> long long \u3092\u6301\u305F\u305B\u308B\
+    \r\n// [lb, rb) \u306E\u6700\u521D\u306E\u89E3\u3092\u304B\u3048\u3059\r\n// \u306A\
+    \u3051\u308C\u3070 -1\r\ntemplate <typename Group, typename X>\r\nll discrete_log(typename\
+    \ Group::X a, typename Group::X b,\r\n                function<ll(typename Group::X)>\
+    \ H, ll lb, ll ub) {\r\n  using X = typename Group::X;\r\n  if (lb >= ub) return\
+    \ -1;\r\n  {\r\n    ll n = lb;\r\n    X p = a;\r\n    X x = Group::unit();\r\n\
+    \    while (n) {\r\n      if (n & 1) x = Group::op(x, a);\r\n      p = Group::op(p,\
+    \ p);\r\n      n /= 2;\r\n    }\r\n    x = Group::inverse(x);\r\n    b = Group::op(b,\
+    \ x);\r\n  }\r\n  ll LIM = ub - lb;\r\n\r\n  ll K = 1;\r\n  while (K * K < LIM)\
+    \ ++K;\r\n\r\n  static HashMapLL<int, 20> MP;\r\n  MP.reset();\r\n\r\n  X p =\
+    \ Group::unit();\r\n  FOR(k, K + 1) {\r\n    auto key = H(p);\r\n    if (!MP.count(key))\
+    \ MP[key] = k;\r\n    if (k != K) p = Group::op(p, a);\r\n  }\r\n  p = Group::inverse(p);\r\
+    \n  FOR(k, K + 1) {\r\n    auto key = H(b);\r\n    if (MP.count(key)) {\r\n  \
+    \    ll res = k * K + MP[key] + lb;\r\n      return (res >= ub ? -1 : res);\r\n\
     \    }\r\n    b = Group::op(b, p);\r\n  }\r\n  return -1;\r\n}\n#line 1 \"alg/group_mul.hpp\"\
     \ntemplate <class X>\r\nstruct Group_Mul {\r\n  using value_type = X;\r\n  static\
     \ constexpr X op(const X &x, const X &y) noexcept { return x * y; }\r\n  static\
@@ -134,11 +158,12 @@ data:
   dependsOn:
   - mod/modint.hpp
   - other/discrete_log.hpp
+  - ds/hashmap.hpp
   - alg/group_mul.hpp
   isVerificationFile: false
   path: mod/mod_log.hpp
   requiredBy: []
-  timestamp: '2022-06-05 15:16:23+09:00'
+  timestamp: '2022-06-05 15:27:08+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
