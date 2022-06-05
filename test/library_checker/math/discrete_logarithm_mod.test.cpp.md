@@ -1,16 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: alg/group_mul.hpp
+    title: alg/group_mul.hpp
+  - icon: ':x:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/discrete_log.hpp
     title: other/discrete_log.hpp
   - icon: ':question:'
@@ -18,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/discrete_logarithm_mod
@@ -268,29 +271,37 @@ data:
     \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
     }\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     using amint = ArbitraryModInt;\n#line 1 \"other/discrete_log.hpp\"\n// log_a b\
-    \ \u306E\u8A08\u7B97\r\n// \u300C*\u300D \u304C\u5B9A\u7FA9\u3055\u308C\u305F\u30AF\
-    \u30E9\u30B9\u3001\u30CF\u30C3\u30B7\u30E5\u95A2\u6570 H \u3092\u6301\u305F\u305B\
-    \u308B\r\n// lb \u4EE5\u4E0A\u306E\u89E3\u3092\u304B\u3048\u3059\r\ntemplate <typename\
-    \ X>\r\nll discrete_log(X a, X b, ll LIM, function<ll(X)> H, int lb = 0) {\r\n\
-    \  {\r\n    int n = lb;\r\n    X p = a;\r\n    while (n) {\r\n      if (n & 1)\
-    \ b /= p;\r\n      p *= p;\r\n      n /= 2;\r\n    }\r\n  }\r\n\r\n  ll K = 1;\r\
-    \n  while (K * K < LIM) ++K;\r\n\r\n  unordered_map<ll, int> MP;\r\n  MP.reserve(K\
-    \ + 1);\r\n  X p = 1;\r\n  FOR(k, K + 1) {\r\n    auto key = H(p);\r\n    if (!MP.count(key))\
-    \ MP[key] = k;\r\n    if (k != K) p = p * a;\r\n  }\r\n  p = X(1) / p;\r\n  FOR(k,\
-    \ K + 1) {\r\n    auto key = H(b);\r\n    if (MP.count(key)) return k * K + MP[key]\
-    \ + lb;\r\n    b *= p;\r\n  }\r\n  return -1;\r\n}\r\n#line 3 \"mod/mod_log.hpp\"\
-    \n\r\nint mod_log(int mod, ll a, ll b) {\r\n  a = divmod(a, mod).se;\r\n  b =\
-    \ divmod(b, mod).se;\r\n  // \u307E\u305A\u7FA4\u306B\u5E30\u7740\u3059\u308B\u3002\
-    \u5C0F\u3055\u3044\u5834\u5408\u306F\u8ABF\u3079\u308B\r\n  ll p = 1 % mod;\r\n\
-    \  FOR(k, 32) {\r\n    if (p == b) return k;\r\n    p = p * a % mod;\r\n  }\r\n\
-    \  if (a == 0 || b == 0) return -1;\r\n  ll g = gcd(mod, p);\r\n  if (b % g !=\
-    \ 0) return -1;\r\n  mod /= g;\r\n  a %= mod, b %= mod;\r\n  if (gcd(b, mod) >\
-    \ 1) return -1;\r\n  // \u7FA4\u306B\u5E30\u7740\u3055\u308C\u305F\r\n  amint::set_mod(mod);\r\
-    \n  return discrete_log<amint>(\r\n      amint(a), amint(b), mod, [](auto x) {\
-    \ return x.val; }, 32);\r\n}\r\n#line 5 \"test/library_checker/math/discrete_logarithm_mod.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(x, y, mod);\r\n  print(mod_log(mod, x, y));\r\n}\r\
-    \n\r\nsigned main() {\r\n  LL(T);\r\n  FOR(T) solve();\r\n\r\n  return 0;\r\n\
-    }\r\n"
+    \ \u306E\u8A08\u7B97\r\n// \u30CF\u30C3\u30B7\u30E5\u95A2\u6570 H : X -> long\
+    \ long \u3092\u6301\u305F\u305B\u308B\r\n// [lb, rb) \u306E\u6700\u521D\u306E\u89E3\
+    \u3092\u304B\u3048\u3059\r\n// \u306A\u3051\u308C\u3070 -1\r\ntemplate <typename\
+    \ Group, typename X>\r\nll discrete_log(Group::X a, Group::X b, function<ll(Group::X)>\
+    \ H, ll lb, ll ub) {\r\n  if (lb >= ub) return -1;\r\n  {\r\n    ll n = lb;\r\n\
+    \    X p = a;\r\n    X x = Group::unit();\r\n    while (n) {\r\n      if (n &\
+    \ 1) x = Group::op(x, a);\r\n      p = Group::op(p, p);\r\n      n /= 2;\r\n \
+    \   }\r\n    x = Group::inverse(x);\r\n    b = Group::op(b, x);\r\n  }\r\n  ll\
+    \ LIM = ub - lb;\r\n\r\n  ll K = 1;\r\n  while (K * K < LIM) ++K;\r\n\r\n  static\
+    \ HashMapLL<int, 20> MP;\r\n  MP.reset();\r\n\r\n  X p = Group::unit();\r\n  FOR(k,\
+    \ K + 1) {\r\n    auto key = H(p);\r\n    if (!MP.count(key)) MP[key] = k;\r\n\
+    \    if (k != K) p = Group::op(p, a);\r\n  }\r\n  p = Group::inverse(p);\r\n \
+    \ FOR(k, K + 1) {\r\n    auto key = H(b);\r\n    if (MP.count(key)) {\r\n    \
+    \  ll res = k * K + MP[key] + lb;\r\n      return (res >= ub ? -1 : res);\r\n\
+    \    }\r\n    b = Group::op(b, p);\r\n  }\r\n  return -1;\r\n}\n#line 1 \"alg/group_mul.hpp\"\
+    \ntemplate <class X>\r\nstruct Group_Mul {\r\n  using value_type = X;\r\n  static\
+    \ constexpr X op(const X &x, const X &y) noexcept { return x * y; }\r\n  static\
+    \ constexpr X inverse(const X &x) noexcept { return X(1) / x; }\r\n  static constexpr\
+    \ X unit() { return X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\
+    \n#line 4 \"mod/mod_log.hpp\"\n\r\nint mod_log(int mod, ll a, ll b) {\r\n  a =\
+    \ divmod(a, mod).se;\r\n  b = divmod(b, mod).se;\r\n  // \u307E\u305A\u7FA4\u306B\
+    \u5E30\u7740\u3059\u308B\u3002\u5C0F\u3055\u3044\u5834\u5408\u306F\u8ABF\u3079\
+    \u308B\r\n  ll p = 1 % mod;\r\n  FOR(k, 32) {\r\n    if (p == b) return k;\r\n\
+    \    p = p * a % mod;\r\n  }\r\n  if (a == 0 || b == 0) return -1;\r\n  ll g =\
+    \ gcd(mod, p);\r\n  if (b % g != 0) return -1;\r\n  mod /= g;\r\n  a %= mod, b\
+    \ %= mod;\r\n  if (gcd(b, mod) > 1) return -1;\r\n  // \u7FA4\u306B\u5E30\u7740\
+    \u3055\u308C\u305F\r\n  amint::set_mod(mod);\r\n  return discrete_log<Group_Mul<amint>>(\r\
+    \n      amint(a), amint(b), [](auto x) { return x.val; }, 32, mod);\r\n}\r\n#line\
+    \ 5 \"test/library_checker/math/discrete_logarithm_mod.test.cpp\"\n\r\nvoid solve()\
+    \ {\r\n  LL(x, y, mod);\r\n  print(mod_log(mod, x, y));\r\n}\r\n\r\nsigned main()\
+    \ {\r\n  LL(T);\r\n  FOR(T) solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/discrete_logarithm_mod\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"mod/mod_log.hpp\"\
     \r\n\r\nvoid solve() {\r\n  LL(x, y, mod);\r\n  print(mod_log(mod, x, y));\r\n\
@@ -302,11 +313,12 @@ data:
   - mod/mod_log.hpp
   - mod/modint.hpp
   - other/discrete_log.hpp
+  - alg/group_mul.hpp
   isVerificationFile: true
   path: test/library_checker/math/discrete_logarithm_mod.test.cpp
   requiredBy: []
-  timestamp: '2022-05-13 20:44:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-06-05 15:16:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/discrete_logarithm_mod.test.cpp
 layout: document

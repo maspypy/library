@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/floor_range.hpp
     title: other/floor_range.hpp
   - icon: ':question:'
@@ -12,20 +12,24 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    links: []
-  bundledCode: "#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace\
-    \ std;\n\nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\n\
-    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    PROBLEM: https://yukicoder.me/problems/no/1573
+    links:
+    - https://yukicoder.me/problems/no/1573
+  bundledCode: "#line 1 \"test/yukicoder/1573_floor_range.test.cpp\"\n#define PROBLEM\
+    \ \"https://yukicoder.me/problems/no/1573\"\n#line 1 \"my_template.hpp\"\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -188,20 +192,21 @@ data:
     \ { yes(!t); }\r\n#line 1 \"other/floor_range.hpp\"\n#define floor_range(q, l,\
     \ r, n) \\\r\n  for (ll q = 1, l = (n) / (q + 1) + 1, r = (n) / q + 1;\\\r\n \
     \ q <= (n); q = (q == (n) ? (n) + 1 : (n) / ((n) / (q + 1))), l = (n) / (q + 1)\
-    \ + 1, r = (n) / q + 1)\r\n#line 4 \"test/yukicoder/1573_floor_range.test.cpp\"\
+    \ + 1, r = (n) / q + 1)\r\n#line 5 \"test/yukicoder/1573_floor_range.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, M);\n  i128 ANS = 0;\n  floor_range(q, l, r, N) {\n\
     \    ll lo = max(l, 1LL);\n    ll hi = min(r - 1, M);\n    if (lo > hi) continue;\n\
     \    i128 x = (q * (q + 1) / 2 + q);\n    i128 y = (lo + hi) * (hi - lo + 1) /\
     \ 2;\n    ANS += x * y;\n  }\n  print(ANS % 998244353);\n}\n\nsigned main() {\n\
     \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << fixed << setprecision(15);\n\
     \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"other/floor_range.hpp\"\
-    \n\nvoid solve() {\n  LL(N, M);\n  i128 ANS = 0;\n  floor_range(q, l, r, N) {\n\
-    \    ll lo = max(l, 1LL);\n    ll hi = min(r - 1, M);\n    if (lo > hi) continue;\n\
-    \    i128 x = (q * (q + 1) / 2 + q);\n    i128 y = (lo + hi) * (hi - lo + 1) /\
-    \ 2;\n    ANS += x * y;\n  }\n  print(ANS % 998244353);\n}\n\nsigned main() {\n\
-    \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1573\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"other/floor_range.hpp\"\n\nvoid solve()\
+    \ {\n  LL(N, M);\n  i128 ANS = 0;\n  floor_range(q, l, r, N) {\n    ll lo = max(l,\
+    \ 1LL);\n    ll hi = min(r - 1, M);\n    if (lo > hi) continue;\n    i128 x =\
+    \ (q * (q + 1) / 2 + q);\n    i128 y = (lo + hi) * (hi - lo + 1) / 2;\n    ANS\
+    \ += x * y;\n  }\n  print(ANS % 998244353);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << fixed << setprecision(15);\n\n  ll\
+    \ T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -209,8 +214,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1573_floor_range.test.cpp
   requiredBy: []
-  timestamp: '2022-06-05 12:23:45+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-06-05 15:17:40+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/1573_floor_range.test.cpp
 layout: document

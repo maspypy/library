@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/bracket_graph.hpp
     title: graph/bracket_graph.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/hld.hpp
     title: graph/hld.hpp
   - icon: ':question:'
@@ -18,20 +18,24 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    links: []
-  bundledCode: "#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace\
-    \ std;\n\nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\n\
-    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    PROBLEM: https://yukicoder.me/problems/no/1778
+    links:
+    - https://yukicoder.me/problems/no/1778
+  bundledCode: "#line 1 \"test/yukicoder/1778_bracket_graph.test.cpp\"\n#define PROBLEM\
+    \ \"https://yukicoder.me/problems/no/1778\"\n#line 1 \"my_template.hpp\"\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -297,7 +301,7 @@ data:
     V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\", RID);\r\n    print(\"\
     parent\", parent);\r\n    print(\"depth\", depth);\r\n    print(\"head\", head);\r\
     \n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"root\", root);\r\n  }\r\
-    \n};\r\n#line 5 \"test/yukicoder/1778_bracket_graph.test.cpp\"\n\nvoid solve()\
+    \n};\r\n#line 6 \"test/yukicoder/1778_bracket_graph.test.cpp\"\n\nvoid solve()\
     \ {\n  LL(N, Q);\n  STR(S);\n  auto [G, LR] = bracket_graph(S);\n  vi idx(N);\n\
     \  FOR(i, 1, len(LR)) {\n    auto [L, R] = LR[i];\n    idx[L] = idx[R - 1] = i;\n\
     \  }\n\n  HLD hld(G);\n\n  FOR(Q) {\n    LL(a, b);\n    --a, --b;\n    int i =\
@@ -306,15 +310,16 @@ data:
     }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
     \ << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
     \n  return 0;\n}\n"
-  code: "#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/bracket_graph.hpp\"\
-    \n#include \"graph/hld.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  STR(S);\n  auto\
-    \ [G, LR] = bracket_graph(S);\n  vi idx(N);\n  FOR(i, 1, len(LR)) {\n    auto\
-    \ [L, R] = LR[i];\n    idx[L] = idx[R - 1] = i;\n  }\n\n  HLD hld(G);\n\n  FOR(Q)\
-    \ {\n    LL(a, b);\n    --a, --b;\n    int i = idx[a], j = idx[b];\n    int k\
-    \ = hld.lca(i, j);\n    if (k == 0)\n      print(-1);\n    else {\n      auto\
-    \ [l, r] = LR[k];\n      print(l + 1, r);\n    }\n  }\n}\n\nsigned main() {\n\
-    \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1778\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"graph/bracket_graph.hpp\"\n#include \"\
+    graph/hld.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  STR(S);\n  auto [G, LR] = bracket_graph(S);\n\
+    \  vi idx(N);\n  FOR(i, 1, len(LR)) {\n    auto [L, R] = LR[i];\n    idx[L] =\
+    \ idx[R - 1] = i;\n  }\n\n  HLD hld(G);\n\n  FOR(Q) {\n    LL(a, b);\n    --a,\
+    \ --b;\n    int i = idx[a], j = idx[b];\n    int k = hld.lca(i, j);\n    if (k\
+    \ == 0)\n      print(-1);\n    else {\n      auto [l, r] = LR[k];\n      print(l\
+    \ + 1, r);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -324,8 +329,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1778_bracket_graph.test.cpp
   requiredBy: []
-  timestamp: '2022-06-05 12:23:06+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-06-05 15:17:40+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/1778_bracket_graph.test.cpp
 layout: document

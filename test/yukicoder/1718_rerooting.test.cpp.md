@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/bfs01.hpp
     title: graph/bfs01.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/rerooting_dp.hpp
     title: graph/rerooting_dp.hpp
   - icon: ':question:'
@@ -21,20 +21,24 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    links: []
-  bundledCode: "#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace\
-    \ std;\n\nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\n\
-    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    PROBLEM: https://yukicoder.me/problems/no/1718
+    links:
+    - https://yukicoder.me/problems/no/1718
+  bundledCode: "#line 1 \"test/yukicoder/1718_rerooting.test.cpp\"\n#define PROBLEM\
+    \ \"https://yukicoder.me/problems/no/1718\"\n#line 1 \"my_template.hpp\"\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -323,7 +327,7 @@ data:
     \ + e.cost) {\n        dist[e.to] = dist[e.frm] + e.cost;\n        root[e.to]\
     \ = root[e.frm];\n        par[e.to] = e.frm;\n        if (e.cost == 0)\n     \
     \     que.push_front(e.to);\n        else\n          que.push_back(e.to);\n  \
-    \    }\n    }\n  }\n  return {dist, par, root};\n}\n#line 6 \"test/yukicoder/1718_rerooting.test.cpp\"\
+    \    }\n    }\n  }\n  return {dist, par, root};\n}\n#line 7 \"test/yukicoder/1718_rerooting.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, K);\n  Graph G(N);\n  G.read_tree();\n  VEC(ll, D,\
     \ K);\n  for (auto&& a: D) --a;\n\n  HLD hld(G);\n  sort(all(D), [&](auto& x,\
     \ auto& y) { return hld.LID[x] < hld.LID[y]; });\n\n  ll base = 0;\n  FOR(i, K)\
@@ -343,27 +347,27 @@ data:
     \  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
     \n  return 0;\n}\n"
-  code: "#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/rerooting_dp.hpp\"\
-    \n#include \"graph/hld.hpp\"\n#include \"graph/bfs01.hpp\"\n\nvoid solve() {\n\
-    \  LL(N, K);\n  Graph G(N);\n  G.read_tree();\n  VEC(ll, D, K);\n  for (auto&&\
-    \ a: D) --a;\n\n  HLD hld(G);\n  sort(all(D), [&](auto& x, auto& y) { return hld.LID[x]\
-    \ < hld.LID[y]; });\n\n  ll base = 0;\n  FOR(i, K) {\n    int j = (i + 1 == K\
-    \ ? 0 : i + 1);\n    int a = D[i], b = D[j];\n    base += hld.dist(a, b);\n  }\n\
-    \n  // \u90E8\u5206\u6728\u3092\u5857\u308B\n  vi isin(N);\n  FOR(i, K) {\n  \
-    \  int j = (i + 1 == K ? 0 : i + 1);\n    int a = D[i], b = D[j];\n    isin[a]\
-    \ = 1;\n    while (a != b) {\n      a = hld.move(a, b);\n      isin[a] = 1;\n\
-    \    }\n  }\n\n  for (auto&& x: D) isin[x] = 1;\n\n  const ll INF = 1LL << 60;\n\
-    \  using Data = ll;\n  Data unit = -INF;\n  auto fee = [&](Data x, Data y) ->\
-    \ Data { return max(x, y); };\n  auto fev = [&](Data x, int v) -> Data {\n   \
-    \ if (isin[v]) chmax(x, 0);\n    return x;\n  };\n  // e \u306F v \u304B\u3089\
-    \u51FA\u308B\u6709\u5411\u8FBA\n  auto fve = [&](Data x, auto& e) -> Data { return\
-    \ x + 1; };\n  auto dp = rerooting_dp(G, fee, fev, fve, unit);\n\n  // span \u3055\
-    \u308C\u308B\u90E8\u5206\u304B\u3089\u306E\u8DDD\u96E2\n  vc<int> V;\n  FOR(v,\
-    \ N) if (isin[v]) V.eb(v);\n  auto [dist, par, root] = bfs01(G, V);\n\n  FOR(v,\
-    \ N) {\n    ll r = root[v];\n    ll ANS = dist[v] + base - dp[r];\n    print(ANS);\n\
-    \  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
-    \n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1718\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"graph/rerooting_dp.hpp\"\n#include \"\
+    graph/hld.hpp\"\n#include \"graph/bfs01.hpp\"\n\nvoid solve() {\n  LL(N, K);\n\
+    \  Graph G(N);\n  G.read_tree();\n  VEC(ll, D, K);\n  for (auto&& a: D) --a;\n\
+    \n  HLD hld(G);\n  sort(all(D), [&](auto& x, auto& y) { return hld.LID[x] < hld.LID[y];\
+    \ });\n\n  ll base = 0;\n  FOR(i, K) {\n    int j = (i + 1 == K ? 0 : i + 1);\n\
+    \    int a = D[i], b = D[j];\n    base += hld.dist(a, b);\n  }\n\n  // \u90E8\u5206\
+    \u6728\u3092\u5857\u308B\n  vi isin(N);\n  FOR(i, K) {\n    int j = (i + 1 ==\
+    \ K ? 0 : i + 1);\n    int a = D[i], b = D[j];\n    isin[a] = 1;\n    while (a\
+    \ != b) {\n      a = hld.move(a, b);\n      isin[a] = 1;\n    }\n  }\n\n  for\
+    \ (auto&& x: D) isin[x] = 1;\n\n  const ll INF = 1LL << 60;\n  using Data = ll;\n\
+    \  Data unit = -INF;\n  auto fee = [&](Data x, Data y) -> Data { return max(x,\
+    \ y); };\n  auto fev = [&](Data x, int v) -> Data {\n    if (isin[v]) chmax(x,\
+    \ 0);\n    return x;\n  };\n  // e \u306F v \u304B\u3089\u51FA\u308B\u6709\u5411\
+    \u8FBA\n  auto fve = [&](Data x, auto& e) -> Data { return x + 1; };\n  auto dp\
+    \ = rerooting_dp(G, fee, fev, fve, unit);\n\n  // span \u3055\u308C\u308B\u90E8\
+    \u5206\u304B\u3089\u306E\u8DDD\u96E2\n  vc<int> V;\n  FOR(v, N) if (isin[v]) V.eb(v);\n\
+    \  auto [dist, par, root] = bfs01(G, V);\n\n  FOR(v, N) {\n    ll r = root[v];\n\
+    \    ll ANS = dist[v] + base - dp[r];\n    print(ANS);\n  }\n}\n\nsigned main()\
+    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << fixed << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -374,8 +378,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1718_rerooting.test.cpp
   requiredBy: []
-  timestamp: '2022-06-05 12:23:45+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-06-05 15:17:40+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/1718_rerooting.test.cpp
 layout: document
