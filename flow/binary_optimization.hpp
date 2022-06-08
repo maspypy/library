@@ -56,7 +56,7 @@ struct Binary_Optimization {
 
   // 最小値および、01 列を返す
   pair<T, vc<int>> calc() {
-    MaxFlowGraph<T> G(INF);
+    MaxFlowGraph<T> G(nxt, INF);
     ll e = 0;
     for (auto&& [key, cap]: edges) {
       auto [frm, to] = key;
