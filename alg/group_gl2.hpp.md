@@ -5,10 +5,13 @@ data:
   - icon: ':warning:'
     path: alg/gset_gl2_vec.hpp
     title: alg/gset_gl2_vec.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yukicoder/1226_gl2_segtree.test.cpp
+    title: test/yukicoder/1226_gl2_segtree.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group_gl2.hpp\"\n\ntemplate <typename T>\nstruct Group_GL2\
@@ -36,8 +39,9 @@ data:
   requiredBy:
   - alg/gset_gl2_vec.hpp
   timestamp: '2022-06-05 16:18:21+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yukicoder/1226_gl2_segtree.test.cpp
 documentation_of: alg/group_gl2.hpp
 layout: document
 redirect_from:

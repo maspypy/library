@@ -72,8 +72,8 @@ data:
     \ = -x011;\n      x100 = -x100, x101 = -x101;\n      x110 = -x110, x111 = -x111;\n\
     \    }\n    _add_3(i, j, k, x000, x001, x010, x011, x100, x101, x110, x111);\n\
     \  }\n\n  // \u6700\u5C0F\u5024\u304A\u3088\u3073\u300101 \u5217\u3092\u8FD4\u3059\
-    \n  pair<T, vc<int>> calc() {\n    MaxFlowGraph<T> G(INF);\n    ll e = 0;\n  \
-    \  for (auto&& [key, cap]: edges) {\n      auto [frm, to] = key;\n      G.add(frm,\
+    \n  pair<T, vc<int>> calc() {\n    MaxFlowGraph<T> G(nxt, INF);\n    ll e = 0;\n\
+    \    for (auto&& [key, cap]: edges) {\n      auto [frm, to] = key;\n      G.add(frm,\
     \ to, cap);\n      ++e;\n    }\n\n    auto [val, cut] = G.cut(source, sink);\n\
     \    val += base_cost;\n    chmin(val, INF);\n    cut.resize(n);\n    if (!MINIMIZE)\
     \ val = -val;\n    return {val, cut};\n  }\n\n  void debug() {\n    print(\"base_cost\"\
@@ -134,11 +134,11 @@ data:
     \      x110 = -x110, x111 = -x111;\n    }\n    _add_3(i, j, k, x000, x001, x010,\
     \ x011, x100, x101, x110, x111);\n  }\n\n  // \u6700\u5C0F\u5024\u304A\u3088\u3073\
     \u300101 \u5217\u3092\u8FD4\u3059\n  pair<T, vc<int>> calc() {\n    MaxFlowGraph<T>\
-    \ G(INF);\n    ll e = 0;\n    for (auto&& [key, cap]: edges) {\n      auto [frm,\
-    \ to] = key;\n      G.add(frm, to, cap);\n      ++e;\n    }\n\n    auto [val,\
-    \ cut] = G.cut(source, sink);\n    val += base_cost;\n    chmin(val, INF);\n \
-    \   cut.resize(n);\n    if (!MINIMIZE) val = -val;\n    return {val, cut};\n \
-    \ }\n\n  void debug() {\n    print(\"base_cost\", base_cost);\n    print(\"source=\"\
+    \ G(nxt, INF);\n    ll e = 0;\n    for (auto&& [key, cap]: edges) {\n      auto\
+    \ [frm, to] = key;\n      G.add(frm, to, cap);\n      ++e;\n    }\n\n    auto\
+    \ [val, cut] = G.cut(source, sink);\n    val += base_cost;\n    chmin(val, INF);\n\
+    \    cut.resize(n);\n    if (!MINIMIZE) val = -val;\n    return {val, cut};\n\
+    \  }\n\n  void debug() {\n    print(\"base_cost\", base_cost);\n    print(\"source=\"\
     , source, \"sink=\", sink);\n    for (auto&& [key, cap]: edges) print(key, cap);\n\
     \  }\n\nprivate:\n  void add_edge(int i, int j, T t) {\n    assert(t >= 0);\n\
     \    if (t == 0) return;\n    pair<int, int> key = mp(i, j);\n    edges[key] +=\
@@ -172,7 +172,7 @@ data:
   isVerificationFile: false
   path: flow/binary_optimization.hpp
   requiredBy: []
-  timestamp: '2022-05-22 15:15:57+09:00'
+  timestamp: '2022-06-08 14:39:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: flow/binary_optimization.hpp

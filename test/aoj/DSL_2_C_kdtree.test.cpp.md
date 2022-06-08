@@ -2,11 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: alg/group_add.hpp
-    title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/weightedunionfind.hpp
-    title: ds/weightedunionfind.hpp
+    path: ds/kdtree_monoid.hpp
+    title: ds/kdtree_monoid.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -20,13 +17,13 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B
-  bundledCode: "#line 1 \"test/aoj/DSL_1_B_weighteduf.test.cpp\"\n#define PROBLEM\
-    \ \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B\"\n\
-    #line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
-    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C
+  bundledCode: "#line 1 \"test/aoj/DSL_2_C_kdtree.test.cpp\"\n#define PROBLEM \\\n\
+    \  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C\"\n#line\
+    \ 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\n\
+    using ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
     \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
     \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
     template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
@@ -192,59 +189,95 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"alg/group_add.hpp\"\ntemplate <class X>\r\nstruct\
-    \ Group_Add {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x,\
-    \ const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return n * x; }\r\n  static constexpr X unit() { return X(0); }\r\
-    \n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"ds/weightedunionfind.hpp\"\
-    \ntemplate <typename Group>\r\nstruct WeightedUnionFind {\r\n  using E = typename\
-    \ Group::value_type;\r\n  int N;\r\n  vc<E> vals;\r\n  vc<int> par;\r\n  vc<int>\
-    \ size;\r\n\r\n  WeightedUnionFind(int N) : N(N), vals(N, Group::unit()), size(N,\
-    \ 1) {\r\n    par.resize(N);\r\n    iota(all(par), 0);\r\n  }\r\n\r\n  // (root,\
-    \ root=0 \u3068\u3057\u305F\u3068\u304D\u306E val)\r\n  pair<int, E> get(int v)\
-    \ {\r\n    E res = Group::unit();\r\n    while (v != par[v]) {\r\n      res =\
-    \ Group::op(vals[v], res);\r\n      res = Group::op(vals[par[v]], res);\r\n  \
-    \    vals[v] = Group::op(vals[par[v]], vals[v]);\r\n      v = par[v] = par[par[v]];\r\
-    \n    }\r\n    return {v, res};\r\n  }\r\n\r\n  bool merge(int frm, int to, E\
-    \ x) {\r\n    auto [v1, x1] = get(frm);\r\n    auto [v2, x2] = get(to);\r\n  \
-    \  if (v1 == v2) return false;\r\n    if (size[v1] < size[v2]) {\r\n      swap(v1,\
-    \ v2);\r\n      swap(x1, x2);\r\n      x = Group::inverse(x);\r\n    }\r\n   \
-    \ x = Group::op(x1, x);\r\n    x = Group::op(x, Group::inverse(x2));\r\n    vals[v2]\
-    \ = x;\r\n    par[v2] = v1;\r\n    size[v1] += size[v2];\r\n    return true;\r\
-    \n  }\r\n\r\n  void debug() {\r\n    print(\"par\", par);\r\n    print(\"vals\"\
-    , vals);\r\n    print(\"size\", size);\r\n  }\r\n};\n#line 7 \"test/aoj/DSL_1_B_weighteduf.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  WeightedUnionFind<Group_Add<ll>> uf(N);\n \
-    \ FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(a, b, c);\n      uf.merge(a,\
-    \ b, c);\n    } else {\n      LL(a, b);\n      auto [ra, xa] = uf.get(a);\n  \
-    \    auto [rb, xb] = uf.get(b);\n      if (ra != rb)\n        print(\"?\");\n\
-    \      else\n        print(xb - xa);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/group_add.hpp\"\
-    \n#include \"ds/weightedunionfind.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  WeightedUnionFind<Group_Add<ll>>\
-    \ uf(N);\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(a, b, c);\n    \
-    \  uf.merge(a, b, c);\n    } else {\n      LL(a, b);\n      auto [ra, xa] = uf.get(a);\n\
-    \      auto [rb, xb] = uf.get(b);\n      if (ra != rb)\n        print(\"?\");\n\
-    \      else\n        print(xb - xa);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ { yes(!t); }\r\n#line 1 \"ds/kdtree_monoid.hpp\"\n// \u540C\u3058\u5EA7\u6A19\
+    \u306E\u8907\u6570\u306E\u70B9\u304C\u3069\u306E\u304F\u3089\u3044\u96C6\u7D04\
+    \u3055\u308C\u308B\u304B\u306F\u4FDD\u8A3C\u304C\u306A\u3044\u3002\r\n// \u5B50\
+    \u30CE\u30FC\u30C9\u304C 2x, 2x+1 \u306B\u306A\u308B\u3088\u3046\u306B\u3057\u3066\
+    \u3001\u914D\u5217\u3067\u4F5C\u3063\u3066\u307F\u308B\u3002\r\ntemplate <class\
+    \ Monoid, typename XY = long long>\r\nstruct KDTree_Monoid {\r\n  using X = typename\
+    \ Monoid::value_type;\r\n  vc<tuple<XY, XY, XY, XY>> range;\r\n  vc<X> dat;\r\n\
+    \  int n;\r\n\r\n  KDTree_Monoid(vc<XY> xs, vc<XY> ys, vc<X> vs) : n(len(xs))\
+    \ {\r\n    assert(Monoid::commute);\r\n    int log = 0;\r\n    while ((1 << log)\
+    \ < n) ++log;\r\n    dat.resize(1 << (log + 1));\r\n    range.resize(1 << (log\
+    \ + 1));\r\n    build(1, xs, ys, vs);\r\n  }\r\n\r\n  void set(XY x, XY y, const\
+    \ X& v) { set_rec(1, x, y, v); }\r\n\r\n  void multiply(XY x, XY y, const X& v)\
+    \ { multiply_rec(1, x, y, v); }\r\n\r\n  X prod(XY xl, XY yl, XY xr, XY yr) {\r\
+    \n    assert(xl <= xr && yl <= yr);\r\n    return prod_rec(1, xl, xr, yl, yr);\r\
+    \n  }\r\n\r\nprivate:\r\n  void build(int idx, vc<XY>& xs, vc<XY>& ys, vc<X>&\
+    \ vs, bool divx = true) {\r\n    int n = len(xs);\r\n    auto& [xmin, xmax, ymin,\
+    \ ymax] = range[idx];\r\n    xmin = numeric_limits<XY>::max();\r\n    xmax = numeric_limits<XY>::lowest();\r\
+    \n    ymin = numeric_limits<XY>::max();\r\n    ymax = numeric_limits<XY>::lowest();\r\
+    \n\r\n    FOR(i, n) {\r\n      auto x = xs[i], y = ys[i];\r\n      chmin(xmin,\
+    \ x);\r\n      chmax(xmax, x);\r\n      chmin(ymin, y);\r\n      chmax(ymax, y);\r\
+    \n    }\r\n    if (xmin == xmax && ymin == ymax) {\r\n      X x = Monoid::unit();\r\
+    \n      for (auto&& v: vs) x = Monoid::op(x, v);\r\n      dat[idx] = x;\r\n  \
+    \    return;\r\n    }\r\n\r\n    int m = n / 2;\r\n    vc<int> I(n);\r\n    iota(all(I),\
+    \ 0);\r\n    if (divx) {\r\n      nth_element(I.begin(), I.begin() + m, I.end(),\r\
+    \n                  [xs](int i, int j) { return xs[i] < xs[j]; });\r\n    } else\
+    \ {\r\n      nth_element(I.begin(), I.begin() + m, I.end(),\r\n              \
+    \    [ys](int i, int j) { return ys[i] < ys[j]; });\r\n    }\r\n    vc<XY> lxs,\
+    \ rxs, lys, rys;\r\n    vc<X> lvs, rvs;\r\n    FOR(k, m) {\r\n      int i = I[k];\r\
+    \n      lxs.eb(xs[i]);\r\n      lys.eb(ys[i]);\r\n      lvs.eb(vs[i]);\r\n   \
+    \ }\r\n    FOR(k, m, n) {\r\n      int i = I[k];\r\n      rxs.eb(xs[i]);\r\n \
+    \     rys.eb(ys[i]);\r\n      rvs.eb(vs[i]);\r\n    }\r\n    build(2 * idx + 0,\
+    \ lxs, lys, lvs, !divx);\r\n    build(2 * idx + 1, rxs, rys, rvs, !divx);\r\n\
+    \    dat[idx] = Monoid::op(dat[2 * idx + 0], dat[2 * idx + 1]);\r\n  }\r\n\r\n\
+    \  bool isin(const int& idx, const XY& x, const XY& y) {\r\n    auto& [xmin, xmax,\
+    \ ymin, ymax] = range[idx];\r\n    return (xmin <= x && x <= xmax && ymin <= y\
+    \ && y <= ymax);\r\n  }\r\n\r\n  void set_rec(const int& idx, const XY& x, const\
+    \ XY& y, const X& v) {\r\n    if (!isin(idx, x, y)) return;\r\n    auto& [xmin,\
+    \ xmax, ymin, ymax] = range[idx];\r\n    if (xmin == xmax && ymin == ymax) {\r\
+    \n      dat[idx] = v;\r\n      return;\r\n    }\r\n    set_rec(2 * idx + 0, x,\
+    \ y, v);\r\n    set_rec(2 * idx + 1, x, y, v);\r\n    dat[idx] = Monoid::op(dat[2\
+    \ * idx + 0], dat[2 * idx + 1]);\r\n  }\r\n\r\n  void multiply_rec(const int&\
+    \ idx, const XY& x, const XY& y, const X& v) {\r\n    if (!isin(idx, x, y)) return;\r\
+    \n    auto& [xmin, xmax, ymin, ymax] = range[idx];\r\n    if (xmin == xmax &&\
+    \ ymin == ymax) {\r\n      dat[idx] = Monoid::op(dat[idx], v);\r\n      return;\r\
+    \n    }\r\n    multiply_rec(2 * idx + 0, x, y, v);\r\n    multiply_rec(2 * idx\
+    \ + 1, x, y, v);\r\n    dat[idx] = Monoid::op(dat[2 * idx + 0], dat[2 * idx +\
+    \ 1]);\r\n  }\r\n\r\n  X prod_rec(const int& idx, const XY& x1, const XY& x2,\
+    \ const XY& y1,\r\n             const XY& y2) {\r\n    auto& [xmin, xmax, ymin,\
+    \ ymax] = range[idx];\r\n    if (x2 <= xmin || xmax < x1) return Monoid::unit();\r\
+    \n    if (y2 <= ymin || ymax < y1) return Monoid::unit();\r\n    if (x1 <= xmin\
+    \ && xmax < x2 && y1 <= ymin && ymax < y2) { return dat[idx]; }\r\n    return\
+    \ Monoid::op(prod_rec(2 * idx + 0, x1, x2, y1, y2),\r\n                      prod_rec(2\
+    \ * idx + 1, x1, x2, y1, y2));\r\n  }\r\n};\n#line 6 \"test/aoj/DSL_2_C_kdtree.test.cpp\"\
+    \n\nstruct Mono {\n  using value_type = vc<int>;\n  using X = value_type;\n  static\
+    \ X op(X x, X y) {\n    x.insert(x.end(), all(y));\n    return x;\n  }\n  static\
+    \ X unit() { return {}; }\n  static constexpr bool commute = 1;\n};\n\nvoid solve()\
+    \ {\n  LL(N);\n  vi X, Y;\n  vvc<int> idx(N);\n  FOR(i, N) {\n    LL(x, y);\n\
+    \    X.eb(x);\n    Y.eb(y);\n    idx[i].eb(i);\n  }\n  KDTree_Monoid<Mono> KDT(X,\
+    \ Y, idx);\n\n  LL(Q);\n  FOR(Q) {\n    LL(xl, xr, yl, yr);\n    flush();\n  \
+    \  auto e = KDT.prod(xl, yl, xr + 1, yr + 1);\n    sort(all(e));\n    for (auto&&\
+    \ v: e) print(v);\n    print();\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << fixed << setprecision(15);\n\n  ll\
+    \ T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/kdtree_monoid.hpp\"\
+    \n\nstruct Mono {\n  using value_type = vc<int>;\n  using X = value_type;\n  static\
+    \ X op(X x, X y) {\n    x.insert(x.end(), all(y));\n    return x;\n  }\n  static\
+    \ X unit() { return {}; }\n  static constexpr bool commute = 1;\n};\n\nvoid solve()\
+    \ {\n  LL(N);\n  vi X, Y;\n  vvc<int> idx(N);\n  FOR(i, N) {\n    LL(x, y);\n\
+    \    X.eb(x);\n    Y.eb(y);\n    idx[i].eb(i);\n  }\n  KDTree_Monoid<Mono> KDT(X,\
+    \ Y, idx);\n\n  LL(Q);\n  FOR(Q) {\n    LL(xl, xr, yl, yr);\n    flush();\n  \
+    \  auto e = KDT.prod(xl, yl, xr + 1, yr + 1);\n    sort(all(e));\n    for (auto&&\
+    \ v: e) print(v);\n    print();\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << fixed << setprecision(15);\n\n  ll\
+    \ T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - alg/group_add.hpp
-  - ds/weightedunionfind.hpp
+  - ds/kdtree_monoid.hpp
   isVerificationFile: true
-  path: test/aoj/DSL_1_B_weighteduf.test.cpp
+  path: test/aoj/DSL_2_C_kdtree.test.cpp
   requiredBy: []
-  timestamp: '2022-05-13 20:44:41+09:00'
+  timestamp: '2022-06-08 14:40:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/DSL_1_B_weighteduf.test.cpp
+documentation_of: test/aoj/DSL_2_C_kdtree.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/DSL_1_B_weighteduf.test.cpp
-- /verify/test/aoj/DSL_1_B_weighteduf.test.cpp.html
-title: test/aoj/DSL_1_B_weighteduf.test.cpp
+- /verify/test/aoj/DSL_2_C_kdtree.test.cpp
+- /verify/test/aoj/DSL_2_C_kdtree.test.cpp.html
+title: test/aoj/DSL_2_C_kdtree.test.cpp
 ---

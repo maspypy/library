@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: alg/group_gl2.hpp
     title: alg/group_gl2.hpp
   _extendedRequiredBy: []

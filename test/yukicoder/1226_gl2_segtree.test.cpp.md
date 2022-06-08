@@ -1,12 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: alg/group_add.hpp
-    title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/weightedunionfind.hpp
-    title: ds/weightedunionfind.hpp
+  - icon: ':x:'
+    path: alg/group_gl2.hpp
+    title: alg/group_gl2.hpp
+  - icon: ':question:'
+    path: alg/monoid_reverse.hpp
+    title: alg/monoid_reverse.hpp
+  - icon: ':question:'
+    path: ds/segtree.hpp
+    title: ds/segtree.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -15,24 +18,24 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B
+    PROBLEM: https://yukicoder.me/problems/no/1226
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B
-  bundledCode: "#line 1 \"test/aoj/DSL_1_B_weighteduf.test.cpp\"\n#define PROBLEM\
-    \ \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B\"\n\
-    #line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
-    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
-    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://yukicoder.me/problems/no/1226
+  bundledCode: "#line 1 \"test/yukicoder/1226_gl2_segtree.test.cpp\"\n#define PROBLEM\
+    \ \"https://yukicoder.me/problems/no/1226\"\n#line 1 \"my_template.hpp\"\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -192,59 +195,107 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"alg/group_add.hpp\"\ntemplate <class X>\r\nstruct\
-    \ Group_Add {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x,\
-    \ const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return n * x; }\r\n  static constexpr X unit() { return X(0); }\r\
-    \n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"ds/weightedunionfind.hpp\"\
-    \ntemplate <typename Group>\r\nstruct WeightedUnionFind {\r\n  using E = typename\
-    \ Group::value_type;\r\n  int N;\r\n  vc<E> vals;\r\n  vc<int> par;\r\n  vc<int>\
-    \ size;\r\n\r\n  WeightedUnionFind(int N) : N(N), vals(N, Group::unit()), size(N,\
-    \ 1) {\r\n    par.resize(N);\r\n    iota(all(par), 0);\r\n  }\r\n\r\n  // (root,\
-    \ root=0 \u3068\u3057\u305F\u3068\u304D\u306E val)\r\n  pair<int, E> get(int v)\
-    \ {\r\n    E res = Group::unit();\r\n    while (v != par[v]) {\r\n      res =\
-    \ Group::op(vals[v], res);\r\n      res = Group::op(vals[par[v]], res);\r\n  \
-    \    vals[v] = Group::op(vals[par[v]], vals[v]);\r\n      v = par[v] = par[par[v]];\r\
-    \n    }\r\n    return {v, res};\r\n  }\r\n\r\n  bool merge(int frm, int to, E\
-    \ x) {\r\n    auto [v1, x1] = get(frm);\r\n    auto [v2, x2] = get(to);\r\n  \
-    \  if (v1 == v2) return false;\r\n    if (size[v1] < size[v2]) {\r\n      swap(v1,\
-    \ v2);\r\n      swap(x1, x2);\r\n      x = Group::inverse(x);\r\n    }\r\n   \
-    \ x = Group::op(x1, x);\r\n    x = Group::op(x, Group::inverse(x2));\r\n    vals[v2]\
-    \ = x;\r\n    par[v2] = v1;\r\n    size[v1] += size[v2];\r\n    return true;\r\
-    \n  }\r\n\r\n  void debug() {\r\n    print(\"par\", par);\r\n    print(\"vals\"\
-    , vals);\r\n    print(\"size\", size);\r\n  }\r\n};\n#line 7 \"test/aoj/DSL_1_B_weighteduf.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  WeightedUnionFind<Group_Add<ll>> uf(N);\n \
-    \ FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(a, b, c);\n      uf.merge(a,\
-    \ b, c);\n    } else {\n      LL(a, b);\n      auto [ra, xa] = uf.get(a);\n  \
-    \    auto [rb, xb] = uf.get(b);\n      if (ra != rb)\n        print(\"?\");\n\
-    \      else\n        print(xb - xa);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/group_add.hpp\"\
-    \n#include \"ds/weightedunionfind.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  WeightedUnionFind<Group_Add<ll>>\
-    \ uf(N);\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(a, b, c);\n    \
-    \  uf.merge(a, b, c);\n    } else {\n      LL(a, b);\n      auto [ra, xa] = uf.get(a);\n\
-    \      auto [rb, xb] = uf.get(b);\n      if (ra != rb)\n        print(\"?\");\n\
-    \      else\n        print(xb - xa);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ { yes(!t); }\r\n#line 2 \"alg/group_gl2.hpp\"\n\ntemplate <typename T>\nstruct\
+    \ Group_GL2 {\n  using X = array<array<T, 2>, 2>;\n  using value_type = X;\n \
+    \ static X op(const X &x, const X &y) {\n    X z{};\n    FOR(i, 2) FOR(j, 2) FOR(k,\
+    \ 2) z[i][k] += x[i][j] * y[j][k];\n    return z;\n  }\n  static X inverse(const\
+    \ X &x) {\n    T det = x[0][0] * x[1][1] - x[0][1] * x[1][0];\n    T cf = T(1)\
+    \ / det;\n    X y;\n    y[0] = {x[1][1] * cf, -x[0][1] * cf};\n    y[1] = {-x[1][0]\
+    \ * cf, x[0][0] * cf};\n    return y;\n  }\n  // static X power(const X &x, ll\
+    \ n) { return n * x; }\n  static constexpr X unit() {\n    X x;\n    x[0] = {T(1),\
+    \ T(0)};\n    x[1] = {T(0), T(1)};\n    return x;\n  }\n  static constexpr bool\
+    \ commute = 1;\n};\n#line 2 \"ds/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
+    \ SegTree {\n  using X = typename Monoid::value_type;\n  using value_type = X;\n\
+    \  vc<X> dat;\n  int n, log, size;\n\n  SegTree() : SegTree(0) {}\n  SegTree(int\
+    \ n) : SegTree(vc<X>(n, Monoid::unit())) {}\n  SegTree(vc<X> v) : n(len(v)) {\n\
+    \    log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
+    \ << 1, Monoid::unit());\n    FOR(i, n) dat[size + i] = v[i];\n    FOR3_R(i, 1,\
+    \ size) update(i);\n  }\n\n  void reset() { fill(all(dat), Monoid::unit()); }\n\
+    \n  void set_all(const vc<X>& v){\n    dat.assign(size << 1, Monoid::unit());\n\
+    \    FOR(i, n) dat[size + i] = v[i];\n    FOR3_R(i, 1, size) update(i);\n  }\n\
+    \n  X operator[](int i) { return dat[size + i]; }\n\n  void update(int i) { dat[i]\
+    \ = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n\n  void set(int i, const X& x)\
+    \ {\n    assert(i < n);\n    dat[i += size] = x;\n    while (i >>= 1) update(i);\n\
+    \  }\n\n  void multiply(int i, const X& x){\n    assert(i < n);\n    i += size;\n\
+    \    dat[i] = Monoid::op(dat[i], x);\n    while (i >>= 1) update(i);\n  }\n\n\
+    \  X prod(int L, int R) {\n    assert(L <= R);\n    assert(R <= n);\n    X vl\
+    \ = Monoid::unit(), vr = Monoid::unit();\n    L += size, R += size;\n    while\
+    \ (L < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1)\
+    \ vr = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl,\
+    \ vr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  template <class F>\n  int\
+    \ max_right(F &check, int L) {\n    assert(0 <= L && L <= n && check(Monoid::unit()));\n\
+    \    if (L == n) return n;\n    L += size;\n    X sm = Monoid::unit();\n    do\
+    \ {\n      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L])))\
+    \ {\n        while (L < size) {\n          L = 2 * L;\n          if (check(Monoid::op(sm,\
+    \ dat[L]))) {\n            sm = Monoid::op(sm, dat[L]);\n            L++;\n  \
+    \        }\n        }\n        return L - size;\n      }\n      sm = Monoid::op(sm,\
+    \ dat[L]);\n      L++;\n    } while ((L & -L) != L);\n    return n;\n  }\n\n \
+    \ template <class F>\n  int min_left(F &check, int R) {\n    assert(0 <= R &&\
+    \ R <= n && check(Monoid::unit()));\n    if (R == 0) return 0;\n    R += size;\n\
+    \    X sm = Monoid::unit();\n    do {\n      --R;\n      while (R > 1 && (R %\
+    \ 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R], sm))) {\n        while (R\
+    \ < size) {\n          R = 2 * R + 1;\n          if (check(Monoid::op(dat[R],\
+    \ sm))) {\n            sm = Monoid::op(dat[R], sm);\n            R--;\n      \
+    \    }\n        }\n        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R],\
+    \ sm);\n    } while ((R & -R) != R);\n    return 0;\n  }\n\n  // \u30E2\u30CE\u30A4\
+    \u30C9\u304C\u53EF\u63DB\u306A\u3089\u3001prod_{l<=i<r}A[i^x] \u304C\u8A08\u7B97\
+    \u53EF\u80FD\n  // https://codeforces.com/contest/1401/problem/F\n  X Xor_prod(int\
+    \ l, int r, int xor_val) {\n    assert(Monoid::commute);\n    X x = Monoid::unit();\n\
+    \    FOR(k, log + 1) {\n      if (l >= r) break;\n      if (l & 1) { x = Monoid::op(x,\
+    \ dat[(size >> k) + ((l++) ^ xor_val)]); }\n      if (r & 1) { x = Monoid::op(x,\
+    \ dat[(size >> k) + ((--r) ^ xor_val)]); }\n      l /= 2, r /= 2, xor_val /= 2;\n\
+    \    }\n    return x;\n  }\n\n  void debug() { print(\"segtree\", dat); }\n};\n\
+    #line 2 \"alg/monoid_reverse.hpp\"\ntemplate <class Monoid>\r\nstruct Monoid_Reverse\
+    \ {\r\n  using value_type = typename Monoid::value_type;\r\n  using X = value_type;\r\
+    \n  static constexpr X op(const X &x, const X &y) { return Monoid::op(y, x); }\r\
+    \n  static constexpr X unit() { return Monoid::unit(); }\r\n  static const bool\
+    \ commute = Monoid::commute;\r\n};\r\n#line 7 \"test/yukicoder/1226_gl2_segtree.test.cpp\"\
+    \n\nusing Re = double;\nusing C = complex<Re>;\n\nvoid solve() {\n  LL(N, Q);\n\
+    \  using Mono = Monoid_Reverse<Group_GL2<C>>;\n  using X = typename Mono::value_type;\n\
+    \n  const Re PI = asin(1) * 2;\n\n  auto from_lt = [&](Re l, Re theta) -> X {\n\
+    \    theta = theta / 180 * PI;\n    X A;\n    C c = {cos(theta), sin(theta)};\n\
+    \    A[0][0] = 1;\n    A[0][1] = l * c;\n    A[1][0] = 0;\n    A[1][1] = c;\n\
+    \    return A;\n  };\n\n  vc<Re> L(N, 1.0), T(N);\n  vc<X> seg_raw(N, from_lt(1.0,\
+    \ 0.0));\n\n  SegTree<Mono> seg(seg_raw);\n  FOR(Q) {\n    LL(t, i);\n    --i;\n\
+    \    if (t == 0) {\n      LL(t);\n      T[i] = t;\n      seg.set(i, from_lt(L[i],\
+    \ T[i]));\n    }\n    if (t == 1) {\n      LL(x);\n      L[i] = x;\n      seg.set(i,\
+    \ from_lt(L[i], T[i]));\n    }\n    if (t == 2) {\n      auto A = seg.prod(0,\
+    \ i + 1);\n      C z = A[0][1];\n      print(z.real(), z.imag());\n    }\n  }\n\
+    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
+    \n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1226\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"alg/group_gl2.hpp\"\n#include \"ds/segtree.hpp\"\
+    \n#include \"alg/monoid_reverse.hpp\"\n\nusing Re = double;\nusing C = complex<Re>;\n\
+    \nvoid solve() {\n  LL(N, Q);\n  using Mono = Monoid_Reverse<Group_GL2<C>>;\n\
+    \  using X = typename Mono::value_type;\n\n  const Re PI = asin(1) * 2;\n\n  auto\
+    \ from_lt = [&](Re l, Re theta) -> X {\n    theta = theta / 180 * PI;\n    X A;\n\
+    \    C c = {cos(theta), sin(theta)};\n    A[0][0] = 1;\n    A[0][1] = l * c;\n\
+    \    A[1][0] = 0;\n    A[1][1] = c;\n    return A;\n  };\n\n  vc<Re> L(N, 1.0),\
+    \ T(N);\n  vc<X> seg_raw(N, from_lt(1.0, 0.0));\n\n  SegTree<Mono> seg(seg_raw);\n\
+    \  FOR(Q) {\n    LL(t, i);\n    --i;\n    if (t == 0) {\n      LL(t);\n      T[i]\
+    \ = t;\n      seg.set(i, from_lt(L[i], T[i]));\n    }\n    if (t == 1) {\n   \
+    \   LL(x);\n      L[i] = x;\n      seg.set(i, from_lt(L[i], T[i]));\n    }\n \
+    \   if (t == 2) {\n      auto A = seg.prod(0, i + 1);\n      C z = A[0][1];\n\
+    \      print(z.real(), z.imag());\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << fixed << setprecision(15);\n\n  ll\
+    \ T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - alg/group_add.hpp
-  - ds/weightedunionfind.hpp
+  - alg/group_gl2.hpp
+  - ds/segtree.hpp
+  - alg/monoid_reverse.hpp
   isVerificationFile: true
-  path: test/aoj/DSL_1_B_weighteduf.test.cpp
+  path: test/yukicoder/1226_gl2_segtree.test.cpp
   requiredBy: []
-  timestamp: '2022-05-13 20:44:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-06-08 14:40:47+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/aoj/DSL_1_B_weighteduf.test.cpp
+documentation_of: test/yukicoder/1226_gl2_segtree.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/DSL_1_B_weighteduf.test.cpp
-- /verify/test/aoj/DSL_1_B_weighteduf.test.cpp.html
-title: test/aoj/DSL_1_B_weighteduf.test.cpp
+- /verify/test/yukicoder/1226_gl2_segtree.test.cpp
+- /verify/test/yukicoder/1226_gl2_segtree.test.cpp.html
+title: test/yukicoder/1226_gl2_segtree.test.cpp
 ---

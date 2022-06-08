@@ -23,9 +23,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/rerooting_dp.hpp
     title: graph/rerooting_dp.hpp
-  - icon: ':warning:'
-    path: graph/tree_dp.hpp
-    title: graph/tree_dp.hpp
   - icon: ':heavy_check_mark:'
     path: graph/treeabelgroup.hpp
     title: graph/treeabelgroup.hpp
@@ -267,7 +264,6 @@ data:
   requiredBy:
   - graph/minimum_spanning_tree.hpp
   - graph/two_edge_component.hpp
-  - graph/tree_dp.hpp
   - graph/lazytreemonoid.hpp
   - graph/rerooting_dp.hpp
   - graph/dualtreemonoid.hpp

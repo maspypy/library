@@ -48,15 +48,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036_seg_maxright_minleft.test.cpp
     title: test/yukicoder/1036_seg_maxright_minleft.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1226_gl2_segtree.test.cpp
+    title: test/yukicoder/1226_gl2_segtree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/529_two_edge.test.cpp
     title: test/yukicoder/529_two_edge.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/1401/problem/F
@@ -153,9 +156,10 @@ data:
   - graph/treemonoid.hpp
   - geo/manhattan_nns.hpp
   timestamp: '2022-05-21 17:43:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL_2_A_mst.test.cpp
+  - test/yukicoder/1226_gl2_segtree.test.cpp
   - test/yukicoder/1036_seg_maxright_minleft.test.cpp
   - test/yukicoder/426.test.cpp
   - test/yukicoder/529_two_edge.test.cpp

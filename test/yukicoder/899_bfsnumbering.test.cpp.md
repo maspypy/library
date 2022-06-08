@@ -19,10 +19,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bfsnumbering.hpp
     title: graph/bfsnumbering.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -237,33 +237,38 @@ data:
     \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
     , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
     \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 2 \"graph/bfsnumbering.hpp\"\
-    \n\r\ntemplate <typename Graph>\r\nstruct BFSNumbering {\r\n  Graph& G;\r\n  int\
-    \ root;\r\n  vector<int> V;\r\n  vector<int> ID;\r\n  vector<int> depth;\r\n \
-    \ vector<int> parent;\r\n  vector<int> LID, RID;\r\n  vector<int> LID_seq;\r\n\
-    \  vector<int> dep_ids;\r\n  int cnt;\r\n\r\n  BFSNumbering(Graph& G, int root\
-    \ = 0) : G(G), root(root), cnt(0) { build(); }\r\n\r\n  void bfs() {\r\n    deque<int>\
-    \ que = {root};\r\n    while (!que.empty()) {\r\n      int v = que.front();\r\n\
-    \      que.pop_front();\r\n      ID[v] = V.size();\r\n      V.eb(v);\r\n     \
-    \ for(auto&& [frm,to,cost,id] : G[v]) {\r\n        if (to == parent[v]) continue;\r\
-    \n        que.emplace_back(to);\r\n        parent[to] = v;\r\n        depth[to]\
-    \ = depth[v] + 1;\r\n      }\r\n    }\r\n  }\r\n\r\n  void dfs(int v) {\r\n  \
-    \  LID[v] = cnt++;\r\n    for(auto&& [frm,to,cost,id] : G[v]) {\r\n      if (to\
-    \ == parent[v]) continue;\r\n      dfs(to);\r\n    }\r\n    RID[v] = cnt;\r\n\
-    \  }\r\n\r\n  void build() {\r\n    int N = G.N;\r\n    V.reserve(N);\r\n    parent.assign(N,\
-    \ -1);\r\n    ID.assign(N, 0);\r\n    LID.assign(N, 0);\r\n    RID.assign(N, 0);\r\
-    \n    depth.assign(N, 0);\r\n    bfs();\r\n    dfs(root);\r\n    int D = MAX(depth);\r\
-    \n    dep_ids.resize(D + 2);\r\n    FOR(v, N) dep_ids[depth[v] + 1]++;\r\n   \
-    \ FOR(d, D + 1) dep_ids[d + 1] += dep_ids[d];\r\n    LID_seq.reserve(N);\r\n \
-    \   FOR(i, N) LID_seq.eb(LID[V[i]]);\r\n  }\r\n\r\n  int bs(int L, int R, int\
-    \ x) {\r\n    while (L + 1 < R) {\r\n      int M = (L + R) / 2;\r\n      if (LID_seq[M]\
-    \ >= x)\r\n        R = M;\r\n      else\r\n        L = M;\r\n    }\r\n    return\
-    \ R;\r\n  }\r\n\r\n  pair<int, int> calc_range(int v, int dep) {\r\n    assert(dep\
-    \ >= depth[v]);\r\n    if (dep >= len(dep_ids) - 1) return {0, 0};\r\n    int\
-    \ l = LID[v], r = RID[v];\r\n    int L = dep_ids[dep], R = dep_ids[dep + 1];\r\
-    \n    int a = bs(L - 1, R, l);\r\n    int b = bs(L - 1, R, r);\r\n    return {a,\
-    \ b};\r\n  }\r\n};\r\n#line 2 \"ds/lazysegtree.hpp\"\n\ntemplate <typename Lazy>\n\
-    struct LazySegTree {\n  using Monoid_X = typename Lazy::X_structure;\n  using\
-    \ Monoid_A = typename Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n\
+    \n\r\n\r\n// ID[v]\uFF1A\u9802\u70B9\u306E\u65B0\u3057\u3044\u756A\u53F7\r\n//\
+    \ calc_range(v, dep)\uFF1Av \u306E\u90E8\u5206\u6728\u3067\u3001\u6DF1\u3055 dep\
+    \ \u306E\u3082\u306E\u305F\u3061\u306E\u7BC4\u56F2\r\n// \u6DF1\u3055\u306F\u7D76\
+    \u5BFE\u7684\u306A\u3082\u306E\u3067\u3042\u308B\u3053\u3068\u306B\u6CE8\u610F\
+    \u305B\u3088\r\ntemplate <typename Graph>\r\nstruct BFSNumbering {\r\n  Graph&\
+    \ G;\r\n  int root;\r\n  vector<int> V;\r\n  vector<int> ID;\r\n  vector<int>\
+    \ depth;\r\n  vector<int> parent;\r\n  vector<int> LID, RID;\r\n  vector<int>\
+    \ LID_seq;\r\n  vector<int> dep_ids;\r\n  int cnt;\r\n\r\n  BFSNumbering(Graph&\
+    \ G, int root = 0) : G(G), root(root), cnt(0) { build(); }\r\n\r\n  void bfs()\
+    \ {\r\n    deque<int> que = {root};\r\n    while (!que.empty()) {\r\n      int\
+    \ v = que.front();\r\n      que.pop_front();\r\n      ID[v] = V.size();\r\n  \
+    \    V.eb(v);\r\n      for(auto&& [frm,to,cost,id] : G[v]) {\r\n        if (to\
+    \ == parent[v]) continue;\r\n        que.emplace_back(to);\r\n        parent[to]\
+    \ = v;\r\n        depth[to] = depth[v] + 1;\r\n      }\r\n    }\r\n  }\r\n\r\n\
+    \  void dfs(int v) {\r\n    LID[v] = cnt++;\r\n    for(auto&& [frm,to,cost,id]\
+    \ : G[v]) {\r\n      if (to == parent[v]) continue;\r\n      dfs(to);\r\n    }\r\
+    \n    RID[v] = cnt;\r\n  }\r\n\r\n  void build() {\r\n    int N = G.N;\r\n   \
+    \ V.reserve(N);\r\n    parent.assign(N, -1);\r\n    ID.assign(N, 0);\r\n    LID.assign(N,\
+    \ 0);\r\n    RID.assign(N, 0);\r\n    depth.assign(N, 0);\r\n    bfs();\r\n  \
+    \  dfs(root);\r\n    int D = MAX(depth);\r\n    dep_ids.resize(D + 2);\r\n   \
+    \ FOR(v, N) dep_ids[depth[v] + 1]++;\r\n    FOR(d, D + 1) dep_ids[d + 1] += dep_ids[d];\r\
+    \n    LID_seq.reserve(N);\r\n    FOR(i, N) LID_seq.eb(LID[V[i]]);\r\n  }\r\n\r\
+    \n  // dep \u306F\u7D76\u5BFE\u7684\u306A\u6DF1\u3055\r\n  pair<int, int> calc_range(int\
+    \ v, int dep) {\r\n    assert(dep >= depth[v]);\r\n    if (dep >= len(dep_ids)\
+    \ - 1) return {0, 0};\r\n    int l = LID[v], r = RID[v];\r\n    int L = dep_ids[dep],\
+    \ R = dep_ids[dep + 1];\r\n    int a = bs(L - 1, R, l);\r\n    int b = bs(L -\
+    \ 1, R, r);\r\n    return {a, b};\r\n  }\r\n\r\nprivate:\r\n  int bs(int L, int\
+    \ R, int x) {\r\n    while (L + 1 < R) {\r\n      int M = (L + R) / 2;\r\n   \
+    \   if (LID_seq[M] >= x)\r\n        R = M;\r\n      else\r\n        L = M;\r\n\
+    \    }\r\n    return R;\r\n  }\r\n};\r\n#line 2 \"ds/lazysegtree.hpp\"\n\ntemplate\
+    \ <typename Lazy>\nstruct LazySegTree {\n  using Monoid_X = typename Lazy::X_structure;\n\
+    \  using Monoid_A = typename Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n  int n, log, size;\n  vc<X> dat;\n\
     \  vc<A> laz;\n\n  LazySegTree() : LazySegTree(0) {}\n  LazySegTree(int n) : LazySegTree(vc<X>(n,\
     \ Monoid_X::unit())) {}\n  LazySegTree(vc<X> v) : n(len(v)) {\n    log = 1;\n\
@@ -378,7 +383,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/899_bfsnumbering.test.cpp
   requiredBy: []
-  timestamp: '2022-06-05 16:18:07+09:00'
+  timestamp: '2022-06-08 14:40:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/899_bfsnumbering.test.cpp
