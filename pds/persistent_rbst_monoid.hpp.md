@@ -8,7 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"bbst/persistent_rbst_monoid.hpp\"\n// reverse \u306F\u3068\
+  bundledCode: "#line 1 \"pds/persistent_rbst_monoid.hpp\"\n// reverse \u306F\u3068\
     \u308A\u3042\u3048\u305A\u3001Monoid \u306E\u53EF\u63DB\u6027\u3092\u4EEE\u5B9A\
     \u3057\u3066\u3044\u308B\uFF01\ntemplate <typename Monoid, int NODES = 1'000'000>\n\
     struct Persistent_RBST_Monoid {\n  using X = typename Monoid::value_type;\n\n\
@@ -151,15 +151,15 @@ data:
     \    root->r = nl;\n    update(root);\n    return {root, nr};\n  }\n};"
   dependsOn: []
   isVerificationFile: false
-  path: bbst/persistent_rbst_monoid.hpp
+  path: pds/persistent_rbst_monoid.hpp
   requiredBy: []
-  timestamp: '2022-05-19 03:01:39+09:00'
+  timestamp: '2022-06-08 22:18:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: bbst/persistent_rbst_monoid.hpp
+documentation_of: pds/persistent_rbst_monoid.hpp
 layout: document
 redirect_from:
-- /library/bbst/persistent_rbst_monoid.hpp
-- /library/bbst/persistent_rbst_monoid.hpp.html
-title: bbst/persistent_rbst_monoid.hpp
+- /library/pds/persistent_rbst_monoid.hpp
+- /library/pds/persistent_rbst_monoid.hpp.html
+title: pds/persistent_rbst_monoid.hpp
 ---

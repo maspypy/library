@@ -8,10 +8,10 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"bbst/persistent_rbst.hpp\"\ntemplate <typename VAL, int\
-    \ NODES = 1'000'000>\nstruct Persistent_RBST {\n  using X = VAL;\n  \n  struct\
-    \ Node {\n    Node *l, *r;\n    X x;\n    int size;\n    bool rev;\n  };\n\n \
-    \ Node *pool;\n  int pid;\n\n  Persistent_RBST() : pid(0) { pool = new Node[NODES];\
+  bundledCode: "#line 1 \"pds/persistent_rbst.hpp\"\ntemplate <typename VAL, int NODES\
+    \ = 1'000'000>\nstruct Persistent_RBST {\n  using X = VAL;\n  \n  struct Node\
+    \ {\n    Node *l, *r;\n    X x;\n    int size;\n    bool rev;\n  };\n\n  Node\
+    \ *pool;\n  int pid;\n\n  Persistent_RBST() : pid(0) { pool = new Node[NODES];\
     \ }\n\n  Node *new_node(const X &x) {\n    pool[pid].l = pool[pid].r = nullptr;\n\
     \    pool[pid].x = x;\n    pool[pid].size = 1;\n    pool[pid].rev = 0;\n    return\
     \ &(pool[pid++]);\n  }\n\n  Node *new_node(const vc<X> &dat) {\n    auto dfs =\
@@ -136,15 +136,15 @@ data:
     \    return {root, nr};\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: bbst/persistent_rbst.hpp
+  path: pds/persistent_rbst.hpp
   requiredBy: []
-  timestamp: '2022-05-19 03:01:39+09:00'
+  timestamp: '2022-06-08 22:18:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: bbst/persistent_rbst.hpp
+documentation_of: pds/persistent_rbst.hpp
 layout: document
 redirect_from:
-- /library/bbst/persistent_rbst.hpp
-- /library/bbst/persistent_rbst.hpp.html
-title: bbst/persistent_rbst.hpp
+- /library/pds/persistent_rbst.hpp
+- /library/pds/persistent_rbst.hpp.html
+title: pds/persistent_rbst.hpp
 ---

@@ -8,11 +8,11 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"bbst/persistent_rbst_lazy.hpp\"\n// reverse \u306F\u3068\
-    \u308A\u3042\u3048\u305A\u3001Monoid_X \u306E\u53EF\u63DB\u6027\u3092\u4EEE\u5B9A\
-    \u3057\u3066\u3044\u308B\uFF01\ntemplate <typename Lazy, int NODES = 1'000'000>\n\
-    struct Persistent_RBST_Lazy {\n  using Monoid_X = typename Lazy::X_structure;\n\
-    \  using Monoid_A = typename Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n\
+  bundledCode: "#line 1 \"pds/persistent_rbst_lazy.hpp\"\n// reverse \u306F\u3068\u308A\
+    \u3042\u3048\u305A\u3001Monoid_X \u306E\u53EF\u63DB\u6027\u3092\u4EEE\u5B9A\u3057\
+    \u3066\u3044\u308B\uFF01\ntemplate <typename Lazy, int NODES = 1'000'000>\nstruct\
+    \ Persistent_RBST_Lazy {\n  using Monoid_X = typename Lazy::X_structure;\n  using\
+    \ Monoid_A = typename Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n\n  struct Node {\n    Node *l, *r;\n\
     \    X x, prod;\n    A a;\n    int size;\n    bool rev;\n    bool propagated;\n\
     \  };\n\n  Node *pool;\n  int pid;\n\n  Persistent_RBST_Lazy() : pid(0) { pool\
@@ -183,15 +183,15 @@ data:
     \    root->r = nl;\n    update(root);\n    return {root, nr};\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: bbst/persistent_rbst_lazy.hpp
+  path: pds/persistent_rbst_lazy.hpp
   requiredBy: []
-  timestamp: '2022-05-19 00:38:51+09:00'
+  timestamp: '2022-06-08 22:18:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: bbst/persistent_rbst_lazy.hpp
+documentation_of: pds/persistent_rbst_lazy.hpp
 layout: document
 redirect_from:
-- /library/bbst/persistent_rbst_lazy.hpp
-- /library/bbst/persistent_rbst_lazy.hpp.html
-title: bbst/persistent_rbst_lazy.hpp
+- /library/pds/persistent_rbst_lazy.hpp
+- /library/pds/persistent_rbst_lazy.hpp.html
+title: pds/persistent_rbst_lazy.hpp
 ---

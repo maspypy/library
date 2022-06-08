@@ -146,15 +146,6 @@ data:
       title: alg/monoid_xor_basis.hpp
   - name: bbst
     pages:
-    - icon: ':warning:'
-      path: bbst/persistent_rbst.hpp
-      title: bbst/persistent_rbst.hpp
-    - icon: ':warning:'
-      path: bbst/persistent_rbst_lazy.hpp
-      title: bbst/persistent_rbst_lazy.hpp
-    - icon: ':warning:'
-      path: bbst/persistent_rbst_monoid.hpp
-      title: bbst/persistent_rbst_monoid.hpp
     - icon: ':heavy_check_mark:'
       path: bbst/rbst_lazy.hpp
       title: bbst/rbst_lazy.hpp
@@ -739,8 +730,20 @@ data:
       path: pds/array.hpp
       title: pds/array.hpp
     - icon: ':warning:'
+      path: pds/lazysegtree.hpp
+      title: pds/lazysegtree.hpp
+    - icon: ':warning:'
       path: pds/persistent_dynamic_lichao.hpp
       title: pds/persistent_dynamic_lichao.hpp
+    - icon: ':warning:'
+      path: pds/persistent_rbst.hpp
+      title: pds/persistent_rbst.hpp
+    - icon: ':warning:'
+      path: pds/persistent_rbst_lazy.hpp
+      title: pds/persistent_rbst_lazy.hpp
+    - icon: ':warning:'
+      path: pds/persistent_rbst_monoid.hpp
+      title: pds/persistent_rbst_monoid.hpp
     - icon: ':heavy_check_mark:'
       path: pds/rollbackarray.hpp
       title: pds/rollbackarray.hpp
