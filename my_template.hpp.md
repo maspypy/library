@@ -540,9 +540,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1170_range_to_range.test.cpp
     title: test/yukicoder/1170_range_to_range.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1226_gl2_segtree.test.cpp
-    title: test/yukicoder/1226_gl2_segtree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1234_rmq.test.cpp
     title: test/yukicoder/1234_rmq.test.cpp
@@ -711,9 +708,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://trap.jp/post/1224/
@@ -849,7 +846,7 @@ data:
   requiredBy:
   - graph/bipartite_coloring.hpp
   timestamp: '2022-05-13 20:44:41+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/1508_splay.test.cpp
   - test/aoj/DPL_5_C_count_surjection.test.cpp
@@ -900,7 +897,6 @@ data:
   - test/yukicoder/1479_bipartite_vertex_cover.test.cpp
   - test/yukicoder/1441_bbst.test.cpp
   - test/yukicoder/1844_interpolate_c_rec.test.cpp
-  - test/yukicoder/1226_gl2_segtree.test.cpp
   - test/yukicoder/626_knapsack_branch_bound.test.cpp
   - test/yukicoder/1326_bct.test.cpp
   - test/yukicoder/1868_range_to_range.test.cpp
