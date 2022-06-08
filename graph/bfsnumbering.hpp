@@ -1,5 +1,9 @@
 #include "graph/base.hpp"
 
+
+// ID[v]：頂点の新しい番号
+// calc_range(v, dep)：v の部分木で、深さ dep のものたちの範囲
+// 深さは絶対的なものであることに注意せよ
 template <typename Graph>
 struct BFSNumbering {
   Graph& G;
@@ -58,6 +62,18 @@ struct BFSNumbering {
     FOR(i, N) LID_seq.eb(LID[V[i]]);
   }
 
+  // dep は絶対的な深さ
+  pair<int, int> calc_range(int v, int dep) {
+    assert(dep >= depth[v]);
+    if (dep >= len(dep_ids) - 1) return {0, 0};
+    int l = LID[v], r = RID[v];
+    int L = dep_ids[dep], R = dep_ids[dep + 1];
+    int a = bs(L - 1, R, l);
+    int b = bs(L - 1, R, r);
+    return {a, b};
+  }
+
+private:
   int bs(int L, int R, int x) {
     while (L + 1 < R) {
       int M = (L + R) / 2;
@@ -67,15 +83,5 @@ struct BFSNumbering {
         L = M;
     }
     return R;
-  }
-
-  pair<int, int> calc_range(int v, int dep) {
-    assert(dep >= depth[v]);
-    if (dep >= len(dep_ids) - 1) return {0, 0};
-    int l = LID[v], r = RID[v];
-    int L = dep_ids[dep], R = dep_ids[dep + 1];
-    int a = bs(L - 1, R, l);
-    int b = bs(L - 1, R, r);
-    return {a, b};
   }
 };
