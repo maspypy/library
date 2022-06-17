@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/tetration.hpp
     title: mod/tetration.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/gcd_convolution.hpp
     title: nt/gcd_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/lcm_convolution.hpp
     title: nt/lcm_convolution.hpp
   - icon: ':warning:'
     path: nt/mobius_table.hpp
     title: nt/mobius_table.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL_1_D_eulerphi.test.cpp
     title: test/aoj/NTL_1_D_eulerphi.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/gcd_convolution.test.cpp
     title: test/library_checker/math/gcd_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/lcm_convolution.test.cpp
     title: test/library_checker/math/lcm_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1666_integer_kth_root.test.cpp
     title: test/yukicoder/1666_integer_kth_root.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\nvc<ll> primetable(int LIM) {\n  ++LIM;\n\
@@ -80,19 +80,19 @@ data:
   isVerificationFile: false
   path: nt/zeta.hpp
   requiredBy:
-  - mod/tetration.hpp
   - nt/mobius_table.hpp
   - nt/euler_phi.hpp
-  - nt/lcm_convolution.hpp
   - nt/gcd_convolution.hpp
+  - nt/lcm_convolution.hpp
+  - mod/tetration.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/NTL_1_D_eulerphi.test.cpp
-  - test/yukicoder/1666_integer_kth_root.test.cpp
   - test/library_checker/math/gcd_convolution.test.cpp
-  - test/library_checker/math/tetration.test.cpp
   - test/library_checker/math/lcm_convolution.test.cpp
+  - test/library_checker/math/tetration.test.cpp
+  - test/yukicoder/1666_integer_kth_root.test.cpp
 documentation_of: nt/zeta.hpp
 layout: document
 redirect_from:

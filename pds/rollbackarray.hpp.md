@@ -2,16 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: pds/rollbackunionfind.hpp
     title: pds/rollbackunionfind.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
     title: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"pds/rollbackarray.hpp\"\ntemplate <typename T>\r\nstruct\
@@ -34,7 +34,7 @@ data:
   requiredBy:
   - pds/rollbackunionfind.hpp
   timestamp: '2022-05-26 23:36:13+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
 documentation_of: pds/rollbackarray.hpp

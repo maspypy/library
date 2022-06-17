@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -49,26 +49,27 @@ data:
     \u3044\u5834\u5408\u306F\u3001fev \u306E\u6700\u5F8C\u306B\u884C\u3046\u3088\u3046\
     \u306B\u305B\u3088\u3002\r\ntemplate <typename Graph, typename Data, typename\
     \ F1, typename F2, typename F3>\r\nData tree_dp(Graph& G, F1 fee, F2 fev, F3 fve,\
-    \ Data unit) {\r\n  int N = G.N;\r\n\r\n  auto dfs = [&](auto& dfs, int v, int\
-    \ p) -> Data {\r\n    Data x = unit;\r\n    for (auto&& e: G[v]) {\r\n      if\
-    \ (e.to == p) continue;\r\n      x = fee(x, fve(dfs(dfs, e.to, v), e));\r\n  \
-    \  }\r\n    return fev(x, v);\r\n  };\r\n  return dfs(dfs, 0, -1);\r\n}\n"
+    \ Data unit, int root = 0) {\r\n  int N = G.N;\r\n\r\n  auto dfs = [&](auto& dfs,\
+    \ int v, int p) -> Data {\r\n    Data x = unit;\r\n    for (auto&& e: G[v]) {\r\
+    \n      if (e.to == p) continue;\r\n      x = fee(x, fve(dfs(dfs, e.to, v), e));\r\
+    \n    }\r\n    return fev(x, v);\r\n  };\r\n  return dfs(dfs, root, -1);\r\n}\r\
+    \n"
   code: "#include \"graph/base.hpp\"\r\n\r\n// \u6728\u5168\u4F53\u306B\u5BFE\u3059\
     \u308B\u7D50\u679C\u3092 return \u3059\u308B\u3002\r\n// \u90E8\u5206\u6728\u3054\
     \u3068\u306B\u51E6\u7406\u3057\u305F\u3044\u5834\u5408\u306F\u3001fev \u306E\u6700\
     \u5F8C\u306B\u884C\u3046\u3088\u3046\u306B\u305B\u3088\u3002\r\ntemplate <typename\
     \ Graph, typename Data, typename F1, typename F2, typename F3>\r\nData tree_dp(Graph&\
-    \ G, F1 fee, F2 fev, F3 fve, Data unit) {\r\n  int N = G.N;\r\n\r\n  auto dfs\
-    \ = [&](auto& dfs, int v, int p) -> Data {\r\n    Data x = unit;\r\n    for (auto&&\
-    \ e: G[v]) {\r\n      if (e.to == p) continue;\r\n      x = fee(x, fve(dfs(dfs,\
-    \ e.to, v), e));\r\n    }\r\n    return fev(x, v);\r\n  };\r\n  return dfs(dfs,\
-    \ 0, -1);\r\n}"
+    \ G, F1 fee, F2 fev, F3 fve, Data unit, int root = 0) {\r\n  int N = G.N;\r\n\r\
+    \n  auto dfs = [&](auto& dfs, int v, int p) -> Data {\r\n    Data x = unit;\r\n\
+    \    for (auto&& e: G[v]) {\r\n      if (e.to == p) continue;\r\n      x = fee(x,\
+    \ fve(dfs(dfs, e.to, v), e));\r\n    }\r\n    return fev(x, v);\r\n  };\r\n  return\
+    \ dfs(dfs, root, -1);\r\n}\r\n"
   dependsOn:
   - graph/base.hpp
   isVerificationFile: false
   path: graph/tree_dp.hpp
   requiredBy: []
-  timestamp: '2022-06-08 14:41:16+09:00'
+  timestamp: '2022-06-08 22:19:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree_dp.hpp

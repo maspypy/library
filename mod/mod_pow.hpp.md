@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/lcm.hpp
     title: nt/lcm.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1593_gaussian.test.cpp
     title: test/yukicoder/1593_gaussian.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/187_crt.test.cpp
     title: test/yukicoder/187_crt.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/fast_div.hpp\"\nstruct fast_div {\r\n  // Min25 https://judge.yosupo.jp/submission/46090\r\
@@ -61,16 +61,16 @@ data:
   isVerificationFile: false
   path: mod/mod_pow.hpp
   requiredBy:
-  - mod/mod_kth_root.hpp
-  - mod/primitive_root.hpp
-  - nt/lcm.hpp
   - nt/gaussian_integers.hpp
+  - nt/lcm.hpp
+  - mod/primitive_root.hpp
+  - mod/mod_kth_root.hpp
   timestamp: '2022-05-19 23:05:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/library_checker/math/kth_root_mod.test.cpp
   - test/yukicoder/187_crt.test.cpp
   - test/yukicoder/1593_gaussian.test.cpp
-  - test/library_checker/math/kth_root_mod.test.cpp
 documentation_of: mod/mod_pow.hpp
 layout: document
 redirect_from:

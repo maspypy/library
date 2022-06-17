@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   _extendedRequiredBy: []
@@ -81,8 +81,8 @@ data:
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL_2_G_fenwick_raq.test.cpp
   - test/aoj/DSL_2_E_fenwick_raq.test.cpp
+  - test/aoj/DSL_2_G_fenwick_raq.test.cpp
 documentation_of: ds/fenwickraq.hpp
 layout: document
 redirect_from:
