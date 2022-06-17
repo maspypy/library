@@ -17,6 +17,9 @@ data:
   - icon: ':x:'
     path: ds/point_add_rectangle_sum.hpp
     title: ds/point_add_rectangle_sum.hpp
+  - icon: ':warning:'
+    path: ds/rectangle_add_point_sum.hpp
+    title: ds/rectangle_add_point_sum.hpp
   - icon: ':x:'
     path: ds/rectangle_add_ractangle_sum.hpp
     title: ds/rectangle_add_ractangle_sum.hpp
@@ -36,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_G_fenwick_raq.test.cpp
     title: test/aoj/DSL_2_G_fenwick_raq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_range_sum.test.cpp
     title: test/library_checker/datastructure/point_add_range_sum.test.cpp
   - icon: ':x:'
@@ -136,6 +139,7 @@ data:
   requiredBy:
   - ds/fenwickraq.hpp
   - ds/rectangle_add_ractangle_sum.hpp
+  - ds/rectangle_add_point_sum.hpp
   - ds/point_add_polygon_sum.hpp
   - ds/point_add_rectangle_sum.hpp
   - dp/inversion.hpp
