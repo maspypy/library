@@ -30,6 +30,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1625_seg2d.test.cpp
     title: test/yukicoder/1625_seg2d.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1826_dseg.test.cpp
+    title: test/yukicoder/1826_dseg.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -57,6 +60,7 @@ data:
   verifiedWith:
   - test/aoj/GRL_2_A_mst.test.cpp
   - test/yukicoder/1625_kdtree.test.cpp
+  - test/yukicoder/1826_dseg.test.cpp
   - test/yukicoder/1625_seg2d.test.cpp
   - test/yukicoder/1117_swag.test.cpp
 documentation_of: alg/monoid_max.hpp

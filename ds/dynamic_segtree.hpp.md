@@ -10,6 +10,9 @@ data:
     path: test/yukicoder/1649_dynamic_seg.test.cpp
     title: test/yukicoder/1649_dynamic_seg.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1826_dseg.test.cpp
+    title: test/yukicoder/1826_dseg.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/789_dseg.test.cpp
     title: test/yukicoder/789_dseg.test.cpp
   _isVerificationFailed: true
@@ -160,6 +163,7 @@ data:
   timestamp: '2022-05-21 17:43:11+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/yukicoder/1826_dseg.test.cpp
   - test/yukicoder/1036_dseg_minleft_maxright.test.cpp
   - test/yukicoder/1649_dynamic_seg.test.cpp
   - test/yukicoder/789_dseg.test.cpp
