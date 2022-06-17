@@ -52,6 +52,7 @@ struct TreeMonoid {
   // uv path 上で prod_path(u, x) が check を満たす最後の x
   // なければ -1
   // https://codeforces.com/contest/1059/problem/E
+  // https://codeforces.com/contest/1230/problem/E
   // edge: https://atcoder.jp/contests/tkppc3/tasks/tkppc3_i
   // edge が特に怪しいかも
   template <class F>
@@ -79,7 +80,7 @@ struct TreeMonoid {
         auto i = (Monoid::commute ? seg.min_left(check_tmp, a + 1)
                                   : seg_r.min_left(check_tmp, a + 1));
         if (i == a + 1) return u;
-        return hld.parent[hld.V[i]];
+        return (edge ? hld.parent[hld.V[i]] : hld.V[i]);
       }
     }
     return v;
