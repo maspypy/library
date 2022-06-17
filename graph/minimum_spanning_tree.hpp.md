@@ -214,10 +214,10 @@ data:
     \ a + 1)));\r\n      val = Monoid::op(val, x);\r\n    }\r\n    return val;\r\n\
     \  }\r\n\r\n  // uv path \u4E0A\u3067 prod_path(u, x) \u304C check \u3092\u6E80\
     \u305F\u3059\u6700\u5F8C\u306E x\r\n  // \u306A\u3051\u308C\u3070 -1\r\n  // https://codeforces.com/contest/1059/problem/E\r\
-    \n  // edge: https://atcoder.jp/contests/tkppc3/tasks/tkppc3_i\r\n  // edge \u304C\
-    \u7279\u306B\u602A\u3057\u3044\u304B\u3082\r\n  template <class F>\r\n  int max_path(F\
-    \ &check, int u, int v) {\r\n    if (edge) return max_path_edge(check, u, v);\r\
-    \n    if (!check(prod_path(u, u))) return -1;\r\n    auto pd = hld.get_path_decomposition(u,\
+    \n  // https://codeforces.com/contest/1230/problem/E\r\n  // edge: https://atcoder.jp/contests/tkppc3/tasks/tkppc3_i\r\
+    \n  // edge \u304C\u7279\u306B\u602A\u3057\u3044\u304B\u3082\r\n  template <class\
+    \ F>\r\n  int max_path(F &check, int u, int v) {\r\n    if (edge) return max_path_edge(check,\
+    \ u, v);\r\n    if (!check(prod_path(u, u))) return -1;\r\n    auto pd = hld.get_path_decomposition(u,\
     \ v, edge);\r\n    X val = Monoid::unit();\r\n    for (auto &&[a, b]: pd) {\r\n\
     \      X x = (a <= b ? seg.prod(a, b + 1)\r\n                    : (Monoid::commute\
     \ ? seg.prod(b, a + 1)\r\n                                       : seg_r.prod(b,\
@@ -228,10 +228,10 @@ data:
     \ a);\r\n        return (i == a ? u : hld.V[i - 1]);\r\n      } else {\r\n   \
     \     // \u4E0A\u308A\r\n        auto i = (Monoid::commute ? seg.min_left(check_tmp,\
     \ a + 1)\r\n                                  : seg_r.min_left(check_tmp, a +\
-    \ 1));\r\n        if (i == a + 1) return u;\r\n        return hld.parent[hld.V[i]];\r\
-    \n      }\r\n    }\r\n    return v;\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n\
-    \    int l = hld.LID[u], r = hld.RID[u];\r\n    return seg.prod(l + edge, r);\r\
-    \n  }\r\n\r\n  void debug() {\r\n    print(\"tree_monoid\");\r\n    hld.debug();\r\
+    \ 1));\r\n        if (i == a + 1) return u;\r\n        return (edge ? hld.parent[hld.V[i]]\
+    \ : hld.V[i]);\r\n      }\r\n    }\r\n    return v;\r\n  }\r\n\r\n  X prod_subtree(int\
+    \ u) {\r\n    int l = hld.LID[u], r = hld.RID[u];\r\n    return seg.prod(l + edge,\
+    \ r);\r\n  }\r\n\r\n  void debug() {\r\n    print(\"tree_monoid\");\r\n    hld.debug();\r\
     \n    seg.debug();\r\n    seg_r.debug();\r\n  }\r\n\r\nprivate:\r\n  template\
     \ <class F>\r\n  int max_path_edge(F &check, int u, int v) {\r\n    assert(edge);\r\
     \n    if (!check(Monoid::unit())) return -1;\r\n    int lca = hld.lca(u, v);\r\
@@ -414,7 +414,7 @@ data:
   isVerificationFile: false
   path: graph/minimum_spanning_tree.hpp
   requiredBy: []
-  timestamp: '2022-06-05 12:22:23+09:00'
+  timestamp: '2022-06-17 23:05:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_2_A_mst.test.cpp
