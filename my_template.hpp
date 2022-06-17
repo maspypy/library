@@ -118,6 +118,19 @@ ll binary_search(function<bool(ll)> check, ll ok, ll ng) {
   return ok;
 }
 
+template <typename F>
+double binary_search_real(F check, double ok, double ng, int iter = 100) {
+  FOR(iter) {
+    double x = (ok + ng) / 2;
+    if (check(x)) {
+      ok = x;
+    } else {
+      ng = x;
+    }
+  }
+  return (ok + ng) / 2;
+}
+
 template <class T, class S>
 inline bool chmax(T &a, const S &b) {
   return (a < b ? a = b, 1 : 0);
