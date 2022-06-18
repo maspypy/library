@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: ds/intervals.hpp
+    title: ds/intervals.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/predecessor_problem.test.cpp
@@ -81,7 +84,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: ds/fastset.hpp
-  requiredBy: []
+  requiredBy:
+  - ds/intervals.hpp
   timestamp: '2022-04-24 15:02:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
