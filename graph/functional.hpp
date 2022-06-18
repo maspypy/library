@@ -36,7 +36,7 @@ struct FunctionalGraph {
       else
         tree.add(N, v);
     }
-    tree.prepare();
+    tree.build();
   }
 
   void debug() {
