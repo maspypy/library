@@ -11,13 +11,13 @@ struct LazySegTreeBeats {
   vc<A> laz;
 
   LazySegTreeBeats() : LazySegTreeBeats(0) {}
-  LazySegTreeBeats(int n) : LazySegTreeBeats(vc<X>(n, Monoid_X::unit)) {}
+  LazySegTreeBeats(int n) : LazySegTreeBeats(vc<X>(n, Monoid_X::unit())) {}
   LazySegTreeBeats(vc<X> v) : n(len(v)) {
     log = 1;
     while ((1 << log) < n) ++log;
     size = 1 << log;
-    dat.assign(size << 1, Monoid_X::unit);
-    laz.assign(size, Monoid_A::unit);
+    dat.assign(size << 1, Monoid_X::unit());
+    laz.assign(size, Monoid_A::unit());
     FOR(i, n) dat[size + i] = v[i];
     FOR3_R(i, 1, size) update(i);
   }
@@ -25,17 +25,20 @@ struct LazySegTreeBeats {
   void update(int k) { dat[k] = Monoid_X::op(dat[2 * k], dat[2 * k + 1]); }
 
   void all_apply(int k, A a) {
-    dat[k] = Lazy::act(dat[k], a);
-    if (k < size) {
+    if(dat[k].fail){
       laz[k] = Monoid_A::op(laz[k], a);
-      if (dat[k].fail) push(k), update(k);
+      push(k), update(k);
+      return;
     }
+    dat[k] = Lazy::act(dat[k], a);
+    if(k < size) laz[k] = Monoid_A::op(laz[k], a);
   }
 
   void push(int k) {
+    if(laz[k] == Monoid_A::unit()) return;
     all_apply(2 * k, laz[k]);
     all_apply(2 * k + 1, laz[k]);
-    laz[k] = Monoid_A::unit;
+    laz[k] = Monoid_A::unit();
   }
 
   void set(int p, X x) {
@@ -60,7 +63,7 @@ struct LazySegTreeBeats {
 
   X prod(int l, int r) {
     assert(0 <= l && l <= r && r <= n);
-    if (l == r) return Monoid_X::unit;
+    if (l == r) return Monoid_X::unit();
 
     l += size;
     r += size;
@@ -70,7 +73,7 @@ struct LazySegTreeBeats {
       if (((r >> i) << i) != r) push((r - 1) >> i);
     }
 
-    X xl = Monoid_X::unit, xr = Monoid_X::unit;
+    X xl = Monoid_X::unit(), xr = Monoid_X::unit();
     while (l < r) {
       if (l & 1) xl = Monoid_X::op(xl, dat[l++]);
       if (r & 1) xr = Monoid_X::op(dat[--r], xr);
@@ -123,11 +126,11 @@ struct LazySegTreeBeats {
   template <typename C>
   int max_right(C& check, int l) {
     assert(0 <= l && l <= n);
-    assert(check(Monoid_X::unit));
+    assert(check(Monoid_X::unit()));
     if (l == n) return n;
     l += size;
     for (int i = log; i >= 1; i--) push(l >> i);
-    X sm = Monoid_X::unit;
+    X sm = Monoid_X::unit();
     do {
       while (l % 2 == 0) l >>= 1;
       if (!check(Monoid_X::op(sm, dat[l]))) {
@@ -150,11 +153,11 @@ struct LazySegTreeBeats {
   template <typename C>
   int min_left(C& check, int r) {
     assert(0 <= r && r <= n);
-    assert(check(Monoid_X::unit));
+    assert(check(Monoid_X::unit()));
     if (r == 0) return 0;
     r += size;
     for (int i = log; i >= 1; i--) push((r - 1) >> i);
-    X sm = Monoid_X::unit;
+    X sm = Monoid_X::unit();
     do {
       r--;
       while (r > 1 && (r % 2)) r >>= 1;
