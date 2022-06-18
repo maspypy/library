@@ -134,8 +134,8 @@ data:
     \ N) if (root[v] == v) root[uf[v]] = v;\r\n    FOR(v, N) root[v] = root[uf[v]];\r\
     \n\r\n    tree = Graph<T, 1>(N + 1);\r\n    FOR(v, N) {\r\n      if (root[v] !=\
     \ v)\r\n        tree.add(TO[v], v);\r\n      else\r\n        tree.add(N, v);\r\
-    \n    }\r\n    tree.prepare();\r\n  }\r\n\r\n  void debug() {\r\n    print(\"\
-    TO\", TO);\r\n    print(\"root\");\r\n    print(root);\r\n    print(\"\u6839\u3092\
+    \n    }\r\n    tree.build();\r\n  }\r\n\r\n  void debug() {\r\n    print(\"TO\"\
+    , TO);\r\n    print(\"root\");\r\n    print(root);\r\n    print(\"\u6839\u3092\
     \u8FFD\u52A0\u3057\u305F\u6728 tree\");\r\n    tree.debug();\r\n  }\r\n};\r\n"
   code: "#include \"ds/unionfind.hpp\"\r\n#include \"graph/base.hpp\"\r\n#include\
     \ \"graph/hld.hpp\"\r\n\r\ntemplate <typename T = int>\r\nstruct FunctionalGraph\
@@ -151,8 +151,8 @@ data:
     \ == v) root[uf[v]] = v;\r\n    FOR(v, N) root[v] = root[uf[v]];\r\n\r\n    tree\
     \ = Graph<T, 1>(N + 1);\r\n    FOR(v, N) {\r\n      if (root[v] != v)\r\n    \
     \    tree.add(TO[v], v);\r\n      else\r\n        tree.add(N, v);\r\n    }\r\n\
-    \    tree.prepare();\r\n  }\r\n\r\n  void debug() {\r\n    print(\"TO\", TO);\r\
-    \n    print(\"root\");\r\n    print(root);\r\n    print(\"\u6839\u3092\u8FFD\u52A0\
+    \    tree.build();\r\n  }\r\n\r\n  void debug() {\r\n    print(\"TO\", TO);\r\n\
+    \    print(\"root\");\r\n    print(root);\r\n    print(\"\u6839\u3092\u8FFD\u52A0\
     \u3057\u305F\u6728 tree\");\r\n    tree.debug();\r\n  }\r\n};\r\n"
   dependsOn:
   - ds/unionfind.hpp
@@ -161,7 +161,7 @@ data:
   isVerificationFile: false
   path: graph/functional.hpp
   requiredBy: []
-  timestamp: '2022-05-23 16:54:27+09:00'
+  timestamp: '2022-06-18 12:09:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/functional.hpp
