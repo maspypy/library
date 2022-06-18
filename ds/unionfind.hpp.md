@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
   - icon: ':heavy_check_mark:'
@@ -48,12 +48,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1170_online_uf.test.cpp
     title: test/yukicoder/1170_online_uf.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
     title: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/unionfind.hpp\"\n\nstruct UnionFind {\n  int num;\n \
@@ -89,7 +89,7 @@ data:
   - graph/maximum_antichain.hpp
   - graph/functional.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_2_A_mst.test.cpp
   - test/aoj/2251_dag_path_cover.test.cpp

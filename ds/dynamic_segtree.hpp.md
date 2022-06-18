@@ -6,7 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036_dseg_minleft_maxright.test.cpp
     title: test/yukicoder/1036_dseg_minleft_maxright.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1649_dynamic_seg.test.cpp
     title: test/yukicoder/1649_dynamic_seg.test.cpp
   - icon: ':x:'

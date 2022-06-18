@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/lazysegtree_beats.hpp
     title: ds/lazysegtree_beats.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
     title: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/lazysegtree_beats.hpp\"\n\ntemplate <typename Lazy>\n\
@@ -24,38 +24,37 @@ data:
     \ = 1 << log;\n    dat.assign(size << 1, Monoid_X::unit());\n    laz.assign(size,\
     \ Monoid_A::unit());\n    FOR(i, n) dat[size + i] = v[i];\n    FOR3_R(i, 1, size)\
     \ update(i);\n  }\n\n  void update(int k) { dat[k] = Monoid_X::op(dat[2 * k],\
-    \ dat[2 * k + 1]); }\n\n  void all_apply(int k, A a) {\n    if(dat[k].fail){\n\
-    \      laz[k] = Monoid_A::op(laz[k], a);\n      push(k), update(k);\n      return;\n\
-    \    }\n    dat[k] = Lazy::act(dat[k], a);\n    if(k < size) laz[k] = Monoid_A::op(laz[k],\
-    \ a);\n  }\n\n  void push(int k) {\n    if(laz[k] == Monoid_A::unit()) return;\n\
-    \    all_apply(2 * k, laz[k]);\n    all_apply(2 * k + 1, laz[k]);\n    laz[k]\
-    \ = Monoid_A::unit();\n  }\n\n  void set(int p, X x) {\n    assert(0 <= p && p\
-    \ < n);\n    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n  \
-    \  dat[p] = x;\n    for (int i = 1; i <= log; i++) update(p >> i);\n  }\n\n  X\
-    \ get(int p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int i =\
-    \ log; i >= 1; i--) push(p >> i);\n    return dat[p];\n  }\n\n  vc<X> get_all()\
-    \ {\n    FOR(i, size) push(i);\n    return {dat.begin() + size, dat.begin() +\
-    \ size + n};\n  }\n\n  X prod(int l, int r) {\n    assert(0 <= l && l <= r &&\
-    \ r <= n);\n    if (l == r) return Monoid_X::unit();\n\n    l += size;\n    r\
-    \ += size;\n\n    for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i)\
-    \ != l) push(l >> i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n \
-    \   }\n\n    X xl = Monoid_X::unit(), xr = Monoid_X::unit();\n    while (l < r)\
-    \ {\n      if (l & 1) xl = Monoid_X::op(xl, dat[l++]);\n      if (r & 1) xr =\
-    \ Monoid_X::op(dat[--r], xr);\n      l >>= 1;\n      r >>= 1;\n    }\n\n    return\
-    \ Monoid_X::op(xl, xr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  void apply(int\
-    \ p, A a) {\n    assert(0 <= p && p < n);\n    p += size;\n    if (!Monoid_A::commute)\n\
-    \      for (int i = log; i >= 1; i--) push(p >> i);\n    dat[p] = Lazy::act(dat[p],\
-    \ a);\n    for (int i = 1; i <= log; i++) update(p >> i);\n  }\n\n  void apply(int\
-    \ l, int r, A a) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n\
-    \    l += size;\n    r += size;\n    for (int i = log; i >= 1; i--) {\n      if\
-    \ (((l >> i) << i) != l) push(l >> i);\n      if (((r >> i) << i) != r) push((r\
-    \ - 1) >> i);\n    }\n\n    {\n      int l2 = l, r2 = r;\n      while (l < r)\
-    \ {\n        if (l & 1) all_apply(l++, a);\n        if (r & 1) all_apply(--r,\
-    \ a);\n        l >>= 1;\n        r >>= 1;\n      }\n      l = l2;\n      r = r2;\n\
-    \    }\n\n    for (int i = 1; i <= log; i++) {\n      if (((l >> i) << i) != l)\
-    \ update(l >> i);\n      if (((r >> i) << i) != r) update((r - 1) >> i);\n   \
-    \ }\n  }\n\n  template <typename C>\n  int max_right(C& check, int l) {\n    assert(0\
-    \ <= l && l <= n);\n    assert(check(Monoid_X::unit()));\n    if (l == n) return\
+    \ dat[2 * k + 1]); }\n\n  void all_apply(int k, A a) {\n    dat[k] = Lazy::act(dat[k],\
+    \ a);\n    if (k < size) {\n      laz[k] = Monoid_A::op(laz[k], a);\n      if\
+    \ (dat[k].fail) push(k), update(k);\n    }\n  }\n\n  void push(int k) {\n    all_apply(2\
+    \ * k, laz[k]);\n    all_apply(2 * k + 1, laz[k]);\n    laz[k] = Monoid_A::unit();\n\
+    \  }\n\n  void set(int p, X x) {\n    assert(0 <= p && p < n);\n    p += size;\n\
+    \    for (int i = log; i >= 1; i--) push(p >> i);\n    dat[p] = x;\n    for (int\
+    \ i = 1; i <= log; i++) update(p >> i);\n  }\n\n  X get(int p) {\n    assert(0\
+    \ <= p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--) push(p >>\
+    \ i);\n    return dat[p];\n  }\n\n  vc<X> get_all() {\n    FOR(i, size) push(i);\n\
+    \    return {dat.begin() + size, dat.begin() + size + n};\n  }\n\n  X prod(int\
+    \ l, int r) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return\
+    \ Monoid_X::unit();\n\n    l += size;\n    r += size;\n\n    for (int i = log;\
+    \ i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l >> i);\n      if (((r\
+    \ >> i) << i) != r) push((r - 1) >> i);\n    }\n\n    X xl = Monoid_X::unit(),\
+    \ xr = Monoid_X::unit();\n    while (l < r) {\n      if (l & 1) xl = Monoid_X::op(xl,\
+    \ dat[l++]);\n      if (r & 1) xr = Monoid_X::op(dat[--r], xr);\n      l >>= 1;\n\
+    \      r >>= 1;\n    }\n\n    return Monoid_X::op(xl, xr);\n  }\n\n  X prod_all()\
+    \ { return dat[1]; }\n\n  void apply(int p, A a) {\n    assert(0 <= p && p < n);\n\
+    \    p += size;\n    if (!Monoid_A::commute)\n      for (int i = log; i >= 1;\
+    \ i--) push(p >> i);\n    dat[p] = Lazy::act(dat[p], a);\n    for (int i = 1;\
+    \ i <= log; i++) update(p >> i);\n  }\n\n  void apply(int l, int r, A a) {\n \
+    \   assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n    l += size;\n\
+    \    r += size;\n    for (int i = log; i >= 1; i--) {\n      if (((l >> i) <<\
+    \ i) != l) push(l >> i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n\
+    \    }\n\n    {\n      int l2 = l, r2 = r;\n      while (l < r) {\n        if\
+    \ (l & 1) all_apply(l++, a);\n        if (r & 1) all_apply(--r, a);\n        l\
+    \ >>= 1;\n        r >>= 1;\n      }\n      l = l2;\n      r = r2;\n    }\n\n \
+    \   for (int i = 1; i <= log; i++) {\n      if (((l >> i) << i) != l) update(l\
+    \ >> i);\n      if (((r >> i) << i) != r) update((r - 1) >> i);\n    }\n  }\n\n\
+    \  template <typename C>\n  int max_right(C& check, int l) {\n    assert(0 <=\
+    \ l && l <= n);\n    assert(check(Monoid_X::unit()));\n    if (l == n) return\
     \ n;\n    l += size;\n    for (int i = log; i >= 1; i--) push(l >> i);\n    X\
     \ sm = Monoid_X::unit();\n    do {\n      while (l % 2 == 0) l >>= 1;\n      if\
     \ (!check(Monoid_X::op(sm, dat[l]))) {\n        while (l < size) {\n         \
@@ -89,36 +88,37 @@ data:
     \     if (z.max > x.max2 && x.max2 > z.max2) z.max2 = x.max2;\r\n      if (z.max\
     \ > y.max && y.max > z.max2) z.max2 = y.max;\r\n      if (z.max > y.max2 && y.max2\
     \ > z.max2) z.max2 = y.max2;\r\n\r\n      z.fail = 0;\r\n      return z;\r\n \
-    \   }\r\n    static constexpr X unit = {0, 0, INF, -INF, 0, 0, INF, -INF, 0};\r\
-    \n    bool commute = true;\r\n  };\r\n\r\n  struct AddChminChmax {\r\n    struct\
-    \ X {\r\n      ll add, min, max;\r\n    };\r\n    using value_type = X;\r\n  \
-    \  static constexpr X op(const X& x, const X& y) {\r\n      auto [a, b, c] = x;\r\
-    \n      auto [d, e, f] = y;\r\n      a += d, b += d, c += d;\r\n      b = min(b,\
-    \ e), c = min(c, e);\r\n      c = max(c, f);\r\n      return {a, b, c};\r\n  \
-    \  }\r\n    static constexpr X unit = {0, INF, -INF};\r\n    bool commute = false;\r\
-    \n  };\r\n  struct Lazy {\r\n    using MX = CntSumMinMax;\r\n    using MA = AddChminChmax;\r\
-    \n    using X_structure = MX;\r\n    using A_structure = MA;\r\n    using X =\
-    \ MX::value_type;\r\n    using A = MA::value_type;\r\n    static X act(X& x, const\
-    \ A& a) {\r\n      assert(!x.fail);\r\n      if (x.cnt == 0) return x;\r\n   \
-    \   x.sum += x.cnt * a.add;\r\n      x.min += a.add, x.max += a.add;\r\n     \
-    \ x.min2 += a.add, x.max2 += a.add;\r\n\r\n      if (a.min == INF && a.max ==\
-    \ -INF) return x;\r\n\r\n      ll before_min = x.min, before_max = x.max;\r\n\
-    \      x.min = min(x.min, a.min);\r\n      x.min = max(x.min, a.max);\r\n    \
-    \  x.max = min(x.max, a.min);\r\n      x.max = max(x.max, a.max);\r\n\r\n    \
-    \  if (x.min == x.max) {\r\n        x.sum = x.max * x.cnt;\r\n        x.max2 =\
-    \ x.min2 = x.max;\r\n        x.maxc = x.minc = x.cnt;\r\n      }\r\n      elif\
-    \ (x.max2 <= x.min) {\r\n        x.max2 = x.min, x.min2 = x.max;\r\n        x.minc\
-    \ = x.cnt - x.maxc;\r\n        x.sum = x.max * x.maxc + x.min * x.minc;\r\n  \
-    \    }\r\n      elif (x.min2 >= x.max) {\r\n        x.max2 = x.min, x.min2 = x.max;\r\
-    \n        x.maxc = x.cnt - x.minc;\r\n        x.sum = x.max * x.maxc + x.min *\
-    \ x.minc;\r\n      }\r\n      elif (x.min < x.min2 && x.max > x.max2) {\r\n  \
-    \      x.sum += (x.min - before_min) * x.minc;\r\n        x.sum += (x.max - before_max)\
-    \ * x.maxc;\r\n      }\r\n      else {\r\n        x.fail = 1;\r\n      }\r\n \
-    \     return x;\r\n    }\r\n  };\r\n\r\n  LazySegTreeBeats<Lazy> seg;\r\n\r\n\
-    \  Beats_SumMaxMin_ChminChmax(vc<ll>& A) {\r\n    using X = Lazy::MX::value_type;\r\
-    \n    vc<X> seg_raw(len(A));\r\n    FOR(i, len(A)) {\r\n      ll x = A[i];\r\n\
-    \      seg_raw[i] = {1, x, x, x, 1, 1, x, x, 0};\r\n    }\r\n    seg = LazySegTreeBeats<Lazy>(seg_raw);\r\
-    \n  }\r\n\r\n  void set(int i, ll x) { seg.set(i, {1, x, x, x, 1, 1, x, x, 0});\
+    \   }\r\n    static constexpr X unit () {\r\n      return {0, 0, INF, -INF, 0,\
+    \ 0, INF, -INF, 0};\r\n    }\r\n    bool commute = true;\r\n  };\r\n\r\n  struct\
+    \ AddChminChmax {\r\n    using X = tuple<ll, ll, ll>;\r\n    using value_type\
+    \ = X;\r\n    static constexpr X op(const X& x, const X& y) {\r\n      auto [a,\
+    \ b, c] = x;\r\n      auto [d, e, f] = y;\r\n      a += d, b += d, c += d;\r\n\
+    \      b = min(b, e), c = min(c, e);\r\n      c = max(c, f);\r\n      return {a,\
+    \ b, c};\r\n    }\r\n    static constexpr X unit () {\r\n      return {0, INF,\
+    \ -INF};\r\n    }\r\n    bool commute = false;\r\n  };\r\n  struct Lazy {\r\n\
+    \    using MX = CntSumMinMax;\r\n    using MA = AddChminChmax;\r\n    using X_structure\
+    \ = MX;\r\n    using A_structure = MA;\r\n    using X = MX::value_type;\r\n  \
+    \  using A = MA::value_type;\r\n    static X act(X& x, const A& a) {\r\n     \
+    \ assert(!x.fail);\r\n      if (x.cnt == 0) return x;\r\n      auto [add, mi,\
+    \ ma] = a;\r\n      x.sum += x.cnt * add;\r\n      x.min += add, x.max += add;\r\
+    \n      x.min2 += add, x.max2 += add;\r\n\r\n      if (mi == INF && ma == -INF)\
+    \ return x;\r\n\r\n      ll before_min = x.min, before_max = x.max;\r\n      x.min\
+    \ = min(x.min, mi);\r\n      x.min = max(x.min, ma);\r\n      x.max = min(x.max,\
+    \ mi);\r\n      x.max = max(x.max, ma);\r\n\r\n      if (x.min == x.max) {\r\n\
+    \        x.sum = x.max * x.cnt;\r\n        x.max2 = x.min2 = x.max;\r\n      \
+    \  x.maxc = x.minc = x.cnt;\r\n      }\r\n      elif (x.max2 <= x.min) {\r\n \
+    \       x.max2 = x.min, x.min2 = x.max;\r\n        x.minc = x.cnt - x.maxc;\r\n\
+    \        x.sum = x.max * x.maxc + x.min * x.minc;\r\n      }\r\n      elif (x.min2\
+    \ >= x.max) {\r\n        x.max2 = x.min, x.min2 = x.max;\r\n        x.maxc = x.cnt\
+    \ - x.minc;\r\n        x.sum = x.max * x.maxc + x.min * x.minc;\r\n      }\r\n\
+    \      elif (x.min < x.min2 && x.max > x.max2) {\r\n        x.sum += (x.min -\
+    \ before_min) * x.minc;\r\n        x.sum += (x.max - before_max) * x.maxc;\r\n\
+    \      }\r\n      else {\r\n        x.fail = 1;\r\n      }\r\n      return x;\r\
+    \n    }\r\n  };\r\n\r\n  LazySegTreeBeats<Lazy> seg;\r\n\r\n  Beats_SumMaxMin_ChminChmax(vc<ll>&\
+    \ A) {\r\n    using X = Lazy::MX::value_type;\r\n    vc<X> seg_raw(len(A));\r\n\
+    \    FOR(i, len(A)) {\r\n      ll x = A[i];\r\n      seg_raw[i] = {1, x, x, x,\
+    \ 1, 1, x, x, 0};\r\n    }\r\n    seg = LazySegTreeBeats<Lazy>(seg_raw);\r\n \
+    \ }\r\n\r\n  void set(int i, ll x) { seg.set(i, {1, x, x, x, 1, 1, x, x, 0});\
     \ }\r\n\r\n  Lazy::MX::value_type prod(int l, int r) {\r\n    auto e = seg.prod(l,\
     \ r);\r\n    return e;\r\n  }\r\n\r\n  void chmin(int l, int r, ll x) { seg.apply(l,\
     \ r, {0, x, -INF}); }\r\n\r\n  void chmax(int l, int r, ll x) { seg.apply(l, r,\
@@ -141,38 +141,38 @@ data:
     \ > z.max2) z.max2 = x.max2;\r\n      if (z.max > y.max && y.max > z.max2) z.max2\
     \ = y.max;\r\n      if (z.max > y.max2 && y.max2 > z.max2) z.max2 = y.max2;\r\n\
     \r\n      z.fail = 0;\r\n      return z;\r\n    }\r\n    static constexpr X unit\
-    \ = {0, 0, INF, -INF, 0, 0, INF, -INF, 0};\r\n    bool commute = true;\r\n  };\r\
-    \n\r\n  struct AddChminChmax {\r\n    struct X {\r\n      ll add, min, max;\r\n\
-    \    };\r\n    using value_type = X;\r\n    static constexpr X op(const X& x,\
-    \ const X& y) {\r\n      auto [a, b, c] = x;\r\n      auto [d, e, f] = y;\r\n\
-    \      a += d, b += d, c += d;\r\n      b = min(b, e), c = min(c, e);\r\n    \
-    \  c = max(c, f);\r\n      return {a, b, c};\r\n    }\r\n    static constexpr\
-    \ X unit = {0, INF, -INF};\r\n    bool commute = false;\r\n  };\r\n  struct Lazy\
-    \ {\r\n    using MX = CntSumMinMax;\r\n    using MA = AddChminChmax;\r\n    using\
-    \ X_structure = MX;\r\n    using A_structure = MA;\r\n    using X = MX::value_type;\r\
-    \n    using A = MA::value_type;\r\n    static X act(X& x, const A& a) {\r\n  \
-    \    assert(!x.fail);\r\n      if (x.cnt == 0) return x;\r\n      x.sum += x.cnt\
-    \ * a.add;\r\n      x.min += a.add, x.max += a.add;\r\n      x.min2 += a.add,\
-    \ x.max2 += a.add;\r\n\r\n      if (a.min == INF && a.max == -INF) return x;\r\
-    \n\r\n      ll before_min = x.min, before_max = x.max;\r\n      x.min = min(x.min,\
-    \ a.min);\r\n      x.min = max(x.min, a.max);\r\n      x.max = min(x.max, a.min);\r\
-    \n      x.max = max(x.max, a.max);\r\n\r\n      if (x.min == x.max) {\r\n    \
-    \    x.sum = x.max * x.cnt;\r\n        x.max2 = x.min2 = x.max;\r\n        x.maxc\
-    \ = x.minc = x.cnt;\r\n      }\r\n      elif (x.max2 <= x.min) {\r\n        x.max2\
-    \ = x.min, x.min2 = x.max;\r\n        x.minc = x.cnt - x.maxc;\r\n        x.sum\
-    \ = x.max * x.maxc + x.min * x.minc;\r\n      }\r\n      elif (x.min2 >= x.max)\
-    \ {\r\n        x.max2 = x.min, x.min2 = x.max;\r\n        x.maxc = x.cnt - x.minc;\r\
-    \n        x.sum = x.max * x.maxc + x.min * x.minc;\r\n      }\r\n      elif (x.min\
-    \ < x.min2 && x.max > x.max2) {\r\n        x.sum += (x.min - before_min) * x.minc;\r\
-    \n        x.sum += (x.max - before_max) * x.maxc;\r\n      }\r\n      else {\r\
-    \n        x.fail = 1;\r\n      }\r\n      return x;\r\n    }\r\n  };\r\n\r\n \
-    \ LazySegTreeBeats<Lazy> seg;\r\n\r\n  Beats_SumMaxMin_ChminChmax(vc<ll>& A) {\r\
-    \n    using X = Lazy::MX::value_type;\r\n    vc<X> seg_raw(len(A));\r\n    FOR(i,\
-    \ len(A)) {\r\n      ll x = A[i];\r\n      seg_raw[i] = {1, x, x, x, 1, 1, x,\
-    \ x, 0};\r\n    }\r\n    seg = LazySegTreeBeats<Lazy>(seg_raw);\r\n  }\r\n\r\n\
-    \  void set(int i, ll x) { seg.set(i, {1, x, x, x, 1, 1, x, x, 0}); }\r\n\r\n\
-    \  Lazy::MX::value_type prod(int l, int r) {\r\n    auto e = seg.prod(l, r);\r\
-    \n    return e;\r\n  }\r\n\r\n  void chmin(int l, int r, ll x) { seg.apply(l,\
+    \ () {\r\n      return {0, 0, INF, -INF, 0, 0, INF, -INF, 0};\r\n    }\r\n   \
+    \ bool commute = true;\r\n  };\r\n\r\n  struct AddChminChmax {\r\n    using X\
+    \ = tuple<ll, ll, ll>;\r\n    using value_type = X;\r\n    static constexpr X\
+    \ op(const X& x, const X& y) {\r\n      auto [a, b, c] = x;\r\n      auto [d,\
+    \ e, f] = y;\r\n      a += d, b += d, c += d;\r\n      b = min(b, e), c = min(c,\
+    \ e);\r\n      c = max(c, f);\r\n      return {a, b, c};\r\n    }\r\n    static\
+    \ constexpr X unit () {\r\n      return {0, INF, -INF};\r\n    }\r\n    bool commute\
+    \ = false;\r\n  };\r\n  struct Lazy {\r\n    using MX = CntSumMinMax;\r\n    using\
+    \ MA = AddChminChmax;\r\n    using X_structure = MX;\r\n    using A_structure\
+    \ = MA;\r\n    using X = MX::value_type;\r\n    using A = MA::value_type;\r\n\
+    \    static X act(X& x, const A& a) {\r\n      assert(!x.fail);\r\n      if (x.cnt\
+    \ == 0) return x;\r\n      auto [add, mi, ma] = a;\r\n      x.sum += x.cnt * add;\r\
+    \n      x.min += add, x.max += add;\r\n      x.min2 += add, x.max2 += add;\r\n\
+    \r\n      if (mi == INF && ma == -INF) return x;\r\n\r\n      ll before_min =\
+    \ x.min, before_max = x.max;\r\n      x.min = min(x.min, mi);\r\n      x.min =\
+    \ max(x.min, ma);\r\n      x.max = min(x.max, mi);\r\n      x.max = max(x.max,\
+    \ ma);\r\n\r\n      if (x.min == x.max) {\r\n        x.sum = x.max * x.cnt;\r\n\
+    \        x.max2 = x.min2 = x.max;\r\n        x.maxc = x.minc = x.cnt;\r\n    \
+    \  }\r\n      elif (x.max2 <= x.min) {\r\n        x.max2 = x.min, x.min2 = x.max;\r\
+    \n        x.minc = x.cnt - x.maxc;\r\n        x.sum = x.max * x.maxc + x.min *\
+    \ x.minc;\r\n      }\r\n      elif (x.min2 >= x.max) {\r\n        x.max2 = x.min,\
+    \ x.min2 = x.max;\r\n        x.maxc = x.cnt - x.minc;\r\n        x.sum = x.max\
+    \ * x.maxc + x.min * x.minc;\r\n      }\r\n      elif (x.min < x.min2 && x.max\
+    \ > x.max2) {\r\n        x.sum += (x.min - before_min) * x.minc;\r\n        x.sum\
+    \ += (x.max - before_max) * x.maxc;\r\n      }\r\n      else {\r\n        x.fail\
+    \ = 1;\r\n      }\r\n      return x;\r\n    }\r\n  };\r\n\r\n  LazySegTreeBeats<Lazy>\
+    \ seg;\r\n\r\n  Beats_SumMaxMin_ChminChmax(vc<ll>& A) {\r\n    using X = Lazy::MX::value_type;\r\
+    \n    vc<X> seg_raw(len(A));\r\n    FOR(i, len(A)) {\r\n      ll x = A[i];\r\n\
+    \      seg_raw[i] = {1, x, x, x, 1, 1, x, x, 0};\r\n    }\r\n    seg = LazySegTreeBeats<Lazy>(seg_raw);\r\
+    \n  }\r\n\r\n  void set(int i, ll x) { seg.set(i, {1, x, x, x, 1, 1, x, x, 0});\
+    \ }\r\n\r\n  Lazy::MX::value_type prod(int l, int r) {\r\n    auto e = seg.prod(l,\
+    \ r);\r\n    return e;\r\n  }\r\n\r\n  void chmin(int l, int r, ll x) { seg.apply(l,\
     \ r, {0, x, -INF}); }\r\n\r\n  void chmax(int l, int r, ll x) { seg.apply(l, r,\
     \ {0, INF, x}); }\r\n\r\n  void add(int l, int r, ll x) { seg.apply(l, r, {x,\
     \ INF, -INF}); }\r\n};\r\n"
@@ -181,8 +181,8 @@ data:
   isVerificationFile: false
   path: ds/beats_summaxmin_chminchmax.hpp
   requiredBy: []
-  timestamp: '2022-06-19 01:08:47+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-06-19 02:52:14+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
 documentation_of: ds/beats_summaxmin_chminchmax.hpp

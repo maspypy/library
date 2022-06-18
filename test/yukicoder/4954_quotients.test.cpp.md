@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/floor_range.hpp
     title: other/floor_range.hpp
   - icon: ':question:'
