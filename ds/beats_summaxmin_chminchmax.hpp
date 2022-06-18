@@ -34,14 +34,14 @@ struct Beats_SumMaxMin_ChminChmax {
       z.fail = 0;
       return z;
     }
-    static constexpr X unit = {0, 0, INF, -INF, 0, 0, INF, -INF, 0};
+    static constexpr X unit () {
+      return {0, 0, INF, -INF, 0, 0, INF, -INF, 0};
+    }
     bool commute = true;
   };
 
   struct AddChminChmax {
-    struct X {
-      ll add, min, max;
-    };
+    using X = tuple<ll, ll, ll>;
     using value_type = X;
     static constexpr X op(const X& x, const X& y) {
       auto [a, b, c] = x;
@@ -51,7 +51,9 @@ struct Beats_SumMaxMin_ChminChmax {
       c = max(c, f);
       return {a, b, c};
     }
-    static constexpr X unit = {0, INF, -INF};
+    static constexpr X unit () {
+      return {0, INF, -INF};
+    }
     bool commute = false;
   };
   struct Lazy {
@@ -64,17 +66,18 @@ struct Beats_SumMaxMin_ChminChmax {
     static X act(X& x, const A& a) {
       assert(!x.fail);
       if (x.cnt == 0) return x;
-      x.sum += x.cnt * a.add;
-      x.min += a.add, x.max += a.add;
-      x.min2 += a.add, x.max2 += a.add;
+      auto [add, mi, ma] = a;
+      x.sum += x.cnt * add;
+      x.min += add, x.max += add;
+      x.min2 += add, x.max2 += add;
 
-      if (a.min == INF && a.max == -INF) return x;
+      if (mi == INF && ma == -INF) return x;
 
       ll before_min = x.min, before_max = x.max;
-      x.min = min(x.min, a.min);
-      x.min = max(x.min, a.max);
-      x.max = min(x.max, a.min);
-      x.max = max(x.max, a.max);
+      x.min = min(x.min, mi);
+      x.min = max(x.min, ma);
+      x.max = min(x.max, mi);
+      x.max = max(x.max, ma);
 
       if (x.min == x.max) {
         x.sum = x.max * x.cnt;
