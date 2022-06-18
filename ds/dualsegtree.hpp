@@ -14,13 +14,9 @@ struct DualSegTree {
     laz.assign(size << 1, Monoid::unit());
   }
 
-  void all_apply(int k, A a) { laz[k] = Monoid::op(laz[k], a); }
+  void reset() { fill(all(laz), Monoid::unit()); }
 
-  void push(int k) {
-    all_apply(2 * k, laz[k]);
-    all_apply(2 * k + 1, laz[k]);
-    laz[k] = Monoid::unit();
-  }
+  void all_apply(int k, A a) { laz[k] = Monoid::op(laz[k], a); }
 
   A get(int p) {
     assert(0 <= p && p < n);
@@ -61,4 +57,11 @@ struct DualSegTree {
     }
   }
   void debug() { print("dualsegtree getall:", get_all()); }
+
+private:
+  void push(int k) {
+    all_apply(2 * k, laz[k]);
+    all_apply(2 * k + 1, laz[k]);
+    laz[k] = Monoid::unit();
+  }
 };
