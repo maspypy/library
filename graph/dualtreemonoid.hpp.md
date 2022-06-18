@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/dualsegtree.hpp
     title: ds/dualsegtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/hld.hpp
     title: graph/hld.hpp
   _extendedRequiredBy:
@@ -182,36 +182,37 @@ data:
     \ {\n  using A = typename Monoid::value_type;\n  int n, log, size;\n  vc<A> laz;\n\
     \n  DualSegTree() : DualSegTree(0) {}\n  DualSegTree(int n) : n(n) {\n    log\
     \ = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    laz.assign(size\
-    \ << 1, Monoid::unit());\n  }\n\n  void all_apply(int k, A a) { laz[k] = Monoid::op(laz[k],\
-    \ a); }\n\n  void push(int k) {\n    all_apply(2 * k, laz[k]);\n    all_apply(2\
-    \ * k + 1, laz[k]);\n    laz[k] = Monoid::unit();\n  }\n\n  A get(int p) {\n \
-    \   assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--)\
-    \ push(p >> i);\n    return laz[p];\n  }\n\n  vc<A> get_all() {\n    FOR(i, size)\
-    \ push(i);\n    return {laz.begin() + size, laz.begin() + size + n};\n  }\n\n\
-    \  void apply(int l, int r, A a) {\n    assert(0 <= l && l <= r && r <= n);\n\
-    \    if (l == r) return;\n\n    l += size;\n    r += size;\n\n    if (!Monoid::commute)\
-    \ {\n      for (int i = log; i >= 1; i--) {\n        if (((l >> i) << i) != l)\
-    \ push(l >> i);\n        if (((r >> i) << i) != r) push((r - 1) >> i);\n     \
-    \ }\n    }\n\n    {\n      int l2 = l, r2 = r;\n      while (l < r) {\n      \
-    \  if (l & 1) all_apply(l++, a);\n        if (r & 1) all_apply(--r, a);\n    \
-    \    l >>= 1;\n        r >>= 1;\n      }\n      l = l2;\n      r = r2;\n    }\n\
-    \  }\n  void debug() { print(\"dualsegtree getall:\", get_all()); }\n};\n#line\
-    \ 4 \"graph/dualtreemonoid.hpp\"\n\r\ntemplate <typename HLD, typename Monoid,\
-    \ bool edge = false>\r\nstruct DualTreeMonoid {\r\n  using X = typename Monoid::value_type;\r\
-    \n  HLD &hld;\r\n  int N;\r\n  DualSegTree<Monoid> seg;\r\n\r\n  DualTreeMonoid(HLD\
-    \ &hld) : hld(hld), N(hld.N), seg(hld.N) {}\r\n\r\n  X get(int i) {\r\n    int\
-    \ v = i;\r\n    if (edge) {\r\n      auto &&e = hld.G.edges[i];\r\n      v = (hld.parent[e.frm]\
-    \ == e.to ? e.frm : e.to);\r\n    }\r\n    return seg.get(hld.LID[v]);\r\n  }\r\
-    \n\r\n  vc<X> get_all() {\r\n    vc<X> tmp = seg.get_all();\r\n    vc<X> res;\r\
-    \n    FOR(i, N) {\r\n      if (edge && i == N - 1) break;\r\n      int v = i;\r\
-    \n      if (edge) {\r\n        auto &&e = hld.G.edges[i];\r\n        v = (hld.parent[e.frm]\
-    \ == e.to ? e.frm : e.to);\r\n      }\r\n      res.eb(tmp[hld.LID[v]]);\r\n  \
-    \  }\r\n    return res;\r\n  }\r\n\r\n  void apply_path(int u, int v, X x) {\r\
-    \n    auto pd = hld.get_path_decomposition(u, v, edge);\r\n    for (auto &&[a,\
-    \ b]: pd) {\r\n      (a <= b ? seg.apply(a, b + 1, x) : seg.apply(b, a + 1, x));\r\
-    \n    }\r\n    return;\r\n  }\r\n\r\n  void apply_subtree(int u, X x) {\r\n  \
-    \  int l = hld.LID[u], r = hld.RID[u];\r\n    return seg.apply(l + edge, r, x);\r\
-    \n  }\r\n};\r\n"
+    \ << 1, Monoid::unit());\n  }\n\n  void reset() { fill(all(laz), Monoid::unit());\
+    \ }\n\n  void all_apply(int k, A a) { laz[k] = Monoid::op(laz[k], a); }\n\n  A\
+    \ get(int p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int i =\
+    \ log; i >= 1; i--) push(p >> i);\n    return laz[p];\n  }\n\n  vc<A> get_all()\
+    \ {\n    FOR(i, size) push(i);\n    return {laz.begin() + size, laz.begin() +\
+    \ size + n};\n  }\n\n  void apply(int l, int r, A a) {\n    assert(0 <= l && l\
+    \ <= r && r <= n);\n    if (l == r) return;\n\n    l += size;\n    r += size;\n\
+    \n    if (!Monoid::commute) {\n      for (int i = log; i >= 1; i--) {\n      \
+    \  if (((l >> i) << i) != l) push(l >> i);\n        if (((r >> i) << i) != r)\
+    \ push((r - 1) >> i);\n      }\n    }\n\n    {\n      int l2 = l, r2 = r;\n  \
+    \    while (l < r) {\n        if (l & 1) all_apply(l++, a);\n        if (r & 1)\
+    \ all_apply(--r, a);\n        l >>= 1;\n        r >>= 1;\n      }\n      l = l2;\n\
+    \      r = r2;\n    }\n  }\n  void debug() { print(\"dualsegtree getall:\", get_all());\
+    \ }\n\nprivate:\n  void push(int k) {\n    all_apply(2 * k, laz[k]);\n    all_apply(2\
+    \ * k + 1, laz[k]);\n    laz[k] = Monoid::unit();\n  }\n};\n#line 4 \"graph/dualtreemonoid.hpp\"\
+    \n\r\ntemplate <typename HLD, typename Monoid, bool edge = false>\r\nstruct DualTreeMonoid\
+    \ {\r\n  using X = typename Monoid::value_type;\r\n  HLD &hld;\r\n  int N;\r\n\
+    \  DualSegTree<Monoid> seg;\r\n\r\n  DualTreeMonoid(HLD &hld) : hld(hld), N(hld.N),\
+    \ seg(hld.N) {}\r\n\r\n  X get(int i) {\r\n    int v = i;\r\n    if (edge) {\r\
+    \n      auto &&e = hld.G.edges[i];\r\n      v = (hld.parent[e.frm] == e.to ? e.frm\
+    \ : e.to);\r\n    }\r\n    return seg.get(hld.LID[v]);\r\n  }\r\n\r\n  vc<X> get_all()\
+    \ {\r\n    vc<X> tmp = seg.get_all();\r\n    vc<X> res;\r\n    FOR(i, N) {\r\n\
+    \      if (edge && i == N - 1) break;\r\n      int v = i;\r\n      if (edge) {\r\
+    \n        auto &&e = hld.G.edges[i];\r\n        v = (hld.parent[e.frm] == e.to\
+    \ ? e.frm : e.to);\r\n      }\r\n      res.eb(tmp[hld.LID[v]]);\r\n    }\r\n \
+    \   return res;\r\n  }\r\n\r\n  void apply_path(int u, int v, X x) {\r\n    auto\
+    \ pd = hld.get_path_decomposition(u, v, edge);\r\n    for (auto &&[a, b]: pd)\
+    \ {\r\n      (a <= b ? seg.apply(a, b + 1, x) : seg.apply(b, a + 1, x));\r\n \
+    \   }\r\n    return;\r\n  }\r\n\r\n  void apply_subtree(int u, X x) {\r\n    int\
+    \ l = hld.LID[u], r = hld.RID[u];\r\n    return seg.apply(l + edge, r, x);\r\n\
+    \  }\r\n};\r\n"
   code: "#include \"ds/lazysegtree.hpp\"\r\n#include \"graph/hld.hpp\"\r\n#include\
     \ \"ds/dualsegtree.hpp\"\r\n\r\ntemplate <typename HLD, typename Monoid, bool\
     \ edge = false>\r\nstruct DualTreeMonoid {\r\n  using X = typename Monoid::value_type;\r\
@@ -238,7 +239,7 @@ data:
   path: graph/dualtreemonoid.hpp
   requiredBy:
   - graph/minimum_spanning_tree.hpp
-  timestamp: '2022-05-23 16:54:27+09:00'
+  timestamp: '2022-06-19 03:08:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_2_A_mst.test.cpp
