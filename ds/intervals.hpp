@@ -91,7 +91,8 @@ struct Intervals {
   // L, R 内のデータ (l, r, t) を全部取得する
   vc<tuple<X, X, T>> get(X L, X R) {
     vc<tuple<X, X, T>> res;
-    auto it = prev(dat.lower_bound(L));
+    auto it = dat.lower_bound(L);
+    if(it != dat.begin()) it = prev(it);
     while (1) {
       auto [l, t] = *it;
       if (R <= l) break;
@@ -105,7 +106,7 @@ struct Intervals {
   }
 
   vc<tuple<X, X, T>> get_all() {
-    return get(LLIM + 1, RLIM);
+    return get(LLIM, RLIM);
   }
 
   void debug() {
