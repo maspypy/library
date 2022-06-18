@@ -25,17 +25,14 @@ struct LazySegTreeBeats {
   void update(int k) { dat[k] = Monoid_X::op(dat[2 * k], dat[2 * k + 1]); }
 
   void all_apply(int k, A a) {
-    if(dat[k].fail){
-      laz[k] = Monoid_A::op(laz[k], a);
-      push(k), update(k);
-      return;
-    }
     dat[k] = Lazy::act(dat[k], a);
-    if(k < size) laz[k] = Monoid_A::op(laz[k], a);
+    if (k < size) {
+      laz[k] = Monoid_A::op(laz[k], a);
+      if (dat[k].fail) push(k), update(k);
+    }
   }
 
   void push(int k) {
-    if(laz[k] == Monoid_A::unit()) return;
     all_apply(2 * k, laz[k]);
     all_apply(2 * k + 1, laz[k]);
     laz[k] = Monoid_A::unit();
