@@ -44,15 +44,16 @@ data:
     \ L, X R) {\n    auto f = [&](X L, X R, T t) -> void {};\n    set(L, R, none_val,\
     \ f, f);\n  }\n\n  // L, R \u5185\u306E\u30C7\u30FC\u30BF (l, r, t) \u3092\u5168\
     \u90E8\u53D6\u5F97\u3059\u308B\n  vc<tuple<X, X, T>> get(X L, X R) {\n    vc<tuple<X,\
-    \ X, T>> res;\n    auto it = prev(dat.lower_bound(L));\n    while (1) {\n    \
-    \  auto [l, t] = *it;\n      if (R <= l) break;\n      it = next(it);\n      X\
-    \ r = (*it).fi;\n      X l0 = max(l, L);\n      X r0 = min(r, R);\n      if (l0\
-    \ < r0) res.eb(l0, r0, t);\n    }\n    return res;\n  }\n\n  vc<tuple<X, X, T>>\
-    \ get_all() {\n    return get(LLIM + 1, RLIM);\n  }\n\n  void debug() {\n    auto\
-    \ it = dat.begin();\n    print(\"Intervals\");\n    print(\"total_num\", total_num);\n\
-    \    print(\"total_len\", total_len);\n    while (1) {\n      auto [l, t] = *it;\n\
-    \      ++it;\n      if (it == dat.end()) break;\n      X r = (*it).fi;\n     \
-    \ print(\"l, r, t\", l, r, t);\n    }\n  }\n};\n"
+    \ X, T>> res;\n    auto it = dat.lower_bound(L);\n    if(it != dat.begin()) it\
+    \ = prev(it);\n    while (1) {\n      auto [l, t] = *it;\n      if (R <= l) break;\n\
+    \      it = next(it);\n      X r = (*it).fi;\n      X l0 = max(l, L);\n      X\
+    \ r0 = min(r, R);\n      if (l0 < r0) res.eb(l0, r0, t);\n    }\n    return res;\n\
+    \  }\n\n  vc<tuple<X, X, T>> get_all() {\n    return get(LLIM, RLIM);\n  }\n\n\
+    \  void debug() {\n    auto it = dat.begin();\n    print(\"Intervals\");\n   \
+    \ print(\"total_num\", total_num);\n    print(\"total_len\", total_len);\n   \
+    \ while (1) {\n      auto [l, t] = *it;\n      ++it;\n      if (it == dat.end())\
+    \ break;\n      X r = (*it).fi;\n      print(\"l, r, t\", l, r, t);\n    }\n \
+    \ }\n};\n"
   code: "// https://codeforces.com/contest/1638/problem/E\n// https://codeforces.com/contest/897/problem/E\n\
     // \u6301\u3064\u5024\u306E\u30BF\u30A4\u30D7 T\u3001\u5EA7\u6A19\u30BF\u30A4\u30D7\
     \ X\n// \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u3067\u306F T none_val \u3092\
@@ -87,20 +88,21 @@ data:
     \ L, X R) {\n    auto f = [&](X L, X R, T t) -> void {};\n    set(L, R, none_val,\
     \ f, f);\n  }\n\n  // L, R \u5185\u306E\u30C7\u30FC\u30BF (l, r, t) \u3092\u5168\
     \u90E8\u53D6\u5F97\u3059\u308B\n  vc<tuple<X, X, T>> get(X L, X R) {\n    vc<tuple<X,\
-    \ X, T>> res;\n    auto it = prev(dat.lower_bound(L));\n    while (1) {\n    \
-    \  auto [l, t] = *it;\n      if (R <= l) break;\n      it = next(it);\n      X\
-    \ r = (*it).fi;\n      X l0 = max(l, L);\n      X r0 = min(r, R);\n      if (l0\
-    \ < r0) res.eb(l0, r0, t);\n    }\n    return res;\n  }\n\n  vc<tuple<X, X, T>>\
-    \ get_all() {\n    return get(LLIM + 1, RLIM);\n  }\n\n  void debug() {\n    auto\
-    \ it = dat.begin();\n    print(\"Intervals\");\n    print(\"total_num\", total_num);\n\
-    \    print(\"total_len\", total_len);\n    while (1) {\n      auto [l, t] = *it;\n\
-    \      ++it;\n      if (it == dat.end()) break;\n      X r = (*it).fi;\n     \
-    \ print(\"l, r, t\", l, r, t);\n    }\n  }\n};\n"
+    \ X, T>> res;\n    auto it = dat.lower_bound(L);\n    if(it != dat.begin()) it\
+    \ = prev(it);\n    while (1) {\n      auto [l, t] = *it;\n      if (R <= l) break;\n\
+    \      it = next(it);\n      X r = (*it).fi;\n      X l0 = max(l, L);\n      X\
+    \ r0 = min(r, R);\n      if (l0 < r0) res.eb(l0, r0, t);\n    }\n    return res;\n\
+    \  }\n\n  vc<tuple<X, X, T>> get_all() {\n    return get(LLIM, RLIM);\n  }\n\n\
+    \  void debug() {\n    auto it = dat.begin();\n    print(\"Intervals\");\n   \
+    \ print(\"total_num\", total_num);\n    print(\"total_len\", total_len);\n   \
+    \ while (1) {\n      auto [l, t] = *it;\n      ++it;\n      if (it == dat.end())\
+    \ break;\n      X r = (*it).fi;\n      print(\"l, r, t\", l, r, t);\n    }\n \
+    \ }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/intervals.hpp
   requiredBy: []
-  timestamp: '2022-05-29 02:01:23+09:00'
+  timestamp: '2022-06-18 11:51:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/intervals.hpp
