@@ -1,20 +1,22 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_kth_smallest"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "pds/segtree.hpp"
 #include "alg/group_add.hpp"
+#include "pds/segtree.hpp"
 
 void solve() {
   LL(N, Q);
-  PersistentSegTree<Group_Add<int>> seg(N);
-  VEC(ll, A, N);
+  VEC(int, A, N);
+  Persistent_SegTree<Group_Add<int>, 5'000'000> seg(N);
+  using np = decltype(seg)::Node *;
   auto I = argsort(A);
-  vi times;
-  times.eb(seg.time());
-  FOR(k, N) { times.eb(seg.set(times.back(), I[k], 1)); }
+
+  vc<np> roots;
+  roots.eb(seg.new_node(vc<int>(N)));
+  FOR(k, N) { roots.eb(seg.set(roots.back(), I[k], 1)); }
   FOR(Q) {
     LL(L, R, k);
-    auto check = [&](ll t) -> bool { return seg.prod(t, L, R) <= k; };
+    auto check = [&](ll t) -> bool { return seg.prod(roots[t], L, R) <= k; };
     ll t = binary_search(check, 0, N);
     print(A[I[t]]);
   }
