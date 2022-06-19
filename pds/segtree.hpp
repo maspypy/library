@@ -1,67 +1,102 @@
-#pragma once
-template <class Monoid, int NODES = 20000000>
-struct PersistentSegTree {
+template <typename Monoid, int NODES>
+struct Persistent_SegTree {
   using X = typename Monoid::value_type;
-  using value_type = X;
 
   struct Node {
+    Node *l, *r;
     X x;
-    Node *lch, *rch;
-    Node() {}
-    Node(const X &x) : x(x), lch(nullptr), rch(nullptr) {}
   };
 
+  const int n;
   Node *pool;
   int pid;
-  ll n;
-  Node *nil;
-  vc<Node *> roots;
 
-  PersistentSegTree(int n) : pid(0), n(n), nil(nullptr) {
-    pool = new Node[NODES];
-    nil = new_node(Monoid::unit());
-    nil->lch = nil->rch = nil;
-    roots.reserve(1 << 18);
-    roots.push_back(nil);
+  Persistent_SegTree(int n) : n(n), pid(0) { pool = new Node[NODES]; }
+
+  Node *new_node(const X &x) {
+    pool[pid].l = pool[pid].r = nullptr;
+    pool[pid].x = x;
+    return &(pool[pid++]);
   }
+
+  Node *new_node(const vc<X> &dat) {
+    assert(len(dat) == n);
+    auto dfs = [&](auto &dfs, int l, int r) -> Node * {
+      if (l == r) return nullptr;
+      if (r == l + 1) return new_node(dat[l]);
+      int m = (l + r) / 2;
+      Node *l_root = dfs(dfs, l, m);
+      Node *r_root = dfs(dfs, m, r);
+      X x = Monoid::op(l_root->x, r_root->x);
+      Node *root = new_node(x);
+      root->l = l_root, root->r = r_root;
+      return root;
+    };
+    return dfs(dfs, 0, len(dat));
+  }
+
+  X prod(Node *root, int l, int r) {
+    assert(0 <= l && l < r && r <= n);
+    X x = Monoid::unit();
+    prod_rec(root, 0, n, l, r, x);
+    return x;
+  }
+
+  Node *set(Node *root, int i, const X &x) {
+    assert(0 <= i && i < n);
+    return set_rec(root, 0, n, i, x);
+  }
+
+  vc<X> restore(Node *root) {
+    vc<X> res;
+    auto dfs = [&](auto &dfs, Node *c, int node_l, int node_r) -> void {
+      if (node_r - node_l == 1) {
+        res.eb(c->x);
+        return;
+      }
+      int node_m = (node_l + node_r) / 2;
+      prop(c);
+      dfs(dfs, c->l, node_l, node_m);
+      dfs(dfs, c->r, node_m, node_r);
+    };
+    dfs(dfs, root, 0, n);
+    return res;
+  }
+
+  void reset() { pid = 0; }
 
 private:
-  Node *new_node(const X &x) {
-    pool[pid].x = x;
-    pool[pid].lch = pool[pid].rch = nil;
+  Node *copy_node(Node *n) {
+    if (!n) return nullptr;
+    pool[pid].l = n->l;
+    pool[pid].r = n->r;
+    pool[pid].x = n->x;
     return &(pool[pid++]);
   }
 
-  Node *merge(Node *l, Node *r) {
-    pool[pid].x = Monoid::op(l->x, r->x);
-    pool[pid].lch = l;
-    pool[pid].rch = r;
-    return &(pool[pid++]);
+  Node *set_rec(Node *c, int node_l, int node_r, int i, const X &x) {
+    if (node_r == node_l + 1) { return new_node(x); }
+    int node_m = (node_l + node_r) / 2;
+    c = copy_node(c);
+    if (i < node_m) {
+      c->l = set_rec(c->l, node_l, node_m, i, x);
+    } else {
+      c->r = set_rec(c->r, node_m, node_r, i, x);
+    }
+    c->x = Monoid::op(c->l->x, c->r->x);
+    return c;
   }
 
-  Node *set(ll idx, const X &x, Node *n, ll l, ll r) {
-    if (l + 1 == r) return new_node(x);
-    ll m = (l + r) / 2;
-    if (idx < m) return merge(set(idx, x, n->lch, l, m), n->rch);
-    return merge(n->lch, set(idx, x, n->rch, m, r));
+  void prod_rec(Node *c, int node_l, int node_r, int l, int r, X &x) {
+    chmax(l, node_l);
+    chmin(r, node_r);
+    if (l >= r) return;
+    if (l == node_l && r == node_r) {
+      x = Monoid::op(x, c->x);
+      return;
+    }
+    int node_m = (node_l + node_r) / 2;
+    prod_rec(c->l, node_l, node_m, l, r, x);
+    prod_rec(c->r, node_m, node_r, l, r, x);
   }
-
-  X prod(ll a, ll b, Node *n, ll l, ll r) {
-    if (n == nil) return Monoid::unit();
-    if (r <= a || b <= l) return Monoid::unit();
-    if (a <= l && r <= b) return n->x;
-    ll m = (l + r) / 2;
-    return Monoid::op(prod(a, b, n->lch, l, m), prod(a, b, n->rch, m, r));
-  }
-
-public:
-  int time() { return len(roots) - 1; }
-
-  int set(int t, ll idx, const X &x) {
-    Node *root = set(idx, x, roots[t], 0, n);
-    roots.eb(root);
-    return time();
-  }
-
-  X prod(int time, ll l, ll r) { return prod(l, r, roots[time], 0, n); }
 };

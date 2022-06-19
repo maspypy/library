@@ -109,6 +109,7 @@ private:
 
   Node *set_rec(Node *c, int node_l, int node_r, int i, const X &x) {
     if (node_r == node_l + 1) { return new_node(x); }
+    c = copy_node(c);
     prop(c);
     int node_m = (node_l + node_r) / 2;
     if (i < node_m) {
@@ -117,6 +118,7 @@ private:
       c->r = set_rec(c->r, node_m, node_r, i, x);
     }
     c->x = Monoid_X::op(c->l->x, c->r->x);
+    return c;
   }
 
   void prod_rec(Node *c, int node_l, int node_r, int l, int r, X &x) {
