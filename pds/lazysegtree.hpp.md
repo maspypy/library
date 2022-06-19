@@ -43,22 +43,23 @@ data:
     \    c->r->a = Monoid_A::op(c->r->a, c->a);\n      c->r->propagated = 0;\n\n \
     \     c->a = Monoid_A::unit();\n      c->propagated = 1;\n    }\n  }\n\n  Node\
     \ *set_rec(Node *c, int node_l, int node_r, int i, const X &x) {\n    if (node_r\
-    \ == node_l + 1) { return new_node(x); }\n    prop(c);\n    int node_m = (node_l\
-    \ + node_r) / 2;\n    if (i < node_m) {\n      c->l = set_rec(c->l, node_l, node_m,\
-    \ i, x);\n    } else {\n      c->r = set_rec(c->r, node_m, node_r, i, x);\n  \
-    \  }\n    c->x = Monoid_X::op(c->l->x, c->r->x);\n  }\n\n  void prod_rec(Node\
-    \ *c, int node_l, int node_r, int l, int r, X &x) {\n    chmax(l, node_l);\n \
-    \   chmin(r, node_r);\n    if (l >= r) return;\n    if (l == node_l && r == node_r)\
-    \ {\n      x = Monoid_X::op(x, c->x);\n      return;\n    }\n    prop(c);\n  \
-    \  int node_m = (node_l + node_r) / 2;\n    prod_rec(c->l, node_l, node_m, l,\
-    \ r, x);\n    prod_rec(c->r, node_m, node_r, l, r, x);\n  }\n\n  Node *apply_rec(Node\
-    \ *c, int node_l, int node_r, int l, int r, const A &a) {\n    chmax(l, node_l);\n\
-    \    chmin(r, node_r);\n    if (l >= r) return c;\n    if (l == node_l && r ==\
-    \ node_r) {\n      c = copy_node(c);\n      c->x = Lazy::act(c->x, a);\n     \
-    \ c->a = Monoid_A::op(c->a, a);\n      return c;\n    }\n    c = copy_node(c);\n\
-    \    prop(c);\n    int node_m = (node_l + node_r) / 2;\n    c->l = apply_rec(c->l,\
-    \ node_l, node_m, l, r, a);\n    c->r = apply_rec(c->r, node_m, node_r, l, r,\
-    \ a);\n    c->x = Monoid_X::op(c->l->x, c->r->x);\n    return c;\n  }\n};\n"
+    \ == node_l + 1) { return new_node(x); }\n    c = copy_node(c);\n    prop(c);\n\
+    \    int node_m = (node_l + node_r) / 2;\n    if (i < node_m) {\n      c->l =\
+    \ set_rec(c->l, node_l, node_m, i, x);\n    } else {\n      c->r = set_rec(c->r,\
+    \ node_m, node_r, i, x);\n    }\n    c->x = Monoid_X::op(c->l->x, c->r->x);\n\
+    \    return c;\n  }\n\n  void prod_rec(Node *c, int node_l, int node_r, int l,\
+    \ int r, X &x) {\n    chmax(l, node_l);\n    chmin(r, node_r);\n    if (l >= r)\
+    \ return;\n    if (l == node_l && r == node_r) {\n      x = Monoid_X::op(x, c->x);\n\
+    \      return;\n    }\n    prop(c);\n    int node_m = (node_l + node_r) / 2;\n\
+    \    prod_rec(c->l, node_l, node_m, l, r, x);\n    prod_rec(c->r, node_m, node_r,\
+    \ l, r, x);\n  }\n\n  Node *apply_rec(Node *c, int node_l, int node_r, int l,\
+    \ int r, const A &a) {\n    chmax(l, node_l);\n    chmin(r, node_r);\n    if (l\
+    \ >= r) return c;\n    if (l == node_l && r == node_r) {\n      c = copy_node(c);\n\
+    \      c->x = Lazy::act(c->x, a);\n      c->a = Monoid_A::op(c->a, a);\n     \
+    \ return c;\n    }\n    c = copy_node(c);\n    prop(c);\n    int node_m = (node_l\
+    \ + node_r) / 2;\n    c->l = apply_rec(c->l, node_l, node_m, l, r, a);\n    c->r\
+    \ = apply_rec(c->r, node_m, node_r, l, r, a);\n    c->x = Monoid_X::op(c->l->x,\
+    \ c->r->x);\n    return c;\n  }\n};\n"
   code: "#pragma once\n\ntemplate <typename Lazy, int NODES = 1'000'000>\nstruct Persistent_LazySegTree\
     \ {\n  using Monoid_X = typename Lazy::X_structure;\n  using Monoid_A = typename\
     \ Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n  using A =\
@@ -94,27 +95,28 @@ data:
     \    c->r->a = Monoid_A::op(c->r->a, c->a);\n      c->r->propagated = 0;\n\n \
     \     c->a = Monoid_A::unit();\n      c->propagated = 1;\n    }\n  }\n\n  Node\
     \ *set_rec(Node *c, int node_l, int node_r, int i, const X &x) {\n    if (node_r\
-    \ == node_l + 1) { return new_node(x); }\n    prop(c);\n    int node_m = (node_l\
-    \ + node_r) / 2;\n    if (i < node_m) {\n      c->l = set_rec(c->l, node_l, node_m,\
-    \ i, x);\n    } else {\n      c->r = set_rec(c->r, node_m, node_r, i, x);\n  \
-    \  }\n    c->x = Monoid_X::op(c->l->x, c->r->x);\n  }\n\n  void prod_rec(Node\
-    \ *c, int node_l, int node_r, int l, int r, X &x) {\n    chmax(l, node_l);\n \
-    \   chmin(r, node_r);\n    if (l >= r) return;\n    if (l == node_l && r == node_r)\
-    \ {\n      x = Monoid_X::op(x, c->x);\n      return;\n    }\n    prop(c);\n  \
-    \  int node_m = (node_l + node_r) / 2;\n    prod_rec(c->l, node_l, node_m, l,\
-    \ r, x);\n    prod_rec(c->r, node_m, node_r, l, r, x);\n  }\n\n  Node *apply_rec(Node\
-    \ *c, int node_l, int node_r, int l, int r, const A &a) {\n    chmax(l, node_l);\n\
-    \    chmin(r, node_r);\n    if (l >= r) return c;\n    if (l == node_l && r ==\
-    \ node_r) {\n      c = copy_node(c);\n      c->x = Lazy::act(c->x, a);\n     \
-    \ c->a = Monoid_A::op(c->a, a);\n      return c;\n    }\n    c = copy_node(c);\n\
-    \    prop(c);\n    int node_m = (node_l + node_r) / 2;\n    c->l = apply_rec(c->l,\
-    \ node_l, node_m, l, r, a);\n    c->r = apply_rec(c->r, node_m, node_r, l, r,\
-    \ a);\n    c->x = Monoid_X::op(c->l->x, c->r->x);\n    return c;\n  }\n};"
+    \ == node_l + 1) { return new_node(x); }\n    c = copy_node(c);\n    prop(c);\n\
+    \    int node_m = (node_l + node_r) / 2;\n    if (i < node_m) {\n      c->l =\
+    \ set_rec(c->l, node_l, node_m, i, x);\n    } else {\n      c->r = set_rec(c->r,\
+    \ node_m, node_r, i, x);\n    }\n    c->x = Monoid_X::op(c->l->x, c->r->x);\n\
+    \    return c;\n  }\n\n  void prod_rec(Node *c, int node_l, int node_r, int l,\
+    \ int r, X &x) {\n    chmax(l, node_l);\n    chmin(r, node_r);\n    if (l >= r)\
+    \ return;\n    if (l == node_l && r == node_r) {\n      x = Monoid_X::op(x, c->x);\n\
+    \      return;\n    }\n    prop(c);\n    int node_m = (node_l + node_r) / 2;\n\
+    \    prod_rec(c->l, node_l, node_m, l, r, x);\n    prod_rec(c->r, node_m, node_r,\
+    \ l, r, x);\n  }\n\n  Node *apply_rec(Node *c, int node_l, int node_r, int l,\
+    \ int r, const A &a) {\n    chmax(l, node_l);\n    chmin(r, node_r);\n    if (l\
+    \ >= r) return c;\n    if (l == node_l && r == node_r) {\n      c = copy_node(c);\n\
+    \      c->x = Lazy::act(c->x, a);\n      c->a = Monoid_A::op(c->a, a);\n     \
+    \ return c;\n    }\n    c = copy_node(c);\n    prop(c);\n    int node_m = (node_l\
+    \ + node_r) / 2;\n    c->l = apply_rec(c->l, node_l, node_m, l, r, a);\n    c->r\
+    \ = apply_rec(c->r, node_m, node_r, l, r, a);\n    c->x = Monoid_X::op(c->l->x,\
+    \ c->r->x);\n    return c;\n  }\n};"
   dependsOn: []
   isVerificationFile: false
   path: pds/lazysegtree.hpp
   requiredBy: []
-  timestamp: '2022-06-08 22:18:47+09:00'
+  timestamp: '2022-06-19 11:28:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: pds/lazysegtree.hpp

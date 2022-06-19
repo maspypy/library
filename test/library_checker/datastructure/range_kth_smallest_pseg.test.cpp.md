@@ -195,57 +195,71 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"pds/segtree.hpp\"\ntemplate <class Monoid, int NODES\
-    \ = 20000000>\nstruct PersistentSegTree {\n  using X = typename Monoid::value_type;\n\
-    \  using value_type = X;\n\n  struct Node {\n    X x;\n    Node *lch, *rch;\n\
-    \    Node() {}\n    Node(const X &x) : x(x), lch(nullptr), rch(nullptr) {}\n \
-    \ };\n\n  Node *pool;\n  int pid;\n  ll n;\n  Node *nil;\n  vc<Node *> roots;\n\
-    \n  PersistentSegTree(int n) : pid(0), n(n), nil(nullptr) {\n    pool = new Node[NODES];\n\
-    \    nil = new_node(Monoid::unit());\n    nil->lch = nil->rch = nil;\n    roots.reserve(1\
-    \ << 18);\n    roots.push_back(nil);\n  }\n\nprivate:\n  Node *new_node(const\
-    \ X &x) {\n    pool[pid].x = x;\n    pool[pid].lch = pool[pid].rch = nil;\n  \
-    \  return &(pool[pid++]);\n  }\n\n  Node *merge(Node *l, Node *r) {\n    pool[pid].x\
-    \ = Monoid::op(l->x, r->x);\n    pool[pid].lch = l;\n    pool[pid].rch = r;\n\
-    \    return &(pool[pid++]);\n  }\n\n  Node *set(ll idx, const X &x, Node *n, ll\
-    \ l, ll r) {\n    if (l + 1 == r) return new_node(x);\n    ll m = (l + r) / 2;\n\
-    \    if (idx < m) return merge(set(idx, x, n->lch, l, m), n->rch);\n    return\
-    \ merge(n->lch, set(idx, x, n->rch, m, r));\n  }\n\n  X prod(ll a, ll b, Node\
-    \ *n, ll l, ll r) {\n    if (n == nil) return Monoid::unit();\n    if (r <= a\
-    \ || b <= l) return Monoid::unit();\n    if (a <= l && r <= b) return n->x;\n\
-    \    ll m = (l + r) / 2;\n    return Monoid::op(prod(a, b, n->lch, l, m), prod(a,\
-    \ b, n->rch, m, r));\n  }\n\npublic:\n  int time() { return len(roots) - 1; }\n\
-    \n  int set(int t, ll idx, const X &x) {\n    Node *root = set(idx, x, roots[t],\
-    \ 0, n);\n    roots.eb(root);\n    return time();\n  }\n\n  X prod(int time, ll\
-    \ l, ll r) { return prod(l, r, roots[time], 0, n); }\n};\n#line 2 \"alg/group_add.hpp\"\
-    \ntemplate <class X>\r\nstruct Group_Add {\r\n  using value_type = X;\r\n  static\
-    \ constexpr X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static\
-    \ constexpr X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr\
-    \ X power(const X &x, ll n) noexcept { return n * x; }\r\n  static constexpr X\
-    \ unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n\
-    #line 6 \"test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  PersistentSegTree<Group_Add<int>> seg(N);\n\
-    \  VEC(ll, A, N);\n  auto I = argsort(A);\n  vi times;\n  times.eb(seg.time());\n\
-    \  FOR(k, N) { times.eb(seg.set(times.back(), I[k], 1)); }\n  FOR(Q) {\n    LL(L,\
-    \ R, k);\n    auto check = [&](ll t) -> bool { return seg.prod(t, L, R) <= k;\
-    \ };\n    ll t = binary_search(check, 0, N);\n    print(A[I[t]]);\n  }\n}\n\n\
-    signed main() {\n  solve();\n\n  return 0;\n}\n"
+    \ { yes(!t); }\r\n#line 2 \"alg/group_add.hpp\"\ntemplate <class X>\r\nstruct\
+    \ Group_Add {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x,\
+    \ const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
+    \ noexcept { return n * x; }\r\n  static constexpr X unit() { return X(0); }\r\
+    \n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"pds/segtree.hpp\"\
+    \ntemplate <typename Monoid, int NODES>\nstruct Persistent_SegTree {\n  using\
+    \ X = typename Monoid::value_type;\n\n  struct Node {\n    Node *l, *r;\n    X\
+    \ x;\n  };\n\n  const int n;\n  Node *pool;\n  int pid;\n\n  Persistent_SegTree(int\
+    \ n) : n(n), pid(0) { pool = new Node[NODES]; }\n\n  Node *new_node(const X &x)\
+    \ {\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x = x;\n    return\
+    \ &(pool[pid++]);\n  }\n\n  Node *new_node(const vc<X> &dat) {\n    assert(len(dat)\
+    \ == n);\n    auto dfs = [&](auto &dfs, int l, int r) -> Node * {\n      if (l\
+    \ == r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n    \
+    \  int m = (l + r) / 2;\n      Node *l_root = dfs(dfs, l, m);\n      Node *r_root\
+    \ = dfs(dfs, m, r);\n      X x = Monoid::op(l_root->x, r_root->x);\n      Node\
+    \ *root = new_node(x);\n      root->l = l_root, root->r = r_root;\n      return\
+    \ root;\n    };\n    return dfs(dfs, 0, len(dat));\n  }\n\n  X prod(Node *root,\
+    \ int l, int r) {\n    assert(0 <= l && l < r && r <= n);\n    X x = Monoid::unit();\n\
+    \    prod_rec(root, 0, n, l, r, x);\n    return x;\n  }\n\n  Node *set(Node *root,\
+    \ int i, const X &x) {\n    assert(0 <= i && i < n);\n    return set_rec(root,\
+    \ 0, n, i, x);\n  }\n\n  vc<X> restore(Node *root) {\n    vc<X> res;\n    auto\
+    \ dfs = [&](auto &dfs, Node *c, int node_l, int node_r) -> void {\n      if (node_r\
+    \ - node_l == 1) {\n        res.eb(c->x);\n        return;\n      }\n      int\
+    \ node_m = (node_l + node_r) / 2;\n      prop(c);\n      dfs(dfs, c->l, node_l,\
+    \ node_m);\n      dfs(dfs, c->r, node_m, node_r);\n    };\n    dfs(dfs, root,\
+    \ 0, n);\n    return res;\n  }\n\n  void reset() { pid = 0; }\n\nprivate:\n  Node\
+    \ *copy_node(Node *n) {\n    if (!n) return nullptr;\n    pool[pid].l = n->l;\n\
+    \    pool[pid].r = n->r;\n    pool[pid].x = n->x;\n    return &(pool[pid++]);\n\
+    \  }\n\n  Node *set_rec(Node *c, int node_l, int node_r, int i, const X &x) {\n\
+    \    if (node_r == node_l + 1) { return new_node(x); }\n    int node_m = (node_l\
+    \ + node_r) / 2;\n    c = copy_node(c);\n    if (i < node_m) {\n      c->l = set_rec(c->l,\
+    \ node_l, node_m, i, x);\n    } else {\n      c->r = set_rec(c->r, node_m, node_r,\
+    \ i, x);\n    }\n    c->x = Monoid::op(c->l->x, c->r->x);\n    return c;\n  }\n\
+    \n  void prod_rec(Node *c, int node_l, int node_r, int l, int r, X &x) {\n   \
+    \ chmax(l, node_l);\n    chmin(r, node_r);\n    if (l >= r) return;\n    if (l\
+    \ == node_l && r == node_r) {\n      x = Monoid::op(x, c->x);\n      return;\n\
+    \    }\n    int node_m = (node_l + node_r) / 2;\n    prod_rec(c->l, node_l, node_m,\
+    \ l, r, x);\n    prod_rec(c->r, node_m, node_r, l, r, x);\n  }\n};\n#line 6 \"\
+    test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp\"\n\nvoid\
+    \ solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Persistent_SegTree<Group_Add<int>,\
+    \ 5'000'000> seg(N);\n  using np = decltype(seg)::Node *;\n  auto I = argsort(A);\n\
+    \n  vc<np> roots;\n  roots.eb(seg.new_node(vc<int>(N)));\n  FOR(k, N) { roots.eb(seg.set(roots.back(),\
+    \ I[k], 1)); }\n  FOR(Q) {\n    LL(L, R, k);\n    auto check = [&](ll t) -> bool\
+    \ { return seg.prod(roots[t], L, R) <= k; };\n    ll t = binary_search(check,\
+    \ 0, N);\n    print(A[I[t]]);\n  }\n}\n\nsigned main() {\n  solve();\n\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"pds/segtree.hpp\"\
-    \n#include \"alg/group_add.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  PersistentSegTree<Group_Add<int>>\
-    \ seg(N);\n  VEC(ll, A, N);\n  auto I = argsort(A);\n  vi times;\n  times.eb(seg.time());\n\
-    \  FOR(k, N) { times.eb(seg.set(times.back(), I[k], 1)); }\n  FOR(Q) {\n    LL(L,\
-    \ R, k);\n    auto check = [&](ll t) -> bool { return seg.prod(t, L, R) <= k;\
-    \ };\n    ll t = binary_search(check, 0, N);\n    print(A[I[t]]);\n  }\n}\n\n\
-    signed main() {\n  solve();\n\n  return 0;\n}\n"
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/group_add.hpp\"\
+    \n#include \"pds/segtree.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n\
+    \  Persistent_SegTree<Group_Add<int>, 5'000'000> seg(N);\n  using np = decltype(seg)::Node\
+    \ *;\n  auto I = argsort(A);\n\n  vc<np> roots;\n  roots.eb(seg.new_node(vc<int>(N)));\n\
+    \  FOR(k, N) { roots.eb(seg.set(roots.back(), I[k], 1)); }\n  FOR(Q) {\n    LL(L,\
+    \ R, k);\n    auto check = [&](ll t) -> bool { return seg.prod(roots[t], L, R)\
+    \ <= k; };\n    ll t = binary_search(check, 0, N);\n    print(A[I[t]]);\n  }\n\
+    }\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - pds/segtree.hpp
   - alg/group_add.hpp
+  - pds/segtree.hpp
   isVerificationFile: true
   path: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
   requiredBy: []
-  timestamp: '2022-06-17 20:39:28+09:00'
+  timestamp: '2022-06-19 11:28:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
