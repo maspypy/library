@@ -120,43 +120,43 @@ struct ArbitraryModInt {
 };
 
 template <typename mint>
-tuple<mint, mint, mint> get_factorial_data(int n) {
+mint inv(int n) {
   static const int mod = mint::get_mod();
-  assert(0 <= n && n < mod);
-  static vector<mint> fact = {1, 1};
-  static vector<mint> fact_inv = {1, 1};
-  static vector<mint> inv = {0, 1};
-  while (len(fact) <= n) {
-    int k = len(fact);
-    fact.eb(fact[k - 1] * mint(k));
-    auto q = ceil(mod, k);
+  static vector<mint> dat = {0, 1};
+  assert(0 <= n);
+  if (n >= mod) n %= mod;
+  while (int(dat.size()) <= n) {
+    int k = dat.size();
+    auto q = (mod + k - 1) / k;
     int r = k * q - mod;
-    inv.eb(inv[r] * mint(q));
-    fact_inv.eb(fact_inv[k - 1] * inv[k]);
+    dat.emplace_back(dat[r] * mint(q));
   }
-  return {fact[n], fact_inv[n], inv[n]};
+  return dat[n];
 }
 
 template <typename mint>
 mint fact(int n) {
   static const int mod = mint::get_mod();
+  static vector<mint> dat = {1, 1};
   assert(0 <= n);
   if (n >= mod) return 0;
-  return get<0>(get_factorial_data<mint>(n));
+  while (int(dat.size()) <= n) {
+    int k = dat.size();
+    dat.emplace_back(dat[k - 1] * mint(k));
+  }
+  return dat[n];
 }
 
 template <typename mint>
 mint fact_inv(int n) {
   static const int mod = mint::get_mod();
+  static vector<mint> dat = {1, 1};
   assert(0 <= n && n < mod);
-  return get<1>(get_factorial_data<mint>(n));
-}
-
-template <typename mint>
-mint inv(int n) {
-  static const int mod = mint::get_mod();
-  assert(0 <= n && n < mod);
-  return get<2>(get_factorial_data<mint>(n));
+  while (int(dat.size()) <= n) {
+    int k = dat.size();
+    dat.emplace_back(dat[k - 1] * inv<mint>(k));
+  }
+  return dat[n];
 }
 
 template <typename mint, bool large = false>
