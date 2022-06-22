@@ -207,70 +207,70 @@ data:
   isVerificationFile: false
   path: alg/group_add.hpp
   requiredBy:
-  - string/trie.hpp
-  - ds/fenwick.hpp
   - ds/fenwickraq.hpp
-  - ds/rectangle_add_ractangle_sum.hpp
-  - ds/uniqueproductquery.hpp
-  - ds/rectangleunion.hpp
-  - ds/fenwick2d.hpp
-  - ds/rectangle_add_point_sum.hpp
-  - ds/cumsum2d.hpp
   - ds/point_add_polygon_sum.hpp
   - ds/fenwick2d_dense.hpp
+  - ds/rectangle_add_ractangle_sum.hpp
+  - ds/cumsum2d.hpp
+  - ds/uniqueproductquery.hpp
   - ds/point_add_rectangle_sum.hpp
-  - dp/inversion.hpp
-  - alg/lazy_add_mul.hpp
+  - ds/fenwick.hpp
+  - ds/fenwick2d.hpp
+  - ds/rectangleunion.hpp
+  - ds/rectangle_add_point_sum.hpp
   - alg/lazy_maxidx_add.hpp
+  - alg/lazy_add_mul.hpp
   - alg/lazy_cntsum_add.hpp
-  - alg/lazy_cntsummin_add.hpp
-  - alg/lazy_max_add.hpp
-  - alg/lazy_minmax_add.hpp
-  - alg/lazy_minidx_add.hpp
-  - alg/lazy_min_add.hpp
   - alg/lazy_cntminmincnt_add.hpp
+  - alg/lazy_minmax_add.hpp
+  - alg/lazy_max_add.hpp
+  - alg/lazy_cntsummin_add.hpp
+  - alg/lazy_min_add.hpp
+  - alg/lazy_minidx_add.hpp
+  - string/trie.hpp
+  - dp/inversion.hpp
   - graph/treeabelgroup.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/2842_fenwick2d_dense.test.cpp
-  - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
-  - test/aoj/DSL_1_B_weighteduf.test.cpp
-  - test/aoj/DSL_2_E_fenwick_raq.test.cpp
-  - test/aoj/DSL_2_H_min_add_lazy.test.cpp
-  - test/aoj/DSL_4_A_rectangle_union.test.cpp
-  - test/aoj/ALDS1_5_inversion.test.cpp
-  - test/aoj/2842_seg2d_dense.test.cpp
-  - test/aoj/ALDS1_2_A_inversion.test.cpp
-  - test/aoj/DSL_2_G_fenwick_raq.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
-  - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
-  - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
-  - test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
-  - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
-  - test/library_checker/datastructure/point_add_range_sum.test.cpp
-  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
-  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-  - test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/yukicoder/1441_bbst.test.cpp
-  - test/yukicoder/899_bfsnumbering.test.cpp
-  - test/yukicoder/924.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
-  - test/yukicoder/1441_rbst.test.cpp
-  - test/yukicoder/1097_doubling.test.cpp
-  - test/yukicoder/1641_tree_abel.test.cpp
   - test/yukicoder/789_dseg_lazy.test.cpp
   - test/yukicoder/1490_rect_add_rect_sum.test.cpp
+  - test/yukicoder/1141_cumsum2d.test.cpp
   - test/yukicoder/1269_aho.test.cpp
-  - test/yukicoder/789_dseg.test.cpp
+  - test/yukicoder/924.test.cpp
   - test/yukicoder/1038_centroid.test.cpp
   - test/yukicoder/1326_bct.test.cpp
-  - test/yukicoder/1141_cumsum2d.test.cpp
+  - test/yukicoder/1441_rbst.test.cpp
+  - test/yukicoder/1641_tree_abel.test.cpp
+  - test/yukicoder/899_bfsnumbering.test.cpp
+  - test/yukicoder/1097_doubling.test.cpp
+  - test/yukicoder/789_dseg.test.cpp
   - test/yukicoder/1234_rmq.test.cpp
+  - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
+  - test/library_checker/datastructure/point_add_range_sum.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+  - test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
+  - test/aoj/DSL_2_E_fenwick_raq.test.cpp
+  - test/aoj/ALDS1_2_A_inversion.test.cpp
+  - test/aoj/DSL_4_A_rectangle_union.test.cpp
+  - test/aoj/ALDS1_5_inversion.test.cpp
+  - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
+  - test/aoj/DSL_1_B_weighteduf.test.cpp
+  - test/aoj/2842_fenwick2d_dense.test.cpp
+  - test/aoj/2842_seg2d_dense.test.cpp
+  - test/aoj/DSL_2_G_fenwick_raq.test.cpp
+  - test/aoj/DSL_2_H_min_add_lazy.test.cpp
 documentation_of: alg/group_add.hpp
 layout: document
 redirect_from:

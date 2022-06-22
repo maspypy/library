@@ -5,7 +5,7 @@ data:
   - icon: ':question:'
     path: alg/lazy_cntsum_add.hpp
     title: alg/lazy_cntsum_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy_cntsum_affine.hpp
     title: alg/lazy_cntsum_affine.hpp
   - icon: ':heavy_check_mark:'
@@ -18,13 +18,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
     title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
     title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - icon: ':x:'
@@ -58,19 +58,19 @@ data:
   path: alg/group_cntsum.hpp
   requiredBy:
   - alg/lazy_cntsum_add.hpp
-  - alg/lazy_cntsum_set.hpp
   - alg/lazy_cntsum_affine.hpp
+  - alg/lazy_cntsum_set.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
-  - test/aoj/DSL_2_I_cntsum_set_lazy.test.cpp
-  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-  - test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/789_dseg_lazy.test.cpp
   - test/yukicoder/255.test.cpp
+  - test/library_checker/datastructure/range_affine_range_sum.test.cpp
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
+  - test/aoj/DSL_2_I_cntsum_set_lazy.test.cpp
 documentation_of: alg/group_cntsum.hpp
 layout: document
 redirect_from:

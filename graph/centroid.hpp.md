@@ -155,9 +155,9 @@ data:
   timestamp: '2022-05-13 20:32:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - test/yukicoder/1038_centroid.test.cpp
   - test/yukicoder/1002_centroid.test.cpp
+  - test/yukicoder/1038_centroid.test.cpp
+  - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
 documentation_of: graph/centroid.hpp
 layout: document
 redirect_from:

@@ -131,8 +131,8 @@ data:
   timestamp: '2022-06-20 21:16:12+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
 documentation_of: mod/mod_sqrt.hpp
 layout: document
 redirect_from:

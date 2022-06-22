@@ -138,26 +138,26 @@ data:
   path: nt/factor.hpp
   requiredBy:
   - nt/euler_phi.hpp
-  - nt/divisors.hpp
-  - nt/gaussian_integers.hpp
   - nt/zeta_on_divisors.hpp
-  - nt/lcm.hpp
+  - nt/divisors.hpp
   - nt/crt.hpp
+  - nt/lcm.hpp
+  - nt/gaussian_integers.hpp
   - mod/primitive_root.hpp
   - mod/binomial.hpp
-  - mod/tetration.hpp
   - mod/mod_kth_root.hpp
+  - mod/tetration.hpp
   timestamp: '2022-04-27 05:09:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/NTL_1_D_eulerphi.test.cpp
-  - test/aoj/ITP1_D_D_divisors.test.cpp
-  - test/library_checker/math/factorize.test.cpp
-  - test/library_checker/math/kth_root_mod.test.cpp
-  - test/library_checker/math/binomial_coefficient.test.cpp
-  - test/library_checker/math/tetration.test.cpp
   - test/yukicoder/187_crt.test.cpp
   - test/yukicoder/1593_gaussian.test.cpp
+  - test/library_checker/math/tetration.test.cpp
+  - test/library_checker/math/binomial_coefficient.test.cpp
+  - test/library_checker/math/kth_root_mod.test.cpp
+  - test/library_checker/math/factorize.test.cpp
+  - test/aoj/ITP1_D_D_divisors.test.cpp
+  - test/aoj/NTL_1_D_eulerphi.test.cpp
 documentation_of: nt/factor.hpp
 layout: document
 redirect_from:

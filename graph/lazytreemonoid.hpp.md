@@ -326,8 +326,8 @@ data:
   timestamp: '2022-05-23 17:47:26+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
+  - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
 documentation_of: graph/lazytreemonoid.hpp
 layout: document
 redirect_from:

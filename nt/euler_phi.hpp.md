@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   _extendedRequiredBy:
@@ -119,8 +119,8 @@ data:
   timestamp: '2022-04-27 05:09:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/NTL_1_D_eulerphi.test.cpp
   - test/library_checker/math/tetration.test.cpp
+  - test/aoj/NTL_1_D_eulerphi.test.cpp
 documentation_of: nt/euler_phi.hpp
 layout: document
 redirect_from:

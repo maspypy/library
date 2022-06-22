@@ -28,8 +28,8 @@ data:
   timestamp: '2022-04-23 01:23:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/4954_quotients.test.cpp
   - test/yukicoder/1573_floor_range.test.cpp
+  - test/yukicoder/4954_quotients.test.cpp
 documentation_of: other/floor_range.hpp
 layout: document
 redirect_from:

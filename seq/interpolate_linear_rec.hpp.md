@@ -19,10 +19,10 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/coef_of_rational_fps.hpp
     title: seq/coef_of_rational_fps.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
   _extendedRequiredBy: []
@@ -329,8 +329,8 @@ data:
   timestamp: '2022-06-20 21:16:12+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1844_interpolate_c_rec.test.cpp
   - test/yukicoder/1500_interpolate_linear.test.cpp
+  - test/yukicoder/1844_interpolate_c_rec.test.cpp
 documentation_of: seq/interpolate_linear_rec.hpp
 layout: document
 redirect_from:

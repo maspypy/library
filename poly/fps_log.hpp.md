@@ -367,21 +367,21 @@ data:
   isVerificationFile: false
   path: poly/fps_log.hpp
   requiredBy:
-  - seq/sum_of_powers.hpp
-  - seq/surjection.hpp
-  - seq/stirling_number_1.hpp
   - seq/stirling_number_2.hpp
+  - seq/sum_of_powers.hpp
+  - seq/stirling_number_1.hpp
+  - seq/surjection.hpp
   - poly/fps_pow.hpp
   timestamp: '2022-06-20 21:16:12+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/polynomial/log_of_fps.test.cpp
-  - test/library_checker/polynomial/pow_of_fps.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/yukicoder/1321_surj.test.cpp
   - test/yukicoder/1145_sum_of_powers.test.cpp
+  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
+  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
+  - test/library_checker/polynomial/log_of_fps.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
+  - test/library_checker/polynomial/pow_of_fps.test.cpp
 documentation_of: poly/fps_log.hpp
 layout: document
 redirect_from:

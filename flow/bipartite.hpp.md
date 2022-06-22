@@ -165,10 +165,10 @@ data:
   timestamp: '2022-05-13 20:32:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1479_bipartite_vertex_cover.test.cpp
+  - test/library_checker/graph/bipartitematching.test.cpp
   - test/aoj/2251_dag_path_cover.test.cpp
   - test/aoj/2251_maxantichain.test.cpp
-  - test/library_checker/graph/bipartitematching.test.cpp
-  - test/yukicoder/1479_bipartite_vertex_cover.test.cpp
 documentation_of: flow/bipartite.hpp
 layout: document
 redirect_from:
