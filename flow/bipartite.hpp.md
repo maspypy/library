@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
   _extendedRequiredBy:
@@ -27,12 +27,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
     title: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -68,23 +68,24 @@ data:
     \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
     , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
     \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 2 \"ds/unionfind.hpp\"\
-    \n\nstruct UnionFind {\n  int num;\n  int comp;\n  vc<int> size, par;\n  UnionFind(int\
-    \ n) : num(n), comp(n), size(n, 1), par(n) {\n    iota(par.begin(), par.end(),\
-    \ 0);\n  }\n  int find(int x) {\n    while (par[x] != x) {\n      par[x] = par[par[x]];\n\
-    \      x = par[x];\n    }\n    return x;\n  }\n\n  int operator[](int x) { return\
-    \ find(x); }\n\n  bool merge(ll x, ll y) {\n    x = find(x);\n    y = find(y);\n\
-    \    if (x == y) { return false; }\n    comp--;\n    if (size[x] < size[y]) swap(x,\
-    \ y);\n    size[x] += size[y];\n    size[y] = 0;\n    par[y] = x;\n    return\
-    \ true;\n  }\n\n  vc<int> find_all() {\n    vc<int> A(num);\n    FOR(i, num) A[i]\
-    \ = find(i);\n    return A;\n  }\n\n  void reset(){\n    comp = num;\n    size.assign(num,\
-    \ 1);\n    iota(all(par), 0);\n  }\n};\n#line 3 \"graph/check_bipartite.hpp\"\n\
-    \r\n// \u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A + \u5FA9\u5143\r\n// \u4E8C\u90E8\
-    \u30B0\u30E9\u30D5\u3067\u306A\u304B\u3063\u305F\u5834\u5408\u306B\u306F empty\r\
-    \ntemplate <typename Graph>\r\nvc<int> check_bipartite(Graph& G) {\r\n  assert(G.is_prepared());\r\
-    \n\r\n  int n = G.N;\r\n  UnionFind uf(2 * n);\r\n  for (auto&& e: G.edges) {\r\
-    \n    int u = e.frm, v = e.to;\r\n    if (e.cost == 0) uf.merge(u, v), uf.merge(u\
-    \ + n, v + n);\r\n    if (e.cost != 0) uf.merge(u + n, v), uf.merge(u, v + n);\r\
-    \n  }\r\n\r\n  vc<int> color(2 * n, -1);\r\n  FOR(v, n) if (uf[v] == v && color[uf[v]]\
+    \n\nstruct UnionFind {\n  int n;\n  int comp;\n  vc<int> size, par;\n  UnionFind(int\
+    \ n) : n(n), comp(n), size(n, 1), par(n) {\n    iota(par.begin(), par.end(), 0);\n\
+    \  }\n  int find(int x) {\n    assert(0 <= x && x < n);\n    while (par[x] !=\
+    \ x) {\n      par[x] = par[par[x]];\n      x = par[x];\n    }\n    return x;\n\
+    \  }\n\n  int operator[](int x) { return find(x); }\n\n  bool merge(ll x, ll y)\
+    \ {\n    x = find(x);\n    y = find(y);\n    if (x == y) { return false; }\n \
+    \   comp--;\n    if (size[x] < size[y]) swap(x, y);\n    size[x] += size[y];\n\
+    \    size[y] = 0;\n    par[y] = x;\n    return true;\n  }\n\n  vc<int> find_all()\
+    \ {\n    vc<int> A(n);\n    FOR(i, n) A[i] = find(i);\n    return A;\n  }\n\n\
+    \  void reset(){\n    comp = n;\n    size.assign(n, 1);\n    iota(all(par), 0);\n\
+    \  }\n};\n#line 3 \"graph/check_bipartite.hpp\"\n\r\n// \u4E8C\u90E8\u30B0\u30E9\
+    \u30D5\u5224\u5B9A + \u5FA9\u5143\r\n// \u4E8C\u90E8\u30B0\u30E9\u30D5\u3067\u306A\
+    \u304B\u3063\u305F\u5834\u5408\u306B\u306F empty\r\ntemplate <typename Graph>\r\
+    \nvc<int> check_bipartite(Graph& G) {\r\n  assert(G.is_prepared());\r\n\r\n  int\
+    \ n = G.N;\r\n  UnionFind uf(2 * n);\r\n  for (auto&& e: G.edges) {\r\n    int\
+    \ u = e.frm, v = e.to;\r\n    if (e.cost == 0) uf.merge(u, v), uf.merge(u + n,\
+    \ v + n);\r\n    if (e.cost != 0) uf.merge(u + n, v), uf.merge(u, v + n);\r\n\
+    \  }\r\n\r\n  vc<int> color(2 * n, -1);\r\n  FOR(v, n) if (uf[v] == v && color[uf[v]]\
     \ < 0) {\r\n    color[uf[v]] = 0;\r\n    color[uf[v + n]] = 1;\r\n  }\r\n  FOR(v,\
     \ n) color[v] = color[uf[v]];\r\n  color.resize(n);\r\n  FOR(v, n) if (uf[v] ==\
     \ uf[v + n]) return {};\r\n  return color;\r\n}\r\n#line 3 \"flow/bipartite.hpp\"\
@@ -162,8 +163,8 @@ data:
   requiredBy:
   - graph/dag_path_cover.hpp
   - graph/maximum_antichain.hpp
-  timestamp: '2022-05-13 20:32:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-06-25 13:24:04+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1479_bipartite_vertex_cover.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp

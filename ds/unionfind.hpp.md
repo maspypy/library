@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
   - icon: ':heavy_check_mark:'
@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/online_unionfind.hpp
     title: graph/online_unionfind.hpp
   _extendedVerifiedWith:
@@ -42,41 +42,42 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/114_steriner_tree.test.cpp
     title: test/yukicoder/114_steriner_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1170_online_uf.test.cpp
     title: test/yukicoder/1170_online_uf.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
     title: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"ds/unionfind.hpp\"\n\nstruct UnionFind {\n  int num;\n \
-    \ int comp;\n  vc<int> size, par;\n  UnionFind(int n) : num(n), comp(n), size(n,\
-    \ 1), par(n) {\n    iota(par.begin(), par.end(), 0);\n  }\n  int find(int x) {\n\
-    \    while (par[x] != x) {\n      par[x] = par[par[x]];\n      x = par[x];\n \
-    \   }\n    return x;\n  }\n\n  int operator[](int x) { return find(x); }\n\n \
-    \ bool merge(ll x, ll y) {\n    x = find(x);\n    y = find(y);\n    if (x == y)\
-    \ { return false; }\n    comp--;\n    if (size[x] < size[y]) swap(x, y);\n   \
-    \ size[x] += size[y];\n    size[y] = 0;\n    par[y] = x;\n    return true;\n \
-    \ }\n\n  vc<int> find_all() {\n    vc<int> A(num);\n    FOR(i, num) A[i] = find(i);\n\
-    \    return A;\n  }\n\n  void reset(){\n    comp = num;\n    size.assign(num,\
+  bundledCode: "#line 2 \"ds/unionfind.hpp\"\n\nstruct UnionFind {\n  int n;\n  int\
+    \ comp;\n  vc<int> size, par;\n  UnionFind(int n) : n(n), comp(n), size(n, 1),\
+    \ par(n) {\n    iota(par.begin(), par.end(), 0);\n  }\n  int find(int x) {\n \
+    \   assert(0 <= x && x < n);\n    while (par[x] != x) {\n      par[x] = par[par[x]];\n\
+    \      x = par[x];\n    }\n    return x;\n  }\n\n  int operator[](int x) { return\
+    \ find(x); }\n\n  bool merge(ll x, ll y) {\n    x = find(x);\n    y = find(y);\n\
+    \    if (x == y) { return false; }\n    comp--;\n    if (size[x] < size[y]) swap(x,\
+    \ y);\n    size[x] += size[y];\n    size[y] = 0;\n    par[y] = x;\n    return\
+    \ true;\n  }\n\n  vc<int> find_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i]\
+    \ = find(i);\n    return A;\n  }\n\n  void reset(){\n    comp = n;\n    size.assign(n,\
     \ 1);\n    iota(all(par), 0);\n  }\n};\n"
-  code: "#pragma once\n\nstruct UnionFind {\n  int num;\n  int comp;\n  vc<int> size,\
-    \ par;\n  UnionFind(int n) : num(n), comp(n), size(n, 1), par(n) {\n    iota(par.begin(),\
-    \ par.end(), 0);\n  }\n  int find(int x) {\n    while (par[x] != x) {\n      par[x]\
-    \ = par[par[x]];\n      x = par[x];\n    }\n    return x;\n  }\n\n  int operator[](int\
-    \ x) { return find(x); }\n\n  bool merge(ll x, ll y) {\n    x = find(x);\n   \
-    \ y = find(y);\n    if (x == y) { return false; }\n    comp--;\n    if (size[x]\
-    \ < size[y]) swap(x, y);\n    size[x] += size[y];\n    size[y] = 0;\n    par[y]\
-    \ = x;\n    return true;\n  }\n\n  vc<int> find_all() {\n    vc<int> A(num);\n\
-    \    FOR(i, num) A[i] = find(i);\n    return A;\n  }\n\n  void reset(){\n    comp\
-    \ = num;\n    size.assign(num, 1);\n    iota(all(par), 0);\n  }\n};\n"
+  code: "#pragma once\n\nstruct UnionFind {\n  int n;\n  int comp;\n  vc<int> size,\
+    \ par;\n  UnionFind(int n) : n(n), comp(n), size(n, 1), par(n) {\n    iota(par.begin(),\
+    \ par.end(), 0);\n  }\n  int find(int x) {\n    assert(0 <= x && x < n);\n   \
+    \ while (par[x] != x) {\n      par[x] = par[par[x]];\n      x = par[x];\n    }\n\
+    \    return x;\n  }\n\n  int operator[](int x) { return find(x); }\n\n  bool merge(ll\
+    \ x, ll y) {\n    x = find(x);\n    y = find(y);\n    if (x == y) { return false;\
+    \ }\n    comp--;\n    if (size[x] < size[y]) swap(x, y);\n    size[x] += size[y];\n\
+    \    size[y] = 0;\n    par[y] = x;\n    return true;\n  }\n\n  vc<int> find_all()\
+    \ {\n    vc<int> A(n);\n    FOR(i, n) A[i] = find(i);\n    return A;\n  }\n\n\
+    \  void reset(){\n    comp = n;\n    size.assign(n, 1);\n    iota(all(par), 0);\n\
+    \  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/unionfind.hpp
@@ -88,8 +89,8 @@ data:
   - graph/maximum_antichain.hpp
   - graph/check_bipartite.hpp
   - graph/online_unionfind.hpp
-  timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-06-25 13:24:04+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1170_online_uf.test.cpp
   - test/yukicoder/1479_bipartite_vertex_cover.test.cpp

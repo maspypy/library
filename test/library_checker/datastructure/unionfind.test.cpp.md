@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
   - icon: ':question:'
@@ -193,17 +193,17 @@ data:
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
     \ { yes(!t); }\r\n#line 4 \"test/library_checker/datastructure/unionfind.test.cpp\"\
-    \n\n#line 2 \"ds/unionfind.hpp\"\n\nstruct UnionFind {\n  int num;\n  int comp;\n\
-    \  vc<int> size, par;\n  UnionFind(int n) : num(n), comp(n), size(n, 1), par(n)\
-    \ {\n    iota(par.begin(), par.end(), 0);\n  }\n  int find(int x) {\n    while\
-    \ (par[x] != x) {\n      par[x] = par[par[x]];\n      x = par[x];\n    }\n   \
-    \ return x;\n  }\n\n  int operator[](int x) { return find(x); }\n\n  bool merge(ll\
-    \ x, ll y) {\n    x = find(x);\n    y = find(y);\n    if (x == y) { return false;\
-    \ }\n    comp--;\n    if (size[x] < size[y]) swap(x, y);\n    size[x] += size[y];\n\
-    \    size[y] = 0;\n    par[y] = x;\n    return true;\n  }\n\n  vc<int> find_all()\
-    \ {\n    vc<int> A(num);\n    FOR(i, num) A[i] = find(i);\n    return A;\n  }\n\
-    \n  void reset(){\n    comp = num;\n    size.assign(num, 1);\n    iota(all(par),\
-    \ 0);\n  }\n};\n#line 6 \"test/library_checker/datastructure/unionfind.test.cpp\"\
+    \n\n#line 2 \"ds/unionfind.hpp\"\n\nstruct UnionFind {\n  int n;\n  int comp;\n\
+    \  vc<int> size, par;\n  UnionFind(int n) : n(n), comp(n), size(n, 1), par(n)\
+    \ {\n    iota(par.begin(), par.end(), 0);\n  }\n  int find(int x) {\n    assert(0\
+    \ <= x && x < n);\n    while (par[x] != x) {\n      par[x] = par[par[x]];\n  \
+    \    x = par[x];\n    }\n    return x;\n  }\n\n  int operator[](int x) { return\
+    \ find(x); }\n\n  bool merge(ll x, ll y) {\n    x = find(x);\n    y = find(y);\n\
+    \    if (x == y) { return false; }\n    comp--;\n    if (size[x] < size[y]) swap(x,\
+    \ y);\n    size[x] += size[y];\n    size[y] = 0;\n    par[y] = x;\n    return\
+    \ true;\n  }\n\n  vc<int> find_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i]\
+    \ = find(i);\n    return A;\n  }\n\n  void reset(){\n    comp = n;\n    size.assign(n,\
+    \ 1);\n    iota(all(par), 0);\n  }\n};\n#line 6 \"test/library_checker/datastructure/unionfind.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  UnionFind uf(N);\n  FOR(_, Q) {\n    LL(t,\
     \ a, b);\n    if (t == 0) {\n      uf.merge(a, b);\n    } else {\n      print(uf[a]\
     \ == uf[b]);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
@@ -221,7 +221,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/unionfind.test.cpp
   requiredBy: []
-  timestamp: '2022-06-17 20:39:28+09:00'
+  timestamp: '2022-06-25 13:24:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/unionfind.test.cpp

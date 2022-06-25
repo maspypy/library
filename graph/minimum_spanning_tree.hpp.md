@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
   - icon: ':question:'
@@ -45,16 +45,16 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/828/problem/F
-  bundledCode: "#line 2 \"ds/unionfind.hpp\"\n\nstruct UnionFind {\n  int num;\n \
-    \ int comp;\n  vc<int> size, par;\n  UnionFind(int n) : num(n), comp(n), size(n,\
-    \ 1), par(n) {\n    iota(par.begin(), par.end(), 0);\n  }\n  int find(int x) {\n\
-    \    while (par[x] != x) {\n      par[x] = par[par[x]];\n      x = par[x];\n \
-    \   }\n    return x;\n  }\n\n  int operator[](int x) { return find(x); }\n\n \
-    \ bool merge(ll x, ll y) {\n    x = find(x);\n    y = find(y);\n    if (x == y)\
-    \ { return false; }\n    comp--;\n    if (size[x] < size[y]) swap(x, y);\n   \
-    \ size[x] += size[y];\n    size[y] = 0;\n    par[y] = x;\n    return true;\n \
-    \ }\n\n  vc<int> find_all() {\n    vc<int> A(num);\n    FOR(i, num) A[i] = find(i);\n\
-    \    return A;\n  }\n\n  void reset(){\n    comp = num;\n    size.assign(num,\
+  bundledCode: "#line 2 \"ds/unionfind.hpp\"\n\nstruct UnionFind {\n  int n;\n  int\
+    \ comp;\n  vc<int> size, par;\n  UnionFind(int n) : n(n), comp(n), size(n, 1),\
+    \ par(n) {\n    iota(par.begin(), par.end(), 0);\n  }\n  int find(int x) {\n \
+    \   assert(0 <= x && x < n);\n    while (par[x] != x) {\n      par[x] = par[par[x]];\n\
+    \      x = par[x];\n    }\n    return x;\n  }\n\n  int operator[](int x) { return\
+    \ find(x); }\n\n  bool merge(ll x, ll y) {\n    x = find(x);\n    y = find(y);\n\
+    \    if (x == y) { return false; }\n    comp--;\n    if (size[x] < size[y]) swap(x,\
+    \ y);\n    size[x] += size[y];\n    size[y] = 0;\n    par[y] = x;\n    return\
+    \ true;\n  }\n\n  vc<int> find_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i]\
+    \ = find(i);\n    return A;\n  }\n\n  void reset(){\n    comp = n;\n    size.assign(n,\
     \ 1);\n    iota(all(par), 0);\n  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate\
     \ <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate\
     \ <typename T = int, bool directed = false>\nstruct Graph {\n  int N, M;\n  using\
@@ -415,7 +415,7 @@ data:
   isVerificationFile: false
   path: graph/minimum_spanning_tree.hpp
   requiredBy: []
-  timestamp: '2022-06-19 03:08:14+09:00'
+  timestamp: '2022-06-25 13:24:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_2_A_mst.test.cpp

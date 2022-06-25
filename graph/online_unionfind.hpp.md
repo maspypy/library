@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1170_online_uf.test.cpp
     title: test/yukicoder/1170_online_uf.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"ds/unionfind.hpp\"\n\nstruct UnionFind {\n  int num;\n \
-    \ int comp;\n  vc<int> size, par;\n  UnionFind(int n) : num(n), comp(n), size(n,\
-    \ 1), par(n) {\n    iota(par.begin(), par.end(), 0);\n  }\n  int find(int x) {\n\
-    \    while (par[x] != x) {\n      par[x] = par[par[x]];\n      x = par[x];\n \
-    \   }\n    return x;\n  }\n\n  int operator[](int x) { return find(x); }\n\n \
-    \ bool merge(ll x, ll y) {\n    x = find(x);\n    y = find(y);\n    if (x == y)\
-    \ { return false; }\n    comp--;\n    if (size[x] < size[y]) swap(x, y);\n   \
-    \ size[x] += size[y];\n    size[y] = 0;\n    par[y] = x;\n    return true;\n \
-    \ }\n\n  vc<int> find_all() {\n    vc<int> A(num);\n    FOR(i, num) A[i] = find(i);\n\
-    \    return A;\n  }\n\n  void reset(){\n    comp = num;\n    size.assign(num,\
+  bundledCode: "#line 2 \"ds/unionfind.hpp\"\n\nstruct UnionFind {\n  int n;\n  int\
+    \ comp;\n  vc<int> size, par;\n  UnionFind(int n) : n(n), comp(n), size(n, 1),\
+    \ par(n) {\n    iota(par.begin(), par.end(), 0);\n  }\n  int find(int x) {\n \
+    \   assert(0 <= x && x < n);\n    while (par[x] != x) {\n      par[x] = par[par[x]];\n\
+    \      x = par[x];\n    }\n    return x;\n  }\n\n  int operator[](int x) { return\
+    \ find(x); }\n\n  bool merge(ll x, ll y) {\n    x = find(x);\n    y = find(y);\n\
+    \    if (x == y) { return false; }\n    comp--;\n    if (size[x] < size[y]) swap(x,\
+    \ y);\n    size[x] += size[y];\n    size[y] = 0;\n    par[y] = x;\n    return\
+    \ true;\n  }\n\n  vc<int> find_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i]\
+    \ = find(i);\n    return A;\n  }\n\n  void reset(){\n    comp = n;\n    size.assign(n,\
     \ 1);\n    iota(all(par), 0);\n  }\n};\n#line 2 \"graph/online_unionfind.hpp\"\
     \n\n// \u9802\u70B9\u3092\u524A\u9664\u3057\u306A\u304C\u3089\u3001\u9069\u5F53\
     \u306A\u30C7\u30FC\u30BF\u69CB\u9020\u306B\u3088\u308A\u6B21\u306E\u8FBA\u3092\
@@ -54,8 +54,8 @@ data:
   isVerificationFile: false
   path: graph/online_unionfind.hpp
   requiredBy: []
-  timestamp: '2022-05-06 13:21:19+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-06-25 13:24:04+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1170_online_uf.test.cpp
 documentation_of: graph/online_unionfind.hpp

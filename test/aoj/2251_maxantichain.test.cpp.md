@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
   - icon: ':heavy_check_mark:'
@@ -258,76 +258,76 @@ data:
     \ dist[e.frm] + e.cost)) {\n        root[e.to] = root[e.frm];\n        par[e.to]\
     \ = e.frm;\n        que.push(mp(dist[e.to], e.to));\n      }\n    }\n  }\n  return\
     \ {dist, par, root};\n}\n#line 2 \"ds/unionfind.hpp\"\n\nstruct UnionFind {\n\
-    \  int num;\n  int comp;\n  vc<int> size, par;\n  UnionFind(int n) : num(n), comp(n),\
+    \  int n;\n  int comp;\n  vc<int> size, par;\n  UnionFind(int n) : n(n), comp(n),\
     \ size(n, 1), par(n) {\n    iota(par.begin(), par.end(), 0);\n  }\n  int find(int\
-    \ x) {\n    while (par[x] != x) {\n      par[x] = par[par[x]];\n      x = par[x];\n\
-    \    }\n    return x;\n  }\n\n  int operator[](int x) { return find(x); }\n\n\
-    \  bool merge(ll x, ll y) {\n    x = find(x);\n    y = find(y);\n    if (x ==\
-    \ y) { return false; }\n    comp--;\n    if (size[x] < size[y]) swap(x, y);\n\
-    \    size[x] += size[y];\n    size[y] = 0;\n    par[y] = x;\n    return true;\n\
-    \  }\n\n  vc<int> find_all() {\n    vc<int> A(num);\n    FOR(i, num) A[i] = find(i);\n\
-    \    return A;\n  }\n\n  void reset(){\n    comp = num;\n    size.assign(num,\
-    \ 1);\n    iota(all(par), 0);\n  }\n};\n#line 3 \"graph/check_bipartite.hpp\"\n\
-    \r\n// \u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A + \u5FA9\u5143\r\n// \u4E8C\u90E8\
-    \u30B0\u30E9\u30D5\u3067\u306A\u304B\u3063\u305F\u5834\u5408\u306B\u306F empty\r\
-    \ntemplate <typename Graph>\r\nvc<int> check_bipartite(Graph& G) {\r\n  assert(G.is_prepared());\r\
-    \n\r\n  int n = G.N;\r\n  UnionFind uf(2 * n);\r\n  for (auto&& e: G.edges) {\r\
-    \n    int u = e.frm, v = e.to;\r\n    if (e.cost == 0) uf.merge(u, v), uf.merge(u\
-    \ + n, v + n);\r\n    if (e.cost != 0) uf.merge(u + n, v), uf.merge(u, v + n);\r\
-    \n  }\r\n\r\n  vc<int> color(2 * n, -1);\r\n  FOR(v, n) if (uf[v] == v && color[uf[v]]\
-    \ < 0) {\r\n    color[uf[v]] = 0;\r\n    color[uf[v + n]] = 1;\r\n  }\r\n  FOR(v,\
-    \ n) color[v] = color[uf[v]];\r\n  color.resize(n);\r\n  FOR(v, n) if (uf[v] ==\
-    \ uf[v + n]) return {};\r\n  return color;\r\n}\r\n#line 3 \"flow/bipartite.hpp\"\
-    \n\r\ntemplate <typename Graph>\r\nstruct BipartiteMatching {\r\n  int N;\r\n\
-    \  Graph& G;\r\n  vc<int> color;\r\n  vc<int> dist, match;\r\n  vc<int> vis;\r\
-    \n\r\n  BipartiteMatching(Graph& G) : G(G), N(G.N), dist(G.N, -1), match(G.N,\
-    \ -1) {\r\n    color = check_bipartite(G);\r\n    assert(!color.empty());\r\n\
-    \    while (1) {\r\n      bfs();\r\n      vis.assign(N, false);\r\n      int flow\
-    \ = 0;\r\n      FOR(v, N) if (!color[v] && match[v] == -1 && dfs(v))++ flow;\r\
-    \n      if (!flow) break;\r\n    }\r\n  }\r\n\r\n  void bfs() {\r\n    dist.assign(N,\
-    \ -1);\r\n    queue<int> que;\r\n    FOR(v, N) if (!color[v] && match[v] == -1)\
-    \ que.emplace(v), dist[v] = 0;\r\n    while (!que.empty()) {\r\n      int v =\
-    \ que.front();\r\n      que.pop();\r\n      for (auto&& e: G[v]) {\r\n       \
-    \ dist[e.to] = 0;\r\n        int w = match[e.to];\r\n        if (w != -1 && dist[w]\
-    \ == -1) dist[w] = dist[v] + 1, que.emplace(w);\r\n      }\r\n    }\r\n  }\r\n\
-    \r\n  bool dfs(int v) {\r\n    vis[v] = 1;\r\n    for (auto&& e: G[v]) {\r\n \
-    \     int w = match[e.to];\r\n      if (w == -1 || (!vis[w] && dist[w] == dist[v]\
-    \ + 1 && dfs(w))) {\r\n        match[e.to] = v, match[v] = e.to;\r\n        return\
-    \ true;\r\n      }\r\n    }\r\n    return false;\r\n  }\r\n\r\n  vc<pair<int,\
-    \ int>> matching() {\r\n    vc<pair<int, int>> res;\r\n    FOR(v, N) if (v < match[v])\
-    \ res.eb(v, match[v]);\r\n    return res;\r\n  }\r\n\r\n  vc<int> vertex_cover()\
-    \ {\r\n    vc<int> res;\r\n    FOR(v, N) if (color[v] ^ (dist[v] == -1)) {\r\n\
-    \      res.eb(v);\r\n    }\r\n    return res;\r\n  }\r\n\r\n  vc<int> independent_set()\
-    \ {\r\n    vc<int> res;\r\n    FOR(v, N) if (!(color[v] ^ (dist[v] == -1))) {\r\
-    \n      res.eb(v);\r\n    }\r\n    return res;\r\n  }\r\n\r\n  vc<int> edge_cover()\
-    \ {\r\n    vc<bool> done(N);\r\n    vc<int> res;\r\n    for (auto&& e: G.edges)\
-    \ {\r\n      if (done[e.frm] || done[e.to]) continue;\r\n      if (match[e.frm]\
-    \ == e.to) {\r\n        res.eb(e.id);\r\n        done[e.frm] = done[e.to] = 1;\r\
-    \n      }\r\n    }\r\n    for (auto&& e: G.edges) {\r\n      if (!done[e.frm])\
-    \ {\r\n        res.eb(e.id);\r\n        done[e.frm] = 1;\r\n      }\r\n      if\
-    \ (!done[e.to]) {\r\n        res.eb(e.id);\r\n        done[e.to] = 1;\r\n    \
-    \  }\r\n    }\r\n    sort(all(res));\r\n    return res;\r\n  }\r\n\r\n  void debug()\
-    \ {\r\n    print(\"match\", match);\r\n    print(\"min vertex covor\", vertex_cover());\r\
-    \n    print(\"max indep set\", independent_set());\r\n    print(\"min edge cover\"\
-    , edge_cover());\r\n  }\r\n};\n#line 2 \"graph/maximum_antichain.hpp\"\n\n// \u6BD4\
-    \u8F03\u53EF\u80FD\u30B0\u30E9\u30D5\u3092\u4E0E\u3048\u308B\u3002DAG \u306A\u3060\
-    \u3051\u3067\u306F\u30C0\u30E1\u3002\ntemplate <typename T>\nvc<int> maximum_antichain(T&\
-    \ G) {\n  assert(G.is_directed());\n  int n = G.N;\n\n  Graph H(n + n);\n  for\
-    \ (auto&& e: G.edges) { H.add(e.frm, e.to + n); }\n  H.build();\n  BipartiteMatching\
-    \ BM(H);\n  auto cover = BM.vertex_cover();\n  auto match = BM.matching();\n \
-    \ assert(len(cover) == len(match));\n  vc<bool> ok(n, 1);\n  for (auto&& v: cover)\
-    \ { ok[v % n] = 0; }\n  vc<int> antichain;\n  FOR(v, n) if (ok[v]) antichain.eb(v);\n\
-    \  for (auto&& e: G.edges) { assert(!ok[e.frm] || !ok[e.to]); }\n  return antichain;\n\
-    }\n#line 6 \"test/aoj/2251_maxantichain.test.cpp\"\n\nvoid solve(ll N, ll M, ll\
-    \ L) {\n  vv(ll, dist, N, N);\n  {\n    Graph<ll> G(N);\n    G.read_graph(M, 1,\
-    \ 0);\n    const ll INF = 1LL << 60;\n    FOR(v, N) { dist[v] = dijkstra<ll>(G,\
-    \ v, INF).fi; }\n  }\n  VEC(pi, PT, L);\n  N = L;\n  Graph<int, 1> G(N);\n  FOR(a,\
-    \ N) FOR(b, N) {\n    if (a == b) continue;\n    auto [pa, ta] = PT[a];\n    auto\
-    \ [pb, tb] = PT[b];\n    if (ta + dist[pa][pb] <= tb) G.add(a, b);\n  }\n  G.build();\n\
-    \  auto A = maximum_antichain(G);\n  print(len(A));\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  while (1) {\n\
-    \    LL(N, M, L);\n    if (N + M + L == 0) break;\n    solve(N, M, L);\n  }\n\n\
-    \  return 0;\n}\n"
+    \ x) {\n    assert(0 <= x && x < n);\n    while (par[x] != x) {\n      par[x]\
+    \ = par[par[x]];\n      x = par[x];\n    }\n    return x;\n  }\n\n  int operator[](int\
+    \ x) { return find(x); }\n\n  bool merge(ll x, ll y) {\n    x = find(x);\n   \
+    \ y = find(y);\n    if (x == y) { return false; }\n    comp--;\n    if (size[x]\
+    \ < size[y]) swap(x, y);\n    size[x] += size[y];\n    size[y] = 0;\n    par[y]\
+    \ = x;\n    return true;\n  }\n\n  vc<int> find_all() {\n    vc<int> A(n);\n \
+    \   FOR(i, n) A[i] = find(i);\n    return A;\n  }\n\n  void reset(){\n    comp\
+    \ = n;\n    size.assign(n, 1);\n    iota(all(par), 0);\n  }\n};\n#line 3 \"graph/check_bipartite.hpp\"\
+    \n\r\n// \u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A + \u5FA9\u5143\r\n// \u4E8C\
+    \u90E8\u30B0\u30E9\u30D5\u3067\u306A\u304B\u3063\u305F\u5834\u5408\u306B\u306F\
+    \ empty\r\ntemplate <typename Graph>\r\nvc<int> check_bipartite(Graph& G) {\r\n\
+    \  assert(G.is_prepared());\r\n\r\n  int n = G.N;\r\n  UnionFind uf(2 * n);\r\n\
+    \  for (auto&& e: G.edges) {\r\n    int u = e.frm, v = e.to;\r\n    if (e.cost\
+    \ == 0) uf.merge(u, v), uf.merge(u + n, v + n);\r\n    if (e.cost != 0) uf.merge(u\
+    \ + n, v), uf.merge(u, v + n);\r\n  }\r\n\r\n  vc<int> color(2 * n, -1);\r\n \
+    \ FOR(v, n) if (uf[v] == v && color[uf[v]] < 0) {\r\n    color[uf[v]] = 0;\r\n\
+    \    color[uf[v + n]] = 1;\r\n  }\r\n  FOR(v, n) color[v] = color[uf[v]];\r\n\
+    \  color.resize(n);\r\n  FOR(v, n) if (uf[v] == uf[v + n]) return {};\r\n  return\
+    \ color;\r\n}\r\n#line 3 \"flow/bipartite.hpp\"\n\r\ntemplate <typename Graph>\r\
+    \nstruct BipartiteMatching {\r\n  int N;\r\n  Graph& G;\r\n  vc<int> color;\r\n\
+    \  vc<int> dist, match;\r\n  vc<int> vis;\r\n\r\n  BipartiteMatching(Graph& G)\
+    \ : G(G), N(G.N), dist(G.N, -1), match(G.N, -1) {\r\n    color = check_bipartite(G);\r\
+    \n    assert(!color.empty());\r\n    while (1) {\r\n      bfs();\r\n      vis.assign(N,\
+    \ false);\r\n      int flow = 0;\r\n      FOR(v, N) if (!color[v] && match[v]\
+    \ == -1 && dfs(v))++ flow;\r\n      if (!flow) break;\r\n    }\r\n  }\r\n\r\n\
+    \  void bfs() {\r\n    dist.assign(N, -1);\r\n    queue<int> que;\r\n    FOR(v,\
+    \ N) if (!color[v] && match[v] == -1) que.emplace(v), dist[v] = 0;\r\n    while\
+    \ (!que.empty()) {\r\n      int v = que.front();\r\n      que.pop();\r\n     \
+    \ for (auto&& e: G[v]) {\r\n        dist[e.to] = 0;\r\n        int w = match[e.to];\r\
+    \n        if (w != -1 && dist[w] == -1) dist[w] = dist[v] + 1, que.emplace(w);\r\
+    \n      }\r\n    }\r\n  }\r\n\r\n  bool dfs(int v) {\r\n    vis[v] = 1;\r\n  \
+    \  for (auto&& e: G[v]) {\r\n      int w = match[e.to];\r\n      if (w == -1 ||\
+    \ (!vis[w] && dist[w] == dist[v] + 1 && dfs(w))) {\r\n        match[e.to] = v,\
+    \ match[v] = e.to;\r\n        return true;\r\n      }\r\n    }\r\n    return false;\r\
+    \n  }\r\n\r\n  vc<pair<int, int>> matching() {\r\n    vc<pair<int, int>> res;\r\
+    \n    FOR(v, N) if (v < match[v]) res.eb(v, match[v]);\r\n    return res;\r\n\
+    \  }\r\n\r\n  vc<int> vertex_cover() {\r\n    vc<int> res;\r\n    FOR(v, N) if\
+    \ (color[v] ^ (dist[v] == -1)) {\r\n      res.eb(v);\r\n    }\r\n    return res;\r\
+    \n  }\r\n\r\n  vc<int> independent_set() {\r\n    vc<int> res;\r\n    FOR(v, N)\
+    \ if (!(color[v] ^ (dist[v] == -1))) {\r\n      res.eb(v);\r\n    }\r\n    return\
+    \ res;\r\n  }\r\n\r\n  vc<int> edge_cover() {\r\n    vc<bool> done(N);\r\n   \
+    \ vc<int> res;\r\n    for (auto&& e: G.edges) {\r\n      if (done[e.frm] || done[e.to])\
+    \ continue;\r\n      if (match[e.frm] == e.to) {\r\n        res.eb(e.id);\r\n\
+    \        done[e.frm] = done[e.to] = 1;\r\n      }\r\n    }\r\n    for (auto&&\
+    \ e: G.edges) {\r\n      if (!done[e.frm]) {\r\n        res.eb(e.id);\r\n    \
+    \    done[e.frm] = 1;\r\n      }\r\n      if (!done[e.to]) {\r\n        res.eb(e.id);\r\
+    \n        done[e.to] = 1;\r\n      }\r\n    }\r\n    sort(all(res));\r\n    return\
+    \ res;\r\n  }\r\n\r\n  void debug() {\r\n    print(\"match\", match);\r\n    print(\"\
+    min vertex covor\", vertex_cover());\r\n    print(\"max indep set\", independent_set());\r\
+    \n    print(\"min edge cover\", edge_cover());\r\n  }\r\n};\n#line 2 \"graph/maximum_antichain.hpp\"\
+    \n\n// \u6BD4\u8F03\u53EF\u80FD\u30B0\u30E9\u30D5\u3092\u4E0E\u3048\u308B\u3002\
+    DAG \u306A\u3060\u3051\u3067\u306F\u30C0\u30E1\u3002\ntemplate <typename T>\n\
+    vc<int> maximum_antichain(T& G) {\n  assert(G.is_directed());\n  int n = G.N;\n\
+    \n  Graph H(n + n);\n  for (auto&& e: G.edges) { H.add(e.frm, e.to + n); }\n \
+    \ H.build();\n  BipartiteMatching BM(H);\n  auto cover = BM.vertex_cover();\n\
+    \  auto match = BM.matching();\n  assert(len(cover) == len(match));\n  vc<bool>\
+    \ ok(n, 1);\n  for (auto&& v: cover) { ok[v % n] = 0; }\n  vc<int> antichain;\n\
+    \  FOR(v, n) if (ok[v]) antichain.eb(v);\n  for (auto&& e: G.edges) { assert(!ok[e.frm]\
+    \ || !ok[e.to]); }\n  return antichain;\n}\n#line 6 \"test/aoj/2251_maxantichain.test.cpp\"\
+    \n\nvoid solve(ll N, ll M, ll L) {\n  vv(ll, dist, N, N);\n  {\n    Graph<ll>\
+    \ G(N);\n    G.read_graph(M, 1, 0);\n    const ll INF = 1LL << 60;\n    FOR(v,\
+    \ N) { dist[v] = dijkstra<ll>(G, v, INF).fi; }\n  }\n  VEC(pi, PT, L);\n  N =\
+    \ L;\n  Graph<int, 1> G(N);\n  FOR(a, N) FOR(b, N) {\n    if (a == b) continue;\n\
+    \    auto [pa, ta] = PT[a];\n    auto [pb, tb] = PT[b];\n    if (ta + dist[pa][pb]\
+    \ <= tb) G.add(a, b);\n  }\n  G.build();\n  auto A = maximum_antichain(G);\n \
+    \ print(len(A));\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  while (1) {\n    LL(N, M, L);\n    if (N + M\
+    \ + L == 0) break;\n    solve(N, M, L);\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2251\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/dijkstra.hpp\"\
     \n#include \"graph/maximum_antichain.hpp\"\n\nvoid solve(ll N, ll M, ll L) {\n\
@@ -352,7 +352,7 @@ data:
   isVerificationFile: true
   path: test/aoj/2251_maxantichain.test.cpp
   requiredBy: []
-  timestamp: '2022-06-17 20:39:28+09:00'
+  timestamp: '2022-06-25 13:24:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/2251_maxantichain.test.cpp
