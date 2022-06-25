@@ -9,11 +9,21 @@
 // ・sparse な場合： O(NK)
 template <typename mint>
 vc<mint> fps_pow(const vc<mint>& f, ll k) {
+  assert(0 <= k);
   int n = len(f);
+  if(k==0){
+    vc<mint> g(n);
+    g[0] = mint(1);
+    return g;
+  }
   int d = n;
   FOR_R(i, n) if (f[i] != 0) d = i;
+  // d * k >= n
+  if(d >= ceil(n,k)){
+    vc<mint> g(n);
+    return g;
+  }
   ll off = d * k;
-  if (off >= n) return vc<mint>(n, 0);
   mint c = f[d];
   mint c_inv = mint(1) / mint(c);
   vc<mint> g(n - off);
@@ -37,7 +47,7 @@ vc<mint> fps_pow_1_sparse(const vc<mint>& f, mint K) {
     for (auto&& [d, cf]: dat) {
       if (d > n + 1) break;
       mint t = cf * g[n - d + 1];
-      x += t * (K.val * d - (n - d + 1));
+      x += t * (K * mint(d) - mint(n - d + 1));
     }
     x *= inv<mint>(n + 1);
   }
