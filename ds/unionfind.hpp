@@ -1,13 +1,14 @@
 #pragma once
 
 struct UnionFind {
-  int num;
+  int n;
   int comp;
   vc<int> size, par;
-  UnionFind(int n) : num(n), comp(n), size(n, 1), par(n) {
+  UnionFind(int n) : n(n), comp(n), size(n, 1), par(n) {
     iota(par.begin(), par.end(), 0);
   }
   int find(int x) {
+    assert(0 <= x && x < n);
     while (par[x] != x) {
       par[x] = par[par[x]];
       x = par[x];
@@ -30,14 +31,14 @@ struct UnionFind {
   }
 
   vc<int> find_all() {
-    vc<int> A(num);
-    FOR(i, num) A[i] = find(i);
+    vc<int> A(n);
+    FOR(i, n) A[i] = find(i);
     return A;
   }
 
   void reset(){
-    comp = num;
-    size.assign(num, 1);
+    comp = n;
+    size.assign(n, 1);
     iota(all(par), 0);
   }
 };
