@@ -11,17 +11,19 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"alg/group_gl2.hpp\"\n\ntemplate <typename T>\nstruct Group_GL2\
-    \ {\n  using X = array<array<T, 2>, 2>;\n  using value_type = X;\n  static X op(const\
-    \ X &x, const X &y) {\n    X z{};\n    FOR(i, 2) FOR(j, 2) FOR(k, 2) z[i][k] +=\
-    \ x[i][j] * y[j][k];\n    return z;\n  }\n  static X inverse(const X &x) {\n \
-    \   T det = x[0][0] * x[1][1] - x[0][1] * x[1][0];\n    T cf = T(1) / det;\n \
-    \   X y;\n    y[0] = {x[1][1] * cf, -x[0][1] * cf};\n    y[1] = {-x[1][0] * cf,\
-    \ x[0][0] * cf};\n    return y;\n  }\n  // static X power(const X &x, ll n) {\
-    \ return n * x; }\n  static constexpr X unit() {\n    X x;\n    x[0] = {T(1),\
-    \ T(0)};\n    x[1] = {T(0), T(1)};\n    return x;\n  }\n  static constexpr bool\
-    \ commute = 1;\n};\n#line 3 \"alg/gset_gl2_vec.hpp\"\n\ntemplate <typename T>\n\
-    struct GSet_GL2_Vec {\n  using Group = Group_GL2<T>;\n  using G = typename Group::value_type;\n\
+  bundledCode: "#line 2 \"alg/group_gl2.hpp\"\n\ntemplate <typename T, bool reversed>\n\
+    struct Group_GL2 {\n  using X = array<array<T, 2>, 2>;\n  using value_type = X;\n\
+    \  static X op(const X &x, const X &y) {\n    X z{};\n    if (!reversed) {\n \
+    \     FOR(i, 2) FOR(j, 2) FOR(k, 2) z[i][k] += x[i][j] * y[j][k];\n    }\n   \
+    \ if (reversed) {\n      FOR(i, 2) FOR(j, 2) FOR(k, 2) z[i][k] += y[i][j] * x[j][k];\n\
+    \    }\n    return z;\n  }\n  static X inverse(const X &x) {\n    T det = x[0][0]\
+    \ * x[1][1] - x[0][1] * x[1][0];\n    T cf = T(1) / det;\n    X y;\n    y[0] =\
+    \ {x[1][1] * cf, -x[0][1] * cf};\n    y[1] = {-x[1][0] * cf, x[0][0] * cf};\n\
+    \    return y;\n  }\n  // static X power(const X &x, ll n) { return n * x; }\n\
+    \  static constexpr X unit() {\n    X x;\n    x[0] = {T(1), T(0)};\n    x[1] =\
+    \ {T(0), T(1)};\n    return x;\n  }\n  static constexpr bool commute = 0;\n};\n\
+    #line 3 \"alg/gset_gl2_vec.hpp\"\n\ntemplate <typename T>\nstruct GSet_GL2_Vec\
+    \ {\n  using Group = Group_GL2<T>;\n  using G = typename Group::value_type;\n\
     \  using X = pair<T, T>;\n  static X act(const G &g, const X &x) {\n    return\
     \ {g[0][0] * x.fi + g[0][1] * x.se, g[1][0] * x.fi + g[1][1] * x.se};\n  }\n};\n"
   code: "#pragma once\n#include \"alg/group_gl2.hpp\"\n\ntemplate <typename T>\nstruct\
@@ -33,7 +35,7 @@ data:
   isVerificationFile: false
   path: alg/gset_gl2_vec.hpp
   requiredBy: []
-  timestamp: '2022-06-05 16:18:21+09:00'
+  timestamp: '2022-06-25 15:02:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/gset_gl2_vec.hpp

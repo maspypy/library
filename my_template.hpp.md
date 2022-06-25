@@ -624,10 +624,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1718_rerooting.test.cpp
     title: test/yukicoder/1718_rerooting.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1750_matpow.test.cpp
     title: test/yukicoder/1750_matpow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1778_bracket_graph.test.cpp
     title: test/yukicoder/1778_bracket_graph.test.cpp
   - icon: ':heavy_check_mark:'
@@ -636,13 +636,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/17_warshall_floyd.test.cpp
     title: test/yukicoder/17_warshall_floyd.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1810_matpow.test.cpp
     title: test/yukicoder/1810_matpow.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1826_dseg.test.cpp
     title: test/yukicoder/1826_dseg.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1844_interpolate_c_rec.test.cpp
     title: test/yukicoder/1844_interpolate_c_rec.test.cpp
   - icon: ':heavy_check_mark:'
@@ -654,16 +654,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/187_crt.test.cpp
     title: test/yukicoder/187_crt.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1891_xor_sparse.test.cpp
     title: test/yukicoder/1891_xor_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/235_lazytreemonoid.test.cpp
     title: test/yukicoder/235_lazytreemonoid.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/255.test.cpp
     title: test/yukicoder/255.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
   - icon: ':heavy_check_mark:'
@@ -678,10 +678,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_factorial107.test.cpp
     title: test/yukicoder/502_factorial107.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_p_rec.test.cpp
     title: test/yukicoder/502_p_rec.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/529_two_edge.test.cpp
     title: test/yukicoder/529_two_edge.test.cpp
   - icon: ':heavy_check_mark:'
@@ -690,7 +690,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/705_monge_shortest_path.test.cpp
     title: test/yukicoder/705_monge_shortest_path.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/749_lazysegtree.test.cpp
     title: test/yukicoder/749_lazysegtree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -711,9 +711,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://trap.jp/post/1224/
@@ -855,7 +855,7 @@ data:
   requiredBy:
   - graph/bipartite_coloring.hpp
   timestamp: '2022-06-17 20:39:28+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1441_bbst.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
