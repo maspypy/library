@@ -86,52 +86,52 @@ data:
     \    return (parent[e.frm] == e.to ? e.frm : e.to);\r\n  }\r\n\r\n  int ELID(int\
     \ v) { return 2 * LID[v] - depth[v]; }\r\n  int ERID(int v) { return 2 * RID[v]\
     \ - depth[v] - 1; }\r\n\r\n  /* k: 0-indexed */\r\n  int LA(int v, int k) {\r\n\
-    \    while (1) {\r\n      int u = head[v];\r\n      if (LID[v] - k >= LID[u])\
-    \ return V[LID[v] - k];\r\n      k -= LID[v] - LID[u] + 1;\r\n      v = parent[u];\r\
-    \n    }\r\n  }\r\n\r\n  int LCA(int u, int v) {\r\n    for (;; v = parent[head[v]])\
-    \ {\r\n      if (LID[u] > LID[v]) swap(u, v);\r\n      if (head[u] == head[v])\
-    \ return u;\r\n    }\r\n  }\r\n\r\n  int lca(int u, int v) { return LCA(u, v);\
-    \ }\r\n  int la(int u, int v) { return LA(u, v); }\r\n\r\n  int subtree_size(int\
-    \ v) { return RID[v] - LID[v]; }\r\n\r\n  int dist(int a, int b) {\r\n    int\
-    \ c = LCA(a, b);\r\n    return depth[a] + depth[b] - 2 * depth[c];\r\n  }\r\n\r\
-    \n  WT dist(int a, int b, bool weighted) {\r\n    assert(weighted);\r\n    int\
-    \ c = LCA(a, b);\r\n    return depth_weighted[a] + depth_weighted[b] - 2 * depth_weighted[c];\r\
-    \n  }\r\n\r\n  bool in_subtree(int a, int b) { return LID[b] <= LID[a] && LID[a]\
-    \ < RID[b]; }\r\n\r\n  int move(int a, int b) {\r\n    assert(a != b);\r\n   \
-    \ return (in_subtree(b, a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\r\n\
-    \  }\r\n\r\n  vc<int> collect_child(int v) {\r\n    vc<int> res;\r\n    for (auto\
-    \ &&e: G[v])\r\n      if (e.to != parent[v]) res.eb(e.to);\r\n    return res;\r\
-    \n  }\r\n\r\n  vc<pair<int, int>> get_path_decomposition(int u, int v, bool edge)\
-    \ {\r\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\"\u533A\u9593\u5217\u3002\
-    \r\n    vc<pair<int, int>> up, down;\r\n    while (1) {\r\n      if (head[u] ==\
-    \ head[v]) break;\r\n      if (LID[u] < LID[v]) {\r\n        down.eb(LID[head[v]],\
-    \ LID[v]);\r\n        v = parent[head[v]];\r\n      } else {\r\n        up.eb(LID[u],\
-    \ LID[head[u]]);\r\n        u = parent[head[u]];\r\n      }\r\n    }\r\n    if\
-    \ (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\r\n    elif (LID[v] + edge\
-    \ <= LID[u]) up.eb(LID[u], LID[v] + edge);\r\n    reverse(all(down));\r\n    up.insert(up.end(),\
-    \ all(down));\r\n    return up;\r\n  }\r\n\r\n  void debug() {\r\n    print(\"\
-    V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\", RID);\r\n    print(\"\
-    parent\", parent);\r\n    print(\"depth\", depth);\r\n    print(\"head\", head);\r\
-    \n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"root\", root);\r\n  }\r\
-    \n};\r\n#line 3 \"graph/rerooting_dp.hpp\"\n\r\n// snippet \u53C2\u7167\r\ntemplate\
-    \ <typename Graph, typename Data, typename F1, typename F2, typename F3>\r\nvc<Data>\
-    \ rerooting_dp(Graph& G, F1 fee, F2 fev, F3 fve, Data unit) {\r\n  using E = typename\
-    \ Graph::edge_type;\r\n\r\n  int N = G.N;\r\n  HLD hld(G);\r\n  auto V = hld.V;\r\
-    \n  auto VR = V;\r\n  reverse(all(VR));\r\n  auto par = hld.parent;\r\n\r\n  vc<Data>\
-    \ dpv(N);\r\n  vc<Data> dpe1(N);\r\n\r\n  for (auto&& v: VR) {\r\n    auto val\
-    \ = unit;\r\n    E e0;\r\n    for (auto&& e: G[v]) {\r\n      if (e.to != par[v])\
-    \ {\r\n        val = fee(val, dpe1[e.to]);\r\n      } else {\r\n        e0 = e;\r\
-    \n      }\r\n    }\r\n    dpv[v] = fev(val, v);\r\n    dpe1[v] = (v ? fve(dpv[v],\
-    \ e0) : unit);\r\n  }\r\n\r\n  vc<Data> dp(N);\r\n  vc<Data> dpe2(N);\r\n  dpe2[0]\
-    \ = unit;\r\n\r\n  for (auto&& v: V) {\r\n    vc<Data> tmp = {dpe2[v]};\r\n  \
-    \  for (auto&& e: G[v])\r\n      if (e.to != par[v]) { tmp.eb(dpe1[e.to]); }\r\
-    \n    int n = len(tmp);\r\n    vc<Data> cum_l(n + 1), cum_r(n + 1);\r\n    cum_l[0]\
-    \ = unit;\r\n    FOR(i, n) cum_l[i + 1] = fee(cum_l[i], tmp[i]);\r\n    cum_r[n]\
-    \ = unit;\r\n    FOR_R(i, n) cum_r[i] = fee(cum_r[i + 1], tmp[i]);\r\n    dp[v]\
-    \ = fev(cum_r[0], v);\r\n    int nxt = 1;\r\n    for (auto&& e: G[v])\r\n    \
-    \  if (e.to != par[v]) {\r\n        auto prod = fee(cum_l[nxt], cum_r[nxt + 1]);\r\
-    \n        ++nxt;\r\n        dpe2[e.to] = fve(fev(prod, v), e);\r\n      }\r\n\
-    \  }\r\n  return dp;\r\n}\n"
+    \    assert(k <= depth[v]);\r\n    while (1) {\r\n      int u = head[v];\r\n \
+    \     if (LID[v] - k >= LID[u]) return V[LID[v] - k];\r\n      k -= LID[v] - LID[u]\
+    \ + 1;\r\n      v = parent[u];\r\n    }\r\n  }\r\n\r\n  int LCA(int u, int v)\
+    \ {\r\n    for (;; v = parent[head[v]]) {\r\n      if (LID[u] > LID[v]) swap(u,\
+    \ v);\r\n      if (head[u] == head[v]) return u;\r\n    }\r\n  }\r\n\r\n  int\
+    \ lca(int u, int v) { return LCA(u, v); }\r\n  int la(int u, int v) { return LA(u,\
+    \ v); }\r\n\r\n  int subtree_size(int v) { return RID[v] - LID[v]; }\r\n\r\n \
+    \ int dist(int a, int b) {\r\n    int c = LCA(a, b);\r\n    return depth[a] +\
+    \ depth[b] - 2 * depth[c];\r\n  }\r\n\r\n  WT dist(int a, int b, bool weighted)\
+    \ {\r\n    assert(weighted);\r\n    int c = LCA(a, b);\r\n    return depth_weighted[a]\
+    \ + depth_weighted[b] - 2 * depth_weighted[c];\r\n  }\r\n\r\n  bool in_subtree(int\
+    \ a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b]; }\r\n\r\n  int move(int\
+    \ a, int b) {\r\n    assert(a != b);\r\n    return (in_subtree(b, a) ? LA(b, depth[b]\
+    \ - depth[a] - 1) : parent[a]);\r\n  }\r\n\r\n  vc<int> collect_child(int v) {\r\
+    \n    vc<int> res;\r\n    for (auto &&e: G[v])\r\n      if (e.to != parent[v])\
+    \ res.eb(e.to);\r\n    return res;\r\n  }\r\n\r\n  vc<pair<int, int>> get_path_decomposition(int\
+    \ u, int v, bool edge) {\r\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\
+    \"\u533A\u9593\u5217\u3002\r\n    vc<pair<int, int>> up, down;\r\n    while (1)\
+    \ {\r\n      if (head[u] == head[v]) break;\r\n      if (LID[u] < LID[v]) {\r\n\
+    \        down.eb(LID[head[v]], LID[v]);\r\n        v = parent[head[v]];\r\n  \
+    \    } else {\r\n        up.eb(LID[u], LID[head[u]]);\r\n        u = parent[head[u]];\r\
+    \n      }\r\n    }\r\n    if (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\r\
+    \n    elif (LID[v] + edge <= LID[u]) up.eb(LID[u], LID[v] + edge);\r\n    reverse(all(down));\r\
+    \n    up.insert(up.end(), all(down));\r\n    return up;\r\n  }\r\n\r\n  void debug()\
+    \ {\r\n    print(\"V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\",\
+    \ RID);\r\n    print(\"parent\", parent);\r\n    print(\"depth\", depth);\r\n\
+    \    print(\"head\", head);\r\n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"\
+    root\", root);\r\n  }\r\n};\r\n#line 3 \"graph/rerooting_dp.hpp\"\n\r\n// snippet\
+    \ \u53C2\u7167\r\ntemplate <typename Graph, typename Data, typename F1, typename\
+    \ F2, typename F3>\r\nvc<Data> rerooting_dp(Graph& G, F1 fee, F2 fev, F3 fve,\
+    \ Data unit) {\r\n  using E = typename Graph::edge_type;\r\n\r\n  int N = G.N;\r\
+    \n  HLD hld(G);\r\n  auto V = hld.V;\r\n  auto VR = V;\r\n  reverse(all(VR));\r\
+    \n  auto par = hld.parent;\r\n\r\n  vc<Data> dpv(N);\r\n  vc<Data> dpe1(N);\r\n\
+    \r\n  for (auto&& v: VR) {\r\n    auto val = unit;\r\n    E e0;\r\n    for (auto&&\
+    \ e: G[v]) {\r\n      if (e.to != par[v]) {\r\n        val = fee(val, dpe1[e.to]);\r\
+    \n      } else {\r\n        e0 = e;\r\n      }\r\n    }\r\n    dpv[v] = fev(val,\
+    \ v);\r\n    dpe1[v] = (v ? fve(dpv[v], e0) : unit);\r\n  }\r\n\r\n  vc<Data>\
+    \ dp(N);\r\n  vc<Data> dpe2(N);\r\n  dpe2[0] = unit;\r\n\r\n  for (auto&& v: V)\
+    \ {\r\n    vc<Data> tmp = {dpe2[v]};\r\n    for (auto&& e: G[v])\r\n      if (e.to\
+    \ != par[v]) { tmp.eb(dpe1[e.to]); }\r\n    int n = len(tmp);\r\n    vc<Data>\
+    \ cum_l(n + 1), cum_r(n + 1);\r\n    cum_l[0] = unit;\r\n    FOR(i, n) cum_l[i\
+    \ + 1] = fee(cum_l[i], tmp[i]);\r\n    cum_r[n] = unit;\r\n    FOR_R(i, n) cum_r[i]\
+    \ = fee(cum_r[i + 1], tmp[i]);\r\n    dp[v] = fev(cum_r[0], v);\r\n    int nxt\
+    \ = 1;\r\n    for (auto&& e: G[v])\r\n      if (e.to != par[v]) {\r\n        auto\
+    \ prod = fee(cum_l[nxt], cum_r[nxt + 1]);\r\n        ++nxt;\r\n        dpe2[e.to]\
+    \ = fve(fev(prod, v), e);\r\n      }\r\n  }\r\n  return dp;\r\n}\n"
   code: "#include \"graph/base.hpp\"\r\n#include \"graph/hld.hpp\"\r\n\r\n// snippet\
     \ \u53C2\u7167\r\ntemplate <typename Graph, typename Data, typename F1, typename\
     \ F2, typename F3>\r\nvc<Data> rerooting_dp(Graph& G, F1 fee, F2 fev, F3 fve,\
@@ -157,7 +157,7 @@ data:
   isVerificationFile: false
   path: graph/rerooting_dp.hpp
   requiredBy: []
-  timestamp: '2022-05-23 16:54:27+09:00'
+  timestamp: '2022-06-25 14:29:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1718_rerooting.test.cpp

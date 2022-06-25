@@ -320,63 +320,63 @@ data:
     \    return (parent[e.frm] == e.to ? e.frm : e.to);\r\n  }\r\n\r\n  int ELID(int\
     \ v) { return 2 * LID[v] - depth[v]; }\r\n  int ERID(int v) { return 2 * RID[v]\
     \ - depth[v] - 1; }\r\n\r\n  /* k: 0-indexed */\r\n  int LA(int v, int k) {\r\n\
-    \    while (1) {\r\n      int u = head[v];\r\n      if (LID[v] - k >= LID[u])\
-    \ return V[LID[v] - k];\r\n      k -= LID[v] - LID[u] + 1;\r\n      v = parent[u];\r\
-    \n    }\r\n  }\r\n\r\n  int LCA(int u, int v) {\r\n    for (;; v = parent[head[v]])\
-    \ {\r\n      if (LID[u] > LID[v]) swap(u, v);\r\n      if (head[u] == head[v])\
-    \ return u;\r\n    }\r\n  }\r\n\r\n  int lca(int u, int v) { return LCA(u, v);\
-    \ }\r\n  int la(int u, int v) { return LA(u, v); }\r\n\r\n  int subtree_size(int\
-    \ v) { return RID[v] - LID[v]; }\r\n\r\n  int dist(int a, int b) {\r\n    int\
-    \ c = LCA(a, b);\r\n    return depth[a] + depth[b] - 2 * depth[c];\r\n  }\r\n\r\
-    \n  WT dist(int a, int b, bool weighted) {\r\n    assert(weighted);\r\n    int\
-    \ c = LCA(a, b);\r\n    return depth_weighted[a] + depth_weighted[b] - 2 * depth_weighted[c];\r\
-    \n  }\r\n\r\n  bool in_subtree(int a, int b) { return LID[b] <= LID[a] && LID[a]\
-    \ < RID[b]; }\r\n\r\n  int move(int a, int b) {\r\n    assert(a != b);\r\n   \
-    \ return (in_subtree(b, a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\r\n\
-    \  }\r\n\r\n  vc<int> collect_child(int v) {\r\n    vc<int> res;\r\n    for (auto\
-    \ &&e: G[v])\r\n      if (e.to != parent[v]) res.eb(e.to);\r\n    return res;\r\
-    \n  }\r\n\r\n  vc<pair<int, int>> get_path_decomposition(int u, int v, bool edge)\
-    \ {\r\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\"\u533A\u9593\u5217\u3002\
-    \r\n    vc<pair<int, int>> up, down;\r\n    while (1) {\r\n      if (head[u] ==\
-    \ head[v]) break;\r\n      if (LID[u] < LID[v]) {\r\n        down.eb(LID[head[v]],\
-    \ LID[v]);\r\n        v = parent[head[v]];\r\n      } else {\r\n        up.eb(LID[u],\
-    \ LID[head[u]]);\r\n        u = parent[head[u]];\r\n      }\r\n    }\r\n    if\
-    \ (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\r\n    elif (LID[v] + edge\
-    \ <= LID[u]) up.eb(LID[u], LID[v] + edge);\r\n    reverse(all(down));\r\n    up.insert(up.end(),\
-    \ all(down));\r\n    return up;\r\n  }\r\n\r\n  void debug() {\r\n    print(\"\
-    V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\", RID);\r\n    print(\"\
-    parent\", parent);\r\n    print(\"depth\", depth);\r\n    print(\"head\", head);\r\
-    \n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"root\", root);\r\n  }\r\
-    \n};\r\n#line 1 \"alg/group_reverse.hpp\"\ntemplate <class Group>\r\nstruct Group_Reverse\
-    \ {\r\n  using value_type = typename Group::value_type;\r\n  using X = value_type;\r\
-    \n  static constexpr X op(const X &x, const X &y) { return Group::op(y, x); }\r\
-    \n  static constexpr X inverse(const X &x) { return Group::inverse(x); }\r\n \
-    \ static constexpr X unit() { return Group::unit(); }\r\n  static const bool commute\
-    \ = Group::commute;\r\n};\r\n#line 4 \"graph/treegroup.hpp\"\n\r\n// \u4F5C\u3063\
-    \u3066\u307F\u305F\u3082\u306E\u306E\u3001HLD(log^2N)\u3088\u308A\u9045\u3044\u304C\
-    \u3061\uFF1F\r\ntemplate <typename HLD, typename Group, bool edge = false,\r\n\
-    \          bool path_query = true, bool subtree_query = false>\r\nstruct TreeGroup\
-    \ {\r\n  using RevGroup = Group_Reverse<Group>;\r\n  using X = typename Group::value_type;\r\
-    \n  HLD &hld;\r\n  int N;\r\n  SegTree<Group> seg, seg_subtree;\r\n  SegTree<RevGroup>\
-    \ seg_r;\r\n\r\n  TreeGroup(HLD &hld) : hld(hld), N(hld.N) {\r\n    if (path_query)\
-    \ {\r\n      seg = SegTree<Group>(2 * N);\r\n      if (!Group::commute) seg_r\
-    \ = SegTree<RevGroup>(2 * N);\r\n    }\r\n    if (subtree_query) {\r\n      assert(Group::commute);\r\
-    \n      seg_subtree = SegTree<Group>(N);\r\n    }\r\n  }\r\n\r\n  TreeGroup(HLD\
-    \ &hld, vc<X> dat) : hld(hld), N(hld.N) {\r\n    if (path_query) {\r\n      vc<X>\
-    \ seg_raw(2 * N);\r\n      if (!edge) {\r\n        assert(len(dat) == N);\r\n\
-    \        FOR(v, N) {\r\n          seg_raw[hld.ELID(v)] = dat[v];\r\n         \
-    \ seg_raw[hld.ERID(v)] = Group::inverse(dat[v]);\r\n        }\r\n      } else\
-    \ {\r\n        assert(len(dat) == N - 1);\r\n        FOR(e, N - 1) {\r\n     \
-    \     int v = hld.e_to_v(e);\r\n          seg_raw[hld.ELID(v)] = dat[e];\r\n \
-    \         seg_raw[hld.ERID(v)] = Group::inverse(dat[e]);\r\n        }\r\n    \
-    \  }\r\n      seg = SegTree<Group>(seg_raw);\r\n      if (!Group::commute) seg_r\
-    \ = SegTree<RevGroup>(seg_raw);\r\n    }\r\n    if (subtree_query) {\r\n     \
-    \ assert(Group::commute);\r\n      vc<X> seg_raw(N);\r\n      if (!edge) {\r\n\
-    \        assert(len(dat) == N);\r\n        FOR(v, N) seg_raw[hld.LID[v]] = dat[v];\r\
-    \n      } else {\r\n        assert(len(dat) == N - 1);\r\n        FOR(e, N - 1)\
-    \ {\r\n          int v = hld.e_to_v(e);\r\n          seg_raw[hld.LID[v]] = dat[e];\r\
-    \n        }\r\n      }\r\n      seg_subtree = SegTree<Group>(seg_raw);\r\n   \
-    \ }\r\n  }\r\n\r\n  void set_path(int v, X x) {\r\n    X inv_x = Group::inverse(x);\r\
+    \    assert(k <= depth[v]);\r\n    while (1) {\r\n      int u = head[v];\r\n \
+    \     if (LID[v] - k >= LID[u]) return V[LID[v] - k];\r\n      k -= LID[v] - LID[u]\
+    \ + 1;\r\n      v = parent[u];\r\n    }\r\n  }\r\n\r\n  int LCA(int u, int v)\
+    \ {\r\n    for (;; v = parent[head[v]]) {\r\n      if (LID[u] > LID[v]) swap(u,\
+    \ v);\r\n      if (head[u] == head[v]) return u;\r\n    }\r\n  }\r\n\r\n  int\
+    \ lca(int u, int v) { return LCA(u, v); }\r\n  int la(int u, int v) { return LA(u,\
+    \ v); }\r\n\r\n  int subtree_size(int v) { return RID[v] - LID[v]; }\r\n\r\n \
+    \ int dist(int a, int b) {\r\n    int c = LCA(a, b);\r\n    return depth[a] +\
+    \ depth[b] - 2 * depth[c];\r\n  }\r\n\r\n  WT dist(int a, int b, bool weighted)\
+    \ {\r\n    assert(weighted);\r\n    int c = LCA(a, b);\r\n    return depth_weighted[a]\
+    \ + depth_weighted[b] - 2 * depth_weighted[c];\r\n  }\r\n\r\n  bool in_subtree(int\
+    \ a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b]; }\r\n\r\n  int move(int\
+    \ a, int b) {\r\n    assert(a != b);\r\n    return (in_subtree(b, a) ? LA(b, depth[b]\
+    \ - depth[a] - 1) : parent[a]);\r\n  }\r\n\r\n  vc<int> collect_child(int v) {\r\
+    \n    vc<int> res;\r\n    for (auto &&e: G[v])\r\n      if (e.to != parent[v])\
+    \ res.eb(e.to);\r\n    return res;\r\n  }\r\n\r\n  vc<pair<int, int>> get_path_decomposition(int\
+    \ u, int v, bool edge) {\r\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\
+    \"\u533A\u9593\u5217\u3002\r\n    vc<pair<int, int>> up, down;\r\n    while (1)\
+    \ {\r\n      if (head[u] == head[v]) break;\r\n      if (LID[u] < LID[v]) {\r\n\
+    \        down.eb(LID[head[v]], LID[v]);\r\n        v = parent[head[v]];\r\n  \
+    \    } else {\r\n        up.eb(LID[u], LID[head[u]]);\r\n        u = parent[head[u]];\r\
+    \n      }\r\n    }\r\n    if (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\r\
+    \n    elif (LID[v] + edge <= LID[u]) up.eb(LID[u], LID[v] + edge);\r\n    reverse(all(down));\r\
+    \n    up.insert(up.end(), all(down));\r\n    return up;\r\n  }\r\n\r\n  void debug()\
+    \ {\r\n    print(\"V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\",\
+    \ RID);\r\n    print(\"parent\", parent);\r\n    print(\"depth\", depth);\r\n\
+    \    print(\"head\", head);\r\n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"\
+    root\", root);\r\n  }\r\n};\r\n#line 1 \"alg/group_reverse.hpp\"\ntemplate <class\
+    \ Group>\r\nstruct Group_Reverse {\r\n  using value_type = typename Group::value_type;\r\
+    \n  using X = value_type;\r\n  static constexpr X op(const X &x, const X &y) {\
+    \ return Group::op(y, x); }\r\n  static constexpr X inverse(const X &x) { return\
+    \ Group::inverse(x); }\r\n  static constexpr X unit() { return Group::unit();\
+    \ }\r\n  static const bool commute = Group::commute;\r\n};\r\n#line 4 \"graph/treegroup.hpp\"\
+    \n\r\n// \u4F5C\u3063\u3066\u307F\u305F\u3082\u306E\u306E\u3001HLD(log^2N)\u3088\
+    \u308A\u9045\u3044\u304C\u3061\uFF1F\r\ntemplate <typename HLD, typename Group,\
+    \ bool edge = false,\r\n          bool path_query = true, bool subtree_query =\
+    \ false>\r\nstruct TreeGroup {\r\n  using RevGroup = Group_Reverse<Group>;\r\n\
+    \  using X = typename Group::value_type;\r\n  HLD &hld;\r\n  int N;\r\n  SegTree<Group>\
+    \ seg, seg_subtree;\r\n  SegTree<RevGroup> seg_r;\r\n\r\n  TreeGroup(HLD &hld)\
+    \ : hld(hld), N(hld.N) {\r\n    if (path_query) {\r\n      seg = SegTree<Group>(2\
+    \ * N);\r\n      if (!Group::commute) seg_r = SegTree<RevGroup>(2 * N);\r\n  \
+    \  }\r\n    if (subtree_query) {\r\n      assert(Group::commute);\r\n      seg_subtree\
+    \ = SegTree<Group>(N);\r\n    }\r\n  }\r\n\r\n  TreeGroup(HLD &hld, vc<X> dat)\
+    \ : hld(hld), N(hld.N) {\r\n    if (path_query) {\r\n      vc<X> seg_raw(2 * N);\r\
+    \n      if (!edge) {\r\n        assert(len(dat) == N);\r\n        FOR(v, N) {\r\
+    \n          seg_raw[hld.ELID(v)] = dat[v];\r\n          seg_raw[hld.ERID(v)] =\
+    \ Group::inverse(dat[v]);\r\n        }\r\n      } else {\r\n        assert(len(dat)\
+    \ == N - 1);\r\n        FOR(e, N - 1) {\r\n          int v = hld.e_to_v(e);\r\n\
+    \          seg_raw[hld.ELID(v)] = dat[e];\r\n          seg_raw[hld.ERID(v)] =\
+    \ Group::inverse(dat[e]);\r\n        }\r\n      }\r\n      seg = SegTree<Group>(seg_raw);\r\
+    \n      if (!Group::commute) seg_r = SegTree<RevGroup>(seg_raw);\r\n    }\r\n\
+    \    if (subtree_query) {\r\n      assert(Group::commute);\r\n      vc<X> seg_raw(N);\r\
+    \n      if (!edge) {\r\n        assert(len(dat) == N);\r\n        FOR(v, N) seg_raw[hld.LID[v]]\
+    \ = dat[v];\r\n      } else {\r\n        assert(len(dat) == N - 1);\r\n      \
+    \  FOR(e, N - 1) {\r\n          int v = hld.e_to_v(e);\r\n          seg_raw[hld.LID[v]]\
+    \ = dat[e];\r\n        }\r\n      }\r\n      seg_subtree = SegTree<Group>(seg_raw);\r\
+    \n    }\r\n  }\r\n\r\n  void set_path(int v, X x) {\r\n    X inv_x = Group::inverse(x);\r\
     \n    seg.set(hld.ELID(v), x);\r\n    seg.set(hld.ERID(v), inv_x);\r\n    if (!Group::commute)\
     \ {\r\n      seg_r.set(hld.ELID(v), x);\r\n      seg_r.set(hld.ERID(v), inv_x);\r\
     \n    }\r\n  }\r\n\r\n  void set_subtree(int v, X x) { seg_subtree.set(hld.LID[v],\
@@ -429,7 +429,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
   requiredBy: []
-  timestamp: '2022-06-17 20:39:28+09:00'
+  timestamp: '2022-06-25 14:29:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
