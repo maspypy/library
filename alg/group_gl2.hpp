@@ -1,12 +1,17 @@
 #pragma once
 
-template <typename T>
+template <typename T, bool reversed>
 struct Group_GL2 {
   using X = array<array<T, 2>, 2>;
   using value_type = X;
   static X op(const X &x, const X &y) {
     X z{};
-    FOR(i, 2) FOR(j, 2) FOR(k, 2) z[i][k] += x[i][j] * y[j][k];
+    if (!reversed) {
+      FOR(i, 2) FOR(j, 2) FOR(k, 2) z[i][k] += x[i][j] * y[j][k];
+    }
+    if (reversed) {
+      FOR(i, 2) FOR(j, 2) FOR(k, 2) z[i][k] += y[i][j] * x[j][k];
+    }
     return z;
   }
   static X inverse(const X &x) {
@@ -24,5 +29,5 @@ struct Group_GL2 {
     x[1] = {T(0), T(1)};
     return x;
   }
-  static constexpr bool commute = 1;
+  static constexpr bool commute = 0;
 };
