@@ -90,6 +90,7 @@ struct HLD {
 
   /* k: 0-indexed */
   int LA(int v, int k) {
+    assert(k <= depth[v]);
     while (1) {
       int u = head[v];
       if (LID[v] - k >= LID[u]) return V[LID[v] - k];
