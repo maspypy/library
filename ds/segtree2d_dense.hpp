@@ -1,5 +1,6 @@
-// https://codeforces.com/contest/1301/problem/E
 #pragma once
+
+// https://codeforces.com/contest/1301/problem/E
 template <class Monoid>
 struct SegTree2D_dense {
   using X = typename Monoid::value_type;
