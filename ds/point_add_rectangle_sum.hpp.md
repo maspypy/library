@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   _extendedRequiredBy:
@@ -12,15 +12,15 @@ data:
     path: ds/rectangle_add_ractangle_sum.hpp
     title: ds/rectangle_add_ractangle_sum.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1490_rect_add_rect_sum.test.cpp
     title: test/yukicoder/1490_rect_add_rect_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group_add.hpp\"\ntemplate <class X>\r\nstruct Group_Add\
@@ -58,79 +58,69 @@ data:
     \u306B\u5BFE\u3057\u3066\u30AF\u30A8\u30EA\u3092\u3084\u308A\u76F4\u305B\u308B\
     \u3002\r\n// SMALL=true \u306B\u3059\u308B\u3068\u3001\u5EA7\u5727\u3092\u3057\
     \u306A\u3044\u305F\u3081\u5C11\u3057\u9AD8\u901F\r\ntemplate <typename AbelGroup,\
-    \ bool SMALL = false>\r\nstruct Point_Add_Rectangle_Sum {\r\n  using WT = typename\
-    \ AbelGroup::value_type;\r\n  bool compressed;\r\n  int Q;\r\n  vi X, Y;\r\n \
-    \ vi keyX, keyY;\r\n  ll min_x, max_x, min_y, max_y;\r\n  vc<WT> wt;\r\n  vc<vc<pair<int,\
-    \ WT>>> add;\r\n  vc<vc<tuple<int, int, int>>> query_l;\r\n  vc<vc<tuple<int,\
-    \ int, int>>> query_r;\r\n\r\n  Point_Add_Rectangle_Sum() : compressed(0), Q(0)\
-    \ {}\r\n\r\n  void add_query(ll x, ll y, WT w = 1) {\r\n    assert(!compressed);\r\
-    \n    X.eb(x), Y.eb(y), wt.eb(w);\r\n    keyX.eb(x), keyY.eb(y);\r\n  }\r\n\r\n\
-    \  void compress() {\r\n    compressed = 1;\r\n    int N = len(X);\r\n    if (!SMALL)\
-    \ {\r\n      UNIQUE(keyX), UNIQUE(keyY);\r\n      add.resize(len(keyX) + 1);\r\
-    \n      FOR(i, N) {\r\n        ll x = X[i], y = Y[i];\r\n        WT w = wt[i];\r\
-    \n        x = LB(keyX, x), y = LB(keyY, y);\r\n        add[x].eb(y, w);\r\n  \
-    \    }\r\n    } else {\r\n      min_x = (N == 0 ? 0 : MIN(X));\r\n      max_x\
-    \ = (N == 0 ? 0 : MAX(X));\r\n      min_y = (N == 0 ? 0 : MIN(Y));\r\n      max_y\
-    \ = (N == 0 ? 0 : MAX(Y));\r\n      add.resize(max_x - min_x + 2);\r\n      FOR(i,\
-    \ N) {\r\n        ll x = X[i], y = Y[i];\r\n        WT w = wt[i];\r\n        x\
-    \ -= min_x, y -= min_y;\r\n        add[x].eb(y, w);\r\n      }\r\n    }\r\n  \
-    \  query_l.resize(len(add));\r\n    query_r.resize(len(add));\r\n  }\r\n\r\n \
-    \ void sum_query(ll xl, ll yl, ll xr, ll yr) {\r\n    if (!compressed) compress();\r\
-    \n    if (!SMALL) {\r\n      xl = LB(keyX, xl), xr = LB(keyX, xr);\r\n      yl\
-    \ = LB(keyY, yl), yr = LB(keyY, yr);\r\n    } else {\r\n      xl -= min_x, xr\
-    \ -= min_x;\r\n      yl -= min_y, yr -= min_y;\r\n      xl = clamp(xl, 0LL, max_x\
-    \ - min_x + 1);\r\n      xr = clamp(xr, 0LL, max_x - min_x + 1);\r\n      yl =\
-    \ clamp(yl, 0LL, max_y - min_y + 1);\r\n      yr = clamp(yr, 0LL, max_y - min_y\
-    \ + 1);\r\n    }\r\n    query_l[xl].eb(Q, yl, yr);\r\n    query_r[xr].eb(Q, yl,\
-    \ yr);\r\n    ++Q;\r\n  }\r\n\r\n  vc<WT> calc() {\r\n    assert(compressed);\r\
-    \n    vc<WT> ANS(Q, AbelGroup::unit());\r\n    int k = (SMALL ? max_y - min_y\
-    \ + 2 : len(keyY) + 1);\r\n    FenwickTree<AbelGroup> bit(k);\r\n    FOR(x, len(add))\
-    \ {\r\n      for (auto&& t: query_l[x]) {\r\n        auto [q, yl, yr] = t;\r\n\
-    \        ANS[q] = AbelGroup::op(ANS[q] , AbelGroup::inverse(bit.sum(yl, yr)));\r\
-    \n      }\r\n      for (auto&& t: query_r[x]) {\r\n        auto [q, yl, yr] =\
-    \ t;\r\n        ANS[q] = AbelGroup::op(ANS[q] , bit.sum(yl, yr));\r\n      }\r\
-    \n      for (auto&& t: add[x]) {\r\n        auto [y, w] = t;\r\n        bit.add(y,\
-    \ w);\r\n      }\r\n      query_l[x].clear();\r\n      query_r[x].clear();\r\n\
-    \    }\r\n    Q = 0;\r\n    return ANS;\r\n  }\r\n};\r\n"
+    \ bool SMALL = false>\r\nstruct Point_Add_Rectangle_Sum {\r\n  using G = typename\
+    \ AbelGroup::value_type;\r\n  int Q;\r\n  vi X, Y;\r\n  vc<G> WT;\r\n  vc<tuple<ll,\
+    \ ll, ll, ll>> rect;\r\n\r\n  Point_Add_Rectangle_Sum() {}\r\n\r\n  void add_query(ll\
+    \ x, ll y, G w) { X.eb(x), Y.eb(y), WT.eb(w); }\r\n\r\n  void sum_query(ll xl,\
+    \ ll yl, ll xr, ll yr) { rect.eb(xl, yl, xr, yr); }\r\n\r\n  vc<G> calc() {\r\n\
+    \    int N = len(X), Q = len(rect);\r\n    if (N == 0) return vc<G>(Q, AbelGroup::unit());\r\
+    \n    int NX = 0, NY = 0;\r\n    if (!SMALL) {\r\n      vi keyX = X, keyY = Y;\r\
+    \n      UNIQUE(keyX), UNIQUE(keyY);\r\n      NX = len(keyX), NY = len(keyY);\r\
+    \n      for (auto&& x: X) x = LB(keyX, x);\r\n      for (auto&& y: Y) y = LB(keyY,\
+    \ y);\r\n      for (auto&& [xl, xr, yl, yr]: rect) {\r\n        xl = LB(keyX,\
+    \ xl);\r\n        xr = LB(keyX, xr);\r\n        yl = LB(keyY, yl);\r\n       \
+    \ yr = LB(keyY, yr);\r\n      }\r\n    }\r\n    if (SMALL) {\r\n      ll mx =\
+    \ MIN(X);\r\n      ll my = MIN(Y);\r\n      for (auto&& x: X) x -= mx;\r\n   \
+    \   for (auto&& y: Y) y -= my;\r\n      NX = MAX(X) + 1, NY = MAX(Y) + 1;\r\n\
+    \      for (auto&& [xl, yl, xr, yr]: rect) {\r\n        xl -= mx, xr -= mx;\r\n\
+    \        yl -= my, yr -= my;\r\n        xl = max(0, min<int>(xl, NX));\r\n   \
+    \     xr = max(0, min<int>(xr, NX));\r\n        yl = max(0, min<int>(yl, NY));\r\
+    \n        yr = max(0, min<int>(yr, NY));\r\n      }\r\n    }\r\n    vvc<pair<int,\
+    \ G>> ADD(NY + 1);\r\n    vvc<tuple<int, int, int>> CALC_1(NY + 1);\r\n    vvc<tuple<int,\
+    \ int, int>> CALC_2(NY + 1);\r\n    FOR(n, N) { ADD[Y[n]].eb(X[n], WT[n]); }\r\
+    \n    FOR(q, Q) {\r\n      auto& [xl, yl, xr, yr] = rect[q];\r\n      CALC_1[yr].eb(xl,\
+    \ xr, q);\r\n      CALC_2[yl].eb(xl, xr, q);\r\n    };\r\n\r\n    vc<G> res(Q,\
+    \ AbelGroup::unit());\r\n    FenwickTree<AbelGroup> bit(NX);\r\n\r\n    FOR(y,\
+    \ NY + 1) {\r\n      for (auto&& [xl, xr, q]: CALC_1[y]) {\r\n        auto x =\
+    \ bit.sum(xl, xr);\r\n        res[q] = AbelGroup::op(res[q], x);\r\n      }\r\n\
+    \      for (auto&& [xl, xr, q]: CALC_2[y]) {\r\n        auto x = AbelGroup::inverse(bit.sum(xl,\
+    \ xr));\r\n        res[q] = AbelGroup::op(res[q], x);\r\n      }\r\n      for\
+    \ (auto&& [x, g]: ADD[y]) { bit.add(x, g); }\r\n    }\r\n    return res;\r\n \
+    \ }\r\n};\r\n"
   code: "#include \"ds/fenwick.hpp\"\r\n\r\n// \u70B9\u7FA4\u306F\u30AF\u30A8\u30EA\
     \u3088\u308A\u524D\u306B\u5168\u90E8\u5165\u529B\u3059\u308B\u3053\u3068 (add_pt)\u3002\
     \r\n// \u540C\u3058\u70B9\u7FA4\u306B\u5BFE\u3057\u3066\u30AF\u30A8\u30EA\u3092\
     \u3084\u308A\u76F4\u305B\u308B\u3002\r\n// SMALL=true \u306B\u3059\u308B\u3068\
     \u3001\u5EA7\u5727\u3092\u3057\u306A\u3044\u305F\u3081\u5C11\u3057\u9AD8\u901F\
     \r\ntemplate <typename AbelGroup, bool SMALL = false>\r\nstruct Point_Add_Rectangle_Sum\
-    \ {\r\n  using WT = typename AbelGroup::value_type;\r\n  bool compressed;\r\n\
-    \  int Q;\r\n  vi X, Y;\r\n  vi keyX, keyY;\r\n  ll min_x, max_x, min_y, max_y;\r\
-    \n  vc<WT> wt;\r\n  vc<vc<pair<int, WT>>> add;\r\n  vc<vc<tuple<int, int, int>>>\
-    \ query_l;\r\n  vc<vc<tuple<int, int, int>>> query_r;\r\n\r\n  Point_Add_Rectangle_Sum()\
-    \ : compressed(0), Q(0) {}\r\n\r\n  void add_query(ll x, ll y, WT w = 1) {\r\n\
-    \    assert(!compressed);\r\n    X.eb(x), Y.eb(y), wt.eb(w);\r\n    keyX.eb(x),\
-    \ keyY.eb(y);\r\n  }\r\n\r\n  void compress() {\r\n    compressed = 1;\r\n   \
-    \ int N = len(X);\r\n    if (!SMALL) {\r\n      UNIQUE(keyX), UNIQUE(keyY);\r\n\
-    \      add.resize(len(keyX) + 1);\r\n      FOR(i, N) {\r\n        ll x = X[i],\
-    \ y = Y[i];\r\n        WT w = wt[i];\r\n        x = LB(keyX, x), y = LB(keyY,\
-    \ y);\r\n        add[x].eb(y, w);\r\n      }\r\n    } else {\r\n      min_x =\
-    \ (N == 0 ? 0 : MIN(X));\r\n      max_x = (N == 0 ? 0 : MAX(X));\r\n      min_y\
-    \ = (N == 0 ? 0 : MIN(Y));\r\n      max_y = (N == 0 ? 0 : MAX(Y));\r\n      add.resize(max_x\
-    \ - min_x + 2);\r\n      FOR(i, N) {\r\n        ll x = X[i], y = Y[i];\r\n   \
-    \     WT w = wt[i];\r\n        x -= min_x, y -= min_y;\r\n        add[x].eb(y,\
-    \ w);\r\n      }\r\n    }\r\n    query_l.resize(len(add));\r\n    query_r.resize(len(add));\r\
-    \n  }\r\n\r\n  void sum_query(ll xl, ll yl, ll xr, ll yr) {\r\n    if (!compressed)\
-    \ compress();\r\n    if (!SMALL) {\r\n      xl = LB(keyX, xl), xr = LB(keyX, xr);\r\
-    \n      yl = LB(keyY, yl), yr = LB(keyY, yr);\r\n    } else {\r\n      xl -= min_x,\
-    \ xr -= min_x;\r\n      yl -= min_y, yr -= min_y;\r\n      xl = clamp(xl, 0LL,\
-    \ max_x - min_x + 1);\r\n      xr = clamp(xr, 0LL, max_x - min_x + 1);\r\n   \
-    \   yl = clamp(yl, 0LL, max_y - min_y + 1);\r\n      yr = clamp(yr, 0LL, max_y\
-    \ - min_y + 1);\r\n    }\r\n    query_l[xl].eb(Q, yl, yr);\r\n    query_r[xr].eb(Q,\
-    \ yl, yr);\r\n    ++Q;\r\n  }\r\n\r\n  vc<WT> calc() {\r\n    assert(compressed);\r\
-    \n    vc<WT> ANS(Q, AbelGroup::unit());\r\n    int k = (SMALL ? max_y - min_y\
-    \ + 2 : len(keyY) + 1);\r\n    FenwickTree<AbelGroup> bit(k);\r\n    FOR(x, len(add))\
-    \ {\r\n      for (auto&& t: query_l[x]) {\r\n        auto [q, yl, yr] = t;\r\n\
-    \        ANS[q] = AbelGroup::op(ANS[q] , AbelGroup::inverse(bit.sum(yl, yr)));\r\
-    \n      }\r\n      for (auto&& t: query_r[x]) {\r\n        auto [q, yl, yr] =\
-    \ t;\r\n        ANS[q] = AbelGroup::op(ANS[q] , bit.sum(yl, yr));\r\n      }\r\
-    \n      for (auto&& t: add[x]) {\r\n        auto [y, w] = t;\r\n        bit.add(y,\
-    \ w);\r\n      }\r\n      query_l[x].clear();\r\n      query_r[x].clear();\r\n\
-    \    }\r\n    Q = 0;\r\n    return ANS;\r\n  }\r\n};\r\n"
+    \ {\r\n  using G = typename AbelGroup::value_type;\r\n  int Q;\r\n  vi X, Y;\r\
+    \n  vc<G> WT;\r\n  vc<tuple<ll, ll, ll, ll>> rect;\r\n\r\n  Point_Add_Rectangle_Sum()\
+    \ {}\r\n\r\n  void add_query(ll x, ll y, G w) { X.eb(x), Y.eb(y), WT.eb(w); }\r\
+    \n\r\n  void sum_query(ll xl, ll yl, ll xr, ll yr) { rect.eb(xl, yl, xr, yr);\
+    \ }\r\n\r\n  vc<G> calc() {\r\n    int N = len(X), Q = len(rect);\r\n    if (N\
+    \ == 0) return vc<G>(Q, AbelGroup::unit());\r\n    int NX = 0, NY = 0;\r\n   \
+    \ if (!SMALL) {\r\n      vi keyX = X, keyY = Y;\r\n      UNIQUE(keyX), UNIQUE(keyY);\r\
+    \n      NX = len(keyX), NY = len(keyY);\r\n      for (auto&& x: X) x = LB(keyX,\
+    \ x);\r\n      for (auto&& y: Y) y = LB(keyY, y);\r\n      for (auto&& [xl, xr,\
+    \ yl, yr]: rect) {\r\n        xl = LB(keyX, xl);\r\n        xr = LB(keyX, xr);\r\
+    \n        yl = LB(keyY, yl);\r\n        yr = LB(keyY, yr);\r\n      }\r\n    }\r\
+    \n    if (SMALL) {\r\n      ll mx = MIN(X);\r\n      ll my = MIN(Y);\r\n     \
+    \ for (auto&& x: X) x -= mx;\r\n      for (auto&& y: Y) y -= my;\r\n      NX =\
+    \ MAX(X) + 1, NY = MAX(Y) + 1;\r\n      for (auto&& [xl, yl, xr, yr]: rect) {\r\
+    \n        xl -= mx, xr -= mx;\r\n        yl -= my, yr -= my;\r\n        xl = max(0,\
+    \ min<int>(xl, NX));\r\n        xr = max(0, min<int>(xr, NX));\r\n        yl =\
+    \ max(0, min<int>(yl, NY));\r\n        yr = max(0, min<int>(yr, NY));\r\n    \
+    \  }\r\n    }\r\n    vvc<pair<int, G>> ADD(NY + 1);\r\n    vvc<tuple<int, int,\
+    \ int>> CALC_1(NY + 1);\r\n    vvc<tuple<int, int, int>> CALC_2(NY + 1);\r\n \
+    \   FOR(n, N) { ADD[Y[n]].eb(X[n], WT[n]); }\r\n    FOR(q, Q) {\r\n      auto&\
+    \ [xl, yl, xr, yr] = rect[q];\r\n      CALC_1[yr].eb(xl, xr, q);\r\n      CALC_2[yl].eb(xl,\
+    \ xr, q);\r\n    };\r\n\r\n    vc<G> res(Q, AbelGroup::unit());\r\n    FenwickTree<AbelGroup>\
+    \ bit(NX);\r\n\r\n    FOR(y, NY + 1) {\r\n      for (auto&& [xl, xr, q]: CALC_1[y])\
+    \ {\r\n        auto x = bit.sum(xl, xr);\r\n        res[q] = AbelGroup::op(res[q],\
+    \ x);\r\n      }\r\n      for (auto&& [xl, xr, q]: CALC_2[y]) {\r\n        auto\
+    \ x = AbelGroup::inverse(bit.sum(xl, xr));\r\n        res[q] = AbelGroup::op(res[q],\
+    \ x);\r\n      }\r\n      for (auto&& [x, g]: ADD[y]) { bit.add(x, g); }\r\n \
+    \   }\r\n    return res;\r\n  }\r\n};\r\n"
   dependsOn:
   - ds/fenwick.hpp
   - alg/group_add.hpp
@@ -138,8 +128,8 @@ data:
   path: ds/point_add_rectangle_sum.hpp
   requiredBy:
   - ds/rectangle_add_ractangle_sum.hpp
-  timestamp: '2022-05-19 04:51:03+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-06-26 23:46:42+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1490_rect_add_rect_sum.test.cpp
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
