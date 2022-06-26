@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/point_add_rectangle_sum.hpp
     title: ds/point_add_rectangle_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
@@ -243,7 +243,7 @@ data:
     \n    int NX = 0, NY = 0;\r\n    if (!SMALL) {\r\n      vi keyX = X, keyY = Y;\r\
     \n      UNIQUE(keyX), UNIQUE(keyY);\r\n      NX = len(keyX), NY = len(keyY);\r\
     \n      for (auto&& x: X) x = LB(keyX, x);\r\n      for (auto&& y: Y) y = LB(keyY,\
-    \ y);\r\n      for (auto&& [xl, xr, yl, yr]: rect) {\r\n        xl = LB(keyX,\
+    \ y);\r\n      for (auto&& [xl, yl, xr, yr]: rect) {\r\n        xl = LB(keyX,\
     \ xl);\r\n        xr = LB(keyX, xr);\r\n        yl = LB(keyY, yl);\r\n       \
     \ yr = LB(keyY, yr);\r\n      }\r\n    }\r\n    if (SMALL) {\r\n      ll mx =\
     \ MIN(X);\r\n      ll my = MIN(Y);\r\n      for (auto&& x: X) x -= mx;\r\n   \
@@ -286,8 +286,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   requiredBy: []
-  timestamp: '2022-06-26 23:46:42+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-06-27 00:47:49+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
 layout: document
