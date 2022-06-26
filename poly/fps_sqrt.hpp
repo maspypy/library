@@ -1,7 +1,10 @@
 #include "poly/fps_inv.hpp"
+#include "poly/fps_pow.hpp"
+#include "poly/count_terms.hpp"
 #include "mod/mod_sqrt.hpp"
+
 template <typename mint>
-vc<mint> fps_sqrt(vc<mint>& f) {
+vc<mint> fps_sqrt_dense(vc<mint>& f) {
   assert(f[0] == mint(1));
   int n = len(f);
   vc<mint> R = {1};
@@ -17,6 +20,17 @@ vc<mint> fps_sqrt(vc<mint>& f) {
   }
   R.resize(n);
   return R;
+}
+
+template <typename mint>
+vc<mint> fps_sqrt_sparse(vc<mint>& f) {
+  return fps_pow_1_sparse(f, inv<mint>(2));
+}
+
+template <typename mint>
+vc<mint> fps_sqrt(vc<mint>& f) {
+  if (count_terms(f) <= 200) return fps_sqrt_sparse(f);
+  return fps_sqrt_dense(f);
 }
 
 template <typename mint>
