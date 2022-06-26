@@ -43,6 +43,9 @@ data:
     path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+    title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
     title: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - icon: ':heavy_check_mark:'
@@ -83,6 +86,7 @@ data:
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
 documentation_of: other/random.hpp

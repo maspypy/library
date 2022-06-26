@@ -8,11 +8,11 @@ data:
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':heavy_check_mark:'
-    path: mod/powertable.hpp
-    title: mod/powertable.hpp
+    path: my_template.hpp
+    title: my_template.hpp
   - icon: ':heavy_check_mark:'
-    path: nt/primetable.hpp
-    title: nt/primetable.hpp
+    path: other/io.hpp
+    title: other/io.hpp
   - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
@@ -23,14 +23,8 @@ data:
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
   - icon: ':heavy_check_mark:'
-    path: poly/differentiate.hpp
-    title: poly/differentiate.hpp
-  - icon: ':heavy_check_mark:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/fps_exp.hpp
-    title: poly/fps_exp.hpp
   - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
@@ -38,51 +32,198 @@ data:
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
   - icon: ':heavy_check_mark:'
-    path: poly/fps_pow.hpp
-    title: poly/fps_pow.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/integrate.hpp
-    title: poly/integrate.hpp
-  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/poly_taylor_shift.hpp
-    title: poly/poly_taylor_shift.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-    title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"nt/primetable.hpp\"\nvc<ll> primetable(int LIM) {\n  ++LIM;\n\
-    \  const int S = 32768;\n  static int done = 2;\n  static vc<ll> primes = {2},\
-    \ sieve(S + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S\
-    \ + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM)\
-    \ * 1.1));\n    vc<pi> cp;\n    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i])\
-    \ {\n        cp.eb(i, i * i / 2);\n        for (int j = i * i; j <= S; j += 2\
-    \ * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n\
-    \      array<bool, S> block{};\n      for (auto& [p, idx]: cp)\n        for (int\
-    \ i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R\
-    \ - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes,\
-    \ LIM + 1);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 3 \"mod/powertable.hpp\"\
-    \n\r\n// a^0, ..., a^{N-1}\r\ntemplate <typename mint>\r\nvc<mint> powertable_1(mint\
-    \ a, ll N) {\r\n  // table of a^i\r\n  vc<mint> f(N, 1);\r\n  FOR(i, N - 1) f[i\
-    \ + 1] = a * f[i];\r\n  return f;\r\n}\r\n\r\n// 0^e, ..., (N-1)^e\r\ntemplate\
-    \ <typename mint>\r\nvc<mint> powertable_2(ll e, ll N) {\r\n  auto primes = primetable(N);\r\
-    \n  vc<mint> f(N, 1);\r\n  f[0] = mint(0).pow(e);\r\n  for (auto&& p: primes)\
-    \ {\r\n    if (p > N) break;\r\n    mint xp = mint(p).pow(e);\r\n    ll pp = p;\r\
-    \n    while (pp < N) {\r\n      ll i = pp;\r\n      while (i < N) {\r\n      \
-    \  f[i] *= xp;\r\n        i += pp;\r\n      }\r\n      pp *= p;\r\n    }\r\n \
-    \ }\r\n  return f;\r\n}\r\n#line 2 \"mod/modint.hpp\"\ntemplate <u32 mod>\nstruct\
-    \ modint {\n  static constexpr bool is_modint = true;\n  u32 val;\n  constexpr\
-    \ modint(const ll val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod -\
-    \ (-val) % mod) % mod) {}\n  bool operator<(const modint &other) const {\n   \
-    \ return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/log_of_formal_power_series_sparse
+    links:
+    - https://judge.yosupo.jp/problem/log_of_formal_power_series_sparse
+  bundledCode: "#line 1 \"test/library_checker/polynomial/log_of_fps_sparse.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/log_of_formal_power_series_sparse\"\
+    \r\n#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
+    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
+    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
+    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
+    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
+    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
+    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
+    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
+    \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
+    \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
+    \ a, b, c) for (ll i = a; i < ll(b); i += (c))\n#define FOR1_R(a) for (ll i =\
+    \ (a)-1; i >= ll(0); --i)\n#define FOR2_R(i, a) for (ll i = (a)-1; i >= ll(0);\
+    \ --i)\n#define FOR3_R(i, a, b) for (ll i = (b)-1; i >= ll(a); --i)\n#define FOR4_R(i,\
+    \ a, b, c) for (ll i = (b)-1; i >= ll(a); i -= (c))\n#define overload4(a, b, c,\
+    \ d, e, ...) e\n#define FOR(...) overload4(__VA_ARGS__, FOR4, FOR3, FOR2, FOR1)(__VA_ARGS__)\n\
+    #define FOR_R(...) \\\n  overload4(__VA_ARGS__, FOR4_R, FOR3_R, FOR2_R, FOR1_R)(__VA_ARGS__)\n\
+    \n#define FOR_subset(t, s) for (ll t = s; t >= 0; t = (t == 0 ? -1 : (t - 1) &\
+    \ s))\n#define all(x) x.begin(), x.end()\n#define len(x) ll(x.size())\n#define\
+    \ elif else if\n\n#define eb emplace_back\n#define mp make_pair\n#define mt make_tuple\n\
+    #define fi first\n#define se second\n\n#define stoi stoll\n\ntemplate <typename\
+    \ T>\nT SUM(vector<T> &A) {\n  T sum = T(0);\n  for (auto &&a: A) sum += a;\n\
+    \  return sum;\n}\n\n#define MIN(v) *min_element(all(v))\n#define MAX(v) *max_element(all(v))\n\
+    #define LB(c, x) distance((c).begin(), lower_bound(all(c), (x)))\n#define UB(c,\
+    \ x) distance((c).begin(), upper_bound(all(c), (x)))\n#define UNIQUE(x) sort(all(x)),\
+    \ x.erase(unique(all(x)), x.end())\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
+    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
+    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T, typename\
+    \ U>\nT ceil(T x, U y) {\n  return (x > 0 ? (x + y - 1) / y : x / y);\n}\n\ntemplate\
+    \ <typename T, typename U>\nT floor(T x, U y) {\n  return (x > 0 ? x / y : (x\
+    \ - y + 1) / y);\n}\n\ntemplate <typename T, typename U>\npair<T, T> divmod(T\
+    \ x, U y) {\n  T q = floor(x, y);\n  return {q, x - q * y};\n}\n\nll binary_search(function<bool(ll)>\
+    \ check, ll ok, ll ng) {\n  assert(check(ok));\n  while (abs(ok - ng) > 1) {\n\
+    \    auto x = (ng + ok) / 2;\n    if (check(x))\n      ok = x;\n    else\n   \
+    \   ng = x;\n  }\n  return ok;\n}\n\ntemplate <typename F>\ndouble binary_search_real(F\
+    \ check, double ok, double ng, int iter = 100) {\n  FOR(iter) {\n    double x\
+    \ = (ok + ng) / 2;\n    if (check(x)) {\n      ok = x;\n    } else {\n      ng\
+    \ = x;\n    }\n  }\n  return (ok + ng) / 2;\n}\n\ntemplate <class T, class S>\n\
+    inline bool chmax(T &a, const S &b) {\n  return (a < b ? a = b, 1 : 0);\n}\ntemplate\
+    \ <class T, class S>\ninline bool chmin(T &a, const S &b) {\n  return (a > b ?\
+    \ a = b, 1 : 0);\n}\n\nvi s_to_vi(const string &S, char first_char) {\n  vi A(S.size());\n\
+    \  FOR(i, S.size()) { A[i] = S[i] - first_char; }\n  return A;\n}\n\ntemplate\
+    \ <typename T>\nvector<T> cumsum(vector<T> &A, int off = 1) {\n  int N = A.size();\n\
+    \  vector<T> B(N + 1);\n  FOR(i, N) { B[i + 1] = B[i] + A[i]; }\n  if (off ==\
+    \ 0) B.erase(B.begin());\n  return B;\n}\n\ntemplate <typename CNT, typename T>\n\
+    vc<CNT> bincount(const vc<T> &A, int size) {\n  vc<CNT> C(size);\n  for (auto\
+    \ &&x: A) { ++C[x]; }\n  return C;\n}\n\ntemplate <typename T>\nvector<int> argsort(const\
+    \ vector<T> &A) {\n  // stable\n  vector<int> ids(A.size());\n  iota(all(ids),\
+    \ 0);\n  sort(all(ids),\n       [&](int i, int j) { return A[i] < A[j] || (A[i]\
+    \ == A[j] && i < j); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate\
+    \ <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I) {\n  int n =\
+    \ len(A);\n  assert(len(I) == n);\n  vc<T> B(n);\n  FOR(i, n) B[i] = A[I[i]];\n\
+    \  return B;\n}\n#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include\
+    \ <unistd.h>\r\n\r\nnamespace detail {\r\ntemplate <typename T, decltype(&T::is_modint)\
+    \ = &T::is_modint>\r\nstd::true_type check_value(int);\r\ntemplate <typename T>\r\
+    \nstd::false_type check_value(long);\r\n} // namespace detail\r\n\r\ntemplate\
+    \ <typename T>\r\nstruct is_modint : decltype(detail::check_value<T>(0)) {};\r\
+    \ntemplate <typename T>\r\nusing is_modint_t = enable_if_t<is_modint<T>::value>;\r\
+    \ntemplate <typename T>\r\nusing is_not_modint_t = enable_if_t<!is_modint<T>::value>;\r\
+    \n\r\nstruct Scanner {\r\n  FILE *fp;\r\n  char line[(1 << 15) + 1];\r\n  size_t\
+    \ st = 0, ed = 0;\r\n  void reread() {\r\n    memmove(line, line + st, ed - st);\r\
+    \n    ed -= st;\r\n    st = 0;\r\n    ed += fread(line + ed, 1, (1 << 15) - ed,\
+    \ fp);\r\n    line[ed] = '\\0';\r\n  }\r\n  bool succ() {\r\n    while (true)\
+    \ {\r\n      if (st == ed) {\r\n        reread();\r\n        if (st == ed) return\
+    \ false;\r\n      }\r\n      while (st != ed && isspace(line[st])) st++;\r\n \
+    \     if (st != ed) break;\r\n    }\r\n    if (ed - st <= 50) {\r\n      bool\
+    \ sep = false;\r\n      for (size_t i = st; i < ed; i++) {\r\n        if (isspace(line[i]))\
+    \ {\r\n          sep = true;\r\n          break;\r\n        }\r\n      }\r\n \
+    \     if (!sep) reread();\r\n    }\r\n    return true;\r\n  }\r\n  template <class\
+    \ T, enable_if_t<is_same<T, string>::value, int> = 0>\r\n  bool read_single(T\
+    \ &ref) {\r\n    if (!succ()) return false;\r\n    while (true) {\r\n      size_t\
+    \ sz = 0;\r\n      while (st + sz < ed && !isspace(line[st + sz])) sz++;\r\n \
+    \     ref.append(line + st, sz);\r\n      st += sz;\r\n      if (!sz || st !=\
+    \ ed) break;\r\n      reread();\r\n    }\r\n    return true;\r\n  }\r\n  template\
+    \ <class T, enable_if_t<is_integral<T>::value, int> = 0>\r\n  bool read_single(T\
+    \ &ref) {\r\n    if (!succ()) return false;\r\n    bool neg = false;\r\n    if\
+    \ (line[st] == '-') {\r\n      neg = true;\r\n      st++;\r\n    }\r\n    ref\
+    \ = T(0);\r\n    while (isdigit(line[st])) { ref = 10 * ref + (line[st++] & 0xf);\
+    \ }\r\n    if (neg) ref = -ref;\r\n    return true;\r\n  }\r\n  template <class\
+    \ T, is_modint_t<T> * = nullptr>\r\n  bool read_single(T &ref) {\r\n    long long\
+    \ val = 0;\r\n    bool f = read_single(val);\r\n    ref = T(val);\r\n    return\
+    \ f;\r\n  }\r\n  bool read_single(double &ref) {\r\n    string s;\r\n    if (!read_single(s))\
+    \ return false;\r\n    ref = std::stod(s);\r\n    return true;\r\n  }\r\n  bool\
+    \ read_single(char &ref) {\r\n    string s;\r\n    if (!read_single(s) || s.size()\
+    \ != 1) return false;\r\n    ref = s[0];\r\n    return true;\r\n  }\r\n  template\
+    \ <class T>\r\n  bool read_single(vector<T> &ref) {\r\n    for (auto &d: ref)\
+    \ {\r\n      if (!read_single(d)) return false;\r\n    }\r\n    return true;\r\
+    \n  }\r\n  template <class T, class U>\r\n  bool read_single(pair<T, U> &p) {\r\
+    \n    return (read_single(p.first) && read_single(p.second));\r\n  }\r\n  template\
+    \ <class A, class B, class C>\r\n  bool read_single(tuple<A, B, C> &p) {\r\n \
+    \   return (read_single(get<0>(p)) && read_single(get<1>(p))\r\n            &&\
+    \ read_single(get<2>(p)));\r\n  }\r\n  template <class A, class B, class C, class\
+    \ D>\r\n  bool read_single(tuple<A, B, C, D> &p) {\r\n    return (read_single(get<0>(p))\
+    \ && read_single(get<1>(p))\r\n            && read_single(get<2>(p)) && read_single(get<3>(p)));\r\
+    \n  }\r\n  void read() {}\r\n  template <class H, class... T>\r\n  void read(H\
+    \ &h, T &... t) {\r\n    bool f = read_single(h);\r\n    assert(f);\r\n    read(t...);\r\
+    \n  }\r\n  Scanner(FILE *fp) : fp(fp) {}\r\n};\r\n\r\nstruct Printer {\r\n  Printer(FILE\
+    \ *_fp) : fp(_fp) {}\r\n  ~Printer() { flush(); }\r\n\r\n  static constexpr size_t\
+    \ SIZE = 1 << 15;\r\n  FILE *fp;\r\n  char line[SIZE], small[50];\r\n  size_t\
+    \ pos = 0;\r\n  void flush() {\r\n    fwrite(line, 1, pos, fp);\r\n    pos = 0;\r\
+    \n  }\r\n  void write(const char &val) {\r\n    if (pos == SIZE) flush();\r\n\
+    \    line[pos++] = val;\r\n  }\r\n  template <class T, enable_if_t<is_integral<T>::value,\
+    \ int> = 0>\r\n  void write(T val) {\r\n    if (pos > (1 << 15) - 50) flush();\r\
+    \n    if (val == 0) {\r\n      write('0');\r\n      return;\r\n    }\r\n    if\
+    \ (val < 0) {\r\n      write('-');\r\n      val = -val; // todo min\r\n    }\r\
+    \n    size_t len = 0;\r\n    while (val) {\r\n      small[len++] = char(0x30 |\
+    \ (val % 10));\r\n      val /= 10;\r\n    }\r\n    for (size_t i = 0; i < len;\
+    \ i++) { line[pos + i] = small[len - 1 - i]; }\r\n    pos += len;\r\n  }\r\n \
+    \ void write(const string &s) {\r\n    for (char c: s) write(c);\r\n  }\r\n  void\
+    \ write(const char *s) {\r\n    size_t len = strlen(s);\r\n    for (size_t i =\
+    \ 0; i < len; i++) write(s[i]);\r\n  }\r\n  void write(const double &x) {\r\n\
+    \    ostringstream oss;\r\n    oss << setprecision(15) << x;\r\n    string s =\
+    \ oss.str();\r\n    write(s);\r\n  }\r\n  void write(const long double &x) {\r\
+    \n    ostringstream oss;\r\n    oss << setprecision(15) << x;\r\n    string s\
+    \ = oss.str();\r\n    write(s);\r\n  }\r\n  template <class T, is_modint_t<T>\
+    \ * = nullptr>\r\n  void write(T &ref) {\r\n    write(ref.val);\r\n  }\r\n  template\
+    \ <class T>\r\n  void write(const vector<T> &val) {\r\n    auto n = val.size();\r\
+    \n    for (size_t i = 0; i < n; i++) {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\
+    \n    }\r\n  }\r\n  template <class T, class U>\r\n  void write(const pair<T,\
+    \ U> &val) {\r\n    write(val.first);\r\n    write(' ');\r\n    write(val.second);\r\
+    \n  }\r\n  template <class A, class B, class C>\r\n  void write(const tuple<A,\
+    \ B, C> &val) {\r\n    auto &[a, b, c] = val;\r\n    write(a), write(' '), write(b),\
+    \ write(' '), write(c);\r\n  }\r\n  template <class A, class B, class C, class\
+    \ D>\r\n  void write(const tuple<A, B, C, D> &val) {\r\n    auto &[a, b, c, d]\
+    \ = val;\r\n    write(a), write(' '), write(b), write(' '), write(c), write('\
+    \ '), write(d);\r\n  }\r\n  template <class A, class B, class C, class D, class\
+    \ E>\r\n  void write(const tuple<A, B, C, D, E> &val) {\r\n    auto &[a, b, c,\
+    \ d, e] = val;\r\n    write(a), write(' '), write(b), write(' '), write(c), write('\
+    \ '), write(d), write(' '), write(e);\r\n  }\r\n  template <class A, class B,\
+    \ class C, class D, class E, class F>\r\n  void write(const tuple<A, B, C, D,\
+    \ E, F> &val) {\r\n    auto &[a, b, c, d, e, f] = val;\r\n    write(a), write('\
+    \ '), write(b), write(' '), write(c), write(' '), write(d), write(' '), write(e),\
+    \ write(' '), write(f);\r\n  }\r\n  template <class T, size_t S>\r\n  void write(const\
+    \ array<T, S> &val) {\r\n    auto n = val.size();\r\n    for (size_t i = 0; i\
+    \ < n; i++) {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\n    }\r\n\
+    \  }\r\n  void write(i128 val) {\r\n    string s;\r\n    bool negative = 0;\r\n\
+    \    if(val < 0){\r\n      negative = 1;\r\n      val = -val;\r\n    }\r\n   \
+    \ while (val) {\r\n      s += '0' + int(val % 10);\r\n      val /= 10;\r\n   \
+    \ }\r\n    if(negative) s += \"-\";\r\n    reverse(all(s));\r\n    if (len(s)\
+    \ == 0) s = \"0\";\r\n    write(s);\r\n  }\r\n};\r\n\r\nScanner scanner = Scanner(stdin);\r\
+    \nPrinter printer = Printer(stdout);\r\n\r\nvoid flush() { printer.flush(); }\r\
+    \nvoid print() { printer.write('\\n'); }\r\ntemplate <class Head, class... Tail>\r\
+    \nvoid print(Head &&head, Tail &&... tail) {\r\n  printer.write(head);\r\n  if\
+    \ (sizeof...(Tail)) printer.write(' ');\r\n  print(forward<Tail>(tail)...);\r\n\
+    }\r\n\r\nvoid read() {}\r\ntemplate <class Head, class... Tail>\r\nvoid read(Head\
+    \ &head, Tail &... tail) {\r\n  scanner.read(head);\r\n  read(tail...);\r\n}\r\
+    \n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ CHAR(...)      \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n\
+    #define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\
+    \n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
+    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
+    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
+    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
+    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
+    \ { yes(!t); }\r\n#line 4 \"test/library_checker/polynomial/log_of_fps_sparse.test.cpp\"\
+    \n\r\n#line 2 \"poly/fps_log.hpp\"\n\r\n#line 2 \"poly/count_terms.hpp\"\ntemplate<typename\
+    \ mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f))\
+    \ if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 2 \"mod/modint.hpp\"\ntemplate\
+    \ <u32 mod>\nstruct modint {\n  static constexpr bool is_modint = true;\n  u32\
+    \ val;\n  constexpr modint(const ll val = 0) noexcept\n      : val(val >= 0 ?\
+    \ val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint &other)\
+    \ const {\n    return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
     \ modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n\
     \  }\n  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >=\
     \ mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint\
@@ -325,79 +466,20 @@ data:
     \ vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>& b) {\r\n  int\
     \ n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if (min(n, m) <=\
     \ 60) return convolution_naive(a, b);\r\n  return convolution_garner(a, b);\r\n\
-    }\r\n#line 3 \"poly/poly_taylor_shift.hpp\"\n\r\ntemplate <typename mint>\r\n\
-    vc<mint> poly_taylor_shift(vc<mint> a, mint c) {\r\n  ll N = len(a);\r\n  FOR(i,\
-    \ N) a[i] *= fact<mint>(i);\r\n  auto b = powertable_1<mint>(c, N);\r\n  FOR(i,\
-    \ N) b[i] *= fact_inv<mint>(i);\r\n  reverse(all(a));\r\n  auto f = convolution(a,\
-    \ b);\r\n  f.resize(N);\r\n  reverse(all(f));\r\n  FOR(i, N) f[i] *= fact_inv<mint>(i);\r\
-    \n  return f;\r\n}\r\n#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\
-    \nint count_terms(const vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i]\
-    \ != mint(0)) ++t;\r\n  return t;\r\n}\n#line 2 \"poly/integrate.hpp\"\n\ntemplate\
-    \ <typename mint>\nvc<mint> integrate(const vc<mint>& f) {\n  vc<mint> g(len(f)\
-    \ + 1);\n  FOR3(i, 1, len(g)) g[i] = f[i - 1] * inv<mint>(i);\n  return g;\n}\n\
-    #line 2 \"poly/differentiate.hpp\"\n\ntemplate <typename mint>\nvc<mint> differentiate(const\
-    \ vc<mint>& f) {\n  if (len(f) <= 1) return {};\n  vc<mint> g(len(f) - 1);\n \
-    \ FOR(i, len(g)) g[i] = f[i + 1] * mint(i + 1);\n  return g;\n}\n#line 6 \"poly/fps_exp.hpp\"\
-    \n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint, modint998>::value,\
-    \ vc<mint>> fps_exp(vc<mint>& f) {\r\n  if (count_terms(f) <= 300) return fps_exp_sparse(f);\r\
-    \n  return fps_exp_dense(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<!is_same<mint,\
-    \ modint998>::value, vc<mint>> fps_exp(vc<mint>& f) {\r\n  if (count_terms(f)\
-    \ <= 1000) return fps_exp_sparse(f);\r\n  return fps_exp_dense(f);\r\n}\r\n\r\n\
-    template <typename mint>\r\nvc<mint> fps_exp_sparse(vc<mint>& f) {\r\n  if (len(f)\
-    \ == 0) return {mint(1)};\r\n  assert(f[0] == 0);\r\n  int N = len(f);\r\n  //\
-    \ df \u3092\u6301\u305F\u305B\u308B\r\n  vc<pair<int, mint>> dat;\r\n  FOR(i,\
-    \ 1, N) if (f[i] != mint(0)) dat.eb(i - 1, mint(i) * f[i]);\r\n  vc<mint> F(N);\r\
-    \n  F[0] = 1;\r\n  FOR(n, 1, N) {\r\n    mint rhs = 0;\r\n    for (auto&& [k,\
-    \ fk]: dat) {\r\n      if (k > n - 1) break;\r\n      rhs += fk * F[n - 1 - k];\r\
-    \n    }\r\n    F[n] = rhs * inv<mint>(n);\r\n  }\r\n  return F;\r\n}\r\n\r\ntemplate\
-    \ <typename mint>\r\nenable_if_t<!is_same<mint, modint998>::value, vc<mint>> fps_exp_dense(\r\
-    \n    vc<mint> h) {\r\n  const int L = len(h);\r\n  assert(L > 0 && h[0] == mint(0));\r\
-    \n  int LOG = 0;\r\n  while (1 << LOG < L) ++LOG;\r\n  h.resize(1 << LOG);\r\n\
-    \  auto dh = differentiate(h);\r\n  vc<mint> f = {1}, g = {1};\r\n  int m = 1;\r\
-    \n\r\n  vc<mint> p;\r\n\r\n  FOR(LOG) {\r\n    p = convolution(f, g);\r\n    p.resize(m);\r\
-    \n    p = convolution(p, g);\r\n    p.resize(m);\r\n    g.resize(m);\r\n    FOR(i,\
-    \ m) g[i] += g[i] - p[i];\r\n    p = {dh.begin(), dh.begin() + m - 1};\r\n   \
-    \ p = convolution(f, p);\r\n    p.resize(m + m - 1);\r\n    FOR(i, m + m - 1)\
-    \ p[i] = -p[i];\r\n    FOR(i, m - 1) p[i] += mint(i + 1) * f[i + 1];\r\n    p\
-    \ = convolution(p, g);\r\n\r\n    p.resize(m + m - 1);\r\n    FOR(i, m - 1) p[i]\
-    \ += dh[i];\r\n    p = integrate(p);\r\n    FOR(i, m + m) p[i] = h[i] - p[i];\r\
-    \n    p[0] += mint(1);\r\n    f = convolution(f, p);\r\n    f.resize(m + m);\r\
-    \n    m += m;\r\n  }\r\n  f.resize(L);\r\n  return f;\r\n}\r\n\r\n// ntt \u7D20\
-    \u6570\u5C02\u7528\u5B9F\u88C5\u3002\u9577\u3055 n \u306E FFT \u3092\u5229\u7528\
-    \u3057\u3066 2n \u306E FFT\r\n// \u3092\u884C\u3046\u306A\u3069\u306E\u9AD8\u901F\
-    \u5316\u3092\u3057\u3066\u3044\u308B\u3002\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint,\
-    \ modint998>::value, vc<mint>> fps_exp_dense(\r\n    vc<mint>& f) {\r\n  const\
-    \ int n = len(f);\r\n  assert(n > 0 && f[0] == mint(0));\r\n  vc<mint> b = {1,\
-    \ (1 < n ? f[1] : 0)};\r\n  vc<mint> c = {1}, z1, z2 = {1, 1};\r\n  while (len(b)\
-    \ < n) {\r\n    int m = len(b);\r\n    auto y = b;\r\n    y.resize(2 * m);\r\n\
-    \    ntt(y, 0);\r\n    z1 = z2;\r\n    vc<mint> z(m);\r\n    FOR(i, m) z[i] =\
-    \ y[i] * z1[i];\r\n    ntt(z, 1);\r\n    FOR(i, m / 2) z[i] = 0;\r\n    ntt(z,\
-    \ 0);\r\n    FOR(i, m) z[i] *= -z1[i];\r\n    ntt(z, 1);\r\n    c.insert(c.end(),\
-    \ z.begin() + m / 2, z.end());\r\n    z2 = c;\r\n    z2.resize(2 * m);\r\n   \
-    \ ntt(z2, 0);\r\n\r\n    vc<mint> x(f.begin(), f.begin() + m);\r\n    FOR(i, len(x)\
-    \ - 1) x[i] = x[i + 1] * mint(i + 1);\r\n    x.back() = 0;\r\n    ntt(x, 0);\r\
-    \n    FOR(i, m) x[i] *= y[i];\r\n    ntt(x, 1);\r\n\r\n    FOR(i, m - 1) x[i]\
-    \ -= b[i + 1] * mint(i + 1);\r\n\r\n    x.resize(m + m);\r\n    FOR(i, m - 1)\
-    \ x[m + i] = x[i], x[i] = 0;\r\n    ntt(x, 0);\r\n    FOR(i, m + m) x[i] *= z2[i];\r\
-    \n    ntt(x, 1);\r\n    FOR_R(i, len(x) - 1) x[i + 1] = x[i] * inv<mint>(i + 1);\r\
-    \n    x[0] = 0;\r\n\r\n    FOR3(i, m, min(n, m + m)) x[i] += f[i];\r\n    FOR(i,\
-    \ m) x[i] = 0;\r\n    ntt(x, 0);\r\n    FOR(i, m + m) x[i] *= y[i];\r\n    ntt(x,\
-    \ 1);\r\n    b.insert(b.end(), x.begin() + m, x.end());\r\n  }\r\n  b.resize(n);\r\
-    \n  return b;\r\n}\r\n#line 2 \"poly/fps_log.hpp\"\n\r\n#line 4 \"poly/fps_inv.hpp\"\
-    \n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint, modint998>::value,\
-    \ vc<mint>> fps_inv(\r\n    const vc<mint>& f) {\r\n  if (count_terms(f) <= 200)\
-    \ return fps_inv_sparse(f);\r\n  return fps_inv_dense(f);\r\n}\r\n\r\ntemplate\
-    \ <typename mint>\r\nenable_if_t<!is_same<mint, modint998>::value, vc<mint>> fps_inv(\r\
-    \n    const vc<mint>& f) {\r\n  if (count_terms(f) <= 700) return fps_inv_sparse(f);\r\
-    \n  return fps_inv_dense(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint>\
-    \ fps_inv_sparse(const vc<mint>& f) {\r\n  assert(f[0] != mint(0));\r\n  int N\
-    \ = len(f);\r\n  vc<pair<int, mint>> dat;\r\n  FOR3(i, 1, N) if (f[i] != mint(0))\
-    \ dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\n  mint g0 = mint(1) / f[0];\r\n  g[0]\
-    \ = g0;\r\n  FOR3(n, 1, N) {\r\n    mint rhs = 0;\r\n    for (auto&& [k, fk]:\
-    \ dat) {\r\n      if (k > n) break;\r\n      rhs -= fk * g[n - k];\r\n    }\r\n\
-    \    g[n] = rhs * g0;\r\n  }\r\n  return g;\r\n}\r\n\r\ntemplate <typename mint>\r\
-    \nenable_if_t<is_same<mint, modint998>::value, vc<mint>> fps_inv_dense(\r\n  \
-    \  const vc<mint>& F) {\r\n  assert(F[0] != mint(0));\r\n  vc<mint> G = {mint(1)\
+    }\r\n#line 4 \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint,\
+    \ modint998>::value, vc<mint>> fps_inv(\r\n    const vc<mint>& f) {\r\n  if (count_terms(f)\
+    \ <= 200) return fps_inv_sparse(f);\r\n  return fps_inv_dense(f);\r\n}\r\n\r\n\
+    template <typename mint>\r\nenable_if_t<!is_same<mint, modint998>::value, vc<mint>>\
+    \ fps_inv(\r\n    const vc<mint>& f) {\r\n  if (count_terms(f) <= 700) return\
+    \ fps_inv_sparse(f);\r\n  return fps_inv_dense(f);\r\n}\r\n\r\ntemplate <typename\
+    \ mint>\r\nvc<mint> fps_inv_sparse(const vc<mint>& f) {\r\n  assert(f[0] != mint(0));\r\
+    \n  int N = len(f);\r\n  vc<pair<int, mint>> dat;\r\n  FOR3(i, 1, N) if (f[i]\
+    \ != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\n  mint g0 = mint(1) / f[0];\r\
+    \n  g[0] = g0;\r\n  FOR3(n, 1, N) {\r\n    mint rhs = 0;\r\n    for (auto&& [k,\
+    \ fk]: dat) {\r\n      if (k > n) break;\r\n      rhs -= fk * g[n - k];\r\n  \
+    \  }\r\n    g[n] = rhs * g0;\r\n  }\r\n  return g;\r\n}\r\n\r\ntemplate <typename\
+    \ mint>\r\nenable_if_t<is_same<mint, modint998>::value, vc<mint>> fps_inv_dense(\r\
+    \n    const vc<mint>& F) {\r\n  assert(F[0] != mint(0));\r\n  vc<mint> G = {mint(1)\
     \ / F[0]};\r\n  G.reserve(len(F));\r\n  ll N = len(F), n = 1;\r\n  while (n <\
     \ N) {\r\n    vc<mint> f(2 * n), g(2 * n);\r\n    FOR(i, min(N, 2 * n)) f[i] =\
     \ F[i];\r\n    FOR(i, n) g[i] = G[i];\r\n    ntt(f, false);\r\n    ntt(g, false);\r\
@@ -425,99 +507,40 @@ data:
     \ g[n] = rhs;\r\n    F[n + 1] = rhs * inv<mint>(n + 1);\r\n  }\r\n  return F;\r\
     \n}\r\n\r\ntemplate<typename mint>\r\nvc<mint> fps_log(const vc<mint>& f){\r\n\
     \  assert(f[0] == mint(1));\r\n  if(count_terms(f) <= 200) return fps_log_sparse(f);\r\
-    \n  return fps_log_dense(f);\r\n}\r\n#line 5 \"poly/fps_pow.hpp\"\n\r\n// fps\
-    \ \u306E k \u4E57\u3092\u6C42\u3081\u308B\u3002k >= 0 \u306E\u524D\u63D0\u3067\
-    \u3042\u308B\u3002\r\n// \u5B9A\u6570\u9805\u304C 1 \u3067\u3001k \u304C mint\
-    \ \u306E\u5834\u5408\u306B\u306F\u3001fps_pow_1 \u3092\u4F7F\u3046\u3053\u3068\
-    \u3002\r\n// \u30FBdense \u306A\u5834\u5408\uFF1A log, exp \u3092\u4F7F\u3046\
-    \ O(NlogN)\r\n// \u30FBsparse \u306A\u5834\u5408\uFF1A O(NK)\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> fps_pow(const vc<mint>& f, ll k) {\r\n  assert(0 <= k);\r\n\
-    \  int n = len(f);\r\n  if(k==0){\r\n    vc<mint> g(n);\r\n    g[0] = mint(1);\r\
-    \n    return g;\r\n  }\r\n  int d = n;\r\n  FOR_R(i, n) if (f[i] != 0) d = i;\r\
-    \n  // d * k >= n\r\n  if(d >= ceil(n,k)){\r\n    vc<mint> g(n);\r\n    return\
-    \ g;\r\n  }\r\n  ll off = d * k;\r\n  mint c = f[d];\r\n  mint c_inv = mint(1)\
-    \ / mint(c);\r\n  vc<mint> g(n - off);\r\n  FOR(i, n - off) g[i] = f[d + i] *\
-    \ c_inv;\r\n  g = fps_pow_1(g, mint(k));\r\n  vc<mint> h(n);\r\n  c = c.pow(k);\r\
-    \n  FOR(i, len(g)) h[off + i] = g[i] * c;\r\n  return h;\r\n}\r\n\r\ntemplate\
-    \ <typename mint>\r\nvc<mint> fps_pow_1_sparse(const vc<mint>& f, mint K) {\r\n\
-    \  int N = len(f);\r\n  vc<pair<int, mint>> dat;\r\n  FOR3(i, 1, N) if (f[i] !=\
-    \ mint(0)) dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\n  g[0] = 1;\r\n  FOR(n, N -\
-    \ 1) {\r\n    mint& x = g[n + 1];\r\n    for (auto&& [d, cf]: dat) {\r\n     \
-    \ if (d > n + 1) break;\r\n      mint t = cf * g[n - d + 1];\r\n      x += t *\
-    \ (K * mint(d) - mint(n - d + 1));\r\n    }\r\n    x *= inv<mint>(n + 1);\r\n\
-    \  }\r\n  return g;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_pow_1_dense(const\
-    \ vc<mint>& f, mint K) {\r\n  assert(f[0] == mint(1));\r\n  auto log_f = fps_log(f);\r\
-    \n  FOR(i, len(f)) log_f[i] *= K;\r\n  return fps_exp(log_f);\r\n}\r\n\r\ntemplate\
-    \ <typename mint>\r\nvc<mint> fps_pow_1(const vc<mint>& f, mint K) {\r\n  if (count_terms(f)\
-    \ <= 100) return fps_pow_1_sparse(f, K);\r\n  return fps_pow_1_dense(f, K);\r\n\
-    }\r\n#line 3 \"seq/stirling_number_1.hpp\"\n\r\n// x(x+1)...(x+n-1) \u306E\u4FC2\
-    \u6570 c(n, k)\r\n// [n] \u306E\u9806\u5217\u306E\u3046\u3061\u3001k \u500B\u306E\
-    \u30B5\u30A4\u30AF\u30EB\u306B\u5206\u304B\u308C\u308B\u3082\u306E\u306E\u500B\
-    \u6570\u3002\r\n// n \u3092\u56FA\u5B9A\u3057\u305F\u3068\u304D\u306E\u5217\u6319\
-    \u3092 O(n log n) \u3067\u884C\u3046\u3002\r\ntemplate <typename mint>\r\nvc<mint>\
-    \ stirling_number_1_n(int n, bool sgn = false) {\r\n  auto dfs = [&](auto self,\
-    \ int n) -> vc<mint> {\r\n    if (n == 0) return {1};\r\n    if (n == 1) return\
-    \ {0, 1};\r\n    auto f = self(self, n / 2);\r\n    auto g = poly_taylor_shift(f,\
-    \ mint(n / 2));\r\n    f = convolution(f, g);\r\n    if (n & 1) {\r\n      g =\
-    \ {(n - 1), 1};\r\n      f = convolution(f, g);\r\n    }\r\n    return f;\r\n\
-    \  };\r\n  auto f = dfs(dfs, n);\r\n  if (sgn) { FOR(i, n + 1) if ((n + i) % 2\
-    \ == 1) f[i] = -f[i]; }\r\n  return f;\r\n}\r\n\r\n// k \u3092\u56FA\u5B9A\u3057\
-    \u305F\u3068\u304D\u306E c(n, k) \u306E\u5217\u6319\u3002\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> stirling_number_1_k(int k, int n_max, bool sgn = false) {\r\
-    \n  if (n_max < k) {\r\n    vc<mint> f(n_max + 1);\r\n    return f;\r\n  }\r\n\
-    \  int LIM = n_max - k;\r\n  vc<mint> f(LIM + 1);\r\n  FOR(i, LIM + 1) f[i] =\
-    \ inv<mint>(i + 1);\r\n  f = fps_pow(f, k);\r\n  if (sgn) { FOR(i, LIM + 1) if\
-    \ (i % 2 == 1) f[i] = -f[i]; }\r\n\r\n  mint cf = fact_inv<mint>(k);\r\n  vc<mint>\
-    \ res(n_max + 1);\r\n  FOR(i, len(f)) res[k + i] = cf * f[i] * fact<mint>(k +\
-    \ i);\r\n\r\n  return res;\r\n}\r\n"
-  code: "#include \"poly/poly_taylor_shift.hpp\"\r\n#include \"poly/fps_pow.hpp\"\r\
-    \n\r\n// x(x+1)...(x+n-1) \u306E\u4FC2\u6570 c(n, k)\r\n// [n] \u306E\u9806\u5217\
-    \u306E\u3046\u3061\u3001k \u500B\u306E\u30B5\u30A4\u30AF\u30EB\u306B\u5206\u304B\
-    \u308C\u308B\u3082\u306E\u306E\u500B\u6570\u3002\r\n// n \u3092\u56FA\u5B9A\u3057\
-    \u305F\u3068\u304D\u306E\u5217\u6319\u3092 O(n log n) \u3067\u884C\u3046\u3002\
-    \r\ntemplate <typename mint>\r\nvc<mint> stirling_number_1_n(int n, bool sgn =\
-    \ false) {\r\n  auto dfs = [&](auto self, int n) -> vc<mint> {\r\n    if (n ==\
-    \ 0) return {1};\r\n    if (n == 1) return {0, 1};\r\n    auto f = self(self,\
-    \ n / 2);\r\n    auto g = poly_taylor_shift(f, mint(n / 2));\r\n    f = convolution(f,\
-    \ g);\r\n    if (n & 1) {\r\n      g = {(n - 1), 1};\r\n      f = convolution(f,\
-    \ g);\r\n    }\r\n    return f;\r\n  };\r\n  auto f = dfs(dfs, n);\r\n  if (sgn)\
-    \ { FOR(i, n + 1) if ((n + i) % 2 == 1) f[i] = -f[i]; }\r\n  return f;\r\n}\r\n\
-    \r\n// k \u3092\u56FA\u5B9A\u3057\u305F\u3068\u304D\u306E c(n, k) \u306E\u5217\
-    \u6319\u3002\r\ntemplate <typename mint>\r\nvc<mint> stirling_number_1_k(int k,\
-    \ int n_max, bool sgn = false) {\r\n  if (n_max < k) {\r\n    vc<mint> f(n_max\
-    \ + 1);\r\n    return f;\r\n  }\r\n  int LIM = n_max - k;\r\n  vc<mint> f(LIM\
-    \ + 1);\r\n  FOR(i, LIM + 1) f[i] = inv<mint>(i + 1);\r\n  f = fps_pow(f, k);\r\
-    \n  if (sgn) { FOR(i, LIM + 1) if (i % 2 == 1) f[i] = -f[i]; }\r\n\r\n  mint cf\
-    \ = fact_inv<mint>(k);\r\n  vc<mint> res(n_max + 1);\r\n  FOR(i, len(f)) res[k\
-    \ + i] = cf * f[i] * fact<mint>(k + i);\r\n\r\n  return res;\r\n}\r\n"
+    \n  return fps_log_dense(f);\r\n}\r\n#line 6 \"test/library_checker/polynomial/log_of_fps_sparse.test.cpp\"\
+    \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N, K);\r\n  vc<mint>\
+    \ f(N);\r\n  FOR(K){\r\n    LL(i, a);\r\n    f[i] = a;\r\n  }\r\n  print(fps_log(f));\r\
+    \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/log_of_formal_power_series_sparse\"\
+    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
+    \ \"poly/fps_log.hpp\"\r\n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n\
+    \  LL(N, K);\r\n  vc<mint> f(N);\r\n  FOR(K){\r\n    LL(i, a);\r\n    f[i] = a;\r\
+    \n  }\r\n  print(fps_log(f));\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
+    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
+    \n\r\n  return 0;\r\n}\r\n"
   dependsOn:
-  - poly/poly_taylor_shift.hpp
-  - mod/powertable.hpp
-  - nt/primetable.hpp
+  - my_template.hpp
+  - other/io.hpp
+  - poly/fps_log.hpp
+  - poly/fps_inv.hpp
+  - poly/count_terms.hpp
   - poly/convolution.hpp
   - mod/modint.hpp
   - mod/mod_inv.hpp
   - poly/convolution_naive.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
-  - poly/fps_pow.hpp
-  - poly/count_terms.hpp
-  - poly/fps_exp.hpp
-  - poly/integrate.hpp
-  - poly/differentiate.hpp
-  - poly/fps_log.hpp
-  - poly/fps_inv.hpp
-  isVerificationFile: false
-  path: seq/stirling_number_1.hpp
+  isVerificationFile: true
+  path: test/library_checker/polynomial/log_of_fps_sparse.test.cpp
   requiredBy: []
-  timestamp: '2022-06-26 12:51:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-documentation_of: seq/stirling_number_1.hpp
+  timestamp: '2022-06-26 12:51:15+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/library_checker/polynomial/log_of_fps_sparse.test.cpp
 layout: document
 redirect_from:
-- /library/seq/stirling_number_1.hpp
-- /library/seq/stirling_number_1.hpp.html
-title: seq/stirling_number_1.hpp
+- /verify/test/library_checker/polynomial/log_of_fps_sparse.test.cpp
+- /verify/test/library_checker/polynomial/log_of_fps_sparse.test.cpp.html
+title: test/library_checker/polynomial/log_of_fps_sparse.test.cpp
 ---

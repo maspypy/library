@@ -1399,17 +1399,26 @@ data:
       path: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
       title: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
+      title: test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/inv_of_fps.test.cpp
       title: test/library_checker/polynomial/inv_of_fps.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
       title: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
+      title: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/inv_of_polynomials.test.cpp
       title: test/library_checker/polynomial/inv_of_polynomials.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/log_of_fps.test.cpp
       title: test/library_checker/polynomial/log_of_fps.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/polynomial/log_of_fps_sparse.test.cpp
+      title: test/library_checker/polynomial/log_of_fps_sparse.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/multipoint_evaluation.test.cpp
       title: test/library_checker/polynomial/multipoint_evaluation.test.cpp
@@ -1429,11 +1438,17 @@ data:
       path: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
       title: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
+      title: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
       title: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
       title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+      title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - name: test/library_checker/sample
     pages:
     - icon: ':heavy_check_mark:'

@@ -23,14 +23,26 @@ data:
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/differentiate.hpp
+    title: poly/differentiate.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/fft.hpp
     title: poly/fft.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/fps_exp.hpp
+    title: poly/fps_exp.hpp
   - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':heavy_check_mark:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/fps_pow.hpp
+    title: poly/fps_pow.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/integrate.hpp
+    title: poly/integrate.hpp
   - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
@@ -41,11 +53,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/log_of_formal_power_series
+    PROBLEM: https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse
     links:
-    - https://judge.yosupo.jp/problem/log_of_formal_power_series
-  bundledCode: "#line 1 \"test/library_checker/polynomial/log_of_fps.test.cpp\"\n\
-    #define PROBLEM \"https://judge.yosupo.jp/problem/log_of_formal_power_series\"\
+    - https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse
+  bundledCode: "#line 1 \"test/library_checker/polynomial/pow_of_fps_sparse.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse\"\
     \r\n#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
     \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
     \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
@@ -216,11 +228,13 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 4 \"test/library_checker/polynomial/log_of_fps.test.cpp\"\
-    \n\r\n#line 2 \"mod/modint.hpp\"\ntemplate <u32 mod>\nstruct modint {\n  static\
-    \ constexpr bool is_modint = true;\n  u32 val;\n  constexpr modint(const ll val\
-    \ = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val) % mod) % mod)\
-    \ {}\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
+    \ { yes(!t); }\r\n#line 4 \"test/library_checker/polynomial/pow_of_fps_sparse.test.cpp\"\
+    \n\r\n#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
+    \ vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\
+    \n  return t;\r\n}\n#line 2 \"mod/modint.hpp\"\ntemplate <u32 mod>\nstruct modint\
+    \ {\n  static constexpr bool is_modint = true;\n  u32 val;\n  constexpr modint(const\
+    \ ll val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val) % mod)\
+    \ % mod) {}\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
     \  } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
     \ += p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator-=(const\
     \ modint &p) {\n    if ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n\
@@ -287,45 +301,42 @@ data:
     \ n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return\
     \ fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint,\
     \ 1>(n, k);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    using amint = ArbitraryModInt;\n#line 2 \"poly/fps_log.hpp\"\n\r\n#line 2 \"poly/count_terms.hpp\"\
-    \ntemplate<typename mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t =\
-    \ 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 2\
-    \ \"mod/mod_inv.hpp\"\n// long \u3067\u3082\u5927\u4E08\u592B\r\nll mod_inv(ll\
-    \ val, ll mod) {\r\n  ll a = val, b = mod, u = 1, v = 0, t;\r\n  while (b > 0)\
-    \ {\r\n    t = a / b;\r\n    swap(a -= t * b, b), swap(u -= t * v, v);\r\n  }\r\
-    \n  if(u < 0) u += mod;\r\n  return u;\r\n}\r\n#line 1 \"poly/convolution_naive.hpp\"\
-    \ntemplate <class T>\r\nvector<T> convolution_naive(const vector<T>& a, const\
-    \ vector<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\n  vector<T>\
-    \ ans(n + m - 1);\r\n  if (n < m) {\r\n    FOR(j, m) FOR(i, n) ans[i + j] += a[i]\
-    \ * b[j];\r\n  } else {\r\n    FOR(i, n) FOR(j, m) ans[i + j] += a[i] * b[j];\r\
-    \n  }\r\n  return ans;\r\n}\r\n#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\
-    \nstruct ntt_info {\r\n  static constexpr int bsf_constexpr(unsigned int n) {\r\
-    \n    int x = 0;\r\n    while (!(n & (1 << x))) x++;\r\n    return x;\r\n  }\r\
-    \n\r\n  static constexpr int rank2 = bsf_constexpr(mint::get_mod() - 1);\r\n \
-    \ array<mint, rank2 + 1> root;\r\n  array<mint, rank2 + 1> iroot;\r\n  array<mint,\
-    \ max(0, rank2 - 1)> rate2;\r\n  array<mint, max(0, rank2 - 1)> irate2;\r\n  array<mint,\
-    \ max(0, rank2 - 2)> rate3;\r\n  array<mint, max(0, rank2 - 2)> irate3;\r\n\r\n\
-    \  ntt_info() {\r\n    int g = primitive_root(mint::get_mod());\r\n    root[rank2]\
-    \ = mint(g).pow((mint::get_mod() - 1) >> rank2);\r\n    iroot[rank2] = mint(1)\
-    \ / root[rank2];\r\n    FOR_R(i, rank2) {\r\n      root[i] = root[i + 1] * root[i\
-    \ + 1];\r\n      iroot[i] = iroot[i + 1] * iroot[i + 1];\r\n    }\r\n\r\n    {\r\
-    \n      mint prod = 1, iprod = 1;\r\n      for (int i = 0; i <= rank2 - 2; i++)\
-    \ {\r\n        rate2[i] = root[i + 2] * prod;\r\n        irate2[i] = iroot[i +\
-    \ 2] * iprod;\r\n        prod *= iroot[i + 2];\r\n        iprod *= root[i + 2];\r\
-    \n      }\r\n    }\r\n    {\r\n      mint prod = 1, iprod = 1;\r\n      for (int\
-    \ i = 0; i <= rank2 - 3; i++) {\r\n        rate3[i] = root[i + 3] * prod;\r\n\
-    \        irate3[i] = iroot[i + 3] * iprod;\r\n        prod *= iroot[i + 3];\r\n\
-    \        iprod *= root[i + 3];\r\n      }\r\n    }\r\n  }\r\n\r\n  constexpr int\
-    \ primitive_root(int m) {\r\n    if (m == 167772161) return 3;\r\n    if (m ==\
-    \ 469762049) return 3;\r\n    if (m == 754974721) return 11;\r\n    if (m == 880803841)\
-    \ return 26;\r\n    if (m == 998244353) return 3;\r\n    return -1;\r\n  }\r\n\
-    };\r\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>& a, bool inverse) {\r\
-    \n  int n = int(a.size());\r\n  int h = topbit(n);\r\n  assert(n == 1 << h);\r\
-    \n  static const ntt_info<mint> info;\r\n  if (!inverse) {\r\n    int len = 0;\
-    \ // a[i, i+(n>>len), i+2*(n>>len), ..] is transformed\r\n    while (len < h)\
-    \ {\r\n      if (h - len == 1) {\r\n        int p = 1 << (h - len - 1);\r\n  \
-    \      mint rot = 1;\r\n        FOR(s, 1 << len) {\r\n          int offset = s\
-    \ << (h - len);\r\n          FOR(i, p) {\r\n            auto l = a[i + offset];\r\
+    using amint = ArbitraryModInt;\n#line 2 \"mod/mod_inv.hpp\"\n// long \u3067\u3082\
+    \u5927\u4E08\u592B\r\nll mod_inv(ll val, ll mod) {\r\n  ll a = val, b = mod, u\
+    \ = 1, v = 0, t;\r\n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a -= t * b,\
+    \ b), swap(u -= t * v, v);\r\n  }\r\n  if(u < 0) u += mod;\r\n  return u;\r\n\
+    }\r\n#line 1 \"poly/convolution_naive.hpp\"\ntemplate <class T>\r\nvector<T> convolution_naive(const\
+    \ vector<T>& a, const vector<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\
+    \n  vector<T> ans(n + m - 1);\r\n  if (n < m) {\r\n    FOR(j, m) FOR(i, n) ans[i\
+    \ + j] += a[i] * b[j];\r\n  } else {\r\n    FOR(i, n) FOR(j, m) ans[i + j] +=\
+    \ a[i] * b[j];\r\n  }\r\n  return ans;\r\n}\r\n#line 2 \"poly/ntt.hpp\"\n\r\n\
+    template <class mint>\r\nstruct ntt_info {\r\n  static constexpr int bsf_constexpr(unsigned\
+    \ int n) {\r\n    int x = 0;\r\n    while (!(n & (1 << x))) x++;\r\n    return\
+    \ x;\r\n  }\r\n\r\n  static constexpr int rank2 = bsf_constexpr(mint::get_mod()\
+    \ - 1);\r\n  array<mint, rank2 + 1> root;\r\n  array<mint, rank2 + 1> iroot;\r\
+    \n  array<mint, max(0, rank2 - 1)> rate2;\r\n  array<mint, max(0, rank2 - 1)>\
+    \ irate2;\r\n  array<mint, max(0, rank2 - 2)> rate3;\r\n  array<mint, max(0, rank2\
+    \ - 2)> irate3;\r\n\r\n  ntt_info() {\r\n    int g = primitive_root(mint::get_mod());\r\
+    \n    root[rank2] = mint(g).pow((mint::get_mod() - 1) >> rank2);\r\n    iroot[rank2]\
+    \ = mint(1) / root[rank2];\r\n    FOR_R(i, rank2) {\r\n      root[i] = root[i\
+    \ + 1] * root[i + 1];\r\n      iroot[i] = iroot[i + 1] * iroot[i + 1];\r\n   \
+    \ }\r\n\r\n    {\r\n      mint prod = 1, iprod = 1;\r\n      for (int i = 0; i\
+    \ <= rank2 - 2; i++) {\r\n        rate2[i] = root[i + 2] * prod;\r\n        irate2[i]\
+    \ = iroot[i + 2] * iprod;\r\n        prod *= iroot[i + 2];\r\n        iprod *=\
+    \ root[i + 2];\r\n      }\r\n    }\r\n    {\r\n      mint prod = 1, iprod = 1;\r\
+    \n      for (int i = 0; i <= rank2 - 3; i++) {\r\n        rate3[i] = root[i +\
+    \ 3] * prod;\r\n        irate3[i] = iroot[i + 3] * iprod;\r\n        prod *= iroot[i\
+    \ + 3];\r\n        iprod *= root[i + 3];\r\n      }\r\n    }\r\n  }\r\n\r\n  constexpr\
+    \ int primitive_root(int m) {\r\n    if (m == 167772161) return 3;\r\n    if (m\
+    \ == 469762049) return 3;\r\n    if (m == 754974721) return 11;\r\n    if (m ==\
+    \ 880803841) return 26;\r\n    if (m == 998244353) return 3;\r\n    return -1;\r\
+    \n  }\r\n};\r\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>& a, bool inverse)\
+    \ {\r\n  int n = int(a.size());\r\n  int h = topbit(n);\r\n  assert(n == 1 <<\
+    \ h);\r\n  static const ntt_info<mint> info;\r\n  if (!inverse) {\r\n    int len\
+    \ = 0; // a[i, i+(n>>len), i+2*(n>>len), ..] is transformed\r\n    while (len\
+    \ < h) {\r\n      if (h - len == 1) {\r\n        int p = 1 << (h - len - 1);\r\
+    \n        mint rot = 1;\r\n        FOR(s, 1 << len) {\r\n          int offset\
+    \ = s << (h - len);\r\n          FOR(i, p) {\r\n            auto l = a[i + offset];\r\
     \n            auto r = a[i + offset + p] * rot;\r\n            a[i + offset] =\
     \ l + r;\r\n            a[i + offset + p] = l - r;\r\n          }\r\n        \
     \  rot *= info.rate2[topbit(~s & -~s)];\r\n        }\r\n        len++;\r\n   \
@@ -466,7 +477,58 @@ data:
     \ vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>& b) {\r\n  int\
     \ n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if (min(n, m) <=\
     \ 60) return convolution_naive(a, b);\r\n  return convolution_garner(a, b);\r\n\
-    }\r\n#line 4 \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint,\
+    }\r\n#line 2 \"poly/integrate.hpp\"\n\ntemplate <typename mint>\nvc<mint> integrate(const\
+    \ vc<mint>& f) {\n  vc<mint> g(len(f) + 1);\n  FOR3(i, 1, len(g)) g[i] = f[i -\
+    \ 1] * inv<mint>(i);\n  return g;\n}\n#line 2 \"poly/differentiate.hpp\"\n\ntemplate\
+    \ <typename mint>\nvc<mint> differentiate(const vc<mint>& f) {\n  if (len(f) <=\
+    \ 1) return {};\n  vc<mint> g(len(f) - 1);\n  FOR(i, len(g)) g[i] = f[i + 1] *\
+    \ mint(i + 1);\n  return g;\n}\n#line 6 \"poly/fps_exp.hpp\"\n\r\ntemplate <typename\
+    \ mint>\r\nenable_if_t<is_same<mint, modint998>::value, vc<mint>> fps_exp(vc<mint>&\
+    \ f) {\r\n  if (count_terms(f) <= 300) return fps_exp_sparse(f);\r\n  return fps_exp_dense(f);\r\
+    \n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<!is_same<mint, modint998>::value,\
+    \ vc<mint>> fps_exp(vc<mint>& f) {\r\n  if (count_terms(f) <= 1000) return fps_exp_sparse(f);\r\
+    \n  return fps_exp_dense(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint>\
+    \ fps_exp_sparse(vc<mint>& f) {\r\n  if (len(f) == 0) return {mint(1)};\r\n  assert(f[0]\
+    \ == 0);\r\n  int N = len(f);\r\n  // df \u3092\u6301\u305F\u305B\u308B\r\n  vc<pair<int,\
+    \ mint>> dat;\r\n  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i - 1, mint(i) * f[i]);\r\
+    \n  vc<mint> F(N);\r\n  F[0] = 1;\r\n  FOR(n, 1, N) {\r\n    mint rhs = 0;\r\n\
+    \    for (auto&& [k, fk]: dat) {\r\n      if (k > n - 1) break;\r\n      rhs +=\
+    \ fk * F[n - 1 - k];\r\n    }\r\n    F[n] = rhs * inv<mint>(n);\r\n  }\r\n  return\
+    \ F;\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<!is_same<mint, modint998>::value,\
+    \ vc<mint>> fps_exp_dense(\r\n    vc<mint> h) {\r\n  const int L = len(h);\r\n\
+    \  assert(L > 0 && h[0] == mint(0));\r\n  int LOG = 0;\r\n  while (1 << LOG <\
+    \ L) ++LOG;\r\n  h.resize(1 << LOG);\r\n  auto dh = differentiate(h);\r\n  vc<mint>\
+    \ f = {1}, g = {1};\r\n  int m = 1;\r\n\r\n  vc<mint> p;\r\n\r\n  FOR(LOG) {\r\
+    \n    p = convolution(f, g);\r\n    p.resize(m);\r\n    p = convolution(p, g);\r\
+    \n    p.resize(m);\r\n    g.resize(m);\r\n    FOR(i, m) g[i] += g[i] - p[i];\r\
+    \n    p = {dh.begin(), dh.begin() + m - 1};\r\n    p = convolution(f, p);\r\n\
+    \    p.resize(m + m - 1);\r\n    FOR(i, m + m - 1) p[i] = -p[i];\r\n    FOR(i,\
+    \ m - 1) p[i] += mint(i + 1) * f[i + 1];\r\n    p = convolution(p, g);\r\n\r\n\
+    \    p.resize(m + m - 1);\r\n    FOR(i, m - 1) p[i] += dh[i];\r\n    p = integrate(p);\r\
+    \n    FOR(i, m + m) p[i] = h[i] - p[i];\r\n    p[0] += mint(1);\r\n    f = convolution(f,\
+    \ p);\r\n    f.resize(m + m);\r\n    m += m;\r\n  }\r\n  f.resize(L);\r\n  return\
+    \ f;\r\n}\r\n\r\n// ntt \u7D20\u6570\u5C02\u7528\u5B9F\u88C5\u3002\u9577\u3055\
+    \ n \u306E FFT \u3092\u5229\u7528\u3057\u3066 2n \u306E FFT\r\n// \u3092\u884C\
+    \u3046\u306A\u3069\u306E\u9AD8\u901F\u5316\u3092\u3057\u3066\u3044\u308B\u3002\
+    \r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint, modint998>::value, vc<mint>>\
+    \ fps_exp_dense(\r\n    vc<mint>& f) {\r\n  const int n = len(f);\r\n  assert(n\
+    \ > 0 && f[0] == mint(0));\r\n  vc<mint> b = {1, (1 < n ? f[1] : 0)};\r\n  vc<mint>\
+    \ c = {1}, z1, z2 = {1, 1};\r\n  while (len(b) < n) {\r\n    int m = len(b);\r\
+    \n    auto y = b;\r\n    y.resize(2 * m);\r\n    ntt(y, 0);\r\n    z1 = z2;\r\n\
+    \    vc<mint> z(m);\r\n    FOR(i, m) z[i] = y[i] * z1[i];\r\n    ntt(z, 1);\r\n\
+    \    FOR(i, m / 2) z[i] = 0;\r\n    ntt(z, 0);\r\n    FOR(i, m) z[i] *= -z1[i];\r\
+    \n    ntt(z, 1);\r\n    c.insert(c.end(), z.begin() + m / 2, z.end());\r\n   \
+    \ z2 = c;\r\n    z2.resize(2 * m);\r\n    ntt(z2, 0);\r\n\r\n    vc<mint> x(f.begin(),\
+    \ f.begin() + m);\r\n    FOR(i, len(x) - 1) x[i] = x[i + 1] * mint(i + 1);\r\n\
+    \    x.back() = 0;\r\n    ntt(x, 0);\r\n    FOR(i, m) x[i] *= y[i];\r\n    ntt(x,\
+    \ 1);\r\n\r\n    FOR(i, m - 1) x[i] -= b[i + 1] * mint(i + 1);\r\n\r\n    x.resize(m\
+    \ + m);\r\n    FOR(i, m - 1) x[m + i] = x[i], x[i] = 0;\r\n    ntt(x, 0);\r\n\
+    \    FOR(i, m + m) x[i] *= z2[i];\r\n    ntt(x, 1);\r\n    FOR_R(i, len(x) - 1)\
+    \ x[i + 1] = x[i] * inv<mint>(i + 1);\r\n    x[0] = 0;\r\n\r\n    FOR3(i, m, min(n,\
+    \ m + m)) x[i] += f[i];\r\n    FOR(i, m) x[i] = 0;\r\n    ntt(x, 0);\r\n    FOR(i,\
+    \ m + m) x[i] *= y[i];\r\n    ntt(x, 1);\r\n    b.insert(b.end(), x.begin() +\
+    \ m, x.end());\r\n  }\r\n  b.resize(n);\r\n  return b;\r\n}\r\n#line 2 \"poly/fps_log.hpp\"\
+    \n\r\n#line 4 \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint,\
     \ modint998>::value, vc<mint>> fps_inv(\r\n    const vc<mint>& f) {\r\n  if (count_terms(f)\
     \ <= 200) return fps_inv_sparse(f);\r\n  return fps_inv_dense(f);\r\n}\r\n\r\n\
     template <typename mint>\r\nenable_if_t<!is_same<mint, modint998>::value, vc<mint>>\
@@ -507,39 +569,69 @@ data:
     \ g[n] = rhs;\r\n    F[n + 1] = rhs * inv<mint>(n + 1);\r\n  }\r\n  return F;\r\
     \n}\r\n\r\ntemplate<typename mint>\r\nvc<mint> fps_log(const vc<mint>& f){\r\n\
     \  assert(f[0] == mint(1));\r\n  if(count_terms(f) <= 200) return fps_log_sparse(f);\r\
-    \n  return fps_log_dense(f);\r\n}\r\n#line 7 \"test/library_checker/polynomial/log_of_fps.test.cpp\"\
-    \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint,\
-    \ f, N);\r\n  auto ANS = fps_log(f);\r\n  print(ANS);\r\n}\r\n\r\nsigned main()\
-    \ {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
-    \n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/log_of_formal_power_series\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
-    \ \"mod/modint.hpp\"\r\n#include \"poly/fps_log.hpp\"\r\n\r\nusing mint = modint998;\r\
-    \n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint, f, N);\r\n  auto ANS = fps_log(f);\r\
-    \n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  return fps_log_dense(f);\r\n}\r\n#line 5 \"poly/fps_pow.hpp\"\n\r\n// fps\
+    \ \u306E k \u4E57\u3092\u6C42\u3081\u308B\u3002k >= 0 \u306E\u524D\u63D0\u3067\
+    \u3042\u308B\u3002\r\n// \u5B9A\u6570\u9805\u304C 1 \u3067\u3001k \u304C mint\
+    \ \u306E\u5834\u5408\u306B\u306F\u3001fps_pow_1 \u3092\u4F7F\u3046\u3053\u3068\
+    \u3002\r\n// \u30FBdense \u306A\u5834\u5408\uFF1A log, exp \u3092\u4F7F\u3046\
+    \ O(NlogN)\r\n// \u30FBsparse \u306A\u5834\u5408\uFF1A O(NK)\r\ntemplate <typename\
+    \ mint>\r\nvc<mint> fps_pow(const vc<mint>& f, ll k) {\r\n  assert(0 <= k);\r\n\
+    \  int n = len(f);\r\n  if(k==0){\r\n    vc<mint> g(n);\r\n    g[0] = mint(1);\r\
+    \n    return g;\r\n  }\r\n  int d = n;\r\n  FOR_R(i, n) if (f[i] != 0) d = i;\r\
+    \n  // d * k >= n\r\n  if(d >= ceil(n,k)){\r\n    vc<mint> g(n);\r\n    return\
+    \ g;\r\n  }\r\n  ll off = d * k;\r\n  mint c = f[d];\r\n  mint c_inv = mint(1)\
+    \ / mint(c);\r\n  vc<mint> g(n - off);\r\n  FOR(i, n - off) g[i] = f[d + i] *\
+    \ c_inv;\r\n  g = fps_pow_1(g, mint(k));\r\n  vc<mint> h(n);\r\n  c = c.pow(k);\r\
+    \n  FOR(i, len(g)) h[off + i] = g[i] * c;\r\n  return h;\r\n}\r\n\r\ntemplate\
+    \ <typename mint>\r\nvc<mint> fps_pow_1_sparse(const vc<mint>& f, mint K) {\r\n\
+    \  int N = len(f);\r\n  vc<pair<int, mint>> dat;\r\n  FOR3(i, 1, N) if (f[i] !=\
+    \ mint(0)) dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\n  g[0] = 1;\r\n  FOR(n, N -\
+    \ 1) {\r\n    mint& x = g[n + 1];\r\n    for (auto&& [d, cf]: dat) {\r\n     \
+    \ if (d > n + 1) break;\r\n      mint t = cf * g[n - d + 1];\r\n      x += t *\
+    \ (K * mint(d) - mint(n - d + 1));\r\n    }\r\n    x *= inv<mint>(n + 1);\r\n\
+    \  }\r\n  return g;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_pow_1_dense(const\
+    \ vc<mint>& f, mint K) {\r\n  assert(f[0] == mint(1));\r\n  auto log_f = fps_log(f);\r\
+    \n  FOR(i, len(f)) log_f[i] *= K;\r\n  return fps_exp(log_f);\r\n}\r\n\r\ntemplate\
+    \ <typename mint>\r\nvc<mint> fps_pow_1(const vc<mint>& f, mint K) {\r\n  if (count_terms(f)\
+    \ <= 100) return fps_pow_1_sparse(f, K);\r\n  return fps_pow_1_dense(f, K);\r\n\
+    }\r\n#line 6 \"test/library_checker/polynomial/pow_of_fps_sparse.test.cpp\"\n\r\
+    \nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N, K, M);\r\n  vc<mint>\
+    \ f(N);\r\n  FOR(K){\r\n    LL(i, a);\r\n    f[i] = a;\r\n  }\r\n  print(fps_pow(f,\
+    \ M));\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
     \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse\"\
+    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
+    \ \"poly/fps_pow.hpp\"\r\n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n\
+    \  LL(N, K, M);\r\n  vc<mint> f(N);\r\n  FOR(K){\r\n    LL(i, a);\r\n    f[i]\
+    \ = a;\r\n  }\r\n  print(fps_pow(f, M));\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
+    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
+    \n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - mod/modint.hpp
-  - poly/fps_log.hpp
-  - poly/fps_inv.hpp
+  - poly/fps_pow.hpp
   - poly/count_terms.hpp
+  - poly/fps_exp.hpp
   - poly/convolution.hpp
+  - mod/modint.hpp
   - mod/mod_inv.hpp
   - poly/convolution_naive.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
+  - poly/integrate.hpp
+  - poly/differentiate.hpp
+  - poly/fps_log.hpp
+  - poly/fps_inv.hpp
   isVerificationFile: true
-  path: test/library_checker/polynomial/log_of_fps.test.cpp
+  path: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
   requiredBy: []
-  timestamp: '2022-06-26 12:51:10+09:00'
+  timestamp: '2022-06-26 12:51:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library_checker/polynomial/log_of_fps.test.cpp
+documentation_of: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/polynomial/log_of_fps.test.cpp
-- /verify/test/library_checker/polynomial/log_of_fps.test.cpp.html
-title: test/library_checker/polynomial/log_of_fps.test.cpp
+- /verify/test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
+- /verify/test/library_checker/polynomial/pow_of_fps_sparse.test.cpp.html
+title: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
 ---

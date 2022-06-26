@@ -160,17 +160,26 @@ data:
     path: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
     title: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
+    title: test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/inv_of_fps.test.cpp
     title: test/library_checker/polynomial/inv_of_fps.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
     title: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
+    title: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/inv_of_polynomials.test.cpp
     title: test/library_checker/polynomial/inv_of_polynomials.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/log_of_fps.test.cpp
     title: test/library_checker/polynomial/log_of_fps.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/log_of_fps_sparse.test.cpp
+    title: test/library_checker/polynomial/log_of_fps_sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/multipoint_evaluation.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation.test.cpp
@@ -190,11 +199,17 @@ data:
     path: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
+    title: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+    title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
@@ -609,12 +624,15 @@ data:
   - test/library_checker/convolution/online_convolution.test.cpp
   - test/library_checker/convolution/convolution_mod.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
+  - test/library_checker/polynomial/log_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/log_of_fps.test.cpp
   - test/library_checker/polynomial/polynomial_division.test.cpp
   - test/library_checker/polynomial/inv_of_polynomials.test.cpp
   - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
   - test/library_checker/polynomial/composition_of_fps.test.cpp
+  - test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/inv_of_fps.test.cpp
   - test/library_checker/polynomial/polynomial_interpolation.test.cpp
@@ -622,7 +640,9 @@ data:
   - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - test/library_checker/polynomial/exp_of_fps.test.cpp
   - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
+  - test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/inv_of_fps_amint.test.cpp
 documentation_of: poly/convolution.hpp
 layout: document

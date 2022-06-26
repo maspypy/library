@@ -33,6 +33,9 @@ data:
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/fps_sqrt.hpp
+    title: poly/fps_sqrt.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/sharp_p_subset_sum.hpp
     title: poly/sharp_p_subset_sum.hpp
   - icon: ':heavy_check_mark:'
@@ -61,11 +64,23 @@ data:
     path: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
     title: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
+    title: test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/pow_of_fps.test.cpp
     title: test/library_checker/polynomial/pow_of_fps.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
+    title: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
+    title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+    title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1321_surj.test.cpp
     title: test/yukicoder/1321_surj.test.cpp
@@ -438,6 +453,7 @@ data:
   - seq/stirling_number_2.hpp
   - seq/stirling_number_1.hpp
   - seq/surjection.hpp
+  - poly/fps_sqrt.hpp
   - poly/sharp_p_subset_sum.hpp
   - poly/fps_pow.hpp
   timestamp: '2022-06-20 21:16:12+09:00'
@@ -448,9 +464,13 @@ data:
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/pow_of_fps.test.cpp
   - test/library_checker/polynomial/exp_of_fps.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
+  - test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
 documentation_of: poly/fps_exp.hpp
 layout: document
 redirect_from:

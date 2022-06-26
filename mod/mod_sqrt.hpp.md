@@ -18,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+    title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -132,6 +135,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/sqrt_mod.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
 documentation_of: mod/mod_sqrt.hpp
 layout: document

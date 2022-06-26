@@ -48,21 +48,27 @@ data:
     \      n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n  static constexpr ll get_mod()\
     \ { return mod; }\r\n};\r\n#line 4 \"alg/monoid_rollinghash.hpp\"\n\r\nstruct\
     \ Monoid_Rolling_Hash {\r\n  using value_type = pair<modint61, modint61>; // pow\
-    \ of base, val\r\n  using X = value_type;\r\n  static X op(X x, X y) { return\
-    \ {x.fi * y.fi, x.se * y.fi + y.se}; }\r\n  static constexpr X unit() { return\
-    \ {1, 0}; }\r\n  static constexpr bool commute = false;\r\n};\n"
+    \ of base, val\r\n  using X = value_type;\r\n\r\n  static u64& base() {\r\n  \
+    \  static u64 x = 0;\r\n    while (x == 0) {\r\n      RandomNumberGenerator RNG;\r\
+    \n      x = RNG(modint61::get_mod());\r\n    }\r\n    return x;\r\n  }\r\n  static\
+    \ X from_element(u64& x) { return {base(), x}; }\r\n  static X op(X x, X y) {\
+    \ return {x.fi * y.fi, x.se * y.fi + y.se}; }\r\n  static constexpr X unit() {\
+    \ return {1, 0}; }\r\n  static constexpr bool commute = false;\r\n};\n"
   code: "#pragma once\r\n#include \"other/random.hpp\"\r\n#include \"mod/modint61.hpp\"\
     \r\n\r\nstruct Monoid_Rolling_Hash {\r\n  using value_type = pair<modint61, modint61>;\
-    \ // pow of base, val\r\n  using X = value_type;\r\n  static X op(X x, X y) {\
-    \ return {x.fi * y.fi, x.se * y.fi + y.se}; }\r\n  static constexpr X unit() {\
-    \ return {1, 0}; }\r\n  static constexpr bool commute = false;\r\n};"
+    \ // pow of base, val\r\n  using X = value_type;\r\n\r\n  static u64& base() {\r\
+    \n    static u64 x = 0;\r\n    while (x == 0) {\r\n      RandomNumberGenerator\
+    \ RNG;\r\n      x = RNG(modint61::get_mod());\r\n    }\r\n    return x;\r\n  }\r\
+    \n  static X from_element(u64& x) { return {base(), x}; }\r\n  static X op(X x,\
+    \ X y) { return {x.fi * y.fi, x.se * y.fi + y.se}; }\r\n  static constexpr X unit()\
+    \ { return {1, 0}; }\r\n  static constexpr bool commute = false;\r\n};"
   dependsOn:
   - other/random.hpp
   - mod/modint61.hpp
   isVerificationFile: false
   path: alg/monoid_rollinghash.hpp
   requiredBy: []
-  timestamp: '2022-04-29 17:33:18+09:00'
+  timestamp: '2022-06-26 12:51:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/monoid_rollinghash.hpp
