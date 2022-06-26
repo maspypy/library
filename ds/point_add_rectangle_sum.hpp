@@ -27,7 +27,7 @@ struct Point_Add_Rectangle_Sum {
       NX = len(keyX), NY = len(keyY);
       for (auto&& x: X) x = LB(keyX, x);
       for (auto&& y: Y) y = LB(keyY, y);
-      for (auto&& [xl, xr, yl, yr]: rect) {
+      for (auto&& [xl, yl, xr, yr]: rect) {
         xl = LB(keyX, xl);
         xr = LB(keyX, xr);
         yl = LB(keyY, yl);
