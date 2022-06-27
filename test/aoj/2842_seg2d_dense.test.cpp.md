@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
   - icon: ':heavy_check_mark:'
     path: ds/segtree2d_dense.hpp
     title: ds/segtree2d_dense.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -222,16 +222,17 @@ data:
     \  xl += H, xr += H;\n    while (xl < xr) {\n      if (xl & 1) res = Monoid::op(res,\
     \ prod_at(xl++, yl, yr));\n      if (xr & 1) res = Monoid::op(res, prod_at(--xr,\
     \ yl, yr));\n      xl >>= 1, xr >>= 1;\n    }\n    return res;\n  }\n\n  void\
-    \ debug() { print(\"segtree\", dat); }\n};\n#line 2 \"alg/group_add.hpp\"\ntemplate\
-    \ <class X>\r\nstruct Group_Add {\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return n * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 6 \"test/aoj/2842_seg2d_dense.test.cpp\"\
-    \n\nvoid solve() {\n  LL(H, W, T, Q);\n  deque<tuple<ll, ll, ll>> que;\n  const\
-    \ ll INF = 1LL << 60;\n  vv(ll, time, H, W, INF);\n\n  SegTree2D_dense<Group_Add<ll>>\
-    \ A(H, W);\n  SegTree2D_dense<Group_Add<ll>> B(H, W);\n\n  deque<tuple<ll, ll,\
-    \ ll>> end;\n\n  FOR(Q) {\n    LL(t, c, x, y);\n    --x, --y;\n    while (len(end)\
+    \ debug() { print(\"segtree\", dat); }\n};\n#line 2 \"alg/group_add.hpp\"\n\r\n\
+    template <typename E>\r\nstruct Group_Add {\r\n  using X = E;\r\n  using value_type\
+    \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return x\
+    \ + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\
+    \n  static constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\
+    \n  static constexpr X unit() { return X(0); }\r\n  static constexpr bool commute\
+    \ = true;\r\n};\r\n#line 6 \"test/aoj/2842_seg2d_dense.test.cpp\"\n\nvoid solve()\
+    \ {\n  LL(H, W, T, Q);\n  deque<tuple<ll, ll, ll>> que;\n  const ll INF = 1LL\
+    \ << 60;\n  vv(ll, time, H, W, INF);\n\n  SegTree2D_dense<Group_Add<ll>> A(H,\
+    \ W);\n  SegTree2D_dense<Group_Add<ll>> B(H, W);\n\n  deque<tuple<ll, ll, ll>>\
+    \ end;\n\n  FOR(Q) {\n    LL(t, c, x, y);\n    --x, --y;\n    while (len(end)\
     \ && get<2>(end.front()) <= t) {\n      auto [x, y, t] = end.front();\n      end.pop_front();\n\
     \      A.set(x, y, 1);\n      B.set(x, y, 0);\n    }\n    if (c == 0) {\n    \
     \  B.set(x, y, 1);\n      end.eb(x, y, t + T);\n    }\n    elif (c == 1) {\n \
@@ -262,7 +263,7 @@ data:
   isVerificationFile: true
   path: test/aoj/2842_seg2d_dense.test.cpp
   requiredBy: []
-  timestamp: '2022-06-25 13:37:28+09:00'
+  timestamp: '2022-06-27 16:36:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/2842_seg2d_dense.test.cpp

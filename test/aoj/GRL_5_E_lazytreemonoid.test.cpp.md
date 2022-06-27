@@ -1,37 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_cntsum.hpp
     title: alg/group_cntsum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/lazy_cntsum_add.hpp
     title: alg/lazy_cntsum_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/lazy_reverse.hpp
     title: alg/lazy_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid_reverse.hpp
     title: alg/monoid_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -216,12 +216,12 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"alg/group_add.hpp\"\ntemplate <class X>\r\nstruct\
-    \ Group_Add {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x,\
-    \ const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return n * x; }\r\n  static constexpr X unit() { return X(0); }\r\
-    \n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"graph/lazytreemonoid.hpp\"\
+    \ { yes(!t); }\r\n#line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\n\
+    struct Group_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
+    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
+    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
+    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"graph/lazytreemonoid.hpp\"\
     \n// https://codeforces.com/contest/916/problem/E\r\n#line 2 \"ds/lazysegtree.hpp\"\
     \n\ntemplate <typename Lazy>\nstruct LazySegTree {\n  using Monoid_X = typename\
     \ Lazy::X_structure;\n  using Monoid_A = typename Lazy::A_structure;\n  using\
@@ -490,7 +490,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   requiredBy: []
-  timestamp: '2022-06-25 14:29:18+09:00'
+  timestamp: '2022-06-27 16:36:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_5_E_lazytreemonoid.test.cpp

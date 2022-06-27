@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/cumsum2d.hpp
     title: ds/cumsum2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1141
@@ -198,34 +198,35 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"mod/modint.hpp\"\ntemplate <u32 mod>\nstruct modint\
-    \ {\n  static constexpr bool is_modint = true;\n  u32 val;\n  constexpr modint(const\
-    \ ll val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val) % mod)\
-    \ % mod) {}\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
-    \  } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
-    \ += p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator-=(const\
-    \ modint &p) {\n    if ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n\
-    \  }\n  modint &operator*=(const modint &p) {\n    val = (u32)(1LL * val * p.val\
-    \ % mod);\n    return *this;\n  }\n  modint &operator/=(const modint &p) {\n \
-    \   *this *= p.inverse();\n    return *this;\n  }\n  modint operator-() const\
-    \ { return modint(get_mod() - val); }\n  modint operator+(const modint &p) const\
-    \ { return modint(*this) += p; }\n  modint operator-(const modint &p) const {\
-    \ return modint(*this) -= p; }\n  modint operator*(const modint &p) const { return\
-    \ modint(*this) *= p; }\n  modint operator/(const modint &p) const { return modint(*this)\
-    \ /= p; }\n  bool operator==(const modint &p) const { return val == p.val; }\n\
-    \  bool operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
-    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
-    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
-    \ return modint(u);\n  }\n  modint pow(int64_t n) const {\n    modint ret(1),\
-    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
-    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr u32 get_mod()\
-    \ { return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr bool is_modint\
-    \ = true;\n  u32 val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t\
-    \ y)\n      : val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y)\
-    \ % get_mod()) % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other)\
-    \ const {\n    return val < other.val;\n  } // To use std::map<ArbitraryModInt,\
-    \ T>\n  static u32 &get_mod() {\n    static u32 mod = 0;\n    return mod;\n  }\n\
-    \  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
+    \ { yes(!t); }\r\n#line 2 \"mod/modint.hpp\"\n\ntemplate <unsigned int mod>\n\
+    struct modint {\n  static constexpr bool is_modint = true;\n  unsigned int val;\n\
+    \  constexpr modint(const ll val = 0) noexcept\n      : val(val >= 0 ? val % mod\
+    \ : (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint &other) const\
+    \ {\n    return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
+    \ modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n\
+    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >=\
+    \ mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint\
+    \ &p) {\n    val = (unsigned int)(1LL * val * p.val % mod);\n    return *this;\n\
+    \  }\n  modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n   \
+    \ return *this;\n  }\n  modint operator-() const { return modint(get_mod() - val);\
+    \ }\n  modint operator+(const modint &p) const { return modint(*this) += p; }\n\
+    \  modint operator-(const modint &p) const { return modint(*this) -= p; }\n  modint\
+    \ operator*(const modint &p) const { return modint(*this) *= p; }\n  modint operator/(const\
+    \ modint &p) const { return modint(*this) /= p; }\n  bool operator==(const modint\
+    \ &p) const { return val == p.val; }\n  bool operator!=(const modint &p) const\
+    \ { return val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod,\
+    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
+    \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
+    \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
+    \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
+    \  }\n  static constexpr unsigned int get_mod() { return mod; }\n};\n\nstruct\
+    \ ArbitraryModInt {\n  static constexpr bool is_modint = true;\n  unsigned int\
+    \ val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t y)\n      :\
+    \ val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y) % get_mod())\
+    \ % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other) const {\n  \
+    \  return val < other.val;\n  } // To use std::map<ArbitraryModInt, T>\n  static\
+    \ unsigned int &get_mod() {\n    static unsigned int mod = 0;\n    return mod;\n\
+    \  }\n  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
     \ ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
     \    return *this;\n  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p)\
     \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
@@ -268,38 +269,38 @@ data:
     \ n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return\
     \ fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint,\
     \ 1>(n, k);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    using amint = ArbitraryModInt;\n#line 2 \"alg/group_add.hpp\"\ntemplate <class\
-    \ X>\r\nstruct Group_Add {\r\n  using value_type = X;\r\n  static constexpr X\
-    \ op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return n * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/cumsum2d.hpp\"\
-    \n\r\ntemplate <typename Group>\r\nstruct Cumsum2D {\r\n  using X = typename Group::value_type;\r\
-    \n  int H, W;\r\n  vc<vc<X>> dat;\r\n\r\n  Cumsum2D() {}\r\n  Cumsum2D(vc<vc<X>>\
-    \ &A) {\r\n    assert(Group::commute);\r\n    build(A);\r\n  }\r\n\r\n  void build(vc<vc<X>>\
-    \ &A) {\r\n    int H = len(A);\r\n    int W = (H == 0 ? 0 : len(A[0]));\r\n  \
-    \  dat.assign(H + 1, vc<X>(W + 1, Group::unit()));\r\n    FOR(x, H) FOR(y, W)\
-    \ dat[x + 1][y + 1] = A[x][y];\r\n    FOR(x, H + 1) FOR(y, W) dat[x][y + 1] =\
-    \ Group::op(dat[x][y + 1], dat[x][y]);\r\n    FOR(x, H) FOR(y, W + 1) dat[x +\
-    \ 1][y] = Group::op(dat[x + 1][y], dat[x][y]);\r\n  }\r\n\r\n  X sum(int x1, int\
-    \ y1, int x2, int y2) {\r\n    X a = Group::op(dat[x1][y1], dat[x2][y2]);\r\n\
-    \    X b = Group::op(dat[x2][y1], dat[x1][y2]);\r\n    return Group::op(a, Group::inverse(b));\r\
-    \n  }\r\n};\n#line 6 \"test/yukicoder/1141_cumsum2d.test.cpp\"\n\nusing mint =\
-    \ modint107;\n\nstruct Group {\n  using X = pair<mint, int>;\n  using value_type\
-    \ = X;\n  static const X op(const X &x, const X &y) noexcept {\n    return {x.fi\
-    \ * y.fi, x.se + y.se};\n  }\n  static const X inverse(const X &x) noexcept {\n\
-    \    return {(x.fi).inverse(), -x.se};\n  }\n  // static constexpr X power(const\
-    \ X &x, ll n) noexcept { return n * x; }\n  static constexpr X unit() { return\
-    \ {mint(1), 0}; }\n  static constexpr bool commute = true;\n};\n\nvoid solve()\
-    \ {\n  LL(H, W);\n  vv(Group::X, A, H, W);\n  FOR(x, H) FOR(y, W) {\n    LL(a);\n\
-    \    if (a == 0) A[x][y] = {mint(1), 1};\n    if (a != 0) A[x][y] = {mint(a),\
-    \ 0};\n  }\n  Cumsum2D<Group> CS(A);\n  LL(Q);\n  FOR(Q) {\n    LL(a, b);\n  \
-    \  --a, --b;\n    auto x = Group::unit();\n    x = Group::op(x, CS.sum(0, 0, a,\
-    \ b));\n    x = Group::op(x, CS.sum(a + 1, 0, H, b));\n    x = Group::op(x, CS.sum(0,\
-    \ b + 1, a, W));\n    x = Group::op(x, CS.sum(a + 1, b + 1, H, W));\n    print(x.se\
-    \ ? mint(0) : x.fi);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
-    \  return 0;\n}\n"
+    using amint = ArbitraryModInt;\n#line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename\
+    \ E>\r\nstruct Group_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static\
+    \ constexpr X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static\
+    \ constexpr X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr\
+    \ X power(const X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr\
+    \ X unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\
+    \n#line 2 \"ds/cumsum2d.hpp\"\n\r\ntemplate <typename Group>\r\nstruct Cumsum2D\
+    \ {\r\n  using X = typename Group::value_type;\r\n  int H, W;\r\n  vc<vc<X>> dat;\r\
+    \n\r\n  Cumsum2D() {}\r\n  Cumsum2D(vc<vc<X>> &A) {\r\n    assert(Group::commute);\r\
+    \n    build(A);\r\n  }\r\n\r\n  void build(vc<vc<X>> &A) {\r\n    int H = len(A);\r\
+    \n    int W = (H == 0 ? 0 : len(A[0]));\r\n    dat.assign(H + 1, vc<X>(W + 1,\
+    \ Group::unit()));\r\n    FOR(x, H) FOR(y, W) dat[x + 1][y + 1] = A[x][y];\r\n\
+    \    FOR(x, H + 1) FOR(y, W) dat[x][y + 1] = Group::op(dat[x][y + 1], dat[x][y]);\r\
+    \n    FOR(x, H) FOR(y, W + 1) dat[x + 1][y] = Group::op(dat[x + 1][y], dat[x][y]);\r\
+    \n  }\r\n\r\n  X sum(int x1, int y1, int x2, int y2) {\r\n    X a = Group::op(dat[x1][y1],\
+    \ dat[x2][y2]);\r\n    X b = Group::op(dat[x2][y1], dat[x1][y2]);\r\n    return\
+    \ Group::op(a, Group::inverse(b));\r\n  }\r\n};\n#line 6 \"test/yukicoder/1141_cumsum2d.test.cpp\"\
+    \n\nusing mint = modint107;\n\nstruct Group {\n  using X = pair<mint, int>;\n\
+    \  using value_type = X;\n  static const X op(const X &x, const X &y) noexcept\
+    \ {\n    return {x.fi * y.fi, x.se + y.se};\n  }\n  static const X inverse(const\
+    \ X &x) noexcept {\n    return {(x.fi).inverse(), -x.se};\n  }\n  // static constexpr\
+    \ X power(const X &x, ll n) noexcept { return n * x; }\n  static constexpr X unit()\
+    \ { return {mint(1), 0}; }\n  static constexpr bool commute = true;\n};\n\nvoid\
+    \ solve() {\n  LL(H, W);\n  vv(Group::X, A, H, W);\n  FOR(x, H) FOR(y, W) {\n\
+    \    LL(a);\n    if (a == 0) A[x][y] = {mint(1), 1};\n    if (a != 0) A[x][y]\
+    \ = {mint(a), 0};\n  }\n  Cumsum2D<Group> CS(A);\n  LL(Q);\n  FOR(Q) {\n    LL(a,\
+    \ b);\n    --a, --b;\n    auto x = Group::unit();\n    x = Group::op(x, CS.sum(0,\
+    \ 0, a, b));\n    x = Group::op(x, CS.sum(a + 1, 0, H, b));\n    x = Group::op(x,\
+    \ CS.sum(0, b + 1, a, W));\n    x = Group::op(x, CS.sum(a + 1, b + 1, H, W));\n\
+    \    print(x.se ? mint(0) : x.fi);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1141\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n#include \"ds/cumsum2d.hpp\"\
     \n\nusing mint = modint107;\n\nstruct Group {\n  using X = pair<mint, int>;\n\
@@ -326,8 +327,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1141_cumsum2d.test.cpp
   requiredBy: []
-  timestamp: '2022-06-20 21:16:12+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-06-27 16:37:24+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/1141_cumsum2d.test.cpp
 layout: document

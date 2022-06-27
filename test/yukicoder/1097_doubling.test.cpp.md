@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/doubling.hpp
     title: ds/doubling.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1097
@@ -222,12 +222,12 @@ data:
     \ i = j;\r\n        x = y;\r\n        assert(i != -1);\r\n      }\r\n    }\r\n\
     \    return step;\r\n  }\r\n\r\n  void debug() {\r\n    print(\"TO\");\r\n   \
     \ FOR(k, LOG) print(TO[k]);\r\n    print(\"DP\");\r\n    FOR(k, LOG) print(DP[k]);\r\
-    \n  }\r\n};\n#line 2 \"alg/group_add.hpp\"\ntemplate <class X>\r\nstruct Group_Add\
-    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
-    \ &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept\
-    \ { return -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return\
-    \ n * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 6 \"test/yukicoder/1097_doubling.test.cpp\"\
+    \n  }\r\n};\n#line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
+    \ Group_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
+    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
+    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
+    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 6 \"test/yukicoder/1097_doubling.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  Doubling<Group_Add<ll>, 50>\
     \ X(N);\n  FOR(i, N) { X.set(i, (i + A[i]) % N, A[i]); }\n  X.build();\n\n  LL(Q);\n\
     \  FOR(Q) {\n    LL(k);\n    auto [to, val] = X.calc(0, k);\n    print(val);\n\
@@ -250,8 +250,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1097_doubling.test.cpp
   requiredBy: []
-  timestamp: '2022-06-17 20:39:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-06-27 16:36:33+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/1097_doubling.test.cpp
 layout: document

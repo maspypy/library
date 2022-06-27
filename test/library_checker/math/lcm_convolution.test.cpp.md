@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/lcm_convolution.hpp
     title: nt/lcm_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lcm_convolution
@@ -201,34 +201,35 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"mod/modint.hpp\"\ntemplate <u32 mod>\nstruct modint\
-    \ {\n  static constexpr bool is_modint = true;\n  u32 val;\n  constexpr modint(const\
-    \ ll val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val) % mod)\
-    \ % mod) {}\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
-    \  } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
-    \ += p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator-=(const\
-    \ modint &p) {\n    if ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n\
-    \  }\n  modint &operator*=(const modint &p) {\n    val = (u32)(1LL * val * p.val\
-    \ % mod);\n    return *this;\n  }\n  modint &operator/=(const modint &p) {\n \
-    \   *this *= p.inverse();\n    return *this;\n  }\n  modint operator-() const\
-    \ { return modint(get_mod() - val); }\n  modint operator+(const modint &p) const\
-    \ { return modint(*this) += p; }\n  modint operator-(const modint &p) const {\
-    \ return modint(*this) -= p; }\n  modint operator*(const modint &p) const { return\
-    \ modint(*this) *= p; }\n  modint operator/(const modint &p) const { return modint(*this)\
-    \ /= p; }\n  bool operator==(const modint &p) const { return val == p.val; }\n\
-    \  bool operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
-    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
-    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
-    \ return modint(u);\n  }\n  modint pow(int64_t n) const {\n    modint ret(1),\
-    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
-    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr u32 get_mod()\
-    \ { return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr bool is_modint\
-    \ = true;\n  u32 val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t\
-    \ y)\n      : val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y)\
-    \ % get_mod()) % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other)\
-    \ const {\n    return val < other.val;\n  } // To use std::map<ArbitraryModInt,\
-    \ T>\n  static u32 &get_mod() {\n    static u32 mod = 0;\n    return mod;\n  }\n\
-    \  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
+    \ { yes(!t); }\r\n#line 2 \"mod/modint.hpp\"\n\ntemplate <unsigned int mod>\n\
+    struct modint {\n  static constexpr bool is_modint = true;\n  unsigned int val;\n\
+    \  constexpr modint(const ll val = 0) noexcept\n      : val(val >= 0 ? val % mod\
+    \ : (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint &other) const\
+    \ {\n    return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
+    \ modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n\
+    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >=\
+    \ mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint\
+    \ &p) {\n    val = (unsigned int)(1LL * val * p.val % mod);\n    return *this;\n\
+    \  }\n  modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n   \
+    \ return *this;\n  }\n  modint operator-() const { return modint(get_mod() - val);\
+    \ }\n  modint operator+(const modint &p) const { return modint(*this) += p; }\n\
+    \  modint operator-(const modint &p) const { return modint(*this) -= p; }\n  modint\
+    \ operator*(const modint &p) const { return modint(*this) *= p; }\n  modint operator/(const\
+    \ modint &p) const { return modint(*this) /= p; }\n  bool operator==(const modint\
+    \ &p) const { return val == p.val; }\n  bool operator!=(const modint &p) const\
+    \ { return val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod,\
+    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
+    \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
+    \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
+    \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
+    \  }\n  static constexpr unsigned int get_mod() { return mod; }\n};\n\nstruct\
+    \ ArbitraryModInt {\n  static constexpr bool is_modint = true;\n  unsigned int\
+    \ val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t y)\n      :\
+    \ val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y) % get_mod())\
+    \ % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other) const {\n  \
+    \  return val < other.val;\n  } // To use std::map<ArbitraryModInt, T>\n  static\
+    \ unsigned int &get_mod() {\n    static unsigned int mod = 0;\n    return mod;\n\
+    \  }\n  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
     \ ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
     \    return *this;\n  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p)\
     \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
@@ -316,8 +317,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/lcm_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-06-20 21:16:12+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-06-27 16:37:24+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/lcm_convolution.test.cpp
 layout: document

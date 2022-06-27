@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -14,7 +14,7 @@ data:
   - icon: ':warning:'
     path: graph/functional.hpp
     title: graph/functional.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
   - icon: ':heavy_check_mark:'
@@ -23,13 +23,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/rerooting_dp.hpp
     title: graph/rerooting_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/treeabelgroup.hpp
     title: graph/treeabelgroup.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/treegroup.hpp
     title: graph/treegroup.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
   - icon: ':heavy_check_mark:'
@@ -45,25 +45,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
     title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -75,13 +75,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/lca_directed.test.cpp
     title: test/library_checker/tree/lca_directed.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1326_bct.test.cpp
     title: test/yukicoder/1326_bct.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1418_rerooting.test.cpp
     title: test/yukicoder/1418_rerooting.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1641_tree_abel.test.cpp
     title: test/yukicoder/1641_tree_abel.test.cpp
   - icon: ':heavy_check_mark:'
@@ -90,15 +90,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1778_bracket_graph.test.cpp
     title: test/yukicoder/1778_bracket_graph.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/235_lazytreemonoid.test.cpp
     title: test/yukicoder/235_lazytreemonoid.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/529_two_edge.test.cpp
     title: test/yukicoder/529_two_edge.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -273,7 +273,7 @@ data:
   - graph/minimum_spanning_tree.hpp
   - graph/treeabelgroup.hpp
   timestamp: '2022-06-25 14:29:18+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/1718_rerooting.test.cpp

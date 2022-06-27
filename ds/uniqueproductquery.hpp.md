@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: pds/segtree.hpp
     title: pds/segtree.hpp
   _extendedRequiredBy: []
@@ -18,14 +18,14 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/703/problem/D
-  bundledCode: "#line 2 \"alg/group_add.hpp\"\ntemplate <class X>\r\nstruct Group_Add\
-    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
-    \ &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept\
-    \ { return -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return\
-    \ n * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 2 \"ds/segtree.hpp\"\n\ntemplate <class\
-    \ Monoid>\nstruct SegTree {\n  using X = typename Monoid::value_type;\n  using\
-    \ value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() : SegTree(0)\
+  bundledCode: "#line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
+    \ Group_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
+    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
+    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
+    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/segtree.hpp\"\
+    \n\ntemplate <class Monoid>\nstruct SegTree {\n  using X = typename Monoid::value_type;\n\
+    \  using value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() : SegTree(0)\
     \ {}\n  SegTree(int n) : SegTree(vc<X>(n, Monoid::unit())) {}\n  SegTree(vc<X>\
     \ v) : n(len(v)) {\n    log = 1;\n    while ((1 << log) < n) ++log;\n    size\
     \ = 1 << log;\n    dat.assign(size << 1, Monoid::unit());\n    FOR(i, n) dat[size\
@@ -176,7 +176,7 @@ data:
   isVerificationFile: false
   path: ds/uniqueproductquery.hpp
   requiredBy: []
-  timestamp: '2022-06-19 11:28:01+09:00'
+  timestamp: '2022-06-27 16:36:33+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/uniqueproductquery.hpp

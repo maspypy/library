@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid_reverse.hpp
     title: alg/monoid_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_path_sum
@@ -402,12 +402,12 @@ data:
     \   u = (hld.V[b]);\r\n        continue;\r\n      }\r\n      auto check_tmp =\
     \ [&](X x) -> bool { return check(Monoid::op(val, x)); };\r\n      auto i = seg.max_right(check_tmp,\
     \ a);\r\n      return (i == a ? u : hld.V[i - 1]);\r\n    }\r\n    return v;\r\
-    \n  }\r\n};\r\n#line 2 \"alg/group_add.hpp\"\ntemplate <class X>\r\nstruct Group_Add\
-    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
-    \ &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept\
-    \ { return -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return\
-    \ n * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 7 \"test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp\"\
+    \n  }\r\n};\r\n#line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
+    \ Group_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
+    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
+    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
+    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 7 \"test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  Graph G(N);\r\n \
     \ G.read_tree(0, 0);\r\n\r\n  HLD hld(G);\r\n  const bool is_edge = false;\r\n\
     \  using Mono = Group_Add<ll>;\r\n  TreeMonoid<decltype(hld), Mono, is_edge> TM(hld,\
@@ -439,8 +439,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   requiredBy: []
-  timestamp: '2022-06-25 14:29:18+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-06-27 16:36:33+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
 layout: document

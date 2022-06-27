@@ -1,47 +1,47 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_cntsum.hpp
     title: alg/group_cntsum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/lazy_cntsum_add.hpp
     title: alg/lazy_cntsum_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/lazy_reverse.hpp
     title: alg/lazy_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid_reverse.hpp
     title: alg/monoid_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/235
@@ -440,92 +440,93 @@ data:
     \ u = (hld.V[b]);\r\n        continue;\r\n      }\r\n      auto check_tmp = [&](X\
     \ x) -> bool { return check(MonoX::op(val, x)); };\r\n      auto i = seg.max_right(check_tmp,\
     \ a);\r\n      return (i == a ? u : hld.V[i - 1]);\r\n    }\r\n    return v;\r\
-    \n  }\r\n};\r\n#line 2 \"alg/group_add.hpp\"\ntemplate <class X>\r\nstruct Group_Add\
-    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
-    \ &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept\
-    \ { return -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return\
-    \ n * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 1 \"alg/group_cntsum.hpp\"\ntemplate <typename\
-    \ E = long long>\r\nstruct Group_CntSum {\r\n  using value_type = pair<E, E>;\r\
-    \n  using X = value_type;\r\n  static constexpr X op(const X &x, const X &y) {\r\
-    \n    return {x.fi + y.fi, x.se + y.se};\r\n  }\r\n  static constexpr X inverse(const\
-    \ X &x) { return {-x.fi, -x.se}; }\r\n  static constexpr X unit() { return {0,\
-    \ 0}; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/lazy_cntsum_add.hpp\"\
-    \n\r\ntemplate <typename E>\r\nstruct Lazy_CntSum_Add {\r\n  using MX = Group_CntSum<E>;\r\
-    \n  using MA = Group_Add<E>;\r\n  using X_structure = MX;\r\n  using A_structure\
-    \ = MA;\r\n  using X = typename MX::value_type;\r\n  using A = typename MA::value_type;\r\
-    \n  static constexpr X act(const X &x, const A &a) {\r\n    return {x.fi, x.se\
-    \ + x.fi * a};\r\n  }\r\n};\r\n#line 2 \"mod/modint.hpp\"\ntemplate <u32 mod>\n\
-    struct modint {\n  static constexpr bool is_modint = true;\n  u32 val;\n  constexpr\
-    \ modint(const ll val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod -\
-    \ (-val) % mod) % mod) {}\n  bool operator<(const modint &other) const {\n   \
-    \ return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
-    \ modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n\
-    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >=\
-    \ mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint\
-    \ &p) {\n    val = (u32)(1LL * val * p.val % mod);\n    return *this;\n  }\n \
-    \ modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
-    \ *this;\n  }\n  modint operator-() const { return modint(get_mod() - val); }\n\
-    \  modint operator+(const modint &p) const { return modint(*this) += p; }\n  modint\
-    \ operator-(const modint &p) const { return modint(*this) -= p; }\n  modint operator*(const\
-    \ modint &p) const { return modint(*this) *= p; }\n  modint operator/(const modint\
-    \ &p) const { return modint(*this) /= p; }\n  bool operator==(const modint &p)\
-    \ const { return val == p.val; }\n  bool operator!=(const modint &p) const { return\
-    \ val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod, u = 1,\
-    \ v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b),\
-    \ swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
-    \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
-    \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n  static constexpr u32 get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
-    \ {\n  static constexpr bool is_modint = true;\n  u32 val;\n  ArbitraryModInt()\
-    \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
+    \n  }\r\n};\r\n#line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
+    \ Group_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
+    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
+    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
+    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"alg/group_cntsum.hpp\"\
+    \ntemplate <typename E = long long>\r\nstruct Group_CntSum {\r\n  using value_type\
+    \ = pair<E, E>;\r\n  using X = value_type;\r\n  static constexpr X op(const X\
+    \ &x, const X &y) {\r\n    return {x.fi + y.fi, x.se + y.se};\r\n  }\r\n  static\
+    \ constexpr X inverse(const X &x) { return {-x.fi, -x.se}; }\r\n  static constexpr\
+    \ X unit() { return {0, 0}; }\r\n  static constexpr bool commute = true;\r\n};\r\
+    \n#line 3 \"alg/lazy_cntsum_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Lazy_CntSum_Add\
+    \ {\r\n  using MX = Group_CntSum<E>;\r\n  using MA = Group_Add<E>;\r\n  using\
+    \ X_structure = MX;\r\n  using A_structure = MA;\r\n  using X = typename MX::value_type;\r\
+    \n  using A = typename MA::value_type;\r\n  static constexpr X act(const X &x,\
+    \ const A &a) {\r\n    return {x.fi, x.se + x.fi * a};\r\n  }\r\n};\r\n#line 2\
+    \ \"mod/modint.hpp\"\n\ntemplate <unsigned int mod>\nstruct modint {\n  static\
+    \ constexpr bool is_modint = true;\n  unsigned int val;\n  constexpr modint(const\
+    \ ll val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val) % mod)\
+    \ % mod) {}\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
+    \  } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
+    \ += p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator-=(const\
+    \ modint &p) {\n    if ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n\
+    \  }\n  modint &operator*=(const modint &p) {\n    val = (unsigned int)(1LL *\
+    \ val * p.val % mod);\n    return *this;\n  }\n  modint &operator/=(const modint\
+    \ &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n  modint operator-()\
+    \ const { return modint(get_mod() - val); }\n  modint operator+(const modint &p)\
+    \ const { return modint(*this) += p; }\n  modint operator-(const modint &p) const\
+    \ { return modint(*this) -= p; }\n  modint operator*(const modint &p) const {\
+    \ return modint(*this) *= p; }\n  modint operator/(const modint &p) const { return\
+    \ modint(*this) /= p; }\n  bool operator==(const modint &p) const { return val\
+    \ == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
+    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
+    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
+    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t n) const {\n\
+    \    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
+    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr\
+    \ unsigned int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt {\n  static\
+    \ constexpr bool is_modint = true;\n  unsigned int val;\n  ArbitraryModInt() :\
+    \ val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
     \                   : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
     \ ArbitraryModInt &other) const {\n    return val < other.val;\n  } // To use\
-    \ std::map<ArbitraryModInt, T>\n  static u32 &get_mod() {\n    static u32 mod\
-    \ = 0;\n    return mod;\n  }\n  static void set_mod(int md) { get_mod() = md;\
-    \ }\n  ArbitraryModInt &operator+=(const ArbitraryModInt &p) {\n    if ((val +=\
-    \ p.val) >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt\
-    \ &operator-=(const ArbitraryModInt &p) {\n    if ((val += get_mod() - p.val)\
-    \ >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt &operator*=(const\
-    \ ArbitraryModInt &p) {\n    unsigned long long a = (unsigned long long)val *\
-    \ p.val;\n    unsigned xh = (unsigned)(a >> 32), xl = (unsigned)a, d, m;\n   \
-    \ asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"\
-    (get_mod()));\n    val = m;\n    return *this;\n  }\n  ArbitraryModInt &operator/=(const\
-    \ ArbitraryModInt &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n \
-    \ ArbitraryModInt operator-() const { return ArbitraryModInt(get_mod() - val);\
-    \ }\n  ArbitraryModInt operator+(const ArbitraryModInt &p) const {\n    return\
-    \ ArbitraryModInt(*this) += p;\n  }\n  ArbitraryModInt operator-(const ArbitraryModInt\
-    \ &p) const {\n    return ArbitraryModInt(*this) -= p;\n  }\n  ArbitraryModInt\
-    \ operator*(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
-    \ *= p;\n  }\n  ArbitraryModInt operator/(const ArbitraryModInt &p) const {\n\
-    \    return ArbitraryModInt(*this) /= p;\n  }\n  bool operator==(const ArbitraryModInt\
-    \ &p) const { return val == p.val; }\n  bool operator!=(const ArbitraryModInt\
-    \ &p) const { return val != p.val; }\n  ArbitraryModInt inverse() const {\n  \
-    \  int a = val, b = get_mod(), u = 1, v = 0, t;\n    while (b > 0) {\n      t\
-    \ = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return\
-    \ ArbitraryModInt(u);\n  }\n  ArbitraryModInt pow(int64_t n) const {\n    ArbitraryModInt\
-    \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
-    \ mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n};\n\ntemplate <typename\
-    \ mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n  static\
-    \ vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n \
-    \ while (int(dat.size()) <= n) {\n    int k = dat.size();\n    auto q = (mod +\
-    \ k - 1) / k;\n    int r = k * q - mod;\n    dat.emplace_back(dat[r] * mint(q));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
-    \ const int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  assert(0\
-    \ <= n);\n  if (n >= mod) return 0;\n  while (int(dat.size()) <= n) {\n    int\
-    \ k = dat.size();\n    dat.emplace_back(dat[k - 1] * mint(k));\n  }\n  return\
-    \ dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static const\
-    \ int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  assert(0\
-    \ <= n && n < mod);\n  while (int(dat.size()) <= n) {\n    int k = dat.size();\n\
-    \    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n  }\n  return dat[n];\n}\n\n\
-    template <typename mint, bool large = false>\nmint C(ll n, ll k) {\n  assert(n\
-    \ >= 0);\n  if (k < 0 || n < k) return 0;\n  if (!large) return fact<mint>(n)\
-    \ * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k, n - k);\n  mint x(1);\n\
-    \  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n  return x;\n}\n\
-    \ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n\
-    \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
-    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
-    }\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    \ std::map<ArbitraryModInt, T>\n  static unsigned int &get_mod() {\n    static\
+    \ unsigned int mod = 0;\n    return mod;\n  }\n  static void set_mod(int md) {\
+    \ get_mod() = md; }\n  ArbitraryModInt &operator+=(const ArbitraryModInt &p) {\n\
+    \    if ((val += p.val) >= get_mod()) val -= get_mod();\n    return *this;\n \
+    \ }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p) {\n    if ((val +=\
+    \ get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return *this;\n  }\n\
+    \  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n    unsigned long\
+    \ long a = (unsigned long long)val * p.val;\n    unsigned xh = (unsigned)(a >>\
+    \ 32), xl = (unsigned)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"\
+    (m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n\
+    \  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n    *this *=\
+    \ p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-() const {\
+    \ return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) += p;\n  }\n\
+    \  ArbitraryModInt operator-(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
+    \ -= p;\n  }\n  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n\
+    \    return ArbitraryModInt(*this) *= p;\n  }\n  ArbitraryModInt operator/(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) /= p;\n  }\n\
+    \  bool operator==(const ArbitraryModInt &p) const { return val == p.val; }\n\
+    \  bool operator!=(const ArbitraryModInt &p) const { return val != p.val; }\n\
+    \  ArbitraryModInt inverse() const {\n    int a = val, b = get_mod(), u = 1, v\
+    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
+    \ -= t * v, v);\n    }\n    return ArbitraryModInt(u);\n  }\n  ArbitraryModInt\
+    \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
+    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
+    \  }\n    return ret;\n  }\n};\n\ntemplate <typename mint>\nmint inv(int n) {\n\
+    \  static const int mod = mint::get_mod();\n  static vector<mint> dat = {0, 1};\n\
+    \  assert(0 <= n);\n  if (n >= mod) n %= mod;\n  while (int(dat.size()) <= n)\
+    \ {\n    int k = dat.size();\n    auto q = (mod + k - 1) / k;\n    int r = k *\
+    \ q - mod;\n    dat.emplace_back(dat[r] * mint(q));\n  }\n  return dat[n];\n}\n\
+    \ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  static vector<mint> dat = {1, 1};\n  assert(0 <= n);\n  if (n >= mod) return\
+    \ 0;\n  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
+    \ - 1] * mint(k));\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint\
+    \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
+    \ dat = {1, 1};\n  assert(0 <= n && n < mod);\n  while (int(dat.size()) <= n)\
+    \ {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
+    \  }\n  return dat[n];\n}\n\ntemplate <typename mint, bool large = false>\nmint\
+    \ C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if (!large)\
+    \ return fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k,\
+    \ n - k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n\
+    \  return x;\n}\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll\
+    \ n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return\
+    \ fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint,\
+    \ 1>(n, k);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     using amint = ArbitraryModInt;\n#line 8 \"test/yukicoder/235_lazytreemonoid.test.cpp\"\
     \n\nusing mint = modint107;\nusing Lazy = Lazy_CntSum_Add<mint>;\n\nvoid solve()\
     \ {\n  LL(N);\n  VEC(ll, S, N);\n  VEC(ll, C, N);\n  Graph G(N);\n  G.read_tree();\n\
@@ -564,8 +565,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/235_lazytreemonoid.test.cpp
   requiredBy: []
-  timestamp: '2022-06-25 14:29:18+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-06-27 16:37:24+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/235_lazytreemonoid.test.cpp
 layout: document

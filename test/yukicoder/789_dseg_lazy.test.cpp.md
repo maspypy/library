@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_cntsum.hpp
     title: alg/group_cntsum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/lazy_cntsum_add.hpp
     title: alg/lazy_cntsum_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/dynamic_lazysegtree.hpp
     title: ds/dynamic_lazysegtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/789
@@ -273,29 +273,30 @@ data:
     \ = new_node(node_l, node_m);\n    if (!(n->r)) n->r = new_node(node_m, node_r);\n\
     \    prop(n, node_l, node_r);\n    ll res = min_left_rec(n->r, node_m, node_r,\
     \ check, t, p);\n    if (res != L) return res;\n    return min_left_rec(n->l,\
-    \ node_l, node_m, check, t, p);\n  }\n};\n#line 2 \"alg/group_add.hpp\"\ntemplate\
-    \ <class X>\r\nstruct Group_Add {\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return n * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"alg/group_cntsum.hpp\"\
-    \ntemplate <typename E = long long>\r\nstruct Group_CntSum {\r\n  using value_type\
-    \ = pair<E, E>;\r\n  using X = value_type;\r\n  static constexpr X op(const X\
-    \ &x, const X &y) {\r\n    return {x.fi + y.fi, x.se + y.se};\r\n  }\r\n  static\
-    \ constexpr X inverse(const X &x) { return {-x.fi, -x.se}; }\r\n  static constexpr\
-    \ X unit() { return {0, 0}; }\r\n  static constexpr bool commute = true;\r\n};\r\
-    \n#line 3 \"alg/lazy_cntsum_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Lazy_CntSum_Add\
-    \ {\r\n  using MX = Group_CntSum<E>;\r\n  using MA = Group_Add<E>;\r\n  using\
-    \ X_structure = MX;\r\n  using A_structure = MA;\r\n  using X = typename MX::value_type;\r\
-    \n  using A = typename MA::value_type;\r\n  static constexpr X act(const X &x,\
-    \ const A &a) {\r\n    return {x.fi, x.se + x.fi * a};\r\n  }\r\n};\r\n#line 6\
-    \ \"test/yukicoder/789_dseg_lazy.test.cpp\"\n\nvoid solve() {\n  auto f = [&](ll\
-    \ L, ll R) -> pi { return {R - L, 0}; };\n  Dynamic_LazySegTree<Lazy_CntSum_Add<ll>,\
-    \ 2000000> seg(0, 1LL << 30, f);\n  LL(Q);\n  ll ANS = 0;\n  FOR(Q) {\n    LL(t,\
-    \ a, b);\n    if (t == 0) { seg.apply(a, a + 1, b); }\n    if (t == 1) { ANS +=\
-    \ seg.prod(a, b + 1).se; }\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ node_l, node_m, check, t, p);\n  }\n};\n#line 2 \"alg/group_add.hpp\"\n\r\n\
+    template <typename E>\r\nstruct Group_Add {\r\n  using X = E;\r\n  using value_type\
+    \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return x\
+    \ + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\
+    \n  static constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\
+    \n  static constexpr X unit() { return X(0); }\r\n  static constexpr bool commute\
+    \ = true;\r\n};\r\n#line 1 \"alg/group_cntsum.hpp\"\ntemplate <typename E = long\
+    \ long>\r\nstruct Group_CntSum {\r\n  using value_type = pair<E, E>;\r\n  using\
+    \ X = value_type;\r\n  static constexpr X op(const X &x, const X &y) {\r\n   \
+    \ return {x.fi + y.fi, x.se + y.se};\r\n  }\r\n  static constexpr X inverse(const\
+    \ X &x) { return {-x.fi, -x.se}; }\r\n  static constexpr X unit() { return {0,\
+    \ 0}; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/lazy_cntsum_add.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct Lazy_CntSum_Add {\r\n  using MX = Group_CntSum<E>;\r\
+    \n  using MA = Group_Add<E>;\r\n  using X_structure = MX;\r\n  using A_structure\
+    \ = MA;\r\n  using X = typename MX::value_type;\r\n  using A = typename MA::value_type;\r\
+    \n  static constexpr X act(const X &x, const A &a) {\r\n    return {x.fi, x.se\
+    \ + x.fi * a};\r\n  }\r\n};\r\n#line 6 \"test/yukicoder/789_dseg_lazy.test.cpp\"\
+    \n\nvoid solve() {\n  auto f = [&](ll L, ll R) -> pi { return {R - L, 0}; };\n\
+    \  Dynamic_LazySegTree<Lazy_CntSum_Add<ll>, 2000000> seg(0, 1LL << 30, f);\n \
+    \ LL(Q);\n  ll ANS = 0;\n  FOR(Q) {\n    LL(t, a, b);\n    if (t == 0) { seg.apply(a,\
+    \ a + 1, b); }\n    if (t == 1) { ANS += seg.prod(a, b + 1).se; }\n  }\n  print(ANS);\n\
+    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/789\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"ds/dynamic_lazysegtree.hpp\"\n#include\
     \ \"alg/lazy_cntsum_add.hpp\"\n\nvoid solve() {\n  auto f = [&](ll L, ll R) ->\
@@ -315,8 +316,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/789_dseg_lazy.test.cpp
   requiredBy: []
-  timestamp: '2022-06-17 20:39:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-06-27 16:36:33+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/789_dseg_lazy.test.cpp
 layout: document
