@@ -699,16 +699,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/705_monge_shortest_path.test.cpp
     title: test/yukicoder/705_monge_shortest_path.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/749_lazysegtree.test.cpp
     title: test/yukicoder/749_lazysegtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/789_dseg.test.cpp
     title: test/yukicoder/789_dseg.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/789_dseg_lazy.test.cpp
     title: test/yukicoder/789_dseg_lazy.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/899_bfsnumbering.test.cpp
     title: test/yukicoder/899_bfsnumbering.test.cpp
   - icon: ':heavy_check_mark:'
@@ -717,12 +717,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/919_waveletmatrix.test.cpp
     title: test/yukicoder/919_waveletmatrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include\
@@ -941,7 +941,7 @@ data:
   path: other/io.hpp
   requiredBy: []
   timestamp: '2022-04-27 05:07:41+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1441_bbst.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp

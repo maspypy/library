@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bfs01.hpp
     title: graph/bfs01.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/bfsnumbering.hpp
     title: graph/bfsnumbering.hpp
   - icon: ':heavy_check_mark:'
@@ -282,12 +282,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/529_two_edge.test.cpp
     title: test/yukicoder/529_two_edge.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/899_bfsnumbering.test.cpp
     title: test/yukicoder/899_bfsnumbering.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -405,7 +405,7 @@ data:
   - graph/bfsnumbering.hpp
   - graph/dial.hpp
   timestamp: '2022-05-13 20:32:38+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/1293_scc.test.cpp

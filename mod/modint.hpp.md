@@ -333,12 +333,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_p_rec.test.cpp
     title: test/yukicoder/502_p_rec.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/749_lazysegtree.test.cpp
     title: test/yukicoder/749_lazysegtree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\n\ntemplate <unsigned int mod>\nstruct\
@@ -523,7 +523,7 @@ data:
   - poly/convolution_mod_2_64.hpp
   - graph/tree_all_distances.hpp
   timestamp: '2022-06-27 16:37:24+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/502_p_rec.test.cpp

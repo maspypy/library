@@ -3,19 +3,19 @@ data:
   libraryCategories:
   - name: alg
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/group_add.hpp
       title: alg/group_add.hpp
     - icon: ':heavy_check_mark:'
       path: alg/group_affine.hpp
       title: alg/group_affine.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/group_cntsum.hpp
       title: alg/group_cntsum.hpp
     - icon: ':warning:'
       path: alg/group_gl2.hpp
       title: alg/group_gl2.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/group_mul.hpp
       title: alg/group_mul.hpp
     - icon: ':heavy_check_mark:'
@@ -30,13 +30,13 @@ data:
     - icon: ':warning:'
       path: alg/gset_gl2_vec.hpp
       title: alg/gset_gl2_vec.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy_add_mul.hpp
       title: alg/lazy_add_mul.hpp
     - icon: ':heavy_check_mark:'
       path: alg/lazy_cntminmincnt_add.hpp
       title: alg/lazy_cntminmincnt_add.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy_cntsum_add.hpp
       title: alg/lazy_cntsum_add.hpp
     - icon: ':heavy_check_mark:'
@@ -222,19 +222,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/dualsegtree.hpp
       title: ds/dualsegtree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/dynamic_lazysegtree.hpp
       title: ds/dynamic_lazysegtree.hpp
     - icon: ':heavy_check_mark:'
       path: ds/dynamic_lichao.hpp
       title: ds/dynamic_lichao.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/dynamic_segtree.hpp
       title: ds/dynamic_segtree.hpp
     - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwick.hpp
       title: ds/fenwick.hpp
     - icon: ':heavy_check_mark:'
@@ -261,7 +261,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/larsch.hpp
       title: ds/larsch.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/lazysegtree.hpp
       title: ds/lazysegtree.hpp
     - icon: ':heavy_check_mark:'
@@ -327,7 +327,7 @@ data:
     - icon: ':warning:'
       path: ds/uniqueproductquery.hpp
       title: ds/uniqueproductquery.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/waveletmatrix.hpp
       title: ds/waveletmatrix.hpp
     - icon: ':heavy_check_mark:'
@@ -375,7 +375,7 @@ data:
       title: geo/points_diameter.hpp
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/base.hpp
       title: graph/base.hpp
     - icon: ':heavy_check_mark:'
@@ -384,7 +384,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/bfs01.hpp
       title: graph/bfs01.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/bfsnumbering.hpp
       title: graph/bfsnumbering.hpp
     - icon: ':heavy_check_mark:'
@@ -606,7 +606,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_sqrt.hpp
       title: mod/mod_sqrt.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint.hpp
       title: mod/modint.hpp
     - icon: ':heavy_check_mark:'
@@ -626,7 +626,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -708,7 +708,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/integer_kth_root.hpp
       title: other/integer_kth_root.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -1691,16 +1691,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/705_monge_shortest_path.test.cpp
       title: test/yukicoder/705_monge_shortest_path.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/749_lazysegtree.test.cpp
       title: test/yukicoder/749_lazysegtree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/789_dseg.test.cpp
       title: test/yukicoder/789_dseg.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/789_dseg_lazy.test.cpp
       title: test/yukicoder/789_dseg_lazy.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/899_bfsnumbering.test.cpp
       title: test/yukicoder/899_bfsnumbering.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1709,7 +1709,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/919_waveletmatrix.test.cpp
       title: test/yukicoder/919_waveletmatrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/924.test.cpp
       title: test/yukicoder/924.test.cpp
 layout: toppage
