@@ -33,14 +33,14 @@ struct Rectangle_Add_Rectangle_Sum {
     static constexpr bool commute = true;
   };
 
-  vc<tuple<ll, ll, ll, ll>> query;
+  vector<tuple<ll, ll, ll, ll>> query;
   Point_Add_Rectangle_Sum<G, SMALL> X;
   ll min_x = 0, min_y = 0;
 
   void add_query(ll xl, ll yl, ll xr, ll yr, WT w) {
     assert(xl <= xr && yl <= yr);
-    chmin(min_x, xl);
-    chmin(min_y, yl);
+    min_x = min(min_x, xl);
+    min_y = min(min_y, yl);
     // (xl,yl) に (x-xl)(y-yl) を加算
     auto nw = AbelGroup::inverse(w);
     X.add_query(xl, yl,
@@ -62,20 +62,19 @@ struct Rectangle_Add_Rectangle_Sum {
 
   void sum_query(ll xl, ll yl, ll xr, ll yr) {
     assert(xl <= xr && yl <= yr);
-    query.eb(xl, yl, xr, yr);
+    query.emplace_back(xl, yl, xr, yr);
     X.sum_query(min_x, min_y, xl, yl);
     X.sum_query(min_x, min_y, xl, yr);
     X.sum_query(min_x, min_y, xr, yl);
     X.sum_query(min_x, min_y, xr, yr);
   }
 
-  vc<WT> calc() {
-    ll Q = len(query);
-    vc<WT> ANS(Q);
+  vector<WT> calc() {
+    ll Q = query.size();
+    vector<WT> ANS(Q);
     auto tmp = X.calc();
-    assert(len(tmp) == 4 * Q);
 
-    FOR(q, Q) {
+    for (int q = 0; q < Q; ++q) {
       auto [xl, yl, xr, yr] = query[q];
       WT p = AbelGroup::unit(), m = AbelGroup::unit();
       {
