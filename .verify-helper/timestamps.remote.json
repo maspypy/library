@@ -234,6 +234,11 @@
 "test/yukicoder/529_two_edge.test.cpp": "2022-06-25 14:29:18 +0900",
 "test/yukicoder/626_knapsack_branch_bound.test.cpp": "2022-06-17 20:39:28 +0900",
 "test/yukicoder/705_monge_shortest_path.test.cpp": "2022-06-17 20:39:28 +0900",
+"test/yukicoder/749_lazysegtree.test.cpp": "2022-06-27 16:37:24 +0900",
+"test/yukicoder/789_dseg.test.cpp": "2022-06-27 16:36:33 +0900",
+"test/yukicoder/789_dseg_lazy.test.cpp": "2022-06-27 16:36:33 +0900",
+"test/yukicoder/899_bfsnumbering.test.cpp": "2022-06-27 16:36:33 +0900",
 "test/yukicoder/913_cht_monotone.test.cpp": "2022-06-19 03:08:14 +0900",
-"test/yukicoder/919_waveletmatrix.test.cpp": "2022-06-17 20:39:28 +0900"
+"test/yukicoder/919_waveletmatrix.test.cpp": "2022-06-17 20:39:28 +0900",
+"test/yukicoder/924.test.cpp": "2022-06-27 21:42:47 +0900"
 }
