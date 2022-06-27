@@ -116,7 +116,7 @@ data:
   - icon: ':warning:'
     path: graph/tree_dp.hpp
     title: graph/tree_dp.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/treeabelgroup.hpp
     title: graph/treeabelgroup.hpp
   - icon: ':heavy_check_mark:'
@@ -168,7 +168,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRO_3_A_articulation.test.cpp
     title: test/aoj/GRO_3_A_articulation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - icon: ':heavy_check_mark:'

@@ -15,7 +15,7 @@ data:
     title: graph/hld.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - icon: ':x:'
@@ -26,7 +26,7 @@ data:
     title: test/yukicoder/1641_tree_abel.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -41,8 +41,8 @@ data:
     \    assert(AbelGroup::commute);\n    dat.assign(n, AbelGroup::unit());\n  }\n\
     \  FenwickTree(vector<E> v) : n(len(v)), total(AbelGroup::unit()) {\n    assert(AbelGroup::commute);\n\
     \    for (int i = 0; i < n; ++i) total = AbelGroup::op(total, v[i]);\n    dat\
-    \ = v;\n    for (int i = n; i >= 1; --i) {\n      int j = i + (i & -i);\n    \
-    \  if (j <= n) dat[j - 1] = AbelGroup::op(dat[i - 1], dat[j - 1]);\n    }\n  }\n\
+    \ = v;\n    for (int i = 1; i <= n; ++i){\n      int j = i + (i & -i);\n     \
+    \ if (j <= n) dat[j - 1] = AbelGroup::op(dat[i - 1], dat[j - 1]);\n    }\n  }\n\
     \n  void reset() {\n    total = AbelGroup::unit();\n    dat.assign(n, AbelGroup::unit());\n\
     \  }\n\n  E sum(int k) {\n    E ret = AbelGroup::unit();\n    for (; k > 0; k\
     \ -= k & -k) ret = AbelGroup::op(ret, dat[k - 1]);\n    return ret;\n  }\n\n \
@@ -229,8 +229,8 @@ data:
   isVerificationFile: false
   path: graph/treeabelgroup.hpp
   requiredBy: []
-  timestamp: '2022-06-27 16:36:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-06-27 21:42:47+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1326_bct.test.cpp
   - test/yukicoder/1641_tree_abel.test.cpp

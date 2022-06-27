@@ -326,7 +326,7 @@ data:
     \ dat.assign(n, AbelGroup::unit());\n  }\n  FenwickTree(vector<E> v) : n(len(v)),\
     \ total(AbelGroup::unit()) {\n    assert(AbelGroup::commute);\n    for (int i\
     \ = 0; i < n; ++i) total = AbelGroup::op(total, v[i]);\n    dat = v;\n    for\
-    \ (int i = n; i >= 1; --i) {\n      int j = i + (i & -i);\n      if (j <= n) dat[j\
+    \ (int i = 1; i <= n; ++i){\n      int j = i + (i & -i);\n      if (j <= n) dat[j\
     \ - 1] = AbelGroup::op(dat[i - 1], dat[j - 1]);\n    }\n  }\n\n  void reset()\
     \ {\n    total = AbelGroup::unit();\n    dat.assign(n, AbelGroup::unit());\n \
     \ }\n\n  E sum(int k) {\n    E ret = AbelGroup::unit();\n    for (; k > 0; k -=\
@@ -385,7 +385,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 16:36:56+09:00'
+  timestamp: '2022-06-27 21:42:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp

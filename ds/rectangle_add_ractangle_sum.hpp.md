@@ -33,7 +33,7 @@ data:
     \    dat.assign(n, AbelGroup::unit());\n  }\n  FenwickTree(vector<E> v) : n(len(v)),\
     \ total(AbelGroup::unit()) {\n    assert(AbelGroup::commute);\n    for (int i\
     \ = 0; i < n; ++i) total = AbelGroup::op(total, v[i]);\n    dat = v;\n    for\
-    \ (int i = n; i >= 1; --i) {\n      int j = i + (i & -i);\n      if (j <= n) dat[j\
+    \ (int i = 1; i <= n; ++i){\n      int j = i + (i & -i);\n      if (j <= n) dat[j\
     \ - 1] = AbelGroup::op(dat[i - 1], dat[j - 1]);\n    }\n  }\n\n  void reset()\
     \ {\n    total = AbelGroup::unit();\n    dat.assign(n, AbelGroup::unit());\n \
     \ }\n\n  E sum(int k) {\n    E ret = AbelGroup::unit();\n    for (; k > 0; k -=\
@@ -191,7 +191,7 @@ data:
   isVerificationFile: false
   path: ds/rectangle_add_ractangle_sum.hpp
   requiredBy: []
-  timestamp: '2022-06-27 16:38:02+09:00'
+  timestamp: '2022-06-27 21:42:47+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1490_rect_add_rect_sum.test.cpp

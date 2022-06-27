@@ -26,8 +26,8 @@ data:
     \    assert(AbelGroup::commute);\n    dat.assign(n, AbelGroup::unit());\n  }\n\
     \  FenwickTree(vector<E> v) : n(len(v)), total(AbelGroup::unit()) {\n    assert(AbelGroup::commute);\n\
     \    for (int i = 0; i < n; ++i) total = AbelGroup::op(total, v[i]);\n    dat\
-    \ = v;\n    for (int i = n; i >= 1; --i) {\n      int j = i + (i & -i);\n    \
-    \  if (j <= n) dat[j - 1] = AbelGroup::op(dat[i - 1], dat[j - 1]);\n    }\n  }\n\
+    \ = v;\n    for (int i = 1; i <= n; ++i){\n      int j = i + (i & -i);\n     \
+    \ if (j <= n) dat[j - 1] = AbelGroup::op(dat[i - 1], dat[j - 1]);\n    }\n  }\n\
     \n  void reset() {\n    total = AbelGroup::unit();\n    dat.assign(n, AbelGroup::unit());\n\
     \  }\n\n  E sum(int k) {\n    E ret = AbelGroup::unit();\n    for (; k > 0; k\
     \ -= k & -k) ret = AbelGroup::op(ret, dat[k - 1]);\n    return ret;\n  }\n\n \
@@ -104,7 +104,7 @@ data:
   isVerificationFile: false
   path: ds/rectangle_add_point_sum.hpp
   requiredBy: []
-  timestamp: '2022-06-27 16:36:56+09:00'
+  timestamp: '2022-06-27 21:42:47+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/rectangle_add_point_sum.hpp
