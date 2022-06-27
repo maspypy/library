@@ -18,7 +18,7 @@ struct FenwickTree {
     assert(AbelGroup::commute);
     for (int i = 0; i < n; ++i) total = AbelGroup::op(total, v[i]);
     dat = v;
-    for (int i = n; i >= 1; --i) {
+    for (int i = 1; i <= n; ++i){
       int j = i + (i & -i);
       if (j <= n) dat[j - 1] = AbelGroup::op(dat[i - 1], dat[j - 1]);
     }
