@@ -1,8 +1,9 @@
 #pragma once
-template <u32 mod>
+
+template <unsigned int mod>
 struct modint {
   static constexpr bool is_modint = true;
-  u32 val;
+  unsigned int val;
   constexpr modint(const ll val = 0) noexcept
       : val(val >= 0 ? val % mod : (mod - (-val) % mod) % mod) {}
   bool operator<(const modint &other) const {
@@ -17,7 +18,7 @@ struct modint {
     return *this;
   }
   modint &operator*=(const modint &p) {
-    val = (u32)(1LL * val * p.val % mod);
+    val = (unsigned int)(1LL * val * p.val % mod);
     return *this;
   }
   modint &operator/=(const modint &p) {
@@ -48,12 +49,12 @@ struct modint {
     }
     return ret;
   }
-  static constexpr u32 get_mod() { return mod; }
+  static constexpr unsigned int get_mod() { return mod; }
 };
 
 struct ArbitraryModInt {
   static constexpr bool is_modint = true;
-  u32 val;
+  unsigned int val;
   ArbitraryModInt() : val(0) {}
   ArbitraryModInt(int64_t y)
       : val(y >= 0 ? y % get_mod()
@@ -61,8 +62,8 @@ struct ArbitraryModInt {
   bool operator<(const ArbitraryModInt &other) const {
     return val < other.val;
   } // To use std::map<ArbitraryModInt, T>
-  static u32 &get_mod() {
-    static u32 mod = 0;
+  static unsigned int &get_mod() {
+    static unsigned int mod = 0;
     return mod;
   }
   static void set_mod(int md) { get_mod() = md; }
