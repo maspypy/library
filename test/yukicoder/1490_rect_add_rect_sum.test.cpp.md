@@ -350,7 +350,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1490_rect_add_rect_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 16:37:50+09:00'
+  timestamp: '2022-06-27 16:38:02+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/1490_rect_add_rect_sum.test.cpp
