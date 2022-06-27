@@ -1,6 +1,7 @@
 #pragma once
 #include "alg/group_add.hpp"
 
+
 template <typename AbelGroup>
 struct FenwickTree {
   using E = typename AbelGroup::value_type;
@@ -13,17 +14,17 @@ struct FenwickTree {
     assert(AbelGroup::commute);
     dat.assign(n, AbelGroup::unit());
   }
-  FenwickTree(vc<E> v) : n(len(v)), total(AbelGroup::unit()) {
+  FenwickTree(vector<E> v) : n(len(v)), total(AbelGroup::unit()) {
     assert(AbelGroup::commute);
-    FOR(i, n) total = AbelGroup::op(total, v[i]);
+    for (int i = 0; i < n; ++i) total = AbelGroup::op(total, v[i]);
     dat = v;
-    FOR3(i, 1, n + 1) {
+    for (int i = n; i >= 1; --i) {
       int j = i + (i & -i);
       if (j <= n) dat[j - 1] = AbelGroup::op(dat[i - 1], dat[j - 1]);
     }
   }
 
-  void reset(){
+  void reset() {
     total = AbelGroup::unit();
     dat.assign(n, AbelGroup::unit());
   }
@@ -56,12 +57,12 @@ struct FenwickTree {
   }
 
   template <class F>
-  int max_right(F& check) {
+  int max_right(F &check) {
     assert(check(E(0)));
     ll i = 0;
     E s = AbelGroup::unit();
     int k = 1;
-    int N = len(dat) + 1;
+    int N = dat.size() + 1;
     while (2 * k < N) k *= 2;
     while (k) {
       if (i + k < N && check(AbelGroup::op(s, dat[i + k - 1]))) {
