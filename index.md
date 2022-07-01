@@ -1213,6 +1213,9 @@ data:
       path: test/library_checker/datastructure/static_range_sum.test.cpp
       title: test/library_checker/datastructure/static_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+      title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
       title: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
     - icon: ':heavy_check_mark:'

@@ -13,6 +13,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+    title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1490_rect_add_rect_sum.test.cpp
     title: test/yukicoder/1490_rect_add_rect_sum.test.cpp
   _isVerificationFailed: false
@@ -195,6 +198,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1490_rect_add_rect_sum.test.cpp
+  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
 documentation_of: ds/rectangle_add_ractangle_sum.hpp
 layout: document
 redirect_from:
