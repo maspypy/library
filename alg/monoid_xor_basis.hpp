@@ -20,6 +20,13 @@ struct Monoid_XorBasis {
     return z;
   }
 
+  static bool isin(INT v, const X& x){
+    for(auto&& w : x){
+      chmin(v, v ^ w);
+    }
+    return v == 0;
+  }
+
   // x ^ v の最大値
   static INT get_max(const X& x) {
     INT res = 0;
