@@ -5,7 +5,7 @@
 
 // new_mod = -1 の場合：lcm が i128 範囲なら
 // 解なしなら -1 を返す
-i128 CRT(vc<int> vals, vc<int> mods, int new_mod = -1, bool coprime = true) {
+i128 CRT(vc<int> vals, vc<int> mods, int new_mod = -1, bool coprime = false) {
   int n = len(vals);
   if (!coprime) {
     unordered_map<ll, vc<pi>> MP;
