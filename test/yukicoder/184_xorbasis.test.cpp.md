@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid_xor_basis.hpp
     title: alg/monoid_xor_basis.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
@@ -199,15 +199,17 @@ data:
     \ }\r\n    if (v) {\r\n      x.eb(v);\r\n      return true;\r\n    }\r\n    return\
     \ false;\r\n  }\r\n\r\n  static X op(const X& x, const X& y) {\r\n    X z = x;\r\
     \n    for (auto v: y) { add_element(z, v); }\r\n    return z;\r\n  }\r\n\r\n \
-    \ // x ^ v \u306E\u6700\u5927\u5024\r\n  static INT get_max(const X& x) {\r\n\
-    \    INT res = 0;\r\n    for (auto&& a: x) chmax(res, res ^ a);\r\n    return\
-    \ res;\r\n  }\r\n  static constexpr X unit() { return X{}; };\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 5 \"test/yukicoder/184_xorbasis.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  using Mono = Monoid_XorBasis<ll>;\n\
-    \  auto sp = Mono::unit();\n  for (auto&& a: A) { Mono::add_element(sp, a); }\n\
-    \  print(1LL << len(sp));\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
+    \ static bool isin(INT v, const X& x){\r\n    for(auto&& w : x){\r\n      chmin(v,\
+    \ v ^ w);\r\n    }\r\n    return v == 0;\r\n  }\r\n\r\n  // x ^ v \u306E\u6700\
+    \u5927\u5024\r\n  static INT get_max(const X& x) {\r\n    INT res = 0;\r\n   \
+    \ for (auto&& a: x) chmax(res, res ^ a);\r\n    return res;\r\n  }\r\n  static\
+    \ constexpr X unit() { return X{}; };\r\n  static constexpr bool commute = true;\r\
+    \n};\r\n#line 5 \"test/yukicoder/184_xorbasis.test.cpp\"\n\nvoid solve() {\n \
+    \ LL(N);\n  VEC(ll, A, N);\n  using Mono = Monoid_XorBasis<ll>;\n  auto sp = Mono::unit();\n\
+    \  for (auto&& a: A) { Mono::add_element(sp, a); }\n  print(1LL << len(sp));\n\
+    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
+    \ return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/184\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"alg/monoid_xor_basis.hpp\"\n\nvoid solve()\
     \ {\n  LL(N);\n  VEC(ll, A, N);\n  using Mono = Monoid_XorBasis<ll>;\n  auto sp\
@@ -222,7 +224,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/184_xorbasis.test.cpp
   requiredBy: []
-  timestamp: '2022-06-17 20:39:28+09:00'
+  timestamp: '2022-07-10 21:47:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/184_xorbasis.test.cpp

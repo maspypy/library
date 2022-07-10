@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: bbst/splaytree_monoid.hpp
     title: bbst/splaytree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'

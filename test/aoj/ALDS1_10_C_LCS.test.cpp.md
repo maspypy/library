@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: dp/longest_common_subsequence.hpp
     title: dp/longest_common_subsequence.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'

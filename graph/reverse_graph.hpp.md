@@ -49,10 +49,10 @@ data:
     \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 2 \"graph/reverse_graph.hpp\"\
     \ntemplate <typename Graph>\r\nGraph reverse_graph(Graph& G) {\r\n  assert(G.is_directed());\r\
     \n  Graph G1(G.N);\r\n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost,\
-    \ e.id); }\r\n  G1.prepare();\r\n  return G1;\r\n}\r\n"
+    \ e.id); }\r\n  G1.build();\r\n  return G1;\r\n}\r\n"
   code: "#include \"graph/base.hpp\"\r\ntemplate <typename Graph>\r\nGraph reverse_graph(Graph&\
     \ G) {\r\n  assert(G.is_directed());\r\n  Graph G1(G.N);\r\n  for (auto&& e: G.edges)\
-    \ { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.prepare();\r\n  return G1;\r\n\
+    \ { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.build();\r\n  return G1;\r\n\
     }\r\n"
   dependsOn:
   - graph/base.hpp
@@ -60,7 +60,7 @@ data:
   path: graph/reverse_graph.hpp
   requiredBy:
   - graph/solve_dag_game.hpp
-  timestamp: '2022-05-13 20:32:38+09:00'
+  timestamp: '2022-07-10 21:47:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/reverse_graph.hpp

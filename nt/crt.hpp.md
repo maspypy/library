@@ -88,7 +88,7 @@ data:
     \   pf.eb(p, e);\n  }\n  sort(all(pf));\n  return pf;\n}\n#line 5 \"nt/crt.hpp\"\
     \n\n// new_mod = -1 \u306E\u5834\u5408\uFF1Alcm \u304C i128 \u7BC4\u56F2\u306A\
     \u3089\n// \u89E3\u306A\u3057\u306A\u3089 -1 \u3092\u8FD4\u3059\ni128 CRT(vc<int>\
-    \ vals, vc<int> mods, int new_mod = -1, bool coprime = true) {\n  int n = len(vals);\n\
+    \ vals, vc<int> mods, int new_mod = -1, bool coprime = false) {\n  int n = len(vals);\n\
     \  if (!coprime) {\n    unordered_map<ll, vc<pi>> MP;\n    FOR(i, n) {\n     \
     \ for (auto&& [p, e]: factor(mods[i])) {\n        int mod = 1;\n        FOR(e)\
     \ mod *= p;\n        MP[p].eb(vals[i] % mod, mod);\n      }\n    }\n    vc<int>\
@@ -107,7 +107,7 @@ data:
     \n#include \"nt/factor.hpp\"\n\n// new_mod = -1 \u306E\u5834\u5408\uFF1Alcm \u304C\
     \ i128 \u7BC4\u56F2\u306A\u3089\n// \u89E3\u306A\u3057\u306A\u3089 -1 \u3092\u8FD4\
     \u3059\ni128 CRT(vc<int> vals, vc<int> mods, int new_mod = -1, bool coprime =\
-    \ true) {\n  int n = len(vals);\n  if (!coprime) {\n    unordered_map<ll, vc<pi>>\
+    \ false) {\n  int n = len(vals);\n  if (!coprime) {\n    unordered_map<ll, vc<pi>>\
     \ MP;\n    FOR(i, n) {\n      for (auto&& [p, e]: factor(mods[i])) {\n       \
     \ int mod = 1;\n        FOR(e) mod *= p;\n        MP[p].eb(vals[i] % mod, mod);\n\
     \      }\n    }\n    vc<int> xx, mm;\n    for (auto&& [p, dat]: MP) {\n      int\
@@ -129,7 +129,7 @@ data:
   isVerificationFile: false
   path: nt/crt.hpp
   requiredBy: []
-  timestamp: '2022-05-19 23:05:54+09:00'
+  timestamp: '2022-07-10 21:47:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/187_crt.test.cpp

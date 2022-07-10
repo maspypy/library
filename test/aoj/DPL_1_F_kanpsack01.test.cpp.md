@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: dp/knapsack01.hpp
     title: dp/knapsack01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'

@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: linalg/solve_linear.hpp
+    title: linalg/solve_linear.hpp
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
@@ -12,24 +15,24 @@ data:
     title: string/split.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_9_A
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0004
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_9_A
-  bundledCode: "#line 1 \"test/aoj/ITP1_9_A_split.test.cpp\"\n#define PROBLEM \\\n\
-    \  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_9_A\"\n#line\
-    \ 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\n\
-    using ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
-    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0004
+  bundledCode: "#line 1 \"test/aoj/0004_solve_linear.test.cpp\"\n#define PROBLEM \"\
+    https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0004\"\n#line 1 \"my_template.hpp\"\
+    \n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
+    using pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\n\
+    using u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\n\
+    using vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate\
+    \ <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -119,35 +122,53 @@ data:
     \ s;\r\n  }\r\n  return res;\r\n}\r\n\r\nvc<string> split(string S, string seps\
     \ = \" ,\") {\r\n  vc<string> res = {\"\"};\r\n  for (auto&& s: S) {\r\n    if\
     \ (count(all(seps), s))\r\n      res.eb(\"\");\r\n    else\r\n      res.back()\
-    \ += s;\r\n  }\r\n  return res;\r\n}\r\n#line 6 \"test/aoj/ITP1_9_A_split.test.cpp\"\
-    \n\nvoid solve() {\n  STR(T);\n  string S;\n  ll ANS = 0;\n  while (getline(cin,\
-    \ S)) {\n    for (auto&& token: split(S, ' ')) {\n      for (auto&& t: token)\n\
-    \        if (isupper(t)) t = tolower(t);\n      ANS += token == T;\n    }\n  }\n\
-    \  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_9_A\"\
+    \ += s;\r\n  }\r\n  return res;\r\n}\r\n#line 1 \"linalg/solve_linear.hpp\"\n\
+    /*\r\n0 \u884C\u76EE\u306B\u89E3\u306E\u3072\u3068\u3064\u3002\r\n1\uFF5E\u884C\
+    \u76EE\u306B\u89E3\u7A7A\u9593\u306E\u57FA\u5E95\u304C\u884C\u30D9\u30AF\u30C8\
+    \u30EB\u3068\u3057\u3066\u5165\u308B\u3002\r\n\u89E3\u306A\u3057 = empty\r\n*/\r\
+    \ntemplate <typename T>\r\nvc<vc<T>> solve_linear(vc<vc<T>> a, vc<T> b) {\r\n\
+    \  auto n = len(a), m = len(a[0]);\r\n  int rk = 0;\r\n  FOR(j, m) {\r\n    if\
+    \ (a[rk][j] == 0) {\r\n      FOR3(i, rk + 1, n) if (a[i][j] != 0) {\r\n      \
+    \  swap(a[rk], a[i]);\r\n        swap(b[rk], b[i]);\r\n        break;\r\n    \
+    \  }\r\n    }\r\n    if (a[rk][j] == 0) continue;\r\n    T c = T(1) / a[rk][j];\r\
+    \n    for (auto&& x: a[rk]) x *= c;\r\n    b[rk] *= c;\r\n    FOR(i, n) if (i\
+    \ != rk) {\r\n      T c = a[i][j];\r\n      b[i] -= b[rk] * c;\r\n      FOR3(k,\
+    \ j, m) { a[i][k] -= a[rk][k] * c; }\r\n    }\r\n    ++rk;\r\n    if (rk == n)\
+    \ break;\r\n  }\r\n  FOR3(i, rk, n) if (b[i] != 0) return {};\r\n  vc<vc<T>> res(1,\
+    \ vc<T>(m));\r\n  vc<int> pivot(m, -1);\r\n  int p = 0;\r\n  FOR(i, rk) {\r\n\
+    \    while (a[i][p] == 0) ++p;\r\n    res[0][p] = b[i];\r\n    pivot[p] = i;\r\
+    \n  }\r\n  FOR(j, m) if (pivot[j] == -1) {\r\n    vc<T> x(m);\r\n    x[j] = -1;\r\
+    \n    FOR(k, j) if (pivot[k] != -1) x[k] = a[pivot[k]][j];\r\n    res.eb(x);\r\
+    \n  }\r\n  return res;\r\n}\r\n#line 6 \"test/aoj/0004_solve_linear.test.cpp\"\
+    \n\nusing Re = double;\n\nvoid solve() {\n  Re a, b, c, d, e, f;\n  while (cin\
+    \ >> a >> b >> c >> d >> e >> f) {\n    vv(Re, A, 2, 2);\n    A[0] = {a, b};\n\
+    \    A[1] = {d, e};\n    vc<Re> b = {c, f};\n    auto res = solve_linear(A, b);\n\
+    \    auto x = res[0];\n    printf(\"%.3f %.3f\\n\", x[0], x[1]);\n  }\n}\n\nsigned\
+    \ main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n\
+    \  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0004\"\
     \n#include \"my_template.hpp\"\n#include \"other/io2.hpp\"\n#include \"string/split.hpp\"\
-    \n\nvoid solve() {\n  STR(T);\n  string S;\n  ll ANS = 0;\n  while (getline(cin,\
-    \ S)) {\n    for (auto&& token: split(S, ' ')) {\n      for (auto&& t: token)\n\
-    \        if (isupper(t)) t = tolower(t);\n      ANS += token == T;\n    }\n  }\n\
-    \  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
+    \n#include \"linalg/solve_linear.hpp\"\n\nusing Re = double;\n\nvoid solve() {\n\
+    \  Re a, b, c, d, e, f;\n  while (cin >> a >> b >> c >> d >> e >> f) {\n    vv(Re,\
+    \ A, 2, 2);\n    A[0] = {a, b};\n    A[1] = {d, e};\n    vc<Re> b = {c, f};\n\
+    \    auto res = solve_linear(A, b);\n    auto x = res[0];\n    printf(\"%.3f %.3f\\\
+    n\", x[0], x[1]);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io2.hpp
   - string/split.hpp
+  - linalg/solve_linear.hpp
   isVerificationFile: true
-  path: test/aoj/ITP1_9_A_split.test.cpp
+  path: test/aoj/0004_solve_linear.test.cpp
   requiredBy: []
-  timestamp: '2022-06-17 20:39:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-07-10 21:46:21+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/aoj/ITP1_9_A_split.test.cpp
+documentation_of: test/aoj/0004_solve_linear.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/ITP1_9_A_split.test.cpp
-- /verify/test/aoj/ITP1_9_A_split.test.cpp.html
-title: test/aoj/ITP1_9_A_split.test.cpp
+- /verify/test/aoj/0004_solve_linear.test.cpp
+- /verify/test/aoj/0004_solve_linear.test.cpp.html
+title: test/aoj/0004_solve_linear.test.cpp
 ---

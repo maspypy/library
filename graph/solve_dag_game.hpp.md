@@ -49,7 +49,7 @@ data:
     \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 2 \"graph/reverse_graph.hpp\"\
     \ntemplate <typename Graph>\r\nGraph reverse_graph(Graph& G) {\r\n  assert(G.is_directed());\r\
     \n  Graph G1(G.N);\r\n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost,\
-    \ e.id); }\r\n  G1.prepare();\r\n  return G1;\r\n}\r\n#line 2 \"graph/solve_dag_game.hpp\"\
+    \ e.id); }\r\n  G1.build();\r\n  return G1;\r\n}\r\n#line 2 \"graph/solve_dag_game.hpp\"\
     \ntemplate <typename Graph, typename INT>\r\nvoid solve_dag_game(Graph& G, vc<INT>&\
     \ DP) {\r\n  /*\r\n  -1: unknown\r\n  0 : lose\r\n  1 : win\r\n\r\n  \u4E88\u3081\
     \u9077\u79FB\u5148\u306E\u306A\u3044\u9802\u70B9\u306B\u306F\u30010 \u307E\u305F\
@@ -82,7 +82,7 @@ data:
   isVerificationFile: false
   path: graph/solve_dag_game.hpp
   requiredBy: []
-  timestamp: '2022-05-13 20:32:38+09:00'
+  timestamp: '2022-07-10 21:47:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/solve_dag_game.hpp

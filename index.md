@@ -559,7 +559,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/mat_pow.hpp
       title: linalg/mat_pow.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: linalg/solve_linear.hpp
       title: linalg/solve_linear.hpp
     - icon: ':heavy_check_mark:'
@@ -626,7 +626,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -711,7 +711,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io2.hpp
       title: other/io2.hpp
     - icon: ':warning:'
@@ -940,7 +940,7 @@ data:
     - icon: ':warning:'
       path: string/sort_all_substring.hpp
       title: string/sort_all_substring.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: string/split.hpp
       title: string/split.hpp
     - icon: ':heavy_check_mark:'
@@ -963,6 +963,9 @@ data:
       title: example.test.cpp
   - name: test/aoj
     pages:
+    - icon: ':x:'
+      path: test/aoj/0004_solve_linear.test.cpp
+      title: test/aoj/0004_solve_linear.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/1508_splay.test.cpp
       title: test/aoj/1508_splay.test.cpp
