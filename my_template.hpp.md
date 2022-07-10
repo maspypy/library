@@ -7,8 +7,8 @@ data:
     title: graph/bipartite_coloring.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/aoj/0004_solve_linear.test.cpp
-    title: test/aoj/0004_solve_linear.test.cpp
+    path: test/aoj/0009_prime_pi.test.cpp
+    title: test/aoj/0009_prime_pi.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508_splay.test.cpp
     title: test/aoj/1508_splay.test.cpp
@@ -1098,12 +1098,12 @@ data:
   - test/aoj/ALDS1_5_inversion.test.cpp
   - test/aoj/2251_dag_path_cover.test.cpp
   - test/aoj/ALDS1_12_B_dial.test.cpp
+  - test/aoj/0009_prime_pi.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - test/aoj/2251_maxantichain.test.cpp
   - test/aoj/DPL_3_B_largest_ractangle.test.cpp
   - test/aoj/DSL_2_I_cntsum_set_lazy.test.cpp
   - test/aoj/DPL_1_D_lis.test.cpp
-  - test/aoj/0004_solve_linear.test.cpp
   - test/aoj/DSL_1_B_weighteduf.test.cpp
   - test/aoj/DSL_2_C_kdtree.test.cpp
   - test/aoj/275_dag_reachability.test.cpp

@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/aoj/0004_solve_linear.test.cpp
-    title: test/aoj/0004_solve_linear.test.cpp
+    path: test/aoj/0009_prime_pi.test.cpp
+    title: test/aoj/0009_prime_pi.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_9_A_split.test.cpp
     title: test/aoj/ITP1_9_A_split.test.cpp
@@ -74,7 +74,7 @@ data:
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/0004_solve_linear.test.cpp
+  - test/aoj/0009_prime_pi.test.cpp
   - test/aoj/ITP1_9_A_split.test.cpp
 documentation_of: other/io2.hpp
 layout: document

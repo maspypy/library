@@ -2,17 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: linalg/solve_linear.hpp
-    title: linalg/solve_linear.hpp
-  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
+    path: nt/primesum.hpp
+    title: nt/primesum.hpp
+  - icon: ':question:'
+    path: nt/primetable.hpp
+    title: nt/primetable.hpp
+  - icon: ':question:'
     path: other/io2.hpp
     title: other/io2.hpp
-  - icon: ':question:'
-    path: string/split.hpp
-    title: string/split.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -20,19 +20,18 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0004
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0009
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0004
-  bundledCode: "#line 1 \"test/aoj/0004_solve_linear.test.cpp\"\n#define PROBLEM \"\
-    https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0004\"\n#line 1 \"my_template.hpp\"\
-    \n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
-    using pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\n\
-    using u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\n\
-    using vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate\
-    \ <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
-    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0009
+  bundledCode: "#line 1 \"test/aoj/0009_prime_pi.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0009\"\
+    \n#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
+    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
+    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
+    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -116,59 +115,62 @@ data:
     \ t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\
     \nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1)\
     \ { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid\
-    \ no(bool t = 1) { yes(!t); }\r\n#line 1 \"string/split.hpp\"\nvc<string> split(string\
-    \ S, char sep = ',') {\r\n  vc<string> res = {\"\"};\r\n  for (auto&& s: S) {\r\
-    \n    if (s == sep)\r\n      res.eb(\"\");\r\n    else\r\n      res.back() +=\
-    \ s;\r\n  }\r\n  return res;\r\n}\r\n\r\nvc<string> split(string S, string seps\
-    \ = \" ,\") {\r\n  vc<string> res = {\"\"};\r\n  for (auto&& s: S) {\r\n    if\
-    \ (count(all(seps), s))\r\n      res.eb(\"\");\r\n    else\r\n      res.back()\
-    \ += s;\r\n  }\r\n  return res;\r\n}\r\n#line 1 \"linalg/solve_linear.hpp\"\n\
-    /*\r\n0 \u884C\u76EE\u306B\u89E3\u306E\u3072\u3068\u3064\u3002\r\n1\uFF5E\u884C\
-    \u76EE\u306B\u89E3\u7A7A\u9593\u306E\u57FA\u5E95\u304C\u884C\u30D9\u30AF\u30C8\
-    \u30EB\u3068\u3057\u3066\u5165\u308B\u3002\r\n\u89E3\u306A\u3057 = empty\r\n*/\r\
-    \ntemplate <typename T>\r\nvc<vc<T>> solve_linear(vc<vc<T>> a, vc<T> b) {\r\n\
-    \  auto n = len(a), m = len(a[0]);\r\n  int rk = 0;\r\n  FOR(j, m) {\r\n    if\
-    \ (a[rk][j] == 0) {\r\n      FOR3(i, rk + 1, n) if (a[i][j] != 0) {\r\n      \
-    \  swap(a[rk], a[i]);\r\n        swap(b[rk], b[i]);\r\n        break;\r\n    \
-    \  }\r\n    }\r\n    if (a[rk][j] == 0) continue;\r\n    T c = T(1) / a[rk][j];\r\
-    \n    for (auto&& x: a[rk]) x *= c;\r\n    b[rk] *= c;\r\n    FOR(i, n) if (i\
-    \ != rk) {\r\n      T c = a[i][j];\r\n      b[i] -= b[rk] * c;\r\n      FOR3(k,\
-    \ j, m) { a[i][k] -= a[rk][k] * c; }\r\n    }\r\n    ++rk;\r\n    if (rk == n)\
-    \ break;\r\n  }\r\n  FOR3(i, rk, n) if (b[i] != 0) return {};\r\n  vc<vc<T>> res(1,\
-    \ vc<T>(m));\r\n  vc<int> pivot(m, -1);\r\n  int p = 0;\r\n  FOR(i, rk) {\r\n\
-    \    while (a[i][p] == 0) ++p;\r\n    res[0][p] = b[i];\r\n    pivot[p] = i;\r\
-    \n  }\r\n  FOR(j, m) if (pivot[j] == -1) {\r\n    vc<T> x(m);\r\n    x[j] = -1;\r\
-    \n    FOR(k, j) if (pivot[k] != -1) x[k] = a[pivot[k]][j];\r\n    res.eb(x);\r\
-    \n  }\r\n  return res;\r\n}\r\n#line 6 \"test/aoj/0004_solve_linear.test.cpp\"\
-    \n\nusing Re = double;\n\nvoid solve() {\n  Re a, b, c, d, e, f;\n  while (cin\
-    \ >> a >> b >> c >> d >> e >> f) {\n    vv(Re, A, 2, 2);\n    A[0] = {a, b};\n\
-    \    A[1] = {d, e};\n    vc<Re> b = {c, f};\n    auto res = solve_linear(A, b);\n\
-    \    auto x = res[0];\n    printf(\"%.3f %.3f\\n\", x[0], x[1]);\n  }\n}\n\nsigned\
+    \ no(bool t = 1) { yes(!t); }\r\n#line 4 \"test/aoj/0009_prime_pi.test.cpp\"\n\
+    \n#line 2 \"nt/primetable.hpp\"\nvc<ll> primetable(int LIM) {\n  ++LIM;\n  const\
+    \ int S = 32768;\n  static int done = 2;\n  static vc<ll> primes = {2}, sieve(S\
+    \ + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S\
+    \ + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM)\
+    \ * 1.1));\n    vc<pi> cp;\n    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i])\
+    \ {\n        cp.eb(i, i * i / 2);\n        for (int j = i * i; j <= S; j += 2\
+    \ * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n\
+    \      array<bool, S> block{};\n      for (auto& [p, idx]: cp)\n        for (int\
+    \ i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R\
+    \ - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes,\
+    \ LIM + 1);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 2 \"nt/primesum.hpp\"\
+    \n\r\n/*\r\nN \u3068\u5B8C\u5168\u4E57\u6CD5\u7684\u95A2\u6570 f \u306E prefix\
+    \ sum \u95A2\u6570 F \u3092\u4E0E\u3048\u308B\u3002\r\nn = floor(N/d) \u3068\u306A\
+    \u308B n \u306B\u5BFE\u3059\u308B sum_{p <= n} f(p) \u3092\u8A08\u7B97\u3059\u308B\
+    \u3002\r\n\u7279\u306B\u3001p^k \u306E\u548C\u3084\u3001mod m \u3054\u3068\u3067\
+    \u306E p^k \u306E\u548C\u304C\u8A08\u7B97\u3067\u304D\u308B\u3002\r\nComplexity:\
+    \ O(N^{3/4}/logN) time, O(N^{1/2}) space.\r\n*/\r\ntemplate <typename T>\r\npair<vc<T>,\
+    \ vc<T>> primesum_F(ll N, function<T(ll)> F) {\r\n  ll sqN = sqrtl(N);\r\n  auto\
+    \ primes = primetable(sqN);\r\n  vc<T> sum_lo(sqN + 1), sum_hi(sqN + 1);\r\n \
+    \ FOR3(i, 1, sqN + 1) sum_lo[i] = F(i) - 1;\r\n  FOR3(i, 1, sqN + 1) sum_hi[i]\
+    \ = F(double(N) / i) - 1;\r\n  for (auto&& p: primes) {\r\n    ll pp = p * p;\r\
+    \n    if (pp > N) break;\r\n    ll R = min(sqN, N / pp);\r\n    ll M = sqN / p;\r\
+    \n    T x = sum_lo[p - 1];\r\n    T fp = sum_lo[p] - sum_lo[p - 1];\r\n    FOR3(i,\
+    \ 1, M + 1) sum_hi[i] -= fp * (sum_hi[i * p] - x);\r\n    FOR3(i, M + 1, R + 1)\
+    \ sum_hi[i] -= fp * (sum_lo[double(N) / (i * p)] - x);\r\n    FOR3_R(n, pp, sqN\
+    \ + 1) sum_lo[n] -= fp * (sum_lo[double(n) / p] - x);\r\n  }\r\n  return {sum_lo,\
+    \ sum_hi};\r\n}\r\n\r\ntemplate <typename T>\r\npair<vc<T>, vc<T>> primecnt(ll\
+    \ N) {\r\n  auto F = [&](ll N) -> T { return N; };\r\n  return primesum_F<T>(N,\
+    \ F);\r\n}\r\n\r\ntemplate <typename T>\r\npair<vc<T>, vc<T>> primesum(ll N) {\r\
+    \n  auto F = [&](ll N) -> T {\r\n    return (N & 1 ? T((N + 1) / 2) * T(N) : T(N\
+    \ / 2) * T(N + 1));\r\n  };\r\n  return primesum_F<T>(N, F);\r\n}\r\n#line 6 \"\
+    test/aoj/0009_prime_pi.test.cpp\"\n\nvoid solve() {\n  ll N;\n  while (cin >>\
+    \ N) {\n    auto [lo, hi] = primecnt<ll>(N);\n    print(hi[1]);\n  }\n}\n\nsigned\
     \ main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n\
     \  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0004\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io2.hpp\"\n#include \"string/split.hpp\"\
-    \n#include \"linalg/solve_linear.hpp\"\n\nusing Re = double;\n\nvoid solve() {\n\
-    \  Re a, b, c, d, e, f;\n  while (cin >> a >> b >> c >> d >> e >> f) {\n    vv(Re,\
-    \ A, 2, 2);\n    A[0] = {a, b};\n    A[1] = {d, e};\n    vc<Re> b = {c, f};\n\
-    \    auto res = solve_linear(A, b);\n    auto x = res[0];\n    printf(\"%.3f %.3f\\\
-    n\", x[0], x[1]);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0009\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io2.hpp\"\n\n#include \"nt/primesum.hpp\"\
+    \n\nvoid solve() {\n  ll N;\n  while (cin >> N) {\n    auto [lo, hi] = primecnt<ll>(N);\n\
+    \    print(hi[1]);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
     \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io2.hpp
-  - string/split.hpp
-  - linalg/solve_linear.hpp
+  - nt/primesum.hpp
+  - nt/primetable.hpp
   isVerificationFile: true
-  path: test/aoj/0004_solve_linear.test.cpp
+  path: test/aoj/0009_prime_pi.test.cpp
   requiredBy: []
-  timestamp: '2022-07-10 21:46:21+09:00'
+  timestamp: '2022-07-10 22:01:08+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/aoj/0004_solve_linear.test.cpp
+documentation_of: test/aoj/0009_prime_pi.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/0004_solve_linear.test.cpp
-- /verify/test/aoj/0004_solve_linear.test.cpp.html
-title: test/aoj/0004_solve_linear.test.cpp
+- /verify/test/aoj/0009_prime_pi.test.cpp
+- /verify/test/aoj/0009_prime_pi.test.cpp.html
+title: test/aoj/0009_prime_pi.test.cpp
 ---

@@ -3,15 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/aoj/0004_solve_linear.test.cpp
-    title: test/aoj/0004_solve_linear.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/solve_linear.test.cpp
     title: test/library_checker/matrix/solve_linear.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/solve_linear.hpp\"\n/*\r\n0 \u884C\u76EE\u306B\u89E3\
@@ -53,10 +50,9 @@ data:
   path: linalg/solve_linear.hpp
   requiredBy: []
   timestamp: '2022-05-05 15:29:49+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/matrix/solve_linear.test.cpp
-  - test/aoj/0004_solve_linear.test.cpp
 documentation_of: linalg/solve_linear.hpp
 layout: document
 redirect_from:

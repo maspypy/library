@@ -559,7 +559,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/mat_pow.hpp
       title: linalg/mat_pow.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: linalg/solve_linear.hpp
       title: linalg/solve_linear.hpp
     - icon: ':heavy_check_mark:'
@@ -673,10 +673,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/nim_product.hpp
       title: nt/nim_product.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: nt/primesum.hpp
       title: nt/primesum.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: nt/primetable.hpp
       title: nt/primetable.hpp
     - icon: ':heavy_check_mark:'
@@ -940,7 +940,7 @@ data:
     - icon: ':warning:'
       path: string/sort_all_substring.hpp
       title: string/sort_all_substring.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/split.hpp
       title: string/split.hpp
     - icon: ':heavy_check_mark:'
@@ -964,8 +964,8 @@ data:
   - name: test/aoj
     pages:
     - icon: ':x:'
-      path: test/aoj/0004_solve_linear.test.cpp
-      title: test/aoj/0004_solve_linear.test.cpp
+      path: test/aoj/0009_prime_pi.test.cpp
+      title: test/aoj/0009_prime_pi.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/1508_splay.test.cpp
       title: test/aoj/1508_splay.test.cpp
