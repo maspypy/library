@@ -7,13 +7,15 @@ struct Persistent_SegTree {
     X x;
   };
 
+  using np = Node *;
+
   const int n;
   Node *pool;
   int pid;
 
   Persistent_SegTree(int n) : n(n), pid(0) { pool = new Node[NODES]; }
 
-  Node *new_node(const X &x) {
+  Node *new_node(const X x = Monoid::unit()) {
     pool[pid].l = pool[pid].r = nullptr;
     pool[pid].x = x;
     return &(pool[pid++]);
@@ -36,7 +38,7 @@ struct Persistent_SegTree {
   }
 
   X prod(Node *root, int l, int r) {
-    assert(0 <= l && l < r && r <= n);
+    assert(0 <= l && l <= r && r <= n);
     X x = Monoid::unit();
     prod_rec(root, 0, n, l, r, x);
     return x;
@@ -76,6 +78,7 @@ private:
 
   Node *set_rec(Node *c, int node_l, int node_r, int i, const X &x) {
     if (node_r == node_l + 1) { return new_node(x); }
+    if(!c) c = new_node();
     int node_m = (node_l + node_r) / 2;
     c = copy_node(c);
     if (i < node_m) {
@@ -83,11 +86,14 @@ private:
     } else {
       c->r = set_rec(c->r, node_m, node_r, i, x);
     }
-    c->x = Monoid::op(c->l->x, c->r->x);
+    X xl = (c->l ? c->l->x : Monoid::unit());
+    X xr = (c->r ? c->r->x : Monoid::unit());
+    c->x = Monoid::op(xl, xr);
     return c;
   }
 
   void prod_rec(Node *c, int node_l, int node_r, int l, int r, X &x) {
+    if(!c) return;
     chmax(l, node_l);
     chmin(r, node_r);
     if (l >= r) return;
