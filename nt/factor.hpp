@@ -69,3 +69,18 @@ vc<pi> factor(ll n) {
   sort(all(pf));
   return pf;
 }
+
+
+vc<pi> factor_by_lpf(ll n, vc<int>& lpf) {
+  vc<pi> res;
+  while(n > 1){
+    int p = lpf[n];
+    int e = 0;
+    while(n % p == 0){
+      n /= p;
+      ++e;
+    }
+    res.eb(p, e);
+  }
+  return res;
+}
