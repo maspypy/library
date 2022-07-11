@@ -1,5 +1,5 @@
-template <typename T, T INF = 1LL << 60>
-vc<T> maxplus_convolution_concave(vc<T>& A, vc<T>& B) {
+template <typename T>
+vc<T> maxplus_convolution_concave(const vc<T>& A, const vc<T>& B, const T INF) {
   ll NA = len(A), NB = len(B);
   ll LA = 0, RA = NA, LB = 0, RB = NB;
   while (LA < RA && A[LA] == -INF) ++LA;
