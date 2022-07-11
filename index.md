@@ -181,6 +181,9 @@ data:
     - icon: ':warning:'
       path: dp/maxplus_convolution_concave.hpp
       title: dp/maxplus_convolution_concave.hpp
+    - icon: ':warning:'
+      path: dp/minplus_convolution_convex.hpp
+      title: dp/minplus_convolution_convex.hpp
     - icon: ':heavy_check_mark:'
       path: dp/monge.hpp
       title: dp/monge.hpp
@@ -626,7 +629,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -673,10 +676,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/nim_product.hpp
       title: nt/nim_product.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/primesum.hpp
       title: nt/primesum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/primetable.hpp
       title: nt/primetable.hpp
     - icon: ':heavy_check_mark:'
@@ -711,7 +714,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io2.hpp
       title: other/io2.hpp
     - icon: ':warning:'
@@ -963,9 +966,6 @@ data:
       title: example.test.cpp
   - name: test/aoj
     pages:
-    - icon: ':x:'
-      path: test/aoj/0009_prime_pi.test.cpp
-      title: test/aoj/0009_prime_pi.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/1508_splay.test.cpp
       title: test/aoj/1508_splay.test.cpp

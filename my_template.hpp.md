@@ -6,9 +6,6 @@ data:
     path: graph/bipartite_coloring.hpp
     title: graph/bipartite_coloring.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/aoj/0009_prime_pi.test.cpp
-    title: test/aoj/0009_prime_pi.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508_splay.test.cpp
     title: test/aoj/1508_splay.test.cpp
@@ -732,9 +729,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://trap.jp/post/1224/
@@ -876,7 +873,7 @@ data:
   requiredBy:
   - graph/bipartite_coloring.hpp
   timestamp: '2022-06-17 20:39:28+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1441_bbst.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
@@ -1098,7 +1095,6 @@ data:
   - test/aoj/ALDS1_5_inversion.test.cpp
   - test/aoj/2251_dag_path_cover.test.cpp
   - test/aoj/ALDS1_12_B_dial.test.cpp
-  - test/aoj/0009_prime_pi.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - test/aoj/2251_maxantichain.test.cpp
   - test/aoj/DPL_3_B_largest_ractangle.test.cpp

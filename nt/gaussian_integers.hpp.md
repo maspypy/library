@@ -71,32 +71,35 @@ data:
     \      ll e = 0;\n      do {\n        n /= p, e += 1;\n      } while (n % p ==\
     \ 0);\n      pf.eb(p, e);\n    }\n  }\n  while (n > 1) {\n    ll p = find_prime_factor(n);\n\
     \    ll e = 0;\n    do {\n      n /= p, e += 1;\n    } while (n % p == 0);\n \
-    \   pf.eb(p, e);\n  }\n  sort(all(pf));\n  return pf;\n}\n#line 2 \"mod/fast_div.hpp\"\
-    \nstruct fast_div {\r\n  // Min25 https://judge.yosupo.jp/submission/46090\r\n\
-    \  // \u540C\u3058\u5B9A\u6570\u3067\u4F55\u5EA6\u3082\u9664\u7B97\u3059\u308B\
-    \u3068\u304D\u306E\u9AD8\u901F\u5316\u306B\u4F7F\u3048\u308B\r\n  using i64 =\
-    \ long long;\r\n  using u64 = unsigned long long;\r\n  using u128 = __uint128_t;\r\
-    \n  constexpr fast_div() : m(), s(), x() {}\r\n  constexpr fast_div(int n)\r\n\
-    \      : m(n), s(std::__lg(n - 1)), x(((u128(1) << (s + 64)) + n - 1) / n) {}\r\
-    \n  constexpr friend u64 operator/(u64 n, const fast_div& d) {\r\n    return (u128(n)\
-    \ * d.x >> d.s) >> 64;\r\n  }\r\n  constexpr friend int operator%(u64 n, const\
-    \ fast_div& d) {\r\n    return n - n / d * d.m;\r\n  }\r\n  constexpr std::pair<i64,\
-    \ int> divmod(u64 n) const {\r\n    u64 q = n / *this;\r\n    return {q, n - q\
-    \ * m};\r\n  }\r\n\r\n  int m;\r\n  int s;\r\n  u64 x;\r\n};\r\n#line 3 \"mod/mod_pow.hpp\"\
-    \n// int\r\nll mod_pow(ll a, ll n, int mod){\r\n  fast_div fd(mod);\r\n  a = a\
-    \ % fd;\r\n  ll p = a;\r\n  ll v = 1;\r\n  while(n){\r\n    if(n & 1) v = v *\
-    \ p % fd;\r\n    p = p * p % fd;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n\
-    \r\nll mod_pow_long(ll a, ll n, ll mod){\r\n  a %= mod;\r\n  ll p = a;\r\n  ll\
-    \ v = 1;\r\n  while(n){\r\n    if(n & 1) v = i128(v) * p % mod;\r\n    p = i128(p)\
-    \ * p % mod;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line 3 \"nt/gaussian_integers.hpp\"\
-    \n\r\ntemplate <typename INT>\r\nstruct Gaussian_Integer {\r\n  INT x, y;\r\n\
-    \  using G = Gaussian_Integer;\r\n\r\n  Gaussian_Integer(INT x = 0, INT y = 0)\
-    \ : x(x), y(y) {}\r\n  Gaussian_Integer(pair<INT, INT> p) : x(p.fi), y(p.se) {}\r\
-    \n\r\n  INT norm() const { return x * x + y * y; }\r\n  G conjugate() const {\
-    \ return G(x, -y); }\r\n\r\n  G &operator+=(const G &g) {\r\n    x += g.x, y +=\
-    \ g.y;\r\n    return *this;\r\n  }\r\n  G &operator-=(const G &g) {\r\n    x -=\
-    \ g.x, y -= g.y;\r\n    return *this;\r\n  }\r\n  G &operator*=(const G &g) {\r\
-    \n    tie(x, y) = mp(x * g.x - y * g.y, x * g.y + y * g.x);\r\n    return *this;\r\
+    \   pf.eb(p, e);\n  }\n  sort(all(pf));\n  return pf;\n}\n\n\nvc<pi> factor_by_lpf(ll\
+    \ n, vc<int>& lpf) {\n  vc<pi> res;\n  while(n > 1){\n    int p = lpf[n];\n  \
+    \  int e = 0;\n    while(n % p == 0){\n      n /= p;\n      ++e;\n    }\n    res.eb(p,\
+    \ e);\n  }\n  return res;\n}\n#line 2 \"mod/fast_div.hpp\"\nstruct fast_div {\r\
+    \n  // Min25 https://judge.yosupo.jp/submission/46090\r\n  // \u540C\u3058\u5B9A\
+    \u6570\u3067\u4F55\u5EA6\u3082\u9664\u7B97\u3059\u308B\u3068\u304D\u306E\u9AD8\
+    \u901F\u5316\u306B\u4F7F\u3048\u308B\r\n  using i64 = long long;\r\n  using u64\
+    \ = unsigned long long;\r\n  using u128 = __uint128_t;\r\n  constexpr fast_div()\
+    \ : m(), s(), x() {}\r\n  constexpr fast_div(int n)\r\n      : m(n), s(std::__lg(n\
+    \ - 1)), x(((u128(1) << (s + 64)) + n - 1) / n) {}\r\n  constexpr friend u64 operator/(u64\
+    \ n, const fast_div& d) {\r\n    return (u128(n) * d.x >> d.s) >> 64;\r\n  }\r\
+    \n  constexpr friend int operator%(u64 n, const fast_div& d) {\r\n    return n\
+    \ - n / d * d.m;\r\n  }\r\n  constexpr std::pair<i64, int> divmod(u64 n) const\
+    \ {\r\n    u64 q = n / *this;\r\n    return {q, n - q * m};\r\n  }\r\n\r\n  int\
+    \ m;\r\n  int s;\r\n  u64 x;\r\n};\r\n#line 3 \"mod/mod_pow.hpp\"\n// int\r\n\
+    ll mod_pow(ll a, ll n, int mod){\r\n  fast_div fd(mod);\r\n  a = a % fd;\r\n \
+    \ ll p = a;\r\n  ll v = 1;\r\n  while(n){\r\n    if(n & 1) v = v * p % fd;\r\n\
+    \    p = p * p % fd;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n\r\nll mod_pow_long(ll\
+    \ a, ll n, ll mod){\r\n  a %= mod;\r\n  ll p = a;\r\n  ll v = 1;\r\n  while(n){\r\
+    \n    if(n & 1) v = i128(v) * p % mod;\r\n    p = i128(p) * p % mod;\r\n    n\
+    \ >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line 3 \"nt/gaussian_integers.hpp\"\n\r\
+    \ntemplate <typename INT>\r\nstruct Gaussian_Integer {\r\n  INT x, y;\r\n  using\
+    \ G = Gaussian_Integer;\r\n\r\n  Gaussian_Integer(INT x = 0, INT y = 0) : x(x),\
+    \ y(y) {}\r\n  Gaussian_Integer(pair<INT, INT> p) : x(p.fi), y(p.se) {}\r\n\r\n\
+    \  INT norm() const { return x * x + y * y; }\r\n  G conjugate() const { return\
+    \ G(x, -y); }\r\n\r\n  G &operator+=(const G &g) {\r\n    x += g.x, y += g.y;\r\
+    \n    return *this;\r\n  }\r\n  G &operator-=(const G &g) {\r\n    x -= g.x, y\
+    \ -= g.y;\r\n    return *this;\r\n  }\r\n  G &operator*=(const G &g) {\r\n   \
+    \ tie(x, y) = mp(x * g.x - y * g.y, x * g.y + y * g.x);\r\n    return *this;\r\
     \n  }\r\n  G &operator/=(const G &g) {\r\n    *this *= g.conjugate();\r\n    INT\
     \ n = g.norm();\r\n    x = floor(x + n / 2, n);\r\n    y = floor(y + n / 2, n);\r\
     \n    return *this;\r\n  }\r\n  G &operator%=(const G &g) {\r\n    auto q = G(*this)\
@@ -204,7 +207,7 @@ data:
   isVerificationFile: false
   path: nt/gaussian_integers.hpp
   requiredBy: []
-  timestamp: '2022-05-19 23:05:54+09:00'
+  timestamp: '2022-07-11 19:57:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1593_gaussian.test.cpp

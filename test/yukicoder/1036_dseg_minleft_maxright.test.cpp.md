@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/dynamic_segtree.hpp
     title: ds/dynamic_segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'

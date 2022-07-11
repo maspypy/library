@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
@@ -244,11 +244,14 @@ data:
     \ p, e += 1;\n      } while (n % p == 0);\n      pf.eb(p, e);\n    }\n  }\n  while\
     \ (n > 1) {\n    ll p = find_prime_factor(n);\n    ll e = 0;\n    do {\n     \
     \ n /= p, e += 1;\n    } while (n % p == 0);\n    pf.eb(p, e);\n  }\n  sort(all(pf));\n\
-    \  return pf;\n}\n#line 6 \"test/library_checker/math/factorize.test.cpp\"\n\n\
-    void solve() {\n  LL(Q);\n  FOR(_, Q) {\n    LL(x);\n    auto pf = factor(x);\n\
-    \    vi ANS;\n    for (auto&& [p, e]: pf) { FOR(_, e) ANS.eb(p); }\n    if (len(ANS))\n\
-    \      print(len(ANS), ANS);\n    else\n      print(0);\n  }\n}\n\nsigned main()\
-    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \  return pf;\n}\n\n\nvc<pi> factor_by_lpf(ll n, vc<int>& lpf) {\n  vc<pi> res;\n\
+    \  while(n > 1){\n    int p = lpf[n];\n    int e = 0;\n    while(n % p == 0){\n\
+    \      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n  return res;\n}\n\
+    #line 6 \"test/library_checker/math/factorize.test.cpp\"\n\nvoid solve() {\n \
+    \ LL(Q);\n  FOR(_, Q) {\n    LL(x);\n    auto pf = factor(x);\n    vi ANS;\n \
+    \   for (auto&& [p, e]: pf) { FOR(_, e) ANS.eb(p); }\n    if (len(ANS))\n    \
+    \  print(len(ANS), ANS);\n    else\n      print(0);\n  }\n}\n\nsigned main() {\n\
+    \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
     \n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\n#include \"\
     my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"nt/factor.hpp\"\n\n\
@@ -265,7 +268,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/factorize.test.cpp
   requiredBy: []
-  timestamp: '2022-06-17 20:39:28+09:00'
+  timestamp: '2022-07-11 19:57:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/factorize.test.cpp

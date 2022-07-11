@@ -68,11 +68,14 @@ data:
     \      ll e = 0;\n      do {\n        n /= p, e += 1;\n      } while (n % p ==\
     \ 0);\n      pf.eb(p, e);\n    }\n  }\n  while (n > 1) {\n    ll p = find_prime_factor(n);\n\
     \    ll e = 0;\n    do {\n      n /= p, e += 1;\n    } while (n % p == 0);\n \
-    \   pf.eb(p, e);\n  }\n  sort(all(pf));\n  return pf;\n}\n#line 2 \"nt/divisors.hpp\"\
-    \nvc<ll> divisors(ll N) {\r\n  auto pf = factor(N);\r\n  vi div = {1};\r\n  for\
-    \ (auto&& [p, e]: pf) {\r\n    ll n = len(div);\r\n    ll pp = 1;\r\n    FOR3(i,\
-    \ 1, e + 1) {\r\n      pp *= p;\r\n      FOR(j, n) div.eb(div[j] * pp);\r\n  \
-    \  }\r\n  }\r\n  return div;\r\n}\n"
+    \   pf.eb(p, e);\n  }\n  sort(all(pf));\n  return pf;\n}\n\n\nvc<pi> factor_by_lpf(ll\
+    \ n, vc<int>& lpf) {\n  vc<pi> res;\n  while(n > 1){\n    int p = lpf[n];\n  \
+    \  int e = 0;\n    while(n % p == 0){\n      n /= p;\n      ++e;\n    }\n    res.eb(p,\
+    \ e);\n  }\n  return res;\n}\n#line 2 \"nt/divisors.hpp\"\nvc<ll> divisors(ll\
+    \ N) {\r\n  auto pf = factor(N);\r\n  vi div = {1};\r\n  for (auto&& [p, e]: pf)\
+    \ {\r\n    ll n = len(div);\r\n    ll pp = 1;\r\n    FOR3(i, 1, e + 1) {\r\n \
+    \     pp *= p;\r\n      FOR(j, n) div.eb(div[j] * pp);\r\n    }\r\n  }\r\n  return\
+    \ div;\r\n}\n"
   code: "#include \"nt/factor.hpp\"\r\nvc<ll> divisors(ll N) {\r\n  auto pf = factor(N);\r\
     \n  vi div = {1};\r\n  for (auto&& [p, e]: pf) {\r\n    ll n = len(div);\r\n \
     \   ll pp = 1;\r\n    FOR3(i, 1, e + 1) {\r\n      pp *= p;\r\n      FOR(j, n)\
@@ -84,7 +87,7 @@ data:
   path: nt/divisors.hpp
   requiredBy:
   - nt/zeta_on_divisors.hpp
-  timestamp: '2022-04-27 05:09:11+09:00'
+  timestamp: '2022-07-11 19:57:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ITP1_D_D_divisors.test.cpp

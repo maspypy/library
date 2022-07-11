@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   - icon: ':heavy_check_mark:'
@@ -274,13 +274,16 @@ data:
     \ p, e += 1;\n      } while (n % p == 0);\n      pf.eb(p, e);\n    }\n  }\n  while\
     \ (n > 1) {\n    ll p = find_prime_factor(n);\n    ll e = 0;\n    do {\n     \
     \ n /= p, e += 1;\n    } while (n % p == 0);\n    pf.eb(p, e);\n  }\n  sort(all(pf));\n\
-    \  return pf;\n}\n#line 3 \"nt/euler_phi.hpp\"\n\r\nll euler_phi(ll n) {\r\n \
-    \ auto pf = factor(n);\r\n  for (auto&& [p, e]: pf) n -= n / p;\r\n  return n;\r\
-    \n}\r\n\r\nvi euler_phi_table(ll n) {\r\n  vi A(n + 1);\r\n  iota(all(A), 0);\r\
-    \n  divisor_mobius(A);\r\n  return A;\r\n}\r\n#line 6 \"test/aoj/NTL_1_D_eulerphi.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  print(euler_phi(N));\n}\n\nsigned main() {\n \
-    \ cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \  return pf;\n}\n\n\nvc<pi> factor_by_lpf(ll n, vc<int>& lpf) {\n  vc<pi> res;\n\
+    \  while(n > 1){\n    int p = lpf[n];\n    int e = 0;\n    while(n % p == 0){\n\
+    \      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n  return res;\n}\n\
+    #line 3 \"nt/euler_phi.hpp\"\n\r\nll euler_phi(ll n) {\r\n  auto pf = factor(n);\r\
+    \n  for (auto&& [p, e]: pf) n -= n / p;\r\n  return n;\r\n}\r\n\r\nvi euler_phi_table(ll\
+    \ n) {\r\n  vi A(n + 1);\r\n  iota(all(A), 0);\r\n  divisor_mobius(A);\r\n  return\
+    \ A;\r\n}\r\n#line 6 \"test/aoj/NTL_1_D_eulerphi.test.cpp\"\n\nvoid solve() {\n\
+    \  LL(N);\n  print(euler_phi(N));\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_D\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/euler_phi.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  print(euler_phi(N));\n}\n\nsigned main() {\n \
@@ -297,7 +300,7 @@ data:
   isVerificationFile: true
   path: test/aoj/NTL_1_D_eulerphi.test.cpp
   requiredBy: []
-  timestamp: '2022-06-17 20:39:28+09:00'
+  timestamp: '2022-07-11 19:57:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/NTL_1_D_eulerphi.test.cpp
