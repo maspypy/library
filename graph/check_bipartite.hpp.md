@@ -106,9 +106,9 @@ data:
   isVerificationFile: false
   path: graph/check_bipartite.hpp
   requiredBy:
-  - flow/bipartite.hpp
-  - graph/dag_path_cover.hpp
   - graph/maximum_antichain.hpp
+  - graph/dag_path_cover.hpp
+  - flow/bipartite.hpp
   timestamp: '2022-06-25 13:24:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

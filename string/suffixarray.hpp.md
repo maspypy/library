@@ -154,8 +154,8 @@ data:
   timestamp: '2022-05-01 01:12:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/string/suffix_array.test.cpp
   - test/library_checker/string/suffix_array_vec.test.cpp
+  - test/library_checker/string/suffix_array.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp
 documentation_of: string/suffixarray.hpp
 layout: document

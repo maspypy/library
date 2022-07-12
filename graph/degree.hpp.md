@@ -77,8 +77,8 @@ data:
   path: graph/degree.hpp
   requiredBy:
   - graph/dag_path_cover.hpp
-  - graph/toposort.hpp
   - graph/enumerate_triangles.hpp
+  - graph/toposort.hpp
   timestamp: '2022-05-13 20:32:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

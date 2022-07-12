@@ -185,8 +185,8 @@ data:
   timestamp: '2022-05-29 02:01:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1441_bbst.test.cpp
   - test/yukicoder/1441_rbst.test.cpp
+  - test/yukicoder/1441_bbst.test.cpp
   - test/aoj/1508_splay.test.cpp
 documentation_of: bbst/splaytree_monoid.hpp
 layout: document

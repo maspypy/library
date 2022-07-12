@@ -72,20 +72,20 @@ data:
   requiredBy:
   - mod/mod_sqrt.hpp
   - mod/modular_subset_sum.hpp
-  - alg/monoid_rollinghash.hpp
-  - string/rollinghash.hpp
-  - poly/fps_sqrt.hpp
   - graph/chromatic.hpp
   - linalg/spmat_min_poly.hpp
   - linalg/spmat_det.hpp
+  - poly/fps_sqrt.hpp
+  - string/rollinghash.hpp
+  - alg/monoid_rollinghash.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/4_modular_subset_sum.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
-  - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
-  - test/library_checker/matrix/sparse_matrix_det.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
+  - test/library_checker/matrix/sparse_matrix_det.test.cpp
+  - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp

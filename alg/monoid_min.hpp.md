@@ -63,11 +63,11 @@ data:
   path: alg/monoid_min.hpp
   requiredBy:
   - ds/range_mex_query.hpp
-  - alg/lazy_max_min.hpp
-  - alg/lazy_min_set.hpp
-  - alg/lazy_min_add.hpp
-  - alg/lazy_min_min.hpp
   - graph/minimum_spanning_tree.hpp
+  - alg/lazy_min_add.hpp
+  - alg/lazy_max_min.hpp
+  - alg/lazy_min_min.hpp
+  - alg/lazy_min_set.hpp
   timestamp: '2022-05-13 21:02:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -75,10 +75,10 @@ data:
   - test/yukicoder/1234_rmq.test.cpp
   - test/library_checker/datastructure/staticrmq_sparse.test.cpp
   - test/library_checker/datastructure/staticrmq_seg.test.cpp
-  - test/aoj/GRL_2_A_mst.test.cpp
   - test/aoj/1508_splay.test.cpp
-  - test/aoj/DSL_2_F_min_set_lazy.test.cpp
   - test/aoj/DSL_2_H_min_add_lazy.test.cpp
+  - test/aoj/GRL_2_A_mst.test.cpp
+  - test/aoj/DSL_2_F_min_set_lazy.test.cpp
 documentation_of: alg/monoid_min.hpp
 layout: document
 redirect_from:

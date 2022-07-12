@@ -52,8 +52,8 @@ data:
   path: geo/base.hpp
   requiredBy:
   - geo/angle_sort.hpp
-  - geo/convexhull.hpp
   - geo/points_diameter.hpp
+  - geo/convexhull.hpp
   - geo/dynamicupperhull.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_ALL_AC

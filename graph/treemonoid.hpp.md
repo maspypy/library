@@ -307,8 +307,8 @@ data:
   verifiedWith:
   - test/yukicoder/529_two_edge.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp
 documentation_of: graph/treemonoid.hpp
 layout: document

@@ -105,8 +105,8 @@ data:
   isVerificationFile: false
   path: graph/strongly_connected_component.hpp
   requiredBy:
-  - graph/reachability.hpp
   - graph/twosat.hpp
+  - graph/reachability.hpp
   timestamp: '2022-06-06 03:52:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

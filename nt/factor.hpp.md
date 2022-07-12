@@ -143,27 +143,27 @@ data:
   isVerificationFile: false
   path: nt/factor.hpp
   requiredBy:
-  - nt/euler_phi.hpp
-  - nt/zeta_on_divisors.hpp
+  - nt/lcm.hpp
   - nt/divisors.hpp
   - nt/crt.hpp
-  - nt/lcm.hpp
+  - nt/euler_phi.hpp
+  - nt/zeta_on_divisors.hpp
   - nt/gaussian_integers.hpp
-  - mod/primitive_root.hpp
-  - mod/binomial.hpp
   - mod/mod_kth_root.hpp
   - mod/tetration.hpp
+  - mod/binomial.hpp
+  - mod/primitive_root.hpp
   timestamp: '2022-07-11 19:57:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/187_crt.test.cpp
   - test/yukicoder/1593_gaussian.test.cpp
+  - test/yukicoder/187_crt.test.cpp
+  - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/tetration.test.cpp
   - test/library_checker/math/binomial_coefficient.test.cpp
-  - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/factorize.test.cpp
-  - test/aoj/ITP1_D_D_divisors.test.cpp
   - test/aoj/NTL_1_D_eulerphi.test.cpp
+  - test/aoj/ITP1_D_D_divisors.test.cpp
 documentation_of: nt/factor.hpp
 layout: document
 redirect_from:

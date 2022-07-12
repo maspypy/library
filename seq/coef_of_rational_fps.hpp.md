@@ -319,8 +319,8 @@ data:
   timestamp: '2022-06-27 16:37:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1500_interpolate_linear.test.cpp
   - test/yukicoder/1844_interpolate_c_rec.test.cpp
+  - test/yukicoder/1500_interpolate_linear.test.cpp
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
 documentation_of: seq/coef_of_rational_fps.hpp
 layout: document

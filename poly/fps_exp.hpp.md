@@ -452,8 +452,8 @@ data:
   path: poly/fps_exp.hpp
   requiredBy:
   - seq/stirling_number_2.hpp
-  - seq/stirling_number_1.hpp
   - seq/surjection.hpp
+  - seq/stirling_number_1.hpp
   - poly/fps_sqrt.hpp
   - poly/sharp_p_subset_sum.hpp
   - poly/fps_pow.hpp
@@ -461,17 +461,17 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1321_surj.test.cpp
-  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
+  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
+  - test/library_checker/polynomial/exp_of_fps.test.cpp
   - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/pow_of_fps.test.cpp
-  - test/library_checker/polynomial/exp_of_fps.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
-  - test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
 documentation_of: poly/fps_exp.hpp
 layout: document
 redirect_from:

@@ -160,8 +160,8 @@ data:
   timestamp: '2022-06-25 14:29:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1718_rerooting.test.cpp
   - test/yukicoder/1418_rerooting.test.cpp
+  - test/yukicoder/1718_rerooting.test.cpp
 documentation_of: graph/rerooting_dp.hpp
 layout: document
 redirect_from:
