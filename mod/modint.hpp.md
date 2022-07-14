@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
   - icon: ':heavy_check_mark:'
@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/multiplicative_convolution_mod2n.hpp
     title: nt/multiplicative_convolution_mod2n.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':warning:'
@@ -288,7 +288,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - icon: ':heavy_check_mark:'
@@ -330,7 +330,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1891_xor_sparse.test.cpp
     title: test/yukicoder/1891_xor_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/235_lazytreemonoid.test.cpp
     title: test/yukicoder/235_lazytreemonoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -342,9 +342,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/749_lazysegtree.test.cpp
     title: test/yukicoder/749_lazysegtree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\n\ntemplate <unsigned int mod>\nstruct\
@@ -529,7 +529,7 @@ data:
   - poly/fps_pow.hpp
   - poly/poly_taylor_shift.hpp
   timestamp: '2022-06-27 16:37:24+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1810_matpow.test.cpp
   - test/yukicoder/1649_dynamic_seg.test.cpp

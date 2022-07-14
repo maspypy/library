@@ -2,13 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
   - icon: ':heavy_check_mark:'
     path: nt/multiplicative_convolution_mod2n.hpp
     title: nt/multiplicative_convolution_mod2n.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':warning:'
@@ -198,7 +198,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - icon: ':heavy_check_mark:'
@@ -219,9 +219,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_p_rec.test.cpp
     title: test/yukicoder/502_p_rec.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/convolution_naive.hpp\"\ntemplate <class T>\r\nvector<T>\
@@ -269,7 +269,7 @@ data:
   - poly/fps_pow.hpp
   - poly/poly_taylor_shift.hpp
   timestamp: '2022-05-02 12:36:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1618_conv_ll.test.cpp
   - test/yukicoder/1844_interpolate_c_rec.test.cpp

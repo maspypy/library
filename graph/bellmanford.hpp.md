@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -22,8 +22,8 @@ data:
     \ Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin()\
     \ const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[l];\n \
     \   }\n\n    const edge_type* end() const {\n      if (l == r) { return 0; }\n\
-    \      return &G->csr_edges[r];\n    }\n\n  private:\n    int l, r;\n    const\
-    \ Graph* G;\n  };\n\n  bool is_prepared() { return prepared; }\n  constexpr bool\
+    \      return &G->csr_edges[r];\n    }\n\n  private:\n    const Graph* G;\n  \
+    \  int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n  constexpr bool\
     \ is_directed() { return directed; }\n\n  Graph() : N(0), M(0), prepared(0) {}\n\
     \  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void add(int frm, int to, T\
     \ cost = 1, int i = -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <=\
@@ -78,7 +78,7 @@ data:
   isVerificationFile: false
   path: graph/bellmanford.hpp
   requiredBy: []
-  timestamp: '2022-05-13 20:32:38+09:00'
+  timestamp: '2022-07-14 11:05:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_1_B_bellmanford.test.cpp

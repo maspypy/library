@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/two_edge_component.test.cpp
     title: test/library_checker/graph/two_edge_component.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/529_two_edge.test.cpp
     title: test/yukicoder/529_two_edge.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -28,8 +28,8 @@ data:
     \ Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin()\
     \ const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[l];\n \
     \   }\n\n    const edge_type* end() const {\n      if (l == r) { return 0; }\n\
-    \      return &G->csr_edges[r];\n    }\n\n  private:\n    int l, r;\n    const\
-    \ Graph* G;\n  };\n\n  bool is_prepared() { return prepared; }\n  constexpr bool\
+    \      return &G->csr_edges[r];\n    }\n\n  private:\n    const Graph* G;\n  \
+    \  int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n  constexpr bool\
     \ is_directed() { return directed; }\n\n  Graph() : N(0), M(0), prepared(0) {}\n\
     \  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void add(int frm, int to, T\
     \ cost = 1, int i = -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <=\
@@ -62,8 +62,8 @@ data:
     \ V, parent, root;\r\n  vc<int> depth;\r\n  vc<WT> depth_weighted;\r\n  vector<bool>\
     \ in_tree;\r\n\r\n  HLD(Graph &G, int r = -1)\r\n      : G(G),\r\n        N(G.N),\r\
     \n        LID(G.N),\r\n        RID(G.N),\r\n        head(G.N, r),\r\n        V(G.N),\r\
-    \n        parent(G.N, -1),\r\n        depth(G.N, -1),\r\n        depth_weighted(G.N,\
-    \ 0),\r\n        root(G.N, -1),\r\n        in_tree(G.M, 0) {\r\n    assert(G.is_prepared());\r\
+    \n        parent(G.N, -1),\r\n        root(G.N, -1),\r\n        depth(G.N, -1),\r\
+    \n        depth_weighted(G.N, 0),\r\n        in_tree(G.M, 0) {\r\n    assert(G.is_prepared());\r\
     \n    int t1 = 0;\r\n    if (r != -1) {\r\n      dfs_sz(r, -1);\r\n      dfs_hld(r,\
     \ t1);\r\n    } else {\r\n      FOR(r, N) if (parent[r] == -1) {\r\n        head[r]\
     \ = r;\r\n        dfs_sz(r, -1);\r\n        dfs_hld(r, t1);\r\n      }\r\n   \
@@ -140,8 +140,8 @@ data:
   isVerificationFile: false
   path: graph/two_edge_component.hpp
   requiredBy: []
-  timestamp: '2022-06-25 14:29:18+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-07-14 11:05:05+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/529_two_edge.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp

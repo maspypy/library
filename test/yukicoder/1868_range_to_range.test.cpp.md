@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/bfs01.hpp
     title: graph/bfs01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/range_to_range_graph.hpp
     title: graph/range_to_range_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1868
@@ -207,7 +207,7 @@ data:
     \ {}\n\n    const edge_type* begin() const {\n      if (l == r) { return 0; }\n\
     \      return &G->csr_edges[l];\n    }\n\n    const edge_type* end() const {\n\
     \      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n  private:\n\
-    \    int l, r;\n    const Graph* G;\n  };\n\n  bool is_prepared() { return prepared;\
+    \    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared;\
     \ }\n  constexpr bool is_directed() { return directed; }\n\n  Graph() : N(0),\
     \ M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void\
     \ add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n   \
@@ -291,8 +291,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1868_range_to_range.test.cpp
   requiredBy: []
-  timestamp: '2022-06-17 20:39:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-07-14 11:05:05+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/1868_range_to_range.test.cpp
 layout: document

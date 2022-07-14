@@ -7,40 +7,40 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid_min.hpp
     title: alg/monoid_min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid_reverse.hpp
     title: alg/monoid_reverse.hpp
   - icon: ':heavy_check_mark:'
     path: ds/dualsegtree.hpp
     title: ds/dualsegtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
     path: graph/dualtreemonoid.hpp
     title: graph/dualtreemonoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -244,7 +244,7 @@ data:
     \ : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n      if (l ==\
     \ r) { return 0; }\n      return &G->csr_edges[l];\n    }\n\n    const edge_type*\
     \ end() const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n\
-    \    }\n\n  private:\n    int l, r;\n    const Graph* G;\n  };\n\n  bool is_prepared()\
+    \    }\n\n  private:\n    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared()\
     \ { return prepared; }\n  constexpr bool is_directed() { return directed; }\n\n\
     \  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
     \ {}\n\n  void add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n\
@@ -278,13 +278,13 @@ data:
     \n  vc<WT> depth_weighted;\r\n  vector<bool> in_tree;\r\n\r\n  HLD(Graph &G, int\
     \ r = -1)\r\n      : G(G),\r\n        N(G.N),\r\n        LID(G.N),\r\n       \
     \ RID(G.N),\r\n        head(G.N, r),\r\n        V(G.N),\r\n        parent(G.N,\
-    \ -1),\r\n        depth(G.N, -1),\r\n        depth_weighted(G.N, 0),\r\n     \
-    \   root(G.N, -1),\r\n        in_tree(G.M, 0) {\r\n    assert(G.is_prepared());\r\
-    \n    int t1 = 0;\r\n    if (r != -1) {\r\n      dfs_sz(r, -1);\r\n      dfs_hld(r,\
-    \ t1);\r\n    } else {\r\n      FOR(r, N) if (parent[r] == -1) {\r\n        head[r]\
-    \ = r;\r\n        dfs_sz(r, -1);\r\n        dfs_hld(r, t1);\r\n      }\r\n   \
-    \ }\r\n    for (auto &&v: V) root[v] = (parent[v] == -1 ? v : root[parent[v]]);\r\
-    \n  }\r\n\r\n  void dfs_sz(int v, int p) {\r\n    auto &sz = RID;\r\n    parent[v]\
+    \ -1),\r\n        root(G.N, -1),\r\n        depth(G.N, -1),\r\n        depth_weighted(G.N,\
+    \ 0),\r\n        in_tree(G.M, 0) {\r\n    assert(G.is_prepared());\r\n    int\
+    \ t1 = 0;\r\n    if (r != -1) {\r\n      dfs_sz(r, -1);\r\n      dfs_hld(r, t1);\r\
+    \n    } else {\r\n      FOR(r, N) if (parent[r] == -1) {\r\n        head[r] =\
+    \ r;\r\n        dfs_sz(r, -1);\r\n        dfs_hld(r, t1);\r\n      }\r\n    }\r\
+    \n    for (auto &&v: V) root[v] = (parent[v] == -1 ? v : root[parent[v]]);\r\n\
+    \  }\r\n\r\n  void dfs_sz(int v, int p) {\r\n    auto &sz = RID;\r\n    parent[v]\
     \ = p;\r\n    depth[v] = (p == -1 ? 0 : depth[p] + 1);\r\n    sz[v] = 1;\r\n \
     \   int l = G.indptr[v], r = G.indptr[v + 1];\r\n    auto &csr = G.csr_edges;\r\
     \n    // \u4F7F\u3046\u8FBA\u304C\u3042\u308C\u3070\u5148\u982D\u306B\u3059\u308B\
@@ -582,7 +582,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_2_A_mst.test.cpp
   requiredBy: []
-  timestamp: '2022-06-25 14:29:18+09:00'
+  timestamp: '2022-07-14 11:05:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_2_A_mst.test.cpp
