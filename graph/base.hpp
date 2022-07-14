@@ -32,8 +32,8 @@ struct Graph {
     }
 
   private:
-    int l, r;
     const Graph* G;
+    int l, r;
   };
 
   bool is_prepared() { return prepared; }
