@@ -25,9 +25,9 @@ struct HLD {
         head(G.N, r),
         V(G.N),
         parent(G.N, -1),
+        root(G.N, -1),
         depth(G.N, -1),
         depth_weighted(G.N, 0),
-        root(G.N, -1),
         in_tree(G.M, 0) {
     assert(G.is_prepared());
     int t1 = 0;
