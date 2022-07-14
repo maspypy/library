@@ -3,7 +3,7 @@
 /*
 孤立点は、辺のない component で、block になる。関節点ではない。
 block cut treeの頂点番号：
-[0, n_block)：block （辺の同値類）
+[0, n_block)：block
 [n_block, n_block + n_cut)：cut （関節点）
 */
 template <typename GT>
@@ -11,7 +11,8 @@ struct Biconnected_Component {
   GT& G;
   vc<pair<int, int>> BCT_edges;
   int n_block, n_cut;
-  vc<vc<int>> comp;
+  vc<vc<int>> comp_e;
+  vc<vc<int>> comp_v; // block -> vs
   vc<int> BCT_idx_edge;
   vc<int> BCT_idx_vertex;
 
@@ -35,7 +36,8 @@ private:
   void build_bct() {
     int n = G.N;
     vvc<int> nbd(n);
-    n_block = len(comp);
+    n_block = len(comp_e);
+    comp_v.resize(n_block);
     n_cut = 0;
     BCT_idx_edge.resize(G.M);
     BCT_idx_vertex.resize(G.N);
@@ -45,8 +47,8 @@ private:
       nbd[v].eb(c);
     };
 
-    FOR(c, len(comp)) {
-      for (auto&& eid: comp[c]) {
+    FOR(c, len(comp_e)) {
+      for (auto&& eid: comp_e[c]) {
         BCT_idx_edge[eid] = c;
         auto& e = G.edges[eid];
         add(e.frm, c);
@@ -58,21 +60,24 @@ private:
       if (len(nbd[v]) == 0) {
         // 孤立点は辺のない block
         BCT_idx_vertex[v] = n_block++;
+        comp_v.eb(vc<int>({int(v)}));
       }
-    }
-    comp.resize(n_block);
-
-    FOR(v, n) {
       if (len(nbd[v]) >= 2) {
         BCT_idx_vertex[v] = n_block + n_cut;
-        for (auto&& c: nbd[v]) { BCT_edges.eb(n_block + n_cut, c); }
+        for (auto&& c: nbd[v]) {
+          BCT_edges.eb(n_block + n_cut, c);
+          comp_v[c].eb(v);
+        }
         n_cut++;
       }
       elif (len(nbd[v]) == 1) {
         int c = nbd[v][0];
         BCT_idx_vertex[v] = c;
+        comp_v[c].eb(v);
       }
     }
+
+    comp_e.resize(n_block);
   }
 
   pair<vc<int>, vc<int>> calculate_lowlink() {
@@ -115,7 +120,7 @@ private:
           buf.pop_back();
           if (edges.back() == e.id) break;
         }
-        comp.eb(edges);
+        comp_e.eb(edges);
       }
     };
     FOR(v, n) if (!used[v]) dfs(dfs, v, -1);
