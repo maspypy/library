@@ -99,6 +99,7 @@
 "test/library_checker/geometry/convex_layers.test.cpp": "2022-06-17 20:39:28 +0900",
 "test/library_checker/geometry/sort_points_by_argument.test.cpp": "2022-06-17 20:39:28 +0900",
 "test/library_checker/graph/assignment_mcf.test.cpp": "2022-06-17 20:39:28 +0900",
+"test/library_checker/graph/biconnected_component.test.cpp": "2022-07-20 19:12:13 +0900",
 "test/library_checker/graph/bipartitematching.test.cpp": "2022-07-20 17:19:03 +0900",
 "test/library_checker/graph/chromatic_number.test.cpp": "2022-07-20 17:19:03 +0900",
 "test/library_checker/graph/cycle_detection.test.cpp": "2022-07-20 17:19:03 +0900",
