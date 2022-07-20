@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/biconnected_component.hpp
     title: graph/biconnected_component.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/biconnected_components
@@ -273,20 +273,18 @@ data:
     \          if (edges.back() == e.id) break;\n        }\n        comp_e.eb(edges);\n\
     \      }\n    };\n    FOR(v, n) if (!used[v]) dfs(dfs, v, -1);\n  }\n};\n#line\
     \ 5 \"test/library_checker/graph/biconnected_component.test.cpp\"\n\n\nvoid solve()\
-    \ {\n  LL(N, M);\n  Graph G(N);\n  G.read_graph(M, 0, 0);\n  Biconnected_Component\
-    \ BC(G);\n  ll K = 0;\n  for (auto&& C: BC.comp)\n    if (len(C) > 0) ++K;\n \
-    \ print(K);\n  for (auto&& C: BC.comp)\n    if (len(C) > 0) { print(len(C), C);\
-    \ }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \ {\n  LL(N, M);\n  Graph<int, 0> G(N);\n  G.read_graph(M, 0, 0);\n\n  Biconnected_Component<decltype(G)>\
+    \ BC(G);\n  auto& ANS = BC.comp_v;\n  print(len(ANS));\n  for (auto&& C: ANS)\
+    \ { print(len(C), C); }\n}\n\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
     \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/biconnected_components\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/biconnected_component.hpp\"\
-    \n\n\nvoid solve() {\n  LL(N, M);\n  Graph G(N);\n  G.read_graph(M, 0, 0);\n \
-    \ Biconnected_Component BC(G);\n  ll K = 0;\n  for (auto&& C: BC.comp)\n    if\
-    \ (len(C) > 0) ++K;\n  print(K);\n  for (auto&& C: BC.comp)\n    if (len(C) >\
-    \ 0) { print(len(C), C); }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
+    \n\n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 0> G(N);\n  G.read_graph(M, 0,\
+    \ 0);\n\n  Biconnected_Component<decltype(G)> BC(G);\n  auto& ANS = BC.comp_v;\n\
+    \  print(len(ANS));\n  for (auto&& C: ANS) { print(len(C), C); }\n}\n\n\nsigned\
+    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -295,8 +293,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/biconnected_component.test.cpp
   requiredBy: []
-  timestamp: '2022-07-20 17:19:03+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-07-20 19:12:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/biconnected_component.test.cpp
 layout: document
