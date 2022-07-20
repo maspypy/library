@@ -100,6 +100,7 @@ struct Modular_Subset_Sum {
   vc<int> par;
 
   Modular_Subset_Sum(int mod, vc<INT>& vals) : mod(mod), vals(vals) {
+    for(auto&& x : vals) assert(0 <= x && x < mod);
     par.assign(mod, -1);
 
     RandomNumberGenerator RNG;
