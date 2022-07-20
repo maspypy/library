@@ -55,7 +55,7 @@ struct Graph {
   void read_tree(bool wt = false, int off = 1) { read_graph(N - 1, wt, off); }
 
   void read_graph(int M, bool wt = false, int off = 1) {
-    FOR(M) {
+    for (int m = 0; m < M; ++m) {
       INT(a, b);
       a -= off, b -= off;
       if (!wt) {
@@ -70,7 +70,7 @@ struct Graph {
   }
 
   void read_parent(int off = 1) {
-    FOR3(v, 1, N) {
+    for (int v = N - 1; v >= 1; --v) {
       INT(p);
       p -= off;
       add(p, v);
@@ -86,7 +86,7 @@ struct Graph {
       indptr[e.frm + 1]++;
       if (!directed) indptr[e.to + 1]++;
     }
-    FOR(v, N) indptr[v + 1] += indptr[v];
+    for (int v = 0; v < N; ++v) { indptr[v + 1] += indptr[v]; }
     auto counter = indptr;
     csr_edges.resize(indptr.back() + 1);
     for (auto&& e: edges) {
