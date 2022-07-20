@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/bfs01.hpp
     title: graph/bfs01.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/rerooting_dp.hpp
     title: graph/rerooting_dp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1718
@@ -343,7 +343,7 @@ data:
     \ {\n    int j = (i + 1 == K ? 0 : i + 1);\n    int a = D[i], b = D[j];\n    base\
     \ += hld.dist(a, b);\n  }\n\n  // \u90E8\u5206\u6728\u3092\u5857\u308B\n  vi isin(N);\n\
     \  FOR(i, K) {\n    int j = (i + 1 == K ? 0 : i + 1);\n    int a = D[i], b = D[j];\n\
-    \    isin[a] = 1;\n    while (a != b) {\n      a = hld.move(a, b);\n      isin[a]\
+    \    isin[a] = 1;\n    while (a != b) {\n      a = hld.jump(a, b);\n      isin[a]\
     \ = 1;\n    }\n  }\n\n  for (auto&& x: D) isin[x] = 1;\n\n  const ll INF = 1LL\
     \ << 60;\n  using Data = ll;\n  Data unit = -INF;\n  auto fee = [&](Data x, Data\
     \ y) -> Data { return max(x, y); };\n  auto fev = [&](Data x, int v) -> Data {\n\
@@ -365,7 +365,7 @@ data:
     \    int a = D[i], b = D[j];\n    base += hld.dist(a, b);\n  }\n\n  // \u90E8\u5206\
     \u6728\u3092\u5857\u308B\n  vi isin(N);\n  FOR(i, K) {\n    int j = (i + 1 ==\
     \ K ? 0 : i + 1);\n    int a = D[i], b = D[j];\n    isin[a] = 1;\n    while (a\
-    \ != b) {\n      a = hld.move(a, b);\n      isin[a] = 1;\n    }\n  }\n\n  for\
+    \ != b) {\n      a = hld.jump(a, b);\n      isin[a] = 1;\n    }\n  }\n\n  for\
     \ (auto&& x: D) isin[x] = 1;\n\n  const ll INF = 1LL << 60;\n  using Data = ll;\n\
     \  Data unit = -INF;\n  auto fee = [&](Data x, Data y) -> Data { return max(x,\
     \ y); };\n  auto fev = [&](Data x, int v) -> Data {\n    if (isin[v]) chmax(x,\
@@ -387,8 +387,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1718_rerooting.test.cpp
   requiredBy: []
-  timestamp: '2022-07-20 17:19:03+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-07-20 20:03:50+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/1718_rerooting.test.cpp
 layout: document
