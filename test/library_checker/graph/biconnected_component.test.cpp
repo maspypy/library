@@ -6,16 +6,15 @@
 
 void solve() {
   LL(N, M);
-  Graph G(N);
+  Graph<int, 0> G(N);
   G.read_graph(M, 0, 0);
-  Biconnected_Component BC(G);
-  ll K = 0;
-  for (auto&& C: BC.comp)
-    if (len(C) > 0) ++K;
-  print(K);
-  for (auto&& C: BC.comp)
-    if (len(C) > 0) { print(len(C), C); }
+
+  Biconnected_Component<decltype(G)> BC(G);
+  auto& ANS = BC.comp_v;
+  print(len(ANS));
+  for (auto&& C: ANS) { print(len(C), C); }
 }
+
 
 signed main() {
   cin.tie(nullptr);
