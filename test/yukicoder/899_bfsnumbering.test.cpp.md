@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_mul.hpp
     title: alg/group_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/lazy_add_mul.hpp
     title: alg/lazy_add_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/bfsnumbering.hpp
     title: graph/bfsnumbering.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/899
@@ -223,16 +223,17 @@ data:
     \ assert(0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto e\
     \ = edge_type({frm, to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  // wt,\
     \ off\n  void read_tree(bool wt = false, int off = 1) { read_graph(N - 1, wt,\
-    \ off); }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n    FOR(M)\
-    \ {\n      INT(a, b);\n      a -= off, b -= off;\n      if (!wt) {\n        add(a,\
-    \ b);\n      } else {\n        T c;\n        read(c);\n        add(a, b, c);\n\
-    \      }\n    }\n    build();\n  }\n\n  void read_parent(int off = 1) {\n    FOR3(v,\
-    \ 1, N) {\n      INT(p);\n      p -= off;\n      add(p, v);\n    }\n    build();\n\
-    \  }\n\n  void build() {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N\
-    \ + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if\
-    \ (!directed) indptr[e.to + 1]++;\n    }\n    FOR(v, N) indptr[v + 1] += indptr[v];\n\
-    \    auto counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for\
-    \ (auto&& e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
+    \ off); }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n    for\
+    \ (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a -= off, b -= off;\n   \
+    \   if (!wt) {\n        add(a, b);\n      } else {\n        T c;\n        read(c);\n\
+    \        add(a, b, c);\n      }\n    }\n    build();\n  }\n\n  void read_parent(int\
+    \ off = 1) {\n    for (int v = N - 1; v >= 1; --v) {\n      INT(p);\n      p -=\
+    \ off;\n      add(p, v);\n    }\n    build();\n  }\n\n  void build() {\n    assert(!prepared);\n\
+    \    prepared = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges)\
+    \ {\n      indptr[e.frm + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n  \
+    \  }\n    for (int v = 0; v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto\
+    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
+    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
     \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
     \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
     \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  void debug() {\n    print(\"\
@@ -386,8 +387,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/899_bfsnumbering.test.cpp
   requiredBy: []
-  timestamp: '2022-07-14 11:05:05+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-07-20 17:19:03+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/899_bfsnumbering.test.cpp
 layout: document

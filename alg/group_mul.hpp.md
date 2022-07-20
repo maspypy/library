@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/lazy_add_mul.hpp
     title: alg/lazy_add_mul.hpp
   - icon: ':heavy_check_mark:'
@@ -36,12 +36,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_p_rec.test.cpp
     title: test/yukicoder/502_p_rec.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/899_bfsnumbering.test.cpp
     title: test/yukicoder/899_bfsnumbering.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/group_mul.hpp\"\ntemplate <class T>\r\nstruct Group_Mul\
@@ -58,21 +58,21 @@ data:
   isVerificationFile: false
   path: alg/group_mul.hpp
   requiredBy:
-  - mod/mod_log.hpp
-  - seq/kth_term_of_p_recursive.hpp
-  - seq/interpolate_poly_exp_sum.hpp
   - poly/lagrange_interpolate_iota.hpp
   - poly/prefix_product_of_poly.hpp
+  - mod/mod_log.hpp
+  - seq/interpolate_poly_exp_sum.hpp
+  - seq/kth_term_of_p_recursive.hpp
   - alg/lazy_add_mul.hpp
   timestamp: '2022-06-05 16:18:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1339_discrete_log.test.cpp
-  - test/yukicoder/899_bfsnumbering.test.cpp
-  - test/yukicoder/502_p_rec.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - test/yukicoder/502_p_rec.test.cpp
+  - test/yukicoder/1339_discrete_log.test.cpp
+  - test/yukicoder/899_bfsnumbering.test.cpp
 documentation_of: alg/group_mul.hpp
 layout: document
 redirect_from:

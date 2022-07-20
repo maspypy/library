@@ -5,7 +5,7 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/mincostcycle.hpp
     title: graph/mincostcycle.hpp
   _extendedVerifiedWith:
@@ -18,15 +18,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/275_dag_reachability.test.cpp
     title: test/aoj/275_dag_reachability.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/shortest_path.test.cpp
     title: test/library_checker/graph/shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1320_mincostcycle.test.cpp
     title: test/yukicoder/1320_mincostcycle.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -45,38 +45,39 @@ data:
     \ to && to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost,\
     \ i});\n    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool\
     \ wt = false, int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int\
-    \ M, bool wt = false, int off = 1) {\n    FOR(M) {\n      INT(a, b);\n      a\
-    \ -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n  \
-    \      T c;\n        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n\
-    \  }\n\n  void read_parent(int off = 1) {\n    FOR3(v, 1, N) {\n      INT(p);\n\
-    \      p -= off;\n      add(p, v);\n    }\n    build();\n  }\n\n  void build()\
-    \ {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
-    \    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if (!directed)\
-    \ indptr[e.to + 1]++;\n    }\n    FOR(v, N) indptr[v + 1] += indptr[v];\n    auto\
-    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
-    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
-    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
-    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
-    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  void debug() {\n    print(\"\
-    Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
-    \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
-    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 3 \"graph/dijkstra.hpp\"\
-    \n\ntemplate <typename T, typename Graph>\npair<vc<T>, vc<int>> dijkstra(Graph&\
-    \ G, int v, T INF) {\n  auto N = G.N;\n  vector<T> dist(N, INF);\n  vector<int>\
-    \ par(N, -1);\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>>\
-    \ que;\n\n  dist[v] = 0;\n  que.emplace(0, v);\n  while (!que.empty()) {\n   \
-    \ auto [dv, v] = que.top();\n    que.pop();\n    if (dv > dist[v]) continue;\n\
-    \    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost))\
-    \ {\n        par[e.to] = e.frm;\n        que.emplace(dist[e.to], e.to);\n    \
-    \  }\n    }\n  }\n  return {dist, par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\
-    \u30C8\u3002[dist, par, root]\ntemplate <typename T, typename Graph>\ntuple<vc<T>,\
-    \ vc<int>, vc<int>> dijkstra(Graph& G, vc<int> vs, T INF) {\n  assert(G.is_prepared());\n\
-    \  int N = G.N;\n  vc<ll> dist(N, INF);\n  vc<int> par(N, -1);\n  vc<int> root(N,\
-    \ -1);\n\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>>\
-    \ que;\n\n  for (auto&& v: vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.emplace(T(0),\
-    \ v);\n  }\n\n  while (!que.empty()) {\n    auto [dv, v] = que.top();\n    que.pop();\n\
-    \    if (dv > dist[v]) continue;\n    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to],\
+    \ M, bool wt = false, int off = 1) {\n    for (int m = 0; m < M; ++m) {\n    \
+    \  INT(a, b);\n      a -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n\
+    \      } else {\n        T c;\n        read(c);\n        add(a, b, c);\n     \
+    \ }\n    }\n    build();\n  }\n\n  void read_parent(int off = 1) {\n    for (int\
+    \ v = N - 1; v >= 1; --v) {\n      INT(p);\n      p -= off;\n      add(p, v);\n\
+    \    }\n    build();\n  }\n\n  void build() {\n    assert(!prepared);\n    prepared\
+    \ = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm\
+    \ + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n    }\n    for (int v = 0;\
+    \ v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto counter = indptr;\n  \
+    \  csr_edges.resize(indptr.back() + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++]\
+    \ = e;\n      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to,\
+    \ e.frm, e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const\
+    \ {\n    assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\
+    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
+    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
+    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
+    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
+    \    }\n  }\n};\n#line 3 \"graph/dijkstra.hpp\"\n\ntemplate <typename T, typename\
+    \ Graph>\npair<vc<T>, vc<int>> dijkstra(Graph& G, int v, T INF) {\n  auto N =\
+    \ G.N;\n  vector<T> dist(N, INF);\n  vector<int> par(N, -1);\n  using P = pair<T,\
+    \ int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\n  dist[v] = 0;\n\
+    \  que.emplace(0, v);\n  while (!que.empty()) {\n    auto [dv, v] = que.top();\n\
+    \    que.pop();\n    if (dv > dist[v]) continue;\n    for (auto&& e: G[v]) {\n\
+    \      if (chmin(dist[e.to], dist[e.frm] + e.cost)) {\n        par[e.to] = e.frm;\n\
+    \        que.emplace(dist[e.to], e.to);\n      }\n    }\n  }\n  return {dist,\
+    \ par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\u30C8\u3002[dist, par, root]\n\
+    template <typename T, typename Graph>\ntuple<vc<T>, vc<int>, vc<int>> dijkstra(Graph&\
+    \ G, vc<int> vs, T INF) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<ll>\
+    \ dist(N, INF);\n  vc<int> par(N, -1);\n  vc<int> root(N, -1);\n\n  using P =\
+    \ pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\n  for (auto&&\
+    \ v: vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.emplace(T(0), v);\n  }\n\
+    \n  while (!que.empty()) {\n    auto [dv, v] = que.top();\n    que.pop();\n  \
+    \  if (dv > dist[v]) continue;\n    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to],\
     \ dist[e.frm] + e.cost)) {\n        root[e.to] = root[e.frm];\n        par[e.to]\
     \ = e.frm;\n        que.push(mp(dist[e.to], e.to));\n      }\n    }\n  }\n  return\
     \ {dist, par, root};\n}\n"
@@ -105,14 +106,14 @@ data:
   path: graph/dijkstra.hpp
   requiredBy:
   - graph/mincostcycle.hpp
-  timestamp: '2022-07-14 11:05:05+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-07-20 17:19:03+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1320_mincostcycle.test.cpp
-  - test/library_checker/graph/shortest_path.test.cpp
   - test/aoj/2251_dag_path_cover.test.cpp
-  - test/aoj/275_dag_reachability.test.cpp
   - test/aoj/2251_maxantichain.test.cpp
+  - test/aoj/275_dag_reachability.test.cpp
+  - test/library_checker/graph/shortest_path.test.cpp
+  - test/yukicoder/1320_mincostcycle.test.cpp
 documentation_of: graph/dijkstra.hpp
 layout: document
 redirect_from:

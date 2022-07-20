@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
   - icon: ':heavy_check_mark:'
@@ -19,13 +19,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
   - icon: ':heavy_check_mark:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -451,27 +451,27 @@ data:
   isVerificationFile: false
   path: poly/fps_exp.hpp
   requiredBy:
+  - poly/fps_pow.hpp
+  - poly/fps_sqrt.hpp
+  - poly/sharp_p_subset_sum.hpp
   - seq/stirling_number_2.hpp
   - seq/surjection.hpp
   - seq/stirling_number_1.hpp
-  - poly/fps_sqrt.hpp
-  - poly/sharp_p_subset_sum.hpp
-  - poly/fps_pow.hpp
   timestamp: '2022-06-27 16:37:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1321_surj.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
-  - test/library_checker/polynomial/exp_of_fps.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/exp_of_fps.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
+  - test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
   - test/library_checker/polynomial/pow_of_fps.test.cpp
-  - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
   - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
+  - test/yukicoder/1321_surj.test.cpp
 documentation_of: poly/fps_exp.hpp
 layout: document
 redirect_from:

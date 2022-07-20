@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   - icon: ':heavy_check_mark:'
@@ -197,8 +197,8 @@ data:
   timestamp: '2022-06-27 21:42:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1490_rect_add_rect_sum.test.cpp
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+  - test/yukicoder/1490_rect_add_rect_sum.test.cpp
 documentation_of: ds/rectangle_add_ractangle_sum.hpp
 layout: document
 redirect_from:

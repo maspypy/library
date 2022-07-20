@@ -27,30 +27,31 @@ data:
     \ to && to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost,\
     \ i});\n    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool\
     \ wt = false, int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int\
-    \ M, bool wt = false, int off = 1) {\n    FOR(M) {\n      INT(a, b);\n      a\
-    \ -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n  \
-    \      T c;\n        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n\
-    \  }\n\n  void read_parent(int off = 1) {\n    FOR3(v, 1, N) {\n      INT(p);\n\
-    \      p -= off;\n      add(p, v);\n    }\n    build();\n  }\n\n  void build()\
-    \ {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
-    \    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if (!directed)\
-    \ indptr[e.to + 1]++;\n    }\n    FOR(v, N) indptr[v + 1] += indptr[v];\n    auto\
-    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
-    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
-    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
-    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
-    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  void debug() {\n    print(\"\
-    Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
-    \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
-    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 2 \"graph/eulerwalk.hpp\"\
-    \n\r\n/*\r\n\u9802\u70B9\u756A\u53F7\u306E\u5217\u3092\u8FD4\u3059\u3002\u6709\
-    \u5411\u30FB\u7121\u5411\u4E21\u5BFE\u5FDC\u3002\r\n\u5B58\u5728\u3057\u306A\u3044\
-    \u5834\u5408\u306B\u306F\u3001\u7A7A\u3092\u8FD4\u3059\u3002\r\n\u8FBA\u304C 0\
-    \ \u500B\u306E\u5834\u5408\u306B\u306F {0} \u3092\u8FD4\u3059\u3002\r\n*/\r\n\
-    template <typename T>\r\nvc<int> euler_walk(Graph<T>& G, int s = -1) {\r\n  assert(G.is_prepared());\r\
-    \n  ll N = G.N, M = G.M;\r\n  if (M == 0) return {0};\r\n\r\n  if (s == -1) {\r\
-    \n    vc<int> deg(N);\r\n    for (auto&& e: G.edges) {\r\n      if (G.is_directed())\
+    \ M, bool wt = false, int off = 1) {\n    for (int m = 0; m < M; ++m) {\n    \
+    \  INT(a, b);\n      a -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n\
+    \      } else {\n        T c;\n        read(c);\n        add(a, b, c);\n     \
+    \ }\n    }\n    build();\n  }\n\n  void read_parent(int off = 1) {\n    for (int\
+    \ v = N - 1; v >= 1; --v) {\n      INT(p);\n      p -= off;\n      add(p, v);\n\
+    \    }\n    build();\n  }\n\n  void build() {\n    assert(!prepared);\n    prepared\
+    \ = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm\
+    \ + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n    }\n    for (int v = 0;\
+    \ v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto counter = indptr;\n  \
+    \  csr_edges.resize(indptr.back() + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++]\
+    \ = e;\n      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to,\
+    \ e.frm, e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const\
+    \ {\n    assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\
+    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
+    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
+    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
+    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
+    \    }\n  }\n};\n#line 2 \"graph/eulerwalk.hpp\"\n\r\n/*\r\n\u9802\u70B9\u756A\
+    \u53F7\u306E\u5217\u3092\u8FD4\u3059\u3002\u6709\u5411\u30FB\u7121\u5411\u4E21\
+    \u5BFE\u5FDC\u3002\r\n\u5B58\u5728\u3057\u306A\u3044\u5834\u5408\u306B\u306F\u3001\
+    \u7A7A\u3092\u8FD4\u3059\u3002\r\n\u8FBA\u304C 0 \u500B\u306E\u5834\u5408\u306B\
+    \u306F {0} \u3092\u8FD4\u3059\u3002\r\n*/\r\ntemplate <typename T>\r\nvc<int>\
+    \ euler_walk(Graph<T>& G, int s = -1) {\r\n  assert(G.is_prepared());\r\n  ll\
+    \ N = G.N, M = G.M;\r\n  if (M == 0) return {0};\r\n\r\n  if (s == -1) {\r\n \
+    \   vc<int> deg(N);\r\n    for (auto&& e: G.edges) {\r\n      if (G.is_directed())\
     \ {\r\n        deg[e.frm]++, deg[e.to]--;\r\n      } else {\r\n        deg[e.frm]++,\
     \ deg[e.to]++;\r\n      }\r\n    }\r\n    if (G.is_directed()) {\r\n      s =\
     \ max_element(all(deg)) - deg.begin();\r\n      if (deg[s] == 0) s = G.edges[0].frm;\r\
@@ -90,7 +91,7 @@ data:
   isVerificationFile: false
   path: graph/eulerwalk.hpp
   requiredBy: []
-  timestamp: '2022-07-14 11:05:05+09:00'
+  timestamp: '2022-07-20 17:19:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/eulerwalk.hpp

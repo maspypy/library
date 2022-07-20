@@ -40,8 +40,8 @@ data:
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1666_integer_kth_root.test.cpp
   - test/library_checker/math/kth_root_integer.test.cpp
+  - test/yukicoder/1666_integer_kth_root.test.cpp
 documentation_of: other/integer_kth_root.hpp
 layout: document
 redirect_from:

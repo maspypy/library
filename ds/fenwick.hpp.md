@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
   _extendedRequiredBy:
@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/rectangle_add_ractangle_sum.hpp
     title: ds/rectangle_add_ractangle_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/treeabelgroup.hpp
     title: graph/treeabelgroup.hpp
   _extendedVerifiedWith:
@@ -60,24 +60,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1038_centroid.test.cpp
     title: test/yukicoder/1038_centroid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1326_bct.test.cpp
     title: test/yukicoder/1326_bct.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1490_rect_add_rect_sum.test.cpp
     title: test/yukicoder/1490_rect_add_rect_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1641_tree_abel.test.cpp
     title: test/yukicoder/1641_tree_abel.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -141,32 +141,32 @@ data:
   isVerificationFile: false
   path: ds/fenwick.hpp
   requiredBy:
-  - ds/point_add_rectangle_sum.hpp
+  - ds/rectangle_add_point_sum.hpp
+  - ds/point_add_polygon_sum.hpp
   - ds/fenwickraq.hpp
   - ds/rectangle_add_ractangle_sum.hpp
-  - ds/point_add_polygon_sum.hpp
-  - ds/rectangle_add_point_sum.hpp
+  - ds/point_add_rectangle_sum.hpp
   - graph/treeabelgroup.hpp
   - dp/inversion.hpp
   timestamp: '2022-06-27 21:42:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1038_centroid.test.cpp
-  - test/yukicoder/1490_rect_add_rect_sum.test.cpp
-  - test/yukicoder/1326_bct.test.cpp
-  - test/yukicoder/1641_tree_abel.test.cpp
-  - test/yukicoder/924.test.cpp
-  - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-  - test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
-  - test/library_checker/datastructure/point_add_range_sum.test.cpp
-  - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
-  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
-  - test/aoj/DSL_2_E_fenwick_raq.test.cpp
-  - test/aoj/DSL_2_G_fenwick_raq.test.cpp
   - test/aoj/ALDS1_5_inversion.test.cpp
   - test/aoj/ALDS1_2_A_inversion.test.cpp
+  - test/aoj/DSL_2_G_fenwick_raq.test.cpp
+  - test/aoj/DSL_2_E_fenwick_raq.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
+  - test/library_checker/datastructure/point_add_range_sum.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+  - test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
+  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+  - test/yukicoder/1038_centroid.test.cpp
+  - test/yukicoder/1326_bct.test.cpp
+  - test/yukicoder/1490_rect_add_rect_sum.test.cpp
+  - test/yukicoder/924.test.cpp
+  - test/yukicoder/1641_tree_abel.test.cpp
 documentation_of: ds/fenwick.hpp
 layout: document
 redirect_from:

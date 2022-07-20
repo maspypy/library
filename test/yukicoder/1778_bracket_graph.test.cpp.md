@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/bracket_graph.hpp
     title: graph/bracket_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1778
@@ -214,16 +214,17 @@ data:
     \ assert(0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto e\
     \ = edge_type({frm, to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  // wt,\
     \ off\n  void read_tree(bool wt = false, int off = 1) { read_graph(N - 1, wt,\
-    \ off); }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n    FOR(M)\
-    \ {\n      INT(a, b);\n      a -= off, b -= off;\n      if (!wt) {\n        add(a,\
-    \ b);\n      } else {\n        T c;\n        read(c);\n        add(a, b, c);\n\
-    \      }\n    }\n    build();\n  }\n\n  void read_parent(int off = 1) {\n    FOR3(v,\
-    \ 1, N) {\n      INT(p);\n      p -= off;\n      add(p, v);\n    }\n    build();\n\
-    \  }\n\n  void build() {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N\
-    \ + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if\
-    \ (!directed) indptr[e.to + 1]++;\n    }\n    FOR(v, N) indptr[v + 1] += indptr[v];\n\
-    \    auto counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for\
-    \ (auto&& e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
+    \ off); }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n    for\
+    \ (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a -= off, b -= off;\n   \
+    \   if (!wt) {\n        add(a, b);\n      } else {\n        T c;\n        read(c);\n\
+    \        add(a, b, c);\n      }\n    }\n    build();\n  }\n\n  void read_parent(int\
+    \ off = 1) {\n    for (int v = N - 1; v >= 1; --v) {\n      INT(p);\n      p -=\
+    \ off;\n      add(p, v);\n    }\n    build();\n  }\n\n  void build() {\n    assert(!prepared);\n\
+    \    prepared = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges)\
+    \ {\n      indptr[e.frm + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n  \
+    \  }\n    for (int v = 0; v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto\
+    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
+    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
     \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
     \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
     \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  void debug() {\n    print(\"\
@@ -256,62 +257,67 @@ data:
     \     root(G.N, -1),\r\n        depth(G.N, -1),\r\n        depth_weighted(G.N,\
     \ 0),\r\n        in_tree(G.M, 0) {\r\n    assert(G.is_prepared());\r\n    int\
     \ t1 = 0;\r\n    if (r != -1) {\r\n      dfs_sz(r, -1);\r\n      dfs_hld(r, t1);\r\
-    \n    } else {\r\n      FOR(r, N) if (parent[r] == -1) {\r\n        head[r] =\
-    \ r;\r\n        dfs_sz(r, -1);\r\n        dfs_hld(r, t1);\r\n      }\r\n    }\r\
-    \n    for (auto &&v: V) root[v] = (parent[v] == -1 ? v : root[parent[v]]);\r\n\
-    \  }\r\n\r\n  void dfs_sz(int v, int p) {\r\n    auto &sz = RID;\r\n    parent[v]\
-    \ = p;\r\n    depth[v] = (p == -1 ? 0 : depth[p] + 1);\r\n    sz[v] = 1;\r\n \
-    \   int l = G.indptr[v], r = G.indptr[v + 1];\r\n    auto &csr = G.csr_edges;\r\
-    \n    // \u4F7F\u3046\u8FBA\u304C\u3042\u308C\u3070\u5148\u982D\u306B\u3059\u308B\
-    \r\n    FOR3_R(i, l, r - 1) {\r\n      if (depth[csr[i + 1].to] == -1) swap(csr[i],\
-    \ csr[i + 1]);\r\n    }\r\n    int hld_sz = 0;\r\n    for (int i = l; i < r; ++i)\
-    \ {\r\n      auto e = csr[i];\r\n      if (depth[e.to] != -1) continue;\r\n  \
-    \    in_tree[e.id] = 1;\r\n      depth_weighted[e.to] = depth_weighted[v] + e.cost;\r\
-    \n      dfs_sz(e.to, v);\r\n      sz[v] += sz[e.to];\r\n      if (chmax(hld_sz,\
-    \ sz[e.to]) && l < i) { swap(csr[l], csr[i]); }\r\n    }\r\n  }\r\n\r\n  void\
-    \ dfs_hld(int v, int &times) {\r\n    LID[v] = times++;\r\n    RID[v] += LID[v];\r\
-    \n    V[LID[v]] = v;\r\n    bool heavy = true;\r\n    for (auto &&e: G[v]) {\r\
-    \n      if (!in_tree[e.id] || depth[e.to] <= depth[v]) continue;\r\n      head[e.to]\
-    \ = (heavy ? head[v] : e.to);\r\n      heavy = false;\r\n      dfs_hld(e.to, times);\r\
-    \n    }\r\n  }\r\n\r\n  int e_to_v(int eid) {\r\n    auto e = G.edges[eid];\r\n\
-    \    return (parent[e.frm] == e.to ? e.frm : e.to);\r\n  }\r\n\r\n  int ELID(int\
-    \ v) { return 2 * LID[v] - depth[v]; }\r\n  int ERID(int v) { return 2 * RID[v]\
-    \ - depth[v] - 1; }\r\n\r\n  /* k: 0-indexed */\r\n  int LA(int v, int k) {\r\n\
-    \    assert(k <= depth[v]);\r\n    while (1) {\r\n      int u = head[v];\r\n \
-    \     if (LID[v] - k >= LID[u]) return V[LID[v] - k];\r\n      k -= LID[v] - LID[u]\
-    \ + 1;\r\n      v = parent[u];\r\n    }\r\n  }\r\n\r\n  int LCA(int u, int v)\
-    \ {\r\n    for (;; v = parent[head[v]]) {\r\n      if (LID[u] > LID[v]) swap(u,\
-    \ v);\r\n      if (head[u] == head[v]) return u;\r\n    }\r\n  }\r\n\r\n  int\
-    \ lca(int u, int v) { return LCA(u, v); }\r\n  int la(int u, int v) { return LA(u,\
-    \ v); }\r\n\r\n  int subtree_size(int v) { return RID[v] - LID[v]; }\r\n\r\n \
-    \ int dist(int a, int b) {\r\n    int c = LCA(a, b);\r\n    return depth[a] +\
-    \ depth[b] - 2 * depth[c];\r\n  }\r\n\r\n  WT dist(int a, int b, bool weighted)\
-    \ {\r\n    assert(weighted);\r\n    int c = LCA(a, b);\r\n    return depth_weighted[a]\
+    \n    } else {\r\n      for (int r = 0; r < N; ++r) {\r\n        if (parent[r]\
+    \ == -1) {\r\n          head[r] = r;\r\n          dfs_sz(r, -1);\r\n         \
+    \ dfs_hld(r, t1);\r\n        }\r\n      }\r\n    }\r\n    for (auto &&v: V) root[v]\
+    \ = (parent[v] == -1 ? v : root[parent[v]]);\r\n  }\r\n\r\n  void dfs_sz(int v,\
+    \ int p) {\r\n    auto &sz = RID;\r\n    parent[v] = p;\r\n    depth[v] = (p ==\
+    \ -1 ? 0 : depth[p] + 1);\r\n    sz[v] = 1;\r\n    int l = G.indptr[v], r = G.indptr[v\
+    \ + 1];\r\n    auto &csr = G.csr_edges;\r\n    // \u4F7F\u3046\u8FBA\u304C\u3042\
+    \u308C\u3070\u5148\u982D\u306B\u3059\u308B\r\n    for (int i = r - 2; i >= l;\
+    \ --i) {\r\n      if (depth[csr[i + 1].to] == -1) swap(csr[i], csr[i + 1]);\r\n\
+    \    }\r\n    int hld_sz = 0;\r\n    for (int i = l; i < r; ++i) {\r\n      auto\
+    \ e = csr[i];\r\n      if (depth[e.to] != -1) continue;\r\n      in_tree[e.id]\
+    \ = 1;\r\n      depth_weighted[e.to] = depth_weighted[v] + e.cost;\r\n      dfs_sz(e.to,\
+    \ v);\r\n      sz[v] += sz[e.to];\r\n      if (chmax(hld_sz, sz[e.to]) && l <\
+    \ i) { swap(csr[l], csr[i]); }\r\n    }\r\n  }\r\n\r\n  void dfs_hld(int v, int\
+    \ &times) {\r\n    LID[v] = times++;\r\n    RID[v] += LID[v];\r\n    V[LID[v]]\
+    \ = v;\r\n    bool heavy = true;\r\n    for (auto &&e: G[v]) {\r\n      if (!in_tree[e.id]\
+    \ || depth[e.to] <= depth[v]) continue;\r\n      head[e.to] = (heavy ? head[v]\
+    \ : e.to);\r\n      heavy = false;\r\n      dfs_hld(e.to, times);\r\n    }\r\n\
+    \  }\r\n\r\n  int e_to_v(int eid) {\r\n    auto e = G.edges[eid];\r\n    return\
+    \ (parent[e.frm] == e.to ? e.frm : e.to);\r\n  }\r\n\r\n  int ELID(int v) { return\
+    \ 2 * LID[v] - depth[v]; }\r\n  int ERID(int v) { return 2 * RID[v] - depth[v]\
+    \ - 1; }\r\n\r\n  /* k: 0-indexed */\r\n  int LA(int v, int k) {\r\n    assert(k\
+    \ <= depth[v]);\r\n    while (1) {\r\n      int u = head[v];\r\n      if (LID[v]\
+    \ - k >= LID[u]) return V[LID[v] - k];\r\n      k -= LID[v] - LID[u] + 1;\r\n\
+    \      v = parent[u];\r\n    }\r\n  }\r\n\r\n  int LCA(int u, int v) {\r\n   \
+    \ for (;; v = parent[head[v]]) {\r\n      if (LID[u] > LID[v]) swap(u, v);\r\n\
+    \      if (head[u] == head[v]) return u;\r\n    }\r\n  }\r\n\r\n  int lca(int\
+    \ u, int v) { return LCA(u, v); }\r\n  int la(int u, int v) { return LA(u, v);\
+    \ }\r\n\r\n  int subtree_size(int v) { return RID[v] - LID[v]; }\r\n\r\n  int\
+    \ dist(int a, int b) {\r\n    int c = LCA(a, b);\r\n    return depth[a] + depth[b]\
+    \ - 2 * depth[c];\r\n  }\r\n\r\n  WT dist(int a, int b, bool weighted) {\r\n \
+    \   assert(weighted);\r\n    int c = LCA(a, b);\r\n    return depth_weighted[a]\
     \ + depth_weighted[b] - 2 * depth_weighted[c];\r\n  }\r\n\r\n  bool in_subtree(int\
-    \ a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b]; }\r\n\r\n  int move(int\
-    \ a, int b) {\r\n    assert(a != b);\r\n    return (in_subtree(b, a) ? LA(b, depth[b]\
-    \ - depth[a] - 1) : parent[a]);\r\n  }\r\n\r\n  vc<int> collect_child(int v) {\r\
-    \n    vc<int> res;\r\n    for (auto &&e: G[v])\r\n      if (e.to != parent[v])\
-    \ res.eb(e.to);\r\n    return res;\r\n  }\r\n\r\n  vc<pair<int, int>> get_path_decomposition(int\
-    \ u, int v, bool edge) {\r\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\
-    \"\u533A\u9593\u5217\u3002\r\n    vc<pair<int, int>> up, down;\r\n    while (1)\
-    \ {\r\n      if (head[u] == head[v]) break;\r\n      if (LID[u] < LID[v]) {\r\n\
-    \        down.eb(LID[head[v]], LID[v]);\r\n        v = parent[head[v]];\r\n  \
-    \    } else {\r\n        up.eb(LID[u], LID[head[u]]);\r\n        u = parent[head[u]];\r\
-    \n      }\r\n    }\r\n    if (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\r\
-    \n    elif (LID[v] + edge <= LID[u]) up.eb(LID[u], LID[v] + edge);\r\n    reverse(all(down));\r\
-    \n    up.insert(up.end(), all(down));\r\n    return up;\r\n  }\r\n\r\n  void debug()\
-    \ {\r\n    print(\"V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\",\
-    \ RID);\r\n    print(\"parent\", parent);\r\n    print(\"depth\", depth);\r\n\
-    \    print(\"head\", head);\r\n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"\
-    root\", root);\r\n  }\r\n};\r\n#line 6 \"test/yukicoder/1778_bracket_graph.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  STR(S);\n  auto [G, LR] = bracket_graph(S);\n\
-    \  vi idx(N);\n  FOR(i, 1, len(LR)) {\n    auto [L, R] = LR[i];\n    idx[L] =\
-    \ idx[R - 1] = i;\n  }\n\n  HLD hld(G);\n\n  FOR(Q) {\n    LL(a, b);\n    --a,\
-    \ --b;\n    int i = idx[a], j = idx[b];\n    int k = hld.lca(i, j);\n    if (k\
-    \ == 0)\n      print(-1);\n    else {\n      auto [l, r] = LR[k];\n      print(l\
-    \ + 1, r);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
+    \ a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b]; }\r\n\r\n  int jump(int\
+    \ a, int b, int k = 1) {\r\n    if (k == 1) {\r\n      if (a == b) return -1;\r\
+    \n      return (in_subtree(b, a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\r\
+    \n    }\r\n    int c = LCA(a, b);\r\n    int d_ac = depth[a] - depth[c];\r\n \
+    \   int d_bc = depth[b] - depth[c];\r\n    if (k > d_ac + d_bc) return -1;\r\n\
+    \    if (k <= d_ac) return LA(a, k);\r\n    return LA(b, d_ac + d_bc - k);\r\n\
+    \  }\r\n\r\n  vc<int> collect_child(int v) {\r\n    vc<int> res;\r\n    for (auto\
+    \ &&e: G[v])\r\n      if (e.to != parent[v]) res.eb(e.to);\r\n    return res;\r\
+    \n  }\r\n\r\n  vc<pair<int, int>> get_path_decomposition(int u, int v, bool edge)\
+    \ {\r\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\"\u533A\u9593\u5217\u3002\
+    \r\n    vc<pair<int, int>> up, down;\r\n    while (1) {\r\n      if (head[u] ==\
+    \ head[v]) break;\r\n      if (LID[u] < LID[v]) {\r\n        down.eb(LID[head[v]],\
+    \ LID[v]);\r\n        v = parent[head[v]];\r\n      } else {\r\n        up.eb(LID[u],\
+    \ LID[head[u]]);\r\n        u = parent[head[u]];\r\n      }\r\n    }\r\n    if\
+    \ (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\r\n    elif (LID[v] + edge\
+    \ <= LID[u]) up.eb(LID[u], LID[v] + edge);\r\n    reverse(all(down));\r\n    up.insert(up.end(),\
+    \ all(down));\r\n    return up;\r\n  }\r\n\r\n  void debug() {\r\n    print(\"\
+    V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\", RID);\r\n    print(\"\
+    parent\", parent);\r\n    print(\"depth\", depth);\r\n    print(\"head\", head);\r\
+    \n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"root\", root);\r\n  }\r\
+    \n};\r\n#line 6 \"test/yukicoder/1778_bracket_graph.test.cpp\"\n\nvoid solve()\
+    \ {\n  LL(N, Q);\n  STR(S);\n  auto [G, LR] = bracket_graph(S);\n  vi idx(N);\n\
+    \  FOR(i, 1, len(LR)) {\n    auto [L, R] = LR[i];\n    idx[L] = idx[R - 1] = i;\n\
+    \  }\n\n  HLD hld(G);\n\n  FOR(Q) {\n    LL(a, b);\n    --a, --b;\n    int i =\
+    \ idx[a], j = idx[b];\n    int k = hld.lca(i, j);\n    if (k == 0)\n      print(-1);\n\
+    \    else {\n      auto [l, r] = LR[k];\n      print(l + 1, r);\n    }\n  }\n\
+    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
     \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1778\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"graph/bracket_graph.hpp\"\n#include \"\
@@ -332,8 +338,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1778_bracket_graph.test.cpp
   requiredBy: []
-  timestamp: '2022-07-14 11:05:05+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-07-20 17:19:03+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/1778_bracket_graph.test.cpp
 layout: document

@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/random.hpp
     title: other/random.hpp
   _extendedRequiredBy: []
@@ -218,52 +218,52 @@ data:
     \ to && to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost,\
     \ i});\n    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool\
     \ wt = false, int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int\
-    \ M, bool wt = false, int off = 1) {\n    FOR(M) {\n      INT(a, b);\n      a\
-    \ -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n  \
-    \      T c;\n        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n\
-    \  }\n\n  void read_parent(int off = 1) {\n    FOR3(v, 1, N) {\n      INT(p);\n\
-    \      p -= off;\n      add(p, v);\n    }\n    build();\n  }\n\n  void build()\
-    \ {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
-    \    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if (!directed)\
-    \ indptr[e.to + 1]++;\n    }\n    FOR(v, N) indptr[v + 1] += indptr[v];\n    auto\
-    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
-    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
-    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
-    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
-    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  void debug() {\n    print(\"\
-    Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
-    \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
-    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 1 \"other/random.hpp\"\
-    \nstruct RandomNumberGenerator {\n  mt19937 mt;\n\n  RandomNumberGenerator() :\
-    \ mt(chrono::steady_clock::now().time_since_epoch().count()) {}\n\n  ll operator()(ll\
-    \ a, ll b) {  // [a, b)\n    uniform_int_distribution<ll> dist(a, b - 1);\n  \
-    \  return dist(mt);\n  }\n\n  ll operator()(ll b) {  // [0, b)\n    return (*this)(0,\
-    \ b);\n  }\n};\n#line 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n  using i64 = int64_t;\r\
-    \n  using u64 = uint64_t;\r\n  using u128 = __uint128_t;\r\n\r\n  inline static\
-    \ u64 m, r, n2; // r * m = -1 (mod 1<<64), n2 = 1<<128 (mod m)\r\n  static void\
-    \ set_mod(u64 m) {\r\n    assert(m < (1ull << 62));\r\n    assert((m & 1) == 1);\r\
-    \n    m64::m = m;\r\n    n2 = -u128(m) % m;\r\n    r = m;\r\n    FOR(_, 5) r *=\
-    \ 2 - m * r;\r\n    r = -r;\r\n    assert(r * m == -1ull);\r\n  }\r\n  static\
-    \ u64 reduce(u128 b) { return (b + u128(u64(b) * r) * m) >> 64; }\r\n\r\n  u64\
-    \ x;\r\n  m64() : x(0) {}\r\n  m64(u64 x) : x(reduce(u128(x) * n2)){};\r\n  u64\
-    \ val() const {\r\n    u64 y = reduce(x);\r\n    return y >= m ? y - m : y;\r\n\
-    \  }\r\n  m64 &operator+=(m64 y) {\r\n    x += y.x - (m << 1);\r\n    x = (i64(x)\
-    \ < 0 ? x + (m << 1) : x);\r\n    return *this;\r\n  }\r\n  m64 &operator-=(m64\
-    \ y) {\r\n    x -= y.x;\r\n    x = (i64(x) < 0 ? x + (m << 1) : x);\r\n    return\
-    \ *this;\r\n  }\r\n  m64 &operator*=(m64 y) {\r\n    x = reduce(u128(x) * y.x);\r\
-    \n    return *this;\r\n  }\r\n  m64 operator+(m64 y) const { return m64(*this)\
-    \ += y; }\r\n  m64 operator-(m64 y) const { return m64(*this) -= y; }\r\n  m64\
-    \ operator*(m64 y) const { return m64(*this) *= y; }\r\n  bool operator==(m64\
-    \ y) const {\r\n    return (x >= m ? x - m : x) == (y.x >= m ? y.x - m : y.x);\r\
-    \n  }\r\n  bool operator!=(m64 y) const { return not operator==(y); }\r\n  m64\
-    \ pow(u64 n) const {\r\n    m64 y = 1, z = *this;\r\n    for (; n; n >>= 1, z\
-    \ *= z)\r\n      if (n & 1) y *= z;\r\n    return y;\r\n  }\r\n};\r\n\r\nbool\
-    \ primetest(const uint64_t x) {\r\n  using u64 = uint64_t;\r\n  if (x == 2 or\
-    \ x == 3 or x == 5 or x == 7) return true;\r\n  if (x % 2 == 0 or x % 3 == 0 or\
-    \ x % 5 == 0 or x % 7 == 0) return false;\r\n  if (x < 121) return x > 1;\r\n\
-    \  const u64 d = (x - 1) >> __builtin_ctzll(x - 1);\r\n  m64::set_mod(x);\r\n\
-    \  const m64 one(1), minus_one(x - 1);\r\n  auto ok = [&](u64 a) {\r\n    auto\
+    \ M, bool wt = false, int off = 1) {\n    for (int m = 0; m < M; ++m) {\n    \
+    \  INT(a, b);\n      a -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n\
+    \      } else {\n        T c;\n        read(c);\n        add(a, b, c);\n     \
+    \ }\n    }\n    build();\n  }\n\n  void read_parent(int off = 1) {\n    for (int\
+    \ v = N - 1; v >= 1; --v) {\n      INT(p);\n      p -= off;\n      add(p, v);\n\
+    \    }\n    build();\n  }\n\n  void build() {\n    assert(!prepared);\n    prepared\
+    \ = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm\
+    \ + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n    }\n    for (int v = 0;\
+    \ v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto counter = indptr;\n  \
+    \  csr_edges.resize(indptr.back() + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++]\
+    \ = e;\n      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to,\
+    \ e.frm, e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const\
+    \ {\n    assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\
+    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
+    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
+    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
+    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
+    \    }\n  }\n};\n#line 1 \"other/random.hpp\"\nstruct RandomNumberGenerator {\n\
+    \  mt19937 mt;\n\n  RandomNumberGenerator() : mt(chrono::steady_clock::now().time_since_epoch().count())\
+    \ {}\n\n  ll operator()(ll a, ll b) {  // [a, b)\n    uniform_int_distribution<ll>\
+    \ dist(a, b - 1);\n    return dist(mt);\n  }\n\n  ll operator()(ll b) {  // [0,\
+    \ b)\n    return (*this)(0, b);\n  }\n};\n#line 2 \"nt/primetest.hpp\"\nstruct\
+    \ m64 {\r\n  using i64 = int64_t;\r\n  using u64 = uint64_t;\r\n  using u128 =\
+    \ __uint128_t;\r\n\r\n  inline static u64 m, r, n2; // r * m = -1 (mod 1<<64),\
+    \ n2 = 1<<128 (mod m)\r\n  static void set_mod(u64 m) {\r\n    assert(m < (1ull\
+    \ << 62));\r\n    assert((m & 1) == 1);\r\n    m64::m = m;\r\n    n2 = -u128(m)\
+    \ % m;\r\n    r = m;\r\n    FOR(_, 5) r *= 2 - m * r;\r\n    r = -r;\r\n    assert(r\
+    \ * m == -1ull);\r\n  }\r\n  static u64 reduce(u128 b) { return (b + u128(u64(b)\
+    \ * r) * m) >> 64; }\r\n\r\n  u64 x;\r\n  m64() : x(0) {}\r\n  m64(u64 x) : x(reduce(u128(x)\
+    \ * n2)){};\r\n  u64 val() const {\r\n    u64 y = reduce(x);\r\n    return y >=\
+    \ m ? y - m : y;\r\n  }\r\n  m64 &operator+=(m64 y) {\r\n    x += y.x - (m <<\
+    \ 1);\r\n    x = (i64(x) < 0 ? x + (m << 1) : x);\r\n    return *this;\r\n  }\r\
+    \n  m64 &operator-=(m64 y) {\r\n    x -= y.x;\r\n    x = (i64(x) < 0 ? x + (m\
+    \ << 1) : x);\r\n    return *this;\r\n  }\r\n  m64 &operator*=(m64 y) {\r\n  \
+    \  x = reduce(u128(x) * y.x);\r\n    return *this;\r\n  }\r\n  m64 operator+(m64\
+    \ y) const { return m64(*this) += y; }\r\n  m64 operator-(m64 y) const { return\
+    \ m64(*this) -= y; }\r\n  m64 operator*(m64 y) const { return m64(*this) *= y;\
+    \ }\r\n  bool operator==(m64 y) const {\r\n    return (x >= m ? x - m : x) ==\
+    \ (y.x >= m ? y.x - m : y.x);\r\n  }\r\n  bool operator!=(m64 y) const { return\
+    \ not operator==(y); }\r\n  m64 pow(u64 n) const {\r\n    m64 y = 1, z = *this;\r\
+    \n    for (; n; n >>= 1, z *= z)\r\n      if (n & 1) y *= z;\r\n    return y;\r\
+    \n  }\r\n};\r\n\r\nbool primetest(const uint64_t x) {\r\n  using u64 = uint64_t;\r\
+    \n  if (x == 2 or x == 3 or x == 5 or x == 7) return true;\r\n  if (x % 2 == 0\
+    \ or x % 3 == 0 or x % 5 == 0 or x % 7 == 0) return false;\r\n  if (x < 121) return\
+    \ x > 1;\r\n  const u64 d = (x - 1) >> __builtin_ctzll(x - 1);\r\n  m64::set_mod(x);\r\
+    \n  const m64 one(1), minus_one(x - 1);\r\n  auto ok = [&](u64 a) {\r\n    auto\
     \ y = m64(a).pow(d);\r\n    u64 t = d;\r\n    while (y != one and y != minus_one\
     \ and t != x - 1) y *= y, t <<= 1;\r\n    if (y != minus_one and t % 2 == 0) return\
     \ false;\r\n    return true;\r\n  };\r\n  if (x < (1ull << 32)) {\r\n    for (u64\
@@ -306,7 +306,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/chromatic_number.test.cpp
   requiredBy: []
-  timestamp: '2022-07-14 11:05:05+09:00'
+  timestamp: '2022-07-20 17:19:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/chromatic_number.test.cpp

@@ -2,16 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
+  - icon: ':x:'
+    path: geo/manhattan_mst.hpp
+    title: geo/manhattan_mst.hpp
   - icon: ':heavy_check_mark:'
     path: graph/bellmanford.hpp
     title: graph/bellmanford.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/bfs01.hpp
     title: graph/bfs01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/bfsnumbering.hpp
     title: graph/bfsnumbering.hpp
   - icon: ':question:'
@@ -20,13 +23,13 @@ data:
   - icon: ':warning:'
     path: graph/bipartite_coloring.hpp
     title: graph/bipartite_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/bracket_graph.hpp
     title: graph/bracket_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/centroid.hpp
     title: graph/centroid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
   - icon: ':heavy_check_mark:'
@@ -35,13 +38,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/degree.hpp
     title: graph/degree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/dial.hpp
     title: graph/dial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/dijkstra.hpp
     title: graph/dijkstra.hpp
   - icon: ':heavy_check_mark:'
@@ -50,7 +53,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dualtreemonoid.hpp
     title: graph/dualtreemonoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/enumerate_triangles.hpp
     title: graph/enumerate_triangles.hpp
   - icon: ':warning:'
@@ -62,19 +65,19 @@ data:
   - icon: ':warning:'
     path: graph/functional.hpp
     title: graph/functional.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/maximum_independent_set.hpp
     title: graph/maximum_independent_set.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/mincostcycle.hpp
     title: graph/mincostcycle.hpp
   - icon: ':heavy_check_mark:'
@@ -83,13 +86,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/range_to_range_graph.hpp
     title: graph/range_to_range_graph.hpp
   - icon: ':heavy_check_mark:'
     path: graph/reachability.hpp
     title: graph/reachability.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/rerooting_dp.hpp
     title: graph/rerooting_dp.hpp
   - icon: ':warning:'
@@ -98,40 +101,40 @@ data:
   - icon: ':warning:'
     path: graph/solve_dag_game.hpp
     title: graph/solve_dag_game.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/steiner_tree.hpp
     title: graph/steiner_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_diameter.hpp
     title: graph/tree_diameter.hpp
   - icon: ':warning:'
     path: graph/tree_dp.hpp
     title: graph/tree_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/treeabelgroup.hpp
     title: graph/treeabelgroup.hpp
   - icon: ':heavy_check_mark:'
     path: graph/treegroup.hpp
     title: graph/treegroup.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/twosat.hpp
     title: graph/twosat.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/warshall_floyd.hpp
     title: graph/warshall_floyd.hpp
   _extendedVerifiedWith:
@@ -201,88 +204,91 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/cycle_detection.test.cpp
     title: test/library_checker/graph/cycle_detection.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/enumerate_triangles.test.cpp
     title: test/library_checker/graph/enumerate_triangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/library_checker/graph/manhattan_mst.test.cpp
+    title: test/library_checker/graph/manhattan_mst.test.cpp
+  - icon: ':x:'
     path: test/library_checker/graph/maximum_independent_set.test.cpp
     title: test/library_checker/graph/maximum_independent_set.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/scc.test.cpp
     title: test/library_checker/graph/scc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/shortest_path.test.cpp
     title: test/library_checker/graph/shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/two_edge_component.test.cpp
     title: test/library_checker/graph/two_edge_component.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/twosat.test.cpp
     title: test/library_checker/math/twosat.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/tree/lca.test.cpp
     title: test/library_checker/tree/lca.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/tree/lca_directed.test.cpp
     title: test/library_checker/tree/lca_directed.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/tree/tree_diameter.test.cpp
     title: test/library_checker/tree/tree_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1002_centroid.test.cpp
     title: test/yukicoder/1002_centroid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1038_centroid.test.cpp
     title: test/yukicoder/1038_centroid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/114_steriner_tree.test.cpp
     title: test/yukicoder/114_steriner_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1170_range_to_range.test.cpp
     title: test/yukicoder/1170_range_to_range.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1293_scc.test.cpp
     title: test/yukicoder/1293_scc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1320_mincostcycle.test.cpp
     title: test/yukicoder/1320_mincostcycle.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1326_bct.test.cpp
     title: test/yukicoder/1326_bct.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1344_warshall_floyd.test.cpp
     title: test/yukicoder/1344_warshall_floyd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1418_rerooting.test.cpp
     title: test/yukicoder/1418_rerooting.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
     title: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1641_tree_abel.test.cpp
     title: test/yukicoder/1641_tree_abel.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1718_rerooting.test.cpp
     title: test/yukicoder/1718_rerooting.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1778_bracket_graph.test.cpp
     title: test/yukicoder/1778_bracket_graph.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/17_warshall_floyd.test.cpp
     title: test/yukicoder/17_warshall_floyd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1868_range_to_range.test.cpp
     title: test/yukicoder/1868_range_to_range.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/235_lazytreemonoid.test.cpp
     title: test/yukicoder/235_lazytreemonoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/529_two_edge.test.cpp
     title: test/yukicoder/529_two_edge.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/899_bfsnumbering.test.cpp
     title: test/yukicoder/899_bfsnumbering.test.cpp
   _isVerificationFailed: true
@@ -306,23 +312,24 @@ data:
     \ to && to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost,\
     \ i});\n    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool\
     \ wt = false, int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int\
-    \ M, bool wt = false, int off = 1) {\n    FOR(M) {\n      INT(a, b);\n      a\
-    \ -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n  \
-    \      T c;\n        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n\
-    \  }\n\n  void read_parent(int off = 1) {\n    FOR3(v, 1, N) {\n      INT(p);\n\
-    \      p -= off;\n      add(p, v);\n    }\n    build();\n  }\n\n  void build()\
-    \ {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
-    \    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if (!directed)\
-    \ indptr[e.to + 1]++;\n    }\n    FOR(v, N) indptr[v + 1] += indptr[v];\n    auto\
-    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
-    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
-    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
-    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
-    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  void debug() {\n    print(\"\
-    Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
-    \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
-    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n"
+    \ M, bool wt = false, int off = 1) {\n    for (int m = 0; m < M; ++m) {\n    \
+    \  INT(a, b);\n      a -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n\
+    \      } else {\n        T c;\n        read(c);\n        add(a, b, c);\n     \
+    \ }\n    }\n    build();\n  }\n\n  void read_parent(int off = 1) {\n    for (int\
+    \ v = N - 1; v >= 1; --v) {\n      INT(p);\n      p -= off;\n      add(p, v);\n\
+    \    }\n    build();\n  }\n\n  void build() {\n    assert(!prepared);\n    prepared\
+    \ = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm\
+    \ + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n    }\n    for (int v = 0;\
+    \ v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto counter = indptr;\n  \
+    \  csr_edges.resize(indptr.back() + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++]\
+    \ = e;\n      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to,\
+    \ e.frm, e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const\
+    \ {\n    assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\
+    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
+    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
+    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
+    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
+    \    }\n  }\n};\n"
   code: "#pragma once\n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T\
     \ cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed = false>\n\
     struct Graph {\n  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n\
@@ -339,124 +346,127 @@ data:
     \ to && to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost,\
     \ i});\n    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool\
     \ wt = false, int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int\
-    \ M, bool wt = false, int off = 1) {\n    FOR(M) {\n      INT(a, b);\n      a\
-    \ -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n  \
-    \      T c;\n        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n\
-    \  }\n\n  void read_parent(int off = 1) {\n    FOR3(v, 1, N) {\n      INT(p);\n\
-    \      p -= off;\n      add(p, v);\n    }\n    build();\n  }\n\n  void build()\
-    \ {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
-    \    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if (!directed)\
-    \ indptr[e.to + 1]++;\n    }\n    FOR(v, N) indptr[v + 1] += indptr[v];\n    auto\
-    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
-    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
-    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
-    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
-    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  void debug() {\n    print(\"\
-    Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
-    \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
-    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n"
+    \ M, bool wt = false, int off = 1) {\n    for (int m = 0; m < M; ++m) {\n    \
+    \  INT(a, b);\n      a -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n\
+    \      } else {\n        T c;\n        read(c);\n        add(a, b, c);\n     \
+    \ }\n    }\n    build();\n  }\n\n  void read_parent(int off = 1) {\n    for (int\
+    \ v = N - 1; v >= 1; --v) {\n      INT(p);\n      p -= off;\n      add(p, v);\n\
+    \    }\n    build();\n  }\n\n  void build() {\n    assert(!prepared);\n    prepared\
+    \ = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm\
+    \ + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n    }\n    for (int v = 0;\
+    \ v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto counter = indptr;\n  \
+    \  csr_edges.resize(indptr.back() + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++]\
+    \ = e;\n      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to,\
+    \ e.frm, e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const\
+    \ {\n    assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\
+    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
+    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
+    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
+    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
+    \    }\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/base.hpp
   requiredBy:
-  - graph/minimum_spanning_tree.hpp
-  - graph/solve_dag_game.hpp
-  - graph/functional.hpp
-  - graph/tree_all_distances.hpp
-  - graph/dijkstra.hpp
-  - graph/rerooting_dp.hpp
-  - graph/twosat.hpp
-  - graph/range_to_range_graph.hpp
-  - graph/maximum_antichain.hpp
-  - graph/degree.hpp
-  - graph/tree_diameter.hpp
-  - graph/treeabelgroup.hpp
-  - graph/steiner_tree.hpp
-  - graph/dag_path_cover.hpp
-  - graph/treegroup.hpp
-  - graph/reverse_graph.hpp
-  - graph/bellmanford.hpp
-  - graph/strongly_connected_component.hpp
-  - graph/dsu_on_tree.hpp
-  - graph/bipartite_coloring.hpp
-  - graph/warshall_floyd.hpp
-  - graph/hld.hpp
-  - graph/bracket_graph.hpp
-  - graph/mincostcycle.hpp
-  - graph/centroid.hpp
-  - graph/two_edge_component.hpp
-  - graph/biconnected_component.hpp
-  - graph/enumerate_triangles.hpp
-  - graph/toposort.hpp
-  - graph/dualtreemonoid.hpp
-  - graph/tree_dp.hpp
-  - graph/bfsnumbering.hpp
-  - graph/minimum_hamiltonian_cycle.hpp
-  - graph/lazytreemonoid.hpp
-  - graph/check_bipartite.hpp
-  - graph/maximum_independent_set.hpp
-  - graph/cycle_detection.hpp
-  - graph/treemonoid.hpp
-  - graph/eulerwalk.hpp
-  - graph/dial.hpp
-  - graph/find_nontransitive_triple.hpp
-  - graph/bfs01.hpp
-  - graph/reachability.hpp
   - flow/bipartite.hpp
-  timestamp: '2022-07-14 11:05:05+09:00'
+  - graph/steiner_tree.hpp
+  - graph/dualtreemonoid.hpp
+  - graph/toposort.hpp
+  - graph/lazytreemonoid.hpp
+  - graph/treemonoid.hpp
+  - graph/treegroup.hpp
+  - graph/treeabelgroup.hpp
+  - graph/reverse_graph.hpp
+  - graph/tree_diameter.hpp
+  - graph/centroid.hpp
+  - graph/maximum_independent_set.hpp
+  - graph/functional.hpp
+  - graph/bracket_graph.hpp
+  - graph/range_to_range_graph.hpp
+  - graph/solve_dag_game.hpp
+  - graph/maximum_antichain.hpp
+  - graph/strongly_connected_component.hpp
+  - graph/warshall_floyd.hpp
+  - graph/degree.hpp
+  - graph/tree_dp.hpp
+  - graph/mincostcycle.hpp
+  - graph/find_nontransitive_triple.hpp
+  - graph/twosat.hpp
+  - graph/dag_path_cover.hpp
+  - graph/bfsnumbering.hpp
+  - graph/hld.hpp
+  - graph/minimum_spanning_tree.hpp
+  - graph/bfs01.hpp
+  - graph/minimum_hamiltonian_cycle.hpp
+  - graph/enumerate_triangles.hpp
+  - graph/reachability.hpp
+  - graph/dijkstra.hpp
+  - graph/two_edge_component.hpp
+  - graph/bipartite_coloring.hpp
+  - graph/tree_all_distances.hpp
+  - graph/cycle_detection.hpp
+  - graph/rerooting_dp.hpp
+  - graph/dsu_on_tree.hpp
+  - graph/check_bipartite.hpp
+  - graph/dial.hpp
+  - graph/bellmanford.hpp
+  - graph/eulerwalk.hpp
+  - graph/biconnected_component.hpp
+  - geo/manhattan_mst.hpp
+  timestamp: '2022-07-20 17:19:03+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1778_bracket_graph.test.cpp
-  - test/yukicoder/1418_rerooting.test.cpp
-  - test/yukicoder/1038_centroid.test.cpp
-  - test/yukicoder/529_two_edge.test.cpp
-  - test/yukicoder/1326_bct.test.cpp
-  - test/yukicoder/114_steriner_tree.test.cpp
-  - test/yukicoder/1344_warshall_floyd.test.cpp
-  - test/yukicoder/1002_centroid.test.cpp
-  - test/yukicoder/1293_scc.test.cpp
-  - test/yukicoder/17_warshall_floyd.test.cpp
-  - test/yukicoder/1170_range_to_range.test.cpp
-  - test/yukicoder/899_bfsnumbering.test.cpp
-  - test/yukicoder/1641_tree_abel.test.cpp
-  - test/yukicoder/1868_range_to_range.test.cpp
-  - test/yukicoder/1479_bipartite_vertex_cover.test.cpp
-  - test/yukicoder/1320_mincostcycle.test.cpp
-  - test/yukicoder/235_lazytreemonoid.test.cpp
-  - test/yukicoder/1718_rerooting.test.cpp
-  - test/library_checker/math/twosat.test.cpp
-  - test/library_checker/graph/biconnected_component.test.cpp
-  - test/library_checker/graph/chromatic_number.test.cpp
-  - test/library_checker/graph/scc.test.cpp
-  - test/library_checker/graph/maximum_independent_set.test.cpp
-  - test/library_checker/graph/cycle_detection.test.cpp
-  - test/library_checker/graph/shortest_path.test.cpp
-  - test/library_checker/graph/two_edge_component.test.cpp
-  - test/library_checker/graph/bipartitematching.test.cpp
-  - test/library_checker/graph/enumerate_triangles.test.cpp
-  - test/library_checker/tree/lca.test.cpp
-  - test/library_checker/tree/lca_directed.test.cpp
-  - test/library_checker/tree/tree_diameter.test.cpp
-  - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
-  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-  - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
-  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
-  - test/aoj/2251_dag_path_cover.test.cpp
-  - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
-  - test/aoj/275_dag_reachability.test.cpp
   - test/aoj/2995_dsu.test.cpp
-  - test/aoj/GRO_3_A_articulation.test.cpp
+  - test/aoj/GRL_1_B_bellmanford.test.cpp
+  - test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
+  - test/aoj/GRL_1_C_warshallfloyd.test.cpp
   - test/aoj/ALDS1_12_B_dial.test.cpp
+  - test/aoj/2251_dag_path_cover.test.cpp
+  - test/aoj/GRO_3_A_articulation.test.cpp
   - test/aoj/2251_maxantichain.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp
-  - test/aoj/GRL_1_C_warshallfloyd.test.cpp
-  - test/aoj/GRL_1_B_bellmanford.test.cpp
+  - test/aoj/275_dag_reachability.test.cpp
+  - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
+  - test/library_checker/tree/tree_diameter.test.cpp
+  - test/library_checker/tree/lca_directed.test.cpp
+  - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
+  - test/library_checker/tree/lca.test.cpp
+  - test/library_checker/math/twosat.test.cpp
+  - test/library_checker/graph/biconnected_component.test.cpp
+  - test/library_checker/graph/bipartitematching.test.cpp
+  - test/library_checker/graph/two_edge_component.test.cpp
+  - test/library_checker/graph/manhattan_mst.test.cpp
+  - test/library_checker/graph/enumerate_triangles.test.cpp
+  - test/library_checker/graph/scc.test.cpp
+  - test/library_checker/graph/chromatic_number.test.cpp
+  - test/library_checker/graph/shortest_path.test.cpp
+  - test/library_checker/graph/cycle_detection.test.cpp
+  - test/library_checker/graph/maximum_independent_set.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - test/yukicoder/1038_centroid.test.cpp
+  - test/yukicoder/1326_bct.test.cpp
+  - test/yukicoder/529_two_edge.test.cpp
+  - test/yukicoder/17_warshall_floyd.test.cpp
+  - test/yukicoder/1868_range_to_range.test.cpp
+  - test/yukicoder/1320_mincostcycle.test.cpp
+  - test/yukicoder/235_lazytreemonoid.test.cpp
+  - test/yukicoder/1344_warshall_floyd.test.cpp
+  - test/yukicoder/114_steriner_tree.test.cpp
+  - test/yukicoder/1418_rerooting.test.cpp
+  - test/yukicoder/1293_scc.test.cpp
+  - test/yukicoder/899_bfsnumbering.test.cpp
+  - test/yukicoder/1479_bipartite_vertex_cover.test.cpp
+  - test/yukicoder/1170_range_to_range.test.cpp
+  - test/yukicoder/1778_bracket_graph.test.cpp
+  - test/yukicoder/1641_tree_abel.test.cpp
+  - test/yukicoder/1002_centroid.test.cpp
+  - test/yukicoder/1718_rerooting.test.cpp
 documentation_of: graph/base.hpp
 layout: document
 redirect_from:

@@ -45,10 +45,10 @@ data:
   isVerificationFile: false
   path: alg/monoid_min_idx.hpp
   requiredBy:
-  - geo/manhattan_nns.hpp
+  - pds/persistent_dynamic_lichao.hpp
   - ds/dynamic_lichao.hpp
   - alg/lazy_minidx_add.hpp
-  - pds/persistent_dynamic_lichao.hpp
+  - geo/manhattan_nns.hpp
   timestamp: '2022-05-27 16:21:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

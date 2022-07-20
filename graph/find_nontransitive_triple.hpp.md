@@ -28,28 +28,29 @@ data:
     \ to && to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost,\
     \ i});\n    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool\
     \ wt = false, int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int\
-    \ M, bool wt = false, int off = 1) {\n    FOR(M) {\n      INT(a, b);\n      a\
-    \ -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n  \
-    \      T c;\n        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n\
-    \  }\n\n  void read_parent(int off = 1) {\n    FOR3(v, 1, N) {\n      INT(p);\n\
-    \      p -= off;\n      add(p, v);\n    }\n    build();\n  }\n\n  void build()\
-    \ {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
-    \    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if (!directed)\
-    \ indptr[e.to + 1]++;\n    }\n    FOR(v, N) indptr[v + 1] += indptr[v];\n    auto\
-    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
-    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
-    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
-    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
-    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  void debug() {\n    print(\"\
-    Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
-    \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
-    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 3 \"graph/find_nontransitive_triple.hpp\"\
-    \n\r\n// ab, bc \u8FBA\u306F\u3042\u308B\u304C ac \u8FBA\u306F\u306A\u3044\u3088\
-    \u3046\u306A 3 \u3064\u7D44 (a,b,c) \u3092\u63A2\u3059\u3002\r\n// \u306A\u3051\
-    \u308C\u3070 {-1,-1,-1}\r\n// example: https://codeforces.com/contest/967/problem/F\r\
-    \ntemplate <typename Graph>\r\ntuple<int, int, int> find_nontransitive_triple(Graph&\
-    \ G) {\r\n  int N = G.N;\r\n  assert(G.is_prepared());\r\n  assert(!G.is_directed());\r\
+    \ M, bool wt = false, int off = 1) {\n    for (int m = 0; m < M; ++m) {\n    \
+    \  INT(a, b);\n      a -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n\
+    \      } else {\n        T c;\n        read(c);\n        add(a, b, c);\n     \
+    \ }\n    }\n    build();\n  }\n\n  void read_parent(int off = 1) {\n    for (int\
+    \ v = N - 1; v >= 1; --v) {\n      INT(p);\n      p -= off;\n      add(p, v);\n\
+    \    }\n    build();\n  }\n\n  void build() {\n    assert(!prepared);\n    prepared\
+    \ = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm\
+    \ + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n    }\n    for (int v = 0;\
+    \ v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto counter = indptr;\n  \
+    \  csr_edges.resize(indptr.back() + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++]\
+    \ = e;\n      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to,\
+    \ e.frm, e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const\
+    \ {\n    assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\
+    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
+    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
+    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
+    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
+    \    }\n  }\n};\n#line 3 \"graph/find_nontransitive_triple.hpp\"\n\r\n// ab, bc\
+    \ \u8FBA\u306F\u3042\u308B\u304C ac \u8FBA\u306F\u306A\u3044\u3088\u3046\u306A\
+    \ 3 \u3064\u7D44 (a,b,c) \u3092\u63A2\u3059\u3002\r\n// \u306A\u3051\u308C\u3070\
+    \ {-1,-1,-1}\r\n// example: https://codeforces.com/contest/967/problem/F\r\ntemplate\
+    \ <typename Graph>\r\ntuple<int, int, int> find_nontransitive_triple(Graph& G)\
+    \ {\r\n  int N = G.N;\r\n  assert(G.is_prepared());\r\n  assert(!G.is_directed());\r\
     \n  vc<int> done(N);\r\n  vc<int> que;\r\n  FOR(root, N) {\r\n    if (done[root])\
     \ continue;\r\n    que = {root};\r\n    int p = 0;\r\n    while (p < len(que))\
     \ {\r\n      int v = que[p++];\r\n      done[v] = 2;\r\n      ll s = 0;\r\n  \
@@ -84,7 +85,7 @@ data:
   isVerificationFile: false
   path: graph/find_nontransitive_triple.hpp
   requiredBy: []
-  timestamp: '2022-07-14 11:05:05+09:00'
+  timestamp: '2022-07-20 17:19:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/find_nontransitive_triple.hpp

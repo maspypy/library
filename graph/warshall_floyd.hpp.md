@@ -9,15 +9,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_C_warshallfloyd.test.cpp
     title: test/aoj/GRL_1_C_warshallfloyd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1344_warshall_floyd.test.cpp
     title: test/yukicoder/1344_warshall_floyd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/17_warshall_floyd.test.cpp
     title: test/yukicoder/17_warshall_floyd.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -36,33 +36,34 @@ data:
     \ to && to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost,\
     \ i});\n    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool\
     \ wt = false, int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int\
-    \ M, bool wt = false, int off = 1) {\n    FOR(M) {\n      INT(a, b);\n      a\
-    \ -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n  \
-    \      T c;\n        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n\
-    \  }\n\n  void read_parent(int off = 1) {\n    FOR3(v, 1, N) {\n      INT(p);\n\
-    \      p -= off;\n      add(p, v);\n    }\n    build();\n  }\n\n  void build()\
-    \ {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
-    \    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if (!directed)\
-    \ indptr[e.to + 1]++;\n    }\n    FOR(v, N) indptr[v + 1] += indptr[v];\n    auto\
-    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
-    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
-    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
-    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
-    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  void debug() {\n    print(\"\
-    Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
-    \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
-    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 3 \"graph/warshall_floyd.hpp\"\
-    \n\n/*\n\u8CA0\u8FBA\u304C\u3042\u3063\u3066\u3082\u8CA0\u9589\u8DEF\u304C\u306A\
-    \u3051\u308C\u3070\u6B63\u3057\u304F\u52D5\u4F5C\u3059\u308B\u3002\n\u8CA0\u9589\
-    \u8DEF\u304C\u3042\u308B\u304B\u3069\u3046\u304B\u306F\u3001dist[v][v] < 0 \u3068\
-    \u306A\u308B v \u304C\u3042\u308B\u304B\u3069\u3046\u304B\u3067\u5224\u5B9A\u3002\
-    \n*/\ntemplate <typename T, typename Graph>\nvc<vc<T>> warshall_floyd(Graph& G,\
-    \ T INF) {\n  ll N = G.N;\n  vv(T, dist, N, N, INF);\n  FOR(v, N) {\n    dist[v][v]\
-    \ = 0;\n    for (auto&& e: G[v]) chmin(dist[v][e.to], e.cost);\n  }\n  FOR(k,\
-    \ N) FOR(i, N) {\n    if (dist[i][k] == INF) continue;\n    FOR(j, N) {\n    \
-    \  if (dist[k][j] == INF) continue;\n      chmin(dist[i][j], dist[i][k] + dist[k][j]);\n\
-    \    }\n  }\n  return dist;\n}\n"
+    \ M, bool wt = false, int off = 1) {\n    for (int m = 0; m < M; ++m) {\n    \
+    \  INT(a, b);\n      a -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n\
+    \      } else {\n        T c;\n        read(c);\n        add(a, b, c);\n     \
+    \ }\n    }\n    build();\n  }\n\n  void read_parent(int off = 1) {\n    for (int\
+    \ v = N - 1; v >= 1; --v) {\n      INT(p);\n      p -= off;\n      add(p, v);\n\
+    \    }\n    build();\n  }\n\n  void build() {\n    assert(!prepared);\n    prepared\
+    \ = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm\
+    \ + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n    }\n    for (int v = 0;\
+    \ v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto counter = indptr;\n  \
+    \  csr_edges.resize(indptr.back() + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++]\
+    \ = e;\n      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to,\
+    \ e.frm, e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const\
+    \ {\n    assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\
+    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
+    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
+    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
+    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
+    \    }\n  }\n};\n#line 3 \"graph/warshall_floyd.hpp\"\n\n/*\n\u8CA0\u8FBA\u304C\
+    \u3042\u3063\u3066\u3082\u8CA0\u9589\u8DEF\u304C\u306A\u3051\u308C\u3070\u6B63\
+    \u3057\u304F\u52D5\u4F5C\u3059\u308B\u3002\n\u8CA0\u9589\u8DEF\u304C\u3042\u308B\
+    \u304B\u3069\u3046\u304B\u306F\u3001dist[v][v] < 0 \u3068\u306A\u308B v \u304C\
+    \u3042\u308B\u304B\u3069\u3046\u304B\u3067\u5224\u5B9A\u3002\n*/\ntemplate <typename\
+    \ T, typename Graph>\nvc<vc<T>> warshall_floyd(Graph& G, T INF) {\n  ll N = G.N;\n\
+    \  vv(T, dist, N, N, INF);\n  FOR(v, N) {\n    dist[v][v] = 0;\n    for (auto&&\
+    \ e: G[v]) chmin(dist[v][e.to], e.cost);\n  }\n  FOR(k, N) FOR(i, N) {\n    if\
+    \ (dist[i][k] == INF) continue;\n    FOR(j, N) {\n      if (dist[k][j] == INF)\
+    \ continue;\n      chmin(dist[i][j], dist[i][k] + dist[k][j]);\n    }\n  }\n \
+    \ return dist;\n}\n"
   code: "#pragma once\n#include \"graph/base.hpp\"\n\n/*\n\u8CA0\u8FBA\u304C\u3042\
     \u3063\u3066\u3082\u8CA0\u9589\u8DEF\u304C\u306A\u3051\u308C\u3070\u6B63\u3057\
     \u304F\u52D5\u4F5C\u3059\u308B\u3002\n\u8CA0\u9589\u8DEF\u304C\u3042\u308B\u304B\
@@ -79,12 +80,12 @@ data:
   isVerificationFile: false
   path: graph/warshall_floyd.hpp
   requiredBy: []
-  timestamp: '2022-07-14 11:05:05+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-07-20 17:19:03+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1344_warshall_floyd.test.cpp
-  - test/yukicoder/17_warshall_floyd.test.cpp
   - test/aoj/GRL_1_C_warshallfloyd.test.cpp
+  - test/yukicoder/17_warshall_floyd.test.cpp
+  - test/yukicoder/1344_warshall_floyd.test.cpp
 documentation_of: graph/warshall_floyd.hpp
 layout: document
 redirect_from:

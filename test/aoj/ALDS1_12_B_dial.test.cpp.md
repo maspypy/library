@@ -212,46 +212,46 @@ data:
     \ e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  //\
     \ wt, off\n  void read_tree(bool wt = false, int off = 1) { read_graph(N - 1,\
     \ wt, off); }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n  \
-    \  FOR(M) {\n      INT(a, b);\n      a -= off, b -= off;\n      if (!wt) {\n \
-    \       add(a, b);\n      } else {\n        T c;\n        read(c);\n        add(a,\
-    \ b, c);\n      }\n    }\n    build();\n  }\n\n  void read_parent(int off = 1)\
-    \ {\n    FOR3(v, 1, N) {\n      INT(p);\n      p -= off;\n      add(p, v);\n \
-    \   }\n    build();\n  }\n\n  void build() {\n    assert(!prepared);\n    prepared\
-    \ = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm\
-    \ + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n    }\n    FOR(v, N) indptr[v\
-    \ + 1] += indptr[v];\n    auto counter = indptr;\n    csr_edges.resize(indptr.back()\
-    \ + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n\
-    \      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm,\
-    \ e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n \
-    \   assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\n \
-    \ void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
-    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
-    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
-    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
-    \    }\n  }\n};\n#line 3 \"graph/dial.hpp\"\ntemplate <typename Graph>\r\npair<vector<typename\
-    \ Graph::cost_type>, vector<int>> dial(Graph& G, int s) {\r\n  using COST = typename\
-    \ Graph::cost_type;\r\n  assert(G.is_prepared());\r\n  ll W = 0;\r\n  ll N = G.N;\r\
-    \n  for (auto&& e: G.edges) chmax(W, e.cost);\r\n  vc<int> S(N * W + 2, -1);\r\
-    \n  vc<int> T(N * W + 2, -1);\r\n  vc<int> prev(N);\r\n  vc<int> nxt(N);\r\n \
-    \ vc<COST> dist(N, W * N + 1);\r\n  vc<int> par(N, -1);\r\n  dist[s] = 0;\r\n\
-    \  auto add = [&](ll v) -> void {\r\n    ll d = dist[v];\r\n    prev[v] = T[d];\r\
-    \n    if (T[d] != -1) nxt[T[d]] = v;\r\n    T[d] = v;\r\n    if (S[d] == -1) S[d]\
-    \ = v;\r\n    nxt[v] = -1;\r\n  };\r\n  auto rm = [&](ll v) -> void {\r\n    ll\
-    \ d = dist[v];\r\n    if (prev[v] != -1) nxt[prev[v]] = nxt[v];\r\n    if (nxt[v]\
-    \ != -1) prev[nxt[v]] = prev[v];\r\n    if (S[d] == v) S[d] = nxt[v];\r\n    if\
-    \ (T[d] == v) T[d] = prev[v];\r\n  };\r\n  FOR(v, N) add(v);\r\n\r\n  FOR(d, N\
-    \ * W) {\r\n    ll v = S[d];\r\n    while (v != -1) {\r\n      for (auto&& e:\
-    \ G[v]) {\r\n        ll w = e.to;\r\n        ll dw = d + e.cost;\r\n        if\
-    \ (dw < dist[w]) {\r\n          par[w] = v;\r\n          rm(w);\r\n          dist[w]\
-    \ = dw;\r\n          add(w);\r\n        }\r\n      }\r\n      v = nxt[v];\r\n\
-    \    }\r\n  }\r\n  FOR(v, N) if (dist[v] > N * W) dist[v] = -1;\r\n  return {dist,\
-    \ par};\r\n}\n#line 6 \"test/aoj/ALDS1_12_B_dial.test.cpp\"\n\nvoid solve() {\n\
-    \  LL(N);\n  Graph<int, 1> G(N);\n  FOR(v, N) {\n    LL(u);\n    assert(u == v);\n\
-    \    LL(k);\n    FOR(k) {\n      LL(a, b);\n      G.add(v, a, b);\n    }\n  }\n\
-    \  G.build();\n  auto [dist, par] = dial(G, 0);\n  FOR(v, N) print(v, dist[v]);\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
-    \ 0;\n}\n"
+    \  for (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a -= off, b -= off;\n\
+    \      if (!wt) {\n        add(a, b);\n      } else {\n        T c;\n        read(c);\n\
+    \        add(a, b, c);\n      }\n    }\n    build();\n  }\n\n  void read_parent(int\
+    \ off = 1) {\n    for (int v = N - 1; v >= 1; --v) {\n      INT(p);\n      p -=\
+    \ off;\n      add(p, v);\n    }\n    build();\n  }\n\n  void build() {\n    assert(!prepared);\n\
+    \    prepared = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges)\
+    \ {\n      indptr[e.frm + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n  \
+    \  }\n    for (int v = 0; v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto\
+    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
+    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
+    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
+    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
+    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  void debug() {\n    print(\"\
+    Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
+    \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
+    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 3 \"graph/dial.hpp\"\
+    \ntemplate <typename Graph>\r\npair<vector<typename Graph::cost_type>, vector<int>>\
+    \ dial(Graph& G, int s) {\r\n  using COST = typename Graph::cost_type;\r\n  assert(G.is_prepared());\r\
+    \n  ll W = 0;\r\n  ll N = G.N;\r\n  for (auto&& e: G.edges) chmax(W, e.cost);\r\
+    \n  vc<int> S(N * W + 2, -1);\r\n  vc<int> T(N * W + 2, -1);\r\n  vc<int> prev(N);\r\
+    \n  vc<int> nxt(N);\r\n  vc<COST> dist(N, W * N + 1);\r\n  vc<int> par(N, -1);\r\
+    \n  dist[s] = 0;\r\n  auto add = [&](ll v) -> void {\r\n    ll d = dist[v];\r\n\
+    \    prev[v] = T[d];\r\n    if (T[d] != -1) nxt[T[d]] = v;\r\n    T[d] = v;\r\n\
+    \    if (S[d] == -1) S[d] = v;\r\n    nxt[v] = -1;\r\n  };\r\n  auto rm = [&](ll\
+    \ v) -> void {\r\n    ll d = dist[v];\r\n    if (prev[v] != -1) nxt[prev[v]] =\
+    \ nxt[v];\r\n    if (nxt[v] != -1) prev[nxt[v]] = prev[v];\r\n    if (S[d] ==\
+    \ v) S[d] = nxt[v];\r\n    if (T[d] == v) T[d] = prev[v];\r\n  };\r\n  FOR(v,\
+    \ N) add(v);\r\n\r\n  FOR(d, N * W) {\r\n    ll v = S[d];\r\n    while (v != -1)\
+    \ {\r\n      for (auto&& e: G[v]) {\r\n        ll w = e.to;\r\n        ll dw =\
+    \ d + e.cost;\r\n        if (dw < dist[w]) {\r\n          par[w] = v;\r\n    \
+    \      rm(w);\r\n          dist[w] = dw;\r\n          add(w);\r\n        }\r\n\
+    \      }\r\n      v = nxt[v];\r\n    }\r\n  }\r\n  FOR(v, N) if (dist[v] > N *\
+    \ W) dist[v] = -1;\r\n  return {dist, par};\r\n}\n#line 6 \"test/aoj/ALDS1_12_B_dial.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  Graph<int, 1> G(N);\n  FOR(v, N) {\n    LL(u);\n\
+    \    assert(u == v);\n    LL(k);\n    FOR(k) {\n      LL(a, b);\n      G.add(v,\
+    \ a, b);\n    }\n  }\n  G.build();\n  auto [dist, par] = dial(G, 0);\n  FOR(v,\
+    \ N) print(v, dist[v]);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_12_B\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/dial.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  Graph<int, 1> G(N);\n  FOR(v, N) {\n    LL(u);\n\
@@ -268,7 +268,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_12_B_dial.test.cpp
   requiredBy: []
-  timestamp: '2022-07-14 11:05:05+09:00'
+  timestamp: '2022-07-20 17:19:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_12_B_dial.test.cpp

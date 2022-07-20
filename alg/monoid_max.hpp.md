@@ -53,16 +53,16 @@ data:
   - graph/minimum_spanning_tree.hpp
   - alg/lazy_max_add.hpp
   - alg/lazy_max_min.hpp
-  - alg/lazy_max_max.hpp
   - alg/lazy_max_set.hpp
+  - alg/lazy_max_max.hpp
   timestamp: '2022-06-05 12:22:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1625_kdtree.test.cpp
-  - test/yukicoder/1117_swag.test.cpp
+  - test/aoj/GRL_2_A_mst.test.cpp
   - test/yukicoder/1625_seg2d.test.cpp
   - test/yukicoder/1826_dseg.test.cpp
-  - test/aoj/GRL_2_A_mst.test.cpp
+  - test/yukicoder/1625_kdtree.test.cpp
+  - test/yukicoder/1117_swag.test.cpp
 documentation_of: alg/monoid_max.hpp
 layout: document
 redirect_from:

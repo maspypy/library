@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/treegroup.hpp
     title: graph/treegroup.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
   _extendedVerifiedWith:
@@ -51,12 +51,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/529_two_edge.test.cpp
     title: test/yukicoder/529_two_edge.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/1401/problem/F
@@ -146,26 +146,26 @@ data:
   isVerificationFile: false
   path: ds/segtree.hpp
   requiredBy:
-  - geo/manhattan_nns.hpp
-  - ds/range_mex_query.hpp
   - ds/uniqueproductquery.hpp
-  - graph/minimum_spanning_tree.hpp
-  - graph/treegroup.hpp
+  - ds/range_mex_query.hpp
   - graph/treemonoid.hpp
+  - graph/treegroup.hpp
+  - graph/minimum_spanning_tree.hpp
+  - geo/manhattan_nns.hpp
   timestamp: '2022-05-21 17:43:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/529_two_edge.test.cpp
-  - test/yukicoder/1036_seg_maxright_minleft.test.cpp
-  - test/yukicoder/426.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
-  - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
-  - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
-  - test/library_checker/datastructure/staticrmq_seg.test.cpp
-  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+  - test/library_checker/datastructure/staticrmq_seg.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - test/yukicoder/1036_seg_maxright_minleft.test.cpp
+  - test/yukicoder/529_two_edge.test.cpp
+  - test/yukicoder/426.test.cpp
 documentation_of: ds/segtree.hpp
 layout: document
 redirect_from:
