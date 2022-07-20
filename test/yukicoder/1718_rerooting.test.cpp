@@ -29,7 +29,7 @@ void solve() {
     int a = D[i], b = D[j];
     isin[a] = 1;
     while (a != b) {
-      a = hld.move(a, b);
+      a = hld.jump(a, b);
       isin[a] = 1;
     }
   }
