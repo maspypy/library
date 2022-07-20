@@ -35,10 +35,12 @@ struct HLD {
       dfs_sz(r, -1);
       dfs_hld(r, t1);
     } else {
-      FOR(r, N) if (parent[r] == -1) {
-        head[r] = r;
-        dfs_sz(r, -1);
-        dfs_hld(r, t1);
+      for (int r = 0; r < N; ++r) {
+        if (parent[r] == -1) {
+          head[r] = r;
+          dfs_sz(r, -1);
+          dfs_hld(r, t1);
+        }
       }
     }
     for (auto &&v: V) root[v] = (parent[v] == -1 ? v : root[parent[v]]);
@@ -52,7 +54,7 @@ struct HLD {
     int l = G.indptr[v], r = G.indptr[v + 1];
     auto &csr = G.csr_edges;
     // 使う辺があれば先頭にする
-    FOR3_R(i, l, r - 1) {
+    for (int i = r - 2; i >= l; --i) {
       if (depth[csr[i + 1].to] == -1) swap(csr[i], csr[i + 1]);
     }
     int hld_sz = 0;
@@ -124,9 +126,17 @@ struct HLD {
 
   bool in_subtree(int a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b]; }
 
-  int move(int a, int b) {
-    assert(a != b);
-    return (in_subtree(b, a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);
+  int jump(int a, int b, int k = 1) {
+    if (k == 1) {
+      if (a == b) return -1;
+      return (in_subtree(b, a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);
+    }
+    int c = LCA(a, b);
+    int d_ac = depth[a] - depth[c];
+    int d_bc = depth[b] - depth[c];
+    if (k > d_ac + d_bc) return -1;
+    if (k <= d_ac) return LA(a, k);
+    return LA(b, d_ac + d_bc - k);
   }
 
   vc<int> collect_child(int v) {
