@@ -8,10 +8,13 @@ data:
   - icon: ':warning:'
     path: mod/range_freq_of_linear.hpp
     title: mod/range_freq_of_linear.hpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/sum_of_floor_of_linear.test.cpp
+    title: test/library_checker/math/sum_of_floor_of_linear.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/floor_sum_of_linear.hpp\"\n\n// sum_{x in [L,R)} floor(ax\
@@ -33,8 +36,9 @@ data:
   - mod/range_freq_of_linear.hpp
   - mod/mod_sum_of_linear.hpp
   timestamp: '2022-07-22 22:14:52+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/library_checker/math/sum_of_floor_of_linear.test.cpp
 documentation_of: mod/floor_sum_of_linear.hpp
 layout: document
 redirect_from:

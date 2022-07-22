@@ -385,6 +385,9 @@ data:
     path: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/sum_of_floor_of_linear.test.cpp
+    title: test/library_checker/math/sum_of_floor_of_linear.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1010,6 +1013,7 @@ data:
   - test/library_checker/math/find_linear_recurrence.test.cpp
   - test/library_checker/math/factorize.test.cpp
   - test/library_checker/math/binomial_coefficient.test.cpp
+  - test/library_checker/math/sum_of_floor_of_linear.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/lcm_convolution.test.cpp

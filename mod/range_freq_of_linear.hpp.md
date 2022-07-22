@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: mod/floor_sum_of_linear.hpp
     title: mod/floor_sum_of_linear.hpp
   _extendedRequiredBy: []

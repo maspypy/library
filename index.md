@@ -597,7 +597,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/fast_div.hpp
       title: mod/fast_div.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: mod/floor_sum_of_linear.hpp
       title: mod/floor_sum_of_linear.hpp
     - icon: ':heavy_check_mark:'
@@ -1382,6 +1382,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
       title: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/math/sum_of_floor_of_linear.test.cpp
+      title: test/library_checker/math/sum_of_floor_of_linear.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/tetration.test.cpp
       title: test/library_checker/math/tetration.test.cpp
