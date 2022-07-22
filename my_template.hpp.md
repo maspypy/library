@@ -529,6 +529,9 @@ data:
     path: test/mytest/mod_sum_of_linear.test.cpp
     title: test/mytest/mod_sum_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/range_freq_of_linear.test.cpp
+    title: test/mytest/range_freq_of_linear.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1002_centroid.test.cpp
     title: test/yukicoder/1002_centroid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1132,6 +1135,7 @@ data:
   - test/yukicoder/1002_centroid.test.cpp
   - test/yukicoder/1718_rerooting.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
+  - test/mytest/range_freq_of_linear.test.cpp
 documentation_of: my_template.hpp
 layout: document
 redirect_from:

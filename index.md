@@ -633,7 +633,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/primitive_root.hpp
       title: mod/primitive_root.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: mod/range_freq_of_linear.hpp
       title: mod/range_freq_of_linear.hpp
     - icon: ':heavy_check_mark:'
@@ -1532,6 +1532,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/mod_sum_of_linear.test.cpp
       title: test/mytest/mod_sum_of_linear.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/range_freq_of_linear.test.cpp
+      title: test/mytest/range_freq_of_linear.test.cpp
   - name: test/yukicoder
     pages:
     - icon: ':heavy_check_mark:'
