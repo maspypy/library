@@ -5,10 +5,13 @@ data:
     path: mod/floor_sum_of_linear.hpp
     title: mod/floor_sum_of_linear.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/mod_sum_of_linear.test.cpp
+    title: test/mytest/mod_sum_of_linear.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/floor_sum_of_linear.hpp\"\n\n// sum_{x in [L,R)} floor(ax\
@@ -17,23 +20,25 @@ data:
     \ ll q;\n    tie(q, a) = divmod(a, mod);\n    res += i128(N) * (N - 1) / 2 * q;\n\
     \    tie(q, b) = divmod(b, mod);\n    res += i128(N) * q;\n    tie(N, b) = divmod(a\
     \ * N + b, mod);\n    tie(a, mod) = mp(mod, a);\n  }\n  return res;\n}\n#line\
-    \ 2 \"mod/mod_sum_of_linear.hpp\"\ni128 mod_sum_of_linear(ll L, ll R, ll a, ll\
-    \ b, ll mod) {\n  /*\n  sum_{x in [L,R)} (ax + b mod mod)\n  */\n  i128 s = a\
-    \ * L + b;\n  i128 t = a * (R - 1) + b;\n  i128 sum = (s + t) * (R - L) / 2;\n\
-    \  i128 fsum = floor_sum(L, R, a, b, mod);\n  return sum - fsum * mod;\n}\n"
-  code: "#include \"mod/floor_sum_of_linear.hpp\"\ni128 mod_sum_of_linear(ll L, ll\
-    \ R, ll a, ll b, ll mod) {\n  /*\n  sum_{x in [L,R)} (ax + b mod mod)\n  */\n\
+    \ 2 \"mod/mod_sum_of_linear.hpp\"\n\ni128 mod_sum_of_linear(ll L, ll R, ll a,\
+    \ ll b, ll mod) {\n  /*\n  sum_{x in [L,R)} (ax + b mod mod)\n  */\n  i128 s =\
+    \ a * L + b;\n  i128 t = a * (R - 1) + b;\n  i128 sum = (s + t) * (R - L) / 2;\n\
+    \  i128 fsum = floor_sum_of_linear(L, R, a, b, mod);\n  return sum - fsum * mod;\n\
+    }\n"
+  code: "#include \"mod/floor_sum_of_linear.hpp\"\n\ni128 mod_sum_of_linear(ll L,\
+    \ ll R, ll a, ll b, ll mod) {\n  /*\n  sum_{x in [L,R)} (ax + b mod mod)\n  */\n\
     \  i128 s = a * L + b;\n  i128 t = a * (R - 1) + b;\n  i128 sum = (s + t) * (R\
-    \ - L) / 2;\n  i128 fsum = floor_sum(L, R, a, b, mod);\n  return sum - fsum *\
-    \ mod;\n}\n"
+    \ - L) / 2;\n  i128 fsum = floor_sum_of_linear(L, R, a, b, mod);\n  return sum\
+    \ - fsum * mod;\n}\n"
   dependsOn:
   - mod/floor_sum_of_linear.hpp
   isVerificationFile: false
   path: mod/mod_sum_of_linear.hpp
   requiredBy: []
-  timestamp: '2022-07-22 22:14:52+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-07-23 00:12:04+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/mytest/mod_sum_of_linear.test.cpp
 documentation_of: mod/mod_sum_of_linear.hpp
 layout: document
 redirect_from:

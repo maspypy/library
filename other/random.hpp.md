@@ -49,6 +49,9 @@ data:
     path: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
     title: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/mod_sum_of_linear.test.cpp
+    title: test/mytest/mod_sum_of_linear.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_modular_subset_sum.test.cpp
     title: test/yukicoder/4_modular_subset_sum.test.cpp
   _isVerificationFailed: false
@@ -89,6 +92,7 @@ data:
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
   - test/yukicoder/4_modular_subset_sum.test.cpp
+  - test/mytest/mod_sum_of_linear.test.cpp
 documentation_of: other/random.hpp
 layout: document
 redirect_from:

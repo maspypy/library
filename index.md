@@ -615,7 +615,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_sqrt.hpp
       title: mod/mod_sqrt.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: mod/mod_sum_of_linear.hpp
       title: mod/mod_sum_of_linear.hpp
     - icon: ':heavy_check_mark:'
@@ -1527,6 +1527,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/tree/tree_diameter.test.cpp
       title: test/library_checker/tree/tree_diameter.test.cpp
+  - name: test/mytest
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/mod_sum_of_linear.test.cpp
+      title: test/mytest/mod_sum_of_linear.test.cpp
   - name: test/yukicoder
     pages:
     - icon: ':heavy_check_mark:'
