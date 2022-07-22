@@ -598,9 +598,6 @@ data:
       path: mod/fast_div.hpp
       title: mod/fast_div.hpp
     - icon: ':warning:'
-      path: mod/floor_sum.hpp
-      title: mod/floor_sum.hpp
-    - icon: ':warning:'
       path: mod/floor_sum_of_linear.hpp
       title: mod/floor_sum_of_linear.hpp
     - icon: ':heavy_check_mark:'
@@ -636,6 +633,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/primitive_root.hpp
       title: mod/primitive_root.hpp
+    - icon: ':warning:'
+      path: mod/range_freq_of_linear.hpp
+      title: mod/range_freq_of_linear.hpp
     - icon: ':heavy_check_mark:'
       path: mod/tetration.hpp
       title: mod/tetration.hpp

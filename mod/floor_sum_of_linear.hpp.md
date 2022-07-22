@@ -5,6 +5,9 @@ data:
   - icon: ':warning:'
     path: mod/mod_sum_of_linear.hpp
     title: mod/mod_sum_of_linear.hpp
+  - icon: ':warning:'
+    path: mod/range_freq_of_linear.hpp
+    title: mod/range_freq_of_linear.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -27,6 +30,7 @@ data:
   isVerificationFile: false
   path: mod/floor_sum_of_linear.hpp
   requiredBy:
+  - mod/range_freq_of_linear.hpp
   - mod/mod_sum_of_linear.hpp
   timestamp: '2022-07-22 22:14:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
