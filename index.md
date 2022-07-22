@@ -600,6 +600,9 @@ data:
     - icon: ':warning:'
       path: mod/floor_sum.hpp
       title: mod/floor_sum.hpp
+    - icon: ':warning:'
+      path: mod/floor_sum_of_linear.hpp
+      title: mod/floor_sum_of_linear.hpp
     - icon: ':heavy_check_mark:'
       path: mod/mod_inv.hpp
       title: mod/mod_inv.hpp
@@ -615,6 +618,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_sqrt.hpp
       title: mod/mod_sqrt.hpp
+    - icon: ':warning:'
+      path: mod/mod_sum_of_linear.hpp
+      title: mod/mod_sum_of_linear.hpp
     - icon: ':heavy_check_mark:'
       path: mod/modint.hpp
       title: mod/modint.hpp
