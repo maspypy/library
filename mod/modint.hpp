@@ -4,7 +4,7 @@ template <unsigned int mod>
 struct modint {
   static constexpr bool is_modint = true;
   unsigned int val;
-  constexpr modint(const ll val = 0) noexcept
+  constexpr modint(const long long val = 0) noexcept
       : val(val >= 0 ? val % mod : (mod - (-val) % mod) % mod) {}
   bool operator<(const modint &other) const {
     return val < other.val;
