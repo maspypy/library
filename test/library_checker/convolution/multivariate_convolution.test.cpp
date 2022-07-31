@@ -8,7 +8,7 @@ using mint = modint998;
 
 void solve() {
   LL(K);
-  VEC(ll, ns, K);
+  VEC(int, ns, K);
   ll N = 1;
   FOR(k, K) N *= ns[k];
   VEC(mint, f, N);
