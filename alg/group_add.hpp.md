@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: dp/inversion.hpp
     title: dp/inversion.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/cumsum2d.hpp
     title: ds/cumsum2d.hpp
   - icon: ':heavy_check_mark:'
@@ -68,7 +68,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/treeabelgroup.hpp
     title: graph/treeabelgroup.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/trie.hpp
     title: string/trie.hpp
   _extendedVerifiedWith:
@@ -150,13 +150,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1097_doubling.test.cpp
     title: test/yukicoder/1097_doubling.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1141_cumsum2d.test.cpp
     title: test/yukicoder/1141_cumsum2d.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1234_rmq.test.cpp
     title: test/yukicoder/1234_rmq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1269_aho.test.cpp
     title: test/yukicoder/1269_aho.test.cpp
   - icon: ':heavy_check_mark:'

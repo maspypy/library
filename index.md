@@ -108,7 +108,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid_cntsummin.hpp
       title: alg/monoid_cntsummin.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid_gcd.hpp
       title: alg/monoid_gcd.hpp
     - icon: ':heavy_check_mark:'
@@ -163,7 +163,7 @@ data:
       title: bbst/splaytree_monoid.hpp
   - name: dp
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: dp/count_subseq.hpp
       title: dp/count_subseq.hpp
     - icon: ':heavy_check_mark:'
@@ -213,7 +213,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/cht_monotone.hpp
       title: ds/cht_monotone.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/cumsum2d.hpp
       title: ds/cumsum2d.hpp
     - icon: ':heavy_check_mark:'
@@ -405,7 +405,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/bracket_graph.hpp
       title: graph/bracket_graph.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/centroid.hpp
       title: graph/centroid.hpp
     - icon: ':heavy_check_mark:'
@@ -513,7 +513,7 @@ data:
     - icon: ':warning:'
       path: graph/tournament.hpp
       title: graph/tournament.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree_all_distances.hpp
       title: graph/tree_all_distances.hpp
     - icon: ':heavy_check_mark:'
@@ -612,7 +612,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_pow.hpp
       title: mod/mod_pow.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/mod_sqrt.hpp
       title: mod/mod_sqrt.hpp
     - icon: ':heavy_check_mark:'
@@ -738,7 +738,7 @@ data:
     - icon: ':warning:'
       path: other/kth_root_permutation.hpp
       title: other/kth_root_permutation.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/random.hpp
       title: other/random.hpp
     - icon: ':warning:'
@@ -790,7 +790,7 @@ data:
     - icon: ':warning:'
       path: poly/convolution2d.hpp
       title: poly/convolution2d.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/convolution_all.hpp
       title: poly/convolution_all.hpp
     - icon: ':heavy_check_mark:'
@@ -829,7 +829,7 @@ data:
     - icon: ':question:'
       path: poly/fps_pow.hpp
       title: poly/fps_pow.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/fps_sqrt.hpp
       title: poly/fps_sqrt.hpp
     - icon: ':question:'
@@ -856,7 +856,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/poly_gcd.hpp
       title: poly/poly_gcd.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/poly_taylor_shift.hpp
       title: poly/poly_taylor_shift.hpp
     - icon: ':x:'
@@ -903,7 +903,7 @@ data:
     - icon: ':question:'
       path: seq/stirling_number_2.hpp
       title: seq/stirling_number_2.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: seq/sum_of_powers.hpp
       title: seq/sum_of_powers.hpp
     - icon: ':x:'
@@ -967,7 +967,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/suffixarray.hpp
       title: string/suffixarray.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/trie.hpp
       title: string/trie.hpp
     - icon: ':warning:'
@@ -1464,25 +1464,25 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/polynomial_interpolation.test.cpp
       title: test/library_checker/polynomial/polynomial_interpolation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
       title: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/pow_of_fps.test.cpp
       title: test/library_checker/polynomial/pow_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
       title: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
       title: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
       title: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
       title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
       title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - name: test/library_checker/sample
@@ -1495,7 +1495,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/string/enumerate_palindromes.test.cpp
       title: test/library_checker/string/enumerate_palindromes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/string/number_of_subsequences.test.cpp
       title: test/library_checker/string/number_of_subsequences.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1524,7 +1524,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/tree/cartesian_tree.test.cpp
       title: test/library_checker/tree/cartesian_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
       title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1552,7 +1552,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1036_dseg_minleft_maxright.test.cpp
       title: test/yukicoder/1036_dseg_minleft_maxright.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1036_seg_maxright_minleft.test.cpp
       title: test/yukicoder/1036_seg_maxright_minleft.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1570,13 +1570,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1117_swag.test.cpp
       title: test/yukicoder/1117_swag.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1141_cumsum2d.test.cpp
       title: test/yukicoder/1141_cumsum2d.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1142_xor_conv.test.cpp
       title: test/yukicoder/1142_xor_conv.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1145_sum_of_powers.test.cpp
       title: test/yukicoder/1145_sum_of_powers.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1591,7 +1591,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1234_rmq.test.cpp
       title: test/yukicoder/1234_rmq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1269_aho.test.cpp
       title: test/yukicoder/1269_aho.test.cpp
     - icon: ':heavy_check_mark:'
