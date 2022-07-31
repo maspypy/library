@@ -62,6 +62,12 @@ using pqg = priority_queue<T, vector<T>, greater<T>>;
 
 #define stoi stoll
 
+ll SUM(vector<int> &A) {
+  ll sum = 0;
+  for (auto &&a: A) sum += a;
+  return sum;
+}
+
 template <typename T>
 T SUM(vector<T> &A) {
   T sum = T(0);
