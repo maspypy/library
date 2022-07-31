@@ -163,7 +163,7 @@ data:
       title: bbst/splaytree_monoid.hpp
   - name: dp
     pages:
-    - icon: ':warning:'
+    - icon: ':x:'
       path: dp/count_subseq.hpp
       title: dp/count_subseq.hpp
     - icon: ':heavy_check_mark:'
@@ -571,10 +571,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/solve_linear.hpp
       title: linalg/solve_linear.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: linalg/spmat_det.hpp
       title: linalg/spmat_det.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: linalg/spmat_min_poly.hpp
       title: linalg/spmat_min_poly.hpp
     - icon: ':warning:'
@@ -814,7 +814,7 @@ data:
     - icon: ':question:'
       path: poly/fft.hpp
       title: poly/fft.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/fps_composition.hpp
       title: poly/fps_composition.hpp
     - icon: ':question:'
@@ -838,7 +838,7 @@ data:
     - icon: ':question:'
       path: poly/lagrange_interpolate_iota.hpp
       title: poly/lagrange_interpolate_iota.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/multipoint.hpp
       title: poly/multipoint.hpp
     - icon: ':heavy_check_mark:'
@@ -850,10 +850,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/online_convolution.hpp
       title: poly/online_convolution.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/poly_divmod.hpp
       title: poly/poly_divmod.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/poly_gcd.hpp
       title: poly/poly_gcd.hpp
     - icon: ':question:'
@@ -1280,6 +1280,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
       title: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/longest_increasing_subsequence.test.cpp
+      title: test/library_checker/longest_increasing_subsequence.test.cpp
   - name: test/library_checker/geometry
     pages:
     - icon: ':heavy_check_mark:'
@@ -1417,48 +1420,48 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/matrix/solve_linear.test.cpp
       title: test/library_checker/matrix/solve_linear.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/matrix/sparse_matrix_det.test.cpp
       title: test/library_checker/matrix/sparse_matrix_det.test.cpp
   - name: test/library_checker/polynomial
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/composition_of_fps.test.cpp
       title: test/library_checker/polynomial/composition_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/exp_of_fps.test.cpp
       title: test/library_checker/polynomial/exp_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
       title: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
       title: test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/inv_of_fps.test.cpp
       title: test/library_checker/polynomial/inv_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
       title: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
       title: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/inv_of_polynomials.test.cpp
       title: test/library_checker/polynomial/inv_of_polynomials.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/log_of_fps.test.cpp
       title: test/library_checker/polynomial/log_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/log_of_fps_sparse.test.cpp
       title: test/library_checker/polynomial/log_of_fps_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/multipoint_evaluation.test.cpp
       title: test/library_checker/polynomial/multipoint_evaluation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/polynomial_division.test.cpp
       title: test/library_checker/polynomial/polynomial_division.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/polynomial_interpolation.test.cpp
       title: test/library_checker/polynomial/polynomial_interpolation.test.cpp
     - icon: ':x:'
@@ -1492,6 +1495,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/string/enumerate_palindromes.test.cpp
       title: test/library_checker/string/enumerate_palindromes.test.cpp
+    - icon: ':x:'
+      path: test/library_checker/string/number_of_subsequences.test.cpp
+      title: test/library_checker/string/number_of_subsequences.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/string/number_of_substrings.test.cpp
       title: test/library_checker/string/number_of_substrings.test.cpp

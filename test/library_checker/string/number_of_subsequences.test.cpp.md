@@ -1,12 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: linalg/spmat_det.hpp
-    title: linalg/spmat_det.hpp
-  - icon: ':heavy_check_mark:'
-    path: linalg/spmat_min_poly.hpp
-    title: linalg/spmat_min_poly.hpp
+  - icon: ':x:'
+    path: dp/count_subseq.hpp
+    title: dp/count_subseq.hpp
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
@@ -16,26 +13,20 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
-    path: other/random.hpp
-    title: other/random.hpp
-  - icon: ':question:'
-    path: seq/find_linear_rec.hpp
-    title: seq/find_linear_rec.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/sparse_matrix_det
+    PROBLEM: https://judge.yosupo.jp/problem/number_of_subsequences
     links:
-    - https://judge.yosupo.jp/problem/sparse_matrix_det
-  bundledCode: "#line 1 \"test/library_checker/matrix/sparse_matrix_det.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/sparse_matrix_det\"\r\n#line\
-    \ 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\n\
-    using ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
+    - https://judge.yosupo.jp/problem/number_of_subsequences
+  bundledCode: "#line 1 \"test/library_checker/string/number_of_subsequences.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/number_of_subsequences\"\n\
+    #line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
+    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
     \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
     \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
     template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
@@ -204,37 +195,11 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"seq/find_linear_rec.hpp\"\n\r\ntemplate <typename\
-    \ mint>\r\nvector<mint> find_linear_rec(vector<mint>& A) {\r\n  int N = len(A);\r\
-    \n  vc<mint> B = {1}, C = {1};\r\n  int l = 0, m = 1;\r\n  mint p = 1;\r\n  FOR(i,\
-    \ N) {\r\n    mint d = A[i];\r\n    FOR3(j, 1, l + 1) { d += C[j] * A[i - j];\
-    \ }\r\n    if (d == 0) {\r\n      ++m;\r\n      continue;\r\n    }\r\n    auto\
-    \ tmp = C;\r\n    mint q = d / p;\r\n    if (len(C) < len(B) + m) C.insert(C.end(),\
-    \ len(B) + m - len(C), 0);\r\n    FOR(j, len(B)) C[j + m] -= q * B[j];\r\n   \
-    \ if (l + l <= i) {\r\n      B = tmp;\r\n      l = i + 1 - l, m = 1;\r\n     \
-    \ p = d;\r\n    } else {\r\n      ++m;\r\n    }\r\n  }\r\n  return C;\r\n}\r\n\
-    #line 1 \"other/random.hpp\"\nstruct RandomNumberGenerator {\n  mt19937 mt;\n\n\
-    \  RandomNumberGenerator() : mt(chrono::steady_clock::now().time_since_epoch().count())\
-    \ {}\n\n  ll operator()(ll a, ll b) {  // [a, b)\n    uniform_int_distribution<ll>\
-    \ dist(a, b - 1);\n    return dist(mt);\n  }\n\n  ll operator()(ll b) {  // [0,\
-    \ b)\n    return (*this)(0, b);\n  }\n};\n#line 3 \"linalg/spmat_min_poly.hpp\"\
-    \n\r\ntemplate <typename mint>\r\nvc<mint> spmat_min_poly(int N, vc<tuple<int,\
-    \ int, mint>> dat) {\r\n  RandomNumberGenerator RNG;\r\n  vc<mint> S(N + N + 10);\r\
-    \n  vc<mint> c(N);\r\n  vc<mint> v(N);\r\n  FOR(i, N) c[i] = RNG(0, mint::get_mod());\r\
-    \n  FOR(i, N) v[i] = RNG(0, mint::get_mod());\r\n  FOR(k, N + N + 10) {\r\n  \
-    \  FOR(i, N) S[k] += c[i] * v[i];\r\n    vc<mint> w(N);\r\n    for (auto&& [i,\
-    \ j, x]: dat) w[j] += x * v[i];\r\n    swap(v, w);\r\n  }\r\n  return find_linear_rec(S);\r\
-    \n}\r\n#line 2 \"linalg/spmat_det.hpp\"\n\r\ntemplate <typename T>\r\nT spmat_det(int\
-    \ N, vc<tuple<int, int, T>> dat) {\r\n  RandomNumberGenerator RNG;\r\n  vc<T>\
-    \ c(N);\r\n  FOR(i, N) c[i] = RNG(1, T::get_mod());\r\n  T r = 1;\r\n  FOR(i,\
-    \ N) r *= c[i];\r\n  for (auto&& [i, j, x]: dat) x *= c[i];\r\n  auto f = spmat_min_poly(N,\
-    \ dat);\r\n  f.resize(N + 1);\r\n  T det = f.back();\r\n  if (N & 1) det *= -1;\r\
-    \n  det /= r;\r\n  return det;\r\n}\r\n#line 5 \"test/library_checker/matrix/sparse_matrix_det.test.cpp\"\
-    \n\r\n#line 2 \"mod/modint.hpp\"\n\ntemplate <unsigned int mod>\nstruct modint\
-    \ {\n  static constexpr bool is_modint = true;\n  unsigned int val;\n  constexpr\
-    \ modint(const long long val = 0) noexcept\n      : val(val >= 0 ? val % mod :\
-    \ (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint &other) const\
-    \ {\n    return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
+    \ { yes(!t); }\r\n#line 2 \"mod/modint.hpp\"\n\ntemplate <unsigned int mod>\n\
+    struct modint {\n  static constexpr bool is_modint = true;\n  unsigned int val;\n\
+    \  constexpr modint(const long long val = 0) noexcept\n      : val(val >= 0 ?\
+    \ val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint &other)\
+    \ const {\n    return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
     \ modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n\
     \  }\n  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >=\
     \ mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint\
@@ -301,36 +266,37 @@ data:
     \ n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return\
     \ fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint,\
     \ 1>(n, k);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    using amint = ArbitraryModInt;\n#line 7 \"test/library_checker/matrix/sparse_matrix_det.test.cpp\"\
-    \nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N, K);\r\n  using T =\
-    \ tuple<int, int, mint>;\r\n  VEC(T, dat, K);\r\n  print(spmat_det(N, dat));\r\
-    \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sparse_matrix_det\"\r\n\
-    #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"linalg/spmat_det.hpp\"\
-    \r\n\r\n#include \"mod/modint.hpp\"\r\nusing mint = modint998;\r\n\r\nvoid solve()\
-    \ {\r\n  LL(N, K);\r\n  using T = tuple<int, int, mint>;\r\n  VEC(T, dat, K);\r\
-    \n  print(spmat_det(N, dat));\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
-    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
-    \n\r\n  return 0;\r\n}\r\n"
+    using amint = ArbitraryModInt;\n#line 1 \"dp/count_subseq.hpp\"\ntemplate <typename\
+    \ mint, typename T, typename STRING>\nmint count_subseq(STRING S) {\n  auto key\
+    \ = S;\n  UNIQUE(key);\n  for(auto&& x : S)x=LB(key,x);\n  vc<int> IDX(len(key),-1);\n\
+    \  ll N = len(S);\n  vc<mint> DP(N + 1);\n  DP[0] = 1;\n  FOR(i, N) {\n    T c\
+    \ = S[i];\n    DP[i + 1] = DP[i] + DP[i];\n    if (IDX[c] != -1) { DP[i + 1] -=\
+    \ DP[IDX[c]]; }\n    IDX[c] = i;\n  }\n  return DP.back();\n}\n#line 6 \"test/library_checker/string/number_of_subsequences.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n \
+    \ mint ANS = count_subseq<mint, int>(A);\n  ANS -= mint(1);\n  print(ANS);\n}\n\
+    \nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n\
+    \  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/number_of_subsequences\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\
+    \n#include \"dp/count_subseq.hpp\"\n\nusing mint = modint998;\n\nvoid solve()\
+    \ {\n  LL(N);\n  VEC(int, A, N);\n  mint ANS = count_subseq<mint, int>(A);\n \
+    \ ANS -= mint(1);\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - linalg/spmat_det.hpp
-  - linalg/spmat_min_poly.hpp
-  - seq/find_linear_rec.hpp
-  - other/random.hpp
   - mod/modint.hpp
+  - dp/count_subseq.hpp
   isVerificationFile: true
-  path: test/library_checker/matrix/sparse_matrix_det.test.cpp
+  path: test/library_checker/string/number_of_subsequences.test.cpp
   requiredBy: []
-  timestamp: '2022-07-31 08:50:47+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-07-31 10:06:40+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/matrix/sparse_matrix_det.test.cpp
+documentation_of: test/library_checker/string/number_of_subsequences.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/matrix/sparse_matrix_det.test.cpp
-- /verify/test/library_checker/matrix/sparse_matrix_det.test.cpp.html
-title: test/library_checker/matrix/sparse_matrix_det.test.cpp
+- /verify/test/library_checker/string/number_of_subsequences.test.cpp
+- /verify/test/library_checker/string/number_of_subsequences.test.cpp.html
+title: test/library_checker/string/number_of_subsequences.test.cpp
 ---

@@ -334,6 +334,9 @@ data:
     path: test/library_checker/graph/two_edge_component.test.cpp
     title: test/library_checker/graph/two_edge_component.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/longest_increasing_subsequence.test.cpp
+    title: test/library_checker/longest_increasing_subsequence.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/binomial_coefficient.test.cpp
     title: test/library_checker/math/binomial_coefficient.test.cpp
   - icon: ':heavy_check_mark:'
@@ -420,46 +423,46 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/solve_linear.test.cpp
     title: test/library_checker/matrix/solve_linear.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/sparse_matrix_det.test.cpp
     title: test/library_checker/matrix/sparse_matrix_det.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/composition_of_fps.test.cpp
     title: test/library_checker/polynomial/composition_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/exp_of_fps.test.cpp
     title: test/library_checker/polynomial/exp_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
     title: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/inv_of_fps.test.cpp
     title: test/library_checker/polynomial/inv_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
     title: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/inv_of_polynomials.test.cpp
     title: test/library_checker/polynomial/inv_of_polynomials.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/log_of_fps.test.cpp
     title: test/library_checker/polynomial/log_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/log_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/log_of_fps_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/multipoint_evaluation.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/polynomial_division.test.cpp
     title: test/library_checker/polynomial/polynomial_division.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/polynomial_interpolation.test.cpp
     title: test/library_checker/polynomial/polynomial_interpolation.test.cpp
   - icon: ':x:'
@@ -489,6 +492,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/enumerate_palindromes.test.cpp
     title: test/library_checker/string/enumerate_palindromes.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/string/number_of_subsequences.test.cpp
+    title: test/library_checker/string/number_of_subsequences.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/number_of_substrings.test.cpp
     title: test/library_checker/string/number_of_substrings.test.cpp
@@ -992,8 +998,10 @@ data:
   - test/library_checker/string/zalgorithm.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
   - test/library_checker/string/enumerate_palindromes.test.cpp
+  - test/library_checker/string/number_of_subsequences.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp
   - test/library_checker/string/run_enumerate.test.cpp
+  - test/library_checker/longest_increasing_subsequence.test.cpp
   - test/library_checker/datastructure/static_range_sum.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
