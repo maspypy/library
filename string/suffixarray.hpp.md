@@ -6,7 +6,7 @@ data:
     path: string/sort_all_substring.hpp
     title: string/sort_all_substring.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/string/number_of_substrings.test.cpp
     title: test/library_checker/string/number_of_substrings.test.cpp
   - icon: ':heavy_check_mark:'
@@ -15,13 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/suffix_array_vec.test.cpp
     title: test/library_checker/string/suffix_array_vec.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"string/suffixarray.hpp\"\n#include <bits/stdc++.h>\nusing\
-    \ namespace std;\n\n#define int long long\nstruct SuffixArray {\n  vector<int>\
+  bundledCode: "#line 1 \"string/suffixarray.hpp\"\nstruct SuffixArray {\n  vector<int>\
     \ SA;\n  vector<int> ISA;\n  vector<int> LCP;\n\n  SuffixArray(string& s) {\n\
     \    char first = 127, last = 0;\n    for(auto&& c : s){\n      chmin(first, c);\n\
     \      chmax(last, c);\n    }\n    SA = calc_suffix_array(s, first, last);\n \
@@ -83,9 +82,8 @@ data:
     \ - 1) {\n        k = 0;\n        continue;\n      }\n      int j = SA[ISA[i]\
     \ + 1];\n      while (i + k < n && j + k < n && s[i + k] == s[j + k]) k++;\n \
     \     LCP[ISA[i]] = k;\n    }\n    LCP.resize(n - 1);\n  }\n};\n"
-  code: "#include <bits/stdc++.h>\nusing namespace std;\n\n#define int long long\n\
-    struct SuffixArray {\n  vector<int> SA;\n  vector<int> ISA;\n  vector<int> LCP;\n\
-    \n  SuffixArray(string& s) {\n    char first = 127, last = 0;\n    for(auto&&\
+  code: "struct SuffixArray {\n  vector<int> SA;\n  vector<int> ISA;\n  vector<int>\
+    \ LCP;\n\n  SuffixArray(string& s) {\n    char first = 127, last = 0;\n    for(auto&&\
     \ c : s){\n      chmin(first, c);\n      chmax(last, c);\n    }\n    SA = calc_suffix_array(s,\
     \ first, last);\n    calc_LCP(s);\n  }\n\n  SuffixArray(vector<int>& s) {\n  \
     \  SA = calc_suffix_array(s);\n    calc_LCP(s);\n  }\n\n  void induced_sort(const\
@@ -151,8 +149,8 @@ data:
   path: string/suffixarray.hpp
   requiredBy:
   - string/sort_all_substring.hpp
-  timestamp: '2022-05-01 01:12:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-07-31 11:45:00+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/string/suffix_array_vec.test.cpp
   - test/library_checker/string/suffix_array.test.cpp

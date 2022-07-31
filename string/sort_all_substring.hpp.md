@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffixarray.hpp
     title: string/suffixarray.hpp
   _extendedRequiredBy: []
@@ -11,8 +11,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"string/suffixarray.hpp\"\n#include <bits/stdc++.h>\nusing\
-    \ namespace std;\n\n#define int long long\nstruct SuffixArray {\n  vector<int>\
+  bundledCode: "#line 1 \"string/suffixarray.hpp\"\nstruct SuffixArray {\n  vector<int>\
     \ SA;\n  vector<int> ISA;\n  vector<int> LCP;\n\n  SuffixArray(string& s) {\n\
     \    char first = 127, last = 0;\n    for(auto&& c : s){\n      chmin(first, c);\n\
     \      chmax(last, c);\n    }\n    SA = calc_suffix_array(s, first, last);\n \
@@ -112,7 +111,7 @@ data:
   isVerificationFile: false
   path: string/sort_all_substring.hpp
   requiredBy: []
-  timestamp: '2022-05-01 01:13:40+09:00'
+  timestamp: '2022-07-31 11:45:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/sort_all_substring.hpp
