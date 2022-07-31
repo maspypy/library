@@ -11,7 +11,7 @@ void solve() {
   LL(N);
   VEC(mint, A, 1 << N);
   VEC(mint, B, 1 << N);
-  vi ns(N, 2);
+  vc<int> ns(N, 2);
   auto C = multivar_convolution(ns, A, B);
   print(C);
 }
