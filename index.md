@@ -6,7 +6,7 @@ data:
     - icon: ':question:'
       path: alg/group_add.hpp
       title: alg/group_add.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/group_affine.hpp
       title: alg/group_affine.hpp
     - icon: ':question:'
@@ -39,7 +39,7 @@ data:
     - icon: ':question:'
       path: alg/lazy_cntsum_add.hpp
       title: alg/lazy_cntsum_add.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/lazy_cntsum_affine.hpp
       title: alg/lazy_cntsum_affine.hpp
     - icon: ':heavy_check_mark:'
@@ -123,7 +123,7 @@ data:
     - icon: ':question:'
       path: alg/monoid_min.hpp
       title: alg/monoid_min.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/monoid_min_idx.hpp
       title: alg/monoid_min_idx.hpp
     - icon: ':warning:'
@@ -149,13 +149,13 @@ data:
       title: alg/monoid_xor_basis.hpp
   - name: bbst
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: bbst/rbst_lazy.hpp
       title: bbst/rbst_lazy.hpp
     - icon: ':warning:'
       path: bbst/rbst_monoid.hpp
       title: bbst/rbst_monoid.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: bbst/splaytree_lazy.hpp
       title: bbst/splaytree_lazy.hpp
     - icon: ':question:'
@@ -207,7 +207,7 @@ data:
     - icon: ':question:'
       path: ds/cartesian_tree.hpp
       title: ds/cartesian_tree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/cht.hpp
       title: ds/cht.hpp
     - icon: ':x:'
@@ -231,7 +231,7 @@ data:
     - icon: ':x:'
       path: ds/dynamic_lazysegtree.hpp
       title: ds/dynamic_lazysegtree.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/dynamic_lichao.hpp
       title: ds/dynamic_lichao.hpp
     - icon: ':x:'
@@ -252,7 +252,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fenwickraq.hpp
       title: ds/fenwickraq.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
     - icon: ':warning:'
@@ -682,7 +682,7 @@ data:
     - icon: ':warning:'
       path: nt/mobius_table.hpp
       title: nt/mobius_table.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: nt/multiplicative_convolution_mod2n.hpp
       title: nt/multiplicative_convolution_mod2n.hpp
     - icon: ':x:'
@@ -755,7 +755,7 @@ data:
       title: other/xor_range.hpp
   - name: pds
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: pds/array.hpp
       title: pds/array.hpp
     - icon: ':warning:'
@@ -782,7 +782,7 @@ data:
     - icon: ':x:'
       path: pds/segtree.hpp
       title: pds/segtree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: pds/unionfind.hpp
       title: pds/unionfind.hpp
   - name: poly
@@ -802,7 +802,7 @@ data:
     - icon: ':warning:'
       path: poly/convolution_leq.hpp
       title: poly/convolution_leq.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/convolution_mod_2_64.hpp
       title: poly/convolution_mod_2_64.hpp
     - icon: ':question:'
@@ -844,13 +844,13 @@ data:
     - icon: ':x:'
       path: poly/multipoint.hpp
       title: poly/multipoint.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/multivar_convolution.hpp
       title: poly/multivar_convolution.hpp
     - icon: ':question:'
       path: poly/ntt.hpp
       title: poly/ntt.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/online_convolution.hpp
       title: poly/online_convolution.hpp
     - icon: ':x:'
@@ -870,6 +870,9 @@ data:
       title: poly/sharp_p_subset_sum.hpp
   - name: seq
     pages:
+    - icon: ':warning:'
+      path: seq/bell_number_large.hpp
+      title: seq/bell_number_large.hpp
     - icon: ':x:'
       path: seq/coef_of_rational_fps.hpp
       title: seq/coef_of_rational_fps.hpp
@@ -929,10 +932,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: setfunc/or_convolution.hpp
       title: setfunc/or_convolution.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: setfunc/ranked_zeta.hpp
       title: setfunc/ranked_zeta.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: setfunc/subset_convolution.hpp
       title: setfunc/subset_convolution.hpp
     - icon: ':question:'
@@ -1135,57 +1138,57 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/convolution_huge.test.cpp
       title: test/library_checker/convolution/convolution_huge.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/convolution_mod.test.cpp
       title: test/library_checker/convolution/convolution_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/convolution_mod_107.test.cpp
       title: test/library_checker/convolution/convolution_mod_107.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
       title: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/convolution_mod_2_64.test.cpp
       title: test/library_checker/convolution/convolution_mod_2_64.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
       title: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/multivariate_convolution.test.cpp
       title: test/library_checker/convolution/multivariate_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/online_convolution.test.cpp
       title: test/library_checker/convolution/online_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/subset_convolution.test.cpp
       title: test/library_checker/convolution/subset_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
       title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - name: test/library_checker/datastructure
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/associative_array.test.cpp
       title: test/library_checker/datastructure/associative_array.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
       title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
       title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
       title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/line_add_get_min.test.cpp
       title: test/library_checker/datastructure/line_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
       title: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/persistent_queue.test.cpp
       title: test/library_checker/datastructure/persistent_queue.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/persistent_unionfind.test.cpp
       title: test/library_checker/datastructure/persistent_unionfind.test.cpp
     - icon: ':x:'

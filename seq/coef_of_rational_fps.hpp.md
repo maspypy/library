@@ -20,6 +20,9 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: seq/bell_number_large.hpp
+    title: seq/bell_number_large.hpp
   - icon: ':x:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
@@ -315,6 +318,7 @@ data:
   isVerificationFile: false
   path: seq/coef_of_rational_fps.hpp
   requiredBy:
+  - seq/bell_number_large.hpp
   - seq/interpolate_linear_rec.hpp
   timestamp: '2022-07-31 08:50:47+09:00'
   verificationStatus: LIBRARY_ALL_WA

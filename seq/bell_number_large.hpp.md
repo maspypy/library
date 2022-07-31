@@ -19,17 +19,14 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
+  - icon: ':x:'
+    path: seq/coef_of_rational_fps.hpp
+    title: seq/coef_of_rational_fps.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/convolution/multivariate_convolution.test.cpp
-    title: test/library_checker/convolution/multivariate_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
-    title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\n\ntemplate <unsigned int mod>\nstruct\
@@ -279,59 +276,30 @@ data:
     \ vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>& b) {\r\n  int\
     \ n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if (min(n, m) <=\
     \ 60) return convolution_naive(a, b);\r\n  return convolution_garner(a, b);\r\n\
-    }\r\n#line 2 \"poly/multivar_convolution.hpp\"\ntemplate <typename mint>\r\nvc<mint>\
-    \ multivar_convolution(vi ns, vc<mint>& f, vc<mint>& g) {\r\n  /*\r\n  (n0, n1,\
-    \ n2, ...) \u9032\u6CD5\u3067\u306E\u7E70\u308A\u4E0A\u304C\u308A\u306E\u306A\u3044\
-    \u8DB3\u3057\u7B97\u306B\u95A2\u3059\u308B\u7573\u307F\u8FBC\u307F\r\n\r\n  example\
-    \ : ns = (2, 3) \u2192 1 \u306E\u4F4D\u304B\u3089\u9806\u306B 2, 3 \u9032\u6CD5\
-    \r\n  [a0, a1, a2, a3, a4, a5] = [a(0,0), a(1,0), a(0,1), a(1,1), a(0,2), a(1,2)]\r\
-    \n  [b0, b1, b2, b3, b4, b5] = [b(0,0), b(1,0), b(0,1), b(1,1), b(0,2), b(1,2)]\r\
-    \n  c(0,2) = a(0,0)b(0,2) + a(0,1)b(0,1) + a(0,2)b(1,1)\r\n  c4 = a0b4 + a2b2\
-    \ + a4b0\r\n\r\n  example : ns = (2, 2, ..., 2, 2)\r\n  \u2192 subset convolution\
-    \ \u304C\u3053\u308C\u306E\u7279\u6B8A\u30B1\u30FC\u30B9\r\n  */\r\n  int K =\
-    \ len(ns);\r\n  int N = 1;\r\n  FOR(k, K) N *= ns[k];\r\n  assert(len(f) == N\
-    \ && len(g) == N);\r\n  if (N == 1) return {f[0] * g[0]};\r\n\r\n  auto chi =\
-    \ [&](ll i) -> ll {\r\n    int x = 0;\r\n    for (auto&& n : ns) {\r\n      i\
-    \ /= n;\r\n      x += i;\r\n    }\r\n    return x % K;\r\n  };\r\n\r\n  int sz\
-    \ = 1;\r\n  while (sz < N + N) sz *= 2;\r\n  vv(mint, ff, K, sz);\r\n  vv(mint,\
-    \ gg, K, sz);\r\n\r\n  FOR(i, N) {\r\n    auto k = chi(i);\r\n    ff[k][i] = f[i];\r\
-    \n    gg[k][i] = g[i];\r\n  }\r\n\r\n  FOR(k, K) {\r\n    ntt(ff[k], false);\r\
-    \n    ntt(gg[k], false);\r\n  }\r\n\r\n  vv(mint, hh, K, sz);\r\n  FOR(a, K) FOR(b,\
-    \ K) FOR(i, sz) { hh[(a + b) % K][i] += ff[a][i] * gg[b][i]; }\r\n  FOR(k, K)\
-    \ ntt(hh[k], true);\r\n\r\n  vc<mint> h(N);\r\n  FOR(i, N) h[i] = hh[chi(i)][i];\r\
-    \n  return h;\r\n}\r\n\r\n\r\ntemplate <typename mint>\r\nvc<vc<mint>> multivar_convolution_2d(vc<vc<mint>>&\
-    \ f, vc<vc<mint>>& g) {\r\n  ll H = len(f);\r\n  ll W = len(f[0]);\r\n  assert(len(g)\
-    \ == H);\r\n  assert(len(g[0]) == W);\r\n  vc<mint> F(H * W), G(H * W);\r\n  FOR(x,\
-    \ H) FOR(y, W) F[x + H * y] = f[x][y];\r\n  FOR(x, H) FOR(y, W) G[x + H * y] =\
-    \ g[x][y];\r\n  F = multivar_convolution(vi({H, W}), F, G);\r\n  vv(mint, h, H,\
-    \ W);\r\n  FOR(x, H) FOR(y, W) h[x][y] = F[x + H * y];\r\n  return h;\r\n}\r\n"
-  code: "#include \"poly/convolution.hpp\"\r\ntemplate <typename mint>\r\nvc<mint>\
-    \ multivar_convolution(vi ns, vc<mint>& f, vc<mint>& g) {\r\n  /*\r\n  (n0, n1,\
-    \ n2, ...) \u9032\u6CD5\u3067\u306E\u7E70\u308A\u4E0A\u304C\u308A\u306E\u306A\u3044\
-    \u8DB3\u3057\u7B97\u306B\u95A2\u3059\u308B\u7573\u307F\u8FBC\u307F\r\n\r\n  example\
-    \ : ns = (2, 3) \u2192 1 \u306E\u4F4D\u304B\u3089\u9806\u306B 2, 3 \u9032\u6CD5\
-    \r\n  [a0, a1, a2, a3, a4, a5] = [a(0,0), a(1,0), a(0,1), a(1,1), a(0,2), a(1,2)]\r\
-    \n  [b0, b1, b2, b3, b4, b5] = [b(0,0), b(1,0), b(0,1), b(1,1), b(0,2), b(1,2)]\r\
-    \n  c(0,2) = a(0,0)b(0,2) + a(0,1)b(0,1) + a(0,2)b(1,1)\r\n  c4 = a0b4 + a2b2\
-    \ + a4b0\r\n\r\n  example : ns = (2, 2, ..., 2, 2)\r\n  \u2192 subset convolution\
-    \ \u304C\u3053\u308C\u306E\u7279\u6B8A\u30B1\u30FC\u30B9\r\n  */\r\n  int K =\
-    \ len(ns);\r\n  int N = 1;\r\n  FOR(k, K) N *= ns[k];\r\n  assert(len(f) == N\
-    \ && len(g) == N);\r\n  if (N == 1) return {f[0] * g[0]};\r\n\r\n  auto chi =\
-    \ [&](ll i) -> ll {\r\n    int x = 0;\r\n    for (auto&& n : ns) {\r\n      i\
-    \ /= n;\r\n      x += i;\r\n    }\r\n    return x % K;\r\n  };\r\n\r\n  int sz\
-    \ = 1;\r\n  while (sz < N + N) sz *= 2;\r\n  vv(mint, ff, K, sz);\r\n  vv(mint,\
-    \ gg, K, sz);\r\n\r\n  FOR(i, N) {\r\n    auto k = chi(i);\r\n    ff[k][i] = f[i];\r\
-    \n    gg[k][i] = g[i];\r\n  }\r\n\r\n  FOR(k, K) {\r\n    ntt(ff[k], false);\r\
-    \n    ntt(gg[k], false);\r\n  }\r\n\r\n  vv(mint, hh, K, sz);\r\n  FOR(a, K) FOR(b,\
-    \ K) FOR(i, sz) { hh[(a + b) % K][i] += ff[a][i] * gg[b][i]; }\r\n  FOR(k, K)\
-    \ ntt(hh[k], true);\r\n\r\n  vc<mint> h(N);\r\n  FOR(i, N) h[i] = hh[chi(i)][i];\r\
-    \n  return h;\r\n}\r\n\r\n\r\ntemplate <typename mint>\r\nvc<vc<mint>> multivar_convolution_2d(vc<vc<mint>>&\
-    \ f, vc<vc<mint>>& g) {\r\n  ll H = len(f);\r\n  ll W = len(f[0]);\r\n  assert(len(g)\
-    \ == H);\r\n  assert(len(g[0]) == W);\r\n  vc<mint> F(H * W), G(H * W);\r\n  FOR(x,\
-    \ H) FOR(y, W) F[x + H * y] = f[x][y];\r\n  FOR(x, H) FOR(y, W) G[x + H * y] =\
-    \ g[x][y];\r\n  F = multivar_convolution(vi({H, W}), F, G);\r\n  vv(mint, h, H,\
-    \ W);\r\n  FOR(x, H) FOR(y, W) h[x][y] = F[x + H * y];\r\n  return h;\r\n}\r\n"
+    }\r\n#line 2 \"seq/coef_of_rational_fps.hpp\"\n\r\ntemplate <typename mint>\r\n\
+    mint coef_of_rational_fps(vector<mint> A, vector<mint> B, ll N) {\r\n  if (len(A)\
+    \ == 0) return 0;\r\n  assert(len(A) < len(B));\r\n  while (len(A) + 1 < len(B))\
+    \ A.eb(0);\r\n  assert(B[0] == mint(1));\r\n  assert(len(B) == len(A) + 1);\r\n\
+    \  while (N) {\r\n    vc<mint> B1 = B;\r\n    FOR(i, len(B1)) if (i & 1) B1[i]\
+    \ = -B1[i];\r\n    A = convolution(A, B1);\r\n    B = convolution(B, B1);\r\n\
+    \    FOR(i, len(B1)) B[i] = B[2 * i];\r\n    if (N & 1) {\r\n      FOR(i, len(B1)\
+    \ - 1) A[i] = A[2 * i | 1];\r\n    } else {\r\n      FOR(i, len(B1) - 1) A[i]\
+    \ = A[2 * i];\r\n    }\r\n    A.resize(len(B1) - 1);\r\n    B.resize(len(B1));\r\
+    \n    N /= 2;\r\n  }\r\n  return A[0];\r\n}\n#line 2 \"seq/bell_number_large.hpp\"\
+    \n\n// Bell \u6570 B_n \u306E\u8A08\u7B97\u3002O(p logp logn)\ntemplate <typename\
+    \ mint>\nmint Bell_Number_large(ll n) {\n  int p = mint::get_mod();\n  vc<mint>\
+    \ f(p);\n  FOR(i, p) f[i] = fact_inv<mint>(i);\n  f[0] = 0;\n  f = fps_exp(f);\n\
+    \  FOR(i, p) f[i] *= fact<mint>(i);\n  vc<mint> g(p + 1);\n  g[0] = 1;\n  g[p\
+    \ - 1] = -1;\n  g[p] = -1;\n  f = convolution(f, g);\n  f.resize(p);\n  return\
+    \ coef_of_rational_fps<mint>(f, g, n);\n}\n"
+  code: "#include \"seq/coef_of_rational_fps.hpp\"\n\n// Bell \u6570 B_n \u306E\u8A08\
+    \u7B97\u3002O(p logp logn)\ntemplate <typename mint>\nmint Bell_Number_large(ll\
+    \ n) {\n  int p = mint::get_mod();\n  vc<mint> f(p);\n  FOR(i, p) f[i] = fact_inv<mint>(i);\n\
+    \  f[0] = 0;\n  f = fps_exp(f);\n  FOR(i, p) f[i] *= fact<mint>(i);\n  vc<mint>\
+    \ g(p + 1);\n  g[0] = 1;\n  g[p - 1] = -1;\n  g[p] = -1;\n  f = convolution(f,\
+    \ g);\n  f.resize(p);\n  return coef_of_rational_fps<mint>(f, g, n);\n}\n"
   dependsOn:
+  - seq/coef_of_rational_fps.hpp
   - poly/convolution.hpp
   - mod/modint.hpp
   - mod/mod_inv.hpp
@@ -339,17 +307,15 @@ data:
   - poly/ntt.hpp
   - poly/fft.hpp
   isVerificationFile: false
-  path: poly/multivar_convolution.hpp
+  path: seq/bell_number_large.hpp
   requiredBy: []
-  timestamp: '2022-07-31 08:50:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/library_checker/convolution/multivariate_convolution.test.cpp
-  - test/library_checker/convolution/subset_convolution_multivar.test.cpp
-documentation_of: poly/multivar_convolution.hpp
+  timestamp: '2022-07-31 12:50:06+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: seq/bell_number_large.hpp
 layout: document
 redirect_from:
-- /library/poly/multivar_convolution.hpp
-- /library/poly/multivar_convolution.hpp.html
-title: poly/multivar_convolution.hpp
+- /library/seq/bell_number_large.hpp
+- /library/seq/bell_number_large.hpp.html
+title: seq/bell_number_large.hpp
 ---
