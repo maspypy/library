@@ -1,7 +1,3 @@
-#include <bits/stdc++.h>
-using namespace std;
-
-#define int long long
 struct SuffixArray {
   vector<int> SA;
   vector<int> ISA;
