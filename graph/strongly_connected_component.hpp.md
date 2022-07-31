@@ -21,15 +21,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/twosat.test.cpp
     title: test/library_checker/math/twosat.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1170_range_to_range.test.cpp
     title: test/yukicoder/1170_range_to_range.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1293_scc.test.cpp
     title: test/yukicoder/1293_scc.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -109,7 +109,7 @@ data:
   - graph/twosat.hpp
   - graph/reachability.hpp
   timestamp: '2022-07-20 17:19:03+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/275_dag_reachability.test.cpp
   - test/library_checker/math/twosat.test.cpp

@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/biconnected_component.test.cpp
     title: test/library_checker/graph/biconnected_component.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1326_bct.test.cpp
     title: test/yukicoder/1326_bct.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -146,7 +146,7 @@ data:
   path: graph/biconnected_component.hpp
   requiredBy: []
   timestamp: '2022-07-20 17:19:03+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRO_3_A_articulation.test.cpp
   - test/library_checker/graph/biconnected_component.test.cpp

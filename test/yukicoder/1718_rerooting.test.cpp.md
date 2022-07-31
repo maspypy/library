@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/rerooting_dp.hpp
     title: graph/rerooting_dp.hpp
   - icon: ':question:'
