@@ -12,10 +12,10 @@ struct FastSet {
 
   static constexpr uint B = 64;
   int n, lg;
-  vc<vc<ull>> seg;
+  vector<vector<ull>> seg;
   FastSet(int _n) : n(_n) {
     do {
-      seg.push_back(vc<ull>((_n + B - 1) / B));
+      seg.push_back(vector<ull>((_n + B - 1) / B));
       _n = (_n + B - 1) / B;
     } while (_n > 1);
     lg = int(seg.size());
@@ -58,7 +58,7 @@ struct FastSet {
   // x以下最大の要素を返す。存在しなければ -1。
   int prev(int i) {
     if (i < 0) return -1;
-    chmin(i, n - 1);
+    if (i >= n) i = n - 1;
     for (int h = 0; h < lg; h++) {
       if (i == -1) break;
       ull d = seg[h][i / B] << (63 - i % 64);
@@ -78,23 +78,20 @@ struct FastSet {
   }
 
   // [l, r) 内の要素を全部集める
-  vc<int> collect(int l, int r) {
-    vc<int> res;
+  vector<int> collect(int l, int r) {
+    vector<int> res;
     int x = l - 1;
     while (1) {
       x = next(x + 1);
       if (x >= r) break;
-      res.eb(x);
+      res.emplace_back(x);
     }
     return res;
   }
 
   void debug() {
     string s;
-    FOR(i, n) s += ((*this)[i] ? '1' : '0');
+    for (int i = 0; i < n; ++i) s += ((*this)[i] ? '1' : '0');
     print(s);
   }
 };
-
-// for mistype
-using FaseSet = FastSet;
