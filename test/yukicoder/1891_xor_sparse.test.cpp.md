@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/group_affine.hpp
     title: alg/group_affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/xor_sparsetable.hpp
     title: ds/xor_sparsetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1891
@@ -200,9 +200,9 @@ data:
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
     \ { yes(!t); }\r\n#line 2 \"mod/modint.hpp\"\n\ntemplate <unsigned int mod>\n\
     struct modint {\n  static constexpr bool is_modint = true;\n  unsigned int val;\n\
-    \  constexpr modint(const ll val = 0) noexcept\n      : val(val >= 0 ? val % mod\
-    \ : (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint &other) const\
-    \ {\n    return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
+    \  constexpr modint(const long long val = 0) noexcept\n      : val(val >= 0 ?\
+    \ val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint &other)\
+    \ const {\n    return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
     \ modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n\
     \  }\n  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >=\
     \ mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint\
@@ -271,28 +271,28 @@ data:
     \ 1>(n, k);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     using amint = ArbitraryModInt;\n#line 1 \"alg/group_affine.hpp\"\ntemplate <typename\
     \ K>\nstruct Group_Affine {\n  using F = pair<K, K>;\n  using value_type = F;\n\
-    \  static constexpr F op(const F &x, const F &y) noexcept {\n    return F({x.fi\
-    \ * y.fi, x.se * y.fi + y.se});\n  }\n  static constexpr F inverse(const F &x)\
-    \ {\n    auto [a, b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n  }\n\
-    \  static constexpr K eval(const F &f, K x) noexcept { return f.fi * x + f.se;\
-    \ }\n  static constexpr F unit() { return {K(1), K(0)}; }\n  static constexpr\
-    \ bool commute = false;\n};\n#line 1 \"ds/xor_sparsetable.hpp\"\n// \u30E2\u30CE\
-    \u30A4\u30C9\u306E\u5217\u3092\u4E0E\u3048\u308B\u3002\u6B21\u304C\u5BFE\u6570\
-    \u6642\u9593\u3067\u8A08\u7B97\u3067\u304D\u308B\u3002\n// \u30FBprod_{l<=i<r}\
-    \ A[i xor x]\n// https://yukicoder.me/problems/no/1891\ntemplate <typename Monoid>\n\
-    struct Xor_SparseTable {\n  using X = typename Monoid::value_type;\n  int LOG;\n\
-    \  vc<vc<X>> dat;\n  Xor_SparseTable(vc<X>& A) {\n    LOG = 0;\n    while ((1\
-    \ << LOG) < len(A)) ++LOG;\n    assert(len(A) == (1 << LOG));\n    // \u5404 k,\
-    \ i \u306B\u5BFE\u3057\u3066\u3001prod_{0<=j<2^k} A[i^j] \u3092\u6301\u3064\n\
-    \    dat.resize(LOG + 1);\n    dat[0] = A;\n    FOR(k, LOG) {\n      dat[k + 1].assign(1\
-    \ << LOG, Monoid::unit());\n      FOR(i, 1 << LOG) {\n        dat[k + 1][i] =\
-    \ Monoid::op(dat[k][i], dat[k][i ^ (1 << k)]);\n      }\n    }\n  }\n\n  // prod_{l<=i<r}\
-    \ A[x xor i]\n  X prod(int l, int r, int xor_val) {\n    X xl = Monoid::unit();\n\
-    \    X xr = Monoid::unit();\n    FOR(k, LOG + 1) {\n      if (l >= r) break;\n\
-    \      if (l & 1 << k) {\n        xl = Monoid::op(xl, dat[k][l ^ xor_val]);\n\
-    \        l += (1 << k);\n      }\n      if (r & 1 << k) {\n        r -= (1 <<\
-    \ k);\n        xr = Monoid::op(dat[k][r ^ xor_val], xr);\n      }\n    }\n\n \
-    \   return Monoid::op(xl, xr);\n  }\n};\n#line 7 \"test/yukicoder/1891_xor_sparse.test.cpp\"\
+    \  static constexpr F op(const F &x, const F &y) noexcept {\n    return F({x.first\
+    \ * y.first, x.second * y.first + y.second});\n  }\n  static constexpr F inversecond(const\
+    \ F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n\
+    \  }\n  static constexpr K eval(const F &f, K x) noexcept { return f.first * x\
+    \ + f.second; }\n  static constexpr F unit() { return {K(1), K(0)}; }\n  static\
+    \ constexpr bool commute = false;\n};\n#line 1 \"ds/xor_sparsetable.hpp\"\n//\
+    \ \u30E2\u30CE\u30A4\u30C9\u306E\u5217\u3092\u4E0E\u3048\u308B\u3002\u6B21\u304C\
+    \u5BFE\u6570\u6642\u9593\u3067\u8A08\u7B97\u3067\u304D\u308B\u3002\n// \u30FB\
+    prod_{l<=i<r} A[i xor x]\n// https://yukicoder.me/problems/no/1891\ntemplate <typename\
+    \ Monoid>\nstruct Xor_SparseTable {\n  using X = typename Monoid::value_type;\n\
+    \  int LOG;\n  vc<vc<X>> dat;\n  Xor_SparseTable(vc<X>& A) {\n    LOG = 0;\n \
+    \   while ((1 << LOG) < len(A)) ++LOG;\n    assert(len(A) == (1 << LOG));\n  \
+    \  // \u5404 k, i \u306B\u5BFE\u3057\u3066\u3001prod_{0<=j<2^k} A[i^j] \u3092\u6301\
+    \u3064\n    dat.resize(LOG + 1);\n    dat[0] = A;\n    FOR(k, LOG) {\n      dat[k\
+    \ + 1].assign(1 << LOG, Monoid::unit());\n      FOR(i, 1 << LOG) {\n        dat[k\
+    \ + 1][i] = Monoid::op(dat[k][i], dat[k][i ^ (1 << k)]);\n      }\n    }\n  }\n\
+    \n  // prod_{l<=i<r} A[x xor i]\n  X prod(int l, int r, int xor_val) {\n    X\
+    \ xl = Monoid::unit();\n    X xr = Monoid::unit();\n    FOR(k, LOG + 1) {\n  \
+    \    if (l >= r) break;\n      if (l & 1 << k) {\n        xl = Monoid::op(xl,\
+    \ dat[k][l ^ xor_val]);\n        l += (1 << k);\n      }\n      if (r & 1 << k)\
+    \ {\n        r -= (1 << k);\n        xr = Monoid::op(dat[k][r ^ xor_val], xr);\n\
+    \      }\n    }\n\n    return Monoid::op(xl, xr);\n  }\n};\n#line 7 \"test/yukicoder/1891_xor_sparse.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  ll LOG = topbit(N);\n\
     \  using Mono = Group_Affine<mint>;\n  using X = typename Mono::value_type;\n\
     \  VEC(X, A, N);\n  Xor_SparseTable<Mono> seg(A);\n  FOR(Q) {\n    LL(l, r, p,\
@@ -318,8 +318,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1891_xor_sparse.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 16:37:24+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-07-31 08:50:47+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/1891_xor_sparse.test.cpp
 layout: document

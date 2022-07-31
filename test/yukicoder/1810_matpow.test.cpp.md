@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/mat_pow.hpp
     title: linalg/mat_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1810
@@ -215,7 +215,7 @@ data:
     \ = T(1);\r\n  while(n){\r\n    if(n & 1) ret = mat_mul(ret, A);\r\n    n /= 2;\r\
     \n    if(n) A = mat_mul(A, A);\r\n  }\r\n  return ret;\r\n}\n#line 2 \"mod/modint.hpp\"\
     \n\ntemplate <unsigned int mod>\nstruct modint {\n  static constexpr bool is_modint\
-    \ = true;\n  unsigned int val;\n  constexpr modint(const ll val = 0) noexcept\n\
+    \ = true;\n  unsigned int val;\n  constexpr modint(const long long val = 0) noexcept\n\
     \      : val(val >= 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const\
     \ modint &other) const {\n    return val < other.val;\n  } // To use std::map\n\
     \  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -=\
@@ -317,8 +317,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1810_matpow.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 16:37:24+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-07-31 08:50:47+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/1810_matpow.test.cpp
 layout: document

@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/group_affine.hpp
     title: alg/group_affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_cntsum.hpp
     title: alg/group_cntsum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/lazy_cntsum_affine.hpp
     title: alg/lazy_cntsum_affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
@@ -212,21 +212,21 @@ data:
     \ -x.se}; }\r\n  static constexpr X unit() { return {0, 0}; }\r\n  static constexpr\
     \ bool commute = true;\r\n};\r\n#line 1 \"alg/group_affine.hpp\"\ntemplate <typename\
     \ K>\nstruct Group_Affine {\n  using F = pair<K, K>;\n  using value_type = F;\n\
-    \  static constexpr F op(const F &x, const F &y) noexcept {\n    return F({x.fi\
-    \ * y.fi, x.se * y.fi + y.se});\n  }\n  static constexpr F inverse(const F &x)\
-    \ {\n    auto [a, b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n  }\n\
-    \  static constexpr K eval(const F &f, K x) noexcept { return f.fi * x + f.se;\
-    \ }\n  static constexpr F unit() { return {K(1), K(0)}; }\n  static constexpr\
-    \ bool commute = false;\n};\n#line 3 \"alg/lazy_cntsum_affine.hpp\"\n\r\ntemplate\
-    \ <typename E>\r\nstruct Lazy_CntSum_Affine {\r\n  using X_structure = Group_CntSum<E>;\r\
-    \n  using A_structure = Group_Affine<E>;\r\n  using X = typename X_structure::value_type;\r\
-    \n  using A = typename A_structure::value_type;\r\n  static constexpr X act(const\
-    \ X &x, const A &a) {\r\n    return {x.fi, x.fi * a.se + x.se * a.fi};\r\n  }\r\
-    \n};\n#line 2 \"ds/lazysegtree.hpp\"\n\ntemplate <typename Lazy>\nstruct LazySegTree\
-    \ {\n  using Monoid_X = typename Lazy::X_structure;\n  using Monoid_A = typename\
-    \ Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n  using A =\
-    \ typename Monoid_A::value_type;\n  int n, log, size;\n  vc<X> dat;\n  vc<A> laz;\n\
-    \n  LazySegTree() : LazySegTree(0) {}\n  LazySegTree(int n) : LazySegTree(vc<X>(n,\
+    \  static constexpr F op(const F &x, const F &y) noexcept {\n    return F({x.first\
+    \ * y.first, x.second * y.first + y.second});\n  }\n  static constexpr F inversecond(const\
+    \ F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n\
+    \  }\n  static constexpr K eval(const F &f, K x) noexcept { return f.first * x\
+    \ + f.second; }\n  static constexpr F unit() { return {K(1), K(0)}; }\n  static\
+    \ constexpr bool commute = false;\n};\n#line 3 \"alg/lazy_cntsum_affine.hpp\"\n\
+    \r\ntemplate <typename E>\r\nstruct Lazy_CntSum_Affine {\r\n  using X_structure\
+    \ = Group_CntSum<E>;\r\n  using A_structure = Group_Affine<E>;\r\n  using X =\
+    \ typename X_structure::value_type;\r\n  using A = typename A_structure::value_type;\r\
+    \n  static constexpr X act(const X &x, const A &a) {\r\n    return {x.fi, x.fi\
+    \ * a.se + x.se * a.fi};\r\n  }\r\n};\n#line 2 \"ds/lazysegtree.hpp\"\n\ntemplate\
+    \ <typename Lazy>\nstruct LazySegTree {\n  using Monoid_X = typename Lazy::X_structure;\n\
+    \  using Monoid_A = typename Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n\
+    \  using A = typename Monoid_A::value_type;\n  int n, log, size;\n  vc<X> dat;\n\
+    \  vc<A> laz;\n\n  LazySegTree() : LazySegTree(0) {}\n  LazySegTree(int n) : LazySegTree(vc<X>(n,\
     \ Monoid_X::unit())) {}\n  LazySegTree(vc<X> v) : n(len(v)) {\n    log = 1;\n\
     \    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
     \ << 1, Monoid_X::unit());\n    laz.assign(size, Monoid_A::unit());\n    FOR(i,\
@@ -282,8 +282,8 @@ data:
     \ while ((r & -r) != r);\n    return 0;\n  }\n\n  void debug() { print(\"lazysegtree\
     \ getall:\", get_all()); }\n};\n#line 2 \"mod/modint.hpp\"\n\ntemplate <unsigned\
     \ int mod>\nstruct modint {\n  static constexpr bool is_modint = true;\n  unsigned\
-    \ int val;\n  constexpr modint(const ll val = 0) noexcept\n      : val(val >=\
-    \ 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint\
+    \ int val;\n  constexpr modint(const long long val = 0) noexcept\n      : val(val\
+    \ >= 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint\
     \ &other) const {\n    return val < other.val;\n  } // To use std::map\n  modint\
     \ &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n\
     \    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if ((val\
@@ -382,8 +382,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 16:37:24+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-07-31 08:50:47+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_affine_range_sum.test.cpp
 layout: document
