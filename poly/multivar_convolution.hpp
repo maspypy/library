@@ -1,6 +1,6 @@
 #include "poly/convolution.hpp"
 template <typename mint>
-vc<mint> multivar_convolution(vi ns, vc<mint>& f, vc<mint>& g) {
+vc<mint> multivar_convolution(vc<int> ns, vc<mint>& f, vc<mint>& g) {
   /*
   (n0, n1, n2, ...) 進法での繰り上がりのない足し算に関する畳み込み
 
@@ -21,7 +21,7 @@ vc<mint> multivar_convolution(vi ns, vc<mint>& f, vc<mint>& g) {
 
   auto chi = [&](ll i) -> ll {
     int x = 0;
-    for (auto&& n : ns) {
+    for (auto&& n: ns) {
       i /= n;
       x += i;
     }
@@ -52,7 +52,6 @@ vc<mint> multivar_convolution(vi ns, vc<mint>& f, vc<mint>& g) {
   FOR(i, N) h[i] = hh[chi(i)][i];
   return h;
 }
-
 
 template <typename mint>
 vc<vc<mint>> multivar_convolution_2d(vc<vc<mint>>& f, vc<vc<mint>>& g) {
