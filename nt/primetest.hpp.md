@@ -20,13 +20,13 @@ data:
   - icon: ':x:'
     path: nt/crt.hpp
     title: nt/crt.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/divisors.hpp
     title: nt/divisors.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':x:'
@@ -38,14 +38,17 @@ data:
   - icon: ':warning:'
     path: nt/zeta_on_divisors.hpp
     title: nt/zeta_on_divisors.hpp
+  - icon: ':warning:'
+    path: seq/stirling_number_query.hpp
+    title: seq/stirling_number_query.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_1_C_primetest.test.cpp
     title: test/aoj/ALDS1_1_C_primetest.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_D_D_divisors.test.cpp
     title: test/aoj/ITP1_D_D_divisors.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_D_eulerphi.test.cpp
     title: test/aoj/NTL_1_D_eulerphi.test.cpp
   - icon: ':x:'
@@ -153,6 +156,7 @@ data:
   - mod/tetration.hpp
   - mod/mod_kth_root.hpp
   - graph/chromatic.hpp
+  - seq/stirling_number_query.hpp
   timestamp: '2022-04-27 05:09:11+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
