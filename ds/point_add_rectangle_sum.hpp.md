@@ -4,26 +4,26 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/rectangle_add_ractangle_sum.hpp
     title: ds/rectangle_add_ractangle_sum.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1490_rect_add_rect_sum.test.cpp
     title: test/yukicoder/1490_rect_add_rect_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -138,7 +138,7 @@ data:
   requiredBy:
   - ds/rectangle_add_ractangle_sum.hpp
   timestamp: '2022-06-27 21:42:47+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp

@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/cht_monotone.hpp
     title: ds/cht_monotone.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/dualsegtree.hpp
     title: ds/dualsegtree.hpp
   - icon: ':question:'

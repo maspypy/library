@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/point_add_rectangle_sum.hpp
     title: ds/point_add_rectangle_sum.hpp
   - icon: ':question:'

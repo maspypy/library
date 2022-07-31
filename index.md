@@ -6,7 +6,7 @@ data:
     - icon: ':question:'
       path: alg/group_add.hpp
       title: alg/group_add.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/group_affine.hpp
       title: alg/group_affine.hpp
     - icon: ':question:'
@@ -39,7 +39,7 @@ data:
     - icon: ':question:'
       path: alg/lazy_cntsum_add.hpp
       title: alg/lazy_cntsum_add.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/lazy_cntsum_affine.hpp
       title: alg/lazy_cntsum_affine.hpp
     - icon: ':heavy_check_mark:'
@@ -108,13 +108,13 @@ data:
     - icon: ':warning:'
       path: alg/monoid_cntsummin.hpp
       title: alg/monoid_cntsummin.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid_gcd.hpp
       title: alg/monoid_gcd.hpp
     - icon: ':heavy_check_mark:'
       path: alg/monoid_max.hpp
       title: alg/monoid_max.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: alg/monoid_max_idx.hpp
       title: alg/monoid_max_idx.hpp
     - icon: ':warning:'
@@ -149,13 +149,13 @@ data:
       title: alg/monoid_xor_basis.hpp
   - name: bbst
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: bbst/rbst_lazy.hpp
       title: bbst/rbst_lazy.hpp
     - icon: ':warning:'
       path: bbst/rbst_monoid.hpp
       title: bbst/rbst_monoid.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: bbst/splaytree_lazy.hpp
       title: bbst/splaytree_lazy.hpp
     - icon: ':heavy_check_mark:'
@@ -225,7 +225,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/doubling.hpp
       title: ds/doubling.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/dualsegtree.hpp
       title: ds/dualsegtree.hpp
     - icon: ':heavy_check_mark:'
@@ -240,7 +240,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwick.hpp
       title: ds/fenwick.hpp
     - icon: ':heavy_check_mark:'
@@ -291,7 +291,7 @@ data:
     - icon: ':warning:'
       path: ds/point_add_polygon_sum.hpp
       title: ds/point_add_polygon_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/point_add_rectangle_sum.hpp
       title: ds/point_add_rectangle_sum.hpp
     - icon: ':warning:'
@@ -306,7 +306,7 @@ data:
     - icon: ':warning:'
       path: ds/rectangle_add_point_sum.hpp
       title: ds/rectangle_add_point_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/rectangle_add_ractangle_sum.hpp
       title: ds/rectangle_add_ractangle_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -534,7 +534,7 @@ data:
     - icon: ':question:'
       path: graph/treemonoid.hpp
       title: graph/treemonoid.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/two_edge_component.hpp
       title: graph/two_edge_component.hpp
     - icon: ':heavy_check_mark:'
@@ -841,13 +841,13 @@ data:
     - icon: ':x:'
       path: poly/multipoint.hpp
       title: poly/multipoint.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/multivar_convolution.hpp
       title: poly/multivar_convolution.hpp
     - icon: ':question:'
       path: poly/ntt.hpp
       title: poly/ntt.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/online_convolution.hpp
       title: poly/online_convolution.hpp
     - icon: ':x:'
@@ -923,10 +923,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: setfunc/or_convolution.hpp
       title: setfunc/or_convolution.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: setfunc/ranked_zeta.hpp
       title: setfunc/ranked_zeta.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: setfunc/subset_convolution.hpp
       title: setfunc/subset_convolution.hpp
     - icon: ':heavy_check_mark:'
@@ -1144,16 +1144,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
       title: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/multivariate_convolution.test.cpp
       title: test/library_checker/convolution/multivariate_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/online_convolution.test.cpp
       title: test/library_checker/convolution/online_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/subset_convolution.test.cpp
       title: test/library_checker/convolution/subset_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
       title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - name: test/library_checker/datastructure
@@ -1164,10 +1164,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
       title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
       title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
       title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1191,19 +1191,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
       title: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
       title: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/predecessor_problem.test.cpp
       title: test/library_checker/datastructure/predecessor_problem.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
       title: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/range_affine_point_add.test.cpp
       title: test/library_checker/datastructure/range_affine_point_add.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
       title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1236,7 +1236,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/static_range_sum.test.cpp
       title: test/library_checker/datastructure/static_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
       title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1546,7 +1546,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1036_dseg_minleft_maxright.test.cpp
       title: test/yukicoder/1036_dseg_minleft_maxright.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1036_seg_maxright_minleft.test.cpp
       title: test/yukicoder/1036_seg_maxright_minleft.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1723,7 +1723,7 @@ data:
     - icon: ':x:'
       path: test/yukicoder/502_p_rec.test.cpp
       title: test/yukicoder/502_p_rec.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/529_two_edge.test.cpp
       title: test/yukicoder/529_two_edge.test.cpp
     - icon: ':heavy_check_mark:'

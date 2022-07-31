@@ -53,10 +53,10 @@ data:
   - icon: ':x:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution.hpp
     title: poly/multivar_convolution.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/online_convolution.hpp
     title: poly/online_convolution.hpp
   - icon: ':x:'
@@ -132,37 +132,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
     title: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/multivariate_convolution.test.cpp
     title: test/library_checker/convolution/multivariate_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/online_convolution.test.cpp
     title: test/library_checker/convolution/online_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution.test.cpp
     title: test/library_checker/convolution/subset_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
     title: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
     title: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_point_add.test.cpp
     title: test/library_checker/datastructure/range_affine_point_add.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
     title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - icon: ':x:'

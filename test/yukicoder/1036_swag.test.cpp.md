@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid_gcd.hpp
     title: alg/monoid_gcd.hpp
   - icon: ':question:'

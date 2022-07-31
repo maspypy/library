@@ -53,10 +53,10 @@ data:
   - icon: ':x:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution.hpp
     title: poly/multivar_convolution.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/online_convolution.hpp
     title: poly/online_convolution.hpp
   - icon: ':x:'
@@ -117,13 +117,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
     title: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/multivariate_convolution.test.cpp
     title: test/library_checker/convolution/multivariate_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/online_convolution.test.cpp
     title: test/library_checker/convolution/online_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - icon: ':heavy_check_mark:'

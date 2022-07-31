@@ -2,26 +2,26 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/lazy_cntsum_affine.hpp
     title: alg/lazy_cntsum_affine.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
     title: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
     title: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_point_add.test.cpp
     title: test/library_checker/datastructure/range_affine_point_add.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
     title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - icon: ':x:'
@@ -38,7 +38,7 @@ data:
     title: test/yukicoder/255.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/group_affine.hpp\"\ntemplate <typename K>\nstruct Group_Affine\
@@ -62,7 +62,7 @@ data:
   requiredBy:
   - alg/lazy_cntsum_affine.hpp
   timestamp: '2022-07-31 08:49:47+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp

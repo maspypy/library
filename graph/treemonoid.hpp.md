@@ -30,7 +30,7 @@ data:
   - icon: ':x:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/529_two_edge.test.cpp
     title: test/yukicoder/529_two_edge.test.cpp
   _isVerificationFailed: true
@@ -42,32 +42,33 @@ data:
     - https://codeforces.com/contest/1059/problem/E
     - https://codeforces.com/contest/1230/problem/E
   bundledCode: "#line 2 \"ds/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree\
-    \ {\n  using X = typename Monoid::value_type;\n  using value_type = X;\n  vc<X>\
+    \ {\n  using X = typename Monoid::value_type;\n  using value_type = X;\n  vector<X>\
     \ dat;\n  int n, log, size;\n\n  SegTree() : SegTree(0) {}\n  SegTree(int n) :\
-    \ SegTree(vc<X>(n, Monoid::unit())) {}\n  SegTree(vc<X> v) : n(len(v)) {\n   \
-    \ log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
-    \ << 1, Monoid::unit());\n    FOR(i, n) dat[size + i] = v[i];\n    FOR3_R(i, 1,\
-    \ size) update(i);\n  }\n\n  void reset() { fill(all(dat), Monoid::unit()); }\n\
-    \n  void set_all(const vc<X>& v){\n    dat.assign(size << 1, Monoid::unit());\n\
-    \    FOR(i, n) dat[size + i] = v[i];\n    FOR3_R(i, 1, size) update(i);\n  }\n\
-    \n  X operator[](int i) { return dat[size + i]; }\n\n  void update(int i) { dat[i]\
-    \ = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n\n  void set(int i, const X& x)\
-    \ {\n    assert(i < n);\n    dat[i += size] = x;\n    while (i >>= 1) update(i);\n\
-    \  }\n\n  void multiply(int i, const X& x){\n    assert(i < n);\n    i += size;\n\
+    \ SegTree(vector<X>(n, Monoid::unit())) {}\n  SegTree(vector<X> v) : n(v.size())\
+    \ {\n    log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n \
+    \   dat.assign(size << 1, Monoid::unit());\n    for (int i = 0; i < n; ++i) dat[size\
+    \ + i] = v[i];\n    for (int i = size - 1; i >= 1; --i) update(i);\n  }\n\n  void\
+    \ reset() { fill(all(dat), Monoid::unit()); }\n\n  void set_all(const vector<X>&\
+    \ v) {\n    dat.assign(size << 1, Monoid::unit());\n    for (int i = 0; i < n;\
+    \ ++i) dat[size + i] = v[i];\n    for (int i = size - 1; i >= 1; --i) update(i);\n\
+    \  }\n\n  X operator[](int i) { return dat[size + i]; }\n\n  void update(int i)\
+    \ { dat[i] = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n\n  void set(int i, const\
+    \ X& x) {\n    assert(i < n);\n    dat[i += size] = x;\n    while (i >>= 1) update(i);\n\
+    \  }\n\n  void multiply(int i, const X& x) {\n    assert(i < n);\n    i += size;\n\
     \    dat[i] = Monoid::op(dat[i], x);\n    while (i >>= 1) update(i);\n  }\n\n\
     \  X prod(int L, int R) {\n    assert(L <= R);\n    assert(R <= n);\n    X vl\
     \ = Monoid::unit(), vr = Monoid::unit();\n    L += size, R += size;\n    while\
     \ (L < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1)\
     \ vr = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl,\
     \ vr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  template <class F>\n  int\
-    \ max_right(F &check, int L) {\n    assert(0 <= L && L <= n && check(Monoid::unit()));\n\
+    \ max_right(F& check, int L) {\n    assert(0 <= L && L <= n && check(Monoid::unit()));\n\
     \    if (L == n) return n;\n    L += size;\n    X sm = Monoid::unit();\n    do\
     \ {\n      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L])))\
     \ {\n        while (L < size) {\n          L = 2 * L;\n          if (check(Monoid::op(sm,\
     \ dat[L]))) {\n            sm = Monoid::op(sm, dat[L]);\n            L++;\n  \
     \        }\n        }\n        return L - size;\n      }\n      sm = Monoid::op(sm,\
     \ dat[L]);\n      L++;\n    } while ((L & -L) != L);\n    return n;\n  }\n\n \
-    \ template <class F>\n  int min_left(F &check, int R) {\n    assert(0 <= R &&\
+    \ template <class F>\n  int min_left(F& check, int R) {\n    assert(0 <= R &&\
     \ R <= n && check(Monoid::unit()));\n    if (R == 0) return 0;\n    R += size;\n\
     \    X sm = Monoid::unit();\n    do {\n      --R;\n      while (R > 1 && (R %\
     \ 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R], sm))) {\n        while (R\
@@ -78,57 +79,57 @@ data:
     \u30C9\u304C\u53EF\u63DB\u306A\u3089\u3001prod_{l<=i<r}A[i^x] \u304C\u8A08\u7B97\
     \u53EF\u80FD\n  // https://codeforces.com/contest/1401/problem/F\n  X Xor_prod(int\
     \ l, int r, int xor_val) {\n    assert(Monoid::commute);\n    X x = Monoid::unit();\n\
-    \    FOR(k, log + 1) {\n      if (l >= r) break;\n      if (l & 1) { x = Monoid::op(x,\
-    \ dat[(size >> k) + ((l++) ^ xor_val)]); }\n      if (r & 1) { x = Monoid::op(x,\
-    \ dat[(size >> k) + ((--r) ^ xor_val)]); }\n      l /= 2, r /= 2, xor_val /= 2;\n\
-    \    }\n    return x;\n  }\n\n  void debug() { print(\"segtree\", dat); }\n};\n\
-    #line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int frm,\
-    \ to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed =\
-    \ false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n  using edge_type\
-    \ = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type>\
-    \ csr_edges;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n    OutgoingEdges(const\
-    \ Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin()\
-    \ const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[l];\n \
-    \   }\n\n    const edge_type* end() const {\n      if (l == r) { return 0; }\n\
-    \      return &G->csr_edges[r];\n    }\n\n  private:\n    const Graph* G;\n  \
-    \  int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n  constexpr bool\
-    \ is_directed() { return directed; }\n\n  Graph() : N(0), M(0), prepared(0) {}\n\
-    \  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void add(int frm, int to, T\
-    \ cost = 1, int i = -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <=\
-    \ to && to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost,\
-    \ i});\n    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool\
-    \ wt = false, int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int\
-    \ M, bool wt = false, int off = 1) {\n    for (int m = 0; m < M; ++m) {\n    \
-    \  INT(a, b);\n      a -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n\
-    \      } else {\n        T c;\n        read(c);\n        add(a, b, c);\n     \
-    \ }\n    }\n    build();\n  }\n\n  void read_parent(int off = 1) {\n    for (int\
-    \ v = N - 1; v >= 1; --v) {\n      INT(p);\n      p -= off;\n      add(p, v);\n\
-    \    }\n    build();\n  }\n\n  void build() {\n    assert(!prepared);\n    prepared\
-    \ = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm\
-    \ + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n    }\n    for (int v = 0;\
-    \ v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto counter = indptr;\n  \
-    \  csr_edges.resize(indptr.back() + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++]\
-    \ = e;\n      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to,\
-    \ e.frm, e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const\
-    \ {\n    assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\
-    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
-    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
-    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
-    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
-    \    }\n  }\n};\n#line 3 \"graph/hld.hpp\"\n\r\n/*\r\nHL\u5206\u89E3\u3002O(N)\
-    \ \u6642\u9593\u69CB\u7BC9\u3002\r\nLCA, LA \u306A\u3069\u306F O(logN) \u6642\u9593\
-    \u3002\r\n\u6728\u4EE5\u5916\u3001\u975E\u9023\u7D50\u3067\u3082\u4F7F\u3048\u308B\
-    \u3088\u3046\u306B\u3057\u305F\u3002dfs\u9806\u5E8F\u3084\u89AA\u304C\u3068\u308C\
-    \u308B\u3002\r\n*/\r\ntemplate <typename Graph>\r\nstruct HLD {\r\n  Graph &G;\r\
-    \n  using Graph_type = Graph;\r\n  using WT = typename Graph::cost_type;\r\n \
-    \ int N;\r\n  vector<int> LID, RID, head, V, parent, root;\r\n  vc<int> depth;\r\
-    \n  vc<WT> depth_weighted;\r\n  vector<bool> in_tree;\r\n\r\n  HLD(Graph &G, int\
-    \ r = -1)\r\n      : G(G),\r\n        N(G.N),\r\n        LID(G.N),\r\n       \
-    \ RID(G.N),\r\n        head(G.N, r),\r\n        V(G.N),\r\n        parent(G.N,\
-    \ -1),\r\n        root(G.N, -1),\r\n        depth(G.N, -1),\r\n        depth_weighted(G.N,\
-    \ 0),\r\n        in_tree(G.M, 0) {\r\n    assert(G.is_prepared());\r\n    int\
-    \ t1 = 0;\r\n    if (r != -1) {\r\n      dfs_sz(r, -1);\r\n      dfs_hld(r, t1);\r\
-    \n    } else {\r\n      for (int r = 0; r < N; ++r) {\r\n        if (parent[r]\
+    \    for (int k = 0; k < log + 1; ++k) {\n      if (l >= r) break;\n      if (l\
+    \ & 1) { x = Monoid::op(x, dat[(size >> k) + ((l++) ^ xor_val)]); }\n      if\
+    \ (r & 1) { x = Monoid::op(x, dat[(size >> k) + ((--r) ^ xor_val)]); }\n     \
+    \ l /= 2, r /= 2, xor_val /= 2;\n    }\n    return x;\n  }\n\n  void debug() {\
+    \ print(\"segtree\", dat); }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename\
+    \ T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename\
+    \ T = int, bool directed = false>\nstruct Graph {\n  int N, M;\n  using cost_type\
+    \ = T;\n  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int>\
+    \ indptr;\n  vector<edge_type> csr_edges;\n  bool prepared;\n\n  class OutgoingEdges\
+    \ {\n  public:\n    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l),\
+    \ r(r) {}\n\n    const edge_type* begin() const {\n      if (l == r) { return\
+    \ 0; }\n      return &G->csr_edges[l];\n    }\n\n    const edge_type* end() const\
+    \ {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n\
+    \  private:\n    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared()\
+    \ { return prepared; }\n  constexpr bool is_directed() { return directed; }\n\n\
+    \  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
+    \ {}\n\n  void add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n\
+    \    assert(0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto\
+    \ e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  //\
+    \ wt, off\n  void read_tree(bool wt = false, int off = 1) { read_graph(N - 1,\
+    \ wt, off); }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n  \
+    \  for (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a -= off, b -= off;\n\
+    \      if (!wt) {\n        add(a, b);\n      } else {\n        T c;\n        read(c);\n\
+    \        add(a, b, c);\n      }\n    }\n    build();\n  }\n\n  void read_parent(int\
+    \ off = 1) {\n    for (int v = N - 1; v >= 1; --v) {\n      INT(p);\n      p -=\
+    \ off;\n      add(p, v);\n    }\n    build();\n  }\n\n  void build() {\n    assert(!prepared);\n\
+    \    prepared = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges)\
+    \ {\n      indptr[e.frm + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n  \
+    \  }\n    for (int v = 0; v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto\
+    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
+    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
+    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
+    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
+    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  void debug() {\n    print(\"\
+    Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
+    \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
+    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 3 \"graph/hld.hpp\"\
+    \n\r\n/*\r\nHL\u5206\u89E3\u3002O(N) \u6642\u9593\u69CB\u7BC9\u3002\r\nLCA, LA\
+    \ \u306A\u3069\u306F O(logN) \u6642\u9593\u3002\r\n\u6728\u4EE5\u5916\u3001\u975E\
+    \u9023\u7D50\u3067\u3082\u4F7F\u3048\u308B\u3088\u3046\u306B\u3057\u305F\u3002\
+    dfs\u9806\u5E8F\u3084\u89AA\u304C\u3068\u308C\u308B\u3002\r\n*/\r\ntemplate <typename\
+    \ Graph>\r\nstruct HLD {\r\n  Graph &G;\r\n  using Graph_type = Graph;\r\n  using\
+    \ WT = typename Graph::cost_type;\r\n  int N;\r\n  vector<int> LID, RID, head,\
+    \ V, parent, root;\r\n  vc<int> depth;\r\n  vc<WT> depth_weighted;\r\n  vector<bool>\
+    \ in_tree;\r\n\r\n  HLD(Graph &G, int r = -1)\r\n      : G(G),\r\n        N(G.N),\r\
+    \n        LID(G.N),\r\n        RID(G.N),\r\n        head(G.N, r),\r\n        V(G.N),\r\
+    \n        parent(G.N, -1),\r\n        root(G.N, -1),\r\n        depth(G.N, -1),\r\
+    \n        depth_weighted(G.N, 0),\r\n        in_tree(G.M, 0) {\r\n    assert(G.is_prepared());\r\
+    \n    int t1 = 0;\r\n    if (r != -1) {\r\n      dfs_sz(r, -1);\r\n      dfs_hld(r,\
+    \ t1);\r\n    } else {\r\n      for (int r = 0; r < N; ++r) {\r\n        if (parent[r]\
     \ == -1) {\r\n          head[r] = r;\r\n          dfs_sz(r, -1);\r\n         \
     \ dfs_hld(r, t1);\r\n        }\r\n      }\r\n    }\r\n    for (auto &&v: V) root[v]\
     \ = (parent[v] == -1 ? v : root[parent[v]]);\r\n  }\r\n\r\n  void dfs_sz(int v,\
@@ -308,7 +309,7 @@ data:
   path: graph/treemonoid.hpp
   requiredBy:
   - graph/minimum_spanning_tree.hpp
-  timestamp: '2022-07-20 17:19:03+09:00'
+  timestamp: '2022-07-31 09:18:22+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL_2_A_mst.test.cpp

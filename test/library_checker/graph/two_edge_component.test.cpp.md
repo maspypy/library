@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
   - icon: ':question:'
