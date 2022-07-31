@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/multivar_convolution.hpp
     title: poly/multivar_convolution.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/multivariate_convolution
@@ -487,16 +487,16 @@ data:
     \ g[x][y];\r\n  F = multivar_convolution(vi({H, W}), F, G);\r\n  vv(mint, h, H,\
     \ W);\r\n  FOR(x, H) FOR(y, W) h[x][y] = F[x + H * y];\r\n  return h;\r\n}\r\n\
     #line 6 \"test/library_checker/convolution/multivariate_convolution.test.cpp\"\
-    \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(K);\r\n  VEC(ll, ns,\
-    \ K);\r\n  ll N = 1;\r\n  FOR(k, K) N *= ns[k];\r\n  VEC(mint, f, N);\r\n  VEC(mint,\
-    \ g, N);\r\n\r\n  auto h = multivar_convolution(ns, f, g);\r\n  print(h);\r\n\
-    }\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(K);\r\n  VEC(int,\
+    \ ns, K);\r\n  ll N = 1;\r\n  FOR(k, K) N *= ns[k];\r\n  VEC(mint, f, N);\r\n\
+    \  VEC(mint, g, N);\r\n\r\n  auto h = multivar_convolution(ns, f, g);\r\n  print(h);\r\
+    \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
     \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/multivariate_convolution\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
     \ \"poly/multivar_convolution.hpp\"\r\n\r\nusing mint = modint998;\r\n\r\nvoid\
-    \ solve() {\r\n  LL(K);\r\n  VEC(ll, ns, K);\r\n  ll N = 1;\r\n  FOR(k, K) N *=\
-    \ ns[k];\r\n  VEC(mint, f, N);\r\n  VEC(mint, g, N);\r\n\r\n  auto h = multivar_convolution(ns,\
+    \ solve() {\r\n  LL(K);\r\n  VEC(int, ns, K);\r\n  ll N = 1;\r\n  FOR(k, K) N\
+    \ *= ns[k];\r\n  VEC(mint, f, N);\r\n  VEC(mint, g, N);\r\n\r\n  auto h = multivar_convolution(ns,\
     \ f, g);\r\n  print(h);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n\
     \  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
     \n\r\n  return 0;\r\n}\r\n"
@@ -513,8 +513,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/convolution/multivariate_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-07-31 13:24:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-07-31 15:33:31+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/convolution/multivariate_convolution.test.cpp
 layout: document
