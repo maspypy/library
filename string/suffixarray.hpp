@@ -1,11 +1,18 @@
+#include "alg/monoid_min.hpp"
+#include "ds/disjointsparse.hpp"
+
+// 辞書順 i 番目の suffix が j 文字目始まりであるとき、
+// SA[i] = j, ISA[j] = i
 struct SuffixArray {
   vector<int> SA;
   vector<int> ISA;
   vector<int> LCP;
+  bool build_ds;
+  DisjointSparse<Monoid_Min<int>> seg;
 
-  SuffixArray(string& s) {
+  SuffixArray(string& s) : build_ds(0) {
     char first = 127, last = 0;
-    for(auto&& c : s){
+    for (auto&& c: s) {
       chmin(first, c);
       chmax(last, c);
     }
@@ -13,11 +20,25 @@ struct SuffixArray {
     calc_LCP(s);
   }
 
-  SuffixArray(vector<int>& s) {
+  SuffixArray(vector<int>& s) : build_ds(0) {
     SA = calc_suffix_array(s);
     calc_LCP(s);
   }
 
+  // S[i:], S[j:] の lcp を求める
+  int lcp(int i, int j) {
+    int n = len(SA);
+    if (i == j) return n - i;
+    if (!build_ds) {
+      build_ds = 1;
+      seg.build(LCP);
+    }
+    i = ISA[i], j = ISA[j];
+    if (i > j) swap(i, j);
+    return seg.prod(i, j);
+  }
+
+private:
   void induced_sort(const std::vector<int>& vect, int val_range,
                     std::vector<int>& SA, const std::vector<bool>& sl,
                     const std::vector<int>& lms_idx) {

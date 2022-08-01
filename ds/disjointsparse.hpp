@@ -5,7 +5,11 @@ struct DisjointSparse {
   int n, log;
   vc<vc<X>> dat;
 
-  DisjointSparse(vc<X>& A) : n(len(A)) {
+  DisjointSparse() {}
+  DisjointSparse(vc<X>& A) { build(A); }
+
+  void build(vc<X>& A) {
+    n = len(A);
     log = 1;
     while ((1 << log) < n) ++log;
     dat.assign(log, A);
