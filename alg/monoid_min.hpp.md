@@ -20,6 +20,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
+  - icon: ':warning:'
+    path: string/sort_all_substring.hpp
+    title: string/sort_all_substring.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/suffixarray.hpp
+    title: string/suffixarray.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508_splay.test.cpp
@@ -39,6 +45,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticrmq_sparse.test.cpp
     title: test/library_checker/datastructure/staticrmq_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/string/number_of_substrings.test.cpp
+    title: test/library_checker/string/number_of_substrings.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/string/suffix_array.test.cpp
+    title: test/library_checker/string/suffix_array.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/string/suffix_array_vec.test.cpp
+    title: test/library_checker/string/suffix_array_vec.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1234_rmq.test.cpp
     title: test/yukicoder/1234_rmq.test.cpp
@@ -64,6 +79,8 @@ data:
   requiredBy:
   - ds/range_mex_query.hpp
   - graph/minimum_spanning_tree.hpp
+  - string/sort_all_substring.hpp
+  - string/suffixarray.hpp
   - alg/lazy_min_add.hpp
   - alg/lazy_min_min.hpp
   - alg/lazy_max_min.hpp
@@ -75,6 +92,9 @@ data:
   - test/aoj/DSL_2_F_min_set_lazy.test.cpp
   - test/aoj/DSL_2_H_min_add_lazy.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp
+  - test/library_checker/string/suffix_array_vec.test.cpp
+  - test/library_checker/string/suffix_array.test.cpp
+  - test/library_checker/string/number_of_substrings.test.cpp
   - test/library_checker/datastructure/staticrmq_seg.test.cpp
   - test/library_checker/datastructure/staticrmq_sparse.test.cpp
   - test/yukicoder/1234_rmq.test.cpp

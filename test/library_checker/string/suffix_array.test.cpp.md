@@ -2,6 +2,12 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: alg/monoid_min.hpp
+    title: alg/monoid_min.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/disjointsparse.hpp
+    title: ds/disjointsparse.hpp
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
@@ -195,68 +201,92 @@ data:
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
     \ { yes(!t); }\r\n#line 4 \"test/library_checker/string/suffix_array.test.cpp\"\
-    \n\r\n#line 1 \"string/suffixarray.hpp\"\nstruct SuffixArray {\n  vector<int>\
-    \ SA;\n  vector<int> ISA;\n  vector<int> LCP;\n\n  SuffixArray(string& s) {\n\
-    \    char first = 127, last = 0;\n    for(auto&& c : s){\n      chmin(first, c);\n\
-    \      chmax(last, c);\n    }\n    SA = calc_suffix_array(s, first, last);\n \
-    \   calc_LCP(s);\n  }\n\n  SuffixArray(vector<int>& s) {\n    SA = calc_suffix_array(s);\n\
-    \    calc_LCP(s);\n  }\n\n  void induced_sort(const std::vector<int>& vect, int\
-    \ val_range,\n                    std::vector<int>& SA, const std::vector<bool>&\
-    \ sl,\n                    const std::vector<int>& lms_idx) {\n    std::vector<int>\
-    \ l(val_range, 0), r(val_range, 0);\n    for (int c: vect) {\n      if (c + 1\
-    \ < val_range) ++l[c + 1];\n      ++r[c];\n    }\n    std::partial_sum(l.begin(),\
-    \ l.end(), l.begin());\n    std::partial_sum(r.begin(), r.end(), r.begin());\n\
-    \    std::fill(SA.begin(), SA.end(), -1);\n    for (int i = (int)lms_idx.size()\
-    \ - 1; i >= 0; --i)\n      SA[--r[vect[lms_idx[i]]]] = lms_idx[i];\n    for (int\
-    \ i: SA)\n      if (i >= 1 && sl[i - 1]) SA[l[vect[i - 1]]++] = i - 1;\n    std::fill(r.begin(),\
-    \ r.end(), 0);\n    for (int c: vect) ++r[c];\n    std::partial_sum(r.begin(),\
-    \ r.end(), r.begin());\n    for (int k = (int)SA.size() - 1, i = SA[k]; k >= 1;\
-    \ --k, i = SA[k])\n      if (i >= 1 && !sl[i - 1]) { SA[--r[vect[i - 1]]] = i\
-    \ - 1; }\n  }\n\n  std::vector<int> SA_IS(const std::vector<int>& vect, int val_range)\
-    \ {\n    const int n = vect.size();\n    std::vector<int> SA(n), lms_idx;\n  \
-    \  std::vector<bool> sl(n);\n    sl[n - 1] = false;\n    for (int i = n - 2; i\
-    \ >= 0; --i) {\n      sl[i] = (vect[i] > vect[i + 1] || (vect[i] == vect[i + 1]\
-    \ && sl[i + 1]));\n      if (sl[i] && !sl[i + 1]) lms_idx.push_back(i + 1);\n\
-    \    }\n    std::reverse(lms_idx.begin(), lms_idx.end());\n    induced_sort(vect,\
-    \ val_range, SA, sl, lms_idx);\n    std::vector<int> new_lms_idx(lms_idx.size()),\
-    \ lms_vec(lms_idx.size());\n    for (int i = 0, k = 0; i < n; ++i)\n      if (!sl[SA[i]]\
-    \ && SA[i] >= 1 && sl[SA[i] - 1]) {\n        new_lms_idx[k++] = SA[i];\n     \
-    \ }\n    int cur = 0;\n    SA[n - 1] = cur;\n    for (size_t k = 1; k < new_lms_idx.size();\
-    \ ++k) {\n      int i = new_lms_idx[k - 1], j = new_lms_idx[k];\n      if (vect[i]\
-    \ != vect[j]) {\n        SA[j] = ++cur;\n        continue;\n      }\n      bool\
-    \ flag = false;\n      for (int a = i + 1, b = j + 1;; ++a, ++b) {\n        if\
-    \ (vect[a] != vect[b]) {\n          flag = true;\n          break;\n        }\n\
-    \        if ((!sl[a] && sl[a - 1]) || (!sl[b] && sl[b - 1])) {\n          flag\
-    \ = !((!sl[a] && sl[a - 1]) && (!sl[b] && sl[b - 1]));\n          break;\n   \
-    \     }\n      }\n      SA[j] = (flag ? ++cur : cur);\n    }\n    for (size_t\
-    \ i = 0; i < lms_idx.size(); ++i) lms_vec[i] = SA[lms_idx[i]];\n    if (cur +\
-    \ 1 < (int)lms_idx.size()) {\n      auto lms_SA = SA_IS(lms_vec, cur + 1);\n \
-    \     for (size_t i = 0; i < lms_idx.size(); ++i) {\n        new_lms_idx[i] =\
-    \ lms_idx[lms_SA[i]];\n      }\n    }\n    induced_sort(vect, val_range, SA, sl,\
-    \ new_lms_idx);\n    return SA;\n  }\n\n  std::vector<int> calc_suffix_array(const\
-    \ std::string& s,\n                                     const char first = 'a',\n\
-    \                                     const char last = 'z') {\n    std::vector<int>\
+    \n\r\n#line 2 \"alg/monoid_min.hpp\"\ntemplate <class X>\r\nstruct Monoid_Min\
+    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
+    \ &y) noexcept { return min(x, y); }\r\n  static constexpr X unit() { return numeric_limits<X>::max();\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"ds/disjointsparse.hpp\"\
+    \ntemplate <class Monoid>\r\nstruct DisjointSparse {\r\n  using X = typename Monoid::value_type;\r\
+    \n  using value_type = X;\r\n  int n, log;\r\n  vc<vc<X>> dat;\r\n\r\n  DisjointSparse()\
+    \ {}\r\n  DisjointSparse(vc<X>& A) { build(A); }\r\n\r\n  void build(vc<X>& A)\
+    \ {\r\n    n = len(A);\r\n    log = 1;\r\n    while ((1 << log) < n) ++log;\r\n\
+    \    dat.assign(log, A);\r\n\r\n    FOR(i, log) {\r\n      auto& v = dat[i];\r\
+    \n      int b = 1 << i;\r\n      for (int m = b; m <= n; m += 2 * b) {\r\n   \
+    \     int L = m - b, R = min(n, m + b);\r\n        FOR3_R(j, L + 1, m) v[j - 1]\
+    \ = Monoid::op(v[j - 1], v[j]);\r\n        FOR3(j, m, R - 1) v[j + 1] = Monoid::op(v[j],\
+    \ v[j + 1]);\r\n      }\r\n    }\r\n  }\r\n\r\n  X prod(int L, int R) {\r\n  \
+    \  if (L == R) return Monoid::unit();\r\n    --R;\r\n    if (L == R) return dat[0][L];\r\
+    \n    int k = 31 - __builtin_clz(L ^ R);\r\n    return Monoid::op(dat[k][L], dat[k][R]);\r\
+    \n  }\r\n\r\n  void debug() {\r\n    print(\"disjoint sparse table\");\r\n   \
+    \ FOR(i, log) print(dat[i]);\r\n  }\r\n};\n#line 3 \"string/suffixarray.hpp\"\n\
+    \n// \u8F9E\u66F8\u9806 i \u756A\u76EE\u306E suffix \u304C j \u6587\u5B57\u76EE\
+    \u59CB\u307E\u308A\u3067\u3042\u308B\u3068\u304D\u3001\n// SA[i] = j, ISA[j] =\
+    \ i\nstruct SuffixArray {\n  vector<int> SA;\n  vector<int> ISA;\n  vector<int>\
+    \ LCP;\n  bool build_ds;\n  DisjointSparse<Monoid_Min<int>> seg;\n\n  SuffixArray(string&\
+    \ s) : build_ds(0) {\n    char first = 127, last = 0;\n    for (auto&& c: s) {\n\
+    \      chmin(first, c);\n      chmax(last, c);\n    }\n    SA = calc_suffix_array(s,\
+    \ first, last);\n    calc_LCP(s);\n  }\n\n  SuffixArray(vector<int>& s) : build_ds(0)\
+    \ {\n    SA = calc_suffix_array(s);\n    calc_LCP(s);\n  }\n\n  // S[i:], S[j:]\
+    \ \u306E lcp \u3092\u6C42\u3081\u308B\n  int lcp(int i, int j) {\n    int n =\
+    \ len(SA);\n    if (i == j) return n - i;\n    if (!build_ds) {\n      build_ds\
+    \ = 1;\n      seg.build(LCP);\n    }\n    i = ISA[i], j = ISA[j];\n    if (i >\
+    \ j) swap(i, j);\n    return seg.prod(i, j);\n  }\n\nprivate:\n  void induced_sort(const\
+    \ std::vector<int>& vect, int val_range,\n                    std::vector<int>&\
+    \ SA, const std::vector<bool>& sl,\n                    const std::vector<int>&\
+    \ lms_idx) {\n    std::vector<int> l(val_range, 0), r(val_range, 0);\n    for\
+    \ (int c: vect) {\n      if (c + 1 < val_range) ++l[c + 1];\n      ++r[c];\n \
+    \   }\n    std::partial_sum(l.begin(), l.end(), l.begin());\n    std::partial_sum(r.begin(),\
+    \ r.end(), r.begin());\n    std::fill(SA.begin(), SA.end(), -1);\n    for (int\
+    \ i = (int)lms_idx.size() - 1; i >= 0; --i)\n      SA[--r[vect[lms_idx[i]]]] =\
+    \ lms_idx[i];\n    for (int i: SA)\n      if (i >= 1 && sl[i - 1]) SA[l[vect[i\
+    \ - 1]]++] = i - 1;\n    std::fill(r.begin(), r.end(), 0);\n    for (int c: vect)\
+    \ ++r[c];\n    std::partial_sum(r.begin(), r.end(), r.begin());\n    for (int\
+    \ k = (int)SA.size() - 1, i = SA[k]; k >= 1; --k, i = SA[k])\n      if (i >= 1\
+    \ && !sl[i - 1]) { SA[--r[vect[i - 1]]] = i - 1; }\n  }\n\n  std::vector<int>\
+    \ SA_IS(const std::vector<int>& vect, int val_range) {\n    const int n = vect.size();\n\
+    \    std::vector<int> SA(n), lms_idx;\n    std::vector<bool> sl(n);\n    sl[n\
+    \ - 1] = false;\n    for (int i = n - 2; i >= 0; --i) {\n      sl[i] = (vect[i]\
+    \ > vect[i + 1] || (vect[i] == vect[i + 1] && sl[i + 1]));\n      if (sl[i] &&\
+    \ !sl[i + 1]) lms_idx.push_back(i + 1);\n    }\n    std::reverse(lms_idx.begin(),\
+    \ lms_idx.end());\n    induced_sort(vect, val_range, SA, sl, lms_idx);\n    std::vector<int>\
+    \ new_lms_idx(lms_idx.size()), lms_vec(lms_idx.size());\n    for (int i = 0, k\
+    \ = 0; i < n; ++i)\n      if (!sl[SA[i]] && SA[i] >= 1 && sl[SA[i] - 1]) {\n \
+    \       new_lms_idx[k++] = SA[i];\n      }\n    int cur = 0;\n    SA[n - 1] =\
+    \ cur;\n    for (size_t k = 1; k < new_lms_idx.size(); ++k) {\n      int i = new_lms_idx[k\
+    \ - 1], j = new_lms_idx[k];\n      if (vect[i] != vect[j]) {\n        SA[j] =\
+    \ ++cur;\n        continue;\n      }\n      bool flag = false;\n      for (int\
+    \ a = i + 1, b = j + 1;; ++a, ++b) {\n        if (vect[a] != vect[b]) {\n    \
+    \      flag = true;\n          break;\n        }\n        if ((!sl[a] && sl[a\
+    \ - 1]) || (!sl[b] && sl[b - 1])) {\n          flag = !((!sl[a] && sl[a - 1])\
+    \ && (!sl[b] && sl[b - 1]));\n          break;\n        }\n      }\n      SA[j]\
+    \ = (flag ? ++cur : cur);\n    }\n    for (size_t i = 0; i < lms_idx.size(); ++i)\
+    \ lms_vec[i] = SA[lms_idx[i]];\n    if (cur + 1 < (int)lms_idx.size()) {\n   \
+    \   auto lms_SA = SA_IS(lms_vec, cur + 1);\n      for (size_t i = 0; i < lms_idx.size();\
+    \ ++i) {\n        new_lms_idx[i] = lms_idx[lms_SA[i]];\n      }\n    }\n    induced_sort(vect,\
+    \ val_range, SA, sl, new_lms_idx);\n    return SA;\n  }\n\n  std::vector<int>\
+    \ calc_suffix_array(const std::string& s,\n                                  \
+    \   const char first = 'a',\n                                     const char last\
+    \ = 'z') {\n    std::vector<int> vect(s.size() + 1);\n    std::copy(std::begin(s),\
+    \ std::end(s), std::begin(vect));\n    for (auto& x: vect) x -= (int)first - 1;\n\
+    \    vect.back() = 0;\n    auto ret = SA_IS(vect, (int)last - (int)first + 2);\n\
+    \    ret.erase(ret.begin());\n    return ret;\n  }\n\n  std::vector<int> calc_suffix_array(const\
+    \ vector<int>& s) {\n    vector<int> ss = s;\n    sort(ss.begin(), ss.end());\n\
+    \    ss.erase(unique(ss.begin(), ss.end()), ss.end());\n\n    std::vector<int>\
     \ vect(s.size() + 1);\n    std::copy(std::begin(s), std::end(s), std::begin(vect));\n\
-    \    for (auto& x: vect) x -= (int)first - 1;\n    vect.back() = 0;\n    auto\
-    \ ret = SA_IS(vect, (int)last - (int)first + 2);\n    ret.erase(ret.begin());\n\
-    \    return ret;\n  }\n\n  std::vector<int> calc_suffix_array(const vector<int>&\
-    \ s) {\n    vector<int> ss = s;\n    sort(ss.begin(), ss.end());\n    ss.erase(unique(ss.begin(),\
-    \ ss.end()), ss.end());\n\n    std::vector<int> vect(s.size() + 1);\n    std::copy(std::begin(s),\
-    \ std::end(s), std::begin(vect));\n    for (auto& x: vect)\n      x = lower_bound(ss.begin(),\
-    \ ss.end(), x) - ss.begin() + 1;\n    vect.back() = 0;\n    auto ret = SA_IS(vect,\
-    \ *max_element(vect.begin(), vect.end()) + 2);\n    ret.erase(ret.begin());\n\
-    \    return ret;\n  }\n\n  void calc_LCP(const std::string& s) {\n    int n =\
-    \ s.size(), k = 0;\n    ISA.resize(n);\n    LCP.resize(n);\n    for (int i = 0;\
-    \ i < n; i++) ISA[SA[i]] = i;\n    for (int i = 0; i < n; i++, k ? k-- : 0) {\n\
-    \      if (ISA[i] == n - 1) {\n        k = 0;\n        continue;\n      }\n  \
-    \    int j = SA[ISA[i] + 1];\n      while (i + k < n && j + k < n && s[i + k]\
-    \ == s[j + k]) k++;\n      LCP[ISA[i]] = k;\n    }\n    LCP.resize(n - 1);\n \
-    \ }\n\n  void calc_LCP(const vector<int>& s) {\n    int n = s.size(), k = 0;\n\
-    \    ISA.resize(n);\n    LCP.resize(n);\n    for (int i = 0; i < n; i++) ISA[SA[i]]\
-    \ = i;\n    for (int i = 0; i < n; i++, k ? k-- : 0) {\n      if (ISA[i] == n\
-    \ - 1) {\n        k = 0;\n        continue;\n      }\n      int j = SA[ISA[i]\
-    \ + 1];\n      while (i + k < n && j + k < n && s[i + k] == s[j + k]) k++;\n \
-    \     LCP[ISA[i]] = k;\n    }\n    LCP.resize(n - 1);\n  }\n};\n#line 6 \"test/library_checker/string/suffix_array.test.cpp\"\
+    \    for (auto& x: vect)\n      x = lower_bound(ss.begin(), ss.end(), x) - ss.begin()\
+    \ + 1;\n    vect.back() = 0;\n    auto ret = SA_IS(vect, *max_element(vect.begin(),\
+    \ vect.end()) + 2);\n    ret.erase(ret.begin());\n    return ret;\n  }\n\n  void\
+    \ calc_LCP(const std::string& s) {\n    int n = s.size(), k = 0;\n    ISA.resize(n);\n\
+    \    LCP.resize(n);\n    for (int i = 0; i < n; i++) ISA[SA[i]] = i;\n    for\
+    \ (int i = 0; i < n; i++, k ? k-- : 0) {\n      if (ISA[i] == n - 1) {\n     \
+    \   k = 0;\n        continue;\n      }\n      int j = SA[ISA[i] + 1];\n      while\
+    \ (i + k < n && j + k < n && s[i + k] == s[j + k]) k++;\n      LCP[ISA[i]] = k;\n\
+    \    }\n    LCP.resize(n - 1);\n  }\n\n  void calc_LCP(const vector<int>& s) {\n\
+    \    int n = s.size(), k = 0;\n    ISA.resize(n);\n    LCP.resize(n);\n    for\
+    \ (int i = 0; i < n; i++) ISA[SA[i]] = i;\n    for (int i = 0; i < n; i++, k ?\
+    \ k-- : 0) {\n      if (ISA[i] == n - 1) {\n        k = 0;\n        continue;\n\
+    \      }\n      int j = SA[ISA[i] + 1];\n      while (i + k < n && j + k < n &&\
+    \ s[i + k] == s[j + k]) k++;\n      LCP[ISA[i]] = k;\n    }\n    LCP.resize(n\
+    \ - 1);\n  }\n};\n#line 6 \"test/library_checker/string/suffix_array.test.cpp\"\
     \n\r\nvoid solve() {\r\n  STR(S);\r\n  SuffixArray sa(S);\r\n  print(sa.SA);\r\
     \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
     \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
@@ -269,10 +299,12 @@ data:
   - my_template.hpp
   - other/io.hpp
   - string/suffixarray.hpp
+  - alg/monoid_min.hpp
+  - ds/disjointsparse.hpp
   isVerificationFile: true
   path: test/library_checker/string/suffix_array.test.cpp
   requiredBy: []
-  timestamp: '2022-07-31 11:54:48+09:00'
+  timestamp: '2022-08-02 02:57:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/string/suffix_array.test.cpp
