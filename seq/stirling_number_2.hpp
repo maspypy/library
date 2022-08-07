@@ -5,6 +5,22 @@
 // n 個のもの (labeled) を k グループ (no label) に分ける方法
 // label をつけることで、全射の数え上げに利用できる
 template <typename mint>
+vvc<mint> stirling_number_2_2d(int nmax, int kmax) {
+  vv(mint, A, nmax + 1, kmax + 1);
+  A[0][0] = 1;
+  FOR(i, 1, nmax + 1) {
+    FOR(j, i + 1) {
+      if (j > kmax) break;
+      if (j) A[i][j] += A[i - 1][j - 1];
+      if (j < i) A[i][j] += A[i - 1][j] * mint(j);
+    }
+  }
+  return A;
+}
+
+// n 個のもの (labeled) を k グループ (no label) に分ける方法
+// label をつけることで、全射の数え上げに利用できる
+template <typename mint>
 vc<mint> stirling_number_2_n(int n, int k_max) {
   vc<mint> a = powertable_2<mint>(n, k_max + 1);
   FOR(i, k_max + 1) a[i] *= fact_inv<mint>(i);

@@ -1,6 +1,22 @@
 #include "poly/poly_taylor_shift.hpp"
 #include "poly/fps_pow.hpp"
 
+template <typename mint>
+vc<mint> stirling_number_1_2d(int nmax, int kmax) {
+  vv(mint, A, nmax + 1, kmax + 1);
+  A[0][0] = 1;
+  for (int i = 1; i <= nmax; ++i) {
+    for (int j = 0; j < i + 1; ++j) {
+      if (j > kmax) break;
+      int &x = A[i][j];
+      if (j) x += A[i - 1][j - 1];
+      x -= A[i - 1][j] * (i - 1);
+      x %= p;
+      if (x < 0) x += p;
+    }
+  }
+}
+
 // x(x+1)...(x+n-1) の係数 c(n, k)
 // [n] の順列のうち、k 個のサイクルに分かれるものの個数。
 // n を固定したときの列挙を O(n log n) で行う。
