@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/integer_kth_root.hpp
     title: other/integer_kth_root.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []

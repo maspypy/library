@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/random.hpp
     title: other/random.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/run_length.hpp
     title: string/run_length.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -215,7 +215,7 @@ data:
     \ == 0);\n  }\n  {\n    vc<int> A = {1, 1, 2, 2, 3, 1, 1, 1, 2};\n    auto res\
     \ = run_length(A);\n    assert(len(res) == 5);\n    assert(res[0].fi == 1 && res[0].se\
     \ == 2);\n    assert(res[1].fi == 2 && res[1].se == 2);\n    assert(res[2].fi\
-    \ == 2 && res[2].se == 1);\n    assert(res[3].fi == 1 && res[3].se == 3);\n  \
+    \ == 3 && res[2].se == 1);\n    assert(res[3].fi == 1 && res[3].se == 3);\n  \
     \  assert(res[4].fi == 2 && res[4].se == 1);\n  }\n}\n\nvoid solve() {\n  LL(a,\
     \ b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
     \n  test();\n  solve();\n\n  return 0;\n}\n"
@@ -231,7 +231,7 @@ data:
     \    assert(len(res) == 0);\n  }\n  {\n    vc<int> A = {1, 1, 2, 2, 3, 1, 1, 1,\
     \ 2};\n    auto res = run_length(A);\n    assert(len(res) == 5);\n    assert(res[0].fi\
     \ == 1 && res[0].se == 2);\n    assert(res[1].fi == 2 && res[1].se == 2);\n  \
-    \  assert(res[2].fi == 2 && res[2].se == 1);\n    assert(res[3].fi == 1 && res[3].se\
+    \  assert(res[2].fi == 3 && res[2].se == 1);\n    assert(res[3].fi == 1 && res[3].se\
     \ == 3);\n    assert(res[4].fi == 2 && res[4].se == 1);\n  }\n}\n\nvoid solve()\
     \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
     \n  test();\n  solve();\n\n  return 0;\n}\n"
@@ -243,8 +243,8 @@ data:
   isVerificationFile: true
   path: test/mytest/run_length.test.cpp
   requiredBy: []
-  timestamp: '2022-08-07 19:15:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-07 19:22:00+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/run_length.test.cpp
 layout: document

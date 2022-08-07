@@ -653,7 +653,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -735,7 +735,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/integer_kth_root.hpp
       title: other/integer_kth_root.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -750,7 +750,7 @@ data:
     - icon: ':warning:'
       path: other/kth_root_permutation.hpp
       title: other/kth_root_permutation.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/random.hpp
       title: other/random.hpp
     - icon: ':warning:'
@@ -973,7 +973,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/run_enumerate.hpp
       title: string/run_enumerate.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/run_length.hpp
       title: string/run_length.hpp
     - icon: ':warning:'
@@ -1571,7 +1571,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/range_freq_of_linear.test.cpp
       title: test/mytest/range_freq_of_linear.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/run_length.test.cpp
       title: test/mytest/run_length.test.cpp
   - name: test/yukicoder

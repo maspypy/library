@@ -540,7 +540,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_freq_of_linear.test.cpp
     title: test/mytest/range_freq_of_linear.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/run_length.test.cpp
     title: test/mytest/run_length.test.cpp
   - icon: ':heavy_check_mark:'
@@ -756,9 +756,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include\
@@ -977,7 +977,7 @@ data:
   path: other/io.hpp
   requiredBy: []
   timestamp: '2022-04-27 05:07:41+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL_5_C_count_surjection.test.cpp
   - test/aoj/DSL_2_I_cntsum_set_lazy.test.cpp
