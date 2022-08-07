@@ -26,6 +26,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
+  - icon: ':warning:'
+    path: test/mytest/run_length.cpp
+    title: test/mytest/run_length.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
@@ -87,6 +90,7 @@ data:
   - graph/chromatic.hpp
   - string/rollinghash.hpp
   - alg/monoid_rollinghash.hpp
+  - test/mytest/run_length.cpp
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

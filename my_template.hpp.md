@@ -5,6 +5,9 @@ data:
   - icon: ':warning:'
     path: graph/bipartite_coloring.hpp
     title: graph/bipartite_coloring.hpp
+  - icon: ':warning:'
+    path: test/mytest/run_length.cpp
+    title: test/mytest/run_length.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508_splay.test.cpp
@@ -906,6 +909,7 @@ data:
   path: my_template.hpp
   requiredBy:
   - graph/bipartite_coloring.hpp
+  - test/mytest/run_length.cpp
   timestamp: '2022-07-31 11:54:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
