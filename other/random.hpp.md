@@ -52,6 +52,9 @@ data:
     path: test/mytest/all_inverse.test.cpp
     title: test/mytest/all_inverse.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/factorial_998.test.cpp
+    title: test/mytest/factorial_998.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/mod_sum_of_linear.test.cpp
     title: test/mytest/mod_sum_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
@@ -101,6 +104,7 @@ data:
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
   - test/yukicoder/4_modular_subset_sum.test.cpp
+  - test/mytest/factorial_998.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp

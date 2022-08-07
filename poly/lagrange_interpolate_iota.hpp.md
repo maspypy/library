@@ -43,6 +43,9 @@ data:
     path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/factorial_998.test.cpp
+    title: test/mytest/factorial_998.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_p_rec.test.cpp
     title: test/yukicoder/502_p_rec.test.cpp
   _isVerificationFailed: false
@@ -385,6 +388,7 @@ data:
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/yukicoder/502_p_rec.test.cpp
+  - test/mytest/factorial_998.test.cpp
 documentation_of: poly/lagrange_interpolate_iota.hpp
 layout: document
 redirect_from:

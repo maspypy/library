@@ -25,6 +25,9 @@ data:
     path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/factorial_998.test.cpp
+    title: test/mytest/factorial_998.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036_swag.test.cpp
     title: test/yukicoder/1036_swag.test.cpp
   - icon: ':heavy_check_mark:'
@@ -79,6 +82,7 @@ data:
   - test/yukicoder/502_p_rec.test.cpp
   - test/yukicoder/1036_swag.test.cpp
   - test/yukicoder/1117_swag.test.cpp
+  - test/mytest/factorial_998.test.cpp
 documentation_of: ds/swag.hpp
 layout: document
 redirect_from:

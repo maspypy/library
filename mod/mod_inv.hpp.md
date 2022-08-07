@@ -214,6 +214,9 @@ data:
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/factorial_998.test.cpp
+    title: test/mytest/factorial_998.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1145_sum_of_powers.test.cpp
     title: test/yukicoder/1145_sum_of_powers.test.cpp
   - icon: ':heavy_check_mark:'
@@ -331,6 +334,7 @@ data:
   - test/yukicoder/1500_interpolate_linear.test.cpp
   - test/yukicoder/187_crt.test.cpp
   - test/yukicoder/1321_surj.test.cpp
+  - test/mytest/factorial_998.test.cpp
 documentation_of: mod/mod_inv.hpp
 layout: document
 redirect_from:

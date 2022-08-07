@@ -307,6 +307,9 @@ data:
     path: test/mytest/all_inverse.test.cpp
     title: test/mytest/all_inverse.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/factorial_998.test.cpp
+    title: test/mytest/factorial_998.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1141_cumsum2d.test.cpp
     title: test/yukicoder/1141_cumsum2d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -630,6 +633,7 @@ data:
   - test/yukicoder/1269_aho.test.cpp
   - test/yukicoder/1500_interpolate_linear.test.cpp
   - test/yukicoder/1321_surj.test.cpp
+  - test/mytest/factorial_998.test.cpp
   - test/mytest/all_inverse.test.cpp
 documentation_of: mod/modint.hpp
 layout: document

@@ -603,7 +603,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/factorial107.hpp
       title: mod/factorial107.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: mod/factorial998.hpp
       title: mod/factorial998.hpp
     - icon: ':heavy_check_mark:'
@@ -1565,6 +1565,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/all_inverse.test.cpp
       title: test/mytest/all_inverse.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/factorial_998.test.cpp
+      title: test/mytest/factorial_998.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/mod_sum_of_linear.test.cpp
       title: test/mytest/mod_sum_of_linear.test.cpp

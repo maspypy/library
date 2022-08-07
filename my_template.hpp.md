@@ -541,6 +541,9 @@ data:
     path: test/mytest/all_inverse.test.cpp
     title: test/mytest/all_inverse.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/factorial_998.test.cpp
+    title: test/mytest/factorial_998.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/mod_sum_of_linear.test.cpp
     title: test/mytest/mod_sum_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1160,6 +1163,7 @@ data:
   - test/yukicoder/1117_swag.test.cpp
   - test/yukicoder/1002_centroid.test.cpp
   - test/yukicoder/1718_rerooting.test.cpp
+  - test/mytest/factorial_998.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
