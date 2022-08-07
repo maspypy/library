@@ -653,7 +653,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -735,7 +735,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/integer_kth_root.hpp
       title: other/integer_kth_root.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -750,7 +750,7 @@ data:
     - icon: ':warning:'
       path: other/kth_root_permutation.hpp
       title: other/kth_root_permutation.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/random.hpp
       title: other/random.hpp
     - icon: ':warning:'
@@ -973,7 +973,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/run_enumerate.hpp
       title: string/run_enumerate.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: string/run_length.hpp
       title: string/run_length.hpp
     - icon: ':warning:'
@@ -994,11 +994,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/zalgorithm.hpp
       title: string/zalgorithm.hpp
-  - name: test/mytest
-    pages:
-    - icon: ':warning:'
-      path: test/mytest/run_length.cpp
-      title: test/mytest/run_length.cpp
   verificationCategories:
   - name: .
     pages:
@@ -1576,6 +1571,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/range_freq_of_linear.test.cpp
       title: test/mytest/range_freq_of_linear.test.cpp
+    - icon: ':x:'
+      path: test/mytest/run_length.test.cpp
+      title: test/mytest/run_length.test.cpp
   - name: test/yukicoder
     pages:
     - icon: ':heavy_check_mark:'

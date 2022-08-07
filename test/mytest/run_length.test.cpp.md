@@ -1,27 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/random.hpp
     title: other/random.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: string/run_length.hpp
     title: string/run_length.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/run_length.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
+  bundledCode: "#line 1 \"test/mytest/run_length.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
     \n#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
     \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
     \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
@@ -202,7 +204,7 @@ data:
     template <typename STRING = string, typename CHAR = char>\nvc<pair<CHAR, int>>\
     \ run_length(STRING& S) {\n  vc<pair<CHAR, int>> res;\n  for (auto&& x: S) {\n\
     \    if (res.empty() || res.back().fi != x) { res.emplace_back(x, 0); }\n    res.back().se++;\n\
-    \  }\n  return res;\n}\n#line 6 \"test/mytest/run_length.cpp\"\n\nvoid test()\
+    \  }\n  return res;\n}\n#line 6 \"test/mytest/run_length.test.cpp\"\n\nvoid test()\
     \ {\n  {\n    string A = \"aabbcaaab\";\n    auto res = run_length(A);\n    assert(len(res)\
     \ == 5);\n    assert(res[0].fi == 'a' && res[0].se == 2);\n    assert(res[1].fi\
     \ == 'b' && res[0].se == 2);\n    assert(res[2].fi == 'c' && res[0].se == 1);\n\
@@ -238,16 +240,16 @@ data:
   - other/io.hpp
   - other/random.hpp
   - string/run_length.hpp
-  isVerificationFile: false
-  path: test/mytest/run_length.cpp
+  isVerificationFile: true
+  path: test/mytest/run_length.test.cpp
   requiredBy: []
-  timestamp: '2022-08-07 18:28:47+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2022-08-07 18:40:36+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/mytest/run_length.cpp
+documentation_of: test/mytest/run_length.test.cpp
 layout: document
 redirect_from:
-- /library/test/mytest/run_length.cpp
-- /library/test/mytest/run_length.cpp.html
-title: test/mytest/run_length.cpp
+- /verify/test/mytest/run_length.test.cpp
+- /verify/test/mytest/run_length.test.cpp.html
+title: test/mytest/run_length.test.cpp
 ---

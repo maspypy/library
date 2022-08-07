@@ -1,10 +1,7 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/mytest/run_length.cpp
-    title: test/mytest/run_length.cpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508_splay.test.cpp
@@ -543,6 +540,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_freq_of_linear.test.cpp
     title: test/mytest/range_freq_of_linear.test.cpp
+  - icon: ':x:'
+    path: test/mytest/run_length.test.cpp
+    title: test/mytest/run_length.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1002_centroid.test.cpp
     title: test/yukicoder/1002_centroid.test.cpp
@@ -756,9 +756,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include\
@@ -975,10 +975,9 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: other/io.hpp
-  requiredBy:
-  - test/mytest/run_length.cpp
+  requiredBy: []
   timestamp: '2022-04-27 05:07:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DPL_5_C_count_surjection.test.cpp
   - test/aoj/DSL_2_I_cntsum_set_lazy.test.cpp
@@ -1230,6 +1229,7 @@ data:
   - test/mytest/mod_sum_of_linear.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
+  - test/mytest/run_length.test.cpp
 documentation_of: other/io.hpp
 layout: document
 redirect_from:

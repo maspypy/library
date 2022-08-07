@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/mytest/run_length.cpp
-    title: test/mytest/run_length.cpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/mytest/run_length.test.cpp
+    title: test/mytest/run_length.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/run_length.hpp\"\ntemplate <typename STRING = string,\
@@ -22,11 +22,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: string/run_length.hpp
-  requiredBy:
-  - test/mytest/run_length.cpp
+  requiredBy: []
   timestamp: '2022-07-20 17:24:59+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/mytest/run_length.test.cpp
 documentation_of: string/run_length.hpp
 layout: document
 redirect_from:

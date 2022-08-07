@@ -5,9 +5,6 @@ data:
   - icon: ':warning:'
     path: graph/bipartite_coloring.hpp
     title: graph/bipartite_coloring.hpp
-  - icon: ':warning:'
-    path: test/mytest/run_length.cpp
-    title: test/mytest/run_length.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508_splay.test.cpp
@@ -549,6 +546,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_freq_of_linear.test.cpp
     title: test/mytest/range_freq_of_linear.test.cpp
+  - icon: ':x:'
+    path: test/mytest/run_length.test.cpp
+    title: test/mytest/run_length.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1002_centroid.test.cpp
     title: test/yukicoder/1002_centroid.test.cpp
@@ -762,9 +762,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://trap.jp/post/1224/
@@ -909,9 +909,8 @@ data:
   path: my_template.hpp
   requiredBy:
   - graph/bipartite_coloring.hpp
-  - test/mytest/run_length.cpp
   timestamp: '2022-07-31 11:54:48+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DPL_5_C_count_surjection.test.cpp
   - test/aoj/DSL_2_I_cntsum_set_lazy.test.cpp
@@ -1164,6 +1163,7 @@ data:
   - test/mytest/mod_sum_of_linear.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
+  - test/mytest/run_length.test.cpp
 documentation_of: my_template.hpp
 layout: document
 redirect_from:

@@ -26,9 +26,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
-  - icon: ':warning:'
-    path: test/mytest/run_length.cpp
-    title: test/mytest/run_length.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
@@ -60,12 +57,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_freq_of_linear.test.cpp
     title: test/mytest/range_freq_of_linear.test.cpp
+  - icon: ':x:'
+    path: test/mytest/run_length.test.cpp
+    title: test/mytest/run_length.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_modular_subset_sum.test.cpp
     title: test/yukicoder/4_modular_subset_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/random.hpp\"\nstruct RandomNumberGenerator {\n  mt19937\
@@ -90,9 +90,8 @@ data:
   - graph/chromatic.hpp
   - string/rollinghash.hpp
   - alg/monoid_rollinghash.hpp
-  - test/mytest/run_length.cpp
   timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
@@ -105,6 +104,7 @@ data:
   - test/mytest/mod_sum_of_linear.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
+  - test/mytest/run_length.test.cpp
 documentation_of: other/random.hpp
 layout: document
 redirect_from:
