@@ -32,7 +32,7 @@ void test() {
     assert(len(res) == 5);
     assert(res[0].fi == 1 && res[0].se == 2);
     assert(res[1].fi == 2 && res[1].se == 2);
-    assert(res[2].fi == 2 && res[2].se == 1);
+    assert(res[2].fi == 3 && res[2].se == 1);
     assert(res[3].fi == 1 && res[3].se == 3);
     assert(res[4].fi == 2 && res[4].se == 1);
   }
