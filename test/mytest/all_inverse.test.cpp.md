@@ -1,6 +1,12 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: mod/all_inverse.hpp
+    title: mod/all_inverse.hpp
+  - icon: ':question:'
+    path: mod/modint.hpp
+    title: mod/modint.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -8,8 +14,8 @@ data:
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
-    path: other/subset_sum_count.hpp
-    title: other/subset_sum_count.hpp
+    path: other/random.hpp
+    title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -17,12 +23,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_4_B
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_4_B
-  bundledCode: "#line 1 \"test/aoj/DPL_4_B_subset_sum_count.test.cpp\"\n#define PROBLEM\
-    \ \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_4_B\"\n\
-    #line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/mytest/all_inverse.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
+    \n#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
     \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
     \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
     \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
@@ -194,59 +199,119 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"other/subset_sum_count.hpp\"\n\n/*\nO(2^{N/2})\nsubset\
-    \ sum 2^N \u901A\u308A\u306E\u3046\u3061\u3001[lo, hi) \u306B\u5165\u308B\u3082\
-    \u306E\u306E\u500B\u6570\n*/\ntemplate <typename T = ll>\nll subset_sum_count(vc<T>\
-    \ A, T lo, T hi) {\n  int n = len(A);\n  auto gen = [&](vc<T> A) -> vc<T> {\n\
-    \    vc<T> dp = {0};\n    for (auto&& a: A) {\n      vc<T> dp1(len(dp));\n   \
-    \   for (auto&& t: dp1) t += a;\n      vc<T> newdp;\n      merge(all(dp), all(dp1),\
-    \ back_inserter(newdp));\n      swap(dp, newdp);\n    }\n    return dp;\n  };\n\
-    \  vc<T> AL = {A.begin(), A.begin() + n / 2};\n  vc<T> AR = {A.begin() + n / 2,\
-    \ A.end()};\n  auto dp1 = gen(AL);\n  auto dp2 = gen(AR);\n  auto f = [&](T lim)\
-    \ -> ll {\n    int q = len(dp2);\n    ll res = 0;\n    FOR(p, len(dp1)) {\n  \
-    \    while (q && dp1[p] + dp2[q - 1] >= lim) --q;\n      res += q;\n    }\n  \
-    \  return res;\n  };\n  return f(hi) - f(lo);\n}\n\n/*\nO(2^{N/2})\nsubset sum\
-    \ 2^N \u901A\u308A\u306E\u3046\u3061\u3001[lo, hi) \u306B\u5165\u308B\u3082\u306E\
-    \u306E\u500B\u6570\u3002\n\u3092\u4F7F\u3046\u500B\u6570\u3054\u3068\u306B\u6C42\
-    \u3081\u308B\u3002\n*/\ntemplate <typename T = ll>\nvc<ll> subset_sum_count_by_size(vc<T>\
-    \ A, T lo, T hi) {\n  int n = len(A);\n  using P = pair<T, int>;\n  auto gen =\
-    \ [&](vc<T> A) -> vc<vc<T>> {\n    vc<P> dp;\n    dp.eb(0, 0);\n    for (auto&&\
-    \ a: A) {\n      vc<P> dp1 = dp;\n      for (auto&& t: dp1) t.fi += a, t.se +=\
-    \ 1;\n      vc<P> newdp;\n      merge(all(dp), all(dp1), back_inserter(newdp));\n\
-    \      swap(dp, newdp);\n    }\n    vc<vc<T>> res(len(A) + 1);\n    for (auto&&\
-    \ p: dp) res[p.se].eb(p.fi);\n    return res;\n  };\n  vc<T> AL = {A.begin(),\
-    \ A.begin() + n / 2};\n  vc<T> AR = {A.begin() + n / 2, A.end()};\n  auto dp1\
-    \ = gen(AL);\n  auto dp2 = gen(AR);\n\n  auto f = [&](T lim) -> vi {\n    vi res(n\
-    \ + 1);\n    FOR(s1, len(dp1)) FOR(s2, len(dp2)) {\n      auto& X = dp1[s1];\n\
-    \      auto& Y = dp2[s2];\n      int q = len(Y);\n      ll& cnt = res[s1 + s2];\n\
-    \      for (auto&& x: X) {\n        while (q && x + Y[q - 1] >= lim) --q;\n  \
-    \      cnt += q;\n      }\n    }\n    return res;\n  };\n  auto CNT1 = f(hi);\n\
-    \  auto CNT2 = f(lo);\n  FOR(i, len(CNT1)) CNT1[i] -= CNT2[i];\n  return CNT1;\n\
-    }\n#line 6 \"test/aoj/DPL_4_B_subset_sum_count.test.cpp\"\n\nvoid solve() {\n\
-    \  LL(N, K, L, R);\n  VEC(ll, A, N);\n  print(subset_sum_count_by_size(A, L, R\
-    \ + 1)[K]);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
+    \ { yes(!t); }\r\n#line 1 \"other/random.hpp\"\nstruct RandomNumberGenerator {\n\
+    \  mt19937 mt;\n\n  RandomNumberGenerator() : mt(chrono::steady_clock::now().time_since_epoch().count())\
+    \ {}\n\n  ll operator()(ll a, ll b) {  // [a, b)\n    uniform_int_distribution<ll>\
+    \ dist(a, b - 1);\n    return dist(mt);\n  }\n\n  ll operator()(ll b) {  // [0,\
+    \ b)\n    return (*this)(0, b);\n  }\n};\n#line 5 \"test/mytest/all_inverse.test.cpp\"\
+    \n\n#line 2 \"mod/modint.hpp\"\n\ntemplate <unsigned int mod>\nstruct modint {\n\
+    \  static constexpr bool is_modint = true;\n  unsigned int val;\n  constexpr modint(const\
+    \ long long val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val)\
+    \ % mod) % mod) {}\n  bool operator<(const modint &other) const {\n    return\
+    \ val < other.val;\n  } // To use std::map\n  modint &operator+=(const modint\
+    \ &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n  }\n\
+    \  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >= mod)\
+    \ val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n\
+    \    val = (unsigned int)(1LL * val * p.val % mod);\n    return *this;\n  }\n\
+    \  modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
+    \ *this;\n  }\n  modint operator-() const { return modint(get_mod() - val); }\n\
+    \  modint operator+(const modint &p) const { return modint(*this) += p; }\n  modint\
+    \ operator-(const modint &p) const { return modint(*this) -= p; }\n  modint operator*(const\
+    \ modint &p) const { return modint(*this) *= p; }\n  modint operator/(const modint\
+    \ &p) const { return modint(*this) /= p; }\n  bool operator==(const modint &p)\
+    \ const { return val == p.val; }\n  bool operator!=(const modint &p) const { return\
+    \ val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod, u = 1,\
+    \ v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b),\
+    \ swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
+    \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
+    \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
+    \  }\n  static constexpr unsigned int get_mod() { return mod; }\n};\n\nstruct\
+    \ ArbitraryModInt {\n  static constexpr bool is_modint = true;\n  unsigned int\
+    \ val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t y)\n      :\
+    \ val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y) % get_mod())\
+    \ % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other) const {\n  \
+    \  return val < other.val;\n  } // To use std::map<ArbitraryModInt, T>\n  static\
+    \ unsigned int &get_mod() {\n    static unsigned int mod = 0;\n    return mod;\n\
+    \  }\n  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
+    \ ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
+    \    return *this;\n  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p)\
+    \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
+    \ *this;\n  }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n   \
+    \ unsigned long long a = (unsigned long long)val * p.val;\n    unsigned xh = (unsigned)(a\
+    \ >> 32), xl = (unsigned)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"\
+    =d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n\
+    \  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n    *this *=\
+    \ p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-() const {\
+    \ return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) += p;\n  }\n\
+    \  ArbitraryModInt operator-(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
+    \ -= p;\n  }\n  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n\
+    \    return ArbitraryModInt(*this) *= p;\n  }\n  ArbitraryModInt operator/(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) /= p;\n  }\n\
+    \  bool operator==(const ArbitraryModInt &p) const { return val == p.val; }\n\
+    \  bool operator!=(const ArbitraryModInt &p) const { return val != p.val; }\n\
+    \  ArbitraryModInt inverse() const {\n    int a = val, b = get_mod(), u = 1, v\
+    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
+    \ -= t * v, v);\n    }\n    return ArbitraryModInt(u);\n  }\n  ArbitraryModInt\
+    \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
+    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
+    \  }\n    return ret;\n  }\n};\n\ntemplate <typename mint>\nmint inv(int n) {\n\
+    \  static const int mod = mint::get_mod();\n  static vector<mint> dat = {0, 1};\n\
+    \  assert(0 <= n);\n  if (n >= mod) n %= mod;\n  while (int(dat.size()) <= n)\
+    \ {\n    int k = dat.size();\n    auto q = (mod + k - 1) / k;\n    int r = k *\
+    \ q - mod;\n    dat.emplace_back(dat[r] * mint(q));\n  }\n  return dat[n];\n}\n\
+    \ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  static vector<mint> dat = {1, 1};\n  assert(0 <= n);\n  if (n >= mod) return\
+    \ 0;\n  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
+    \ - 1] * mint(k));\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint\
+    \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
+    \ dat = {1, 1};\n  assert(0 <= n && n < mod);\n  while (int(dat.size()) <= n)\
+    \ {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
+    \  }\n  return dat[n];\n}\n\ntemplate <typename mint, bool large = false>\nmint\
+    \ C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if (!large)\
+    \ return fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k,\
+    \ n - k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n\
+    \  return x;\n}\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll\
+    \ n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return\
+    \ fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint,\
+    \ 1>(n, k);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    using amint = ArbitraryModInt;\n#line 1 \"mod/all_inverse.hpp\"\ntemplate <typename\
+    \ mint>\nvc<mint> all_inverse(vc<mint>& X) {\n  for (auto&& x: X) assert(x !=\
+    \ mint(0));\n  int N = len(X);\n  vc<mint> res(N + 1);\n  res[0] = mint(1);\n\
+    \  FOR(i, N) res[i + 1] = res[i] * X[i];\n  mint t = res.back().inverse();\n \
+    \ res.pop_back();\n  FOR_R(i, N) {\n    res[i] *= t;\n    t *= X[i];\n  }\n  return\
+    \ res;\n}\n#line 8 \"test/mytest/all_inverse.test.cpp\"\n\nvoid test() {\n  using\
+    \ mint = modint998;\n  vc<int> ns = {1, 2, 3, 4, 5, 100000};\n\n  RandomNumberGenerator\
+    \ RNG;\n  for (auto&& N: ns) {\n    vc<mint> X(N);\n    FOR(i, N) { X[i] = RNG(1,\
+    \ mint::get_mod()); }\n    auto Y = all_inverse(X);\n    FOR(i, N) assert(X[i]\
+    \ * Y[i] == mint(1));\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n\
+    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\
     \n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_4_B\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"other/subset_sum_count.hpp\"\
-    \n\nvoid solve() {\n  LL(N, K, L, R);\n  VEC(ll, A, N);\n  print(subset_sum_count_by_size(A,\
-    \ L, R + 1)[K]);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"other/random.hpp\"\n\n#include \"mod/modint.hpp\"\
+    \n#include \"mod/all_inverse.hpp\"\n\nvoid test() {\n  using mint = modint998;\n\
+    \  vc<int> ns = {1, 2, 3, 4, 5, 100000};\n\n  RandomNumberGenerator RNG;\n  for\
+    \ (auto&& N: ns) {\n    vc<mint> X(N);\n    FOR(i, N) { X[i] = RNG(1, mint::get_mod());\
+    \ }\n    auto Y = all_inverse(X);\n    FOR(i, N) assert(X[i] * Y[i] == mint(1));\n\
+    \  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n\
+    \  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\n  return 0;\n\
+    }\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - other/subset_sum_count.hpp
+  - other/random.hpp
+  - mod/modint.hpp
+  - mod/all_inverse.hpp
   isVerificationFile: true
-  path: test/aoj/DPL_4_B_subset_sum_count.test.cpp
+  path: test/mytest/all_inverse.test.cpp
   requiredBy: []
-  timestamp: '2022-07-31 11:54:48+09:00'
+  timestamp: '2022-08-07 13:08:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/DPL_4_B_subset_sum_count.test.cpp
+documentation_of: test/mytest/all_inverse.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/DPL_4_B_subset_sum_count.test.cpp
-- /verify/test/aoj/DPL_4_B_subset_sum_count.test.cpp.html
-title: test/aoj/DPL_4_B_subset_sum_count.test.cpp
+- /verify/test/mytest/all_inverse.test.cpp
+- /verify/test/mytest/all_inverse.test.cpp.html
+title: test/mytest/all_inverse.test.cpp
 ---

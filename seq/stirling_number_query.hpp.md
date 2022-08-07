@@ -58,23 +58,24 @@ data:
     \ 1;\n    }\n    if (a < 0 || i < a || b > j) return 0;\n    int x = C(i, a);\n\
     \    int y = MEMO_S1[j][b];\n    int res = x * y % p;\n    if ((i + a) % 2 ==\
     \ 1 && res) { res = p - res; }\n    return res;\n  }\n\n  int S2(ll n, ll k) {\n\
-    \    if (k < 0 || k > n) return 0;\n    ll i = k / p;\n    int j = k % p;\n  \
-    \  if (n < i) return 0;\n    ll a = (n - i) / (p - 1);\n    int b = (n - i) -\
-    \ (p - 1) * a;\n    if (b == 0) {\n      b += p - 1;\n      a -= 1;\n    }\n \
-    \   if (a < 0 || j > b) return 0;\n    if (b < p - 1) { return C(a, i) * MEMO_S2[b][j]\
-    \ % p; }\n    if (j == 0) return C(a, i - 1);\n    return C(a, i) * MEMO_S2[p\
-    \ - 1][j] % p;\n  }\n\nprivate:\n  void build_C() {\n    auto& A = MEMO_C;\n \
-    \   A.resize(p);\n    A[0] = {1};\n    FOR(i, 1, p) {\n      A[i] = A[i - 1];\n\
-    \      A[i].emplace_back(0);\n      FOR(j, 1, i + 1) {\n        A[i][j] += A[i\
-    \ - 1][j - 1];\n        if (A[i][j] >= p) A[i][j] -= p;\n      }\n    }\n  }\n\
-    \n  void build_S1() {\n    auto& A = MEMO_S1;\n    A.resize(p);\n    A[0] = {1};\n\
-    \    FOR(i, 1, p) {\n      A[i].assign(i + 1, 0);\n      FOR(j, i + 1) {\n   \
-    \     if (j) A[i][j] += A[i - 1][j - 1];\n        if (j < i) A[i][j] += A[i -\
-    \ 1][j] * (p - i + 1);\n        A[i][j] %= p;\n      }\n    }\n  }\n\n  void build_S2()\
-    \ {\n    auto& A = MEMO_S2;\n    A.resize(p);\n    A[0] = {1};\n    FOR(i, 1,\
-    \ p) {\n      A[i].assign(i + 1, 0);\n      FOR(j, i + 1) {\n        if (j) A[i][j]\
-    \ += A[i - 1][j - 1];\n        if (j < i) A[i][j] += A[i - 1][j] * j;\n      \
-    \  A[i][j] %= p;\n      }\n    }\n  }\n};\n"
+    \    if (k < 0 || k > n) return 0;\n    if (n == 0) return 1;\n    ll i = k /\
+    \ p;\n    int j = k % p;\n    if (n < i) return 0;\n    ll a = (n - i) / (p -\
+    \ 1);\n    int b = (n - i) - (p - 1) * a;\n    if (b == 0) {\n      b += p - 1;\n\
+    \      a -= 1;\n    }\n    if (a < 0 || j > b) return 0;\n    if (b < p - 1) {\
+    \ return C(a, i) * MEMO_S2[b][j] % p; }\n    if (j == 0) return C(a, i - 1);\n\
+    \    return C(a, i) * MEMO_S2[p - 1][j] % p;\n  }\n\nprivate:\n  void build_C()\
+    \ {\n    auto& A = MEMO_C;\n    A.resize(p);\n    A[0] = {1};\n    FOR(i, 1, p)\
+    \ {\n      A[i] = A[i - 1];\n      A[i].emplace_back(0);\n      FOR(j, 1, i +\
+    \ 1) {\n        A[i][j] += A[i - 1][j - 1];\n        if (A[i][j] >= p) A[i][j]\
+    \ -= p;\n      }\n    }\n  }\n\n  void build_S1() {\n    auto& A = MEMO_S1;\n\
+    \    A.resize(p);\n    A[0] = {1};\n    FOR(i, 1, p) {\n      A[i].assign(i +\
+    \ 1, 0);\n      FOR(j, i + 1) {\n        if (j) A[i][j] += A[i - 1][j - 1];\n\
+    \        if (j < i) A[i][j] += A[i - 1][j] * (p - i + 1);\n        A[i][j] %=\
+    \ p;\n      }\n    }\n  }\n\n  void build_S2() {\n    auto& A = MEMO_S2;\n   \
+    \ A.resize(p);\n    A[0] = {1};\n    FOR(i, 1, p) {\n      A[i].assign(i + 1,\
+    \ 0);\n      FOR(j, i + 1) {\n        if (j) A[i][j] += A[i - 1][j - 1];\n   \
+    \     if (j < i) A[i][j] += A[i - 1][j] * j;\n        A[i][j] %= p;\n      }\n\
+    \    }\n  }\n};\n"
   code: "#include \"nt/primetest.hpp\"\n\n// O(p^2) \u6642\u9593\u306E\u524D\u8A08\
     \u7B97\u306E\u3082\u3068\u3001O(log n) \u6642\u9593\nstruct Stirling_Number_Query\
     \ {\n  const int p;\n  vvc<int> MEMO_C;\n  vvc<int> MEMO_S1;\n  vvc<int> MEMO_S2;\n\
@@ -90,29 +91,30 @@ data:
     \ (p - 1);\n      a -= 1;\n    }\n    if (a < 0 || i < a || b > j) return 0;\n\
     \    int x = C(i, a);\n    int y = MEMO_S1[j][b];\n    int res = x * y % p;\n\
     \    if ((i + a) % 2 == 1 && res) { res = p - res; }\n    return res;\n  }\n\n\
-    \  int S2(ll n, ll k) {\n    if (k < 0 || k > n) return 0;\n    ll i = k / p;\n\
-    \    int j = k % p;\n    if (n < i) return 0;\n    ll a = (n - i) / (p - 1);\n\
-    \    int b = (n - i) - (p - 1) * a;\n    if (b == 0) {\n      b += p - 1;\n  \
-    \    a -= 1;\n    }\n    if (a < 0 || j > b) return 0;\n    if (b < p - 1) { return\
-    \ C(a, i) * MEMO_S2[b][j] % p; }\n    if (j == 0) return C(a, i - 1);\n    return\
-    \ C(a, i) * MEMO_S2[p - 1][j] % p;\n  }\n\nprivate:\n  void build_C() {\n    auto&\
-    \ A = MEMO_C;\n    A.resize(p);\n    A[0] = {1};\n    FOR(i, 1, p) {\n      A[i]\
-    \ = A[i - 1];\n      A[i].emplace_back(0);\n      FOR(j, 1, i + 1) {\n       \
-    \ A[i][j] += A[i - 1][j - 1];\n        if (A[i][j] >= p) A[i][j] -= p;\n     \
-    \ }\n    }\n  }\n\n  void build_S1() {\n    auto& A = MEMO_S1;\n    A.resize(p);\n\
-    \    A[0] = {1};\n    FOR(i, 1, p) {\n      A[i].assign(i + 1, 0);\n      FOR(j,\
-    \ i + 1) {\n        if (j) A[i][j] += A[i - 1][j - 1];\n        if (j < i) A[i][j]\
-    \ += A[i - 1][j] * (p - i + 1);\n        A[i][j] %= p;\n      }\n    }\n  }\n\n\
-    \  void build_S2() {\n    auto& A = MEMO_S2;\n    A.resize(p);\n    A[0] = {1};\n\
-    \    FOR(i, 1, p) {\n      A[i].assign(i + 1, 0);\n      FOR(j, i + 1) {\n   \
-    \     if (j) A[i][j] += A[i - 1][j - 1];\n        if (j < i) A[i][j] += A[i -\
-    \ 1][j] * j;\n        A[i][j] %= p;\n      }\n    }\n  }\n};"
+    \  int S2(ll n, ll k) {\n    if (k < 0 || k > n) return 0;\n    if (n == 0) return\
+    \ 1;\n    ll i = k / p;\n    int j = k % p;\n    if (n < i) return 0;\n    ll\
+    \ a = (n - i) / (p - 1);\n    int b = (n - i) - (p - 1) * a;\n    if (b == 0)\
+    \ {\n      b += p - 1;\n      a -= 1;\n    }\n    if (a < 0 || j > b) return 0;\n\
+    \    if (b < p - 1) { return C(a, i) * MEMO_S2[b][j] % p; }\n    if (j == 0) return\
+    \ C(a, i - 1);\n    return C(a, i) * MEMO_S2[p - 1][j] % p;\n  }\n\nprivate:\n\
+    \  void build_C() {\n    auto& A = MEMO_C;\n    A.resize(p);\n    A[0] = {1};\n\
+    \    FOR(i, 1, p) {\n      A[i] = A[i - 1];\n      A[i].emplace_back(0);\n   \
+    \   FOR(j, 1, i + 1) {\n        A[i][j] += A[i - 1][j - 1];\n        if (A[i][j]\
+    \ >= p) A[i][j] -= p;\n      }\n    }\n  }\n\n  void build_S1() {\n    auto& A\
+    \ = MEMO_S1;\n    A.resize(p);\n    A[0] = {1};\n    FOR(i, 1, p) {\n      A[i].assign(i\
+    \ + 1, 0);\n      FOR(j, i + 1) {\n        if (j) A[i][j] += A[i - 1][j - 1];\n\
+    \        if (j < i) A[i][j] += A[i - 1][j] * (p - i + 1);\n        A[i][j] %=\
+    \ p;\n      }\n    }\n  }\n\n  void build_S2() {\n    auto& A = MEMO_S2;\n   \
+    \ A.resize(p);\n    A[0] = {1};\n    FOR(i, 1, p) {\n      A[i].assign(i + 1,\
+    \ 0);\n      FOR(j, i + 1) {\n        if (j) A[i][j] += A[i - 1][j - 1];\n   \
+    \     if (j < i) A[i][j] += A[i - 1][j] * j;\n        A[i][j] %= p;\n      }\n\
+    \    }\n  }\n};"
   dependsOn:
   - nt/primetest.hpp
   isVerificationFile: false
   path: seq/stirling_number_query.hpp
   requiredBy: []
-  timestamp: '2022-07-31 12:36:23+09:00'
+  timestamp: '2022-08-07 13:09:47+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: seq/stirling_number_query.hpp
