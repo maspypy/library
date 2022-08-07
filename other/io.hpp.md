@@ -241,6 +241,12 @@ data:
     path: test/library_checker/datastructure/set_xor_min.test.cpp
     title: test/library_checker/datastructure/set_xor_min.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/sort_segtree.test.cpp
+    title: test/library_checker/datastructure/sort_segtree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/sort_segtree_1.test.cpp
+    title: test/library_checker/datastructure/sort_segtree_1.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_sum.test.cpp
     title: test/library_checker/datastructure/static_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1093,6 +1099,7 @@ data:
   - test/library_checker/datastructure/predecessor_problem.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   - test/library_checker/datastructure/staticrmq_seg.test.cpp
+  - test/library_checker/datastructure/sort_segtree.test.cpp
   - test/library_checker/datastructure/segment_add_get_min.test.cpp
   - test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
@@ -1109,6 +1116,7 @@ data:
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/library_checker/datastructure/staticrmq_sparse.test.cpp
   - test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
+  - test/library_checker/datastructure/sort_segtree_1.test.cpp
   - test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/associative_array.test.cpp

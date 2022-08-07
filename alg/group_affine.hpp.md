@@ -25,6 +25,12 @@ data:
     path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
     title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/sort_segtree.test.cpp
+    title: test/library_checker/datastructure/sort_segtree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/sort_segtree_1.test.cpp
+    title: test/library_checker/datastructure/sort_segtree_1.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   - icon: ':heavy_check_mark:'
@@ -66,11 +72,13 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
+  - test/library_checker/datastructure/sort_segtree.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - test/library_checker/datastructure/queue_operate_all_composite.test.cpp
   - test/library_checker/datastructure/range_affine_point_add.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - test/library_checker/datastructure/sort_segtree_1.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - test/yukicoder/1891_xor_sparse.test.cpp

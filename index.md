@@ -325,6 +325,9 @@ data:
       path: ds/slope.hpp
       title: ds/slope.hpp
     - icon: ':heavy_check_mark:'
+      path: ds/sortable_segtree.hpp
+      title: ds/sortable_segtree.hpp
+    - icon: ':heavy_check_mark:'
       path: ds/swag.hpp
       title: ds/swag.hpp
     - icon: ':heavy_check_mark:'
@@ -1248,6 +1251,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/set_xor_min.test.cpp
       title: test/library_checker/datastructure/set_xor_min.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/datastructure/sort_segtree.test.cpp
+      title: test/library_checker/datastructure/sort_segtree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/datastructure/sort_segtree_1.test.cpp
+      title: test/library_checker/datastructure/sort_segtree_1.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/static_range_sum.test.cpp
       title: test/library_checker/datastructure/static_range_sum.test.cpp

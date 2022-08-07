@@ -5,6 +5,9 @@ data:
   - icon: ':warning:'
     path: ds/range_mex_query.hpp
     title: ds/range_mex_query.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/sortable_segtree.hpp
+    title: ds/sortable_segtree.hpp
   - icon: ':warning:'
     path: ds/uniqueproductquery.hpp
     title: ds/uniqueproductquery.hpp
@@ -27,6 +30,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
     title: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/sort_segtree.test.cpp
+    title: test/library_checker/datastructure/sort_segtree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/sort_segtree_1.test.cpp
+    title: test/library_checker/datastructure/sort_segtree_1.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticrmq_seg.test.cpp
     title: test/library_checker/datastructure/staticrmq_seg.test.cpp
@@ -150,6 +159,7 @@ data:
   isVerificationFile: false
   path: ds/segtree.hpp
   requiredBy:
+  - ds/sortable_segtree.hpp
   - ds/uniqueproductquery.hpp
   - ds/range_mex_query.hpp
   - graph/treemonoid.hpp
@@ -165,7 +175,9 @@ data:
   - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/staticrmq_seg.test.cpp
+  - test/library_checker/datastructure/sort_segtree.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+  - test/library_checker/datastructure/sort_segtree_1.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/yukicoder/1036_seg_maxright_minleft.test.cpp
   - test/yukicoder/529_two_edge.test.cpp
