@@ -8,11 +8,9 @@ vc<mint> stirling_number_1_2d(int nmax, int kmax) {
   for (int i = 1; i <= nmax; ++i) {
     for (int j = 0; j < i + 1; ++j) {
       if (j > kmax) break;
-      int &x = A[i][j];
+      mint &x = A[i][j];
       if (j) x += A[i - 1][j - 1];
-      x -= A[i - 1][j] * (i - 1);
-      x %= p;
-      if (x < 0) x += p;
+      x -= A[i - 1][j] * mint(i - 1);
     }
   }
 }
