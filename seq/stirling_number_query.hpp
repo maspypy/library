@@ -50,6 +50,7 @@ struct Stirling_Number_Query {
 
   int S2(ll n, ll k) {
     if (k < 0 || k > n) return 0;
+    if (n == 0) return 1;
     ll i = k / p;
     int j = k % p;
     if (n < i) return 0;
