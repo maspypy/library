@@ -126,6 +126,7 @@
 "test/library_checker/math/partition.test.cpp": "2022-07-31 11:54:48 +0900",
 "test/library_checker/math/sharp_p_subset_sum.test.cpp": "2022-07-31 11:54:48 +0900",
 "test/library_checker/math/sqrt_mod.test.cpp": "2022-07-31 11:54:48 +0900",
+"test/library_checker/math/stirling_number_of_the_first_kind.test.cpp": "2022-08-07 13:48:35 +0900",
 "test/library_checker/math/stirling_number_of_the_second_kind.test.cpp": "2022-08-07 13:09:38 +0900",
 "test/library_checker/math/sum_of_exp_times_poly.test.cpp": "2022-07-31 11:54:48 +0900",
 "test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp": "2022-07-31 11:54:48 +0900",
