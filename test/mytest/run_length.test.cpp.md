@@ -207,32 +207,32 @@ data:
     \  }\n  return res;\n}\n#line 6 \"test/mytest/run_length.test.cpp\"\n\nvoid test()\
     \ {\n  {\n    string A = \"aabbcaaab\";\n    auto res = run_length(A);\n    assert(len(res)\
     \ == 5);\n    assert(res[0].fi == 'a' && res[0].se == 2);\n    assert(res[1].fi\
-    \ == 'b' && res[0].se == 2);\n    assert(res[2].fi == 'c' && res[0].se == 1);\n\
-    \    assert(res[3].fi == 'a' && res[0].se == 3);\n    assert(res[4].fi == 'b'\
-    \ && res[0].se == 1);\n  }\n  {\n    string A = \"aaaaaa\";\n    auto res = run_length(A);\n\
+    \ == 'b' && res[1].se == 2);\n    assert(res[2].fi == 'c' && res[2].se == 1);\n\
+    \    assert(res[3].fi == 'a' && res[3].se == 3);\n    assert(res[4].fi == 'b'\
+    \ && res[4].se == 1);\n  }\n  {\n    string A = \"aaaaaa\";\n    auto res = run_length(A);\n\
     \    assert(len(res) == 1);\n    assert(res[0].fi == 'a' && res[0].se == 6);\n\
     \  }\n  {\n    string A = \"\";\n    auto res = run_length(A);\n    assert(len(res)\
     \ == 0);\n  }\n  {\n    vc<int> A = {1, 1, 2, 2, 3, 1, 1, 1, 2};\n    auto res\
     \ = run_length(A);\n    assert(len(res) == 5);\n    assert(res[0].fi == 1 && res[0].se\
-    \ == 2);\n    assert(res[1].fi == 2 && res[0].se == 2);\n    assert(res[2].fi\
-    \ == 2 && res[0].se == 1);\n    assert(res[3].fi == 1 && res[0].se == 3);\n  \
-    \  assert(res[4].fi == 2 && res[0].se == 1);\n  }\n}\n\nvoid solve() {\n  LL(a,\
+    \ == 2);\n    assert(res[1].fi == 2 && res[1].se == 2);\n    assert(res[2].fi\
+    \ == 2 && res[2].se == 1);\n    assert(res[3].fi == 1 && res[3].se == 3);\n  \
+    \  assert(res[4].fi == 2 && res[4].se == 1);\n  }\n}\n\nvoid solve() {\n  LL(a,\
     \ b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
     \n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"other/random.hpp\"\n#include \"string/run_length.hpp\"\
     \n\nvoid test() {\n  {\n    string A = \"aabbcaaab\";\n    auto res = run_length(A);\n\
     \    assert(len(res) == 5);\n    assert(res[0].fi == 'a' && res[0].se == 2);\n\
-    \    assert(res[1].fi == 'b' && res[0].se == 2);\n    assert(res[2].fi == 'c'\
-    \ && res[0].se == 1);\n    assert(res[3].fi == 'a' && res[0].se == 3);\n    assert(res[4].fi\
-    \ == 'b' && res[0].se == 1);\n  }\n  {\n    string A = \"aaaaaa\";\n    auto res\
+    \    assert(res[1].fi == 'b' && res[1].se == 2);\n    assert(res[2].fi == 'c'\
+    \ && res[2].se == 1);\n    assert(res[3].fi == 'a' && res[3].se == 3);\n    assert(res[4].fi\
+    \ == 'b' && res[4].se == 1);\n  }\n  {\n    string A = \"aaaaaa\";\n    auto res\
     \ = run_length(A);\n    assert(len(res) == 1);\n    assert(res[0].fi == 'a' &&\
     \ res[0].se == 6);\n  }\n  {\n    string A = \"\";\n    auto res = run_length(A);\n\
     \    assert(len(res) == 0);\n  }\n  {\n    vc<int> A = {1, 1, 2, 2, 3, 1, 1, 1,\
     \ 2};\n    auto res = run_length(A);\n    assert(len(res) == 5);\n    assert(res[0].fi\
-    \ == 1 && res[0].se == 2);\n    assert(res[1].fi == 2 && res[0].se == 2);\n  \
-    \  assert(res[2].fi == 2 && res[0].se == 1);\n    assert(res[3].fi == 1 && res[0].se\
-    \ == 3);\n    assert(res[4].fi == 2 && res[0].se == 1);\n  }\n}\n\nvoid solve()\
+    \ == 1 && res[0].se == 2);\n    assert(res[1].fi == 2 && res[1].se == 2);\n  \
+    \  assert(res[2].fi == 2 && res[2].se == 1);\n    assert(res[3].fi == 1 && res[3].se\
+    \ == 3);\n    assert(res[4].fi == 2 && res[4].se == 1);\n  }\n}\n\nvoid solve()\
     \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
     \n  test();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
@@ -243,7 +243,7 @@ data:
   isVerificationFile: true
   path: test/mytest/run_length.test.cpp
   requiredBy: []
-  timestamp: '2022-08-07 18:40:36+09:00'
+  timestamp: '2022-08-07 19:15:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/run_length.test.cpp
