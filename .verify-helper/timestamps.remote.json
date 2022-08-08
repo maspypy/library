@@ -100,6 +100,7 @@
 "test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp": "2022-07-31 11:54:48 +0900",
 "test/library_checker/geometry/convex_layers.test.cpp": "2022-07-31 11:54:48 +0900",
 "test/library_checker/geometry/sort_points_by_argument.test.cpp": "2022-07-31 11:54:48 +0900",
+"test/library_checker/graph/assignment.test.cpp": "2022-08-08 10:28:28 +0900",
 "test/library_checker/graph/assignment_mcf.test.cpp": "2022-07-31 11:54:48 +0900",
 "test/library_checker/graph/biconnected_component.test.cpp": "2022-07-31 11:54:48 +0900",
 "test/library_checker/graph/bipartitematching.test.cpp": "2022-07-31 11:54:48 +0900",
