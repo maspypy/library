@@ -356,6 +356,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: flow/bipartite.hpp
       title: flow/bipartite.hpp
+    - icon: ':heavy_check_mark:'
+      path: flow/hungarian.hpp
+      title: flow/hungarian.hpp
     - icon: ':warning:'
       path: flow/incremental_maxflow.hpp
       title: flow/incremental_maxflow.hpp
@@ -1317,6 +1320,9 @@ data:
       title: test/library_checker/geometry/sort_points_by_argument.test.cpp
   - name: test/library_checker/graph
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/graph/assignment.test.cpp
+      title: test/library_checker/graph/assignment.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/assignment_mcf.test.cpp
       title: test/library_checker/graph/assignment_mcf.test.cpp

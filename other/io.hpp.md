@@ -298,6 +298,9 @@ data:
     path: test/library_checker/geometry/sort_points_by_argument.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/assignment.test.cpp
+    title: test/library_checker/graph/assignment.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/assignment_mcf.test.cpp
     title: test/library_checker/graph/assignment_mcf.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1066,6 +1069,7 @@ data:
   - test/library_checker/convolution/bitwise_xor_convolution.test.cpp
   - test/library_checker/convolution/convolution_mod_107.test.cpp
   - test/library_checker/graph/biconnected_component.test.cpp
+  - test/library_checker/graph/assignment.test.cpp
   - test/library_checker/graph/assignment_mcf.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
