@@ -22,6 +22,17 @@ struct LazySegTree {
     FOR3_R(i, 1, size) update(i);
   }
 
+  template <typename F>
+  LazySegTree(int n, F f) : n(n) {
+    log = 1;
+    while ((1 << log) < n) ++log;
+    size = 1 << log;
+    dat.assign(size << 1, Monoid_X::unit());
+    laz.assign(size, Monoid_A::unit());
+    FOR(i, n) dat[size + i] = f(i);
+    FOR3_R(i, 1, size) update(i);
+  }
+
   void reset() {
     fill(all(dat), Monoid_X::unit());
     fill(all(laz), Monoid_A::unit());

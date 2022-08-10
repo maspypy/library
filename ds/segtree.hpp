@@ -18,6 +18,16 @@ struct SegTree {
     for (int i = size - 1; i >= 1; --i) update(i);
   }
 
+  template <typename F>
+  SegTree(int n, F f) : n(n) {
+    log = 1;
+    while ((1 << log) < n) ++log;
+    size = 1 << log;
+    dat.assign(size << 1, Monoid::unit());
+    for (int i = 0; i < n; ++i) dat[size + i] = f(i);
+    for (int i = size - 1; i >= 1; --i) update(i);
+  }
+
   void reset() { fill(all(dat), Monoid::unit()); }
 
   void set_all(const vector<X>& v) {
