@@ -1,43 +1,43 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_mul.hpp
     title: alg/group_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/swag.hpp
     title: ds/swag.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':heavy_check_mark:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':heavy_check_mark:'
@@ -499,8 +499,8 @@ data:
     \  Input: f(0), ..., f(n-1) and c, m (1 default)\r\n  Return: f(c), f(c+1), ...,\
     \ f(c+m-1)\r\n  Complexity: M(n, n + m)\r\n  \u2192 m \u304C\u3068\u3066\u3082\
     \u5C0F\u3055\u3044\u306A\u3089\u3070 O(n) \u3092 m \u56DE\u3084\u308B\u65B9\u304C\
-    \u901F\u3044\u306E\u304B\r\n  */\r\n  if(m <= 60){\r\n    vc<mint> ANS(m);\r\n\
-    \    FOR(i, m) ANS[i] = lagrange_interpolate_iota(f, c + mint(i));\r\n    return\
+    \u901F\u3044\u306E\u304B\r\n  */\r\n  if (m <= 60) {\r\n    vc<mint> ANS(m);\r\
+    \n    FOR(i, m) ANS[i] = lagrange_interpolate_iota(f, c + mint(i));\r\n    return\
     \ ANS;\r\n  }\r\n  ll n = len(f);\r\n  auto a = f;\r\n  FOR(i, n) {\r\n    a[i]\
     \ = a[i] * fact_inv<mint>(i) * fact_inv<mint>(n - 1 - i);\r\n    if ((n - 1 -\
     \ i) & 1) a[i] = -a[i];\r\n  }\r\n  // x = c, c+1, ... \u306B\u5BFE\u3057\u3066\
@@ -513,29 +513,30 @@ data:
     \n    } else {\r\n      ANS[i] = a[i + n - 1] * coef;\r\n    }\r\n  }\r\n  return\
     \ ANS;\r\n}\r\n\r\ntemplate <typename mint>\r\nmint lagrange_interpolate_iota(vc<mint>\
     \ &f, mint c) {\r\n  /*\r\n  Input: f(0), ..., f(n-1) and c\r\n  Return: f(c)\r\
-    \n  Complexity: O(n)\r\n  */\r\n  int n = len(f);\r\n  if(c.val < n) return f[c.val];\r\
-    \n  auto a = f;\r\n  FOR(i, n) {\r\n    a[i] = a[i] * fact_inv<mint>(i) * fact_inv<mint>(n\
-    \ - 1 - i);\r\n    if ((n - 1 - i) & 1) a[i] = -a[i];\r\n  }\r\n  vc<mint> lp(n+1),\
-    \ rp(n+1);\r\n  lp[0] = rp[n] = 1;\r\n  FOR(i, n) lp[i+1] = lp[i] * (c - i);\r\
-    \n  FOR_R(i, n) rp[i] = rp[i+1] * (c - i);\r\n  mint ANS = 0;\r\n  FOR(i, n) ANS\
-    \ += a[i] * lp[i] * rp[i + 1];\r\n  return ANS;\r\n}\r\n#line 1 \"seq/interpolate_poly_exp.hpp\"\
-    \ntemplate <typename mint>\r\nmint interpolate_poly_exp(vc<mint> a, mint r, ll\
-    \ n) {\r\n  // a[i] = r^i * (polynomial of i) \u3068\u306A\u3063\u3066\u3044\u308B\
-    \u5834\u5408\u306E\u88DC\u9593\r\n  if (r == 0) return (n == 0 ? a[0] : 0);\r\n\
-    \  mint inv_r = mint(1) / r;\r\n  mint p = 1;\r\n  for (auto&& x: a) {\r\n   \
-    \ x *= p;\r\n    p *= inv_r;\r\n  }\r\n  return lagrange_interpolate_iota(a, mint(n))\
-    \ * r.pow(n);\r\n}\r\n#line 3 \"seq/interpolate_poly_exp_sum.hpp\"\n\r\ntemplate\
-    \ <typename mint>\r\nmint interpolate_poly_exp_sum(vc<mint> a, mint r, ll n) {\r\
-    \n  /*\r\n  a[i] = (prefix sum of r^i * (polynomial of i)) \u3068\u306A\u3063\u3066\
-    \u3044\u308B\u5834\u5408\u306E\u88DC\u9593\r\n  fps \u3067\u306F (1-rx)^d(1-x)\
-    \ \u306E\u5F62\u306E\u5206\u6BCD\u3092\u6301\u3064\u5834\u5408\u3068\u3044\u3046\
-    \u3053\u3068\u306B\u306A\u308B\r\n  f(x) = g(x) / (1-rx)^d + c / (1-x) \u3068\u3057\
-    \u3066\u3001c \u304C\u77E5\u308A\u305F\u3044\r\n  (1-rx)^d \u3092\u304B\u3051\u3066\
-    \u3001d \u6B21\u306E\u4FC2\u6570\u3092\u3068\u308C\u3070\u3001c \u304C\u624B\u306B\
-    \u5165\u308B\r\n  */\r\n  if (r == mint(1)) return lagrange_interpolate_iota(a,\
-    \ mint(n));\r\n  mint c = 0;\r\n  int d = len(a) - 1;\r\n  mint p = 1;\r\n  FOR(i,\
-    \ d + 1) {\r\n    c += a[d - i] * p * C<mint>(d, i);\r\n    p *= -r;\r\n  }\r\n\
-    \  c /= (mint(1) - r).pow(d);\r\n  for (auto&& x: a) x -= c;\r\n  return interpolate_poly_exp(a,\
+    \n  Complexity: O(n)\r\n  */\r\n  int n = len(f);\r\n  if (int(c.val) < n) return\
+    \ f[c.val];\r\n  auto a = f;\r\n  FOR(i, n) {\r\n    a[i] = a[i] * fact_inv<mint>(i)\
+    \ * fact_inv<mint>(n - 1 - i);\r\n    if ((n - 1 - i) & 1) a[i] = -a[i];\r\n \
+    \ }\r\n  vc<mint> lp(n + 1), rp(n + 1);\r\n  lp[0] = rp[n] = 1;\r\n  FOR(i, n)\
+    \ lp[i + 1] = lp[i] * (c - i);\r\n  FOR_R(i, n) rp[i] = rp[i + 1] * (c - i);\r\
+    \n  mint ANS = 0;\r\n  FOR(i, n) ANS += a[i] * lp[i] * rp[i + 1];\r\n  return\
+    \ ANS;\r\n}\r\n#line 1 \"seq/interpolate_poly_exp.hpp\"\ntemplate <typename mint>\r\
+    \nmint interpolate_poly_exp(vc<mint> a, mint r, ll n) {\r\n  // a[i] = r^i * (polynomial\
+    \ of i) \u3068\u306A\u3063\u3066\u3044\u308B\u5834\u5408\u306E\u88DC\u9593\r\n\
+    \  if (r == 0) return (n == 0 ? a[0] : 0);\r\n  mint inv_r = mint(1) / r;\r\n\
+    \  mint p = 1;\r\n  for (auto&& x: a) {\r\n    x *= p;\r\n    p *= inv_r;\r\n\
+    \  }\r\n  return lagrange_interpolate_iota(a, mint(n)) * r.pow(n);\r\n}\r\n#line\
+    \ 3 \"seq/interpolate_poly_exp_sum.hpp\"\n\r\ntemplate <typename mint>\r\nmint\
+    \ interpolate_poly_exp_sum(vc<mint> a, mint r, ll n) {\r\n  /*\r\n  a[i] = (prefix\
+    \ sum of r^i * (polynomial of i)) \u3068\u306A\u3063\u3066\u3044\u308B\u5834\u5408\
+    \u306E\u88DC\u9593\r\n  fps \u3067\u306F (1-rx)^d(1-x) \u306E\u5F62\u306E\u5206\
+    \u6BCD\u3092\u6301\u3064\u5834\u5408\u3068\u3044\u3046\u3053\u3068\u306B\u306A\
+    \u308B\r\n  f(x) = g(x) / (1-rx)^d + c / (1-x) \u3068\u3057\u3066\u3001c \u304C\
+    \u77E5\u308A\u305F\u3044\r\n  (1-rx)^d \u3092\u304B\u3051\u3066\u3001d \u6B21\u306E\
+    \u4FC2\u6570\u3092\u3068\u308C\u3070\u3001c \u304C\u624B\u306B\u5165\u308B\r\n\
+    \  */\r\n  if (r == mint(1)) return lagrange_interpolate_iota(a, mint(n));\r\n\
+    \  mint c = 0;\r\n  int d = len(a) - 1;\r\n  mint p = 1;\r\n  FOR(i, d + 1) {\r\
+    \n    c += a[d - i] * p * C<mint>(d, i);\r\n    p *= -r;\r\n  }\r\n  c /= (mint(1)\
+    \ - r).pow(d);\r\n  for (auto&& x: a) x -= c;\r\n  return interpolate_poly_exp(a,\
     \ r, n) + c;\r\n}\r\n#line 2 \"nt/primetable.hpp\"\nvc<ll> primetable(int LIM)\
     \ {\n  ++LIM;\n  const int S = 32768;\n  static int done = 2;\n  static vc<ll>\
     \ primes = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes\
@@ -590,7 +591,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
   requiredBy: []
-  timestamp: '2022-07-31 11:54:48+09:00'
+  timestamp: '2022-08-11 02:11:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/sum_of_exp_times_poly.test.cpp

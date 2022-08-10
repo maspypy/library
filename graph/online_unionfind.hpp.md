@@ -1,37 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1170_online_uf.test.cpp
     title: test/yukicoder/1170_online_uf.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/unionfind.hpp\"\n\nstruct UnionFind {\n  int n;\n  int\
-    \ comp;\n  std::vector<int> size, par;\n  UnionFind(int n) : n(n), comp(n), size(n,\
-    \ 1), par(n) {\n    std::iota(par.begin(), par.end(), 0);\n  }\n  int find(int\
-    \ x) {\n    assert(0 <= x && x < n);\n    while (par[x] != x) {\n      par[x]\
-    \ = par[par[x]];\n      x = par[x];\n    }\n    return x;\n  }\n\n  int operator[](int\
-    \ x) { return find(x); }\n\n  bool merge(int x, int y) {\n    x = find(x);\n \
-    \   y = find(y);\n    if (x == y) { return false; }\n    comp--;\n    if (size[x]\
-    \ < size[y]) std::swap(x, y);\n    size[x] += size[y];\n    size[y] = 0;\n   \
-    \ par[y] = x;\n    return true;\n  }\n\n  std::vector<int> find_all() {\n    std::vector<int>\
-    \ A(n);\n    for (int i = 0; i < n; ++i) A[i] = find(i);\n    return A;\n  }\n\
-    \n  void reset() {\n    comp = n;\n    size.assign(n, 1);\n    std::iota(par.begin(),\
-    \ par.end(), 0);\n  }\n};\n#line 2 \"graph/online_unionfind.hpp\"\n\n// \u9802\
-    \u70B9\u3092\u524A\u9664\u3057\u306A\u304C\u3089\u3001\u9069\u5F53\u306A\u30C7\
-    \u30FC\u30BF\u69CB\u9020\u306B\u3088\u308A\u6B21\u306E\u8FBA\u3092\u63A2\u3059\
-    \u3002\n// \u4E2D\u8EAB\u306F\u305F\u3060\u306E bfs \u3057\u3066\u3044\u308B\u306E\
-    \u3067\u300101 \u6700\u77ED\u8DEF\u306B\u3082\u6D41\u7528\u53EF\u80FD\ntemplate\
-    \ <typename F1, typename F2>\nUnionFind online_unionfind(int N, F1 set_used, F2\
-    \ find_unused) {\n  UnionFind uf(N);\n  vc<bool> done(N);\n  deque<int> que;\n\
+    \ n_comp;\n  std::vector<int> size, par;\n  UnionFind(int n) : n(n), n_comp(n),\
+    \ size(n, 1), par(n) {\n    std::iota(par.begin(), par.end(), 0);\n  }\n  int\
+    \ find(int x) {\n    assert(0 <= x && x < n);\n    while (par[x] != x) {\n   \
+    \   par[x] = par[par[x]];\n      x = par[x];\n    }\n    return x;\n  }\n\n  int\
+    \ operator[](int x) { return find(x); }\n\n  bool merge(int x, int y) {\n    x\
+    \ = find(x);\n    y = find(y);\n    if (x == y) { return false; }\n    n_comp--;\n\
+    \    if (size[x] < size[y]) std::swap(x, y);\n    size[x] += size[y];\n    size[y]\
+    \ = 0;\n    par[y] = x;\n    return true;\n  }\n\n  std::vector<int> find_all()\
+    \ {\n    std::vector<int> A(n);\n    for (int i = 0; i < n; ++i) A[i] = find(i);\n\
+    \    return A;\n  }\n\n  void reset() {\n    n_comp = n;\n    size.assign(n, 1);\n\
+    \    std::iota(par.begin(), par.end(), 0);\n  }\n};\n#line 2 \"graph/online_unionfind.hpp\"\
+    \n\n// \u9802\u70B9\u3092\u524A\u9664\u3057\u306A\u304C\u3089\u3001\u9069\u5F53\
+    \u306A\u30C7\u30FC\u30BF\u69CB\u9020\u306B\u3088\u308A\u6B21\u306E\u8FBA\u3092\
+    \u63A2\u3059\u3002\n// \u4E2D\u8EAB\u306F\u305F\u3060\u306E bfs \u3057\u3066\u3044\
+    \u308B\u306E\u3067\u300101 \u6700\u77ED\u8DEF\u306B\u3082\u6D41\u7528\u53EF\u80FD\
+    \ntemplate <typename F1, typename F2>\nUnionFind online_unionfind(int N, F1 set_used,\
+    \ F2 find_unused) {\n  UnionFind uf(N);\n  vc<bool> done(N);\n  deque<int> que;\n\
     \  FOR(v, N) if (!done[v]) {\n    que.eb(v);\n    done[v] = 1;\n    set_used(v);\n\
     \    while (!que.empty()) {\n      int x = que.front();\n      que.pop_front();\n\
     \      set_used(x);\n      done[x] = 1;\n      while (1) {\n        int to = find_unused(x);\n\
@@ -55,8 +55,8 @@ data:
   isVerificationFile: false
   path: graph/online_unionfind.hpp
   requiredBy: []
-  timestamp: '2022-07-20 17:18:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-08-11 02:13:18+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1170_online_uf.test.cpp
 documentation_of: graph/online_unionfind.hpp

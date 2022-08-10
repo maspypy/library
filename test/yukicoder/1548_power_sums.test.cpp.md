@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/group_power_sums.hpp
     title: alg/group_power_sums.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/lazy_powersums_set.hpp
     title: alg/lazy_powersums_set.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid_set.hpp
     title: alg/monoid_set.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1548
@@ -285,91 +285,95 @@ data:
     \ Monoid_X::unit())) {}\n  LazySegTree(vc<X> v) : n(len(v)) {\n    log = 1;\n\
     \    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
     \ << 1, Monoid_X::unit());\n    laz.assign(size, Monoid_A::unit());\n    FOR(i,\
-    \ n) dat[size + i] = v[i];\n    FOR3_R(i, 1, size) update(i);\n  }\n\n  void reset()\
-    \ {\n    fill(all(dat), Monoid_X::unit());\n    fill(all(laz), Monoid_A::unit());\n\
-    \  }\n\n  void reset(const vc<X>& v) {\n    assert(len(v) == n);\n    reset();\n\
-    \    FOR(i, n) dat[size + i] = v[i];\n    FOR3_R(i, 1, size) update(i);\n  }\n\
-    \n  void update(int k) { dat[k] = Monoid_X::op(dat[2 * k], dat[2 * k + 1]); }\n\
-    \n  void all_apply(int k, A a) {\n    dat[k] = Lazy::act(dat[k], a);\n    if (k\
-    \ < size) laz[k] = Monoid_A::op(laz[k], a);\n  }\n\n  void push(int k) {\n   \
-    \ all_apply(2 * k, laz[k]);\n    all_apply(2 * k + 1, laz[k]);\n    laz[k] = Monoid_A::unit();\n\
-    \  }\n\n  void set(int p, X x) {\n    assert(0 <= p && p < n);\n    p += size;\n\
-    \    for (int i = log; i >= 1; i--) push(p >> i);\n    dat[p] = x;\n    for (int\
-    \ i = 1; i <= log; i++) update(p >> i);\n  }\n\n  X get(int p) {\n    assert(0\
-    \ <= p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--) push(p >>\
-    \ i);\n    return dat[p];\n  }\n\n  vc<X> get_all() {\n    FOR(i, size) push(i);\n\
-    \    return {dat.begin() + size, dat.begin() + size + n};\n  }\n\n  X prod(int\
-    \ l, int r) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return\
-    \ Monoid_X::unit();\n\n    l += size;\n    r += size;\n\n    for (int i = log;\
-    \ i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l >> i);\n      if (((r\
-    \ >> i) << i) != r) push((r - 1) >> i);\n    }\n\n    X xl = Monoid_X::unit(),\
-    \ xr = Monoid_X::unit();\n    while (l < r) {\n      if (l & 1) xl = Monoid_X::op(xl,\
-    \ dat[l++]);\n      if (r & 1) xr = Monoid_X::op(dat[--r], xr);\n      l >>= 1;\n\
-    \      r >>= 1;\n    }\n\n    return Monoid_X::op(xl, xr);\n  }\n\n  X prod_all()\
-    \ { return dat[1]; }\n\n  void apply(int p, A a) {\n    assert(0 <= p && p < n);\n\
-    \    p += size;\n    dat[p] = Lazy::act(dat[p], a);\n    for (int i = 1; i <=\
-    \ log; i++) update(p >> i);\n  }\n\n  void apply(int l, int r, A a) {\n    assert(0\
-    \ <= l && l <= r && r <= n);\n    if (l == r) return;\n\n    l += size;\n    r\
-    \ += size;\n\n    for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i)\
-    \ != l) push(l >> i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n \
-    \   }\n\n    {\n      int l2 = l, r2 = r;\n      while (l < r) {\n        if (l\
-    \ & 1) all_apply(l++, a);\n        if (r & 1) all_apply(--r, a);\n        l >>=\
-    \ 1;\n        r >>= 1;\n      }\n      l = l2;\n      r = r2;\n    }\n\n    for\
-    \ (int i = 1; i <= log; i++) {\n      if (((l >> i) << i) != l) update(l >> i);\n\
-    \      if (((r >> i) << i) != r) update((r - 1) >> i);\n    }\n  }\n\n  template\
-    \ <typename C>\n  int max_right(C& check, int l) {\n    assert(0 <= l && l <=\
-    \ n);\n    assert(check(Monoid_X::unit()));\n    if (l == n) return n;\n    l\
-    \ += size;\n    for (int i = log; i >= 1; i--) push(l >> i);\n    X sm = Monoid_X::unit();\n\
-    \    do {\n      while (l % 2 == 0) l >>= 1;\n      if (!check(Monoid_X::op(sm,\
-    \ dat[l]))) {\n        while (l < size) {\n          push(l);\n          l = (2\
-    \ * l);\n          if (check(Monoid_X::op(sm, dat[l]))) {\n            sm = Monoid_X::op(sm,\
-    \ dat[l]);\n            l++;\n          }\n        }\n        return l - size;\n\
-    \      }\n      sm = Monoid_X::op(sm, dat[l]);\n      l++;\n    } while ((l &\
-    \ -l) != l);\n    return n;\n  }\n\n  template <typename C>\n  int min_left(C&\
-    \ check, int r) {\n    assert(0 <= r && r <= n);\n    assert(check(Monoid_X::unit()));\n\
-    \    if (r == 0) return 0;\n    r += size;\n    for (int i = log; i >= 1; i--)\
-    \ push((r - 1) >> i);\n    X sm = Monoid_X::unit();\n    do {\n      r--;\n  \
-    \    while (r > 1 && (r % 2)) r >>= 1;\n      if (!check(Monoid_X::op(dat[r],\
-    \ sm))) {\n        while (r < size) {\n          push(r);\n          r = (2 *\
-    \ r + 1);\n          if (check(Monoid_X::op(dat[r], sm))) {\n            sm =\
-    \ Monoid_X::op(dat[r], sm);\n            r--;\n          }\n        }\n      \
-    \  return r + 1 - size;\n      }\n      sm = Monoid_X::op(dat[r], sm);\n    }\
-    \ while ((r & -r) != r);\n    return 0;\n  }\n\n  void debug() { print(\"lazysegtree\
-    \ getall:\", get_all()); }\n};\n#line 2 \"alg/lazy_powersums_set.hpp\"\n\r\n#line\
-    \ 1 \"alg/monoid_set.hpp\"\ntemplate <typename E, E none_val>\r\nstruct Monoid_Set\
-    \ {\r\n  using value_type = E;\r\n  using X = value_type;\r\n  static X op(X x,\
-    \ X y) { return (y == none_val ? x : y); }\r\n  static constexpr X unit() { return\
-    \ none_val; }\r\n  static constexpr bool commute = false;\r\n};\n#line 2 \"alg/group_power_sums.hpp\"\
-    \n\r\n// 0 \u4E57\u548C\u304B\u3089 K-1 \u4E57\u548C\u307E\u3067\r\ntemplate <typename\
-    \ mint, int K>\r\nstruct Group_power_sums {\r\n  using value_type = vc<mint>;\r\
-    \n  using X = value_type;\r\n  static X op(X x, X y) {\r\n    vc<mint> z(K);\r\
-    \n    FOR(i, K) z[i] = x[i] + y[i];\r\n    return z;\r\n  }\r\n  static X from_element(mint\
-    \ x) {\r\n    vc<mint> a(K);\r\n    a[0] = 1;\r\n    FOR(i, K - 1) a[i + 1] =\
-    \ a[i] * K;\r\n  }\r\n  static X unit() { return vc<mint>(K, mint(0)); }\r\n \
-    \ static constexpr bool commute = 1;\r\n};\r\n#line 5 \"alg/lazy_powersums_set.hpp\"\
-    \ntemplate <typename mint, int K>\r\nstruct Lazy_Power_Sums_Set {\r\n  using MX\
-    \ = Group_power_sums<mint, K>;\r\n  using MA = Monoid_Set<int, -1>;\r\n  using\
-    \ X_structure = MX;\r\n  using A_structure = MA;\r\n  using X = typename MX::value_type;\r\
-    \n  using A = typename MA::value_type;\r\n  static X act(const X &x, const A &b)\
-    \ {\r\n    if (b == -1) return x;\r\n    mint a = b;\r\n    vc<mint> y(K);\r\n\
-    \    vc<mint> pow(K);\r\n    pow[0] = mint(1);\r\n    FOR(k, K - 1) pow[k + 1]\
-    \ = pow[k] * a;\r\n    FOR(i, 5) y[i] = x[0] * pow[i];\r\n    return y;\r\n  }\r\
-    \n};\r\n#line 7 \"test/yukicoder/1548_power_sums.test.cpp\"\n\nusing mint = modint998;\n\
-    \nvoid solve() {\n  LL(N);\n  using Mono = Group_power_sums<mint, 5>;\n  VEC(mint,\
-    \ A, N);\n  vv(mint, seg_raw, N, 5);\n  FOR(i, N) {\n    mint a = A[i];\n    seg_raw[i]\
-    \ = {1, a, a * a, a * a * a, a * a * a * a};\n  }\n  LazySegTree<Lazy_Power_Sums_Set<mint,\
-    \ 5>> seg(seg_raw);\n  LL(Q);\n  FOR(Q) {\n    LL(t, u, v, w);\n    if (u > v)\
-    \ swap(u, v);\n    if (w < u || v < w) swap(u, v);\n    --u, --v;\n    if (t ==\
-    \ 0) {\n      LL(b);\n      if (u < v) {\n        seg.apply(u, v + 1, b);\n  \
-    \    } else {\n        seg.apply(0, v + 1, b);\n        seg.apply(u, N, b);\n\
-    \      }\n    } else {\n      vc<mint> e;\n      if (u < v) {\n        e = seg.prod(u,\
-    \ v + 1);\n      } else {\n        e = Mono::op(seg.prod(0, v + 1), seg.prod(u,\
-    \ N));\n      }\n      // print(e);\n      mint n = e[0];\n      mint mu = -e[1]\
-    \ / n;\n      ll k = t;\n      // sum (x+mu)^k\n      mint ans = 0;\n      FOR(i,\
-    \ k + 1) { ans += e[i] * mu.pow(k - i) * C<mint>(k, i); }\n      ans /= n;\n \
-    \     print(ans);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
-    \  return 0;\n}\n"
+    \ n) dat[size + i] = v[i];\n    FOR3_R(i, 1, size) update(i);\n  }\n\n  template\
+    \ <typename F>\n  LazySegTree(int n, F f) : n(n) {\n    log = 1;\n    while ((1\
+    \ << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, Monoid_X::unit());\n\
+    \    laz.assign(size, Monoid_A::unit());\n    FOR(i, n) dat[size + i] = f(i);\n\
+    \    FOR3_R(i, 1, size) update(i);\n  }\n\n  void reset() {\n    fill(all(dat),\
+    \ Monoid_X::unit());\n    fill(all(laz), Monoid_A::unit());\n  }\n\n  void reset(const\
+    \ vc<X>& v) {\n    assert(len(v) == n);\n    reset();\n    FOR(i, n) dat[size\
+    \ + i] = v[i];\n    FOR3_R(i, 1, size) update(i);\n  }\n\n  void update(int k)\
+    \ { dat[k] = Monoid_X::op(dat[2 * k], dat[2 * k + 1]); }\n\n  void all_apply(int\
+    \ k, A a) {\n    dat[k] = Lazy::act(dat[k], a);\n    if (k < size) laz[k] = Monoid_A::op(laz[k],\
+    \ a);\n  }\n\n  void push(int k) {\n    all_apply(2 * k, laz[k]);\n    all_apply(2\
+    \ * k + 1, laz[k]);\n    laz[k] = Monoid_A::unit();\n  }\n\n  void set(int p,\
+    \ X x) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log;\
+    \ i >= 1; i--) push(p >> i);\n    dat[p] = x;\n    for (int i = 1; i <= log; i++)\
+    \ update(p >> i);\n  }\n\n  X get(int p) {\n    assert(0 <= p && p < n);\n   \
+    \ p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    return dat[p];\n\
+    \  }\n\n  vc<X> get_all() {\n    FOR(i, size) push(i);\n    return {dat.begin()\
+    \ + size, dat.begin() + size + n};\n  }\n\n  X prod(int l, int r) {\n    assert(0\
+    \ <= l && l <= r && r <= n);\n    if (l == r) return Monoid_X::unit();\n\n   \
+    \ l += size;\n    r += size;\n\n    for (int i = log; i >= 1; i--) {\n      if\
+    \ (((l >> i) << i) != l) push(l >> i);\n      if (((r >> i) << i) != r) push((r\
+    \ - 1) >> i);\n    }\n\n    X xl = Monoid_X::unit(), xr = Monoid_X::unit();\n\
+    \    while (l < r) {\n      if (l & 1) xl = Monoid_X::op(xl, dat[l++]);\n    \
+    \  if (r & 1) xr = Monoid_X::op(dat[--r], xr);\n      l >>= 1;\n      r >>= 1;\n\
+    \    }\n\n    return Monoid_X::op(xl, xr);\n  }\n\n  X prod_all() { return dat[1];\
+    \ }\n\n  void apply(int p, A a) {\n    assert(0 <= p && p < n);\n    p += size;\n\
+    \    dat[p] = Lazy::act(dat[p], a);\n    for (int i = 1; i <= log; i++) update(p\
+    \ >> i);\n  }\n\n  void apply(int l, int r, A a) {\n    assert(0 <= l && l <=\
+    \ r && r <= n);\n    if (l == r) return;\n\n    l += size;\n    r += size;\n\n\
+    \    for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l\
+    \ >> i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n    }\n\n    {\n\
+    \      int l2 = l, r2 = r;\n      while (l < r) {\n        if (l & 1) all_apply(l++,\
+    \ a);\n        if (r & 1) all_apply(--r, a);\n        l >>= 1;\n        r >>=\
+    \ 1;\n      }\n      l = l2;\n      r = r2;\n    }\n\n    for (int i = 1; i <=\
+    \ log; i++) {\n      if (((l >> i) << i) != l) update(l >> i);\n      if (((r\
+    \ >> i) << i) != r) update((r - 1) >> i);\n    }\n  }\n\n  template <typename\
+    \ C>\n  int max_right(C& check, int l) {\n    assert(0 <= l && l <= n);\n    assert(check(Monoid_X::unit()));\n\
+    \    if (l == n) return n;\n    l += size;\n    for (int i = log; i >= 1; i--)\
+    \ push(l >> i);\n    X sm = Monoid_X::unit();\n    do {\n      while (l % 2 ==\
+    \ 0) l >>= 1;\n      if (!check(Monoid_X::op(sm, dat[l]))) {\n        while (l\
+    \ < size) {\n          push(l);\n          l = (2 * l);\n          if (check(Monoid_X::op(sm,\
+    \ dat[l]))) {\n            sm = Monoid_X::op(sm, dat[l]);\n            l++;\n\
+    \          }\n        }\n        return l - size;\n      }\n      sm = Monoid_X::op(sm,\
+    \ dat[l]);\n      l++;\n    } while ((l & -l) != l);\n    return n;\n  }\n\n \
+    \ template <typename C>\n  int min_left(C& check, int r) {\n    assert(0 <= r\
+    \ && r <= n);\n    assert(check(Monoid_X::unit()));\n    if (r == 0) return 0;\n\
+    \    r += size;\n    for (int i = log; i >= 1; i--) push((r - 1) >> i);\n    X\
+    \ sm = Monoid_X::unit();\n    do {\n      r--;\n      while (r > 1 && (r % 2))\
+    \ r >>= 1;\n      if (!check(Monoid_X::op(dat[r], sm))) {\n        while (r <\
+    \ size) {\n          push(r);\n          r = (2 * r + 1);\n          if (check(Monoid_X::op(dat[r],\
+    \ sm))) {\n            sm = Monoid_X::op(dat[r], sm);\n            r--;\n    \
+    \      }\n        }\n        return r + 1 - size;\n      }\n      sm = Monoid_X::op(dat[r],\
+    \ sm);\n    } while ((r & -r) != r);\n    return 0;\n  }\n\n  void debug() { print(\"\
+    lazysegtree getall:\", get_all()); }\n};\n#line 2 \"alg/lazy_powersums_set.hpp\"\
+    \n\r\n#line 1 \"alg/monoid_set.hpp\"\ntemplate <typename E, E none_val>\r\nstruct\
+    \ Monoid_Set {\r\n  using value_type = E;\r\n  using X = value_type;\r\n  static\
+    \ X op(X x, X y) { return (y == none_val ? x : y); }\r\n  static constexpr X unit()\
+    \ { return none_val; }\r\n  static constexpr bool commute = false;\r\n};\n#line\
+    \ 2 \"alg/group_power_sums.hpp\"\n\r\n// 0 \u4E57\u548C\u304B\u3089 K-1 \u4E57\
+    \u548C\u307E\u3067\r\ntemplate <typename mint, int K>\r\nstruct Group_power_sums\
+    \ {\r\n  using value_type = vc<mint>;\r\n  using X = value_type;\r\n  static X\
+    \ op(X x, X y) {\r\n    vc<mint> z(K);\r\n    FOR(i, K) z[i] = x[i] + y[i];\r\n\
+    \    return z;\r\n  }\r\n  static X from_element(mint x) {\r\n    vc<mint> a(K);\r\
+    \n    a[0] = 1;\r\n    FOR(i, K - 1) a[i + 1] = a[i] * K;\r\n  }\r\n  static X\
+    \ unit() { return vc<mint>(K, mint(0)); }\r\n  static constexpr bool commute =\
+    \ 1;\r\n};\r\n#line 5 \"alg/lazy_powersums_set.hpp\"\ntemplate <typename mint,\
+    \ int K>\r\nstruct Lazy_Power_Sums_Set {\r\n  using MX = Group_power_sums<mint,\
+    \ K>;\r\n  using MA = Monoid_Set<int, -1>;\r\n  using X_structure = MX;\r\n  using\
+    \ A_structure = MA;\r\n  using X = typename MX::value_type;\r\n  using A = typename\
+    \ MA::value_type;\r\n  static X act(const X &x, const A &b) {\r\n    if (b ==\
+    \ -1) return x;\r\n    mint a = b;\r\n    vc<mint> y(K);\r\n    vc<mint> pow(K);\r\
+    \n    pow[0] = mint(1);\r\n    FOR(k, K - 1) pow[k + 1] = pow[k] * a;\r\n    FOR(i,\
+    \ 5) y[i] = x[0] * pow[i];\r\n    return y;\r\n  }\r\n};\r\n#line 7 \"test/yukicoder/1548_power_sums.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  using Mono = Group_power_sums<mint,\
+    \ 5>;\n  VEC(mint, A, N);\n  vv(mint, seg_raw, N, 5);\n  FOR(i, N) {\n    mint\
+    \ a = A[i];\n    seg_raw[i] = {1, a, a * a, a * a * a, a * a * a * a};\n  }\n\
+    \  LazySegTree<Lazy_Power_Sums_Set<mint, 5>> seg(seg_raw);\n  LL(Q);\n  FOR(Q)\
+    \ {\n    LL(t, u, v, w);\n    if (u > v) swap(u, v);\n    if (w < u || v < w)\
+    \ swap(u, v);\n    --u, --v;\n    if (t == 0) {\n      LL(b);\n      if (u < v)\
+    \ {\n        seg.apply(u, v + 1, b);\n      } else {\n        seg.apply(0, v +\
+    \ 1, b);\n        seg.apply(u, N, b);\n      }\n    } else {\n      vc<mint> e;\n\
+    \      if (u < v) {\n        e = seg.prod(u, v + 1);\n      } else {\n       \
+    \ e = Mono::op(seg.prod(0, v + 1), seg.prod(u, N));\n      }\n      // print(e);\n\
+    \      mint n = e[0];\n      mint mu = -e[1] / n;\n      ll k = t;\n      // sum\
+    \ (x+mu)^k\n      mint ans = 0;\n      FOR(i, k + 1) { ans += e[i] * mu.pow(k\
+    \ - i) * C<mint>(k, i); }\n      ans /= n;\n      print(ans);\n    }\n  }\n}\n\
+    \nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1548\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n#include \"ds/lazysegtree.hpp\"\
     \n#include \"alg/lazy_powersums_set.hpp\"\n\nusing mint = modint998;\n\nvoid solve()\
@@ -399,8 +403,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1548_power_sums.test.cpp
   requiredBy: []
-  timestamp: '2022-07-31 11:54:48+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-11 02:08:49+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/1548_power_sums.test.cpp
 layout: document

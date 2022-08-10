@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -51,16 +51,16 @@ data:
     \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
     );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
     \    }\n  }\n};\n#line 2 \"ds/unionfind.hpp\"\n\nstruct UnionFind {\n  int n;\n\
-    \  int comp;\n  std::vector<int> size, par;\n  UnionFind(int n) : n(n), comp(n),\
+    \  int n_comp;\n  std::vector<int> size, par;\n  UnionFind(int n) : n(n), n_comp(n),\
     \ size(n, 1), par(n) {\n    std::iota(par.begin(), par.end(), 0);\n  }\n  int\
     \ find(int x) {\n    assert(0 <= x && x < n);\n    while (par[x] != x) {\n   \
     \   par[x] = par[par[x]];\n      x = par[x];\n    }\n    return x;\n  }\n\n  int\
     \ operator[](int x) { return find(x); }\n\n  bool merge(int x, int y) {\n    x\
-    \ = find(x);\n    y = find(y);\n    if (x == y) { return false; }\n    comp--;\n\
+    \ = find(x);\n    y = find(y);\n    if (x == y) { return false; }\n    n_comp--;\n\
     \    if (size[x] < size[y]) std::swap(x, y);\n    size[x] += size[y];\n    size[y]\
     \ = 0;\n    par[y] = x;\n    return true;\n  }\n\n  std::vector<int> find_all()\
     \ {\n    std::vector<int> A(n);\n    for (int i = 0; i < n; ++i) A[i] = find(i);\n\
-    \    return A;\n  }\n\n  void reset() {\n    comp = n;\n    size.assign(n, 1);\n\
+    \    return A;\n  }\n\n  void reset() {\n    n_comp = n;\n    size.assign(n, 1);\n\
     \    std::iota(par.begin(), par.end(), 0);\n  }\n};\n#line 3 \"geo/manhattan_mst.hpp\"\
     \n\ntemplate <typename T>\nGraph<T, 0> Manhattan_MST(vc<pair<T, T>>& XY) {\n \
     \ int N = XY.size();\n  vc<tuple<T, int, int>> dat;\n  dat.reserve(4 * N);\n \
@@ -97,7 +97,7 @@ data:
   isVerificationFile: false
   path: geo/manhattan_mst.hpp
   requiredBy: []
-  timestamp: '2022-07-20 17:24:10+09:00'
+  timestamp: '2022-08-11 02:13:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/graph/manhattan_mst.test.cpp

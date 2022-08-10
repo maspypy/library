@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/lazy_min_add.hpp
     title: alg/lazy_min_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid_min.hpp
     title: alg/monoid_min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -226,10 +226,14 @@ data:
     \ v) : n(len(v)) {\n    log = 1;\n    while ((1 << log) < n) ++log;\n    size\
     \ = 1 << log;\n    dat.assign(size << 1, Monoid_X::unit());\n    laz.assign(size,\
     \ Monoid_A::unit());\n    FOR(i, n) dat[size + i] = v[i];\n    FOR3_R(i, 1, size)\
-    \ update(i);\n  }\n\n  void reset() {\n    fill(all(dat), Monoid_X::unit());\n\
-    \    fill(all(laz), Monoid_A::unit());\n  }\n\n  void reset(const vc<X>& v) {\n\
-    \    assert(len(v) == n);\n    reset();\n    FOR(i, n) dat[size + i] = v[i];\n\
-    \    FOR3_R(i, 1, size) update(i);\n  }\n\n  void update(int k) { dat[k] = Monoid_X::op(dat[2\
+    \ update(i);\n  }\n\n  template <typename F>\n  LazySegTree(int n, F f) : n(n)\
+    \ {\n    log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n \
+    \   dat.assign(size << 1, Monoid_X::unit());\n    laz.assign(size, Monoid_A::unit());\n\
+    \    FOR(i, n) dat[size + i] = f(i);\n    FOR3_R(i, 1, size) update(i);\n  }\n\
+    \n  void reset() {\n    fill(all(dat), Monoid_X::unit());\n    fill(all(laz),\
+    \ Monoid_A::unit());\n  }\n\n  void reset(const vc<X>& v) {\n    assert(len(v)\
+    \ == n);\n    reset();\n    FOR(i, n) dat[size + i] = v[i];\n    FOR3_R(i, 1,\
+    \ size) update(i);\n  }\n\n  void update(int k) { dat[k] = Monoid_X::op(dat[2\
     \ * k], dat[2 * k + 1]); }\n\n  void all_apply(int k, A a) {\n    dat[k] = Lazy::act(dat[k],\
     \ a);\n    if (k < size) laz[k] = Monoid_A::op(laz[k], a);\n  }\n\n  void push(int\
     \ k) {\n    all_apply(2 * k, laz[k]);\n    all_apply(2 * k + 1, laz[k]);\n   \
@@ -302,7 +306,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_H_min_add_lazy.test.cpp
   requiredBy: []
-  timestamp: '2022-07-31 11:54:48+09:00'
+  timestamp: '2022-08-11 02:08:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_H_min_add_lazy.test.cpp

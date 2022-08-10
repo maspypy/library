@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: seq/q_binomial.hpp
+    title: seq/q_binomial.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/mytest/all_inverse.test.cpp
@@ -24,7 +27,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: mod/all_inverse.hpp
-  requiredBy: []
+  requiredBy:
+  - seq/q_binomial.hpp
   timestamp: '2022-08-07 13:08:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

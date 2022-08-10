@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
   - icon: ':heavy_check_mark:'
@@ -19,10 +19,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -261,17 +261,17 @@ data:
     \ dist[e.frm] + e.cost)) {\n        root[e.to] = root[e.frm];\n        par[e.to]\
     \ = e.frm;\n        que.push(mp(dist[e.to], e.to));\n      }\n    }\n  }\n  return\
     \ {dist, par, root};\n}\n#line 2 \"ds/unionfind.hpp\"\n\nstruct UnionFind {\n\
-    \  int n;\n  int comp;\n  std::vector<int> size, par;\n  UnionFind(int n) : n(n),\
-    \ comp(n), size(n, 1), par(n) {\n    std::iota(par.begin(), par.end(), 0);\n \
-    \ }\n  int find(int x) {\n    assert(0 <= x && x < n);\n    while (par[x] != x)\
-    \ {\n      par[x] = par[par[x]];\n      x = par[x];\n    }\n    return x;\n  }\n\
-    \n  int operator[](int x) { return find(x); }\n\n  bool merge(int x, int y) {\n\
-    \    x = find(x);\n    y = find(y);\n    if (x == y) { return false; }\n    comp--;\n\
-    \    if (size[x] < size[y]) std::swap(x, y);\n    size[x] += size[y];\n    size[y]\
-    \ = 0;\n    par[y] = x;\n    return true;\n  }\n\n  std::vector<int> find_all()\
-    \ {\n    std::vector<int> A(n);\n    for (int i = 0; i < n; ++i) A[i] = find(i);\n\
-    \    return A;\n  }\n\n  void reset() {\n    comp = n;\n    size.assign(n, 1);\n\
-    \    std::iota(par.begin(), par.end(), 0);\n  }\n};\n#line 3 \"graph/check_bipartite.hpp\"\
+    \  int n;\n  int n_comp;\n  std::vector<int> size, par;\n  UnionFind(int n) :\
+    \ n(n), n_comp(n), size(n, 1), par(n) {\n    std::iota(par.begin(), par.end(),\
+    \ 0);\n  }\n  int find(int x) {\n    assert(0 <= x && x < n);\n    while (par[x]\
+    \ != x) {\n      par[x] = par[par[x]];\n      x = par[x];\n    }\n    return x;\n\
+    \  }\n\n  int operator[](int x) { return find(x); }\n\n  bool merge(int x, int\
+    \ y) {\n    x = find(x);\n    y = find(y);\n    if (x == y) { return false; }\n\
+    \    n_comp--;\n    if (size[x] < size[y]) std::swap(x, y);\n    size[x] += size[y];\n\
+    \    size[y] = 0;\n    par[y] = x;\n    return true;\n  }\n\n  std::vector<int>\
+    \ find_all() {\n    std::vector<int> A(n);\n    for (int i = 0; i < n; ++i) A[i]\
+    \ = find(i);\n    return A;\n  }\n\n  void reset() {\n    n_comp = n;\n    size.assign(n,\
+    \ 1);\n    std::iota(par.begin(), par.end(), 0);\n  }\n};\n#line 3 \"graph/check_bipartite.hpp\"\
     \n\r\n// \u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A + \u5FA9\u5143\r\n// \u4E8C\
     \u90E8\u30B0\u30E9\u30D5\u3067\u306A\u304B\u3063\u305F\u5834\u5408\u306B\u306F\
     \ empty\r\ntemplate <typename Graph>\r\nvc<int> check_bipartite(Graph& G) {\r\n\
@@ -356,7 +356,7 @@ data:
   isVerificationFile: true
   path: test/aoj/2251_maxantichain.test.cpp
   requiredBy: []
-  timestamp: '2022-07-31 11:54:48+09:00'
+  timestamp: '2022-08-11 02:13:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/2251_maxantichain.test.cpp

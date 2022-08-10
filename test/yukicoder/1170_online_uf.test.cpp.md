@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/online_unionfind.hpp
     title: graph/online_unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1170
@@ -198,16 +198,16 @@ data:
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
     \ { yes(!t); }\r\n#line 2 \"ds/unionfind.hpp\"\n\nstruct UnionFind {\n  int n;\n\
-    \  int comp;\n  std::vector<int> size, par;\n  UnionFind(int n) : n(n), comp(n),\
+    \  int n_comp;\n  std::vector<int> size, par;\n  UnionFind(int n) : n(n), n_comp(n),\
     \ size(n, 1), par(n) {\n    std::iota(par.begin(), par.end(), 0);\n  }\n  int\
     \ find(int x) {\n    assert(0 <= x && x < n);\n    while (par[x] != x) {\n   \
     \   par[x] = par[par[x]];\n      x = par[x];\n    }\n    return x;\n  }\n\n  int\
     \ operator[](int x) { return find(x); }\n\n  bool merge(int x, int y) {\n    x\
-    \ = find(x);\n    y = find(y);\n    if (x == y) { return false; }\n    comp--;\n\
+    \ = find(x);\n    y = find(y);\n    if (x == y) { return false; }\n    n_comp--;\n\
     \    if (size[x] < size[y]) std::swap(x, y);\n    size[x] += size[y];\n    size[y]\
     \ = 0;\n    par[y] = x;\n    return true;\n  }\n\n  std::vector<int> find_all()\
     \ {\n    std::vector<int> A(n);\n    for (int i = 0; i < n; ++i) A[i] = find(i);\n\
-    \    return A;\n  }\n\n  void reset() {\n    comp = n;\n    size.assign(n, 1);\n\
+    \    return A;\n  }\n\n  void reset() {\n    n_comp = n;\n    size.assign(n, 1);\n\
     \    std::iota(par.begin(), par.end(), 0);\n  }\n};\n#line 2 \"graph/online_unionfind.hpp\"\
     \n\n// \u9802\u70B9\u3092\u524A\u9664\u3057\u306A\u304C\u3089\u3001\u9069\u5F53\
     \u306A\u30C7\u30FC\u30BF\u69CB\u9020\u306B\u3088\u308A\u6B21\u306E\u8FBA\u3092\
@@ -251,8 +251,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1170_online_uf.test.cpp
   requiredBy: []
-  timestamp: '2022-07-31 11:54:48+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-11 02:13:18+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/1170_online_uf.test.cpp
 layout: document

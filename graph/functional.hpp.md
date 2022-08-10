@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
   _extendedRequiredBy: []
@@ -18,26 +18,26 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/unionfind.hpp\"\n\nstruct UnionFind {\n  int n;\n  int\
-    \ comp;\n  std::vector<int> size, par;\n  UnionFind(int n) : n(n), comp(n), size(n,\
-    \ 1), par(n) {\n    std::iota(par.begin(), par.end(), 0);\n  }\n  int find(int\
-    \ x) {\n    assert(0 <= x && x < n);\n    while (par[x] != x) {\n      par[x]\
-    \ = par[par[x]];\n      x = par[x];\n    }\n    return x;\n  }\n\n  int operator[](int\
-    \ x) { return find(x); }\n\n  bool merge(int x, int y) {\n    x = find(x);\n \
-    \   y = find(y);\n    if (x == y) { return false; }\n    comp--;\n    if (size[x]\
-    \ < size[y]) std::swap(x, y);\n    size[x] += size[y];\n    size[y] = 0;\n   \
-    \ par[y] = x;\n    return true;\n  }\n\n  std::vector<int> find_all() {\n    std::vector<int>\
-    \ A(n);\n    for (int i = 0; i < n; ++i) A[i] = find(i);\n    return A;\n  }\n\
-    \n  void reset() {\n    comp = n;\n    size.assign(n, 1);\n    std::iota(par.begin(),\
-    \ par.end(), 0);\n  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\n\
-    struct Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename\
-    \ T = int, bool directed = false>\nstruct Graph {\n  int N, M;\n  using cost_type\
-    \ = T;\n  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int>\
-    \ indptr;\n  vector<edge_type> csr_edges;\n  bool prepared;\n\n  class OutgoingEdges\
-    \ {\n  public:\n    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l),\
-    \ r(r) {}\n\n    const edge_type* begin() const {\n      if (l == r) { return\
-    \ 0; }\n      return &G->csr_edges[l];\n    }\n\n    const edge_type* end() const\
-    \ {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n\
-    \  private:\n    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared()\
+    \ n_comp;\n  std::vector<int> size, par;\n  UnionFind(int n) : n(n), n_comp(n),\
+    \ size(n, 1), par(n) {\n    std::iota(par.begin(), par.end(), 0);\n  }\n  int\
+    \ find(int x) {\n    assert(0 <= x && x < n);\n    while (par[x] != x) {\n   \
+    \   par[x] = par[par[x]];\n      x = par[x];\n    }\n    return x;\n  }\n\n  int\
+    \ operator[](int x) { return find(x); }\n\n  bool merge(int x, int y) {\n    x\
+    \ = find(x);\n    y = find(y);\n    if (x == y) { return false; }\n    n_comp--;\n\
+    \    if (size[x] < size[y]) std::swap(x, y);\n    size[x] += size[y];\n    size[y]\
+    \ = 0;\n    par[y] = x;\n    return true;\n  }\n\n  std::vector<int> find_all()\
+    \ {\n    std::vector<int> A(n);\n    for (int i = 0; i < n; ++i) A[i] = find(i);\n\
+    \    return A;\n  }\n\n  void reset() {\n    n_comp = n;\n    size.assign(n, 1);\n\
+    \    std::iota(par.begin(), par.end(), 0);\n  }\n};\n#line 2 \"graph/base.hpp\"\
+    \n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n\
+    };\n\ntemplate <typename T = int, bool directed = false>\nstruct Graph {\n  int\
+    \ N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
+    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  bool prepared;\n\
+    \n  class OutgoingEdges {\n  public:\n    OutgoingEdges(const Graph* G, int l,\
+    \ int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n     \
+    \ if (l == r) { return 0; }\n      return &G->csr_edges[l];\n    }\n\n    const\
+    \ edge_type* end() const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n\
+    \    }\n\n  private:\n    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared()\
     \ { return prepared; }\n  constexpr bool is_directed() { return directed; }\n\n\
     \  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
     \ {}\n\n  void add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n\
@@ -132,6 +132,26 @@ data:
     \u3044\u9802\u70B9 N \u3092\u6839\u3068\u3057\u3066\u8FFD\u52A0\u3057\u305F\u6709\
     \u5411\u6728\u3002\u9006\u5411\u304D\u306E\u8FBA\u306B\u306A\u308B\u3002\r\n \
     \ // HLD<Graph<T, 1>> hld;\r\n  vc<int> TO;\r\n  vc<T> wt;\r\n  vc<int> root;\r\
+    \n  vvc<int> cyc;\r\n\r\n  FunctionalGraph() {}\r\n  FunctionalGraph(int N) :\
+    \ N(N), M(0), TO(N, -1), wt(N), root(N, -1) {}\r\n\r\n  void add(int a, int b,\
+    \ T c = 1) {\r\n    assert(0 <= a && a < N);\r\n    assert(TO[a] == -1);\r\n \
+    \   ++M;\r\n    TO[a] = b;\r\n    wt[a] = c;\r\n  }\r\n\r\n  void build() {\r\n\
+    \    assert(N == M);\r\n    UnionFind uf(N);\r\n    FOR(v, N) if (!uf.merge(v,\
+    \ TO[v])) { root[v] = v; }\r\n    FOR(v, N) if (root[v] == v) root[uf[v]] = v;\r\
+    \n    FOR(v, N) root[v] = root[uf[v]];\r\n\r\n    tree = Graph<T, 1>(N + 1);\r\
+    \n    FOR(v, N) {\r\n      if (root[v] != v)\r\n        tree.add(TO[v], v);\r\n\
+    \      else\r\n        tree.add(N, v);\r\n    }\r\n    tree.build();\r\n    cyc.resize(N);\r\
+    \n    FOR(v, N) if (root[v] == v) {\r\n      vc<int> C = {TO[root[v]]};\r\n  \
+    \    while (C.back() != v) C.eb(TO[C.back()]);\r\n      cyc[v] = C;\r\n    }\r\
+    \n  }\r\n\r\n  void debug() {\r\n    print(\"TO\", TO);\r\n    print(\"root\"\
+    );\r\n    print(root);\r\n    print(\"\u6839\u3092\u8FFD\u52A0\u3057\u305F\u6728\
+    \ tree\");\r\n    tree.debug();\r\n  }\r\n};\r\n"
+  code: "#include \"ds/unionfind.hpp\"\r\n#include \"graph/base.hpp\"\r\n#include\
+    \ \"graph/hld.hpp\"\r\n\r\ntemplate <typename T = int>\r\nstruct FunctionalGraph\
+    \ {\r\n  int N, M;\r\n  Graph<T, 1> tree; // \u65B0\u3057\u3044\u9802\u70B9 N\
+    \ \u3092\u6839\u3068\u3057\u3066\u8FFD\u52A0\u3057\u305F\u6709\u5411\u6728\u3002\
+    \u9006\u5411\u304D\u306E\u8FBA\u306B\u306A\u308B\u3002\r\n  // HLD<Graph<T, 1>>\
+    \ hld;\r\n  vc<int> TO;\r\n  vc<T> wt;\r\n  vc<int> root;\r\n  vvc<int> cyc;\r\
     \n\r\n  FunctionalGraph() {}\r\n  FunctionalGraph(int N) : N(N), M(0), TO(N, -1),\
     \ wt(N), root(N, -1) {}\r\n\r\n  void add(int a, int b, T c = 1) {\r\n    assert(0\
     \ <= a && a < N);\r\n    assert(TO[a] == -1);\r\n    ++M;\r\n    TO[a] = b;\r\n\
@@ -140,26 +160,11 @@ data:
     \ N) if (root[v] == v) root[uf[v]] = v;\r\n    FOR(v, N) root[v] = root[uf[v]];\r\
     \n\r\n    tree = Graph<T, 1>(N + 1);\r\n    FOR(v, N) {\r\n      if (root[v] !=\
     \ v)\r\n        tree.add(TO[v], v);\r\n      else\r\n        tree.add(N, v);\r\
-    \n    }\r\n    tree.build();\r\n  }\r\n\r\n  void debug() {\r\n    print(\"TO\"\
+    \n    }\r\n    tree.build();\r\n    cyc.resize(N);\r\n    FOR(v, N) if (root[v]\
+    \ == v) {\r\n      vc<int> C = {TO[root[v]]};\r\n      while (C.back() != v) C.eb(TO[C.back()]);\r\
+    \n      cyc[v] = C;\r\n    }\r\n  }\r\n\r\n  void debug() {\r\n    print(\"TO\"\
     , TO);\r\n    print(\"root\");\r\n    print(root);\r\n    print(\"\u6839\u3092\
     \u8FFD\u52A0\u3057\u305F\u6728 tree\");\r\n    tree.debug();\r\n  }\r\n};\r\n"
-  code: "#include \"ds/unionfind.hpp\"\r\n#include \"graph/base.hpp\"\r\n#include\
-    \ \"graph/hld.hpp\"\r\n\r\ntemplate <typename T = int>\r\nstruct FunctionalGraph\
-    \ {\r\n  int N, M;\r\n  Graph<T, 1> tree; // \u65B0\u3057\u3044\u9802\u70B9 N\
-    \ \u3092\u6839\u3068\u3057\u3066\u8FFD\u52A0\u3057\u305F\u6709\u5411\u6728\u3002\
-    \u9006\u5411\u304D\u306E\u8FBA\u306B\u306A\u308B\u3002\r\n  // HLD<Graph<T, 1>>\
-    \ hld;\r\n  vc<int> TO;\r\n  vc<T> wt;\r\n  vc<int> root;\r\n\r\n  FunctionalGraph()\
-    \ {}\r\n  FunctionalGraph(int N) : N(N), M(0), TO(N, -1), wt(N), root(N, -1) {}\r\
-    \n\r\n  void add(int a, int b, T c = 1) {\r\n    assert(0 <= a && a < N);\r\n\
-    \    assert(TO[a] == -1);\r\n    ++M;\r\n    TO[a] = b;\r\n    wt[a] = c;\r\n\
-    \  }\r\n\r\n  void build() {\r\n    assert(N == M);\r\n    UnionFind uf(N);\r\n\
-    \    FOR(v, N) if (!uf.merge(v, TO[v])) { root[v] = v; }\r\n    FOR(v, N) if (root[v]\
-    \ == v) root[uf[v]] = v;\r\n    FOR(v, N) root[v] = root[uf[v]];\r\n\r\n    tree\
-    \ = Graph<T, 1>(N + 1);\r\n    FOR(v, N) {\r\n      if (root[v] != v)\r\n    \
-    \    tree.add(TO[v], v);\r\n      else\r\n        tree.add(N, v);\r\n    }\r\n\
-    \    tree.build();\r\n  }\r\n\r\n  void debug() {\r\n    print(\"TO\", TO);\r\n\
-    \    print(\"root\");\r\n    print(root);\r\n    print(\"\u6839\u3092\u8FFD\u52A0\
-    \u3057\u305F\u6728 tree\");\r\n    tree.debug();\r\n  }\r\n};\r\n"
   dependsOn:
   - ds/unionfind.hpp
   - graph/base.hpp
@@ -167,7 +172,7 @@ data:
   isVerificationFile: false
   path: graph/functional.hpp
   requiredBy: []
-  timestamp: '2022-07-20 17:19:03+09:00'
+  timestamp: '2022-08-11 02:14:24+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/functional.hpp

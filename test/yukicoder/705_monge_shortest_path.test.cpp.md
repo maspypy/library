@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: dp/monge.hpp
     title: dp/monge.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: dp/monotone_minima.hpp
     title: dp/monotone_minima.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/larsch.hpp
     title: ds/larsch.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/705
@@ -246,21 +246,21 @@ data:
     \ + 1 <= x2) self(self, x + 1, x2, y, y2);\n  };\n  dfs(dfs, 0, H - 1, 0, W -\
     \ 1);\n  return dp;\n}\n#line 3 \"dp/monge.hpp\"\n\r\n// \u5B9A\u7FA9\u57DF [0,\
     \ N] \u306E\u7BC4\u56F2\u3067 f \u306E monge \u6027\u3092\u78BA\u8A8D\r\ntemplate\
-    \ <typename F>\r\nbool check_monge(int N, F f) {\r\n  FOR(l, N + 1) FOR(k, l)\
-    \ FOR(j, k) FOR(i, j) {\r\n    ll lhs = f(i, l) + f(j, k);\r\n    ll rhs = f(i,\
-    \ k) + f(j, l);\r\n    if (lhs < rhs) return false;\r\n  }\r\n  return true;\r\
-    \n}\r\n\r\ntemplate <ll INF, typename F>\r\nvi monge_shortest_path(int N, F f)\
-    \ {\r\n  vi dp(N + 1, INF);\r\n  dp[0] = 0;\r\n  LARSCH<ll> larsch(N, [&](int\
-    \ i, int j) {\r\n    ++i;\r\n    if (i <= j) return INF;\r\n    return dp[j] +\
-    \ f(j, i);\r\n  });\r\n  FOR3(r, 1, N + 1) {\r\n    ll l = larsch.get_argmin();\r\
-    \n    dp[r] = dp[l] + f(l, r);\r\n  }\r\n  return dp;\r\n}\r\n\r\ntemplate <typename\
-    \ T, typename F>\r\nvc<vc<T>> monge_shortest_path_d_edge_dense(int N, F f, T INF,\
-    \ int d_max) {\r\n  vv(T, DP, d_max + 1, N + 1, INF);\r\n  DP[0][0] = 0;\r\n \
-    \ FOR(d, d_max) {\r\n    auto& dp = DP[d];\r\n    auto& newdp = DP[d + 1];\r\n\
-    \    auto g = [&](int r, int l) -> T {\r\n      //      print(l, r);\r\n     \
-    \ if (r <= l) return INF;\r\n      return dp[l] + f(l, r);\r\n    };\r\n    auto\
-    \ ret = monotone_minima<T>(N + 1, N + 1, g);\r\n    FOR(j, N + 1) newdp[j] = ret[j].se;\r\
-    \n  }\r\n  return DP;\r\n}\r\n\r\n/*\r\nhttps://dic.kimiyuki.net/d-edge-shortest-path-monge\r\
+    \ <typename T, typename F>\r\nbool check_monge(int N, F f) {\r\n  FOR(l, N + 1)\
+    \ FOR(k, l) FOR(j, k) FOR(i, j) {\r\n    T lhs = f(i, l) + f(j, k);\r\n    T rhs\
+    \ = f(i, k) + f(j, l);\r\n    if (lhs < rhs) return false;\r\n  }\r\n  return\
+    \ true;\r\n}\r\n\r\ntemplate <ll INF, typename F>\r\nvi monge_shortest_path(int\
+    \ N, F f) {\r\n  vi dp(N + 1, INF);\r\n  dp[0] = 0;\r\n  LARSCH<ll> larsch(N,\
+    \ [&](int i, int j) {\r\n    ++i;\r\n    if (i <= j) return INF;\r\n    return\
+    \ dp[j] + f(j, i);\r\n  });\r\n  FOR3(r, 1, N + 1) {\r\n    ll l = larsch.get_argmin();\r\
+    \n    dp[r] = dp[l] + f(l, r);\r\n  }\r\n  return dp;\r\n}\r\n\r\n\r\ntemplate\
+    \ <typename T, typename F>\r\nvc<vc<T>> monge_shortest_path_d_edge_dense(int N,\
+    \ F f, T INF, int d_max) {\r\n  vv(T, DP, d_max + 1, N + 1, INF);\r\n  DP[0][0]\
+    \ = 0;\r\n  FOR(d, d_max) {\r\n    auto& dp = DP[d];\r\n    auto& newdp = DP[d\
+    \ + 1];\r\n    auto g = [&](int r, int l) -> T {\r\n      //      print(l, r);\r\
+    \n      if (r <= l) return INF;\r\n      return dp[l] + f(l, r);\r\n    };\r\n\
+    \    auto ret = monotone_minima<T>(N + 1, N + 1, g);\r\n    FOR(j, N + 1) newdp[j]\
+    \ = ret[j].se;\r\n  }\r\n  return DP;\r\n}\r\n\r\n/*\r\nhttps://dic.kimiyuki.net/d-edge-shortest-path-monge\r\
     \n\u4E0A\u51F8\u95A2\u6570 calc_L(lambda) \u306E\u6700\u5927\u5024\u3092\u6C42\
     \u3081\u308B\u554F\u984C\u306B\u5E30\u7740\r\n|f| \u306E\u4E0A\u9650 f_lim \u3082\
     \u6E21\u3059\r\n*/\r\ntemplate <ll INF, typename F>\r\nll monge_shortest_path_d_edge(ll\
@@ -295,8 +295,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/705_monge_shortest_path.test.cpp
   requiredBy: []
-  timestamp: '2022-07-31 11:54:48+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-11 02:15:09+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/705_monge_shortest_path.test.cpp
 layout: document

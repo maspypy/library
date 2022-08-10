@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/random.hpp
     title: other/random.hpp
   _extendedRequiredBy: []
@@ -46,20 +46,20 @@ data:
     \  modint61 pow(int64_t n) const {\r\n    modint61 ret(1), mul(val);\r\n    while\
     \ (n > 0) {\r\n      if (n & 1) ret = ret * mul;\r\n      mul = mul * mul;\r\n\
     \      n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n  static constexpr ll get_mod()\
-    \ { return mod; }\r\n};\r\n#line 4 \"alg/monoid_rollinghash.hpp\"\n\r\nstruct\
-    \ Monoid_Rolling_Hash {\r\n  using value_type = pair<modint61, modint61>; // pow\
-    \ of base, val\r\n  using X = value_type;\r\n\r\n  static u64& base() {\r\n  \
-    \  static u64 x = 0;\r\n    while (x == 0) {\r\n      RandomNumberGenerator RNG;\r\
-    \n      x = RNG(modint61::get_mod());\r\n    }\r\n    return x;\r\n  }\r\n  static\
-    \ X from_element(u64& x) { return {base(), x}; }\r\n  static X op(X x, X y) {\
-    \ return {x.fi * y.fi, x.se * y.fi + y.se}; }\r\n  static constexpr X unit() {\
-    \ return {1, 0}; }\r\n  static constexpr bool commute = false;\r\n};\n"
+    \ { return mod; }\r\n};\r\n#line 4 \"alg/monoid_rollinghash.hpp\"\n\r\n// pow\
+    \ of base, val\r\nstruct Monoid_Rolling_Hash {\r\n  using value_type = pair<modint61,\
+    \ modint61>;\r\n  using X = value_type;\r\n\r\n  static u64& base() {\r\n    static\
+    \ u64 x = 0;\r\n    while (x == 0) {\r\n      RandomNumberGenerator RNG;\r\n \
+    \     x = RNG(modint61::get_mod());\r\n    }\r\n    return x;\r\n  }\r\n  static\
+    \ X from_element(u64 x) { return {base(), x}; }\r\n  static X op(X x, X y) { return\
+    \ {x.fi * y.fi, x.se * y.fi + y.se}; }\r\n  static constexpr X unit() { return\
+    \ {1, 0}; }\r\n  static constexpr bool commute = false;\r\n};\n"
   code: "#pragma once\r\n#include \"other/random.hpp\"\r\n#include \"mod/modint61.hpp\"\
-    \r\n\r\nstruct Monoid_Rolling_Hash {\r\n  using value_type = pair<modint61, modint61>;\
-    \ // pow of base, val\r\n  using X = value_type;\r\n\r\n  static u64& base() {\r\
-    \n    static u64 x = 0;\r\n    while (x == 0) {\r\n      RandomNumberGenerator\
+    \r\n\r\n// pow of base, val\r\nstruct Monoid_Rolling_Hash {\r\n  using value_type\
+    \ = pair<modint61, modint61>;\r\n  using X = value_type;\r\n\r\n  static u64&\
+    \ base() {\r\n    static u64 x = 0;\r\n    while (x == 0) {\r\n      RandomNumberGenerator\
     \ RNG;\r\n      x = RNG(modint61::get_mod());\r\n    }\r\n    return x;\r\n  }\r\
-    \n  static X from_element(u64& x) { return {base(), x}; }\r\n  static X op(X x,\
+    \n  static X from_element(u64 x) { return {base(), x}; }\r\n  static X op(X x,\
     \ X y) { return {x.fi * y.fi, x.se * y.fi + y.se}; }\r\n  static constexpr X unit()\
     \ { return {1, 0}; }\r\n  static constexpr bool commute = false;\r\n};"
   dependsOn:
@@ -68,7 +68,7 @@ data:
   isVerificationFile: false
   path: alg/monoid_rollinghash.hpp
   requiredBy: []
-  timestamp: '2022-06-26 12:51:15+09:00'
+  timestamp: '2022-08-11 02:09:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/monoid_rollinghash.hpp

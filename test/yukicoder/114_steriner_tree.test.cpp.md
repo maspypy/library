@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/steiner_tree.hpp
     title: graph/steiner_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/114
@@ -234,16 +234,16 @@ data:
     \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
     , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
     \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 2 \"ds/unionfind.hpp\"\
-    \n\nstruct UnionFind {\n  int n;\n  int comp;\n  std::vector<int> size, par;\n\
-    \  UnionFind(int n) : n(n), comp(n), size(n, 1), par(n) {\n    std::iota(par.begin(),\
+    \n\nstruct UnionFind {\n  int n;\n  int n_comp;\n  std::vector<int> size, par;\n\
+    \  UnionFind(int n) : n(n), n_comp(n), size(n, 1), par(n) {\n    std::iota(par.begin(),\
     \ par.end(), 0);\n  }\n  int find(int x) {\n    assert(0 <= x && x < n);\n   \
     \ while (par[x] != x) {\n      par[x] = par[par[x]];\n      x = par[x];\n    }\n\
     \    return x;\n  }\n\n  int operator[](int x) { return find(x); }\n\n  bool merge(int\
     \ x, int y) {\n    x = find(x);\n    y = find(y);\n    if (x == y) { return false;\
-    \ }\n    comp--;\n    if (size[x] < size[y]) std::swap(x, y);\n    size[x] +=\
+    \ }\n    n_comp--;\n    if (size[x] < size[y]) std::swap(x, y);\n    size[x] +=\
     \ size[y];\n    size[y] = 0;\n    par[y] = x;\n    return true;\n  }\n\n  std::vector<int>\
     \ find_all() {\n    std::vector<int> A(n);\n    for (int i = 0; i < n; ++i) A[i]\
-    \ = find(i);\n    return A;\n  }\n\n  void reset() {\n    comp = n;\n    size.assign(n,\
+    \ = find(i);\n    return A;\n  }\n\n  void reset() {\n    n_comp = n;\n    size.assign(n,\
     \ 1);\n    std::iota(par.begin(), par.end(), 0);\n  }\n};\n#line 2 \"graph/steiner_tree.hpp\"\
     \n\n/*\n(n,m): \u30B0\u30E9\u30D5\nk: terminal size\n\u30FBO(3^kn + 2^k(n+m)log\
     \ n)\n*/\ntemplate <typename T, typename Graph>\nT steiner_tree(Graph& G, vc<int>\
@@ -298,8 +298,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/114_steriner_tree.test.cpp
   requiredBy: []
-  timestamp: '2022-07-31 11:54:48+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-11 02:13:18+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/114_steriner_tree.test.cpp
 layout: document
