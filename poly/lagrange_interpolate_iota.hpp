@@ -11,7 +11,7 @@ vc<mint> lagrange_interpolate_iota(vc<mint> &f, mint c, int m) {
   Complexity: M(n, n + m)
   → m がとても小さいならば O(n) を m 回やる方が速いのか
   */
-  if(m <= 60){
+  if (m <= 60) {
     vc<mint> ANS(m);
     FOR(i, m) ANS[i] = lagrange_interpolate_iota(f, c + mint(i));
     return ANS;
@@ -51,16 +51,16 @@ mint lagrange_interpolate_iota(vc<mint> &f, mint c) {
   Complexity: O(n)
   */
   int n = len(f);
-  if(c.val < n) return f[c.val];
+  if (int(c.val) < n) return f[c.val];
   auto a = f;
   FOR(i, n) {
     a[i] = a[i] * fact_inv<mint>(i) * fact_inv<mint>(n - 1 - i);
     if ((n - 1 - i) & 1) a[i] = -a[i];
   }
-  vc<mint> lp(n+1), rp(n+1);
+  vc<mint> lp(n + 1), rp(n + 1);
   lp[0] = rp[n] = 1;
-  FOR(i, n) lp[i+1] = lp[i] * (c - i);
-  FOR_R(i, n) rp[i] = rp[i+1] * (c - i);
+  FOR(i, n) lp[i + 1] = lp[i] * (c - i);
+  FOR_R(i, n) rp[i] = rp[i + 1] * (c - i);
   mint ANS = 0;
   FOR(i, n) ANS += a[i] * lp[i] * rp[i + 1];
   return ANS;
