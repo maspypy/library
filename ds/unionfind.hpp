@@ -2,9 +2,9 @@
 
 struct UnionFind {
   int n;
-  int comp;
+  int n_comp;
   std::vector<int> size, par;
-  UnionFind(int n) : n(n), comp(n), size(n, 1), par(n) {
+  UnionFind(int n) : n(n), n_comp(n), size(n, 1), par(n) {
     std::iota(par.begin(), par.end(), 0);
   }
   int find(int x) {
@@ -22,7 +22,7 @@ struct UnionFind {
     x = find(x);
     y = find(y);
     if (x == y) { return false; }
-    comp--;
+    n_comp--;
     if (size[x] < size[y]) std::swap(x, y);
     size[x] += size[y];
     size[y] = 0;
@@ -37,7 +37,7 @@ struct UnionFind {
   }
 
   void reset() {
-    comp = n;
+    n_comp = n;
     size.assign(n, 1);
     std::iota(par.begin(), par.end(), 0);
   }
