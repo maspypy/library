@@ -10,6 +10,7 @@ struct FunctionalGraph {
   vc<int> TO;
   vc<T> wt;
   vc<int> root;
+  vvc<int> cyc;
 
   FunctionalGraph() {}
   FunctionalGraph(int N) : N(N), M(0), TO(N, -1), wt(N), root(N, -1) {}
@@ -37,6 +38,12 @@ struct FunctionalGraph {
         tree.add(N, v);
     }
     tree.build();
+    cyc.resize(N);
+    FOR(v, N) if (root[v] == v) {
+      vc<int> C = {TO[root[v]]};
+      while (C.back() != v) C.eb(TO[C.back()]);
+      cyc[v] = C;
+    }
   }
 
   void debug() {
