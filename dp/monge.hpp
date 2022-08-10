@@ -2,11 +2,11 @@
 #include "dp/monotone_minima.hpp"
 
 // 定義域 [0, N] の範囲で f の monge 性を確認
-template <typename F>
+template <typename T, typename F>
 bool check_monge(int N, F f) {
   FOR(l, N + 1) FOR(k, l) FOR(j, k) FOR(i, j) {
-    ll lhs = f(i, l) + f(j, k);
-    ll rhs = f(i, k) + f(j, l);
+    T lhs = f(i, l) + f(j, k);
+    T rhs = f(i, k) + f(j, l);
     if (lhs < rhs) return false;
   }
   return true;
@@ -27,6 +27,7 @@ vi monge_shortest_path(int N, F f) {
   }
   return dp;
 }
+
 
 template <typename T, typename F>
 vc<vc<T>> monge_shortest_path_d_edge_dense(int N, F f, T INF, int d_max) {
