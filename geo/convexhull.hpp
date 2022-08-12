@@ -1,7 +1,7 @@
 #include "geo/base.hpp"
 
 template<typename T>
-vector<T> ConvexHull(vector<pair<T, T>>& XY, string mode = "full",
+vector<int> ConvexHull(vector<pair<T, T>>& XY, string mode = "full",
                       bool inclusive = false, bool sorted = false) {
   assert(mode == "full" || mode == "lower" || mode == "upper");
   ll N = XY.size();
