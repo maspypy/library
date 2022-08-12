@@ -1,9 +1,11 @@
+#include "graph/degree.hpp"
 
 struct UnicyclicGraph {
   int root;
   Graph<int, 1> tree;
   vc<int> TO;
   vc<int> cycle; // 根に向かうような頂点列
+  vc<bool> in_cycle;
 
   template <typename Graph>
   UnicyclicGraph(Graph& G) : tree(G.N) {
@@ -46,6 +48,8 @@ struct UnicyclicGraph {
     FOR(i, len(P) - 1) TO[P[i]] = P[i + 1];
     cycle = {P.begin() + 1, P.end()};
     reverse(all(cycle));
+    in_cycle.assign(N, false);
+    for(auto&& v : cycle) in_cycle[v] = 1;
     FOR(v, N) if (v != root) tree.add(TO[v], v);
     tree.build();
   }
