@@ -181,8 +181,7 @@ vector<int> argsort(const vector<T> &A) {
 // A[I[0]], A[I[1]], ...
 template <typename T>
 vc<T> rearrange(const vc<T> &A, const vc<int> &I) {
-  int n = len(A);
-  assert(len(I) == n);
+  int n = len(I);
   vc<T> B(n);
   FOR(i, n) B[i] = A[I[i]];
   return B;
