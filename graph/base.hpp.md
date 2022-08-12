@@ -134,6 +134,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/twosat.hpp
     title: graph/twosat.hpp
+  - icon: ':warning:'
+    path: graph/unicyclic.hpp
+    title: graph/unicyclic.hpp
   - icon: ':heavy_check_mark:'
     path: graph/warshall_floyd.hpp
     title: graph/warshall_floyd.hpp
@@ -380,6 +383,7 @@ data:
   - graph/tree_diameter.hpp
   - graph/centroid.hpp
   - graph/maximum_independent_set.hpp
+  - graph/unicyclic.hpp
   - graph/functional.hpp
   - graph/bracket_graph.hpp
   - graph/range_to_range_graph.hpp

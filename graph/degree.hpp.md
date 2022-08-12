@@ -14,6 +14,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
+  - icon: ':warning:'
+    path: graph/unicyclic.hpp
+    title: graph/unicyclic.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2251_dag_path_cover.test.cpp
@@ -77,6 +80,7 @@ data:
   path: graph/degree.hpp
   requiredBy:
   - graph/toposort.hpp
+  - graph/unicyclic.hpp
   - graph/dag_path_cover.hpp
   - graph/enumerate_triangles.hpp
   timestamp: '2022-07-20 17:19:03+09:00'
