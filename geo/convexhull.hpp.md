@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy:
@@ -24,7 +24,7 @@ data:
     \    return {r, theta};\n  }\n  bool operator<(Point p) const {\n    if (x !=\
     \ p.x) return x < p.x;\n    return y < p.y;\n  }\n  bool operator==(Point p) const\
     \ { return x == p.x && y == p.y; }\n  Point operator-() const { return {-x, -y};\
-    \ }\n};\n#line 2 \"geo/convexhull.hpp\"\n\r\ntemplate<typename T>\r\nvector<T>\
+    \ }\n};\n#line 2 \"geo/convexhull.hpp\"\n\r\ntemplate<typename T>\r\nvector<int>\
     \ ConvexHull(vector<pair<T, T>>& XY, string mode = \"full\",\r\n             \
     \         bool inclusive = false, bool sorted = false) {\r\n  assert(mode == \"\
     full\" || mode == \"lower\" || mode == \"upper\");\r\n  ll N = XY.size();\r\n\
@@ -61,7 +61,7 @@ data:
     \ P.pop_back();\r\n    reverse(all(I));\r\n    vc<int> Q = calc();\r\n    P.insert(P.end(),\
     \ all(Q));\r\n  }\r\n  if (mode == \"upper\") reverse(all(P));\r\n  if(len(P)\
     \ >= 2 && P[0] == P.back()) P.pop_back();\r\n  return P;\r\n}\n"
-  code: "#include \"geo/base.hpp\"\r\n\r\ntemplate<typename T>\r\nvector<T> ConvexHull(vector<pair<T,\
+  code: "#include \"geo/base.hpp\"\r\n\r\ntemplate<typename T>\r\nvector<int> ConvexHull(vector<pair<T,\
     \ T>>& XY, string mode = \"full\",\r\n                      bool inclusive = false,\
     \ bool sorted = false) {\r\n  assert(mode == \"full\" || mode == \"lower\" ||\
     \ mode == \"upper\");\r\n  ll N = XY.size();\r\n  if (N == 1) return {0};\r\n\
@@ -104,7 +104,7 @@ data:
   path: geo/convexhull.hpp
   requiredBy:
   - geo/points_diameter.hpp
-  timestamp: '2022-04-16 04:26:49+09:00'
+  timestamp: '2022-08-13 02:22:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/convexhull.hpp

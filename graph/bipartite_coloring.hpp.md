@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   _extendedRequiredBy: []
@@ -114,8 +114,8 @@ data:
     \ 0);\n  sort(all(ids),\n       [&](int i, int j) { return A[i] < A[j] || (A[i]\
     \ == A[j] && i < j); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate\
     \ <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I) {\n  int n =\
-    \ len(A);\n  assert(len(I) == n);\n  vc<T> B(n);\n  FOR(i, n) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#line 4 \"graph/bipartite_coloring.hpp\"\n\npair<int, vi> bipartite_edge_coloring(Graph<ll>&\
+    \ len(I);\n  vc<T> B(n);\n  FOR(i, n) B[i] = A[I[i]];\n  return B;\n}\n#line 4\
+    \ \"graph/bipartite_coloring.hpp\"\n\npair<int, vi> bipartite_edge_coloring(Graph<ll>&\
     \ G) {\n  auto N = G.N;\n  vi deg(N);\n  vi ANS(G.M, -1);\n  FORIN(e, G.edges)\
     \ {\n    ++deg[e.frm];\n    ++deg[e.to];\n  }\n  ll C = MAX(deg);\n  // \u9802\
     \u70B9, \u8272 -> \u8FBA\u756A\u53F7\n  vv(int, TO, N, C, -1);\n\n  FOR(id, G.M)\
@@ -152,7 +152,7 @@ data:
   isVerificationFile: false
   path: graph/bipartite_coloring.hpp
   requiredBy: []
-  timestamp: '2022-07-31 11:54:48+09:00'
+  timestamp: '2022-08-13 02:22:39+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/bipartite_coloring.hpp
