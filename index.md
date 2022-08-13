@@ -21,7 +21,7 @@ data:
     - icon: ':x:'
       path: alg/group_power_sums.hpp
       title: alg/group_power_sums.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/group_reverse.hpp
       title: alg/group_reverse.hpp
     - icon: ':x:'
@@ -123,7 +123,7 @@ data:
     - icon: ':question:'
       path: alg/monoid_min.hpp
       title: alg/monoid_min.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid_min_idx.hpp
       title: alg/monoid_min_idx.hpp
     - icon: ':warning:'
@@ -201,7 +201,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/beats_summaxmin_chminchmax.hpp
       title: ds/beats_summaxmin_chminchmax.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/binarytrie.hpp
       title: ds/binarytrie.hpp
     - icon: ':question:'
@@ -216,10 +216,10 @@ data:
     - icon: ':x:'
       path: ds/cumsum2d.hpp
       title: ds/cumsum2d.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/disjointsparse.hpp
       title: ds/disjointsparse.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/divide_conquer_range_query.hpp
       title: ds/divide_conquer_range_query.hpp
     - icon: ':x:'
@@ -231,13 +231,13 @@ data:
     - icon: ':x:'
       path: ds/dynamic_lazysegtree.hpp
       title: ds/dynamic_lazysegtree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/dynamic_lichao.hpp
       title: ds/dynamic_lichao.hpp
     - icon: ':x:'
       path: ds/dynamic_segtree.hpp
       title: ds/dynamic_segtree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
     - icon: ':question:'
@@ -273,10 +273,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/lazysegtree_beats.hpp
       title: ds/lazysegtree_beats.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/lichao.hpp
       title: ds/lichao.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/mo.hpp
       title: ds/mo.hpp
     - icon: ':warning:'
@@ -291,7 +291,7 @@ data:
     - icon: ':warning:'
       path: ds/point_add_polygon_sum.hpp
       title: ds/point_add_polygon_sum.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/point_add_rectangle_sum.hpp
       title: ds/point_add_rectangle_sum.hpp
     - icon: ':warning:'
@@ -306,7 +306,7 @@ data:
     - icon: ':warning:'
       path: ds/rectangle_add_point_sum.hpp
       title: ds/rectangle_add_point_sum.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/rectangle_add_ractangle_sum.hpp
       title: ds/rectangle_add_ractangle_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -324,7 +324,7 @@ data:
     - icon: ':x:'
       path: ds/slope.hpp
       title: ds/slope.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/sortable_segtree.hpp
       title: ds/sortable_segtree.hpp
     - icon: ':question:'
@@ -359,7 +359,7 @@ data:
     - icon: ':warning:'
       path: flow/cyclic_bflow.hpp
       title: flow/cyclic_bflow.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: flow/hungarian.hpp
       title: flow/hungarian.hpp
     - icon: ':warning:'
@@ -376,16 +376,16 @@ data:
       title: flow/unbalanced_transportation.hpp
   - name: geo
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo/angle_sort.hpp
       title: geo/angle_sort.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo/base.hpp
       title: geo/base.hpp
     - icon: ':warning:'
       path: geo/convexhull.hpp
       title: geo/convexhull.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo/dynamicupperhull.hpp
       title: geo/dynamicupperhull.hpp
     - icon: ':x:'
@@ -450,7 +450,7 @@ data:
     - icon: ':question:'
       path: graph/dijkstra.hpp
       title: graph/dijkstra.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/dsu_on_tree.hpp
       title: graph/dsu_on_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -540,10 +540,10 @@ data:
     - icon: ':warning:'
       path: graph/tree_of_unionfind.hpp
       title: graph/tree_of_unionfind.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/treeabelgroup.hpp
       title: graph/treeabelgroup.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/treegroup.hpp
       title: graph/treegroup.hpp
     - icon: ':question:'
@@ -791,10 +791,10 @@ data:
     - icon: ':warning:'
       path: pds/persistent_rbst_monoid.hpp
       title: pds/persistent_rbst_monoid.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: pds/rollbackarray.hpp
       title: pds/rollbackarray.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: pds/rollbackunionfind.hpp
       title: pds/rollbackunionfind.hpp
     - icon: ':heavy_check_mark:'
@@ -1257,69 +1257,69 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
       title: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
       title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/segment_add_get_min.test.cpp
       title: test/library_checker/datastructure/segment_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
       title: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/set_xor_min.test.cpp
       title: test/library_checker/datastructure/set_xor_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/sort_segtree.test.cpp
       title: test/library_checker/datastructure/sort_segtree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/sort_segtree_1.test.cpp
       title: test/library_checker/datastructure/sort_segtree_1.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/static_range_sum.test.cpp
       title: test/library_checker/datastructure/static_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
       title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
       title: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/staticrmq_dc.test.cpp
       title: test/library_checker/datastructure/staticrmq_dc.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/staticrmq_seg.test.cpp
       title: test/library_checker/datastructure/staticrmq_seg.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/staticrmq_sparse.test.cpp
       title: test/library_checker/datastructure/staticrmq_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/unionfind.test.cpp
       title: test/library_checker/datastructure/unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
       title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
       title: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
       title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
       title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
       title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
       title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
       title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - name: test/library_checker
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
       title: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
     - icon: ':x:'
@@ -1327,15 +1327,15 @@ data:
       title: test/library_checker/longest_increasing_subsequence.test.cpp
   - name: test/library_checker/geometry
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/geometry/convex_layers.test.cpp
       title: test/library_checker/geometry/convex_layers.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/geometry/sort_points_by_argument.test.cpp
       title: test/library_checker/geometry/sort_points_by_argument.test.cpp
   - name: test/library_checker/graph
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/assignment.test.cpp
       title: test/library_checker/graph/assignment.test.cpp
     - icon: ':x:'
