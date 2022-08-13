@@ -3,7 +3,10 @@ struct modint61 {
   static constexpr bool is_modint = true;
   static constexpr ll mod = (1LL << 61) - 1;
   ll val;
-  constexpr modint61(const ll val = 0) : val(val) {}
+  constexpr modint61(const ll x = 0) : val(x) {
+    while(val < 0) val += mod;
+    while(val >= mod) val -= mod;
+  }
   bool operator<(const modint61 &other) const {
     return val < other.val;
   } // To use std::map
