@@ -141,6 +141,16 @@ struct RBST_Lazy {
     dfs(dfs, root);
   }
 
+  template <typename F>
+  int max_right(Node *&root, const F &check, int L) {
+    assert(check(Monoid_X::unit()));
+    Node *r_root = split(root, L);
+    int res = L;
+    max_right_rec(r_root, check, res, Monoid_X::unit());
+    merge(root, r_root);
+    return res;
+  }
+
 private:
   inline int xor128() {
     static int x = 123456789;
@@ -224,5 +234,23 @@ private:
     root->r = nl;
     update(root);
     return {root, nr};
+  }
+
+  template <typename F>
+  void max_right_rec(Node *n, const F check, int &res, X x) {
+    int l_sz = (n->l ? n->l->size : 0);
+    prop(n);
+    if (check(Monoid_X::op(x, n->prod))) {
+      res += (n->size);
+      return;
+    }
+    X y = (n->l ? Monoid_X::op(x, n->l->prod) : x);
+    if (!check(y)) { return max_right_rec(n->l, check, res, x); }
+    if (n->l) res += n->l->size;
+    x = y;
+    y = Monoid_X::op(x, n->x);
+    if (!check(y)) { return; }
+    res += 1;
+    return max_right_rec(n->r, check, res, y);
   }
 };
