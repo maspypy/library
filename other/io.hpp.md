@@ -138,40 +138,40 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_huge.test.cpp
     title: test/library_checker/convolution/convolution_huge.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod.test.cpp
     title: test/library_checker/convolution/convolution_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_107.test.cpp
     title: test/library_checker/convolution/convolution_mod_107.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
     title: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_2_64.test.cpp
     title: test/library_checker/convolution/convolution_mod_2_64.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
     title: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/multivariate_convolution.test.cpp
     title: test/library_checker/convolution/multivariate_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/online_convolution.test.cpp
     title: test/library_checker/convolution/online_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution.test.cpp
     title: test/library_checker/convolution/subset_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array.test.cpp
     title: test/library_checker/datastructure/associative_array.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
     title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - icon: ':x:'
@@ -739,6 +739,9 @@ data:
     path: test/yukicoder/626_knapsack_branch_bound.test.cpp
     title: test/yukicoder/626_knapsack_branch_bound.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/655_cumsum2d.test.cpp
+    title: test/yukicoder/655_cumsum2d.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/705_monge_shortest_path.test.cpp
     title: test/yukicoder/705_monge_shortest_path.test.cpp
   - icon: ':x:'
@@ -1174,6 +1177,7 @@ data:
   - test/yukicoder/1326_bct.test.cpp
   - test/yukicoder/1036_dseg_minleft_maxright.test.cpp
   - test/yukicoder/529_two_edge.test.cpp
+  - test/yukicoder/655_cumsum2d.test.cpp
   - test/yukicoder/1643_subseq.test.cpp
   - test/yukicoder/17_warshall_floyd.test.cpp
   - test/yukicoder/1234_rmq.test.cpp

@@ -9,6 +9,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1141_cumsum2d.test.cpp
     title: test/yukicoder/1141_cumsum2d.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/655_cumsum2d.test.cpp
+    title: test/yukicoder/655_cumsum2d.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -50,6 +53,7 @@ data:
   timestamp: '2022-06-27 16:36:33+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/yukicoder/655_cumsum2d.test.cpp
   - test/yukicoder/1141_cumsum2d.test.cpp
 documentation_of: ds/cumsum2d.hpp
 layout: document

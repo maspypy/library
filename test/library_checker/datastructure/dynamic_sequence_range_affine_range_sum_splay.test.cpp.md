@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/group_affine.hpp
     title: alg/group_affine.hpp
   - icon: ':question:'
     path: alg/group_cntsum.hpp
     title: alg/group_cntsum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/lazy_cntsum_affine.hpp
     title: alg/lazy_cntsum_affine.hpp
   - icon: ':x:'

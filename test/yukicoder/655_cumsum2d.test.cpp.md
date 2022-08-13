@@ -2,14 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: alg/group_affine.hpp
-    title: alg/group_affine.hpp
-  - icon: ':question:'
-    path: ds/segtree.hpp
-    title: ds/segtree.hpp
-  - icon: ':question:'
-    path: mod/modint.hpp
-    title: mod/modint.hpp
+    path: alg/group_add.hpp
+    title: alg/group_add.hpp
+  - icon: ':x:'
+    path: ds/cumsum2d.hpp
+    title: ds/cumsum2d.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -23,19 +20,19 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/point_set_range_composite
+    PROBLEM: https://yukicoder.me/problems/no/655
     links:
-    - https://judge.yosupo.jp/problem/point_set_range_composite
-  bundledCode: "#line 1 \"test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
-    \n#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
-    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
-    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://yukicoder.me/problems/no/655
+  bundledCode: "#line 1 \"test/yukicoder/655_cumsum2d.test.cpp\"\n#define PROBLEM\
+    \ \"https://yukicoder.me/problems/no/655\"\n#line 1 \"my_template.hpp\"\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -200,167 +197,82 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 4 \"test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp\"\
-    \n\n#line 2 \"ds/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree {\n\
-    \  using X = typename Monoid::value_type;\n  using value_type = X;\n  vector<X>\
-    \ dat;\n  int n, log, size;\n\n  SegTree() : SegTree(0) {}\n  SegTree(int n) :\
-    \ SegTree(vector<X>(n, Monoid::unit())) {}\n  SegTree(vector<X> v) : n(v.size())\
-    \ {\n    log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n \
-    \   dat.assign(size << 1, Monoid::unit());\n    for (int i = 0; i < n; ++i) dat[size\
-    \ + i] = v[i];\n    for (int i = size - 1; i >= 1; --i) update(i);\n  }\n\n  template\
-    \ <typename F>\n  SegTree(int n, F f) : n(n) {\n    log = 1;\n    while ((1 <<\
-    \ log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, Monoid::unit());\n\
-    \    for (int i = 0; i < n; ++i) dat[size + i] = f(i);\n    for (int i = size\
-    \ - 1; i >= 1; --i) update(i);\n  }\n\n  void reset() { fill(all(dat), Monoid::unit());\
-    \ }\n\n  void set_all(const vector<X>& v) {\n    dat.assign(size << 1, Monoid::unit());\n\
-    \    for (int i = 0; i < n; ++i) dat[size + i] = v[i];\n    for (int i = size\
-    \ - 1; i >= 1; --i) update(i);\n  }\n\n  X operator[](int i) { return dat[size\
-    \ + i]; }\n\n  void update(int i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i\
-    \ + 1]); }\n\n  void set(int i, const X& x) {\n    assert(i < n);\n    dat[i +=\
-    \ size] = x;\n    while (i >>= 1) update(i);\n  }\n\n  void multiply(int i, const\
-    \ X& x) {\n    assert(i < n);\n    i += size;\n    dat[i] = Monoid::op(dat[i],\
-    \ x);\n    while (i >>= 1) update(i);\n  }\n\n  X prod(int L, int R) {\n    assert(L\
-    \ <= R);\n    assert(R <= n);\n    X vl = Monoid::unit(), vr = Monoid::unit();\n\
-    \    L += size, R += size;\n    while (L < R) {\n      if (L & 1) vl = Monoid::op(vl,\
-    \ dat[L++]);\n      if (R & 1) vr = Monoid::op(dat[--R], vr);\n      L >>= 1,\
-    \ R >>= 1;\n    }\n    return Monoid::op(vl, vr);\n  }\n\n  X prod_all() { return\
-    \ dat[1]; }\n\n  template <class F>\n  int max_right(F& check, int L) {\n    assert(0\
-    \ <= L && L <= n && check(Monoid::unit()));\n    if (L == n) return n;\n    L\
-    \ += size;\n    X sm = Monoid::unit();\n    do {\n      while (L % 2 == 0) L >>=\
-    \ 1;\n      if (!check(Monoid::op(sm, dat[L]))) {\n        while (L < size) {\n\
-    \          L = 2 * L;\n          if (check(Monoid::op(sm, dat[L]))) {\n      \
-    \      sm = Monoid::op(sm, dat[L]);\n            L++;\n          }\n        }\n\
-    \        return L - size;\n      }\n      sm = Monoid::op(sm, dat[L]);\n     \
-    \ L++;\n    } while ((L & -L) != L);\n    return n;\n  }\n\n  template <class\
-    \ F>\n  int min_left(F& check, int R) {\n    assert(0 <= R && R <= n && check(Monoid::unit()));\n\
-    \    if (R == 0) return 0;\n    R += size;\n    X sm = Monoid::unit();\n    do\
-    \ {\n      --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
-    \ sm))) {\n        while (R < size) {\n          R = 2 * R + 1;\n          if\
-    \ (check(Monoid::op(dat[R], sm))) {\n            sm = Monoid::op(dat[R], sm);\n\
-    \            R--;\n          }\n        }\n        return R + 1 - size;\n    \
-    \  }\n      sm = Monoid::op(dat[R], sm);\n    } while ((R & -R) != R);\n    return\
-    \ 0;\n  }\n\n  // \u30E2\u30CE\u30A4\u30C9\u304C\u53EF\u63DB\u306A\u3089\u3001\
-    prod_{l<=i<r}A[i^x] \u304C\u8A08\u7B97\u53EF\u80FD\n  // https://codeforces.com/contest/1401/problem/F\n\
-    \  X Xor_prod(int l, int r, int xor_val) {\n    assert(Monoid::commute);\n   \
-    \ X x = Monoid::unit();\n    for (int k = 0; k < log + 1; ++k) {\n      if (l\
-    \ >= r) break;\n      if (l & 1) { x = Monoid::op(x, dat[(size >> k) + ((l++)\
-    \ ^ xor_val)]); }\n      if (r & 1) { x = Monoid::op(x, dat[(size >> k) + ((--r)\
-    \ ^ xor_val)]); }\n      l /= 2, r /= 2, xor_val /= 2;\n    }\n    return x;\n\
-    \  }\n\n  void debug() { print(\"segtree\", dat); }\n};\n#line 2 \"mod/modint.hpp\"\
-    \n\ntemplate <unsigned int mod>\nstruct modint {\n  static constexpr bool is_modint\
-    \ = true;\n  unsigned int val;\n  constexpr modint(const long long val = 0) noexcept\n\
-    \      : val(val >= 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const\
-    \ modint &other) const {\n    return val < other.val;\n  } // To use std::map\n\
-    \  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -=\
-    \ mod;\n    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if\
-    \ ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint\
-    \ &operator*=(const modint &p) {\n    val = (unsigned int)(1LL * val * p.val %\
-    \ mod);\n    return *this;\n  }\n  modint &operator/=(const modint &p) {\n   \
-    \ *this *= p.inverse();\n    return *this;\n  }\n  modint operator-() const {\
-    \ return modint(get_mod() - val); }\n  modint operator+(const modint &p) const\
-    \ { return modint(*this) += p; }\n  modint operator-(const modint &p) const {\
-    \ return modint(*this) -= p; }\n  modint operator*(const modint &p) const { return\
-    \ modint(*this) *= p; }\n  modint operator/(const modint &p) const { return modint(*this)\
-    \ /= p; }\n  bool operator==(const modint &p) const { return val == p.val; }\n\
-    \  bool operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
-    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
-    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
-    \ return modint(u);\n  }\n  modint pow(int64_t n) const {\n    modint ret(1),\
-    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
-    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr unsigned int\
-    \ get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr\
-    \ bool is_modint = true;\n  unsigned int val;\n  ArbitraryModInt() : val(0) {}\n\
-    \  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n          \
-    \         : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
-    \ ArbitraryModInt &other) const {\n    return val < other.val;\n  } // To use\
-    \ std::map<ArbitraryModInt, T>\n  static unsigned int &get_mod() {\n    static\
-    \ unsigned int mod = 0;\n    return mod;\n  }\n  static void set_mod(int md) {\
-    \ get_mod() = md; }\n  ArbitraryModInt &operator+=(const ArbitraryModInt &p) {\n\
-    \    if ((val += p.val) >= get_mod()) val -= get_mod();\n    return *this;\n \
-    \ }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p) {\n    if ((val +=\
-    \ get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return *this;\n  }\n\
-    \  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n    unsigned long\
-    \ long a = (unsigned long long)val * p.val;\n    unsigned xh = (unsigned)(a >>\
-    \ 32), xl = (unsigned)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"\
-    (m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n\
-    \  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n    *this *=\
-    \ p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-() const {\
-    \ return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) += p;\n  }\n\
-    \  ArbitraryModInt operator-(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
-    \ -= p;\n  }\n  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n\
-    \    return ArbitraryModInt(*this) *= p;\n  }\n  ArbitraryModInt operator/(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) /= p;\n  }\n\
-    \  bool operator==(const ArbitraryModInt &p) const { return val == p.val; }\n\
-    \  bool operator!=(const ArbitraryModInt &p) const { return val != p.val; }\n\
-    \  ArbitraryModInt inverse() const {\n    int a = val, b = get_mod(), u = 1, v\
-    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
-    \ -= t * v, v);\n    }\n    return ArbitraryModInt(u);\n  }\n  ArbitraryModInt\
-    \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
-    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
-    \  }\n    return ret;\n  }\n};\n\ntemplate <typename mint>\nmint inv(int n) {\n\
-    \  static const int mod = mint::get_mod();\n  static vector<mint> dat = {0, 1};\n\
-    \  assert(0 <= n);\n  if (n >= mod) n %= mod;\n  while (int(dat.size()) <= n)\
-    \ {\n    int k = dat.size();\n    auto q = (mod + k - 1) / k;\n    int r = k *\
-    \ q - mod;\n    dat.emplace_back(dat[r] * mint(q));\n  }\n  return dat[n];\n}\n\
-    \ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
-    \  static vector<mint> dat = {1, 1};\n  assert(0 <= n);\n  if (n >= mod) return\
-    \ 0;\n  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
-    \ - 1] * mint(k));\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint\
-    \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
-    \ dat = {1, 1};\n  assert(0 <= n && n < mod);\n  while (int(dat.size()) <= n)\
-    \ {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint, bool large = false>\nmint\
-    \ C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if (!large)\
-    \ return fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k,\
-    \ n - k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n\
-    \  return x;\n}\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll\
-    \ n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return\
-    \ fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint,\
-    \ 1>(n, k);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    using amint = ArbitraryModInt;\n#line 1 \"alg/group_affine.hpp\"\ntemplate <typename\
-    \ K>\nstruct Group_Affine {\n  using F = pair<K, K>;\n  using value_type = F;\n\
-    \  static constexpr F op(const F &x, const F &y) noexcept {\n    return F({x.first\
-    \ * y.first, x.second * y.first + y.second});\n  }\n  static constexpr F inverse(const\
-    \ F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n\
-    \  }\n  static constexpr K eval(const F &f, K x) noexcept {\n    return f.first\
-    \ * x + f.second;\n  }\n  static constexpr F unit() { return {K(1), K(0)}; }\n\
-    \  static constexpr bool commute = false;\n};\n#line 8 \"test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  using Mono = Group_Affine<mint>;\n\
-    \  using F = Mono::value_type;\n\n  vc<F> seg_raw(N);\n  FOR(i, N) {\n    LL(a,\
-    \ b);\n    seg_raw[i] = {a, b};\n  }\n\n  SegTree<Mono> seg(seg_raw);\n\n  FOR(q,\
-    \ Q) {\n    LL(t);\n    if (t == 0) {\n      LL(i, a, b);\n      seg.set(i, F({a,\
-    \ b}));\n    } else {\n      LL(L, R, x);\n      auto f = seg.prod(L, R);\n  \
-    \    print(Mono::eval(f, x));\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  solve();\n\n\
-    \  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/segtree.hpp\"\
-    \n#include \"mod/modint.hpp\"\n#include \"alg/group_affine.hpp\"\n\nusing mint\
-    \ = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  using Mono = Group_Affine<mint>;\n\
-    \  using F = Mono::value_type;\n\n  vc<F> seg_raw(N);\n  FOR(i, N) {\n    LL(a,\
-    \ b);\n    seg_raw[i] = {a, b};\n  }\n\n  SegTree<Mono> seg(seg_raw);\n\n  FOR(q,\
-    \ Q) {\n    LL(t);\n    if (t == 0) {\n      LL(i, a, b);\n      seg.set(i, F({a,\
-    \ b}));\n    } else {\n      LL(L, R, x);\n      auto f = seg.prod(L, R);\n  \
-    \    print(Mono::eval(f, x));\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  solve();\n\n\
-    \  return 0;\n}\n"
+    \ { yes(!t); }\r\n#line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\n\
+    struct Group_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
+    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
+    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
+    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/cumsum2d.hpp\"\
+    \n\r\ntemplate <typename Group>\r\nstruct Cumsum2D {\r\n  using X = typename Group::value_type;\r\
+    \n  int H, W;\r\n  vc<vc<X>> dat;\r\n\r\n  Cumsum2D() {}\r\n  Cumsum2D(vc<vc<X>>\
+    \ &A) {\r\n    assert(Group::commute);\r\n    build(A);\r\n  }\r\n\r\n  void build(vc<vc<X>>\
+    \ &A) {\r\n    int H = len(A);\r\n    int W = (H == 0 ? 0 : len(A[0]));\r\n  \
+    \  dat.assign(H + 1, vc<X>(W + 1, Group::unit()));\r\n    FOR(x, H) FOR(y, W)\
+    \ dat[x + 1][y + 1] = A[x][y];\r\n    FOR(x, H + 1) FOR(y, W) dat[x][y + 1] =\
+    \ Group::op(dat[x][y + 1], dat[x][y]);\r\n    FOR(x, H) FOR(y, W + 1) dat[x +\
+    \ 1][y] = Group::op(dat[x + 1][y], dat[x][y]);\r\n  }\r\n\r\n  X sum(int x1, int\
+    \ y1, int x2, int y2) {\r\n    X a = Group::op(dat[x1][y1], dat[x2][y2]);\r\n\
+    \    X b = Group::op(dat[x2][y1], dat[x1][y2]);\r\n    return Group::op(a, Group::inverse(b));\r\
+    \n  }\r\n};\n#line 5 \"test/yukicoder/655_cumsum2d.test.cpp\"\n\nvoid solve()\
+    \ {\n  LL(N, K, P);\n  vv(ll, A, N, N, -1);\n  auto isin = [&](ll x, ll y) ->\
+    \ bool {\n    return (0 <= x && x < N && 0 <= y && y <= x);\n  };\n  int dx[]\
+    \ = {1, 1, 0, -1, -1, 0};\n  int dy[] = {0, 1, 1, 0, -1, -1};\n\n  deque<pair<int,\
+    \ int>> que;\n  auto add = [&](int x, int y, int d) -> void {\n    if (A[x][y]\
+    \ != -1) return;\n    A[x][y] = d;\n    que.eb(x, y);\n  };\n  FOR(K) {\n    LL(x,\
+    \ y);\n    add(--x, --y, 0);\n  }\n  while (len(que)) {\n    auto [x, y] = que.front();\n\
+    \    que.pop_front();\n    FOR(d, 6) {\n      int nx = x + dx[d], ny = y + dy[d];\n\
+    \      if (isin(nx, ny)) add(nx, ny, A[x][y] + 1);\n    }\n  }\n  FOR(x, N) FOR(y,\
+    \ N) if (A[x][y] == -1) A[x][y] = 0;\n  // 2 \u6B21\u5143\u7D2F\u7A4D\u548C\n\
+    \  Cumsum2D<Group_Add<ll>> X(A);\n  ll ANS = 0;\n  // \u8D85\u3048\u306A\u3044\
+    \u6700\u5927\u30B5\u30A4\u30BA\u3092\u6C42\u3081\u308B\n  // \u5BFE\u89D2\u7DDA\
+    \u3054\u3068\u306B\u3001\u4E0A\u304B\u3089\n  FOR(s, N) {\n    ll k = 0;\n   \
+    \ ll sm = 0;\n    FOR(i, s, N) {\n      int j = i - s;\n      // \u4E0A\u6BB5\u306E\
+    \ k-sm \u304C\u3042\u308B\u3002\n      // \u81EA\u5206\u306E\u3068\u3053\u308D\
+    \u306E (k-1)-sm \u304C\u3068\u308C\u308B\u3002\n      if (k > 0) {\n        sm\
+    \ -= X.sum(i - 1, j - 1, i - 1 + k, j);\n        --k;\n      }\n      while (i\
+    \ + k < N) {\n        ll add = X.sum(i + k, j, i + k + 1, j + k + 1);\n      \
+    \  if (sm + add >= P) break;\n        ++k;\n        sm += add;\n      }\n    \
+    \  ANS += (N - i) - k;\n    }\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cout\
+    \ << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
+    \n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/655\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"ds/cumsum2d.hpp\"\n\nvoid solve() {\n\
+    \  LL(N, K, P);\n  vv(ll, A, N, N, -1);\n  auto isin = [&](ll x, ll y) -> bool\
+    \ {\n    return (0 <= x && x < N && 0 <= y && y <= x);\n  };\n  int dx[] = {1,\
+    \ 1, 0, -1, -1, 0};\n  int dy[] = {0, 1, 1, 0, -1, -1};\n\n  deque<pair<int, int>>\
+    \ que;\n  auto add = [&](int x, int y, int d) -> void {\n    if (A[x][y] != -1)\
+    \ return;\n    A[x][y] = d;\n    que.eb(x, y);\n  };\n  FOR(K) {\n    LL(x, y);\n\
+    \    add(--x, --y, 0);\n  }\n  while (len(que)) {\n    auto [x, y] = que.front();\n\
+    \    que.pop_front();\n    FOR(d, 6) {\n      int nx = x + dx[d], ny = y + dy[d];\n\
+    \      if (isin(nx, ny)) add(nx, ny, A[x][y] + 1);\n    }\n  }\n  FOR(x, N) FOR(y,\
+    \ N) if (A[x][y] == -1) A[x][y] = 0;\n  // 2 \u6B21\u5143\u7D2F\u7A4D\u548C\n\
+    \  Cumsum2D<Group_Add<ll>> X(A);\n  ll ANS = 0;\n  // \u8D85\u3048\u306A\u3044\
+    \u6700\u5927\u30B5\u30A4\u30BA\u3092\u6C42\u3081\u308B\n  // \u5BFE\u89D2\u7DDA\
+    \u3054\u3068\u306B\u3001\u4E0A\u304B\u3089\n  FOR(s, N) {\n    ll k = 0;\n   \
+    \ ll sm = 0;\n    FOR(i, s, N) {\n      int j = i - s;\n      // \u4E0A\u6BB5\u306E\
+    \ k-sm \u304C\u3042\u308B\u3002\n      // \u81EA\u5206\u306E\u3068\u3053\u308D\
+    \u306E (k-1)-sm \u304C\u3068\u308C\u308B\u3002\n      if (k > 0) {\n        sm\
+    \ -= X.sum(i - 1, j - 1, i - 1 + k, j);\n        --k;\n      }\n      while (i\
+    \ + k < N) {\n        ll add = X.sum(i + k, j, i + k + 1, j + k + 1);\n      \
+    \  if (sm + add >= P) break;\n        ++k;\n        sm += add;\n      }\n    \
+    \  ANS += (N - i) - k;\n    }\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cout\
+    \ << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/segtree.hpp
-  - mod/modint.hpp
-  - alg/group_affine.hpp
+  - ds/cumsum2d.hpp
+  - alg/group_add.hpp
   isVerificationFile: true
-  path: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
+  path: test/yukicoder/655_cumsum2d.test.cpp
   requiredBy: []
-  timestamp: '2022-08-13 02:22:39+09:00'
+  timestamp: '2022-08-14 06:42:53+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
+documentation_of: test/yukicoder/655_cumsum2d.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
-- /verify/test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp.html
-title: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
+- /verify/test/yukicoder/655_cumsum2d.test.cpp
+- /verify/test/yukicoder/655_cumsum2d.test.cpp.html
+title: test/yukicoder/655_cumsum2d.test.cpp
 ---

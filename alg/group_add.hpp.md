@@ -178,6 +178,9 @@ data:
     path: test/yukicoder/235_lazytreemonoid.test.cpp
     title: test/yukicoder/235_lazytreemonoid.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/655_cumsum2d.test.cpp
+    title: test/yukicoder/655_cumsum2d.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/789_dseg.test.cpp
     title: test/yukicoder/789_dseg.test.cpp
   - icon: ':x:'
@@ -266,6 +269,7 @@ data:
   - test/yukicoder/1038_centroid.test.cpp
   - test/yukicoder/789_dseg_lazy.test.cpp
   - test/yukicoder/1326_bct.test.cpp
+  - test/yukicoder/655_cumsum2d.test.cpp
   - test/yukicoder/1234_rmq.test.cpp
   - test/yukicoder/1490_rect_add_rect_sum.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
