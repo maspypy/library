@@ -1,3 +1,4 @@
+#pragma once
 
 template <typename T>
 vc<vc<T>> ranked_zeta(const vc<T>& f) {
