@@ -22,7 +22,8 @@ data:
     links: []
   bundledCode: "#line 2 \"mod/modint61.hpp\"\nstruct modint61 {\r\n  static constexpr\
     \ bool is_modint = true;\r\n  static constexpr ll mod = (1LL << 61) - 1;\r\n \
-    \ ll val;\r\n  constexpr modint61(const ll val = 0) : val(val) {}\r\n  bool operator<(const\
+    \ ll val;\r\n  constexpr modint61(const ll x = 0) : val(x) {\r\n    while(val\
+    \ < 0) val += mod;\r\n    while(val >= mod) val -= mod;\r\n  }\r\n  bool operator<(const\
     \ modint61 &other) const {\r\n    return val < other.val;\r\n  } // To use std::map\r\
     \n  bool operator==(const modint61 &p) const { return val == p.val; }\r\n  bool\
     \ operator!=(const modint61 &p) const { return val != p.val; }\r\n  modint61 &operator+=(const\
@@ -50,13 +51,14 @@ data:
     \ { return mod; }\r\n};\r\n"
   code: "#pragma once\r\nstruct modint61 {\r\n  static constexpr bool is_modint =\
     \ true;\r\n  static constexpr ll mod = (1LL << 61) - 1;\r\n  ll val;\r\n  constexpr\
-    \ modint61(const ll val = 0) : val(val) {}\r\n  bool operator<(const modint61\
-    \ &other) const {\r\n    return val < other.val;\r\n  } // To use std::map\r\n\
-    \  bool operator==(const modint61 &p) const { return val == p.val; }\r\n  bool\
-    \ operator!=(const modint61 &p) const { return val != p.val; }\r\n  modint61 &operator+=(const\
-    \ modint61 &p) {\r\n    if ((val += p.val) >= mod) val -= mod;\r\n    return *this;\r\
-    \n  }\r\n  modint61 &operator-=(const modint61 &p) {\r\n    if ((val += mod -\
-    \ p.val) >= mod) val -= mod;\r\n    return *this;\r\n  }\r\n  modint61 &operator*=(const\
+    \ modint61(const ll x = 0) : val(x) {\r\n    while(val < 0) val += mod;\r\n  \
+    \  while(val >= mod) val -= mod;\r\n  }\r\n  bool operator<(const modint61 &other)\
+    \ const {\r\n    return val < other.val;\r\n  } // To use std::map\r\n  bool operator==(const\
+    \ modint61 &p) const { return val == p.val; }\r\n  bool operator!=(const modint61\
+    \ &p) const { return val != p.val; }\r\n  modint61 &operator+=(const modint61\
+    \ &p) {\r\n    if ((val += p.val) >= mod) val -= mod;\r\n    return *this;\r\n\
+    \  }\r\n  modint61 &operator-=(const modint61 &p) {\r\n    if ((val += mod - p.val)\
+    \ >= mod) val -= mod;\r\n    return *this;\r\n  }\r\n  modint61 &operator*=(const\
     \ modint61 &p) {\r\n    ll a = val, b = p.val;\r\n    const ll MASK30 = (1LL <<\
     \ 30) - 1;\r\n    const ll MASK31 = (1LL << 31) - 1;\r\n    const ll MASK61 =\
     \ (1LL << 61) - 1;\r\n    ll au = a >> 31, ad = a & MASK31;\r\n    ll bu = b >>\
@@ -82,7 +84,7 @@ data:
   requiredBy:
   - mod/modular_subset_sum.hpp
   - alg/monoid_rollinghash.hpp
-  timestamp: '2022-04-16 04:26:49+09:00'
+  timestamp: '2022-08-14 06:01:50+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp

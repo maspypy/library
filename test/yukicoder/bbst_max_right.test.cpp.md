@@ -2,17 +2,20 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: alg/group_add.hpp
+    title: alg/group_add.hpp
+  - icon: ':x:'
+    path: alg/lazy_max_add.hpp
+    title: alg/lazy_max_add.hpp
+  - icon: ':question:'
+    path: alg/monoid_max.hpp
+    title: alg/monoid_max.hpp
+  - icon: ':x:'
+    path: bbst/rbst_lazy.hpp
+    title: bbst/rbst_lazy.hpp
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
-    path: nt/multiplicative_sum.hpp
-    title: nt/multiplicative_sum.hpp
-  - icon: ':x:'
-    path: nt/primesum.hpp
-    title: nt/primesum.hpp
-  - icon: ':question:'
-    path: nt/primetable.hpp
-    title: nt/primetable.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
@@ -23,19 +26,19 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/sum_of_totient_function
+    PROBLEM: https://yukicoder.me/problems/no/686
     links:
-    - https://judge.yosupo.jp/problem/sum_of_totient_function
-  bundledCode: "#line 1 \"test/library_checker/math/totient_sum.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/sum_of_totient_function\"\n#line 1\
-    \ \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing\
-    \ ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32\
-    \ = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\n\
-    template <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://yukicoder.me/problems/no/686
+  bundledCode: "#line 1 \"test/yukicoder/bbst_max_right.test.cpp\"\n#define PROBLEM\
+    \ \"https://yukicoder.me/problems/no/686\"\n#line 1 \"my_template.hpp\"\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -200,87 +203,153 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 4 \"test/library_checker/math/totient_sum.test.cpp\"\n\
-    \n#line 2 \"nt/primetable.hpp\"\nvc<ll> primetable(int LIM) {\n  ++LIM;\n  const\
-    \ int S = 32768;\n  static int done = 2;\n  static vc<ll> primes = {2}, sieve(S\
-    \ + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S\
-    \ + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM)\
-    \ * 1.1));\n    vc<pi> cp;\n    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i])\
-    \ {\n        cp.eb(i, i * i / 2);\n        for (int j = i * i; j <= S; j += 2\
-    \ * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n\
-    \      array<bool, S> block{};\n      for (auto& [p, idx]: cp)\n        for (int\
-    \ i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R\
-    \ - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes,\
-    \ LIM + 1);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 2 \"nt/primesum.hpp\"\
-    \n\r\n/*\r\nN \u3068\u5B8C\u5168\u4E57\u6CD5\u7684\u95A2\u6570 f \u306E prefix\
-    \ sum \u95A2\u6570 F \u3092\u4E0E\u3048\u308B\u3002\r\nn = floor(N/d) \u3068\u306A\
-    \u308B n \u306B\u5BFE\u3059\u308B sum_{p <= n} f(p) \u3092\u8A08\u7B97\u3059\u308B\
-    \u3002\r\n\u7279\u306B\u3001p^k \u306E\u548C\u3084\u3001mod m \u3054\u3068\u3067\
-    \u306E p^k \u306E\u548C\u304C\u8A08\u7B97\u3067\u304D\u308B\u3002\r\nComplexity:\
-    \ O(N^{3/4}/logN) time, O(N^{1/2}) space.\r\n*/\r\ntemplate <typename T>\r\npair<vc<T>,\
-    \ vc<T>> primesum_F(ll N, function<T(ll)> F) {\r\n  ll sqN = sqrtl(N);\r\n  auto\
-    \ primes = primetable(sqN);\r\n  vc<T> sum_lo(sqN + 1), sum_hi(sqN + 1);\r\n \
-    \ FOR3(i, 1, sqN + 1) sum_lo[i] = F(i) - 1;\r\n  FOR3(i, 1, sqN + 1) sum_hi[i]\
-    \ = F(double(N) / i) - 1;\r\n  for (auto&& p: primes) {\r\n    ll pp = p * p;\r\
-    \n    if (pp > N) break;\r\n    ll R = min(sqN, N / pp);\r\n    ll M = sqN / p;\r\
-    \n    T x = sum_lo[p - 1];\r\n    T fp = sum_lo[p] - sum_lo[p - 1];\r\n    FOR3(i,\
-    \ 1, M + 1) sum_hi[i] -= fp * (sum_hi[i * p] - x);\r\n    FOR3(i, M + 1, R + 1)\
-    \ sum_hi[i] -= fp * (sum_lo[double(N) / (i * p)] - x);\r\n    FOR3_R(n, pp, sqN\
-    \ + 1) sum_lo[n] -= fp * (sum_lo[double(n) / p] - x);\r\n  }\r\n  return {sum_lo,\
-    \ sum_hi};\r\n}\r\n\r\ntemplate <typename T>\r\npair<vc<T>, vc<T>> primecnt(ll\
-    \ N) {\r\n  auto F = [&](ll N) -> T { return N; };\r\n  return primesum_F<T>(N,\
-    \ F);\r\n}\r\n\r\ntemplate <typename T>\r\npair<vc<T>, vc<T>> primesum(ll N) {\r\
-    \n  auto F = [&](ll N) -> T {\r\n    return (N & 1 ? T((N + 1) / 2) * T(N) : T(N\
-    \ / 2) * T(N + 1));\r\n  };\r\n  return primesum_F<T>(N, F);\r\n}\r\n#line 2 \"\
-    nt/multiplicative_sum.hpp\"\ntemplate <typename T, typename FUNC>\r\nT multiplicative_sum(ll\
-    \ N, FUNC F, vc<T>& sum_lo, vc<T>& sum_hi) {\r\n  // F(p^e) \u3092\u4E0E\u3048\
-    \u308B\u95A2\u6570\u306B\u52A0\u3048\u3001\u4E8B\u524D\u306B\u8A08\u7B97\u3057\
-    \u305F prime sum \u3092\u6301\u305F\u305B\u308B\r\n  // black algorithm in\r\n\
-    \  // http://baihacker.github.io/main/2020/The_prefix-sum_of_multiplicative_function_the_black_algorithm.html\r\
-    \n  ll sqN = sqrtl(N);\r\n  auto P = primetable(sqN);\r\n  auto get = [&](ll d)\
-    \ -> T {\r\n    return (d <= sqN ? sum_lo[d] : sum_hi[double(N) / d]);\r\n  };\r\
-    \n\r\n  T ANS = T(1) + get(N); // 1 and prime\r\n\r\n  // t = up_i^k \u306E\u3068\
-    \u304D\u306B\u3001(t, i, k, f(t), f(u)) \u3092\u6301\u305F\u305B\u308B\r\n\r\n\
-    \  auto dfs = [&](auto self, ll t, ll i, ll k, T ft, T fu) -> void {\r\n    T\
-    \ f_nxt = fu * F(P[i], k + 1);\r\n    // \u5B50\u30CE\u30FC\u30C9\u3092\u5168\u90E8\
-    \u52A0\u7B97\r\n    ANS += f_nxt;\r\n    ANS += ft * (get(double(N) / t) - get(P[i]));\r\
-    \n\r\n    ll lim = sqrtl(double(N) / t);\r\n    if (P[i] <= lim) { self(self,\
-    \ t * P[i], i, k + 1, f_nxt, fu); }\r\n    FOR3(j, i + 1, len(P)) {\r\n      if\
-    \ (P[j] > lim) break;\r\n      self(self, t * P[j], j, 1, ft * F(P[j], 1), ft);\r\
-    \n    }\r\n  };\r\n  FOR(i, len(P)) if (P[i] <= sqN) dfs(dfs, P[i], i, 1, F(P[i],\
-    \ 1), 1);\r\n  return ANS;\r\n}\n#line 7 \"test/library_checker/math/totient_sum.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  auto [sum_lo_0, sum_hi_0] = primecnt<ll>(N);\n\
-    \  auto [sum_lo, sum_hi] = primesum<i128>(N);\n  ll m = len(sum_lo_0);\n  FOR(i,\
-    \ m) sum_lo[i] -= sum_lo_0[i];\n  FOR(i, m) sum_hi[i] -= sum_hi_0[i];\n  auto\
-    \ f = [&](ll p, ll e) -> i128 {\n    ll x = p - 1;\n    FOR(e - 1) x *= p;\n \
-    \   return x;\n  };\n  int mod = 998244353;\n  print(int(multiplicative_sum(N,\
-    \ f, sum_lo, sum_hi) % mod));\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n\
-    }\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sum_of_totient_function\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"nt/primesum.hpp\"\
-    \n#include \"nt/multiplicative_sum.hpp\"\n\nvoid solve() {\n  LL(N);\n  auto [sum_lo_0,\
-    \ sum_hi_0] = primecnt<ll>(N);\n  auto [sum_lo, sum_hi] = primesum<i128>(N);\n\
-    \  ll m = len(sum_lo_0);\n  FOR(i, m) sum_lo[i] -= sum_lo_0[i];\n  FOR(i, m) sum_hi[i]\
-    \ -= sum_hi_0[i];\n  auto f = [&](ll p, ll e) -> i128 {\n    ll x = p - 1;\n \
-    \   FOR(e - 1) x *= p;\n    return x;\n  };\n  int mod = 998244353;\n  print(int(multiplicative_sum(N,\
-    \ f, sum_lo, sum_hi) % mod));\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n\
-    }\n"
+    \ { yes(!t); }\r\n#line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\n\
+    struct Group_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
+    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
+    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
+    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/monoid_max.hpp\"\
+    \ntemplate <class X>\r\nstruct Monoid_Max {\r\n  using value_type = X;\r\n  static\
+    \ constexpr X op(const X &x, const X &y) noexcept { return max(x, y); }\r\n  static\
+    \ constexpr X unit() { return numeric_limits<X>::lowest(); }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 3 \"alg/lazy_max_add.hpp\"\n\r\ntemplate\
+    \ <typename E>\r\nstruct Lazy_Max_Add {\r\n  using MX = Monoid_Max<E>;\r\n  using\
+    \ MA = Group_Add<E>;\r\n  using X_structure = MX;\r\n  using A_structure = MA;\r\
+    \n  using X = typename MX::value_type;\r\n  using A = typename MA::value_type;\r\
+    \n  static constexpr X act(const X &x, const A &a) {\r\n    if (x == numeric_limits<E>::lowest())\
+    \ return x;\r\n    return x + a;\r\n  }\r\n};\r\n#line 1 \"bbst/rbst_lazy.hpp\"\
+    \n\n// reverse \u306F\u3068\u308A\u3042\u3048\u305A\u3001Monoid_X \u306E\u53EF\
+    \u63DB\u6027\u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\uFF01\ntemplate <typename\
+    \ Lazy, int NODES = 1'000'000>\nstruct RBST_Lazy {\n  using Monoid_X = typename\
+    \ Lazy::X_structure;\n  using Monoid_A = typename Lazy::A_structure;\n  using\
+    \ X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
+    \n  struct Node {\n    Node *l, *r;\n    X x, prod;\n    A a;\n    int size;\n\
+    \    bool rev;\n    bool propagated;\n  };\n\n  Node *pool;\n  int pid;\n\n  RBST_Lazy()\
+    \ : pid(0) { pool = new Node[NODES]; }\n\n  Node *new_node(const X &x) {\n   \
+    \ pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x = x;\n    pool[pid].prod\
+    \ = x;\n    pool[pid].a = Monoid_A::unit();\n    pool[pid].size = 1;\n    pool[pid].rev\
+    \ = 0;\n    pool[pid].propagated = 1;\n    return &(pool[pid++]);\n  }\n\n  Node\
+    \ *new_node(const vc<X> &dat) {\n    auto dfs = [&](auto &dfs, int l, int r) ->\
+    \ Node * {\n      if (l == r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n\
+    \      int m = (l + r) / 2;\n      Node *l_root = dfs(dfs, l, m);\n      Node\
+    \ *r_root = dfs(dfs, m + 1, r);\n      Node *root = new_node(dat[m]);\n      root->l\
+    \ = l_root, root->r = r_root;\n      update(root);\n      return root;\n    };\n\
+    \    return dfs(dfs, 0, len(dat));\n  }\n\n  // \u5DE6\u306B\u53F3\u3092\u30DE\
+    \u30FC\u30B8\n  void merge(Node *&root, Node *r_root) {\n    root = merge_rec(root,\
+    \ r_root);\n    return;\n  }\n\n  // \u5DE6\u53F3\u306B\u5206\u3051\u3066\u3001\
+    root \u3092\u5DE6\u5074\u306B\u5909\u66F4\u3002\u53F3\u5074\u3092 return \u3059\
+    \u308B\u3002\n  Node *split(Node *&root, int k) {\n    if (!root) assert(k ==\
+    \ 0);\n    if (root) assert(0 <= k && k <= root->size);\n    auto [nl, nr] = split_rec(root,\
+    \ k);\n    root = nl;\n    return nr;\n  }\n\n  X prod(Node *&root, int l, int\
+    \ r) {\n    assert(0 <= l && l <= r && r <= root->size);\n    if (l == r) return\
+    \ Monoid_X::unit();\n    Node *r_root = split(root, r);\n    Node *m_root = split(root,\
+    \ l);\n    X res = m_root->prod;\n    merge(root, m_root);\n    merge(root, r_root);\n\
+    \    return res;\n  }\n\n  void reverse(Node *&root, int l, int r) {\n    assert(Monoid_X::commute);\n\
+    \    assert(0 <= l && l <= r && r <= root->size);\n    if (r - l <= 1) return;\n\
+    \    Node *r_root = split(root, r);\n    Node *m_root = split(root, l);\n    m_root->rev\
+    \ ^= 1;\n    prop(m_root);\n    update(m_root);\n    merge(root, m_root);\n  \
+    \  merge(root, r_root);\n  }\n\n  void apply(Node *&root, int l, int r, const\
+    \ A &a) {\n    assert(0 <= l && l <= r && r <= root->size);\n    if (l == r) return;\n\
+    \    Node *r_root = split(root, r);\n    Node *m_root = split(root, l);\n    m_root->x\
+    \ = Lazy::act(m_root->x, a);\n    m_root->prod = Lazy::act(m_root->prod, a);\n\
+    \    m_root->a = Monoid_A::op(m_root->a, a);\n    m_root->propagated = 0;\n  \
+    \  prop(m_root);\n    update(m_root);\n    merge(root, m_root);\n    merge(root,\
+    \ r_root);\n  }\n\n  // root \u306E k \u756A\u76EE\u306B n \u3092\u633F\u5165\u3059\
+    \u308B\n  void insert(Node *&root, int k, Node *n) {\n    if (!root) {\n     \
+    \ assert(k == 0);\n      root = n;\n      return;\n    }\n    assert(0 <= k &&\
+    \ k <= root->size);\n    auto r_root = split(root, k);\n    merge(root, n);\n\
+    \    merge(root, r_root);\n  }\n\n  void insert(Node *&root, int k, const X &x)\
+    \ { insert(root, k, new_node(x)); }\n\n  // root \u304B\u3089 k \u756A\u76EE\u3092\
+    \u524A\u9664\u3002\u524A\u9664\u3057\u305F\u30CE\u30FC\u30C9\u3092\u304B\u3048\
+    \u3059\n  Node *erase(Node *&root, int k) {\n    assert(0 <= k && k < root->size);\n\
+    \    auto nr = split(root, k + 1);\n    auto nm = split(root, k);\n    merge(root,\
+    \ nr);\n    return nm;\n  }\n\n  void debug(Node *root) {\n    print(\"RBST\"\
+    );\n    string s;\n    auto dfs = [&](auto &dfs, Node *n) -> void {\n      if\
+    \ (!n) return;\n      s += \"l\";\n      dfs(dfs, n->l);\n      s.pop_back();\n\
+    \      print(s, \"size\", n->size, \"x\", n->x, \"prod\", n->prod, \"apply\",\
+    \ n->a);\n      s += \"r\";\n      dfs(dfs, n->r);\n      s.pop_back();\n    };\n\
+    \    dfs(dfs, root);\n  }\n\n  template <typename F>\n  int max_right(Node *&root,\
+    \ const F &check, int L) {\n    assert(check(Monoid_X::unit()));\n    Node *r_root\
+    \ = split(root, L);\n    int res = L;\n    max_right_rec(r_root, check, res, Monoid_X::unit());\n\
+    \    merge(root, r_root);\n    return res;\n  }\n\nprivate:\n  inline int xor128()\
+    \ {\n    static int x = 123456789;\n    static int y = 362436069;\n    static\
+    \ int z = 521288629;\n    static int w = 88675123;\n    int t;\n\n    t = x ^\
+    \ (x << 11);\n    x = y;\n    y = z;\n    z = w;\n    return w = (w ^ (w >> 19))\
+    \ ^ (t ^ (t >> 8));\n  }\n\n  void prop(Node *c) {\n    if (!c->propagated) {\n\
+    \      if (c->l) {\n        c->l->x = Lazy::act(c->l->x, c->a);\n        c->l->prod\
+    \ = Lazy::act(c->l->prod, c->a);\n        c->l->a = Monoid_A::op(c->l->a, c->a);\n\
+    \        c->l->propagated = 0;\n      }\n      if (c->r) {\n        c->r->x =\
+    \ Lazy::act(c->r->x, c->a);\n        c->r->prod = Lazy::act(c->r->prod, c->a);\n\
+    \        c->r->a = Monoid_A::op(c->r->a, c->a);\n        c->r->propagated = 0;\n\
+    \      }\n      c->a = Monoid_A::unit();\n      c->propagated = 1;\n    }\n  \
+    \  if (c->rev) {\n      swap(c->l, c->r);\n      if (c->l) c->l->rev ^= 1;\n \
+    \     if (c->r) c->r->rev ^= 1;\n      c->rev = 0;\n    }\n  }\n\n  void update(Node\
+    \ *c) {\n    c->size = 1;\n    c->prod = c->x;\n    if (c->l) {\n      c->size\
+    \ += c->l->size;\n      c->prod = Monoid_X::op(c->l->prod, c->prod);\n    }\n\
+    \    if (c->r) {\n      c->size += c->r->size;\n      c->prod = Monoid_X::op(c->prod,\
+    \ c->r->prod);\n    }\n  }\n\n  Node *merge_rec(Node *l_root, Node *r_root) {\n\
+    \    if (!l_root) return r_root;\n    if (!r_root) return l_root;\n    int sl\
+    \ = l_root->size, sr = r_root->size;\n    if (xor128() % (sl + sr) < sl) {\n \
+    \     prop(l_root);\n      l_root->r = merge_rec(l_root->r, r_root);\n      update(l_root);\n\
+    \      return l_root;\n    }\n    prop(r_root);\n    r_root->l = merge_rec(l_root,\
+    \ r_root->l);\n    update(r_root);\n    return r_root;\n  }\n\n  pair<Node *,\
+    \ Node *> split_rec(Node *root, int k) {\n    if (!root) return {nullptr, nullptr};\n\
+    \    prop(root);\n    int ls = (root->l ? root->l->size : 0);\n    if (k <= ls)\
+    \ {\n      auto [nl, nr] = split_rec(root->l, k);\n      root->l = nr;\n     \
+    \ update(root);\n      return {nl, root};\n    }\n    auto [nl, nr] = split_rec(root->r,\
+    \ k - (1 + ls));\n    root->r = nl;\n    update(root);\n    return {root, nr};\n\
+    \  }\n\n  template <typename F>\n  void max_right_rec(Node *n, const F check,\
+    \ int &res, X x) {\n    int l_sz = (n->l ? n->l->size : 0);\n    prop(n);\n  \
+    \  if (check(Monoid_X::op(x, n->prod))) {\n      res += (n->size);\n      return;\n\
+    \    }\n    X y = (n->l ? Monoid_X::op(x, n->l->prod) : x);\n    if (!check(y))\
+    \ { return max_right_rec(n->l, check, res, x); }\n    if (n->l) res += n->l->size;\n\
+    \    x = y;\n    y = Monoid_X::op(x, n->x);\n    if (!check(y)) { return; }\n\
+    \    res += 1;\n    return max_right_rec(n->r, check, res, y);\n  }\n};\n#line\
+    \ 6 \"test/yukicoder/bbst_max_right.test.cpp\"\n\nvoid solve() {\n  LL(N);\n \
+    \ ll LIM = 100'010;\n  using Lazy = Lazy_Max_Add<int>;\n  vc<int> dp(LIM);\n \
+    \ RBST_Lazy<Lazy> seg;\n  auto root = seg.new_node(dp);\n\n  FOR(N) {\n    LL(L,\
+    \ R);\n    {\n      int a = seg.prod(root, R, R + 1);\n      int b = seg.prod(root,\
+    \ R - 1, R);\n      if (a != b) {\n        --R;\n      } else {\n        auto\
+    \ check = [&](int e) -> bool { return e <= a; };\n        int k = seg.max_right(root,\
+    \ check, R);\n        R = k - 1;\n      }\n    }\n    if (L > R) continue;\n \
+    \   seg.apply(root, L, R, 1);\n    auto d = seg.split(root, R + 1);\n    auto\
+    \ c = seg.split(root, R);\n    auto b = seg.split(root, L);\n    int x = seg.prod(root,\
+    \ L - 1, L);\n    seg.merge(root, seg.new_node(x + 1));\n    seg.merge(root, b);\n\
+    \    seg.merge(root, d);\n  }\n\n  print(seg.prod(root, 0, LIM));\n}\n\nsigned\
+    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/686\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"alg/lazy_max_add.hpp\"\n#include \"bbst/rbst_lazy.hpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  ll LIM = 100'010;\n  using Lazy = Lazy_Max_Add<int>;\n\
+    \  vc<int> dp(LIM);\n  RBST_Lazy<Lazy> seg;\n  auto root = seg.new_node(dp);\n\
+    \n  FOR(N) {\n    LL(L, R);\n    {\n      int a = seg.prod(root, R, R + 1);\n\
+    \      int b = seg.prod(root, R - 1, R);\n      if (a != b) {\n        --R;\n\
+    \      } else {\n        auto check = [&](int e) -> bool { return e <= a; };\n\
+    \        int k = seg.max_right(root, check, R);\n        R = k - 1;\n      }\n\
+    \    }\n    if (L > R) continue;\n    seg.apply(root, L, R, 1);\n    auto d =\
+    \ seg.split(root, R + 1);\n    auto c = seg.split(root, R);\n    auto b = seg.split(root,\
+    \ L);\n    int x = seg.prod(root, L - 1, L);\n    seg.merge(root, seg.new_node(x\
+    \ + 1));\n    seg.merge(root, b);\n    seg.merge(root, d);\n  }\n\n  print(seg.prod(root,\
+    \ 0, LIM));\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - nt/primesum.hpp
-  - nt/primetable.hpp
-  - nt/multiplicative_sum.hpp
+  - alg/lazy_max_add.hpp
+  - alg/group_add.hpp
+  - alg/monoid_max.hpp
+  - bbst/rbst_lazy.hpp
   isVerificationFile: true
-  path: test/library_checker/math/totient_sum.test.cpp
+  path: test/yukicoder/bbst_max_right.test.cpp
   requiredBy: []
-  timestamp: '2022-08-13 02:22:39+09:00'
+  timestamp: '2022-08-14 06:03:23+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/math/totient_sum.test.cpp
+documentation_of: test/yukicoder/bbst_max_right.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/math/totient_sum.test.cpp
-- /verify/test/library_checker/math/totient_sum.test.cpp.html
-title: test/library_checker/math/totient_sum.test.cpp
+- /verify/test/yukicoder/bbst_max_right.test.cpp
+- /verify/test/yukicoder/bbst_max_right.test.cpp.html
+title: test/yukicoder/bbst_max_right.test.cpp
 ---

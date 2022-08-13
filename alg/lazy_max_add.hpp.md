@@ -4,14 +4,17 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid_max.hpp
     title: alg/monoid_max.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yukicoder/bbst_max_right.test.cpp
+    title: test/yukicoder/bbst_max_right.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -42,8 +45,9 @@ data:
   path: alg/lazy_max_add.hpp
   requiredBy: []
   timestamp: '2022-06-27 16:36:33+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yukicoder/bbst_max_right.test.cpp
 documentation_of: alg/lazy_max_add.hpp
 layout: document
 redirect_from:
