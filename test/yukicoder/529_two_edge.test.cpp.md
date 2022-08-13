@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
   - icon: ':question:'

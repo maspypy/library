@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_1_D_lis.test.cpp
     title: test/aoj/DPL_1_D_lis.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/longest_increasing_subsequence.test.cpp
     title: test/library_checker/longest_increasing_subsequence.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"dp/longest_increasing_subsequence.hpp\"\n/*\ndp[i] := \u7B2C\
@@ -38,7 +38,7 @@ data:
   path: dp/longest_increasing_subsequence.hpp
   requiredBy: []
   timestamp: '2022-04-22 16:53:26+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL_1_D_lis.test.cpp
   - test/library_checker/longest_increasing_subsequence.test.cpp

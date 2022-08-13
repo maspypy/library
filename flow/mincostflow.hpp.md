@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/assignment_mcf.test.cpp
     title: test/library_checker/graph/assignment_mcf.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test/yukicoder/1301_mcf.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"flow/mincostflow.hpp\"\n\n// atcoder library \u306E\u3082\
@@ -252,7 +252,7 @@ data:
   path: flow/mincostflow.hpp
   requiredBy: []
   timestamp: '2022-05-05 15:29:23+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/graph/assignment_mcf.test.cpp
   - test/yukicoder/1301_mcf.test.cpp
