@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/multiplicative_convolution_mod2n.hpp
     title: nt/multiplicative_convolution_mod2n.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
   - icon: ':warning:'
@@ -90,6 +90,9 @@ data:
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
   - icon: ':heavy_check_mark:'
+    path: seq/interpolate_linear_rec.hpp
+    title: seq/interpolate_linear_rec.hpp
+  - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
   - icon: ':heavy_check_mark:'
@@ -135,6 +138,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
+    title: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/partition.test.cpp
     title: test/library_checker/math/partition.test.cpp
@@ -223,8 +229,14 @@ data:
     path: test/yukicoder/1321_surj.test.cpp
     title: test/yukicoder/1321_surj.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1500_interpolate_linear.test.cpp
+    title: test/yukicoder/1500_interpolate_linear.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1618_conv_ll.test.cpp
     title: test/yukicoder/1618_conv_ll.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1844_interpolate_c_rec.test.cpp
+    title: test/yukicoder/1844_interpolate_c_rec.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_p_rec.test.cpp
     title: test/yukicoder/502_p_rec.test.cpp
@@ -594,6 +606,7 @@ data:
   - graph/tree_all_distances.hpp
   - seq/stirling_number_2.hpp
   - seq/surjection.hpp
+  - seq/interpolate_linear_rec.hpp
   - seq/stirling_number_1.hpp
   - seq/interpolate_poly_exp_sum.hpp
   - seq/sum_of_powers.hpp
@@ -602,6 +615,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
+  - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
@@ -639,6 +653,8 @@ data:
   - test/yukicoder/502_p_rec.test.cpp
   - test/yukicoder/1145_sum_of_powers.test.cpp
   - test/yukicoder/1618_conv_ll.test.cpp
+  - test/yukicoder/1844_interpolate_c_rec.test.cpp
+  - test/yukicoder/1500_interpolate_linear.test.cpp
   - test/yukicoder/1321_surj.test.cpp
   - test/mytest/factorial_998.test.cpp
 documentation_of: poly/convolution.hpp

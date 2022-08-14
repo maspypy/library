@@ -19,11 +19,23 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: seq/interpolate_linear_rec.hpp
+    title: seq/interpolate_linear_rec.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
+    title: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1500_interpolate_linear.test.cpp
+    title: test/yukicoder/1500_interpolate_linear.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1844_interpolate_c_rec.test.cpp
+    title: test/yukicoder/1844_interpolate_c_rec.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\n\ntemplate <unsigned int mod>\nstruct\
@@ -302,10 +314,14 @@ data:
   - poly/fft.hpp
   isVerificationFile: false
   path: poly/coef_of_rational_fps.hpp
-  requiredBy: []
+  requiredBy:
+  - seq/interpolate_linear_rec.hpp
   timestamp: '2022-08-15 04:43:57+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/yukicoder/1844_interpolate_c_rec.test.cpp
+  - test/yukicoder/1500_interpolate_linear.test.cpp
 documentation_of: poly/coef_of_rational_fps.hpp
 layout: document
 redirect_from:
