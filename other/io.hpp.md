@@ -367,9 +367,6 @@ data:
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-    title: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/lcm_convolution.test.cpp
     title: test/library_checker/math/lcm_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -640,9 +637,6 @@ data:
     path: test/yukicoder/1490_rect_add_rect_sum.test.cpp
     title: test/yukicoder/1490_rect_add_rect_sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1500_interpolate_linear.test.cpp
-    title: test/yukicoder/1500_interpolate_linear.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1548_power_sums.test.cpp
     title: test/yukicoder/1548_power_sums.test.cpp
   - icon: ':heavy_check_mark:'
@@ -693,9 +687,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1826_dseg.test.cpp
     title: test/yukicoder/1826_dseg.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1844_interpolate_c_rec.test.cpp
-    title: test/yukicoder/1844_interpolate_c_rec.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/184_xorbasis.test.cpp
     title: test/yukicoder/184_xorbasis.test.cpp
@@ -1042,7 +1033,6 @@ data:
   - test/library_checker/math/enumerate_primes.test.cpp
   - test/library_checker/math/kth_root_integer.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/nim_product.test.cpp
@@ -1227,10 +1217,8 @@ data:
   - test/yukicoder/1170_range_to_range.test.cpp
   - test/yukicoder/1288_mcf_dag_negative.test.cpp
   - test/yukicoder/1441_bbst.test.cpp
-  - test/yukicoder/1844_interpolate_c_rec.test.cpp
   - test/yukicoder/626_knapsack_branch_bound.test.cpp
   - test/yukicoder/1269_aho.test.cpp
-  - test/yukicoder/1500_interpolate_linear.test.cpp
   - test/yukicoder/1170_online_uf.test.cpp
   - test/yukicoder/1778_bracket_graph.test.cpp
   - test/yukicoder/919_waveletmatrix.test.cpp

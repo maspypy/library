@@ -19,26 +19,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: seq/bell_number_large.hpp
-    title: seq/bell_number_large.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/interpolate_linear_rec.hpp
-    title: seq/interpolate_linear_rec.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-    title: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1500_interpolate_linear.test.cpp
-    title: test/yukicoder/1500_interpolate_linear.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1844_interpolate_c_rec.test.cpp
-    title: test/yukicoder/1844_interpolate_c_rec.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\n\ntemplate <unsigned int mod>\nstruct\
@@ -288,8 +273,8 @@ data:
     \ vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>& b) {\r\n  int\
     \ n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if (min(n, m) <=\
     \ 60) return convolution_naive(a, b);\r\n  return convolution_garner(a, b);\r\n\
-    }\r\n#line 2 \"seq/coef_of_rational_fps.hpp\"\n\r\ntemplate <typename mint>\r\n\
-    mint coef_of_rational_fps(vector<mint> A, vector<mint> B, ll N) {\r\n  if (len(A)\
+    }\r\n#line 2 \"poly/coef_of_rational_fps.hpp\"\n\r\ntemplate <typename mint>\r\
+    \nmint coef_of_rational_fps(vector<mint> A, vector<mint> B, ll N) {\r\n  if (len(A)\
     \ == 0) return 0;\r\n  assert(len(A) < len(B));\r\n  while (len(A) + 1 < len(B))\
     \ A.eb(0);\r\n  assert(B[0] == mint(1));\r\n  assert(len(B) == len(A) + 1);\r\n\
     \  while (N) {\r\n    vc<mint> B1 = B;\r\n    FOR(i, len(B1)) if (i & 1) B1[i]\
@@ -316,20 +301,15 @@ data:
   - poly/ntt.hpp
   - poly/fft.hpp
   isVerificationFile: false
-  path: seq/coef_of_rational_fps.hpp
-  requiredBy:
-  - seq/bell_number_large.hpp
-  - seq/interpolate_linear_rec.hpp
-  timestamp: '2022-07-31 08:50:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/yukicoder/1844_interpolate_c_rec.test.cpp
-  - test/yukicoder/1500_interpolate_linear.test.cpp
-documentation_of: seq/coef_of_rational_fps.hpp
+  path: poly/coef_of_rational_fps.hpp
+  requiredBy: []
+  timestamp: '2022-08-15 04:43:57+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: poly/coef_of_rational_fps.hpp
 layout: document
 redirect_from:
-- /library/seq/coef_of_rational_fps.hpp
-- /library/seq/coef_of_rational_fps.hpp.html
-title: seq/coef_of_rational_fps.hpp
+- /library/poly/coef_of_rational_fps.hpp
+- /library/poly/coef_of_rational_fps.hpp.html
+title: poly/coef_of_rational_fps.hpp
 ---

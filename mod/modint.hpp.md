@@ -14,6 +14,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/multiplicative_convolution_mod2n.hpp
     title: nt/multiplicative_convolution_mod2n.hpp
+  - icon: ':warning:'
+    path: poly/coef_of_rational_fps.hpp
+    title: poly/coef_of_rational_fps.hpp
   - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
@@ -80,15 +83,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
-  - icon: ':warning:'
-    path: seq/bell_number_large.hpp
-    title: seq/bell_number_large.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/coef_of_rational_fps.hpp
-    title: seq/coef_of_rational_fps.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/interpolate_linear_rec.hpp
-    title: seq/interpolate_linear_rec.hpp
   - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
@@ -195,9 +189,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/gcd_convolution.test.cpp
     title: test/library_checker/math/gcd_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-    title: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/lcm_convolution.test.cpp
     title: test/library_checker/math/lcm_convolution.test.cpp
@@ -331,9 +322,6 @@ data:
     path: test/yukicoder/1339_discrete_log.test.cpp
     title: test/yukicoder/1339_discrete_log.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1500_interpolate_linear.test.cpp
-    title: test/yukicoder/1500_interpolate_linear.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1548_power_sums.test.cpp
     title: test/yukicoder/1548_power_sums.test.cpp
   - icon: ':heavy_check_mark:'
@@ -348,9 +336,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1810_matpow.test.cpp
     title: test/yukicoder/1810_matpow.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1844_interpolate_c_rec.test.cpp
-    title: test/yukicoder/1844_interpolate_c_rec.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1891_xor_sparse.test.cpp
     title: test/yukicoder/1891_xor_sparse.test.cpp
@@ -534,6 +519,7 @@ data:
   - poly/online_convolution.hpp
   - poly/lagrange_interpolate_iota.hpp
   - poly/fps_composition.hpp
+  - poly/coef_of_rational_fps.hpp
   - poly/prefix_product_of_poly.hpp
   - poly/multivar_convolution.hpp
   - poly/multipoint.hpp
@@ -546,10 +532,7 @@ data:
   - mod/mod_log.hpp
   - graph/tree_all_distances.hpp
   - seq/stirling_number_2.hpp
-  - seq/coef_of_rational_fps.hpp
-  - seq/bell_number_large.hpp
   - seq/surjection.hpp
-  - seq/interpolate_linear_rec.hpp
   - seq/stirling_number_1.hpp
   - seq/limit_poly_exp_sum.hpp
   - seq/interpolate_poly_exp_sum.hpp
@@ -561,7 +544,6 @@ data:
   - test/aoj/DPL_5_C_count_surjection.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/find_linear_recurrence.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
@@ -637,9 +619,7 @@ data:
   - test/yukicoder/749_lazysegtree.test.cpp
   - test/yukicoder/1548_power_sums.test.cpp
   - test/yukicoder/1141_cumsum2d.test.cpp
-  - test/yukicoder/1844_interpolate_c_rec.test.cpp
   - test/yukicoder/1269_aho.test.cpp
-  - test/yukicoder/1500_interpolate_linear.test.cpp
   - test/yukicoder/1321_surj.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/all_inverse.test.cpp
