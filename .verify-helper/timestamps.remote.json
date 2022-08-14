@@ -123,6 +123,7 @@
 "test/library_checker/math/gcd_convolution.test.cpp": "2022-08-13 02:22:39 +0900",
 "test/library_checker/math/kth_root_integer.test.cpp": "2022-08-13 02:22:39 +0900",
 "test/library_checker/math/kth_root_mod.test.cpp": "2022-08-13 02:22:39 +0900",
+"test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp": "2022-08-15 04:57:40 +0900",
 "test/library_checker/math/lcm_convolution.test.cpp": "2022-08-13 02:22:39 +0900",
 "test/library_checker/math/nim_product.test.cpp": "2022-08-13 02:22:39 +0900",
 "test/library_checker/math/partition.test.cpp": "2022-08-13 02:22:39 +0900",
