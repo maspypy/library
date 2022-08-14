@@ -12,8 +12,8 @@ data:
   bundledCode: "#line 1 \"poly/coef_of_rational_fps_2d.hpp\"\n\n/*\n[x^N] F(x,y)/G(x,y)\
     \ \u306E\u8A08\u7B97\u3002\u7D50\u679C\u306F y \u306E\u591A\u9805\u5F0F\u3002\n\
     [x^0] G = 1 \u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\u3002\ndeg G = (3, 1) \u306E\
-    \ N = 10^6 \u3067 500 ms \u306E\u5B9F\u7E3E\u304C\u3042\u308B\u304C\u3001\u304B\
-    \u306A\u308A\u758E\u3060\u304B\u3089\u304B\u3082\u3002\nhttps://atcoder.jp/contests/agc058/tasks/agc058_d\n\
+    \ N = 3\xD710^6 \u3067 500 ms \u306E\u5B9F\u7E3E\u304C\u3042\u308B\u304C\u3001\
+    \u304B\u306A\u308A\u758E\u3060\u304B\u3089\u304B\u3082\u3002\nhttps://atcoder.jp/contests/agc058/tasks/agc058_d\n\
     */\ntemplate <typename mint>\nvc<mint> coef_of_rational_fps_2d(vector<vector<mint>>\
     \ F, vector<vector<mint>> G,\n                                 int N) {\n  using\
     \ poly = vc<mint>;\n\n  // x^N mod reverse(G) \u3092\u8A08\u7B97\u3059\u308B\n\
@@ -42,10 +42,10 @@ data:
     \ f[i]);\n  }\n  return res;\n}\n"
   code: "\n/*\n[x^N] F(x,y)/G(x,y) \u306E\u8A08\u7B97\u3002\u7D50\u679C\u306F y \u306E\
     \u591A\u9805\u5F0F\u3002\n[x^0] G = 1 \u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\
-    \u3002\ndeg G = (3, 1) \u306E N = 10^6 \u3067 500 ms \u306E\u5B9F\u7E3E\u304C\u3042\
-    \u308B\u304C\u3001\u304B\u306A\u308A\u758E\u3060\u304B\u3089\u304B\u3082\u3002\
-    \nhttps://atcoder.jp/contests/agc058/tasks/agc058_d\n*/\ntemplate <typename mint>\n\
-    vc<mint> coef_of_rational_fps_2d(vector<vector<mint>> F, vector<vector<mint>>\
+    \u3002\ndeg G = (3, 1) \u306E N = 3\xD710^6 \u3067 500 ms \u306E\u5B9F\u7E3E\u304C\
+    \u3042\u308B\u304C\u3001\u304B\u306A\u308A\u758E\u3060\u304B\u3089\u304B\u3082\
+    \u3002\nhttps://atcoder.jp/contests/agc058/tasks/agc058_d\n*/\ntemplate <typename\
+    \ mint>\nvc<mint> coef_of_rational_fps_2d(vector<vector<mint>> F, vector<vector<mint>>\
     \ G,\n                                 int N) {\n  using poly = vc<mint>;\n\n\
     \  // x^N mod reverse(G) \u3092\u8A08\u7B97\u3059\u308B\n  int m = len(G) - 1;\n\
     \n  auto add_at = [&](poly& f, int i, mint x) -> void {\n    if (len(f) <= i)\
@@ -75,7 +75,7 @@ data:
   isVerificationFile: false
   path: poly/coef_of_rational_fps_2d.hpp
   requiredBy: []
-  timestamp: '2022-08-15 04:44:15+09:00'
+  timestamp: '2022-08-15 04:56:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: poly/coef_of_rational_fps_2d.hpp
