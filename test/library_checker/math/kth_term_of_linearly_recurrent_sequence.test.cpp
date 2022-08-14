@@ -4,7 +4,7 @@
 #include "other/io.hpp"
 
 #include "mod/modint.hpp"
-#include "seq/coef_of_rational_fps.hpp"
+#include "poly/coef_of_rational_fps.hpp"
 
 using mint = modint998;
 void solve() {
