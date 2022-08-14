@@ -25,10 +25,10 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/coef_of_rational_fps.hpp
     title: seq/coef_of_rational_fps.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
   - icon: ':x:'
