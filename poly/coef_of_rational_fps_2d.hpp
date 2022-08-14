@@ -2,7 +2,7 @@
 /*
 [x^N] F(x,y)/G(x,y) の計算。結果は y の多項式。
 [x^0] G = 1 を仮定している。
-deg G = (3, 1) の N = 10^6 で 500 ms の実績があるが、かなり疎だからかも。
+deg G = (3, 1) の N = 3×10^6 で 500 ms の実績があるが、かなり疎だからかも。
 https://atcoder.jp/contests/agc058/tasks/agc058_d
 */
 template <typename mint>
