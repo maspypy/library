@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: linalg/det.hpp
-    title: linalg/det.hpp
-  - icon: ':heavy_check_mark:'
-    path: mod/modint.hpp
-    title: mod/modint.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
+    path: nt/primetest.hpp
+    title: nt/primetest.hpp
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
+  - icon: ':question:'
+    path: seq/stirling_number_query.hpp
+    title: seq/stirling_number_query.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/matrix_det
+    PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n
     links:
-    - https://judge.yosupo.jp/problem/matrix_det
-  bundledCode: "#line 1 \"test/library_checker/matrix/matrix_det.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/matrix_det\"\r\n#line 1 \"my_template.hpp\"\
-    \n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
-    using pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\n\
-    using u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\n\
-    using vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate\
-    \ <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
-    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n
+  bundledCode: "#line 1 \"test/library_checker/math/stirline_mod_p_2.test.cpp\"\n\
+    #define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n\"\
+    \n#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
+    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
+    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
+    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -197,110 +197,96 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"mod/modint.hpp\"\n\ntemplate <unsigned int mod>\n\
-    struct modint {\n  static constexpr bool is_modint = true;\n  unsigned int val;\n\
-    \  constexpr modint(const long long val = 0) noexcept\n      : val(val >= 0 ?\
-    \ val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint &other)\
-    \ const {\n    return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
-    \ modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n\
-    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >=\
-    \ mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint\
-    \ &p) {\n    val = (unsigned int)(1LL * val * p.val % mod);\n    return *this;\n\
-    \  }\n  modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n   \
-    \ return *this;\n  }\n  modint operator-() const { return modint(get_mod() - val);\
-    \ }\n  modint operator+(const modint &p) const { return modint(*this) += p; }\n\
-    \  modint operator-(const modint &p) const { return modint(*this) -= p; }\n  modint\
-    \ operator*(const modint &p) const { return modint(*this) *= p; }\n  modint operator/(const\
-    \ modint &p) const { return modint(*this) /= p; }\n  bool operator==(const modint\
-    \ &p) const { return val == p.val; }\n  bool operator!=(const modint &p) const\
-    \ { return val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod,\
-    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
-    \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
-    \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
-    \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n  static constexpr unsigned int get_mod() { return mod; }\n};\n\nstruct\
-    \ ArbitraryModInt {\n  static constexpr bool is_modint = true;\n  unsigned int\
-    \ val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t y)\n      :\
-    \ val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y) % get_mod())\
-    \ % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other) const {\n  \
-    \  return val < other.val;\n  } // To use std::map<ArbitraryModInt, T>\n  static\
-    \ unsigned int &get_mod() {\n    static unsigned int mod = 0;\n    return mod;\n\
-    \  }\n  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
-    \ ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
-    \    return *this;\n  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p)\
-    \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
-    \ *this;\n  }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n   \
-    \ unsigned long long a = (unsigned long long)val * p.val;\n    unsigned xh = (unsigned)(a\
-    \ >> 32), xl = (unsigned)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"\
-    =d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n\
-    \  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n    *this *=\
-    \ p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-() const {\
-    \ return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) += p;\n  }\n\
-    \  ArbitraryModInt operator-(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
-    \ -= p;\n  }\n  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n\
-    \    return ArbitraryModInt(*this) *= p;\n  }\n  ArbitraryModInt operator/(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) /= p;\n  }\n\
-    \  bool operator==(const ArbitraryModInt &p) const { return val == p.val; }\n\
-    \  bool operator!=(const ArbitraryModInt &p) const { return val != p.val; }\n\
-    \  ArbitraryModInt inverse() const {\n    int a = val, b = get_mod(), u = 1, v\
-    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
-    \ -= t * v, v);\n    }\n    return ArbitraryModInt(u);\n  }\n  ArbitraryModInt\
-    \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
-    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
-    \  }\n    return ret;\n  }\n};\n\ntemplate <typename mint>\nmint inv(int n) {\n\
-    \  static const int mod = mint::get_mod();\n  static vector<mint> dat = {0, 1};\n\
-    \  assert(0 <= n);\n  if (n >= mod) n %= mod;\n  while (int(dat.size()) <= n)\
-    \ {\n    int k = dat.size();\n    auto q = (mod + k - 1) / k;\n    int r = k *\
-    \ q - mod;\n    dat.emplace_back(dat[r] * mint(q));\n  }\n  return dat[n];\n}\n\
-    \ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
-    \  static vector<mint> dat = {1, 1};\n  assert(0 <= n);\n  if (n >= mod) return\
-    \ 0;\n  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
-    \ - 1] * mint(k));\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint\
-    \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
-    \ dat = {1, 1};\n  assert(0 <= n && n < mod);\n  while (int(dat.size()) <= n)\
-    \ {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint, bool large = false>\nmint\
-    \ C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if (!large)\
-    \ return fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k,\
-    \ n - k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n\
-    \  return x;\n}\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll\
-    \ n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return\
-    \ fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint,\
-    \ 1>(n, k);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    using amint = ArbitraryModInt;\n#line 1 \"linalg/det.hpp\"\ntemplate <typename\
-    \ T>\r\nT det(vc<vc<T>> A) {\r\n  T det = T(1);\r\n  while (len(A)) {\r\n    int\
-    \ n = len(A);\r\n    int k = n;\r\n    FOR_R(i, n) if (A[i].back() != 0) {\r\n\
-    \      k = i;\r\n      break;\r\n    }\r\n    if (k == n) return T(0);\r\n   \
-    \ if (k != n - 1) {\r\n      det *= (-1);\r\n      swap(A[k], A[n - 1]);\r\n \
-    \   }\r\n    det *= A[n - 1][n - 1];\r\n    FOR(i, n - 1) {\r\n      T c = A[i].back()\
-    \ / A[n - 1].back();\r\n      A[i].pop_back();\r\n      FOR(j, n - 1) A[i][j]\
-    \ -= A[n - 1][j] * c;\r\n    }\r\n    A.pop_back();\r\n  }\r\n  return det;\r\n\
-    }\r\n#line 6 \"test/library_checker/matrix/matrix_det.test.cpp\"\n\r\nusing mint\
-    \ = modint998;\r\nvoid solve() {\r\n  LL(N);\r\n  VV(mint, A, N, N);\r\n  print(det(A));\r\
-    \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_det\"\r\n#include\
-    \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"mod/modint.hpp\"\
-    \r\n#include \"linalg/det.hpp\"\r\n\r\nusing mint = modint998;\r\nvoid solve()\
-    \ {\r\n  LL(N);\r\n  VV(mint, A, N, N);\r\n  print(det(A));\r\n}\r\n\r\nsigned\
-    \ main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout\
-    \ << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ { yes(!t); }\r\n#line 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n  using i64 =\
+    \ int64_t;\r\n  using u64 = uint64_t;\r\n  using u128 = __uint128_t;\r\n\r\n \
+    \ inline static u64 m, r, n2; // r * m = -1 (mod 1<<64), n2 = 1<<128 (mod m)\r\
+    \n  static void set_mod(u64 m) {\r\n    assert(m < (1ull << 62));\r\n    assert((m\
+    \ & 1) == 1);\r\n    m64::m = m;\r\n    n2 = -u128(m) % m;\r\n    r = m;\r\n \
+    \   FOR(_, 5) r *= 2 - m * r;\r\n    r = -r;\r\n    assert(r * m == -1ull);\r\n\
+    \  }\r\n  static u64 reduce(u128 b) { return (b + u128(u64(b) * r) * m) >> 64;\
+    \ }\r\n\r\n  u64 x;\r\n  m64() : x(0) {}\r\n  m64(u64 x) : x(reduce(u128(x) *\
+    \ n2)){};\r\n  u64 val() const {\r\n    u64 y = reduce(x);\r\n    return y >=\
+    \ m ? y - m : y;\r\n  }\r\n  m64 &operator+=(m64 y) {\r\n    x += y.x - (m <<\
+    \ 1);\r\n    x = (i64(x) < 0 ? x + (m << 1) : x);\r\n    return *this;\r\n  }\r\
+    \n  m64 &operator-=(m64 y) {\r\n    x -= y.x;\r\n    x = (i64(x) < 0 ? x + (m\
+    \ << 1) : x);\r\n    return *this;\r\n  }\r\n  m64 &operator*=(m64 y) {\r\n  \
+    \  x = reduce(u128(x) * y.x);\r\n    return *this;\r\n  }\r\n  m64 operator+(m64\
+    \ y) const { return m64(*this) += y; }\r\n  m64 operator-(m64 y) const { return\
+    \ m64(*this) -= y; }\r\n  m64 operator*(m64 y) const { return m64(*this) *= y;\
+    \ }\r\n  bool operator==(m64 y) const {\r\n    return (x >= m ? x - m : x) ==\
+    \ (y.x >= m ? y.x - m : y.x);\r\n  }\r\n  bool operator!=(m64 y) const { return\
+    \ not operator==(y); }\r\n  m64 pow(u64 n) const {\r\n    m64 y = 1, z = *this;\r\
+    \n    for (; n; n >>= 1, z *= z)\r\n      if (n & 1) y *= z;\r\n    return y;\r\
+    \n  }\r\n};\r\n\r\nbool primetest(const uint64_t x) {\r\n  using u64 = uint64_t;\r\
+    \n  if (x == 2 or x == 3 or x == 5 or x == 7) return true;\r\n  if (x % 2 == 0\
+    \ or x % 3 == 0 or x % 5 == 0 or x % 7 == 0) return false;\r\n  if (x < 121) return\
+    \ x > 1;\r\n  const u64 d = (x - 1) >> __builtin_ctzll(x - 1);\r\n  m64::set_mod(x);\r\
+    \n  const m64 one(1), minus_one(x - 1);\r\n  auto ok = [&](u64 a) {\r\n    auto\
+    \ y = m64(a).pow(d);\r\n    u64 t = d;\r\n    while (y != one and y != minus_one\
+    \ and t != x - 1) y *= y, t <<= 1;\r\n    if (y != minus_one and t % 2 == 0) return\
+    \ false;\r\n    return true;\r\n  };\r\n  if (x < (1ull << 32)) {\r\n    for (u64\
+    \ a: {2, 7, 61})\r\n      if (not ok(a)) return false;\r\n  } else {\r\n    for\
+    \ (u64 a: {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\r\n      if (x\
+    \ <= a) return true;\r\n      if (not ok(a)) return false;\r\n    }\r\n  }\r\n\
+    \  return true;\r\n}\n#line 2 \"seq/stirling_number_query.hpp\"\n\n// O(p^2) \u6642\
+    \u9593\u306E\u524D\u8A08\u7B97\u306E\u3082\u3068\u3001O(log n) \u6642\u9593\n\
+    struct Stirling_Number_Query {\n  const int p;\n  vvc<int> MEMO_C;\n  vvc<int>\
+    \ MEMO_S1;\n  vvc<int> MEMO_S2;\n\n  Stirling_Number_Query(int p, bool first_kind\
+    \ = true, bool second_kind = true)\n      : p(p) {\n    assert(primetest(p));\n\
+    \    assert(p <= (1 << 15));\n    build_C();\n    if (first_kind) build_S1();\n\
+    \    if (second_kind) build_S2();\n  }\n\n  int C(ll n, ll k) {\n    if (k < 0\
+    \ || k > n) return 0;\n    int res = 1;\n    while (n) {\n      int i = n % p,\
+    \ j = k % p;\n      if (j > i) return 0;\n      res = res * MEMO_C[i][j] % p;\n\
+    \      n /= p;\n      k /= p;\n    }\n    return res;\n  }\n\n  int S1(ll n, ll\
+    \ k) {\n    if (k < 0 || k > n) return 0;\n    ll i = n / p;\n    int j = n %\
+    \ p;\n    if (i > k) return 0;\n    ll a = (k - i) / (p - 1);\n    int b = (k\
+    \ - i) % (p - 1);\n    if (b == 0 && j > 0) {\n      b += (p - 1);\n      a -=\
+    \ 1;\n    }\n    if (a < 0 || i < a || b > j) return 0;\n    int x = C(i, a);\n\
+    \    int y = MEMO_S1[j][b];\n    int res = x * y % p;\n    if ((i + a) % 2 ==\
+    \ 1 && res) { res = p - res; }\n    return res;\n  }\n\n  int S2(ll n, ll k) {\n\
+    \    if (k < 0 || k > n) return 0;\n    if (n == 0) return 1;\n    ll i = k /\
+    \ p;\n    int j = k % p;\n    if (n < i) return 0;\n    ll a = (n - i) / (p -\
+    \ 1);\n    int b = (n - i) - (p - 1) * a;\n    if (b == 0) {\n      b += p - 1;\n\
+    \      a -= 1;\n    }\n    if (a < 0 || j > b) return 0;\n    if (b < p - 1) {\
+    \ return C(a, i) * MEMO_S2[b][j] % p; }\n    if (j == 0) return C(a, i - 1);\n\
+    \    return C(a, i) * MEMO_S2[p - 1][j] % p;\n  }\n\nprivate:\n  void build_C()\
+    \ {\n    auto& A = MEMO_C;\n    A.resize(p);\n    A[0] = {1};\n    FOR(i, 1, p)\
+    \ {\n      A[i] = A[i - 1];\n      A[i].emplace_back(0);\n      FOR(j, 1, i +\
+    \ 1) {\n        A[i][j] += A[i - 1][j - 1];\n        if (A[i][j] >= p) A[i][j]\
+    \ -= p;\n      }\n    }\n  }\n\n  void build_S1() {\n    auto& A = MEMO_S1;\n\
+    \    A.resize(p);\n    A[0] = {1};\n    FOR(i, 1, p) {\n      A[i].assign(i +\
+    \ 1, 0);\n      FOR(j, i + 1) {\n        if (j) A[i][j] += A[i - 1][j - 1];\n\
+    \        if (j < i) A[i][j] += A[i - 1][j] * (p - i + 1);\n        A[i][j] %=\
+    \ p;\n      }\n    }\n  }\n\n  void build_S2() {\n    auto& A = MEMO_S2;\n   \
+    \ A.resize(p);\n    A[0] = {1};\n    FOR(i, 1, p) {\n      A[i].assign(i + 1,\
+    \ 0);\n      FOR(j, i + 1) {\n        if (j) A[i][j] += A[i - 1][j - 1];\n   \
+    \     if (j < i) A[i][j] += A[i - 1][j] * j;\n        A[i][j] %= p;\n      }\n\
+    \    }\n  }\n};\n#line 6 \"test/library_checker/math/stirline_mod_p_2.test.cpp\"\
+    \n\nvoid solve() {\n  LL(T, p);\n  Stirling_Number_Query X(p, 0, 1);\n  FOR(T)\
+    \ {\n    LL(n, k);\n    print(X.S2(n, k));\n  }\n}\n\nsigned main() {\n  cout\
+    \ << fixed << setprecision(15);\n\n  // LL(T);\n  ll T = 1;\n  FOR(T) solve();\n\
+    \n  return 0;\n}\n"
+  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"seq/stirling_number_query.hpp\"\
+    \n\nvoid solve() {\n  LL(T, p);\n  Stirling_Number_Query X(p, 0, 1);\n  FOR(T)\
+    \ {\n    LL(n, k);\n    print(X.S2(n, k));\n  }\n}\n\nsigned main() {\n  cout\
+    \ << fixed << setprecision(15);\n\n  // LL(T);\n  ll T = 1;\n  FOR(T) solve();\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - mod/modint.hpp
-  - linalg/det.hpp
+  - seq/stirling_number_query.hpp
+  - nt/primetest.hpp
   isVerificationFile: true
-  path: test/library_checker/matrix/matrix_det.test.cpp
+  path: test/library_checker/math/stirline_mod_p_2.test.cpp
   requiredBy: []
-  timestamp: '2022-08-13 02:22:39+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-16 02:50:42+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/matrix/matrix_det.test.cpp
+documentation_of: test/library_checker/math/stirline_mod_p_2.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/matrix/matrix_det.test.cpp
-- /verify/test/library_checker/matrix/matrix_det.test.cpp.html
-title: test/library_checker/matrix/matrix_det.test.cpp
+- /verify/test/library_checker/math/stirline_mod_p_2.test.cpp
+- /verify/test/library_checker/math/stirline_mod_p_2.test.cpp.html
+title: test/library_checker/math/stirline_mod_p_2.test.cpp
 ---

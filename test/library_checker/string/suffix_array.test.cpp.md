@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/disjointsparse.hpp
     title: ds/disjointsparse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
@@ -216,20 +216,30 @@ data:
     \ v[j + 1]);\r\n      }\r\n    }\r\n  }\r\n\r\n  X prod(int L, int R) {\r\n  \
     \  if (L == R) return Monoid::unit();\r\n    --R;\r\n    if (L == R) return dat[0][L];\r\
     \n    int k = 31 - __builtin_clz(L ^ R);\r\n    return Monoid::op(dat[k][L], dat[k][R]);\r\
-    \n  }\r\n\r\n  void debug() {\r\n    print(\"disjoint sparse table\");\r\n   \
-    \ FOR(i, log) print(dat[i]);\r\n  }\r\n};\n#line 3 \"string/suffixarray.hpp\"\n\
-    \n// \u8F9E\u66F8\u9806 i \u756A\u76EE\u306E suffix \u304C j \u6587\u5B57\u76EE\
-    \u59CB\u307E\u308A\u3067\u3042\u308B\u3068\u304D\u3001\n// SA[i] = j, ISA[j] =\
-    \ i\nstruct SuffixArray {\n  vector<int> SA;\n  vector<int> ISA;\n  vector<int>\
-    \ LCP;\n  bool build_ds;\n  DisjointSparse<Monoid_Min<int>> seg;\n\n  SuffixArray(string&\
-    \ s) : build_ds(0) {\n    char first = 127, last = 0;\n    for (auto&& c: s) {\n\
-    \      chmin(first, c);\n      chmax(last, c);\n    }\n    SA = calc_suffix_array(s,\
-    \ first, last);\n    calc_LCP(s);\n  }\n\n  SuffixArray(vector<int>& s) : build_ds(0)\
-    \ {\n    SA = calc_suffix_array(s);\n    calc_LCP(s);\n  }\n\n  // S[i:], S[j:]\
-    \ \u306E lcp \u3092\u6C42\u3081\u308B\n  int lcp(int i, int j) {\n    int n =\
-    \ len(SA);\n    if (i == j) return n - i;\n    if (!build_ds) {\n      build_ds\
-    \ = 1;\n      seg.build(LCP);\n    }\n    i = ISA[i], j = ISA[j];\n    if (i >\
-    \ j) swap(i, j);\n    return seg.prod(i, j);\n  }\n\nprivate:\n  void induced_sort(const\
+    \n  }\r\n\r\n  template <class F>\r\n  int max_right(const F& check, int L) {\r\
+    \n    assert(0 <= L && L <= n && check(Monoid::unit()));\r\n    if (L == n) return\
+    \ n;\r\n    int ok = L, ng = n + 1;\r\n    while (ok + 1 < ng) {\r\n      int\
+    \ k = (ok + ng) / 2;\r\n      if (check(prod(L, k))) {\r\n        ok = k;\r\n\
+    \      } else {\r\n        ng = k;\r\n      }\r\n    }\r\n    return ok;\r\n \
+    \ }\r\n\r\n  template <class F>\r\n  int min_left(const F& check, int R) {\r\n\
+    \    assert(0 <= R && R <= n && check(Monoid::unit()));\r\n    if (R == 0) return\
+    \ 0;\r\n    int ok = R, ng = -1;\r\n    while (ng + 1 < ok) {\r\n      int k =\
+    \ (ok + ng) / 2;\r\n      if (check(prod(k, R))) {\r\n        ok = k;\r\n    \
+    \  } else {\r\n        ng = k;\r\n      }\r\n    }\r\n    return ok;\r\n  }\r\n\
+    \r\n  void debug() {\r\n    print(\"disjoint sparse table\");\r\n    FOR(i, log)\
+    \ print(dat[i]);\r\n  }\r\n};\n#line 3 \"string/suffixarray.hpp\"\n\n// \u8F9E\
+    \u66F8\u9806 i \u756A\u76EE\u306E suffix \u304C j \u6587\u5B57\u76EE\u59CB\u307E\
+    \u308A\u3067\u3042\u308B\u3068\u304D\u3001\n// SA[i] = j, ISA[j] = i\nstruct SuffixArray\
+    \ {\n  vector<int> SA;\n  vector<int> ISA;\n  vector<int> LCP;\n  bool build_ds;\n\
+    \  DisjointSparse<Monoid_Min<int>> seg;\n\n  SuffixArray(string& s) : build_ds(0)\
+    \ {\n    char first = 127, last = 0;\n    for (auto&& c: s) {\n      chmin(first,\
+    \ c);\n      chmax(last, c);\n    }\n    SA = calc_suffix_array(s, first, last);\n\
+    \    calc_LCP(s);\n  }\n\n  SuffixArray(vector<int>& s) : build_ds(0) {\n    SA\
+    \ = calc_suffix_array(s);\n    calc_LCP(s);\n  }\n\n  // S[i:], S[j:] \u306E lcp\
+    \ \u3092\u6C42\u3081\u308B\n  int lcp(int i, int j) {\n    int n = len(SA);\n\
+    \    if (i == j) return n - i;\n    if (!build_ds) {\n      build_ds = 1;\n  \
+    \    seg.build(LCP);\n    }\n    i = ISA[i], j = ISA[j];\n    if (i > j) swap(i,\
+    \ j);\n    return seg.prod(i, j);\n  }\n\nprivate:\n  void induced_sort(const\
     \ std::vector<int>& vect, int val_range,\n                    std::vector<int>&\
     \ SA, const std::vector<bool>& sl,\n                    const std::vector<int>&\
     \ lms_idx) {\n    std::vector<int> l(val_range, 0), r(val_range, 0);\n    for\
@@ -304,7 +314,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/suffix_array.test.cpp
   requiredBy: []
-  timestamp: '2022-08-13 02:22:39+09:00'
+  timestamp: '2022-08-16 02:52:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/string/suffix_array.test.cpp

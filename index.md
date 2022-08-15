@@ -516,6 +516,9 @@ data:
     - icon: ':warning:'
       path: graph/solve_dag_game.hpp
       title: graph/solve_dag_game.hpp
+    - icon: ':warning:'
+      path: graph/statictreemonoid.hpp
+      title: graph/statictreemonoid.hpp
     - icon: ':heavy_check_mark:'
       path: graph/steiner_tree.hpp
       title: graph/steiner_tree.hpp
@@ -662,7 +665,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -715,7 +718,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/primetable.hpp
       title: nt/primetable.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: nt/primetest.hpp
       title: nt/primetest.hpp
     - icon: ':heavy_check_mark:'
@@ -744,7 +747,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/integer_kth_root.hpp
       title: other/integer_kth_root.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -939,7 +942,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/stirling_number_2.hpp
       title: seq/stirling_number_2.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: seq/stirling_number_query.hpp
       title: seq/stirling_number_query.hpp
     - icon: ':heavy_check_mark:'
@@ -1424,6 +1427,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/sqrt_mod.test.cpp
       title: test/library_checker/math/sqrt_mod.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/math/stirline_mod_p_1.test.cpp
+      title: test/library_checker/math/stirline_mod_p_1.test.cpp
+    - icon: ':x:'
+      path: test/library_checker/math/stirline_mod_p_2.test.cpp
+      title: test/library_checker/math/stirline_mod_p_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
       title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp

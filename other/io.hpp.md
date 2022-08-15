@@ -385,6 +385,12 @@ data:
     path: test/library_checker/math/sqrt_mod.test.cpp
     title: test/library_checker/math/sqrt_mod.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/stirline_mod_p_1.test.cpp
+    title: test/library_checker/math/stirline_mod_p_1.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/math/stirline_mod_p_2.test.cpp
+    title: test/library_checker/math/stirline_mod_p_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - icon: ':heavy_check_mark:'
@@ -768,9 +774,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/bbst_max_right.test.cpp
     title: test/yukicoder/bbst_max_right.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include\
@@ -989,7 +995,7 @@ data:
   path: other/io.hpp
   requiredBy: []
   timestamp: '2022-04-27 05:07:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DPL_5_C_count_surjection.test.cpp
   - test/aoj/DSL_2_I_cntsum_set_lazy.test.cpp
@@ -1047,6 +1053,7 @@ data:
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/nim_product.test.cpp
   - test/library_checker/math/find_linear_recurrence.test.cpp
+  - test/library_checker/math/stirline_mod_p_2.test.cpp
   - test/library_checker/math/factorize.test.cpp
   - test/library_checker/math/binomial_coefficient.test.cpp
   - test/library_checker/math/sum_of_floor_of_linear.test.cpp
@@ -1060,6 +1067,7 @@ data:
   - test/library_checker/math/gcd_convolution.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
   - test/library_checker/math/twosat.test.cpp
+  - test/library_checker/math/stirline_mod_p_1.test.cpp
   - test/library_checker/math/counting_primes.test.cpp
   - test/library_checker/convolution/mul_mod2n_convolution.test.cpp
   - test/library_checker/convolution/subset_convolution.test.cpp

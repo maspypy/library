@@ -101,6 +101,9 @@ data:
   - icon: ':warning:'
     path: graph/solve_dag_game.hpp
     title: graph/solve_dag_game.hpp
+  - icon: ':warning:'
+    path: graph/statictreemonoid.hpp
+    title: graph/statictreemonoid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/steiner_tree.hpp
     title: graph/steiner_tree.hpp
@@ -383,6 +386,7 @@ data:
   - graph/treegroup.hpp
   - graph/treeabelgroup.hpp
   - graph/reverse_graph.hpp
+  - graph/statictreemonoid.hpp
   - graph/tree_diameter.hpp
   - graph/centroid.hpp
   - graph/maximum_independent_set.hpp

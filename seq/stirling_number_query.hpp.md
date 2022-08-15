@@ -1,14 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/stirline_mod_p_1.test.cpp
+    title: test/library_checker/math/stirline_mod_p_1.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/math/stirline_mod_p_2.test.cpp
+    title: test/library_checker/math/stirline_mod_p_2.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n  using i64 = int64_t;\r\
@@ -115,8 +121,10 @@ data:
   path: seq/stirling_number_query.hpp
   requiredBy: []
   timestamp: '2022-08-07 13:09:47+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/library_checker/math/stirline_mod_p_2.test.cpp
+  - test/library_checker/math/stirline_mod_p_1.test.cpp
 documentation_of: seq/stirling_number_query.hpp
 layout: document
 redirect_from:

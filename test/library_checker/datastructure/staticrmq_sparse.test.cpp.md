@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/disjointsparse.hpp
     title: ds/disjointsparse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -213,8 +213,18 @@ data:
     \ v[j + 1]);\r\n      }\r\n    }\r\n  }\r\n\r\n  X prod(int L, int R) {\r\n  \
     \  if (L == R) return Monoid::unit();\r\n    --R;\r\n    if (L == R) return dat[0][L];\r\
     \n    int k = 31 - __builtin_clz(L ^ R);\r\n    return Monoid::op(dat[k][L], dat[k][R]);\r\
-    \n  }\r\n\r\n  void debug() {\r\n    print(\"disjoint sparse table\");\r\n   \
-    \ FOR(i, log) print(dat[i]);\r\n  }\r\n};\n#line 7 \"test/library_checker/datastructure/staticrmq_sparse.test.cpp\"\
+    \n  }\r\n\r\n  template <class F>\r\n  int max_right(const F& check, int L) {\r\
+    \n    assert(0 <= L && L <= n && check(Monoid::unit()));\r\n    if (L == n) return\
+    \ n;\r\n    int ok = L, ng = n + 1;\r\n    while (ok + 1 < ng) {\r\n      int\
+    \ k = (ok + ng) / 2;\r\n      if (check(prod(L, k))) {\r\n        ok = k;\r\n\
+    \      } else {\r\n        ng = k;\r\n      }\r\n    }\r\n    return ok;\r\n \
+    \ }\r\n\r\n  template <class F>\r\n  int min_left(const F& check, int R) {\r\n\
+    \    assert(0 <= R && R <= n && check(Monoid::unit()));\r\n    if (R == 0) return\
+    \ 0;\r\n    int ok = R, ng = -1;\r\n    while (ng + 1 < ok) {\r\n      int k =\
+    \ (ok + ng) / 2;\r\n      if (check(prod(k, R))) {\r\n        ok = k;\r\n    \
+    \  } else {\r\n        ng = k;\r\n      }\r\n    }\r\n    return ok;\r\n  }\r\n\
+    \r\n  void debug() {\r\n    print(\"disjoint sparse table\");\r\n    FOR(i, log)\
+    \ print(dat[i]);\r\n  }\r\n};\n#line 7 \"test/library_checker/datastructure/staticrmq_sparse.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  using Mono = Monoid_Min<int>;\n\
     \  DisjointSparse<Mono> DS(A);\n\n  FOR(_, Q) {\n    LL(L, R);\n    print(DS.prod(L,\
     \ R));\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
@@ -234,7 +244,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/staticrmq_sparse.test.cpp
   requiredBy: []
-  timestamp: '2022-08-13 02:22:39+09:00'
+  timestamp: '2022-08-16 02:52:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/staticrmq_sparse.test.cpp

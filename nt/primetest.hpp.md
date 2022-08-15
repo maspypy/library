@@ -38,7 +38,7 @@ data:
   - icon: ':warning:'
     path: nt/zeta_on_divisors.hpp
     title: nt/zeta_on_divisors.hpp
-  - icon: ':warning:'
+  - icon: ':question:'
     path: seq/stirling_number_query.hpp
     title: seq/stirling_number_query.hpp
   _extendedVerifiedWith:
@@ -64,6 +64,12 @@ data:
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/stirline_mod_p_1.test.cpp
+    title: test/library_checker/math/stirline_mod_p_1.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/math/stirline_mod_p_2.test.cpp
+    title: test/library_checker/math/stirline_mod_p_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
   - icon: ':heavy_check_mark:'
@@ -72,9 +78,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/187_crt.test.cpp
     title: test/yukicoder/187_crt.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n  using i64 = int64_t;\r\
@@ -158,15 +164,17 @@ data:
   - graph/chromatic.hpp
   - seq/stirling_number_query.hpp
   timestamp: '2022-04-27 05:09:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/ALDS1_1_C_primetest.test.cpp
   - test/aoj/NTL_1_D_eulerphi.test.cpp
   - test/aoj/ITP1_D_D_divisors.test.cpp
   - test/library_checker/math/tetration.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
+  - test/library_checker/math/stirline_mod_p_2.test.cpp
   - test/library_checker/math/factorize.test.cpp
   - test/library_checker/math/binomial_coefficient.test.cpp
+  - test/library_checker/math/stirline_mod_p_1.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
   - test/yukicoder/1593_gaussian.test.cpp
   - test/yukicoder/187_crt.test.cpp
