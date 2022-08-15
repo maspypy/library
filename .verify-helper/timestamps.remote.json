@@ -186,6 +186,7 @@
 "test/mytest/maxplus_concave.test.cpp": "2022-08-16 03:04:45 +0900",
 "test/mytest/minplus_convex.test.cpp": "2022-08-16 03:04:45 +0900",
 "test/mytest/mod_sum_of_linear.test.cpp": "2022-08-13 02:22:39 +0900",
+"test/mytest/powerquery.test.cpp": "2022-08-16 03:29:01 +0900",
 "test/mytest/range_freq_of_linear.test.cpp": "2022-08-13 02:22:39 +0900",
 "test/mytest/run_length.test.cpp": "2022-08-13 02:22:39 +0900",
 "test/yukicoder/1002_centroid.test.cpp": "2022-08-13 02:22:39 +0900",
