@@ -1,20 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
+    path: mod/min_of_linear_segments.hpp
+    title: mod/min_of_linear_segments.hpp
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/random.hpp
     title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -198,7 +201,26 @@ data:
     \  mt19937 mt;\n\n  RandomNumberGenerator() : mt(chrono::steady_clock::now().time_since_epoch().count())\
     \ {}\n\n  ll operator()(ll a, ll b) {  // [a, b)\n    uniform_int_distribution<ll>\
     \ dist(a, b - 1);\n    return dist(mt);\n  }\n\n  ll operator()(ll b) {  // [0,\
-    \ b)\n    return (*this)(0, b);\n  }\n};\n#line 5 \"test/min_of_linear_segments.test.cpp\"\
+    \ b)\n    return (*this)(0, b);\n  }\n};\n#line 2 \"mod/min_of_linear_segments.hpp\"\
+    \n\n/*\nax + b (x>=0) \u304C\u6700\u5C0F\u3068\u306A\u308B\u3068\u3053\u308D\u306E\
+    \u60C5\u5831\u3092\u8FD4\u3059\u3002\nprefix min \u3092\u66F4\u65B0\u3059\u308B\
+    \ x \u5168\u4F53\u304C\u3001\u7B49\u5DEE\u6570\u5217\u306E\u548C\u96C6\u5408\u3002\
+    \u6B21\u3092\u8FD4\u3059\u3002\n\u30FB\u7B49\u5DEE\u6570\u5217\u306E\u5883\u754C\
+    \u3068\u306A\u308B x_0, x_1, ..., x_n\n\u30FB\u5404\u5883\u754C\u306E\u9593\u3067\
+    \u306E\u4EA4\u5DEE dx_0, ..., dx_{n-1}\n*/\npair<vc<int>, vc<int>> min_of_linear_segments(int\
+    \ a, int b, int mod) {\n  assert(0 <= a && a < mod);\n  assert(0 <= b && b < mod);\n\
+    \  vc<int> X = {0};\n  vc<int> DX;\n  int g = gcd(a, mod);\n  a /= g, b /= g,\
+    \ mod /= g;\n  // p/q <= (mod-a)/mod <= r/s\n  int p = 0, q = 1, r = 1, s = 1;\n\
+    \  int det_l = mod - a, det_r = a;\n  int x = 0, y = b;\n\n  while (y) {\n   \
+    \ // upd r/s\n    int k = det_r / det_l;\n    det_r %= det_l;\n    if (det_r ==\
+    \ 0) {\n      --k;\n      det_r = det_l;\n    }\n    r += k * p;\n    s += k *\
+    \ q;\n    while (1) {\n      int k = max(0, ceil(det_l - y, det_r));\n      if\
+    \ (det_l - k * det_r <= 0) break;\n      det_l -= k * det_r;\n      p += k * r;\n\
+    \      q += k * s;\n      // p/q <= a/mod\n      // (aq - pmod) = det_l \u3092\
+    \ y \u304B\u3089\u5F15\u304F\n      k = y / det_l;\n      y -= k * det_l;\n  \
+    \    x += q * k;\n      X.eb(x);\n      DX.eb(q);\n    }\n    k = det_l / det_r;\n\
+    \    det_l -= k * det_r;\n    p += k * r;\n    q += k * s;\n    assert(min({p,\
+    \ q, r, s}) >= 0);\n  }\n  return {X, DX};\n}\n#line 6 \"test/min_of_linear_segments.test.cpp\"\
     \n\npair<vc<int>, vc<int>> naive(int a, int b, int mod) {\n  assert(0 <= a &&\
     \ a < mod);\n  assert(0 <= b && b < mod);\n  vc<int> A;\n  int last_y = b;\n \
     \ FOR(x, 1, mod + 1) {\n    int y = (ll(a) * x + b) % mod;\n    if (chmin(last_y,\
@@ -206,36 +228,35 @@ data:
     \ (auto&& x: A) {\n    if (X.back() + dx == x) {\n      X.back() = x;\n    } else\
     \ {\n      dx = x - X.back();\n      DX.eb(dx);\n      X.eb(x);\n    }\n  }\n\
     \  return {X, DX};\n}\n\nvoid test() {\n  RandomNumberGenerator RNG;\n  FOR(mod,\
-    \ 1, 1000) {\n    FOR(10) {\n      int mod = RNG(1, 1000);\n      int a = RNG(0,\
-    \ mod);\n      int b = RNG(0, mod);\n      auto [X1, DX1] = naive(a, b, mod);\n\
-    \      auto [X2, DX2] = min_of_linear_segments(a, b, mod);\n      assert(X1 ==\
-    \ X2);\n      assert(DX1 == DX2);\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n\
-    \  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  test();\n  solve();\n\n  return 0;\n}\n"
+    \ 1, 1000) {\n    FOR(10) {\n      int a = RNG(0, mod);\n      int b = RNG(0,\
+    \ mod);\n      auto [X1, DX1] = naive(a, b, mod);\n      auto [X2, DX2] = min_of_linear_segments(a,\
+    \ b, mod);\n      assert(X1 == X2);\n      assert(DX1 == DX2);\n    }\n  }\n}\n\
+    \nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout <<\
+    \ fixed << setprecision(15);\n\n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"other/random.hpp\"\n\npair<vc<int>, vc<int>>\
-    \ naive(int a, int b, int mod) {\n  assert(0 <= a && a < mod);\n  assert(0 <=\
-    \ b && b < mod);\n  vc<int> A;\n  int last_y = b;\n  FOR(x, 1, mod + 1) {\n  \
-    \  int y = (ll(a) * x + b) % mod;\n    if (chmin(last_y, y)) A.eb(x);\n  }\n \
-    \ vc<int> X = {0};\n  vc<int> DX;\n  int dx = -1;\n  for (auto&& x: A) {\n   \
-    \ if (X.back() + dx == x) {\n      X.back() = x;\n    } else {\n      dx = x -\
-    \ X.back();\n      DX.eb(dx);\n      X.eb(x);\n    }\n  }\n  return {X, DX};\n\
-    }\n\nvoid test() {\n  RandomNumberGenerator RNG;\n  FOR(mod, 1, 1000) {\n    FOR(10)\
-    \ {\n      int mod = RNG(1, 1000);\n      int a = RNG(0, mod);\n      int b =\
-    \ RNG(0, mod);\n      auto [X1, DX1] = naive(a, b, mod);\n      auto [X2, DX2]\
-    \ = min_of_linear_segments(a, b, mod);\n      assert(X1 == X2);\n      assert(DX1\
-    \ == DX2);\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\
-    \nsigned main() {\n  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\
-    \n  return 0;\n}\n"
+    \n#include \"other/io.hpp\"\n#include \"other/random.hpp\"\n#include \"mod/min_of_linear_segments.hpp\"\
+    \n\npair<vc<int>, vc<int>> naive(int a, int b, int mod) {\n  assert(0 <= a &&\
+    \ a < mod);\n  assert(0 <= b && b < mod);\n  vc<int> A;\n  int last_y = b;\n \
+    \ FOR(x, 1, mod + 1) {\n    int y = (ll(a) * x + b) % mod;\n    if (chmin(last_y,\
+    \ y)) A.eb(x);\n  }\n  vc<int> X = {0};\n  vc<int> DX;\n  int dx = -1;\n  for\
+    \ (auto&& x: A) {\n    if (X.back() + dx == x) {\n      X.back() = x;\n    } else\
+    \ {\n      dx = x - X.back();\n      DX.eb(dx);\n      X.eb(x);\n    }\n  }\n\
+    \  return {X, DX};\n}\n\nvoid test() {\n  RandomNumberGenerator RNG;\n  FOR(mod,\
+    \ 1, 1000) {\n    FOR(10) {\n      int a = RNG(0, mod);\n      int b = RNG(0,\
+    \ mod);\n      auto [X1, DX1] = naive(a, b, mod);\n      auto [X2, DX2] = min_of_linear_segments(a,\
+    \ b, mod);\n      assert(X1 == X2);\n      assert(DX1 == DX2);\n    }\n  }\n}\n\
+    \nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout <<\
+    \ fixed << setprecision(15);\n\n  test();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - other/random.hpp
+  - mod/min_of_linear_segments.hpp
   isVerificationFile: true
   path: test/min_of_linear_segments.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 05:56:38+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-16 06:06:40+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/min_of_linear_segments.test.cpp
 layout: document

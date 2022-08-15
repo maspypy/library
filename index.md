@@ -621,7 +621,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/floor_sum_of_linear.hpp
       title: mod/floor_sum_of_linear.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
+      path: mod/max_of_linear_segments.hpp
+      title: mod/max_of_linear_segments.hpp
+    - icon: ':heavy_check_mark:'
       path: mod/min_of_linear_segments.hpp
       title: mod/min_of_linear_segments.hpp
     - icon: ':heavy_check_mark:'
@@ -665,7 +668,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -747,7 +750,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/integer_kth_root.hpp
       title: other/integer_kth_root.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -762,7 +765,7 @@ data:
     - icon: ':warning:'
       path: other/kth_root_permutation.hpp
       title: other/kth_root_permutation.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/random.hpp
       title: other/random.hpp
     - icon: ':warning:'
@@ -1157,7 +1160,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/example.test.cpp
       title: test/example.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/min_of_linear_segments.test.cpp
       title: test/min_of_linear_segments.test.cpp
   - name: test/library_checker/convolution
@@ -1604,6 +1607,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/factorial_998.test.cpp
       title: test/mytest/factorial_998.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/max_of_linear_segments.test.cpp
+      title: test/mytest/max_of_linear_segments.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/maxplus_concave.test.cpp
       title: test/mytest/maxplus_concave.test.cpp
