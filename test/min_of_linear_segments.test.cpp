@@ -32,7 +32,6 @@ void test() {
   RandomNumberGenerator RNG;
   FOR(mod, 1, 1000) {
     FOR(10) {
-      int mod = RNG(1, 1000);
       int a = RNG(0, mod);
       int b = RNG(0, mod);
       auto [X1, DX1] = naive(a, b, mod);
