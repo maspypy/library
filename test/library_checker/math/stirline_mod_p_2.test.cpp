@@ -1,5 +1,5 @@
 #define PROBLEM \
-  "https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n"
+  "https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind_small_p_large_n"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "seq/stirling_number_query.hpp"
