@@ -16,7 +16,7 @@ struct RangeMexQuery {
   vc<T> calc() {
     int N = len(A);
     // segtree, value -> last idx
-    using Mono = Monoid_Min<int, 1 << 30>;
+    using Mono = Monoid_Min<int>;
     vc<int> seg_raw(N + 2, -1);
     SegTree<Mono> seg(seg_raw);
 
