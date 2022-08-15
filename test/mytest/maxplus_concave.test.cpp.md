@@ -2,14 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: linalg/spmat_det.hpp
-    title: linalg/spmat_det.hpp
-  - icon: ':heavy_check_mark:'
-    path: linalg/spmat_min_poly.hpp
-    title: linalg/spmat_min_poly.hpp
-  - icon: ':heavy_check_mark:'
-    path: mod/modint.hpp
-    title: mod/modint.hpp
+    path: dp/maxplus_convolution_concave.hpp
+    title: dp/maxplus_convolution_concave.hpp
   - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
@@ -19,9 +13,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/random.hpp
     title: other/random.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/find_linear_rec.hpp
-    title: seq/find_linear_rec.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -29,19 +20,19 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/sparse_matrix_det
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://judge.yosupo.jp/problem/sparse_matrix_det
-  bundledCode: "#line 1 \"test/library_checker/matrix/sparse_matrix_det.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/sparse_matrix_det\"\r\n#line\
-    \ 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\n\
-    using ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
-    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/mytest/maxplus_concave.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -206,133 +197,64 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"seq/find_linear_rec.hpp\"\n\r\ntemplate <typename\
-    \ mint>\r\nvector<mint> find_linear_rec(vector<mint>& A) {\r\n  int N = len(A);\r\
-    \n  vc<mint> B = {1}, C = {1};\r\n  int l = 0, m = 1;\r\n  mint p = 1;\r\n  FOR(i,\
-    \ N) {\r\n    mint d = A[i];\r\n    FOR3(j, 1, l + 1) { d += C[j] * A[i - j];\
-    \ }\r\n    if (d == 0) {\r\n      ++m;\r\n      continue;\r\n    }\r\n    auto\
-    \ tmp = C;\r\n    mint q = d / p;\r\n    if (len(C) < len(B) + m) C.insert(C.end(),\
-    \ len(B) + m - len(C), 0);\r\n    FOR(j, len(B)) C[j + m] -= q * B[j];\r\n   \
-    \ if (l + l <= i) {\r\n      B = tmp;\r\n      l = i + 1 - l, m = 1;\r\n     \
-    \ p = d;\r\n    } else {\r\n      ++m;\r\n    }\r\n  }\r\n  return C;\r\n}\r\n\
-    #line 1 \"other/random.hpp\"\nstruct RandomNumberGenerator {\n  mt19937 mt;\n\n\
-    \  RandomNumberGenerator() : mt(chrono::steady_clock::now().time_since_epoch().count())\
+    \ { yes(!t); }\r\n#line 1 \"other/random.hpp\"\nstruct RandomNumberGenerator {\n\
+    \  mt19937 mt;\n\n  RandomNumberGenerator() : mt(chrono::steady_clock::now().time_since_epoch().count())\
     \ {}\n\n  ll operator()(ll a, ll b) {  // [a, b)\n    uniform_int_distribution<ll>\
     \ dist(a, b - 1);\n    return dist(mt);\n  }\n\n  ll operator()(ll b) {  // [0,\
-    \ b)\n    return (*this)(0, b);\n  }\n};\n#line 3 \"linalg/spmat_min_poly.hpp\"\
-    \n\r\ntemplate <typename mint>\r\nvc<mint> spmat_min_poly(int N, vc<tuple<int,\
-    \ int, mint>> dat) {\r\n  RandomNumberGenerator RNG;\r\n  vc<mint> S(N + N + 10);\r\
-    \n  vc<mint> c(N);\r\n  vc<mint> v(N);\r\n  FOR(i, N) c[i] = RNG(0, mint::get_mod());\r\
-    \n  FOR(i, N) v[i] = RNG(0, mint::get_mod());\r\n  FOR(k, N + N + 10) {\r\n  \
-    \  FOR(i, N) S[k] += c[i] * v[i];\r\n    vc<mint> w(N);\r\n    for (auto&& [i,\
-    \ j, x]: dat) w[j] += x * v[i];\r\n    swap(v, w);\r\n  }\r\n  return find_linear_rec(S);\r\
-    \n}\r\n#line 2 \"linalg/spmat_det.hpp\"\n\r\ntemplate <typename T>\r\nT spmat_det(int\
-    \ N, vc<tuple<int, int, T>> dat) {\r\n  RandomNumberGenerator RNG;\r\n  vc<T>\
-    \ c(N);\r\n  FOR(i, N) c[i] = RNG(1, T::get_mod());\r\n  T r = 1;\r\n  FOR(i,\
-    \ N) r *= c[i];\r\n  for (auto&& [i, j, x]: dat) x *= c[i];\r\n  auto f = spmat_min_poly(N,\
-    \ dat);\r\n  f.resize(N + 1);\r\n  T det = f.back();\r\n  if (N & 1) det *= -1;\r\
-    \n  det /= r;\r\n  return det;\r\n}\r\n#line 5 \"test/library_checker/matrix/sparse_matrix_det.test.cpp\"\
-    \n\r\n#line 2 \"mod/modint.hpp\"\n\ntemplate <unsigned int mod>\nstruct modint\
-    \ {\n  static constexpr bool is_modint = true;\n  unsigned int val;\n  constexpr\
-    \ modint(const long long val = 0) noexcept\n      : val(val >= 0 ? val % mod :\
-    \ (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint &other) const\
-    \ {\n    return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
-    \ modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n\
-    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >=\
-    \ mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint\
-    \ &p) {\n    val = (unsigned int)(1LL * val * p.val % mod);\n    return *this;\n\
-    \  }\n  modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n   \
-    \ return *this;\n  }\n  modint operator-() const { return modint(get_mod() - val);\
-    \ }\n  modint operator+(const modint &p) const { return modint(*this) += p; }\n\
-    \  modint operator-(const modint &p) const { return modint(*this) -= p; }\n  modint\
-    \ operator*(const modint &p) const { return modint(*this) *= p; }\n  modint operator/(const\
-    \ modint &p) const { return modint(*this) /= p; }\n  bool operator==(const modint\
-    \ &p) const { return val == p.val; }\n  bool operator!=(const modint &p) const\
-    \ { return val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod,\
-    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
-    \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
-    \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
-    \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n  static constexpr unsigned int get_mod() { return mod; }\n};\n\nstruct\
-    \ ArbitraryModInt {\n  static constexpr bool is_modint = true;\n  unsigned int\
-    \ val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t y)\n      :\
-    \ val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y) % get_mod())\
-    \ % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other) const {\n  \
-    \  return val < other.val;\n  } // To use std::map<ArbitraryModInt, T>\n  static\
-    \ unsigned int &get_mod() {\n    static unsigned int mod = 0;\n    return mod;\n\
-    \  }\n  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
-    \ ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
-    \    return *this;\n  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p)\
-    \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
-    \ *this;\n  }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n   \
-    \ unsigned long long a = (unsigned long long)val * p.val;\n    unsigned xh = (unsigned)(a\
-    \ >> 32), xl = (unsigned)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"\
-    =d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n\
-    \  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n    *this *=\
-    \ p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-() const {\
-    \ return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) += p;\n  }\n\
-    \  ArbitraryModInt operator-(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
-    \ -= p;\n  }\n  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n\
-    \    return ArbitraryModInt(*this) *= p;\n  }\n  ArbitraryModInt operator/(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) /= p;\n  }\n\
-    \  bool operator==(const ArbitraryModInt &p) const { return val == p.val; }\n\
-    \  bool operator!=(const ArbitraryModInt &p) const { return val != p.val; }\n\
-    \  ArbitraryModInt inverse() const {\n    int a = val, b = get_mod(), u = 1, v\
-    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
-    \ -= t * v, v);\n    }\n    return ArbitraryModInt(u);\n  }\n  ArbitraryModInt\
-    \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
-    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
-    \  }\n    return ret;\n  }\n};\n\ntemplate <typename mint>\nmint inv(int n) {\n\
-    \  static const int mod = mint::get_mod();\n  static vector<mint> dat = {0, 1};\n\
-    \  assert(0 <= n);\n  if (n >= mod) n %= mod;\n  while (int(dat.size()) <= n)\
-    \ {\n    int k = dat.size();\n    auto q = (mod + k - 1) / k;\n    int r = k *\
-    \ q - mod;\n    dat.emplace_back(dat[r] * mint(q));\n  }\n  return dat[n];\n}\n\
-    \ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
-    \  static vector<mint> dat = {1, 1};\n  assert(0 <= n);\n  if (n >= mod) return\
-    \ 0;\n  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
-    \ - 1] * mint(k));\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint\
-    \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
-    \ dat = {1, 1};\n  assert(0 <= n && n < mod);\n  while (int(dat.size()) <= n)\
-    \ {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint, bool large = false>\nmint\
-    \ C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if (!large)\
-    \ return fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k,\
-    \ n - k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n\
-    \  return x;\n}\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll\
-    \ n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return\
-    \ fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint,\
-    \ 1>(n, k);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    using amint = ArbitraryModInt;\n#line 7 \"test/library_checker/matrix/sparse_matrix_det.test.cpp\"\
-    \nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N, K);\r\n  using T =\
-    \ tuple<int, int, mint>;\r\n  VEC(T, dat, K);\r\n  print(spmat_det(N, dat));\r\
-    \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sparse_matrix_det\"\r\n\
-    #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"linalg/spmat_det.hpp\"\
-    \r\n\r\n#include \"mod/modint.hpp\"\r\nusing mint = modint998;\r\n\r\nvoid solve()\
-    \ {\r\n  LL(N, K);\r\n  using T = tuple<int, int, mint>;\r\n  VEC(T, dat, K);\r\
-    \n  print(spmat_det(N, dat));\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
-    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
-    \n\r\n  return 0;\r\n}\r\n"
+    \ b)\n    return (*this)(0, b);\n  }\n};\n#line 5 \"test/mytest/maxplus_concave.test.cpp\"\
+    \n\n#line 1 \"dp/maxplus_convolution_concave.hpp\"\ntemplate <typename T>\nvc<T>\
+    \ maxplus_convolution_concave(const vc<T>& A, const vc<T>& B, const T INF) {\n\
+    \  ll NA = len(A), NB = len(B);\n  ll LA = 0, RA = NA, LB = 0, RB = NB;\n  while\
+    \ (LA < RA && A[LA] == -INF) ++LA;\n  while (LA < RA && A[RA - 1] == -INF) --RA;\n\
+    \  while (LB < RB && B[LB] == -INF) ++LB;\n  while (LB < RB && B[RB - 1] == -INF)\
+    \ --RB;\n  // check concave\n  FOR3(i, LA + 1, RA - 1) assert(2 * A[i] >= A[i\
+    \ - 1] + A[i + 1]);\n  FOR3(i, LB + 1, RB - 1) assert(2 * B[i] >= B[i - 1] + B[i\
+    \ + 1]);\n\n  vc<T> C(NA + NB - 1, -INF);\n  int i = LA, j = LB;\n  while (i <\
+    \ RA && j < RB) {\n    C[i + j] = A[i] + B[j];\n    if (i == RA - 1) ++j;\n  \
+    \  elif (j == RB - 1)++ i;\n    else {\n      if (A[i + 1] + B[j] > A[i] + B[j\
+    \ + 1])\n        ++i;\n      else\n        ++j;\n    }\n  }\n  return C;\n}\n\
+    #line 7 \"test/mytest/maxplus_concave.test.cpp\"\n\nconst int INF = numeric_limits<int>::max();\n\
+    \nvc<int> gen(int L, int N, int R) {\n  RandomNumberGenerator RNG;\n  vc<int>\
+    \ A(N);\n  FOR(i, N) A[i] = RNG(-100, 100);\n  sort(all(A));\n  reverse(all(A));\n\
+    \  A = cumsum(A);\n  FOR(L) A.insert(A.begin(), -INF);\n  FOR(L) A.insert(A.end(),\
+    \ -INF);\n  return A;\n}\n\nvc<int> naive(vc<int> A, vc<int> B) {\n  int N = len(A),\
+    \ M = len(B);\n  vc<int> C(N + M - 1, -INF);\n  FOR(i, N) FOR(j, M) {\n    if\
+    \ (A[i] == -INF || B[j] == -INF) continue;\n    chmax(C[i + j], A[i] + B[j]);\n\
+    \  }\n  return C;\n}\n\nvoid test() {\n  FOR(a1, 5) FOR(b1, 10) FOR(c1, 5) {\n\
+    \    vc<int> A = gen(a1, b1, c1);\n    FOR(a2, 5) FOR(b2, 10) FOR(c2, 5) {\n \
+    \     vc<int> B = gen(a2, b2, c2);\n      assert(naive(A, B) == maxplus_convolution_concave<int>(A,\
+    \ B, INF));\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\
+    \nsigned main() {\n  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\
+    \n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"other/random.hpp\"\n\n#include \"dp/maxplus_convolution_concave.hpp\"\
+    \n\nconst int INF = numeric_limits<int>::max();\n\nvc<int> gen(int L, int N, int\
+    \ R) {\n  RandomNumberGenerator RNG;\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(-100,\
+    \ 100);\n  sort(all(A));\n  reverse(all(A));\n  A = cumsum(A);\n  FOR(L) A.insert(A.begin(),\
+    \ -INF);\n  FOR(L) A.insert(A.end(), -INF);\n  return A;\n}\n\nvc<int> naive(vc<int>\
+    \ A, vc<int> B) {\n  int N = len(A), M = len(B);\n  vc<int> C(N + M - 1, -INF);\n\
+    \  FOR(i, N) FOR(j, M) {\n    if (A[i] == -INF || B[j] == -INF) continue;\n  \
+    \  chmax(C[i + j], A[i] + B[j]);\n  }\n  return C;\n}\n\nvoid test() {\n  FOR(a1,\
+    \ 5) FOR(b1, 10) FOR(c1, 5) {\n    vc<int> A = gen(a1, b1, c1);\n    FOR(a2, 5)\
+    \ FOR(b2, 10) FOR(c2, 5) {\n      vc<int> B = gen(a2, b2, c2);\n      assert(naive(A,\
+    \ B) == maxplus_convolution_concave<int>(A, B, INF));\n    }\n  }\n}\n\nvoid solve()\
+    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  test();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - linalg/spmat_det.hpp
-  - linalg/spmat_min_poly.hpp
-  - seq/find_linear_rec.hpp
   - other/random.hpp
-  - mod/modint.hpp
+  - dp/maxplus_convolution_concave.hpp
   isVerificationFile: true
-  path: test/library_checker/matrix/sparse_matrix_det.test.cpp
+  path: test/mytest/maxplus_concave.test.cpp
   requiredBy: []
-  timestamp: '2022-08-13 02:22:39+09:00'
+  timestamp: '2022-08-16 03:04:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library_checker/matrix/sparse_matrix_det.test.cpp
+documentation_of: test/mytest/maxplus_concave.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/matrix/sparse_matrix_det.test.cpp
-- /verify/test/library_checker/matrix/sparse_matrix_det.test.cpp.html
-title: test/library_checker/matrix/sparse_matrix_det.test.cpp
+- /verify/test/mytest/maxplus_concave.test.cpp
+- /verify/test/mytest/maxplus_concave.test.cpp.html
+title: test/mytest/maxplus_concave.test.cpp
 ---

@@ -55,6 +55,12 @@ data:
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/maxplus_concave.test.cpp
+    title: test/mytest/maxplus_concave.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/minplus_convex.test.cpp
+    title: test/mytest/minplus_convex.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/mod_sum_of_linear.test.cpp
     title: test/mytest/mod_sum_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
@@ -106,7 +112,9 @@ data:
   - test/yukicoder/4_modular_subset_sum.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
+  - test/mytest/maxplus_concave.test.cpp
   - test/mytest/all_inverse.test.cpp
+  - test/mytest/minplus_convex.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
   - test/mytest/run_length.test.cpp
 documentation_of: other/random.hpp

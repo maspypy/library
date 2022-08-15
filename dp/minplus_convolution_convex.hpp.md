@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/minplus_convex.test.cpp
+    title: test/mytest/minplus_convex.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"dp/minplus_convolution_convex.hpp\"\ntemplate <typename\
@@ -35,8 +38,9 @@ data:
   path: dp/minplus_convolution_convex.hpp
   requiredBy: []
   timestamp: '2022-07-11 19:57:09+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/mytest/minplus_convex.test.cpp
 documentation_of: dp/minplus_convolution_convex.hpp
 layout: document
 redirect_from:

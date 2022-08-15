@@ -181,10 +181,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: dp/longest_increasing_subsequence.hpp
       title: dp/longest_increasing_subsequence.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: dp/maxplus_convolution_concave.hpp
       title: dp/maxplus_convolution_concave.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: dp/minplus_convolution_convex.hpp
       title: dp/minplus_convolution_convex.hpp
     - icon: ':heavy_check_mark:'
@@ -665,7 +665,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -718,7 +718,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/primetable.hpp
       title: nt/primetable.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/primetest.hpp
       title: nt/primetest.hpp
     - icon: ':heavy_check_mark:'
@@ -747,7 +747,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/integer_kth_root.hpp
       title: other/integer_kth_root.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -942,7 +942,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/stirling_number_2.hpp
       title: seq/stirling_number_2.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: seq/stirling_number_query.hpp
       title: seq/stirling_number_query.hpp
     - icon: ':heavy_check_mark:'
@@ -1430,7 +1430,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/stirline_mod_p_1.test.cpp
       title: test/library_checker/math/stirline_mod_p_1.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/stirline_mod_p_2.test.cpp
       title: test/library_checker/math/stirline_mod_p_2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1601,6 +1601,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/factorial_998.test.cpp
       title: test/mytest/factorial_998.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/maxplus_concave.test.cpp
+      title: test/mytest/maxplus_concave.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/minplus_convex.test.cpp
+      title: test/mytest/minplus_convex.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/mod_sum_of_linear.test.cpp
       title: test/mytest/mod_sum_of_linear.test.cpp

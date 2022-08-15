@@ -387,7 +387,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirline_mod_p_1.test.cpp
     title: test/library_checker/math/stirline_mod_p_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirline_mod_p_2.test.cpp
     title: test/library_checker/math/stirline_mod_p_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -546,6 +546,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/maxplus_concave.test.cpp
+    title: test/mytest/maxplus_concave.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/minplus_convex.test.cpp
+    title: test/mytest/minplus_convex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/mod_sum_of_linear.test.cpp
     title: test/mytest/mod_sum_of_linear.test.cpp
@@ -774,9 +780,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/bbst_max_right.test.cpp
     title: test/yukicoder/bbst_max_right.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include\
@@ -995,7 +1001,7 @@ data:
   path: other/io.hpp
   requiredBy: []
   timestamp: '2022-04-27 05:07:41+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL_5_C_count_surjection.test.cpp
   - test/aoj/DSL_2_I_cntsum_set_lazy.test.cpp
@@ -1251,7 +1257,9 @@ data:
   - test/yukicoder/1718_rerooting.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
+  - test/mytest/maxplus_concave.test.cpp
   - test/mytest/all_inverse.test.cpp
+  - test/mytest/minplus_convex.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
   - test/mytest/run_length.test.cpp
 documentation_of: other/io.hpp

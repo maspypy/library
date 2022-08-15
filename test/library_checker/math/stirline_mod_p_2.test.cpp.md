@@ -1,30 +1,30 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/stirling_number_query.hpp
     title: seq/stirling_number_query.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n
+    PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind_small_p_large_n
     links:
-    - https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n
+    - https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind_small_p_large_n
   bundledCode: "#line 1 \"test/library_checker/math/stirline_mod_p_2.test.cpp\"\n\
-    #define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n\"\
+    #define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind_small_p_large_n\"\
     \n#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
     \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
     \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
@@ -266,7 +266,7 @@ data:
     \ {\n    LL(n, k);\n    print(X.S2(n, k));\n  }\n}\n\nsigned main() {\n  cout\
     \ << fixed << setprecision(15);\n\n  // LL(T);\n  ll T = 1;\n  FOR(T) solve();\n\
     \n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n\"\
+  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind_small_p_large_n\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"seq/stirling_number_query.hpp\"\
     \n\nvoid solve() {\n  LL(T, p);\n  Stirling_Number_Query X(p, 0, 1);\n  FOR(T)\
     \ {\n    LL(n, k);\n    print(X.S2(n, k));\n  }\n}\n\nsigned main() {\n  cout\
@@ -280,8 +280,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/stirline_mod_p_2.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 02:50:42+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-16 03:05:40+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/stirline_mod_p_2.test.cpp
 layout: document
