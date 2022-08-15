@@ -2,6 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "other/random.hpp"
+#include "mod/min_of_linear_segments.hpp"
 
 pair<vc<int>, vc<int>> naive(int a, int b, int mod) {
   assert(0 <= a && a < mod);
