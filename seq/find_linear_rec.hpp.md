@@ -57,10 +57,10 @@ data:
   timestamp: '2022-05-11 21:07:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1500_interpolate_linear.test.cpp
+  - test/yukicoder/1844_interpolate_c_rec.test.cpp
   - test/library_checker/math/find_linear_recurrence.test.cpp
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
-  - test/yukicoder/1844_interpolate_c_rec.test.cpp
-  - test/yukicoder/1500_interpolate_linear.test.cpp
 documentation_of: seq/find_linear_rec.hpp
 layout: document
 redirect_from:

@@ -20,6 +20,9 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: seq/bell_number_large.hpp
+    title: seq/bell_number_large.hpp
   - icon: ':heavy_check_mark:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
@@ -315,13 +318,14 @@ data:
   isVerificationFile: false
   path: poly/coef_of_rational_fps.hpp
   requiredBy:
+  - seq/bell_number_large.hpp
   - seq/interpolate_linear_rec.hpp
   timestamp: '2022-08-15 04:43:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/yukicoder/1844_interpolate_c_rec.test.cpp
   - test/yukicoder/1500_interpolate_linear.test.cpp
+  - test/yukicoder/1844_interpolate_c_rec.test.cpp
+  - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
 documentation_of: poly/coef_of_rational_fps.hpp
 layout: document
 redirect_from:
