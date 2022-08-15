@@ -1,4 +1,4 @@
-#include "seq/coef_of_rational_fps.hpp"
+#include "poly/coef_of_rational_fps.hpp"
 
 // Bell 数 B_n の計算。O(p logp logn)
 template <typename mint>
