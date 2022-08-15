@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_min.hpp
     title: alg/monoid_min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/contest/1436/problem/E
@@ -79,10 +79,10 @@ data:
     \ Q = len(query);\r\n    vc<T> ANS(Q);\r\n    vc<vc<int>> IDS(N + 1);\r\n    FOR(q,\
     \ Q) {\r\n      auto [L, R] = query[q];\r\n      IDS[R].eb(q);\r\n    }\r\n\r\n\
     \    FOR(i, N + 1) {\r\n      // solve query\r\n      for (auto&& q: IDS[i]) {\r\
-    \n        auto [L, R] = query[q];\r\n        auto check = [&](int x) -> bool {\
-    \ return x >= L; };\r\n        int mex = seg.max_right(check, BEGIN);\r\n    \
-    \    ANS[q] = mex;\r\n      }\r\n      // update segtree\r\n      if (i < N &&\
-    \ A[i] < N + 2) seg.set(A[i], i);\r\n    }\r\n    return ANS;\r\n  }\r\n};\r\n"
+    \n        int L = query[q].fi;\r\n        auto check = [&](int x) -> bool { return\
+    \ x >= L; };\r\n        int mex = seg.max_right(check, BEGIN);\r\n        ANS[q]\
+    \ = mex;\r\n      }\r\n      // update segtree\r\n      if (i < N && A[i] < N\
+    \ + 2) seg.set(A[i], i);\r\n    }\r\n    return ANS;\r\n  }\r\n};\r\n"
   code: "\r\n#include \"ds/segtree.hpp\"\r\n#include \"alg/monoid_min.hpp\"\r\n\r\n\
     // \u914D\u5217\u306F static\r\n// \u30AF\u30A8\u30EA\u3082\u5148\u8AAD\u307F\u3059\
     \u308B\r\n// example: https://codeforces.com/contest/1436/problem/E\r\ntemplate\
@@ -94,18 +94,18 @@ data:
     \ Q = len(query);\r\n    vc<T> ANS(Q);\r\n    vc<vc<int>> IDS(N + 1);\r\n    FOR(q,\
     \ Q) {\r\n      auto [L, R] = query[q];\r\n      IDS[R].eb(q);\r\n    }\r\n\r\n\
     \    FOR(i, N + 1) {\r\n      // solve query\r\n      for (auto&& q: IDS[i]) {\r\
-    \n        auto [L, R] = query[q];\r\n        auto check = [&](int x) -> bool {\
-    \ return x >= L; };\r\n        int mex = seg.max_right(check, BEGIN);\r\n    \
-    \    ANS[q] = mex;\r\n      }\r\n      // update segtree\r\n      if (i < N &&\
-    \ A[i] < N + 2) seg.set(A[i], i);\r\n    }\r\n    return ANS;\r\n  }\r\n};\r\n"
+    \n        int L = query[q].fi;\r\n        auto check = [&](int x) -> bool { return\
+    \ x >= L; };\r\n        int mex = seg.max_right(check, BEGIN);\r\n        ANS[q]\
+    \ = mex;\r\n      }\r\n      // update segtree\r\n      if (i < N && A[i] < N\
+    \ + 2) seg.set(A[i], i);\r\n    }\r\n    return ANS;\r\n  }\r\n};\r\n"
   dependsOn:
   - ds/segtree.hpp
   - alg/monoid_min.hpp
   isVerificationFile: false
   path: ds/range_mex_query.hpp
   requiredBy: []
-  timestamp: '2022-08-16 03:20:02+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-08-16 03:36:43+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/range_mex.test.cpp
 documentation_of: ds/range_mex_query.hpp

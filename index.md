@@ -117,7 +117,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid_max_xplusa_b.hpp
       title: alg/monoid_max_xplusa_b.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid_min.hpp
       title: alg/monoid_min.hpp
     - icon: ':heavy_check_mark:'
@@ -294,7 +294,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/powerquery.hpp
       title: ds/powerquery.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/range_mex_query.hpp
       title: ds/range_mex_query.hpp
     - icon: ':warning:'
@@ -309,7 +309,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/rectangleunion.hpp
       title: ds/rectangleunion.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree.hpp
       title: ds/segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -662,7 +662,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -744,7 +744,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/integer_kth_root.hpp
       title: other/integer_kth_root.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -759,7 +759,7 @@ data:
     - icon: ':warning:'
       path: other/kth_root_permutation.hpp
       title: other/kth_root_permutation.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/random.hpp
       title: other/random.hpp
     - icon: ':warning:'
@@ -1613,7 +1613,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/range_freq_of_linear.test.cpp
       title: test/mytest/range_freq_of_linear.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/range_mex.test.cpp
       title: test/mytest/range_mex.test.cpp
     - icon: ':heavy_check_mark:'

@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: dp/maxplus_convolution_concave.hpp
     title: dp/maxplus_convolution_concave.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/random.hpp
     title: other/random.hpp
   _extendedRequiredBy: []

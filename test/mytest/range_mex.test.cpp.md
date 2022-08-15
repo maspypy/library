@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_min.hpp
     title: alg/monoid_min.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/range_mex_query.hpp
     title: ds/range_mex_query.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/random.hpp
     title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -268,25 +268,25 @@ data:
     \ Q = len(query);\r\n    vc<T> ANS(Q);\r\n    vc<vc<int>> IDS(N + 1);\r\n    FOR(q,\
     \ Q) {\r\n      auto [L, R] = query[q];\r\n      IDS[R].eb(q);\r\n    }\r\n\r\n\
     \    FOR(i, N + 1) {\r\n      // solve query\r\n      for (auto&& q: IDS[i]) {\r\
-    \n        auto [L, R] = query[q];\r\n        auto check = [&](int x) -> bool {\
-    \ return x >= L; };\r\n        int mex = seg.max_right(check, BEGIN);\r\n    \
-    \    ANS[q] = mex;\r\n      }\r\n      // update segtree\r\n      if (i < N &&\
-    \ A[i] < N + 2) seg.set(A[i], i);\r\n    }\r\n    return ANS;\r\n  }\r\n};\r\n\
-    #line 7 \"test/mytest/range_mex.test.cpp\"\n\npair<vc<int>, vc<pi>> gen(int N,\
-    \ int LIM, int Q) {\n  RandomNumberGenerator RNG;\n  vc<int> A(N);\n  FOR(i, N)\
-    \ { A[i] = RNG(0, LIM); }\n  vc<pi> query;\n  FOR(q, Q) {\n    int l = RNG(0,\
-    \ N);\n    int r = RNG(l, N + 1);\n    query.eb(l, r);\n  }\n  return {A, query};\n\
-    }\n\nvc<int> naive(vc<int> A, vc<pi> query, int begin) {\n  vc<int> ANS;\n  for\
-    \ (auto&& [l, r]: query) {\n    int mex = begin;\n    while (1) {\n      bool\
-    \ ok = 1;\n      FOR(i, l, r) if (A[i] == mex) ok = 0;\n      if (ok) break;\n\
-    \      ++mex;\n    }\n    ANS.eb(mex);\n  }\n  return ANS;\n}\n\nvoid test_0()\
-    \ {\n  FOR(N, 1, 10) FOR(LIM, 1, 20) FOR(Q, 1, 20) {\n    auto [A, query] = gen(N,\
-    \ LIM, Q);\n    RangeMexQuery<0, int> X(A);\n    for (auto&& [l, r]: query) X.add(l,\
-    \ r);\n    assert(naive(A, query, 0) == X.calc());\n  }\n}\n\nvoid test_1() {\n\
-    \  FOR(N, 1, 10) FOR(LIM, 1, 20) FOR(Q, 1, 20) {\n    auto [A, query] = gen(N,\
-    \ LIM, Q);\n    for (auto&& x: A) ++x;\n    RangeMexQuery<1, int> X(A);\n    for\
-    \ (auto&& [l, r]: query) X.add(l, r);\n    assert(naive(A, query, 1) == X.calc());\n\
-    \  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n\
+    \n        int L = query[q].fi;\r\n        auto check = [&](int x) -> bool { return\
+    \ x >= L; };\r\n        int mex = seg.max_right(check, BEGIN);\r\n        ANS[q]\
+    \ = mex;\r\n      }\r\n      // update segtree\r\n      if (i < N && A[i] < N\
+    \ + 2) seg.set(A[i], i);\r\n    }\r\n    return ANS;\r\n  }\r\n};\r\n#line 7 \"\
+    test/mytest/range_mex.test.cpp\"\n\npair<vc<int>, vc<pi>> gen(int N, int LIM,\
+    \ int Q) {\n  RandomNumberGenerator RNG;\n  vc<int> A(N);\n  FOR(i, N) { A[i]\
+    \ = RNG(0, LIM); }\n  vc<pi> query;\n  FOR(q, Q) {\n    int l = RNG(0, N);\n \
+    \   int r = RNG(l, N + 1);\n    query.eb(l, r);\n  }\n  return {A, query};\n}\n\
+    \nvc<int> naive(vc<int> A, vc<pi> query, int begin) {\n  vc<int> ANS;\n  for (auto&&\
+    \ [l, r]: query) {\n    int mex = begin;\n    while (1) {\n      bool ok = 1;\n\
+    \      FOR(i, l, r) if (A[i] == mex) ok = 0;\n      if (ok) break;\n      ++mex;\n\
+    \    }\n    ANS.eb(mex);\n  }\n  return ANS;\n}\n\nvoid test_0() {\n  FOR(N, 1,\
+    \ 10) FOR(LIM, 1, 20) FOR(Q, 1, 20) {\n    auto [A, query] = gen(N, LIM, Q);\n\
+    \    RangeMexQuery<0, int> X(A);\n    for (auto&& [l, r]: query) X.add(l, r);\n\
+    \    assert(naive(A, query, 0) == X.calc());\n  }\n}\n\nvoid test_1() {\n  FOR(N,\
+    \ 1, 10) FOR(LIM, 1, 20) FOR(Q, 1, 20) {\n    auto [A, query] = gen(N, LIM, Q);\n\
+    \    for (auto&& x: A) ++x;\n    RangeMexQuery<1, int> X(A);\n    for (auto&&\
+    \ [l, r]: query) X.add(l, r);\n    assert(naive(A, query, 1) == X.calc());\n \
+    \ }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n\
     \  cout << fixed << setprecision(15);\n\n  test_0();\n  test_1();\n  solve();\n\
     \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
@@ -317,8 +317,8 @@ data:
   isVerificationFile: true
   path: test/mytest/range_mex.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 03:20:02+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-16 03:36:43+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/range_mex.test.cpp
 layout: document
