@@ -34,6 +34,9 @@ data:
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/powerquery.test.cpp
+    title: test/mytest/powerquery.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1339_discrete_log.test.cpp
     title: test/yukicoder/1339_discrete_log.test.cpp
   - icon: ':heavy_check_mark:'
@@ -77,6 +80,7 @@ data:
   - test/yukicoder/1339_discrete_log.test.cpp
   - test/yukicoder/899_bfsnumbering.test.cpp
   - test/mytest/factorial_998.test.cpp
+  - test/mytest/powerquery.test.cpp
 documentation_of: alg/group_mul.hpp
 layout: document
 redirect_from:

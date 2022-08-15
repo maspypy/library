@@ -291,7 +291,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/point_add_rectangle_sum.hpp
       title: ds/point_add_rectangle_sum.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/powerquery.hpp
       title: ds/powerquery.hpp
     - icon: ':x:'
@@ -1607,6 +1607,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/mod_sum_of_linear.test.cpp
       title: test/mytest/mod_sum_of_linear.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/powerquery.test.cpp
+      title: test/mytest/powerquery.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/range_freq_of_linear.test.cpp
       title: test/mytest/range_freq_of_linear.test.cpp
