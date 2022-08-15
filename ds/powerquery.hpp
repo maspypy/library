@@ -6,7 +6,7 @@ struct PowerQuery {
 
   PowerQuery(X a) { dat.eb(make_pow(a)); }
 
-  X operator()(int n) {
+  X operator()(ll n) {
     X res = Mono::unit();
     int k = 0;
     while (n) {
