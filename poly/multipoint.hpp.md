@@ -391,8 +391,8 @@ data:
   timestamp: '2022-07-31 08:50:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
+  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
 documentation_of: poly/multipoint.hpp
 layout: document
 redirect_from:

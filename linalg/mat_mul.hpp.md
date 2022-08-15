@@ -67,12 +67,12 @@ data:
   timestamp: '2022-04-23 01:11:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1750_matpow.test.cpp
+  - test/library_checker/matrix/matrix_product.test.cpp
   - test/yukicoder/502_p_rec.test.cpp
   - test/yukicoder/1810_matpow.test.cpp
   - test/yukicoder/426.test.cpp
+  - test/yukicoder/1750_matpow.test.cpp
   - test/mytest/factorial_998.test.cpp
-  - test/library_checker/matrix/matrix_product.test.cpp
 documentation_of: linalg/mat_mul.hpp
 layout: document
 redirect_from:

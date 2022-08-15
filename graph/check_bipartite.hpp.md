@@ -108,16 +108,16 @@ data:
   isVerificationFile: false
   path: graph/check_bipartite.hpp
   requiredBy:
-  - graph/dag_path_cover.hpp
-  - graph/maximum_antichain.hpp
   - flow/bipartite.hpp
+  - graph/maximum_antichain.hpp
+  - graph/dag_path_cover.hpp
   timestamp: '2022-08-11 02:13:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1479_bipartite_vertex_cover.test.cpp
-  - test/library_checker/graph/bipartitematching.test.cpp
   - test/aoj/2251_dag_path_cover.test.cpp
   - test/aoj/2251_maxantichain.test.cpp
+  - test/library_checker/graph/bipartitematching.test.cpp
+  - test/yukicoder/1479_bipartite_vertex_cover.test.cpp
 documentation_of: graph/check_bipartite.hpp
 layout: document
 redirect_from:

@@ -382,15 +382,15 @@ data:
   path: poly/lagrange_interpolate_iota.hpp
   requiredBy:
   - poly/prefix_product_of_poly.hpp
-  - seq/kth_term_of_p_recursive.hpp
   - seq/interpolate_poly_exp_sum.hpp
+  - seq/kth_term_of_p_recursive.hpp
   timestamp: '2022-08-11 02:11:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
+  - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/yukicoder/502_p_rec.test.cpp
   - test/mytest/factorial_998.test.cpp
-  - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
 documentation_of: poly/lagrange_interpolate_iota.hpp
 layout: document
 redirect_from:

@@ -149,8 +149,8 @@ data:
   timestamp: '2022-07-20 17:19:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/529_two_edge.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
+  - test/yukicoder/529_two_edge.test.cpp
 documentation_of: graph/two_edge_component.hpp
 layout: document
 redirect_from:
