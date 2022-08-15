@@ -31,7 +31,7 @@ struct RangeMexQuery {
     FOR(i, N + 1) {
       // solve query
       for (auto&& q: IDS[i]) {
-        auto [L, R] = query[q];
+        int L = query[q].fi;
         auto check = [&](int x) -> bool { return x >= L; };
         int mex = seg.max_right(check, BEGIN);
         ANS[q] = mex;
