@@ -33,6 +33,38 @@ struct DisjointSparse {
     return Monoid::op(dat[k][L], dat[k][R]);
   }
 
+  template <class F>
+  int max_right(const F& check, int L) {
+    assert(0 <= L && L <= n && check(Monoid::unit()));
+    if (L == n) return n;
+    int ok = L, ng = n + 1;
+    while (ok + 1 < ng) {
+      int k = (ok + ng) / 2;
+      if (check(prod(L, k))) {
+        ok = k;
+      } else {
+        ng = k;
+      }
+    }
+    return ok;
+  }
+
+  template <class F>
+  int min_left(const F& check, int R) {
+    assert(0 <= R && R <= n && check(Monoid::unit()));
+    if (R == 0) return 0;
+    int ok = R, ng = -1;
+    while (ng + 1 < ok) {
+      int k = (ok + ng) / 2;
+      if (check(prod(k, R))) {
+        ok = k;
+      } else {
+        ng = k;
+      }
+    }
+    return ok;
+  }
+
   void debug() {
     print("disjoint sparse table");
     FOR(i, log) print(dat[i]);
