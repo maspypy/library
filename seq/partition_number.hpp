@@ -1,3 +1,5 @@
+#include "poly/fps_inv.hpp"
+
 template <typename T>
 vc<T> partition_number(int N) {
   ll M = sqrt(N) + 10;
@@ -7,7 +9,7 @@ vc<T> partition_number(int N) {
     if (d > N) continue;
     f[d] += (x % 2 == 0 ? 1 : -1);
   }
-  return fps_inv(f);
+  return fps_inv<T>(f);
 }
 
 // n を k 個に分割する方法 P[n][k] のテーブル

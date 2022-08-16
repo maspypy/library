@@ -3,20 +3,6 @@
 #include "poly/convolution.hpp"
 
 template <typename mint>
-enable_if_t<is_same<mint, modint998>::value, vc<mint>> fps_inv(
-    const vc<mint>& f) {
-  if (count_terms(f) <= 200) return fps_inv_sparse(f);
-  return fps_inv_dense(f);
-}
-
-template <typename mint>
-enable_if_t<!is_same<mint, modint998>::value, vc<mint>> fps_inv(
-    const vc<mint>& f) {
-  if (count_terms(f) <= 700) return fps_inv_sparse(f);
-  return fps_inv_dense(f);
-}
-
-template <typename mint>
 vc<mint> fps_inv_sparse(const vc<mint>& f) {
   assert(f[0] != mint(0));
   int N = len(f);
@@ -81,4 +67,19 @@ enable_if_t<!is_same<mint, modint998>::value, vc<mint>> fps_inv_dense(
   }
   R.resize(N);
   return R;
+}
+
+
+template <typename mint>
+enable_if_t<is_same<mint, modint998>::value, vc<mint>> fps_inv(
+    const vc<mint>& f) {
+  if (count_terms(f) <= 200) return fps_inv_sparse<mint>(f);
+  return fps_inv_dense<mint>(f);
+}
+
+template <typename mint>
+enable_if_t<!is_same<mint, modint998>::value, vc<mint>> fps_inv(
+    const vc<mint>& f) {
+  if (count_terms(f) <= 700) return fps_inv_sparse<mint>(f);
+  return fps_inv_dense<mint>(f);
 }
