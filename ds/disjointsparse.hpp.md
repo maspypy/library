@@ -8,7 +8,7 @@ data:
   - icon: ':warning:'
     path: string/sort_all_substring.hpp
     title: string/sort_all_substring.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/suffixarray.hpp
     title: string/suffixarray.hpp
   _extendedVerifiedWith:
@@ -21,15 +21,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/suffix_array.test.cpp
     title: test/library_checker/string/suffix_array.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/string/suffix_array_vec.test.cpp
     title: test/library_checker/string/suffix_array_vec.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2005.test.cpp
     title: test/yukicoder/2005.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/disjointsparse.hpp\"\ntemplate <class Monoid>\r\nstruct\
@@ -91,7 +91,7 @@ data:
   - string/sort_all_substring.hpp
   - string/suffixarray.hpp
   timestamp: '2022-08-17 05:20:12+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/2005.test.cpp
   - test/library_checker/string/suffix_array_vec.test.cpp
