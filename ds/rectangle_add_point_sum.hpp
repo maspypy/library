@@ -10,7 +10,7 @@ struct Rectangle_Add_Point_Sum {
   Rectangle_Add_Point_Sum() {}
 
   void add_query(ll xl, ll yl, ll xr, ll yr, G g) {
-    rect.eb(xl, xr, yl, yr);
+    rect.eb(xl, yl, xr, yr);
     WT.eb(g);
   }
 
