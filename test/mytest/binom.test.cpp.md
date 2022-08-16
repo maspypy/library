@@ -1,12 +1,6 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: alg/group_affine.hpp
-    title: alg/group_affine.hpp
-  - icon: ':question:'
-    path: ds/dualsegtree.hpp
-    title: ds/dualsegtree.hpp
   - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
@@ -16,6 +10,9 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
+  - icon: ':question:'
+    path: other/random.hpp
+    title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -23,12 +20,11 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/range_affine_point_get
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://judge.yosupo.jp/problem/range_affine_point_get
-  bundledCode: "#line 1 \"test/library_checker/datastructure/range_affine_point_add.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_point_get\"\n\
-    #line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/mytest/binom.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
+    \n#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
     \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
     \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
     \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
@@ -200,69 +196,47 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 4 \"test/library_checker/datastructure/range_affine_point_add.test.cpp\"\
-    \n\n#line 2 \"ds/dualsegtree.hpp\"\n\ntemplate <typename Monoid>\nstruct DualSegTree\
-    \ {\n  using A = typename Monoid::value_type;\n  int n, log, size;\n  vc<A> laz;\n\
-    \n  DualSegTree() : DualSegTree(0) {}\n  DualSegTree(int n) : n(n) {\n    log\
-    \ = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    laz.assign(size\
-    \ << 1, Monoid::unit());\n  }\n\n  void reset() { fill(all(laz), Monoid::unit());\
-    \ }\n\n  void all_apply(int k, A a) { laz[k] = Monoid::op(laz[k], a); }\n\n  A\
-    \ get(int p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int i =\
-    \ log; i >= 1; i--) push(p >> i);\n    return laz[p];\n  }\n\n  vc<A> get_all()\
-    \ {\n    FOR(i, size) push(i);\n    return {laz.begin() + size, laz.begin() +\
-    \ size + n};\n  }\n\n  void apply(int l, int r, A a) {\n    assert(0 <= l && l\
-    \ <= r && r <= n);\n    if (l == r) return;\n\n    l += size;\n    r += size;\n\
-    \n    if (!Monoid::commute) {\n      for (int i = log; i >= 1; i--) {\n      \
-    \  if (((l >> i) << i) != l) push(l >> i);\n        if (((r >> i) << i) != r)\
-    \ push((r - 1) >> i);\n      }\n    }\n\n    {\n      int l2 = l, r2 = r;\n  \
-    \    while (l < r) {\n        if (l & 1) all_apply(l++, a);\n        if (r & 1)\
-    \ all_apply(--r, a);\n        l >>= 1;\n        r >>= 1;\n      }\n      l = l2;\n\
-    \      r = r2;\n    }\n  }\n  void debug() { print(\"dualsegtree getall:\", get_all());\
-    \ }\n\nprivate:\n  void push(int k) {\n    all_apply(2 * k, laz[k]);\n    all_apply(2\
-    \ * k + 1, laz[k]);\n    laz[k] = Monoid::unit();\n  }\n};\n#line 1 \"alg/group_affine.hpp\"\
-    \ntemplate <typename K>\nstruct Group_Affine {\n  using F = pair<K, K>;\n  using\
-    \ value_type = F;\n  static constexpr F op(const F &x, const F &y) noexcept {\n\
-    \    return F({x.first * y.first, x.second * y.first + y.second});\n  }\n  static\
-    \ constexpr F inverse(const F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n\
-    \    return {a, a * (-b)};\n  }\n  static constexpr K eval(const F &f, K x) noexcept\
-    \ {\n    return f.first * x + f.second;\n  }\n  static constexpr F unit() { return\
-    \ {K(1), K(0)}; }\n  static constexpr bool commute = false;\n};\n#line 2 \"mod/modint.hpp\"\
-    \n\ntemplate <unsigned int mod>\nstruct modint {\n  static constexpr bool is_modint\
-    \ = true;\n  unsigned int val;\n  constexpr modint(const long long val = 0) noexcept\n\
-    \      : val(val >= 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const\
-    \ modint &other) const {\n    return val < other.val;\n  } // To use std::map\n\
-    \  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -=\
-    \ mod;\n    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if\
-    \ ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint\
-    \ &operator*=(const modint &p) {\n    val = (unsigned int)(1LL * val * p.val %\
-    \ mod);\n    return *this;\n  }\n  modint &operator/=(const modint &p) {\n   \
-    \ *this *= p.inverse();\n    return *this;\n  }\n  modint operator-() const {\
-    \ return modint(get_mod() - val); }\n  modint operator+(const modint &p) const\
-    \ { return modint(*this) += p; }\n  modint operator-(const modint &p) const {\
-    \ return modint(*this) -= p; }\n  modint operator*(const modint &p) const { return\
-    \ modint(*this) *= p; }\n  modint operator/(const modint &p) const { return modint(*this)\
-    \ /= p; }\n  bool operator==(const modint &p) const { return val == p.val; }\n\
-    \  bool operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
-    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
-    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
-    \ return modint(u);\n  }\n  modint pow(int64_t n) const {\n    modint ret(1),\
-    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
-    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr unsigned int\
-    \ get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr\
-    \ bool is_modint = true;\n  unsigned int val;\n  ArbitraryModInt() : val(0) {}\n\
-    \  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n          \
-    \         : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
-    \ ArbitraryModInt &other) const {\n    return val < other.val;\n  } // To use\
-    \ std::map<ArbitraryModInt, T>\n  static unsigned int &get_mod() {\n    static\
-    \ unsigned int mod = 0;\n    return mod;\n  }\n  static void set_mod(int md) {\
-    \ get_mod() = md; }\n  ArbitraryModInt &operator+=(const ArbitraryModInt &p) {\n\
-    \    if ((val += p.val) >= get_mod()) val -= get_mod();\n    return *this;\n \
-    \ }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p) {\n    if ((val +=\
-    \ get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return *this;\n  }\n\
-    \  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n    unsigned long\
-    \ long a = (unsigned long long)val * p.val;\n    unsigned xh = (unsigned)(a >>\
-    \ 32), xl = (unsigned)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"\
-    (m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n\
+    \ { yes(!t); }\r\n#line 1 \"other/random.hpp\"\nstruct RandomNumberGenerator {\n\
+    \  mt19937 mt;\n\n  RandomNumberGenerator() : mt(chrono::steady_clock::now().time_since_epoch().count())\
+    \ {}\n\n  ll operator()(ll a, ll b) {  // [a, b)\n    uniform_int_distribution<ll>\
+    \ dist(a, b - 1);\n    return dist(mt);\n  }\n\n  ll operator()(ll b) {  // [0,\
+    \ b)\n    return (*this)(0, b);\n  }\n};\n#line 5 \"test/mytest/binom.test.cpp\"\
+    \n\n#line 2 \"mod/modint.hpp\"\n\ntemplate <unsigned int mod>\nstruct modint {\n\
+    \  static constexpr bool is_modint = true;\n  unsigned int val;\n  constexpr modint(const\
+    \ long long val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val)\
+    \ % mod) % mod) {}\n  bool operator<(const modint &other) const {\n    return\
+    \ val < other.val;\n  } // To use std::map\n  modint &operator+=(const modint\
+    \ &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n  }\n\
+    \  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >= mod)\
+    \ val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n\
+    \    val = (unsigned int)(1LL * val * p.val % mod);\n    return *this;\n  }\n\
+    \  modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
+    \ *this;\n  }\n  modint operator-() const { return modint(get_mod() - val); }\n\
+    \  modint operator+(const modint &p) const { return modint(*this) += p; }\n  modint\
+    \ operator-(const modint &p) const { return modint(*this) -= p; }\n  modint operator*(const\
+    \ modint &p) const { return modint(*this) *= p; }\n  modint operator/(const modint\
+    \ &p) const { return modint(*this) /= p; }\n  bool operator==(const modint &p)\
+    \ const { return val == p.val; }\n  bool operator!=(const modint &p) const { return\
+    \ val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod, u = 1,\
+    \ v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b),\
+    \ swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
+    \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
+    \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
+    \  }\n  static constexpr unsigned int get_mod() { return mod; }\n};\n\nstruct\
+    \ ArbitraryModInt {\n  static constexpr bool is_modint = true;\n  unsigned int\
+    \ val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t y)\n      :\
+    \ val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y) % get_mod())\
+    \ % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other) const {\n  \
+    \  return val < other.val;\n  } // To use std::map<ArbitraryModInt, T>\n  static\
+    \ unsigned int &get_mod() {\n    static unsigned int mod = 0;\n    return mod;\n\
+    \  }\n  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
+    \ ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
+    \    return *this;\n  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p)\
+    \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
+    \ *this;\n  }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n   \
+    \ unsigned long long a = (unsigned long long)val * p.val;\n    unsigned xh = (unsigned)(a\
+    \ >> 32), xl = (unsigned)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"\
+    =d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n\
     \  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n    *this *=\
     \ p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-() const {\
     \ return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
@@ -309,41 +283,36 @@ data:
     \ = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n\
     \  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0));\
     \ }\n  return C<mint, large, dense>(n + d - 1, n);\n}\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 8\
-    \ \"test/library_checker/datastructure/range_affine_point_add.test.cpp\"\n\nusing\
-    \ mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  VEC(mint, A, N);\n  DualSegTree<Group_Affine<mint>>\
-    \ seg(N);\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(l, r, b, c);\n\
-    \      seg.apply(l, r, {mint(b), mint(c)});\n    }\n    if (t == 1) {\n      LL(idx);\n\
-    \      mint x = A[idx];\n      auto [a, b] = seg.get(idx);\n      print(a * x\
-    \ + b);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_point_get\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/dualsegtree.hpp\"\
-    \n#include \"alg/group_affine.hpp\"\n#include \"mod/modint.hpp\"\n\nusing mint\
-    \ = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  VEC(mint, A, N);\n  DualSegTree<Group_Affine<mint>>\
-    \ seg(N);\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(l, r, b, c);\n\
-    \      seg.apply(l, r, {mint(b), mint(c)});\n    }\n    if (t == 1) {\n      LL(idx);\n\
-    \      mint x = A[idx];\n      auto [a, b] = seg.get(idx);\n      print(a * x\
-    \ + b);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 7\
+    \ \"test/mytest/binom.test.cpp\"\n\nusing mint = modint998;\n\nvoid test() {\n\
+    \  RandomNumberGenerator RNG;\n  FOR(100000) {\n    int n = RNG(0, 1000);\n  \
+    \  int k = RNG(0, 1000);\n    mint a = C<mint>(n, k);\n    mint b = C<mint, 0,\
+    \ 1>(n, k);\n    mint c = C<mint, 1, 0>(n, k);\n    assert(a == b && b == c);\n\
+    \  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n\
+    \  cout << fixed << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"other/random.hpp\"\n\n#include \"mod/modint.hpp\"\
+    \n\nusing mint = modint998;\n\nvoid test() {\n  RandomNumberGenerator RNG;\n \
+    \ FOR(100000) {\n    int n = RNG(0, 1000);\n    int k = RNG(0, 1000);\n    mint\
+    \ a = C<mint>(n, k);\n    mint b = C<mint, 0, 1>(n, k);\n    mint c = C<mint,\
+    \ 1, 0>(n, k);\n    assert(a == b && b == c);\n  }\n}\n\nvoid solve() {\n  LL(a,\
+    \ b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/dualsegtree.hpp
-  - alg/group_affine.hpp
+  - other/random.hpp
   - mod/modint.hpp
   isVerificationFile: true
-  path: test/library_checker/datastructure/range_affine_point_add.test.cpp
+  path: test/mytest/binom.test.cpp
   requiredBy: []
   timestamp: '2022-08-16 15:06:00+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/datastructure/range_affine_point_add.test.cpp
+documentation_of: test/mytest/binom.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/datastructure/range_affine_point_add.test.cpp
-- /verify/test/library_checker/datastructure/range_affine_point_add.test.cpp.html
-title: test/library_checker/datastructure/range_affine_point_add.test.cpp
+- /verify/test/mytest/binom.test.cpp
+- /verify/test/mytest/binom.test.cpp.html
+title: test/mytest/binom.test.cpp
 ---

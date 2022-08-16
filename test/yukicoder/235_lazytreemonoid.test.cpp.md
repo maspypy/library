@@ -1,47 +1,47 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_cntsum.hpp
     title: alg/group_cntsum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/lazy_cntsum_add.hpp
     title: alg/lazy_cntsum_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/lazy_reverse.hpp
     title: alg/lazy_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid_reverse.hpp
     title: alg/monoid_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/235
@@ -530,24 +530,36 @@ data:
     \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
     \ dat = {1, 1};\n  assert(0 <= n && n < mod);\n  while (int(dat.size()) <= n)\
     \ {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint, bool large = false>\nmint\
-    \ C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if (!large)\
-    \ return fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k,\
-    \ n - k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n\
-    \  return x;\n}\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll\
-    \ n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return\
-    \ fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint,\
-    \ 1>(n, k);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    using amint = ArbitraryModInt;\n#line 8 \"test/yukicoder/235_lazytreemonoid.test.cpp\"\
-    \n\nusing mint = modint107;\nusing Lazy = Lazy_CntSum_Add<mint>;\n\nvoid solve()\
-    \ {\n  LL(N);\n  VEC(ll, S, N);\n  VEC(ll, C, N);\n  Graph G(N);\n  G.read_tree();\n\
-    \  HLD hld(G);\n  vc<pair<mint, mint>> dat;\n  FOR(i, N) dat.eb(C[i], S[i]);\n\
-    \  LazyTreeMonoid<decltype(hld), Lazy, false> TM(hld, dat);\n  LL(Q);\n  FOR(Q)\
-    \ {\n    LL(t);\n    if (t == 0) {\n      LL(a, b, c);\n      --a, --b;\n    \
-    \  TM.apply_path(a, b, c);\n    } else {\n      LL(a, b);\n      --a, --b;\n \
-    \     print(TM.prod_path(a, b).se);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint C_dense(int n, int\
+    \ k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\n  auto calc = [&](int\
+    \ i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n\
+    \    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n\n  if (W <= k) {\n\
+    \    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j]\
+    \ = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n    FOR(i, H,\
+    \ n + 1) {\n      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n\
+    \  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool\
+    \ dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n <\
+    \ k) return 0;\n  if (dense) return C_dense(n, k);\n  if (!large) return fact<mint>(n)\
+    \ * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k, n - k);\n  mint x(1);\n\
+    \  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n  return x;\n}\n\
+    \ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n\
+    \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
+    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
+    }\n\n// [x^d](1-x)^{-n} \u306E\u8A08\u7B97\ntemplate <typename mint, bool large\
+    \ = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n\
+    \  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0));\
+    \ }\n  return C<mint, large, dense>(n + d - 1, n);\n}\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 8\
+    \ \"test/yukicoder/235_lazytreemonoid.test.cpp\"\n\nusing mint = modint107;\n\
+    using Lazy = Lazy_CntSum_Add<mint>;\n\nvoid solve() {\n  LL(N);\n  VEC(ll, S,\
+    \ N);\n  VEC(ll, C, N);\n  Graph G(N);\n  G.read_tree();\n  HLD hld(G);\n  vc<pair<mint,\
+    \ mint>> dat;\n  FOR(i, N) dat.eb(C[i], S[i]);\n  LazyTreeMonoid<decltype(hld),\
+    \ Lazy, false> TM(hld, dat);\n  LL(Q);\n  FOR(Q) {\n    LL(t);\n    if (t == 0)\
+    \ {\n      LL(a, b, c);\n      --a, --b;\n      TM.apply_path(a, b, c);\n    }\
+    \ else {\n      LL(a, b);\n      --a, --b;\n      print(TM.prod_path(a, b).se);\n\
+    \    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
+    \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/235\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"graph/hld.hpp\"\n#include \"graph/lazytreemonoid.hpp\"\
     \n#include \"alg/lazy_cntsum_add.hpp\"\n#include \"mod/modint.hpp\"\n\nusing mint\
@@ -576,8 +588,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/235_lazytreemonoid.test.cpp
   requiredBy: []
-  timestamp: '2022-08-13 02:22:39+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-16 15:06:00+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/235_lazytreemonoid.test.cpp
 layout: document

@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1500
@@ -281,28 +281,39 @@ data:
     \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
     \ dat = {1, 1};\n  assert(0 <= n && n < mod);\n  while (int(dat.size()) <= n)\
     \ {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint, bool large = false>\nmint\
-    \ C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if (!large)\
-    \ return fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k,\
-    \ n - k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n\
-    \  return x;\n}\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll\
-    \ n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return\
-    \ fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint,\
-    \ 1>(n, k);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    using amint = ArbitraryModInt;\n#line 2 \"seq/find_linear_rec.hpp\"\n\r\ntemplate\
-    \ <typename mint>\r\nvector<mint> find_linear_rec(vector<mint>& A) {\r\n  int\
-    \ N = len(A);\r\n  vc<mint> B = {1}, C = {1};\r\n  int l = 0, m = 1;\r\n  mint\
-    \ p = 1;\r\n  FOR(i, N) {\r\n    mint d = A[i];\r\n    FOR3(j, 1, l + 1) { d +=\
-    \ C[j] * A[i - j]; }\r\n    if (d == 0) {\r\n      ++m;\r\n      continue;\r\n\
-    \    }\r\n    auto tmp = C;\r\n    mint q = d / p;\r\n    if (len(C) < len(B)\
-    \ + m) C.insert(C.end(), len(B) + m - len(C), 0);\r\n    FOR(j, len(B)) C[j +\
-    \ m] -= q * B[j];\r\n    if (l + l <= i) {\r\n      B = tmp;\r\n      l = i +\
-    \ 1 - l, m = 1;\r\n      p = d;\r\n    } else {\r\n      ++m;\r\n    }\r\n  }\r\
-    \n  return C;\r\n}\r\n#line 2 \"seq/interpolate_linear_rec.hpp\"\n\r\n#line 2\
-    \ \"mod/mod_inv.hpp\"\n// long \u3067\u3082\u5927\u4E08\u592B\r\nll mod_inv(ll\
-    \ val, ll mod) {\r\n  ll a = val, b = mod, u = 1, v = 0, t;\r\n  while (b > 0)\
-    \ {\r\n    t = a / b;\r\n    swap(a -= t * b, b), swap(u -= t * v, v);\r\n  }\r\
-    \n  if(u < 0) u += mod;\r\n  return u;\r\n}\r\n#line 1 \"poly/convolution_naive.hpp\"\
+    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint C_dense(int n, int\
+    \ k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\n  auto calc = [&](int\
+    \ i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n\
+    \    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n\n  if (W <= k) {\n\
+    \    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j]\
+    \ = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n    FOR(i, H,\
+    \ n + 1) {\n      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n\
+    \  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool\
+    \ dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n <\
+    \ k) return 0;\n  if (dense) return C_dense(n, k);\n  if (!large) return fact<mint>(n)\
+    \ * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k, n - k);\n  mint x(1);\n\
+    \  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n  return x;\n}\n\
+    \ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n\
+    \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
+    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
+    }\n\n// [x^d](1-x)^{-n} \u306E\u8A08\u7B97\ntemplate <typename mint, bool large\
+    \ = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n\
+    \  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0));\
+    \ }\n  return C<mint, large, dense>(n + d - 1, n);\n}\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 2\
+    \ \"seq/find_linear_rec.hpp\"\n\r\ntemplate <typename mint>\r\nvector<mint> find_linear_rec(vector<mint>&\
+    \ A) {\r\n  int N = len(A);\r\n  vc<mint> B = {1}, C = {1};\r\n  int l = 0, m\
+    \ = 1;\r\n  mint p = 1;\r\n  FOR(i, N) {\r\n    mint d = A[i];\r\n    FOR3(j,\
+    \ 1, l + 1) { d += C[j] * A[i - j]; }\r\n    if (d == 0) {\r\n      ++m;\r\n \
+    \     continue;\r\n    }\r\n    auto tmp = C;\r\n    mint q = d / p;\r\n    if\
+    \ (len(C) < len(B) + m) C.insert(C.end(), len(B) + m - len(C), 0);\r\n    FOR(j,\
+    \ len(B)) C[j + m] -= q * B[j];\r\n    if (l + l <= i) {\r\n      B = tmp;\r\n\
+    \      l = i + 1 - l, m = 1;\r\n      p = d;\r\n    } else {\r\n      ++m;\r\n\
+    \    }\r\n  }\r\n  return C;\r\n}\r\n#line 2 \"seq/interpolate_linear_rec.hpp\"\
+    \n\r\n#line 2 \"mod/mod_inv.hpp\"\n// long \u3067\u3082\u5927\u4E08\u592B\r\n\
+    ll mod_inv(ll val, ll mod) {\r\n  ll a = val, b = mod, u = 1, v = 0, t;\r\n  while\
+    \ (b > 0) {\r\n    t = a / b;\r\n    swap(a -= t * b, b), swap(u -= t * v, v);\r\
+    \n  }\r\n  if(u < 0) u += mod;\r\n  return u;\r\n}\r\n#line 1 \"poly/convolution_naive.hpp\"\
     \ntemplate <class T>\r\nvector<T> convolution_naive(const vector<T>& a, const\
     \ vector<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\n  vector<T>\
     \ ans(n + m - 1);\r\n  if (n < m) {\r\n    FOR(j, m) FOR(i, n) ans[i + j] += a[i]\
@@ -532,8 +543,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1500_interpolate_linear.test.cpp
   requiredBy: []
-  timestamp: '2022-08-15 05:03:23+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-16 15:06:00+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/1500_interpolate_linear.test.cpp
 layout: document

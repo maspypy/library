@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
   - icon: ':heavy_check_mark:'
@@ -10,13 +10,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid_max.hpp
     title: alg/monoid_max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bbst/rbst_lazy.hpp
     title: bbst/rbst_lazy.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []

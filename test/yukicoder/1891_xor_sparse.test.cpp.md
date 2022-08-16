@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_affine.hpp
     title: alg/group_affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/xor_sparsetable.hpp
     title: ds/xor_sparsetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1891
@@ -263,45 +263,56 @@ data:
     \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
     \ dat = {1, 1};\n  assert(0 <= n && n < mod);\n  while (int(dat.size()) <= n)\
     \ {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint, bool large = false>\nmint\
-    \ C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if (!large)\
-    \ return fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k,\
-    \ n - k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n\
-    \  return x;\n}\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll\
-    \ n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return\
-    \ fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint,\
-    \ 1>(n, k);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    using amint = ArbitraryModInt;\n#line 1 \"alg/group_affine.hpp\"\ntemplate <typename\
-    \ K>\nstruct Group_Affine {\n  using F = pair<K, K>;\n  using value_type = F;\n\
-    \  static constexpr F op(const F &x, const F &y) noexcept {\n    return F({x.first\
-    \ * y.first, x.second * y.first + y.second});\n  }\n  static constexpr F inverse(const\
-    \ F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n\
-    \  }\n  static constexpr K eval(const F &f, K x) noexcept {\n    return f.first\
-    \ * x + f.second;\n  }\n  static constexpr F unit() { return {K(1), K(0)}; }\n\
-    \  static constexpr bool commute = false;\n};\n#line 1 \"ds/xor_sparsetable.hpp\"\
-    \n// \u30E2\u30CE\u30A4\u30C9\u306E\u5217\u3092\u4E0E\u3048\u308B\u3002\u6B21\u304C\
-    \u5BFE\u6570\u6642\u9593\u3067\u8A08\u7B97\u3067\u304D\u308B\u3002\n// \u30FB\
-    prod_{l<=i<r} A[i xor x]\n// https://yukicoder.me/problems/no/1891\ntemplate <typename\
-    \ Monoid>\nstruct Xor_SparseTable {\n  using X = typename Monoid::value_type;\n\
-    \  int LOG;\n  vc<vc<X>> dat;\n  Xor_SparseTable(vc<X>& A) {\n    LOG = 0;\n \
-    \   while ((1 << LOG) < len(A)) ++LOG;\n    assert(len(A) == (1 << LOG));\n  \
-    \  // \u5404 k, i \u306B\u5BFE\u3057\u3066\u3001prod_{0<=j<2^k} A[i^j] \u3092\u6301\
-    \u3064\n    dat.resize(LOG + 1);\n    dat[0] = A;\n    FOR(k, LOG) {\n      dat[k\
-    \ + 1].assign(1 << LOG, Monoid::unit());\n      FOR(i, 1 << LOG) {\n        dat[k\
-    \ + 1][i] = Monoid::op(dat[k][i], dat[k][i ^ (1 << k)]);\n      }\n    }\n  }\n\
-    \n  // prod_{l<=i<r} A[x xor i]\n  X prod(int l, int r, int xor_val) {\n    X\
-    \ xl = Monoid::unit();\n    X xr = Monoid::unit();\n    FOR(k, LOG + 1) {\n  \
-    \    if (l >= r) break;\n      if (l & 1 << k) {\n        xl = Monoid::op(xl,\
-    \ dat[k][l ^ xor_val]);\n        l += (1 << k);\n      }\n      if (r & 1 << k)\
-    \ {\n        r -= (1 << k);\n        xr = Monoid::op(dat[k][r ^ xor_val], xr);\n\
-    \      }\n    }\n\n    return Monoid::op(xl, xr);\n  }\n};\n#line 7 \"test/yukicoder/1891_xor_sparse.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  ll LOG = topbit(N);\n\
-    \  using Mono = Group_Affine<mint>;\n  using X = typename Mono::value_type;\n\
-    \  VEC(X, A, N);\n  Xor_SparseTable<Mono> seg(A);\n  FOR(Q) {\n    LL(l, r, p,\
-    \ x);\n    auto [a, b] = seg.prod(l, r, p);\n    print(a * mint(x) + b);\n  }\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
-    \ return 0;\n}\n"
+    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint C_dense(int n, int\
+    \ k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\n  auto calc = [&](int\
+    \ i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n\
+    \    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n\n  if (W <= k) {\n\
+    \    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j]\
+    \ = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n    FOR(i, H,\
+    \ n + 1) {\n      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n\
+    \  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool\
+    \ dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n <\
+    \ k) return 0;\n  if (dense) return C_dense(n, k);\n  if (!large) return fact<mint>(n)\
+    \ * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k, n - k);\n  mint x(1);\n\
+    \  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n  return x;\n}\n\
+    \ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n\
+    \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
+    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
+    }\n\n// [x^d](1-x)^{-n} \u306E\u8A08\u7B97\ntemplate <typename mint, bool large\
+    \ = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n\
+    \  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0));\
+    \ }\n  return C<mint, large, dense>(n + d - 1, n);\n}\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 1\
+    \ \"alg/group_affine.hpp\"\ntemplate <typename K>\nstruct Group_Affine {\n  using\
+    \ F = pair<K, K>;\n  using value_type = F;\n  static constexpr F op(const F &x,\
+    \ const F &y) noexcept {\n    return F({x.first * y.first, x.second * y.first\
+    \ + y.second});\n  }\n  static constexpr F inverse(const F &x) {\n    auto [a,\
+    \ b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n  }\n  static constexpr\
+    \ K eval(const F &f, K x) noexcept {\n    return f.first * x + f.second;\n  }\n\
+    \  static constexpr F unit() { return {K(1), K(0)}; }\n  static constexpr bool\
+    \ commute = false;\n};\n#line 1 \"ds/xor_sparsetable.hpp\"\n// \u30E2\u30CE\u30A4\
+    \u30C9\u306E\u5217\u3092\u4E0E\u3048\u308B\u3002\u6B21\u304C\u5BFE\u6570\u6642\
+    \u9593\u3067\u8A08\u7B97\u3067\u304D\u308B\u3002\n// \u30FBprod_{l<=i<r} A[i xor\
+    \ x]\n// https://yukicoder.me/problems/no/1891\ntemplate <typename Monoid>\nstruct\
+    \ Xor_SparseTable {\n  using X = typename Monoid::value_type;\n  int LOG;\n  vc<vc<X>>\
+    \ dat;\n  Xor_SparseTable(vc<X>& A) {\n    LOG = 0;\n    while ((1 << LOG) < len(A))\
+    \ ++LOG;\n    assert(len(A) == (1 << LOG));\n    // \u5404 k, i \u306B\u5BFE\u3057\
+    \u3066\u3001prod_{0<=j<2^k} A[i^j] \u3092\u6301\u3064\n    dat.resize(LOG + 1);\n\
+    \    dat[0] = A;\n    FOR(k, LOG) {\n      dat[k + 1].assign(1 << LOG, Monoid::unit());\n\
+    \      FOR(i, 1 << LOG) {\n        dat[k + 1][i] = Monoid::op(dat[k][i], dat[k][i\
+    \ ^ (1 << k)]);\n      }\n    }\n  }\n\n  // prod_{l<=i<r} A[x xor i]\n  X prod(int\
+    \ l, int r, int xor_val) {\n    X xl = Monoid::unit();\n    X xr = Monoid::unit();\n\
+    \    FOR(k, LOG + 1) {\n      if (l >= r) break;\n      if (l & 1 << k) {\n  \
+    \      xl = Monoid::op(xl, dat[k][l ^ xor_val]);\n        l += (1 << k);\n   \
+    \   }\n      if (r & 1 << k) {\n        r -= (1 << k);\n        xr = Monoid::op(dat[k][r\
+    \ ^ xor_val], xr);\n      }\n    }\n\n    return Monoid::op(xl, xr);\n  }\n};\n\
+    #line 7 \"test/yukicoder/1891_xor_sparse.test.cpp\"\n\nusing mint = modint998;\n\
+    \nvoid solve() {\n  LL(N, Q);\n  ll LOG = topbit(N);\n  using Mono = Group_Affine<mint>;\n\
+    \  using X = typename Mono::value_type;\n  VEC(X, A, N);\n  Xor_SparseTable<Mono>\
+    \ seg(A);\n  FOR(Q) {\n    LL(l, r, p, x);\n    auto [a, b] = seg.prod(l, r, p);\n\
+    \    print(a * mint(x) + b);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1891\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n#include \"alg/group_affine.hpp\"\
     \n#include \"ds/xor_sparsetable.hpp\"\n\nusing mint = modint998;\n\nvoid solve()\
@@ -320,8 +331,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1891_xor_sparse.test.cpp
   requiredBy: []
-  timestamp: '2022-08-13 02:22:39+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-16 15:06:00+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/1891_xor_sparse.test.cpp
 layout: document

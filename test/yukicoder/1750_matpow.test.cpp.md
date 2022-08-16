@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/mat_pow.hpp
     title: linalg/mat_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1750
@@ -263,35 +263,46 @@ data:
     \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
     \ dat = {1, 1};\n  assert(0 <= n && n < mod);\n  while (int(dat.size()) <= n)\
     \ {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint, bool large = false>\nmint\
-    \ C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if (!large)\
-    \ return fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k,\
-    \ n - k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n\
-    \  return x;\n}\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll\
-    \ n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return\
-    \ fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint,\
-    \ 1>(n, k);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    using amint = ArbitraryModInt;\n#line 2 \"linalg/mat_mul.hpp\"\n\r\ntemplate <class\
-    \ T, is_modint_t<T>* = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>& A, const\
-    \ vc<vc<T>>& B) {\r\n  // mod \u3092\u3068\u308B\u56DE\u6570\u3092\u6E1B\u3089\
-    \u3057\u3066\u307F\u308B\r\n  auto N = len(A), M = len(B), K = len(B[0]);\r\n\
-    \  vv(T, C, N, K);\r\n  const u64 MOD2 = 8ull * T::get_mod() * T::get_mod();\r\
-    \n  FOR(n, N) {\r\n    vc<u64> tmp(K);\r\n    FOR(m, M) FOR(k, K) {\r\n      tmp[k]\
-    \ += u64(A[n][m].val) * B[m][k].val;\r\n      if (tmp[k] >= MOD2) tmp[k] -= MOD2;\r\
-    \n    }\r\n    FOR(k, K) C[n][k] = tmp[k];\r\n  }\r\n  return C;\r\n}\r\n\r\n\
-    template <class T, is_not_modint_t<T>* = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>&\
-    \ A, const vc<vc<T>>& B) {\r\n  auto N = len(A), M = len(B), K = len(B[0]);\r\n\
-    \  vv(T, C, N, K);\r\n  FOR(n, N) FOR(m, M) FOR(k, K) C[n][k] += A[n][m] * B[m][k];\r\
-    \n  return C;\r\n}\r\n#line 2 \"linalg/mat_pow.hpp\"\ntemplate<typename T>\r\n\
-    vc<vc<T>> mat_pow(vc<vc<T>> A, ll n){\r\n  int N = len(A);\r\n  vv(T, ret, N,\
-    \ N);\r\n  FOR(i, N) ret[i][i] = T(1);\r\n  while(n){\r\n    if(n & 1) ret = mat_mul(ret,\
-    \ A);\r\n    n /= 2;\r\n    if(n) A = mat_mul(A, A);\r\n  }\r\n  return ret;\r\
-    \n}\n#line 6 \"test/yukicoder/1750_matpow.test.cpp\"\n\nusing mint = modint998;\n\
-    \nvoid solve() {\n  LL(N, M, T);\n  vv(mint, A, N, N);\n  FOR(M) {\n    LL(a,\
-    \ b);\n    A[a][b] = 1;\n    A[b][a] = 1;\n  }\n  A = mat_pow(A, T);\n  print(A[0][0]);\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
-    \ 0;\n}\n"
+    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint C_dense(int n, int\
+    \ k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\n  auto calc = [&](int\
+    \ i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n\
+    \    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n\n  if (W <= k) {\n\
+    \    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j]\
+    \ = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n    FOR(i, H,\
+    \ n + 1) {\n      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n\
+    \  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool\
+    \ dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n <\
+    \ k) return 0;\n  if (dense) return C_dense(n, k);\n  if (!large) return fact<mint>(n)\
+    \ * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k, n - k);\n  mint x(1);\n\
+    \  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n  return x;\n}\n\
+    \ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n\
+    \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
+    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
+    }\n\n// [x^d](1-x)^{-n} \u306E\u8A08\u7B97\ntemplate <typename mint, bool large\
+    \ = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n\
+    \  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0));\
+    \ }\n  return C<mint, large, dense>(n + d - 1, n);\n}\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 2\
+    \ \"linalg/mat_mul.hpp\"\n\r\ntemplate <class T, is_modint_t<T>* = nullptr>\r\n\
+    vc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n  // mod \u3092\
+    \u3068\u308B\u56DE\u6570\u3092\u6E1B\u3089\u3057\u3066\u307F\u308B\r\n  auto N\
+    \ = len(A), M = len(B), K = len(B[0]);\r\n  vv(T, C, N, K);\r\n  const u64 MOD2\
+    \ = 8ull * T::get_mod() * T::get_mod();\r\n  FOR(n, N) {\r\n    vc<u64> tmp(K);\r\
+    \n    FOR(m, M) FOR(k, K) {\r\n      tmp[k] += u64(A[n][m].val) * B[m][k].val;\r\
+    \n      if (tmp[k] >= MOD2) tmp[k] -= MOD2;\r\n    }\r\n    FOR(k, K) C[n][k]\
+    \ = tmp[k];\r\n  }\r\n  return C;\r\n}\r\n\r\ntemplate <class T, is_not_modint_t<T>*\
+    \ = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n\
+    \  auto N = len(A), M = len(B), K = len(B[0]);\r\n  vv(T, C, N, K);\r\n  FOR(n,\
+    \ N) FOR(m, M) FOR(k, K) C[n][k] += A[n][m] * B[m][k];\r\n  return C;\r\n}\r\n\
+    #line 2 \"linalg/mat_pow.hpp\"\ntemplate<typename T>\r\nvc<vc<T>> mat_pow(vc<vc<T>>\
+    \ A, ll n){\r\n  int N = len(A);\r\n  vv(T, ret, N, N);\r\n  FOR(i, N) ret[i][i]\
+    \ = T(1);\r\n  while(n){\r\n    if(n & 1) ret = mat_mul(ret, A);\r\n    n /= 2;\r\
+    \n    if(n) A = mat_mul(A, A);\r\n  }\r\n  return ret;\r\n}\n#line 6 \"test/yukicoder/1750_matpow.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, M, T);\n  vv(mint, A, N,\
+    \ N);\n  FOR(M) {\n    LL(a, b);\n    A[a][b] = 1;\n    A[b][a] = 1;\n  }\n  A\
+    \ = mat_pow(A, T);\n  print(A[0][0]);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1750\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n#include \"linalg/mat_pow.hpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, M, T);\n  vv(mint, A, N,\
@@ -308,8 +319,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1750_matpow.test.cpp
   requiredBy: []
-  timestamp: '2022-08-13 02:22:39+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-16 15:06:00+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/1750_matpow.test.cpp
 layout: document

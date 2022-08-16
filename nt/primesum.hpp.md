@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   _extendedRequiredBy: []
@@ -77,8 +77,8 @@ data:
   timestamp: '2022-05-11 21:45:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/math/totient_sum.test.cpp
   - test/library_checker/math/counting_primes.test.cpp
+  - test/library_checker/math/totient_sum.test.cpp
 documentation_of: nt/primesum.hpp
 layout: document
 redirect_from:

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
   _extendedRequiredBy: []
@@ -166,8 +166,8 @@ data:
   timestamp: '2022-07-20 17:19:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1418_rerooting.test.cpp
   - test/yukicoder/1718_rerooting.test.cpp
+  - test/yukicoder/1418_rerooting.test.cpp
 documentation_of: graph/rerooting_dp.hpp
 layout: document
 redirect_from:

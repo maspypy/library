@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
   _extendedRequiredBy: []
@@ -124,8 +124,8 @@ data:
   timestamp: '2022-06-27 16:36:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   - test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
+  - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
 documentation_of: ds/fenwick2d.hpp
 layout: document
 redirect_from:

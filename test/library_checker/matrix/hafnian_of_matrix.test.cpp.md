@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/hafnian.hpp
     title: linalg/hafnian.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/hafnian_of_matrix
@@ -260,33 +260,44 @@ data:
     \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
     \ dat = {1, 1};\n  assert(0 <= n && n < mod);\n  while (int(dat.size()) <= n)\
     \ {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint, bool large = false>\nmint\
-    \ C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if (!large)\
-    \ return fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k,\
-    \ n - k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n\
-    \  return x;\n}\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll\
-    \ n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return\
-    \ fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint,\
-    \ 1>(n, k);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    using amint = ArbitraryModInt;\n#line 1 \"linalg/hafnian.hpp\"\ntemplate <typename\
-    \ mint, int LIM = 50>\r\nmint Hufnian(vc<vc<mint>>& B0) {\r\n  // \u96A3\u63A5\
-    \u884C\u5217\u306B\u5BFE\u3057\u3066\u5B8C\u5168\u30DE\u30C3\u30C1\u30F3\u30B0\
-    \u3092\u6570\u3048\u308B\u3002\r\n  int n = len(B0) / 2;\r\n  using poly = array<mint,\
-    \ LIM / 2>;\r\n  auto add_mul = [&](poly& p, poly& f, poly& g) -> void {\r\n \
-    \   FOR(i, n) FOR(j, n - i) p[i + j + 1] += f[i] * g[j];\r\n  };\r\n  auto dfs\
-    \ = [&](auto self, vc<vc<poly>> B) -> poly {\r\n    poly res;\r\n    if (len(B)\
-    \ == 0) {\r\n      res[0] = 1;\r\n      return res;\r\n    }\r\n    auto a = B.back();\r\
-    \n    B.pop_back();\r\n    auto b = B.back();\r\n    B.pop_back();\r\n    int\
-    \ m = len(B);\r\n    poly p0 = self(self, B);\r\n    FOR(i, m) FOR(j, i) {\r\n\
-    \      add_mul(B[i][j], a[i], b[j]);\r\n      add_mul(B[i][j], a[j], b[i]);\r\n\
-    \    }\r\n    poly p1 = self(self, B);\r\n    add_mul(res, a[m], p1);\r\n    FOR(i,\
-    \ n + 1) res[i] += p1[i] - p0[i];\r\n    return res;\r\n  };\r\n  vv(poly, B,\
-    \ n + n, n + n);\r\n  FOR(i, n + n) FOR(j, n + n) B[i][j][0] = B0[i][j];\r\n \
-    \ return dfs(dfs, B)[n];\r\n}\r\n#line 6 \"test/library_checker/matrix/hafnian_of_matrix.test.cpp\"\
-    \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N);\r\n  VV(mint, B, N,\
-    \ N);\r\n  auto ANS = Hufnian(B);\r\n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\
-    \n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
-    \n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint C_dense(int n, int\
+    \ k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\n  auto calc = [&](int\
+    \ i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n\
+    \    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n\n  if (W <= k) {\n\
+    \    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j]\
+    \ = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n    FOR(i, H,\
+    \ n + 1) {\n      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n\
+    \  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool\
+    \ dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n <\
+    \ k) return 0;\n  if (dense) return C_dense(n, k);\n  if (!large) return fact<mint>(n)\
+    \ * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k, n - k);\n  mint x(1);\n\
+    \  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n  return x;\n}\n\
+    \ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n\
+    \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
+    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
+    }\n\n// [x^d](1-x)^{-n} \u306E\u8A08\u7B97\ntemplate <typename mint, bool large\
+    \ = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n\
+    \  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0));\
+    \ }\n  return C<mint, large, dense>(n + d - 1, n);\n}\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 1\
+    \ \"linalg/hafnian.hpp\"\ntemplate <typename mint, int LIM = 50>\r\nmint Hufnian(vc<vc<mint>>&\
+    \ B0) {\r\n  // \u96A3\u63A5\u884C\u5217\u306B\u5BFE\u3057\u3066\u5B8C\u5168\u30DE\
+    \u30C3\u30C1\u30F3\u30B0\u3092\u6570\u3048\u308B\u3002\r\n  int n = len(B0) /\
+    \ 2;\r\n  using poly = array<mint, LIM / 2>;\r\n  auto add_mul = [&](poly& p,\
+    \ poly& f, poly& g) -> void {\r\n    FOR(i, n) FOR(j, n - i) p[i + j + 1] += f[i]\
+    \ * g[j];\r\n  };\r\n  auto dfs = [&](auto self, vc<vc<poly>> B) -> poly {\r\n\
+    \    poly res;\r\n    if (len(B) == 0) {\r\n      res[0] = 1;\r\n      return\
+    \ res;\r\n    }\r\n    auto a = B.back();\r\n    B.pop_back();\r\n    auto b =\
+    \ B.back();\r\n    B.pop_back();\r\n    int m = len(B);\r\n    poly p0 = self(self,\
+    \ B);\r\n    FOR(i, m) FOR(j, i) {\r\n      add_mul(B[i][j], a[i], b[j]);\r\n\
+    \      add_mul(B[i][j], a[j], b[i]);\r\n    }\r\n    poly p1 = self(self, B);\r\
+    \n    add_mul(res, a[m], p1);\r\n    FOR(i, n + 1) res[i] += p1[i] - p0[i];\r\n\
+    \    return res;\r\n  };\r\n  vv(poly, B, n + n, n + n);\r\n  FOR(i, n + n) FOR(j,\
+    \ n + n) B[i][j][0] = B0[i][j];\r\n  return dfs(dfs, B)[n];\r\n}\r\n#line 6 \"\
+    test/library_checker/matrix/hafnian_of_matrix.test.cpp\"\n\r\nusing mint = modint998;\r\
+    \nvoid solve() {\r\n  LL(N);\r\n  VV(mint, B, N, N);\r\n  auto ANS = Hufnian(B);\r\
+    \n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/hafnian_of_matrix\"\r\n\
     #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"mod/modint.hpp\"\
     \r\n#include \"linalg/hafnian.hpp\"\r\n\r\nusing mint = modint998;\r\nvoid solve()\
@@ -301,8 +312,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/hafnian_of_matrix.test.cpp
   requiredBy: []
-  timestamp: '2022-08-13 02:22:39+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-16 15:06:00+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/matrix/hafnian_of_matrix.test.cpp
 layout: document

@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/cumsum2d.hpp
     title: ds/cumsum2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1141
@@ -263,46 +263,58 @@ data:
     \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
     \ dat = {1, 1};\n  assert(0 <= n && n < mod);\n  while (int(dat.size()) <= n)\
     \ {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint, bool large = false>\nmint\
-    \ C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if (!large)\
-    \ return fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k,\
-    \ n - k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n\
-    \  return x;\n}\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll\
-    \ n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return\
-    \ fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint,\
-    \ 1>(n, k);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    using amint = ArbitraryModInt;\n#line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename\
-    \ E>\r\nstruct Group_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static\
-    \ constexpr X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static\
-    \ constexpr X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr\
-    \ X power(const X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr\
-    \ X unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\
-    \n#line 2 \"ds/cumsum2d.hpp\"\n\r\ntemplate <typename Group>\r\nstruct Cumsum2D\
-    \ {\r\n  using X = typename Group::value_type;\r\n  int H, W;\r\n  vc<vc<X>> dat;\r\
-    \n\r\n  Cumsum2D() {}\r\n  Cumsum2D(vc<vc<X>> &A) {\r\n    assert(Group::commute);\r\
-    \n    build(A);\r\n  }\r\n\r\n  void build(vc<vc<X>> &A) {\r\n    int H = len(A);\r\
-    \n    int W = (H == 0 ? 0 : len(A[0]));\r\n    dat.assign(H + 1, vc<X>(W + 1,\
-    \ Group::unit()));\r\n    FOR(x, H) FOR(y, W) dat[x + 1][y + 1] = A[x][y];\r\n\
-    \    FOR(x, H + 1) FOR(y, W) dat[x][y + 1] = Group::op(dat[x][y + 1], dat[x][y]);\r\
-    \n    FOR(x, H) FOR(y, W + 1) dat[x + 1][y] = Group::op(dat[x + 1][y], dat[x][y]);\r\
-    \n  }\r\n\r\n  X sum(int x1, int y1, int x2, int y2) {\r\n    X a = Group::op(dat[x1][y1],\
-    \ dat[x2][y2]);\r\n    X b = Group::op(dat[x2][y1], dat[x1][y2]);\r\n    return\
-    \ Group::op(a, Group::inverse(b));\r\n  }\r\n};\n#line 6 \"test/yukicoder/1141_cumsum2d.test.cpp\"\
-    \n\nusing mint = modint107;\n\nstruct Group {\n  using X = pair<mint, int>;\n\
-    \  using value_type = X;\n  static const X op(const X &x, const X &y) noexcept\
-    \ {\n    return {x.fi * y.fi, x.se + y.se};\n  }\n  static const X inverse(const\
-    \ X &x) noexcept {\n    return {(x.fi).inverse(), -x.se};\n  }\n  // static constexpr\
-    \ X power(const X &x, ll n) noexcept { return n * x; }\n  static constexpr X unit()\
-    \ { return {mint(1), 0}; }\n  static constexpr bool commute = true;\n};\n\nvoid\
-    \ solve() {\n  LL(H, W);\n  vv(Group::X, A, H, W);\n  FOR(x, H) FOR(y, W) {\n\
-    \    LL(a);\n    if (a == 0) A[x][y] = {mint(1), 1};\n    if (a != 0) A[x][y]\
-    \ = {mint(a), 0};\n  }\n  Cumsum2D<Group> CS(A);\n  LL(Q);\n  FOR(Q) {\n    LL(a,\
-    \ b);\n    --a, --b;\n    auto x = Group::unit();\n    x = Group::op(x, CS.sum(0,\
-    \ 0, a, b));\n    x = Group::op(x, CS.sum(a + 1, 0, H, b));\n    x = Group::op(x,\
-    \ CS.sum(0, b + 1, a, W));\n    x = Group::op(x, CS.sum(a + 1, b + 1, H, W));\n\
-    \    print(x.se ? mint(0) : x.fi);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint C_dense(int n, int\
+    \ k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\n  auto calc = [&](int\
+    \ i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n\
+    \    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n\n  if (W <= k) {\n\
+    \    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j]\
+    \ = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n    FOR(i, H,\
+    \ n + 1) {\n      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n\
+    \  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool\
+    \ dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n <\
+    \ k) return 0;\n  if (dense) return C_dense(n, k);\n  if (!large) return fact<mint>(n)\
+    \ * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k, n - k);\n  mint x(1);\n\
+    \  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n  return x;\n}\n\
+    \ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n\
+    \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
+    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
+    }\n\n// [x^d](1-x)^{-n} \u306E\u8A08\u7B97\ntemplate <typename mint, bool large\
+    \ = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n\
+    \  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0));\
+    \ }\n  return C<mint, large, dense>(n + d - 1, n);\n}\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 2\
+    \ \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Group_Add {\r\n \
+    \ using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const X &x,\
+    \ const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
+    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/cumsum2d.hpp\"\
+    \n\r\ntemplate <typename Group>\r\nstruct Cumsum2D {\r\n  using X = typename Group::value_type;\r\
+    \n  int H, W;\r\n  vc<vc<X>> dat;\r\n\r\n  Cumsum2D() {}\r\n  Cumsum2D(vc<vc<X>>\
+    \ &A) {\r\n    assert(Group::commute);\r\n    build(A);\r\n  }\r\n\r\n  void build(vc<vc<X>>\
+    \ &A) {\r\n    int H = len(A);\r\n    int W = (H == 0 ? 0 : len(A[0]));\r\n  \
+    \  dat.assign(H + 1, vc<X>(W + 1, Group::unit()));\r\n    FOR(x, H) FOR(y, W)\
+    \ dat[x + 1][y + 1] = A[x][y];\r\n    FOR(x, H + 1) FOR(y, W) dat[x][y + 1] =\
+    \ Group::op(dat[x][y + 1], dat[x][y]);\r\n    FOR(x, H) FOR(y, W + 1) dat[x +\
+    \ 1][y] = Group::op(dat[x + 1][y], dat[x][y]);\r\n  }\r\n\r\n  X sum(int x1, int\
+    \ y1, int x2, int y2) {\r\n    X a = Group::op(dat[x1][y1], dat[x2][y2]);\r\n\
+    \    X b = Group::op(dat[x2][y1], dat[x1][y2]);\r\n    return Group::op(a, Group::inverse(b));\r\
+    \n  }\r\n};\n#line 6 \"test/yukicoder/1141_cumsum2d.test.cpp\"\n\nusing mint =\
+    \ modint107;\n\nstruct Group {\n  using X = pair<mint, int>;\n  using value_type\
+    \ = X;\n  static const X op(const X &x, const X &y) noexcept {\n    return {x.fi\
+    \ * y.fi, x.se + y.se};\n  }\n  static const X inverse(const X &x) noexcept {\n\
+    \    return {(x.fi).inverse(), -x.se};\n  }\n  // static constexpr X power(const\
+    \ X &x, ll n) noexcept { return n * x; }\n  static constexpr X unit() { return\
+    \ {mint(1), 0}; }\n  static constexpr bool commute = true;\n};\n\nvoid solve()\
+    \ {\n  LL(H, W);\n  vv(Group::X, A, H, W);\n  FOR(x, H) FOR(y, W) {\n    LL(a);\n\
+    \    if (a == 0) A[x][y] = {mint(1), 1};\n    if (a != 0) A[x][y] = {mint(a),\
+    \ 0};\n  }\n  Cumsum2D<Group> CS(A);\n  LL(Q);\n  FOR(Q) {\n    LL(a, b);\n  \
+    \  --a, --b;\n    auto x = Group::unit();\n    x = Group::op(x, CS.sum(0, 0, a,\
+    \ b));\n    x = Group::op(x, CS.sum(a + 1, 0, H, b));\n    x = Group::op(x, CS.sum(0,\
+    \ b + 1, a, W));\n    x = Group::op(x, CS.sum(a + 1, b + 1, H, W));\n    print(x.se\
+    \ ? mint(0) : x.fi);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1141\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n#include \"ds/cumsum2d.hpp\"\
     \n\nusing mint = modint107;\n\nstruct Group {\n  using X = pair<mint, int>;\n\
@@ -329,8 +341,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1141_cumsum2d.test.cpp
   requiredBy: []
-  timestamp: '2022-08-13 02:22:39+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-16 15:06:00+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/1141_cumsum2d.test.cpp
 layout: document

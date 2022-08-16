@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_affine.hpp
     title: alg/group_affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_cntsum.hpp
     title: alg/group_cntsum.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
     title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/255.test.cpp
     title: test/yukicoder/255.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/group_cntsum.hpp\"\ntemplate <typename E = long long>\r\
@@ -57,12 +57,12 @@ data:
   path: alg/lazy_cntsum_affine.hpp
   requiredBy: []
   timestamp: '2022-07-31 11:56:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - test/yukicoder/255.test.cpp
+  - test/library_checker/datastructure/range_affine_range_sum.test.cpp
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
 documentation_of: alg/lazy_cntsum_affine.hpp
 layout: document
 redirect_from:

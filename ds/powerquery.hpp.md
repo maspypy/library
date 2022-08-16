@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/powerquery.test.cpp
     title: test/mytest/powerquery.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/powerquery.hpp\"\n// \u5B9A\u6570\u3092\u3079\u304D\u4E57\
@@ -35,7 +35,7 @@ data:
   path: ds/powerquery.hpp
   requiredBy: []
   timestamp: '2022-08-16 03:28:50+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/powerquery.test.cpp
 documentation_of: ds/powerquery.hpp

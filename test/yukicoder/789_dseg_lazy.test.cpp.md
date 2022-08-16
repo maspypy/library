@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_cntsum.hpp
     title: alg/group_cntsum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/lazy_cntsum_add.hpp
     title: alg/lazy_cntsum_add.hpp
   - icon: ':heavy_check_mark:'
     path: ds/dynamic_lazysegtree.hpp
     title: ds/dynamic_lazysegtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []

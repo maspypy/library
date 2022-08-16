@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_affine.hpp
     title: alg/group_affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_reverse.hpp
     title: alg/group_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/treegroup.hpp
     title: graph/treegroup.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
@@ -276,70 +276,81 @@ data:
     \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
     \ dat = {1, 1};\n  assert(0 <= n && n < mod);\n  while (int(dat.size()) <= n)\
     \ {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint, bool large = false>\nmint\
-    \ C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if (!large)\
-    \ return fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k,\
-    \ n - k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n\
-    \  return x;\n}\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll\
-    \ n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return\
-    \ fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint,\
-    \ 1>(n, k);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    using amint = ArbitraryModInt;\n#line 2 \"ds/segtree.hpp\"\n\ntemplate <class\
-    \ Monoid>\nstruct SegTree {\n  using X = typename Monoid::value_type;\n  using\
-    \ value_type = X;\n  vector<X> dat;\n  int n, log, size;\n\n  SegTree() : SegTree(0)\
-    \ {}\n  SegTree(int n) : SegTree(vector<X>(n, Monoid::unit())) {}\n  SegTree(vector<X>\
-    \ v) : n(v.size()) {\n    log = 1;\n    while ((1 << log) < n) ++log;\n    size\
-    \ = 1 << log;\n    dat.assign(size << 1, Monoid::unit());\n    for (int i = 0;\
-    \ i < n; ++i) dat[size + i] = v[i];\n    for (int i = size - 1; i >= 1; --i) update(i);\n\
-    \  }\n\n  template <typename F>\n  SegTree(int n, F f) : n(n) {\n    log = 1;\n\
+    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint C_dense(int n, int\
+    \ k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\n  auto calc = [&](int\
+    \ i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n\
+    \    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n\n  if (W <= k) {\n\
+    \    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j]\
+    \ = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n    FOR(i, H,\
+    \ n + 1) {\n      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n\
+    \  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool\
+    \ dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n <\
+    \ k) return 0;\n  if (dense) return C_dense(n, k);\n  if (!large) return fact<mint>(n)\
+    \ * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k, n - k);\n  mint x(1);\n\
+    \  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n  return x;\n}\n\
+    \ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n\
+    \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
+    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
+    }\n\n// [x^d](1-x)^{-n} \u306E\u8A08\u7B97\ntemplate <typename mint, bool large\
+    \ = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n\
+    \  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0));\
+    \ }\n  return C<mint, large, dense>(n + d - 1, n);\n}\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 2\
+    \ \"ds/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree {\n  using X =\
+    \ typename Monoid::value_type;\n  using value_type = X;\n  vector<X> dat;\n  int\
+    \ n, log, size;\n\n  SegTree() : SegTree(0) {}\n  SegTree(int n) : SegTree(vector<X>(n,\
+    \ Monoid::unit())) {}\n  SegTree(vector<X> v) : n(v.size()) {\n    log = 1;\n\
     \    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
-    \ << 1, Monoid::unit());\n    for (int i = 0; i < n; ++i) dat[size + i] = f(i);\n\
-    \    for (int i = size - 1; i >= 1; --i) update(i);\n  }\n\n  void reset() { fill(all(dat),\
-    \ Monoid::unit()); }\n\n  void set_all(const vector<X>& v) {\n    dat.assign(size\
     \ << 1, Monoid::unit());\n    for (int i = 0; i < n; ++i) dat[size + i] = v[i];\n\
-    \    for (int i = size - 1; i >= 1; --i) update(i);\n  }\n\n  X operator[](int\
-    \ i) { return dat[size + i]; }\n\n  void update(int i) { dat[i] = Monoid::op(dat[2\
-    \ * i], dat[2 * i + 1]); }\n\n  void set(int i, const X& x) {\n    assert(i <\
-    \ n);\n    dat[i += size] = x;\n    while (i >>= 1) update(i);\n  }\n\n  void\
-    \ multiply(int i, const X& x) {\n    assert(i < n);\n    i += size;\n    dat[i]\
-    \ = Monoid::op(dat[i], x);\n    while (i >>= 1) update(i);\n  }\n\n  X prod(int\
-    \ L, int R) {\n    assert(L <= R);\n    assert(R <= n);\n    X vl = Monoid::unit(),\
-    \ vr = Monoid::unit();\n    L += size, R += size;\n    while (L < R) {\n     \
-    \ if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1) vr = Monoid::op(dat[--R],\
-    \ vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl, vr);\n  }\n\n\
-    \  X prod_all() { return dat[1]; }\n\n  template <class F>\n  int max_right(F&\
-    \ check, int L) {\n    assert(0 <= L && L <= n && check(Monoid::unit()));\n  \
-    \  if (L == n) return n;\n    L += size;\n    X sm = Monoid::unit();\n    do {\n\
-    \      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L])))\
-    \ {\n        while (L < size) {\n          L = 2 * L;\n          if (check(Monoid::op(sm,\
-    \ dat[L]))) {\n            sm = Monoid::op(sm, dat[L]);\n            L++;\n  \
-    \        }\n        }\n        return L - size;\n      }\n      sm = Monoid::op(sm,\
-    \ dat[L]);\n      L++;\n    } while ((L & -L) != L);\n    return n;\n  }\n\n \
-    \ template <class F>\n  int min_left(F& check, int R) {\n    assert(0 <= R &&\
-    \ R <= n && check(Monoid::unit()));\n    if (R == 0) return 0;\n    R += size;\n\
-    \    X sm = Monoid::unit();\n    do {\n      --R;\n      while (R > 1 && (R %\
-    \ 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R], sm))) {\n        while (R\
-    \ < size) {\n          R = 2 * R + 1;\n          if (check(Monoid::op(dat[R],\
-    \ sm))) {\n            sm = Monoid::op(dat[R], sm);\n            R--;\n      \
-    \    }\n        }\n        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R],\
-    \ sm);\n    } while ((R & -R) != R);\n    return 0;\n  }\n\n  // \u30E2\u30CE\u30A4\
-    \u30C9\u304C\u53EF\u63DB\u306A\u3089\u3001prod_{l<=i<r}A[i^x] \u304C\u8A08\u7B97\
-    \u53EF\u80FD\n  // https://codeforces.com/contest/1401/problem/F\n  X Xor_prod(int\
-    \ l, int r, int xor_val) {\n    assert(Monoid::commute);\n    X x = Monoid::unit();\n\
-    \    for (int k = 0; k < log + 1; ++k) {\n      if (l >= r) break;\n      if (l\
-    \ & 1) { x = Monoid::op(x, dat[(size >> k) + ((l++) ^ xor_val)]); }\n      if\
-    \ (r & 1) { x = Monoid::op(x, dat[(size >> k) + ((--r) ^ xor_val)]); }\n     \
-    \ l /= 2, r /= 2, xor_val /= 2;\n    }\n    return x;\n  }\n\n  void debug() {\
-    \ print(\"segtree\", dat); }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename\
-    \ T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename\
-    \ T = int, bool directed = false>\nstruct Graph {\n  int N, M;\n  using cost_type\
-    \ = T;\n  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int>\
-    \ indptr;\n  vector<edge_type> csr_edges;\n  bool prepared;\n\n  class OutgoingEdges\
-    \ {\n  public:\n    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l),\
-    \ r(r) {}\n\n    const edge_type* begin() const {\n      if (l == r) { return\
-    \ 0; }\n      return &G->csr_edges[l];\n    }\n\n    const edge_type* end() const\
-    \ {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n\
-    \  private:\n    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared()\
+    \    for (int i = size - 1; i >= 1; --i) update(i);\n  }\n\n  template <typename\
+    \ F>\n  SegTree(int n, F f) : n(n) {\n    log = 1;\n    while ((1 << log) < n)\
+    \ ++log;\n    size = 1 << log;\n    dat.assign(size << 1, Monoid::unit());\n \
+    \   for (int i = 0; i < n; ++i) dat[size + i] = f(i);\n    for (int i = size -\
+    \ 1; i >= 1; --i) update(i);\n  }\n\n  void reset() { fill(all(dat), Monoid::unit());\
+    \ }\n\n  void set_all(const vector<X>& v) {\n    dat.assign(size << 1, Monoid::unit());\n\
+    \    for (int i = 0; i < n; ++i) dat[size + i] = v[i];\n    for (int i = size\
+    \ - 1; i >= 1; --i) update(i);\n  }\n\n  X operator[](int i) { return dat[size\
+    \ + i]; }\n\n  void update(int i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i\
+    \ + 1]); }\n\n  void set(int i, const X& x) {\n    assert(i < n);\n    dat[i +=\
+    \ size] = x;\n    while (i >>= 1) update(i);\n  }\n\n  void multiply(int i, const\
+    \ X& x) {\n    assert(i < n);\n    i += size;\n    dat[i] = Monoid::op(dat[i],\
+    \ x);\n    while (i >>= 1) update(i);\n  }\n\n  X prod(int L, int R) {\n    assert(L\
+    \ <= R);\n    assert(R <= n);\n    X vl = Monoid::unit(), vr = Monoid::unit();\n\
+    \    L += size, R += size;\n    while (L < R) {\n      if (L & 1) vl = Monoid::op(vl,\
+    \ dat[L++]);\n      if (R & 1) vr = Monoid::op(dat[--R], vr);\n      L >>= 1,\
+    \ R >>= 1;\n    }\n    return Monoid::op(vl, vr);\n  }\n\n  X prod_all() { return\
+    \ dat[1]; }\n\n  template <class F>\n  int max_right(F& check, int L) {\n    assert(0\
+    \ <= L && L <= n && check(Monoid::unit()));\n    if (L == n) return n;\n    L\
+    \ += size;\n    X sm = Monoid::unit();\n    do {\n      while (L % 2 == 0) L >>=\
+    \ 1;\n      if (!check(Monoid::op(sm, dat[L]))) {\n        while (L < size) {\n\
+    \          L = 2 * L;\n          if (check(Monoid::op(sm, dat[L]))) {\n      \
+    \      sm = Monoid::op(sm, dat[L]);\n            L++;\n          }\n        }\n\
+    \        return L - size;\n      }\n      sm = Monoid::op(sm, dat[L]);\n     \
+    \ L++;\n    } while ((L & -L) != L);\n    return n;\n  }\n\n  template <class\
+    \ F>\n  int min_left(F& check, int R) {\n    assert(0 <= R && R <= n && check(Monoid::unit()));\n\
+    \    if (R == 0) return 0;\n    R += size;\n    X sm = Monoid::unit();\n    do\
+    \ {\n      --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
+    \ sm))) {\n        while (R < size) {\n          R = 2 * R + 1;\n          if\
+    \ (check(Monoid::op(dat[R], sm))) {\n            sm = Monoid::op(dat[R], sm);\n\
+    \            R--;\n          }\n        }\n        return R + 1 - size;\n    \
+    \  }\n      sm = Monoid::op(dat[R], sm);\n    } while ((R & -R) != R);\n    return\
+    \ 0;\n  }\n\n  // \u30E2\u30CE\u30A4\u30C9\u304C\u53EF\u63DB\u306A\u3089\u3001\
+    prod_{l<=i<r}A[i^x] \u304C\u8A08\u7B97\u53EF\u80FD\n  // https://codeforces.com/contest/1401/problem/F\n\
+    \  X Xor_prod(int l, int r, int xor_val) {\n    assert(Monoid::commute);\n   \
+    \ X x = Monoid::unit();\n    for (int k = 0; k < log + 1; ++k) {\n      if (l\
+    \ >= r) break;\n      if (l & 1) { x = Monoid::op(x, dat[(size >> k) + ((l++)\
+    \ ^ xor_val)]); }\n      if (r & 1) { x = Monoid::op(x, dat[(size >> k) + ((--r)\
+    \ ^ xor_val)]); }\n      l /= 2, r /= 2, xor_val /= 2;\n    }\n    return x;\n\
+    \  }\n\n  void debug() { print(\"segtree\", dat); }\n};\n#line 2 \"graph/base.hpp\"\
+    \n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n\
+    };\n\ntemplate <typename T = int, bool directed = false>\nstruct Graph {\n  int\
+    \ N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
+    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  bool prepared;\n\
+    \n  class OutgoingEdges {\n  public:\n    OutgoingEdges(const Graph* G, int l,\
+    \ int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n     \
+    \ if (l == r) { return 0; }\n      return &G->csr_edges[l];\n    }\n\n    const\
+    \ edge_type* end() const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n\
+    \    }\n\n  private:\n    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared()\
     \ { return prepared; }\n  constexpr bool is_directed() { return directed; }\n\n\
     \  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
     \ {}\n\n  void add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n\
@@ -521,8 +532,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   requiredBy: []
-  timestamp: '2022-08-13 02:22:39+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-16 15:06:00+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
 layout: document

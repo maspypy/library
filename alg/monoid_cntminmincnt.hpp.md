@@ -39,8 +39,8 @@ data:
   isVerificationFile: false
   path: alg/monoid_cntminmincnt.hpp
   requiredBy:
-  - ds/rectangleunion.hpp
   - alg/lazy_cntminmincnt_add.hpp
+  - ds/rectangleunion.hpp
   timestamp: '2022-05-13 21:02:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
