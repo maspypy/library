@@ -14,13 +14,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/gcd_convolution.hpp
     title: nt/gcd_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/lcm_convolution.hpp
     title: nt/lcm_convolution.hpp
   - icon: ':warning:'
     path: nt/lpf_table.hpp
     title: nt/lpf_table.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: nt/mobius_table.hpp
     title: nt/mobius_table.hpp
   - icon: ':heavy_check_mark:'
@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/primesum.hpp
     title: nt/primesum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   - icon: ':question:'
@@ -87,6 +87,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1666_integer_kth_root.test.cpp
     title: test/yukicoder/1666_integer_kth_root.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1760.test.cpp
+    title: test/yukicoder/1760.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -135,6 +138,7 @@ data:
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1760.test.cpp
   - test/yukicoder/1321_surj.test.cpp
   - test/yukicoder/1666_integer_kth_root.test.cpp
   - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp

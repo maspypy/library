@@ -36,6 +36,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1321_surj.test.cpp
     title: test/yukicoder/1321_surj.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1760.test.cpp
+    title: test/yukicoder/1760.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -82,6 +85,7 @@ data:
   timestamp: '2022-08-17 05:57:42+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1760.test.cpp
   - test/yukicoder/1321_surj.test.cpp
   - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
