@@ -116,8 +116,8 @@ data:
   timestamp: '2022-05-27 16:21:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
   - test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
+  - test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
 documentation_of: ds/dynamic_lichao.hpp
 layout: document
 redirect_from:

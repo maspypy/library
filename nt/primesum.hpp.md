@@ -77,8 +77,8 @@ data:
   timestamp: '2022-05-11 21:45:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/math/counting_primes.test.cpp
   - test/library_checker/math/totient_sum.test.cpp
+  - test/library_checker/math/counting_primes.test.cpp
 documentation_of: nt/primesum.hpp
 layout: document
 redirect_from:
