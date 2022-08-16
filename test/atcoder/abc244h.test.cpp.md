@@ -2,14 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: alg/group_affine.hpp
-    title: alg/group_affine.hpp
-  - icon: ':question:'
-    path: ds/swag.hpp
-    title: ds/swag.hpp
-  - icon: ':question:'
-    path: mod/modint.hpp
-    title: mod/modint.hpp
+    path: ds/cht.hpp
+    title: ds/cht.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -18,17 +12,15 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/queue_operate_all_composite
     links:
-    - https://judge.yosupo.jp/problem/queue_operate_all_composite
-  bundledCode: "#line 1 \"test/library_checker/datastructure/queue_operate_all_composite.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/queue_operate_all_composite\"\
-    \r\n#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
+    - https://atcoder.jp/contests/abc244/tasks/abc244_h
+  bundledCode: "#line 1 \"test/atcoder/abc244h.test.cpp\"\n#define PROBLME \"https://atcoder.jp/contests/abc244/tasks/abc244_h\"\
+    \n#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
     \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
     \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
     \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
@@ -200,145 +192,65 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 4 \"test/library_checker/datastructure/queue_operate_all_composite.test.cpp\"\
-    \n\r\n#line 1 \"alg/group_affine.hpp\"\ntemplate <typename K>\nstruct Group_Affine\
-    \ {\n  using F = pair<K, K>;\n  using value_type = F;\n  static constexpr F op(const\
-    \ F &x, const F &y) noexcept {\n    return F({x.first * y.first, x.second * y.first\
-    \ + y.second});\n  }\n  static constexpr F inverse(const F &x) {\n    auto [a,\
-    \ b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n  }\n  static constexpr\
-    \ K eval(const F &f, K x) noexcept {\n    return f.first * x + f.second;\n  }\n\
-    \  static constexpr F unit() { return {K(1), K(0)}; }\n  static constexpr bool\
-    \ commute = false;\n};\n#line 1 \"ds/swag.hpp\"\ntemplate <class Monoid>\nstruct\
-    \ SWAG {\n  using X = typename Monoid::value_type;\n  using value_type = X;\n\
-    \  int sz = 0;\n  vc<X> dat;\n  vc<X> cum_l;\n  X cum_r;\n\n  SWAG() : cum_l({Monoid::unit()}),\
-    \ cum_r(Monoid::unit()) {}\n\n  int size() { return sz; }\n\n  void push(X x)\
-    \ {\n    ++sz;\n    cum_r = Monoid::op(cum_r, x);\n    dat.eb(x);\n  }\n\n  void\
-    \ pop() {\n    --sz;\n    cum_l.pop_back();\n    if (len(cum_l) == 0) {\n    \
-    \  cum_l = {Monoid::unit()};\n      cum_r = Monoid::unit();\n      while (len(dat)\
-    \ > 1) {\n        cum_l.eb(Monoid::op(dat.back(), cum_l.back()));\n        dat.pop_back();\n\
-    \      }\n      dat.pop_back();\n    }\n  }\n\n  X lprod() { return cum_l.back();\
-    \ }\n  X rprod() { return cum_r; }\n\n  X prod() { return Monoid::op(cum_l.back(),\
-    \ cum_r); }\n\n  void debug() {\n    print(\"swag\");\n    print(\"dat\", dat);\n\
-    \    print(\"cum_l\", cum_l);\n    print(\"cum_r\", cum_r);\n  }\n};\n#line 2\
-    \ \"mod/modint.hpp\"\n\ntemplate <unsigned int mod>\nstruct modint {\n  static\
-    \ constexpr bool is_modint = true;\n  unsigned int val;\n  constexpr modint(const\
-    \ long long val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val)\
-    \ % mod) % mod) {}\n  bool operator<(const modint &other) const {\n    return\
-    \ val < other.val;\n  } // To use std::map\n  modint &operator+=(const modint\
-    \ &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n  }\n\
-    \  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >= mod)\
-    \ val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n\
-    \    val = (unsigned int)(1LL * val * p.val % mod);\n    return *this;\n  }\n\
-    \  modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
-    \ *this;\n  }\n  modint operator-() const { return modint(get_mod() - val); }\n\
-    \  modint operator+(const modint &p) const { return modint(*this) += p; }\n  modint\
-    \ operator-(const modint &p) const { return modint(*this) -= p; }\n  modint operator*(const\
-    \ modint &p) const { return modint(*this) *= p; }\n  modint operator/(const modint\
-    \ &p) const { return modint(*this) /= p; }\n  bool operator==(const modint &p)\
-    \ const { return val == p.val; }\n  bool operator!=(const modint &p) const { return\
-    \ val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod, u = 1,\
-    \ v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b),\
-    \ swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
-    \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
-    \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n  static constexpr unsigned int get_mod() { return mod; }\n};\n\nstruct\
-    \ ArbitraryModInt {\n  static constexpr bool is_modint = true;\n  unsigned int\
-    \ val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t y)\n      :\
-    \ val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y) % get_mod())\
-    \ % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other) const {\n  \
-    \  return val < other.val;\n  } // To use std::map<ArbitraryModInt, T>\n  static\
-    \ unsigned int &get_mod() {\n    static unsigned int mod = 0;\n    return mod;\n\
-    \  }\n  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
-    \ ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
-    \    return *this;\n  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p)\
-    \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
-    \ *this;\n  }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n   \
-    \ unsigned long long a = (unsigned long long)val * p.val;\n    unsigned xh = (unsigned)(a\
-    \ >> 32), xl = (unsigned)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"\
-    =d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n\
-    \  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n    *this *=\
-    \ p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-() const {\
-    \ return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) += p;\n  }\n\
-    \  ArbitraryModInt operator-(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
-    \ -= p;\n  }\n  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n\
-    \    return ArbitraryModInt(*this) *= p;\n  }\n  ArbitraryModInt operator/(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) /= p;\n  }\n\
-    \  bool operator==(const ArbitraryModInt &p) const { return val == p.val; }\n\
-    \  bool operator!=(const ArbitraryModInt &p) const { return val != p.val; }\n\
-    \  ArbitraryModInt inverse() const {\n    int a = val, b = get_mod(), u = 1, v\
-    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
-    \ -= t * v, v);\n    }\n    return ArbitraryModInt(u);\n  }\n  ArbitraryModInt\
-    \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
-    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
-    \  }\n    return ret;\n  }\n};\n\ntemplate <typename mint>\nmint inv(int n) {\n\
-    \  static const int mod = mint::get_mod();\n  static vector<mint> dat = {0, 1};\n\
-    \  assert(0 <= n);\n  if (n >= mod) n %= mod;\n  while (int(dat.size()) <= n)\
-    \ {\n    int k = dat.size();\n    auto q = (mod + k - 1) / k;\n    int r = k *\
-    \ q - mod;\n    dat.emplace_back(dat[r] * mint(q));\n  }\n  return dat[n];\n}\n\
-    \ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
-    \  static vector<mint> dat = {1, 1};\n  assert(0 <= n);\n  if (n >= mod) return\
-    \ 0;\n  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
-    \ - 1] * mint(k));\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint\
-    \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
-    \ dat = {1, 1};\n  assert(0 <= n && n < mod);\n  while (int(dat.size()) <= n)\
-    \ {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint C_dense(int n, int\
-    \ k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\n  auto calc = [&](int\
-    \ i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n\
-    \    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n\n  if (W <= k) {\n\
-    \    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j]\
-    \ = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n    FOR(i, H,\
-    \ n + 1) {\n      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n\
-    \  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool\
-    \ dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n <\
-    \ k) return 0;\n  if (dense) return C_dense<mint>(n, k);\n  if (!large) return\
-    \ fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k, n -\
-    \ k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n\
-    \  return x;\n}\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll\
-    \ n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return\
-    \ fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint,\
-    \ 1>(n, k);\n}\n\n// [x^d](1-x)^{-n} \u306E\u8A08\u7B97\ntemplate <typename mint,\
-    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
-    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
-    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n\nusing modint107\
-    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\
-    #line 8 \"test/library_checker/datastructure/queue_operate_all_composite.test.cpp\"\
-    \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(Q);\r\n  using Mono\
-    \ = Group_Affine<mint>;\r\n  using F = Mono::value_type;\r\n\r\n  SWAG<Mono> swag;\r\
-    \n\r\n  FOR(_, Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(a, b);\r\n\
-    \      swag.push(F({a, b}));\r\n    }\r\n    elif (t == 1) { swag.pop(); }\r\n\
-    \    elif (t == 2) {\r\n      LL(x);\r\n      F f = swag.prod();\r\n      print(Mono::eval(f,\
-    \ x));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n\
-    \  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
-    \n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/queue_operate_all_composite\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
-    \ \"alg/group_affine.hpp\"\r\n#include \"ds/swag.hpp\"\r\n#include \"mod/modint.hpp\"\
-    \r\n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(Q);\r\n  using Mono\
-    \ = Group_Affine<mint>;\r\n  using F = Mono::value_type;\r\n\r\n  SWAG<Mono> swag;\r\
-    \n\r\n  FOR(_, Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(a, b);\r\n\
-    \      swag.push(F({a, b}));\r\n    }\r\n    elif (t == 1) { swag.pop(); }\r\n\
-    \    elif (t == 2) {\r\n      LL(x);\r\n      F f = swag.prod();\r\n      print(Mono::eval(f,\
-    \ x));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n\
-    \  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
-    \n\r\n  return 0;\r\n}\r\n"
+    \ { yes(!t); }\r\n#line 4 \"test/atcoder/abc244h.test.cpp\"\n\n#line 1 \"ds/cht.hpp\"\
+    \n\r\ntemplate <typename T>\r\nstruct Line {\r\n  mutable T k, m, p;\r\n  bool\
+    \ operator<(const Line& o) const { return k < o.k; }\r\n  bool operator<(T x)\
+    \ const { return p < x; }\r\n};\r\n\r\ntemplate <typename T>\r\nT lc_inf() {\r\
+    \n  return numeric_limits<T>::max();\r\n}\r\ntemplate <>\r\nlong double lc_inf<long\
+    \ double>() {\r\n  return 1 / .0;\r\n}\r\n\r\ntemplate <typename T>\r\nT lc_div(T\
+    \ a, T b) {\r\n  return a / b - ((a ^ b) < 0 and a % b);\r\n}\r\ntemplate <>\r\
+    \nlong double lc_div(long double a, long double b) {\r\n  return a / b;\r\n};\r\
+    \ntemplate <>\r\ndouble lc_div(double a, double b) {\r\n  return a / b;\r\n};\r\
+    \n\r\ntemplate <typename T, bool MINIMIZE = true>\r\nstruct LineContainer : multiset<Line<T>,\
+    \ less<>> {\r\n  using super = multiset<Line<T>, less<>>;\r\n  using super::begin,\
+    \ super::end, super::insert, super::erase;\r\n  using super::empty, super::lower_bound;\r\
+    \n  const T inf = lc_inf<T>();\r\n  bool insect(typename super::iterator x, typename\
+    \ super::iterator y) {\r\n    if (y == end()) return x->p = inf, false;\r\n  \
+    \  if (x->k == y->k)\r\n      x->p = (x->m > y->m ? inf : -inf);\r\n    else\r\
+    \n      x->p = lc_div(y->m - x->m, x->k - y->k);\r\n    return x->p >= y->p;\r\
+    \n  }\r\n  void add(T k, T m) {\r\n    if (MINIMIZE) { k = -k, m = -m; }\r\n \
+    \   auto z = insert({k, m, 0}), y = z++, x = y;\r\n    while (insect(y, z)) z\
+    \ = erase(z);\r\n    if (x != begin() and insect(--x, y)) insect(x, y = erase(y));\r\
+    \n    while ((y = x) != begin() and (--x)->p >= y->p) insect(x, erase(y));\r\n\
+    \  }\r\n  T query(T x) {\r\n    assert(!empty());\r\n    auto l = *lower_bound(x);\r\
+    \n    T v = (l.k * x + l.m);\r\n    return (MINIMIZE ? -v : v);\r\n  }\r\n};\r\
+    \n\r\ntemplate <typename T>\r\nusing CHT_min = LineContainer<T, true>;\r\ntemplate\
+    \ <typename T>\r\nusing CHT_max = LineContainer<T, false>;\r\n\r\n/*\r\nlong long\
+    \ / double \u3067\u52D5\u304F\u3068\u601D\u3046\u3002\u30AF\u30A8\u30EA\u3042\u305F\
+    \u308A O(log N)\r\n\u30FBadd(a, b)\uFF1Aax + by \u306E\u8FFD\u52A0\r\n\u30FBget_max(x,y)\uFF1A\
+    max_{a,b} (ax + by)\r\n\u30FBget_min(x,y)\uFF1Amax_{a,b} (ax + by)\r\n*/\r\ntemplate\
+    \ <typename T>\r\nstruct CHT_xy {\r\n  using ld = long double;\r\n  CHT_min<ld>\
+    \ cht_min;\r\n  CHT_max<ld> cht_max;\r\n  T amax = -1e18, amin = 1e18, bmax =\
+    \ -1e18, bmin = 1e18;\r\n  void add(T a, T b) {\r\n    cht_min.add(b, a);\r\n\
+    \    cht_max.add(b, a);\r\n    chmax(amax, a), chmin(amin, a), chmax(bmax, b),\
+    \ chmin(bmin, b);\r\n  }\r\n\r\n  T get_max(T x, T y) {\r\n    if (x == 0) { return\
+    \ max(bmax * y, bmin * y); }\r\n    ld z = ld(y) / x;\r\n    if (x > 0) {\r\n\
+    \      auto l = cht_max.lower_bound(z);\r\n      ll a = l->m, b = l->k;\r\n  \
+    \    return a * x + b * y;\r\n    }\r\n    auto l = cht_min.lower_bound(z);\r\n\
+    \    ll a = -(l->m), b = -(l->k);\r\n    return a * x + b * y;\r\n  }\r\n\r\n\
+    \  T get_min(T x, T y) { return -get_max(-x, -y); }\r\n};\r\n#line 6 \"test/atcoder/abc244h.test.cpp\"\
+    \n\nvoid solve() {\n  LL(Q);\n  CHT_xy<ll> cht;\n  FOR(Q) {\n    LL(a, b, x, y);\n\
+    \    cht.add(a, b);\n    print(cht.get_max(x, y));\n  }\n}\n\nsigned main() {\n\
+    \  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLME \"https://atcoder.jp/contests/abc244/tasks/abc244_h\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/cht.hpp\"\n\n\
+    void solve() {\n  LL(Q);\n  CHT_xy<ll> cht;\n  FOR(Q) {\n    LL(a, b, x, y);\n\
+    \    cht.add(a, b);\n    print(cht.get_max(x, y));\n  }\n}\n\nsigned main() {\n\
+    \  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - alg/group_affine.hpp
-  - ds/swag.hpp
-  - mod/modint.hpp
+  - ds/cht.hpp
   isVerificationFile: true
-  path: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
+  path: test/atcoder/abc244h.test.cpp
   requiredBy: []
-  timestamp: '2022-08-17 05:19:57+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-17 05:36:09+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
+documentation_of: test/atcoder/abc244h.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/datastructure/queue_operate_all_composite.test.cpp
-- /verify/test/library_checker/datastructure/queue_operate_all_composite.test.cpp.html
-title: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
+- /verify/test/atcoder/abc244h.test.cpp
+- /verify/test/atcoder/abc244h.test.cpp.html
+title: test/atcoder/abc244h.test.cpp
 ---
