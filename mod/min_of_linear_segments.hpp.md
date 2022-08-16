@@ -63,13 +63,13 @@ data:
   isVerificationFile: false
   path: mod/min_of_linear_segments.hpp
   requiredBy:
-  - mod/min_of_linear.cpp
   - mod/max_of_linear_segments.hpp
+  - mod/min_of_linear.cpp
   timestamp: '2022-08-16 06:06:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/max_of_linear_segments.test.cpp
   - test/min_of_linear_segments.test.cpp
+  - test/mytest/max_of_linear_segments.test.cpp
 documentation_of: mod/min_of_linear_segments.hpp
 layout: document
 redirect_from:

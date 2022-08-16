@@ -83,9 +83,9 @@ data:
   timestamp: '2022-07-20 17:19:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1344_warshall_floyd.test.cpp
-  - test/yukicoder/17_warshall_floyd.test.cpp
   - test/aoj/GRL_1_C_warshallfloyd.test.cpp
+  - test/yukicoder/17_warshall_floyd.test.cpp
+  - test/yukicoder/1344_warshall_floyd.test.cpp
 documentation_of: graph/warshall_floyd.hpp
 layout: document
 redirect_from:

@@ -53,8 +53,8 @@ data:
   timestamp: '2022-06-27 16:36:33+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1141_cumsum2d.test.cpp
   - test/yukicoder/655_cumsum2d.test.cpp
+  - test/yukicoder/1141_cumsum2d.test.cpp
 documentation_of: ds/cumsum2d.hpp
 layout: document
 redirect_from:
