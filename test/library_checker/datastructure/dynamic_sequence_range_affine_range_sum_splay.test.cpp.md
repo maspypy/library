@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_affine.hpp
     title: alg/group_affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_cntsum.hpp
     title: alg/group_cntsum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/lazy_cntsum_affine.hpp
     title: alg/lazy_cntsum_affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: bbst/splaytree_lazy.hpp
     title: bbst/splaytree_lazy.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
@@ -306,7 +306,7 @@ data:
     \ 1>(n, k);\n}\n\n// [x^d](1-x)^{-n} \u306E\u8A08\u7B97\ntemplate <typename mint,\
     \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
     \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
-    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, n);\n}\n\nusing modint107\
+    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n\nusing modint107\
     \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\
     #line 1 \"bbst/splaytree_lazy.hpp\"\n// reverse \u306F\u3068\u308A\u3042\u3048\
     \u305A\u3001Monoid_X \u306E\u53EF\u63DB\u6027\u3092\u4EEE\u5B9A\u3057\u3066\u3044\
@@ -433,8 +433,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 16:26:57+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-17 05:19:57+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
 layout: document

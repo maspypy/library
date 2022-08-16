@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
@@ -278,7 +278,7 @@ data:
     \ 1>(n, k);\n}\n\n// [x^d](1-x)^{-n} \u306E\u8A08\u7B97\ntemplate <typename mint,\
     \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
     \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
-    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, n);\n}\n\nusing modint107\
+    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n\nusing modint107\
     \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\
     #line 1 \"setfunc/count_surjection.hpp\"\ntemplate<typename mint>\r\nmint count_surjection(ll\
     \ n, ll m) {\r\n  if (n < m) return 0;\r\n  mint res = 0;\r\n  FOR(i, m + 1) {\r\
@@ -302,7 +302,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL_5_C_count_surjection.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 16:26:57+09:00'
+  timestamp: '2022-08-17 05:19:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL_5_C_count_surjection.test.cpp

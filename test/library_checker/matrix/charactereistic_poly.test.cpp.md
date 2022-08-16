@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/characteristic_poly.hpp
     title: linalg/characteristic_poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/characteristic_polynomial
@@ -278,7 +278,7 @@ data:
     \ 1>(n, k);\n}\n\n// [x^d](1-x)^{-n} \u306E\u8A08\u7B97\ntemplate <typename mint,\
     \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
     \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
-    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, n);\n}\n\nusing modint107\
+    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n\nusing modint107\
     \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\
     #line 1 \"linalg/characteristic_poly.hpp\"\ntemplate <typename T>\r\nvoid to_Hessenberg_matrix(vc<vc<T>>&\
     \ A) {\r\n  /*\r\n  P^{-1}AP \u306E\u5F62\u306E\u5909\u63DB\u3067\u3001Hessenberg\
@@ -323,8 +323,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/charactereistic_poly.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 16:26:57+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-17 05:19:57+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/matrix/charactereistic_poly.test.cpp
 layout: document
