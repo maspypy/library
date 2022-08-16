@@ -93,28 +93,28 @@ data:
   isVerificationFile: false
   path: ds/unionfind.hpp
   requiredBy:
-  - flow/bipartite.hpp
-  - graph/functional.hpp
-  - graph/tree_of_unionfind.hpp
-  - graph/maximum_antichain.hpp
-  - graph/dag_path_cover.hpp
   - graph/minimum_spanning_tree.hpp
-  - graph/check_bipartite.hpp
   - graph/online_unionfind.hpp
+  - graph/tree_of_unionfind.hpp
+  - graph/dag_path_cover.hpp
+  - graph/check_bipartite.hpp
+  - graph/functional.hpp
+  - graph/maximum_antichain.hpp
+  - flow/bipartite.hpp
   - geo/manhattan_mst.hpp
   timestamp: '2022-08-11 02:13:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1170_online_uf.test.cpp
+  - test/yukicoder/1479_bipartite_vertex_cover.test.cpp
+  - test/yukicoder/114_steriner_tree.test.cpp
+  - test/library_checker/graph/manhattan_mst.test.cpp
+  - test/library_checker/graph/bipartitematching.test.cpp
+  - test/library_checker/datastructure/unionfind.test.cpp
   - test/aoj/2995_dsu.test.cpp
   - test/aoj/2251_dag_path_cover.test.cpp
   - test/aoj/2251_maxantichain.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp
-  - test/library_checker/graph/bipartitematching.test.cpp
-  - test/library_checker/graph/manhattan_mst.test.cpp
-  - test/library_checker/datastructure/unionfind.test.cpp
-  - test/yukicoder/114_steriner_tree.test.cpp
-  - test/yukicoder/1479_bipartite_vertex_cover.test.cpp
-  - test/yukicoder/1170_online_uf.test.cpp
 documentation_of: ds/unionfind.hpp
 layout: document
 redirect_from:

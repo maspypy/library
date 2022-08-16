@@ -8,10 +8,13 @@ data:
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rect_add_pt_sum.test.cpp
+    title: test/mytest/rect_add_pt_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -48,7 +51,7 @@ data:
     \n\ntemplate <typename AbelGroup, bool SMALL>\nstruct Rectangle_Add_Point_Sum\
     \ {\n  using G = typename AbelGroup::value_type;\n  vc<tuple<ll, ll, ll, ll>>\
     \ rect;\n  vc<G> WT;\n  vc<pi> point;\n\n  Rectangle_Add_Point_Sum() {}\n\n  void\
-    \ add_query(ll xl, ll yl, ll xr, ll yr, G g) {\n    rect.eb(xl, xr, yl, yr);\n\
+    \ add_query(ll xl, ll yl, ll xr, ll yr, G g) {\n    rect.eb(xl, yl, xr, yr);\n\
     \    WT.eb(g);\n  }\n\n  void sum_query(ll x, ll y) { point.eb(x, y); }\n\n  vc<G>\
     \ calc() {\n    int N = len(rect), Q = len(point);\n    if (N == 0) return vc<G>(Q,\
     \ AbelGroup::unit());\n    vi keyX, keyY;\n    keyX.reserve(2 * N + Q);\n    keyY.reserve(2\
@@ -74,8 +77,8 @@ data:
   code: "#include \"ds/fenwick.hpp\"\n\ntemplate <typename AbelGroup, bool SMALL>\n\
     struct Rectangle_Add_Point_Sum {\n  using G = typename AbelGroup::value_type;\n\
     \  vc<tuple<ll, ll, ll, ll>> rect;\n  vc<G> WT;\n  vc<pi> point;\n\n  Rectangle_Add_Point_Sum()\
-    \ {}\n\n  void add_query(ll xl, ll yl, ll xr, ll yr, G g) {\n    rect.eb(xl, xr,\
-    \ yl, yr);\n    WT.eb(g);\n  }\n\n  void sum_query(ll x, ll y) { point.eb(x, y);\
+    \ {}\n\n  void add_query(ll xl, ll yl, ll xr, ll yr, G g) {\n    rect.eb(xl, yl,\
+    \ xr, yr);\n    WT.eb(g);\n  }\n\n  void sum_query(ll x, ll y) { point.eb(x, y);\
     \ }\n\n  vc<G> calc() {\n    int N = len(rect), Q = len(point);\n    if (N ==\
     \ 0) return vc<G>(Q, AbelGroup::unit());\n    vi keyX, keyY;\n    keyX.reserve(2\
     \ * N + Q);\n    keyY.reserve(2 * N + Q);\n    for (auto&& [xl, yl, xr, yr]: rect)\
@@ -104,9 +107,10 @@ data:
   isVerificationFile: false
   path: ds/rectangle_add_point_sum.hpp
   requiredBy: []
-  timestamp: '2022-06-27 21:42:47+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-08-16 19:46:54+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/mytest/rect_add_pt_sum.test.cpp
 documentation_of: ds/rectangle_add_point_sum.hpp
 layout: document
 redirect_from:

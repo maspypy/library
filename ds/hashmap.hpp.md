@@ -75,16 +75,16 @@ data:
   isVerificationFile: false
   path: ds/hashmap.hpp
   requiredBy:
-  - mod/mod_log.hpp
   - mod/mod_kth_root.hpp
+  - mod/mod_log.hpp
   - other/discrete_log.hpp
   timestamp: '2022-06-05 16:08:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - test/library_checker/math/kth_root_mod.test.cpp
-  - test/library_checker/datastructure/associative_array_hashmap.test.cpp
   - test/yukicoder/1339_discrete_log.test.cpp
+  - test/library_checker/math/kth_root_mod.test.cpp
+  - test/library_checker/math/discrete_logarithm_mod.test.cpp
+  - test/library_checker/datastructure/associative_array_hashmap.test.cpp
 documentation_of: ds/hashmap.hpp
 layout: document
 redirect_from:

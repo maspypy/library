@@ -51,15 +51,15 @@ data:
   isVerificationFile: false
   path: geo/base.hpp
   requiredBy:
-  - geo/points_diameter.hpp
   - geo/convexhull.hpp
-  - geo/angle_sort.hpp
+  - geo/points_diameter.hpp
   - geo/dynamicupperhull.hpp
+  - geo/angle_sort.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/geometry/convex_layers.test.cpp
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
+  - test/library_checker/geometry/convex_layers.test.cpp
 documentation_of: geo/base.hpp
 layout: document
 redirect_from:

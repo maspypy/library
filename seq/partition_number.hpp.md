@@ -361,8 +361,8 @@ data:
   timestamp: '2022-08-16 16:58:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/math/partition.test.cpp
   - test/mytest/enum_partitions.test.cpp
+  - test/library_checker/math/partition.test.cpp
 documentation_of: seq/partition_number.hpp
 layout: document
 redirect_from:
