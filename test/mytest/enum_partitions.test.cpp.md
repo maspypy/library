@@ -14,6 +14,9 @@ data:
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':question:'
+    path: other/random.hpp
+    title: other/random.hpp
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':question:'
@@ -28,12 +31,15 @@ data:
   - icon: ':x:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':x:'
-    path: poly/multipoint.hpp
-    title: poly/multipoint.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
+  - icon: ':x:'
+    path: seq/enumerate_partitions.hpp
+    title: seq/enumerate_partitions.hpp
+  - icon: ':x:'
+    path: seq/partition_number.hpp
+    title: seq/partition_number.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -41,19 +47,19 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/multipoint_evaluation
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://judge.yosupo.jp/problem/multipoint_evaluation
-  bundledCode: "#line 1 \"test/library_checker/polynomial/multipoint_evaluation.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/multipoint_evaluation\"\r\n\
-    #line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
-    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
-    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/mytest/enum_partitions.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -218,28 +224,46 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 4 \"test/library_checker/polynomial/multipoint_evaluation.test.cpp\"\
-    \n\r\n#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
-    \ vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\
-    \n  return t;\r\n}\n#line 2 \"mod/modint.hpp\"\n\ntemplate <unsigned int mod>\n\
-    struct modint {\n  static constexpr bool is_modint = true;\n  unsigned int val;\n\
-    \  constexpr modint(const long long val = 0) noexcept\n      : val(val >= 0 ?\
-    \ val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint &other)\
-    \ const {\n    return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
-    \ modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n\
-    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >=\
-    \ mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint\
-    \ &p) {\n    val = (unsigned int)(1LL * val * p.val % mod);\n    return *this;\n\
-    \  }\n  modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n   \
-    \ return *this;\n  }\n  modint operator-() const { return modint(get_mod() - val);\
-    \ }\n  modint operator+(const modint &p) const { return modint(*this) += p; }\n\
-    \  modint operator-(const modint &p) const { return modint(*this) -= p; }\n  modint\
-    \ operator*(const modint &p) const { return modint(*this) *= p; }\n  modint operator/(const\
-    \ modint &p) const { return modint(*this) /= p; }\n  bool operator==(const modint\
-    \ &p) const { return val == p.val; }\n  bool operator!=(const modint &p) const\
-    \ { return val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod,\
-    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
-    \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
+    \ { yes(!t); }\r\n#line 1 \"other/random.hpp\"\nstruct RandomNumberGenerator {\n\
+    \  mt19937 mt;\n\n  RandomNumberGenerator() : mt(chrono::steady_clock::now().time_since_epoch().count())\
+    \ {}\n\n  ll operator()(ll a, ll b) {  // [a, b)\n    uniform_int_distribution<ll>\
+    \ dist(a, b - 1);\n    return dist(mt);\n  }\n\n  ll operator()(ll b) {  // [0,\
+    \ b)\n    return (*this)(0, b);\n  }\n};\n#line 5 \"test/mytest/enum_partitions.test.cpp\"\
+    \n\n#line 1 \"seq/enumerate_partitions.hpp\"\n/*\nN \u306E partition \u306E\u5217\
+    \u6319\u3057\u3066\u3001partition p \u3054\u3068\u306B query(p) \u3092\u884C\u3046\
+    \npartition \u306F\u3001\u6E1B\u5C11\u5217\u3068\u3057\u3066\u8F9E\u66F8\u5F0F\
+    \u306E\u964D\u9806\u306B\u5217\u6319\u3059\u308B\n\u751F\u6210\u306B\u304B\u304B\
+    \u308B\u6642\u9593\n\u30FBN = 50\uFF08204226\uFF09\uFF1A12 ms\n\u30FBN = 60\uFF08\
+    966467\uFF09\uFF1A60 ms\n\u30FBN = 70\uFF084087968\uFF09\uFF1A270 ms\n\u30FBN\
+    \ = 80\uFF0815796476\uFF09\uFF1A1100 ms\n*/\ntemplate <typename F>\nvoid enumerate_partitions(int\
+    \ N, F query, int LIM_len = -1, int LIM_val = -1) {\n  assert(N >= 0);\n  auto\
+    \ dfs = [&](auto self, vc<int>& p, int sum) -> void {\n    if (sum == N) {\n \
+    \     query(p);\n      return;\n    }\n    if (LIM_len != -1 && len(p) == LIM_len)\
+    \ return;\n    int nxt = (len(p) == 0 ? N : p.back());\n    if (LIM_val != -1)\
+    \ chmin(nxt, LIM_val);\n    chmin(nxt, N - sum);\n    p.eb(0);\n    FOR3_R(x,\
+    \ 1, nxt + 1) {\n      p.back() = x;\n      self(self, p, sum + x);\n    }\n \
+    \   p.pop_back();\n  };\n  vc<int> p;\n  dfs(dfs, p, 0);\n}\n#line 2 \"poly/count_terms.hpp\"\
+    \ntemplate<typename mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t =\
+    \ 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 2\
+    \ \"mod/modint.hpp\"\n\ntemplate <unsigned int mod>\nstruct modint {\n  static\
+    \ constexpr bool is_modint = true;\n  unsigned int val;\n  constexpr modint(const\
+    \ long long val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val)\
+    \ % mod) % mod) {}\n  bool operator<(const modint &other) const {\n    return\
+    \ val < other.val;\n  } // To use std::map\n  modint &operator+=(const modint\
+    \ &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n  }\n\
+    \  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >= mod)\
+    \ val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n\
+    \    val = (unsigned int)(1LL * val * p.val % mod);\n    return *this;\n  }\n\
+    \  modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
+    \ *this;\n  }\n  modint operator-() const { return modint(get_mod() - val); }\n\
+    \  modint operator+(const modint &p) const { return modint(*this) += p; }\n  modint\
+    \ operator-(const modint &p) const { return modint(*this) -= p; }\n  modint operator*(const\
+    \ modint &p) const { return modint(*this) *= p; }\n  modint operator/(const modint\
+    \ &p) const { return modint(*this) /= p; }\n  bool operator==(const modint &p)\
+    \ const { return val == p.val; }\n  bool operator!=(const modint &p) const { return\
+    \ val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod, u = 1,\
+    \ v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b),\
+    \ swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
     \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
     \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
     \  }\n  static constexpr unsigned int get_mod() { return mod; }\n};\n\nstruct\
@@ -507,53 +531,50 @@ data:
     \n  return fps_inv_dense<mint>(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<!is_same<mint,\
     \ modint998>::value, vc<mint>> fps_inv(\r\n    const vc<mint>& f) {\r\n  if (count_terms(f)\
     \ <= 700) return fps_inv_sparse<mint>(f);\r\n  return fps_inv_dense<mint>(f);\r\
-    \n}\r\n#line 2 \"poly/multipoint.hpp\"\n\r\ntemplate <typename mint>\r\nstruct\
-    \ SubproductTree {\r\n  int m;\r\n  int sz;\r\n  vc<vc<mint>> T;\r\n  SubproductTree(const\
-    \ vc<mint>& x) {\r\n    m = len(x);\r\n    sz = 1;\r\n    while (sz < m) sz *=\
-    \ 2;\r\n    T.resize(2 * sz);\r\n    FOR(i, sz) T[sz + i] = {1, (i < m ? -x[i]\
-    \ : 0)};\r\n    FOR3_R(i, 1, sz) T[i] = convolution(T[2 * i], T[2 * i + 1]);\r\
-    \n  }\r\n\r\n  vc<mint> mid_prod(vc<mint>& a, vc<mint>& b) {\r\n    assert(len(a)\
-    \ >= len(b) && !b.empty());\r\n    if (min(len(b), len(a) - len(b) + 1) <= 60)\
-    \ {\r\n      vc<mint> res(len(a) - len(b) + 1);\r\n      FOR(i, len(res)) FOR(j,\
-    \ len(b)) res[i] += b[j] * a[i + j];\r\n      return res;\r\n    }\r\n    int\
-    \ n = 1 << std::__lg(2 * len(a) - 1);\r\n    vc<mint> fa(n), fb(n);\r\n    std::copy(a.begin(),\
-    \ a.end(), fa.begin());\r\n    std::copy(b.rbegin(), b.rend(), fb.begin());\r\n\
-    \    ntt(fa, 0), ntt(fb, 0);\r\n    FOR(i, n) fa[i] *= fb[i];\r\n    ntt(fa, 1);\r\
-    \n    fa.resize(len(a));\r\n    fa.erase(fa.begin(), fa.begin() + len(b) - 1);\r\
-    \n    return fa;\r\n  }\r\n\r\n  vc<mint> evaluation(vc<mint>& f) {\r\n    int\
-    \ n = len(f);\r\n    f.resize(2 * n - 1);\r\n    vc<vc<mint>> g(2 * sz);\r\n \
-    \   g[1] = T[1];\r\n    g[1].resize(n);\r\n    g[1] = fps_inv(g[1]);\r\n    g[1]\
-    \ = mid_prod(f, g[1]);\r\n    g[1].resize(sz);\r\n\r\n    FOR3(i, 1, sz) {\r\n\
-    \      g[2 * i] = mid_prod(g[i], T[2 * i + 1]);\r\n      g[2 * i + 1] = mid_prod(g[i],\
-    \ T[2 * i]);\r\n    }\r\n    vc<mint> vals(m);\r\n    FOR(i, m) vals[i] = g[sz\
-    \ + i][0];\r\n    return vals;\r\n  }\r\n\r\n  vc<mint> interpolation(vc<mint>&\
-    \ y) {\r\n    assert(len(y) == m);\r\n    vc<mint> a(m);\r\n    FOR(i, m) a[i]\
-    \ = T[1][m - i - 1] * (i + 1);\r\n\r\n    a = evaluation(a);\r\n    vc<vc<mint>>\
-    \ t(2 * sz);\r\n    FOR(i, sz) t[sz + i] = {(i < m ? y[i] / a[i] : 0)};\r\n  \
-    \  FOR3_R(i, 1, sz) {\r\n      t[i] = convolution(t[2 * i], T[2 * i + 1]);\r\n\
-    \      auto tt = convolution(t[2 * i + 1], T[2 * i]);\r\n      FOR(k, len(t[i]))\
-    \ t[i][k] += tt[k];\r\n    }\r\n    t[1].resize(m);\r\n    reverse(all(t[1]));\r\
-    \n    return t[1];\r\n  }\r\n};\r\n\r\ntemplate<typename mint>\r\nvc<mint> multipoint_eval(vc<mint>&\
-    \ f, vc<mint>& x){\r\n  SubproductTree<mint> F(x);\r\n  return F.evaluation(f);\r\
-    \n}\r\n\r\ntemplate<typename mint>\r\nvc<mint> multipoint_interpolate(vc<mint>&\
-    \ x, vc<mint>& y){\r\n  SubproductTree<mint> F(x);\r\n  return F.interpolation(y);\r\
-    \n}\r\n#line 6 \"test/library_checker/polynomial/multipoint_evaluation.test.cpp\"\
-    \n\r\n#line 8 \"test/library_checker/polynomial/multipoint_evaluation.test.cpp\"\
-    \nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N, M);\r\n  VEC(mint,\
-    \ f, N);\r\n  VEC(mint, pts, M);\r\n  print(multipoint_eval(f, pts));\r\n}\r\n\
-    \r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/multipoint_evaluation\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
-    \ \"poly/multipoint.hpp\"\r\n\r\n#include \"mod/modint.hpp\"\r\nusing mint = modint998;\r\
-    \n\r\nvoid solve() {\r\n  LL(N, M);\r\n  VEC(mint, f, N);\r\n  VEC(mint, pts,\
-    \ M);\r\n  print(multipoint_eval(f, pts));\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
-    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
-    \n\r\n  return 0;\r\n}\r\n"
+    \n}\r\n#line 2 \"seq/partition_number.hpp\"\n\r\ntemplate <typename T>\r\nvc<T>\
+    \ partition_number(int N) {\r\n  ll M = sqrt(N) + 10;\r\n  vc<T> f(N + 1);\r\n\
+    \  FOR3(x, -M, M) {\r\n    ll d = x * (3 * x - 1) / 2;\r\n    if (d > N) continue;\r\
+    \n    f[d] += (x % 2 == 0 ? 1 : -1);\r\n  }\r\n  return fps_inv<T>(f);\r\n}\r\n\
+    \r\n// n \u3092 k \u500B\u306B\u5206\u5272\u3059\u308B\u65B9\u6CD5 P[n][k] \u306E\
+    \u30C6\u30FC\u30D6\u30EB\r\ntemplate <typename T>\r\nvvc<T> partition_number_2d(int\
+    \ n_max, int k_max) {\r\n  vv(T, dp, n_max + 1, k_max + 1);\r\n  dp[0][0] = 1;\r\
+    \n  FOR3(n, 1, n_max + 1) FOR3(k, 1, k_max + 1) {\r\n    // min = 1\r\n    dp[n][k]\
+    \ += dp[n - 1][k - 1];\r\n    // min >= 2\r\n    if (n >= k) dp[n][k] += dp[n\
+    \ - k][k];\r\n  }\r\n  return dp;\r\n}\r\n#line 8 \"test/mytest/enum_partitions.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid test() {\n  FOR(N, 1, 10) {\n    vc<mint>\
+    \ P = partition_number<mint>(N);\n    set<vc<int>> ss;\n    auto f = [&](vc<int>&\
+    \ P) -> void {\n      assert(SUM(P) == N);\n      assert(!ss.count(P));\n    \
+    \  ss.insert(P);\n    };\n    enumerate_partitions<decltype(f)>(N, f);\n    assert(P[N]\
+    \ == len(ss));\n  }\n  FOR(N, 1, 10) {\n    FOR(LIM_len, 10) FOR(LIM_val, 10)\
+    \ {\n      int a = 0;\n      auto f = [&](vc<int>& P) -> void {\n        if (len(P)\
+    \ <= LIM_len && MAX(P) <= LIM_val) ++a;\n      };\n      int b = 0;\n      auto\
+    \ g = [&](vc<int>& P) -> void {\n        assert(len(P) <= LIM_len && MAX(P) <=\
+    \ LIM_val);\n        ++b;\n      };\n      enumerate_partitions<decltype(f)>(N,\
+    \ f);\n      enumerate_partitions<decltype(g)>(N, g, LIM_len, LIM_val);\n    \
+    \  assert(a == b);\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a +\
+    \ b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  test();\n\
+    \  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"other/random.hpp\"\n\n#include \"seq/enumerate_partitions.hpp\"\
+    \n#include \"seq/partition_number.hpp\"\n\nusing mint = modint998;\n\nvoid test()\
+    \ {\n  FOR(N, 1, 10) {\n    vc<mint> P = partition_number<mint>(N);\n    set<vc<int>>\
+    \ ss;\n    auto f = [&](vc<int>& P) -> void {\n      assert(SUM(P) == N);\n  \
+    \    assert(!ss.count(P));\n      ss.insert(P);\n    };\n    enumerate_partitions<decltype(f)>(N,\
+    \ f);\n    assert(P[N] == len(ss));\n  }\n  FOR(N, 1, 10) {\n    FOR(LIM_len,\
+    \ 10) FOR(LIM_val, 10) {\n      int a = 0;\n      auto f = [&](vc<int>& P) ->\
+    \ void {\n        if (len(P) <= LIM_len && MAX(P) <= LIM_val) ++a;\n      };\n\
+    \      int b = 0;\n      auto g = [&](vc<int>& P) -> void {\n        assert(len(P)\
+    \ <= LIM_len && MAX(P) <= LIM_val);\n        ++b;\n      };\n      enumerate_partitions<decltype(f)>(N,\
+    \ f);\n      enumerate_partitions<decltype(g)>(N, g, LIM_len, LIM_val);\n    \
+    \  assert(a == b);\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a +\
+    \ b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  test();\n\
+    \  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - poly/multipoint.hpp
+  - other/random.hpp
+  - seq/enumerate_partitions.hpp
+  - seq/partition_number.hpp
   - poly/fps_inv.hpp
   - poly/count_terms.hpp
   - poly/convolution.hpp
@@ -563,15 +584,15 @@ data:
   - poly/ntt.hpp
   - poly/fft.hpp
   isVerificationFile: true
-  path: test/library_checker/polynomial/multipoint_evaluation.test.cpp
+  path: test/mytest/enum_partitions.test.cpp
   requiredBy: []
   timestamp: '2022-08-16 16:58:14+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/polynomial/multipoint_evaluation.test.cpp
+documentation_of: test/mytest/enum_partitions.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/polynomial/multipoint_evaluation.test.cpp
-- /verify/test/library_checker/polynomial/multipoint_evaluation.test.cpp.html
-title: test/library_checker/polynomial/multipoint_evaluation.test.cpp
+- /verify/test/mytest/enum_partitions.test.cpp
+- /verify/test/mytest/enum_partitions.test.cpp.html
+title: test/mytest/enum_partitions.test.cpp
 ---

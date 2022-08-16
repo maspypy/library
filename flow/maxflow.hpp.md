@@ -91,8 +91,8 @@ data:
   timestamp: '2022-05-22 15:15:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL_6_A_maxflow.test.cpp
   - test/yukicoder/177_maxflow.test.cpp
+  - test/aoj/GRL_6_A_maxflow.test.cpp
 documentation_of: flow/maxflow.hpp
 layout: document
 redirect_from:

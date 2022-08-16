@@ -122,8 +122,8 @@ data:
   timestamp: '2022-07-11 19:57:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/NTL_1_D_eulerphi.test.cpp
   - test/library_checker/math/tetration.test.cpp
+  - test/aoj/NTL_1_D_eulerphi.test.cpp
 documentation_of: nt/euler_phi.hpp
 layout: document
 redirect_from:

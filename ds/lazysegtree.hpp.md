@@ -33,7 +33,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
     title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
     title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -187,26 +187,26 @@ data:
   isVerificationFile: false
   path: ds/lazysegtree.hpp
   requiredBy:
-  - ds/rectangleunion.hpp
+  - graph/minimum_spanning_tree.hpp
   - graph/dualtreemonoid.hpp
   - graph/lazytreemonoid.hpp
-  - graph/minimum_spanning_tree.hpp
+  - ds/rectangleunion.hpp
   timestamp: '2022-08-11 02:08:49+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/DSL_2_I_cntsum_set_lazy.test.cpp
-  - test/aoj/DSL_2_F_min_set_lazy.test.cpp
-  - test/aoj/DSL_2_H_min_add_lazy.test.cpp
-  - test/aoj/GRL_2_A_mst.test.cpp
-  - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
-  - test/aoj/DSL_4_A_rectangle_union.test.cpp
-  - test/library_checker/datastructure/range_affine_range_sum.test.cpp
-  - test/yukicoder/1234_rmq.test.cpp
+  - test/yukicoder/1548_power_sums.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/255.test.cpp
-  - test/yukicoder/749_lazysegtree.test.cpp
-  - test/yukicoder/1548_power_sums.test.cpp
   - test/yukicoder/899_bfsnumbering.test.cpp
+  - test/yukicoder/1234_rmq.test.cpp
+  - test/yukicoder/749_lazysegtree.test.cpp
+  - test/library_checker/datastructure/range_affine_range_sum.test.cpp
+  - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
+  - test/aoj/DSL_4_A_rectangle_union.test.cpp
+  - test/aoj/DSL_2_F_min_set_lazy.test.cpp
+  - test/aoj/DSL_2_H_min_add_lazy.test.cpp
+  - test/aoj/DSL_2_I_cntsum_set_lazy.test.cpp
+  - test/aoj/GRL_2_A_mst.test.cpp
 documentation_of: ds/lazysegtree.hpp
 layout: document
 redirect_from:
