@@ -80,14 +80,14 @@ data:
   path: graph/degree.hpp
   requiredBy:
   - graph/toposort.hpp
-  - graph/unicyclic.hpp
-  - graph/dag_path_cover.hpp
   - graph/enumerate_triangles.hpp
+  - graph/dag_path_cover.hpp
+  - graph/unicyclic.hpp
   timestamp: '2022-07-20 17:19:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/2251_dag_path_cover.test.cpp
   - test/library_checker/graph/enumerate_triangles.test.cpp
+  - test/aoj/2251_dag_path_cover.test.cpp
 documentation_of: graph/degree.hpp
 layout: document
 redirect_from:

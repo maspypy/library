@@ -535,8 +535,8 @@ data:
   timestamp: '2022-08-16 15:06:00+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/yukicoder/1321_surj.test.cpp
+  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
 documentation_of: seq/stirling_number_2.hpp
 layout: document
 redirect_from:

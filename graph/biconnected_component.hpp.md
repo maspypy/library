@@ -148,9 +148,9 @@ data:
   timestamp: '2022-07-20 17:19:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRO_3_A_articulation.test.cpp
-  - test/library_checker/graph/biconnected_component.test.cpp
   - test/yukicoder/1326_bct.test.cpp
+  - test/library_checker/graph/biconnected_component.test.cpp
+  - test/aoj/GRO_3_A_articulation.test.cpp
 documentation_of: graph/biconnected_component.hpp
 layout: document
 redirect_from:

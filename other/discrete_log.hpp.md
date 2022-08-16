@@ -118,8 +118,8 @@ data:
   timestamp: '2022-06-05 16:37:10+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/yukicoder/1339_discrete_log.test.cpp
+  - test/library_checker/math/discrete_logarithm_mod.test.cpp
 documentation_of: other/discrete_log.hpp
 layout: document
 redirect_from:
