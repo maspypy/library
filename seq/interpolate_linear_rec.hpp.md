@@ -342,8 +342,8 @@ data:
   timestamp: '2022-08-16 16:26:57+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1500_interpolate_linear.test.cpp
   - test/yukicoder/1844_interpolate_c_rec.test.cpp
+  - test/yukicoder/1500_interpolate_linear.test.cpp
 documentation_of: seq/interpolate_linear_rec.hpp
 layout: document
 redirect_from:

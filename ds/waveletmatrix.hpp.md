@@ -122,10 +122,10 @@ data:
   timestamp: '2022-05-02 00:48:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/919_waveletmatrix.test.cpp
-  - test/yukicoder/924.test.cpp
-  - test/yukicoder/1332_range_freq.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
+  - test/yukicoder/1332_range_freq.test.cpp
+  - test/yukicoder/924.test.cpp
+  - test/yukicoder/919_waveletmatrix.test.cpp
 documentation_of: ds/waveletmatrix.hpp
 layout: document
 redirect_from:

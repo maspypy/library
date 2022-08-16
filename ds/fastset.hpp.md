@@ -99,9 +99,9 @@ data:
   timestamp: '2022-07-31 10:23:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/datastructure/sort_segtree_1.test.cpp
-  - test/library_checker/datastructure/sort_segtree.test.cpp
   - test/library_checker/datastructure/predecessor_problem.test.cpp
+  - test/library_checker/datastructure/sort_segtree.test.cpp
+  - test/library_checker/datastructure/sort_segtree_1.test.cpp
 documentation_of: ds/fastset.hpp
 layout: document
 redirect_from:

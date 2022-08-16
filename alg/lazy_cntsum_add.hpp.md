@@ -54,9 +54,9 @@ data:
   timestamp: '2022-06-27 16:36:33+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/235_lazytreemonoid.test.cpp
-  - test/yukicoder/789_dseg_lazy.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
+  - test/yukicoder/789_dseg_lazy.test.cpp
+  - test/yukicoder/235_lazytreemonoid.test.cpp
 documentation_of: alg/lazy_cntsum_add.hpp
 layout: document
 redirect_from:

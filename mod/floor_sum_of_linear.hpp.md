@@ -44,9 +44,9 @@ data:
   timestamp: '2022-07-22 22:14:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/library_checker/math/sum_of_floor_of_linear.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
-  - test/library_checker/math/sum_of_floor_of_linear.test.cpp
 documentation_of: mod/floor_sum_of_linear.hpp
 layout: document
 redirect_from:

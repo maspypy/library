@@ -27,12 +27,15 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/partition.test.cpp
+    title: test/library_checker/math/partition.test.cpp
   - icon: ':x:'
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
@@ -356,8 +359,9 @@ data:
   path: seq/partition_number.hpp
   requiredBy: []
   timestamp: '2022-08-16 16:58:14+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/library_checker/math/partition.test.cpp
   - test/mytest/enum_partitions.test.cpp
 documentation_of: seq/partition_number.hpp
 layout: document

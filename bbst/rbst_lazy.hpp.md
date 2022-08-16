@@ -196,8 +196,8 @@ data:
   timestamp: '2022-08-14 06:01:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/bbst_max_right.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+  - test/yukicoder/bbst_max_right.test.cpp
 documentation_of: bbst/rbst_lazy.hpp
 layout: document
 redirect_from:

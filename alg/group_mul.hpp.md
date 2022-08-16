@@ -27,7 +27,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - icon: ':x:'
@@ -64,23 +64,23 @@ data:
   isVerificationFile: false
   path: alg/group_mul.hpp
   requiredBy:
-  - mod/mod_log.hpp
-  - alg/lazy_add_mul.hpp
-  - poly/prefix_product_of_poly.hpp
   - poly/lagrange_interpolate_iota.hpp
-  - seq/kth_term_of_p_recursive.hpp
+  - poly/prefix_product_of_poly.hpp
+  - mod/mod_log.hpp
   - seq/interpolate_poly_exp_sum.hpp
+  - seq/kth_term_of_p_recursive.hpp
+  - alg/lazy_add_mul.hpp
   timestamp: '2022-06-05 16:18:07+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1339_discrete_log.test.cpp
+  - test/library_checker/math/discrete_logarithm_mod.test.cpp
+  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
+  - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/yukicoder/502_p_rec.test.cpp
+  - test/yukicoder/1339_discrete_log.test.cpp
   - test/yukicoder/899_bfsnumbering.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/powerquery.test.cpp
-  - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
 documentation_of: alg/group_mul.hpp
 layout: document
 redirect_from:

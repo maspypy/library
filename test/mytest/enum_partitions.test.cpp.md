@@ -37,7 +37,7 @@ data:
   - icon: ':x:'
     path: seq/enumerate_partitions.hpp
     title: seq/enumerate_partitions.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/partition_number.hpp
     title: seq/partition_number.hpp
   _extendedRequiredBy: []
