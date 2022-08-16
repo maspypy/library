@@ -193,6 +193,7 @@
 "test/mytest/powerquery.test.cpp": "2022-08-16 16:26:57 +0900",
 "test/mytest/range_freq_of_linear.test.cpp": "2022-08-13 02:22:39 +0900",
 "test/mytest/range_mex.test.cpp": "2022-08-16 03:36:43 +0900",
+"test/mytest/rect_add_pt_sum.test.cpp": "2022-08-16 19:47:00 +0900",
 "test/mytest/run_length.test.cpp": "2022-08-13 02:22:39 +0900",
 "test/yukicoder/1002_centroid.test.cpp": "2022-08-13 02:22:39 +0900",
 "test/yukicoder/1036_dseg_minleft_maxright.test.cpp": "2022-08-13 02:22:39 +0900",
