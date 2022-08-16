@@ -13,7 +13,7 @@ data:
   - icon: ':x:'
     path: ds/sortable_segtree.hpp
     title: ds/sortable_segtree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -437,25 +437,25 @@ data:
     \ n + 1) {\n      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n\
     \  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool\
     \ dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n <\
-    \ k) return 0;\n  if (dense) return C_dense(n, k);\n  if (!large) return fact<mint>(n)\
-    \ * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k, n - k);\n  mint x(1);\n\
-    \  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n  return x;\n}\n\
-    \ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n\
-    \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
-    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
-    }\n\n// [x^d](1-x)^{-n} \u306E\u8A08\u7B97\ntemplate <typename mint, bool large\
-    \ = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n\
-    \  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0));\
-    \ }\n  return C<mint, large, dense>(n + d - 1, n);\n}\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 8\
-    \ \"test/library_checker/datastructure/sort_segtree.test.cpp\"\n\nusing mint =\
-    \ modint998;\n\nvoid solve() {\n  // \u30AF\u30A8\u30EA\u5148\u8AAD\u307F\u306A\
-    \u3057\u306E\u65B9\n\n  using AFF = Group_Affine<mint>;\n  LL(N, Q);\n  vc<int>\
-    \ key(N);\n  vc<pair<mint, mint>> seg_raw(N);\n  FOR(i, N) { read(key[i]), read(seg_raw[i]);\
-    \ }\n\n  Sortable_SegTree<AFF> seg(1LL << 30, key, seg_raw);\n\n  int i, p, l,\
-    \ r;\n  pair<mint, mint> f;\n  mint x;\n\n  FOR(Q) {\n    LL(t);\n    if (t ==\
-    \ 0) {\n      read(i), read(p), read(f);\n      seg.set(i, p, f);\n    }\n   \
-    \ if (t == 1) {\n      read(l), read(r), read(x);\n      auto f = seg.prod(l,\
+    \ k) return 0;\n  if (dense) return C_dense<mint>(n, k);\n  if (!large) return\
+    \ fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k, n -\
+    \ k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n\
+    \  return x;\n}\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll\
+    \ n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return\
+    \ fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint,\
+    \ 1>(n, k);\n}\n\n// [x^d](1-x)^{-n} \u306E\u8A08\u7B97\ntemplate <typename mint,\
+    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
+    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
+    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, n);\n}\n\nusing modint107\
+    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\
+    #line 8 \"test/library_checker/datastructure/sort_segtree.test.cpp\"\n\nusing\
+    \ mint = modint998;\n\nvoid solve() {\n  // \u30AF\u30A8\u30EA\u5148\u8AAD\u307F\
+    \u306A\u3057\u306E\u65B9\n\n  using AFF = Group_Affine<mint>;\n  LL(N, Q);\n \
+    \ vc<int> key(N);\n  vc<pair<mint, mint>> seg_raw(N);\n  FOR(i, N) { read(key[i]),\
+    \ read(seg_raw[i]); }\n\n  Sortable_SegTree<AFF> seg(1LL << 30, key, seg_raw);\n\
+    \n  int i, p, l, r;\n  pair<mint, mint> f;\n  mint x;\n\n  FOR(Q) {\n    LL(t);\n\
+    \    if (t == 0) {\n      read(i), read(p), read(f);\n      seg.set(i, p, f);\n\
+    \    }\n    if (t == 1) {\n      read(l), read(r), read(x);\n      auto f = seg.prod(l,\
     \ r);\n      print(AFF::eval(f, x));\n    }\n    if (t == 2) {\n      read(l),\
     \ read(r);\n      seg.sort_inc(l, r);\n    }\n    if (t == 3) {\n      read(l),\
     \ read(r);\n      seg.sort_dec(l, r);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
@@ -487,7 +487,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/sort_segtree.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 15:06:00+09:00'
+  timestamp: '2022-08-16 16:26:57+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/sort_segtree.test.cpp

@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -272,38 +272,38 @@ data:
     \ n + 1) {\n      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n\
     \  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool\
     \ dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n <\
-    \ k) return 0;\n  if (dense) return C_dense(n, k);\n  if (!large) return fact<mint>(n)\
-    \ * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k, n - k);\n  mint x(1);\n\
-    \  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n  return x;\n}\n\
-    \ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n\
-    \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
-    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
-    }\n\n// [x^d](1-x)^{-n} \u306E\u8A08\u7B97\ntemplate <typename mint, bool large\
-    \ = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n\
-    \  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0));\
-    \ }\n  return C<mint, large, dense>(n + d - 1, n);\n}\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 1\
-    \ \"other/random.hpp\"\nstruct RandomNumberGenerator {\n  mt19937 mt;\n\n  RandomNumberGenerator()\
-    \ : mt(chrono::steady_clock::now().time_since_epoch().count()) {}\n\n  ll operator()(ll\
-    \ a, ll b) {  // [a, b)\n    uniform_int_distribution<ll> dist(a, b - 1);\n  \
-    \  return dist(mt);\n  }\n\n  ll operator()(ll b) {  // [0, b)\n    return (*this)(0,\
-    \ b);\n  }\n};\n#line 3 \"mod/mod_sqrt.hpp\"\n\r\ntemplate <typename mint>\r\n\
-    mint mod_sqrt(mint a) {\r\n  int p = mint::get_mod();\r\n  if (p == 2) return\
-    \ a;\r\n  if (a == 0) return 0;\r\n  int k = (p - 1) / 2;\r\n  if (a.pow(k) !=\
-    \ 1) return 0;\r\n  RandomNumberGenerator RNG;\r\n  auto find = [&]() -> pair<mint,\
-    \ mint> {\r\n    while (1) {\r\n      mint b = RNG(2, p);\r\n      mint D = b\
-    \ * b - a;\r\n      if (D == 0) return {b, D};\r\n      if (D.pow(k) != mint(1))\
-    \ return {b, D};\r\n    }\r\n  };\r\n  auto [b, D] = find();\r\n  if (D == 0)\
-    \ return b;\r\n  ++k;\r\n  // (b + sqrt(D))^k\r\n  mint f0 = b, f1 = 1;\r\n  mint\
-    \ g0 = 1, g1 = 0;\r\n  while (k) {\r\n    if (k & 1) { tie(g0, g1) = mp(f0 * g0\
-    \ + D * f1 * g1, f1 * g0 + f0 * g1); }\r\n    tie(f0, f1) = mp(f0 * f0 + D * f1\
-    \ * f1, mint(2) * f0 * f1);\r\n    k >>= 1;\r\n  }\r\n  return g0;\r\n}\r\n#line\
-    \ 5 \"test/library_checker/math/sqrt_mod.test.cpp\"\n\r\nusing mint = amint;\r\
-    \n\r\nvoid solve() {\r\n  LL(T);\r\n  FOR(T) {\r\n    LL(y0, p);\r\n    mint::set_mod(p);\r\
-    \n    mint y = y0;\r\n    mint r = mod_sqrt(y);\r\n    if (r * r == y)\r\n   \
-    \   print(r);\r\n    else\r\n      print(-1);\r\n  }\r\n}\r\n\r\nsigned main()\
-    \ {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
-    \n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ k) return 0;\n  if (dense) return C_dense<mint>(n, k);\n  if (!large) return\
+    \ fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k, n -\
+    \ k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n\
+    \  return x;\n}\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll\
+    \ n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return\
+    \ fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint,\
+    \ 1>(n, k);\n}\n\n// [x^d](1-x)^{-n} \u306E\u8A08\u7B97\ntemplate <typename mint,\
+    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
+    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
+    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, n);\n}\n\nusing modint107\
+    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\
+    #line 1 \"other/random.hpp\"\nstruct RandomNumberGenerator {\n  mt19937 mt;\n\n\
+    \  RandomNumberGenerator() : mt(chrono::steady_clock::now().time_since_epoch().count())\
+    \ {}\n\n  ll operator()(ll a, ll b) {  // [a, b)\n    uniform_int_distribution<ll>\
+    \ dist(a, b - 1);\n    return dist(mt);\n  }\n\n  ll operator()(ll b) {  // [0,\
+    \ b)\n    return (*this)(0, b);\n  }\n};\n#line 3 \"mod/mod_sqrt.hpp\"\n\r\ntemplate\
+    \ <typename mint>\r\nmint mod_sqrt(mint a) {\r\n  int p = mint::get_mod();\r\n\
+    \  if (p == 2) return a;\r\n  if (a == 0) return 0;\r\n  int k = (p - 1) / 2;\r\
+    \n  if (a.pow(k) != 1) return 0;\r\n  RandomNumberGenerator RNG;\r\n  auto find\
+    \ = [&]() -> pair<mint, mint> {\r\n    while (1) {\r\n      mint b = RNG(2, p);\r\
+    \n      mint D = b * b - a;\r\n      if (D == 0) return {b, D};\r\n      if (D.pow(k)\
+    \ != mint(1)) return {b, D};\r\n    }\r\n  };\r\n  auto [b, D] = find();\r\n \
+    \ if (D == 0) return b;\r\n  ++k;\r\n  // (b + sqrt(D))^k\r\n  mint f0 = b, f1\
+    \ = 1;\r\n  mint g0 = 1, g1 = 0;\r\n  while (k) {\r\n    if (k & 1) { tie(g0,\
+    \ g1) = mp(f0 * g0 + D * f1 * g1, f1 * g0 + f0 * g1); }\r\n    tie(f0, f1) = mp(f0\
+    \ * f0 + D * f1 * f1, mint(2) * f0 * f1);\r\n    k >>= 1;\r\n  }\r\n  return g0;\r\
+    \n}\r\n#line 5 \"test/library_checker/math/sqrt_mod.test.cpp\"\n\r\nusing mint\
+    \ = amint;\r\n\r\nvoid solve() {\r\n  LL(T);\r\n  FOR(T) {\r\n    LL(y0, p);\r\
+    \n    mint::set_mod(p);\r\n    mint y = y0;\r\n    mint r = mod_sqrt(y);\r\n \
+    \   if (r * r == y)\r\n      print(r);\r\n    else\r\n      print(-1);\r\n  }\r\
+    \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sqrt_mod\"\r\n#include\
     \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"mod/mod_sqrt.hpp\"\
     \r\n\r\nusing mint = amint;\r\n\r\nvoid solve() {\r\n  LL(T);\r\n  FOR(T) {\r\n\
@@ -320,7 +320,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/sqrt_mod.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 15:06:00+09:00'
+  timestamp: '2022-08-16 16:26:57+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/sqrt_mod.test.cpp
