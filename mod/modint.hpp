@@ -190,7 +190,7 @@ template <typename mint, bool large = false, bool dense = false>
 mint C(ll n, ll k) {
   assert(n >= 0);
   if (k < 0 || n < k) return 0;
-  if (dense) return C_dense(n, k);
+  if (dense) return C_dense<mint>(n, k);
   if (!large) return fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);
   k = min(k, n - k);
   mint x(1);
