@@ -213,7 +213,7 @@ mint C_negative(ll n, ll d) {
   assert(n >= 0);
   if (d < 0) return mint(0);
   if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }
-  return C<mint, large, dense>(n + d - 1, n);
+  return C<mint, large, dense>(n + d - 1, d);
 }
 
 using modint107 = modint<1000000007>;
