@@ -22,6 +22,9 @@ data:
     path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
     title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1197.test.cpp
+    title: test/yukicoder/1197.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/235_lazytreemonoid.test.cpp
     title: test/yukicoder/235_lazytreemonoid.test.cpp
   _isVerificationFailed: true
@@ -334,6 +337,7 @@ data:
   timestamp: '2022-08-11 02:08:49+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1197.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
 documentation_of: graph/lazytreemonoid.hpp

@@ -81,6 +81,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/lca_directed.test.cpp
     title: test/library_checker/tree/lca_directed.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1197.test.cpp
+    title: test/yukicoder/1197.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1326_bct.test.cpp
     title: test/yukicoder/1326_bct.test.cpp
@@ -294,6 +297,7 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1641_tree_abel.test.cpp
+  - test/yukicoder/1197.test.cpp
   - test/yukicoder/1778_bracket_graph.test.cpp
   - test/yukicoder/1718_rerooting.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp

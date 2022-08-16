@@ -13,6 +13,9 @@ data:
     path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
     title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1197.test.cpp
+    title: test/yukicoder/1197.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/235_lazytreemonoid.test.cpp
     title: test/yukicoder/235_lazytreemonoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -54,6 +57,7 @@ data:
   timestamp: '2022-06-27 16:36:33+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1197.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/789_dseg_lazy.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp

@@ -36,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
     title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1197.test.cpp
+    title: test/yukicoder/1197.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1234_rmq.test.cpp
     title: test/yukicoder/1234_rmq.test.cpp
@@ -195,6 +198,7 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1548_power_sums.test.cpp
+  - test/yukicoder/1197.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/255.test.cpp
   - test/yukicoder/899_bfsnumbering.test.cpp

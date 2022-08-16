@@ -8,17 +8,17 @@ data:
   - icon: ':warning:'
     path: string/sort_all_substring.hpp
     title: string/sort_all_substring.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/suffixarray.hpp
     title: string/suffixarray.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticrmq_sparse.test.cpp
     title: test/library_checker/datastructure/staticrmq_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/string/number_of_substrings.test.cpp
     title: test/library_checker/string/number_of_substrings.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/string/suffix_array.test.cpp
     title: test/library_checker/string/suffix_array.test.cpp
   - icon: ':x:'

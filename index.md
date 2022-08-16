@@ -160,7 +160,7 @@ data:
       title: bbst/splaytree_monoid.hpp
   - name: dp
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: dp/count_subseq.hpp
       title: dp/count_subseq.hpp
     - icon: ':heavy_check_mark:'
@@ -639,7 +639,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_pow.hpp
       title: mod/mod_pow.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/mod_sqrt.hpp
       title: mod/mod_sqrt.hpp
     - icon: ':heavy_check_mark:'
@@ -862,16 +862,16 @@ data:
     - icon: ':question:'
       path: poly/fps_pow.hpp
       title: poly/fps_pow.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/fps_sqrt.hpp
       title: poly/fps_sqrt.hpp
     - icon: ':question:'
       path: poly/integrate.hpp
       title: poly/integrate.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/lagrange_interpolate_iota.hpp
       title: poly/lagrange_interpolate_iota.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/multipoint.hpp
       title: poly/multipoint.hpp
     - icon: ':heavy_check_mark:'
@@ -889,7 +889,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/poly_gcd.hpp
       title: poly/poly_gcd.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/poly_taylor_shift.hpp
       title: poly/poly_taylor_shift.hpp
     - icon: ':x:'
@@ -1012,7 +1012,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/split.hpp
       title: string/split.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: string/suffixarray.hpp
       title: string/suffixarray.hpp
     - icon: ':x:'
@@ -1535,28 +1535,28 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/polynomial_division.test.cpp
       title: test/library_checker/polynomial/polynomial_division.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/polynomial_interpolation.test.cpp
       title: test/library_checker/polynomial/polynomial_interpolation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
       title: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/pow_of_fps.test.cpp
       title: test/library_checker/polynomial/pow_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
       title: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
       title: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
       title: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
       title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
       title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - name: test/library_checker/sample
@@ -1569,10 +1569,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/string/enumerate_palindromes.test.cpp
       title: test/library_checker/string/enumerate_palindromes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/string/number_of_subsequences.test.cpp
       title: test/library_checker/string/number_of_subsequences.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/string/number_of_substrings.test.cpp
       title: test/library_checker/string/number_of_substrings.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1581,7 +1581,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/string/run_enumerate_vec.test.cpp
       title: test/library_checker/string/run_enumerate_vec.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/string/suffix_array.test.cpp
       title: test/library_checker/string/suffix_array.test.cpp
     - icon: ':x:'
@@ -1695,6 +1695,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1170_range_to_range.test.cpp
       title: test/yukicoder/1170_range_to_range.test.cpp
+    - icon: ':x:'
+      path: test/yukicoder/1197.test.cpp
+      title: test/yukicoder/1197.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1234_rmq.test.cpp
       title: test/yukicoder/1234_rmq.test.cpp

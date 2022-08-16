@@ -34,6 +34,9 @@ data:
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1197.test.cpp
+    title: test/yukicoder/1197.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/235_lazytreemonoid.test.cpp
     title: test/yukicoder/235_lazytreemonoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -66,6 +69,7 @@ data:
   timestamp: '2022-04-23 17:49:11+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1197.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/529_two_edge.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp

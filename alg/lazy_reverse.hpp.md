@@ -13,6 +13,9 @@ data:
     path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
     title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1197.test.cpp
+    title: test/yukicoder/1197.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/235_lazytreemonoid.test.cpp
     title: test/yukicoder/235_lazytreemonoid.test.cpp
   _isVerificationFailed: true
@@ -45,6 +48,7 @@ data:
   timestamp: '2022-04-23 17:49:11+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1197.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
 documentation_of: alg/lazy_reverse.hpp

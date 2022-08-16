@@ -156,6 +156,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1141_cumsum2d.test.cpp
     title: test/yukicoder/1141_cumsum2d.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1197.test.cpp
+    title: test/yukicoder/1197.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1234_rmq.test.cpp
     title: test/yukicoder/1234_rmq.test.cpp
@@ -250,6 +253,7 @@ data:
   - test/yukicoder/1641_tree_abel.test.cpp
   - test/yukicoder/1097_doubling.test.cpp
   - test/yukicoder/1441_rbst.test.cpp
+  - test/yukicoder/1197.test.cpp
   - test/yukicoder/789_dseg.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/1038_centroid.test.cpp
