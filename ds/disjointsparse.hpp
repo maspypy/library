@@ -8,6 +8,13 @@ struct DisjointSparse {
   DisjointSparse() {}
   DisjointSparse(vc<X>& A) { build(A); }
 
+  template <typename F>
+  DisjointSparse(int n, F f) {
+    vc<X> A(n);
+    FOR(i, n) A[i] = f(i);
+    build(A);
+  }
+
   void build(vc<X>& A) {
     n = len(A);
     log = 1;
