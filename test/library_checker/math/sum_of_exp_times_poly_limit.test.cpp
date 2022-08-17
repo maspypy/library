@@ -11,7 +11,7 @@ void solve() {
   scanner.read(r);
   LL(d);
   int L = d + 5;
-  vc<mint> a = powertable_2<mint>(d, L);
+  vc<mint> a = powertable_2<mint>(d, L - 1);
   mint p = 1;
   FOR(i, L) {
     a[i] *= p;
