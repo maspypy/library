@@ -136,6 +136,9 @@ data:
     path: test/aoj/NTL_1_E_extgcd.test.cpp
     title: test/aoj/NTL_1_E_extgcd.test.cpp
   - icon: ':x:'
+    path: test/atcoder/abc200a.test.cpp
+    title: test/atcoder/abc200a.test.cpp
+  - icon: ':x:'
     path: test/atcoder/abc244h.test.cpp
     title: test/atcoder/abc244h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -636,7 +639,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1170_range_to_range.test.cpp
     title: test/yukicoder/1170_range_to_range.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1242,6 +1245,7 @@ data:
   - test/aoj/DPL_1_H_kanpsack01.test.cpp
   - test/aoj/2677.test.cpp
   - test/atcoder/abc244h.test.cpp
+  - test/atcoder/abc200a.test.cpp
 documentation_of: my_template.hpp
 layout: document
 redirect_from:
