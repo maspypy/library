@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/cht.hpp
     title: ds/cht.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc244/tasks/abc244_h
+    PROBLEM: https://atcoder.jp/contests/abc244/tasks/abc244_Ex
     links:
-    - https://atcoder.jp/contests/abc244/tasks/abc244_h
-  bundledCode: "#line 1 \"test/atcoder/abc244h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc244/tasks/abc244_h\"\
+    - https://atcoder.jp/contests/abc244/tasks/abc244_Ex
+  bundledCode: "#line 1 \"test/atcoder/abc244h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc244/tasks/abc244_Ex\"\
     \n#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
     \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
     \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
@@ -233,9 +233,9 @@ data:
     \n\nvoid solve() {\n  LL(Q);\n  CHT_xy<ll> cht;\n  FOR(Q) {\n    LL(a, b, x, y);\n\
     \    cht.add(a, b);\n    print(cht.get_max(x, y));\n  }\n}\n\nsigned main() {\n\
     \  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc244/tasks/abc244_h\"\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/cht.hpp\"\n\n\
-    void solve() {\n  LL(Q);\n  CHT_xy<ll> cht;\n  FOR(Q) {\n    LL(a, b, x, y);\n\
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc244/tasks/abc244_Ex\"\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/cht.hpp\"\
+    \n\nvoid solve() {\n  LL(Q);\n  CHT_xy<ll> cht;\n  FOR(Q) {\n    LL(a, b, x, y);\n\
     \    cht.add(a, b);\n    print(cht.get_max(x, y));\n  }\n}\n\nsigned main() {\n\
     \  solve();\n\n  return 0;\n}\n"
   dependsOn:
@@ -245,8 +245,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc244h.test.cpp
   requiredBy: []
-  timestamp: '2022-08-17 11:45:05+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-17 11:49:19+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/abc244h.test.cpp
 layout: document
