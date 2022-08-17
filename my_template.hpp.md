@@ -136,6 +136,9 @@ data:
     path: test/aoj/NTL_1_E_extgcd.test.cpp
     title: test/aoj/NTL_1_E_extgcd.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc174f.test.cpp
+    title: test/atcoder/abc174f.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc200a.test.cpp
     title: test/atcoder/abc200a.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1250,6 +1253,7 @@ data:
   - test/atcoder/abc244h.test.cpp
   - test/atcoder/abc200a.test.cpp
   - test/atcoder/agc058d.test.cpp
+  - test/atcoder/abc174f.test.cpp
 documentation_of: my_template.hpp
 layout: document
 redirect_from:

@@ -48,6 +48,9 @@ data:
     path: ds/fenwickraq.hpp
     title: ds/fenwickraq.hpp
   - icon: ':warning:'
+    path: ds/online_uniqueproductquery.hpp
+    title: ds/online_uniqueproductquery.hpp
+  - icon: ':warning:'
     path: ds/point_add_polygon_sum.hpp
     title: ds/point_add_polygon_sum.hpp
   - icon: ':heavy_check_mark:'
@@ -62,7 +65,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/rectangleunion.hpp
     title: ds/rectangleunion.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: ds/uniqueproductquery.hpp
     title: ds/uniqueproductquery.hpp
   - icon: ':heavy_check_mark:'
@@ -102,6 +105,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
     title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc174f.test.cpp
+    title: test/atcoder/abc174f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_range_sum.test.cpp
     title: test/library_checker/datastructure/point_add_range_sum.test.cpp
@@ -236,6 +242,7 @@ data:
   - alg/lazy_min_add.hpp
   - ds/point_add_polygon_sum.hpp
   - ds/point_add_rectangle_sum.hpp
+  - ds/online_uniqueproductquery.hpp
   - ds/rectangle_add_point_sum.hpp
   - ds/rectangleunion.hpp
   - ds/fenwickraq.hpp
@@ -291,6 +298,7 @@ data:
   - test/aoj/DSL_2_E_fenwick_raq.test.cpp
   - test/aoj/DSL_2_H_min_add_lazy.test.cpp
   - test/aoj/2842_fenwick2d_dense.test.cpp
+  - test/atcoder/abc174f.test.cpp
 documentation_of: alg/group_add.hpp
 layout: document
 redirect_from:

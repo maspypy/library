@@ -279,6 +279,9 @@ data:
     - icon: ':warning:'
       path: ds/mo_3d.hpp
       title: ds/mo_3d.hpp
+    - icon: ':warning:'
+      path: ds/online_uniqueproductquery.hpp
+      title: ds/online_uniqueproductquery.hpp
     - icon: ':heavy_check_mark:'
       path: ds/parallel_binary_search.hpp
       title: ds/parallel_binary_search.hpp
@@ -330,7 +333,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/unionfind.hpp
       title: ds/unionfind.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/uniqueproductquery.hpp
       title: ds/uniqueproductquery.hpp
     - icon: ':heavy_check_mark:'
@@ -1163,6 +1166,9 @@ data:
       title: test/aoj/NTL_1_E_extgcd.test.cpp
   - name: test/atcoder
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/atcoder/abc174f.test.cpp
+      title: test/atcoder/abc174f.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc200a.test.cpp
       title: test/atcoder/abc200a.test.cpp
