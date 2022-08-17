@@ -262,6 +262,7 @@
 "test/yukicoder/626_knapsack_branch_bound.test.cpp": "2022-08-13 02:22:39 +0900",
 "test/yukicoder/655_cumsum2d.test.cpp": "2022-08-14 06:42:53 +0900",
 "test/yukicoder/705_monge_shortest_path.test.cpp": "2022-08-13 02:22:39 +0900",
+"test/yukicoder/749_lazysegtree.test.cpp": "2022-08-17 05:19:57 +0900",
 "test/yukicoder/789_dseg.test.cpp": "2022-08-13 02:22:39 +0900",
 "test/yukicoder/789_dseg_lazy.test.cpp": "2022-08-13 02:22:39 +0900",
 "test/yukicoder/899_bfsnumbering.test.cpp": "2022-08-13 02:22:39 +0900",
