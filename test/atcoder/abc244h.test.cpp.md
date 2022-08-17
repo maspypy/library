@@ -18,8 +18,8 @@ data:
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     links:
-    - https://atcoder.jp/contests/abc244/tasks/abc244_Ex
-  bundledCode: "#line 1 \"test/atcoder/abc244h.test.cpp\"\n#define PROBLME \"https://atcoder.jp/contests/abc244/tasks/abc244_Ex\"\
+    - https://atcoder.jp/contests/abc244/tasks/abc244_h
+  bundledCode: "#line 1 \"test/atcoder/abc244h.test.cpp\"\n#define PROBLME \"https://atcoder.jp/contests/abc244/tasks/abc244_h\"\
     \n#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
     \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
     \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
@@ -232,9 +232,9 @@ data:
     \n\nvoid solve() {\n  LL(Q);\n  CHT_xy<ll> cht;\n  FOR(Q) {\n    LL(a, b, x, y);\n\
     \    cht.add(a, b);\n    print(cht.get_max(x, y));\n  }\n}\n\nsigned main() {\n\
     \  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLME \"https://atcoder.jp/contests/abc244/tasks/abc244_Ex\"\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/cht.hpp\"\
-    \n\nvoid solve() {\n  LL(Q);\n  CHT_xy<ll> cht;\n  FOR(Q) {\n    LL(a, b, x, y);\n\
+  code: "#define PROBLME \"https://atcoder.jp/contests/abc244/tasks/abc244_h\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/cht.hpp\"\n\n\
+    void solve() {\n  LL(Q);\n  CHT_xy<ll> cht;\n  FOR(Q) {\n    LL(a, b, x, y);\n\
     \    cht.add(a, b);\n    print(cht.get_max(x, y));\n  }\n}\n\nsigned main() {\n\
     \  solve();\n\n  return 0;\n}\n"
   dependsOn:
@@ -244,7 +244,7 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc244h.test.cpp
   requiredBy: []
-  timestamp: '2022-08-17 07:27:41+09:00'
+  timestamp: '2022-08-17 11:40:58+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/atcoder/abc244h.test.cpp
