@@ -1163,7 +1163,7 @@ data:
       title: test/aoj/NTL_1_E_extgcd.test.cpp
   - name: test/atcoder
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc200a.test.cpp
       title: test/atcoder/abc200a.test.cpp
     - icon: ':x:'
