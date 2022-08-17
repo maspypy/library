@@ -35,10 +35,13 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    links: []
-  bundledCode: "#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace\
-    \ std;\n\nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\n\
-    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
+    PROBLEM: https://atcoder.jp/contests/agc058/tasks/agc058_d
+    links:
+    - https://atcoder.jp/contests/agc058/tasks/agc058_d
+  bundledCode: "#line 1 \"test/atcoder/agc058d.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/agc058/tasks/agc058_d\"\
+    \n#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
+    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
+    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
     \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
     template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
     \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
@@ -208,7 +211,7 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 3 \"test/atcoder/agc058d.test.cpp\"\n\n#line 2 \"mod/modint.hpp\"\
+    \ { yes(!t); }\r\n#line 4 \"test/atcoder/agc058d.test.cpp\"\n\n#line 2 \"mod/modint.hpp\"\
     \n\ntemplate <unsigned int mod>\nstruct modint {\n  static constexpr bool is_modint\
     \ = true;\n  unsigned int val;\n  constexpr modint(const long long val = 0) noexcept\n\
     \      : val(val >= 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const\
@@ -498,7 +501,7 @@ data:
     \   int k = i - j;\n      poly tmp = convolution(A[k], G[j]);\n      FOR(t, len(tmp))\
     \ { add_at(A[i], t, -tmp[t]); }\n    }\n  }\n\n  vc<mint> res;\n  FOR(i, m) {\n\
     \    vc<mint> f = convolution(h[i], A[i]);\n    FOR(i, len(f)) add_at(res, i,\
-    \ f[i]);\n  }\n  return res;\n}\n#line 6 \"test/atcoder/agc058d.test.cpp\"\n\n\
+    \ f[i]);\n  }\n  return res;\n}\n#line 7 \"test/atcoder/agc058d.test.cpp\"\n\n\
     using mint = modint998;\n\nvoid solve() {\n  LL(A, B, C);\n  ll N = A + B + C;\n\
     \n  using poly = vc<mint>;\n  vc<poly> F(2), G(4);\n  F[0] = {mint(3)};\n  F[1]\
     \ = {mint(-1)};\n  G[0] = {mint(1)};\n  G[1] = {mint(-1)};\n  G[3] = {mint(0),\
@@ -509,7 +512,8 @@ data:
     \              * fact_inv<mint>(c);\n    ANS += g[t] * cf;\n  }\n  print(ANS);\n\
     }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  //\
     \ LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"poly/convolution.hpp\"\
+  code: "#define PROBLEM \"https://atcoder.jp/contests/agc058/tasks/agc058_d\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"poly/convolution.hpp\"\
     \n#include \"poly/coef_of_rational_fps_2d.hpp\"\n\nusing mint = modint998;\n\n\
     void solve() {\n  LL(A, B, C);\n  ll N = A + B + C;\n\n  using poly = vc<mint>;\n\
     \  vc<poly> F(2), G(4);\n  F[0] = {mint(3)};\n  F[1] = {mint(-1)};\n  G[0] = {mint(1)};\n\
@@ -533,7 +537,7 @@ data:
   isVerificationFile: true
   path: test/atcoder/agc058d.test.cpp
   requiredBy: []
-  timestamp: '2022-08-17 12:07:59+09:00'
+  timestamp: '2022-08-17 21:44:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/atcoder/agc058d.test.cpp
