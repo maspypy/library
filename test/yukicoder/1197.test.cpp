@@ -28,6 +28,8 @@ void solve() {
   auto& dep = hld.depth;
   FOR(i, K) d_sm += dep[C[i]];
 
+  bool out = 0;
+
   FOR(Q) {
     LL(t);
     if (t == 1) {
@@ -47,8 +49,10 @@ void solve() {
       ANS -= 2 * X.prod_path(0, v).se;
       ANS += 2 * K;
       print(ANS);
+      out = 1;
     }
   }
+  if (!out) print();
 }
 
 signed main() {
