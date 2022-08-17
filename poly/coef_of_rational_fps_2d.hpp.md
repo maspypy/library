@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/atcoder/agc058d.test.cpp
+    title: test/atcoder/agc058d.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://atcoder.jp/contests/agc058/tasks/agc058_d
@@ -76,8 +79,9 @@ data:
   path: poly/coef_of_rational_fps_2d.hpp
   requiredBy: []
   timestamp: '2022-08-15 04:56:35+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/atcoder/agc058d.test.cpp
 documentation_of: poly/coef_of_rational_fps_2d.hpp
 layout: document
 redirect_from:

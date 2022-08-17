@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: dp/maxplus_convolution_concave.hpp
     title: dp/maxplus_convolution_concave.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
