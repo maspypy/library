@@ -47,6 +47,7 @@
 "test/atcoder/abc200a.test.cpp": "2022-08-17 11:10:21 +0900",
 "test/atcoder/abc244h.test.cpp": "2022-08-17 11:49:19 +0900",
 "test/example.test.cpp": "2022-04-16 04:26:49 +0900",
+"test/library_checker/add_remove_query.test.cpp": "2022-08-19 00:43:11 +0900",
 "test/library_checker/convolution/bitwise_and_convolution.test.cpp": "2022-08-17 05:19:57 +0900",
 "test/library_checker/convolution/bitwise_or_convolution.test.cpp": "2022-08-17 05:19:57 +0900",
 "test/library_checker/convolution/bitwise_xor_convolution.test.cpp": "2022-08-17 05:19:57 +0900",
