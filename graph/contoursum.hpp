@@ -57,7 +57,8 @@ struct ContourSum {
     st.eb(0, N);
 
     while (len(st)) {
-      auto [v0, n] = st.back();
+      int v0 = st.back().fi;
+      int n = st.back().se;
       st.pop_back();
       int c = -1;
       {
