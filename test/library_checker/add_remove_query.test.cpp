@@ -2,7 +2,7 @@
   "https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/convert_addremove_query.hpp"
+#include "ds/addremove_query.hpp"
 #include "pds/rollbackarray.hpp"
 #include "pds/rollbackunionfind.hpp"
 
@@ -13,7 +13,7 @@ void solve() {
 
   vc<int> query;
 
-  Convert_AddRemove_Query<P> X;
+  Convert_AddRemove_Query<P, true> X;
   FOR(Q) {
     LL(t);
     if (t == 0) {
