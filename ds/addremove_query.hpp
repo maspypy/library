@@ -9,6 +9,7 @@
 template <typename X, bool monotone>
 struct AddRemove_Query {
   map<X, int> MP;
+  vc<tuple<int, int, X>> dat;
   map<X, vc<int>> ADD;
   map<X, vc<int>> RM;
 
@@ -50,7 +51,7 @@ private:
     assert(!MP.count(x));
     MP[x] = time;
   }
-  void rm_monotone(int time, X x) {
+  void remove_monotone(int time, X x) {
     auto it = MP.find(x);
     assert(it != MP.end());
     int t = (*it).se;
@@ -59,7 +60,6 @@ private:
     dat.eb(t, time, x);
   }
   vc<tuple<int, int, X>> calc_monotone(int time) {
-    vc<tuple<int, int, X>> dat;
     for (auto&& [x, t]: MP) {
       if (t == time) continue;
       dat.eb(t, time, x);
