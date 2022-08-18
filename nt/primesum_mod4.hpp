@@ -1,7 +1,3 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
-#include "my_template.hpp"
-#include "other/io.hpp"
-
 #include "nt/primesum.hpp"
 #include "nt/primetable.hpp"
 
