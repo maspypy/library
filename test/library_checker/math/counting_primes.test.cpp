@@ -5,8 +5,9 @@
 
 void solve() {
   LL(N);
-  auto [sum_lo, sum_hi] = primecnt<ll>(N);
-  print(sum_hi[1]);
+  PrimeSum<ll> X(N);
+  X.count();
+  print(X[N]);
 }
 
 signed main() {
