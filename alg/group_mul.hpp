@@ -1,3 +1,5 @@
+#pragma once
+
 template <class T>
 struct Group_Mul {
   using value_type = T;
