@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_mul.hpp
     title: alg/group_mul.hpp
   - icon: ':heavy_check_mark:'
@@ -339,7 +339,7 @@ data:
     \ + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\
     \n  static constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\
     \n  static constexpr X unit() { return X(0); }\r\n  static constexpr bool commute\
-    \ = true;\r\n};\r\n#line 1 \"alg/group_mul.hpp\"\ntemplate <class T>\r\nstruct\
+    \ = true;\r\n};\r\n#line 2 \"alg/group_mul.hpp\"\n\r\ntemplate <class T>\r\nstruct\
     \ Group_Mul {\r\n  using value_type = T;\r\n  using X = T;\r\n  static constexpr\
     \ X op(const X &x, const X &y) noexcept { return x * y; }\r\n  static constexpr\
     \ X inverse(const X &x) noexcept { return X(1) / x; }\r\n  static constexpr X\
@@ -392,7 +392,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/899_bfsnumbering.test.cpp
   requiredBy: []
-  timestamp: '2022-08-18 17:59:01+09:00'
+  timestamp: '2022-08-19 06:32:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/899_bfsnumbering.test.cpp

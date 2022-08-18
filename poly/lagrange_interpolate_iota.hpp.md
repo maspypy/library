@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_mul.hpp
     title: alg/group_mul.hpp
   - icon: ':heavy_check_mark:'
@@ -53,7 +53,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"alg/group_mul.hpp\"\ntemplate <class T>\r\nstruct Group_Mul\
+  bundledCode: "#line 2 \"alg/group_mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Group_Mul\
     \ {\r\n  using value_type = T;\r\n  using X = T;\r\n  static constexpr X op(const\
     \ X &x, const X &y) noexcept { return x * y; }\r\n  static constexpr X inverse(const\
     \ X &x) noexcept { return X(1) / x; }\r\n  static constexpr X unit() { return\
@@ -400,7 +400,7 @@ data:
   - poly/prefix_product_of_poly.hpp
   - seq/kth_term_of_p_recursive.hpp
   - seq/interpolate_poly_exp_sum.hpp
-  timestamp: '2022-08-18 17:59:20+09:00'
+  timestamp: '2022-08-19 06:32:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/502_p_rec.test.cpp

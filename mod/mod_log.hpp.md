@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_mul.hpp
     title: alg/group_mul.hpp
   - icon: ':heavy_check_mark:'
@@ -160,11 +160,11 @@ data:
     \ (k != K) x = GSet::act(a, x);\r\n  }\r\n\r\n  a = Group::inverse(apow(K));\r\
     \n  FOR(k, K + 1) {\r\n    auto key = H(y);\r\n    if (MP.count(key)) {\r\n  \
     \    ll res = k * K + MP[key] + lb;\r\n      return (res >= ub ? -1 : res);\r\n\
-    \    }\r\n    y = GSet::act(a, y);\r\n  }\r\n  return -1;\r\n}\n#line 1 \"alg/group_mul.hpp\"\
-    \ntemplate <class T>\r\nstruct Group_Mul {\r\n  using value_type = T;\r\n  using\
-    \ X = T;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return\
-    \ x * y; }\r\n  static constexpr X inverse(const X &x) noexcept { return X(1)\
-    \ / x; }\r\n  static constexpr X unit() { return X(1); }\r\n  static constexpr\
+    \    }\r\n    y = GSet::act(a, y);\r\n  }\r\n  return -1;\r\n}\n#line 2 \"alg/group_mul.hpp\"\
+    \n\r\ntemplate <class T>\r\nstruct Group_Mul {\r\n  using value_type = T;\r\n\
+    \  using X = T;\r\n  static constexpr X op(const X &x, const X &y) noexcept {\
+    \ return x * y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
+    \ X(1) / x; }\r\n  static constexpr X unit() { return X(1); }\r\n  static constexpr\
     \ bool commute = true;\r\n};\r\n#line 4 \"mod/mod_log.hpp\"\n\r\nint mod_log(int\
     \ mod, ll a, ll b) {\r\n  a = divmod(a, mod).se;\r\n  b = divmod(b, mod).se;\r\
     \n  // \u307E\u305A\u7FA4\u306B\u5E30\u7740\u3059\u308B\u3002\u5C0F\u3055\u3044\
@@ -193,7 +193,7 @@ data:
   isVerificationFile: false
   path: mod/mod_log.hpp
   requiredBy: []
-  timestamp: '2022-08-17 05:19:57+09:00'
+  timestamp: '2022-08-19 06:32:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/discrete_logarithm_mod.test.cpp

@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_mul.hpp
     title: alg/group_mul.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/powerquery.test.cpp
     title: test/mytest/powerquery.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"alg/group_mul.hpp\"\ntemplate <class T>\r\nstruct Group_Mul\
+  bundledCode: "#line 2 \"alg/group_mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Group_Mul\
     \ {\r\n  using value_type = T;\r\n  using X = T;\r\n  static constexpr X op(const\
     \ X &x, const X &y) noexcept { return x * y; }\r\n  static constexpr X inverse(const\
     \ X &x) noexcept { return X(1) / x; }\r\n  static constexpr X unit() { return\
@@ -43,8 +43,8 @@ data:
   isVerificationFile: false
   path: ds/powerquery.hpp
   requiredBy: []
-  timestamp: '2022-08-19 03:13:15+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-08-19 06:32:19+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/powerquery.test.cpp
 documentation_of: ds/powerquery.hpp

@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/lazy_add_mul.hpp
     title: alg/lazy_add_mul.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/powerquery.hpp
     title: ds/powerquery.hpp
   - icon: ':heavy_check_mark:'
@@ -36,7 +36,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/powerquery.test.cpp
     title: test/mytest/powerquery.test.cpp
   - icon: ':heavy_check_mark:'
@@ -51,20 +51,20 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/899_bfsnumbering.test.cpp
     title: test/yukicoder/899_bfsnumbering.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"alg/group_mul.hpp\"\ntemplate <class T>\r\nstruct Group_Mul\
+  bundledCode: "#line 2 \"alg/group_mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Group_Mul\
     \ {\r\n  using value_type = T;\r\n  using X = T;\r\n  static constexpr X op(const\
     \ X &x, const X &y) noexcept { return x * y; }\r\n  static constexpr X inverse(const\
     \ X &x) noexcept { return X(1) / x; }\r\n  static constexpr X unit() { return\
     \ X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\n"
-  code: "template <class T>\r\nstruct Group_Mul {\r\n  using value_type = T;\r\n \
-    \ using X = T;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return\
-    \ x * y; }\r\n  static constexpr X inverse(const X &x) noexcept { return X(1)\
-    \ / x; }\r\n  static constexpr X unit() { return X(1); }\r\n  static constexpr\
+  code: "#pragma once\r\n\r\ntemplate <class T>\r\nstruct Group_Mul {\r\n  using value_type\
+    \ = T;\r\n  using X = T;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
+    \ { return x * y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
+    \ X(1) / x; }\r\n  static constexpr X unit() { return X(1); }\r\n  static constexpr\
     \ bool commute = true;\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
@@ -77,8 +77,8 @@ data:
   - ds/powerquery.hpp
   - seq/kth_term_of_p_recursive.hpp
   - seq/interpolate_poly_exp_sum.hpp
-  timestamp: '2022-06-05 16:18:07+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-08-19 06:32:19+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1339_discrete_log.test.cpp
   - test/yukicoder/2005.test.cpp

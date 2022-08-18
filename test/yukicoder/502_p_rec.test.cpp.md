@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_mul.hpp
     title: alg/group_mul.hpp
   - icon: ':heavy_check_mark:'
@@ -237,11 +237,11 @@ data:
     \ = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n\
     \  auto N = len(A), M = len(B), K = len(B[0]);\r\n  vv(T, C, N, K);\r\n  FOR(n,\
     \ N) FOR(m, M) FOR(k, K) C[n][k] += A[n][m] * B[m][k];\r\n  return C;\r\n}\r\n\
-    #line 1 \"alg/group_mul.hpp\"\ntemplate <class T>\r\nstruct Group_Mul {\r\n  using\
-    \ value_type = T;\r\n  using X = T;\r\n  static constexpr X op(const X &x, const\
-    \ X &y) noexcept { return x * y; }\r\n  static constexpr X inverse(const X &x)\
-    \ noexcept { return X(1) / x; }\r\n  static constexpr X unit() { return X(1);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"ds/swag.hpp\"\
+    #line 2 \"alg/group_mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Group_Mul {\r\n\
+    \  using value_type = T;\r\n  using X = T;\r\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return x * y; }\r\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return X(1) / x; }\r\n  static constexpr X unit() { return\
+    \ X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"ds/swag.hpp\"\
     \ntemplate <class Monoid>\nstruct SWAG {\n  using X = typename Monoid::value_type;\n\
     \  using value_type = X;\n  int sz = 0;\n  vc<X> dat;\n  vc<X> cum_l;\n  X cum_r;\n\
     \n  SWAG() : cum_l({Monoid::unit()}), cum_r(Monoid::unit()) {}\n\n  int size()\
@@ -608,7 +608,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/502_p_rec.test.cpp
   requiredBy: []
-  timestamp: '2022-08-19 01:23:18+09:00'
+  timestamp: '2022-08-19 06:32:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/502_p_rec.test.cpp

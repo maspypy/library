@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_mul.hpp
     title: alg/group_mul.hpp
   - icon: ':heavy_check_mark:'
@@ -230,7 +230,7 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 1 \"alg/group_mul.hpp\"\ntemplate <class T>\r\nstruct\
+    \ { yes(!t); }\r\n#line 2 \"alg/group_mul.hpp\"\n\r\ntemplate <class T>\r\nstruct\
     \ Group_Mul {\r\n  using value_type = T;\r\n  using X = T;\r\n  static constexpr\
     \ X op(const X &x, const X &y) noexcept { return x * y; }\r\n  static constexpr\
     \ X inverse(const X &x) noexcept { return X(1) / x; }\r\n  static constexpr X\
@@ -607,7 +607,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
   requiredBy: []
-  timestamp: '2022-08-18 17:59:20+09:00'
+  timestamp: '2022-08-19 06:32:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/sum_of_exp_times_poly.test.cpp

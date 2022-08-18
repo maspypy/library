@@ -15,7 +15,7 @@ data:
     - icon: ':warning:'
       path: alg/group_gl2.hpp
       title: alg/group_gl2.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/group_mul.hpp
       title: alg/group_mul.hpp
     - icon: ':heavy_check_mark:'
@@ -300,7 +300,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/point_add_rectangle_sum.hpp
       title: ds/point_add_rectangle_sum.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/powerquery.hpp
       title: ds/powerquery.hpp
     - icon: ':heavy_check_mark:'
@@ -780,7 +780,7 @@ data:
     - icon: ':warning:'
       path: other/kth_root_permutation.hpp
       title: other/kth_root_permutation.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/random.hpp
       title: other/random.hpp
     - icon: ':warning:'
@@ -1666,7 +1666,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/mod_sum_of_linear.test.cpp
       title: test/mytest/mod_sum_of_linear.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/powerquery.test.cpp
       title: test/mytest/powerquery.test.cpp
     - icon: ':heavy_check_mark:'

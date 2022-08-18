@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_mul.hpp
     title: alg/group_mul.hpp
   - icon: ':heavy_check_mark:'
@@ -341,11 +341,11 @@ data:
     \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
     \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n\nusing modint107\
     \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\
-    #line 1 \"alg/group_mul.hpp\"\ntemplate <class T>\r\nstruct Group_Mul {\r\n  using\
-    \ value_type = T;\r\n  using X = T;\r\n  static constexpr X op(const X &x, const\
-    \ X &y) noexcept { return x * y; }\r\n  static constexpr X inverse(const X &x)\
-    \ noexcept { return X(1) / x; }\r\n  static constexpr X unit() { return X(1);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 7 \"test/yukicoder/1339_discrete_log.test.cpp\"\
+    #line 2 \"alg/group_mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Group_Mul {\r\n\
+    \  using value_type = T;\r\n  using X = T;\r\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return x * y; }\r\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return X(1) / x; }\r\n  static constexpr X unit() { return\
+    \ X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 7 \"test/yukicoder/1339_discrete_log.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  while (N % 2 == 0) N /= 2;\n  while (N % 5 ==\
     \ 0) N /= 5;\n  amint::set_mod(N);\n  auto H = [&](amint x) -> ll { return x.val;\
     \ };\n  ll k = discrete_log<Group_Mul<amint>>(amint(10), amint(1), H, 1, N + 10);\n\
@@ -370,7 +370,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1339_discrete_log.test.cpp
   requiredBy: []
-  timestamp: '2022-08-17 05:19:57+09:00'
+  timestamp: '2022-08-19 06:32:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/1339_discrete_log.test.cpp
