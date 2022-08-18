@@ -1,14 +1,17 @@
 #include "setfunc/ranked_zeta.hpp"
 
-template <typename T>
-vc<T> subset_convolution(vc<T> A, vc<T> B) {
-  auto RA = ranked_zeta(A);
-  auto RB = ranked_zeta(B);
-  int n = len(RA[0]) - 1;
+template <typename T, int LIM = 20>
+vc<T> subset_convolution(const vc<T>& A, const vc<T>& B) {
+  auto RA = ranked_zeta<T, LIM>(A);
+  auto RB = ranked_zeta<T, LIM>(B);
+  int n = topbit(len(RA));
   FOR(s, len(RA)) {
-    vc<T> f(n + 1);
-    FOR(i, n + 1) FOR(j, n - i + 1) f[i + j] += RA[s][i] * RB[s][j];
-    RA[s] = f;
+    auto &f = RA[s], g = RB[s];
+    FOR_R(d, n + 1) {
+      T x = 0;
+      FOR(i, d + 1) x += f[i] * g[d - i];
+      f[d] = x;
+    }
   }
-  return ranked_mobius(RA);
+  return ranked_mobius<T, LIM>(RA);
 }
