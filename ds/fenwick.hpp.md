@@ -14,13 +14,13 @@ data:
   - icon: ':warning:'
     path: ds/point_add_polygon_sum.hpp
     title: ds/point_add_polygon_sum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/point_add_rectangle_sum.hpp
     title: ds/point_add_rectangle_sum.hpp
   - icon: ':x:'
     path: ds/rectangle_add_point_sum.hpp
     title: ds/rectangle_add_point_sum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/rectangle_add_ractangle_sum.hpp
     title: ds/rectangle_add_ractangle_sum.hpp
   - icon: ':x:'
@@ -42,19 +42,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_G_fenwick_raq.test.cpp
     title: test/aoj/DSL_2_G_fenwick_raq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_range_sum.test.cpp
     title: test/library_checker/datastructure/point_add_range_sum.test.cpp
   - icon: ':x:'
     path: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
     title: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
   - icon: ':x:'
