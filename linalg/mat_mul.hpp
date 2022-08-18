@@ -2,17 +2,17 @@
 
 template <class T, is_modint_t<T>* = nullptr>
 vc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {
-  // mod をとる回数を減らしてみる
+  const int mod = T::get_mod();
   auto N = len(A), M = len(B), K = len(B[0]);
+  vv(int, b, K, M);
+  FOR(i, M) FOR(j, K) b[j][i] = B[i][j].val;
   vv(T, C, N, K);
-  const u64 MOD2 = 8ull * T::get_mod() * T::get_mod();
-  FOR(n, N) {
-    vc<u64> tmp(K);
-    FOR(m, M) FOR(k, K) {
-      tmp[k] += u64(A[n][m].val) * B[m][k].val;
-      if (tmp[k] >= MOD2) tmp[k] -= MOD2;
+  FOR(i, N) {
+    FOR(j, K) {
+      i128 sm = 0;
+      FOR(m, M) { sm += ll(A[i][m].val) * b[j][m]; }
+      C[i][j] = sm % mod;
     }
-    FOR(k, K) C[n][k] = tmp[k];
   }
   return C;
 }
