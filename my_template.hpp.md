@@ -5,9 +5,6 @@ data:
   - icon: ':warning:'
     path: graph/bipartite_coloring.hpp
     title: graph/bipartite_coloring.hpp
-  - icon: ':x:'
-    path: nt/primesum_mod4.hpp
-    title: nt/primesum_mod4.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508_splay.test.cpp
@@ -991,7 +988,6 @@ data:
   path: my_template.hpp
   requiredBy:
   - graph/bipartite_coloring.hpp
-  - nt/primesum_mod4.hpp
   timestamp: '2022-08-13 02:22:39+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

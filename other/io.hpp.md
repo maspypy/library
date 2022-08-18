@@ -1,10 +1,7 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':x:'
-    path: nt/primesum_mod4.hpp
-    title: nt/primesum_mod4.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508_splay.test.cpp
@@ -1059,8 +1056,7 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: other/io.hpp
-  requiredBy:
-  - nt/primesum_mod4.hpp
+  requiredBy: []
   timestamp: '2022-04-27 05:07:41+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
