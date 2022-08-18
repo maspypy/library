@@ -123,6 +123,7 @@ vc<Gaussian_Integer<INT>> solve_norm_equation_factor(vc<pi> pfs) {
   return res;
 }
 
+// i128 を使うと N <= 10^{18} もできる
 // ノルムがとれるように、2 乗してもオーバーフローしない型を使おう
 // 0 <= arg < 90 となるもののみ返す。
 // 単数倍は作らないので、使うときに気を付ける。
