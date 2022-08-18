@@ -2,33 +2,39 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: alg/group_add.hpp
+    title: alg/group_add.hpp
+  - icon: ':question:'
+    path: ds/fenwick.hpp
+    title: ds/fenwick.hpp
+  - icon: ':question:'
+    path: graph/base.hpp
+    title: graph/base.hpp
+  - icon: ':x:'
+    path: graph/contoursum.hpp
+    title: graph/contoursum.hpp
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
-    path: other/random.hpp
-    title: other/random.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/rollinghash.hpp
-    title: string/rollinghash.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/zalgorithm
+    PROBLEM: https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree
     links:
-    - https://judge.yosupo.jp/problem/zalgorithm
-  bundledCode: "#line 1 \"test/library_checker/string/zalgorithm_by_rollinghash.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\r\n#line 1 \"\
-    my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
-    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
-    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
-    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    - https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree
+  bundledCode: "#line 1 \"test/library_checker/graph/verted_add_contour_sum.test.cpp\"\
+    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree\"\
+    \n#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
+    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
+    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
+    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
     template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
     \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
     \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
@@ -197,67 +203,163 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 4 \"test/library_checker/string/zalgorithm_by_rollinghash.test.cpp\"\
-    \n\r\n#line 1 \"other/random.hpp\"\nstruct RandomNumberGenerator {\n  mt19937\
-    \ mt;\n\n  RandomNumberGenerator() : mt(chrono::steady_clock::now().time_since_epoch().count())\
-    \ {}\n\n  ll operator()(ll a, ll b) {  // [a, b)\n    uniform_int_distribution<ll>\
-    \ dist(a, b - 1);\n    return dist(mt);\n  }\n\n  ll operator()(ll b) {  // [0,\
-    \ b)\n    return (*this)(0, b);\n  }\n};\n#line 3 \"string/rollinghash.hpp\"\n\
-    \nstruct RollingHash {\n  static const uint64_t mod = (1ull << 61ull) - 1;\n \
-    \ vector<uint64_t> power;\n  const uint64_t base;\n\n  static inline uint64_t\
-    \ add(uint64_t a, uint64_t b) {\n    if ((a += b) >= mod) a -= mod;\n    return\
-    \ a;\n  }\n\n  static inline uint64_t mul(uint64_t a, uint64_t b) {\n    const\
-    \ uint64_t MASK30 = (1LL << 30) - 1;\n    const uint64_t MASK31 = (1LL << 31)\
-    \ - 1;\n    const uint64_t MASK61 = (1LL << 61) - 1;\n    uint64_t au = a >> 31,\
-    \ ad = a & MASK31;\n    uint64_t bu = b >> 31, bd = b & MASK31;\n    uint64_t\
-    \ x = ad * bu + au * bd;\n    uint64_t xu = x >> 30, xd = x & MASK30;\n    x =\
-    \ au * bu * 2 + xu + (xd << 31) + ad * bd;\n    xu = x >> 61, xd = x & MASK61;\n\
-    \    x = xu + xd;\n    if (x >= MASK61) x -= MASK61;\n    return x;\n  }\n\n \
-    \ static inline uint64_t generate_base() {\n    RandomNumberGenerator RNG;\n \
-    \   return RNG(mod);\n  }\n\n  inline void expand(size_t sz) {\n    if (power.size()\
-    \ < sz + 1) {\n      int pre_sz = (int)power.size();\n      power.resize(sz +\
-    \ 1);\n      for (int i = pre_sz - 1; i < sz; i++) {\n        power[i + 1] = mul(power[i],\
-    \ base);\n      }\n    }\n  }\n\n  explicit RollingHash(uint64_t base = generate_base())\n\
-    \      : base(base), power{1} {}\n\n  template<typename STRING>\n  vector<uint64_t>\
-    \ build(const STRING& s) const {\n    int sz = s.size();\n    vector<uint64_t>\
-    \ hashed(sz + 1);\n    for (int i = 0; i < sz; i++) {\n      hashed[i + 1] = add(mul(hashed[i],\
-    \ base), s[i]);\n    }\n    return hashed;\n  }\n\n  uint64_t query(const vector<uint64_t>&\
-    \ s, int l, int r) {\n    expand(r - l);\n    return add(s[r], mod - mul(s[l],\
-    \ power[r - l]));\n  }\n\n  uint64_t combine(uint64_t h1, uint64_t h2, size_t\
-    \ h2len) {\n    expand(h2len);\n    return add(mul(h1, power[h2len]), h2);\n \
-    \ }\n\n  int lcp(const vector<uint64_t>& a, int l1, int r1, const vector<uint64_t>&\
-    \ b,\n          int l2, int r2) {\n    int len = min(r1 - l1, r2 - l2);\n    int\
-    \ low = 0, high = len + 1;\n    while (high - low > 1) {\n      int mid = (low\
-    \ + high) / 2;\n      if (query(a, l1, l1 + mid) == query(b, l2, l2 + mid))\n\
-    \        low = mid;\n      else\n        high = mid;\n    }\n    return low;\n\
-    \  }\n};\n#line 6 \"test/library_checker/string/zalgorithm_by_rollinghash.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  STR(S);\r\n  ll N = len(S);\r\n  RollingHash RH;\r\n\
-    \  auto RS = RH.build(S);\r\n  vi Z(N);\r\n  FOR(i, N) { Z[i] = RH.lcp(RS, 0,\
-    \ N, RS, i, N); }\r\n  print(Z);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
-    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
-    \n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\r\n#include\
-    \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"string/rollinghash.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  STR(S);\r\n  ll N = len(S);\r\n  RollingHash RH;\r\
-    \n  auto RS = RH.build(S);\r\n  vi Z(N);\r\n  FOR(i, N) { Z[i] = RH.lcp(RS, 0,\
-    \ N, RS, i, N); }\r\n  print(Z);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
-    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
-    \n\r\n  return 0;\r\n}\r\n"
+    \ { yes(!t); }\r\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct\
+    \ Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int,\
+    \ bool directed = false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n\
+    \  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n\
+    \  vector<edge_type> csr_edges;\n  bool prepared;\n\n  class OutgoingEdges {\n\
+    \  public:\n    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l), r(r)\
+    \ {}\n\n    const edge_type* begin() const {\n      if (l == r) { return 0; }\n\
+    \      return &G->csr_edges[l];\n    }\n\n    const edge_type* end() const {\n\
+    \      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n  private:\n\
+    \    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared;\
+    \ }\n  constexpr bool is_directed() { return directed; }\n\n  Graph() : N(0),\
+    \ M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void\
+    \ add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n   \
+    \ assert(0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto e\
+    \ = edge_type({frm, to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  // wt,\
+    \ off\n  void read_tree(bool wt = false, int off = 1) { read_graph(N - 1, wt,\
+    \ off); }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n    for\
+    \ (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a -= off, b -= off;\n   \
+    \   if (!wt) {\n        add(a, b);\n      } else {\n        T c;\n        read(c);\n\
+    \        add(a, b, c);\n      }\n    }\n    build();\n  }\n\n  void read_parent(int\
+    \ off = 1) {\n    for (int v = 1; v < N; ++v) {\n      INT(p);\n      p -= off;\n\
+    \      add(p, v);\n    }\n    build();\n  }\n\n  void build() {\n    assert(!prepared);\n\
+    \    prepared = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges)\
+    \ {\n      indptr[e.frm + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n  \
+    \  }\n    for (int v = 0; v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto\
+    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
+    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
+    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
+    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
+    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  void debug() {\n    print(\"\
+    Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
+    \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
+    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 2 \"alg/group_add.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct Group_Add {\r\n  using X = E;\r\n  using\
+    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
+    \ { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
+    \ -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return X(n)\
+    \ * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 3 \"ds/fenwick.hpp\"\n\ntemplate <typename\
+    \ AbelGroup>\nstruct FenwickTree {\n  using E = typename AbelGroup::value_type;\n\
+    \  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree(int n = 0) {\n    assert(AbelGroup::commute);\n\
+    \    reset(n);\n  }\n  FenwickTree(const vector<E>& v) {\n    assert(AbelGroup::commute);\n\
+    \    build(v);\n  }\n\n  void build(const vc<E>& v) {\n    n = len(v);\n    total\
+    \ = AbelGroup::unit();\n    for (int i = 0; i < n; ++i) total = AbelGroup::op(total,\
+    \ v[i]);\n    dat = v;\n    for (int i = 1; i <= n; ++i) {\n      int j = i +\
+    \ (i & -i);\n      if (j <= n) dat[j - 1] = AbelGroup::op(dat[i - 1], dat[j -\
+    \ 1]);\n    }\n  }\n\n  void reset(int sz) {\n    n = sz;\n    total = AbelGroup::unit();\n\
+    \    dat.assign(n, AbelGroup::unit());\n  }\n\n  E sum(int k) {\n    E ret = AbelGroup::unit();\n\
+    \    for (; k > 0; k -= k & -k) ret = AbelGroup::op(ret, dat[k - 1]);\n    return\
+    \ ret;\n  }\n\n  E sum(int L, int R) {\n    E pos = AbelGroup::unit();\n    while\
+    \ (L < R) {\n      pos = AbelGroup::op(pos, dat[R - 1]);\n      R -= R & -R;\n\
+    \    }\n    E neg = AbelGroup::unit();\n    while (R < L) {\n      neg = AbelGroup::op(neg,\
+    \ dat[L - 1]);\n      L -= L & -L;\n    }\n    return AbelGroup::op(pos, AbelGroup::inverse(neg));\n\
+    \  }\n\n  E sum_all() { return total; }\n\n  void add(int k, E x) {\n    total\
+    \ = AbelGroup::op(total, x);\n    for (++k; k <= n; k += k & -k) dat[k - 1] =\
+    \ AbelGroup::op(dat[k - 1], x);\n  }\n\n  template <class F>\n  int max_right(F&\
+    \ check) {\n    assert(check(E(0)));\n    ll i = 0;\n    E s = AbelGroup::unit();\n\
+    \    int k = 1;\n    int N = dat.size() + 1;\n    while (2 * k < N) k *= 2;\n\
+    \    while (k) {\n      if (i + k < N && check(AbelGroup::op(s, dat[i + k - 1])))\
+    \ {\n        i += k;\n        s = AbelGroup::op(s, dat[i - 1]);\n      }\n   \
+    \   k >>= 1;\n    }\n    return i;\n  }\n\n  int find_kth(E k) {\n    auto check\
+    \ = [&](E x) -> bool { return x <= k; };\n    return max_right(check);\n  }\n\n\
+    \  void debug() { print(\"fenwick\", dat); }\n};\n#line 2 \"graph/contoursum.hpp\"\
+    \n\n// \u70B9\u52A0\u7B97\u3001\u8DDD\u96E2\u533A\u9593\u3067\u306E\u548C\ntemplate\
+    \ <typename GT, typename AbelGroup>\nstruct ContourSum {\n  int N;\n  GT& G;\n\
+    \  using X = typename AbelGroup::value_type;\n  FenwickTree<AbelGroup> bit;\n\
+    \  // centroid \u3054\u3068\u3001\u65B9\u5411\u3054\u3068\n  vvc<int> bit_range;\n\
+    \  // \u65B9\u5411\u30E9\u30D9\u30EB\u3001\u91CD\u5FC3\u304B\u3089\u306E\u8DDD\
+    \u96E2\u3001bit \u3067\u306Eindex\n  vvc<tuple<int, int, int>> dat;\n\n  ContourSum(GT&\
+    \ G) : N(G.N), G(G) {\n    assert(!G.is_directed());\n    vc<X> v_vals(N, AbelGroup::unit());\n\
+    \    build(v_vals);\n  }\n  ContourSum(GT& G, const vc<X>& v_vals) : N(G.N), G(G)\
+    \ {\n    assert(!G.is_directed());\n    build(v_vals);\n  }\n\n  void add(int\
+    \ v, X val) {\n    for (auto&& [k, x, i]: dat[v]) bit.add(i, val);\n  }\n\n  //\
+    \ v \u3092\u4E2D\u5FC3\u3068\u3057\u3066\u3001\u8DDD\u96E2 [l, r) \u306E\u7BC4\
+    \u56F2\u306E\u548C\n  X sum(int v, int l, int r) {\n    X sm = AbelGroup::unit();\n\
+    \    for (auto [k, x, i]: dat[v]) {\n      int lo = l - x, hi = r - x;\n     \
+    \ int K = k;\n      if (k < 0) { lo -= 2, hi -= 2, K = ~k; }\n      int n = len(bit_range[K])\
+    \ - 2;\n      chmax(lo, 0);\n      chmin(hi, n + 1);\n      if (lo >= hi) continue;\n\
+    \      int a = bit_range[K][lo], b = bit_range[K][hi];\n      X val = bit.sum(a,\
+    \ b);\n      if (k < 0) { val = AbelGroup::inverse(val); }\n      sm = AbelGroup::op(sm,\
+    \ val);\n    }\n    return sm;\n  }\n\n  void build(const vc<X>& v_vals) {\n \
+    \   int nxt_bit_idx = 0;\n    vc<int> done(N, 0);\n    vc<int> sz(N, 0);\n   \
+    \ vc<int> par(N, -1);\n    vc<int> dist(N, -1);\n    vc<pair<int, int>> st;\n\
+    \    bit_range.resize(N);\n    dat.resize(N);\n    st.eb(0, N);\n\n    while (len(st))\
+    \ {\n      auto [v0, n] = st.back();\n      st.pop_back();\n      int c = -1;\n\
+    \      {\n        auto dfs = [&](auto& dfs, int v) -> int {\n          sz[v] =\
+    \ 1;\n          for (auto&& e: G[v])\n            if (e.to != par[v] && !done[e.to])\
+    \ {\n              par[e.to] = v;\n              sz[v] += dfs(dfs, e.to);\n  \
+    \          }\n          if (c == -1 && n - sz[v] <= n / 2) { c = v; }\n      \
+    \    return sz[v];\n        };\n        dfs(dfs, v0);\n      }\n      // center\
+    \ \u304B\u3089\u306E bfs\u3002\u90E8\u5206\u6728\u30B5\u30A4\u30BA\u3082\u3068\
+    \u3063\u3066\u304A\u304F\u3002\n      done[c] = 1;\n      {\n        int off =\
+    \ nxt_bit_idx;\n        vc<int> que;\n        auto add = [&](int v, int d, int\
+    \ p) -> void {\n          if (dist[v] != -1) return;\n          sz[v] = 1;\n \
+    \         dist[v] = d;\n          par[v] = p;\n          que.eb(v);\n        };\n\
+    \        int p = 0;\n        add(c, 0, -1);\n        while (p < len(que)) {\n\
+    \          auto v = que[p++];\n          for (auto&& e: G[v]) {\n            if\
+    \ (done[e.to]) continue;\n            add(e.to, dist[v] + 1, v);\n          }\n\
+    \        }\n        FOR_R(i, 1, len(que)) {\n          int v = que[i];\n     \
+    \     sz[par[v]] += sz[v];\n        }\n        // \u8DDD\u96E2\u3054\u3068\u306E\
+    \u30AB\u30A6\u30F3\u30C8\n        int max_d = dist[que.back()];\n        vc<int>\
+    \ count(max_d + 1);\n        // \u91CD\u5FC3\u3001\u65B9\u5411\u30E9\u30D9\u30EB\
+    \u3001\u91CD\u5FC3\u304B\u3089\u306E\u8DDD\u96E2\u3001bit \u3067\u306Eindex\n\
+    \        for (auto&& v: que) {\n          dat[v].eb(c, dist[v], nxt_bit_idx++);\n\
+    \          count[dist[v]]++;\n          par[v] = -1;\n          dist[v] = -1;\n\
+    \        }\n        bit_range[c] = cumsum(count);\n        for (auto&& x: bit_range[c])\
+    \ x += off;\n      }\n      // \u65B9\u5411\u3054\u3068\u306E bfs\n      for (auto&&\
+    \ e: G[c]) {\n        int off = nxt_bit_idx;\n        int nbd = e.to;\n      \
+    \  if (done[nbd]) continue;\n        int K = len(bit_range);\n        vc<int>\
+    \ que;\n        auto add = [&](int v, int d) -> void {\n          if (dist[v]\
+    \ != -1 || v == c) return;\n          dist[v] = d;\n          que.eb(v);\n   \
+    \     };\n        int p = 0;\n        add(nbd, 0);\n        while (p < len(que))\
+    \ {\n          auto v = que[p++];\n          for (auto&& e: G[v]) {\n        \
+    \    if (done[e.to]) continue;\n            add(e.to, dist[v] + 1);\n        \
+    \  }\n        }\n        // \u8DDD\u96E2\u3054\u3068\u306E\u30AB\u30A6\u30F3\u30C8\
+    \n        int max_d = dist[que.back()];\n        vc<int> count(max_d + 1);\n \
+    \       // \u91CD\u5FC3\u3001\u65B9\u5411\u30E9\u30D9\u30EB\u3001\u91CD\u5FC3\u304B\
+    \u3089\u306E\u8DDD\u96E2\u3001bit \u3067\u306Eindex\n        for (auto&& v: que)\
+    \ {\n          dat[v].eb(~K, dist[v], nxt_bit_idx++);\n          count[dist[v]]++;\n\
+    \          par[v] = -1;\n          dist[v] = -1;\n        }\n        bit_range.eb(cumsum(count));\n\
+    \        for (auto&& x: bit_range[K]) x += off;\n        st.eb(nbd, sz[nbd]);\n\
+    \      }\n    }\n    // FenwickTree\n    vc<X> bit_raw(nxt_bit_idx);\n    FOR(v,\
+    \ N) {\n      for (auto&& [k, x, i]: dat[v]) { bit_raw[i] = v_vals[v]; }\n   \
+    \ }\n    bit.build(bit_raw);\n  }\n};\n#line 7 \"test/library_checker/graph/verted_add_contour_sum.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  Graph<int, 0> G(N);\n  G.read_tree(0,\
+    \ 0);\n  ContourSum<decltype(G), Group_Add<ll>> X(G, A);\n\n  FOR(Q) {\n    LL(t);\n\
+    \    if (t == 0) {\n      LL(v, x);\n      X.add(v, x);\n    }\n    if (t == 1)\
+    \ {\n      LL(v, l, r);\n      print(X.sum(v, l, r));\n    }\n  }\n}\n\nsigned\
+    \ main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n\
+    \  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/base.hpp\"\
+    \n#include \"graph/contoursum.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll,\
+    \ A, N);\n  Graph<int, 0> G(N);\n  G.read_tree(0, 0);\n  ContourSum<decltype(G),\
+    \ Group_Add<ll>> X(G, A);\n\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n     \
+    \ LL(v, x);\n      X.add(v, x);\n    }\n    if (t == 1) {\n      LL(v, l, r);\n\
+    \      print(X.sum(v, l, r));\n    }\n  }\n}\n\nsigned main() {\n  cout << fixed\
+    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
+    \ 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - string/rollinghash.hpp
-  - other/random.hpp
+  - graph/base.hpp
+  - graph/contoursum.hpp
+  - ds/fenwick.hpp
+  - alg/group_add.hpp
   isVerificationFile: true
-  path: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
+  path: test/library_checker/graph/verted_add_contour_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-08-13 02:22:39+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-18 17:59:30+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
+documentation_of: test/library_checker/graph/verted_add_contour_sum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
-- /verify/test/library_checker/string/zalgorithm_by_rollinghash.test.cpp.html
-title: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
+- /verify/test/library_checker/graph/verted_add_contour_sum.test.cpp
+- /verify/test/library_checker/graph/verted_add_contour_sum.test.cpp.html
+title: test/library_checker/graph/verted_add_contour_sum.test.cpp
 ---
