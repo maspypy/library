@@ -35,10 +35,10 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/agc058/tasks/agc058_d
+    PROBLEM: https://atcoder.jp/contests/AGC058/tasks/AGC058_d
     links:
-    - https://atcoder.jp/contests/agc058/tasks/agc058_d
-  bundledCode: "#line 1 \"test/atcoder/agc058d.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/agc058/tasks/agc058_d\"\
+    - https://atcoder.jp/contests/AGC058/tasks/AGC058_d
+  bundledCode: "#line 1 \"test/atcoder/agc058d.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/AGC058/tasks/AGC058_d\"\
     \n#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
     \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
     \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
@@ -516,7 +516,7 @@ data:
     \              * fact_inv<mint>(c);\n    ANS += g[t] * cf;\n  }\n  print(ANS);\n\
     }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  //\
     \ LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/agc058/tasks/agc058_d\"\n#include\
+  code: "#define PROBLEM \"https://atcoder.jp/contests/AGC058/tasks/AGC058_d\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"poly/convolution.hpp\"\
     \n#include \"poly/coef_of_rational_fps_2d.hpp\"\n\nusing mint = modint998;\n\n\
     void solve() {\n  LL(A, B, C);\n  ll N = A + B + C;\n\n  using poly = vc<mint>;\n\
@@ -541,7 +541,7 @@ data:
   isVerificationFile: true
   path: test/atcoder/agc058d.test.cpp
   requiredBy: []
-  timestamp: '2022-08-18 17:59:20+09:00'
+  timestamp: '2022-08-19 02:39:36+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/atcoder/agc058d.test.cpp
