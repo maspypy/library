@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/parallel_binary_search.hpp
     title: ds/parallel_binary_search.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
@@ -251,7 +251,7 @@ data:
     \  void debug() { print(\"fenwick\", dat); }\n};\n#line 6 \"test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  using QT = tuple<ll, ll,\
     \ ll>;\n  VEC(QT, query, Q);\n\n  auto I = argsort(A);\n  FenwickTree<Group_Add<int>>\
-    \ bit(N);\n  auto init = [&]() -> void { bit.reset(); };\n  auto upd = [&](int\
+    \ bit(N);\n  auto init = [&]() -> void { bit.reset(N); };\n  auto upd = [&](int\
     \ t) -> void { bit.add(I[t], 1); };\n  auto check = [&](int q) -> bool {\n   \
     \ auto [l, r, k] = query[q];\n    int x = bit.sum(l, r);\n    return x > k;\n\
     \  };\n  auto OK = parallel_binary_search(Q, N, 0, init, upd, check);\n  FOR(q,\
@@ -261,7 +261,7 @@ data:
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/parallel_binary_search.hpp\"\
     \n#include \"ds/fenwick.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n\
     \  using QT = tuple<ll, ll, ll>;\n  VEC(QT, query, Q);\n\n  auto I = argsort(A);\n\
-    \  FenwickTree<Group_Add<int>> bit(N);\n  auto init = [&]() -> void { bit.reset();\
+    \  FenwickTree<Group_Add<int>> bit(N);\n  auto init = [&]() -> void { bit.reset(N);\
     \ };\n  auto upd = [&](int t) -> void { bit.add(I[t], 1); };\n  auto check = [&](int\
     \ q) -> bool {\n    auto [l, r, k] = query[q];\n    int x = bit.sum(l, r);\n \
     \   return x > k;\n  };\n  auto OK = parallel_binary_search(Q, N, 0, init, upd,\
@@ -276,8 +276,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   requiredBy: []
-  timestamp: '2022-08-18 17:58:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-19 01:24:04+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
 layout: document

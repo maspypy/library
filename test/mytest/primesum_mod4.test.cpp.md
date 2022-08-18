@@ -221,17 +221,17 @@ data:
     \n  ll N;\r\n  ll sqN;\r\n  vc<T> sum_lo, sum_hi;\r\n  bool calculated;\r\n\r\n\
     \  PrimeSum(ll N) : N(N), sqN(sqrtl(N)), calculated(0) {}\r\n\r\n  // [1, x] \u305F\
     \u3060\u3057\u3001x = floor(N, i) \u306E\u5F62\r\n  T operator[](ll x) {\r\n \
-    \   assert(calculated);\r\n    return (x <= sqN ? sum_lo[x] : sum_hi[N / x]);\r\
-    \n  }\r\n\r\n  template <typename F>\r\n  void calc(const F f) {\r\n    auto primes\
-    \ = primetable(sqN);\r\n    sum_lo.resize(sqN + 1);\r\n    sum_hi.resize(sqN +\
-    \ 1);\r\n    FOR3(i, 1, sqN + 1) sum_lo[i] = f(i) - 1;\r\n    FOR3(i, 1, sqN +\
-    \ 1) sum_hi[i] = f(double(N) / i) - 1;\r\n    for (auto&& p: primes) {\r\n   \
-    \   ll pp = p * p;\r\n      if (pp > N) break;\r\n      ll R = min(sqN, N / pp);\r\
-    \n      ll M = sqN / p;\r\n      T x = sum_lo[p - 1];\r\n      T fp = sum_lo[p]\
-    \ - sum_lo[p - 1];\r\n      FOR3(i, 1, M + 1) sum_hi[i] -= fp * (sum_hi[i * p]\
-    \ - x);\r\n      FOR3(i, M + 1, R + 1) sum_hi[i] -= fp * (sum_lo[double(N) / (i\
-    \ * p)] - x);\r\n      FOR3_R(n, pp, sqN + 1) sum_lo[n] -= fp * (sum_lo[double(n)\
-    \ / p] - x);\r\n    }\r\n    calculated = 1;\r\n  }\r\n\r\n  void calc_count()\
+    \   assert(calculated);\r\n    return (x <= sqN ? sum_lo[x] : sum_hi[double(N)\
+    \ / x]);\r\n  }\r\n\r\n  template <typename F>\r\n  void calc(const F f) {\r\n\
+    \    auto primes = primetable(sqN);\r\n    sum_lo.resize(sqN + 1);\r\n    sum_hi.resize(sqN\
+    \ + 1);\r\n    FOR3(i, 1, sqN + 1) sum_lo[i] = f(i) - 1;\r\n    FOR3(i, 1, sqN\
+    \ + 1) sum_hi[i] = f(double(N) / i) - 1;\r\n    for (auto&& p: primes) {\r\n \
+    \     ll pp = p * p;\r\n      if (pp > N) break;\r\n      ll R = min(sqN, N /\
+    \ pp);\r\n      ll M = sqN / p;\r\n      T x = sum_lo[p - 1];\r\n      T fp =\
+    \ sum_lo[p] - sum_lo[p - 1];\r\n      FOR3(i, 1, M + 1) sum_hi[i] -= fp * (sum_hi[i\
+    \ * p] - x);\r\n      FOR3(i, M + 1, R + 1) sum_hi[i] -= fp * (sum_lo[double(N)\
+    \ / (i * p)] - x);\r\n      FOR3_R(n, pp, sqN + 1) sum_lo[n] -= fp * (sum_lo[double(n\
+    \ / p)] - x);\r\n    }\r\n    calculated = 1;\r\n  }\r\n\r\n  void calc_count()\
     \ {\r\n    calc([](ll x) -> T { return x; });\r\n  }\r\n\r\n  void calc_sum()\
     \ {\r\n    calc([](ll x) -> T {\r\n      ll a = x, b = x + 1;\r\n      if (!(x\
     \ & 1)) a /= 2;\r\n      if (x & 1) b /= 2;\r\n      return T(a) * T(b);\r\n \
@@ -281,7 +281,7 @@ data:
   isVerificationFile: true
   path: test/mytest/primesum_mod4.test.cpp
   requiredBy: []
-  timestamp: '2022-08-19 00:54:37+09:00'
+  timestamp: '2022-08-19 01:56:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/primesum_mod4.test.cpp
