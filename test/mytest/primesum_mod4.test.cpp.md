@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primesum.hpp
     title: nt/primesum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/primesum_mod4.hpp
     title: nt/primesum_mod4.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -235,41 +235,28 @@ data:
     \ {\r\n    calc([](ll x) -> T { return x; });\r\n  }\r\n\r\n  void calc_sum()\
     \ {\r\n    calc([](ll x) -> T {\r\n      ll a = x, b = x + 1;\r\n      if (!(x\
     \ & 1)) a /= 2;\r\n      if (x & 1) b /= 2;\r\n      return T(a) * T(b);\r\n \
-    \   });\r\n  }\r\n};\r\n#line 3 \"nt/primesum_mod4.hpp\"\n\n    template <typename\
-    \ T>\n    struct PrimeSum_Mod_4 {\n  ll N;\n  ll sqN;\n\n  PrimeSum<T> A, B;\n\
-    \  PrimeSum_Mod_4(ll N) : N(N), sqN(sqrtl(N)), A(N), B(N) {}\n\n  pair<T, T> operator[](ll\
-    \ x) {\n    T a = A[x], b = B[x];\n    return {(a + b) / T(2), (a - b) / T(2)};\n\
-    \  }\n\n  void calc_count() {\n    A.calc([](ll x) -> T { return (x + 1) / 2;\
-    \ });\n    B.calc([](ll x) -> T { return ((x + 3) % 4 <= 1 ? 1 : 0); });\n  }\n\
-    \n  void calc_sum() {\n    A.calc([](ll x) -> T {\n      ll n = (x + 1) / 2;\n\
-    \      return T(n) * T(n);\n    });\n    B.calc([](ll x) -> T {\n      ll n =\
-    \ (x + 1) / 2;\n      return (n % 2 == 0 ? T(-n) : T(n));\n    });\n  }\n};\n\n\
-    void test_count() {\n  ll LIM = 10000;\n  vc<int> A1(LIM), A3(LIM);\n  for (auto&&\
-    \ p: primetable(LIM))\n    if (p % 4 == 1) { A1[p]++; }\n  for (auto&& p: primetable(LIM))\n\
-    \    if (p % 4 == 3) { A3[p]++; }\n  A1 = cumsum(A1, 0);\n  A3 = cumsum(A3, 0);\n\
-    \n  FOR(N, LIM) {\n    PrimeSum_Mod_4<int> X(N);\n    X.calc_count();\n    FOR(K,\
-    \ 1, N + 10) { assert(X[N / K] == mp(A1[N / K], A3[N / K])); }\n  }\n}\n\nvoid\
-    \ test_sum() {\n  ll LIM = 10000;\n  vc<int> A1(LIM), A3(LIM);\n  for (auto&&\
-    \ p: primetable(LIM))\n    if (p % 4 == 1) { A1[p] += p; }\n  for (auto&& p: primetable(LIM))\n\
-    \    if (p % 4 == 3) { A3[p] += p; }\n  A1 = cumsum(A1, 0);\n  A3 = cumsum(A3,\
-    \ 0);\n\n  FOR(N, LIM) {\n    PrimeSum_Mod_4<int> X(N);\n    X.calc_sum();\n \
-    \   FOR(K, 1, N + 10) { assert(X[N / K] == mp(A1[N / K], A3[N / K])); }\n  }\n\
-    }\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout\
-    \ << fixed << setprecision(15);\n\n  test_count();\n  test_sum();\n  solve();\n\
-    \n  return 0;\n}\n#line 5 \"test/mytest/primesum_mod4.test.cpp\"\n\nvoid test_count()\
-    \ {\n  ll LIM = 10000;\n  vc<int> A1(LIM), A3(LIM);\n  for (auto&& p: primetable(LIM))\n\
-    \    if (p % 4 == 1) { A1[p]++; }\n  for (auto&& p: primetable(LIM))\n    if (p\
-    \ % 4 == 3) { A3[p]++; }\n  A1 = cumsum(A1, 0);\n  A3 = cumsum(A3, 0);\n\n  FOR(N,\
-    \ LIM) {\n    PrimeSum_Mod_4<int> X(N);\n    X.calc_count();\n    FOR(K, 1, N\
-    \ + 10) { assert(X[N / K] == mp(A1[N / K], A3[N / K])); }\n  }\n}\n\nvoid test_sum()\
-    \ {\n  ll LIM = 10000;\n  vc<int> A1(LIM), A3(LIM);\n  for (auto&& p: primetable(LIM))\n\
-    \    if (p % 4 == 1) { A1[p] += p; }\n  for (auto&& p: primetable(LIM))\n    if\
-    \ (p % 4 == 3) { A3[p] += p; }\n  A1 = cumsum(A1, 0);\n  A3 = cumsum(A3, 0);\n\
-    \n  FOR(N, LIM) {\n    PrimeSum_Mod_4<int> X(N);\n    X.calc_sum();\n    FOR(K,\
-    \ 1, N + 10) { assert(X[N / K] == mp(A1[N / K], A3[N / K])); }\n  }\n}\n\nvoid\
-    \ solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed\
-    \ << setprecision(15);\n\n  test_count();\n  test_sum();\n  solve();\n\n  return\
-    \ 0;\n}\n"
+    \   });\r\n  }\r\n};\r\n#line 3 \"nt/primesum_mod4.hpp\"\n\ntemplate <typename\
+    \ T>\nstruct PrimeSum_Mod_4 {\n  ll N;\n  ll sqN;\n\n  PrimeSum<T> A, B;\n  PrimeSum_Mod_4(ll\
+    \ N) : N(N), sqN(sqrtl(N)), A(N), B(N) {}\n\n  pair<T, T> operator[](ll x) {\n\
+    \    T a = A[x], b = B[x];\n    return {(a + b) / T(2), (a - b) / T(2)};\n  }\n\
+    \n  void calc_count() {\n    A.calc([](ll x) -> T { return (x + 1) / 2; });\n\
+    \    B.calc([](ll x) -> T { return ((x + 3) % 4 <= 1 ? 1 : 0); });\n  }\n\n  void\
+    \ calc_sum() {\n    A.calc([](ll x) -> T {\n      ll n = (x + 1) / 2;\n      return\
+    \ T(n) * T(n);\n    });\n    B.calc([](ll x) -> T {\n      ll n = (x + 1) / 2;\n\
+    \      return (n % 2 == 0 ? T(-n) : T(n));\n    });\n  }\n};\n#line 5 \"test/mytest/primesum_mod4.test.cpp\"\
+    \n\nvoid test_count() {\n  ll LIM = 10000;\n  vc<int> A1(LIM), A3(LIM);\n  for\
+    \ (auto&& p: primetable(LIM))\n    if (p % 4 == 1) { A1[p]++; }\n  for (auto&&\
+    \ p: primetable(LIM))\n    if (p % 4 == 3) { A3[p]++; }\n  A1 = cumsum(A1, 0);\n\
+    \  A3 = cumsum(A3, 0);\n\n  FOR(N, LIM) {\n    PrimeSum_Mod_4<int> X(N);\n   \
+    \ X.calc_count();\n    FOR(K, 1, N + 10) { assert(X[N / K] == mp(A1[N / K], A3[N\
+    \ / K])); }\n  }\n}\n\nvoid test_sum() {\n  ll LIM = 10000;\n  vc<int> A1(LIM),\
+    \ A3(LIM);\n  for (auto&& p: primetable(LIM))\n    if (p % 4 == 1) { A1[p] +=\
+    \ p; }\n  for (auto&& p: primetable(LIM))\n    if (p % 4 == 3) { A3[p] += p; }\n\
+    \  A1 = cumsum(A1, 0);\n  A3 = cumsum(A3, 0);\n\n  FOR(N, LIM) {\n    PrimeSum_Mod_4<int>\
+    \ X(N);\n    X.calc_sum();\n    FOR(K, 1, N + 10) { assert(X[N / K] == mp(A1[N\
+    \ / K], A3[N / K])); }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n\
+    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  test_count();\n\
+    \  test_sum();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"nt/primesum_mod4.hpp\"\n\nvoid test_count()\
     \ {\n  ll LIM = 10000;\n  vc<int> A1(LIM), A3(LIM);\n  for (auto&& p: primetable(LIM))\n\
@@ -294,8 +281,8 @@ data:
   isVerificationFile: true
   path: test/mytest/primesum_mod4.test.cpp
   requiredBy: []
-  timestamp: '2022-08-19 00:42:14+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-19 00:54:37+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/primesum_mod4.test.cpp
 layout: document

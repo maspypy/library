@@ -195,7 +195,7 @@ data:
       title: dp/subset_sum.hpp
   - name: ds
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/addremove_query.hpp
       title: ds/addremove_query.hpp
     - icon: ':heavy_check_mark:'
@@ -721,19 +721,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/multiplicative_convolution_mod2n.hpp
       title: nt/multiplicative_convolution_mod2n.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: nt/multiplicative_sum.hpp
       title: nt/multiplicative_sum.hpp
     - icon: ':heavy_check_mark:'
       path: nt/nim_product.hpp
       title: nt/nim_product.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/primesum.hpp
       title: nt/primesum.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: nt/primesum_mod4.hpp
       title: nt/primesum_mod4.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/primetable.hpp
       title: nt/primetable.hpp
     - icon: ':heavy_check_mark:'
@@ -812,10 +812,10 @@ data:
     - icon: ':warning:'
       path: pds/persistent_rbst_monoid.hpp
       title: pds/persistent_rbst_monoid.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: pds/rollbackarray.hpp
       title: pds/rollbackarray.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: pds/rollbackunionfind.hpp
       title: pds/rollbackunionfind.hpp
     - icon: ':heavy_check_mark:'
@@ -1200,7 +1200,7 @@ data:
       title: test/min_of_linear_segments.test.cpp
   - name: test/library_checker
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/add_remove_query.test.cpp
       title: test/library_checker/add_remove_query.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1498,7 +1498,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/tetration.test.cpp
       title: test/library_checker/math/tetration.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/totient_sum.test.cpp
       title: test/library_checker/math/totient_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1672,7 +1672,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/prime_sum.test.cpp
       title: test/mytest/prime_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/primesum_mod4.test.cpp
       title: test/mytest/primesum_mod4.test.cpp
     - icon: ':heavy_check_mark:'

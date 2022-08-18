@@ -229,6 +229,9 @@ data:
     path: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/totient_sum.test.cpp
+    title: test/library_checker/math/totient_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/charactereistic_poly.test.cpp
     title: test/library_checker/matrix/charactereistic_poly.test.cpp
   - icon: ':heavy_check_mark:'
@@ -664,6 +667,7 @@ data:
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
   - test/library_checker/math/find_linear_recurrence.test.cpp
+  - test/library_checker/math/totient_sum.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/math/gcd_convolution.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/addremove_query.hpp
     title: ds/addremove_query.hpp
   - icon: ':question:'
@@ -10,17 +10,17 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: pds/rollbackarray.hpp
     title: pds/rollbackarray.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: pds/rollbackunionfind.hpp
     title: pds/rollbackunionfind.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum
@@ -244,7 +244,7 @@ data:
     \n    dat.set(a, dat.get(a) + dat.get(b));\r\n    dat.set(b, a);\r\n    return\
     \ true;\r\n  }\r\n};\r\n#line 8 \"test/library_checker/add_remove_query.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A0, N);\n  using P = pair<int, int>;\n\
-    \n  vc<int> query;\n\n  Convert_AddRemove_Query<P, true> X;\n  FOR(Q) {\n    LL(t);\n\
+    \n  vc<int> query;\n\n  AddRemove_Query<P, true> X;\n  FOR(Q) {\n    LL(t);\n\
     \    if (t == 0) {\n      LL(a, b);\n      if (a > b) swap(a, b);\n      P e =\
     \ {a, b};\n      X.add(len(query), e);\n    }\n    if (t == 1) {\n      LL(a,\
     \ b);\n      if (a > b) swap(a, b);\n      P e = {a, b};\n      X.remove(len(query),\
@@ -275,7 +275,7 @@ data:
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/addremove_query.hpp\"\
     \n#include \"pds/rollbackarray.hpp\"\n#include \"pds/rollbackunionfind.hpp\"\n\
     \nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A0, N);\n  using P = pair<int, int>;\n\
-    \n  vc<int> query;\n\n  Convert_AddRemove_Query<P, true> X;\n  FOR(Q) {\n    LL(t);\n\
+    \n  vc<int> query;\n\n  AddRemove_Query<P, true> X;\n  FOR(Q) {\n    LL(t);\n\
     \    if (t == 0) {\n      LL(a, b);\n      if (a > b) swap(a, b);\n      P e =\
     \ {a, b};\n      X.add(len(query), e);\n    }\n    if (t == 1) {\n      LL(a,\
     \ b);\n      if (a > b) swap(a, b);\n      P e = {a, b};\n      X.remove(len(query),\
@@ -311,8 +311,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/add_remove_query.test.cpp
   requiredBy: []
-  timestamp: '2022-08-19 00:17:23+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-19 00:43:11+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/add_remove_query.test.cpp
 layout: document

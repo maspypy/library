@@ -2,15 +2,18 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: mod/modint.hpp
+    title: mod/modint.hpp
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/multiplicative_sum.hpp
     title: nt/multiplicative_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primesum.hpp
     title: nt/primesum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   - icon: ':question:'
@@ -18,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sum_of_totient_function
@@ -236,50 +239,129 @@ data:
     \ x) -> T { return x; });\r\n  }\r\n\r\n  void calc_sum() {\r\n    calc([](ll\
     \ x) -> T {\r\n      ll a = x, b = x + 1;\r\n      if (!(x & 1)) a /= 2;\r\n \
     \     if (x & 1) b /= 2;\r\n      return T(a) * T(b);\r\n    });\r\n  }\r\n};\r\
-    \n#line 2 \"nt/multiplicative_sum.hpp\"\ntemplate <typename T, typename FUNC>\r\
-    \nT multiplicative_sum(ll N, FUNC F, vc<T>& sum_lo, vc<T>& sum_hi) {\r\n  // F(p^e)\
-    \ \u3092\u4E0E\u3048\u308B\u95A2\u6570\u306B\u52A0\u3048\u3001\u4E8B\u524D\u306B\
-    \u8A08\u7B97\u3057\u305F prime sum \u3092\u6301\u305F\u305B\u308B\r\n  // black\
-    \ algorithm in\r\n  // http://baihacker.github.io/main/2020/The_prefix-sum_of_multiplicative_function_the_black_algorithm.html\r\
-    \n  ll sqN = sqrtl(N);\r\n  auto P = primetable(sqN);\r\n  auto get = [&](ll d)\
-    \ -> T {\r\n    return (d <= sqN ? sum_lo[d] : sum_hi[double(N) / d]);\r\n  };\r\
-    \n\r\n  T ANS = T(1) + get(N); // 1 and prime\r\n\r\n  // t = up_i^k \u306E\u3068\
-    \u304D\u306B\u3001(t, i, k, f(t), f(u)) \u3092\u6301\u305F\u305B\u308B\r\n\r\n\
-    \  auto dfs = [&](auto self, ll t, ll i, ll k, T ft, T fu) -> void {\r\n    T\
-    \ f_nxt = fu * F(P[i], k + 1);\r\n    // \u5B50\u30CE\u30FC\u30C9\u3092\u5168\u90E8\
-    \u52A0\u7B97\r\n    ANS += f_nxt;\r\n    ANS += ft * (get(double(N) / t) - get(P[i]));\r\
+    \n#line 2 \"nt/multiplicative_sum.hpp\"\n\r\n// f_pe\uFF1AT(int p,int e), f(p^e)\r\
+    \n// f_psum\uFF1A[1, x] \u3067\u306E f(p) \u306E\u548C\r\ntemplate <typename T,\
+    \ typename F1, typename F2>\r\nT multiplicative_sum(ll N, F1 f_pe, F2 f_psum)\
+    \ {\r\n  ll sqN = sqrtl(N);\r\n  auto P = primetable(sqN);\r\n\r\n  T ANS = T(1)\
+    \ + f_psum(N); // 1 and prime\r\n  // t = up_i^k \u306E\u3068\u304D\u306B\u3001\
+    (t, i, k, f(t), f(u)) \u3092\u6301\u305F\u305B\u308B\r\n\r\n  auto dfs = [&](auto\
+    \ self, ll t, ll i, ll k, T ft, T fu) -> void {\r\n    T f_nxt = fu * f_pe(P[i],\
+    \ k + 1);\r\n    // \u5B50\u30CE\u30FC\u30C9\u3092\u5168\u90E8\u52A0\u7B97\r\n\
+    \    ANS += f_nxt;\r\n    ANS += ft * (f_psum(double(N) / t) - f_psum(P[i]));\r\
     \n\r\n    ll lim = sqrtl(double(N) / t);\r\n    if (P[i] <= lim) { self(self,\
     \ t * P[i], i, k + 1, f_nxt, fu); }\r\n    FOR3(j, i + 1, len(P)) {\r\n      if\
-    \ (P[j] > lim) break;\r\n      self(self, t * P[j], j, 1, ft * F(P[j], 1), ft);\r\
-    \n    }\r\n  };\r\n  FOR(i, len(P)) if (P[i] <= sqN) dfs(dfs, P[i], i, 1, F(P[i],\
-    \ 1), 1);\r\n  return ANS;\r\n}\n#line 7 \"test/library_checker/math/totient_sum.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  auto [sum_lo_0, sum_hi_0] = primecnt<ll>(N);\n\
-    \  auto [sum_lo, sum_hi] = primesum<i128>(N);\n  ll m = len(sum_lo_0);\n  FOR(i,\
-    \ m) sum_lo[i] -= sum_lo_0[i];\n  FOR(i, m) sum_hi[i] -= sum_hi_0[i];\n  auto\
-    \ f = [&](ll p, ll e) -> i128 {\n    ll x = p - 1;\n    FOR(e - 1) x *= p;\n \
-    \   return x;\n  };\n  int mod = 998244353;\n  print(int(multiplicative_sum(N,\
-    \ f, sum_lo, sum_hi) % mod));\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n\
-    }\n"
+    \ (P[j] > lim) break;\r\n      self(self, t * P[j], j, 1, ft * f_pe(P[j], 1),\
+    \ ft);\r\n    }\r\n  };\r\n  FOR(i, len(P)) if (P[i] <= sqN) dfs(dfs, P[i], i,\
+    \ 1, f_pe(P[i], 1), 1);\r\n  return ANS;\r\n}\n#line 2 \"mod/modint.hpp\"\n\n\
+    template <unsigned int mod>\nstruct modint {\n  static constexpr bool is_modint\
+    \ = true;\n  unsigned int val;\n  constexpr modint(const long long val = 0) noexcept\n\
+    \      : val(val >= 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const\
+    \ modint &other) const {\n    return val < other.val;\n  } // To use std::map\n\
+    \  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -=\
+    \ mod;\n    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if\
+    \ ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint\
+    \ &operator*=(const modint &p) {\n    val = (unsigned int)(1LL * val * p.val %\
+    \ mod);\n    return *this;\n  }\n  modint &operator/=(const modint &p) {\n   \
+    \ *this *= p.inverse();\n    return *this;\n  }\n  modint operator-() const {\
+    \ return modint(get_mod() - val); }\n  modint operator+(const modint &p) const\
+    \ { return modint(*this) += p; }\n  modint operator-(const modint &p) const {\
+    \ return modint(*this) -= p; }\n  modint operator*(const modint &p) const { return\
+    \ modint(*this) *= p; }\n  modint operator/(const modint &p) const { return modint(*this)\
+    \ /= p; }\n  bool operator==(const modint &p) const { return val == p.val; }\n\
+    \  bool operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
+    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
+    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
+    \ return modint(u);\n  }\n  modint pow(int64_t n) const {\n    modint ret(1),\
+    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
+    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr unsigned int\
+    \ get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr\
+    \ bool is_modint = true;\n  unsigned int val;\n  ArbitraryModInt() : val(0) {}\n\
+    \  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n          \
+    \         : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
+    \ ArbitraryModInt &other) const {\n    return val < other.val;\n  } // To use\
+    \ std::map<ArbitraryModInt, T>\n  static unsigned int &get_mod() {\n    static\
+    \ unsigned int mod = 0;\n    return mod;\n  }\n  static void set_mod(int md) {\
+    \ get_mod() = md; }\n  ArbitraryModInt &operator+=(const ArbitraryModInt &p) {\n\
+    \    if ((val += p.val) >= get_mod()) val -= get_mod();\n    return *this;\n \
+    \ }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p) {\n    if ((val +=\
+    \ get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return *this;\n  }\n\
+    \  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n    unsigned long\
+    \ long a = (unsigned long long)val * p.val;\n    unsigned xh = (unsigned)(a >>\
+    \ 32), xl = (unsigned)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"\
+    (m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n\
+    \  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n    *this *=\
+    \ p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-() const {\
+    \ return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) += p;\n  }\n\
+    \  ArbitraryModInt operator-(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
+    \ -= p;\n  }\n  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n\
+    \    return ArbitraryModInt(*this) *= p;\n  }\n  ArbitraryModInt operator/(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) /= p;\n  }\n\
+    \  bool operator==(const ArbitraryModInt &p) const { return val == p.val; }\n\
+    \  bool operator!=(const ArbitraryModInt &p) const { return val != p.val; }\n\
+    \  ArbitraryModInt inverse() const {\n    int a = val, b = get_mod(), u = 1, v\
+    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
+    \ -= t * v, v);\n    }\n    return ArbitraryModInt(u);\n  }\n  ArbitraryModInt\
+    \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
+    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
+    \  }\n    return ret;\n  }\n};\n\ntemplate <typename mint>\nmint inv(int n) {\n\
+    \  static const int mod = mint::get_mod();\n  static vector<mint> dat = {0, 1};\n\
+    \  assert(0 <= n);\n  if (n >= mod) n %= mod;\n  while (int(dat.size()) <= n)\
+    \ {\n    int k = dat.size();\n    auto q = (mod + k - 1) / k;\n    int r = k *\
+    \ q - mod;\n    dat.emplace_back(dat[r] * mint(q));\n  }\n  return dat[n];\n}\n\
+    \ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  static vector<mint> dat = {1, 1};\n  assert(0 <= n);\n  if (n >= mod) return\
+    \ 0;\n  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
+    \ - 1] * mint(k));\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint\
+    \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
+    \ dat = {1, 1};\n  assert(0 <= n && n < mod);\n  while (int(dat.size()) <= n)\
+    \ {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
+    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint C_dense(int n, int\
+    \ k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\n  auto calc = [&](int\
+    \ i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n\
+    \    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n\n  if (W <= k) {\n\
+    \    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j]\
+    \ = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n    FOR(i, H,\
+    \ n + 1) {\n      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n\
+    \  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool\
+    \ dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n <\
+    \ k) return 0;\n  if (dense) return C_dense<mint>(n, k);\n  if (!large) return\
+    \ fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k, n -\
+    \ k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n\
+    \  return x;\n}\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll\
+    \ n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return\
+    \ fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint,\
+    \ 1>(n, k);\n}\n\n// [x^d](1-x)^{-n} \u306E\u8A08\u7B97\ntemplate <typename mint,\
+    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
+    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
+    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n\nusing modint107\
+    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\
+    #line 8 \"test/library_checker/math/totient_sum.test.cpp\"\n\nusing mint = modint998;\n\
+    \nvoid solve() {\n  LL(N);\n  PrimeSum<mint> A(N), B(N);\n  A.calc_sum();\n  B.calc_count();\n\
+    \n  auto f_pe = [&](ll p, ll e) -> mint {\n    mint x = p - 1;\n    FOR(e - 1)\
+    \ x *= mint(p);\n    return x;\n  };\n  auto f_psum = [&](ll x) -> mint { return\
+    \ A[x] - B[x]; };\n  print(multiplicative_sum<mint>(N, f_pe, f_psum));\n}\n\n\
+    signed main() {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sum_of_totient_function\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"nt/primesum.hpp\"\
-    \n#include \"nt/multiplicative_sum.hpp\"\n\nvoid solve() {\n  LL(N);\n  auto [sum_lo_0,\
-    \ sum_hi_0] = primecnt<ll>(N);\n  auto [sum_lo, sum_hi] = primesum<i128>(N);\n\
-    \  ll m = len(sum_lo_0);\n  FOR(i, m) sum_lo[i] -= sum_lo_0[i];\n  FOR(i, m) sum_hi[i]\
-    \ -= sum_hi_0[i];\n  auto f = [&](ll p, ll e) -> i128 {\n    ll x = p - 1;\n \
-    \   FOR(e - 1) x *= p;\n    return x;\n  };\n  int mod = 998244353;\n  print(int(multiplicative_sum(N,\
-    \ f, sum_lo, sum_hi) % mod));\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n\
-    }\n"
+    \n#include \"nt/multiplicative_sum.hpp\"\n#include \"mod/modint.hpp\"\n\nusing\
+    \ mint = modint998;\n\nvoid solve() {\n  LL(N);\n  PrimeSum<mint> A(N), B(N);\n\
+    \  A.calc_sum();\n  B.calc_count();\n\n  auto f_pe = [&](ll p, ll e) -> mint {\n\
+    \    mint x = p - 1;\n    FOR(e - 1) x *= mint(p);\n    return x;\n  };\n  auto\
+    \ f_psum = [&](ll x) -> mint { return A[x] - B[x]; };\n  print(multiplicative_sum<mint>(N,\
+    \ f_pe, f_psum));\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - nt/primesum.hpp
   - nt/primetable.hpp
   - nt/multiplicative_sum.hpp
+  - mod/modint.hpp
   isVerificationFile: true
   path: test/library_checker/math/totient_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-08-18 23:51:34+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-19 00:54:59+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/totient_sum.test.cpp
 layout: document
