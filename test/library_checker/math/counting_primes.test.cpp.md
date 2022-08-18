@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/counting_primes
@@ -233,13 +233,13 @@ data:
     \ {\r\n    calc([](ll x) -> T {\r\n      ll a = x, b = x + 1;\r\n      if (!(x\
     \ & 1)) a /= 2;\r\n      if (x & 1) b /= 2;\r\n      return T(a) * T(b);\r\n \
     \   });\r\n  }\r\n};\r\n#line 5 \"test/library_checker/math/counting_primes.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N);\r\n  PrimeSum<ll> X(N);\r\n  X.count();\r\n \
-    \ print(X[N]);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n\
-    }\r\n"
+    \n\r\nvoid solve() {\r\n  LL(N);\r\n  PrimeSum<ll> X(N);\r\n  X.calc_count();\r\
+    \n  print(X[N]);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\
+    \n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/counting_primes\"\r\n#include\
     \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"nt/primesum.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  LL(N);\r\n  PrimeSum<ll> X(N);\r\n  X.count();\r\n\
-    \  print(X[N]);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\
+    \r\n\r\nvoid solve() {\r\n  LL(N);\r\n  PrimeSum<ll> X(N);\r\n  X.calc_count();\r\
+    \n  print(X[N]);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\
     \n}\r\n"
   dependsOn:
   - my_template.hpp
@@ -249,8 +249,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/counting_primes.test.cpp
   requiredBy: []
-  timestamp: '2022-08-18 23:51:34+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-19 00:04:51+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/counting_primes.test.cpp
 layout: document
