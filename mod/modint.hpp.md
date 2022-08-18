@@ -331,6 +331,9 @@ data:
     path: test/mytest/powerquery.test.cpp
     title: test/mytest/powerquery.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/prime_sum.test.cpp
+    title: test/mytest/prime_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -626,6 +629,7 @@ data:
   - test/yukicoder/426.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
+  - test/mytest/prime_sum.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/powerquery.test.cpp
   - test/mytest/binom.test.cpp

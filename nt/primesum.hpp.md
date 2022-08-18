@@ -12,9 +12,12 @@ data:
   - icon: ':x:'
     path: test/library_checker/math/totient_sum.test.cpp
     title: test/library_checker/math/totient_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/prime_sum.test.cpp
+    title: test/mytest/prime_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\nvc<ll> primetable(int LIM) {\n  ++LIM;\n\
@@ -35,22 +38,24 @@ data:
     \ \u3054\u3068\u3067\u306E\u7D20\u6570\u306E k \u4E57\u548C\u304C\u8A08\u7B97\u3067\
     \u304D\u308B\u3002\r\nComplexity: O(N^{3/4}/logN) time, O(N^{1/2}) space.\r\n\
     */\r\ntemplate <typename T>\r\nstruct PrimeSum {\r\n  ll N;\r\n  ll sqN;\r\n \
-    \ vc<T> sum_lo, sum_hi;\r\n\r\n  PrimeSum(ll N) : N(N), sqN(sqrtl(N)) {}\r\n\r\
-    \n  // [1, x] \u305F\u3060\u3057\u3001x = floor(N, i) \u306E\u5F62\r\n  int operator[](int\
-    \ x) { return (x <= sqN ? sum_lo[x] : sum_hi[N / x]); }\r\n\r\n  template <typename\
-    \ F>\r\n  void calc(const F f) {\r\n    auto primes = primetable(sqN);\r\n   \
-    \ sum_lo.resize(sqN + 1);\r\n    sum_hi.resize(sqN + 1);\r\n    FOR3(i, 1, sqN\
-    \ + 1) sum_lo[i] = f(i) - 1;\r\n    FOR3(i, 1, sqN + 1) sum_hi[i] = f(double(N)\
+    \ vc<T> sum_lo, sum_hi;\r\n  bool calculated;\r\n\r\n  PrimeSum(ll N) : N(N),\
+    \ sqN(sqrtl(N)), calculated(0) {}\r\n\r\n  // [1, x] \u305F\u3060\u3057\u3001\
+    x = floor(N, i) \u306E\u5F62\r\n  T operator[](ll x) {\r\n    assert(calculated);\r\
+    \n    return (x <= sqN ? sum_lo[x] : sum_hi[N / x]);\r\n  }\r\n\r\n  template\
+    \ <typename F>\r\n  void calc(const F f) {\r\n    auto primes = primetable(sqN);\r\
+    \n    sum_lo.resize(sqN + 1);\r\n    sum_hi.resize(sqN + 1);\r\n    FOR3(i, 1,\
+    \ sqN + 1) sum_lo[i] = f(i) - 1;\r\n    FOR3(i, 1, sqN + 1) sum_hi[i] = f(double(N)\
     \ / i) - 1;\r\n    for (auto&& p: primes) {\r\n      ll pp = p * p;\r\n      if\
     \ (pp > N) break;\r\n      ll R = min(sqN, N / pp);\r\n      ll M = sqN / p;\r\
     \n      T x = sum_lo[p - 1];\r\n      T fp = sum_lo[p] - sum_lo[p - 1];\r\n  \
     \    FOR3(i, 1, M + 1) sum_hi[i] -= fp * (sum_hi[i * p] - x);\r\n      FOR3(i,\
     \ M + 1, R + 1) sum_hi[i] -= fp * (sum_lo[double(N) / (i * p)] - x);\r\n     \
     \ FOR3_R(n, pp, sqN + 1) sum_lo[n] -= fp * (sum_lo[double(n) / p] - x);\r\n  \
-    \  }\r\n  }\r\n\r\n  void count() {\r\n    calc([](ll x) { return x; });\r\n \
-    \ }\r\n\r\n  void sum() {\r\n    calc([](ll x) {\r\n      ll a = x, b = x + 1;\r\
-    \n      if (!(x & 1)) a /= 2;\r\n      if (x & 1) b /= 2;\r\n      return T(a)\
-    \ * T(b);\r\n    });\r\n  }\r\n};\r\n"
+    \  }\r\n    calculated = 1;\r\n  }\r\n\r\n  void calc_count() {\r\n    calc([](ll\
+    \ x) -> T { return x; });\r\n  }\r\n\r\n  void calc_sum() {\r\n    calc([](ll\
+    \ x) -> T {\r\n      ll a = x, b = x + 1;\r\n      if (!(x & 1)) a /= 2;\r\n \
+    \     if (x & 1) b /= 2;\r\n      return T(a) * T(b);\r\n    });\r\n  }\r\n};\r\
+    \n"
   code: "#include \"nt/primetable.hpp\"\r\n\r\n/*\r\nN \u3068\u5B8C\u5168\u4E57\u6CD5\
     \u7684\u95A2\u6570 f \u306E prefix sum \u95A2\u6570 F \u3092\u4E0E\u3048\u308B\
     \u3002\r\nn = floor(N/d) \u3068\u306A\u308B n \u306B\u5BFE\u3059\u308B sum_{p\
@@ -58,30 +63,33 @@ data:
     \u306E k \u4E57\u548C\u3084\u3001mod m \u3054\u3068\u3067\u306E\u7D20\u6570\u306E\
     \ k \u4E57\u548C\u304C\u8A08\u7B97\u3067\u304D\u308B\u3002\r\nComplexity: O(N^{3/4}/logN)\
     \ time, O(N^{1/2}) space.\r\n*/\r\ntemplate <typename T>\r\nstruct PrimeSum {\r\
-    \n  ll N;\r\n  ll sqN;\r\n  vc<T> sum_lo, sum_hi;\r\n\r\n  PrimeSum(ll N) : N(N),\
-    \ sqN(sqrtl(N)) {}\r\n\r\n  // [1, x] \u305F\u3060\u3057\u3001x = floor(N, i)\
-    \ \u306E\u5F62\r\n  int operator[](int x) { return (x <= sqN ? sum_lo[x] : sum_hi[N\
-    \ / x]); }\r\n\r\n  template <typename F>\r\n  void calc(const F f) {\r\n    auto\
-    \ primes = primetable(sqN);\r\n    sum_lo.resize(sqN + 1);\r\n    sum_hi.resize(sqN\
-    \ + 1);\r\n    FOR3(i, 1, sqN + 1) sum_lo[i] = f(i) - 1;\r\n    FOR3(i, 1, sqN\
-    \ + 1) sum_hi[i] = f(double(N) / i) - 1;\r\n    for (auto&& p: primes) {\r\n \
-    \     ll pp = p * p;\r\n      if (pp > N) break;\r\n      ll R = min(sqN, N /\
-    \ pp);\r\n      ll M = sqN / p;\r\n      T x = sum_lo[p - 1];\r\n      T fp =\
-    \ sum_lo[p] - sum_lo[p - 1];\r\n      FOR3(i, 1, M + 1) sum_hi[i] -= fp * (sum_hi[i\
-    \ * p] - x);\r\n      FOR3(i, M + 1, R + 1) sum_hi[i] -= fp * (sum_lo[double(N)\
-    \ / (i * p)] - x);\r\n      FOR3_R(n, pp, sqN + 1) sum_lo[n] -= fp * (sum_lo[double(n)\
-    \ / p] - x);\r\n    }\r\n  }\r\n\r\n  void count() {\r\n    calc([](ll x) { return\
-    \ x; });\r\n  }\r\n\r\n  void sum() {\r\n    calc([](ll x) {\r\n      ll a = x,\
-    \ b = x + 1;\r\n      if (!(x & 1)) a /= 2;\r\n      if (x & 1) b /= 2;\r\n  \
-    \    return T(a) * T(b);\r\n    });\r\n  }\r\n};\r\n"
+    \n  ll N;\r\n  ll sqN;\r\n  vc<T> sum_lo, sum_hi;\r\n  bool calculated;\r\n\r\n\
+    \  PrimeSum(ll N) : N(N), sqN(sqrtl(N)), calculated(0) {}\r\n\r\n  // [1, x] \u305F\
+    \u3060\u3057\u3001x = floor(N, i) \u306E\u5F62\r\n  T operator[](ll x) {\r\n \
+    \   assert(calculated);\r\n    return (x <= sqN ? sum_lo[x] : sum_hi[N / x]);\r\
+    \n  }\r\n\r\n  template <typename F>\r\n  void calc(const F f) {\r\n    auto primes\
+    \ = primetable(sqN);\r\n    sum_lo.resize(sqN + 1);\r\n    sum_hi.resize(sqN +\
+    \ 1);\r\n    FOR3(i, 1, sqN + 1) sum_lo[i] = f(i) - 1;\r\n    FOR3(i, 1, sqN +\
+    \ 1) sum_hi[i] = f(double(N) / i) - 1;\r\n    for (auto&& p: primes) {\r\n   \
+    \   ll pp = p * p;\r\n      if (pp > N) break;\r\n      ll R = min(sqN, N / pp);\r\
+    \n      ll M = sqN / p;\r\n      T x = sum_lo[p - 1];\r\n      T fp = sum_lo[p]\
+    \ - sum_lo[p - 1];\r\n      FOR3(i, 1, M + 1) sum_hi[i] -= fp * (sum_hi[i * p]\
+    \ - x);\r\n      FOR3(i, M + 1, R + 1) sum_hi[i] -= fp * (sum_lo[double(N) / (i\
+    \ * p)] - x);\r\n      FOR3_R(n, pp, sqN + 1) sum_lo[n] -= fp * (sum_lo[double(n)\
+    \ / p] - x);\r\n    }\r\n    calculated = 1;\r\n  }\r\n\r\n  void calc_count()\
+    \ {\r\n    calc([](ll x) -> T { return x; });\r\n  }\r\n\r\n  void calc_sum()\
+    \ {\r\n    calc([](ll x) -> T {\r\n      ll a = x, b = x + 1;\r\n      if (!(x\
+    \ & 1)) a /= 2;\r\n      if (x & 1) b /= 2;\r\n      return T(a) * T(b);\r\n \
+    \   });\r\n  }\r\n};\r\n"
   dependsOn:
   - nt/primetable.hpp
   isVerificationFile: false
   path: nt/primesum.hpp
   requiredBy: []
-  timestamp: '2022-08-18 23:20:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-08-18 23:51:34+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/mytest/prime_sum.test.cpp
   - test/library_checker/math/counting_primes.test.cpp
   - test/library_checker/math/totient_sum.test.cpp
 documentation_of: nt/primesum.hpp

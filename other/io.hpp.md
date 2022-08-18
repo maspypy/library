@@ -592,6 +592,9 @@ data:
     path: test/mytest/powerquery.test.cpp
     title: test/mytest/powerquery.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/prime_sum.test.cpp
+    title: test/mytest/prime_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/range_freq_of_linear.test.cpp
     title: test/mytest/range_freq_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1135,6 +1138,7 @@ data:
   - test/mytest/range_mex.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/maxplus_concave.test.cpp
+  - test/mytest/prime_sum.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
   - test/mytest/run_length.test.cpp

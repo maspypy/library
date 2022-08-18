@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: nt/multiplicative_sum.hpp
     title: nt/multiplicative_sum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/primesum.hpp
     title: nt/primesum.hpp
   - icon: ':question:'
@@ -219,26 +219,28 @@ data:
     \ \u3054\u3068\u3067\u306E\u7D20\u6570\u306E k \u4E57\u548C\u304C\u8A08\u7B97\u3067\
     \u304D\u308B\u3002\r\nComplexity: O(N^{3/4}/logN) time, O(N^{1/2}) space.\r\n\
     */\r\ntemplate <typename T>\r\nstruct PrimeSum {\r\n  ll N;\r\n  ll sqN;\r\n \
-    \ vc<T> sum_lo, sum_hi;\r\n\r\n  PrimeSum(ll N) : N(N), sqN(sqrtl(N)) {}\r\n\r\
-    \n  // [1, x] \u305F\u3060\u3057\u3001x = floor(N, i) \u306E\u5F62\r\n  int operator[](int\
-    \ x) { return (x <= sqN ? sum_lo[x] : sum_hi[N / x]); }\r\n\r\n  template <typename\
-    \ F>\r\n  void calc(const F f) {\r\n    auto primes = primetable(sqN);\r\n   \
-    \ sum_lo.resize(sqN + 1);\r\n    sum_hi.resize(sqN + 1);\r\n    FOR3(i, 1, sqN\
-    \ + 1) sum_lo[i] = f(i) - 1;\r\n    FOR3(i, 1, sqN + 1) sum_hi[i] = f(double(N)\
+    \ vc<T> sum_lo, sum_hi;\r\n  bool calculated;\r\n\r\n  PrimeSum(ll N) : N(N),\
+    \ sqN(sqrtl(N)), calculated(0) {}\r\n\r\n  // [1, x] \u305F\u3060\u3057\u3001\
+    x = floor(N, i) \u306E\u5F62\r\n  T operator[](ll x) {\r\n    assert(calculated);\r\
+    \n    return (x <= sqN ? sum_lo[x] : sum_hi[N / x]);\r\n  }\r\n\r\n  template\
+    \ <typename F>\r\n  void calc(const F f) {\r\n    auto primes = primetable(sqN);\r\
+    \n    sum_lo.resize(sqN + 1);\r\n    sum_hi.resize(sqN + 1);\r\n    FOR3(i, 1,\
+    \ sqN + 1) sum_lo[i] = f(i) - 1;\r\n    FOR3(i, 1, sqN + 1) sum_hi[i] = f(double(N)\
     \ / i) - 1;\r\n    for (auto&& p: primes) {\r\n      ll pp = p * p;\r\n      if\
     \ (pp > N) break;\r\n      ll R = min(sqN, N / pp);\r\n      ll M = sqN / p;\r\
     \n      T x = sum_lo[p - 1];\r\n      T fp = sum_lo[p] - sum_lo[p - 1];\r\n  \
     \    FOR3(i, 1, M + 1) sum_hi[i] -= fp * (sum_hi[i * p] - x);\r\n      FOR3(i,\
     \ M + 1, R + 1) sum_hi[i] -= fp * (sum_lo[double(N) / (i * p)] - x);\r\n     \
     \ FOR3_R(n, pp, sqN + 1) sum_lo[n] -= fp * (sum_lo[double(n) / p] - x);\r\n  \
-    \  }\r\n  }\r\n\r\n  void count() {\r\n    calc([](ll x) { return x; });\r\n \
-    \ }\r\n\r\n  void sum() {\r\n    calc([](ll x) {\r\n      ll a = x, b = x + 1;\r\
-    \n      if (!(x & 1)) a /= 2;\r\n      if (x & 1) b /= 2;\r\n      return T(a)\
-    \ * T(b);\r\n    });\r\n  }\r\n};\r\n#line 2 \"nt/multiplicative_sum.hpp\"\ntemplate\
-    \ <typename T, typename FUNC>\r\nT multiplicative_sum(ll N, FUNC F, vc<T>& sum_lo,\
-    \ vc<T>& sum_hi) {\r\n  // F(p^e) \u3092\u4E0E\u3048\u308B\u95A2\u6570\u306B\u52A0\
-    \u3048\u3001\u4E8B\u524D\u306B\u8A08\u7B97\u3057\u305F prime sum \u3092\u6301\u305F\
-    \u305B\u308B\r\n  // black algorithm in\r\n  // http://baihacker.github.io/main/2020/The_prefix-sum_of_multiplicative_function_the_black_algorithm.html\r\
+    \  }\r\n    calculated = 1;\r\n  }\r\n\r\n  void calc_count() {\r\n    calc([](ll\
+    \ x) -> T { return x; });\r\n  }\r\n\r\n  void calc_sum() {\r\n    calc([](ll\
+    \ x) -> T {\r\n      ll a = x, b = x + 1;\r\n      if (!(x & 1)) a /= 2;\r\n \
+    \     if (x & 1) b /= 2;\r\n      return T(a) * T(b);\r\n    });\r\n  }\r\n};\r\
+    \n#line 2 \"nt/multiplicative_sum.hpp\"\ntemplate <typename T, typename FUNC>\r\
+    \nT multiplicative_sum(ll N, FUNC F, vc<T>& sum_lo, vc<T>& sum_hi) {\r\n  // F(p^e)\
+    \ \u3092\u4E0E\u3048\u308B\u95A2\u6570\u306B\u52A0\u3048\u3001\u4E8B\u524D\u306B\
+    \u8A08\u7B97\u3057\u305F prime sum \u3092\u6301\u305F\u305B\u308B\r\n  // black\
+    \ algorithm in\r\n  // http://baihacker.github.io/main/2020/The_prefix-sum_of_multiplicative_function_the_black_algorithm.html\r\
     \n  ll sqN = sqrtl(N);\r\n  auto P = primetable(sqN);\r\n  auto get = [&](ll d)\
     \ -> T {\r\n    return (d <= sqN ? sum_lo[d] : sum_hi[double(N) / d]);\r\n  };\r\
     \n\r\n  T ANS = T(1) + get(N); // 1 and prime\r\n\r\n  // t = up_i^k \u306E\u3068\
@@ -276,7 +278,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/totient_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-08-18 23:20:55+09:00'
+  timestamp: '2022-08-18 23:51:34+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/totient_sum.test.cpp
