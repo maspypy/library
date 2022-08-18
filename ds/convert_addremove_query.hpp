@@ -6,29 +6,33 @@
 に変換する
 */
 template <typename X>
-struct Convert_AddRemove_Query {
-  map<X, int> MP;
-  vc<tuple<int, int, X>> dat;
-  void add(int time, X x) {
-    assert(!MP.count(x));
-    MP[x] = time;
-  }
+struct AddRemove_Query {
+  map<X, vc<int>> ADD;
+  map<X, vc<int>> RM;
 
-  void remove(int time, X x) {
-    auto it = MP.find(x);
-    assert(it != MP.end());
-    int t = (*it).se;
-    MP.erase(it);
-    if (t == time) return;
-    dat.eb(t, time, x);
-  }
+  void add(int time, X x) { ADD[x].eb(time); }
+  void remove(int time, X x) { RM[x].eb(time); }
 
   // すべてのクエリが終わった現在時刻を渡す
   vc<tuple<int, int, X>> calc(int time) {
-    for (auto&& [x, t]: MP) {
-      if (t == time) continue;
-      dat.eb(t, time, x);
+    vc<tuple<int, int, X>> dat;
+    for (auto&& [x, A]: ADD) {
+      vc<int> B;
+      if (RM.count(x)) {
+        B = RM[x];
+        RM.erase(x);
+      }
+      if (len(B) < len(A)) B.eb(time);
+      assert(len(A) == len(B));
+
+      sort(all(A));
+      sort(all(B));
+      FOR(i, len(A)) {
+        assert(A[i] <= B[i]);
+        if (A[i] < B[i]) dat.eb(A[i], B[i], x);
+      }
     }
+    assert(len(RM) == 0);
     return dat;
   }
 };
