@@ -1,9 +1,12 @@
+#pragma once
+
 template <typename T>
 struct RollbackArray {
+  int N;
   vc<T> dat;
   vc<pair<int, T>> history;
 
-  RollbackArray(vc<T> x) : dat(x) {}
+  RollbackArray(vc<T> x) : N(len(x)), dat(x) {}
 
   int time() { return len(history); }
   void rollback(int t) {
@@ -17,5 +20,11 @@ struct RollbackArray {
   void set(int idx, T x) {
     history.eb(idx, dat[idx]);
     dat[idx] = x;
+  }
+
+  vc<T> get_all() {
+    vc<T> res(N);
+    FOR(i, N) res[i] = get(i);
+    return res;
   }
 };
