@@ -6,7 +6,7 @@
 void solve() {
   LL(N);
   PrimeSum<ll> X(N);
-  X.count();
+  X.calc_count();
   print(X[N]);
 }
 
