@@ -16,9 +16,8 @@ vector<mint> convolution_ntt(vector<mint> a, vector<mint> b) {
     auto a_last = a.back(), b_last = b.back();
     a.pop_back(), b.pop_back();
     auto c = convolution(a, b);
-    c.eb(0);
-    c.eb(0);
-    c.back() = a_last * b_last;
+    c.resize(n + m - 1);
+    c[n + m - 2] = a_last * b_last;
     FOR(i, len(a)) c[i + len(b)] += a[i] * b_last;
     FOR(i, len(b)) c[i + len(a)] += b[i] * a_last;
     return c;
@@ -104,11 +103,20 @@ vc<double> convolution_fft(const vc<R>& a, const vc<R>& b) {
   return ret;
 }
 
-// atcoder library
 vector<ll> convolution(const vector<ll>& a, const vector<ll>& b) {
   int n = len(a), m = len(b);
   if (!n || !m) return {};
-  // if (min(n, m) <= 60) return convolution_naive(a, b);
+  if (min(n, m) <= 60) return convolution_naive(a, b);
+  ll abs_sum_a = 0, abs_sum_b = 0;
+  ll LIM = 1e15;
+  FOR(i, n) abs_sum_a = min(LIM, abs_sum_a + abs(a[i]));
+  FOR(i, n) abs_sum_b = min(LIM, abs_sum_b + abs(b[i]));
+  if (i128(abs_sum_a) * abs_sum_b < 1e15) {
+    vc<double> c = convolution_fft<ll>(a, b);
+    vc<ll> res(len(c));
+    FOR(i, len(c)) res[i] = ll(floor(c[i] + .5));
+    return res;
+  }
 
   static constexpr unsigned long long MOD1 = 754974721; // 2^24
   static constexpr unsigned long long MOD2 = 167772161; // 2^25
