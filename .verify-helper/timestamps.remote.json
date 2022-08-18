@@ -192,6 +192,7 @@
 "test/mytest/minplus_convex.test.cpp": "2022-08-16 03:04:45 +0900",
 "test/mytest/mod_sum_of_linear.test.cpp": "2022-08-13 02:22:39 +0900",
 "test/mytest/powerquery.test.cpp": "2022-08-17 05:19:57 +0900",
+"test/mytest/prime_sum.test.cpp": "2022-08-18 23:51:43 +0900",
 "test/mytest/range_freq_of_linear.test.cpp": "2022-08-13 02:22:39 +0900",
 "test/mytest/range_mex.test.cpp": "2022-08-16 03:36:43 +0900",
 "test/mytest/rect_add_pt_sum.test.cpp": "2022-08-18 17:58:17 +0900",
