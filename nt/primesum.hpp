@@ -11,11 +11,15 @@ struct PrimeSum {
   ll N;
   ll sqN;
   vc<T> sum_lo, sum_hi;
+  bool calculated;
 
-  PrimeSum(ll N) : N(N), sqN(sqrtl(N)) {}
+  PrimeSum(ll N) : N(N), sqN(sqrtl(N)), calculated(0) {}
 
   // [1, x] ただし、x = floor(N, i) の形
-  int operator[](int x) { return (x <= sqN ? sum_lo[x] : sum_hi[N / x]); }
+  T operator[](ll x) {
+    assert(calculated);
+    return (x <= sqN ? sum_lo[x] : sum_hi[N / x]);
+  }
 
   template <typename F>
   void calc(const F f) {
@@ -35,14 +39,15 @@ struct PrimeSum {
       FOR3(i, M + 1, R + 1) sum_hi[i] -= fp * (sum_lo[double(N) / (i * p)] - x);
       FOR3_R(n, pp, sqN + 1) sum_lo[n] -= fp * (sum_lo[double(n) / p] - x);
     }
+    calculated = 1;
   }
 
-  void count() {
-    calc([](ll x) { return x; });
+  void calc_count() {
+    calc([](ll x) -> T { return x; });
   }
 
-  void sum() {
-    calc([](ll x) {
+  void calc_sum() {
+    calc([](ll x) -> T {
       ll a = x, b = x + 1;
       if (!(x & 1)) a /= 2;
       if (x & 1) b /= 2;
