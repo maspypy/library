@@ -1,3 +1,5 @@
+#pragma once
+
 template <class Monoid>
 struct DisjointSparse {
   using X = typename Monoid::value_type;
