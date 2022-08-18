@@ -7,6 +7,7 @@ void solve() {
   LL(N, Q);
   VEC(ll, C, N);
   UniqueProductQuery<Group_Add<int>> X(C);
+  
   FOR(Q) {
     LL(l, r);
     X.add(--l, r);
@@ -16,10 +17,6 @@ void solve() {
 
 signed main() {
   cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
