@@ -24,7 +24,7 @@ data:
   attributes:
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"nt/primesum_mod4.hpp\"\n##define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
+  bundledCode: "#line 1 \"nt/primesum_mod4.hpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
     \n#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
     \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
     \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
@@ -254,30 +254,29 @@ data:
     }\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout\
     \ << fixed << setprecision(15);\n\n  test_count();\n  test_sum();\n  solve();\n\
     \n  return 0;\n}\n"
-  code: "##define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"\
-    my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"nt/primesum.hpp\"\n\
-    #include \"nt/primetable.hpp\"\n\n    template <typename T>\n    struct PrimeSum_Mod_4\
-    \ {\n  ll N;\n  ll sqN;\n\n  PrimeSum<T> A, B;\n  PrimeSum_Mod_4(ll N) : N(N),\
-    \ sqN(sqrtl(N)), A(N), B(N) {}\n\n  pair<T, T> operator[](ll x) {\n    T a = A[x],\
-    \ b = B[x];\n    return {(a + b) / T(2), (a - b) / T(2)};\n  }\n\n  void calc_count()\
-    \ {\n    A.calc([](ll x) -> T { return (x + 1) / 2; });\n    B.calc([](ll x) ->\
-    \ T { return ((x + 3) % 4 <= 1 ? 1 : 0); });\n  }\n\n  void calc_sum() {\n   \
-    \ A.calc([](ll x) -> T {\n      ll n = (x + 1) / 2;\n      return T(n) * T(n);\n\
-    \    });\n    B.calc([](ll x) -> T {\n      ll n = (x + 1) / 2;\n      return\
-    \ (n % 2 == 0 ? T(-n) : T(n));\n    });\n  }\n};\n\nvoid test_count() {\n  ll\
-    \ LIM = 10000;\n  vc<int> A1(LIM), A3(LIM);\n  for (auto&& p: primetable(LIM))\n\
-    \    if (p % 4 == 1) { A1[p]++; }\n  for (auto&& p: primetable(LIM))\n    if (p\
-    \ % 4 == 3) { A3[p]++; }\n  A1 = cumsum(A1, 0);\n  A3 = cumsum(A3, 0);\n\n  FOR(N,\
-    \ LIM) {\n    PrimeSum_Mod_4<int> X(N);\n    X.calc_count();\n    FOR(K, 1, N\
-    \ + 10) { assert(X[N / K] == mp(A1[N / K], A3[N / K])); }\n  }\n}\n\nvoid test_sum()\
-    \ {\n  ll LIM = 10000;\n  vc<int> A1(LIM), A3(LIM);\n  for (auto&& p: primetable(LIM))\n\
-    \    if (p % 4 == 1) { A1[p] += p; }\n  for (auto&& p: primetable(LIM))\n    if\
-    \ (p % 4 == 3) { A3[p] += p; }\n  A1 = cumsum(A1, 0);\n  A3 = cumsum(A3, 0);\n\
-    \n  FOR(N, LIM) {\n    PrimeSum_Mod_4<int> X(N);\n    X.calc_sum();\n    FOR(K,\
-    \ 1, N + 10) { assert(X[N / K] == mp(A1[N / K], A3[N / K])); }\n  }\n}\n\nvoid\
-    \ solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed\
-    \ << setprecision(15);\n\n  test_count();\n  test_sum();\n  solve();\n\n  return\
-    \ 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n\n#include \"nt/primesum.hpp\"\n#include \"nt/primetable.hpp\"\
+    \n\n    template <typename T>\n    struct PrimeSum_Mod_4 {\n  ll N;\n  ll sqN;\n\
+    \n  PrimeSum<T> A, B;\n  PrimeSum_Mod_4(ll N) : N(N), sqN(sqrtl(N)), A(N), B(N)\
+    \ {}\n\n  pair<T, T> operator[](ll x) {\n    T a = A[x], b = B[x];\n    return\
+    \ {(a + b) / T(2), (a - b) / T(2)};\n  }\n\n  void calc_count() {\n    A.calc([](ll\
+    \ x) -> T { return (x + 1) / 2; });\n    B.calc([](ll x) -> T { return ((x + 3)\
+    \ % 4 <= 1 ? 1 : 0); });\n  }\n\n  void calc_sum() {\n    A.calc([](ll x) -> T\
+    \ {\n      ll n = (x + 1) / 2;\n      return T(n) * T(n);\n    });\n    B.calc([](ll\
+    \ x) -> T {\n      ll n = (x + 1) / 2;\n      return (n % 2 == 0 ? T(-n) : T(n));\n\
+    \    });\n  }\n};\n\nvoid test_count() {\n  ll LIM = 10000;\n  vc<int> A1(LIM),\
+    \ A3(LIM);\n  for (auto&& p: primetable(LIM))\n    if (p % 4 == 1) { A1[p]++;\
+    \ }\n  for (auto&& p: primetable(LIM))\n    if (p % 4 == 3) { A3[p]++; }\n  A1\
+    \ = cumsum(A1, 0);\n  A3 = cumsum(A3, 0);\n\n  FOR(N, LIM) {\n    PrimeSum_Mod_4<int>\
+    \ X(N);\n    X.calc_count();\n    FOR(K, 1, N + 10) { assert(X[N / K] == mp(A1[N\
+    \ / K], A3[N / K])); }\n  }\n}\n\nvoid test_sum() {\n  ll LIM = 10000;\n  vc<int>\
+    \ A1(LIM), A3(LIM);\n  for (auto&& p: primetable(LIM))\n    if (p % 4 == 1) {\
+    \ A1[p] += p; }\n  for (auto&& p: primetable(LIM))\n    if (p % 4 == 3) { A3[p]\
+    \ += p; }\n  A1 = cumsum(A1, 0);\n  A3 = cumsum(A3, 0);\n\n  FOR(N, LIM) {\n \
+    \   PrimeSum_Mod_4<int> X(N);\n    X.calc_sum();\n    FOR(K, 1, N + 10) { assert(X[N\
+    \ / K] == mp(A1[N / K], A3[N / K])); }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n\
+    \  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  test_count();\n  test_sum();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -286,7 +285,7 @@ data:
   isVerificationFile: false
   path: nt/primesum_mod4.hpp
   requiredBy: []
-  timestamp: '2022-08-19 00:15:59+09:00'
+  timestamp: '2022-08-19 00:34:38+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/primesum_mod4.test.cpp

@@ -200,7 +200,7 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 1 \"nt/primesum_mod4.hpp\"\n##define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
+    \ { yes(!t); }\r\n#line 1 \"nt/primesum_mod4.hpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
     \n#line 2 \"my_template.hpp\"\n\nusing namespace std;\n\nusing ll = long long;\n\
     using pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\n\
     using u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\n\
@@ -467,7 +467,7 @@ data:
   isVerificationFile: true
   path: test/mytest/primesum_mod4.test.cpp
   requiredBy: []
-  timestamp: '2022-08-19 00:15:59+09:00'
+  timestamp: '2022-08-19 00:34:38+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/primesum_mod4.test.cpp
