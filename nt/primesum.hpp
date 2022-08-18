@@ -18,7 +18,7 @@ struct PrimeSum {
   // [1, x] ただし、x = floor(N, i) の形
   T operator[](ll x) {
     assert(calculated);
-    return (x <= sqN ? sum_lo[x] : sum_hi[N / x]);
+    return (x <= sqN ? sum_lo[x] : sum_hi[double(N) / x]);
   }
 
   template <typename F>
@@ -37,7 +37,7 @@ struct PrimeSum {
       T fp = sum_lo[p] - sum_lo[p - 1];
       FOR3(i, 1, M + 1) sum_hi[i] -= fp * (sum_hi[i * p] - x);
       FOR3(i, M + 1, R + 1) sum_hi[i] -= fp * (sum_lo[double(N) / (i * p)] - x);
-      FOR3_R(n, pp, sqN + 1) sum_lo[n] -= fp * (sum_lo[double(n) / p] - x);
+      FOR3_R(n, pp, sqN + 1) sum_lo[n] -= fp * (sum_lo[double(n / p)] - x);
     }
     calculated = 1;
   }
