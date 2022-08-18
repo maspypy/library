@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/library_checker/add_remove_query.test.cpp
-    title: test/library_checker/add_remove_query.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/convert_addremove_query.hpp\"\n/*\n\u30FB\u6642\u523B\
@@ -67,9 +64,8 @@ data:
   path: ds/convert_addremove_query.hpp
   requiredBy: []
   timestamp: '2022-08-18 21:28:24+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/library_checker/add_remove_query.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: ds/convert_addremove_query.hpp
 layout: document
 redirect_from:

@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/contoursum.hpp
     title: graph/contoursum.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree
@@ -288,26 +288,26 @@ data:
     \   int nxt_bit_idx = 0;\n    vc<int> done(N, 0);\n    vc<int> sz(N, 0);\n   \
     \ vc<int> par(N, -1);\n    vc<int> dist(N, -1);\n    vc<pair<int, int>> st;\n\
     \    bit_range.resize(N);\n    dat.resize(N);\n    st.eb(0, N);\n\n    while (len(st))\
-    \ {\n      auto [v0, n] = st.back();\n      st.pop_back();\n      int c = -1;\n\
-    \      {\n        auto dfs = [&](auto& dfs, int v) -> int {\n          sz[v] =\
-    \ 1;\n          for (auto&& e: G[v])\n            if (e.to != par[v] && !done[e.to])\
-    \ {\n              par[e.to] = v;\n              sz[v] += dfs(dfs, e.to);\n  \
-    \          }\n          if (c == -1 && n - sz[v] <= n / 2) { c = v; }\n      \
-    \    return sz[v];\n        };\n        dfs(dfs, v0);\n      }\n      // center\
-    \ \u304B\u3089\u306E bfs\u3002\u90E8\u5206\u6728\u30B5\u30A4\u30BA\u3082\u3068\
-    \u3063\u3066\u304A\u304F\u3002\n      done[c] = 1;\n      {\n        int off =\
-    \ nxt_bit_idx;\n        vc<int> que;\n        auto add = [&](int v, int d, int\
-    \ p) -> void {\n          if (dist[v] != -1) return;\n          sz[v] = 1;\n \
-    \         dist[v] = d;\n          par[v] = p;\n          que.eb(v);\n        };\n\
-    \        int p = 0;\n        add(c, 0, -1);\n        while (p < len(que)) {\n\
-    \          auto v = que[p++];\n          for (auto&& e: G[v]) {\n            if\
-    \ (done[e.to]) continue;\n            add(e.to, dist[v] + 1, v);\n          }\n\
-    \        }\n        FOR_R(i, 1, len(que)) {\n          int v = que[i];\n     \
-    \     sz[par[v]] += sz[v];\n        }\n        // \u8DDD\u96E2\u3054\u3068\u306E\
-    \u30AB\u30A6\u30F3\u30C8\n        int max_d = dist[que.back()];\n        vc<int>\
-    \ count(max_d + 1);\n        // \u91CD\u5FC3\u3001\u65B9\u5411\u30E9\u30D9\u30EB\
-    \u3001\u91CD\u5FC3\u304B\u3089\u306E\u8DDD\u96E2\u3001bit \u3067\u306Eindex\n\
-    \        for (auto&& v: que) {\n          dat[v].eb(c, dist[v], nxt_bit_idx++);\n\
+    \ {\n      int v0 = st.back().fi;\n      int n = st.back().se;\n      st.pop_back();\n\
+    \      int c = -1;\n      {\n        auto dfs = [&](auto& dfs, int v) -> int {\n\
+    \          sz[v] = 1;\n          for (auto&& e: G[v])\n            if (e.to !=\
+    \ par[v] && !done[e.to]) {\n              par[e.to] = v;\n              sz[v]\
+    \ += dfs(dfs, e.to);\n            }\n          if (c == -1 && n - sz[v] <= n /\
+    \ 2) { c = v; }\n          return sz[v];\n        };\n        dfs(dfs, v0);\n\
+    \      }\n      // center \u304B\u3089\u306E bfs\u3002\u90E8\u5206\u6728\u30B5\
+    \u30A4\u30BA\u3082\u3068\u3063\u3066\u304A\u304F\u3002\n      done[c] = 1;\n \
+    \     {\n        int off = nxt_bit_idx;\n        vc<int> que;\n        auto add\
+    \ = [&](int v, int d, int p) -> void {\n          if (dist[v] != -1) return;\n\
+    \          sz[v] = 1;\n          dist[v] = d;\n          par[v] = p;\n       \
+    \   que.eb(v);\n        };\n        int p = 0;\n        add(c, 0, -1);\n     \
+    \   while (p < len(que)) {\n          auto v = que[p++];\n          for (auto&&\
+    \ e: G[v]) {\n            if (done[e.to]) continue;\n            add(e.to, dist[v]\
+    \ + 1, v);\n          }\n        }\n        FOR_R(i, 1, len(que)) {\n        \
+    \  int v = que[i];\n          sz[par[v]] += sz[v];\n        }\n        // \u8DDD\
+    \u96E2\u3054\u3068\u306E\u30AB\u30A6\u30F3\u30C8\n        int max_d = dist[que.back()];\n\
+    \        vc<int> count(max_d + 1);\n        // \u91CD\u5FC3\u3001\u65B9\u5411\u30E9\
+    \u30D9\u30EB\u3001\u91CD\u5FC3\u304B\u3089\u306E\u8DDD\u96E2\u3001bit \u3067\u306E\
+    index\n        for (auto&& v: que) {\n          dat[v].eb(c, dist[v], nxt_bit_idx++);\n\
     \          count[dist[v]]++;\n          par[v] = -1;\n          dist[v] = -1;\n\
     \        }\n        bit_range[c] = cumsum(count);\n        for (auto&& x: bit_range[c])\
     \ x += off;\n      }\n      // \u65B9\u5411\u3054\u3068\u306E bfs\n      for (auto&&\
@@ -353,8 +353,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/verted_add_contour_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-08-18 17:59:30+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-19 00:24:34+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/verted_add_contour_sum.test.cpp
 layout: document

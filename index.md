@@ -195,7 +195,7 @@ data:
       title: dp/subset_sum.hpp
   - name: ds
     pages:
-    - icon: ':warning:'
+    - icon: ':x:'
       path: ds/addremove_query.hpp
       title: ds/addremove_query.hpp
     - icon: ':heavy_check_mark:'
@@ -213,7 +213,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/cht_monotone.hpp
       title: ds/cht_monotone.hpp
-    - icon: ':x:'
+    - icon: ':warning:'
       path: ds/convert_addremove_query.hpp
       title: ds/convert_addremove_query.hpp
     - icon: ':heavy_check_mark:'
@@ -405,7 +405,7 @@ data:
       title: geo/points_diameter.hpp
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/base.hpp
       title: graph/base.hpp
     - icon: ':heavy_check_mark:'
@@ -438,7 +438,7 @@ data:
     - icon: ':warning:'
       path: graph/compress_tree.hpp
       title: graph/compress_tree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/contoursum.hpp
       title: graph/contoursum.hpp
     - icon: ':heavy_check_mark:'
@@ -1424,7 +1424,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/two_edge_component.test.cpp
       title: test/library_checker/graph/two_edge_component.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/verted_add_contour_sum.test.cpp
       title: test/library_checker/graph/verted_add_contour_sum.test.cpp
   - name: test/library_checker/math
