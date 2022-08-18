@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/convert_addremove_query.hpp
     title: ds/convert_addremove_query.hpp
   - icon: ':question:'
@@ -10,17 +10,17 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: pds/rollbackarray.hpp
     title: pds/rollbackarray.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: pds/rollbackunionfind.hpp
     title: pds/rollbackunionfind.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum
@@ -204,22 +204,23 @@ data:
     \u523B t \u306B x \u3092\u8FFD\u52A0\u3059\u308B\n\u30FB\u6642\u523B t \u306B\
     \ x \u3092\u524A\u9664\u3059\u308B\n\u304C\u3042\u308B\u3068\u304D\u306B\u3001\
     \n\u30FB\u6642\u523B [l, r) \u306B x \u3092\u8FFD\u52A0\u3059\u308B\n\u306B\u5909\
-    \u63DB\u3059\u308B\n*/\ntemplate <typename X>\nstruct Convert_AddRemove_Query\
-    \ {\n  map<X, int> MP;\n  vc<tuple<int, int, X>> dat;\n  void add(int time, X\
-    \ x) {\n    assert(!MP.count(x));\n    MP[x] = time;\n  }\n\n  void remove(int\
-    \ time, X x) {\n    auto it = MP.find(x);\n    assert(it != MP.end());\n    int\
-    \ t = (*it).se;\n    MP.erase(it);\n    if (t == time) return;\n    dat.eb(t,\
-    \ time, x);\n  }\n\n  // \u3059\u3079\u3066\u306E\u30AF\u30A8\u30EA\u304C\u7D42\
-    \u308F\u3063\u305F\u73FE\u5728\u6642\u523B\u3092\u6E21\u3059\n  vc<tuple<int,\
-    \ int, X>> calc(int time) {\n    for (auto&& [x, t]: MP) {\n      if (t == time)\
-    \ continue;\n      dat.eb(t, time, x);\n    }\n    return dat;\n  }\n};\n#line\
-    \ 2 \"pds/rollbackarray.hpp\"\n\r\ntemplate <typename T>\r\nstruct RollbackArray\
-    \ {\r\n  int N;\r\n  vc<T> dat;\r\n  vc<pair<int, T>> history;\r\n\r\n  RollbackArray(vc<T>\
-    \ x) : N(len(x)), dat(x) {}\r\n\r\n  int time() { return len(history); }\r\n \
-    \ void rollback(int t) {\r\n    FOR_R(i, t, time()) {\r\n      auto& [idx, v]\
-    \ = history[i];\r\n      dat[idx] = v;\r\n    }\r\n    history.resize(t);\r\n\
-    \  }\r\n  T get(int idx) { return dat[idx]; }\r\n  void set(int idx, T x) {\r\n\
-    \    history.eb(idx, dat[idx]);\r\n    dat[idx] = x;\r\n  }\r\n\r\n  vc<T> get_all()\
+    \u63DB\u3059\u308B\n*/\ntemplate <typename X>\nstruct AddRemove_Query {\n  map<X,\
+    \ vc<int>> ADD;\n  map<X, vc<int>> RM;\n\n  void add(int time, X x) { ADD[x].eb(time);\
+    \ }\n  void remove(int time, X x) { RM[x].eb(time); }\n\n  // \u3059\u3079\u3066\
+    \u306E\u30AF\u30A8\u30EA\u304C\u7D42\u308F\u3063\u305F\u73FE\u5728\u6642\u523B\
+    \u3092\u6E21\u3059\n  vc<tuple<int, int, X>> calc(int time) {\n    vc<tuple<int,\
+    \ int, X>> dat;\n    for (auto&& [x, A]: ADD) {\n      vc<int> B;\n      if (RM.count(x))\
+    \ {\n        B = RM[x];\n        RM.erase(x);\n      }\n      if (len(B) < len(A))\
+    \ B.eb(time);\n      assert(len(A) == len(B));\n\n      sort(all(A));\n      sort(all(B));\n\
+    \      FOR(i, len(A)) {\n        assert(A[i] <= B[i]);\n        if (A[i] < B[i])\
+    \ dat.eb(A[i], B[i], x);\n      }\n    }\n    assert(len(RM) == 0);\n    return\
+    \ dat;\n  }\n};\n#line 2 \"pds/rollbackarray.hpp\"\n\r\ntemplate <typename T>\r\
+    \nstruct RollbackArray {\r\n  int N;\r\n  vc<T> dat;\r\n  vc<pair<int, T>> history;\r\
+    \n\r\n  RollbackArray(vc<T> x) : N(len(x)), dat(x) {}\r\n\r\n  int time() { return\
+    \ len(history); }\r\n  void rollback(int t) {\r\n    FOR_R(i, t, time()) {\r\n\
+    \      auto& [idx, v] = history[i];\r\n      dat[idx] = v;\r\n    }\r\n    history.resize(t);\r\
+    \n  }\r\n  T get(int idx) { return dat[idx]; }\r\n  void set(int idx, T x) {\r\
+    \n    history.eb(idx, dat[idx]);\r\n    dat[idx] = x;\r\n  }\r\n\r\n  vc<T> get_all()\
     \ {\r\n    vc<T> res(N);\r\n    FOR(i, N) res[i] = get(i);\r\n    return res;\r\
     \n  }\r\n};\r\n#line 2 \"pds/rollbackunionfind.hpp\"\n\r\nstruct RollbackUnionFind\
     \ {\r\n  RollbackArray<int> dat; // parent or size\r\n\r\n  RollbackUnionFind(int\
@@ -298,8 +299,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/add_remove_query.test.cpp
   requiredBy: []
-  timestamp: '2022-08-18 20:34:40+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-18 21:11:08+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/add_remove_query.test.cpp
 layout: document
