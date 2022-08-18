@@ -1,10 +1,11 @@
 #pragma once
 
-template <typename T>
-vc<vc<T>> ranked_zeta(const vc<T>& f) {
+template <typename T, int LIM = 20>
+vc<array<T, LIM + 1>> ranked_zeta(const vc<T>& f) {
   int n = topbit(len(f));
+  assert(n <= LIM);
   assert(len(f) == 1 << n);
-  vv(T, Rf, 1 << n, n + 1);
+  vc<array<T, LIM + 1>> Rf(1 << n);
   for (int s = 0; s < (1 << n); ++s) Rf[s][popcnt(s)] = f[s];
   for (int i = 0; i < n; ++i) {
     for (int s = 0; s < (1 << n); ++s) {
@@ -16,8 +17,8 @@ vc<vc<T>> ranked_zeta(const vc<T>& f) {
   return Rf;
 }
 
-template <typename T>
-vc<T> ranked_mobius(vc<vc<T>>& Rf) {
+template <typename T, int LIM = 20>
+vc<T> ranked_mobius(vc<array<T, LIM + 1>>& Rf) {
   int n = topbit(len(Rf));
   assert(len(Rf) == 1 << n);
   for (int i = 0; i < n; ++i) {
