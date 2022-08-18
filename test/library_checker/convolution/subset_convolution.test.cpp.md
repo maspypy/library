@@ -284,24 +284,26 @@ data:
     \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
     \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n\nusing modint107\
     \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\
-    #line 2 \"setfunc/ranked_zeta.hpp\"\n\r\ntemplate <typename T>\r\nvc<vc<T>> ranked_zeta(const\
-    \ vc<T>& f) {\r\n  int n = topbit(len(f));\r\n  assert(len(f) == 1 << n);\r\n\
-    \  vv(T, Rf, 1 << n, n + 1);\r\n  for (int s = 0; s < (1 << n); ++s) Rf[s][popcnt(s)]\
-    \ = f[s];\r\n  for (int i = 0; i < n; ++i) {\r\n    for (int s = 0; s < (1 <<\
-    \ n); ++s) {\r\n      int t = s | 1 << i;\r\n      if (s == t) continue;\r\n \
-    \     for (int d = 0; d <= n; ++d) Rf[t][d] += Rf[s][d];\r\n    }\r\n  }\r\n \
-    \ return Rf;\r\n}\r\n\r\ntemplate <typename T>\r\nvc<T> ranked_mobius(vc<vc<T>>&\
-    \ Rf) {\r\n  int n = topbit(len(Rf));\r\n  assert(len(Rf) == 1 << n);\r\n  for\
-    \ (int i = 0; i < n; ++i) {\r\n    for (int s = 0; s < (1 << n); ++s) {\r\n  \
-    \    int t = s | 1 << i;\r\n      if (s == t) continue;\r\n      for (int d =\
-    \ 0; d <= n; ++d) Rf[t][d] -= Rf[s][d];\r\n    }\r\n  }\r\n  vc<T> f(1 << n);\r\
+    #line 2 \"setfunc/ranked_zeta.hpp\"\n\r\ntemplate <typename T, int LIM = 20>\r\
+    \nvc<array<T, LIM + 1>> ranked_zeta(const vc<T>& f) {\r\n  int n = topbit(len(f));\r\
+    \n  assert(n <= LIM);\r\n  assert(len(f) == 1 << n);\r\n  vc<array<T, LIM + 1>>\
+    \ Rf(1 << n);\r\n  for (int s = 0; s < (1 << n); ++s) Rf[s][popcnt(s)] = f[s];\r\
+    \n  for (int i = 0; i < n; ++i) {\r\n    for (int s = 0; s < (1 << n); ++s) {\r\
+    \n      int t = s | 1 << i;\r\n      if (s == t) continue;\r\n      for (int d\
+    \ = 0; d <= n; ++d) Rf[t][d] += Rf[s][d];\r\n    }\r\n  }\r\n  return Rf;\r\n\
+    }\r\n\r\ntemplate <typename T, int LIM = 20>\r\nvc<T> ranked_mobius(vc<array<T,\
+    \ LIM + 1>>& Rf) {\r\n  int n = topbit(len(Rf));\r\n  assert(len(Rf) == 1 << n);\r\
+    \n  for (int i = 0; i < n; ++i) {\r\n    for (int s = 0; s < (1 << n); ++s) {\r\
+    \n      int t = s | 1 << i;\r\n      if (s == t) continue;\r\n      for (int d\
+    \ = 0; d <= n; ++d) Rf[t][d] -= Rf[s][d];\r\n    }\r\n  }\r\n  vc<T> f(1 << n);\r\
     \n  for (int s = 0; s < (1 << n); ++s) f[s] = Rf[s][popcnt(s)];\r\n  return f;\r\
-    \n}\n#line 2 \"setfunc/subset_convolution.hpp\"\n\r\ntemplate <typename T>\r\n\
-    vc<T> subset_convolution(vc<T> A, vc<T> B) {\r\n  auto RA = ranked_zeta(A);\r\n\
-    \  auto RB = ranked_zeta(B);\r\n  int n = len(RA[0]) - 1;\r\n  FOR(s, len(RA))\
-    \ {\r\n    vc<T> f(n + 1);\r\n    FOR(i, n + 1) FOR(j, n - i + 1) f[i + j] +=\
-    \ RA[s][i] * RB[s][j];\r\n    RA[s] = f;\r\n  }\r\n  return ranked_mobius(RA);\r\
-    \n}\r\n#line 7 \"test/library_checker/convolution/subset_convolution.test.cpp\"\
+    \n}\n#line 2 \"setfunc/subset_convolution.hpp\"\n\r\ntemplate <typename T, int\
+    \ LIM = 20>\r\nvc<T> subset_convolution(const vc<T>& A, const vc<T>& B) {\r\n\
+    \  auto RA = ranked_zeta<T, LIM>(A);\r\n  auto RB = ranked_zeta<T, LIM>(B);\r\n\
+    \  int n = topbit(len(RA));\r\n  FOR(s, len(RA)) {\r\n    auto &f = RA[s], g =\
+    \ RB[s];\r\n    FOR_R(d, n + 1) {\r\n      T x = 0;\r\n      FOR(i, d + 1) x +=\
+    \ f[i] * g[d - i];\r\n      f[d] = x;\r\n    }\r\n  }\r\n  return ranked_mobius<T,\
+    \ LIM>(RA);\r\n}\n#line 7 \"test/library_checker/convolution/subset_convolution.test.cpp\"\
     \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint,\
     \ A, 1 << N);\r\n  VEC(mint, B, 1 << N);\r\n  auto C = subset_convolution(A, B);\r\
     \n  print(C);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
@@ -322,7 +324,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/convolution/subset_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-08-17 05:19:57+09:00'
+  timestamp: '2022-08-19 05:33:28+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/convolution/subset_convolution.test.cpp
