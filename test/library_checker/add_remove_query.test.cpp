@@ -13,7 +13,7 @@ void solve() {
 
   vc<int> query;
 
-  Convert_AddRemove_Query<P, true> X;
+  AddRemove_Query<P, true> X;
   FOR(Q) {
     LL(t);
     if (t == 0) {
