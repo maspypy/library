@@ -5,6 +5,9 @@ data:
   - icon: ':warning:'
     path: graph/bipartite_coloring.hpp
     title: graph/bipartite_coloring.hpp
+  - icon: ':x:'
+    path: nt/primesum_mod4.hpp
+    title: nt/primesum_mod4.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508_splay.test.cpp
@@ -600,6 +603,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/prime_sum.test.cpp
     title: test/mytest/prime_sum.test.cpp
+  - icon: ':x:'
+    path: test/mytest/primesum_mod4.test.cpp
+    title: test/mytest/primesum_mod4.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_freq_of_linear.test.cpp
     title: test/mytest/range_freq_of_linear.test.cpp
@@ -985,6 +991,7 @@ data:
   path: my_template.hpp
   requiredBy:
   - graph/bipartite_coloring.hpp
+  - nt/primesum_mod4.hpp
   timestamp: '2022-08-13 02:22:39+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -1078,6 +1085,7 @@ data:
   - test/mytest/binom.test.cpp
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
+  - test/mytest/primesum_mod4.test.cpp
   - test/min_of_linear_segments.test.cpp
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
   - test/library_checker/geometry/convex_layers.test.cpp

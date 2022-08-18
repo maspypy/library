@@ -730,6 +730,9 @@ data:
     - icon: ':question:'
       path: nt/primesum.hpp
       title: nt/primesum.hpp
+    - icon: ':x:'
+      path: nt/primesum_mod4.hpp
+      title: nt/primesum_mod4.hpp
     - icon: ':question:'
       path: nt/primetable.hpp
       title: nt/primetable.hpp
@@ -1669,6 +1672,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/prime_sum.test.cpp
       title: test/mytest/prime_sum.test.cpp
+    - icon: ':x:'
+      path: test/mytest/primesum_mod4.test.cpp
+      title: test/mytest/primesum_mod4.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/range_freq_of_linear.test.cpp
       title: test/mytest/range_freq_of_linear.test.cpp

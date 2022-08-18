@@ -29,6 +29,9 @@ data:
   - icon: ':question:'
     path: nt/primesum.hpp
     title: nt/primesum.hpp
+  - icon: ':x:'
+    path: nt/primesum_mod4.hpp
+    title: nt/primesum_mod4.hpp
   - icon: ':heavy_check_mark:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
@@ -84,6 +87,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/prime_sum.test.cpp
     title: test/mytest/prime_sum.test.cpp
+  - icon: ':x:'
+    path: test/mytest/primesum_mod4.test.cpp
+    title: test/mytest/primesum_mod4.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1321_surj.test.cpp
     title: test/yukicoder/1321_surj.test.cpp
@@ -131,6 +137,7 @@ data:
   - nt/gcd_convolution.hpp
   - nt/primesum.hpp
   - nt/euler_phi.hpp
+  - nt/primesum_mod4.hpp
   - nt/lcm_convolution.hpp
   - nt/zeta.hpp
   - nt/lpf_table.hpp
@@ -145,6 +152,7 @@ data:
   - test/yukicoder/1321_surj.test.cpp
   - test/yukicoder/1666_integer_kth_root.test.cpp
   - test/mytest/prime_sum.test.cpp
+  - test/mytest/primesum_mod4.test.cpp
   - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - test/library_checker/math/lcm_convolution.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
