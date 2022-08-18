@@ -1,3 +1,5 @@
+#include "alg/group_mul.hpp"
+
 // 定数をべき乗するクエリ。 B 乗分ずつ前計算。
 template <typename Mono, int B = 1024>
 struct PowerQuery {
