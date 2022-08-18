@@ -299,11 +299,16 @@ data:
     \n  for (int s = 0; s < (1 << n); ++s) f[s] = Rf[s][popcnt(s)];\r\n  return f;\r\
     \n}\n#line 2 \"setfunc/subset_convolution.hpp\"\n\r\ntemplate <typename T, int\
     \ LIM = 20>\r\nvc<T> subset_convolution(const vc<T>& A, const vc<T>& B) {\r\n\
-    \  auto RA = ranked_zeta<T, LIM>(A);\r\n  auto RB = ranked_zeta<T, LIM>(B);\r\n\
-    \  int n = topbit(len(RA));\r\n  FOR(s, len(RA)) {\r\n    auto &f = RA[s], g =\
-    \ RB[s];\r\n    FOR_R(d, n + 1) {\r\n      T x = 0;\r\n      FOR(i, d + 1) x +=\
-    \ f[i] * g[d - i];\r\n      f[d] = x;\r\n    }\r\n  }\r\n  return ranked_mobius<T,\
-    \ LIM>(RA);\r\n}\n#line 7 \"test/library_checker/convolution/subset_convolution.test.cpp\"\
+    \  if (A == B) return subset_convolution_square(A);\r\n  auto RA = ranked_zeta<T,\
+    \ LIM>(A);\r\n  auto RB = ranked_zeta<T, LIM>(B);\r\n  int n = topbit(len(RA));\r\
+    \n  FOR(s, len(RA)) {\r\n    auto &f = RA[s], g = RB[s];\r\n    FOR_R(d, n + 1)\
+    \ {\r\n      T x = 0;\r\n      FOR(i, d + 1) x += f[i] * g[d - i];\r\n      f[d]\
+    \ = x;\r\n    }\r\n  }\r\n  return ranked_mobius<T, LIM>(RA);\r\n}\r\n\r\ntemplate\
+    \ <typename T, int LIM = 20>\r\nvc<T> subset_convolution_square(const vc<T>& A)\
+    \ {\r\n  auto RA = ranked_zeta<T, LIM>(A);\r\n  int n = topbit(len(RA));\r\n \
+    \ FOR(s, len(RA)) {\r\n    auto& f = RA[s];\r\n    FOR_R(d, n + 1) {\r\n     \
+    \ T x = 0;\r\n      FOR(i, d + 1) x += f[i] * f[d - i];\r\n      f[d] = x;\r\n\
+    \    }\r\n  }\r\n  return ranked_mobius<T, LIM>(RA);\r\n}\n#line 7 \"test/library_checker/convolution/subset_convolution.test.cpp\"\
     \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint,\
     \ A, 1 << N);\r\n  VEC(mint, B, 1 << N);\r\n  auto C = subset_convolution(A, B);\r\
     \n  print(C);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
@@ -324,7 +329,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/convolution/subset_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-08-19 05:33:28+09:00'
+  timestamp: '2022-08-19 07:15:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/convolution/subset_convolution.test.cpp

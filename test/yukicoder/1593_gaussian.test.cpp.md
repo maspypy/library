@@ -318,12 +318,13 @@ data:
     \ new_res;\r\n    new_res.reserve(len(res) * (e + 1));\r\n    for (auto &&g: res)\
     \ {\r\n      for (auto &&a: pis) { new_res.eb(g * a); }\r\n    }\r\n    swap(res,\
     \ new_res);\r\n  }\r\n\r\n  for (auto &&g: res) {\r\n    while (g.x <= 0 || g.y\
-    \ < 0) { g = G(-g.y, g.x); }\r\n  }\r\n  return res;\r\n}\r\n\r\n// \u30CE\u30EB\
-    \u30E0\u304C\u3068\u308C\u308B\u3088\u3046\u306B\u30012 \u4E57\u3057\u3066\u3082\
-    \u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u578B\u3092\u4F7F\
-    \u304A\u3046\r\n// 0 <= arg < 90 \u3068\u306A\u308B\u3082\u306E\u306E\u307F\u8FD4\
-    \u3059\u3002\r\n// \u5358\u6570\u500D\u306F\u4F5C\u3089\u306A\u3044\u306E\u3067\
-    \u3001\u4F7F\u3046\u3068\u304D\u306B\u6C17\u3092\u4ED8\u3051\u308B\u3002\r\ntemplate\
+    \ < 0) { g = G(-g.y, g.x); }\r\n  }\r\n  return res;\r\n}\r\n\r\n// i128 \u3092\
+    \u4F7F\u3046\u3068 N <= 10^{18} \u3082\u3067\u304D\u308B\r\n// \u30CE\u30EB\u30E0\
+    \u304C\u3068\u308C\u308B\u3088\u3046\u306B\u30012 \u4E57\u3057\u3066\u3082\u30AA\
+    \u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u578B\u3092\u4F7F\u304A\
+    \u3046\r\n// 0 <= arg < 90 \u3068\u306A\u308B\u3082\u306E\u306E\u307F\u8FD4\u3059\
+    \u3002\r\n// \u5358\u6570\u500D\u306F\u4F5C\u3089\u306A\u3044\u306E\u3067\u3001\
+    \u4F7F\u3046\u3068\u304D\u306B\u6C17\u3092\u4ED8\u3051\u308B\u3002\r\ntemplate\
     \ <typename INT>\r\nvc<Gaussian_Integer<INT>> solve_norm_equation(INT N) {\r\n\
     \  using G = Gaussian_Integer<INT>;\r\n  vc<G> res;\r\n  if (N < 0) return {};\r\
     \n  if (N == 0) {\r\n    res.eb(G(0, 0));\r\n    return res;\r\n  }\r\n  auto\
@@ -351,7 +352,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1593_gaussian.test.cpp
   requiredBy: []
-  timestamp: '2022-08-13 02:22:39+09:00'
+  timestamp: '2022-08-19 07:15:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/1593_gaussian.test.cpp
