@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid_reverse.hpp
     title: alg/monoid_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/disjointsparse.hpp
     title: ds/disjointsparse.hpp
   - icon: ':question:'
@@ -23,18 +23,18 @@ data:
     - https://atcoder.jp/contests/tkppc3/tasks/tkppc3_i
     - https://codeforces.com/contest/1059/problem/E
     - https://codeforces.com/contest/1230/problem/E
-  bundledCode: "#line 1 \"ds/disjointsparse.hpp\"\ntemplate <class Monoid>\r\nstruct\
-    \ DisjointSparse {\r\n  using X = typename Monoid::value_type;\r\n  using value_type\
-    \ = X;\r\n  int n, log;\r\n  vc<vc<X>> dat;\r\n\r\n  DisjointSparse() {}\r\n \
-    \ DisjointSparse(vc<X>& A) { build(A); }\r\n\r\n  template <typename F>\r\n  DisjointSparse(int\
-    \ n, F f) {\r\n    vc<X> A(n);\r\n    FOR(i, n) A[i] = f(i);\r\n    build(A);\r\
-    \n  }\r\n\r\n  void build(vc<X>& A) {\r\n    n = len(A);\r\n    log = 1;\r\n \
-    \   while ((1 << log) < n) ++log;\r\n    dat.assign(log, A);\r\n\r\n    FOR(i,\
-    \ log) {\r\n      auto& v = dat[i];\r\n      int b = 1 << i;\r\n      for (int\
-    \ m = b; m <= n; m += 2 * b) {\r\n        int L = m - b, R = min(n, m + b);\r\n\
-    \        FOR3_R(j, L + 1, m) v[j - 1] = Monoid::op(v[j - 1], v[j]);\r\n      \
-    \  FOR3(j, m, R - 1) v[j + 1] = Monoid::op(v[j], v[j + 1]);\r\n      }\r\n   \
-    \ }\r\n  }\r\n\r\n  X prod(int L, int R) {\r\n    if (L == R) return Monoid::unit();\r\
+  bundledCode: "#line 2 \"ds/disjointsparse.hpp\"\n\r\ntemplate <class Monoid>\r\n\
+    struct DisjointSparse {\r\n  using X = typename Monoid::value_type;\r\n  using\
+    \ value_type = X;\r\n  int n, log;\r\n  vc<vc<X>> dat;\r\n\r\n  DisjointSparse()\
+    \ {}\r\n  DisjointSparse(vc<X>& A) { build(A); }\r\n\r\n  template <typename F>\r\
+    \n  DisjointSparse(int n, F f) {\r\n    vc<X> A(n);\r\n    FOR(i, n) A[i] = f(i);\r\
+    \n    build(A);\r\n  }\r\n\r\n  void build(vc<X>& A) {\r\n    n = len(A);\r\n\
+    \    log = 1;\r\n    while ((1 << log) < n) ++log;\r\n    dat.assign(log, A);\r\
+    \n\r\n    FOR(i, log) {\r\n      auto& v = dat[i];\r\n      int b = 1 << i;\r\n\
+    \      for (int m = b; m <= n; m += 2 * b) {\r\n        int L = m - b, R = min(n,\
+    \ m + b);\r\n        FOR3_R(j, L + 1, m) v[j - 1] = Monoid::op(v[j - 1], v[j]);\r\
+    \n        FOR3(j, m, R - 1) v[j + 1] = Monoid::op(v[j], v[j + 1]);\r\n      }\r\
+    \n    }\r\n  }\r\n\r\n  X prod(int L, int R) {\r\n    if (L == R) return Monoid::unit();\r\
     \n    --R;\r\n    if (L == R) return dat[0][L];\r\n    int k = 31 - __builtin_clz(L\
     \ ^ R);\r\n    return Monoid::op(dat[k][L], dat[k][R]);\r\n  }\r\n\r\n  template\
     \ <class F>\r\n  int max_right(const F& check, int L) {\r\n    assert(0 <= L &&\
@@ -265,7 +265,7 @@ data:
   isVerificationFile: false
   path: graph/statictreemonoid.hpp
   requiredBy: []
-  timestamp: '2022-08-18 17:59:01+09:00'
+  timestamp: '2022-08-18 20:33:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/statictreemonoid.hpp

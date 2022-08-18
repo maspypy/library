@@ -1,27 +1,21 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: ds/convert_addremove_query.hpp
+    title: ds/convert_addremove_query.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
-    path: nt/euler_phi.hpp
-    title: nt/euler_phi.hpp
-  - icon: ':heavy_check_mark:'
-    path: nt/factor.hpp
-    title: nt/factor.hpp
-  - icon: ':question:'
-    path: nt/primetable.hpp
-    title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
-    path: nt/primetest.hpp
-    title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
-    path: nt/zeta.hpp
-    title: nt/zeta.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
+  - icon: ':heavy_check_mark:'
+    path: pds/rollbackarray.hpp
+    title: pds/rollbackarray.hpp
+  - icon: ':heavy_check_mark:'
+    path: pds/rollbackunionfind.hpp
+    title: pds/rollbackunionfind.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -29,13 +23,13 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_D
+    PROBLEM: https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_D
-  bundledCode: "#line 1 \"test/aoj/NTL_1_D_eulerphi.test.cpp\"\n#define PROBLEM \\\
-    \n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_D\"\n#line\
-    \ 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\n\
-    using ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
+    - https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum
+  bundledCode: "#line 1 \"test/library_checker/add_remove_query.test.cpp\"\n#define\
+    \ PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum\"\
+    \n#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
+    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
     \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
     \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
     template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
@@ -206,109 +200,111 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"nt/primetable.hpp\"\nvc<ll> primetable(int LIM) {\n\
-    \  ++LIM;\n  const int S = 32768;\n  static int done = 2;\n  static vc<ll> primes\
-    \ = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes =\
-    \ {2}, sieve.assign(S + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM\
-    \ / log(LIM) * 1.1));\n    vc<pi> cp;\n    for (int i = 3; i <= S; i += 2) {\n\
-    \      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for (int j = i\
-    \ * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1;\
-    \ L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p, idx]:\
-    \ cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n\
-    \      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n\
-    \  }\n  int k = LB(primes, LIM + 1);\n  return {primes.begin(), primes.begin()\
-    \ + k};\n}\n#line 3 \"nt/zeta.hpp\"\n\r\ntemplate <typename T>\r\nvoid divisor_zeta(vc<T>&\
-    \ A) {\r\n  assert(A[0] == 0);\r\n  int N = len(A) - 1;\r\n  auto P = primetable(N);\r\
-    \n  for (auto&& p: P) { FOR3(x, 1, N / p + 1) A[p * x] += A[x]; }\r\n}\r\n\r\n\
-    template <typename T>\r\nvoid divisor_mobius(vc<T>& A) {\r\n  assert(A[0] == 0);\r\
-    \n  int N = len(A) - 1;\r\n  auto P = primetable(N);\r\n  for (auto&& p: P) {\
-    \ FOR3_R(x, 1, N / p + 1) A[p * x] -= A[x]; }\r\n}\r\n\r\ntemplate <typename T>\r\
-    \nvoid multiplier_zeta(vc<T>& A) {\r\n  assert(A[0] == 0);\r\n  int N = len(A)\
-    \ - 1;\r\n  auto P = primetable(N);\r\n  for (auto&& p: P) { FOR3_R(x, 1, N /\
-    \ p + 1) A[x] += A[p * x]; }\r\n}\r\n\r\ntemplate <typename T>\r\nvoid multiplier_mobius(vc<T>&\
-    \ A) {\r\n  assert(A[0] == 0);\r\n  int N = len(A) - 1;\r\n  auto P = primetable(N);\r\
-    \n  for (auto&& p: P) { FOR3(x, 1, N / p + 1) A[x] -= A[p * x]; }\r\n}\r\n#line\
-    \ 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n  using i64 = int64_t;\r\n  using u64\
-    \ = uint64_t;\r\n  using u128 = __uint128_t;\r\n\r\n  inline static u64 m, r,\
-    \ n2; // r * m = -1 (mod 1<<64), n2 = 1<<128 (mod m)\r\n  static void set_mod(u64\
-    \ m) {\r\n    assert(m < (1ull << 62));\r\n    assert((m & 1) == 1);\r\n    m64::m\
-    \ = m;\r\n    n2 = -u128(m) % m;\r\n    r = m;\r\n    FOR(_, 5) r *= 2 - m * r;\r\
-    \n    r = -r;\r\n    assert(r * m == -1ull);\r\n  }\r\n  static u64 reduce(u128\
-    \ b) { return (b + u128(u64(b) * r) * m) >> 64; }\r\n\r\n  u64 x;\r\n  m64() :\
-    \ x(0) {}\r\n  m64(u64 x) : x(reduce(u128(x) * n2)){};\r\n  u64 val() const {\r\
-    \n    u64 y = reduce(x);\r\n    return y >= m ? y - m : y;\r\n  }\r\n  m64 &operator+=(m64\
-    \ y) {\r\n    x += y.x - (m << 1);\r\n    x = (i64(x) < 0 ? x + (m << 1) : x);\r\
-    \n    return *this;\r\n  }\r\n  m64 &operator-=(m64 y) {\r\n    x -= y.x;\r\n\
-    \    x = (i64(x) < 0 ? x + (m << 1) : x);\r\n    return *this;\r\n  }\r\n  m64\
-    \ &operator*=(m64 y) {\r\n    x = reduce(u128(x) * y.x);\r\n    return *this;\r\
-    \n  }\r\n  m64 operator+(m64 y) const { return m64(*this) += y; }\r\n  m64 operator-(m64\
-    \ y) const { return m64(*this) -= y; }\r\n  m64 operator*(m64 y) const { return\
-    \ m64(*this) *= y; }\r\n  bool operator==(m64 y) const {\r\n    return (x >= m\
-    \ ? x - m : x) == (y.x >= m ? y.x - m : y.x);\r\n  }\r\n  bool operator!=(m64\
-    \ y) const { return not operator==(y); }\r\n  m64 pow(u64 n) const {\r\n    m64\
-    \ y = 1, z = *this;\r\n    for (; n; n >>= 1, z *= z)\r\n      if (n & 1) y *=\
-    \ z;\r\n    return y;\r\n  }\r\n};\r\n\r\nbool primetest(const uint64_t x) {\r\
-    \n  using u64 = uint64_t;\r\n  if (x == 2 or x == 3 or x == 5 or x == 7) return\
-    \ true;\r\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 == 0) return\
-    \ false;\r\n  if (x < 121) return x > 1;\r\n  const u64 d = (x - 1) >> __builtin_ctzll(x\
-    \ - 1);\r\n  m64::set_mod(x);\r\n  const m64 one(1), minus_one(x - 1);\r\n  auto\
-    \ ok = [&](u64 a) {\r\n    auto y = m64(a).pow(d);\r\n    u64 t = d;\r\n    while\
-    \ (y != one and y != minus_one and t != x - 1) y *= y, t <<= 1;\r\n    if (y !=\
-    \ minus_one and t % 2 == 0) return false;\r\n    return true;\r\n  };\r\n  if\
-    \ (x < (1ull << 32)) {\r\n    for (u64 a: {2, 7, 61})\r\n      if (not ok(a))\
-    \ return false;\r\n  } else {\r\n    for (u64 a: {2, 325, 9375, 28178, 450775,\
-    \ 9780504, 1795265022}) {\r\n      if (x <= a) return true;\r\n      if (not ok(a))\
-    \ return false;\r\n    }\r\n  }\r\n  return true;\r\n}\n#line 3 \"nt/factor.hpp\"\
-    \n\nmt19937_64 rng_mt{random_device{}()};\nll rnd(ll n) { return uniform_int_distribution<ll>(0,\
-    \ n - 1)(rng_mt); }\n\nll rho(ll n, ll c) {\n  m64::set_mod(n);\n  assert(n >\
-    \ 1);\n  const m64 cc(c);\n  auto f = [&](m64 x) { return x * x + cc; };\n  m64\
-    \ x = 1, y = 2, z = 1, q = 1;\n  ll g = 1;\n  const ll m = 1LL << (__lg(n) / 5);\
-    \ // ?\n  for (ll r = 1; g == 1; r <<= 1) {\n    x = y;\n    FOR(_, r) y = f(y);\n\
-    \    for (ll k = 0; k < r and g == 1; k += m) {\n      z = y;\n      FOR(_, min(m,\
-    \ r - k)) y = f(y), q *= x - y;\n      g = gcd(q.val(), n);\n    }\n  }\n  if\
-    \ (g == n)\n    do {\n      z = f(z);\n      g = gcd((x - z).val(), n);\n    }\
-    \ while (g == 1);\n  return g;\n}\n\nll find_prime_factor(ll n) {\n  assert(n\
-    \ > 1);\n  if (primetest(n))\n    return n;\n  FOR(_, 100) {\n    ll m = rho(n,\
-    \ rnd(n));\n    if (primetest(m))\n      return m;\n    n = m;\n  }\n  cerr <<\
-    \ \"failed\" << endl;\n  assert(false);\n  return -1;\n}\n\nvc<pi> factor(ll n)\
-    \ {\n  assert(n >= 1);\n  vc<pi> pf;\n  FOR3(p, 2, 100) {\n    if (p * p > n)\n\
-    \      break;\n    if (n % p == 0) {\n      ll e = 0;\n      do {\n        n /=\
-    \ p, e += 1;\n      } while (n % p == 0);\n      pf.eb(p, e);\n    }\n  }\n  while\
-    \ (n > 1) {\n    ll p = find_prime_factor(n);\n    ll e = 0;\n    do {\n     \
-    \ n /= p, e += 1;\n    } while (n % p == 0);\n    pf.eb(p, e);\n  }\n  sort(all(pf));\n\
-    \  return pf;\n}\n\n\nvc<pi> factor_by_lpf(ll n, vc<int>& lpf) {\n  vc<pi> res;\n\
-    \  while(n > 1){\n    int p = lpf[n];\n    int e = 0;\n    while(n % p == 0){\n\
-    \      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n  return res;\n}\n\
-    #line 3 \"nt/euler_phi.hpp\"\n\r\nll euler_phi(ll n) {\r\n  auto pf = factor(n);\r\
-    \n  for (auto&& [p, e]: pf) n -= n / p;\r\n  return n;\r\n}\r\n\r\nvi euler_phi_table(ll\
-    \ n) {\r\n  vi A(n + 1);\r\n  iota(all(A), 0);\r\n  divisor_mobius(A);\r\n  return\
-    \ A;\r\n}\r\n#line 6 \"test/aoj/NTL_1_D_eulerphi.test.cpp\"\n\nvoid solve() {\n\
-    \  LL(N);\n  print(euler_phi(N));\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_D\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/euler_phi.hpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  print(euler_phi(N));\n}\n\nsigned main() {\n \
-    \ cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \ { yes(!t); }\r\n#line 1 \"ds/convert_addremove_query.hpp\"\n/*\n\u30FB\u6642\
+    \u523B t \u306B x \u3092\u8FFD\u52A0\u3059\u308B\n\u30FB\u6642\u523B t \u306B\
+    \ x \u3092\u524A\u9664\u3059\u308B\n\u304C\u3042\u308B\u3068\u304D\u306B\u3001\
+    \n\u30FB\u6642\u523B [l, r) \u306B x \u3092\u8FFD\u52A0\u3059\u308B\n\u306B\u5909\
+    \u63DB\u3059\u308B\n*/\ntemplate <typename X>\nstruct Convert_AddRemove_Query\
+    \ {\n  map<X, int> MP;\n  vc<tuple<int, int, X>> dat;\n  void add(int time, X\
+    \ x) {\n    assert(!MP.count(x));\n    MP[x] = time;\n  }\n\n  void remove(int\
+    \ time, X x) {\n    auto it = MP.find(x);\n    assert(it != MP.end());\n    int\
+    \ t = (*it).se;\n    MP.erase(it);\n    if (t == time) return;\n    dat.eb(t,\
+    \ time, x);\n  }\n\n  // \u3059\u3079\u3066\u306E\u30AF\u30A8\u30EA\u304C\u7D42\
+    \u308F\u3063\u305F\u73FE\u5728\u6642\u523B\u3092\u6E21\u3059\n  vc<tuple<int,\
+    \ int, X>> calc(int time) {\n    for (auto&& [x, t]: MP) {\n      if (t == time)\
+    \ continue;\n      dat.eb(t, time, x);\n    }\n    return dat;\n  }\n};\n#line\
+    \ 2 \"pds/rollbackarray.hpp\"\n\r\ntemplate <typename T>\r\nstruct RollbackArray\
+    \ {\r\n  int N;\r\n  vc<T> dat;\r\n  vc<pair<int, T>> history;\r\n\r\n  RollbackArray(vc<T>\
+    \ x) : N(len(x)), dat(x) {}\r\n\r\n  int time() { return len(history); }\r\n \
+    \ void rollback(int t) {\r\n    FOR_R(i, t, time()) {\r\n      auto& [idx, v]\
+    \ = history[i];\r\n      dat[idx] = v;\r\n    }\r\n    history.resize(t);\r\n\
+    \  }\r\n  T get(int idx) { return dat[idx]; }\r\n  void set(int idx, T x) {\r\n\
+    \    history.eb(idx, dat[idx]);\r\n    dat[idx] = x;\r\n  }\r\n\r\n  vc<T> get_all()\
+    \ {\r\n    vc<T> res(N);\r\n    FOR(i, N) res[i] = get(i);\r\n    return res;\r\
+    \n  }\r\n};\r\n#line 2 \"pds/rollbackunionfind.hpp\"\n\r\nstruct RollbackUnionFind\
+    \ {\r\n  RollbackArray<int> dat; // parent or size\r\n\r\n  RollbackUnionFind(int\
+    \ n) : dat(vc<int>(n, -1)) {}\r\n\r\n  int operator[](int v) {\r\n    while (dat.get(v)\
+    \ >= 0) v = dat.get(v);\r\n    return v;\r\n  }\r\n\r\n  int size(int v) { return\
+    \ -dat.get((*this)[v]); }\r\n  int time() { return dat.time(); }\r\n  void rollback(int\
+    \ t) { dat.rollback(t); }\r\n\r\n  bool merge(int a, int b) {\r\n    a = (*this)[a],\
+    \ b = (*this)[b];\r\n    if (a == b) return false;\r\n    if (dat.get(a) > dat.get(b))\
+    \ swap(a, b);\r\n    dat.set(a, dat.get(a) + dat.get(b));\r\n    dat.set(b, a);\r\
+    \n    return true;\r\n  }\r\n};\r\n#line 8 \"test/library_checker/add_remove_query.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A0, N);\n  using P = pair<int, int>;\n\
+    \n  vc<int> query;\n\n  Convert_AddRemove_Query<P> X;\n  FOR(Q) {\n    LL(t);\n\
+    \    if (t == 0) {\n      LL(a, b);\n      if (a > b) swap(a, b);\n      P e =\
+    \ {a, b};\n      X.add(len(query), e);\n    }\n    if (t == 1) {\n      LL(a,\
+    \ b);\n      if (a > b) swap(a, b);\n      P e = {a, b};\n      X.remove(len(query),\
+    \ e);\n    }\n    if (t == 2) {\n      LL(v, x);\n      P p = {~v, x};\n     \
+    \ X.add(len(query), p);\n    }\n    if (t == 3) {\n      LL(v);\n      query.eb(v);\n\
+    \    }\n  }\n\n  auto upd = X.calc(len(query));\n  Q = len(query);\n  vi ANS(Q);\n\
+    \  vc<int> I(len(upd));\n  iota(all(I), 0);\n\n  RollbackArray<ll> A(A0);\n  RollbackUnionFind\
+    \ uf(N);\n\n  auto dfs = [&](auto& dfs, vc<int>& I, int begin, int end) -> void\
+    \ {\n    int a_time = A.time();\n    int uf_time = uf.time();\n\n    vc<int> IL,\
+    \ IR;\n    int mid = (begin + end) / 2;\n    // \u533A\u9593\u3092\u5B8C\u5168\
+    \u306B\u542B\u3080\u66F4\u65B0\u30AF\u30A8\u30EA\u3092\u51E6\u7406\u3059\u308B\
+    \u3002\n    // \u90E8\u5206\u7684\u306B\u4EA4\u308F\u308B\u30AF\u30A8\u30EA\u3092\
+    \ J \u306B\u5165\u308C\u308B\n    for (auto&& i: I) {\n      auto [a, b, X] =\
+    \ upd[i];\n      if (a <= begin && end <= b) {\n        // update\n        auto\
+    \ [u, v] = X;\n        if (u < 0) {\n          int i = uf[~u];\n          A.set(i,\
+    \ A.get(i) + v);\n        } else {\n          u = uf[u], v = uf[v];\n        \
+    \  if (u != v) {\n            uf.merge(u, v);\n            int r = uf[u];\n  \
+    \          A.set(r, A.get(u) + A.get(v));\n          }\n        }\n        continue;\n\
+    \      }\n      if (a < mid) IL.eb(i);\n      if (mid < b) IR.eb(i);\n    }\n\
+    \    if (begin + 1 == end) {\n      // \u6C42\u5024\u30AF\u30A8\u30EA\n      int\
+    \ v = query[begin];\n      ANS[begin] = A.get(uf[v]);\n    } else {\n      dfs(dfs,\
+    \ IL, begin, mid);\n      dfs(dfs, IR, mid, end);\n    }\n    A.rollback(a_time);\n\
+    \    uf.rollback(uf_time);\n  };\n  dfs(dfs, I, 0, Q);\n\n  for (auto&& x: ANS)\
+    \ print(x);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
+    \  return 0;\n}\n"
+  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/convert_addremove_query.hpp\"\
+    \n#include \"pds/rollbackarray.hpp\"\n#include \"pds/rollbackunionfind.hpp\"\n\
+    \nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A0, N);\n  using P = pair<int, int>;\n\
+    \n  vc<int> query;\n\n  Convert_AddRemove_Query<P> X;\n  FOR(Q) {\n    LL(t);\n\
+    \    if (t == 0) {\n      LL(a, b);\n      if (a > b) swap(a, b);\n      P e =\
+    \ {a, b};\n      X.add(len(query), e);\n    }\n    if (t == 1) {\n      LL(a,\
+    \ b);\n      if (a > b) swap(a, b);\n      P e = {a, b};\n      X.remove(len(query),\
+    \ e);\n    }\n    if (t == 2) {\n      LL(v, x);\n      P p = {~v, x};\n     \
+    \ X.add(len(query), p);\n    }\n    if (t == 3) {\n      LL(v);\n      query.eb(v);\n\
+    \    }\n  }\n\n  auto upd = X.calc(len(query));\n  Q = len(query);\n  vi ANS(Q);\n\
+    \  vc<int> I(len(upd));\n  iota(all(I), 0);\n\n  RollbackArray<ll> A(A0);\n  RollbackUnionFind\
+    \ uf(N);\n\n  auto dfs = [&](auto& dfs, vc<int>& I, int begin, int end) -> void\
+    \ {\n    int a_time = A.time();\n    int uf_time = uf.time();\n\n    vc<int> IL,\
+    \ IR;\n    int mid = (begin + end) / 2;\n    // \u533A\u9593\u3092\u5B8C\u5168\
+    \u306B\u542B\u3080\u66F4\u65B0\u30AF\u30A8\u30EA\u3092\u51E6\u7406\u3059\u308B\
+    \u3002\n    // \u90E8\u5206\u7684\u306B\u4EA4\u308F\u308B\u30AF\u30A8\u30EA\u3092\
+    \ J \u306B\u5165\u308C\u308B\n    for (auto&& i: I) {\n      auto [a, b, X] =\
+    \ upd[i];\n      if (a <= begin && end <= b) {\n        // update\n        auto\
+    \ [u, v] = X;\n        if (u < 0) {\n          int i = uf[~u];\n          A.set(i,\
+    \ A.get(i) + v);\n        } else {\n          u = uf[u], v = uf[v];\n        \
+    \  if (u != v) {\n            uf.merge(u, v);\n            int r = uf[u];\n  \
+    \          A.set(r, A.get(u) + A.get(v));\n          }\n        }\n        continue;\n\
+    \      }\n      if (a < mid) IL.eb(i);\n      if (mid < b) IR.eb(i);\n    }\n\
+    \    if (begin + 1 == end) {\n      // \u6C42\u5024\u30AF\u30A8\u30EA\n      int\
+    \ v = query[begin];\n      ANS[begin] = A.get(uf[v]);\n    } else {\n      dfs(dfs,\
+    \ IL, begin, mid);\n      dfs(dfs, IR, mid, end);\n    }\n    A.rollback(a_time);\n\
+    \    uf.rollback(uf_time);\n  };\n  dfs(dfs, I, 0, Q);\n\n  for (auto&& x: ANS)\
+    \ print(x);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - nt/euler_phi.hpp
-  - nt/zeta.hpp
-  - nt/primetable.hpp
-  - nt/factor.hpp
-  - nt/primetest.hpp
+  - ds/convert_addremove_query.hpp
+  - pds/rollbackarray.hpp
+  - pds/rollbackunionfind.hpp
   isVerificationFile: true
-  path: test/aoj/NTL_1_D_eulerphi.test.cpp
+  path: test/library_checker/add_remove_query.test.cpp
   requiredBy: []
-  timestamp: '2022-08-13 02:22:39+09:00'
+  timestamp: '2022-08-18 20:34:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/NTL_1_D_eulerphi.test.cpp
+documentation_of: test/library_checker/add_remove_query.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/NTL_1_D_eulerphi.test.cpp
-- /verify/test/aoj/NTL_1_D_eulerphi.test.cpp.html
-title: test/aoj/NTL_1_D_eulerphi.test.cpp
+- /verify/test/library_checker/add_remove_query.test.cpp
+- /verify/test/library_checker/add_remove_query.test.cpp.html
+title: test/library_checker/add_remove_query.test.cpp
 ---
