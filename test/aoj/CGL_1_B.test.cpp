@@ -1,5 +1,6 @@
 #define PROBLEM \
   "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B"
+#define ERROR 0.00000001
 
 #include "my_template.hpp"
 #include "other/io.hpp"
