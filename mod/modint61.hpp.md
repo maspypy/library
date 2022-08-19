@@ -36,7 +36,8 @@ data:
     \ 31, bd = b & MASK31;\r\n    ll x = ad * bu + au * bd;\r\n    ll xu = x >> 30,\
     \ xd = x & MASK30;\r\n    x = au * bu * 2 + xu + (xd << 31) + ad * bd;\r\n   \
     \ xu = x >> 61, xd = x & MASK61;\r\n    x = xu + xd;\r\n    if (x >= MASK61) x\
-    \ -= MASK61;\r\n    val = x;\r\n    return *this;\r\n  }\r\n  modint61 &operator/=(const\
+    \ -= MASK61;\r\n    val = x;\r\n    return *this;\r\n  }\r\n  modint61 operator-()\
+    \ const { return modint61(get_mod() - val); }\r\n  modint61 &operator/=(const\
     \ modint61 &p) {\r\n    *this *= p.inverse();\r\n    return *this;\r\n  }\r\n\
     \  modint61 operator+(const modint61 &p) const { return modint61(*this) += p;\
     \ }\r\n  modint61 operator-(const modint61 &p) const { return modint61(*this)\
@@ -65,7 +66,8 @@ data:
     \ 31, bd = b & MASK31;\r\n    ll x = ad * bu + au * bd;\r\n    ll xu = x >> 30,\
     \ xd = x & MASK30;\r\n    x = au * bu * 2 + xu + (xd << 31) + ad * bd;\r\n   \
     \ xu = x >> 61, xd = x & MASK61;\r\n    x = xu + xd;\r\n    if (x >= MASK61) x\
-    \ -= MASK61;\r\n    val = x;\r\n    return *this;\r\n  }\r\n  modint61 &operator/=(const\
+    \ -= MASK61;\r\n    val = x;\r\n    return *this;\r\n  }\r\n  modint61 operator-()\
+    \ const { return modint61(get_mod() - val); }\r\n  modint61 &operator/=(const\
     \ modint61 &p) {\r\n    *this *= p.inverse();\r\n    return *this;\r\n  }\r\n\
     \  modint61 operator+(const modint61 &p) const { return modint61(*this) += p;\
     \ }\r\n  modint61 operator-(const modint61 &p) const { return modint61(*this)\
@@ -84,7 +86,7 @@ data:
   requiredBy:
   - mod/modular_subset_sum.hpp
   - alg/monoid_rollinghash.hpp
-  timestamp: '2022-08-14 06:01:50+09:00'
+  timestamp: '2022-08-19 15:26:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/4_modular_subset_sum.test.cpp

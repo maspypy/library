@@ -35,26 +35,26 @@ data:
     \ & MASK31;\r\n    ll x = ad * bu + au * bd;\r\n    ll xu = x >> 30, xd = x &\
     \ MASK30;\r\n    x = au * bu * 2 + xu + (xd << 31) + ad * bd;\r\n    xu = x >>\
     \ 61, xd = x & MASK61;\r\n    x = xu + xd;\r\n    if (x >= MASK61) x -= MASK61;\r\
-    \n    val = x;\r\n    return *this;\r\n  }\r\n  modint61 &operator/=(const modint61\
-    \ &p) {\r\n    *this *= p.inverse();\r\n    return *this;\r\n  }\r\n  modint61\
-    \ operator+(const modint61 &p) const { return modint61(*this) += p; }\r\n  modint61\
-    \ operator-(const modint61 &p) const { return modint61(*this) -= p; }\r\n  modint61\
-    \ operator*(const modint61 &p) const { return modint61(*this) *= p; }\r\n  modint61\
-    \ operator/(const modint61 &p) const { return modint61(*this) /= p; }\r\n\r\n\
-    \  modint61 inverse() const {\r\n    ll a = val, b = mod, u = 1, v = 0, t;\r\n\
-    \    while (b > 0) {\r\n      t = a / b;\r\n      swap(a -= t * b, b), swap(u\
-    \ -= t * v, v);\r\n    }\r\n    return modint61(u);\r\n  }\r\n  modint61 pow(int64_t\
-    \ n) const {\r\n    modint61 ret(1), mul(val);\r\n    while (n > 0) {\r\n    \
-    \  if (n & 1) ret = ret * mul;\r\n      mul = mul * mul;\r\n      n >>= 1;\r\n\
-    \    }\r\n    return ret;\r\n  }\r\n  static constexpr ll get_mod() { return mod;\
-    \ }\r\n};\r\n#line 4 \"alg/monoid_rollinghash.hpp\"\n\r\n// pow of base, val\r\
-    \nstruct Monoid_Rolling_Hash {\r\n  using value_type = pair<modint61, modint61>;\r\
-    \n  using X = value_type;\r\n\r\n  static u64& base() {\r\n    static u64 x =\
-    \ 0;\r\n    while (x == 0) {\r\n      RandomNumberGenerator RNG;\r\n      x =\
-    \ RNG(modint61::get_mod());\r\n    }\r\n    return x;\r\n  }\r\n  static X from_element(u64\
-    \ x) { return {base(), x}; }\r\n  static X op(X x, X y) { return {x.fi * y.fi,\
-    \ x.se * y.fi + y.se}; }\r\n  static constexpr X unit() { return {1, 0}; }\r\n\
-    \  static constexpr bool commute = false;\r\n};\n"
+    \n    val = x;\r\n    return *this;\r\n  }\r\n  modint61 operator-() const { return\
+    \ modint61(get_mod() - val); }\r\n  modint61 &operator/=(const modint61 &p) {\r\
+    \n    *this *= p.inverse();\r\n    return *this;\r\n  }\r\n  modint61 operator+(const\
+    \ modint61 &p) const { return modint61(*this) += p; }\r\n  modint61 operator-(const\
+    \ modint61 &p) const { return modint61(*this) -= p; }\r\n  modint61 operator*(const\
+    \ modint61 &p) const { return modint61(*this) *= p; }\r\n  modint61 operator/(const\
+    \ modint61 &p) const { return modint61(*this) /= p; }\r\n\r\n  modint61 inverse()\
+    \ const {\r\n    ll a = val, b = mod, u = 1, v = 0, t;\r\n    while (b > 0) {\r\
+    \n      t = a / b;\r\n      swap(a -= t * b, b), swap(u -= t * v, v);\r\n    }\r\
+    \n    return modint61(u);\r\n  }\r\n  modint61 pow(int64_t n) const {\r\n    modint61\
+    \ ret(1), mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret = ret * mul;\r\
+    \n      mul = mul * mul;\r\n      n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\
+    \n  static constexpr ll get_mod() { return mod; }\r\n};\r\n#line 4 \"alg/monoid_rollinghash.hpp\"\
+    \n\r\n// pow of base, val\r\nstruct Monoid_Rolling_Hash {\r\n  using value_type\
+    \ = pair<modint61, modint61>;\r\n  using X = value_type;\r\n\r\n  static u64&\
+    \ base() {\r\n    static u64 x = 0;\r\n    while (x == 0) {\r\n      RandomNumberGenerator\
+    \ RNG;\r\n      x = RNG(modint61::get_mod());\r\n    }\r\n    return x;\r\n  }\r\
+    \n  static X from_element(u64 x) { return {base(), x}; }\r\n  static X op(X x,\
+    \ X y) { return {x.fi * y.fi, x.se * y.fi + y.se}; }\r\n  static constexpr X unit()\
+    \ { return {1, 0}; }\r\n  static constexpr bool commute = false;\r\n};\n"
   code: "#pragma once\r\n#include \"other/random.hpp\"\r\n#include \"mod/modint61.hpp\"\
     \r\n\r\n// pow of base, val\r\nstruct Monoid_Rolling_Hash {\r\n  using value_type\
     \ = pair<modint61, modint61>;\r\n  using X = value_type;\r\n\r\n  static u64&\
@@ -69,7 +69,7 @@ data:
   isVerificationFile: false
   path: alg/monoid_rollinghash.hpp
   requiredBy: []
-  timestamp: '2022-08-14 06:01:50+09:00'
+  timestamp: '2022-08-19 15:26:02+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/monoid_rollinghash.hpp

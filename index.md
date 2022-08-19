@@ -818,6 +818,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: pds/rollbackunionfind.hpp
       title: pds/rollbackunionfind.hpp
+    - icon: ':warning:'
+      path: pds/rollbackweighteduf.hpp
+      title: pds/rollbackweighteduf.hpp
     - icon: ':heavy_check_mark:'
       path: pds/segtree.hpp
       title: pds/segtree.hpp
