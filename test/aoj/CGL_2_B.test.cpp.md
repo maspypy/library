@@ -5,6 +5,9 @@ data:
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':question:'
+    path: geo/cross_point.hpp
+    title: geo/cross_point.hpp
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
@@ -17,10 +20,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A
-  bundledCode: "#line 1 \"test/aoj/CGL_2_A.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A\"\
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B
+  bundledCode: "#line 1 \"test/aoj/CGL_2_B.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B\"\
     \n\n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC\
     \ optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
     \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
@@ -194,7 +197,7 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 6 \"test/aoj/CGL_2_A.test.cpp\"\n\n#line 2 \"geo/base.hpp\"\
+    \ { yes(!t); }\r\n#line 6 \"test/aoj/CGL_2_B.test.cpp\"\n\n#line 2 \"geo/base.hpp\"\
     \ntemplate <typename T>\nstruct Point {\n  T x, y;\n  template <typename A, typename\
     \ B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename A, typename B>\n\
     \  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+(Point p) const\
@@ -218,33 +221,59 @@ data:
     \ T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B)\
     \ : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
     \ y1), Point<T>(x2, y2)) {}\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\
-    #line 8 \"test/aoj/CGL_2_A.test.cpp\"\n\nvoid solve() {\n  LL(Q);\n  FOR(Q) {\n\
-    \    LL(a, b, c, d);\n    Line<ll> A(a, b, c, d);\n    LL(e, f, g, h);\n    Line<ll>\
-    \ B(e, f, g, h);\n    bool p = A.is_parallel(B);\n    bool o = A.is_orthogonal(B);\n\
-    \    if (p) print(2);\n    elif (o) print(1);\n    else print(0);\n  }\n}\n\n\
-    signed main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n\
-    \  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A\"\
-    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/base.hpp\"\
-    \n\nvoid solve() {\n  LL(Q);\n  FOR(Q) {\n    LL(a, b, c, d);\n    Line<ll> A(a,\
-    \ b, c, d);\n    LL(e, f, g, h);\n    Line<ll> B(e, f, g, h);\n    bool p = A.is_parallel(B);\n\
-    \    bool o = A.is_orthogonal(B);\n    if (p) print(2);\n    elif (o) print(1);\n\
-    \    else print(0);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    #line 2 \"geo/cross_point.hpp\"\n\n// \u5E73\u884C\u3067\u306A\u3044\u3053\u3068\
+    \u3092\u4EEE\u5B9A\ntemplate <typename REAL, typename T>\nPoint<REAL> cross_point(const\
+    \ Line<T> L1, const Line<T> L2) {\n  T det = L1.a * L2.b - L1.b * L2.a;\n  assert(det\
+    \ != 0);\n  REAL x = -REAL(L1.c) * L2.b + REAL(L1.b) * L2.c;\n  REAL y = -REAL(L1.a)\
+    \ * L2.c + REAL(L1.c) * L2.a;\n  return Point<REAL>(x / det, y / det);\n}\n\n\
+    // 0: \u4EA4\u70B9\u306A\u3057\n// 1: \u4E00\u610F\u306A\u4EA4\u70B9\n// 2\uFF1A\
+    2 \u3064\u4EE5\u4E0A\u306E\u4EA4\u70B9\uFF08\u6574\u6570\u578B\u3092\u5229\u7528\
+    \u3057\u3066\u53B3\u5BC6\u306B\u3084\u308B\uFF09\ntemplate <typename T, enable_if_t<is_integral<T>::value,\
+    \ int> = 0>\nint count_cross(Segment<T> S1, Segment<T> S2, bool include_ends)\
+    \ {\n  Line<T> L1 = S1.to_Line();\n  Line<T> L2 = S2.to_Line();\n  if (L1.is_parallel(L2))\
+    \ {\n    if (L1.eval(S2.A) != 0) return 0;\n    // 4 \u70B9\u3068\u3082\u540C\u4E00\
+    \u76F4\u7DDA\u4E0A\u306B\u3042\u308B\n    T a1 = S1.A.x, b1 = S1.B.x;\n    T a2\
+    \ = S2.A.x, b2 = S2.B.x;\n    if (a1 == b1) {\n      a1 = S1.A.y, b1 = S1.B.y;\n\
+    \      a2 = S2.A.y, b2 = S2.B.y;\n    }\n    if (a1 > b1) swap(a1, b1);\n    if\
+    \ (a2 > b2) swap(a2, b2);\n    T a = max(a1, a2);\n    T b = min(b1, b2);\n  \
+    \  if (a < b) return 2;\n    if (a > b) return 0;\n    return (include_ends ?\
+    \ 1 : 0);\n  }\n  // \u5E73\u884C\u3067\u306A\u3044\u5834\u5408\n  T a1 = L2.eval(S1.A),\
+    \ b1 = L2.eval(S1.B);\n  T a2 = L1.eval(S2.A), b2 = L1.eval(S2.B);\n  if (a1 >\
+    \ b1) swap(a1, b1);\n  if (a2 > b2) swap(a2, b2);\n  bool ok1 = 0, ok2 = 0;\n\n\
+    \  if (include_ends) {\n    ok1 = (a1 <= 0) && (0 <= b1);\n    ok2 = (a2 <= 0)\
+    \ && (0 <= b2);\n  } else {\n    ok1 = (a1 < 0) && (0 < b1);\n    ok2 = (a2 <\
+    \ 0) && (0 < b2);\n  }\n  return (ok1 && ok2 ? 1 : 0);\n}\n\n//\ntemplate <typename\
+    \ T>\nint count_cross(Segment<T> S1, Segment<T> S2) {\n  return 0;\n}\n\n// \u552F\
+    \u4E00\u306E\u4EA4\u70B9\u3092\u6301\u3064\u3053\u3068\u3092\u4EEE\u5B9A\ntemplate\
+    \ <typename REAL, typename T>\nPoint<REAL> cross_point(const Segment<T> S1, const\
+    \ Segment<T> S2) {\n  return cross_point(S1.to_Line(), S2.to_Line());\n}\n#line\
+    \ 8 \"test/aoj/CGL_2_B.test.cpp\"\n\nvoid solve() {\n  LL(Q);\n  FOR(Q) {\n  \
+    \  LL(a, b, c, d, e, f, g, h);\n    Segment<ll> S1(a, b, c, d);\n    Segment<ll>\
+    \ S2(e, f, g, h);\n    int n = count_cross<ll>(S1, S2, true);\n    print(n ? 1\
+    \ : 0);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n \
+    \ ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B\"\
+    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/cross_point.hpp\"\
+    \n\nvoid solve() {\n  LL(Q);\n  FOR(Q) {\n    LL(a, b, c, d, e, f, g, h);\n  \
+    \  Segment<ll> S1(a, b, c, d);\n    Segment<ll> S2(e, f, g, h);\n    int n = count_cross<ll>(S1,\
+    \ S2, true);\n    print(n ? 1 : 0);\n  }\n}\n\nsigned main() {\n  cout << fixed\
+    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
+    \ 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
+  - geo/cross_point.hpp
   - geo/base.hpp
   isVerificationFile: true
-  path: test/aoj/CGL_2_A.test.cpp
+  path: test/aoj/CGL_2_B.test.cpp
   requiredBy: []
   timestamp: '2022-08-20 07:14:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/CGL_2_A.test.cpp
+documentation_of: test/aoj/CGL_2_B.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/CGL_2_A.test.cpp
-- /verify/test/aoj/CGL_2_A.test.cpp.html
-title: test/aoj/CGL_2_A.test.cpp
+- /verify/test/aoj/CGL_2_B.test.cpp
+- /verify/test/aoj/CGL_2_B.test.cpp.html
+title: test/aoj/CGL_2_B.test.cpp
 ---

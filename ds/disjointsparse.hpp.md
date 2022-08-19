@@ -12,7 +12,7 @@ data:
     path: string/suffixarray.hpp
     title: string/suffixarray.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticrmq_sparse.test.cpp
     title: test/library_checker/datastructure/staticrmq_sparse.test.cpp
   - icon: ':x:'
@@ -29,7 +29,7 @@ data:
     title: test/yukicoder/2005.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/disjointsparse.hpp\"\n\r\ntemplate <class Monoid>\r\n\
@@ -92,7 +92,7 @@ data:
   - string/sort_all_substring.hpp
   - string/suffixarray.hpp
   timestamp: '2022-08-18 20:33:44+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/2005.test.cpp
   - test/library_checker/string/suffix_array_vec.test.cpp

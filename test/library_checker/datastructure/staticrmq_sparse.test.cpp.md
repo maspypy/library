@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid_min.hpp
     title: alg/monoid_min.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/disjointsparse.hpp
     title: ds/disjointsparse.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -248,7 +248,7 @@ data:
   path: test/library_checker/datastructure/staticrmq_sparse.test.cpp
   requiredBy: []
   timestamp: '2022-08-20 05:21:32+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/staticrmq_sparse.test.cpp
 layout: document

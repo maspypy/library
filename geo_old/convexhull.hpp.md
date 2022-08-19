@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy: []
@@ -31,10 +31,9 @@ data:
     \ int> = 0>\n  bool is_parallel(Line other) {\n    return a * other.b - b * other.a\
     \ == 0;\n  }\n\n  template <enable_if_t<is_integral<T>::value, int> = 0>\n  bool\
     \ is_orthogonal(Line other) {\n    return a * other.a + b * other.b == 0;\n  }\n\
-    };\n\ntemplate <typename T>\nstruct Segment {\n  Point<T> A, B;\n  bool open;\n\
-    \n  Segment(Point<T> A, Point<T> B, bool open) : A(A), B(B), open(open) {}\n \
-    \ Segment(T x1, T y1, T x2, T y2, bool open)\n      : Segment(Point<T>(x1, y1),\
-    \ Point<T>(x2, y2), open) {}\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\
+    };\n\ntemplate <typename T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T>\
+    \ A, Point<T> B) : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
+    \ y1), Point<T>(x2, y2)) {}\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\
     #line 2 \"geo_old/convexhull.hpp\"\n\r\ntemplate<typename T>\r\nvector<int> ConvexHull(vector<pair<T,\
     \ T>>& XY, string mode = \"full\",\r\n                      bool inclusive = false,\
     \ bool sorted = false) {\r\n  assert(mode == \"full\" || mode == \"lower\" ||\
@@ -114,7 +113,7 @@ data:
   isVerificationFile: false
   path: geo_old/convexhull.hpp
   requiredBy: []
-  timestamp: '2022-08-20 06:53:27+09:00'
+  timestamp: '2022-08-20 07:14:34+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo_old/convexhull.hpp
