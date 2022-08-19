@@ -1,39 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
-    path: mod/min_of_linear_segments.hpp
-    title: mod/min_of_linear_segments.hpp
+  - icon: ':question:'
+    path: flow/mincostflow.hpp
+    title: flow/mincostflow.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
-    path: other/random.hpp
-    title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/aplusb
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B
     links:
-    - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/min_of_linear_segments.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#pragma\
-    \ GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include\
-    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
-    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
-    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
-    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
-    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B
+  bundledCode: "#line 1 \"test/aoj/GRL_6_B.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B\"\
+    \n\n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC\
+    \ optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
+    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
+    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
+    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -198,71 +194,147 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 1 \"other/random.hpp\"\nstruct RandomNumberGenerator {\n\
-    \  mt19937 mt;\n\n  RandomNumberGenerator() : mt(chrono::steady_clock::now().time_since_epoch().count())\
-    \ {}\n\n  ll operator()(ll a, ll b) {  // [a, b)\n    uniform_int_distribution<ll>\
-    \ dist(a, b - 1);\n    return dist(mt);\n  }\n\n  ll operator()(ll b) {  // [0,\
-    \ b)\n    return (*this)(0, b);\n  }\n};\n#line 2 \"mod/min_of_linear_segments.hpp\"\
-    \n\n/*\nax + b (x>=0) \u304C\u6700\u5C0F\u3068\u306A\u308B\u3068\u3053\u308D\u306E\
-    \u60C5\u5831\u3092\u8FD4\u3059\u3002\nprefix min \u3092\u66F4\u65B0\u3059\u308B\
-    \ x \u5168\u4F53\u304C\u3001\u7B49\u5DEE\u6570\u5217\u306E\u548C\u96C6\u5408\u3002\
-    \u6B21\u3092\u8FD4\u3059\u3002\n\u30FB\u7B49\u5DEE\u6570\u5217\u306E\u5883\u754C\
-    \u3068\u306A\u308B x_0, x_1, ..., x_n\n\u30FB\u5404\u5883\u754C\u306E\u9593\u3067\
-    \u306E\u4EA4\u5DEE dx_0, ..., dx_{n-1}\n*/\npair<vc<int>, vc<int>> min_of_linear_segments(int\
-    \ a, int b, int mod) {\n  assert(0 <= a && a < mod);\n  assert(0 <= b && b < mod);\n\
-    \  vc<int> X = {0};\n  vc<int> DX;\n  int g = gcd(a, mod);\n  a /= g, b /= g,\
-    \ mod /= g;\n  // p/q <= (mod-a)/mod <= r/s\n  int p = 0, q = 1, r = 1, s = 1;\n\
-    \  int det_l = mod - a, det_r = a;\n  int x = 0, y = b;\n\n  while (y) {\n   \
-    \ // upd r/s\n    int k = det_r / det_l;\n    det_r %= det_l;\n    if (det_r ==\
-    \ 0) {\n      --k;\n      det_r = det_l;\n    }\n    r += k * p;\n    s += k *\
-    \ q;\n    while (1) {\n      int k = max(0, ceil(det_l - y, det_r));\n      if\
-    \ (det_l - k * det_r <= 0) break;\n      det_l -= k * det_r;\n      p += k * r;\n\
-    \      q += k * s;\n      // p/q <= a/mod\n      // (aq - pmod) = det_l \u3092\
-    \ y \u304B\u3089\u5F15\u304F\n      k = y / det_l;\n      y -= k * det_l;\n  \
-    \    x += q * k;\n      X.eb(x);\n      DX.eb(q);\n    }\n    k = det_l / det_r;\n\
-    \    det_l -= k * det_r;\n    p += k * r;\n    q += k * s;\n    assert(min({p,\
-    \ q, r, s}) >= 0);\n  }\n  return {X, DX};\n}\n#line 6 \"test/min_of_linear_segments.test.cpp\"\
-    \n\npair<vc<int>, vc<int>> naive(int a, int b, int mod) {\n  assert(0 <= a &&\
-    \ a < mod);\n  assert(0 <= b && b < mod);\n  vc<int> A;\n  int last_y = b;\n \
-    \ FOR(x, 1, mod + 1) {\n    int y = (ll(a) * x + b) % mod;\n    if (chmin(last_y,\
-    \ y)) A.eb(x);\n  }\n  vc<int> X = {0};\n  vc<int> DX;\n  int dx = -1;\n  for\
-    \ (auto&& x: A) {\n    if (X.back() + dx == x) {\n      X.back() = x;\n    } else\
-    \ {\n      dx = x - X.back();\n      DX.eb(dx);\n      X.eb(x);\n    }\n  }\n\
-    \  return {X, DX};\n}\n\nvoid test() {\n  RandomNumberGenerator RNG;\n  FOR(mod,\
-    \ 1, 1000) {\n    FOR(10) {\n      int a = RNG(0, mod);\n      int b = RNG(0,\
-    \ mod);\n      auto [X1, DX1] = naive(a, b, mod);\n      auto [X2, DX2] = min_of_linear_segments(a,\
-    \ b, mod);\n      assert(X1 == X2);\n      assert(DX1 == DX2);\n    }\n  }\n}\n\
-    \nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout <<\
-    \ fixed << setprecision(15);\n\n  test();\n  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"other/random.hpp\"\n#include \"mod/min_of_linear_segments.hpp\"\
-    \n\npair<vc<int>, vc<int>> naive(int a, int b, int mod) {\n  assert(0 <= a &&\
-    \ a < mod);\n  assert(0 <= b && b < mod);\n  vc<int> A;\n  int last_y = b;\n \
-    \ FOR(x, 1, mod + 1) {\n    int y = (ll(a) * x + b) % mod;\n    if (chmin(last_y,\
-    \ y)) A.eb(x);\n  }\n  vc<int> X = {0};\n  vc<int> DX;\n  int dx = -1;\n  for\
-    \ (auto&& x: A) {\n    if (X.back() + dx == x) {\n      X.back() = x;\n    } else\
-    \ {\n      dx = x - X.back();\n      DX.eb(dx);\n      X.eb(x);\n    }\n  }\n\
-    \  return {X, DX};\n}\n\nvoid test() {\n  RandomNumberGenerator RNG;\n  FOR(mod,\
-    \ 1, 1000) {\n    FOR(10) {\n      int a = RNG(0, mod);\n      int b = RNG(0,\
-    \ mod);\n      auto [X1, DX1] = naive(a, b, mod);\n      auto [X2, DX2] = min_of_linear_segments(a,\
-    \ b, mod);\n      assert(X1 == X2);\n      assert(DX1 == DX2);\n    }\n  }\n}\n\
-    \nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout <<\
-    \ fixed << setprecision(15);\n\n  test();\n  solve();\n\n  return 0;\n}\n"
+    \ { yes(!t); }\r\n#line 2 \"flow/mincostflow.hpp\"\n\n// atcoder library \u306E\
+    \u3082\u306E\u3092\u6539\u5909\n\nnamespace internal {\n\ntemplate <class E>\n\
+    struct csr {\n  std::vector<int> start;\n  std::vector<E> elist;\n  explicit csr(int\
+    \ n, const std::vector<std::pair<int, E>>& edges)\n      : start(n + 1), elist(edges.size())\
+    \ {\n    for (auto e: edges) { start[e.first + 1]++; }\n    for (int i = 1; i\
+    \ <= n; i++) { start[i] += start[i - 1]; }\n    auto counter = start;\n    for\
+    \ (auto e: edges) { elist[counter[e.first]++] = e.second; }\n  }\n};\n\ntemplate\
+    \ <class T>\nstruct simple_queue {\n  std::vector<T> payload;\n  int pos = 0;\n\
+    \  void reserve(int n) { payload.reserve(n); }\n  int size() const { return int(payload.size())\
+    \ - pos; }\n  bool empty() const { return pos == int(payload.size()); }\n  void\
+    \ push(const T& t) { payload.push_back(t); }\n  T& front() { return payload[pos];\
+    \ }\n  void clear() {\n    payload.clear();\n    pos = 0;\n  }\n  void pop() {\
+    \ pos++; }\n};\n\n} // namespace internal\n\n/*\n\u30FBatcoder library \u3092\u3059\
+    \u3053\u3057\u6539\u5909\u3057\u305F\u3082\u306E\n\u30FBDAG = true \u3067\u3042\
+    \u308C\u3070\u3001\u8CA0\u8FBA OK \uFF081 \u56DE\u76EE\u306E\u6700\u77ED\u8DEF\
+    \u3092 dp \u3067\u884C\u3046\uFF09\n\u305F\u3060\u3057\u3001\u9802\u70B9\u756A\
+    \u53F7\u306F toposort \u3055\u308C\u3066\u3044\u308B\u3053\u3068\u3092\u4EEE\u5B9A\
+    \u3057\u3066\u3044\u308B\u3002\n*/\ntemplate <class Cap = int, class Cost = ll,\
+    \ bool DAG = false>\nstruct mcf_graph {\npublic:\n  mcf_graph() {}\n  explicit\
+    \ mcf_graph(int n) : _n(n) {}\n\n  // frm, to, cap, cost\n  int add(int frm, int\
+    \ to, Cap cap, Cost cost) {\n    assert(0 <= frm && frm < _n);\n    assert(0 <=\
+    \ to && to < _n);\n    assert(0 <= cap);\n    assert(DAG || 0 <= cost);\n    if\
+    \ (DAG) assert(frm < to);\n    int m = int(_edges.size());\n    _edges.push_back({frm,\
+    \ to, cap, 0, cost});\n    return m;\n  }\n\n  void debug() {\n    print(\"flow\
+    \ graph\");\n    print(\"frm, to, cap, cost\");\n    for (auto&& [frm, to, cap,\
+    \ flow, cost]: _edges) {\n      print(frm, to, cap, cost);\n    }\n  }\n\n  struct\
+    \ edge {\n    int frm, to;\n    Cap cap, flow;\n    Cost cost;\n  };\n\n  edge\
+    \ get_edge(int i) {\n    int m = int(_edges.size());\n    assert(0 <= i && i <\
+    \ m);\n    return _edges[i];\n  }\n  std::vector<edge> edges() { return _edges;\
+    \ }\n\n  std::pair<Cap, Cost> flow(int s, int t) {\n    return flow(s, t, std::numeric_limits<Cap>::max());\n\
+    \  }\n  std::pair<Cap, Cost> flow(int s, int t, Cap flow_limit) {\n    return\
+    \ slope(s, t, flow_limit).back();\n  }\n  std::vector<std::pair<Cap, Cost>> slope(int\
+    \ s, int t) {\n    return slope(s, t, std::numeric_limits<Cap>::max());\n  }\n\
+    \  std::vector<std::pair<Cap, Cost>> slope(int s, int t, Cap flow_limit) {\n \
+    \   assert(0 <= s && s < _n);\n    assert(0 <= t && t < _n);\n    assert(s !=\
+    \ t);\n\n    int m = int(_edges.size());\n    std::vector<int> edge_idx(m);\n\n\
+    \    auto g = [&]() {\n      std::vector<int> degree(_n), redge_idx(m);\n    \
+    \  std::vector<std::pair<int, _edge>> elist;\n      elist.reserve(2 * m);\n  \
+    \    for (int i = 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i]\
+    \ = degree[e.frm]++;\n        redge_idx[i] = degree[e.to]++;\n        elist.push_back({e.frm,\
+    \ {e.to, -1, e.cap - e.flow, e.cost}});\n        elist.push_back({e.to, {e.frm,\
+    \ -1, e.flow, -e.cost}});\n      }\n      auto _g = internal::csr<_edge>(_n, elist);\n\
+    \      for (int i = 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i]\
+    \ += _g.start[e.frm];\n        redge_idx[i] += _g.start[e.to];\n        _g.elist[edge_idx[i]].rev\
+    \ = redge_idx[i];\n        _g.elist[redge_idx[i]].rev = edge_idx[i];\n      }\n\
+    \      return _g;\n    }();\n\n    auto result = slope(g, s, t, flow_limit);\n\
+    \n    for (int i = 0; i < m; i++) {\n      auto e = g.elist[edge_idx[i]];\n  \
+    \    _edges[i].flow = _edges[i].cap - e.cap;\n    }\n\n    return result;\n  }\n\
+    \nprivate:\n  int _n;\n  std::vector<edge> _edges;\n\n  // inside edge\n  struct\
+    \ _edge {\n    int to, rev;\n    Cap cap;\n    Cost cost;\n  };\n\n  std::vector<std::pair<Cap,\
+    \ Cost>> slope(internal::csr<_edge>& g, int s, int t,\n                      \
+    \                    Cap flow_limit) {\n    // variants (C = maxcost):\n    //\
+    \ -(n-1)C <= dual[s] <= dual[i] <= dual[t] = 0\n    // reduced cost (= e.cost\
+    \ + dual[e.frm] - dual[e.to]) >= 0 for all edge\n\n    // dual_dist[i] = (dual[i],\
+    \ dist[i])\n    if (DAG) assert(s == 0 && t == _n - 1);\n    std::vector<std::pair<Cost,\
+    \ Cost>> dual_dist(_n);\n    std::vector<int> prev_e(_n);\n    std::vector<bool>\
+    \ vis(_n);\n    struct Q {\n      Cost key;\n      int to;\n      bool operator<(Q\
+    \ r) const { return key > r.key; }\n    };\n    std::vector<int> que_min;\n  \
+    \  std::vector<Q> que;\n    auto dual_ref = [&]() {\n      for (int i = 0; i <\
+    \ _n; i++) {\n        dual_dist[i].second = std::numeric_limits<Cost>::max();\n\
+    \      }\n      std::fill(vis.begin(), vis.end(), false);\n      que_min.clear();\n\
+    \      que.clear();\n\n      // que[0..heap_r) was heapified\n      size_t heap_r\
+    \ = 0;\n\n      dual_dist[s].second = 0;\n      que_min.push_back(s);\n      while\
+    \ (!que_min.empty() || !que.empty()) {\n        int v;\n        if (!que_min.empty())\
+    \ {\n          v = que_min.back();\n          que_min.pop_back();\n        } else\
+    \ {\n          while (heap_r < que.size()) {\n            heap_r++;\n        \
+    \    std::push_heap(que.begin(), que.begin() + heap_r);\n          }\n       \
+    \   v = que.front().to;\n          std::pop_heap(que.begin(), que.end());\n  \
+    \        que.pop_back();\n          heap_r--;\n        }\n        if (vis[v])\
+    \ continue;\n        vis[v] = true;\n        if (v == t) break;\n        // dist[v]\
+    \ = shortest(s, v) + dual[s] - dual[v]\n        // dist[v] >= 0 (all reduced cost\
+    \ are positive)\n        // dist[v] <= (n-1)C\n        Cost dual_v = dual_dist[v].first,\
+    \ dist_v = dual_dist[v].second;\n        for (int i = g.start[v]; i < g.start[v\
+    \ + 1]; i++) {\n          auto e = g.elist[i];\n          if (!e.cap) continue;\n\
+    \          // |-dual[e.to] + dual[v]| <= (n-1)C\n          // cost <= C - -(n-1)C\
+    \ + 0 = nC\n          Cost cost = e.cost - dual_dist[e.to].first + dual_v;\n \
+    \         if (dual_dist[e.to].second > dist_v + cost) {\n            Cost dist_to\
+    \ = dist_v + cost;\n            dual_dist[e.to].second = dist_to;\n          \
+    \  prev_e[e.to] = e.rev;\n            if (dist_to == dist_v) {\n             \
+    \ que_min.push_back(e.to);\n            } else {\n              que.push_back(Q{dist_to,\
+    \ e.to});\n            }\n          }\n        }\n      }\n      if (!vis[t])\
+    \ { return false; }\n\n      for (int v = 0; v < _n; v++) {\n        if (!vis[v])\
+    \ continue;\n        // dual[v] = dual[v] - dist[t] + dist[v]\n        //    \
+    \     = dual[v] - (shortest(s, t) + dual[s] - dual[t]) +\n        //         (shortest(s,\
+    \ v) + dual[s] - dual[v]) = - shortest(s,\n        //         t) + dual[t] + shortest(s,\
+    \ v) = shortest(s, v) -\n        //         shortest(s, t) >= 0 - (n-1)C\n   \
+    \     dual_dist[v].first -= dual_dist[t].second - dual_dist[v].second;\n     \
+    \ }\n      return true;\n    };\n\n    auto dual_ref_dag = [&]() {\n      for\
+    \ (int i = 0; i < _n; i++) {\n        dual_dist[i].second = std::numeric_limits<Cost>::max();\n\
+    \      }\n      dual_dist[s].second = 0;\n      std::fill(vis.begin(), vis.end(),\
+    \ false);\n      vis[0] = true;\n\n      for (int v = 0; v < _n; ++v) {\n    \
+    \    if (!vis[v]) continue;\n        Cost dual_v = dual_dist[v].first, dist_v\
+    \ = dual_dist[v].second;\n        for (int i = g.start[v]; i < g.start[v + 1];\
+    \ i++) {\n          auto e = g.elist[i];\n          if (!e.cap) continue;\n  \
+    \        Cost cost = e.cost - dual_dist[e.to].first + dual_v;\n          if (dual_dist[e.to].second\
+    \ > dist_v + cost) {\n            vis[e.to] = true;\n            Cost dist_to\
+    \ = dist_v + cost;\n            dual_dist[e.to].second = dist_to;\n          \
+    \  prev_e[e.to] = e.rev;\n          }\n        }\n      }\n      if (!vis[t])\
+    \ { return false; }\n\n      for (int v = 0; v < _n; v++) {\n        if (!vis[v])\
+    \ continue;\n        // dual[v] = dual[v] - dist[t] + dist[v]\n        //    \
+    \     = dual[v] - (shortest(s, t) + dual[s] - dual[t]) +\n        //         (shortest(s,\
+    \ v) + dual[s] - dual[v]) = - shortest(s,\n        //         t) + dual[t] + shortest(s,\
+    \ v) = shortest(s, v) -\n        //         shortest(s, t) >= 0 - (n-1)C\n   \
+    \     dual_dist[v].first -= dual_dist[t].second - dual_dist[v].second;\n     \
+    \ }\n      return true;\n    };\n\n    Cap flow = 0;\n    Cost cost = 0, prev_cost_per_flow\
+    \ = -1;\n    std::vector<std::pair<Cap, Cost>> result = {{Cap(0), Cost(0)}};\n\
+    \    while (flow < flow_limit) {\n      if (DAG && flow == 0) {\n        if (!dual_ref_dag())\
+    \ break;\n      } else {\n        if (!dual_ref()) break;\n      }\n      Cap\
+    \ c = flow_limit - flow;\n      for (int v = t; v != s; v = g.elist[prev_e[v]].to)\
+    \ {\n        c = std::min(c, g.elist[g.elist[prev_e[v]].rev].cap);\n      }\n\
+    \      for (int v = t; v != s; v = g.elist[prev_e[v]].to) {\n        auto& e =\
+    \ g.elist[prev_e[v]];\n        e.cap += c;\n        g.elist[e.rev].cap -= c;\n\
+    \      }\n      Cost d = -dual_dist[s].first;\n      flow += c;\n      cost +=\
+    \ c * d;\n      if (prev_cost_per_flow == d) { result.pop_back(); }\n      result.push_back({flow,\
+    \ cost});\n      prev_cost_per_flow = d;\n    }\n    return result;\n  }\n};\n\
+    #line 7 \"test/aoj/GRL_6_B.test.cpp\"\n\nvoid solve() {\n  LL(N, M, F);\n  mcf_graph<int,\
+    \ ll, 0> G(N);\n  FOR(M) {\n    LL(a, b, c, d);\n    G.add(a, b, c, d);\n  }\n\
+    \n  auto [f, x] = G.flow(0, N - 1, F);\n  if (f < F)\n    print(-1);\n  else\n\
+    \    print(x);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n\
+    \  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B\"\
+    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"flow/mincostflow.hpp\"\
+    \n\nvoid solve() {\n  LL(N, M, F);\n  mcf_graph<int, ll, 0> G(N);\n  FOR(M) {\n\
+    \    LL(a, b, c, d);\n    G.add(a, b, c, d);\n  }\n\n  auto [f, x] = G.flow(0,\
+    \ N - 1, F);\n  if (f < F)\n    print(-1);\n  else\n    print(x);\n}\n\nsigned\
+    \ main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n\
+    \  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - other/random.hpp
-  - mod/min_of_linear_segments.hpp
+  - flow/mincostflow.hpp
   isVerificationFile: true
-  path: test/min_of_linear_segments.test.cpp
+  path: test/aoj/GRL_6_B.test.cpp
   requiredBy: []
-  timestamp: '2022-08-20 05:21:32+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-20 05:58:51+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/min_of_linear_segments.test.cpp
+documentation_of: test/aoj/GRL_6_B.test.cpp
 layout: document
 redirect_from:
-- /verify/test/min_of_linear_segments.test.cpp
-- /verify/test/min_of_linear_segments.test.cpp.html
-title: test/min_of_linear_segments.test.cpp
+- /verify/test/aoj/GRL_6_B.test.cpp
+- /verify/test/aoj/GRL_6_B.test.cpp.html
+title: test/aoj/GRL_6_B.test.cpp
 ---

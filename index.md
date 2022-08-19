@@ -388,19 +388,13 @@ data:
       title: flow/unbalanced_transportation.hpp
   - name: geo
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: geo/base.hpp
       title: geo/base.hpp
-    - icon: ':warning:'
-      path: geo/line_int.hpp
-      title: geo/line_int.hpp
-    - icon: ':warning:'
-      path: geo/point_int.hpp
-      title: geo/point_int.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo/projection.hpp
       title: geo/projection.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo/reflection.hpp
       title: geo/reflection.hpp
   - name: geo_old
@@ -662,7 +656,7 @@ data:
     - icon: ':x:'
       path: mod/min_of_linear_segments.hpp
       title: mod/min_of_linear_segments.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: mod/mod_inv.hpp
       title: mod/mod_inv.hpp
     - icon: ':x:'
@@ -773,7 +767,7 @@ data:
     - icon: ':warning:'
       path: other/ceil_range.hpp
       title: other/ceil_range.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/dice.hpp
       title: other/dice.hpp
     - icon: ':x:'
@@ -861,7 +855,7 @@ data:
     - icon: ':x:'
       path: poly/coef_of_rational_fps_2d.hpp
       title: poly/coef_of_rational_fps_2d.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/convolution.hpp
       title: poly/convolution.hpp
     - icon: ':warning:'
@@ -870,7 +864,7 @@ data:
     - icon: ':x:'
       path: poly/convolution_all.hpp
       title: poly/convolution_all.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/convolution_huge.hpp
       title: poly/convolution_huge.hpp
     - icon: ':warning:'
@@ -879,7 +873,7 @@ data:
     - icon: ':x:'
       path: poly/convolution_mod_2_64.hpp
       title: poly/convolution_mod_2_64.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/convolution_naive.hpp
       title: poly/convolution_naive.hpp
     - icon: ':x:'
@@ -888,7 +882,7 @@ data:
     - icon: ':x:'
       path: poly/differentiate.hpp
       title: poly/differentiate.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/fft.hpp
       title: poly/fft.hpp
     - icon: ':x:'
@@ -921,7 +915,7 @@ data:
     - icon: ':x:'
       path: poly/multivar_convolution.hpp
       title: poly/multivar_convolution.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/ntt.hpp
       title: poly/ntt.hpp
     - icon: ':x:'
@@ -1074,17 +1068,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: example.test.cpp
       title: example.test.cpp
-  - name: test
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/GRL_6_B.test.cpp
-      title: test/GRL_6_B.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/example.test.cpp
-      title: test/example.test.cpp
-    - icon: ':x:'
-      path: test/min_of_linear_segments.test.cpp
-      title: test/min_of_linear_segments.test.cpp
   - name: test/aoj
     pages:
     - icon: ':heavy_check_mark:'
@@ -1129,12 +1112,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_5_inversion.test.cpp
       title: test/aoj/ALDS1_5_inversion.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_1_A.test.cpp
       title: test/aoj/CGL_1_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_1_B.test.cpp
       title: test/aoj/CGL_1_B.test.cpp
+    - icon: ':x:'
+      path: test/aoj/CGL_2_A.test.cpp
+      title: test/aoj/CGL_2_A.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_1_B_kanpsack01.test.cpp
       title: test/aoj/DPL_1_B_kanpsack01.test.cpp
@@ -1208,9 +1194,12 @@ data:
       path: test/aoj/GRL_6_A_maxflow.test.cpp
       title: test/aoj/GRL_6_A_maxflow.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL_6_B.test.cpp
+      title: test/aoj/GRL_6_B.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRO_3_A_articulation.test.cpp
       title: test/aoj/GRO_3_A_articulation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ITP1_11_A.test.cpp
       title: test/aoj/ITP1_11_A.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1273,16 +1262,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/bitwise_xor_convolution.test.cpp
       title: test/library_checker/convolution/bitwise_xor_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/convolution_huge.test.cpp
       title: test/library_checker/convolution/convolution_huge.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/convolution_mod.test.cpp
       title: test/library_checker/convolution/convolution_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/convolution_mod_107.test.cpp
       title: test/library_checker/convolution/convolution_mod_107.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
       title: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
     - icon: ':x:'
@@ -1713,6 +1702,9 @@ data:
     - icon: ':x:'
       path: test/mytest/maxplus_concave.test.cpp
       title: test/mytest/maxplus_concave.test.cpp
+    - icon: ':x:'
+      path: test/mytest/min_of_linear_segments.test.cpp
+      title: test/mytest/min_of_linear_segments.test.cpp
     - icon: ':x:'
       path: test/mytest/minplus_convex.test.cpp
       title: test/mytest/minplus_convex.test.cpp

@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/dice.hpp
     title: other/dice.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_11_A
@@ -217,16 +217,14 @@ data:
     \  FOR(i, 24) {\n      auto [a, b, c] = tmp[i];\n      res[i] = {A[a], A[b], A[c],\
     \ A[5 - c], A[5 - b], A[5 - a]};\n    }\n    return res;\n  }\n};\n#line 7 \"\
     test/aoj/ITP1_11_A.test.cpp\"\n\nvoid solve() {\n  array<int, 6> A;\n  FOR(i,\
-    \ 6) read(A[i]);\n  Dice<int> X(A);\n  auto dat = X.gen_all();\n  LL(Q);\n  FOR(Q)\
-    \ {\n    LL(a, b);\n    for (auto&& B: dat) {\n      if (B[0] == a && B[1] ==\
-    \ b) print(B[2]);\n    }\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \ 6) read(A[i]);\n  Dice<int> X(A);\n  STR(S);\n  for (auto&& s: S) { X.rotate(s);\
+    \ }\n  print(X.U());\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
     \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_11_A\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"other/dice.hpp\"\
     \n\nvoid solve() {\n  array<int, 6> A;\n  FOR(i, 6) read(A[i]);\n  Dice<int> X(A);\n\
-    \  auto dat = X.gen_all();\n  LL(Q);\n  FOR(Q) {\n    LL(a, b);\n    for (auto&&\
-    \ B: dat) {\n      if (B[0] == a && B[1] == b) print(B[2]);\n    }\n  }\n}\n\n\
-    signed main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n\
+    \  STR(S);\n  for (auto&& s: S) { X.rotate(s); }\n  print(X.U());\n}\n\nsigned\
+    \ main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n\
     \  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
@@ -235,8 +233,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ITP1_11_A.test.cpp
   requiredBy: []
-  timestamp: '2022-08-20 05:21:32+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-20 06:08:53+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ITP1_11_A.test.cpp
 layout: document

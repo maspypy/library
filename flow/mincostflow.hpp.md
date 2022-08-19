@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/GRL_6_B.test.cpp
-    title: test/GRL_6_B.test.cpp
+    path: test/aoj/GRL_6_B.test.cpp
+    title: test/aoj/GRL_6_B.test.cpp
   - icon: ':x:'
     path: test/library_checker/graph/assignment_mcf.test.cpp
     title: test/library_checker/graph/assignment_mcf.test.cpp
@@ -260,7 +260,7 @@ data:
   - test/yukicoder/1301_mcf.test.cpp
   - test/yukicoder/1288_mcf_dag_negative.test.cpp
   - test/library_checker/graph/assignment_mcf.test.cpp
-  - test/GRL_6_B.test.cpp
+  - test/aoj/GRL_6_B.test.cpp
 documentation_of: flow/mincostflow.hpp
 layout: document
 redirect_from:

@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/projection.hpp
     title: geo/projection.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/reflection.hpp
     title: geo/reflection.hpp
   - icon: ':warning:'
@@ -18,15 +18,18 @@ data:
     path: geo_old/dynamicupperhull.hpp
     title: geo_old/dynamicupperhull.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_1_A.test.cpp
     title: test/aoj/CGL_1_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_1_B.test.cpp
     title: test/aoj/CGL_1_B.test.cpp
+  - icon: ':x:'
+    path: test/aoj/CGL_2_A.test.cpp
+    title: test/aoj/CGL_2_A.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -73,10 +76,11 @@ data:
   - geo/projection.hpp
   - geo/reflection.hpp
   timestamp: '2022-08-20 05:23:36+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/CGL_1_A.test.cpp
   - test/aoj/CGL_1_B.test.cpp
+  - test/aoj/CGL_2_A.test.cpp
 documentation_of: geo/base.hpp
 layout: document
 redirect_from:

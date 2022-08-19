@@ -7,9 +7,6 @@ data:
     title: graph/bipartite_coloring.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/GRL_6_B.test.cpp
-    title: test/GRL_6_B.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/aoj/1508_splay.test.cpp
     title: test/aoj/1508_splay.test.cpp
   - icon: ':heavy_check_mark:'
@@ -51,12 +48,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_5_inversion.test.cpp
     title: test/aoj/ALDS1_5_inversion.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_1_A.test.cpp
     title: test/aoj/CGL_1_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_1_B.test.cpp
     title: test/aoj/CGL_1_B.test.cpp
+  - icon: ':x:'
+    path: test/aoj/CGL_2_A.test.cpp
+    title: test/aoj/CGL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_1_B_kanpsack01.test.cpp
     title: test/aoj/DPL_1_B_kanpsack01.test.cpp
@@ -130,9 +130,12 @@ data:
     path: test/aoj/GRL_6_A_maxflow.test.cpp
     title: test/aoj/GRL_6_A_maxflow.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_6_B.test.cpp
+    title: test/aoj/GRL_6_B.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRO_3_A_articulation.test.cpp
     title: test/aoj/GRO_3_A_articulation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_11_A.test.cpp
     title: test/aoj/ITP1_11_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -183,16 +186,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/bitwise_xor_convolution.test.cpp
     title: test/library_checker/convolution/bitwise_xor_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_huge.test.cpp
     title: test/library_checker/convolution/convolution_huge.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod.test.cpp
     title: test/library_checker/convolution/convolution_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_107.test.cpp
     title: test/library_checker/convolution/convolution_mod_107.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
     title: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
   - icon: ':x:'
@@ -583,9 +586,6 @@ data:
     path: test/library_checker/tree/tree_diameter.test.cpp
     title: test/library_checker/tree/tree_diameter.test.cpp
   - icon: ':x:'
-    path: test/min_of_linear_segments.test.cpp
-    title: test/min_of_linear_segments.test.cpp
-  - icon: ':x:'
     path: test/mytest/all_inverse.test.cpp
     title: test/mytest/all_inverse.test.cpp
   - icon: ':x:'
@@ -603,6 +603,9 @@ data:
   - icon: ':x:'
     path: test/mytest/maxplus_concave.test.cpp
     title: test/mytest/maxplus_concave.test.cpp
+  - icon: ':x:'
+    path: test/mytest/min_of_linear_segments.test.cpp
+    title: test/mytest/min_of_linear_segments.test.cpp
   - icon: ':x:'
     path: test/mytest/minplus_convex.test.cpp
     title: test/mytest/minplus_convex.test.cpp
@@ -1092,6 +1095,7 @@ data:
   - test/mytest/prime_sum.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
+  - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/run_length.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
   - test/mytest/powerquery.test.cpp
@@ -1099,7 +1103,6 @@ data:
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
   - test/mytest/primesum_mod4.test.cpp
-  - test/min_of_linear_segments.test.cpp
   - test/library_checker/tree/cartesian_tree.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp
@@ -1270,6 +1273,7 @@ data:
   - test/aoj/DSL_2_E_fenwick_raq.test.cpp
   - test/aoj/ITP1_D_D_divisors.test.cpp
   - test/aoj/DPL_1_B_kanpsack01.test.cpp
+  - test/aoj/CGL_2_A.test.cpp
   - test/aoj/DPL_5_C_count_surjection.test.cpp
   - test/aoj/DSL_2_F_min_set_lazy.test.cpp
   - test/aoj/DSL_2_H_min_add_lazy.test.cpp
@@ -1280,6 +1284,7 @@ data:
   - test/aoj/2251_dag_path_cover.test.cpp
   - test/aoj/NTL_1_E_extgcd.test.cpp
   - test/aoj/ALDS1_1_C_primetest.test.cpp
+  - test/aoj/GRL_6_B.test.cpp
   - test/aoj/2251_maxantichain.test.cpp
   - test/aoj/NTL_1_D_eulerphi.test.cpp
   - test/aoj/DSL_2_I_cntsum_set_lazy.test.cpp
@@ -1287,7 +1292,6 @@ data:
   - test/aoj/DPL_1_H_kanpsack01.test.cpp
   - test/aoj/2677.test.cpp
   - test/aoj/ITP1_11_C.test.cpp
-  - test/GRL_6_B.test.cpp
   - test/atcoder/abc244h.test.cpp
   - test/atcoder/abc200a.test.cpp
   - test/atcoder/agc058d.test.cpp

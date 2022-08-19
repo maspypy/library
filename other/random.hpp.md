@@ -49,9 +49,6 @@ data:
     path: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
     title: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - icon: ':x:'
-    path: test/min_of_linear_segments.test.cpp
-    title: test/min_of_linear_segments.test.cpp
-  - icon: ':x:'
     path: test/mytest/all_inverse.test.cpp
     title: test/mytest/all_inverse.test.cpp
   - icon: ':x:'
@@ -69,6 +66,9 @@ data:
   - icon: ':x:'
     path: test/mytest/maxplus_concave.test.cpp
     title: test/mytest/maxplus_concave.test.cpp
+  - icon: ':x:'
+    path: test/mytest/min_of_linear_segments.test.cpp
+    title: test/mytest/min_of_linear_segments.test.cpp
   - icon: ':x:'
     path: test/mytest/minplus_convex.test.cpp
     title: test/mytest/minplus_convex.test.cpp
@@ -131,13 +131,13 @@ data:
   - test/mytest/maxplus_concave.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
+  - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/run_length.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
   - test/mytest/powerquery.test.cpp
   - test/mytest/binom.test.cpp
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
-  - test/min_of_linear_segments.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp

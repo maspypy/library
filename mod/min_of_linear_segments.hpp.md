@@ -10,11 +10,11 @@ data:
     title: mod/min_of_linear.cpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/min_of_linear_segments.test.cpp
-    title: test/min_of_linear_segments.test.cpp
-  - icon: ':x:'
     path: test/mytest/max_of_linear_segments.test.cpp
     title: test/mytest/max_of_linear_segments.test.cpp
+  - icon: ':x:'
+    path: test/mytest/min_of_linear_segments.test.cpp
+    title: test/mytest/min_of_linear_segments.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -68,8 +68,8 @@ data:
   timestamp: '2022-08-16 06:06:14+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
-  - test/min_of_linear_segments.test.cpp
 documentation_of: mod/min_of_linear_segments.hpp
 layout: document
 redirect_from:

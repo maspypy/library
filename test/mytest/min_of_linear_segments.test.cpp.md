@@ -1,41 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: geo/base.hpp
-    title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: geo/reflection.hpp
-    title: geo/reflection.hpp
+  - icon: ':x:'
+    path: mod/min_of_linear_segments.hpp
+    title: mod/min_of_linear_segments.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
+  - icon: ':question:'
+    path: other/random.hpp
+    title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    ERROR: '0.00000001'
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B
-  bundledCode: "#line 1 \"test/aoj/CGL_1_B.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B\"\
-    \n#define ERROR 0.00000001\n\n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"\
-    Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\
-    \nusing namespace std;\n\nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing\
-    \ vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64 = unsigned long long;\n\
-    using i128 = __int128;\n\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
-    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
-    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
-    \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
-    template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
-    #define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n#define vv(type,\
-    \ name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/mytest/min_of_linear_segments.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#pragma\
+    \ GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
     \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
@@ -199,54 +198,71 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 7 \"test/aoj/CGL_1_B.test.cpp\"\n\n#line 2 \"geo/reflection.hpp\"\
-    \n\n#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n  T x, y;\n\
-    \  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template\
-    \ <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  Point\
-    \ operator+(Point p) const { return {x + p.x, y + p.y}; }\n  Point operator-(Point\
-    \ p) const { return {x - p.x, y - p.y}; }\n  bool operator==(Point p) const {\
-    \ return x == p.x && y == p.y; }\n  Point operator-() const { return {-x, -y};\
-    \ }\n\n  bool operator<(Point p) const {\n    if (x != p.x) return x < p.x;\n\
-    \    return y < p.y;\n  }\n\n  T dot(Point other) { return x * other.x + y * other.y;\
-    \ }\n  T det(Point other) { return x * other.y - y * other.x; }\n};\n\ntemplate\
-    \ <typename REAL, typename T>\nREAL dist(Point<T> A, Point<T> B) {\n  A -= B;\n\
-    \  T p = A.dot(A);\n  return sqrt(REAL(p));\n}\n\ntemplate <typename T>\nstruct\
-    \ Line {\n  T a, b, c;\n\n  Line(T a, T b, T c) : a(a), b(b), c(c) {}\n  Line(Point<T>\
-    \ A, Point<T> B) {\n    a = A.y - B.y;\n    b = B.x - A.x;\n    c = A.x * B.y\
-    \ - A.y * B.x;\n  }\n  Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2,\
-    \ y2)) {}\n\n  template <typename U>\n  U eval(Point<U> P) {\n    return a * P.x\
-    \ + b * P.y + c;\n  }\n\n  template <typename U>\n  T eval(U x, U y) {\n    return\
-    \ a * x + b * y + c;\n  }\n};\n#line 4 \"geo/reflection.hpp\"\n\ntemplate <typename\
-    \ REAL, typename T, typename U>\nPoint<REAL> reflection(Point<T> P, Line<U> L)\
-    \ {\n  REAL t = REAL(L.eval(P)) / (L.a * L.a + L.b * L.b);\n  REAL x = P.x - 2\
-    \ * t * L.a;\n  REAL y = P.y - 2 * t * L.b;\n  return Point<REAL>(x, y);\n};\n\
-    #line 9 \"test/aoj/CGL_1_B.test.cpp\"\n\nvoid solve() {\n  using Re = double;\n\
-    \  LL(a, b, c, d);\n  Line<ll> L(a, b, c, d);\n  LL(Q);\n  FOR(Q) {\n    LL(x,\
-    \ y);\n    Point<Re> p = reflection<Re, ll, ll>(Point<ll>(x, y), L);\n    print(p.x,\
-    \ p.y);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n \
-    \ ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B\"\
-    \n#define ERROR 0.00000001\n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\
-    \n\n#include \"geo/reflection.hpp\"\n\nvoid solve() {\n  using Re = double;\n\
-    \  LL(a, b, c, d);\n  Line<ll> L(a, b, c, d);\n  LL(Q);\n  FOR(Q) {\n    LL(x,\
-    \ y);\n    Point<Re> p = reflection<Re, ll, ll>(Point<ll>(x, y), L);\n    print(p.x,\
-    \ p.y);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n \
-    \ ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ { yes(!t); }\r\n#line 1 \"other/random.hpp\"\nstruct RandomNumberGenerator {\n\
+    \  mt19937 mt;\n\n  RandomNumberGenerator() : mt(chrono::steady_clock::now().time_since_epoch().count())\
+    \ {}\n\n  ll operator()(ll a, ll b) {  // [a, b)\n    uniform_int_distribution<ll>\
+    \ dist(a, b - 1);\n    return dist(mt);\n  }\n\n  ll operator()(ll b) {  // [0,\
+    \ b)\n    return (*this)(0, b);\n  }\n};\n#line 2 \"mod/min_of_linear_segments.hpp\"\
+    \n\n/*\nax + b (x>=0) \u304C\u6700\u5C0F\u3068\u306A\u308B\u3068\u3053\u308D\u306E\
+    \u60C5\u5831\u3092\u8FD4\u3059\u3002\nprefix min \u3092\u66F4\u65B0\u3059\u308B\
+    \ x \u5168\u4F53\u304C\u3001\u7B49\u5DEE\u6570\u5217\u306E\u548C\u96C6\u5408\u3002\
+    \u6B21\u3092\u8FD4\u3059\u3002\n\u30FB\u7B49\u5DEE\u6570\u5217\u306E\u5883\u754C\
+    \u3068\u306A\u308B x_0, x_1, ..., x_n\n\u30FB\u5404\u5883\u754C\u306E\u9593\u3067\
+    \u306E\u4EA4\u5DEE dx_0, ..., dx_{n-1}\n*/\npair<vc<int>, vc<int>> min_of_linear_segments(int\
+    \ a, int b, int mod) {\n  assert(0 <= a && a < mod);\n  assert(0 <= b && b < mod);\n\
+    \  vc<int> X = {0};\n  vc<int> DX;\n  int g = gcd(a, mod);\n  a /= g, b /= g,\
+    \ mod /= g;\n  // p/q <= (mod-a)/mod <= r/s\n  int p = 0, q = 1, r = 1, s = 1;\n\
+    \  int det_l = mod - a, det_r = a;\n  int x = 0, y = b;\n\n  while (y) {\n   \
+    \ // upd r/s\n    int k = det_r / det_l;\n    det_r %= det_l;\n    if (det_r ==\
+    \ 0) {\n      --k;\n      det_r = det_l;\n    }\n    r += k * p;\n    s += k *\
+    \ q;\n    while (1) {\n      int k = max(0, ceil(det_l - y, det_r));\n      if\
+    \ (det_l - k * det_r <= 0) break;\n      det_l -= k * det_r;\n      p += k * r;\n\
+    \      q += k * s;\n      // p/q <= a/mod\n      // (aq - pmod) = det_l \u3092\
+    \ y \u304B\u3089\u5F15\u304F\n      k = y / det_l;\n      y -= k * det_l;\n  \
+    \    x += q * k;\n      X.eb(x);\n      DX.eb(q);\n    }\n    k = det_l / det_r;\n\
+    \    det_l -= k * det_r;\n    p += k * r;\n    q += k * s;\n    assert(min({p,\
+    \ q, r, s}) >= 0);\n  }\n  return {X, DX};\n}\n#line 6 \"test/mytest/min_of_linear_segments.test.cpp\"\
+    \n\npair<vc<int>, vc<int>> naive(int a, int b, int mod) {\n  assert(0 <= a &&\
+    \ a < mod);\n  assert(0 <= b && b < mod);\n  vc<int> A;\n  int last_y = b;\n \
+    \ FOR(x, 1, mod + 1) {\n    int y = (ll(a) * x + b) % mod;\n    if (chmin(last_y,\
+    \ y)) A.eb(x);\n  }\n  vc<int> X = {0};\n  vc<int> DX;\n  int dx = -1;\n  for\
+    \ (auto&& x: A) {\n    if (X.back() + dx == x) {\n      X.back() = x;\n    } else\
+    \ {\n      dx = x - X.back();\n      DX.eb(dx);\n      X.eb(x);\n    }\n  }\n\
+    \  return {X, DX};\n}\n\nvoid test() {\n  RandomNumberGenerator RNG;\n  FOR(mod,\
+    \ 1, 1000) {\n    FOR(10) {\n      int a = RNG(0, mod);\n      int b = RNG(0,\
+    \ mod);\n      auto [X1, DX1] = naive(a, b, mod);\n      auto [X2, DX2] = min_of_linear_segments(a,\
+    \ b, mod);\n      assert(X1 == X2);\n      assert(DX1 == DX2);\n    }\n  }\n}\n\
+    \nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout <<\
+    \ fixed << setprecision(15);\n\n  test();\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"other/random.hpp\"\n#include \"mod/min_of_linear_segments.hpp\"\
+    \n\npair<vc<int>, vc<int>> naive(int a, int b, int mod) {\n  assert(0 <= a &&\
+    \ a < mod);\n  assert(0 <= b && b < mod);\n  vc<int> A;\n  int last_y = b;\n \
+    \ FOR(x, 1, mod + 1) {\n    int y = (ll(a) * x + b) % mod;\n    if (chmin(last_y,\
+    \ y)) A.eb(x);\n  }\n  vc<int> X = {0};\n  vc<int> DX;\n  int dx = -1;\n  for\
+    \ (auto&& x: A) {\n    if (X.back() + dx == x) {\n      X.back() = x;\n    } else\
+    \ {\n      dx = x - X.back();\n      DX.eb(dx);\n      X.eb(x);\n    }\n  }\n\
+    \  return {X, DX};\n}\n\nvoid test() {\n  RandomNumberGenerator RNG;\n  FOR(mod,\
+    \ 1, 1000) {\n    FOR(10) {\n      int a = RNG(0, mod);\n      int b = RNG(0,\
+    \ mod);\n      auto [X1, DX1] = naive(a, b, mod);\n      auto [X2, DX2] = min_of_linear_segments(a,\
+    \ b, mod);\n      assert(X1 == X2);\n      assert(DX1 == DX2);\n    }\n  }\n}\n\
+    \nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout <<\
+    \ fixed << setprecision(15);\n\n  test();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - geo/reflection.hpp
-  - geo/base.hpp
+  - other/random.hpp
+  - mod/min_of_linear_segments.hpp
   isVerificationFile: true
-  path: test/aoj/CGL_1_B.test.cpp
+  path: test/mytest/min_of_linear_segments.test.cpp
   requiredBy: []
-  timestamp: '2022-08-20 06:04:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-20 05:59:20+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/aoj/CGL_1_B.test.cpp
+documentation_of: test/mytest/min_of_linear_segments.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/CGL_1_B.test.cpp
-- /verify/test/aoj/CGL_1_B.test.cpp.html
-title: test/aoj/CGL_1_B.test.cpp
+- /verify/test/mytest/min_of_linear_segments.test.cpp
+- /verify/test/mytest/min_of_linear_segments.test.cpp.html
+title: test/mytest/min_of_linear_segments.test.cpp
 ---
