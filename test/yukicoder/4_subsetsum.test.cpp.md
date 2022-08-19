@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: dp/subset_sum.hpp
     title: dp/subset_sum.hpp
   - icon: ':question:'
@@ -12,16 +12,17 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/4
     links:
     - https://yukicoder.me/problems/no/4
   bundledCode: "#line 1 \"test/yukicoder/4_subsetsum.test.cpp\"\n#define PROBLEM \"\
-    https://yukicoder.me/problems/no/4\"\n#line 1 \"my_template.hpp\"\n#include <bits/stdc++.h>\n\
+    https://yukicoder.me/problems/no/4\"\n#line 1 \"my_template.hpp\"\n#pragma GCC\
+    \ optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing\
     \ vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64 = unsigned long long;\n\
     using i128 = __int128;\n\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
@@ -234,8 +235,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/4_subsetsum.test.cpp
   requiredBy: []
-  timestamp: '2022-08-13 02:22:39+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-20 02:40:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/4_subsetsum.test.cpp
 layout: document

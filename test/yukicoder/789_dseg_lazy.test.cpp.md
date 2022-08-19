@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/group_cntsum.hpp
     title: alg/group_cntsum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/lazy_cntsum_add.hpp
     title: alg/lazy_cntsum_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/dynamic_lazysegtree.hpp
     title: ds/dynamic_lazysegtree.hpp
   - icon: ':question:'
@@ -21,16 +21,17 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/789
     links:
     - https://yukicoder.me/problems/no/789
   bundledCode: "#line 1 \"test/yukicoder/789_dseg_lazy.test.cpp\"\n#define PROBLEM\
-    \ \"https://yukicoder.me/problems/no/789\"\n#line 1 \"my_template.hpp\"\n#include\
+    \ \"https://yukicoder.me/problems/no/789\"\n#line 1 \"my_template.hpp\"\n#pragma\
+    \ GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include\
     \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
     \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
     \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
@@ -318,8 +319,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/789_dseg_lazy.test.cpp
   requiredBy: []
-  timestamp: '2022-08-13 02:22:39+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-20 02:40:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/789_dseg_lazy.test.cpp
 layout: document

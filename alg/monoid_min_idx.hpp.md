@@ -5,7 +5,7 @@ data:
   - icon: ':warning:'
     path: alg/lazy_minidx_add.hpp
     title: alg/lazy_minidx_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/dynamic_lichao.hpp
     title: ds/dynamic_lichao.hpp
   - icon: ':warning:'
@@ -15,15 +15,15 @@ data:
     path: pds/persistent_dynamic_lichao.hpp
     title: pds/persistent_dynamic_lichao.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
     title: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
     title: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid_min_idx.hpp\"\ntemplate <typename T, bool tie_is_left\
@@ -50,7 +50,7 @@ data:
   - pds/persistent_dynamic_lichao.hpp
   - ds/dynamic_lichao.hpp
   timestamp: '2022-05-27 16:21:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
   - test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp

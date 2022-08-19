@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/add_remove_query.test.cpp
     title: test/library_checker/add_remove_query.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/addremove_query.hpp\"\n/*\n\u30FB\u6642\u523B t \u306B\
@@ -67,7 +67,7 @@ data:
   path: ds/addremove_query.hpp
   requiredBy: []
   timestamp: '2022-08-18 21:50:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/add_remove_query.test.cpp
 documentation_of: ds/addremove_query.hpp
