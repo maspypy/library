@@ -1,6 +1,6 @@
 #include "ds/lazysegtree_beats.hpp"
 
-const ll INF = 1LL << 40;
+constexpr ll Beats_INF = 1LL << 40;
 
 struct Beats_SumMaxMin_ChminChmax {
   struct CntSumMinMax {
@@ -34,12 +34,11 @@ struct Beats_SumMaxMin_ChminChmax {
       z.fail = 0;
       return z;
     }
-    static constexpr X unit () {
-      return {0, 0, INF, -INF, 0, 0, INF, -INF, 0};
+    static constexpr X unit() {
+      return {0, 0, Beats_INF, -Beats_INF, 0, 0, Beats_INF, -Beats_INF, 0};
     }
     bool commute = true;
   };
-
   struct AddChminChmax {
     using X = tuple<ll, ll, ll>;
     using value_type = X;
@@ -51,9 +50,7 @@ struct Beats_SumMaxMin_ChminChmax {
       c = max(c, f);
       return {a, b, c};
     }
-    static constexpr X unit () {
-      return {0, INF, -INF};
-    }
+    static constexpr X unit() { return {0, Beats_INF, -Beats_INF}; }
     bool commute = false;
   };
   struct Lazy {
@@ -71,7 +68,7 @@ struct Beats_SumMaxMin_ChminChmax {
       x.min += add, x.max += add;
       x.min2 += add, x.max2 += add;
 
-      if (mi == INF && ma == -INF) return x;
+      if (mi == Beats_INF && ma == -Beats_INF) return x;
 
       ll before_min = x.min, before_max = x.max;
       x.min = min(x.min, mi);
@@ -104,9 +101,7 @@ struct Beats_SumMaxMin_ChminChmax {
       return x;
     }
   };
-
   LazySegTreeBeats<Lazy> seg;
-
   Beats_SumMaxMin_ChminChmax(vc<ll>& A) {
     using X = Lazy::MX::value_type;
     vc<X> seg_raw(len(A));
@@ -124,9 +119,9 @@ struct Beats_SumMaxMin_ChminChmax {
     return e;
   }
 
-  void chmin(int l, int r, ll x) { seg.apply(l, r, {0, x, -INF}); }
+  void chmin(int l, int r, ll x) { seg.apply(l, r, {0, x, -Beats_INF}); }
 
-  void chmax(int l, int r, ll x) { seg.apply(l, r, {0, INF, x}); }
+  void chmax(int l, int r, ll x) { seg.apply(l, r, {0, Beats_INF, x}); }
 
-  void add(int l, int r, ll x) { seg.apply(l, r, {x, INF, -INF}); }
+  void add(int l, int r, ll x) { seg.apply(l, r, {x, Beats_INF, -Beats_INF}); }
 };
