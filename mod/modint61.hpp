@@ -36,6 +36,7 @@ struct modint61 {
     val = x;
     return *this;
   }
+  modint61 operator-() const { return modint61(get_mod() - val); }
   modint61 &operator/=(const modint61 &p) {
     *this *= p.inverse();
     return *this;
