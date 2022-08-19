@@ -6,6 +6,9 @@ data:
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
   - icon: ':heavy_check_mark:'
+    path: geo/distance.hpp
+    title: geo/distance.hpp
+  - icon: ':heavy_check_mark:'
     path: geo/projection.hpp
     title: geo/projection.hpp
   - icon: ':heavy_check_mark:'
@@ -36,6 +39,9 @@ data:
   - icon: ':x:'
     path: test/aoj/CGL_2_C.test.cpp
     title: test/aoj/CGL_2_C.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL_2_D.test.cpp
+    title: test/aoj/CGL_2_D.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -95,6 +101,7 @@ data:
   - geo_old/dynamicupperhull.hpp
   - geo_old/angle_sort.hpp
   - geo/projection.hpp
+  - geo/distance.hpp
   - geo/reflection.hpp
   - geo/cross_point.hpp
   timestamp: '2022-08-20 07:14:34+09:00'
@@ -102,6 +109,7 @@ data:
   verifiedWith:
   - test/aoj/CGL_1_A.test.cpp
   - test/aoj/CGL_2_B.test.cpp
+  - test/aoj/CGL_2_D.test.cpp
   - test/aoj/CGL_1_B.test.cpp
   - test/aoj/CGL_2_C.test.cpp
   - test/aoj/CGL_2_A.test.cpp
