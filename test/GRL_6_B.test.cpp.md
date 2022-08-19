@@ -2,14 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: graph/base.hpp
-    title: graph/base.hpp
-  - icon: ':question:'
-    path: graph/hld.hpp
-    title: graph/hld.hpp
-  - icon: ':question:'
-    path: graph/two_edge_component.hpp
-    title: graph/two_edge_component.hpp
+    path: flow/mincostflow.hpp
+    title: flow/mincostflow.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -18,17 +12,16 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/two_edge_connected_components
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B
     links:
-    - https://judge.yosupo.jp/problem/two_edge_connected_components
-  bundledCode: "#line 1 \"test/library_checker/graph/two_edge_component.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/two_edge_connected_components\"\
-    \r\n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC\
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B
+  bundledCode: "#line 1 \"test/GRL_6_B.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B\"\
+    \n\n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC\
     \ optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
     \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
     \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
@@ -201,144 +194,147 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct\
-    \ Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int,\
-    \ bool directed = false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n\
-    \  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n\
-    \  vector<edge_type> csr_edges;\n  bool prepared;\n\n  class OutgoingEdges {\n\
-    \  public:\n    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l), r(r)\
-    \ {}\n\n    const edge_type* begin() const {\n      if (l == r) { return 0; }\n\
-    \      return &G->csr_edges[l];\n    }\n\n    const edge_type* end() const {\n\
-    \      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n  private:\n\
-    \    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared;\
-    \ }\n  constexpr bool is_directed() { return directed; }\n\n  Graph() : N(0),\
-    \ M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void\
-    \ add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n   \
-    \ assert(0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto e\
-    \ = edge_type({frm, to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  // wt,\
-    \ off\n  void read_tree(bool wt = false, int off = 1) { read_graph(N - 1, wt,\
-    \ off); }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n    for\
-    \ (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a -= off, b -= off;\n   \
-    \   if (!wt) {\n        add(a, b);\n      } else {\n        T c;\n        read(c);\n\
-    \        add(a, b, c);\n      }\n    }\n    build();\n  }\n\n  void read_parent(int\
-    \ off = 1) {\n    for (int v = 1; v < N; ++v) {\n      INT(p);\n      p -= off;\n\
-    \      add(p, v);\n    }\n    build();\n  }\n\n  void build() {\n    assert(!prepared);\n\
-    \    prepared = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges)\
-    \ {\n      indptr[e.frm + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n  \
-    \  }\n    for (int v = 0; v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto\
-    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
-    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
-    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
-    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
-    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  void debug() {\n    print(\"\
-    Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
-    \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
-    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 3 \"graph/hld.hpp\"\
-    \n\r\n/*\r\nHL\u5206\u89E3\u3002O(N) \u6642\u9593\u69CB\u7BC9\u3002\r\nLCA, LA\
-    \ \u306A\u3069\u306F O(logN) \u6642\u9593\u3002\r\n\u6728\u4EE5\u5916\u3001\u975E\
-    \u9023\u7D50\u3067\u3082\u4F7F\u3048\u308B\u3088\u3046\u306B\u3057\u305F\u3002\
-    dfs\u9806\u5E8F\u3084\u89AA\u304C\u3068\u308C\u308B\u3002\r\n*/\r\ntemplate <typename\
-    \ Graph>\r\nstruct HLD {\r\n  Graph &G;\r\n  using Graph_type = Graph;\r\n  using\
-    \ WT = typename Graph::cost_type;\r\n  int N;\r\n  vector<int> LID, RID, head,\
-    \ V, parent, root;\r\n  vc<int> depth;\r\n  vc<WT> depth_weighted;\r\n  vector<bool>\
-    \ in_tree;\r\n\r\n  HLD(Graph &G, int r = -1)\r\n      : G(G),\r\n        N(G.N),\r\
-    \n        LID(G.N),\r\n        RID(G.N),\r\n        head(G.N, r),\r\n        V(G.N),\r\
-    \n        parent(G.N, -1),\r\n        root(G.N, -1),\r\n        depth(G.N, -1),\r\
-    \n        depth_weighted(G.N, 0),\r\n        in_tree(G.M, 0) {\r\n    assert(G.is_prepared());\r\
-    \n    int t1 = 0;\r\n    if (r != -1) {\r\n      dfs_sz(r, -1);\r\n      dfs_hld(r,\
-    \ t1);\r\n    } else {\r\n      for (int r = 0; r < N; ++r) {\r\n        if (parent[r]\
-    \ == -1) {\r\n          head[r] = r;\r\n          dfs_sz(r, -1);\r\n         \
-    \ dfs_hld(r, t1);\r\n        }\r\n      }\r\n    }\r\n    for (auto &&v: V) root[v]\
-    \ = (parent[v] == -1 ? v : root[parent[v]]);\r\n  }\r\n\r\n  void dfs_sz(int v,\
-    \ int p) {\r\n    auto &sz = RID;\r\n    parent[v] = p;\r\n    depth[v] = (p ==\
-    \ -1 ? 0 : depth[p] + 1);\r\n    sz[v] = 1;\r\n    int l = G.indptr[v], r = G.indptr[v\
-    \ + 1];\r\n    auto &csr = G.csr_edges;\r\n    // \u4F7F\u3046\u8FBA\u304C\u3042\
-    \u308C\u3070\u5148\u982D\u306B\u3059\u308B\r\n    for (int i = r - 2; i >= l;\
-    \ --i) {\r\n      if (depth[csr[i + 1].to] == -1) swap(csr[i], csr[i + 1]);\r\n\
-    \    }\r\n    int hld_sz = 0;\r\n    for (int i = l; i < r; ++i) {\r\n      auto\
-    \ e = csr[i];\r\n      if (depth[e.to] != -1) continue;\r\n      in_tree[e.id]\
-    \ = 1;\r\n      depth_weighted[e.to] = depth_weighted[v] + e.cost;\r\n      dfs_sz(e.to,\
-    \ v);\r\n      sz[v] += sz[e.to];\r\n      if (chmax(hld_sz, sz[e.to]) && l <\
-    \ i) { swap(csr[l], csr[i]); }\r\n    }\r\n  }\r\n\r\n  void dfs_hld(int v, int\
-    \ &times) {\r\n    LID[v] = times++;\r\n    RID[v] += LID[v];\r\n    V[LID[v]]\
-    \ = v;\r\n    bool heavy = true;\r\n    for (auto &&e: G[v]) {\r\n      if (!in_tree[e.id]\
-    \ || depth[e.to] <= depth[v]) continue;\r\n      head[e.to] = (heavy ? head[v]\
-    \ : e.to);\r\n      heavy = false;\r\n      dfs_hld(e.to, times);\r\n    }\r\n\
-    \  }\r\n\r\n  int e_to_v(int eid) {\r\n    auto e = G.edges[eid];\r\n    return\
-    \ (parent[e.frm] == e.to ? e.frm : e.to);\r\n  }\r\n\r\n  int ELID(int v) { return\
-    \ 2 * LID[v] - depth[v]; }\r\n  int ERID(int v) { return 2 * RID[v] - depth[v]\
-    \ - 1; }\r\n\r\n  /* k: 0-indexed */\r\n  int LA(int v, int k) {\r\n    assert(k\
-    \ <= depth[v]);\r\n    while (1) {\r\n      int u = head[v];\r\n      if (LID[v]\
-    \ - k >= LID[u]) return V[LID[v] - k];\r\n      k -= LID[v] - LID[u] + 1;\r\n\
-    \      v = parent[u];\r\n    }\r\n  }\r\n\r\n  int LCA(int u, int v) {\r\n   \
-    \ for (;; v = parent[head[v]]) {\r\n      if (LID[u] > LID[v]) swap(u, v);\r\n\
-    \      if (head[u] == head[v]) return u;\r\n    }\r\n  }\r\n\r\n  int lca(int\
-    \ u, int v) { return LCA(u, v); }\r\n  int la(int u, int v) { return LA(u, v);\
-    \ }\r\n\r\n  int subtree_size(int v) { return RID[v] - LID[v]; }\r\n\r\n  int\
-    \ dist(int a, int b) {\r\n    int c = LCA(a, b);\r\n    return depth[a] + depth[b]\
-    \ - 2 * depth[c];\r\n  }\r\n\r\n  WT dist(int a, int b, bool weighted) {\r\n \
-    \   assert(weighted);\r\n    int c = LCA(a, b);\r\n    return depth_weighted[a]\
-    \ + depth_weighted[b] - 2 * depth_weighted[c];\r\n  }\r\n\r\n  bool in_subtree(int\
-    \ a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b]; }\r\n\r\n  int jump(int\
-    \ a, int b, int k = 1) {\r\n    if (k == 1) {\r\n      if (a == b) return -1;\r\
-    \n      return (in_subtree(b, a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\r\
-    \n    }\r\n    int c = LCA(a, b);\r\n    int d_ac = depth[a] - depth[c];\r\n \
-    \   int d_bc = depth[b] - depth[c];\r\n    if (k > d_ac + d_bc) return -1;\r\n\
-    \    if (k <= d_ac) return LA(a, k);\r\n    return LA(b, d_ac + d_bc - k);\r\n\
-    \  }\r\n\r\n  vc<int> collect_child(int v) {\r\n    vc<int> res;\r\n    for (auto\
-    \ &&e: G[v])\r\n      if (e.to != parent[v]) res.eb(e.to);\r\n    return res;\r\
-    \n  }\r\n\r\n  vc<pair<int, int>> get_path_decomposition(int u, int v, bool edge)\
-    \ {\r\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\"\u533A\u9593\u5217\u3002\
-    \r\n    vc<pair<int, int>> up, down;\r\n    while (1) {\r\n      if (head[u] ==\
-    \ head[v]) break;\r\n      if (LID[u] < LID[v]) {\r\n        down.eb(LID[head[v]],\
-    \ LID[v]);\r\n        v = parent[head[v]];\r\n      } else {\r\n        up.eb(LID[u],\
-    \ LID[head[u]]);\r\n        u = parent[head[u]];\r\n      }\r\n    }\r\n    if\
-    \ (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\r\n    elif (LID[v] + edge\
-    \ <= LID[u]) up.eb(LID[u], LID[v] + edge);\r\n    reverse(all(down));\r\n    up.insert(up.end(),\
-    \ all(down));\r\n    return up;\r\n  }\r\n\r\n  void debug() {\r\n    print(\"\
-    V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\", RID);\r\n    print(\"\
-    parent\", parent);\r\n    print(\"depth\", depth);\r\n    print(\"head\", head);\r\
-    \n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"root\", root);\r\n  }\r\
-    \n};\r\n#line 2 \"graph/two_edge_component.hpp\"\n\r\n// (\u6210\u5206\u6570,\
-    \ \u6210\u5206\u756A\u53F7\u306E vector)\r\ntemplate <typename Graph>\r\npair<int,\
-    \ vc<int>> two_edge_component(Graph& G) {\r\n  HLD hld(G);\r\n  int N = G.N;\r\
-    \n  vc<int> DP(N);\r\n  for (auto&& e: G.edges) {\r\n    if (!hld.in_tree[e.id])\
-    \ {\r\n      int a = e.frm, b = e.to;\r\n      if (hld.depth[a] < hld.depth[b])\
-    \ swap(a, b);\r\n      DP[a]++, DP[b]--;\r\n    }\r\n  }\r\n  auto& V = hld.V;\r\
-    \n  FOR_R(i, len(V)) {\r\n    int v = V[i];\r\n    int p = hld.parent[v];\r\n\
-    \    if (p != -1) DP[p] += DP[v];\r\n  }\r\n  int C = 0;\r\n  vc<int> comp(N,\
-    \ -1);\r\n  FOR(v, N) if (DP[v] == 0) comp[v] = C++;\r\n  for (auto&& v: V)\r\n\
-    \    if (comp[v] == -1) comp[v] = comp[hld.parent[v]];\r\n  return {C, comp};\r\
-    \n}\r\n#line 5 \"test/library_checker/graph/two_edge_component.test.cpp\"\n\r\n\
-    void solve() {\r\n  LL(N, M);\r\n  Graph G(N);\r\n  G.read_graph(M, false, 0);\r\
-    \n\r\n  auto [C, comp] = two_edge_component(G);\r\n  vc<vc<int>> ANS(C);\r\n \
-    \ FOR(v, N) ANS[comp[v]].eb(v);\r\n  print(len(ANS));\r\n  for (auto&& ans: ANS)\
-    \ print(len(ans), ans);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return\
-    \ 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/two_edge_connected_components\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"graph/two_edge_component.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  LL(N, M);\r\n  Graph G(N);\r\n  G.read_graph(M, false,\
-    \ 0);\r\n\r\n  auto [C, comp] = two_edge_component(G);\r\n  vc<vc<int>> ANS(C);\r\
-    \n  FOR(v, N) ANS[comp[v]].eb(v);\r\n  print(len(ANS));\r\n  for (auto&& ans:\
-    \ ANS) print(len(ans), ans);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n\
-    \  return 0;\r\n}\r\n"
+    \ { yes(!t); }\r\n#line 2 \"flow/mincostflow.hpp\"\n\n// atcoder library \u306E\
+    \u3082\u306E\u3092\u6539\u5909\n\nnamespace internal {\n\ntemplate <class E>\n\
+    struct csr {\n  std::vector<int> start;\n  std::vector<E> elist;\n  explicit csr(int\
+    \ n, const std::vector<std::pair<int, E>>& edges)\n      : start(n + 1), elist(edges.size())\
+    \ {\n    for (auto e: edges) { start[e.first + 1]++; }\n    for (int i = 1; i\
+    \ <= n; i++) { start[i] += start[i - 1]; }\n    auto counter = start;\n    for\
+    \ (auto e: edges) { elist[counter[e.first]++] = e.second; }\n  }\n};\n\ntemplate\
+    \ <class T>\nstruct simple_queue {\n  std::vector<T> payload;\n  int pos = 0;\n\
+    \  void reserve(int n) { payload.reserve(n); }\n  int size() const { return int(payload.size())\
+    \ - pos; }\n  bool empty() const { return pos == int(payload.size()); }\n  void\
+    \ push(const T& t) { payload.push_back(t); }\n  T& front() { return payload[pos];\
+    \ }\n  void clear() {\n    payload.clear();\n    pos = 0;\n  }\n  void pop() {\
+    \ pos++; }\n};\n\n} // namespace internal\n\n/*\n\u30FBatcoder library \u3092\u3059\
+    \u3053\u3057\u6539\u5909\u3057\u305F\u3082\u306E\n\u30FBDAG = true \u3067\u3042\
+    \u308C\u3070\u3001\u8CA0\u8FBA OK \uFF081 \u56DE\u76EE\u306E\u6700\u77ED\u8DEF\
+    \u3092 dp \u3067\u884C\u3046\uFF09\n\u305F\u3060\u3057\u3001\u9802\u70B9\u756A\
+    \u53F7\u306F toposort \u3055\u308C\u3066\u3044\u308B\u3053\u3068\u3092\u4EEE\u5B9A\
+    \u3057\u3066\u3044\u308B\u3002\n*/\ntemplate <class Cap = int, class Cost = ll,\
+    \ bool DAG = false>\nstruct mcf_graph {\npublic:\n  mcf_graph() {}\n  explicit\
+    \ mcf_graph(int n) : _n(n) {}\n\n  // frm, to, cap, cost\n  int add(int frm, int\
+    \ to, Cap cap, Cost cost) {\n    assert(0 <= frm && frm < _n);\n    assert(0 <=\
+    \ to && to < _n);\n    assert(0 <= cap);\n    assert(DAG || 0 <= cost);\n    if\
+    \ (DAG) assert(frm < to);\n    int m = int(_edges.size());\n    _edges.push_back({frm,\
+    \ to, cap, 0, cost});\n    return m;\n  }\n\n  void debug() {\n    print(\"flow\
+    \ graph\");\n    print(\"frm, to, cap, cost\");\n    for (auto&& [frm, to, cap,\
+    \ flow, cost]: _edges) {\n      print(frm, to, cap, cost);\n    }\n  }\n\n  struct\
+    \ edge {\n    int frm, to;\n    Cap cap, flow;\n    Cost cost;\n  };\n\n  edge\
+    \ get_edge(int i) {\n    int m = int(_edges.size());\n    assert(0 <= i && i <\
+    \ m);\n    return _edges[i];\n  }\n  std::vector<edge> edges() { return _edges;\
+    \ }\n\n  std::pair<Cap, Cost> flow(int s, int t) {\n    return flow(s, t, std::numeric_limits<Cap>::max());\n\
+    \  }\n  std::pair<Cap, Cost> flow(int s, int t, Cap flow_limit) {\n    return\
+    \ slope(s, t, flow_limit).back();\n  }\n  std::vector<std::pair<Cap, Cost>> slope(int\
+    \ s, int t) {\n    return slope(s, t, std::numeric_limits<Cap>::max());\n  }\n\
+    \  std::vector<std::pair<Cap, Cost>> slope(int s, int t, Cap flow_limit) {\n \
+    \   assert(0 <= s && s < _n);\n    assert(0 <= t && t < _n);\n    assert(s !=\
+    \ t);\n\n    int m = int(_edges.size());\n    std::vector<int> edge_idx(m);\n\n\
+    \    auto g = [&]() {\n      std::vector<int> degree(_n), redge_idx(m);\n    \
+    \  std::vector<std::pair<int, _edge>> elist;\n      elist.reserve(2 * m);\n  \
+    \    for (int i = 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i]\
+    \ = degree[e.frm]++;\n        redge_idx[i] = degree[e.to]++;\n        elist.push_back({e.frm,\
+    \ {e.to, -1, e.cap - e.flow, e.cost}});\n        elist.push_back({e.to, {e.frm,\
+    \ -1, e.flow, -e.cost}});\n      }\n      auto _g = internal::csr<_edge>(_n, elist);\n\
+    \      for (int i = 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i]\
+    \ += _g.start[e.frm];\n        redge_idx[i] += _g.start[e.to];\n        _g.elist[edge_idx[i]].rev\
+    \ = redge_idx[i];\n        _g.elist[redge_idx[i]].rev = edge_idx[i];\n      }\n\
+    \      return _g;\n    }();\n\n    auto result = slope(g, s, t, flow_limit);\n\
+    \n    for (int i = 0; i < m; i++) {\n      auto e = g.elist[edge_idx[i]];\n  \
+    \    _edges[i].flow = _edges[i].cap - e.cap;\n    }\n\n    return result;\n  }\n\
+    \nprivate:\n  int _n;\n  std::vector<edge> _edges;\n\n  // inside edge\n  struct\
+    \ _edge {\n    int to, rev;\n    Cap cap;\n    Cost cost;\n  };\n\n  std::vector<std::pair<Cap,\
+    \ Cost>> slope(internal::csr<_edge>& g, int s, int t,\n                      \
+    \                    Cap flow_limit) {\n    // variants (C = maxcost):\n    //\
+    \ -(n-1)C <= dual[s] <= dual[i] <= dual[t] = 0\n    // reduced cost (= e.cost\
+    \ + dual[e.frm] - dual[e.to]) >= 0 for all edge\n\n    // dual_dist[i] = (dual[i],\
+    \ dist[i])\n    if (DAG) assert(s == 0 && t == _n - 1);\n    std::vector<std::pair<Cost,\
+    \ Cost>> dual_dist(_n);\n    std::vector<int> prev_e(_n);\n    std::vector<bool>\
+    \ vis(_n);\n    struct Q {\n      Cost key;\n      int to;\n      bool operator<(Q\
+    \ r) const { return key > r.key; }\n    };\n    std::vector<int> que_min;\n  \
+    \  std::vector<Q> que;\n    auto dual_ref = [&]() {\n      for (int i = 0; i <\
+    \ _n; i++) {\n        dual_dist[i].second = std::numeric_limits<Cost>::max();\n\
+    \      }\n      std::fill(vis.begin(), vis.end(), false);\n      que_min.clear();\n\
+    \      que.clear();\n\n      // que[0..heap_r) was heapified\n      size_t heap_r\
+    \ = 0;\n\n      dual_dist[s].second = 0;\n      que_min.push_back(s);\n      while\
+    \ (!que_min.empty() || !que.empty()) {\n        int v;\n        if (!que_min.empty())\
+    \ {\n          v = que_min.back();\n          que_min.pop_back();\n        } else\
+    \ {\n          while (heap_r < que.size()) {\n            heap_r++;\n        \
+    \    std::push_heap(que.begin(), que.begin() + heap_r);\n          }\n       \
+    \   v = que.front().to;\n          std::pop_heap(que.begin(), que.end());\n  \
+    \        que.pop_back();\n          heap_r--;\n        }\n        if (vis[v])\
+    \ continue;\n        vis[v] = true;\n        if (v == t) break;\n        // dist[v]\
+    \ = shortest(s, v) + dual[s] - dual[v]\n        // dist[v] >= 0 (all reduced cost\
+    \ are positive)\n        // dist[v] <= (n-1)C\n        Cost dual_v = dual_dist[v].first,\
+    \ dist_v = dual_dist[v].second;\n        for (int i = g.start[v]; i < g.start[v\
+    \ + 1]; i++) {\n          auto e = g.elist[i];\n          if (!e.cap) continue;\n\
+    \          // |-dual[e.to] + dual[v]| <= (n-1)C\n          // cost <= C - -(n-1)C\
+    \ + 0 = nC\n          Cost cost = e.cost - dual_dist[e.to].first + dual_v;\n \
+    \         if (dual_dist[e.to].second > dist_v + cost) {\n            Cost dist_to\
+    \ = dist_v + cost;\n            dual_dist[e.to].second = dist_to;\n          \
+    \  prev_e[e.to] = e.rev;\n            if (dist_to == dist_v) {\n             \
+    \ que_min.push_back(e.to);\n            } else {\n              que.push_back(Q{dist_to,\
+    \ e.to});\n            }\n          }\n        }\n      }\n      if (!vis[t])\
+    \ { return false; }\n\n      for (int v = 0; v < _n; v++) {\n        if (!vis[v])\
+    \ continue;\n        // dual[v] = dual[v] - dist[t] + dist[v]\n        //    \
+    \     = dual[v] - (shortest(s, t) + dual[s] - dual[t]) +\n        //         (shortest(s,\
+    \ v) + dual[s] - dual[v]) = - shortest(s,\n        //         t) + dual[t] + shortest(s,\
+    \ v) = shortest(s, v) -\n        //         shortest(s, t) >= 0 - (n-1)C\n   \
+    \     dual_dist[v].first -= dual_dist[t].second - dual_dist[v].second;\n     \
+    \ }\n      return true;\n    };\n\n    auto dual_ref_dag = [&]() {\n      for\
+    \ (int i = 0; i < _n; i++) {\n        dual_dist[i].second = std::numeric_limits<Cost>::max();\n\
+    \      }\n      dual_dist[s].second = 0;\n      std::fill(vis.begin(), vis.end(),\
+    \ false);\n      vis[0] = true;\n\n      for (int v = 0; v < _n; ++v) {\n    \
+    \    if (!vis[v]) continue;\n        Cost dual_v = dual_dist[v].first, dist_v\
+    \ = dual_dist[v].second;\n        for (int i = g.start[v]; i < g.start[v + 1];\
+    \ i++) {\n          auto e = g.elist[i];\n          if (!e.cap) continue;\n  \
+    \        Cost cost = e.cost - dual_dist[e.to].first + dual_v;\n          if (dual_dist[e.to].second\
+    \ > dist_v + cost) {\n            vis[e.to] = true;\n            Cost dist_to\
+    \ = dist_v + cost;\n            dual_dist[e.to].second = dist_to;\n          \
+    \  prev_e[e.to] = e.rev;\n          }\n        }\n      }\n      if (!vis[t])\
+    \ { return false; }\n\n      for (int v = 0; v < _n; v++) {\n        if (!vis[v])\
+    \ continue;\n        // dual[v] = dual[v] - dist[t] + dist[v]\n        //    \
+    \     = dual[v] - (shortest(s, t) + dual[s] - dual[t]) +\n        //         (shortest(s,\
+    \ v) + dual[s] - dual[v]) = - shortest(s,\n        //         t) + dual[t] + shortest(s,\
+    \ v) = shortest(s, v) -\n        //         shortest(s, t) >= 0 - (n-1)C\n   \
+    \     dual_dist[v].first -= dual_dist[t].second - dual_dist[v].second;\n     \
+    \ }\n      return true;\n    };\n\n    Cap flow = 0;\n    Cost cost = 0, prev_cost_per_flow\
+    \ = -1;\n    std::vector<std::pair<Cap, Cost>> result = {{Cap(0), Cost(0)}};\n\
+    \    while (flow < flow_limit) {\n      if (DAG && flow == 0) {\n        if (!dual_ref_dag())\
+    \ break;\n      } else {\n        if (!dual_ref()) break;\n      }\n      Cap\
+    \ c = flow_limit - flow;\n      for (int v = t; v != s; v = g.elist[prev_e[v]].to)\
+    \ {\n        c = std::min(c, g.elist[g.elist[prev_e[v]].rev].cap);\n      }\n\
+    \      for (int v = t; v != s; v = g.elist[prev_e[v]].to) {\n        auto& e =\
+    \ g.elist[prev_e[v]];\n        e.cap += c;\n        g.elist[e.rev].cap -= c;\n\
+    \      }\n      Cost d = -dual_dist[s].first;\n      flow += c;\n      cost +=\
+    \ c * d;\n      if (prev_cost_per_flow == d) { result.pop_back(); }\n      result.push_back({flow,\
+    \ cost});\n      prev_cost_per_flow = d;\n    }\n    return result;\n  }\n};\n\
+    #line 7 \"test/GRL_6_B.test.cpp\"\n\nvoid solve() {\n  LL(N, M, F);\n  mcf_graph<int,\
+    \ ll, 0> G(N);\n  FOR(M) {\n    LL(a, b, c, d);\n    G.add(a, b, c, d);\n  }\n\
+    \n  auto [f, x] = G.flow(0, N - 1, F);\n  if (f < F)\n    print(-1);\n  else\n\
+    \    print(x);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n\
+    \  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B\"\
+    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"flow/mincostflow.hpp\"\
+    \n\nvoid solve() {\n  LL(N, M, F);\n  mcf_graph<int, ll, 0> G(N);\n  FOR(M) {\n\
+    \    LL(a, b, c, d);\n    G.add(a, b, c, d);\n  }\n\n  auto [f, x] = G.flow(0,\
+    \ N - 1, F);\n  if (f < F)\n    print(-1);\n  else\n    print(x);\n}\n\nsigned\
+    \ main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n\
+    \  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - graph/two_edge_component.hpp
-  - graph/hld.hpp
-  - graph/base.hpp
+  - flow/mincostflow.hpp
   isVerificationFile: true
-  path: test/library_checker/graph/two_edge_component.test.cpp
+  path: test/GRL_6_B.test.cpp
   requiredBy: []
-  timestamp: '2022-08-20 02:40:23+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-20 04:52:50+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library_checker/graph/two_edge_component.test.cpp
+documentation_of: test/GRL_6_B.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/graph/two_edge_component.test.cpp
-- /verify/test/library_checker/graph/two_edge_component.test.cpp.html
-title: test/library_checker/graph/two_edge_component.test.cpp
+- /verify/test/GRL_6_B.test.cpp
+- /verify/test/GRL_6_B.test.cpp.html
+title: test/GRL_6_B.test.cpp
 ---
