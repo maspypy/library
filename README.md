@@ -13,3 +13,4 @@ https://maspypy.github.io/library/
 empty commit （git commit --allow-empty）を push することで再挑戦できる。
 - atcoder の dropbox 内のものを verify に使う場合には、URL ではなく dropbox 内のフォルダ名に合わせると上手くいくことがある （abcxxx_h → abcxxx_Ex など）
 - atcoder の verify：一度上手くいったものがまた落ちることがある？ログインしてみたいなことを言われてそう。うーん。
+- 誤差ジャッジ：#define ERROR を指定するとできる！
