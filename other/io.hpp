@@ -167,13 +167,13 @@ struct Printer {
   }
   void write(const double &x) {
     ostringstream oss;
-    oss << setprecision(15) << x;
+    oss << fixed << setprecision(15) << x;
     string s = oss.str();
     write(s);
   }
   void write(const long double &x) {
     ostringstream oss;
-    oss << setprecision(15) << x;
+    oss << fixed << setprecision(15) << x;
     string s = oss.str();
     write(s);
   }
