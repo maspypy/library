@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':x:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':x:'
@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':question:'
@@ -170,10 +170,10 @@ data:
     \ void write(const string &s) {\r\n    for (char c: s) write(c);\r\n  }\r\n  void\
     \ write(const char *s) {\r\n    size_t len = strlen(s);\r\n    for (size_t i =\
     \ 0; i < len; i++) write(s[i]);\r\n  }\r\n  void write(const double &x) {\r\n\
-    \    ostringstream oss;\r\n    oss << setprecision(15) << x;\r\n    string s =\
-    \ oss.str();\r\n    write(s);\r\n  }\r\n  void write(const long double &x) {\r\
-    \n    ostringstream oss;\r\n    oss << setprecision(15) << x;\r\n    string s\
-    \ = oss.str();\r\n    write(s);\r\n  }\r\n  template <class T, is_modint_t<T>\
+    \    ostringstream oss;\r\n    oss << fixed << setprecision(15) << x;\r\n    string\
+    \ s = oss.str();\r\n    write(s);\r\n  }\r\n  void write(const long double &x)\
+    \ {\r\n    ostringstream oss;\r\n    oss << fixed << setprecision(15) << x;\r\n\
+    \    string s = oss.str();\r\n    write(s);\r\n  }\r\n  template <class T, is_modint_t<T>\
     \ * = nullptr>\r\n  void write(T &ref) {\r\n    write(ref.val);\r\n  }\r\n  template\
     \ <class T>\r\n  void write(const vector<T> &val) {\r\n    auto n = val.size();\r\
     \n    for (size_t i = 0; i < n; i++) {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\
@@ -411,7 +411,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/kth_root_mod.test.cpp
   requiredBy: []
-  timestamp: '2022-08-20 02:40:23+09:00'
+  timestamp: '2022-08-20 05:21:32+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/kth_root_mod.test.cpp

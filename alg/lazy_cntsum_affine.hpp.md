@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: alg/group_affine.hpp
     title: alg/group_affine.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/group_cntsum.hpp
     title: alg/group_cntsum.hpp
   _extendedRequiredBy: []

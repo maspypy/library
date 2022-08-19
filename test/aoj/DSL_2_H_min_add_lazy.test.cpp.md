@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/lazy_min_add.hpp
     title: alg/lazy_min_add.hpp
   - icon: ':question:'
     path: alg/monoid_min.hpp
     title: alg/monoid_min.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H
@@ -158,10 +158,10 @@ data:
     \ void write(const string &s) {\r\n    for (char c: s) write(c);\r\n  }\r\n  void\
     \ write(const char *s) {\r\n    size_t len = strlen(s);\r\n    for (size_t i =\
     \ 0; i < len; i++) write(s[i]);\r\n  }\r\n  void write(const double &x) {\r\n\
-    \    ostringstream oss;\r\n    oss << setprecision(15) << x;\r\n    string s =\
-    \ oss.str();\r\n    write(s);\r\n  }\r\n  void write(const long double &x) {\r\
-    \n    ostringstream oss;\r\n    oss << setprecision(15) << x;\r\n    string s\
-    \ = oss.str();\r\n    write(s);\r\n  }\r\n  template <class T, is_modint_t<T>\
+    \    ostringstream oss;\r\n    oss << fixed << setprecision(15) << x;\r\n    string\
+    \ s = oss.str();\r\n    write(s);\r\n  }\r\n  void write(const long double &x)\
+    \ {\r\n    ostringstream oss;\r\n    oss << fixed << setprecision(15) << x;\r\n\
+    \    string s = oss.str();\r\n    write(s);\r\n  }\r\n  template <class T, is_modint_t<T>\
     \ * = nullptr>\r\n  void write(T &ref) {\r\n    write(ref.val);\r\n  }\r\n  template\
     \ <class T>\r\n  void write(const vector<T> &val) {\r\n    auto n = val.size();\r\
     \n    for (size_t i = 0; i < n; i++) {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\
@@ -307,8 +307,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_H_min_add_lazy.test.cpp
   requiredBy: []
-  timestamp: '2022-08-20 02:40:23+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-20 05:21:32+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_H_min_add_lazy.test.cpp
 layout: document

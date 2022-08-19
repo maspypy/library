@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
   - icon: ':x:'
@@ -25,7 +25,7 @@ data:
   - icon: ':x:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fft.hpp
     title: poly/fft.hpp
   - icon: ':x:'
@@ -43,7 +43,7 @@ data:
   - icon: ':x:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -185,10 +185,10 @@ data:
     \ void write(const string &s) {\r\n    for (char c: s) write(c);\r\n  }\r\n  void\
     \ write(const char *s) {\r\n    size_t len = strlen(s);\r\n    for (size_t i =\
     \ 0; i < len; i++) write(s[i]);\r\n  }\r\n  void write(const double &x) {\r\n\
-    \    ostringstream oss;\r\n    oss << setprecision(15) << x;\r\n    string s =\
-    \ oss.str();\r\n    write(s);\r\n  }\r\n  void write(const long double &x) {\r\
-    \n    ostringstream oss;\r\n    oss << setprecision(15) << x;\r\n    string s\
-    \ = oss.str();\r\n    write(s);\r\n  }\r\n  template <class T, is_modint_t<T>\
+    \    ostringstream oss;\r\n    oss << fixed << setprecision(15) << x;\r\n    string\
+    \ s = oss.str();\r\n    write(s);\r\n  }\r\n  void write(const long double &x)\
+    \ {\r\n    ostringstream oss;\r\n    oss << fixed << setprecision(15) << x;\r\n\
+    \    string s = oss.str();\r\n    write(s);\r\n  }\r\n  template <class T, is_modint_t<T>\
     \ * = nullptr>\r\n  void write(T &ref) {\r\n    write(ref.val);\r\n  }\r\n  template\
     \ <class T>\r\n  void write(const vector<T> &val) {\r\n    auto n = val.size();\r\
     \n    for (size_t i = 0; i < n; i++) {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\
@@ -644,7 +644,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/polynomial/pow_of_fps.test.cpp
   requiredBy: []
-  timestamp: '2022-08-20 02:40:23+09:00'
+  timestamp: '2022-08-20 05:21:32+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/polynomial/pow_of_fps.test.cpp

@@ -5,10 +5,10 @@ data:
   - icon: ':x:'
     path: alg/lazy_add_mul.hpp
     title: alg/lazy_add_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/lazy_cntminmincnt_add.hpp
     title: alg/lazy_cntminmincnt_add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/lazy_cntsum_add.hpp
     title: alg/lazy_cntsum_add.hpp
   - icon: ':warning:'
@@ -20,7 +20,7 @@ data:
   - icon: ':warning:'
     path: alg/lazy_maxidx_add.hpp
     title: alg/lazy_maxidx_add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/lazy_min_add.hpp
     title: alg/lazy_min_add.hpp
   - icon: ':warning:'
@@ -44,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fenwick2d_dense.hpp
     title: ds/fenwick2d_dense.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/fenwickraq.hpp
     title: ds/fenwickraq.hpp
   - icon: ':warning:'
@@ -62,7 +62,7 @@ data:
   - icon: ':x:'
     path: ds/rectangle_add_ractangle_sum.hpp
     title: ds/rectangle_add_ractangle_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/rectangleunion.hpp
     title: ds/rectangleunion.hpp
   - icon: ':x:'
@@ -90,22 +90,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_5_inversion.test.cpp
     title: test/aoj/ALDS1_5_inversion.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL_1_B_weighteduf.test.cpp
     title: test/aoj/DSL_1_B_weighteduf.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL_2_E_fenwick_raq.test.cpp
     title: test/aoj/DSL_2_E_fenwick_raq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL_2_G_fenwick_raq.test.cpp
     title: test/aoj/DSL_2_G_fenwick_raq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL_2_H_min_add_lazy.test.cpp
     title: test/aoj/DSL_2_H_min_add_lazy.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL_4_A_rectangle_union.test.cpp
     title: test/aoj/DSL_4_A_rectangle_union.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
     title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - icon: ':x:'

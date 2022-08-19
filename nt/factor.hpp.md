@@ -20,10 +20,10 @@ data:
   - icon: ':x:'
     path: nt/crt.hpp
     title: nt/crt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/divisors.hpp
     title: nt/divisors.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
   - icon: ':x:'
@@ -36,10 +36,10 @@ data:
     path: nt/zeta_on_divisors.hpp
     title: nt/zeta_on_divisors.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ITP1_D_D_divisors.test.cpp
     title: test/aoj/ITP1_D_D_divisors.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL_1_D_eulerphi.test.cpp
     title: test/aoj/NTL_1_D_eulerphi.test.cpp
   - icon: ':x:'
@@ -62,7 +62,7 @@ data:
     title: test/yukicoder/187_crt.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n  using i64 = int64_t;\r\
@@ -154,7 +154,7 @@ data:
   - nt/lcm.hpp
   - nt/crt.hpp
   timestamp: '2022-07-11 19:57:26+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/187_crt.test.cpp
   - test/yukicoder/1593_gaussian.test.cpp

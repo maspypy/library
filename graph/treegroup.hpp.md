@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: alg/group_reverse.hpp
     title: alg/group_reverse.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
   - icon: ':question:'

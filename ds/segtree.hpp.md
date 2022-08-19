@@ -14,17 +14,17 @@ data:
   - icon: ':warning:'
     path: geo_old/manhattan_nns.hpp
     title: geo_old/manhattan_nns.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':x:'
     path: graph/treegroup.hpp
     title: graph/treegroup.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_2_A_mst.test.cpp
     title: test/aoj/GRL_2_A_mst.test.cpp
   - icon: ':x:'
@@ -71,7 +71,7 @@ data:
     title: test/yukicoder/529_two_edge.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/1401/problem/F
@@ -179,7 +179,7 @@ data:
   - ds/uniqueproductquery.hpp
   - ds/range_mex_query.hpp
   timestamp: '2022-08-11 02:08:49+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/529_two_edge.test.cpp
   - test/yukicoder/1036_seg_maxright_minleft.test.cpp
