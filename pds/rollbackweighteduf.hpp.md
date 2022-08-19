@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: pds/rollbackarray.hpp
     title: pds/rollbackarray.hpp
   _extendedRequiredBy: []

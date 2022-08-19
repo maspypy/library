@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: alg/monoid_cntsummin.hpp
     title: alg/monoid_cntsummin.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid_set.hpp
     title: alg/monoid_set.hpp
   _extendedRequiredBy: []

@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: linalg/det.hpp
     title: linalg/det.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'

@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: alg/group_power_sums.hpp
     title: alg/group_power_sums.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid_set.hpp
     title: alg/monoid_set.hpp
   _extendedRequiredBy: []
