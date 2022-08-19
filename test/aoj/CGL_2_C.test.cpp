@@ -12,8 +12,7 @@ void solve() {
     LL(a, b, c, d, e, f, g, h);
     Line<ll> L1(a, b, c, d);
     Line<ll> L2(e, f, g, h);
-    auto [bl, pt] = cross_point<double>(L1, L2);
-    assert(bl);
+    Point<double> pt = cross_point<double>(L1, L2);
     print(pt.x, pt.y);
   }
 }
