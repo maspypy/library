@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: alg/monoid_max.hpp
     title: alg/monoid_max.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: bbst/rbst_lazy.hpp
     title: bbst/rbst_lazy.hpp
   - icon: ':question:'

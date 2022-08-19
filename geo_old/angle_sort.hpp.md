@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy: []
@@ -27,20 +27,23 @@ data:
     \    c = A.x * B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1,\
     \ y1), Point<T>(x2, y2)) {}\n\n  template <typename U>\n  U eval(Point<U> P) {\n\
     \    return a * P.x + b * P.y + c;\n  }\n\n  template <typename U>\n  T eval(U\
-    \ x, U y) {\n    return a * x + b * y + c;\n  }\n};\n#line 2 \"geo_old/angle_sort.hpp\"\
-    \n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate<typename\
-    \ Point>\r\nvector<int> angle_argsort(vector<Point>& P) {\r\n  auto is_lower =\
-    \ [](Point P) { return (P.y < 0) || (P.y == 0 && P.x > 0); };\r\n  vector<int>\
-    \ lower, origin, upper;\r\n  Point O = {0, 0};\r\n  FOR(i, len(P)) {\r\n    if\
-    \ (P[i] == O) origin.eb(i);\r\n    elif (is_lower(P[i])) lower.eb(i);\r\n    else\
-    \ upper.eb(i);\r\n  }\r\n  sort(all(lower), [&](auto& i, auto& j) { return P[i].det(P[j])\
-    \ > 0; });\r\n  sort(all(upper), [&](auto& i, auto& j) { return P[i].det(P[j])\
-    \ > 0; });\r\n  auto& I = lower;\r\n  I.insert(I.end(), all(origin));\r\n  I.insert(I.end(),\
-    \ all(upper));\r\n  return I;\r\n}\r\n\r\n// inplace \u306B\u504F\u89D2\u30BD\u30FC\
-    \u30C8\u3059\u308B\r\n// index \u304C\u6B32\u3057\u3044\u5834\u5408\u306F angle_argsort\r\
-    \ntemplate<typename Point>\r\nvoid angle_sort(vector<Point>& P) {\r\n  auto I\
-    \ = angle_argsort(P);\r\n  vc<Point> Q(len(P));\r\n  FOR(i, len(P)) Q[i] = P[I[i]];\r\
-    \n  P = Q;\r\n}\r\n"
+    \ x, U y) {\n    return a * x + b * y + c;\n  }\n\n  template <enable_if_t<is_integral<T>::value,\
+    \ int> = 0>\n  bool is_parallel(Line other) {\n    return a * other.b - b * other.a\
+    \ == 0;\n  }\n\n  template <enable_if_t<is_integral<T>::value, int> = 0>\n  bool\
+    \ is_orthogonal(Line other) {\n    return a * other.a + b * other.b == 0;\n  }\n\
+    };\n#line 2 \"geo_old/angle_sort.hpp\"\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\
+    \u5BFE\u3059\u308B argsort\r\ntemplate<typename Point>\r\nvector<int> angle_argsort(vector<Point>&\
+    \ P) {\r\n  auto is_lower = [](Point P) { return (P.y < 0) || (P.y == 0 && P.x\
+    \ > 0); };\r\n  vector<int> lower, origin, upper;\r\n  Point O = {0, 0};\r\n \
+    \ FOR(i, len(P)) {\r\n    if (P[i] == O) origin.eb(i);\r\n    elif (is_lower(P[i]))\
+    \ lower.eb(i);\r\n    else upper.eb(i);\r\n  }\r\n  sort(all(lower), [&](auto&\
+    \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  sort(all(upper), [&](auto&\
+    \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  auto& I = lower;\r\n  I.insert(I.end(),\
+    \ all(origin));\r\n  I.insert(I.end(), all(upper));\r\n  return I;\r\n}\r\n\r\n\
+    // inplace \u306B\u504F\u89D2\u30BD\u30FC\u30C8\u3059\u308B\r\n// index \u304C\
+    \u6B32\u3057\u3044\u5834\u5408\u306F angle_argsort\r\ntemplate<typename Point>\r\
+    \nvoid angle_sort(vector<Point>& P) {\r\n  auto I = angle_argsort(P);\r\n  vc<Point>\
+    \ Q(len(P));\r\n  FOR(i, len(P)) Q[i] = P[I[i]];\r\n  P = Q;\r\n}\r\n"
   code: "#include \"geo/base.hpp\"\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\
     \u3059\u308B argsort\r\ntemplate<typename Point>\r\nvector<int> angle_argsort(vector<Point>&\
     \ P) {\r\n  auto is_lower = [](Point P) { return (P.y < 0) || (P.y == 0 && P.x\
@@ -59,7 +62,7 @@ data:
   isVerificationFile: false
   path: geo_old/angle_sort.hpp
   requiredBy: []
-  timestamp: '2022-08-20 05:23:36+09:00'
+  timestamp: '2022-08-20 06:37:24+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo_old/angle_sort.hpp

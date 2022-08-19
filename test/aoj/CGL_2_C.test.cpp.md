@@ -1,9 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: ds/hashmap.hpp
-    title: ds/hashmap.hpp
+  - icon: ':heavy_check_mark:'
+    path: geo/base.hpp
+    title: geo/base.hpp
+  - icon: ':heavy_check_mark:'
+    path: geo/cross_point.hpp
+    title: geo/cross_point.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -17,21 +20,22 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/associative_array
+    ERROR: '0.00000001'
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C
     links:
-    - https://judge.yosupo.jp/problem/associative_array
-  bundledCode: "#line 1 \"test/library_checker/datastructure/associative_array_hashmap.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/associative_array\"\r\n#line\
-    \ 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
-    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
-    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
-    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
-    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
-    #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C
+  bundledCode: "#line 1 \"test/aoj/CGL_2_C.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C\"\
+    \n#define ERROR 0.00000001\n\n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"\
+    Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\
+    \nusing namespace std;\n\nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing\
+    \ vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64 = unsigned long long;\n\
+    using i128 = __int128;\n\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
+    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
+    \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
+    template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
+    #define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n#define vv(type,\
+    \ name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
     \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
@@ -195,52 +199,62 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"ds/hashmap.hpp\"\ntemplate <typename Val, int LOG\
-    \ = 20>\r\nstruct HashMapLL {\r\n  int N;\r\n  ll* keys;\r\n  Val* vals;\r\n \
-    \ vc<int> IDS;\r\n  bitset<1 << LOG> used;\r\n  const int shift;\r\n  const uint64_t\
-    \ r = 11995408973635179863ULL;\r\n  HashMapLL()\r\n      : N(1 << LOG), keys(new\
-    \ ll[N]), vals(new Val[N]), shift(64 - __lg(N)) {}\r\n  int hash(ll x) {\r\n \
-    \   static const uint64_t FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
-    \n    return (uint64_t(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
-    \ ll& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && keys[i] !=\
-    \ key; (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
-    \ ll& key) {\r\n    int i = index(key);\r\n    if (!used[i]) IDS.eb(i), used[i]\
-    \ = 1, keys[i] = key, vals[i] = Val{};\r\n    return vals[i];\r\n  }\r\n\r\n \
-    \ bool contain(const ll& key) {\r\n    int i = index(key);\r\n    return used[i]\
-    \ && keys[i] == key;\r\n  }\r\n\r\n  bool count(const ll& key) {\r\n    int i\
-    \ = index(key);\r\n    return used[i] && keys[i] == key;\r\n  }\r\n\r\n  void\
-    \ reset() {\r\n    for (auto&& i: IDS) used[i] = 0;\r\n    IDS.clear();\r\n  }\r\
-    \n};\r\n\r\ntemplate <typename KEY, typename VAL>\r\nstruct HashMap {\r\n  HashMapLL<VAL,\
-    \ 20> MP;\r\n  function<ll(KEY)> f;\r\n  HashMap(function<ll(KEY)> f) : MP(),\
-    \ f(f) {}\r\n  int index(const KEY& key) { return MP.index(f(key)); }\r\n\r\n\
-    \  VAL& operator[](const KEY& key) { return MP[f(key)]; }\r\n\r\n  bool contain(const\
-    \ KEY& key) { return MP.contain(f(key)); }\r\n\r\n  bool count(const KEY& key)\
-    \ { return MP.count(f(key)); }\r\n\r\n  void reset() { MP.reset(); }\r\n};\r\n\
-    #line 5 \"test/library_checker/datastructure/associative_array_hashmap.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(Q);\r\n  HashMapLL<ll> A;\r\n  FOR(_, Q) {\r\n  \
-    \  LL(t);\r\n    if (t == 0) {\r\n      LL(k, v);\r\n      A[k] = v;\r\n    }\
-    \ else {\r\n      LL(k);\r\n      print(A[k]);\r\n    }\r\n  }\r\n}\r\n\r\nsigned\
-    \ main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/associative_array\"\r\n\
-    #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/hashmap.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  LL(Q);\r\n  HashMapLL<ll> A;\r\n  FOR(_, Q) {\r\n\
-    \    LL(t);\r\n    if (t == 0) {\r\n      LL(k, v);\r\n      A[k] = v;\r\n   \
-    \ } else {\r\n      LL(k);\r\n      print(A[k]);\r\n    }\r\n  }\r\n}\r\n\r\n\
-    signed main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ { yes(!t); }\r\n#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point\
+    \ {\n  T x, y;\n  template <typename A, typename B>\n  Point(A x, B y) : x(x),\
+    \ y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi),\
+    \ y(p.se) {}\n\n  Point operator+(Point p) const { return {x + p.x, y + p.y};\
+    \ }\n  Point operator-(Point p) const { return {x - p.x, y - p.y}; }\n  bool operator==(Point\
+    \ p) const { return x == p.x && y == p.y; }\n  Point operator-() const { return\
+    \ {-x, -y}; }\n\n  bool operator<(Point p) const {\n    if (x != p.x) return x\
+    \ < p.x;\n    return y < p.y;\n  }\n\n  T dot(Point other) { return x * other.x\
+    \ + y * other.y; }\n  T det(Point other) { return x * other.y - y * other.x; }\n\
+    };\n\ntemplate <typename REAL, typename T>\nREAL dist(Point<T> A, Point<T> B)\
+    \ {\n  A -= B;\n  T p = A.dot(A);\n  return sqrt(REAL(p));\n}\n\ntemplate <typename\
+    \ T>\nstruct Line {\n  T a, b, c;\n\n  Line(T a, T b, T c) : a(a), b(b), c(c)\
+    \ {}\n  Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y;\n    b = B.x - A.x;\n\
+    \    c = A.x * B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1,\
+    \ y1), Point<T>(x2, y2)) {}\n\n  template <typename U>\n  U eval(Point<U> P) {\n\
+    \    return a * P.x + b * P.y + c;\n  }\n\n  template <typename U>\n  T eval(U\
+    \ x, U y) {\n    return a * x + b * y + c;\n  }\n\n  template <enable_if_t<is_integral<T>::value,\
+    \ int> = 0>\n  bool is_parallel(Line other) {\n    return a * other.b - b * other.a\
+    \ == 0;\n  }\n\n  template <enable_if_t<is_integral<T>::value, int> = 0>\n  bool\
+    \ is_orthogonal(Line other) {\n    return a * other.a + b * other.b == 0;\n  }\n\
+    };\n#line 2 \"geo/cross_point.hpp\"\n\n// \u5E73\u884C\u3067\u3042\u308B\u3068\
+    \u304D\u306B\u306F\u3001\u5B8C\u5168\u306B\u4E00\u81F4\u3059\u308B\u3068\u304D\
+    \u3082\u542B\u3081\u3066 false \u3092\u304B\u3048\u3059\n// false \u306E\u3068\
+    \u304D\u306B\u306F\u539F\u70B9\u304C\u8FD4\u308B\u3002\ntemplate <typename REAL,\
+    \ typename T>\npair<bool, Point<REAL>> cross_point(const Line<T>& L1, const Line<T>&\
+    \ L2) {\n  T det = L1.a * L2.b - L1.b * L2.a;\n  if (det == 0) return {false,\
+    \ Point<REAL>(0, 0)};\n  REAL x = -REAL(L1.c) * L2.b + REAL(L1.b) * L2.c;\n  REAL\
+    \ y = -REAL(L1.a) * L2.c + REAL(L1.c) * L2.a;\n  return {true, Point<REAL>(x /\
+    \ det, y / det)};\n}\n#line 8 \"test/aoj/CGL_2_C.test.cpp\"\n\nvoid solve() {\n\
+    \  LL(Q);\n  FOR(Q) {\n    LL(a, b, c, d, e, f, g, h);\n    Line<ll> L1(a, b,\
+    \ c, d);\n    Line<ll> L2(e, f, g, h);\n    auto [bl, pt] = cross_point<double>(L1,\
+    \ L2);\n    assert(bl);\n    print(pt.x, pt.y);\n  }\n}\n\nsigned main() {\n \
+    \ cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
+    \n  return 0;\n}\n"
+  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C\"\
+    \n#define ERROR 0.00000001\n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\
+    \n#include \"geo/cross_point.hpp\"\n\nvoid solve() {\n  LL(Q);\n  FOR(Q) {\n \
+    \   LL(a, b, c, d, e, f, g, h);\n    Line<ll> L1(a, b, c, d);\n    Line<ll> L2(e,\
+    \ f, g, h);\n    auto [bl, pt] = cross_point<double>(L1, L2);\n    assert(bl);\n\
+    \    print(pt.x, pt.y);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/hashmap.hpp
+  - geo/cross_point.hpp
+  - geo/base.hpp
   isVerificationFile: true
-  path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
+  path: test/aoj/CGL_2_C.test.cpp
   requiredBy: []
-  timestamp: '2022-08-20 05:21:32+09:00'
+  timestamp: '2022-08-20 06:37:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library_checker/datastructure/associative_array_hashmap.test.cpp
+documentation_of: test/aoj/CGL_2_C.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/datastructure/associative_array_hashmap.test.cpp
-- /verify/test/library_checker/datastructure/associative_array_hashmap.test.cpp.html
-title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
+- /verify/test/aoj/CGL_2_C.test.cpp
+- /verify/test/aoj/CGL_2_C.test.cpp.html
+title: test/aoj/CGL_2_C.test.cpp
 ---

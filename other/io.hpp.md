@@ -51,9 +51,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_1_B.test.cpp
     title: test/aoj/CGL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_2_A.test.cpp
     title: test/aoj/CGL_2_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL_2_C.test.cpp
+    title: test/aoj/CGL_2_C.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_1_B_kanpsack01.test.cpp
     title: test/aoj/DPL_1_B_kanpsack01.test.cpp
@@ -192,37 +195,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
     title: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_2_64.test.cpp
     title: test/library_checker/convolution/convolution_mod_2_64.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
     title: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/multivariate_convolution.test.cpp
     title: test/library_checker/convolution/multivariate_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/online_convolution.test.cpp
     title: test/library_checker/convolution/online_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution.test.cpp
     title: test/library_checker/convolution/subset_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array.test.cpp
     title: test/library_checker/datastructure/associative_array.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
     title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/line_add_get_min.test.cpp
     title: test/library_checker/datastructure/line_add_get_min.test.cpp
   - icon: ':x:'
@@ -1334,6 +1337,7 @@ data:
   - test/aoj/2842_seg2d_dense.test.cpp
   - test/aoj/275_dag_reachability.test.cpp
   - test/aoj/ITP2_11_D_for_nCk.test.cpp
+  - test/aoj/CGL_2_C.test.cpp
   - test/aoj/GRO_3_A_articulation.test.cpp
   - test/aoj/DPL_4_B_subset_sum_count.test.cpp
   - test/aoj/DSL_2_E_fenwick_raq.test.cpp

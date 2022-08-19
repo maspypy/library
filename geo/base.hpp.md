@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: geo/cross_point.hpp
+    title: geo/cross_point.hpp
+  - icon: ':heavy_check_mark:'
     path: geo/projection.hpp
     title: geo/projection.hpp
   - icon: ':heavy_check_mark:'
@@ -24,12 +27,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_1_B.test.cpp
     title: test/aoj/CGL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_2_A.test.cpp
     title: test/aoj/CGL_2_A.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL_2_C.test.cpp
+    title: test/aoj/CGL_2_C.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -48,7 +54,11 @@ data:
     \    c = A.x * B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1,\
     \ y1), Point<T>(x2, y2)) {}\n\n  template <typename U>\n  U eval(Point<U> P) {\n\
     \    return a * P.x + b * P.y + c;\n  }\n\n  template <typename U>\n  T eval(U\
-    \ x, U y) {\n    return a * x + b * y + c;\n  }\n};\n"
+    \ x, U y) {\n    return a * x + b * y + c;\n  }\n\n  template <enable_if_t<is_integral<T>::value,\
+    \ int> = 0>\n  bool is_parallel(Line other) {\n    return a * other.b - b * other.a\
+    \ == 0;\n  }\n\n  template <enable_if_t<is_integral<T>::value, int> = 0>\n  bool\
+    \ is_orthogonal(Line other) {\n    return a * other.a + b * other.b == 0;\n  }\n\
+    };\n"
   code: "#pragma once\ntemplate <typename T>\nstruct Point {\n  T x, y;\n  template\
     \ <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename\
     \ A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+(Point\
@@ -65,7 +75,11 @@ data:
     \  }\n  Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2, y2))\
     \ {}\n\n  template <typename U>\n  U eval(Point<U> P) {\n    return a * P.x +\
     \ b * P.y + c;\n  }\n\n  template <typename U>\n  T eval(U x, U y) {\n    return\
-    \ a * x + b * y + c;\n  }\n};\n"
+    \ a * x + b * y + c;\n  }\n\n  template <enable_if_t<is_integral<T>::value, int>\
+    \ = 0>\n  bool is_parallel(Line other) {\n    return a * other.b - b * other.a\
+    \ == 0;\n  }\n\n  template <enable_if_t<is_integral<T>::value, int> = 0>\n  bool\
+    \ is_orthogonal(Line other) {\n    return a * other.a + b * other.b == 0;\n  }\n\
+    };\n"
   dependsOn: []
   isVerificationFile: false
   path: geo/base.hpp
@@ -75,11 +89,13 @@ data:
   - geo_old/angle_sort.hpp
   - geo/projection.hpp
   - geo/reflection.hpp
-  timestamp: '2022-08-20 05:23:36+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  - geo/cross_point.hpp
+  timestamp: '2022-08-20 06:37:24+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL_1_A.test.cpp
   - test/aoj/CGL_1_B.test.cpp
+  - test/aoj/CGL_2_C.test.cpp
   - test/aoj/CGL_2_A.test.cpp
 documentation_of: geo/base.hpp
 layout: document
