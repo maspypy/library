@@ -34,30 +34,44 @@ data:
     \ int> = 0>\n  bool is_parallel(Line other) {\n    return a * other.b - b * other.a\
     \ == 0;\n  }\n\n  template <enable_if_t<is_integral<T>::value, int> = 0>\n  bool\
     \ is_orthogonal(Line other) {\n    return a * other.a + b * other.b == 0;\n  }\n\
-    };\n#line 2 \"geo/cross_point.hpp\"\n\n// \u5E73\u884C\u3067\u3042\u308B\u3068\
-    \u304D\u306B\u306F\u3001\u5B8C\u5168\u306B\u4E00\u81F4\u3059\u308B\u3068\u304D\
-    \u3082\u542B\u3081\u3066 false \u3092\u304B\u3048\u3059\n// false \u306E\u3068\
-    \u304D\u306B\u306F\u539F\u70B9\u304C\u8FD4\u308B\u3002\ntemplate <typename REAL,\
-    \ typename T>\npair<bool, Point<REAL>> cross_point(const Line<T>& L1, const Line<T>&\
-    \ L2) {\n  T det = L1.a * L2.b - L1.b * L2.a;\n  if (det == 0) return {false,\
-    \ Point<REAL>(0, 0)};\n  REAL x = -REAL(L1.c) * L2.b + REAL(L1.b) * L2.c;\n  REAL\
-    \ y = -REAL(L1.a) * L2.c + REAL(L1.c) * L2.a;\n  return {true, Point<REAL>(x /\
-    \ det, y / det)};\n}\n"
-  code: "#include \"geo/base.hpp\"\n\n// \u5E73\u884C\u3067\u3042\u308B\u3068\u304D\
-    \u306B\u306F\u3001\u5B8C\u5168\u306B\u4E00\u81F4\u3059\u308B\u3068\u304D\u3082\
-    \u542B\u3081\u3066 false \u3092\u304B\u3048\u3059\n// false \u306E\u3068\u304D\
-    \u306B\u306F\u539F\u70B9\u304C\u8FD4\u308B\u3002\ntemplate <typename REAL, typename\
-    \ T>\npair<bool, Point<REAL>> cross_point(const Line<T>& L1, const Line<T>& L2)\
-    \ {\n  T det = L1.a * L2.b - L1.b * L2.a;\n  if (det == 0) return {false, Point<REAL>(0,\
-    \ 0)};\n  REAL x = -REAL(L1.c) * L2.b + REAL(L1.b) * L2.c;\n  REAL y = -REAL(L1.a)\
-    \ * L2.c + REAL(L1.c) * L2.a;\n  return {true, Point<REAL>(x / det, y / det)};\n\
-    }"
+    };\n\ntemplate <typename T>\nstruct Segment {\n  Point<T> A, B;\n  bool open;\n\
+    \n  Segment(Point<T> A, Point<T> B, bool open) : A(A), B(B), open(open) {}\n \
+    \ Segment(T x1, T y1, T x2, T y2, bool open)\n      : Segment(Point<T>(x1, y1),\
+    \ Point<T>(x2, y2), open) {}\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\
+    #line 2 \"geo/cross_point.hpp\"\n\n// \u5E73\u884C\u3067\u306A\u3044\u3053\u3068\
+    \u3092\u4EEE\u5B9A\ntemplate <typename REAL, typename T>\nPoint<REAL> cross_point(const\
+    \ Line<T> L1, const Line<T> L2) {\n  T det = L1.a * L2.b - L1.b * L2.a;\n  assert(det\
+    \ != 0);\n  REAL x = -REAL(L1.c) * L2.b + REAL(L1.b) * L2.c;\n  REAL y = -REAL(L1.a)\
+    \ * L2.c + REAL(L1.c) * L2.a;\n  return Point<REAL>(x / det, y / det);\n}\n\n\
+    // 0: \u4EA4\u70B9\u306A\u3057\n// 1: \u4E00\u610F\u306A\u4EA4\u70B9\n// 2\uFF1A\
+    2 \u3064\u4EE5\u4E0A\u306E\u4EA4\u70B9\uFF08\u6574\u6570\u578B\u3092\u5229\u7528\
+    \u3057\u3066\u53B3\u5BC6\u306B\u3084\u308B\uFF09\ntemplate <typename T, enable_if_t<is_integral<T>::value,\
+    \ int> = 0>\nint count_cross(Segment<T> S1, Segment<T> S2) {\n  return 0;\n}\n\
+    \n//\ntemplate <typename T>\nint count_cross(Segment<T> S1, Segment<T> S2) {\n\
+    \  return 0;\n}\n\n// \u552F\u4E00\u306E\u4EA4\u70B9\u3092\u6301\u3064\u3053\u3068\
+    \u3092\u4EEE\u5B9A\ntemplate <typename REAL, typename T>\nPoint<REAL> cross_point(const\
+    \ Segment<T> S1, const Segment<T> S2) {\n  return cross_point(S1.to_Line(), S2.to_Line());\n\
+    }\n"
+  code: "#include \"geo/base.hpp\"\n\n// \u5E73\u884C\u3067\u306A\u3044\u3053\u3068\
+    \u3092\u4EEE\u5B9A\ntemplate <typename REAL, typename T>\nPoint<REAL> cross_point(const\
+    \ Line<T> L1, const Line<T> L2) {\n  T det = L1.a * L2.b - L1.b * L2.a;\n  assert(det\
+    \ != 0);\n  REAL x = -REAL(L1.c) * L2.b + REAL(L1.b) * L2.c;\n  REAL y = -REAL(L1.a)\
+    \ * L2.c + REAL(L1.c) * L2.a;\n  return Point<REAL>(x / det, y / det);\n}\n\n\
+    // 0: \u4EA4\u70B9\u306A\u3057\n// 1: \u4E00\u610F\u306A\u4EA4\u70B9\n// 2\uFF1A\
+    2 \u3064\u4EE5\u4E0A\u306E\u4EA4\u70B9\uFF08\u6574\u6570\u578B\u3092\u5229\u7528\
+    \u3057\u3066\u53B3\u5BC6\u306B\u3084\u308B\uFF09\ntemplate <typename T, enable_if_t<is_integral<T>::value,\
+    \ int> = 0>\nint count_cross(Segment<T> S1, Segment<T> S2) {\n  return 0;\n}\n\
+    \n//\ntemplate <typename T>\nint count_cross(Segment<T> S1, Segment<T> S2) {\n\
+    \  return 0;\n}\n\n// \u552F\u4E00\u306E\u4EA4\u70B9\u3092\u6301\u3064\u3053\u3068\
+    \u3092\u4EEE\u5B9A\ntemplate <typename REAL, typename T>\nPoint<REAL> cross_point(const\
+    \ Segment<T> S1, const Segment<T> S2) {\n  return cross_point(S1.to_Line(), S2.to_Line());\n\
+    }\n"
   dependsOn:
   - geo/base.hpp
   isVerificationFile: false
   path: geo/cross_point.hpp
   requiredBy: []
-  timestamp: '2022-08-20 06:37:24+09:00'
+  timestamp: '2022-08-20 06:53:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL_2_C.test.cpp

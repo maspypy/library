@@ -214,7 +214,11 @@ data:
     \ + b * y + c;\n  }\n\n  template <enable_if_t<is_integral<T>::value, int> = 0>\n\
     \  bool is_parallel(Line other) {\n    return a * other.b - b * other.a == 0;\n\
     \  }\n\n  template <enable_if_t<is_integral<T>::value, int> = 0>\n  bool is_orthogonal(Line\
-    \ other) {\n    return a * other.a + b * other.b == 0;\n  }\n};\n#line 8 \"test/aoj/CGL_2_A.test.cpp\"\
+    \ other) {\n    return a * other.a + b * other.b == 0;\n  }\n};\n\ntemplate <typename\
+    \ T>\nstruct Segment {\n  Point<T> A, B;\n  bool open;\n\n  Segment(Point<T> A,\
+    \ Point<T> B, bool open) : A(A), B(B), open(open) {}\n  Segment(T x1, T y1, T\
+    \ x2, T y2, bool open)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2), open)\
+    \ {}\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n#line 8 \"test/aoj/CGL_2_A.test.cpp\"\
     \n\nvoid solve() {\n  LL(Q);\n  FOR(Q) {\n    LL(a, b, c, d);\n    Line<ll> A(a,\
     \ b, c, d);\n    LL(e, f, g, h);\n    Line<ll> B(e, f, g, h);\n    bool p = A.is_parallel(B);\n\
     \    bool o = A.is_orthogonal(B);\n    if (p) print(2);\n    elif (o) print(1);\n\
@@ -234,7 +238,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2022-08-20 06:37:24+09:00'
+  timestamp: '2022-08-20 06:53:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_2_A.test.cpp

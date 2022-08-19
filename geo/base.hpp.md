@@ -58,7 +58,10 @@ data:
     \ int> = 0>\n  bool is_parallel(Line other) {\n    return a * other.b - b * other.a\
     \ == 0;\n  }\n\n  template <enable_if_t<is_integral<T>::value, int> = 0>\n  bool\
     \ is_orthogonal(Line other) {\n    return a * other.a + b * other.b == 0;\n  }\n\
-    };\n"
+    };\n\ntemplate <typename T>\nstruct Segment {\n  Point<T> A, B;\n  bool open;\n\
+    \n  Segment(Point<T> A, Point<T> B, bool open) : A(A), B(B), open(open) {}\n \
+    \ Segment(T x1, T y1, T x2, T y2, bool open)\n      : Segment(Point<T>(x1, y1),\
+    \ Point<T>(x2, y2), open) {}\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n"
   code: "#pragma once\ntemplate <typename T>\nstruct Point {\n  T x, y;\n  template\
     \ <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename\
     \ A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+(Point\
@@ -79,7 +82,10 @@ data:
     \ = 0>\n  bool is_parallel(Line other) {\n    return a * other.b - b * other.a\
     \ == 0;\n  }\n\n  template <enable_if_t<is_integral<T>::value, int> = 0>\n  bool\
     \ is_orthogonal(Line other) {\n    return a * other.a + b * other.b == 0;\n  }\n\
-    };\n"
+    };\n\ntemplate <typename T>\nstruct Segment {\n  Point<T> A, B;\n  bool open;\n\
+    \n  Segment(Point<T> A, Point<T> B, bool open) : A(A), B(B), open(open) {}\n \
+    \ Segment(T x1, T y1, T x2, T y2, bool open)\n      : Segment(Point<T>(x1, y1),\
+    \ Point<T>(x2, y2), open) {}\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: geo/base.hpp
@@ -90,7 +96,7 @@ data:
   - geo/projection.hpp
   - geo/reflection.hpp
   - geo/cross_point.hpp
-  timestamp: '2022-08-20 06:37:24+09:00'
+  timestamp: '2022-08-20 06:53:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL_1_A.test.cpp

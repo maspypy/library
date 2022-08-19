@@ -220,7 +220,11 @@ data:
     \ = 0>\n  bool is_parallel(Line other) {\n    return a * other.b - b * other.a\
     \ == 0;\n  }\n\n  template <enable_if_t<is_integral<T>::value, int> = 0>\n  bool\
     \ is_orthogonal(Line other) {\n    return a * other.a + b * other.b == 0;\n  }\n\
-    };\n#line 4 \"geo/reflection.hpp\"\n\ntemplate <typename REAL, typename T, typename\
+    };\n\ntemplate <typename T>\nstruct Segment {\n  Point<T> A, B;\n  bool open;\n\
+    \n  Segment(Point<T> A, Point<T> B, bool open) : A(A), B(B), open(open) {}\n \
+    \ Segment(T x1, T y1, T x2, T y2, bool open)\n      : Segment(Point<T>(x1, y1),\
+    \ Point<T>(x2, y2), open) {}\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\
+    #line 4 \"geo/reflection.hpp\"\n\ntemplate <typename REAL, typename T, typename\
     \ U>\nPoint<REAL> reflection(Point<T> P, Line<U> L) {\n  REAL t = REAL(L.eval(P))\
     \ / (L.a * L.a + L.b * L.b);\n  REAL x = P.x - 2 * t * L.a;\n  REAL y = P.y -\
     \ 2 * t * L.b;\n  return Point<REAL>(x, y);\n};\n#line 9 \"test/aoj/CGL_1_B.test.cpp\"\
@@ -244,7 +248,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2022-08-20 06:37:24+09:00'
+  timestamp: '2022-08-20 06:53:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_1_B.test.cpp

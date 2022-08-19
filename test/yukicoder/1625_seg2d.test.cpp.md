@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid_max.hpp
     title: alg/monoid_max.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree2d.hpp
     title: ds/segtree2d.hpp
   - icon: ':question:'

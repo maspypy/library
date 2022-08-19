@@ -32,7 +32,11 @@ data:
     \ int> = 0>\n  bool is_parallel(Line other) {\n    return a * other.b - b * other.a\
     \ == 0;\n  }\n\n  template <enable_if_t<is_integral<T>::value, int> = 0>\n  bool\
     \ is_orthogonal(Line other) {\n    return a * other.a + b * other.b == 0;\n  }\n\
-    };\n#line 2 \"geo_old/dynamicupperhull.hpp\"\n\r\n/*\r\nhttps://codeforces.com/blog/entry/75929\r\
+    };\n\ntemplate <typename T>\nstruct Segment {\n  Point<T> A, B;\n  bool open;\n\
+    \n  Segment(Point<T> A, Point<T> B, bool open) : A(A), B(B), open(open) {}\n \
+    \ Segment(T x1, T y1, T x2, T y2, bool open)\n      : Segment(Point<T>(x1, y1),\
+    \ Point<T>(x2, y2), open) {}\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\
+    #line 2 \"geo_old/dynamicupperhull.hpp\"\n\r\n/*\r\nhttps://codeforces.com/blog/entry/75929\r\
     \n\u52D5\u7684\u51F8\u5305\u3002\r\nx \u5EA7\u6A19\u3067\u30BD\u30FC\u30C8\u3057\
     \u3066\u5B8C\u5168\u4E8C\u5206\u6728\u306E\u30BB\u30B0\u6728\u306E\u5F62\u306B\
     \u3057\u3066\u304A\u304F\u3002\r\n\u30BB\u30B0\u6728\u306E\u30DE\u30FC\u30B8\u90E8\
@@ -159,7 +163,7 @@ data:
   isVerificationFile: false
   path: geo_old/dynamicupperhull.hpp
   requiredBy: []
-  timestamp: '2022-08-20 06:37:24+09:00'
+  timestamp: '2022-08-20 06:53:27+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo_old/dynamicupperhull.hpp
