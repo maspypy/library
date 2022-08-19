@@ -65,11 +65,10 @@ struct Line {
 template <typename T>
 struct Segment {
   Point<T> A, B;
-  bool open;
 
-  Segment(Point<T> A, Point<T> B, bool open) : A(A), B(B), open(open) {}
-  Segment(T x1, T y1, T x2, T y2, bool open)
-      : Segment(Point<T>(x1, y1), Point<T>(x2, y2), open) {}
+  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}
+  Segment(T x1, T y1, T x2, T y2)
+      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}
 
   Line<T> to_Line() { return Line(A, B); }
 };
