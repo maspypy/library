@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_4_B_subset_sum_count.test.cpp
     title: test/aoj/DPL_4_B_subset_sum_count.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/subset_sum_count.hpp\"\n\n/*\nO(2^{N/2})\nsubset sum\
@@ -73,7 +73,7 @@ data:
   path: other/subset_sum_count.hpp
   requiredBy: []
   timestamp: '2022-04-16 23:35:00+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL_4_B_subset_sum_count.test.cpp
 documentation_of: other/subset_sum_count.hpp

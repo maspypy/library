@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: alg/monoid_min_idx.hpp
     title: alg/monoid_min_idx.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
   _extendedRequiredBy: []
@@ -67,7 +67,7 @@ data:
     \n    if (x.fi > y.fi) return false;\r\n    return (tie_is_left ? (x.se < y.se)\
     \ : (x.se >= y.se));\r\n  }\r\n  static X op(X x, X y) { return (is_small(x, y)\
     \ ? x : y); }\r\n  static constexpr X unit() { return {numeric_limits<T>::max(),\
-    \ -1}; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"geo/manhattan_nns.hpp\"\
+    \ -1}; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"geo_old/manhattan_nns.hpp\"\
     \n\r\n// https://codeforces.com/gym/103577/problem/K\r\n// \u70B9\u7FA4 FRM \u304B\
     \u3089\u70B9\u7FA4 TO \u3078\u306E\u6700\u8FD1\u70B9\u63A2\u7D22\r\n// vector\
     \ \u306E pair \u3092\u8FD4\u3059\uFF1Adist, nbd_idx\r\ntemplate <typename X =\
@@ -115,15 +115,15 @@ data:
   - ds/segtree.hpp
   - alg/monoid_min_idx.hpp
   isVerificationFile: false
-  path: geo/manhattan_nns.hpp
+  path: geo_old/manhattan_nns.hpp
   requiredBy: []
-  timestamp: '2022-08-11 02:08:49+09:00'
+  timestamp: '2022-08-20 04:25:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: geo/manhattan_nns.hpp
+documentation_of: geo_old/manhattan_nns.hpp
 layout: document
 redirect_from:
-- /library/geo/manhattan_nns.hpp
-- /library/geo/manhattan_nns.hpp.html
-title: geo/manhattan_nns.hpp
+- /library/geo_old/manhattan_nns.hpp
+- /library/geo_old/manhattan_nns.hpp.html
+title: geo_old/manhattan_nns.hpp
 ---

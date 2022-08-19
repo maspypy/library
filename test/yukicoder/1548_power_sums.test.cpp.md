@@ -7,13 +7,13 @@ data:
   - icon: ':x:'
     path: alg/lazy_powersums_set.hpp
     title: alg/lazy_powersums_set.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid_set.hpp
     title: alg/monoid_set.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'

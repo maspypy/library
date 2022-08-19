@@ -66,79 +66,79 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_3_C_maxrectangle.test.cpp
     title: test/aoj/DPL_3_C_maxrectangle.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_4_B_subset_sum_count.test.cpp
     title: test/aoj/DPL_4_B_subset_sum_count.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_5_C_count_surjection.test.cpp
     title: test/aoj/DPL_5_C_count_surjection.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_1_B_weighteduf.test.cpp
     title: test/aoj/DSL_1_B_weighteduf.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_C_kdtree.test.cpp
     title: test/aoj/DSL_2_C_kdtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_D_dualsegtree.test.cpp
     title: test/aoj/DSL_2_D_dualsegtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_E_fenwick_raq.test.cpp
     title: test/aoj/DSL_2_E_fenwick_raq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_F_min_set_lazy.test.cpp
     title: test/aoj/DSL_2_F_min_set_lazy.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_G_fenwick_raq.test.cpp
     title: test/aoj/DSL_2_G_fenwick_raq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_H_min_add_lazy.test.cpp
     title: test/aoj/DSL_2_H_min_add_lazy.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_I_cntsum_set_lazy.test.cpp
     title: test/aoj/DSL_2_I_cntsum_set_lazy.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_4_A_rectangle_union.test.cpp
     title: test/aoj/DSL_4_A_rectangle_union.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_B_bellmanford.test.cpp
     title: test/aoj/GRL_1_B_bellmanford.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_C_warshallfloyd.test.cpp
     title: test/aoj/GRL_1_C_warshallfloyd.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A_mst.test.cpp
     title: test/aoj/GRL_2_A_mst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
     title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_6_A_maxflow.test.cpp
     title: test/aoj/GRL_6_A_maxflow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRO_3_A_articulation.test.cpp
     title: test/aoj/GRO_3_A_articulation.test.cpp
   - icon: ':x:'
     path: test/aoj/ITP1_11_A.test.cpp
     title: test/aoj/ITP1_11_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_11_B.test.cpp
     title: test/aoj/ITP1_11_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_11_C.test.cpp
     title: test/aoj/ITP1_11_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_11_D.test.cpp
     title: test/aoj/ITP1_11_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_D_D_divisors.test.cpp
     title: test/aoj/ITP1_D_D_divisors.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ITP2_11_D_for_nCk.test.cpp
     title: test/aoj/ITP2_11_D_for_nCk.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_D_eulerphi.test.cpp
     title: test/aoj/NTL_1_D_eulerphi.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_E_extgcd.test.cpp
     title: test/aoj/NTL_1_E_extgcd.test.cpp
   - icon: ':x:'
@@ -153,19 +153,19 @@ data:
   - icon: ':x:'
     path: test/atcoder/agc058d.test.cpp
     title: test/atcoder/agc058d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/add_remove_query.test.cpp
     title: test/library_checker/add_remove_query.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/bitwise_and_convolution.test.cpp
     title: test/library_checker/convolution/bitwise_and_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/bitwise_or_convolution.test.cpp
     title: test/library_checker/convolution/bitwise_or_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/bitwise_xor_convolution.test.cpp
     title: test/library_checker/convolution/bitwise_xor_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_huge.test.cpp
     title: test/library_checker/convolution/convolution_huge.test.cpp
   - icon: ':x:'
@@ -322,12 +322,6 @@ data:
     path: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
     title: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
   - icon: ':x:'
-    path: test/library_checker/geometry/convex_layers.test.cpp
-    title: test/library_checker/geometry/convex_layers.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/geometry/sort_points_by_argument.test.cpp
-    title: test/library_checker/geometry/sort_points_by_argument.test.cpp
-  - icon: ':x:'
     path: test/library_checker/graph/assignment.test.cpp
     title: test/library_checker/graph/assignment.test.cpp
   - icon: ':x:'
@@ -348,9 +342,6 @@ data:
   - icon: ':x:'
     path: test/library_checker/graph/enumerate_triangles.test.cpp
     title: test/library_checker/graph/enumerate_triangles.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/graph/manhattan_mst.test.cpp
-    title: test/library_checker/graph/manhattan_mst.test.cpp
   - icon: ':x:'
     path: test/library_checker/graph/maximum_independent_set.test.cpp
     title: test/library_checker/graph/maximum_independent_set.test.cpp
@@ -1164,8 +1155,6 @@ data:
   - test/mytest/max_of_linear_segments.test.cpp
   - test/mytest/primesum_mod4.test.cpp
   - test/min_of_linear_segments.test.cpp
-  - test/library_checker/geometry/sort_points_by_argument.test.cpp
-  - test/library_checker/geometry/convex_layers.test.cpp
   - test/library_checker/tree/cartesian_tree.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp
@@ -1195,7 +1184,6 @@ data:
   - test/library_checker/graph/two_edge_component.test.cpp
   - test/library_checker/graph/enumerate_triangles.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
-  - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/graph/cycle_detection.test.cpp
   - test/library_checker/graph/assignment_mcf.test.cpp
   - test/library_checker/graph/assignment.test.cpp

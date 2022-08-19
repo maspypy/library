@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: ds/range_mex_query.hpp
     title: ds/range_mex_query.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
   - icon: ':question:'

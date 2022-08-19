@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/addremove_query.hpp
     title: ds/addremove_query.hpp
   - icon: ':question:'
@@ -10,17 +10,17 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: pds/rollbackarray.hpp
     title: pds/rollbackarray.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: pds/rollbackunionfind.hpp
     title: pds/rollbackunionfind.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum
@@ -313,7 +313,7 @@ data:
   path: test/library_checker/add_remove_query.test.cpp
   requiredBy: []
   timestamp: '2022-08-20 02:40:23+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/add_remove_query.test.cpp
 layout: document

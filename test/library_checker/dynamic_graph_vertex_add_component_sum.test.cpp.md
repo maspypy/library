@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: pds/rollbackarray.hpp
     title: pds/rollbackarray.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: pds/rollbackunionfind.hpp
     title: pds/rollbackunionfind.hpp
   _extendedRequiredBy: []

@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: dp/count_subseq.hpp
     title: dp/count_subseq.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'

@@ -5,9 +5,9 @@ data:
   - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':x:'
-    path: geo/manhattan_mst.hpp
-    title: geo/manhattan_mst.hpp
+  - icon: ':warning:'
+    path: geo_old/manhattan_mst.hpp
+    title: geo_old/manhattan_mst.hpp
   - icon: ':question:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':x:'
@@ -39,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2995_dsu.test.cpp
     title: test/aoj/2995_dsu.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A_mst.test.cpp
     title: test/aoj/GRL_2_A_mst.test.cpp
   - icon: ':x:'
@@ -48,9 +48,6 @@ data:
   - icon: ':x:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/graph/manhattan_mst.test.cpp
-    title: test/library_checker/graph/manhattan_mst.test.cpp
   - icon: ':x:'
     path: test/yukicoder/114_steriner_tree.test.cpp
     title: test/yukicoder/114_steriner_tree.test.cpp
@@ -93,6 +90,7 @@ data:
   isVerificationFile: false
   path: ds/unionfind.hpp
   requiredBy:
+  - geo_old/manhattan_mst.hpp
   - graph/minimum_spanning_tree.hpp
   - graph/online_unionfind.hpp
   - graph/tree_of_unionfind.hpp
@@ -101,14 +99,12 @@ data:
   - graph/functional.hpp
   - graph/maximum_antichain.hpp
   - flow/bipartite.hpp
-  - geo/manhattan_mst.hpp
   timestamp: '2022-08-11 02:13:18+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1170_online_uf.test.cpp
   - test/yukicoder/1479_bipartite_vertex_cover.test.cpp
   - test/yukicoder/114_steriner_tree.test.cpp
-  - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/datastructure/unionfind.test.cpp
   - test/aoj/2995_dsu.test.cpp

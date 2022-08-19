@@ -2,9 +2,15 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: ds/beats_summax_chmin.hpp
+    title: ds/beats_summax_chmin.hpp
   - icon: ':x:'
     path: ds/beats_summaxmin_chminchmax.hpp
     title: ds/beats_summaxmin_chminchmax.hpp
+  - icon: ':warning:'
+    path: ds/beats_summin_chmax.hpp
+    title: ds/beats_summin_chmax.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
@@ -134,6 +140,8 @@ data:
   path: ds/lazysegtree_beats.hpp
   requiredBy:
   - ds/beats_summaxmin_chminchmax.hpp
+  - ds/beats_summax_chmin.hpp
+  - ds/beats_summin_chmax.hpp
   timestamp: '2022-06-19 02:52:14+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:

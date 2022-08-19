@@ -4,19 +4,19 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/group_cntsum.hpp
     title: alg/group_cntsum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/lazy_cntsum_add.hpp
     title: alg/lazy_cntsum_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/lazy_reverse.hpp
     title: alg/lazy_reverse.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid_reverse.hpp
     title: alg/monoid_reverse.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
   - icon: ':question:'
@@ -25,7 +25,7 @@ data:
   - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_E
@@ -503,7 +503,7 @@ data:
   path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   requiredBy: []
   timestamp: '2022-08-20 02:40:23+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
 layout: document

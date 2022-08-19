@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: ds/cht_monotone.hpp
     title: ds/cht_monotone.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/dualsegtree.hpp
     title: ds/dualsegtree.hpp
   - icon: ':question:'

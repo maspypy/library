@@ -5,19 +5,19 @@ data:
   - icon: ':warning:'
     path: alg/lazy_max_min.hpp
     title: alg/lazy_max_min.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/lazy_min_add.hpp
     title: alg/lazy_min_add.hpp
   - icon: ':warning:'
     path: alg/lazy_min_min.hpp
     title: alg/lazy_min_min.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy_min_set.hpp
     title: alg/lazy_min_set.hpp
   - icon: ':x:'
     path: ds/range_mex_query.hpp
     title: ds/range_mex_query.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':warning:'
@@ -30,13 +30,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508_splay.test.cpp
     title: test/aoj/1508_splay.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_F_min_set_lazy.test.cpp
     title: test/aoj/DSL_2_F_min_set_lazy.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_H_min_add_lazy.test.cpp
     title: test/aoj/DSL_2_H_min_add_lazy.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A_mst.test.cpp
     title: test/aoj/GRL_2_A_mst.test.cpp
   - icon: ':x:'

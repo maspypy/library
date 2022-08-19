@@ -7,14 +7,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: other/subset_sum_count.hpp
     title: other/subset_sum_count.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_4_B
@@ -242,7 +242,7 @@ data:
   path: test/aoj/DPL_4_B_subset_sum_count.test.cpp
   requiredBy: []
   timestamp: '2022-08-20 02:40:23+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL_4_B_subset_sum_count.test.cpp
 layout: document

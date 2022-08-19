@@ -17,7 +17,7 @@ data:
   - icon: ':x:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':warning:'
@@ -26,7 +26,7 @@ data:
   - icon: ':x:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_huge.hpp
     title: poly/convolution_huge.hpp
   - icon: ':x:'
@@ -114,22 +114,22 @@ data:
     path: seq/surjection.hpp
     title: seq/surjection.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_5_C_count_surjection.test.cpp
     title: test/aoj/DPL_5_C_count_surjection.test.cpp
   - icon: ':x:'
     path: test/atcoder/agc058d.test.cpp
     title: test/atcoder/agc058d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/bitwise_and_convolution.test.cpp
     title: test/library_checker/convolution/bitwise_and_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/bitwise_or_convolution.test.cpp
     title: test/library_checker/convolution/bitwise_or_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/bitwise_xor_convolution.test.cpp
     title: test/library_checker/convolution/bitwise_xor_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_huge.test.cpp
     title: test/library_checker/convolution/convolution_huge.test.cpp
   - icon: ':x:'
@@ -398,7 +398,7 @@ data:
     title: test/yukicoder/749_lazysegtree.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\n\ntemplate <unsigned int mod>\nstruct\
@@ -609,7 +609,7 @@ data:
   - seq/stirling_number_2.hpp
   - seq/interpolate_poly_exp_sum.hpp
   timestamp: '2022-08-17 05:19:57+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1760.test.cpp
   - test/yukicoder/1269_aho.test.cpp

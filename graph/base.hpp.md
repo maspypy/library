@@ -5,10 +5,10 @@ data:
   - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':x:'
-    path: geo/manhattan_mst.hpp
-    title: geo/manhattan_mst.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
+    path: geo_old/manhattan_mst.hpp
+    title: geo_old/manhattan_mst.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/bellmanford.hpp
     title: graph/bellmanford.hpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
   - icon: ':x:'
     path: graph/bfsnumbering.hpp
     title: graph/bfsnumbering.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/biconnected_component.hpp
     title: graph/biconnected_component.hpp
   - icon: ':warning:'
@@ -50,7 +50,7 @@ data:
   - icon: ':question:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/dualtreemonoid.hpp
     title: graph/dualtreemonoid.hpp
   - icon: ':x:'
@@ -68,7 +68,7 @@ data:
   - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
   - icon: ':heavy_check_mark:'
@@ -83,7 +83,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':x:'
@@ -131,7 +131,7 @@ data:
   - icon: ':x:'
     path: graph/treegroup.hpp
     title: graph/treegroup.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
   - icon: ':x:'
@@ -143,7 +143,7 @@ data:
   - icon: ':warning:'
     path: graph/unicyclic.hpp
     title: graph/unicyclic.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/warshall_floyd.hpp
     title: graph/warshall_floyd.hpp
   _extendedVerifiedWith:
@@ -168,19 +168,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
     title: test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_B_bellmanford.test.cpp
     title: test/aoj/GRL_1_B_bellmanford.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_C_warshallfloyd.test.cpp
     title: test/aoj/GRL_1_C_warshallfloyd.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A_mst.test.cpp
     title: test/aoj/GRL_2_A_mst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
     title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRO_3_A_articulation.test.cpp
     title: test/aoj/GRO_3_A_articulation.test.cpp
   - icon: ':x:'
@@ -219,9 +219,6 @@ data:
   - icon: ':x:'
     path: test/library_checker/graph/enumerate_triangles.test.cpp
     title: test/library_checker/graph/enumerate_triangles.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/graph/manhattan_mst.test.cpp
-    title: test/library_checker/graph/manhattan_mst.test.cpp
   - icon: ':x:'
     path: test/library_checker/graph/maximum_independent_set.test.cpp
     title: test/library_checker/graph/maximum_independent_set.test.cpp
@@ -386,6 +383,7 @@ data:
   isVerificationFile: false
   path: graph/base.hpp
   requiredBy:
+  - geo_old/manhattan_mst.hpp
   - graph/minimum_hamiltonian_cycle.hpp
   - graph/tree_all_distances.hpp
   - graph/toposort.hpp
@@ -433,7 +431,6 @@ data:
   - graph/hld.hpp
   - graph/dial.hpp
   - flow/bipartite.hpp
-  - geo/manhattan_mst.hpp
   timestamp: '2022-08-18 17:59:01+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -463,7 +460,6 @@ data:
   - test/library_checker/graph/two_edge_component.test.cpp
   - test/library_checker/graph/enumerate_triangles.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
-  - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/graph/cycle_detection.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/verted_add_contour_sum.test.cpp

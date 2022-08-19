@@ -8,13 +8,10 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/library_checker/graph/manhattan_mst.test.cpp
-    title: test/library_checker/graph/manhattan_mst.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -61,7 +58,7 @@ data:
     \ = 0;\n    par[y] = x;\n    return true;\n  }\n\n  std::vector<int> find_all()\
     \ {\n    std::vector<int> A(n);\n    for (int i = 0; i < n; ++i) A[i] = find(i);\n\
     \    return A;\n  }\n\n  void reset() {\n    n_comp = n;\n    size.assign(n, 1);\n\
-    \    std::iota(par.begin(), par.end(), 0);\n  }\n};\n#line 3 \"geo/manhattan_mst.hpp\"\
+    \    std::iota(par.begin(), par.end(), 0);\n  }\n};\n#line 3 \"geo_old/manhattan_mst.hpp\"\
     \n\ntemplate <typename T>\nGraph<T, 0> Manhattan_MST(vc<pair<T, T>>& XY) {\n \
     \ int N = XY.size();\n  vc<tuple<T, int, int>> dat;\n  dat.reserve(4 * N);\n \
     \ vc<int> idx(N);\n  iota(all(idx), 0);\n\n  FOR(a, 2) {\n    for (auto&& [x,\
@@ -95,16 +92,15 @@ data:
   - graph/base.hpp
   - ds/unionfind.hpp
   isVerificationFile: false
-  path: geo/manhattan_mst.hpp
+  path: geo_old/manhattan_mst.hpp
   requiredBy: []
-  timestamp: '2022-08-18 17:59:01+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/library_checker/graph/manhattan_mst.test.cpp
-documentation_of: geo/manhattan_mst.hpp
+  timestamp: '2022-08-20 04:25:36+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: geo_old/manhattan_mst.hpp
 layout: document
 redirect_from:
-- /library/geo/manhattan_mst.hpp
-- /library/geo/manhattan_mst.hpp.html
-title: geo/manhattan_mst.hpp
+- /library/geo_old/manhattan_mst.hpp
+- /library/geo_old/manhattan_mst.hpp.html
+title: geo_old/manhattan_mst.hpp
 ---
