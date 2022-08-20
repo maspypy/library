@@ -66,7 +66,10 @@ int count_cross(Segment<T> S1, Segment<T> S2) {
 }
 
 // 唯一の交点を持つことを仮定
+// 唯一の交点を持つことを仮定
 template <typename REAL, typename T>
-Point<REAL> cross_point(const Segment<T> S1, const Segment<T> S2) {
-  return cross_point(S1.to_Line(), S2.to_Line());
+Point<REAL> cross_point(Segment<T> S1, Segment<T> S2) {
+  Line<T> L1 = S1.to_Line();
+  Line<T> L2 = S2.to_Line();
+  return cross_point<REAL, T>(L1, L2);
 }
