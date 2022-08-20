@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
   - icon: ':heavy_check_mark:'
@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: graph/degree.hpp
     title: graph/degree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/dijkstra.hpp
     title: graph/dijkstra.hpp
   - icon: ':heavy_check_mark:'

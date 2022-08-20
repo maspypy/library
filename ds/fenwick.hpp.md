@@ -14,13 +14,13 @@ data:
   - icon: ':warning:'
     path: ds/point_add_polygon_sum.hpp
     title: ds/point_add_polygon_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/point_add_rectangle_sum.hpp
     title: ds/point_add_rectangle_sum.hpp
   - icon: ':heavy_check_mark:'
     path: ds/rectangle_add_point_sum.hpp
     title: ds/rectangle_add_point_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/rectangle_add_ractangle_sum.hpp
     title: ds/rectangle_add_ractangle_sum.hpp
   - icon: ':heavy_check_mark:'
@@ -69,13 +69,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1038_centroid.test.cpp
     title: test/yukicoder/1038_centroid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1326_bct.test.cpp
     title: test/yukicoder/1326_bct.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1490_rect_add_rect_sum.test.cpp
     title: test/yukicoder/1490_rect_add_rect_sum.test.cpp
   - icon: ':x:'

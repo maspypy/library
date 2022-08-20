@@ -23,7 +23,7 @@ data:
   - icon: ':warning:'
     path: poly/convolution2d.hpp
     title: poly/convolution2d.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
   - icon: ':heavy_check_mark:'
@@ -35,16 +35,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_composition.hpp
     title: poly/fps_composition.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -80,7 +80,7 @@ data:
   - icon: ':warning:'
     path: poly/sum_of_prefix_suffix_products.hpp
     title: poly/sum_of_prefix_suffix_products.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
   - icon: ':warning:'
@@ -104,13 +104,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/stirling_number_1.hpp
     title: seq/stirling_number_1.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/stirling_number_2.hpp
     title: seq/stirling_number_2.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/surjection.hpp
     title: seq/surjection.hpp
   _extendedVerifiedWith:
@@ -342,19 +342,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1141_cumsum2d.test.cpp
     title: test/yukicoder/1141_cumsum2d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1145_sum_of_powers.test.cpp
     title: test/yukicoder/1145_sum_of_powers.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1269_aho.test.cpp
     title: test/yukicoder/1269_aho.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1321_surj.test.cpp
     title: test/yukicoder/1321_surj.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1339_discrete_log.test.cpp
     title: test/yukicoder/1339_discrete_log.test.cpp
   - icon: ':x:'

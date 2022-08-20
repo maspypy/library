@@ -7,17 +7,17 @@ data:
   - icon: ':question:'
     path: graph/bfs01.hpp
     title: graph/bfs01.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/dijkstra.hpp
     title: graph/dijkstra.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1320_mincostcycle.test.cpp
     title: test/yukicoder/1320_mincostcycle.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -115,7 +115,7 @@ data:
   path: graph/mincostcycle.hpp
   requiredBy: []
   timestamp: '2022-08-18 17:59:01+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1320_mincostcycle.test.cpp
 documentation_of: graph/mincostcycle.hpp

@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/rerooting_dp.hpp
     title: graph/rerooting_dp.hpp
   - icon: ':warning:'
@@ -84,13 +84,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/lca_directed.test.cpp
     title: test/library_checker/tree/lca_directed.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1326_bct.test.cpp
     title: test/yukicoder/1326_bct.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1418_rerooting.test.cpp
     title: test/yukicoder/1418_rerooting.test.cpp
   - icon: ':x:'

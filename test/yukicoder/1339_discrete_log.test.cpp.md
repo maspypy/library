@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/group_mul.hpp
     title: alg/group_mul.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'
@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/discrete_log.hpp
     title: other/discrete_log.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1339
@@ -372,7 +372,7 @@ data:
   path: test/yukicoder/1339_discrete_log.test.cpp
   requiredBy: []
   timestamp: '2022-08-20 05:21:32+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/1339_discrete_log.test.cpp
 layout: document

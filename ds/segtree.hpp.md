@@ -60,7 +60,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036_seg_maxright_minleft.test.cpp
     title: test/yukicoder/1036_seg_maxright_minleft.test.cpp
   - icon: ':x:'
