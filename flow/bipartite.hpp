@@ -9,9 +9,20 @@ struct BipartiteMatching {
   vc<int> dist, match;
   vc<int> vis;
 
-  BipartiteMatching(Graph& G) : G(G), N(G.N), dist(G.N, -1), match(G.N, -1) {
+  BipartiteMatching(Graph& G) : N(G.N), G(G), dist(G.N, -1), match(G.N, -1) {
     color = check_bipartite(G);
     assert(!color.empty());
+    while (1) {
+      bfs();
+      vis.assign(N, false);
+      int flow = 0;
+      FOR(v, N) if (!color[v] && match[v] == -1 && dfs(v))++ flow;
+      if (!flow) break;
+    }
+  }
+
+  BipartiteMatching(Graph& G, vc<int> color)
+      : N(G.N), G(G), color(color), dist(G.N, -1), match(G.N, -1) {
     while (1) {
       bfs();
       vis.assign(N, false);
@@ -56,17 +67,13 @@ struct BipartiteMatching {
 
   vc<int> vertex_cover() {
     vc<int> res;
-    FOR(v, N) if (color[v] ^ (dist[v] == -1)) {
-      res.eb(v);
-    }
+    FOR(v, N) if (color[v] ^ (dist[v] == -1)) { res.eb(v); }
     return res;
   }
 
   vc<int> independent_set() {
     vc<int> res;
-    FOR(v, N) if (!(color[v] ^ (dist[v] == -1))) {
-      res.eb(v);
-    }
+    FOR(v, N) if (!(color[v] ^ (dist[v] == -1))) { res.eb(v); }
     return res;
   }
 
