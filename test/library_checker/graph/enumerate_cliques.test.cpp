@@ -5,6 +5,7 @@
 #include "graph/base.hpp"
 #include "graph/degree.hpp"
 #include "mod/modint.hpp"
+#include "graph/enumerate_cliques.hpp"
 
 using mint = modint998;
 
