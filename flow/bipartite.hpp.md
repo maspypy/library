@@ -93,14 +93,18 @@ data:
     \ color;\r\n}\r\n#line 3 \"flow/bipartite.hpp\"\n\r\ntemplate <typename Graph>\r\
     \nstruct BipartiteMatching {\r\n  int N;\r\n  Graph& G;\r\n  vc<int> color;\r\n\
     \  vc<int> dist, match;\r\n  vc<int> vis;\r\n\r\n  BipartiteMatching(Graph& G)\
-    \ : G(G), N(G.N), dist(G.N, -1), match(G.N, -1) {\r\n    color = check_bipartite(G);\r\
+    \ : N(G.N), G(G), dist(G.N, -1), match(G.N, -1) {\r\n    color = check_bipartite(G);\r\
     \n    assert(!color.empty());\r\n    while (1) {\r\n      bfs();\r\n      vis.assign(N,\
     \ false);\r\n      int flow = 0;\r\n      FOR(v, N) if (!color[v] && match[v]\
     \ == -1 && dfs(v))++ flow;\r\n      if (!flow) break;\r\n    }\r\n  }\r\n\r\n\
-    \  void bfs() {\r\n    dist.assign(N, -1);\r\n    queue<int> que;\r\n    FOR(v,\
-    \ N) if (!color[v] && match[v] == -1) que.emplace(v), dist[v] = 0;\r\n    while\
-    \ (!que.empty()) {\r\n      int v = que.front();\r\n      que.pop();\r\n     \
-    \ for (auto&& e: G[v]) {\r\n        dist[e.to] = 0;\r\n        int w = match[e.to];\r\
+    \  BipartiteMatching(Graph& G, vc<int> color)\r\n      : N(G.N), G(G), color(color),\
+    \ dist(G.N, -1), match(G.N, -1) {\r\n    while (1) {\r\n      bfs();\r\n     \
+    \ vis.assign(N, false);\r\n      int flow = 0;\r\n      FOR(v, N) if (!color[v]\
+    \ && match[v] == -1 && dfs(v))++ flow;\r\n      if (!flow) break;\r\n    }\r\n\
+    \  }\r\n\r\n  void bfs() {\r\n    dist.assign(N, -1);\r\n    queue<int> que;\r\
+    \n    FOR(v, N) if (!color[v] && match[v] == -1) que.emplace(v), dist[v] = 0;\r\
+    \n    while (!que.empty()) {\r\n      int v = que.front();\r\n      que.pop();\r\
+    \n      for (auto&& e: G[v]) {\r\n        dist[e.to] = 0;\r\n        int w = match[e.to];\r\
     \n        if (w != -1 && dist[w] == -1) dist[w] = dist[v] + 1, que.emplace(w);\r\
     \n      }\r\n    }\r\n  }\r\n\r\n  bool dfs(int v) {\r\n    vis[v] = 1;\r\n  \
     \  for (auto&& e: G[v]) {\r\n      int w = match[e.to];\r\n      if (w == -1 ||\
@@ -109,46 +113,50 @@ data:
     \n  }\r\n\r\n  vc<pair<int, int>> matching() {\r\n    vc<pair<int, int>> res;\r\
     \n    FOR(v, N) if (v < match[v]) res.eb(v, match[v]);\r\n    return res;\r\n\
     \  }\r\n\r\n  vc<int> vertex_cover() {\r\n    vc<int> res;\r\n    FOR(v, N) if\
-    \ (color[v] ^ (dist[v] == -1)) {\r\n      res.eb(v);\r\n    }\r\n    return res;\r\
-    \n  }\r\n\r\n  vc<int> independent_set() {\r\n    vc<int> res;\r\n    FOR(v, N)\
-    \ if (!(color[v] ^ (dist[v] == -1))) {\r\n      res.eb(v);\r\n    }\r\n    return\
-    \ res;\r\n  }\r\n\r\n  vc<int> edge_cover() {\r\n    vc<bool> done(N);\r\n   \
-    \ vc<int> res;\r\n    for (auto&& e: G.edges) {\r\n      if (done[e.frm] || done[e.to])\
-    \ continue;\r\n      if (match[e.frm] == e.to) {\r\n        res.eb(e.id);\r\n\
-    \        done[e.frm] = done[e.to] = 1;\r\n      }\r\n    }\r\n    for (auto&&\
-    \ e: G.edges) {\r\n      if (!done[e.frm]) {\r\n        res.eb(e.id);\r\n    \
-    \    done[e.frm] = 1;\r\n      }\r\n      if (!done[e.to]) {\r\n        res.eb(e.id);\r\
-    \n        done[e.to] = 1;\r\n      }\r\n    }\r\n    sort(all(res));\r\n    return\
-    \ res;\r\n  }\r\n\r\n  void debug() {\r\n    print(\"match\", match);\r\n    print(\"\
-    min vertex covor\", vertex_cover());\r\n    print(\"max indep set\", independent_set());\r\
-    \n    print(\"min edge cover\", edge_cover());\r\n  }\r\n};\n"
+    \ (color[v] ^ (dist[v] == -1)) { res.eb(v); }\r\n    return res;\r\n  }\r\n\r\n\
+    \  vc<int> independent_set() {\r\n    vc<int> res;\r\n    FOR(v, N) if (!(color[v]\
+    \ ^ (dist[v] == -1))) { res.eb(v); }\r\n    return res;\r\n  }\r\n\r\n  vc<int>\
+    \ edge_cover() {\r\n    vc<bool> done(N);\r\n    vc<int> res;\r\n    for (auto&&\
+    \ e: G.edges) {\r\n      if (done[e.frm] || done[e.to]) continue;\r\n      if\
+    \ (match[e.frm] == e.to) {\r\n        res.eb(e.id);\r\n        done[e.frm] = done[e.to]\
+    \ = 1;\r\n      }\r\n    }\r\n    for (auto&& e: G.edges) {\r\n      if (!done[e.frm])\
+    \ {\r\n        res.eb(e.id);\r\n        done[e.frm] = 1;\r\n      }\r\n      if\
+    \ (!done[e.to]) {\r\n        res.eb(e.id);\r\n        done[e.to] = 1;\r\n    \
+    \  }\r\n    }\r\n    sort(all(res));\r\n    return res;\r\n  }\r\n\r\n  void debug()\
+    \ {\r\n    print(\"match\", match);\r\n    print(\"min vertex covor\", vertex_cover());\r\
+    \n    print(\"max indep set\", independent_set());\r\n    print(\"min edge cover\"\
+    , edge_cover());\r\n  }\r\n};\n"
   code: "#include \"graph/base.hpp\"\r\n#include \"graph/check_bipartite.hpp\"\r\n\
     \r\ntemplate <typename Graph>\r\nstruct BipartiteMatching {\r\n  int N;\r\n  Graph&\
     \ G;\r\n  vc<int> color;\r\n  vc<int> dist, match;\r\n  vc<int> vis;\r\n\r\n \
-    \ BipartiteMatching(Graph& G) : G(G), N(G.N), dist(G.N, -1), match(G.N, -1) {\r\
+    \ BipartiteMatching(Graph& G) : N(G.N), G(G), dist(G.N, -1), match(G.N, -1) {\r\
     \n    color = check_bipartite(G);\r\n    assert(!color.empty());\r\n    while\
     \ (1) {\r\n      bfs();\r\n      vis.assign(N, false);\r\n      int flow = 0;\r\
     \n      FOR(v, N) if (!color[v] && match[v] == -1 && dfs(v))++ flow;\r\n     \
-    \ if (!flow) break;\r\n    }\r\n  }\r\n\r\n  void bfs() {\r\n    dist.assign(N,\
-    \ -1);\r\n    queue<int> que;\r\n    FOR(v, N) if (!color[v] && match[v] == -1)\
-    \ que.emplace(v), dist[v] = 0;\r\n    while (!que.empty()) {\r\n      int v =\
-    \ que.front();\r\n      que.pop();\r\n      for (auto&& e: G[v]) {\r\n       \
-    \ dist[e.to] = 0;\r\n        int w = match[e.to];\r\n        if (w != -1 && dist[w]\
-    \ == -1) dist[w] = dist[v] + 1, que.emplace(w);\r\n      }\r\n    }\r\n  }\r\n\
-    \r\n  bool dfs(int v) {\r\n    vis[v] = 1;\r\n    for (auto&& e: G[v]) {\r\n \
-    \     int w = match[e.to];\r\n      if (w == -1 || (!vis[w] && dist[w] == dist[v]\
-    \ + 1 && dfs(w))) {\r\n        match[e.to] = v, match[v] = e.to;\r\n        return\
-    \ true;\r\n      }\r\n    }\r\n    return false;\r\n  }\r\n\r\n  vc<pair<int,\
-    \ int>> matching() {\r\n    vc<pair<int, int>> res;\r\n    FOR(v, N) if (v < match[v])\
-    \ res.eb(v, match[v]);\r\n    return res;\r\n  }\r\n\r\n  vc<int> vertex_cover()\
-    \ {\r\n    vc<int> res;\r\n    FOR(v, N) if (color[v] ^ (dist[v] == -1)) {\r\n\
-    \      res.eb(v);\r\n    }\r\n    return res;\r\n  }\r\n\r\n  vc<int> independent_set()\
-    \ {\r\n    vc<int> res;\r\n    FOR(v, N) if (!(color[v] ^ (dist[v] == -1))) {\r\
-    \n      res.eb(v);\r\n    }\r\n    return res;\r\n  }\r\n\r\n  vc<int> edge_cover()\
-    \ {\r\n    vc<bool> done(N);\r\n    vc<int> res;\r\n    for (auto&& e: G.edges)\
-    \ {\r\n      if (done[e.frm] || done[e.to]) continue;\r\n      if (match[e.frm]\
-    \ == e.to) {\r\n        res.eb(e.id);\r\n        done[e.frm] = done[e.to] = 1;\r\
-    \n      }\r\n    }\r\n    for (auto&& e: G.edges) {\r\n      if (!done[e.frm])\
+    \ if (!flow) break;\r\n    }\r\n  }\r\n\r\n  BipartiteMatching(Graph& G, vc<int>\
+    \ color)\r\n      : N(G.N), G(G), color(color), dist(G.N, -1), match(G.N, -1)\
+    \ {\r\n    while (1) {\r\n      bfs();\r\n      vis.assign(N, false);\r\n    \
+    \  int flow = 0;\r\n      FOR(v, N) if (!color[v] && match[v] == -1 && dfs(v))++\
+    \ flow;\r\n      if (!flow) break;\r\n    }\r\n  }\r\n\r\n  void bfs() {\r\n \
+    \   dist.assign(N, -1);\r\n    queue<int> que;\r\n    FOR(v, N) if (!color[v]\
+    \ && match[v] == -1) que.emplace(v), dist[v] = 0;\r\n    while (!que.empty())\
+    \ {\r\n      int v = que.front();\r\n      que.pop();\r\n      for (auto&& e:\
+    \ G[v]) {\r\n        dist[e.to] = 0;\r\n        int w = match[e.to];\r\n     \
+    \   if (w != -1 && dist[w] == -1) dist[w] = dist[v] + 1, que.emplace(w);\r\n \
+    \     }\r\n    }\r\n  }\r\n\r\n  bool dfs(int v) {\r\n    vis[v] = 1;\r\n    for\
+    \ (auto&& e: G[v]) {\r\n      int w = match[e.to];\r\n      if (w == -1 || (!vis[w]\
+    \ && dist[w] == dist[v] + 1 && dfs(w))) {\r\n        match[e.to] = v, match[v]\
+    \ = e.to;\r\n        return true;\r\n      }\r\n    }\r\n    return false;\r\n\
+    \  }\r\n\r\n  vc<pair<int, int>> matching() {\r\n    vc<pair<int, int>> res;\r\
+    \n    FOR(v, N) if (v < match[v]) res.eb(v, match[v]);\r\n    return res;\r\n\
+    \  }\r\n\r\n  vc<int> vertex_cover() {\r\n    vc<int> res;\r\n    FOR(v, N) if\
+    \ (color[v] ^ (dist[v] == -1)) { res.eb(v); }\r\n    return res;\r\n  }\r\n\r\n\
+    \  vc<int> independent_set() {\r\n    vc<int> res;\r\n    FOR(v, N) if (!(color[v]\
+    \ ^ (dist[v] == -1))) { res.eb(v); }\r\n    return res;\r\n  }\r\n\r\n  vc<int>\
+    \ edge_cover() {\r\n    vc<bool> done(N);\r\n    vc<int> res;\r\n    for (auto&&\
+    \ e: G.edges) {\r\n      if (done[e.frm] || done[e.to]) continue;\r\n      if\
+    \ (match[e.frm] == e.to) {\r\n        res.eb(e.id);\r\n        done[e.frm] = done[e.to]\
+    \ = 1;\r\n      }\r\n    }\r\n    for (auto&& e: G.edges) {\r\n      if (!done[e.frm])\
     \ {\r\n        res.eb(e.id);\r\n        done[e.frm] = 1;\r\n      }\r\n      if\
     \ (!done[e.to]) {\r\n        res.eb(e.id);\r\n        done[e.to] = 1;\r\n    \
     \  }\r\n    }\r\n    sort(all(res));\r\n    return res;\r\n  }\r\n\r\n  void debug()\
@@ -164,7 +172,7 @@ data:
   requiredBy:
   - graph/dag_path_cover.hpp
   - graph/maximum_antichain.hpp
-  timestamp: '2022-08-18 17:59:01+09:00'
+  timestamp: '2022-08-20 20:02:34+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1479_bipartite_vertex_cover.test.cpp

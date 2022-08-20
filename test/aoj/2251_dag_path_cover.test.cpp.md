@@ -292,14 +292,18 @@ data:
     \ color;\r\n}\r\n#line 3 \"flow/bipartite.hpp\"\n\r\ntemplate <typename Graph>\r\
     \nstruct BipartiteMatching {\r\n  int N;\r\n  Graph& G;\r\n  vc<int> color;\r\n\
     \  vc<int> dist, match;\r\n  vc<int> vis;\r\n\r\n  BipartiteMatching(Graph& G)\
-    \ : G(G), N(G.N), dist(G.N, -1), match(G.N, -1) {\r\n    color = check_bipartite(G);\r\
+    \ : N(G.N), G(G), dist(G.N, -1), match(G.N, -1) {\r\n    color = check_bipartite(G);\r\
     \n    assert(!color.empty());\r\n    while (1) {\r\n      bfs();\r\n      vis.assign(N,\
     \ false);\r\n      int flow = 0;\r\n      FOR(v, N) if (!color[v] && match[v]\
     \ == -1 && dfs(v))++ flow;\r\n      if (!flow) break;\r\n    }\r\n  }\r\n\r\n\
-    \  void bfs() {\r\n    dist.assign(N, -1);\r\n    queue<int> que;\r\n    FOR(v,\
-    \ N) if (!color[v] && match[v] == -1) que.emplace(v), dist[v] = 0;\r\n    while\
-    \ (!que.empty()) {\r\n      int v = que.front();\r\n      que.pop();\r\n     \
-    \ for (auto&& e: G[v]) {\r\n        dist[e.to] = 0;\r\n        int w = match[e.to];\r\
+    \  BipartiteMatching(Graph& G, vc<int> color)\r\n      : N(G.N), G(G), color(color),\
+    \ dist(G.N, -1), match(G.N, -1) {\r\n    while (1) {\r\n      bfs();\r\n     \
+    \ vis.assign(N, false);\r\n      int flow = 0;\r\n      FOR(v, N) if (!color[v]\
+    \ && match[v] == -1 && dfs(v))++ flow;\r\n      if (!flow) break;\r\n    }\r\n\
+    \  }\r\n\r\n  void bfs() {\r\n    dist.assign(N, -1);\r\n    queue<int> que;\r\
+    \n    FOR(v, N) if (!color[v] && match[v] == -1) que.emplace(v), dist[v] = 0;\r\
+    \n    while (!que.empty()) {\r\n      int v = que.front();\r\n      que.pop();\r\
+    \n      for (auto&& e: G[v]) {\r\n        dist[e.to] = 0;\r\n        int w = match[e.to];\r\
     \n        if (w != -1 && dist[w] == -1) dist[w] = dist[v] + 1, que.emplace(w);\r\
     \n      }\r\n    }\r\n  }\r\n\r\n  bool dfs(int v) {\r\n    vis[v] = 1;\r\n  \
     \  for (auto&& e: G[v]) {\r\n      int w = match[e.to];\r\n      if (w == -1 ||\
@@ -308,50 +312,49 @@ data:
     \n  }\r\n\r\n  vc<pair<int, int>> matching() {\r\n    vc<pair<int, int>> res;\r\
     \n    FOR(v, N) if (v < match[v]) res.eb(v, match[v]);\r\n    return res;\r\n\
     \  }\r\n\r\n  vc<int> vertex_cover() {\r\n    vc<int> res;\r\n    FOR(v, N) if\
-    \ (color[v] ^ (dist[v] == -1)) {\r\n      res.eb(v);\r\n    }\r\n    return res;\r\
-    \n  }\r\n\r\n  vc<int> independent_set() {\r\n    vc<int> res;\r\n    FOR(v, N)\
-    \ if (!(color[v] ^ (dist[v] == -1))) {\r\n      res.eb(v);\r\n    }\r\n    return\
-    \ res;\r\n  }\r\n\r\n  vc<int> edge_cover() {\r\n    vc<bool> done(N);\r\n   \
-    \ vc<int> res;\r\n    for (auto&& e: G.edges) {\r\n      if (done[e.frm] || done[e.to])\
-    \ continue;\r\n      if (match[e.frm] == e.to) {\r\n        res.eb(e.id);\r\n\
-    \        done[e.frm] = done[e.to] = 1;\r\n      }\r\n    }\r\n    for (auto&&\
-    \ e: G.edges) {\r\n      if (!done[e.frm]) {\r\n        res.eb(e.id);\r\n    \
-    \    done[e.frm] = 1;\r\n      }\r\n      if (!done[e.to]) {\r\n        res.eb(e.id);\r\
-    \n        done[e.to] = 1;\r\n      }\r\n    }\r\n    sort(all(res));\r\n    return\
-    \ res;\r\n  }\r\n\r\n  void debug() {\r\n    print(\"match\", match);\r\n    print(\"\
-    min vertex covor\", vertex_cover());\r\n    print(\"max indep set\", independent_set());\r\
-    \n    print(\"min edge cover\", edge_cover());\r\n  }\r\n};\n#line 2 \"graph/degree.hpp\"\
-    \n\r\ntemplate <typename Graph>\r\nvector<int> degree(Graph& G) {\r\n  vector<int>\
-    \ deg(G.N);\r\n  for(auto&& e : G.edges) deg[e.frm]++, deg[e.to]++;\r\n  return\
-    \ deg;\r\n}\r\n\r\ntemplate <typename Graph>\r\npair<vector<int>, vector<int>>\
-    \ degree_inout(Graph& G) {\r\n  vector<int> indeg(G.N), outdeg(G.N);\r\n  for\
-    \ (auto&& e: G.edges) { indeg[e.to]++, outdeg[e.frm]++; }\r\n  return {indeg,\
-    \ outdeg};\r\n}\r\n#line 3 \"graph/toposort.hpp\"\n\n// DAG \u3058\u3083\u306A\
-    \u304B\u3063\u305F\u3089\u7A7A\u914D\u5217\n// \u8F9E\u66F8\u9806\u6700\u5C0F\u3082\
-    \u3067\u304D\u308B\uFF1AO(NlogN) \u2192 abc223\ntemplate <typename Graph>\nvc<int>\
-    \ toposort(Graph& G, bool lex_min = false) {\n  assert(G.is_prepared());\n  assert(G.is_directed());\n\
-    \  auto [indeg, outdeg] = degree_inout(G);\n  if (!lex_min) {\n    vc<int> V;\n\
-    \    ll N = G.N;\n    FOR(v, N) if (indeg[v] == 0) V.eb(v);\n    ll p = 0;\n \
-    \   while (p < len(V)) {\n      auto v = V[p++];\n      for (auto&& e: G[v]) {\n\
-    \        if (--indeg[e.to] == 0) V.eb(e.to);\n      }\n    }\n    if (len(V) <\
-    \ N) { V.clear(); }\n    return V;\n  } else {\n    pqg<int> que;\n    vc<int>\
-    \ V;\n    ll N = G.N;\n    FOR(v, N) if (indeg[v] == 0) que.push(v);\n    while\
-    \ (len(que)) {\n      auto v = que.top();\n      que.pop();\n      V.eb(v);\n\
-    \      for (auto&& e: G[v]) {\n        if (--indeg[e.to] == 0) que.push(e.to);\n\
-    \      }\n    }\n    if (len(V) < N) { V.clear(); }\n    return V;\n  }\n}\n\n\
-    // https://codeforces.com/contest/798/problem/E\n// toposort \u306E\u5019\u88DC\
-    \u3092\u3072\u3068\u3064\u51FA\u529B\u3059\u308B\u3002\u30C1\u30A7\u30C3\u30AF\
-    \u306F\u3057\u306A\u3044\u3002\n// \u967D\u306B\u30B0\u30E9\u30D5\u3092\u4F5C\u3089\
-    \u305A\u3001\u4F55\u3089\u304B\u306E\u30C7\u30FC\u30BF\u69CB\u9020\u3067\u672A\
-    \u8A2A\u554F\u306E\u884C\u304D\u5148\u3092\u63A2\u3059\u60F3\u5B9A\u3002\n// set_used(v)\uFF1A\
-    v \u3092\u4F7F\u7528\u6E08\u306B\u5909\u66F4\u3059\u308B\n// find_unused(v)\uFF1A\
-    v \u306E\u884C\u304D\u5148\u3092\u63A2\u3059\u3002\u306A\u3051\u308C\u3070 -1\
-    \ \u3092\u8FD4\u3059\u3053\u3068\u3002\ntemplate <typename F1, typename F2>\n\
-    vc<int> toposort(int N, F1 set_used, F2 find_unused) {\n  vc<int> V;\n  vc<bool>\
-    \ done(N);\n  auto dfs = [&](auto self, ll v) -> void {\n    set_used(v);\n  \
-    \  done[v] = 1;\n    while (1) {\n      int to = find_unused(v);\n      if (to\
-    \ == -1) break;\n      self(self, to);\n    }\n    V.eb(v);\n  };\n  FOR(v, N)\
-    \ if (!done[v]) dfs(dfs, v);\n  return V;\n}\n#line 3 \"graph/dag_path_cover.hpp\"\
+    \ (color[v] ^ (dist[v] == -1)) { res.eb(v); }\r\n    return res;\r\n  }\r\n\r\n\
+    \  vc<int> independent_set() {\r\n    vc<int> res;\r\n    FOR(v, N) if (!(color[v]\
+    \ ^ (dist[v] == -1))) { res.eb(v); }\r\n    return res;\r\n  }\r\n\r\n  vc<int>\
+    \ edge_cover() {\r\n    vc<bool> done(N);\r\n    vc<int> res;\r\n    for (auto&&\
+    \ e: G.edges) {\r\n      if (done[e.frm] || done[e.to]) continue;\r\n      if\
+    \ (match[e.frm] == e.to) {\r\n        res.eb(e.id);\r\n        done[e.frm] = done[e.to]\
+    \ = 1;\r\n      }\r\n    }\r\n    for (auto&& e: G.edges) {\r\n      if (!done[e.frm])\
+    \ {\r\n        res.eb(e.id);\r\n        done[e.frm] = 1;\r\n      }\r\n      if\
+    \ (!done[e.to]) {\r\n        res.eb(e.id);\r\n        done[e.to] = 1;\r\n    \
+    \  }\r\n    }\r\n    sort(all(res));\r\n    return res;\r\n  }\r\n\r\n  void debug()\
+    \ {\r\n    print(\"match\", match);\r\n    print(\"min vertex covor\", vertex_cover());\r\
+    \n    print(\"max indep set\", independent_set());\r\n    print(\"min edge cover\"\
+    , edge_cover());\r\n  }\r\n};\n#line 2 \"graph/degree.hpp\"\n\r\ntemplate <typename\
+    \ Graph>\r\nvector<int> degree(Graph& G) {\r\n  vector<int> deg(G.N);\r\n  for(auto&&\
+    \ e : G.edges) deg[e.frm]++, deg[e.to]++;\r\n  return deg;\r\n}\r\n\r\ntemplate\
+    \ <typename Graph>\r\npair<vector<int>, vector<int>> degree_inout(Graph& G) {\r\
+    \n  vector<int> indeg(G.N), outdeg(G.N);\r\n  for (auto&& e: G.edges) { indeg[e.to]++,\
+    \ outdeg[e.frm]++; }\r\n  return {indeg, outdeg};\r\n}\r\n#line 3 \"graph/toposort.hpp\"\
+    \n\n// DAG \u3058\u3083\u306A\u304B\u3063\u305F\u3089\u7A7A\u914D\u5217\n// \u8F9E\
+    \u66F8\u9806\u6700\u5C0F\u3082\u3067\u304D\u308B\uFF1AO(NlogN) \u2192 abc223\n\
+    template <typename Graph>\nvc<int> toposort(Graph& G, bool lex_min = false) {\n\
+    \  assert(G.is_prepared());\n  assert(G.is_directed());\n  auto [indeg, outdeg]\
+    \ = degree_inout(G);\n  if (!lex_min) {\n    vc<int> V;\n    ll N = G.N;\n   \
+    \ FOR(v, N) if (indeg[v] == 0) V.eb(v);\n    ll p = 0;\n    while (p < len(V))\
+    \ {\n      auto v = V[p++];\n      for (auto&& e: G[v]) {\n        if (--indeg[e.to]\
+    \ == 0) V.eb(e.to);\n      }\n    }\n    if (len(V) < N) { V.clear(); }\n    return\
+    \ V;\n  } else {\n    pqg<int> que;\n    vc<int> V;\n    ll N = G.N;\n    FOR(v,\
+    \ N) if (indeg[v] == 0) que.push(v);\n    while (len(que)) {\n      auto v = que.top();\n\
+    \      que.pop();\n      V.eb(v);\n      for (auto&& e: G[v]) {\n        if (--indeg[e.to]\
+    \ == 0) que.push(e.to);\n      }\n    }\n    if (len(V) < N) { V.clear(); }\n\
+    \    return V;\n  }\n}\n\n// https://codeforces.com/contest/798/problem/E\n//\
+    \ toposort \u306E\u5019\u88DC\u3092\u3072\u3068\u3064\u51FA\u529B\u3059\u308B\u3002\
+    \u30C1\u30A7\u30C3\u30AF\u306F\u3057\u306A\u3044\u3002\n// \u967D\u306B\u30B0\u30E9\
+    \u30D5\u3092\u4F5C\u3089\u305A\u3001\u4F55\u3089\u304B\u306E\u30C7\u30FC\u30BF\
+    \u69CB\u9020\u3067\u672A\u8A2A\u554F\u306E\u884C\u304D\u5148\u3092\u63A2\u3059\
+    \u60F3\u5B9A\u3002\n// set_used(v)\uFF1Av \u3092\u4F7F\u7528\u6E08\u306B\u5909\
+    \u66F4\u3059\u308B\n// find_unused(v)\uFF1Av \u306E\u884C\u304D\u5148\u3092\u63A2\
+    \u3059\u3002\u306A\u3051\u308C\u3070 -1 \u3092\u8FD4\u3059\u3053\u3068\u3002\n\
+    template <typename F1, typename F2>\nvc<int> toposort(int N, F1 set_used, F2 find_unused)\
+    \ {\n  vc<int> V;\n  vc<bool> done(N);\n  auto dfs = [&](auto self, ll v) -> void\
+    \ {\n    set_used(v);\n    done[v] = 1;\n    while (1) {\n      int to = find_unused(v);\n\
+    \      if (to == -1) break;\n      self(self, to);\n    }\n    V.eb(v);\n  };\n\
+    \  FOR(v, N) if (!done[v]) dfs(dfs, v);\n  return V;\n}\n#line 3 \"graph/dag_path_cover.hpp\"\
     \n\n// path \uFF08\u9802\u70B9\u5217\uFF09\u306E vector \u3092\u8FD4\u3059 O(m\
     \ sqrt(n))\ntemplate <typename DAG>\nvc<vc<int>> dag_path_cover(DAG& G) {\n  assert(G.is_directed());\n\
     \  int n = G.N;\n  auto V = toposort(G);\n  vc<int> idx(n);\n  FOR(i, n) idx[V[i]]\
@@ -399,7 +402,7 @@ data:
   isVerificationFile: true
   path: test/aoj/2251_dag_path_cover.test.cpp
   requiredBy: []
-  timestamp: '2022-08-20 05:21:32+09:00'
+  timestamp: '2022-08-20 20:02:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/2251_dag_path_cover.test.cpp

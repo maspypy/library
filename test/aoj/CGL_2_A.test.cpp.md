@@ -218,9 +218,11 @@ data:
     \ T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B)\
     \ : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
     \ y1), Point<T>(x2, y2)) {}\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\
-    #line 8 \"test/aoj/CGL_2_A.test.cpp\"\n\nvoid solve() {\n  LL(Q);\n  FOR(Q) {\n\
-    \    LL(a, b, c, d);\n    Line<ll> A(a, b, c, d);\n    LL(e, f, g, h);\n    Line<ll>\
-    \ B(e, f, g, h);\n    bool p = A.is_parallel(B);\n    bool o = A.is_orthogonal(B);\n\
+    \ntemplate <typename T>\nstruct Circle {\n  Point<T> O;\n  T r;\n  Circle(Point<T>\
+    \ O, T r) : O(O), r(r) {}\n  Circle(T x, T y, T r) : O(Point<T>(x, y)), r(r) {}\n\
+    };\n#line 8 \"test/aoj/CGL_2_A.test.cpp\"\n\nvoid solve() {\n  LL(Q);\n  FOR(Q)\
+    \ {\n    LL(a, b, c, d);\n    Line<ll> A(a, b, c, d);\n    LL(e, f, g, h);\n \
+    \   Line<ll> B(e, f, g, h);\n    bool p = A.is_parallel(B);\n    bool o = A.is_orthogonal(B);\n\
     \    if (p) print(2);\n    elif (o) print(1);\n    else print(0);\n  }\n}\n\n\
     signed main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n\
     \  FOR(T) solve();\n\n  return 0;\n}\n"
@@ -238,7 +240,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2022-08-20 07:14:34+09:00'
+  timestamp: '2022-08-20 20:06:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_2_A.test.cpp

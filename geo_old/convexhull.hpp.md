@@ -34,27 +34,29 @@ data:
     };\n\ntemplate <typename T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T>\
     \ A, Point<T> B) : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
     \ y1), Point<T>(x2, y2)) {}\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\
-    #line 2 \"geo_old/convexhull.hpp\"\n\r\ntemplate<typename T>\r\nvector<int> ConvexHull(vector<pair<T,\
-    \ T>>& XY, string mode = \"full\",\r\n                      bool inclusive = false,\
-    \ bool sorted = false) {\r\n  assert(mode == \"full\" || mode == \"lower\" ||\
-    \ mode == \"upper\");\r\n  ll N = XY.size();\r\n  if (N == 1) return {0};\r\n\
-    \  if (N == 2) return {0, 1};\r\n  vc<int> I = argsort(XY);\r\n\r\n  auto check\
-    \ = [&](ll i, ll j, ll k) -> bool {\r\n    auto xi = XY[i].fi, yi = XY[i].se;\r\
-    \n    auto xj = XY[j].fi, yj = XY[j].se;\r\n    auto xk = XY[k].fi, yk = XY[k].se;\r\
-    \n    auto dx1 = xj - xi, dy1 = yj - yi;\r\n    auto dx2 = xk - xj, dy2 = yk -\
-    \ yj;\r\n    ll det = dx1 * dy2 - dy1 * dx2;\r\n    return (inclusive ? det >=\
-    \ 0 : det > 0);\r\n  };\r\n\r\n  auto calc = [&]() {\r\n    vector<int> P;\r\n\
-    \    for (auto&& k: I) {\r\n      while (P.size() > 1) {\r\n        auto i = P[P.size()\
-    \ - 2];\r\n        auto j = P[P.size() - 1];\r\n        if (check(i, j, k)) break;\r\
-    \n        P.pop_back();\r\n      }\r\n      P.eb(k);\r\n    }\r\n    return P;\r\
-    \n  };\r\n\r\n  vc<int> P;\r\n  if (mode == \"full\" || mode == \"lower\") {\r\
-    \n    vc<int> Q = calc();\r\n    P.insert(P.end(), all(Q));\r\n  }\r\n  if (mode\
-    \ == \"full\" || mode == \"upper\") {\r\n    if (!P.empty()) P.pop_back();\r\n\
-    \    reverse(all(I));\r\n    vc<int> Q = calc();\r\n    P.insert(P.end(), all(Q));\r\
-    \n  }\r\n  if (mode == \"upper\") reverse(all(P));\r\n  if(len(P) >= 2 && P[0]\
-    \ == P.back()) P.pop_back();\r\n  return P;\r\n}\r\n\r\ntemplate<typename X>\r\
-    \nvc<int> ConvexHull(vector<Point<X>>& XY, string mode = \"full\",\r\n       \
-    \               bool inclusive = false, bool sorted = false) {\r\n  assert(mode\
+    \ntemplate <typename T>\nstruct Circle {\n  Point<T> O;\n  T r;\n  Circle(Point<T>\
+    \ O, T r) : O(O), r(r) {}\n  Circle(T x, T y, T r) : O(Point<T>(x, y)), r(r) {}\n\
+    };\n#line 2 \"geo_old/convexhull.hpp\"\n\r\ntemplate<typename T>\r\nvector<int>\
+    \ ConvexHull(vector<pair<T, T>>& XY, string mode = \"full\",\r\n             \
+    \         bool inclusive = false, bool sorted = false) {\r\n  assert(mode == \"\
+    full\" || mode == \"lower\" || mode == \"upper\");\r\n  ll N = XY.size();\r\n\
+    \  if (N == 1) return {0};\r\n  if (N == 2) return {0, 1};\r\n  vc<int> I = argsort(XY);\r\
+    \n\r\n  auto check = [&](ll i, ll j, ll k) -> bool {\r\n    auto xi = XY[i].fi,\
+    \ yi = XY[i].se;\r\n    auto xj = XY[j].fi, yj = XY[j].se;\r\n    auto xk = XY[k].fi,\
+    \ yk = XY[k].se;\r\n    auto dx1 = xj - xi, dy1 = yj - yi;\r\n    auto dx2 = xk\
+    \ - xj, dy2 = yk - yj;\r\n    ll det = dx1 * dy2 - dy1 * dx2;\r\n    return (inclusive\
+    \ ? det >= 0 : det > 0);\r\n  };\r\n\r\n  auto calc = [&]() {\r\n    vector<int>\
+    \ P;\r\n    for (auto&& k: I) {\r\n      while (P.size() > 1) {\r\n        auto\
+    \ i = P[P.size() - 2];\r\n        auto j = P[P.size() - 1];\r\n        if (check(i,\
+    \ j, k)) break;\r\n        P.pop_back();\r\n      }\r\n      P.eb(k);\r\n    }\r\
+    \n    return P;\r\n  };\r\n\r\n  vc<int> P;\r\n  if (mode == \"full\" || mode\
+    \ == \"lower\") {\r\n    vc<int> Q = calc();\r\n    P.insert(P.end(), all(Q));\r\
+    \n  }\r\n  if (mode == \"full\" || mode == \"upper\") {\r\n    if (!P.empty())\
+    \ P.pop_back();\r\n    reverse(all(I));\r\n    vc<int> Q = calc();\r\n    P.insert(P.end(),\
+    \ all(Q));\r\n  }\r\n  if (mode == \"upper\") reverse(all(P));\r\n  if(len(P)\
+    \ >= 2 && P[0] == P.back()) P.pop_back();\r\n  return P;\r\n}\r\n\r\ntemplate<typename\
+    \ X>\r\nvc<int> ConvexHull(vector<Point<X>>& XY, string mode = \"full\",\r\n \
+    \                     bool inclusive = false, bool sorted = false) {\r\n  assert(mode\
     \ == \"full\" || mode == \"lower\" || mode == \"upper\");\r\n  ll N = XY.size();\r\
     \n  if (N == 1) return {0};\r\n  if (N == 2) return {0, 1};\r\n  vc<int> I = argsort(XY);\r\
     \n\r\n  auto check = [&](ll i, ll j, ll k) -> bool {\r\n    auto xi = XY[i].x,\
@@ -113,7 +115,7 @@ data:
   isVerificationFile: false
   path: geo_old/convexhull.hpp
   requiredBy: []
-  timestamp: '2022-08-20 07:14:34+09:00'
+  timestamp: '2022-08-20 20:06:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo_old/convexhull.hpp
