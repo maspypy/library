@@ -72,3 +72,11 @@ struct Segment {
 
   Line<T> to_Line() { return Line(A, B); }
 };
+
+template <typename T>
+struct Circle {
+  Point<T> O;
+  T r;
+  Circle(Point<T> O, T r) : O(O), r(r) {}
+  Circle(T x, T y, T r) : O(Point<T>(x, y)), r(r) {}
+};
