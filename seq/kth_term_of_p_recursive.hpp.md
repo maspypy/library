@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_mul.hpp
     title: alg/group_mul.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/swag.hpp
     title: ds/swag.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
   - icon: ':question:'
@@ -25,23 +25,23 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_p_rec.test.cpp
     title: test/yukicoder/502_p_rec.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"linalg/mat_mul.hpp\"\n\r\ntemplate <class T, is_modint_t<T>*\
@@ -70,51 +70,51 @@ data:
     \n  void pop_front() {\n    if (sz == 1) return clear();\n    if (dat_l.empty())\
     \ rebuild();\n    --sz;\n    dat_l.pop_back();\n    cum_l.pop_back();\n  }\n\n\
     \  void pop_back() {\n    if (sz == 1) return clear();\n    if (dat_r.empty())\
-    \ rebuild();\n    --sz;\n    dat_r.pop_back();\n    cum_r.pop_back();\n  }\n\n\
-    \  void rebuild() {\n    vc<X> X;\n    FOR_R(i, len(dat_l)) X.eb(dat_l[i]);\n\
-    \    X.insert(X.end(), all(dat_r));\n    clear();\n    int m = len(X) / 2;\n \
-    \   FOR_R(i, m) push_front(X[i]);\n    FOR(i, m, len(X)) push_back(X[i]);\n  \
-    \  assert(sz == len(X));\n  }\n\n  X lprod() { return cum_l.back(); }\n  X rprod()\
-    \ { return cum_r.back(); }\n  X prod() { return Monoid::op(cum_l.back(), cum_r.back());\
-    \ }\n  X prod_all() { return prod(); }\n\n  void debug() {\n    print(\"swag\"\
-    );\n    print(\"dat_l\", dat_l);\n    print(\"dat_r\", dat_r);\n    print(\"cum_l\"\
-    , cum_l);\n    print(\"cum_r\", cum_r);\n  }\n};\n#line 2 \"mod/modint.hpp\"\n\
-    \ntemplate <unsigned int mod>\nstruct modint {\n  static constexpr bool is_modint\
-    \ = true;\n  unsigned int val;\n  constexpr modint(const long long val = 0) noexcept\n\
-    \      : val(val >= 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const\
-    \ modint &other) const {\n    return val < other.val;\n  } // To use std::map\n\
-    \  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -=\
-    \ mod;\n    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if\
-    \ ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint\
-    \ &operator*=(const modint &p) {\n    val = (unsigned int)(1LL * val * p.val %\
-    \ mod);\n    return *this;\n  }\n  modint &operator/=(const modint &p) {\n   \
-    \ *this *= p.inverse();\n    return *this;\n  }\n  modint operator-() const {\
-    \ return modint(get_mod() - val); }\n  modint operator+(const modint &p) const\
-    \ { return modint(*this) += p; }\n  modint operator-(const modint &p) const {\
-    \ return modint(*this) -= p; }\n  modint operator*(const modint &p) const { return\
-    \ modint(*this) *= p; }\n  modint operator/(const modint &p) const { return modint(*this)\
-    \ /= p; }\n  bool operator==(const modint &p) const { return val == p.val; }\n\
-    \  bool operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
-    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
-    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
-    \ return modint(u);\n  }\n  modint pow(int64_t n) const {\n    modint ret(1),\
-    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
-    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr unsigned int\
-    \ get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr\
-    \ bool is_modint = true;\n  unsigned int val;\n  ArbitraryModInt() : val(0) {}\n\
-    \  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n          \
-    \         : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
-    \ ArbitraryModInt &other) const {\n    return val < other.val;\n  } // To use\
-    \ std::map<ArbitraryModInt, T>\n  static unsigned int &get_mod() {\n    static\
-    \ unsigned int mod = 0;\n    return mod;\n  }\n  static void set_mod(int md) {\
-    \ get_mod() = md; }\n  ArbitraryModInt &operator+=(const ArbitraryModInt &p) {\n\
-    \    if ((val += p.val) >= get_mod()) val -= get_mod();\n    return *this;\n \
-    \ }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p) {\n    if ((val +=\
-    \ get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return *this;\n  }\n\
-    \  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n    unsigned long\
-    \ long a = (unsigned long long)val * p.val;\n    unsigned xh = (unsigned)(a >>\
-    \ 32), xl = (unsigned)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"\
-    (m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n\
+    \ rebuild();\n    --sz;\n    dat_r.pop_back();\n    cum_r.pop_back();\n  }\n \
+    \ \n  void pop() { pop_front(); }\n\n  void rebuild() {\n    vc<X> X;\n    FOR_R(i,\
+    \ len(dat_l)) X.eb(dat_l[i]);\n    X.insert(X.end(), all(dat_r));\n    clear();\n\
+    \    int m = len(X) / 2;\n    FOR_R(i, m) push_front(X[i]);\n    FOR(i, m, len(X))\
+    \ push_back(X[i]);\n    assert(sz == len(X));\n  }\n\n  X lprod() { return cum_l.back();\
+    \ }\n  X rprod() { return cum_r.back(); }\n  X prod() { return Monoid::op(cum_l.back(),\
+    \ cum_r.back()); }\n  X prod_all() { return prod(); }\n\n  void debug() {\n  \
+    \  print(\"swag\");\n    print(\"dat_l\", dat_l);\n    print(\"dat_r\", dat_r);\n\
+    \    print(\"cum_l\", cum_l);\n    print(\"cum_r\", cum_r);\n  }\n};\n#line 2\
+    \ \"mod/modint.hpp\"\n\ntemplate <unsigned int mod>\nstruct modint {\n  static\
+    \ constexpr bool is_modint = true;\n  unsigned int val;\n  constexpr modint(const\
+    \ long long val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val)\
+    \ % mod) % mod) {}\n  bool operator<(const modint &other) const {\n    return\
+    \ val < other.val;\n  } // To use std::map\n  modint &operator+=(const modint\
+    \ &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n  }\n\
+    \  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >= mod)\
+    \ val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n\
+    \    val = (unsigned int)(1LL * val * p.val % mod);\n    return *this;\n  }\n\
+    \  modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
+    \ *this;\n  }\n  modint operator-() const { return modint(get_mod() - val); }\n\
+    \  modint operator+(const modint &p) const { return modint(*this) += p; }\n  modint\
+    \ operator-(const modint &p) const { return modint(*this) -= p; }\n  modint operator*(const\
+    \ modint &p) const { return modint(*this) *= p; }\n  modint operator/(const modint\
+    \ &p) const { return modint(*this) /= p; }\n  bool operator==(const modint &p)\
+    \ const { return val == p.val; }\n  bool operator!=(const modint &p) const { return\
+    \ val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod, u = 1,\
+    \ v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b),\
+    \ swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
+    \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
+    \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
+    \  }\n  static constexpr unsigned int get_mod() { return mod; }\n};\n\nstruct\
+    \ ArbitraryModInt {\n  static constexpr bool is_modint = true;\n  unsigned int\
+    \ val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t y)\n      :\
+    \ val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y) % get_mod())\
+    \ % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other) const {\n  \
+    \  return val < other.val;\n  } // To use std::map<ArbitraryModInt, T>\n  static\
+    \ unsigned int &get_mod() {\n    static unsigned int mod = 0;\n    return mod;\n\
+    \  }\n  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
+    \ ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
+    \    return *this;\n  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p)\
+    \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
+    \ *this;\n  }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n   \
+    \ unsigned long long a = (unsigned long long)val * p.val;\n    unsigned xh = (unsigned)(a\
+    \ >> 32), xl = (unsigned)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"\
+    =d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n\
     \  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n    *this *=\
     \ p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-() const {\
     \ return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
@@ -428,8 +428,8 @@ data:
   isVerificationFile: false
   path: seq/kth_term_of_p_recursive.hpp
   requiredBy: []
-  timestamp: '2022-08-20 20:47:20+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-08-21 00:15:06+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/502_p_rec.test.cpp
 documentation_of: seq/kth_term_of_p_recursive.hpp

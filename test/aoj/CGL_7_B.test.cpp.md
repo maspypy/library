@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
   - icon: ':heavy_check_mark:'
@@ -262,29 +262,30 @@ data:
     \ T a2 = L1.eval(S2.A), b2 = L1.eval(S2.B);\n  bool ok1 = 0, ok2 = 0;\n  ok1 =\
     \ (a1 <= 0) && (0 <= b1);\n  ok2 = (a2 <= 0) && (0 <= b2);\n  return (ok1 && ok2\
     \ ? 1 : 0);\n}\n\n// \u552F\u4E00\u306E\u4EA4\u70B9\u3092\u6301\u3064\u3053\u3068\
-    \u3092\u4EEE\u5B9A\ntemplate <typename REAL, typename T>\nPoint<REAL> cross_point(const\
-    \ Segment<T> S1, const Segment<T> S2) {\n  return cross_point(S1.to_Line(), S2.to_Line());\n\
-    }\n#line 2 \"geo/distance.hpp\"\n\ntemplate <typename REAL, typename T, typename\
-    \ U>\nREAL distance(Point<T> S, Point<U> P) {\n  REAL dx = P.x - S.x;\n  REAL\
-    \ dy = P.y - S.y;\n  return sqrt(dx * dx + dy * dy);\n}\n\ntemplate <typename\
-    \ REAL, typename T, typename U>\nREAL distance(Segment<T> S, Point<U> P) {\n \
-    \ Point<T> A = S.A, B = S.B;\n  bool b1 = (B - A).dot(P - A) >= 0;\n  bool b2\
-    \ = (A - B).dot(P - B) >= 0;\n  if (b1 && !b2) { return distance<REAL, T, T>(B,\
-    \ P); }\n  if (!b1 && b2) { return distance<REAL, T, T>(A, P); }\n  Line<T> L\
-    \ = S.to_Line();\n  // \u70B9\u3068\u76F4\u7DDA\u306E\u8DDD\u96E2\n  return REAL(abs(L.eval(P)))\
-    \ / sqrt(REAL(L.a) * L.a + REAL(L.b) * L.b);\n}\n\ntemplate <typename REAL, typename\
-    \ T>\nREAL distance(Segment<T> S1, Segment<T> S2) {\n  if (count_cross<T>(S1,\
-    \ S2, true)) return REAL(0);\n  REAL res = distance<REAL, T, T>(S1, S2.A);\n \
-    \ chmin(res, distance<REAL, T, T>(S1, S2.B));\n  chmin(res, distance<REAL, T,\
-    \ T>(S2, S1.A));\n  chmin(res, distance<REAL, T, T>(S2, S1.B));\n  return res;\n\
-    }\n#line 1 \"geo/triangle_area.hpp\"\ntemplate <typename REAL, typename T>\nREAL\
-    \ triangle_area(Point<T> A, Point<T> B, Point<T> C) {\n  return abs((B - A).det(C\
-    \ - A)) * 0.5;\n}\n#line 3 \"geo/incircle.hpp\"\n\ntemplate <typename REAL, typename\
-    \ T>\nCircle<REAL> incircle(Point<T> A, Point<T> B, Point<T> C) {\n  REAL a =\
-    \ distance<REAL, T, T>(B, C);\n  REAL b = distance<REAL, T, T>(C, A);\n  REAL\
-    \ c = distance<REAL, T, T>(A, B);\n  REAL x = (a * A.x + b * B.x + c * C.x) /\
-    \ (a + b + c);\n  REAL y = (a * A.y + b * B.y + c * C.y) / (a + b + c);\n  REAL\
-    \ r = 2 * triangle_area<REAL>(A, B, C) / (a + b + c);\n  return Circle<REAL>(x,\
+    \u3092\u4EEE\u5B9A\n// \u552F\u4E00\u306E\u4EA4\u70B9\u3092\u6301\u3064\u3053\u3068\
+    \u3092\u4EEE\u5B9A\ntemplate <typename REAL, typename T>\nPoint<REAL> cross_point(Segment<T>\
+    \ S1, Segment<T> S2) {\n  Line<T> L1 = S1.to_Line();\n  Line<T> L2 = S2.to_Line();\n\
+    \  return cross_point<REAL, T>(L1, L2);\n}\n#line 2 \"geo/distance.hpp\"\n\ntemplate\
+    \ <typename REAL, typename T, typename U>\nREAL distance(Point<T> S, Point<U>\
+    \ P) {\n  REAL dx = P.x - S.x;\n  REAL dy = P.y - S.y;\n  return sqrt(dx * dx\
+    \ + dy * dy);\n}\n\ntemplate <typename REAL, typename T, typename U>\nREAL distance(Segment<T>\
+    \ S, Point<U> P) {\n  Point<T> A = S.A, B = S.B;\n  bool b1 = (B - A).dot(P -\
+    \ A) >= 0;\n  bool b2 = (A - B).dot(P - B) >= 0;\n  if (b1 && !b2) { return distance<REAL,\
+    \ T, T>(B, P); }\n  if (!b1 && b2) { return distance<REAL, T, T>(A, P); }\n  Line<T>\
+    \ L = S.to_Line();\n  // \u70B9\u3068\u76F4\u7DDA\u306E\u8DDD\u96E2\n  return\
+    \ REAL(abs(L.eval(P))) / sqrt(REAL(L.a) * L.a + REAL(L.b) * L.b);\n}\n\ntemplate\
+    \ <typename REAL, typename T>\nREAL distance(Segment<T> S1, Segment<T> S2) {\n\
+    \  if (count_cross<T>(S1, S2, true)) return REAL(0);\n  REAL res = distance<REAL,\
+    \ T, T>(S1, S2.A);\n  chmin(res, distance<REAL, T, T>(S1, S2.B));\n  chmin(res,\
+    \ distance<REAL, T, T>(S2, S1.A));\n  chmin(res, distance<REAL, T, T>(S2, S1.B));\n\
+    \  return res;\n}\n#line 1 \"geo/triangle_area.hpp\"\ntemplate <typename REAL,\
+    \ typename T>\nREAL triangle_area(Point<T> A, Point<T> B, Point<T> C) {\n  return\
+    \ abs((B - A).det(C - A)) * 0.5;\n}\n#line 3 \"geo/incircle.hpp\"\n\ntemplate\
+    \ <typename REAL, typename T>\nCircle<REAL> incircle(Point<T> A, Point<T> B, Point<T>\
+    \ C) {\n  REAL a = distance<REAL, T, T>(B, C);\n  REAL b = distance<REAL, T, T>(C,\
+    \ A);\n  REAL c = distance<REAL, T, T>(A, B);\n  REAL x = (a * A.x + b * B.x +\
+    \ c * C.x) / (a + b + c);\n  REAL y = (a * A.y + b * B.y + c * C.y) / (a + b +\
+    \ c);\n  REAL r = 2 * triangle_area<REAL>(A, B, C) / (a + b + c);\n  return Circle<REAL>(x,\
     \ y, r);\n}\n#line 10 \"test/aoj/CGL_7_B.test.cpp\"\n\nvoid solve() {\n  LL(a,\
     \ b, c, d, e, f);\n  Point<ll> A(a, b), B(c, d), C(e, f);\n  auto X = incircle<double>(A,\
     \ B, C);\n  print(X.O.x, X.O.y, X.r);\n}\n\nsigned main() {\n  cout << fixed <<\
@@ -308,7 +309,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_7_B.test.cpp
   requiredBy: []
-  timestamp: '2022-08-20 20:06:17+09:00'
+  timestamp: '2022-08-21 00:22:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_7_B.test.cpp

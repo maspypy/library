@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy:
@@ -12,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_2_B.test.cpp
     title: test/aoj/CGL_2_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_2_C.test.cpp
     title: test/aoj/CGL_2_C.test.cpp
   - icon: ':heavy_check_mark:'
@@ -21,9 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_B.test.cpp
     title: test/aoj/CGL_7_B.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -80,9 +80,10 @@ data:
     \ T a2 = L1.eval(S2.A), b2 = L1.eval(S2.B);\n  bool ok1 = 0, ok2 = 0;\n  ok1 =\
     \ (a1 <= 0) && (0 <= b1);\n  ok2 = (a2 <= 0) && (0 <= b2);\n  return (ok1 && ok2\
     \ ? 1 : 0);\n}\n\n// \u552F\u4E00\u306E\u4EA4\u70B9\u3092\u6301\u3064\u3053\u3068\
-    \u3092\u4EEE\u5B9A\ntemplate <typename REAL, typename T>\nPoint<REAL> cross_point(const\
-    \ Segment<T> S1, const Segment<T> S2) {\n  return cross_point(S1.to_Line(), S2.to_Line());\n\
-    }\n"
+    \u3092\u4EEE\u5B9A\n// \u552F\u4E00\u306E\u4EA4\u70B9\u3092\u6301\u3064\u3053\u3068\
+    \u3092\u4EEE\u5B9A\ntemplate <typename REAL, typename T>\nPoint<REAL> cross_point(Segment<T>\
+    \ S1, Segment<T> S2) {\n  Line<T> L1 = S1.to_Line();\n  Line<T> L2 = S2.to_Line();\n\
+    \  return cross_point<REAL, T>(L1, L2);\n}\n"
   code: "#include \"geo/base.hpp\"\n\n// \u5E73\u884C\u3067\u306A\u3044\u3053\u3068\
     \u3092\u4EEE\u5B9A\ntemplate <typename REAL, typename T>\nPoint<REAL> cross_point(const\
     \ Line<T> L1, const Line<T> L2) {\n  T det = L1.a * L2.b - L1.b * L2.a;\n  assert(det\
@@ -112,17 +113,18 @@ data:
     \ T a2 = L1.eval(S2.A), b2 = L1.eval(S2.B);\n  bool ok1 = 0, ok2 = 0;\n  ok1 =\
     \ (a1 <= 0) && (0 <= b1);\n  ok2 = (a2 <= 0) && (0 <= b2);\n  return (ok1 && ok2\
     \ ? 1 : 0);\n}\n\n// \u552F\u4E00\u306E\u4EA4\u70B9\u3092\u6301\u3064\u3053\u3068\
-    \u3092\u4EEE\u5B9A\ntemplate <typename REAL, typename T>\nPoint<REAL> cross_point(const\
-    \ Segment<T> S1, const Segment<T> S2) {\n  return cross_point(S1.to_Line(), S2.to_Line());\n\
-    }\n"
+    \u3092\u4EEE\u5B9A\n// \u552F\u4E00\u306E\u4EA4\u70B9\u3092\u6301\u3064\u3053\u3068\
+    \u3092\u4EEE\u5B9A\ntemplate <typename REAL, typename T>\nPoint<REAL> cross_point(Segment<T>\
+    \ S1, Segment<T> S2) {\n  Line<T> L1 = S1.to_Line();\n  Line<T> L2 = S2.to_Line();\n\
+    \  return cross_point<REAL, T>(L1, L2);\n}\n"
   dependsOn:
   - geo/base.hpp
   isVerificationFile: false
   path: geo/cross_point.hpp
   requiredBy:
   - geo/distance.hpp
-  timestamp: '2022-08-20 20:06:17+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-08-21 00:22:24+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL_7_B.test.cpp
   - test/aoj/CGL_2_B.test.cpp

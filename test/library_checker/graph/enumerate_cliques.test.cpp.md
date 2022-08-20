@@ -1,12 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/degree.hpp
     title: graph/degree.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/enumerate_cliques.hpp
+    title: graph/enumerate_cliques.hpp
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
@@ -18,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/enumerate_cliques
@@ -324,32 +327,47 @@ data:
     \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
     \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n\nusing modint107\
     \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\
-    #line 8 \"test/library_checker/graph/enumerate_cliques.test.cpp\"\n\nusing mint\
-    \ = modint998;\n\nvoid solve() {\n  LL(N, M);\n  VEC(mint, X, N);\n  mint ANS\
-    \ = 0;\n  Graph<int, 0> G(N);\n  G.read_graph(M, 0, 0);\n\n  auto f = [&](vc<int>\
-    \ C) -> void {\n    mint p = 1;\n    for (auto&& i: C) p *= X[i];\n    ANS +=\
-    \ p;\n  };\n  enumerate_cliques(G, f);\n  print(ANS);\n}\n\nsigned main() {\n\
-    \  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
-    \n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_cliques\"\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/base.hpp\"\
-    \n#include \"graph/degree.hpp\"\n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\n\
+    #line 1 \"graph/enumerate_cliques.hpp\"\n\n// N2^{sqrt(2m)}\n// https://www.slideshare.net/wata_orz/ss-12131479\n\
+    template <typename Gr, typename F>\nvoid enumerate_cliques(Gr& G, F query) {\n\
+    \  int N = G.N;\n  auto deg = degree(G);\n  vc<bool> done(N);\n  vv(int, can,\
+    \ N, N);\n  for (auto&& e: G.edges) { can[e.frm][e.to] = can[e.to][e.frm] = 1;\
+    \ }\n\n  FOR(N) {\n    // \u6B21\u6570\u6700\u5C0F\u306E\u9802\u70B9\u306E\u8FD1\
+    \u508D\u3092\u8ABF\u3079\u308B\n    int v = -1;\n    int min_d = N;\n    FOR(i,\
+    \ N) if (!done[i] && chmin(min_d, deg[i])) v = i;\n\n    vc<int> nbd;\n    for\
+    \ (auto&& e: G[v])\n      if (!done[e.to]) nbd.eb(e.to);\n    vc<int> C = {v};\n\
+    \n    auto dfs = [&](auto& dfs, int k) -> void {\n      query(C);\n      FOR(i,\
+    \ k, len(nbd)) {\n        bool ok = 1;\n        for (auto&& x: C) {\n        \
+    \  if (!can[x][nbd[i]]) {\n            ok = 0;\n            break;\n         \
+    \ }\n        }\n        if (ok) {\n          C.eb(nbd[i]);\n          dfs(dfs,\
+    \ i + 1);\n          C.pop_back();\n        }\n      }\n    };\n\n    dfs(dfs,\
+    \ 0);\n    done[v] = 1;\n    for (auto&& x: nbd) deg[x]--;\n  }\n}\n#line 9 \"\
+    test/library_checker/graph/enumerate_cliques.test.cpp\"\n\nusing mint = modint998;\n\
     \nvoid solve() {\n  LL(N, M);\n  VEC(mint, X, N);\n  mint ANS = 0;\n  Graph<int,\
     \ 0> G(N);\n  G.read_graph(M, 0, 0);\n\n  auto f = [&](vc<int> C) -> void {\n\
     \    mint p = 1;\n    for (auto&& i: C) p *= X[i];\n    ANS += p;\n  };\n  enumerate_cliques(G,\
     \ f);\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
     \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_cliques\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/base.hpp\"\
+    \n#include \"graph/degree.hpp\"\n#include \"mod/modint.hpp\"\n#include \"graph/enumerate_cliques.hpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, M);\n  VEC(mint, X, N);\n\
+    \  mint ANS = 0;\n  Graph<int, 0> G(N);\n  G.read_graph(M, 0, 0);\n\n  auto f\
+    \ = [&](vc<int> C) -> void {\n    mint p = 1;\n    for (auto&& i: C) p *= X[i];\n\
+    \    ANS += p;\n  };\n  enumerate_cliques(G, f);\n  print(ANS);\n}\n\nsigned main()\
+    \ {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T)\
+    \ solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - graph/base.hpp
   - graph/degree.hpp
   - mod/modint.hpp
+  - graph/enumerate_cliques.hpp
   isVerificationFile: true
   path: test/library_checker/graph/enumerate_cliques.test.cpp
   requiredBy: []
-  timestamp: '2022-08-20 21:27:33+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-21 00:15:57+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/enumerate_cliques.test.cpp
 layout: document

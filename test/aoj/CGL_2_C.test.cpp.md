@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     ERROR: '0.00000001'
@@ -253,13 +253,15 @@ data:
     \ T a2 = L1.eval(S2.A), b2 = L1.eval(S2.B);\n  bool ok1 = 0, ok2 = 0;\n  ok1 =\
     \ (a1 <= 0) && (0 <= b1);\n  ok2 = (a2 <= 0) && (0 <= b2);\n  return (ok1 && ok2\
     \ ? 1 : 0);\n}\n\n// \u552F\u4E00\u306E\u4EA4\u70B9\u3092\u6301\u3064\u3053\u3068\
-    \u3092\u4EEE\u5B9A\ntemplate <typename REAL, typename T>\nPoint<REAL> cross_point(const\
-    \ Segment<T> S1, const Segment<T> S2) {\n  return cross_point(S1.to_Line(), S2.to_Line());\n\
-    }\n#line 8 \"test/aoj/CGL_2_C.test.cpp\"\n\nvoid solve() {\n  LL(Q);\n  FOR(Q)\
-    \ {\n    LL(a, b, c, d, e, f, g, h);\n    Segment<ll> L1(a, b, c, d);\n    Segment<ll>\
-    \ L2(e, f, g, h);\n    Point<double> pt = cross_point<double>(L1, L2);\n    print(pt.x,\
-    \ pt.y);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n\
-    \  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \u3092\u4EEE\u5B9A\n// \u552F\u4E00\u306E\u4EA4\u70B9\u3092\u6301\u3064\u3053\u3068\
+    \u3092\u4EEE\u5B9A\ntemplate <typename REAL, typename T>\nPoint<REAL> cross_point(Segment<T>\
+    \ S1, Segment<T> S2) {\n  Line<T> L1 = S1.to_Line();\n  Line<T> L2 = S2.to_Line();\n\
+    \  return cross_point<REAL, T>(L1, L2);\n}\n#line 8 \"test/aoj/CGL_2_C.test.cpp\"\
+    \n\nvoid solve() {\n  LL(Q);\n  FOR(Q) {\n    LL(a, b, c, d, e, f, g, h);\n  \
+    \  Segment<ll> L1(a, b, c, d);\n    Segment<ll> L2(e, f, g, h);\n    Point<double>\
+    \ pt = cross_point<double>(L1, L2);\n    print(pt.x, pt.y);\n  }\n}\n\nsigned\
+    \ main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n\
+    \  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C\"\
     \n#define ERROR 0.00000001\n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\
     \n#include \"geo/cross_point.hpp\"\n\nvoid solve() {\n  LL(Q);\n  FOR(Q) {\n \
@@ -275,8 +277,8 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_2_C.test.cpp
   requiredBy: []
-  timestamp: '2022-08-20 20:06:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-21 00:22:24+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_2_C.test.cpp
 layout: document
