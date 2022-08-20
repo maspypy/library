@@ -38,7 +38,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/degree.hpp
     title: graph/degree.hpp
   - icon: ':heavy_check_mark:'
@@ -219,6 +219,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/cycle_detection.test.cpp
     title: test/library_checker/graph/cycle_detection.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/graph/enumerate_cliques.test.cpp
+    title: test/library_checker/graph/enumerate_cliques.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/enumerate_triangles.test.cpp
     title: test/library_checker/graph/enumerate_triangles.test.cpp
@@ -468,6 +471,7 @@ data:
   - test/library_checker/graph/verted_add_contour_sum.test.cpp
   - test/library_checker/graph/biconnected_component.test.cpp
   - test/library_checker/graph/shortest_path.test.cpp
+  - test/library_checker/graph/enumerate_cliques.test.cpp
   - test/library_checker/graph/maximum_independent_set.test.cpp
   - test/library_checker/graph/scc.test.cpp
   - test/library_checker/math/twosat.test.cpp

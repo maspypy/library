@@ -2,27 +2,33 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: graph/base.hpp
+    title: graph/base.hpp
+  - icon: ':question:'
+    path: graph/degree.hpp
+    title: graph/degree.hpp
+  - icon: ':question:'
+    path: mod/modint.hpp
+    title: mod/modint.hpp
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/manacher.hpp
-    title: string/manacher.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/enumerate_palindromes
+    PROBLEM: https://judge.yosupo.jp/problem/enumerate_cliques
     links:
-    - https://judge.yosupo.jp/problem/enumerate_palindromes
-  bundledCode: "#line 1 \"test/library_checker/string/enumerate_palindromes.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_palindromes\"\r\n\
-    #line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
+    - https://judge.yosupo.jp/problem/enumerate_cliques
+  bundledCode: "#line 1 \"test/library_checker/graph/enumerate_cliques.test.cpp\"\n\
+    #define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_cliques\"\n#line 1\
+    \ \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
     unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
     \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
     \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
@@ -195,41 +201,160 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 1 \"string/manacher.hpp\"\n// \u6975\u5927\u56DE\u6587\
-    \ [L, R) \u3092\u5217\u6319\u3059\u308B\r\ntemplate <typename STRING>\r\nvc<pair<int,\
-    \ int>> manacher(STRING s) {\r\n  int n = len(s);\r\n  assert(n > 0);\r\n  s.resize(2\
-    \ * n - 1);\r\n  FOR_R(i, n) s[2 * i] = s[i];\r\n  FOR(i, n - 1) s[2 * i + 1]\
-    \ = '~';\r\n  vector<int> dp(len(s));\r\n  int i = 0, j = 0;\r\n  while (i < len(s))\
-    \ {\r\n    while (i - j >= 0 && i + j < len(s) && s[i - j] == s[i + j]) ++j;\r\
-    \n    dp[i] = j;\r\n    int k = 1;\r\n    while (i - k >= 0 && i + k < len(s)\
-    \ && k + dp[i - k] < j) {\r\n      dp[i + k] = dp[i - k];\r\n      ++k;\r\n  \
-    \  }\r\n    i += k, j -= k;\r\n  }\r\n  FOR(i, len(dp)) if (!((i ^ dp[i]) & 1))--\
-    \ dp[i];\r\n  vc<pair<int, int>> res;\r\n  res.reserve(len(dp));\r\n  FOR(i, len(dp))\
-    \ {\r\n    if (dp[i] == 0) continue;\r\n    int l = (i - dp[i] + 1) / 2;\r\n \
-    \   int r = (i + dp[i] + 1) / 2;\r\n    res.eb(l, r);\r\n  }\r\n  return res;\r\
-    \n}\r\n#line 5 \"test/library_checker/string/enumerate_palindromes.test.cpp\"\n\
-    \r\nvoid solve() {\r\n  STR(S);\r\n  auto LR = manacher(S);\r\n  vc<int> ANS(len(S)\
-    \ * 2 - 1);\r\n  for (auto&& [l, r]: LR) { ANS[l + r - 1] = r - l; }\r\n  print(ANS);\r\
-    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_palindromes\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"string/manacher.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  STR(S);\r\n  auto LR = manacher(S);\r\n  vc<int> ANS(len(S)\
-    \ * 2 - 1);\r\n  for (auto&& [l, r]: LR) { ANS[l + r - 1] = r - l; }\r\n  print(ANS);\r\
-    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ { yes(!t); }\r\n#line 4 \"test/library_checker/graph/enumerate_cliques.test.cpp\"\
+    \n\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int\
+    \ frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed\
+    \ = false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n  using edge_type\
+    \ = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type>\
+    \ csr_edges;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n    OutgoingEdges(const\
+    \ Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin()\
+    \ const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[l];\n \
+    \   }\n\n    const edge_type* end() const {\n      if (l == r) { return 0; }\n\
+    \      return &G->csr_edges[r];\n    }\n\n  private:\n    const Graph* G;\n  \
+    \  int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n  constexpr bool\
+    \ is_directed() { return directed; }\n\n  Graph() : N(0), M(0), prepared(0) {}\n\
+    \  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void add(int frm, int to, T\
+    \ cost = 1, int i = -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <=\
+    \ to && to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost,\
+    \ i});\n    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool\
+    \ wt = false, int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int\
+    \ M, bool wt = false, int off = 1) {\n    for (int m = 0; m < M; ++m) {\n    \
+    \  INT(a, b);\n      a -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n\
+    \      } else {\n        T c;\n        read(c);\n        add(a, b, c);\n     \
+    \ }\n    }\n    build();\n  }\n\n  void read_parent(int off = 1) {\n    for (int\
+    \ v = 1; v < N; ++v) {\n      INT(p);\n      p -= off;\n      add(p, v);\n   \
+    \ }\n    build();\n  }\n\n  void build() {\n    assert(!prepared);\n    prepared\
+    \ = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm\
+    \ + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n    }\n    for (int v = 0;\
+    \ v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto counter = indptr;\n  \
+    \  csr_edges.resize(indptr.back() + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++]\
+    \ = e;\n      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to,\
+    \ e.frm, e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const\
+    \ {\n    assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\
+    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
+    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
+    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
+    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
+    \    }\n  }\n};\n#line 2 \"graph/degree.hpp\"\n\r\ntemplate <typename Graph>\r\
+    \nvector<int> degree(Graph& G) {\r\n  vector<int> deg(G.N);\r\n  for(auto&& e\
+    \ : G.edges) deg[e.frm]++, deg[e.to]++;\r\n  return deg;\r\n}\r\n\r\ntemplate\
+    \ <typename Graph>\r\npair<vector<int>, vector<int>> degree_inout(Graph& G) {\r\
+    \n  vector<int> indeg(G.N), outdeg(G.N);\r\n  for (auto&& e: G.edges) { indeg[e.to]++,\
+    \ outdeg[e.frm]++; }\r\n  return {indeg, outdeg};\r\n}\r\n#line 2 \"mod/modint.hpp\"\
+    \n\ntemplate <unsigned int mod>\nstruct modint {\n  static constexpr bool is_modint\
+    \ = true;\n  unsigned int val;\n  constexpr modint(const long long val = 0) noexcept\n\
+    \      : val(val >= 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const\
+    \ modint &other) const {\n    return val < other.val;\n  } // To use std::map\n\
+    \  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -=\
+    \ mod;\n    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if\
+    \ ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint\
+    \ &operator*=(const modint &p) {\n    val = (unsigned int)(1LL * val * p.val %\
+    \ mod);\n    return *this;\n  }\n  modint &operator/=(const modint &p) {\n   \
+    \ *this *= p.inverse();\n    return *this;\n  }\n  modint operator-() const {\
+    \ return modint(get_mod() - val); }\n  modint operator+(const modint &p) const\
+    \ { return modint(*this) += p; }\n  modint operator-(const modint &p) const {\
+    \ return modint(*this) -= p; }\n  modint operator*(const modint &p) const { return\
+    \ modint(*this) *= p; }\n  modint operator/(const modint &p) const { return modint(*this)\
+    \ /= p; }\n  bool operator==(const modint &p) const { return val == p.val; }\n\
+    \  bool operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
+    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
+    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
+    \ return modint(u);\n  }\n  modint pow(int64_t n) const {\n    modint ret(1),\
+    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
+    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr unsigned int\
+    \ get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr\
+    \ bool is_modint = true;\n  unsigned int val;\n  ArbitraryModInt() : val(0) {}\n\
+    \  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n          \
+    \         : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
+    \ ArbitraryModInt &other) const {\n    return val < other.val;\n  } // To use\
+    \ std::map<ArbitraryModInt, T>\n  static unsigned int &get_mod() {\n    static\
+    \ unsigned int mod = 0;\n    return mod;\n  }\n  static void set_mod(int md) {\
+    \ get_mod() = md; }\n  ArbitraryModInt &operator+=(const ArbitraryModInt &p) {\n\
+    \    if ((val += p.val) >= get_mod()) val -= get_mod();\n    return *this;\n \
+    \ }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p) {\n    if ((val +=\
+    \ get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return *this;\n  }\n\
+    \  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n    unsigned long\
+    \ long a = (unsigned long long)val * p.val;\n    unsigned xh = (unsigned)(a >>\
+    \ 32), xl = (unsigned)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"\
+    (m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n\
+    \  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n    *this *=\
+    \ p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-() const {\
+    \ return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) += p;\n  }\n\
+    \  ArbitraryModInt operator-(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
+    \ -= p;\n  }\n  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n\
+    \    return ArbitraryModInt(*this) *= p;\n  }\n  ArbitraryModInt operator/(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) /= p;\n  }\n\
+    \  bool operator==(const ArbitraryModInt &p) const { return val == p.val; }\n\
+    \  bool operator!=(const ArbitraryModInt &p) const { return val != p.val; }\n\
+    \  ArbitraryModInt inverse() const {\n    int a = val, b = get_mod(), u = 1, v\
+    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
+    \ -= t * v, v);\n    }\n    return ArbitraryModInt(u);\n  }\n  ArbitraryModInt\
+    \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
+    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
+    \  }\n    return ret;\n  }\n};\n\ntemplate <typename mint>\nmint inv(int n) {\n\
+    \  static const int mod = mint::get_mod();\n  static vector<mint> dat = {0, 1};\n\
+    \  assert(0 <= n);\n  if (n >= mod) n %= mod;\n  while (int(dat.size()) <= n)\
+    \ {\n    int k = dat.size();\n    auto q = (mod + k - 1) / k;\n    int r = k *\
+    \ q - mod;\n    dat.emplace_back(dat[r] * mint(q));\n  }\n  return dat[n];\n}\n\
+    \ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  static vector<mint> dat = {1, 1};\n  assert(0 <= n);\n  if (n >= mod) return\
+    \ 0;\n  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
+    \ - 1] * mint(k));\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint\
+    \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
+    \ dat = {1, 1};\n  assert(0 <= n && n < mod);\n  while (int(dat.size()) <= n)\
+    \ {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
+    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint C_dense(int n, int\
+    \ k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\n  auto calc = [&](int\
+    \ i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n\
+    \    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n\n  if (W <= k) {\n\
+    \    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j]\
+    \ = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n    FOR(i, H,\
+    \ n + 1) {\n      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n\
+    \  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool\
+    \ dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n <\
+    \ k) return 0;\n  if (dense) return C_dense<mint>(n, k);\n  if (!large) return\
+    \ fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k, n -\
+    \ k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n\
+    \  return x;\n}\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll\
+    \ n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return\
+    \ fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint,\
+    \ 1>(n, k);\n}\n\n// [x^d](1-x)^{-n} \u306E\u8A08\u7B97\ntemplate <typename mint,\
+    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
+    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
+    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n\nusing modint107\
+    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\
+    #line 8 \"test/library_checker/graph/enumerate_cliques.test.cpp\"\n\nusing mint\
+    \ = modint998;\n\nvoid solve() {\n  LL(N, M);\n  VEC(mint, X, N);\n  mint ANS\
+    \ = 0;\n  Graph<int, 0> G(N);\n  G.read_graph(M, 0, 0);\n\n  auto f = [&](vc<int>\
+    \ C) -> void {\n    mint p = 1;\n    for (auto&& i: C) p *= X[i];\n    ANS +=\
+    \ p;\n  };\n  enumerate_cliques(G, f);\n  print(ANS);\n}\n\nsigned main() {\n\
+    \  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
+    \n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_cliques\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/base.hpp\"\
+    \n#include \"graph/degree.hpp\"\n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\n\
+    \nvoid solve() {\n  LL(N, M);\n  VEC(mint, X, N);\n  mint ANS = 0;\n  Graph<int,\
+    \ 0> G(N);\n  G.read_graph(M, 0, 0);\n\n  auto f = [&](vc<int> C) -> void {\n\
+    \    mint p = 1;\n    for (auto&& i: C) p *= X[i];\n    ANS += p;\n  };\n  enumerate_cliques(G,\
+    \ f);\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - string/manacher.hpp
+  - graph/base.hpp
+  - graph/degree.hpp
+  - mod/modint.hpp
   isVerificationFile: true
-  path: test/library_checker/string/enumerate_palindromes.test.cpp
+  path: test/library_checker/graph/enumerate_cliques.test.cpp
   requiredBy: []
-  timestamp: '2022-08-20 05:21:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-20 21:27:33+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/string/enumerate_palindromes.test.cpp
+documentation_of: test/library_checker/graph/enumerate_cliques.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/string/enumerate_palindromes.test.cpp
-- /verify/test/library_checker/string/enumerate_palindromes.test.cpp.html
-title: test/library_checker/string/enumerate_palindromes.test.cpp
+- /verify/test/library_checker/graph/enumerate_cliques.test.cpp
+- /verify/test/library_checker/graph/enumerate_cliques.test.cpp.html
+title: test/library_checker/graph/enumerate_cliques.test.cpp
 ---

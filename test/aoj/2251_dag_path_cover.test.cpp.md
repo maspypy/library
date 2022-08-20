@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/degree.hpp
     title: graph/degree.hpp
   - icon: ':question:'
