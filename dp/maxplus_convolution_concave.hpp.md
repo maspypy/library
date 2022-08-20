@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/maxplus_concave.test.cpp
     title: test/mytest/maxplus_concave.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"dp/maxplus_convolution_concave.hpp\"\ntemplate <typename\
@@ -39,7 +39,7 @@ data:
   path: dp/maxplus_convolution_concave.hpp
   requiredBy: []
   timestamp: '2022-07-11 19:57:09+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/maxplus_concave.test.cpp
 documentation_of: dp/maxplus_convolution_concave.hpp
