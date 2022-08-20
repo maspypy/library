@@ -46,6 +46,8 @@ struct SWAG {
     dat_r.pop_back();
     cum_r.pop_back();
   }
+  
+  void pop() { pop_front(); }
 
   void rebuild() {
     vc<X> X;
