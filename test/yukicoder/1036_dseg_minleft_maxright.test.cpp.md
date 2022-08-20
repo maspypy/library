@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid_gcd.hpp
     title: alg/monoid_gcd.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/dynamic_segtree.hpp
     title: ds/dynamic_segtree.hpp
   - icon: ':question:'
