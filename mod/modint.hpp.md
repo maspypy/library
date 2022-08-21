@@ -30,6 +30,9 @@ data:
     path: poly/convolution_huge.hpp
     title: poly/convolution_huge.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/convolution_leq.hpp
+    title: poly/convolution_leq.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_mod_2_64.hpp
     title: poly/convolution_mod_2_64.hpp
   - icon: ':heavy_check_mark:'
@@ -328,6 +331,9 @@ data:
     path: test/mytest/binom.test.cpp
     title: test/mytest/binom.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/conv_leq.test.cpp
+    title: test/mytest/conv_leq.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
   - icon: ':heavy_check_mark:'
@@ -595,6 +601,7 @@ data:
   - poly/fps_inv.hpp
   - poly/lagrange_interpolate_iota.hpp
   - poly/multivar_convolution.hpp
+  - poly/convolution_leq.hpp
   - poly/fps_exp.hpp
   - poly/convolution.hpp
   - poly/fps_pow.hpp
@@ -635,6 +642,7 @@ data:
   - test/yukicoder/426.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
+  - test/mytest/conv_leq.test.cpp
   - test/mytest/prime_sum.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/powerquery.test.cpp

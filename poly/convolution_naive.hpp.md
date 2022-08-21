@@ -24,6 +24,9 @@ data:
     path: poly/convolution_huge.hpp
     title: poly/convolution_huge.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/convolution_leq.hpp
+    title: poly/convolution_leq.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_mod_2_64.hpp
     title: poly/convolution_mod_2_64.hpp
   - icon: ':heavy_check_mark:'
@@ -217,6 +220,9 @@ data:
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/conv_leq.test.cpp
+    title: test/mytest/conv_leq.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
   - icon: ':heavy_check_mark:'
@@ -278,6 +284,7 @@ data:
   - poly/fps_inv.hpp
   - poly/lagrange_interpolate_iota.hpp
   - poly/multivar_convolution.hpp
+  - poly/convolution_leq.hpp
   - poly/fps_exp.hpp
   - poly/convolution.hpp
   - poly/fps_pow.hpp
@@ -302,6 +309,7 @@ data:
   - test/yukicoder/1321_surj.test.cpp
   - test/yukicoder/1618_conv_ll.test.cpp
   - test/yukicoder/1844_interpolate_c_rec.test.cpp
+  - test/mytest/conv_leq.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/enum_partitions.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
