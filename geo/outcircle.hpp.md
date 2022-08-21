@@ -8,13 +8,10 @@ data:
     path: geo/triangle_area.hpp
     title: geo/triangle_area.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_7_B.test.cpp
-    title: test/aoj/CGL_7_B.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -56,34 +53,33 @@ data:
     \ ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n    if (a < 0) {\n\
     \      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n#line 1 \"geo/triangle_area.hpp\"\
     \ntemplate <typename REAL, typename T>\nREAL triangle_area(Point<T> A, Point<T>\
-    \ B, Point<T> C) {\n  return abs((B - A).det(C - A)) * 0.5;\n}\n#line 3 \"geo/incircle.hpp\"\
-    \n\ntemplate <typename REAL, typename T>\nCircle<REAL> incircle(Point<T> A, Point<T>\
-    \ B, Point<T> C) {\n  REAL a = distance<REAL, T, T>(B, C);\n  REAL b = distance<REAL,\
-    \ T, T>(C, A);\n  REAL c = distance<REAL, T, T>(A, B);\n  REAL x = (a * A.x +\
-    \ b * B.x + c * C.x) / (a + b + c);\n  REAL y = (a * A.y + b * B.y + c * C.y)\
-    \ / (a + b + c);\n  REAL r = 2 * triangle_area<REAL>(A, B, C) / (a + b + c);\n\
-    \  return Circle<REAL>(x, y, r);\n}\n"
+    \ B, Point<T> C) {\n  return abs((B - A).det(C - A)) * 0.5;\n}\n#line 3 \"geo/outcircle.hpp\"\
+    \n\ntemplate <typename REAL, typename T>\nCircle<REAL> outcircle(Point<T> A, Point<T>\
+    \ B, Point<T> C) {\n  REAL b1 = B.x - A.x, b2 = B.y - A.y;\n  REAL c1 = C.x -\
+    \ A.x, c2 = C.y - A.y;\n  REAL bb = (b1 * b1 + b2 * b2) / 2;\n  REAL cc = (c1\
+    \ * c1 + c2 * c2) / 2;\n\n  REAL det = b1 * c2 - b2 * c1;\n  REAL x = (b1 * cc\
+    \ - bb * c1) / det;\n  REAL y = (bb * c2 - b2 * cc) / det;\n  REAL r = sqrt(x\
+    \ * x + y * y);\n  x += A.x, y += A.y;\n  return Circle<REAL>(x, y, r);\n}\n"
   code: "#include \"geo/base.hpp\"\n#include \"geo/triangle_area.hpp\"\n\ntemplate\
-    \ <typename REAL, typename T>\nCircle<REAL> incircle(Point<T> A, Point<T> B, Point<T>\
-    \ C) {\n  REAL a = distance<REAL, T, T>(B, C);\n  REAL b = distance<REAL, T, T>(C,\
-    \ A);\n  REAL c = distance<REAL, T, T>(A, B);\n  REAL x = (a * A.x + b * B.x +\
-    \ c * C.x) / (a + b + c);\n  REAL y = (a * A.y + b * B.y + c * C.y) / (a + b +\
-    \ c);\n  REAL r = 2 * triangle_area<REAL>(A, B, C) / (a + b + c);\n  return Circle<REAL>(x,\
-    \ y, r);\n}"
+    \ <typename REAL, typename T>\nCircle<REAL> outcircle(Point<T> A, Point<T> B,\
+    \ Point<T> C) {\n  REAL b1 = B.x - A.x, b2 = B.y - A.y;\n  REAL c1 = C.x - A.x,\
+    \ c2 = C.y - A.y;\n  REAL bb = (b1 * b1 + b2 * b2) / 2;\n  REAL cc = (c1 * c1\
+    \ + c2 * c2) / 2;\n\n  REAL det = b1 * c2 - b2 * c1;\n  REAL x = (b1 * cc - bb\
+    \ * c1) / det;\n  REAL y = (bb * c2 - b2 * cc) / det;\n  REAL r = sqrt(x * x +\
+    \ y * y);\n  x += A.x, y += A.y;\n  return Circle<REAL>(x, y, r);\n}"
   dependsOn:
   - geo/base.hpp
   - geo/triangle_area.hpp
   isVerificationFile: false
-  path: geo/incircle.hpp
+  path: geo/outcircle.hpp
   requiredBy: []
-  timestamp: '2022-08-21 16:45:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/CGL_7_B.test.cpp
-documentation_of: geo/incircle.hpp
+  timestamp: '2022-08-21 16:46:09+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: geo/outcircle.hpp
 layout: document
 redirect_from:
-- /library/geo/incircle.hpp
-- /library/geo/incircle.hpp.html
-title: geo/incircle.hpp
+- /library/geo/outcircle.hpp
+- /library/geo/outcircle.hpp.html
+title: geo/outcircle.hpp
 ---

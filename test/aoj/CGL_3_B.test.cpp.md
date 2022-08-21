@@ -1,9 +1,6 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
-    path: geo/angle_sort.hpp
-    title: geo/angle_sort.hpp
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
@@ -15,16 +12,15 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/sort_points_by_argument
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_B
     links:
-    - https://judge.yosupo.jp/problem/sort_points_by_argument
-  bundledCode: "#line 1 \"test/library_checker/geometry/sort_points_by_argument.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/sort_points_by_argument\"\r\
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_B
+  bundledCode: "#line 1 \"test/aoj/CGL_3_B.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_B\"\
     \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
     unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
     \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
@@ -235,46 +231,29 @@ data:
     \ < 0) return false;\n    }\n    return true;\n  }\n\nprivate:\n  void build()\
     \ {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1 == len(points)\
     \ ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n    if (a < 0) {\n\
-    \      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n#line 2 \"geo/angle_sort.hpp\"\
-    \n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate\
-    \ <typename T>\r\nvector<int> angle_argsort(vector<Point<T>>& P) {\r\n  auto is_lower\
-    \ = [](Point<T> P) { return (P.y < 0) || (P.y == 0 && P.x > 0); };\r\n  vector<int>\
-    \ lower, origin, upper;\r\n  Point<T> O = {0, 0};\r\n  FOR(i, len(P)) {\r\n  \
-    \  if (P[i] == O) origin.eb(i);\r\n    elif (is_lower(P[i])) lower.eb(i);\r\n\
-    \    else upper.eb(i);\r\n  }\r\n  sort(all(lower), [&](auto& i, auto& j) { return\
-    \ P[i].det(P[j]) > 0; });\r\n  sort(all(upper), [&](auto& i, auto& j) { return\
-    \ P[i].det(P[j]) > 0; });\r\n  auto& I = lower;\r\n  I.insert(I.end(), all(origin));\r\
-    \n  I.insert(I.end(), all(upper));\r\n  return I;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\
-    \u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate <typename T>\r\nvector<int>\
-    \ angle_argsort(vector<pair<T, T>> P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i,\
-    \ len(P)) tmp[i] = Point<T>(P[i]);\r\n  return angle_argsort(tmp);\r\n}\r\n\r\n\
-    // inplace \u306B\u504F\u89D2\u30BD\u30FC\u30C8\u3059\u308B\r\n// index \u304C\
-    \u6B32\u3057\u3044\u5834\u5408\u306F angle_argsort\r\ntemplate <typename T>\r\n\
-    void angle_sort(vector<T>& P) {\r\n  auto I = angle_argsort<T>(P);\r\n  P = rearrange(P,\
-    \ I);\r\n}\r\n#line 5 \"test/library_checker/geometry/sort_points_by_argument.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N);\r\n  vc<Point<ll>> P(N);\r\n  FOR(i, N) read(P[i].x),\
-    \ read(P[i].y);\r\n  angle_sort(P);\r\n  FOR(i, N) print(P[i].x, P[i].y);\r\n\
-    }\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sort_points_by_argument\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"geo/angle_sort.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  LL(N);\r\n  vc<Point<ll>> P(N);\r\n  FOR(i, N) read(P[i].x),\
-    \ read(P[i].y);\r\n  angle_sort(P);\r\n  FOR(i, N) print(P[i].x, P[i].y);\r\n\
-    }\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n#line 6 \"test/aoj/CGL_3_B.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  VEC(pi, XY, N);\n  Polygon<ll> P(XY);\n  print(P.is_convex()\
+    \ ? 1 : 0);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll\
+    \ T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_B\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"geo/base.hpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  VEC(pi, XY, N);\n  Polygon<ll> P(XY);\n  print(P.is_convex()\
+    \ ? 1 : 0);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll\
+    \ T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - geo/angle_sort.hpp
   - geo/base.hpp
   isVerificationFile: true
-  path: test/library_checker/geometry/sort_points_by_argument.test.cpp
+  path: test/aoj/CGL_3_B.test.cpp
   requiredBy: []
-  timestamp: '2022-08-21 16:45:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-21 16:46:35+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library_checker/geometry/sort_points_by_argument.test.cpp
+documentation_of: test/aoj/CGL_3_B.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/geometry/sort_points_by_argument.test.cpp
-- /verify/test/library_checker/geometry/sort_points_by_argument.test.cpp.html
-title: test/library_checker/geometry/sort_points_by_argument.test.cpp
+- /verify/test/aoj/CGL_3_B.test.cpp
+- /verify/test/aoj/CGL_3_B.test.cpp.html
+title: test/aoj/CGL_3_B.test.cpp
 ---

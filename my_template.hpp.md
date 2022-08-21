@@ -6,6 +6,12 @@ data:
     path: graph/bipartite_coloring.hpp
     title: graph/bipartite_coloring.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/0068.test.cpp
+    title: test/aoj/0068.test.cpp
+  - icon: ':x:'
+    path: test/aoj/0079.test.cpp
+    title: test/aoj/0079.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508_splay.test.cpp
     title: test/aoj/1508_splay.test.cpp
@@ -66,6 +72,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_2_D.test.cpp
     title: test/aoj/CGL_2_D.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL_3_B.test.cpp
+    title: test/aoj/CGL_3_B.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_B.test.cpp
     title: test/aoj/CGL_7_B.test.cpp
@@ -183,6 +192,9 @@ data:
   - icon: ':x:'
     path: test/atcoder/abc244h.test.cpp
     title: test/atcoder/abc244h.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc256d.test.cpp
+    title: test/atcoder/abc256d.test.cpp
   - icon: ':x:'
     path: test/atcoder/agc058d.test.cpp
     title: test/atcoder/agc058d.test.cpp
@@ -354,6 +366,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
     title: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/geometry/sort_points_by_argument.test.cpp
+    title: test/library_checker/geometry/sort_points_by_argument.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/assignment.test.cpp
     title: test/library_checker/graph/assignment.test.cpp
@@ -612,6 +627,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
+  - icon: ':x:'
+    path: test/mytest/incremental_ch.test.cpp
+    title: test/mytest/incremental_ch.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/max_of_linear_segments.test.cpp
     title: test/mytest/max_of_linear_segments.test.cpp
@@ -1113,11 +1131,13 @@ data:
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/run_length.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
+  - test/mytest/incremental_ch.test.cpp
   - test/mytest/powerquery.test.cpp
   - test/mytest/binom.test.cpp
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
   - test/mytest/primesum_mod4.test.cpp
+  - test/library_checker/geometry/sort_points_by_argument.test.cpp
   - test/library_checker/tree/cartesian_tree.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp
@@ -1256,6 +1276,7 @@ data:
   - test/library_checker/matrix/inverse_matrix.test.cpp
   - test/library_checker/matrix/matrix_det.test.cpp
   - test/library_checker/longest_increasing_subsequence.test.cpp
+  - test/aoj/CGL_3_B.test.cpp
   - test/aoj/CGL_7_B.test.cpp
   - test/aoj/GRL_1_B_bellmanford.test.cpp
   - test/aoj/CGL_1_A.test.cpp
@@ -1274,6 +1295,7 @@ data:
   - test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - test/aoj/GRL_1_C_warshallfloyd.test.cpp
+  - test/aoj/0079.test.cpp
   - test/aoj/DPL_3_C_maxrectangle.test.cpp
   - test/aoj/DPL_1_D_lis.test.cpp
   - test/aoj/GRL_6_A_maxflow.test.cpp
@@ -1299,6 +1321,7 @@ data:
   - test/aoj/DSL_2_H_min_add_lazy.test.cpp
   - test/aoj/2842_fenwick2d_dense.test.cpp
   - test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
+  - test/aoj/0068.test.cpp
   - test/aoj/ALDS1_10_C_LCS.test.cpp
   - test/aoj/DSL_2_C_kdtree.test.cpp
   - test/aoj/2251_dag_path_cover.test.cpp
@@ -1312,6 +1335,7 @@ data:
   - test/aoj/DPL_1_H_kanpsack01.test.cpp
   - test/aoj/2677.test.cpp
   - test/aoj/ITP1_11_C.test.cpp
+  - test/atcoder/abc256d.test.cpp
   - test/atcoder/abc244h.test.cpp
   - test/atcoder/abc200a.test.cpp
   - test/atcoder/agc058d.test.cpp

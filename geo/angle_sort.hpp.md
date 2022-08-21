@@ -4,17 +4,14 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: geo/triangle_area.hpp
-    title: geo/triangle_area.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_7_B.test.cpp
-    title: test/aoj/CGL_7_B.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/library_checker/geometry/sort_points_by_argument.test.cpp
+    title: test/library_checker/geometry/sort_points_by_argument.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -54,36 +51,52 @@ data:
     \ < 0) return false;\n    }\n    return true;\n  }\n\nprivate:\n  void build()\
     \ {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1 == len(points)\
     \ ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n    if (a < 0) {\n\
-    \      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n#line 1 \"geo/triangle_area.hpp\"\
-    \ntemplate <typename REAL, typename T>\nREAL triangle_area(Point<T> A, Point<T>\
-    \ B, Point<T> C) {\n  return abs((B - A).det(C - A)) * 0.5;\n}\n#line 3 \"geo/incircle.hpp\"\
-    \n\ntemplate <typename REAL, typename T>\nCircle<REAL> incircle(Point<T> A, Point<T>\
-    \ B, Point<T> C) {\n  REAL a = distance<REAL, T, T>(B, C);\n  REAL b = distance<REAL,\
-    \ T, T>(C, A);\n  REAL c = distance<REAL, T, T>(A, B);\n  REAL x = (a * A.x +\
-    \ b * B.x + c * C.x) / (a + b + c);\n  REAL y = (a * A.y + b * B.y + c * C.y)\
-    \ / (a + b + c);\n  REAL r = 2 * triangle_area<REAL>(A, B, C) / (a + b + c);\n\
-    \  return Circle<REAL>(x, y, r);\n}\n"
-  code: "#include \"geo/base.hpp\"\n#include \"geo/triangle_area.hpp\"\n\ntemplate\
-    \ <typename REAL, typename T>\nCircle<REAL> incircle(Point<T> A, Point<T> B, Point<T>\
-    \ C) {\n  REAL a = distance<REAL, T, T>(B, C);\n  REAL b = distance<REAL, T, T>(C,\
-    \ A);\n  REAL c = distance<REAL, T, T>(A, B);\n  REAL x = (a * A.x + b * B.x +\
-    \ c * C.x) / (a + b + c);\n  REAL y = (a * A.y + b * B.y + c * C.y) / (a + b +\
-    \ c);\n  REAL r = 2 * triangle_area<REAL>(A, B, C) / (a + b + c);\n  return Circle<REAL>(x,\
-    \ y, r);\n}"
+    \      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n#line 2 \"geo/angle_sort.hpp\"\
+    \n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate\
+    \ <typename T>\r\nvector<int> angle_argsort(vector<Point<T>>& P) {\r\n  auto is_lower\
+    \ = [](Point<T> P) { return (P.y < 0) || (P.y == 0 && P.x > 0); };\r\n  vector<int>\
+    \ lower, origin, upper;\r\n  Point<T> O = {0, 0};\r\n  FOR(i, len(P)) {\r\n  \
+    \  if (P[i] == O) origin.eb(i);\r\n    elif (is_lower(P[i])) lower.eb(i);\r\n\
+    \    else upper.eb(i);\r\n  }\r\n  sort(all(lower), [&](auto& i, auto& j) { return\
+    \ P[i].det(P[j]) > 0; });\r\n  sort(all(upper), [&](auto& i, auto& j) { return\
+    \ P[i].det(P[j]) > 0; });\r\n  auto& I = lower;\r\n  I.insert(I.end(), all(origin));\r\
+    \n  I.insert(I.end(), all(upper));\r\n  return I;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\
+    \u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate <typename T>\r\nvector<int>\
+    \ angle_argsort(vector<pair<T, T>> P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i,\
+    \ len(P)) tmp[i] = Point<T>(P[i]);\r\n  return angle_argsort(tmp);\r\n}\r\n\r\n\
+    // inplace \u306B\u504F\u89D2\u30BD\u30FC\u30C8\u3059\u308B\r\n// index \u304C\
+    \u6B32\u3057\u3044\u5834\u5408\u306F angle_argsort\r\ntemplate <typename T>\r\n\
+    void angle_sort(vector<T>& P) {\r\n  auto I = angle_argsort<T>(P);\r\n  P = rearrange(P,\
+    \ I);\r\n}\r\n"
+  code: "#include \"geo/base.hpp\"\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\
+    \u3059\u308B argsort\r\ntemplate <typename T>\r\nvector<int> angle_argsort(vector<Point<T>>&\
+    \ P) {\r\n  auto is_lower = [](Point<T> P) { return (P.y < 0) || (P.y == 0 &&\
+    \ P.x > 0); };\r\n  vector<int> lower, origin, upper;\r\n  Point<T> O = {0, 0};\r\
+    \n  FOR(i, len(P)) {\r\n    if (P[i] == O) origin.eb(i);\r\n    elif (is_lower(P[i]))\
+    \ lower.eb(i);\r\n    else upper.eb(i);\r\n  }\r\n  sort(all(lower), [&](auto&\
+    \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  sort(all(upper), [&](auto&\
+    \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  auto& I = lower;\r\n  I.insert(I.end(),\
+    \ all(origin));\r\n  I.insert(I.end(), all(upper));\r\n  return I;\r\n}\r\n\r\n\
+    // \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate\
+    \ <typename T>\r\nvector<int> angle_argsort(vector<pair<T, T>> P) {\r\n  vc<Point<T>>\
+    \ tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\n  return angle_argsort(tmp);\r\
+    \n}\r\n\r\n// inplace \u306B\u504F\u89D2\u30BD\u30FC\u30C8\u3059\u308B\r\n// index\
+    \ \u304C\u6B32\u3057\u3044\u5834\u5408\u306F angle_argsort\r\ntemplate <typename\
+    \ T>\r\nvoid angle_sort(vector<T>& P) {\r\n  auto I = angle_argsort<T>(P);\r\n\
+    \  P = rearrange(P, I);\r\n}\r\n"
   dependsOn:
   - geo/base.hpp
-  - geo/triangle_area.hpp
   isVerificationFile: false
-  path: geo/incircle.hpp
+  path: geo/angle_sort.hpp
   requiredBy: []
   timestamp: '2022-08-21 16:45:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/aoj/CGL_7_B.test.cpp
-documentation_of: geo/incircle.hpp
+  - test/library_checker/geometry/sort_points_by_argument.test.cpp
+documentation_of: geo/angle_sort.hpp
 layout: document
 redirect_from:
-- /library/geo/incircle.hpp
-- /library/geo/incircle.hpp.html
-title: geo/incircle.hpp
+- /library/geo/angle_sort.hpp
+- /library/geo/angle_sort.hpp.html
+title: geo/angle_sort.hpp
 ---

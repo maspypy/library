@@ -1,12 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
-    path: geo/angle_sort.hpp
-    title: geo/angle_sort.hpp
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
+  - icon: ':x:'
+    path: geo/incremental_convexhull.hpp
+    title: geo/incremental_convexhull.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -20,20 +20,20 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/sort_points_by_argument
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://judge.yosupo.jp/problem/sort_points_by_argument
-  bundledCode: "#line 1 \"test/library_checker/geometry/sort_points_by_argument.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/sort_points_by_argument\"\r\
-    \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
-    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
-    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
-    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
-    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/mytest/incremental_ch.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#pragma\
+    \ GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -235,46 +235,115 @@ data:
     \ < 0) return false;\n    }\n    return true;\n  }\n\nprivate:\n  void build()\
     \ {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1 == len(points)\
     \ ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n    if (a < 0) {\n\
-    \      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n#line 2 \"geo/angle_sort.hpp\"\
-    \n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate\
-    \ <typename T>\r\nvector<int> angle_argsort(vector<Point<T>>& P) {\r\n  auto is_lower\
-    \ = [](Point<T> P) { return (P.y < 0) || (P.y == 0 && P.x > 0); };\r\n  vector<int>\
-    \ lower, origin, upper;\r\n  Point<T> O = {0, 0};\r\n  FOR(i, len(P)) {\r\n  \
-    \  if (P[i] == O) origin.eb(i);\r\n    elif (is_lower(P[i])) lower.eb(i);\r\n\
-    \    else upper.eb(i);\r\n  }\r\n  sort(all(lower), [&](auto& i, auto& j) { return\
-    \ P[i].det(P[j]) > 0; });\r\n  sort(all(upper), [&](auto& i, auto& j) { return\
-    \ P[i].det(P[j]) > 0; });\r\n  auto& I = lower;\r\n  I.insert(I.end(), all(origin));\r\
-    \n  I.insert(I.end(), all(upper));\r\n  return I;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\
-    \u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate <typename T>\r\nvector<int>\
-    \ angle_argsort(vector<pair<T, T>> P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i,\
-    \ len(P)) tmp[i] = Point<T>(P[i]);\r\n  return angle_argsort(tmp);\r\n}\r\n\r\n\
-    // inplace \u306B\u504F\u89D2\u30BD\u30FC\u30C8\u3059\u308B\r\n// index \u304C\
-    \u6B32\u3057\u3044\u5834\u5408\u306F angle_argsort\r\ntemplate <typename T>\r\n\
-    void angle_sort(vector<T>& P) {\r\n  auto I = angle_argsort<T>(P);\r\n  P = rearrange(P,\
-    \ I);\r\n}\r\n#line 5 \"test/library_checker/geometry/sort_points_by_argument.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N);\r\n  vc<Point<ll>> P(N);\r\n  FOR(i, N) read(P[i].x),\
-    \ read(P[i].y);\r\n  angle_sort(P);\r\n  FOR(i, N) print(P[i].x, P[i].y);\r\n\
-    }\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sort_points_by_argument\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"geo/angle_sort.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  LL(N);\r\n  vc<Point<ll>> P(N);\r\n  FOR(i, N) read(P[i].x),\
-    \ read(P[i].y);\r\n  angle_sort(P);\r\n  FOR(i, N) print(P[i].x, P[i].y);\r\n\
-    }\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n#line 2 \"geo/incremental_convexhull.hpp\"\
+    \n\n// \u4E0B\u5074\u51F8\u5305\ntemplate <typename T, bool strict = true>\nstruct\
+    \ IncrementalConvexHull_Lower {\n  using P = Point<T>;\n  set<P> S;\n\n  IncrementalConvexHull_Lower()\
+    \ {}\n\n  int size() { return len(S); }\n\n  template <typename ADD_V, typename\
+    \ RM_V, typename ADD_E, typename RM_E>\n  void add(Point<T> p, ADD_V add_v, RM_V\
+    \ rm_v, ADD_E add_e, RM_E rm_e) {\n    int s = side(p);\n    if (strict && s >=\
+    \ 0) return;\n    if (!strict && s > 0) return;\n\n    // \u70B9\u8FFD\u52A0\n\
+    \    add_v(p);\n    S.insert(p);\n\n    vc<P> left;\n    {\n      auto it = S.find(p);\n\
+    \      while (it != S.begin()) {\n        --it;\n        if (left.empty()) {\n\
+    \          left.eb(*it);\n          continue;\n        }\n        auto a = *it;\n\
+    \        auto b = left.back();\n        T det = (b - a).det(p - a);\n        if\
+    \ (strict && det > 0) break;\n        if (!strict && det >= 0) break;\n      \
+    \  left.eb(a);\n      }\n    }\n\n    vc<P> right;\n    {\n      auto it = S.find(p);\n\
+    \      while (1) {\n        ++it;\n        if (it == S.end()) break;\n       \
+    \ if (right.empty()) {\n          right.eb(*it);\n          continue;\n      \
+    \  }\n        auto a = right.back();\n        auto b = *it;\n        T det = (a\
+    \ - p).det(b - p);\n        if (strict && det > 0) break;\n        if (!strict\
+    \ && det >= 0) break;\n        right.eb(b);\n      }\n    }\n\n    // \u70B9\u524A\
+    \u9664\n    if (len(left) > 1) { S.erase(next(S.find(left.back())), S.find(p));\
+    \ }\n    if (len(right) > 1) { S.erase(next(S.find(p)), S.find(right.back()));\
+    \ }\n    FOR(i, len(left) - 1) rm_v(left[i]);\n    FOR(i, len(right) - 1) rm_v(right[i]);\n\
+    \n    // \u8FBA\u524A\u9664\n    if (len(left) && len(right)) {\n      auto a\
+    \ = left[0], b = right[0];\n      rm_e(a, b);\n    }\n    FOR(i, len(left) - 1)\
+    \ {\n      auto a = left[i + 1], b = left[i];\n      rm_e(a, b);\n    }\n    FOR(i,\
+    \ len(right) - 1) {\n      auto a = right[i], b = right[i + 1];\n      rm_e(a,\
+    \ b);\n    }\n    // \u8FBA\u8FFD\u52A0\n    if (len(left)) { add_e(left.back(),\
+    \ p); }\n    if (len(right)) { add_e(p, right.back()); }\n  }\n\n  // \u4E2D\uFF1A\
+    1, \u5883\u754C\uFF1A0, \u5916\uFF1A-1\n  int side(Point<T> p) {\n    auto r =\
+    \ S.lower_bound(p);\n    if (r == S.begin() || r == S.end()) return -1;\n    auto\
+    \ l = prev(r);\n    auto p1 = *l, p2 = *r;\n    T det = (p - p1).det(p2 - p1);\n\
+    \    if (det == 0) return 0;\n    return (det > 0 ? -1 : 1);\n  }\n};\n\ntemplate\
+    \ <typename T, bool strict = true>\nstruct Incremental_ConvexHull {\n  using P\
+    \ = Point<T>;\n  IncrementalConvexHull_Lower<T, strict> LOWER, UPPER;\n  int cnt_V,\
+    \ cnt_E;\n  T det_sum;\n\n  Incremental_ConvexHull() : cnt_V(-2), cnt_E(0), det_sum(0)\
+    \ {}\n\n  int size() { return V(); }\n\n  bool empty() { return cnt_V == -2; }\n\
+    \n  int V() {\n    if (det_sum == 0) return -1; // \u3069\u3046\u3057\u3088\n\
+    \    return cnt_V;\n  }\n\n  int E() { return cnt_E; }\n\n  template <typename\
+    \ REAL>\n  REAL area() {\n    return det_sum * 0.5;\n  }\n\n  template <typename\
+    \ ADD_V, typename RM_V, typename ADD_E, typename RM_E>\n  void add(Point<T> p,\
+    \ ADD_V add_v, RM_V rm_v, ADD_E add_e, RM_E rm_e) {\n    LOWER.add(\n        p,\n\
+    \        [&](Point<T> p) {\n          add_v(p);\n          ++cnt_V;\n        },\n\
+    \        [&](Point<T> p) {\n          rm_v(p);\n          --cnt_V;\n        },\n\
+    \        [&](Point<T> a, Point<T> b) {\n          add_e(a, b);\n          ++cnt_E;\n\
+    \          det_sum += a.det(b);\n        },\n        [&](Point<T> a, Point<T>\
+    \ b) {\n          rm_e(a, b);\n          --cnt_E;\n          det_sum -= a.det(b);\n\
+    \        });\n    UPPER.add(\n        -p,\n        [&](Point<T> p) {\n       \
+    \   add_v(-p);\n          ++cnt_V;\n        },\n        [&](Point<T> p) {\n  \
+    \        rm_v(-p);\n          --cnt_V;\n        },\n        [&](Point<T> a, Point<T>\
+    \ b) {\n          add_e(-a, -b);\n          ++cnt_E;\n          det_sum += a.det(b);\n\
+    \        },\n        [&](Point<T> a, Point<T> b) {\n          rm_e(-a, -b);\n\
+    \          --cnt_E;\n          det_sum -= a.det(b);\n        });\n  }\n  void\
+    \ add(Point<T> p) {\n    add(\n        p, [](Point<T> p) {}, [](Point<T> p) {},\
+    \ [](Point<T> s, Point<T> t) {},\n        [](Point<T> s, Point<T> t) {});\n  }\n\
+    \n  // \u4E2D\uFF1A1\u3001\u5883\u754C\uFF1A0\u3001\u5916\uFF1A-1\n  int side(Point<T>\
+    \ p) {\n    int a = LOWER.side(p);\n    int b = UPPER.side(-p);\n    if (a ==\
+    \ 0 || b == 0) return 0;\n    return min(a, b);\n  }\n};\n#line 5 \"test/mytest/incremental_ch.test.cpp\"\
+    \n\n// geocon2013 c sample \u3088\u308A\nvoid test() {\n  {\n    Incremental_ConvexHull<ll>\
+    \ X;\n    assert(X.area_2() == 0);\n    assert(X.side(Point<ll>(2, 2)) == -1);\n\
+    \    assert(X.side(Point<ll>(1, 2)) == -1);\n    assert(X.side(Point<ll>(1, 1))\
+    \ == -1);\n    assert(X.side(Point<ll>(2, 1)) == -1);\n    X.add(Point<ll>(1,\
+    \ 1));\n    assert(X.side(Point<ll>(2, 2)) == -1);\n    assert(X.side(Point<ll>(1,\
+    \ 2)) == -1);\n    assert(X.side(Point<ll>(1, 1)) == 0);\n    assert(X.side(Point<ll>(2,\
+    \ 1)) == -1);\n    X.add(Point<ll>(5, 1));\n    assert(X.area_2() == 0);\n   \
+    \ assert(X.side(Point<ll>(2, 2)) == -1);\n    assert(X.side(Point<ll>(1, 2)) ==\
+    \ -1);\n    assert(X.side(Point<ll>(1, 1)) == 0);\n    assert(X.side(Point<ll>(2,\
+    \ 1)) == 0);\n    X.add(Point<ll>(1, 5));\n    assert(X.area_2() == 16);\n   \
+    \ assert(X.side(Point<ll>(2, 2)) == 1);\n    assert(X.side(Point<ll>(1, 2)) ==\
+    \ 0);\n    assert(X.side(Point<ll>(1, 1)) == 0);\n    assert(X.side(Point<ll>(2,\
+    \ 1)) == 0);\n  }\n  {\n    Incremental_ConvexHull<ll> X;\n    X.add(Point<ll>(2,\
+    \ 1));\n    X.add(Point<ll>(4, 1));\n    X.add(Point<ll>(6, 1));\n    assert(X.side(Point<ll>(1,\
+    \ 1)) == -1);\n    assert(X.side(Point<ll>(3, 1)) == 0);\n    assert(X.side(Point<ll>(5,\
+    \ 1)) == 0);\n    assert(X.side(Point<ll>(7, 1)) == -1);\n  }\n}\n\nvoid solve()\
+    \ {\n  LL(A, B);\n  print(A + B);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  test();\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"geo/incremental_convexhull.hpp\"\n\n//\
+    \ geocon2013 c sample \u3088\u308A\nvoid test() {\n  {\n    Incremental_ConvexHull<ll>\
+    \ X;\n    assert(X.area_2() == 0);\n    assert(X.side(Point<ll>(2, 2)) == -1);\n\
+    \    assert(X.side(Point<ll>(1, 2)) == -1);\n    assert(X.side(Point<ll>(1, 1))\
+    \ == -1);\n    assert(X.side(Point<ll>(2, 1)) == -1);\n    X.add(Point<ll>(1,\
+    \ 1));\n    assert(X.side(Point<ll>(2, 2)) == -1);\n    assert(X.side(Point<ll>(1,\
+    \ 2)) == -1);\n    assert(X.side(Point<ll>(1, 1)) == 0);\n    assert(X.side(Point<ll>(2,\
+    \ 1)) == -1);\n    X.add(Point<ll>(5, 1));\n    assert(X.area_2() == 0);\n   \
+    \ assert(X.side(Point<ll>(2, 2)) == -1);\n    assert(X.side(Point<ll>(1, 2)) ==\
+    \ -1);\n    assert(X.side(Point<ll>(1, 1)) == 0);\n    assert(X.side(Point<ll>(2,\
+    \ 1)) == 0);\n    X.add(Point<ll>(1, 5));\n    assert(X.area_2() == 16);\n   \
+    \ assert(X.side(Point<ll>(2, 2)) == 1);\n    assert(X.side(Point<ll>(1, 2)) ==\
+    \ 0);\n    assert(X.side(Point<ll>(1, 1)) == 0);\n    assert(X.side(Point<ll>(2,\
+    \ 1)) == 0);\n  }\n  {\n    Incremental_ConvexHull<ll> X;\n    X.add(Point<ll>(2,\
+    \ 1));\n    X.add(Point<ll>(4, 1));\n    X.add(Point<ll>(6, 1));\n    assert(X.side(Point<ll>(1,\
+    \ 1)) == -1);\n    assert(X.side(Point<ll>(3, 1)) == 0);\n    assert(X.side(Point<ll>(5,\
+    \ 1)) == 0);\n    assert(X.side(Point<ll>(7, 1)) == -1);\n  }\n}\n\nvoid solve()\
+    \ {\n  LL(A, B);\n  print(A + B);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  test();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - geo/angle_sort.hpp
+  - geo/incremental_convexhull.hpp
   - geo/base.hpp
   isVerificationFile: true
-  path: test/library_checker/geometry/sort_points_by_argument.test.cpp
+  path: test/mytest/incremental_ch.test.cpp
   requiredBy: []
-  timestamp: '2022-08-21 16:45:55+09:00'
+  timestamp: '2022-08-21 16:46:35+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/geometry/sort_points_by_argument.test.cpp
+documentation_of: test/mytest/incremental_ch.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/geometry/sort_points_by_argument.test.cpp
-- /verify/test/library_checker/geometry/sort_points_by_argument.test.cpp.html
-title: test/library_checker/geometry/sort_points_by_argument.test.cpp
+- /verify/test/mytest/incremental_ch.test.cpp
+- /verify/test/mytest/incremental_ch.test.cpp.html
+title: test/mytest/incremental_ch.test.cpp
 ---

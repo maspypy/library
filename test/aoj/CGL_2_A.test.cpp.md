@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':question:'
@@ -220,12 +220,24 @@ data:
     \ y1), Point<T>(x2, y2)) {}\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\
     \ntemplate <typename T>\nstruct Circle {\n  Point<T> O;\n  T r;\n  Circle(Point<T>\
     \ O, T r) : O(O), r(r) {}\n  Circle(T x, T y, T r) : O(Point<T>(x, y)), r(r) {}\n\
-    };\n#line 8 \"test/aoj/CGL_2_A.test.cpp\"\n\nvoid solve() {\n  LL(Q);\n  FOR(Q)\
-    \ {\n    LL(a, b, c, d);\n    Line<ll> A(a, b, c, d);\n    LL(e, f, g, h);\n \
-    \   Line<ll> B(e, f, g, h);\n    bool p = A.is_parallel(B);\n    bool o = A.is_orthogonal(B);\n\
-    \    if (p) print(2);\n    elif (o) print(1);\n    else print(0);\n  }\n}\n\n\
-    signed main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n\
-    \  FOR(T) solve();\n\n  return 0;\n}\n"
+    };\n\ntemplate <typename T>\nstruct Polygon {\n  vc<Point<T>> points;\n  T a;\n\
+    \n  template <typename A, typename B>\n  Polygon(vc<pair<A, B>> pairs) {\n   \
+    \ for (auto&& [a, b]: pairs) points.eb(Point<T>(a, b));\n    build();\n  }\n \
+    \ Polygon(vc<Point<T>> points) : points(points) { build(); }\n\n  int size() {\
+    \ return len(points); }\n\n  template <typename REAL>\n  REAL area() {\n    return\
+    \ a * 0.5;\n  }\n\n  template <enable_if_t<is_integral<T>::value, int> = 0>\n\
+    \  T area_2() {\n    return a;\n  }\n\n  bool is_convex() {\n    FOR(j, len(points))\
+    \ {\n      int i = (j == 0 ? len(points) - 1 : j - 1);\n      int k = (j == len(points)\
+    \ - 1 ? 0 : j + 1);\n      if ((points[j] - points[i]).det(points[k] - points[j])\
+    \ < 0) return false;\n    }\n    return true;\n  }\n\nprivate:\n  void build()\
+    \ {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1 == len(points)\
+    \ ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n    if (a < 0) {\n\
+    \      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n#line 8 \"test/aoj/CGL_2_A.test.cpp\"\
+    \n\nvoid solve() {\n  LL(Q);\n  FOR(Q) {\n    LL(a, b, c, d);\n    Line<ll> A(a,\
+    \ b, c, d);\n    LL(e, f, g, h);\n    Line<ll> B(e, f, g, h);\n    bool p = A.is_parallel(B);\n\
+    \    bool o = A.is_orthogonal(B);\n    if (p) print(2);\n    elif (o) print(1);\n\
+    \    else print(0);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A\"\
     \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/base.hpp\"\
     \n\nvoid solve() {\n  LL(Q);\n  FOR(Q) {\n    LL(a, b, c, d);\n    Line<ll> A(a,\
@@ -240,7 +252,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2022-08-20 20:06:17+09:00'
+  timestamp: '2022-08-21 16:45:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_2_A.test.cpp

@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/incircle.hpp
     title: geo/incircle.hpp
+  - icon: ':warning:'
+    path: geo/outcircle.hpp
+    title: geo/outcircle.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_B.test.cpp
@@ -23,6 +26,7 @@ data:
   isVerificationFile: false
   path: geo/triangle_area.hpp
   requiredBy:
+  - geo/outcircle.hpp
   - geo/incircle.hpp
   timestamp: '2022-08-20 20:06:17+09:00'
   verificationStatus: LIBRARY_ALL_AC

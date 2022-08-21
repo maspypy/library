@@ -246,7 +246,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/dynamic_segtree.hpp
       title: ds/dynamic_segtree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
     - icon: ':heavy_check_mark:'
@@ -264,7 +264,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: ds/intervals.hpp
       title: ds/intervals.hpp
     - icon: ':warning:'
@@ -388,7 +388,10 @@ data:
       title: flow/unbalanced_transportation.hpp
   - name: geo
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
+      path: geo/angle_sort.hpp
+      title: geo/angle_sort.hpp
+    - icon: ':question:'
       path: geo/base.hpp
       title: geo/base.hpp
     - icon: ':heavy_check_mark:'
@@ -400,6 +403,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/incircle.hpp
       title: geo/incircle.hpp
+    - icon: ':x:'
+      path: geo/incremental_convexhull.hpp
+      title: geo/incremental_convexhull.hpp
+    - icon: ':warning:'
+      path: geo/outcircle.hpp
+      title: geo/outcircle.hpp
     - icon: ':heavy_check_mark:'
       path: geo/projection.hpp
       title: geo/projection.hpp
@@ -411,9 +420,6 @@ data:
       title: geo/triangle_area.hpp
   - name: geo_old
     pages:
-    - icon: ':warning:'
-      path: geo_old/angle_sort.hpp
-      title: geo_old/angle_sort.hpp
     - icon: ':warning:'
       path: geo_old/base.hpp
       title: geo_old/base.hpp
@@ -803,7 +809,7 @@ data:
     - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io2.hpp
       title: other/io2.hpp
     - icon: ':warning:'
@@ -1062,7 +1068,7 @@ data:
     - icon: ':warning:'
       path: string/sort_all_substring.hpp
       title: string/sort_all_substring.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: string/split.hpp
       title: string/split.hpp
     - icon: ':heavy_check_mark:'
@@ -1080,6 +1086,12 @@ data:
   verificationCategories:
   - name: test/aoj
     pages:
+    - icon: ':x:'
+      path: test/aoj/0068.test.cpp
+      title: test/aoj/0068.test.cpp
+    - icon: ':x:'
+      path: test/aoj/0079.test.cpp
+      title: test/aoj/0079.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/1508_splay.test.cpp
       title: test/aoj/1508_splay.test.cpp
@@ -1140,6 +1152,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_2_D.test.cpp
       title: test/aoj/CGL_2_D.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/CGL_3_B.test.cpp
+      title: test/aoj/CGL_3_B.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_7_B.test.cpp
       title: test/aoj/CGL_7_B.test.cpp
@@ -1259,6 +1274,9 @@ data:
     - icon: ':x:'
       path: test/atcoder/abc244h.test.cpp
       title: test/atcoder/abc244h.test.cpp
+    - icon: ':x:'
+      path: test/atcoder/abc256d.test.cpp
+      title: test/atcoder/abc256d.test.cpp
     - icon: ':x:'
       path: test/atcoder/agc058d.test.cpp
       title: test/atcoder/agc058d.test.cpp
@@ -1721,6 +1739,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/factorial_998.test.cpp
       title: test/mytest/factorial_998.test.cpp
+    - icon: ':x:'
+      path: test/mytest/incremental_ch.test.cpp
+      title: test/mytest/incremental_ch.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/max_of_linear_segments.test.cpp
       title: test/mytest/max_of_linear_segments.test.cpp

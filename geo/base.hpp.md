@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':x:'
+    path: geo/angle_sort.hpp
+    title: geo/angle_sort.hpp
   - icon: ':heavy_check_mark:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
@@ -11,6 +14,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/incircle.hpp
     title: geo/incircle.hpp
+  - icon: ':x:'
+    path: geo/incremental_convexhull.hpp
+    title: geo/incremental_convexhull.hpp
+  - icon: ':warning:'
+    path: geo/outcircle.hpp
+    title: geo/outcircle.hpp
   - icon: ':heavy_check_mark:'
     path: geo/projection.hpp
     title: geo/projection.hpp
@@ -18,15 +27,18 @@ data:
     path: geo/reflection.hpp
     title: geo/reflection.hpp
   - icon: ':warning:'
-    path: geo_old/angle_sort.hpp
-    title: geo_old/angle_sort.hpp
-  - icon: ':warning:'
     path: geo_old/convexhull.hpp
     title: geo_old/convexhull.hpp
   - icon: ':warning:'
     path: geo_old/dynamicupperhull.hpp
     title: geo_old/dynamicupperhull.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/0068.test.cpp
+    title: test/aoj/0068.test.cpp
+  - icon: ':x:'
+    path: test/aoj/0079.test.cpp
+    title: test/aoj/0079.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_1_A.test.cpp
     title: test/aoj/CGL_1_A.test.cpp
@@ -46,11 +58,20 @@ data:
     path: test/aoj/CGL_2_D.test.cpp
     title: test/aoj/CGL_2_D.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL_3_B.test.cpp
+    title: test/aoj/CGL_3_B.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_B.test.cpp
     title: test/aoj/CGL_7_B.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/library_checker/geometry/sort_points_by_argument.test.cpp
+    title: test/library_checker/geometry/sort_points_by_argument.test.cpp
+  - icon: ':x:'
+    path: test/mytest/incremental_ch.test.cpp
+    title: test/mytest/incremental_ch.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -78,7 +99,19 @@ data:
     \ y1), Point<T>(x2, y2)) {}\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\
     \ntemplate <typename T>\nstruct Circle {\n  Point<T> O;\n  T r;\n  Circle(Point<T>\
     \ O, T r) : O(O), r(r) {}\n  Circle(T x, T y, T r) : O(Point<T>(x, y)), r(r) {}\n\
-    };\n"
+    };\n\ntemplate <typename T>\nstruct Polygon {\n  vc<Point<T>> points;\n  T a;\n\
+    \n  template <typename A, typename B>\n  Polygon(vc<pair<A, B>> pairs) {\n   \
+    \ for (auto&& [a, b]: pairs) points.eb(Point<T>(a, b));\n    build();\n  }\n \
+    \ Polygon(vc<Point<T>> points) : points(points) { build(); }\n\n  int size() {\
+    \ return len(points); }\n\n  template <typename REAL>\n  REAL area() {\n    return\
+    \ a * 0.5;\n  }\n\n  template <enable_if_t<is_integral<T>::value, int> = 0>\n\
+    \  T area_2() {\n    return a;\n  }\n\n  bool is_convex() {\n    FOR(j, len(points))\
+    \ {\n      int i = (j == 0 ? len(points) - 1 : j - 1);\n      int k = (j == len(points)\
+    \ - 1 ? 0 : j + 1);\n      if ((points[j] - points[i]).det(points[k] - points[j])\
+    \ < 0) return false;\n    }\n    return true;\n  }\n\nprivate:\n  void build()\
+    \ {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1 == len(points)\
+    \ ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n    if (a < 0) {\n\
+    \      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n"
   code: "#pragma once\ntemplate <typename T>\nstruct Point {\n  T x, y;\n  template\
     \ <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename\
     \ A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+(Point\
@@ -104,29 +137,48 @@ data:
     \ y1), Point<T>(x2, y2)) {}\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\
     \ntemplate <typename T>\nstruct Circle {\n  Point<T> O;\n  T r;\n  Circle(Point<T>\
     \ O, T r) : O(O), r(r) {}\n  Circle(T x, T y, T r) : O(Point<T>(x, y)), r(r) {}\n\
-    };\n"
+    };\n\ntemplate <typename T>\nstruct Polygon {\n  vc<Point<T>> points;\n  T a;\n\
+    \n  template <typename A, typename B>\n  Polygon(vc<pair<A, B>> pairs) {\n   \
+    \ for (auto&& [a, b]: pairs) points.eb(Point<T>(a, b));\n    build();\n  }\n \
+    \ Polygon(vc<Point<T>> points) : points(points) { build(); }\n\n  int size() {\
+    \ return len(points); }\n\n  template <typename REAL>\n  REAL area() {\n    return\
+    \ a * 0.5;\n  }\n\n  template <enable_if_t<is_integral<T>::value, int> = 0>\n\
+    \  T area_2() {\n    return a;\n  }\n\n  bool is_convex() {\n    FOR(j, len(points))\
+    \ {\n      int i = (j == 0 ? len(points) - 1 : j - 1);\n      int k = (j == len(points)\
+    \ - 1 ? 0 : j + 1);\n      if ((points[j] - points[i]).det(points[k] - points[j])\
+    \ < 0) return false;\n    }\n    return true;\n  }\n\nprivate:\n  void build()\
+    \ {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1 == len(points)\
+    \ ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n    if (a < 0) {\n\
+    \      a = -a;\n      reverse(all(points));\n    }\n  }\n};"
   dependsOn: []
   isVerificationFile: false
   path: geo/base.hpp
   requiredBy:
   - geo_old/convexhull.hpp
   - geo_old/dynamicupperhull.hpp
-  - geo_old/angle_sort.hpp
   - geo/projection.hpp
   - geo/distance.hpp
+  - geo/incremental_convexhull.hpp
+  - geo/angle_sort.hpp
+  - geo/outcircle.hpp
   - geo/reflection.hpp
   - geo/cross_point.hpp
   - geo/incircle.hpp
-  timestamp: '2022-08-20 20:06:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-08-21 16:45:55+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/mytest/incremental_ch.test.cpp
+  - test/library_checker/geometry/sort_points_by_argument.test.cpp
+  - test/aoj/CGL_3_B.test.cpp
   - test/aoj/CGL_7_B.test.cpp
   - test/aoj/CGL_1_A.test.cpp
   - test/aoj/CGL_2_B.test.cpp
   - test/aoj/CGL_2_D.test.cpp
+  - test/aoj/0079.test.cpp
   - test/aoj/CGL_1_B.test.cpp
   - test/aoj/CGL_2_C.test.cpp
   - test/aoj/CGL_2_A.test.cpp
+  - test/aoj/0068.test.cpp
 documentation_of: geo/base.hpp
 layout: document
 redirect_from:
