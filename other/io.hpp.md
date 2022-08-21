@@ -438,6 +438,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/lcm_convolution.test.cpp
     title: test/library_checker/math/lcm_convolution.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/math/min_of_mod_of_linear.test.cpp
+    title: test/library_checker/math/min_of_mod_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
     title: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
@@ -1260,6 +1263,7 @@ data:
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/counting_primes.test.cpp
   - test/library_checker/math/twosat.test.cpp
+  - test/library_checker/math/min_of_mod_of_linear.test.cpp
   - test/library_checker/math/stirline_mod_p_2.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
   - test/library_checker/math/find_linear_recurrence.test.cpp

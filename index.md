@@ -674,7 +674,10 @@ data:
     - icon: ':warning:'
       path: mod/min_of_linear.cpp
       title: mod/min_of_linear.cpp
-    - icon: ':question:'
+    - icon: ':x:'
+      path: mod/min_of_linear.hpp
+      title: mod/min_of_linear.hpp
+    - icon: ':heavy_check_mark:'
       path: mod/min_of_linear_segments.hpp
       title: mod/min_of_linear_segments.hpp
     - icon: ':question:'
