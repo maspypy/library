@@ -504,9 +504,13 @@ data:
     \ g, 0) == h);\n  }\n}\n\nvoid test_1() {\n  FOR(100) {\n    ll n = RNG(1, 10);\n\
     \    ll m = RNG(1, 10);\n    auto f = gen(n), g = gen(m);\n    vc<mint> h(len(f)\
     \ + len(g) - 1);\n    FOR(i, len(f)) FOR(j, len(g)) if (i < j) h[i + j] += f[i]\
-    \ * g[j];\n    assert(convolution_leq(f, g, 1) == h);\n  }\n}\n\nvoid solve()\
-    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  solve();\n\n  return 0;\n}\n"
+    \ * g[j];\n    assert(convolution_leq(f, g, 1) == h);\n  }\n}\n\nvoid test_2()\
+    \ {\n  ll n = RNG(1000, 10000);\n  ll m = RNG(1000, 10000);\n  auto f = gen(n),\
+    \ g = gen(m);\n  vc<mint> h(len(f) + len(g) - 1);\n  FOR(i, len(f)) FOR(j, len(g))\
+    \ if (i < j) h[i + j] += f[i] * g[j];\n  assert(convolution_leq(f, g, 1) == h);\n\
+    }\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout\
+    \ << fixed << setprecision(15);\n\n  test_0();\n  test_1();\n  test_2();\n  solve();\n\
+    \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n#include \"poly/convolution_leq.hpp\"\
     \n#include \"other/random.hpp\"\n\nRandomNumberGenerator RNG;\n\nusing mint =\
@@ -518,9 +522,12 @@ data:
     }\n\nvoid test_1() {\n  FOR(100) {\n    ll n = RNG(1, 10);\n    ll m = RNG(1,\
     \ 10);\n    auto f = gen(n), g = gen(m);\n    vc<mint> h(len(f) + len(g) - 1);\n\
     \    FOR(i, len(f)) FOR(j, len(g)) if (i < j) h[i + j] += f[i] * g[j];\n    assert(convolution_leq(f,\
-    \ g, 1) == h);\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\n\
-    signed main() {\n  cout << fixed << setprecision(15);\n\n  solve();\n\n  return\
-    \ 0;\n}\n"
+    \ g, 1) == h);\n  }\n}\n\nvoid test_2() {\n  ll n = RNG(1000, 10000);\n  ll m\
+    \ = RNG(1000, 10000);\n  auto f = gen(n), g = gen(m);\n  vc<mint> h(len(f) + len(g)\
+    \ - 1);\n  FOR(i, len(f)) FOR(j, len(g)) if (i < j) h[i + j] += f[i] * g[j];\n\
+    \  assert(convolution_leq(f, g, 1) == h);\n}\n\nvoid solve() {\n  LL(a, b);\n\
+    \  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  test_0();\n  test_1();\n  test_2();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -535,7 +542,7 @@ data:
   isVerificationFile: true
   path: test/mytest/conv_leq.test.cpp
   requiredBy: []
-  timestamp: '2022-08-22 04:33:51+09:00'
+  timestamp: '2022-08-22 04:39:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/conv_leq.test.cpp

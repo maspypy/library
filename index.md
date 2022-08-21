@@ -977,7 +977,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/find_linear_rec.hpp
       title: seq/find_linear_rec.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: seq/gray_code.hpp
       title: seq/gray_code.hpp
     - icon: ':heavy_check_mark:'
@@ -1748,6 +1748,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/factorial_998.test.cpp
       title: test/mytest/factorial_998.test.cpp
+    - icon: ':x:'
+      path: test/mytest/gray_code.test.cpp
+      title: test/mytest/gray_code.test.cpp
     - icon: ':x:'
       path: test/mytest/incremental_ch.test.cpp
       title: test/mytest/incremental_ch.test.cpp
