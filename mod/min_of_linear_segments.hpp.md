@@ -5,9 +5,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/max_of_linear_segments.hpp
     title: mod/max_of_linear_segments.hpp
-  - icon: ':warning:'
-    path: mod/min_of_linear.cpp
-    title: mod/min_of_linear.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/mytest/max_of_linear_segments.test.cpp
@@ -63,7 +60,6 @@ data:
   isVerificationFile: false
   path: mod/min_of_linear_segments.hpp
   requiredBy:
-  - mod/min_of_linear.cpp
   - mod/max_of_linear_segments.hpp
   timestamp: '2022-08-16 06:06:14+09:00'
   verificationStatus: LIBRARY_ALL_AC

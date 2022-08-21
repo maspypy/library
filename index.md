@@ -671,9 +671,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/max_of_linear_segments.hpp
       title: mod/max_of_linear_segments.hpp
-    - icon: ':warning:'
-      path: mod/min_of_linear.cpp
-      title: mod/min_of_linear.cpp
     - icon: ':x:'
       path: mod/min_of_linear.hpp
       title: mod/min_of_linear.hpp
