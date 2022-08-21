@@ -1,10 +1,9 @@
-// https://codeforces.com/contest/1641/problem/E
+#include "poly/convolution.hpp"
+
+// h[k] = sum_{i+j=k and i<=j} f_ig_j
+// if strict: i < j
 template <typename T>
 vc<T> convolution_leq(vc<T> f, vc<T> g, bool strict) {
-  /*
-  h[k] = sum_{i+j=k and i<=j} f_ig_j
-  if strict: i < j
-  */
   vc<T> h(len(f) + len(g) - 1);
   ll THRESH = 60;
 
