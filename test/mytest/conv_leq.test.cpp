@@ -37,6 +37,15 @@ void test_1() {
   }
 }
 
+void test_2() {
+  ll n = RNG(1000, 10000);
+  ll m = RNG(1000, 10000);
+  auto f = gen(n), g = gen(m);
+  vc<mint> h(len(f) + len(g) - 1);
+  FOR(i, len(f)) FOR(j, len(g)) if (i < j) h[i + j] += f[i] * g[j];
+  assert(convolution_leq(f, g, 1) == h);
+}
+
 void solve() {
   LL(a, b);
   print(a + b);
@@ -45,6 +54,9 @@ void solve() {
 signed main() {
   cout << fixed << setprecision(15);
 
+  test_0();
+  test_1();
+  test_2();
   solve();
 
   return 0;
