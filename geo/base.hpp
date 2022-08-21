@@ -80,3 +80,50 @@ struct Circle {
   Circle(Point<T> O, T r) : O(O), r(r) {}
   Circle(T x, T y, T r) : O(Point<T>(x, y)), r(r) {}
 };
+
+template <typename T>
+struct Polygon {
+  vc<Point<T>> points;
+  T a;
+
+  template <typename A, typename B>
+  Polygon(vc<pair<A, B>> pairs) {
+    for (auto&& [a, b]: pairs) points.eb(Point<T>(a, b));
+    build();
+  }
+  Polygon(vc<Point<T>> points) : points(points) { build(); }
+
+  int size() { return len(points); }
+
+  template <typename REAL>
+  REAL area() {
+    return a * 0.5;
+  }
+
+  template <enable_if_t<is_integral<T>::value, int> = 0>
+  T area_2() {
+    return a;
+  }
+
+  bool is_convex() {
+    FOR(j, len(points)) {
+      int i = (j == 0 ? len(points) - 1 : j - 1);
+      int k = (j == len(points) - 1 ? 0 : j + 1);
+      if ((points[j] - points[i]).det(points[k] - points[j]) < 0) return false;
+    }
+    return true;
+  }
+
+private:
+  void build() {
+    a = 0;
+    FOR(i, len(points)) {
+      int j = (i + 1 == len(points) ? 0 : i + 1);
+      a += points[i].det(points[j]);
+    }
+    if (a < 0) {
+      a = -a;
+      reverse(all(points));
+    }
+  }
+};
