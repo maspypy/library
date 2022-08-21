@@ -10,6 +10,9 @@ data:
     title: mod/range_freq_of_linear.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
+    title: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sum_of_floor_of_linear.test.cpp
     title: test/library_checker/math/sum_of_floor_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
@@ -47,6 +50,7 @@ data:
   - test/mytest/mod_sum_of_linear.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
   - test/library_checker/math/sum_of_floor_of_linear.test.cpp
+  - test/library_checker/math/min_of_mod_of_linear_2.test.cpp
 documentation_of: mod/floor_sum_of_linear.hpp
 layout: document
 redirect_from:

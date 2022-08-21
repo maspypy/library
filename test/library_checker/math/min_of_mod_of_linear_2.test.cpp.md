@@ -2,20 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: mod/max_of_linear_segments.hpp
-    title: mod/max_of_linear_segments.hpp
-  - icon: ':question:'
-    path: mod/min_of_linear_segments.hpp
-    title: mod/min_of_linear_segments.hpp
+    path: mod/floor_sum_of_linear.hpp
+    title: mod/floor_sum_of_linear.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/range_freq_of_linear.hpp
+    title: mod/range_freq_of_linear.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
-    path: other/random.hpp
-    title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -23,20 +20,20 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/aplusb
+    PROBLEM: https://judge.yosupo.jp/problem/min_of_mod_of_linear
     links:
-    - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/max_of_linear_segments.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#pragma\
-    \ GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include\
-    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
-    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
-    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
-    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
-    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://judge.yosupo.jp/problem/min_of_mod_of_linear
+  bundledCode: "#line 1 \"test/library_checker/math/min_of_mod_of_linear_2.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/min_of_mod_of_linear\"\n#line\
+    \ 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
+    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
+    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
+    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
+    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -201,80 +198,44 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 1 \"other/random.hpp\"\nstruct RandomNumberGenerator {\n\
-    \  mt19937 mt;\n\n  RandomNumberGenerator() : mt(chrono::steady_clock::now().time_since_epoch().count())\
-    \ {}\n\n  ll operator()(ll a, ll b) {  // [a, b)\n    uniform_int_distribution<ll>\
-    \ dist(a, b - 1);\n    return dist(mt);\n  }\n\n  ll operator()(ll b) {  // [0,\
-    \ b)\n    return (*this)(0, b);\n  }\n};\n#line 2 \"mod/min_of_linear_segments.hpp\"\
-    \n\n/*\nax + b (x>=0) \u304C\u6700\u5C0F\u3068\u306A\u308B\u3068\u3053\u308D\u306E\
-    \u60C5\u5831\u3092\u8FD4\u3059\u3002\nprefix min \u3092\u66F4\u65B0\u3059\u308B\
-    \ x \u5168\u4F53\u304C\u3001\u7B49\u5DEE\u6570\u5217\u306E\u548C\u96C6\u5408\u3002\
-    \u6B21\u3092\u8FD4\u3059\u3002\n\u30FB\u7B49\u5DEE\u6570\u5217\u306E\u5883\u754C\
-    \u3068\u306A\u308B x_0, x_1, ..., x_n\n\u30FB\u5404\u5883\u754C\u306E\u9593\u3067\
-    \u306E\u4EA4\u5DEE dx_0, ..., dx_{n-1}\n*/\npair<vc<int>, vc<int>> min_of_linear_segments(int\
-    \ a, int b, int mod) {\n  assert(0 <= a && a < mod);\n  assert(0 <= b && b < mod);\n\
-    \  vc<int> X = {0};\n  vc<int> DX;\n  int g = gcd(a, mod);\n  a /= g, b /= g,\
-    \ mod /= g;\n  // p/q <= (mod-a)/mod <= r/s\n  int p = 0, q = 1, r = 1, s = 1;\n\
-    \  int det_l = mod - a, det_r = a;\n  int x = 0, y = b;\n\n  while (y) {\n   \
-    \ // upd r/s\n    int k = det_r / det_l;\n    det_r %= det_l;\n    if (det_r ==\
-    \ 0) {\n      --k;\n      det_r = det_l;\n    }\n    r += k * p;\n    s += k *\
-    \ q;\n    while (1) {\n      int k = max(0, ceil(det_l - y, det_r));\n      if\
-    \ (det_l - k * det_r <= 0) break;\n      det_l -= k * det_r;\n      p += k * r;\n\
-    \      q += k * s;\n      // p/q <= a/mod\n      // (aq - pmod) = det_l \u3092\
-    \ y \u304B\u3089\u5F15\u304F\n      k = y / det_l;\n      y -= k * det_l;\n  \
-    \    x += q * k;\n      X.eb(x);\n      DX.eb(q);\n    }\n    k = det_l / det_r;\n\
-    \    det_l -= k * det_r;\n    p += k * r;\n    q += k * s;\n    assert(min({p,\
-    \ q, r, s}) >= 0);\n  }\n  return {X, DX};\n}\n#line 2 \"mod/max_of_linear_segments.hpp\"\
-    \n\n/*\nax + b (x>=0) \u304C\u6700\u5C0F\u3068\u306A\u308B\u3068\u3053\u308D\u306E\
-    \u60C5\u5831\u3092\u8FD4\u3059\u3002\nprefix max \u3092\u66F4\u65B0\u3059\u308B\
-    \ x \u5168\u4F53\u304C\u3001\u7B49\u5DEE\u6570\u5217\u306E\u548C\u96C6\u5408\u3002\
-    \u6B21\u3092\u8FD4\u3059\u3002\n\u30FB\u7B49\u5DEE\u6570\u5217\u306E\u5883\u754C\
-    \u3068\u306A\u308B x_0, x_1, ..., x_n\n\u30FB\u5404\u5883\u754C\u306E\u9593\u3067\
-    \u306E\u4EA4\u5DEE dx_0, ..., dx_{n-1}\n*/\npair<vc<int>, vc<int>> max_of_linear_segments(int\
-    \ a, int b, int mod) {\n  a = (a == 0 ? 0 : mod - a);\n  b = mod - 1 - b;\n  return\
-    \ min_of_linear_segments(a, b, mod);\n}\n#line 6 \"test/mytest/max_of_linear_segments.test.cpp\"\
-    \n\npair<vc<int>, vc<int>> naive(int a, int b, int mod) {\n  assert(0 <= a &&\
-    \ a < mod);\n  assert(0 <= b && b < mod);\n  vc<int> A;\n  int last_y = b;\n \
-    \ FOR(x, 1, mod + 1) {\n    int y = (ll(a) * x + b) % mod;\n    if (chmax(last_y,\
-    \ y)) A.eb(x);\n  }\n  vc<int> X = {0};\n  vc<int> DX;\n  int dx = -1;\n  for\
-    \ (auto&& x: A) {\n    if (X.back() + dx == x) {\n      X.back() = x;\n    } else\
-    \ {\n      dx = x - X.back();\n      DX.eb(dx);\n      X.eb(x);\n    }\n  }\n\
-    \  return {X, DX};\n}\n\nvoid test() {\n  RandomNumberGenerator RNG;\n  FOR(mod,\
-    \ 1, 1000) {\n    FOR(10) {\n      int a = RNG(0, mod);\n      int b = RNG(0,\
-    \ mod);\n      auto [X1, DX1] = naive(a, b, mod);\n      auto [X2, DX2] = max_of_linear_segments(a,\
-    \ b, mod);\n      assert(X1 == X2);\n      assert(DX1 == DX2);\n    }\n  }\n}\n\
-    \nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout <<\
-    \ fixed << setprecision(15);\n\n  test();\n  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"other/random.hpp\"\n#include \"mod/max_of_linear_segments.hpp\"\
-    \n\npair<vc<int>, vc<int>> naive(int a, int b, int mod) {\n  assert(0 <= a &&\
-    \ a < mod);\n  assert(0 <= b && b < mod);\n  vc<int> A;\n  int last_y = b;\n \
-    \ FOR(x, 1, mod + 1) {\n    int y = (ll(a) * x + b) % mod;\n    if (chmax(last_y,\
-    \ y)) A.eb(x);\n  }\n  vc<int> X = {0};\n  vc<int> DX;\n  int dx = -1;\n  for\
-    \ (auto&& x: A) {\n    if (X.back() + dx == x) {\n      X.back() = x;\n    } else\
-    \ {\n      dx = x - X.back();\n      DX.eb(dx);\n      X.eb(x);\n    }\n  }\n\
-    \  return {X, DX};\n}\n\nvoid test() {\n  RandomNumberGenerator RNG;\n  FOR(mod,\
-    \ 1, 1000) {\n    FOR(10) {\n      int a = RNG(0, mod);\n      int b = RNG(0,\
-    \ mod);\n      auto [X1, DX1] = naive(a, b, mod);\n      auto [X2, DX2] = max_of_linear_segments(a,\
-    \ b, mod);\n      assert(X1 == X2);\n      assert(DX1 == DX2);\n    }\n  }\n}\n\
-    \nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout <<\
-    \ fixed << setprecision(15);\n\n  test();\n  solve();\n\n  return 0;\n}\n"
+    \ { yes(!t); }\r\n#line 4 \"test/library_checker/math/min_of_mod_of_linear_2.test.cpp\"\
+    \n\n#line 2 \"mod/floor_sum_of_linear.hpp\"\n\n// sum_{x in [L,R)} floor(ax +\
+    \ b, mod)\ni128 floor_sum_of_linear(ll L, ll R, ll a, ll b, ll mod) {\n  assert(L\
+    \ <= R);\n  i128 res = 0;\n  b += L * a;\n  ll N = R - L;\n  while (N) {\n   \
+    \ ll q;\n    tie(q, a) = divmod(a, mod);\n    res += i128(N) * (N - 1) / 2 * q;\n\
+    \    tie(q, b) = divmod(b, mod);\n    res += i128(N) * q;\n    tie(N, b) = divmod(a\
+    \ * N + b, mod);\n    tie(a, mod) = mp(mod, a);\n  }\n  return res;\n}\n#line\
+    \ 2 \"mod/range_freq_of_linear.hpp\"\n\n// L <= x < R \u306E\u3046\u3061\u3067\
+    \u3001(ax+b mod) in [lo, hi) \u3068\u306A\u308B\u3082\u306E\u306E\u500B\u6570\n\
+    ll range_freq_of_linear(ll L, ll R, ll a, ll b, ll mod, ll lo, ll hi) {\n  if\
+    \ (lo >= hi) return 0;\n  assert(0 <= lo && lo < hi && hi <= mod);\n\n  i128 x1\
+    \ = floor_sum_of_linear(L, R, a, b - lo, mod);\n  i128 x2 = floor_sum_of_linear(L,\
+    \ R, a, b - hi, mod);\n  return x1 - x2;\n}\n#line 6 \"test/library_checker/math/min_of_mod_of_linear_2.test.cpp\"\
+    \n\nvoid solve() {\n  LL(n, m, a, b);\n  auto check = [&](int k) -> bool {\n \
+    \   return range_freq_of_linear(0, n, a, b, m, 0, k) == 0;\n  };\n  print(binary_search(check,\
+    \ 0, m));\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  LL(T);\n\
+    \  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/min_of_mod_of_linear\"\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/range_freq_of_linear.hpp\"\
+    \n\nvoid solve() {\n  LL(n, m, a, b);\n  auto check = [&](int k) -> bool {\n \
+    \   return range_freq_of_linear(0, n, a, b, m, 0, k) == 0;\n  };\n  print(binary_search(check,\
+    \ 0, m));\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  LL(T);\n\
+    \  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - other/random.hpp
-  - mod/max_of_linear_segments.hpp
-  - mod/min_of_linear_segments.hpp
+  - mod/range_freq_of_linear.hpp
+  - mod/floor_sum_of_linear.hpp
   isVerificationFile: true
-  path: test/mytest/max_of_linear_segments.test.cpp
+  path: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
   requiredBy: []
-  timestamp: '2022-08-20 05:21:32+09:00'
+  timestamp: '2022-08-21 17:49:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/mytest/max_of_linear_segments.test.cpp
+documentation_of: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
 layout: document
 redirect_from:
-- /verify/test/mytest/max_of_linear_segments.test.cpp
-- /verify/test/mytest/max_of_linear_segments.test.cpp.html
-title: test/mytest/max_of_linear_segments.test.cpp
+- /verify/test/library_checker/math/min_of_mod_of_linear_2.test.cpp
+- /verify/test/library_checker/math/min_of_mod_of_linear_2.test.cpp.html
+title: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
 ---

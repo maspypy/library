@@ -674,7 +674,7 @@ data:
     - icon: ':warning:'
       path: mod/min_of_linear.cpp
       title: mod/min_of_linear.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: mod/min_of_linear_segments.hpp
       title: mod/min_of_linear_segments.hpp
     - icon: ':question:'
@@ -1547,6 +1547,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/lcm_convolution.test.cpp
       title: test/library_checker/math/lcm_convolution.test.cpp
+    - icon: ':x:'
+      path: test/library_checker/math/min_of_mod_of_linear.test.cpp
+      title: test/library_checker/math/min_of_mod_of_linear.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
+      title: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/nim_product.test.cpp
       title: test/library_checker/math/nim_product.test.cpp
