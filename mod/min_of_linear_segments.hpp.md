@@ -5,7 +5,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/max_of_linear_segments.hpp
     title: mod/max_of_linear_segments.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/min_of_linear.hpp
+    title: mod/min_of_linear.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/min_of_mod_of_linear.test.cpp
+    title: test/library_checker/math/min_of_mod_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/max_of_linear_segments.test.cpp
     title: test/mytest/max_of_linear_segments.test.cpp
@@ -60,12 +66,14 @@ data:
   isVerificationFile: false
   path: mod/min_of_linear_segments.hpp
   requiredBy:
+  - mod/min_of_linear.hpp
   - mod/max_of_linear_segments.hpp
   timestamp: '2022-08-16 06:06:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
+  - test/library_checker/math/min_of_mod_of_linear.test.cpp
 documentation_of: mod/min_of_linear_segments.hpp
 layout: document
 redirect_from:
