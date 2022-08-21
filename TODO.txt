@@ -1,18 +1,9 @@
 ・k-th term of linear rec：
 fft を節約して高速化
 
-・static tree monoid：disjoint sparse table でいろいろ log ひとつ。
-doubling で作ってもよいが
-
-・unicyclic graph
-
-・分割の列挙
-
 ・suffix automation
 
 ・編集距離＋復元
-
-・p-recursive
 
 ・Rollback Mo
 
@@ -22,8 +13,6 @@ doubling で作ってもよいが
 
 ・木の直径：重みなしでよいので、辺の中点の追加とか中心を扱う
 
-・動的 convex hull：追加のみ、面積とか isin とか
-
 ・最大流：残余グラフを作ってかえす
 流量下限を入れる
 
@@ -32,20 +21,9 @@ https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_C
 
 mincostcycle：毎回グラフ作り直してて無駄、復元をつけるかどうか？
 
-・scc
-dag を作る。
-
-・stirling -> 軸ごと
-・Bell number
-
 ・カッコ列を木にする
 
-・fps: sparseな場合の inv, exp, log
-任意 mod の場合も
 ・sparse linear rec
-
-・maxflow
-カットの復元
 
 ・頂点属性の steiner 木
 ・steiner 木の復元
