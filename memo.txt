@@ -1,0 +1,9 @@
+・max(a,b,c) - min(a,b,c)
+1/2(|a-b|+|a-c|+|b-c|)
+
+・min(|xi-xj|,|yi-yj|)
+|xi-xj| + |yi-yj| - max(|xi-xj|, |yi-yj|) として、ai=(xi+yi)/2, bi=(xi-yi)/2 とすると
+|xi-xj| + |yi-yj| - |ai-aj| - |bi-bj|
+
+より一般に、
+min(|a-b|,|c-d|) = |a-b|+|c-d|- (|a-b+c-d| + |a-b-c+d|)/2
