@@ -1,12 +1,10 @@
 #include "ds/unionfind.hpp"
 #include "graph/base.hpp"
-#include "graph/hld.hpp"
 
 template <typename T = int>
 struct FunctionalGraph {
   int N, M;
-  Graph<T, 1> tree; // 新しい頂点 N を根として追加した有向木。逆向きの辺になる。
-  // HLD<Graph<T, 1>> hld;
+  Graph<T, 1> newG; // 新しい頂点 N を根として追加した有向木。逆向きの辺になる。
   vc<int> TO;
   vc<T> wt;
   vc<int> root;
