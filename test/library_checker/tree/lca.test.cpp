@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "graph/hld.hpp"
+#include "graph/tree.hpp"
 
 void solve() {
   LL(N, Q);
@@ -12,11 +12,11 @@ void solve() {
     G.add(p, v);
   }
   G.build();
-  HLD hld(G);
+  TREE tree(G);
 
   FOR(_, Q) {
     LL(a, b);
-    print(hld.LCA(a, b));
+    print(tree.LCA(a, b));
   }
 }
 
