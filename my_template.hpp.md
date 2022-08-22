@@ -342,7 +342,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -598,6 +598,12 @@ data:
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/tree/lca.test.cpp
+    title: test/library_checker/tree/lca.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/tree/lca_directed.test.cpp
+    title: test/library_checker/tree/lca_directed.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/tree_diameter.test.cpp
     title: test/library_checker/tree/tree_diameter.test.cpp
   - icon: ':heavy_check_mark:'
@@ -700,6 +706,9 @@ data:
     path: test/yukicoder/1170_range_to_range.test.cpp
     title: test/yukicoder/1170_range_to_range.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1197.test.cpp
+    title: test/yukicoder/1197.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1234_rmq.test.cpp
     title: test/yukicoder/1234_rmq.test.cpp
   - icon: ':heavy_check_mark:'
@@ -720,7 +729,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1321_surj.test.cpp
     title: test/yukicoder/1321_surj.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1326_bct.test.cpp
     title: test/yukicoder/1326_bct.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1048,6 +1057,7 @@ data:
   - test/yukicoder/1891_xor_sparse.test.cpp
   - test/yukicoder/705_monge_shortest_path.test.cpp
   - test/yukicoder/1750_matpow.test.cpp
+  - test/yukicoder/1197.test.cpp
   - test/yukicoder/626_knapsack_branch_bound.test.cpp
   - test/yukicoder/1036_dseg_minleft_maxright.test.cpp
   - test/yukicoder/1320_mincostcycle.test.cpp
@@ -1113,7 +1123,9 @@ data:
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
   - test/library_checker/tree/cartesian_tree.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
+  - test/library_checker/tree/lca_directed.test.cpp
   - test/library_checker/tree/tree_diameter.test.cpp
+  - test/library_checker/tree/lca.test.cpp
   - test/library_checker/sample/many_aplusb.test.cpp
   - test/library_checker/polynomial/inv_of_fps.test.cpp
   - test/library_checker/polynomial/polynomial_interpolation.test.cpp

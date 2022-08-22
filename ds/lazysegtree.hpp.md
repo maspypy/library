@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/rectangleunion.hpp
     title: ds/rectangleunion.hpp
+  - icon: ':warning:'
+    path: graph/dualtreemonoid.hpp
+    title: graph/dualtreemonoid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
@@ -27,6 +30,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
     title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1197.test.cpp
+    title: test/yukicoder/1197.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1234_rmq.test.cpp
     title: test/yukicoder/1234_rmq.test.cpp
@@ -175,12 +181,14 @@ data:
   isVerificationFile: false
   path: ds/lazysegtree.hpp
   requiredBy:
+  - graph/dualtreemonoid.hpp
   - graph/lazytreemonoid.hpp
   - ds/rectangleunion.hpp
   timestamp: '2022-08-11 02:08:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1548_power_sums.test.cpp
+  - test/yukicoder/1197.test.cpp
   - test/yukicoder/255.test.cpp
   - test/yukicoder/899_bfsnumbering.test.cpp
   - test/yukicoder/1234_rmq.test.cpp

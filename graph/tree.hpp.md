@@ -5,6 +5,9 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/dualtreemonoid.hpp
+    title: graph/dualtreemonoid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
@@ -17,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/treegroup.hpp
     title: graph/treegroup.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
   _extendedVerifiedWith:
@@ -36,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -45,7 +48,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/tree/lca.test.cpp
+    title: test/library_checker/tree/lca.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/tree/lca_directed.test.cpp
+    title: test/library_checker/tree/lca_directed.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1197.test.cpp
+    title: test/yukicoder/1197.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1326_bct.test.cpp
     title: test/yukicoder/1326_bct.test.cpp
   - icon: ':x:'
@@ -225,6 +237,7 @@ data:
   isVerificationFile: false
   path: graph/tree.hpp
   requiredBy:
+  - graph/dualtreemonoid.hpp
   - graph/lazytreemonoid.hpp
   - graph/rerooting_dp.hpp
   - graph/treeabelgroup.hpp
@@ -234,7 +247,10 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1641_tree_abel.test.cpp
+  - test/yukicoder/1197.test.cpp
   - test/yukicoder/1326_bct.test.cpp
+  - test/library_checker/tree/lca_directed.test.cpp
+  - test/library_checker/tree/lca.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp

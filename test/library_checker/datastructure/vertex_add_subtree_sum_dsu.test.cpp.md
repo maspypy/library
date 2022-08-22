@@ -22,7 +22,7 @@ data:
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/dsu_on_tree.hpp\"\
     \n#include \"ds/fenwick.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n\
     \  Graph<int, 1> G(N);\n  FOR(v, 1, N) {\n    LL(p);\n    G.add(p, v);\n  }\n\
-    \  G.build();\n  HLD hld(G);\n\n  vi ANS(Q, -1);\n  vvc<pair<int, int>> query(N);\n\
+    \  G.build();\n  TREE tree(G);\n\n  vi ANS(Q, -1);\n  vvc<pair<int, int>> query(N);\n\
     \  FOR(q, Q) {\n    LL(t);\n    if (t == 0) {\n      LL(v, x);\n      query[v].eb(q,\
     \ x);\n    }\n    if (t == 1) {\n      LL(v);\n      query[v].eb(q, -1);\n   \
     \ }\n  }\n\n  FenwickTree<Group_Add<ll>> bit(Q);\n  vc<pair<int, int>> history;\n\
@@ -32,7 +32,7 @@ data:
     \ v) -> void {\n    for (auto&& [q, x]: query[v]) {\n      if (x == -1) ANS[q]\
     \ = base_sum + bit.sum(q);\n    }\n  };\n  auto RESET = [&]() -> void {\n    base_sum\
     \ = 0;\n    for (auto&& [q, x]: history) bit.add(q, -x);\n    history.clear();\n\
-    \  };\n  DSU_on_Tree(hld, ADD, QUERY, RESET);\n  for (auto&& ans: ANS)\n    if\
+    \  };\n  DSU_on_Tree(tree, ADD, QUERY, RESET);\n  for (auto&& ans: ANS)\n    if\
     \ (ans != -1) print(ans);\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   dependsOn: []
   isVerificationFile: true

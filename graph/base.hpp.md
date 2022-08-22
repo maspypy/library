@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bfsnumbering.hpp
     title: graph/bfsnumbering.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/biconnected_component.hpp
     title: graph/biconnected_component.hpp
   - icon: ':warning:'
@@ -47,6 +47,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dijkstra.hpp
     title: graph/dijkstra.hpp
+  - icon: ':warning:'
+    path: graph/dualtreemonoid.hpp
+    title: graph/dualtreemonoid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/enumerate_triangles.hpp
     title: graph/enumerate_triangles.hpp
@@ -119,7 +122,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/treegroup.hpp
     title: graph/treegroup.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
   - icon: ':heavy_check_mark:'
@@ -171,7 +174,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -217,6 +220,12 @@ data:
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/tree/lca.test.cpp
+    title: test/library_checker/tree/lca.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/tree/lca_directed.test.cpp
+    title: test/library_checker/tree/lca_directed.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/tree_diameter.test.cpp
     title: test/library_checker/tree/tree_diameter.test.cpp
   - icon: ':heavy_check_mark:'
@@ -232,12 +241,15 @@ data:
     path: test/yukicoder/1170_range_to_range.test.cpp
     title: test/yukicoder/1170_range_to_range.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1197.test.cpp
+    title: test/yukicoder/1197.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1293_scc.test.cpp
     title: test/yukicoder/1293_scc.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1320_mincostcycle.test.cpp
     title: test/yukicoder/1320_mincostcycle.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1326_bct.test.cpp
     title: test/yukicoder/1326_bct.test.cpp
   - icon: ':heavy_check_mark:'
@@ -358,6 +370,7 @@ data:
   - graph/strongly_connected_component.hpp
   - graph/unicyclic.hpp
   - graph/degree.hpp
+  - graph/dualtreemonoid.hpp
   - graph/lazytreemonoid.hpp
   - graph/cycle_detection.hpp
   - graph/check_bipartite.hpp
@@ -384,6 +397,7 @@ data:
   - test/yukicoder/1641_tree_abel.test.cpp
   - test/yukicoder/1868_range_to_range.test.cpp
   - test/yukicoder/1002_centroid.test.cpp
+  - test/yukicoder/1197.test.cpp
   - test/yukicoder/1320_mincostcycle.test.cpp
   - test/yukicoder/1038_centroid.test.cpp
   - test/yukicoder/899_bfsnumbering.test.cpp
@@ -395,7 +409,9 @@ data:
   - test/yukicoder/1479_bipartite_vertex_cover.test.cpp
   - test/yukicoder/114_steriner_tree.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
+  - test/library_checker/tree/lca_directed.test.cpp
   - test/library_checker/tree/tree_diameter.test.cpp
+  - test/library_checker/tree/lca.test.cpp
   - test/library_checker/graph/enumerate_triangles.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
   - test/library_checker/graph/cycle_detection.test.cpp

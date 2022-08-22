@@ -13,6 +13,9 @@ data:
     path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
     title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1197.test.cpp
+    title: test/yukicoder/1197.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/789_dseg_lazy.test.cpp
     title: test/yukicoder/789_dseg_lazy.test.cpp
   _isVerificationFailed: false
@@ -51,6 +54,7 @@ data:
   timestamp: '2022-06-27 16:36:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1197.test.cpp
   - test/yukicoder/789_dseg_lazy.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
 documentation_of: alg/lazy_cntsum_add.hpp
