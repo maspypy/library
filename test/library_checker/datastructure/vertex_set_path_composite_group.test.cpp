@@ -21,8 +21,8 @@ void solve() {
   Graph<int> G(N);
   G.read_tree(0, 0);
 
-  HLD hld(G);
-  TreeGroup<decltype(hld), Mono, false, true, false> TG(hld, A);
+  TREE tree(G);
+  TreeGroup<decltype(tree), Mono, false, true, false> TG(tree, A);
 
   FOR(_, Q) {
     LL(t);
