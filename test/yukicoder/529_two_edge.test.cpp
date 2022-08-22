@@ -23,11 +23,11 @@ void solve() {
 
   const ll INF = 1LL << 60;
 
-  HLD hld(G);
+  TREE tree(G);
   vc<pq<ll>> wts(C);
   vc<pair<ll, int>> dat(C);
   FOR(i, C) dat[i] = {-INF, i};
-  TreeMonoid<decltype(hld), Mono> TM(hld, dat);
+  TreeMonoid<decltype(tree), Mono> TM(tree, dat);
 
   FOR(Q) {
     LL(t);
