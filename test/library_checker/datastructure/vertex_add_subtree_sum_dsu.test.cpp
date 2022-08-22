@@ -13,7 +13,7 @@ void solve() {
     G.add(p, v);
   }
   G.build();
-  HLD hld(G);
+  TREE tree(G);
 
   vi ANS(Q, -1);
   vvc<pair<int, int>> query(N);
@@ -52,7 +52,7 @@ void solve() {
     for (auto&& [q, x]: history) bit.add(q, -x);
     history.clear();
   };
-  DSU_on_Tree(hld, ADD, QUERY, RESET);
+  DSU_on_Tree(tree, ADD, QUERY, RESET);
   for (auto&& ans: ANS)
     if (ans != -1) print(ans);
 }
