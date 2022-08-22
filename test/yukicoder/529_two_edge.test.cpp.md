@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_max_idx.hpp
     title: alg/monoid_max_idx.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_reverse.hpp
     title: alg/monoid_reverse.hpp
   - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/529
@@ -316,7 +316,7 @@ data:
     \ vc<int>> two_edge_component(Graph& G) {\r\n  TREE tree(G);\r\n  int N = G.N;\r\
     \n  vc<int> DP(N);\r\n  for (auto&& e: G.edges) {\r\n    if (!tree.in_tree[e.id])\
     \ {\r\n      int a = e.frm, b = e.to;\r\n      if (tree.depth[a] < tree.depth[b])\
-    \ swap(a, b);\r\n      DP[a]++, DP[b]--;\r\n    }\r\n  }\r\n  auto& V = hld.V;\r\
+    \ swap(a, b);\r\n      DP[a]++, DP[b]--;\r\n    }\r\n  }\r\n  auto& V = tree.V;\r\
     \n  FOR_R(i, len(V)) {\r\n    int v = V[i];\r\n    int p = tree.parent[v];\r\n\
     \    if (p != -1) DP[p] += DP[v];\r\n  }\r\n  int C = 0;\r\n  vc<int> comp(N,\
     \ -1);\r\n  FOR(v, N) if (DP[v] == 0) comp[v] = C++;\r\n  for (auto&& v: V)\r\n\
@@ -480,8 +480,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/529_two_edge.test.cpp
   requiredBy: []
-  timestamp: '2022-08-23 00:18:04+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-23 04:28:25+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/529_two_edge.test.cpp
 layout: document
