@@ -101,7 +101,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
@@ -122,9 +122,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/treegroup.hpp
     title: graph/treegroup.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
+  - icon: ':x:'
+    path: graph/two_edge_component.hpp
+    title: graph/two_edge_component.hpp
   - icon: ':heavy_check_mark:'
     path: graph/twosat.hpp
     title: graph/twosat.hpp
@@ -159,6 +162,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_C_warshallfloyd.test.cpp
     title: test/aoj/GRL_1_C_warshallfloyd.test.cpp
+  - icon: ':x:'
+    path: test/aoj/GRL_3_B.test.cpp
+    title: test/aoj/GRL_3_B.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
     title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
@@ -210,6 +216,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/shortest_path.test.cpp
     title: test/library_checker/graph/shortest_path.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/graph/two_edge_component.test.cpp
+    title: test/library_checker/graph/two_edge_component.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
@@ -270,12 +279,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/235_lazytreemonoid.test.cpp
     title: test/yukicoder/235_lazytreemonoid.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/529_two_edge.test.cpp
+    title: test/yukicoder/529_two_edge.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/899_bfsnumbering.test.cpp
     title: test/yukicoder/899_bfsnumbering.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -356,6 +368,7 @@ data:
   - graph/toposort.hpp
   - graph/dijkstra.hpp
   - graph/reachability.hpp
+  - graph/two_edge_component.hpp
   - graph/biconnected_component.hpp
   - graph/reverse_graph.hpp
   - graph/mincostcycle.hpp
@@ -395,7 +408,7 @@ data:
   - graph/dial.hpp
   - flow/bipartite.hpp
   timestamp: '2022-08-18 17:59:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1641_tree_abel.test.cpp
   - test/yukicoder/1868_range_to_range.test.cpp
@@ -406,6 +419,7 @@ data:
   - test/yukicoder/1038_centroid.test.cpp
   - test/yukicoder/899_bfsnumbering.test.cpp
   - test/yukicoder/1344_warshall_floyd.test.cpp
+  - test/yukicoder/529_two_edge.test.cpp
   - test/yukicoder/1293_scc.test.cpp
   - test/yukicoder/17_warshall_floyd.test.cpp
   - test/yukicoder/1326_bct.test.cpp
@@ -416,6 +430,7 @@ data:
   - test/library_checker/tree/lca_directed.test.cpp
   - test/library_checker/tree/tree_diameter.test.cpp
   - test/library_checker/tree/lca.test.cpp
+  - test/library_checker/graph/two_edge_component.test.cpp
   - test/library_checker/graph/enumerate_triangles.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
   - test/library_checker/graph/cycle_detection.test.cpp
@@ -434,6 +449,7 @@ data:
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - test/aoj/GRL_1_B_bellmanford.test.cpp
+  - test/aoj/GRL_3_B.test.cpp
   - test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - test/aoj/GRL_1_C_warshallfloyd.test.cpp

@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/treegroup.hpp
     title: graph/treegroup.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
   _extendedVerifiedWith:
@@ -60,6 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/529_two_edge.test.cpp
+    title: test/yukicoder/529_two_edge.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -171,6 +174,7 @@ data:
   timestamp: '2022-08-11 02:08:49+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/529_two_edge.test.cpp
   - test/yukicoder/1036_seg_maxright_minleft.test.cpp
   - test/yukicoder/426.test.cpp
   - test/mytest/range_mex.test.cpp

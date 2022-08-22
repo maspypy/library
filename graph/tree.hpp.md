@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -20,13 +20,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/treegroup.hpp
     title: graph/treegroup.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
+  - icon: ':x:'
+    path: graph/two_edge_component.hpp
+    title: graph/two_edge_component.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2677.test.cpp
     title: test/aoj/2677.test.cpp
+  - icon: ':x:'
+    path: test/aoj/GRL_3_B.test.cpp
+    title: test/aoj/GRL_3_B.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
     title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
@@ -48,6 +54,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/graph/two_edge_component.test.cpp
+    title: test/library_checker/graph/two_edge_component.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/lca.test.cpp
     title: test/library_checker/tree/lca.test.cpp
@@ -66,9 +75,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/235_lazytreemonoid.test.cpp
     title: test/yukicoder/235_lazytreemonoid.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/529_two_edge.test.cpp
+    title: test/yukicoder/529_two_edge.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -240,6 +252,7 @@ data:
   isVerificationFile: false
   path: graph/tree.hpp
   requiredBy:
+  - graph/two_edge_component.hpp
   - graph/dualtreemonoid.hpp
   - graph/lazytreemonoid.hpp
   - graph/rerooting_dp.hpp
@@ -247,20 +260,23 @@ data:
   - graph/treemonoid.hpp
   - graph/treegroup.hpp
   timestamp: '2022-08-22 17:21:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1641_tree_abel.test.cpp
   - test/yukicoder/1197.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
+  - test/yukicoder/529_two_edge.test.cpp
   - test/yukicoder/1326_bct.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp
   - test/library_checker/tree/lca.test.cpp
+  - test/library_checker/graph/two_edge_component.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - test/aoj/GRL_3_B.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - test/aoj/2677.test.cpp
 documentation_of: graph/tree.hpp

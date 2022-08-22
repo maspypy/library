@@ -135,6 +135,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_C_warshallfloyd.test.cpp
     title: test/aoj/GRL_1_C_warshallfloyd.test.cpp
+  - icon: ':x:'
+    path: test/aoj/GRL_3_B.test.cpp
+    title: test/aoj/GRL_3_B.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
     title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
@@ -393,6 +396,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/shortest_path.test.cpp
     title: test/library_checker/graph/shortest_path.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/graph/two_edge_component.test.cpp
+    title: test/library_checker/graph/two_edge_component.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
@@ -849,6 +855,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_p_rec.test.cpp
     title: test/yukicoder/502_p_rec.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/529_two_edge.test.cpp
+    title: test/yukicoder/529_two_edge.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/626_knapsack_branch_bound.test.cpp
     title: test/yukicoder/626_knapsack_branch_bound.test.cpp
@@ -1089,6 +1098,7 @@ data:
   - test/yukicoder/1301_mcf.test.cpp
   - test/yukicoder/1418_rerooting.test.cpp
   - test/yukicoder/1344_warshall_floyd.test.cpp
+  - test/yukicoder/529_two_edge.test.cpp
   - test/yukicoder/789_dseg_lazy.test.cpp
   - test/yukicoder/1293_scc.test.cpp
   - test/yukicoder/1234_rmq.test.cpp
@@ -1151,6 +1161,7 @@ data:
   - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
   - test/library_checker/polynomial/composition_of_fps.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/library_checker/graph/two_edge_component.test.cpp
   - test/library_checker/graph/enumerate_triangles.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
   - test/library_checker/graph/cycle_detection.test.cpp
@@ -1270,6 +1281,7 @@ data:
   - test/aoj/DPL_1_F_kanpsack01.test.cpp
   - test/aoj/ALDS1_5_inversion.test.cpp
   - test/aoj/ITP1_11_D.test.cpp
+  - test/aoj/GRL_3_B.test.cpp
   - test/aoj/1508_splay.test.cpp
   - test/aoj/DSL_2_G_fenwick_raq.test.cpp
   - test/aoj/ITP1_11_A.test.cpp
