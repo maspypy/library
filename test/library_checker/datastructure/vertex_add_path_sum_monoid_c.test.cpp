@@ -11,10 +11,10 @@ void solve() {
   Graph G(N);
   G.read_tree(0, 0);
 
-  HLD hld(G);
+  TREE tree(G);
   const bool is_edge = false;
   using Mono = Group_Add<ll>;
-  TreeMonoid<decltype(hld), Mono, is_edge> TM(hld, A);
+  TreeMonoid<decltype(tree), Mono, is_edge> TM(tree, A);
 
   FOR(_, Q) {
     LL(t);
