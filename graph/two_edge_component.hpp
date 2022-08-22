@@ -13,7 +13,7 @@ pair<int, vc<int>> two_edge_component(Graph& G) {
       DP[a]++, DP[b]--;
     }
   }
-  auto& V = hld.V;
+  auto& V = tree.V;
   FOR_R(i, len(V)) {
     int v = V[i];
     int p = tree.parent[v];
