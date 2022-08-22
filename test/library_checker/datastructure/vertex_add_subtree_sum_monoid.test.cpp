@@ -15,10 +15,10 @@ void solve() {
   }
   G.build();
 
-  HLD hld(G);
+  TREE tree(G);
   using Mono = Group_Add<ll>;
 
-  TreeMonoid<decltype(hld), Mono, false> TM(hld, A);
+  TreeMonoid<decltype(tree), Mono, false> TM(tree, A);
 
   FOR(_, Q) {
     LL(t);
