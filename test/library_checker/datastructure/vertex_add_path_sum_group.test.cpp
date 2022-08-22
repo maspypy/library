@@ -12,9 +12,9 @@ void solve() {
   Graph G(N);
   G.read_tree(0, 0);
 
-  HLD<Graph<int>> hld(G);
+  TREE<Graph<int>> tree(G);
   using Group = Group_Add<ll>;
-  TreeGroup<decltype(hld), Group, false, true, false> TG(hld, A);
+  TreeGroup<decltype(tree), Group, false, true, false> TG(tree, A);
 
   FOR(_, Q) {
     LL(t);
