@@ -1,57 +1,57 @@
+
 #include "graph/base.hpp"
-#include "graph/hld.hpp"
+#include "graph/tree.hpp"
 
-// snippet 参照
-template <typename Graph, typename Data, typename F1, typename F2, typename F3>
-vc<Data> rerooting_dp(Graph& G, F1 fee, F2 fev, F3 fve, Data unit) {
-  using E = typename Graph::edge_type;
+template <typename TREE, typename Data>
+struct Rerooting_dp {
+  vc<Data> dp_1; // 辺 pv に対して、部分木 v
+  vc<Data> dp_2; // 辺 pv に対して、部分木 p
+  vc<Data> dp;   // すべての v に対して、v を根とする部分木
 
-  int N = G.N;
-  HLD hld(G);
-  auto V = hld.V;
-  auto VR = V;
-  reverse(all(VR));
-  auto par = hld.parent;
+  template <typename F1, typename F2, typename F3>
+  Rerooting_dp(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data unit) {
+    int N = tree.G.N;
+    dp_1.assign(N, unit);
+    dp_2.assign(N, unit);
+    dp.assign(N, unit);
+    auto& V = tree.V;
+    auto& par = tree.parent;
 
-  vc<Data> dpv(N);
-  vc<Data> dpe1(N);
-
-  for (auto&& v: VR) {
-    auto val = unit;
-    E e0;
-    for (auto&& e: G[v]) {
-      if (e.to != par[v]) {
-        val = fee(val, dpe1[e.to]);
-      } else {
-        e0 = e;
+    FOR_R(i, N) {
+      int v = V[i];
+      auto ch = tree.collect_child(v);
+      int n = len(ch);
+      vc<Data> Xl(n + 1, unit), Xr(n + 1, unit);
+      FOR(i, n) Xl[i + 1] = f_ee(Xl[i], dp_2[ch[i]]);
+      FOR_R(i, n) Xr[i] = f_ee(dp_2[ch[i]], Xr[i + 1]);
+      FOR(i, n) dp_2[ch[i]] = f_ee(Xl[i], Xr[i + 1]);
+      dp[v] = Xr[0];
+      dp_1[v] = f_ev(dp[v], v);
+      for (auto&& e: tree.G[v]) {
+        if (e.to == par[v]) { dp_2[v] = f_ve(dp_1[v], e); }
       }
     }
-    dpv[v] = fev(val, v);
-    dpe1[v] = (v ? fve(dpv[v], e0) : unit);
-  }
-
-  vc<Data> dp(N);
-  vc<Data> dpe2(N);
-  dpe2[0] = unit;
-
-  for (auto&& v: V) {
-    vc<Data> tmp = {dpe2[v]};
-    for (auto&& e: G[v])
-      if (e.to != par[v]) { tmp.eb(dpe1[e.to]); }
-    int n = len(tmp);
-    vc<Data> cum_l(n + 1), cum_r(n + 1);
-    cum_l[0] = unit;
-    FOR(i, n) cum_l[i + 1] = fee(cum_l[i], tmp[i]);
-    cum_r[n] = unit;
-    FOR_R(i, n) cum_r[i] = fee(cum_r[i + 1], tmp[i]);
-    dp[v] = fev(cum_r[0], v);
-    int nxt = 1;
-    for (auto&& e: G[v])
-      if (e.to != par[v]) {
-        auto prod = fee(cum_l[nxt], cum_r[nxt + 1]);
-        ++nxt;
-        dpe2[e.to] = fve(fev(prod, v), e);
+    {
+      int v = V[0];
+      dp[v] = f_ev(dp[v], v);
+      for (auto&& e: tree.G[v]) dp_2[e.to] = f_ev(dp_2[e.to], v);
+    }
+    FOR(i, N) {
+      int v = V[i];
+      for (auto&& e: tree.G[v]) {
+        if (e.to != par[v]) {
+          Data x = f_ve(dp_2[e.to], e);
+          dp[e.to] = f_ev(f_ee(dp[e.to], x), e.to);
+          for (auto&& f: tree.G[e.to]) {
+            if (f.to != par[f.to]) {
+              dp_2[f.to] = f_ee(dp_2[f.to], x);
+              dp_2[f.to] = f_ev(dp_2[f.to], e.to);
+            }
+          }
+        }
       }
+    }
   }
-  return dp;
-}
+
+  Data operator[](int v) { return dp[v]; }
+};
