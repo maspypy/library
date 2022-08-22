@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/cumsum2d.hpp
     title: ds/cumsum2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   - icon: ':heavy_check_mark:'
@@ -71,7 +71,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/contoursum.hpp
     title: graph/contoursum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/treeabelgroup.hpp
     title: graph/treeabelgroup.hpp
   - icon: ':heavy_check_mark:'
@@ -186,9 +186,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1490_rect_add_rect_sum.test.cpp
     title: test/yukicoder/1490_rect_add_rect_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1641_tree_abel.test.cpp
     title: test/yukicoder/1641_tree_abel.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/235_lazytreemonoid.test.cpp
+    title: test/yukicoder/235_lazytreemonoid.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/655_cumsum2d.test.cpp
     title: test/yukicoder/655_cumsum2d.test.cpp
@@ -263,6 +266,7 @@ data:
   - test/yukicoder/1441_rbst.test.cpp
   - test/yukicoder/1197.test.cpp
   - test/yukicoder/789_dseg.test.cpp
+  - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/1038_centroid.test.cpp
   - test/yukicoder/924.test.cpp
   - test/yukicoder/1490_rect_add_rect_sum.test.cpp

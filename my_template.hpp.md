@@ -777,7 +777,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1625_seg2d.test.cpp
     title: test/yukicoder/1625_seg2d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1641_tree_abel.test.cpp
     title: test/yukicoder/1641_tree_abel.test.cpp
   - icon: ':heavy_check_mark:'
@@ -825,6 +825,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2005.test.cpp
     title: test/yukicoder/2005.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/235_lazytreemonoid.test.cpp
+    title: test/yukicoder/235_lazytreemonoid.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/255.test.cpp
     title: test/yukicoder/255.test.cpp
@@ -1066,6 +1069,7 @@ data:
   - test/yukicoder/789_dseg.test.cpp
   - test/yukicoder/4_modular_subset_sum.test.cpp
   - test/yukicoder/1117_swag.test.cpp
+  - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/1321_surj.test.cpp
   - test/yukicoder/255.test.cpp
   - test/yukicoder/1038_centroid.test.cpp

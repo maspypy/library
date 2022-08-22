@@ -27,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/235_lazytreemonoid.test.cpp
+    title: test/yukicoder/235_lazytreemonoid.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -53,6 +56,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1197.test.cpp
+  - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp

@@ -394,6 +394,9 @@ data:
     path: test/yukicoder/2005.test.cpp
     title: test/yukicoder/2005.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/235_lazytreemonoid.test.cpp
+    title: test/yukicoder/235_lazytreemonoid.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
   - icon: ':heavy_check_mark:'
@@ -630,6 +633,7 @@ data:
   - test/yukicoder/1891_xor_sparse.test.cpp
   - test/yukicoder/1750_matpow.test.cpp
   - test/yukicoder/502_p_rec.test.cpp
+  - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/1321_surj.test.cpp
   - test/yukicoder/1618_conv_ll.test.cpp
   - test/yukicoder/1844_interpolate_c_rec.test.cpp

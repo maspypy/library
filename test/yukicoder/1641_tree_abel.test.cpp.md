@@ -4,19 +4,19 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_xor.hpp
     title: alg/group_xor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/treeabelgroup.hpp
     title: graph/treeabelgroup.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1641
@@ -377,7 +377,7 @@ data:
     \ noexcept {\r\n    return (n & 1 ? x : 0);\r\n  }\r\n  static constexpr X unit(){return\
     \ X(0);};\r\n  static constexpr bool commute = true;\r\n};\r\n#line 6 \"test/yukicoder/1641_tree_abel.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  Graph G(N);\n  VEC(int, A, N);\n  G.read_tree();\n\
-    \  HLD hld(G);\n  TreeAbelGroup<decltype(hld), Group_Xor<int>, 0, 0, 1> TA(hld,\
+    \  TREE tree(G);\n  TreeAbelGroup<decltype(tree), Group_Xor<int>, 0, 0, 1> TA(tree,\
     \ A);\n  FOR(Q) {\n    LL(t, x, y);\n    --x;\n    if (t == 1) { TA.add(x, y);\
     \ }\n    if (t == 2) { print(TA.prod_subtree(x)); }\n  }\n}\n\nsigned main() {\n\
     \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
@@ -385,12 +385,12 @@ data:
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1641\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"graph/treeabelgroup.hpp\"\n#include \"\
     alg/group_xor.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  Graph G(N);\n  VEC(int,\
-    \ A, N);\n  G.read_tree();\n  HLD hld(G);\n  TreeAbelGroup<decltype(hld), Group_Xor<int>,\
-    \ 0, 0, 1> TA(hld, A);\n  FOR(Q) {\n    LL(t, x, y);\n    --x;\n    if (t == 1)\
-    \ { TA.add(x, y); }\n    if (t == 2) { print(TA.prod_subtree(x)); }\n  }\n}\n\n\
-    signed main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout <<\
-    \ setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return\
-    \ 0;\n}\n"
+    \ A, N);\n  G.read_tree();\n  TREE tree(G);\n  TreeAbelGroup<decltype(tree), Group_Xor<int>,\
+    \ 0, 0, 1> TA(tree, A);\n  FOR(Q) {\n    LL(t, x, y);\n    --x;\n    if (t ==\
+    \ 1) { TA.add(x, y); }\n    if (t == 2) { print(TA.prod_subtree(x)); }\n  }\n\
+    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
+    \ return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -403,8 +403,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1641_tree_abel.test.cpp
   requiredBy: []
-  timestamp: '2022-08-22 17:52:37+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-22 22:02:48+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/1641_tree_abel.test.cpp
 layout: document

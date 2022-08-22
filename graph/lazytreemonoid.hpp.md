@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
@@ -24,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/235_lazytreemonoid.test.cpp
+    title: test/yukicoder/235_lazytreemonoid.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -332,6 +335,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1197.test.cpp
+  - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
 documentation_of: graph/lazytreemonoid.hpp
 layout: document

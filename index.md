@@ -24,7 +24,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/group_reverse.hpp
       title: alg/group_reverse.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/group_xor.hpp
       title: alg/group_xor.hpp
     - icon: ':warning:'
@@ -249,7 +249,7 @@ data:
     - icon: ':question:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwick.hpp
       title: ds/fenwick.hpp
     - icon: ':heavy_check_mark:'
@@ -440,7 +440,7 @@ data:
       title: geo_old/points_diameter.hpp
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/base.hpp
       title: graph/base.hpp
     - icon: ':heavy_check_mark:'
@@ -575,7 +575,7 @@ data:
     - icon: ':warning:'
       path: graph/tournament.hpp
       title: graph/tournament.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree.hpp
       title: graph/tree.hpp
     - icon: ':heavy_check_mark:'
@@ -590,7 +590,7 @@ data:
     - icon: ':warning:'
       path: graph/tree_of_unionfind.hpp
       title: graph/tree_of_unionfind.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/treeabelgroup.hpp
       title: graph/treeabelgroup.hpp
     - icon: ':heavy_check_mark:'
@@ -1906,7 +1906,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1625_seg2d.test.cpp
       title: test/yukicoder/1625_seg2d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1641_tree_abel.test.cpp
       title: test/yukicoder/1641_tree_abel.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1960,7 +1960,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/2005.test.cpp
       title: test/yukicoder/2005.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/235_lazytreemonoid.test.cpp
       title: test/yukicoder/235_lazytreemonoid.test.cpp
     - icon: ':heavy_check_mark:'
