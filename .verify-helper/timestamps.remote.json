@@ -201,6 +201,7 @@
 "test/mytest/conv_leq.test.cpp": "2022-08-22 04:39:59 +0900",
 "test/mytest/enum_partitions.test.cpp": "2022-08-20 05:21:32 +0900",
 "test/mytest/factorial_998.test.cpp": "2022-08-21 00:15:06 +0900",
+"test/mytest/gray_code.test.cpp": "2022-08-22 14:22:01 +0900",
 "test/mytest/max_of_linear_segments.test.cpp": "2022-08-20 05:21:32 +0900",
 "test/mytest/maxplus_concave.test.cpp": "2022-08-20 05:21:32 +0900",
 "test/mytest/min_of_linear_segments.test.cpp": "2022-08-20 05:59:20 +0900",
