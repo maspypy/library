@@ -7,14 +7,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/gray_code.hpp
     title: seq/gray_code.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -200,7 +200,7 @@ data:
     \ << LOG);\r\n  FOR(v, 1 << LOG) res[v] = v ^ (v >> 1);\r\n  return res;\r\n}\r\
     \n#line 5 \"test/mytest/gray_code.test.cpp\"\n\nvoid test() {\n  FOR(LOG, 10)\
     \ {\n    auto G = gray_code(LOG);\n    FOR(i, len(G) - 1) {\n      int j = (i\
-    \ + 1 == len(G) ? 0 : i);\n      int x = G[i] ^ G[j];\n      assert(popcnt(x)\
+    \ + 1 == len(G) ? 0 : i + 1);\n      int x = G[i] ^ G[j];\n      assert(popcnt(x)\
     \ == 1);\n    }\n    assert(len(G) == 1 << LOG);\n    UNIQUE(G);\n    assert(len(G)\
     \ == 1 << LOG);\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\n\
     signed main() {\n  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\
@@ -208,11 +208,11 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"seq/gray_code.hpp\"\n\nvoid test() {\n\
     \  FOR(LOG, 10) {\n    auto G = gray_code(LOG);\n    FOR(i, len(G) - 1) {\n  \
-    \    int j = (i + 1 == len(G) ? 0 : i);\n      int x = G[i] ^ G[j];\n      assert(popcnt(x)\
-    \ == 1);\n    }\n    assert(len(G) == 1 << LOG);\n    UNIQUE(G);\n    assert(len(G)\
-    \ == 1 << LOG);\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\n\
-    signed main() {\n  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\
-    \n  return 0;\n}\n"
+    \    int j = (i + 1 == len(G) ? 0 : i + 1);\n      int x = G[i] ^ G[j];\n    \
+    \  assert(popcnt(x) == 1);\n    }\n    assert(len(G) == 1 << LOG);\n    UNIQUE(G);\n\
+    \    assert(len(G) == 1 << LOG);\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a\
+    \ + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  test();\n\
+    \  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -220,8 +220,8 @@ data:
   isVerificationFile: true
   path: test/mytest/gray_code.test.cpp
   requiredBy: []
-  timestamp: '2022-08-22 04:37:47+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-22 14:22:01+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/gray_code.test.cpp
 layout: document
