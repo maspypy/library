@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bfsnumbering.hpp
     title: graph/bfsnumbering.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/biconnected_component.hpp
     title: graph/biconnected_component.hpp
   - icon: ':warning:'
@@ -110,6 +110,9 @@ data:
   - icon: ':warning:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
+  - icon: ':x:'
+    path: graph/treeabelgroup.hpp
+    title: graph/treeabelgroup.hpp
   - icon: ':heavy_check_mark:'
     path: graph/twosat.hpp
     title: graph/twosat.hpp
@@ -150,6 +153,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRO_3_A_articulation.test.cpp
     title: test/aoj/GRO_3_A_articulation.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+    title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/biconnected_component.test.cpp
     title: test/library_checker/graph/biconnected_component.test.cpp
@@ -207,12 +213,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1320_mincostcycle.test.cpp
     title: test/yukicoder/1320_mincostcycle.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1326_bct.test.cpp
+    title: test/yukicoder/1326_bct.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1344_warshall_floyd.test.cpp
     title: test/yukicoder/1344_warshall_floyd.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
     title: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1641_tree_abel.test.cpp
+    title: test/yukicoder/1641_tree_abel.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/17_warshall_floyd.test.cpp
     title: test/yukicoder/17_warshall_floyd.test.cpp
@@ -328,6 +340,7 @@ data:
   - graph/twosat.hpp
   - graph/rerooting_dp.hpp
   - graph/maximum_independent_set.hpp
+  - graph/treeabelgroup.hpp
   - graph/warshall_floyd.hpp
   - graph/eulerwalk.hpp
   - graph/range_to_range_graph.hpp
@@ -341,6 +354,7 @@ data:
   timestamp: '2022-08-18 17:59:01+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1641_tree_abel.test.cpp
   - test/yukicoder/1868_range_to_range.test.cpp
   - test/yukicoder/1002_centroid.test.cpp
   - test/yukicoder/1320_mincostcycle.test.cpp
@@ -349,6 +363,7 @@ data:
   - test/yukicoder/1344_warshall_floyd.test.cpp
   - test/yukicoder/1293_scc.test.cpp
   - test/yukicoder/17_warshall_floyd.test.cpp
+  - test/yukicoder/1326_bct.test.cpp
   - test/yukicoder/1170_range_to_range.test.cpp
   - test/yukicoder/1479_bipartite_vertex_cover.test.cpp
   - test/yukicoder/114_steriner_tree.test.cpp
@@ -365,6 +380,7 @@ data:
   - test/library_checker/graph/maximum_independent_set.test.cpp
   - test/library_checker/graph/scc.test.cpp
   - test/library_checker/math/twosat.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/aoj/GRL_1_B_bellmanford.test.cpp
   - test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp

@@ -333,6 +333,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/unionfind.test.cpp
     title: test/library_checker/datastructure/unionfind.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+    title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
     title: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
@@ -702,6 +705,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1321_surj.test.cpp
     title: test/yukicoder/1321_surj.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1326_bct.test.cpp
+    title: test/yukicoder/1326_bct.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1332_range_freq.test.cpp
     title: test/yukicoder/1332_range_freq.test.cpp
@@ -747,6 +753,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1625_seg2d.test.cpp
     title: test/yukicoder/1625_seg2d.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1641_tree_abel.test.cpp
+    title: test/yukicoder/1641_tree_abel.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1643_subseq.test.cpp
     title: test/yukicoder/1643_subseq.test.cpp
@@ -1005,6 +1014,7 @@ data:
   - test/yukicoder/1573_floor_range.test.cpp
   - test/yukicoder/1141_cumsum2d.test.cpp
   - test/yukicoder/1500_interpolate_linear.test.cpp
+  - test/yukicoder/1641_tree_abel.test.cpp
   - test/yukicoder/187_crt.test.cpp
   - test/yukicoder/1339_discrete_log.test.cpp
   - test/yukicoder/4_subsetsum.test.cpp
@@ -1056,6 +1066,7 @@ data:
   - test/yukicoder/17_warshall_floyd.test.cpp
   - test/yukicoder/749_lazysegtree.test.cpp
   - test/yukicoder/1036_seg_maxright_minleft.test.cpp
+  - test/yukicoder/1326_bct.test.cpp
   - test/yukicoder/1288_mcf_dag_negative.test.cpp
   - test/yukicoder/655_cumsum2d.test.cpp
   - test/yukicoder/177_maxflow.test.cpp
@@ -1201,6 +1212,7 @@ data:
   - test/library_checker/datastructure/static_range_sum.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   - test/library_checker/datastructure/line_add_get_min.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - test/library_checker/datastructure/staticrmq_sparse.test.cpp
