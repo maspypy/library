@@ -8,7 +8,7 @@ void solve() {
   LL(N, K);
   Graph G(N);
   G.read_tree();
-  HLD hld(G);
+  TREE T(G);
   VEC(pi, CD, N);
   for (auto&& [c, d]: CD) --c, --d;
   /*
@@ -48,7 +48,7 @@ void solve() {
     ans = 0;
     history.clear();
   };
-  DSU_on_Tree(hld, ADD, QUERY, RESET);
+  DSU_on_Tree(T, ADD, QUERY, RESET);
   for (auto&& x: ANS) print(x);
 }
 
