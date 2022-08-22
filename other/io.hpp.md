@@ -327,6 +327,12 @@ data:
   - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
+    title: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+    title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
     title: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
@@ -1254,11 +1260,13 @@ data:
   - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
   - test/library_checker/datastructure/associative_array.test.cpp
   - test/library_checker/datastructure/persistent_queue.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   - test/library_checker/datastructure/set_xor_min.test.cpp
   - test/library_checker/datastructure/segment_add_get_min.test.cpp
   - test/library_checker/datastructure/unionfind.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   - test/library_checker/datastructure/associative_array_hashmap.test.cpp
   - test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
   - test/library_checker/datastructure/staticrmq_seg.test.cpp

@@ -113,6 +113,9 @@ data:
   - icon: ':x:'
     path: graph/treeabelgroup.hpp
     title: graph/treeabelgroup.hpp
+  - icon: ':x:'
+    path: graph/treegroup.hpp
+    title: graph/treegroup.hpp
   - icon: ':heavy_check_mark:'
     path: graph/twosat.hpp
     title: graph/twosat.hpp
@@ -156,6 +159,12 @@ data:
   - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
+    title: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+    title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/biconnected_component.test.cpp
     title: test/library_checker/graph/biconnected_component.test.cpp
@@ -344,6 +353,7 @@ data:
   - graph/warshall_floyd.hpp
   - graph/eulerwalk.hpp
   - graph/range_to_range_graph.hpp
+  - graph/treegroup.hpp
   - graph/centroid.hpp
   - graph/tree_dp.hpp
   - graph/find_nontransitive_triple.hpp
@@ -380,6 +390,8 @@ data:
   - test/library_checker/graph/maximum_independent_set.test.cpp
   - test/library_checker/graph/scc.test.cpp
   - test/library_checker/math/twosat.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/aoj/GRL_1_B_bellmanford.test.cpp
   - test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp

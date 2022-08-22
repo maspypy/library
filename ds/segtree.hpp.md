@@ -14,6 +14,9 @@ data:
   - icon: ':warning:'
     path: geo_old/manhattan_nns.hpp
     title: geo_old/manhattan_nns.hpp
+  - icon: ':x:'
+    path: graph/treegroup.hpp
+    title: graph/treegroup.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/atcoder/abc174f.test.cpp
@@ -30,6 +33,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticrmq_seg.test.cpp
     title: test/library_checker/datastructure/staticrmq_seg.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
+    title: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+    title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
@@ -142,6 +151,7 @@ data:
   path: ds/segtree.hpp
   requiredBy:
   - geo_old/manhattan_nns.hpp
+  - graph/treegroup.hpp
   - ds/sortable_segtree.hpp
   - ds/uniqueproductquery.hpp
   - ds/range_mex_query.hpp
@@ -152,6 +162,8 @@ data:
   - test/yukicoder/426.test.cpp
   - test/mytest/range_mex.test.cpp
   - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   - test/library_checker/datastructure/staticrmq_seg.test.cpp
   - test/library_checker/datastructure/sort_segtree_1.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp

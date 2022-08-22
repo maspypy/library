@@ -14,6 +14,9 @@ data:
   - icon: ':x:'
     path: graph/treeabelgroup.hpp
     title: graph/treeabelgroup.hpp
+  - icon: ':x:'
+    path: graph/treegroup.hpp
+    title: graph/treegroup.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2677.test.cpp
@@ -24,6 +27,12 @@ data:
   - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
+    title: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+    title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1326_bct.test.cpp
     title: test/yukicoder/1326_bct.test.cpp
@@ -207,11 +216,14 @@ data:
   - graph/lazytreemonoid.hpp
   - graph/rerooting_dp.hpp
   - graph/treeabelgroup.hpp
+  - graph/treegroup.hpp
   timestamp: '2022-08-22 17:21:27+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1641_tree_abel.test.cpp
   - test/yukicoder/1326_bct.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - test/aoj/2677.test.cpp

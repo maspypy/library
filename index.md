@@ -6,7 +6,7 @@ data:
     - icon: ':question:'
       path: alg/group_add.hpp
       title: alg/group_add.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/group_affine.hpp
       title: alg/group_affine.hpp
     - icon: ':question:'
@@ -21,7 +21,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/group_power_sums.hpp
       title: alg/group_power_sums.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: alg/group_reverse.hpp
       title: alg/group_reverse.hpp
     - icon: ':x:'
@@ -593,7 +593,7 @@ data:
     - icon: ':x:'
       path: graph/treeabelgroup.hpp
       title: graph/treeabelgroup.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: graph/treegroup.hpp
       title: graph/treegroup.hpp
     - icon: ':warning:'
