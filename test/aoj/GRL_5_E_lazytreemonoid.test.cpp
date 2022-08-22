@@ -17,16 +17,16 @@ void solve() {
     }
   }
   G.build();
-  HLD hld(G);
+  TREE tree(G);
   vc<pi> seg_raw(N - 1, {1, 0});
-  LazyTreeMonoid<decltype(hld), Lazy_CntSum_Add<ll>, 1> TM(hld, seg_raw);
+  LazyTreeMonoid<decltype(tree), Lazy_CntSum_Add<ll>, 1> TM(tree, seg_raw);
   LL(Q);
   FOR(Q) {
     LL(t);
     if (t == 0) {
       LL(v, x);
       TM.apply_path(0, v, x);
-      // TM.apply_path(hld.parent[v], v, x);
+      // TM.apply_path(tree.parent[v], v, x);
     } else {
       LL(v);
       print(TM.prod_path(0, v).se);
