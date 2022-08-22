@@ -14,6 +14,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
+  - icon: ':warning:'
+    path: graph/functional.hpp
+    title: graph/functional.hpp
   - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
@@ -83,6 +86,7 @@ data:
   - graph/tree_of_unionfind.hpp
   - graph/dag_path_cover.hpp
   - graph/check_bipartite.hpp
+  - graph/functional.hpp
   - graph/maximum_antichain.hpp
   - flow/bipartite.hpp
   timestamp: '2022-08-11 02:13:18+09:00'

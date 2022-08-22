@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_affine.hpp
     title: alg/group_affine.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_reverse.hpp
     title: alg/group_reverse.hpp
   - icon: ':question:'
@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/treegroup.hpp
     title: graph/treegroup.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
@@ -501,11 +501,11 @@ data:
     \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  using Mono = Group_Affine<mint>;\n\
     \  using E = Mono::value_type;\n  vc<E> A(N);\n  FOR(i, N) {\n    LL(a, b);\n\
     \    A[i] = mp(mint(a), mint(b));\n  }\n\n  Graph<int> G(N);\n  G.read_tree(0,\
-    \ 0);\n\n  HLD hld(G);\n  TreeGroup<decltype(hld), Mono, false, true, false> TG(hld,\
-    \ A);\n\n  FOR(_, Q) {\n    LL(t);\n    if (t == 0) {\n      LL(v, c, d);\n  \
-    \    TG.set(v, E({mint(c), mint(d)}));\n    } else {\n      LL(u, v, x);\n   \
-    \   auto e = TG.prod_path(u, v);\n      print(e.fi * mint(x) + e.se);\n    }\n\
-    \  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \ 0);\n\n  TREE tree(G);\n  TreeGroup<decltype(tree), Mono, false, true, false>\
+    \ TG(tree, A);\n\n  FOR(_, Q) {\n    LL(t);\n    if (t == 0) {\n      LL(v, c,\
+    \ d);\n      TG.set(v, E({mint(c), mint(d)}));\n    } else {\n      LL(u, v, x);\n\
+    \      auto e = TG.prod_path(u, v);\n      print(e.fi * mint(x) + e.se);\n   \
+    \ }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_set_path_composite\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
@@ -513,11 +513,11 @@ data:
     \ mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  using Mono = Group_Affine<mint>;\n\
     \  using E = Mono::value_type;\n  vc<E> A(N);\n  FOR(i, N) {\n    LL(a, b);\n\
     \    A[i] = mp(mint(a), mint(b));\n  }\n\n  Graph<int> G(N);\n  G.read_tree(0,\
-    \ 0);\n\n  HLD hld(G);\n  TreeGroup<decltype(hld), Mono, false, true, false> TG(hld,\
-    \ A);\n\n  FOR(_, Q) {\n    LL(t);\n    if (t == 0) {\n      LL(v, c, d);\n  \
-    \    TG.set(v, E({mint(c), mint(d)}));\n    } else {\n      LL(u, v, x);\n   \
-    \   auto e = TG.prod_path(u, v);\n      print(e.fi * mint(x) + e.se);\n    }\n\
-    \  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \ 0);\n\n  TREE tree(G);\n  TreeGroup<decltype(tree), Mono, false, true, false>\
+    \ TG(tree, A);\n\n  FOR(_, Q) {\n    LL(t);\n    if (t == 0) {\n      LL(v, c,\
+    \ d);\n      TG.set(v, E({mint(c), mint(d)}));\n    } else {\n      LL(u, v, x);\n\
+    \      auto e = TG.prod_path(u, v);\n      print(e.fi * mint(x) + e.se);\n   \
+    \ }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
@@ -532,8 +532,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   requiredBy: []
-  timestamp: '2022-08-22 18:02:30+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-22 18:22:22+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
 layout: document

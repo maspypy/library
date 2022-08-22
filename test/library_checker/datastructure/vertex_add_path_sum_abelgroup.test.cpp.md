@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/treeabelgroup.hpp
     title: graph/treeabelgroup.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_path_sum
@@ -370,21 +370,21 @@ data:
     \ }\r\n\r\n  void debug() {\r\n    tree.debug();\r\n    bit.debug();\r\n    bit_subtree.debug();\r\
     \n  }\r\n};\r\n#line 7 \"test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  Graph G(N);\r\n \
-    \ G.read_tree(0, 0);\r\n\r\n  HLD hld(G);\r\n  TreeAbelGroup<decltype(hld), Group_Add<ll>,\
-    \ false, true, false> TA(hld, A);\r\n\r\n  FOR(_, Q) {\r\n    LL(t);\r\n    if\
-    \ (t == 0) {\r\n      LL(v, x);\r\n      TA.add(v, x);\r\n    } else {\r\n   \
-    \   LL(u, v);\r\n      print(TA.sum_path(u, v));\r\n    }\r\n  }\r\n}\r\n\r\n\
-    signed main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n \
-    \ cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ G.read_tree(0, 0);\r\n\r\n  TREE tree(G);\r\n  TreeAbelGroup<decltype(tree),\
+    \ Group_Add<ll>, false, true, false> TA(tree, A);\r\n\r\n  FOR(_, Q) {\r\n   \
+    \ LL(t);\r\n    if (t == 0) {\r\n      LL(v, x);\r\n      TA.add(v, x);\r\n  \
+    \  } else {\r\n      LL(u, v);\r\n      print(TA.sum_path(u, v));\r\n    }\r\n\
+    \  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\r\
     \n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"\
     graph/treeabelgroup.hpp\"\r\n#include \"alg/group_add.hpp\"\r\n\r\nvoid solve()\
     \ {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  Graph G(N);\r\n  G.read_tree(0, 0);\r\
-    \n\r\n  HLD hld(G);\r\n  TreeAbelGroup<decltype(hld), Group_Add<ll>, false, true,\
-    \ false> TA(hld, A);\r\n\r\n  FOR(_, Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\
-    \n      LL(v, x);\r\n      TA.add(v, x);\r\n    } else {\r\n      LL(u, v);\r\n\
-    \      print(TA.sum_path(u, v));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\
-    \n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
+    \n\r\n  TREE tree(G);\r\n  TreeAbelGroup<decltype(tree), Group_Add<ll>, false,\
+    \ true, false> TA(tree, A);\r\n\r\n  FOR(_, Q) {\r\n    LL(t);\r\n    if (t ==\
+    \ 0) {\r\n      LL(v, x);\r\n      TA.add(v, x);\r\n    } else {\r\n      LL(u,\
+    \ v);\r\n      print(TA.sum_path(u, v));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main()\
+    \ {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
     \n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
@@ -397,8 +397,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   requiredBy: []
-  timestamp: '2022-08-22 17:52:37+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-22 18:13:29+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
 layout: document

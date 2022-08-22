@@ -1,6 +1,12 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: ds/unionfind.hpp
+    title: ds/unionfind.hpp
+  - icon: ':question:'
+    path: graph/base.hpp
+    title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -8,39 +14,95 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
-    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: graph/hld.hpp:\
-    \ line -1: no such header\n"
-  code: "#include \"ds/unionfind.hpp\"\r\n#include \"graph/base.hpp\"\r\n#include\
-    \ \"graph/hld.hpp\"\r\n\r\ntemplate <typename T = int>\r\nstruct FunctionalGraph\
-    \ {\r\n  int N, M;\r\n  Graph<T, 1> tree; // \u65B0\u3057\u3044\u9802\u70B9 N\
-    \ \u3092\u6839\u3068\u3057\u3066\u8FFD\u52A0\u3057\u305F\u6709\u5411\u6728\u3002\
-    \u9006\u5411\u304D\u306E\u8FBA\u306B\u306A\u308B\u3002\r\n  // HLD<Graph<T, 1>>\
-    \ hld;\r\n  vc<int> TO;\r\n  vc<T> wt;\r\n  vc<int> root;\r\n  vvc<int> cyc;\r\
-    \n\r\n  FunctionalGraph() {}\r\n  FunctionalGraph(int N) : N(N), M(0), TO(N, -1),\
-    \ wt(N), root(N, -1) {}\r\n\r\n  void add(int a, int b, T c = 1) {\r\n    assert(0\
-    \ <= a && a < N);\r\n    assert(TO[a] == -1);\r\n    ++M;\r\n    TO[a] = b;\r\n\
-    \    wt[a] = c;\r\n  }\r\n\r\n  void build() {\r\n    assert(N == M);\r\n    UnionFind\
-    \ uf(N);\r\n    FOR(v, N) if (!uf.merge(v, TO[v])) { root[v] = v; }\r\n    FOR(v,\
-    \ N) if (root[v] == v) root[uf[v]] = v;\r\n    FOR(v, N) root[v] = root[uf[v]];\r\
-    \n\r\n    tree = Graph<T, 1>(N + 1);\r\n    FOR(v, N) {\r\n      if (root[v] !=\
-    \ v)\r\n        tree.add(TO[v], v);\r\n      else\r\n        tree.add(N, v);\r\
-    \n    }\r\n    tree.build();\r\n    cyc.resize(N);\r\n    FOR(v, N) if (root[v]\
-    \ == v) {\r\n      vc<int> C = {TO[root[v]]};\r\n      while (C.back() != v) C.eb(TO[C.back()]);\r\
-    \n      cyc[v] = C;\r\n    }\r\n  }\r\n\r\n  void debug() {\r\n    print(\"TO\"\
-    , TO);\r\n    print(\"root\");\r\n    print(root);\r\n    print(\"\u6839\u3092\
-    \u8FFD\u52A0\u3057\u305F\u6728 tree\");\r\n    tree.debug();\r\n  }\r\n};\r\n"
-  dependsOn: []
+  bundledCode: "#line 2 \"ds/unionfind.hpp\"\n\nstruct UnionFind {\n  int n;\n  int\
+    \ n_comp;\n  std::vector<int> size, par;\n  UnionFind(int n) : n(n), n_comp(n),\
+    \ size(n, 1), par(n) {\n    std::iota(par.begin(), par.end(), 0);\n  }\n  int\
+    \ find(int x) {\n    assert(0 <= x && x < n);\n    while (par[x] != x) {\n   \
+    \   par[x] = par[par[x]];\n      x = par[x];\n    }\n    return x;\n  }\n\n  int\
+    \ operator[](int x) { return find(x); }\n\n  bool merge(int x, int y) {\n    x\
+    \ = find(x);\n    y = find(y);\n    if (x == y) { return false; }\n    n_comp--;\n\
+    \    if (size[x] < size[y]) std::swap(x, y);\n    size[x] += size[y];\n    size[y]\
+    \ = 0;\n    par[y] = x;\n    return true;\n  }\n\n  std::vector<int> find_all()\
+    \ {\n    std::vector<int> A(n);\n    for (int i = 0; i < n; ++i) A[i] = find(i);\n\
+    \    return A;\n  }\n\n  void reset() {\n    n_comp = n;\n    size.assign(n, 1);\n\
+    \    std::iota(par.begin(), par.end(), 0);\n  }\n};\n#line 2 \"graph/base.hpp\"\
+    \n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n\
+    };\n\ntemplate <typename T = int, bool directed = false>\nstruct Graph {\n  int\
+    \ N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
+    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  bool prepared;\n\
+    \n  class OutgoingEdges {\n  public:\n    OutgoingEdges(const Graph* G, int l,\
+    \ int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n     \
+    \ if (l == r) { return 0; }\n      return &G->csr_edges[l];\n    }\n\n    const\
+    \ edge_type* end() const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n\
+    \    }\n\n  private:\n    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared()\
+    \ { return prepared; }\n  constexpr bool is_directed() { return directed; }\n\n\
+    \  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
+    \ {}\n\n  void add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n\
+    \    assert(0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto\
+    \ e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  //\
+    \ wt, off\n  void read_tree(bool wt = false, int off = 1) { read_graph(N - 1,\
+    \ wt, off); }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n  \
+    \  for (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a -= off, b -= off;\n\
+    \      if (!wt) {\n        add(a, b);\n      } else {\n        T c;\n        read(c);\n\
+    \        add(a, b, c);\n      }\n    }\n    build();\n  }\n\n  void read_parent(int\
+    \ off = 1) {\n    for (int v = 1; v < N; ++v) {\n      INT(p);\n      p -= off;\n\
+    \      add(p, v);\n    }\n    build();\n  }\n\n  void build() {\n    assert(!prepared);\n\
+    \    prepared = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges)\
+    \ {\n      indptr[e.frm + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n  \
+    \  }\n    for (int v = 0; v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto\
+    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
+    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
+    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
+    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
+    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  void debug() {\n    print(\"\
+    Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
+    \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
+    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 3 \"graph/functional.hpp\"\
+    \n\r\ntemplate <typename T = int>\r\nstruct FunctionalGraph {\r\n  int N, M;\r\
+    \n  Graph<T, 1> newG; // \u65B0\u3057\u3044\u9802\u70B9 N \u3092\u6839\u3068\u3057\
+    \u3066\u8FFD\u52A0\u3057\u305F\u6709\u5411\u6728\u3002\u9006\u5411\u304D\u306E\
+    \u8FBA\u306B\u306A\u308B\u3002\r\n  vc<int> TO;\r\n  vc<T> wt;\r\n  vc<int> root;\r\
+    \n  vvc<int> cyc;\r\n\r\n  FunctionalGraph() {}\r\n  FunctionalGraph(int N) :\
+    \ N(N), M(0), TO(N, -1), wt(N), root(N, -1) {}\r\n\r\n  void add(int a, int b,\
+    \ T c = 1) {\r\n    assert(0 <= a && a < N);\r\n    assert(TO[a] == -1);\r\n \
+    \   ++M;\r\n    TO[a] = b;\r\n    wt[a] = c;\r\n  }\r\n\r\n  void build() {\r\n\
+    \    assert(N == M);\r\n    UnionFind uf(N);\r\n    FOR(v, N) if (!uf.merge(v,\
+    \ TO[v])) { root[v] = v; }\r\n    FOR(v, N) if (root[v] == v) root[uf[v]] = v;\r\
+    \n    FOR(v, N) root[v] = root[uf[v]];\r\n\r\n    tree = Graph<T, 1>(N + 1);\r\
+    \n    FOR(v, N) {\r\n      if (root[v] != v)\r\n        tree.add(TO[v], v);\r\n\
+    \      else\r\n        tree.add(N, v);\r\n    }\r\n    tree.build();\r\n    cyc.resize(N);\r\
+    \n    FOR(v, N) if (root[v] == v) {\r\n      vc<int> C = {TO[root[v]]};\r\n  \
+    \    while (C.back() != v) C.eb(TO[C.back()]);\r\n      cyc[v] = C;\r\n    }\r\
+    \n  }\r\n\r\n  void debug() {\r\n    print(\"TO\", TO);\r\n    print(\"root\"\
+    );\r\n    print(root);\r\n    print(\"\u6839\u3092\u8FFD\u52A0\u3057\u305F\u6728\
+    \ tree\");\r\n    tree.debug();\r\n  }\r\n};\r\n"
+  code: "#include \"ds/unionfind.hpp\"\r\n#include \"graph/base.hpp\"\r\n\r\ntemplate\
+    \ <typename T = int>\r\nstruct FunctionalGraph {\r\n  int N, M;\r\n  Graph<T,\
+    \ 1> newG; // \u65B0\u3057\u3044\u9802\u70B9 N \u3092\u6839\u3068\u3057\u3066\u8FFD\
+    \u52A0\u3057\u305F\u6709\u5411\u6728\u3002\u9006\u5411\u304D\u306E\u8FBA\u306B\
+    \u306A\u308B\u3002\r\n  vc<int> TO;\r\n  vc<T> wt;\r\n  vc<int> root;\r\n  vvc<int>\
+    \ cyc;\r\n\r\n  FunctionalGraph() {}\r\n  FunctionalGraph(int N) : N(N), M(0),\
+    \ TO(N, -1), wt(N), root(N, -1) {}\r\n\r\n  void add(int a, int b, T c = 1) {\r\
+    \n    assert(0 <= a && a < N);\r\n    assert(TO[a] == -1);\r\n    ++M;\r\n   \
+    \ TO[a] = b;\r\n    wt[a] = c;\r\n  }\r\n\r\n  void build() {\r\n    assert(N\
+    \ == M);\r\n    UnionFind uf(N);\r\n    FOR(v, N) if (!uf.merge(v, TO[v])) { root[v]\
+    \ = v; }\r\n    FOR(v, N) if (root[v] == v) root[uf[v]] = v;\r\n    FOR(v, N)\
+    \ root[v] = root[uf[v]];\r\n\r\n    tree = Graph<T, 1>(N + 1);\r\n    FOR(v, N)\
+    \ {\r\n      if (root[v] != v)\r\n        tree.add(TO[v], v);\r\n      else\r\n\
+    \        tree.add(N, v);\r\n    }\r\n    tree.build();\r\n    cyc.resize(N);\r\
+    \n    FOR(v, N) if (root[v] == v) {\r\n      vc<int> C = {TO[root[v]]};\r\n  \
+    \    while (C.back() != v) C.eb(TO[C.back()]);\r\n      cyc[v] = C;\r\n    }\r\
+    \n  }\r\n\r\n  void debug() {\r\n    print(\"TO\", TO);\r\n    print(\"root\"\
+    );\r\n    print(root);\r\n    print(\"\u6839\u3092\u8FFD\u52A0\u3057\u305F\u6728\
+    \ tree\");\r\n    tree.debug();\r\n  }\r\n};\r\n"
+  dependsOn:
+  - ds/unionfind.hpp
+  - graph/base.hpp
   isVerificationFile: false
   path: graph/functional.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2022-08-22 18:24:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/functional.hpp
