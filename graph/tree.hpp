@@ -1,13 +1,10 @@
 #pragma once
 #include "graph/base.hpp"
 
-/*
-HL分解。O(N) 時間構築。
-LCA, LA などは O(logN) 時間。
-木以外、非連結でも使えるようにした。dfs順序や親がとれる。
-*/
+// HLD euler tour をとっていろいろ。
+// 木以外、非連結でも dfs 順序や親がとれる。
 template <typename Graph>
-struct HLD {
+struct TREE {
   Graph &G;
   using Graph_type = Graph;
   using WT = typename Graph::cost_type;
@@ -17,7 +14,7 @@ struct HLD {
   vc<WT> depth_weighted;
   vector<bool> in_tree;
 
-  HLD(Graph &G, int r = -1)
+  TREE(Graph &G, int r = -1)
       : G(G),
         N(G.N),
         LID(G.N),
