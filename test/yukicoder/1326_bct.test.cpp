@@ -12,11 +12,11 @@ void solve() {
   Biconnected_Component<decltype(G)> BC(G);
 
   auto T = BC.BCT();
-  HLD hld(T);
+  TREE tree(T);
 
   vc<int> dat(T.N);
   FOR(v, N) if (BC.is_articulation(v)) { dat[BC.BCT_idx_v(v)]++; }
-  TreeAbelGroup<decltype(hld), Group_Add<int>, 0, 1, 0> TA(hld, dat);
+  TreeAbelGroup<decltype(tree), Group_Add<int>, 0, 1, 0> TA(tree, dat);
 
   LL(Q);
   FOR(Q) {
