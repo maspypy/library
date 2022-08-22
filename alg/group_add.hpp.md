@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/lazy_cntminmincnt_add.hpp
     title: alg/lazy_cntminmincnt_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/lazy_cntsum_add.hpp
     title: alg/lazy_cntsum_add.hpp
   - icon: ':warning:'
@@ -102,6 +102,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_4_A_rectangle_union.test.cpp
     title: test/aoj/DSL_4_A_rectangle_union.test.cpp
+  - icon: ':x:'
+    path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
+    title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - icon: ':x:'
     path: test/atcoder/abc174f.test.cpp
     title: test/atcoder/abc174f.test.cpp
@@ -256,6 +259,7 @@ data:
   - test/aoj/ALDS1_5_inversion.test.cpp
   - test/aoj/DSL_2_G_fenwick_raq.test.cpp
   - test/aoj/DSL_1_B_weighteduf.test.cpp
+  - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - test/aoj/ALDS1_2_A_inversion.test.cpp
   - test/aoj/DSL_4_A_rectangle_union.test.cpp
   - test/aoj/2842_seg2d_dense.test.cpp

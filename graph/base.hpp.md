@@ -56,6 +56,9 @@ data:
   - icon: ':warning:'
     path: graph/find_nontransitive_triple.hpp
     title: graph/find_nontransitive_triple.hpp
+  - icon: ':x:'
+    path: graph/lazytreemonoid.hpp
+    title: graph/lazytreemonoid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
@@ -92,7 +95,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
@@ -141,6 +144,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_C_warshallfloyd.test.cpp
     title: test/aoj/GRL_1_C_warshallfloyd.test.cpp
+  - icon: ':x:'
+    path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
+    title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRO_3_A_articulation.test.cpp
     title: test/aoj/GRO_3_A_articulation.test.cpp
@@ -216,9 +222,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/899_bfsnumbering.test.cpp
     title: test/yukicoder/899_bfsnumbering.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -316,6 +322,7 @@ data:
   - graph/strongly_connected_component.hpp
   - graph/unicyclic.hpp
   - graph/degree.hpp
+  - graph/lazytreemonoid.hpp
   - graph/cycle_detection.hpp
   - graph/check_bipartite.hpp
   - graph/twosat.hpp
@@ -332,7 +339,7 @@ data:
   - graph/dial.hpp
   - flow/bipartite.hpp
   timestamp: '2022-08-18 17:59:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1868_range_to_range.test.cpp
   - test/yukicoder/1002_centroid.test.cpp
@@ -360,6 +367,7 @@ data:
   - test/library_checker/math/twosat.test.cpp
   - test/aoj/GRL_1_B_bellmanford.test.cpp
   - test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
+  - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - test/aoj/GRL_1_C_warshallfloyd.test.cpp
   - test/aoj/ALDS1_12_B_dial.test.cpp
   - test/aoj/275_dag_reachability.test.cpp

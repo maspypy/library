@@ -135,6 +135,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_C_warshallfloyd.test.cpp
     title: test/aoj/GRL_1_C_warshallfloyd.test.cpp
+  - icon: ':x:'
+    path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
+    title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_6_A_maxflow.test.cpp
     title: test/aoj/GRL_6_A_maxflow.test.cpp
@@ -1227,6 +1230,7 @@ data:
   - test/aoj/CGL_2_B.test.cpp
   - test/aoj/CGL_2_D.test.cpp
   - test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
+  - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - test/aoj/GRL_1_C_warshallfloyd.test.cpp
   - test/aoj/0079.test.cpp
   - test/aoj/DPL_3_C_maxrectangle.test.cpp

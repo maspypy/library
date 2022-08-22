@@ -1,14 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: alg/monoid_reverse.hpp
     title: alg/monoid_reverse.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: graph/lazytreemonoid.hpp
+    title: graph/lazytreemonoid.hpp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
+    title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid_reverse.hpp\"\ntemplate <class Monoid>\r\nstruct\
@@ -31,10 +37,12 @@ data:
   - alg/monoid_reverse.hpp
   isVerificationFile: false
   path: alg/lazy_reverse.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/lazytreemonoid.hpp
   timestamp: '2022-04-23 17:49:11+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
 documentation_of: alg/lazy_reverse.hpp
 layout: document
 redirect_from:
