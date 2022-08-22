@@ -7,7 +7,7 @@ void test() {
   FOR(LOG, 10) {
     auto G = gray_code(LOG);
     FOR(i, len(G) - 1) {
-      int j = (i + 1 == len(G) ? 0 : i);
+      int j = (i + 1 == len(G) ? 0 : i + 1);
       int x = G[i] ^ G[j];
       assert(popcnt(x) == 1);
     }
