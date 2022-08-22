@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "graph/hld.hpp"
+#include "graph/tree.hpp"
 #include "alg/lazy_cntsum_add.hpp"
 #include "graph/lazytreemonoid.hpp"
 
@@ -15,17 +15,17 @@ void solve() {
   Graph<int, 0> G(N);
   G.read_tree();
 
-  HLD<decltype(G)> hld(G);
+  TREE<decltype(G)> tree(G);
   using Lazy = Lazy_CntSum_Add<ll>;
   vc<pi> dat(N);
   FOR(i, N) dat[i] = {1, 0};
 
-  LazyTreeMonoid<decltype(hld), Lazy> X(hld, dat);
+  LazyTreeMonoid<decltype(tree), Lazy> X(tree, dat);
 
   FOR(i, K) { X.apply_path(0, C[i], 1); }
 
   ll d_sm = 0;
-  auto& dep = hld.depth;
+  auto& dep = tree.depth;
   FOR(i, K) d_sm += dep[C[i]];
 
   bool out = 0;
