@@ -92,7 +92,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
@@ -123,6 +123,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2251_maxantichain.test.cpp
     title: test/aoj/2251_maxantichain.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/2677.test.cpp
+    title: test/aoj/2677.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/275_dag_reachability.test.cpp
     title: test/aoj/275_dag_reachability.test.cpp
@@ -363,6 +366,7 @@ data:
   - test/aoj/GRO_3_A_articulation.test.cpp
   - test/aoj/2251_dag_path_cover.test.cpp
   - test/aoj/2251_maxantichain.test.cpp
+  - test/aoj/2677.test.cpp
 documentation_of: graph/base.hpp
 layout: document
 redirect_from:

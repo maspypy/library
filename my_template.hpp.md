@@ -22,6 +22,9 @@ data:
     path: test/aoj/2251_maxantichain.test.cpp
     title: test/aoj/2251_maxantichain.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/2677.test.cpp
+    title: test/aoj/2677.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/275_dag_reachability.test.cpp
     title: test/aoj/275_dag_reachability.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1262,6 +1265,7 @@ data:
   - test/aoj/NTL_1_D_eulerphi.test.cpp
   - test/aoj/DSL_2_I_cntsum_set_lazy.test.cpp
   - test/aoj/DPL_1_H_kanpsack01.test.cpp
+  - test/aoj/2677.test.cpp
   - test/aoj/ITP1_11_C.test.cpp
   - test/atcoder/abc256d.test.cpp
   - test/atcoder/abc244h.test.cpp

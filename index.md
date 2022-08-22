@@ -575,7 +575,7 @@ data:
     - icon: ':warning:'
       path: graph/tournament.hpp
       title: graph/tournament.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree.hpp
       title: graph/tree.hpp
     - icon: ':heavy_check_mark:'
@@ -1101,7 +1101,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/2251_maxantichain.test.cpp
       title: test/aoj/2251_maxantichain.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/2677.test.cpp
       title: test/aoj/2677.test.cpp
     - icon: ':heavy_check_mark:'

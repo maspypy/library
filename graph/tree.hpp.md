@@ -8,10 +8,13 @@ data:
   - icon: ':warning:'
     path: graph/rerooting_dp.hpp
     title: graph/rerooting_dp.hpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/2677.test.cpp
+    title: test/aoj/2677.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -185,8 +188,9 @@ data:
   requiredBy:
   - graph/rerooting_dp.hpp
   timestamp: '2022-08-22 17:21:27+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj/2677.test.cpp
 documentation_of: graph/tree.hpp
 layout: document
 redirect_from:
