@@ -9,7 +9,7 @@ data:
     - icon: ':question:'
       path: alg/group_affine.hpp
       title: alg/group_affine.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/group_cntsum.hpp
       title: alg/group_cntsum.hpp
     - icon: ':warning:'
@@ -36,7 +36,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/lazy_cntminmincnt_add.hpp
       title: alg/lazy_cntminmincnt_add.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy_cntsum_add.hpp
       title: alg/lazy_cntsum_add.hpp
     - icon: ':heavy_check_mark:'
@@ -87,7 +87,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/lazy_powersums_set.hpp
       title: alg/lazy_powersums_set.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy_reverse.hpp
       title: alg/lazy_reverse.hpp
     - icon: ':warning:'
@@ -132,7 +132,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid_or.hpp
       title: alg/monoid_or.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/monoid_reverse.hpp
       title: alg/monoid_reverse.hpp
     - icon: ':warning:'
@@ -276,7 +276,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/larsch.hpp
       title: ds/larsch.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/lazysegtree.hpp
       title: ds/lazysegtree.hpp
     - icon: ':heavy_check_mark:'
@@ -518,7 +518,7 @@ data:
     - icon: ':warning:'
       path: graph/grid_bfs.hpp
       title: graph/grid_bfs.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/lazytreemonoid.hpp
       title: graph/lazytreemonoid.hpp
     - icon: ':heavy_check_mark:'
@@ -596,7 +596,7 @@ data:
     - icon: ':x:'
       path: graph/treegroup.hpp
       title: graph/treegroup.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: graph/treemonoid.hpp
       title: graph/treemonoid.hpp
     - icon: ':warning:'
@@ -1224,7 +1224,7 @@ data:
     - icon: ':x:'
       path: test/aoj/GRL_3_B.test.cpp
       title: test/aoj/GRL_3_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
       title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
     - icon: ':heavy_check_mark:'

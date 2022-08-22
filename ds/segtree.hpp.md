@@ -17,6 +17,9 @@ data:
   - icon: ':x:'
     path: graph/treegroup.hpp
     title: graph/treegroup.hpp
+  - icon: ':x:'
+    path: graph/treemonoid.hpp
+    title: graph/treemonoid.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/atcoder/abc174f.test.cpp
@@ -37,8 +40,17 @@ data:
     path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
   - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+    title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+    title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+    title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
@@ -151,6 +163,7 @@ data:
   path: ds/segtree.hpp
   requiredBy:
   - geo_old/manhattan_nns.hpp
+  - graph/treemonoid.hpp
   - graph/treegroup.hpp
   - ds/sortable_segtree.hpp
   - ds/uniqueproductquery.hpp
@@ -167,6 +180,9 @@ data:
   - test/library_checker/datastructure/staticrmq_seg.test.cpp
   - test/library_checker/datastructure/sort_segtree_1.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - test/atcoder/abc174f.test.cpp
 documentation_of: ds/segtree.hpp
 layout: document

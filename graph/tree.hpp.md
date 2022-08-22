@@ -5,7 +5,7 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
   - icon: ':warning:'
@@ -17,11 +17,14 @@ data:
   - icon: ':x:'
     path: graph/treegroup.hpp
     title: graph/treegroup.hpp
+  - icon: ':x:'
+    path: graph/treemonoid.hpp
+    title: graph/treemonoid.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2677.test.cpp
     title: test/aoj/2677.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
     title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - icon: ':x:'
@@ -31,8 +34,17 @@ data:
     path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
   - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+    title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+    title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+    title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1326_bct.test.cpp
     title: test/yukicoder/1326_bct.test.cpp
@@ -216,6 +228,7 @@ data:
   - graph/lazytreemonoid.hpp
   - graph/rerooting_dp.hpp
   - graph/treeabelgroup.hpp
+  - graph/treemonoid.hpp
   - graph/treegroup.hpp
   timestamp: '2022-08-22 17:21:27+09:00'
   verificationStatus: LIBRARY_SOME_WA
@@ -224,7 +237,10 @@ data:
   - test/yukicoder/1326_bct.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - test/aoj/2677.test.cpp
 documentation_of: graph/tree.hpp

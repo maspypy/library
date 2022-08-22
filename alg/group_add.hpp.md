@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/lazy_cntminmincnt_add.hpp
     title: alg/lazy_cntminmincnt_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy_cntsum_add.hpp
     title: alg/lazy_cntsum_add.hpp
   - icon: ':warning:'
@@ -105,7 +105,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_4_A_rectangle_union.test.cpp
     title: test/aoj/DSL_4_A_rectangle_union.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
     title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - icon: ':x:'
@@ -144,6 +144,12 @@ data:
   - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+    title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+    title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
@@ -272,10 +278,12 @@ data:
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
   - test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - test/aoj/ALDS1_5_inversion.test.cpp
   - test/aoj/DSL_2_G_fenwick_raq.test.cpp
   - test/aoj/DSL_1_B_weighteduf.test.cpp

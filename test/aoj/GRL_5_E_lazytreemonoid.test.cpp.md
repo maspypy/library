@@ -4,25 +4,25 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_cntsum.hpp
     title: alg/group_cntsum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy_cntsum_add.hpp
     title: alg/lazy_cntsum_add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy_reverse.hpp
     title: alg/lazy_reverse.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid_reverse.hpp
     title: alg/monoid_reverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_E
@@ -465,10 +465,10 @@ data:
     \n  static constexpr X act(const X &x, const A &a) {\r\n    return {x.fi, x.se\
     \ + x.fi * a};\r\n  }\r\n};\r\n#line 8 \"test/aoj/GRL_5_E_lazytreemonoid.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  Graph G(N);\n  FOR(v, N) {\n    LL(k);\n    FOR(k)\
-    \ {\n      LL(to);\n      G.add(v, to);\n    }\n  }\n  G.build();\n  HLD hld(G);\n\
-    \  vc<pi> seg_raw(N - 1, {1, 0});\n  LazyTreeMonoid<decltype(hld), Lazy_CntSum_Add<ll>,\
-    \ 1> TM(hld, seg_raw);\n  LL(Q);\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n\
-    \      LL(v, x);\n      TM.apply_path(0, v, x);\n      // TM.apply_path(hld.parent[v],\
+    \ {\n      LL(to);\n      G.add(v, to);\n    }\n  }\n  G.build();\n  TREE tree(G);\n\
+    \  vc<pi> seg_raw(N - 1, {1, 0});\n  LazyTreeMonoid<decltype(tree), Lazy_CntSum_Add<ll>,\
+    \ 1> TM(tree, seg_raw);\n  LL(Q);\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n\
+    \      LL(v, x);\n      TM.apply_path(0, v, x);\n      // TM.apply_path(tree.parent[v],\
     \ v, x);\n    } else {\n      LL(v);\n      print(TM.prod_path(0, v).se);\n  \
     \  }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
@@ -477,10 +477,10 @@ data:
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/group_add.hpp\"\
     \n#include \"graph/lazytreemonoid.hpp\"\n#include \"alg/lazy_cntsum_add.hpp\"\n\
     \nvoid solve() {\n  LL(N);\n  Graph G(N);\n  FOR(v, N) {\n    LL(k);\n    FOR(k)\
-    \ {\n      LL(to);\n      G.add(v, to);\n    }\n  }\n  G.build();\n  HLD hld(G);\n\
-    \  vc<pi> seg_raw(N - 1, {1, 0});\n  LazyTreeMonoid<decltype(hld), Lazy_CntSum_Add<ll>,\
-    \ 1> TM(hld, seg_raw);\n  LL(Q);\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n\
-    \      LL(v, x);\n      TM.apply_path(0, v, x);\n      // TM.apply_path(hld.parent[v],\
+    \ {\n      LL(to);\n      G.add(v, to);\n    }\n  }\n  G.build();\n  TREE tree(G);\n\
+    \  vc<pi> seg_raw(N - 1, {1, 0});\n  LazyTreeMonoid<decltype(tree), Lazy_CntSum_Add<ll>,\
+    \ 1> TM(tree, seg_raw);\n  LL(Q);\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n\
+    \      LL(v, x);\n      TM.apply_path(0, v, x);\n      // TM.apply_path(tree.parent[v],\
     \ v, x);\n    } else {\n      LL(v);\n      print(TM.prod_path(0, v).se);\n  \
     \  }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
@@ -500,8 +500,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   requiredBy: []
-  timestamp: '2022-08-22 17:44:18+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-22 18:06:42+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
 layout: document

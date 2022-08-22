@@ -56,7 +56,7 @@ data:
   - icon: ':warning:'
     path: graph/find_nontransitive_triple.hpp
     title: graph/find_nontransitive_triple.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
   - icon: ':heavy_check_mark:'
@@ -116,6 +116,9 @@ data:
   - icon: ':x:'
     path: graph/treegroup.hpp
     title: graph/treegroup.hpp
+  - icon: ':x:'
+    path: graph/treemonoid.hpp
+    title: graph/treemonoid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/twosat.hpp
     title: graph/twosat.hpp
@@ -150,7 +153,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_C_warshallfloyd.test.cpp
     title: test/aoj/GRL_1_C_warshallfloyd.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
     title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -163,8 +166,17 @@ data:
     path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
   - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+    title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+    title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+    title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/biconnected_component.test.cpp
     title: test/library_checker/graph/biconnected_component.test.cpp
@@ -350,6 +362,7 @@ data:
   - graph/rerooting_dp.hpp
   - graph/maximum_independent_set.hpp
   - graph/treeabelgroup.hpp
+  - graph/treemonoid.hpp
   - graph/warshall_floyd.hpp
   - graph/eulerwalk.hpp
   - graph/range_to_range_graph.hpp
@@ -392,7 +405,10 @@ data:
   - test/library_checker/math/twosat.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - test/aoj/GRL_1_B_bellmanford.test.cpp
   - test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
