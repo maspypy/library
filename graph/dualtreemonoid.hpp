@@ -1,23 +1,23 @@
 #include "ds/lazysegtree.hpp"
-#include "graph/hld.hpp"
+#include "graph/tree.hpp"
 #include "ds/dualsegtree.hpp"
 
-template <typename HLD, typename Monoid, bool edge = false>
+template <typename TREE, typename Monoid, bool edge = false>
 struct DualTreeMonoid {
   using X = typename Monoid::value_type;
-  HLD &hld;
+  TREE &tree;
   int N;
   DualSegTree<Monoid> seg;
 
-  DualTreeMonoid(HLD &hld) : hld(hld), N(hld.N), seg(hld.N) {}
+  DualTreeMonoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N) {}
 
   X get(int i) {
     int v = i;
     if (edge) {
-      auto &&e = hld.G.edges[i];
-      v = (hld.parent[e.frm] == e.to ? e.frm : e.to);
+      auto &&e = tree.G.edges[i];
+      v = (tree.parent[e.frm] == e.to ? e.frm : e.to);
     }
-    return seg.get(hld.LID[v]);
+    return seg.get(tree.LID[v]);
   }
 
   vc<X> get_all() {
@@ -27,16 +27,16 @@ struct DualTreeMonoid {
       if (edge && i == N - 1) break;
       int v = i;
       if (edge) {
-        auto &&e = hld.G.edges[i];
-        v = (hld.parent[e.frm] == e.to ? e.frm : e.to);
+        auto &&e = tree.G.edges[i];
+        v = (tree.parent[e.frm] == e.to ? e.frm : e.to);
       }
-      res.eb(tmp[hld.LID[v]]);
+      res.eb(tmp[tree.LID[v]]);
     }
     return res;
   }
 
   void apply_path(int u, int v, X x) {
-    auto pd = hld.get_path_decomposition(u, v, edge);
+    auto pd = tree.get_path_decomposition(u, v, edge);
     for (auto &&[a, b]: pd) {
       (a <= b ? seg.apply(a, b + 1, x) : seg.apply(b, a + 1, x));
     }
@@ -44,7 +44,7 @@ struct DualTreeMonoid {
   }
 
   void apply_subtree(int u, X x) {
-    int l = hld.LID[u], r = hld.RID[u];
+    int l = tree.LID[u], r = tree.RID[u];
     return seg.apply(l + edge, r, x);
   }
 };
