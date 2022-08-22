@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2677"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "graph/hld.hpp"
+#include "graph/tree.hpp"
 
 void solve() {
   LL(N);
@@ -24,11 +24,11 @@ void solve() {
     sort(all(TO));
     for (auto&& x: TO) add(x);
   }
-  HLD<decltype(G)> hld(G);
+  TREE<decltype(G)> tree(G);
   ll ANS = 0;
   FOR(i, len(V) - 1) {
     int a = V[i], b = V[i + 1];
-    ANS += hld.dist(a, b);
+    ANS += tree.dist(a, b);
   }
   print(ANS);
 }
