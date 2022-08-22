@@ -22,8 +22,8 @@ void solve() {
   Graph<int> G(N);
   G.read_tree(0, 0);
 
-  HLD hld(G);
-  TreeMonoid<decltype(hld), Mono, false> TM(hld, A);
+  TREE tree(G);
+  TreeMonoid<decltype(tree), Mono, false> TM(tree, A);
 
   FOR(_, Q) {
     LL(t);
