@@ -9,8 +9,8 @@ void solve() {
   Graph G(N);
   VEC(int, A, N);
   G.read_tree();
-  HLD hld(G);
-  TreeAbelGroup<decltype(hld), Group_Xor<int>, 0, 0, 1> TA(hld, A);
+  TREE tree(G);
+  TreeAbelGroup<decltype(tree), Group_Xor<int>, 0, 0, 1> TA(tree, A);
   FOR(Q) {
     LL(t, x, y);
     --x;
