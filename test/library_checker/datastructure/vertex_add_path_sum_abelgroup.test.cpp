@@ -11,8 +11,8 @@ void solve() {
   Graph G(N);
   G.read_tree(0, 0);
 
-  HLD hld(G);
-  TreeAbelGroup<decltype(hld), Group_Add<ll>, false, true, false> TA(hld, A);
+  TREE tree(G);
+  TreeAbelGroup<decltype(tree), Group_Add<ll>, false, true, false> TA(tree, A);
 
   FOR(_, Q) {
     LL(t);
