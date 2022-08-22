@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1641_tree_abel.test.cpp
-    title: test/yukicoder/1641_tree_abel.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/group_xor.hpp\"\ntemplate <typename T = long long>\r\
@@ -28,9 +25,8 @@ data:
   path: alg/group_xor.hpp
   requiredBy: []
   timestamp: '2022-04-24 22:49:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yukicoder/1641_tree_abel.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: alg/group_xor.hpp
 layout: document
 redirect_from:

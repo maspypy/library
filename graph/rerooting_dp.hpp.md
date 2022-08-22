@@ -4,69 +4,62 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/hld.hpp
-    title: graph/hld.hpp
+  - icon: ':warning:'
+    path: graph/tree.hpp
+    title: graph/tree.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1418_rerooting.test.cpp
-    title: test/yukicoder/1418_rerooting.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1718_rerooting.test.cpp
-    title: test/yukicoder/1718_rerooting.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
-    \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
-    \ directed = false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n  using\
-    \ edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type>\
-    \ csr_edges;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n    OutgoingEdges(const\
-    \ Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin()\
-    \ const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[l];\n \
-    \   }\n\n    const edge_type* end() const {\n      if (l == r) { return 0; }\n\
-    \      return &G->csr_edges[r];\n    }\n\n  private:\n    const Graph* G;\n  \
-    \  int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n  constexpr bool\
-    \ is_directed() { return directed; }\n\n  Graph() : N(0), M(0), prepared(0) {}\n\
-    \  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void add(int frm, int to, T\
-    \ cost = 1, int i = -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <=\
-    \ to && to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost,\
-    \ i});\n    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool\
-    \ wt = false, int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int\
-    \ M, bool wt = false, int off = 1) {\n    for (int m = 0; m < M; ++m) {\n    \
-    \  INT(a, b);\n      a -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n\
-    \      } else {\n        T c;\n        read(c);\n        add(a, b, c);\n     \
-    \ }\n    }\n    build();\n  }\n\n  void read_parent(int off = 1) {\n    for (int\
-    \ v = 1; v < N; ++v) {\n      INT(p);\n      p -= off;\n      add(p, v);\n   \
-    \ }\n    build();\n  }\n\n  void build() {\n    assert(!prepared);\n    prepared\
-    \ = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm\
-    \ + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n    }\n    for (int v = 0;\
-    \ v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto counter = indptr;\n  \
-    \  csr_edges.resize(indptr.back() + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++]\
-    \ = e;\n      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to,\
-    \ e.frm, e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const\
-    \ {\n    assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\
-    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
-    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
-    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
-    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
-    \    }\n  }\n};\n#line 3 \"graph/hld.hpp\"\n\r\n/*\r\nHL\u5206\u89E3\u3002O(N)\
-    \ \u6642\u9593\u69CB\u7BC9\u3002\r\nLCA, LA \u306A\u3069\u306F O(logN) \u6642\u9593\
-    \u3002\r\n\u6728\u4EE5\u5916\u3001\u975E\u9023\u7D50\u3067\u3082\u4F7F\u3048\u308B\
-    \u3088\u3046\u306B\u3057\u305F\u3002dfs\u9806\u5E8F\u3084\u89AA\u304C\u3068\u308C\
-    \u308B\u3002\r\n*/\r\ntemplate <typename Graph>\r\nstruct HLD {\r\n  Graph &G;\r\
-    \n  using Graph_type = Graph;\r\n  using WT = typename Graph::cost_type;\r\n \
-    \ int N;\r\n  vector<int> LID, RID, head, V, parent, root;\r\n  vc<int> depth;\r\
-    \n  vc<WT> depth_weighted;\r\n  vector<bool> in_tree;\r\n\r\n  HLD(Graph &G, int\
-    \ r = -1)\r\n      : G(G),\r\n        N(G.N),\r\n        LID(G.N),\r\n       \
-    \ RID(G.N),\r\n        head(G.N, r),\r\n        V(G.N),\r\n        parent(G.N,\
-    \ -1),\r\n        root(G.N, -1),\r\n        depth(G.N, -1),\r\n        depth_weighted(G.N,\
-    \ 0),\r\n        in_tree(G.M, 0) {\r\n    assert(G.is_prepared());\r\n    int\
-    \ t1 = 0;\r\n    if (r != -1) {\r\n      dfs_sz(r, -1);\r\n      dfs_hld(r, t1);\r\
-    \n    } else {\r\n      for (int r = 0; r < N; ++r) {\r\n        if (parent[r]\
+  bundledCode: "#line 1 \"graph/rerooting_dp.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\
+    \n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n\
+    };\n\ntemplate <typename T = int, bool directed = false>\nstruct Graph {\n  int\
+    \ N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
+    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  bool prepared;\n\
+    \n  class OutgoingEdges {\n  public:\n    OutgoingEdges(const Graph* G, int l,\
+    \ int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n     \
+    \ if (l == r) { return 0; }\n      return &G->csr_edges[l];\n    }\n\n    const\
+    \ edge_type* end() const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n\
+    \    }\n\n  private:\n    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared()\
+    \ { return prepared; }\n  constexpr bool is_directed() { return directed; }\n\n\
+    \  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
+    \ {}\n\n  void add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n\
+    \    assert(0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto\
+    \ e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  //\
+    \ wt, off\n  void read_tree(bool wt = false, int off = 1) { read_graph(N - 1,\
+    \ wt, off); }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n  \
+    \  for (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a -= off, b -= off;\n\
+    \      if (!wt) {\n        add(a, b);\n      } else {\n        T c;\n        read(c);\n\
+    \        add(a, b, c);\n      }\n    }\n    build();\n  }\n\n  void read_parent(int\
+    \ off = 1) {\n    for (int v = 1; v < N; ++v) {\n      INT(p);\n      p -= off;\n\
+    \      add(p, v);\n    }\n    build();\n  }\n\n  void build() {\n    assert(!prepared);\n\
+    \    prepared = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges)\
+    \ {\n      indptr[e.frm + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n  \
+    \  }\n    for (int v = 0; v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto\
+    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
+    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
+    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
+    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
+    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  void debug() {\n    print(\"\
+    Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
+    \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
+    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 3 \"graph/tree.hpp\"\
+    \n\r\n// HLD euler tour \u3092\u3068\u3063\u3066\u3044\u308D\u3044\u308D\u3002\
+    \r\n// \u6728\u4EE5\u5916\u3001\u975E\u9023\u7D50\u3067\u3082 dfs \u9806\u5E8F\
+    \u3084\u89AA\u304C\u3068\u308C\u308B\u3002\r\ntemplate <typename Graph>\r\nstruct\
+    \ TREE {\r\n  Graph &G;\r\n  using Graph_type = Graph;\r\n  using WT = typename\
+    \ Graph::cost_type;\r\n  int N;\r\n  vector<int> LID, RID, head, V, parent, root;\r\
+    \n  vc<int> depth;\r\n  vc<WT> depth_weighted;\r\n  vector<bool> in_tree;\r\n\r\
+    \n  TREE(Graph &G, int r = -1)\r\n      : G(G),\r\n        N(G.N),\r\n       \
+    \ LID(G.N),\r\n        RID(G.N),\r\n        head(G.N, r),\r\n        V(G.N),\r\
+    \n        parent(G.N, -1),\r\n        root(G.N, -1),\r\n        depth(G.N, -1),\r\
+    \n        depth_weighted(G.N, 0),\r\n        in_tree(G.M, 0) {\r\n    assert(G.is_prepared());\r\
+    \n    int t1 = 0;\r\n    if (r != -1) {\r\n      dfs_sz(r, -1);\r\n      dfs_hld(r,\
+    \ t1);\r\n    } else {\r\n      for (int r = 0; r < N; ++r) {\r\n        if (parent[r]\
     \ == -1) {\r\n          head[r] = r;\r\n          dfs_sz(r, -1);\r\n         \
     \ dfs_hld(r, t1);\r\n        }\r\n      }\r\n    }\r\n    for (auto &&v: V) root[v]\
     \ = (parent[v] == -1 ? v : root[parent[v]]);\r\n  }\r\n\r\n  void dfs_sz(int v,\
@@ -119,55 +112,64 @@ data:
     V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\", RID);\r\n    print(\"\
     parent\", parent);\r\n    print(\"depth\", depth);\r\n    print(\"head\", head);\r\
     \n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"root\", root);\r\n  }\r\
-    \n};\r\n#line 3 \"graph/rerooting_dp.hpp\"\n\r\n// snippet \u53C2\u7167\r\ntemplate\
-    \ <typename Graph, typename Data, typename F1, typename F2, typename F3>\r\nvc<Data>\
-    \ rerooting_dp(Graph& G, F1 fee, F2 fev, F3 fve, Data unit) {\r\n  using E = typename\
-    \ Graph::edge_type;\r\n\r\n  int N = G.N;\r\n  HLD hld(G);\r\n  auto V = hld.V;\r\
-    \n  auto VR = V;\r\n  reverse(all(VR));\r\n  auto par = hld.parent;\r\n\r\n  vc<Data>\
-    \ dpv(N);\r\n  vc<Data> dpe1(N);\r\n\r\n  for (auto&& v: VR) {\r\n    auto val\
-    \ = unit;\r\n    E e0;\r\n    for (auto&& e: G[v]) {\r\n      if (e.to != par[v])\
-    \ {\r\n        val = fee(val, dpe1[e.to]);\r\n      } else {\r\n        e0 = e;\r\
-    \n      }\r\n    }\r\n    dpv[v] = fev(val, v);\r\n    dpe1[v] = (v ? fve(dpv[v],\
-    \ e0) : unit);\r\n  }\r\n\r\n  vc<Data> dp(N);\r\n  vc<Data> dpe2(N);\r\n  dpe2[0]\
-    \ = unit;\r\n\r\n  for (auto&& v: V) {\r\n    vc<Data> tmp = {dpe2[v]};\r\n  \
-    \  for (auto&& e: G[v])\r\n      if (e.to != par[v]) { tmp.eb(dpe1[e.to]); }\r\
-    \n    int n = len(tmp);\r\n    vc<Data> cum_l(n + 1), cum_r(n + 1);\r\n    cum_l[0]\
-    \ = unit;\r\n    FOR(i, n) cum_l[i + 1] = fee(cum_l[i], tmp[i]);\r\n    cum_r[n]\
-    \ = unit;\r\n    FOR_R(i, n) cum_r[i] = fee(cum_r[i + 1], tmp[i]);\r\n    dp[v]\
-    \ = fev(cum_r[0], v);\r\n    int nxt = 1;\r\n    for (auto&& e: G[v])\r\n    \
-    \  if (e.to != par[v]) {\r\n        auto prod = fee(cum_l[nxt], cum_r[nxt + 1]);\r\
-    \n        ++nxt;\r\n        dpe2[e.to] = fve(fev(prod, v), e);\r\n      }\r\n\
-    \  }\r\n  return dp;\r\n}\n"
-  code: "#include \"graph/base.hpp\"\r\n#include \"graph/hld.hpp\"\r\n\r\n// snippet\
-    \ \u53C2\u7167\r\ntemplate <typename Graph, typename Data, typename F1, typename\
-    \ F2, typename F3>\r\nvc<Data> rerooting_dp(Graph& G, F1 fee, F2 fev, F3 fve,\
-    \ Data unit) {\r\n  using E = typename Graph::edge_type;\r\n\r\n  int N = G.N;\r\
-    \n  HLD hld(G);\r\n  auto V = hld.V;\r\n  auto VR = V;\r\n  reverse(all(VR));\r\
-    \n  auto par = hld.parent;\r\n\r\n  vc<Data> dpv(N);\r\n  vc<Data> dpe1(N);\r\n\
-    \r\n  for (auto&& v: VR) {\r\n    auto val = unit;\r\n    E e0;\r\n    for (auto&&\
-    \ e: G[v]) {\r\n      if (e.to != par[v]) {\r\n        val = fee(val, dpe1[e.to]);\r\
-    \n      } else {\r\n        e0 = e;\r\n      }\r\n    }\r\n    dpv[v] = fev(val,\
-    \ v);\r\n    dpe1[v] = (v ? fve(dpv[v], e0) : unit);\r\n  }\r\n\r\n  vc<Data>\
-    \ dp(N);\r\n  vc<Data> dpe2(N);\r\n  dpe2[0] = unit;\r\n\r\n  for (auto&& v: V)\
-    \ {\r\n    vc<Data> tmp = {dpe2[v]};\r\n    for (auto&& e: G[v])\r\n      if (e.to\
-    \ != par[v]) { tmp.eb(dpe1[e.to]); }\r\n    int n = len(tmp);\r\n    vc<Data>\
-    \ cum_l(n + 1), cum_r(n + 1);\r\n    cum_l[0] = unit;\r\n    FOR(i, n) cum_l[i\
-    \ + 1] = fee(cum_l[i], tmp[i]);\r\n    cum_r[n] = unit;\r\n    FOR_R(i, n) cum_r[i]\
-    \ = fee(cum_r[i + 1], tmp[i]);\r\n    dp[v] = fev(cum_r[0], v);\r\n    int nxt\
-    \ = 1;\r\n    for (auto&& e: G[v])\r\n      if (e.to != par[v]) {\r\n        auto\
-    \ prod = fee(cum_l[nxt], cum_r[nxt + 1]);\r\n        ++nxt;\r\n        dpe2[e.to]\
-    \ = fve(fev(prod, v), e);\r\n      }\r\n  }\r\n  return dp;\r\n}"
+    \n};\r\n#line 4 \"graph/rerooting_dp.hpp\"\n\r\ntemplate <typename TREE, typename\
+    \ Data>\r\nstruct Rerooting_dp {\r\n  vc<Data> dp_1; // \u8FBA pv \u306B\u5BFE\
+    \u3057\u3066\u3001\u90E8\u5206\u6728 v\r\n  vc<Data> dp_2; // \u8FBA pv \u306B\
+    \u5BFE\u3057\u3066\u3001\u90E8\u5206\u6728 p\r\n  vc<Data> dp;   // \u3059\u3079\
+    \u3066\u306E v \u306B\u5BFE\u3057\u3066\u3001v \u3092\u6839\u3068\u3059\u308B\u90E8\
+    \u5206\u6728\r\n\r\n  template <typename F1, typename F2, typename F3>\r\n  Rerooting_dp(TREE&\
+    \ tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data unit) {\r\n    int N = tree.G.N;\r\
+    \n    dp_1.assign(N, unit);\r\n    dp_2.assign(N, unit);\r\n    dp.assign(N, unit);\r\
+    \n    auto& V = tree.V;\r\n    auto& par = tree.parent;\r\n\r\n    FOR_R(i, N)\
+    \ {\r\n      int v = V[i];\r\n      auto ch = tree.collect_child(v);\r\n     \
+    \ int n = len(ch);\r\n      vc<Data> Xl(n + 1, unit), Xr(n + 1, unit);\r\n   \
+    \   FOR(i, n) Xl[i + 1] = f_ee(Xl[i], dp_2[ch[i]]);\r\n      FOR_R(i, n) Xr[i]\
+    \ = f_ee(dp_2[ch[i]], Xr[i + 1]);\r\n      FOR(i, n) dp_2[ch[i]] = f_ee(Xl[i],\
+    \ Xr[i + 1]);\r\n      dp[v] = Xr[0];\r\n      dp_1[v] = f_ev(dp[v], v);\r\n \
+    \     for (auto&& e: tree.G[v]) {\r\n        if (e.to == par[v]) { dp_2[v] = f_ve(dp_1[v],\
+    \ e); }\r\n      }\r\n    }\r\n    {\r\n      int v = V[0];\r\n      dp[v] = f_ev(dp[v],\
+    \ v);\r\n      for (auto&& e: tree.G[v]) dp_2[e.to] = f_ev(dp_2[e.to], v);\r\n\
+    \    }\r\n    FOR(i, N) {\r\n      int v = V[i];\r\n      for (auto&& e: tree.G[v])\
+    \ {\r\n        if (e.to != par[v]) {\r\n          Data x = f_ve(dp_2[e.to], e);\r\
+    \n          dp[e.to] = f_ev(f_ee(dp[e.to], x), e.to);\r\n          for (auto&&\
+    \ f: tree.G[e.to]) {\r\n            if (f.to != par[f.to]) {\r\n             \
+    \ dp_2[f.to] = f_ee(dp_2[f.to], x);\r\n              dp_2[f.to] = f_ev(dp_2[f.to],\
+    \ e.to);\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n\
+    \  }\r\n\r\n  Data operator[](int v) { return dp[v]; }\r\n};\n"
+  code: "\r\n#include \"graph/base.hpp\"\r\n#include \"graph/tree.hpp\"\r\n\r\ntemplate\
+    \ <typename TREE, typename Data>\r\nstruct Rerooting_dp {\r\n  vc<Data> dp_1;\
+    \ // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\u5206\u6728 v\r\n  vc<Data>\
+    \ dp_2; // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\u5206\u6728 p\r\n  vc<Data>\
+    \ dp;   // \u3059\u3079\u3066\u306E v \u306B\u5BFE\u3057\u3066\u3001v \u3092\u6839\
+    \u3068\u3059\u308B\u90E8\u5206\u6728\r\n\r\n  template <typename F1, typename\
+    \ F2, typename F3>\r\n  Rerooting_dp(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const\
+    \ Data unit) {\r\n    int N = tree.G.N;\r\n    dp_1.assign(N, unit);\r\n    dp_2.assign(N,\
+    \ unit);\r\n    dp.assign(N, unit);\r\n    auto& V = tree.V;\r\n    auto& par\
+    \ = tree.parent;\r\n\r\n    FOR_R(i, N) {\r\n      int v = V[i];\r\n      auto\
+    \ ch = tree.collect_child(v);\r\n      int n = len(ch);\r\n      vc<Data> Xl(n\
+    \ + 1, unit), Xr(n + 1, unit);\r\n      FOR(i, n) Xl[i + 1] = f_ee(Xl[i], dp_2[ch[i]]);\r\
+    \n      FOR_R(i, n) Xr[i] = f_ee(dp_2[ch[i]], Xr[i + 1]);\r\n      FOR(i, n) dp_2[ch[i]]\
+    \ = f_ee(Xl[i], Xr[i + 1]);\r\n      dp[v] = Xr[0];\r\n      dp_1[v] = f_ev(dp[v],\
+    \ v);\r\n      for (auto&& e: tree.G[v]) {\r\n        if (e.to == par[v]) { dp_2[v]\
+    \ = f_ve(dp_1[v], e); }\r\n      }\r\n    }\r\n    {\r\n      int v = V[0];\r\n\
+    \      dp[v] = f_ev(dp[v], v);\r\n      for (auto&& e: tree.G[v]) dp_2[e.to] =\
+    \ f_ev(dp_2[e.to], v);\r\n    }\r\n    FOR(i, N) {\r\n      int v = V[i];\r\n\
+    \      for (auto&& e: tree.G[v]) {\r\n        if (e.to != par[v]) {\r\n      \
+    \    Data x = f_ve(dp_2[e.to], e);\r\n          dp[e.to] = f_ev(f_ee(dp[e.to],\
+    \ x), e.to);\r\n          for (auto&& f: tree.G[e.to]) {\r\n            if (f.to\
+    \ != par[f.to]) {\r\n              dp_2[f.to] = f_ee(dp_2[f.to], x);\r\n     \
+    \         dp_2[f.to] = f_ev(dp_2[f.to], e.to);\r\n            }\r\n          }\r\
+    \n        }\r\n      }\r\n    }\r\n  }\r\n\r\n  Data operator[](int v) { return\
+    \ dp[v]; }\r\n};"
   dependsOn:
   - graph/base.hpp
-  - graph/hld.hpp
+  - graph/tree.hpp
   isVerificationFile: false
   path: graph/rerooting_dp.hpp
   requiredBy: []
-  timestamp: '2022-08-18 17:59:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yukicoder/1718_rerooting.test.cpp
-  - test/yukicoder/1418_rerooting.test.cpp
+  timestamp: '2022-08-22 17:21:44+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: graph/rerooting_dp.hpp
 layout: document
 redirect_from:

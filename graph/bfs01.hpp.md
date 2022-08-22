@@ -19,9 +19,6 @@ data:
     path: test/yukicoder/1320_mincostcycle.test.cpp
     title: test/yukicoder/1320_mincostcycle.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1718_rerooting.test.cpp
-    title: test/yukicoder/1718_rerooting.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1868_range_to_range.test.cpp
     title: test/yukicoder/1868_range_to_range.test.cpp
   _isVerificationFailed: false
@@ -111,7 +108,6 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1868_range_to_range.test.cpp
-  - test/yukicoder/1718_rerooting.test.cpp
   - test/yukicoder/1320_mincostcycle.test.cpp
   - test/library_checker/tree/tree_diameter.test.cpp
 documentation_of: graph/bfs01.hpp

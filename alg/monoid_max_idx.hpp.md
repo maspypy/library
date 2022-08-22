@@ -5,13 +5,10 @@ data:
   - icon: ':warning:'
     path: alg/lazy_maxidx_add.hpp
     title: alg/lazy_maxidx_add.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/529_two_edge.test.cpp
-    title: test/yukicoder/529_two_edge.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid_max_idx.hpp\"\ntemplate <typename T, bool tie_is_left\
@@ -33,9 +30,8 @@ data:
   requiredBy:
   - alg/lazy_maxidx_add.hpp
   timestamp: '2022-05-26 00:06:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yukicoder/529_two_edge.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: alg/monoid_max_idx.hpp
 layout: document
 redirect_from:

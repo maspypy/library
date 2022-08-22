@@ -26,9 +26,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/contoursum.hpp
     title: graph/contoursum.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/treeabelgroup.hpp
-    title: graph/treeabelgroup.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_2_A_inversion.test.cpp
@@ -58,12 +55,6 @@ data:
     path: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
     title: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-    title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-    title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -73,14 +64,8 @@ data:
     path: test/yukicoder/1038_centroid.test.cpp
     title: test/yukicoder/1038_centroid.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1326_bct.test.cpp
-    title: test/yukicoder/1326_bct.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1490_rect_add_rect_sum.test.cpp
     title: test/yukicoder/1490_rect_add_rect_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1641_tree_abel.test.cpp
-    title: test/yukicoder/1641_tree_abel.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
@@ -150,7 +135,6 @@ data:
   isVerificationFile: false
   path: ds/fenwick.hpp
   requiredBy:
-  - graph/treeabelgroup.hpp
   - graph/contoursum.hpp
   - dp/inversion.hpp
   - ds/point_add_polygon_sum.hpp
@@ -161,20 +145,16 @@ data:
   timestamp: '2022-08-18 17:58:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1641_tree_abel.test.cpp
   - test/yukicoder/1038_centroid.test.cpp
   - test/yukicoder/924.test.cpp
   - test/yukicoder/1490_rect_add_rect_sum.test.cpp
-  - test/yukicoder/1326_bct.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/library_checker/graph/verted_add_contour_sum.test.cpp
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
-  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
   - test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/aoj/ALDS1_5_inversion.test.cpp
   - test/aoj/DSL_2_G_fenwick_raq.test.cpp
   - test/aoj/ALDS1_2_A_inversion.test.cpp

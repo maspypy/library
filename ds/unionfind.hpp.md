@@ -14,15 +14,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
-  - icon: ':warning:'
-    path: graph/functional.hpp
-    title: graph/functional.hpp
   - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/minimum_spanning_tree.hpp
-    title: graph/minimum_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/online_unionfind.hpp
     title: graph/online_unionfind.hpp
@@ -36,12 +30,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2251_maxantichain.test.cpp
     title: test/aoj/2251_maxantichain.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/2995_dsu.test.cpp
-    title: test/aoj/2995_dsu.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_2_A_mst.test.cpp
-    title: test/aoj/GRL_2_A_mst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/unionfind.test.cpp
     title: test/library_checker/datastructure/unionfind.test.cpp
@@ -91,12 +79,10 @@ data:
   path: ds/unionfind.hpp
   requiredBy:
   - geo_old/manhattan_mst.hpp
-  - graph/minimum_spanning_tree.hpp
   - graph/online_unionfind.hpp
   - graph/tree_of_unionfind.hpp
   - graph/dag_path_cover.hpp
   - graph/check_bipartite.hpp
-  - graph/functional.hpp
   - graph/maximum_antichain.hpp
   - flow/bipartite.hpp
   timestamp: '2022-08-11 02:13:18+09:00'
@@ -107,10 +93,8 @@ data:
   - test/yukicoder/114_steriner_tree.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/datastructure/unionfind.test.cpp
-  - test/aoj/2995_dsu.test.cpp
   - test/aoj/2251_dag_path_cover.test.cpp
   - test/aoj/2251_maxantichain.test.cpp
-  - test/aoj/GRL_2_A_mst.test.cpp
 documentation_of: ds/unionfind.hpp
 layout: document
 redirect_from:

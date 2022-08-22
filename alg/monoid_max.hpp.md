@@ -14,13 +14,7 @@ data:
   - icon: ':warning:'
     path: alg/lazy_max_set.hpp
     title: alg/lazy_max_set.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/minimum_spanning_tree.hpp
-    title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_2_A_mst.test.cpp
-    title: test/aoj/GRL_2_A_mst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1117_swag.test.cpp
     title: test/yukicoder/1117_swag.test.cpp
@@ -53,7 +47,6 @@ data:
   isVerificationFile: false
   path: alg/monoid_max.hpp
   requiredBy:
-  - graph/minimum_spanning_tree.hpp
   - alg/lazy_max_min.hpp
   - alg/lazy_max_max.hpp
   - alg/lazy_max_set.hpp
@@ -66,7 +59,6 @@ data:
   - test/yukicoder/1826_dseg.test.cpp
   - test/yukicoder/1117_swag.test.cpp
   - test/yukicoder/bbst_max_right.test.cpp
-  - test/aoj/GRL_2_A_mst.test.cpp
 documentation_of: alg/monoid_max.hpp
 layout: document
 redirect_from:
