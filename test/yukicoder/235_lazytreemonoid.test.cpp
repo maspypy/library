@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/235"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "graph/hld.hpp"
+#include "graph/tree.hpp"
 #include "graph/lazytreemonoid.hpp"
 #include "alg/lazy_cntsum_add.hpp"
 #include "mod/modint.hpp"
@@ -15,10 +15,10 @@ void solve() {
   VEC(ll, C, N);
   Graph G(N);
   G.read_tree();
-  HLD hld(G);
+  TREE tree(G);
   vc<pair<mint, mint>> dat;
   FOR(i, N) dat.eb(C[i], S[i]);
-  LazyTreeMonoid<decltype(hld), Lazy, false> TM(hld, dat);
+  LazyTreeMonoid<decltype(tree), Lazy, false> TM(tree, dat);
   LL(Q);
   FOR(Q) {
     LL(t);
