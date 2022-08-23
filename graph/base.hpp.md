@@ -23,7 +23,7 @@ data:
   - icon: ':warning:'
     path: graph/bipartite_coloring.hpp
     title: graph/bipartite_coloring.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/bracket_graph.hpp
     title: graph/bracket_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -280,6 +280,9 @@ data:
     path: test/yukicoder/1641_tree_abel.test.cpp
     title: test/yukicoder/1641_tree_abel.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1778_bracket_graph.test.cpp
+    title: test/yukicoder/1778_bracket_graph.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/17_warshall_floyd.test.cpp
     title: test/yukicoder/17_warshall_floyd.test.cpp
   - icon: ':heavy_check_mark:'
@@ -424,6 +427,7 @@ data:
   - test/yukicoder/1868_range_to_range.test.cpp
   - test/yukicoder/1002_centroid.test.cpp
   - test/yukicoder/1197.test.cpp
+  - test/yukicoder/1778_bracket_graph.test.cpp
   - test/yukicoder/1320_mincostcycle.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/1038_centroid.test.cpp

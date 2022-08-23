@@ -82,6 +82,9 @@ data:
     path: test/yukicoder/1641_tree_abel.test.cpp
     title: test/yukicoder/1641_tree_abel.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1778_bracket_graph.test.cpp
+    title: test/yukicoder/1778_bracket_graph.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/235_lazytreemonoid.test.cpp
     title: test/yukicoder/235_lazytreemonoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -274,6 +277,7 @@ data:
   verifiedWith:
   - test/yukicoder/1641_tree_abel.test.cpp
   - test/yukicoder/1197.test.cpp
+  - test/yukicoder/1778_bracket_graph.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
   - test/yukicoder/529_two_edge.test.cpp
   - test/yukicoder/1326_bct.test.cpp

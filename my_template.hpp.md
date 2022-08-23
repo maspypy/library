@@ -808,6 +808,9 @@ data:
     path: test/yukicoder/1760.test.cpp
     title: test/yukicoder/1760.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1778_bracket_graph.test.cpp
+    title: test/yukicoder/1778_bracket_graph.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/177_maxflow.test.cpp
     title: test/yukicoder/177_maxflow.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1077,6 +1080,7 @@ data:
   - test/yukicoder/1750_matpow.test.cpp
   - test/yukicoder/1197.test.cpp
   - test/yukicoder/626_knapsack_branch_bound.test.cpp
+  - test/yukicoder/1778_bracket_graph.test.cpp
   - test/yukicoder/1036_dseg_minleft_maxright.test.cpp
   - test/yukicoder/1320_mincostcycle.test.cpp
   - test/yukicoder/502_p_rec.test.cpp
