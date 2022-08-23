@@ -4,16 +4,16 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
@@ -319,8 +319,8 @@ data:
     \        heavy = e.to;\n      }\n    }\n    // solve heavy edge (keep subtree\
     \ data)\n    if (heavy != -1) { dfs(dfs, heavy); }\n\n    // collect data in light\
     \ subtree\n    for (auto&& e: G[v]) {\n      if (e.to == tree.parent[v]) continue;\n\
-    \      if (e.to == heavy) continue;\n      FOR(idx, tree.LID[e.to], hld.RID[e.to])\
-    \ { add(hld.V[idx]); }\n    }\n    add(v);\n    query(v);\n\n    if (tree.head[v]\
+    \      if (e.to == heavy) continue;\n      FOR(idx, tree.LID[e.to], tree.RID[e.to])\
+    \ { add(tree.V[idx]); }\n    }\n    add(v);\n    query(v);\n\n    if (tree.head[v]\
     \ == v) reset();\n  };\n\n  int root = tree.V[0];\n  dfs(dfs, root);\n}\n#line\
     \ 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Group_Add {\r\n\
     \  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const X\
@@ -394,8 +394,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   requiredBy: []
-  timestamp: '2022-08-23 10:34:38+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-23 14:23:31+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
 layout: document
