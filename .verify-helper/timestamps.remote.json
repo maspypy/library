@@ -256,6 +256,7 @@
 "test/yukicoder/1666_integer_kth_root.test.cpp": "2022-08-20 05:21:32 +0900",
 "test/yukicoder/1750_matpow.test.cpp": "2022-08-20 05:21:32 +0900",
 "test/yukicoder/1760.test.cpp": "2022-08-20 05:21:32 +0900",
+"test/yukicoder/1778_bracket_graph.test.cpp": "2022-08-23 14:37:36 +0900",
 "test/yukicoder/177_maxflow.test.cpp": "2022-08-20 05:21:32 +0900",
 "test/yukicoder/17_warshall_floyd.test.cpp": "2022-08-20 05:21:32 +0900",
 "test/yukicoder/1810_matpow.test.cpp": "2022-08-20 05:21:32 +0900",
