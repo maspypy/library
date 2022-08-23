@@ -9,12 +9,12 @@ data:
     title: nt/primetable.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/primesum_mod4.test.cpp
-    title: test/mytest/primesum_mod4.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/mytest/primesum_mod6.test.cpp
+    title: test/mytest/primesum_mod6.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\nvc<ll> primetable(int LIM) {\n  ++LIM;\n\
@@ -52,39 +52,44 @@ data:
     \ x) -> T { return x; });\r\n  }\r\n\r\n  void calc_sum() {\r\n    calc([](ll\
     \ x) -> T {\r\n      ll a = x, b = x + 1;\r\n      if (!(x & 1)) a /= 2;\r\n \
     \     if (x & 1) b /= 2;\r\n      return T(a) * T(b);\r\n    });\r\n  }\r\n};\r\
-    \n#line 3 \"nt/primesum_mod4.hpp\"\n\ntemplate <typename T>\nstruct PrimeSum_Mod_4\
-    \ {\n  ll N;\n  ll sqN;\n\n  PrimeSum<T> A, B;\n  PrimeSum_Mod_4(ll N) : N(N),\
+    \n#line 3 \"nt/primesum_mod6.hpp\"\n\ntemplate <typename T>\nstruct PrimeSum_Mod_6\
+    \ {\n  ll N;\n  ll sqN;\n\n  PrimeSum<T> A, B;\n  PrimeSum_Mod_6(ll N) : N(N),\
     \ sqN(sqrtl(N)), A(N), B(N) {}\n\n  pair<T, T> operator[](ll x) {\n    T a = A[x],\
     \ b = B[x];\n    return {(a + b) / T(2), (a - b) / T(2)};\n  }\n\n  void calc_count()\
-    \ {\n    A.calc([](ll x) -> T { return (x + 1) / 2; });\n    B.calc([](ll x) ->\
-    \ T { return ((x + 3) % 4 <= 1 ? 1 : 0); });\n  }\n\n  void calc_sum() {\n   \
-    \ A.calc([](ll x) -> T {\n      ll n = (x + 1) / 2;\n      return T(n) * T(n);\n\
-    \    });\n    B.calc([](ll x) -> T {\n      ll n = (x + 1) / 2;\n      return\
-    \ (n % 2 == 0 ? T(-n) : T(n));\n    });\n  }\n};\n"
+    \ {\n    A.calc([](ll x) -> T { return ((x + 2) / 3 - (x % 6 == 4)); });\n   \
+    \ B.calc([](ll x) -> T { return ((x + 5) % 6 <= 3 ? 1 : 0); });\n  }\n\n  void\
+    \ calc_sum() {\n    A.calc([](ll x) -> T {\n      ll n = (x + 2) / 3 - (x % 6\
+    \ == 4);\n      ll k = n / 2;\n      if (n % 2 == 0) { return T(6 * k) * T(k);\
+    \ }\n      return T(6 * k) * T(k) + T(6 * k + 1);\n    });\n    B.calc([](ll x)\
+    \ -> T {\n      ll n = (x + 2) / 3 - (x % 6 == 4);\n      ll k = n / 2;\n    \
+    \  if (n % 2 == 0) { return T(-4 * k); }\n      return T(-4 * k + 6 * k + 1);\n\
+    \    });\n  }\n};\n"
   code: "#include \"nt/primesum.hpp\"\n#include \"nt/primetable.hpp\"\n\ntemplate\
-    \ <typename T>\nstruct PrimeSum_Mod_4 {\n  ll N;\n  ll sqN;\n\n  PrimeSum<T> A,\
-    \ B;\n  PrimeSum_Mod_4(ll N) : N(N), sqN(sqrtl(N)), A(N), B(N) {}\n\n  pair<T,\
+    \ <typename T>\nstruct PrimeSum_Mod_6 {\n  ll N;\n  ll sqN;\n\n  PrimeSum<T> A,\
+    \ B;\n  PrimeSum_Mod_6(ll N) : N(N), sqN(sqrtl(N)), A(N), B(N) {}\n\n  pair<T,\
     \ T> operator[](ll x) {\n    T a = A[x], b = B[x];\n    return {(a + b) / T(2),\
     \ (a - b) / T(2)};\n  }\n\n  void calc_count() {\n    A.calc([](ll x) -> T { return\
-    \ (x + 1) / 2; });\n    B.calc([](ll x) -> T { return ((x + 3) % 4 <= 1 ? 1 :\
-    \ 0); });\n  }\n\n  void calc_sum() {\n    A.calc([](ll x) -> T {\n      ll n\
-    \ = (x + 1) / 2;\n      return T(n) * T(n);\n    });\n    B.calc([](ll x) -> T\
-    \ {\n      ll n = (x + 1) / 2;\n      return (n % 2 == 0 ? T(-n) : T(n));\n  \
-    \  });\n  }\n};\n"
+    \ ((x + 2) / 3 - (x % 6 == 4)); });\n    B.calc([](ll x) -> T { return ((x + 5)\
+    \ % 6 <= 3 ? 1 : 0); });\n  }\n\n  void calc_sum() {\n    A.calc([](ll x) -> T\
+    \ {\n      ll n = (x + 2) / 3 - (x % 6 == 4);\n      ll k = n / 2;\n      if (n\
+    \ % 2 == 0) { return T(6 * k) * T(k); }\n      return T(6 * k) * T(k) + T(6 *\
+    \ k + 1);\n    });\n    B.calc([](ll x) -> T {\n      ll n = (x + 2) / 3 - (x\
+    \ % 6 == 4);\n      ll k = n / 2;\n      if (n % 2 == 0) { return T(-4 * k); }\n\
+    \      return T(-4 * k + 6 * k + 1);\n    });\n  }\n};\n"
   dependsOn:
   - nt/primesum.hpp
   - nt/primetable.hpp
   isVerificationFile: false
-  path: nt/primesum_mod4.hpp
+  path: nt/primesum_mod6.hpp
   requiredBy: []
-  timestamp: '2022-08-19 01:56:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-08-23 14:42:05+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/primesum_mod4.test.cpp
-documentation_of: nt/primesum_mod4.hpp
+  - test/mytest/primesum_mod6.test.cpp
+documentation_of: nt/primesum_mod6.hpp
 layout: document
 redirect_from:
-- /library/nt/primesum_mod4.hpp
-- /library/nt/primesum_mod4.hpp.html
-title: nt/primesum_mod4.hpp
+- /library/nt/primesum_mod6.hpp
+- /library/nt/primesum_mod6.hpp.html
+title: nt/primesum_mod6.hpp
 ---

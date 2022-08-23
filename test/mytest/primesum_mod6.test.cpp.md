@@ -2,44 +2,41 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: mod/modint.hpp
-    title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
-    path: mod/powertable.hpp
-    title: mod/powertable.hpp
-  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
+  - icon: ':question:'
+    path: nt/primesum.hpp
+    title: nt/primesum.hpp
+  - icon: ':x:'
+    path: nt/primesum_mod6.hpp
+    title: nt/primesum_mod6.hpp
   - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/limit_poly_exp_sum.hpp
-    title: seq/limit_poly_exp_sum.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial_limit
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial_limit
-  bundledCode: "#line 1 \"test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp\"\
-    \n#define PROBLEM \\\r\n  \"https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial_limit\"\
-    \r\n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC\
-    \ optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
-    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
-    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/mytest/primesum_mod6.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#pragma\
+    \ GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -204,101 +201,10 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"mod/modint.hpp\"\n\ntemplate <unsigned int mod>\n\
-    struct modint {\n  static constexpr bool is_modint = true;\n  unsigned int val;\n\
-    \  constexpr modint(const long long val = 0) noexcept\n      : val(val >= 0 ?\
-    \ val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint &other)\
-    \ const {\n    return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
-    \ modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n\
-    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >=\
-    \ mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint\
-    \ &p) {\n    val = (unsigned int)(1LL * val * p.val % mod);\n    return *this;\n\
-    \  }\n  modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n   \
-    \ return *this;\n  }\n  modint operator-() const { return modint(get_mod() - val);\
-    \ }\n  modint operator+(const modint &p) const { return modint(*this) += p; }\n\
-    \  modint operator-(const modint &p) const { return modint(*this) -= p; }\n  modint\
-    \ operator*(const modint &p) const { return modint(*this) *= p; }\n  modint operator/(const\
-    \ modint &p) const { return modint(*this) /= p; }\n  bool operator==(const modint\
-    \ &p) const { return val == p.val; }\n  bool operator!=(const modint &p) const\
-    \ { return val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod,\
-    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
-    \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
-    \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
-    \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n  static constexpr unsigned int get_mod() { return mod; }\n};\n\nstruct\
-    \ ArbitraryModInt {\n  static constexpr bool is_modint = true;\n  unsigned int\
-    \ val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t y)\n      :\
-    \ val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y) % get_mod())\
-    \ % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other) const {\n  \
-    \  return val < other.val;\n  } // To use std::map<ArbitraryModInt, T>\n  static\
-    \ unsigned int &get_mod() {\n    static unsigned int mod = 0;\n    return mod;\n\
-    \  }\n  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
-    \ ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
-    \    return *this;\n  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p)\
-    \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
-    \ *this;\n  }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n   \
-    \ unsigned long long a = (unsigned long long)val * p.val;\n    unsigned xh = (unsigned)(a\
-    \ >> 32), xl = (unsigned)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"\
-    =d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n\
-    \  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n    *this *=\
-    \ p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-() const {\
-    \ return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) += p;\n  }\n\
-    \  ArbitraryModInt operator-(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
-    \ -= p;\n  }\n  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n\
-    \    return ArbitraryModInt(*this) *= p;\n  }\n  ArbitraryModInt operator/(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) /= p;\n  }\n\
-    \  bool operator==(const ArbitraryModInt &p) const { return val == p.val; }\n\
-    \  bool operator!=(const ArbitraryModInt &p) const { return val != p.val; }\n\
-    \  ArbitraryModInt inverse() const {\n    int a = val, b = get_mod(), u = 1, v\
-    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
-    \ -= t * v, v);\n    }\n    return ArbitraryModInt(u);\n  }\n  ArbitraryModInt\
-    \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
-    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
-    \  }\n    return ret;\n  }\n};\n\ntemplate <typename mint>\nmint inv(int n) {\n\
-    \  static const int mod = mint::get_mod();\n  static vector<mint> dat = {0, 1};\n\
-    \  assert(0 <= n);\n  if (n >= mod) n %= mod;\n  while (int(dat.size()) <= n)\
-    \ {\n    int k = dat.size();\n    auto q = (mod + k - 1) / k;\n    int r = k *\
-    \ q - mod;\n    dat.emplace_back(dat[r] * mint(q));\n  }\n  return dat[n];\n}\n\
-    \ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
-    \  static vector<mint> dat = {1, 1};\n  assert(0 <= n);\n  if (n >= mod) return\
-    \ 0;\n  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
-    \ - 1] * mint(k));\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint\
-    \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
-    \ dat = {1, 1};\n  assert(0 <= n && n < mod);\n  while (int(dat.size()) <= n)\
-    \ {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint C_dense(int n, int\
-    \ k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\n  auto calc = [&](int\
-    \ i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n\
-    \    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n\n  if (W <= k) {\n\
-    \    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j]\
-    \ = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n    FOR(i, H,\
-    \ n + 1) {\n      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n\
-    \  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool\
-    \ dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n <\
-    \ k) return 0;\n  if (dense) return C_dense<mint>(n, k);\n  if (!large) return\
-    \ fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k, n -\
-    \ k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n\
-    \  return x;\n}\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll\
-    \ n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return\
-    \ fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint,\
-    \ 1>(n, k);\n}\n\n// [x^d](1-x)^{-n} \u306E\u8A08\u7B97\ntemplate <typename mint,\
-    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
-    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
-    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n\nusing modint107\
-    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\
-    #line 2 \"seq/limit_poly_exp_sum.hpp\"\ntemplate <typename mint>\r\nmint limit_poly_exp_sum(vc<mint>\
-    \ a, mint r) {\r\n  /*\r\n  a[i] = (prefix sum of r^i * (polynomial of i)) \u3068\
-    \u306A\u3063\u3066\u3044\u308B\u3082\u306E\u306E\u6975\u9650\r\n  fps \u3067\u306F\
-    \ (1-rx)^d(1-x) \u306E\u5F62\u306E\u5206\u6BCD\u3092\u6301\u3064\u5834\u5408\u3068\
-    \u3044\u3046\u3053\u3068\u306B\u306A\u308B\r\n  f(x) = g(x) / (1-rx)^d + c / (1-x)\
-    \ \u3068\u3057\u3066\u3001c \u304C\u7B54\u3067\u3042\u308B\r\n  */\r\n  mint c\
-    \ = 0;\r\n  int d = len(a) - 1;\r\n  mint p = 1;\r\n  FOR(i, d + 1) {\r\n    c\
-    \ += a[d - i] * p * C<mint>(d, i);\r\n    p *= -r;\r\n  }\r\n  c /= (mint(1) -\
-    \ r).pow(d);\r\n  return c;\r\n}\r\n#line 2 \"nt/primetable.hpp\"\nvc<ll> primetable(int\
-    \ LIM) {\n  ++LIM;\n  const int S = 32768;\n  static int done = 2;\n  static vc<ll>\
-    \ primes = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes\
-    \ = {2}, sieve.assign(S + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM\
+    \ { yes(!t); }\r\n#line 2 \"nt/primetable.hpp\"\nvc<ll> primetable(int LIM) {\n\
+    \  ++LIM;\n  const int S = 32768;\n  static int done = 2;\n  static vc<ll> primes\
+    \ = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes =\
+    \ {2}, sieve.assign(S + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM\
     \ / log(LIM) * 1.1));\n    vc<pi> cp;\n    for (int i = 3; i <= S; i += 2) {\n\
     \      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for (int j = i\
     \ * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1;\
@@ -306,45 +212,86 @@ data:
     \ cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n\
     \      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n\
     \  }\n  int k = LB(primes, LIM + 1);\n  return {primes.begin(), primes.begin()\
-    \ + k};\n}\n#line 3 \"mod/powertable.hpp\"\n\r\n// a^0, ..., a^N\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> powertable_1(mint a, ll N) {\r\n  // table of a^i\r\n  vc<mint>\
-    \ f(N + 1, 1);\r\n  FOR(i, N) f[i + 1] = a * f[i];\r\n  return f;\r\n}\r\n\r\n\
-    // 0^e, ..., N^e\r\ntemplate <typename mint>\r\nvc<mint> powertable_2(ll e, ll\
-    \ N) {\r\n  auto primes = primetable(N);\r\n  vc<mint> f(N + 1, 1);\r\n  f[0]\
-    \ = mint(0).pow(e);\r\n  for (auto&& p: primes) {\r\n    if (p > N) break;\r\n\
-    \    mint xp = mint(p).pow(e);\r\n    ll pp = p;\r\n    while (pp <= N) {\r\n\
-    \      ll i = pp;\r\n      while (i <= N) {\r\n        f[i] *= xp;\r\n       \
-    \ i += pp;\r\n      }\r\n      pp *= p;\r\n    }\r\n  }\r\n  return f;\r\n}\r\n\
-    #line 7 \"test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp\"\n\r\
-    \nusing mint = modint998;\r\nvoid solve() {\r\n  mint r;\r\n  scanner.read(r);\r\
-    \n  LL(d);\r\n  int L = d + 5;\r\n  vc<mint> a = powertable_2<mint>(d, L - 1);\r\
-    \n  mint p = 1;\r\n  FOR(i, L) {\r\n    a[i] *= p;\r\n    p *= r;\r\n  }\r\n \
-    \ a = cumsum(a, 0);\r\n  print(limit_poly_exp_sum(a, r));\r\n}\r\n\r\nsigned main()\
-    \ {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \\\r\n  \"https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial_limit\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"seq/limit_poly_exp_sum.hpp\"\
-    \r\n#include \"mod/powertable.hpp\"\r\n\r\nusing mint = modint998;\r\nvoid solve()\
-    \ {\r\n  mint r;\r\n  scanner.read(r);\r\n  LL(d);\r\n  int L = d + 5;\r\n  vc<mint>\
-    \ a = powertable_2<mint>(d, L - 1);\r\n  mint p = 1;\r\n  FOR(i, L) {\r\n    a[i]\
-    \ *= p;\r\n    p *= r;\r\n  }\r\n  a = cumsum(a, 0);\r\n  print(limit_poly_exp_sum(a,\
-    \ r));\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ + k};\n}\n#line 2 \"nt/primesum.hpp\"\n\r\n/*\r\nN \u3068\u5B8C\u5168\u4E57\u6CD5\
+    \u7684\u95A2\u6570 f \u306E prefix sum \u95A2\u6570 F \u3092\u4E0E\u3048\u308B\
+    \u3002\r\nn = floor(N/d) \u3068\u306A\u308B n \u306B\u5BFE\u3059\u308B sum_{p\
+    \ <= n} f(p) \u3092\u8A08\u7B97\u3059\u308B\u3002\r\n\u7279\u306B\u3001\u7D20\u6570\
+    \u306E k \u4E57\u548C\u3084\u3001mod m \u3054\u3068\u3067\u306E\u7D20\u6570\u306E\
+    \ k \u4E57\u548C\u304C\u8A08\u7B97\u3067\u304D\u308B\u3002\r\nComplexity: O(N^{3/4}/logN)\
+    \ time, O(N^{1/2}) space.\r\n*/\r\ntemplate <typename T>\r\nstruct PrimeSum {\r\
+    \n  ll N;\r\n  ll sqN;\r\n  vc<T> sum_lo, sum_hi;\r\n  bool calculated;\r\n\r\n\
+    \  PrimeSum(ll N) : N(N), sqN(sqrtl(N)), calculated(0) {}\r\n\r\n  // [1, x] \u305F\
+    \u3060\u3057\u3001x = floor(N, i) \u306E\u5F62\r\n  T operator[](ll x) {\r\n \
+    \   assert(calculated);\r\n    return (x <= sqN ? sum_lo[x] : sum_hi[double(N)\
+    \ / x]);\r\n  }\r\n\r\n  template <typename F>\r\n  void calc(const F f) {\r\n\
+    \    auto primes = primetable(sqN);\r\n    sum_lo.resize(sqN + 1);\r\n    sum_hi.resize(sqN\
+    \ + 1);\r\n    FOR3(i, 1, sqN + 1) sum_lo[i] = f(i) - 1;\r\n    FOR3(i, 1, sqN\
+    \ + 1) sum_hi[i] = f(double(N) / i) - 1;\r\n    for (auto&& p: primes) {\r\n \
+    \     ll pp = p * p;\r\n      if (pp > N) break;\r\n      ll R = min(sqN, N /\
+    \ pp);\r\n      ll M = sqN / p;\r\n      T x = sum_lo[p - 1];\r\n      T fp =\
+    \ sum_lo[p] - sum_lo[p - 1];\r\n      FOR3(i, 1, M + 1) sum_hi[i] -= fp * (sum_hi[i\
+    \ * p] - x);\r\n      FOR3(i, M + 1, R + 1) sum_hi[i] -= fp * (sum_lo[double(N)\
+    \ / (i * p)] - x);\r\n      FOR3_R(n, pp, sqN + 1) sum_lo[n] -= fp * (sum_lo[double(n\
+    \ / p)] - x);\r\n    }\r\n    calculated = 1;\r\n  }\r\n\r\n  void calc_count()\
+    \ {\r\n    calc([](ll x) -> T { return x; });\r\n  }\r\n\r\n  void calc_sum()\
+    \ {\r\n    calc([](ll x) -> T {\r\n      ll a = x, b = x + 1;\r\n      if (!(x\
+    \ & 1)) a /= 2;\r\n      if (x & 1) b /= 2;\r\n      return T(a) * T(b);\r\n \
+    \   });\r\n  }\r\n};\r\n#line 3 \"nt/primesum_mod6.hpp\"\n\ntemplate <typename\
+    \ T>\nstruct PrimeSum_Mod_6 {\n  ll N;\n  ll sqN;\n\n  PrimeSum<T> A, B;\n  PrimeSum_Mod_6(ll\
+    \ N) : N(N), sqN(sqrtl(N)), A(N), B(N) {}\n\n  pair<T, T> operator[](ll x) {\n\
+    \    T a = A[x], b = B[x];\n    return {(a + b) / T(2), (a - b) / T(2)};\n  }\n\
+    \n  void calc_count() {\n    A.calc([](ll x) -> T { return ((x + 2) / 3 - (x %\
+    \ 6 == 4)); });\n    B.calc([](ll x) -> T { return ((x + 5) % 6 <= 3 ? 1 : 0);\
+    \ });\n  }\n\n  void calc_sum() {\n    A.calc([](ll x) -> T {\n      ll n = (x\
+    \ + 2) / 3 - (x % 6 == 4);\n      ll k = n / 2;\n      if (n % 2 == 0) { return\
+    \ T(6 * k) * T(k); }\n      return T(6 * k) * T(k) + T(6 * k + 1);\n    });\n\
+    \    B.calc([](ll x) -> T {\n      ll n = (x + 2) / 3 - (x % 6 == 4);\n      ll\
+    \ k = n / 2;\n      if (n % 2 == 0) { return T(-4 * k); }\n      return T(-4 *\
+    \ k + 6 * k + 1);\n    });\n  }\n};\n#line 5 \"test/mytest/primesum_mod6.test.cpp\"\
+    \n\nvoid test_count() {\n  ll LIM = 10000;\n  vc<int> A1(LIM), A5(LIM);\n  for\
+    \ (auto&& p: primetable(LIM))\n    if (p % 6 == 1) { A1[p]++; }\n  for (auto&&\
+    \ p: primetable(LIM))\n    if (p % 6 == 5) { A5[p]++; }\n  A1 = cumsum(A1, 0);\n\
+    \  A5 = cumsum(A5, 0);\n\n  FOR(N, LIM) {\n    PrimeSum_Mod_6<int> X(N);\n   \
+    \ X.calc_count();\n    FOR(K, 1, N + 10) { assert(X[N / K] == mp(A1[N / K], A5[N\
+    \ / K])); }\n  }\n}\n\nvoid test_sum() {\n  ll LIM = 10000;\n  vc<int> A1(LIM),\
+    \ A5(LIM);\n  for (auto&& p: primetable(LIM))\n    if (p % 4 == 1) { A1[p] +=\
+    \ p; }\n  for (auto&& p: primetable(LIM))\n    if (p % 6 == 5) { A5[p] += p; }\n\
+    \  A1 = cumsum(A1, 0);\n  A5 = cumsum(A5, 0);\n\n  FOR(N, LIM) {\n    PrimeSum_Mod_6<int>\
+    \ X(N);\n    X.calc_sum();\n    FOR(K, 1, N + 10) { assert(X[N / K] == mp(A1[N\
+    \ / K], A5[N / K])); }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n\
+    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  test_count();\n\
+    \  test_sum();\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"nt/primesum_mod6.hpp\"\n\nvoid test_count()\
+    \ {\n  ll LIM = 10000;\n  vc<int> A1(LIM), A5(LIM);\n  for (auto&& p: primetable(LIM))\n\
+    \    if (p % 6 == 1) { A1[p]++; }\n  for (auto&& p: primetable(LIM))\n    if (p\
+    \ % 6 == 5) { A5[p]++; }\n  A1 = cumsum(A1, 0);\n  A5 = cumsum(A5, 0);\n\n  FOR(N,\
+    \ LIM) {\n    PrimeSum_Mod_6<int> X(N);\n    X.calc_count();\n    FOR(K, 1, N\
+    \ + 10) { assert(X[N / K] == mp(A1[N / K], A5[N / K])); }\n  }\n}\n\nvoid test_sum()\
+    \ {\n  ll LIM = 10000;\n  vc<int> A1(LIM), A5(LIM);\n  for (auto&& p: primetable(LIM))\n\
+    \    if (p % 4 == 1) { A1[p] += p; }\n  for (auto&& p: primetable(LIM))\n    if\
+    \ (p % 6 == 5) { A5[p] += p; }\n  A1 = cumsum(A1, 0);\n  A5 = cumsum(A5, 0);\n\
+    \n  FOR(N, LIM) {\n    PrimeSum_Mod_6<int> X(N);\n    X.calc_sum();\n    FOR(K,\
+    \ 1, N + 10) { assert(X[N / K] == mp(A1[N / K], A5[N / K])); }\n  }\n}\n\nvoid\
+    \ solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed\
+    \ << setprecision(15);\n\n  test_count();\n  test_sum();\n  solve();\n\n  return\
+    \ 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - seq/limit_poly_exp_sum.hpp
-  - mod/modint.hpp
-  - mod/powertable.hpp
+  - nt/primesum_mod6.hpp
+  - nt/primesum.hpp
   - nt/primetable.hpp
   isVerificationFile: true
-  path: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
+  path: test/mytest/primesum_mod6.test.cpp
   requiredBy: []
-  timestamp: '2022-08-20 05:21:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-23 14:42:05+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
+documentation_of: test/mytest/primesum_mod6.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
-- /verify/test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp.html
-title: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
+- /verify/test/mytest/primesum_mod6.test.cpp
+- /verify/test/mytest/primesum_mod6.test.cpp.html
+title: test/mytest/primesum_mod6.test.cpp
 ---

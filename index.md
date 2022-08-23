@@ -765,13 +765,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/nim_product.hpp
       title: nt/nim_product.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: nt/primesum.hpp
       title: nt/primesum.hpp
     - icon: ':heavy_check_mark:'
       path: nt/primesum_mod4.hpp
       title: nt/primesum_mod4.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
+      path: nt/primesum_mod6.hpp
+      title: nt/primesum_mod6.hpp
+    - icon: ':question:'
       path: nt/primetable.hpp
       title: nt/primetable.hpp
     - icon: ':heavy_check_mark:'
@@ -1778,6 +1781,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/primesum_mod4.test.cpp
       title: test/mytest/primesum_mod4.test.cpp
+    - icon: ':x:'
+      path: test/mytest/primesum_mod6.test.cpp
+      title: test/mytest/primesum_mod6.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/range_freq_of_linear.test.cpp
       title: test/mytest/range_freq_of_linear.test.cpp

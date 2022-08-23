@@ -26,12 +26,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/multiplicative_sum.hpp
     title: nt/multiplicative_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primesum.hpp
     title: nt/primesum.hpp
   - icon: ':heavy_check_mark:'
     path: nt/primesum_mod4.hpp
     title: nt/primesum_mod4.hpp
+  - icon: ':x:'
+    path: nt/primesum_mod6.hpp
+    title: nt/primesum_mod6.hpp
   - icon: ':heavy_check_mark:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
@@ -90,6 +93,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/primesum_mod4.test.cpp
     title: test/mytest/primesum_mod4.test.cpp
+  - icon: ':x:'
+    path: test/mytest/primesum_mod6.test.cpp
+    title: test/mytest/primesum_mod6.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1321_surj.test.cpp
     title: test/yukicoder/1321_surj.test.cpp
@@ -99,9 +105,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1760.test.cpp
     title: test/yukicoder/1760.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\nvc<ll> primetable(int LIM) {\n  ++LIM;\n\
@@ -137,6 +143,7 @@ data:
   - nt/gcd_convolution.hpp
   - nt/primesum.hpp
   - nt/euler_phi.hpp
+  - nt/primesum_mod6.hpp
   - nt/primesum_mod4.hpp
   - nt/lcm_convolution.hpp
   - nt/zeta.hpp
@@ -146,12 +153,13 @@ data:
   - seq/stirling_number_1.hpp
   - seq/stirling_number_2.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1760.test.cpp
   - test/yukicoder/1321_surj.test.cpp
   - test/yukicoder/1666_integer_kth_root.test.cpp
   - test/mytest/prime_sum.test.cpp
+  - test/mytest/primesum_mod6.test.cpp
   - test/mytest/primesum_mod4.test.cpp
   - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - test/library_checker/math/lcm_convolution.test.cpp

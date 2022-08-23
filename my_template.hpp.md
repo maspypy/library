@@ -663,6 +663,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/primesum_mod4.test.cpp
     title: test/mytest/primesum_mod4.test.cpp
+  - icon: ':x:'
+    path: test/mytest/primesum_mod6.test.cpp
+    title: test/mytest/primesum_mod6.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_freq_of_linear.test.cpp
     title: test/mytest/range_freq_of_linear.test.cpp
@@ -1134,6 +1137,7 @@ data:
   - test/mytest/prime_sum.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
+  - test/mytest/primesum_mod6.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/run_length.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
