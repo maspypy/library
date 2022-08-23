@@ -209,6 +209,7 @@
 "test/mytest/powerquery.test.cpp": "2022-08-20 05:21:32 +0900",
 "test/mytest/prime_sum.test.cpp": "2022-08-20 05:21:32 +0900",
 "test/mytest/primesum_mod4.test.cpp": "2022-08-20 05:21:32 +0900",
+"test/mytest/primesum_mod6.test.cpp": "2022-08-23 19:29:19 +0900",
 "test/mytest/range_freq_of_linear.test.cpp": "2022-08-20 05:21:32 +0900",
 "test/mytest/range_mex.test.cpp": "2022-08-20 05:21:32 +0900",
 "test/mytest/rect_add_pt_sum.test.cpp": "2022-08-20 05:21:32 +0900",
