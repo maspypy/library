@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/bracket_graph.hpp"
-#include "graph/hld.hpp"
+#include "graph/tree.hpp"
 
 void solve() {
   LL(N, Q);
@@ -14,13 +14,13 @@ void solve() {
     idx[L] = idx[R - 1] = i;
   }
 
-  HLD hld(G);
+  TREE tree(G);
 
   FOR(Q) {
     LL(a, b);
     --a, --b;
     int i = idx[a], j = idx[b];
-    int k = hld.lca(i, j);
+    int k = tree.lca(i, j);
     if (k == 0)
       print(-1);
     else {
