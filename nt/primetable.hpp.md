@@ -26,13 +26,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/multiplicative_sum.hpp
     title: nt/multiplicative_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primesum.hpp
     title: nt/primesum.hpp
   - icon: ':heavy_check_mark:'
     path: nt/primesum_mod4.hpp
     title: nt/primesum_mod4.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/primesum_mod6.hpp
     title: nt/primesum_mod6.hpp
   - icon: ':heavy_check_mark:'
@@ -93,7 +93,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/primesum_mod4.test.cpp
     title: test/mytest/primesum_mod4.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/primesum_mod6.test.cpp
     title: test/mytest/primesum_mod6.test.cpp
   - icon: ':heavy_check_mark:'
@@ -105,9 +105,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1760.test.cpp
     title: test/yukicoder/1760.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\nvc<ll> primetable(int LIM) {\n  ++LIM;\n\
@@ -153,7 +153,7 @@ data:
   - seq/stirling_number_1.hpp
   - seq/stirling_number_2.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1760.test.cpp
   - test/yukicoder/1321_surj.test.cpp

@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primesum.hpp
     title: nt/primesum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/primesum_mod6.hpp
     title: nt/primesum_mod6.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -254,7 +254,7 @@ data:
     \  A5 = cumsum(A5, 0);\n\n  FOR(N, LIM) {\n    PrimeSum_Mod_6<int> X(N);\n   \
     \ X.calc_count();\n    FOR(K, 1, N + 10) { assert(X[N / K] == mp(A1[N / K], A5[N\
     \ / K])); }\n  }\n}\n\nvoid test_sum() {\n  ll LIM = 10000;\n  vc<int> A1(LIM),\
-    \ A5(LIM);\n  for (auto&& p: primetable(LIM))\n    if (p % 4 == 1) { A1[p] +=\
+    \ A5(LIM);\n  for (auto&& p: primetable(LIM))\n    if (p % 6 == 1) { A1[p] +=\
     \ p; }\n  for (auto&& p: primetable(LIM))\n    if (p % 6 == 5) { A5[p] += p; }\n\
     \  A1 = cumsum(A1, 0);\n  A5 = cumsum(A5, 0);\n\n  FOR(N, LIM) {\n    PrimeSum_Mod_6<int>\
     \ X(N);\n    X.calc_sum();\n    FOR(K, 1, N + 10) { assert(X[N / K] == mp(A1[N\
@@ -269,7 +269,7 @@ data:
     \ LIM) {\n    PrimeSum_Mod_6<int> X(N);\n    X.calc_count();\n    FOR(K, 1, N\
     \ + 10) { assert(X[N / K] == mp(A1[N / K], A5[N / K])); }\n  }\n}\n\nvoid test_sum()\
     \ {\n  ll LIM = 10000;\n  vc<int> A1(LIM), A5(LIM);\n  for (auto&& p: primetable(LIM))\n\
-    \    if (p % 4 == 1) { A1[p] += p; }\n  for (auto&& p: primetable(LIM))\n    if\
+    \    if (p % 6 == 1) { A1[p] += p; }\n  for (auto&& p: primetable(LIM))\n    if\
     \ (p % 6 == 5) { A5[p] += p; }\n  A1 = cumsum(A1, 0);\n  A5 = cumsum(A5, 0);\n\
     \n  FOR(N, LIM) {\n    PrimeSum_Mod_6<int> X(N);\n    X.calc_sum();\n    FOR(K,\
     \ 1, N + 10) { assert(X[N / K] == mp(A1[N / K], A5[N / K])); }\n  }\n}\n\nvoid\
@@ -285,8 +285,8 @@ data:
   isVerificationFile: true
   path: test/mytest/primesum_mod6.test.cpp
   requiredBy: []
-  timestamp: '2022-08-23 14:42:05+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-23 19:29:19+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/primesum_mod6.test.cpp
 layout: document
