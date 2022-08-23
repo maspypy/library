@@ -24,7 +24,7 @@ void test_sum() {
   ll LIM = 10000;
   vc<int> A1(LIM), A5(LIM);
   for (auto&& p: primetable(LIM))
-    if (p % 4 == 1) { A1[p] += p; }
+    if (p % 6 == 1) { A1[p] += p; }
   for (auto&& p: primetable(LIM))
     if (p % 6 == 5) { A5[p] += p; }
   A1 = cumsum(A1, 0);
