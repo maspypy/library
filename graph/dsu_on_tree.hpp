@@ -26,7 +26,7 @@ void DSU_on_Tree(TREE& tree, F1& add, F2& query, F3& reset) {
     for (auto&& e: G[v]) {
       if (e.to == tree.parent[v]) continue;
       if (e.to == heavy) continue;
-      FOR(idx, tree.LID[e.to], hld.RID[e.to]) { add(hld.V[idx]); }
+      FOR(idx, tree.LID[e.to], tree.RID[e.to]) { add(tree.V[idx]); }
     }
     add(v);
     query(v);
