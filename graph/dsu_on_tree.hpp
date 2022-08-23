@@ -1,19 +1,19 @@
-#include "graph/hld.hpp"
+#include "graph/tree.hpp"
 
 // add(v) : 頂点 v のデータを追加する
 // query(v) : 頂点 v におけるクエリに答える
 // reset() : データが空の状態に戻す。
 // データ構造によっては、履歴を使って高速に reset する。
-template <typename HLD, typename F1, typename F2, typename F3>
-void DSU_on_Tree(HLD& hld, F1& add, F2& query, F3& reset) {
-  auto& G = hld.G;
+template <typename TREE, typename F1, typename F2, typename F3>
+void DSU_on_Tree(TREE& tree, F1& add, F2& query, F3& reset) {
+  auto& G = tree.G;
 
   auto dfs = [&](auto& dfs, int v) -> void {
     int heavy = -1;
     // solve light edge
     for (auto&& e: G[v]) {
-      if (e.to == hld.parent[v]) continue;
-      if (hld.head[e.to] == e.to) {
+      if (e.to == tree.parent[v]) continue;
+      if (tree.head[e.to] == e.to) {
         dfs(dfs, e.to);
       } else {
         heavy = e.to;
@@ -24,16 +24,16 @@ void DSU_on_Tree(HLD& hld, F1& add, F2& query, F3& reset) {
 
     // collect data in light subtree
     for (auto&& e: G[v]) {
-      if (e.to == hld.parent[v]) continue;
+      if (e.to == tree.parent[v]) continue;
       if (e.to == heavy) continue;
-      FOR(idx, hld.LID[e.to], hld.RID[e.to]) { add(hld.V[idx]); }
+      FOR(idx, tree.LID[e.to], hld.RID[e.to]) { add(hld.V[idx]); }
     }
     add(v);
     query(v);
 
-    if (hld.head[v] == v) reset();
+    if (tree.head[v] == v) reset();
   };
 
-  int root = hld.V[0];
+  int root = tree.V[0];
   dfs(dfs, root);
 }
