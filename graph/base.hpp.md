@@ -47,6 +47,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dijkstra.hpp
     title: graph/dijkstra.hpp
+  - icon: ':x:'
+    path: graph/dsu_on_tree.hpp
+    title: graph/dsu_on_tree.hpp
   - icon: ':warning:'
     path: graph/dualtreemonoid.hpp
     title: graph/dualtreemonoid.hpp
@@ -101,7 +104,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
@@ -150,6 +153,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/275_dag_reachability.test.cpp
     title: test/aoj/275_dag_reachability.test.cpp
+  - icon: ':x:'
+    path: test/aoj/2995_dsu.test.cpp
+    title: test/aoj/2995_dsu.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_12_B_dial.test.cpp
     title: test/aoj/ALDS1_12_B_dial.test.cpp
@@ -180,6 +186,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+    title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
@@ -285,9 +294,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/899_bfsnumbering.test.cpp
     title: test/yukicoder/899_bfsnumbering.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -387,6 +396,7 @@ data:
   - graph/unicyclic.hpp
   - graph/degree.hpp
   - graph/dualtreemonoid.hpp
+  - graph/dsu_on_tree.hpp
   - graph/lazytreemonoid.hpp
   - graph/cycle_detection.hpp
   - graph/check_bipartite.hpp
@@ -408,7 +418,7 @@ data:
   - graph/dial.hpp
   - flow/bipartite.hpp
   timestamp: '2022-08-18 17:59:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1641_tree_abel.test.cpp
   - test/yukicoder/1868_range_to_range.test.cpp
@@ -443,6 +453,7 @@ data:
   - test/library_checker/graph/scc.test.cpp
   - test/library_checker/math/twosat.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
@@ -450,6 +461,7 @@ data:
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - test/aoj/GRL_1_B_bellmanford.test.cpp
   - test/aoj/GRL_3_B.test.cpp
+  - test/aoj/2995_dsu.test.cpp
   - test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - test/aoj/GRL_1_C_warshallfloyd.test.cpp

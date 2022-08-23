@@ -33,6 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2842_seg2d_dense.test.cpp
     title: test/aoj/2842_seg2d_dense.test.cpp
+  - icon: ':x:'
+    path: test/aoj/2995_dsu.test.cpp
+    title: test/aoj/2995_dsu.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_10_C_LCS.test.cpp
     title: test/aoj/ALDS1_10_C_LCS.test.cpp
@@ -345,6 +348,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+    title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
@@ -1237,6 +1243,7 @@ data:
   - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   - test/library_checker/datastructure/set_xor_min.test.cpp
   - test/library_checker/datastructure/segment_add_get_min.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - test/library_checker/datastructure/unionfind.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   - test/library_checker/datastructure/associative_array_hashmap.test.cpp
@@ -1283,6 +1290,7 @@ data:
   - test/aoj/ITP1_11_D.test.cpp
   - test/aoj/GRL_3_B.test.cpp
   - test/aoj/1508_splay.test.cpp
+  - test/aoj/2995_dsu.test.cpp
   - test/aoj/DSL_2_G_fenwick_raq.test.cpp
   - test/aoj/ITP1_11_A.test.cpp
   - test/aoj/DSL_2_D_dualsegtree.test.cpp
