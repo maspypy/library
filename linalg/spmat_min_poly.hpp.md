@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/random.hpp
     title: other/random.hpp
   - icon: ':heavy_check_mark:'
@@ -28,18 +28,18 @@ data:
     \n    mint q = d / p;\r\n    if (len(C) < len(B) + m) C.insert(C.end(), len(B)\
     \ + m - len(C), 0);\r\n    FOR(j, len(B)) C[j + m] -= q * B[j];\r\n    if (l +\
     \ l <= i) {\r\n      B = tmp;\r\n      l = i + 1 - l, m = 1;\r\n      p = d;\r\
-    \n    } else {\r\n      ++m;\r\n    }\r\n  }\r\n  return C;\r\n}\r\n#line 1 \"\
-    other/random.hpp\"\nstruct RandomNumberGenerator {\n  mt19937 mt;\n\n  RandomNumberGenerator()\
-    \ : mt(chrono::steady_clock::now().time_since_epoch().count()) {}\n\n  ll operator()(ll\
-    \ a, ll b) {  // [a, b)\n    uniform_int_distribution<ll> dist(a, b - 1);\n  \
-    \  return dist(mt);\n  }\n\n  ll operator()(ll b) {  // [0, b)\n    return (*this)(0,\
-    \ b);\n  }\n};\n#line 3 \"linalg/spmat_min_poly.hpp\"\n\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> spmat_min_poly(int N, vc<tuple<int, int, mint>> dat) {\r\n\
-    \  RandomNumberGenerator RNG;\r\n  vc<mint> S(N + N + 10);\r\n  vc<mint> c(N);\r\
-    \n  vc<mint> v(N);\r\n  FOR(i, N) c[i] = RNG(0, mint::get_mod());\r\n  FOR(i,\
-    \ N) v[i] = RNG(0, mint::get_mod());\r\n  FOR(k, N + N + 10) {\r\n    FOR(i, N)\
-    \ S[k] += c[i] * v[i];\r\n    vc<mint> w(N);\r\n    for (auto&& [i, j, x]: dat)\
-    \ w[j] += x * v[i];\r\n    swap(v, w);\r\n  }\r\n  return find_linear_rec(S);\r\
+    \n    } else {\r\n      ++m;\r\n    }\r\n  }\r\n  return C;\r\n}\r\n#line 2 \"\
+    other/random.hpp\"\n\nstruct RandomNumberGenerator {\n  mt19937 mt;\n\n  RandomNumberGenerator()\n\
+    \      : mt(chrono::steady_clock::now().time_since_epoch().count()) {}\n\n  ll\
+    \ operator()(ll a, ll b) { // [a, b)\n    uniform_int_distribution<ll> dist(a,\
+    \ b - 1);\n    return dist(mt);\n  }\n\n  ll operator()(ll b) { // [0, b)\n  \
+    \  return (*this)(0, b);\n  }\n};\n#line 3 \"linalg/spmat_min_poly.hpp\"\n\r\n\
+    template <typename mint>\r\nvc<mint> spmat_min_poly(int N, vc<tuple<int, int,\
+    \ mint>> dat) {\r\n  RandomNumberGenerator RNG;\r\n  vc<mint> S(N + N + 10);\r\
+    \n  vc<mint> c(N);\r\n  vc<mint> v(N);\r\n  FOR(i, N) c[i] = RNG(0, mint::get_mod());\r\
+    \n  FOR(i, N) v[i] = RNG(0, mint::get_mod());\r\n  FOR(k, N + N + 10) {\r\n  \
+    \  FOR(i, N) S[k] += c[i] * v[i];\r\n    vc<mint> w(N);\r\n    for (auto&& [i,\
+    \ j, x]: dat) w[j] += x * v[i];\r\n    swap(v, w);\r\n  }\r\n  return find_linear_rec(S);\r\
     \n}\r\n"
   code: "#include \"seq/find_linear_rec.hpp\"\r\n#include \"other/random.hpp\"\r\n\
     \r\ntemplate <typename mint>\r\nvc<mint> spmat_min_poly(int N, vc<tuple<int, int,\
@@ -56,7 +56,7 @@ data:
   path: linalg/spmat_min_poly.hpp
   requiredBy:
   - linalg/spmat_det.hpp
-  timestamp: '2022-05-11 21:07:53+09:00'
+  timestamp: '2022-08-25 01:58:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/matrix/sparse_matrix_det.test.cpp

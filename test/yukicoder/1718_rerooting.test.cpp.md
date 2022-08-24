@@ -281,36 +281,36 @@ data:
     \ dist(int a, int b) {\r\n    int c = LCA(a, b);\r\n    return depth[a] + depth[b]\
     \ - 2 * depth[c];\r\n  }\r\n\r\n  WT dist(int a, int b, bool weighted) {\r\n \
     \   assert(weighted);\r\n    int c = LCA(a, b);\r\n    return depth_weighted[a]\
-    \ + depth_weighted[b] - 2 * depth_weighted[c];\r\n  }\r\n\r\n  bool in_subtree(int\
-    \ a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b]; }\r\n\r\n  int jump(int\
-    \ a, int b, int k = 1) {\r\n    if (k == 1) {\r\n      if (a == b) return -1;\r\
-    \n      return (in_subtree(b, a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\r\
-    \n    }\r\n    int c = LCA(a, b);\r\n    int d_ac = depth[a] - depth[c];\r\n \
-    \   int d_bc = depth[b] - depth[c];\r\n    if (k > d_ac + d_bc) return -1;\r\n\
-    \    if (k <= d_ac) return LA(a, k);\r\n    return LA(b, d_ac + d_bc - k);\r\n\
-    \  }\r\n\r\n  vc<int> collect_child(int v) {\r\n    vc<int> res;\r\n    for (auto\
-    \ &&e: G[v])\r\n      if (e.to != parent[v]) res.eb(e.to);\r\n    return res;\r\
-    \n  }\r\n\r\n  vc<pair<int, int>> get_path_decomposition(int u, int v, bool edge)\
-    \ {\r\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\"\u533A\u9593\u5217\u3002\
-    \r\n    vc<pair<int, int>> up, down;\r\n    while (1) {\r\n      if (head[u] ==\
-    \ head[v]) break;\r\n      if (LID[u] < LID[v]) {\r\n        down.eb(LID[head[v]],\
-    \ LID[v]);\r\n        v = parent[head[v]];\r\n      } else {\r\n        up.eb(LID[u],\
-    \ LID[head[u]]);\r\n        u = parent[head[u]];\r\n      }\r\n    }\r\n    if\
-    \ (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\r\n    elif (LID[v] + edge\
-    \ <= LID[u]) up.eb(LID[u], LID[v] + edge);\r\n    reverse(all(down));\r\n    up.insert(up.end(),\
-    \ all(down));\r\n    return up;\r\n  }\r\n\r\n  void debug() {\r\n    print(\"\
-    V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\", RID);\r\n    print(\"\
-    parent\", parent);\r\n    print(\"depth\", depth);\r\n    print(\"head\", head);\r\
-    \n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"root\", root);\r\n  }\r\
-    \n};\r\n#line 4 \"graph/rerooting_dp.hpp\"\n\r\ntemplate <typename TREE, typename\
-    \ Data>\r\nstruct Rerooting_dp {\r\n  TREE& tree;\r\n  vc<Data> dp_1; // \u8FBA\
-    \ pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\u5206\u6728 v\r\n  vc<Data> dp_2; //\
-    \ \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\u5206\u6728 p\r\n  vc<Data> dp;\
-    \   // \u3059\u3079\u3066\u306E v \u306B\u5BFE\u3057\u3066\u3001v \u3092\u6839\
-    \u3068\u3059\u308B\u90E8\u5206\u6728\r\n\r\n  template <typename F1, typename\
-    \ F2, typename F3>\r\n  Rerooting_dp(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const\
-    \ Data unit)\r\n      : tree(tree) {\r\n    assert(!tree.G.is_directed());\r\n\
-    \    build(f_ee, f_ev, f_ve, unit);\r\n  }\r\n\r\n  // v \u3092\u6839\u3068\u3057\
+    \ + depth_weighted[b] - 2 * depth_weighted[c];\r\n  }\r\n\r\n  // a is in b\r\n\
+    \  bool in_subtree(int a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b];\
+    \ }\r\n\r\n  int jump(int a, int b, int k = 1) {\r\n    if (k == 1) {\r\n    \
+    \  if (a == b) return -1;\r\n      return (in_subtree(b, a) ? LA(b, depth[b] -\
+    \ depth[a] - 1) : parent[a]);\r\n    }\r\n    int c = LCA(a, b);\r\n    int d_ac\
+    \ = depth[a] - depth[c];\r\n    int d_bc = depth[b] - depth[c];\r\n    if (k >\
+    \ d_ac + d_bc) return -1;\r\n    if (k <= d_ac) return LA(a, k);\r\n    return\
+    \ LA(b, d_ac + d_bc - k);\r\n  }\r\n\r\n  vc<int> collect_child(int v) {\r\n \
+    \   vc<int> res;\r\n    for (auto &&e: G[v])\r\n      if (e.to != parent[v]) res.eb(e.to);\r\
+    \n    return res;\r\n  }\r\n\r\n  vc<pair<int, int>> get_path_decomposition(int\
+    \ u, int v, bool edge) {\r\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\
+    \"\u533A\u9593\u5217\u3002\r\n    vc<pair<int, int>> up, down;\r\n    while (1)\
+    \ {\r\n      if (head[u] == head[v]) break;\r\n      if (LID[u] < LID[v]) {\r\n\
+    \        down.eb(LID[head[v]], LID[v]);\r\n        v = parent[head[v]];\r\n  \
+    \    } else {\r\n        up.eb(LID[u], LID[head[u]]);\r\n        u = parent[head[u]];\r\
+    \n      }\r\n    }\r\n    if (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\r\
+    \n    elif (LID[v] + edge <= LID[u]) up.eb(LID[u], LID[v] + edge);\r\n    reverse(all(down));\r\
+    \n    up.insert(up.end(), all(down));\r\n    return up;\r\n  }\r\n\r\n  void debug()\
+    \ {\r\n    print(\"V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\",\
+    \ RID);\r\n    print(\"parent\", parent);\r\n    print(\"depth\", depth);\r\n\
+    \    print(\"head\", head);\r\n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"\
+    root\", root);\r\n  }\r\n};\r\n#line 4 \"graph/rerooting_dp.hpp\"\n\r\ntemplate\
+    \ <typename TREE, typename Data>\r\nstruct Rerooting_dp {\r\n  TREE& tree;\r\n\
+    \  vc<Data> dp_1; // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\u5206\u6728\
+    \ v\r\n  vc<Data> dp_2; // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\u5206\
+    \u6728 p\r\n  vc<Data> dp;   // \u3059\u3079\u3066\u306E v \u306B\u5BFE\u3057\u3066\
+    \u3001v \u3092\u6839\u3068\u3059\u308B\u90E8\u5206\u6728\r\n\r\n  template <typename\
+    \ F1, typename F2, typename F3>\r\n  Rerooting_dp(TREE& tree, F1 f_ee, F2 f_ev,\
+    \ F3 f_ve, const Data unit)\r\n      : tree(tree) {\r\n    assert(!tree.G.is_directed());\r\
+    \n    build(f_ee, f_ev, f_ve, unit);\r\n  }\r\n\r\n  // v \u3092\u6839\u3068\u3057\
     \u305F\u3068\u304D\u306E full tree\r\n  Data operator[](int v) { return dp[v];\
     \ }\r\n\r\n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\
     \u6728 v\r\n  Data get(int root, int v) {\r\n    if (root == v) return dp[v];\r\
@@ -328,49 +328,48 @@ data:
     \ = f_ve(dp_1[v], e); }\r\n      }\r\n    }\r\n    {\r\n      int v = V[0];\r\n\
     \      dp[v] = f_ev(dp[v], v);\r\n      for (auto&& e: tree.G[v]) dp_2[e.to] =\
     \ f_ev(dp_2[e.to], v);\r\n    }\r\n    FOR(i, N) {\r\n      int v = V[i];\r\n\
-    \      for (auto&& e: tree.G[v]) {\r\n        if (e.to != par[v]) {\r\n      \
-    \    Data x = f_ve(dp_2[e.to], e);\r\n          x = f_ee(dp[e.to], x);\r\n   \
-    \       dp[e.to] = f_ev(x, e.to);\r\n          for (auto&& f: tree.G[e.to]) {\r\
-    \n            if (f.to != par[f.to]) {\r\n              dp_2[f.to] = f_ee(dp_2[f.to],\
-    \ x);\r\n              dp_2[f.to] = f_ev(dp_2[f.to], e.to);\r\n            }\r\
-    \n          }\r\n        }\r\n      }\r\n    }\r\n  }\r\n};\n#line 3 \"graph/bfs01.hpp\"\
-    \n\ntemplate <typename Graph>\npair<vc<ll>, vc<int>> bfs01(Graph& G, ll v) {\n\
-    \  assert(G.is_prepared());\n  int N = G.N;\n  vc<ll> dist(N, -1);\n  vc<int>\
-    \ par(N, -1);\n  deque<int> que;\n\n  dist[v] = 0;\n  que.push_front(v);\n  while\
-    \ (!que.empty()) {\n    auto v = que.front();\n    que.pop_front();\n    for (auto&&\
-    \ e: G[v]) {\n      if (dist[e.to] == -1 || dist[e.to] > dist[e.frm] + e.cost)\
-    \ {\n        dist[e.to] = dist[e.frm] + e.cost;\n        par[e.to] = e.frm;\n\
-    \        if (e.cost == 0)\n          que.push_front(e.to);\n        else\n   \
-    \       que.push_back(e.to);\n      }\n    }\n  }\n  return {dist, par};\n}\n\n\
-    // \u591A\u70B9\u30B9\u30BF\u30FC\u30C8\u3002[dist, par, root]\ntemplate <typename\
-    \ Graph>\ntuple<vc<ll>, vc<int>, vc<int>> bfs01(Graph& G, vc<int> vs) {\n  assert(G.is_prepared());\n\
-    \  int N = G.N;\n  vc<ll> dist(N, -1);\n  vc<int> par(N, -1);\n  vc<int> root(N,\
-    \ -1);\n  deque<int> que;\n\n  for (auto&& v: vs) {\n    dist[v] = 0;\n    root[v]\
-    \ = v;\n    que.push_front(v);\n  }\n\n  while (!que.empty()) {\n    auto v =\
+    \      for (auto&& e: tree.G[v]) {\r\n        if (e.to == par[v]) continue;\r\n\
+    \        Data x = f_ve(dp_2[e.to], e);\r\n        for (auto&& f: tree.G[e.to])\
+    \ {\r\n          if (f.to == par[e.to]) continue;\r\n          dp_2[f.to] = f_ee(dp_2[f.to],\
+    \ x);\r\n          dp_2[f.to] = f_ev(dp_2[f.to], e.to);\r\n        }\r\n     \
+    \   x = f_ee(dp[e.to], x);\r\n        dp[e.to] = f_ev(x, e.to);\r\n      }\r\n\
+    \    }\r\n  }\r\n};\n#line 3 \"graph/bfs01.hpp\"\n\ntemplate <typename Graph>\n\
+    pair<vc<ll>, vc<int>> bfs01(Graph& G, ll v) {\n  assert(G.is_prepared());\n  int\
+    \ N = G.N;\n  vc<ll> dist(N, -1);\n  vc<int> par(N, -1);\n  deque<int> que;\n\n\
+    \  dist[v] = 0;\n  que.push_front(v);\n  while (!que.empty()) {\n    auto v =\
     \ que.front();\n    que.pop_front();\n    for (auto&& e: G[v]) {\n      if (dist[e.to]\
     \ == -1 || dist[e.to] > dist[e.frm] + e.cost) {\n        dist[e.to] = dist[e.frm]\
-    \ + e.cost;\n        root[e.to] = root[e.frm];\n        par[e.to] = e.frm;\n \
-    \       if (e.cost == 0)\n          que.push_front(e.to);\n        else\n    \
-    \      que.push_back(e.to);\n      }\n    }\n  }\n  return {dist, par, root};\n\
-    }\n#line 6 \"test/yukicoder/1718_rerooting.test.cpp\"\n\nvoid solve() {\n  LL(N,\
-    \ K);\n  Graph<int, 0> G(N);\n  G.read_tree();\n  VEC(ll, D, K);\n  for (auto&&\
-    \ a: D) --a;\n\n  TREE<decltype(G)> tree(G);\n  sort(all(D), [&](auto& x, auto&\
-    \ y) { return tree.LID[x] < tree.LID[y]; });\n\n  ll base = 0;\n  FOR(i, K) {\n\
-    \    int j = (i + 1 == K ? 0 : i + 1);\n    int a = D[i], b = D[j];\n    base\
-    \ += tree.dist(a, b);\n  }\n\n  // \u90E8\u5206\u6728\u3092\u5857\u308B\n  vi\
-    \ isin(N);\n  FOR(i, K) {\n    int j = (i + 1 == K ? 0 : i + 1);\n    int a =\
-    \ D[i], b = D[j];\n    isin[a] = 1;\n    while (a != b) {\n      a = tree.jump(a,\
-    \ b);\n      isin[a] = 1;\n    }\n  }\n\n  for (auto&& x: D) isin[x] = 1;\n\n\
-    \  const ll INF = 1LL << 60;\n  using Data = ll;\n  Data unit = -INF;\n  auto\
-    \ fee = [&](Data x, Data y) -> Data { return max(x, y); };\n  auto fev = [&](Data\
-    \ x, int v) -> Data {\n    if (isin[v]) chmax(x, 0);\n    return x;\n  };\n  //\
-    \ e \u306F v \u304B\u3089\u51FA\u308B\u6709\u5411\u8FBA\n  auto fve = [&](Data\
-    \ x, auto& e) -> Data { return x + 1; };\n  Rerooting_dp<decltype(tree), Data>\
-    \ dp(tree, fee, fev, fve, unit);\n\n  // span \u3055\u308C\u308B\u90E8\u5206\u304B\
-    \u3089\u306E\u8DDD\u96E2\n  vc<int> V;\n  FOR(v, N) if (isin[v]) V.eb(v);\n  auto\
-    \ [dist, par, root] = bfs01(G, V);\n\n  FOR(v, N) {\n    ll r = root[v];\n   \
-    \ ll ANS = dist[v] + base - dp[r];\n    print(ANS);\n  }\n}\n\nsigned main() {\n\
-    \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << fixed << setprecision(15);\n\
+    \ + e.cost;\n        par[e.to] = e.frm;\n        if (e.cost == 0)\n          que.push_front(e.to);\n\
+    \        else\n          que.push_back(e.to);\n      }\n    }\n  }\n  return {dist,\
+    \ par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\u30C8\u3002[dist, par, root]\n\
+    template <typename Graph>\ntuple<vc<ll>, vc<int>, vc<int>> bfs01(Graph& G, vc<int>\
+    \ vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<ll> dist(N, -1);\n \
+    \ vc<int> par(N, -1);\n  vc<int> root(N, -1);\n  deque<int> que;\n\n  for (auto&&\
+    \ v: vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.push_front(v);\n  }\n\n\
+    \  while (!que.empty()) {\n    auto v = que.front();\n    que.pop_front();\n \
+    \   for (auto&& e: G[v]) {\n      if (dist[e.to] == -1 || dist[e.to] > dist[e.frm]\
+    \ + e.cost) {\n        dist[e.to] = dist[e.frm] + e.cost;\n        root[e.to]\
+    \ = root[e.frm];\n        par[e.to] = e.frm;\n        if (e.cost == 0)\n     \
+    \     que.push_front(e.to);\n        else\n          que.push_back(e.to);\n  \
+    \    }\n    }\n  }\n  return {dist, par, root};\n}\n#line 6 \"test/yukicoder/1718_rerooting.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, K);\n  Graph<int, 0> G(N);\n  G.read_tree();\n  VEC(ll,\
+    \ D, K);\n  for (auto&& a: D) --a;\n\n  TREE<decltype(G)> tree(G);\n  sort(all(D),\
+    \ [&](auto& x, auto& y) { return tree.LID[x] < tree.LID[y]; });\n\n  ll base =\
+    \ 0;\n  FOR(i, K) {\n    int j = (i + 1 == K ? 0 : i + 1);\n    int a = D[i],\
+    \ b = D[j];\n    base += tree.dist(a, b);\n  }\n\n  // \u90E8\u5206\u6728\u3092\
+    \u5857\u308B\n  vi isin(N);\n  FOR(i, K) {\n    int j = (i + 1 == K ? 0 : i +\
+    \ 1);\n    int a = D[i], b = D[j];\n    isin[a] = 1;\n    while (a != b) {\n \
+    \     a = tree.jump(a, b);\n      isin[a] = 1;\n    }\n  }\n\n  for (auto&& x:\
+    \ D) isin[x] = 1;\n\n  const ll INF = 1LL << 60;\n  using Data = ll;\n  Data unit\
+    \ = -INF;\n  auto fee = [&](Data x, Data y) -> Data { return max(x, y); };\n \
+    \ auto fev = [&](Data x, int v) -> Data {\n    if (isin[v]) chmax(x, 0);\n   \
+    \ return x;\n  };\n  // e \u306F v \u304B\u3089\u51FA\u308B\u6709\u5411\u8FBA\n\
+    \  auto fve = [&](Data x, auto& e) -> Data { return x + 1; };\n  Rerooting_dp<decltype(tree),\
+    \ Data> dp(tree, fee, fev, fve, unit);\n\n  // span \u3055\u308C\u308B\u90E8\u5206\
+    \u304B\u3089\u306E\u8DDD\u96E2\n  vc<int> V;\n  FOR(v, N) if (isin[v]) V.eb(v);\n\
+    \  auto [dist, par, root] = bfs01(G, V);\n\n  FOR(v, N) {\n    ll r = root[v];\n\
+    \    ll ANS = dist[v] + base - dp[r];\n    print(ANS);\n  }\n}\n\nsigned main()\
+    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << fixed << setprecision(15);\n\
     \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1718\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"graph/rerooting_dp.hpp\"\n#include \"\
@@ -403,7 +402,7 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1718_rerooting.test.cpp
   requiredBy: []
-  timestamp: '2022-08-25 01:24:27+09:00'
+  timestamp: '2022-08-25 01:58:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/1718_rerooting.test.cpp
