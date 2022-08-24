@@ -58,17 +58,15 @@ struct Rerooting_dp {
     FOR(i, N) {
       int v = V[i];
       for (auto&& e: tree.G[v]) {
-        if (e.to != par[v]) {
-          Data x = f_ve(dp_2[e.to], e);
-          x = f_ee(dp[e.to], x);
-          dp[e.to] = f_ev(x, e.to);
-          for (auto&& f: tree.G[e.to]) {
-            if (f.to != par[f.to]) {
-              dp_2[f.to] = f_ee(dp_2[f.to], x);
-              dp_2[f.to] = f_ev(dp_2[f.to], e.to);
-            }
-          }
+        if (e.to == par[v]) continue;
+        Data x = f_ve(dp_2[e.to], e);
+        for (auto&& f: tree.G[e.to]) {
+          if (f.to == par[e.to]) continue;
+          dp_2[f.to] = f_ee(dp_2[f.to], x);
+          dp_2[f.to] = f_ev(dp_2[f.to], e.to);
         }
+        x = f_ee(dp[e.to], x);
+        dp[e.to] = f_ev(x, e.to);
       }
     }
   }
