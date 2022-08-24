@@ -1,3 +1,5 @@
+#define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0068"
+
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "geo/incremental_convexhull.hpp"
