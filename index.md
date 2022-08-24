@@ -388,7 +388,7 @@ data:
       title: flow/unbalanced_transportation.hpp
   - name: geo
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo/angle_sort.hpp
       title: geo/angle_sort.hpp
     - icon: ':question:'
@@ -420,9 +420,6 @@ data:
       title: geo/triangle_area.hpp
   - name: geo_old
     pages:
-    - icon: ':warning:'
-      path: geo_old/base.hpp
-      title: geo_old/base.hpp
     - icon: ':warning:'
       path: geo_old/convexhull.hpp
       title: geo_old/convexhull.hpp
@@ -1465,9 +1462,12 @@ data:
     - icon: ':x:'
       path: test/library_checker/geometry/convex_layers.test.cpp
       title: test/library_checker/geometry/convex_layers.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/geometry/sort_points_by_argument.test.cpp
       title: test/library_checker/geometry/sort_points_by_argument.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
+      title: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - name: test/library_checker/graph
     pages:
     - icon: ':heavy_check_mark:'

@@ -1,12 +1,12 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: geo/angle_sort.hpp
+    title: geo/angle_sort.hpp
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: geo/projection.hpp
-    title: geo/projection.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -20,22 +20,21 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    ERROR: '0.00000001'
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_A
+    PROBLEM: https://judge.yosupo.jp/problem/sort_points_by_argument
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_A
-  bundledCode: "#line 1 \"test/aoj/CGL_1_A.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_A\"\
-    \n#define ERROR 0.00000001\n\n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"\
-    Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\
-    \nusing namespace std;\n\nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing\
-    \ vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64 = unsigned long long;\n\
-    using i128 = __int128;\n\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
-    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
-    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
-    \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
-    template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
-    #define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n#define vv(type,\
-    \ name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
+    - https://judge.yosupo.jp/problem/sort_points_by_argument
+  bundledCode: "#line 1 \"test/library_checker/geometry/sort_points_by_argument_pair.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/sort_points_by_argument\"\n\
+    #line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
+    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
+    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
+    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
+    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
     \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
@@ -199,20 +198,19 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 7 \"test/aoj/CGL_1_A.test.cpp\"\n\n#line 2 \"geo/projection.hpp\"\
-    \n\n#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n  T x, y;\n\
-    \n  Point() = default;\n\n  template <typename A, typename B>\n  Point(A x, B\
-    \ y) : x(x), y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A, B>\
-    \ p) : x(p.fi), y(p.se) {}\n\n  Point operator+(Point p) const { return {x + p.x,\
-    \ y + p.y}; }\n  Point operator-(Point p) const { return {x - p.x, y - p.y}; }\n\
-    \  bool operator==(Point p) const { return x == p.x && y == p.y; }\n  Point operator-()\
-    \ const { return {-x, -y}; }\n\n  bool operator<(Point p) const {\n    if (x !=\
-    \ p.x) return x < p.x;\n    return y < p.y;\n  }\n\n  T dot(Point other) { return\
-    \ x * other.x + y * other.y; }\n  T det(Point other) { return x * other.y - y\
-    \ * other.x; }\n};\n\ntemplate <typename REAL, typename T>\nREAL dist(Point<T>\
-    \ A, Point<T> B) {\n  A -= B;\n  T p = A.dot(A);\n  return sqrt(REAL(p));\n}\n\
-    \ntemplate <typename T>\nstruct Line {\n  T a, b, c;\n\n  Line(T a, T b, T c)\
-    \ : a(a), b(b), c(c) {}\n  Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y;\n\
+    \ { yes(!t); }\r\n#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point\
+    \ {\n  T x, y;\n\n  Point() = default;\n\n  template <typename A, typename B>\n\
+    \  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A,\
+    \ B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+(Point p) const { return {x\
+    \ + p.x, y + p.y}; }\n  Point operator-(Point p) const { return {x - p.x, y -\
+    \ p.y}; }\n  bool operator==(Point p) const { return x == p.x && y == p.y; }\n\
+    \  Point operator-() const { return {-x, -y}; }\n\n  bool operator<(Point p) const\
+    \ {\n    if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n\n  T dot(Point\
+    \ other) { return x * other.x + y * other.y; }\n  T det(Point other) { return\
+    \ x * other.y - y * other.x; }\n};\n\ntemplate <typename REAL, typename T>\nREAL\
+    \ dist(Point<T> A, Point<T> B) {\n  A -= B;\n  T p = A.dot(A);\n  return sqrt(REAL(p));\n\
+    }\n\ntemplate <typename T>\nstruct Line {\n  T a, b, c;\n\n  Line(T a, T b, T\
+    \ c) : a(a), b(b), c(c) {}\n  Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y;\n\
     \    b = B.x - A.x;\n    c = A.x * B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T\
     \ x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n  template <typename\
     \ U>\n  U eval(Point<U> P) {\n    return a * P.x + b * P.y + c;\n  }\n\n  template\
@@ -238,37 +236,47 @@ data:
     \  void build() {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1\
     \ == len(points) ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n\
     \    if (a < 0) {\n      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n\
-    #line 4 \"geo/projection.hpp\"\n\ntemplate <typename REAL, typename T, typename\
-    \ U>\nPoint<REAL> projection(Point<T> P, Line<U> L) {\n  REAL t = REAL(L.eval(P))\
-    \ / (L.a * L.a + L.b * L.b);\n  REAL x = P.x - t * L.a;\n  REAL y = P.y - t *\
-    \ L.b;\n  return Point<REAL>(x, y);\n};\n#line 9 \"test/aoj/CGL_1_A.test.cpp\"\
-    \n\nvoid solve() {\n  using Re = long double;\n  LL(a, b, c, d);\n  Line<ll> L(a,\
-    \ b, c, d);\n  LL(Q);\n  FOR(Q) {\n    LL(x, y);\n    Point<ll> P(x, y);\n   \
-    \ Point<Re> Q = projection<Re, ll, ll>(P, L);\n    print(Q.x, Q.y);\n  }\n}\n\n\
-    signed main() {\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n\
-    }\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_A\"\
-    \n#define ERROR 0.00000001\n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\
-    \n\n#include \"geo/projection.hpp\"\n\nvoid solve() {\n  using Re = long double;\n\
-    \  LL(a, b, c, d);\n  Line<ll> L(a, b, c, d);\n  LL(Q);\n  FOR(Q) {\n    LL(x,\
-    \ y);\n    Point<ll> P(x, y);\n    Point<Re> Q = projection<Re, ll, ll>(P, L);\n\
-    \    print(Q.x, Q.y);\n  }\n}\n\nsigned main() {\n  ll T = 1;\n  // LL(T);\n \
-    \ FOR(T) solve();\n\n  return 0;\n}\n"
+    #line 2 \"geo/angle_sort.hpp\"\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\
+    \u3059\u308B argsort\r\ntemplate <typename T>\r\nvector<int> angle_argsort(vector<Point<T>>&\
+    \ P) {\r\n  vector<int> lower, origin, upper;\r\n  const Point<T> O = {0, 0};\r\
+    \n  FOR(i, len(P)) {\r\n    if (P[i] == O) origin.eb(i);\r\n    elif ((P[i].y\
+    \ < 0) || (P[i].y == 0 && P[i].x > 0)) lower.eb(i);\r\n    else upper.eb(i);\r\
+    \n  }\r\n  sort(all(lower), [&](auto& i, auto& j) { return P[i].det(P[j]) > 0;\
+    \ });\r\n  sort(all(upper), [&](auto& i, auto& j) { return P[i].det(P[j]) > 0;\
+    \ });\r\n  auto& I = lower;\r\n  I.insert(I.end(), all(origin));\r\n  I.insert(I.end(),\
+    \ all(upper));\r\n  return I;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\
+    \u5BFE\u3059\u308B argsort\r\ntemplate <typename T>\r\nvector<int> angle_argsort(vector<pair<T,\
+    \ T>>& P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\
+    \n  return angle_argsort<T>(tmp);\r\n}\r\n\r\n// inplace \u306B\u504F\u89D2\u30BD\
+    \u30FC\u30C8\u3059\u308B\r\n// index \u304C\u6B32\u3057\u3044\u5834\u5408\u306F\
+    \ angle_argsort\r\ntemplate <typename T>\r\nvoid angle_sort(vector<Point<T>>&\
+    \ P) {\r\n  auto I = angle_argsort<T>(P);\r\n  P = rearrange(P, I);\r\n}\r\n\r\
+    \n// inplace \u306B\u504F\u89D2\u30BD\u30FC\u30C8\u3059\u308B\r\n// index \u304C\
+    \u6B32\u3057\u3044\u5834\u5408\u306F angle_argsort\r\ntemplate <typename T>\r\n\
+    void angle_sort(vector<pair<T, T>>& P) {\r\n  auto I = angle_argsort<T>(P);\r\n\
+    \  P = rearrange(P, I);\r\n}\r\n#line 6 \"test/library_checker/geometry/sort_points_by_argument_pair.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  VEC(pi, P, N);\n  angle_sort(P);\n  FOR(i, N)\
+    \ print(P[i]);\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sort_points_by_argument\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"geo/base.hpp\"\
+    \n#include \"geo/angle_sort.hpp\"\n\nvoid solve() {\n  LL(N);\n  VEC(pi, P, N);\n\
+    \  angle_sort(P);\n  FOR(i, N) print(P[i]);\n}\n\nsigned main() {\n  solve();\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - geo/projection.hpp
   - geo/base.hpp
+  - geo/angle_sort.hpp
   isVerificationFile: true
-  path: test/aoj/CGL_1_A.test.cpp
+  path: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   requiredBy: []
-  timestamp: '2022-08-24 15:10:52+09:00'
+  timestamp: '2022-08-24 15:11:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/CGL_1_A.test.cpp
+documentation_of: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/CGL_1_A.test.cpp
-- /verify/test/aoj/CGL_1_A.test.cpp.html
-title: test/aoj/CGL_1_A.test.cpp
+- /verify/test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
+- /verify/test/library_checker/geometry/sort_points_by_argument_pair.test.cpp.html
+title: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
 ---
