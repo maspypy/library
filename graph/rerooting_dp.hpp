@@ -4,12 +4,30 @@
 
 template <typename TREE, typename Data>
 struct Rerooting_dp {
+  TREE& tree;
   vc<Data> dp_1; // 辺 pv に対して、部分木 v
   vc<Data> dp_2; // 辺 pv に対して、部分木 p
   vc<Data> dp;   // すべての v に対して、v を根とする部分木
 
   template <typename F1, typename F2, typename F3>
-  Rerooting_dp(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data unit) {
+  Rerooting_dp(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)
+      : tree(tree) {
+    build(f_ee, f_ev, f_ve, unit);
+  }
+
+  // v を根としたときの full tree
+  Data operator[](int v) { return dp[v]; }
+
+  // root を根としたときの部分木 v
+  Data get(int root, int v) {
+    if (root == v) return dp[v];
+    if (!tree.isin(root, v)) { return dp_1[v]; }
+    int w = tree.move(v, root);
+    return dp_2[w];
+  }
+
+  template <typename F1, typename F2, typename F3>
+  void build(F1 f_ee, F2 f_ev, F3 f_ve, const Data unit) {
     int N = tree.G.N;
     dp_1.assign(N, unit);
     dp_2.assign(N, unit);
@@ -52,6 +70,4 @@ struct Rerooting_dp {
       }
     }
   }
-
-  Data operator[](int v) { return dp[v]; }
 };
