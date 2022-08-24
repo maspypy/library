@@ -9,8 +9,8 @@ Circle<REAL> outcircle(Point<T> A, Point<T> B, Point<T> C) {
   REAL cc = (c1 * c1 + c2 * c2) / 2;
 
   REAL det = b1 * c2 - b2 * c1;
-  REAL x = (b1 * cc - bb * c1) / det;
-  REAL y = (bb * c2 - b2 * cc) / det;
+  REAL x = (bb * c2 - b2 * cc) / det;
+  REAL y = (b1 * cc - bb * c1) / det;
   REAL r = sqrt(x * x + y * y);
   x += A.x, y += A.y;
   return Circle<REAL>(x, y, r);
