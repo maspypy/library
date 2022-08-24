@@ -121,6 +121,7 @@ struct TREE {
     return depth_weighted[a] + depth_weighted[b] - 2 * depth_weighted[c];
   }
 
+  // a is in b
   bool in_subtree(int a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b]; }
 
   int jump(int a, int b, int k = 1) {
