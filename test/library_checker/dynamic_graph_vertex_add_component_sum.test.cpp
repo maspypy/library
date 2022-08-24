@@ -1,4 +1,4 @@
-#define PROBLEM "https://yukicoder.me/problems/no/1418"
+#define PROBLEM "https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "pds/rollbackunionfind.hpp"
