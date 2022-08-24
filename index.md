@@ -195,7 +195,7 @@ data:
       title: dp/subset_sum.hpp
   - name: ds
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/addremove_query.hpp
       title: ds/addremove_query.hpp
     - icon: ':warning:'
@@ -853,10 +853,10 @@ data:
     - icon: ':warning:'
       path: pds/persistent_rbst_monoid.hpp
       title: pds/persistent_rbst_monoid.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: pds/rollbackarray.hpp
       title: pds/rollbackarray.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: pds/rollbackunionfind.hpp
       title: pds/rollbackunionfind.hpp
     - icon: ':warning:'
@@ -1279,7 +1279,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/add_remove_query.test.cpp
       title: test/library_checker/add_remove_query.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
       title: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
     - icon: ':heavy_check_mark:'
