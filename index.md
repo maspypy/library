@@ -437,13 +437,13 @@ data:
       title: geo_old/points_diameter.hpp
   - name: graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/base.hpp
       title: graph/base.hpp
     - icon: ':heavy_check_mark:'
       path: graph/bellmanford.hpp
       title: graph/bellmanford.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/bfs01.hpp
       title: graph/bfs01.hpp
     - icon: ':heavy_check_mark:'
@@ -545,7 +545,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/reachability.hpp
       title: graph/reachability.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/rerooting_dp.hpp
       title: graph/rerooting_dp.hpp
     - icon: ':heavy_check_mark:'
@@ -572,7 +572,7 @@ data:
     - icon: ':warning:'
       path: graph/tournament.hpp
       title: graph/tournament.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/tree.hpp
       title: graph/tree.hpp
     - icon: ':heavy_check_mark:'
@@ -1870,7 +1870,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1344_warshall_floyd.test.cpp
       title: test/yukicoder/1344_warshall_floyd.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1418_rerooting.test.cpp
       title: test/yukicoder/1418_rerooting.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1918,7 +1918,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1666_integer_kth_root.test.cpp
       title: test/yukicoder/1666_integer_kth_root.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1718_rerooting.test.cpp
       title: test/yukicoder/1718_rerooting.test.cpp
     - icon: ':heavy_check_mark:'
