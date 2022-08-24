@@ -12,6 +12,7 @@ struct Rerooting_dp {
   template <typename F1, typename F2, typename F3>
   Rerooting_dp(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)
       : tree(tree) {
+    assert(!tree.G.is_directed());
     build(f_ee, f_ev, f_ve, unit);
   }
 
@@ -21,8 +22,8 @@ struct Rerooting_dp {
   // root を根としたときの部分木 v
   Data get(int root, int v) {
     if (root == v) return dp[v];
-    if (!tree.isin(root, v)) { return dp_1[v]; }
-    int w = tree.move(v, root);
+    if (!tree.in_subtree(root, v)) { return dp_1[v]; }
+    int w = tree.jump(v, root);
     return dp_2[w];
   }
 
@@ -59,7 +60,8 @@ struct Rerooting_dp {
       for (auto&& e: tree.G[v]) {
         if (e.to != par[v]) {
           Data x = f_ve(dp_2[e.to], e);
-          dp[e.to] = f_ev(f_ee(dp[e.to], x), e.to);
+          x = f_ee(dp[e.to], x);
+          dp[e.to] = f_ev(x, e.to);
           for (auto&& f: tree.G[e.to]) {
             if (f.to != par[f.to]) {
               dp_2[f.to] = f_ee(dp_2[f.to], x);
