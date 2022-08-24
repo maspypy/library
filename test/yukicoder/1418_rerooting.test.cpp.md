@@ -1,16 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
-    path: graph/bfs01.hpp
-    title: graph/bfs01.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/rerooting_dp.hpp
     title: graph/rerooting_dp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':question:'
@@ -21,16 +18,16 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1718
+    PROBLEM: https://yukicoder.me/problems/no/1418
     links:
-    - https://yukicoder.me/problems/no/1718
+    - https://yukicoder.me/problems/no/1418
   bundledCode: "#line 1 \"test/yukicoder/1418_rerooting.test.cpp\"\n#define PROBLEM\
-    \ \"https://yukicoder.me/problems/no/1718\"\n#line 1 \"my_template.hpp\"\n#pragma\
+    \ \"https://yukicoder.me/problems/no/1418\"\n#line 1 \"my_template.hpp\"\n#pragma\
     \ GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include\
     \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
     \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
@@ -333,77 +330,42 @@ data:
     \ f: tree.G[e.to]) {\r\n            if (f.to != par[f.to]) {\r\n             \
     \ dp_2[f.to] = f_ee(dp_2[f.to], x);\r\n              dp_2[f.to] = f_ev(dp_2[f.to],\
     \ e.to);\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n\
-    \  }\r\n};\n#line 3 \"graph/bfs01.hpp\"\n\ntemplate <typename Graph>\npair<vc<ll>,\
-    \ vc<int>> bfs01(Graph& G, ll v) {\n  assert(G.is_prepared());\n  int N = G.N;\n\
-    \  vc<ll> dist(N, -1);\n  vc<int> par(N, -1);\n  deque<int> que;\n\n  dist[v]\
-    \ = 0;\n  que.push_front(v);\n  while (!que.empty()) {\n    auto v = que.front();\n\
-    \    que.pop_front();\n    for (auto&& e: G[v]) {\n      if (dist[e.to] == -1\
-    \ || dist[e.to] > dist[e.frm] + e.cost) {\n        dist[e.to] = dist[e.frm] +\
-    \ e.cost;\n        par[e.to] = e.frm;\n        if (e.cost == 0)\n          que.push_front(e.to);\n\
-    \        else\n          que.push_back(e.to);\n      }\n    }\n  }\n  return {dist,\
-    \ par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\u30C8\u3002[dist, par, root]\n\
-    template <typename Graph>\ntuple<vc<ll>, vc<int>, vc<int>> bfs01(Graph& G, vc<int>\
-    \ vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<ll> dist(N, -1);\n \
-    \ vc<int> par(N, -1);\n  vc<int> root(N, -1);\n  deque<int> que;\n\n  for (auto&&\
-    \ v: vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.push_front(v);\n  }\n\n\
-    \  while (!que.empty()) {\n    auto v = que.front();\n    que.pop_front();\n \
-    \   for (auto&& e: G[v]) {\n      if (dist[e.to] == -1 || dist[e.to] > dist[e.frm]\
-    \ + e.cost) {\n        dist[e.to] = dist[e.frm] + e.cost;\n        root[e.to]\
-    \ = root[e.frm];\n        par[e.to] = e.frm;\n        if (e.cost == 0)\n     \
-    \     que.push_front(e.to);\n        else\n          que.push_back(e.to);\n  \
-    \    }\n    }\n  }\n  return {dist, par, root};\n}\n#line 6 \"test/yukicoder/1418_rerooting.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, K);\n  Graph<int, 0> G(N);\n  G.read_tree();\n  VEC(ll,\
-    \ D, K);\n  for (auto&& a: D) --a;\n\n  TREE<decltype(G)> tree(G);\n  sort(all(D),\
-    \ [&](auto& x, auto& y) { return tree.LID[x] < tree.LID[y]; });\n\n  ll base =\
-    \ 0;\n  FOR(i, K) {\n    int j = (i + 1 == K ? 0 : i + 1);\n    int a = D[i],\
-    \ b = D[j];\n    base += tree.dist(a, b);\n  }\n\n  // \u90E8\u5206\u6728\u3092\
-    \u5857\u308B\n  vi isin(N);\n  FOR(i, K) {\n    int j = (i + 1 == K ? 0 : i +\
-    \ 1);\n    int a = D[i], b = D[j];\n    isin[a] = 1;\n    while (a != b) {\n \
-    \     a = tree.jump(a, b);\n      isin[a] = 1;\n    }\n  }\n\n  for (auto&& x:\
-    \ D) isin[x] = 1;\n\n  const ll INF = 1LL << 60;\n  using Data = ll;\n  Data unit\
-    \ = -INF;\n  auto fee = [&](Data x, Data y) -> Data { return max(x, y); };\n \
-    \ auto fev = [&](Data x, int v) -> Data {\n    if (isin[v]) chmax(x, 0);\n   \
-    \ return x;\n  };\n  // e \u306F v \u304B\u3089\u51FA\u308B\u6709\u5411\u8FBA\n\
-    \  auto fve = [&](Data x, auto& e) -> Data { return x + 1; };\n  Rerooting_dp<decltype(tree),\
-    \ Data> dp(G, fee, fev, fve, unit);\n\n  // span \u3055\u308C\u308B\u90E8\u5206\
-    \u304B\u3089\u306E\u8DDD\u96E2\n  vc<int> V;\n  FOR(v, N) if (isin[v]) V.eb(v);\n\
-    \  auto [dist, par, root] = bfs01(G, V);\n\n  FOR(v, N) {\n    ll r = root[v];\n\
-    \    ll ANS = dist[v] + base - dp[r];\n    print(ANS);\n  }\n}\n\nsigned main()\
-    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << fixed << setprecision(15);\n\
+    \  }\r\n};\n#line 5 \"test/yukicoder/1418_rerooting.test.cpp\"\n\nvoid solve()\
+    \ {\n  LL(N);\n  Graph<int, 0> G(N);\n  G.read_tree();\n\n  // \u90E8\u5206\u6728\
+    \u306E\u5927\u304D\u3055\u3001\u305D\u306E\u4E2D\u306E\u90E8\u5206\u6728\u306E\
+    \u5927\u304D\u3055\u306E\u548C\n  using Data = pi;\n  Data unit = {0, 0};\n  auto\
+    \ fee = [&](Data x, Data y) -> Data { return {x.fi + y.fi, x.se + y.se}; };\n\
+    \  auto fev = [&](Data x, int v) -> Data {\n    return {x.fi + 1, x.se + (x.fi\
+    \ + 1)};\n  };\n  // e \u306F v \u304B\u3089\u51FA\u308B\u6709\u5411\u8FBA\n \
+    \ auto fve = [&](Data x, auto& e) -> Data { return x; };\n\n  TREE<decltype(G)>\
+    \ tree(G);\n  Rerooting_dp<decltype(tree), Data> dp(tree, fee, fev, fve, unit);\n\
+    \  ll ANS = 0;\n  FOR(v, N) ANS += dp[v].se;\n  print(ANS);\n}\n\nsigned main()\
+    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
     \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1718\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"graph/rerooting_dp.hpp\"\n#include \"\
-    graph/bfs01.hpp\"\n\nvoid solve() {\n  LL(N, K);\n  Graph<int, 0> G(N);\n  G.read_tree();\n\
-    \  VEC(ll, D, K);\n  for (auto&& a: D) --a;\n\n  TREE<decltype(G)> tree(G);\n\
-    \  sort(all(D), [&](auto& x, auto& y) { return tree.LID[x] < tree.LID[y]; });\n\
-    \n  ll base = 0;\n  FOR(i, K) {\n    int j = (i + 1 == K ? 0 : i + 1);\n    int\
-    \ a = D[i], b = D[j];\n    base += tree.dist(a, b);\n  }\n\n  // \u90E8\u5206\u6728\
-    \u3092\u5857\u308B\n  vi isin(N);\n  FOR(i, K) {\n    int j = (i + 1 == K ? 0\
-    \ : i + 1);\n    int a = D[i], b = D[j];\n    isin[a] = 1;\n    while (a != b)\
-    \ {\n      a = tree.jump(a, b);\n      isin[a] = 1;\n    }\n  }\n\n  for (auto&&\
-    \ x: D) isin[x] = 1;\n\n  const ll INF = 1LL << 60;\n  using Data = ll;\n  Data\
-    \ unit = -INF;\n  auto fee = [&](Data x, Data y) -> Data { return max(x, y); };\n\
-    \  auto fev = [&](Data x, int v) -> Data {\n    if (isin[v]) chmax(x, 0);\n  \
-    \  return x;\n  };\n  // e \u306F v \u304B\u3089\u51FA\u308B\u6709\u5411\u8FBA\
-    \n  auto fve = [&](Data x, auto& e) -> Data { return x + 1; };\n  Rerooting_dp<decltype(tree),\
-    \ Data> dp(G, fee, fev, fve, unit);\n\n  // span \u3055\u308C\u308B\u90E8\u5206\
-    \u304B\u3089\u306E\u8DDD\u96E2\n  vc<int> V;\n  FOR(v, N) if (isin[v]) V.eb(v);\n\
-    \  auto [dist, par, root] = bfs01(G, V);\n\n  FOR(v, N) {\n    ll r = root[v];\n\
-    \    ll ANS = dist[v] + base - dp[r];\n    print(ANS);\n  }\n}\n\nsigned main()\
-    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1418\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"graph/rerooting_dp.hpp\"\n\nvoid solve()\
+    \ {\n  LL(N);\n  Graph<int, 0> G(N);\n  G.read_tree();\n\n  // \u90E8\u5206\u6728\
+    \u306E\u5927\u304D\u3055\u3001\u305D\u306E\u4E2D\u306E\u90E8\u5206\u6728\u306E\
+    \u5927\u304D\u3055\u306E\u548C\n  using Data = pi;\n  Data unit = {0, 0};\n  auto\
+    \ fee = [&](Data x, Data y) -> Data { return {x.fi + y.fi, x.se + y.se}; };\n\
+    \  auto fev = [&](Data x, int v) -> Data {\n    return {x.fi + 1, x.se + (x.fi\
+    \ + 1)};\n  };\n  // e \u306F v \u304B\u3089\u51FA\u308B\u6709\u5411\u8FBA\n \
+    \ auto fve = [&](Data x, auto& e) -> Data { return x; };\n\n  TREE<decltype(G)>\
+    \ tree(G);\n  Rerooting_dp<decltype(tree), Data> dp(tree, fee, fev, fve, unit);\n\
+    \  ll ANS = 0;\n  FOR(v, N) ANS += dp[v].se;\n  print(ANS);\n}\n\nsigned main()\
+    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - graph/rerooting_dp.hpp
   - graph/base.hpp
   - graph/tree.hpp
-  - graph/bfs01.hpp
   isVerificationFile: true
   path: test/yukicoder/1418_rerooting.test.cpp
   requiredBy: []
-  timestamp: '2022-08-24 16:48:39+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-24 17:46:17+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/1418_rerooting.test.cpp
 layout: document
