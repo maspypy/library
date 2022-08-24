@@ -17,7 +17,7 @@ data:
   - icon: ':x:'
     path: geo/incremental_convexhull.hpp
     title: geo/incremental_convexhull.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
   - icon: ':heavy_check_mark:'
@@ -34,8 +34,8 @@ data:
     title: geo_old/dynamicupperhull.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/aoj/0068.test.cpp
-    title: test/aoj/0068.test.cpp
+    path: test/aoj/0010.test.cpp
+    title: test/aoj/0010.test.cpp
   - icon: ':x:'
     path: test/aoj/0079.test.cpp
     title: test/aoj/0079.test.cpp
@@ -176,9 +176,9 @@ data:
   - test/aoj/CGL_2_D.test.cpp
   - test/aoj/0079.test.cpp
   - test/aoj/CGL_1_B.test.cpp
+  - test/aoj/0010.test.cpp
   - test/aoj/CGL_2_C.test.cpp
   - test/aoj/CGL_2_A.test.cpp
-  - test/aoj/0068.test.cpp
 documentation_of: geo/base.hpp
 layout: document
 redirect_from:

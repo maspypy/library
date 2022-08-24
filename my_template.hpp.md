@@ -7,8 +7,8 @@ data:
     title: graph/bipartite_coloring.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/aoj/0068.test.cpp
-    title: test/aoj/0068.test.cpp
+    path: test/aoj/0010.test.cpp
+    title: test/aoj/0010.test.cpp
   - icon: ':x:'
     path: test/aoj/0079.test.cpp
     title: test/aoj/0079.test.cpp
@@ -1316,6 +1316,7 @@ data:
   - test/aoj/ALDS1_2_A_inversion.test.cpp
   - test/aoj/ITP1_11_B.test.cpp
   - test/aoj/CGL_1_B.test.cpp
+  - test/aoj/0010.test.cpp
   - test/aoj/ALDS1_12_B_dial.test.cpp
   - test/aoj/ITP1_9_A_split.test.cpp
   - test/aoj/DSL_4_A_rectangle_union.test.cpp
@@ -1334,7 +1335,6 @@ data:
   - test/aoj/DSL_2_H_min_add_lazy.test.cpp
   - test/aoj/2842_fenwick2d_dense.test.cpp
   - test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
-  - test/aoj/0068.test.cpp
   - test/aoj/ALDS1_10_C_LCS.test.cpp
   - test/aoj/DSL_2_C_kdtree.test.cpp
   - test/aoj/2251_dag_path_cover.test.cpp

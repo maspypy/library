@@ -4,14 +4,17 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/triangle_area.hpp
     title: geo/triangle_area.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/0010.test.cpp
+    title: test/aoj/0010.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -57,15 +60,15 @@ data:
     \n\ntemplate <typename REAL, typename T>\nCircle<REAL> outcircle(Point<T> A, Point<T>\
     \ B, Point<T> C) {\n  REAL b1 = B.x - A.x, b2 = B.y - A.y;\n  REAL c1 = C.x -\
     \ A.x, c2 = C.y - A.y;\n  REAL bb = (b1 * b1 + b2 * b2) / 2;\n  REAL cc = (c1\
-    \ * c1 + c2 * c2) / 2;\n\n  REAL det = b1 * c2 - b2 * c1;\n  REAL x = (b1 * cc\
-    \ - bb * c1) / det;\n  REAL y = (bb * c2 - b2 * cc) / det;\n  REAL r = sqrt(x\
+    \ * c1 + c2 * c2) / 2;\n\n  REAL det = b1 * c2 - b2 * c1;\n  REAL x = (bb * c2\
+    \ - b2 * cc) / det;\n  REAL y = (b1 * cc - bb * c1) / det;\n  REAL r = sqrt(x\
     \ * x + y * y);\n  x += A.x, y += A.y;\n  return Circle<REAL>(x, y, r);\n}\n"
   code: "#include \"geo/base.hpp\"\n#include \"geo/triangle_area.hpp\"\n\ntemplate\
     \ <typename REAL, typename T>\nCircle<REAL> outcircle(Point<T> A, Point<T> B,\
     \ Point<T> C) {\n  REAL b1 = B.x - A.x, b2 = B.y - A.y;\n  REAL c1 = C.x - A.x,\
     \ c2 = C.y - A.y;\n  REAL bb = (b1 * b1 + b2 * b2) / 2;\n  REAL cc = (c1 * c1\
-    \ + c2 * c2) / 2;\n\n  REAL det = b1 * c2 - b2 * c1;\n  REAL x = (b1 * cc - bb\
-    \ * c1) / det;\n  REAL y = (bb * c2 - b2 * cc) / det;\n  REAL r = sqrt(x * x +\
+    \ + c2 * c2) / 2;\n\n  REAL det = b1 * c2 - b2 * c1;\n  REAL x = (bb * c2 - b2\
+    \ * cc) / det;\n  REAL y = (b1 * cc - bb * c1) / det;\n  REAL r = sqrt(x * x +\
     \ y * y);\n  x += A.x, y += A.y;\n  return Circle<REAL>(x, y, r);\n}"
   dependsOn:
   - geo/base.hpp
@@ -73,9 +76,10 @@ data:
   isVerificationFile: false
   path: geo/outcircle.hpp
   requiredBy: []
-  timestamp: '2022-08-21 16:46:09+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-08-24 14:44:02+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/aoj/0010.test.cpp
 documentation_of: geo/outcircle.hpp
 layout: document
 redirect_from:

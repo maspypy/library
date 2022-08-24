@@ -4,9 +4,6 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/aoj/0068.test.cpp
-    title: test/aoj/0068.test.cpp
-  - icon: ':x:'
     path: test/aoj/0079.test.cpp
     title: test/aoj/0079.test.cpp
   - icon: ':heavy_check_mark:'
@@ -39,7 +36,6 @@ data:
   verifiedWith:
   - test/aoj/0079.test.cpp
   - test/aoj/ITP1_9_A_split.test.cpp
-  - test/aoj/0068.test.cpp
 documentation_of: string/split.hpp
 layout: document
 redirect_from:

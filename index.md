@@ -406,7 +406,7 @@ data:
     - icon: ':x:'
       path: geo/incremental_convexhull.hpp
       title: geo/incremental_convexhull.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: geo/outcircle.hpp
       title: geo/outcircle.hpp
     - icon: ':heavy_check_mark:'
@@ -415,7 +415,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/reflection.hpp
       title: geo/reflection.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geo/triangle_area.hpp
       title: geo/triangle_area.hpp
   - name: geo_old
@@ -1090,8 +1090,8 @@ data:
   - name: test/aoj
     pages:
     - icon: ':x:'
-      path: test/aoj/0068.test.cpp
-      title: test/aoj/0068.test.cpp
+      path: test/aoj/0010.test.cpp
+      title: test/aoj/0010.test.cpp
     - icon: ':x:'
       path: test/aoj/0079.test.cpp
       title: test/aoj/0079.test.cpp

@@ -7,9 +7,6 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/aoj/0068.test.cpp
-    title: test/aoj/0068.test.cpp
-  - icon: ':x:'
     path: test/aoj/0079.test.cpp
     title: test/aoj/0079.test.cpp
   - icon: ':x:'
@@ -178,7 +175,6 @@ data:
   verifiedWith:
   - test/mytest/incremental_ch.test.cpp
   - test/aoj/0079.test.cpp
-  - test/aoj/0068.test.cpp
 documentation_of: geo/incremental_convexhull.hpp
 layout: document
 redirect_from:
