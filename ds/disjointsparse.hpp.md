@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: graph/statictreemonoid.hpp
+    title: graph/statictreemonoid.hpp
+  - icon: ':warning:'
     path: string/sort_all_substring.hpp
     title: string/sort_all_substring.hpp
   - icon: ':heavy_check_mark:'
@@ -85,6 +88,7 @@ data:
   isVerificationFile: false
   path: ds/disjointsparse.hpp
   requiredBy:
+  - graph/statictreemonoid.hpp
   - string/sort_all_substring.hpp
   - string/suffixarray.hpp
   timestamp: '2022-08-18 20:33:44+09:00'

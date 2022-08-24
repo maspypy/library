@@ -95,6 +95,9 @@ data:
   - icon: ':warning:'
     path: graph/solve_dag_game.hpp
     title: graph/solve_dag_game.hpp
+  - icon: ':warning:'
+    path: graph/statictreemonoid.hpp
+    title: graph/statictreemonoid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/steiner_tree.hpp
     title: graph/steiner_tree.hpp
@@ -402,6 +405,7 @@ data:
   - graph/dsu_on_tree.hpp
   - graph/lazytreemonoid.hpp
   - graph/cycle_detection.hpp
+  - graph/statictreemonoid.hpp
   - graph/check_bipartite.hpp
   - graph/twosat.hpp
   - graph/rerooting_dp.hpp

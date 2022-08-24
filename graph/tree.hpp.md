@@ -17,6 +17,9 @@ data:
   - icon: ':warning:'
     path: graph/rerooting_dp.hpp
     title: graph/rerooting_dp.hpp
+  - icon: ':warning:'
+    path: graph/statictreemonoid.hpp
+    title: graph/statictreemonoid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/treeabelgroup.hpp
     title: graph/treeabelgroup.hpp
@@ -268,6 +271,7 @@ data:
   - graph/dualtreemonoid.hpp
   - graph/dsu_on_tree.hpp
   - graph/lazytreemonoid.hpp
+  - graph/statictreemonoid.hpp
   - graph/rerooting_dp.hpp
   - graph/treeabelgroup.hpp
   - graph/treemonoid.hpp

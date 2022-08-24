@@ -8,6 +8,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
+  - icon: ':warning:'
+    path: graph/statictreemonoid.hpp
+    title: graph/statictreemonoid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
@@ -53,6 +56,7 @@ data:
   path: alg/monoid_reverse.hpp
   requiredBy:
   - graph/lazytreemonoid.hpp
+  - graph/statictreemonoid.hpp
   - graph/treemonoid.hpp
   - alg/lazy_reverse.hpp
   timestamp: '2022-04-23 17:49:11+09:00'
