@@ -2,6 +2,9 @@
 template <typename T>
 struct Point {
   T x, y;
+
+  Point() = default;
+
   template <typename A, typename B>
   Point(A x, B y) : x(x), y(y) {}
 
