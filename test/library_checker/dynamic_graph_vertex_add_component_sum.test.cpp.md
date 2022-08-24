@@ -2,38 +2,41 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: ds/addremove_query.hpp
+    title: ds/addremove_query.hpp
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: pds/rollbackarray.hpp
     title: pds/rollbackarray.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: pds/rollbackunionfind.hpp
     title: pds/rollbackunionfind.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum
+    PROBLEM: https://yukicoder.me/problems/no/1418
     links:
-    - https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum
+    - https://yukicoder.me/problems/no/1418
   bundledCode: "#line 1 \"test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp\"\
-    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum\"\
-    \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
-    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
-    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
-    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
-    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    \n#define PROBLEM \"https://yukicoder.me/problems/no/1418\"\n#line 1 \"my_template.hpp\"\
+    \n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n\
+    #include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing\
+    \ pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing\
+    \ u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing\
+    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -214,83 +217,97 @@ data:
     \ t) { dat.rollback(t); }\r\n\r\n  bool merge(int a, int b) {\r\n    a = (*this)[a],\
     \ b = (*this)[b];\r\n    if (a == b) return false;\r\n    if (dat.get(a) > dat.get(b))\
     \ swap(a, b);\r\n    dat.set(a, dat.get(a) + dat.get(b));\r\n    dat.set(b, a);\r\
-    \n    return true;\r\n  }\r\n};\r\n#line 6 \"test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, a, N);\n\n  using QT = tuple<int, int,\
-    \ int>;\n  vc<QT> query(Q);\n  FOR(q, Q) {\n    LL(t);\n    if (t == 0) {\n  \
-    \    LL(u, v);\n      if (u > v) swap(u, v);\n      query[q] = {t, u, v};\n  \
-    \  }\n    if (t == 1) {\n      LL(u, v);\n      if (u > v) swap(u, v);\n     \
-    \ query[q] = {t, u, v};\n    }\n    if (t == 2) {\n      LL(v, x);\n      query[q]\
-    \ = {t, v, x};\n    }\n    if (t == 3) {\n      LL(v);\n      query[q] = {t, v,\
-    \ -1};\n    }\n  }\n\n  map<pair<int, int>, vc<int>> MP;\n  FOR(q, Q) {\n    auto&\
-    \ [t, a, b] = query[q];\n    if (t == 0 || t == 1) {\n      pair<int, int> p =\
-    \ {a, b};\n      MP[p].eb(q);\n    }\n  }\n\n  int size = 1;\n  while (size <\
-    \ Q) size *= 2;\n\n  /*\n  0 a b \uFF1A merge a, b\n  1 v x : add v x\n  2 q v:\
-    \ answer query q\n  */\n\n  vvc<QT> query2(2 * size);\n  for (auto&& [p, Ts]:\
-    \ MP) {\n    if (Ts.size() % 2 == 1) Ts.eb(Q);\n    auto [a, b] = p;\n    FOR(i,\
-    \ 0, len(Ts), 2) {\n      ll l = Ts[i];\n      ll r = Ts[i + 1];\n      l += size;\n\
-    \      r += size;\n      while (l < r) {\n        if (l % 2 == 1) { query2[l++].eb(0,\
-    \ a, b); }\n        if (r % 2 == 1) { query2[--r].eb(0, a, b); }\n        l /=\
-    \ 2, r /= 2;\n      }\n    }\n  }\n  FOR(q, Q) {\n    auto [t, a, b] = query[q];\n\
-    \    if (t == 0 || t == 1) continue;\n    if (t == 2) {\n      int v = a, x =\
-    \ b;\n      ll l = q, r = Q;\n      l += size;\n      r += size;\n      while\
-    \ (l < r) {\n        if (l % 2 == 1) { query2[l++].eb(1, v, x); }\n        if\
-    \ (r % 2 == 1) { query2[--r].eb(1, v, x); }\n        l /= 2, r /= 2;\n      }\n\
-    \    }\n    if (t == 3) { query2[q + size].eb(2, q, a); }\n  }\n\n  RollbackArray<ll>\
-    \ A(a);\n  RollbackUnionFind uf(N);\n  vi ANS(Q);\n\n  auto dfs = [&](auto& dfs,\
-    \ int idx) -> void {\n    int time1 = A.time();\n    int time2 = uf.time();\n\
-    \    //\n    for (auto&& [t, a, b]: query2[idx]) {\n      if (t == 0) {\n    \
-    \    a = uf[a], b = uf[b];\n        if (a == b) continue;\n        uf.merge(a,\
-    \ b);\n        A.set(uf[a], A.get(a) + A.get(b));\n      }\n      if (t == 1)\
-    \ {\n        a = uf[a];\n        A.set(a, A.get(a) + b);\n      }\n      if (t\
-    \ == 2) {\n        ll ans = A.get(uf[b]);\n        ANS[a] = ans;\n      }\n  \
-    \  }\n    if (idx < size) {\n      dfs(dfs, 2 * idx + 0);\n      dfs(dfs, 2 *\
-    \ idx + 1);\n    }\n    A.rollback(time1);\n    uf.rollback(time2);\n  };\n  dfs(dfs,\
-    \ 1);\n  FOR(q, Q) {\n    auto [t, a, b] = query[q];\n    if (t == 3) print(ANS[q]);\n\
-    \  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"pds/rollbackunionfind.hpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, a, N);\n\n  using QT = tuple<int, int,\
-    \ int>;\n  vc<QT> query(Q);\n  FOR(q, Q) {\n    LL(t);\n    if (t == 0) {\n  \
-    \    LL(u, v);\n      if (u > v) swap(u, v);\n      query[q] = {t, u, v};\n  \
-    \  }\n    if (t == 1) {\n      LL(u, v);\n      if (u > v) swap(u, v);\n     \
-    \ query[q] = {t, u, v};\n    }\n    if (t == 2) {\n      LL(v, x);\n      query[q]\
-    \ = {t, v, x};\n    }\n    if (t == 3) {\n      LL(v);\n      query[q] = {t, v,\
-    \ -1};\n    }\n  }\n\n  map<pair<int, int>, vc<int>> MP;\n  FOR(q, Q) {\n    auto&\
-    \ [t, a, b] = query[q];\n    if (t == 0 || t == 1) {\n      pair<int, int> p =\
-    \ {a, b};\n      MP[p].eb(q);\n    }\n  }\n\n  int size = 1;\n  while (size <\
-    \ Q) size *= 2;\n\n  /*\n  0 a b \uFF1A merge a, b\n  1 v x : add v x\n  2 q v:\
-    \ answer query q\n  */\n\n  vvc<QT> query2(2 * size);\n  for (auto&& [p, Ts]:\
-    \ MP) {\n    if (Ts.size() % 2 == 1) Ts.eb(Q);\n    auto [a, b] = p;\n    FOR(i,\
-    \ 0, len(Ts), 2) {\n      ll l = Ts[i];\n      ll r = Ts[i + 1];\n      l += size;\n\
-    \      r += size;\n      while (l < r) {\n        if (l % 2 == 1) { query2[l++].eb(0,\
-    \ a, b); }\n        if (r % 2 == 1) { query2[--r].eb(0, a, b); }\n        l /=\
-    \ 2, r /= 2;\n      }\n    }\n  }\n  FOR(q, Q) {\n    auto [t, a, b] = query[q];\n\
-    \    if (t == 0 || t == 1) continue;\n    if (t == 2) {\n      int v = a, x =\
-    \ b;\n      ll l = q, r = Q;\n      l += size;\n      r += size;\n      while\
-    \ (l < r) {\n        if (l % 2 == 1) { query2[l++].eb(1, v, x); }\n        if\
-    \ (r % 2 == 1) { query2[--r].eb(1, v, x); }\n        l /= 2, r /= 2;\n      }\n\
-    \    }\n    if (t == 3) { query2[q + size].eb(2, q, a); }\n  }\n\n  RollbackArray<ll>\
-    \ A(a);\n  RollbackUnionFind uf(N);\n  vi ANS(Q);\n\n  auto dfs = [&](auto& dfs,\
-    \ int idx) -> void {\n    int time1 = A.time();\n    int time2 = uf.time();\n\
-    \    //\n    for (auto&& [t, a, b]: query2[idx]) {\n      if (t == 0) {\n    \
-    \    a = uf[a], b = uf[b];\n        if (a == b) continue;\n        uf.merge(a,\
-    \ b);\n        A.set(uf[a], A.get(a) + A.get(b));\n      }\n      if (t == 1)\
-    \ {\n        a = uf[a];\n        A.set(a, A.get(a) + b);\n      }\n      if (t\
-    \ == 2) {\n        ll ans = A.get(uf[b]);\n        ANS[a] = ans;\n      }\n  \
-    \  }\n    if (idx < size) {\n      dfs(dfs, 2 * idx + 0);\n      dfs(dfs, 2 *\
-    \ idx + 1);\n    }\n    A.rollback(time1);\n    uf.rollback(time2);\n  };\n  dfs(dfs,\
-    \ 1);\n  FOR(q, Q) {\n    auto [t, a, b] = query[q];\n    if (t == 3) print(ANS[q]);\n\
-    \  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+    \n    return true;\r\n  }\r\n};\r\n#line 1 \"ds/addremove_query.hpp\"\n/*\n\u30FB\
+    \u6642\u523B t \u306B x \u3092\u8FFD\u52A0\u3059\u308B\n\u30FB\u6642\u523B t \u306B\
+    \ x \u3092\u524A\u9664\u3059\u308B\n\u304C\u3042\u308B\u3068\u304D\u306B\u3001\
+    \n\u30FB\u6642\u523B [l, r) \u306B x \u3092\u8FFD\u52A0\u3059\u308B\n\u306B\u5909\
+    \u63DB\u3059\u308B\u3002\n\u30AF\u30A8\u30EA\u304C\u6642\u7CFB\u5217\u9806\u306B\
+    \u6765\u308B\u3053\u3068\u304C\u5206\u304B\u3063\u3066\u3044\u308B\u3068\u304D\
+    \u306F monotone = true \u306E\u65B9\u304C\u9AD8\u901F\u3002\n*/\ntemplate <typename\
+    \ X, bool monotone>\nstruct AddRemove_Query {\n  map<X, int> MP;\n  vc<tuple<int,\
+    \ int, X>> dat;\n  map<X, vc<int>> ADD;\n  map<X, vc<int>> RM;\n\n  void add(int\
+    \ time, X x) {\n    if (monotone) return add_monotone(time, x);\n    ADD[x].eb(time);\n\
+    \  }\n  void remove(int time, X x) {\n    if (monotone) return remove_monotone(time,\
+    \ x);\n    RM[x].eb(time);\n  }\n\n  // \u3059\u3079\u3066\u306E\u30AF\u30A8\u30EA\
+    \u304C\u7D42\u308F\u3063\u305F\u73FE\u5728\u6642\u523B\u3092\u6E21\u3059\n  vc<tuple<int,\
+    \ int, X>> calc(int time) {\n    if (monotone) return calc_monotone(time);\n \
+    \   vc<tuple<int, int, X>> dat;\n    for (auto&& [x, A]: ADD) {\n      vc<int>\
+    \ B;\n      if (RM.count(x)) {\n        B = RM[x];\n        RM.erase(x);\n   \
+    \   }\n      if (len(B) < len(A)) B.eb(time);\n      assert(len(A) == len(B));\n\
+    \n      sort(all(A));\n      sort(all(B));\n      FOR(i, len(A)) {\n        assert(A[i]\
+    \ <= B[i]);\n        if (A[i] < B[i]) dat.eb(A[i], B[i], x);\n      }\n    }\n\
+    \    assert(len(RM) == 0);\n    return dat;\n  }\n\nprivate:\n  void add_monotone(int\
+    \ time, X x) {\n    assert(!MP.count(x));\n    MP[x] = time;\n  }\n  void remove_monotone(int\
+    \ time, X x) {\n    auto it = MP.find(x);\n    assert(it != MP.end());\n    int\
+    \ t = (*it).se;\n    MP.erase(it);\n    if (t == time) return;\n    dat.eb(t,\
+    \ time, x);\n  }\n  vc<tuple<int, int, X>> calc_monotone(int time) {\n    for\
+    \ (auto&& [x, t]: MP) {\n      if (t == time) continue;\n      dat.eb(t, time,\
+    \ x);\n    }\n    return dat;\n  }\n};\n#line 7 \"test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A0, N);\n\n  using P = pair<int, int>;\n\
+    \  AddRemove_Query<P, 1> X;\n  RollbackArray<ll> A(A0);\n\n  vc<int> query;\n\
+    \  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(u, v);\n      if (u > v)\
+    \ swap(u, v);\n      X.add(len(query), {u, v});\n    }\n    if (t == 1) {\n  \
+    \    LL(u, v);\n      if (u > v) swap(u, v);\n      X.remove(len(query), {u, v});\n\
+    \    }\n    if (t == 2) {\n      LL(v, x);\n      X.add(len(query), {~v, x});\n\
+    \    }\n    if (t == 3) {\n      LL(v);\n      query.eb(v);\n    }\n  }\n  RollbackUnionFind\
+    \ uf(N);\n  // rollback_dfs\n  auto upd = X.calc(len(query));\n  vi ANS(len(query));\n\
+    \  vc<int> I(len(upd));\n  iota(all(I), 0);\n  auto dfs = [&](auto& dfs, vc<int>&\
+    \ upd_query_I, int begin, int end) -> void {\n    // snapshot\n    int a_time\
+    \ = A.time();\n    int uf_time = uf.time();\n\n    vc<int> IL, IR;\n    int mid\
+    \ = (begin + end) / 2;\n    for (auto&& i: upd_query_I) {\n      auto [a, b, X]\
+    \ = upd[i];\n      if (a <= begin && end <= b) {\n        // X \u3067\u8868\u3055\
+    \u308C\u308B update query \u3092\u51E6\u7406\u3059\u308B\n        auto [p, q]\
+    \ = X;\n        if (p >= 0) {\n          int u = p, v = q;\n          u = uf[u],\
+    \ v = uf[v];\n          if (u == v) continue;\n          uf.merge(u, v);\n   \
+    \       int r = uf[u];\n          A.set(r, A.get(u) + A.get(v));\n        } else\
+    \ {\n          int v = ~p, x = q;\n          v = uf[v];\n          A.set(v, A.get(v)\
+    \ + x);\n        }\n        continue;\n      }\n      if (a < mid) IL.eb(i);\n\
+    \      if (mid < b) IR.eb(i);\n    }\n    if (begin + 1 == end) {\n      int v\
+    \ = query[begin];\n      ANS[begin] = A.get(uf[v]);\n    } else {\n      dfs(dfs,\
+    \ IL, begin, mid);\n      dfs(dfs, IR, mid, end);\n    }\n    // rollback\n  \
+    \  A.rollback(a_time);\n    uf.rollback(uf_time);\n  };\n  dfs(dfs, I, 0, len(query));\n\
+    \  for (auto&& x: ANS) print(x);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1418\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"pds/rollbackunionfind.hpp\"\n#include\
+    \ \"pds/rollbackarray.hpp\"\n#include \"ds/addremove_query.hpp\"\n\nvoid solve()\
+    \ {\n  LL(N, Q);\n  VEC(ll, A0, N);\n\n  using P = pair<int, int>;\n  AddRemove_Query<P,\
+    \ 1> X;\n  RollbackArray<ll> A(A0);\n\n  vc<int> query;\n  FOR(Q) {\n    LL(t);\n\
+    \    if (t == 0) {\n      LL(u, v);\n      if (u > v) swap(u, v);\n      X.add(len(query),\
+    \ {u, v});\n    }\n    if (t == 1) {\n      LL(u, v);\n      if (u > v) swap(u,\
+    \ v);\n      X.remove(len(query), {u, v});\n    }\n    if (t == 2) {\n      LL(v,\
+    \ x);\n      X.add(len(query), {~v, x});\n    }\n    if (t == 3) {\n      LL(v);\n\
+    \      query.eb(v);\n    }\n  }\n  RollbackUnionFind uf(N);\n  // rollback_dfs\n\
+    \  auto upd = X.calc(len(query));\n  vi ANS(len(query));\n  vc<int> I(len(upd));\n\
+    \  iota(all(I), 0);\n  auto dfs = [&](auto& dfs, vc<int>& upd_query_I, int begin,\
+    \ int end) -> void {\n    // snapshot\n    int a_time = A.time();\n    int uf_time\
+    \ = uf.time();\n\n    vc<int> IL, IR;\n    int mid = (begin + end) / 2;\n    for\
+    \ (auto&& i: upd_query_I) {\n      auto [a, b, X] = upd[i];\n      if (a <= begin\
+    \ && end <= b) {\n        // X \u3067\u8868\u3055\u308C\u308B update query \u3092\
+    \u51E6\u7406\u3059\u308B\n        auto [p, q] = X;\n        if (p >= 0) {\n  \
+    \        int u = p, v = q;\n          u = uf[u], v = uf[v];\n          if (u ==\
+    \ v) continue;\n          uf.merge(u, v);\n          int r = uf[u];\n        \
+    \  A.set(r, A.get(u) + A.get(v));\n        } else {\n          int v = ~p, x =\
+    \ q;\n          v = uf[v];\n          A.set(v, A.get(v) + x);\n        }\n   \
+    \     continue;\n      }\n      if (a < mid) IL.eb(i);\n      if (mid < b) IR.eb(i);\n\
+    \    }\n    if (begin + 1 == end) {\n      int v = query[begin];\n      ANS[begin]\
+    \ = A.get(uf[v]);\n    } else {\n      dfs(dfs, IL, begin, mid);\n      dfs(dfs,\
+    \ IR, mid, end);\n    }\n    // rollback\n    A.rollback(a_time);\n    uf.rollback(uf_time);\n\
+    \  };\n  dfs(dfs, I, 0, len(query));\n  for (auto&& x: ANS) print(x);\n}\n\nsigned\
+    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - pds/rollbackunionfind.hpp
   - pds/rollbackarray.hpp
+  - ds/addremove_query.hpp
   isVerificationFile: true
   path: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-08-20 05:21:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-24 18:37:11+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
 layout: document

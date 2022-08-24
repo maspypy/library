@@ -348,7 +348,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
     title: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
   - icon: ':heavy_check_mark:'

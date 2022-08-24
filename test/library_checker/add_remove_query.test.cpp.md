@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/addremove_query.hpp
     title: ds/addremove_query.hpp
   - icon: ':question:'
@@ -10,10 +10,10 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: pds/rollbackarray.hpp
     title: pds/rollbackarray.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: pds/rollbackunionfind.hpp
     title: pds/rollbackunionfind.hpp
   _extendedRequiredBy: []
