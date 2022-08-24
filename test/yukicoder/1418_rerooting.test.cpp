@@ -1,33 +1,68 @@
-#define PROBLEM "https://yukicoder.me/problems/no/1418"
+#define PROBLEM "https://yukicoder.me/problems/no/1718"
 #include "my_template.hpp"
 #include "other/io.hpp"
+#include "graph/rerooting_dp.hpp"
+#include "graph/bfs01.hpp"
 
 void solve() {
-  LL(N);
-  Graph G(N);
+  LL(N, K);
+  Graph<int, 0> G(N);
   G.read_tree();
-
-  // 部分木の大きさ、その中の部分木の大きさの和
-  using Data = pi;
-  Data unit = {0, 0};
-  auto fee = [&](Data x, Data y) -> Data { return {x.fi + y.fi, x.se + y.se}; };
-  auto fev = [&](Data x, int v) -> Data {
-    return {x.fi + 1, x.se + (x.fi + 1)};
-  };
-  // e は v から出る有向辺
-  auto fve = [&](Data x, auto& e) -> Data { return x; };
+  VEC(ll, D, K);
+  for (auto&& a: D) --a;
 
   TREE<decltype(G)> tree(G);
-  Rerooting_dp<decltype(tree), Data> dp(tree, fee, fev, fve, unit);
-  ll ANS = 0;
-  FOR(v, N) ANS += dp[v].se;
-  print(ANS);
+  sort(all(D), [&](auto& x, auto& y) { return tree.LID[x] < tree.LID[y]; });
+
+  ll base = 0;
+  FOR(i, K) {
+    int j = (i + 1 == K ? 0 : i + 1);
+    int a = D[i], b = D[j];
+    base += tree.dist(a, b);
+  }
+
+  // 部分木を塗る
+  vi isin(N);
+  FOR(i, K) {
+    int j = (i + 1 == K ? 0 : i + 1);
+    int a = D[i], b = D[j];
+    isin[a] = 1;
+    while (a != b) {
+      a = tree.jump(a, b);
+      isin[a] = 1;
+    }
+  }
+
+  for (auto&& x: D) isin[x] = 1;
+
+  const ll INF = 1LL << 60;
+  using Data = ll;
+  Data unit = -INF;
+  auto fee = [&](Data x, Data y) -> Data { return max(x, y); };
+  auto fev = [&](Data x, int v) -> Data {
+    if (isin[v]) chmax(x, 0);
+    return x;
+  };
+  // e は v から出る有向辺
+  auto fve = [&](Data x, auto& e) -> Data { return x + 1; };
+  Rerooting_dp<decltype(tree), Data> dp(G, fee, fev, fve, unit);
+
+  // span される部分からの距離
+  vc<int> V;
+  FOR(v, N) if (isin[v]) V.eb(v);
+  auto [dist, par, root] = bfs01(G, V);
+
+  FOR(v, N) {
+    ll r = root[v];
+    ll ANS = dist[v] + base - dp[r];
+    print(ANS);
+  }
 }
 
 signed main() {
   cin.tie(nullptr);
   ios::sync_with_stdio(false);
-  cout << setprecision(15);
+  cout << fixed << setprecision(15);
 
   ll T = 1;
   // LL(T);

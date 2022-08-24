@@ -2,24 +2,23 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/rerooting_dp.hpp"
-#include "graph/hld.hpp"
 #include "graph/bfs01.hpp"
 
 void solve() {
   LL(N, K);
-  Graph G(N);
+  Graph<int, 0> G(N);
   G.read_tree();
   VEC(ll, D, K);
   for (auto&& a: D) --a;
 
-  HLD hld(G);
-  sort(all(D), [&](auto& x, auto& y) { return hld.LID[x] < hld.LID[y]; });
+  TREE<decltype(G)> tree(G);
+  sort(all(D), [&](auto& x, auto& y) { return tree.LID[x] < tree.LID[y]; });
 
   ll base = 0;
   FOR(i, K) {
     int j = (i + 1 == K ? 0 : i + 1);
     int a = D[i], b = D[j];
-    base += hld.dist(a, b);
+    base += tree.dist(a, b);
   }
 
   // 部分木を塗る
@@ -29,7 +28,7 @@ void solve() {
     int a = D[i], b = D[j];
     isin[a] = 1;
     while (a != b) {
-      a = hld.jump(a, b);
+      a = tree.jump(a, b);
       isin[a] = 1;
     }
   }
@@ -46,7 +45,7 @@ void solve() {
   };
   // e は v から出る有向辺
   auto fve = [&](Data x, auto& e) -> Data { return x + 1; };
-  auto dp = rerooting_dp(G, fee, fev, fve, unit);
+  Rerooting_dp<decltype(tree), Data> dp(tree, fee, fev, fve, unit);
 
   // span される部分からの距離
   vc<int> V;
