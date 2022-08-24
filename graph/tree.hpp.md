@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
-  - icon: ':warning:'
+  - icon: ':question:'
     path: graph/rerooting_dp.hpp
     title: graph/rerooting_dp.hpp
   - icon: ':warning:'
@@ -81,9 +81,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1326_bct.test.cpp
     title: test/yukicoder/1326_bct.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1418_rerooting.test.cpp
+    title: test/yukicoder/1418_rerooting.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1641_tree_abel.test.cpp
     title: test/yukicoder/1641_tree_abel.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1718_rerooting.test.cpp
+    title: test/yukicoder/1718_rerooting.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1778_bracket_graph.test.cpp
     title: test/yukicoder/1778_bracket_graph.test.cpp
@@ -93,9 +99,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/529_two_edge.test.cpp
     title: test/yukicoder/529_two_edge.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -277,12 +283,14 @@ data:
   - graph/treemonoid.hpp
   - graph/treegroup.hpp
   timestamp: '2022-08-22 17:21:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1641_tree_abel.test.cpp
   - test/yukicoder/1197.test.cpp
   - test/yukicoder/1778_bracket_graph.test.cpp
+  - test/yukicoder/1718_rerooting.test.cpp
   - test/yukicoder/235_lazytreemonoid.test.cpp
+  - test/yukicoder/1418_rerooting.test.cpp
   - test/yukicoder/529_two_edge.test.cpp
   - test/yukicoder/1326_bct.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp

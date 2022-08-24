@@ -406,7 +406,7 @@ data:
     - icon: ':x:'
       path: geo/incremental_convexhull.hpp
       title: geo/incremental_convexhull.hpp
-    - icon: ':x:'
+    - icon: ':warning:'
       path: geo/outcircle.hpp
       title: geo/outcircle.hpp
     - icon: ':heavy_check_mark:'
@@ -415,7 +415,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/reflection.hpp
       title: geo/reflection.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/triangle_area.hpp
       title: geo/triangle_area.hpp
   - name: geo_old
@@ -437,13 +437,13 @@ data:
       title: geo_old/points_diameter.hpp
   - name: graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/base.hpp
       title: graph/base.hpp
     - icon: ':heavy_check_mark:'
       path: graph/bellmanford.hpp
       title: graph/bellmanford.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/bfs01.hpp
       title: graph/bfs01.hpp
     - icon: ':heavy_check_mark:'
@@ -545,7 +545,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/reachability.hpp
       title: graph/reachability.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: graph/rerooting_dp.hpp
       title: graph/rerooting_dp.hpp
     - icon: ':heavy_check_mark:'
@@ -572,7 +572,7 @@ data:
     - icon: ':warning:'
       path: graph/tournament.hpp
       title: graph/tournament.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/tree.hpp
       title: graph/tree.hpp
     - icon: ':heavy_check_mark:'
@@ -809,7 +809,7 @@ data:
     - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io2.hpp
       title: other/io2.hpp
     - icon: ':warning:'
@@ -1068,7 +1068,7 @@ data:
     - icon: ':warning:'
       path: string/sort_all_substring.hpp
       title: string/sort_all_substring.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/split.hpp
       title: string/split.hpp
     - icon: ':heavy_check_mark:'
@@ -1086,12 +1086,6 @@ data:
   verificationCategories:
   - name: test/aoj
     pages:
-    - icon: ':x:'
-      path: test/aoj/0010.test.cpp
-      title: test/aoj/0010.test.cpp
-    - icon: ':x:'
-      path: test/aoj/0079.test.cpp
-      title: test/aoj/0079.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/1508_splay.test.cpp
       title: test/aoj/1508_splay.test.cpp
@@ -1924,7 +1918,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1666_integer_kth_root.test.cpp
       title: test/yukicoder/1666_integer_kth_root.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1718_rerooting.test.cpp
       title: test/yukicoder/1718_rerooting.test.cpp
     - icon: ':heavy_check_mark:'

@@ -6,12 +6,6 @@ data:
     path: graph/bipartite_coloring.hpp
     title: graph/bipartite_coloring.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/aoj/0010.test.cpp
-    title: test/aoj/0010.test.cpp
-  - icon: ':x:'
-    path: test/aoj/0079.test.cpp
-    title: test/aoj/0079.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508_splay.test.cpp
     title: test/aoj/1508_splay.test.cpp
@@ -808,6 +802,9 @@ data:
     path: test/yukicoder/1666_integer_kth_root.test.cpp
     title: test/yukicoder/1666_integer_kth_root.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1718_rerooting.test.cpp
+    title: test/yukicoder/1718_rerooting.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1750_matpow.test.cpp
     title: test/yukicoder/1750_matpow.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1087,6 +1084,7 @@ data:
   - test/yukicoder/1197.test.cpp
   - test/yukicoder/626_knapsack_branch_bound.test.cpp
   - test/yukicoder/1778_bracket_graph.test.cpp
+  - test/yukicoder/1718_rerooting.test.cpp
   - test/yukicoder/1036_dseg_minleft_maxright.test.cpp
   - test/yukicoder/1320_mincostcycle.test.cpp
   - test/yukicoder/502_p_rec.test.cpp
@@ -1312,7 +1310,6 @@ data:
   - test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - test/aoj/GRL_1_C_warshallfloyd.test.cpp
-  - test/aoj/0079.test.cpp
   - test/aoj/DPL_3_C_maxrectangle.test.cpp
   - test/aoj/DPL_1_D_lis.test.cpp
   - test/aoj/GRL_6_A_maxflow.test.cpp
@@ -1320,7 +1317,6 @@ data:
   - test/aoj/ALDS1_2_A_inversion.test.cpp
   - test/aoj/ITP1_11_B.test.cpp
   - test/aoj/CGL_1_B.test.cpp
-  - test/aoj/0010.test.cpp
   - test/aoj/ALDS1_12_B_dial.test.cpp
   - test/aoj/ITP1_9_A_split.test.cpp
   - test/aoj/DSL_4_A_rectangle_union.test.cpp
