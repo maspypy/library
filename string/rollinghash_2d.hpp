@@ -34,7 +34,6 @@ struct RollingHash_2D {
 
 private:
   static inline u64 generate_base() {
-    RandomNumberGenerator RNG;
     return RNG(M61::get_mod());
   }
 
