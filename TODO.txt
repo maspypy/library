@@ -16,9 +16,6 @@ fft を節約して高速化
 ・最大流：残余グラフを作ってかえす
 流量下限を入れる
 
-・rolling hash 2D
-https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_C
-
 mincostcycle：毎回グラフ作り直してて無駄、復元をつけるかどうか？
 
 ・カッコ列を木にする
