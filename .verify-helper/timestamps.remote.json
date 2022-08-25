@@ -56,6 +56,7 @@
 "test/aoj/NTL_1_D_eulerphi.test.cpp": "2022-08-20 05:21:32 +0900",
 "test/aoj/NTL_1_E_extgcd.test.cpp": "2022-08-20 05:21:32 +0900",
 "test/library_checker/add_remove_query.test.cpp": "2022-08-20 05:21:32 +0900",
+"test/library_checker/classify_tree.test.cpp": "2022-08-25 10:48:35 +0900",
 "test/library_checker/convolution/bitwise_and_convolution.test.cpp": "2022-08-20 05:21:32 +0900",
 "test/library_checker/convolution/bitwise_or_convolution.test.cpp": "2022-08-20 05:21:32 +0900",
 "test/library_checker/convolution/bitwise_xor_convolution.test.cpp": "2022-08-20 05:21:32 +0900",
