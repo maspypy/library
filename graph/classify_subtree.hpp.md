@@ -163,26 +163,27 @@ data:
     \ dp(N, unit);\r\n  FOR_R(i, 1, N) {\r\n    int v = tree.V[i];\r\n    dp[v] =\
     \ f_ev(dp[v], v);\r\n    for (auto&& e: tree.G[v])\r\n      if (e.to == tree.parent[v])\
     \ { dp[e.to] = f_ee(dp[e.to], f_ve(dp[v], e)); }\r\n  }\r\n  return dp;\r\n};\n\
-    #line 6 \"graph/classify_subtree.hpp\"\n\ntemplate <typename TREE>\nvc<int> classify_subtree(TREE&\
-    \ tree) {\n  int N = tree.G.N;\n  RandomNumberGenerator RNG;\n  using mint = modint61;\n\
-    \  using T = mint;\n  T unit = mint(1);\n  vc<mint> hash_base(N + 1);\n  FOR(i,\
-    \ N + 1) hash_base[i] = RNG(mint::get_mod());\n\n  auto f_ee = [&](T& A, T B)\
-    \ -> T { return A * B; };\n  auto f_ev = [&](T& A, int v) -> T { return A; };\n\
-    \  auto f_ve = [&](T A, const auto& e) -> T {\n    int k = tree.subtree_size(e.frm);\n\
-    \    return A + hash_base[k];\n  };\n\n  auto dp = tree_dp<decltype(tree), T>(tree,\
-    \ f_ee, f_ev, f_ve, unit);\n  auto key = dp;\n  UNIQUE(key);\n  vc<int> ANS(N);\n\
-    \  FOR(i, N) ANS[i] = LB(key, dp[i]);\n  return ANS;\n}\n"
+    #line 6 \"graph/classify_subtree.hpp\"\n\ntemplate <typename TREE>\nvc<ll> classify_subtree(TREE&\
+    \ tree) {\n  static vc<mint> hash_base;\n  auto get = [&](int k) -> mint {\n \
+    \   while (len(hash_base) <= k) hash_base.eb(RNG(mint::get_mod()));\n    return\
+    \ hash_base[k];\n  };\n  int N = tree.G.N;\n  using T = pair<int, mint>;\n  T\
+    \ unit = {0, mint(1)};\n\n  auto f_ee = [&](T A, T B) -> T { return {max(A.fi,\
+    \ B.fi), A.se * B.se}; };\n  auto f_ev = [&](T A, int v) -> T { return {A.fi +\
+    \ 1, A.se}; };\n  auto f_ve = [&](T A, const auto& e) -> T {\n    return {A.fi,\
+    \ A.se + hash_base(A.fi)};\n  };\n\n  auto dp = tree_dp<decltype(tree), T>(tree,\
+    \ f_ee, f_ev, f_ve, unit);\n  vc<ll> res(N);\n  FOR(v, N) res[v] = dp[v].se;\n\
+    \  return res;\n}\n"
   code: "#include \"mod/modint61.hpp\"\n#include \"graph/base.hpp\"\n#include \"graph/tree.hpp\"\
     \n#include \"other/random.hpp\"\n#include \"graph/tree_dp.hpp\"\n\ntemplate <typename\
-    \ TREE>\nvc<int> classify_subtree(TREE& tree) {\n  int N = tree.G.N;\n  RandomNumberGenerator\
-    \ RNG;\n  using mint = modint61;\n  using T = mint;\n  T unit = mint(1);\n  vc<mint>\
-    \ hash_base(N + 1);\n  FOR(i, N + 1) hash_base[i] = RNG(mint::get_mod());\n\n\
-    \  auto f_ee = [&](T& A, T B) -> T { return A * B; };\n  auto f_ev = [&](T& A,\
-    \ int v) -> T { return A; };\n  auto f_ve = [&](T A, const auto& e) -> T {\n \
-    \   int k = tree.subtree_size(e.frm);\n    return A + hash_base[k];\n  };\n\n\
-    \  auto dp = tree_dp<decltype(tree), T>(tree, f_ee, f_ev, f_ve, unit);\n  auto\
-    \ key = dp;\n  UNIQUE(key);\n  vc<int> ANS(N);\n  FOR(i, N) ANS[i] = LB(key, dp[i]);\n\
-    \  return ANS;\n}\n"
+    \ TREE>\nvc<ll> classify_subtree(TREE& tree) {\n  static vc<mint> hash_base;\n\
+    \  auto get = [&](int k) -> mint {\n    while (len(hash_base) <= k) hash_base.eb(RNG(mint::get_mod()));\n\
+    \    return hash_base[k];\n  };\n  int N = tree.G.N;\n  using T = pair<int, mint>;\n\
+    \  T unit = {0, mint(1)};\n\n  auto f_ee = [&](T A, T B) -> T { return {max(A.fi,\
+    \ B.fi), A.se * B.se}; };\n  auto f_ev = [&](T A, int v) -> T { return {A.fi +\
+    \ 1, A.se}; };\n  auto f_ve = [&](T A, const auto& e) -> T {\n    return {A.fi,\
+    \ A.se + hash_base(A.fi)};\n  };\n\n  auto dp = tree_dp<decltype(tree), T>(tree,\
+    \ f_ee, f_ev, f_ve, unit);\n  vc<ll> res(N);\n  FOR(v, N) res[v] = dp[v].se;\n\
+    \  return res;\n}\n"
   dependsOn:
   - mod/modint61.hpp
   - graph/base.hpp
@@ -192,7 +193,7 @@ data:
   isVerificationFile: false
   path: graph/classify_subtree.hpp
   requiredBy: []
-  timestamp: '2022-08-25 09:50:56+09:00'
+  timestamp: '2022-08-25 10:03:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/classify_tree.test.cpp
