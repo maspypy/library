@@ -5,8 +5,6 @@
 #include "poly/convolution_leq.hpp"
 #include "other/random.hpp"
 
-RandomNumberGenerator RNG;
-
 using mint = modint998;
 
 vc<mint> gen(int n) {
