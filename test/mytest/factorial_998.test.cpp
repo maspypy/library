@@ -9,7 +9,6 @@
 using mint = modint998;
 
 void test() {
-  RandomNumberGenerator RNG;
   FOR(10) {
     int x = RNG(0, mint::get_mod());
     // int x = t;
