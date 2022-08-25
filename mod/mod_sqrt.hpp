@@ -8,7 +8,6 @@ mint mod_sqrt(mint a) {
   if (a == 0) return 0;
   int k = (p - 1) / 2;
   if (a.pow(k) != 1) return 0;
-  RandomNumberGenerator RNG;
   auto find = [&]() -> pair<mint, mint> {
     while (1) {
       mint b = RNG(2, p);
