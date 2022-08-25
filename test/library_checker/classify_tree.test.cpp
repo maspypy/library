@@ -12,6 +12,9 @@ void solve() {
   TREE<decltype(G)> tree(G);
 
   auto ANS = classify_subtree(tree);
+  vi key = ANS;
+  UNIQUE(key);
+  for (auto&& x: ANS) x = LB(key, x);
   print(MAX(ANS) + 1);
   print(ANS);
 }

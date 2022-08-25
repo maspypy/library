@@ -5,26 +5,24 @@
 #include "graph/tree_dp.hpp"
 
 template <typename TREE>
-vc<int> classify_subtree(TREE& tree) {
+vc<ll> classify_subtree(TREE& tree) {
+  static vc<mint> hash_base;
+  auto get = [&](int k) -> mint {
+    while (len(hash_base) <= k) hash_base.eb(RNG(mint::get_mod()));
+    return hash_base[k];
+  };
   int N = tree.G.N;
-  RandomNumberGenerator RNG;
-  using mint = modint61;
-  using T = mint;
-  T unit = mint(1);
-  vc<mint> hash_base(N + 1);
-  FOR(i, N + 1) hash_base[i] = RNG(mint::get_mod());
+  using T = pair<int, mint>;
+  T unit = {0, mint(1)};
 
-  auto f_ee = [&](T& A, T B) -> T { return A * B; };
-  auto f_ev = [&](T& A, int v) -> T { return A; };
+  auto f_ee = [&](T A, T B) -> T { return {max(A.fi, B.fi), A.se * B.se}; };
+  auto f_ev = [&](T A, int v) -> T { return {A.fi + 1, A.se}; };
   auto f_ve = [&](T A, const auto& e) -> T {
-    int k = tree.subtree_size(e.frm);
-    return A + hash_base[k];
+    return {A.fi, A.se + hash_base(A.fi)};
   };
 
   auto dp = tree_dp<decltype(tree), T>(tree, f_ee, f_ev, f_ve, unit);
-  auto key = dp;
-  UNIQUE(key);
-  vc<int> ANS(N);
-  FOR(i, N) ANS[i] = LB(key, dp[i]);
-  return ANS;
+  vc<ll> res(N);
+  FOR(v, N) res[v] = dp[v].se;
+  return res;
 }
