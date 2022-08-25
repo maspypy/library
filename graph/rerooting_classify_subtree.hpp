@@ -6,22 +6,19 @@
 
 template <typename TREE>
 struct Rerooting_classify_subtree {
+  using mint = modint61;
   TREE& tree;
   vc<ll> dp, dp_1, dp_2;
 
   Rerooting_classify_subtree(TREE& tree) : tree(tree) {
     int N = tree.G.N;
-    RandomNumberGenerator RNG;
-    using mint = modint61;
     using T = pair<int, mint>;
     T unit = {0, mint(1)};
-    vc<mint> hash_base(N + 1);
-    FOR(i, N + 1) hash_base[i] = RNG(mint::get_mod());
 
-    auto f_ee = [&](T A, T B) -> T { return {A.fi + B.fi, A.se * B.se}; };
+    auto f_ee = [&](T A, T B) -> T { return {max(A.fi, B.fi), A.se * B.se}; };
     auto f_ev = [&](T A, int v) -> T { return {A.fi + 1, A.se}; };
     auto f_ve = [&](T A, const auto& e) -> T {
-      return {A.fi, A.se + hash_base[A.fi]};
+      return {A.fi, A.se + hash_base(A.fi)};
     };
 
     Rerooting_dp<decltype(tree), T> DP(tree, f_ee, f_ev, f_ve, unit);
@@ -40,5 +37,11 @@ struct Rerooting_classify_subtree {
     if (!tree.in_subtree(root, v)) { return dp_1[v]; }
     int w = tree.jump(v, root);
     return dp_2[w];
+  }
+
+  static mint hash_base(int k) {
+    static vc<mint> dat;
+    while (len(dat) <= k) dat.eb(RNG(mint::get_mod()));
+    return dat[k];
   }
 };
