@@ -8,7 +8,6 @@
 
 void solve() {
   LL(N);
-  RandomNumberGenerator RNG;
   int root = RNG(0, N);
   Graph<int, 0> G(N);
 
