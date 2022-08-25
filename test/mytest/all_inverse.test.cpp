@@ -10,7 +10,6 @@ void test() {
   using mint = modint998;
   vc<int> ns = {1, 2, 3, 4, 5, 100000};
 
-  RandomNumberGenerator RNG;
   for (auto&& N: ns) {
     vc<mint> X(N);
     FOR(i, N) { X[i] = RNG(1, mint::get_mod()); }
