@@ -14,7 +14,7 @@ data:
   - icon: ':warning:'
     path: graph/classify_subtree_rerooting.hpp
     title: graph/classify_subtree_rerooting.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/rerooting_classify_subtree.hpp
     title: graph/rerooting_classify_subtree.hpp
   - icon: ':heavy_check_mark:'
@@ -40,12 +40,12 @@ data:
     path: test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
     title: test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/classify_tree.test.cpp
-    title: test/library_checker/classify_tree.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/classify_tree.test.cpp
+    title: test/library_checker/graph/classify_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
     title: test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -111,9 +111,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_modular_subset_sum.test.cpp
     title: test/yukicoder/4_modular_subset_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/random.hpp\"\n\nll RNG(ll a, ll b) {\n  static mt19937\
@@ -138,7 +138,7 @@ data:
   - alg/monoid_rollinghash.hpp
   - poly/fps_sqrt.hpp
   timestamp: '2022-08-25 09:50:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/4_modular_subset_sum.test.cpp
   - test/mytest/minplus_convex.test.cpp
@@ -156,9 +156,9 @@ data:
   - test/mytest/binom.test.cpp
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
-  - test/library_checker/classify_tree.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/library_checker/graph/classify_tree.test.cpp
   - test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp

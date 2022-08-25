@@ -10,11 +10,11 @@ data:
     title: pds/rollbackweighteduf.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/add_remove_query.test.cpp
-    title: test/library_checker/add_remove_query.test.cpp
+    path: test/library_checker/datastructure/add_remove_query.test.cpp
+    title: test/library_checker/datastructure/add_remove_query.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
-    title: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
+    path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
+    title: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -47,8 +47,8 @@ data:
   timestamp: '2022-08-18 20:34:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/add_remove_query.test.cpp
-  - test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
+  - test/library_checker/datastructure/add_remove_query.test.cpp
+  - test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
 documentation_of: pds/rollbackarray.hpp
 layout: document
 redirect_from:

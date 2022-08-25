@@ -184,12 +184,6 @@ data:
     path: test/atcoder/agc058d.test.cpp
     title: test/atcoder/agc058d.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/add_remove_query.test.cpp
-    title: test/library_checker/add_remove_query.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/classify_tree.test.cpp
-    title: test/library_checker/classify_tree.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/bitwise_and_convolution.test.cpp
     title: test/library_checker/convolution/bitwise_and_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -229,11 +223,17 @@ data:
     path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/add_remove_query.test.cpp
+    title: test/library_checker/datastructure/add_remove_query.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array.test.cpp
     title: test/library_checker/datastructure/associative_array.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
     title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
+    title: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
@@ -352,9 +352,6 @@ data:
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
-    title: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/sort_points_by_argument.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument.test.cpp
   - icon: ':heavy_check_mark:'
@@ -376,6 +373,9 @@ data:
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/classify_tree.test.cpp
+    title: test/library_checker/graph/classify_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/cycle_detection.test.cpp
     title: test/library_checker/graph/cycle_detection.test.cpp
   - icon: ':heavy_check_mark:'
@@ -390,7 +390,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/min_cost_b-flow.test.cpp
     title: test/library_checker/graph/min_cost_b-flow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
     title: test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -405,9 +405,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/longest_increasing_subsequence.test.cpp
-    title: test/library_checker/longest_increasing_subsequence.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/binomial_coefficient.test.cpp
     title: test/library_checker/math/binomial_coefficient.test.cpp
@@ -441,6 +438,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/lcm_convolution.test.cpp
     title: test/library_checker/math/lcm_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/longest_increasing_subsequence.test.cpp
+    title: test/library_checker/math/longest_increasing_subsequence.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/min_of_mod_of_linear.test.cpp
     title: test/library_checker/math/min_of_mod_of_linear.test.cpp
@@ -1230,7 +1230,6 @@ data:
   - test/library_checker/tree/tree_diameter.test.cpp
   - test/library_checker/tree/lca.test.cpp
   - test/library_checker/sample/many_aplusb.test.cpp
-  - test/library_checker/classify_tree.test.cpp
   - test/library_checker/polynomial/inv_of_fps.test.cpp
   - test/library_checker/polynomial/polynomial_interpolation.test.cpp
   - test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
@@ -1252,6 +1251,7 @@ data:
   - test/library_checker/polynomial/composition_of_fps.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
+  - test/library_checker/graph/classify_tree.test.cpp
   - test/library_checker/graph/enumerate_triangles.test.cpp
   - test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
@@ -1266,7 +1266,6 @@ data:
   - test/library_checker/graph/enumerate_cliques.test.cpp
   - test/library_checker/graph/maximum_independent_set.test.cpp
   - test/library_checker/graph/scc.test.cpp
-  - test/library_checker/add_remove_query.test.cpp
   - test/library_checker/math/sum_of_floor_of_linear.test.cpp
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/library_checker/math/lcm_convolution.test.cpp
@@ -1284,6 +1283,7 @@ data:
   - test/library_checker/math/min_of_mod_of_linear.test.cpp
   - test/library_checker/math/stirline_mod_p_2.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
+  - test/library_checker/math/longest_increasing_subsequence.test.cpp
   - test/library_checker/math/find_linear_recurrence.test.cpp
   - test/library_checker/math/kth_root_integer.test.cpp
   - test/library_checker/math/nim_product.test.cpp
@@ -1333,6 +1333,7 @@ data:
   - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   - test/library_checker/datastructure/associative_array_hashmap.test.cpp
   - test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
+  - test/library_checker/datastructure/add_remove_query.test.cpp
   - test/library_checker/datastructure/staticrmq_seg.test.cpp
   - test/library_checker/datastructure/queue_operate_all_composite.test.cpp
   - test/library_checker/datastructure/sort_segtree_1.test.cpp
@@ -1341,6 +1342,7 @@ data:
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
   - test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
+  - test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
@@ -1357,7 +1359,6 @@ data:
   - test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - test/library_checker/datastructure/range_affine_point_add.test.cpp
-  - test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
   - test/library_checker/matrix/charactereistic_poly.test.cpp
@@ -1365,7 +1366,6 @@ data:
   - test/library_checker/matrix/solve_linear.test.cpp
   - test/library_checker/matrix/inverse_matrix.test.cpp
   - test/library_checker/matrix/matrix_det.test.cpp
-  - test/library_checker/longest_increasing_subsequence.test.cpp
   - test/aoj/CGL_3_B.test.cpp
   - test/aoj/CGL_7_B.test.cpp
   - test/aoj/GRL_1_B_bellmanford.test.cpp

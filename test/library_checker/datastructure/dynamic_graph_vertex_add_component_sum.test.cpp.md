@@ -26,7 +26,7 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum
     links:
     - https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum
-  bundledCode: "#line 1 \"test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp\"\
+  bundledCode: "#line 1 \"test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum\"\
     \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
     unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
@@ -242,7 +242,7 @@ data:
     \ t = (*it).se;\n    MP.erase(it);\n    if (t == time) return;\n    dat.eb(t,\
     \ time, x);\n  }\n  vc<tuple<int, int, X>> calc_monotone(int time) {\n    for\
     \ (auto&& [x, t]: MP) {\n      if (t == time) continue;\n      dat.eb(t, time,\
-    \ x);\n    }\n    return dat;\n  }\n};\n#line 7 \"test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp\"\
+    \ x);\n    }\n    return dat;\n  }\n};\n#line 7 \"test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A0, N);\n\n  using P = pair<int, int>;\n\
     \  AddRemove_Query<P, 1> X;\n  RollbackArray<ll> A(A0);\n\n  vc<int> query;\n\
     \  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(u, v);\n      if (u > v)\
@@ -305,15 +305,15 @@ data:
   - pds/rollbackarray.hpp
   - ds/addremove_query.hpp
   isVerificationFile: true
-  path: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
+  path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-08-24 18:51:54+09:00'
+  timestamp: '2022-08-25 11:23:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
+documentation_of: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
-- /verify/test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp.html
-title: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
+- /verify/test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
+- /verify/test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp.html
+title: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
 ---

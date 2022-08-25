@@ -437,7 +437,7 @@ data:
       title: geo_old/points_diameter.hpp
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/base.hpp
       title: graph/base.hpp
     - icon: ':heavy_check_mark:'
@@ -551,10 +551,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/reachability.hpp
       title: graph/reachability.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/rerooting_classify_subtree.hpp
       title: graph/rerooting_classify_subtree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/rerooting_dp.hpp
       title: graph/rerooting_dp.hpp
     - icon: ':heavy_check_mark:'
@@ -581,7 +581,7 @@ data:
     - icon: ':warning:'
       path: graph/tournament.hpp
       title: graph/tournament.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree.hpp
       title: graph/tree.hpp
     - icon: ':heavy_check_mark:'
@@ -704,7 +704,7 @@ data:
     - icon: ':question:'
       path: mod/modint.hpp
       title: mod/modint.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint61.hpp
       title: mod/modint61.hpp
     - icon: ':heavy_check_mark:'
@@ -830,7 +830,7 @@ data:
     - icon: ':warning:'
       path: other/kth_root_permutation.hpp
       title: other/kth_root_permutation.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/random.hpp
       title: other/random.hpp
     - icon: ':warning:'
@@ -1283,20 +1283,6 @@ data:
     - icon: ':x:'
       path: test/atcoder/agc058d.test.cpp
       title: test/atcoder/agc058d.test.cpp
-  - name: test/library_checker
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/library_checker/add_remove_query.test.cpp
-      title: test/library_checker/add_remove_query.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/library_checker/classify_tree.test.cpp
-      title: test/library_checker/classify_tree.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
-      title: test/library_checker/dynamic_graph_vertex_add_component_sum.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/library_checker/longest_increasing_subsequence.test.cpp
-      title: test/library_checker/longest_increasing_subsequence.test.cpp
   - name: test/library_checker/convolution
     pages:
     - icon: ':heavy_check_mark:'
@@ -1341,11 +1327,17 @@ data:
   - name: test/library_checker/datastructure
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/library_checker/datastructure/add_remove_query.test.cpp
+      title: test/library_checker/datastructure/add_remove_query.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/associative_array.test.cpp
       title: test/library_checker/datastructure/associative_array.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
       title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
+      title: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
       title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
@@ -1492,6 +1484,9 @@ data:
       path: test/library_checker/graph/chromatic_number.test.cpp
       title: test/library_checker/graph/chromatic_number.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library_checker/graph/classify_tree.test.cpp
+      title: test/library_checker/graph/classify_tree.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/cycle_detection.test.cpp
       title: test/library_checker/graph/cycle_detection.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1509,7 +1504,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/min_cost_b-flow.test.cpp
       title: test/library_checker/graph/min_cost_b-flow.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
       title: test/library_checker/graph/rerooting_classify_subtree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1559,6 +1554,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/lcm_convolution.test.cpp
       title: test/library_checker/math/lcm_convolution.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/math/longest_increasing_subsequence.test.cpp
+      title: test/library_checker/math/longest_increasing_subsequence.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/min_of_mod_of_linear.test.cpp
       title: test/library_checker/math/min_of_mod_of_linear.test.cpp

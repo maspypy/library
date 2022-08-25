@@ -26,8 +26,8 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum
     links:
     - https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum
-  bundledCode: "#line 1 \"test/library_checker/add_remove_query.test.cpp\"\n#define\
-    \ PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum\"\
+  bundledCode: "#line 1 \"test/library_checker/datastructure/add_remove_query.test.cpp\"\
+    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum\"\
     \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
     unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
     \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
@@ -243,7 +243,7 @@ data:
     \ }\r\n\r\n  bool merge(int a, int b) {\r\n    a = (*this)[a], b = (*this)[b];\r\
     \n    if (a == b) return false;\r\n    if (dat.get(a) > dat.get(b)) swap(a, b);\r\
     \n    dat.set(a, dat.get(a) + dat.get(b));\r\n    dat.set(b, a);\r\n    return\
-    \ true;\r\n  }\r\n};\r\n#line 8 \"test/library_checker/add_remove_query.test.cpp\"\
+    \ true;\r\n  }\r\n};\r\n#line 8 \"test/library_checker/datastructure/add_remove_query.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A0, N);\n  using P = pair<int, int>;\n\
     \n  vc<int> query;\n\n  AddRemove_Query<P, true> X;\n  FOR(Q) {\n    LL(t);\n\
     \    if (t == 0) {\n      LL(a, b);\n      if (a > b) swap(a, b);\n      P e =\
@@ -310,15 +310,15 @@ data:
   - pds/rollbackarray.hpp
   - pds/rollbackunionfind.hpp
   isVerificationFile: true
-  path: test/library_checker/add_remove_query.test.cpp
+  path: test/library_checker/datastructure/add_remove_query.test.cpp
   requiredBy: []
-  timestamp: '2022-08-20 05:21:32+09:00'
+  timestamp: '2022-08-25 11:23:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library_checker/add_remove_query.test.cpp
+documentation_of: test/library_checker/datastructure/add_remove_query.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/add_remove_query.test.cpp
-- /verify/test/library_checker/add_remove_query.test.cpp.html
-title: test/library_checker/add_remove_query.test.cpp
+- /verify/test/library_checker/datastructure/add_remove_query.test.cpp
+- /verify/test/library_checker/datastructure/add_remove_query.test.cpp.html
+title: test/library_checker/datastructure/add_remove_query.test.cpp
 ---

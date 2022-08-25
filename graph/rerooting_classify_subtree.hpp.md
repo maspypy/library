@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/rerooting_dp.hpp
     title: graph/rerooting_dp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/random.hpp
     title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
     title: test/library_checker/graph/rerooting_classify_subtree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint61.hpp\"\nstruct modint61 {\r\n  static constexpr\
@@ -198,9 +198,9 @@ data:
     \ T> DP(tree, f_ee, f_ev, f_ve, unit);\n    dp.resize(N), dp_1.resize(N), dp_2.resize(N);\n\
     \    FOR(v, N) dp[v] = DP.dp[v].se.val;\n    FOR(v, N) dp_1[v] = DP.dp_1[v].se.val;\n\
     \    FOR(v, N) dp_2[v] = DP.dp_2[v].se.val;\n  }\n\n  // v \u3092\u6839\u3068\u3057\
-    \u305F\u3068\u304D\u306E full tree\n  int operator[](int v) { return dp[v]; }\n\
+    \u305F\u3068\u304D\u306E full tree\n  ll operator[](int v) { return dp[v]; }\n\
     \n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\u6728\
-    \ v\n  int get(int root, int v) {\n    if (root == v) return dp[v];\n    if (!tree.in_subtree(root,\
+    \ v\n  ll get(int root, int v) {\n    if (root == v) return dp[v];\n    if (!tree.in_subtree(root,\
     \ v)) { return dp_1[v]; }\n    int w = tree.jump(v, root);\n    return dp_2[w];\n\
     \  }\n\n  static mint hash_base(int k) {\n    static vc<mint> dat;\n    while\
     \ (len(dat) <= k) dat.eb(RNG(mint::get_mod()));\n    return dat[k];\n  }\n};\n"
@@ -216,9 +216,9 @@ data:
     \ T> DP(tree, f_ee, f_ev, f_ve, unit);\n    dp.resize(N), dp_1.resize(N), dp_2.resize(N);\n\
     \    FOR(v, N) dp[v] = DP.dp[v].se.val;\n    FOR(v, N) dp_1[v] = DP.dp_1[v].se.val;\n\
     \    FOR(v, N) dp_2[v] = DP.dp_2[v].se.val;\n  }\n\n  // v \u3092\u6839\u3068\u3057\
-    \u305F\u3068\u304D\u306E full tree\n  int operator[](int v) { return dp[v]; }\n\
+    \u305F\u3068\u304D\u306E full tree\n  ll operator[](int v) { return dp[v]; }\n\
     \n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\u6728\
-    \ v\n  int get(int root, int v) {\n    if (root == v) return dp[v];\n    if (!tree.in_subtree(root,\
+    \ v\n  ll get(int root, int v) {\n    if (root == v) return dp[v];\n    if (!tree.in_subtree(root,\
     \ v)) { return dp_1[v]; }\n    int w = tree.jump(v, root);\n    return dp_2[w];\n\
     \  }\n\n  static mint hash_base(int k) {\n    static vc<mint> dat;\n    while\
     \ (len(dat) <= k) dat.eb(RNG(mint::get_mod()));\n    return dat[k];\n  }\n};\n"
@@ -231,8 +231,8 @@ data:
   isVerificationFile: false
   path: graph/rerooting_classify_subtree.hpp
   requiredBy: []
-  timestamp: '2022-08-25 09:50:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-08-25 11:22:02+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/graph/rerooting_classify_subtree.test.cpp
 documentation_of: graph/rerooting_classify_subtree.hpp

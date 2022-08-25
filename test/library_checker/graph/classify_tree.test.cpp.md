@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
     path: graph/classify_subtree.hpp
     title: graph/classify_subtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/tree_dp.hpp
     title: graph/tree_dp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/random.hpp
     title: other/random.hpp
   _extendedRequiredBy: []
@@ -35,8 +35,8 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification
     links:
     - https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification
-  bundledCode: "#line 1 \"test/library_checker/classify_tree.test.cpp\"\n#define PROBLEM\
-    \ \\\n  \"https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification\"\
+  bundledCode: "#line 1 \"test/library_checker/graph/classify_tree.test.cpp\"\n#define\
+    \ PROBLEM \\\n  \"https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification\"\
     \n\n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC\
     \ optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
     \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
@@ -356,8 +356,8 @@ data:
     \ 1, A.se}; };\n  auto f_ve = [&](T A, const auto& e) -> T { return {A.fi, A.se\
     \ + get(A.fi)}; };\n\n  auto dp = tree_dp<decltype(tree), T>(tree, f_ee, f_ev,\
     \ f_ve, unit);\n  vc<ll> res(N);\n  FOR(v, N) res[v] = dp[v].se.val;\n  return\
-    \ res;\n}\n#line 7 \"test/library_checker/classify_tree.test.cpp\"\n\nvoid solve()\
-    \ {\n  LL(N);\n  Graph<int, 0> G(N);\n  G.read_parent(0);\n  TREE<decltype(G)>\
+    \ res;\n}\n#line 7 \"test/library_checker/graph/classify_tree.test.cpp\"\n\nvoid\
+    \ solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n  G.read_parent(0);\n  TREE<decltype(G)>\
     \ tree(G);\n\n  auto ANS = classify_subtree(tree);\n  vi key = ANS;\n  UNIQUE(key);\n\
     \  for (auto&& x: ANS) x = LB(key, x);\n  print(MAX(ANS) + 1);\n  print(ANS);\n\
     }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
@@ -381,15 +381,15 @@ data:
   - other/random.hpp
   - graph/tree_dp.hpp
   isVerificationFile: true
-  path: test/library_checker/classify_tree.test.cpp
+  path: test/library_checker/graph/classify_tree.test.cpp
   requiredBy: []
-  timestamp: '2022-08-25 10:48:35+09:00'
+  timestamp: '2022-08-25 11:23:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library_checker/classify_tree.test.cpp
+documentation_of: test/library_checker/graph/classify_tree.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/classify_tree.test.cpp
-- /verify/test/library_checker/classify_tree.test.cpp.html
-title: test/library_checker/classify_tree.test.cpp
+- /verify/test/library_checker/graph/classify_tree.test.cpp
+- /verify/test/library_checker/graph/classify_tree.test.cpp.html
+title: test/library_checker/graph/classify_tree.test.cpp
 ---

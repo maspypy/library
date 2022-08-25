@@ -7,8 +7,8 @@ data:
     path: test/aoj/DPL_1_D_lis.test.cpp
     title: test/aoj/DPL_1_D_lis.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/longest_increasing_subsequence.test.cpp
-    title: test/library_checker/longest_increasing_subsequence.test.cpp
+    path: test/library_checker/math/longest_increasing_subsequence.test.cpp
+    title: test/library_checker/math/longest_increasing_subsequence.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -40,7 +40,7 @@ data:
   timestamp: '2022-04-22 16:53:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/longest_increasing_subsequence.test.cpp
+  - test/library_checker/math/longest_increasing_subsequence.test.cpp
   - test/aoj/DPL_1_D_lis.test.cpp
 documentation_of: dp/longest_increasing_subsequence.hpp
 layout: document

@@ -20,7 +20,7 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/longest_increasing_subsequence
     links:
     - https://judge.yosupo.jp/problem/longest_increasing_subsequence
-  bundledCode: "#line 1 \"test/library_checker/longest_increasing_subsequence.test.cpp\"\
+  bundledCode: "#line 1 \"test/library_checker/math/longest_increasing_subsequence.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/longest_increasing_subsequence\"\
     \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
     unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
@@ -195,7 +195,7 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 4 \"test/library_checker/longest_increasing_subsequence.test.cpp\"\
+    \ { yes(!t); }\r\n#line 4 \"test/library_checker/math/longest_increasing_subsequence.test.cpp\"\
     \n\n#line 1 \"dp/longest_increasing_subsequence.hpp\"\n/*\ndp[i] := \u7B2C i \u9805\
     \u3067\u7D42\u308F\u308B lis \u9577\u306E\u6700\u5927\u5024\n\u3068\u306A\u308B\
     \ dp \u30C6\u30FC\u30D6\u30EB\u3092\u8FD4\u3059\u3002O(Nlog N) \u6642\u9593\u3002\
@@ -205,7 +205,7 @@ data:
     \ {\n  ll N = A.size();\n\n  T INF = numeric_limits<T>::max();\n  vc<T> dp(N,\
     \ INF);\n  vc<int> lis_rank(N);\n  FOR(i, N) {\n    int j = (strong ? LB(dp, A[i])\
     \ : UB(dp, A[i]));\n    dp[j] = A[i];\n    lis_rank[i] = j + 1;\n  }\n  return\
-    \ lis_rank;\n}\n#line 6 \"test/library_checker/longest_increasing_subsequence.test.cpp\"\
+    \ lis_rank;\n}\n#line 6 \"test/library_checker/math/longest_increasing_subsequence.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n  auto dp = longest_increasing_subsequence(A);\n\
     \  ll n = MAX(dp);\n  ll x = MAX(A) + 1;\n  vc<int> I;\n  FOR_R(i, N) {\n    if\
     \ (dp[i] == n && A[i] < x) {\n      I.eb(i);\n      --n;\n      x = A[i];\n  \
@@ -225,15 +225,15 @@ data:
   - other/io.hpp
   - dp/longest_increasing_subsequence.hpp
   isVerificationFile: true
-  path: test/library_checker/longest_increasing_subsequence.test.cpp
+  path: test/library_checker/math/longest_increasing_subsequence.test.cpp
   requiredBy: []
-  timestamp: '2022-08-20 05:21:32+09:00'
+  timestamp: '2022-08-25 11:23:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library_checker/longest_increasing_subsequence.test.cpp
+documentation_of: test/library_checker/math/longest_increasing_subsequence.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/longest_increasing_subsequence.test.cpp
-- /verify/test/library_checker/longest_increasing_subsequence.test.cpp.html
-title: test/library_checker/longest_increasing_subsequence.test.cpp
+- /verify/test/library_checker/math/longest_increasing_subsequence.test.cpp
+- /verify/test/library_checker/math/longest_increasing_subsequence.test.cpp.html
+title: test/library_checker/math/longest_increasing_subsequence.test.cpp
 ---
