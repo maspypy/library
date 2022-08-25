@@ -389,23 +389,22 @@ data:
     \  }\n\n  static mint hash_base(int k) {\n    static vc<mint> dat;\n    while\
     \ (len(dat) <= k) dat.eb(RNG(mint::get_mod()));\n    return dat[k];\n  }\n};\n\
     #line 8 \"test/library_checker/graph/rerooting_classify_subtree.test.cpp\"\n\n\
-    void solve() {\n  LL(N);\n  RandomNumberGenerator RNG;\n  int root = RNG(0, N);\n\
-    \  Graph<int, 0> G(N);\n\n  G.read_parent(0);\n  TREE<decltype(G)> tree(G, root);\n\
-    \n  Rerooting_classify_subtree<decltype(tree)> X(tree);\n  vc<ll> dp(N);\n  FOR(v,\
-    \ N) dp[v] = X.get(0, v);\n  auto key = dp;\n  UNIQUE(key);\n  for (auto&& x:\
-    \ dp) x = LB(key, x);\n  print(MAX(dp) + 1);\n  print(dp);\n}\n\nsigned main()\
-    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification\"\
-    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/rerooting_classify_subtree.hpp\"\
-    \n#include \"other/random.hpp\"\n\nvoid solve() {\n  LL(N);\n  RandomNumberGenerator\
-    \ RNG;\n  int root = RNG(0, N);\n  Graph<int, 0> G(N);\n\n  G.read_parent(0);\n\
-    \  TREE<decltype(G)> tree(G, root);\n\n  Rerooting_classify_subtree<decltype(tree)>\
+    void solve() {\n  LL(N);\n  int root = RNG(0, N);\n  Graph<int, 0> G(N);\n\n \
+    \ G.read_parent(0);\n  TREE<decltype(G)> tree(G, root);\n\n  Rerooting_classify_subtree<decltype(tree)>\
     \ X(tree);\n  vc<ll> dp(N);\n  FOR(v, N) dp[v] = X.get(0, v);\n  auto key = dp;\n\
     \  UNIQUE(key);\n  for (auto&& x: dp) x = LB(key, x);\n  print(MAX(dp) + 1);\n\
     \  print(dp);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
     \  return 0;\n}\n"
+  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification\"\
+    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/rerooting_classify_subtree.hpp\"\
+    \n#include \"other/random.hpp\"\n\nvoid solve() {\n  LL(N);\n  int root = RNG(0,\
+    \ N);\n  Graph<int, 0> G(N);\n\n  G.read_parent(0);\n  TREE<decltype(G)> tree(G,\
+    \ root);\n\n  Rerooting_classify_subtree<decltype(tree)> X(tree);\n  vc<ll> dp(N);\n\
+    \  FOR(v, N) dp[v] = X.get(0, v);\n  auto key = dp;\n  UNIQUE(key);\n  for (auto&&\
+    \ x: dp) x = LB(key, x);\n  print(MAX(dp) + 1);\n  print(dp);\n}\n\nsigned main()\
+    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -418,7 +417,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
   requiredBy: []
-  timestamp: '2022-08-25 09:50:56+09:00'
+  timestamp: '2022-08-25 10:29:52+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/rerooting_classify_subtree.test.cpp
