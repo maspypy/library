@@ -103,7 +103,6 @@ struct Modular_Subset_Sum {
     for(auto&& x : vals) assert(0 <= x && x < mod);
     par.assign(mod, -1);
 
-    RandomNumberGenerator RNG;
     const ll base = RNG(0, (1LL << 61) - 1);
 
     int k = 1;
