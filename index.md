@@ -645,10 +645,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/solve_linear.hpp
       title: linalg/solve_linear.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: linalg/spmat_det.hpp
       title: linalg/spmat_det.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: linalg/spmat_min_poly.hpp
       title: linalg/spmat_min_poly.hpp
     - icon: ':warning:'
@@ -983,7 +983,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/eulerian_number.hpp
       title: seq/eulerian_number.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: seq/find_linear_rec.hpp
       title: seq/find_linear_rec.hpp
     - icon: ':heavy_check_mark:'
@@ -1627,7 +1627,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/matrix/solve_linear.test.cpp
       title: test/library_checker/matrix/solve_linear.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/matrix/sparse_matrix_det.test.cpp
       title: test/library_checker/matrix/sparse_matrix_det.test.cpp
   - name: test/library_checker/polynomial

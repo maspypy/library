@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/spmat_min_poly.hpp
     title: linalg/spmat_min_poly.hpp
   - icon: ':question:'
     path: other/random.hpp
     title: other/random.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/sparse_matrix_det.test.cpp
     title: test/library_checker/matrix/sparse_matrix_det.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"seq/find_linear_rec.hpp\"\n\r\ntemplate <typename mint>\r\
@@ -39,17 +39,16 @@ data:
     \ w(N);\r\n    for (auto&& [i, j, x]: dat) w[j] += x * v[i];\r\n    swap(v, w);\r\
     \n  }\r\n  return find_linear_rec(S);\r\n}\r\n#line 2 \"linalg/spmat_det.hpp\"\
     \n\r\ntemplate <typename T>\r\nT spmat_det(int N, vc<tuple<int, int, T>> dat)\
-    \ {\r\n  RandomNumberGenerator RNG;\r\n  vc<T> c(N);\r\n  FOR(i, N) c[i] = RNG(1,\
-    \ T::get_mod());\r\n  T r = 1;\r\n  FOR(i, N) r *= c[i];\r\n  for (auto&& [i,\
-    \ j, x]: dat) x *= c[i];\r\n  auto f = spmat_min_poly(N, dat);\r\n  f.resize(N\
-    \ + 1);\r\n  T det = f.back();\r\n  if (N & 1) det *= -1;\r\n  det /= r;\r\n \
-    \ return det;\r\n}\r\n"
-  code: "#include \"linalg/spmat_min_poly.hpp\"\r\n\r\ntemplate <typename T>\r\nT\
-    \ spmat_det(int N, vc<tuple<int, int, T>> dat) {\r\n  RandomNumberGenerator RNG;\r\
-    \n  vc<T> c(N);\r\n  FOR(i, N) c[i] = RNG(1, T::get_mod());\r\n  T r = 1;\r\n\
-    \  FOR(i, N) r *= c[i];\r\n  for (auto&& [i, j, x]: dat) x *= c[i];\r\n  auto\
+    \ {\r\n  vc<T> c(N);\r\n  FOR(i, N) c[i] = RNG(1, T::get_mod());\r\n  T r = 1;\r\
+    \n  FOR(i, N) r *= c[i];\r\n  for (auto&& [i, j, x]: dat) x *= c[i];\r\n  auto\
     \ f = spmat_min_poly(N, dat);\r\n  f.resize(N + 1);\r\n  T det = f.back();\r\n\
     \  if (N & 1) det *= -1;\r\n  det /= r;\r\n  return det;\r\n}\r\n"
+  code: "#include \"linalg/spmat_min_poly.hpp\"\r\n\r\ntemplate <typename T>\r\nT\
+    \ spmat_det(int N, vc<tuple<int, int, T>> dat) {\r\n  vc<T> c(N);\r\n  FOR(i,\
+    \ N) c[i] = RNG(1, T::get_mod());\r\n  T r = 1;\r\n  FOR(i, N) r *= c[i];\r\n\
+    \  for (auto&& [i, j, x]: dat) x *= c[i];\r\n  auto f = spmat_min_poly(N, dat);\r\
+    \n  f.resize(N + 1);\r\n  T det = f.back();\r\n  if (N & 1) det *= -1;\r\n  det\
+    \ /= r;\r\n  return det;\r\n}\r\n"
   dependsOn:
   - linalg/spmat_min_poly.hpp
   - seq/find_linear_rec.hpp
@@ -57,8 +56,8 @@ data:
   isVerificationFile: false
   path: linalg/spmat_det.hpp
   requiredBy: []
-  timestamp: '2022-08-25 10:06:16+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-08-25 10:31:22+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
 documentation_of: linalg/spmat_det.hpp
