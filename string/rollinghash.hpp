@@ -27,7 +27,6 @@ struct RollingHash {
   }
 
   static inline uint64_t generate_base() {
-    RandomNumberGenerator RNG;
     return RNG(mod);
   }
 
