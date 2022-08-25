@@ -8,7 +8,6 @@
 const int INF = numeric_limits<int>::max();
 
 vc<int> gen(int L, int N, int R) {
-  RandomNumberGenerator RNG;
   vc<int> A(N);
   FOR(i, N) A[i] = RNG(-100, 100);
   sort(all(A));
