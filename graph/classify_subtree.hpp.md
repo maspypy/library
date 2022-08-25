@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp.hpp
     title: graph/tree_dp.hpp
   - icon: ':question:'
@@ -18,12 +18,12 @@ data:
     title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/classify_tree.test.cpp
     title: test/library_checker/classify_tree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint61.hpp\"\nstruct modint61 {\r\n  static constexpr\
@@ -169,10 +169,10 @@ data:
     \    return hash_base[k];\n  };\n  int N = tree.G.N;\n  using T = pair<int, mint>;\n\
     \  T unit = {0, mint(1)};\n\n  auto f_ee = [&](T A, T B) -> T { return {max(A.fi,\
     \ B.fi), A.se * B.se}; };\n  auto f_ev = [&](T A, int v) -> T { return {A.fi +\
-    \ 1, A.se}; };\n  auto f_ve = [&](T A, const auto& e) -> T {\n    return {A.fi,\
-    \ A.se + hash_base(A.fi)};\n  };\n\n  auto dp = tree_dp<decltype(tree), T>(tree,\
-    \ f_ee, f_ev, f_ve, unit);\n  vc<ll> res(N);\n  FOR(v, N) res[v] = dp[v].se;\n\
-    \  return res;\n}\n"
+    \ 1, A.se}; };\n  auto f_ve = [&](T A, const auto& e) -> T { return {A.fi, A.se\
+    \ + get(A.fi)}; };\n\n  auto dp = tree_dp<decltype(tree), T>(tree, f_ee, f_ev,\
+    \ f_ve, unit);\n  vc<ll> res(N);\n  FOR(v, N) res[v] = dp[v].se.val;\n  return\
+    \ res;\n}\n"
   code: "#include \"mod/modint61.hpp\"\n#include \"graph/base.hpp\"\n#include \"graph/tree.hpp\"\
     \n#include \"other/random.hpp\"\n#include \"graph/tree_dp.hpp\"\n\ntemplate <typename\
     \ TREE>\nvc<ll> classify_subtree(TREE& tree) {\n  using mint = modint61;\n  static\
@@ -181,9 +181,9 @@ data:
     \  int N = tree.G.N;\n  using T = pair<int, mint>;\n  T unit = {0, mint(1)};\n\
     \n  auto f_ee = [&](T A, T B) -> T { return {max(A.fi, B.fi), A.se * B.se}; };\n\
     \  auto f_ev = [&](T A, int v) -> T { return {A.fi + 1, A.se}; };\n  auto f_ve\
-    \ = [&](T A, const auto& e) -> T {\n    return {A.fi, A.se + hash_base(A.fi)};\n\
-    \  };\n\n  auto dp = tree_dp<decltype(tree), T>(tree, f_ee, f_ev, f_ve, unit);\n\
-    \  vc<ll> res(N);\n  FOR(v, N) res[v] = dp[v].se;\n  return res;\n}\n"
+    \ = [&](T A, const auto& e) -> T { return {A.fi, A.se + get(A.fi)}; };\n\n  auto\
+    \ dp = tree_dp<decltype(tree), T>(tree, f_ee, f_ev, f_ve, unit);\n  vc<ll> res(N);\n\
+    \  FOR(v, N) res[v] = dp[v].se.val;\n  return res;\n}\n"
   dependsOn:
   - mod/modint61.hpp
   - graph/base.hpp
@@ -193,8 +193,8 @@ data:
   isVerificationFile: false
   path: graph/classify_subtree.hpp
   requiredBy: []
-  timestamp: '2022-08-25 10:39:39+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-08-25 10:48:35+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/classify_tree.test.cpp
 documentation_of: graph/classify_subtree.hpp

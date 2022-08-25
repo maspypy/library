@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/classify_subtree.hpp
     title: graph/classify_subtree.hpp
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp.hpp
     title: graph/tree_dp.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification
@@ -353,11 +353,11 @@ data:
     \    return hash_base[k];\n  };\n  int N = tree.G.N;\n  using T = pair<int, mint>;\n\
     \  T unit = {0, mint(1)};\n\n  auto f_ee = [&](T A, T B) -> T { return {max(A.fi,\
     \ B.fi), A.se * B.se}; };\n  auto f_ev = [&](T A, int v) -> T { return {A.fi +\
-    \ 1, A.se}; };\n  auto f_ve = [&](T A, const auto& e) -> T {\n    return {A.fi,\
-    \ A.se + hash_base(A.fi)};\n  };\n\n  auto dp = tree_dp<decltype(tree), T>(tree,\
-    \ f_ee, f_ev, f_ve, unit);\n  vc<ll> res(N);\n  FOR(v, N) res[v] = dp[v].se;\n\
-    \  return res;\n}\n#line 7 \"test/library_checker/classify_tree.test.cpp\"\n\n\
-    void solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n  G.read_parent(0);\n  TREE<decltype(G)>\
+    \ 1, A.se}; };\n  auto f_ve = [&](T A, const auto& e) -> T { return {A.fi, A.se\
+    \ + get(A.fi)}; };\n\n  auto dp = tree_dp<decltype(tree), T>(tree, f_ee, f_ev,\
+    \ f_ve, unit);\n  vc<ll> res(N);\n  FOR(v, N) res[v] = dp[v].se.val;\n  return\
+    \ res;\n}\n#line 7 \"test/library_checker/classify_tree.test.cpp\"\n\nvoid solve()\
+    \ {\n  LL(N);\n  Graph<int, 0> G(N);\n  G.read_parent(0);\n  TREE<decltype(G)>\
     \ tree(G);\n\n  auto ANS = classify_subtree(tree);\n  vi key = ANS;\n  UNIQUE(key);\n\
     \  for (auto&& x: ANS) x = LB(key, x);\n  print(MAX(ANS) + 1);\n  print(ANS);\n\
     }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
@@ -383,8 +383,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/classify_tree.test.cpp
   requiredBy: []
-  timestamp: '2022-08-25 10:39:39+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-25 10:48:35+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/classify_tree.test.cpp
 layout: document
