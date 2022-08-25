@@ -18,12 +18,10 @@ vc<ll> classify_subtree(TREE& tree) {
 
   auto f_ee = [&](T A, T B) -> T { return {max(A.fi, B.fi), A.se * B.se}; };
   auto f_ev = [&](T A, int v) -> T { return {A.fi + 1, A.se}; };
-  auto f_ve = [&](T A, const auto& e) -> T {
-    return {A.fi, A.se + hash_base(A.fi)};
-  };
+  auto f_ve = [&](T A, const auto& e) -> T { return {A.fi, A.se + get(A.fi)}; };
 
   auto dp = tree_dp<decltype(tree), T>(tree, f_ee, f_ev, f_ve, unit);
   vc<ll> res(N);
-  FOR(v, N) res[v] = dp[v].se;
+  FOR(v, N) res[v] = dp[v].se.val;
   return res;
 }
