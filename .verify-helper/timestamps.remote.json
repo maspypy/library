@@ -161,6 +161,7 @@
 "test/library_checker/matrix/matrix_det.test.cpp": "2022-08-20 05:21:32 +0900",
 "test/library_checker/matrix/matrix_product.test.cpp": "2022-08-20 05:21:32 +0900",
 "test/library_checker/matrix/solve_linear.test.cpp": "2022-08-20 05:21:32 +0900",
+"test/library_checker/matrix/sparse_matrix_det.test.cpp": "2022-08-25 10:31:22 +0900",
 "test/library_checker/polynomial/composition_of_fps.test.cpp": "2022-08-20 05:21:32 +0900",
 "test/library_checker/polynomial/exp_of_fps.test.cpp": "2022-08-20 05:21:32 +0900",
 "test/library_checker/polynomial/exp_of_fps_amint.test.cpp": "2022-08-20 05:21:32 +0900",
