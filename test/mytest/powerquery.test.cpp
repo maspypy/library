@@ -10,7 +10,6 @@
 using mint = modint998;
 
 void test() {
-  RandomNumberGenerator RNG;
   mint base = RNG(0, mint::get_mod());
   PowerQuery<Group_Mul<mint>> X(base);
   FOR(1000) {
