@@ -1,6 +1,6 @@
 #include "ds/unionfind.hpp"
 #include "graph/base.hpp"
-#include "graph/hld.hpp"
+#include "graph/tree.hpp"
 #include "graph/treemonoid.hpp"
 #include "graph/dualtreemonoid.hpp"
 #include "alg/monoid_min.hpp"
@@ -45,11 +45,11 @@ tuple<T, vc<bool>, Graph<T>, vc<T>> minimum_spanning_tree_cycle_data(
   int N = G.N;
   int M = len(G.edges);
   auto [mst_cost, in_mst, MST] = minimum_spanning_tree(G);
-  HLD hld(MST);
+  TREE tree(MST);
   vc<T> dat;
   FOR(i, M) if (in_mst[i]) dat.eb(G.edges[i].cost);
-  TreeMonoid<decltype(hld), Monoid_Max<T>, 1> TM1(hld, dat);
-  DualTreeMonoid<decltype(hld), Monoid_Min<T>, 1> TM2(hld);
+  TreeMonoid<decltype(tree), Monoid_Max<T>, 1> TM1(tree, dat);
+  DualTreeMonoid<decltype(tree), Monoid_Min<T>, 1> TM2(tree);
   FOR(i, M) {
     if (!in_mst[i]) {
       auto& e = G.edges[i];
