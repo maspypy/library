@@ -29,7 +29,6 @@ pair<vc<int>, vc<int>> naive(int a, int b, int mod) {
 }
 
 void test() {
-  RandomNumberGenerator RNG;
   FOR(mod, 1, 1000) {
     FOR(10) {
       int a = RNG(0, mod);
