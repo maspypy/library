@@ -2,13 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/dualtreemonoid.hpp
     title: graph/dualtreemonoid.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/minimum_spanning_tree.hpp
+    title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_D_dualsegtree.test.cpp
     title: test/aoj/DSL_2_D_dualsegtree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_2_A_mst.test.cpp
+    title: test/aoj/GRL_2_A_mst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_point_add.test.cpp
     title: test/library_checker/datastructure/range_affine_point_add.test.cpp
@@ -63,6 +69,7 @@ data:
   isVerificationFile: false
   path: ds/dualsegtree.hpp
   requiredBy:
+  - graph/minimum_spanning_tree.hpp
   - graph/dualtreemonoid.hpp
   timestamp: '2022-06-19 03:08:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -70,6 +77,7 @@ data:
   - test/yukicoder/913_cht_monotone.test.cpp
   - test/library_checker/datastructure/range_affine_point_add.test.cpp
   - test/aoj/DSL_2_D_dualsegtree.test.cpp
+  - test/aoj/GRL_2_A_mst.test.cpp
 documentation_of: ds/dualsegtree.hpp
 layout: document
 redirect_from:

@@ -21,6 +21,9 @@ data:
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/minimum_spanning_tree.hpp
+    title: graph/minimum_spanning_tree.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/online_unionfind.hpp
     title: graph/online_unionfind.hpp
   - icon: ':warning:'
@@ -36,6 +39,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2995_dsu.test.cpp
     title: test/aoj/2995_dsu.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_2_A_mst.test.cpp
+    title: test/aoj/GRL_2_A_mst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/unionfind.test.cpp
     title: test/library_checker/datastructure/unionfind.test.cpp
@@ -85,6 +91,7 @@ data:
   path: ds/unionfind.hpp
   requiredBy:
   - geo_old/manhattan_mst.hpp
+  - graph/minimum_spanning_tree.hpp
   - graph/online_unionfind.hpp
   - graph/tree_of_unionfind.hpp
   - graph/dag_path_cover.hpp
@@ -103,6 +110,7 @@ data:
   - test/aoj/2995_dsu.test.cpp
   - test/aoj/2251_dag_path_cover.test.cpp
   - test/aoj/2251_maxantichain.test.cpp
+  - test/aoj/GRL_2_A_mst.test.cpp
 documentation_of: ds/unionfind.hpp
 layout: document
 redirect_from:

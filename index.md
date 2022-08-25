@@ -500,7 +500,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/dsu_on_tree.hpp
       title: graph/dsu_on_tree.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/dualtreemonoid.hpp
       title: graph/dualtreemonoid.hpp
     - icon: ':heavy_check_mark:'
@@ -536,7 +536,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/minimum_hamiltonian_cycle.hpp
       title: graph/minimum_hamiltonian_cycle.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/minimum_spanning_tree.hpp
       title: graph/minimum_spanning_tree.hpp
     - icon: ':warning:'
@@ -1221,7 +1221,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_1_C_warshallfloyd.test.cpp
       title: test/aoj/GRL_1_C_warshallfloyd.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_2_A_mst.test.cpp
       title: test/aoj/GRL_2_A_mst.test.cpp
     - icon: ':heavy_check_mark:'

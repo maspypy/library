@@ -5,12 +5,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/rectangleunion.hpp
     title: ds/rectangleunion.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/dualtreemonoid.hpp
     title: graph/dualtreemonoid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/minimum_spanning_tree.hpp
+    title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_F_min_set_lazy.test.cpp
@@ -24,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_4_A_rectangle_union.test.cpp
     title: test/aoj/DSL_4_A_rectangle_union.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_2_A_mst.test.cpp
+    title: test/aoj/GRL_2_A_mst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
     title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
@@ -184,6 +190,7 @@ data:
   isVerificationFile: false
   path: ds/lazysegtree.hpp
   requiredBy:
+  - graph/minimum_spanning_tree.hpp
   - graph/dualtreemonoid.hpp
   - graph/lazytreemonoid.hpp
   - ds/rectangleunion.hpp
@@ -203,6 +210,7 @@ data:
   - test/aoj/DSL_2_F_min_set_lazy.test.cpp
   - test/aoj/DSL_2_H_min_add_lazy.test.cpp
   - test/aoj/DSL_2_I_cntsum_set_lazy.test.cpp
+  - test/aoj/GRL_2_A_mst.test.cpp
 documentation_of: ds/lazysegtree.hpp
 layout: document
 redirect_from:

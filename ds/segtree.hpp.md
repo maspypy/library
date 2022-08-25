@@ -15,12 +15,18 @@ data:
     path: geo_old/manhattan_nns.hpp
     title: geo_old/manhattan_nns.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/minimum_spanning_tree.hpp
+    title: graph/minimum_spanning_tree.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/treegroup.hpp
     title: graph/treegroup.hpp
   - icon: ':heavy_check_mark:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_2_A_mst.test.cpp
+    title: test/aoj/GRL_2_A_mst.test.cpp
   - icon: ':x:'
     path: test/atcoder/abc174f.test.cpp
     title: test/atcoder/abc174f.test.cpp
@@ -166,6 +172,7 @@ data:
   path: ds/segtree.hpp
   requiredBy:
   - geo_old/manhattan_nns.hpp
+  - graph/minimum_spanning_tree.hpp
   - graph/treemonoid.hpp
   - graph/treegroup.hpp
   - ds/sortable_segtree.hpp
@@ -187,6 +194,7 @@ data:
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - test/aoj/GRL_2_A_mst.test.cpp
   - test/atcoder/abc174f.test.cpp
 documentation_of: ds/segtree.hpp
 layout: document

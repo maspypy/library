@@ -56,7 +56,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/dualtreemonoid.hpp
     title: graph/dualtreemonoid.hpp
   - icon: ':heavy_check_mark:'
@@ -86,6 +86,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/minimum_spanning_tree.hpp
+    title: graph/minimum_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/range_to_range_graph.hpp
     title: graph/range_to_range_graph.hpp
@@ -180,6 +183,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_C_warshallfloyd.test.cpp
     title: test/aoj/GRL_1_C_warshallfloyd.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_2_A_mst.test.cpp
+    title: test/aoj/GRL_2_A_mst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_B.test.cpp
     title: test/aoj/GRL_3_B.test.cpp
@@ -408,6 +414,7 @@ data:
   - graph/two_edge_component.hpp
   - graph/biconnected_component.hpp
   - graph/reverse_graph.hpp
+  - graph/minimum_spanning_tree.hpp
   - graph/classify_subtree_rerooting.hpp
   - graph/mincostcycle.hpp
   - graph/rerooting_classify_subtree.hpp
@@ -506,6 +513,7 @@ data:
   - test/aoj/GRO_3_A_articulation.test.cpp
   - test/aoj/2251_dag_path_cover.test.cpp
   - test/aoj/2251_maxantichain.test.cpp
+  - test/aoj/GRL_2_A_mst.test.cpp
   - test/aoj/2677.test.cpp
 documentation_of: graph/base.hpp
 layout: document

@@ -130,6 +130,9 @@ data:
     path: test/aoj/GRL_1_C_warshallfloyd.test.cpp
     title: test/aoj/GRL_1_C_warshallfloyd.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_2_A_mst.test.cpp
+    title: test/aoj/GRL_2_A_mst.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_B.test.cpp
     title: test/aoj/GRL_3_B.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1418,6 +1421,7 @@ data:
   - test/aoj/2251_maxantichain.test.cpp
   - test/aoj/NTL_1_D_eulerphi.test.cpp
   - test/aoj/DSL_2_I_cntsum_set_lazy.test.cpp
+  - test/aoj/GRL_2_A_mst.test.cpp
   - test/aoj/DPL_1_H_kanpsack01.test.cpp
   - test/aoj/2677.test.cpp
   - test/aoj/ITP1_11_C.test.cpp

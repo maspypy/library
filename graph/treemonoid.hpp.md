@@ -13,8 +13,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/minimum_spanning_tree.hpp
+    title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_2_A_mst.test.cpp
+    title: test/aoj/GRL_2_A_mst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
@@ -304,7 +310,8 @@ data:
   - alg/monoid_reverse.hpp
   isVerificationFile: false
   path: graph/treemonoid.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/minimum_spanning_tree.hpp
   timestamp: '2022-08-25 01:58:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -312,6 +319,7 @@ data:
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - test/aoj/GRL_2_A_mst.test.cpp
 documentation_of: graph/treemonoid.hpp
 layout: document
 redirect_from:

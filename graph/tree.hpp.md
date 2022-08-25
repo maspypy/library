@@ -14,12 +14,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/dualtreemonoid.hpp
     title: graph/dualtreemonoid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/minimum_spanning_tree.hpp
+    title: graph/minimum_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/rerooting_classify_subtree.hpp
     title: graph/rerooting_classify_subtree.hpp
@@ -51,6 +54,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2995_dsu.test.cpp
     title: test/aoj/2995_dsu.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_2_A_mst.test.cpp
+    title: test/aoj/GRL_2_A_mst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_B.test.cpp
     title: test/aoj/GRL_3_B.test.cpp
@@ -293,6 +299,7 @@ data:
   requiredBy:
   - graph/classify_subtree.hpp
   - graph/two_edge_component.hpp
+  - graph/minimum_spanning_tree.hpp
   - graph/classify_subtree_rerooting.hpp
   - graph/rerooting_classify_subtree.hpp
   - graph/dualtreemonoid.hpp
@@ -330,6 +337,7 @@ data:
   - test/aoj/GRL_3_B.test.cpp
   - test/aoj/2995_dsu.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
+  - test/aoj/GRL_2_A_mst.test.cpp
   - test/aoj/2677.test.cpp
 documentation_of: graph/tree.hpp
 layout: document
