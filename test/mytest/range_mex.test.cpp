@@ -6,7 +6,6 @@
 #include "ds/range_mex_query.hpp"
 
 pair<vc<int>, vc<pi>> gen(int N, int LIM, int Q) {
-  RandomNumberGenerator RNG;
   vc<int> A(N);
   FOR(i, N) { A[i] = RNG(0, LIM); }
   vc<pi> query;
