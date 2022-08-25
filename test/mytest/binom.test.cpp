@@ -8,7 +8,6 @@
 using mint = modint998;
 
 void test() {
-  RandomNumberGenerator RNG;
   FOR(100000) {
     int n = RNG(0, 1000);
     int k = RNG(0, 1000);
