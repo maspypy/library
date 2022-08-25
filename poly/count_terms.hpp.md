@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':heavy_check_mark:'
@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/sharp_p_subset_sum.hpp
     title: poly/sharp_p_subset_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/partition_number.hpp
     title: seq/partition_number.hpp
   - icon: ':heavy_check_mark:'
@@ -108,7 +108,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
   - icon: ':heavy_check_mark:'
@@ -117,9 +117,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1321_surj.test.cpp
     title: test/yukicoder/1321_surj.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
@@ -147,7 +147,7 @@ data:
   - seq/stirling_number_1.hpp
   - seq/stirling_number_2.hpp
   timestamp: '2022-05-02 13:06:30+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1145_sum_of_powers.test.cpp
   - test/yukicoder/1321_surj.test.cpp

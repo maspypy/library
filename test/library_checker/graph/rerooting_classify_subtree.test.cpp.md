@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: graph/rerooting_classify_subtree.hpp
     title: graph/rerooting_classify_subtree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/rerooting_dp.hpp
     title: graph/rerooting_dp.hpp
   - icon: ':question:'

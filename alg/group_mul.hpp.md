@@ -5,16 +5,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/lazy_add_mul.hpp
     title: alg/lazy_add_mul.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/powerquery.hpp
     title: ds/powerquery.hpp
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   - icon: ':heavy_check_mark:'
@@ -33,10 +33,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/powerquery.test.cpp
     title: test/mytest/powerquery.test.cpp
   - icon: ':heavy_check_mark:'
@@ -51,9 +51,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/899_bfsnumbering.test.cpp
     title: test/yukicoder/899_bfsnumbering.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group_mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Group_Mul\
@@ -78,7 +78,7 @@ data:
   - seq/kth_term_of_p_recursive.hpp
   - seq/interpolate_poly_exp_sum.hpp
   timestamp: '2022-08-19 06:32:19+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1339_discrete_log.test.cpp
   - test/yukicoder/2005.test.cpp

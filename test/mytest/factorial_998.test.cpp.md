@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_mul.hpp
     title: alg/group_mul.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/swag.hpp
     title: ds/swag.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/factorial998.hpp
     title: mod/factorial998.hpp
   - icon: ':question:'
@@ -37,20 +37,20 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -623,7 +623,7 @@ data:
   path: test/mytest/factorial_998.test.cpp
   requiredBy: []
   timestamp: '2022-08-25 01:58:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/factorial_998.test.cpp
 layout: document

@@ -11,19 +11,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bellmanford.hpp
     title: graph/bellmanford.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/bfs01.hpp
     title: graph/bfs01.hpp
   - icon: ':heavy_check_mark:'
     path: graph/bfsnumbering.hpp
     title: graph/bfsnumbering.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/biconnected_component.hpp
     title: graph/biconnected_component.hpp
   - icon: ':warning:'
     path: graph/bipartite_coloring.hpp
     title: graph/bipartite_coloring.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/bracket_graph.hpp
     title: graph/bracket_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -71,7 +71,7 @@ data:
   - icon: ':warning:'
     path: graph/functional.hpp
     title: graph/functional.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
   - icon: ':heavy_check_mark:'
@@ -95,7 +95,7 @@ data:
   - icon: ':x:'
     path: graph/rerooting_classify_subtree.hpp
     title: graph/rerooting_classify_subtree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/rerooting_dp.hpp
     title: graph/rerooting_dp.hpp
   - icon: ':warning:'
@@ -131,16 +131,16 @@ data:
   - icon: ':warning:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/treeabelgroup.hpp
     title: graph/treeabelgroup.hpp
   - icon: ':heavy_check_mark:'
     path: graph/treegroup.hpp
     title: graph/treegroup.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
   - icon: ':heavy_check_mark:'
@@ -255,10 +255,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/lca.test.cpp
     title: test/library_checker/tree/lca.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/lca_directed.test.cpp
     title: test/library_checker/tree/lca_directed.test.cpp
   - icon: ':heavy_check_mark:'
@@ -276,7 +276,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1170_range_to_range.test.cpp
     title: test/yukicoder/1170_range_to_range.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
   - icon: ':heavy_check_mark:'
@@ -285,25 +285,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1320_mincostcycle.test.cpp
     title: test/yukicoder/1320_mincostcycle.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1326_bct.test.cpp
     title: test/yukicoder/1326_bct.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1344_warshall_floyd.test.cpp
     title: test/yukicoder/1344_warshall_floyd.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1418_rerooting.test.cpp
     title: test/yukicoder/1418_rerooting.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
     title: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1641_tree_abel.test.cpp
     title: test/yukicoder/1641_tree_abel.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1718_rerooting.test.cpp
     title: test/yukicoder/1718_rerooting.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1778_bracket_graph.test.cpp
     title: test/yukicoder/1778_bracket_graph.test.cpp
   - icon: ':heavy_check_mark:'
@@ -312,10 +312,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1868_range_to_range.test.cpp
     title: test/yukicoder/1868_range_to_range.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/235_lazytreemonoid.test.cpp
     title: test/yukicoder/235_lazytreemonoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/529_two_edge.test.cpp
     title: test/yukicoder/529_two_edge.test.cpp
   - icon: ':heavy_check_mark:'
