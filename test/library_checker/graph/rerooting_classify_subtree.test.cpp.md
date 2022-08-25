@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -337,64 +337,63 @@ data:
     \ {\r\n    print(\"V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\",\
     \ RID);\r\n    print(\"parent\", parent);\r\n    print(\"depth\", depth);\r\n\
     \    print(\"head\", head);\r\n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"\
-    root\", root);\r\n  }\r\n};\r\n#line 2 \"other/random.hpp\"\n\nstruct RandomNumberGenerator\
-    \ {\n  mt19937 mt;\n\n  RandomNumberGenerator()\n      : mt(chrono::steady_clock::now().time_since_epoch().count())\
-    \ {}\n\n  ll operator()(ll a, ll b) { // [a, b)\n    uniform_int_distribution<ll>\
-    \ dist(a, b - 1);\n    return dist(mt);\n  }\n\n  ll operator()(ll b) { // [0,\
-    \ b)\n    return (*this)(0, b);\n  }\n};\n#line 1 \"graph/rerooting_dp.hpp\"\n\
-    \r\n#line 4 \"graph/rerooting_dp.hpp\"\n\r\ntemplate <typename TREE, typename\
-    \ Data>\r\nstruct Rerooting_dp {\r\n  TREE& tree;\r\n  vc<Data> dp_1; // \u8FBA\
-    \ pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\u5206\u6728 v\r\n  vc<Data> dp_2; //\
-    \ \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\u5206\u6728 p\r\n  vc<Data> dp;\
-    \   // \u3059\u3079\u3066\u306E v \u306B\u5BFE\u3057\u3066\u3001v \u3092\u6839\
-    \u3068\u3059\u308B\u90E8\u5206\u6728\r\n\r\n  template <typename F1, typename\
-    \ F2, typename F3>\r\n  Rerooting_dp(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const\
-    \ Data unit)\r\n      : tree(tree) {\r\n    assert(!tree.G.is_directed());\r\n\
-    \    build(f_ee, f_ev, f_ve, unit);\r\n  }\r\n\r\n  // v \u3092\u6839\u3068\u3057\
-    \u305F\u3068\u304D\u306E full tree\r\n  Data operator[](int v) { return dp[v];\
-    \ }\r\n\r\n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\
-    \u6728 v\r\n  Data get(int root, int v) {\r\n    if (root == v) return dp[v];\r\
-    \n    if (!tree.in_subtree(root, v)) { return dp_1[v]; }\r\n    int w = tree.jump(v,\
-    \ root);\r\n    return dp_2[w];\r\n  }\r\n\r\n  template <typename F1, typename\
-    \ F2, typename F3>\r\n  void build(F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)\
-    \ {\r\n    int N = tree.G.N;\r\n    dp_1.assign(N, unit);\r\n    dp_2.assign(N,\
-    \ unit);\r\n    dp.assign(N, unit);\r\n    auto& V = tree.V;\r\n    auto& par\
-    \ = tree.parent;\r\n\r\n    FOR_R(i, N) {\r\n      int v = V[i];\r\n      auto\
-    \ ch = tree.collect_child(v);\r\n      int n = len(ch);\r\n      vc<Data> Xl(n\
-    \ + 1, unit), Xr(n + 1, unit);\r\n      FOR(i, n) Xl[i + 1] = f_ee(Xl[i], dp_2[ch[i]]);\r\
-    \n      FOR_R(i, n) Xr[i] = f_ee(dp_2[ch[i]], Xr[i + 1]);\r\n      FOR(i, n) dp_2[ch[i]]\
-    \ = f_ee(Xl[i], Xr[i + 1]);\r\n      dp[v] = Xr[0];\r\n      dp_1[v] = f_ev(dp[v],\
-    \ v);\r\n      for (auto&& e: tree.G[v]) {\r\n        if (e.to == par[v]) { dp_2[v]\
-    \ = f_ve(dp_1[v], e); }\r\n      }\r\n    }\r\n    {\r\n      int v = V[0];\r\n\
-    \      dp[v] = f_ev(dp[v], v);\r\n      for (auto&& e: tree.G[v]) dp_2[e.to] =\
-    \ f_ev(dp_2[e.to], v);\r\n    }\r\n    FOR(i, N) {\r\n      int v = V[i];\r\n\
-    \      for (auto&& e: tree.G[v]) {\r\n        if (e.to == par[v]) continue;\r\n\
-    \        Data x = f_ve(dp_2[e.to], e);\r\n        for (auto&& f: tree.G[e.to])\
-    \ {\r\n          if (f.to == par[e.to]) continue;\r\n          dp_2[f.to] = f_ee(dp_2[f.to],\
-    \ x);\r\n          dp_2[f.to] = f_ev(dp_2[f.to], e.to);\r\n        }\r\n     \
-    \   x = f_ee(dp[e.to], x);\r\n        dp[e.to] = f_ev(x, e.to);\r\n      }\r\n\
-    \    }\r\n  }\r\n};\n#line 6 \"graph/rerooting_classify_subtree.hpp\"\n\ntemplate\
-    \ <typename TREE>\nstruct Rerooting_classify_subtree {\n  TREE& tree;\n  vc<ll>\
-    \ dp, dp_1, dp_2;\n\n  Rerooting_classify_subtree(TREE& tree) : tree(tree) {\n\
-    \    int N = tree.G.N;\n    RandomNumberGenerator RNG;\n    using mint = modint61;\n\
-    \    using T = pair<int, mint>;\n    T unit = {0, mint(1)};\n    vc<mint> hash_base(N\
-    \ + 1);\n    FOR(i, N + 1) hash_base[i] = RNG(mint::get_mod());\n\n    auto f_ee\
-    \ = [&](T A, T B) -> T { return {A.fi + B.fi, A.se * B.se}; };\n    auto f_ev\
-    \ = [&](T A, int v) -> T { return {A.fi + 1, A.se}; };\n    auto f_ve = [&](T\
-    \ A, const auto& e) -> T {\n      return {A.fi, A.se + hash_base[A.fi]};\n   \
-    \ };\n\n    Rerooting_dp<decltype(tree), T> DP(tree, f_ee, f_ev, f_ve, unit);\n\
-    \    dp.resize(N), dp_1.resize(N), dp_2.resize(N);\n    FOR(v, N) dp[v] = DP.dp[v].se.val;\n\
-    \    FOR(v, N) dp_1[v] = DP.dp_1[v].se.val;\n    FOR(v, N) dp_2[v] = DP.dp_2[v].se.val;\n\
-    \  }\n\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E full tree\n  int\
-    \ operator[](int v) { return dp[v]; }\n\n  // root \u3092\u6839\u3068\u3057\u305F\
-    \u3068\u304D\u306E\u90E8\u5206\u6728 v\n  int get(int root, int v) {\n    if (root\
-    \ == v) return dp[v];\n    if (!tree.in_subtree(root, v)) { return dp_1[v]; }\n\
-    \    int w = tree.jump(v, root);\n    return dp_2[w];\n  }\n};\n#line 8 \"test/library_checker/graph/rerooting_classify_subtree.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  RandomNumberGenerator RNG;\n  int root = RNG(0,\
-    \ N);\n  Graph<int, 0> G(N);\n\n  G.read_parent(0);\n  TREE<decltype(G)> tree(G,\
-    \ root);\n\n  Rerooting_classify_subtree<decltype(tree)> X(tree);\n  vc<ll> dp(N);\n\
-    \  FOR(v, N) dp[v] = X.get(0, v);\n  auto key = dp;\n  UNIQUE(key);\n  for (auto&&\
-    \ x: dp) x = LB(key, x);\n  print(MAX(dp) + 1);\n  print(dp);\n}\n\nsigned main()\
+    root\", root);\r\n  }\r\n};\r\n#line 2 \"other/random.hpp\"\n\nll RNG(ll a, ll\
+    \ b) {\n  static mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \  uniform_int_distribution<ll> dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll\
+    \ a) { return RNG(0, a); }\n#line 1 \"graph/rerooting_dp.hpp\"\n\r\n#line 4 \"\
+    graph/rerooting_dp.hpp\"\n\r\ntemplate <typename TREE, typename Data>\r\nstruct\
+    \ Rerooting_dp {\r\n  TREE& tree;\r\n  vc<Data> dp_1; // \u8FBA pv \u306B\u5BFE\
+    \u3057\u3066\u3001\u90E8\u5206\u6728 v\r\n  vc<Data> dp_2; // \u8FBA pv \u306B\
+    \u5BFE\u3057\u3066\u3001\u90E8\u5206\u6728 p\r\n  vc<Data> dp;   // \u3059\u3079\
+    \u3066\u306E v \u306B\u5BFE\u3057\u3066\u3001v \u3092\u6839\u3068\u3059\u308B\u90E8\
+    \u5206\u6728\r\n\r\n  template <typename F1, typename F2, typename F3>\r\n  Rerooting_dp(TREE&\
+    \ tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)\r\n      : tree(tree) {\r\n\
+    \    assert(!tree.G.is_directed());\r\n    build(f_ee, f_ev, f_ve, unit);\r\n\
+    \  }\r\n\r\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E full tree\r\
+    \n  Data operator[](int v) { return dp[v]; }\r\n\r\n  // root \u3092\u6839\u3068\
+    \u3057\u305F\u3068\u304D\u306E\u90E8\u5206\u6728 v\r\n  Data get(int root, int\
+    \ v) {\r\n    if (root == v) return dp[v];\r\n    if (!tree.in_subtree(root, v))\
+    \ { return dp_1[v]; }\r\n    int w = tree.jump(v, root);\r\n    return dp_2[w];\r\
+    \n  }\r\n\r\n  template <typename F1, typename F2, typename F3>\r\n  void build(F1\
+    \ f_ee, F2 f_ev, F3 f_ve, const Data unit) {\r\n    int N = tree.G.N;\r\n    dp_1.assign(N,\
+    \ unit);\r\n    dp_2.assign(N, unit);\r\n    dp.assign(N, unit);\r\n    auto&\
+    \ V = tree.V;\r\n    auto& par = tree.parent;\r\n\r\n    FOR_R(i, N) {\r\n   \
+    \   int v = V[i];\r\n      auto ch = tree.collect_child(v);\r\n      int n = len(ch);\r\
+    \n      vc<Data> Xl(n + 1, unit), Xr(n + 1, unit);\r\n      FOR(i, n) Xl[i + 1]\
+    \ = f_ee(Xl[i], dp_2[ch[i]]);\r\n      FOR_R(i, n) Xr[i] = f_ee(dp_2[ch[i]], Xr[i\
+    \ + 1]);\r\n      FOR(i, n) dp_2[ch[i]] = f_ee(Xl[i], Xr[i + 1]);\r\n      dp[v]\
+    \ = Xr[0];\r\n      dp_1[v] = f_ev(dp[v], v);\r\n      for (auto&& e: tree.G[v])\
+    \ {\r\n        if (e.to == par[v]) { dp_2[v] = f_ve(dp_1[v], e); }\r\n      }\r\
+    \n    }\r\n    {\r\n      int v = V[0];\r\n      dp[v] = f_ev(dp[v], v);\r\n \
+    \     for (auto&& e: tree.G[v]) dp_2[e.to] = f_ev(dp_2[e.to], v);\r\n    }\r\n\
+    \    FOR(i, N) {\r\n      int v = V[i];\r\n      for (auto&& e: tree.G[v]) {\r\
+    \n        if (e.to == par[v]) continue;\r\n        Data x = f_ve(dp_2[e.to], e);\r\
+    \n        for (auto&& f: tree.G[e.to]) {\r\n          if (f.to == par[e.to]) continue;\r\
+    \n          dp_2[f.to] = f_ee(dp_2[f.to], x);\r\n          dp_2[f.to] = f_ev(dp_2[f.to],\
+    \ e.to);\r\n        }\r\n        x = f_ee(dp[e.to], x);\r\n        dp[e.to] =\
+    \ f_ev(x, e.to);\r\n      }\r\n    }\r\n  }\r\n};\n#line 6 \"graph/rerooting_classify_subtree.hpp\"\
+    \n\ntemplate <typename TREE>\nstruct Rerooting_classify_subtree {\n  using mint\
+    \ = modint61;\n  TREE& tree;\n  vc<ll> dp, dp_1, dp_2;\n\n  Rerooting_classify_subtree(TREE&\
+    \ tree) : tree(tree) {\n    int N = tree.G.N;\n    using T = pair<int, mint>;\n\
+    \    T unit = {0, mint(1)};\n\n    auto f_ee = [&](T A, T B) -> T { return {max(A.fi,\
+    \ B.fi), A.se * B.se}; };\n    auto f_ev = [&](T A, int v) -> T { return {A.fi\
+    \ + 1, A.se}; };\n    auto f_ve = [&](T A, const auto& e) -> T {\n      return\
+    \ {A.fi, A.se + hash_base(A.fi)};\n    };\n\n    Rerooting_dp<decltype(tree),\
+    \ T> DP(tree, f_ee, f_ev, f_ve, unit);\n    dp.resize(N), dp_1.resize(N), dp_2.resize(N);\n\
+    \    FOR(v, N) dp[v] = DP.dp[v].se.val;\n    FOR(v, N) dp_1[v] = DP.dp_1[v].se.val;\n\
+    \    FOR(v, N) dp_2[v] = DP.dp_2[v].se.val;\n  }\n\n  // v \u3092\u6839\u3068\u3057\
+    \u305F\u3068\u304D\u306E full tree\n  int operator[](int v) { return dp[v]; }\n\
+    \n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\u6728\
+    \ v\n  int get(int root, int v) {\n    if (root == v) return dp[v];\n    if (!tree.in_subtree(root,\
+    \ v)) { return dp_1[v]; }\n    int w = tree.jump(v, root);\n    return dp_2[w];\n\
+    \  }\n\n  static mint hash_base(int k) {\n    static vc<mint> dat;\n    while\
+    \ (len(dat) <= k) dat.eb(RNG(mint::get_mod()));\n    return dat[k];\n  }\n};\n\
+    #line 8 \"test/library_checker/graph/rerooting_classify_subtree.test.cpp\"\n\n\
+    void solve() {\n  LL(N);\n  RandomNumberGenerator RNG;\n  int root = RNG(0, N);\n\
+    \  Graph<int, 0> G(N);\n\n  G.read_parent(0);\n  TREE<decltype(G)> tree(G, root);\n\
+    \n  Rerooting_classify_subtree<decltype(tree)> X(tree);\n  vc<ll> dp(N);\n  FOR(v,\
+    \ N) dp[v] = X.get(0, v);\n  auto key = dp;\n  UNIQUE(key);\n  for (auto&& x:\
+    \ dp) x = LB(key, x);\n  print(MAX(dp) + 1);\n  print(dp);\n}\n\nsigned main()\
     \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
     \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification\"\
@@ -419,7 +418,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
   requiredBy: []
-  timestamp: '2022-08-25 01:58:56+09:00'
+  timestamp: '2022-08-25 09:50:56+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/rerooting_classify_subtree.test.cpp

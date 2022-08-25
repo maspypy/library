@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
     title: test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/rollinghash_2d.hpp\"\n\nstruct RollingHash_2D {\n\
@@ -47,7 +47,7 @@ data:
   path: string/rollinghash_2d.hpp
   requiredBy: []
   timestamp: '2022-05-28 05:14:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
 documentation_of: string/rollinghash_2d.hpp

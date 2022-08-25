@@ -4,16 +4,16 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/classify_subtree.hpp
     title: graph/classify_subtree.hpp
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_dp.hpp
     title: graph/tree_dp.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification
@@ -337,27 +337,25 @@ data:
     \ {\r\n    print(\"V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\",\
     \ RID);\r\n    print(\"parent\", parent);\r\n    print(\"depth\", depth);\r\n\
     \    print(\"head\", head);\r\n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"\
-    root\", root);\r\n  }\r\n};\r\n#line 2 \"other/random.hpp\"\n\nstruct RandomNumberGenerator\
-    \ {\n  mt19937 mt;\n\n  RandomNumberGenerator()\n      : mt(chrono::steady_clock::now().time_since_epoch().count())\
-    \ {}\n\n  ll operator()(ll a, ll b) { // [a, b)\n    uniform_int_distribution<ll>\
-    \ dist(a, b - 1);\n    return dist(mt);\n  }\n\n  ll operator()(ll b) { // [0,\
-    \ b)\n    return (*this)(0, b);\n  }\n};\n#line 1 \"graph/tree_dp.hpp\"\n\r\n\
-    #line 4 \"graph/tree_dp.hpp\"\n\r\ntemplate <typename TREE, typename Data, typename\
-    \ F1, typename F2, typename F3>\r\nvc<Data> tree_dp(TREE& tree, F1 f_ee, F2 f_ev,\
-    \ F3 f_ve, const Data unit) {\r\n  assert(!tree.G.is_directed());\r\n\r\n  int\
-    \ N = tree.G.N;\r\n  vc<Data> dp(N, unit);\r\n  FOR_R(i, 1, N) {\r\n    int v\
-    \ = tree.V[i];\r\n    dp[v] = f_ev(dp[v], v);\r\n    for (auto&& e: tree.G[v])\r\
-    \n      if (e.to == tree.parent[v]) { dp[e.to] = f_ee(dp[e.to], f_ve(dp[v], e));\
-    \ }\r\n  }\r\n  return dp;\r\n};\n#line 6 \"graph/classify_subtree.hpp\"\n\ntemplate\
-    \ <typename TREE>\nvc<int> classify_subtree(TREE& tree) {\n  int N = tree.G.N;\n\
-    \  RandomNumberGenerator RNG;\n  using mint = modint61;\n  using T = mint;\n \
-    \ T unit = mint(1);\n  vc<mint> hash_base(N + 1);\n  FOR(i, N + 1) hash_base[i]\
-    \ = RNG(mint::get_mod());\n\n  auto f_ee = [&](T& A, T B) -> T { return A * B;\
-    \ };\n  auto f_ev = [&](T& A, int v) -> T { return A; };\n  auto f_ve = [&](T\
-    \ A, const auto& e) -> T {\n    int k = tree.subtree_size(e.frm);\n    return\
-    \ A + hash_base[k];\n  };\n\n  auto dp = tree_dp<decltype(tree), T>(tree, f_ee,\
-    \ f_ev, f_ve, unit);\n  auto key = dp;\n  UNIQUE(key);\n  vc<int> ANS(N);\n  FOR(i,\
-    \ N) ANS[i] = LB(key, dp[i]);\n  return ANS;\n}\n#line 7 \"test/library_checker/classify_tree.test.cpp\"\
+    root\", root);\r\n  }\r\n};\r\n#line 2 \"other/random.hpp\"\n\nll RNG(ll a, ll\
+    \ b) {\n  static mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \  uniform_int_distribution<ll> dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll\
+    \ a) { return RNG(0, a); }\n#line 1 \"graph/tree_dp.hpp\"\n\r\n#line 4 \"graph/tree_dp.hpp\"\
+    \n\r\ntemplate <typename TREE, typename Data, typename F1, typename F2, typename\
+    \ F3>\r\nvc<Data> tree_dp(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)\
+    \ {\r\n  assert(!tree.G.is_directed());\r\n\r\n  int N = tree.G.N;\r\n  vc<Data>\
+    \ dp(N, unit);\r\n  FOR_R(i, 1, N) {\r\n    int v = tree.V[i];\r\n    dp[v] =\
+    \ f_ev(dp[v], v);\r\n    for (auto&& e: tree.G[v])\r\n      if (e.to == tree.parent[v])\
+    \ { dp[e.to] = f_ee(dp[e.to], f_ve(dp[v], e)); }\r\n  }\r\n  return dp;\r\n};\n\
+    #line 6 \"graph/classify_subtree.hpp\"\n\ntemplate <typename TREE>\nvc<int> classify_subtree(TREE&\
+    \ tree) {\n  int N = tree.G.N;\n  RandomNumberGenerator RNG;\n  using mint = modint61;\n\
+    \  using T = mint;\n  T unit = mint(1);\n  vc<mint> hash_base(N + 1);\n  FOR(i,\
+    \ N + 1) hash_base[i] = RNG(mint::get_mod());\n\n  auto f_ee = [&](T& A, T B)\
+    \ -> T { return A * B; };\n  auto f_ev = [&](T& A, int v) -> T { return A; };\n\
+    \  auto f_ve = [&](T A, const auto& e) -> T {\n    int k = tree.subtree_size(e.frm);\n\
+    \    return A + hash_base[k];\n  };\n\n  auto dp = tree_dp<decltype(tree), T>(tree,\
+    \ f_ee, f_ev, f_ve, unit);\n  auto key = dp;\n  UNIQUE(key);\n  vc<int> ANS(N);\n\
+    \  FOR(i, N) ANS[i] = LB(key, dp[i]);\n  return ANS;\n}\n#line 7 \"test/library_checker/classify_tree.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n  G.read_parent(0);\n  TREE<decltype(G)>\
     \ tree(G);\n\n  auto ANS = classify_subtree(tree);\n  print(MAX(ANS) + 1);\n \
     \ print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
@@ -382,8 +380,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/classify_tree.test.cpp
   requiredBy: []
-  timestamp: '2022-08-25 01:59:06+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-25 09:50:56+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/classify_tree.test.cpp
 layout: document

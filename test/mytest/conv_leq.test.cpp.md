@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/convolution_leq.hpp
     title: poly/convolution_leq.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -491,16 +491,14 @@ data:
     \n                            {g.begin() + M, g.begin() + min<int>(R, len(g))});\r\
     \n    FOR(i, len(p)) h[L + M + i] += p[i];\r\n  }\r\n  if (!strict) { FOR(i, min(len(f),\
     \ len(g))) h[i + i] += f[i] * g[i]; }\r\n  return h;\r\n}\n#line 2 \"other/random.hpp\"\
-    \n\nstruct RandomNumberGenerator {\n  mt19937 mt;\n\n  RandomNumberGenerator()\n\
-    \      : mt(chrono::steady_clock::now().time_since_epoch().count()) {}\n\n  ll\
-    \ operator()(ll a, ll b) { // [a, b)\n    uniform_int_distribution<ll> dist(a,\
-    \ b - 1);\n    return dist(mt);\n  }\n\n  ll operator()(ll b) { // [0, b)\n  \
-    \  return (*this)(0, b);\n  }\n};\n#line 7 \"test/mytest/conv_leq.test.cpp\"\n\
-    \nRandomNumberGenerator RNG;\n\nusing mint = modint998;\n\nvc<mint> gen(int n)\
-    \ {\n  vc<mint> f(n);\n  FOR(i, n) f[i] = RNG(0, mint::get_mod());\n  return f;\n\
-    }\n\nvoid test_0() {\n  FOR(100) {\n    ll n = RNG(1, 10);\n    ll m = RNG(1,\
-    \ 10);\n    auto f = gen(n), g = gen(m);\n    vc<mint> h(len(f) + len(g) - 1);\n\
-    \    FOR(i, len(f)) FOR(j, len(g)) if (i <= j) h[i + j] += f[i] * g[j];\n    assert(convolution_leq(f,\
+    \n\nll RNG(ll a, ll b) {\n  static mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \  uniform_int_distribution<ll> dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll\
+    \ a) { return RNG(0, a); }\n#line 7 \"test/mytest/conv_leq.test.cpp\"\n\nRandomNumberGenerator\
+    \ RNG;\n\nusing mint = modint998;\n\nvc<mint> gen(int n) {\n  vc<mint> f(n);\n\
+    \  FOR(i, n) f[i] = RNG(0, mint::get_mod());\n  return f;\n}\n\nvoid test_0()\
+    \ {\n  FOR(100) {\n    ll n = RNG(1, 10);\n    ll m = RNG(1, 10);\n    auto f\
+    \ = gen(n), g = gen(m);\n    vc<mint> h(len(f) + len(g) - 1);\n    FOR(i, len(f))\
+    \ FOR(j, len(g)) if (i <= j) h[i + j] += f[i] * g[j];\n    assert(convolution_leq(f,\
     \ g, 0) == h);\n  }\n}\n\nvoid test_1() {\n  FOR(100) {\n    ll n = RNG(1, 10);\n\
     \    ll m = RNG(1, 10);\n    auto f = gen(n), g = gen(m);\n    vc<mint> h(len(f)\
     \ + len(g) - 1);\n    FOR(i, len(f)) FOR(j, len(g)) if (i < j) h[i + j] += f[i]\
@@ -542,8 +540,8 @@ data:
   isVerificationFile: true
   path: test/mytest/conv_leq.test.cpp
   requiredBy: []
-  timestamp: '2022-08-25 01:58:56+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-25 09:50:56+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/conv_leq.test.cpp
 layout: document

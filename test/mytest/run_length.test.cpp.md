@@ -197,28 +197,26 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"other/random.hpp\"\n\nstruct RandomNumberGenerator\
-    \ {\n  mt19937 mt;\n\n  RandomNumberGenerator()\n      : mt(chrono::steady_clock::now().time_since_epoch().count())\
-    \ {}\n\n  ll operator()(ll a, ll b) { // [a, b)\n    uniform_int_distribution<ll>\
-    \ dist(a, b - 1);\n    return dist(mt);\n  }\n\n  ll operator()(ll b) { // [0,\
-    \ b)\n    return (*this)(0, b);\n  }\n};\n#line 1 \"string/run_length.hpp\"\n\
-    template <typename STRING = string, typename CHAR = char>\nvc<pair<CHAR, int>>\
-    \ run_length(STRING& S) {\n  vc<pair<CHAR, int>> res;\n  for (auto&& x: S) {\n\
-    \    if (res.empty() || res.back().fi != x) { res.emplace_back(x, 0); }\n    res.back().se++;\n\
-    \  }\n  return res;\n}\n#line 6 \"test/mytest/run_length.test.cpp\"\n\nvoid test()\
-    \ {\n  {\n    string A = \"aabbcaaab\";\n    auto res = run_length(A);\n    assert(len(res)\
-    \ == 5);\n    assert(res[0].fi == 'a' && res[0].se == 2);\n    assert(res[1].fi\
-    \ == 'b' && res[1].se == 2);\n    assert(res[2].fi == 'c' && res[2].se == 1);\n\
-    \    assert(res[3].fi == 'a' && res[3].se == 3);\n    assert(res[4].fi == 'b'\
-    \ && res[4].se == 1);\n  }\n  {\n    string A = \"aaaaaa\";\n    auto res = run_length(A);\n\
-    \    assert(len(res) == 1);\n    assert(res[0].fi == 'a' && res[0].se == 6);\n\
-    \  }\n  {\n    string A = \"\";\n    auto res = run_length(A);\n    assert(len(res)\
-    \ == 0);\n  }\n  {\n    vc<int> A = {1, 1, 2, 2, 3, 1, 1, 1, 2};\n    auto res\
-    \ = run_length(A);\n    assert(len(res) == 5);\n    assert(res[0].fi == 1 && res[0].se\
-    \ == 2);\n    assert(res[1].fi == 2 && res[1].se == 2);\n    assert(res[2].fi\
-    \ == 3 && res[2].se == 1);\n    assert(res[3].fi == 1 && res[3].se == 3);\n  \
-    \  assert(res[4].fi == 2 && res[4].se == 1);\n  }\n}\n\nvoid solve() {\n  LL(a,\
-    \ b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \ { yes(!t); }\r\n#line 2 \"other/random.hpp\"\n\nll RNG(ll a, ll b) {\n  static\
+    \ mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\n  uniform_int_distribution<ll>\
+    \ dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll a) { return RNG(0, a); }\n\
+    #line 1 \"string/run_length.hpp\"\ntemplate <typename STRING = string, typename\
+    \ CHAR = char>\nvc<pair<CHAR, int>> run_length(STRING& S) {\n  vc<pair<CHAR, int>>\
+    \ res;\n  for (auto&& x: S) {\n    if (res.empty() || res.back().fi != x) { res.emplace_back(x,\
+    \ 0); }\n    res.back().se++;\n  }\n  return res;\n}\n#line 6 \"test/mytest/run_length.test.cpp\"\
+    \n\nvoid test() {\n  {\n    string A = \"aabbcaaab\";\n    auto res = run_length(A);\n\
+    \    assert(len(res) == 5);\n    assert(res[0].fi == 'a' && res[0].se == 2);\n\
+    \    assert(res[1].fi == 'b' && res[1].se == 2);\n    assert(res[2].fi == 'c'\
+    \ && res[2].se == 1);\n    assert(res[3].fi == 'a' && res[3].se == 3);\n    assert(res[4].fi\
+    \ == 'b' && res[4].se == 1);\n  }\n  {\n    string A = \"aaaaaa\";\n    auto res\
+    \ = run_length(A);\n    assert(len(res) == 1);\n    assert(res[0].fi == 'a' &&\
+    \ res[0].se == 6);\n  }\n  {\n    string A = \"\";\n    auto res = run_length(A);\n\
+    \    assert(len(res) == 0);\n  }\n  {\n    vc<int> A = {1, 1, 2, 2, 3, 1, 1, 1,\
+    \ 2};\n    auto res = run_length(A);\n    assert(len(res) == 5);\n    assert(res[0].fi\
+    \ == 1 && res[0].se == 2);\n    assert(res[1].fi == 2 && res[1].se == 2);\n  \
+    \  assert(res[2].fi == 3 && res[2].se == 1);\n    assert(res[3].fi == 1 && res[3].se\
+    \ == 3);\n    assert(res[4].fi == 2 && res[4].se == 1);\n  }\n}\n\nvoid solve()\
+    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
     \n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"other/random.hpp\"\n#include \"string/run_length.hpp\"\
@@ -244,7 +242,7 @@ data:
   isVerificationFile: true
   path: test/mytest/run_length.test.cpp
   requiredBy: []
-  timestamp: '2022-08-25 01:58:56+09:00'
+  timestamp: '2022-08-25 09:50:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/run_length.test.cpp

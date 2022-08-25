@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -13,14 +13,14 @@ data:
   - icon: ':question:'
     path: other/random.hpp
     title: other/random.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/rollinghash_2d.hpp
     title: string/rollinghash_2d.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_C
@@ -202,37 +202,35 @@ data:
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
     \ { yes(!t); }\r\n#line 5 \"test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp\"\n\n\
-    #line 2 \"other/random.hpp\"\n\nstruct RandomNumberGenerator {\n  mt19937 mt;\n\
-    \n  RandomNumberGenerator()\n      : mt(chrono::steady_clock::now().time_since_epoch().count())\
-    \ {}\n\n  ll operator()(ll a, ll b) { // [a, b)\n    uniform_int_distribution<ll>\
-    \ dist(a, b - 1);\n    return dist(mt);\n  }\n\n  ll operator()(ll b) { // [0,\
-    \ b)\n    return (*this)(0, b);\n  }\n};\n#line 2 \"mod/modint61.hpp\"\nstruct\
-    \ modint61 {\r\n  static constexpr bool is_modint = true;\r\n  static constexpr\
-    \ ll mod = (1LL << 61) - 1;\r\n  ll val;\r\n  constexpr modint61(const ll x =\
-    \ 0) : val(x) {\r\n    while(val < 0) val += mod;\r\n    while(val >= mod) val\
-    \ -= mod;\r\n  }\r\n  bool operator<(const modint61 &other) const {\r\n    return\
-    \ val < other.val;\r\n  } // To use std::map\r\n  bool operator==(const modint61\
-    \ &p) const { return val == p.val; }\r\n  bool operator!=(const modint61 &p) const\
-    \ { return val != p.val; }\r\n  modint61 &operator+=(const modint61 &p) {\r\n\
-    \    if ((val += p.val) >= mod) val -= mod;\r\n    return *this;\r\n  }\r\n  modint61\
-    \ &operator-=(const modint61 &p) {\r\n    if ((val += mod - p.val) >= mod) val\
-    \ -= mod;\r\n    return *this;\r\n  }\r\n  modint61 &operator*=(const modint61\
-    \ &p) {\r\n    ll a = val, b = p.val;\r\n    const ll MASK30 = (1LL << 30) - 1;\r\
-    \n    const ll MASK31 = (1LL << 31) - 1;\r\n    const ll MASK61 = (1LL << 61)\
-    \ - 1;\r\n    ll au = a >> 31, ad = a & MASK31;\r\n    ll bu = b >> 31, bd = b\
-    \ & MASK31;\r\n    ll x = ad * bu + au * bd;\r\n    ll xu = x >> 30, xd = x &\
-    \ MASK30;\r\n    x = au * bu * 2 + xu + (xd << 31) + ad * bd;\r\n    xu = x >>\
-    \ 61, xd = x & MASK61;\r\n    x = xu + xd;\r\n    if (x >= MASK61) x -= MASK61;\r\
-    \n    val = x;\r\n    return *this;\r\n  }\r\n  modint61 operator-() const { return\
-    \ modint61(get_mod() - val); }\r\n  modint61 &operator/=(const modint61 &p) {\r\
-    \n    *this *= p.inverse();\r\n    return *this;\r\n  }\r\n  modint61 operator+(const\
-    \ modint61 &p) const { return modint61(*this) += p; }\r\n  modint61 operator-(const\
-    \ modint61 &p) const { return modint61(*this) -= p; }\r\n  modint61 operator*(const\
-    \ modint61 &p) const { return modint61(*this) *= p; }\r\n  modint61 operator/(const\
-    \ modint61 &p) const { return modint61(*this) /= p; }\r\n\r\n  modint61 inverse()\
-    \ const {\r\n    ll a = val, b = mod, u = 1, v = 0, t;\r\n    while (b > 0) {\r\
-    \n      t = a / b;\r\n      swap(a -= t * b, b), swap(u -= t * v, v);\r\n    }\r\
-    \n    return modint61(u);\r\n  }\r\n  modint61 pow(int64_t n) const {\r\n    modint61\
+    #line 2 \"other/random.hpp\"\n\nll RNG(ll a, ll b) {\n  static mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \  uniform_int_distribution<ll> dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll\
+    \ a) { return RNG(0, a); }\n#line 2 \"mod/modint61.hpp\"\nstruct modint61 {\r\n\
+    \  static constexpr bool is_modint = true;\r\n  static constexpr ll mod = (1LL\
+    \ << 61) - 1;\r\n  ll val;\r\n  constexpr modint61(const ll x = 0) : val(x) {\r\
+    \n    while(val < 0) val += mod;\r\n    while(val >= mod) val -= mod;\r\n  }\r\
+    \n  bool operator<(const modint61 &other) const {\r\n    return val < other.val;\r\
+    \n  } // To use std::map\r\n  bool operator==(const modint61 &p) const { return\
+    \ val == p.val; }\r\n  bool operator!=(const modint61 &p) const { return val !=\
+    \ p.val; }\r\n  modint61 &operator+=(const modint61 &p) {\r\n    if ((val += p.val)\
+    \ >= mod) val -= mod;\r\n    return *this;\r\n  }\r\n  modint61 &operator-=(const\
+    \ modint61 &p) {\r\n    if ((val += mod - p.val) >= mod) val -= mod;\r\n    return\
+    \ *this;\r\n  }\r\n  modint61 &operator*=(const modint61 &p) {\r\n    ll a = val,\
+    \ b = p.val;\r\n    const ll MASK30 = (1LL << 30) - 1;\r\n    const ll MASK31\
+    \ = (1LL << 31) - 1;\r\n    const ll MASK61 = (1LL << 61) - 1;\r\n    ll au =\
+    \ a >> 31, ad = a & MASK31;\r\n    ll bu = b >> 31, bd = b & MASK31;\r\n    ll\
+    \ x = ad * bu + au * bd;\r\n    ll xu = x >> 30, xd = x & MASK30;\r\n    x = au\
+    \ * bu * 2 + xu + (xd << 31) + ad * bd;\r\n    xu = x >> 61, xd = x & MASK61;\r\
+    \n    x = xu + xd;\r\n    if (x >= MASK61) x -= MASK61;\r\n    val = x;\r\n  \
+    \  return *this;\r\n  }\r\n  modint61 operator-() const { return modint61(get_mod()\
+    \ - val); }\r\n  modint61 &operator/=(const modint61 &p) {\r\n    *this *= p.inverse();\r\
+    \n    return *this;\r\n  }\r\n  modint61 operator+(const modint61 &p) const {\
+    \ return modint61(*this) += p; }\r\n  modint61 operator-(const modint61 &p) const\
+    \ { return modint61(*this) -= p; }\r\n  modint61 operator*(const modint61 &p)\
+    \ const { return modint61(*this) *= p; }\r\n  modint61 operator/(const modint61\
+    \ &p) const { return modint61(*this) /= p; }\r\n\r\n  modint61 inverse() const\
+    \ {\r\n    ll a = val, b = mod, u = 1, v = 0, t;\r\n    while (b > 0) {\r\n  \
+    \    t = a / b;\r\n      swap(a -= t * b, b), swap(u -= t * v, v);\r\n    }\r\n\
+    \    return modint61(u);\r\n  }\r\n  modint61 pow(int64_t n) const {\r\n    modint61\
     \ ret(1), mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret = ret * mul;\r\
     \n      mul = mul * mul;\r\n      n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\
     \n  static constexpr ll get_mod() { return mod; }\r\n};\r\n#line 1 \"string/rollinghash_2d.hpp\"\
@@ -277,8 +275,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
   requiredBy: []
-  timestamp: '2022-08-25 01:58:56+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-25 09:50:56+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
 layout: document

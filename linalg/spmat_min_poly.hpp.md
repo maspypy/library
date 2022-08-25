@@ -4,20 +4,20 @@ data:
   - icon: ':question:'
     path: other/random.hpp
     title: other/random.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/spmat_det.hpp
     title: linalg/spmat_det.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/sparse_matrix_det.test.cpp
     title: test/library_checker/matrix/sparse_matrix_det.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"seq/find_linear_rec.hpp\"\n\r\ntemplate <typename mint>\r\
@@ -29,16 +29,14 @@ data:
     \ + m - len(C), 0);\r\n    FOR(j, len(B)) C[j + m] -= q * B[j];\r\n    if (l +\
     \ l <= i) {\r\n      B = tmp;\r\n      l = i + 1 - l, m = 1;\r\n      p = d;\r\
     \n    } else {\r\n      ++m;\r\n    }\r\n  }\r\n  return C;\r\n}\r\n#line 2 \"\
-    other/random.hpp\"\n\nstruct RandomNumberGenerator {\n  mt19937 mt;\n\n  RandomNumberGenerator()\n\
-    \      : mt(chrono::steady_clock::now().time_since_epoch().count()) {}\n\n  ll\
-    \ operator()(ll a, ll b) { // [a, b)\n    uniform_int_distribution<ll> dist(a,\
-    \ b - 1);\n    return dist(mt);\n  }\n\n  ll operator()(ll b) { // [0, b)\n  \
-    \  return (*this)(0, b);\n  }\n};\n#line 3 \"linalg/spmat_min_poly.hpp\"\n\r\n\
-    template <typename mint>\r\nvc<mint> spmat_min_poly(int N, vc<tuple<int, int,\
-    \ mint>> dat) {\r\n  RandomNumberGenerator RNG;\r\n  vc<mint> S(N + N + 10);\r\
-    \n  vc<mint> c(N);\r\n  vc<mint> v(N);\r\n  FOR(i, N) c[i] = RNG(0, mint::get_mod());\r\
-    \n  FOR(i, N) v[i] = RNG(0, mint::get_mod());\r\n  FOR(k, N + N + 10) {\r\n  \
-    \  FOR(i, N) S[k] += c[i] * v[i];\r\n    vc<mint> w(N);\r\n    for (auto&& [i,\
+    other/random.hpp\"\n\nll RNG(ll a, ll b) {\n  static mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \  uniform_int_distribution<ll> dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll\
+    \ a) { return RNG(0, a); }\n#line 3 \"linalg/spmat_min_poly.hpp\"\n\r\ntemplate\
+    \ <typename mint>\r\nvc<mint> spmat_min_poly(int N, vc<tuple<int, int, mint>>\
+    \ dat) {\r\n  RandomNumberGenerator RNG;\r\n  vc<mint> S(N + N + 10);\r\n  vc<mint>\
+    \ c(N);\r\n  vc<mint> v(N);\r\n  FOR(i, N) c[i] = RNG(0, mint::get_mod());\r\n\
+    \  FOR(i, N) v[i] = RNG(0, mint::get_mod());\r\n  FOR(k, N + N + 10) {\r\n   \
+    \ FOR(i, N) S[k] += c[i] * v[i];\r\n    vc<mint> w(N);\r\n    for (auto&& [i,\
     \ j, x]: dat) w[j] += x * v[i];\r\n    swap(v, w);\r\n  }\r\n  return find_linear_rec(S);\r\
     \n}\r\n"
   code: "#include \"seq/find_linear_rec.hpp\"\r\n#include \"other/random.hpp\"\r\n\
@@ -56,8 +54,8 @@ data:
   path: linalg/spmat_min_poly.hpp
   requiredBy:
   - linalg/spmat_det.hpp
-  timestamp: '2022-08-25 01:58:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-08-25 09:50:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
 documentation_of: linalg/spmat_min_poly.hpp

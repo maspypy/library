@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_mul.hpp
     title: alg/group_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/powerquery.hpp
     title: ds/powerquery.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -203,74 +203,72 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"other/random.hpp\"\n\nstruct RandomNumberGenerator\
-    \ {\n  mt19937 mt;\n\n  RandomNumberGenerator()\n      : mt(chrono::steady_clock::now().time_since_epoch().count())\
-    \ {}\n\n  ll operator()(ll a, ll b) { // [a, b)\n    uniform_int_distribution<ll>\
-    \ dist(a, b - 1);\n    return dist(mt);\n  }\n\n  ll operator()(ll b) { // [0,\
-    \ b)\n    return (*this)(0, b);\n  }\n};\n#line 5 \"test/mytest/powerquery.test.cpp\"\
-    \n\n#line 2 \"alg/group_mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Group_Mul\
-    \ {\r\n  using value_type = T;\r\n  using X = T;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return x * y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return X(1) / x; }\r\n  static constexpr X unit() { return\
-    \ X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/powerquery.hpp\"\
-    \n\n// \u5B9A\u6570\u3092\u3079\u304D\u4E57\u3059\u308B\u30AF\u30A8\u30EA\u3002\
-    \ B \u4E57\u5206\u305A\u3064\u524D\u8A08\u7B97\u3002\ntemplate <typename Mono,\
-    \ int B = 1024>\nstruct PowerQuery {\n  using X = typename Mono::value_type;\n\
-    \  vvc<X> dat;\n\n  PowerQuery(X a) { dat.eb(make_pow(a)); }\n\n  X operator()(ll\
-    \ n) {\n    X res = Mono::unit();\n    int k = 0;\n    while (n) {\n      int\
-    \ r = n % B;\n      n /= B;\n      if (len(dat) == k) { dat.eb(make_pow(dat[k\
-    \ - 1].back())); }\n      res = Mono::op(res, dat[k][r]);\n      ++k;\n    }\n\
-    \    return res;\n  }\n\nprivate:\n  vc<X> make_pow(X a) {\n    vc<X> res = {Mono::unit()};\n\
-    \    FOR(B) { res.eb(Mono::op(res.back(), a)); }\n    return res;\n  }\n};\n#line\
-    \ 2 \"mod/modint.hpp\"\n\ntemplate <unsigned int mod>\nstruct modint {\n  static\
-    \ constexpr bool is_modint = true;\n  unsigned int val;\n  constexpr modint(const\
-    \ long long val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val)\
-    \ % mod) % mod) {}\n  bool operator<(const modint &other) const {\n    return\
-    \ val < other.val;\n  } // To use std::map\n  modint &operator+=(const modint\
-    \ &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n  }\n\
-    \  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >= mod)\
-    \ val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n\
-    \    val = (unsigned int)(1LL * val * p.val % mod);\n    return *this;\n  }\n\
-    \  modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
-    \ *this;\n  }\n  modint operator-() const { return modint(get_mod() - val); }\n\
-    \  modint operator+(const modint &p) const { return modint(*this) += p; }\n  modint\
-    \ operator-(const modint &p) const { return modint(*this) -= p; }\n  modint operator*(const\
-    \ modint &p) const { return modint(*this) *= p; }\n  modint operator/(const modint\
-    \ &p) const { return modint(*this) /= p; }\n  bool operator==(const modint &p)\
-    \ const { return val == p.val; }\n  bool operator!=(const modint &p) const { return\
-    \ val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod, u = 1,\
-    \ v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b),\
-    \ swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
-    \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
-    \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n  static constexpr unsigned int get_mod() { return mod; }\n};\n\nstruct\
-    \ ArbitraryModInt {\n  static constexpr bool is_modint = true;\n  unsigned int\
-    \ val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t y)\n      :\
-    \ val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y) % get_mod())\
-    \ % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other) const {\n  \
-    \  return val < other.val;\n  } // To use std::map<ArbitraryModInt, T>\n  static\
-    \ unsigned int &get_mod() {\n    static unsigned int mod = 0;\n    return mod;\n\
-    \  }\n  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
-    \ ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
-    \    return *this;\n  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p)\
-    \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
-    \ *this;\n  }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n   \
-    \ unsigned long long a = (unsigned long long)val * p.val;\n    unsigned xh = (unsigned)(a\
-    \ >> 32), xl = (unsigned)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"\
-    =d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n\
-    \  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n    *this *=\
-    \ p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-() const {\
-    \ return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) += p;\n  }\n\
-    \  ArbitraryModInt operator-(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
-    \ -= p;\n  }\n  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n\
-    \    return ArbitraryModInt(*this) *= p;\n  }\n  ArbitraryModInt operator/(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) /= p;\n  }\n\
-    \  bool operator==(const ArbitraryModInt &p) const { return val == p.val; }\n\
-    \  bool operator!=(const ArbitraryModInt &p) const { return val != p.val; }\n\
-    \  ArbitraryModInt inverse() const {\n    int a = val, b = get_mod(), u = 1, v\
-    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
-    \ -= t * v, v);\n    }\n    return ArbitraryModInt(u);\n  }\n  ArbitraryModInt\
+    \ { yes(!t); }\r\n#line 2 \"other/random.hpp\"\n\nll RNG(ll a, ll b) {\n  static\
+    \ mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\n  uniform_int_distribution<ll>\
+    \ dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll a) { return RNG(0, a); }\n\
+    #line 5 \"test/mytest/powerquery.test.cpp\"\n\n#line 2 \"alg/group_mul.hpp\"\n\
+    \r\ntemplate <class T>\r\nstruct Group_Mul {\r\n  using value_type = T;\r\n  using\
+    \ X = T;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return\
+    \ x * y; }\r\n  static constexpr X inverse(const X &x) noexcept { return X(1)\
+    \ / x; }\r\n  static constexpr X unit() { return X(1); }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 2 \"ds/powerquery.hpp\"\n\n// \u5B9A\u6570\
+    \u3092\u3079\u304D\u4E57\u3059\u308B\u30AF\u30A8\u30EA\u3002 B \u4E57\u5206\u305A\
+    \u3064\u524D\u8A08\u7B97\u3002\ntemplate <typename Mono, int B = 1024>\nstruct\
+    \ PowerQuery {\n  using X = typename Mono::value_type;\n  vvc<X> dat;\n\n  PowerQuery(X\
+    \ a) { dat.eb(make_pow(a)); }\n\n  X operator()(ll n) {\n    X res = Mono::unit();\n\
+    \    int k = 0;\n    while (n) {\n      int r = n % B;\n      n /= B;\n      if\
+    \ (len(dat) == k) { dat.eb(make_pow(dat[k - 1].back())); }\n      res = Mono::op(res,\
+    \ dat[k][r]);\n      ++k;\n    }\n    return res;\n  }\n\nprivate:\n  vc<X> make_pow(X\
+    \ a) {\n    vc<X> res = {Mono::unit()};\n    FOR(B) { res.eb(Mono::op(res.back(),\
+    \ a)); }\n    return res;\n  }\n};\n#line 2 \"mod/modint.hpp\"\n\ntemplate <unsigned\
+    \ int mod>\nstruct modint {\n  static constexpr bool is_modint = true;\n  unsigned\
+    \ int val;\n  constexpr modint(const long long val = 0) noexcept\n      : val(val\
+    \ >= 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint\
+    \ &other) const {\n    return val < other.val;\n  } // To use std::map\n  modint\
+    \ &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n\
+    \    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if ((val\
+    \ += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const\
+    \ modint &p) {\n    val = (unsigned int)(1LL * val * p.val % mod);\n    return\
+    \ *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n\
+    \    return *this;\n  }\n  modint operator-() const { return modint(get_mod()\
+    \ - val); }\n  modint operator+(const modint &p) const { return modint(*this)\
+    \ += p; }\n  modint operator-(const modint &p) const { return modint(*this) -=\
+    \ p; }\n  modint operator*(const modint &p) const { return modint(*this) *= p;\
+    \ }\n  modint operator/(const modint &p) const { return modint(*this) /= p; }\n\
+    \  bool operator==(const modint &p) const { return val == p.val; }\n  bool operator!=(const\
+    \ modint &p) const { return val != p.val; }\n  modint inverse() const {\n    int\
+    \ a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n\
+    \      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n\
+    \  }\n  modint pow(int64_t n) const {\n    modint ret(1), mul(val);\n    while\
+    \ (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n\
+    \    }\n    return ret;\n  }\n  static constexpr unsigned int get_mod() { return\
+    \ mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr bool is_modint =\
+    \ true;\n  unsigned int val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t\
+    \ y)\n      : val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y)\
+    \ % get_mod()) % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other)\
+    \ const {\n    return val < other.val;\n  } // To use std::map<ArbitraryModInt,\
+    \ T>\n  static unsigned int &get_mod() {\n    static unsigned int mod = 0;\n \
+    \   return mod;\n  }\n  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt\
+    \ &operator+=(const ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod())\
+    \ val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt &operator-=(const\
+    \ ArbitraryModInt &p) {\n    if ((val += get_mod() - p.val) >= get_mod()) val\
+    \ -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt &operator*=(const ArbitraryModInt\
+    \ &p) {\n    unsigned long long a = (unsigned long long)val * p.val;\n    unsigned\
+    \ xh = (unsigned)(a >> 32), xl = (unsigned)a, d, m;\n    asm(\"divl %4; \\n\\\
+    t\" : \"=a\"(d), \"=d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val\
+    \ = m;\n    return *this;\n  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt\
+    \ &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n  ArbitraryModInt\
+    \ operator-() const { return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt\
+    \ operator+(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
+    \ += p;\n  }\n  ArbitraryModInt operator-(const ArbitraryModInt &p) const {\n\
+    \    return ArbitraryModInt(*this) -= p;\n  }\n  ArbitraryModInt operator*(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) *= p;\n  }\n\
+    \  ArbitraryModInt operator/(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
+    \ /= p;\n  }\n  bool operator==(const ArbitraryModInt &p) const { return val ==\
+    \ p.val; }\n  bool operator!=(const ArbitraryModInt &p) const { return val !=\
+    \ p.val; }\n  ArbitraryModInt inverse() const {\n    int a = val, b = get_mod(),\
+    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
+    \ b, b), swap(u -= t * v, v);\n    }\n    return ArbitraryModInt(u);\n  }\n  ArbitraryModInt\
     \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
     \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
     \  }\n    return ret;\n  }\n};\n\ntemplate <typename mint>\nmint inv(int n) {\n\
@@ -331,8 +329,8 @@ data:
   isVerificationFile: true
   path: test/mytest/powerquery.test.cpp
   requiredBy: []
-  timestamp: '2022-08-25 01:58:56+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-25 09:50:56+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/powerquery.test.cpp
 layout: document
