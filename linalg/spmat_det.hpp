@@ -2,7 +2,6 @@
 
 template <typename T>
 T spmat_det(int N, vc<tuple<int, int, T>> dat) {
-  RandomNumberGenerator RNG;
   vc<T> c(N);
   FOR(i, N) c[i] = RNG(1, T::get_mod());
   T r = 1;
