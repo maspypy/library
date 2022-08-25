@@ -6,8 +6,6 @@
 #include "ds/rectangle_add_point_sum.hpp"
 #include "mod/modint.hpp"
 
-RandomNumberGenerator RNG;
-
 using mint = modint998;
 using QT = tuple<ll, ll, ll, ll, ll>;
 
