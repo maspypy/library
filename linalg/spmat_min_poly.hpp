@@ -3,7 +3,6 @@
 
 template <typename mint>
 vc<mint> spmat_min_poly(int N, vc<tuple<int, int, mint>> dat) {
-  RandomNumberGenerator RNG;
   vc<mint> S(N + N + 10);
   vc<mint> c(N);
   vc<mint> v(N);
