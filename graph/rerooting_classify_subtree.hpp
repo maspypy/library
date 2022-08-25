@@ -29,10 +29,10 @@ struct Rerooting_classify_subtree {
   }
 
   // v を根としたときの full tree
-  int operator[](int v) { return dp[v]; }
+  ll operator[](int v) { return dp[v]; }
 
   // root を根としたときの部分木 v
-  int get(int root, int v) {
+  ll get(int root, int v) {
     if (root == v) return dp[v];
     if (!tree.in_subtree(root, v)) { return dp_1[v]; }
     int w = tree.jump(v, root);
