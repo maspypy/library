@@ -6,6 +6,7 @@
 
 template <typename TREE>
 vc<ll> classify_subtree(TREE& tree) {
+  using mint = modint61;
   static vc<mint> hash_base;
   auto get = [&](int k) -> mint {
     while (len(hash_base) <= k) hash_base.eb(RNG(mint::get_mod()));
