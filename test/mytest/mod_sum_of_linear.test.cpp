@@ -6,7 +6,6 @@
 #include "mod/mod_sum_of_linear.hpp"
 
 void test() {
-  RandomNumberGenerator RNG;
   FOR(100) {
     int L = RNG(1000);
     int R = RNG(1000);
