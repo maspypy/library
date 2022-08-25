@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/rectangle_add_point_sum.hpp
     title: ds/rectangle_add_point_sum.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -350,39 +350,7 @@ data:
     \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
     \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n\nusing modint107\
     \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\
-    #line 8 \"test/mytest/rect_add_pt_sum.test.cpp\"\n\nRandomNumberGenerator RNG;\n\
-    \nusing mint = modint998;\nusing QT = tuple<ll, ll, ll, ll, ll>;\n\npair<vc<QT>,\
-    \ vc<pi>> gen(int H, int W, int Q) {\n  vc<tuple<ll, ll, ll, ll, ll>> add_query;\n\
-    \  FOR(Q) {\n    ll a = RNG(0, H);\n    ll b = RNG(0, W);\n    ll c = RNG(a +\
-    \ 1, H + 1);\n    ll d = RNG(b + 1, W + 1);\n    ll x = RNG(0, mint::get_mod());\n\
-    \    add_query.eb(a, b, c, d, x);\n  }\n\n  vc<pi> sum_query;\n  FOR(Q) {\n  \
-    \  ll x = RNG(0, H), y = RNG(0, W);\n    sum_query.eb(x, y);\n  }\n  return {add_query,\
-    \ sum_query};\n}\n\nvc<mint> sol_1(int H, int W, vc<QT> add_query, vc<pi> sum_query)\
-    \ {\n  vv(mint, A, H, W);\n  for (auto&& [a, b, c, d, x]: add_query) {\n    FOR(i,\
-    \ a, c) FOR(j, b, d) { A[i][j] += mint(x); }\n  }\n  vc<mint> ANS;\n  for (auto&&\
-    \ [x, y]: sum_query) ANS.eb(A[x][y]);\n  return ANS;\n}\n\nvc<mint> sol_2(int\
-    \ H, int W, vc<QT> add_query, vc<pi> sum_query) {\n  vc<mint> ANS;\n  for (auto&&\
-    \ [x, y]: sum_query) {\n    mint ans = 0;\n    for (auto&& [a, b, c, d, v]: add_query)\
-    \ {\n      if (a <= x && x < c && b <= y && y < d) ans += mint(v);\n    }\n  \
-    \  ANS.eb(ans);\n  }\n  return ANS;\n}\n\nvoid test() {\n  FOR(H, 1, 10) FOR(W,\
-    \ 1, 10) FOR(Q, 10) {\n    auto [add_query, sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Group_Add<mint>,\
-    \ 0> X;\n    for (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);\n\
-    \    for (auto&& [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc() ==\
-    \ sol_1(H, W, add_query, sum_query));\n  }\n  FOR(H, 1, 10) FOR(W, 1, 10) FOR(Q,\
-    \ 10) {\n    auto [add_query, sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Group_Add<mint>,\
-    \ 1> X;\n    for (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);\n\
-    \    for (auto&& [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc() ==\
-    \ sol_1(H, W, add_query, sum_query));\n  }\n  FOR(10) {\n    int H = RNG(1, 1'000'000'000);\n\
-    \    int W = RNG(1, 1'000'000'000);\n    int Q = 100;\n    auto [add_query, sum_query]\
-    \ = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Group_Add<mint>, 0> X;\n    for\
-    \ (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);\n    for (auto&&\
-    \ [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc() == sol_2(H, W, add_query,\
-    \ sum_query));\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\n\
-    signed main() {\n  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\
-    \n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"other/random.hpp\"\n\n#include \"ds/rectangle_add_point_sum.hpp\"\
-    \n#include \"mod/modint.hpp\"\n\nRandomNumberGenerator RNG;\n\nusing mint = modint998;\n\
+    #line 8 \"test/mytest/rect_add_pt_sum.test.cpp\"\n\nusing mint = modint998;\n\
     using QT = tuple<ll, ll, ll, ll, ll>;\n\npair<vc<QT>, vc<pi>> gen(int H, int W,\
     \ int Q) {\n  vc<tuple<ll, ll, ll, ll, ll>> add_query;\n  FOR(Q) {\n    ll a =\
     \ RNG(0, H);\n    ll b = RNG(0, W);\n    ll c = RNG(a + 1, H + 1);\n    ll d =\
@@ -412,6 +380,38 @@ data:
     \ sum_query));\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\n\
     signed main() {\n  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\
     \n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"other/random.hpp\"\n\n#include \"ds/rectangle_add_point_sum.hpp\"\
+    \n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\nusing QT = tuple<ll,\
+    \ ll, ll, ll, ll>;\n\npair<vc<QT>, vc<pi>> gen(int H, int W, int Q) {\n  vc<tuple<ll,\
+    \ ll, ll, ll, ll>> add_query;\n  FOR(Q) {\n    ll a = RNG(0, H);\n    ll b = RNG(0,\
+    \ W);\n    ll c = RNG(a + 1, H + 1);\n    ll d = RNG(b + 1, W + 1);\n    ll x\
+    \ = RNG(0, mint::get_mod());\n    add_query.eb(a, b, c, d, x);\n  }\n\n  vc<pi>\
+    \ sum_query;\n  FOR(Q) {\n    ll x = RNG(0, H), y = RNG(0, W);\n    sum_query.eb(x,\
+    \ y);\n  }\n  return {add_query, sum_query};\n}\n\nvc<mint> sol_1(int H, int W,\
+    \ vc<QT> add_query, vc<pi> sum_query) {\n  vv(mint, A, H, W);\n  for (auto&& [a,\
+    \ b, c, d, x]: add_query) {\n    FOR(i, a, c) FOR(j, b, d) { A[i][j] += mint(x);\
+    \ }\n  }\n  vc<mint> ANS;\n  for (auto&& [x, y]: sum_query) ANS.eb(A[x][y]);\n\
+    \  return ANS;\n}\n\nvc<mint> sol_2(int H, int W, vc<QT> add_query, vc<pi> sum_query)\
+    \ {\n  vc<mint> ANS;\n  for (auto&& [x, y]: sum_query) {\n    mint ans = 0;\n\
+    \    for (auto&& [a, b, c, d, v]: add_query) {\n      if (a <= x && x < c && b\
+    \ <= y && y < d) ans += mint(v);\n    }\n    ANS.eb(ans);\n  }\n  return ANS;\n\
+    }\n\nvoid test() {\n  FOR(H, 1, 10) FOR(W, 1, 10) FOR(Q, 10) {\n    auto [add_query,\
+    \ sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Group_Add<mint>, 0>\
+    \ X;\n    for (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);\n\
+    \    for (auto&& [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc() ==\
+    \ sol_1(H, W, add_query, sum_query));\n  }\n  FOR(H, 1, 10) FOR(W, 1, 10) FOR(Q,\
+    \ 10) {\n    auto [add_query, sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Group_Add<mint>,\
+    \ 1> X;\n    for (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);\n\
+    \    for (auto&& [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc() ==\
+    \ sol_1(H, W, add_query, sum_query));\n  }\n  FOR(10) {\n    int H = RNG(1, 1'000'000'000);\n\
+    \    int W = RNG(1, 1'000'000'000);\n    int Q = 100;\n    auto [add_query, sum_query]\
+    \ = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Group_Add<mint>, 0> X;\n    for\
+    \ (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);\n    for (auto&&\
+    \ [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc() == sol_2(H, W, add_query,\
+    \ sum_query));\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\n\
+    signed main() {\n  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -423,8 +423,8 @@ data:
   isVerificationFile: true
   path: test/mytest/rect_add_pt_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-08-25 09:50:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-25 10:14:29+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/rect_add_pt_sum.test.cpp
 layout: document

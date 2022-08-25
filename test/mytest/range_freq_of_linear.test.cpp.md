@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/floor_sum_of_linear.hpp
     title: mod/floor_sum_of_linear.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/range_freq_of_linear.hpp
     title: mod/range_freq_of_linear.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -216,27 +216,26 @@ data:
     \ ll b, ll mod, ll lo, ll hi) {\n  if (lo >= hi) return 0;\n  assert(0 <= lo &&\
     \ lo < hi && hi <= mod);\n\n  i128 x1 = floor_sum_of_linear(L, R, a, b - lo, mod);\n\
     \  i128 x2 = floor_sum_of_linear(L, R, a, b - hi, mod);\n  return x1 - x2;\n}\n\
-    #line 7 \"test/mytest/range_freq_of_linear.test.cpp\"\n\nvoid test() {\n  RandomNumberGenerator\
-    \ RNG;\n  FOR(100) {\n    int L = RNG(1000);\n    int R = RNG(1000);\n    if (L\
-    \ > R) swap(L, R);\n    int a = RNG(-1000, 1000);\n    int b = RNG(-1000, 1000);\n\
-    \    int mod = RNG(1, 1000);\n    int lo = RNG(0, mod);\n    int hi = RNG(0, mod);\n\
-    \    if (lo > hi) swap(lo, hi);\n\n    ll ANS = 0;\n    FOR(x, L, R) {\n     \
-    \ ll v = a * x + b;\n      v %= mod;\n      if (v < 0) v += mod;\n      if (lo\
-    \ <= v && v < hi) ++ANS;\n    }\n    assert(ANS == range_freq_of_linear(L, R,\
-    \ a, b, mod, lo, hi));\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n\
-    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\
-    \n  return 0;\n}\n"
+    #line 7 \"test/mytest/range_freq_of_linear.test.cpp\"\n\nvoid test() {\n  FOR(100)\
+    \ {\n    int L = RNG(1000);\n    int R = RNG(1000);\n    if (L > R) swap(L, R);\n\
+    \    int a = RNG(-1000, 1000);\n    int b = RNG(-1000, 1000);\n    int mod = RNG(1,\
+    \ 1000);\n    int lo = RNG(0, mod);\n    int hi = RNG(0, mod);\n    if (lo > hi)\
+    \ swap(lo, hi);\n\n    ll ANS = 0;\n    FOR(x, L, R) {\n      ll v = a * x + b;\n\
+    \      v %= mod;\n      if (v < 0) v += mod;\n      if (lo <= v && v < hi) ++ANS;\n\
+    \    }\n    assert(ANS == range_freq_of_linear(L, R, a, b, mod, lo, hi));\n  }\n\
+    }\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout\
+    \ << fixed << setprecision(15);\n\n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"other/random.hpp\"\n\n#include \"mod/range_freq_of_linear.hpp\"\
-    \n\nvoid test() {\n  RandomNumberGenerator RNG;\n  FOR(100) {\n    int L = RNG(1000);\n\
-    \    int R = RNG(1000);\n    if (L > R) swap(L, R);\n    int a = RNG(-1000, 1000);\n\
-    \    int b = RNG(-1000, 1000);\n    int mod = RNG(1, 1000);\n    int lo = RNG(0,\
-    \ mod);\n    int hi = RNG(0, mod);\n    if (lo > hi) swap(lo, hi);\n\n    ll ANS\
-    \ = 0;\n    FOR(x, L, R) {\n      ll v = a * x + b;\n      v %= mod;\n      if\
-    \ (v < 0) v += mod;\n      if (lo <= v && v < hi) ++ANS;\n    }\n    assert(ANS\
-    \ == range_freq_of_linear(L, R, a, b, mod, lo, hi));\n  }\n}\n\nvoid solve() {\n\
-    \  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  test();\n  solve();\n\n  return 0;\n}\n"
+    \n\nvoid test() {\n  FOR(100) {\n    int L = RNG(1000);\n    int R = RNG(1000);\n\
+    \    if (L > R) swap(L, R);\n    int a = RNG(-1000, 1000);\n    int b = RNG(-1000,\
+    \ 1000);\n    int mod = RNG(1, 1000);\n    int lo = RNG(0, mod);\n    int hi =\
+    \ RNG(0, mod);\n    if (lo > hi) swap(lo, hi);\n\n    ll ANS = 0;\n    FOR(x,\
+    \ L, R) {\n      ll v = a * x + b;\n      v %= mod;\n      if (v < 0) v += mod;\n\
+    \      if (lo <= v && v < hi) ++ANS;\n    }\n    assert(ANS == range_freq_of_linear(L,\
+    \ R, a, b, mod, lo, hi));\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a +\
+    \ b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  test();\n\
+    \  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -246,8 +245,8 @@ data:
   isVerificationFile: true
   path: test/mytest/range_freq_of_linear.test.cpp
   requiredBy: []
-  timestamp: '2022-08-25 09:50:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-25 10:13:47+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/range_freq_of_linear.test.cpp
 layout: document

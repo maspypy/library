@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/max_of_linear_segments.hpp
     title: mod/max_of_linear_segments.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/min_of_linear_segments.hpp
     title: mod/min_of_linear_segments.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -238,12 +238,12 @@ data:
     \ y)) A.eb(x);\n  }\n  vc<int> X = {0};\n  vc<int> DX;\n  int dx = -1;\n  for\
     \ (auto&& x: A) {\n    if (X.back() + dx == x) {\n      X.back() = x;\n    } else\
     \ {\n      dx = x - X.back();\n      DX.eb(dx);\n      X.eb(x);\n    }\n  }\n\
-    \  return {X, DX};\n}\n\nvoid test() {\n  RandomNumberGenerator RNG;\n  FOR(mod,\
-    \ 1, 1000) {\n    FOR(10) {\n      int a = RNG(0, mod);\n      int b = RNG(0,\
-    \ mod);\n      auto [X1, DX1] = naive(a, b, mod);\n      auto [X2, DX2] = max_of_linear_segments(a,\
-    \ b, mod);\n      assert(X1 == X2);\n      assert(DX1 == DX2);\n    }\n  }\n}\n\
-    \nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout <<\
-    \ fixed << setprecision(15);\n\n  test();\n  solve();\n\n  return 0;\n}\n"
+    \  return {X, DX};\n}\n\nvoid test() {\n  FOR(mod, 1, 1000) {\n    FOR(10) {\n\
+    \      int a = RNG(0, mod);\n      int b = RNG(0, mod);\n      auto [X1, DX1]\
+    \ = naive(a, b, mod);\n      auto [X2, DX2] = max_of_linear_segments(a, b, mod);\n\
+    \      assert(X1 == X2);\n      assert(DX1 == DX2);\n    }\n  }\n}\n\nvoid solve()\
+    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"other/random.hpp\"\n#include \"mod/max_of_linear_segments.hpp\"\
     \n\npair<vc<int>, vc<int>> naive(int a, int b, int mod) {\n  assert(0 <= a &&\
@@ -252,12 +252,12 @@ data:
     \ y)) A.eb(x);\n  }\n  vc<int> X = {0};\n  vc<int> DX;\n  int dx = -1;\n  for\
     \ (auto&& x: A) {\n    if (X.back() + dx == x) {\n      X.back() = x;\n    } else\
     \ {\n      dx = x - X.back();\n      DX.eb(dx);\n      X.eb(x);\n    }\n  }\n\
-    \  return {X, DX};\n}\n\nvoid test() {\n  RandomNumberGenerator RNG;\n  FOR(mod,\
-    \ 1, 1000) {\n    FOR(10) {\n      int a = RNG(0, mod);\n      int b = RNG(0,\
-    \ mod);\n      auto [X1, DX1] = naive(a, b, mod);\n      auto [X2, DX2] = max_of_linear_segments(a,\
-    \ b, mod);\n      assert(X1 == X2);\n      assert(DX1 == DX2);\n    }\n  }\n}\n\
-    \nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout <<\
-    \ fixed << setprecision(15);\n\n  test();\n  solve();\n\n  return 0;\n}\n"
+    \  return {X, DX};\n}\n\nvoid test() {\n  FOR(mod, 1, 1000) {\n    FOR(10) {\n\
+    \      int a = RNG(0, mod);\n      int b = RNG(0, mod);\n      auto [X1, DX1]\
+    \ = naive(a, b, mod);\n      auto [X2, DX2] = max_of_linear_segments(a, b, mod);\n\
+    \      assert(X1 == X2);\n      assert(DX1 == DX2);\n    }\n  }\n}\n\nvoid solve()\
+    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  test();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -267,8 +267,8 @@ data:
   isVerificationFile: true
   path: test/mytest/max_of_linear_segments.test.cpp
   requiredBy: []
-  timestamp: '2022-08-25 09:50:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-25 10:11:27+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/max_of_linear_segments.test.cpp
 layout: document

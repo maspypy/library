@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
   - icon: ':question:'
@@ -19,28 +19,28 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
   - icon: ':question:'
@@ -48,15 +48,15 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
@@ -447,21 +447,21 @@ data:
     \ a) { return RNG(0, a); }\n#line 3 \"mod/mod_sqrt.hpp\"\n\r\ntemplate <typename\
     \ mint>\r\nmint mod_sqrt(mint a) {\r\n  int p = mint::get_mod();\r\n  if (p ==\
     \ 2) return a;\r\n  if (a == 0) return 0;\r\n  int k = (p - 1) / 2;\r\n  if (a.pow(k)\
-    \ != 1) return 0;\r\n  RandomNumberGenerator RNG;\r\n  auto find = [&]() -> pair<mint,\
-    \ mint> {\r\n    while (1) {\r\n      mint b = RNG(2, p);\r\n      mint D = b\
-    \ * b - a;\r\n      if (D == 0) return {b, D};\r\n      if (D.pow(k) != mint(1))\
-    \ return {b, D};\r\n    }\r\n  };\r\n  auto [b, D] = find();\r\n  if (D == 0)\
-    \ return b;\r\n  ++k;\r\n  // (b + sqrt(D))^k\r\n  mint f0 = b, f1 = 1;\r\n  mint\
-    \ g0 = 1, g1 = 0;\r\n  while (k) {\r\n    if (k & 1) { tie(g0, g1) = mp(f0 * g0\
-    \ + D * f1 * g1, f1 * g0 + f0 * g1); }\r\n    tie(f0, f1) = mp(f0 * f0 + D * f1\
-    \ * f1, mint(2) * f0 * f1);\r\n    k >>= 1;\r\n  }\r\n  return g0;\r\n}\r\n#line\
-    \ 5 \"poly/fps_sqrt.hpp\"\n\r\ntemplate <typename mint>\r\nvc<mint> fps_sqrt_dense(vc<mint>&\
-    \ f) {\r\n  assert(f[0] == mint(1));\r\n  int n = len(f);\r\n  vc<mint> R = {1};\r\
-    \n  while (len(R) < n) {\r\n    int m = min(2 * int(len(R)), n);\r\n    R.resize(m);\r\
-    \n    vc<mint> tmp = {f.begin(), f.begin() + m};\r\n    tmp = convolution(tmp,\
-    \ fps_inv(R));\r\n    tmp.resize(m);\r\n    FOR(i, m) R[i] += tmp[i];\r\n    mint\
-    \ c = mint(1) / mint(2);\r\n    FOR(i, len(R)) R[i] *= c;\r\n  }\r\n  R.resize(n);\r\
-    \n  return R;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_sqrt_sparse(vc<mint>&\
+    \ != 1) return 0;\r\n  auto find = [&]() -> pair<mint, mint> {\r\n    while (1)\
+    \ {\r\n      mint b = RNG(2, p);\r\n      mint D = b * b - a;\r\n      if (D ==\
+    \ 0) return {b, D};\r\n      if (D.pow(k) != mint(1)) return {b, D};\r\n    }\r\
+    \n  };\r\n  auto [b, D] = find();\r\n  if (D == 0) return b;\r\n  ++k;\r\n  //\
+    \ (b + sqrt(D))^k\r\n  mint f0 = b, f1 = 1;\r\n  mint g0 = 1, g1 = 0;\r\n  while\
+    \ (k) {\r\n    if (k & 1) { tie(g0, g1) = mp(f0 * g0 + D * f1 * g1, f1 * g0 +\
+    \ f0 * g1); }\r\n    tie(f0, f1) = mp(f0 * f0 + D * f1 * f1, mint(2) * f0 * f1);\r\
+    \n    k >>= 1;\r\n  }\r\n  return g0;\r\n}\r\n#line 5 \"poly/fps_sqrt.hpp\"\n\r\
+    \ntemplate <typename mint>\r\nvc<mint> fps_sqrt_dense(vc<mint>& f) {\r\n  assert(f[0]\
+    \ == mint(1));\r\n  int n = len(f);\r\n  vc<mint> R = {1};\r\n  while (len(R)\
+    \ < n) {\r\n    int m = min(2 * int(len(R)), n);\r\n    R.resize(m);\r\n    vc<mint>\
+    \ tmp = {f.begin(), f.begin() + m};\r\n    tmp = convolution(tmp, fps_inv(R));\r\
+    \n    tmp.resize(m);\r\n    FOR(i, m) R[i] += tmp[i];\r\n    mint c = mint(1)\
+    \ / mint(2);\r\n    FOR(i, len(R)) R[i] *= c;\r\n  }\r\n  R.resize(n);\r\n  return\
+    \ R;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_sqrt_sparse(vc<mint>&\
     \ f) {\r\n  return fps_pow_1_sparse(f, inv<mint>(2));\r\n}\r\n\r\ntemplate <typename\
     \ mint>\r\nvc<mint> fps_sqrt(vc<mint>& f) {\r\n  if (count_terms(f) <= 200) return\
     \ fps_sqrt_sparse(f);\r\n  return fps_sqrt_dense(f);\r\n}\r\n\r\ntemplate <typename\
@@ -511,8 +511,8 @@ data:
   isVerificationFile: false
   path: poly/fps_sqrt.hpp
   requiredBy: []
-  timestamp: '2022-08-25 09:50:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-08-25 10:05:47+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp

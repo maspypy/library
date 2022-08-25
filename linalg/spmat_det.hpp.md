@@ -33,17 +33,17 @@ data:
     \  uniform_int_distribution<ll> dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll\
     \ a) { return RNG(0, a); }\n#line 3 \"linalg/spmat_min_poly.hpp\"\n\r\ntemplate\
     \ <typename mint>\r\nvc<mint> spmat_min_poly(int N, vc<tuple<int, int, mint>>\
-    \ dat) {\r\n  RandomNumberGenerator RNG;\r\n  vc<mint> S(N + N + 10);\r\n  vc<mint>\
-    \ c(N);\r\n  vc<mint> v(N);\r\n  FOR(i, N) c[i] = RNG(0, mint::get_mod());\r\n\
-    \  FOR(i, N) v[i] = RNG(0, mint::get_mod());\r\n  FOR(k, N + N + 10) {\r\n   \
-    \ FOR(i, N) S[k] += c[i] * v[i];\r\n    vc<mint> w(N);\r\n    for (auto&& [i,\
-    \ j, x]: dat) w[j] += x * v[i];\r\n    swap(v, w);\r\n  }\r\n  return find_linear_rec(S);\r\
-    \n}\r\n#line 2 \"linalg/spmat_det.hpp\"\n\r\ntemplate <typename T>\r\nT spmat_det(int\
-    \ N, vc<tuple<int, int, T>> dat) {\r\n  RandomNumberGenerator RNG;\r\n  vc<T>\
-    \ c(N);\r\n  FOR(i, N) c[i] = RNG(1, T::get_mod());\r\n  T r = 1;\r\n  FOR(i,\
-    \ N) r *= c[i];\r\n  for (auto&& [i, j, x]: dat) x *= c[i];\r\n  auto f = spmat_min_poly(N,\
-    \ dat);\r\n  f.resize(N + 1);\r\n  T det = f.back();\r\n  if (N & 1) det *= -1;\r\
-    \n  det /= r;\r\n  return det;\r\n}\r\n"
+    \ dat) {\r\n  vc<mint> S(N + N + 10);\r\n  vc<mint> c(N);\r\n  vc<mint> v(N);\r\
+    \n  FOR(i, N) c[i] = RNG(0, mint::get_mod());\r\n  FOR(i, N) v[i] = RNG(0, mint::get_mod());\r\
+    \n  FOR(k, N + N + 10) {\r\n    FOR(i, N) S[k] += c[i] * v[i];\r\n    vc<mint>\
+    \ w(N);\r\n    for (auto&& [i, j, x]: dat) w[j] += x * v[i];\r\n    swap(v, w);\r\
+    \n  }\r\n  return find_linear_rec(S);\r\n}\r\n#line 2 \"linalg/spmat_det.hpp\"\
+    \n\r\ntemplate <typename T>\r\nT spmat_det(int N, vc<tuple<int, int, T>> dat)\
+    \ {\r\n  RandomNumberGenerator RNG;\r\n  vc<T> c(N);\r\n  FOR(i, N) c[i] = RNG(1,\
+    \ T::get_mod());\r\n  T r = 1;\r\n  FOR(i, N) r *= c[i];\r\n  for (auto&& [i,\
+    \ j, x]: dat) x *= c[i];\r\n  auto f = spmat_min_poly(N, dat);\r\n  f.resize(N\
+    \ + 1);\r\n  T det = f.back();\r\n  if (N & 1) det *= -1;\r\n  det /= r;\r\n \
+    \ return det;\r\n}\r\n"
   code: "#include \"linalg/spmat_min_poly.hpp\"\r\n\r\ntemplate <typename T>\r\nT\
     \ spmat_det(int N, vc<tuple<int, int, T>> dat) {\r\n  RandomNumberGenerator RNG;\r\
     \n  vc<T> c(N);\r\n  FOR(i, N) c[i] = RNG(1, T::get_mod());\r\n  T r = 1;\r\n\
@@ -57,7 +57,7 @@ data:
   isVerificationFile: false
   path: linalg/spmat_det.hpp
   requiredBy: []
-  timestamp: '2022-08-25 09:50:56+09:00'
+  timestamp: '2022-08-25 10:06:16+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/matrix/sparse_matrix_det.test.cpp

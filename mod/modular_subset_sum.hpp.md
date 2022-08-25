@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -9,12 +9,12 @@ data:
     title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_modular_subset_sum.test.cpp
     title: test/yukicoder/4_modular_subset_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/random.hpp\"\n\nll RNG(ll a, ll b) {\n  static mt19937\
@@ -91,25 +91,24 @@ data:
     \ \u3092\u308F\u305F\u3059\r\n*/\r\ntemplate<typename INT>\r\nstruct Modular_Subset_Sum\
     \ {\r\n  int mod;\r\n  vc<INT>& vals;\r\n  vc<int> par;\r\n\r\n  Modular_Subset_Sum(int\
     \ mod, vc<INT>& vals) : mod(mod), vals(vals) {\r\n    for(auto&& x : vals) assert(0\
-    \ <= x && x < mod);\r\n    par.assign(mod, -1);\r\n\r\n    RandomNumberGenerator\
-    \ RNG;\r\n    const ll base = RNG(0, (1LL << 61) - 1);\r\n\r\n    int k = 1;\r\
-    \n    while ((1 << k) < 2 * mod) ++k;\r\n\r\n    int L = 1 << k;\r\n    assert(L\
-    \ >= 2 * mod);\r\n\r\n    ShiftTree T1(L, base);\r\n    ShiftTree T2(L, base);\r\
-    \n    T1.set(0, 1);\r\n    T2.set(0, 1);\r\n    T2.set(L - mod, 1);\r\n\r\n  \
-    \  auto bit_rev = [&](int i) -> int {\r\n      int x = 0;\r\n      FOR(k) {\r\n\
-    \        x = 2 * x + (i & 1);\r\n        i >>= 1;\r\n      }\r\n      return x;\r\
-    \n    };\r\n\r\n    vc<vi> IDS(L);\r\n    FOR(i, len(vals)) { IDS[vals[i]].eb(i);\
-    \ }\r\n\r\n    FOR(i, 1, L) {\r\n      int x = bit_rev(i);\r\n      if (len(IDS[x])\
-    \ == 0) continue;\r\n      T2.shift(x - T2.delta);\r\n      for (auto&& idx: IDS[x])\
-    \ {\r\n        auto diff = ShiftTree::diff(T1, T2, 0, mod);\r\n        for (auto&&\
-    \ d: diff) {\r\n          if (can(d)) continue;\r\n          par[d] = idx;\r\n\
-    \          T1.set(d, 1);\r\n          T2.set((d + x) % L, 1);\r\n          T2.set((L\
-    \ + d + x - mod) % L, 1);\r\n        }\r\n      }\r\n    }\r\n  }\r\n\r\n  bool\
-    \ can(int x) { return (x == 0 || par[x] != -1); }\r\n  bool operator[](int x)\
-    \ { return can(x); }\r\n  vc<int> restore(int x) {\r\n    vc<int> res;\r\n   \
-    \ while (x) {\r\n      int i = par[x];\r\n      res.eb(i);\r\n      x -= vals[i];\r\
-    \n      if (x < 0) x += mod;\r\n    }\r\n    reverse(all(res));\r\n    return\
-    \ res;\r\n  }\r\n};\r\n"
+    \ <= x && x < mod);\r\n    par.assign(mod, -1);\r\n\r\n    const ll base = RNG(0,\
+    \ (1LL << 61) - 1);\r\n\r\n    int k = 1;\r\n    while ((1 << k) < 2 * mod) ++k;\r\
+    \n\r\n    int L = 1 << k;\r\n    assert(L >= 2 * mod);\r\n\r\n    ShiftTree T1(L,\
+    \ base);\r\n    ShiftTree T2(L, base);\r\n    T1.set(0, 1);\r\n    T2.set(0, 1);\r\
+    \n    T2.set(L - mod, 1);\r\n\r\n    auto bit_rev = [&](int i) -> int {\r\n  \
+    \    int x = 0;\r\n      FOR(k) {\r\n        x = 2 * x + (i & 1);\r\n        i\
+    \ >>= 1;\r\n      }\r\n      return x;\r\n    };\r\n\r\n    vc<vi> IDS(L);\r\n\
+    \    FOR(i, len(vals)) { IDS[vals[i]].eb(i); }\r\n\r\n    FOR(i, 1, L) {\r\n \
+    \     int x = bit_rev(i);\r\n      if (len(IDS[x]) == 0) continue;\r\n      T2.shift(x\
+    \ - T2.delta);\r\n      for (auto&& idx: IDS[x]) {\r\n        auto diff = ShiftTree::diff(T1,\
+    \ T2, 0, mod);\r\n        for (auto&& d: diff) {\r\n          if (can(d)) continue;\r\
+    \n          par[d] = idx;\r\n          T1.set(d, 1);\r\n          T2.set((d +\
+    \ x) % L, 1);\r\n          T2.set((L + d + x - mod) % L, 1);\r\n        }\r\n\
+    \      }\r\n    }\r\n  }\r\n\r\n  bool can(int x) { return (x == 0 || par[x] !=\
+    \ -1); }\r\n  bool operator[](int x) { return can(x); }\r\n  vc<int> restore(int\
+    \ x) {\r\n    vc<int> res;\r\n    while (x) {\r\n      int i = par[x];\r\n   \
+    \   res.eb(i);\r\n      x -= vals[i];\r\n      if (x < 0) x += mod;\r\n    }\r\
+    \n    reverse(all(res));\r\n    return res;\r\n  }\r\n};\r\n"
   code: "#include \"other/random.hpp\"\r\n#include \"mod/modint61.hpp\"\r\n\r\n//\
     \ Faster Deterministic Modular Subset Sum. arXiv preprint arXiv:2012.06062.\r\n\
     // modular subset sum \u306E\u305F\u3081\u306E\u3001\u30B7\u30D5\u30C8\u4ED8\u304D\
@@ -152,33 +151,32 @@ data:
     \ \u3092\u308F\u305F\u3059\r\n*/\r\ntemplate<typename INT>\r\nstruct Modular_Subset_Sum\
     \ {\r\n  int mod;\r\n  vc<INT>& vals;\r\n  vc<int> par;\r\n\r\n  Modular_Subset_Sum(int\
     \ mod, vc<INT>& vals) : mod(mod), vals(vals) {\r\n    for(auto&& x : vals) assert(0\
-    \ <= x && x < mod);\r\n    par.assign(mod, -1);\r\n\r\n    RandomNumberGenerator\
-    \ RNG;\r\n    const ll base = RNG(0, (1LL << 61) - 1);\r\n\r\n    int k = 1;\r\
-    \n    while ((1 << k) < 2 * mod) ++k;\r\n\r\n    int L = 1 << k;\r\n    assert(L\
-    \ >= 2 * mod);\r\n\r\n    ShiftTree T1(L, base);\r\n    ShiftTree T2(L, base);\r\
-    \n    T1.set(0, 1);\r\n    T2.set(0, 1);\r\n    T2.set(L - mod, 1);\r\n\r\n  \
-    \  auto bit_rev = [&](int i) -> int {\r\n      int x = 0;\r\n      FOR(k) {\r\n\
-    \        x = 2 * x + (i & 1);\r\n        i >>= 1;\r\n      }\r\n      return x;\r\
-    \n    };\r\n\r\n    vc<vi> IDS(L);\r\n    FOR(i, len(vals)) { IDS[vals[i]].eb(i);\
-    \ }\r\n\r\n    FOR(i, 1, L) {\r\n      int x = bit_rev(i);\r\n      if (len(IDS[x])\
-    \ == 0) continue;\r\n      T2.shift(x - T2.delta);\r\n      for (auto&& idx: IDS[x])\
-    \ {\r\n        auto diff = ShiftTree::diff(T1, T2, 0, mod);\r\n        for (auto&&\
-    \ d: diff) {\r\n          if (can(d)) continue;\r\n          par[d] = idx;\r\n\
-    \          T1.set(d, 1);\r\n          T2.set((d + x) % L, 1);\r\n          T2.set((L\
-    \ + d + x - mod) % L, 1);\r\n        }\r\n      }\r\n    }\r\n  }\r\n\r\n  bool\
-    \ can(int x) { return (x == 0 || par[x] != -1); }\r\n  bool operator[](int x)\
-    \ { return can(x); }\r\n  vc<int> restore(int x) {\r\n    vc<int> res;\r\n   \
-    \ while (x) {\r\n      int i = par[x];\r\n      res.eb(i);\r\n      x -= vals[i];\r\
-    \n      if (x < 0) x += mod;\r\n    }\r\n    reverse(all(res));\r\n    return\
-    \ res;\r\n  }\r\n};\r\n"
+    \ <= x && x < mod);\r\n    par.assign(mod, -1);\r\n\r\n    const ll base = RNG(0,\
+    \ (1LL << 61) - 1);\r\n\r\n    int k = 1;\r\n    while ((1 << k) < 2 * mod) ++k;\r\
+    \n\r\n    int L = 1 << k;\r\n    assert(L >= 2 * mod);\r\n\r\n    ShiftTree T1(L,\
+    \ base);\r\n    ShiftTree T2(L, base);\r\n    T1.set(0, 1);\r\n    T2.set(0, 1);\r\
+    \n    T2.set(L - mod, 1);\r\n\r\n    auto bit_rev = [&](int i) -> int {\r\n  \
+    \    int x = 0;\r\n      FOR(k) {\r\n        x = 2 * x + (i & 1);\r\n        i\
+    \ >>= 1;\r\n      }\r\n      return x;\r\n    };\r\n\r\n    vc<vi> IDS(L);\r\n\
+    \    FOR(i, len(vals)) { IDS[vals[i]].eb(i); }\r\n\r\n    FOR(i, 1, L) {\r\n \
+    \     int x = bit_rev(i);\r\n      if (len(IDS[x]) == 0) continue;\r\n      T2.shift(x\
+    \ - T2.delta);\r\n      for (auto&& idx: IDS[x]) {\r\n        auto diff = ShiftTree::diff(T1,\
+    \ T2, 0, mod);\r\n        for (auto&& d: diff) {\r\n          if (can(d)) continue;\r\
+    \n          par[d] = idx;\r\n          T1.set(d, 1);\r\n          T2.set((d +\
+    \ x) % L, 1);\r\n          T2.set((L + d + x - mod) % L, 1);\r\n        }\r\n\
+    \      }\r\n    }\r\n  }\r\n\r\n  bool can(int x) { return (x == 0 || par[x] !=\
+    \ -1); }\r\n  bool operator[](int x) { return can(x); }\r\n  vc<int> restore(int\
+    \ x) {\r\n    vc<int> res;\r\n    while (x) {\r\n      int i = par[x];\r\n   \
+    \   res.eb(i);\r\n      x -= vals[i];\r\n      if (x < 0) x += mod;\r\n    }\r\
+    \n    reverse(all(res));\r\n    return res;\r\n  }\r\n};\r\n"
   dependsOn:
   - other/random.hpp
   - mod/modint61.hpp
   isVerificationFile: false
   path: mod/modular_subset_sum.hpp
   requiredBy: []
-  timestamp: '2022-08-25 09:50:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-08-25 10:15:41+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/4_modular_subset_sum.test.cpp
 documentation_of: mod/modular_subset_sum.hpp

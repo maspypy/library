@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: dp/minplus_convolution_convex.hpp
     title: dp/minplus_convolution_convex.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -214,31 +214,31 @@ data:
     \ + B[j] < A[i] + B[j + 1])\n        ++i;\n      else\n        ++j;\n    }\n \
     \ }\n  return C;\n}\n#line 7 \"test/mytest/minplus_convex.test.cpp\"\n\nconst\
     \ int INF = numeric_limits<int>::max();\n\nvc<int> gen(int L, int N, int R) {\n\
-    \  RandomNumberGenerator RNG;\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(-100, 100);\n\
-    \  sort(all(A));\n  A = cumsum(A);\n  FOR(L) A.insert(A.begin(), INF);\n  FOR(L)\
-    \ A.insert(A.end(), INF);\n  return A;\n}\n\nvc<int> naive(vc<int> A, vc<int>\
-    \ B) {\n  int N = len(A), M = len(B);\n  vc<int> C(N + M - 1, INF);\n  FOR(i,\
-    \ N) FOR(j, M) {\n    if (A[i] == INF || B[j] == INF) continue;\n    chmin(C[i\
-    \ + j], A[i] + B[j]);\n  }\n  return C;\n}\n\nvoid test() {\n  FOR(a1, 5) FOR(b1,\
-    \ 10) FOR(c1, 5) {\n    vc<int> A = gen(a1, b1, c1);\n    FOR(a2, 5) FOR(b2, 10)\
-    \ FOR(c2, 5) {\n      vc<int> B = gen(a2, b2, c2);\n      assert(naive(A, B) ==\
-    \ minplus_convolution_convex<int>(A, B, INF));\n    }\n  }\n}\n\nvoid solve()\
-    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  test();\n  solve();\n\n  return 0;\n}\n"
+    \  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(-100, 100);\n  sort(all(A));\n  A = cumsum(A);\n\
+    \  FOR(L) A.insert(A.begin(), INF);\n  FOR(L) A.insert(A.end(), INF);\n  return\
+    \ A;\n}\n\nvc<int> naive(vc<int> A, vc<int> B) {\n  int N = len(A), M = len(B);\n\
+    \  vc<int> C(N + M - 1, INF);\n  FOR(i, N) FOR(j, M) {\n    if (A[i] == INF ||\
+    \ B[j] == INF) continue;\n    chmin(C[i + j], A[i] + B[j]);\n  }\n  return C;\n\
+    }\n\nvoid test() {\n  FOR(a1, 5) FOR(b1, 10) FOR(c1, 5) {\n    vc<int> A = gen(a1,\
+    \ b1, c1);\n    FOR(a2, 5) FOR(b2, 10) FOR(c2, 5) {\n      vc<int> B = gen(a2,\
+    \ b2, c2);\n      assert(naive(A, B) == minplus_convolution_convex<int>(A, B,\
+    \ INF));\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\n\
+    signed main() {\n  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\
+    \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"other/random.hpp\"\n\n#include \"dp/minplus_convolution_convex.hpp\"\
     \n\nconst int INF = numeric_limits<int>::max();\n\nvc<int> gen(int L, int N, int\
-    \ R) {\n  RandomNumberGenerator RNG;\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(-100,\
-    \ 100);\n  sort(all(A));\n  A = cumsum(A);\n  FOR(L) A.insert(A.begin(), INF);\n\
-    \  FOR(L) A.insert(A.end(), INF);\n  return A;\n}\n\nvc<int> naive(vc<int> A,\
-    \ vc<int> B) {\n  int N = len(A), M = len(B);\n  vc<int> C(N + M - 1, INF);\n\
-    \  FOR(i, N) FOR(j, M) {\n    if (A[i] == INF || B[j] == INF) continue;\n    chmin(C[i\
-    \ + j], A[i] + B[j]);\n  }\n  return C;\n}\n\nvoid test() {\n  FOR(a1, 5) FOR(b1,\
-    \ 10) FOR(c1, 5) {\n    vc<int> A = gen(a1, b1, c1);\n    FOR(a2, 5) FOR(b2, 10)\
-    \ FOR(c2, 5) {\n      vc<int> B = gen(a2, b2, c2);\n      assert(naive(A, B) ==\
-    \ minplus_convolution_convex<int>(A, B, INF));\n    }\n  }\n}\n\nvoid solve()\
-    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  test();\n  solve();\n\n  return 0;\n}\n"
+    \ R) {\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(-100, 100);\n  sort(all(A));\n\
+    \  A = cumsum(A);\n  FOR(L) A.insert(A.begin(), INF);\n  FOR(L) A.insert(A.end(),\
+    \ INF);\n  return A;\n}\n\nvc<int> naive(vc<int> A, vc<int> B) {\n  int N = len(A),\
+    \ M = len(B);\n  vc<int> C(N + M - 1, INF);\n  FOR(i, N) FOR(j, M) {\n    if (A[i]\
+    \ == INF || B[j] == INF) continue;\n    chmin(C[i + j], A[i] + B[j]);\n  }\n \
+    \ return C;\n}\n\nvoid test() {\n  FOR(a1, 5) FOR(b1, 10) FOR(c1, 5) {\n    vc<int>\
+    \ A = gen(a1, b1, c1);\n    FOR(a2, 5) FOR(b2, 10) FOR(c2, 5) {\n      vc<int>\
+    \ B = gen(a2, b2, c2);\n      assert(naive(A, B) == minplus_convolution_convex<int>(A,\
+    \ B, INF));\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\
+    \nsigned main() {\n  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -247,8 +247,8 @@ data:
   isVerificationFile: true
   path: test/mytest/minplus_convex.test.cpp
   requiredBy: []
-  timestamp: '2022-08-25 09:50:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-25 10:12:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/minplus_convex.test.cpp
 layout: document

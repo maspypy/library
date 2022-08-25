@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: dp/maxplus_convolution_concave.hpp
     title: dp/maxplus_convolution_concave.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -214,10 +214,10 @@ data:
     \ (A[i + 1] + B[j] > A[i] + B[j + 1])\n        ++i;\n      else\n        ++j;\n\
     \    }\n  }\n  return C;\n}\n#line 7 \"test/mytest/maxplus_concave.test.cpp\"\n\
     \nconst int INF = numeric_limits<int>::max();\n\nvc<int> gen(int L, int N, int\
-    \ R) {\n  RandomNumberGenerator RNG;\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(-100,\
-    \ 100);\n  sort(all(A));\n  reverse(all(A));\n  A = cumsum(A);\n  FOR(L) A.insert(A.begin(),\
-    \ -INF);\n  FOR(L) A.insert(A.end(), -INF);\n  return A;\n}\n\nvc<int> naive(vc<int>\
-    \ A, vc<int> B) {\n  int N = len(A), M = len(B);\n  vc<int> C(N + M - 1, -INF);\n\
+    \ R) {\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(-100, 100);\n  sort(all(A));\n\
+    \  reverse(all(A));\n  A = cumsum(A);\n  FOR(L) A.insert(A.begin(), -INF);\n \
+    \ FOR(L) A.insert(A.end(), -INF);\n  return A;\n}\n\nvc<int> naive(vc<int> A,\
+    \ vc<int> B) {\n  int N = len(A), M = len(B);\n  vc<int> C(N + M - 1, -INF);\n\
     \  FOR(i, N) FOR(j, M) {\n    if (A[i] == -INF || B[j] == -INF) continue;\n  \
     \  chmax(C[i + j], A[i] + B[j]);\n  }\n  return C;\n}\n\nvoid test() {\n  FOR(a1,\
     \ 5) FOR(b1, 10) FOR(c1, 5) {\n    vc<int> A = gen(a1, b1, c1);\n    FOR(a2, 5)\
@@ -228,10 +228,10 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"other/random.hpp\"\n\n#include \"dp/maxplus_convolution_concave.hpp\"\
     \n\nconst int INF = numeric_limits<int>::max();\n\nvc<int> gen(int L, int N, int\
-    \ R) {\n  RandomNumberGenerator RNG;\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(-100,\
-    \ 100);\n  sort(all(A));\n  reverse(all(A));\n  A = cumsum(A);\n  FOR(L) A.insert(A.begin(),\
-    \ -INF);\n  FOR(L) A.insert(A.end(), -INF);\n  return A;\n}\n\nvc<int> naive(vc<int>\
-    \ A, vc<int> B) {\n  int N = len(A), M = len(B);\n  vc<int> C(N + M - 1, -INF);\n\
+    \ R) {\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(-100, 100);\n  sort(all(A));\n\
+    \  reverse(all(A));\n  A = cumsum(A);\n  FOR(L) A.insert(A.begin(), -INF);\n \
+    \ FOR(L) A.insert(A.end(), -INF);\n  return A;\n}\n\nvc<int> naive(vc<int> A,\
+    \ vc<int> B) {\n  int N = len(A), M = len(B);\n  vc<int> C(N + M - 1, -INF);\n\
     \  FOR(i, N) FOR(j, M) {\n    if (A[i] == -INF || B[j] == -INF) continue;\n  \
     \  chmax(C[i + j], A[i] + B[j]);\n  }\n  return C;\n}\n\nvoid test() {\n  FOR(a1,\
     \ 5) FOR(b1, 10) FOR(c1, 5) {\n    vc<int> A = gen(a1, b1, c1);\n    FOR(a2, 5)\
@@ -247,8 +247,8 @@ data:
   isVerificationFile: true
   path: test/mytest/maxplus_concave.test.cpp
   requiredBy: []
-  timestamp: '2022-08-25 09:50:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-25 10:12:03+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/maxplus_concave.test.cpp
 layout: document

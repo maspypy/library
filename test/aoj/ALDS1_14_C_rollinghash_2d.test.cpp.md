@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -13,14 +13,14 @@ data:
   - icon: ':question:'
     path: other/random.hpp
     title: other/random.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/rollinghash_2d.hpp
     title: string/rollinghash_2d.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_C
@@ -246,9 +246,9 @@ data:
     \ - xl);\n    expand(pow2, b2, yr - yl);\n    M61 res = A[xr][yr];\n    res -=\
     \ A[xl][yr] * pow1[xr - xl];\n    res -= A[xr][yl] * pow2[yr - yl];\n    res +=\
     \ A[xl][yl] * pow1[xr - xl] * pow2[yr - yl];\n    return res;\n  }\n\nprivate:\n\
-    \  static inline u64 generate_base() {\n    RandomNumberGenerator RNG;\n    return\
-    \ RNG(M61::get_mod());\n  }\n\n  void expand(vc<M61>& pow, const M61& b, int n)\
-    \ {\n    while (len(pow) <= n) pow.eb(pow.back() * b);\n  }\n};\n#line 9 \"test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp\"\
+    \  static inline u64 generate_base() {\n    return RNG(M61::get_mod());\n  }\n\
+    \n  void expand(vc<M61>& pow, const M61& b, int n) {\n    while (len(pow) <= n)\
+    \ pow.eb(pow.back() * b);\n  }\n};\n#line 9 \"test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp\"\
     \n\nvoid solve() {\n  LL(H, W);\n  VEC(string, A, H);\n  RollingHash_2D RH;\n\
     \  auto AH = RH.build(A);\n  LL(H2, W2);\n  VEC(string, B, H2);\n  auto BH = RH.build(B);\n\
     \  auto b = RH.query(BH, 0, 0, H2, W2);\n\n  FOR(x, H - H2 + 1) FOR(y, W - W2\
@@ -275,8 +275,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
   requiredBy: []
-  timestamp: '2022-08-25 09:50:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-25 10:08:18+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
 layout: document

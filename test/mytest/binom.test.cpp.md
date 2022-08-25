@@ -15,9 +15,9 @@ data:
     title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -285,19 +285,19 @@ data:
     \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n\nusing modint107\
     \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\
     #line 7 \"test/mytest/binom.test.cpp\"\n\nusing mint = modint998;\n\nvoid test()\
-    \ {\n  RandomNumberGenerator RNG;\n  FOR(100000) {\n    int n = RNG(0, 1000);\n\
-    \    int k = RNG(0, 1000);\n    mint a = C<mint>(n, k);\n    mint b = C<mint,\
-    \ 0, 1>(n, k);\n    mint c = C<mint, 1, 0>(n, k);\n    assert(a == b && b == c);\n\
-    \  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n\
-    \  cout << fixed << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"other/random.hpp\"\n\n#include \"mod/modint.hpp\"\
-    \n\nusing mint = modint998;\n\nvoid test() {\n  RandomNumberGenerator RNG;\n \
-    \ FOR(100000) {\n    int n = RNG(0, 1000);\n    int k = RNG(0, 1000);\n    mint\
-    \ a = C<mint>(n, k);\n    mint b = C<mint, 0, 1>(n, k);\n    mint c = C<mint,\
+    \ {\n  FOR(100000) {\n    int n = RNG(0, 1000);\n    int k = RNG(0, 1000);\n \
+    \   mint a = C<mint>(n, k);\n    mint b = C<mint, 0, 1>(n, k);\n    mint c = C<mint,\
     \ 1, 0>(n, k);\n    assert(a == b && b == c);\n  }\n}\n\nvoid solve() {\n  LL(a,\
     \ b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
     \n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"other/random.hpp\"\n\n#include \"mod/modint.hpp\"\
+    \n\nusing mint = modint998;\n\nvoid test() {\n  FOR(100000) {\n    int n = RNG(0,\
+    \ 1000);\n    int k = RNG(0, 1000);\n    mint a = C<mint>(n, k);\n    mint b =\
+    \ C<mint, 0, 1>(n, k);\n    mint c = C<mint, 1, 0>(n, k);\n    assert(a == b &&\
+    \ b == c);\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned\
+    \ main() {\n  cout << fixed << setprecision(15);\n\n  solve();\n\n  return 0;\n\
+    }\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -306,8 +306,8 @@ data:
   isVerificationFile: true
   path: test/mytest/binom.test.cpp
   requiredBy: []
-  timestamp: '2022-08-25 09:50:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-25 10:09:33+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/binom.test.cpp
 layout: document

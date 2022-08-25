@@ -10,14 +10,14 @@ data:
   - icon: ':question:'
     path: other/random.hpp
     title: other/random.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/zalgorithm
@@ -212,28 +212,27 @@ data:
     \ xu = x >> 30, xd = x & MASK30;\n    x = au * bu * 2 + xu + (xd << 31) + ad *\
     \ bd;\n    xu = x >> 61, xd = x & MASK61;\n    x = xu + xd;\n    if (x >= MASK61)\
     \ x -= MASK61;\n    return x;\n  }\n\n  static inline uint64_t generate_base()\
-    \ {\n    RandomNumberGenerator RNG;\n    return RNG(mod);\n  }\n\n  inline void\
-    \ expand(size_t sz) {\n    if (power.size() < sz + 1) {\n      int pre_sz = (int)power.size();\n\
-    \      power.resize(sz + 1);\n      for (int i = pre_sz - 1; i < sz; i++) {\n\
-    \        power[i + 1] = mul(power[i], base);\n      }\n    }\n  }\n\n  explicit\
-    \ RollingHash(uint64_t base = generate_base())\n      : base(base), power{1} {}\n\
-    \n  template<typename STRING>\n  vector<uint64_t> build(const STRING& s) const\
-    \ {\n    int sz = s.size();\n    vector<uint64_t> hashed(sz + 1);\n    for (int\
-    \ i = 0; i < sz; i++) {\n      hashed[i + 1] = add(mul(hashed[i], base), s[i]);\n\
-    \    }\n    return hashed;\n  }\n\n  uint64_t query(const vector<uint64_t>& s,\
-    \ int l, int r) {\n    expand(r - l);\n    return add(s[r], mod - mul(s[l], power[r\
-    \ - l]));\n  }\n\n  uint64_t combine(uint64_t h1, uint64_t h2, size_t h2len) {\n\
-    \    expand(h2len);\n    return add(mul(h1, power[h2len]), h2);\n  }\n\n  int\
-    \ lcp(const vector<uint64_t>& a, int l1, int r1, const vector<uint64_t>& b,\n\
-    \          int l2, int r2) {\n    int len = min(r1 - l1, r2 - l2);\n    int low\
-    \ = 0, high = len + 1;\n    while (high - low > 1) {\n      int mid = (low + high)\
-    \ / 2;\n      if (query(a, l1, l1 + mid) == query(b, l2, l2 + mid))\n        low\
-    \ = mid;\n      else\n        high = mid;\n    }\n    return low;\n  }\n};\n#line\
-    \ 6 \"test/library_checker/string/zalgorithm_by_rollinghash.test.cpp\"\n\r\nvoid\
-    \ solve() {\r\n  STR(S);\r\n  ll N = len(S);\r\n  RollingHash RH;\r\n  auto RS\
-    \ = RH.build(S);\r\n  vi Z(N);\r\n  FOR(i, N) { Z[i] = RH.lcp(RS, 0, N, RS, i,\
-    \ N); }\r\n  print(Z);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n\
-    \  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
+    \ {\n    return RNG(mod);\n  }\n\n  inline void expand(size_t sz) {\n    if (power.size()\
+    \ < sz + 1) {\n      int pre_sz = (int)power.size();\n      power.resize(sz +\
+    \ 1);\n      for (int i = pre_sz - 1; i < sz; i++) {\n        power[i + 1] = mul(power[i],\
+    \ base);\n      }\n    }\n  }\n\n  explicit RollingHash(uint64_t base = generate_base())\n\
+    \      : base(base), power{1} {}\n\n  template<typename STRING>\n  vector<uint64_t>\
+    \ build(const STRING& s) const {\n    int sz = s.size();\n    vector<uint64_t>\
+    \ hashed(sz + 1);\n    for (int i = 0; i < sz; i++) {\n      hashed[i + 1] = add(mul(hashed[i],\
+    \ base), s[i]);\n    }\n    return hashed;\n  }\n\n  uint64_t query(const vector<uint64_t>&\
+    \ s, int l, int r) {\n    expand(r - l);\n    return add(s[r], mod - mul(s[l],\
+    \ power[r - l]));\n  }\n\n  uint64_t combine(uint64_t h1, uint64_t h2, size_t\
+    \ h2len) {\n    expand(h2len);\n    return add(mul(h1, power[h2len]), h2);\n \
+    \ }\n\n  int lcp(const vector<uint64_t>& a, int l1, int r1, const vector<uint64_t>&\
+    \ b,\n          int l2, int r2) {\n    int len = min(r1 - l1, r2 - l2);\n    int\
+    \ low = 0, high = len + 1;\n    while (high - low > 1) {\n      int mid = (low\
+    \ + high) / 2;\n      if (query(a, l1, l1 + mid) == query(b, l2, l2 + mid))\n\
+    \        low = mid;\n      else\n        high = mid;\n    }\n    return low;\n\
+    \  }\n};\n#line 6 \"test/library_checker/string/zalgorithm_by_rollinghash.test.cpp\"\
+    \n\r\nvoid solve() {\r\n  STR(S);\r\n  ll N = len(S);\r\n  RollingHash RH;\r\n\
+    \  auto RS = RH.build(S);\r\n  vi Z(N);\r\n  FOR(i, N) { Z[i] = RH.lcp(RS, 0,\
+    \ N, RS, i, N); }\r\n  print(Z);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
+    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
     \n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\r\n#include\
     \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"string/rollinghash.hpp\"\
@@ -250,8 +249,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   requiredBy: []
-  timestamp: '2022-08-25 09:50:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-25 10:07:44+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
 layout: document

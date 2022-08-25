@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/all_inverse.hpp
     title: mod/all_inverse.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -293,20 +293,19 @@ data:
     \  mint t = res.back().inverse();\n  res.pop_back();\n  FOR_R(i, N) {\n    res[i]\
     \ *= t;\n    t *= X[i];\n  }\n  return res;\n}\n#line 8 \"test/mytest/all_inverse.test.cpp\"\
     \n\nvoid test() {\n  using mint = modint998;\n  vc<int> ns = {1, 2, 3, 4, 5, 100000};\n\
-    \n  RandomNumberGenerator RNG;\n  for (auto&& N: ns) {\n    vc<mint> X(N);\n \
-    \   FOR(i, N) { X[i] = RNG(1, mint::get_mod()); }\n    auto Y = all_inverse(X);\n\
-    \    FOR(i, N) assert(X[i] * Y[i] == mint(1));\n  }\n}\n\nvoid solve() {\n  LL(a,\
-    \ b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  test();\n  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"other/random.hpp\"\n\n#include \"mod/modint.hpp\"\
-    \n#include \"mod/all_inverse.hpp\"\n\nvoid test() {\n  using mint = modint998;\n\
-    \  vc<int> ns = {1, 2, 3, 4, 5, 100000};\n\n  RandomNumberGenerator RNG;\n  for\
-    \ (auto&& N: ns) {\n    vc<mint> X(N);\n    FOR(i, N) { X[i] = RNG(1, mint::get_mod());\
+    \n  for (auto&& N: ns) {\n    vc<mint> X(N);\n    FOR(i, N) { X[i] = RNG(1, mint::get_mod());\
     \ }\n    auto Y = all_inverse(X);\n    FOR(i, N) assert(X[i] * Y[i] == mint(1));\n\
     \  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n\
     \  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\n  return 0;\n\
     }\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"other/random.hpp\"\n\n#include \"mod/modint.hpp\"\
+    \n#include \"mod/all_inverse.hpp\"\n\nvoid test() {\n  using mint = modint998;\n\
+    \  vc<int> ns = {1, 2, 3, 4, 5, 100000};\n\n  for (auto&& N: ns) {\n    vc<mint>\
+    \ X(N);\n    FOR(i, N) { X[i] = RNG(1, mint::get_mod()); }\n    auto Y = all_inverse(X);\n\
+    \    FOR(i, N) assert(X[i] * Y[i] == mint(1));\n  }\n}\n\nvoid solve() {\n  LL(a,\
+    \ b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  test();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -316,8 +315,8 @@ data:
   isVerificationFile: true
   path: test/mytest/all_inverse.test.cpp
   requiredBy: []
-  timestamp: '2022-08-25 09:50:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-25 10:09:19+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/all_inverse.test.cpp
 layout: document

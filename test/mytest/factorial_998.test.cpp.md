@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_mul.hpp
     title: alg/group_mul.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/swag.hpp
     title: ds/swag.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/factorial998.hpp
     title: mod/factorial998.hpp
   - icon: ':question:'
@@ -37,20 +37,20 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -587,20 +587,19 @@ data:
     template <typename T>\nT prefix_product_of_poly(vc<T>& f, ll k) {\n  vc<vc<vc<T>>>\
     \ A(1);\n  A[0].resize(1);\n  A[0][0] = f;\n  auto res = prefix_product_of_poly_matrix(A,\
     \ k);\n  return res[0][0];\n}\n#line 8 \"test/mytest/factorial_998.test.cpp\"\n\
-    \nusing mint = modint998;\n\nvoid test() {\n  RandomNumberGenerator RNG;\n  FOR(10)\
-    \ {\n    int x = RNG(0, mint::get_mod());\n    // int x = t;\n    int a = factorial998(x);\n\
-    \    vc<mint> f = {1, 1};\n    int b = prefix_product_of_poly(f, x).val;\n   \
-    \ assert(a == b);\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\
-    \nsigned main() {\n  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\
-    \n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"other/random.hpp\"\n\n#include \"mod/factorial998.hpp\"\
-    \n#include \"poly/prefix_product_of_poly.hpp\"\n\nusing mint = modint998;\n\n\
-    void test() {\n  RandomNumberGenerator RNG;\n  FOR(10) {\n    int x = RNG(0, mint::get_mod());\n\
+    \nusing mint = modint998;\n\nvoid test() {\n  FOR(10) {\n    int x = RNG(0, mint::get_mod());\n\
     \    // int x = t;\n    int a = factorial998(x);\n    vc<mint> f = {1, 1};\n \
     \   int b = prefix_product_of_poly(f, x).val;\n    assert(a == b);\n  }\n}\n\n\
     void solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout <<\
     \ fixed << setprecision(15);\n\n  test();\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"other/random.hpp\"\n\n#include \"mod/factorial998.hpp\"\
+    \n#include \"poly/prefix_product_of_poly.hpp\"\n\nusing mint = modint998;\n\n\
+    void test() {\n  FOR(10) {\n    int x = RNG(0, mint::get_mod());\n    // int x\
+    \ = t;\n    int a = factorial998(x);\n    vc<mint> f = {1, 1};\n    int b = prefix_product_of_poly(f,\
+    \ x).val;\n    assert(a == b);\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a\
+    \ + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  test();\n\
+    \  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -620,8 +619,8 @@ data:
   isVerificationFile: true
   path: test/mytest/factorial_998.test.cpp
   requiredBy: []
-  timestamp: '2022-08-25 09:50:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-25 10:10:41+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/factorial_998.test.cpp
 layout: document

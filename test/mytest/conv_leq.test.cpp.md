@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_leq.hpp
     title: poly/convolution_leq.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -493,12 +493,28 @@ data:
     \ len(g))) h[i + i] += f[i] * g[i]; }\r\n  return h;\r\n}\n#line 2 \"other/random.hpp\"\
     \n\nll RNG(ll a, ll b) {\n  static mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\n\
     \  uniform_int_distribution<ll> dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll\
-    \ a) { return RNG(0, a); }\n#line 7 \"test/mytest/conv_leq.test.cpp\"\n\nRandomNumberGenerator\
-    \ RNG;\n\nusing mint = modint998;\n\nvc<mint> gen(int n) {\n  vc<mint> f(n);\n\
-    \  FOR(i, n) f[i] = RNG(0, mint::get_mod());\n  return f;\n}\n\nvoid test_0()\
-    \ {\n  FOR(100) {\n    ll n = RNG(1, 10);\n    ll m = RNG(1, 10);\n    auto f\
-    \ = gen(n), g = gen(m);\n    vc<mint> h(len(f) + len(g) - 1);\n    FOR(i, len(f))\
-    \ FOR(j, len(g)) if (i <= j) h[i + j] += f[i] * g[j];\n    assert(convolution_leq(f,\
+    \ a) { return RNG(0, a); }\n#line 7 \"test/mytest/conv_leq.test.cpp\"\n\nusing\
+    \ mint = modint998;\n\nvc<mint> gen(int n) {\n  vc<mint> f(n);\n  FOR(i, n) f[i]\
+    \ = RNG(0, mint::get_mod());\n  return f;\n}\n\nvoid test_0() {\n  FOR(100) {\n\
+    \    ll n = RNG(1, 10);\n    ll m = RNG(1, 10);\n    auto f = gen(n), g = gen(m);\n\
+    \    vc<mint> h(len(f) + len(g) - 1);\n    FOR(i, len(f)) FOR(j, len(g)) if (i\
+    \ <= j) h[i + j] += f[i] * g[j];\n    assert(convolution_leq(f, g, 0) == h);\n\
+    \  }\n}\n\nvoid test_1() {\n  FOR(100) {\n    ll n = RNG(1, 10);\n    ll m = RNG(1,\
+    \ 10);\n    auto f = gen(n), g = gen(m);\n    vc<mint> h(len(f) + len(g) - 1);\n\
+    \    FOR(i, len(f)) FOR(j, len(g)) if (i < j) h[i + j] += f[i] * g[j];\n    assert(convolution_leq(f,\
+    \ g, 1) == h);\n  }\n}\n\nvoid test_2() {\n  ll n = RNG(1000, 10000);\n  ll m\
+    \ = RNG(1000, 10000);\n  auto f = gen(n), g = gen(m);\n  vc<mint> h(len(f) + len(g)\
+    \ - 1);\n  FOR(i, len(f)) FOR(j, len(g)) if (i < j) h[i + j] += f[i] * g[j];\n\
+    \  assert(convolution_leq(f, g, 1) == h);\n}\n\nvoid solve() {\n  LL(a, b);\n\
+    \  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  test_0();\n  test_1();\n  test_2();\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n#include \"poly/convolution_leq.hpp\"\
+    \n#include \"other/random.hpp\"\n\nusing mint = modint998;\n\nvc<mint> gen(int\
+    \ n) {\n  vc<mint> f(n);\n  FOR(i, n) f[i] = RNG(0, mint::get_mod());\n  return\
+    \ f;\n}\n\nvoid test_0() {\n  FOR(100) {\n    ll n = RNG(1, 10);\n    ll m = RNG(1,\
+    \ 10);\n    auto f = gen(n), g = gen(m);\n    vc<mint> h(len(f) + len(g) - 1);\n\
+    \    FOR(i, len(f)) FOR(j, len(g)) if (i <= j) h[i + j] += f[i] * g[j];\n    assert(convolution_leq(f,\
     \ g, 0) == h);\n  }\n}\n\nvoid test_1() {\n  FOR(100) {\n    ll n = RNG(1, 10);\n\
     \    ll m = RNG(1, 10);\n    auto f = gen(n), g = gen(m);\n    vc<mint> h(len(f)\
     \ + len(g) - 1);\n    FOR(i, len(f)) FOR(j, len(g)) if (i < j) h[i + j] += f[i]\
@@ -509,23 +525,6 @@ data:
     }\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout\
     \ << fixed << setprecision(15);\n\n  test_0();\n  test_1();\n  test_2();\n  solve();\n\
     \n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n#include \"poly/convolution_leq.hpp\"\
-    \n#include \"other/random.hpp\"\n\nRandomNumberGenerator RNG;\n\nusing mint =\
-    \ modint998;\n\nvc<mint> gen(int n) {\n  vc<mint> f(n);\n  FOR(i, n) f[i] = RNG(0,\
-    \ mint::get_mod());\n  return f;\n}\n\nvoid test_0() {\n  FOR(100) {\n    ll n\
-    \ = RNG(1, 10);\n    ll m = RNG(1, 10);\n    auto f = gen(n), g = gen(m);\n  \
-    \  vc<mint> h(len(f) + len(g) - 1);\n    FOR(i, len(f)) FOR(j, len(g)) if (i <=\
-    \ j) h[i + j] += f[i] * g[j];\n    assert(convolution_leq(f, g, 0) == h);\n  }\n\
-    }\n\nvoid test_1() {\n  FOR(100) {\n    ll n = RNG(1, 10);\n    ll m = RNG(1,\
-    \ 10);\n    auto f = gen(n), g = gen(m);\n    vc<mint> h(len(f) + len(g) - 1);\n\
-    \    FOR(i, len(f)) FOR(j, len(g)) if (i < j) h[i + j] += f[i] * g[j];\n    assert(convolution_leq(f,\
-    \ g, 1) == h);\n  }\n}\n\nvoid test_2() {\n  ll n = RNG(1000, 10000);\n  ll m\
-    \ = RNG(1000, 10000);\n  auto f = gen(n), g = gen(m);\n  vc<mint> h(len(f) + len(g)\
-    \ - 1);\n  FOR(i, len(f)) FOR(j, len(g)) if (i < j) h[i + j] += f[i] * g[j];\n\
-    \  assert(convolution_leq(f, g, 1) == h);\n}\n\nvoid solve() {\n  LL(a, b);\n\
-    \  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  test_0();\n  test_1();\n  test_2();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -540,8 +539,8 @@ data:
   isVerificationFile: true
   path: test/mytest/conv_leq.test.cpp
   requiredBy: []
-  timestamp: '2022-08-25 09:50:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-25 10:09:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/conv_leq.test.cpp
 layout: document

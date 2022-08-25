@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sqrt_mod
@@ -289,20 +289,19 @@ data:
     \ a) { return RNG(0, a); }\n#line 3 \"mod/mod_sqrt.hpp\"\n\r\ntemplate <typename\
     \ mint>\r\nmint mod_sqrt(mint a) {\r\n  int p = mint::get_mod();\r\n  if (p ==\
     \ 2) return a;\r\n  if (a == 0) return 0;\r\n  int k = (p - 1) / 2;\r\n  if (a.pow(k)\
-    \ != 1) return 0;\r\n  RandomNumberGenerator RNG;\r\n  auto find = [&]() -> pair<mint,\
-    \ mint> {\r\n    while (1) {\r\n      mint b = RNG(2, p);\r\n      mint D = b\
-    \ * b - a;\r\n      if (D == 0) return {b, D};\r\n      if (D.pow(k) != mint(1))\
-    \ return {b, D};\r\n    }\r\n  };\r\n  auto [b, D] = find();\r\n  if (D == 0)\
-    \ return b;\r\n  ++k;\r\n  // (b + sqrt(D))^k\r\n  mint f0 = b, f1 = 1;\r\n  mint\
-    \ g0 = 1, g1 = 0;\r\n  while (k) {\r\n    if (k & 1) { tie(g0, g1) = mp(f0 * g0\
-    \ + D * f1 * g1, f1 * g0 + f0 * g1); }\r\n    tie(f0, f1) = mp(f0 * f0 + D * f1\
-    \ * f1, mint(2) * f0 * f1);\r\n    k >>= 1;\r\n  }\r\n  return g0;\r\n}\r\n#line\
-    \ 5 \"test/library_checker/math/sqrt_mod.test.cpp\"\n\r\nusing mint = amint;\r\
-    \n\r\nvoid solve() {\r\n  LL(T);\r\n  FOR(T) {\r\n    LL(y0, p);\r\n    mint::set_mod(p);\r\
-    \n    mint y = y0;\r\n    mint r = mod_sqrt(y);\r\n    if (r * r == y)\r\n   \
-    \   print(r);\r\n    else\r\n      print(-1);\r\n  }\r\n}\r\n\r\nsigned main()\
-    \ {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
-    \n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ != 1) return 0;\r\n  auto find = [&]() -> pair<mint, mint> {\r\n    while (1)\
+    \ {\r\n      mint b = RNG(2, p);\r\n      mint D = b * b - a;\r\n      if (D ==\
+    \ 0) return {b, D};\r\n      if (D.pow(k) != mint(1)) return {b, D};\r\n    }\r\
+    \n  };\r\n  auto [b, D] = find();\r\n  if (D == 0) return b;\r\n  ++k;\r\n  //\
+    \ (b + sqrt(D))^k\r\n  mint f0 = b, f1 = 1;\r\n  mint g0 = 1, g1 = 0;\r\n  while\
+    \ (k) {\r\n    if (k & 1) { tie(g0, g1) = mp(f0 * g0 + D * f1 * g1, f1 * g0 +\
+    \ f0 * g1); }\r\n    tie(f0, f1) = mp(f0 * f0 + D * f1 * f1, mint(2) * f0 * f1);\r\
+    \n    k >>= 1;\r\n  }\r\n  return g0;\r\n}\r\n#line 5 \"test/library_checker/math/sqrt_mod.test.cpp\"\
+    \n\r\nusing mint = amint;\r\n\r\nvoid solve() {\r\n  LL(T);\r\n  FOR(T) {\r\n\
+    \    LL(y0, p);\r\n    mint::set_mod(p);\r\n    mint y = y0;\r\n    mint r = mod_sqrt(y);\r\
+    \n    if (r * r == y)\r\n      print(r);\r\n    else\r\n      print(-1);\r\n \
+    \ }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sqrt_mod\"\r\n#include\
     \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"mod/mod_sqrt.hpp\"\
     \r\n\r\nusing mint = amint;\r\n\r\nvoid solve() {\r\n  LL(T);\r\n  FOR(T) {\r\n\
@@ -319,8 +318,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/sqrt_mod.test.cpp
   requiredBy: []
-  timestamp: '2022-08-25 09:50:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-25 10:05:47+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/sqrt_mod.test.cpp
 layout: document
