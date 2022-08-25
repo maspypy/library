@@ -1,10 +1,10 @@
 #include "other/random.hpp"
 #include "nt/primetest.hpp"
 
+// O(N2^N)
 template <typename Graph, int TRIAL = 0>
 int chromatic_number(Graph& G) {
   assert(G.is_prepared());
-  // O(N2^N)
 
   int N = G.N;
   vc<int> nbd(N);
@@ -35,7 +35,6 @@ int chromatic_number(Graph& G) {
   chmax(ANS, solve_p(0));
 
   FOR(TRIAL) {
-    RandomNumberGenerator RNG;
     int p;
     while (1) {
       p = RNG(1LL << 30, 1LL << 31);
