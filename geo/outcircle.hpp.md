@@ -8,10 +8,13 @@ data:
     path: geo/triangle_area.hpp
     title: geo/triangle_area.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL_7_C.test.cpp
+    title: test/aoj/CGL_7_C.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -75,8 +78,9 @@ data:
   path: geo/outcircle.hpp
   requiredBy: []
   timestamp: '2022-08-24 15:10:52+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj/CGL_7_C.test.cpp
 documentation_of: geo/outcircle.hpp
 layout: document
 redirect_from:

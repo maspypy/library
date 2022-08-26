@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/incremental_convexhull.hpp
     title: geo/incremental_convexhull.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
   - icon: ':heavy_check_mark:'
@@ -57,6 +57,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_B.test.cpp
     title: test/aoj/CGL_7_B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL_7_C.test.cpp
+    title: test/aoj/CGL_7_C.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/sort_points_by_argument.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument.test.cpp
@@ -174,6 +177,7 @@ data:
   - test/aoj/CGL_2_D.test.cpp
   - test/aoj/CGL_1_B.test.cpp
   - test/aoj/CGL_2_C.test.cpp
+  - test/aoj/CGL_7_C.test.cpp
   - test/aoj/CGL_2_A.test.cpp
 documentation_of: geo/base.hpp
 layout: document

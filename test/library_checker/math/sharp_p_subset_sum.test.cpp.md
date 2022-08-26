@@ -19,32 +19,32 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/product_of_one_plus_xn.hpp
     title: poly/product_of_one_plus_xn.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sharp_p_subset_sum
@@ -550,13 +550,13 @@ data:
     \ * inv<mint>(d);\r\n      else\r\n        logf[d * x] -= mint(CNT[x]) * inv<mint>(d);\r\
     \n    }\r\n  }\r\n  return fps_exp(logf);\r\n}\r\n#line 5 \"test/library_checker/math/sharp_p_subset_sum.test.cpp\"\
     \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N, T);\r\n  VEC(int, S,\
-    \ N);\r\n  auto f = product_of_one_plus_xn<mint>(S, T + 1);\r\n  f.erase(f.begin());\r\
+    \ N);\r\n  auto f = product_of_one_plus_xn<mint>(S, T);\r\n  f.erase(f.begin());\r\
     \n  print(f);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
     \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sharp_p_subset_sum\"\r\n\
     #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"poly/product_of_one_plus_xn.hpp\"\
     \r\n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N, T);\r\n  VEC(int,\
-    \ S, N);\r\n  auto f = product_of_one_plus_xn<mint>(S, T + 1);\r\n  f.erase(f.begin());\r\
+    \ S, N);\r\n  auto f = product_of_one_plus_xn<mint>(S, T);\r\n  f.erase(f.begin());\r\
     \n  print(f);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
     \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
@@ -576,8 +576,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/sharp_p_subset_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-08-27 04:06:18+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-27 04:31:56+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/sharp_p_subset_sum.test.cpp
 layout: document

@@ -73,6 +73,9 @@ data:
     path: test/aoj/CGL_7_B.test.cpp
     title: test/aoj/CGL_7_B.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL_7_C.test.cpp
+    title: test/aoj/CGL_7_C.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_1_B_kanpsack01.test.cpp
     title: test/aoj/DPL_1_B_kanpsack01.test.cpp
   - icon: ':heavy_check_mark:'
@@ -462,7 +465,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/partition.test.cpp
     title: test/library_checker/math/partition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sharp_p_subset_sum.test.cpp
     title: test/library_checker/math/sharp_p_subset_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1342,6 +1345,7 @@ data:
   - test/aoj/GRO_3_A_articulation.test.cpp
   - test/aoj/DPL_4_B_subset_sum_count.test.cpp
   - test/aoj/DSL_2_E_fenwick_raq.test.cpp
+  - test/aoj/CGL_7_C.test.cpp
   - test/aoj/ITP1_D_D_divisors.test.cpp
   - test/aoj/DPL_1_B_kanpsack01.test.cpp
   - test/aoj/CGL_2_A.test.cpp
