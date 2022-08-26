@@ -84,7 +84,15 @@ struct IncrementalConvexHull_Lower {
   // 中：1, 境界：0, 外：-1
   int side(Point<T> p) {
     auto r = S.lower_bound(p);
-    if (r == S.begin() || r == S.end()) return -1;
+    if (r == S.begin()) {
+      // 全部 p 以上
+      if (len(S) && (*r) == p) return 0;
+      return -1;
+    }
+    if (r == S.end()) {
+      // p は max より大きい
+      return -1;
+    }
     auto l = prev(r);
     auto p1 = *l, p2 = *r;
     T det = (p - p1).det(p2 - p1);
@@ -97,39 +105,27 @@ template <typename T, bool strict = true>
 struct Incremental_ConvexHull {
   using P = Point<T>;
   IncrementalConvexHull_Lower<T, strict> LOWER, UPPER;
-  int cnt_V, cnt_E;
+  int cnt_E;
   T det_sum;
+  bool is_empty;
 
-  Incremental_ConvexHull() : cnt_V(-2), cnt_E(0), det_sum(0) {}
+  Incremental_ConvexHull() : cnt_E(0), det_sum(0), is_empty(1) {}
 
-  int size() { return V(); }
+  int size() { return cnt_E; }
 
-  bool empty() { return cnt_V == -2; }
-
-  int V() {
-    if (det_sum == 0) return -1; // どうしよ
-    return cnt_V;
-  }
-
-  int E() { return cnt_E; }
+  bool empty() { return is_empty; }
 
   template <typename REAL>
   REAL area() {
     return det_sum * 0.5;
   }
+  T area_2() { return det_sum; }
 
   template <typename ADD_V, typename RM_V, typename ADD_E, typename RM_E>
   void add(Point<T> p, ADD_V add_v, RM_V rm_v, ADD_E add_e, RM_E rm_e) {
+    is_empty = 0;
     LOWER.add(
-        p,
-        [&](Point<T> p) {
-          add_v(p);
-          ++cnt_V;
-        },
-        [&](Point<T> p) {
-          rm_v(p);
-          --cnt_V;
-        },
+        p, add_v, rm_v,
         [&](Point<T> a, Point<T> b) {
           add_e(a, b);
           ++cnt_E;
@@ -141,15 +137,7 @@ struct Incremental_ConvexHull {
           det_sum -= a.det(b);
         });
     UPPER.add(
-        -p,
-        [&](Point<T> p) {
-          add_v(-p);
-          ++cnt_V;
-        },
-        [&](Point<T> p) {
-          rm_v(-p);
-          --cnt_V;
-        },
+        -p, [&](Point<T> p) { add_v(-p); }, [&](Point<T> p) { rm_v(-p); },
         [&](Point<T> a, Point<T> b) {
           add_e(-a, -b);
           ++cnt_E;
