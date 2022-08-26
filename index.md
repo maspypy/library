@@ -963,9 +963,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/prefix_product_of_poly.hpp
       title: poly/prefix_product_of_poly.hpp
-    - icon: ':heavy_check_mark:'
-      path: poly/sharp_p_subset_sum.hpp
-      title: poly/sharp_p_subset_sum.hpp
+    - icon: ':warning:'
+      path: poly/product_of_one_plus_xn.hpp
+      title: poly/product_of_one_plus_xn.hpp
     - icon: ':warning:'
       path: poly/sum_of_prefix_suffix_products.hpp
       title: poly/sum_of_prefix_suffix_products.hpp
@@ -1569,7 +1569,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/partition.test.cpp
       title: test/library_checker/math/partition.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/math/sharp_p_subset_sum.test.cpp
       title: test/library_checker/math/sharp_p_subset_sum.test.cpp
     - icon: ':heavy_check_mark:'

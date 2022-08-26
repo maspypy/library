@@ -71,9 +71,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/sharp_p_subset_sum.hpp
-    title: poly/sharp_p_subset_sum.hpp
+  - icon: ':warning:'
+    path: poly/product_of_one_plus_xn.hpp
+    title: poly/product_of_one_plus_xn.hpp
   - icon: ':warning:'
     path: poly/sum_of_prefix_suffix_products.hpp
     title: poly/sum_of_prefix_suffix_products.hpp
@@ -144,9 +144,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/partition.test.cpp
     title: test/library_checker/math/partition.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/sharp_p_subset_sum.test.cpp
-    title: test/library_checker/math/sharp_p_subset_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
@@ -301,7 +298,6 @@ data:
   requiredBy:
   - graph/tree_all_distances.hpp
   - nt/multiplicative_convolution_mod2n.hpp
-  - poly/sharp_p_subset_sum.hpp
   - poly/convolution_huge.hpp
   - poly/sum_of_rationals.hpp
   - poly/poly_divmod.hpp
@@ -317,6 +313,7 @@ data:
   - poly/coef_of_rational_fps.hpp
   - poly/fps_inv.hpp
   - poly/lagrange_interpolate_iota.hpp
+  - poly/product_of_one_plus_xn.hpp
   - poly/multivar_convolution.hpp
   - poly/convolution_leq.hpp
   - poly/fps_exp.hpp
@@ -369,7 +366,6 @@ data:
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/library_checker/math/partition.test.cpp
-  - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp

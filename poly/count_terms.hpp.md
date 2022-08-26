@@ -26,9 +26,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/poly_gcd.hpp
     title: poly/poly_gcd.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/sharp_p_subset_sum.hpp
-    title: poly/sharp_p_subset_sum.hpp
+  - icon: ':warning:'
+    path: poly/product_of_one_plus_xn.hpp
+    title: poly/product_of_one_plus_xn.hpp
   - icon: ':heavy_check_mark:'
     path: seq/partition_number.hpp
     title: seq/partition_number.hpp
@@ -48,9 +48,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/partition.test.cpp
     title: test/library_checker/math/partition.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/sharp_p_subset_sum.test.cpp
-    title: test/library_checker/math/sharp_p_subset_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
@@ -132,12 +129,12 @@ data:
   isVerificationFile: false
   path: poly/count_terms.hpp
   requiredBy:
-  - poly/sharp_p_subset_sum.hpp
   - poly/poly_divmod.hpp
   - poly/fps_log.hpp
   - poly/fps_sqrt.hpp
   - poly/poly_gcd.hpp
   - poly/fps_inv.hpp
+  - poly/product_of_one_plus_xn.hpp
   - poly/fps_exp.hpp
   - poly/fps_pow.hpp
   - poly/multipoint.hpp
@@ -170,7 +167,6 @@ data:
   - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/math/partition.test.cpp
-  - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
 documentation_of: poly/count_terms.hpp

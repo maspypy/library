@@ -35,9 +35,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/sharp_p_subset_sum.hpp
-    title: poly/sharp_p_subset_sum.hpp
+  - icon: ':warning:'
+    path: poly/product_of_one_plus_xn.hpp
+    title: poly/product_of_one_plus_xn.hpp
   - icon: ':heavy_check_mark:'
     path: seq/stirling_number_1.hpp
     title: seq/stirling_number_1.hpp
@@ -48,9 +48,6 @@ data:
     path: seq/surjection.hpp
     title: seq/surjection.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/sharp_p_subset_sum.test.cpp
-    title: test/library_checker/math/sharp_p_subset_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
@@ -467,8 +464,8 @@ data:
   isVerificationFile: false
   path: poly/fps_exp.hpp
   requiredBy:
-  - poly/sharp_p_subset_sum.hpp
   - poly/fps_sqrt.hpp
+  - poly/product_of_one_plus_xn.hpp
   - poly/fps_pow.hpp
   - seq/surjection.hpp
   - seq/stirling_number_1.hpp
@@ -485,7 +482,6 @@ data:
   - test/library_checker/polynomial/pow_of_fps.test.cpp
   - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
 documentation_of: poly/fps_exp.hpp
