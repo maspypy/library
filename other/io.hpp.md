@@ -643,6 +643,9 @@ data:
     path: test/mytest/incremental_ch.test.cpp
     title: test/mytest/incremental_ch.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/is_substring.test.cpp
+    title: test/mytest/is_substring.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/max_of_linear_segments.test.cpp
     title: test/mytest/max_of_linear_segments.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1231,6 +1234,7 @@ data:
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
   - test/mytest/primesum_mod4.test.cpp
+  - test/mytest/is_substring.test.cpp
   - test/mytest/gray_code.test.cpp
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
   - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
