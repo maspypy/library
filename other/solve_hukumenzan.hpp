@@ -1,12 +1,13 @@
 // a + b = c を解く
-vc<tuple<int, int, int>> solve_hukumenzan(string A, string B, string C) {
+vc<tuple<ll, ll, ll>> solve_hukumenzan(string A, string B, string C) {
+  using T = tuple<ll, ll, ll>;
+  vc<T> res;
   vc<char> v;
   for (auto&& x: A + B + C) v.eb(x);
   UNIQUE(v);
+  if (len(v) > 10) return res;
   vc<int> I(10);
   iota(all(I), 0);
-  using T = tuple<int, int, int>;
-  vc<T> res;
   do {
     map<char, int> MP;
     FOR(i, len(v)) MP[v[i]] = I[i];
