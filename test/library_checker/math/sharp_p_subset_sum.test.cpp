@@ -7,7 +7,7 @@ using mint = modint998;
 void solve() {
   LL(N, T);
   VEC(int, S, N);
-  auto f = product_of_one_plus_xn<mint>(S, T + 1);
+  auto f = product_of_one_plus_xn<mint>(S, T);
   f.erase(f.begin());
   print(f);
 }
