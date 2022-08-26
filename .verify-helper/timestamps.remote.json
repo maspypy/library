@@ -208,6 +208,7 @@
 "test/mytest/factorial_998.test.cpp": "2022-08-25 10:10:41 +0900",
 "test/mytest/gray_code.test.cpp": "2022-08-22 14:22:01 +0900",
 "test/mytest/incremental_ch.test.cpp": "2022-08-27 04:18:43 +0900",
+"test/mytest/is_substring.test.cpp": "2022-08-27 04:37:14 +0900",
 "test/mytest/max_of_linear_segments.test.cpp": "2022-08-25 10:11:27 +0900",
 "test/mytest/maxplus_concave.test.cpp": "2022-08-25 10:12:03 +0900",
 "test/mytest/min_of_linear_segments.test.cpp": "2022-08-25 10:12:27 +0900",
