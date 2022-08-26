@@ -77,7 +77,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/product_of_one_plus_xn.hpp
     title: poly/product_of_one_plus_xn.hpp
   - icon: ':warning:'
@@ -256,6 +256,9 @@ data:
     path: test/yukicoder/187_crt.test.cpp
     title: test/yukicoder/187_crt.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2062.test.cpp
+    title: test/yukicoder/2062.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_p_rec.test.cpp
     title: test/yukicoder/502_p_rec.test.cpp
   _isVerificationFailed: true
@@ -317,6 +320,7 @@ data:
   verifiedWith:
   - test/yukicoder/1500_interpolate_linear.test.cpp
   - test/yukicoder/187_crt.test.cpp
+  - test/yukicoder/2062.test.cpp
   - test/yukicoder/1145_sum_of_powers.test.cpp
   - test/yukicoder/502_p_rec.test.cpp
   - test/yukicoder/1321_surj.test.cpp

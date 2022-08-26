@@ -636,7 +636,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/gray_code.test.cpp
     title: test/mytest/gray_code.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/incremental_ch.test.cpp
     title: test/mytest/incremental_ch.test.cpp
   - icon: ':heavy_check_mark:'
@@ -846,6 +846,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2005.test.cpp
     title: test/yukicoder/2005.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2062.test.cpp
+    title: test/yukicoder/2062.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/235_lazytreemonoid.test.cpp
     title: test/yukicoder/235_lazytreemonoid.test.cpp
@@ -1140,6 +1143,7 @@ data:
   - test/yukicoder/1500_interpolate_linear.test.cpp
   - test/yukicoder/1641_tree_abel.test.cpp
   - test/yukicoder/187_crt.test.cpp
+  - test/yukicoder/2062.test.cpp
   - test/yukicoder/1339_discrete_log.test.cpp
   - test/yukicoder/4_subsetsum.test.cpp
   - test/yukicoder/1097_doubling.test.cpp

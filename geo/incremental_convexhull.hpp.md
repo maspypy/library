@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/incremental_ch.test.cpp
     title: test/mytest/incremental_ch.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -79,34 +79,33 @@ data:
     \ b);\n    }\n    // \u8FBA\u8FFD\u52A0\n    if (len(left)) { add_e(left.back(),\
     \ p); }\n    if (len(right)) { add_e(p, right.back()); }\n  }\n\n  // \u4E2D\uFF1A\
     1, \u5883\u754C\uFF1A0, \u5916\uFF1A-1\n  int side(Point<T> p) {\n    auto r =\
-    \ S.lower_bound(p);\n    if (r == S.begin() || r == S.end()) return -1;\n    auto\
-    \ l = prev(r);\n    auto p1 = *l, p2 = *r;\n    T det = (p - p1).det(p2 - p1);\n\
-    \    if (det == 0) return 0;\n    return (det > 0 ? -1 : 1);\n  }\n};\n\ntemplate\
-    \ <typename T, bool strict = true>\nstruct Incremental_ConvexHull {\n  using P\
-    \ = Point<T>;\n  IncrementalConvexHull_Lower<T, strict> LOWER, UPPER;\n  int cnt_V,\
-    \ cnt_E;\n  T det_sum;\n\n  Incremental_ConvexHull() : cnt_V(-2), cnt_E(0), det_sum(0)\
-    \ {}\n\n  int size() { return V(); }\n\n  bool empty() { return cnt_V == -2; }\n\
-    \n  int V() {\n    if (det_sum == 0) return -1; // \u3069\u3046\u3057\u3088\n\
-    \    return cnt_V;\n  }\n\n  int E() { return cnt_E; }\n\n  template <typename\
-    \ REAL>\n  REAL area() {\n    return det_sum * 0.5;\n  }\n\n  template <typename\
-    \ ADD_V, typename RM_V, typename ADD_E, typename RM_E>\n  void add(Point<T> p,\
-    \ ADD_V add_v, RM_V rm_v, ADD_E add_e, RM_E rm_e) {\n    LOWER.add(\n        p,\n\
-    \        [&](Point<T> p) {\n          add_v(p);\n          ++cnt_V;\n        },\n\
-    \        [&](Point<T> p) {\n          rm_v(p);\n          --cnt_V;\n        },\n\
-    \        [&](Point<T> a, Point<T> b) {\n          add_e(a, b);\n          ++cnt_E;\n\
+    \ S.lower_bound(p);\n    if (r == S.begin()) {\n      // \u5168\u90E8 p \u4EE5\
+    \u4E0A\n      if (len(S) && (*r) == p) return 0;\n      return -1;\n    }\n  \
+    \  if (r == S.end()) {\n      // p \u306F max \u3088\u308A\u5927\u304D\u3044\n\
+    \      return -1;\n    }\n    auto l = prev(r);\n    auto p1 = *l, p2 = *r;\n\
+    \    T det = (p - p1).det(p2 - p1);\n    if (det == 0) return 0;\n    return (det\
+    \ > 0 ? -1 : 1);\n  }\n};\n\ntemplate <typename T, bool strict = true>\nstruct\
+    \ Incremental_ConvexHull {\n  using P = Point<T>;\n  IncrementalConvexHull_Lower<T,\
+    \ strict> LOWER, UPPER;\n  int cnt_E;\n  T det_sum;\n  bool is_empty;\n\n  Incremental_ConvexHull()\
+    \ : cnt_E(0), det_sum(0), is_empty(1) {}\n\n  int size() { return cnt_E; }\n\n\
+    \  bool empty() { return is_empty; }\n\n  template <typename REAL>\n  REAL area()\
+    \ {\n    return det_sum * 0.5;\n  }\n  T area_2() { return det_sum; }\n\n  template\
+    \ <typename ADD_V, typename RM_V, typename ADD_E, typename RM_E>\n  void add(Point<T>\
+    \ p, ADD_V add_v, RM_V rm_v, ADD_E add_e, RM_E rm_e) {\n    is_empty = 0;\n  \
+    \  LOWER.add(\n        p, add_v, rm_v,\n        [&](Point<T> a, Point<T> b) {\n\
+    \          add_e(a, b);\n          ++cnt_E;\n          det_sum += a.det(b);\n\
+    \        },\n        [&](Point<T> a, Point<T> b) {\n          rm_e(a, b);\n  \
+    \        --cnt_E;\n          det_sum -= a.det(b);\n        });\n    UPPER.add(\n\
+    \        -p, [&](Point<T> p) { add_v(-p); }, [&](Point<T> p) { rm_v(-p); },\n\
+    \        [&](Point<T> a, Point<T> b) {\n          add_e(-a, -b);\n          ++cnt_E;\n\
     \          det_sum += a.det(b);\n        },\n        [&](Point<T> a, Point<T>\
-    \ b) {\n          rm_e(a, b);\n          --cnt_E;\n          det_sum -= a.det(b);\n\
-    \        });\n    UPPER.add(\n        -p,\n        [&](Point<T> p) {\n       \
-    \   add_v(-p);\n          ++cnt_V;\n        },\n        [&](Point<T> p) {\n  \
-    \        rm_v(-p);\n          --cnt_V;\n        },\n        [&](Point<T> a, Point<T>\
-    \ b) {\n          add_e(-a, -b);\n          ++cnt_E;\n          det_sum += a.det(b);\n\
-    \        },\n        [&](Point<T> a, Point<T> b) {\n          rm_e(-a, -b);\n\
-    \          --cnt_E;\n          det_sum -= a.det(b);\n        });\n  }\n  void\
-    \ add(Point<T> p) {\n    add(\n        p, [](Point<T> p) {}, [](Point<T> p) {},\
-    \ [](Point<T> s, Point<T> t) {},\n        [](Point<T> s, Point<T> t) {});\n  }\n\
-    \n  // \u4E2D\uFF1A1\u3001\u5883\u754C\uFF1A0\u3001\u5916\uFF1A-1\n  int side(Point<T>\
-    \ p) {\n    int a = LOWER.side(p);\n    int b = UPPER.side(-p);\n    if (a ==\
-    \ 0 || b == 0) return 0;\n    return min(a, b);\n  }\n};\n"
+    \ b) {\n          rm_e(-a, -b);\n          --cnt_E;\n          det_sum -= a.det(b);\n\
+    \        });\n  }\n  void add(Point<T> p) {\n    add(\n        p, [](Point<T>\
+    \ p) {}, [](Point<T> p) {}, [](Point<T> s, Point<T> t) {},\n        [](Point<T>\
+    \ s, Point<T> t) {});\n  }\n\n  // \u4E2D\uFF1A1\u3001\u5883\u754C\uFF1A0\u3001\
+    \u5916\uFF1A-1\n  int side(Point<T> p) {\n    int a = LOWER.side(p);\n    int\
+    \ b = UPPER.side(-p);\n    if (a == 0 || b == 0) return 0;\n    return min(a,\
+    \ b);\n  }\n};\n"
   code: "#include \"geo/base.hpp\"\n\n// \u4E0B\u5074\u51F8\u5305\ntemplate <typename\
     \ T, bool strict = true>\nstruct IncrementalConvexHull_Lower {\n  using P = Point<T>;\n\
     \  set<P> S;\n\n  IncrementalConvexHull_Lower() {}\n\n  int size() { return len(S);\
@@ -134,41 +133,40 @@ data:
     \ b);\n    }\n    // \u8FBA\u8FFD\u52A0\n    if (len(left)) { add_e(left.back(),\
     \ p); }\n    if (len(right)) { add_e(p, right.back()); }\n  }\n\n  // \u4E2D\uFF1A\
     1, \u5883\u754C\uFF1A0, \u5916\uFF1A-1\n  int side(Point<T> p) {\n    auto r =\
-    \ S.lower_bound(p);\n    if (r == S.begin() || r == S.end()) return -1;\n    auto\
-    \ l = prev(r);\n    auto p1 = *l, p2 = *r;\n    T det = (p - p1).det(p2 - p1);\n\
-    \    if (det == 0) return 0;\n    return (det > 0 ? -1 : 1);\n  }\n};\n\ntemplate\
-    \ <typename T, bool strict = true>\nstruct Incremental_ConvexHull {\n  using P\
-    \ = Point<T>;\n  IncrementalConvexHull_Lower<T, strict> LOWER, UPPER;\n  int cnt_V,\
-    \ cnt_E;\n  T det_sum;\n\n  Incremental_ConvexHull() : cnt_V(-2), cnt_E(0), det_sum(0)\
-    \ {}\n\n  int size() { return V(); }\n\n  bool empty() { return cnt_V == -2; }\n\
-    \n  int V() {\n    if (det_sum == 0) return -1; // \u3069\u3046\u3057\u3088\n\
-    \    return cnt_V;\n  }\n\n  int E() { return cnt_E; }\n\n  template <typename\
-    \ REAL>\n  REAL area() {\n    return det_sum * 0.5;\n  }\n\n  template <typename\
-    \ ADD_V, typename RM_V, typename ADD_E, typename RM_E>\n  void add(Point<T> p,\
-    \ ADD_V add_v, RM_V rm_v, ADD_E add_e, RM_E rm_e) {\n    LOWER.add(\n        p,\n\
-    \        [&](Point<T> p) {\n          add_v(p);\n          ++cnt_V;\n        },\n\
-    \        [&](Point<T> p) {\n          rm_v(p);\n          --cnt_V;\n        },\n\
-    \        [&](Point<T> a, Point<T> b) {\n          add_e(a, b);\n          ++cnt_E;\n\
+    \ S.lower_bound(p);\n    if (r == S.begin()) {\n      // \u5168\u90E8 p \u4EE5\
+    \u4E0A\n      if (len(S) && (*r) == p) return 0;\n      return -1;\n    }\n  \
+    \  if (r == S.end()) {\n      // p \u306F max \u3088\u308A\u5927\u304D\u3044\n\
+    \      return -1;\n    }\n    auto l = prev(r);\n    auto p1 = *l, p2 = *r;\n\
+    \    T det = (p - p1).det(p2 - p1);\n    if (det == 0) return 0;\n    return (det\
+    \ > 0 ? -1 : 1);\n  }\n};\n\ntemplate <typename T, bool strict = true>\nstruct\
+    \ Incremental_ConvexHull {\n  using P = Point<T>;\n  IncrementalConvexHull_Lower<T,\
+    \ strict> LOWER, UPPER;\n  int cnt_E;\n  T det_sum;\n  bool is_empty;\n\n  Incremental_ConvexHull()\
+    \ : cnt_E(0), det_sum(0), is_empty(1) {}\n\n  int size() { return cnt_E; }\n\n\
+    \  bool empty() { return is_empty; }\n\n  template <typename REAL>\n  REAL area()\
+    \ {\n    return det_sum * 0.5;\n  }\n  T area_2() { return det_sum; }\n\n  template\
+    \ <typename ADD_V, typename RM_V, typename ADD_E, typename RM_E>\n  void add(Point<T>\
+    \ p, ADD_V add_v, RM_V rm_v, ADD_E add_e, RM_E rm_e) {\n    is_empty = 0;\n  \
+    \  LOWER.add(\n        p, add_v, rm_v,\n        [&](Point<T> a, Point<T> b) {\n\
+    \          add_e(a, b);\n          ++cnt_E;\n          det_sum += a.det(b);\n\
+    \        },\n        [&](Point<T> a, Point<T> b) {\n          rm_e(a, b);\n  \
+    \        --cnt_E;\n          det_sum -= a.det(b);\n        });\n    UPPER.add(\n\
+    \        -p, [&](Point<T> p) { add_v(-p); }, [&](Point<T> p) { rm_v(-p); },\n\
+    \        [&](Point<T> a, Point<T> b) {\n          add_e(-a, -b);\n          ++cnt_E;\n\
     \          det_sum += a.det(b);\n        },\n        [&](Point<T> a, Point<T>\
-    \ b) {\n          rm_e(a, b);\n          --cnt_E;\n          det_sum -= a.det(b);\n\
-    \        });\n    UPPER.add(\n        -p,\n        [&](Point<T> p) {\n       \
-    \   add_v(-p);\n          ++cnt_V;\n        },\n        [&](Point<T> p) {\n  \
-    \        rm_v(-p);\n          --cnt_V;\n        },\n        [&](Point<T> a, Point<T>\
-    \ b) {\n          add_e(-a, -b);\n          ++cnt_E;\n          det_sum += a.det(b);\n\
-    \        },\n        [&](Point<T> a, Point<T> b) {\n          rm_e(-a, -b);\n\
-    \          --cnt_E;\n          det_sum -= a.det(b);\n        });\n  }\n  void\
-    \ add(Point<T> p) {\n    add(\n        p, [](Point<T> p) {}, [](Point<T> p) {},\
-    \ [](Point<T> s, Point<T> t) {},\n        [](Point<T> s, Point<T> t) {});\n  }\n\
-    \n  // \u4E2D\uFF1A1\u3001\u5883\u754C\uFF1A0\u3001\u5916\uFF1A-1\n  int side(Point<T>\
-    \ p) {\n    int a = LOWER.side(p);\n    int b = UPPER.side(-p);\n    if (a ==\
-    \ 0 || b == 0) return 0;\n    return min(a, b);\n  }\n};\n"
+    \ b) {\n          rm_e(-a, -b);\n          --cnt_E;\n          det_sum -= a.det(b);\n\
+    \        });\n  }\n  void add(Point<T> p) {\n    add(\n        p, [](Point<T>\
+    \ p) {}, [](Point<T> p) {}, [](Point<T> s, Point<T> t) {},\n        [](Point<T>\
+    \ s, Point<T> t) {});\n  }\n\n  // \u4E2D\uFF1A1\u3001\u5883\u754C\uFF1A0\u3001\
+    \u5916\uFF1A-1\n  int side(Point<T> p) {\n    int a = LOWER.side(p);\n    int\
+    \ b = UPPER.side(-p);\n    if (a == 0 || b == 0) return 0;\n    return min(a,\
+    \ b);\n  }\n};\n"
   dependsOn:
   - geo/base.hpp
   isVerificationFile: false
   path: geo/incremental_convexhull.hpp
   requiredBy: []
-  timestamp: '2022-08-24 15:10:52+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-08-27 04:18:43+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/incremental_ch.test.cpp
 documentation_of: geo/incremental_convexhull.hpp

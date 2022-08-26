@@ -77,7 +77,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/product_of_one_plus_xn.hpp
     title: poly/product_of_one_plus_xn.hpp
   - icon: ':warning:'
@@ -394,6 +394,9 @@ data:
     path: test/yukicoder/2005.test.cpp
     title: test/yukicoder/2005.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2062.test.cpp
+    title: test/yukicoder/2062.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/235_lazytreemonoid.test.cpp
     title: test/yukicoder/235_lazytreemonoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -626,6 +629,7 @@ data:
   - test/yukicoder/1548_power_sums.test.cpp
   - test/yukicoder/1141_cumsum2d.test.cpp
   - test/yukicoder/1500_interpolate_linear.test.cpp
+  - test/yukicoder/2062.test.cpp
   - test/yukicoder/1339_discrete_log.test.cpp
   - test/yukicoder/1145_sum_of_powers.test.cpp
   - test/yukicoder/1649_dynamic_seg.test.cpp
