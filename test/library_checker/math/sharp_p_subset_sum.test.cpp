@@ -1,13 +1,13 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/sharp_p_subset_sum"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "poly/sharp_p_subset_sum.hpp"
+#include "poly/product_of_one_plus_xn.hpp"
 
 using mint = modint998;
 void solve() {
   LL(N, T);
   VEC(int, S, N);
-  auto f = sharp_p_subset_sum<mint>(S, T + 1);
+  auto f = product_of_one_plus_xn<mint>(S, T + 1);
   f.erase(f.begin());
   print(f);
 }
