@@ -9,8 +9,9 @@ struct SegTree2D {
   vc<XY> keyY;
   vc<S> dat;
 
-  inline int xtoi(int x) {
-    return (SMALL ? clamp(x - min_X, 0, N) : LB(keyX, x));
+  inline int xtoi(XY x) {
+    if(SMALL) return clamp<XY>(x - min_X, 0, N);
+    return LB(keyX, x);
   }
 
   SegTree2D(vc<XY>& X, vc<XY>& Y, vc<S> wt = vc<S>()) {
