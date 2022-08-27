@@ -117,6 +117,10 @@ struct Fenwick2D {
     return pos;
   }
 
+  E sum(XY lx, XY ly, XY rx, XY ry) { return prod(lx, ly, rx, ry); }
+
+  E prefix_sum(XY rx, XY ry) { return prefix_prod(rx, ry); }
+
   void debug() {
     print("keyX", keyX);
     print("indptr", indptr);
