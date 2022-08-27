@@ -265,16 +265,16 @@ data:
     \ dat[LID + R]);\r\n      R = prev(R);\r\n    }\r\n    return pos;\r\n  }\r\n\
     };\r\n#line 7 \"test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  vi X(N), Y(N), W(N);\n  FOR(i, N) {\n    LL(x,\
-    \ y, w);\n    X[i] = x, Y[i] = y, W[i] = w;\n  }\n  Fenwick2D<Group_Add<ll>, false>\
-    \ bit(X, Y, W);\n  FOR(_, Q) {\n    LL(l, d, r, u);\n    print(bit.sum(l, d, r,\
-    \ u));\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \ y, w);\n    X[i] = x, Y[i] = y, W[i] = w;\n  }\n  Fenwick2D<Group_Add<ll>, ll,\
+    \ false> bit(X, Y, W);\n  FOR(_, Q) {\n    LL(l, d, r, u);\n    print(bit.sum(l,\
+    \ d, r, u));\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/fenwick2d.hpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  vi X(N), Y(N), W(N);\n  FOR(i, N) {\n    LL(x,\
-    \ y, w);\n    X[i] = x, Y[i] = y, W[i] = w;\n  }\n  Fenwick2D<Group_Add<ll>, false>\
-    \ bit(X, Y, W);\n  FOR(_, Q) {\n    LL(l, d, r, u);\n    print(bit.sum(l, d, r,\
-    \ u));\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \ y, w);\n    X[i] = x, Y[i] = y, W[i] = w;\n  }\n  Fenwick2D<Group_Add<ll>, ll,\
+    \ false> bit(X, Y, W);\n  FOR(_, Q) {\n    LL(l, d, r, u);\n    print(bit.sum(l,\
+    \ d, r, u));\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
@@ -284,7 +284,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
   requiredBy: []
-  timestamp: '2022-08-28 03:33:29+09:00'
+  timestamp: '2022-08-28 04:56:07+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
