@@ -38,7 +38,7 @@ struct ContourSum {
       chmin(hi, n + 1);
       if (lo >= hi) continue;
       int a = bit_range[K][lo], b = bit_range[K][hi];
-      X val = bit.sum(a, b);
+      X val = bit.prod(a, b);
       if (k < 0) { val = AbelGroup::inverse(val); }
       sm = AbelGroup::op(sm, val);
     }
