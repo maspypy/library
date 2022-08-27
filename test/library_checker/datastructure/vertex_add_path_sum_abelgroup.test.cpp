@@ -21,7 +21,7 @@ void solve() {
       TA.add(v, x);
     } else {
       LL(u, v);
-      print(TA.sum_path(u, v));
+      print(TA.prod_path(u, v));
     }
   }
 }
