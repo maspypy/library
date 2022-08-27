@@ -56,6 +56,12 @@ struct FenwickTree {
 
   E prod_all() { return total; }
 
+  E sum(int k) { return prod(k); }
+
+  E sum(int L, int R) { return prod(L, R); }
+
+  E sum_all() { return total; }
+
   void multiply(int k, E x) {
     total = AbelGroup::op(total, x);
     for (++k; k <= n; k += k & -k) dat[k - 1] = AbelGroup::op(dat[k - 1], x);
