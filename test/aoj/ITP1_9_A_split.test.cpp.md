@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/io2.hpp
     title: other/io2.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/split.hpp
     title: string/split.hpp
   _extendedRequiredBy: []

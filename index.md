@@ -1074,7 +1074,7 @@ data:
     - icon: ':warning:'
       path: string/sort_all_substring.hpp
       title: string/sort_all_substring.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/split.hpp
       title: string/split.hpp
     - icon: ':heavy_check_mark:'
@@ -1092,9 +1092,6 @@ data:
   verificationCategories:
   - name: test/aoj
     pages:
-    - icon: ':x:'
-      path: test/aoj/0058.test.cpp
-      title: test/aoj/0058.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/0343.test.cpp
       title: test/aoj/0343.test.cpp
