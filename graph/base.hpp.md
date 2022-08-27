@@ -35,9 +35,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/classify_subtree.hpp
     title: graph/classify_subtree.hpp
-  - icon: ':warning:'
-    path: graph/classify_subtree_rerooting.hpp
-    title: graph/classify_subtree_rerooting.hpp
   - icon: ':heavy_check_mark:'
     path: graph/cycle_detection.hpp
     title: graph/cycle_detection.hpp
@@ -415,7 +412,6 @@ data:
   - graph/biconnected_component.hpp
   - graph/reverse_graph.hpp
   - graph/minimum_spanning_tree.hpp
-  - graph/classify_subtree_rerooting.hpp
   - graph/mincostcycle.hpp
   - graph/rerooting_classify_subtree.hpp
   - graph/tree_of_unionfind.hpp

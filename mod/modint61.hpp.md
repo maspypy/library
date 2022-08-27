@@ -8,9 +8,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/classify_subtree.hpp
     title: graph/classify_subtree.hpp
-  - icon: ':warning:'
-    path: graph/classify_subtree_rerooting.hpp
-    title: graph/classify_subtree_rerooting.hpp
   - icon: ':heavy_check_mark:'
     path: graph/rerooting_classify_subtree.hpp
     title: graph/rerooting_classify_subtree.hpp
@@ -100,7 +97,6 @@ data:
   path: mod/modint61.hpp
   requiredBy:
   - graph/classify_subtree.hpp
-  - graph/classify_subtree_rerooting.hpp
   - graph/rerooting_classify_subtree.hpp
   - mod/modular_subset_sum.hpp
   - alg/monoid_rollinghash.hpp

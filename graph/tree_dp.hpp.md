@@ -11,9 +11,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/classify_subtree.hpp
     title: graph/classify_subtree.hpp
-  - icon: ':warning:'
-    path: graph/classify_subtree_rerooting.hpp
-    title: graph/classify_subtree_rerooting.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/classify_tree.test.cpp
@@ -142,7 +139,6 @@ data:
   path: graph/tree_dp.hpp
   requiredBy:
   - graph/classify_subtree.hpp
-  - graph/classify_subtree_rerooting.hpp
   timestamp: '2022-08-25 01:59:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

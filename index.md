@@ -471,9 +471,6 @@ data:
       path: graph/classify_subtree.hpp
       title: graph/classify_subtree.hpp
     - icon: ':warning:'
-      path: graph/classify_subtree_rerooting.hpp
-      title: graph/classify_subtree_rerooting.hpp
-    - icon: ':warning:'
       path: graph/compress_tree.hpp
       title: graph/compress_tree.hpp
     - icon: ':heavy_check_mark:'

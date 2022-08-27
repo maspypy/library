@@ -8,9 +8,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/classify_subtree.hpp
     title: graph/classify_subtree.hpp
-  - icon: ':warning:'
-    path: graph/classify_subtree_rerooting.hpp
-    title: graph/classify_subtree_rerooting.hpp
   - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
@@ -300,7 +297,6 @@ data:
   - graph/classify_subtree.hpp
   - graph/two_edge_component.hpp
   - graph/minimum_spanning_tree.hpp
-  - graph/classify_subtree_rerooting.hpp
   - graph/rerooting_classify_subtree.hpp
   - graph/dualtreemonoid.hpp
   - graph/dsu_on_tree.hpp
