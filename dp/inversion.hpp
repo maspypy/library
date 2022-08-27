@@ -8,7 +8,7 @@ ll inversion(vc<T>& A) {
   FenwickTree<Group_Add<int>> bit(len(key));
   for (auto&& a: A) {
     ll x = LB(key, a);
-    ANS += bit.sum_all() - bit.sum(x + 1);
+    ANS += bit.prod_all() - bit.prod(x + 1);
     bit.add(x, 1);
   }
   return ANS;
