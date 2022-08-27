@@ -270,7 +270,7 @@ data:
     \n    if (t == 0) {\r\n      LL(x, y, w);\r\n      X.eb(x);\r\n      Y.eb(y);\r\
     \n      W.eb(0);\r\n      query[q] = mt(-1, x, y, w);\r\n    } else {\r\n    \
     \  LL(a, b, c, d);\r\n      query[q] = mt(a, b, c, d);\r\n    }\r\n  }\r\n\r\n\
-    \  Fenwick2D<Group_Add<ll>, false> bit(X, Y, W);\r\n  FOR(q, Q) {\r\n    auto\
+    \  Fenwick2D<Group_Add<ll>, ll, false> bit(X, Y, W);\r\n  FOR(q, Q) {\r\n    auto\
     \ [a, b, c, d] = query[q];\r\n    if (a == -1) {\r\n      bit.add(b, c, d);\r\n\
     \    } else {\r\n      print(bit.prod(a, b, c, d));\r\n    }\r\n  }\r\n}\r\n\r\
     \nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n\
@@ -283,11 +283,12 @@ data:
     \ FOR(q, Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(x, y, w);\r\n   \
     \   X.eb(x);\r\n      Y.eb(y);\r\n      W.eb(0);\r\n      query[q] = mt(-1, x,\
     \ y, w);\r\n    } else {\r\n      LL(a, b, c, d);\r\n      query[q] = mt(a, b,\
-    \ c, d);\r\n    }\r\n  }\r\n\r\n  Fenwick2D<Group_Add<ll>, false> bit(X, Y, W);\r\
-    \n  FOR(q, Q) {\r\n    auto [a, b, c, d] = query[q];\r\n    if (a == -1) {\r\n\
-    \      bit.add(b, c, d);\r\n    } else {\r\n      print(bit.prod(a, b, c, d));\r\
-    \n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ c, d);\r\n    }\r\n  }\r\n\r\n  Fenwick2D<Group_Add<ll>, ll, false> bit(X, Y,\
+    \ W);\r\n  FOR(q, Q) {\r\n    auto [a, b, c, d] = query[q];\r\n    if (a == -1)\
+    \ {\r\n      bit.add(b, c, d);\r\n    } else {\r\n      print(bit.prod(a, b, c,\
+    \ d));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n\
+    \  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
+    \n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -296,7 +297,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   requiredBy: []
-  timestamp: '2022-08-28 03:33:29+09:00'
+  timestamp: '2022-08-28 04:55:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
