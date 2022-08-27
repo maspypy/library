@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -13,32 +13,32 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/coef_of_rational_fps_2d.hpp
     title: poly/coef_of_rational_fps_2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/AGC058/tasks/AGC058_d
+    PROBLEM: https://atcoder.jp/contests/agc058/tasks/agc058_d
     links:
-    - https://atcoder.jp/contests/AGC058/tasks/AGC058_d
-  bundledCode: "#line 1 \"test/atcoder/agc058d.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/AGC058/tasks/AGC058_d\"\
+    - https://atcoder.jp/contests/agc058/tasks/agc058_d
+  bundledCode: "#line 1 \"test/atcoder/agc058d.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/agc058/tasks/agc058_d\"\
     \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
     unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
     \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
@@ -517,7 +517,7 @@ data:
     \              * fact_inv<mint>(c);\n    ANS += g[t] * cf;\n  }\n  print(ANS);\n\
     }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  //\
     \ LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/AGC058/tasks/AGC058_d\"\n#include\
+  code: "#define PROBLEM \"https://atcoder.jp/contests/agc058/tasks/agc058_d\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"poly/convolution.hpp\"\
     \n#include \"poly/coef_of_rational_fps_2d.hpp\"\n\nusing mint = modint998;\n\n\
     void solve() {\n  LL(A, B, C);\n  ll N = A + B + C;\n\n  using poly = vc<mint>;\n\
@@ -542,8 +542,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/agc058d.test.cpp
   requiredBy: []
-  timestamp: '2022-08-20 05:21:32+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-28 04:36:46+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/agc058d.test.cpp
 layout: document

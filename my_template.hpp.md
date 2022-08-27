@@ -190,6 +190,9 @@ data:
     path: test/atcoder/abc174f.test.cpp
     title: test/atcoder/abc174f.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc198d.test.cpp
+    title: test/atcoder/abc198d.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc200a.test.cpp
     title: test/atcoder/abc200a.test.cpp
   - icon: ':heavy_check_mark:'
@@ -210,7 +213,7 @@ data:
   - icon: ':x:'
     path: test/atcoder/abc266h_bit.test.cpp
     title: test/atcoder/abc266h_bit.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/agc058d.test.cpp
     title: test/atcoder/agc058d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1398,6 +1401,7 @@ data:
   - test/atcoder/abc244h.test.cpp
   - test/atcoder/abc200a.test.cpp
   - test/atcoder/agc058d.test.cpp
+  - test/atcoder/abc198d.test.cpp
   - test/atcoder/abc266c.test.cpp
   - test/atcoder/abc174f.test.cpp
 documentation_of: my_template.hpp
