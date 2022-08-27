@@ -19,9 +19,9 @@ struct FenwickRAQ {
     bit1.add(R, AbelGroup::inverse(val));
   }
 
-  E sum(ll L, ll R) {
-    E sum_R = AbelGroup::op(AbelGroup::power(bit1.sum(R), R), bit0.sum(R));
-    E sum_L = AbelGroup::op(AbelGroup::power(bit1.sum(L), L), bit0.sum(L));
-    return AbelGroup::op(AbelGroup::inverse(sum_L), sum_R);
+  E prod(ll L, ll R) {
+    E prod_R = AbelGroup::op(AbelGroup::power(bit1.prod(R), R), bit0.prod(R));
+    E prod_L = AbelGroup::op(AbelGroup::power(bit1.prod(L), L), bit0.prod(L));
+    return AbelGroup::op(AbelGroup::inverse(prod_L), prod_R);
   }
 };
