@@ -4,26 +4,26 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/rectangle_add_ractangle_sum.hpp
     title: ds/rectangle_add_ractangle_sum.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1490_rect_add_rect_sum.test.cpp
     title: test/yukicoder/1490_rect_add_rect_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -41,13 +41,13 @@ data:
     \ v;\n    for (int i = 1; i <= n; ++i) {\n      int j = i + (i & -i);\n      if\
     \ (j <= n) dat[j - 1] = AbelGroup::op(dat[i - 1], dat[j - 1]);\n    }\n  }\n\n\
     \  void reset(int sz) {\n    n = sz;\n    total = AbelGroup::unit();\n    dat.assign(n,\
-    \ AbelGroup::unit());\n  }\n\n  E sum(int k) {\n    E ret = AbelGroup::unit();\n\
+    \ AbelGroup::unit());\n  }\n\n  E prod(int k) {\n    E ret = AbelGroup::unit();\n\
     \    for (; k > 0; k -= k & -k) ret = AbelGroup::op(ret, dat[k - 1]);\n    return\
-    \ ret;\n  }\n\n  E sum(int L, int R) {\n    E pos = AbelGroup::unit();\n    while\
+    \ ret;\n  }\n\n  E prod(int L, int R) {\n    E pos = AbelGroup::unit();\n    while\
     \ (L < R) {\n      pos = AbelGroup::op(pos, dat[R - 1]);\n      R -= R & -R;\n\
     \    }\n    E neg = AbelGroup::unit();\n    while (R < L) {\n      neg = AbelGroup::op(neg,\
     \ dat[L - 1]);\n      L -= L & -L;\n    }\n    return AbelGroup::op(pos, AbelGroup::inverse(neg));\n\
-    \  }\n\n  E sum_all() { return total; }\n\n  void add(int k, E x) {\n    total\
+    \  }\n\n  E prod_all() { return total; }\n\n  void add(int k, E x) {\n    total\
     \ = AbelGroup::op(total, x);\n    for (++k; k <= n; k += k & -k) dat[k - 1] =\
     \ AbelGroup::op(dat[k - 1], x);\n  }\n\n  template <class F>\n  int max_right(F&\
     \ check) {\n    assert(check(E(0)));\n    ll i = 0;\n    E s = AbelGroup::unit();\n\
@@ -137,8 +137,8 @@ data:
   path: ds/point_add_rectangle_sum.hpp
   requiredBy:
   - ds/rectangle_add_ractangle_sum.hpp
-  timestamp: '2022-08-18 17:58:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-08-28 02:28:59+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1490_rect_add_rect_sum.test.cpp
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp

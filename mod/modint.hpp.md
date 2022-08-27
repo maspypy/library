@@ -186,7 +186,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/sort_segtree_1.test.cpp
     title: test/library_checker/datastructure/sort_segtree_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -345,7 +345,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/prime_sum.test.cpp
     title: test/mytest/prime_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
   - icon: ':heavy_check_mark:'

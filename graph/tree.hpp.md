@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/classify_subtree.hpp
     title: graph/classify_subtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_dp.hpp
     title: graph/tree_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/treeabelgroup.hpp
     title: graph/treeabelgroup.hpp
   - icon: ':heavy_check_mark:'
@@ -63,7 +63,7 @@ data:
   - icon: ':x:'
     path: test/atcoder/abc266f.test.cpp
     title: test/atcoder/abc266f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - icon: ':heavy_check_mark:'
@@ -72,7 +72,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - icon: ':heavy_check_mark:'
@@ -102,13 +102,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1326_bct.test.cpp
     title: test/yukicoder/1326_bct.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1418_rerooting.test.cpp
     title: test/yukicoder/1418_rerooting.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1641_tree_abel.test.cpp
     title: test/yukicoder/1641_tree_abel.test.cpp
   - icon: ':heavy_check_mark:'

@@ -24,6 +24,9 @@ data:
   - icon: ':x:'
     path: test/atcoder/abc266h.test.cpp
     title: test/atcoder/abc266h.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc266h_bit.test.cpp
+    title: test/atcoder/abc266h_bit.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1117_swag.test.cpp
     title: test/yukicoder/1117_swag.test.cpp
@@ -70,6 +73,7 @@ data:
   - test/yukicoder/1117_swag.test.cpp
   - test/yukicoder/bbst_max_right.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp
+  - test/atcoder/abc266h_bit.test.cpp
   - test/atcoder/abc266h.test.cpp
 documentation_of: alg/monoid_max.hpp
 layout: document

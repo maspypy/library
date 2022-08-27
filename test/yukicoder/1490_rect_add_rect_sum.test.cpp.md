@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/point_add_rectangle_sum.hpp
     title: ds/point_add_rectangle_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/rectangle_add_ractangle_sum.hpp
     title: ds/rectangle_add_ractangle_sum.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1490
@@ -219,22 +219,22 @@ data:
     \ v[i]);\n    dat = v;\n    for (int i = 1; i <= n; ++i) {\n      int j = i +\
     \ (i & -i);\n      if (j <= n) dat[j - 1] = AbelGroup::op(dat[i - 1], dat[j -\
     \ 1]);\n    }\n  }\n\n  void reset(int sz) {\n    n = sz;\n    total = AbelGroup::unit();\n\
-    \    dat.assign(n, AbelGroup::unit());\n  }\n\n  E sum(int k) {\n    E ret = AbelGroup::unit();\n\
-    \    for (; k > 0; k -= k & -k) ret = AbelGroup::op(ret, dat[k - 1]);\n    return\
-    \ ret;\n  }\n\n  E sum(int L, int R) {\n    E pos = AbelGroup::unit();\n    while\
-    \ (L < R) {\n      pos = AbelGroup::op(pos, dat[R - 1]);\n      R -= R & -R;\n\
-    \    }\n    E neg = AbelGroup::unit();\n    while (R < L) {\n      neg = AbelGroup::op(neg,\
-    \ dat[L - 1]);\n      L -= L & -L;\n    }\n    return AbelGroup::op(pos, AbelGroup::inverse(neg));\n\
-    \  }\n\n  E sum_all() { return total; }\n\n  void add(int k, E x) {\n    total\
-    \ = AbelGroup::op(total, x);\n    for (++k; k <= n; k += k & -k) dat[k - 1] =\
-    \ AbelGroup::op(dat[k - 1], x);\n  }\n\n  template <class F>\n  int max_right(F&\
-    \ check) {\n    assert(check(E(0)));\n    ll i = 0;\n    E s = AbelGroup::unit();\n\
-    \    int k = 1;\n    int N = dat.size() + 1;\n    while (2 * k < N) k *= 2;\n\
-    \    while (k) {\n      if (i + k < N && check(AbelGroup::op(s, dat[i + k - 1])))\
-    \ {\n        i += k;\n        s = AbelGroup::op(s, dat[i - 1]);\n      }\n   \
-    \   k >>= 1;\n    }\n    return i;\n  }\n\n  int find_kth(E k) {\n    auto check\
-    \ = [&](E x) -> bool { return x <= k; };\n    return max_right(check);\n  }\n\n\
-    \  void debug() { print(\"fenwick\", dat); }\n};\n#line 3 \"ds/point_add_rectangle_sum.hpp\"\
+    \    dat.assign(n, AbelGroup::unit());\n  }\n\n  E prod(int k) {\n    E ret =\
+    \ AbelGroup::unit();\n    for (; k > 0; k -= k & -k) ret = AbelGroup::op(ret,\
+    \ dat[k - 1]);\n    return ret;\n  }\n\n  E prod(int L, int R) {\n    E pos =\
+    \ AbelGroup::unit();\n    while (L < R) {\n      pos = AbelGroup::op(pos, dat[R\
+    \ - 1]);\n      R -= R & -R;\n    }\n    E neg = AbelGroup::unit();\n    while\
+    \ (R < L) {\n      neg = AbelGroup::op(neg, dat[L - 1]);\n      L -= L & -L;\n\
+    \    }\n    return AbelGroup::op(pos, AbelGroup::inverse(neg));\n  }\n\n  E prod_all()\
+    \ { return total; }\n\n  void add(int k, E x) {\n    total = AbelGroup::op(total,\
+    \ x);\n    for (++k; k <= n; k += k & -k) dat[k - 1] = AbelGroup::op(dat[k - 1],\
+    \ x);\n  }\n\n  template <class F>\n  int max_right(F& check) {\n    assert(check(E(0)));\n\
+    \    ll i = 0;\n    E s = AbelGroup::unit();\n    int k = 1;\n    int N = dat.size()\
+    \ + 1;\n    while (2 * k < N) k *= 2;\n    while (k) {\n      if (i + k < N &&\
+    \ check(AbelGroup::op(s, dat[i + k - 1]))) {\n        i += k;\n        s = AbelGroup::op(s,\
+    \ dat[i - 1]);\n      }\n      k >>= 1;\n    }\n    return i;\n  }\n\n  int find_kth(E\
+    \ k) {\n    auto check = [&](E x) -> bool { return x <= k; };\n    return max_right(check);\n\
+    \  }\n\n  void debug() { print(\"fenwick\", dat); }\n};\n#line 3 \"ds/point_add_rectangle_sum.hpp\"\
     \n\r\n\r\ntemplate <typename AbelGroup, bool SMALL = false>\r\nstruct Point_Add_Rectangle_Sum\
     \ {\r\n  using G = typename AbelGroup::value_type;\r\n  int Q;\r\n  vector<ll>\
     \ X, Y;\r\n  vector<G> WT;\r\n  vector<tuple<ll, ll, ll, ll>> rect;\r\n\r\n  Point_Add_Rectangle_Sum()\
@@ -353,8 +353,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1490_rect_add_rect_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-08-20 05:21:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-28 02:28:59+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder/1490_rect_add_rect_sum.test.cpp
 layout: document

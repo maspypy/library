@@ -4,12 +4,12 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
+  - icon: ':question:'
+    path: alg/monoid_max.hpp
+    title: alg/monoid_max.hpp
   - icon: ':x:'
-    path: ds/fenwick.hpp
-    title: ds/fenwick.hpp
-  - icon: ':x:'
-    path: ds/fenwickraq.hpp
-    title: ds/fenwickraq.hpp
+    path: ds/fenwick2d.hpp
+    title: ds/fenwick2d.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -23,20 +23,20 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E
+    PROBLEM: https://atcoder.jp/contests/abc266/tasks/abc266_h
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E
-  bundledCode: "#line 1 \"test/aoj/DSL_2_E_fenwick_raq.test.cpp\"\n#define PROBLEM\
-    \ \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E\"\
-    \r\n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC\
-    \ optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
-    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
-    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://atcoder.jp/contests/abc266/tasks/abc266_h
+  bundledCode: "#line 1 \"test/atcoder/abc266h_bit.test.cpp\"\n#define PROBLEM \"\
+    https://atcoder.jp/contests/abc266/tasks/abc266_h\"\n#line 1 \"my_template.hpp\"\
+    \n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n\
+    #include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing\
+    \ pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing\
+    \ u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing\
+    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -206,73 +206,128 @@ data:
     \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
     \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
     \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"ds/fenwick.hpp\"\
-    \n\ntemplate <typename AbelGroup>\nstruct FenwickTree {\n  using E = typename\
-    \ AbelGroup::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree(int\
-    \ n = 0) {\n    assert(AbelGroup::commute);\n    reset(n);\n  }\n  FenwickTree(const\
-    \ vector<E>& v) {\n    assert(AbelGroup::commute);\n    build(v);\n  }\n\n  void\
-    \ build(const vc<E>& v) {\n    n = len(v);\n    total = AbelGroup::unit();\n \
-    \   for (int i = 0; i < n; ++i) total = AbelGroup::op(total, v[i]);\n    dat =\
-    \ v;\n    for (int i = 1; i <= n; ++i) {\n      int j = i + (i & -i);\n      if\
-    \ (j <= n) dat[j - 1] = AbelGroup::op(dat[i - 1], dat[j - 1]);\n    }\n  }\n\n\
-    \  void reset(int sz) {\n    n = sz;\n    total = AbelGroup::unit();\n    dat.assign(n,\
-    \ AbelGroup::unit());\n  }\n\n  E prod(int k) {\n    E ret = AbelGroup::unit();\n\
-    \    for (; k > 0; k -= k & -k) ret = AbelGroup::op(ret, dat[k - 1]);\n    return\
-    \ ret;\n  }\n\n  E prod(int L, int R) {\n    E pos = AbelGroup::unit();\n    while\
-    \ (L < R) {\n      pos = AbelGroup::op(pos, dat[R - 1]);\n      R -= R & -R;\n\
-    \    }\n    E neg = AbelGroup::unit();\n    while (R < L) {\n      neg = AbelGroup::op(neg,\
-    \ dat[L - 1]);\n      L -= L & -L;\n    }\n    return AbelGroup::op(pos, AbelGroup::inverse(neg));\n\
-    \  }\n\n  E prod_all() { return total; }\n\n  void add(int k, E x) {\n    total\
-    \ = AbelGroup::op(total, x);\n    for (++k; k <= n; k += k & -k) dat[k - 1] =\
-    \ AbelGroup::op(dat[k - 1], x);\n  }\n\n  template <class F>\n  int max_right(F&\
-    \ check) {\n    assert(check(E(0)));\n    ll i = 0;\n    E s = AbelGroup::unit();\n\
-    \    int k = 1;\n    int N = dat.size() + 1;\n    while (2 * k < N) k *= 2;\n\
-    \    while (k) {\n      if (i + k < N && check(AbelGroup::op(s, dat[i + k - 1])))\
-    \ {\n        i += k;\n        s = AbelGroup::op(s, dat[i - 1]);\n      }\n   \
-    \   k >>= 1;\n    }\n    return i;\n  }\n\n  int find_kth(E k) {\n    auto check\
-    \ = [&](E x) -> bool { return x <= k; };\n    return max_right(check);\n  }\n\n\
-    \  void debug() { print(\"fenwick\", dat); }\n};\n#line 2 \"ds/fenwickraq.hpp\"\
-    \ntemplate <typename AbelGroup>\r\nstruct FenwickRAQ {\r\n  using E = typename\
-    \ AbelGroup::value_type;\r\n  int n;\r\n  FenwickTree<AbelGroup> bit0;\r\n  FenwickTree<AbelGroup>\
-    \ bit1;\r\n\r\n  FenwickRAQ() : FenwickRAQ(0) {}\r\n  FenwickRAQ(int n) : n(n),\
-    \ bit0(n), bit1(n) {}\r\n  FenwickRAQ(vc<E> v) : n(len(v)), bit0(v), bit1(len(v))\
-    \ {}\r\n\r\n  void add(ll i, E val) { bit0.add(i, val); }\r\n\r\n  void add(ll\
-    \ L, ll R, E val) {\r\n    bit0.add(L, AbelGroup::power(val, -L));\r\n    bit0.add(R,\
-    \ AbelGroup::power(val, R));\r\n    bit1.add(L, val);\r\n    bit1.add(R, AbelGroup::inverse(val));\r\
-    \n  }\r\n\r\n  E sum(ll L, ll R) {\r\n    E sum_R = AbelGroup::op(AbelGroup::power(bit1.sum(R),\
-    \ R), bit0.sum(R));\r\n    E sum_L = AbelGroup::op(AbelGroup::power(bit1.sum(L),\
-    \ L), bit0.sum(L));\r\n    return AbelGroup::op(AbelGroup::inverse(sum_L), sum_R);\r\
-    \n  }\r\n};\r\n#line 6 \"test/aoj/DSL_2_E_fenwick_raq.test.cpp\"\n\r\nvoid solve()\
-    \ {\r\n  LL(N, Q);\r\n  FenwickRAQ<Group_Add<ll>> bit(N);\r\n  FOR(_, Q) {\r\n\
-    \    LL(t);\r\n    if (t == 0) {\r\n      LL(L, R, x);\r\n      bit.add(--L, R,\
-    \ x);\r\n    } else {\r\n      LL(L);\r\n      print(bit.sum(L - 1, L));\r\n \
-    \   }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T)\
-    \ solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/fenwickraq.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  FenwickRAQ<Group_Add<ll>> bit(N);\r\
-    \n  FOR(_, Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(L, R, x);\r\n \
-    \     bit.add(--L, R, x);\r\n    } else {\r\n      LL(L);\r\n      print(bit.sum(L\
-    \ - 1, L));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
-    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  ll T\
-    \ = 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/fenwick2d.hpp\"\
+    \ntemplate <typename AbelGroup, typename XY, bool SMALL = false>\r\nstruct Fenwick2D\
+    \ {\r\n  using E = typename AbelGroup::value_type;\r\n  int N;\r\n  vc<XY> keyX;\r\
+    \n  XY min_X;\r\n  vc<int> indptr;\r\n  vc<XY> keyY;\r\n  vc<E> dat;\r\n\r\n \
+    \ Fenwick2D(vc<XY>& X, vc<XY>& Y, vc<E>& wt) { build(X, Y, wt); }\r\n\r\n  Fenwick2D(vc<XY>&\
+    \ X, vc<XY>& Y) {\r\n    vc<E> wt(len(X), AbelGroup::unit());\r\n    build(X,\
+    \ Y, wt);\r\n  }\r\n\r\n  inline int xtoi(int x) {\r\n    return (SMALL ? clamp(x\
+    \ - min_X, 0, N) : LB(keyX, x));\r\n  }\r\n\r\n  inline int nxt(int i) {\r\n \
+    \   i += 1;\r\n    return i + (i & -i) - 1;\r\n  }\r\n\r\n  inline int prev(int\
+    \ i) {\r\n    i += 1;\r\n    return i - (i & -i) - 1;\r\n  }\r\n\r\n  void build(vc<XY>&\
+    \ X, vc<XY>& Y, vc<E>& wt) {\r\n    if (!SMALL) {\r\n      keyX = X;\r\n     \
+    \ UNIQUE(keyX);\r\n      N = len(keyX);\r\n    } else {\r\n      min_X = (len(X)\
+    \ == 0 ? 0 : MIN(X));\r\n      N = (len(X) == 0 ? 0 : MAX(X)) - min_X + 1;\r\n\
+    \      keyX.resize(N);\r\n      FOR(i, N) keyX[i] = min_X + i;\r\n    }\r\n\r\n\
+    \    vvc<XY> keyY_raw(N);\r\n    vc<vc<E>> dat_raw(N);\r\n\r\n    auto I = argsort(Y);\r\
+    \n    for (auto&& i: I) {\r\n      int ix = xtoi(X[i]), y = Y[i];\r\n      while\
+    \ (ix < N) {\r\n        auto& KY = keyY_raw[ix];\r\n        if (len(KY) == 0 ||\
+    \ KY.back() < y) {\r\n          KY.eb(y);\r\n          dat_raw[ix].eb(wt[i]);\r\
+    \n        } else {\r\n          dat_raw[ix].back() = AbelGroup::op(dat_raw[ix].back(),\
+    \ wt[i]);\r\n        }\r\n        ix = nxt(ix);\r\n      }\r\n    }\r\n\r\n  \
+    \  indptr.assign(N + 1, 0);\r\n    FOR(i, N) indptr[i + 1] = indptr[i] + len(keyY_raw[i]);\r\
+    \n    keyY.resize(indptr.back());\r\n    dat.resize(indptr.back());\r\n    FOR(i,\
+    \ N) FOR(j, indptr[i + 1] - indptr[i]) {\r\n      keyY[indptr[i] + j] = keyY_raw[i][j];\r\
+    \n      dat[indptr[i] + j] = dat_raw[i][j];\r\n    }\r\n    FOR(i, N) {\r\n  \
+    \    int n = indptr[i + 1] - indptr[i];\r\n      FOR(j, n - 1) {\r\n        int\
+    \ k = nxt(j);\r\n        if (k < n)\r\n          dat[indptr[i] + k]\r\n      \
+    \        = AbelGroup::op(dat[indptr[i] + k], dat[indptr[i] + j]);\r\n      }\r\
+    \n    }\r\n  }\r\n\r\n  void multiply(XY x, XY y, E val) {\r\n    int i = xtoi(x);\r\
+    \n    assert(keyX[i] == x);\r\n    while (i < N) {\r\n      add_i(i, y, val);\r\
+    \n      i = nxt(i);\r\n    }\r\n  }\r\n\r\n  E prod(XY lx, XY ly, XY rx, XY ry)\
+    \ {\r\n    E pos = AbelGroup::unit();\r\n    E neg = AbelGroup::unit();\r\n  \
+    \  int L = xtoi(lx) - 1;\r\n    int R = xtoi(rx) - 1;\r\n    while (L < R) {\r\
+    \n      pos = AbelGroup::op(pos, prod_i(R, ly, ry));\r\n      R = prev(R);\r\n\
+    \    }\r\n    while (R < L) {\r\n      neg = AbelGroup::op(neg, prod_i(L, ly,\
+    \ ry));\r\n      L = prev(L);\r\n    }\r\n    E ret = AbelGroup::op(pos, AbelGroup::inverse(neg));\r\
+    \n    return ret;\r\n  }\r\n\r\n  E prefix_prod(XY rx, XY ry) {\r\n    E pos =\
+    \ AbelGroup::unit();\r\n    int R = xtoi(rx) - 1;\r\n    while (R >= 0) {\r\n\
+    \      pos = AbelGroup::op(pos, prefix_prod_i(R, ry));\r\n      R = prev(R);\r\
+    \n    }\r\n    return pos;\r\n  }\r\n\r\n  void debug() {\r\n    print(\"keyX\"\
+    , keyX);\r\n    print(\"indptr\", indptr);\r\n    print(\"keyY\", keyY);\r\n \
+    \   print(\"dat\", dat);\r\n  }\r\n\r\nprivate:\r\n  void multiply_i(int i, XY\
+    \ y, E val) {\r\n    int LID = indptr[i], n = indptr[i + 1] - indptr[i];\r\n \
+    \   auto it = keyY.begin() + LID;\r\n    int j = lower_bound(it, it + n, y) -\
+    \ it;\r\n    assert(keyY[LID + j] == y);\r\n    while (j < n) {\r\n      dat[LID\
+    \ + j] = AbelGroup::op(dat[LID + j], val);\r\n      j = nxt(j);\r\n    }\r\n \
+    \ }\r\n\r\n  E prod_i(int i, XY ly, XY ry) {\r\n    E pos = AbelGroup::unit();\r\
+    \n    E neg = AbelGroup::unit();\r\n    int LID = indptr[i], n = indptr[i + 1]\
+    \ - indptr[i];\r\n    auto it = keyY.begin() + LID;\r\n    int L = lower_bound(it,\
+    \ it + n, ly) - it - 1;\r\n    int R = lower_bound(it, it + n, ry) - it - 1;\r\
+    \n    while (L < R) {\r\n      pos = AbelGroup::op(pos, dat[LID + R]);\r\n   \
+    \   R = prev(R);\r\n    }\r\n    while (R < L) {\r\n      neg = AbelGroup::op(neg,\
+    \ dat[LID + L]);\r\n      L = prev(L);\r\n    }\r\n    return AbelGroup::op(pos,\
+    \ AbelGroup::inverse(neg));\r\n  }\r\n\r\n  E prefix_prod_i(int i, XY ry) {\r\n\
+    \    E pos = AbelGroup::unit();\r\n    int LID = indptr[i], n = indptr[i + 1]\
+    \ - indptr[i];\r\n    auto it = keyY.begin() + LID;\r\n    int R = lower_bound(it,\
+    \ it + n, ry) - it - 1;\r\n    while (R >= 0) {\r\n      pos = AbelGroup::op(pos,\
+    \ dat[LID + R]);\r\n      R = prev(R);\r\n    }\r\n    return pos;\r\n  }\r\n\
+    };\n#line 2 \"alg/monoid_max.hpp\"\ntemplate <class X>\r\nstruct Monoid_Max {\r\
+    \n  using value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
+    \ { return max(x, y); }\r\n  static constexpr X unit() { return numeric_limits<X>::lowest();\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 6 \"test/atcoder/abc266h_bit.test.cpp\"\
+    \n\nusing Mono = Monoid_Max<ll>;\n\nvoid solve() {\n  LL(N);\n  using T = tuple<ll,\
+    \ ll, ll, ll>;\n\n  VEC(T, dat, N);\n  dat.eb(0, 0, 0, 0);\n  ++N;\n\n  sort(all(dat),\
+    \ [&](auto& a, auto& b) -> bool {\n    auto [at, ax, ay, aa] = a;\n    auto [bt,\
+    \ bx, by, bb] = b;\n    if (ay < by) return true;\n    if (ay > by) return false;\n\
+    \    return at < bt;\n  });\n\n  /*\n  \u53F3\u4E0A\u3078\u306E\u9077\u79FB\uFF1A\
+    \n  (x,y,t) \u304C\u60C5\u5831 (a,b,c,v) \u3092\u53D7\u3051\u53D6\u308B\u306E\u306F\
+    \n  a<=x, c-a-b<=t-x-y\n  \u30FB(a,c-a-b) \u306B\u60C5\u5831\u3092\u8FFD\u52A0\
+    \u3059\u308B\n  \u30FB[-INF,x] x [-INF, t-x-y] \u3067\u306E\u6700\u5927\u5024\u3092\
+    \u6C42\u3081\u308B\n\n  \u5DE6\u4E0A\u3078\u306E\u9077\u79FB\uFF1A\n  (a-x)+(y-b)<=t-c\n\
+    \  (-a)<=(-x), a-b+c<=x-y+t\n  */\n  vi X1(N), Y1(N), X2(N), Y2(N);\n  FOR(i,\
+    \ N) {\n    auto [t, x, y, v] = dat[i];\n    X1[i] = x;\n    X2[i] = -x;\n   \
+    \ Y1[i] = t - x - y;\n    Y2[i] = x - y + t;\n  }\n  Fenwick2D<Mono, false> seg1(X1,\
+    \ Y1);\n  Fenwick2D<Mono, false> seg2(X2, Y2);\n\n  const ll INF = 1LL << 60;\n\
+    \n  ll ANS = 0;\n  FOR(i, N) {\n    const auto [t, x, y, v] = dat[i];\n    const\
+    \ ll a = x, b = y, c = t;\n    if (i == 0) {\n      seg1.add(a, c - a - b, 0);\n\
+    \      seg2.add(-a, a - b + c, 0);\n      continue;\n    }\n    ll best = -INF;\n\
+    \    chmax(best, seg1.prefix_sum(x + 1, t - x - y + 1));\n    chmax(best, seg2.prefix_sum((-x)\
+    \ + 1, x - y + t + 1));\n    if (best < 0) continue;\n    best += v;\n    chmax(ANS,\
+    \ best);\n    seg1.add(a, c - a - b, best);\n    seg2.add(-a, a - b + c, best);\n\
+    \  }\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc266/tasks/abc266_h\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/fenwick2d.hpp\"\
+    \n#include \"alg/monoid_max.hpp\"\n\nusing Mono = Monoid_Max<ll>;\n\nvoid solve()\
+    \ {\n  LL(N);\n  using T = tuple<ll, ll, ll, ll>;\n\n  VEC(T, dat, N);\n  dat.eb(0,\
+    \ 0, 0, 0);\n  ++N;\n\n  sort(all(dat), [&](auto& a, auto& b) -> bool {\n    auto\
+    \ [at, ax, ay, aa] = a;\n    auto [bt, bx, by, bb] = b;\n    if (ay < by) return\
+    \ true;\n    if (ay > by) return false;\n    return at < bt;\n  });\n\n  /*\n\
+    \  \u53F3\u4E0A\u3078\u306E\u9077\u79FB\uFF1A\n  (x,y,t) \u304C\u60C5\u5831 (a,b,c,v)\
+    \ \u3092\u53D7\u3051\u53D6\u308B\u306E\u306F\n  a<=x, c-a-b<=t-x-y\n  \u30FB(a,c-a-b)\
+    \ \u306B\u60C5\u5831\u3092\u8FFD\u52A0\u3059\u308B\n  \u30FB[-INF,x] x [-INF,\
+    \ t-x-y] \u3067\u306E\u6700\u5927\u5024\u3092\u6C42\u3081\u308B\n\n  \u5DE6\u4E0A\
+    \u3078\u306E\u9077\u79FB\uFF1A\n  (a-x)+(y-b)<=t-c\n  (-a)<=(-x), a-b+c<=x-y+t\n\
+    \  */\n  vi X1(N), Y1(N), X2(N), Y2(N);\n  FOR(i, N) {\n    auto [t, x, y, v]\
+    \ = dat[i];\n    X1[i] = x;\n    X2[i] = -x;\n    Y1[i] = t - x - y;\n    Y2[i]\
+    \ = x - y + t;\n  }\n  Fenwick2D<Mono, false> seg1(X1, Y1);\n  Fenwick2D<Mono,\
+    \ false> seg2(X2, Y2);\n\n  const ll INF = 1LL << 60;\n\n  ll ANS = 0;\n  FOR(i,\
+    \ N) {\n    const auto [t, x, y, v] = dat[i];\n    const ll a = x, b = y, c =\
+    \ t;\n    if (i == 0) {\n      seg1.add(a, c - a - b, 0);\n      seg2.add(-a,\
+    \ a - b + c, 0);\n      continue;\n    }\n    ll best = -INF;\n    chmax(best,\
+    \ seg1.prefix_sum(x + 1, t - x - y + 1));\n    chmax(best, seg2.prefix_sum((-x)\
+    \ + 1, x - y + t + 1));\n    if (best < 0) continue;\n    best += v;\n    chmax(ANS,\
+    \ best);\n    seg1.add(a, c - a - b, best);\n    seg2.add(-a, a - b + c, best);\n\
+    \  }\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/fenwickraq.hpp
-  - ds/fenwick.hpp
+  - ds/fenwick2d.hpp
   - alg/group_add.hpp
+  - alg/monoid_max.hpp
   isVerificationFile: true
-  path: test/aoj/DSL_2_E_fenwick_raq.test.cpp
+  path: test/atcoder/abc266h_bit.test.cpp
   requiredBy: []
-  timestamp: '2022-08-28 02:28:59+09:00'
+  timestamp: '2022-08-28 02:29:21+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/aoj/DSL_2_E_fenwick_raq.test.cpp
+documentation_of: test/atcoder/abc266h_bit.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/DSL_2_E_fenwick_raq.test.cpp
-- /verify/test/aoj/DSL_2_E_fenwick_raq.test.cpp.html
-title: test/aoj/DSL_2_E_fenwick_raq.test.cpp
+- /verify/test/atcoder/abc266h_bit.test.cpp
+- /verify/test/atcoder/abc266h_bit.test.cpp.html
+title: test/atcoder/abc266h_bit.test.cpp
 ---
