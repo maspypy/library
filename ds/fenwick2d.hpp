@@ -1,17 +1,17 @@
 #include "alg/group_add.hpp"
-template <typename AbelGroup, bool SMALL = false>
+template <typename AbelGroup, typename XY, bool SMALL = false>
 struct Fenwick2D {
   using E = typename AbelGroup::value_type;
   int N;
-  vi keyX;
-  int min_X;
+  vc<XY> keyX;
+  XY min_X;
   vc<int> indptr;
-  vi keyY;
+  vc<XY> keyY;
   vc<E> dat;
 
-  Fenwick2D(vi& X, vi& Y, vc<E>& wt) { build(X, Y, wt); }
+  Fenwick2D(vc<XY>& X, vc<XY>& Y, vc<E>& wt) { build(X, Y, wt); }
 
-  Fenwick2D(vi& X, vi& Y) {
+  Fenwick2D(vc<XY>& X, vc<XY>& Y) {
     vc<E> wt(len(X), AbelGroup::unit());
     build(X, Y, wt);
   }
@@ -30,7 +30,7 @@ struct Fenwick2D {
     return i - (i & -i) - 1;
   }
 
-  void build(vi& X, vi& Y, vc<E>& wt) {
+  void build(vc<XY>& X, vc<XY>& Y, vc<E>& wt) {
     if (!SMALL) {
       keyX = X;
       UNIQUE(keyX);
@@ -42,7 +42,7 @@ struct Fenwick2D {
       FOR(i, N) keyX[i] = min_X + i;
     }
 
-    vc<vi> keyY_raw(N);
+    vvc<XY> keyY_raw(N);
     vc<vc<E>> dat_raw(N);
 
     auto I = argsort(Y);
@@ -79,7 +79,51 @@ struct Fenwick2D {
     }
   }
 
-  void add_i(int i, ll y, E val) {
+  void multiply(XY x, XY y, E val) {
+    int i = xtoi(x);
+    assert(keyX[i] == x);
+    while (i < N) {
+      add_i(i, y, val);
+      i = nxt(i);
+    }
+  }
+
+  E prod(XY lx, XY ly, XY rx, XY ry) {
+    E pos = AbelGroup::unit();
+    E neg = AbelGroup::unit();
+    int L = xtoi(lx) - 1;
+    int R = xtoi(rx) - 1;
+    while (L < R) {
+      pos = AbelGroup::op(pos, prod_i(R, ly, ry));
+      R = prev(R);
+    }
+    while (R < L) {
+      neg = AbelGroup::op(neg, prod_i(L, ly, ry));
+      L = prev(L);
+    }
+    E ret = AbelGroup::op(pos, AbelGroup::inverse(neg));
+    return ret;
+  }
+
+  E prefix_prod(XY rx, XY ry) {
+    E pos = AbelGroup::unit();
+    int R = xtoi(rx) - 1;
+    while (R >= 0) {
+      pos = AbelGroup::op(pos, prefix_prod_i(R, ry));
+      R = prev(R);
+    }
+    return pos;
+  }
+
+  void debug() {
+    print("keyX", keyX);
+    print("indptr", indptr);
+    print("keyY", keyY);
+    print("dat", dat);
+  }
+
+private:
+  void multiply_i(int i, XY y, E val) {
     int LID = indptr[i], n = indptr[i + 1] - indptr[i];
     auto it = keyY.begin() + LID;
     int j = lower_bound(it, it + n, y) - it;
@@ -90,16 +134,7 @@ struct Fenwick2D {
     }
   }
 
-  void add(ll x, ll y, E val) {
-    int i = xtoi(x);
-    assert(keyX[i] == x);
-    while (i < N) {
-      add_i(i, y, val);
-      i = nxt(i);
-    }
-  }
-
-  E sum_i(int i, ll ly, ll ry) {
+  E prod_i(int i, XY ly, XY ry) {
     E pos = AbelGroup::unit();
     E neg = AbelGroup::unit();
     int LID = indptr[i], n = indptr[i + 1] - indptr[i];
@@ -117,25 +152,7 @@ struct Fenwick2D {
     return AbelGroup::op(pos, AbelGroup::inverse(neg));
   }
 
-  E sum(ll lx, ll ly, ll rx, ll ry) {
-    E pos = AbelGroup::unit();
-    E neg = AbelGroup::unit();
-    int L = xtoi(lx) - 1;
-    int R = xtoi(rx) - 1;
-    while (L < R) {
-      pos = AbelGroup::op(pos, sum_i(R, ly, ry));
-      R = prev(R);
-    }
-    while (R < L) {
-      neg = AbelGroup::op(neg, sum_i(L, ly, ry));
-      L = prev(L);
-    }
-    E ret = AbelGroup::op(pos, AbelGroup::inverse(neg));
-    return ret;
-  }
-
-
-  E prefix_sum_i(int i, ll ry) {
+  E prefix_prod_i(int i, XY ry) {
     E pos = AbelGroup::unit();
     int LID = indptr[i], n = indptr[i + 1] - indptr[i];
     auto it = keyY.begin() + LID;
@@ -145,22 +162,5 @@ struct Fenwick2D {
       R = prev(R);
     }
     return pos;
-  }
-
-  E prefix_sum(ll rx, ll ry){
-    E pos = AbelGroup::unit();
-    int R = xtoi(rx) - 1;
-    while (R >= 0) {
-      pos = AbelGroup::op(pos, prefix_sum_i(R, ry));
-      R = prev(R);
-    }
-    return pos;
-  }
-
-  void debug() {
-    print("keyX", keyX);
-    print("indptr", indptr);
-    print("keyY", keyY);
-    print("dat", dat);
   }
 };
