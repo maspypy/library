@@ -34,7 +34,7 @@ void solve() {
     if (a == -1) {
       bit.add(b, c, d);
     } else {
-      print(bit.sum(a, b, c, d));
+      print(bit.prod(a, b, c, d));
     }
   }
 }
