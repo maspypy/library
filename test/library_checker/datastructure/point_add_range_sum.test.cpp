@@ -14,7 +14,7 @@ void solve() {
     if (t == 0) {
       bit.add(a, b);
     } else {
-      print(bit.sum(a, b));
+      print(bit.prod(a, b));
     }
   }
 }
