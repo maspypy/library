@@ -258,7 +258,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fenwick2d_dense.hpp
       title: ds/fenwick2d_dense.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwickraq.hpp
       title: ds/fenwickraq.hpp
     - icon: ':heavy_check_mark:'
@@ -1203,13 +1203,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_D_dualsegtree.test.cpp
       title: test/aoj/DSL_2_D_dualsegtree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_E_fenwick_raq.test.cpp
       title: test/aoj/DSL_2_E_fenwick_raq.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_F_min_set_lazy.test.cpp
       title: test/aoj/DSL_2_F_min_set_lazy.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_G_fenwick_raq.test.cpp
       title: test/aoj/DSL_2_G_fenwick_raq.test.cpp
     - icon: ':heavy_check_mark:'

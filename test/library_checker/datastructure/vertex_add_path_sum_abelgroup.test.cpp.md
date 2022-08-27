@@ -374,7 +374,7 @@ data:
     \ G.read_tree(0, 0);\r\n\r\n  TREE tree(G);\r\n  TreeAbelGroup<decltype(tree),\
     \ Group_Add<ll>, false, true, false> TA(tree, A);\r\n\r\n  FOR(_, Q) {\r\n   \
     \ LL(t);\r\n    if (t == 0) {\r\n      LL(v, x);\r\n      TA.add(v, x);\r\n  \
-    \  } else {\r\n      LL(u, v);\r\n      print(TA.sum_path(u, v));\r\n    }\r\n\
+    \  } else {\r\n      LL(u, v);\r\n      print(TA.prod_path(u, v));\r\n    }\r\n\
     \  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
     \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\r\
@@ -384,7 +384,7 @@ data:
     \n\r\n  TREE tree(G);\r\n  TreeAbelGroup<decltype(tree), Group_Add<ll>, false,\
     \ true, false> TA(tree, A);\r\n\r\n  FOR(_, Q) {\r\n    LL(t);\r\n    if (t ==\
     \ 0) {\r\n      LL(v, x);\r\n      TA.add(v, x);\r\n    } else {\r\n      LL(u,\
-    \ v);\r\n      print(TA.sum_path(u, v));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main()\
+    \ v);\r\n      print(TA.prod_path(u, v));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main()\
     \ {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
     \n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
@@ -398,7 +398,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   requiredBy: []
-  timestamp: '2022-08-28 02:45:29+09:00'
+  timestamp: '2022-08-28 03:15:00+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp

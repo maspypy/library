@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwickraq.hpp
     title: ds/fenwickraq.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E
@@ -245,18 +245,18 @@ data:
     \n  }\r\n};\r\n#line 6 \"test/aoj/DSL_2_E_fenwick_raq.test.cpp\"\n\r\nvoid solve()\
     \ {\r\n  LL(N, Q);\r\n  FenwickRAQ<Group_Add<ll>> bit(N);\r\n  FOR(_, Q) {\r\n\
     \    LL(t);\r\n    if (t == 0) {\r\n      LL(L, R, x);\r\n      bit.add(--L, R,\
-    \ x);\r\n    } else {\r\n      LL(L);\r\n      print(bit.sum(L - 1, L));\r\n \
-    \   }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T)\
-    \ solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ x);\r\n    } else {\r\n      LL(L);\r\n      print(bit.prod(L - 1, L));\r\n\
+    \    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(T) solve();\r\
+    \n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/fenwickraq.hpp\"\
     \r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  FenwickRAQ<Group_Add<ll>> bit(N);\r\
     \n  FOR(_, Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(L, R, x);\r\n \
-    \     bit.add(--L, R, x);\r\n    } else {\r\n      LL(L);\r\n      print(bit.sum(L\
+    \     bit.add(--L, R, x);\r\n    } else {\r\n      LL(L);\r\n      print(bit.prod(L\
     \ - 1, L));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
     \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  ll T\
-    \ = 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ = 1;\r\n  // LL(T);\r\n  FOR(T) solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -266,8 +266,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_E_fenwick_raq.test.cpp
   requiredBy: []
-  timestamp: '2022-08-28 02:46:58+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-28 03:13:24+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_E_fenwick_raq.test.cpp
 layout: document
