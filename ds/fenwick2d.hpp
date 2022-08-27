@@ -88,6 +88,8 @@ struct Fenwick2D {
     }
   }
 
+  void add(XY x, XY y, E val) { multiply(x, y, val); }
+
   E prod(XY lx, XY ly, XY rx, XY ry) {
     E pos = AbelGroup::unit();
     E neg = AbelGroup::unit();
