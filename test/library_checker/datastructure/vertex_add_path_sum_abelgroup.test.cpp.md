@@ -361,13 +361,13 @@ data:
     \      bit.add(tree.ELID(v), x);\r\n      bit.add(tree.ERID(v), inv_x);\r\n  \
     \  }\r\n    if (subtree_query) bit_subtree.add(tree.LID[v], x);\r\n  }\r\n\r\n\
     \  X prod_path(int frm, int to) {\r\n    assert(path_query);\r\n    int lca =\
-    \ tree.LCA(frm, to);\r\n    // [frm, lca)\r\n    X x1 = bit.sum(tree.ELID(lca)\
+    \ tree.LCA(frm, to);\r\n    // [frm, lca)\r\n    X x1 = bit.prod(tree.ELID(lca)\
     \ + 1, tree.ELID(frm) + 1);\r\n    // edge \u306A\u3089 (lca, to]\u3001vertex\
-    \ \u306A\u3089 [lca, to]\r\n    X x2 = bit.sum(tree.ELID(lca) + edge, tree.ELID(to)\
+    \ \u306A\u3089 [lca, to]\r\n    X x2 = bit.prod(tree.ELID(lca) + edge, tree.ELID(to)\
     \ + 1);\r\n    return AbelGroup::op(x1, x2);\r\n  }\r\n\r\n  X prod_subtree(int\
     \ u) {\r\n    assert(subtree_query);\r\n    int l = tree.LID[u], r = tree.RID[u];\r\
-    \n    return bit_subtree.sum(l + edge, r);\r\n  }\r\n\r\n  X sum_path(int frm,\
-    \ int to) { return prod_path(frm, to); }\r\n  X sum_subtree(int u) { return prod_subtree(u);\
+    \n    return bit_subtree.prod(l + edge, r);\r\n  }\r\n\r\n  X prod_path(int frm,\
+    \ int to) { return prod_path(frm, to); }\r\n  X prod_subtree(int u) { return prod_subtree(u);\
     \ }\r\n\r\n  void debug() {\r\n    tree.debug();\r\n    bit.debug();\r\n    bit_subtree.debug();\r\
     \n  }\r\n};\r\n#line 7 \"test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  Graph G(N);\r\n \
@@ -398,7 +398,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   requiredBy: []
-  timestamp: '2022-08-28 02:28:59+09:00'
+  timestamp: '2022-08-28 02:45:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
