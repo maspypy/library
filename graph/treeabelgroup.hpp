@@ -75,9 +75,6 @@ struct TreeAbelGroup {
     return bit_subtree.prod(l + edge, r);
   }
 
-  X prod_path(int frm, int to) { return prod_path(frm, to); }
-  X prod_subtree(int u) { return prod_subtree(u); }
-
   void debug() {
     tree.debug();
     bit.debug();
