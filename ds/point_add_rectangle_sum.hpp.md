@@ -4,26 +4,26 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/rectangle_add_ractangle_sum.hpp
     title: ds/rectangle_add_ractangle_sum.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1490_rect_add_rect_sum.test.cpp
     title: test/yukicoder/1490_rect_add_rect_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -88,11 +88,11 @@ data:
     \ xr, q);\r\n      CALC_2[yl].emplace_back(xl, xr, q);\r\n    };\r\n\r\n    vector<G>\
     \ res(Q, AbelGroup::unit());\r\n    FenwickTree<AbelGroup> bit(NX);\r\n\r\n  \
     \  for (int y = 0; y <= NY; ++y) {\r\n      for (auto &&[xl, xr, q]: CALC_1[y])\
-    \ {\r\n        auto x = bit.sum(xl, xr);\r\n        res[q] = AbelGroup::op(res[q],\
+    \ {\r\n        auto x = bit.prod(xl, xr);\r\n        res[q] = AbelGroup::op(res[q],\
     \ x);\r\n      }\r\n      for (auto &&[xl, xr, q]: CALC_2[y]) {\r\n        auto\
-    \ x = AbelGroup::inverse(bit.sum(xl, xr));\r\n        res[q] = AbelGroup::op(res[q],\
+    \ x = AbelGroup::inverse(bit.prod(xl, xr));\r\n        res[q] = AbelGroup::op(res[q],\
     \ x);\r\n      }\r\n      for (auto &&[x, g]: ADD[y]) { bit.add(x, g); }\r\n \
-    \   }\r\n    return res;\r\n  }\r\n};\n"
+    \   }\r\n    return res;\r\n  }\r\n};\r\n"
   code: "#pragma once\r\n#include \"ds/fenwick.hpp\"\r\n\r\n\r\ntemplate <typename\
     \ AbelGroup, bool SMALL = false>\r\nstruct Point_Add_Rectangle_Sum {\r\n  using\
     \ G = typename AbelGroup::value_type;\r\n  int Q;\r\n  vector<ll> X, Y;\r\n  vector<G>\
@@ -125,11 +125,11 @@ data:
     \ xr, q);\r\n      CALC_2[yl].emplace_back(xl, xr, q);\r\n    };\r\n\r\n    vector<G>\
     \ res(Q, AbelGroup::unit());\r\n    FenwickTree<AbelGroup> bit(NX);\r\n\r\n  \
     \  for (int y = 0; y <= NY; ++y) {\r\n      for (auto &&[xl, xr, q]: CALC_1[y])\
-    \ {\r\n        auto x = bit.sum(xl, xr);\r\n        res[q] = AbelGroup::op(res[q],\
+    \ {\r\n        auto x = bit.prod(xl, xr);\r\n        res[q] = AbelGroup::op(res[q],\
     \ x);\r\n      }\r\n      for (auto &&[xl, xr, q]: CALC_2[y]) {\r\n        auto\
-    \ x = AbelGroup::inverse(bit.sum(xl, xr));\r\n        res[q] = AbelGroup::op(res[q],\
+    \ x = AbelGroup::inverse(bit.prod(xl, xr));\r\n        res[q] = AbelGroup::op(res[q],\
     \ x);\r\n      }\r\n      for (auto &&[x, g]: ADD[y]) { bit.add(x, g); }\r\n \
-    \   }\r\n    return res;\r\n  }\r\n};"
+    \   }\r\n    return res;\r\n  }\r\n};\r\n"
   dependsOn:
   - ds/fenwick.hpp
   - alg/group_add.hpp
@@ -137,8 +137,8 @@ data:
   path: ds/point_add_rectangle_sum.hpp
   requiredBy:
   - ds/rectangle_add_ractangle_sum.hpp
-  timestamp: '2022-08-28 02:28:59+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-08-28 02:47:53+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1490_rect_add_rect_sum.test.cpp
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp

@@ -4,20 +4,20 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_2_A_inversion.test.cpp
     title: test/aoj/ALDS1_2_A_inversion.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_5_inversion.test.cpp
     title: test/aoj/ALDS1_5_inversion.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -53,20 +53,20 @@ data:
     \  void debug() { print(\"fenwick\", dat); }\n};\n#line 2 \"dp/inversion.hpp\"\
     \n\ntemplate <typename T>\nll inversion(vc<T>& A) {\n  auto key = A;\n  UNIQUE(key);\n\
     \  ll ANS = 0;\n  FenwickTree<Group_Add<int>> bit(len(key));\n  for (auto&& a:\
-    \ A) {\n    ll x = LB(key, a);\n    ANS += bit.sum_all() - bit.sum(x + 1);\n \
-    \   bit.add(x, 1);\n  }\n  return ANS;\n}\n"
+    \ A) {\n    ll x = LB(key, a);\n    ANS += bit.prod_all() - bit.prod(x + 1);\n\
+    \    bit.add(x, 1);\n  }\n  return ANS;\n}\n"
   code: "#include \"ds/fenwick.hpp\"\n\ntemplate <typename T>\nll inversion(vc<T>&\
     \ A) {\n  auto key = A;\n  UNIQUE(key);\n  ll ANS = 0;\n  FenwickTree<Group_Add<int>>\
-    \ bit(len(key));\n  for (auto&& a: A) {\n    ll x = LB(key, a);\n    ANS += bit.sum_all()\
-    \ - bit.sum(x + 1);\n    bit.add(x, 1);\n  }\n  return ANS;\n}\n"
+    \ bit(len(key));\n  for (auto&& a: A) {\n    ll x = LB(key, a);\n    ANS += bit.prod_all()\
+    \ - bit.prod(x + 1);\n    bit.add(x, 1);\n  }\n  return ANS;\n}\n"
   dependsOn:
   - ds/fenwick.hpp
   - alg/group_add.hpp
   isVerificationFile: false
   path: dp/inversion.hpp
   requiredBy: []
-  timestamp: '2022-08-28 02:28:59+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-08-28 03:03:00+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_5_inversion.test.cpp
   - test/aoj/ALDS1_2_A_inversion.test.cpp

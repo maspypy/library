@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: dp/inversion.hpp
     title: dp/inversion.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_2_A
@@ -234,8 +234,8 @@ data:
     \  void debug() { print(\"fenwick\", dat); }\n};\n#line 2 \"dp/inversion.hpp\"\
     \n\ntemplate <typename T>\nll inversion(vc<T>& A) {\n  auto key = A;\n  UNIQUE(key);\n\
     \  ll ANS = 0;\n  FenwickTree<Group_Add<int>> bit(len(key));\n  for (auto&& a:\
-    \ A) {\n    ll x = LB(key, a);\n    ANS += bit.sum_all() - bit.sum(x + 1);\n \
-    \   bit.add(x, 1);\n  }\n  return ANS;\n}\n#line 6 \"test/aoj/ALDS1_2_A_inversion.test.cpp\"\
+    \ A) {\n    ll x = LB(key, a);\n    ANS += bit.prod_all() - bit.prod(x + 1);\n\
+    \    bit.add(x, 1);\n  }\n  return ANS;\n}\n#line 6 \"test/aoj/ALDS1_2_A_inversion.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  ll x = inversion(A);\n  sort(all(A));\n\
     \  print(A);\n  print(x);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
@@ -255,8 +255,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_2_A_inversion.test.cpp
   requiredBy: []
-  timestamp: '2022-08-28 02:28:59+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-28 03:03:00+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_2_A_inversion.test.cpp
 layout: document

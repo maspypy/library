@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -63,7 +63,7 @@ data:
     \    for (auto [k, x, i]: dat[v]) {\n      int lo = l - x, hi = r - x;\n     \
     \ int K = k;\n      if (k < 0) { lo -= 2, hi -= 2, K = ~k; }\n      int n = len(bit_range[K])\
     \ - 2;\n      chmax(lo, 0);\n      chmin(hi, n + 1);\n      if (lo >= hi) continue;\n\
-    \      int a = bit_range[K][lo], b = bit_range[K][hi];\n      X val = bit.sum(a,\
+    \      int a = bit_range[K][lo], b = bit_range[K][hi];\n      X val = bit.prod(a,\
     \ b);\n      if (k < 0) { val = AbelGroup::inverse(val); }\n      sm = AbelGroup::op(sm,\
     \ val);\n    }\n    return sm;\n  }\n\n  void build(const vc<X>& v_vals) {\n \
     \   int nxt_bit_idx = 0;\n    vc<int> done(N, 0);\n    vc<int> sz(N, 0);\n   \
@@ -124,7 +124,7 @@ data:
     \    for (auto [k, x, i]: dat[v]) {\n      int lo = l - x, hi = r - x;\n     \
     \ int K = k;\n      if (k < 0) { lo -= 2, hi -= 2, K = ~k; }\n      int n = len(bit_range[K])\
     \ - 2;\n      chmax(lo, 0);\n      chmin(hi, n + 1);\n      if (lo >= hi) continue;\n\
-    \      int a = bit_range[K][lo], b = bit_range[K][hi];\n      X val = bit.sum(a,\
+    \      int a = bit_range[K][lo], b = bit_range[K][hi];\n      X val = bit.prod(a,\
     \ b);\n      if (k < 0) { val = AbelGroup::inverse(val); }\n      sm = AbelGroup::op(sm,\
     \ val);\n    }\n    return sm;\n  }\n\n  void build(const vc<X>& v_vals) {\n \
     \   int nxt_bit_idx = 0;\n    vc<int> done(N, 0);\n    vc<int> sz(N, 0);\n   \
@@ -176,8 +176,8 @@ data:
   isVerificationFile: false
   path: graph/contoursum.hpp
   requiredBy: []
-  timestamp: '2022-08-28 02:28:59+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-08-28 02:50:24+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/graph/verted_add_contour_sum.test.cpp
 documentation_of: graph/contoursum.hpp

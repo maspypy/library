@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -73,7 +73,7 @@ data:
     \ bit(NX);\n    FOR(y, NY) {\n      for (auto&& [xl, xr, g]: ADD[y]) {\n     \
     \   bit.add(xl, g);\n        bit.add(xr, AbelGroup::inverse(g));\n      }\n  \
     \    for (auto&& q: CALC[y]) {\n        auto [x, y] = point[q];\n        res[q]\
-    \ = bit.sum(x + 1);\n      }\n    }\n    return res;\n  }\n};\n"
+    \ = bit.prod(x + 1);\n      }\n    }\n    return res;\n  }\n};\n"
   code: "#include \"ds/fenwick.hpp\"\n\ntemplate <typename AbelGroup, bool SMALL>\n\
     struct Rectangle_Add_Point_Sum {\n  using G = typename AbelGroup::value_type;\n\
     \  vc<tuple<ll, ll, ll, ll>> rect;\n  vc<G> WT;\n  vc<pi> point;\n\n  Rectangle_Add_Point_Sum()\
@@ -99,16 +99,16 @@ data:
     \    vc<G> res(Q);\n    FenwickTree<AbelGroup> bit(NX);\n    FOR(y, NY) {\n  \
     \    for (auto&& [xl, xr, g]: ADD[y]) {\n        bit.add(xl, g);\n        bit.add(xr,\
     \ AbelGroup::inverse(g));\n      }\n      for (auto&& q: CALC[y]) {\n        auto\
-    \ [x, y] = point[q];\n        res[q] = bit.sum(x + 1);\n      }\n    }\n    return\
-    \ res;\n  }\n};"
+    \ [x, y] = point[q];\n        res[q] = bit.prod(x + 1);\n      }\n    }\n    return\
+    \ res;\n  }\n};\n"
   dependsOn:
   - ds/fenwick.hpp
   - alg/group_add.hpp
   isVerificationFile: false
   path: ds/rectangle_add_point_sum.hpp
   requiredBy: []
-  timestamp: '2022-08-28 02:28:59+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-08-28 02:48:29+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/rect_add_pt_sum.test.cpp
 documentation_of: ds/rectangle_add_point_sum.hpp

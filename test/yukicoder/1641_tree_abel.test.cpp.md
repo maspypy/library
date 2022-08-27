@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: alg/group_xor.hpp
     title: alg/group_xor.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   - icon: ':question:'

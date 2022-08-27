@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   - icon: ':x:'
@@ -239,9 +239,9 @@ data:
     \ {}\r\n\r\n  void add(ll i, E val) { bit0.add(i, val); }\r\n\r\n  void add(ll\
     \ L, ll R, E val) {\r\n    bit0.add(L, AbelGroup::power(val, -L));\r\n    bit0.add(R,\
     \ AbelGroup::power(val, R));\r\n    bit1.add(L, val);\r\n    bit1.add(R, AbelGroup::inverse(val));\r\
-    \n  }\r\n\r\n  E sum(ll L, ll R) {\r\n    E sum_R = AbelGroup::op(AbelGroup::power(bit1.sum(R),\
-    \ R), bit0.sum(R));\r\n    E sum_L = AbelGroup::op(AbelGroup::power(bit1.sum(L),\
-    \ L), bit0.sum(L));\r\n    return AbelGroup::op(AbelGroup::inverse(sum_L), sum_R);\r\
+    \n  }\r\n\r\n  E prod(ll L, ll R) {\r\n    E prod_R = AbelGroup::op(AbelGroup::power(bit1.prod(R),\
+    \ R), bit0.prod(R));\r\n    E prod_L = AbelGroup::op(AbelGroup::power(bit1.prod(L),\
+    \ L), bit0.prod(L));\r\n    return AbelGroup::op(AbelGroup::inverse(prod_L), prod_R);\r\
     \n  }\r\n};\r\n#line 6 \"test/aoj/DSL_2_G_fenwick_raq.test.cpp\"\n\r\nvoid solve()\
     \ {\r\n  LL(N, Q);\r\n  FenwickRAQ<Group_Add<ll>> bit(N);\r\n  FOR(_, Q) {\r\n\
     \    LL(t, L, R);\r\n    --L;\r\n    if (t == 0) {\r\n      LL(x);\r\n      bit.add(L,\
@@ -266,7 +266,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_G_fenwick_raq.test.cpp
   requiredBy: []
-  timestamp: '2022-08-28 02:28:59+09:00'
+  timestamp: '2022-08-28 02:46:58+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_G_fenwick_raq.test.cpp

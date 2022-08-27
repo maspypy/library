@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   _extendedRequiredBy: []
@@ -58,9 +58,9 @@ data:
     \ {}\r\n\r\n  void add(ll i, E val) { bit0.add(i, val); }\r\n\r\n  void add(ll\
     \ L, ll R, E val) {\r\n    bit0.add(L, AbelGroup::power(val, -L));\r\n    bit0.add(R,\
     \ AbelGroup::power(val, R));\r\n    bit1.add(L, val);\r\n    bit1.add(R, AbelGroup::inverse(val));\r\
-    \n  }\r\n\r\n  E sum(ll L, ll R) {\r\n    E sum_R = AbelGroup::op(AbelGroup::power(bit1.sum(R),\
-    \ R), bit0.sum(R));\r\n    E sum_L = AbelGroup::op(AbelGroup::power(bit1.sum(L),\
-    \ L), bit0.sum(L));\r\n    return AbelGroup::op(AbelGroup::inverse(sum_L), sum_R);\r\
+    \n  }\r\n\r\n  E prod(ll L, ll R) {\r\n    E prod_R = AbelGroup::op(AbelGroup::power(bit1.prod(R),\
+    \ R), bit0.prod(R));\r\n    E prod_L = AbelGroup::op(AbelGroup::power(bit1.prod(L),\
+    \ L), bit0.prod(L));\r\n    return AbelGroup::op(AbelGroup::inverse(prod_L), prod_R);\r\
     \n  }\r\n};\r\n"
   code: "#include \"ds/fenwick.hpp\"\r\ntemplate <typename AbelGroup>\r\nstruct FenwickRAQ\
     \ {\r\n  using E = typename AbelGroup::value_type;\r\n  int n;\r\n  FenwickTree<AbelGroup>\
@@ -69,17 +69,18 @@ data:
     \ v) : n(len(v)), bit0(v), bit1(len(v)) {}\r\n\r\n  void add(ll i, E val) { bit0.add(i,\
     \ val); }\r\n\r\n  void add(ll L, ll R, E val) {\r\n    bit0.add(L, AbelGroup::power(val,\
     \ -L));\r\n    bit0.add(R, AbelGroup::power(val, R));\r\n    bit1.add(L, val);\r\
-    \n    bit1.add(R, AbelGroup::inverse(val));\r\n  }\r\n\r\n  E sum(ll L, ll R)\
-    \ {\r\n    E sum_R = AbelGroup::op(AbelGroup::power(bit1.sum(R), R), bit0.sum(R));\r\
-    \n    E sum_L = AbelGroup::op(AbelGroup::power(bit1.sum(L), L), bit0.sum(L));\r\
-    \n    return AbelGroup::op(AbelGroup::inverse(sum_L), sum_R);\r\n  }\r\n};\r\n"
+    \n    bit1.add(R, AbelGroup::inverse(val));\r\n  }\r\n\r\n  E prod(ll L, ll R)\
+    \ {\r\n    E prod_R = AbelGroup::op(AbelGroup::power(bit1.prod(R), R), bit0.prod(R));\r\
+    \n    E prod_L = AbelGroup::op(AbelGroup::power(bit1.prod(L), L), bit0.prod(L));\r\
+    \n    return AbelGroup::op(AbelGroup::inverse(prod_L), prod_R);\r\n  }\r\n};\r\
+    \n"
   dependsOn:
   - ds/fenwick.hpp
   - alg/group_add.hpp
   isVerificationFile: false
   path: ds/fenwickraq.hpp
   requiredBy: []
-  timestamp: '2022-08-28 02:28:59+09:00'
+  timestamp: '2022-08-28 02:46:58+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/DSL_2_G_fenwick_raq.test.cpp
