@@ -67,7 +67,7 @@ struct Rectangle_Add_Point_Sum {
       }
       for (auto&& q: CALC[y]) {
         auto [x, y] = point[q];
-        res[q] = bit.sum(x + 1);
+        res[q] = bit.prod(x + 1);
       }
     }
     return res;
