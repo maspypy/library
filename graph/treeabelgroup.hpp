@@ -63,20 +63,20 @@ struct TreeAbelGroup {
     assert(path_query);
     int lca = tree.LCA(frm, to);
     // [frm, lca)
-    X x1 = bit.sum(tree.ELID(lca) + 1, tree.ELID(frm) + 1);
+    X x1 = bit.prod(tree.ELID(lca) + 1, tree.ELID(frm) + 1);
     // edge なら (lca, to]、vertex なら [lca, to]
-    X x2 = bit.sum(tree.ELID(lca) + edge, tree.ELID(to) + 1);
+    X x2 = bit.prod(tree.ELID(lca) + edge, tree.ELID(to) + 1);
     return AbelGroup::op(x1, x2);
   }
 
   X prod_subtree(int u) {
     assert(subtree_query);
     int l = tree.LID[u], r = tree.RID[u];
-    return bit_subtree.sum(l + edge, r);
+    return bit_subtree.prod(l + edge, r);
   }
 
-  X sum_path(int frm, int to) { return prod_path(frm, to); }
-  X sum_subtree(int u) { return prod_subtree(u); }
+  X prod_path(int frm, int to) { return prod_path(frm, to); }
+  X prod_subtree(int u) { return prod_subtree(u); }
 
   void debug() {
     tree.debug();
