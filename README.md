@@ -11,7 +11,9 @@ https://maspypy.github.io/library/
 - github：add, commit, pull, push だけ使えるようになれば困らなさそう。ブラウザ上でもファイル編集できる。
 - actions：oj 側か github 側どちらの意図か知らないが、1 push あたり 10 分くらいで verify が止まる。
 empty commit （git commit --allow-empty）を push することで再挑戦できる。
-- atcoder の dropbox 内のものを verify に使う場合には、URL ではなく dropbox 内のフォルダ名に合わせると上手くいくことがある （abcxxx_h → abcxxx_Ex など）
+- atcoder の dropbox 内のものを verify に使う場合には、URL を適当にいじると上手くいくことがある？
+  - abcxxx_h → abcxxx_Ex
+  - AGCxxx_x → agcxxx_x
 - atcoder の verify：一度上手くいったものがまた落ちることがある？ログインしてみたいなことを言われてそう。うーん。
 → なんか DROPBOX_TOKEN をもう一回設定しなおしたらいけた？
 - 誤差ジャッジ：#define ERROR を指定するとできる！
