@@ -14,7 +14,7 @@ void solve() {
       LL(x);
       bit.add(L, R, x);
     } else {
-      print(bit.sum(L, R));
+      print(bit.prod(L, R));
     }
   }
 }
