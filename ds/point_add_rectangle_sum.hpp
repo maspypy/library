@@ -71,11 +71,11 @@ struct Point_Add_Rectangle_Sum {
 
     for (int y = 0; y <= NY; ++y) {
       for (auto &&[xl, xr, q]: CALC_1[y]) {
-        auto x = bit.sum(xl, xr);
+        auto x = bit.prod(xl, xr);
         res[q] = AbelGroup::op(res[q], x);
       }
       for (auto &&[xl, xr, q]: CALC_2[y]) {
-        auto x = AbelGroup::inverse(bit.sum(xl, xr));
+        auto x = AbelGroup::inverse(bit.prod(xl, xr));
         res[q] = AbelGroup::op(res[q], x);
       }
       for (auto &&[x, g]: ADD[y]) { bit.add(x, g); }
