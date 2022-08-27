@@ -56,10 +56,12 @@ struct FenwickTree {
 
   E prod_all() { return total; }
 
-  void add(int k, E x) {
+  void multiply(int k, E x) {
     total = AbelGroup::op(total, x);
     for (++k; k <= n; k += k & -k) dat[k - 1] = AbelGroup::op(dat[k - 1], x);
   }
+
+  void add(int k, E x) { multiply(k, x); }
 
   template <class F>
   int max_right(F& check) {
