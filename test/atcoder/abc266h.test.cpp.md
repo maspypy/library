@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: geo/base.hpp
-    title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: geo/projection.hpp
-    title: geo/projection.hpp
+    path: alg/monoid_max.hpp
+    title: alg/monoid_max.hpp
+  - icon: ':question:'
+    path: ds/segtree2d.hpp
+    title: ds/segtree2d.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -15,27 +15,25 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    ERROR: '0.00000001'
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_A
+    PROBLEM: https://atcoder.jp/contests/abc266/tasks/abc266_h
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_A
-  bundledCode: "#line 1 \"test/aoj/CGL_1_A.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_A\"\
-    \n#define ERROR 0.00000001\n\n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"\
-    Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\
-    \nusing namespace std;\n\nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing\
-    \ vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64 = unsigned long long;\n\
-    using i128 = __int128;\n\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
-    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
-    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
-    \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
-    template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
-    #define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n#define vv(type,\
-    \ name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
+    - https://atcoder.jp/contests/abc266/tasks/abc266_h
+  bundledCode: "#line 1 \"test/atcoder/abc266h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc266/tasks/abc266_h\"\
+    \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
+    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
+    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
+    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
+    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
     \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
@@ -199,76 +197,136 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 7 \"test/aoj/CGL_1_A.test.cpp\"\n\n#line 2 \"geo/projection.hpp\"\
-    \n\n#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n  T x, y;\n\
-    \n  Point() = default;\n\n  template <typename A, typename B>\n  Point(A x, B\
-    \ y) : x(x), y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A, B>\
-    \ p) : x(p.fi), y(p.se) {}\n\n  Point operator+(Point p) const { return {x + p.x,\
-    \ y + p.y}; }\n  Point operator-(Point p) const { return {x - p.x, y - p.y}; }\n\
-    \  bool operator==(Point p) const { return x == p.x && y == p.y; }\n  Point operator-()\
-    \ const { return {-x, -y}; }\n\n  bool operator<(Point p) const {\n    if (x !=\
-    \ p.x) return x < p.x;\n    return y < p.y;\n  }\n\n  T dot(Point other) { return\
-    \ x * other.x + y * other.y; }\n  T det(Point other) { return x * other.y - y\
-    \ * other.x; }\n};\n\ntemplate <typename REAL, typename T>\nREAL dist(Point<T>\
-    \ A, Point<T> B) {\n  A -= B;\n  T p = A.dot(A);\n  return sqrt(REAL(p));\n}\n\
-    \ntemplate <typename T>\nstruct Line {\n  T a, b, c;\n\n  Line(T a, T b, T c)\
-    \ : a(a), b(b), c(c) {}\n  Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y;\n\
-    \    b = B.x - A.x;\n    c = A.x * B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T\
-    \ x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n  template <typename\
-    \ U>\n  U eval(Point<U> P) {\n    return a * P.x + b * P.y + c;\n  }\n\n  template\
-    \ <typename U>\n  T eval(U x, U y) {\n    return a * x + b * y + c;\n  }\n\n \
-    \ template <enable_if_t<is_integral<T>::value, int> = 0>\n  bool is_parallel(Line\
-    \ other) {\n    return a * other.b - b * other.a == 0;\n  }\n\n  template <enable_if_t<is_integral<T>::value,\
-    \ int> = 0>\n  bool is_orthogonal(Line other) {\n    return a * other.a + b *\
-    \ other.b == 0;\n  }\n};\n\ntemplate <typename T>\nstruct Segment {\n  Point<T>\
-    \ A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T x1,\
-    \ T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n\
-    \  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate <typename T>\nstruct\
-    \ Circle {\n  Point<T> O;\n  T r;\n  Circle(Point<T> O, T r) : O(O), r(r) {}\n\
-    \  Circle(T x, T y, T r) : O(Point<T>(x, y)), r(r) {}\n};\n\ntemplate <typename\
-    \ T>\nstruct Polygon {\n  vc<Point<T>> points;\n  T a;\n\n  template <typename\
-    \ A, typename B>\n  Polygon(vc<pair<A, B>> pairs) {\n    for (auto&& [a, b]: pairs)\
-    \ points.eb(Point<T>(a, b));\n    build();\n  }\n  Polygon(vc<Point<T>> points)\
-    \ : points(points) { build(); }\n\n  int size() { return len(points); }\n\n  template\
-    \ <typename REAL>\n  REAL area() {\n    return a * 0.5;\n  }\n\n  template <enable_if_t<is_integral<T>::value,\
-    \ int> = 0>\n  T area_2() {\n    return a;\n  }\n\n  bool is_convex() {\n    FOR(j,\
-    \ len(points)) {\n      int i = (j == 0 ? len(points) - 1 : j - 1);\n      int\
-    \ k = (j == len(points) - 1 ? 0 : j + 1);\n      if ((points[j] - points[i]).det(points[k]\
-    \ - points[j]) < 0) return false;\n    }\n    return true;\n  }\n\nprivate:\n\
-    \  void build() {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1\
-    \ == len(points) ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n\
-    \    if (a < 0) {\n      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n\
-    #line 4 \"geo/projection.hpp\"\n\ntemplate <typename REAL, typename T, typename\
-    \ U>\nPoint<REAL> projection(Point<T> P, Line<U> L) {\n  REAL t = REAL(L.eval(P))\
-    \ / (L.a * L.a + L.b * L.b);\n  REAL x = P.x - t * L.a;\n  REAL y = P.y - t *\
-    \ L.b;\n  return Point<REAL>(x, y);\n};\n#line 9 \"test/aoj/CGL_1_A.test.cpp\"\
-    \n\nvoid solve() {\n  using Re = long double;\n  LL(a, b, c, d);\n  Line<ll> L(a,\
-    \ b, c, d);\n  LL(Q);\n  FOR(Q) {\n    LL(x, y);\n    Point<ll> P(x, y);\n   \
-    \ Point<Re> Q = projection<Re, ll, ll>(P, L);\n    print(Q.x, Q.y);\n  }\n}\n\n\
-    signed main() {\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n\
-    }\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_A\"\
-    \n#define ERROR 0.00000001\n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\
-    \n\n#include \"geo/projection.hpp\"\n\nvoid solve() {\n  using Re = long double;\n\
-    \  LL(a, b, c, d);\n  Line<ll> L(a, b, c, d);\n  LL(Q);\n  FOR(Q) {\n    LL(x,\
-    \ y);\n    Point<ll> P(x, y);\n    Point<Re> Q = projection<Re, ll, ll>(P, L);\n\
-    \    print(Q.x, Q.y);\n  }\n}\n\nsigned main() {\n  ll T = 1;\n  // LL(T);\n \
-    \ FOR(T) solve();\n\n  return 0;\n}\n"
+    \ { yes(!t); }\r\n#line 1 \"ds/segtree2d.hpp\"\ntemplate <typename Monoid, typename\
+    \ XY, bool SMALL = false>\r\nstruct SegTree2D {\r\n  using S = typename Monoid::value_type;\r\
+    \n  int N;\r\n  int full_N;\r\n  vc<XY> keyX;\r\n  int min_X;\r\n  vc<int> indptr;\r\
+    \n  vc<XY> keyY;\r\n  vc<S> dat;\r\n\r\n  inline int xtoi(XY x) {\r\n    if(SMALL)\
+    \ return clamp<XY>(x - min_X, 0, N);\r\n    return LB(keyX, x);\r\n  }\r\n\r\n\
+    \  SegTree2D(vc<XY>& X, vc<XY>& Y, vc<S> wt = vc<S>()) {\r\n    if (len(wt) ==\
+    \ 0) wt = vc<S>(len(X), Monoid::unit());\r\n    assert(Monoid::commute); // \u53EF\
+    \u63DB\u30E2\u30CE\u30A4\u30C9\u306E\u307F\r\n    assert(len(X) == len(Y) && len(X)\
+    \ == len(wt));\r\n\r\n    if (!SMALL) {\r\n      keyX = X;\r\n      UNIQUE(keyX);\r\
+    \n      N = len(keyX);\r\n    } else {\r\n      min_X = (len(X) == 0 ? 0 : MIN(X));\r\
+    \n      N = (len(X) == 0 ? 0 : MAX(X)) - min_X + 1;\r\n      keyX.resize(N);\r\
+    \n      FOR(i, N) keyX[i] = min_X + i;\r\n    }\r\n\r\n    vc<vc<XY>> keyY_raw(N\
+    \ + N);\r\n    vc<vc<S>> dat_raw(N + N);\r\n\r\n    auto I = argsort(Y);\r\n \
+    \   for (auto&& i: I) {\r\n      int ix = xtoi(X[i]), y = Y[i];\r\n      ix +=\
+    \ N;\r\n      while (ix) {\r\n        auto& KY = keyY_raw[ix];\r\n        if (len(KY)\
+    \ == 0 || KY.back() < y) {\r\n          KY.eb(y);\r\n          dat_raw[ix].eb(wt[i]);\r\
+    \n        } else {\r\n          dat_raw[ix].back() = Monoid::op(dat_raw[ix].back(),\
+    \ wt[i]);\r\n        }\r\n        ix >>= 1;\r\n      }\r\n    }\r\n\r\n    indptr.assign(N\
+    \ + N + 1, 0);\r\n    FOR(i, N + N) indptr[i + 1] = indptr[i] + len(keyY_raw[i]);\r\
+    \n    int full_N = indptr.back();\r\n    keyY.resize(full_N);\r\n    dat.assign(2\
+    \ * full_N, Monoid::unit());\r\n    FOR(i, N + N) {\r\n      int off = 2 * indptr[i],\
+    \ n = indptr[i + 1] - indptr[i];\r\n      FOR(j, n) {\r\n        keyY[indptr[i]\
+    \ + j] = keyY_raw[i][j];\r\n        dat[off + n + j] = dat_raw[i][j];\r\n    \
+    \  }\r\n      FOR3_R(j, 1, n)\r\n      dat[off + j] = Monoid::op(dat[off + 2 *\
+    \ j + 0], dat[off + 2 * j + 1]);\r\n    }\r\n  }\r\n\r\n  void multiply_i(int\
+    \ i, XY y, S val) {\r\n    int LID = indptr[i], n = indptr[i + 1] - indptr[i];\r\
+    \n    auto it = keyY.begin() + LID;\r\n    int j = lower_bound(it, it + n, y)\
+    \ - it;\r\n    assert(keyY[LID + j] == y);\r\n    int off = 2 * LID;\r\n    j\
+    \ += n;\r\n\r\n    while (j) {\r\n      dat[off + j] = Monoid::op(dat[off + j],\
+    \ val);\r\n      j >>= 1;\r\n    }\r\n  }\r\n\r\n  void multiply(XY x, XY y, S\
+    \ val) {\r\n    int i = xtoi(x);\r\n    assert(keyX[i] == x);\r\n    i += N;\r\
+    \n    while (i) {\r\n      multiply_i(i, y, val);\r\n      i >>= 1;\r\n    }\r\
+    \n  }\r\n\r\n  S prod_i(int i, XY ly, XY ry) {\r\n    int LID = indptr[i], n =\
+    \ indptr[i + 1] - indptr[i];\r\n    auto it = keyY.begin() + LID;\r\n    int L\
+    \ = lower_bound(it, it + n, ly) - it;\r\n    int R = lower_bound(it, it + n, ry)\
+    \ - it;\r\n    int off = 2 * LID;\r\n    L += n;\r\n    R += n;\r\n    S val =\
+    \ Monoid::unit();\r\n    while (L < R) {\r\n      if (L & 1) val = Monoid::op(val,\
+    \ dat[off + (L++)]);\r\n      if (R & 1) val = Monoid::op(dat[off + (--R)], val);\r\
+    \n      L >>= 1;\r\n      R >>= 1;\r\n    }\r\n    return val;\r\n  }\r\n\r\n\
+    \  S prod(XY lx, XY ly, XY rx, XY ry) {\r\n    int L = xtoi(lx);\r\n    int R\
+    \ = xtoi(rx);\r\n    L += N;\r\n    R += N;\r\n    S val = Monoid::unit();\r\n\
+    \    while (L < R) {\r\n      if (L & 1) val = Monoid::op(val, prod_i(L++, ly,\
+    \ ry));\r\n      if (R & 1) val = Monoid::op(prod_i(--R, ly, ry), val);\r\n  \
+    \    L >>= 1;\r\n      R >>= 1;\r\n    }\r\n    return val;\r\n  }\r\n\r\n  void\
+    \ debug() {\r\n    print(\"keyX\", keyX);\r\n    print(\"indptr\", indptr);\r\n\
+    \    print(\"keyY\", keyY);\r\n    print(\"dat\", dat);\r\n  }\r\n};\n#line 2\
+    \ \"alg/monoid_max.hpp\"\ntemplate <class X>\r\nstruct Monoid_Max {\r\n  using\
+    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
+    \ { return max(x, y); }\r\n  static constexpr X unit() { return numeric_limits<X>::lowest();\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 6 \"test/atcoder/abc266h.test.cpp\"\
+    \n\nusing Mono = Monoid_Max<ll>;\n\nvoid naive() {\n  LL(N);\n  using T = tuple<ll,\
+    \ ll, ll, ll>;\n\n  VEC(T, dat, N);\n  dat.eb(0, 0, 0, 0);\n  ++N;\n\n  sort(all(dat),\
+    \ [&](auto& a, auto& b) -> bool {\n    auto [at, ax, ay, aa] = a;\n    auto [bt,\
+    \ bx, by, bb] = b;\n    if (ay < by) return true;\n    if (ay > by) return false;\n\
+    \    return at < bt;\n  });\n\n  const ll INF = 1LL << 60;\n  vi dp(N, -INF);\n\
+    \  dp[0] = 0;\n  FOR(j, N) {\n    auto [tj, xj, yj, vvj] = dat[j];\n    FOR(i,\
+    \ j) {\n      auto [ti, xi, yi, vvi] = dat[i];\n      ll d = abs(xi - xj) + abs(yi\
+    \ - yj);\n      if (yi > yj) continue;\n      if (ti + d > tj) continue;\n   \
+    \   chmax(dp[j], dp[i] + vvj);\n    }\n    print(tj, xj, yj, vvj, dp[j]);\n  }\n\
+    \  print(MAX(dp));\n}\n\nvoid solve() {\n  // return naive();\n\n  LL(N);\n  using\
+    \ T = tuple<ll, ll, ll, ll>;\n\n  VEC(T, dat, N);\n  dat.eb(0, 0, 0, 0);\n  ++N;\n\
+    \n  sort(all(dat), [&](auto& a, auto& b) -> bool {\n    auto [at, ax, ay, aa]\
+    \ = a;\n    auto [bt, bx, by, bb] = b;\n    if (ay < by) return true;\n    if\
+    \ (ay > by) return false;\n    return at < bt;\n  });\n\n  /*\n  \u53F3\u4E0A\u3078\
+    \u306E\u9077\u79FB\uFF1A\n  (x,y,t) \u304C\u60C5\u5831 (a,b,c,v) \u3092\u53D7\u3051\
+    \u53D6\u308B\u306E\u306F\n  a<=x, x+y-t<=a+b-c\n  \u30FB(a,a+b-c) \u306B\u60C5\
+    \u5831\u3092\u8FFD\u52A0\u3059\u308B\n  \u30FB[-INF,x] x [x+y-t, INF] \u3067\u306E\
+    \u6700\u5927\u5024\u3092\u6C42\u3081\u308B\n\n  \u5DE6\u4E0A\u3078\u306E\u9077\
+    \u79FB\uFF1A\n  (a-x)+(y-b)<=t-c\n  x<=a, a-b+c<=x-y+t\n  */\n  vi X1(N), Y1(N),\
+    \ X2(N), Y2(N);\n  FOR(i, N) {\n    auto [t, x, y, v] = dat[i];\n    X1[i] = x;\n\
+    \    X2[i] = x;\n    Y1[i] = x + y - t;\n    Y2[i] = x - y + t;\n  }\n  SegTree2D<Mono,\
+    \ ll, false> seg1(X1, Y1);\n  SegTree2D<Mono, ll, false> seg2(X2, Y2);\n\n  const\
+    \ ll INF = 1LL << 60;\n\n  ll ANS = 0;\n  FOR(i, N) {\n    const auto [t, x, y,\
+    \ v] = dat[i];\n    const ll a = x, b = y, c = t;\n    if (i == 0) {\n      seg1.multiply(a,\
+    \ a + b - c, 0);\n      seg2.multiply(a, a - b + c, 0);\n      continue;\n   \
+    \ }\n    ll best = -INF;\n    chmax(best, seg1.prod(-INF, x + y - t, x + 1, INF));\n\
+    \    chmax(best, seg2.prod(x, -INF, INF, x - y + t + 1));\n    if (best < 0) continue;\n\
+    \    best += v;\n    chmax(ANS, best);\n    seg1.multiply(a, a + b - c, best);\n\
+    \    seg2.multiply(a, a - b + c, best);\n  }\n  print(ANS);\n}\n\nsigned main()\
+    \ {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T)\
+    \ solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc266/tasks/abc266_h\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/segtree2d.hpp\"\
+    \n#include \"alg/monoid_max.hpp\"\n\nusing Mono = Monoid_Max<ll>;\n\nvoid naive()\
+    \ {\n  LL(N);\n  using T = tuple<ll, ll, ll, ll>;\n\n  VEC(T, dat, N);\n  dat.eb(0,\
+    \ 0, 0, 0);\n  ++N;\n\n  sort(all(dat), [&](auto& a, auto& b) -> bool {\n    auto\
+    \ [at, ax, ay, aa] = a;\n    auto [bt, bx, by, bb] = b;\n    if (ay < by) return\
+    \ true;\n    if (ay > by) return false;\n    return at < bt;\n  });\n\n  const\
+    \ ll INF = 1LL << 60;\n  vi dp(N, -INF);\n  dp[0] = 0;\n  FOR(j, N) {\n    auto\
+    \ [tj, xj, yj, vvj] = dat[j];\n    FOR(i, j) {\n      auto [ti, xi, yi, vvi] =\
+    \ dat[i];\n      ll d = abs(xi - xj) + abs(yi - yj);\n      if (yi > yj) continue;\n\
+    \      if (ti + d > tj) continue;\n      chmax(dp[j], dp[i] + vvj);\n    }\n \
+    \   print(tj, xj, yj, vvj, dp[j]);\n  }\n  print(MAX(dp));\n}\n\nvoid solve()\
+    \ {\n  // return naive();\n\n  LL(N);\n  using T = tuple<ll, ll, ll, ll>;\n\n\
+    \  VEC(T, dat, N);\n  dat.eb(0, 0, 0, 0);\n  ++N;\n\n  sort(all(dat), [&](auto&\
+    \ a, auto& b) -> bool {\n    auto [at, ax, ay, aa] = a;\n    auto [bt, bx, by,\
+    \ bb] = b;\n    if (ay < by) return true;\n    if (ay > by) return false;\n  \
+    \  return at < bt;\n  });\n\n  /*\n  \u53F3\u4E0A\u3078\u306E\u9077\u79FB\uFF1A\
+    \n  (x,y,t) \u304C\u60C5\u5831 (a,b,c,v) \u3092\u53D7\u3051\u53D6\u308B\u306E\u306F\
+    \n  a<=x, x+y-t<=a+b-c\n  \u30FB(a,a+b-c) \u306B\u60C5\u5831\u3092\u8FFD\u52A0\
+    \u3059\u308B\n  \u30FB[-INF,x] x [x+y-t, INF] \u3067\u306E\u6700\u5927\u5024\u3092\
+    \u6C42\u3081\u308B\n\n  \u5DE6\u4E0A\u3078\u306E\u9077\u79FB\uFF1A\n  (a-x)+(y-b)<=t-c\n\
+    \  x<=a, a-b+c<=x-y+t\n  */\n  vi X1(N), Y1(N), X2(N), Y2(N);\n  FOR(i, N) {\n\
+    \    auto [t, x, y, v] = dat[i];\n    X1[i] = x;\n    X2[i] = x;\n    Y1[i] =\
+    \ x + y - t;\n    Y2[i] = x - y + t;\n  }\n  SegTree2D<Mono, ll, false> seg1(X1,\
+    \ Y1);\n  SegTree2D<Mono, ll, false> seg2(X2, Y2);\n\n  const ll INF = 1LL <<\
+    \ 60;\n\n  ll ANS = 0;\n  FOR(i, N) {\n    const auto [t, x, y, v] = dat[i];\n\
+    \    const ll a = x, b = y, c = t;\n    if (i == 0) {\n      seg1.multiply(a,\
+    \ a + b - c, 0);\n      seg2.multiply(a, a - b + c, 0);\n      continue;\n   \
+    \ }\n    ll best = -INF;\n    chmax(best, seg1.prod(-INF, x + y - t, x + 1, INF));\n\
+    \    chmax(best, seg2.prod(x, -INF, INF, x - y + t + 1));\n    if (best < 0) continue;\n\
+    \    best += v;\n    chmax(ANS, best);\n    seg1.multiply(a, a + b - c, best);\n\
+    \    seg2.multiply(a, a - b + c, best);\n  }\n  print(ANS);\n}\n\nsigned main()\
+    \ {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T)\
+    \ solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - geo/projection.hpp
-  - geo/base.hpp
+  - ds/segtree2d.hpp
+  - alg/monoid_max.hpp
   isVerificationFile: true
-  path: test/aoj/CGL_1_A.test.cpp
+  path: test/atcoder/abc266h.test.cpp
   requiredBy: []
-  timestamp: '2022-08-24 15:10:52+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-27 23:26:04+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/aoj/CGL_1_A.test.cpp
+documentation_of: test/atcoder/abc266h.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/CGL_1_A.test.cpp
-- /verify/test/aoj/CGL_1_A.test.cpp.html
-title: test/aoj/CGL_1_A.test.cpp
+- /verify/test/atcoder/abc266h.test.cpp
+- /verify/test/atcoder/abc266h.test.cpp.html
+title: test/atcoder/abc266h.test.cpp
 ---

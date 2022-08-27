@@ -3,6 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/0058.test.cpp
+    title: test/aoj/0058.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/0343.test.cpp
+    title: test/aoj/0343.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508_splay.test.cpp
     title: test/aoj/1508_splay.test.cpp
@@ -186,6 +192,15 @@ data:
   - icon: ':x:'
     path: test/atcoder/abc256d.test.cpp
     title: test/atcoder/abc256d.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc266c.test.cpp
+    title: test/atcoder/abc266c.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc266f.test.cpp
+    title: test/atcoder/abc266f.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc266h.test.cpp
+    title: test/atcoder/abc266h.test.cpp
   - icon: ':x:'
     path: test/atcoder/agc058d.test.cpp
     title: test/atcoder/agc058d.test.cpp
@@ -1388,6 +1403,7 @@ data:
   - test/aoj/ALDS1_5_inversion.test.cpp
   - test/aoj/ITP1_11_D.test.cpp
   - test/aoj/GRL_3_B.test.cpp
+  - test/aoj/0058.test.cpp
   - test/aoj/1508_splay.test.cpp
   - test/aoj/2995_dsu.test.cpp
   - test/aoj/DSL_2_G_fenwick_raq.test.cpp
@@ -1430,6 +1446,7 @@ data:
   - test/aoj/NTL_1_E_extgcd.test.cpp
   - test/aoj/ALDS1_1_C_primetest.test.cpp
   - test/aoj/GRL_6_B.test.cpp
+  - test/aoj/0343.test.cpp
   - test/aoj/2251_maxantichain.test.cpp
   - test/aoj/NTL_1_D_eulerphi.test.cpp
   - test/aoj/DSL_2_I_cntsum_set_lazy.test.cpp
@@ -1437,10 +1454,13 @@ data:
   - test/aoj/DPL_1_H_kanpsack01.test.cpp
   - test/aoj/2677.test.cpp
   - test/aoj/ITP1_11_C.test.cpp
+  - test/atcoder/abc266f.test.cpp
   - test/atcoder/abc256d.test.cpp
+  - test/atcoder/abc266h.test.cpp
   - test/atcoder/abc244h.test.cpp
   - test/atcoder/abc200a.test.cpp
   - test/atcoder/agc058d.test.cpp
+  - test/atcoder/abc266c.test.cpp
   - test/atcoder/abc174f.test.cpp
 documentation_of: other/io.hpp
 layout: document

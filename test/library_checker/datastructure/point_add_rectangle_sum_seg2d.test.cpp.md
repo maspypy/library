@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree2d.hpp
     title: ds/segtree2d.hpp
   - icon: ':question:'
@@ -208,21 +208,21 @@ data:
     \ntemplate <typename Monoid, typename XY, bool SMALL = false>\r\nstruct SegTree2D\
     \ {\r\n  using S = typename Monoid::value_type;\r\n  int N;\r\n  int full_N;\r\
     \n  vc<XY> keyX;\r\n  int min_X;\r\n  vc<int> indptr;\r\n  vc<XY> keyY;\r\n  vc<S>\
-    \ dat;\r\n\r\n  inline int xtoi(int x) {\r\n    return (SMALL ? clamp(x - min_X,\
-    \ 0, N) : LB(keyX, x));\r\n  }\r\n\r\n  SegTree2D(vc<XY>& X, vc<XY>& Y, vc<S>\
-    \ wt = vc<S>()) {\r\n    if (len(wt) == 0) wt = vc<S>(len(X), Monoid::unit());\r\
-    \n    assert(Monoid::commute); // \u53EF\u63DB\u30E2\u30CE\u30A4\u30C9\u306E\u307F\
-    \r\n    assert(len(X) == len(Y) && len(X) == len(wt));\r\n\r\n    if (!SMALL)\
-    \ {\r\n      keyX = X;\r\n      UNIQUE(keyX);\r\n      N = len(keyX);\r\n    }\
-    \ else {\r\n      min_X = (len(X) == 0 ? 0 : MIN(X));\r\n      N = (len(X) ==\
-    \ 0 ? 0 : MAX(X)) - min_X + 1;\r\n      keyX.resize(N);\r\n      FOR(i, N) keyX[i]\
-    \ = min_X + i;\r\n    }\r\n\r\n    vc<vc<XY>> keyY_raw(N + N);\r\n    vc<vc<S>>\
-    \ dat_raw(N + N);\r\n\r\n    auto I = argsort(Y);\r\n    for (auto&& i: I) {\r\
-    \n      int ix = xtoi(X[i]), y = Y[i];\r\n      ix += N;\r\n      while (ix) {\r\
-    \n        auto& KY = keyY_raw[ix];\r\n        if (len(KY) == 0 || KY.back() <\
-    \ y) {\r\n          KY.eb(y);\r\n          dat_raw[ix].eb(wt[i]);\r\n        }\
-    \ else {\r\n          dat_raw[ix].back() = Monoid::op(dat_raw[ix].back(), wt[i]);\r\
-    \n        }\r\n        ix >>= 1;\r\n      }\r\n    }\r\n\r\n    indptr.assign(N\
+    \ dat;\r\n\r\n  inline int xtoi(XY x) {\r\n    if(SMALL) return clamp<XY>(x -\
+    \ min_X, 0, N);\r\n    return LB(keyX, x);\r\n  }\r\n\r\n  SegTree2D(vc<XY>& X,\
+    \ vc<XY>& Y, vc<S> wt = vc<S>()) {\r\n    if (len(wt) == 0) wt = vc<S>(len(X),\
+    \ Monoid::unit());\r\n    assert(Monoid::commute); // \u53EF\u63DB\u30E2\u30CE\
+    \u30A4\u30C9\u306E\u307F\r\n    assert(len(X) == len(Y) && len(X) == len(wt));\r\
+    \n\r\n    if (!SMALL) {\r\n      keyX = X;\r\n      UNIQUE(keyX);\r\n      N =\
+    \ len(keyX);\r\n    } else {\r\n      min_X = (len(X) == 0 ? 0 : MIN(X));\r\n\
+    \      N = (len(X) == 0 ? 0 : MAX(X)) - min_X + 1;\r\n      keyX.resize(N);\r\n\
+    \      FOR(i, N) keyX[i] = min_X + i;\r\n    }\r\n\r\n    vc<vc<XY>> keyY_raw(N\
+    \ + N);\r\n    vc<vc<S>> dat_raw(N + N);\r\n\r\n    auto I = argsort(Y);\r\n \
+    \   for (auto&& i: I) {\r\n      int ix = xtoi(X[i]), y = Y[i];\r\n      ix +=\
+    \ N;\r\n      while (ix) {\r\n        auto& KY = keyY_raw[ix];\r\n        if (len(KY)\
+    \ == 0 || KY.back() < y) {\r\n          KY.eb(y);\r\n          dat_raw[ix].eb(wt[i]);\r\
+    \n        } else {\r\n          dat_raw[ix].back() = Monoid::op(dat_raw[ix].back(),\
+    \ wt[i]);\r\n        }\r\n        ix >>= 1;\r\n      }\r\n    }\r\n\r\n    indptr.assign(N\
     \ + N + 1, 0);\r\n    FOR(i, N + N) indptr[i + 1] = indptr[i] + len(keyY_raw[i]);\r\
     \n    int full_N = indptr.back();\r\n    keyY.resize(full_N);\r\n    dat.assign(2\
     \ * full_N, Monoid::unit());\r\n    FOR(i, N + N) {\r\n      int off = 2 * indptr[i],\
@@ -287,7 +287,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
   requiredBy: []
-  timestamp: '2022-08-20 05:21:32+09:00'
+  timestamp: '2022-08-27 23:26:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp

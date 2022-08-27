@@ -63,12 +63,22 @@ data:
     \ dat[LID + R]);\r\n      R = prev(R);\r\n    }\r\n    while (R < L) {\r\n   \
     \   neg = AbelGroup::op(neg, dat[LID + L]);\r\n      L = prev(L);\r\n    }\r\n\
     \    return AbelGroup::op(pos, AbelGroup::inverse(neg));\r\n  }\r\n\r\n  E sum(ll\
-    \ lx, ll ly, ll rx, ll ry) {\r\n    E ret = 0;\r\n    int L = xtoi(lx) - 1;\r\n\
-    \    int R = xtoi(rx) - 1;\r\n    while (L < R) {\r\n      ret += sum_i(R, ly,\
-    \ ry);\r\n      R = prev(R);\r\n    }\r\n    while (R < L) {\r\n      ret -= sum_i(L,\
-    \ ly, ry);\r\n      L = prev(L);\r\n    }\r\n    return ret;\r\n  }\r\n\r\n  void\
-    \ debug() {\r\n    print(\"keyX\", keyX);\r\n    print(\"indptr\", indptr);\r\n\
-    \    print(\"keyY\", keyY);\r\n    print(\"dat\", dat);\r\n  }\r\n};\n"
+    \ lx, ll ly, ll rx, ll ry) {\r\n    E pos = AbelGroup::unit();\r\n    E neg =\
+    \ AbelGroup::unit();\r\n    int L = xtoi(lx) - 1;\r\n    int R = xtoi(rx) - 1;\r\
+    \n    while (L < R) {\r\n      pos = AbelGroup::op(pos, sum_i(R, ly, ry));\r\n\
+    \      R = prev(R);\r\n    }\r\n    while (R < L) {\r\n      neg = AbelGroup::op(neg,\
+    \ sum_i(L, ly, ry));\r\n      L = prev(L);\r\n    }\r\n    E ret = AbelGroup::op(pos,\
+    \ AbelGroup::inverse(neg));\r\n    return ret;\r\n  }\r\n\r\n\r\n  E prefix_sum_i(int\
+    \ i, ll ry) {\r\n    E pos = AbelGroup::unit();\r\n    int LID = indptr[i], n\
+    \ = indptr[i + 1] - indptr[i];\r\n    auto it = keyY.begin() + LID;\r\n    int\
+    \ R = lower_bound(it, it + n, ry) - it - 1;\r\n    while (R >= 0) {\r\n      pos\
+    \ = AbelGroup::op(pos, dat[LID + R]);\r\n      R = prev(R);\r\n    }\r\n    return\
+    \ pos;\r\n  }\r\n\r\n  E prefix_sum(ll rx, ll ry){\r\n    E pos = AbelGroup::unit();\r\
+    \n    int R = xtoi(rx) - 1;\r\n    while (R >= 0) {\r\n      pos = AbelGroup::op(pos,\
+    \ prefix_sum_i(R, ry));\r\n      R = prev(R);\r\n    }\r\n    return pos;\r\n\
+    \  }\r\n\r\n  void debug() {\r\n    print(\"keyX\", keyX);\r\n    print(\"indptr\"\
+    , indptr);\r\n    print(\"keyY\", keyY);\r\n    print(\"dat\", dat);\r\n  }\r\n\
+    };\n"
   code: "#include \"alg/group_add.hpp\"\r\ntemplate <typename AbelGroup, bool SMALL\
     \ = false>\r\nstruct Fenwick2D {\r\n  using E = typename AbelGroup::value_type;\r\
     \n  int N;\r\n  vi keyX;\r\n  int min_X;\r\n  vc<int> indptr;\r\n  vi keyY;\r\n\
@@ -110,18 +120,27 @@ data:
     \   R = prev(R);\r\n    }\r\n    while (R < L) {\r\n      neg = AbelGroup::op(neg,\
     \ dat[LID + L]);\r\n      L = prev(L);\r\n    }\r\n    return AbelGroup::op(pos,\
     \ AbelGroup::inverse(neg));\r\n  }\r\n\r\n  E sum(ll lx, ll ly, ll rx, ll ry)\
-    \ {\r\n    E ret = 0;\r\n    int L = xtoi(lx) - 1;\r\n    int R = xtoi(rx) - 1;\r\
-    \n    while (L < R) {\r\n      ret += sum_i(R, ly, ry);\r\n      R = prev(R);\r\
-    \n    }\r\n    while (R < L) {\r\n      ret -= sum_i(L, ly, ry);\r\n      L =\
-    \ prev(L);\r\n    }\r\n    return ret;\r\n  }\r\n\r\n  void debug() {\r\n    print(\"\
-    keyX\", keyX);\r\n    print(\"indptr\", indptr);\r\n    print(\"keyY\", keyY);\r\
-    \n    print(\"dat\", dat);\r\n  }\r\n};"
+    \ {\r\n    E pos = AbelGroup::unit();\r\n    E neg = AbelGroup::unit();\r\n  \
+    \  int L = xtoi(lx) - 1;\r\n    int R = xtoi(rx) - 1;\r\n    while (L < R) {\r\
+    \n      pos = AbelGroup::op(pos, sum_i(R, ly, ry));\r\n      R = prev(R);\r\n\
+    \    }\r\n    while (R < L) {\r\n      neg = AbelGroup::op(neg, sum_i(L, ly, ry));\r\
+    \n      L = prev(L);\r\n    }\r\n    E ret = AbelGroup::op(pos, AbelGroup::inverse(neg));\r\
+    \n    return ret;\r\n  }\r\n\r\n\r\n  E prefix_sum_i(int i, ll ry) {\r\n    E\
+    \ pos = AbelGroup::unit();\r\n    int LID = indptr[i], n = indptr[i + 1] - indptr[i];\r\
+    \n    auto it = keyY.begin() + LID;\r\n    int R = lower_bound(it, it + n, ry)\
+    \ - it - 1;\r\n    while (R >= 0) {\r\n      pos = AbelGroup::op(pos, dat[LID\
+    \ + R]);\r\n      R = prev(R);\r\n    }\r\n    return pos;\r\n  }\r\n\r\n  E prefix_sum(ll\
+    \ rx, ll ry){\r\n    E pos = AbelGroup::unit();\r\n    int R = xtoi(rx) - 1;\r\
+    \n    while (R >= 0) {\r\n      pos = AbelGroup::op(pos, prefix_sum_i(R, ry));\r\
+    \n      R = prev(R);\r\n    }\r\n    return pos;\r\n  }\r\n\r\n  void debug()\
+    \ {\r\n    print(\"keyX\", keyX);\r\n    print(\"indptr\", indptr);\r\n    print(\"\
+    keyY\", keyY);\r\n    print(\"dat\", dat);\r\n  }\r\n};"
   dependsOn:
   - alg/group_add.hpp
   isVerificationFile: false
   path: ds/fenwick2d.hpp
   requiredBy: []
-  timestamp: '2022-06-27 16:36:33+09:00'
+  timestamp: '2022-08-27 23:26:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp

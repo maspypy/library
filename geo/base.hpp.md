@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/incircle.hpp
     title: geo/incircle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/incremental_convexhull.hpp
     title: geo/incremental_convexhull.hpp
   - icon: ':heavy_check_mark:'
@@ -33,6 +33,9 @@ data:
     path: geo_old/dynamicupperhull.hpp
     title: geo_old/dynamicupperhull.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/0058.test.cpp
+    title: test/aoj/0058.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_1_A.test.cpp
     title: test/aoj/CGL_1_A.test.cpp
@@ -60,6 +63,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_C.test.cpp
     title: test/aoj/CGL_7_C.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc266c.test.cpp
+    title: test/atcoder/abc266c.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/sort_points_by_argument.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument.test.cpp
@@ -69,9 +75,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/incremental_ch.test.cpp
     title: test/mytest/incremental_ch.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -165,7 +171,7 @@ data:
   - geo/cross_point.hpp
   - geo/incircle.hpp
   timestamp: '2022-08-24 15:10:52+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/incremental_ch.test.cpp
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
@@ -173,12 +179,14 @@ data:
   - test/aoj/CGL_3_B.test.cpp
   - test/aoj/CGL_7_B.test.cpp
   - test/aoj/CGL_1_A.test.cpp
+  - test/aoj/0058.test.cpp
   - test/aoj/CGL_2_B.test.cpp
   - test/aoj/CGL_2_D.test.cpp
   - test/aoj/CGL_1_B.test.cpp
   - test/aoj/CGL_2_C.test.cpp
   - test/aoj/CGL_7_C.test.cpp
   - test/aoj/CGL_2_A.test.cpp
+  - test/atcoder/abc266c.test.cpp
 documentation_of: geo/base.hpp
 layout: document
 redirect_from:

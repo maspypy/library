@@ -4,9 +4,9 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: geo/projection.hpp
-    title: geo/projection.hpp
+  - icon: ':question:'
+    path: geo/incremental_convexhull.hpp
+    title: geo/incremental_convexhull.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -15,27 +15,25 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    ERROR: '0.00000001'
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_A
+    PROBLEM: https://atcoder.jp/contests/abc266/tasks/abc266_c
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_A
-  bundledCode: "#line 1 \"test/aoj/CGL_1_A.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_A\"\
-    \n#define ERROR 0.00000001\n\n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"\
-    Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\
-    \nusing namespace std;\n\nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing\
-    \ vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64 = unsigned long long;\n\
-    using i128 = __int128;\n\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
-    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
-    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
-    \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
-    template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
-    #define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n#define vv(type,\
-    \ name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
+    - https://atcoder.jp/contests/abc266/tasks/abc266_c
+  bundledCode: "#line 1 \"test/atcoder/abc266c.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc266/tasks/abc266_c\"\
+    \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
+    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
+    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
+    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
+    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
     \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
@@ -199,20 +197,19 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 7 \"test/aoj/CGL_1_A.test.cpp\"\n\n#line 2 \"geo/projection.hpp\"\
-    \n\n#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n  T x, y;\n\
-    \n  Point() = default;\n\n  template <typename A, typename B>\n  Point(A x, B\
-    \ y) : x(x), y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A, B>\
-    \ p) : x(p.fi), y(p.se) {}\n\n  Point operator+(Point p) const { return {x + p.x,\
-    \ y + p.y}; }\n  Point operator-(Point p) const { return {x - p.x, y - p.y}; }\n\
-    \  bool operator==(Point p) const { return x == p.x && y == p.y; }\n  Point operator-()\
-    \ const { return {-x, -y}; }\n\n  bool operator<(Point p) const {\n    if (x !=\
-    \ p.x) return x < p.x;\n    return y < p.y;\n  }\n\n  T dot(Point other) { return\
-    \ x * other.x + y * other.y; }\n  T det(Point other) { return x * other.y - y\
-    \ * other.x; }\n};\n\ntemplate <typename REAL, typename T>\nREAL dist(Point<T>\
-    \ A, Point<T> B) {\n  A -= B;\n  T p = A.dot(A);\n  return sqrt(REAL(p));\n}\n\
-    \ntemplate <typename T>\nstruct Line {\n  T a, b, c;\n\n  Line(T a, T b, T c)\
-    \ : a(a), b(b), c(c) {}\n  Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y;\n\
+    \ { yes(!t); }\r\n#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point\
+    \ {\n  T x, y;\n\n  Point() = default;\n\n  template <typename A, typename B>\n\
+    \  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A,\
+    \ B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+(Point p) const { return {x\
+    \ + p.x, y + p.y}; }\n  Point operator-(Point p) const { return {x - p.x, y -\
+    \ p.y}; }\n  bool operator==(Point p) const { return x == p.x && y == p.y; }\n\
+    \  Point operator-() const { return {-x, -y}; }\n\n  bool operator<(Point p) const\
+    \ {\n    if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n\n  T dot(Point\
+    \ other) { return x * other.x + y * other.y; }\n  T det(Point other) { return\
+    \ x * other.y - y * other.x; }\n};\n\ntemplate <typename REAL, typename T>\nREAL\
+    \ dist(Point<T> A, Point<T> B) {\n  A -= B;\n  T p = A.dot(A);\n  return sqrt(REAL(p));\n\
+    }\n\ntemplate <typename T>\nstruct Line {\n  T a, b, c;\n\n  Line(T a, T b, T\
+    \ c) : a(a), b(b), c(c) {}\n  Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y;\n\
     \    b = B.x - A.x;\n    c = A.x * B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T\
     \ x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n  template <typename\
     \ U>\n  U eval(Point<U> P) {\n    return a * P.x + b * P.y + c;\n  }\n\n  template\
@@ -238,37 +235,85 @@ data:
     \  void build() {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1\
     \ == len(points) ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n\
     \    if (a < 0) {\n      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n\
-    #line 4 \"geo/projection.hpp\"\n\ntemplate <typename REAL, typename T, typename\
-    \ U>\nPoint<REAL> projection(Point<T> P, Line<U> L) {\n  REAL t = REAL(L.eval(P))\
-    \ / (L.a * L.a + L.b * L.b);\n  REAL x = P.x - t * L.a;\n  REAL y = P.y - t *\
-    \ L.b;\n  return Point<REAL>(x, y);\n};\n#line 9 \"test/aoj/CGL_1_A.test.cpp\"\
-    \n\nvoid solve() {\n  using Re = long double;\n  LL(a, b, c, d);\n  Line<ll> L(a,\
-    \ b, c, d);\n  LL(Q);\n  FOR(Q) {\n    LL(x, y);\n    Point<ll> P(x, y);\n   \
-    \ Point<Re> Q = projection<Re, ll, ll>(P, L);\n    print(Q.x, Q.y);\n  }\n}\n\n\
-    signed main() {\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n\
-    }\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_A\"\
-    \n#define ERROR 0.00000001\n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\
-    \n\n#include \"geo/projection.hpp\"\n\nvoid solve() {\n  using Re = long double;\n\
-    \  LL(a, b, c, d);\n  Line<ll> L(a, b, c, d);\n  LL(Q);\n  FOR(Q) {\n    LL(x,\
-    \ y);\n    Point<ll> P(x, y);\n    Point<Re> Q = projection<Re, ll, ll>(P, L);\n\
-    \    print(Q.x, Q.y);\n  }\n}\n\nsigned main() {\n  ll T = 1;\n  // LL(T);\n \
-    \ FOR(T) solve();\n\n  return 0;\n}\n"
+    #line 2 \"geo/incremental_convexhull.hpp\"\n\n// \u4E0B\u5074\u51F8\u5305\ntemplate\
+    \ <typename T, bool strict = true>\nstruct IncrementalConvexHull_Lower {\n  using\
+    \ P = Point<T>;\n  set<P> S;\n\n  IncrementalConvexHull_Lower() {}\n\n  int size()\
+    \ { return len(S); }\n\n  template <typename ADD_V, typename RM_V, typename ADD_E,\
+    \ typename RM_E>\n  void add(Point<T> p, ADD_V add_v, RM_V rm_v, ADD_E add_e,\
+    \ RM_E rm_e) {\n    int s = side(p);\n    if (strict && s >= 0) return;\n    if\
+    \ (!strict && s > 0) return;\n\n    // \u70B9\u8FFD\u52A0\n    add_v(p);\n   \
+    \ S.insert(p);\n\n    vc<P> left;\n    {\n      auto it = S.find(p);\n      while\
+    \ (it != S.begin()) {\n        --it;\n        if (left.empty()) {\n          left.eb(*it);\n\
+    \          continue;\n        }\n        auto a = *it;\n        auto b = left.back();\n\
+    \        T det = (b - a).det(p - a);\n        if (strict && det > 0) break;\n\
+    \        if (!strict && det >= 0) break;\n        left.eb(a);\n      }\n    }\n\
+    \n    vc<P> right;\n    {\n      auto it = S.find(p);\n      while (1) {\n   \
+    \     ++it;\n        if (it == S.end()) break;\n        if (right.empty()) {\n\
+    \          right.eb(*it);\n          continue;\n        }\n        auto a = right.back();\n\
+    \        auto b = *it;\n        T det = (a - p).det(b - p);\n        if (strict\
+    \ && det > 0) break;\n        if (!strict && det >= 0) break;\n        right.eb(b);\n\
+    \      }\n    }\n\n    // \u70B9\u524A\u9664\n    if (len(left) > 1) { S.erase(next(S.find(left.back())),\
+    \ S.find(p)); }\n    if (len(right) > 1) { S.erase(next(S.find(p)), S.find(right.back()));\
+    \ }\n    FOR(i, len(left) - 1) rm_v(left[i]);\n    FOR(i, len(right) - 1) rm_v(right[i]);\n\
+    \n    // \u8FBA\u524A\u9664\n    if (len(left) && len(right)) {\n      auto a\
+    \ = left[0], b = right[0];\n      rm_e(a, b);\n    }\n    FOR(i, len(left) - 1)\
+    \ {\n      auto a = left[i + 1], b = left[i];\n      rm_e(a, b);\n    }\n    FOR(i,\
+    \ len(right) - 1) {\n      auto a = right[i], b = right[i + 1];\n      rm_e(a,\
+    \ b);\n    }\n    // \u8FBA\u8FFD\u52A0\n    if (len(left)) { add_e(left.back(),\
+    \ p); }\n    if (len(right)) { add_e(p, right.back()); }\n  }\n\n  // \u4E2D\uFF1A\
+    1, \u5883\u754C\uFF1A0, \u5916\uFF1A-1\n  int side(Point<T> p) {\n    auto r =\
+    \ S.lower_bound(p);\n    if (r == S.begin()) {\n      // \u5168\u90E8 p \u4EE5\
+    \u4E0A\n      if (len(S) && (*r) == p) return 0;\n      return -1;\n    }\n  \
+    \  if (r == S.end()) {\n      // p \u306F max \u3088\u308A\u5927\u304D\u3044\n\
+    \      return -1;\n    }\n    auto l = prev(r);\n    auto p1 = *l, p2 = *r;\n\
+    \    T det = (p - p1).det(p2 - p1);\n    if (det == 0) return 0;\n    return (det\
+    \ > 0 ? -1 : 1);\n  }\n};\n\ntemplate <typename T, bool strict = true>\nstruct\
+    \ Incremental_ConvexHull {\n  using P = Point<T>;\n  IncrementalConvexHull_Lower<T,\
+    \ strict> LOWER, UPPER;\n  int cnt_E;\n  T det_sum;\n  bool is_empty;\n\n  Incremental_ConvexHull()\
+    \ : cnt_E(0), det_sum(0), is_empty(1) {}\n\n  int size() { return cnt_E; }\n\n\
+    \  bool empty() { return is_empty; }\n\n  template <typename REAL>\n  REAL area()\
+    \ {\n    return det_sum * 0.5;\n  }\n  T area_2() { return det_sum; }\n\n  template\
+    \ <typename ADD_V, typename RM_V, typename ADD_E, typename RM_E>\n  void add(Point<T>\
+    \ p, ADD_V add_v, RM_V rm_v, ADD_E add_e, RM_E rm_e) {\n    is_empty = 0;\n  \
+    \  LOWER.add(\n        p, add_v, rm_v,\n        [&](Point<T> a, Point<T> b) {\n\
+    \          add_e(a, b);\n          ++cnt_E;\n          det_sum += a.det(b);\n\
+    \        },\n        [&](Point<T> a, Point<T> b) {\n          rm_e(a, b);\n  \
+    \        --cnt_E;\n          det_sum -= a.det(b);\n        });\n    UPPER.add(\n\
+    \        -p, [&](Point<T> p) { add_v(-p); }, [&](Point<T> p) { rm_v(-p); },\n\
+    \        [&](Point<T> a, Point<T> b) {\n          add_e(-a, -b);\n          ++cnt_E;\n\
+    \          det_sum += a.det(b);\n        },\n        [&](Point<T> a, Point<T>\
+    \ b) {\n          rm_e(-a, -b);\n          --cnt_E;\n          det_sum -= a.det(b);\n\
+    \        });\n  }\n  void add(Point<T> p) {\n    add(\n        p, [](Point<T>\
+    \ p) {}, [](Point<T> p) {}, [](Point<T> s, Point<T> t) {},\n        [](Point<T>\
+    \ s, Point<T> t) {});\n  }\n\n  // \u4E2D\uFF1A1\u3001\u5883\u754C\uFF1A0\u3001\
+    \u5916\uFF1A-1\n  int side(Point<T> p) {\n    int a = LOWER.side(p);\n    int\
+    \ b = UPPER.side(-p);\n    if (a == 0 || b == 0) return 0;\n    return min(a,\
+    \ b);\n  }\n};\n#line 5 \"test/atcoder/abc266c.test.cpp\"\n\nvoid solve() {\n\
+    \  Incremental_ConvexHull<ll, true> X;\n  FOR(4) {\n    LL(a, b);\n    Point<ll>\
+    \ P(a, b);\n    X.add(P);\n  }\n  Yes(len(X) == 4);\n}\n\nsigned main() {\n  cout\
+    \ << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
+    \n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc266/tasks/abc266_c\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"geo/incremental_convexhull.hpp\"\
+    \n\nvoid solve() {\n  Incremental_ConvexHull<ll, true> X;\n  FOR(4) {\n    LL(a,\
+    \ b);\n    Point<ll> P(a, b);\n    X.add(P);\n  }\n  Yes(len(X) == 4);\n}\n\n\
+    signed main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n\
+    \  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - geo/projection.hpp
+  - geo/incremental_convexhull.hpp
   - geo/base.hpp
   isVerificationFile: true
-  path: test/aoj/CGL_1_A.test.cpp
+  path: test/atcoder/abc266c.test.cpp
   requiredBy: []
-  timestamp: '2022-08-24 15:10:52+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-27 23:25:43+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/aoj/CGL_1_A.test.cpp
+documentation_of: test/atcoder/abc266c.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/CGL_1_A.test.cpp
-- /verify/test/aoj/CGL_1_A.test.cpp.html
-title: test/aoj/CGL_1_A.test.cpp
+- /verify/test/atcoder/abc266c.test.cpp
+- /verify/test/atcoder/abc266c.test.cpp.html
+title: test/atcoder/abc266c.test.cpp
 ---

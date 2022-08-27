@@ -21,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A_mst.test.cpp
     title: test/aoj/GRL_2_A_mst.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc266h.test.cpp
+    title: test/atcoder/abc266h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1117_swag.test.cpp
     title: test/yukicoder/1117_swag.test.cpp
@@ -36,9 +39,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/bbst_max_right.test.cpp
     title: test/yukicoder/bbst_max_right.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid_max.hpp\"\ntemplate <class X>\r\nstruct Monoid_Max\
@@ -59,7 +62,7 @@ data:
   - alg/lazy_max_set.hpp
   - alg/lazy_max_add.hpp
   timestamp: '2022-06-05 12:22:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1625_kdtree.test.cpp
   - test/yukicoder/1625_seg2d.test.cpp
@@ -67,6 +70,7 @@ data:
   - test/yukicoder/1117_swag.test.cpp
   - test/yukicoder/bbst_max_right.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp
+  - test/atcoder/abc266h.test.cpp
 documentation_of: alg/monoid_max.hpp
 layout: document
 redirect_from:

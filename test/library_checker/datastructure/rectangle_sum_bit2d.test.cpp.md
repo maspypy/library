@@ -245,15 +245,24 @@ data:
     \ dat[LID + R]);\r\n      R = prev(R);\r\n    }\r\n    while (R < L) {\r\n   \
     \   neg = AbelGroup::op(neg, dat[LID + L]);\r\n      L = prev(L);\r\n    }\r\n\
     \    return AbelGroup::op(pos, AbelGroup::inverse(neg));\r\n  }\r\n\r\n  E sum(ll\
-    \ lx, ll ly, ll rx, ll ry) {\r\n    E ret = 0;\r\n    int L = xtoi(lx) - 1;\r\n\
-    \    int R = xtoi(rx) - 1;\r\n    while (L < R) {\r\n      ret += sum_i(R, ly,\
-    \ ry);\r\n      R = prev(R);\r\n    }\r\n    while (R < L) {\r\n      ret -= sum_i(L,\
-    \ ly, ry);\r\n      L = prev(L);\r\n    }\r\n    return ret;\r\n  }\r\n\r\n  void\
-    \ debug() {\r\n    print(\"keyX\", keyX);\r\n    print(\"indptr\", indptr);\r\n\
-    \    print(\"keyY\", keyY);\r\n    print(\"dat\", dat);\r\n  }\r\n};\n#line 7\
-    \ \"test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp\"\n\nvoid\
-    \ solve() {\n  LL(N, Q);\n  vi X(N), Y(N), W(N);\n  FOR(i, N) {\n    LL(x, y,\
-    \ w);\n    X[i] = x, Y[i] = y, W[i] = w;\n  }\n  Fenwick2D<Group_Add<ll>, false>\
+    \ lx, ll ly, ll rx, ll ry) {\r\n    E pos = AbelGroup::unit();\r\n    E neg =\
+    \ AbelGroup::unit();\r\n    int L = xtoi(lx) - 1;\r\n    int R = xtoi(rx) - 1;\r\
+    \n    while (L < R) {\r\n      pos = AbelGroup::op(pos, sum_i(R, ly, ry));\r\n\
+    \      R = prev(R);\r\n    }\r\n    while (R < L) {\r\n      neg = AbelGroup::op(neg,\
+    \ sum_i(L, ly, ry));\r\n      L = prev(L);\r\n    }\r\n    E ret = AbelGroup::op(pos,\
+    \ AbelGroup::inverse(neg));\r\n    return ret;\r\n  }\r\n\r\n\r\n  E prefix_sum_i(int\
+    \ i, ll ry) {\r\n    E pos = AbelGroup::unit();\r\n    int LID = indptr[i], n\
+    \ = indptr[i + 1] - indptr[i];\r\n    auto it = keyY.begin() + LID;\r\n    int\
+    \ R = lower_bound(it, it + n, ry) - it - 1;\r\n    while (R >= 0) {\r\n      pos\
+    \ = AbelGroup::op(pos, dat[LID + R]);\r\n      R = prev(R);\r\n    }\r\n    return\
+    \ pos;\r\n  }\r\n\r\n  E prefix_sum(ll rx, ll ry){\r\n    E pos = AbelGroup::unit();\r\
+    \n    int R = xtoi(rx) - 1;\r\n    while (R >= 0) {\r\n      pos = AbelGroup::op(pos,\
+    \ prefix_sum_i(R, ry));\r\n      R = prev(R);\r\n    }\r\n    return pos;\r\n\
+    \  }\r\n\r\n  void debug() {\r\n    print(\"keyX\", keyX);\r\n    print(\"indptr\"\
+    , indptr);\r\n    print(\"keyY\", keyY);\r\n    print(\"dat\", dat);\r\n  }\r\n\
+    };\n#line 7 \"test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  vi X(N), Y(N), W(N);\n  FOR(i, N) {\n    LL(x,\
+    \ y, w);\n    X[i] = x, Y[i] = y, W[i] = w;\n  }\n  Fenwick2D<Group_Add<ll>, false>\
     \ bit(X, Y, W);\n  FOR(_, Q) {\n    LL(l, d, r, u);\n    print(bit.sum(l, d, r,\
     \ u));\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
@@ -272,7 +281,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
   requiredBy: []
-  timestamp: '2022-08-20 05:21:32+09:00'
+  timestamp: '2022-08-27 23:26:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
