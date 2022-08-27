@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: alg/monoid_max.hpp
     title: alg/monoid_max.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/fenwick2d.hpp
     title: ds/fenwick2d.hpp
   - icon: ':question:'
@@ -212,7 +212,7 @@ data:
     \n  XY min_X;\r\n  vc<int> indptr;\r\n  vc<XY> keyY;\r\n  vc<E> dat;\r\n\r\n \
     \ Fenwick2D(vc<XY>& X, vc<XY>& Y, vc<E>& wt) { build(X, Y, wt); }\r\n\r\n  Fenwick2D(vc<XY>&\
     \ X, vc<XY>& Y) {\r\n    vc<E> wt(len(X), AbelGroup::unit());\r\n    build(X,\
-    \ Y, wt);\r\n  }\r\n\r\n  inline int xtoi(int x) {\r\n    return (SMALL ? clamp(x\
+    \ Y, wt);\r\n  }\r\n\r\n  inline int xtoi(XY x) {\r\n    return (SMALL ? clamp<int>(x\
     \ - min_X, 0, N) : LB(keyX, x));\r\n  }\r\n\r\n  inline int nxt(int i) {\r\n \
     \   i += 1;\r\n    return i + (i & -i) - 1;\r\n  }\r\n\r\n  inline int prev(int\
     \ i) {\r\n    i += 1;\r\n    return i - (i & -i) - 1;\r\n  }\r\n\r\n  void build(vc<XY>&\
@@ -234,7 +234,7 @@ data:
     \ k = nxt(j);\r\n        if (k < n)\r\n          dat[indptr[i] + k]\r\n      \
     \        = AbelGroup::op(dat[indptr[i] + k], dat[indptr[i] + j]);\r\n      }\r\
     \n    }\r\n  }\r\n\r\n  void multiply(XY x, XY y, E val) {\r\n    int i = xtoi(x);\r\
-    \n    assert(keyX[i] == x);\r\n    while (i < N) {\r\n      add_i(i, y, val);\r\
+    \n    assert(keyX[i] == x);\r\n    while (i < N) {\r\n      multiply_i(i, y, val);\r\
     \n      i = nxt(i);\r\n    }\r\n  }\r\n\r\n  void add(XY x, XY y, E val) { multiply(x,\
     \ y, val); }\r\n\r\n  E prod(XY lx, XY ly, XY rx, XY ry) {\r\n    E pos = AbelGroup::unit();\r\
     \n    E neg = AbelGroup::unit();\r\n    int L = xtoi(lx) - 1;\r\n    int R = xtoi(rx)\
@@ -323,7 +323,7 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc266h_bit.test.cpp
   requiredBy: []
-  timestamp: '2022-08-28 03:33:29+09:00'
+  timestamp: '2022-08-28 05:07:49+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/atcoder/abc266h_bit.test.cpp

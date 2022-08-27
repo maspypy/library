@@ -9,15 +9,15 @@ data:
   - icon: ':x:'
     path: test/atcoder/abc266h_bit.test.cpp
     title: test/atcoder/abc266h_bit.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -31,7 +31,7 @@ data:
     \n  XY min_X;\r\n  vc<int> indptr;\r\n  vc<XY> keyY;\r\n  vc<E> dat;\r\n\r\n \
     \ Fenwick2D(vc<XY>& X, vc<XY>& Y, vc<E>& wt) { build(X, Y, wt); }\r\n\r\n  Fenwick2D(vc<XY>&\
     \ X, vc<XY>& Y) {\r\n    vc<E> wt(len(X), AbelGroup::unit());\r\n    build(X,\
-    \ Y, wt);\r\n  }\r\n\r\n  inline int xtoi(int x) {\r\n    return (SMALL ? clamp(x\
+    \ Y, wt);\r\n  }\r\n\r\n  inline int xtoi(XY x) {\r\n    return (SMALL ? clamp<int>(x\
     \ - min_X, 0, N) : LB(keyX, x));\r\n  }\r\n\r\n  inline int nxt(int i) {\r\n \
     \   i += 1;\r\n    return i + (i & -i) - 1;\r\n  }\r\n\r\n  inline int prev(int\
     \ i) {\r\n    i += 1;\r\n    return i - (i & -i) - 1;\r\n  }\r\n\r\n  void build(vc<XY>&\
@@ -53,7 +53,7 @@ data:
     \ k = nxt(j);\r\n        if (k < n)\r\n          dat[indptr[i] + k]\r\n      \
     \        = AbelGroup::op(dat[indptr[i] + k], dat[indptr[i] + j]);\r\n      }\r\
     \n    }\r\n  }\r\n\r\n  void multiply(XY x, XY y, E val) {\r\n    int i = xtoi(x);\r\
-    \n    assert(keyX[i] == x);\r\n    while (i < N) {\r\n      add_i(i, y, val);\r\
+    \n    assert(keyX[i] == x);\r\n    while (i < N) {\r\n      multiply_i(i, y, val);\r\
     \n      i = nxt(i);\r\n    }\r\n  }\r\n\r\n  void add(XY x, XY y, E val) { multiply(x,\
     \ y, val); }\r\n\r\n  E prod(XY lx, XY ly, XY rx, XY ry) {\r\n    E pos = AbelGroup::unit();\r\
     \n    E neg = AbelGroup::unit();\r\n    int L = xtoi(lx) - 1;\r\n    int R = xtoi(rx)\
@@ -90,21 +90,21 @@ data:
     \n  int N;\r\n  vc<XY> keyX;\r\n  XY min_X;\r\n  vc<int> indptr;\r\n  vc<XY> keyY;\r\
     \n  vc<E> dat;\r\n\r\n  Fenwick2D(vc<XY>& X, vc<XY>& Y, vc<E>& wt) { build(X,\
     \ Y, wt); }\r\n\r\n  Fenwick2D(vc<XY>& X, vc<XY>& Y) {\r\n    vc<E> wt(len(X),\
-    \ AbelGroup::unit());\r\n    build(X, Y, wt);\r\n  }\r\n\r\n  inline int xtoi(int\
-    \ x) {\r\n    return (SMALL ? clamp(x - min_X, 0, N) : LB(keyX, x));\r\n  }\r\n\
-    \r\n  inline int nxt(int i) {\r\n    i += 1;\r\n    return i + (i & -i) - 1;\r\
-    \n  }\r\n\r\n  inline int prev(int i) {\r\n    i += 1;\r\n    return i - (i &\
-    \ -i) - 1;\r\n  }\r\n\r\n  void build(vc<XY>& X, vc<XY>& Y, vc<E>& wt) {\r\n \
-    \   if (!SMALL) {\r\n      keyX = X;\r\n      UNIQUE(keyX);\r\n      N = len(keyX);\r\
-    \n    } else {\r\n      min_X = (len(X) == 0 ? 0 : MIN(X));\r\n      N = (len(X)\
-    \ == 0 ? 0 : MAX(X)) - min_X + 1;\r\n      keyX.resize(N);\r\n      FOR(i, N)\
-    \ keyX[i] = min_X + i;\r\n    }\r\n\r\n    vvc<XY> keyY_raw(N);\r\n    vc<vc<E>>\
-    \ dat_raw(N);\r\n\r\n    auto I = argsort(Y);\r\n    for (auto&& i: I) {\r\n \
-    \     int ix = xtoi(X[i]), y = Y[i];\r\n      while (ix < N) {\r\n        auto&\
-    \ KY = keyY_raw[ix];\r\n        if (len(KY) == 0 || KY.back() < y) {\r\n     \
-    \     KY.eb(y);\r\n          dat_raw[ix].eb(wt[i]);\r\n        } else {\r\n  \
-    \        dat_raw[ix].back() = AbelGroup::op(dat_raw[ix].back(), wt[i]);\r\n  \
-    \      }\r\n        ix = nxt(ix);\r\n      }\r\n    }\r\n\r\n    indptr.assign(N\
+    \ AbelGroup::unit());\r\n    build(X, Y, wt);\r\n  }\r\n\r\n  inline int xtoi(XY\
+    \ x) {\r\n    return (SMALL ? clamp<int>(x - min_X, 0, N) : LB(keyX, x));\r\n\
+    \  }\r\n\r\n  inline int nxt(int i) {\r\n    i += 1;\r\n    return i + (i & -i)\
+    \ - 1;\r\n  }\r\n\r\n  inline int prev(int i) {\r\n    i += 1;\r\n    return i\
+    \ - (i & -i) - 1;\r\n  }\r\n\r\n  void build(vc<XY>& X, vc<XY>& Y, vc<E>& wt)\
+    \ {\r\n    if (!SMALL) {\r\n      keyX = X;\r\n      UNIQUE(keyX);\r\n      N\
+    \ = len(keyX);\r\n    } else {\r\n      min_X = (len(X) == 0 ? 0 : MIN(X));\r\n\
+    \      N = (len(X) == 0 ? 0 : MAX(X)) - min_X + 1;\r\n      keyX.resize(N);\r\n\
+    \      FOR(i, N) keyX[i] = min_X + i;\r\n    }\r\n\r\n    vvc<XY> keyY_raw(N);\r\
+    \n    vc<vc<E>> dat_raw(N);\r\n\r\n    auto I = argsort(Y);\r\n    for (auto&&\
+    \ i: I) {\r\n      int ix = xtoi(X[i]), y = Y[i];\r\n      while (ix < N) {\r\n\
+    \        auto& KY = keyY_raw[ix];\r\n        if (len(KY) == 0 || KY.back() < y)\
+    \ {\r\n          KY.eb(y);\r\n          dat_raw[ix].eb(wt[i]);\r\n        } else\
+    \ {\r\n          dat_raw[ix].back() = AbelGroup::op(dat_raw[ix].back(), wt[i]);\r\
+    \n        }\r\n        ix = nxt(ix);\r\n      }\r\n    }\r\n\r\n    indptr.assign(N\
     \ + 1, 0);\r\n    FOR(i, N) indptr[i + 1] = indptr[i] + len(keyY_raw[i]);\r\n\
     \    keyY.resize(indptr.back());\r\n    dat.resize(indptr.back());\r\n    FOR(i,\
     \ N) FOR(j, indptr[i + 1] - indptr[i]) {\r\n      keyY[indptr[i] + j] = keyY_raw[i][j];\r\
@@ -113,7 +113,7 @@ data:
     \ k = nxt(j);\r\n        if (k < n)\r\n          dat[indptr[i] + k]\r\n      \
     \        = AbelGroup::op(dat[indptr[i] + k], dat[indptr[i] + j]);\r\n      }\r\
     \n    }\r\n  }\r\n\r\n  void multiply(XY x, XY y, E val) {\r\n    int i = xtoi(x);\r\
-    \n    assert(keyX[i] == x);\r\n    while (i < N) {\r\n      add_i(i, y, val);\r\
+    \n    assert(keyX[i] == x);\r\n    while (i < N) {\r\n      multiply_i(i, y, val);\r\
     \n      i = nxt(i);\r\n    }\r\n  }\r\n\r\n  void add(XY x, XY y, E val) { multiply(x,\
     \ y, val); }\r\n\r\n  E prod(XY lx, XY ly, XY rx, XY ry) {\r\n    E pos = AbelGroup::unit();\r\
     \n    E neg = AbelGroup::unit();\r\n    int L = xtoi(lx) - 1;\r\n    int R = xtoi(rx)\
@@ -150,8 +150,8 @@ data:
   isVerificationFile: false
   path: ds/fenwick2d.hpp
   requiredBy: []
-  timestamp: '2022-08-28 03:33:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-08-28 05:07:49+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
