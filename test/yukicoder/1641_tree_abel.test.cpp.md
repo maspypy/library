@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_xor.hpp
     title: alg/group_xor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   - icon: ':question:'
@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/treeabelgroup.hpp
     title: graph/treeabelgroup.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1641
@@ -231,17 +231,19 @@ data:
     \ (L < R) {\n      pos = AbelGroup::op(pos, dat[R - 1]);\n      R -= R & -R;\n\
     \    }\n    E neg = AbelGroup::unit();\n    while (R < L) {\n      neg = AbelGroup::op(neg,\
     \ dat[L - 1]);\n      L -= L & -L;\n    }\n    return AbelGroup::op(pos, AbelGroup::inverse(neg));\n\
-    \  }\n\n  E prod_all() { return total; }\n\n  void add(int k, E x) {\n    total\
-    \ = AbelGroup::op(total, x);\n    for (++k; k <= n; k += k & -k) dat[k - 1] =\
-    \ AbelGroup::op(dat[k - 1], x);\n  }\n\n  template <class F>\n  int max_right(F&\
-    \ check) {\n    assert(check(E(0)));\n    ll i = 0;\n    E s = AbelGroup::unit();\n\
-    \    int k = 1;\n    int N = dat.size() + 1;\n    while (2 * k < N) k *= 2;\n\
-    \    while (k) {\n      if (i + k < N && check(AbelGroup::op(s, dat[i + k - 1])))\
-    \ {\n        i += k;\n        s = AbelGroup::op(s, dat[i - 1]);\n      }\n   \
-    \   k >>= 1;\n    }\n    return i;\n  }\n\n  int find_kth(E k) {\n    auto check\
-    \ = [&](E x) -> bool { return x <= k; };\n    return max_right(check);\n  }\n\n\
-    \  void debug() { print(\"fenwick\", dat); }\n};\n#line 2 \"graph/base.hpp\"\n\
-    \ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n\
+    \  }\n\n  E prod_all() { return total; }\n\n  E sum(int k) { return prod(k); }\n\
+    \n  E sum(int L, int R) { return prod(L, R); }\n\n  E sum_all() { return total;\
+    \ }\n\n  void multiply(int k, E x) {\n    total = AbelGroup::op(total, x);\n \
+    \   for (++k; k <= n; k += k & -k) dat[k - 1] = AbelGroup::op(dat[k - 1], x);\n\
+    \  }\n\n  void add(int k, E x) { multiply(k, x); }\n\n  template <class F>\n \
+    \ int max_right(F& check) {\n    assert(check(E(0)));\n    ll i = 0;\n    E s\
+    \ = AbelGroup::unit();\n    int k = 1;\n    int N = dat.size() + 1;\n    while\
+    \ (2 * k < N) k *= 2;\n    while (k) {\n      if (i + k < N && check(AbelGroup::op(s,\
+    \ dat[i + k - 1]))) {\n        i += k;\n        s = AbelGroup::op(s, dat[i - 1]);\n\
+    \      }\n      k >>= 1;\n    }\n    return i;\n  }\n\n  int find_kth(E k) {\n\
+    \    auto check = [&](E x) -> bool { return x <= k; };\n    return max_right(check);\n\
+    \  }\n\n  void debug() { print(\"fenwick\", dat); }\n};\n#line 2 \"graph/base.hpp\"\
+    \n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n\
     };\n\ntemplate <typename T = int, bool directed = false>\nstruct Graph {\n  int\
     \ N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
     \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  bool prepared;\n\
@@ -368,14 +370,13 @@ data:
     \ \u306A\u3089 [lca, to]\r\n    X x2 = bit.prod(tree.ELID(lca) + edge, tree.ELID(to)\
     \ + 1);\r\n    return AbelGroup::op(x1, x2);\r\n  }\r\n\r\n  X prod_subtree(int\
     \ u) {\r\n    assert(subtree_query);\r\n    int l = tree.LID[u], r = tree.RID[u];\r\
-    \n    return bit_subtree.prod(l + edge, r);\r\n  }\r\n\r\n  X prod_path(int frm,\
-    \ int to) { return prod_path(frm, to); }\r\n  X prod_subtree(int u) { return prod_subtree(u);\
-    \ }\r\n\r\n  void debug() {\r\n    tree.debug();\r\n    bit.debug();\r\n    bit_subtree.debug();\r\
-    \n  }\r\n};\r\n#line 1 \"alg/group_xor.hpp\"\ntemplate <typename T = long long>\r\
-    \nstruct Group_Xor {\r\n  using value_type = T;\r\n  using X = value_type;\r\n\
-    \  static X op(X x, X y) { return x ^ y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept {\r\n    return (n & 1 ? x : 0);\r\n  }\r\n  static constexpr X unit(){return\
+    \n    return bit_subtree.prod(l + edge, r);\r\n  }\r\n\r\n  void debug() {\r\n\
+    \    tree.debug();\r\n    bit.debug();\r\n    bit_subtree.debug();\r\n  }\r\n\
+    };\r\n#line 1 \"alg/group_xor.hpp\"\ntemplate <typename T = long long>\r\nstruct\
+    \ Group_Xor {\r\n  using value_type = T;\r\n  using X = value_type;\r\n  static\
+    \ X op(X x, X y) { return x ^ y; }\r\n  static constexpr X inverse(const X &x)\
+    \ noexcept { return x; }\r\n  static constexpr X power(const X &x, ll n) noexcept\
+    \ {\r\n    return (n & 1 ? x : 0);\r\n  }\r\n  static constexpr X unit(){return\
     \ X(0);};\r\n  static constexpr bool commute = true;\r\n};\r\n#line 6 \"test/yukicoder/1641_tree_abel.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  Graph G(N);\n  VEC(int, A, N);\n  G.read_tree();\n\
     \  TREE tree(G);\n  TreeAbelGroup<decltype(tree), Group_Xor<int>, 0, 0, 1> TA(tree,\
@@ -404,8 +405,8 @@ data:
   isVerificationFile: true
   path: test/yukicoder/1641_tree_abel.test.cpp
   requiredBy: []
-  timestamp: '2022-08-28 02:45:29+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-28 03:31:54+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder/1641_tree_abel.test.cpp
 layout: document

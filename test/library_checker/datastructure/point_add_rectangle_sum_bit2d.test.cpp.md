@@ -233,20 +233,22 @@ data:
     \        = AbelGroup::op(dat[indptr[i] + k], dat[indptr[i] + j]);\r\n      }\r\
     \n    }\r\n  }\r\n\r\n  void multiply(XY x, XY y, E val) {\r\n    int i = xtoi(x);\r\
     \n    assert(keyX[i] == x);\r\n    while (i < N) {\r\n      add_i(i, y, val);\r\
-    \n      i = nxt(i);\r\n    }\r\n  }\r\n\r\n  E prod(XY lx, XY ly, XY rx, XY ry)\
-    \ {\r\n    E pos = AbelGroup::unit();\r\n    E neg = AbelGroup::unit();\r\n  \
-    \  int L = xtoi(lx) - 1;\r\n    int R = xtoi(rx) - 1;\r\n    while (L < R) {\r\
-    \n      pos = AbelGroup::op(pos, prod_i(R, ly, ry));\r\n      R = prev(R);\r\n\
-    \    }\r\n    while (R < L) {\r\n      neg = AbelGroup::op(neg, prod_i(L, ly,\
-    \ ry));\r\n      L = prev(L);\r\n    }\r\n    E ret = AbelGroup::op(pos, AbelGroup::inverse(neg));\r\
-    \n    return ret;\r\n  }\r\n\r\n  E prefix_prod(XY rx, XY ry) {\r\n    E pos =\
-    \ AbelGroup::unit();\r\n    int R = xtoi(rx) - 1;\r\n    while (R >= 0) {\r\n\
-    \      pos = AbelGroup::op(pos, prefix_prod_i(R, ry));\r\n      R = prev(R);\r\
-    \n    }\r\n    return pos;\r\n  }\r\n\r\n  void debug() {\r\n    print(\"keyX\"\
-    , keyX);\r\n    print(\"indptr\", indptr);\r\n    print(\"keyY\", keyY);\r\n \
-    \   print(\"dat\", dat);\r\n  }\r\n\r\nprivate:\r\n  void multiply_i(int i, XY\
-    \ y, E val) {\r\n    int LID = indptr[i], n = indptr[i + 1] - indptr[i];\r\n \
-    \   auto it = keyY.begin() + LID;\r\n    int j = lower_bound(it, it + n, y) -\
+    \n      i = nxt(i);\r\n    }\r\n  }\r\n\r\n  void add(XY x, XY y, E val) { multiply(x,\
+    \ y, val); }\r\n\r\n  E prod(XY lx, XY ly, XY rx, XY ry) {\r\n    E pos = AbelGroup::unit();\r\
+    \n    E neg = AbelGroup::unit();\r\n    int L = xtoi(lx) - 1;\r\n    int R = xtoi(rx)\
+    \ - 1;\r\n    while (L < R) {\r\n      pos = AbelGroup::op(pos, prod_i(R, ly,\
+    \ ry));\r\n      R = prev(R);\r\n    }\r\n    while (R < L) {\r\n      neg = AbelGroup::op(neg,\
+    \ prod_i(L, ly, ry));\r\n      L = prev(L);\r\n    }\r\n    E ret = AbelGroup::op(pos,\
+    \ AbelGroup::inverse(neg));\r\n    return ret;\r\n  }\r\n\r\n  E prefix_prod(XY\
+    \ rx, XY ry) {\r\n    E pos = AbelGroup::unit();\r\n    int R = xtoi(rx) - 1;\r\
+    \n    while (R >= 0) {\r\n      pos = AbelGroup::op(pos, prefix_prod_i(R, ry));\r\
+    \n      R = prev(R);\r\n    }\r\n    return pos;\r\n  }\r\n\r\n  E sum(XY lx,\
+    \ XY ly, XY rx, XY ry) { return prod(lx, ly, rx, ry); }\r\n\r\n  E prefix_sum(XY\
+    \ rx, XY ry) { return prefix_prod(rx, ry); }\r\n\r\n  void debug() {\r\n    print(\"\
+    keyX\", keyX);\r\n    print(\"indptr\", indptr);\r\n    print(\"keyY\", keyY);\r\
+    \n    print(\"dat\", dat);\r\n  }\r\n\r\nprivate:\r\n  void multiply_i(int i,\
+    \ XY y, E val) {\r\n    int LID = indptr[i], n = indptr[i + 1] - indptr[i];\r\n\
+    \    auto it = keyY.begin() + LID;\r\n    int j = lower_bound(it, it + n, y) -\
     \ it;\r\n    assert(keyY[LID + j] == y);\r\n    while (j < n) {\r\n      dat[LID\
     \ + j] = AbelGroup::op(dat[LID + j], val);\r\n      j = nxt(j);\r\n    }\r\n \
     \ }\r\n\r\n  E prod_i(int i, XY ly, XY ry) {\r\n    E pos = AbelGroup::unit();\r\
@@ -261,7 +263,7 @@ data:
     \ - indptr[i];\r\n    auto it = keyY.begin() + LID;\r\n    int R = lower_bound(it,\
     \ it + n, ry) - it - 1;\r\n    while (R >= 0) {\r\n      pos = AbelGroup::op(pos,\
     \ dat[LID + R]);\r\n      R = prev(R);\r\n    }\r\n    return pos;\r\n  }\r\n\
-    };\n#line 7 \"test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp\"\
+    };\r\n#line 7 \"test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  vi X(N), Y(N), W(N);\r\n  FOR(i, N) {\r\
     \n    LL(x, y, w);\r\n    X[i] = x, Y[i] = y, W[i] = w;\r\n  }\r\n  using QQ =\
     \ tuple<ll, ll, ll, ll>;\r\n  vc<QQ> query(Q);\r\n  FOR(q, Q) {\r\n    LL(t);\r\
@@ -270,9 +272,9 @@ data:
     \  LL(a, b, c, d);\r\n      query[q] = mt(a, b, c, d);\r\n    }\r\n  }\r\n\r\n\
     \  Fenwick2D<Group_Add<ll>, false> bit(X, Y, W);\r\n  FOR(q, Q) {\r\n    auto\
     \ [a, b, c, d] = query[q];\r\n    if (a == -1) {\r\n      bit.add(b, c, d);\r\n\
-    \    } else {\r\n      print(bit.sum(a, b, c, d));\r\n    }\r\n  }\r\n}\r\n\r\n\
-    signed main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n \
-    \ cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \    } else {\r\n      print(bit.prod(a, b, c, d));\r\n    }\r\n  }\r\n}\r\n\r\
+    \nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n\
+    \  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_rectangle_sum\"\
     \r\n\r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
     \ \"ds/fenwick2d.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  vi X(N), Y(N),\
@@ -283,7 +285,7 @@ data:
     \ y, w);\r\n    } else {\r\n      LL(a, b, c, d);\r\n      query[q] = mt(a, b,\
     \ c, d);\r\n    }\r\n  }\r\n\r\n  Fenwick2D<Group_Add<ll>, false> bit(X, Y, W);\r\
     \n  FOR(q, Q) {\r\n    auto [a, b, c, d] = query[q];\r\n    if (a == -1) {\r\n\
-    \      bit.add(b, c, d);\r\n    } else {\r\n      print(bit.sum(a, b, c, d));\r\
+    \      bit.add(b, c, d);\r\n    } else {\r\n      print(bit.prod(a, b, c, d));\r\
     \n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
     \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
@@ -294,7 +296,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   requiredBy: []
-  timestamp: '2022-08-28 02:28:59+09:00'
+  timestamp: '2022-08-28 03:33:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp

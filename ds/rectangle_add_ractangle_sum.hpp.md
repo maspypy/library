@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   - icon: ':heavy_check_mark:'
@@ -45,15 +45,18 @@ data:
     \ - 1]);\n      R -= R & -R;\n    }\n    E neg = AbelGroup::unit();\n    while\
     \ (R < L) {\n      neg = AbelGroup::op(neg, dat[L - 1]);\n      L -= L & -L;\n\
     \    }\n    return AbelGroup::op(pos, AbelGroup::inverse(neg));\n  }\n\n  E prod_all()\
-    \ { return total; }\n\n  void add(int k, E x) {\n    total = AbelGroup::op(total,\
-    \ x);\n    for (++k; k <= n; k += k & -k) dat[k - 1] = AbelGroup::op(dat[k - 1],\
-    \ x);\n  }\n\n  template <class F>\n  int max_right(F& check) {\n    assert(check(E(0)));\n\
-    \    ll i = 0;\n    E s = AbelGroup::unit();\n    int k = 1;\n    int N = dat.size()\
-    \ + 1;\n    while (2 * k < N) k *= 2;\n    while (k) {\n      if (i + k < N &&\
-    \ check(AbelGroup::op(s, dat[i + k - 1]))) {\n        i += k;\n        s = AbelGroup::op(s,\
-    \ dat[i - 1]);\n      }\n      k >>= 1;\n    }\n    return i;\n  }\n\n  int find_kth(E\
-    \ k) {\n    auto check = [&](E x) -> bool { return x <= k; };\n    return max_right(check);\n\
-    \  }\n\n  void debug() { print(\"fenwick\", dat); }\n};\n#line 3 \"ds/point_add_rectangle_sum.hpp\"\
+    \ { return total; }\n\n  E sum(int k) { return prod(k); }\n\n  E sum(int L, int\
+    \ R) { return prod(L, R); }\n\n  E sum_all() { return total; }\n\n  void multiply(int\
+    \ k, E x) {\n    total = AbelGroup::op(total, x);\n    for (++k; k <= n; k +=\
+    \ k & -k) dat[k - 1] = AbelGroup::op(dat[k - 1], x);\n  }\n\n  void add(int k,\
+    \ E x) { multiply(k, x); }\n\n  template <class F>\n  int max_right(F& check)\
+    \ {\n    assert(check(E(0)));\n    ll i = 0;\n    E s = AbelGroup::unit();\n \
+    \   int k = 1;\n    int N = dat.size() + 1;\n    while (2 * k < N) k *= 2;\n \
+    \   while (k) {\n      if (i + k < N && check(AbelGroup::op(s, dat[i + k - 1])))\
+    \ {\n        i += k;\n        s = AbelGroup::op(s, dat[i - 1]);\n      }\n   \
+    \   k >>= 1;\n    }\n    return i;\n  }\n\n  int find_kth(E k) {\n    auto check\
+    \ = [&](E x) -> bool { return x <= k; };\n    return max_right(check);\n  }\n\n\
+    \  void debug() { print(\"fenwick\", dat); }\n};\n#line 3 \"ds/point_add_rectangle_sum.hpp\"\
     \n\r\n\r\ntemplate <typename AbelGroup, bool SMALL = false>\r\nstruct Point_Add_Rectangle_Sum\
     \ {\r\n  using G = typename AbelGroup::value_type;\r\n  int Q;\r\n  vector<ll>\
     \ X, Y;\r\n  vector<G> WT;\r\n  vector<tuple<ll, ll, ll, ll>> rect;\r\n\r\n  Point_Add_Rectangle_Sum()\
@@ -194,7 +197,7 @@ data:
   isVerificationFile: false
   path: ds/rectangle_add_ractangle_sum.hpp
   requiredBy: []
-  timestamp: '2022-08-28 02:47:53+09:00'
+  timestamp: '2022-08-28 03:31:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1490_rect_add_rect_sum.test.cpp
