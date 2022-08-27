@@ -118,18 +118,43 @@ struct Fenwick2D {
   }
 
   E sum(ll lx, ll ly, ll rx, ll ry) {
-    E ret = 0;
+    E pos = AbelGroup::unit();
+    E neg = AbelGroup::unit();
     int L = xtoi(lx) - 1;
     int R = xtoi(rx) - 1;
     while (L < R) {
-      ret += sum_i(R, ly, ry);
+      pos = AbelGroup::op(pos, sum_i(R, ly, ry));
       R = prev(R);
     }
     while (R < L) {
-      ret -= sum_i(L, ly, ry);
+      neg = AbelGroup::op(neg, sum_i(L, ly, ry));
       L = prev(L);
     }
+    E ret = AbelGroup::op(pos, AbelGroup::inverse(neg));
     return ret;
+  }
+
+
+  E prefix_sum_i(int i, ll ry) {
+    E pos = AbelGroup::unit();
+    int LID = indptr[i], n = indptr[i + 1] - indptr[i];
+    auto it = keyY.begin() + LID;
+    int R = lower_bound(it, it + n, ry) - it - 1;
+    while (R >= 0) {
+      pos = AbelGroup::op(pos, dat[LID + R]);
+      R = prev(R);
+    }
+    return pos;
+  }
+
+  E prefix_sum(ll rx, ll ry){
+    E pos = AbelGroup::unit();
+    int R = xtoi(rx) - 1;
+    while (R >= 0) {
+      pos = AbelGroup::op(pos, prefix_sum_i(R, ry));
+      R = prev(R);
+    }
+    return pos;
   }
 
   void debug() {
