@@ -34,13 +34,13 @@ struct FenwickTree {
     dat.assign(n, AbelGroup::unit());
   }
 
-  E sum(int k) {
+  E prod(int k) {
     E ret = AbelGroup::unit();
     for (; k > 0; k -= k & -k) ret = AbelGroup::op(ret, dat[k - 1]);
     return ret;
   }
 
-  E sum(int L, int R) {
+  E prod(int L, int R) {
     E pos = AbelGroup::unit();
     while (L < R) {
       pos = AbelGroup::op(pos, dat[R - 1]);
@@ -54,7 +54,7 @@ struct FenwickTree {
     return AbelGroup::op(pos, AbelGroup::inverse(neg));
   }
 
-  E sum_all() { return total; }
+  E prod_all() { return total; }
 
   void add(int k, E x) {
     total = AbelGroup::op(total, x);
