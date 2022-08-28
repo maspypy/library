@@ -178,6 +178,9 @@ data:
     path: test/aoj/ITP2_11_D_for_nCk.test.cpp
     title: test/aoj/ITP2_11_D_for_nCk.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/ITP2_3_B.test.cpp
+    title: test/aoj/ITP2_3_B.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_D_eulerphi.test.cpp
     title: test/aoj/NTL_1_D_eulerphi.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1373,6 +1376,7 @@ data:
   - test/aoj/ITP2_11_D_for_nCk.test.cpp
   - test/aoj/CGL_2_C.test.cpp
   - test/aoj/GRO_3_A_articulation.test.cpp
+  - test/aoj/ITP2_3_B.test.cpp
   - test/aoj/DPL_4_B_subset_sum_count.test.cpp
   - test/aoj/DSL_2_E_fenwick_raq.test.cpp
   - test/aoj/CGL_7_C.test.cpp

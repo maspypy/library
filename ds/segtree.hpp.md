@@ -31,6 +31,9 @@ data:
     path: test/aoj/GRL_2_A_mst.test.cpp
     title: test/aoj/GRL_2_A_mst.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/ITP2_3_B.test.cpp
+    title: test/aoj/ITP2_3_B.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc174f.test.cpp
     title: test/atcoder/abc174f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -198,6 +201,7 @@ data:
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - test/aoj/ITP2_3_B.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp
   - test/atcoder/abc174f.test.cpp
 documentation_of: ds/segtree.hpp

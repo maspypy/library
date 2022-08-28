@@ -126,7 +126,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid_min_xplusa_b.hpp
       title: alg/monoid_min_xplusa_b.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid_minmax.hpp
       title: alg/monoid_minmax.hpp
     - icon: ':warning:'
@@ -158,6 +158,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: bbst/splaytree_monoid.hpp
       title: bbst/splaytree_monoid.hpp
+  - name: datetime
+    pages:
+    - icon: ':warning:'
+      path: datetime/datetime.hpp
+      title: datetime/datetime.hpp
   - name: dp
     pages:
     - icon: ':heavy_check_mark:'
@@ -1272,6 +1277,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ITP2_11_D_for_nCk.test.cpp
       title: test/aoj/ITP2_11_D_for_nCk.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/ITP2_3_B.test.cpp
+      title: test/aoj/ITP2_3_B.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/NTL_1_D_eulerphi.test.cpp
       title: test/aoj/NTL_1_D_eulerphi.test.cpp
