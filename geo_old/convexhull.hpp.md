@@ -28,40 +28,39 @@ data:
     \ x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n  template <typename\
     \ U>\n  U eval(Point<U> P) {\n    return a * P.x + b * P.y + c;\n  }\n\n  template\
     \ <typename U>\n  T eval(U x, U y) {\n    return a * x + b * y + c;\n  }\n\n \
-    \ template <enable_if_t<is_integral<T>::value, int> = 0>\n  bool is_parallel(Line\
-    \ other) {\n    return a * other.b - b * other.a == 0;\n  }\n\n  template <enable_if_t<is_integral<T>::value,\
-    \ int> = 0>\n  bool is_orthogonal(Line other) {\n    return a * other.a + b *\
-    \ other.b == 0;\n  }\n};\n\ntemplate <typename T>\nstruct Segment {\n  Point<T>\
-    \ A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T x1,\
-    \ T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n\
-    \  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate <typename T>\nstruct\
-    \ Circle {\n  Point<T> O;\n  T r;\n  Circle(Point<T> O, T r) : O(O), r(r) {}\n\
-    \  Circle(T x, T y, T r) : O(Point<T>(x, y)), r(r) {}\n};\n\ntemplate <typename\
-    \ T>\nstruct Polygon {\n  vc<Point<T>> points;\n  T a;\n\n  template <typename\
-    \ A, typename B>\n  Polygon(vc<pair<A, B>> pairs) {\n    for (auto&& [a, b]: pairs)\
-    \ points.eb(Point<T>(a, b));\n    build();\n  }\n  Polygon(vc<Point<T>> points)\
-    \ : points(points) { build(); }\n\n  int size() { return len(points); }\n\n  template\
-    \ <typename REAL>\n  REAL area() {\n    return a * 0.5;\n  }\n\n  template <enable_if_t<is_integral<T>::value,\
-    \ int> = 0>\n  T area_2() {\n    return a;\n  }\n\n  bool is_convex() {\n    FOR(j,\
-    \ len(points)) {\n      int i = (j == 0 ? len(points) - 1 : j - 1);\n      int\
-    \ k = (j == len(points) - 1 ? 0 : j + 1);\n      if ((points[j] - points[i]).det(points[k]\
-    \ - points[j]) < 0) return false;\n    }\n    return true;\n  }\n\nprivate:\n\
-    \  void build() {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1\
-    \ == len(points) ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n\
-    \    if (a < 0) {\n      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n\
-    #line 2 \"geo_old/convexhull.hpp\"\n\r\ntemplate<typename T>\r\nvector<int> ConvexHull(vector<pair<T,\
-    \ T>>& XY, string mode = \"full\",\r\n                      bool inclusive = false,\
-    \ bool sorted = false) {\r\n  assert(mode == \"full\" || mode == \"lower\" ||\
-    \ mode == \"upper\");\r\n  ll N = XY.size();\r\n  if (N == 1) return {0};\r\n\
-    \  if (N == 2) return {0, 1};\r\n  vc<int> I = argsort(XY);\r\n\r\n  auto check\
-    \ = [&](ll i, ll j, ll k) -> bool {\r\n    auto xi = XY[i].fi, yi = XY[i].se;\r\
-    \n    auto xj = XY[j].fi, yj = XY[j].se;\r\n    auto xk = XY[k].fi, yk = XY[k].se;\r\
-    \n    auto dx1 = xj - xi, dy1 = yj - yi;\r\n    auto dx2 = xk - xj, dy2 = yk -\
-    \ yj;\r\n    ll det = dx1 * dy2 - dy1 * dx2;\r\n    return (inclusive ? det >=\
-    \ 0 : det > 0);\r\n  };\r\n\r\n  auto calc = [&]() {\r\n    vector<int> P;\r\n\
-    \    for (auto&& k: I) {\r\n      while (P.size() > 1) {\r\n        auto i = P[P.size()\
-    \ - 2];\r\n        auto j = P[P.size() - 1];\r\n        if (check(i, j, k)) break;\r\
-    \n        P.pop_back();\r\n      }\r\n      P.eb(k);\r\n    }\r\n    return P;\r\
+    \ bool is_parallel(Line other) { return a * other.b - b * other.a == 0; }\n\n\
+    \  bool is_orthogonal(Line other) { return a * other.a + b * other.b == 0; }\n\
+    };\n\ntemplate <typename T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T>\
+    \ A, Point<T> B) : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
+    \ y1), Point<T>(x2, y2)) {}\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\
+    \ntemplate <typename T>\nstruct Circle {\n  Point<T> O;\n  T r;\n  Circle(Point<T>\
+    \ O, T r) : O(O), r(r) {}\n  Circle(T x, T y, T r) : O(Point<T>(x, y)), r(r) {}\n\
+    };\n\ntemplate <typename T>\nstruct Polygon {\n  vc<Point<T>> points;\n  T a;\n\
+    \n  template <typename A, typename B>\n  Polygon(vc<pair<A, B>> pairs) {\n   \
+    \ for (auto&& [a, b]: pairs) points.eb(Point<T>(a, b));\n    build();\n  }\n \
+    \ Polygon(vc<Point<T>> points) : points(points) { build(); }\n\n  int size() {\
+    \ return len(points); }\n\n  template <typename REAL>\n  REAL area() {\n    return\
+    \ a * 0.5;\n  }\n\n  template <enable_if_t<is_integral<T>::value, int> = 0>\n\
+    \  T area_2() {\n    return a;\n  }\n\n  bool is_convex() {\n    FOR(j, len(points))\
+    \ {\n      int i = (j == 0 ? len(points) - 1 : j - 1);\n      int k = (j == len(points)\
+    \ - 1 ? 0 : j + 1);\n      if ((points[j] - points[i]).det(points[k] - points[j])\
+    \ < 0) return false;\n    }\n    return true;\n  }\n\nprivate:\n  void build()\
+    \ {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1 == len(points)\
+    \ ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n    if (a < 0) {\n\
+    \      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n#line 2 \"geo_old/convexhull.hpp\"\
+    \n\r\ntemplate<typename T>\r\nvector<int> ConvexHull(vector<pair<T, T>>& XY, string\
+    \ mode = \"full\",\r\n                      bool inclusive = false, bool sorted\
+    \ = false) {\r\n  assert(mode == \"full\" || mode == \"lower\" || mode == \"upper\"\
+    );\r\n  ll N = XY.size();\r\n  if (N == 1) return {0};\r\n  if (N == 2) return\
+    \ {0, 1};\r\n  vc<int> I = argsort(XY);\r\n\r\n  auto check = [&](ll i, ll j,\
+    \ ll k) -> bool {\r\n    auto xi = XY[i].fi, yi = XY[i].se;\r\n    auto xj = XY[j].fi,\
+    \ yj = XY[j].se;\r\n    auto xk = XY[k].fi, yk = XY[k].se;\r\n    auto dx1 = xj\
+    \ - xi, dy1 = yj - yi;\r\n    auto dx2 = xk - xj, dy2 = yk - yj;\r\n    ll det\
+    \ = dx1 * dy2 - dy1 * dx2;\r\n    return (inclusive ? det >= 0 : det > 0);\r\n\
+    \  };\r\n\r\n  auto calc = [&]() {\r\n    vector<int> P;\r\n    for (auto&& k:\
+    \ I) {\r\n      while (P.size() > 1) {\r\n        auto i = P[P.size() - 2];\r\n\
+    \        auto j = P[P.size() - 1];\r\n        if (check(i, j, k)) break;\r\n \
+    \       P.pop_back();\r\n      }\r\n      P.eb(k);\r\n    }\r\n    return P;\r\
     \n  };\r\n\r\n  vc<int> P;\r\n  if (mode == \"full\" || mode == \"lower\") {\r\
     \n    vc<int> Q = calc();\r\n    P.insert(P.end(), all(Q));\r\n  }\r\n  if (mode\
     \ == \"full\" || mode == \"upper\") {\r\n    if (!P.empty()) P.pop_back();\r\n\
@@ -128,7 +127,7 @@ data:
   isVerificationFile: false
   path: geo_old/convexhull.hpp
   requiredBy: []
-  timestamp: '2022-08-24 15:10:52+09:00'
+  timestamp: '2022-08-28 10:23:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo_old/convexhull.hpp

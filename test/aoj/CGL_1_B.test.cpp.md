@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/reflection.hpp
     title: geo/reflection.hpp
   - icon: ':question:'
@@ -217,36 +217,34 @@ data:
     \ x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n  template <typename\
     \ U>\n  U eval(Point<U> P) {\n    return a * P.x + b * P.y + c;\n  }\n\n  template\
     \ <typename U>\n  T eval(U x, U y) {\n    return a * x + b * y + c;\n  }\n\n \
-    \ template <enable_if_t<is_integral<T>::value, int> = 0>\n  bool is_parallel(Line\
-    \ other) {\n    return a * other.b - b * other.a == 0;\n  }\n\n  template <enable_if_t<is_integral<T>::value,\
-    \ int> = 0>\n  bool is_orthogonal(Line other) {\n    return a * other.a + b *\
-    \ other.b == 0;\n  }\n};\n\ntemplate <typename T>\nstruct Segment {\n  Point<T>\
-    \ A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T x1,\
-    \ T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n\
-    \  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate <typename T>\nstruct\
-    \ Circle {\n  Point<T> O;\n  T r;\n  Circle(Point<T> O, T r) : O(O), r(r) {}\n\
-    \  Circle(T x, T y, T r) : O(Point<T>(x, y)), r(r) {}\n};\n\ntemplate <typename\
-    \ T>\nstruct Polygon {\n  vc<Point<T>> points;\n  T a;\n\n  template <typename\
-    \ A, typename B>\n  Polygon(vc<pair<A, B>> pairs) {\n    for (auto&& [a, b]: pairs)\
-    \ points.eb(Point<T>(a, b));\n    build();\n  }\n  Polygon(vc<Point<T>> points)\
-    \ : points(points) { build(); }\n\n  int size() { return len(points); }\n\n  template\
-    \ <typename REAL>\n  REAL area() {\n    return a * 0.5;\n  }\n\n  template <enable_if_t<is_integral<T>::value,\
-    \ int> = 0>\n  T area_2() {\n    return a;\n  }\n\n  bool is_convex() {\n    FOR(j,\
-    \ len(points)) {\n      int i = (j == 0 ? len(points) - 1 : j - 1);\n      int\
-    \ k = (j == len(points) - 1 ? 0 : j + 1);\n      if ((points[j] - points[i]).det(points[k]\
-    \ - points[j]) < 0) return false;\n    }\n    return true;\n  }\n\nprivate:\n\
-    \  void build() {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1\
-    \ == len(points) ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n\
-    \    if (a < 0) {\n      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n\
-    #line 4 \"geo/reflection.hpp\"\n\ntemplate <typename REAL, typename T, typename\
-    \ U>\nPoint<REAL> reflection(Point<T> P, Line<U> L) {\n  REAL t = REAL(L.eval(P))\
-    \ / (L.a * L.a + L.b * L.b);\n  REAL x = P.x - 2 * t * L.a;\n  REAL y = P.y -\
-    \ 2 * t * L.b;\n  return Point<REAL>(x, y);\n};\n#line 9 \"test/aoj/CGL_1_B.test.cpp\"\
-    \n\nvoid solve() {\n  using Re = double;\n  LL(a, b, c, d);\n  Line<ll> L(a, b,\
-    \ c, d);\n  LL(Q);\n  FOR(Q) {\n    LL(x, y);\n    Point<Re> p = reflection<Re,\
-    \ ll, ll>(Point<ll>(x, y), L);\n    print(p.x, p.y);\n  }\n}\n\nsigned main()\
-    \ {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T)\
-    \ solve();\n\n  return 0;\n}\n"
+    \ bool is_parallel(Line other) { return a * other.b - b * other.a == 0; }\n\n\
+    \  bool is_orthogonal(Line other) { return a * other.a + b * other.b == 0; }\n\
+    };\n\ntemplate <typename T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T>\
+    \ A, Point<T> B) : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
+    \ y1), Point<T>(x2, y2)) {}\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\
+    \ntemplate <typename T>\nstruct Circle {\n  Point<T> O;\n  T r;\n  Circle(Point<T>\
+    \ O, T r) : O(O), r(r) {}\n  Circle(T x, T y, T r) : O(Point<T>(x, y)), r(r) {}\n\
+    };\n\ntemplate <typename T>\nstruct Polygon {\n  vc<Point<T>> points;\n  T a;\n\
+    \n  template <typename A, typename B>\n  Polygon(vc<pair<A, B>> pairs) {\n   \
+    \ for (auto&& [a, b]: pairs) points.eb(Point<T>(a, b));\n    build();\n  }\n \
+    \ Polygon(vc<Point<T>> points) : points(points) { build(); }\n\n  int size() {\
+    \ return len(points); }\n\n  template <typename REAL>\n  REAL area() {\n    return\
+    \ a * 0.5;\n  }\n\n  template <enable_if_t<is_integral<T>::value, int> = 0>\n\
+    \  T area_2() {\n    return a;\n  }\n\n  bool is_convex() {\n    FOR(j, len(points))\
+    \ {\n      int i = (j == 0 ? len(points) - 1 : j - 1);\n      int k = (j == len(points)\
+    \ - 1 ? 0 : j + 1);\n      if ((points[j] - points[i]).det(points[k] - points[j])\
+    \ < 0) return false;\n    }\n    return true;\n  }\n\nprivate:\n  void build()\
+    \ {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1 == len(points)\
+    \ ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n    if (a < 0) {\n\
+    \      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n#line 4 \"geo/reflection.hpp\"\
+    \n\ntemplate <typename REAL, typename T, typename U>\nPoint<REAL> reflection(Point<T>\
+    \ P, Line<U> L) {\n  REAL t = REAL(L.eval(P)) / (L.a * L.a + L.b * L.b);\n  REAL\
+    \ x = P.x - 2 * t * L.a;\n  REAL y = P.y - 2 * t * L.b;\n  return Point<REAL>(x,\
+    \ y);\n};\n#line 9 \"test/aoj/CGL_1_B.test.cpp\"\n\nvoid solve() {\n  using Re\
+    \ = double;\n  LL(a, b, c, d);\n  Line<ll> L(a, b, c, d);\n  LL(Q);\n  FOR(Q)\
+    \ {\n    LL(x, y);\n    Point<Re> p = reflection<Re, ll, ll>(Point<ll>(x, y),\
+    \ L);\n    print(p.x, p.y);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B\"\
     \n#define ERROR 0.00000001\n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\
     \n\n#include \"geo/reflection.hpp\"\n\nvoid solve() {\n  using Re = double;\n\
@@ -262,7 +260,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2022-08-24 15:10:52+09:00'
+  timestamp: '2022-08-28 10:23:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_1_B.test.cpp

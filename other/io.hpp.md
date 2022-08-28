@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/0081.test.cpp
+    title: test/aoj/0081.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/0343.test.cpp
     title: test/aoj/0343.test.cpp
@@ -1417,6 +1420,7 @@ data:
   - test/aoj/ALDS1_5_inversion.test.cpp
   - test/aoj/ITP1_11_D.test.cpp
   - test/aoj/GRL_3_B.test.cpp
+  - test/aoj/0081.test.cpp
   - test/aoj/1508_splay.test.cpp
   - test/aoj/2995_dsu.test.cpp
   - test/aoj/DSL_2_G_fenwick_raq.test.cpp
