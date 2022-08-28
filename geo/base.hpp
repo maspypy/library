@@ -54,15 +54,9 @@ struct Line {
     return a * x + b * y + c;
   }
 
-  template <enable_if_t<is_integral<T>::value, int> = 0>
-  bool is_parallel(Line other) {
-    return a * other.b - b * other.a == 0;
-  }
+  bool is_parallel(Line other) { return a * other.b - b * other.a == 0; }
 
-  template <enable_if_t<is_integral<T>::value, int> = 0>
-  bool is_orthogonal(Line other) {
-    return a * other.a + b * other.b == 0;
-  }
+  bool is_orthogonal(Line other) { return a * other.a + b * other.b == 0; }
 };
 
 template <typename T>
