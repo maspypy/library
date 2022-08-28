@@ -401,11 +401,20 @@ data:
       path: geo/distance.hpp
       title: geo/distance.hpp
     - icon: ':heavy_check_mark:'
+      path: geo/dynamicupperhull.hpp
+      title: geo/dynamicupperhull.hpp
+    - icon: ':heavy_check_mark:'
       path: geo/incircle.hpp
       title: geo/incircle.hpp
     - icon: ':question:'
       path: geo/incremental_convexhull.hpp
       title: geo/incremental_convexhull.hpp
+    - icon: ':heavy_check_mark:'
+      path: geo/manhattan_mst.hpp
+      title: geo/manhattan_mst.hpp
+    - icon: ':warning:'
+      path: geo/manhattan_nns.hpp
+      title: geo/manhattan_nns.hpp
     - icon: ':heavy_check_mark:'
       path: geo/outcircle.hpp
       title: geo/outcircle.hpp
@@ -1475,7 +1484,7 @@ data:
       title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - name: test/library_checker/geometry
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/geometry/convex_layers.test.cpp
       title: test/library_checker/geometry/convex_layers.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1513,7 +1522,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/enumerate_triangles.test.cpp
       title: test/library_checker/graph/enumerate_triangles.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/manhattan_mst.test.cpp
       title: test/library_checker/graph/manhattan_mst.test.cpp
     - icon: ':heavy_check_mark:'

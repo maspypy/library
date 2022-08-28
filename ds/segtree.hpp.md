@@ -12,6 +12,9 @@ data:
     path: ds/uniqueproductquery.hpp
     title: ds/uniqueproductquery.hpp
   - icon: ':warning:'
+    path: geo/manhattan_nns.hpp
+    title: geo/manhattan_nns.hpp
+  - icon: ':warning:'
     path: geo_old/manhattan_nns.hpp
     title: geo_old/manhattan_nns.hpp
   - icon: ':heavy_check_mark:'
@@ -175,6 +178,7 @@ data:
   - graph/minimum_spanning_tree.hpp
   - graph/treemonoid.hpp
   - graph/treegroup.hpp
+  - geo/manhattan_nns.hpp
   - ds/sortable_segtree.hpp
   - ds/uniqueproductquery.hpp
   - ds/range_mex_query.hpp

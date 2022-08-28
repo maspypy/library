@@ -12,6 +12,9 @@ data:
     path: geo/distance.hpp
     title: geo/distance.hpp
   - icon: ':heavy_check_mark:'
+    path: geo/dynamicupperhull.hpp
+    title: geo/dynamicupperhull.hpp
+  - icon: ':heavy_check_mark:'
     path: geo/incircle.hpp
     title: geo/incircle.hpp
   - icon: ':question:'
@@ -63,6 +66,9 @@ data:
   - icon: ':x:'
     path: test/atcoder/abc266c.test.cpp
     title: test/atcoder/abc266c.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/geometry/convex_layers.test.cpp
+    title: test/library_checker/geometry/convex_layers.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/sort_points_by_argument.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument.test.cpp
@@ -162,6 +168,7 @@ data:
   - geo/projection.hpp
   - geo/distance.hpp
   - geo/incremental_convexhull.hpp
+  - geo/dynamicupperhull.hpp
   - geo/angle_sort.hpp
   - geo/outcircle.hpp
   - geo/reflection.hpp
@@ -172,6 +179,7 @@ data:
   verifiedWith:
   - test/mytest/incremental_ch.test.cpp
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
+  - test/library_checker/geometry/convex_layers.test.cpp
   - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - test/aoj/CGL_3_B.test.cpp
   - test/aoj/CGL_7_B.test.cpp

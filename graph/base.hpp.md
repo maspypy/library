@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
+  - icon: ':heavy_check_mark:'
+    path: geo/manhattan_mst.hpp
+    title: geo/manhattan_mst.hpp
   - icon: ':warning:'
     path: geo_old/manhattan_mst.hpp
     title: geo_old/manhattan_mst.hpp
@@ -238,6 +241,9 @@ data:
     path: test/library_checker/graph/enumerate_triangles.test.cpp
     title: test/library_checker/graph/enumerate_triangles.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/manhattan_mst.test.cpp
+    title: test/library_checker/graph/manhattan_mst.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/maximum_independent_set.test.cpp
     title: test/library_checker/graph/maximum_independent_set.test.cpp
   - icon: ':heavy_check_mark:'
@@ -454,6 +460,7 @@ data:
   - graph/bellmanford.hpp
   - graph/dial.hpp
   - flow/bipartite.hpp
+  - geo/manhattan_mst.hpp
   timestamp: '2022-08-18 17:59:01+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -485,6 +492,7 @@ data:
   - test/library_checker/graph/enumerate_triangles.test.cpp
   - test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
+  - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/graph/cycle_detection.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/verted_add_contour_sum.test.cpp

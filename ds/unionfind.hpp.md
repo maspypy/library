@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
+  - icon: ':heavy_check_mark:'
+    path: geo/manhattan_mst.hpp
+    title: geo/manhattan_mst.hpp
   - icon: ':warning:'
     path: geo_old/manhattan_mst.hpp
     title: geo_old/manhattan_mst.hpp
@@ -48,6 +51,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/manhattan_mst.test.cpp
+    title: test/library_checker/graph/manhattan_mst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/114_steriner_tree.test.cpp
     title: test/yukicoder/114_steriner_tree.test.cpp
@@ -99,12 +105,14 @@ data:
   - graph/functional.hpp
   - graph/maximum_antichain.hpp
   - flow/bipartite.hpp
+  - geo/manhattan_mst.hpp
   timestamp: '2022-08-11 02:13:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1170_online_uf.test.cpp
   - test/yukicoder/1479_bipartite_vertex_cover.test.cpp
   - test/yukicoder/114_steriner_tree.test.cpp
+  - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/datastructure/unionfind.test.cpp
   - test/aoj/2995_dsu.test.cpp

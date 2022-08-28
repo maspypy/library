@@ -9,6 +9,9 @@ data:
     path: ds/dynamic_lichao.hpp
     title: ds/dynamic_lichao.hpp
   - icon: ':warning:'
+    path: geo/manhattan_nns.hpp
+    title: geo/manhattan_nns.hpp
+  - icon: ':warning:'
     path: geo_old/manhattan_nns.hpp
     title: geo_old/manhattan_nns.hpp
   - icon: ':warning:'
@@ -47,6 +50,7 @@ data:
   requiredBy:
   - geo_old/manhattan_nns.hpp
   - alg/lazy_minidx_add.hpp
+  - geo/manhattan_nns.hpp
   - pds/persistent_dynamic_lichao.hpp
   - ds/dynamic_lichao.hpp
   timestamp: '2022-05-27 16:21:11+09:00'

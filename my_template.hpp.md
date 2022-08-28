@@ -382,6 +382,9 @@ data:
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/geometry/convex_layers.test.cpp
+    title: test/library_checker/geometry/convex_layers.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/sort_points_by_argument.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument.test.cpp
   - icon: ':heavy_check_mark:'
@@ -414,6 +417,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/enumerate_triangles.test.cpp
     title: test/library_checker/graph/enumerate_triangles.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/manhattan_mst.test.cpp
+    title: test/library_checker/graph/manhattan_mst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/maximum_independent_set.test.cpp
     title: test/library_checker/graph/maximum_independent_set.test.cpp
@@ -1188,6 +1194,7 @@ data:
   - test/mytest/is_substring.test.cpp
   - test/mytest/gray_code.test.cpp
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
+  - test/library_checker/geometry/convex_layers.test.cpp
   - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - test/library_checker/tree/cartesian_tree.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
@@ -1220,6 +1227,7 @@ data:
   - test/library_checker/graph/enumerate_triangles.test.cpp
   - test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
+  - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/graph/cycle_detection.test.cpp
   - test/library_checker/graph/assignment_mcf.test.cpp
   - test/library_checker/graph/assignment.test.cpp
