@@ -26,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/projection.hpp
     title: geo/projection.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/reflection.hpp
     title: geo/reflection.hpp
   - icon: ':warning:'
@@ -36,9 +36,6 @@ data:
     path: geo_old/dynamicupperhull.hpp
     title: geo_old/dynamicupperhull.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/aoj/0081.test.cpp
-    title: test/aoj/0081.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_1_A.test.cpp
     title: test/aoj/CGL_1_A.test.cpp
@@ -185,7 +182,6 @@ data:
   - test/aoj/CGL_3_B.test.cpp
   - test/aoj/CGL_7_B.test.cpp
   - test/aoj/CGL_1_A.test.cpp
-  - test/aoj/0081.test.cpp
   - test/aoj/CGL_2_B.test.cpp
   - test/aoj/CGL_2_D.test.cpp
   - test/aoj/CGL_1_B.test.cpp

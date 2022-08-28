@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/reflection.hpp
     title: geo/reflection.hpp
   - icon: ':question:'
