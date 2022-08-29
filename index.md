@@ -2059,3 +2059,9 @@ data:
       title: test/yukicoder/bbst_max_right.test.cpp
 layout: toppage
 ---
+aaaaaaaa
+
+index.md
+test
+
+bbbbbbbb
