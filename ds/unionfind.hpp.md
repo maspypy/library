@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
   - icon: ':x:'
@@ -11,16 +11,16 @@ data:
   - icon: ':warning:'
     path: geo_old/manhattan_mst.hpp
     title: geo_old/manhattan_mst.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
   - icon: ':warning:'
     path: graph/functional.hpp
     title: graph/functional.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -30,19 +30,19 @@ data:
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2251_maxantichain.test.cpp
     title: test/aoj/2251_maxantichain.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2995_dsu.test.cpp
     title: test/aoj/2995_dsu.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A_mst.test.cpp
     title: test/aoj/GRL_2_A_mst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/unionfind.test.cpp
     title: test/library_checker/datastructure/unionfind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
   - icon: ':x:'

@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/dualsegtree.hpp
     title: ds/dualsegtree.hpp
   - icon: ':question:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A_mst.test.cpp
     title: test/aoj/GRL_2_A_mst.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/lazysegtree.hpp\"\n\ntemplate <typename Lazy>\nstruct\
@@ -121,10 +121,10 @@ data:
     \ for (auto&& e: edges) deg[e.frm]++, deg[e.to]++;\n    }\n    return deg;\n \
     \ }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n    static vector<int> indeg,\
     \ outdeg;\n    if (indeg.empty()) {\n      indeg.resize(N);\n      outdeg.resize(N);\n\
-    \      for (auto&& e: G.edges) { indeg[e.to]++, outdeg[e.frm]++; }\n    }\n  \
-    \  return {indeg, outdeg};\n  }\n\n  int deg(int v) {\n    static vc<int> deg;\n\
-    \    if (deg.empty()) deg = deg_array();\n    return deg[v];\n  }\n\n  pair<int,\
-    \ int> deg_inout(int v) {\n    static vc<int> indeg, outdeg;\n    if (indeg.empty())\
+    \      for (auto&& e: edges) { indeg[e.to]++, outdeg[e.frm]++; }\n    }\n    return\
+    \ {indeg, outdeg};\n  }\n\n  int deg(int v) {\n    static vc<int> deg;\n    if\
+    \ (deg.empty()) deg = deg_array();\n    return deg[v];\n  }\n\n  pair<int, int>\
+    \ deg_inout(int v) {\n    static vc<int> indeg, outdeg;\n    if (indeg.empty())\
     \ tie(indeg, outdeg) = deg_array_inout();\n    return {indeg[v], outdeg[v]};\n\
     \  }\n\n  int in_deg(int v) { return deg_inout(v).fi; }\n  int out_deg(int v)\
     \ { return deg_inout(v).se; }\n\n  void debug() {\n    print(\"Graph\");\n   \
@@ -258,8 +258,8 @@ data:
   path: graph/dualtreemonoid.hpp
   requiredBy:
   - graph/minimum_spanning_tree.hpp
-  timestamp: '2022-08-29 19:35:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-08-29 20:13:36+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_2_A_mst.test.cpp
 documentation_of: graph/dualtreemonoid.hpp

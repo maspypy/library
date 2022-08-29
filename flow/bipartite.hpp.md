@@ -4,21 +4,21 @@ data:
   - icon: ':question:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2251_maxantichain.test.cpp
     title: test/aoj/2251_maxantichain.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
   - icon: ':x:'
@@ -26,7 +26,7 @@ data:
     title: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -62,7 +62,7 @@ data:
     \     deg.resize(N);\n      for (auto&& e: edges) deg[e.frm]++, deg[e.to]++;\n\
     \    }\n    return deg;\n  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n\
     \    static vector<int> indeg, outdeg;\n    if (indeg.empty()) {\n      indeg.resize(N);\n\
-    \      outdeg.resize(N);\n      for (auto&& e: G.edges) { indeg[e.to]++, outdeg[e.frm]++;\
+    \      outdeg.resize(N);\n      for (auto&& e: edges) { indeg[e.to]++, outdeg[e.frm]++;\
     \ }\n    }\n    return {indeg, outdeg};\n  }\n\n  int deg(int v) {\n    static\
     \ vc<int> deg;\n    if (deg.empty()) deg = deg_array();\n    return deg[v];\n\
     \  }\n\n  pair<int, int> deg_inout(int v) {\n    static vc<int> indeg, outdeg;\n\
@@ -175,8 +175,8 @@ data:
   path: flow/bipartite.hpp
   requiredBy:
   - graph/maximum_antichain.hpp
-  timestamp: '2022-08-29 19:35:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-08-29 20:13:36+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1479_bipartite_vertex_cover.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp

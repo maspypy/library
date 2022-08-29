@@ -1,18 +1,18 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/reachability.hpp
     title: graph/reachability.hpp
   - icon: ':x:'
     path: graph/twosat.hpp
     title: graph/twosat.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/275_dag_reachability.test.cpp
     title: test/aoj/275_dag_reachability.test.cpp
   - icon: ':x:'
@@ -29,7 +29,7 @@ data:
     title: test/yukicoder/1293_scc.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -65,7 +65,7 @@ data:
     \     deg.resize(N);\n      for (auto&& e: edges) deg[e.frm]++, deg[e.to]++;\n\
     \    }\n    return deg;\n  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n\
     \    static vector<int> indeg, outdeg;\n    if (indeg.empty()) {\n      indeg.resize(N);\n\
-    \      outdeg.resize(N);\n      for (auto&& e: G.edges) { indeg[e.to]++, outdeg[e.frm]++;\
+    \      outdeg.resize(N);\n      for (auto&& e: edges) { indeg[e.to]++, outdeg[e.frm]++;\
     \ }\n    }\n    return {indeg, outdeg};\n  }\n\n  int deg(int v) {\n    static\
     \ vc<int> deg;\n    if (deg.empty()) deg = deg_array();\n    return deg[v];\n\
     \  }\n\n  pair<int, int> deg_inout(int v) {\n    static vc<int> indeg, outdeg;\n\
@@ -118,8 +118,8 @@ data:
   requiredBy:
   - graph/reachability.hpp
   - graph/twosat.hpp
-  timestamp: '2022-08-29 19:35:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-08-29 20:13:36+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1293_scc.test.cpp
   - test/yukicoder/1170_range_to_range.test.cpp

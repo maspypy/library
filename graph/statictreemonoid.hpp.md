@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid_reverse.hpp
     title: alg/monoid_reverse.hpp
   - icon: ':heavy_check_mark:'
     path: ds/disjointsparse.hpp
     title: ds/disjointsparse.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
@@ -81,7 +81,7 @@ data:
     \     deg.resize(N);\n      for (auto&& e: edges) deg[e.frm]++, deg[e.to]++;\n\
     \    }\n    return deg;\n  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n\
     \    static vector<int> indeg, outdeg;\n    if (indeg.empty()) {\n      indeg.resize(N);\n\
-    \      outdeg.resize(N);\n      for (auto&& e: G.edges) { indeg[e.to]++, outdeg[e.frm]++;\
+    \      outdeg.resize(N);\n      for (auto&& e: edges) { indeg[e.to]++, outdeg[e.frm]++;\
     \ }\n    }\n    return {indeg, outdeg};\n  }\n\n  int deg(int v) {\n    static\
     \ vc<int> deg;\n    if (deg.empty()) deg = deg_array();\n    return deg[v];\n\
     \  }\n\n  pair<int, int> deg_inout(int v) {\n    static vc<int> indeg, outdeg;\n\
@@ -274,7 +274,7 @@ data:
   isVerificationFile: false
   path: graph/statictreemonoid.hpp
   requiredBy: []
-  timestamp: '2022-08-29 19:35:42+09:00'
+  timestamp: '2022-08-29 20:13:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/statictreemonoid.hpp

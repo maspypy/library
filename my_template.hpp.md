@@ -12,13 +12,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508_splay.test.cpp
     title: test/aoj/1508_splay.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2251_maxantichain.test.cpp
     title: test/aoj/2251_maxantichain.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2677.test.cpp
     title: test/aoj/2677.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/275_dag_reachability.test.cpp
     title: test/aoj/275_dag_reachability.test.cpp
   - icon: ':heavy_check_mark:'
@@ -27,13 +27,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2842_seg2d_dense.test.cpp
     title: test/aoj/2842_seg2d_dense.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2995_dsu.test.cpp
     title: test/aoj/2995_dsu.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_10_C_LCS.test.cpp
     title: test/aoj/ALDS1_10_C_LCS.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_12_B_dial.test.cpp
     title: test/aoj/ALDS1_12_B_dial.test.cpp
   - icon: ':heavy_check_mark:'
@@ -87,7 +87,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_1_H_kanpsack01.test.cpp
     title: test/aoj/DPL_1_H_kanpsack01.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
     title: test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
   - icon: ':heavy_check_mark:'
@@ -129,19 +129,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_4_A_rectangle_union.test.cpp
     title: test/aoj/DSL_4_A_rectangle_union.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_B_bellmanford.test.cpp
     title: test/aoj/GRL_1_B_bellmanford.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_C_warshallfloyd.test.cpp
     title: test/aoj/GRL_1_C_warshallfloyd.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A_mst.test.cpp
     title: test/aoj/GRL_2_A_mst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_B.test.cpp
     title: test/aoj/GRL_3_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
     title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -150,7 +150,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_6_B.test.cpp
     title: test/aoj/GRL_6_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRO_3_A_articulation.test.cpp
     title: test/aoj/GRO_3_A_articulation.test.cpp
   - icon: ':heavy_check_mark:'
@@ -357,25 +357,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/unionfind.test.cpp
     title: test/library_checker/datastructure/unionfind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -393,13 +393,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/assignment_mcf.test.cpp
     title: test/library_checker/graph/assignment_mcf.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/biconnected_component.test.cpp
     title: test/library_checker/graph/biconnected_component.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
   - icon: ':x:'
