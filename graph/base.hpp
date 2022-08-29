@@ -43,6 +43,8 @@ struct Graph {
   Graph() : N(0), M(0), prepared(0) {}
   Graph(int N) : N(N), M(0), prepared(0) {}
 
+  void resize(int n) { N = n; }
+
   void add(int frm, int to, T cost = 1, int i = -1) {
     assert(!prepared);
     assert(0 <= frm && 0 <= to && to < N);
