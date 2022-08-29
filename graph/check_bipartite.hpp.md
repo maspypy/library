@@ -11,17 +11,23 @@ data:
   - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
+  - icon: ':x:'
+    path: graph/dag_path_cover.hpp
+    title: graph/dag_path_cover.hpp
   - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/2251_dag_path_cover.test.cpp
+    title: test/aoj/2251_dag_path_cover.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/2251_maxantichain.test.cpp
     title: test/aoj/2251_maxantichain.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
     title: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
   _isVerificationFailed: true
@@ -112,6 +118,7 @@ data:
   isVerificationFile: false
   path: graph/check_bipartite.hpp
   requiredBy:
+  - graph/dag_path_cover.hpp
   - graph/maximum_antichain.hpp
   - flow/bipartite.hpp
   timestamp: '2022-08-29 20:13:36+09:00'
@@ -119,6 +126,7 @@ data:
   verifiedWith:
   - test/yukicoder/1479_bipartite_vertex_cover.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
+  - test/aoj/2251_dag_path_cover.test.cpp
   - test/aoj/2251_maxantichain.test.cpp
 documentation_of: graph/check_bipartite.hpp
 layout: document

@@ -5,10 +5,13 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/mincostcycle.hpp
     title: graph/mincostcycle.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/2251_dag_path_cover.test.cpp
+    title: test/aoj/2251_dag_path_cover.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/2251_maxantichain.test.cpp
     title: test/aoj/2251_maxantichain.test.cpp
@@ -18,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/shortest_path.test.cpp
     title: test/library_checker/graph/shortest_path.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1320_mincostcycle.test.cpp
     title: test/yukicoder/1320_mincostcycle.test.cpp
   _isVerificationFailed: true
@@ -119,6 +122,7 @@ data:
   - test/yukicoder/1320_mincostcycle.test.cpp
   - test/library_checker/graph/shortest_path.test.cpp
   - test/aoj/275_dag_reachability.test.cpp
+  - test/aoj/2251_dag_path_cover.test.cpp
   - test/aoj/2251_maxantichain.test.cpp
 documentation_of: graph/dijkstra.hpp
 layout: document

@@ -14,6 +14,9 @@ data:
   - icon: ':question:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
+  - icon: ':x:'
+    path: graph/dag_path_cover.hpp
+    title: graph/dag_path_cover.hpp
   - icon: ':warning:'
     path: graph/functional.hpp
     title: graph/functional.hpp
@@ -30,6 +33,9 @@ data:
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/2251_dag_path_cover.test.cpp
+    title: test/aoj/2251_dag_path_cover.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/2251_maxantichain.test.cpp
     title: test/aoj/2251_maxantichain.test.cpp
@@ -54,7 +60,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1170_online_uf.test.cpp
     title: test/yukicoder/1170_online_uf.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
     title: test/yukicoder/1479_bipartite_vertex_cover.test.cpp
   _isVerificationFailed: true
@@ -94,6 +100,7 @@ data:
   - graph/minimum_spanning_tree.hpp
   - graph/online_unionfind.hpp
   - graph/tree_of_unionfind.hpp
+  - graph/dag_path_cover.hpp
   - graph/check_bipartite.hpp
   - graph/functional.hpp
   - graph/maximum_antichain.hpp
@@ -109,6 +116,7 @@ data:
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/datastructure/unionfind.test.cpp
   - test/aoj/2995_dsu.test.cpp
+  - test/aoj/2251_dag_path_cover.test.cpp
   - test/aoj/2251_maxantichain.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp
 documentation_of: ds/unionfind.hpp
