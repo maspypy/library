@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/dijkstra.hpp
     title: graph/dijkstra.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/restore_path.hpp
     title: graph/restore_path.hpp
   - icon: ':question:'

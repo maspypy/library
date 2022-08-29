@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
   - icon: ':question:'
