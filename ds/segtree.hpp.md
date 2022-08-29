@@ -14,9 +14,6 @@ data:
   - icon: ':warning:'
     path: geo/manhattan_nns.hpp
     title: geo/manhattan_nns.hpp
-  - icon: ':warning:'
-    path: geo_old/manhattan_nns.hpp
-    title: geo_old/manhattan_nns.hpp
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
@@ -177,7 +174,6 @@ data:
   isVerificationFile: false
   path: ds/segtree.hpp
   requiredBy:
-  - geo_old/manhattan_nns.hpp
   - graph/minimum_spanning_tree.hpp
   - graph/treemonoid.hpp
   - graph/treegroup.hpp

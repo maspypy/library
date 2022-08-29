@@ -12,9 +12,6 @@ data:
     path: geo/manhattan_nns.hpp
     title: geo/manhattan_nns.hpp
   - icon: ':warning:'
-    path: geo_old/manhattan_nns.hpp
-    title: geo_old/manhattan_nns.hpp
-  - icon: ':warning:'
     path: pds/persistent_dynamic_lichao.hpp
     title: pds/persistent_dynamic_lichao.hpp
   _extendedVerifiedWith:
@@ -48,7 +45,6 @@ data:
   isVerificationFile: false
   path: alg/monoid_min_idx.hpp
   requiredBy:
-  - geo_old/manhattan_nns.hpp
   - alg/lazy_minidx_add.hpp
   - geo/manhattan_nns.hpp
   - pds/persistent_dynamic_lichao.hpp

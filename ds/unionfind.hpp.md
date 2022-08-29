@@ -5,12 +5,9 @@ data:
   - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/manhattan_mst.hpp
     title: geo/manhattan_mst.hpp
-  - icon: ':warning:'
-    path: geo_old/manhattan_mst.hpp
-    title: geo_old/manhattan_mst.hpp
   - icon: ':question:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
@@ -51,7 +48,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/manhattan_mst.test.cpp
     title: test/library_checker/graph/manhattan_mst.test.cpp
   - icon: ':x:'
@@ -96,7 +93,6 @@ data:
   isVerificationFile: false
   path: ds/unionfind.hpp
   requiredBy:
-  - geo_old/manhattan_mst.hpp
   - graph/minimum_spanning_tree.hpp
   - graph/online_unionfind.hpp
   - graph/tree_of_unionfind.hpp

@@ -29,12 +29,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/reflection.hpp
     title: geo/reflection.hpp
-  - icon: ':warning:'
-    path: geo_old/convexhull.hpp
-    title: geo_old/convexhull.hpp
-  - icon: ':warning:'
-    path: geo_old/dynamicupperhull.hpp
-    title: geo_old/dynamicupperhull.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_1_A.test.cpp
@@ -161,8 +155,6 @@ data:
   isVerificationFile: false
   path: geo/base.hpp
   requiredBy:
-  - geo_old/convexhull.hpp
-  - geo_old/dynamicupperhull.hpp
   - geo/projection.hpp
   - geo/distance.hpp
   - geo/incremental_convexhull.hpp
