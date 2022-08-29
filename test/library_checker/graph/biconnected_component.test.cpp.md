@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/biconnected_component.hpp
     title: graph/biconnected_component.hpp
   - icon: ':question:'
@@ -15,25 +15,25 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/biconnected_components
+    PROBLEM: https://yukicoder.me/problems/no/1326
     links:
-    - https://judge.yosupo.jp/problem/biconnected_components
+    - https://yukicoder.me/problems/no/1326
   bundledCode: "#line 1 \"test/library_checker/graph/biconnected_component.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/biconnected_components\"\n\
-    #line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
-    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
-    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
-    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
-    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    \n#define PROBLEM \"https://yukicoder.me/problems/no/1326\"\n#line 1 \"my_template.hpp\"\
+    \n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n\
+    #include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing\
+    \ pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing\
+    \ u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing\
+    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -210,105 +210,84 @@ data:
     \ &G->csr_edges[r];\n    }\n\n  private:\n    const Graph* G;\n    int l, r;\n\
     \  };\n\n  bool is_prepared() { return prepared; }\n  constexpr bool is_directed()\
     \ { return directed; }\n\n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int\
-    \ N) : N(N), M(0), prepared(0) {}\n\n  void add(int frm, int to, T cost = 1, int\
-    \ i = -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <= to && to < N);\n\
-    \    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n\
-    \    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool wt = false, int off = 1)\
-    \ { read_graph(N - 1, wt, off); }\n\n  void read_graph(int M, bool wt = false,\
-    \ int off = 1) {\n    for (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a\
-    \ -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n  \
-    \      T c;\n        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n\
-    \  }\n\n  void read_parent(int off = 1) {\n    for (int v = 1; v < N; ++v) {\n\
-    \      INT(p);\n      p -= off;\n      add(p, v);\n    }\n    build();\n  }\n\n\
-    \  void build() {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N\
-    \ + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if\
-    \ (!directed) indptr[e.to + 1]++;\n    }\n    for (int v = 0; v < N; ++v) { indptr[v\
-    \ + 1] += indptr[v]; }\n    auto counter = indptr;\n    csr_edges.resize(indptr.back()\
-    \ + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n\
-    \      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm,\
-    \ e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n \
-    \   assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\n \
-    \ vc<int> deg_array() {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n\
-    \  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n    if (vc_indeg.empty())\
-    \ calc_deg_inout();\n    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v)\
-    \ {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n  int\
-    \ in_deg(int v) {\n    if (vc_indeg.empty()) calc_deg_inout();\n    return vc_indeg[v];\n\
-    \  }\n\n  int out_deg(int v) {\n    if (vc_outdeg.empty()) calc_deg_inout();\n\
-    \    return vc_outdeg[v];\n  }\n\n  void debug() {\n    print(\"Graph\");\n  \
-    \  if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e: edges)\
-    \ print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\", indptr);\n\
-    \      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\nprivate:\n  void calc_deg()\
-    \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
-    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
-    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
-    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/biconnected_component.hpp\"\
-    \n\n/*\n\u5B64\u7ACB\u70B9\u306F\u3001\u8FBA\u306E\u306A\u3044 component \u3067\
-    \u3001block \u306B\u306A\u308B\u3002\u95A2\u7BC0\u70B9\u3067\u306F\u306A\u3044\
-    \u3002\nblock cut tree\u306E\u9802\u70B9\u756A\u53F7\uFF1A\n[0, n_block)\uFF1A\
-    block\n[n_block, n_block + n_cut)\uFF1Acut \uFF08\u95A2\u7BC0\u70B9\uFF09\n*/\n\
-    template <typename GT>\nstruct Biconnected_Component {\n  GT& G;\n  vc<pair<int,\
-    \ int>> BCT_edges;\n  int n_block, n_cut;\n  vc<vc<int>> comp_e;\n  vc<vc<int>>\
-    \ comp_v; // block -> vs\n  vc<int> BCT_idx_edge;\n  vc<int> BCT_idx_vertex;\n\
-    \n  Biconnected_Component(GT& G) : G(G) {\n    auto [ord, low] = calculate_lowlink();\n\
-    \    calculate_bcc(ord, low);\n    build_bct();\n  }\n\n  int BCT_idx_v(int v)\
-    \ { return BCT_idx_vertex[v]; }\n  int BCT_idx_e(int eid) { return BCT_idx_edge[eid];\
-    \ }\n  Graph<int> BCT() {\n    Graph<int> bct(n_block + n_cut);\n    for (auto&&\
-    \ [a, b]: BCT_edges) bct.add(a, b);\n    bct.build();\n    return bct;\n  }\n\
-    \  bool is_articulation(int v) { return BCT_idx_v(v) >= n_block; }\n\nprivate:\n\
-    \  void build_bct() {\n    int n = G.N;\n    vvc<int> nbd(n);\n    n_block = len(comp_e);\n\
-    \    comp_v.resize(n_block);\n    n_cut = 0;\n    BCT_idx_edge.resize(G.M);\n\
-    \    BCT_idx_vertex.resize(G.N);\n\n    auto add = [&](int v, int c) -> void {\n\
-    \      if (len(nbd[v]) && nbd[v].back() == c) return;\n      nbd[v].eb(c);\n \
-    \   };\n\n    FOR(c, len(comp_e)) {\n      for (auto&& eid: comp_e[c]) {\n   \
-    \     BCT_idx_edge[eid] = c;\n        auto& e = G.edges[eid];\n        add(e.frm,\
-    \ c);\n        add(e.to, c);\n      }\n    }\n\n    FOR(v, n) {\n      if (len(nbd[v])\
-    \ == 0) {\n        // \u5B64\u7ACB\u70B9\u306F\u8FBA\u306E\u306A\u3044 block\n\
-    \        BCT_idx_vertex[v] = n_block++;\n        comp_v.eb(vc<int>({int(v)}));\n\
-    \      }\n      if (len(nbd[v]) >= 2) {\n        BCT_idx_vertex[v] = n_block +\
-    \ n_cut;\n        for (auto&& c: nbd[v]) {\n          BCT_edges.eb(n_block + n_cut,\
-    \ c);\n          comp_v[c].eb(v);\n        }\n        n_cut++;\n      }\n    \
-    \  elif (len(nbd[v]) == 1) {\n        int c = nbd[v][0];\n        BCT_idx_vertex[v]\
-    \ = c;\n        comp_v[c].eb(v);\n      }\n    }\n\n    comp_e.resize(n_block);\n\
-    \  }\n\n  pair<vc<int>, vc<int>> calculate_lowlink() {\n    int n = G.N;\n   \
-    \ vc<bool> used(n);\n    vc<int> low(n), ord(n);\n    int k = 0;\n    auto dfs\
-    \ = [&](auto self, int v, int eid) -> void {\n      used[v] = 1;\n      low[v]\
-    \ = ord[v] = k++;\n      for (auto&& e: G[v]) {\n        if (e.id == eid) continue;\n\
-    \        if (!used[e.to]) {\n          self(self, e.to, e.id);\n          chmin(low[v],\
-    \ low[e.to]);\n        } else {\n          chmin(low[v], ord[e.to]);\n       \
-    \ }\n      }\n    };\n    FOR(v, n) if (!used[v]) dfs(dfs, v, -1);\n    return\
-    \ {ord, low};\n  }\n\n  void calculate_bcc(vc<int>& ord, vc<int>& low) {\n   \
-    \ int n = G.N;\n    vc<bool> used(n);\n    vc<int> buf;\n    auto dfs = [&](auto\
-    \ self, int v, int eid) -> void {\n      used[v] = 1;\n      for (auto&& e: G[v])\
-    \ {\n        if (e.id == eid) continue;\n        if (!used[e.to] || ord[e.to]\
-    \ < ord[v]) buf.eb(e.id);\n        if (used[e.to]) continue;\n        self(self,\
-    \ e.to, e.id);\n        if (low[e.to] < ord[v]) continue;\n        vc<int> edges;\n\
-    \        while (1) {\n          edges.eb(buf.back());\n          buf.pop_back();\n\
-    \          if (edges.back() == e.id) break;\n        }\n        comp_e.eb(edges);\n\
-    \      }\n    };\n    FOR(v, n) if (!used[v]) dfs(dfs, v, -1);\n  }\n};\n#line\
-    \ 5 \"test/library_checker/graph/biconnected_component.test.cpp\"\n\n\nvoid solve()\
-    \ {\n  LL(N, M);\n  Graph<int, 0> G(N);\n  G.read_graph(M, 0, 0);\n\n  Biconnected_Component<decltype(G)>\
-    \ BC(G);\n  auto& ANS = BC.comp_v;\n  print(len(ANS));\n  for (auto&& C: ANS)\
-    \ { print(len(C), C); }\n}\n\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/biconnected_components\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/biconnected_component.hpp\"\
-    \n\n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 0> G(N);\n  G.read_graph(M, 0,\
-    \ 0);\n\n  Biconnected_Component<decltype(G)> BC(G);\n  auto& ANS = BC.comp_v;\n\
-    \  print(len(ANS));\n  for (auto&& C: ANS) { print(len(C), C); }\n}\n\n\nsigned\
-    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \ N) : N(N), M(0), prepared(0) {}\n\n  void resize(int n) { N = n; }\n\n  void\
+    \ add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n   \
+    \ assert(0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto e\
+    \ = edge_type({frm, to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  // wt,\
+    \ off\n  void read_tree(bool wt = false, int off = 1) { read_graph(N - 1, wt,\
+    \ off); }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n    for\
+    \ (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a -= off, b -= off;\n   \
+    \   if (!wt) {\n        add(a, b);\n      } else {\n        T c;\n        read(c);\n\
+    \        add(a, b, c);\n      }\n    }\n    build();\n  }\n\n  void read_parent(int\
+    \ off = 1) {\n    for (int v = 1; v < N; ++v) {\n      INT(p);\n      p -= off;\n\
+    \      add(p, v);\n    }\n    build();\n  }\n\n  void build() {\n    assert(!prepared);\n\
+    \    prepared = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges)\
+    \ {\n      indptr[e.frm + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n  \
+    \  }\n    for (int v = 0; v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto\
+    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
+    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
+    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
+    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
+    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  vc<int> deg_array() {\n\
+    \    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n  }\n\n  pair<vc<int>,\
+    \ vc<int>> deg_array_inout() {\n    if (vc_indeg.empty()) calc_deg_inout();\n\
+    \    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v) {\n    if (vc_deg.empty())\
+    \ calc_deg();\n    return vc_deg[v];\n  }\n\n  int in_deg(int v) {\n    if (vc_indeg.empty())\
+    \ calc_deg_inout();\n    return vc_indeg[v];\n  }\n\n  int out_deg(int v) {\n\
+    \    if (vc_outdeg.empty()) calc_deg_inout();\n    return vc_outdeg[v];\n  }\n\
+    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
+    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
+    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
+    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
+    \    }\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n  \
+    \  vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
+    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
+    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
+    \ }\n  }\n};\n#line 2 \"graph/biconnected_component.hpp\"\n\n/*\nblock-cut tree\
+    \ \u3092\u3001block \u306B\u901A\u5E38\u306E\u9802\u70B9\u3092\u96A3\u63A5\u3055\
+    \u305B\u3066\u62E1\u5F35\u3057\u3066\u304A\u304F\nhttps://twitter.com/noshi91/status/1529858538650374144?s=20&t=eznpFbuD9BDhfTb4PplFUg\n\
+    [0, n)\uFF1A\u3082\u3068\u306E\u9802\u70B9\n[n, n + n_block)\uFF1Ablock\n\u95A2\
+    \u7BC0\u70B9\uFF1A[0, n) \u306E\u3046\u3061\u3067\u3001degree >= 2 \u3092\u6E80\
+    \u305F\u3059\u3082\u306E\n\n\u5B64\u7ACB\u70B9\u306F\u30011 \u70B9\u3060\u3051\
+    \u304B\u3089\u306A\u308B block\n*/\ntemplate <typename GRAPH>\nGraph<int, 0> block_cut_tree(GRAPH&\
+    \ G) {\n  int n = G.N;\n  vc<int> low(n), ord(n), st;\n  vc<bool> used(n);\n \
+    \ st.reserve(n);\n  Graph<int, 0> BCT;\n  int nxt = n;\n  int k = 0;\n\n  auto\
+    \ dfs = [&](auto& dfs, int v, int p) -> void {\n    st.eb(v);\n    used[v] = 1;\n\
+    \    low[v] = ord[v] = k++;\n    int child = 0;\n    for (auto&& e: G[v]) {\n\
+    \      if (e.to == p) continue;\n      if (!used[e.to]) {\n        ++child;\n\
+    \        int s = len(st);\n        dfs(dfs, e.to, v);\n        chmin(low[v], low[e.to]);\n\
+    \        if ((p == -1 && child > 1) || (p != -1 && low[e.to] >= ord[v])) {\n \
+    \         BCT.resize(nxt + 1);\n          BCT.add(nxt, v);\n          while (len(st)\
+    \ > s) {\n            BCT.add(nxt, st.back());\n            st.pop_back();\n \
+    \         }\n          ++nxt;\n        }\n      } else {\n        chmin(low[v],\
+    \ ord[e.to]);\n      }\n    }\n  };\n  FOR(v, n) if (!used[v]) {\n    dfs(dfs,\
+    \ v, -1);\n    BCT.resize(nxt + 1);\n    for (auto&& x: st) { BCT.add(nxt, x);\
+    \ }\n    ++nxt;\n    st.clear();\n  }\n  BCT.build();\n  return BCT;\n}\n#line\
+    \ 6 \"test/library_checker/graph/biconnected_component.test.cpp\"\n\nvoid solve()\
+    \ {\n  LL(N, M);\n  Graph<int, 0> G(N);\n  G.read_graph(M, 0, 0);\n\n  auto T\
+    \ = block_cut_tree<decltype(G)>(G);\n\n  print(T.N - N);\n  FOR(k, N, T.N) {\n\
+    \    vc<int> ANS;\n    for (auto&& e: T[k]) ANS.eb(e.to);\n    print(len(ANS),\
+    \ ANS);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
+    \  return 0;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1326\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"graph/base.hpp\"\n#include \"graph/biconnected_component.hpp\"\
+    \n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 0> G(N);\n  G.read_graph(M, 0, 0);\n\
+    \n  auto T = block_cut_tree<decltype(G)>(G);\n\n  print(T.N - N);\n  FOR(k, N,\
+    \ T.N) {\n    vc<int> ANS;\n    for (auto&& e: T[k]) ANS.eb(e.to);\n    print(len(ANS),\
+    \ ANS);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
+    \  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - graph/biconnected_component.hpp
   - graph/base.hpp
+  - graph/biconnected_component.hpp
   isVerificationFile: true
   path: test/library_checker/graph/biconnected_component.test.cpp
   requiredBy: []
-  timestamp: '2022-08-29 21:19:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-30 02:43:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/biconnected_component.test.cpp
 layout: document

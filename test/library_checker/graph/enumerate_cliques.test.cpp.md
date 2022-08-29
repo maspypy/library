@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/enumerate_cliques.hpp
     title: graph/enumerate_cliques.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/enumerate_cliques
@@ -214,74 +214,75 @@ data:
     \    }\n\n  private:\n    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared()\
     \ { return prepared; }\n  constexpr bool is_directed() { return directed; }\n\n\
     \  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
-    \ {}\n\n  void add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n\
-    \    assert(0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto\
-    \ e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  //\
-    \ wt, off\n  void read_tree(bool wt = false, int off = 1) { read_graph(N - 1,\
-    \ wt, off); }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n  \
-    \  for (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a -= off, b -= off;\n\
-    \      if (!wt) {\n        add(a, b);\n      } else {\n        T c;\n        read(c);\n\
-    \        add(a, b, c);\n      }\n    }\n    build();\n  }\n\n  void read_parent(int\
-    \ off = 1) {\n    for (int v = 1; v < N; ++v) {\n      INT(p);\n      p -= off;\n\
-    \      add(p, v);\n    }\n    build();\n  }\n\n  void build() {\n    assert(!prepared);\n\
-    \    prepared = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges)\
-    \ {\n      indptr[e.frm + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n  \
-    \  }\n    for (int v = 0; v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto\
-    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
-    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
-    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
-    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
-    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  vc<int> deg_array() {\n\
-    \    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n  }\n\n  pair<vc<int>,\
-    \ vc<int>> deg_array_inout() {\n    if (vc_indeg.empty()) calc_deg_inout();\n\
-    \    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v) {\n    if (vc_deg.empty())\
-    \ calc_deg();\n    return vc_deg[v];\n  }\n\n  int in_deg(int v) {\n    if (vc_indeg.empty())\
-    \ calc_deg_inout();\n    return vc_indeg[v];\n  }\n\n  int out_deg(int v) {\n\
-    \    if (vc_outdeg.empty()) calc_deg_inout();\n    return vc_outdeg[v];\n  }\n\
-    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
-    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
-    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
-    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
-    \    }\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n  \
-    \  vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
-    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
-    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 2 \"mod/modint.hpp\"\n\ntemplate <unsigned int mod>\nstruct\
-    \ modint {\n  static constexpr bool is_modint = true;\n  unsigned int val;\n \
-    \ constexpr modint(const long long val = 0) noexcept\n      : val(val >= 0 ? val\
-    \ % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint &other)\
-    \ const {\n    return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
-    \ modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n\
-    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >=\
-    \ mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint\
-    \ &p) {\n    val = (unsigned int)(1LL * val * p.val % mod);\n    return *this;\n\
-    \  }\n  modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n   \
-    \ return *this;\n  }\n  modint operator-() const { return modint(get_mod() - val);\
-    \ }\n  modint operator+(const modint &p) const { return modint(*this) += p; }\n\
-    \  modint operator-(const modint &p) const { return modint(*this) -= p; }\n  modint\
-    \ operator*(const modint &p) const { return modint(*this) *= p; }\n  modint operator/(const\
-    \ modint &p) const { return modint(*this) /= p; }\n  bool operator==(const modint\
-    \ &p) const { return val == p.val; }\n  bool operator!=(const modint &p) const\
-    \ { return val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod,\
-    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
-    \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
-    \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
-    \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n  static constexpr unsigned int get_mod() { return mod; }\n};\n\nstruct\
-    \ ArbitraryModInt {\n  static constexpr bool is_modint = true;\n  unsigned int\
-    \ val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t y)\n      :\
-    \ val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y) % get_mod())\
-    \ % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other) const {\n  \
-    \  return val < other.val;\n  } // To use std::map<ArbitraryModInt, T>\n  static\
-    \ unsigned int &get_mod() {\n    static unsigned int mod = 0;\n    return mod;\n\
-    \  }\n  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
-    \ ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
-    \    return *this;\n  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p)\
-    \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
-    \ *this;\n  }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n   \
-    \ unsigned long long a = (unsigned long long)val * p.val;\n    unsigned xh = (unsigned)(a\
-    \ >> 32), xl = (unsigned)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"\
-    =d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n\
+    \ {}\n\n  void resize(int n) { N = n; }\n\n  void add(int frm, int to, T cost\
+    \ = 1, int i = -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <= to &&\
+    \ to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n\
+    \    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool wt = false,\
+    \ int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int M, bool\
+    \ wt = false, int off = 1) {\n    for (int m = 0; m < M; ++m) {\n      INT(a,\
+    \ b);\n      a -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n     \
+    \ } else {\n        T c;\n        read(c);\n        add(a, b, c);\n      }\n \
+    \   }\n    build();\n  }\n\n  void read_parent(int off = 1) {\n    for (int v\
+    \ = 1; v < N; ++v) {\n      INT(p);\n      p -= off;\n      add(p, v);\n    }\n\
+    \    build();\n  }\n\n  void build() {\n    assert(!prepared);\n    prepared =\
+    \ true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm\
+    \ + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n    }\n    for (int v = 0;\
+    \ v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto counter = indptr;\n  \
+    \  csr_edges.resize(indptr.back() + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++]\
+    \ = e;\n      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to,\
+    \ e.frm, e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const\
+    \ {\n    assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\
+    \n  vc<int> deg_array() {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n\
+    \  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n    if (vc_indeg.empty())\
+    \ calc_deg_inout();\n    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v)\
+    \ {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n  int\
+    \ in_deg(int v) {\n    if (vc_indeg.empty()) calc_deg_inout();\n    return vc_indeg[v];\n\
+    \  }\n\n  int out_deg(int v) {\n    if (vc_outdeg.empty()) calc_deg_inout();\n\
+    \    return vc_outdeg[v];\n  }\n\n  void debug() {\n    print(\"Graph\");\n  \
+    \  if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e: edges)\
+    \ print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\", indptr);\n\
+    \      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\nprivate:\n  void calc_deg()\
+    \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
+    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
+    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"mod/modint.hpp\"\
+    \n\ntemplate <unsigned int mod>\nstruct modint {\n  static constexpr bool is_modint\
+    \ = true;\n  unsigned int val;\n  constexpr modint(const long long val = 0) noexcept\n\
+    \      : val(val >= 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const\
+    \ modint &other) const {\n    return val < other.val;\n  } // To use std::map\n\
+    \  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -=\
+    \ mod;\n    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if\
+    \ ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint\
+    \ &operator*=(const modint &p) {\n    val = (unsigned int)(1LL * val * p.val %\
+    \ mod);\n    return *this;\n  }\n  modint &operator/=(const modint &p) {\n   \
+    \ *this *= p.inverse();\n    return *this;\n  }\n  modint operator-() const {\
+    \ return modint(get_mod() - val); }\n  modint operator+(const modint &p) const\
+    \ { return modint(*this) += p; }\n  modint operator-(const modint &p) const {\
+    \ return modint(*this) -= p; }\n  modint operator*(const modint &p) const { return\
+    \ modint(*this) *= p; }\n  modint operator/(const modint &p) const { return modint(*this)\
+    \ /= p; }\n  bool operator==(const modint &p) const { return val == p.val; }\n\
+    \  bool operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
+    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
+    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
+    \ return modint(u);\n  }\n  modint pow(int64_t n) const {\n    modint ret(1),\
+    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
+    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr unsigned int\
+    \ get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr\
+    \ bool is_modint = true;\n  unsigned int val;\n  ArbitraryModInt() : val(0) {}\n\
+    \  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n          \
+    \         : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
+    \ ArbitraryModInt &other) const {\n    return val < other.val;\n  } // To use\
+    \ std::map<ArbitraryModInt, T>\n  static unsigned int &get_mod() {\n    static\
+    \ unsigned int mod = 0;\n    return mod;\n  }\n  static void set_mod(int md) {\
+    \ get_mod() = md; }\n  ArbitraryModInt &operator+=(const ArbitraryModInt &p) {\n\
+    \    if ((val += p.val) >= get_mod()) val -= get_mod();\n    return *this;\n \
+    \ }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p) {\n    if ((val +=\
+    \ get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return *this;\n  }\n\
+    \  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n    unsigned long\
+    \ long a = (unsigned long long)val * p.val;\n    unsigned xh = (unsigned)(a >>\
+    \ 32), xl = (unsigned)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"\
+    (m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n\
     \  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n    *this *=\
     \ p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-() const {\
     \ return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
@@ -367,8 +368,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/enumerate_cliques.test.cpp
   requiredBy: []
-  timestamp: '2022-08-29 21:40:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-30 02:42:36+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/enumerate_cliques.test.cpp
 layout: document

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/random.hpp
     title: other/random.hpp
   _extendedRequiredBy: []
@@ -217,90 +217,91 @@ data:
     \    }\n\n  private:\n    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared()\
     \ { return prepared; }\n  constexpr bool is_directed() { return directed; }\n\n\
     \  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
-    \ {}\n\n  void add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n\
-    \    assert(0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto\
-    \ e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  //\
-    \ wt, off\n  void read_tree(bool wt = false, int off = 1) { read_graph(N - 1,\
-    \ wt, off); }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n  \
-    \  for (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a -= off, b -= off;\n\
-    \      if (!wt) {\n        add(a, b);\n      } else {\n        T c;\n        read(c);\n\
-    \        add(a, b, c);\n      }\n    }\n    build();\n  }\n\n  void read_parent(int\
-    \ off = 1) {\n    for (int v = 1; v < N; ++v) {\n      INT(p);\n      p -= off;\n\
-    \      add(p, v);\n    }\n    build();\n  }\n\n  void build() {\n    assert(!prepared);\n\
-    \    prepared = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges)\
-    \ {\n      indptr[e.frm + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n  \
-    \  }\n    for (int v = 0; v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto\
-    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
-    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
-    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
-    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
-    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  vc<int> deg_array() {\n\
-    \    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n  }\n\n  pair<vc<int>,\
-    \ vc<int>> deg_array_inout() {\n    if (vc_indeg.empty()) calc_deg_inout();\n\
-    \    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v) {\n    if (vc_deg.empty())\
-    \ calc_deg();\n    return vc_deg[v];\n  }\n\n  int in_deg(int v) {\n    if (vc_indeg.empty())\
-    \ calc_deg_inout();\n    return vc_indeg[v];\n  }\n\n  int out_deg(int v) {\n\
-    \    if (vc_outdeg.empty()) calc_deg_inout();\n    return vc_outdeg[v];\n  }\n\
-    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
-    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
-    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
-    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
-    \    }\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n  \
-    \  vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
-    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
-    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 2 \"other/random.hpp\"\n\nll RNG(ll a, ll b) {\n  static mt19937\
-    \ mt(chrono::steady_clock::now().time_since_epoch().count());\n  uniform_int_distribution<ll>\
-    \ dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll a) { return RNG(0, a); }\n\
-    #line 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n  using i64 = int64_t;\r\n  using\
-    \ u64 = uint64_t;\r\n  using u128 = __uint128_t;\r\n\r\n  inline static u64 m,\
-    \ r, n2; // r * m = -1 (mod 1<<64), n2 = 1<<128 (mod m)\r\n  static void set_mod(u64\
-    \ m) {\r\n    assert(m < (1ull << 62));\r\n    assert((m & 1) == 1);\r\n    m64::m\
-    \ = m;\r\n    n2 = -u128(m) % m;\r\n    r = m;\r\n    FOR(_, 5) r *= 2 - m * r;\r\
-    \n    r = -r;\r\n    assert(r * m == -1ull);\r\n  }\r\n  static u64 reduce(u128\
-    \ b) { return (b + u128(u64(b) * r) * m) >> 64; }\r\n\r\n  u64 x;\r\n  m64() :\
-    \ x(0) {}\r\n  m64(u64 x) : x(reduce(u128(x) * n2)){};\r\n  u64 val() const {\r\
-    \n    u64 y = reduce(x);\r\n    return y >= m ? y - m : y;\r\n  }\r\n  m64 &operator+=(m64\
-    \ y) {\r\n    x += y.x - (m << 1);\r\n    x = (i64(x) < 0 ? x + (m << 1) : x);\r\
-    \n    return *this;\r\n  }\r\n  m64 &operator-=(m64 y) {\r\n    x -= y.x;\r\n\
-    \    x = (i64(x) < 0 ? x + (m << 1) : x);\r\n    return *this;\r\n  }\r\n  m64\
-    \ &operator*=(m64 y) {\r\n    x = reduce(u128(x) * y.x);\r\n    return *this;\r\
-    \n  }\r\n  m64 operator+(m64 y) const { return m64(*this) += y; }\r\n  m64 operator-(m64\
-    \ y) const { return m64(*this) -= y; }\r\n  m64 operator*(m64 y) const { return\
-    \ m64(*this) *= y; }\r\n  bool operator==(m64 y) const {\r\n    return (x >= m\
-    \ ? x - m : x) == (y.x >= m ? y.x - m : y.x);\r\n  }\r\n  bool operator!=(m64\
-    \ y) const { return not operator==(y); }\r\n  m64 pow(u64 n) const {\r\n    m64\
-    \ y = 1, z = *this;\r\n    for (; n; n >>= 1, z *= z)\r\n      if (n & 1) y *=\
-    \ z;\r\n    return y;\r\n  }\r\n};\r\n\r\nbool primetest(const uint64_t x) {\r\
-    \n  using u64 = uint64_t;\r\n  if (x == 2 or x == 3 or x == 5 or x == 7) return\
-    \ true;\r\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 == 0) return\
-    \ false;\r\n  if (x < 121) return x > 1;\r\n  const u64 d = (x - 1) >> __builtin_ctzll(x\
-    \ - 1);\r\n  m64::set_mod(x);\r\n  const m64 one(1), minus_one(x - 1);\r\n  auto\
-    \ ok = [&](u64 a) {\r\n    auto y = m64(a).pow(d);\r\n    u64 t = d;\r\n    while\
-    \ (y != one and y != minus_one and t != x - 1) y *= y, t <<= 1;\r\n    if (y !=\
-    \ minus_one and t % 2 == 0) return false;\r\n    return true;\r\n  };\r\n  if\
-    \ (x < (1ull << 32)) {\r\n    for (u64 a: {2, 7, 61})\r\n      if (not ok(a))\
-    \ return false;\r\n  } else {\r\n    for (u64 a: {2, 325, 9375, 28178, 450775,\
-    \ 9780504, 1795265022}) {\r\n      if (x <= a) return true;\r\n      if (not ok(a))\
-    \ return false;\r\n    }\r\n  }\r\n  return true;\r\n}\n#line 3 \"graph/chromatic.hpp\"\
-    \n\r\n// O(N2^N)\r\ntemplate <typename Graph, int TRIAL = 0>\r\nint chromatic_number(Graph&\
-    \ G) {\r\n  assert(G.is_prepared());\r\n\r\n  int N = G.N;\r\n  vc<int> nbd(N);\r\
-    \n  FOR(v, N) for (auto&& e : G[v]) nbd[v] |= 1 << e.to;\r\n\r\n  // s \u306E\
-    \ subset \u3067\u3042\u308B\u3088\u3046\u306A\u72EC\u7ACB\u96C6\u5408\u306E\u6570\
-    \u3048\u4E0A\u3052\r\n  vc<int> dp(1 << N);\r\n  dp[0] = 1;\r\n  FOR(v, N) FOR(s,\
-    \ 1 << v) { dp[s | 1 << v] = dp[s] + dp[s & (~nbd[v])]; }\r\n\r\n  vi pow(1 <<\
-    \ N);\r\n  auto solve_p = [&](int p) -> int {\r\n    FOR(s, 1 << N) pow[s] = ((N\
-    \ - popcnt(s)) & 1 ? 1 : -1);\r\n    FOR(k, 1, N) {\r\n      ll sum = 0;\r\n \
-    \     FOR(s, 1 << N) {\r\n        pow[s] = pow[s] * dp[s];\r\n        if (p) pow[s]\
-    \ %= p;\r\n        sum += pow[s];\r\n      }\r\n      if (p) sum %= p;\r\n   \
-    \   if (sum != 0) { return k; }\r\n    }\r\n    return N;\r\n  };\r\n\r\n  int\
-    \ ANS = 0;\r\n  chmax(ANS, solve_p(0));\r\n\r\n  FOR(TRIAL) {\r\n    int p;\r\n\
-    \    while (1) {\r\n      p = RNG(1LL << 30, 1LL << 31);\r\n      if (primetest(p))\
-    \ break;\r\n    }\r\n    chmax(ANS, solve_p(p));\r\n  }\r\n  return ANS;\r\n}\r\
-    \n#line 7 \"test/library_checker/graph/chromatic_number.test.cpp\"\n\r\nvoid solve()\
-    \ {\r\n  LL(N, M);\r\n  Graph<int> G(N);\r\n  G.read_graph(M, 0, 0);\r\n  print(chromatic_number(G));\r\
-    \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ {}\n\n  void resize(int n) { N = n; }\n\n  void add(int frm, int to, T cost\
+    \ = 1, int i = -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <= to &&\
+    \ to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n\
+    \    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool wt = false,\
+    \ int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int M, bool\
+    \ wt = false, int off = 1) {\n    for (int m = 0; m < M; ++m) {\n      INT(a,\
+    \ b);\n      a -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n     \
+    \ } else {\n        T c;\n        read(c);\n        add(a, b, c);\n      }\n \
+    \   }\n    build();\n  }\n\n  void read_parent(int off = 1) {\n    for (int v\
+    \ = 1; v < N; ++v) {\n      INT(p);\n      p -= off;\n      add(p, v);\n    }\n\
+    \    build();\n  }\n\n  void build() {\n    assert(!prepared);\n    prepared =\
+    \ true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm\
+    \ + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n    }\n    for (int v = 0;\
+    \ v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto counter = indptr;\n  \
+    \  csr_edges.resize(indptr.back() + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++]\
+    \ = e;\n      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to,\
+    \ e.frm, e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const\
+    \ {\n    assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\
+    \n  vc<int> deg_array() {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n\
+    \  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n    if (vc_indeg.empty())\
+    \ calc_deg_inout();\n    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v)\
+    \ {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n  int\
+    \ in_deg(int v) {\n    if (vc_indeg.empty()) calc_deg_inout();\n    return vc_indeg[v];\n\
+    \  }\n\n  int out_deg(int v) {\n    if (vc_outdeg.empty()) calc_deg_inout();\n\
+    \    return vc_outdeg[v];\n  }\n\n  void debug() {\n    print(\"Graph\");\n  \
+    \  if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e: edges)\
+    \ print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\", indptr);\n\
+    \      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\nprivate:\n  void calc_deg()\
+    \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
+    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
+    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"other/random.hpp\"\
+    \n\nll RNG(ll a, ll b) {\n  static mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \  uniform_int_distribution<ll> dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll\
+    \ a) { return RNG(0, a); }\n#line 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n  using\
+    \ i64 = int64_t;\r\n  using u64 = uint64_t;\r\n  using u128 = __uint128_t;\r\n\
+    \r\n  inline static u64 m, r, n2; // r * m = -1 (mod 1<<64), n2 = 1<<128 (mod\
+    \ m)\r\n  static void set_mod(u64 m) {\r\n    assert(m < (1ull << 62));\r\n  \
+    \  assert((m & 1) == 1);\r\n    m64::m = m;\r\n    n2 = -u128(m) % m;\r\n    r\
+    \ = m;\r\n    FOR(_, 5) r *= 2 - m * r;\r\n    r = -r;\r\n    assert(r * m ==\
+    \ -1ull);\r\n  }\r\n  static u64 reduce(u128 b) { return (b + u128(u64(b) * r)\
+    \ * m) >> 64; }\r\n\r\n  u64 x;\r\n  m64() : x(0) {}\r\n  m64(u64 x) : x(reduce(u128(x)\
+    \ * n2)){};\r\n  u64 val() const {\r\n    u64 y = reduce(x);\r\n    return y >=\
+    \ m ? y - m : y;\r\n  }\r\n  m64 &operator+=(m64 y) {\r\n    x += y.x - (m <<\
+    \ 1);\r\n    x = (i64(x) < 0 ? x + (m << 1) : x);\r\n    return *this;\r\n  }\r\
+    \n  m64 &operator-=(m64 y) {\r\n    x -= y.x;\r\n    x = (i64(x) < 0 ? x + (m\
+    \ << 1) : x);\r\n    return *this;\r\n  }\r\n  m64 &operator*=(m64 y) {\r\n  \
+    \  x = reduce(u128(x) * y.x);\r\n    return *this;\r\n  }\r\n  m64 operator+(m64\
+    \ y) const { return m64(*this) += y; }\r\n  m64 operator-(m64 y) const { return\
+    \ m64(*this) -= y; }\r\n  m64 operator*(m64 y) const { return m64(*this) *= y;\
+    \ }\r\n  bool operator==(m64 y) const {\r\n    return (x >= m ? x - m : x) ==\
+    \ (y.x >= m ? y.x - m : y.x);\r\n  }\r\n  bool operator!=(m64 y) const { return\
+    \ not operator==(y); }\r\n  m64 pow(u64 n) const {\r\n    m64 y = 1, z = *this;\r\
+    \n    for (; n; n >>= 1, z *= z)\r\n      if (n & 1) y *= z;\r\n    return y;\r\
+    \n  }\r\n};\r\n\r\nbool primetest(const uint64_t x) {\r\n  using u64 = uint64_t;\r\
+    \n  if (x == 2 or x == 3 or x == 5 or x == 7) return true;\r\n  if (x % 2 == 0\
+    \ or x % 3 == 0 or x % 5 == 0 or x % 7 == 0) return false;\r\n  if (x < 121) return\
+    \ x > 1;\r\n  const u64 d = (x - 1) >> __builtin_ctzll(x - 1);\r\n  m64::set_mod(x);\r\
+    \n  const m64 one(1), minus_one(x - 1);\r\n  auto ok = [&](u64 a) {\r\n    auto\
+    \ y = m64(a).pow(d);\r\n    u64 t = d;\r\n    while (y != one and y != minus_one\
+    \ and t != x - 1) y *= y, t <<= 1;\r\n    if (y != minus_one and t % 2 == 0) return\
+    \ false;\r\n    return true;\r\n  };\r\n  if (x < (1ull << 32)) {\r\n    for (u64\
+    \ a: {2, 7, 61})\r\n      if (not ok(a)) return false;\r\n  } else {\r\n    for\
+    \ (u64 a: {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\r\n      if (x\
+    \ <= a) return true;\r\n      if (not ok(a)) return false;\r\n    }\r\n  }\r\n\
+    \  return true;\r\n}\n#line 3 \"graph/chromatic.hpp\"\n\r\n// O(N2^N)\r\ntemplate\
+    \ <typename Graph, int TRIAL = 0>\r\nint chromatic_number(Graph& G) {\r\n  assert(G.is_prepared());\r\
+    \n\r\n  int N = G.N;\r\n  vc<int> nbd(N);\r\n  FOR(v, N) for (auto&& e : G[v])\
+    \ nbd[v] |= 1 << e.to;\r\n\r\n  // s \u306E subset \u3067\u3042\u308B\u3088\u3046\
+    \u306A\u72EC\u7ACB\u96C6\u5408\u306E\u6570\u3048\u4E0A\u3052\r\n  vc<int> dp(1\
+    \ << N);\r\n  dp[0] = 1;\r\n  FOR(v, N) FOR(s, 1 << v) { dp[s | 1 << v] = dp[s]\
+    \ + dp[s & (~nbd[v])]; }\r\n\r\n  vi pow(1 << N);\r\n  auto solve_p = [&](int\
+    \ p) -> int {\r\n    FOR(s, 1 << N) pow[s] = ((N - popcnt(s)) & 1 ? 1 : -1);\r\
+    \n    FOR(k, 1, N) {\r\n      ll sum = 0;\r\n      FOR(s, 1 << N) {\r\n      \
+    \  pow[s] = pow[s] * dp[s];\r\n        if (p) pow[s] %= p;\r\n        sum += pow[s];\r\
+    \n      }\r\n      if (p) sum %= p;\r\n      if (sum != 0) { return k; }\r\n \
+    \   }\r\n    return N;\r\n  };\r\n\r\n  int ANS = 0;\r\n  chmax(ANS, solve_p(0));\r\
+    \n\r\n  FOR(TRIAL) {\r\n    int p;\r\n    while (1) {\r\n      p = RNG(1LL <<\
+    \ 30, 1LL << 31);\r\n      if (primetest(p)) break;\r\n    }\r\n    chmax(ANS,\
+    \ solve_p(p));\r\n  }\r\n  return ANS;\r\n}\r\n#line 7 \"test/library_checker/graph/chromatic_number.test.cpp\"\
+    \n\r\nvoid solve() {\r\n  LL(N, M);\r\n  Graph<int> G(N);\r\n  G.read_graph(M,\
+    \ 0, 0);\r\n  print(chromatic_number(G));\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
+    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
+    \n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/chromatic_number\"\r\n\
     #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"graph/base.hpp\"\
     \r\n#include \"graph/chromatic.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, M);\r\n\
@@ -317,7 +318,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/chromatic_number.test.cpp
   requiredBy: []
-  timestamp: '2022-08-29 21:19:08+09:00'
+  timestamp: '2022-08-30 02:42:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/chromatic_number.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -210,59 +210,59 @@ data:
     \ &G->csr_edges[r];\n    }\n\n  private:\n    const Graph* G;\n    int l, r;\n\
     \  };\n\n  bool is_prepared() { return prepared; }\n  constexpr bool is_directed()\
     \ { return directed; }\n\n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int\
-    \ N) : N(N), M(0), prepared(0) {}\n\n  void add(int frm, int to, T cost = 1, int\
-    \ i = -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <= to && to < N);\n\
-    \    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n\
-    \    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool wt = false, int off = 1)\
-    \ { read_graph(N - 1, wt, off); }\n\n  void read_graph(int M, bool wt = false,\
-    \ int off = 1) {\n    for (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a\
-    \ -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n  \
-    \      T c;\n        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n\
-    \  }\n\n  void read_parent(int off = 1) {\n    for (int v = 1; v < N; ++v) {\n\
-    \      INT(p);\n      p -= off;\n      add(p, v);\n    }\n    build();\n  }\n\n\
-    \  void build() {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N\
-    \ + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if\
-    \ (!directed) indptr[e.to + 1]++;\n    }\n    for (int v = 0; v < N; ++v) { indptr[v\
-    \ + 1] += indptr[v]; }\n    auto counter = indptr;\n    csr_edges.resize(indptr.back()\
-    \ + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n\
-    \      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm,\
-    \ e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n \
-    \   assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\n \
-    \ vc<int> deg_array() {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n\
-    \  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n    if (vc_indeg.empty())\
-    \ calc_deg_inout();\n    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v)\
-    \ {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n  int\
-    \ in_deg(int v) {\n    if (vc_indeg.empty()) calc_deg_inout();\n    return vc_indeg[v];\n\
-    \  }\n\n  int out_deg(int v) {\n    if (vc_outdeg.empty()) calc_deg_inout();\n\
-    \    return vc_outdeg[v];\n  }\n\n  void debug() {\n    print(\"Graph\");\n  \
-    \  if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e: edges)\
-    \ print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\", indptr);\n\
-    \      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\nprivate:\n  void calc_deg()\
-    \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
-    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
-    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
-    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 3 \"graph/bellmanford.hpp\"\
-    \n\n// \u5358\u4E00\u59CB\u70B9\u6700\u77ED\u8DEF\u3002\u8CA0\u9589\u8DEF\u3042\
-    \u308A\u3067\u3082\u3088\u3044\u3002O(NM) \u6642\u9593\u3002\n// \u5230\u9054\u4E0D\
-    \u53EF\u80FD\uFF1AINF\n// \u8CA0\u9589\u8DEF\u3092\u7D4C\u7531\u3057\u3066\u3044\
-    \u304F\u3089\u3067\u3082\u5C0F\u3055\u304F\u3067\u304D\u308B\uFF1A-INF\ntemplate\
-    \ <typename T, T INF, typename Graph>\npair<vc<T>, vc<int>> BellmanFord(Graph&\
-    \ G, int s) {\n  int N = G.N;\n  vc<T> dist(N, INF);\n  vc<int> par(N, -1);\n\
-    \  dist[s] = 0;\n  int loop = 0;\n  while (1) {\n    ++loop;\n    bool upd = 0;\n\
-    \    FOR(v, N) {\n      if (dist[v] == INF) continue;\n      for (auto&& e: G[v])\
-    \ {\n        T before = dist[e.to];\n        T after = dist[v] + e.cost;\n   \
-    \     chmax(after, -INF);\n        if (before > after) {\n          par[e.to]\
-    \ = v;\n          upd = 1;\n          if (loop >= N) after = -INF;\n         \
-    \ dist[e.to] = after;\n        }\n      }\n    }\n    if (!upd) break;\n  }\n\
-    \  return {dist, par};\n}\n#line 6 \"test/aoj/GRL_1_B_bellmanford.test.cpp\"\n\
-    \nvoid solve() {\n  LL(N, M, s);\n  Graph<int, 1> G(N);\n  G.read_graph(M, 1,\
-    \ 0);\n  const int INF = 1 << 30;\n\n  auto [dist, par] = BellmanFord<int, INF>(G,\
-    \ s);\n  if (MIN(dist) == -INF) { return print(\"NEGATIVE CYCLE\"); }\n  for (auto&&\
-    \ x: dist) {\n    if (x == INF)\n      print(\"INF\");\n    else\n      print(x);\n\
-    \  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
+    \ N) : N(N), M(0), prepared(0) {}\n\n  void resize(int n) { N = n; }\n\n  void\
+    \ add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n   \
+    \ assert(0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto e\
+    \ = edge_type({frm, to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  // wt,\
+    \ off\n  void read_tree(bool wt = false, int off = 1) { read_graph(N - 1, wt,\
+    \ off); }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n    for\
+    \ (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a -= off, b -= off;\n   \
+    \   if (!wt) {\n        add(a, b);\n      } else {\n        T c;\n        read(c);\n\
+    \        add(a, b, c);\n      }\n    }\n    build();\n  }\n\n  void read_parent(int\
+    \ off = 1) {\n    for (int v = 1; v < N; ++v) {\n      INT(p);\n      p -= off;\n\
+    \      add(p, v);\n    }\n    build();\n  }\n\n  void build() {\n    assert(!prepared);\n\
+    \    prepared = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges)\
+    \ {\n      indptr[e.frm + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n  \
+    \  }\n    for (int v = 0; v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto\
+    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
+    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
+    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
+    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
+    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  vc<int> deg_array() {\n\
+    \    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n  }\n\n  pair<vc<int>,\
+    \ vc<int>> deg_array_inout() {\n    if (vc_indeg.empty()) calc_deg_inout();\n\
+    \    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v) {\n    if (vc_deg.empty())\
+    \ calc_deg();\n    return vc_deg[v];\n  }\n\n  int in_deg(int v) {\n    if (vc_indeg.empty())\
+    \ calc_deg_inout();\n    return vc_indeg[v];\n  }\n\n  int out_deg(int v) {\n\
+    \    if (vc_outdeg.empty()) calc_deg_inout();\n    return vc_outdeg[v];\n  }\n\
+    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
+    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
+    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
+    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
+    \    }\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n  \
+    \  vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
+    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
+    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
+    \ }\n  }\n};\n#line 3 \"graph/bellmanford.hpp\"\n\n// \u5358\u4E00\u59CB\u70B9\
+    \u6700\u77ED\u8DEF\u3002\u8CA0\u9589\u8DEF\u3042\u308A\u3067\u3082\u3088\u3044\
+    \u3002O(NM) \u6642\u9593\u3002\n// \u5230\u9054\u4E0D\u53EF\u80FD\uFF1AINF\n//\
+    \ \u8CA0\u9589\u8DEF\u3092\u7D4C\u7531\u3057\u3066\u3044\u304F\u3089\u3067\u3082\
+    \u5C0F\u3055\u304F\u3067\u304D\u308B\uFF1A-INF\ntemplate <typename T, T INF, typename\
+    \ Graph>\npair<vc<T>, vc<int>> BellmanFord(Graph& G, int s) {\n  int N = G.N;\n\
+    \  vc<T> dist(N, INF);\n  vc<int> par(N, -1);\n  dist[s] = 0;\n  int loop = 0;\n\
+    \  while (1) {\n    ++loop;\n    bool upd = 0;\n    FOR(v, N) {\n      if (dist[v]\
+    \ == INF) continue;\n      for (auto&& e: G[v]) {\n        T before = dist[e.to];\n\
+    \        T after = dist[v] + e.cost;\n        chmax(after, -INF);\n        if\
+    \ (before > after) {\n          par[e.to] = v;\n          upd = 1;\n         \
+    \ if (loop >= N) after = -INF;\n          dist[e.to] = after;\n        }\n   \
+    \   }\n    }\n    if (!upd) break;\n  }\n  return {dist, par};\n}\n#line 6 \"\
+    test/aoj/GRL_1_B_bellmanford.test.cpp\"\n\nvoid solve() {\n  LL(N, M, s);\n  Graph<int,\
+    \ 1> G(N);\n  G.read_graph(M, 1, 0);\n  const int INF = 1 << 30;\n\n  auto [dist,\
+    \ par] = BellmanFord<int, INF>(G, s);\n  if (MIN(dist) == -INF) { return print(\"\
+    NEGATIVE CYCLE\"); }\n  for (auto&& x: dist) {\n    if (x == INF)\n      print(\"\
+    INF\");\n    else\n      print(x);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_B\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/bellmanford.hpp\"\
     \n\nvoid solve() {\n  LL(N, M, s);\n  Graph<int, 1> G(N);\n  G.read_graph(M, 1,\
@@ -280,7 +280,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_1_B_bellmanford.test.cpp
   requiredBy: []
-  timestamp: '2022-08-29 21:19:08+09:00'
+  timestamp: '2022-08-30 02:42:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_1_B_bellmanford.test.cpp
