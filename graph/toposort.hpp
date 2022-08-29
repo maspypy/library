@@ -1,5 +1,4 @@
 #include "graph/base.hpp"
-#include "graph/degree.hpp"
 
 // DAG じゃなかったら空配列
 // 辞書順最小もできる：O(NlogN) → abc223
@@ -7,7 +6,7 @@ template <typename Graph>
 vc<int> toposort(Graph& G, bool lex_min = false) {
   assert(G.is_prepared());
   assert(G.is_directed());
-  auto [indeg, outdeg] = degree_inout(G);
+  auto [indeg, outdeg] = G.deg_array_inout();
   if (!lex_min) {
     vc<int> V;
     ll N = G.N;
