@@ -4,7 +4,7 @@
 template <typename Gr, typename F>
 void enumerate_cliques(Gr& G, F query) {
   int N = G.N;
-  auto deg = degree(G);
+  auto deg = G.deg_array();
   vc<bool> done(N);
   vv(int, can, N, N);
   for (auto&& e: G.edges) { can[e.frm][e.to] = can[e.to][e.frm] = 1; }
