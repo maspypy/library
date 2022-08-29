@@ -14,35 +14,33 @@ data:
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
     )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: graph/degree.hpp:\
     \ line -1: no such header\n"
-  code: "#include \"flow/bipartite.hpp\"\n#include \"graph/toposort.hpp\"\n\n// path\
-    \ \uFF08\u9802\u70B9\u5217\uFF09\u306E vector \u3092\u8FD4\u3059 O(m sqrt(n))\n\
-    template <typename DAG>\nvc<vc<int>> dag_path_cover(DAG& G) {\n  assert(G.is_directed());\n\
-    \  int n = G.N;\n  auto V = toposort(G);\n  vc<int> idx(n);\n  FOR(i, n) idx[V[i]]\
-    \ = i;\n\n  // check dag\n  for (auto&& e: G.edges) assert(idx[e.frm] < idx[e.to]);\n\
-    \n  Graph H(n + n);\n  for (auto&& e: G.edges) { H.add(e.frm, e.to + n); }\n \
-    \ H.build();\n  BipartiteMatching BM(H);\n  auto match = BM.matching();\n  vc<int>\
-    \ nxt(n, -1);\n  for (auto&& [a, b]: match) {\n    if (a > b) swap(a, b);\n  \
-    \  nxt[a] = b - n;\n  }\n\n  vc<bool> done(n);\n\n  vvc<int> paths;\n  for (auto&&\
-    \ v: V) {\n    if (done[v]) continue;\n    vc<int> P = {v};\n    while (1) {\n\
-    \      int w = nxt[P.back()];\n      if (w == -1) break;\n      P.eb(w);\n   \
-    \ }\n    for (auto&& x: P) done[x] = 1;\n    paths.eb(P);\n  }\n  return paths;\n\
-    };"
+  code: "#include \"graph/degree.hpp\"\n// \u3069\u306E\u70B9\u306E\u6B21\u6570\u3082\
+    \ 2 \u4EE5\u4E0B\u306E\u30B0\u30E9\u30D5\u304C\u3042\u308B\u3068\u304D\u306B\u3001\
+    \n// \u30D1\u30B9\u306E\u9802\u70B9\u5217, \u30B5\u30A4\u30AF\u30EB\u306E\u9802\
+    \u70B9\u5217\n// \u306B\u5206\u89E3\u3059\u308B\ntemplate <typename Graph>\npair<vvc<int>,\
+    \ vvc<int>> path_cycle(Graph& G) {\n  int N = G.N;\n  auto deg = degree(G);\n\
+    \  assert(MAX(deg) <= 2);\n\n  vc<bool> done(N);\n  auto calc_frm = [&](int v)\
+    \ -> vc<int> {\n    vc<int> P = {v};\n    done[v] = 1;\n    while (1) {\n    \
+    \  bool ok = 0;\n      for (auto&& e: G[P.back()]) {\n        if (done[e.to])\
+    \ continue;\n        P.eb(e.to);\n        done[e.to] = 1;\n        ok = 1;\n \
+    \     }\n      if (!ok) break;\n    }\n    return P;\n  };\n  vvc<int> paths,\
+    \ cycs;\n  FOR(v, N) {\n    if (done[v] || deg[v] != 1) continue;\n    paths.eb(calc_frm(v));\n\
+    \  }\n  FOR(v, N) {\n    if (done[v]) continue;\n    cycs.eb(calc_frm(v));\n \
+    \ }\n  return {paths, cycs};\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: graph/dag_path_cover.hpp
+  path: graph/path_cycle.hpp
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: graph/dag_path_cover.hpp
+documentation_of: graph/path_cycle.hpp
 layout: document
 redirect_from:
-- /library/graph/dag_path_cover.hpp
-- /library/graph/dag_path_cover.hpp.html
-title: graph/dag_path_cover.hpp
+- /library/graph/path_cycle.hpp
+- /library/graph/path_cycle.hpp.html
+title: graph/path_cycle.hpp
 ---

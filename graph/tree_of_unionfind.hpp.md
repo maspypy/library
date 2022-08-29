@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -43,22 +43,32 @@ data:
     \ = e;\n      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to,\
     \ e.frm, e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const\
     \ {\n    assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\
-    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
-    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
-    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
-    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
-    \    }\n  }\n};\n#line 2 \"ds/unionfind.hpp\"\n\nstruct UnionFind {\n  int n;\n\
-    \  int n_comp;\n  std::vector<int> size, par;\n  UnionFind(int n) : n(n), n_comp(n),\
-    \ size(n, 1), par(n) {\n    std::iota(par.begin(), par.end(), 0);\n  }\n  int\
-    \ find(int x) {\n    assert(0 <= x && x < n);\n    while (par[x] != x) {\n   \
-    \   par[x] = par[par[x]];\n      x = par[x];\n    }\n    return x;\n  }\n\n  int\
-    \ operator[](int x) { return find(x); }\n\n  bool merge(int x, int y) {\n    x\
-    \ = find(x);\n    y = find(y);\n    if (x == y) { return false; }\n    n_comp--;\n\
-    \    if (size[x] < size[y]) std::swap(x, y);\n    size[x] += size[y];\n    size[y]\
-    \ = 0;\n    par[y] = x;\n    return true;\n  }\n\n  std::vector<int> find_all()\
-    \ {\n    std::vector<int> A(n);\n    for (int i = 0; i < n; ++i) A[i] = find(i);\n\
-    \    return A;\n  }\n\n  void reset() {\n    n_comp = n;\n    size.assign(n, 1);\n\
-    \    std::iota(par.begin(), par.end(), 0);\n  }\n};\n#line 3 \"graph/tree_of_unionfind.hpp\"\
+    \n  vc<int> deg_array() {\n    static vc<int> deg;\n    if (deg.empty()) {\n \
+    \     deg.resize(N);\n      for (auto&& e: edges) deg[e.frm]++, deg[e.to]++;\n\
+    \    }\n    return deg;\n  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n\
+    \    static vector<int> indeg, outdeg;\n    if (indeg.empty()) {\n      indeg.resize(N);\n\
+    \      outdeg.resize(N);\n      for (auto&& e: G.edges) { indeg[e.to]++, outdeg[e.frm]++;\
+    \ }\n    }\n    return {indeg, outdeg};\n  }\n\n  int deg(int v) {\n    static\
+    \ vc<int> deg;\n    if (deg.empty()) deg = deg_array();\n    return deg[v];\n\
+    \  }\n\n  pair<int, int> deg_inout(int v) {\n    static vc<int> indeg, outdeg;\n\
+    \    if (indeg.empty()) tie(indeg, outdeg) = deg_array_inout();\n    return {indeg[v],\
+    \ outdeg[v]};\n  }\n\n  int in_deg(int v) { return deg_inout(v).fi; }\n  int out_deg(int\
+    \ v) { return deg_inout(v).se; }\n\n  void debug() {\n    print(\"Graph\");\n\
+    \    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e:\
+    \ edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
+    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 2 \"ds/unionfind.hpp\"\
+    \n\nstruct UnionFind {\n  int n;\n  int n_comp;\n  std::vector<int> size, par;\n\
+    \  UnionFind(int n) : n(n), n_comp(n), size(n, 1), par(n) {\n    std::iota(par.begin(),\
+    \ par.end(), 0);\n  }\n  int find(int x) {\n    assert(0 <= x && x < n);\n   \
+    \ while (par[x] != x) {\n      par[x] = par[par[x]];\n      x = par[x];\n    }\n\
+    \    return x;\n  }\n\n  int operator[](int x) { return find(x); }\n\n  bool merge(int\
+    \ x, int y) {\n    x = find(x);\n    y = find(y);\n    if (x == y) { return false;\
+    \ }\n    n_comp--;\n    if (size[x] < size[y]) std::swap(x, y);\n    size[x] +=\
+    \ size[y];\n    size[y] = 0;\n    par[y] = x;\n    return true;\n  }\n\n  std::vector<int>\
+    \ find_all() {\n    std::vector<int> A(n);\n    for (int i = 0; i < n; ++i) A[i]\
+    \ = find(i);\n    return A;\n  }\n\n  void reset() {\n    n_comp = n;\n    size.assign(n,\
+    \ 1);\n    std::iota(par.begin(), par.end(), 0);\n  }\n};\n#line 3 \"graph/tree_of_unionfind.hpp\"\
     \n\r\n/*\r\n\u30DE\u30FC\u30B8\u904E\u7A0B\u3092\u8868\u3059\u6728\u3092\u69CB\
     \u7BC9\u3059\u308B\r\nq \u56DE\u76EE\u306B\u30DE\u30FC\u30B8\u3057\u3066\u3067\
     \u304D\u308B\u6210\u5206\uFF1AN+q\r\nadd_root = true \u306E\u5834\u5408\uFF1A\u6700\
@@ -91,7 +101,7 @@ data:
   isVerificationFile: false
   path: graph/tree_of_unionfind.hpp
   requiredBy: []
-  timestamp: '2022-08-18 17:59:01+09:00'
+  timestamp: '2022-08-29 19:35:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree_of_unionfind.hpp

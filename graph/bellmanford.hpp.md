@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_1_B_bellmanford.test.cpp
     title: test/aoj/GRL_1_B_bellmanford.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -43,23 +43,34 @@ data:
     \ = e;\n      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to,\
     \ e.frm, e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const\
     \ {\n    assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\
-    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
-    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
-    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
-    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
-    \    }\n  }\n};\n#line 3 \"graph/bellmanford.hpp\"\n\n// \u5358\u4E00\u59CB\u70B9\
-    \u6700\u77ED\u8DEF\u3002\u8CA0\u9589\u8DEF\u3042\u308A\u3067\u3082\u3088\u3044\
-    \u3002O(NM) \u6642\u9593\u3002\n// \u5230\u9054\u4E0D\u53EF\u80FD\uFF1AINF\n//\
-    \ \u8CA0\u9589\u8DEF\u3092\u7D4C\u7531\u3057\u3066\u3044\u304F\u3089\u3067\u3082\
-    \u5C0F\u3055\u304F\u3067\u304D\u308B\uFF1A-INF\ntemplate <typename T, T INF, typename\
-    \ Graph>\npair<vc<T>, vc<int>> BellmanFord(Graph& G, int s) {\n  int N = G.N;\n\
-    \  vc<T> dist(N, INF);\n  vc<int> par(N, -1);\n  dist[s] = 0;\n  int loop = 0;\n\
-    \  while (1) {\n    ++loop;\n    bool upd = 0;\n    FOR(v, N) {\n      if (dist[v]\
-    \ == INF) continue;\n      for (auto&& e: G[v]) {\n        T before = dist[e.to];\n\
-    \        T after = dist[v] + e.cost;\n        chmax(after, -INF);\n        if\
-    \ (before > after) {\n          par[e.to] = v;\n          upd = 1;\n         \
-    \ if (loop >= N) after = -INF;\n          dist[e.to] = after;\n        }\n   \
-    \   }\n    }\n    if (!upd) break;\n  }\n  return {dist, par};\n}\n"
+    \n  vc<int> deg_array() {\n    static vc<int> deg;\n    if (deg.empty()) {\n \
+    \     deg.resize(N);\n      for (auto&& e: edges) deg[e.frm]++, deg[e.to]++;\n\
+    \    }\n    return deg;\n  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n\
+    \    static vector<int> indeg, outdeg;\n    if (indeg.empty()) {\n      indeg.resize(N);\n\
+    \      outdeg.resize(N);\n      for (auto&& e: G.edges) { indeg[e.to]++, outdeg[e.frm]++;\
+    \ }\n    }\n    return {indeg, outdeg};\n  }\n\n  int deg(int v) {\n    static\
+    \ vc<int> deg;\n    if (deg.empty()) deg = deg_array();\n    return deg[v];\n\
+    \  }\n\n  pair<int, int> deg_inout(int v) {\n    static vc<int> indeg, outdeg;\n\
+    \    if (indeg.empty()) tie(indeg, outdeg) = deg_array_inout();\n    return {indeg[v],\
+    \ outdeg[v]};\n  }\n\n  int in_deg(int v) { return deg_inout(v).fi; }\n  int out_deg(int\
+    \ v) { return deg_inout(v).se; }\n\n  void debug() {\n    print(\"Graph\");\n\
+    \    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e:\
+    \ edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
+    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 3 \"graph/bellmanford.hpp\"\
+    \n\n// \u5358\u4E00\u59CB\u70B9\u6700\u77ED\u8DEF\u3002\u8CA0\u9589\u8DEF\u3042\
+    \u308A\u3067\u3082\u3088\u3044\u3002O(NM) \u6642\u9593\u3002\n// \u5230\u9054\u4E0D\
+    \u53EF\u80FD\uFF1AINF\n// \u8CA0\u9589\u8DEF\u3092\u7D4C\u7531\u3057\u3066\u3044\
+    \u304F\u3089\u3067\u3082\u5C0F\u3055\u304F\u3067\u304D\u308B\uFF1A-INF\ntemplate\
+    \ <typename T, T INF, typename Graph>\npair<vc<T>, vc<int>> BellmanFord(Graph&\
+    \ G, int s) {\n  int N = G.N;\n  vc<T> dist(N, INF);\n  vc<int> par(N, -1);\n\
+    \  dist[s] = 0;\n  int loop = 0;\n  while (1) {\n    ++loop;\n    bool upd = 0;\n\
+    \    FOR(v, N) {\n      if (dist[v] == INF) continue;\n      for (auto&& e: G[v])\
+    \ {\n        T before = dist[e.to];\n        T after = dist[v] + e.cost;\n   \
+    \     chmax(after, -INF);\n        if (before > after) {\n          par[e.to]\
+    \ = v;\n          upd = 1;\n          if (loop >= N) after = -INF;\n         \
+    \ dist[e.to] = after;\n        }\n      }\n    }\n    if (!upd) break;\n  }\n\
+    \  return {dist, par};\n}\n"
   code: "#pragma once\n#include \"graph/base.hpp\"\n\n// \u5358\u4E00\u59CB\u70B9\u6700\
     \u77ED\u8DEF\u3002\u8CA0\u9589\u8DEF\u3042\u308A\u3067\u3082\u3088\u3044\u3002\
     O(NM) \u6642\u9593\u3002\n// \u5230\u9054\u4E0D\u53EF\u80FD\uFF1AINF\n// \u8CA0\
@@ -78,8 +89,8 @@ data:
   isVerificationFile: false
   path: graph/bellmanford.hpp
   requiredBy: []
-  timestamp: '2022-08-18 17:59:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-08-29 19:35:42+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/GRL_1_B_bellmanford.test.cpp
 documentation_of: graph/bellmanford.hpp

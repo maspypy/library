@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
     title: test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -43,13 +43,23 @@ data:
     \ = e;\n      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to,\
     \ e.frm, e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const\
     \ {\n    assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\
-    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
-    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
-    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
-    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
-    \    }\n  }\n};\n#line 3 \"graph/minimum_hamiltonian_cycle.hpp\"\n\n/*\nreturn\
-    \ [cost, cycle]\ncycle \u306A\u3057\u306E\u5834\u5408\uFF1A{-1, {}}\n*/\ntemplate\
-    \ <typename T, typename Graph>\npair<T, vc<int>> minimum_hamiltonian_cycle(Graph&\
+    \n  vc<int> deg_array() {\n    static vc<int> deg;\n    if (deg.empty()) {\n \
+    \     deg.resize(N);\n      for (auto&& e: edges) deg[e.frm]++, deg[e.to]++;\n\
+    \    }\n    return deg;\n  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n\
+    \    static vector<int> indeg, outdeg;\n    if (indeg.empty()) {\n      indeg.resize(N);\n\
+    \      outdeg.resize(N);\n      for (auto&& e: G.edges) { indeg[e.to]++, outdeg[e.frm]++;\
+    \ }\n    }\n    return {indeg, outdeg};\n  }\n\n  int deg(int v) {\n    static\
+    \ vc<int> deg;\n    if (deg.empty()) deg = deg_array();\n    return deg[v];\n\
+    \  }\n\n  pair<int, int> deg_inout(int v) {\n    static vc<int> indeg, outdeg;\n\
+    \    if (indeg.empty()) tie(indeg, outdeg) = deg_array_inout();\n    return {indeg[v],\
+    \ outdeg[v]};\n  }\n\n  int in_deg(int v) { return deg_inout(v).fi; }\n  int out_deg(int\
+    \ v) { return deg_inout(v).se; }\n\n  void debug() {\n    print(\"Graph\");\n\
+    \    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e:\
+    \ edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
+    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 3 \"graph/minimum_hamiltonian_cycle.hpp\"\
+    \n\n/*\nreturn [cost, cycle]\ncycle \u306A\u3057\u306E\u5834\u5408\uFF1A{-1, {}}\n\
+    */\ntemplate <typename T, typename Graph>\npair<T, vc<int>> minimum_hamiltonian_cycle(Graph&\
     \ G) {\n  assert(G.is_prepared());\n  T INF = numeric_limits<T>::max();\n  int\
     \ n = G.N;\n  vv(T, dist, n, n, INF);\n  FOR(v, n) {\n    for (auto&& e: G[v])\
     \ chmin(dist[v][e.to], e.cost);\n  }\n  n -= 1;\n  vv(T, dp, 1 << n, n, INF);\n\
@@ -87,8 +97,8 @@ data:
   isVerificationFile: false
   path: graph/minimum_hamiltonian_cycle.hpp
   requiredBy: []
-  timestamp: '2022-08-18 17:59:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-08-29 19:35:42+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
 documentation_of: graph/minimum_hamiltonian_cycle.hpp

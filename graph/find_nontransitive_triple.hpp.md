@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -41,16 +41,26 @@ data:
     \ = e;\n      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to,\
     \ e.frm, e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const\
     \ {\n    assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\
-    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
-    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
-    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
-    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
-    \    }\n  }\n};\n#line 3 \"graph/find_nontransitive_triple.hpp\"\n\r\n// ab, bc\
-    \ \u8FBA\u306F\u3042\u308B\u304C ac \u8FBA\u306F\u306A\u3044\u3088\u3046\u306A\
-    \ 3 \u3064\u7D44 (a,b,c) \u3092\u63A2\u3059\u3002\r\n// \u306A\u3051\u308C\u3070\
-    \ {-1,-1,-1}\r\n// example: https://codeforces.com/contest/967/problem/F\r\ntemplate\
-    \ <typename Graph>\r\ntuple<int, int, int> find_nontransitive_triple(Graph& G)\
-    \ {\r\n  int N = G.N;\r\n  assert(G.is_prepared());\r\n  assert(!G.is_directed());\r\
+    \n  vc<int> deg_array() {\n    static vc<int> deg;\n    if (deg.empty()) {\n \
+    \     deg.resize(N);\n      for (auto&& e: edges) deg[e.frm]++, deg[e.to]++;\n\
+    \    }\n    return deg;\n  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n\
+    \    static vector<int> indeg, outdeg;\n    if (indeg.empty()) {\n      indeg.resize(N);\n\
+    \      outdeg.resize(N);\n      for (auto&& e: G.edges) { indeg[e.to]++, outdeg[e.frm]++;\
+    \ }\n    }\n    return {indeg, outdeg};\n  }\n\n  int deg(int v) {\n    static\
+    \ vc<int> deg;\n    if (deg.empty()) deg = deg_array();\n    return deg[v];\n\
+    \  }\n\n  pair<int, int> deg_inout(int v) {\n    static vc<int> indeg, outdeg;\n\
+    \    if (indeg.empty()) tie(indeg, outdeg) = deg_array_inout();\n    return {indeg[v],\
+    \ outdeg[v]};\n  }\n\n  int in_deg(int v) { return deg_inout(v).fi; }\n  int out_deg(int\
+    \ v) { return deg_inout(v).se; }\n\n  void debug() {\n    print(\"Graph\");\n\
+    \    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e:\
+    \ edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
+    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 3 \"graph/find_nontransitive_triple.hpp\"\
+    \n\r\n// ab, bc \u8FBA\u306F\u3042\u308B\u304C ac \u8FBA\u306F\u306A\u3044\u3088\
+    \u3046\u306A 3 \u3064\u7D44 (a,b,c) \u3092\u63A2\u3059\u3002\r\n// \u306A\u3051\
+    \u308C\u3070 {-1,-1,-1}\r\n// example: https://codeforces.com/contest/967/problem/F\r\
+    \ntemplate <typename Graph>\r\ntuple<int, int, int> find_nontransitive_triple(Graph&\
+    \ G) {\r\n  int N = G.N;\r\n  assert(G.is_prepared());\r\n  assert(!G.is_directed());\r\
     \n  vc<int> done(N);\r\n  vc<int> que;\r\n  FOR(root, N) {\r\n    if (done[root])\
     \ continue;\r\n    que = {root};\r\n    int p = 0;\r\n    while (p < len(que))\
     \ {\r\n      int v = que[p++];\r\n      done[v] = 2;\r\n      ll s = 0;\r\n  \
@@ -85,7 +95,7 @@ data:
   isVerificationFile: false
   path: graph/find_nontransitive_triple.hpp
   requiredBy: []
-  timestamp: '2022-08-18 17:59:01+09:00'
+  timestamp: '2022-08-29 19:35:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/find_nontransitive_triple.hpp

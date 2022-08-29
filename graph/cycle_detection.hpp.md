@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/cycle_detection.test.cpp
     title: test/library_checker/graph/cycle_detection.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -43,27 +43,38 @@ data:
     \ = e;\n      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to,\
     \ e.frm, e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const\
     \ {\n    assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\
-    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
-    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
-    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
-    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
-    \    }\n  }\n};\n#line 2 \"graph/cycle_detection.hpp\"\n\r\n// \u8FBA\u306E\u5217\
-    \ or \u9802\u70B9\u5217\u306E vector \u3092\u8FD4\u3059\r\n// \u898B\u3064\u304B\
-    \u3089\u306A\u304B\u3063\u305F\u5834\u5408\u306B\u306F\u3001\u7A7A vector\r\n\
-    template <typename Graph>\r\nvc<int> cycle_detection(Graph& G, bool is_edge =\
-    \ 0) {\r\n  assert(G.is_directed());\r\n  assert(G.is_prepared());\r\n  if (!is_edge)\
-    \ {\r\n    auto C = cycle_detection(G, true);\r\n    if (len(C) == 0) return C;\r\
-    \n    vc<int> ANS(len(C));\r\n    FOR(i, len(C)) {\r\n      auto e = G.edges[C[i]];\r\
-    \n      ANS[i] = e.frm;\r\n    }\r\n    return ANS;\r\n  }\r\n\r\n  int N = G.N;\r\
-    \n  vc<int> used(N);\r\n  vc<int> path; // edge\r\n  vc<pair<int, int>> par(N);\r\
-    \n  vector<int> ANS;\r\n\r\n  auto dfs = [&](auto self, int v) -> void {\r\n \
-    \   used[v] = 1;\r\n    for (auto&& e: G[v]) {\r\n      if (len(ANS)) return;\r\
-    \n      if (!used[e.to]) {\r\n        par[e.to] = {v, e.id};\r\n        self(self,\
-    \ e.to);\r\n      }\r\n      elif (used[e.to] == 1) {\r\n        ANS = {e.id};\r\
-    \n        int cur = v;\r\n        while (cur != e.to) {\r\n          ANS.eb(par[cur].se);\r\
-    \n          cur = par[cur].fi;\r\n        }\r\n        reverse(all(ANS));\r\n\
-    \        return;\r\n      }\r\n    }\r\n    used[v] = 2;\r\n  };\r\n  FOR(v, N)\
-    \ if (!used[v]) dfs(dfs, v);\r\n  return ANS;\r\n}\n"
+    \n  vc<int> deg_array() {\n    static vc<int> deg;\n    if (deg.empty()) {\n \
+    \     deg.resize(N);\n      for (auto&& e: edges) deg[e.frm]++, deg[e.to]++;\n\
+    \    }\n    return deg;\n  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n\
+    \    static vector<int> indeg, outdeg;\n    if (indeg.empty()) {\n      indeg.resize(N);\n\
+    \      outdeg.resize(N);\n      for (auto&& e: G.edges) { indeg[e.to]++, outdeg[e.frm]++;\
+    \ }\n    }\n    return {indeg, outdeg};\n  }\n\n  int deg(int v) {\n    static\
+    \ vc<int> deg;\n    if (deg.empty()) deg = deg_array();\n    return deg[v];\n\
+    \  }\n\n  pair<int, int> deg_inout(int v) {\n    static vc<int> indeg, outdeg;\n\
+    \    if (indeg.empty()) tie(indeg, outdeg) = deg_array_inout();\n    return {indeg[v],\
+    \ outdeg[v]};\n  }\n\n  int in_deg(int v) { return deg_inout(v).fi; }\n  int out_deg(int\
+    \ v) { return deg_inout(v).se; }\n\n  void debug() {\n    print(\"Graph\");\n\
+    \    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e:\
+    \ edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
+    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 2 \"graph/cycle_detection.hpp\"\
+    \n\r\n// \u8FBA\u306E\u5217 or \u9802\u70B9\u5217\u306E vector \u3092\u8FD4\u3059\
+    \r\n// \u898B\u3064\u304B\u3089\u306A\u304B\u3063\u305F\u5834\u5408\u306B\u306F\
+    \u3001\u7A7A vector\r\ntemplate <typename Graph>\r\nvc<int> cycle_detection(Graph&\
+    \ G, bool is_edge = 0) {\r\n  assert(G.is_directed());\r\n  assert(G.is_prepared());\r\
+    \n  if (!is_edge) {\r\n    auto C = cycle_detection(G, true);\r\n    if (len(C)\
+    \ == 0) return C;\r\n    vc<int> ANS(len(C));\r\n    FOR(i, len(C)) {\r\n    \
+    \  auto e = G.edges[C[i]];\r\n      ANS[i] = e.frm;\r\n    }\r\n    return ANS;\r\
+    \n  }\r\n\r\n  int N = G.N;\r\n  vc<int> used(N);\r\n  vc<int> path; // edge\r\
+    \n  vc<pair<int, int>> par(N);\r\n  vector<int> ANS;\r\n\r\n  auto dfs = [&](auto\
+    \ self, int v) -> void {\r\n    used[v] = 1;\r\n    for (auto&& e: G[v]) {\r\n\
+    \      if (len(ANS)) return;\r\n      if (!used[e.to]) {\r\n        par[e.to]\
+    \ = {v, e.id};\r\n        self(self, e.to);\r\n      }\r\n      elif (used[e.to]\
+    \ == 1) {\r\n        ANS = {e.id};\r\n        int cur = v;\r\n        while (cur\
+    \ != e.to) {\r\n          ANS.eb(par[cur].se);\r\n          cur = par[cur].fi;\r\
+    \n        }\r\n        reverse(all(ANS));\r\n        return;\r\n      }\r\n  \
+    \  }\r\n    used[v] = 2;\r\n  };\r\n  FOR(v, N) if (!used[v]) dfs(dfs, v);\r\n\
+    \  return ANS;\r\n}\n"
   code: "#include \"graph/base.hpp\"\r\n\r\n// \u8FBA\u306E\u5217 or \u9802\u70B9\u5217\
     \u306E vector \u3092\u8FD4\u3059\r\n// \u898B\u3064\u304B\u3089\u306A\u304B\u3063\
     \u305F\u5834\u5408\u306B\u306F\u3001\u7A7A vector\r\ntemplate <typename Graph>\r\
@@ -86,8 +97,8 @@ data:
   isVerificationFile: false
   path: graph/cycle_detection.hpp
   requiredBy: []
-  timestamp: '2022-08-18 17:59:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-08-29 19:35:42+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/graph/cycle_detection.test.cpp
 documentation_of: graph/cycle_detection.hpp

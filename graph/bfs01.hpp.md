@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/mincostcycle.hpp
     title: graph/mincostcycle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_diameter.hpp
     title: graph/tree_diameter.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/tree/tree_diameter.test.cpp
     title: test/library_checker/tree/tree_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1320_mincostcycle.test.cpp
     title: test/yukicoder/1320_mincostcycle.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1718_rerooting.test.cpp
     title: test/yukicoder/1718_rerooting.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1868_range_to_range.test.cpp
     title: test/yukicoder/1868_range_to_range.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -58,29 +58,40 @@ data:
     \ = e;\n      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to,\
     \ e.frm, e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const\
     \ {\n    assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\
-    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
-    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
-    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
-    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
-    \    }\n  }\n};\n#line 3 \"graph/bfs01.hpp\"\n\ntemplate <typename Graph>\npair<vc<ll>,\
-    \ vc<int>> bfs01(Graph& G, ll v) {\n  assert(G.is_prepared());\n  int N = G.N;\n\
-    \  vc<ll> dist(N, -1);\n  vc<int> par(N, -1);\n  deque<int> que;\n\n  dist[v]\
-    \ = 0;\n  que.push_front(v);\n  while (!que.empty()) {\n    auto v = que.front();\n\
-    \    que.pop_front();\n    for (auto&& e: G[v]) {\n      if (dist[e.to] == -1\
-    \ || dist[e.to] > dist[e.frm] + e.cost) {\n        dist[e.to] = dist[e.frm] +\
-    \ e.cost;\n        par[e.to] = e.frm;\n        if (e.cost == 0)\n          que.push_front(e.to);\n\
-    \        else\n          que.push_back(e.to);\n      }\n    }\n  }\n  return {dist,\
-    \ par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\u30C8\u3002[dist, par, root]\n\
-    template <typename Graph>\ntuple<vc<ll>, vc<int>, vc<int>> bfs01(Graph& G, vc<int>\
-    \ vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<ll> dist(N, -1);\n \
-    \ vc<int> par(N, -1);\n  vc<int> root(N, -1);\n  deque<int> que;\n\n  for (auto&&\
-    \ v: vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.push_front(v);\n  }\n\n\
-    \  while (!que.empty()) {\n    auto v = que.front();\n    que.pop_front();\n \
-    \   for (auto&& e: G[v]) {\n      if (dist[e.to] == -1 || dist[e.to] > dist[e.frm]\
-    \ + e.cost) {\n        dist[e.to] = dist[e.frm] + e.cost;\n        root[e.to]\
-    \ = root[e.frm];\n        par[e.to] = e.frm;\n        if (e.cost == 0)\n     \
-    \     que.push_front(e.to);\n        else\n          que.push_back(e.to);\n  \
-    \    }\n    }\n  }\n  return {dist, par, root};\n}\n"
+    \n  vc<int> deg_array() {\n    static vc<int> deg;\n    if (deg.empty()) {\n \
+    \     deg.resize(N);\n      for (auto&& e: edges) deg[e.frm]++, deg[e.to]++;\n\
+    \    }\n    return deg;\n  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n\
+    \    static vector<int> indeg, outdeg;\n    if (indeg.empty()) {\n      indeg.resize(N);\n\
+    \      outdeg.resize(N);\n      for (auto&& e: G.edges) { indeg[e.to]++, outdeg[e.frm]++;\
+    \ }\n    }\n    return {indeg, outdeg};\n  }\n\n  int deg(int v) {\n    static\
+    \ vc<int> deg;\n    if (deg.empty()) deg = deg_array();\n    return deg[v];\n\
+    \  }\n\n  pair<int, int> deg_inout(int v) {\n    static vc<int> indeg, outdeg;\n\
+    \    if (indeg.empty()) tie(indeg, outdeg) = deg_array_inout();\n    return {indeg[v],\
+    \ outdeg[v]};\n  }\n\n  int in_deg(int v) { return deg_inout(v).fi; }\n  int out_deg(int\
+    \ v) { return deg_inout(v).se; }\n\n  void debug() {\n    print(\"Graph\");\n\
+    \    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e:\
+    \ edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
+    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 3 \"graph/bfs01.hpp\"\
+    \n\ntemplate <typename Graph>\npair<vc<ll>, vc<int>> bfs01(Graph& G, ll v) {\n\
+    \  assert(G.is_prepared());\n  int N = G.N;\n  vc<ll> dist(N, -1);\n  vc<int>\
+    \ par(N, -1);\n  deque<int> que;\n\n  dist[v] = 0;\n  que.push_front(v);\n  while\
+    \ (!que.empty()) {\n    auto v = que.front();\n    que.pop_front();\n    for (auto&&\
+    \ e: G[v]) {\n      if (dist[e.to] == -1 || dist[e.to] > dist[e.frm] + e.cost)\
+    \ {\n        dist[e.to] = dist[e.frm] + e.cost;\n        par[e.to] = e.frm;\n\
+    \        if (e.cost == 0)\n          que.push_front(e.to);\n        else\n   \
+    \       que.push_back(e.to);\n      }\n    }\n  }\n  return {dist, par};\n}\n\n\
+    // \u591A\u70B9\u30B9\u30BF\u30FC\u30C8\u3002[dist, par, root]\ntemplate <typename\
+    \ Graph>\ntuple<vc<ll>, vc<int>, vc<int>> bfs01(Graph& G, vc<int> vs) {\n  assert(G.is_prepared());\n\
+    \  int N = G.N;\n  vc<ll> dist(N, -1);\n  vc<int> par(N, -1);\n  vc<int> root(N,\
+    \ -1);\n  deque<int> que;\n\n  for (auto&& v: vs) {\n    dist[v] = 0;\n    root[v]\
+    \ = v;\n    que.push_front(v);\n  }\n\n  while (!que.empty()) {\n    auto v =\
+    \ que.front();\n    que.pop_front();\n    for (auto&& e: G[v]) {\n      if (dist[e.to]\
+    \ == -1 || dist[e.to] > dist[e.frm] + e.cost) {\n        dist[e.to] = dist[e.frm]\
+    \ + e.cost;\n        root[e.to] = root[e.frm];\n        par[e.to] = e.frm;\n \
+    \       if (e.cost == 0)\n          que.push_front(e.to);\n        else\n    \
+    \      que.push_back(e.to);\n      }\n    }\n  }\n  return {dist, par, root};\n\
+    }\n"
   code: "#pragma once\n#include \"graph/base.hpp\"\n\ntemplate <typename Graph>\n\
     pair<vc<ll>, vc<int>> bfs01(Graph& G, ll v) {\n  assert(G.is_prepared());\n  int\
     \ N = G.N;\n  vc<ll> dist(N, -1);\n  vc<int> par(N, -1);\n  deque<int> que;\n\n\
@@ -107,8 +118,8 @@ data:
   requiredBy:
   - graph/mincostcycle.hpp
   - graph/tree_diameter.hpp
-  timestamp: '2022-08-18 17:59:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-08-29 19:35:42+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1868_range_to_range.test.cpp
   - test/yukicoder/1718_rerooting.test.cpp

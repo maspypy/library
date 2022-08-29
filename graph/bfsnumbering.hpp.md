@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/899_bfsnumbering.test.cpp
     title: test/yukicoder/899_bfsnumbering.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -43,23 +43,34 @@ data:
     \ = e;\n      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to,\
     \ e.frm, e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const\
     \ {\n    assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\
-    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
-    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
-    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
-    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
-    \    }\n  }\n};\n#line 2 \"graph/bfsnumbering.hpp\"\n\r\n\r\n// ID[v]\uFF1A\u9802\
-    \u70B9\u306E\u65B0\u3057\u3044\u756A\u53F7\r\n// calc_range(v, dep)\uFF1Av \u306E\
-    \u90E8\u5206\u6728\u3067\u3001\u6DF1\u3055 dep \u306E\u3082\u306E\u305F\u3061\u306E\
-    \u7BC4\u56F2\r\n// \u6DF1\u3055\u306F\u7D76\u5BFE\u7684\u306A\u3082\u306E\u3067\
-    \u3042\u308B\u3053\u3068\u306B\u6CE8\u610F\u305B\u3088\r\ntemplate <typename Graph>\r\
-    \nstruct BFSNumbering {\r\n  Graph& G;\r\n  int root;\r\n  vector<int> V;\r\n\
-    \  vector<int> ID;\r\n  vector<int> depth;\r\n  vector<int> parent;\r\n  vector<int>\
-    \ LID, RID;\r\n  vector<int> LID_seq;\r\n  vector<int> dep_ids;\r\n  int cnt;\r\
-    \n\r\n  BFSNumbering(Graph& G, int root = 0) : G(G), root(root), cnt(0) { build();\
-    \ }\r\n\r\n  void bfs() {\r\n    deque<int> que = {root};\r\n    while (!que.empty())\
-    \ {\r\n      int v = que.front();\r\n      que.pop_front();\r\n      ID[v] = V.size();\r\
-    \n      V.eb(v);\r\n      for(auto&& [frm,to,cost,id] : G[v]) {\r\n        if\
-    \ (to == parent[v]) continue;\r\n        que.emplace_back(to);\r\n        parent[to]\
+    \n  vc<int> deg_array() {\n    static vc<int> deg;\n    if (deg.empty()) {\n \
+    \     deg.resize(N);\n      for (auto&& e: edges) deg[e.frm]++, deg[e.to]++;\n\
+    \    }\n    return deg;\n  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n\
+    \    static vector<int> indeg, outdeg;\n    if (indeg.empty()) {\n      indeg.resize(N);\n\
+    \      outdeg.resize(N);\n      for (auto&& e: G.edges) { indeg[e.to]++, outdeg[e.frm]++;\
+    \ }\n    }\n    return {indeg, outdeg};\n  }\n\n  int deg(int v) {\n    static\
+    \ vc<int> deg;\n    if (deg.empty()) deg = deg_array();\n    return deg[v];\n\
+    \  }\n\n  pair<int, int> deg_inout(int v) {\n    static vc<int> indeg, outdeg;\n\
+    \    if (indeg.empty()) tie(indeg, outdeg) = deg_array_inout();\n    return {indeg[v],\
+    \ outdeg[v]};\n  }\n\n  int in_deg(int v) { return deg_inout(v).fi; }\n  int out_deg(int\
+    \ v) { return deg_inout(v).se; }\n\n  void debug() {\n    print(\"Graph\");\n\
+    \    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e:\
+    \ edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
+    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 2 \"graph/bfsnumbering.hpp\"\
+    \n\r\n\r\n// ID[v]\uFF1A\u9802\u70B9\u306E\u65B0\u3057\u3044\u756A\u53F7\r\n//\
+    \ calc_range(v, dep)\uFF1Av \u306E\u90E8\u5206\u6728\u3067\u3001\u6DF1\u3055 dep\
+    \ \u306E\u3082\u306E\u305F\u3061\u306E\u7BC4\u56F2\r\n// \u6DF1\u3055\u306F\u7D76\
+    \u5BFE\u7684\u306A\u3082\u306E\u3067\u3042\u308B\u3053\u3068\u306B\u6CE8\u610F\
+    \u305B\u3088\r\ntemplate <typename Graph>\r\nstruct BFSNumbering {\r\n  Graph&\
+    \ G;\r\n  int root;\r\n  vector<int> V;\r\n  vector<int> ID;\r\n  vector<int>\
+    \ depth;\r\n  vector<int> parent;\r\n  vector<int> LID, RID;\r\n  vector<int>\
+    \ LID_seq;\r\n  vector<int> dep_ids;\r\n  int cnt;\r\n\r\n  BFSNumbering(Graph&\
+    \ G, int root = 0) : G(G), root(root), cnt(0) { build(); }\r\n\r\n  void bfs()\
+    \ {\r\n    deque<int> que = {root};\r\n    while (!que.empty()) {\r\n      int\
+    \ v = que.front();\r\n      que.pop_front();\r\n      ID[v] = V.size();\r\n  \
+    \    V.eb(v);\r\n      for(auto&& [frm,to,cost,id] : G[v]) {\r\n        if (to\
+    \ == parent[v]) continue;\r\n        que.emplace_back(to);\r\n        parent[to]\
     \ = v;\r\n        depth[to] = depth[v] + 1;\r\n      }\r\n    }\r\n  }\r\n\r\n\
     \  void dfs(int v) {\r\n    LID[v] = cnt++;\r\n    for(auto&& [frm,to,cost,id]\
     \ : G[v]) {\r\n      if (to == parent[v]) continue;\r\n      dfs(to);\r\n    }\r\
@@ -112,8 +123,8 @@ data:
   isVerificationFile: false
   path: graph/bfsnumbering.hpp
   requiredBy: []
-  timestamp: '2022-08-18 17:59:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-08-29 19:35:42+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/899_bfsnumbering.test.cpp
 documentation_of: graph/bfsnumbering.hpp

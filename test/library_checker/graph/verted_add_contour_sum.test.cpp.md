@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/contoursum.hpp
     title: graph/contoursum.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree
@@ -233,10 +233,21 @@ data:
     \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
     \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
     \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
-    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  void debug() {\n    print(\"\
-    Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
-    \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
-    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  vc<int> deg_array() {\n\
+    \    static vc<int> deg;\n    if (deg.empty()) {\n      deg.resize(N);\n     \
+    \ for (auto&& e: edges) deg[e.frm]++, deg[e.to]++;\n    }\n    return deg;\n \
+    \ }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n    static vector<int> indeg,\
+    \ outdeg;\n    if (indeg.empty()) {\n      indeg.resize(N);\n      outdeg.resize(N);\n\
+    \      for (auto&& e: G.edges) { indeg[e.to]++, outdeg[e.frm]++; }\n    }\n  \
+    \  return {indeg, outdeg};\n  }\n\n  int deg(int v) {\n    static vc<int> deg;\n\
+    \    if (deg.empty()) deg = deg_array();\n    return deg[v];\n  }\n\n  pair<int,\
+    \ int> deg_inout(int v) {\n    static vc<int> indeg, outdeg;\n    if (indeg.empty())\
+    \ tie(indeg, outdeg) = deg_array_inout();\n    return {indeg[v], outdeg[v]};\n\
+    \  }\n\n  int in_deg(int v) { return deg_inout(v).fi; }\n  int out_deg(int v)\
+    \ { return deg_inout(v).se; }\n\n  void debug() {\n    print(\"Graph\");\n   \
+    \ if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e: edges)\
+    \ print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\", indptr);\n\
+    \      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
     \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 2 \"alg/group_add.hpp\"\
     \n\r\ntemplate <typename E>\r\nstruct Group_Add {\r\n  using X = E;\r\n  using\
     \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
@@ -357,8 +368,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/verted_add_contour_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-08-28 03:31:54+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-29 19:35:42+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/verted_add_contour_sum.test.cpp
 layout: document

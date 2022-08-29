@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1170_range_to_range.test.cpp
     title: test/yukicoder/1170_range_to_range.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1868_range_to_range.test.cpp
     title: test/yukicoder/1868_range_to_range.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -46,18 +46,28 @@ data:
     \ = e;\n      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to,\
     \ e.frm, e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const\
     \ {\n    assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\
-    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
-    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
-    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
-    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
-    \    }\n  }\n};\n#line 3 \"graph/range_to_range_graph.hpp\"\n\ntemplate <typename\
-    \ T>\nstruct Range_to_Range_Graph {\n  int n;\n  int n_node;\n  vc<tuple<int,\
-    \ int, T>> edges;\n\n  Range_to_Range_Graph(int n) : n(n), n_node(n * 3) {\n \
-    \   FOR3(i, 2, n + n) { edges.eb(to_upper_idx(i / 2), to_upper_idx(i), 0); }\n\
-    \    FOR3(i, 2, n + n) { edges.eb(to_lower_idx(i), to_lower_idx(i / 2), 0); }\n\
-    \  }\n\n  inline int to_upper_idx(const int& i) {\n    if (i >= n) return i -\
-    \ n;\n    return n + i;\n  }\n\n  inline int to_lower_idx(const int& i) {\n  \
-    \  if (i >= n) return i - n;\n    return n + n + i;\n  }\n\n  void add(int frm,\
+    \n  vc<int> deg_array() {\n    static vc<int> deg;\n    if (deg.empty()) {\n \
+    \     deg.resize(N);\n      for (auto&& e: edges) deg[e.frm]++, deg[e.to]++;\n\
+    \    }\n    return deg;\n  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n\
+    \    static vector<int> indeg, outdeg;\n    if (indeg.empty()) {\n      indeg.resize(N);\n\
+    \      outdeg.resize(N);\n      for (auto&& e: G.edges) { indeg[e.to]++, outdeg[e.frm]++;\
+    \ }\n    }\n    return {indeg, outdeg};\n  }\n\n  int deg(int v) {\n    static\
+    \ vc<int> deg;\n    if (deg.empty()) deg = deg_array();\n    return deg[v];\n\
+    \  }\n\n  pair<int, int> deg_inout(int v) {\n    static vc<int> indeg, outdeg;\n\
+    \    if (indeg.empty()) tie(indeg, outdeg) = deg_array_inout();\n    return {indeg[v],\
+    \ outdeg[v]};\n  }\n\n  int in_deg(int v) { return deg_inout(v).fi; }\n  int out_deg(int\
+    \ v) { return deg_inout(v).se; }\n\n  void debug() {\n    print(\"Graph\");\n\
+    \    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e:\
+    \ edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
+    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 3 \"graph/range_to_range_graph.hpp\"\
+    \n\ntemplate <typename T>\nstruct Range_to_Range_Graph {\n  int n;\n  int n_node;\n\
+    \  vc<tuple<int, int, T>> edges;\n\n  Range_to_Range_Graph(int n) : n(n), n_node(n\
+    \ * 3) {\n    FOR3(i, 2, n + n) { edges.eb(to_upper_idx(i / 2), to_upper_idx(i),\
+    \ 0); }\n    FOR3(i, 2, n + n) { edges.eb(to_lower_idx(i), to_lower_idx(i / 2),\
+    \ 0); }\n  }\n\n  inline int to_upper_idx(const int& i) {\n    if (i >= n) return\
+    \ i - n;\n    return n + i;\n  }\n\n  inline int to_lower_idx(const int& i) {\n\
+    \    if (i >= n) return i - n;\n    return n + n + i;\n  }\n\n  void add(int frm,\
     \ int to, T wt) { edges.eb(frm, to, wt); }\n\n  void add_frm_range(int frm_l,\
     \ int frm_r, int to, T wt) {\n    int l = frm_l + n, r = frm_r + n;\n    while\
     \ (l < r) {\n      if (l & 1) add(to_lower_idx(l++), to, wt);\n      if (r & 1)\
@@ -94,8 +104,8 @@ data:
   isVerificationFile: false
   path: graph/range_to_range_graph.hpp
   requiredBy: []
-  timestamp: '2022-08-18 17:59:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-08-29 19:35:42+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1868_range_to_range.test.cpp
   - test/yukicoder/1170_range_to_range.test.cpp

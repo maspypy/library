@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -40,18 +40,28 @@ data:
     \ = e;\n      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to,\
     \ e.frm, e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const\
     \ {\n    assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\
-    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
-    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
-    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
-    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
-    \    }\n  }\n};\n#line 2 \"graph/eulerwalk.hpp\"\n\r\n/*\r\n\u9802\u70B9\u756A\
-    \u53F7\u306E\u5217\u3092\u8FD4\u3059\u3002\u6709\u5411\u30FB\u7121\u5411\u4E21\
-    \u5BFE\u5FDC\u3002\r\n\u5B58\u5728\u3057\u306A\u3044\u5834\u5408\u306B\u306F\u3001\
-    \u7A7A\u3092\u8FD4\u3059\u3002\r\n\u8FBA\u304C 0 \u500B\u306E\u5834\u5408\u306B\
-    \u306F {0} \u3092\u8FD4\u3059\u3002\r\n*/\r\ntemplate <typename T>\r\nvc<int>\
-    \ euler_walk(Graph<T>& G, int s = -1) {\r\n  assert(G.is_prepared());\r\n  ll\
-    \ N = G.N, M = G.M;\r\n  if (M == 0) return {0};\r\n\r\n  if (s == -1) {\r\n \
-    \   vc<int> deg(N);\r\n    for (auto&& e: G.edges) {\r\n      if (G.is_directed())\
+    \n  vc<int> deg_array() {\n    static vc<int> deg;\n    if (deg.empty()) {\n \
+    \     deg.resize(N);\n      for (auto&& e: edges) deg[e.frm]++, deg[e.to]++;\n\
+    \    }\n    return deg;\n  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n\
+    \    static vector<int> indeg, outdeg;\n    if (indeg.empty()) {\n      indeg.resize(N);\n\
+    \      outdeg.resize(N);\n      for (auto&& e: G.edges) { indeg[e.to]++, outdeg[e.frm]++;\
+    \ }\n    }\n    return {indeg, outdeg};\n  }\n\n  int deg(int v) {\n    static\
+    \ vc<int> deg;\n    if (deg.empty()) deg = deg_array();\n    return deg[v];\n\
+    \  }\n\n  pair<int, int> deg_inout(int v) {\n    static vc<int> indeg, outdeg;\n\
+    \    if (indeg.empty()) tie(indeg, outdeg) = deg_array_inout();\n    return {indeg[v],\
+    \ outdeg[v]};\n  }\n\n  int in_deg(int v) { return deg_inout(v).fi; }\n  int out_deg(int\
+    \ v) { return deg_inout(v).se; }\n\n  void debug() {\n    print(\"Graph\");\n\
+    \    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e:\
+    \ edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
+    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 2 \"graph/eulerwalk.hpp\"\
+    \n\r\n/*\r\n\u9802\u70B9\u756A\u53F7\u306E\u5217\u3092\u8FD4\u3059\u3002\u6709\
+    \u5411\u30FB\u7121\u5411\u4E21\u5BFE\u5FDC\u3002\r\n\u5B58\u5728\u3057\u306A\u3044\
+    \u5834\u5408\u306B\u306F\u3001\u7A7A\u3092\u8FD4\u3059\u3002\r\n\u8FBA\u304C 0\
+    \ \u500B\u306E\u5834\u5408\u306B\u306F {0} \u3092\u8FD4\u3059\u3002\r\n*/\r\n\
+    template <typename T>\r\nvc<int> euler_walk(Graph<T>& G, int s = -1) {\r\n  assert(G.is_prepared());\r\
+    \n  ll N = G.N, M = G.M;\r\n  if (M == 0) return {0};\r\n\r\n  if (s == -1) {\r\
+    \n    vc<int> deg(N);\r\n    for (auto&& e: G.edges) {\r\n      if (G.is_directed())\
     \ {\r\n        deg[e.frm]++, deg[e.to]--;\r\n      } else {\r\n        deg[e.frm]++,\
     \ deg[e.to]++;\r\n      }\r\n    }\r\n    if (G.is_directed()) {\r\n      s =\
     \ max_element(all(deg)) - deg.begin();\r\n      if (deg[s] == 0) s = G.edges[0].frm;\r\
@@ -91,7 +101,7 @@ data:
   isVerificationFile: false
   path: graph/eulerwalk.hpp
   requiredBy: []
-  timestamp: '2022-08-18 17:59:01+09:00'
+  timestamp: '2022-08-29 19:35:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/eulerwalk.hpp

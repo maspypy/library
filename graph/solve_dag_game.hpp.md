@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':warning:'
@@ -43,27 +43,37 @@ data:
     \ = e;\n      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to,\
     \ e.frm, e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const\
     \ {\n    assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\
-    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
-    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
-    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
-    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
-    \    }\n  }\n};\n#line 2 \"graph/reverse_graph.hpp\"\ntemplate <typename Graph>\r\
-    \nGraph reverse_graph(Graph& G) {\r\n  assert(G.is_directed());\r\n  Graph G1(G.N);\r\
-    \n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.build();\r\
-    \n  return G1;\r\n}\r\n#line 2 \"graph/solve_dag_game.hpp\"\ntemplate <typename\
-    \ Graph, typename INT>\r\nvoid solve_dag_game(Graph& G, vc<INT>& DP) {\r\n  /*\r\
-    \n  -1: unknown\r\n  0 : lose\r\n  1 : win\r\n\r\n  \u4E88\u3081\u9077\u79FB\u5148\
-    \u306E\u306A\u3044\u9802\u70B9\u306B\u306F\u30010 \u307E\u305F\u306F 1 \u3092\u5165\
-    \u308C\u3066\u304A\u304F\r\n  */\r\n  int N = G.N;\r\n  vc<int> outdeg(N);\r\n\
-    \  for (auto&& e: G.edges) outdeg[e.frm]++;\r\n\r\n  G = reverse_graph(G);\r\n\
-    \  vc<int> que;\r\n  FOR(v, N) {\r\n    assert((outdeg[v] == 0) == (DP[v] != -1));\r\
-    \n    if (outdeg[v] == 0) que.eb(v);\r\n  }\r\n  while (!que.empty()) {\r\n  \
-    \  int v = que.back();\r\n    que.pop_back();\r\n    for (auto&& e: G[v]) {\r\n\
-    \      if (DP[e.to] != -1) continue;\r\n      if (DP[v] == 0) {\r\n        DP[e.to]\
-    \ = 1;\r\n        que.eb(e.to);\r\n      }\r\n      elif (DP[v] == 1) {\r\n  \
-    \      outdeg[e.to]--;\r\n        if (outdeg[e.to] == 0) {\r\n          DP[e.to]\
-    \ = 0;\r\n          que.eb(e.to);\r\n        }\r\n      }\r\n    }\r\n  }\r\n\
-    }\r\n"
+    \n  vc<int> deg_array() {\n    static vc<int> deg;\n    if (deg.empty()) {\n \
+    \     deg.resize(N);\n      for (auto&& e: edges) deg[e.frm]++, deg[e.to]++;\n\
+    \    }\n    return deg;\n  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n\
+    \    static vector<int> indeg, outdeg;\n    if (indeg.empty()) {\n      indeg.resize(N);\n\
+    \      outdeg.resize(N);\n      for (auto&& e: G.edges) { indeg[e.to]++, outdeg[e.frm]++;\
+    \ }\n    }\n    return {indeg, outdeg};\n  }\n\n  int deg(int v) {\n    static\
+    \ vc<int> deg;\n    if (deg.empty()) deg = deg_array();\n    return deg[v];\n\
+    \  }\n\n  pair<int, int> deg_inout(int v) {\n    static vc<int> indeg, outdeg;\n\
+    \    if (indeg.empty()) tie(indeg, outdeg) = deg_array_inout();\n    return {indeg[v],\
+    \ outdeg[v]};\n  }\n\n  int in_deg(int v) { return deg_inout(v).fi; }\n  int out_deg(int\
+    \ v) { return deg_inout(v).se; }\n\n  void debug() {\n    print(\"Graph\");\n\
+    \    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e:\
+    \ edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
+    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 2 \"graph/reverse_graph.hpp\"\
+    \ntemplate <typename Graph>\r\nGraph reverse_graph(Graph& G) {\r\n  assert(G.is_directed());\r\
+    \n  Graph G1(G.N);\r\n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost,\
+    \ e.id); }\r\n  G1.build();\r\n  return G1;\r\n}\r\n#line 2 \"graph/solve_dag_game.hpp\"\
+    \ntemplate <typename Graph, typename INT>\r\nvoid solve_dag_game(Graph& G, vc<INT>&\
+    \ DP) {\r\n  /*\r\n  -1: unknown\r\n  0 : lose\r\n  1 : win\r\n\r\n  \u4E88\u3081\
+    \u9077\u79FB\u5148\u306E\u306A\u3044\u9802\u70B9\u306B\u306F\u30010 \u307E\u305F\
+    \u306F 1 \u3092\u5165\u308C\u3066\u304A\u304F\r\n  */\r\n  int N = G.N;\r\n  vc<int>\
+    \ outdeg(N);\r\n  for (auto&& e: G.edges) outdeg[e.frm]++;\r\n\r\n  G = reverse_graph(G);\r\
+    \n  vc<int> que;\r\n  FOR(v, N) {\r\n    assert((outdeg[v] == 0) == (DP[v] !=\
+    \ -1));\r\n    if (outdeg[v] == 0) que.eb(v);\r\n  }\r\n  while (!que.empty())\
+    \ {\r\n    int v = que.back();\r\n    que.pop_back();\r\n    for (auto&& e: G[v])\
+    \ {\r\n      if (DP[e.to] != -1) continue;\r\n      if (DP[v] == 0) {\r\n    \
+    \    DP[e.to] = 1;\r\n        que.eb(e.to);\r\n      }\r\n      elif (DP[v] ==\
+    \ 1) {\r\n        outdeg[e.to]--;\r\n        if (outdeg[e.to] == 0) {\r\n    \
+    \      DP[e.to] = 0;\r\n          que.eb(e.to);\r\n        }\r\n      }\r\n  \
+    \  }\r\n  }\r\n}\r\n"
   code: "#include \"graph/reverse_graph.hpp\"\r\ntemplate <typename Graph, typename\
     \ INT>\r\nvoid solve_dag_game(Graph& G, vc<INT>& DP) {\r\n  /*\r\n  -1: unknown\r\
     \n  0 : lose\r\n  1 : win\r\n\r\n  \u4E88\u3081\u9077\u79FB\u5148\u306E\u306A\u3044\
@@ -83,7 +93,7 @@ data:
   isVerificationFile: false
   path: graph/solve_dag_game.hpp
   requiredBy: []
-  timestamp: '2022-08-18 17:59:01+09:00'
+  timestamp: '2022-08-29 19:35:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/solve_dag_game.hpp

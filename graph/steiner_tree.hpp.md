@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/114_steriner_tree.test.cpp
     title: test/yukicoder/114_steriner_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -43,21 +43,31 @@ data:
     \ = e;\n      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to,\
     \ e.frm, e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const\
     \ {\n    assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\
-    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
-    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
-    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
-    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
-    \    }\n  }\n};\n#line 2 \"graph/steiner_tree.hpp\"\n\n/*\n(n,m): \u30B0\u30E9\
-    \u30D5\nk: terminal size\n\u30FBO(3^kn + 2^k(n+m)log n)\n*/\ntemplate <typename\
-    \ T, typename Graph>\nT steiner_tree(Graph& G, vc<int> terminal, T INF) {\n  int\
-    \ k = len(terminal);\n  if (k <= 1) return 0;\n  int n = G.N;\n  vv(T, DP, 1 <<\
-    \ k, n, INF);\n  FOR(i, k) { DP[1 << i][terminal[i]] = 0; }\n  FOR3(s, 1, 1 <<\
-    \ k) {\n    auto& dp = DP[s];\n    FOR_subset(t, s) { FOR(v, n) chmin(dp[v], DP[t][v]\
-    \ + DP[s ^ t][v]); }\n    pqg<pair<T, int>> que;\n    FOR(v, n) que.emplace(dp[v],\
-    \ v);\n    while (len(que)) {\n      auto [dv, v] = que.top();\n      que.pop();\n\
-    \      if (dv > dp[v]) continue;\n      for (auto&& e: G[v]) {\n        if (chmin(dp[e.to],\
-    \ dv + e.cost)) que.emplace(dp[e.to], e.to);\n      }\n    }\n  }\n  return MIN(DP.back());\n\
-    }\n"
+    \n  vc<int> deg_array() {\n    static vc<int> deg;\n    if (deg.empty()) {\n \
+    \     deg.resize(N);\n      for (auto&& e: edges) deg[e.frm]++, deg[e.to]++;\n\
+    \    }\n    return deg;\n  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n\
+    \    static vector<int> indeg, outdeg;\n    if (indeg.empty()) {\n      indeg.resize(N);\n\
+    \      outdeg.resize(N);\n      for (auto&& e: G.edges) { indeg[e.to]++, outdeg[e.frm]++;\
+    \ }\n    }\n    return {indeg, outdeg};\n  }\n\n  int deg(int v) {\n    static\
+    \ vc<int> deg;\n    if (deg.empty()) deg = deg_array();\n    return deg[v];\n\
+    \  }\n\n  pair<int, int> deg_inout(int v) {\n    static vc<int> indeg, outdeg;\n\
+    \    if (indeg.empty()) tie(indeg, outdeg) = deg_array_inout();\n    return {indeg[v],\
+    \ outdeg[v]};\n  }\n\n  int in_deg(int v) { return deg_inout(v).fi; }\n  int out_deg(int\
+    \ v) { return deg_inout(v).se; }\n\n  void debug() {\n    print(\"Graph\");\n\
+    \    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e:\
+    \ edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
+    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n};\n#line 2 \"graph/steiner_tree.hpp\"\
+    \n\n/*\n(n,m): \u30B0\u30E9\u30D5\nk: terminal size\n\u30FBO(3^kn + 2^k(n+m)log\
+    \ n)\n*/\ntemplate <typename T, typename Graph>\nT steiner_tree(Graph& G, vc<int>\
+    \ terminal, T INF) {\n  int k = len(terminal);\n  if (k <= 1) return 0;\n  int\
+    \ n = G.N;\n  vv(T, DP, 1 << k, n, INF);\n  FOR(i, k) { DP[1 << i][terminal[i]]\
+    \ = 0; }\n  FOR3(s, 1, 1 << k) {\n    auto& dp = DP[s];\n    FOR_subset(t, s)\
+    \ { FOR(v, n) chmin(dp[v], DP[t][v] + DP[s ^ t][v]); }\n    pqg<pair<T, int>>\
+    \ que;\n    FOR(v, n) que.emplace(dp[v], v);\n    while (len(que)) {\n      auto\
+    \ [dv, v] = que.top();\n      que.pop();\n      if (dv > dp[v]) continue;\n  \
+    \    for (auto&& e: G[v]) {\n        if (chmin(dp[e.to], dv + e.cost)) que.emplace(dp[e.to],\
+    \ e.to);\n      }\n    }\n  }\n  return MIN(DP.back());\n}\n"
   code: "#include \"graph/base.hpp\"\n\n/*\n(n,m): \u30B0\u30E9\u30D5\nk: terminal\
     \ size\n\u30FBO(3^kn + 2^k(n+m)log n)\n*/\ntemplate <typename T, typename Graph>\n\
     T steiner_tree(Graph& G, vc<int> terminal, T INF) {\n  int k = len(terminal);\n\
@@ -74,8 +84,8 @@ data:
   isVerificationFile: false
   path: graph/steiner_tree.hpp
   requiredBy: []
-  timestamp: '2022-08-18 17:59:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-08-29 19:35:42+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/114_steriner_tree.test.cpp
 documentation_of: graph/steiner_tree.hpp
