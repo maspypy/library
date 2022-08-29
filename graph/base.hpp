@@ -15,6 +15,7 @@ struct Graph {
   vector<edge_type> edges;
   vector<int> indptr;
   vector<edge_type> csr_edges;
+  vc<int> vc_deg, vc_indeg, vc_outdeg;
   bool prepared;
 
   class OutgoingEdges {
@@ -102,38 +103,29 @@ struct Graph {
   }
 
   vc<int> deg_array() {
-    static vc<int> deg;
-    if (deg.empty()) {
-      deg.resize(N);
-      for (auto&& e: edges) deg[e.frm]++, deg[e.to]++;
-    }
-    return deg;
+    if (vc_deg.empty()) calc_deg();
+    return vc_deg;
   }
 
   pair<vc<int>, vc<int>> deg_array_inout() {
-    static vector<int> indeg, outdeg;
-    if (indeg.empty()) {
-      indeg.resize(N);
-      outdeg.resize(N);
-      for (auto&& e: edges) { indeg[e.to]++, outdeg[e.frm]++; }
-    }
-    return {indeg, outdeg};
+    if (vc_indeg.empty()) calc_deg_inout();
+    return {vc_indeg, vc_outdeg};
   }
 
   int deg(int v) {
-    static vc<int> deg;
-    if (deg.empty()) deg = deg_array();
-    return deg[v];
+    if (vc_deg.empty()) calc_deg();
+    return vc_deg[v];
   }
 
-  pair<int, int> deg_inout(int v) {
-    static vc<int> indeg, outdeg;
-    if (indeg.empty()) tie(indeg, outdeg) = deg_array_inout();
-    return {indeg[v], outdeg[v]};
+  int in_deg(int v) {
+    if (vc_indeg.empty()) calc_deg_inout();
+    return vc_indeg[v];
   }
 
-  int in_deg(int v) { return deg_inout(v).fi; }
-  int out_deg(int v) { return deg_inout(v).se; }
+  int out_deg(int v) {
+    if (vc_outdeg.empty()) calc_deg_inout();
+    return vc_outdeg[v];
+  }
 
   void debug() {
     print("Graph");
@@ -145,5 +137,19 @@ struct Graph {
       print("frm to cost id");
       FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);
     }
+  }
+
+private:
+  void calc_deg() {
+    assert(vc_deg.empty());
+    vc_deg.resize(N);
+    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;
+  }
+
+  void calc_deg_inout() {
+    assert(vc_indeg.empty());
+    vc_indeg.resize(N);
+    vc_outdeg.resize(N);
+    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }
   }
 };
