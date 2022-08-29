@@ -115,7 +115,7 @@ struct Graph {
     if (indeg.empty()) {
       indeg.resize(N);
       outdeg.resize(N);
-      for (auto&& e: G.edges) { indeg[e.to]++, outdeg[e.frm]++; }
+      for (auto&& e: edges) { indeg[e.to]++, outdeg[e.frm]++; }
     }
     return {indeg, outdeg};
   }
