@@ -3,7 +3,6 @@
 #include "other/io.hpp"
 
 #include "graph/base.hpp"
-#include "graph/degree.hpp"
 #include "mod/modint.hpp"
 #include "graph/enumerate_cliques.hpp"
 
