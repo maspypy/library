@@ -101,6 +101,40 @@ struct Graph {
     return {this, indptr[v], indptr[v + 1]};
   }
 
+  vc<int> deg_array() {
+    static vc<int> deg;
+    if (deg.empty()) {
+      deg.resize(N);
+      for (auto&& e: edges) deg[e.frm]++, deg[e.to]++;
+    }
+    return deg;
+  }
+
+  pair<vc<int>, vc<int>> deg_array_inout() {
+    static vector<int> indeg, outdeg;
+    if (indeg.empty()) {
+      indeg.resize(N);
+      outdeg.resize(N);
+      for (auto&& e: G.edges) { indeg[e.to]++, outdeg[e.frm]++; }
+    }
+    return {indeg, outdeg};
+  }
+
+  int deg(int v) {
+    static vc<int> deg;
+    if (deg.empty()) deg = deg_array();
+    return deg[v];
+  }
+
+  pair<int, int> deg_inout(int v) {
+    static vc<int> indeg, outdeg;
+    if (indeg.empty()) tie(indeg, outdeg) = deg_array_inout();
+    return {indeg[v], outdeg[v]};
+  }
+
+  int in_deg(int v) { return deg_inout(v).fi; }
+  int out_deg(int v) { return deg_inout(v).se; }
+
   void debug() {
     print("Graph");
     if (!prepared) {
