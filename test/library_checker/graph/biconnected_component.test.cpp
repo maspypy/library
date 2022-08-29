@@ -1,20 +1,23 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/biconnected_components"
+#define PROBLEM "https://yukicoder.me/problems/no/1326"
 #include "my_template.hpp"
 #include "other/io.hpp"
+#include "graph/base.hpp"
 #include "graph/biconnected_component.hpp"
-
 
 void solve() {
   LL(N, M);
   Graph<int, 0> G(N);
   G.read_graph(M, 0, 0);
 
-  Biconnected_Component<decltype(G)> BC(G);
-  auto& ANS = BC.comp_v;
-  print(len(ANS));
-  for (auto&& C: ANS) { print(len(C), C); }
-}
+  auto T = block_cut_tree<decltype(G)>(G);
 
+  print(T.N - N);
+  FOR(k, N, T.N) {
+    vc<int> ANS;
+    for (auto&& e: T[k]) ANS.eb(e.to);
+    print(len(ANS), ANS);
+  }
+}
 
 signed main() {
   cin.tie(nullptr);
@@ -23,7 +26,7 @@ signed main() {
 
   ll T = 1;
   // LL(T);
-  FOR(_, T) solve();
+  FOR(T) solve();
 
   return 0;
 }
