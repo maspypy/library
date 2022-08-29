@@ -11,7 +11,7 @@ data:
     - https://www.slideshare.net/wata_orz/ss-12131479
   bundledCode: "#line 1 \"graph/enumerate_cliques.hpp\"\n\n// N2^{sqrt(2m)}\n// https://www.slideshare.net/wata_orz/ss-12131479\n\
     template <typename Gr, typename F>\nvoid enumerate_cliques(Gr& G, F query) {\n\
-    \  int N = G.N;\n  auto deg = degree(G);\n  vc<bool> done(N);\n  vv(int, can,\
+    \  int N = G.N;\n  auto deg = G.deg_array();\n  vc<bool> done(N);\n  vv(int, can,\
     \ N, N);\n  for (auto&& e: G.edges) { can[e.frm][e.to] = can[e.to][e.frm] = 1;\
     \ }\n\n  FOR(N) {\n    // \u6B21\u6570\u6700\u5C0F\u306E\u9802\u70B9\u306E\u8FD1\
     \u508D\u3092\u8ABF\u3079\u308B\n    int v = -1;\n    int min_d = N;\n    FOR(i,\
@@ -25,7 +25,7 @@ data:
     \ 0);\n    done[v] = 1;\n    for (auto&& x: nbd) deg[x]--;\n  }\n}\n"
   code: "\n// N2^{sqrt(2m)}\n// https://www.slideshare.net/wata_orz/ss-12131479\n\
     template <typename Gr, typename F>\nvoid enumerate_cliques(Gr& G, F query) {\n\
-    \  int N = G.N;\n  auto deg = degree(G);\n  vc<bool> done(N);\n  vv(int, can,\
+    \  int N = G.N;\n  auto deg = G.deg_array();\n  vc<bool> done(N);\n  vv(int, can,\
     \ N, N);\n  for (auto&& e: G.edges) { can[e.frm][e.to] = can[e.to][e.frm] = 1;\
     \ }\n\n  FOR(N) {\n    // \u6B21\u6570\u6700\u5C0F\u306E\u9802\u70B9\u306E\u8FD1\
     \u508D\u3092\u8ABF\u3079\u308B\n    int v = -1;\n    int min_d = N;\n    FOR(i,\
@@ -41,7 +41,7 @@ data:
   isVerificationFile: false
   path: graph/enumerate_cliques.hpp
   requiredBy: []
-  timestamp: '2022-08-20 21:27:33+09:00'
+  timestamp: '2022-08-29 20:36:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/enumerate_cliques.hpp
