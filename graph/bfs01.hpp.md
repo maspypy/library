@@ -11,13 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_diameter.hpp
     title: graph/tree_diameter.hpp
-  - icon: ':x:'
-    path: string/suffix_automation.hpp
-    title: string/suffix_automation.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/library_checker/string/number_of_substrings2.test.cpp
-    title: test/library_checker/string/number_of_substrings2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/tree_diameter.test.cpp
     title: test/library_checker/tree/tree_diameter.test.cpp
@@ -30,9 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1868_range_to_range.test.cpp
     title: test/yukicoder/1868_range_to_range.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -125,15 +119,13 @@ data:
   requiredBy:
   - graph/mincostcycle.hpp
   - graph/tree_diameter.hpp
-  - string/suffix_automation.hpp
   timestamp: '2022-08-30 02:42:36+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1868_range_to_range.test.cpp
   - test/yukicoder/1718_rerooting.test.cpp
   - test/yukicoder/1320_mincostcycle.test.cpp
   - test/library_checker/tree/tree_diameter.test.cpp
-  - test/library_checker/string/number_of_substrings2.test.cpp
 documentation_of: graph/bfs01.hpp
 layout: document
 redirect_from:
