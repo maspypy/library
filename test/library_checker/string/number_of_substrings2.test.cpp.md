@@ -261,40 +261,41 @@ data:
     \ = root[e.frm];\n        par[e.to] = e.frm;\n        if (e.cost == 0)\n     \
     \     que.push_front(e.to);\n        else\n          que.push_back(e.to);\n  \
     \    }\n    }\n  }\n  return {dist, par, root};\n}\n#line 3 \"string/suffix_automation.hpp\"\
-    \n\nstruct Suffix_Automation {\n  struct Node {\n    map<char, int> next; // automation\
-    \ \u306E\u9077\u79FB\u5148\n    int link;            // suffix link\n    int size;\
-    \            // node \u304C\u53D7\u7406\u3059\u308B\u6700\u9577\u6587\u5B57\u5217\
-    \u306E\u9577\u3055\n    Node(int link, int size) : link(link), size(size) {}\n\
-    \  };\n\n  vc<Node> nodes;\n  int last; // \u6587\u5B57\u5217\u5168\u4F53\u3092\
-    \u5165\u308C\u305F\u3068\u304D\u306E\u884C\u304D\u5148\n\n  Suffix_Automation()\
-    \ {\n    nodes.eb(Node(-1, 0));\n    last = 0;\n  }\n\n  void add(char c0) {\n\
-    \    int c = c0 - 'a';\n    int new_node = len(nodes);\n    nodes.eb(Node(-1,\
-    \ nodes[last].size + 1));\n    int p = last;\n    while (p != -1 && !nodes[p].next.count(c))\
-    \ {\n      nodes[p].next[c] = new_node;\n      p = nodes[p].link;\n    }\n   \
-    \ int q = (p == -1 ? 0 : nodes[p].next[c]);\n    if (p == -1 || nodes[p].size\
-    \ + 1 == nodes[q].size) {\n      nodes[new_node].link = q;\n    } else {\n   \
-    \   int new_q = len(nodes);\n      nodes.eb(Node(nodes[q].link, nodes[p].size\
-    \ + 1));\n      nodes.back().next = nodes[q].next;\n      nodes[q].link = new_q;\n\
-    \      nodes[new_node].link = new_q;\n      while (p != -1 && nodes[p].next[c]\
-    \ == q) {\n        nodes[p].next[c] = new_q;\n        p = nodes[p].link;\n   \
-    \   }\n    }\n    last = new_node;\n  }\n\n  Graph<int, 1> calc_DAG() {\n    int\
-    \ n = len(nodes);\n    Graph<int, 1> G(n);\n    FOR(v, n) {\n      for (auto&&\
-    \ [key, to]: nodes[v].next) { G.add(v, to); }\n    }\n    G.build();\n    return\
-    \ G;\n  }\n\n  Graph<int, 1> calc_tree() {\n    int n = len(nodes);\n    Graph<int,\
-    \ 1> G(n);\n    G.resize(n);\n    FOR(v, 1, n) {\n      int p = nodes[v].link;\n\
-    \      G.add(p, v);\n    }\n    G.build();\n    return G;\n  }\n\n  ll count_substring()\
-    \ {\n    // \u3042\u308B\u30CE\u30FC\u30C9\u306B\u3064\u3044\u3066\u3001\u6700\
-    \u77ED\u30D1\u30B9\u3068\u6700\u9577\u30D1\u30B9\u306E\u9593\u306E\u6587\u5B57\
-    \u5217\u9577\u304C\u5BFE\u5FDC\u3059\u308B\u3002\n    // \u6700\u9577\u30D1\u30B9\
-    \u306F link \u304C\u6301\u3063\u3066\u3044\u308B\u306E\u3067\u3001\u6700\u77ED\
-    \u30D1\u30B9\u3092\u6C42\u3081\u308C\u3070\u3088\u3044\u3002\n    auto G = calc_DAG();\n\
-    \    int n = G.N;\n    auto [dist, par] = bfs01(G, 0);\n    ll ANS = 0;\n    FOR(i,\
-    \ 1, n) { ANS += nodes[i].size - dist[i] + 1; }\n    return ANS;\n  }\n};\n#line\
-    \ 4 \"test/library_checker/string/number_of_substrings2.test.cpp\"\n\nvoid solve()\
-    \ {\n  STR(S);\n  Suffix_Automation X;\n  for (auto&& s: S) X.add(s);\n  print(X.count_substring());\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
-    \ 0;\n}\n"
+    \n\ntemplate <int sigma = 26>\nstruct Suffix_Automation {\n  struct Node {\n \
+    \   array<int, sigma> next; // automation \u306E\u9077\u79FB\u5148\n    int link;\
+    \               // suffix link\n    int size;               // node \u304C\u53D7\
+    \u7406\u3059\u308B\u6700\u9577\u6587\u5B57\u5217\u306E\u9577\u3055\n    Node(int\
+    \ link, int size) : link(link), size(size) { fill(all(next), -1); }\n  };\n\n\
+    \  vc<Node> nodes;\n  int last; // \u6587\u5B57\u5217\u5168\u4F53\u3092\u5165\u308C\
+    \u305F\u3068\u304D\u306E\u884C\u304D\u5148\n\n  Suffix_Automation() {\n    nodes.eb(Node(-1,\
+    \ 0));\n    last = 0;\n  }\n\n  void add(char c0, char off) {\n    int c = c0\
+    \ - 'a';\n    int new_node = len(nodes);\n    nodes.eb(Node(-1, nodes[last].size\
+    \ + 1));\n    int p = last;\n    while (p != -1 && nodes[p].next[c] == -1) {\n\
+    \      nodes[p].next[c] = new_node;\n      p = nodes[p].link;\n    }\n    int\
+    \ q = (p == -1 ? 0 : nodes[p].next[c]);\n    if (p == -1 || nodes[p].size + 1\
+    \ == nodes[q].size) {\n      nodes[new_node].link = q;\n    } else {\n      int\
+    \ new_q = len(nodes);\n      nodes.eb(Node(nodes[q].link, nodes[p].size + 1));\n\
+    \      nodes.back().next = nodes[q].next;\n      nodes[q].link = new_q;\n    \
+    \  nodes[new_node].link = new_q;\n      while (p != -1 && nodes[p].next[c] ==\
+    \ q) {\n        nodes[p].next[c] = new_q;\n        p = nodes[p].link;\n      }\n\
+    \    }\n    last = new_node;\n  }\n\n  Graph<int, 1> calc_DAG() {\n    int n =\
+    \ len(nodes);\n    Graph<int, 1> G(n);\n    FOR(v, n) {\n      for (auto&& to:\
+    \ nodes[v].next)\n        if (to != -1) { G.add(v, to); }\n    }\n    G.build();\n\
+    \    return G;\n  }\n\n  Graph<int, 1> calc_tree() {\n    int n = len(nodes);\n\
+    \    Graph<int, 1> G(n);\n    G.resize(n);\n    FOR(v, 1, n) {\n      int p =\
+    \ nodes[v].link;\n      G.add(p, v);\n    }\n    G.build();\n    return G;\n \
+    \ }\n\n  ll count_substring() {\n    // \u3042\u308B\u30CE\u30FC\u30C9\u306B\u3064\
+    \u3044\u3066\u3001\u6700\u77ED\u30D1\u30B9\u3068\u6700\u9577\u30D1\u30B9\u306E\
+    \u9593\u306E\u6587\u5B57\u5217\u9577\u304C\u5BFE\u5FDC\u3059\u308B\u3002\n   \
+    \ // \u6700\u9577\u30D1\u30B9\u306F link \u304C\u6301\u3063\u3066\u3044\u308B\u306E\
+    \u3067\u3001\u6700\u77ED\u30D1\u30B9\u3092\u6C42\u3081\u308C\u3070\u3088\u3044\
+    \u3002\n    auto G = calc_DAG();\n    int n = G.N;\n    auto [dist, par] = bfs01(G,\
+    \ 0);\n    ll ANS = 0;\n    FOR(i, 1, n) { ANS += nodes[i].size - dist[i] + 1;\
+    \ }\n    return ANS;\n  }\n};\n#line 4 \"test/library_checker/string/number_of_substrings2.test.cpp\"\
+    \n\nvoid solve() {\n  STR(S);\n  Suffix_Automation X;\n  for (auto&& s: S) X.add(s);\n\
+    \  print(X.count_substring());\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
+    \  return 0;\n}\n"
   code: "#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"string/suffix_automation.hpp\"\
     \n\nvoid solve() {\n  STR(S);\n  Suffix_Automation X;\n  for (auto&& s: S) X.add(s);\n\
     \  print(X.count_substring());\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
@@ -309,7 +310,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/number_of_substrings2.test.cpp
   requiredBy: []
-  timestamp: '2022-08-30 23:10:12+09:00'
+  timestamp: '2022-08-30 23:27:41+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/string/number_of_substrings2.test.cpp
