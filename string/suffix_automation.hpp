@@ -1,5 +1,4 @@
 #include "graph/base.hpp"
-#include "graph/bfs01.hpp"
 
 template <int sigma = 26>
 struct Suffix_Automation {
@@ -68,13 +67,12 @@ struct Suffix_Automation {
   }
 
   ll count_substring() {
-    // あるノードについて、最短パスと最長パスの間の文字列長が対応する。
-    // 最長パスは link が持っているので、最短パスを求めればよい。
-    auto G = calc_DAG();
-    int n = G.N;
-    auto [dist, par] = bfs01(G, 0);
+    // あるノードについて、最短と最長の文字列長が分かればよい。
+    // 最長は size が持っている
+    // 最短は、suffix link 先の最長に 1 を加えたものである。
+    int n = len(nodes);
     ll ANS = 0;
-    FOR(i, 1, n) { ANS += nodes[i].size - dist[i] + 1; }
+    FOR(i, 1, n) { ANS += nodes[i].size - nodes[nodes[i].link].size; }
     return ANS;
   }
 };
