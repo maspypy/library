@@ -270,15 +270,15 @@ data:
     \u3042\u308B\u3002\n    int n = len(nodes);\n    ll ANS = 0;\n    FOR(i, 1, n)\
     \ { ANS += nodes[i].size - nodes[nodes[i].link].size; }\n    return ANS;\n  }\n\
     };\n#line 4 \"test/library_checker/string/number_of_substrings2.test.cpp\"\n\n\
-    void solve() {\n  STR(S);\n  Suffix_Automation X;\n  for (auto&& s: S) X.add(s);\n\
-    \  print(X.count_substring());\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
-    \  return 0;\n}\n"
+    void solve() {\n  STR(S);\n  Suffix_Automation<26> X;\n  for (auto&& s: S) X.add(s,\
+    \ 'a');\n  print(X.count_substring());\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"string/suffix_automation.hpp\"\
-    \n\nvoid solve() {\n  STR(S);\n  Suffix_Automation X;\n  for (auto&& s: S) X.add(s);\n\
-    \  print(X.count_substring());\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
-    \  return 0;\n}"
+    \n\nvoid solve() {\n  STR(S);\n  Suffix_Automation<26> X;\n  for (auto&& s: S)\
+    \ X.add(s, 'a');\n  print(X.count_substring());\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -287,7 +287,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/number_of_substrings2.test.cpp
   requiredBy: []
-  timestamp: '2022-08-30 23:42:08+09:00'
+  timestamp: '2022-08-30 23:46:49+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/string/number_of_substrings2.test.cpp
