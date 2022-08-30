@@ -1,15 +1,15 @@
-#define PROBLEM "https://yukicoder.me/problems/no/1326"
+#define PROBLEM "https://judge.yosupo.jp/problem/biconnected_components"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/base.hpp"
-#include "graph/biconnected_component.hpp"
+#include "graph/block_cut.hpp"
 
 void solve() {
   LL(N, M);
   Graph<int, 0> G(N);
   G.read_graph(M, 0, 0);
 
-  auto T = block_cut_tree<decltype(G)>(G);
+  auto T = block_cut<decltype(G)>(G);
 
   print(T.N - N);
   FOR(k, N, T.N) {
