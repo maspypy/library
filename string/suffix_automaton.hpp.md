@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/string/number_of_substrings2.test.cpp
     title: test/library_checker/string/number_of_substrings2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -65,7 +65,7 @@ data:
     \u7406\u3059\u308B\u6700\u9577\u6587\u5B57\u5217\u306E\u9577\u3055\n    Node(int\
     \ link, int size) : link(link), size(size) { fill(all(next), -1); }\n  };\n\n\
     \  vc<Node> nodes;\n  int last; // \u6587\u5B57\u5217\u5168\u4F53\u3092\u5165\u308C\
-    \u305F\u3068\u304D\u306E\u884C\u304D\u5148\n\n  Suffix_Automation() {\n    nodes.eb(Node(-1,\
+    \u305F\u3068\u304D\u306E\u884C\u304D\u5148\n\n  Suffix_Automaton() {\n    nodes.eb(Node(-1,\
     \ 0));\n    last = 0;\n  }\n\n  void add(char c0, char off) {\n    int c = c0\
     \ - 'a';\n    int new_node = len(nodes);\n    nodes.eb(Node(-1, nodes[last].size\
     \ + 1));\n    int p = last;\n    while (p != -1 && nodes[p].next[c] == -1) {\n\
@@ -96,7 +96,7 @@ data:
     \   // node \u304C\u53D7\u7406\u3059\u308B\u6700\u9577\u6587\u5B57\u5217\u306E\
     \u9577\u3055\n    Node(int link, int size) : link(link), size(size) { fill(all(next),\
     \ -1); }\n  };\n\n  vc<Node> nodes;\n  int last; // \u6587\u5B57\u5217\u5168\u4F53\
-    \u3092\u5165\u308C\u305F\u3068\u304D\u306E\u884C\u304D\u5148\n\n  Suffix_Automation()\
+    \u3092\u5165\u308C\u305F\u3068\u304D\u306E\u884C\u304D\u5148\n\n  Suffix_Automaton()\
     \ {\n    nodes.eb(Node(-1, 0));\n    last = 0;\n  }\n\n  void add(char c0, char\
     \ off) {\n    int c = c0 - 'a';\n    int new_node = len(nodes);\n    nodes.eb(Node(-1,\
     \ nodes[last].size + 1));\n    int p = last;\n    while (p != -1 && nodes[p].next[c]\
@@ -126,8 +126,8 @@ data:
   isVerificationFile: false
   path: string/suffix_automaton.hpp
   requiredBy: []
-  timestamp: '2022-08-31 01:52:20+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-08-31 02:46:48+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/string/number_of_substrings2.test.cpp
 documentation_of: string/suffix_automaton.hpp

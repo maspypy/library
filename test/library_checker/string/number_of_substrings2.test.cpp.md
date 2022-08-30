@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':question:'
@@ -10,14 +10,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_automaton.hpp
     title: string/suffix_automaton.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/number_of_substrings
@@ -250,11 +250,11 @@ data:
     \u9577\u6587\u5B57\u5217\u306E\u9577\u3055\n    Node(int link, int size) : link(link),\
     \ size(size) { fill(all(next), -1); }\n  };\n\n  vc<Node> nodes;\n  int last;\
     \ // \u6587\u5B57\u5217\u5168\u4F53\u3092\u5165\u308C\u305F\u3068\u304D\u306E\u884C\
-    \u304D\u5148\n\n  Suffix_Automation() {\n    nodes.eb(Node(-1, 0));\n    last\
-    \ = 0;\n  }\n\n  void add(char c0, char off) {\n    int c = c0 - 'a';\n    int\
-    \ new_node = len(nodes);\n    nodes.eb(Node(-1, nodes[last].size + 1));\n    int\
-    \ p = last;\n    while (p != -1 && nodes[p].next[c] == -1) {\n      nodes[p].next[c]\
-    \ = new_node;\n      p = nodes[p].link;\n    }\n    int q = (p == -1 ? 0 : nodes[p].next[c]);\n\
+    \u304D\u5148\n\n  Suffix_Automaton() {\n    nodes.eb(Node(-1, 0));\n    last =\
+    \ 0;\n  }\n\n  void add(char c0, char off) {\n    int c = c0 - 'a';\n    int new_node\
+    \ = len(nodes);\n    nodes.eb(Node(-1, nodes[last].size + 1));\n    int p = last;\n\
+    \    while (p != -1 && nodes[p].next[c] == -1) {\n      nodes[p].next[c] = new_node;\n\
+    \      p = nodes[p].link;\n    }\n    int q = (p == -1 ? 0 : nodes[p].next[c]);\n\
     \    if (p == -1 || nodes[p].size + 1 == nodes[q].size) {\n      nodes[new_node].link\
     \ = q;\n    } else {\n      int new_q = len(nodes);\n      nodes.eb(Node(nodes[q].link,\
     \ nodes[p].size + 1));\n      nodes.back().next = nodes[q].next;\n      nodes[q].link\
@@ -292,8 +292,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/number_of_substrings2.test.cpp
   requiredBy: []
-  timestamp: '2022-08-31 01:52:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-31 02:46:48+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/string/number_of_substrings2.test.cpp
 layout: document
