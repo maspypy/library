@@ -784,6 +784,9 @@ data:
     path: test/yukicoder/1321_surj.test.cpp
     title: test/yukicoder/1321_surj.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1326_bct.test.cpp
+    title: test/yukicoder/1326_bct.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1332_range_freq.test.cpp
     title: test/yukicoder/1332_range_freq.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1162,6 +1165,7 @@ data:
   - test/yukicoder/17_warshall_floyd.test.cpp
   - test/yukicoder/749_lazysegtree.test.cpp
   - test/yukicoder/1036_seg_maxright_minleft.test.cpp
+  - test/yukicoder/1326_bct.test.cpp
   - test/yukicoder/1288_mcf_dag_negative.test.cpp
   - test/yukicoder/655_cumsum2d.test.cpp
   - test/yukicoder/177_maxflow.test.cpp

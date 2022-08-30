@@ -73,6 +73,9 @@ data:
     path: test/yukicoder/1038_centroid.test.cpp
     title: test/yukicoder/1038_centroid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1326_bct.test.cpp
+    title: test/yukicoder/1326_bct.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1490_rect_add_rect_sum.test.cpp
     title: test/yukicoder/1490_rect_add_rect_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -167,6 +170,7 @@ data:
   - test/yukicoder/1038_centroid.test.cpp
   - test/yukicoder/924.test.cpp
   - test/yukicoder/1490_rect_add_rect_sum.test.cpp
+  - test/yukicoder/1326_bct.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/library_checker/graph/verted_add_contour_sum.test.cpp
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp

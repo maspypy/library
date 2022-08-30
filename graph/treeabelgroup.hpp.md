@@ -19,6 +19,9 @@ data:
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1326_bct.test.cpp
+    title: test/yukicoder/1326_bct.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1641_tree_abel.test.cpp
     title: test/yukicoder/1641_tree_abel.test.cpp
   _isVerificationFailed: false
@@ -246,6 +249,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1641_tree_abel.test.cpp
+  - test/yukicoder/1326_bct.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
 documentation_of: graph/treeabelgroup.hpp
 layout: document

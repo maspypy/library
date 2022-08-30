@@ -292,6 +292,9 @@ data:
     path: test/yukicoder/1320_mincostcycle.test.cpp
     title: test/yukicoder/1320_mincostcycle.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1326_bct.test.cpp
+    title: test/yukicoder/1326_bct.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1344_warshall_floyd.test.cpp
     title: test/yukicoder/1344_warshall_floyd.test.cpp
   - icon: ':heavy_check_mark:'
@@ -490,6 +493,7 @@ data:
   - test/yukicoder/529_two_edge.test.cpp
   - test/yukicoder/1293_scc.test.cpp
   - test/yukicoder/17_warshall_floyd.test.cpp
+  - test/yukicoder/1326_bct.test.cpp
   - test/yukicoder/1170_range_to_range.test.cpp
   - test/yukicoder/1479_bipartite_vertex_cover.test.cpp
   - test/yukicoder/114_steriner_tree.test.cpp
