@@ -4,9 +4,9 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
-    path: graph/biconnected_component.hpp
-    title: graph/biconnected_component.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/block_cut.hpp
+    title: graph/block_cut.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -15,17 +15,16 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_A
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_A
-  bundledCode: "#line 1 \"test/aoj/GRO_3_A_articulation.test.cpp\"\n#define PROBLEM\
-    \ \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_A\"\n\
-    #line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
+  bundledCode: "#line 1 \"test/aoj/GRL_3_A.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_A\"\
+    \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
     unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
     \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
     \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
@@ -243,13 +242,13 @@ data:
     \  vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
     \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
     \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 2 \"graph/biconnected_component.hpp\"\n\n/*\nblock-cut tree\
-    \ \u3092\u3001block \u306B\u901A\u5E38\u306E\u9802\u70B9\u3092\u96A3\u63A5\u3055\
-    \u305B\u3066\u62E1\u5F35\u3057\u3066\u304A\u304F\nhttps://twitter.com/noshi91/status/1529858538650374144?s=20&t=eznpFbuD9BDhfTb4PplFUg\n\
+    \ }\n  }\n};\n#line 2 \"graph/block_cut.hpp\"\n\n/*\nblock-cut tree \u3092\u3001\
+    block \u306B\u901A\u5E38\u306E\u9802\u70B9\u3092\u96A3\u63A5\u3055\u305B\u3066\
+    \u62E1\u5F35\u3057\u3066\u304A\u304F\nhttps://twitter.com/noshi91/status/1529858538650374144?s=20&t=eznpFbuD9BDhfTb4PplFUg\n\
     [0, n)\uFF1A\u3082\u3068\u306E\u9802\u70B9\n[n, n + n_block)\uFF1Ablock\n\u95A2\
     \u7BC0\u70B9\uFF1A[0, n) \u306E\u3046\u3061\u3067\u3001degree >= 2 \u3092\u6E80\
     \u305F\u3059\u3082\u306E\n\n\u5B64\u7ACB\u70B9\u306F\u30011 \u70B9\u3060\u3051\
-    \u304B\u3089\u306A\u308B block\n*/\ntemplate <typename GRAPH>\nGraph<int, 0> block_cut_tree(GRAPH&\
+    \u304B\u3089\u306A\u308B block\n*/\ntemplate <typename GRAPH>\nGraph<int, 0> block_cut(GRAPH&\
     \ G) {\n  int n = G.N;\n  vc<int> low(n), ord(n), st;\n  vc<bool> used(n);\n \
     \ st.reserve(n);\n  Graph<int, 0> BCT;\n  int nxt = n;\n  int k = 0;\n\n  auto\
     \ dfs = [&](auto& dfs, int v, int p) -> void {\n    st.eb(v);\n    used[v] = 1;\n\
@@ -263,32 +262,33 @@ data:
     \ ord[e.to]);\n      }\n    }\n  };\n  FOR(v, n) if (!used[v]) {\n    dfs(dfs,\
     \ v, -1);\n    BCT.resize(nxt + 1);\n    for (auto&& x: st) { BCT.add(nxt, x);\
     \ }\n    ++nxt;\n    st.clear();\n  }\n  BCT.build();\n  return BCT;\n}\n#line\
-    \ 6 \"test/aoj/GRO_3_A_articulation.test.cpp\"\n\nvoid solve() {\n  LL(N, M);\n\
-    \  Graph G(N);\n  G.read_graph(M, 0, 0);\n  Biconnected_Component BC(G);\n  FOR(v,\
-    \ N) if (BC.is_articulation(v)) print(v);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \ 6 \"test/aoj/GRL_3_A.test.cpp\"\n\nvoid solve() {\n  LL(N, M);\n  Graph<int,\
+    \ 0> G(N);\n  G.read_graph(M, 0, 0);\n  auto BCT = block_cut(G);\n  FOR(v, N)\
+    \ {\n    if (BCT.deg(v) != 1) print(v);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
     \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
     \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_A\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/biconnected_component.hpp\"\
-    \n\nvoid solve() {\n  LL(N, M);\n  Graph G(N);\n  G.read_graph(M, 0, 0);\n  Biconnected_Component\
-    \ BC(G);\n  FOR(v, N) if (BC.is_articulation(v)) print(v);\n}\n\nsigned main()\
-    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/block_cut.hpp\"\
+    \n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 0> G(N);\n  G.read_graph(M, 0, 0);\n\
+    \  auto BCT = block_cut(G);\n  FOR(v, N) {\n    if (BCT.deg(v) != 1) print(v);\n\
+    \  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
+    \  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - graph/biconnected_component.hpp
+  - graph/block_cut.hpp
   - graph/base.hpp
   isVerificationFile: true
-  path: test/aoj/GRO_3_A_articulation.test.cpp
+  path: test/aoj/GRL_3_A.test.cpp
   requiredBy: []
-  timestamp: '2022-08-30 02:42:49+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-31 00:37:29+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/GRO_3_A_articulation.test.cpp
+documentation_of: test/aoj/GRL_3_A.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/GRO_3_A_articulation.test.cpp
-- /verify/test/aoj/GRO_3_A_articulation.test.cpp.html
-title: test/aoj/GRO_3_A_articulation.test.cpp
+- /verify/test/aoj/GRL_3_A.test.cpp
+- /verify/test/aoj/GRL_3_A.test.cpp.html
+title: test/aoj/GRL_3_A.test.cpp
 ---

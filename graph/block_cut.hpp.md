@@ -6,15 +6,12 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/library_checker/graph/biconnected_component.test.cpp
-    title: test/library_checker/graph/biconnected_component.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1326_bct.test.cpp
-    title: test/yukicoder/1326_bct.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_3_A.test.cpp
+    title: test/aoj/GRL_3_A.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://twitter.com/noshi91/status/1529858538650374144?s=20&t=eznpFbuD9BDhfTb4PplFUg
@@ -62,13 +59,13 @@ data:
     \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
-    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/biconnected_component.hpp\"\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/block_cut.hpp\"\
     \n\n/*\nblock-cut tree \u3092\u3001block \u306B\u901A\u5E38\u306E\u9802\u70B9\u3092\
     \u96A3\u63A5\u3055\u305B\u3066\u62E1\u5F35\u3057\u3066\u304A\u304F\nhttps://twitter.com/noshi91/status/1529858538650374144?s=20&t=eznpFbuD9BDhfTb4PplFUg\n\
     [0, n)\uFF1A\u3082\u3068\u306E\u9802\u70B9\n[n, n + n_block)\uFF1Ablock\n\u95A2\
     \u7BC0\u70B9\uFF1A[0, n) \u306E\u3046\u3061\u3067\u3001degree >= 2 \u3092\u6E80\
     \u305F\u3059\u3082\u306E\n\n\u5B64\u7ACB\u70B9\u306F\u30011 \u70B9\u3060\u3051\
-    \u304B\u3089\u306A\u308B block\n*/\ntemplate <typename GRAPH>\nGraph<int, 0> block_cut_tree(GRAPH&\
+    \u304B\u3089\u306A\u308B block\n*/\ntemplate <typename GRAPH>\nGraph<int, 0> block_cut(GRAPH&\
     \ G) {\n  int n = G.N;\n  vc<int> low(n), ord(n), st;\n  vc<bool> used(n);\n \
     \ st.reserve(n);\n  Graph<int, 0> BCT;\n  int nxt = n;\n  int k = 0;\n\n  auto\
     \ dfs = [&](auto& dfs, int v, int p) -> void {\n    st.eb(v);\n    used[v] = 1;\n\
@@ -88,7 +85,7 @@ data:
     [0, n)\uFF1A\u3082\u3068\u306E\u9802\u70B9\n[n, n + n_block)\uFF1Ablock\n\u95A2\
     \u7BC0\u70B9\uFF1A[0, n) \u306E\u3046\u3061\u3067\u3001degree >= 2 \u3092\u6E80\
     \u305F\u3059\u3082\u306E\n\n\u5B64\u7ACB\u70B9\u306F\u30011 \u70B9\u3060\u3051\
-    \u304B\u3089\u306A\u308B block\n*/\ntemplate <typename GRAPH>\nGraph<int, 0> block_cut_tree(GRAPH&\
+    \u304B\u3089\u306A\u308B block\n*/\ntemplate <typename GRAPH>\nGraph<int, 0> block_cut(GRAPH&\
     \ G) {\n  int n = G.N;\n  vc<int> low(n), ord(n), st;\n  vc<bool> used(n);\n \
     \ st.reserve(n);\n  Graph<int, 0> BCT;\n  int nxt = n;\n  int k = 0;\n\n  auto\
     \ dfs = [&](auto& dfs, int v, int p) -> void {\n    st.eb(v);\n    used[v] = 1;\n\
@@ -105,17 +102,16 @@ data:
   dependsOn:
   - graph/base.hpp
   isVerificationFile: false
-  path: graph/biconnected_component.hpp
+  path: graph/block_cut.hpp
   requiredBy: []
-  timestamp: '2022-08-30 02:42:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-08-31 00:37:21+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1326_bct.test.cpp
-  - test/library_checker/graph/biconnected_component.test.cpp
-documentation_of: graph/biconnected_component.hpp
+  - test/aoj/GRL_3_A.test.cpp
+documentation_of: graph/block_cut.hpp
 layout: document
 redirect_from:
-- /library/graph/biconnected_component.hpp
-- /library/graph/biconnected_component.hpp.html
-title: graph/biconnected_component.hpp
+- /library/graph/block_cut.hpp
+- /library/graph/block_cut.hpp.html
+title: graph/block_cut.hpp
 ---

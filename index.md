@@ -453,6 +453,9 @@ data:
       path: graph/bipartite_coloring.hpp
       title: graph/bipartite_coloring.hpp
     - icon: ':heavy_check_mark:'
+      path: graph/block_cut.hpp
+      title: graph/block_cut.hpp
+    - icon: ':heavy_check_mark:'
       path: graph/bracket_graph.hpp
       title: graph/bracket_graph.hpp
     - icon: ':heavy_check_mark:'
@@ -1228,6 +1231,9 @@ data:
       path: test/aoj/GRL_2_A_mst.test.cpp
       title: test/aoj/GRL_2_A_mst.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL_3_A.test.cpp
+      title: test/aoj/GRL_3_A.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_3_B.test.cpp
       title: test/aoj/GRL_3_B.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1239,9 +1245,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_6_B.test.cpp
       title: test/aoj/GRL_6_B.test.cpp
-    - icon: ':x:'
-      path: test/aoj/GRO_3_A_articulation.test.cpp
-      title: test/aoj/GRO_3_A_articulation.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/ITP1_11_A.test.cpp
       title: test/aoj/ITP1_11_A.test.cpp

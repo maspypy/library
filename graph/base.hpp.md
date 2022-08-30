@@ -24,6 +24,9 @@ data:
     path: graph/bipartite_coloring.hpp
     title: graph/bipartite_coloring.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/block_cut.hpp
+    title: graph/block_cut.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/bracket_graph.hpp
     title: graph/bracket_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -181,14 +184,14 @@ data:
     path: test/aoj/GRL_2_A_mst.test.cpp
     title: test/aoj/GRL_2_A_mst.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_3_A.test.cpp
+    title: test/aoj/GRL_3_A.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_B.test.cpp
     title: test/aoj/GRL_3_B.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
     title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
-  - icon: ':x:'
-    path: test/aoj/GRO_3_A_articulation.test.cpp
-    title: test/aoj/GRO_3_A_articulation.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
@@ -428,6 +431,7 @@ data:
   requiredBy:
   - graph/minimum_hamiltonian_cycle.hpp
   - graph/tree_all_distances.hpp
+  - graph/block_cut.hpp
   - graph/toposort.hpp
   - graph/dijkstra.hpp
   - graph/classify_subtree.hpp
@@ -527,12 +531,12 @@ data:
   - test/aoj/GRL_1_B_bellmanford.test.cpp
   - test/aoj/GRL_3_B.test.cpp
   - test/aoj/2995_dsu.test.cpp
+  - test/aoj/GRL_3_A.test.cpp
   - test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
   - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
   - test/aoj/GRL_1_C_warshallfloyd.test.cpp
   - test/aoj/ALDS1_12_B_dial.test.cpp
   - test/aoj/275_dag_reachability.test.cpp
-  - test/aoj/GRO_3_A_articulation.test.cpp
   - test/aoj/2251_dag_path_cover.test.cpp
   - test/aoj/2251_maxantichain.test.cpp
   - test/aoj/GRL_2_A_mst.test.cpp

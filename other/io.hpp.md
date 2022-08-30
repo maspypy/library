@@ -139,6 +139,9 @@ data:
     path: test/aoj/GRL_2_A_mst.test.cpp
     title: test/aoj/GRL_2_A_mst.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_3_A.test.cpp
+    title: test/aoj/GRL_3_A.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_B.test.cpp
     title: test/aoj/GRL_3_B.test.cpp
   - icon: ':heavy_check_mark:'
@@ -150,9 +153,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_6_B.test.cpp
     title: test/aoj/GRL_6_B.test.cpp
-  - icon: ':x:'
-    path: test/aoj/GRO_3_A_articulation.test.cpp
-    title: test/aoj/GRO_3_A_articulation.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_11_A.test.cpp
     title: test/aoj/ITP1_11_A.test.cpp
@@ -1422,6 +1422,7 @@ data:
   - test/aoj/2995_dsu.test.cpp
   - test/aoj/DSL_2_G_fenwick_raq.test.cpp
   - test/aoj/ITP1_11_A.test.cpp
+  - test/aoj/GRL_3_A.test.cpp
   - test/aoj/DSL_2_D_dualsegtree.test.cpp
   - test/aoj/DSL_1_B_weighteduf.test.cpp
   - test/aoj/CGL_2_B.test.cpp
@@ -1442,7 +1443,6 @@ data:
   - test/aoj/275_dag_reachability.test.cpp
   - test/aoj/ITP2_11_D_for_nCk.test.cpp
   - test/aoj/CGL_2_C.test.cpp
-  - test/aoj/GRO_3_A_articulation.test.cpp
   - test/aoj/ITP2_3_B.test.cpp
   - test/aoj/DPL_4_B_subset_sum_count.test.cpp
   - test/aoj/DSL_2_E_fenwick_raq.test.cpp
