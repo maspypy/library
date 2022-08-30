@@ -44,6 +44,7 @@
 "test/aoj/GRL_1_B_bellmanford.test.cpp": "2022-08-30 02:42:36 +0900",
 "test/aoj/GRL_1_C_warshallfloyd.test.cpp": "2022-08-30 02:42:36 +0900",
 "test/aoj/GRL_2_A_mst.test.cpp": "2022-08-30 02:42:36 +0900",
+"test/aoj/GRL_3_A.test.cpp": "2022-08-31 00:37:29 +0900",
 "test/aoj/GRL_3_B.test.cpp": "2022-08-30 02:42:36 +0900",
 "test/aoj/GRL_5_E_lazytreemonoid.test.cpp": "2022-08-30 02:42:36 +0900",
 "test/aoj/GRL_6_A_maxflow.test.cpp": "2022-08-20 05:21:32 +0900",
