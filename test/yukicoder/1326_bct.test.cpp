@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1326"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "graph/biconnected_component.hpp"
+#include "graph/block_cut.hpp"
 #include "graph/treeabelgroup.hpp"
 #include "alg/group_add.hpp"
 
@@ -9,28 +9,24 @@ void solve() {
   LL(N, M);
   Graph<int> G(N);
   G.read_graph(M);
-  Biconnected_Component<decltype(G)> BC(G);
+  auto BCT = block_cut<decltype(G)>(G);
+  TREE<decltype(BCT)> tree(BCT);
 
-  auto T = BC.BCT();
-  TREE tree(T);
-
-  vc<int> dat(T.N);
-  FOR(v, N) if (BC.is_articulation(v)) { dat[BC.BCT_idx_v(v)]++; }
+  vc<int> dat(tree.N);
+  FOR(v, N) if (BCT.deg(v) > 1) dat[v] = 1;
   TreeAbelGroup<decltype(tree), Group_Add<int>, 0, 1, 0> TA(tree, dat);
 
   LL(Q);
   FOR(Q) {
     LL(x, y);
     --x, --y;
-    auto a = BC.BCT_idx_v(x);
-    auto b = BC.BCT_idx_v(y);
-    if (a == b) {
+    if (x == y) {
       print(0);
       continue;
     }
-    ll k = TA.prod_path(a, b);
-    if (BC.is_articulation(x)) --k;
-    if (BC.is_articulation(y)) --k;
+    ll k = TA.prod_path(x, y);
+    if (BCT.deg(x) > 1) --k;
+    if (BCT.deg(y) > 1) --k;
     print(k);
   }
 }
