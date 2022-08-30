@@ -1,11 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/number_of_substrings"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "string/suffix_automation.hpp"
+#include "string/suffix_automaton.hpp"
 
 void solve() {
   STR(S);
-  Suffix_Automation<26> X;
+  Suffix_Automaton<26> X;
   for (auto&& s: S) X.add(s, 'a');
   print(X.count_substring());
 }
