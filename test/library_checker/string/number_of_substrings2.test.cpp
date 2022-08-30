@@ -1,3 +1,4 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/number_of_substrings"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "string/suffix_automation.hpp"
