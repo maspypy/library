@@ -12,7 +12,7 @@ struct Suffix_Automaton {
   vc<Node> nodes;
   int last; // 文字列全体を入れたときの行き先
 
-  Suffix_Automation() {
+  Suffix_Automaton() {
     nodes.eb(Node(-1, 0));
     last = 0;
   }
@@ -66,13 +66,17 @@ struct Suffix_Automaton {
     return G;
   }
 
-  ll count_substring() {
+  int count_substring_at(int p) {
     // あるノードについて、最短と最長の文字列長が分かればよい。
     // 最長は size が持っている
     // 最短は、suffix link 先の最長に 1 を加えたものである。
-    int n = len(nodes);
+    if (p == 0) return 0;
+    return nodes[p].size - nodes[nodes[p].link].size;
+  }
+
+  ll count_substring() {
     ll ANS = 0;
-    FOR(i, 1, n) { ANS += nodes[i].size - nodes[nodes[i].link].size; }
+    FOR(i, len(nodes)) ANS += count_substring_at(i);
     return ANS;
   }
 };
