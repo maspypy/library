@@ -1,9 +1,9 @@
 #include "graph/base.hpp"
 
 template <int sigma = 26>
-struct Suffix_Automation {
+struct Suffix_Automaton {
   struct Node {
-    array<int, sigma> next; // automation の遷移先
+    array<int, sigma> next; // automaton の遷移先
     int link;               // suffix link
     int size;               // node が受理する最長文字列の長さ
     Node(int link, int size) : link(link), size(size) { fill(all(next), -1); }
