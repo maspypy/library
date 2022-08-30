@@ -2,28 +2,28 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/dualtreemonoid.hpp
     title: graph/dualtreemonoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_2_D_dualsegtree.test.cpp
-    title: test/aoj/DSL_2_D_dualsegtree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_2_A_mst.test.cpp
-    title: test/aoj/GRL_2_A_mst.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DSL_2_D.test.cpp
+    title: test/aoj/DSL_2_D.test.cpp
+  - icon: ':x:'
+    path: test/aoj/GRL_2_A.test.cpp
+    title: test/aoj/GRL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_point_add.test.cpp
     title: test/library_checker/datastructure/range_affine_point_add.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/913_cht_monotone.test.cpp
-    title: test/yukicoder/913_cht_monotone.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/913.test.cpp
+    title: test/yukicoder/913.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/dualsegtree.hpp\"\n\ntemplate <typename Monoid>\nstruct\
@@ -72,12 +72,12 @@ data:
   - graph/minimum_spanning_tree.hpp
   - graph/dualtreemonoid.hpp
   timestamp: '2022-06-19 03:08:14+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/913_cht_monotone.test.cpp
+  - test/yukicoder/913.test.cpp
   - test/library_checker/datastructure/range_affine_point_add.test.cpp
-  - test/aoj/DSL_2_D_dualsegtree.test.cpp
-  - test/aoj/GRL_2_A_mst.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
+  - test/aoj/DSL_2_D.test.cpp
 documentation_of: ds/dualsegtree.hpp
 layout: document
 redirect_from:

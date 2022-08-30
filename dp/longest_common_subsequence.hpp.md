@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_10_C_LCS.test.cpp
-    title: test/aoj/ALDS1_10_C_LCS.test.cpp
+    path: test/aoj/ALDS1_10_C.test.cpp
+    title: test/aoj/ALDS1_10_C.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -47,7 +47,7 @@ data:
   timestamp: '2022-04-24 15:03:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/ALDS1_10_C_LCS.test.cpp
+  - test/aoj/ALDS1_10_C.test.cpp
 documentation_of: dp/longest_common_subsequence.hpp
 layout: document
 redirect_from:

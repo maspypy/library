@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/lazy_max_add.hpp
     title: alg/lazy_max_add.hpp
   - icon: ':warning:'
@@ -14,37 +14,37 @@ data:
   - icon: ':warning:'
     path: alg/lazy_max_set.hpp
     title: alg/lazy_max_set.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_2_A_mst.test.cpp
-    title: test/aoj/GRL_2_A_mst.test.cpp
+  - icon: ':x:'
+    path: test/aoj/GRL_2_A.test.cpp
+    title: test/aoj/GRL_2_A.test.cpp
   - icon: ':x:'
     path: test/atcoder/abc266h.test.cpp
     title: test/atcoder/abc266h.test.cpp
   - icon: ':x:'
-    path: test/atcoder/abc266h_bit.test.cpp
-    title: test/atcoder/abc266h_bit.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1117_swag.test.cpp
-    title: test/yukicoder/1117_swag.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1625_kdtree.test.cpp
-    title: test/yukicoder/1625_kdtree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1625_seg2d.test.cpp
-    title: test/yukicoder/1625_seg2d.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1826_dseg.test.cpp
-    title: test/yukicoder/1826_dseg.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/bbst_max_right.test.cpp
-    title: test/yukicoder/bbst_max_right.test.cpp
+    path: test/atcoder/abc266h_2.test.cpp
+    title: test/atcoder/abc266h_2.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1117.test.cpp
+    title: test/yukicoder/1117.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1625.test.cpp
+    title: test/yukicoder/1625.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1625_2.test.cpp
+    title: test/yukicoder/1625_2.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1826.test.cpp
+    title: test/yukicoder/1826.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/686.test.cpp
+    title: test/yukicoder/686.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid_max.hpp\"\ntemplate <class X>\r\nstruct Monoid_Max\
@@ -65,16 +65,16 @@ data:
   - alg/lazy_max_set.hpp
   - alg/lazy_max_add.hpp
   timestamp: '2022-06-05 12:22:23+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1625_kdtree.test.cpp
-  - test/yukicoder/1625_seg2d.test.cpp
-  - test/yukicoder/1826_dseg.test.cpp
-  - test/yukicoder/1117_swag.test.cpp
-  - test/yukicoder/bbst_max_right.test.cpp
-  - test/aoj/GRL_2_A_mst.test.cpp
-  - test/atcoder/abc266h_bit.test.cpp
+  - test/yukicoder/1826.test.cpp
+  - test/yukicoder/686.test.cpp
+  - test/yukicoder/1117.test.cpp
+  - test/yukicoder/1625_2.test.cpp
+  - test/yukicoder/1625.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
   - test/atcoder/abc266h.test.cpp
+  - test/atcoder/abc266h_2.test.cpp
 documentation_of: alg/monoid_max.hpp
 layout: document
 redirect_from:

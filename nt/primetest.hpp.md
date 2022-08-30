@@ -17,22 +17,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/tetration.hpp
     title: mod/tetration.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/crt.hpp
     title: nt/crt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/divisors.hpp
     title: nt/divisors.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/lcm.hpp
     title: nt/lcm.hpp
   - icon: ':warning:'
@@ -43,14 +43,14 @@ data:
     title: seq/stirling_number_query.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_1_C_primetest.test.cpp
-    title: test/aoj/ALDS1_1_C_primetest.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ITP1_D_D_divisors.test.cpp
-    title: test/aoj/ITP1_D_D_divisors.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/NTL_1_D_eulerphi.test.cpp
-    title: test/aoj/NTL_1_D_eulerphi.test.cpp
+    path: test/aoj/ALDS1_1_C.test.cpp
+    title: test/aoj/ALDS1_1_C.test.cpp
+  - icon: ':x:'
+    path: test/aoj/ITP1_D_D.test.cpp
+    title: test/aoj/ITP1_D_D.test.cpp
+  - icon: ':x:'
+    path: test/aoj/NTL_1_D.test.cpp
+    title: test/aoj/NTL_1_D.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
@@ -72,15 +72,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1593_gaussian.test.cpp
-    title: test/yukicoder/1593_gaussian.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/187_crt.test.cpp
-    title: test/yukicoder/187_crt.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/1593.test.cpp
+    title: test/yukicoder/1593.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/187.test.cpp
+    title: test/yukicoder/187.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n  using i64 = int64_t;\r\
@@ -164,10 +164,10 @@ data:
   - nt/crt.hpp
   - seq/stirling_number_query.hpp
   timestamp: '2022-04-27 05:09:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/187_crt.test.cpp
-  - test/yukicoder/1593_gaussian.test.cpp
+  - test/yukicoder/1593.test.cpp
+  - test/yukicoder/187.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/factorize.test.cpp
@@ -175,9 +175,9 @@ data:
   - test/library_checker/math/stirline_mod_p_1.test.cpp
   - test/library_checker/math/tetration.test.cpp
   - test/library_checker/math/binomial_coefficient.test.cpp
-  - test/aoj/ITP1_D_D_divisors.test.cpp
-  - test/aoj/ALDS1_1_C_primetest.test.cpp
-  - test/aoj/NTL_1_D_eulerphi.test.cpp
+  - test/aoj/ALDS1_1_C.test.cpp
+  - test/aoj/ITP1_D_D.test.cpp
+  - test/aoj/NTL_1_D.test.cpp
 documentation_of: nt/primetest.hpp
 layout: document
 redirect_from:

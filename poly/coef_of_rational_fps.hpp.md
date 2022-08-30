@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: seq/bell_number_large.hpp
     title: seq/bell_number_large.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1500_interpolate_linear.test.cpp
-    title: test/yukicoder/1500_interpolate_linear.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1844_interpolate_c_rec.test.cpp
-    title: test/yukicoder/1844_interpolate_c_rec.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/1500.test.cpp
+    title: test/yukicoder/1500.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1844.test.cpp
+    title: test/yukicoder/1844.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\n\ntemplate <unsigned int mod>\nstruct\
@@ -337,10 +337,10 @@ data:
   - seq/bell_number_large.hpp
   - seq/interpolate_linear_rec.hpp
   timestamp: '2022-08-18 17:59:20+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1500_interpolate_linear.test.cpp
-  - test/yukicoder/1844_interpolate_c_rec.test.cpp
+  - test/yukicoder/1844.test.cpp
+  - test/yukicoder/1500.test.cpp
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
 documentation_of: poly/coef_of_rational_fps.hpp
 layout: document

@@ -2,28 +2,28 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/lazy_reverse.hpp
     title: alg/lazy_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':warning:'
     path: graph/statictreemonoid.hpp
     title: graph/statictreemonoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_2_A_mst.test.cpp
-    title: test/aoj/GRL_2_A_mst.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
-    title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
+  - icon: ':x:'
+    path: test/aoj/GRL_2_A.test.cpp
+    title: test/aoj/GRL_2_A.test.cpp
+  - icon: ':x:'
+    path: test/aoj/GRL_5_E.test.cpp
+    title: test/aoj/GRL_5_E.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
@@ -36,15 +36,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/235_lazytreemonoid.test.cpp
-    title: test/yukicoder/235_lazytreemonoid.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/529_two_edge.test.cpp
-    title: test/yukicoder/529_two_edge.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/235.test.cpp
+    title: test/yukicoder/235.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/529.test.cpp
+    title: test/yukicoder/529.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid_reverse.hpp\"\ntemplate <class Monoid>\r\nstruct\
@@ -67,16 +67,16 @@ data:
   - graph/treemonoid.hpp
   - alg/lazy_reverse.hpp
   timestamp: '2022-04-23 17:49:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/235.test.cpp
   - test/yukicoder/1197.test.cpp
-  - test/yukicoder/235_lazytreemonoid.test.cpp
-  - test/yukicoder/529_two_edge.test.cpp
+  - test/yukicoder/529.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
-  - test/aoj/GRL_2_A_mst.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
+  - test/aoj/GRL_5_E.test.cpp
 documentation_of: alg/monoid_reverse.hpp
 layout: document
 redirect_from:

@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_2_A_inversion.test.cpp
-    title: test/aoj/ALDS1_2_A_inversion.test.cpp
+    path: test/aoj/ALDS1_2_A.test.cpp
+    title: test/aoj/ALDS1_2_A.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_5_inversion.test.cpp
-    title: test/aoj/ALDS1_5_inversion.test.cpp
+    path: test/aoj/ALDS1_5.test.cpp
+    title: test/aoj/ALDS1_5.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -70,8 +70,8 @@ data:
   timestamp: '2022-08-28 03:31:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/ALDS1_5_inversion.test.cpp
-  - test/aoj/ALDS1_2_A_inversion.test.cpp
+  - test/aoj/ALDS1_5.test.cpp
+  - test/aoj/ALDS1_2_A.test.cpp
 documentation_of: dp/inversion.hpp
 layout: document
 redirect_from:

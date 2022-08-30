@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
-    title: test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
+    path: test/aoj/DPL_2_A.test.cpp
+    title: test/aoj/DPL_2_A.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -101,7 +101,7 @@ data:
   timestamp: '2022-08-30 02:42:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DPL_2_A_minimum_hamiltonian_cycle.test.cpp
+  - test/aoj/DPL_2_A.test.cpp
 documentation_of: graph/minimum_hamiltonian_cycle.hpp
 layout: document
 redirect_from:

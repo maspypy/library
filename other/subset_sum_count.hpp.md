@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/DPL_4_B_subset_sum_count.test.cpp
-    title: test/aoj/DPL_4_B_subset_sum_count.test.cpp
+    path: test/aoj/DPL_4_B.test.cpp
+    title: test/aoj/DPL_4_B.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -75,7 +75,7 @@ data:
   timestamp: '2022-04-16 23:35:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DPL_4_B_subset_sum_count.test.cpp
+  - test/aoj/DPL_4_B.test.cpp
 documentation_of: other/subset_sum_count.hpp
 layout: document
 redirect_from:

@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/DPL_1_D_lis.test.cpp
-    title: test/aoj/DPL_1_D_lis.test.cpp
+    path: test/aoj/DPL_1_D.test.cpp
+    title: test/aoj/DPL_1_D.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/longest_increasing_subsequence.test.cpp
     title: test/library_checker/math/longest_increasing_subsequence.test.cpp
@@ -41,7 +41,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/longest_increasing_subsequence.test.cpp
-  - test/aoj/DPL_1_D_lis.test.cpp
+  - test/aoj/DPL_1_D.test.cpp
 documentation_of: dp/longest_increasing_subsequence.hpp
 layout: document
 redirect_from:

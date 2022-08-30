@@ -4,20 +4,20 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_2_E_fenwick_raq.test.cpp
-    title: test/aoj/DSL_2_E_fenwick_raq.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_2_G_fenwick_raq.test.cpp
-    title: test/aoj/DSL_2_G_fenwick_raq.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/aoj/DSL_2_E.test.cpp
+    title: test/aoj/DSL_2_E.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DSL_2_G.test.cpp
+    title: test/aoj/DSL_2_G.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -83,10 +83,10 @@ data:
   path: ds/fenwickraq.hpp
   requiredBy: []
   timestamp: '2022-08-28 03:31:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/aoj/DSL_2_G_fenwick_raq.test.cpp
-  - test/aoj/DSL_2_E_fenwick_raq.test.cpp
+  - test/aoj/DSL_2_E.test.cpp
+  - test/aoj/DSL_2_G.test.cpp
 documentation_of: ds/fenwickraq.hpp
 layout: document
 redirect_from:

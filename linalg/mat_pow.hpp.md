@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1750_matpow.test.cpp
-    title: test/yukicoder/1750_matpow.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1810_matpow.test.cpp
-    title: test/yukicoder/1810_matpow.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/1750.test.cpp
+    title: test/yukicoder/1750.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1810.test.cpp
+    title: test/yukicoder/1810.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"linalg/mat_mul.hpp\"\n\r\ntemplate <class T, is_modint_t<T>*\
@@ -41,10 +41,10 @@ data:
   path: linalg/mat_pow.hpp
   requiredBy: []
   timestamp: '2022-08-19 01:23:18+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1750_matpow.test.cpp
-  - test/yukicoder/1810_matpow.test.cpp
+  - test/yukicoder/1810.test.cpp
+  - test/yukicoder/1750.test.cpp
 documentation_of: linalg/mat_pow.hpp
 layout: document
 redirect_from:

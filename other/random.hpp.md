@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/modular_subset_sum.hpp
     title: mod/modular_subset_sum.hpp
   - icon: ':heavy_check_mark:'
@@ -34,8 +34,8 @@ data:
     title: string/rollinghash.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
-    title: test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
+    path: test/aoj/ALDS1_14_C.test.cpp
+    title: test/aoj/ALDS1_14_C.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
@@ -108,12 +108,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/run_length.test.cpp
     title: test/mytest/run_length.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/4_modular_subset_sum.test.cpp
-    title: test/yukicoder/4_modular_subset_sum.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/4_1.test.cpp
+    title: test/yukicoder/4_1.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/random.hpp\"\n\nll RNG(ll a, ll b) {\n  static mt19937\
@@ -137,9 +137,9 @@ data:
   - alg/monoid_rollinghash.hpp
   - poly/fps_sqrt.hpp
   timestamp: '2022-08-25 09:50:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/4_modular_subset_sum.test.cpp
+  - test/yukicoder/4_1.test.cpp
   - test/mytest/minplus_convex.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/range_mex.test.cpp
@@ -164,7 +164,7 @@ data:
   - test/library_checker/math/sqrt_mod.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
-  - test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
+  - test/aoj/ALDS1_14_C.test.cpp
 documentation_of: other/random.hpp
 layout: document
 redirect_from:

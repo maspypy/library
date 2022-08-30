@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
-    title: test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
+    path: test/aoj/ALDS1_14_C.test.cpp
+    title: test/aoj/ALDS1_14_C.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -49,7 +49,7 @@ data:
   timestamp: '2022-08-25 10:08:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/ALDS1_14_C_rollinghash_2d.test.cpp
+  - test/aoj/ALDS1_14_C.test.cpp
 documentation_of: string/rollinghash_2d.hpp
 layout: document
 redirect_from:

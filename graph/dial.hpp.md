@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_12_B_dial.test.cpp
-    title: test/aoj/ALDS1_12_B_dial.test.cpp
+    path: test/aoj/ALDS1_12_B.test.cpp
+    title: test/aoj/ALDS1_12_B.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -103,7 +103,7 @@ data:
   timestamp: '2022-08-30 02:42:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/ALDS1_12_B_dial.test.cpp
+  - test/aoj/ALDS1_12_B.test.cpp
 documentation_of: graph/dial.hpp
 layout: document
 redirect_from:

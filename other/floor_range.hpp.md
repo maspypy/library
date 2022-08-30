@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1573_floor_range.test.cpp
-    title: test/yukicoder/1573_floor_range.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/4954_quotients.test.cpp
-    title: test/yukicoder/4954_quotients.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/1573.test.cpp
+    title: test/yukicoder/1573.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/4954.test.cpp
+    title: test/yukicoder/4954.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/floor_range.hpp\"\n#define floor_range(q, l, r, n)\
@@ -26,10 +26,10 @@ data:
   path: other/floor_range.hpp
   requiredBy: []
   timestamp: '2022-04-23 01:23:59+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1573_floor_range.test.cpp
-  - test/yukicoder/4954_quotients.test.cpp
+  - test/yukicoder/1573.test.cpp
+  - test/yukicoder/4954.test.cpp
 documentation_of: other/floor_range.hpp
 layout: document
 redirect_from:

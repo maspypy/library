@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ITP1_9_A_split.test.cpp
-    title: test/aoj/ITP1_9_A_split.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/aoj/ITP1_9_A.test.cpp
+    title: test/aoj/ITP1_9_A.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/io2.hpp\"\n#define INT(...) \\\r\n  int __VA_ARGS__;\
@@ -69,9 +69,9 @@ data:
   path: other/io2.hpp
   requiredBy: []
   timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/aoj/ITP1_9_A_split.test.cpp
+  - test/aoj/ITP1_9_A.test.cpp
 documentation_of: other/io2.hpp
 layout: document
 redirect_from:

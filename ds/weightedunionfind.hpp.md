@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_1_B_weighteduf.test.cpp
-    title: test/aoj/DSL_1_B_weighteduf.test.cpp
+    path: test/aoj/DSL_1_B.test.cpp
+    title: test/aoj/DSL_1_B.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -50,7 +50,7 @@ data:
   timestamp: '2022-04-24 22:49:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL_1_B_weighteduf.test.cpp
+  - test/aoj/DSL_1_B.test.cpp
 documentation_of: ds/weightedunionfind.hpp
 layout: document
 redirect_from:

@@ -4,17 +4,17 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/1508_splay.test.cpp
-    title: test/aoj/1508_splay.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1441_bbst.test.cpp
-    title: test/yukicoder/1441_bbst.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1441_rbst.test.cpp
-    title: test/yukicoder/1441_rbst.test.cpp
-  _isVerificationFailed: false
+    path: test/aoj/1508.test.cpp
+    title: test/aoj/1508.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1441.test.cpp
+    title: test/yukicoder/1441.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1441_2.test.cpp
+    title: test/yukicoder/1441_2.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"bbst/splaytree_monoid.hpp\"\n// reverse \u306F\u3068\u308A\
@@ -183,11 +183,11 @@ data:
   path: bbst/splaytree_monoid.hpp
   requiredBy: []
   timestamp: '2022-05-29 02:01:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1441_rbst.test.cpp
-  - test/yukicoder/1441_bbst.test.cpp
-  - test/aoj/1508_splay.test.cpp
+  - test/yukicoder/1441_2.test.cpp
+  - test/yukicoder/1441.test.cpp
+  - test/aoj/1508.test.cpp
 documentation_of: bbst/splaytree_monoid.hpp
 layout: document
 redirect_from:

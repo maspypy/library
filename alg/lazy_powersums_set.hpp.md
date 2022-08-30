@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/group_power_sums.hpp
     title: alg/group_power_sums.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid_set.hpp
     title: alg/monoid_set.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1548_power_sums.test.cpp
-    title: test/yukicoder/1548_power_sums.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/1548.test.cpp
+    title: test/yukicoder/1548.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/lazy_powersums_set.hpp\"\n\r\n#line 1 \"alg/monoid_set.hpp\"\
@@ -53,9 +53,9 @@ data:
   path: alg/lazy_powersums_set.hpp
   requiredBy: []
   timestamp: '2022-05-26 00:08:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1548_power_sums.test.cpp
+  - test/yukicoder/1548.test.cpp
 documentation_of: alg/lazy_powersums_set.hpp
 layout: document
 redirect_from:

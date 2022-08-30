@@ -2,19 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/lazy_cntminmincnt_add.hpp
     title: alg/lazy_cntminmincnt_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/rectangleunion.hpp
     title: ds/rectangleunion.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_4_A_rectangle_union.test.cpp
-    title: test/aoj/DSL_4_A_rectangle_union.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/aoj/DSL_4_A.test.cpp
+    title: test/aoj/DSL_4_A.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid_cntminmincnt.hpp\"\n// \u5168\u4F53\u306E\u500B\
@@ -42,9 +42,9 @@ data:
   - alg/lazy_cntminmincnt_add.hpp
   - ds/rectangleunion.hpp
   timestamp: '2022-05-13 21:02:36+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/aoj/DSL_4_A_rectangle_union.test.cpp
+  - test/aoj/DSL_4_A.test.cpp
 documentation_of: alg/monoid_cntminmincnt.hpp
 layout: document
 redirect_from:

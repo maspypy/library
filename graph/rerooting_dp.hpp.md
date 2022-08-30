@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy:
@@ -15,15 +15,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
     title: test/library_checker/graph/rerooting_classify_subtree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1418_rerooting.test.cpp
-    title: test/yukicoder/1418_rerooting.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1718_rerooting.test.cpp
-    title: test/yukicoder/1718_rerooting.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/1418.test.cpp
+    title: test/yukicoder/1418.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1718.test.cpp
+    title: test/yukicoder/1718.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/rerooting_dp.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\
@@ -208,10 +208,10 @@ data:
   requiredBy:
   - graph/rerooting_classify_subtree.hpp
   timestamp: '2022-08-30 02:42:36+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1718_rerooting.test.cpp
-  - test/yukicoder/1418_rerooting.test.cpp
+  - test/yukicoder/1418.test.cpp
+  - test/yukicoder/1718.test.cpp
   - test/library_checker/graph/rerooting_classify_subtree.test.cpp
 documentation_of: graph/rerooting_dp.hpp
 layout: document

@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/DPL_5_C_count_surjection.test.cpp
-    title: test/aoj/DPL_5_C_count_surjection.test.cpp
+    path: test/aoj/DPL_5_C.test.cpp
+    title: test/aoj/DPL_5_C.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -26,7 +26,7 @@ data:
   timestamp: '2022-04-16 19:49:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DPL_5_C_count_surjection.test.cpp
+  - test/aoj/DPL_5_C.test.cpp
 documentation_of: setfunc/count_surjection.hpp
 layout: document
 redirect_from:

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -11,19 +11,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/dualtreemonoid.hpp
     title: graph/dualtreemonoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/rerooting_classify_subtree.hpp
     title: graph/rerooting_classify_subtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/rerooting_dp.hpp
     title: graph/rerooting_dp.hpp
   - icon: ':warning:'
@@ -32,16 +32,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_dp.hpp
     title: graph/tree_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/treeabelgroup.hpp
     title: graph/treeabelgroup.hpp
   - icon: ':heavy_check_mark:'
     path: graph/treegroup.hpp
     title: graph/treegroup.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
   _extendedVerifiedWith:
@@ -49,17 +49,17 @@ data:
     path: test/aoj/2677.test.cpp
     title: test/aoj/2677.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/2995_dsu.test.cpp
-    title: test/aoj/2995_dsu.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_2_A_mst.test.cpp
-    title: test/aoj/GRL_2_A_mst.test.cpp
+    path: test/aoj/2995.test.cpp
+    title: test/aoj/2995.test.cpp
+  - icon: ':x:'
+    path: test/aoj/GRL_2_A.test.cpp
+    title: test/aoj/GRL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_B.test.cpp
     title: test/aoj/GRL_3_B.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
-    title: test/aoj/GRL_5_E_lazytreemonoid.test.cpp
+  - icon: ':x:'
+    path: test/aoj/GRL_5_E.test.cpp
+    title: test/aoj/GRL_5_E.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
@@ -99,30 +99,30 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1326_bct.test.cpp
-    title: test/yukicoder/1326_bct.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1418_rerooting.test.cpp
-    title: test/yukicoder/1418_rerooting.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1641_tree_abel.test.cpp
-    title: test/yukicoder/1641_tree_abel.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1718_rerooting.test.cpp
-    title: test/yukicoder/1718_rerooting.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1778_bracket_graph.test.cpp
-    title: test/yukicoder/1778_bracket_graph.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/235_lazytreemonoid.test.cpp
-    title: test/yukicoder/235_lazytreemonoid.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/529_two_edge.test.cpp
-    title: test/yukicoder/529_two_edge.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/1326.test.cpp
+    title: test/yukicoder/1326.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1418.test.cpp
+    title: test/yukicoder/1418.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1641.test.cpp
+    title: test/yukicoder/1641.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1718.test.cpp
+    title: test/yukicoder/1718.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1778.test.cpp
+    title: test/yukicoder/1778.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/235.test.cpp
+    title: test/yukicoder/235.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/529.test.cpp
+    title: test/yukicoder/529.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -320,16 +320,16 @@ data:
   - graph/treegroup.hpp
   - graph/tree_dp.hpp
   timestamp: '2022-08-30 02:42:36+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1641_tree_abel.test.cpp
+  - test/yukicoder/1418.test.cpp
+  - test/yukicoder/235.test.cpp
+  - test/yukicoder/1718.test.cpp
   - test/yukicoder/1197.test.cpp
-  - test/yukicoder/1778_bracket_graph.test.cpp
-  - test/yukicoder/1718_rerooting.test.cpp
-  - test/yukicoder/235_lazytreemonoid.test.cpp
-  - test/yukicoder/1418_rerooting.test.cpp
-  - test/yukicoder/529_two_edge.test.cpp
-  - test/yukicoder/1326_bct.test.cpp
+  - test/yukicoder/529.test.cpp
+  - test/yukicoder/1641.test.cpp
+  - test/yukicoder/1778.test.cpp
+  - test/yukicoder/1326.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp
   - test/library_checker/tree/lca.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
@@ -343,9 +343,9 @@ data:
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - test/aoj/GRL_3_B.test.cpp
-  - test/aoj/2995_dsu.test.cpp
-  - test/aoj/GRL_5_E_lazytreemonoid.test.cpp
-  - test/aoj/GRL_2_A_mst.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
+  - test/aoj/2995.test.cpp
+  - test/aoj/GRL_5_E.test.cpp
   - test/aoj/2677.test.cpp
 documentation_of: graph/tree.hpp
 layout: document

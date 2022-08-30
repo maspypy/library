@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -10,10 +10,10 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/hadamard.hpp
     title: setfunc/hadamard.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/xor_convolution.hpp
     title: setfunc/xor_convolution.hpp
   _extendedRequiredBy: []

@@ -3,18 +3,18 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1036_dseg_minleft_maxright.test.cpp
-    title: test/yukicoder/1036_dseg_minleft_maxright.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1036_seg_maxright_minleft.test.cpp
-    title: test/yukicoder/1036_seg_maxright_minleft.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1036_swag.test.cpp
-    title: test/yukicoder/1036_swag.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/1036.test.cpp
+    title: test/yukicoder/1036.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1036_2.test.cpp
+    title: test/yukicoder/1036_2.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1036_3.test.cpp
+    title: test/yukicoder/1036_3.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid_gcd.hpp\"\ntemplate <typename INT>\nstruct Monoid_Gcd\
@@ -30,11 +30,11 @@ data:
   path: alg/monoid_gcd.hpp
   requiredBy: []
   timestamp: '2022-04-24 16:57:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1036_swag.test.cpp
-  - test/yukicoder/1036_dseg_minleft_maxright.test.cpp
-  - test/yukicoder/1036_seg_maxright_minleft.test.cpp
+  - test/yukicoder/1036_2.test.cpp
+  - test/yukicoder/1036_3.test.cpp
+  - test/yukicoder/1036.test.cpp
 documentation_of: alg/monoid_gcd.hpp
 layout: document
 redirect_from:

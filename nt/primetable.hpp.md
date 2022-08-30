@@ -2,13 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':heavy_check_mark:'
     path: mod/tetration.hpp
     title: mod/tetration.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
   - icon: ':heavy_check_mark:'
@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/primesum_mod6.hpp
     title: nt/primesum_mod6.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   - icon: ':heavy_check_mark:'
@@ -44,16 +44,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/stirling_number_1.hpp
     title: seq/stirling_number_1.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/stirling_number_2.hpp
     title: seq/stirling_number_2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/surjection.hpp
     title: seq/surjection.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/NTL_1_D_eulerphi.test.cpp
-    title: test/aoj/NTL_1_D_eulerphi.test.cpp
+  - icon: ':x:'
+    path: test/aoj/NTL_1_D.test.cpp
+    title: test/aoj/NTL_1_D.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/counting_primes.test.cpp
     title: test/library_checker/math/counting_primes.test.cpp
@@ -96,18 +96,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/primesum_mod6.test.cpp
     title: test/mytest/primesum_mod6.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1321_surj.test.cpp
-    title: test/yukicoder/1321_surj.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1666_integer_kth_root.test.cpp
-    title: test/yukicoder/1666_integer_kth_root.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1321.test.cpp
+    title: test/yukicoder/1321.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1666.test.cpp
+    title: test/yukicoder/1666.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1760.test.cpp
     title: test/yukicoder/1760.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\nvc<ll> primetable(int LIM) {\n  ++LIM;\n\
@@ -153,11 +153,11 @@ data:
   - seq/stirling_number_1.hpp
   - seq/stirling_number_2.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1760.test.cpp
-  - test/yukicoder/1321_surj.test.cpp
-  - test/yukicoder/1666_integer_kth_root.test.cpp
+  - test/yukicoder/1321.test.cpp
+  - test/yukicoder/1666.test.cpp
   - test/mytest/prime_sum.test.cpp
   - test/mytest/primesum_mod6.test.cpp
   - test/mytest/primesum_mod4.test.cpp
@@ -172,7 +172,7 @@ data:
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/math/gcd_convolution.test.cpp
   - test/library_checker/math/tetration.test.cpp
-  - test/aoj/NTL_1_D_eulerphi.test.cpp
+  - test/aoj/NTL_1_D.test.cpp
 documentation_of: nt/primetable.hpp
 layout: document
 redirect_from:

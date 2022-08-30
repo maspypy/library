@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -13,23 +13,23 @@ data:
     title: graph/twosat.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/275_dag_reachability.test.cpp
-    title: test/aoj/275_dag_reachability.test.cpp
+    path: test/aoj/0275.test.cpp
+    title: test/aoj/0275.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/scc.test.cpp
     title: test/library_checker/graph/scc.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/twosat.test.cpp
     title: test/library_checker/math/twosat.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1170_range_to_range.test.cpp
-    title: test/yukicoder/1170_range_to_range.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1293_scc.test.cpp
-    title: test/yukicoder/1293_scc.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/1170.test.cpp
+    title: test/yukicoder/1170.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1293.test.cpp
+    title: test/yukicoder/1293.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -120,13 +120,13 @@ data:
   - graph/reachability.hpp
   - graph/twosat.hpp
   timestamp: '2022-08-30 02:42:36+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1293_scc.test.cpp
-  - test/yukicoder/1170_range_to_range.test.cpp
+  - test/yukicoder/1293.test.cpp
+  - test/yukicoder/1170.test.cpp
   - test/library_checker/graph/scc.test.cpp
   - test/library_checker/math/twosat.test.cpp
-  - test/aoj/275_dag_reachability.test.cpp
+  - test/aoj/0275.test.cpp
 documentation_of: graph/strongly_connected_component.hpp
 layout: document
 redirect_from:

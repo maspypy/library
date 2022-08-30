@@ -4,11 +4,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/DPL_3_B_largest_ractangle.test.cpp
-    title: test/aoj/DPL_3_B_largest_ractangle.test.cpp
+    path: test/aoj/DPL_3_B.test.cpp
+    title: test/aoj/DPL_3_B.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/DPL_3_C_maxrectangle.test.cpp
-    title: test/aoj/DPL_3_C_maxrectangle.test.cpp
+    path: test/aoj/DPL_3_C.test.cpp
+    title: test/aoj/DPL_3_C.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/cartesian_tree.test.cpp
     title: test/library_checker/tree/cartesian_tree.test.cpp
@@ -79,8 +79,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/tree/cartesian_tree.test.cpp
-  - test/aoj/DPL_3_C_maxrectangle.test.cpp
-  - test/aoj/DPL_3_B_largest_ractangle.test.cpp
+  - test/aoj/DPL_3_C.test.cpp
+  - test/aoj/DPL_3_B.test.cpp
 documentation_of: ds/cartesian_tree.hpp
 layout: document
 redirect_from:

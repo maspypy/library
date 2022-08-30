@@ -7,8 +7,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/2842_fenwick2d_dense.test.cpp
-    title: test/aoj/2842_fenwick2d_dense.test.cpp
+    path: test/aoj/2842.test.cpp
+    title: test/aoj/2842.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -66,7 +66,7 @@ data:
   timestamp: '2022-06-27 16:36:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/2842_fenwick2d_dense.test.cpp
+  - test/aoj/2842.test.cpp
 documentation_of: ds/fenwick2d_dense.hpp
 layout: document
 redirect_from:
