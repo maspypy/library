@@ -6,12 +6,12 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/string/number_of_substrings2.test.cpp
     title: test/library_checker/string/number_of_substrings2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -58,9 +58,9 @@ data:
     \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
-    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"string/suffix_automation.hpp\"\
-    \n\ntemplate <int sigma = 26>\nstruct Suffix_Automation {\n  struct Node {\n \
-    \   array<int, sigma> next; // automation \u306E\u9077\u79FB\u5148\n    int link;\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"string/suffix_automaton.hpp\"\
+    \n\ntemplate <int sigma = 26>\nstruct Suffix_Automaton {\n  struct Node {\n  \
+    \  array<int, sigma> next; // automaton \u306E\u9077\u79FB\u5148\n    int link;\
     \               // suffix link\n    int size;               // node \u304C\u53D7\
     \u7406\u3059\u308B\u6700\u9577\u6587\u5B57\u5217\u306E\u9577\u3055\n    Node(int\
     \ link, int size) : link(link), size(size) { fill(all(next), -1); }\n  };\n\n\
@@ -90,8 +90,8 @@ data:
     \u3042\u308B\u3002\n    int n = len(nodes);\n    ll ANS = 0;\n    FOR(i, 1, n)\
     \ { ANS += nodes[i].size - nodes[nodes[i].link].size; }\n    return ANS;\n  }\n\
     };\n"
-  code: "#include \"graph/base.hpp\"\n\ntemplate <int sigma = 26>\nstruct Suffix_Automation\
-    \ {\n  struct Node {\n    array<int, sigma> next; // automation \u306E\u9077\u79FB\
+  code: "#include \"graph/base.hpp\"\n\ntemplate <int sigma = 26>\nstruct Suffix_Automaton\
+    \ {\n  struct Node {\n    array<int, sigma> next; // automaton \u306E\u9077\u79FB\
     \u5148\n    int link;               // suffix link\n    int size;            \
     \   // node \u304C\u53D7\u7406\u3059\u308B\u6700\u9577\u6587\u5B57\u5217\u306E\
     \u9577\u3055\n    Node(int link, int size) : link(link), size(size) { fill(all(next),\
@@ -124,16 +124,16 @@ data:
   dependsOn:
   - graph/base.hpp
   isVerificationFile: false
-  path: string/suffix_automation.hpp
+  path: string/suffix_automaton.hpp
   requiredBy: []
-  timestamp: '2022-08-30 23:42:08+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-08-31 01:52:20+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/string/number_of_substrings2.test.cpp
-documentation_of: string/suffix_automation.hpp
+documentation_of: string/suffix_automaton.hpp
 layout: document
 redirect_from:
-- /library/string/suffix_automation.hpp
-- /library/string/suffix_automation.hpp.html
-title: string/suffix_automation.hpp
+- /library/string/suffix_automaton.hpp
+- /library/string/suffix_automaton.hpp.html
+title: string/suffix_automaton.hpp
 ---

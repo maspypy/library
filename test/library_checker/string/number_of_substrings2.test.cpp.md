@@ -10,14 +10,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/suffix_automation.hpp
-    title: string/suffix_automation.hpp
+  - icon: ':x:'
+    path: string/suffix_automaton.hpp
+    title: string/suffix_automaton.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/number_of_substrings
@@ -243,9 +243,9 @@ data:
     \  vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
     \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
     \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 2 \"string/suffix_automation.hpp\"\n\ntemplate <int sigma\
-    \ = 26>\nstruct Suffix_Automation {\n  struct Node {\n    array<int, sigma> next;\
-    \ // automation \u306E\u9077\u79FB\u5148\n    int link;               // suffix\
+    \ }\n  }\n};\n#line 2 \"string/suffix_automaton.hpp\"\n\ntemplate <int sigma =\
+    \ 26>\nstruct Suffix_Automaton {\n  struct Node {\n    array<int, sigma> next;\
+    \ // automaton \u306E\u9077\u79FB\u5148\n    int link;               // suffix\
     \ link\n    int size;               // node \u304C\u53D7\u7406\u3059\u308B\u6700\
     \u9577\u6587\u5B57\u5217\u306E\u9577\u3055\n    Node(int link, int size) : link(link),\
     \ size(size) { fill(all(next), -1); }\n  };\n\n  vc<Node> nodes;\n  int last;\
@@ -274,26 +274,26 @@ data:
     \u3042\u308B\u3002\n    int n = len(nodes);\n    ll ANS = 0;\n    FOR(i, 1, n)\
     \ { ANS += nodes[i].size - nodes[nodes[i].link].size; }\n    return ANS;\n  }\n\
     };\n#line 5 \"test/library_checker/string/number_of_substrings2.test.cpp\"\n\n\
-    void solve() {\n  STR(S);\n  Suffix_Automation<26> X;\n  for (auto&& s: S) X.add(s,\
+    void solve() {\n  STR(S);\n  Suffix_Automaton<26> X;\n  for (auto&& s: S) X.add(s,\
     \ 'a');\n  print(X.count_substring());\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
     \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
     \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/number_of_substrings\"\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"string/suffix_automation.hpp\"\
-    \n\nvoid solve() {\n  STR(S);\n  Suffix_Automation<26> X;\n  for (auto&& s: S)\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"string/suffix_automaton.hpp\"\
+    \n\nvoid solve() {\n  STR(S);\n  Suffix_Automaton<26> X;\n  for (auto&& s: S)\
     \ X.add(s, 'a');\n  print(X.count_substring());\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
     \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
     \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - string/suffix_automation.hpp
+  - string/suffix_automaton.hpp
   - graph/base.hpp
   isVerificationFile: true
   path: test/library_checker/string/number_of_substrings2.test.cpp
   requiredBy: []
-  timestamp: '2022-08-31 00:41:57+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-31 01:52:56+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/string/number_of_substrings2.test.cpp
 layout: document
