@@ -4,8 +4,8 @@
 
 void solve() {
   STR(S);
-  Suffix_Automation X;
-  for (auto&& s: S) X.add(s);
+  Suffix_Automation<26> X;
+  for (auto&& s: S) X.add(s, 'a');
   print(X.count_substring());
 }
 
