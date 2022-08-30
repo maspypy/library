@@ -255,6 +255,7 @@
 "test/yukicoder/1301_mcf.test.cpp": "2022-08-20 05:21:32 +0900",
 "test/yukicoder/1320_mincostcycle.test.cpp": "2022-08-30 02:42:36 +0900",
 "test/yukicoder/1321_surj.test.cpp": "2022-08-20 05:21:32 +0900",
+"test/yukicoder/1326_bct.test.cpp": "2022-08-31 00:49:11 +0900",
 "test/yukicoder/1332_range_freq.test.cpp": "2022-08-20 05:21:32 +0900",
 "test/yukicoder/1339_discrete_log.test.cpp": "2022-08-20 05:21:32 +0900",
 "test/yukicoder/1344_warshall_floyd.test.cpp": "2022-08-30 02:42:36 +0900",
