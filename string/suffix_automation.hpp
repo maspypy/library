@@ -1,12 +1,13 @@
 #include "graph/base.hpp"
 #include "graph/bfs01.hpp"
 
+template <int sigma = 26>
 struct Suffix_Automation {
   struct Node {
-    map<char, int> next; // automation の遷移先
-    int link;            // suffix link
-    int size;            // node が受理する最長文字列の長さ
-    Node(int link, int size) : link(link), size(size) {}
+    array<int, sigma> next; // automation の遷移先
+    int link;               // suffix link
+    int size;               // node が受理する最長文字列の長さ
+    Node(int link, int size) : link(link), size(size) { fill(all(next), -1); }
   };
 
   vc<Node> nodes;
@@ -17,12 +18,12 @@ struct Suffix_Automation {
     last = 0;
   }
 
-  void add(char c0) {
+  void add(char c0, char off) {
     int c = c0 - 'a';
     int new_node = len(nodes);
     nodes.eb(Node(-1, nodes[last].size + 1));
     int p = last;
-    while (p != -1 && !nodes[p].next.count(c)) {
+    while (p != -1 && nodes[p].next[c] == -1) {
       nodes[p].next[c] = new_node;
       p = nodes[p].link;
     }
@@ -47,7 +48,8 @@ struct Suffix_Automation {
     int n = len(nodes);
     Graph<int, 1> G(n);
     FOR(v, n) {
-      for (auto&& [key, to]: nodes[v].next) { G.add(v, to); }
+      for (auto&& to: nodes[v].next)
+        if (to != -1) { G.add(v, to); }
     }
     G.build();
     return G;
