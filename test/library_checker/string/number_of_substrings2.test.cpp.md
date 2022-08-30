@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':question:'
@@ -10,22 +10,26 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_automation.hpp
     title: string/suffix_automation.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    links: []
-  bundledCode: "#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma\
-    \ GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace\
-    \ std;\n\nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\n\
-    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    PROBLEM: https://judge.yosupo.jp/problem/number_of_substrings
+    links:
+    - https://judge.yosupo.jp/problem/number_of_substrings
+  bundledCode: "#line 1 \"test/library_checker/string/number_of_substrings2.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/number_of_substrings\"\n#line\
+    \ 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
+    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
+    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
+    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
+    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
     template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
     \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
     \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
@@ -269,16 +273,17 @@ data:
     \ link \u5148\u306E\u6700\u9577\u306B 1 \u3092\u52A0\u3048\u305F\u3082\u306E\u3067\
     \u3042\u308B\u3002\n    int n = len(nodes);\n    ll ANS = 0;\n    FOR(i, 1, n)\
     \ { ANS += nodes[i].size - nodes[nodes[i].link].size; }\n    return ANS;\n  }\n\
-    };\n#line 4 \"test/library_checker/string/number_of_substrings2.test.cpp\"\n\n\
+    };\n#line 5 \"test/library_checker/string/number_of_substrings2.test.cpp\"\n\n\
     void solve() {\n  STR(S);\n  Suffix_Automation<26> X;\n  for (auto&& s: S) X.add(s,\
     \ 'a');\n  print(X.count_substring());\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
     \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
     \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"string/suffix_automation.hpp\"\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/number_of_substrings\"\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"string/suffix_automation.hpp\"\
     \n\nvoid solve() {\n  STR(S);\n  Suffix_Automation<26> X;\n  for (auto&& s: S)\
     \ X.add(s, 'a');\n  print(X.count_substring());\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
     \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}"
+    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -287,8 +292,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/number_of_substrings2.test.cpp
   requiredBy: []
-  timestamp: '2022-08-30 23:46:49+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-31 00:41:57+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/string/number_of_substrings2.test.cpp
 layout: document
