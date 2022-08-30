@@ -12,7 +12,7 @@ struct Suffix_Automaton {
   vc<Node> nodes;
   int last; // 文字列全体を入れたときの行き先
 
-  Suffix_Automation() {
+  Suffix_Automaton() {
     nodes.eb(Node(-1, 0));
     last = 0;
   }
