@@ -2,50 +2,37 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: alg/group_add.hpp
-    title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
-    path: alg/group_mul.hpp
-    title: alg/group_mul.hpp
-  - icon: ':heavy_check_mark:'
-    path: alg/lazy_add_mul.hpp
-    title: alg/lazy_add_mul.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/lazysegtree.hpp
-    title: ds/lazysegtree.hpp
-  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/bfsnumbering.hpp
-    title: graph/bfsnumbering.hpp
+  - icon: ':question:'
+    path: graph/bfs01.hpp
+    title: graph/bfs01.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
+  - icon: ':x:'
+    path: string/suffix_automation.hpp
+    title: string/suffix_automation.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/899
-    links:
-    - https://yukicoder.me/problems/no/899
-  bundledCode: "#line 1 \"test/yukicoder/899_bfsnumbering.test.cpp\"\n#define PROBLEM\
-    \ \"https://yukicoder.me/problems/no/899\"\r\n#line 1 \"my_template.hpp\"\n#pragma\
-    \ GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include\
-    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
-    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
-    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
-    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
-    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    links: []
+  bundledCode: "#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma\
+    \ GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace\
+    \ std;\n\nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\n\
+    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
+    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -255,162 +242,80 @@ data:
     \  vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
     \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
     \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 2 \"graph/bfsnumbering.hpp\"\n\r\n\r\n// ID[v]\uFF1A\u9802\
-    \u70B9\u306E\u65B0\u3057\u3044\u756A\u53F7\r\n// calc_range(v, dep)\uFF1Av \u306E\
-    \u90E8\u5206\u6728\u3067\u3001\u6DF1\u3055 dep \u306E\u3082\u306E\u305F\u3061\u306E\
-    \u7BC4\u56F2\r\n// \u6DF1\u3055\u306F\u7D76\u5BFE\u7684\u306A\u3082\u306E\u3067\
-    \u3042\u308B\u3053\u3068\u306B\u6CE8\u610F\u305B\u3088\r\ntemplate <typename Graph>\r\
-    \nstruct BFSNumbering {\r\n  Graph& G;\r\n  int root;\r\n  vector<int> V;\r\n\
-    \  vector<int> ID;\r\n  vector<int> depth;\r\n  vector<int> parent;\r\n  vector<int>\
-    \ LID, RID;\r\n  vector<int> LID_seq;\r\n  vector<int> dep_ids;\r\n  int cnt;\r\
-    \n\r\n  BFSNumbering(Graph& G, int root = 0) : G(G), root(root), cnt(0) { build();\
-    \ }\r\n\r\n  void bfs() {\r\n    deque<int> que = {root};\r\n    while (!que.empty())\
-    \ {\r\n      int v = que.front();\r\n      que.pop_front();\r\n      ID[v] = V.size();\r\
-    \n      V.eb(v);\r\n      for(auto&& [frm,to,cost,id] : G[v]) {\r\n        if\
-    \ (to == parent[v]) continue;\r\n        que.emplace_back(to);\r\n        parent[to]\
-    \ = v;\r\n        depth[to] = depth[v] + 1;\r\n      }\r\n    }\r\n  }\r\n\r\n\
-    \  void dfs(int v) {\r\n    LID[v] = cnt++;\r\n    for(auto&& [frm,to,cost,id]\
-    \ : G[v]) {\r\n      if (to == parent[v]) continue;\r\n      dfs(to);\r\n    }\r\
-    \n    RID[v] = cnt;\r\n  }\r\n\r\n  void build() {\r\n    int N = G.N;\r\n   \
-    \ V.reserve(N);\r\n    parent.assign(N, -1);\r\n    ID.assign(N, 0);\r\n    LID.assign(N,\
-    \ 0);\r\n    RID.assign(N, 0);\r\n    depth.assign(N, 0);\r\n    bfs();\r\n  \
-    \  dfs(root);\r\n    int D = MAX(depth);\r\n    dep_ids.resize(D + 2);\r\n   \
-    \ FOR(v, N) dep_ids[depth[v] + 1]++;\r\n    FOR(d, D + 1) dep_ids[d + 1] += dep_ids[d];\r\
-    \n    LID_seq.reserve(N);\r\n    FOR(i, N) LID_seq.eb(LID[V[i]]);\r\n  }\r\n\r\
-    \n  // dep \u306F\u7D76\u5BFE\u7684\u306A\u6DF1\u3055\r\n  pair<int, int> calc_range(int\
-    \ v, int dep) {\r\n    assert(dep >= depth[v]);\r\n    if (dep >= len(dep_ids)\
-    \ - 1) return {0, 0};\r\n    int l = LID[v], r = RID[v];\r\n    int L = dep_ids[dep],\
-    \ R = dep_ids[dep + 1];\r\n    int a = bs(L - 1, R, l);\r\n    int b = bs(L -\
-    \ 1, R, r);\r\n    return {a, b};\r\n  }\r\n\r\nprivate:\r\n  int bs(int L, int\
-    \ R, int x) {\r\n    while (L + 1 < R) {\r\n      int M = (L + R) / 2;\r\n   \
-    \   if (LID_seq[M] >= x)\r\n        R = M;\r\n      else\r\n        L = M;\r\n\
-    \    }\r\n    return R;\r\n  }\r\n};\r\n#line 2 \"ds/lazysegtree.hpp\"\n\ntemplate\
-    \ <typename Lazy>\nstruct LazySegTree {\n  using Monoid_X = typename Lazy::X_structure;\n\
-    \  using Monoid_A = typename Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n\
-    \  using A = typename Monoid_A::value_type;\n  int n, log, size;\n  vc<X> dat;\n\
-    \  vc<A> laz;\n\n  LazySegTree() : LazySegTree(0) {}\n  LazySegTree(int n) : LazySegTree(vc<X>(n,\
-    \ Monoid_X::unit())) {}\n  LazySegTree(vc<X> v) : n(len(v)) {\n    log = 1;\n\
-    \    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
-    \ << 1, Monoid_X::unit());\n    laz.assign(size, Monoid_A::unit());\n    FOR(i,\
-    \ n) dat[size + i] = v[i];\n    FOR3_R(i, 1, size) update(i);\n  }\n\n  template\
-    \ <typename F>\n  LazySegTree(int n, F f) : n(n) {\n    log = 1;\n    while ((1\
-    \ << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, Monoid_X::unit());\n\
-    \    laz.assign(size, Monoid_A::unit());\n    FOR(i, n) dat[size + i] = f(i);\n\
-    \    FOR3_R(i, 1, size) update(i);\n  }\n\n  void reset() {\n    fill(all(dat),\
-    \ Monoid_X::unit());\n    fill(all(laz), Monoid_A::unit());\n  }\n\n  void reset(const\
-    \ vc<X>& v) {\n    assert(len(v) == n);\n    reset();\n    FOR(i, n) dat[size\
-    \ + i] = v[i];\n    FOR3_R(i, 1, size) update(i);\n  }\n\n  void update(int k)\
-    \ { dat[k] = Monoid_X::op(dat[2 * k], dat[2 * k + 1]); }\n\n  void all_apply(int\
-    \ k, A a) {\n    dat[k] = Lazy::act(dat[k], a);\n    if (k < size) laz[k] = Monoid_A::op(laz[k],\
-    \ a);\n  }\n\n  void push(int k) {\n    all_apply(2 * k, laz[k]);\n    all_apply(2\
-    \ * k + 1, laz[k]);\n    laz[k] = Monoid_A::unit();\n  }\n\n  void set(int p,\
-    \ X x) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log;\
-    \ i >= 1; i--) push(p >> i);\n    dat[p] = x;\n    for (int i = 1; i <= log; i++)\
-    \ update(p >> i);\n  }\n\n  X get(int p) {\n    assert(0 <= p && p < n);\n   \
-    \ p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    return dat[p];\n\
-    \  }\n\n  vc<X> get_all() {\n    FOR(i, size) push(i);\n    return {dat.begin()\
-    \ + size, dat.begin() + size + n};\n  }\n\n  X prod(int l, int r) {\n    assert(0\
-    \ <= l && l <= r && r <= n);\n    if (l == r) return Monoid_X::unit();\n\n   \
-    \ l += size;\n    r += size;\n\n    for (int i = log; i >= 1; i--) {\n      if\
-    \ (((l >> i) << i) != l) push(l >> i);\n      if (((r >> i) << i) != r) push((r\
-    \ - 1) >> i);\n    }\n\n    X xl = Monoid_X::unit(), xr = Monoid_X::unit();\n\
-    \    while (l < r) {\n      if (l & 1) xl = Monoid_X::op(xl, dat[l++]);\n    \
-    \  if (r & 1) xr = Monoid_X::op(dat[--r], xr);\n      l >>= 1;\n      r >>= 1;\n\
-    \    }\n\n    return Monoid_X::op(xl, xr);\n  }\n\n  X prod_all() { return dat[1];\
-    \ }\n\n  void apply(int p, A a) {\n    assert(0 <= p && p < n);\n    p += size;\n\
-    \    dat[p] = Lazy::act(dat[p], a);\n    for (int i = 1; i <= log; i++) update(p\
-    \ >> i);\n  }\n\n  void apply(int l, int r, A a) {\n    assert(0 <= l && l <=\
-    \ r && r <= n);\n    if (l == r) return;\n\n    l += size;\n    r += size;\n\n\
-    \    for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l\
-    \ >> i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n    }\n\n    {\n\
-    \      int l2 = l, r2 = r;\n      while (l < r) {\n        if (l & 1) all_apply(l++,\
-    \ a);\n        if (r & 1) all_apply(--r, a);\n        l >>= 1;\n        r >>=\
-    \ 1;\n      }\n      l = l2;\n      r = r2;\n    }\n\n    for (int i = 1; i <=\
-    \ log; i++) {\n      if (((l >> i) << i) != l) update(l >> i);\n      if (((r\
-    \ >> i) << i) != r) update((r - 1) >> i);\n    }\n  }\n\n  template <typename\
-    \ C>\n  int max_right(C& check, int l) {\n    assert(0 <= l && l <= n);\n    assert(check(Monoid_X::unit()));\n\
-    \    if (l == n) return n;\n    l += size;\n    for (int i = log; i >= 1; i--)\
-    \ push(l >> i);\n    X sm = Monoid_X::unit();\n    do {\n      while (l % 2 ==\
-    \ 0) l >>= 1;\n      if (!check(Monoid_X::op(sm, dat[l]))) {\n        while (l\
-    \ < size) {\n          push(l);\n          l = (2 * l);\n          if (check(Monoid_X::op(sm,\
-    \ dat[l]))) {\n            sm = Monoid_X::op(sm, dat[l]);\n            l++;\n\
-    \          }\n        }\n        return l - size;\n      }\n      sm = Monoid_X::op(sm,\
-    \ dat[l]);\n      l++;\n    } while ((l & -l) != l);\n    return n;\n  }\n\n \
-    \ template <typename C>\n  int min_left(C& check, int r) {\n    assert(0 <= r\
-    \ && r <= n);\n    assert(check(Monoid_X::unit()));\n    if (r == 0) return 0;\n\
-    \    r += size;\n    for (int i = log; i >= 1; i--) push((r - 1) >> i);\n    X\
-    \ sm = Monoid_X::unit();\n    do {\n      r--;\n      while (r > 1 && (r % 2))\
-    \ r >>= 1;\n      if (!check(Monoid_X::op(dat[r], sm))) {\n        while (r <\
-    \ size) {\n          push(r);\n          r = (2 * r + 1);\n          if (check(Monoid_X::op(dat[r],\
-    \ sm))) {\n            sm = Monoid_X::op(dat[r], sm);\n            r--;\n    \
-    \      }\n        }\n        return r + 1 - size;\n      }\n      sm = Monoid_X::op(dat[r],\
-    \ sm);\n    } while ((r & -r) != r);\n    return 0;\n  }\n\n  void debug() { print(\"\
-    lazysegtree getall:\", get_all()); }\n};\n#line 2 \"alg/group_add.hpp\"\n\r\n\
-    template <typename E>\r\nstruct Group_Add {\r\n  using X = E;\r\n  using value_type\
-    \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return x\
-    \ + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\
-    \n  static constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\
-    \n  static constexpr X unit() { return X(0); }\r\n  static constexpr bool commute\
-    \ = true;\r\n};\r\n#line 2 \"alg/group_mul.hpp\"\n\r\ntemplate <class T>\r\nstruct\
-    \ Group_Mul {\r\n  using value_type = T;\r\n  using X = T;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return x * y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return X(1) / x; }\r\n  static constexpr X\
-    \ unit() { return X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\n\
-    #line 3 \"alg/lazy_add_mul.hpp\"\n\r\ntemplate <typename E>\r\nstruct Lazy_Add_Mul\
-    \ {\r\n  using MX = Group_Add<E>;\r\n  using MA = Group_Mul<E>;\r\n  using X_structure\
-    \ = MX;\r\n  using A_structure = MA;\r\n  using X = typename MX::value_type;\r\
-    \n  using A = typename MA::value_type;\r\n  static constexpr X act(const X &x,\
-    \ const A &a) { return x * a; }\r\n};\r\n#line 7 \"test/yukicoder/899_bfsnumbering.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N);\r\n  Graph<int> G(N);\r\n  G.read_tree(0, 0);\r\
-    \n\r\n  BFSNumbering BFS(G);\r\n  auto &ID = BFS.ID;\r\n  vi seg_raw(N);\r\n\r\
-    \n  FOR(v, N) {\r\n    LL(a);\r\n    seg_raw[ID[v]] = a;\r\n  }\r\n\r\n  using\
-    \ Lazy = Lazy_Add_Mul<ll>;\r\n  LazySegTree<Lazy> seg(seg_raw);\r\n\r\n  LL(Q);\r\
-    \n  FOR(_, Q) {\r\n    LL(v);\r\n    ll p = BFS.parent[v];\r\n    ll pp = (p ==\
-    \ -1 ? -1 : BFS.parent[p]);\r\n    ll x = 0;\r\n    if (pp >= 0) x += seg.get(ID[pp]),\
-    \ seg.set(ID[pp], 0);\r\n    if (p >= 0) {\r\n      x += seg.get(ID[p]), seg.set(ID[p],\
-    \ 0);\r\n      auto [l, r] = BFS.calc_range(p, BFS.depth[p] + 1);\r\n      x +=\
-    \ seg.prod(l, r), seg.apply(l, r, 0);\r\n    }\r\n    FOR(d, 3) {\r\n      auto\
-    \ [l, r] = BFS.calc_range(v, BFS.depth[v] + d);\r\n      x += seg.prod(l, r),\
-    \ seg.apply(l, r, 0);\r\n    }\r\n    print(x);\r\n    seg.set(ID[v], x);\r\n\
-    \  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T)\
-    \ solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/899\"\r\n#include \"my_template.hpp\"\
-    \r\n#include \"other/io.hpp\"\r\n#include \"graph/bfsnumbering.hpp\"\r\n#include\
-    \ \"ds/lazysegtree.hpp\"\r\n#include \"alg/lazy_add_mul.hpp\"\r\n\r\nvoid solve()\
-    \ {\r\n  LL(N);\r\n  Graph<int> G(N);\r\n  G.read_tree(0, 0);\r\n\r\n  BFSNumbering\
-    \ BFS(G);\r\n  auto &ID = BFS.ID;\r\n  vi seg_raw(N);\r\n\r\n  FOR(v, N) {\r\n\
-    \    LL(a);\r\n    seg_raw[ID[v]] = a;\r\n  }\r\n\r\n  using Lazy = Lazy_Add_Mul<ll>;\r\
-    \n  LazySegTree<Lazy> seg(seg_raw);\r\n\r\n  LL(Q);\r\n  FOR(_, Q) {\r\n    LL(v);\r\
-    \n    ll p = BFS.parent[v];\r\n    ll pp = (p == -1 ? -1 : BFS.parent[p]);\r\n\
-    \    ll x = 0;\r\n    if (pp >= 0) x += seg.get(ID[pp]), seg.set(ID[pp], 0);\r\
-    \n    if (p >= 0) {\r\n      x += seg.get(ID[p]), seg.set(ID[p], 0);\r\n     \
-    \ auto [l, r] = BFS.calc_range(p, BFS.depth[p] + 1);\r\n      x += seg.prod(l,\
-    \ r), seg.apply(l, r, 0);\r\n    }\r\n    FOR(d, 3) {\r\n      auto [l, r] = BFS.calc_range(v,\
-    \ BFS.depth[v] + d);\r\n      x += seg.prod(l, r), seg.apply(l, r, 0);\r\n   \
-    \ }\r\n    print(x);\r\n    seg.set(ID[v], x);\r\n  }\r\n}\r\n\r\nsigned main()\
-    \ {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
-    \n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\n\r\n  return 0;\r\n\
-    }\r\n"
+    \ }\n  }\n};\n#line 3 \"graph/bfs01.hpp\"\n\ntemplate <typename Graph>\npair<vc<ll>,\
+    \ vc<int>> bfs01(Graph& G, ll v) {\n  assert(G.is_prepared());\n  int N = G.N;\n\
+    \  vc<ll> dist(N, -1);\n  vc<int> par(N, -1);\n  deque<int> que;\n\n  dist[v]\
+    \ = 0;\n  que.push_front(v);\n  while (!que.empty()) {\n    auto v = que.front();\n\
+    \    que.pop_front();\n    for (auto&& e: G[v]) {\n      if (dist[e.to] == -1\
+    \ || dist[e.to] > dist[e.frm] + e.cost) {\n        dist[e.to] = dist[e.frm] +\
+    \ e.cost;\n        par[e.to] = e.frm;\n        if (e.cost == 0)\n          que.push_front(e.to);\n\
+    \        else\n          que.push_back(e.to);\n      }\n    }\n  }\n  return {dist,\
+    \ par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\u30C8\u3002[dist, par, root]\n\
+    template <typename Graph>\ntuple<vc<ll>, vc<int>, vc<int>> bfs01(Graph& G, vc<int>\
+    \ vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<ll> dist(N, -1);\n \
+    \ vc<int> par(N, -1);\n  vc<int> root(N, -1);\n  deque<int> que;\n\n  for (auto&&\
+    \ v: vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.push_front(v);\n  }\n\n\
+    \  while (!que.empty()) {\n    auto v = que.front();\n    que.pop_front();\n \
+    \   for (auto&& e: G[v]) {\n      if (dist[e.to] == -1 || dist[e.to] > dist[e.frm]\
+    \ + e.cost) {\n        dist[e.to] = dist[e.frm] + e.cost;\n        root[e.to]\
+    \ = root[e.frm];\n        par[e.to] = e.frm;\n        if (e.cost == 0)\n     \
+    \     que.push_front(e.to);\n        else\n          que.push_back(e.to);\n  \
+    \    }\n    }\n  }\n  return {dist, par, root};\n}\n#line 3 \"string/suffix_automation.hpp\"\
+    \n\nstruct Suffix_Automation {\n  struct Node {\n    map<char, int> next; // automation\
+    \ \u306E\u9077\u79FB\u5148\n    int link;            // suffix link\n    int size;\
+    \            // node \u304C\u53D7\u7406\u3059\u308B\u6700\u9577\u6587\u5B57\u5217\
+    \u306E\u9577\u3055\n    Node(int link, int size) : link(link), size(size) {}\n\
+    \  };\n\n  vc<Node> nodes;\n  int last; // \u6587\u5B57\u5217\u5168\u4F53\u3092\
+    \u5165\u308C\u305F\u3068\u304D\u306E\u884C\u304D\u5148\n\n  Suffix_Automation()\
+    \ {\n    nodes.eb(Node(-1, 0));\n    last = 0;\n  }\n\n  void add(char c0) {\n\
+    \    int c = c0 - 'a';\n    int new_node = len(nodes);\n    nodes.eb(Node(-1,\
+    \ nodes[last].size + 1));\n    int p = last;\n    while (p != -1 && !nodes[p].next.count(c))\
+    \ {\n      nodes[p].next[c] = new_node;\n      p = nodes[p].link;\n    }\n   \
+    \ int q = (p == -1 ? 0 : nodes[p].next[c]);\n    if (p == -1 || nodes[p].size\
+    \ + 1 == nodes[q].size) {\n      nodes[new_node].link = q;\n    } else {\n   \
+    \   int new_q = len(nodes);\n      nodes.eb(Node(nodes[q].link, nodes[p].size\
+    \ + 1));\n      nodes.back().next = nodes[q].next;\n      nodes[q].link = new_q;\n\
+    \      nodes[new_node].link = new_q;\n      while (p != -1 && nodes[p].next[c]\
+    \ == q) {\n        nodes[p].next[c] = new_q;\n        p = nodes[p].link;\n   \
+    \   }\n    }\n    last = new_node;\n  }\n\n  Graph<int, 1> calc_DAG() {\n    int\
+    \ n = len(nodes);\n    Graph<int, 1> G(n);\n    FOR(v, n) {\n      for (auto&&\
+    \ [key, to]: nodes[v].next) { G.add(v, to); }\n    }\n    G.build();\n    return\
+    \ G;\n  }\n\n  Graph<int, 1> calc_tree() {\n    int n = len(nodes);\n    Graph<int,\
+    \ 1> G(n);\n    G.resize(n);\n    FOR(v, 1, n) {\n      int p = nodes[v].link;\n\
+    \      G.add(p, v);\n    }\n    G.build();\n    return G;\n  }\n\n  ll count_substring()\
+    \ {\n    // \u3042\u308B\u30CE\u30FC\u30C9\u306B\u3064\u3044\u3066\u3001\u6700\
+    \u77ED\u30D1\u30B9\u3068\u6700\u9577\u30D1\u30B9\u306E\u9593\u306E\u6587\u5B57\
+    \u5217\u9577\u304C\u5BFE\u5FDC\u3059\u308B\u3002\n    // \u6700\u9577\u30D1\u30B9\
+    \u306F link \u304C\u6301\u3063\u3066\u3044\u308B\u306E\u3067\u3001\u6700\u77ED\
+    \u30D1\u30B9\u3092\u6C42\u3081\u308C\u3070\u3088\u3044\u3002\n    auto G = calc_DAG();\n\
+    \    int n = G.N;\n    auto [dist, par] = bfs01(G, 0);\n    ll ANS = 0;\n    FOR(i,\
+    \ 1, n) { ANS += nodes[i].size - dist[i] + 1; }\n    return ANS;\n  }\n};\n#line\
+    \ 4 \"test/library_checker/string/number_of_substrings2.test.cpp\"\n\nvoid solve()\
+    \ {\n  STR(S);\n  Suffix_Automation X;\n  for (auto&& s: S) X.add(s);\n  print(X.count_substring());\n\
+    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
+    \ 0;\n}\n"
+  code: "#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"string/suffix_automation.hpp\"\
+    \n\nvoid solve() {\n  STR(S);\n  Suffix_Automation X;\n  for (auto&& s: S) X.add(s);\n\
+    \  print(X.count_substring());\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
+    \  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - graph/bfsnumbering.hpp
+  - string/suffix_automation.hpp
   - graph/base.hpp
-  - ds/lazysegtree.hpp
-  - alg/lazy_add_mul.hpp
-  - alg/group_add.hpp
-  - alg/group_mul.hpp
+  - graph/bfs01.hpp
   isVerificationFile: true
-  path: test/yukicoder/899_bfsnumbering.test.cpp
+  path: test/library_checker/string/number_of_substrings2.test.cpp
   requiredBy: []
-  timestamp: '2022-08-30 02:42:36+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-30 23:10:12+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yukicoder/899_bfsnumbering.test.cpp
+documentation_of: test/library_checker/string/number_of_substrings2.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/899_bfsnumbering.test.cpp
-- /verify/test/yukicoder/899_bfsnumbering.test.cpp.html
-title: test/yukicoder/899_bfsnumbering.test.cpp
+- /verify/test/library_checker/string/number_of_substrings2.test.cpp
+- /verify/test/library_checker/string/number_of_substrings2.test.cpp.html
+title: test/library_checker/string/number_of_substrings2.test.cpp
 ---
