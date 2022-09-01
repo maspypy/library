@@ -104,7 +104,7 @@ struct LazyTreeMonoid {
         auto i = (MonoX::commute ? seg.min_left(check_tmp, a + 1)
                                  : seg_r.min_left(check_tmp, a + 1));
         if (i == a + 1) return u;
-        return tree.parent[tree.V[i]];
+        return tree.V[i];
       }
     }
     return v;
