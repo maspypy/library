@@ -17,10 +17,10 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc229/tasks/abc229_h
+    PROBLEM: https://atcoder.jp/contests/abc229/tasks/abc229_Ex
     links:
-    - https://atcoder.jp/contests/abc229/tasks/abc229_h
-  bundledCode: "#line 1 \"test/atcoder/abc229h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc229/tasks/abc229_h\"\
+    - https://atcoder.jp/contests/abc229/tasks/abc229_Ex
+  bundledCode: "#line 1 \"test/atcoder/abc229h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc229/tasks/abc229_Ex\"\
     \n\n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC\
     \ optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
     \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
@@ -245,7 +245,7 @@ data:
     \ > X(0) ? \"Takahashi\" : \"Snuke\");\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
     \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
     \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc229/tasks/abc229_h\"\n\n\
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc229/tasks/abc229_Ex\"\n\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"game/dyrational.hpp\"\
     \n\nvoid solve() {\n  using X = DyRational<ll>;\n\n  map<string, X> MP;\n  auto\
     \ dfs = [&](auto& dfs, string& s) -> X {\n    if (MP.count(s)) return MP[s];\n\
@@ -266,7 +266,7 @@ data:
     \ }\n  }\n  X x(0);\n  FOR(i, N) x += dfs(dfs, G[i]);\n  print(x > X(0) ? \"Takahashi\"\
     \ : \"Snuke\");\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
-    \  return 0;\n}"
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -274,7 +274,7 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc229h.test.cpp
   requiredBy: []
-  timestamp: '2022-09-01 21:23:01+09:00'
+  timestamp: '2022-09-01 21:40:00+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/atcoder/abc229h.test.cpp
