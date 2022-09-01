@@ -393,7 +393,7 @@ data:
       title: flow/unbalanced_transportation.hpp
   - name: game
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: game/dyrational.hpp
       title: game/dyrational.hpp
   - name: geo
@@ -1293,6 +1293,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc200a.test.cpp
       title: test/atcoder/abc200a.test.cpp
+    - icon: ':x:'
+      path: test/atcoder/abc229h.test.cpp
+      title: test/atcoder/abc229h.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc244h.test.cpp
       title: test/atcoder/abc244h.test.cpp

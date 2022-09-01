@@ -12,15 +12,15 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/aplusb
+    PROBLEM: https://atcoder.jp/contests/abc229/tasks/abc229_h
     links:
-    - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/dyrational.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
+    - https://atcoder.jp/contests/abc229/tasks/abc229_h
+  bundledCode: "#line 1 \"test/atcoder/abc229h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc229/tasks/abc229_h\"\
     \n\n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC\
     \ optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
     \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
@@ -194,7 +194,7 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 5 \"test/mytest/dyrational.test.cpp\"\n\n#line 1 \"game/dyrational.hpp\"\
+    \ { yes(!t); }\r\n#line 5 \"test/atcoder/abc229h.test.cpp\"\n\n#line 1 \"game/dyrational.hpp\"\
     \n// a/2^b \u306E\u5F62\u3067\u6301\u3064\n// a \u306F i128 \u306B\u3082\u3067\
     \u304D\u308B\u304C\u3001\u5B9F\u7528\u4E0A\u8DB3\u308A\u308B\u304B\u306F\u3001\
     \u6F14\u7FD2\u91CF\u304C\u8DB3\u308A\u3066\u3044\u306A\u304F\u3066\u4E0D\u660E\
@@ -225,60 +225,62 @@ data:
     \ return X(yy - 1, 0);\n        return X(0, 0);\n      }\n    }\n    assert(false);\n\
     \    return X(0);\n  }\n\n  static constexpr X infinity() { return X(numeric_limits<int>::max()\
     \ / 4, 0); }\n\n  void debug() { print(a, \"/\", INTEGER(1) << b); }\n};\n#line\
-    \ 7 \"test/mytest/dyrational.test.cpp\"\n\nvoid test() {\n  using X = DyRational<ll>;\n\
-    \  // \u8DB3\u3057\n  assert(X(1) + X(2) == X(3));\n  assert(X(-3) + X(2) == X(-1));\n\
-    \  assert(X(-3) + X(3) == X(0));\n  assert(X(3, 3) + X(1, 1) == X(7, 3));\n  assert(X(3,\
-    \ 3) + X(3, 3) == X(3, 2));\n  assert(X(3, 3) + X(-3, 3) == X(0, 0));\n  assert(X(2,\
-    \ 3) + X(-1, 2) == X(0, 0));\n  // \u5F15\u304D\n  assert(X(1) - X(2) == X(-1));\n\
-    \  assert(X(-3) - X(2) == X(-5));\n  assert(X(-3) - X(3) == X(-6));\n  assert(X(3,\
-    \ 3) - X(1, 1) == X(-1, 3));\n  assert(X(3, 3) - X(3, 3) == X(0, 0));\n  assert(X(3,\
-    \ 3) - X(-3, 3) == X(3, 2));\n  assert(X(2, 3) - X(-1, 2) == X(1, 1));\n  // \u4E0D\
-    \u7B49\u53F7\n  assert(X(1) < X(2));\n  assert(X(-3) < X(2));\n  assert(X(-3)\
-    \ < X(3));\n  assert(X(3, 3) < X(1, 1));\n  assert(X(3, 3) == X(3, 3));\n  assert(X(3,\
-    \ 3) > X(-3, 3));\n  assert(X(2, 3) > X(-1, 2));\n  // {x|y}\n  assert(X::find(X(1),\
-    \ X(2)) == X(3, 1));\n  assert(X::find(X(-3), X(0)) == X(-1));\n  assert(X::find(X(1),\
-    \ X(5)) == X(2));\n  assert(X::find(X(-3), X(1)) == X(0));\n  assert(X::find(X(9,\
-    \ 4), X(5, 3)) == X(19, 5));\n  assert(X::find(X(1, 1), X(2, 0)) == X(1));\n \
-    \ assert(X::find(X(1, 3), X(5, 3)) == X(1, 1));\n  assert(X::find(X(-91, 6), X(-41,\
-    \ 5)) == X(-11, 3));\n  assert(X::find(X(-3, 1), X(-1, 0)) == X(-5, 2));\n}\n\n\
-    void solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  test();\n\n\
-    \  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
-    my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"game/dyrational.hpp\"\
-    \n\nvoid test() {\n  using X = DyRational<ll>;\n  // \u8DB3\u3057\n  assert(X(1)\
-    \ + X(2) == X(3));\n  assert(X(-3) + X(2) == X(-1));\n  assert(X(-3) + X(3) ==\
-    \ X(0));\n  assert(X(3, 3) + X(1, 1) == X(7, 3));\n  assert(X(3, 3) + X(3, 3)\
-    \ == X(3, 2));\n  assert(X(3, 3) + X(-3, 3) == X(0, 0));\n  assert(X(2, 3) + X(-1,\
-    \ 2) == X(0, 0));\n  // \u5F15\u304D\n  assert(X(1) - X(2) == X(-1));\n  assert(X(-3)\
-    \ - X(2) == X(-5));\n  assert(X(-3) - X(3) == X(-6));\n  assert(X(3, 3) - X(1,\
-    \ 1) == X(-1, 3));\n  assert(X(3, 3) - X(3, 3) == X(0, 0));\n  assert(X(3, 3)\
-    \ - X(-3, 3) == X(3, 2));\n  assert(X(2, 3) - X(-1, 2) == X(1, 1));\n  // \u4E0D\
-    \u7B49\u53F7\n  assert(X(1) < X(2));\n  assert(X(-3) < X(2));\n  assert(X(-3)\
-    \ < X(3));\n  assert(X(3, 3) < X(1, 1));\n  assert(X(3, 3) == X(3, 3));\n  assert(X(3,\
-    \ 3) > X(-3, 3));\n  assert(X(2, 3) > X(-1, 2));\n  // {x|y}\n  assert(X::find(X(1),\
-    \ X(2)) == X(3, 1));\n  assert(X::find(X(-3), X(0)) == X(-1));\n  assert(X::find(X(1),\
-    \ X(5)) == X(2));\n  assert(X::find(X(-3), X(1)) == X(0));\n  assert(X::find(X(9,\
-    \ 4), X(5, 3)) == X(19, 5));\n  assert(X::find(X(1, 1), X(2, 0)) == X(1));\n \
-    \ assert(X::find(X(1, 3), X(5, 3)) == X(1, 1));\n  assert(X::find(X(-91, 6), X(-41,\
-    \ 5)) == X(-11, 3));\n  assert(X::find(X(-3, 1), X(-1, 0)) == X(-5, 2));\n}\n\n\
-    void solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  test();\n\n\
-    \  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}"
+    \ 7 \"test/atcoder/abc229h.test.cpp\"\n\nvoid solve() {\n  using X = DyRational<ll>;\n\
+    \n  map<string, X> MP;\n  auto dfs = [&](auto& dfs, string& s) -> X {\n    if\
+    \ (MP.count(s)) return MP[s];\n    X left = -X::infinity();\n    X right = X::infinity();\n\
+    \    // \u767D\u3092\u9078\u3073\u3001\u4E0A\u306B\u9032\u3081\u308B\n    FOR(i,\
+    \ len(s) - 1) {\n      if (s[i] == '.' && s[i + 1] == 'W') {\n        swap(s[i],\
+    \ s[i + 1]);\n        chmax(left, dfs(dfs, s));\n        swap(s[i], s[i + 1]);\n\
+    \      }\n    }\n    // \u9ED2\u3092\u98DF\u3079\u308B\n    FOR(i, len(s)) {\n\
+    \      if (s[i] == 'B') {\n        s[i] = '.';\n        chmax(left, dfs(dfs, s));\n\
+    \        s[i] = 'B';\n      }\n    }\n    // \u9ED2\u3092\u9078\u3073\u3001\u4E0A\
+    \u306B\u9032\u3081\u308B\n    FOR(i, len(s) - 1) {\n      if (s[i] == '.' && s[i\
+    \ + 1] == 'B') {\n        swap(s[i], s[i + 1]);\n        chmin(right, dfs(dfs,\
+    \ s));\n        swap(s[i], s[i + 1]);\n      }\n    }\n    // \u767D\u3092\u98DF\
+    \u3079\u308B\n    FOR(i, len(s)) {\n      if (s[i] == 'W') {\n        s[i] = '.';\n\
+    \        chmin(right, dfs(dfs, s));\n        s[i] = 'W';\n      }\n    }\n   \
+    \ assert(left < right);\n    MP[s] = X::find(left, right);\n    return MP[s];\n\
+    \  };\n\n  LL(N);\n  vc<string> G(N);\n  FOR(i, N) {\n    STR(S);\n    FOR(j,\
+    \ N) { G[j] += S[j]; }\n  }\n  X x(0);\n  FOR(i, N) x += dfs(dfs, G[i]);\n  print(x\
+    \ > X(0) ? \"Takahashi\" : \"Snuke\");\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc229/tasks/abc229_h\"\n\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"game/dyrational.hpp\"\
+    \n\nvoid solve() {\n  using X = DyRational<ll>;\n\n  map<string, X> MP;\n  auto\
+    \ dfs = [&](auto& dfs, string& s) -> X {\n    if (MP.count(s)) return MP[s];\n\
+    \    X left = -X::infinity();\n    X right = X::infinity();\n    // \u767D\u3092\
+    \u9078\u3073\u3001\u4E0A\u306B\u9032\u3081\u308B\n    FOR(i, len(s) - 1) {\n \
+    \     if (s[i] == '.' && s[i + 1] == 'W') {\n        swap(s[i], s[i + 1]);\n \
+    \       chmax(left, dfs(dfs, s));\n        swap(s[i], s[i + 1]);\n      }\n  \
+    \  }\n    // \u9ED2\u3092\u98DF\u3079\u308B\n    FOR(i, len(s)) {\n      if (s[i]\
+    \ == 'B') {\n        s[i] = '.';\n        chmax(left, dfs(dfs, s));\n        s[i]\
+    \ = 'B';\n      }\n    }\n    // \u9ED2\u3092\u9078\u3073\u3001\u4E0A\u306B\u9032\
+    \u3081\u308B\n    FOR(i, len(s) - 1) {\n      if (s[i] == '.' && s[i + 1] == 'B')\
+    \ {\n        swap(s[i], s[i + 1]);\n        chmin(right, dfs(dfs, s));\n     \
+    \   swap(s[i], s[i + 1]);\n      }\n    }\n    // \u767D\u3092\u98DF\u3079\u308B\
+    \n    FOR(i, len(s)) {\n      if (s[i] == 'W') {\n        s[i] = '.';\n      \
+    \  chmin(right, dfs(dfs, s));\n        s[i] = 'W';\n      }\n    }\n    assert(left\
+    \ < right);\n    MP[s] = X::find(left, right);\n    return MP[s];\n  };\n\n  LL(N);\n\
+    \  vc<string> G(N);\n  FOR(i, N) {\n    STR(S);\n    FOR(j, N) { G[j] += S[j];\
+    \ }\n  }\n  X x(0);\n  FOR(i, N) x += dfs(dfs, G[i]);\n  print(x > X(0) ? \"Takahashi\"\
+    \ : \"Snuke\");\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
+    \  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - game/dyrational.hpp
   isVerificationFile: true
-  path: test/mytest/dyrational.test.cpp
+  path: test/atcoder/abc229h.test.cpp
   requiredBy: []
   timestamp: '2022-09-01 21:23:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/mytest/dyrational.test.cpp
+documentation_of: test/atcoder/abc229h.test.cpp
 layout: document
 redirect_from:
-- /verify/test/mytest/dyrational.test.cpp
-- /verify/test/mytest/dyrational.test.cpp.html
-title: test/mytest/dyrational.test.cpp
+- /verify/test/atcoder/abc229h.test.cpp
+- /verify/test/atcoder/abc229h.test.cpp.html
+title: test/atcoder/abc229h.test.cpp
 ---
