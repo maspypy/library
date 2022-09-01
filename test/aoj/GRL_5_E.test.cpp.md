@@ -444,45 +444,44 @@ data:
     \ a);\r\n        return (i == a ? u : tree.V[i - 1]);\r\n      } else {\r\n  \
     \      // \u4E0A\u308A\r\n        auto i = (MonoX::commute ? seg.min_left(check_tmp,\
     \ a + 1)\r\n                                 : seg_r.min_left(check_tmp, a + 1));\r\
-    \n        if (i == a + 1) return u;\r\n        return tree.parent[tree.V[i]];\r\
-    \n      }\r\n    }\r\n    return v;\r\n  }\r\n\r\nprivate:\r\n  template <class\
-    \ F>\r\n  int max_path_edge(F &check, int u, int v) {\r\n    assert(edge);\r\n\
-    \    if (!check(MonoX::unit())) return -1;\r\n    int lca = tree.lca(u, v);\r\n\
-    \    auto pd = tree.get_path_decomposition(u, lca, edge);\r\n    X val = MonoX::unit();\r\
-    \n\r\n    // climb\r\n    for (auto &&[a, b]: pd) {\r\n      assert(a >= b);\r\
-    \n      X x = (MonoX::commute ? seg.prod(b, a + 1) : seg_r.prod(b, a + 1));\r\n\
-    \      if (check(MonoX::op(val, x))) {\r\n        val = MonoX::op(val, x);\r\n\
-    \        u = (tree.parent[tree.V[b]]);\r\n        continue;\r\n      }\r\n   \
-    \   auto check_tmp = [&](X x) -> bool { return check(MonoX::op(val, x)); };\r\n\
-    \      auto i = (MonoX::commute ? seg.min_left(check_tmp, a + 1)\r\n         \
-    \                      : seg_r.min_left(check_tmp, a + 1));\r\n      if (i ==\
-    \ a + 1) return u;\r\n      return tree.parent[tree.V[i]];\r\n    }\r\n    //\
-    \ down\r\n    pd = tree.get_path_decomposition(lca, v, edge);\r\n    for (auto\
-    \ &&[a, b]: pd) {\r\n      assert(a <= b);\r\n      X x = seg.prod(a, b + 1);\r\
-    \n      if (check(MonoX::op(val, x))) {\r\n        val = MonoX::op(val, x);\r\n\
-    \        u = (tree.V[b]);\r\n        continue;\r\n      }\r\n      auto check_tmp\
-    \ = [&](X x) -> bool { return check(MonoX::op(val, x)); };\r\n      auto i = seg.max_right(check_tmp,\
-    \ a);\r\n      return (i == a ? u : tree.V[i - 1]);\r\n    }\r\n    return v;\r\
-    \n  }\r\n};\r\n#line 1 \"alg/group_cntsum.hpp\"\ntemplate <typename E = long long>\r\
-    \nstruct Group_CntSum {\r\n  using value_type = pair<E, E>;\r\n  using X = value_type;\r\
-    \n  static constexpr X op(const X &x, const X &y) {\r\n    return {x.fi + y.fi,\
-    \ x.se + y.se};\r\n  }\r\n  static constexpr X inverse(const X &x) { return {-x.fi,\
-    \ -x.se}; }\r\n  static constexpr X unit() { return {0, 0}; }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 3 \"alg/lazy_cntsum_add.hpp\"\n\r\ntemplate\
-    \ <typename E>\r\nstruct Lazy_CntSum_Add {\r\n  using MX = Group_CntSum<E>;\r\n\
-    \  using MA = Group_Add<E>;\r\n  using X_structure = MX;\r\n  using A_structure\
-    \ = MA;\r\n  using X = typename MX::value_type;\r\n  using A = typename MA::value_type;\r\
-    \n  static constexpr X act(const X &x, const A &a) {\r\n    return {x.fi, x.se\
-    \ + x.fi * a};\r\n  }\r\n};\r\n#line 8 \"test/aoj/GRL_5_E.test.cpp\"\n\nvoid solve()\
-    \ {\n  LL(N);\n  Graph G(N);\n  FOR(v, N) {\n    LL(k);\n    FOR(k) {\n      LL(to);\n\
-    \      G.add(v, to);\n    }\n  }\n  G.build();\n  TREE tree(G);\n  vc<pi> seg_raw(N\
-    \ - 1, {1, 0});\n  LazyTreeMonoid<decltype(tree), Lazy_CntSum_Add<ll>, 1> TM(tree,\
-    \ seg_raw);\n  LL(Q);\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(v,\
-    \ x);\n      TM.apply_path(0, v, x);\n      // TM.apply_path(tree.parent[v], v,\
-    \ x);\n    } else {\n      LL(v);\n      print(TM.prod_path(0, v).se);\n    }\n\
-    \  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
-    \  return 0;\n}\n"
+    \n        if (i == a + 1) return u;\r\n        return tree.V[i];\r\n      }\r\n\
+    \    }\r\n    return v;\r\n  }\r\n\r\nprivate:\r\n  template <class F>\r\n  int\
+    \ max_path_edge(F &check, int u, int v) {\r\n    assert(edge);\r\n    if (!check(MonoX::unit()))\
+    \ return -1;\r\n    int lca = tree.lca(u, v);\r\n    auto pd = tree.get_path_decomposition(u,\
+    \ lca, edge);\r\n    X val = MonoX::unit();\r\n\r\n    // climb\r\n    for (auto\
+    \ &&[a, b]: pd) {\r\n      assert(a >= b);\r\n      X x = (MonoX::commute ? seg.prod(b,\
+    \ a + 1) : seg_r.prod(b, a + 1));\r\n      if (check(MonoX::op(val, x))) {\r\n\
+    \        val = MonoX::op(val, x);\r\n        u = (tree.parent[tree.V[b]]);\r\n\
+    \        continue;\r\n      }\r\n      auto check_tmp = [&](X x) -> bool { return\
+    \ check(MonoX::op(val, x)); };\r\n      auto i = (MonoX::commute ? seg.min_left(check_tmp,\
+    \ a + 1)\r\n                               : seg_r.min_left(check_tmp, a + 1));\r\
+    \n      if (i == a + 1) return u;\r\n      return tree.parent[tree.V[i]];\r\n\
+    \    }\r\n    // down\r\n    pd = tree.get_path_decomposition(lca, v, edge);\r\
+    \n    for (auto &&[a, b]: pd) {\r\n      assert(a <= b);\r\n      X x = seg.prod(a,\
+    \ b + 1);\r\n      if (check(MonoX::op(val, x))) {\r\n        val = MonoX::op(val,\
+    \ x);\r\n        u = (tree.V[b]);\r\n        continue;\r\n      }\r\n      auto\
+    \ check_tmp = [&](X x) -> bool { return check(MonoX::op(val, x)); };\r\n     \
+    \ auto i = seg.max_right(check_tmp, a);\r\n      return (i == a ? u : tree.V[i\
+    \ - 1]);\r\n    }\r\n    return v;\r\n  }\r\n};\r\n#line 1 \"alg/group_cntsum.hpp\"\
+    \ntemplate <typename E = long long>\r\nstruct Group_CntSum {\r\n  using value_type\
+    \ = pair<E, E>;\r\n  using X = value_type;\r\n  static constexpr X op(const X\
+    \ &x, const X &y) {\r\n    return {x.fi + y.fi, x.se + y.se};\r\n  }\r\n  static\
+    \ constexpr X inverse(const X &x) { return {-x.fi, -x.se}; }\r\n  static constexpr\
+    \ X unit() { return {0, 0}; }\r\n  static constexpr bool commute = true;\r\n};\r\
+    \n#line 3 \"alg/lazy_cntsum_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Lazy_CntSum_Add\
+    \ {\r\n  using MX = Group_CntSum<E>;\r\n  using MA = Group_Add<E>;\r\n  using\
+    \ X_structure = MX;\r\n  using A_structure = MA;\r\n  using X = typename MX::value_type;\r\
+    \n  using A = typename MA::value_type;\r\n  static constexpr X act(const X &x,\
+    \ const A &a) {\r\n    return {x.fi, x.se + x.fi * a};\r\n  }\r\n};\r\n#line 8\
+    \ \"test/aoj/GRL_5_E.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  Graph G(N);\n \
+    \ FOR(v, N) {\n    LL(k);\n    FOR(k) {\n      LL(to);\n      G.add(v, to);\n\
+    \    }\n  }\n  G.build();\n  TREE tree(G);\n  vc<pi> seg_raw(N - 1, {1, 0});\n\
+    \  LazyTreeMonoid<decltype(tree), Lazy_CntSum_Add<ll>, 1> TM(tree, seg_raw);\n\
+    \  LL(Q);\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(v, x);\n      TM.apply_path(0,\
+    \ v, x);\n      // TM.apply_path(tree.parent[v], v, x);\n    } else {\n      LL(v);\n\
+    \      print(TM.prod_path(0, v).se);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_E\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/group_add.hpp\"\
     \n#include \"graph/lazytreemonoid.hpp\"\n#include \"alg/lazy_cntsum_add.hpp\"\n\
@@ -510,7 +509,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_5_E.test.cpp
   requiredBy: []
-  timestamp: '2022-08-31 00:57:28+09:00'
+  timestamp: '2022-09-01 20:34:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_5_E.test.cpp

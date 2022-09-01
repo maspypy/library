@@ -661,6 +661,9 @@ data:
     path: test/mytest/conv_leq.test.cpp
     title: test/mytest/conv_leq.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/dyrational.test.cpp
+    title: test/mytest/dyrational.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1252,6 +1255,7 @@ data:
   - test/mytest/factorial_998.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
   - test/mytest/primesum_mod6.test.cpp
+  - test/mytest/dyrational.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/run_length.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp

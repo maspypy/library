@@ -391,6 +391,11 @@ data:
     - icon: ':warning:'
       path: flow/unbalanced_transportation.hpp
       title: flow/unbalanced_transportation.hpp
+  - name: game
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: game/dyrational.hpp
+      title: game/dyrational.hpp
   - name: geo
     pages:
     - icon: ':heavy_check_mark:'
@@ -1781,6 +1786,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/conv_leq.test.cpp
       title: test/mytest/conv_leq.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/dyrational.test.cpp
+      title: test/mytest/dyrational.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/enum_partitions.test.cpp
       title: test/mytest/enum_partitions.test.cpp
