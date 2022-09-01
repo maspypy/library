@@ -40,6 +40,7 @@ void test() {
   assert(X::find(X(1, 1), X(2, 0)) == X(1));
   assert(X::find(X(1, 3), X(5, 3)) == X(1, 1));
   assert(X::find(X(-91, 6), X(-41, 5)) == X(-11, 3));
+  assert(X::find(X(-3, 1), X(-1, 0)) == X(-5, 2));
 }
 
 void solve() {

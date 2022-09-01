@@ -20,6 +20,7 @@ struct DyRational {
     INTEGER a = ((x.a) << (b - x.b)) - ((y.a) << (b - y.b));
     return X(a, b);
   }
+  friend X operator-(const X& x) { return X(-x.a, x.b); }
   X& operator+=(const X& x) { return (*this) = (*this) + x; }
   X& operator-=(const X& x) { return (*this) = (*this) - x; }
 
@@ -33,23 +34,28 @@ struct DyRational {
   // x, y の間の simplest dyrational number を見つける
   static X find(const X& x, const X& y) {
     assert(x < y);
-    FOR(k, max(x.b, y.b) + 1) {
+    FOR(k, max(x.b, y.b) + 2) {
       // floor(x)
-      INTEGER xx = (x.a) >> (x.b - k);
+      INTEGER xx = (x.b >= k ? (x.a) >> (x.b - k) : (x.a) << (k - x.b));
       // ceil(y)
-      INTEGER yy = ((y.a - 1) >> (y.b - k)) + 1;
+      INTEGER yy
+          = (y.b >= k ? ((y.a - 1) >> (y.b - k)) + 1 : (y.a) << (k - y.b));
       if (xx + 2 <= yy) {
-        if (k != 0) return X(xx + 1, k);
+        if (k != 0) {
+          assert(xx + 2 == yy);
+          return X(xx + 1, k);
+        }
         // [xx+1, yy-1] のうちで、絶対値最小のものを選ぶ
         if (xx + 1 >= 0) return X(xx + 1, 0);
         if (yy - 1 <= 0) return X(yy - 1, 0);
         return X(0, 0);
       }
     }
-    int k = max(x.b, y.b) + 1;
-    INTEGER xx = (x.a) << (k - x.b);
-    return X(xx + 1, k);
+    assert(false);
+    return X(0);
   }
+
+  static constexpr X infinity() { return X(numeric_limits<int>::max() / 4, 0); }
 
   void debug() { print(a, "/", INTEGER(1) << b); }
 };
