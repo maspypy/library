@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -13,38 +13,38 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/product_of_one_plus_xn.hpp
     title: poly/product_of_one_plus_xn.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sharp_p_subset_sum
@@ -548,7 +548,7 @@ data:
     \n  }\r\n\r\n  vc<mint> logf(LIM + 1);\r\n  FOR3(x, 1, LIM + 1) {\r\n    FOR3(d,\
     \ 1, LIM / x + 1) {\r\n      if (d & 1)\r\n        logf[d * x] += mint(CNT[x])\
     \ * inv<mint>(d);\r\n      else\r\n        logf[d * x] -= mint(CNT[x]) * inv<mint>(d);\r\
-    \n    }\r\n  }\r\n  return fps_exp(logf);\r\n}\r\n#line 5 \"test/library_checker/math/sharp_p_subset_sum.test.cpp\"\
+    \n    }\r\n  }\r\n  return fps_exp(logf);\r\n}\n#line 5 \"test/library_checker/math/sharp_p_subset_sum.test.cpp\"\
     \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N, T);\r\n  VEC(int, S,\
     \ N);\r\n  auto f = product_of_one_plus_xn<mint>(S, T);\r\n  f.erase(f.begin());\r\
     \n  print(f);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
@@ -576,8 +576,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/sharp_p_subset_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-08-27 04:31:56+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-03 23:33:56+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/sharp_p_subset_sum.test.cpp
 layout: document
