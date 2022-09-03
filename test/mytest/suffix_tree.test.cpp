@@ -1,0 +1,89 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+
+#include "my_template.hpp"
+#include "other/io.hpp"
+
+#include "string/suffix_tree.hpp"
+
+/*
+S = aabbabbaa
+
+suffix array
+a--------
+aa-------
+aabbabbaa
+abbaa----
+abbabbaa-
+baa------
+babbaa---
+bbaa-----
+bbabbaa--
+
+suffix tree の node はこの長方形領域を表す
+1--------
+12-------
+123333333
+14445----
+14446666-
+789------
+780000---
+7112-----
+7113-----
+*/
+void test() {
+  string S = "aabbabbaa";
+  SuffixArray X(S);
+  auto [G, dat] = suffix_tree(X);
+  auto check_dat = [&](int i, int xl, int yl, int xr, int yr) -> void {
+    auto [a, b, c, d] = dat[i];
+    assert(a == xl && b == yl && c == xr && d == yr);
+  };
+  auto check_edge = [&](int i, int frm, int to) -> void {
+    assert(G.edges[i].frm == frm && G.edges[i].to == to);
+  };
+  check_dat(0, 0, 0, 9, 0);
+  check_dat(1, 0, 0, 5, 1);
+  check_dat(2, 1, 1, 3, 2);
+  check_dat(3, 2, 2, 3, 9);
+  check_dat(4, 3, 1, 5, 4);
+  check_dat(5, 3, 4, 4, 5);
+  check_dat(6, 4, 4, 5, 8);
+  check_dat(7, 5, 0, 9, 1);
+  check_dat(8, 5, 1, 7, 2);
+  check_dat(9, 5, 2, 6, 3);
+  check_dat(10, 6, 2, 7, 6);
+  check_dat(11, 7, 1, 9, 3);
+  check_dat(12, 7, 3, 8, 4);
+  check_dat(13, 8, 3, 9, 7);
+  check_edge(0, 0, 1);
+  check_edge(1, 1, 2);
+  check_edge(2, 2, 3);
+  check_edge(3, 1, 4);
+  check_edge(4, 4, 5);
+  check_edge(5, 4, 6);
+  check_edge(6, 0, 7);
+  check_edge(7, 7, 8);
+  check_edge(8, 8, 9);
+  check_edge(9, 8, 10);
+  check_edge(10, 7, 11);
+  check_edge(11, 11, 12);
+  check_edge(12, 11, 13);
+}
+
+void solve() {
+  LL(a, b);
+  print(a + b);
+}
+
+signed main() {
+  cin.tie(nullptr);
+  ios::sync_with_stdio(false);
+  cout << setprecision(15);
+
+  test();
+
+  ll T = 1;
+  FOR(T) solve();
+
+  return 0;
+}
