@@ -242,8 +242,8 @@ data:
     \    }\n    auto [lcp, i] = seg.prod(l, r - 1);\n    if (lcp == h) {\n      dfs(dfs,\
     \ p, l, i + 1, h);\n      dfs(dfs, p, i + 1, r, h);\n      return;\n    }\n  \
     \  int k = len(dat);\n    dat.eb(l, h, r, lcp);\n    G.resize(k + 1);\n    G.add(p,\
-    \ k);\n    dfs(dfs, k, l, r, lcp);\n  };\n  dfs(dfs, 0, 0, N, 0);\n  return {G,\
-    \ dat};\n}\n"
+    \ k);\n    dfs(dfs, k, l, r, lcp);\n  };\n  dfs(dfs, 0, 0, N, 0);\n  G.build();\n\
+    \  return {G, dat};\n}\n"
   code: "\n#include \"string/suffixarray.hpp\"\n#include \"alg/monoid_min_idx.hpp\"\
     \n#include \"ds/segtree.hpp\"\n#include \"graph/base.hpp\"\n\n// https://twitter.com/maspy_stars/status/1565901414236205057?s=20&t=S2Tu6ayozHcakxai8dmh4g\n\
     // \u5404\u30CE\u30FC\u30C9\u306F\u3001suffix array \u3067\u306E\u9577\u65B9\u5F62\
@@ -261,8 +261,8 @@ data:
     \    }\n    auto [lcp, i] = seg.prod(l, r - 1);\n    if (lcp == h) {\n      dfs(dfs,\
     \ p, l, i + 1, h);\n      dfs(dfs, p, i + 1, r, h);\n      return;\n    }\n  \
     \  int k = len(dat);\n    dat.eb(l, h, r, lcp);\n    G.resize(k + 1);\n    G.add(p,\
-    \ k);\n    dfs(dfs, k, l, r, lcp);\n  };\n  dfs(dfs, 0, 0, N, 0);\n  return {G,\
-    \ dat};\n}"
+    \ k);\n    dfs(dfs, k, l, r, lcp);\n  };\n  dfs(dfs, 0, 0, N, 0);\n  G.build();\n\
+    \  return {G, dat};\n}"
   dependsOn:
   - string/suffixarray.hpp
   - alg/monoid_min.hpp
@@ -273,7 +273,7 @@ data:
   isVerificationFile: false
   path: string/suffix_tree.hpp
   requiredBy: []
-  timestamp: '2022-09-03 13:18:45+09:00'
+  timestamp: '2022-09-03 17:10:43+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/suffix_tree.test.cpp

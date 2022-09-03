@@ -424,29 +424,29 @@ data:
     \    }\n    auto [lcp, i] = seg.prod(l, r - 1);\n    if (lcp == h) {\n      dfs(dfs,\
     \ p, l, i + 1, h);\n      dfs(dfs, p, i + 1, r, h);\n      return;\n    }\n  \
     \  int k = len(dat);\n    dat.eb(l, h, r, lcp);\n    G.resize(k + 1);\n    G.add(p,\
-    \ k);\n    dfs(dfs, k, l, r, lcp);\n  };\n  dfs(dfs, 0, 0, N, 0);\n  return {G,\
-    \ dat};\n}\n#line 7 \"test/mytest/suffix_tree.test.cpp\"\n\n/*\nS = aabbabbaa\n\
-    \nsuffix array\na--------\naa-------\naabbabbaa\nabbaa----\nabbabbaa-\nbaa------\n\
-    babbaa---\nbbaa-----\nbbabbaa--\n\nsuffix tree \u306E node \u306F\u3053\u306E\u9577\
-    \u65B9\u5F62\u9818\u57DF\u3092\u8868\u3059\n1--------\n12-------\n123333333\n\
-    14445----\n14446666-\n789------\n780000---\n7112-----\n7113-----\n*/\nvoid test()\
-    \ {\n  string S = \"aabbabbaa\";\n  SuffixArray X(S);\n  auto [G, dat] = suffix_tree(X);\n\
-    \  auto check_dat = [&](int i, int xl, int yl, int xr, int yr) -> void {\n   \
-    \ auto [a, b, c, d] = dat[i];\n    assert(a == xl && b == yl && c == xr && d ==\
-    \ yr);\n  };\n  auto check_edge = [&](int i, int frm, int to) -> void {\n    assert(G.edges[i].frm\
-    \ == frm && G.edges[i].to == to);\n  };\n  check_dat(0, 0, 0, 9, 0);\n  check_dat(1,\
-    \ 0, 0, 5, 1);\n  check_dat(2, 1, 1, 3, 2);\n  check_dat(3, 2, 2, 3, 9);\n  check_dat(4,\
-    \ 3, 1, 5, 4);\n  check_dat(5, 3, 4, 4, 5);\n  check_dat(6, 4, 4, 5, 8);\n  check_dat(7,\
-    \ 5, 0, 9, 1);\n  check_dat(8, 5, 1, 7, 2);\n  check_dat(9, 5, 2, 6, 3);\n  check_dat(10,\
-    \ 6, 2, 7, 6);\n  check_dat(11, 7, 1, 9, 3);\n  check_dat(12, 7, 3, 8, 4);\n \
-    \ check_dat(13, 8, 3, 9, 7);\n  check_edge(0, 0, 1);\n  check_edge(1, 1, 2);\n\
-    \  check_edge(2, 2, 3);\n  check_edge(3, 1, 4);\n  check_edge(4, 4, 5);\n  check_edge(5,\
-    \ 4, 6);\n  check_edge(6, 0, 7);\n  check_edge(7, 7, 8);\n  check_edge(8, 8, 9);\n\
-    \  check_edge(9, 8, 10);\n  check_edge(10, 7, 11);\n  check_edge(11, 11, 12);\n\
-    \  check_edge(12, 11, 13);\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  test();\n\n  ll T = 1;\n  FOR(T) solve();\n\n  return\
-    \ 0;\n}\n"
+    \ k);\n    dfs(dfs, k, l, r, lcp);\n  };\n  dfs(dfs, 0, 0, N, 0);\n  G.build();\n\
+    \  return {G, dat};\n}\n#line 7 \"test/mytest/suffix_tree.test.cpp\"\n\n/*\nS\
+    \ = aabbabbaa\n\nsuffix array\na--------\naa-------\naabbabbaa\nabbaa----\nabbabbaa-\n\
+    baa------\nbabbaa---\nbbaa-----\nbbabbaa--\n\nsuffix tree \u306E node \u306F\u3053\
+    \u306E\u9577\u65B9\u5F62\u9818\u57DF\u3092\u8868\u3059\n1--------\n12-------\n\
+    123333333\n14445----\n14446666-\n789------\n780000---\n7112-----\n7113-----\n\
+    */\nvoid test() {\n  string S = \"aabbabbaa\";\n  SuffixArray X(S);\n  auto [G,\
+    \ dat] = suffix_tree(X);\n  auto check_dat = [&](int i, int xl, int yl, int xr,\
+    \ int yr) -> void {\n    auto [a, b, c, d] = dat[i];\n    assert(a == xl && b\
+    \ == yl && c == xr && d == yr);\n  };\n  auto check_edge = [&](int i, int frm,\
+    \ int to) -> void {\n    assert(G.edges[i].frm == frm && G.edges[i].to == to);\n\
+    \  };\n  check_dat(0, 0, 0, 9, 0);\n  check_dat(1, 0, 0, 5, 1);\n  check_dat(2,\
+    \ 1, 1, 3, 2);\n  check_dat(3, 2, 2, 3, 9);\n  check_dat(4, 3, 1, 5, 4);\n  check_dat(5,\
+    \ 3, 4, 4, 5);\n  check_dat(6, 4, 4, 5, 8);\n  check_dat(7, 5, 0, 9, 1);\n  check_dat(8,\
+    \ 5, 1, 7, 2);\n  check_dat(9, 5, 2, 6, 3);\n  check_dat(10, 6, 2, 7, 6);\n  check_dat(11,\
+    \ 7, 1, 9, 3);\n  check_dat(12, 7, 3, 8, 4);\n  check_dat(13, 8, 3, 9, 7);\n \
+    \ check_edge(0, 0, 1);\n  check_edge(1, 1, 2);\n  check_edge(2, 2, 3);\n  check_edge(3,\
+    \ 1, 4);\n  check_edge(4, 4, 5);\n  check_edge(5, 4, 6);\n  check_edge(6, 0, 7);\n\
+    \  check_edge(7, 7, 8);\n  check_edge(8, 8, 9);\n  check_edge(9, 8, 10);\n  check_edge(10,\
+    \ 7, 11);\n  check_edge(11, 11, 12);\n  check_edge(12, 11, 13);\n}\n\nvoid solve()\
+    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  test();\n\n\
+    \  ll T = 1;\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"string/suffix_tree.hpp\"\
     \n\n/*\nS = aabbabbaa\n\nsuffix array\na--------\naa-------\naabbabbaa\nabbaa----\n\
@@ -483,7 +483,7 @@ data:
   isVerificationFile: true
   path: test/mytest/suffix_tree.test.cpp
   requiredBy: []
-  timestamp: '2022-09-03 13:18:45+09:00'
+  timestamp: '2022-09-03 17:10:43+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/suffix_tree.test.cpp
