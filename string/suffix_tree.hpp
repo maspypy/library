@@ -48,5 +48,6 @@ pair<Graph<int, 1>, vc<tuple<int, int, int, int>>> suffix_tree(SuffixArray& X) {
     dfs(dfs, k, l, r, lcp);
   };
   dfs(dfs, 0, 0, N, 0);
+  G.build();
   return {G, dat};
 }
