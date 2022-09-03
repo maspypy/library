@@ -9,14 +9,16 @@ struct TREE {
   using Graph_type = Graph;
   using WT = typename Graph::cost_type;
   int N;
+  bool hld;
   vector<int> LID, RID, head, V, parent, root;
   vc<int> depth;
   vc<WT> depth_weighted;
   vector<bool> in_tree;
 
-  TREE(Graph &G, int r = -1)
+  TREE(Graph &G, int r = -1, bool hld = 1)
       : G(G),
         N(G.N),
+        hld(hld),
         LID(G.N),
         RID(G.N),
         head(G.N, r),
@@ -62,7 +64,7 @@ struct TREE {
       depth_weighted[e.to] = depth_weighted[v] + e.cost;
       dfs_sz(e.to, v);
       sz[v] += sz[e.to];
-      if (chmax(hld_sz, sz[e.to]) && l < i) { swap(csr[l], csr[i]); }
+      if (hld && chmax(hld_sz, sz[e.to]) && l < i) { swap(csr[l], csr[i]); }
     }
   }
 
