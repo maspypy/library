@@ -23,6 +23,9 @@ data:
   - icon: ':x:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
+  - icon: ':x:'
+    path: string/suffix_tree.hpp
+    title: string/suffix_tree.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/aoj/GRL_2_A.test.cpp
@@ -63,6 +66,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
+  - icon: ':x:'
+    path: test/mytest/suffix_tree.test.cpp
+    title: test/mytest/suffix_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036_2.test.cpp
     title: test/yukicoder/1036_2.test.cpp
@@ -177,6 +183,7 @@ data:
   - graph/minimum_spanning_tree.hpp
   - graph/treemonoid.hpp
   - graph/treegroup.hpp
+  - string/suffix_tree.hpp
   - geo/manhattan_nns.hpp
   - ds/sortable_segtree.hpp
   - ds/uniqueproductquery.hpp
@@ -188,6 +195,7 @@ data:
   - test/yukicoder/1036_2.test.cpp
   - test/yukicoder/426.test.cpp
   - test/mytest/range_mex.test.cpp
+  - test/mytest/suffix_tree.test.cpp
   - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp

@@ -23,7 +23,10 @@ data:
   - icon: ':warning:'
     path: string/sort_all_substring.hpp
     title: string/sort_all_substring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: string/suffix_tree.hpp
+    title: string/suffix_tree.hpp
+  - icon: ':question:'
     path: string/suffixarray.hpp
     title: string/suffixarray.hpp
   _extendedVerifiedWith:
@@ -57,6 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
+  - icon: ':x:'
+    path: test/mytest/suffix_tree.test.cpp
+    title: test/mytest/suffix_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1234.test.cpp
     title: test/yukicoder/1234.test.cpp
@@ -82,6 +88,7 @@ data:
   requiredBy:
   - graph/minimum_spanning_tree.hpp
   - string/sort_all_substring.hpp
+  - string/suffix_tree.hpp
   - string/suffixarray.hpp
   - alg/lazy_max_min.hpp
   - alg/lazy_min_set.hpp
@@ -94,6 +101,7 @@ data:
   - test/yukicoder/1234.test.cpp
   - test/yukicoder/913.test.cpp
   - test/mytest/range_mex.test.cpp
+  - test/mytest/suffix_tree.test.cpp
   - test/library_checker/string/suffix_array_vec.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp

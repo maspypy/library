@@ -149,6 +149,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/suffix_automaton.hpp
     title: string/suffix_automaton.hpp
+  - icon: ':x:'
+    path: string/suffix_tree.hpp
+    title: string/suffix_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/0275.test.cpp
@@ -270,6 +273,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/tree_diameter.test.cpp
     title: test/library_checker/tree/tree_diameter.test.cpp
+  - icon: ':x:'
+    path: test/mytest/suffix_tree.test.cpp
+    title: test/mytest/suffix_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1002.test.cpp
     title: test/yukicoder/1002.test.cpp
@@ -472,6 +478,7 @@ data:
   - graph/maximum_antichain.hpp
   - graph/bellmanford.hpp
   - graph/dial.hpp
+  - string/suffix_tree.hpp
   - string/suffix_automaton.hpp
   - flow/bipartite.hpp
   - geo/manhattan_mst.hpp
@@ -497,6 +504,7 @@ data:
   - test/yukicoder/1170.test.cpp
   - test/yukicoder/1344.test.cpp
   - test/yukicoder/1320.test.cpp
+  - test/mytest/suffix_tree.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp
   - test/library_checker/tree/tree_diameter.test.cpp

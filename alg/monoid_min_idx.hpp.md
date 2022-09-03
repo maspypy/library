@@ -14,6 +14,9 @@ data:
   - icon: ':warning:'
     path: pds/persistent_dynamic_lichao.hpp
     title: pds/persistent_dynamic_lichao.hpp
+  - icon: ':x:'
+    path: string/suffix_tree.hpp
+    title: string/suffix_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
@@ -21,9 +24,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
     title: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/mytest/suffix_tree.test.cpp
+    title: test/mytest/suffix_tree.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid_min_idx.hpp\"\ntemplate <typename T, bool tie_is_left\
@@ -45,13 +51,15 @@ data:
   isVerificationFile: false
   path: alg/monoid_min_idx.hpp
   requiredBy:
+  - string/suffix_tree.hpp
   - alg/lazy_minidx_add.hpp
   - geo/manhattan_nns.hpp
   - pds/persistent_dynamic_lichao.hpp
   - ds/dynamic_lichao.hpp
   timestamp: '2022-05-27 16:21:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/mytest/suffix_tree.test.cpp
   - test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
   - test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
 documentation_of: alg/monoid_min_idx.hpp

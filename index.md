@@ -120,7 +120,7 @@ data:
     - icon: ':question:'
       path: alg/monoid_min.hpp
       title: alg/monoid_min.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid_min_idx.hpp
       title: alg/monoid_min_idx.hpp
     - icon: ':warning:'
@@ -230,7 +230,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/cumsum2d.hpp
       title: ds/cumsum2d.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/disjointsparse.hpp
       title: ds/disjointsparse.hpp
     - icon: ':heavy_check_mark:'
@@ -1082,7 +1082,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/suffix_automaton.hpp
       title: string/suffix_automaton.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
+      path: string/suffix_tree.hpp
+      title: string/suffix_tree.hpp
+    - icon: ':question:'
       path: string/suffixarray.hpp
       title: string/suffixarray.hpp
     - icon: ':heavy_check_mark:'
@@ -1846,6 +1849,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/run_length.test.cpp
       title: test/mytest/run_length.test.cpp
+    - icon: ':x:'
+      path: test/mytest/suffix_tree.test.cpp
+      title: test/mytest/suffix_tree.test.cpp
   - name: test/yukicoder
     pages:
     - icon: ':heavy_check_mark:'

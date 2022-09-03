@@ -720,6 +720,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/run_length.test.cpp
     title: test/mytest/run_length.test.cpp
+  - icon: ':x:'
+    path: test/mytest/suffix_tree.test.cpp
+    title: test/mytest/suffix_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1002.test.cpp
     title: test/yukicoder/1002.test.cpp
@@ -1263,6 +1266,7 @@ data:
   - test/mytest/run_length.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
   - test/mytest/incremental_ch.test.cpp
+  - test/mytest/suffix_tree.test.cpp
   - test/mytest/powerquery.test.cpp
   - test/mytest/binom.test.cpp
   - test/mytest/enum_partitions.test.cpp
