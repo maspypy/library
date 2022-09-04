@@ -38,7 +38,7 @@ struct WaveletMatrix {
     bv.resize(lg);
     for (int d = lg - 1; d >= 0; d--) {
       vector<char> add;
-      vector nxt(2, vector<T>());
+      vector nxt(2, vector<int>());
       for (auto& x: A) {
         add.push_back(x >> d & 1);
         nxt[x >> d & 1].push_back(x);
