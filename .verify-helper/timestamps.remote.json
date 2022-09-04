@@ -234,6 +234,7 @@
 "test/mytest/range_mex.test.cpp": "2022-08-25 10:14:04 +0900",
 "test/mytest/rect_add_pt_sum.test.cpp": "2022-08-28 03:31:54 +0900",
 "test/mytest/run_length.test.cpp": "2022-08-25 09:50:56 +0900",
+"test/mytest/suffix_tree.test.cpp": "2022-09-05 03:15:25 +0900",
 "test/yukicoder/1002.test.cpp": "2022-08-31 01:05:28 +0900",
 "test/yukicoder/1036.test.cpp": "2022-08-31 01:05:28 +0900",
 "test/yukicoder/1036_2.test.cpp": "2022-08-31 01:05:28 +0900",
