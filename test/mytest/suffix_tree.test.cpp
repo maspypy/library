@@ -39,8 +39,8 @@ void test() {
     auto [a, b, c, d] = t;
     assert(a == xl && b == yl && c == xr && d == yr);
   };
-  auto check_edge = [&](int i, int frm, int to) -> void {
-    assert(G.edges[i].frm == frm && G.edges[i].to == to);
+  auto check_edge = [&](auto e, int frm, int to) -> void {
+    assert(e.frm == frm && e.to == to);
   };
   check_dat(dat[0], 0, 0, 9, 0);
   check_dat(dat[1], 0, 0, 5, 1);
@@ -56,19 +56,19 @@ void test() {
   check_dat(dat[11], 7, 1, 9, 3);
   check_dat(dat[12], 7, 3, 8, 4);
   check_dat(dat[13], 8, 3, 9, 7);
-  check_edge(0, 0, 1);
-  check_edge(1, 1, 2);
-  check_edge(2, 2, 3);
-  check_edge(3, 1, 4);
-  check_edge(4, 4, 5);
-  check_edge(5, 4, 6);
-  check_edge(6, 0, 7);
-  check_edge(7, 7, 8);
-  check_edge(8, 8, 9);
-  check_edge(9, 8, 10);
-  check_edge(10, 7, 11);
-  check_edge(11, 11, 12);
-  check_edge(12, 11, 13);
+  check_edge(G.edges[0], 0, 1);
+  check_edge(G.edges[1], 1, 2);
+  check_edge(G.edges[2], 2, 3);
+  check_edge(G.edges[3], 1, 4);
+  check_edge(G.edges[4], 4, 5);
+  check_edge(G.edges[5], 4, 6);
+  check_edge(G.edges[6], 0, 7);
+  check_edge(G.edges[7], 7, 8);
+  check_edge(G.edges[8], 8, 9);
+  check_edge(G.edges[9], 8, 10);
+  check_edge(G.edges[10], 7, 11);
+  check_edge(G.edges[11], 11, 12);
+  check_edge(G.edges[12], 11, 13);
 }
 
 void solve() {
