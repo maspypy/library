@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_min.hpp
     title: alg/monoid_min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_min_idx.hpp
     title: alg/monoid_min_idx.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/disjointsparse.hpp
     title: ds/disjointsparse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':question:'
@@ -22,17 +22,17 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/suffixarray.hpp
     title: string/suffixarray.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -434,17 +434,18 @@ data:
     \ dat] = suffix_tree(X);\n  using T = tuple<int, int, int, int>;\n  auto check_dat\
     \ = [&](T t, int xl, int yl, int xr, int yr) -> void {\n    auto [a, b, c, d]\
     \ = t;\n    assert(a == xl && b == yl && c == xr && d == yr);\n  };\n  auto check_edge\
-    \ = [&](int i, int frm, int to) -> void {\n    assert(G.edges[i].frm == frm &&\
-    \ G.edges[i].to == to);\n  };\n  check_dat(dat[0], 0, 0, 9, 0);\n  check_dat(dat[1],\
-    \ 0, 0, 5, 1);\n  check_dat(dat[2], 1, 1, 3, 2);\n  check_dat(dat[3], 2, 2, 3,\
-    \ 9);\n  check_dat(dat[4], 3, 1, 5, 4);\n  check_dat(dat[5], 3, 4, 4, 5);\n  check_dat(dat[6],\
-    \ 4, 4, 5, 8);\n  check_dat(dat[7], 5, 0, 9, 1);\n  check_dat(dat[8], 5, 1, 7,\
-    \ 2);\n  check_dat(dat[9], 5, 2, 6, 3);\n  check_dat(dat[10], 6, 2, 7, 6);\n \
-    \ check_dat(dat[11], 7, 1, 9, 3);\n  check_dat(dat[12], 7, 3, 8, 4);\n  check_dat(dat[13],\
-    \ 8, 3, 9, 7);\n  check_edge(0, 0, 1);\n  check_edge(1, 1, 2);\n  check_edge(2,\
-    \ 2, 3);\n  check_edge(3, 1, 4);\n  check_edge(4, 4, 5);\n  check_edge(5, 4, 6);\n\
-    \  check_edge(6, 0, 7);\n  check_edge(7, 7, 8);\n  check_edge(8, 8, 9);\n  check_edge(9,\
-    \ 8, 10);\n  check_edge(10, 7, 11);\n  check_edge(11, 11, 12);\n  check_edge(12,\
+    \ = [&](auto e, int frm, int to) -> void {\n    assert(e.frm == frm && e.to ==\
+    \ to);\n  };\n  check_dat(dat[0], 0, 0, 9, 0);\n  check_dat(dat[1], 0, 0, 5, 1);\n\
+    \  check_dat(dat[2], 1, 1, 3, 2);\n  check_dat(dat[3], 2, 2, 3, 9);\n  check_dat(dat[4],\
+    \ 3, 1, 5, 4);\n  check_dat(dat[5], 3, 4, 4, 5);\n  check_dat(dat[6], 4, 4, 5,\
+    \ 8);\n  check_dat(dat[7], 5, 0, 9, 1);\n  check_dat(dat[8], 5, 1, 7, 2);\n  check_dat(dat[9],\
+    \ 5, 2, 6, 3);\n  check_dat(dat[10], 6, 2, 7, 6);\n  check_dat(dat[11], 7, 1,\
+    \ 9, 3);\n  check_dat(dat[12], 7, 3, 8, 4);\n  check_dat(dat[13], 8, 3, 9, 7);\n\
+    \  check_edge(G.edges[0], 0, 1);\n  check_edge(G.edges[1], 1, 2);\n  check_edge(G.edges[2],\
+    \ 2, 3);\n  check_edge(G.edges[3], 1, 4);\n  check_edge(G.edges[4], 4, 5);\n \
+    \ check_edge(G.edges[5], 4, 6);\n  check_edge(G.edges[6], 0, 7);\n  check_edge(G.edges[7],\
+    \ 7, 8);\n  check_edge(G.edges[8], 8, 9);\n  check_edge(G.edges[9], 8, 10);\n\
+    \  check_edge(G.edges[10], 7, 11);\n  check_edge(G.edges[11], 11, 12);\n  check_edge(G.edges[12],\
     \ 11, 13);\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main()\
     \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
     \n  test();\n\n  ll T = 1;\n  FOR(T) solve();\n\n  return 0;\n}\n"
@@ -458,20 +459,22 @@ data:
     \  auto [G, dat] = suffix_tree(X);\n  using T = tuple<int, int, int, int>;\n \
     \ auto check_dat = [&](T t, int xl, int yl, int xr, int yr) -> void {\n    auto\
     \ [a, b, c, d] = t;\n    assert(a == xl && b == yl && c == xr && d == yr);\n \
-    \ };\n  auto check_edge = [&](int i, int frm, int to) -> void {\n    assert(G.edges[i].frm\
-    \ == frm && G.edges[i].to == to);\n  };\n  check_dat(dat[0], 0, 0, 9, 0);\n  check_dat(dat[1],\
+    \ };\n  auto check_edge = [&](auto e, int frm, int to) -> void {\n    assert(e.frm\
+    \ == frm && e.to == to);\n  };\n  check_dat(dat[0], 0, 0, 9, 0);\n  check_dat(dat[1],\
     \ 0, 0, 5, 1);\n  check_dat(dat[2], 1, 1, 3, 2);\n  check_dat(dat[3], 2, 2, 3,\
     \ 9);\n  check_dat(dat[4], 3, 1, 5, 4);\n  check_dat(dat[5], 3, 4, 4, 5);\n  check_dat(dat[6],\
     \ 4, 4, 5, 8);\n  check_dat(dat[7], 5, 0, 9, 1);\n  check_dat(dat[8], 5, 1, 7,\
     \ 2);\n  check_dat(dat[9], 5, 2, 6, 3);\n  check_dat(dat[10], 6, 2, 7, 6);\n \
     \ check_dat(dat[11], 7, 1, 9, 3);\n  check_dat(dat[12], 7, 3, 8, 4);\n  check_dat(dat[13],\
-    \ 8, 3, 9, 7);\n  check_edge(0, 0, 1);\n  check_edge(1, 1, 2);\n  check_edge(2,\
-    \ 2, 3);\n  check_edge(3, 1, 4);\n  check_edge(4, 4, 5);\n  check_edge(5, 4, 6);\n\
-    \  check_edge(6, 0, 7);\n  check_edge(7, 7, 8);\n  check_edge(8, 8, 9);\n  check_edge(9,\
-    \ 8, 10);\n  check_edge(10, 7, 11);\n  check_edge(11, 11, 12);\n  check_edge(12,\
-    \ 11, 13);\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main()\
-    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  test();\n\n  ll T = 1;\n  FOR(T) solve();\n\n  return 0;\n}"
+    \ 8, 3, 9, 7);\n  check_edge(G.edges[0], 0, 1);\n  check_edge(G.edges[1], 1, 2);\n\
+    \  check_edge(G.edges[2], 2, 3);\n  check_edge(G.edges[3], 1, 4);\n  check_edge(G.edges[4],\
+    \ 4, 5);\n  check_edge(G.edges[5], 4, 6);\n  check_edge(G.edges[6], 0, 7);\n \
+    \ check_edge(G.edges[7], 7, 8);\n  check_edge(G.edges[8], 8, 9);\n  check_edge(G.edges[9],\
+    \ 8, 10);\n  check_edge(G.edges[10], 7, 11);\n  check_edge(G.edges[11], 11, 12);\n\
+    \  check_edge(G.edges[12], 11, 13);\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a\
+    \ + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  test();\n\n  ll T = 1;\n  FOR(T) solve();\n\n\
+    \  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -485,8 +488,8 @@ data:
   isVerificationFile: true
   path: test/mytest/suffix_tree.test.cpp
   requiredBy: []
-  timestamp: '2022-09-05 03:06:18+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-05 03:15:25+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/suffix_tree.test.cpp
 layout: document
