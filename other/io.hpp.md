@@ -789,7 +789,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1326.test.cpp
     title: test/yukicoder/1326.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1332.test.cpp
     title: test/yukicoder/1332.test.cpp
   - icon: ':heavy_check_mark:'
@@ -945,10 +945,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/913.test.cpp
     title: test/yukicoder/913.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/919.test.cpp
     title: test/yukicoder/919.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
   _isVerificationFailed: true

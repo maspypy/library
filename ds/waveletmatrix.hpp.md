@@ -6,18 +6,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1332.test.cpp
     title: test/yukicoder/1332.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/919.test.cpp
     title: test/yukicoder/919.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/waveletmatrix.hpp\"\ntemplate <typename T>\r\nstruct\
@@ -34,7 +34,7 @@ data:
     \ N(dat.size()) {\r\n    key = dat;\r\n    UNIQUE(key);\r\n    vc<int> A(N);\r\
     \n    FOR(i, N) A[i] = LB(key, dat[i]);\r\n    lg = __lg(max(MAX(A), 1)) + 1;\r\
     \n\r\n    mid.resize(lg);\r\n    bv.resize(lg);\r\n    for (int d = lg - 1; d\
-    \ >= 0; d--) {\r\n      vector<char> add;\r\n      vector nxt(2, vector<T>());\r\
+    \ >= 0; d--) {\r\n      vector<char> add;\r\n      vector nxt(2, vector<int>());\r\
     \n      for (auto& x: A) {\r\n        add.push_back(x >> d & 1);\r\n        nxt[x\
     \ >> d & 1].push_back(x);\r\n      }\r\n      mid[d] = (int)nxt[0].size();\r\n\
     \      bv[d] = BitVector(add);\r\n      swap(A, nxt[0]);\r\n      A.insert(A.end(),\
@@ -65,7 +65,7 @@ data:
     \ dat) : N(dat.size()) {\r\n    key = dat;\r\n    UNIQUE(key);\r\n    vc<int>\
     \ A(N);\r\n    FOR(i, N) A[i] = LB(key, dat[i]);\r\n    lg = __lg(max(MAX(A),\
     \ 1)) + 1;\r\n\r\n    mid.resize(lg);\r\n    bv.resize(lg);\r\n    for (int d\
-    \ = lg - 1; d >= 0; d--) {\r\n      vector<char> add;\r\n      vector nxt(2, vector<T>());\r\
+    \ = lg - 1; d >= 0; d--) {\r\n      vector<char> add;\r\n      vector nxt(2, vector<int>());\r\
     \n      for (auto& x: A) {\r\n        add.push_back(x >> d & 1);\r\n        nxt[x\
     \ >> d & 1].push_back(x);\r\n      }\r\n      mid[d] = (int)nxt[0].size();\r\n\
     \      bv[d] = BitVector(add);\r\n      swap(A, nxt[0]);\r\n      A.insert(A.end(),\
@@ -87,8 +87,8 @@ data:
   isVerificationFile: false
   path: ds/waveletmatrix.hpp
   requiredBy: []
-  timestamp: '2022-09-03 17:10:30+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-09-05 00:59:32+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1332.test.cpp
   - test/yukicoder/919.test.cpp
