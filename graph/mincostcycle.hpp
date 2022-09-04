@@ -19,7 +19,7 @@ T MinCostCycle(Graph& G, T INF) {
     }
     Gi.build();
 
-    T x = (mx <= 1 ? bfs01(Gi, frm).fi[to] : dijkstra<T>(Gi, frm, INF).fi[to]);
+    T x = (mx <= 1 ? bfs01<decltype(Gi), T>(Gi, frm).fi[to] : dijkstra<T>(Gi, frm, INF).fi[to]);
     if (x == -1) x = INF;
     chmin(res, cost + x);
   }
