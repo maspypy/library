@@ -7,17 +7,17 @@ data:
   - icon: ':question:'
     path: graph/bfs01.hpp
     title: graph/bfs01.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/restore_path.hpp
     title: graph/restore_path.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/tree_diameter.test.cpp
     title: test/library_checker/tree/tree_diameter.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -88,16 +88,17 @@ data:
     \ pth.eb(par[pth.back()]);\r\n  reverse(all(pth));\r\n  return pth;\r\n}\n#line\
     \ 3 \"graph/tree_diameter.hpp\"\n\r\ntemplate <typename T>\r\npair<T, vc<int>>\
     \ tree_diameter(Graph<T>& G) {\r\n  assert(G.is_prepared());\r\n  int A, B;\r\n\
-    \  {\r\n    auto [dist, par] = bfs01(G, 0);\r\n    A = max_element(all(dist))\
-    \ - dist.begin();\r\n  }\r\n  auto [dist, par] = bfs01(G, A);\r\n  B = max_element(all(dist))\
-    \ - dist.begin();\r\n  vc<int> P = restore_path(par, B);\r\n  return {dist[B],\
-    \ P};\r\n}\r\n"
+    \  {\r\n    auto [dist, par] = bfs01<decltype(G), T>(G, 0);\r\n    A = max_element(all(dist))\
+    \ - dist.begin();\r\n  }\r\n  auto [dist, par] = bfs01<decltype(G), T>(G, A);\r\
+    \n  B = max_element(all(dist)) - dist.begin();\r\n  vc<int> P = restore_path(par,\
+    \ B);\r\n  return {dist[B], P};\r\n}\r\n"
   code: "#include \"graph/bfs01.hpp\"\r\n#include \"graph/restore_path.hpp\"\r\n\r\
     \ntemplate <typename T>\r\npair<T, vc<int>> tree_diameter(Graph<T>& G) {\r\n \
-    \ assert(G.is_prepared());\r\n  int A, B;\r\n  {\r\n    auto [dist, par] = bfs01(G,\
-    \ 0);\r\n    A = max_element(all(dist)) - dist.begin();\r\n  }\r\n  auto [dist,\
-    \ par] = bfs01(G, A);\r\n  B = max_element(all(dist)) - dist.begin();\r\n  vc<int>\
-    \ P = restore_path(par, B);\r\n  return {dist[B], P};\r\n}\r\n"
+    \ assert(G.is_prepared());\r\n  int A, B;\r\n  {\r\n    auto [dist, par] = bfs01<decltype(G),\
+    \ T>(G, 0);\r\n    A = max_element(all(dist)) - dist.begin();\r\n  }\r\n  auto\
+    \ [dist, par] = bfs01<decltype(G), T>(G, A);\r\n  B = max_element(all(dist)) -\
+    \ dist.begin();\r\n  vc<int> P = restore_path(par, B);\r\n  return {dist[B], P};\r\
+    \n}\r\n"
   dependsOn:
   - graph/bfs01.hpp
   - graph/base.hpp
@@ -105,8 +106,8 @@ data:
   isVerificationFile: false
   path: graph/tree_diameter.hpp
   requiredBy: []
-  timestamp: '2022-09-03 23:34:18+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-09-05 02:43:49+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/tree/tree_diameter.test.cpp
 documentation_of: graph/tree_diameter.hpp
