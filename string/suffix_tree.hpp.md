@@ -7,13 +7,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid_min_idx.hpp
     title: alg/monoid_min_idx.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/disjointsparse.hpp
     title: ds/disjointsparse.hpp
   - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
