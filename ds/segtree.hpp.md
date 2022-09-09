@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/range_mex_query.hpp
     title: ds/range_mex_query.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/sortable_segtree.hpp
     title: ds/sortable_segtree.hpp
   - icon: ':x:'
@@ -36,10 +36,10 @@ data:
   - icon: ':x:'
     path: test/atcoder/abc174f.test.cpp
     title: test/atcoder/abc174f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
     title: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/sort_segtree.test.cpp
     title: test/library_checker/datastructure/sort_segtree.test.cpp
   - icon: ':x:'
