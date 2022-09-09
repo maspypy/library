@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/mat_inv.hpp
     title: linalg/mat_inv.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/inverse_matrix
@@ -272,34 +272,34 @@ data:
     \ i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n\
     \    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n\n  if (W <= k) {\n\
     \    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j]\
-    \ = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n    FOR(i, H,\
-    \ n + 1) {\n      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n\
-    \  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool\
-    \ dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n <\
-    \ k) return 0;\n  if (dense) return C_dense<mint>(n, k);\n  if (!large) return\
-    \ fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k, n -\
-    \ k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n\
-    \  return x;\n}\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll\
-    \ n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return\
-    \ fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint,\
-    \ 1>(n, k);\n}\n\n// [x^d](1-x)^{-n} \u306E\u8A08\u7B97\ntemplate <typename mint,\
-    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
-    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
-    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n\nusing modint107\
-    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\
-    #line 1 \"linalg/mat_inv.hpp\"\ntemplate <typename T>\r\nvc<vc<T>> mat_inv(vc<vc<T>>\
-    \ A) {\r\n  int N = len(A);\r\n  vv(T, B, N, N);\r\n  FOR(n, N) B[n][n] = 1;\r\
-    \n  FOR(i, N) {\r\n    FOR3(k, i, N) if (A[k][i] != 0) {\r\n      if (k != i)\
-    \ swap(A[i], A[k]), swap(B[i], B[k]);\r\n      break;\r\n    }\r\n    if (A[i][i]\
-    \ == 0) return {};\r\n    T c = T(1) / A[i][i];\r\n    FOR(j, N) {\r\n      A[i][j]\
-    \ *= c;\r\n      B[i][j] *= c;\r\n    }\r\n    FOR(k, N) if (i != k) {\r\n   \
-    \   T c = A[k][i];\r\n      FOR(j, N) A[k][j] -= A[i][j] * c;\r\n      FOR(j,\
-    \ N) B[k][j] -= B[i][j] * c;\r\n    }\r\n  }\r\n  return B;\r\n}\r\n#line 6 \"\
-    test/library_checker/matrix/inverse_matrix.test.cpp\"\n\r\nusing mint = modint998;\r\
-    \nvoid solve() {\r\n  LL(N);\r\n  VV(mint, A, N, N);\r\n  auto B = mat_inv(A);\r\
-    \n  if (B.empty()) return print(-1);\r\n  FOR(n, N) print(B[n]);\r\n}\r\n\r\n\
-    signed main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n \
-    \ cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n\
+    \ + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j]\
+    \ = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate\
+    \ <typename mint, bool large = false, bool dense = false>\nmint C(ll n, ll k)\
+    \ {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if (dense) return C_dense<mint>(n,\
+    \ k);\n  if (!large) return fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n\
+    \ - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n\
+    \  x *= fact_inv<mint>(k);\n  return x;\n}\n\ntemplate <typename mint, bool large\
+    \ = false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k\
+    \ <= n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n\
+    \ - k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n} \u306E\u8A08\
+    \u7B97\ntemplate <typename mint, bool large = false, bool dense = false>\nmint\
+    \ C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
+    \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
+    \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
+    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 1 \"linalg/mat_inv.hpp\"\
+    \ntemplate <typename T>\r\nvc<vc<T>> mat_inv(vc<vc<T>> A) {\r\n  int N = len(A);\r\
+    \n  vv(T, B, N, N);\r\n  FOR(n, N) B[n][n] = 1;\r\n  FOR(i, N) {\r\n    FOR3(k,\
+    \ i, N) if (A[k][i] != 0) {\r\n      if (k != i) swap(A[i], A[k]), swap(B[i],\
+    \ B[k]);\r\n      break;\r\n    }\r\n    if (A[i][i] == 0) return {};\r\n    T\
+    \ c = T(1) / A[i][i];\r\n    FOR(j, N) {\r\n      A[i][j] *= c;\r\n      B[i][j]\
+    \ *= c;\r\n    }\r\n    FOR(k, N) if (i != k) {\r\n      T c = A[k][i];\r\n  \
+    \    FOR(j, N) A[k][j] -= A[i][j] * c;\r\n      FOR(j, N) B[k][j] -= B[i][j] *\
+    \ c;\r\n    }\r\n  }\r\n  return B;\r\n}\r\n#line 6 \"test/library_checker/matrix/inverse_matrix.test.cpp\"\
+    \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N);\r\n  VV(mint, A, N,\
+    \ N);\r\n  auto B = mat_inv(A);\r\n  if (B.empty()) return print(-1);\r\n  FOR(n,\
+    \ N) print(B[n]);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inverse_matrix\"\r\n#include\
     \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"mod/modint.hpp\"\
     \r\n#include \"linalg/mat_inv.hpp\"\r\n\r\nusing mint = modint998;\r\nvoid solve()\
@@ -315,8 +315,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/inverse_matrix.test.cpp
   requiredBy: []
-  timestamp: '2022-09-09 19:01:18+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-10 05:23:42+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/matrix/inverse_matrix.test.cpp
 layout: document

@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: dp/monotone_minima.hpp
     title: dp/monotone_minima.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/larsch.hpp
     title: ds/larsch.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/705.test.cpp
     title: test/yukicoder/705.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://dic.kimiyuki.net/d-edge-shortest-path-monge
@@ -121,7 +121,7 @@ data:
   path: dp/monge.hpp
   requiredBy: []
   timestamp: '2022-08-11 02:15:09+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/705.test.cpp
 documentation_of: dp/monge.hpp

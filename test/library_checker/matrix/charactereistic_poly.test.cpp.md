@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/characteristic_poly.hpp
     title: linalg/characteristic_poly.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/characteristic_polynomial
@@ -272,33 +272,34 @@ data:
     \ i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n\
     \    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n\n  if (W <= k) {\n\
     \    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j]\
-    \ = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n    FOR(i, H,\
-    \ n + 1) {\n      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n\
-    \  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool\
-    \ dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n <\
-    \ k) return 0;\n  if (dense) return C_dense<mint>(n, k);\n  if (!large) return\
-    \ fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k, n -\
-    \ k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n\
-    \  return x;\n}\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll\
-    \ n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return\
-    \ fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint,\
-    \ 1>(n, k);\n}\n\n// [x^d](1-x)^{-n} \u306E\u8A08\u7B97\ntemplate <typename mint,\
-    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
-    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
-    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n\nusing modint107\
-    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\
-    #line 1 \"linalg/characteristic_poly.hpp\"\ntemplate <typename T>\r\nvoid to_Hessenberg_matrix(vc<vc<T>>&\
-    \ A) {\r\n  /*\r\n  P^{-1}AP \u306E\u5F62\u306E\u5909\u63DB\u3067\u3001Hessenberg\
-    \ \u884C\u5217\u306B\u5909\u5F62\u3059\u308B\u3002\r\n  \u7279\u5B9A\u591A\u9805\
-    \u5F0F\u306E\u8A08\u7B97\u306B\u7528\u3044\u308B\u3053\u3068\u304C\u3067\u304D\
-    \u308B\u3002\r\n  */\r\n  int n = len(A);\r\n  FOR(k, n - 2) {\r\n    FOR3(i,\
-    \ k + 1, n) if (A[i][k] != 0) {\r\n      if (i != k + 1) {\r\n        swap(A[i],\
-    \ A[k + 1]);\r\n        FOR(j, n) swap(A[j][i], A[j][k + 1]);\r\n      }\r\n \
-    \     break;\r\n    }\r\n    if (A[k + 1][k] == 0) continue;\r\n    FOR3(i, k\
-    \ + 2, n) {\r\n      T c = A[i][k] / A[k + 1][k];\r\n      // i \u884C\u76EE -=\
-    \ k+1 \u884C\u76EE * c\r\n      FOR(j, n) A[i][j] -= A[k + 1][j] * c;\r\n    \
-    \  // k+1 \u5217\u76EE += i \u5217\u76EE * c\r\n      FOR(j, n) A[j][k + 1] +=\
-    \ A[j][i] * c;\r\n    }\r\n  }\r\n}\r\n\r\ntemplate <typename T>\r\nvc<T> characteristic_poly(vc<vc<T>>\
+    \ = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n\
+    \ + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j]\
+    \ = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate\
+    \ <typename mint, bool large = false, bool dense = false>\nmint C(ll n, ll k)\
+    \ {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if (dense) return C_dense<mint>(n,\
+    \ k);\n  if (!large) return fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n\
+    \ - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n\
+    \  x *= fact_inv<mint>(k);\n  return x;\n}\n\ntemplate <typename mint, bool large\
+    \ = false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k\
+    \ <= n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n\
+    \ - k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n} \u306E\u8A08\
+    \u7B97\ntemplate <typename mint, bool large = false, bool dense = false>\nmint\
+    \ C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
+    \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
+    \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
+    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 1 \"linalg/characteristic_poly.hpp\"\
+    \ntemplate <typename T>\r\nvoid to_Hessenberg_matrix(vc<vc<T>>& A) {\r\n  /*\r\
+    \n  P^{-1}AP \u306E\u5F62\u306E\u5909\u63DB\u3067\u3001Hessenberg \u884C\u5217\
+    \u306B\u5909\u5F62\u3059\u308B\u3002\r\n  \u7279\u5B9A\u591A\u9805\u5F0F\u306E\
+    \u8A08\u7B97\u306B\u7528\u3044\u308B\u3053\u3068\u304C\u3067\u304D\u308B\u3002\
+    \r\n  */\r\n  int n = len(A);\r\n  FOR(k, n - 2) {\r\n    FOR3(i, k + 1, n) if\
+    \ (A[i][k] != 0) {\r\n      if (i != k + 1) {\r\n        swap(A[i], A[k + 1]);\r\
+    \n        FOR(j, n) swap(A[j][i], A[j][k + 1]);\r\n      }\r\n      break;\r\n\
+    \    }\r\n    if (A[k + 1][k] == 0) continue;\r\n    FOR3(i, k + 2, n) {\r\n \
+    \     T c = A[i][k] / A[k + 1][k];\r\n      // i \u884C\u76EE -= k+1 \u884C\u76EE\
+    \ * c\r\n      FOR(j, n) A[i][j] -= A[k + 1][j] * c;\r\n      // k+1 \u5217\u76EE\
+    \ += i \u5217\u76EE * c\r\n      FOR(j, n) A[j][k + 1] += A[j][i] * c;\r\n   \
+    \ }\r\n  }\r\n}\r\n\r\ntemplate <typename T>\r\nvc<T> characteristic_poly(vc<vc<T>>\
     \ A) {\r\n  /*\r\n  \u30FBHessenberg \u884C\u5217\u306B\u5909\u5F62\r\n  \u30FB\
     Hessenberg \u884C\u5217\u306E\u884C\u5217\u5F0F\u306F\u3001\u6700\u5F8C\u306E\u5217\
     \u3067\u5834\u5408\u5206\u3051\u3059\u308C\u3070 dp \u3067\u304D\u308B\r\n  */\r\
@@ -330,8 +331,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/charactereistic_poly.test.cpp
   requiredBy: []
-  timestamp: '2022-09-09 19:01:18+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-10 05:23:42+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/matrix/charactereistic_poly.test.cpp
 layout: document
