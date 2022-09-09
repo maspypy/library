@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/sortable_segtree.hpp
     title: ds/sortable_segtree.hpp
   - icon: ':question:'
