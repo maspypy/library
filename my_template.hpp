@@ -99,6 +99,38 @@ int lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }
 int lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }
 int lowbit(u64 x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }
 
+template <typename T>
+T pick(deque<T> &que) {
+  assert(que.size());
+  T a = que.front();
+  que.pop_front();
+  return a;
+}
+
+template <typename T>
+T pick(pq<T> &que) {
+  assert(que.size());
+  T a = que.top();
+  que.pop();
+  return a;
+}
+
+template <typename T>
+T pick(pqg<T> &que) {
+  assert(que.size());
+  T a = que.top();
+  que.pop();
+  return a;
+}
+
+template <typename T>
+T pick(vc<T> &que) {
+  assert(que.size());
+  T a = que.back();
+  que.pop_back();
+  return a;
+}
+
 template <typename T, typename U>
 T ceil(T x, U y) {
   return (x > 0 ? (x + y - 1) / y : x / y);
