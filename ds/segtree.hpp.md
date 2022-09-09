@@ -69,9 +69,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036_2.test.cpp
     title: test/yukicoder/1036_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1435.test.cpp
+    title: test/yukicoder/1435.test.cpp
   - icon: ':x:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
@@ -193,6 +196,7 @@ data:
   verifiedWith:
   - test/yukicoder/529.test.cpp
   - test/yukicoder/1036_2.test.cpp
+  - test/yukicoder/1435.test.cpp
   - test/yukicoder/426.test.cpp
   - test/mytest/range_mex.test.cpp
   - test/mytest/suffix_tree.test.cpp

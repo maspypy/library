@@ -16,6 +16,9 @@ data:
     path: test/yukicoder/1332.test.cpp
     title: test/yukicoder/1332.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/2065.test.cpp
+    title: test/yukicoder/2065.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/919.test.cpp
     title: test/yukicoder/919.test.cpp
   - icon: ':x:'
@@ -138,6 +141,7 @@ data:
   timestamp: '2022-09-09 21:00:57+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/2065.test.cpp
   - test/yukicoder/1332.test.cpp
   - test/yukicoder/919.test.cpp
   - test/yukicoder/924.test.cpp

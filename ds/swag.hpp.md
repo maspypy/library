@@ -27,12 +27,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036_3.test.cpp
     title: test/yukicoder/1036_3.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1117.test.cpp
     title: test/yukicoder/1117.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1435_2.test.cpp
+    title: test/yukicoder/1435_2.test.cpp
   - icon: ':x:'
     path: test/yukicoder/502_2.test.cpp
     title: test/yukicoder/502_2.test.cpp
@@ -94,6 +97,7 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1117.test.cpp
+  - test/yukicoder/1435_2.test.cpp
   - test/yukicoder/1036_3.test.cpp
   - test/yukicoder/502_2.test.cpp
   - test/mytest/factorial_998.test.cpp
