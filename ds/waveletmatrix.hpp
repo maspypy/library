@@ -1,5 +1,10 @@
-template <typename T>
-struct WaveletMatrix {
+#include "alg/group_add.hpp"
+
+// Wavelet Matrix 上でさらに累積和を管理して、
+// 矩形和がとれるようにしたもの
+template <typename T, bool SUM_QUERY = false,
+          typename AbelGroup = Group_Add<ll>>
+struct WaveletMatrix_Sum {
   struct BitVector {
     vector<u64> buf;
     vector<int> sum;
@@ -26,8 +31,9 @@ struct WaveletMatrix {
   int N, lg;
   vector<int> mid;
   vector<BitVector> bv;
+  vector<vector<T>> cumsum;
   vc<T> key;
-  WaveletMatrix(vector<T>& dat) : N(dat.size()) {
+  WaveletMatrix_Sum(vector<T>& dat) : N(dat.size()) {
     key = dat;
     UNIQUE(key);
     vc<int> A(N);
@@ -36,6 +42,7 @@ struct WaveletMatrix {
 
     mid.resize(lg);
     bv.resize(lg);
+    cumsum.resize(lg);
     for (int d = lg - 1; d >= 0; d--) {
       vector<char> add;
       vector nxt(2, vector<int>());
@@ -47,6 +54,12 @@ struct WaveletMatrix {
       bv[d] = BitVector(add);
       swap(A, nxt[0]);
       A.insert(A.end(), all(nxt[1]));
+      if (SUM_QUERY) {
+        vc<T> cs(N + 1);
+        cs[0] = AbelGroup::unit();
+        FOR(i, N) cs[i + 1] = AbelGroup::op(cs[i], key[A[i]]);
+        cumsum[d] = cs;
+      }
     }
   }
 
@@ -69,6 +82,7 @@ struct WaveletMatrix {
 
   // [L, R) の中で k>=0 番目
   T kth(int L, int R, int k) {
+    assert(0 <= k && k < R - L);
     int ret = 0;
     for (int h = lg - 1; h >= 0; h--) {
       int l0 = bv[h].rank(L, 0), r0 = bv[h].rank(R, 0);
@@ -81,5 +95,28 @@ struct WaveletMatrix {
       }
     }
     return key[ret];
+  }
+
+  // [L, R) の中で小さい方から k 個の総和
+  T sum(int L, int R, int k) {
+    assert(SUM_QUERY);
+    assert(0 <= k && k <= R - L);
+    T pos = AbelGroup::unit(), neg = AbelGroup::unit();
+    for (int h = lg - 1; h >= 0; h--) {
+      int l0 = bv[h].rank(L, 0), r0 = bv[h].rank(R, 0);
+      if (k < r0 - l0) {
+        L = l0, R = r0;
+      } else {
+        k -= r0 - l0;
+        pos = AbelGroup::op(pos, cumsum[h][r0]);
+        neg = AbelGroup::op(neg, cumsum[h][l0]);
+        L += mid[h] - l0, R += mid[h] - r0;
+      }
+    }
+    if (k) {
+      pos = AbelGroup::op(pos, cumsum[0][L + k]);
+      neg = AbelGroup::op(neg, cumsum[0][L]);
+    }
+    return AbelGroup::op(pos, AbelGroup::inverse(neg));
   }
 };

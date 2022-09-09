@@ -1,0 +1,34 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+#include "my_template.hpp"
+#include "other/io.hpp"
+#include "other/random.hpp"
+#include "ds/waveletmatrix.hpp"
+
+void test() {
+  FOR(N, 1, 50) {
+    vi A(N);
+    FOR(i, N) A[i] = RNG(0, 10);
+    WaveletMatrix_Sum<ll, true, Group_Add<ll>> X(A);
+    FOR(L, N) FOR(R, L, N + 1) {
+      vi B = {A.begin() + L, A.begin() + R};
+      sort(all(B));
+      auto Bc = cumsum(B);
+
+      FOR(k, R - L + 1) { assert(Bc[k] == X.sum(L, R, k)); }
+    }
+  }
+}
+
+void solve() {
+  LL(a, b);
+  print(a + b);
+}
+
+signed main() {
+  cout << fixed << setprecision(15);
+
+  test();
+  solve();
+
+  return 0;
+}
