@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/kdtree_monoid.hpp
     title: ds/kdtree_monoid.hpp
   - icon: ':question:'
