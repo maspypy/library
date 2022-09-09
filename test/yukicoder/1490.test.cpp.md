@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: ds/point_add_rectangle_sum.hpp
     title: ds/point_add_rectangle_sum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/rectangle_add_ractangle_sum.hpp
     title: ds/rectangle_add_ractangle_sum.hpp
   - icon: ':question:'
