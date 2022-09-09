@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: graph/enumerate_cliques.hpp
     title: graph/enumerate_cliques.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'

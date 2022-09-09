@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: ds/xor_sparsetable.hpp
     title: ds/xor_sparsetable.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
