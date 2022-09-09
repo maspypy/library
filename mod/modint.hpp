@@ -178,7 +178,9 @@ mint C_dense(int n, int k) {
     W = k + 1;
   }
   if (H <= n) {
+    C.resize(n + 1);
     FOR(i, H, n + 1) {
+      C[i].resize(W);
       FOR(j, W) { C[i][j] = calc(i, j); }
     }
     H = n + 1;
