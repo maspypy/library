@@ -2,25 +2,25 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/lazy_add_mul.hpp
     title: alg/lazy_add_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/lazy_cntminmincnt_add.hpp
     title: alg/lazy_cntminmincnt_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/lazy_cntsum_add.hpp
     title: alg/lazy_cntsum_add.hpp
   - icon: ':warning:'
     path: alg/lazy_cntsummin_add.hpp
     title: alg/lazy_cntsummin_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/lazy_max_add.hpp
     title: alg/lazy_max_add.hpp
   - icon: ':warning:'
     path: alg/lazy_maxidx_add.hpp
     title: alg/lazy_maxidx_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/lazy_min_add.hpp
     title: alg/lazy_min_add.hpp
   - icon: ':warning:'
@@ -32,19 +32,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: dp/inversion.hpp
     title: dp/inversion.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/cumsum2d.hpp
     title: ds/cumsum2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/fenwick2d.hpp
     title: ds/fenwick2d.hpp
   - icon: ':heavy_check_mark:'
     path: ds/fenwick2d_dense.hpp
     title: ds/fenwick2d_dense.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/fenwickraq.hpp
     title: ds/fenwickraq.hpp
   - icon: ':warning:'
@@ -53,28 +53,28 @@ data:
   - icon: ':warning:'
     path: ds/point_add_polygon_sum.hpp
     title: ds/point_add_polygon_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/point_add_rectangle_sum.hpp
     title: ds/point_add_rectangle_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/rectangle_add_point_sum.hpp
     title: ds/rectangle_add_point_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/rectangle_add_ractangle_sum.hpp
     title: ds/rectangle_add_ractangle_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/rectangleunion.hpp
     title: ds/rectangleunion.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/uniqueproductquery.hpp
     title: ds/uniqueproductquery.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/contoursum.hpp
     title: graph/contoursum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/treeabelgroup.hpp
     title: graph/treeabelgroup.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/trie.hpp
     title: string/trie.hpp
   _extendedVerifiedWith:
@@ -90,130 +90,130 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_5.test.cpp
     title: test/aoj/ALDS1_5.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL_1_B.test.cpp
     title: test/aoj/DSL_1_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL_2_E.test.cpp
     title: test/aoj/DSL_2_E.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL_2_G.test.cpp
     title: test/aoj/DSL_2_G.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL_2_H.test.cpp
     title: test/aoj/DSL_2_H.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL_4_A.test.cpp
     title: test/aoj/DSL_4_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc174f.test.cpp
     title: test/atcoder/abc174f.test.cpp
   - icon: ':x:'
     path: test/atcoder/abc266h_2.test.cpp
     title: test/atcoder/abc266h_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/point_add_range_sum.test.cpp
     title: test/library_checker/datastructure/point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
     title: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1097.test.cpp
     title: test/yukicoder/1097.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1141.test.cpp
     title: test/yukicoder/1141.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1234.test.cpp
     title: test/yukicoder/1234.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1269.test.cpp
     title: test/yukicoder/1269.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1326.test.cpp
     title: test/yukicoder/1326.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1441.test.cpp
     title: test/yukicoder/1441.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1441_2.test.cpp
     title: test/yukicoder/1441_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1490.test.cpp
     title: test/yukicoder/1490.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1641.test.cpp
     title: test/yukicoder/1641.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/655.test.cpp
     title: test/yukicoder/655.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/686.test.cpp
     title: test/yukicoder/686.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/789.test.cpp
     title: test/yukicoder/789.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/789_2.test.cpp
     title: test/yukicoder/789_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
   _isVerificationFailed: true

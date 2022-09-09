@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid_max.hpp
     title: alg/monoid_max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid_set.hpp
     title: alg/monoid_set.hpp
   _extendedRequiredBy: []

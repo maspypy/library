@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/random.hpp
     title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/4_1.test.cpp
     title: test/yukicoder/4_1.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/random.hpp\"\n\nll RNG(ll a, ll b) {\n  static mt19937\
@@ -176,7 +176,7 @@ data:
   path: mod/modular_subset_sum.hpp
   requiredBy: []
   timestamp: '2022-08-25 10:15:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/4_1.test.cpp
 documentation_of: mod/modular_subset_sum.hpp

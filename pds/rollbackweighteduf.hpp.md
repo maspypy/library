@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: pds/rollbackarray.hpp
     title: pds/rollbackarray.hpp
   _extendedRequiredBy: []

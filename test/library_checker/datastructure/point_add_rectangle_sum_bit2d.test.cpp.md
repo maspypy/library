@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/fenwick2d.hpp
     title: ds/fenwick2d.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_rectangle_sum
@@ -68,11 +68,17 @@ data:
     int lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(u32\
     \ x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll x) { return (x\
     \ == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return (x == 0 ? -1\
-    \ : __builtin_ctzll(x)); }\n\ntemplate <typename T, typename U>\nT ceil(T x, U\
-    \ y) {\n  return (x > 0 ? (x + y - 1) / y : x / y);\n}\n\ntemplate <typename T,\
-    \ typename U>\nT floor(T x, U y) {\n  return (x > 0 ? x / y : (x - y + 1) / y);\n\
-    }\n\ntemplate <typename T, typename U>\npair<T, T> divmod(T x, U y) {\n  T q =\
-    \ floor(x, y);\n  return {q, x - q * y};\n}\n\nll binary_search(function<bool(ll)>\
+    \ : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT pick(deque<T> &que) {\n\
+    \  assert(que.size());\n  T a = que.front();\n  que.pop_front();\n  return a;\n\
+    }\n\ntemplate <typename T>\nT pick(pq<T> &que) {\n  assert(que.size());\n  T a\
+    \ = que.top();\n  que.pop();\n  return a;\n}\n\ntemplate <typename T>\nT pick(pqg<T>\
+    \ &que) {\n  assert(que.size());\n  T a = que.top();\n  que.pop();\n  return a;\n\
+    }\n\ntemplate <typename T>\nT pick(vc<T> &que) {\n  assert(que.size());\n  T a\
+    \ = que.back();\n  que.pop_back();\n  return a;\n}\n\ntemplate <typename T, typename\
+    \ U>\nT ceil(T x, U y) {\n  return (x > 0 ? (x + y - 1) / y : x / y);\n}\n\ntemplate\
+    \ <typename T, typename U>\nT floor(T x, U y) {\n  return (x > 0 ? x / y : (x\
+    \ - y + 1) / y);\n}\n\ntemplate <typename T, typename U>\npair<T, T> divmod(T\
+    \ x, U y) {\n  T q = floor(x, y);\n  return {q, x - q * y};\n}\n\nll binary_search(function<bool(ll)>\
     \ check, ll ok, ll ng) {\n  assert(check(ok));\n  while (abs(ok - ng) > 1) {\n\
     \    auto x = (ng + ok) / 2;\n    if (check(x))\n      ok = x;\n    else\n   \
     \   ng = x;\n  }\n  return ok;\n}\n\ntemplate <typename F>\ndouble binary_search_real(F\
@@ -297,8 +303,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   requiredBy: []
-  timestamp: '2022-08-28 05:07:49+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-09 19:01:18+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
 layout: document

@@ -3,21 +3,21 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1036.test.cpp
     title: test/yukicoder/1036.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1649.test.cpp
     title: test/yukicoder/1649.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1826.test.cpp
     title: test/yukicoder/1826.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/789.test.cpp
     title: test/yukicoder/789.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/dynamic_segtree.hpp\"\n\r\n/*\r\n\u30B3\u30F3\u30B9\u30C8\
@@ -161,7 +161,7 @@ data:
   path: ds/dynamic_segtree.hpp
   requiredBy: []
   timestamp: '2022-05-21 17:43:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1826.test.cpp
   - test/yukicoder/789.test.cpp

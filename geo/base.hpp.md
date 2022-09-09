@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
   - icon: ':heavy_check_mark:'
@@ -11,13 +11,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/distance.hpp
     title: geo/distance.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/dynamicupperhull.hpp
     title: geo/dynamicupperhull.hpp
   - icon: ':heavy_check_mark:'
     path: geo/incircle.hpp
     title: geo/incircle.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/incremental_convexhull.hpp
     title: geo/incremental_convexhull.hpp
   - icon: ':heavy_check_mark:'
@@ -60,16 +60,16 @@ data:
   - icon: ':x:'
     path: test/atcoder/abc266c.test.cpp
     title: test/atcoder/abc266c.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/geometry/convex_layers.test.cpp
     title: test/library_checker/geometry/convex_layers.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/geometry/sort_points_by_argument.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/incremental_ch.test.cpp
     title: test/mytest/incremental_ch.test.cpp
   _isVerificationFailed: true

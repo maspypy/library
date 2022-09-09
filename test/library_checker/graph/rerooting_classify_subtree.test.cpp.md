@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/rerooting_classify_subtree.hpp
     title: graph/rerooting_classify_subtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/rerooting_dp.hpp
     title: graph/rerooting_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -22,14 +22,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/random.hpp
     title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification
@@ -80,11 +80,17 @@ data:
     int lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(u32\
     \ x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll x) { return (x\
     \ == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return (x == 0 ? -1\
-    \ : __builtin_ctzll(x)); }\n\ntemplate <typename T, typename U>\nT ceil(T x, U\
-    \ y) {\n  return (x > 0 ? (x + y - 1) / y : x / y);\n}\n\ntemplate <typename T,\
-    \ typename U>\nT floor(T x, U y) {\n  return (x > 0 ? x / y : (x - y + 1) / y);\n\
-    }\n\ntemplate <typename T, typename U>\npair<T, T> divmod(T x, U y) {\n  T q =\
-    \ floor(x, y);\n  return {q, x - q * y};\n}\n\nll binary_search(function<bool(ll)>\
+    \ : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT pick(deque<T> &que) {\n\
+    \  assert(que.size());\n  T a = que.front();\n  que.pop_front();\n  return a;\n\
+    }\n\ntemplate <typename T>\nT pick(pq<T> &que) {\n  assert(que.size());\n  T a\
+    \ = que.top();\n  que.pop();\n  return a;\n}\n\ntemplate <typename T>\nT pick(pqg<T>\
+    \ &que) {\n  assert(que.size());\n  T a = que.top();\n  que.pop();\n  return a;\n\
+    }\n\ntemplate <typename T>\nT pick(vc<T> &que) {\n  assert(que.size());\n  T a\
+    \ = que.back();\n  que.pop_back();\n  return a;\n}\n\ntemplate <typename T, typename\
+    \ U>\nT ceil(T x, U y) {\n  return (x > 0 ? (x + y - 1) / y : x / y);\n}\n\ntemplate\
+    \ <typename T, typename U>\nT floor(T x, U y) {\n  return (x > 0 ? x / y : (x\
+    \ - y + 1) / y);\n}\n\ntemplate <typename T, typename U>\npair<T, T> divmod(T\
+    \ x, U y) {\n  T q = floor(x, y);\n  return {q, x - q * y};\n}\n\nll binary_search(function<bool(ll)>\
     \ check, ll ok, ll ng) {\n  assert(check(ok));\n  while (abs(ok - ng) > 1) {\n\
     \    auto x = (ng + ok) / 2;\n    if (check(x))\n      ok = x;\n    else\n   \
     \   ng = x;\n  }\n  return ok;\n}\n\ntemplate <typename F>\ndouble binary_search_real(F\
@@ -430,8 +436,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
   requiredBy: []
-  timestamp: '2022-09-03 12:29:36+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-09 19:01:18+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/rerooting_classify_subtree.test.cpp
 layout: document
