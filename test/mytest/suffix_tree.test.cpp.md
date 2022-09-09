@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid_min.hpp
     title: alg/monoid_min.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid_min_idx.hpp
     title: alg/monoid_min_idx.hpp
   - icon: ':x:'

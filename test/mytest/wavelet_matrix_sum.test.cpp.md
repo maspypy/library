@@ -4,36 +4,39 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
+  - icon: ':x:'
+    path: ds/waveletmatrix.hpp
+    title: ds/waveletmatrix.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
-    path: pds/segtree.hpp
-    title: pds/segtree.hpp
+  - icon: ':question:'
+    path: other/random.hpp
+    title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://judge.yosupo.jp/problem/range_kth_smallest
-  bundledCode: "#line 1 \"test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n#line\
-    \ 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
-    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
-    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
-    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
-    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/mytest/wavelet_matrix_sum.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#pragma\
+    \ GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -204,79 +207,95 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\n\
-    struct Group_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"pds/segtree.hpp\"\
-    \ntemplate <typename Monoid, int NODES>\nstruct Persistent_SegTree {\n  using\
-    \ X = typename Monoid::value_type;\n\n  struct Node {\n    Node *l, *r;\n    X\
-    \ x;\n  };\n\n  using np = Node *;\n\n  const int n;\n  Node *pool;\n  int pid;\n\
-    \n  Persistent_SegTree(int n) : n(n), pid(0) { pool = new Node[NODES]; }\n\n \
-    \ Node *new_node(const X x = Monoid::unit()) {\n    pool[pid].l = pool[pid].r\
-    \ = nullptr;\n    pool[pid].x = x;\n    return &(pool[pid++]);\n  }\n\n  Node\
-    \ *new_node(const vc<X> &dat) {\n    assert(len(dat) == n);\n    auto dfs = [&](auto\
-    \ &dfs, int l, int r) -> Node * {\n      if (l == r) return nullptr;\n      if\
-    \ (r == l + 1) return new_node(dat[l]);\n      int m = (l + r) / 2;\n      Node\
-    \ *l_root = dfs(dfs, l, m);\n      Node *r_root = dfs(dfs, m, r);\n      X x =\
-    \ Monoid::op(l_root->x, r_root->x);\n      Node *root = new_node(x);\n      root->l\
-    \ = l_root, root->r = r_root;\n      return root;\n    };\n    return dfs(dfs,\
-    \ 0, len(dat));\n  }\n\n  X prod(Node *root, int l, int r) {\n    assert(0 <=\
-    \ l && l <= r && r <= n);\n    X x = Monoid::unit();\n    prod_rec(root, 0, n,\
-    \ l, r, x);\n    return x;\n  }\n\n  Node *set(Node *root, int i, const X &x)\
-    \ {\n    assert(0 <= i && i < n);\n    return set_rec(root, 0, n, i, x);\n  }\n\
-    \n  vc<X> restore(Node *root) {\n    vc<X> res;\n    auto dfs = [&](auto &dfs,\
-    \ Node *c, int node_l, int node_r) -> void {\n      if (node_r - node_l == 1)\
-    \ {\n        res.eb(c->x);\n        return;\n      }\n      int node_m = (node_l\
-    \ + node_r) / 2;\n      prop(c);\n      dfs(dfs, c->l, node_l, node_m);\n    \
-    \  dfs(dfs, c->r, node_m, node_r);\n    };\n    dfs(dfs, root, 0, n);\n    return\
-    \ res;\n  }\n\n  void reset() { pid = 0; }\n\nprivate:\n  Node *copy_node(Node\
-    \ *n) {\n    if (!n) return nullptr;\n    pool[pid].l = n->l;\n    pool[pid].r\
-    \ = n->r;\n    pool[pid].x = n->x;\n    return &(pool[pid++]);\n  }\n\n  Node\
-    \ *set_rec(Node *c, int node_l, int node_r, int i, const X &x) {\n    if (node_r\
-    \ == node_l + 1) { return new_node(x); }\n    if(!c) c = new_node();\n    int\
-    \ node_m = (node_l + node_r) / 2;\n    c = copy_node(c);\n    if (i < node_m)\
-    \ {\n      c->l = set_rec(c->l, node_l, node_m, i, x);\n    } else {\n      c->r\
-    \ = set_rec(c->r, node_m, node_r, i, x);\n    }\n    X xl = (c->l ? c->l->x :\
-    \ Monoid::unit());\n    X xr = (c->r ? c->r->x : Monoid::unit());\n    c->x =\
-    \ Monoid::op(xl, xr);\n    return c;\n  }\n\n  void prod_rec(Node *c, int node_l,\
-    \ int node_r, int l, int r, X &x) {\n    if(!c) return;\n    chmax(l, node_l);\n\
-    \    chmin(r, node_r);\n    if (l >= r) return;\n    if (l == node_l && r == node_r)\
-    \ {\n      x = Monoid::op(x, c->x);\n      return;\n    }\n    int node_m = (node_l\
-    \ + node_r) / 2;\n    prod_rec(c->l, node_l, node_m, l, r, x);\n    prod_rec(c->r,\
-    \ node_m, node_r, l, r, x);\n  }\n};\n#line 6 \"test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Persistent_SegTree<Group_Add<int>,\
-    \ 5'000'000> seg(N);\n  using np = decltype(seg)::Node *;\n  auto I = argsort(A);\n\
-    \n  vc<np> roots;\n  roots.eb(seg.new_node(vc<int>(N)));\n  FOR(k, N) { roots.eb(seg.set(roots.back(),\
-    \ I[k], 1)); }\n  FOR(Q) {\n    LL(L, R, k);\n    auto check = [&](ll t) -> bool\
-    \ { return seg.prod(roots[t], L, R) <= k; };\n    ll t = binary_search(check,\
-    \ 0, N);\n    print(A[I[t]]);\n  }\n}\n\nsigned main() {\n  solve();\n\n  return\
-    \ 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/group_add.hpp\"\
-    \n#include \"pds/segtree.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n\
-    \  Persistent_SegTree<Group_Add<int>, 5'000'000> seg(N);\n  using np = decltype(seg)::Node\
-    \ *;\n  auto I = argsort(A);\n\n  vc<np> roots;\n  roots.eb(seg.new_node(vc<int>(N)));\n\
-    \  FOR(k, N) { roots.eb(seg.set(roots.back(), I[k], 1)); }\n  FOR(Q) {\n    LL(L,\
-    \ R, k);\n    auto check = [&](ll t) -> bool { return seg.prod(roots[t], L, R)\
-    \ <= k; };\n    ll t = binary_search(check, 0, N);\n    print(A[I[t]]);\n  }\n\
-    }\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+    \ { yes(!t); }\r\n#line 2 \"other/random.hpp\"\n\nll RNG(ll a, ll b) {\n  static\
+    \ mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\n  uniform_int_distribution<ll>\
+    \ dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll a) { return RNG(0, a); }\n\
+    #line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Group_Add {\r\
+    \n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
+    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/waveletmatrix.hpp\"\
+    \n\r\n// Wavelet Matrix \u4E0A\u3067\u3055\u3089\u306B\u7D2F\u7A4D\u548C\u3092\
+    \u7BA1\u7406\u3057\u3066\u3001\r\n// \u77E9\u5F62\u548C\u304C\u3068\u308C\u308B\
+    \u3088\u3046\u306B\u3057\u305F\u3082\u306E\r\ntemplate <typename T, bool SUM_QUERY\
+    \ = false,\r\n          typename AbelGroup = Group_Add<ll>>\r\nstruct WaveletMatrix_Sum\
+    \ {\r\n  struct BitVector {\r\n    vector<u64> buf;\r\n    vector<int> sum;\r\n\
+    \    BitVector(const vector<char>& a = {}) {\r\n      int n = a.size();\r\n  \
+    \    buf.assign((n + 63) >> 6, 0);\r\n      sum.assign(buf.size() + 1, 0);\r\n\
+    \      FOR(i, n) if (a[i]) {\r\n        buf[i >> 6] |= 1ull << (i & 63);\r\n \
+    \       sum[(i >> 6) + 1]++;\r\n      }\r\n      FOR(i, buf.size()) sum[i + 1]\
+    \ += sum[i];\r\n    }\r\n    int rank(int k, bool f = 1) {\r\n      int ret =\
+    \ sum[k >> 6]\r\n                + __builtin_popcountll(buf[k >> 6] & ((1ull <<\
+    \ (k & 63)) - 1));\r\n      if (!f)\r\n        return k - ret;\r\n      else\r\
+    \n        return ret;\r\n    }\r\n  };\r\n\r\n  int N, lg;\r\n  vector<int> mid;\r\
+    \n  vector<BitVector> bv;\r\n  vector<vector<T>> cumsum;\r\n  vc<T> key;\r\n \
+    \ WaveletMatrix_Sum(vector<T>& dat) : N(dat.size()) {\r\n    key = dat;\r\n  \
+    \  UNIQUE(key);\r\n    vc<int> A(N);\r\n    FOR(i, N) A[i] = LB(key, dat[i]);\r\
+    \n    lg = __lg(max(MAX(A), 1)) + 1;\r\n\r\n    mid.resize(lg);\r\n    bv.resize(lg);\r\
+    \n    cumsum.resize(lg);\r\n    for (int d = lg - 1; d >= 0; d--) {\r\n      vector<char>\
+    \ add;\r\n      vector nxt(2, vector<int>());\r\n      for (auto& x: A) {\r\n\
+    \        add.push_back(x >> d & 1);\r\n        nxt[x >> d & 1].push_back(x);\r\
+    \n      }\r\n      mid[d] = (int)nxt[0].size();\r\n      bv[d] = BitVector(add);\r\
+    \n      swap(A, nxt[0]);\r\n      A.insert(A.end(), all(nxt[1]));\r\n      if\
+    \ (SUM_QUERY) {\r\n        vc<T> cs(N + 1);\r\n        cs[0] = AbelGroup::unit();\r\
+    \n        FOR(i, N) cs[i + 1] = AbelGroup::op(cs[i], key[A[i]]);\r\n        cumsum[d]\
+    \ = cs;\r\n      }\r\n    }\r\n  }\r\n\r\n  // [L, R) \u5185\u306B\u3042\u308B\
+    \ [a, b) \u3092\u6570\u3048\u308B\r\n  int freq(int L, int R, T a, T b) {\r\n\
+    \    return freq_upper(L, R, b) - freq_upper(L, R, a);\r\n  }\r\n  int freq_upper(int\
+    \ L, int R, T t) {\r\n    int x = LB(key, t);\r\n    if (x >= (1 << lg)) return\
+    \ R - L;\r\n    int ret = 0;\r\n    for (int h = lg - 1; h >= 0; --h) {\r\n  \
+    \    bool f = (x >> h) & 1;\r\n      if (f) ret += bv[h].rank(R, 0) - bv[h].rank(L,\
+    \ 0);\r\n      L = bv[h].rank(L, f) + (f ? mid[h] : 0);\r\n      R = bv[h].rank(R,\
+    \ f) + (f ? mid[h] : 0);\r\n    }\r\n    return ret;\r\n  }\r\n\r\n  // [L, R)\
+    \ \u306E\u4E2D\u3067 k>=0 \u756A\u76EE\r\n  T kth(int L, int R, int k) {\r\n \
+    \   assert(0 <= k && k < R - L);\r\n    int ret = 0;\r\n    for (int h = lg -\
+    \ 1; h >= 0; h--) {\r\n      int l0 = bv[h].rank(L, 0), r0 = bv[h].rank(R, 0);\r\
+    \n      if (k < r0 - l0)\r\n        L = l0, R = r0;\r\n      else {\r\n      \
+    \  k -= r0 - l0;\r\n        ret |= 1 << h;\r\n        L += mid[h] - l0, R += mid[h]\
+    \ - r0;\r\n      }\r\n    }\r\n    return key[ret];\r\n  }\r\n\r\n  // [L, R)\
+    \ \u306E\u4E2D\u3067\u5C0F\u3055\u3044\u65B9\u304B\u3089 k \u500B\u306E\u7DCF\u548C\
+    \r\n  T sum(int L, int R, int k) {\r\n    assert(SUM_QUERY);\r\n    assert(0 <=\
+    \ k && k <= R - L);\r\n    T pos = AbelGroup::unit(), neg = AbelGroup::unit();\r\
+    \n    for (int h = lg - 1; h >= 0; h--) {\r\n      int l0 = bv[h].rank(L, 0),\
+    \ r0 = bv[h].rank(R, 0);\r\n      if (k < r0 - l0) {\r\n        L = l0, R = r0;\r\
+    \n      } else {\r\n        k -= r0 - l0;\r\n        pos = AbelGroup::op(pos,\
+    \ cumsum[h][r0]);\r\n        neg = AbelGroup::op(neg, cumsum[h][l0]);\r\n    \
+    \    L += mid[h] - l0, R += mid[h] - r0;\r\n      }\r\n    }\r\n    if (k) {\r\
+    \n      pos = AbelGroup::op(pos, cumsum[0][L + k]);\r\n      neg = AbelGroup::op(neg,\
+    \ cumsum[0][L]);\r\n    }\r\n    return AbelGroup::op(pos, AbelGroup::inverse(neg));\r\
+    \n  }\r\n};\r\n#line 6 \"test/mytest/wavelet_matrix_sum.test.cpp\"\n\nvoid test()\
+    \ {\n  FOR(N, 1, 50) {\n    vi A(N);\n    FOR(i, N) A[i] = RNG(0, 10);\n    WaveletMatrix_Sum<ll,\
+    \ true, Group_Add<ll>> X(A);\n    FOR(L, N) FOR(R, L, N + 1) {\n      vi B = {A.begin()\
+    \ + L, A.begin() + R};\n      sort(all(B));\n      auto Bc = cumsum(B);\n\n  \
+    \    FOR(k, R - L + 1) { assert(Bc[k] == X.sum(L, R, k)); }\n    }\n  }\n}\n\n\
+    void solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout <<\
+    \ fixed << setprecision(15);\n\n  test();\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"other/random.hpp\"\n#include \"ds/waveletmatrix.hpp\"\
+    \n\nvoid test() {\n  FOR(N, 1, 50) {\n    vi A(N);\n    FOR(i, N) A[i] = RNG(0,\
+    \ 10);\n    WaveletMatrix_Sum<ll, true, Group_Add<ll>> X(A);\n    FOR(L, N) FOR(R,\
+    \ L, N + 1) {\n      vi B = {A.begin() + L, A.begin() + R};\n      sort(all(B));\n\
+    \      auto Bc = cumsum(B);\n\n      FOR(k, R - L + 1) { assert(Bc[k] == X.sum(L,\
+    \ R, k)); }\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\
+    \nsigned main() {\n  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
+  - other/random.hpp
+  - ds/waveletmatrix.hpp
   - alg/group_add.hpp
-  - pds/segtree.hpp
   isVerificationFile: true
-  path: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
+  path: test/mytest/wavelet_matrix_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-09-09 19:01:18+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-09 21:00:57+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
+documentation_of: test/mytest/wavelet_matrix_sum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
-- /verify/test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp.html
-title: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
+- /verify/test/mytest/wavelet_matrix_sum.test.cpp
+- /verify/test/mytest/wavelet_matrix_sum.test.cpp.html
+title: test/mytest/wavelet_matrix_sum.test.cpp
 ---
