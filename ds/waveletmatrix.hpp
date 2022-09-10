@@ -4,7 +4,7 @@
 // 矩形和がとれるようにしたもの
 template <typename T, bool SUM_QUERY = false,
           typename AbelGroup = Group_Add<ll>>
-struct WaveletMatrix_Sum {
+struct WaveletMatrix {
   struct BitVector {
     vector<u64> buf;
     vector<int> sum;
@@ -33,7 +33,7 @@ struct WaveletMatrix_Sum {
   vector<BitVector> bv;
   vector<vector<T>> cumsum;
   vc<T> key;
-  WaveletMatrix_Sum(vector<T>& dat) : N(dat.size()) {
+  WaveletMatrix(vector<T>& dat) : N(dat.size()) {
     key = dat;
     UNIQUE(key);
     vc<int> A(N);
