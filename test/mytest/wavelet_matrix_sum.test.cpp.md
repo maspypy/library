@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/waveletmatrix.hpp
     title: ds/waveletmatrix.hpp
   - icon: ':question:'
@@ -13,14 +13,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/random.hpp
     title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -265,7 +265,7 @@ data:
     \ cumsum[0][L + k]);\r\n      neg = AbelGroup::op(neg, cumsum[0][L]);\r\n    }\r\
     \n    return AbelGroup::op(pos, AbelGroup::inverse(neg));\r\n  }\r\n};\r\n#line\
     \ 6 \"test/mytest/wavelet_matrix_sum.test.cpp\"\n\nvoid test() {\n  FOR(N, 1,\
-    \ 50) {\n    vi A(N);\n    FOR(i, N) A[i] = RNG(0, 10);\n    WaveletMatrix_Sum<ll,\
+    \ 50) {\n    vi A(N);\n    FOR(i, N) A[i] = RNG(0, 10);\n    WaveletMatrix<ll,\
     \ true, Group_Add<ll>> X(A);\n    FOR(L, N) FOR(R, L, N + 1) {\n      vi B = {A.begin()\
     \ + L, A.begin() + R};\n      sort(all(B));\n      auto Bc = cumsum(B);\n\n  \
     \    FOR(k, R - L + 1) { assert(Bc[k] == X.sum(L, R, k)); }\n    }\n  }\n}\n\n\
@@ -274,7 +274,7 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"other/random.hpp\"\n#include \"ds/waveletmatrix.hpp\"\
     \n\nvoid test() {\n  FOR(N, 1, 50) {\n    vi A(N);\n    FOR(i, N) A[i] = RNG(0,\
-    \ 10);\n    WaveletMatrix_Sum<ll, true, Group_Add<ll>> X(A);\n    FOR(L, N) FOR(R,\
+    \ 10);\n    WaveletMatrix<ll, true, Group_Add<ll>> X(A);\n    FOR(L, N) FOR(R,\
     \ L, N + 1) {\n      vi B = {A.begin() + L, A.begin() + R};\n      sort(all(B));\n\
     \      auto Bc = cumsum(B);\n\n      FOR(k, R - L + 1) { assert(Bc[k] == X.sum(L,\
     \ R, k)); }\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\
@@ -289,8 +289,8 @@ data:
   isVerificationFile: true
   path: test/mytest/wavelet_matrix_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-09-10 12:17:22+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-10 12:46:34+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/wavelet_matrix_sum.test.cpp
 layout: document
