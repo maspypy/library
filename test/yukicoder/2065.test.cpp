@@ -6,7 +6,7 @@
 void solve() {
   LL(N, Q);
   VEC(ll, A, N);
-  WaveletMatrix_Sum<ll, true, Group_Add<ll>> X(A);
+  WaveletMatrix<ll, true, Group_Add<ll>> X(A);
   FOR(Q) {
     LL(l, r, x);
     --l;
