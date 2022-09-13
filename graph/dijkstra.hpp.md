@@ -24,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1320.test.cpp
     title: test/yukicoder/1320.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1601.test.cpp
+    title: test/yukicoder/1601.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -120,6 +123,7 @@ data:
   timestamp: '2022-08-30 02:42:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1601.test.cpp
   - test/yukicoder/1320.test.cpp
   - test/library_checker/graph/shortest_path.test.cpp
   - test/aoj/2251_1.test.cpp

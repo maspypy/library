@@ -95,7 +95,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/rerooting_dp.hpp
     title: graph/rerooting_dp.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
   - icon: ':warning:'
@@ -310,6 +310,9 @@ data:
     path: test/yukicoder/1479.test.cpp
     title: test/yukicoder/1479.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1601.test.cpp
+    title: test/yukicoder/1601.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1641.test.cpp
     title: test/yukicoder/1641.test.cpp
   - icon: ':heavy_check_mark:'
@@ -492,6 +495,7 @@ data:
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1868.test.cpp
   - test/yukicoder/1718.test.cpp
+  - test/yukicoder/1601.test.cpp
   - test/yukicoder/1197.test.cpp
   - test/yukicoder/529.test.cpp
   - test/yukicoder/1479.test.cpp

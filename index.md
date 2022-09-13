@@ -559,7 +559,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/restore_path.hpp
       title: graph/restore_path.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/reverse_graph.hpp
       title: graph/reverse_graph.hpp
     - icon: ':warning:'
@@ -982,6 +982,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/enumerate_partitions.hpp
       title: seq/enumerate_partitions.hpp
+    - icon: ':warning:'
+      path: seq/enumerate_products.hpp
+      title: seq/enumerate_products.hpp
     - icon: ':heavy_check_mark:'
       path: seq/eulerian_number.hpp
       title: seq/eulerian_number.hpp
@@ -1969,6 +1972,9 @@ data:
       path: test/yukicoder/1593.test.cpp
       title: test/yukicoder/1593.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1601.test.cpp
+      title: test/yukicoder/1601.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1618.test.cpp
       title: test/yukicoder/1618.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1977,6 +1983,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1625_2.test.cpp
       title: test/yukicoder/1625_2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1634.test.cpp
+      title: test/yukicoder/1634.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1641.test.cpp
       title: test/yukicoder/1641.test.cpp
