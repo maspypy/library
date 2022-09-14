@@ -269,6 +269,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
+    - icon: ':heavy_check_mark:'
+      path: ds/hashset.hpp
+      title: ds/hashset.hpp
     - icon: ':x:'
       path: ds/intervals.hpp
       title: ds/intervals.hpp
@@ -1914,6 +1917,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1288.test.cpp
       title: test/yukicoder/1288.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1292.test.cpp
+      title: test/yukicoder/1292.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1293.test.cpp
       title: test/yukicoder/1293.test.cpp
