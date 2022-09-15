@@ -44,11 +44,12 @@ struct HashMapLL {
   }
 };
 
-template <typename KEY, typename VAL>
+template <typename KEY, typename VAL, int LOG>
 struct HashMap {
-  HashMapLL<VAL, 20> MP;
+  HashMapLL<VAL, LOG> MP;
   function<ll(KEY)> f;
   HashMap(function<ll(KEY)> f) : MP(), f(f) {}
+
   int index(const KEY& key) { return MP.index(f(key)); }
 
   VAL& operator[](const KEY& key) { return MP[f(key)]; }
