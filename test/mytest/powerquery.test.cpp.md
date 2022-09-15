@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/group_mul.hpp
     title: alg/group_mul.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/powerquery.hpp
     title: ds/powerquery.hpp
   - icon: ':question:'
@@ -16,14 +16,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/random.hpp
     title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -336,7 +336,7 @@ data:
   path: test/mytest/powerquery.test.cpp
   requiredBy: []
   timestamp: '2022-09-15 10:18:32+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/powerquery.test.cpp
 layout: document
