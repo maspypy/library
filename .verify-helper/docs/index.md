@@ -7,15 +7,17 @@
 <details>
     <summary>こういうライブラリまとめの作り方</summary>
     
-- online-judge-tools/verification-helper
-    - 公開テストケースをダウンロードして、出力が正しいかを判定してくれる
-    - Library Checker の問題だと特殊ジャッジも対応可
-    - Library Checker, yukicoder はかなり安定して使える
-    - AOJ の問題はときどき上手くダウンロードできないようだが割と使える
-    - AtCoder の問題は、dropbox (https://atcoder.jp/posts/20) にあれば割とできる？
-- [ドキュメント](https://github.com/online-judge-tools/verification-helper/blob/master/README.ja.md)を見て頑張る
-- ちょっと導入が難しかったけど、個人的には導入してめちゃくちゃ助っている
-- 困ったら聞いてもらえると分かる範囲で助けます（が、分かる範囲があまり大きくないです）
+<ul>
+    <li>「online-judge-tools/verification-helper」を使う。</li>
+    <li>公開テストケースをダウンロードして、出力が正しいかを判定してくれる</li>
+    <li>Library Checker の問題だと特殊ジャッジも対応可</li>
+    <li>Library Checker, yukicoder はかなり安定して使える</li>
+    <li>AOJ の問題はときどき上手くダウンロードできないようだが割と使える</li>
+    <li>AtCoder の問題は、dropbox (https://atcoder.jp/posts/20) にあれば割とできる？</li>
+</ul>
+
+https://github.com/online-judge-tools/verification-helper/blob/master/README.ja.md を見て頑張ります。
+困ったら聞いてもらえると分かる範囲で助けます（が、分かる範囲があまり大きくないです）
 </details>
 
 <details>
