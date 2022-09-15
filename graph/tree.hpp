@@ -126,7 +126,7 @@ struct TREE {
   // a is in b
   bool in_subtree(int a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b]; }
 
-  int jump(int a, int b, int k = 1) {
+  int jump(int a, int b, ll k = 1) {
     if (k == 1) {
       if (a == b) return -1;
       return (in_subtree(b, a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);
