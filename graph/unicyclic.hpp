@@ -1,11 +1,11 @@
-#include "graph/degree.hpp"
+#include "graph/base.hpp"
 
 struct UnicyclicGraph {
   int root;
   Graph<int, 1> tree;
   vc<int> TO;
-  vc<int> cycle; // 根に向かうような頂点列
-  vc<bool> in_cycle;
+  vc<int> cycle;     // 根に向かうような頂点列
+  vc<bool> in_cycle; // vertex id -> bool
 
   template <typename Graph>
   UnicyclicGraph(Graph& G) : tree(G.N) {
@@ -14,7 +14,7 @@ struct UnicyclicGraph {
     TO.assign(N, -1);
     vc<bool> done(N);
     vc<int> que;
-    auto deg = degree(G);
+    auto deg = G.deg_array();
     FOR(v, N) if (deg[v] == 1) que.eb(v);
     while (len(que)) {
       auto v = que.back();
@@ -49,7 +49,7 @@ struct UnicyclicGraph {
     cycle = {P.begin() + 1, P.end()};
     reverse(all(cycle));
     in_cycle.assign(N, false);
-    for(auto&& v : cycle) in_cycle[v] = 1;
+    for (auto&& v: cycle) in_cycle[v] = 1;
     FOR(v, N) if (v != root) tree.add(TO[v], v);
     tree.build();
   }
