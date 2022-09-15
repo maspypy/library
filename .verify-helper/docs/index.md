@@ -37,7 +37,8 @@
     <li>誤差ジャッジ：#define ERROR を指定するとできる</li>
     <li>「ココ」の文章：[.verify-helper/docs/index.md](https://github.com/maspypy/library/blob/main/.verify-helper/docs/index.md) に書く</li>
 </ul>
-    
+
+.
 </details>
 
 <details>
