@@ -15,6 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1301.test.cpp
     title: test/yukicoder/1301.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1676.test.cpp
+    title: test/yukicoder/1676.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1678.test.cpp
+    title: test/yukicoder/1678.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -259,6 +265,8 @@ data:
   verifiedWith:
   - test/yukicoder/1301.test.cpp
   - test/yukicoder/1288.test.cpp
+  - test/yukicoder/1678.test.cpp
+  - test/yukicoder/1676.test.cpp
   - test/library_checker/graph/assignment_mcf.test.cpp
   - test/aoj/GRL_6_B.test.cpp
 documentation_of: flow/mincostflow.hpp
