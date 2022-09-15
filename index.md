@@ -2159,9 +2159,9 @@ layout: toppage
 
 <ul>
     <li>一度なんか壊れたのでコピーして別レポジトリとして再生した。パソコンわからない。</li>
-    <li>workflow：oj の導入方法の解説に従った場合、不要なものまでいろいろインストールするが、結構減らせる。他の人の verify.yml を見ながら調整するとよい。
+    <li>workflow：oj の導入方法の解説に従った場合、不要なものまでいろいろインストールするが、結構減らせる。他の人の verify.yml を見ながら調整するとよい。</li>
     <li> https://github.com/maspypy/library/blob/main/.github/workflows/verify.yml</li>
-    <li>github の使い方：私も無知よりですが、add, commit, pull, push だけ使えるようになればあまり困らないっぽいです。
+    <li>github の使い方：私も無知よりですが、add, commit, pull, push だけ使えるようになればあまり困らないっぽいです。</li>
     <li>github actions による 自動verify：oj 側か github 側どちらの意図か知らないが、1 push あたり 10 分くらいで verify が止まる。empty commit を push するなどして続きを動かすようにしている。</li>
     <li> ~/.bashrc に alias empty_c='git commit --allow-empty -m "empty";git push' と書いている</li>
     <li>atcoder の dropbox 内のものを verify に使う場合には、define PROBLEM の URL 指定を適当にいじると上手くいくことがあるっぽい？</li>
