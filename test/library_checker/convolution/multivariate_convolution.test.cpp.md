@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/multivar_convolution.hpp
     title: poly/multivar_convolution.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/multivariate_convolution
@@ -298,9 +298,9 @@ data:
     \  x *= fact_inv<mint>(k);\n  return x;\n}\n\ntemplate <typename mint, bool large\
     \ = false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k\
     \ <= n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n\
-    \ - k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n} \u306E\u8A08\
-    \u7B97\ntemplate <typename mint, bool large = false, bool dense = false>\nmint\
-    \ C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
+    \ - k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\
+    \u8A08\u7B97\ntemplate <typename mint, bool large = false, bool dense = false>\n\
+    mint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
     \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
     \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
     \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 2 \"mod/mod_inv.hpp\"\
@@ -536,8 +536,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/convolution/multivariate_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-09-10 05:23:42+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-15 10:18:32+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/convolution/multivariate_convolution.test.cpp
 layout: document

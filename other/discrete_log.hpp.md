@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\ntemplate <typename Val, int LOG = 20>\r\
@@ -35,16 +35,16 @@ data:
     \ && keys[i] == key;\r\n  }\r\n\r\n  bool count(const ll& key) {\r\n    int i\
     \ = index(key);\r\n    return used[i] && keys[i] == key;\r\n  }\r\n\r\n  void\
     \ reset() {\r\n    for (auto&& i: IDS) used[i] = 0;\r\n    IDS.clear();\r\n  }\r\
-    \n};\r\n\r\ntemplate <typename KEY, typename VAL>\r\nstruct HashMap {\r\n  HashMapLL<VAL,\
-    \ 20> MP;\r\n  function<ll(KEY)> f;\r\n  HashMap(function<ll(KEY)> f) : MP(),\
-    \ f(f) {}\r\n  int index(const KEY& key) { return MP.index(f(key)); }\r\n\r\n\
-    \  VAL& operator[](const KEY& key) { return MP[f(key)]; }\r\n\r\n  bool contain(const\
-    \ KEY& key) { return MP.contain(f(key)); }\r\n\r\n  bool count(const KEY& key)\
-    \ { return MP.count(f(key)); }\r\n\r\n  void reset() { MP.reset(); }\r\n};\r\n\
-    #line 2 \"other/discrete_log.hpp\"\n// log_a b \u306E\u8A08\u7B97\r\n// \u30CF\
-    \u30C3\u30B7\u30E5\u95A2\u6570 H : X -> long long \u3092\u6301\u305F\u305B\u308B\
-    \r\n// [lb, ub) \u306E\u6700\u521D\u306E\u89E3\u3092\u304B\u3048\u3059\r\n// \u306A\
-    \u3051\u308C\u3070 -1\r\ntemplate <typename Group>\r\nll discrete_log(typename\
+    \n};\r\n\r\ntemplate <typename KEY, typename VAL, int LOG>\r\nstruct HashMap {\r\
+    \n  HashMapLL<VAL, LOG> MP;\r\n  function<ll(KEY)> f;\r\n  HashMap(function<ll(KEY)>\
+    \ f) : MP(), f(f) {}\r\n\r\n  int index(const KEY& key) { return MP.index(f(key));\
+    \ }\r\n\r\n  VAL& operator[](const KEY& key) { return MP[f(key)]; }\r\n\r\n  bool\
+    \ contain(const KEY& key) { return MP.contain(f(key)); }\r\n\r\n  bool count(const\
+    \ KEY& key) { return MP.count(f(key)); }\r\n\r\n  void reset() { MP.reset(); }\r\
+    \n};\r\n#line 2 \"other/discrete_log.hpp\"\n// log_a b \u306E\u8A08\u7B97\r\n\
+    // \u30CF\u30C3\u30B7\u30E5\u95A2\u6570 H : X -> long long \u3092\u6301\u305F\u305B\
+    \u308B\r\n// [lb, ub) \u306E\u6700\u521D\u306E\u89E3\u3092\u304B\u3048\u3059\r\
+    \n// \u306A\u3051\u308C\u3070 -1\r\ntemplate <typename Group>\r\nll discrete_log(typename\
     \ Group::X a, typename Group::X b,\r\n                function<ll(typename Group::X)>\
     \ H, ll lb, ll ub) {\r\n  using G = typename Group::X;\r\n  if (lb >= ub) return\
     \ -1;\r\n  {\r\n    ll n = lb;\r\n    G p = a;\r\n    G x = Group::unit();\r\n\
@@ -115,8 +115,8 @@ data:
   path: other/discrete_log.hpp
   requiredBy:
   - mod/mod_log.hpp
-  timestamp: '2022-06-05 16:37:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-09-15 10:18:06+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1339.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp

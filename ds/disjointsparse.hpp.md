@@ -30,12 +30,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2005.test.cpp
     title: test/yukicoder/2005.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/disjointsparse.hpp\"\n\r\ntemplate <class Monoid>\r\n\
@@ -99,7 +99,7 @@ data:
   - string/suffix_tree.hpp
   - string/suffixarray.hpp
   timestamp: '2022-08-18 20:33:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/2005.test.cpp
   - test/mytest/suffix_tree.test.cpp

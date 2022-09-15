@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_mul.hpp
     title: alg/group_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/discrete_log.hpp
     title: other/discrete_log.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\n\ntemplate <unsigned int mod>\nstruct\
@@ -101,9 +101,9 @@ data:
     \  x *= fact_inv<mint>(k);\n  return x;\n}\n\ntemplate <typename mint, bool large\
     \ = false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k\
     \ <= n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n\
-    \ - k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n} \u306E\u8A08\
-    \u7B97\ntemplate <typename mint, bool large = false, bool dense = false>\nmint\
-    \ C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
+    \ - k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\
+    \u8A08\u7B97\ntemplate <typename mint, bool large = false, bool dense = false>\n\
+    mint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
     \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
     \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
     \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 2 \"ds/hashmap.hpp\"\
@@ -122,16 +122,16 @@ data:
     \ && keys[i] == key;\r\n  }\r\n\r\n  bool count(const ll& key) {\r\n    int i\
     \ = index(key);\r\n    return used[i] && keys[i] == key;\r\n  }\r\n\r\n  void\
     \ reset() {\r\n    for (auto&& i: IDS) used[i] = 0;\r\n    IDS.clear();\r\n  }\r\
-    \n};\r\n\r\ntemplate <typename KEY, typename VAL>\r\nstruct HashMap {\r\n  HashMapLL<VAL,\
-    \ 20> MP;\r\n  function<ll(KEY)> f;\r\n  HashMap(function<ll(KEY)> f) : MP(),\
-    \ f(f) {}\r\n  int index(const KEY& key) { return MP.index(f(key)); }\r\n\r\n\
-    \  VAL& operator[](const KEY& key) { return MP[f(key)]; }\r\n\r\n  bool contain(const\
-    \ KEY& key) { return MP.contain(f(key)); }\r\n\r\n  bool count(const KEY& key)\
-    \ { return MP.count(f(key)); }\r\n\r\n  void reset() { MP.reset(); }\r\n};\r\n\
-    #line 2 \"other/discrete_log.hpp\"\n// log_a b \u306E\u8A08\u7B97\r\n// \u30CF\
-    \u30C3\u30B7\u30E5\u95A2\u6570 H : X -> long long \u3092\u6301\u305F\u305B\u308B\
-    \r\n// [lb, ub) \u306E\u6700\u521D\u306E\u89E3\u3092\u304B\u3048\u3059\r\n// \u306A\
-    \u3051\u308C\u3070 -1\r\ntemplate <typename Group>\r\nll discrete_log(typename\
+    \n};\r\n\r\ntemplate <typename KEY, typename VAL, int LOG>\r\nstruct HashMap {\r\
+    \n  HashMapLL<VAL, LOG> MP;\r\n  function<ll(KEY)> f;\r\n  HashMap(function<ll(KEY)>\
+    \ f) : MP(), f(f) {}\r\n\r\n  int index(const KEY& key) { return MP.index(f(key));\
+    \ }\r\n\r\n  VAL& operator[](const KEY& key) { return MP[f(key)]; }\r\n\r\n  bool\
+    \ contain(const KEY& key) { return MP.contain(f(key)); }\r\n\r\n  bool count(const\
+    \ KEY& key) { return MP.count(f(key)); }\r\n\r\n  void reset() { MP.reset(); }\r\
+    \n};\r\n#line 2 \"other/discrete_log.hpp\"\n// log_a b \u306E\u8A08\u7B97\r\n\
+    // \u30CF\u30C3\u30B7\u30E5\u95A2\u6570 H : X -> long long \u3092\u6301\u305F\u305B\
+    \u308B\r\n// [lb, ub) \u306E\u6700\u521D\u306E\u89E3\u3092\u304B\u3048\u3059\r\
+    \n// \u306A\u3051\u308C\u3070 -1\r\ntemplate <typename Group>\r\nll discrete_log(typename\
     \ Group::X a, typename Group::X b,\r\n                function<ll(typename Group::X)>\
     \ H, ll lb, ll ub) {\r\n  using G = typename Group::X;\r\n  if (lb >= ub) return\
     \ -1;\r\n  {\r\n    ll n = lb;\r\n    G p = a;\r\n    G x = Group::unit();\r\n\
@@ -194,8 +194,8 @@ data:
   isVerificationFile: false
   path: mod/mod_log.hpp
   requiredBy: []
-  timestamp: '2022-09-10 05:23:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-09-15 10:18:32+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
 documentation_of: mod/mod_log.hpp
