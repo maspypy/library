@@ -4,7 +4,9 @@
 - 他の人が使いやすい想定で作っていないので、使いにくい可能性が割とあります。
 - 例えば、単体でコピペしてもダメで、テンプレの一部を上手く拾ってこないと動かないはずです。
 
-## こういうライブラリまとめの作り方
+<details>
+    <summary>こういうライブラリまとめの作り方</summary>
+    
 - online-judge-tools/verification-helper
     - 公開テストケースをダウンロードして、出力が正しいかを判定してくれる
     - Library Checker の問題だと特殊ジャッジも対応可
@@ -14,8 +16,11 @@
 - [ドキュメント](https://github.com/online-judge-tools/verification-helper/blob/master/README.ja.md)を見て頑張る
 - ちょっと導入が難しかったけど、個人的には導入してめちゃくちゃ助っている
 - 困ったら聞いてもらえると分かる範囲で助けます（が、分かる範囲があまり大きくないです）
+</details>
 
-## 雑多なメモ
+<details>
+    <summary>雑多なメモ</summary>
+
 - 一度なんか壊れたのでコピーして別レポジトリとして再生した。パソコンわからない。
 - workflow：oj の導入方法の解説に従った場合、不要なものまでいろいろインストールする。
     - 結構減らせる。他の人の verify.yml を見ながら調整。
@@ -36,10 +41,14 @@
     - atcoder の問題を追加するたびにやる必要あり？
 - 誤差ジャッジ：#define ERROR を指定するとできる
 - 「ココ」の文章：[.verify-helper/docs/index.md](https://github.com/maspypy/library/blob/main/.verify-helper/docs/index.md) に書く
+</details>
 
-## 同じスタイルで整理された人のライブラリ（個人的によく参考にするやつもの抜粋）
+<details>
+    <summary>同じスタイルで整理された人のライブラリ（個人的によく参考にするやつもの抜粋）</summary>
+    
 - [Nyaan さん](https://nyaannyaan.github.io/library/)
 - [ei1333 さん](https://ei1333.github.io/library/)
 - [suisen さん](https://suisen-cp.github.io/cp-library-cpp/)
 - [hitonanode さん](https://hitonanode.github.io/cplib-cpp/)
 - [beet さん](https://beet-aizu.github.io/library/)
+</details>
