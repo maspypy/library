@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   - icon: ':heavy_check_mark:'
@@ -222,43 +222,43 @@ data:
     \   for (int i = 0; i < n; ++i) total = AbelGroup::op(total, v[i]);\n    dat =\
     \ v;\n    for (int i = 1; i <= n; ++i) {\n      int j = i + (i & -i);\n      if\
     \ (j <= n) dat[j - 1] = AbelGroup::op(dat[i - 1], dat[j - 1]);\n    }\n  }\n\n\
-    \  void reset(int sz) {\n    n = sz;\n    total = AbelGroup::unit();\n    dat.assign(n,\
-    \ AbelGroup::unit());\n  }\n\n  E prod(int k) {\n    E ret = AbelGroup::unit();\n\
-    \    for (; k > 0; k -= k & -k) ret = AbelGroup::op(ret, dat[k - 1]);\n    return\
-    \ ret;\n  }\n\n  E prod(int L, int R) {\n    E pos = AbelGroup::unit();\n    while\
-    \ (L < R) {\n      pos = AbelGroup::op(pos, dat[R - 1]);\n      R -= R & -R;\n\
-    \    }\n    E neg = AbelGroup::unit();\n    while (R < L) {\n      neg = AbelGroup::op(neg,\
-    \ dat[L - 1]);\n      L -= L & -L;\n    }\n    return AbelGroup::op(pos, AbelGroup::inverse(neg));\n\
-    \  }\n\n  E prod_all() { return total; }\n\n  E sum(int k) { return prod(k); }\n\
-    \n  E sum(int L, int R) { return prod(L, R); }\n\n  E sum_all() { return total;\
-    \ }\n\n  void multiply(int k, E x) {\n    total = AbelGroup::op(total, x);\n \
-    \   for (++k; k <= n; k += k & -k) dat[k - 1] = AbelGroup::op(dat[k - 1], x);\n\
-    \  }\n\n  void add(int k, E x) { multiply(k, x); }\n\n  template <class F>\n \
-    \ int max_right(F& check) {\n    assert(check(E(0)));\n    ll i = 0;\n    E s\
-    \ = AbelGroup::unit();\n    int k = 1;\n    int N = dat.size() + 1;\n    while\
-    \ (2 * k < N) k *= 2;\n    while (k) {\n      if (i + k < N && check(AbelGroup::op(s,\
-    \ dat[i + k - 1]))) {\n        i += k;\n        s = AbelGroup::op(s, dat[i - 1]);\n\
-    \      }\n      k >>= 1;\n    }\n    return i;\n  }\n\n  int find_kth(E k) {\n\
-    \    auto check = [&](E x) -> bool { return x <= k; };\n    return max_right(check);\n\
-    \  }\n\n  void debug() { print(\"fenwick\", dat); }\n};\n#line 1 \"ds/mo.hpp\"\
-    \nstruct Mo {\r\n  vector<pair<int, int> > lr;\r\n\r\n  void add(int l, int r)\
-    \ { /* [l, r) */\r\n    lr.emplace_back(l, r);\r\n  }\r\n\r\n  template <typename\
-    \ AL, typename AR, typename EL, typename ER, typename O>\r\n  void calc(const\
-    \ AL &add_left, const AR &add_right, const EL &erase_left,\r\n            const\
-    \ ER &erase_right, const O &query) {\r\n    int n = 1;\r\n    for (auto &&[l,\
-    \ r]: lr) chmax(n, r);\r\n    int q = (int)lr.size();\r\n    int bs = n / min<int>(n,\
-    \ sqrt(q));\r\n    vector<int> ord(q);\r\n    iota(begin(ord), end(ord), 0);\r\
-    \n    sort(begin(ord), end(ord), [&](int a, int b) {\r\n      int ablock = lr[a].first\
-    \ / bs, bblock = lr[b].first / bs;\r\n      if (ablock != bblock) return ablock\
-    \ < bblock;\r\n      return (ablock & 1) ? lr[a].second > lr[b].second\r\n   \
-    \                       : lr[a].second < lr[b].second;\r\n    });\r\n    int l\
-    \ = 0, r = 0;\r\n    for (auto idx: ord) {\r\n      while (l > lr[idx].first)\
-    \ add_left(--l);\r\n      while (r < lr[idx].second) add_right(r++);\r\n     \
-    \ while (l < lr[idx].first) erase_left(l++);\r\n      while (r > lr[idx].second)\
-    \ erase_right(--r);\r\n      query(idx);\r\n    }\r\n  }\r\n\r\n  template <typename\
-    \ A, typename E, typename O>\r\n  void calc(const A &add, const E &erase, const\
-    \ O &query) {\r\n    calc(add, add, erase, erase, query);\r\n  }\r\n};\n#line\
-    \ 7 \"test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp\"\
+    \  void reset(int sz = 0) {\n    if (sz) n = sz;\n    total = AbelGroup::unit();\n\
+    \    dat.assign(n, AbelGroup::unit());\n  }\n\n  E prod(int k) {\n    E ret =\
+    \ AbelGroup::unit();\n    for (; k > 0; k -= k & -k) ret = AbelGroup::op(ret,\
+    \ dat[k - 1]);\n    return ret;\n  }\n\n  E prod(int L, int R) {\n    E pos =\
+    \ AbelGroup::unit();\n    while (L < R) {\n      pos = AbelGroup::op(pos, dat[R\
+    \ - 1]);\n      R -= R & -R;\n    }\n    E neg = AbelGroup::unit();\n    while\
+    \ (R < L) {\n      neg = AbelGroup::op(neg, dat[L - 1]);\n      L -= L & -L;\n\
+    \    }\n    return AbelGroup::op(pos, AbelGroup::inverse(neg));\n  }\n\n  E prod_all()\
+    \ { return total; }\n\n  E sum(int k) { return prod(k); }\n\n  E sum(int L, int\
+    \ R) { return prod(L, R); }\n\n  E sum_all() { return total; }\n\n  void multiply(int\
+    \ k, E x) {\n    total = AbelGroup::op(total, x);\n    for (++k; k <= n; k +=\
+    \ k & -k) dat[k - 1] = AbelGroup::op(dat[k - 1], x);\n  }\n\n  void add(int k,\
+    \ E x) { multiply(k, x); }\n\n  template <class F>\n  int max_right(F& check)\
+    \ {\n    assert(check(E(0)));\n    ll i = 0;\n    E s = AbelGroup::unit();\n \
+    \   int k = 1;\n    int N = dat.size() + 1;\n    while (2 * k < N) k *= 2;\n \
+    \   while (k) {\n      if (i + k < N && check(AbelGroup::op(s, dat[i + k - 1])))\
+    \ {\n        i += k;\n        s = AbelGroup::op(s, dat[i - 1]);\n      }\n   \
+    \   k >>= 1;\n    }\n    return i;\n  }\n\n  int find_kth(E k) {\n    auto check\
+    \ = [&](E x) -> bool { return x <= k; };\n    return max_right(check);\n  }\n\n\
+    \  void debug() { print(\"fenwick\", dat); }\n};\n#line 1 \"ds/mo.hpp\"\nstruct\
+    \ Mo {\r\n  vector<pair<int, int> > lr;\r\n\r\n  void add(int l, int r) { /* [l,\
+    \ r) */\r\n    lr.emplace_back(l, r);\r\n  }\r\n\r\n  template <typename AL, typename\
+    \ AR, typename EL, typename ER, typename O>\r\n  void calc(const AL &add_left,\
+    \ const AR &add_right, const EL &erase_left,\r\n            const ER &erase_right,\
+    \ const O &query) {\r\n    int n = 1;\r\n    for (auto &&[l, r]: lr) chmax(n,\
+    \ r);\r\n    int q = (int)lr.size();\r\n    int bs = n / min<int>(n, sqrt(q));\r\
+    \n    vector<int> ord(q);\r\n    iota(begin(ord), end(ord), 0);\r\n    sort(begin(ord),\
+    \ end(ord), [&](int a, int b) {\r\n      int ablock = lr[a].first / bs, bblock\
+    \ = lr[b].first / bs;\r\n      if (ablock != bblock) return ablock < bblock;\r\
+    \n      return (ablock & 1) ? lr[a].second > lr[b].second\r\n                \
+    \          : lr[a].second < lr[b].second;\r\n    });\r\n    int l = 0, r = 0;\r\
+    \n    for (auto idx: ord) {\r\n      while (l > lr[idx].first) add_left(--l);\r\
+    \n      while (r < lr[idx].second) add_right(r++);\r\n      while (l < lr[idx].first)\
+    \ erase_left(l++);\r\n      while (r > lr[idx].second) erase_right(--r);\r\n \
+    \     query(idx);\r\n    }\r\n  }\r\n\r\n  template <typename A, typename E, typename\
+    \ O>\r\n  void calc(const A &add, const E &erase, const O &query) {\r\n    calc(add,\
+    \ add, erase, erase, query);\r\n  }\r\n};\n#line 7 \"test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  vi key = A;\r\n \
     \ UNIQUE(key);\r\n\r\n  for (auto&& x: A) x = LB(key, x);\r\n  ll K = len(key);\r\
     \n  FenwickTree<Group_Add<int>> bit(K);\r\n\r\n  Mo mo;\r\n  vi ANS(Q);\r\n  FOR(Q)\
@@ -299,7 +299,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
   requiredBy: []
-  timestamp: '2022-09-09 19:01:18+09:00'
+  timestamp: '2022-09-17 08:14:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
