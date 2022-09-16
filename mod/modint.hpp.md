@@ -358,6 +358,9 @@ data:
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1260.test.cpp
+    title: test/yukicoder/1260.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1269.test.cpp
     title: test/yukicoder/1269.test.cpp
   - icon: ':heavy_check_mark:'
@@ -662,6 +665,7 @@ data:
   - test/yukicoder/749.test.cpp
   - test/yukicoder/1500.test.cpp
   - test/yukicoder/426.test.cpp
+  - test/yukicoder/1260.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/conv_leq.test.cpp
