@@ -28,8 +28,8 @@ struct FenwickTree {
     }
   }
 
-  void reset(int sz) {
-    n = sz;
+  void reset(int sz = 0) {
+    if (sz) n = sz;
     total = AbelGroup::unit();
     dat.assign(n, AbelGroup::unit());
   }
