@@ -62,7 +62,7 @@ data:
   - icon: ':warning:'
     path: graph/find_nontransitive_triple.hpp
     title: graph/find_nontransitive_triple.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/functional.hpp
     title: graph/functional.hpp
   - icon: ':heavy_check_mark:'
@@ -125,7 +125,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_dp.hpp
     title: graph/tree_dp.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
   - icon: ':heavy_check_mark:'
@@ -298,6 +298,9 @@ data:
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1242.test.cpp
+    title: test/yukicoder/1242.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1254.test.cpp
     title: test/yukicoder/1254.test.cpp
   - icon: ':heavy_check_mark:'
@@ -315,6 +318,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1418.test.cpp
     title: test/yukicoder/1418.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1451.test.cpp
+    title: test/yukicoder/1451.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1479.test.cpp
     title: test/yukicoder/1479.test.cpp
@@ -511,11 +517,13 @@ data:
   - test/yukicoder/529.test.cpp
   - test/yukicoder/1479.test.cpp
   - test/yukicoder/1293.test.cpp
+  - test/yukicoder/1242.test.cpp
   - test/yukicoder/1641.test.cpp
   - test/yukicoder/1778.test.cpp
   - test/yukicoder/1326.test.cpp
   - test/yukicoder/17.test.cpp
   - test/yukicoder/114.test.cpp
+  - test/yukicoder/1451.test.cpp
   - test/yukicoder/1170.test.cpp
   - test/yukicoder/1344.test.cpp
   - test/yukicoder/1320.test.cpp

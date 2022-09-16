@@ -1,17 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yukicoder/1451.test.cpp
+    title: test/yukicoder/1451.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -74,8 +77,8 @@ data:
     \u7BC9\u3059\u308B\r\nq \u56DE\u76EE\u306B\u30DE\u30FC\u30B8\u3057\u3066\u3067\
     \u304D\u308B\u6210\u5206\uFF1AN+q\r\nadd_root = true \u306E\u5834\u5408\uFF1A\u6700\
     \u5F8C\u306B\u5168\u90E8\u3092\u30DE\u30FC\u30B8\u3057\u3066\u3001\u6839 N+Q \u3092\
-    \u8FFD\u52A0\u3059\u308B\r\n*/\r\nGraph<int> tree_of_unionfind(int N, vc<pair<int,\
-    \ int>> query, bool add_root) {\r\n  UnionFind uf(N + len(query));\r\n  vc<int>\
+    \u8FFD\u52A0\u3059\u308B\r\n*/\r\ntemplate <typename P>\r\nGraph<int> tree_of_unionfind(int\
+    \ N, vc<P> query, bool add_root) {\r\n  UnionFind uf(N + len(query));\r\n  vc<int>\
     \ root(N);\r\n  iota(all(root), 0);\r\n  int Q = len(query);\r\n  Graph<int> G(N\
     \ + Q + add_root);\r\n  FOR(q, Q) {\r\n    int v = N + q;\r\n    auto [a, b] =\
     \ query[q];\r\n    a = uf[a], b = uf[b];\r\n    G.add(v, root[a]);\r\n    if (b\
@@ -88,23 +91,25 @@ data:
     \u308B\r\nq \u56DE\u76EE\u306B\u30DE\u30FC\u30B8\u3057\u3066\u3067\u304D\u308B\
     \u6210\u5206\uFF1AN+q\r\nadd_root = true \u306E\u5834\u5408\uFF1A\u6700\u5F8C\u306B\
     \u5168\u90E8\u3092\u30DE\u30FC\u30B8\u3057\u3066\u3001\u6839 N+Q \u3092\u8FFD\u52A0\
-    \u3059\u308B\r\n*/\r\nGraph<int> tree_of_unionfind(int N, vc<pair<int, int>> query,\
-    \ bool add_root) {\r\n  UnionFind uf(N + len(query));\r\n  vc<int> root(N);\r\n\
-    \  iota(all(root), 0);\r\n  int Q = len(query);\r\n  Graph<int> G(N + Q + add_root);\r\
-    \n  FOR(q, Q) {\r\n    int v = N + q;\r\n    auto [a, b] = query[q];\r\n    a\
-    \ = uf[a], b = uf[b];\r\n    G.add(v, root[a]);\r\n    if (b != a) G.add(v, root[b]);\r\
-    \n    uf.merge(a, b);\r\n    uf.merge(b, v);\r\n    root[uf[v]] = v;\r\n  }\r\n\
-    \  if (add_root) {\r\n    int r = N + Q;\r\n    FOR(v, N) if (uf[v] == v) G.add(r,\
-    \ root[v]);\r\n  }\r\n  G.build();\r\n  return G;\r\n}"
+    \u3059\u308B\r\n*/\r\ntemplate <typename P>\r\nGraph<int> tree_of_unionfind(int\
+    \ N, vc<P> query, bool add_root) {\r\n  UnionFind uf(N + len(query));\r\n  vc<int>\
+    \ root(N);\r\n  iota(all(root), 0);\r\n  int Q = len(query);\r\n  Graph<int> G(N\
+    \ + Q + add_root);\r\n  FOR(q, Q) {\r\n    int v = N + q;\r\n    auto [a, b] =\
+    \ query[q];\r\n    a = uf[a], b = uf[b];\r\n    G.add(v, root[a]);\r\n    if (b\
+    \ != a) G.add(v, root[b]);\r\n    uf.merge(a, b);\r\n    uf.merge(b, v);\r\n \
+    \   root[uf[v]] = v;\r\n  }\r\n  if (add_root) {\r\n    int r = N + Q;\r\n   \
+    \ FOR(v, N) if (uf[v] == v) G.add(r, root[v]);\r\n  }\r\n  G.build();\r\n  return\
+    \ G;\r\n}"
   dependsOn:
   - graph/base.hpp
   - ds/unionfind.hpp
   isVerificationFile: false
   path: graph/tree_of_unionfind.hpp
   requiredBy: []
-  timestamp: '2022-08-30 02:42:36+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-09-16 08:56:01+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yukicoder/1451.test.cpp
 documentation_of: graph/tree_of_unionfind.hpp
 layout: document
 redirect_from:

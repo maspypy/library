@@ -15,6 +15,9 @@ data:
     path: graph/dualtreemonoid.hpp
     title: graph/dualtreemonoid.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/functional.hpp
+    title: graph/functional.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
   - icon: ':heavy_check_mark:'
@@ -103,11 +106,17 @@ data:
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1242.test.cpp
+    title: test/yukicoder/1242.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1326.test.cpp
     title: test/yukicoder/1326.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1418.test.cpp
     title: test/yukicoder/1418.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1451.test.cpp
+    title: test/yukicoder/1451.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1641.test.cpp
     title: test/yukicoder/1641.test.cpp
@@ -219,8 +228,8 @@ data:
     \   assert(weighted);\r\n    int c = LCA(a, b);\r\n    return depth_weighted[a]\
     \ + depth_weighted[b] - 2 * depth_weighted[c];\r\n  }\r\n\r\n  // a is in b\r\n\
     \  bool in_subtree(int a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b];\
-    \ }\r\n\r\n  int jump(int a, int b, int k = 1) {\r\n    if (k == 1) {\r\n    \
-    \  if (a == b) return -1;\r\n      return (in_subtree(b, a) ? LA(b, depth[b] -\
+    \ }\r\n\r\n  int jump(int a, int b, ll k = 1) {\r\n    if (k == 1) {\r\n     \
+    \ if (a == b) return -1;\r\n      return (in_subtree(b, a) ? LA(b, depth[b] -\
     \ depth[a] - 1) : parent[a]);\r\n    }\r\n    int c = LCA(a, b);\r\n    int d_ac\
     \ = depth[a] - depth[c];\r\n    int d_bc = depth[b] - depth[c];\r\n    if (k >\
     \ d_ac + d_bc) return -1;\r\n    if (k <= d_ac) return LA(a, k);\r\n    return\
@@ -285,8 +294,8 @@ data:
     \   assert(weighted);\r\n    int c = LCA(a, b);\r\n    return depth_weighted[a]\
     \ + depth_weighted[b] - 2 * depth_weighted[c];\r\n  }\r\n\r\n  // a is in b\r\n\
     \  bool in_subtree(int a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b];\
-    \ }\r\n\r\n  int jump(int a, int b, int k = 1) {\r\n    if (k == 1) {\r\n    \
-    \  if (a == b) return -1;\r\n      return (in_subtree(b, a) ? LA(b, depth[b] -\
+    \ }\r\n\r\n  int jump(int a, int b, ll k = 1) {\r\n    if (k == 1) {\r\n     \
+    \ if (a == b) return -1;\r\n      return (in_subtree(b, a) ? LA(b, depth[b] -\
     \ depth[a] - 1) : parent[a]);\r\n    }\r\n    int c = LCA(a, b);\r\n    int d_ac\
     \ = depth[a] - depth[c];\r\n    int d_bc = depth[b] - depth[c];\r\n    if (k >\
     \ d_ac + d_bc) return -1;\r\n    if (k <= d_ac) return LA(a, k);\r\n    return\
@@ -321,9 +330,10 @@ data:
   - graph/rerooting_dp.hpp
   - graph/treeabelgroup.hpp
   - graph/treemonoid.hpp
+  - graph/functional.hpp
   - graph/treegroup.hpp
   - graph/tree_dp.hpp
-  timestamp: '2022-09-03 12:29:36+09:00'
+  timestamp: '2022-09-16 08:56:09+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1418.test.cpp
@@ -331,9 +341,11 @@ data:
   - test/yukicoder/1718.test.cpp
   - test/yukicoder/1197.test.cpp
   - test/yukicoder/529.test.cpp
+  - test/yukicoder/1242.test.cpp
   - test/yukicoder/1641.test.cpp
   - test/yukicoder/1778.test.cpp
   - test/yukicoder/1326.test.cpp
+  - test/yukicoder/1451.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp
   - test/library_checker/tree/lca.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp

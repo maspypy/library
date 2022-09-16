@@ -338,8 +338,8 @@ data:
     \   assert(weighted);\r\n    int c = LCA(a, b);\r\n    return depth_weighted[a]\
     \ + depth_weighted[b] - 2 * depth_weighted[c];\r\n  }\r\n\r\n  // a is in b\r\n\
     \  bool in_subtree(int a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b];\
-    \ }\r\n\r\n  int jump(int a, int b, int k = 1) {\r\n    if (k == 1) {\r\n    \
-    \  if (a == b) return -1;\r\n      return (in_subtree(b, a) ? LA(b, depth[b] -\
+    \ }\r\n\r\n  int jump(int a, int b, ll k = 1) {\r\n    if (k == 1) {\r\n     \
+    \ if (a == b) return -1;\r\n      return (in_subtree(b, a) ? LA(b, depth[b] -\
     \ depth[a] - 1) : parent[a]);\r\n    }\r\n    int c = LCA(a, b);\r\n    int d_ac\
     \ = depth[a] - depth[c];\r\n    int d_bc = depth[b] - depth[c];\r\n    if (k >\
     \ d_ac + d_bc) return -1;\r\n    if (k <= d_ac) return LA(a, k);\r\n    return\
@@ -418,7 +418,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   requiredBy: []
-  timestamp: '2022-09-09 19:01:18+09:00'
+  timestamp: '2022-09-16 08:56:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
