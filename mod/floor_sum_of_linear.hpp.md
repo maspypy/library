@@ -21,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_freq_of_linear.test.cpp
     title: test/mytest/range_freq_of_linear.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2066.test.cpp
+    title: test/yukicoder/2066.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -47,6 +50,7 @@ data:
   timestamp: '2022-07-22 22:14:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/2066.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
   - test/library_checker/math/sum_of_floor_of_linear.test.cpp

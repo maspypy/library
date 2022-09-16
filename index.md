@@ -844,7 +844,7 @@ data:
     - icon: ':x:'
       path: other/transpose.hpp
       title: other/transpose.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: other/xor_range.hpp
       title: other/xor_range.hpp
   - name: pds
@@ -1915,6 +1915,9 @@ data:
       path: test/yukicoder/1234.test.cpp
       title: test/yukicoder/1234.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1240.test.cpp
+      title: test/yukicoder/1240.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1242.test.cpp
       title: test/yukicoder/1242.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2082,6 +2085,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/2065.test.cpp
       title: test/yukicoder/2065.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/2066.test.cpp
+      title: test/yukicoder/2066.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/235.test.cpp
       title: test/yukicoder/235.test.cpp
