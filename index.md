@@ -350,7 +350,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/swag.hpp
       title: ds/swag.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/unionfind.hpp
       title: ds/unionfind.hpp
     - icon: ':x:'
@@ -841,6 +841,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/subset_sum_count.hpp
       title: other/subset_sum_count.hpp
+    - icon: ':x:'
+      path: other/transpose.hpp
+      title: other/transpose.hpp
     - icon: ':warning:'
       path: other/xor_range.hpp
       title: other/xor_range.hpp
@@ -1956,6 +1959,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1418.test.cpp
       title: test/yukicoder/1418.test.cpp
+    - icon: ':x:'
+      path: test/yukicoder/1434.test.cpp
+      title: test/yukicoder/1434.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1435.test.cpp
       title: test/yukicoder/1435.test.cpp
