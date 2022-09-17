@@ -1,4 +1,6 @@
 #include "nt/factor.hpp"
+
+// 約数をソートせずにかえす
 vc<ll> divisors(ll N) {
   auto pf = factor(N);
   vi div = {1};
