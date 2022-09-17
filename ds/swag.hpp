@@ -1,13 +1,58 @@
-
-template <class Monoid, bool DEQUE>
+template <class Monoid>
 struct SWAG {
+  using X = typename Monoid::value_type;
+  using value_type = X;
+  int sz = 0;
+  vc<X> dat;
+  vc<X> cum_l;
+  X cum_r;
+
+  SWAG() : cum_l({Monoid::unit()}), cum_r(Monoid::unit()) {}
+
+  int size() { return sz; }
+
+  void push(X x) {
+    ++sz;
+    cum_r = Monoid::op(cum_r, x);
+    dat.eb(x);
+  }
+
+  void pop() {
+    --sz;
+    cum_l.pop_back();
+    if (len(cum_l) == 0) {
+      cum_l = {Monoid::unit()};
+      cum_r = Monoid::unit();
+      while (len(dat) > 1) {
+        cum_l.eb(Monoid::op(dat.back(), cum_l.back()));
+        dat.pop_back();
+      }
+      dat.pop_back();
+    }
+  }
+
+  X lprod() { return cum_l.back(); }
+  X rprod() { return cum_r; }
+
+  X prod() { return Monoid::op(cum_l.back(), cum_r); }
+
+  void debug() {
+    print("swag");
+    print("dat", dat);
+    print("cum_l", cum_l);
+    print("cum_r", cum_r);
+  }
+};
+
+template <class Monoid>
+struct SWAG_deque {
   using X = typename Monoid::value_type;
   using value_type = X;
   int sz;
   vc<X> dat_l, dat_r;
   vc<X> cum_l, cum_r;
 
-  SWAG() : sz(0), cum_l({Monoid::unit()}), cum_r({Monoid::unit()}) {}
+  SWAG_deque() : sz(0), cum_l({Monoid::unit()}), cum_r({Monoid::unit()}) {}
 
   int size() { return sz; }
 
@@ -49,17 +94,6 @@ struct SWAG {
 
   void pop() { pop_front(); }
 
-  void rebuild() {
-    vc<X> X;
-    FOR_R(i, len(dat_l)) X.eb(dat_l[i]);
-    X.insert(X.end(), all(dat_r));
-    clear();
-    int m = (DEQUE ? len(X) / 2 : len(X));
-    FOR_R(i, m) push_front(X[i]);
-    FOR(i, m, len(X)) push_back(X[i]);
-    assert(sz == len(X));
-  }
-
   X lprod() { return cum_l.back(); }
   X rprod() { return cum_r.back(); }
   X prod() { return Monoid::op(cum_l.back(), cum_r.back()); }
@@ -71,5 +105,17 @@ struct SWAG {
     print("dat_r", dat_r);
     print("cum_l", cum_l);
     print("cum_r", cum_r);
+  }
+
+private:
+  void rebuild() {
+    vc<X> X;
+    FOR_R(i, len(dat_l)) X.eb(dat_l[i]);
+    X.insert(X.end(), all(dat_r));
+    clear();
+    int m = len(X) / 2;
+    FOR_R(i, m) push_front(X[i]);
+    FOR(i, m, len(X)) push_back(X[i]);
+    assert(sz == len(X));
   }
 };
