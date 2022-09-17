@@ -8,7 +8,7 @@ struct FenwickTree {
   vector<E> dat;
   E total;
 
-  FenwickTree(int n = 0) {
+  FenwickTree(int n = 0) : n(n) {
     assert(AbelGroup::commute);
     reset(n);
   }
