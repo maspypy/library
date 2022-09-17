@@ -71,15 +71,17 @@ data:
     \   pf.eb(p, e);\n  }\n  sort(all(pf));\n  return pf;\n}\n\n\nvc<pi> factor_by_lpf(ll\
     \ n, vc<int>& lpf) {\n  vc<pi> res;\n  while(n > 1){\n    int p = lpf[n];\n  \
     \  int e = 0;\n    while(n % p == 0){\n      n /= p;\n      ++e;\n    }\n    res.eb(p,\
-    \ e);\n  }\n  return res;\n}\n#line 2 \"nt/divisors.hpp\"\nvc<ll> divisors(ll\
+    \ e);\n  }\n  return res;\n}\n#line 2 \"nt/divisors.hpp\"\n\r\n// \u7D04\u6570\
+    \u3092\u30BD\u30FC\u30C8\u305B\u305A\u306B\u304B\u3048\u3059\r\nvc<ll> divisors(ll\
     \ N) {\r\n  auto pf = factor(N);\r\n  vi div = {1};\r\n  for (auto&& [p, e]: pf)\
     \ {\r\n    ll n = len(div);\r\n    ll pp = 1;\r\n    FOR3(i, 1, e + 1) {\r\n \
     \     pp *= p;\r\n      FOR(j, n) div.eb(div[j] * pp);\r\n    }\r\n  }\r\n  return\
     \ div;\r\n}\n"
-  code: "#include \"nt/factor.hpp\"\r\nvc<ll> divisors(ll N) {\r\n  auto pf = factor(N);\r\
-    \n  vi div = {1};\r\n  for (auto&& [p, e]: pf) {\r\n    ll n = len(div);\r\n \
-    \   ll pp = 1;\r\n    FOR3(i, 1, e + 1) {\r\n      pp *= p;\r\n      FOR(j, n)\
-    \ div.eb(div[j] * pp);\r\n    }\r\n  }\r\n  return div;\r\n}"
+  code: "#include \"nt/factor.hpp\"\r\n\r\n// \u7D04\u6570\u3092\u30BD\u30FC\u30C8\
+    \u305B\u305A\u306B\u304B\u3048\u3059\r\nvc<ll> divisors(ll N) {\r\n  auto pf =\
+    \ factor(N);\r\n  vi div = {1};\r\n  for (auto&& [p, e]: pf) {\r\n    ll n = len(div);\r\
+    \n    ll pp = 1;\r\n    FOR3(i, 1, e + 1) {\r\n      pp *= p;\r\n      FOR(j,\
+    \ n) div.eb(div[j] * pp);\r\n    }\r\n  }\r\n  return div;\r\n}"
   dependsOn:
   - nt/factor.hpp
   - nt/primetest.hpp
@@ -87,7 +89,7 @@ data:
   path: nt/divisors.hpp
   requiredBy:
   - nt/zeta_on_divisors.hpp
-  timestamp: '2022-07-11 19:57:26+09:00'
+  timestamp: '2022-09-18 00:47:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ITP1_D_D.test.cpp
