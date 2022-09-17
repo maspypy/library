@@ -44,6 +44,7 @@ struct SWAG {
   }
 };
 
+// 定数倍は目に見えて遅くなるので、queue でよいときは使わない
 template <class Monoid>
 struct SWAG_deque {
   using X = typename Monoid::value_type;
