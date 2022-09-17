@@ -20,13 +20,13 @@ data:
   - icon: ':warning:'
     path: graph/bipartite_coloring.hpp
     title: graph/bipartite_coloring.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
   - icon: ':heavy_check_mark:'
     path: graph/bracket_graph.hpp
     title: graph/bracket_graph.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/centroid.hpp
     title: graph/centroid.hpp
   - icon: ':heavy_check_mark:'
@@ -128,7 +128,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/treeabelgroup.hpp
     title: graph/treeabelgroup.hpp
   - icon: ':heavy_check_mark:'
@@ -198,7 +198,7 @@ data:
   - icon: ':x:'
     path: test/atcoder/abc266f.test.cpp
     title: test/atcoder/abc266f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - icon: ':heavy_check_mark:'
@@ -258,7 +258,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/two_edge_component.test.cpp
     title: test/library_checker/graph/two_edge_component.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -285,7 +285,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1002.test.cpp
     title: test/yukicoder/1002.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
   - icon: ':heavy_check_mark:'
@@ -309,7 +309,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1320.test.cpp
     title: test/yukicoder/1320.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1326.test.cpp
     title: test/yukicoder/1326.test.cpp
   - icon: ':heavy_check_mark:'
@@ -327,7 +327,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1601.test.cpp
     title: test/yukicoder/1601.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1641.test.cpp
     title: test/yukicoder/1641.test.cpp
   - icon: ':heavy_check_mark:'

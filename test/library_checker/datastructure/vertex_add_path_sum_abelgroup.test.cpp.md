@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   - icon: ':question:'
@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/treeabelgroup.hpp
     title: graph/treeabelgroup.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_path_sum
@@ -222,7 +222,7 @@ data:
     \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"ds/fenwick.hpp\"\
     \n\ntemplate <typename AbelGroup>\nstruct FenwickTree {\n  using E = typename\
     \ AbelGroup::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree(int\
-    \ n = 0) {\n    assert(AbelGroup::commute);\n    reset(n);\n  }\n  FenwickTree(const\
+    \ n = 0) : n(n) {\n    assert(AbelGroup::commute);\n    reset(n);\n  }\n  FenwickTree(const\
     \ vector<E>& v) {\n    assert(AbelGroup::commute);\n    build(v);\n  }\n\n  void\
     \ build(const vc<E>& v) {\n    n = len(v);\n    total = AbelGroup::unit();\n \
     \   for (int i = 0; i < n; ++i) total = AbelGroup::op(total, v[i]);\n    dat =\
@@ -419,8 +419,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   requiredBy: []
-  timestamp: '2022-09-17 08:14:51+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-17 09:15:44+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
 layout: document

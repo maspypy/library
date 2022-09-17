@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   _extendedRequiredBy: []
@@ -28,7 +28,7 @@ data:
     \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"ds/fenwick.hpp\"\
     \n\ntemplate <typename AbelGroup>\nstruct FenwickTree {\n  using E = typename\
     \ AbelGroup::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree(int\
-    \ n = 0) {\n    assert(AbelGroup::commute);\n    reset(n);\n  }\n  FenwickTree(const\
+    \ n = 0) : n(n) {\n    assert(AbelGroup::commute);\n    reset(n);\n  }\n  FenwickTree(const\
     \ vector<E>& v) {\n    assert(AbelGroup::commute);\n    build(v);\n  }\n\n  void\
     \ build(const vc<E>& v) {\n    n = len(v);\n    total = AbelGroup::unit();\n \
     \   for (int i = 0; i < n; ++i) total = AbelGroup::op(total, v[i]);\n    dat =\
@@ -68,7 +68,7 @@ data:
   isVerificationFile: false
   path: dp/inversion.hpp
   requiredBy: []
-  timestamp: '2022-09-17 08:14:51+09:00'
+  timestamp: '2022-09-17 09:15:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_5.test.cpp

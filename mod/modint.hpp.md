@@ -348,7 +348,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/prime_sum.test.cpp
     title: test/mytest/prime_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
   - icon: ':heavy_check_mark:'

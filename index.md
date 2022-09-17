@@ -24,7 +24,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/group_reverse.hpp
       title: alg/group_reverse.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/group_xor.hpp
       title: alg/group_xor.hpp
     - icon: ':warning:'
@@ -254,7 +254,7 @@ data:
     - icon: ':question:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwick.hpp
       title: ds/fenwick.hpp
     - icon: ':question:'
@@ -305,13 +305,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/parallel_binary_search.hpp
       title: ds/parallel_binary_search.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/pbds.hpp
       title: ds/pbds.hpp
     - icon: ':warning:'
       path: ds/point_add_polygon_sum.hpp
       title: ds/point_add_polygon_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/point_add_rectangle_sum.hpp
       title: ds/point_add_rectangle_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -323,10 +323,10 @@ data:
     - icon: ':warning:'
       path: ds/range_xor_basis_query.hpp
       title: ds/range_xor_basis_query.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/rectangle_add_point_sum.hpp
       title: ds/rectangle_add_point_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/rectangle_add_ractangle_sum.hpp
       title: ds/rectangle_add_ractangle_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -356,7 +356,7 @@ data:
     - icon: ':x:'
       path: ds/uniqueproductquery.hpp
       title: ds/uniqueproductquery.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/waveletmatrix.hpp
       title: ds/waveletmatrix.hpp
     - icon: ':heavy_check_mark:'
@@ -457,13 +457,13 @@ data:
     - icon: ':warning:'
       path: graph/bipartite_coloring.hpp
       title: graph/bipartite_coloring.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/block_cut.hpp
       title: graph/block_cut.hpp
     - icon: ':heavy_check_mark:'
       path: graph/bracket_graph.hpp
       title: graph/bracket_graph.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/centroid.hpp
       title: graph/centroid.hpp
     - icon: ':heavy_check_mark:'
@@ -478,7 +478,7 @@ data:
     - icon: ':warning:'
       path: graph/compress_tree.hpp
       title: graph/compress_tree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/contoursum.hpp
       title: graph/contoursum.hpp
     - icon: ':heavy_check_mark:'
@@ -598,7 +598,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tree_of_unionfind.hpp
       title: graph/tree_of_unionfind.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/treeabelgroup.hpp
       title: graph/treeabelgroup.hpp
     - icon: ':heavy_check_mark:'
@@ -740,7 +740,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/euler_phi.hpp
       title: nt/euler_phi.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/extgcd.hpp
       title: nt/extgcd.hpp
     - icon: ':heavy_check_mark:'
@@ -826,13 +826,13 @@ data:
     - icon: ':warning:'
       path: other/knight_distance.hpp
       title: other/knight_distance.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: other/kth_next_permutation.hpp
       title: other/kth_next_permutation.hpp
     - icon: ':warning:'
       path: other/kth_root_permutation.hpp
       title: other/kth_root_permutation.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/random.hpp
       title: other/random.hpp
     - icon: ':x:'
@@ -1483,7 +1483,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/unionfind.test.cpp
       title: test/library_checker/datastructure/unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
       title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1565,7 +1565,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/two_edge_component.test.cpp
       title: test/library_checker/graph/two_edge_component.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/verted_add_contour_sum.test.cpp
       title: test/library_checker/graph/verted_add_contour_sum.test.cpp
   - name: test/library_checker/math
@@ -1855,7 +1855,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/range_mex.test.cpp
       title: test/mytest/range_mex.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/rect_add_pt_sum.test.cpp
       title: test/mytest/rect_add_pt_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1881,7 +1881,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1036_3.test.cpp
       title: test/yukicoder/1036_3.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1038.test.cpp
       title: test/yukicoder/1038.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1941,7 +1941,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1301.test.cpp
       title: test/yukicoder/1301.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1311.test.cpp
       title: test/yukicoder/1311.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1950,7 +1950,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1321.test.cpp
       title: test/yukicoder/1321.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1326.test.cpp
       title: test/yukicoder/1326.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1983,7 +1983,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1479.test.cpp
       title: test/yukicoder/1479.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1490.test.cpp
       title: test/yukicoder/1490.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2013,7 +2013,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1634.test.cpp
       title: test/yukicoder/1634.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1641.test.cpp
       title: test/yukicoder/1641.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2076,7 +2076,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1919.test.cpp
       title: test/yukicoder/1919.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1936.test.cpp
       title: test/yukicoder/1936.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2148,7 +2148,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/919.test.cpp
       title: test/yukicoder/919.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/924.test.cpp
       title: test/yukicoder/924.test.cpp
 layout: toppage
