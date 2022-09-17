@@ -1,5 +1,5 @@
 
-template <class Monoid>
+template <class Monoid, bool DEQUE>
 struct SWAG {
   using X = typename Monoid::value_type;
   using value_type = X;
@@ -46,7 +46,7 @@ struct SWAG {
     dat_r.pop_back();
     cum_r.pop_back();
   }
-  
+
   void pop() { pop_front(); }
 
   void rebuild() {
@@ -54,7 +54,7 @@ struct SWAG {
     FOR_R(i, len(dat_l)) X.eb(dat_l[i]);
     X.insert(X.end(), all(dat_r));
     clear();
-    int m = len(X) / 2;
+    int m = (DEQUE ? len(X) / 2 : len(X));
     FOR_R(i, m) push_front(X[i]);
     FOR(i, m, len(X)) push_back(X[i]);
     assert(sz == len(X));
