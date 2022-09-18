@@ -165,7 +165,7 @@ data:
       title: datetime/datetime.hpp
   - name: dp
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: dp/count_subseq.hpp
       title: dp/count_subseq.hpp
     - icon: ':heavy_check_mark:'
@@ -1989,6 +1989,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1490.test.cpp
       title: test/yukicoder/1490.test.cpp
+    - icon: ':x:'
+      path: test/yukicoder/1493.test.cpp
+      title: test/yukicoder/1493.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1500.test.cpp
       title: test/yukicoder/1500.test.cpp
