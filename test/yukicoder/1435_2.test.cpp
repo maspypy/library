@@ -33,7 +33,7 @@ void solve() {
       return M <= m1 + m2;
     };
     while (R < N) {
-      auto a = seg.prod_all();
+      auto a = seg.prod();
       auto b = Mono::from_element(A[R]);
       if (check(Mono::op(a, b))) {
         seg.push(b);
