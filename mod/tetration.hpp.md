@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
   - icon: ':heavy_check_mark:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':heavy_check_mark:'
@@ -99,34 +99,34 @@ data:
     \ 1;\n  ll g = 1;\n  const ll m = 1LL << (__lg(n) / 5); // ?\n  for (ll r = 1;\
     \ g == 1; r <<= 1) {\n    x = y;\n    FOR(_, r) y = f(y);\n    for (ll k = 0;\
     \ k < r and g == 1; k += m) {\n      z = y;\n      FOR(_, min(m, r - k)) y = f(y),\
-    \ q *= x - y;\n      g = gcd(q.val(), n);\n    }\n  }\n  if (g == n)\n    do {\n\
-    \      z = f(z);\n      g = gcd((x - z).val(), n);\n    } while (g == 1);\n  return\
-    \ g;\n}\n\nll find_prime_factor(ll n) {\n  assert(n > 1);\n  if (primetest(n))\n\
-    \    return n;\n  FOR(_, 100) {\n    ll m = rho(n, rnd(n));\n    if (primetest(m))\n\
-    \      return m;\n    n = m;\n  }\n  cerr << \"failed\" << endl;\n  assert(false);\n\
-    \  return -1;\n}\n\nvc<pi> factor(ll n) {\n  assert(n >= 1);\n  vc<pi> pf;\n \
-    \ FOR3(p, 2, 100) {\n    if (p * p > n)\n      break;\n    if (n % p == 0) {\n\
-    \      ll e = 0;\n      do {\n        n /= p, e += 1;\n      } while (n % p ==\
-    \ 0);\n      pf.eb(p, e);\n    }\n  }\n  while (n > 1) {\n    ll p = find_prime_factor(n);\n\
-    \    ll e = 0;\n    do {\n      n /= p, e += 1;\n    } while (n % p == 0);\n \
-    \   pf.eb(p, e);\n  }\n  sort(all(pf));\n  return pf;\n}\n\n\nvc<pi> factor_by_lpf(ll\
-    \ n, vc<int>& lpf) {\n  vc<pi> res;\n  while(n > 1){\n    int p = lpf[n];\n  \
-    \  int e = 0;\n    while(n % p == 0){\n      n /= p;\n      ++e;\n    }\n    res.eb(p,\
-    \ e);\n  }\n  return res;\n}\n#line 3 \"nt/euler_phi.hpp\"\n\r\nll euler_phi(ll\
-    \ n) {\r\n  auto pf = factor(n);\r\n  for (auto&& [p, e]: pf) n -= n / p;\r\n\
-    \  return n;\r\n}\r\n\r\nvi euler_phi_table(ll n) {\r\n  vi A(n + 1);\r\n  iota(all(A),\
-    \ 0);\r\n  divisor_mobius(A);\r\n  return A;\r\n}\r\n#line 3 \"mod/tetration.hpp\"\
-    \n\r\nint tetration(vc<ll> a, int mod) {\r\n  for (auto&& x: a) assert(x > 0);\r\
-    \n\r\n  // a[0]^(a[1]^(a[2]^...))\r\n  vc<int> mod_chain = {mod};\r\n  while (mod_chain.back()\
-    \ > 1) mod_chain.eb(euler_phi(mod_chain.back()));\r\n  while (len(a) > len(mod_chain))\
-    \ a.pop_back();\r\n  while (len(mod_chain) > len(a)) mod_chain.pop_back();\r\n\
-    \r\n  auto pow = [&](ll x, int n, int mod) -> int {\r\n    fast_div fd(mod);\r\
-    \n    if (x >= mod) x = x % fd + mod;\r\n    ll v = 1;\r\n    do {\r\n      if\
-    \ (n & 1) {\r\n        v *= x;\r\n        if (v >= mod) v = v % fd + mod;\r\n\
-    \      }\r\n      x *= x;\r\n      if (x >= mod) x = x % fd + mod;\r\n      n\
-    \ /= 2;\r\n    } while (n);\r\n    return v;\r\n  };\r\n\r\n  int v = 1;\r\n \
-    \ FOR_R(i, len(a)) v = pow(a[i], v, mod_chain[i]);\r\n  return v % mod;\r\n}\r\
-    \n"
+    \ q *= x - y;\n      g = gcd(q.val(), n);\n    }\n  }\n  if (g == n) do {\n  \
+    \    z = f(z);\n      g = gcd((x - z).val(), n);\n    } while (g == 1);\n  return\
+    \ g;\n}\n\nll find_prime_factor(ll n) {\n  assert(n > 1);\n  if (primetest(n))\
+    \ return n;\n  FOR(_, 100) {\n    ll m = rho(n, rnd(n));\n    if (primetest(m))\
+    \ return m;\n    n = m;\n  }\n  cerr << \"failed\" << endl;\n  assert(false);\n\
+    \  return -1;\n}\n\n// \u30BD\u30FC\u30C8\u3057\u3066\u304F\u308C\u308B\nvc<pi>\
+    \ factor(ll n) {\n  assert(n >= 1);\n  vc<pi> pf;\n  FOR3(p, 2, 100) {\n    if\
+    \ (p * p > n) break;\n    if (n % p == 0) {\n      ll e = 0;\n      do { n /=\
+    \ p, e += 1; } while (n % p == 0);\n      pf.eb(p, e);\n    }\n  }\n  while (n\
+    \ > 1) {\n    ll p = find_prime_factor(n);\n    ll e = 0;\n    do { n /= p, e\
+    \ += 1; } while (n % p == 0);\n    pf.eb(p, e);\n  }\n  sort(all(pf));\n  return\
+    \ pf;\n}\n\nvc<pi> factor_by_lpf(ll n, vc<int>& lpf) {\n  vc<pi> res;\n  while\
+    \ (n > 1) {\n    int p = lpf[n];\n    int e = 0;\n    while (n % p == 0) {\n \
+    \     n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n  return res;\n}\n#line\
+    \ 3 \"nt/euler_phi.hpp\"\n\r\nll euler_phi(ll n) {\r\n  auto pf = factor(n);\r\
+    \n  for (auto&& [p, e]: pf) n -= n / p;\r\n  return n;\r\n}\r\n\r\nvi euler_phi_table(ll\
+    \ n) {\r\n  vi A(n + 1);\r\n  iota(all(A), 0);\r\n  divisor_mobius(A);\r\n  return\
+    \ A;\r\n}\r\n#line 3 \"mod/tetration.hpp\"\n\r\nint tetration(vc<ll> a, int mod)\
+    \ {\r\n  for (auto&& x: a) assert(x > 0);\r\n\r\n  // a[0]^(a[1]^(a[2]^...))\r\
+    \n  vc<int> mod_chain = {mod};\r\n  while (mod_chain.back() > 1) mod_chain.eb(euler_phi(mod_chain.back()));\r\
+    \n  while (len(a) > len(mod_chain)) a.pop_back();\r\n  while (len(mod_chain) >\
+    \ len(a)) mod_chain.pop_back();\r\n\r\n  auto pow = [&](ll x, int n, int mod)\
+    \ -> int {\r\n    fast_div fd(mod);\r\n    if (x >= mod) x = x % fd + mod;\r\n\
+    \    ll v = 1;\r\n    do {\r\n      if (n & 1) {\r\n        v *= x;\r\n      \
+    \  if (v >= mod) v = v % fd + mod;\r\n      }\r\n      x *= x;\r\n      if (x\
+    \ >= mod) x = x % fd + mod;\r\n      n /= 2;\r\n    } while (n);\r\n    return\
+    \ v;\r\n  };\r\n\r\n  int v = 1;\r\n  FOR_R(i, len(a)) v = pow(a[i], v, mod_chain[i]);\r\
+    \n  return v % mod;\r\n}\r\n"
   code: "#include \"mod/fast_div.hpp\"\r\n#include \"nt/euler_phi.hpp\"\r\n\r\nint\
     \ tetration(vc<ll> a, int mod) {\r\n  for (auto&& x: a) assert(x > 0);\r\n\r\n\
     \  // a[0]^(a[1]^(a[2]^...))\r\n  vc<int> mod_chain = {mod};\r\n  while (mod_chain.back()\
@@ -149,7 +149,7 @@ data:
   isVerificationFile: false
   path: mod/tetration.hpp
   requiredBy: []
-  timestamp: '2022-07-11 19:57:26+09:00'
+  timestamp: '2022-09-19 23:16:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/tetration.test.cpp

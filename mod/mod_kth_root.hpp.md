@@ -4,22 +4,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
   - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
   - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   _extendedRequiredBy: []
@@ -71,20 +71,20 @@ data:
     \ // ?\n  for (ll r = 1; g == 1; r <<= 1) {\n    x = y;\n    FOR(_, r) y = f(y);\n\
     \    for (ll k = 0; k < r and g == 1; k += m) {\n      z = y;\n      FOR(_, min(m,\
     \ r - k)) y = f(y), q *= x - y;\n      g = gcd(q.val(), n);\n    }\n  }\n  if\
-    \ (g == n)\n    do {\n      z = f(z);\n      g = gcd((x - z).val(), n);\n    }\
-    \ while (g == 1);\n  return g;\n}\n\nll find_prime_factor(ll n) {\n  assert(n\
-    \ > 1);\n  if (primetest(n))\n    return n;\n  FOR(_, 100) {\n    ll m = rho(n,\
-    \ rnd(n));\n    if (primetest(m))\n      return m;\n    n = m;\n  }\n  cerr <<\
-    \ \"failed\" << endl;\n  assert(false);\n  return -1;\n}\n\nvc<pi> factor(ll n)\
-    \ {\n  assert(n >= 1);\n  vc<pi> pf;\n  FOR3(p, 2, 100) {\n    if (p * p > n)\n\
-    \      break;\n    if (n % p == 0) {\n      ll e = 0;\n      do {\n        n /=\
-    \ p, e += 1;\n      } while (n % p == 0);\n      pf.eb(p, e);\n    }\n  }\n  while\
-    \ (n > 1) {\n    ll p = find_prime_factor(n);\n    ll e = 0;\n    do {\n     \
-    \ n /= p, e += 1;\n    } while (n % p == 0);\n    pf.eb(p, e);\n  }\n  sort(all(pf));\n\
-    \  return pf;\n}\n\n\nvc<pi> factor_by_lpf(ll n, vc<int>& lpf) {\n  vc<pi> res;\n\
-    \  while(n > 1){\n    int p = lpf[n];\n    int e = 0;\n    while(n % p == 0){\n\
-    \      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n  return res;\n}\n\
-    #line 2 \"mod/fast_div.hpp\"\nstruct fast_div {\r\n  // Min25 https://judge.yosupo.jp/submission/46090\r\
+    \ (g == n) do {\n      z = f(z);\n      g = gcd((x - z).val(), n);\n    } while\
+    \ (g == 1);\n  return g;\n}\n\nll find_prime_factor(ll n) {\n  assert(n > 1);\n\
+    \  if (primetest(n)) return n;\n  FOR(_, 100) {\n    ll m = rho(n, rnd(n));\n\
+    \    if (primetest(m)) return m;\n    n = m;\n  }\n  cerr << \"failed\" << endl;\n\
+    \  assert(false);\n  return -1;\n}\n\n// \u30BD\u30FC\u30C8\u3057\u3066\u304F\u308C\
+    \u308B\nvc<pi> factor(ll n) {\n  assert(n >= 1);\n  vc<pi> pf;\n  FOR3(p, 2, 100)\
+    \ {\n    if (p * p > n) break;\n    if (n % p == 0) {\n      ll e = 0;\n     \
+    \ do { n /= p, e += 1; } while (n % p == 0);\n      pf.eb(p, e);\n    }\n  }\n\
+    \  while (n > 1) {\n    ll p = find_prime_factor(n);\n    ll e = 0;\n    do {\
+    \ n /= p, e += 1; } while (n % p == 0);\n    pf.eb(p, e);\n  }\n  sort(all(pf));\n\
+    \  return pf;\n}\n\nvc<pi> factor_by_lpf(ll n, vc<int>& lpf) {\n  vc<pi> res;\n\
+    \  while (n > 1) {\n    int p = lpf[n];\n    int e = 0;\n    while (n % p == 0)\
+    \ {\n      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n  return res;\n\
+    }\n#line 2 \"mod/fast_div.hpp\"\nstruct fast_div {\r\n  // Min25 https://judge.yosupo.jp/submission/46090\r\
     \n  // \u540C\u3058\u5B9A\u6570\u3067\u4F55\u5EA6\u3082\u9664\u7B97\u3059\u308B\
     \u3068\u304D\u306E\u9AD8\u901F\u5316\u306B\u4F7F\u3048\u308B\r\n  using i64 =\
     \ long long;\r\n  using u64 = unsigned long long;\r\n  using u128 = __uint128_t;\r\
@@ -290,7 +290,7 @@ data:
   isVerificationFile: false
   path: mod/mod_kth_root.hpp
   requiredBy: []
-  timestamp: '2022-09-15 10:18:06+09:00'
+  timestamp: '2022-09-19 23:16:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/kth_root_mod.test.cpp

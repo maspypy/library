@@ -6,9 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1240.test.cpp
     title: test/yukicoder/1240.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/1304.test.cpp
+    title: test/yukicoder/1304.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/xor_range.hpp\"\n// lo <= a ^ x < hi \u3068\u306A\u308B\
@@ -29,9 +32,10 @@ data:
   path: other/xor_range.hpp
   requiredBy: []
   timestamp: '2022-05-26 00:09:14+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1240.test.cpp
+  - test/yukicoder/1304.test.cpp
 documentation_of: other/xor_range.hpp
 layout: document
 redirect_from:

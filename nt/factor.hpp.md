@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   _extendedRequiredBy:
@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/tetration.hpp
     title: mod/tetration.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/crt.hpp
     title: nt/crt.hpp
   - icon: ':heavy_check_mark:'
@@ -26,10 +26,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/lcm.hpp
     title: nt/lcm.hpp
   - icon: ':warning:'
@@ -54,15 +54,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1593.test.cpp
     title: test/yukicoder/1593.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/187.test.cpp
     title: test/yukicoder/187.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n  using i64 = int64_t;\r\
@@ -103,20 +103,20 @@ data:
     \ 1;\n  ll g = 1;\n  const ll m = 1LL << (__lg(n) / 5); // ?\n  for (ll r = 1;\
     \ g == 1; r <<= 1) {\n    x = y;\n    FOR(_, r) y = f(y);\n    for (ll k = 0;\
     \ k < r and g == 1; k += m) {\n      z = y;\n      FOR(_, min(m, r - k)) y = f(y),\
-    \ q *= x - y;\n      g = gcd(q.val(), n);\n    }\n  }\n  if (g == n)\n    do {\n\
-    \      z = f(z);\n      g = gcd((x - z).val(), n);\n    } while (g == 1);\n  return\
-    \ g;\n}\n\nll find_prime_factor(ll n) {\n  assert(n > 1);\n  if (primetest(n))\n\
-    \    return n;\n  FOR(_, 100) {\n    ll m = rho(n, rnd(n));\n    if (primetest(m))\n\
-    \      return m;\n    n = m;\n  }\n  cerr << \"failed\" << endl;\n  assert(false);\n\
-    \  return -1;\n}\n\nvc<pi> factor(ll n) {\n  assert(n >= 1);\n  vc<pi> pf;\n \
-    \ FOR3(p, 2, 100) {\n    if (p * p > n)\n      break;\n    if (n % p == 0) {\n\
-    \      ll e = 0;\n      do {\n        n /= p, e += 1;\n      } while (n % p ==\
-    \ 0);\n      pf.eb(p, e);\n    }\n  }\n  while (n > 1) {\n    ll p = find_prime_factor(n);\n\
-    \    ll e = 0;\n    do {\n      n /= p, e += 1;\n    } while (n % p == 0);\n \
-    \   pf.eb(p, e);\n  }\n  sort(all(pf));\n  return pf;\n}\n\n\nvc<pi> factor_by_lpf(ll\
-    \ n, vc<int>& lpf) {\n  vc<pi> res;\n  while(n > 1){\n    int p = lpf[n];\n  \
-    \  int e = 0;\n    while(n % p == 0){\n      n /= p;\n      ++e;\n    }\n    res.eb(p,\
-    \ e);\n  }\n  return res;\n}\n"
+    \ q *= x - y;\n      g = gcd(q.val(), n);\n    }\n  }\n  if (g == n) do {\n  \
+    \    z = f(z);\n      g = gcd((x - z).val(), n);\n    } while (g == 1);\n  return\
+    \ g;\n}\n\nll find_prime_factor(ll n) {\n  assert(n > 1);\n  if (primetest(n))\
+    \ return n;\n  FOR(_, 100) {\n    ll m = rho(n, rnd(n));\n    if (primetest(m))\
+    \ return m;\n    n = m;\n  }\n  cerr << \"failed\" << endl;\n  assert(false);\n\
+    \  return -1;\n}\n\n// \u30BD\u30FC\u30C8\u3057\u3066\u304F\u308C\u308B\nvc<pi>\
+    \ factor(ll n) {\n  assert(n >= 1);\n  vc<pi> pf;\n  FOR3(p, 2, 100) {\n    if\
+    \ (p * p > n) break;\n    if (n % p == 0) {\n      ll e = 0;\n      do { n /=\
+    \ p, e += 1; } while (n % p == 0);\n      pf.eb(p, e);\n    }\n  }\n  while (n\
+    \ > 1) {\n    ll p = find_prime_factor(n);\n    ll e = 0;\n    do { n /= p, e\
+    \ += 1; } while (n % p == 0);\n    pf.eb(p, e);\n  }\n  sort(all(pf));\n  return\
+    \ pf;\n}\n\nvc<pi> factor_by_lpf(ll n, vc<int>& lpf) {\n  vc<pi> res;\n  while\
+    \ (n > 1) {\n    int p = lpf[n];\n    int e = 0;\n    while (n % p == 0) {\n \
+    \     n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n  return res;\n}\n"
   code: "#pragma once\n#include \"nt/primetest.hpp\"\n\nmt19937_64 rng_mt{random_device{}()};\n\
     ll rnd(ll n) { return uniform_int_distribution<ll>(0, n - 1)(rng_mt); }\n\nll\
     \ rho(ll n, ll c) {\n  m64::set_mod(n);\n  assert(n > 1);\n  const m64 cc(c);\n\
@@ -124,20 +124,20 @@ data:
     \ 1;\n  ll g = 1;\n  const ll m = 1LL << (__lg(n) / 5); // ?\n  for (ll r = 1;\
     \ g == 1; r <<= 1) {\n    x = y;\n    FOR(_, r) y = f(y);\n    for (ll k = 0;\
     \ k < r and g == 1; k += m) {\n      z = y;\n      FOR(_, min(m, r - k)) y = f(y),\
-    \ q *= x - y;\n      g = gcd(q.val(), n);\n    }\n  }\n  if (g == n)\n    do {\n\
-    \      z = f(z);\n      g = gcd((x - z).val(), n);\n    } while (g == 1);\n  return\
-    \ g;\n}\n\nll find_prime_factor(ll n) {\n  assert(n > 1);\n  if (primetest(n))\n\
-    \    return n;\n  FOR(_, 100) {\n    ll m = rho(n, rnd(n));\n    if (primetest(m))\n\
-    \      return m;\n    n = m;\n  }\n  cerr << \"failed\" << endl;\n  assert(false);\n\
-    \  return -1;\n}\n\nvc<pi> factor(ll n) {\n  assert(n >= 1);\n  vc<pi> pf;\n \
-    \ FOR3(p, 2, 100) {\n    if (p * p > n)\n      break;\n    if (n % p == 0) {\n\
-    \      ll e = 0;\n      do {\n        n /= p, e += 1;\n      } while (n % p ==\
-    \ 0);\n      pf.eb(p, e);\n    }\n  }\n  while (n > 1) {\n    ll p = find_prime_factor(n);\n\
-    \    ll e = 0;\n    do {\n      n /= p, e += 1;\n    } while (n % p == 0);\n \
-    \   pf.eb(p, e);\n  }\n  sort(all(pf));\n  return pf;\n}\n\n\nvc<pi> factor_by_lpf(ll\
-    \ n, vc<int>& lpf) {\n  vc<pi> res;\n  while(n > 1){\n    int p = lpf[n];\n  \
-    \  int e = 0;\n    while(n % p == 0){\n      n /= p;\n      ++e;\n    }\n    res.eb(p,\
-    \ e);\n  }\n  return res;\n}\n"
+    \ q *= x - y;\n      g = gcd(q.val(), n);\n    }\n  }\n  if (g == n) do {\n  \
+    \    z = f(z);\n      g = gcd((x - z).val(), n);\n    } while (g == 1);\n  return\
+    \ g;\n}\n\nll find_prime_factor(ll n) {\n  assert(n > 1);\n  if (primetest(n))\
+    \ return n;\n  FOR(_, 100) {\n    ll m = rho(n, rnd(n));\n    if (primetest(m))\
+    \ return m;\n    n = m;\n  }\n  cerr << \"failed\" << endl;\n  assert(false);\n\
+    \  return -1;\n}\n\n// \u30BD\u30FC\u30C8\u3057\u3066\u304F\u308C\u308B\nvc<pi>\
+    \ factor(ll n) {\n  assert(n >= 1);\n  vc<pi> pf;\n  FOR3(p, 2, 100) {\n    if\
+    \ (p * p > n) break;\n    if (n % p == 0) {\n      ll e = 0;\n      do { n /=\
+    \ p, e += 1; } while (n % p == 0);\n      pf.eb(p, e);\n    }\n  }\n  while (n\
+    \ > 1) {\n    ll p = find_prime_factor(n);\n    ll e = 0;\n    do { n /= p, e\
+    \ += 1; } while (n % p == 0);\n    pf.eb(p, e);\n  }\n  sort(all(pf));\n  return\
+    \ pf;\n}\n\nvc<pi> factor_by_lpf(ll n, vc<int>& lpf) {\n  vc<pi> res;\n  while\
+    \ (n > 1) {\n    int p = lpf[n];\n    int e = 0;\n    while (n % p == 0) {\n \
+    \     n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n  return res;\n}\n"
   dependsOn:
   - nt/primetest.hpp
   isVerificationFile: false
@@ -153,8 +153,8 @@ data:
   - nt/gaussian_integers.hpp
   - nt/lcm.hpp
   - nt/crt.hpp
-  timestamp: '2022-07-11 19:57:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-09-19 23:16:46+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1593.test.cpp
   - test/yukicoder/187.test.cpp

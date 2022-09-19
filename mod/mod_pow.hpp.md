@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
   _extendedRequiredBy:
@@ -11,25 +11,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/lcm.hpp
     title: nt/lcm.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1593.test.cpp
     title: test/yukicoder/1593.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/187.test.cpp
     title: test/yukicoder/187.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/fast_div.hpp\"\nstruct fast_div {\r\n  // Min25 https://judge.yosupo.jp/submission/46090\r\
@@ -66,7 +66,7 @@ data:
   - nt/gaussian_integers.hpp
   - nt/lcm.hpp
   timestamp: '2022-05-19 23:05:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1593.test.cpp
   - test/yukicoder/187.test.cpp

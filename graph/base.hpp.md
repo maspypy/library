@@ -92,7 +92,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/rerooting_classify_subtree.hpp
     title: graph/rerooting_classify_subtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/rerooting_dp.hpp
     title: graph/rerooting_dp.hpp
   - icon: ':heavy_check_mark:'
@@ -324,6 +324,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1479.test.cpp
     title: test/yukicoder/1479.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1494.test.cpp
+    title: test/yukicoder/1494.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1601.test.cpp
     title: test/yukicoder/1601.test.cpp
@@ -520,6 +523,7 @@ data:
   - test/yukicoder/1242.test.cpp
   - test/yukicoder/1641.test.cpp
   - test/yukicoder/1778.test.cpp
+  - test/yukicoder/1494.test.cpp
   - test/yukicoder/1326.test.cpp
   - test/yukicoder/17.test.cpp
   - test/yukicoder/114.test.cpp

@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/divisors.hpp
     title: nt/divisors.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':question:'
@@ -244,29 +244,30 @@ data:
     \ 1;\n  ll g = 1;\n  const ll m = 1LL << (__lg(n) / 5); // ?\n  for (ll r = 1;\
     \ g == 1; r <<= 1) {\n    x = y;\n    FOR(_, r) y = f(y);\n    for (ll k = 0;\
     \ k < r and g == 1; k += m) {\n      z = y;\n      FOR(_, min(m, r - k)) y = f(y),\
-    \ q *= x - y;\n      g = gcd(q.val(), n);\n    }\n  }\n  if (g == n)\n    do {\n\
-    \      z = f(z);\n      g = gcd((x - z).val(), n);\n    } while (g == 1);\n  return\
-    \ g;\n}\n\nll find_prime_factor(ll n) {\n  assert(n > 1);\n  if (primetest(n))\n\
-    \    return n;\n  FOR(_, 100) {\n    ll m = rho(n, rnd(n));\n    if (primetest(m))\n\
-    \      return m;\n    n = m;\n  }\n  cerr << \"failed\" << endl;\n  assert(false);\n\
-    \  return -1;\n}\n\nvc<pi> factor(ll n) {\n  assert(n >= 1);\n  vc<pi> pf;\n \
-    \ FOR3(p, 2, 100) {\n    if (p * p > n)\n      break;\n    if (n % p == 0) {\n\
-    \      ll e = 0;\n      do {\n        n /= p, e += 1;\n      } while (n % p ==\
-    \ 0);\n      pf.eb(p, e);\n    }\n  }\n  while (n > 1) {\n    ll p = find_prime_factor(n);\n\
-    \    ll e = 0;\n    do {\n      n /= p, e += 1;\n    } while (n % p == 0);\n \
-    \   pf.eb(p, e);\n  }\n  sort(all(pf));\n  return pf;\n}\n\n\nvc<pi> factor_by_lpf(ll\
-    \ n, vc<int>& lpf) {\n  vc<pi> res;\n  while(n > 1){\n    int p = lpf[n];\n  \
-    \  int e = 0;\n    while(n % p == 0){\n      n /= p;\n      ++e;\n    }\n    res.eb(p,\
-    \ e);\n  }\n  return res;\n}\n#line 2 \"nt/divisors.hpp\"\n\r\n// \u7D04\u6570\
-    \u3092\u30BD\u30FC\u30C8\u305B\u305A\u306B\u304B\u3048\u3059\r\nvc<ll> divisors(ll\
-    \ N) {\r\n  auto pf = factor(N);\r\n  vi div = {1};\r\n  for (auto&& [p, e]: pf)\
-    \ {\r\n    ll n = len(div);\r\n    ll pp = 1;\r\n    FOR3(i, 1, e + 1) {\r\n \
-    \     pp *= p;\r\n      FOR(j, n) div.eb(div[j] * pp);\r\n    }\r\n  }\r\n  return\
-    \ div;\r\n}\n#line 5 \"test/aoj/ITP1_D_D.test.cpp\"\n\nvoid solve() {\n  LL(a,\
-    \ b, c);\n  auto divs = divisors(c);\n  ll ANS = 0;\n  for (auto&& d: divs)\n\
-    \    if (a <= d && d <= b) ++ANS;\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \ q *= x - y;\n      g = gcd(q.val(), n);\n    }\n  }\n  if (g == n) do {\n  \
+    \    z = f(z);\n      g = gcd((x - z).val(), n);\n    } while (g == 1);\n  return\
+    \ g;\n}\n\nll find_prime_factor(ll n) {\n  assert(n > 1);\n  if (primetest(n))\
+    \ return n;\n  FOR(_, 100) {\n    ll m = rho(n, rnd(n));\n    if (primetest(m))\
+    \ return m;\n    n = m;\n  }\n  cerr << \"failed\" << endl;\n  assert(false);\n\
+    \  return -1;\n}\n\n// \u30BD\u30FC\u30C8\u3057\u3066\u304F\u308C\u308B\nvc<pi>\
+    \ factor(ll n) {\n  assert(n >= 1);\n  vc<pi> pf;\n  FOR3(p, 2, 100) {\n    if\
+    \ (p * p > n) break;\n    if (n % p == 0) {\n      ll e = 0;\n      do { n /=\
+    \ p, e += 1; } while (n % p == 0);\n      pf.eb(p, e);\n    }\n  }\n  while (n\
+    \ > 1) {\n    ll p = find_prime_factor(n);\n    ll e = 0;\n    do { n /= p, e\
+    \ += 1; } while (n % p == 0);\n    pf.eb(p, e);\n  }\n  sort(all(pf));\n  return\
+    \ pf;\n}\n\nvc<pi> factor_by_lpf(ll n, vc<int>& lpf) {\n  vc<pi> res;\n  while\
+    \ (n > 1) {\n    int p = lpf[n];\n    int e = 0;\n    while (n % p == 0) {\n \
+    \     n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n  return res;\n}\n#line\
+    \ 2 \"nt/divisors.hpp\"\n\r\n// \u7D04\u6570\u3092\u30BD\u30FC\u30C8\u305B\u305A\
+    \u306B\u304B\u3048\u3059\r\nvc<ll> divisors(ll N) {\r\n  auto pf = factor(N);\r\
+    \n  vi div = {1};\r\n  for (auto&& [p, e]: pf) {\r\n    ll n = len(div);\r\n \
+    \   ll pp = 1;\r\n    FOR3(i, 1, e + 1) {\r\n      pp *= p;\r\n      FOR(j, n)\
+    \ div.eb(div[j] * pp);\r\n    }\r\n  }\r\n  return div;\r\n}\n#line 5 \"test/aoj/ITP1_D_D.test.cpp\"\
+    \n\nvoid solve() {\n  LL(a, b, c);\n  auto divs = divisors(c);\n  ll ANS = 0;\n\
+    \  for (auto&& d: divs)\n    if (a <= d && d <= b) ++ANS;\n  print(ANS);\n}\n\n\
+    signed main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout <<\
+    \ setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_3_D\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/divisors.hpp\"\
     \n\nvoid solve() {\n  LL(a, b, c);\n  auto divs = divisors(c);\n  ll ANS = 0;\n\
@@ -283,7 +284,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ITP1_D_D.test.cpp
   requiredBy: []
-  timestamp: '2022-09-18 00:47:18+09:00'
+  timestamp: '2022-09-19 23:16:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ITP1_D_D.test.cpp
