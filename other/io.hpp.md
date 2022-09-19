@@ -1,10 +1,7 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/yukicoder/1170_2.cpp
-    title: test/yukicoder/1170_2.cpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/0275.test.cpp
@@ -772,6 +769,9 @@ data:
     path: test/yukicoder/1170.test.cpp
     title: test/yukicoder/1170.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1170_2.test.cpp
+    title: test/yukicoder/1170_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
   - icon: ':heavy_check_mark:'
@@ -852,7 +852,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1490.test.cpp
     title: test/yukicoder/1490.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1493.test.cpp
     title: test/yukicoder/1493.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1248,8 +1248,7 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: other/io.hpp
-  requiredBy:
-  - test/yukicoder/1170_2.cpp
+  requiredBy: []
   timestamp: '2022-08-20 05:21:32+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -1326,6 +1325,7 @@ data:
   - test/yukicoder/1435.test.cpp
   - test/yukicoder/1548.test.cpp
   - test/yukicoder/1490.test.cpp
+  - test/yukicoder/1170_2.test.cpp
   - test/yukicoder/1036_3.test.cpp
   - test/yukicoder/1326.test.cpp
   - test/yukicoder/1201.test.cpp

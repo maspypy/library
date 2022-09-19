@@ -165,7 +165,7 @@ data:
       title: datetime/datetime.hpp
   - name: dp
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: dp/count_subseq.hpp
       title: dp/count_subseq.hpp
     - icon: ':heavy_check_mark:'
@@ -541,7 +541,7 @@ data:
     - icon: ':warning:'
       path: graph/online_toposort.hpp
       title: graph/online_toposort.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/online_unionfind.hpp
       title: graph/online_unionfind.hpp
     - icon: ':warning:'
@@ -1109,11 +1109,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/zalgorithm.hpp
       title: string/zalgorithm.hpp
-  - name: test/yukicoder
-    pages:
-    - icon: ':warning:'
-      path: test/yukicoder/1170_2.cpp
-      title: test/yukicoder/1170_2.cpp
   verificationCategories:
   - name: test/aoj
     pages:
@@ -1912,6 +1907,9 @@ data:
       path: test/yukicoder/1170.test.cpp
       title: test/yukicoder/1170.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1170_2.test.cpp
+      title: test/yukicoder/1170_2.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1197.test.cpp
       title: test/yukicoder/1197.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1992,7 +1990,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1490.test.cpp
       title: test/yukicoder/1490.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1493.test.cpp
       title: test/yukicoder/1493.test.cpp
     - icon: ':heavy_check_mark:'

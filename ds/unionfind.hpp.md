@@ -23,15 +23,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/online_unionfind.hpp
     title: graph/online_unionfind.hpp
   - icon: ':heavy_check_mark:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
-  - icon: ':warning:'
-    path: test/yukicoder/1170_2.cpp
-    title: test/yukicoder/1170_2.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2251_1.test.cpp
@@ -57,6 +54,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/114.test.cpp
     title: test/yukicoder/114.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1170_2.test.cpp
+    title: test/yukicoder/1170_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1242.test.cpp
     title: test/yukicoder/1242.test.cpp
@@ -106,7 +106,6 @@ data:
   - graph/check_bipartite.hpp
   - graph/functional.hpp
   - graph/maximum_antichain.hpp
-  - test/yukicoder/1170_2.cpp
   - flow/bipartite.hpp
   - geo/manhattan_mst.hpp
   timestamp: '2022-08-11 02:13:18+09:00'
@@ -114,6 +113,7 @@ data:
   verifiedWith:
   - test/yukicoder/1479.test.cpp
   - test/yukicoder/1242.test.cpp
+  - test/yukicoder/1170_2.test.cpp
   - test/yukicoder/114.test.cpp
   - test/yukicoder/1451.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp

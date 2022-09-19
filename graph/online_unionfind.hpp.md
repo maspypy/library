@@ -4,14 +4,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/yukicoder/1170_2.cpp
-    title: test/yukicoder/1170_2.cpp
-  _extendedVerifiedWith: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1170_2.test.cpp
+    title: test/yukicoder/1170_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/unionfind.hpp\"\n\nstruct UnionFind {\n  int n;\n  int\
@@ -54,11 +54,11 @@ data:
   - ds/unionfind.hpp
   isVerificationFile: false
   path: graph/online_unionfind.hpp
-  requiredBy:
-  - test/yukicoder/1170_2.cpp
+  requiredBy: []
   timestamp: '2022-08-11 02:13:18+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yukicoder/1170_2.test.cpp
 documentation_of: graph/online_unionfind.hpp
 layout: document
 redirect_from:

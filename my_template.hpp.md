@@ -5,9 +5,6 @@ data:
   - icon: ':warning:'
     path: graph/bipartite_coloring.hpp
     title: graph/bipartite_coloring.hpp
-  - icon: ':warning:'
-    path: test/yukicoder/1170_2.cpp
-    title: test/yukicoder/1170_2.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/0275.test.cpp
@@ -778,6 +775,9 @@ data:
     path: test/yukicoder/1170.test.cpp
     title: test/yukicoder/1170.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1170_2.test.cpp
+    title: test/yukicoder/1170_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
   - icon: ':heavy_check_mark:'
@@ -858,7 +858,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1490.test.cpp
     title: test/yukicoder/1490.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1493.test.cpp
     title: test/yukicoder/1493.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1194,7 +1194,6 @@ data:
   path: my_template.hpp
   requiredBy:
   - graph/bipartite_coloring.hpp
-  - test/yukicoder/1170_2.cpp
   timestamp: '2022-09-09 19:01:18+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -1271,6 +1270,7 @@ data:
   - test/yukicoder/1435.test.cpp
   - test/yukicoder/1548.test.cpp
   - test/yukicoder/1490.test.cpp
+  - test/yukicoder/1170_2.test.cpp
   - test/yukicoder/1036_3.test.cpp
   - test/yukicoder/1326.test.cpp
   - test/yukicoder/1201.test.cpp
