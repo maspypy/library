@@ -21,8 +21,7 @@ ll rho(ll n, ll c) {
       g = gcd(q.val(), n);
     }
   }
-  if (g == n)
-    do {
+  if (g == n) do {
       z = f(z);
       g = gcd((x - z).val(), n);
     } while (g == 1);
@@ -31,12 +30,10 @@ ll rho(ll n, ll c) {
 
 ll find_prime_factor(ll n) {
   assert(n > 1);
-  if (primetest(n))
-    return n;
+  if (primetest(n)) return n;
   FOR(_, 100) {
     ll m = rho(n, rnd(n));
-    if (primetest(m))
-      return m;
+    if (primetest(m)) return m;
     n = m;
   }
   cerr << "failed" << endl;
@@ -44,39 +41,34 @@ ll find_prime_factor(ll n) {
   return -1;
 }
 
+// ソートしてくれる
 vc<pi> factor(ll n) {
   assert(n >= 1);
   vc<pi> pf;
   FOR3(p, 2, 100) {
-    if (p * p > n)
-      break;
+    if (p * p > n) break;
     if (n % p == 0) {
       ll e = 0;
-      do {
-        n /= p, e += 1;
-      } while (n % p == 0);
+      do { n /= p, e += 1; } while (n % p == 0);
       pf.eb(p, e);
     }
   }
   while (n > 1) {
     ll p = find_prime_factor(n);
     ll e = 0;
-    do {
-      n /= p, e += 1;
-    } while (n % p == 0);
+    do { n /= p, e += 1; } while (n % p == 0);
     pf.eb(p, e);
   }
   sort(all(pf));
   return pf;
 }
 
-
 vc<pi> factor_by_lpf(ll n, vc<int>& lpf) {
   vc<pi> res;
-  while(n > 1){
+  while (n > 1) {
     int p = lpf[n];
     int e = 0;
-    while(n % p == 0){
+    while (n % p == 0) {
       n /= p;
       ++e;
     }
