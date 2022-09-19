@@ -952,6 +952,9 @@ data:
     path: test/yukicoder/2005.test.cpp
     title: test/yukicoder/2005.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2012.test.cpp
+    title: test/yukicoder/2012.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2062.test.cpp
     title: test/yukicoder/2062.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1341,6 +1344,7 @@ data:
   - test/yukicoder/426.test.cpp
   - test/yukicoder/1320.test.cpp
   - test/yukicoder/1260.test.cpp
+  - test/yukicoder/2012.test.cpp
   - test/mytest/minplus_convex.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/range_mex.test.cpp
