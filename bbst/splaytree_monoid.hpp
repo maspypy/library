@@ -1,11 +1,15 @@
-// reverse はとりあえず、Monoid の可換性を仮定している！
+/*
+・ある Node にアクセスするときには、その先祖は伝搬済
+・prod, rev_prod は、rev を反映済のものを持つ
+・l, r にも rev を反映させたものを持つ
+*/
 template <typename Monoid, int NODES = 1'000'000>
 struct SplayTree_Monoid {
   using X = typename Monoid::value_type;
 
   struct Node {
     Node *l, *r, *p;
-    X x, prod;
+    X x, prod, rev_prod;
     int size;
     bool rev;
   };
@@ -21,6 +25,7 @@ struct SplayTree_Monoid {
     pool[pid].l = pool[pid].r = pool[pid].p = nullptr;
     pool[pid].x = x;
     pool[pid].prod = x;
+    pool[pid].rev_prod = x;
     pool[pid].size = 1;
     pool[pid].rev = 0;
     return &(pool[pid++]);
@@ -56,7 +61,6 @@ struct SplayTree_Monoid {
         root = root->r;
       }
     }
-    prop(root);
     splay(root);
   }
 
@@ -68,7 +72,6 @@ struct SplayTree_Monoid {
     }
     if (!r_root) return;
     get_kth(root, root->size - 1);
-    prop(root);
     root->r = r_root;
     r_root->p = root;
     update(root);
@@ -104,13 +107,13 @@ struct SplayTree_Monoid {
   }
 
   void reverse(Node *&root, int l, int r) {
-    assert(Monoid::commute);
     assert(0 <= l && l <= r && r <= root->size);
     if (r - l <= 1) return;
     Node *r_root = split(root, r);
     Node *m_root = split(root, l);
     m_root->rev ^= 1;
-    update(m_root);
+    swap(m_root->l, m_root->r);
+    swap(m_root->prod, m_root->rev_prod);
     merge(root, m_root);
     merge(root, r_root);
   }
@@ -128,9 +131,7 @@ struct SplayTree_Monoid {
     merge(root, r_root);
   }
 
-  void insert(Node *&root, int k, const X& x) {
-    insert(root, k, new_node(x));
-  }
+  void insert(Node *&root, int k, const X &x) { insert(root, k, new_node(x)); }
 
   void set(Node *&root, int k, const X &x) {
     get_kth(root, k);
@@ -155,7 +156,7 @@ struct SplayTree_Monoid {
     return l_root;
   }
 
-  vc<X> get_all(Node *root){
+  vc<X> get_all(Node *root) {
     vc<X> res;
     auto dfs = [&](auto &dfs, Node *n) -> void {
       if (!n) return;
@@ -177,7 +178,8 @@ struct SplayTree_Monoid {
       s += "l";
       dfs(dfs, n->l);
       s.pop_back();
-      print(s, "size", n->size, "x", n->x, "prod", n->prod);
+      print(s, "size", n->size, "x", n->x, "prod", n->prod, "rev_prod",
+            n->rev_prod);
       s += "r";
       dfs(dfs, n->r);
       s.pop_back();
@@ -187,24 +189,33 @@ struct SplayTree_Monoid {
 
 private:
   void prop(Node *c) {
-    if (c->rev) {
-      swap(c->l, c->r);
-      if (c->l) c->l->rev ^= 1;
-      if (c->r) c->r->rev ^= 1;
-      c->rev = 0;
+    if (!c->rev) return;
+    c->rev = 0;
+    if (c->l) {
+      c->l->rev ^= 1;
+      swap(c->l->l, c->l->r);
+      swap(c->l->prod, c->l->rev_prod);
+    }
+    if (c->r) {
+      c->r->rev ^= 1;
+      swap(c->r->l, c->r->r);
+      swap(c->r->prod, c->r->rev_prod);
     }
   }
 
   void update(Node *c) {
     c->size = 1;
     c->prod = c->x;
+    c->rev_prod = c->x;
     if (c->l) {
       c->size += c->l->size;
       c->prod = Monoid::op(c->l->prod, c->prod);
+      c->rev_prod = Monoid::op(c->rev_prod, c->l->rev_prod);
     }
     if (c->r) {
       c->size += c->r->size;
       c->prod = Monoid::op(c->prod, c->r->prod);
+      c->rev_prod = Monoid::op(c->r->rev_prod, c->rev_prod);
     }
   }
 
@@ -237,6 +248,7 @@ private:
     return -1;
   }
 
+  // c の先祖は prop 済である
   void splay(Node *c) {
     while (c->p) {
       Node *p = c->p;
