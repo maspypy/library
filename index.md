@@ -155,7 +155,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: bbst/splaytree_lazy.hpp
       title: bbst/splaytree_lazy.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: bbst/splaytree_monoid.hpp
       title: bbst/splaytree_monoid.hpp
   - name: datetime
@@ -1862,6 +1862,9 @@ data:
       path: test/mytest/run_length.test.cpp
       title: test/mytest/run_length.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/mytest/splay.test.cpp
+      title: test/mytest/splay.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/mytest/suffix_tree.test.cpp
       title: test/mytest/suffix_tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1977,10 +1980,10 @@ data:
     - icon: ':x:'
       path: test/yukicoder/1435_2.test.cpp
       title: test/yukicoder/1435_2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1441.test.cpp
       title: test/yukicoder/1441.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1441_2.test.cpp
       title: test/yukicoder/1441_2.test.cpp
     - icon: ':heavy_check_mark:'

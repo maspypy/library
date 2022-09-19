@@ -352,6 +352,9 @@ data:
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/splay.test.cpp
+    title: test/mytest/splay.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1141.test.cpp
     title: test/yukicoder/1141.test.cpp
   - icon: ':heavy_check_mark:'
@@ -681,6 +684,7 @@ data:
   - test/mytest/factorial_998.test.cpp
   - test/mytest/powerquery.test.cpp
   - test/mytest/binom.test.cpp
+  - test/mytest/splay.test.cpp
   - test/mytest/enum_partitions.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/polynomial/inv_of_fps.test.cpp

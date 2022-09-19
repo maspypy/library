@@ -109,6 +109,9 @@ data:
     path: test/mytest/run_length.test.cpp
     title: test/mytest/run_length.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/splay.test.cpp
+    title: test/mytest/splay.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/wavelet_matrix_sum.test.cpp
     title: test/mytest/wavelet_matrix_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -157,6 +160,7 @@ data:
   - test/mytest/range_freq_of_linear.test.cpp
   - test/mytest/powerquery.test.cpp
   - test/mytest/binom.test.cpp
+  - test/mytest/splay.test.cpp
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
   - test/mytest/is_substring.test.cpp
