@@ -1,4 +1,4 @@
-// reverse はとりあえず、Monoid_X の可換性を仮定している！
+// Monoid_X の可換性を仮定している
 template <typename Lazy, int NODES = 1'000'000>
 struct SplayTree_Lazy {
   using Monoid_X = typename Lazy::X_structure;
@@ -12,7 +12,6 @@ struct SplayTree_Lazy {
     A a;
     int size;
     bool rev;
-    bool propagated;
   };
 
   Node *pool;
@@ -27,7 +26,6 @@ struct SplayTree_Lazy {
     pool[pid].a = Monoid_A::unit();
     pool[pid].size = 1;
     pool[pid].rev = 0;
-    pool[pid].propagated = 1;
     return &(pool[pid++]);
   }
 
@@ -61,7 +59,6 @@ struct SplayTree_Lazy {
         root = root->r;
       }
     }
-    prop(root);
     splay(root);
   }
 
@@ -73,7 +70,6 @@ struct SplayTree_Lazy {
     }
     if (!r_root) return;
     get_kth(root, root->size - 1);
-    prop(root);
     root->r = r_root;
     r_root->p = root;
     update(root);
@@ -115,8 +111,7 @@ struct SplayTree_Lazy {
     Node *r_root = split(root, r);
     Node *m_root = split(root, l);
     m_root->rev ^= 1;
-    prop(m_root);
-    update(m_root);
+    swap(m_root->l, m_root->r);
     merge(root, m_root);
     merge(root, r_root);
   }
@@ -129,9 +124,6 @@ struct SplayTree_Lazy {
     m_root->x = Lazy::act(m_root->x, a);
     m_root->prod = Lazy::act(m_root->prod, a);
     m_root->a = Monoid_A::op(m_root->a, a);
-    m_root->propagated = 0;
-    prop(m_root);
-    update(m_root);
     merge(root, m_root);
     merge(root, r_root);
   }
@@ -149,9 +141,7 @@ struct SplayTree_Lazy {
     merge(root, r_root);
   }
 
-  void insert(Node *&root, int k, const X& x) {
-    insert(root, k, new_node(x));
-  }
+  void insert(Node *&root, int k, const X &x) { insert(root, k, new_node(x)); }
 
   // root から k 番目を削除。削除したノードをかえす
   Node *erase(Node *&root, int k) {
@@ -190,28 +180,31 @@ struct SplayTree_Lazy {
 
 private:
   void prop(Node *c) {
-    if (!c->propagated) {
+    A &a = c->a;
+    if (a != Monoid_A::unit()) {
       if (c->l) {
-        c->l->x = Lazy::act(c->l->x, c->a);
-        c->l->prod = Lazy::act(c->l->prod, c->a);
-        c->l->a = Monoid_A::op(c->l->a, c->a);
-        c->l->propagated = 0;
+        c->l->x = Lazy::act(c->l->x, a);
+        c->l->prod = Lazy::act(c->l->prod, a);
+        c->l->a = Monoid_A::op(c->l->a, a);
       }
       if (c->r) {
-        c->r->x = Lazy::act(c->r->x, c->a);
-        c->r->prod = Lazy::act(c->r->prod, c->a);
-        c->r->a = Monoid_A::op(c->r->a, c->a);
-        c->r->propagated = 0;
+        c->r->x = Lazy::act(c->r->x, a);
+        c->r->prod = Lazy::act(c->r->prod, a);
+        c->r->a = Monoid_A::op(c->r->a, a);
       }
-      c->a = Monoid_A::unit();
-      c->propagated = 1;
     }
+    a = Monoid_A::unit();
     if (c->rev) {
-      swap(c->l, c->r);
-      if (c->l) c->l->rev ^= 1;
-      if (c->r) c->r->rev ^= 1;
-      c->rev = 0;
+      if (c->l) {
+        c->l->rev ^= 1;
+        swap(c->l->l, c->l->r);
+      }
+      if (c->r) {
+        c->r->rev ^= 1;
+        swap(c->r->l, c->r->r);
+      }
     }
+    c->rev = 0;
   }
 
   void update(Node *c) {
