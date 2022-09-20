@@ -245,7 +245,8 @@ private:
   inline int state(Node *n) {
     if (!n->p) return 0;
     if (n->p->l == n) return 1;
-    return -1;
+    if (n->p->r == n) return -1;
+    return 0;
   }
 
   // c の先祖は prop 済である
