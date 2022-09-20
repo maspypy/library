@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_affine.hpp
     title: alg/group_affine.hpp
   - icon: ':heavy_check_mark:'
@@ -397,13 +397,13 @@ data:
     \     c = n->l;\n      n->l = p;\n      p->r = c;\n    }\n\n    if (pp && pp->l\
     \ == p) pp->l = n;\n    if (pp && pp->r == p) pp->r = n;\n    n->p = pp;\n   \
     \ p->p = n;\n    if (c) c->p = p;\n  }\n\n  inline int state(Node *n) {\n    if\
-    \ (!n->p) return 0;\n    if (n->p->l == n) return 1;\n    return -1;\n  }\n\n\
-    \  void splay(Node *c) {\n    while (c->p) {\n      Node *p = c->p;\n      Node\
-    \ *pp = (p ? p->p : nullptr);\n      if (state(p) == 0) { rotate(c); }\n     \
-    \ elif (state(c) == state(p)) {\n        rotate(p);\n        rotate(c);\n    \
-    \  }\n      else {\n        rotate(c);\n        rotate(c);\n      }\n      if\
-    \ (pp) update(pp);\n      if (p) update(p);\n    }\n    update(c);\n  }\n};\n\
-    #line 9 \"test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp\"\
+    \ (!n->p) return 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r == n) return\
+    \ -1;\n    return 0;\n  }\n\n  void splay(Node *c) {\n    while (c->p) {\n   \
+    \   Node *p = c->p;\n      Node *pp = (p ? p->p : nullptr);\n      if (state(p)\
+    \ == 0) { rotate(c); }\n      elif (state(c) == state(p)) {\n        rotate(p);\n\
+    \        rotate(c);\n      }\n      else {\n        rotate(c);\n        rotate(c);\n\
+    \      }\n      if (pp) update(pp);\n      if (p) update(p);\n    }\n    update(c);\n\
+    \  }\n};\n#line 9 \"test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  VEC(mint, A, N);\n\
     \  SplayTree_Lazy<Lazy_CntSum_Affine<mint>> ST;\n  vc<pair<mint, mint>> seg_raw(N);\n\
     \  FOR(i, N) seg_raw[i] = {mint(1), A[i]};\n  auto root = ST.new_node(seg_raw);\n\
@@ -437,7 +437,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   requiredBy: []
-  timestamp: '2022-09-20 04:58:42+09:00'
+  timestamp: '2022-09-21 01:55:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp

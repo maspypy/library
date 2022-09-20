@@ -6,7 +6,7 @@ data:
     - icon: ':question:'
       path: alg/group_add.hpp
       title: alg/group_add.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/group_affine.hpp
       title: alg/group_affine.hpp
     - icon: ':heavy_check_mark:'
@@ -523,6 +523,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/lazytreemonoid.hpp
       title: graph/lazytreemonoid.hpp
+    - icon: ':question:'
+      path: graph/link_cut.hpp
+      title: graph/link_cut.hpp
+    - icon: ':question:'
+      path: graph/link_cut_path.hpp
+      title: graph/link_cut_path.hpp
     - icon: ':heavy_check_mark:'
       path: graph/maximum_antichain.hpp
       title: graph/maximum_antichain.hpp
@@ -1499,6 +1505,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
       title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - name: test/library_checker
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/dynamic_tree_vertex_add_path_sum.test.cpp
+      title: test/library_checker/dynamic_tree_vertex_add_path_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/dynamic_tree_vertex_add_path_sum_2.test.cpp
+      title: test/library_checker/dynamic_tree_vertex_add_path_sum_2.test.cpp
+    - icon: ':x:'
+      path: test/library_checker/dynamic_tree_vertex_set_path_composite.test.cpp
+      title: test/library_checker/dynamic_tree_vertex_set_path_composite.test.cpp
   - name: test/library_checker/geometry
     pages:
     - icon: ':heavy_check_mark:'

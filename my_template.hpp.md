@@ -388,6 +388,15 @@ data:
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/dynamic_tree_vertex_add_path_sum.test.cpp
+    title: test/library_checker/dynamic_tree_vertex_add_path_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/dynamic_tree_vertex_add_path_sum_2.test.cpp
+    title: test/library_checker/dynamic_tree_vertex_add_path_sum_2.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/dynamic_tree_vertex_set_path_composite.test.cpp
+    title: test/library_checker/dynamic_tree_vertex_set_path_composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/convex_layers.test.cpp
     title: test/library_checker/geometry/convex_layers.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1368,6 +1377,7 @@ data:
   - test/library_checker/graph/enumerate_cliques.test.cpp
   - test/library_checker/graph/maximum_independent_set.test.cpp
   - test/library_checker/graph/scc.test.cpp
+  - test/library_checker/dynamic_tree_vertex_set_path_composite.test.cpp
   - test/library_checker/math/sum_of_floor_of_linear.test.cpp
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/library_checker/math/lcm_convolution.test.cpp
@@ -1396,6 +1406,7 @@ data:
   - test/library_checker/math/stirline_mod_p_1.test.cpp
   - test/library_checker/math/tetration.test.cpp
   - test/library_checker/math/binomial_coefficient.test.cpp
+  - test/library_checker/dynamic_tree_vertex_add_path_sum_2.test.cpp
   - test/library_checker/convolution/bitwise_and_convolution.test.cpp
   - test/library_checker/convolution/online_convolution.test.cpp
   - test/library_checker/convolution/multivariate_convolution.test.cpp
@@ -1469,6 +1480,7 @@ data:
   - test/library_checker/matrix/solve_linear.test.cpp
   - test/library_checker/matrix/inverse_matrix.test.cpp
   - test/library_checker/matrix/matrix_det.test.cpp
+  - test/library_checker/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/aoj/CGL_3_B.test.cpp
   - test/aoj/CGL_7_B.test.cpp
   - test/aoj/GRL_1_B.test.cpp

@@ -102,13 +102,13 @@ data:
     \      n->l = p;\n      p->r = c;\n    }\n\n    if (pp && pp->l == p) pp->l =\
     \ n;\n    if (pp && pp->r == p) pp->r = n;\n    n->p = pp;\n    p->p = n;\n  \
     \  if (c) c->p = p;\n  }\n\n  inline int state(Node *n) {\n    if (!n->p) return\
-    \ 0;\n    if (n->p->l == n) return 1;\n    return -1;\n  }\n\n  // c \u306E\u5148\
-    \u7956\u306F prop \u6E08\u3067\u3042\u308B\n  void splay(Node *c) {\n    while\
-    \ (c->p) {\n      Node *p = c->p;\n      Node *pp = (p ? p->p : nullptr);\n  \
-    \    if (state(p) == 0) { rotate(c); }\n      elif (state(c) == state(p)) {\n\
-    \        rotate(p);\n        rotate(c);\n      }\n      else {\n        rotate(c);\n\
-    \        rotate(c);\n      }\n      if (pp) update(pp);\n      if (p) update(p);\n\
-    \    }\n    update(c);\n  }\n};\n"
+    \ 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r == n) return -1;\n    return\
+    \ 0;\n  }\n\n  // c \u306E\u5148\u7956\u306F prop \u6E08\u3067\u3042\u308B\n \
+    \ void splay(Node *c) {\n    while (c->p) {\n      Node *p = c->p;\n      Node\
+    \ *pp = (p ? p->p : nullptr);\n      if (state(p) == 0) { rotate(c); }\n     \
+    \ elif (state(c) == state(p)) {\n        rotate(p);\n        rotate(c);\n    \
+    \  }\n      else {\n        rotate(c);\n        rotate(c);\n      }\n      if\
+    \ (pp) update(pp);\n      if (p) update(p);\n    }\n    update(c);\n  }\n};\n"
   code: "/*\n\u30FB\u3042\u308B Node \u306B\u30A2\u30AF\u30BB\u30B9\u3059\u308B\u3068\
     \u304D\u306B\u306F\u3001\u305D\u306E\u5148\u7956\u306F\u4F1D\u642C\u6E08\n\u30FB\
     prod, rev_prod \u306F\u3001rev \u3092\u53CD\u6620\u6E08\u306E\u3082\u306E\u3092\
@@ -190,18 +190,18 @@ data:
     \      n->l = p;\n      p->r = c;\n    }\n\n    if (pp && pp->l == p) pp->l =\
     \ n;\n    if (pp && pp->r == p) pp->r = n;\n    n->p = pp;\n    p->p = n;\n  \
     \  if (c) c->p = p;\n  }\n\n  inline int state(Node *n) {\n    if (!n->p) return\
-    \ 0;\n    if (n->p->l == n) return 1;\n    return -1;\n  }\n\n  // c \u306E\u5148\
-    \u7956\u306F prop \u6E08\u3067\u3042\u308B\n  void splay(Node *c) {\n    while\
-    \ (c->p) {\n      Node *p = c->p;\n      Node *pp = (p ? p->p : nullptr);\n  \
-    \    if (state(p) == 0) { rotate(c); }\n      elif (state(c) == state(p)) {\n\
-    \        rotate(p);\n        rotate(c);\n      }\n      else {\n        rotate(c);\n\
-    \        rotate(c);\n      }\n      if (pp) update(pp);\n      if (p) update(p);\n\
-    \    }\n    update(c);\n  }\n};"
+    \ 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r == n) return -1;\n    return\
+    \ 0;\n  }\n\n  // c \u306E\u5148\u7956\u306F prop \u6E08\u3067\u3042\u308B\n \
+    \ void splay(Node *c) {\n    while (c->p) {\n      Node *p = c->p;\n      Node\
+    \ *pp = (p ? p->p : nullptr);\n      if (state(p) == 0) { rotate(c); }\n     \
+    \ elif (state(c) == state(p)) {\n        rotate(p);\n        rotate(c);\n    \
+    \  }\n      else {\n        rotate(c);\n        rotate(c);\n      }\n      if\
+    \ (pp) update(pp);\n      if (p) update(p);\n    }\n    update(c);\n  }\n};"
   dependsOn: []
   isVerificationFile: false
   path: bbst/splaytree_monoid.hpp
   requiredBy: []
-  timestamp: '2022-09-20 04:39:00+09:00'
+  timestamp: '2022-09-21 01:55:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1441_2.test.cpp

@@ -4,9 +4,12 @@ data:
   - icon: ':question:'
     path: alg/group_affine.hpp
     title: alg/group_affine.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/swag.hpp
-    title: ds/swag.hpp
+  - icon: ':question:'
+    path: graph/link_cut.hpp
+    title: graph/link_cut.hpp
+  - icon: ':question:'
+    path: graph/link_cut_path.hpp
+    title: graph/link_cut_path.hpp
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
@@ -18,21 +21,21 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/queue_operate_all_composite
+    PROBLEM: https://judge.yosupo.jp/problem/dynamic_tree_vertex_set_path_composite
     links:
-    - https://judge.yosupo.jp/problem/queue_operate_all_composite
-  bundledCode: "#line 1 \"test/library_checker/datastructure/queue_operate_all_composite.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/queue_operate_all_composite\"\
-    \r\n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC\
-    \ optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
-    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
-    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    - https://judge.yosupo.jp/problem/dynamic_tree_vertex_set_path_composite
+  bundledCode: "#line 1 \"test/library_checker/dynamic_tree_vertex_set_path_composite.test.cpp\"\
+    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_tree_vertex_set_path_composite\"\
+    \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
+    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
+    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
+    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
+    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
     template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
     \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
     \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
@@ -207,67 +210,25 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 4 \"test/library_checker/datastructure/queue_operate_all_composite.test.cpp\"\
-    \n\r\n#line 1 \"alg/group_affine.hpp\"\ntemplate <typename K>\nstruct Group_Affine\
-    \ {\n  using F = pair<K, K>;\n  using value_type = F;\n  static constexpr F op(const\
-    \ F &x, const F &y) noexcept {\n    return F({x.first * y.first, x.second * y.first\
-    \ + y.second});\n  }\n  static constexpr F inverse(const F &x) {\n    auto [a,\
-    \ b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n  }\n  static constexpr\
-    \ K eval(const F &f, K x) noexcept {\n    return f.first * x + f.second;\n  }\n\
-    \  static constexpr F unit() { return {K(1), K(0)}; }\n  static constexpr bool\
-    \ commute = false;\n};\n#line 1 \"ds/swag.hpp\"\ntemplate <class Monoid>\nstruct\
-    \ SWAG {\n  using X = typename Monoid::value_type;\n  using value_type = X;\n\
-    \  int sz = 0;\n  vc<X> dat;\n  vc<X> cum_l;\n  X cum_r;\n\n  SWAG() : cum_l({Monoid::unit()}),\
-    \ cum_r(Monoid::unit()) {}\n\n  int size() { return sz; }\n\n  void push(X x)\
-    \ {\n    ++sz;\n    cum_r = Monoid::op(cum_r, x);\n    dat.eb(x);\n  }\n\n  void\
-    \ pop() {\n    --sz;\n    cum_l.pop_back();\n    if (len(cum_l) == 0) {\n    \
-    \  cum_l = {Monoid::unit()};\n      cum_r = Monoid::unit();\n      while (len(dat)\
-    \ > 1) {\n        cum_l.eb(Monoid::op(dat.back(), cum_l.back()));\n        dat.pop_back();\n\
-    \      }\n      dat.pop_back();\n    }\n  }\n\n  X lprod() { return cum_l.back();\
-    \ }\n  X rprod() { return cum_r; }\n\n  X prod() { return Monoid::op(cum_l.back(),\
-    \ cum_r); }\n\n  void debug() {\n    print(\"swag\");\n    print(\"dat\", dat);\n\
-    \    print(\"cum_l\", cum_l);\n    print(\"cum_r\", cum_r);\n  }\n};\n\n// \u5B9A\
-    \u6570\u500D\u306F\u76EE\u306B\u898B\u3048\u3066\u9045\u304F\u306A\u308B\u306E\
-    \u3067\u3001queue \u3067\u3088\u3044\u3068\u304D\u306F\u4F7F\u308F\u306A\u3044\
-    \ntemplate <class Monoid>\nstruct SWAG_deque {\n  using X = typename Monoid::value_type;\n\
-    \  using value_type = X;\n  int sz;\n  vc<X> dat_l, dat_r;\n  vc<X> cum_l, cum_r;\n\
-    \n  SWAG_deque() : sz(0), cum_l({Monoid::unit()}), cum_r({Monoid::unit()}) {}\n\
-    \n  int size() { return sz; }\n\n  void push_back(X x) {\n    ++sz;\n    dat_r.eb(x);\n\
-    \    cum_r.eb(Monoid::op(cum_r.back(), x));\n  }\n\n  void push_front(X x) {\n\
-    \    ++sz;\n    dat_l.eb(x);\n    cum_l.eb(Monoid::op(x, cum_l.back()));\n  }\n\
-    \n  void push(X x) { push_back(x); }\n\n  void clear() {\n    sz = 0;\n    dat_l.clear(),\
-    \ dat_r.clear();\n    cum_l = {Monoid::unit()}, cum_r = {Monoid::unit()};\n  }\n\
-    \n  void pop_front() {\n    if (sz == 1) return clear();\n    if (dat_l.empty())\
-    \ rebuild();\n    --sz;\n    dat_l.pop_back();\n    cum_l.pop_back();\n  }\n\n\
-    \  void pop_back() {\n    if (sz == 1) return clear();\n    if (dat_r.empty())\
-    \ rebuild();\n    --sz;\n    dat_r.pop_back();\n    cum_r.pop_back();\n  }\n\n\
-    \  void pop() { pop_front(); }\n\n  X lprod() { return cum_l.back(); }\n  X rprod()\
-    \ { return cum_r.back(); }\n  X prod() { return Monoid::op(cum_l.back(), cum_r.back());\
-    \ }\n  X prod_all() { return prod(); }\n\n  void debug() {\n    print(\"swag\"\
-    );\n    print(\"dat_l\", dat_l);\n    print(\"dat_r\", dat_r);\n    print(\"cum_l\"\
-    , cum_l);\n    print(\"cum_r\", cum_r);\n  }\n\nprivate:\n  void rebuild() {\n\
-    \    vc<X> X;\n    FOR_R(i, len(dat_l)) X.eb(dat_l[i]);\n    X.insert(X.end(),\
-    \ all(dat_r));\n    clear();\n    int m = len(X) / 2;\n    FOR_R(i, m) push_front(X[i]);\n\
-    \    FOR(i, m, len(X)) push_back(X[i]);\n    assert(sz == len(X));\n  }\n};\n\
-    #line 2 \"mod/modint.hpp\"\n\ntemplate <unsigned int mod>\nstruct modint {\n \
-    \ static constexpr bool is_modint = true;\n  unsigned int val;\n  constexpr modint(const\
-    \ long long val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val)\
-    \ % mod) % mod) {}\n  bool operator<(const modint &other) const {\n    return\
-    \ val < other.val;\n  } // To use std::map\n  modint &operator+=(const modint\
-    \ &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n  }\n\
-    \  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >= mod)\
-    \ val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n\
-    \    val = (unsigned int)(1LL * val * p.val % mod);\n    return *this;\n  }\n\
-    \  modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
-    \ *this;\n  }\n  modint operator-() const { return modint(get_mod() - val); }\n\
-    \  modint operator+(const modint &p) const { return modint(*this) += p; }\n  modint\
-    \ operator-(const modint &p) const { return modint(*this) -= p; }\n  modint operator*(const\
-    \ modint &p) const { return modint(*this) *= p; }\n  modint operator/(const modint\
-    \ &p) const { return modint(*this) /= p; }\n  bool operator==(const modint &p)\
-    \ const { return val == p.val; }\n  bool operator!=(const modint &p) const { return\
-    \ val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod, u = 1,\
-    \ v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b),\
-    \ swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
+    \ { yes(!t); }\r\n#line 2 \"mod/modint.hpp\"\n\ntemplate <unsigned int mod>\n\
+    struct modint {\n  static constexpr bool is_modint = true;\n  unsigned int val;\n\
+    \  constexpr modint(const long long val = 0) noexcept\n      : val(val >= 0 ?\
+    \ val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint &other)\
+    \ const {\n    return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
+    \ modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n\
+    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >=\
+    \ mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint\
+    \ &p) {\n    val = (unsigned int)(1LL * val * p.val % mod);\n    return *this;\n\
+    \  }\n  modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n   \
+    \ return *this;\n  }\n  modint operator-() const { return modint(get_mod() - val);\
+    \ }\n  modint operator+(const modint &p) const { return modint(*this) += p; }\n\
+    \  modint operator-(const modint &p) const { return modint(*this) -= p; }\n  modint\
+    \ operator*(const modint &p) const { return modint(*this) *= p; }\n  modint operator/(const\
+    \ modint &p) const { return modint(*this) /= p; }\n  bool operator==(const modint\
+    \ &p) const { return val == p.val; }\n  bool operator!=(const modint &p) const\
+    \ { return val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod,\
+    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
+    \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
     \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
     \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
     \  }\n  static constexpr unsigned int get_mod() { return mod; }\n};\n\nstruct\
@@ -332,42 +293,149 @@ data:
     mint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
     \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
     \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
-    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 8 \"test/library_checker/datastructure/queue_operate_all_composite.test.cpp\"\
-    \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(Q);\r\n  using Mono\
-    \ = Group_Affine<mint>;\r\n  using F = Mono::value_type;\r\n\r\n  SWAG<Mono> swag;\r\
-    \n\r\n  FOR(_, Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(a, b);\r\n\
-    \      swag.push(F({a, b}));\r\n    }\r\n    elif (t == 1) { swag.pop(); }\r\n\
-    \    elif (t == 2) {\r\n      LL(x);\r\n      F f = swag.prod();\r\n      print(Mono::eval(f,\
-    \ x));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n\
-    \  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
-    \n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/queue_operate_all_composite\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
-    \ \"alg/group_affine.hpp\"\r\n#include \"ds/swag.hpp\"\r\n#include \"mod/modint.hpp\"\
-    \r\n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(Q);\r\n  using Mono\
-    \ = Group_Affine<mint>;\r\n  using F = Mono::value_type;\r\n\r\n  SWAG<Mono> swag;\r\
-    \n\r\n  FOR(_, Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(a, b);\r\n\
-    \      swag.push(F({a, b}));\r\n    }\r\n    elif (t == 1) { swag.pop(); }\r\n\
-    \    elif (t == 2) {\r\n      LL(x);\r\n      F f = swag.prod();\r\n      print(Mono::eval(f,\
-    \ x));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n\
-    \  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
-    \n\r\n  return 0;\r\n}\r\n"
+    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 1 \"alg/group_affine.hpp\"\
+    \ntemplate <typename K>\nstruct Group_Affine {\n  using F = pair<K, K>;\n  using\
+    \ value_type = F;\n  static constexpr F op(const F &x, const F &y) noexcept {\n\
+    \    return F({x.first * y.first, x.second * y.first + y.second});\n  }\n  static\
+    \ constexpr F inverse(const F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n\
+    \    return {a, a * (-b)};\n  }\n  static constexpr K eval(const F &f, K x) noexcept\
+    \ {\n    return f.first * x + f.second;\n  }\n  static constexpr F unit() { return\
+    \ {K(1), K(0)}; }\n  static constexpr bool commute = false;\n};\n#line 2 \"graph/link_cut.hpp\"\
+    \n\ntemplate <typename Node, int NODES>\nstruct LinkCutTree_base {\n  int n;\n\
+    \  Node *nodes;\n  int pid;\n\n  LinkCutTree_base(int n = 0) : n(n), pid(0) {\n\
+    \    nodes = new Node[NODES];\n    FOR(i, n) nodes[i] = Node(i);\n  }\n\n  Node\
+    \ *operator[](int v) { return &nodes[v]; }\n\n  // \u30D1\u30B9\u3092\u8868\u3059\
+    \ splay tree \u306E\u6839\u306B\u306A\u3063\u3066\u3044\u308B\u304B\u3069\u3046\
+    \u304B\n  bool is_root(Node *c) { return state(c) == 0; }\n  bool is_root(int\
+    \ c) { return state(&nodes[c]) == 0; }\n\n  Node *get_root(Node *c) {\n    expose(c);\n\
+    \    while (c->l) {\n      c->push();\n      c = c->l;\n    }\n    splay(c);\n\
+    \    return c;\n  }\n\n  int get_root(int c) { return get_root(&nodes[c])->idx;\
+    \ }\n\n  void reset() { pid = 0; }\n\n  // c \u306E\u89AA\u3092 p \u306B\u3059\
+    \u308B\u3002\n  void link(Node *c, Node *p) {\n    evert(c);\n    assert(!c->p);\n\
+    \    c->p = p;\n  }\n\n  // c \u306E\u89AA\u3092 p \u306B\u3059\u308B\n  void\
+    \ link(int c, int p) { return link(&nodes[c], &nodes[p]); }\n\n  // c \u3068\u304B\
+    \u3089\u6839\u65B9\u5411\u306E\u8FBA\u3092\u5207\u308B\n  void cut(Node *a, Node\
+    \ *b) {\n    evert(a);\n    expose(b);\n    assert(b->l);\n    b->l->p = nullptr;\n\
+    \    b->l = nullptr;\n    b->update();\n  }\n\n  void cut(int a, int b) { return\
+    \ cut(&nodes[a], &nodes[b]); }\n\n  void evert(Node *c) {\n    expose(c);\n  \
+    \  c->reverse();\n    c->push();\n  }\n\n  void evert(int c) { evert(&nodes[c]);\
+    \ }\n\n  Node *lca(Node *u, Node *v) {\n    assert(get_root(u) == get_root(v));\n\
+    \    expose(u);\n    return expose(v);\n  }\n\n  int lca(int u, int v) { return\
+    \ lca(&nodes[u], &nodes[v])->idx; }\n\n  // c \u3068\u6839\u307E\u3067\u304C\u7E4B\
+    \u304C\u308C\u3066\u3044\u308B\u72B6\u614B\u306B\u5909\u66F4\u3057\u3066\u3001\
+    \u6839\u3092 return \u3059\u308B\n  Node *expose(Node *c) {\n    Node *now = c;\n\
+    \    Node *rp = nullptr; // \u4ECA\u307E\u3067\u4F5C\u3063\u305F\u30D1\u30B9\n\
+    \    while (now) {\n      splay(now);\n      now->r = rp; // \u5B50\u65B9\u5411\
+    \u306E\u5909\u66F4\n      now->update();\n      rp = now;\n      now = now->p;\n\
+    \    }\n    splay(c);\n    return rp;\n  }\n\n  int expose(int c) {\n    Node\
+    \ *x = expose(&nodes[c]);\n    if (!x) return -1;\n    return x->idx;\n  }\n\n\
+    \  void debug() {\n    FOR(i, n) { nodes[i].debug(); }\n  }\n\nprivate:\n  void\
+    \ rotate(Node *n) {\n    // n \u3092\u6839\u306B\u8FD1\u3065\u3051\u308B\n   \
+    \ Node *pp, *p, *c;\n    p = n->p;\n    pp = p->p;\n\n    if (p->l == n) {\n \
+    \     c = n->r;\n      n->r = p;\n      p->l = c;\n    } else {\n      c = n->l;\n\
+    \      n->l = p;\n      p->r = c;\n    }\n\n    if (pp && pp->l == p) pp->l =\
+    \ n;\n    if (pp && pp->r == p) pp->r = n;\n    n->p = pp;\n    p->p = n;\n  \
+    \  if (c) c->p = p;\n  }\n\n  inline int state(Node *n) {\n    if (!n->p) return\
+    \ 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r == n) return -1;\n    return\
+    \ 0;\n  }\n\n  void splay(Node *c) {\n    c->push();\n    while (!is_root(c))\
+    \ {\n      Node *p = c->p;\n      Node *pp = (p ? p->p : nullptr);\n      if (state(p)\
+    \ == 0) {\n        p->push(), c->push();\n        rotate(c);\n        if (p) p->update();\n\
+    \      }\n      elif (state(c) == state(p)) {\n        pp->push(), p->push(),\
+    \ c->push();\n        rotate(p);\n        rotate(c);\n        if (pp) pp->update();\n\
+    \        if (p) p->update();\n      }\n      else {\n        pp->push(), p->push(),\
+    \ c->push();\n        rotate(c);\n        rotate(c);\n        if (p) p->update();\n\
+    \        if (pp) pp->update();\n      }\n    }\n    c->update();\n  }\n};\n\n\
+    struct LCT_Node_base {\n  LCT_Node_base *l, *r, *p;\n  int idx;\n  bool rev;\n\
+    \  LCT_Node_base(int i = 0) : l(nullptr), r(nullptr), p(nullptr), idx(i) {}\n\n\
+    \  void update() {}\n\n  void push() {\n    if (rev) {\n      if (l) l->reverse();\n\
+    \      if (r) r->reverse();\n      rev = 0;\n    }\n  }\n\n  void reverse() {\n\
+    \    rev ^= 1;\n    swap(l, r);\n  }\n};\n\ntemplate <int NODES>\nusing LinkCutTree\
+    \ = LinkCutTree_base<LCT_Node_base, NODES>;\n#line 2 \"graph/link_cut_path.hpp\"\
+    \ntemplate <typename Node, int NODES>\nstruct LinkCutTree_Path_base : public LinkCutTree_base<Node,\
+    \ NODES> {\n  using X = typename Node::X;\n\n  LinkCutTree_Path_base(int n) :\
+    \ LinkCutTree_base<Node, NODES>(n) {}\n\n  LinkCutTree_Path_base(vc<X> dat) :\
+    \ LinkCutTree_base<Node, NODES>(len(dat)) {\n    FOR(v, len(dat)) {\n      Node\
+    \ *c = (*this)[v];\n      set(c, dat[v]);\n    }\n  }\n\n  template <typename\
+    \ F>\n  LinkCutTree_Path_base(int n, F f) : LinkCutTree_base<Node, NODES>(n) {\n\
+    \    FOR(v, n) {\n      X x = f(v);\n      Node *c = (*this)[v];\n      set(c,\
+    \ x);\n    }\n  }\n\n  void set(Node *c, X x) {\n    this->evert(c);\n    c->x\
+    \ = x;\n    c->update();\n  }\n\n  void set(int c, X x) { set((*this)[c], x);\
+    \ }\n\n  void multiply(Node *c, X x) { set(c, Node::Mono::op(c->x, x)); }\n\n\
+    \  void multiply(int c, X x) { multiply((*this)[c], x); }\n\n  X prod_path(Node\
+    \ *a, Node *b) {\n    this->evert(a);\n    this->expose(b);\n    return b->prod;\n\
+    \  }\n\n  X prod_path(int a, int b) { return prod_path((*this)[a], (*this)[b]);\
+    \ }\n};\n\ntemplate <typename Monoid>\nstruct LCT_Node_Monoid {\n  using Mono\
+    \ = Monoid;\n  using X = typename Monoid::value_type;\n  LCT_Node_Monoid *l, *r,\
+    \ *p;\n  int idx;\n  X x, prod, rev_prod;\n  bool rev;\n  LCT_Node_Monoid(int\
+    \ i = 0)\n      : l(nullptr),\n        r(nullptr),\n        p(nullptr),\n    \
+    \    idx(i),\n        x(Monoid::unit()),\n        prod(Monoid::unit()),\n    \
+    \    rev_prod(Monoid::unit()) {}\n\n  void update() {\n    prod = rev_prod = x;\n\
+    \    if (l) {\n      prod = Monoid::op(l->prod, prod);\n      rev_prod = Monoid::op(rev_prod,\
+    \ l->rev_prod);\n    }\n    if (r) {\n      prod = Monoid::op(prod, r->prod);\n\
+    \      rev_prod = Monoid::op(r->rev_prod, rev_prod);\n    }\n  }\n\n  void push()\
+    \ {\n    if (rev) {\n      if (l) l->reverse();\n      if (r) r->reverse();\n\
+    \      rev = 0;\n    }\n  }\n\n  void reverse() {\n    rev ^= 1;\n    swap(l,\
+    \ r);\n    swap(prod, rev_prod);\n  }\n\n  void debug() {\n    int li = (l ? l->idx\
+    \ : -1);\n    int ri = (r ? r->idx : -1);\n    int pi = (p ? p->idx : -1);\n \
+    \   print(\"idx\", idx, \"l\", li, \"r\", ri, \"p\", pi, \"x\", x, \"prod\", prod,\n\
+    \          \"rev_prod\", rev_prod);\n  }\n};\n\ntemplate <typename Monoid>\nstruct\
+    \ LCT_Node_CommutativeMonoid {\n  using Mono = Monoid;\n  using X = typename Mono::value_type;\n\
+    \  LCT_Node_CommutativeMonoid *l, *r, *p;\n  int idx;\n  X x, prod;\n  bool rev;\n\
+    \  LCT_Node_CommutativeMonoid(int i = 0)\n      : l(nullptr),\n        r(nullptr),\n\
+    \        p(nullptr),\n        idx(i),\n        x(Mono::unit()),\n        prod(Mono::unit())\
+    \ {}\n\n  void update() {\n    prod = x;\n    if (l) { prod = Mono::op(l->prod,\
+    \ prod); }\n    if (r) { prod = Mono::op(prod, r->prod); }\n  }\n\n  void push()\
+    \ {\n    if (rev) {\n      if (l) l->reverse();\n      if (r) r->reverse();\n\
+    \      rev = 0;\n    }\n  }\n\n  void reverse() {\n    rev ^= 1;\n    swap(l,\
+    \ r);\n  }\n\n  void debug() {\n    int li = (l ? l->idx : -1);\n    int ri =\
+    \ (r ? r->idx : -1);\n    int pi = (p ? p->idx : -1);\n    print(\"idx\", idx,\
+    \ \"l\", li, \"r\", ri, \"p\", pi, \"x\", x, \"prod\", prod);\n  }\n};\n\ntemplate\
+    \ <typename Monoid, int NODES>\nusing LinkCutTree_Path = LinkCutTree_Path_base<LCT_Node_Monoid<Monoid>,\
+    \ NODES>;\n\ntemplate <typename Monoid, int NODES>\nusing LinkCutTree_Path_Commutative\n\
+    \    = LinkCutTree_Path_base<LCT_Node_CommutativeMonoid<Monoid>, NODES>;\n#line\
+    \ 8 \"test/library_checker/dynamic_tree_vertex_set_path_composite.test.cpp\"\n\
+    \nusing mint = modint998;\nusing Mono = Group_Affine<mint>;\n\nvoid solve() {\n\
+    \  LL(N, Q);\n\n  auto f = [&](int v) -> pair<mint, mint> {\n    LL(a, b);\n \
+    \   return {mint(a), mint(b)};\n  };\n\n  LinkCutTree_Path_Monoid<Mono, 200000>\
+    \ X(N, f);\n\n  FOR(N - 1) {\n    LL(u, v);\n    X.link(u, v);\n  }\n\n  FOR(Q)\
+    \ {\n    // X.debug();\n    LL(t, a, b, c);\n    if (t == 0) {\n      LL(d);\n\
+    \      // ab \u3092\u524A\u9664\u3001cd \u3092\u8FFD\u52A0\n      X.cut(a, b);\n\
+    \      X.link(c, d);\n    }\n    if (t == 1) {\n      Mono::value_type x = {mint(b),\
+    \ mint(c)};\n      X.set(a, x);\n    }\n    if (t == 2) {\n      mint ANS = Mono::eval(X.prod_path(a,\
+    \ b), mint(c));\n      print(ANS);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_tree_vertex_set_path_composite\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\
+    \n#include \"alg/group_affine.hpp\"\n#include \"graph/link_cut_path.hpp\"\n\n\
+    using mint = modint998;\nusing Mono = Group_Affine<mint>;\n\nvoid solve() {\n\
+    \  LL(N, Q);\n\n  auto f = [&](int v) -> pair<mint, mint> {\n    LL(a, b);\n \
+    \   return {mint(a), mint(b)};\n  };\n\n  LinkCutTree_Path_Monoid<Mono, 200000>\
+    \ X(N, f);\n\n  FOR(N - 1) {\n    LL(u, v);\n    X.link(u, v);\n  }\n\n  FOR(Q)\
+    \ {\n    // X.debug();\n    LL(t, a, b, c);\n    if (t == 0) {\n      LL(d);\n\
+    \      // ab \u3092\u524A\u9664\u3001cd \u3092\u8FFD\u52A0\n      X.cut(a, b);\n\
+    \      X.link(c, d);\n    }\n    if (t == 1) {\n      Mono::value_type x = {mint(b),\
+    \ mint(c)};\n      X.set(a, x);\n    }\n    if (t == 2) {\n      mint ANS = Mono::eval(X.prod_path(a,\
+    \ b), mint(c));\n      print(ANS);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - alg/group_affine.hpp
-  - ds/swag.hpp
   - mod/modint.hpp
+  - alg/group_affine.hpp
+  - graph/link_cut_path.hpp
+  - graph/link_cut.hpp
   isVerificationFile: true
-  path: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
+  path: test/library_checker/dynamic_tree_vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-09-18 01:05:58+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-21 01:56:22+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
+documentation_of: test/library_checker/dynamic_tree_vertex_set_path_composite.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/datastructure/queue_operate_all_composite.test.cpp
-- /verify/test/library_checker/datastructure/queue_operate_all_composite.test.cpp.html
-title: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
+- /verify/test/library_checker/dynamic_tree_vertex_set_path_composite.test.cpp
+- /verify/test/library_checker/dynamic_tree_vertex_set_path_composite.test.cpp.html
+title: test/library_checker/dynamic_tree_vertex_set_path_composite.test.cpp
 ---

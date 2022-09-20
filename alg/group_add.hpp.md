@@ -163,6 +163,12 @@ data:
     path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/dynamic_tree_vertex_add_path_sum.test.cpp
+    title: test/library_checker/dynamic_tree_vertex_add_path_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/dynamic_tree_vertex_add_path_sum_2.test.cpp
+    title: test/library_checker/dynamic_tree_vertex_add_path_sum_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -316,6 +322,7 @@ data:
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/library_checker/graph/verted_add_contour_sum.test.cpp
+  - test/library_checker/dynamic_tree_vertex_add_path_sum_2.test.cpp
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
@@ -331,6 +338,7 @@ data:
   - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - test/library_checker/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/aoj/ALDS1_5.test.cpp
   - test/aoj/DSL_2_H.test.cpp
   - test/aoj/DSL_1_B.test.cpp

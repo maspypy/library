@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_affine.hpp
     title: alg/group_affine.hpp
   - icon: ':heavy_check_mark:'
@@ -384,30 +384,31 @@ data:
     \      n->l = p;\n      p->r = c;\n    }\n\n    if (pp && pp->l == p) pp->l =\
     \ n;\n    if (pp && pp->r == p) pp->r = n;\n    n->p = pp;\n    p->p = n;\n  \
     \  if (c) c->p = p;\n  }\n\n  inline int state(Node *n) {\n    if (!n->p) return\
-    \ 0;\n    if (n->p->l == n) return 1;\n    return -1;\n  }\n\n  // c \u306E\u5148\
-    \u7956\u306F prop \u6E08\u3067\u3042\u308B\n  void splay(Node *c) {\n    while\
-    \ (c->p) {\n      Node *p = c->p;\n      Node *pp = (p ? p->p : nullptr);\n  \
-    \    if (state(p) == 0) { rotate(c); }\n      elif (state(c) == state(p)) {\n\
-    \        rotate(p);\n        rotate(c);\n      }\n      else {\n        rotate(c);\n\
-    \        rotate(c);\n      }\n      if (pp) update(pp);\n      if (p) update(p);\n\
-    \    }\n    update(c);\n  }\n};\n#line 8 \"test/mytest/splay.test.cpp\"\n\nvoid\
-    \ test() {\n  // reverse, set, prod \u306E\u52D5\u4F5C\u3092\u78BA\u8A8D\n  using\
-    \ mint = modint998;\n  using Mono = Group_Affine<mint>;\n  using X = Mono::value_type;\n\
-    \  SplayTree_Monoid<Mono> ST;\n\n  auto rnd_X = [&]() -> X {\n    ll a = RNG(0,\
-    \ 1 << 30);\n    ll b = RNG(0, 1 << 30);\n    return {mint(a), mint(b)};\n  };\n\
-    \  auto get_lr = [&](int N) -> pi {\n    int l = RNG(0, N);\n    int r = RNG(0,\
-    \ N);\n    if (l > r) swap(l, r);\n    ++r;\n    return {l, r};\n  };\n\n  FOR(N,\
-    \ 1, 10) {\n    ST.reset();\n\n    vc<X> A(N);\n    FOR(i, N) { A[i] = rnd_X();\
-    \ }\n\n    auto root = ST.new_node(A);\n    FOR(100) {\n      int t = RNG(0, 3);\n\
-    \      if (t == 0) {\n        // set\n        int i = RNG(0, N);\n        X x\
-    \ = rnd_X();\n        A[i] = x;\n        ST.set(root, i, x);\n      }\n      if\
-    \ (t == 1) {\n        // reverse\n        auto [l, r] = get_lr(N);\n        reverse(A.begin()\
-    \ + l, A.begin() + r);\n        ST.reverse(root, l, r);\n      }\n      if (t\
-    \ == 2) {\n        // prod\n        auto [l, r] = get_lr(N);\n        X a = Mono::unit();\n\
-    \        FOR(i, l, r) a = Mono::op(a, A[i]);\n        X b = ST.prod(root, l, r);\n\
-    \        assert(a == b);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n\
-    \  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  test();\n\n  ll T = 1;\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r == n) return -1;\n    return\
+    \ 0;\n  }\n\n  // c \u306E\u5148\u7956\u306F prop \u6E08\u3067\u3042\u308B\n \
+    \ void splay(Node *c) {\n    while (c->p) {\n      Node *p = c->p;\n      Node\
+    \ *pp = (p ? p->p : nullptr);\n      if (state(p) == 0) { rotate(c); }\n     \
+    \ elif (state(c) == state(p)) {\n        rotate(p);\n        rotate(c);\n    \
+    \  }\n      else {\n        rotate(c);\n        rotate(c);\n      }\n      if\
+    \ (pp) update(pp);\n      if (p) update(p);\n    }\n    update(c);\n  }\n};\n\
+    #line 8 \"test/mytest/splay.test.cpp\"\n\nvoid test() {\n  // reverse, set, prod\
+    \ \u306E\u52D5\u4F5C\u3092\u78BA\u8A8D\n  using mint = modint998;\n  using Mono\
+    \ = Group_Affine<mint>;\n  using X = Mono::value_type;\n  SplayTree_Monoid<Mono>\
+    \ ST;\n\n  auto rnd_X = [&]() -> X {\n    ll a = RNG(0, 1 << 30);\n    ll b =\
+    \ RNG(0, 1 << 30);\n    return {mint(a), mint(b)};\n  };\n  auto get_lr = [&](int\
+    \ N) -> pi {\n    int l = RNG(0, N);\n    int r = RNG(0, N);\n    if (l > r) swap(l,\
+    \ r);\n    ++r;\n    return {l, r};\n  };\n\n  FOR(N, 1, 10) {\n    ST.reset();\n\
+    \n    vc<X> A(N);\n    FOR(i, N) { A[i] = rnd_X(); }\n\n    auto root = ST.new_node(A);\n\
+    \    FOR(100) {\n      int t = RNG(0, 3);\n      if (t == 0) {\n        // set\n\
+    \        int i = RNG(0, N);\n        X x = rnd_X();\n        A[i] = x;\n     \
+    \   ST.set(root, i, x);\n      }\n      if (t == 1) {\n        // reverse\n  \
+    \      auto [l, r] = get_lr(N);\n        reverse(A.begin() + l, A.begin() + r);\n\
+    \        ST.reverse(root, l, r);\n      }\n      if (t == 2) {\n        // prod\n\
+    \        auto [l, r] = get_lr(N);\n        X a = Mono::unit();\n        FOR(i,\
+    \ l, r) a = Mono::op(a, A[i]);\n        X b = ST.prod(root, l, r);\n        assert(a\
+    \ == b);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n\
+    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  test();\n\n  ll\
+    \ T = 1;\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"alg/group_affine.hpp\"\n#include \"mod/modint.hpp\"\
     \n#include \"other/random.hpp\"\n#include \"bbst/splaytree_monoid.hpp\"\n\nvoid\
@@ -438,7 +439,7 @@ data:
   isVerificationFile: true
   path: test/mytest/splay.test.cpp
   requiredBy: []
-  timestamp: '2022-09-20 04:39:00+09:00'
+  timestamp: '2022-09-21 01:55:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/splay.test.cpp

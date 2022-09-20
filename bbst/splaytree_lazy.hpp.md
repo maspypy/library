@@ -93,12 +93,13 @@ data:
     \     c = n->l;\n      n->l = p;\n      p->r = c;\n    }\n\n    if (pp && pp->l\
     \ == p) pp->l = n;\n    if (pp && pp->r == p) pp->r = n;\n    n->p = pp;\n   \
     \ p->p = n;\n    if (c) c->p = p;\n  }\n\n  inline int state(Node *n) {\n    if\
-    \ (!n->p) return 0;\n    if (n->p->l == n) return 1;\n    return -1;\n  }\n\n\
-    \  void splay(Node *c) {\n    while (c->p) {\n      Node *p = c->p;\n      Node\
-    \ *pp = (p ? p->p : nullptr);\n      if (state(p) == 0) { rotate(c); }\n     \
-    \ elif (state(c) == state(p)) {\n        rotate(p);\n        rotate(c);\n    \
-    \  }\n      else {\n        rotate(c);\n        rotate(c);\n      }\n      if\
-    \ (pp) update(pp);\n      if (p) update(p);\n    }\n    update(c);\n  }\n};\n"
+    \ (!n->p) return 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r == n) return\
+    \ -1;\n    return 0;\n  }\n\n  void splay(Node *c) {\n    while (c->p) {\n   \
+    \   Node *p = c->p;\n      Node *pp = (p ? p->p : nullptr);\n      if (state(p)\
+    \ == 0) { rotate(c); }\n      elif (state(c) == state(p)) {\n        rotate(p);\n\
+    \        rotate(c);\n      }\n      else {\n        rotate(c);\n        rotate(c);\n\
+    \      }\n      if (pp) update(pp);\n      if (p) update(p);\n    }\n    update(c);\n\
+    \  }\n};\n"
   code: "// Monoid_X \u306E\u53EF\u63DB\u6027\u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\
     \ntemplate <typename Lazy, int NODES = 1'000'000>\nstruct SplayTree_Lazy {\n \
     \ using Monoid_X = typename Lazy::X_structure;\n  using Monoid_A = typename Lazy::A_structure;\n\
@@ -180,17 +181,18 @@ data:
     \     c = n->l;\n      n->l = p;\n      p->r = c;\n    }\n\n    if (pp && pp->l\
     \ == p) pp->l = n;\n    if (pp && pp->r == p) pp->r = n;\n    n->p = pp;\n   \
     \ p->p = n;\n    if (c) c->p = p;\n  }\n\n  inline int state(Node *n) {\n    if\
-    \ (!n->p) return 0;\n    if (n->p->l == n) return 1;\n    return -1;\n  }\n\n\
-    \  void splay(Node *c) {\n    while (c->p) {\n      Node *p = c->p;\n      Node\
-    \ *pp = (p ? p->p : nullptr);\n      if (state(p) == 0) { rotate(c); }\n     \
-    \ elif (state(c) == state(p)) {\n        rotate(p);\n        rotate(c);\n    \
-    \  }\n      else {\n        rotate(c);\n        rotate(c);\n      }\n      if\
-    \ (pp) update(pp);\n      if (p) update(p);\n    }\n    update(c);\n  }\n};"
+    \ (!n->p) return 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r == n) return\
+    \ -1;\n    return 0;\n  }\n\n  void splay(Node *c) {\n    while (c->p) {\n   \
+    \   Node *p = c->p;\n      Node *pp = (p ? p->p : nullptr);\n      if (state(p)\
+    \ == 0) { rotate(c); }\n      elif (state(c) == state(p)) {\n        rotate(p);\n\
+    \        rotate(c);\n      }\n      else {\n        rotate(c);\n        rotate(c);\n\
+    \      }\n      if (pp) update(pp);\n      if (p) update(p);\n    }\n    update(c);\n\
+    \  }\n};"
   dependsOn: []
   isVerificationFile: false
   path: bbst/splaytree_lazy.hpp
   requiredBy: []
-  timestamp: '2022-09-20 04:58:42+09:00'
+  timestamp: '2022-09-21 01:55:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
