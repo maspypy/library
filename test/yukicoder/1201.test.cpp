@@ -1,3 +1,4 @@
+#define PROBLEM "https://yukicoder.me/problems/no/1201"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/floor_sum_of_linear.hpp"
