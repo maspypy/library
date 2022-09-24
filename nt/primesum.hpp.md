@@ -12,7 +12,7 @@ data:
     path: nt/primesum_mod6.hpp
     title: nt/primesum_mod6.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/counting_primes.test.cpp
     title: test/library_checker/math/counting_primes.test.cpp
   - icon: ':x:'
@@ -29,7 +29,7 @@ data:
     title: test/mytest/primesum_mod6.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\nvc<ll> primetable(int LIM) {\n  ++LIM;\n\
@@ -101,7 +101,7 @@ data:
   - nt/primesum_mod6.hpp
   - nt/primesum_mod4.hpp
   timestamp: '2022-08-19 01:56:01+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/prime_sum.test.cpp
   - test/mytest/primesum_mod6.test.cpp

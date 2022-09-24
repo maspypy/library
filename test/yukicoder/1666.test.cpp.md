@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/integer_kth_root.hpp
     title: other/integer_kth_root.hpp
   - icon: ':question:'

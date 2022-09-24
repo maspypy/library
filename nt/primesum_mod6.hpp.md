@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/primesum.hpp
     title: nt/primesum.hpp
   - icon: ':question:'
