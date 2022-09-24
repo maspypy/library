@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/link_cut.hpp
     title: graph/link_cut.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/link_cut_path.hpp
     title: graph/link_cut_path.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum
@@ -335,7 +335,7 @@ data:
   path: test/library_checker/dynamic_tree_vertex_add_path_sum.test.cpp
   requiredBy: []
   timestamp: '2022-09-24 23:41:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/dynamic_tree_vertex_add_path_sum.test.cpp
 layout: document

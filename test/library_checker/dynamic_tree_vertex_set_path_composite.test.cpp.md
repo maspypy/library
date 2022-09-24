@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: alg/group_affine.hpp
     title: alg/group_affine.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/link_cut.hpp
     title: graph/link_cut.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/link_cut_path.hpp
     title: graph/link_cut_path.hpp
   - icon: ':question:'
