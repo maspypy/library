@@ -43,8 +43,8 @@ data:
   isVerificationFile: false
   path: string/zalgorithm.hpp
   requiredBy:
-  - string/run_enumerate.hpp
   - string/is_substring.hpp
+  - string/run_enumerate.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:

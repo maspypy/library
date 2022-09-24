@@ -78,19 +78,19 @@ data:
   isVerificationFile: false
   path: mod/powertable.hpp
   requiredBy:
-  - poly/poly_taylor_shift.hpp
-  - seq/surjection.hpp
   - seq/stirling_number_1.hpp
   - seq/stirling_number_2.hpp
+  - seq/surjection.hpp
+  - poly/poly_taylor_shift.hpp
   timestamp: '2022-08-17 05:57:42+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1760.test.cpp
   - test/yukicoder/1321.test.cpp
+  - test/yukicoder/1760.test.cpp
   - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
+  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
 documentation_of: mod/powertable.hpp
 layout: document

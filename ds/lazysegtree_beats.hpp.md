@@ -139,9 +139,9 @@ data:
   isVerificationFile: false
   path: ds/lazysegtree_beats.hpp
   requiredBy:
-  - ds/beats_summaxmin_chminchmax.hpp
-  - ds/beats_summax_chmin.hpp
   - ds/beats_summin_chmax.hpp
+  - ds/beats_summax_chmin.hpp
+  - ds/beats_summaxmin_chminchmax.hpp
   timestamp: '2022-06-19 02:52:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

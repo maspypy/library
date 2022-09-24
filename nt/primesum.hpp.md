@@ -104,8 +104,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/prime_sum.test.cpp
-  - test/mytest/primesum_mod6.test.cpp
   - test/mytest/primesum_mod4.test.cpp
+  - test/mytest/primesum_mod6.test.cpp
   - test/library_checker/math/counting_primes.test.cpp
   - test/library_checker/math/totient_sum.test.cpp
 documentation_of: nt/primesum.hpp

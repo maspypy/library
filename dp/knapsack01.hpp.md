@@ -94,8 +94,8 @@ data:
   timestamp: '2022-04-22 16:53:26+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/aoj/DPL_1_B.test.cpp
   - test/aoj/DPL_1_F.test.cpp
+  - test/aoj/DPL_1_B.test.cpp
   - test/aoj/DPL_1_H.test.cpp
 documentation_of: dp/knapsack01.hpp
 layout: document
