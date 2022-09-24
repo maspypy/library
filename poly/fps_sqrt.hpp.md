@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':x:'
@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: other/random.hpp
     title: other/random.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
   - icon: ':x:'
@@ -25,7 +25,7 @@ data:
   - icon: ':x:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
   - icon: ':x:'
@@ -43,7 +43,7 @@ data:
   - icon: ':x:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -515,8 +515,8 @@ data:
   timestamp: '2022-09-24 23:40:40+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
 documentation_of: poly/fps_sqrt.hpp
 layout: document
 redirect_from:

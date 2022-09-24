@@ -40,8 +40,8 @@ data:
   timestamp: '2022-04-22 16:53:26+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/math/longest_increasing_subsequence.test.cpp
   - test/aoj/DPL_1_D.test.cpp
+  - test/library_checker/math/longest_increasing_subsequence.test.cpp
 documentation_of: dp/longest_increasing_subsequence.hpp
 layout: document
 redirect_from:

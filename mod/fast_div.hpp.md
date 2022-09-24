@@ -75,20 +75,20 @@ data:
   path: mod/fast_div.hpp
   requiredBy:
   - mod/primitive_root.hpp
+  - mod/mod_pow.hpp
   - mod/mod_kth_root.hpp
   - mod/binomial.hpp
   - mod/tetration.hpp
-  - mod/mod_pow.hpp
   - nt/gaussian_integers.hpp
   - nt/lcm.hpp
   - nt/crt.hpp
   timestamp: '2022-05-12 00:26:23+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1593.test.cpp
   - test/yukicoder/187.test.cpp
-  - test/library_checker/math/kth_root_mod.test.cpp
+  - test/yukicoder/1593.test.cpp
   - test/library_checker/math/tetration.test.cpp
+  - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/binomial_coefficient.test.cpp
 documentation_of: mod/fast_div.hpp
 layout: document

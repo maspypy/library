@@ -59,17 +59,17 @@ data:
   isVerificationFile: false
   path: linalg/mat_mul.hpp
   requiredBy:
-  - linalg/mat_pow.hpp
-  - poly/prefix_product_of_poly.hpp
   - seq/kth_term_of_p_recursive.hpp
+  - poly/prefix_product_of_poly.hpp
+  - linalg/mat_pow.hpp
   timestamp: '2022-08-19 01:23:18+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1810.test.cpp
-  - test/yukicoder/1750.test.cpp
-  - test/yukicoder/502_2.test.cpp
-  - test/yukicoder/426.test.cpp
   - test/mytest/factorial_998.test.cpp
+  - test/yukicoder/426.test.cpp
+  - test/yukicoder/1810.test.cpp
+  - test/yukicoder/502_2.test.cpp
+  - test/yukicoder/1750.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
 documentation_of: linalg/mat_mul.hpp
 layout: document

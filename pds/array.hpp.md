@@ -60,8 +60,8 @@ data:
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/datastructure/persistent_queue.test.cpp
   - test/library_checker/datastructure/persistent_unionfind.test.cpp
+  - test/library_checker/datastructure/persistent_queue.test.cpp
 documentation_of: pds/array.hpp
 layout: document
 redirect_from:
