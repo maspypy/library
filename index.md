@@ -622,7 +622,7 @@ data:
     - icon: ':question:'
       path: graph/two_edge_component.hpp
       title: graph/two_edge_component.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/twosat.hpp
       title: graph/twosat.hpp
     - icon: ':x:'
@@ -638,13 +638,13 @@ data:
       title: graph_count/count_tree_by_root_degree.hpp
   - name: linalg
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: linalg/characteristic_poly.hpp
       title: linalg/characteristic_poly.hpp
     - icon: ':x:'
       path: linalg/det.hpp
       title: linalg/det.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: linalg/hafnian.hpp
       title: linalg/hafnian.hpp
     - icon: ':x:'
@@ -712,7 +712,7 @@ data:
     - icon: ':question:'
       path: mod/mod_pow.hpp
       title: mod/mod_pow.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: mod/mod_sqrt.hpp
       title: mod/mod_sqrt.hpp
     - icon: ':x:'
@@ -727,7 +727,7 @@ data:
     - icon: ':x:'
       path: mod/modular_subset_sum.hpp
       title: mod/modular_subset_sum.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: mod/powertable.hpp
       title: mod/powertable.hpp
     - icon: ':heavy_check_mark:'
@@ -736,7 +736,7 @@ data:
     - icon: ':question:'
       path: mod/range_freq_of_linear.hpp
       title: mod/range_freq_of_linear.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: mod/tetration.hpp
       title: mod/tetration.hpp
   - name: .
@@ -752,7 +752,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/divisors.hpp
       title: nt/divisors.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/euler_phi.hpp
       title: nt/euler_phi.hpp
     - icon: ':question:'
@@ -785,7 +785,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/multiplicative_convolution_mod2n.hpp
       title: nt/multiplicative_convolution_mod2n.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: nt/multiplicative_sum.hpp
       title: nt/multiplicative_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -944,10 +944,10 @@ data:
     - icon: ':question:'
       path: poly/fps_inv.hpp
       title: poly/fps_inv.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/fps_log.hpp
       title: poly/fps_log.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/fps_pow.hpp
       title: poly/fps_pow.hpp
     - icon: ':x:'
@@ -977,7 +977,7 @@ data:
     - icon: ':x:'
       path: poly/poly_gcd.hpp
       title: poly/poly_gcd.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/poly_taylor_shift.hpp
       title: poly/poly_taylor_shift.hpp
     - icon: ':x:'
@@ -1036,13 +1036,13 @@ data:
     - icon: ':warning:'
       path: seq/q_binomial.hpp
       title: seq/q_binomial.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: seq/stirling_number_1.hpp
       title: seq/stirling_number_1.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: seq/stirling_number_2.hpp
       title: seq/stirling_number_2.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: seq/stirling_number_query.hpp
       title: seq/stirling_number_query.hpp
     - icon: ':x:'
@@ -1651,19 +1651,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/sharp_p_subset_sum.test.cpp
       title: test/library_checker/math/sharp_p_subset_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/sqrt_mod.test.cpp
       title: test/library_checker/math/sqrt_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/stirline_mod_p_1.test.cpp
       title: test/library_checker/math/stirline_mod_p_1.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/stirline_mod_p_2.test.cpp
       title: test/library_checker/math/stirline_mod_p_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
       title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
       title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
     - icon: ':x:'
@@ -1672,24 +1672,24 @@ data:
     - icon: ':x:'
       path: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
       title: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/sum_of_floor_of_linear.test.cpp
       title: test/library_checker/math/sum_of_floor_of_linear.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/tetration.test.cpp
       title: test/library_checker/math/tetration.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/totient_sum.test.cpp
       title: test/library_checker/math/totient_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/twosat.test.cpp
       title: test/library_checker/math/twosat.test.cpp
   - name: test/library_checker/matrix
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/matrix/charactereistic_poly.test.cpp
       title: test/library_checker/matrix/charactereistic_poly.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/matrix/hafnian_of_matrix.test.cpp
       title: test/library_checker/matrix/hafnian_of_matrix.test.cpp
     - icon: ':x:'
