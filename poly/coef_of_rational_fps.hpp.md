@@ -341,15 +341,15 @@ data:
   isVerificationFile: false
   path: poly/coef_of_rational_fps.hpp
   requiredBy:
-  - seq/interpolate_linear_rec.hpp
   - seq/bell_number_large.hpp
+  - seq/interpolate_linear_rec.hpp
   timestamp: '2022-09-24 23:40:40+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1516.test.cpp
+  - test/yukicoder/1844.test.cpp
   - test/yukicoder/1547.test.cpp
   - test/yukicoder/1500.test.cpp
-  - test/yukicoder/1844.test.cpp
-  - test/yukicoder/1516.test.cpp
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
 documentation_of: poly/coef_of_rational_fps.hpp
 layout: document

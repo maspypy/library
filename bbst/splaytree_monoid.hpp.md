@@ -204,10 +204,10 @@ data:
   timestamp: '2022-09-21 01:55:13+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1441_2.test.cpp
+  - test/yukicoder/1441.test.cpp
   - test/mytest/splay.test.cpp
   - test/aoj/1508.test.cpp
-  - test/yukicoder/1441.test.cpp
-  - test/yukicoder/1441_2.test.cpp
 documentation_of: bbst/splaytree_monoid.hpp
 layout: document
 redirect_from:
