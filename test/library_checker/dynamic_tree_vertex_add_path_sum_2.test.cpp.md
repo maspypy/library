@@ -2,15 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: alg/group_add.hpp
-    title: alg/group_add.hpp
-  - icon: ':question:'
-    path: graph/link_cut.hpp
-    title: graph/link_cut.hpp
-  - icon: ':question:'
-    path: graph/link_cut_path.hpp
-    title: graph/link_cut_path.hpp
-  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
@@ -18,21 +9,17 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum
-    links:
-    - https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum
-  bundledCode: "#line 1 \"test/library_checker/dynamic_tree_vertex_add_path_sum_2.test.cpp\"\
-    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum\"\
-    \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
-    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
-    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
-    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
-    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    links: []
+  bundledCode: "#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma\
+    \ GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace\
+    \ std;\n\nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\n\
+    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
+    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
     template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
     \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
     \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
@@ -54,11 +41,10 @@ data:
     \n#define FOR_subset(t, s) for (ll t = s; t >= 0; t = (t == 0 ? -1 : (t - 1) &\
     \ s))\n#define all(x) x.begin(), x.end()\n#define len(x) ll(x.size())\n#define\
     \ elif else if\n\n#define eb emplace_back\n#define mp make_pair\n#define mt make_tuple\n\
-    #define fi first\n#define se second\n\n#define stoi stoll\n\nll SUM(vector<int>\
-    \ &A) {\n  ll sum = 0;\n  for (auto &&a: A) sum += a;\n  return sum;\n}\n\ntemplate\
-    \ <typename T>\nT SUM(vector<T> &A) {\n  T sum = T(0);\n  for (auto &&a: A) sum\
-    \ += a;\n  return sum;\n}\n\n#define MIN(v) *min_element(all(v))\n#define MAX(v)\
-    \ *max_element(all(v))\n#define LB(c, x) distance((c).begin(), lower_bound(all(c),\
+    #define fi first\n#define se second\n\n#define stoi stoll\n\ntemplate <typename\
+    \ T, typename U>\nT SUM(const vector<U> &A) {\n  T sum = 0;\n  for (auto &&a:\
+    \ A) sum += a;\n  return sum;\n}\n\n#define MIN(v) *min_element(all(v))\n#define\
+    \ MAX(v) *max_element(all(v))\n#define LB(c, x) distance((c).begin(), lower_bound(all(c),\
     \ (x)))\n#define UB(c, x) distance((c).begin(), upper_bound(all(c), (x)))\n#define\
     \ UNIQUE(x) sort(all(x)), x.erase(unique(all(x)), x.end())\n\nint popcnt(int x)\
     \ { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
@@ -72,32 +58,32 @@ data:
     \ x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll x) { return (x\
     \ == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return (x == 0 ? -1\
     \ : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT pick(deque<T> &que) {\n\
-    \  assert(que.size());\n  T a = que.front();\n  que.pop_front();\n  return a;\n\
-    }\n\ntemplate <typename T>\nT pick(pq<T> &que) {\n  assert(que.size());\n  T a\
-    \ = que.top();\n  que.pop();\n  return a;\n}\n\ntemplate <typename T>\nT pick(pqg<T>\
-    \ &que) {\n  assert(que.size());\n  T a = que.top();\n  que.pop();\n  return a;\n\
-    }\n\ntemplate <typename T>\nT pick(vc<T> &que) {\n  assert(que.size());\n  T a\
-    \ = que.back();\n  que.pop_back();\n  return a;\n}\n\ntemplate <typename T, typename\
-    \ U>\nT ceil(T x, U y) {\n  return (x > 0 ? (x + y - 1) / y : x / y);\n}\n\ntemplate\
-    \ <typename T, typename U>\nT floor(T x, U y) {\n  return (x > 0 ? x / y : (x\
-    \ - y + 1) / y);\n}\n\ntemplate <typename T, typename U>\npair<T, T> divmod(T\
-    \ x, U y) {\n  T q = floor(x, y);\n  return {q, x - q * y};\n}\n\nll binary_search(function<bool(ll)>\
-    \ check, ll ok, ll ng) {\n  assert(check(ok));\n  while (abs(ok - ng) > 1) {\n\
-    \    auto x = (ng + ok) / 2;\n    if (check(x))\n      ok = x;\n    else\n   \
-    \   ng = x;\n  }\n  return ok;\n}\n\ntemplate <typename F>\ndouble binary_search_real(F\
-    \ check, double ok, double ng, int iter = 100) {\n  FOR(iter) {\n    double x\
-    \ = (ok + ng) / 2;\n    if (check(x)) {\n      ok = x;\n    } else {\n      ng\
-    \ = x;\n    }\n  }\n  return (ok + ng) / 2;\n}\n\ntemplate <class T, class S>\n\
-    inline bool chmax(T &a, const S &b) {\n  return (a < b ? a = b, 1 : 0);\n}\ntemplate\
-    \ <class T, class S>\ninline bool chmin(T &a, const S &b) {\n  return (a > b ?\
-    \ a = b, 1 : 0);\n}\n\nvi s_to_vi(const string &S, char first_char) {\n  vi A(S.size());\n\
-    \  FOR(i, S.size()) { A[i] = S[i] - first_char; }\n  return A;\n}\n\ntemplate\
-    \ <typename T>\nvector<T> cumsum(vector<T> &A, int off = 1) {\n  int N = A.size();\n\
+    \  T a = que.front();\n  que.pop_front();\n  return a;\n}\n\ntemplate <typename\
+    \ T>\nT pick(pq<T> &que) {\n  T a = que.top();\n  que.pop();\n  return a;\n}\n\
+    \ntemplate <typename T>\nT pick(pqg<T> &que) {\n  assert(que.size());\n  T a =\
+    \ que.top();\n  que.pop();\n  return a;\n}\n\ntemplate <typename T>\nT pick(vc<T>\
+    \ &que) {\n  assert(que.size());\n  T a = que.back();\n  que.pop_back();\n  return\
+    \ a;\n}\n\ntemplate <typename T, typename U>\nT ceil(T x, U y) {\n  return (x\
+    \ > 0 ? (x + y - 1) / y : x / y);\n}\n\ntemplate <typename T, typename U>\nT floor(T\
+    \ x, U y) {\n  return (x > 0 ? x / y : (x - y + 1) / y);\n}\n\ntemplate <typename\
+    \ T, typename U>\npair<T, T> divmod(T x, U y) {\n  T q = floor(x, y);\n  return\
+    \ {q, x - q * y};\n}\n\ntemplate <typename F>\nll binary_search(F check, ll ok,\
+    \ ll ng) {\n  assert(check(ok));\n  while (abs(ok - ng) > 1) {\n    auto x = (ng\
+    \ + ok) / 2;\n    tie(ok, ng) = (check(x) ? mp(x, ng) : mp(ok, x));\n  }\n  return\
+    \ ok;\n}\n\ntemplate <typename F>\ndouble binary_search_real(F check, double ok,\
+    \ double ng, int iter = 100) {\n  FOR(iter) {\n    double x = (ok + ng) / 2;\n\
+    \    tie(ok, ng) = (check(x) ? mp(x, ng) : mp(ok, x));\n  }\n  return (ok + ng)\
+    \ / 2;\n}\n\ntemplate <class T, class S>\ninline bool chmax(T &a, const S &b)\
+    \ {\n  return (a < b ? a = b, 1 : 0);\n}\ntemplate <class T, class S>\ninline\
+    \ bool chmin(T &a, const S &b) {\n  return (a > b ? a = b, 1 : 0);\n}\n\nvc<int>\
+    \ s_to_vi(const string &S, char first_char) {\n  vc<int> A(S.size());\n  FOR(i,\
+    \ S.size()) { A[i] = S[i] - first_char; }\n  return A;\n}\n\ntemplate <typename\
+    \ T, typename U>\nvector<T> cumsum(vector<U> &A, int off = 1) {\n  int N = A.size();\n\
     \  vector<T> B(N + 1);\n  FOR(i, N) { B[i + 1] = B[i] + A[i]; }\n  if (off ==\
     \ 0) B.erase(B.begin());\n  return B;\n}\n\ntemplate <typename CNT, typename T>\n\
     vc<CNT> bincount(const vc<T> &A, int size) {\n  vc<CNT> C(size);\n  for (auto\
-    \ &&x: A) { ++C[x]; }\n  return C;\n}\n\ntemplate <typename T>\nvector<int> argsort(const\
-    \ vector<T> &A) {\n  // stable\n  vector<int> ids(A.size());\n  iota(all(ids),\
+    \ &&x: A) { ++C[x]; }\n  return C;\n}\n\n// stable\ntemplate <typename T>\nvector<int>\
+    \ argsort(const vector<T> &A) {\n  vector<int> ids(A.size());\n  iota(all(ids),\
     \ 0);\n  sort(all(ids),\n       [&](int i, int j) { return A[i] < A[j] || (A[i]\
     \ == A[j] && i < j); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate\
     \ <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I) {\n  int n =\
@@ -207,136 +193,124 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 5 \"test/library_checker/dynamic_tree_vertex_add_path_sum_2.test.cpp\"\
-    \n\n#line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Group_Add\
-    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"graph/link_cut.hpp\"\
-    \n\ntemplate <typename Node, int NODES>\nstruct LinkCutTree_base {\n  int n;\n\
-    \  Node *nodes;\n  int pid;\n\n  LinkCutTree_base(int n = 0) : n(n), pid(0) {\n\
-    \    nodes = new Node[NODES];\n    FOR(i, n) nodes[i] = Node(i);\n  }\n\n  Node\
-    \ *operator[](int v) { return &nodes[v]; }\n\n  // \u30D1\u30B9\u3092\u8868\u3059\
-    \ splay tree \u306E\u6839\u306B\u306A\u3063\u3066\u3044\u308B\u304B\u3069\u3046\
-    \u304B\n  bool is_root(Node *c) { return state(c) == 0; }\n  bool is_root(int\
-    \ c) { return state(&nodes[c]) == 0; }\n\n  Node *get_root(Node *c) {\n    expose(c);\n\
-    \    while (c->l) {\n      c->push();\n      c = c->l;\n    }\n    splay(c);\n\
-    \    return c;\n  }\n\n  int get_root(int c) { return get_root(&nodes[c])->idx;\
-    \ }\n\n  void reset() { pid = 0; }\n\n  // c \u306E\u89AA\u3092 p \u306B\u3059\
-    \u308B\u3002\n  void link(Node *c, Node *p) {\n    evert(c);\n    assert(!c->p);\n\
-    \    c->p = p;\n  }\n\n  // c \u306E\u89AA\u3092 p \u306B\u3059\u308B\n  void\
-    \ link(int c, int p) { return link(&nodes[c], &nodes[p]); }\n\n  // c \u3068\u304B\
-    \u3089\u6839\u65B9\u5411\u306E\u8FBA\u3092\u5207\u308B\n  void cut(Node *a, Node\
-    \ *b) {\n    evert(a);\n    expose(b);\n    assert(b->l);\n    b->l->p = nullptr;\n\
-    \    b->l = nullptr;\n    b->update();\n  }\n\n  void cut(int a, int b) { return\
-    \ cut(&nodes[a], &nodes[b]); }\n\n  void evert(Node *c) {\n    expose(c);\n  \
-    \  c->reverse();\n    c->push();\n  }\n\n  void evert(int c) { evert(&nodes[c]);\
-    \ }\n\n  Node *lca(Node *u, Node *v) {\n    assert(get_root(u) == get_root(v));\n\
-    \    expose(u);\n    return expose(v);\n  }\n\n  int lca(int u, int v) { return\
-    \ lca(&nodes[u], &nodes[v])->idx; }\n\n  // c \u3068\u6839\u307E\u3067\u304C\u7E4B\
-    \u304C\u308C\u3066\u3044\u308B\u72B6\u614B\u306B\u5909\u66F4\u3057\u3066\u3001\
-    \u6839\u3092 return \u3059\u308B\n  Node *expose(Node *c) {\n    Node *now = c;\n\
-    \    Node *rp = nullptr; // \u4ECA\u307E\u3067\u4F5C\u3063\u305F\u30D1\u30B9\n\
-    \    while (now) {\n      splay(now);\n      now->r = rp; // \u5B50\u65B9\u5411\
-    \u306E\u5909\u66F4\n      now->update();\n      rp = now;\n      now = now->p;\n\
-    \    }\n    splay(c);\n    return rp;\n  }\n\n  int expose(int c) {\n    Node\
-    \ *x = expose(&nodes[c]);\n    if (!x) return -1;\n    return x->idx;\n  }\n\n\
-    \  void debug() {\n    FOR(i, n) { nodes[i].debug(); }\n  }\n\nprivate:\n  void\
-    \ rotate(Node *n) {\n    // n \u3092\u6839\u306B\u8FD1\u3065\u3051\u308B\n   \
-    \ Node *pp, *p, *c;\n    p = n->p;\n    pp = p->p;\n\n    if (p->l == n) {\n \
-    \     c = n->r;\n      n->r = p;\n      p->l = c;\n    } else {\n      c = n->l;\n\
-    \      n->l = p;\n      p->r = c;\n    }\n\n    if (pp && pp->l == p) pp->l =\
-    \ n;\n    if (pp && pp->r == p) pp->r = n;\n    n->p = pp;\n    p->p = n;\n  \
-    \  if (c) c->p = p;\n  }\n\n  inline int state(Node *n) {\n    if (!n->p) return\
-    \ 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r == n) return -1;\n    return\
-    \ 0;\n  }\n\n  void splay(Node *c) {\n    c->push();\n    while (!is_root(c))\
-    \ {\n      Node *p = c->p;\n      Node *pp = (p ? p->p : nullptr);\n      if (state(p)\
-    \ == 0) {\n        p->push(), c->push();\n        rotate(c);\n        if (p) p->update();\n\
-    \      }\n      elif (state(c) == state(p)) {\n        pp->push(), p->push(),\
-    \ c->push();\n        rotate(p);\n        rotate(c);\n        if (pp) pp->update();\n\
-    \        if (p) p->update();\n      }\n      else {\n        pp->push(), p->push(),\
-    \ c->push();\n        rotate(c);\n        rotate(c);\n        if (p) p->update();\n\
-    \        if (pp) pp->update();\n      }\n    }\n    c->update();\n  }\n};\n\n\
-    struct LCT_Node_base {\n  LCT_Node_base *l, *r, *p;\n  int idx;\n  bool rev;\n\
-    \  LCT_Node_base(int i = 0) : l(nullptr), r(nullptr), p(nullptr), idx(i) {}\n\n\
-    \  void update() {}\n\n  void push() {\n    if (rev) {\n      if (l) l->reverse();\n\
-    \      if (r) r->reverse();\n      rev = 0;\n    }\n  }\n\n  void reverse() {\n\
-    \    rev ^= 1;\n    swap(l, r);\n  }\n};\n\ntemplate <int NODES>\nusing LinkCutTree\
-    \ = LinkCutTree_base<LCT_Node_base, NODES>;\n#line 2 \"graph/link_cut_path.hpp\"\
-    \ntemplate <typename Node, int NODES>\nstruct LinkCutTree_Path_base : public LinkCutTree_base<Node,\
-    \ NODES> {\n  using X = typename Node::X;\n\n  LinkCutTree_Path_base(int n) :\
-    \ LinkCutTree_base<Node, NODES>(n) {}\n\n  LinkCutTree_Path_base(vc<X> dat) :\
-    \ LinkCutTree_base<Node, NODES>(len(dat)) {\n    FOR(v, len(dat)) {\n      Node\
-    \ *c = (*this)[v];\n      set(c, dat[v]);\n    }\n  }\n\n  template <typename\
-    \ F>\n  LinkCutTree_Path_base(int n, F f) : LinkCutTree_base<Node, NODES>(n) {\n\
-    \    FOR(v, n) {\n      X x = f(v);\n      Node *c = (*this)[v];\n      set(c,\
-    \ x);\n    }\n  }\n\n  void set(Node *c, X x) {\n    this->evert(c);\n    c->x\
-    \ = x;\n    c->update();\n  }\n\n  void set(int c, X x) { set((*this)[c], x);\
-    \ }\n\n  void multiply(Node *c, X x) { set(c, Node::Mono::op(c->x, x)); }\n\n\
-    \  void multiply(int c, X x) { multiply((*this)[c], x); }\n\n  X prod_path(Node\
-    \ *a, Node *b) {\n    this->evert(a);\n    this->expose(b);\n    return b->prod;\n\
-    \  }\n\n  X prod_path(int a, int b) { return prod_path((*this)[a], (*this)[b]);\
-    \ }\n};\n\ntemplate <typename Monoid>\nstruct LCT_Node_Monoid {\n  using Mono\
-    \ = Monoid;\n  using X = typename Monoid::value_type;\n  LCT_Node_Monoid *l, *r,\
-    \ *p;\n  int idx;\n  X x, prod, rev_prod;\n  bool rev;\n  LCT_Node_Monoid(int\
-    \ i = 0)\n      : l(nullptr),\n        r(nullptr),\n        p(nullptr),\n    \
-    \    idx(i),\n        x(Monoid::unit()),\n        prod(Monoid::unit()),\n    \
-    \    rev_prod(Monoid::unit()) {}\n\n  void update() {\n    prod = rev_prod = x;\n\
-    \    if (l) {\n      prod = Monoid::op(l->prod, prod);\n      rev_prod = Monoid::op(rev_prod,\
-    \ l->rev_prod);\n    }\n    if (r) {\n      prod = Monoid::op(prod, r->prod);\n\
-    \      rev_prod = Monoid::op(r->rev_prod, rev_prod);\n    }\n  }\n\n  void push()\
-    \ {\n    if (rev) {\n      if (l) l->reverse();\n      if (r) r->reverse();\n\
-    \      rev = 0;\n    }\n  }\n\n  void reverse() {\n    rev ^= 1;\n    swap(l,\
-    \ r);\n    swap(prod, rev_prod);\n  }\n\n  void debug() {\n    int li = (l ? l->idx\
-    \ : -1);\n    int ri = (r ? r->idx : -1);\n    int pi = (p ? p->idx : -1);\n \
-    \   print(\"idx\", idx, \"l\", li, \"r\", ri, \"p\", pi, \"x\", x, \"prod\", prod,\n\
-    \          \"rev_prod\", rev_prod);\n  }\n};\n\ntemplate <typename Monoid>\nstruct\
-    \ LCT_Node_CommutativeMonoid {\n  using Mono = Monoid;\n  using X = typename Mono::value_type;\n\
-    \  LCT_Node_CommutativeMonoid *l, *r, *p;\n  int idx;\n  X x, prod;\n  bool rev;\n\
-    \  LCT_Node_CommutativeMonoid(int i = 0)\n      : l(nullptr),\n        r(nullptr),\n\
-    \        p(nullptr),\n        idx(i),\n        x(Mono::unit()),\n        prod(Mono::unit())\
-    \ {}\n\n  void update() {\n    prod = x;\n    if (l) { prod = Mono::op(l->prod,\
-    \ prod); }\n    if (r) { prod = Mono::op(prod, r->prod); }\n  }\n\n  void push()\
-    \ {\n    if (rev) {\n      if (l) l->reverse();\n      if (r) r->reverse();\n\
-    \      rev = 0;\n    }\n  }\n\n  void reverse() {\n    rev ^= 1;\n    swap(l,\
-    \ r);\n  }\n\n  void debug() {\n    int li = (l ? l->idx : -1);\n    int ri =\
-    \ (r ? r->idx : -1);\n    int pi = (p ? p->idx : -1);\n    print(\"idx\", idx,\
-    \ \"l\", li, \"r\", ri, \"p\", pi, \"x\", x, \"prod\", prod);\n  }\n};\n\ntemplate\
-    \ <typename Monoid, int NODES>\nusing LinkCutTree_Path = LinkCutTree_Path_base<LCT_Node_Monoid<Monoid>,\
-    \ NODES>;\n\ntemplate <typename Monoid, int NODES>\nusing LinkCutTree_Path_Commutative\n\
-    \    = LinkCutTree_Path_base<LCT_Node_CommutativeMonoid<Monoid>, NODES>;\n#line\
-    \ 8 \"test/library_checker/dynamic_tree_vertex_add_path_sum_2.test.cpp\"\n\nvoid\
-    \ solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n\n  LinkCutTree_Path_Commutative<Group_Add<ll>,\
-    \ 200000> X(A);\n\n  FOR(N - 1) {\n    LL(u, v);\n    X.link(u, v);\n  }\n\n \
-    \ FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(a, b, c, d);\n      X.cut(a,\
-    \ b);\n      X.link(c, d);\n    }\n    if (t == 1) {\n      LL(p, x);\n      X.multiply(p,\
-    \ x);\n    }\n    if (t == 2) {\n      LL(a, b);\n      print(X.prod_path(a, b));\n\
-    \    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"alg/group_add.hpp\"\
-    \n#include \"graph/link_cut_path.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll,\
-    \ A, N);\n\n  LinkCutTree_Path_Commutative<Group_Add<ll>, 200000> X(A);\n\n  FOR(N\
-    \ - 1) {\n    LL(u, v);\n    X.link(u, v);\n  }\n\n  FOR(Q) {\n    LL(t);\n  \
-    \  if (t == 0) {\n      LL(a, b, c, d);\n      X.cut(a, b);\n      X.link(c, d);\n\
-    \    }\n    if (t == 1) {\n      LL(p, x);\n      X.multiply(p, x);\n    }\n \
-    \   if (t == 2) {\n      LL(a, b);\n      print(X.prod_path(a, b));\n    }\n \
-    \ }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}"
+    \ { yes(!t); }\r\n#line 3 \"test/library_checker/dynamic_tree_vertex_add_path_sum_2.test.cpp\"\
+    \n\ntemplate <typename T, T (*add)(T, T), T (*sub)(T, T), T (*mul)(T, long long)>\n\
+    struct LinkCutForSubtreeNode {\n  using Node = LinkCutForSubtreeNode;\n  using\
+    \ Ptr = LinkCutForSubtreeNode*;\n  Ptr l, r, p;\n  T key, sum, lazy, cancel, subsum;\n\
+    \  int cnt, subcnt;\n  bool rev;\n\n  LinkCutForSubtreeNode(const T& t = T())\n\
+    \      : l(),\n        r(),\n        p(),\n        key(t),\n        sum(t),\n\
+    \        lazy(T()),\n        cancel(T()),\n        subsum(T()),\n        cnt(1),\n\
+    \        subcnt(0),\n        rev(false) {}\n  void make_normal(Ptr other) {\n\
+    \    subsum = add(subsum, other->sum);\n    subcnt += other->cnt;\n  }\n  void\
+    \ make_prefer(Ptr other) {\n    subsum = sub(subsum, other->sum);\n    subcnt\
+    \ -= other->cnt;\n  }\n  void merge(Ptr n1, Ptr n2) {\n    sum = add(add(n1 ?\
+    \ n1->sum : T(), key), add(subsum, n2 ? n2->sum : T()));\n    cnt = 1 + (n1 ?\
+    \ n1->cnt : 0) + (n2 ? n2->cnt : 0) + subcnt;\n    if (n1) n1->cancel = lazy;\n\
+    \    if (n2) n2->cancel = lazy;\n  }\n  void apply(const T& add_val) {\n    key\
+    \ = add(key, add_val);\n    sum = add(sum, mul(add_val, cnt));\n    lazy = add(lazy,\
+    \ add_val);\n    subsum = add(subsum, mul(add_val, subcnt));\n  }\n  void fetch()\
+    \ {\n    if (!p) return;\n    apply(p->lazy - cancel);\n    cancel = p->lazy;\n\
+    \  }\n};\n\ntemplate <typename T, T (*add)(T, T), T (*sub)(T, T), T (*mul)(T,\
+    \ long long)>\nstruct LinkCutTreeSubtreeQuery {\n  using Node = LinkCutForSubtreeNode<T,\
+    \ add, sub, mul>;\n  using Ptr = Node*;\n\n  void push_rev(Ptr t) {\n    if (!t)\
+    \ return;\n    if (t->rev) {\n      if (t->l) toggle(t->l);\n      if (t->r) toggle(t->r);\n\
+    \      t->rev = false;\n    }\n  }\n\n  void push(Ptr t) {\n    if (!t) return;\n\
+    \    if (t->rev) {\n      if (t->l) toggle(t->l);\n      if (t->r) toggle(t->r);\n\
+    \      t->rev = false;\n    }\n    if (t->l) t->l->fetch();\n    if (t->r) t->r->fetch();\n\
+    \  }\n\n  Ptr update(Ptr t) {\n    if (!t) return t;\n    t->merge(t->l, t->r);\n\
+    \    return t;\n  }\n\n  void splay(Ptr t) {\n    while (!is_root(t)) {\n    \
+    \  Ptr q = t->p;\n      if (is_root(q)) {\n        push_rev(q), push_rev(t);\n\
+    \        rot(t);\n      } else {\n        Ptr r = q->p;\n        push_rev(r),\
+    \ push_rev(q), push_rev(t);\n        if (pos(q) == pos(t))\n          rot(q),\
+    \ rot(t);\n        else\n          rot(t), rot(t);\n      }\n    }\n  }\n\n  Ptr\
+    \ expose(Ptr t) {\n    Ptr rp = nullptr;\n    for (Ptr cur = t; cur; cur = cur->p)\
+    \ {\n      splay(cur), push(cur);\n      if (cur->r) cur->make_normal(cur->r);\n\
+    \      if (rp) rp->fetch(), cur->make_prefer(rp);\n      cur->r = rp;\n      rp\
+    \ = cur;\n    }\n    splay(t);\n    return rp;\n  }\n\n  void evert(Ptr t) {\n\
+    \    expose(t);\n    toggle(t);\n    push(t);\n  }\n\n  void link(Ptr u, Ptr v)\
+    \ {\n    evert(u);\n    expose(v);\n    u->p = v, v->r = u;\n    update(v);\n\
+    \  }\n\n  void cut(Ptr u, Ptr v) {\n    evert(u);\n    expose(v);\n    v->l =\
+    \ u->p = nullptr;\n    this->update(v);\n  }\n\n  void toggle(Ptr t) {\n    swap(t->l,\
+    \ t->r);\n    t->rev ^= true;\n  }\n\n  T get_key(Ptr t) {\n    expose(t);\n \
+    \   return t->key;\n  }\n\n  void set_key(Ptr t, const T& key) {\n    expose(t);\n\
+    \    t->key = key;\n    update(t);\n  }\n\n  void subtree_add(Ptr t, const T&\
+    \ add_val) {\n    expose(t);\n    Ptr l = t->l;\n    if (l) t->l = nullptr, update(t);\n\
+    \    t->apply(add_val);\n    if (l) t->l = l, update(t);\n  }\n\n  T subtree_sum(Ptr\
+    \ t) {\n    expose(t);\n    return add(t->key, t->subsum);\n  }\n\nprotected:\n\
+    \  bool is_root(Ptr t) { return !(t->p) || (t->p->l != t && t->p->r != t); }\n\
+    \n  inline int pos(Ptr t) {\n    if (t->p) {\n      if (t->p->l == t) return -1;\n\
+    \      if (t->p->r == t) return 1;\n    }\n    return 0;\n  }\n\n  void rot(Ptr\
+    \ t) {\n    Ptr x = t->p, y = x->p;\n    push(x), push(t);\n    if (pos(t) ==\
+    \ -1) {\n      if ((x->l = t->r)) t->r->p = x;\n      t->r = x, x->p = t;\n  \
+    \  } else {\n      if ((x->r = t->l)) t->l->p = x;\n      t->l = x, x->p = t;\n\
+    \    }\n    T xc = x->cancel;\n    update(x), update(t);\n    t->cancel = xc;\n\
+    \    if ((t->p = y)) {\n      if (y->l == x) y->l = t;\n      if (y->r == x) y->r\
+    \ = t;\n    }\n  }\n};\n\nvoid solve() {}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+  code: "#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\ntemplate <typename\
+    \ T, T (*add)(T, T), T (*sub)(T, T), T (*mul)(T, long long)>\nstruct LinkCutForSubtreeNode\
+    \ {\n  using Node = LinkCutForSubtreeNode;\n  using Ptr = LinkCutForSubtreeNode*;\n\
+    \  Ptr l, r, p;\n  T key, sum, lazy, cancel, subsum;\n  int cnt, subcnt;\n  bool\
+    \ rev;\n\n  LinkCutForSubtreeNode(const T& t = T())\n      : l(),\n        r(),\n\
+    \        p(),\n        key(t),\n        sum(t),\n        lazy(T()),\n        cancel(T()),\n\
+    \        subsum(T()),\n        cnt(1),\n        subcnt(0),\n        rev(false)\
+    \ {}\n  void make_normal(Ptr other) {\n    subsum = add(subsum, other->sum);\n\
+    \    subcnt += other->cnt;\n  }\n  void make_prefer(Ptr other) {\n    subsum =\
+    \ sub(subsum, other->sum);\n    subcnt -= other->cnt;\n  }\n  void merge(Ptr n1,\
+    \ Ptr n2) {\n    sum = add(add(n1 ? n1->sum : T(), key), add(subsum, n2 ? n2->sum\
+    \ : T()));\n    cnt = 1 + (n1 ? n1->cnt : 0) + (n2 ? n2->cnt : 0) + subcnt;\n\
+    \    if (n1) n1->cancel = lazy;\n    if (n2) n2->cancel = lazy;\n  }\n  void apply(const\
+    \ T& add_val) {\n    key = add(key, add_val);\n    sum = add(sum, mul(add_val,\
+    \ cnt));\n    lazy = add(lazy, add_val);\n    subsum = add(subsum, mul(add_val,\
+    \ subcnt));\n  }\n  void fetch() {\n    if (!p) return;\n    apply(p->lazy - cancel);\n\
+    \    cancel = p->lazy;\n  }\n};\n\ntemplate <typename T, T (*add)(T, T), T (*sub)(T,\
+    \ T), T (*mul)(T, long long)>\nstruct LinkCutTreeSubtreeQuery {\n  using Node\
+    \ = LinkCutForSubtreeNode<T, add, sub, mul>;\n  using Ptr = Node*;\n\n  void push_rev(Ptr\
+    \ t) {\n    if (!t) return;\n    if (t->rev) {\n      if (t->l) toggle(t->l);\n\
+    \      if (t->r) toggle(t->r);\n      t->rev = false;\n    }\n  }\n\n  void push(Ptr\
+    \ t) {\n    if (!t) return;\n    if (t->rev) {\n      if (t->l) toggle(t->l);\n\
+    \      if (t->r) toggle(t->r);\n      t->rev = false;\n    }\n    if (t->l) t->l->fetch();\n\
+    \    if (t->r) t->r->fetch();\n  }\n\n  Ptr update(Ptr t) {\n    if (!t) return\
+    \ t;\n    t->merge(t->l, t->r);\n    return t;\n  }\n\n  void splay(Ptr t) {\n\
+    \    while (!is_root(t)) {\n      Ptr q = t->p;\n      if (is_root(q)) {\n   \
+    \     push_rev(q), push_rev(t);\n        rot(t);\n      } else {\n        Ptr\
+    \ r = q->p;\n        push_rev(r), push_rev(q), push_rev(t);\n        if (pos(q)\
+    \ == pos(t))\n          rot(q), rot(t);\n        else\n          rot(t), rot(t);\n\
+    \      }\n    }\n  }\n\n  Ptr expose(Ptr t) {\n    Ptr rp = nullptr;\n    for\
+    \ (Ptr cur = t; cur; cur = cur->p) {\n      splay(cur), push(cur);\n      if (cur->r)\
+    \ cur->make_normal(cur->r);\n      if (rp) rp->fetch(), cur->make_prefer(rp);\n\
+    \      cur->r = rp;\n      rp = cur;\n    }\n    splay(t);\n    return rp;\n \
+    \ }\n\n  void evert(Ptr t) {\n    expose(t);\n    toggle(t);\n    push(t);\n \
+    \ }\n\n  void link(Ptr u, Ptr v) {\n    evert(u);\n    expose(v);\n    u->p =\
+    \ v, v->r = u;\n    update(v);\n  }\n\n  void cut(Ptr u, Ptr v) {\n    evert(u);\n\
+    \    expose(v);\n    v->l = u->p = nullptr;\n    this->update(v);\n  }\n\n  void\
+    \ toggle(Ptr t) {\n    swap(t->l, t->r);\n    t->rev ^= true;\n  }\n\n  T get_key(Ptr\
+    \ t) {\n    expose(t);\n    return t->key;\n  }\n\n  void set_key(Ptr t, const\
+    \ T& key) {\n    expose(t);\n    t->key = key;\n    update(t);\n  }\n\n  void\
+    \ subtree_add(Ptr t, const T& add_val) {\n    expose(t);\n    Ptr l = t->l;\n\
+    \    if (l) t->l = nullptr, update(t);\n    t->apply(add_val);\n    if (l) t->l\
+    \ = l, update(t);\n  }\n\n  T subtree_sum(Ptr t) {\n    expose(t);\n    return\
+    \ add(t->key, t->subsum);\n  }\n\nprotected:\n  bool is_root(Ptr t) { return !(t->p)\
+    \ || (t->p->l != t && t->p->r != t); }\n\n  inline int pos(Ptr t) {\n    if (t->p)\
+    \ {\n      if (t->p->l == t) return -1;\n      if (t->p->r == t) return 1;\n \
+    \   }\n    return 0;\n  }\n\n  void rot(Ptr t) {\n    Ptr x = t->p, y = x->p;\n\
+    \    push(x), push(t);\n    if (pos(t) == -1) {\n      if ((x->l = t->r)) t->r->p\
+    \ = x;\n      t->r = x, x->p = t;\n    } else {\n      if ((x->r = t->l)) t->l->p\
+    \ = x;\n      t->l = x, x->p = t;\n    }\n    T xc = x->cancel;\n    update(x),\
+    \ update(t);\n    t->cancel = xc;\n    if ((t->p = y)) {\n      if (y->l == x)\
+    \ y->l = t;\n      if (y->r == x) y->r = t;\n    }\n  }\n};\n\nvoid solve() {}\n\
+    \nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
+    \ return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - alg/group_add.hpp
-  - graph/link_cut_path.hpp
-  - graph/link_cut.hpp
   isVerificationFile: true
   path: test/library_checker/dynamic_tree_vertex_add_path_sum_2.test.cpp
   requiredBy: []
-  timestamp: '2022-09-21 01:56:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-24 23:41:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/dynamic_tree_vertex_add_path_sum_2.test.cpp
 layout: document

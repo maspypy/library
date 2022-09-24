@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/lazysegtree_beats.hpp
     title: ds/lazysegtree_beats.hpp
   _extendedRequiredBy: []

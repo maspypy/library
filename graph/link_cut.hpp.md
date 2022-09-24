@@ -2,22 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/link_cut_path.hpp
     title: graph/link_cut_path.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/dynamic_tree_vertex_add_path_sum.test.cpp
     title: test/library_checker/dynamic_tree_vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/dynamic_tree_vertex_add_path_sum_2.test.cpp
-    title: test/library_checker/dynamic_tree_vertex_add_path_sum_2.test.cpp
   - icon: ':x:'
     path: test/library_checker/dynamic_tree_vertex_set_path_composite.test.cpp
     title: test/library_checker/dynamic_tree_vertex_set_path_composite.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/link_cut.hpp\"\n\ntemplate <typename Node, int NODES>\n\
@@ -126,10 +123,9 @@ data:
   requiredBy:
   - graph/link_cut_path.hpp
   timestamp: '2022-09-21 01:56:22+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/dynamic_tree_vertex_set_path_composite.test.cpp
-  - test/library_checker/dynamic_tree_vertex_add_path_sum_2.test.cpp
   - test/library_checker/dynamic_tree_vertex_add_path_sum.test.cpp
 documentation_of: graph/link_cut.hpp
 layout: document

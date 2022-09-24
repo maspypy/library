@@ -6,12 +6,12 @@ data:
   - icon: ':x:'
     path: test/atcoder/abc229h.test.cpp
     title: test/atcoder/abc229h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/dyrational.test.cpp
     title: test/mytest/dyrational.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"game/dyrational.hpp\"\n// a/2^b \u306E\u5F62\u3067\u6301\
@@ -80,7 +80,7 @@ data:
   path: game/dyrational.hpp
   requiredBy: []
   timestamp: '2022-09-01 21:23:01+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/dyrational.test.cpp
   - test/atcoder/abc229h.test.cpp
