@@ -5,7 +5,7 @@ data:
   - icon: ':warning:'
     path: alg/lazy_minidx_add.hpp
     title: alg/lazy_minidx_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/dynamic_lichao.hpp
     title: ds/dynamic_lichao.hpp
   - icon: ':warning:'
@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
     title: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
     title: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
   - icon: ':x:'
