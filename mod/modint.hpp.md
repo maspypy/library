@@ -204,7 +204,7 @@ data:
   - icon: ':x:'
     path: test/library_checker/dynamic_tree_vertex_set_path_composite.test.cpp
     title: test/library_checker/dynamic_tree_vertex_set_path_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/enumerate_cliques.test.cpp
     title: test/library_checker/graph/enumerate_cliques.test.cpp
   - icon: ':x:'
@@ -387,6 +387,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1500.test.cpp
     title: test/yukicoder/1500.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1516.test.cpp
+    title: test/yukicoder/1516.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1547.test.cpp
     title: test/yukicoder/1547.test.cpp
@@ -670,6 +673,7 @@ data:
   - test/yukicoder/1141.test.cpp
   - test/yukicoder/1810.test.cpp
   - test/yukicoder/1618.test.cpp
+  - test/yukicoder/1516.test.cpp
   - test/yukicoder/2062.test.cpp
   - test/yukicoder/1844.test.cpp
   - test/yukicoder/1750.test.cpp
