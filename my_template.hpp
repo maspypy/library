@@ -65,15 +65,9 @@ using pqg = priority_queue<T, vector<T>, greater<T>>;
 
 #define stoi stoll
 
-ll SUM(vector<int> &A) {
-  ll sum = 0;
-  for (auto &&a: A) sum += a;
-  return sum;
-}
-
-template <typename T>
-T SUM(vector<T> &A) {
-  T sum = T(0);
+template <typename T, typename U>
+T SUM(const vector<U> &A) {
+  T sum = 0;
   for (auto &&a: A) sum += a;
   return sum;
 }
@@ -101,7 +95,6 @@ int lowbit(u64 x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }
 
 template <typename T>
 T pick(deque<T> &que) {
-  assert(que.size());
   T a = que.front();
   que.pop_front();
   return a;
@@ -109,7 +102,6 @@ T pick(deque<T> &que) {
 
 template <typename T>
 T pick(pq<T> &que) {
-  assert(que.size());
   T a = que.top();
   que.pop();
   return a;
@@ -147,14 +139,12 @@ pair<T, T> divmod(T x, U y) {
   return {q, x - q * y};
 }
 
-ll binary_search(function<bool(ll)> check, ll ok, ll ng) {
+template <typename F>
+ll binary_search(F check, ll ok, ll ng) {
   assert(check(ok));
   while (abs(ok - ng) > 1) {
     auto x = (ng + ok) / 2;
-    if (check(x))
-      ok = x;
-    else
-      ng = x;
+    tie(ok, ng) = (check(x) ? mp(x, ng) : mp(ok, x));
   }
   return ok;
 }
@@ -163,11 +153,7 @@ template <typename F>
 double binary_search_real(F check, double ok, double ng, int iter = 100) {
   FOR(iter) {
     double x = (ok + ng) / 2;
-    if (check(x)) {
-      ok = x;
-    } else {
-      ng = x;
-    }
+    tie(ok, ng) = (check(x) ? mp(x, ng) : mp(ok, x));
   }
   return (ok + ng) / 2;
 }
@@ -181,14 +167,14 @@ inline bool chmin(T &a, const S &b) {
   return (a > b ? a = b, 1 : 0);
 }
 
-vi s_to_vi(const string &S, char first_char) {
-  vi A(S.size());
+vc<int> s_to_vi(const string &S, char first_char) {
+  vc<int> A(S.size());
   FOR(i, S.size()) { A[i] = S[i] - first_char; }
   return A;
 }
 
-template <typename T>
-vector<T> cumsum(vector<T> &A, int off = 1) {
+template <typename T, typename U>
+vector<T> cumsum(vector<U> &A, int off = 1) {
   int N = A.size();
   vector<T> B(N + 1);
   FOR(i, N) { B[i + 1] = B[i] + A[i]; }
@@ -203,9 +189,9 @@ vc<CNT> bincount(const vc<T> &A, int size) {
   return C;
 }
 
+// stable
 template <typename T>
 vector<int> argsort(const vector<T> &A) {
-  // stable
   vector<int> ids(A.size());
   iota(all(ids), 0);
   sort(all(ids),
