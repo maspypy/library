@@ -15,7 +15,7 @@ data:
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
     title: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
   - icon: ':x:'
@@ -41,7 +41,7 @@ data:
     title: test/yukicoder/502_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/swag.hpp\"\ntemplate <class Monoid>\nstruct SWAG {\n\
@@ -116,18 +116,18 @@ data:
   isVerificationFile: false
   path: ds/swag.hpp
   requiredBy:
-  - seq/kth_term_of_p_recursive.hpp
-  - seq/interpolate_poly_exp_sum.hpp
   - poly/prefix_product_of_poly.hpp
   - poly/lagrange_interpolate_iota.hpp
+  - seq/kth_term_of_p_recursive.hpp
+  - seq/interpolate_poly_exp_sum.hpp
   timestamp: '2022-09-18 01:05:58+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/factorial_998.test.cpp
-  - test/yukicoder/1435_2.test.cpp
   - test/yukicoder/1117.test.cpp
+  - test/yukicoder/1435_2.test.cpp
   - test/yukicoder/1036_3.test.cpp
   - test/yukicoder/502_2.test.cpp
+  - test/mytest/factorial_998.test.cpp
   - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/datastructure/queue_operate_all_composite.test.cpp

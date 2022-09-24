@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: pds/segtree.hpp
     title: pds/segtree.hpp
   _extendedRequiredBy: []

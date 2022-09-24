@@ -123,8 +123,8 @@ data:
   timestamp: '2022-08-07 13:09:47+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/math/stirline_mod_p_1.test.cpp
   - test/library_checker/math/stirline_mod_p_2.test.cpp
+  - test/library_checker/math/stirline_mod_p_1.test.cpp
 documentation_of: seq/stirling_number_query.hpp
 layout: document
 redirect_from:

@@ -82,30 +82,30 @@ data:
   isVerificationFile: false
   path: poly/differentiate.hpp
   requiredBy:
-  - seq/stirling_number_1.hpp
-  - seq/stirling_number_2.hpp
-  - seq/surjection.hpp
   - poly/fps_sqrt.hpp
-  - poly/fps_pow.hpp
-  - poly/product_of_one_minus_xn.hpp
   - poly/product_of_one_plus_xn.hpp
   - poly/fps_exp.hpp
+  - poly/fps_pow.hpp
+  - poly/product_of_one_minus_xn.hpp
+  - seq/surjection.hpp
+  - seq/stirling_number_1.hpp
+  - seq/stirling_number_2.hpp
   timestamp: '2022-05-02 13:06:43+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1321.test.cpp
   - test/yukicoder/2062.test.cpp
+  - test/yukicoder/1321.test.cpp
   - test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/pow_of_fps.test.cpp
-  - test/library_checker/polynomial/exp_of_fps.test.cpp
   - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
   - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
+  - test/library_checker/polynomial/exp_of_fps.test.cpp
+  - test/library_checker/polynomial/pow_of_fps.test.cpp
+  - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
+  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
 documentation_of: poly/differentiate.hpp
 layout: document
 redirect_from:

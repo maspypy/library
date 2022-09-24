@@ -117,16 +117,16 @@ data:
   isVerificationFile: false
   path: graph/strongly_connected_component.hpp
   requiredBy:
-  - graph/twosat.hpp
   - graph/reachability.hpp
+  - graph/twosat.hpp
   timestamp: '2022-08-30 02:42:36+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/0275.test.cpp
   - test/yukicoder/1293.test.cpp
   - test/yukicoder/1170.test.cpp
-  - test/library_checker/math/twosat.test.cpp
   - test/library_checker/graph/scc.test.cpp
+  - test/library_checker/math/twosat.test.cpp
+  - test/aoj/0275.test.cpp
 documentation_of: graph/strongly_connected_component.hpp
 layout: document
 redirect_from:
