@@ -42,6 +42,13 @@ struct HashMapLL {
     for (auto&& i: IDS) used[i] = 0;
     IDS.clear();
   }
+
+  vc<pair<ll, Val>> items() {
+    vc<pair<ll, Val>> res;
+    res.reserve(len(IDS));
+    for (auto&& i: IDS) res.eb(keys[i], vals[i]);
+    return res;
+  }
 };
 
 template <typename KEY, typename VAL, int LOG>
