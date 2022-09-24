@@ -10,7 +10,7 @@ data:
   - icon: ':x:'
     path: graph/link_cut_path.hpp
     title: graph/link_cut_path.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'

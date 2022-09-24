@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: ds/powerquery.hpp
     title: ds/powerquery.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'

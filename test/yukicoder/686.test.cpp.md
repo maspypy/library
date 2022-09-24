@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: alg/lazy_max_add.hpp
     title: alg/lazy_max_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid_max.hpp
     title: alg/monoid_max.hpp
   - icon: ':x:'
