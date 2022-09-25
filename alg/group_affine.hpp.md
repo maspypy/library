@@ -42,7 +42,7 @@ data:
   - icon: ':x:'
     path: test/library_checker/dynamic_tree_vertex_set_path_composite.test.cpp
     title: test/library_checker/dynamic_tree_vertex_set_path_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/splay.test.cpp
     title: test/mytest/splay.test.cpp
   - icon: ':x:'
