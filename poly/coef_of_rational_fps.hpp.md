@@ -23,20 +23,20 @@ data:
   - icon: ':warning:'
     path: seq/bell_number_large.hpp
     title: seq/bell_number_large.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1500.test.cpp
     title: test/yukicoder/1500.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1516.test.cpp
     title: test/yukicoder/1516.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1547.test.cpp
     title: test/yukicoder/1547.test.cpp
   - icon: ':x:'
@@ -341,15 +341,15 @@ data:
   isVerificationFile: false
   path: poly/coef_of_rational_fps.hpp
   requiredBy:
-  - seq/interpolate_linear_rec.hpp
   - seq/bell_number_large.hpp
+  - seq/interpolate_linear_rec.hpp
   timestamp: '2022-09-24 23:40:40+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1516.test.cpp
+  - test/yukicoder/1844.test.cpp
   - test/yukicoder/1547.test.cpp
   - test/yukicoder/1500.test.cpp
-  - test/yukicoder/1844.test.cpp
-  - test/yukicoder/1516.test.cpp
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
 documentation_of: poly/coef_of_rational_fps.hpp
 layout: document

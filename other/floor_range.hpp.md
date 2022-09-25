@@ -6,7 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1260.test.cpp
     title: test/yukicoder/1260.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1573.test.cpp
     title: test/yukicoder/1573.test.cpp
   - icon: ':x:'
@@ -31,9 +31,9 @@ data:
   timestamp: '2022-04-23 01:23:59+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1260.test.cpp
   - test/yukicoder/1573.test.cpp
   - test/yukicoder/4954.test.cpp
+  - test/yukicoder/1260.test.cpp
 documentation_of: other/floor_range.hpp
 layout: document
 redirect_from:

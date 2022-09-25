@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/lazy_min_set.hpp
     title: alg/lazy_min_set.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy_powersums_set.hpp
     title: alg/lazy_powersums_set.hpp
   _extendedVerifiedWith:
@@ -30,12 +30,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_I.test.cpp
     title: test/aoj/DSL_2_I.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1548.test.cpp
     title: test/yukicoder/1548.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid_set.hpp\"\ntemplate <typename E, E none_val>\r\
@@ -51,19 +51,19 @@ data:
   isVerificationFile: false
   path: alg/monoid_set.hpp
   requiredBy:
-  - alg/lazy_cntsum_set.hpp
-  - alg/lazy_powersums_set.hpp
-  - alg/lazy_min_set.hpp
-  - alg/lazy_max_set.hpp
-  - alg/lazy_cntsummin_set.hpp
   - alg/lazy_cntsummax_set.hpp
+  - alg/lazy_max_set.hpp
+  - alg/lazy_min_set.hpp
+  - alg/lazy_cntsummin_set.hpp
+  - alg/lazy_powersums_set.hpp
+  - alg/lazy_cntsum_set.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL_2_F.test.cpp
-  - test/aoj/DSL_2_I.test.cpp
-  - test/aoj/DSL_2_D.test.cpp
   - test/yukicoder/1548.test.cpp
+  - test/aoj/DSL_2_F.test.cpp
+  - test/aoj/DSL_2_D.test.cpp
+  - test/aoj/DSL_2_I.test.cpp
 documentation_of: alg/monoid_set.hpp
 layout: document
 redirect_from:

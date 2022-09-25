@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: flow/binary_optimization.hpp
     title: flow/binary_optimization.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_6_A.test.cpp
     title: test/aoj/GRL_6_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1541.test.cpp
     title: test/yukicoder/1541.test.cpp
   - icon: ':x:'
@@ -94,9 +94,9 @@ data:
   timestamp: '2022-05-22 15:15:57+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/GRL_6_A.test.cpp
-  - test/yukicoder/177.test.cpp
   - test/yukicoder/1541.test.cpp
+  - test/yukicoder/177.test.cpp
+  - test/aoj/GRL_6_A.test.cpp
 documentation_of: flow/maxflow.hpp
 layout: document
 redirect_from:

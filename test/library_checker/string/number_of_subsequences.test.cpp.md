@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: dp/count_subseq.hpp
     title: dp/count_subseq.hpp
   - icon: ':question:'

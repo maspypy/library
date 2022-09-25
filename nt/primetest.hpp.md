@@ -32,7 +32,7 @@ data:
   - icon: ':x:'
     path: nt/function_on_divisors.hpp
     title: nt/function_on_divisors.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
   - icon: ':x:'
@@ -72,7 +72,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1593.test.cpp
     title: test/yukicoder/1593.test.cpp
   - icon: ':x:'
@@ -153,35 +153,35 @@ data:
   isVerificationFile: false
   path: nt/primetest.hpp
   requiredBy:
-  - seq/stirling_number_query.hpp
+  - graph/chromatic.hpp
   - mod/primitive_root.hpp
   - mod/mod_kth_root.hpp
   - mod/binomial.hpp
   - mod/tetration.hpp
-  - nt/function_on_divisors.hpp
-  - nt/gaussian_integers.hpp
   - nt/divisors.hpp
   - nt/euler_phi.hpp
+  - nt/gaussian_integers.hpp
   - nt/lcm.hpp
-  - nt/crt.hpp
+  - nt/function_on_divisors.hpp
   - nt/factor.hpp
-  - graph/chromatic.hpp
+  - nt/crt.hpp
+  - seq/stirling_number_query.hpp
   timestamp: '2022-04-27 05:09:11+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/ALDS1_1_C.test.cpp
-  - test/aoj/NTL_1_D.test.cpp
-  - test/aoj/ITP1_D_D.test.cpp
+  - test/yukicoder/1593.test.cpp
   - test/yukicoder/187.test.cpp
   - test/yukicoder/1728.test.cpp
-  - test/yukicoder/1593.test.cpp
-  - test/library_checker/math/tetration.test.cpp
-  - test/library_checker/math/stirline_mod_p_1.test.cpp
+  - test/library_checker/graph/chromatic_number.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/factorize.test.cpp
   - test/library_checker/math/stirline_mod_p_2.test.cpp
+  - test/library_checker/math/stirline_mod_p_1.test.cpp
+  - test/library_checker/math/tetration.test.cpp
   - test/library_checker/math/binomial_coefficient.test.cpp
-  - test/library_checker/graph/chromatic_number.test.cpp
+  - test/aoj/ALDS1_1_C.test.cpp
+  - test/aoj/ITP1_D_D.test.cpp
+  - test/aoj/NTL_1_D.test.cpp
 documentation_of: nt/primetest.hpp
 layout: document
 redirect_from:

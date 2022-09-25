@@ -186,10 +186,10 @@ data:
   timestamp: '2022-08-30 02:42:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/2251_2.test.cpp
-  - test/aoj/2251_1.test.cpp
   - test/yukicoder/1479.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
+  - test/aoj/2251_1.test.cpp
+  - test/aoj/2251_2.test.cpp
 documentation_of: flow/bipartite.hpp
 layout: document
 redirect_from:

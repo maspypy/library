@@ -6,7 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036.test.cpp
     title: test/yukicoder/1036.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1649.test.cpp
     title: test/yukicoder/1649.test.cpp
   - icon: ':x:'
@@ -165,8 +165,8 @@ data:
   verifiedWith:
   - test/yukicoder/1826.test.cpp
   - test/yukicoder/789.test.cpp
-  - test/yukicoder/1036.test.cpp
   - test/yukicoder/1649.test.cpp
+  - test/yukicoder/1036.test.cpp
 documentation_of: ds/dynamic_segtree.hpp
 layout: document
 redirect_from:
