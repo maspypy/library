@@ -344,9 +344,9 @@ data:
   timestamp: '2022-09-16 08:56:09+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/aoj/GRL_5_E.test.cpp
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1197.test.cpp
-  - test/aoj/GRL_5_E.test.cpp
 documentation_of: graph/lazytreemonoid.hpp
 layout: document
 redirect_from:

@@ -23,10 +23,10 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -47,13 +47,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/stirling_number_1.hpp
     title: seq/stirling_number_1.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/stirling_number_2.hpp
     title: seq/stirling_number_2.hpp
   - icon: ':heavy_check_mark:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/surjection.hpp
     title: seq/surjection.hpp
   _extendedVerifiedWith:
@@ -114,7 +114,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1321.test.cpp
     title: test/yukicoder/1321.test.cpp
   - icon: ':x:'
@@ -459,41 +459,41 @@ data:
   isVerificationFile: false
   path: poly/fps_inv.hpp
   requiredBy:
-  - poly/poly_divmod.hpp
-  - poly/fps_log.hpp
-  - poly/fps_sqrt.hpp
-  - poly/poly_gcd.hpp
-  - poly/fps_pow.hpp
-  - poly/multipoint.hpp
   - seq/sum_of_powers.hpp
-  - seq/partition_number.hpp
-  - seq/surjection.hpp
   - seq/stirling_number_1.hpp
   - seq/stirling_number_2.hpp
+  - seq/surjection.hpp
+  - seq/partition_number.hpp
+  - poly/fps_sqrt.hpp
+  - poly/poly_divmod.hpp
+  - poly/fps_pow.hpp
+  - poly/poly_gcd.hpp
+  - poly/multipoint.hpp
+  - poly/fps_log.hpp
   timestamp: '2022-09-24 23:40:40+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1145.test.cpp
+  - test/mytest/enum_partitions.test.cpp
   - test/yukicoder/1321.test.cpp
   - test/yukicoder/1755.test.cpp
-  - test/mytest/enum_partitions.test.cpp
-  - test/library_checker/polynomial/inv_of_fps.test.cpp
+  - test/yukicoder/1145.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/pow_of_fps.test.cpp
+  - test/library_checker/polynomial/inv_of_polynomials.test.cpp
   - test/library_checker/polynomial/polynomial_interpolation.test.cpp
   - test/library_checker/polynomial/inv_of_fps_amint.test.cpp
   - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-  - test/library_checker/polynomial/log_of_fps.test.cpp
-  - test/library_checker/polynomial/log_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - test/library_checker/polynomial/inv_of_polynomials.test.cpp
+  - test/library_checker/polynomial/log_of_fps.test.cpp
+  - test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/inv_of_fps.test.cpp
   - test/library_checker/polynomial/polynomial_division.test.cpp
+  - test/library_checker/polynomial/log_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - test/library_checker/polynomial/pow_of_fps.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/partition.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
 documentation_of: poly/fps_inv.hpp
 layout: document
 redirect_from:

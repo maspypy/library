@@ -12,7 +12,7 @@ data:
   - icon: ':x:'
     path: test/mytest/wavelet_matrix_sum.test.cpp
     title: test/mytest/wavelet_matrix_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1332.test.cpp
     title: test/yukicoder/1332.test.cpp
   - icon: ':x:'
@@ -139,11 +139,11 @@ data:
   timestamp: '2022-09-10 12:17:22+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/2065.test.cpp
+  - test/mytest/wavelet_matrix_sum.test.cpp
+  - test/yukicoder/924.test.cpp
   - test/yukicoder/1332.test.cpp
   - test/yukicoder/919.test.cpp
-  - test/yukicoder/924.test.cpp
-  - test/mytest/wavelet_matrix_sum.test.cpp
+  - test/yukicoder/2065.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
 documentation_of: ds/waveletmatrix.hpp
 layout: document

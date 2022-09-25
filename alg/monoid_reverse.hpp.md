@@ -64,22 +64,22 @@ data:
   isVerificationFile: false
   path: alg/monoid_reverse.hpp
   requiredBy:
-  - graph/minimum_spanning_tree.hpp
-  - graph/lazytreemonoid.hpp
+  - alg/lazy_reverse.hpp
   - graph/statictreemonoid.hpp
   - graph/treemonoid.hpp
-  - alg/lazy_reverse.hpp
+  - graph/lazytreemonoid.hpp
+  - graph/minimum_spanning_tree.hpp
   timestamp: '2022-04-23 17:49:11+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/aoj/GRL_5_E.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
+  - test/yukicoder/529.test.cpp
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1197.test.cpp
-  - test/yukicoder/529.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - test/aoj/GRL_2_A.test.cpp
-  - test/aoj/GRL_5_E.test.cpp
   - test/atcoder/abc270_f.test.cpp
 documentation_of: alg/monoid_reverse.hpp
 layout: document

@@ -5,7 +5,7 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/mincostcycle.hpp
     title: graph/mincostcycle.hpp
   _extendedVerifiedWith:
@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/shortest_path.test.cpp
     title: test/library_checker/graph/shortest_path.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1320.test.cpp
     title: test/yukicoder/1320.test.cpp
   - icon: ':x:'
@@ -123,12 +123,12 @@ data:
   timestamp: '2022-08-30 02:42:36+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/aoj/2251_2.test.cpp
+  - test/aoj/2251_1.test.cpp
+  - test/aoj/0275.test.cpp
   - test/yukicoder/1601.test.cpp
   - test/yukicoder/1320.test.cpp
   - test/library_checker/graph/shortest_path.test.cpp
-  - test/aoj/2251_1.test.cpp
-  - test/aoj/0275.test.cpp
-  - test/aoj/2251_2.test.cpp
 documentation_of: graph/dijkstra.hpp
 layout: document
 redirect_from:

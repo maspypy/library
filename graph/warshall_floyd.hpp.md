@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_C.test.cpp
     title: test/aoj/GRL_1_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1344.test.cpp
     title: test/yukicoder/1344.test.cpp
   - icon: ':x:'
@@ -94,9 +94,9 @@ data:
   timestamp: '2022-08-30 02:42:36+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/aoj/GRL_1_C.test.cpp
   - test/yukicoder/17.test.cpp
   - test/yukicoder/1344.test.cpp
-  - test/aoj/GRL_1_C.test.cpp
 documentation_of: graph/warshall_floyd.hpp
 layout: document
 redirect_from:

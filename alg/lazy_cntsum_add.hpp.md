@@ -57,10 +57,10 @@ data:
   timestamp: '2022-06-27 16:36:33+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/789_2.test.cpp
-  - test/yukicoder/235.test.cpp
-  - test/yukicoder/1197.test.cpp
   - test/aoj/GRL_5_E.test.cpp
+  - test/yukicoder/235.test.cpp
+  - test/yukicoder/789_2.test.cpp
+  - test/yukicoder/1197.test.cpp
 documentation_of: alg/lazy_cntsum_add.hpp
 layout: document
 redirect_from:

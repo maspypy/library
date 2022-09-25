@@ -51,19 +51,19 @@ data:
   isVerificationFile: false
   path: alg/monoid_set.hpp
   requiredBy:
-  - alg/lazy_cntsummax_set.hpp
-  - alg/lazy_max_set.hpp
-  - alg/lazy_min_set.hpp
-  - alg/lazy_cntsummin_set.hpp
-  - alg/lazy_powersums_set.hpp
   - alg/lazy_cntsum_set.hpp
+  - alg/lazy_powersums_set.hpp
+  - alg/lazy_min_set.hpp
+  - alg/lazy_max_set.hpp
+  - alg/lazy_cntsummin_set.hpp
+  - alg/lazy_cntsummax_set.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1548.test.cpp
   - test/aoj/DSL_2_F.test.cpp
-  - test/aoj/DSL_2_D.test.cpp
   - test/aoj/DSL_2_I.test.cpp
+  - test/aoj/DSL_2_D.test.cpp
+  - test/yukicoder/1548.test.cpp
 documentation_of: alg/monoid_set.hpp
 layout: document
 redirect_from:

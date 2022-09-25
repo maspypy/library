@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/group_affine.hpp
     title: alg/group_affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bbst/splaytree_monoid.hpp
     title: bbst/splaytree_monoid.hpp
   - icon: ':question:'
