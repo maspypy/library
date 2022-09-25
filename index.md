@@ -108,7 +108,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid_cntsummin.hpp
       title: alg/monoid_cntsummin.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid_gcd.hpp
       title: alg/monoid_gcd.hpp
     - icon: ':question:'
@@ -230,7 +230,7 @@ data:
     - icon: ':warning:'
       path: ds/convert_addremove_query.hpp
       title: ds/convert_addremove_query.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/cumsum2d.hpp
       title: ds/cumsum2d.hpp
     - icon: ':question:'
@@ -239,7 +239,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/divide_conquer_range_query.hpp
       title: ds/divide_conquer_range_query.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/doubling.hpp
       title: ds/doubling.hpp
     - icon: ':question:'
@@ -251,7 +251,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/dynamic_lichao.hpp
       title: ds/dynamic_lichao.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/dynamic_segtree.hpp
       title: ds/dynamic_segtree.hpp
     - icon: ':question:'
@@ -344,7 +344,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree2d_dense.hpp
       title: ds/segtree2d_dense.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/slope.hpp
       title: ds/slope.hpp
     - icon: ':heavy_check_mark:'
@@ -469,7 +469,7 @@ data:
     - icon: ':x:'
       path: graph/bracket_graph.hpp
       title: graph/bracket_graph.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/centroid.hpp
       title: graph/centroid.hpp
     - icon: ':question:'
@@ -553,13 +553,13 @@ data:
     - icon: ':warning:'
       path: graph/online_toposort.hpp
       title: graph/online_toposort.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/online_unionfind.hpp
       title: graph/online_unionfind.hpp
     - icon: ':warning:'
       path: graph/path_cycle.hpp
       title: graph/path_cycle.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/range_to_range_graph.hpp
       title: graph/range_to_range_graph.hpp
     - icon: ':heavy_check_mark:'
@@ -583,7 +583,7 @@ data:
     - icon: ':warning:'
       path: graph/statictreemonoid.hpp
       title: graph/statictreemonoid.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/steiner_tree.hpp
       title: graph/steiner_tree.hpp
     - icon: ':question:'
@@ -911,7 +911,7 @@ data:
     - icon: ':warning:'
       path: poly/convolution2d.hpp
       title: poly/convolution2d.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/convolution_all.hpp
       title: poly/convolution_all.hpp
     - icon: ':heavy_check_mark:'
@@ -992,7 +992,7 @@ data:
     - icon: ':warning:'
       path: poly/sum_of_prefix_suffix_products.hpp
       title: poly/sum_of_prefix_suffix_products.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/sum_of_rationals.hpp
       title: poly/sum_of_rationals.hpp
   - name: seq
@@ -1045,7 +1045,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/stirling_number_query.hpp
       title: seq/stirling_number_query.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: seq/sum_of_powers.hpp
       title: seq/sum_of_powers.hpp
     - icon: ':x:'
@@ -1059,7 +1059,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: setfunc/count_surjection.hpp
       title: setfunc/count_surjection.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: setfunc/hadamard.hpp
       title: setfunc/hadamard.hpp
     - icon: ':heavy_check_mark:'
@@ -1071,7 +1071,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: setfunc/subset_convolution.hpp
       title: setfunc/subset_convolution.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: setfunc/xor_convolution.hpp
       title: setfunc/xor_convolution.hpp
     - icon: ':heavy_check_mark:'
@@ -1905,49 +1905,49 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1002.test.cpp
       title: test/yukicoder/1002.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1036.test.cpp
       title: test/yukicoder/1036.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1036_2.test.cpp
       title: test/yukicoder/1036_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1036_3.test.cpp
       title: test/yukicoder/1036_3.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1038.test.cpp
       title: test/yukicoder/1038.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1077.test.cpp
       title: test/yukicoder/1077.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1097.test.cpp
       title: test/yukicoder/1097.test.cpp
     - icon: ':x:'
       path: test/yukicoder/1117.test.cpp
       title: test/yukicoder/1117.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/114.test.cpp
       title: test/yukicoder/114.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1141.test.cpp
       title: test/yukicoder/1141.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1142.test.cpp
       title: test/yukicoder/1142.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1145.test.cpp
       title: test/yukicoder/1145.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1170.test.cpp
       title: test/yukicoder/1170.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1170_2.test.cpp
       title: test/yukicoder/1170_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1197.test.cpp
       title: test/yukicoder/1197.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1201.test.cpp
       title: test/yukicoder/1201.test.cpp
     - icon: ':x:'

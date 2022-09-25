@@ -173,8 +173,8 @@ data:
   timestamp: '2022-09-16 08:56:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/2995.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+  - test/aoj/2995.test.cpp
 documentation_of: graph/dsu_on_tree.hpp
 layout: document
 redirect_from:

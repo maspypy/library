@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/dynamic_segtree.hpp
     title: ds/dynamic_segtree.hpp
   - icon: ':question:'
