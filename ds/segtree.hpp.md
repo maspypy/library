@@ -78,10 +78,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1435.test.cpp
     title: test/yukicoder/1435.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
   _isVerificationFailed: true

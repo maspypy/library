@@ -8,7 +8,7 @@ data:
   - icon: ':question:'
     path: graph/dualtreemonoid.hpp
     title: graph/dualtreemonoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
   - icon: ':question:'
@@ -48,10 +48,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1548.test.cpp
     title: test/yukicoder/1548.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1790.test.cpp
+    title: test/yukicoder/1790.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/255.test.cpp
     title: test/yukicoder/255.test.cpp
   - icon: ':x:'
@@ -206,6 +209,7 @@ data:
   - test/yukicoder/1197.test.cpp
   - test/yukicoder/255.test.cpp
   - test/yukicoder/1548.test.cpp
+  - test/yukicoder/1790.test.cpp
   - test/yukicoder/749.test.cpp
   - test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - test/aoj/DSL_2_F.test.cpp

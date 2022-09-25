@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/functional.hpp
     title: graph/functional.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/lazytreemonoid.hpp
     title: graph/lazytreemonoid.hpp
   - icon: ':question:'
@@ -44,7 +44,7 @@ data:
   - icon: ':question:'
     path: graph/treemonoid.hpp
     title: graph/treemonoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
   _extendedVerifiedWith:
@@ -132,10 +132,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1778.test.cpp
     title: test/yukicoder/1778.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1790.test.cpp
+    title: test/yukicoder/1790.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1976.test.cpp
+    title: test/yukicoder/1976.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
   _isVerificationFailed: true
@@ -342,6 +348,7 @@ data:
   timestamp: '2022-09-16 08:56:09+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1976.test.cpp
   - test/yukicoder/1418.test.cpp
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1718.test.cpp
@@ -353,6 +360,7 @@ data:
   - test/yukicoder/1494.test.cpp
   - test/yukicoder/1326.test.cpp
   - test/yukicoder/1451.test.cpp
+  - test/yukicoder/1790.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp
   - test/library_checker/tree/lca.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp

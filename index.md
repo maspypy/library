@@ -42,7 +42,7 @@ data:
     - icon: ':question:'
       path: alg/lazy_cntsum_add.hpp
       title: alg/lazy_cntsum_add.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy_cntsum_affine.hpp
       title: alg/lazy_cntsum_affine.hpp
     - icon: ':heavy_check_mark:'
@@ -90,7 +90,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/lazy_powersums_set.hpp
       title: alg/lazy_powersums_set.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy_reverse.hpp
       title: alg/lazy_reverse.hpp
     - icon: ':warning:'
@@ -114,7 +114,7 @@ data:
     - icon: ':question:'
       path: alg/monoid_max.hpp
       title: alg/monoid_max.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid_max_idx.hpp
       title: alg/monoid_max_idx.hpp
     - icon: ':warning:'
@@ -177,7 +177,7 @@ data:
     - icon: ':x:'
       path: dp/knapsack01.hpp
       title: dp/knapsack01.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: dp/knapsack_branch_bound.hpp
       title: dp/knapsack_branch_bound.hpp
     - icon: ':heavy_check_mark:'
@@ -230,7 +230,7 @@ data:
     - icon: ':warning:'
       path: ds/convert_addremove_query.hpp
       title: ds/convert_addremove_query.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/cumsum2d.hpp
       title: ds/cumsum2d.hpp
     - icon: ':question:'
@@ -457,6 +457,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/bfs01.hpp
       title: graph/bfs01.hpp
+    - icon: ':heavy_check_mark:'
+      path: graph/bfs_bitset.hpp
+      title: graph/bfs_bitset.hpp
     - icon: ':x:'
       path: graph/bfsnumbering.hpp
       title: graph/bfsnumbering.hpp
@@ -526,7 +529,7 @@ data:
     - icon: ':warning:'
       path: graph/grid_bfs.hpp
       title: graph/grid_bfs.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/lazytreemonoid.hpp
       title: graph/lazytreemonoid.hpp
     - icon: ':question:'
@@ -619,7 +622,7 @@ data:
     - icon: ':question:'
       path: graph/treemonoid.hpp
       title: graph/treemonoid.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/two_edge_component.hpp
       title: graph/two_edge_component.hpp
     - icon: ':heavy_check_mark:'
@@ -650,7 +653,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/mat_inv.hpp
       title: linalg/mat_inv.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: linalg/mat_mul.hpp
       title: linalg/mat_mul.hpp
     - icon: ':heavy_check_mark:'
@@ -679,7 +682,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/binomial.hpp
       title: mod/binomial.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: mod/factorial107.hpp
       title: mod/factorial107.hpp
     - icon: ':heavy_check_mark:'
@@ -688,7 +691,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/fast_div.hpp
       title: mod/fast_div.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/floor_sum_of_linear.hpp
       title: mod/floor_sum_of_linear.hpp
     - icon: ':heavy_check_mark:'
@@ -820,7 +823,7 @@ data:
     - icon: ':question:'
       path: other/discrete_log.hpp
       title: other/discrete_log.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/floor_range.hpp
       title: other/floor_range.hpp
     - icon: ':heavy_check_mark:'
@@ -980,7 +983,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/poly_taylor_shift.hpp
       title: poly/poly_taylor_shift.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/prefix_product_of_poly.hpp
       title: poly/prefix_product_of_poly.hpp
     - icon: ':warning:'
@@ -1024,7 +1027,7 @@ data:
     - icon: ':x:'
       path: seq/interpolate_poly_exp_sum.hpp
       title: seq/interpolate_poly_exp_sum.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: seq/kth_term_of_p_recursive.hpp
       title: seq/kth_term_of_p_recursive.hpp
     - icon: ':x:'
@@ -2002,6 +2005,9 @@ data:
       path: test/yukicoder/1344.test.cpp
       title: test/yukicoder/1344.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1400.test.cpp
+      title: test/yukicoder/1400.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1418.test.cpp
       title: test/yukicoder/1418.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2119,6 +2125,9 @@ data:
       path: test/yukicoder/1778.test.cpp
       title: test/yukicoder/1778.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1790.test.cpp
+      title: test/yukicoder/1790.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1810.test.cpp
       title: test/yukicoder/1810.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2146,6 +2155,9 @@ data:
       path: test/yukicoder/1936.test.cpp
       title: test/yukicoder/1936.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1976.test.cpp
+      title: test/yukicoder/1976.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1989.test.cpp
       title: test/yukicoder/1989.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2160,19 +2172,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/2065.test.cpp
       title: test/yukicoder/2065.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/2066.test.cpp
       title: test/yukicoder/2066.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/235.test.cpp
       title: test/yukicoder/235.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/255.test.cpp
       title: test/yukicoder/255.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/426.test.cpp
       title: test/yukicoder/426.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/4954.test.cpp
       title: test/yukicoder/4954.test.cpp
     - icon: ':x:'
@@ -2181,19 +2193,19 @@ data:
     - icon: ':x:'
       path: test/yukicoder/4_2.test.cpp
       title: test/yukicoder/4_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/502.test.cpp
       title: test/yukicoder/502.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/502_2.test.cpp
       title: test/yukicoder/502_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/529.test.cpp
       title: test/yukicoder/529.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/626.test.cpp
       title: test/yukicoder/626.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/655.test.cpp
       title: test/yukicoder/655.test.cpp
     - icon: ':x:'
