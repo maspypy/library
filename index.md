@@ -9,7 +9,7 @@ data:
     - icon: ':question:'
       path: alg/group_affine.hpp
       title: alg/group_affine.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/group_cntsum.hpp
       title: alg/group_cntsum.hpp
     - icon: ':warning:'
@@ -33,13 +33,13 @@ data:
     - icon: ':warning:'
       path: alg/gset_gl2_vec.hpp
       title: alg/gset_gl2_vec.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy_add_mul.hpp
       title: alg/lazy_add_mul.hpp
     - icon: ':heavy_check_mark:'
       path: alg/lazy_cntminmincnt_add.hpp
       title: alg/lazy_cntminmincnt_add.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy_cntsum_add.hpp
       title: alg/lazy_cntsum_add.hpp
     - icon: ':heavy_check_mark:'
@@ -57,7 +57,7 @@ data:
     - icon: ':warning:'
       path: alg/lazy_cntsummin_set.hpp
       title: alg/lazy_cntsummin_set.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy_max_add.hpp
       title: alg/lazy_max_add.hpp
     - icon: ':warning:'
@@ -149,7 +149,7 @@ data:
       title: alg/monoid_xor_basis.hpp
   - name: bbst
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: bbst/rbst_lazy.hpp
       title: bbst/rbst_lazy.hpp
     - icon: ':warning:'
@@ -192,10 +192,10 @@ data:
     - icon: ':x:'
       path: dp/minplus_convolution_convex.hpp
       title: dp/minplus_convolution_convex.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: dp/monge.hpp
       title: dp/monge.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: dp/monotone_minima.hpp
       title: dp/monotone_minima.hpp
     - icon: ':x:'
@@ -224,7 +224,7 @@ data:
     - icon: ':question:'
       path: ds/cht.hpp
       title: ds/cht.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/cht_monotone.hpp
       title: ds/cht_monotone.hpp
     - icon: ':warning:'
@@ -245,13 +245,13 @@ data:
     - icon: ':question:'
       path: ds/dualsegtree.hpp
       title: ds/dualsegtree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/dynamic_lazysegtree.hpp
       title: ds/dynamic_lazysegtree.hpp
     - icon: ':heavy_check_mark:'
       path: ds/dynamic_lichao.hpp
       title: ds/dynamic_lichao.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/dynamic_segtree.hpp
       title: ds/dynamic_segtree.hpp
     - icon: ':question:'
@@ -284,7 +284,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/kdtree_monoid.hpp
       title: ds/kdtree_monoid.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/larsch.hpp
       title: ds/larsch.hpp
     - icon: ':question:'
@@ -460,7 +460,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/bfs_bitset.hpp
       title: graph/bfs_bitset.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/bfsnumbering.hpp
       title: graph/bfsnumbering.hpp
     - icon: ':warning:'
@@ -2208,25 +2208,25 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/655.test.cpp
       title: test/yukicoder/655.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/686.test.cpp
       title: test/yukicoder/686.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/705.test.cpp
       title: test/yukicoder/705.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/749.test.cpp
       title: test/yukicoder/749.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/789.test.cpp
       title: test/yukicoder/789.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/789_2.test.cpp
       title: test/yukicoder/789_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/899.test.cpp
       title: test/yukicoder/899.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/913.test.cpp
       title: test/yukicoder/913.test.cpp
     - icon: ':x:'

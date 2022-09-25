@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bfs01.hpp
     title: graph/bfs01.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/bfsnumbering.hpp
     title: graph/bfsnumbering.hpp
   - icon: ':warning:'
@@ -360,7 +360,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
   _isVerificationFailed: true

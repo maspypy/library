@@ -2,19 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy_add_mul.hpp
     title: alg/lazy_add_mul.hpp
   - icon: ':heavy_check_mark:'
     path: alg/lazy_cntminmincnt_add.hpp
     title: alg/lazy_cntminmincnt_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy_cntsum_add.hpp
     title: alg/lazy_cntsum_add.hpp
   - icon: ':warning:'
     path: alg/lazy_cntsummin_add.hpp
     title: alg/lazy_cntsummin_add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy_max_add.hpp
     title: alg/lazy_max_add.hpp
   - icon: ':warning:'
@@ -225,16 +225,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/655.test.cpp
     title: test/yukicoder/655.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/686.test.cpp
     title: test/yukicoder/686.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/789.test.cpp
     title: test/yukicoder/789.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/789_2.test.cpp
     title: test/yukicoder/789_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
   - icon: ':x:'
