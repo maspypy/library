@@ -119,16 +119,16 @@ data:
   isVerificationFile: false
   path: graph/check_bipartite.hpp
   requiredBy:
+  - flow/bipartite.hpp
   - graph/dag_path_cover.hpp
   - graph/maximum_antichain.hpp
-  - flow/bipartite.hpp
   timestamp: '2022-08-30 02:42:36+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/aoj/2251_2.test.cpp
+  - test/aoj/2251_1.test.cpp
   - test/yukicoder/1479.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
-  - test/aoj/2251_1.test.cpp
-  - test/aoj/2251_2.test.cpp
 documentation_of: graph/check_bipartite.hpp
 layout: document
 redirect_from:

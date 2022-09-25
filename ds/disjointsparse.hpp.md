@@ -11,7 +11,7 @@ data:
   - icon: ':x:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/suffixarray.hpp
     title: string/suffixarray.hpp
   _extendedVerifiedWith:
@@ -21,10 +21,10 @@ data:
   - icon: ':x:'
     path: test/library_checker/string/number_of_substrings.test.cpp
     title: test/library_checker/string/number_of_substrings.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/string/suffix_array.test.cpp
     title: test/library_checker/string/suffix_array.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/string/suffix_array_vec.test.cpp
     title: test/library_checker/string/suffix_array_vec.test.cpp
   - icon: ':x:'
@@ -94,15 +94,15 @@ data:
   isVerificationFile: false
   path: ds/disjointsparse.hpp
   requiredBy:
-  - graph/statictreemonoid.hpp
   - string/sort_all_substring.hpp
-  - string/suffix_tree.hpp
   - string/suffixarray.hpp
+  - string/suffix_tree.hpp
+  - graph/statictreemonoid.hpp
   timestamp: '2022-08-18 20:33:44+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/2005.test.cpp
   - test/mytest/suffix_tree.test.cpp
+  - test/yukicoder/2005.test.cpp
   - test/library_checker/string/suffix_array_vec.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp

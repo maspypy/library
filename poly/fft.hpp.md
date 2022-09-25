@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
   - icon: ':heavy_check_mark:'
@@ -44,7 +44,7 @@ data:
   - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
   - icon: ':question:'
@@ -213,13 +213,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - icon: ':x:'
@@ -314,93 +314,93 @@ data:
   isVerificationFile: false
   path: poly/fft.hpp
   requiredBy:
-  - graph/tree_all_distances.hpp
-  - nt/multiplicative_convolution_mod2n.hpp
-  - poly/convolution_huge.hpp
-  - poly/sum_of_rationals.hpp
-  - poly/poly_divmod.hpp
-  - poly/fps_log.hpp
-  - poly/fps_sqrt.hpp
-  - poly/convolution_mod_2_64.hpp
-  - poly/sum_of_prefix_suffix_products.hpp
-  - poly/convolution2d.hpp
-  - poly/poly_gcd.hpp
-  - poly/poly_taylor_shift.hpp
-  - poly/prefix_product_of_poly.hpp
-  - poly/online_convolution.hpp
-  - poly/coef_of_rational_fps.hpp
-  - poly/fps_inv.hpp
-  - poly/lagrange_interpolate_iota.hpp
-  - poly/product_of_one_plus_xn.hpp
-  - poly/multivar_convolution.hpp
-  - poly/convolution_leq.hpp
-  - poly/fps_exp.hpp
-  - poly/convolution.hpp
-  - poly/fps_pow.hpp
-  - poly/convolution_all.hpp
-  - poly/fps_composition.hpp
-  - poly/multipoint.hpp
-  - poly/product_of_one_minus_xn.hpp
   - seq/sum_of_powers.hpp
-  - seq/bell_number_large.hpp
-  - seq/partition_number.hpp
-  - seq/surjection.hpp
-  - seq/kth_term_of_p_recursive.hpp
   - seq/stirling_number_1.hpp
-  - seq/interpolate_linear_rec.hpp
   - seq/stirling_number_2.hpp
+  - seq/surjection.hpp
+  - seq/partition_number.hpp
+  - seq/kth_term_of_p_recursive.hpp
   - seq/interpolate_poly_exp_sum.hpp
+  - seq/interpolate_linear_rec.hpp
+  - seq/bell_number_large.hpp
+  - nt/multiplicative_convolution_mod2n.hpp
+  - poly/coef_of_rational_fps.hpp
+  - poly/convolution_huge.hpp
+  - poly/poly_taylor_shift.hpp
+  - poly/online_convolution.hpp
+  - poly/convolution_all.hpp
+  - poly/sum_of_prefix_suffix_products.hpp
+  - poly/fps_sqrt.hpp
+  - poly/prefix_product_of_poly.hpp
+  - poly/fps_inv.hpp
+  - poly/multivar_convolution.hpp
+  - poly/poly_divmod.hpp
+  - poly/fps_pow.hpp
+  - poly/convolution.hpp
+  - poly/fps_composition.hpp
+  - poly/poly_gcd.hpp
+  - poly/lagrange_interpolate_iota.hpp
+  - poly/product_of_one_minus_xn.hpp
+  - poly/product_of_one_plus_xn.hpp
+  - poly/sum_of_rationals.hpp
+  - poly/convolution2d.hpp
+  - poly/convolution_leq.hpp
+  - poly/convolution_mod_2_64.hpp
+  - poly/multipoint.hpp
+  - poly/fps_log.hpp
+  - poly/fps_exp.hpp
+  - graph/tree_all_distances.hpp
   timestamp: '2022-05-02 12:36:42+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/mytest/enum_partitions.test.cpp
+  - test/mytest/factorial_998.test.cpp
+  - test/mytest/conv_leq.test.cpp
   - test/yukicoder/1618.test.cpp
-  - test/yukicoder/1516.test.cpp
-  - test/yukicoder/2062.test.cpp
-  - test/yukicoder/1844.test.cpp
-  - test/yukicoder/1145.test.cpp
   - test/yukicoder/1321.test.cpp
   - test/yukicoder/1755.test.cpp
   - test/yukicoder/1547.test.cpp
-  - test/yukicoder/502_2.test.cpp
+  - test/yukicoder/2062.test.cpp
+  - test/yukicoder/1145.test.cpp
   - test/yukicoder/1500.test.cpp
-  - test/mytest/conv_leq.test.cpp
-  - test/mytest/factorial_998.test.cpp
-  - test/mytest/enum_partitions.test.cpp
-  - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - test/library_checker/polynomial/inv_of_fps.test.cpp
-  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
+  - test/yukicoder/1844.test.cpp
+  - test/yukicoder/502_2.test.cpp
+  - test/yukicoder/1516.test.cpp
   - test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/inv_of_fps_amint.test.cpp
-  - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-  - test/library_checker/polynomial/log_of_fps.test.cpp
-  - test/library_checker/polynomial/log_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - test/library_checker/polynomial/inv_of_polynomials.test.cpp
-  - test/library_checker/polynomial/polynomial_division.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - test/library_checker/polynomial/exp_of_fps.test.cpp
-  - test/library_checker/polynomial/pow_of_fps.test.cpp
   - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
-  - test/library_checker/polynomial/composition_of_fps.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/library_checker/polynomial/pow_of_fps.test.cpp
+  - test/library_checker/polynomial/inv_of_polynomials.test.cpp
+  - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
+  - test/library_checker/polynomial/exp_of_fps.test.cpp
+  - test/library_checker/polynomial/inv_of_fps_amint.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
+  - test/library_checker/polynomial/log_of_fps.test.cpp
+  - test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
+  - test/library_checker/polynomial/inv_of_fps.test.cpp
+  - test/library_checker/polynomial/polynomial_division.test.cpp
+  - test/library_checker/polynomial/log_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/composition_of_fps.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
+  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/partition.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
+  - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
-  - test/library_checker/convolution/online_convolution.test.cpp
+  - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/convolution/multivariate_convolution.test.cpp
   - test/library_checker/convolution/convolution_mod_107_amint.test.cpp
-  - test/library_checker/convolution/mul_mod2n_convolution.test.cpp
-  - test/library_checker/convolution/convolution_mod_107.test.cpp
   - test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - test/library_checker/convolution/convolution_mod.test.cpp
+  - test/library_checker/convolution/online_convolution.test.cpp
+  - test/library_checker/convolution/convolution_mod_107.test.cpp
   - test/library_checker/convolution/convolution_huge.test.cpp
+  - test/library_checker/convolution/mul_mod2n_convolution.test.cpp
   - test/library_checker/convolution/convolution_mod_2_64.test.cpp
   - test/atcoder/agc058d.test.cpp
 documentation_of: poly/fft.hpp
