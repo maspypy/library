@@ -10,8 +10,8 @@ void test_count() {
     if (p % 6 == 1) { A1[p]++; }
   for (auto&& p: primetable(LIM))
     if (p % 6 == 5) { A5[p]++; }
-  A1 = cumsum(A1, 0);
-  A5 = cumsum(A5, 0);
+  A1 = cumsum<int>(A1, 0);
+  A5 = cumsum<int>(A5, 0);
 
   FOR(N, LIM) {
     PrimeSum_Mod_6<int> X(N);
@@ -27,8 +27,8 @@ void test_sum() {
     if (p % 6 == 1) { A1[p] += p; }
   for (auto&& p: primetable(LIM))
     if (p % 6 == 5) { A5[p] += p; }
-  A1 = cumsum(A1, 0);
-  A5 = cumsum(A5, 0);
+  A1 = cumsum<int>(A1, 0);
+  A5 = cumsum<int>(A5, 0);
 
   FOR(N, LIM) {
     PrimeSum_Mod_6<int> X(N);
