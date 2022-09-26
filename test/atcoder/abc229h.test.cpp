@@ -2,63 +2,52 @@
 
 #include "my_template.hpp"
 #include "other/io.hpp"
-
-#include "game/dyrational.hpp"
+#include "game/solve_partizan_game.hpp"
 
 void solve() {
-  using X = DyRational<ll>;
+  LL(N);
+  VEC(string, G, N);
+  vc<string> states(N);
+  FOR(i, N) FOR(j, N) states[j] += G[i][j];
 
-  map<string, X> MP;
-  auto dfs = [&](auto& dfs, string& s) -> X {
-    if (MP.count(s)) return MP[s];
-    X left = -X::infinity();
-    X right = X::infinity();
-    // 白を選び、上に進める
-    FOR(i, len(s) - 1) {
-      if (s[i] == '.' && s[i + 1] == 'W') {
-        swap(s[i], s[i + 1]);
-        chmax(left, dfs(dfs, s));
-        swap(s[i], s[i + 1]);
+  auto get_options = [&](string s) -> pair<vc<string>, vc<string>> {
+    int n = len(s);
+    vc<string> left, right;
+    FOR(i, 1, n) {
+      // 進める
+      if (s[i - 1] == '.' && s[i] == 'W') {
+        swap(s[i - 1], s[i]);
+        left.eb(s);
+        swap(s[i - 1], s[i]);
+      }
+      if (s[i - 1] == '.' && s[i] == 'B') {
+        swap(s[i - 1], s[i]);
+        right.eb(s);
+        swap(s[i - 1], s[i]);
       }
     }
-    // 黒を食べる
-    FOR(i, len(s)) {
+    FOR(i, n) {
+      // 食べる
       if (s[i] == 'B') {
         s[i] = '.';
-        chmax(left, dfs(dfs, s));
+        left.eb(s);
         s[i] = 'B';
       }
-    }
-    // 黒を選び、上に進める
-    FOR(i, len(s) - 1) {
-      if (s[i] == '.' && s[i + 1] == 'B') {
-        swap(s[i], s[i + 1]);
-        chmin(right, dfs(dfs, s));
-        swap(s[i], s[i + 1]);
-      }
-    }
-    // 白を食べる
-    FOR(i, len(s)) {
       if (s[i] == 'W') {
         s[i] = '.';
-        chmin(right, dfs(dfs, s));
+        right.eb(s);
         s[i] = 'W';
       }
     }
-    assert(left < right);
-    MP[s] = X::find(left, right);
-    return MP[s];
+    return {left, right};
   };
 
-  LL(N);
-  vc<string> G(N);
-  FOR(i, N) {
-    STR(S);
-    FOR(j, N) { G[j] += S[j]; }
-  }
-  X x(0);
-  FOR(i, N) x += dfs(dfs, G[i]);
-  print(x > X(0) ? "Takahashi" : "Snuke");
+  using X = DyRational<ll>;
+  auto MP = solve_partizan_game<string, ll>(states, get_options);
+  X x(0, 0);
+  // for (auto&& [k, x]: MP) { print(k, ",", x.to_string()); }
+  for (auto&& s: states) { x += MP[s]; }
+  print(x.a > 0 ? "Takahashi" : "Snuke");
 }
 
 signed main() {
@@ -67,7 +56,6 @@ signed main() {
   cout << setprecision(15);
 
   ll T = 1;
-  // LL(T);
   FOR(T) solve();
 
   return 0;
