@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_mul.hpp
     title: alg/group_mul.hpp
   - icon: ':question:'
@@ -29,14 +29,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
   - icon: ':heavy_check_mark:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - icon: ':heavy_check_mark:'
@@ -48,9 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_2.test.cpp
     title: test/yukicoder/502_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group_mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Group_Mul\
@@ -424,7 +424,7 @@ data:
   - seq/interpolate_poly_exp_sum.hpp
   - poly/prefix_product_of_poly.hpp
   timestamp: '2022-09-24 23:40:40+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/factorial_998.test.cpp
   - test/yukicoder/502_2.test.cpp

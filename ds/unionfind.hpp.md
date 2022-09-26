@@ -23,6 +23,9 @@ data:
   - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
+  - icon: ':warning:'
+    path: graph/online_mst.hpp
+    title: graph/online_mst.hpp
   - icon: ':heavy_check_mark:'
     path: graph/online_unionfind.hpp
     title: graph/online_unionfind.hpp
@@ -111,6 +114,7 @@ data:
   - graph/online_unionfind.hpp
   - graph/tree_of_unionfind.hpp
   - graph/minimum_spanning_tree.hpp
+  - graph/online_mst.hpp
   timestamp: '2022-08-11 02:13:18+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

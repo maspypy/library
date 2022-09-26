@@ -212,7 +212,7 @@ data:
     \  for (auto&& [w, v]: dp) {\n    while (len(res) && res.back().fi == w) res.pop_back();\n\
     \    if (len(res) && res.back().se >= v) continue;\n    res.eb(w, v);\n  }\n \
     \ return res;\n}\n\ntemplate <typename WT, typename VAL>\nVAL knapsack01(vc<WT>\
-    \ weight, vc<VAL> val, WT LIM) {\n  chmin(LIM, SUM(weight));\n  int n = len(weight);\n\
+    \ weight, vc<VAL> val, WT LIM) {\n  chmin(LIM, SUM<WT>(weight));\n  int n = len(weight);\n\
     \  assert(len(val) == n);\n\n  // \u534A\u5206\u5168\u5217\u6319 + \u5C3A\u53D6\
     \u308A\u6CD5\n  // O(2^{N/2})\n  auto sol_1 = [&]() -> VAL {\n    vc<WT> wt_l\
     \ = {weight.begin(), weight.begin() + n / 2};\n    vc<WT> wt_r = {weight.begin()\
@@ -231,7 +231,7 @@ data:
     \  FOR(k, n) {\n      FOR_R(i, total + 1) { chmin(dp[i + val[k]], dp[i] + weight[k]);\
     \ }\n      total += val[k];\n    }\n    VAL ANS = 0;\n    FOR(i, total + 1) if\
     \ (dp[i] <= LIM) ANS = i;\n    return ANS;\n  };\n\n  double t1 = log(2) * n *\
-    \ 0.5;\n  double t2 = log((n + 1) * (LIM + 1));\n  double t3 = log((n + 1) * (SUM(val)\
+    \ 0.5;\n  double t2 = log((n + 1) * (LIM + 1));\n  double t3 = log((n + 1) * (SUM<WT>(val)\
     \ + 1));\n  double t = min({t1, t2, t3});\n  if (t == t1) return sol_1();\n  if\
     \ (t == t2) return sol_2();\n  return sol_3();\n}\n#line 6 \"test/aoj/DPL_1_H.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, W);\n  vc<ll> wt, val;\n  FOR(i, N) {\n    LL(b, a);\n\
@@ -253,7 +253,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL_1_H.test.cpp
   requiredBy: []
-  timestamp: '2022-09-24 23:41:28+09:00'
+  timestamp: '2022-09-27 00:08:36+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DPL_1_H.test.cpp

@@ -351,7 +351,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/sort_segtree_1.test.cpp
     title: test/library_checker/datastructure/sort_segtree_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_sum.test.cpp
     title: test/library_checker/datastructure/static_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -400,6 +400,9 @@ data:
     path: test/library_checker/dynamic_tree_vertex_add_path_sum_2.test.cpp
     title: test/library_checker/dynamic_tree_vertex_add_path_sum_2.test.cpp
   - icon: ':x:'
+    path: test/library_checker/dynamic_tree_vertex_add_subtree_sum.test.cpp
+    title: test/library_checker/dynamic_tree_vertex_add_subtree_sum.test.cpp
+  - icon: ':x:'
     path: test/library_checker/dynamic_tree_vertex_set_path_composite.test.cpp
     title: test/library_checker/dynamic_tree_vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -411,7 +414,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/assignment.test.cpp
     title: test/library_checker/graph/assignment.test.cpp
   - icon: ':heavy_check_mark:'
@@ -528,7 +531,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - icon: ':x:'
@@ -1439,6 +1442,7 @@ data:
   - test/yukicoder/1760.test.cpp
   - test/yukicoder/2012.test.cpp
   - test/yukicoder/1301.test.cpp
+  - test/library_checker/dynamic_tree_vertex_add_subtree_sum.test.cpp
   - test/library_checker/string/run_enumerate_vec.test.cpp
   - test/library_checker/string/suffix_array_vec.test.cpp
   - test/library_checker/string/suffix_array.test.cpp

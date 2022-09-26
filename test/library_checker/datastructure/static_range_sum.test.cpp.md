@@ -9,9 +9,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
@@ -198,15 +198,15 @@ data:
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
     \ { yes(!t); }\r\n#line 5 \"test/library_checker/datastructure/static_range_sum.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  A = cumsum(A);\r\n\
-    \  FOR(_, Q) {\r\n    LL(L, R);\r\n    print(A[R] - A[L]);\r\n  }\r\n}\r\n\r\n\
+    \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  A = cumsum<ll, ll>(A);\r\
+    \n  FOR(_, Q) {\r\n    LL(L, R);\r\n    print(A[R] - A[L]);\r\n  }\r\n}\r\n\r\n\
     signed main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n \
     \ cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\r\n\r\
     \n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\nvoid solve()\
-    \ {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  A = cumsum(A);\r\n  FOR(_, Q) {\r\n\
-    \    LL(L, R);\r\n    print(A[R] - A[L]);\r\n  }\r\n}\r\n\r\nsigned main() {\r\
-    \n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
+    \ {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  A = cumsum<ll, ll>(A);\r\n  FOR(_,\
+    \ Q) {\r\n    LL(L, R);\r\n    print(A[R] - A[L]);\r\n  }\r\n}\r\n\r\nsigned main()\
+    \ {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
     \n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
@@ -214,8 +214,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/static_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-09-24 23:41:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-27 00:08:36+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/static_range_sum.test.cpp
 layout: document

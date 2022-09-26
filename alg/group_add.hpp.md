@@ -166,6 +166,9 @@ data:
     path: test/library_checker/dynamic_tree_vertex_add_path_sum.test.cpp
     title: test/library_checker/dynamic_tree_vertex_add_path_sum.test.cpp
   - icon: ':x:'
+    path: test/library_checker/dynamic_tree_vertex_add_subtree_sum.test.cpp
+    title: test/library_checker/dynamic_tree_vertex_add_subtree_sum.test.cpp
+  - icon: ':x:'
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -328,6 +331,7 @@ data:
   - test/yukicoder/1197.test.cpp
   - test/yukicoder/1919.test.cpp
   - test/yukicoder/2065.test.cpp
+  - test/library_checker/dynamic_tree_vertex_add_subtree_sum.test.cpp
   - test/library_checker/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp

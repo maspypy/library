@@ -93,13 +93,13 @@ data:
     \u30D9\u30EB\u3001\u91CD\u5FC3\u304B\u3089\u306E\u8DDD\u96E2\u3001bit \u3067\u306E\
     index\n        for (auto&& v: que) {\n          dat[v].eb(c, dist[v], nxt_bit_idx++);\n\
     \          count[dist[v]]++;\n          par[v] = -1;\n          dist[v] = -1;\n\
-    \        }\n        bit_range[c] = cumsum(count);\n        for (auto&& x: bit_range[c])\
-    \ x += off;\n      }\n      // \u65B9\u5411\u3054\u3068\u306E bfs\n      for (auto&&\
-    \ e: G[c]) {\n        int off = nxt_bit_idx;\n        int nbd = e.to;\n      \
-    \  if (done[nbd]) continue;\n        int K = len(bit_range);\n        vc<int>\
-    \ que;\n        auto add = [&](int v, int d) -> void {\n          if (dist[v]\
-    \ != -1 || v == c) return;\n          dist[v] = d;\n          que.eb(v);\n   \
-    \     };\n        int p = 0;\n        add(nbd, 0);\n        while (p < len(que))\
+    \        }\n        bit_range[c] = cumsum<int, int>(count);\n        for (auto&&\
+    \ x: bit_range[c]) x += off;\n      }\n      // \u65B9\u5411\u3054\u3068\u306E\
+    \ bfs\n      for (auto&& e: G[c]) {\n        int off = nxt_bit_idx;\n        int\
+    \ nbd = e.to;\n        if (done[nbd]) continue;\n        int K = len(bit_range);\n\
+    \        vc<int> que;\n        auto add = [&](int v, int d) -> void {\n      \
+    \    if (dist[v] != -1 || v == c) return;\n          dist[v] = d;\n          que.eb(v);\n\
+    \        };\n        int p = 0;\n        add(nbd, 0);\n        while (p < len(que))\
     \ {\n          auto v = que[p++];\n          for (auto&& e: G[v]) {\n        \
     \    if (done[e.to]) continue;\n            add(e.to, dist[v] + 1);\n        \
     \  }\n        }\n        // \u8DDD\u96E2\u3054\u3068\u306E\u30AB\u30A6\u30F3\u30C8\
@@ -154,13 +154,13 @@ data:
     \u30D9\u30EB\u3001\u91CD\u5FC3\u304B\u3089\u306E\u8DDD\u96E2\u3001bit \u3067\u306E\
     index\n        for (auto&& v: que) {\n          dat[v].eb(c, dist[v], nxt_bit_idx++);\n\
     \          count[dist[v]]++;\n          par[v] = -1;\n          dist[v] = -1;\n\
-    \        }\n        bit_range[c] = cumsum(count);\n        for (auto&& x: bit_range[c])\
-    \ x += off;\n      }\n      // \u65B9\u5411\u3054\u3068\u306E bfs\n      for (auto&&\
-    \ e: G[c]) {\n        int off = nxt_bit_idx;\n        int nbd = e.to;\n      \
-    \  if (done[nbd]) continue;\n        int K = len(bit_range);\n        vc<int>\
-    \ que;\n        auto add = [&](int v, int d) -> void {\n          if (dist[v]\
-    \ != -1 || v == c) return;\n          dist[v] = d;\n          que.eb(v);\n   \
-    \     };\n        int p = 0;\n        add(nbd, 0);\n        while (p < len(que))\
+    \        }\n        bit_range[c] = cumsum<int, int>(count);\n        for (auto&&\
+    \ x: bit_range[c]) x += off;\n      }\n      // \u65B9\u5411\u3054\u3068\u306E\
+    \ bfs\n      for (auto&& e: G[c]) {\n        int off = nxt_bit_idx;\n        int\
+    \ nbd = e.to;\n        if (done[nbd]) continue;\n        int K = len(bit_range);\n\
+    \        vc<int> que;\n        auto add = [&](int v, int d) -> void {\n      \
+    \    if (dist[v] != -1 || v == c) return;\n          dist[v] = d;\n          que.eb(v);\n\
+    \        };\n        int p = 0;\n        add(nbd, 0);\n        while (p < len(que))\
     \ {\n          auto v = que[p++];\n          for (auto&& e: G[v]) {\n        \
     \    if (done[e.to]) continue;\n            add(e.to, dist[v] + 1);\n        \
     \  }\n        }\n        // \u8DDD\u96E2\u3054\u3068\u306E\u30AB\u30A6\u30F3\u30C8\
@@ -179,7 +179,7 @@ data:
   isVerificationFile: false
   path: graph/contoursum.hpp
   requiredBy: []
-  timestamp: '2022-09-17 09:15:44+09:00'
+  timestamp: '2022-09-27 00:08:36+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/graph/verted_add_contour_sum.test.cpp

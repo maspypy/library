@@ -15,7 +15,7 @@ data:
     - icon: ':warning:'
       path: alg/group_gl2.hpp
       title: alg/group_gl2.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/group_mul.hpp
       title: alg/group_mul.hpp
     - icon: ':heavy_check_mark:'
@@ -382,7 +382,7 @@ data:
     - icon: ':warning:'
       path: flow/cyclic_bflow.hpp
       title: flow/cyclic_bflow.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: flow/hungarian.hpp
       title: flow/hungarian.hpp
     - icon: ':warning:'
@@ -541,6 +541,9 @@ data:
     - icon: ':question:'
       path: graph/link_cut_path.hpp
       title: graph/link_cut_path.hpp
+    - icon: ':x:'
+      path: graph/link_cut_subtree.hpp
+      title: graph/link_cut_subtree.hpp
     - icon: ':heavy_check_mark:'
       path: graph/maximum_antichain.hpp
       title: graph/maximum_antichain.hpp
@@ -556,6 +559,9 @@ data:
     - icon: ':question:'
       path: graph/minimum_spanning_tree.hpp
       title: graph/minimum_spanning_tree.hpp
+    - icon: ':warning:'
+      path: graph/online_mst.hpp
+      title: graph/online_mst.hpp
     - icon: ':warning:'
       path: graph/online_toposort.hpp
       title: graph/online_toposort.hpp
@@ -962,7 +968,7 @@ data:
     - icon: ':question:'
       path: poly/integrate.hpp
       title: poly/integrate.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/lagrange_interpolate_iota.hpp
       title: poly/lagrange_interpolate_iota.hpp
     - icon: ':heavy_check_mark:'
@@ -1024,10 +1030,10 @@ data:
     - icon: ':question:'
       path: seq/interpolate_linear_rec.hpp
       title: seq/interpolate_linear_rec.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: seq/interpolate_poly_exp.hpp
       title: seq/interpolate_poly_exp.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: seq/interpolate_poly_exp_sum.hpp
       title: seq/interpolate_poly_exp_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -1484,7 +1490,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/sort_segtree_1.test.cpp
       title: test/library_checker/datastructure/sort_segtree_1.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/static_range_sum.test.cpp
       title: test/library_checker/datastructure/static_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1553,7 +1559,7 @@ data:
       title: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - name: test/library_checker/graph
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/assignment.test.cpp
       title: test/library_checker/graph/assignment.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1672,7 +1678,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
       title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
       title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
     - icon: ':x:'

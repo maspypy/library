@@ -53,7 +53,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
   - icon: ':heavy_check_mark:'
@@ -95,7 +95,7 @@ data:
   - icon: ':question:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
   - icon: ':heavy_check_mark:'
@@ -165,7 +165,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - icon: ':heavy_check_mark:'

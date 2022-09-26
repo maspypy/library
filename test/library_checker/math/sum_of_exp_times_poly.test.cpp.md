@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_mul.hpp
     title: alg/group_mul.hpp
   - icon: ':question:'
@@ -34,23 +34,23 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp.hpp
     title: seq/interpolate_poly_exp.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial
@@ -606,7 +606,7 @@ data:
     \ mint = modint998;\r\nvoid solve() {\r\n  mint r;\r\n  scanner.read(r);\r\n \
     \ LL(d, n);\r\n  int L = d + 5;\r\n  vc<mint> a = powertable_2<mint>(d, L - 1);\r\
     \n  mint p = 1;\r\n  FOR(i, L) {\r\n    a[i] *= p;\r\n    p *= r;\r\n  }\r\n \
-    \ a = cumsum(a, 0);\r\n  if (n == 0) return print(0);\r\n  print(interpolate_poly_exp_sum(a,\
+    \ a = cumsum<mint>(a, 0);\r\n  if (n == 0) return print(0);\r\n  print(interpolate_poly_exp_sum(a,\
     \ r, n - 1));\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n\
     }\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial\"\
@@ -614,9 +614,9 @@ data:
     \r\n#include \"mod/powertable.hpp\"\r\n\r\nusing mint = modint998;\r\nvoid solve()\
     \ {\r\n  mint r;\r\n  scanner.read(r);\r\n  LL(d, n);\r\n  int L = d + 5;\r\n\
     \  vc<mint> a = powertable_2<mint>(d, L - 1);\r\n  mint p = 1;\r\n  FOR(i, L)\
-    \ {\r\n    a[i] *= p;\r\n    p *= r;\r\n  }\r\n  a = cumsum(a, 0);\r\n  if (n\
-    \ == 0) return print(0);\r\n  print(interpolate_poly_exp_sum(a, r, n - 1));\r\n\
-    }\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ {\r\n    a[i] *= p;\r\n    p *= r;\r\n  }\r\n  a = cumsum<mint>(a, 0);\r\n \
+    \ if (n == 0) return print(0);\r\n  print(interpolate_poly_exp_sum(a, r, n - 1));\r\
+    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -636,8 +636,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
   requiredBy: []
-  timestamp: '2022-09-24 23:41:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-27 00:08:36+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/sum_of_exp_times_poly.test.cpp
 layout: document
