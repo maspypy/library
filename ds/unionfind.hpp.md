@@ -72,6 +72,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1479.test.cpp
     title: test/yukicoder/1479.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1983.test.cpp
+    title: test/yukicoder/1983.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -123,6 +126,7 @@ data:
   - test/aoj/2251_1.test.cpp
   - test/aoj/GRL_2_A.test.cpp
   - test/yukicoder/1479.test.cpp
+  - test/yukicoder/1983.test.cpp
   - test/yukicoder/1170_2.test.cpp
   - test/yukicoder/1242.test.cpp
   - test/yukicoder/114.test.cpp

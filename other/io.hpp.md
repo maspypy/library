@@ -705,7 +705,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/mod_sum_of_linear.test.cpp
     title: test/mytest/mod_sum_of_linear.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/partizan.test.cpp
     title: test/mytest/partizan.test.cpp
   - icon: ':heavy_check_mark:'
@@ -993,6 +993,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1976.test.cpp
     title: test/yukicoder/1976.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1983.test.cpp
+    title: test/yukicoder/1983.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1989.test.cpp
     title: test/yukicoder/1989.test.cpp
@@ -1425,6 +1428,7 @@ data:
   - test/yukicoder/1810.test.cpp
   - test/yukicoder/1989.test.cpp
   - test/yukicoder/1441.test.cpp
+  - test/yukicoder/1983.test.cpp
   - test/yukicoder/1625_2.test.cpp
   - test/yukicoder/655.test.cpp
   - test/yukicoder/1493.test.cpp

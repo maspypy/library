@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: game/dyrational.hpp
     title: game/dyrational.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: game/solve_partizan_game.hpp
     title: game/solve_partizan_game.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -283,11 +283,11 @@ data:
     \ O(N) \u3067\u89E3\u304F\n  auto eval = [&](char c) -> int {\n    if (c == 'L')\
     \ return 1;\n    if (c == 'R') return -1;\n    return 0;\n  };\n\n  int n = len(s);\n\
     \  if (n == 0) return 0;\n  int res = 0;\n\n  FOR(2) {\n    reverse(all(s));\n\
-    \    if (n >= 2 && s[n - 1] == s[n - 2]) {\n      res += eval(s[n - 1]);\n   \
-    \   s.pop_back();\n      n = len(s);\n    }\n  }\n\n  char a = '.', b = '.';\n\
+    \    while (n >= 2 && s[n - 1] == s[n - 2]) {\n      res += eval(s[n - 1]);\n\
+    \      s.pop_back();\n      n = len(s);\n    }\n  }\n\n  char a = '.', b = '.';\n\
     \  FOR_R(i, n - 1) if (s[i] == s[i + 1]) a = s[i];\n  FOR(i, n - 1) if (s[i] ==\
     \ s[i + 1]) b = s[i];\n  int x = eval(s[0]) + eval(a) + eval(b) + eval(s[n - 1]);\n\
-    \  return x / 2;\n};\n\nvoid test_cherries() {\n  int MAX_LEN = 20;\n  vc<string>\
+    \  return res + x / 2;\n};\n\nvoid test_cherries() {\n  int MAX_LEN = 20;\n  vc<string>\
     \ states;\n  states.eb(\"\");\n  int p = 0, q = 1;\n  FOR(MAX_LEN) {\n    FOR(i,\
     \ p, q) {\n      states.eb(states[i] + \"L\");\n      states.eb(states[i] + \"\
     R\");\n    }\n    p = q;\n    q = len(states);\n  }\n\n  auto get_options = [&](string\
@@ -296,13 +296,12 @@ data:
     \ (n && s[0] == 'R') right.eb(s.substr(1, n - 1));\n    if (n && s[n - 1] == 'L')\
     \ left.eb(s.substr(0, n - 1));\n    if (n && s[n - 1] == 'R') right.eb(s.substr(0,\
     \ n - 1));\n    return {left, right};\n  };\n\n  auto MP = solve_partizan_game<string,\
-    \ int>(states, get_options);\n\n  for (auto&& [s, x]: MP) {\n    int my_ans =\
-    \ solve_cherries(s);\n    assert(x == DyRational<int>(my_ans, 0));\n  }\n}\n\n\
-    void test() {\n  test_push();\n  test_problem_5_2();\n  test_problem_5_3();\n\
-    \  test_cherries();\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\n\
-    signed main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout <<\
-    \ setprecision(15);\n\n  test();\n\n  ll T = 1;\n  FOR(T) solve();\n\n  return\
-    \ 0;\n}\n"
+    \ ll>(states, get_options);\n\n  for (auto&& [s, x]: MP) {\n    int my_ans = solve_cherries(s);\n\
+    \    assert(x == DyRational<ll>(my_ans, 0));\n  }\n}\n\nvoid test() {\n  test_push();\n\
+    \  test_problem_5_2();\n  test_problem_5_3();\n  test_cherries();\n}\n\nvoid solve()\
+    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  test();\n\n\
+    \  ll T = 1;\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"game/solve_partizan_game.hpp\"\
     \n\nvoid test_push() {\n  // LESSONS IN PLAY p.113\n  vc<string> states = {\"\
@@ -338,11 +337,11 @@ data:
     \ O(N) \u3067\u89E3\u304F\n  auto eval = [&](char c) -> int {\n    if (c == 'L')\
     \ return 1;\n    if (c == 'R') return -1;\n    return 0;\n  };\n\n  int n = len(s);\n\
     \  if (n == 0) return 0;\n  int res = 0;\n\n  FOR(2) {\n    reverse(all(s));\n\
-    \    if (n >= 2 && s[n - 1] == s[n - 2]) {\n      res += eval(s[n - 1]);\n   \
-    \   s.pop_back();\n      n = len(s);\n    }\n  }\n\n  char a = '.', b = '.';\n\
+    \    while (n >= 2 && s[n - 1] == s[n - 2]) {\n      res += eval(s[n - 1]);\n\
+    \      s.pop_back();\n      n = len(s);\n    }\n  }\n\n  char a = '.', b = '.';\n\
     \  FOR_R(i, n - 1) if (s[i] == s[i + 1]) a = s[i];\n  FOR(i, n - 1) if (s[i] ==\
     \ s[i + 1]) b = s[i];\n  int x = eval(s[0]) + eval(a) + eval(b) + eval(s[n - 1]);\n\
-    \  return x / 2;\n};\n\nvoid test_cherries() {\n  int MAX_LEN = 20;\n  vc<string>\
+    \  return res + x / 2;\n};\n\nvoid test_cherries() {\n  int MAX_LEN = 20;\n  vc<string>\
     \ states;\n  states.eb(\"\");\n  int p = 0, q = 1;\n  FOR(MAX_LEN) {\n    FOR(i,\
     \ p, q) {\n      states.eb(states[i] + \"L\");\n      states.eb(states[i] + \"\
     R\");\n    }\n    p = q;\n    q = len(states);\n  }\n\n  auto get_options = [&](string\
@@ -351,13 +350,12 @@ data:
     \ (n && s[0] == 'R') right.eb(s.substr(1, n - 1));\n    if (n && s[n - 1] == 'L')\
     \ left.eb(s.substr(0, n - 1));\n    if (n && s[n - 1] == 'R') right.eb(s.substr(0,\
     \ n - 1));\n    return {left, right};\n  };\n\n  auto MP = solve_partizan_game<string,\
-    \ int>(states, get_options);\n\n  for (auto&& [s, x]: MP) {\n    int my_ans =\
-    \ solve_cherries(s);\n    assert(x == DyRational<int>(my_ans, 0));\n  }\n}\n\n\
-    void test() {\n  test_push();\n  test_problem_5_2();\n  test_problem_5_3();\n\
-    \  test_cherries();\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\n\
-    signed main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout <<\
-    \ setprecision(15);\n\n  test();\n\n  ll T = 1;\n  FOR(T) solve();\n\n  return\
-    \ 0;\n}"
+    \ ll>(states, get_options);\n\n  for (auto&& [s, x]: MP) {\n    int my_ans = solve_cherries(s);\n\
+    \    assert(x == DyRational<ll>(my_ans, 0));\n  }\n}\n\nvoid test() {\n  test_push();\n\
+    \  test_problem_5_2();\n  test_problem_5_3();\n  test_cherries();\n}\n\nvoid solve()\
+    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  test();\n\n\
+    \  ll T = 1;\n  FOR(T) solve();\n\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -366,8 +364,8 @@ data:
   isVerificationFile: true
   path: test/mytest/partizan.test.cpp
   requiredBy: []
-  timestamp: '2022-09-26 19:36:18+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-27 06:44:53+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/partizan.test.cpp
 layout: document

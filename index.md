@@ -402,7 +402,7 @@ data:
     - icon: ':question:'
       path: game/dyrational.hpp
       title: game/dyrational.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: game/solve_partizan_game.hpp
       title: game/solve_partizan_game.hpp
   - name: geo
@@ -1870,7 +1870,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/mod_sum_of_linear.test.cpp
       title: test/mytest/mod_sum_of_linear.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/partizan.test.cpp
       title: test/mytest/partizan.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2160,6 +2160,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1976.test.cpp
       title: test/yukicoder/1976.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1983.test.cpp
+      title: test/yukicoder/1983.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1989.test.cpp
       title: test/yukicoder/1989.test.cpp

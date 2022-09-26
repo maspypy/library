@@ -16,6 +16,9 @@ data:
     path: test/library_checker/graph/two_edge_component.test.cpp
     title: test/library_checker/graph/two_edge_component.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1983.test.cpp
+    title: test/yukicoder/1983.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
   _isVerificationFailed: false
@@ -165,6 +168,7 @@ data:
   verifiedWith:
   - test/aoj/GRL_3_B.test.cpp
   - test/yukicoder/529.test.cpp
+  - test/yukicoder/1983.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
 documentation_of: graph/two_edge_component.hpp
 layout: document
