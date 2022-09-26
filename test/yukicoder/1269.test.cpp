@@ -38,7 +38,7 @@ void solve() {
     }
     swap(dp, newdp);
   }
-  print(SUM(dp) - mint(1));
+  print(SUM<mint>(dp) - mint(1));
 }
 
 signed main() {
