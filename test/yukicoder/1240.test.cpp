@@ -12,7 +12,7 @@ void solve() {
   // 桁ごとの累積和
   vv(int, dp, K, N);
   FOR(k, K) FOR(i, N) dp[k][i] = (A[i] & 1 << k ? 1 : 0);
-  FOR(k, K) dp[k] = cumsum(dp[k]);
+  FOR(k, K) dp[k] = cumsum<int>(dp[k]);
 
   ll ANS = 0;
   FOR(i, N) {
