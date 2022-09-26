@@ -68,7 +68,7 @@ data:
   - icon: ':x:'
     path: ds/uniqueproductquery.hpp
     title: ds/uniqueproductquery.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/waveletmatrix.hpp
     title: ds/waveletmatrix.hpp
   - icon: ':x:'
@@ -240,7 +240,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/919.test.cpp
     title: test/yukicoder/919.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
   _isVerificationFailed: true
