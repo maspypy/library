@@ -3,13 +3,12 @@
 #include "other/io.hpp"
 #include "mod/modint.hpp"
 #include "seq/interpolate_linear_rec.hpp"
-#include "seq/find_linear_rec.hpp"
 
 using mint = modint998;
 
 void solve() {
   LL(N, K);
-  ll LIM = 210;
+  ll LIM = 300;
   vc<mint> A(LIM);
   vc<mint> B(LIM);
   using P = pair<mint, mint>;
@@ -23,28 +22,27 @@ void solve() {
       B[k] += dp[a][b].se;
     }
     vv(P, newdp, K, K);
-    FOR(a, K) FOR(b, K) {
-      FOR(c, K) {
-        if (a == b || a == c || b == c) continue;
-        if (a < b && b < c) continue;
-        if (a > b && b > c) continue;
-        newdp[b][c].fi += dp[a][b].fi;
-        newdp[b][c].se += dp[a][b].se + mint(c) * dp[a][b].fi;
-      }
-      swap(dp, newdp);
+    FOR(a, K) FOR(b, K) FOR(c, K) {
+      if (a == b || a == c || b == c) continue;
+      if (a < b && b < c) continue;
+      if (a > b && b > c) continue;
+      newdp[b][c].fi += dp[a][b].fi;
+      newdp[b][c].se += dp[a][b].se + mint(c) * dp[a][b].fi;
     }
-
-    mint a = interpolate_linear_rec<mint>(A, N, 10);
-    mint b = interpolate_linear_rec<mint>(B, N, 10);
-    print(a, b);
+    swap(dp, newdp);
   }
 
-  signed main() {
-    cout << fixed << setprecision(15);
+  mint a = interpolate_linear_rec<mint>(A, N, 10);
+  mint b = interpolate_linear_rec<mint>(B, N, 10);
+  print(a, b);
+}
 
-    ll T = 1;
-    // LL(T);
-    FOR(T) solve();
+signed main() {
+  cout << fixed << setprecision(15);
 
-    return 0;
-  }
+  ll T = 1;
+  // LL(T);
+  FOR(T) solve();
+
+  return 0;
+}
