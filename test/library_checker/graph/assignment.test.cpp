@@ -11,7 +11,7 @@ void solve() {
   print(ans);
   print(match);
 
-  assert(SUM(X) + SUM(Y) == ans);
+  assert(SUM<ll>(X) + SUM<ll>(Y) == ans);
   FOR(i, N) FOR(j, N) assert(X[i] + Y[j] <= A[i][j]);
 }
 

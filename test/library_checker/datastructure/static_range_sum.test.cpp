@@ -6,7 +6,7 @@
 void solve() {
   LL(N, Q);
   VEC(ll, A, N);
-  A = cumsum(A);
+  A = cumsum<ll, ll>(A);
   FOR(_, Q) {
     LL(L, R);
     print(A[R] - A[L]);

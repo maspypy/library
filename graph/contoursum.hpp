@@ -109,7 +109,7 @@ struct ContourSum {
           par[v] = -1;
           dist[v] = -1;
         }
-        bit_range[c] = cumsum(count);
+        bit_range[c] = cumsum<int, int>(count);
         for (auto&& x: bit_range[c]) x += off;
       }
       // 方向ごとの bfs
