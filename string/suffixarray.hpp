@@ -136,24 +136,8 @@ private:
     return ret;
   }
 
-  void calc_LCP(const std::string& s) {
-    int n = s.size(), k = 0;
-    ISA.resize(n);
-    LCP.resize(n);
-    for (int i = 0; i < n; i++) ISA[SA[i]] = i;
-    for (int i = 0; i < n; i++, k ? k-- : 0) {
-      if (ISA[i] == n - 1) {
-        k = 0;
-        continue;
-      }
-      int j = SA[ISA[i] + 1];
-      while (i + k < n && j + k < n && s[i + k] == s[j + k]) k++;
-      LCP[ISA[i]] = k;
-    }
-    LCP.resize(n - 1);
-  }
-
-  void calc_LCP(const vector<int>& s) {
+  template <typename STRING>
+  void calc_LCP(const STRING& s) {
     int n = s.size(), k = 0;
     ISA.resize(n);
     LCP.resize(n);
