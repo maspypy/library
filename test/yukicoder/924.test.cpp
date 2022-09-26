@@ -7,7 +7,7 @@
 void solve() {
   LL(N, Q);
   VEC(ll, A, N);
-  auto Ac = cumsum(A);
+  auto Ac = cumsum<ll>(A);
   vi X = A;
   UNIQUE(X);
   for (auto&& a: A) a = LB(X, a);
