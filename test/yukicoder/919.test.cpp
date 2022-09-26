@@ -23,8 +23,8 @@ void solve() {
     vi right(LIM);
     FOR(i, LIM) left[i] = get(K * i, K * i + K);
     FOR(i, LIM) right[i] = get(N - K * i - K, N - K * i);
-    left = cumsum(left);
-    right = cumsum(right);
+    left = cumsum<ll>(left);
+    right = cumsum<ll>(right);
     // x 回以下とるときの～
     FOR(i, LIM) chmax(left[i + 1], left[i]);
     FOR(i, LIM) chmax(right[i + 1], right[i]);
