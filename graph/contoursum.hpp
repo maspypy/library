@@ -143,7 +143,7 @@ struct ContourSum {
           par[v] = -1;
           dist[v] = -1;
         }
-        bit_range.eb(cumsum(count));
+        bit_range.eb(cumsum<int>(count));
         for (auto&& x: bit_range[K]) x += off;
         st.eb(nbd, sz[nbd]);
       }
