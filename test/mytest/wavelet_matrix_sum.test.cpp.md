@@ -13,14 +13,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/random.hpp
     title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -266,16 +266,16 @@ data:
     \ 6 \"test/mytest/wavelet_matrix_sum.test.cpp\"\n\nvoid test() {\n  FOR(N, 1,\
     \ 50) {\n    vi A(N);\n    FOR(i, N) A[i] = RNG(0, 10);\n    WaveletMatrix<ll,\
     \ true, Group_Add<ll>> X(A);\n    FOR(L, N) FOR(R, L, N + 1) {\n      vi B = {A.begin()\
-    \ + L, A.begin() + R};\n      sort(all(B));\n      auto Bc = cumsum(B);\n\n  \
-    \    FOR(k, R - L + 1) { assert(Bc[k] == X.sum(L, R, k)); }\n    }\n  }\n}\n\n\
-    void solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout <<\
+    \ + L, A.begin() + R};\n      sort(all(B));\n      auto Bc = cumsum<ll>(B);\n\n\
+    \      FOR(k, R - L + 1) { assert(Bc[k] == X.sum(L, R, k)); }\n    }\n  }\n}\n\
+    \nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout <<\
     \ fixed << setprecision(15);\n\n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"other/random.hpp\"\n#include \"ds/waveletmatrix.hpp\"\
     \n\nvoid test() {\n  FOR(N, 1, 50) {\n    vi A(N);\n    FOR(i, N) A[i] = RNG(0,\
     \ 10);\n    WaveletMatrix<ll, true, Group_Add<ll>> X(A);\n    FOR(L, N) FOR(R,\
     \ L, N + 1) {\n      vi B = {A.begin() + L, A.begin() + R};\n      sort(all(B));\n\
-    \      auto Bc = cumsum(B);\n\n      FOR(k, R - L + 1) { assert(Bc[k] == X.sum(L,\
+    \      auto Bc = cumsum<ll>(B);\n\n      FOR(k, R - L + 1) { assert(Bc[k] == X.sum(L,\
     \ R, k)); }\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\
     \nsigned main() {\n  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\
     \n  return 0;\n}\n"
@@ -288,8 +288,8 @@ data:
   isVerificationFile: true
   path: test/mytest/wavelet_matrix_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-09-24 23:41:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-27 05:23:15+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/wavelet_matrix_sum.test.cpp
 layout: document

@@ -39,9 +39,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/dynamic_tree_vertex_set_path_composite.test.cpp
-    title: test/library_checker/dynamic_tree_vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/splay.test.cpp
     title: test/mytest/splay.test.cpp
@@ -83,7 +80,6 @@ data:
   - test/mytest/splay.test.cpp
   - test/yukicoder/255.test.cpp
   - test/yukicoder/1891.test.cpp
-  - test/library_checker/dynamic_tree_vertex_set_path_composite.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/sort_segtree_1.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: dp/minplus_convolution_convex.hpp
     title: dp/minplus_convolution_convex.hpp
   - icon: ':question:'
@@ -10,14 +10,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/random.hpp
     title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -219,8 +219,8 @@ data:
     \ + B[j] < A[i] + B[j + 1])\n        ++i;\n      else\n        ++j;\n    }\n \
     \ }\n  return C;\n}\n#line 7 \"test/mytest/minplus_convex.test.cpp\"\n\nconst\
     \ int INF = numeric_limits<int>::max();\n\nvc<int> gen(int L, int N, int R) {\n\
-    \  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(-100, 100);\n  sort(all(A));\n  A = cumsum(A);\n\
-    \  FOR(L) A.insert(A.begin(), INF);\n  FOR(L) A.insert(A.end(), INF);\n  return\
+    \  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(-100, 100);\n  sort(all(A));\n  A = cumsum<int>(A);\n\
+    \  FOR(L) A.insert(A.begin(), INF);\n  FOR(R) A.insert(A.end(), INF);\n  return\
     \ A;\n}\n\nvc<int> naive(vc<int> A, vc<int> B) {\n  int N = len(A), M = len(B);\n\
     \  vc<int> C(N + M - 1, INF);\n  FOR(i, N) FOR(j, M) {\n    if (A[i] == INF ||\
     \ B[j] == INF) continue;\n    chmin(C[i + j], A[i] + B[j]);\n  }\n  return C;\n\
@@ -234,7 +234,7 @@ data:
     \n#include \"other/io.hpp\"\n#include \"other/random.hpp\"\n\n#include \"dp/minplus_convolution_convex.hpp\"\
     \n\nconst int INF = numeric_limits<int>::max();\n\nvc<int> gen(int L, int N, int\
     \ R) {\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(-100, 100);\n  sort(all(A));\n\
-    \  A = cumsum(A);\n  FOR(L) A.insert(A.begin(), INF);\n  FOR(L) A.insert(A.end(),\
+    \  A = cumsum<int>(A);\n  FOR(L) A.insert(A.begin(), INF);\n  FOR(R) A.insert(A.end(),\
     \ INF);\n  return A;\n}\n\nvc<int> naive(vc<int> A, vc<int> B) {\n  int N = len(A),\
     \ M = len(B);\n  vc<int> C(N + M - 1, INF);\n  FOR(i, N) FOR(j, M) {\n    if (A[i]\
     \ == INF || B[j] == INF) continue;\n    chmin(C[i + j], A[i] + B[j]);\n  }\n \
@@ -252,8 +252,8 @@ data:
   isVerificationFile: true
   path: test/mytest/minplus_convex.test.cpp
   requiredBy: []
-  timestamp: '2022-09-24 23:41:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-27 05:20:50+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/minplus_convex.test.cpp
 layout: document

@@ -1,17 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/link_cut.hpp
     title: graph/link_cut.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/library_checker/dynamic_tree_vertex_add_subtree_sum.test.cpp
-    title: test/library_checker/dynamic_tree_vertex_add_subtree_sum.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/link_cut.hpp\"\n\ntemplate <typename Node, int NODES>\n\
@@ -163,9 +160,8 @@ data:
   path: graph/link_cut_subtree.hpp
   requiredBy: []
   timestamp: '2022-09-27 00:08:36+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/library_checker/dynamic_tree_vertex_add_subtree_sum.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: graph/link_cut_subtree.hpp
 layout: document
 redirect_from:

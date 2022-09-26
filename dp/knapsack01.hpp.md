@@ -3,18 +3,18 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_1_B.test.cpp
     title: test/aoj/DPL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_1_F.test.cpp
     title: test/aoj/DPL_1_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_1_H.test.cpp
     title: test/aoj/DPL_1_H.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"dp/knapsack01.hpp\"\n/*\nknapsack01 \u306E\u5168\u5217\u6319\
@@ -45,8 +45,8 @@ data:
     \      FOR_R(i, mx + 1) chmax(dp[i + weight[k]], dp[i] + val[k]);\n      total\
     \ += weight[k];\n    };\n    return MAX(dp);\n  };\n\n  // val \u3054\u3068\u306E\
     \ dp\n  // O(N sum val)\n  auto sol_3 = [&]() -> VAL {\n    // val -> min wt\n\
-    \    vc<WT> dp(SUM(val) + 1, LIM + 1);\n    dp[0] = 0;\n    ll total = 0;\n  \
-    \  FOR(k, n) {\n      FOR_R(i, total + 1) { chmin(dp[i + val[k]], dp[i] + weight[k]);\
+    \    vc<WT> dp(SUM<VAL>(val) + 1, LIM + 1);\n    dp[0] = 0;\n    ll total = 0;\n\
+    \    FOR(k, n) {\n      FOR_R(i, total + 1) { chmin(dp[i + val[k]], dp[i] + weight[k]);\
     \ }\n      total += val[k];\n    }\n    VAL ANS = 0;\n    FOR(i, total + 1) if\
     \ (dp[i] <= LIM) ANS = i;\n    return ANS;\n  };\n\n  double t1 = log(2) * n *\
     \ 0.5;\n  double t2 = log((n + 1) * (LIM + 1));\n  double t3 = log((n + 1) * (SUM<WT>(val)\
@@ -80,8 +80,8 @@ data:
     \      FOR_R(i, mx + 1) chmax(dp[i + weight[k]], dp[i] + val[k]);\n      total\
     \ += weight[k];\n    };\n    return MAX(dp);\n  };\n\n  // val \u3054\u3068\u306E\
     \ dp\n  // O(N sum val)\n  auto sol_3 = [&]() -> VAL {\n    // val -> min wt\n\
-    \    vc<WT> dp(SUM(val) + 1, LIM + 1);\n    dp[0] = 0;\n    ll total = 0;\n  \
-    \  FOR(k, n) {\n      FOR_R(i, total + 1) { chmin(dp[i + val[k]], dp[i] + weight[k]);\
+    \    vc<WT> dp(SUM<VAL>(val) + 1, LIM + 1);\n    dp[0] = 0;\n    ll total = 0;\n\
+    \    FOR(k, n) {\n      FOR_R(i, total + 1) { chmin(dp[i + val[k]], dp[i] + weight[k]);\
     \ }\n      total += val[k];\n    }\n    VAL ANS = 0;\n    FOR(i, total + 1) if\
     \ (dp[i] <= LIM) ANS = i;\n    return ANS;\n  };\n\n  double t1 = log(2) * n *\
     \ 0.5;\n  double t2 = log((n + 1) * (LIM + 1));\n  double t3 = log((n + 1) * (SUM<WT>(val)\
@@ -91,8 +91,8 @@ data:
   isVerificationFile: false
   path: dp/knapsack01.hpp
   requiredBy: []
-  timestamp: '2022-09-27 00:08:36+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-09-27 05:16:33+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL_1_F.test.cpp
   - test/aoj/DPL_1_B.test.cpp

@@ -78,16 +78,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_C.test.cpp
     title: test/aoj/CGL_7_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_1_B.test.cpp
     title: test/aoj/DPL_1_B.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_1_D.test.cpp
     title: test/aoj/DPL_1_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_1_F.test.cpp
     title: test/aoj/DPL_1_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_1_H.test.cpp
     title: test/aoj/DPL_1_H.test.cpp
   - icon: ':heavy_check_mark:'
@@ -396,15 +396,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/dynamic_tree_vertex_add_path_sum.test.cpp
     title: test/library_checker/dynamic_tree_vertex_add_path_sum.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/dynamic_tree_vertex_add_path_sum_2.test.cpp
-    title: test/library_checker/dynamic_tree_vertex_add_path_sum_2.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/dynamic_tree_vertex_add_subtree_sum.test.cpp
-    title: test/library_checker/dynamic_tree_vertex_add_subtree_sum.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/dynamic_tree_vertex_set_path_composite.test.cpp
-    title: test/library_checker/dynamic_tree_vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/convex_layers.test.cpp
     title: test/library_checker/geometry/convex_layers.test.cpp
@@ -690,7 +681,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/dyrational.test.cpp
     title: test/mytest/dyrational.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
   - icon: ':heavy_check_mark:'
@@ -708,13 +699,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/max_of_linear_segments.test.cpp
     title: test/mytest/max_of_linear_segments.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/maxplus_concave.test.cpp
     title: test/mytest/maxplus_concave.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/min_of_linear_segments.test.cpp
     title: test/mytest/min_of_linear_segments.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/minplus_convex.test.cpp
     title: test/mytest/minplus_convex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -726,13 +717,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/powerquery.test.cpp
     title: test/mytest/powerquery.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/prime_sum.test.cpp
     title: test/mytest/prime_sum.test.cpp
   - icon: ':x:'
     path: test/mytest/primesum_mod4.test.cpp
     title: test/mytest/primesum_mod4.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/primesum_mod6.test.cpp
     title: test/mytest/primesum_mod6.test.cpp
   - icon: ':heavy_check_mark:'
@@ -753,7 +744,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/wavelet_matrix_sum.test.cpp
     title: test/mytest/wavelet_matrix_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1017,7 +1008,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2012.test.cpp
     title: test/yukicoder/2012.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2062.test.cpp
     title: test/yukicoder/2062.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1442,7 +1433,6 @@ data:
   - test/yukicoder/1760.test.cpp
   - test/yukicoder/2012.test.cpp
   - test/yukicoder/1301.test.cpp
-  - test/library_checker/dynamic_tree_vertex_add_subtree_sum.test.cpp
   - test/library_checker/string/run_enumerate_vec.test.cpp
   - test/library_checker/string/suffix_array_vec.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
@@ -1453,7 +1443,6 @@ data:
   - test/library_checker/string/zalgorithm.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
-  - test/library_checker/dynamic_tree_vertex_add_path_sum_2.test.cpp
   - test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
@@ -1474,7 +1463,6 @@ data:
   - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/composition_of_fps.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - test/library_checker/dynamic_tree_vertex_set_path_composite.test.cpp
   - test/library_checker/sample/many_aplusb.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp

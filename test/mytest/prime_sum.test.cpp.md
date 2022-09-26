@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -325,17 +325,17 @@ data:
     \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
     \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 8 \"test/mytest/prime_sum.test.cpp\"\
     \n\nvoid test_count() {\n  vc<int> A(1000);\n  for (auto&& p: primetable(1000))\
-    \ { A[p]++; }\n  A = cumsum(A, 0);\n\n  FOR(N, 1000) {\n    PrimeSum<int> X(N);\n\
-    \    X.calc_count();\n    FOR(K, 1, N + 10) { assert(X[N / K] == A[N / K]); }\n\
-    \  }\n\n  vc<ll> TEN(13);\n  TEN[0] = 1;\n  FOR(i, 12) TEN[i + 1] = TEN[i] * 10;\n\
-    \n  ll N = TEN[12];\n  PrimeSum<ll> X(N);\n  X.calc_count();\n  assert(X[TEN[0]]\
+    \ { A[p]++; }\n  A = cumsum<int>(A, 0);\n\n  FOR(N, 1000) {\n    PrimeSum<int>\
+    \ X(N);\n    X.calc_count();\n    FOR(K, 1, N + 10) { assert(X[N / K] == A[N /\
+    \ K]); }\n  }\n\n  vc<ll> TEN(13);\n  TEN[0] = 1;\n  FOR(i, 12) TEN[i + 1] = TEN[i]\
+    \ * 10;\n\n  ll N = TEN[12];\n  PrimeSum<ll> X(N);\n  X.calc_count();\n  assert(X[TEN[0]]\
     \ == 0);\n  assert(X[TEN[1]] == 4);\n  assert(X[TEN[2]] == 25);\n  assert(X[TEN[3]]\
     \ == 168);\n  assert(X[TEN[4]] == 1229);\n  assert(X[TEN[5]] == 9592);\n  assert(X[TEN[6]]\
     \ == 78498);\n  assert(X[TEN[7]] == 664579);\n  assert(X[TEN[8]] == 5761455);\n\
     \  assert(X[TEN[9]] == 50847534);\n  assert(X[TEN[10]] == 455052511);\n  assert(X[TEN[11]]\
     \ == 4118054813);\n  assert(X[TEN[12]] == 37607912018);\n}\n\nvoid test_sum()\
     \ {\n  vc<int> A(1000);\n  for (auto&& p: primetable(1000)) { A[p] += p; }\n \
-    \ A = cumsum(A, 0);\n\n  FOR(N, 1000) {\n    PrimeSum<int> X(N);\n    X.calc_sum();\n\
+    \ A = cumsum<int>(A, 0);\n\n  FOR(N, 1000) {\n    PrimeSum<int> X(N);\n    X.calc_sum();\n\
     \    FOR(K, 1, N + 10) { assert(X[N / K] == A[N / K]); }\n  }\n\n  vc<ll> TEN(13);\n\
     \  TEN[0] = 1;\n  FOR(i, 12) TEN[i + 1] = TEN[i] * 10;\n\n  using mint = modint998;\n\
     \  ll N = TEN[12];\n  PrimeSum<mint> X(N);\n  X.calc_sum();\n\n  auto f = [&](string\
@@ -353,18 +353,18 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"nt/primesum.hpp\"\n#include \"nt/primetable.hpp\"\
     \n#include \"mod/modint.hpp\"\n\nvoid test_count() {\n  vc<int> A(1000);\n  for\
-    \ (auto&& p: primetable(1000)) { A[p]++; }\n  A = cumsum(A, 0);\n\n  FOR(N, 1000)\
-    \ {\n    PrimeSum<int> X(N);\n    X.calc_count();\n    FOR(K, 1, N + 10) { assert(X[N\
-    \ / K] == A[N / K]); }\n  }\n\n  vc<ll> TEN(13);\n  TEN[0] = 1;\n  FOR(i, 12)\
-    \ TEN[i + 1] = TEN[i] * 10;\n\n  ll N = TEN[12];\n  PrimeSum<ll> X(N);\n  X.calc_count();\n\
-    \  assert(X[TEN[0]] == 0);\n  assert(X[TEN[1]] == 4);\n  assert(X[TEN[2]] == 25);\n\
-    \  assert(X[TEN[3]] == 168);\n  assert(X[TEN[4]] == 1229);\n  assert(X[TEN[5]]\
+    \ (auto&& p: primetable(1000)) { A[p]++; }\n  A = cumsum<int>(A, 0);\n\n  FOR(N,\
+    \ 1000) {\n    PrimeSum<int> X(N);\n    X.calc_count();\n    FOR(K, 1, N + 10)\
+    \ { assert(X[N / K] == A[N / K]); }\n  }\n\n  vc<ll> TEN(13);\n  TEN[0] = 1;\n\
+    \  FOR(i, 12) TEN[i + 1] = TEN[i] * 10;\n\n  ll N = TEN[12];\n  PrimeSum<ll> X(N);\n\
+    \  X.calc_count();\n  assert(X[TEN[0]] == 0);\n  assert(X[TEN[1]] == 4);\n  assert(X[TEN[2]]\
+    \ == 25);\n  assert(X[TEN[3]] == 168);\n  assert(X[TEN[4]] == 1229);\n  assert(X[TEN[5]]\
     \ == 9592);\n  assert(X[TEN[6]] == 78498);\n  assert(X[TEN[7]] == 664579);\n \
     \ assert(X[TEN[8]] == 5761455);\n  assert(X[TEN[9]] == 50847534);\n  assert(X[TEN[10]]\
     \ == 455052511);\n  assert(X[TEN[11]] == 4118054813);\n  assert(X[TEN[12]] ==\
     \ 37607912018);\n}\n\nvoid test_sum() {\n  vc<int> A(1000);\n  for (auto&& p:\
-    \ primetable(1000)) { A[p] += p; }\n  A = cumsum(A, 0);\n\n  FOR(N, 1000) {\n\
-    \    PrimeSum<int> X(N);\n    X.calc_sum();\n    FOR(K, 1, N + 10) { assert(X[N\
+    \ primetable(1000)) { A[p] += p; }\n  A = cumsum<int>(A, 0);\n\n  FOR(N, 1000)\
+    \ {\n    PrimeSum<int> X(N);\n    X.calc_sum();\n    FOR(K, 1, N + 10) { assert(X[N\
     \ / K] == A[N / K]); }\n  }\n\n  vc<ll> TEN(13);\n  TEN[0] = 1;\n  FOR(i, 12)\
     \ TEN[i + 1] = TEN[i] * 10;\n\n  using mint = modint998;\n  ll N = TEN[12];\n\
     \  PrimeSum<mint> X(N);\n  X.calc_sum();\n\n  auto f = [&](string S) -> mint {\n\
@@ -388,8 +388,8 @@ data:
   isVerificationFile: true
   path: test/mytest/prime_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-09-24 23:41:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-27 05:24:58+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/prime_sum.test.cpp
 layout: document

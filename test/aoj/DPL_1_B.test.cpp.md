@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: dp/knapsack01.hpp
     title: dp/knapsack01.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_B
@@ -227,8 +227,8 @@ data:
     \      FOR_R(i, mx + 1) chmax(dp[i + weight[k]], dp[i] + val[k]);\n      total\
     \ += weight[k];\n    };\n    return MAX(dp);\n  };\n\n  // val \u3054\u3068\u306E\
     \ dp\n  // O(N sum val)\n  auto sol_3 = [&]() -> VAL {\n    // val -> min wt\n\
-    \    vc<WT> dp(SUM(val) + 1, LIM + 1);\n    dp[0] = 0;\n    ll total = 0;\n  \
-    \  FOR(k, n) {\n      FOR_R(i, total + 1) { chmin(dp[i + val[k]], dp[i] + weight[k]);\
+    \    vc<WT> dp(SUM<VAL>(val) + 1, LIM + 1);\n    dp[0] = 0;\n    ll total = 0;\n\
+    \    FOR(k, n) {\n      FOR_R(i, total + 1) { chmin(dp[i + val[k]], dp[i] + weight[k]);\
     \ }\n      total += val[k];\n    }\n    VAL ANS = 0;\n    FOR(i, total + 1) if\
     \ (dp[i] <= LIM) ANS = i;\n    return ANS;\n  };\n\n  double t1 = log(2) * n *\
     \ 0.5;\n  double t2 = log((n + 1) * (LIM + 1));\n  double t3 = log((n + 1) * (SUM<WT>(val)\
@@ -253,8 +253,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2022-09-27 00:08:36+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-27 05:16:33+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL_1_B.test.cpp
 layout: document
