@@ -90,7 +90,7 @@ int solve_cherries(string s) {
 
   FOR(2) {
     reverse(all(s));
-    if (n >= 2 && s[n - 1] == s[n - 2]) {
+    while (n >= 2 && s[n - 1] == s[n - 2]) {
       res += eval(s[n - 1]);
       s.pop_back();
       n = len(s);
@@ -101,7 +101,7 @@ int solve_cherries(string s) {
   FOR_R(i, n - 1) if (s[i] == s[i + 1]) a = s[i];
   FOR(i, n - 1) if (s[i] == s[i + 1]) b = s[i];
   int x = eval(s[0]) + eval(a) + eval(b) + eval(s[n - 1]);
-  return x / 2;
+  return res + x / 2;
 };
 
 void test_cherries() {
@@ -129,11 +129,11 @@ void test_cherries() {
     return {left, right};
   };
 
-  auto MP = solve_partizan_game<string, int>(states, get_options);
+  auto MP = solve_partizan_game<string, ll>(states, get_options);
 
   for (auto&& [s, x]: MP) {
     int my_ans = solve_cherries(s);
-    assert(x == DyRational<int>(my_ans, 0));
+    assert(x == DyRational<ll>(my_ans, 0));
   }
 }
 
