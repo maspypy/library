@@ -70,7 +70,7 @@ VAL knapsack01(vc<WT> weight, vc<VAL> val, WT LIM) {
   // O(N sum val)
   auto sol_3 = [&]() -> VAL {
     // val -> min wt
-    vc<WT> dp(SUM(val) + 1, LIM + 1);
+    vc<WT> dp(SUM<VAL>(val) + 1, LIM + 1);
     dp[0] = 0;
     ll total = 0;
     FOR(k, n) {
