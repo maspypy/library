@@ -10,8 +10,8 @@ void test_count() {
     if (p % 4 == 1) { A1[p]++; }
   for (auto&& p: primetable(LIM))
     if (p % 4 == 3) { A3[p]++; }
-  A1 = cumsum(A1, 0);
-  A3 = cumsum(A3, 0);
+  A1 = cumsum<int>(A1, 0);
+  A3 = cumsum<int>(A3, 0);
 
   FOR(N, LIM) {
     PrimeSum_Mod_4<int> X(N);
@@ -27,8 +27,8 @@ void test_sum() {
     if (p % 4 == 1) { A1[p] += p; }
   for (auto&& p: primetable(LIM))
     if (p % 4 == 3) { A3[p] += p; }
-  A1 = cumsum(A1, 0);
-  A3 = cumsum(A3, 0);
+  A1 = cumsum<int>(A1, 0);
+  A3 = cumsum<int>(A3, 0);
 
   FOR(N, LIM) {
     PrimeSum_Mod_4<int> X(N);
