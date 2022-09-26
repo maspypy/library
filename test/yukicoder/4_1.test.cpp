@@ -6,7 +6,7 @@
 void solve() {
   LL(N);
   VEC(int, A, N);
-  ll S = SUM(A);
+  ll S = SUM<ll>(A);
   Modular_Subset_Sum MSS(S + 1, A);
   if (MSS[S / 2] && S % 2 == 0) {
     print("possible");
