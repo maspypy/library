@@ -7,7 +7,7 @@
 void solve() {
   LL(N, K, M);
   VEC(ll, A, N);
-  auto Ac = cumsum(A);
+  auto Ac = cumsum<ll>(A);
   const ll INF = 1LL << 60;
   vi DP(N + 1, -INF);
   DP[0] = 0;
