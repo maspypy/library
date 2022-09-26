@@ -13,7 +13,7 @@ void test() {
     vc<mint> P = partition_number<mint>(N);
     set<vc<int>> ss;
     auto f = [&](vc<int>& P) -> void {
-      assert(SUM(P) == N);
+      assert(SUM<int>(P) == N);
       assert(!ss.count(P));
       ss.insert(P);
     };
