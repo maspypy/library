@@ -9,7 +9,7 @@ void solve() {
   ll N = len(S);
   SuffixArray sa(S);
   ll ANS = N * (N + 1) / 2;
-  ANS -= SUM(sa.LCP);
+  ANS -= SUM<ll>(sa.LCP);
   print(ANS);
 }
 
