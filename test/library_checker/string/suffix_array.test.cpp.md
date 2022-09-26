@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid_min.hpp
     title: alg/monoid_min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/disjointsparse.hpp
     title: ds/disjointsparse.hpp
   - icon: ':question:'
@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/suffixarray.hpp
     title: string/suffixarray.hpp
   _extendedRequiredBy: []
@@ -292,19 +292,13 @@ data:
     \ vect(s.size() + 1);\n    std::copy(std::begin(s), std::end(s), std::begin(vect));\n\
     \    for (auto& x: vect)\n      x = lower_bound(ss.begin(), ss.end(), x) - ss.begin()\
     \ + 1;\n    vect.back() = 0;\n    auto ret = SA_IS(vect, *max_element(vect.begin(),\
-    \ vect.end()) + 2);\n    ret.erase(ret.begin());\n    return ret;\n  }\n\n  void\
-    \ calc_LCP(const std::string& s) {\n    int n = s.size(), k = 0;\n    ISA.resize(n);\n\
-    \    LCP.resize(n);\n    for (int i = 0; i < n; i++) ISA[SA[i]] = i;\n    for\
-    \ (int i = 0; i < n; i++, k ? k-- : 0) {\n      if (ISA[i] == n - 1) {\n     \
-    \   k = 0;\n        continue;\n      }\n      int j = SA[ISA[i] + 1];\n      while\
-    \ (i + k < n && j + k < n && s[i + k] == s[j + k]) k++;\n      LCP[ISA[i]] = k;\n\
-    \    }\n    LCP.resize(n - 1);\n  }\n\n  void calc_LCP(const vector<int>& s) {\n\
-    \    int n = s.size(), k = 0;\n    ISA.resize(n);\n    LCP.resize(n);\n    for\
-    \ (int i = 0; i < n; i++) ISA[SA[i]] = i;\n    for (int i = 0; i < n; i++, k ?\
-    \ k-- : 0) {\n      if (ISA[i] == n - 1) {\n        k = 0;\n        continue;\n\
-    \      }\n      int j = SA[ISA[i] + 1];\n      while (i + k < n && j + k < n &&\
-    \ s[i + k] == s[j + k]) k++;\n      LCP[ISA[i]] = k;\n    }\n    LCP.resize(n\
-    \ - 1);\n  }\n};\n#line 6 \"test/library_checker/string/suffix_array.test.cpp\"\
+    \ vect.end()) + 2);\n    ret.erase(ret.begin());\n    return ret;\n  }\n\n  template\
+    \ <typename STRING>\n  void calc_LCP(const STRING& s) {\n    int n = s.size(),\
+    \ k = 0;\n    ISA.resize(n);\n    LCP.resize(n);\n    for (int i = 0; i < n; i++)\
+    \ ISA[SA[i]] = i;\n    for (int i = 0; i < n; i++, k ? k-- : 0) {\n      if (ISA[i]\
+    \ == n - 1) {\n        k = 0;\n        continue;\n      }\n      int j = SA[ISA[i]\
+    \ + 1];\n      while (i + k < n && j + k < n && s[i + k] == s[j + k]) k++;\n \
+    \     LCP[ISA[i]] = k;\n    }\n    LCP.resize(n - 1);\n  }\n};\n#line 6 \"test/library_checker/string/suffix_array.test.cpp\"\
     \n\r\nvoid solve() {\r\n  STR(S);\r\n  SuffixArray sa(S);\r\n  print(sa.SA);\r\
     \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
     \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
@@ -322,7 +316,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/suffix_array.test.cpp
   requiredBy: []
-  timestamp: '2022-09-24 23:41:28+09:00'
+  timestamp: '2022-09-27 04:46:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/string/suffix_array.test.cpp

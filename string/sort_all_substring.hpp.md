@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: alg/monoid_min.hpp
     title: alg/monoid_min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/disjointsparse.hpp
     title: ds/disjointsparse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/suffixarray.hpp
     title: string/suffixarray.hpp
   _extendedRequiredBy: []
@@ -102,35 +102,29 @@ data:
     \ vect(s.size() + 1);\n    std::copy(std::begin(s), std::end(s), std::begin(vect));\n\
     \    for (auto& x: vect)\n      x = lower_bound(ss.begin(), ss.end(), x) - ss.begin()\
     \ + 1;\n    vect.back() = 0;\n    auto ret = SA_IS(vect, *max_element(vect.begin(),\
-    \ vect.end()) + 2);\n    ret.erase(ret.begin());\n    return ret;\n  }\n\n  void\
-    \ calc_LCP(const std::string& s) {\n    int n = s.size(), k = 0;\n    ISA.resize(n);\n\
-    \    LCP.resize(n);\n    for (int i = 0; i < n; i++) ISA[SA[i]] = i;\n    for\
-    \ (int i = 0; i < n; i++, k ? k-- : 0) {\n      if (ISA[i] == n - 1) {\n     \
-    \   k = 0;\n        continue;\n      }\n      int j = SA[ISA[i] + 1];\n      while\
-    \ (i + k < n && j + k < n && s[i + k] == s[j + k]) k++;\n      LCP[ISA[i]] = k;\n\
-    \    }\n    LCP.resize(n - 1);\n  }\n\n  void calc_LCP(const vector<int>& s) {\n\
-    \    int n = s.size(), k = 0;\n    ISA.resize(n);\n    LCP.resize(n);\n    for\
-    \ (int i = 0; i < n; i++) ISA[SA[i]] = i;\n    for (int i = 0; i < n; i++, k ?\
-    \ k-- : 0) {\n      if (ISA[i] == n - 1) {\n        k = 0;\n        continue;\n\
-    \      }\n      int j = SA[ISA[i] + 1];\n      while (i + k < n && j + k < n &&\
-    \ s[i + k] == s[j + k]) k++;\n      LCP[ISA[i]] = k;\n    }\n    LCP.resize(n\
-    \ - 1);\n  }\n};\n#line 2 \"string/sort_all_substring.hpp\"\n\n/*\ndp[l][r] :=\
-    \ S[l:r] \u304C\u6607\u9806\u3067\u4F55\u756A\u76EE\u304B\uFF1F\u3068\u3044\u3046\
-    \u30C6\u30FC\u30D6\u30EB\u3092\u8FD4\u3059\u3002\nO(N^2)\n*/\ntemplate <typename\
-    \ STRING>\nvc<vc<int>> sort_all_substring(STRING S) {\n  int n = len(S);\n  SuffixArray\
-    \ sa(S);\n  auto& SA = sa.SA;\n  auto& LCP = sa.LCP;\n  int nxt = 0;\n  vv(int,\
-    \ DP, n, n + 1, -1);\n  FOR(i, len(SA)) {\n    auto L = SA[i];\n    FOR3(k, 1,\
-    \ n - L + 1) {\n      int R = L + k;\n      if (i > 0 && LCP[i - 1] >= k)\n  \
-    \      DP[L][R] = DP[SA[i - 1]][SA[i - 1] + k];\n      else\n        DP[L][R]\
-    \ = nxt++;\n    }\n  }\n  return DP;\n}\n\n// \u9577\u3055\u306E\u4E0A\u9650\u3042\
-    \u308A\n// (\u958B\u59CB\u4F4D\u7F6E\u3001\u9577\u3055) \u306B\u5BFE\u3057\u3066\
-    \u30BD\u30FC\u30C8\u9806\u3092\u57CB\u3081\u308B\ntemplate <typename STRING>\n\
-    vc<vc<int>> sort_all_substring_limit(STRING S, ll LIM) {\n  int n = len(S);\n\
-    \  SuffixArray sa(S);\n  auto& SA = sa.SA;\n  auto& LCP = sa.LCP;\n  int nxt =\
-    \ 0;\n  vv(int, DP, n, LIM + 1, -1);\n  FOR(i, len(SA)) {\n    auto L = SA[i];\n\
-    \    FOR3(k, 1, min(n - L, LIM) + 1) {\n      int R = L + k;\n      if (i > 0\
-    \ && LCP[i - 1] >= k)\n        DP[L][R - L] = DP[SA[i - 1]][k];\n      else\n\
-    \        DP[L][R - L] = nxt++;\n    }\n  }\n  return DP;\n}\n"
+    \ vect.end()) + 2);\n    ret.erase(ret.begin());\n    return ret;\n  }\n\n  template\
+    \ <typename STRING>\n  void calc_LCP(const STRING& s) {\n    int n = s.size(),\
+    \ k = 0;\n    ISA.resize(n);\n    LCP.resize(n);\n    for (int i = 0; i < n; i++)\
+    \ ISA[SA[i]] = i;\n    for (int i = 0; i < n; i++, k ? k-- : 0) {\n      if (ISA[i]\
+    \ == n - 1) {\n        k = 0;\n        continue;\n      }\n      int j = SA[ISA[i]\
+    \ + 1];\n      while (i + k < n && j + k < n && s[i + k] == s[j + k]) k++;\n \
+    \     LCP[ISA[i]] = k;\n    }\n    LCP.resize(n - 1);\n  }\n};\n#line 2 \"string/sort_all_substring.hpp\"\
+    \n\n/*\ndp[l][r] := S[l:r] \u304C\u6607\u9806\u3067\u4F55\u756A\u76EE\u304B\uFF1F\
+    \u3068\u3044\u3046\u30C6\u30FC\u30D6\u30EB\u3092\u8FD4\u3059\u3002\nO(N^2)\n*/\n\
+    template <typename STRING>\nvc<vc<int>> sort_all_substring(STRING S) {\n  int\
+    \ n = len(S);\n  SuffixArray sa(S);\n  auto& SA = sa.SA;\n  auto& LCP = sa.LCP;\n\
+    \  int nxt = 0;\n  vv(int, DP, n, n + 1, -1);\n  FOR(i, len(SA)) {\n    auto L\
+    \ = SA[i];\n    FOR3(k, 1, n - L + 1) {\n      int R = L + k;\n      if (i > 0\
+    \ && LCP[i - 1] >= k)\n        DP[L][R] = DP[SA[i - 1]][SA[i - 1] + k];\n    \
+    \  else\n        DP[L][R] = nxt++;\n    }\n  }\n  return DP;\n}\n\n// \u9577\u3055\
+    \u306E\u4E0A\u9650\u3042\u308A\n// (\u958B\u59CB\u4F4D\u7F6E\u3001\u9577\u3055\
+    ) \u306B\u5BFE\u3057\u3066\u30BD\u30FC\u30C8\u9806\u3092\u57CB\u3081\u308B\ntemplate\
+    \ <typename STRING>\nvc<vc<int>> sort_all_substring_limit(STRING S, ll LIM) {\n\
+    \  int n = len(S);\n  SuffixArray sa(S);\n  auto& SA = sa.SA;\n  auto& LCP = sa.LCP;\n\
+    \  int nxt = 0;\n  vv(int, DP, n, LIM + 1, -1);\n  FOR(i, len(SA)) {\n    auto\
+    \ L = SA[i];\n    FOR3(k, 1, min(n - L, LIM) + 1) {\n      int R = L + k;\n  \
+    \    if (i > 0 && LCP[i - 1] >= k)\n        DP[L][R - L] = DP[SA[i - 1]][k];\n\
+    \      else\n        DP[L][R - L] = nxt++;\n    }\n  }\n  return DP;\n}\n"
   code: "#include \"string/suffixarray.hpp\"\n\n/*\ndp[l][r] := S[l:r] \u304C\u6607\
     \u9806\u3067\u4F55\u756A\u76EE\u304B\uFF1F\u3068\u3044\u3046\u30C6\u30FC\u30D6\
     \u30EB\u3092\u8FD4\u3059\u3002\nO(N^2)\n*/\ntemplate <typename STRING>\nvc<vc<int>>\
@@ -155,7 +149,7 @@ data:
   isVerificationFile: false
   path: string/sort_all_substring.hpp
   requiredBy: []
-  timestamp: '2022-08-18 20:33:44+09:00'
+  timestamp: '2022-09-27 04:46:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/sort_all_substring.hpp

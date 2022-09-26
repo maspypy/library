@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid_min.hpp
     title: alg/monoid_min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/disjointsparse.hpp
     title: ds/disjointsparse.hpp
   _extendedRequiredBy:
@@ -15,7 +15,7 @@ data:
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/string/number_of_substrings.test.cpp
     title: test/library_checker/string/number_of_substrings.test.cpp
   - icon: ':heavy_check_mark:'
@@ -27,9 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid_min.hpp\"\ntemplate <class X>\r\nstruct Monoid_Min\
@@ -117,19 +117,13 @@ data:
     \ vect(s.size() + 1);\n    std::copy(std::begin(s), std::end(s), std::begin(vect));\n\
     \    for (auto& x: vect)\n      x = lower_bound(ss.begin(), ss.end(), x) - ss.begin()\
     \ + 1;\n    vect.back() = 0;\n    auto ret = SA_IS(vect, *max_element(vect.begin(),\
-    \ vect.end()) + 2);\n    ret.erase(ret.begin());\n    return ret;\n  }\n\n  void\
-    \ calc_LCP(const std::string& s) {\n    int n = s.size(), k = 0;\n    ISA.resize(n);\n\
-    \    LCP.resize(n);\n    for (int i = 0; i < n; i++) ISA[SA[i]] = i;\n    for\
-    \ (int i = 0; i < n; i++, k ? k-- : 0) {\n      if (ISA[i] == n - 1) {\n     \
-    \   k = 0;\n        continue;\n      }\n      int j = SA[ISA[i] + 1];\n      while\
-    \ (i + k < n && j + k < n && s[i + k] == s[j + k]) k++;\n      LCP[ISA[i]] = k;\n\
-    \    }\n    LCP.resize(n - 1);\n  }\n\n  void calc_LCP(const vector<int>& s) {\n\
-    \    int n = s.size(), k = 0;\n    ISA.resize(n);\n    LCP.resize(n);\n    for\
-    \ (int i = 0; i < n; i++) ISA[SA[i]] = i;\n    for (int i = 0; i < n; i++, k ?\
-    \ k-- : 0) {\n      if (ISA[i] == n - 1) {\n        k = 0;\n        continue;\n\
-    \      }\n      int j = SA[ISA[i] + 1];\n      while (i + k < n && j + k < n &&\
-    \ s[i + k] == s[j + k]) k++;\n      LCP[ISA[i]] = k;\n    }\n    LCP.resize(n\
-    \ - 1);\n  }\n};\n"
+    \ vect.end()) + 2);\n    ret.erase(ret.begin());\n    return ret;\n  }\n\n  template\
+    \ <typename STRING>\n  void calc_LCP(const STRING& s) {\n    int n = s.size(),\
+    \ k = 0;\n    ISA.resize(n);\n    LCP.resize(n);\n    for (int i = 0; i < n; i++)\
+    \ ISA[SA[i]] = i;\n    for (int i = 0; i < n; i++, k ? k-- : 0) {\n      if (ISA[i]\
+    \ == n - 1) {\n        k = 0;\n        continue;\n      }\n      int j = SA[ISA[i]\
+    \ + 1];\n      while (i + k < n && j + k < n && s[i + k] == s[j + k]) k++;\n \
+    \     LCP[ISA[i]] = k;\n    }\n    LCP.resize(n - 1);\n  }\n};\n"
   code: "#include \"alg/monoid_min.hpp\"\n#include \"ds/disjointsparse.hpp\"\n\n//\
     \ \u8F9E\u66F8\u9806 i \u756A\u76EE\u306E suffix \u304C j \u6587\u5B57\u76EE\u59CB\
     \u307E\u308A\u3067\u3042\u308B\u3068\u304D\u3001\n// SA[i] = j, ISA[j] = i\nstruct\
@@ -187,19 +181,13 @@ data:
     \ vect(s.size() + 1);\n    std::copy(std::begin(s), std::end(s), std::begin(vect));\n\
     \    for (auto& x: vect)\n      x = lower_bound(ss.begin(), ss.end(), x) - ss.begin()\
     \ + 1;\n    vect.back() = 0;\n    auto ret = SA_IS(vect, *max_element(vect.begin(),\
-    \ vect.end()) + 2);\n    ret.erase(ret.begin());\n    return ret;\n  }\n\n  void\
-    \ calc_LCP(const std::string& s) {\n    int n = s.size(), k = 0;\n    ISA.resize(n);\n\
-    \    LCP.resize(n);\n    for (int i = 0; i < n; i++) ISA[SA[i]] = i;\n    for\
-    \ (int i = 0; i < n; i++, k ? k-- : 0) {\n      if (ISA[i] == n - 1) {\n     \
-    \   k = 0;\n        continue;\n      }\n      int j = SA[ISA[i] + 1];\n      while\
-    \ (i + k < n && j + k < n && s[i + k] == s[j + k]) k++;\n      LCP[ISA[i]] = k;\n\
-    \    }\n    LCP.resize(n - 1);\n  }\n\n  void calc_LCP(const vector<int>& s) {\n\
-    \    int n = s.size(), k = 0;\n    ISA.resize(n);\n    LCP.resize(n);\n    for\
-    \ (int i = 0; i < n; i++) ISA[SA[i]] = i;\n    for (int i = 0; i < n; i++, k ?\
-    \ k-- : 0) {\n      if (ISA[i] == n - 1) {\n        k = 0;\n        continue;\n\
-    \      }\n      int j = SA[ISA[i] + 1];\n      while (i + k < n && j + k < n &&\
-    \ s[i + k] == s[j + k]) k++;\n      LCP[ISA[i]] = k;\n    }\n    LCP.resize(n\
-    \ - 1);\n  }\n};"
+    \ vect.end()) + 2);\n    ret.erase(ret.begin());\n    return ret;\n  }\n\n  template\
+    \ <typename STRING>\n  void calc_LCP(const STRING& s) {\n    int n = s.size(),\
+    \ k = 0;\n    ISA.resize(n);\n    LCP.resize(n);\n    for (int i = 0; i < n; i++)\
+    \ ISA[SA[i]] = i;\n    for (int i = 0; i < n; i++, k ? k-- : 0) {\n      if (ISA[i]\
+    \ == n - 1) {\n        k = 0;\n        continue;\n      }\n      int j = SA[ISA[i]\
+    \ + 1];\n      while (i + k < n && j + k < n && s[i + k] == s[j + k]) k++;\n \
+    \     LCP[ISA[i]] = k;\n    }\n    LCP.resize(n - 1);\n  }\n};"
   dependsOn:
   - alg/monoid_min.hpp
   - ds/disjointsparse.hpp
@@ -208,8 +196,8 @@ data:
   requiredBy:
   - string/sort_all_substring.hpp
   - string/suffix_tree.hpp
-  timestamp: '2022-08-18 20:33:44+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-09-27 04:46:31+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/suffix_tree.test.cpp
   - test/library_checker/string/suffix_array_vec.test.cpp
