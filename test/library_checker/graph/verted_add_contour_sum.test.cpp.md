@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/contoursum.hpp
     title: graph/contoursum.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree
@@ -344,7 +344,7 @@ data:
     \       // \u91CD\u5FC3\u3001\u65B9\u5411\u30E9\u30D9\u30EB\u3001\u91CD\u5FC3\u304B\
     \u3089\u306E\u8DDD\u96E2\u3001bit \u3067\u306Eindex\n        for (auto&& v: que)\
     \ {\n          dat[v].eb(~K, dist[v], nxt_bit_idx++);\n          count[dist[v]]++;\n\
-    \          par[v] = -1;\n          dist[v] = -1;\n        }\n        bit_range.eb(cumsum(count));\n\
+    \          par[v] = -1;\n          dist[v] = -1;\n        }\n        bit_range.eb(cumsum<int>(count));\n\
     \        for (auto&& x: bit_range[K]) x += off;\n        st.eb(nbd, sz[nbd]);\n\
     \      }\n    }\n    // FenwickTree\n    vc<X> bit_raw(nxt_bit_idx);\n    FOR(v,\
     \ N) {\n      for (auto&& [k, x, i]: dat[v]) { bit_raw[i] = v_vals[v]; }\n   \
@@ -374,8 +374,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/verted_add_contour_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-09-27 00:08:36+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-27 06:38:35+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/verted_add_contour_sum.test.cpp
 layout: document

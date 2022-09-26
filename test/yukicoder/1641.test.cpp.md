@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/group_xor.hpp
     title: alg/group_xor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   - icon: ':question:'

@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -107,7 +107,7 @@ data:
     \       // \u91CD\u5FC3\u3001\u65B9\u5411\u30E9\u30D9\u30EB\u3001\u91CD\u5FC3\u304B\
     \u3089\u306E\u8DDD\u96E2\u3001bit \u3067\u306Eindex\n        for (auto&& v: que)\
     \ {\n          dat[v].eb(~K, dist[v], nxt_bit_idx++);\n          count[dist[v]]++;\n\
-    \          par[v] = -1;\n          dist[v] = -1;\n        }\n        bit_range.eb(cumsum(count));\n\
+    \          par[v] = -1;\n          dist[v] = -1;\n        }\n        bit_range.eb(cumsum<int>(count));\n\
     \        for (auto&& x: bit_range[K]) x += off;\n        st.eb(nbd, sz[nbd]);\n\
     \      }\n    }\n    // FenwickTree\n    vc<X> bit_raw(nxt_bit_idx);\n    FOR(v,\
     \ N) {\n      for (auto&& [k, x, i]: dat[v]) { bit_raw[i] = v_vals[v]; }\n   \
@@ -168,7 +168,7 @@ data:
     \       // \u91CD\u5FC3\u3001\u65B9\u5411\u30E9\u30D9\u30EB\u3001\u91CD\u5FC3\u304B\
     \u3089\u306E\u8DDD\u96E2\u3001bit \u3067\u306Eindex\n        for (auto&& v: que)\
     \ {\n          dat[v].eb(~K, dist[v], nxt_bit_idx++);\n          count[dist[v]]++;\n\
-    \          par[v] = -1;\n          dist[v] = -1;\n        }\n        bit_range.eb(cumsum(count));\n\
+    \          par[v] = -1;\n          dist[v] = -1;\n        }\n        bit_range.eb(cumsum<int>(count));\n\
     \        for (auto&& x: bit_range[K]) x += off;\n        st.eb(nbd, sz[nbd]);\n\
     \      }\n    }\n    // FenwickTree\n    vc<X> bit_raw(nxt_bit_idx);\n    FOR(v,\
     \ N) {\n      for (auto&& [k, x, i]: dat[v]) { bit_raw[i] = v_vals[v]; }\n   \
@@ -179,8 +179,8 @@ data:
   isVerificationFile: false
   path: graph/contoursum.hpp
   requiredBy: []
-  timestamp: '2022-09-27 00:08:36+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-09-27 06:38:35+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/graph/verted_add_contour_sum.test.cpp
 documentation_of: graph/contoursum.hpp
