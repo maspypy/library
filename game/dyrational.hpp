@@ -57,5 +57,7 @@ struct DyRational {
 
   static constexpr X infinity() { return X(numeric_limits<int>::max() / 4, 0); }
 
-  void debug() { print(a, "/", INTEGER(1) << b); }
+  string to_string() {
+    return std::to_string(a) + "/" + std::to_string(INTEGER(1) << b);
+  }
 };
