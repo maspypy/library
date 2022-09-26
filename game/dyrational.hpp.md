@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: game/solve_partizan_game.hpp
+    title: game/solve_partizan_game.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/atcoder/abc229h.test.cpp
@@ -9,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/dyrational.test.cpp
     title: test/mytest/dyrational.test.cpp
+  - icon: ':x:'
+    path: test/mytest/partizan.test.cpp
+    title: test/mytest/partizan.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -44,7 +50,8 @@ data:
     \ 1 >= 0) return X(xx + 1, 0);\n        if (yy - 1 <= 0) return X(yy - 1, 0);\n\
     \        return X(0, 0);\n      }\n    }\n    assert(false);\n    return X(0);\n\
     \  }\n\n  static constexpr X infinity() { return X(numeric_limits<int>::max()\
-    \ / 4, 0); }\n\n  void debug() { print(a, \"/\", INTEGER(1) << b); }\n};\n"
+    \ / 4, 0); }\n\n  string to_string() {\n    return std::to_string(a) + \"/\" +\
+    \ std::to_string(INTEGER(1) << b);\n  }\n};\n"
   code: "// a/2^b \u306E\u5F62\u3067\u6301\u3064\n// a \u306F i128 \u306B\u3082\u3067\
     \u304D\u308B\u304C\u3001\u5B9F\u7528\u4E0A\u8DB3\u308A\u308B\u304B\u306F\u3001\
     \u6F14\u7FD2\u91CF\u304C\u8DB3\u308A\u3066\u3044\u306A\u304F\u3066\u4E0D\u660E\
@@ -74,15 +81,18 @@ data:
     \u3076\n        if (xx + 1 >= 0) return X(xx + 1, 0);\n        if (yy - 1 <= 0)\
     \ return X(yy - 1, 0);\n        return X(0, 0);\n      }\n    }\n    assert(false);\n\
     \    return X(0);\n  }\n\n  static constexpr X infinity() { return X(numeric_limits<int>::max()\
-    \ / 4, 0); }\n\n  void debug() { print(a, \"/\", INTEGER(1) << b); }\n};"
+    \ / 4, 0); }\n\n  string to_string() {\n    return std::to_string(a) + \"/\" +\
+    \ std::to_string(INTEGER(1) << b);\n  }\n};"
   dependsOn: []
   isVerificationFile: false
   path: game/dyrational.hpp
-  requiredBy: []
-  timestamp: '2022-09-01 21:23:01+09:00'
+  requiredBy:
+  - game/solve_partizan_game.hpp
+  timestamp: '2022-09-26 19:35:46+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/dyrational.test.cpp
+  - test/mytest/partizan.test.cpp
   - test/atcoder/abc229h.test.cpp
 documentation_of: game/dyrational.hpp
 layout: document

@@ -4,6 +4,9 @@ data:
   - icon: ':question:'
     path: game/dyrational.hpp
     title: game/dyrational.hpp
+  - icon: ':x:'
+    path: game/solve_partizan_game.hpp
+    title: game/solve_partizan_game.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -12,15 +15,15 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/dyrational.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
+  bundledCode: "#line 1 \"test/mytest/partizan.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
     \n\n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC\
     \ optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
     \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
@@ -199,17 +202,17 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 5 \"test/mytest/dyrational.test.cpp\"\n\n#line 1 \"game/dyrational.hpp\"\
-    \n// a/2^b \u306E\u5F62\u3067\u6301\u3064\n// a \u306F i128 \u306B\u3082\u3067\
-    \u304D\u308B\u304C\u3001\u5B9F\u7528\u4E0A\u8DB3\u308A\u308B\u304B\u306F\u3001\
-    \u6F14\u7FD2\u91CF\u304C\u8DB3\u308A\u3066\u3044\u306A\u304F\u3066\u4E0D\u660E\
-    \ntemplate <typename INTEGER = ll>\nstruct DyRational {\n  using X = DyRational;\n\
-    \  INTEGER a;\n  int b;\n\n  DyRational(INTEGER _a = 0, int _b = 0) : a(_a), b(_b)\
-    \ {\n    while (b && a % 2 == 0) { a /= 2, b--; }\n  }\n\n  friend X operator+(const\
-    \ X& x, const X& y) {\n    int b = max(x.b, y.b);\n    INTEGER a = ((x.a) << (b\
-    \ - x.b)) + ((y.a) << (b - y.b));\n    return X(a, b);\n  }\n  friend X operator-(const\
-    \ X& x, const X& y) {\n    int b = max(x.b, y.b);\n    INTEGER a = ((x.a) << (b\
-    \ - x.b)) - ((y.a) << (b - y.b));\n    return X(a, b);\n  }\n  friend X operator-(const\
+    \ { yes(!t); }\r\n#line 1 \"game/dyrational.hpp\"\n// a/2^b \u306E\u5F62\u3067\
+    \u6301\u3064\n// a \u306F i128 \u306B\u3082\u3067\u304D\u308B\u304C\u3001\u5B9F\
+    \u7528\u4E0A\u8DB3\u308A\u308B\u304B\u306F\u3001\u6F14\u7FD2\u91CF\u304C\u8DB3\
+    \u308A\u3066\u3044\u306A\u304F\u3066\u4E0D\u660E\ntemplate <typename INTEGER =\
+    \ ll>\nstruct DyRational {\n  using X = DyRational;\n  INTEGER a;\n  int b;\n\n\
+    \  DyRational(INTEGER _a = 0, int _b = 0) : a(_a), b(_b) {\n    while (b && a\
+    \ % 2 == 0) { a /= 2, b--; }\n  }\n\n  friend X operator+(const X& x, const X&\
+    \ y) {\n    int b = max(x.b, y.b);\n    INTEGER a = ((x.a) << (b - x.b)) + ((y.a)\
+    \ << (b - y.b));\n    return X(a, b);\n  }\n  friend X operator-(const X& x, const\
+    \ X& y) {\n    int b = max(x.b, y.b);\n    INTEGER a = ((x.a) << (b - x.b)) -\
+    \ ((y.a) << (b - y.b));\n    return X(a, b);\n  }\n  friend X operator-(const\
     \ X& x) { return X(-x.a, x.b); }\n  X& operator+=(const X& x) { return (*this)\
     \ = (*this) + x; }\n  X& operator-=(const X& x) { return (*this) = (*this) - x;\
     \ }\n\n  friend bool operator<(const X& x, const X& y) { return (x - y).a < 0;\
@@ -230,61 +233,146 @@ data:
     \ return X(yy - 1, 0);\n        return X(0, 0);\n      }\n    }\n    assert(false);\n\
     \    return X(0);\n  }\n\n  static constexpr X infinity() { return X(numeric_limits<int>::max()\
     \ / 4, 0); }\n\n  string to_string() {\n    return std::to_string(a) + \"/\" +\
-    \ std::to_string(INTEGER(1) << b);\n  }\n};\n#line 7 \"test/mytest/dyrational.test.cpp\"\
-    \n\nvoid test() {\n  using X = DyRational<ll>;\n  // \u8DB3\u3057\n  assert(X(1)\
-    \ + X(2) == X(3));\n  assert(X(-3) + X(2) == X(-1));\n  assert(X(-3) + X(3) ==\
-    \ X(0));\n  assert(X(3, 3) + X(1, 1) == X(7, 3));\n  assert(X(3, 3) + X(3, 3)\
-    \ == X(3, 2));\n  assert(X(3, 3) + X(-3, 3) == X(0, 0));\n  assert(X(2, 3) + X(-1,\
-    \ 2) == X(0, 0));\n  // \u5F15\u304D\n  assert(X(1) - X(2) == X(-1));\n  assert(X(-3)\
-    \ - X(2) == X(-5));\n  assert(X(-3) - X(3) == X(-6));\n  assert(X(3, 3) - X(1,\
-    \ 1) == X(-1, 3));\n  assert(X(3, 3) - X(3, 3) == X(0, 0));\n  assert(X(3, 3)\
-    \ - X(-3, 3) == X(3, 2));\n  assert(X(2, 3) - X(-1, 2) == X(1, 1));\n  // \u4E0D\
-    \u7B49\u53F7\n  assert(X(1) < X(2));\n  assert(X(-3) < X(2));\n  assert(X(-3)\
-    \ < X(3));\n  assert(X(3, 3) < X(1, 1));\n  assert(X(3, 3) == X(3, 3));\n  assert(X(3,\
-    \ 3) > X(-3, 3));\n  assert(X(2, 3) > X(-1, 2));\n  // {x|y}\n  assert(X::find(X(1),\
-    \ X(2)) == X(3, 1));\n  assert(X::find(X(-3), X(0)) == X(-1));\n  assert(X::find(X(1),\
-    \ X(5)) == X(2));\n  assert(X::find(X(-3), X(1)) == X(0));\n  assert(X::find(X(9,\
-    \ 4), X(5, 3)) == X(19, 5));\n  assert(X::find(X(1, 1), X(2, 0)) == X(1));\n \
-    \ assert(X::find(X(1, 3), X(5, 3)) == X(1, 1));\n  assert(X::find(X(-91, 6), X(-41,\
-    \ 5)) == X(-11, 3));\n  assert(X::find(X(-3, 1), X(-1, 0)) == X(-5, 2));\n}\n\n\
-    void solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  test();\n\n\
-    \  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ std::to_string(INTEGER(1) << b);\n  }\n};\n#line 2 \"game/solve_partizan_game.hpp\"\
+    \n\n// \u5168\u90E8 dyadic rational number \u306B\u306A\u308B\u3068\u304D\u3060\
+    \u3051\u89E3\u3051\u308B\n// \u5931\u6557\u3057\u305F\u3068\u304D\u306F\u3001\
+    empty map \u304C\u8FD4\u308B\n// \u30FBstates\uFF1A\u8208\u5473\u306E\u3042\u308B\
+    \ state \u5168\u4F53\n// \u30FBget_options\uFF1Apair<vc<STATE>, vc<STATE>>(STATE),\
+    \ left ops / right ops\ntemplate <typename STATE, typename INTEGER, typename F>\n\
+    map<STATE, DyRational<INTEGER>> solve_partizan_game(const vector<STATE>& states,\n\
+    \                                                    F get_options) {\n  using\
+    \ X = DyRational<INTEGER>;\n  map<STATE, X> MP;\n\n  bool success = 1;\n\n  auto\
+    \ dfs = [&](auto& dfs, const STATE& s) -> X {\n    if (!success) return X();\n\
+    \    if (MP.count(s)) return MP[s];\n    vc<X> left, right;\n    X xl = -X::infinity(),\
+    \ xr = X::infinity();\n    auto [left_ops, right_ops] = get_options(s);\n    for\
+    \ (auto&& t: left_ops) chmax(xl, dfs(dfs, t));\n    for (auto&& t: right_ops)\
+    \ chmin(xr, dfs(dfs, t));\n\n    if (xl >= xr) {\n      // switch\n      success\
+    \ = 0;\n      MP.clear();\n      return X();\n    }\n    return (MP[s] = X::find(xl,\
+    \ xr));\n  };\n\n  for (auto&& s: states) dfs(dfs, s);\n  return MP;\n}\n#line\
+    \ 6 \"test/mytest/partizan.test.cpp\"\n\nvoid test_push() {\n  // LESSONS IN PLAY\
+    \ p.113\n  vc<string> states = {\"LR\", \".RL\", \".R\", \"RRL\"};\n  auto get_options\
+    \ = [&](string s) -> pair<vc<string>, vc<string>> {\n    vc<string> left_ops,\
+    \ right_ops;\n    FOR(i, len(s)) {\n      if (s[i] == '.') continue;\n      string\
+    \ t = s;\n      char x = '.';\n      int p = i;\n      while (p >= 0) {\n    \
+    \    swap(x, t[p--]);\n        if (x == '.') break;\n      }\n      if (s[i] ==\
+    \ 'L') left_ops.eb(t);\n      if (s[i] == 'R') right_ops.eb(t);\n    }\n    return\
+    \ {left_ops, right_ops};\n  };\n\n  auto MP = solve_partizan_game<string, ll>(states,\
+    \ get_options);\n  // for (auto&& [s, x]: MP) { print(s, x.to_string()); }\n \
+    \ assert(MP[\"LR\"].to_string() == \"-3/2\");\n  assert(MP[\".RL\"].to_string()\
+    \ == \"7/4\");\n  assert(MP[\".R\"].to_string() == \"-2/1\");\n  assert(MP[\"\
+    RRL\"].to_string() == \"13/8\");\n}\n\nvoid test_problem_5_2() {\n  // switch\
+    \ \u306B\u306A\u308B\u306E\u3067\u89E3\u3051\u306A\u3044\n  int LIM = 10;\n  vc<int>\
+    \ states(LIM);\n  iota(all(states), 0);\n\n  auto get_options = [&](int s) ->\
+    \ pair<vc<int>, vc<int>> {\n    vc<int> left_ops, right_ops;\n    if (s % 3 ==\
+    \ 0 && s >= 1) left_ops.eb(s - 1), right_ops.eb(s - 1);\n    if (s % 3 == 0 &&\
+    \ s >= 2) left_ops.eb(s - 2), right_ops.eb(s - 2);\n    if (s % 3 == 1 && s >=\
+    \ 1) left_ops.eb(s - 1);\n    if (s % 3 == 1 && s >= 2) left_ops.eb(s - 2);\n\
+    \    if (s % 3 == 2 && s >= 1) right_ops.eb(s - 1);\n    if (s % 3 == 2 && s >=\
+    \ 2) right_ops.eb(s - 2);\n    return {left_ops, right_ops};\n  };\n\n  auto MP\
+    \ = solve_partizan_game<int, ll>(states, get_options);\n  assert(MP.empty());\n\
+    }\n\nvoid test_problem_5_3() {\n  int LIM = 10;\n  vc<int> states(LIM);\n  iota(all(states),\
+    \ 0);\n\n  auto get_options = [&](int s) -> pair<vc<int>, vc<int>> {\n    vc<int>\
+    \ left_ops, right_ops;\n    if (s % 2 == 0 && s >= 2) left_ops.eb(s - 2);\n  \
+    \  if (s % 2 == 0 && s >= 1) right_ops.eb(s - 1);\n    if (s % 2 == 1 && s >=\
+    \ 1) left_ops.eb(s - 1);\n    if (s % 2 == 1 && s >= 2) right_ops.eb(s - 2);\n\
+    \    return {left_ops, right_ops};\n  };\n\n  auto MP = solve_partizan_game<int,\
+    \ ll>(states, get_options);\n  assert(MP[0].to_string() == \"0/1\");\n  assert(MP[1].to_string()\
+    \ == \"1/1\");\n  assert(MP[2].to_string() == \"1/2\");\n  assert(MP[3].to_string()\
+    \ == \"3/4\");\n  assert(MP[4].to_string() == \"5/8\");\n  assert(MP[5].to_string()\
+    \ == \"11/16\");\n}\n\nint solve_cherries(string s) {\n  // LR cherries \u3092\
+    \ O(N) \u3067\u89E3\u304F\n  auto eval = [&](char c) -> int {\n    if (c == 'L')\
+    \ return 1;\n    if (c == 'R') return -1;\n    return 0;\n  };\n\n  int n = len(s);\n\
+    \  if (n == 0) return 0;\n  int res = 0;\n\n  FOR(2) {\n    reverse(all(s));\n\
+    \    if (n >= 2 && s[n - 1] == s[n - 2]) {\n      res += eval(s[n - 1]);\n   \
+    \   s.pop_back();\n      n = len(s);\n    }\n  }\n\n  char a = '.', b = '.';\n\
+    \  FOR_R(i, n - 1) if (s[i] == s[i + 1]) a = s[i];\n  FOR(i, n - 1) if (s[i] ==\
+    \ s[i + 1]) b = s[i];\n  int x = eval(s[0]) + eval(a) + eval(b) + eval(s[n - 1]);\n\
+    \  return x / 2;\n};\n\nvoid test_cherries() {\n  int MAX_LEN = 20;\n  vc<string>\
+    \ states;\n  states.eb(\"\");\n  int p = 0, q = 1;\n  FOR(MAX_LEN) {\n    FOR(i,\
+    \ p, q) {\n      states.eb(states[i] + \"L\");\n      states.eb(states[i] + \"\
+    R\");\n    }\n    p = q;\n    q = len(states);\n  }\n\n  auto get_options = [&](string\
+    \ s) -> pair<vc<string>, vc<string>> {\n    vc<string> left, right;\n    int n\
+    \ = len(s);\n\n    if (n && s[0] == 'L') left.eb(s.substr(1, n - 1));\n    if\
+    \ (n && s[0] == 'R') right.eb(s.substr(1, n - 1));\n    if (n && s[n - 1] == 'L')\
+    \ left.eb(s.substr(0, n - 1));\n    if (n && s[n - 1] == 'R') right.eb(s.substr(0,\
+    \ n - 1));\n    return {left, right};\n  };\n\n  auto MP = solve_partizan_game<string,\
+    \ int>(states, get_options);\n\n  for (auto&& [s, x]: MP) {\n    int my_ans =\
+    \ solve_cherries(s);\n    assert(x == DyRational<int>(my_ans, 0));\n  }\n}\n\n\
+    void test() {\n  test_push();\n  test_problem_5_2();\n  test_problem_5_3();\n\
+    \  test_cherries();\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\n\
+    signed main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout <<\
+    \ setprecision(15);\n\n  test();\n\n  ll T = 1;\n  FOR(T) solve();\n\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
-    my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"game/dyrational.hpp\"\
-    \n\nvoid test() {\n  using X = DyRational<ll>;\n  // \u8DB3\u3057\n  assert(X(1)\
-    \ + X(2) == X(3));\n  assert(X(-3) + X(2) == X(-1));\n  assert(X(-3) + X(3) ==\
-    \ X(0));\n  assert(X(3, 3) + X(1, 1) == X(7, 3));\n  assert(X(3, 3) + X(3, 3)\
-    \ == X(3, 2));\n  assert(X(3, 3) + X(-3, 3) == X(0, 0));\n  assert(X(2, 3) + X(-1,\
-    \ 2) == X(0, 0));\n  // \u5F15\u304D\n  assert(X(1) - X(2) == X(-1));\n  assert(X(-3)\
-    \ - X(2) == X(-5));\n  assert(X(-3) - X(3) == X(-6));\n  assert(X(3, 3) - X(1,\
-    \ 1) == X(-1, 3));\n  assert(X(3, 3) - X(3, 3) == X(0, 0));\n  assert(X(3, 3)\
-    \ - X(-3, 3) == X(3, 2));\n  assert(X(2, 3) - X(-1, 2) == X(1, 1));\n  // \u4E0D\
-    \u7B49\u53F7\n  assert(X(1) < X(2));\n  assert(X(-3) < X(2));\n  assert(X(-3)\
-    \ < X(3));\n  assert(X(3, 3) < X(1, 1));\n  assert(X(3, 3) == X(3, 3));\n  assert(X(3,\
-    \ 3) > X(-3, 3));\n  assert(X(2, 3) > X(-1, 2));\n  // {x|y}\n  assert(X::find(X(1),\
-    \ X(2)) == X(3, 1));\n  assert(X::find(X(-3), X(0)) == X(-1));\n  assert(X::find(X(1),\
-    \ X(5)) == X(2));\n  assert(X::find(X(-3), X(1)) == X(0));\n  assert(X::find(X(9,\
-    \ 4), X(5, 3)) == X(19, 5));\n  assert(X::find(X(1, 1), X(2, 0)) == X(1));\n \
-    \ assert(X::find(X(1, 3), X(5, 3)) == X(1, 1));\n  assert(X::find(X(-91, 6), X(-41,\
-    \ 5)) == X(-11, 3));\n  assert(X::find(X(-3, 1), X(-1, 0)) == X(-5, 2));\n}\n\n\
-    void solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  test();\n\n\
-    \  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}"
+    my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"game/solve_partizan_game.hpp\"\
+    \n\nvoid test_push() {\n  // LESSONS IN PLAY p.113\n  vc<string> states = {\"\
+    LR\", \".RL\", \".R\", \"RRL\"};\n  auto get_options = [&](string s) -> pair<vc<string>,\
+    \ vc<string>> {\n    vc<string> left_ops, right_ops;\n    FOR(i, len(s)) {\n \
+    \     if (s[i] == '.') continue;\n      string t = s;\n      char x = '.';\n \
+    \     int p = i;\n      while (p >= 0) {\n        swap(x, t[p--]);\n        if\
+    \ (x == '.') break;\n      }\n      if (s[i] == 'L') left_ops.eb(t);\n      if\
+    \ (s[i] == 'R') right_ops.eb(t);\n    }\n    return {left_ops, right_ops};\n \
+    \ };\n\n  auto MP = solve_partizan_game<string, ll>(states, get_options);\n  //\
+    \ for (auto&& [s, x]: MP) { print(s, x.to_string()); }\n  assert(MP[\"LR\"].to_string()\
+    \ == \"-3/2\");\n  assert(MP[\".RL\"].to_string() == \"7/4\");\n  assert(MP[\"\
+    .R\"].to_string() == \"-2/1\");\n  assert(MP[\"RRL\"].to_string() == \"13/8\"\
+    );\n}\n\nvoid test_problem_5_2() {\n  // switch \u306B\u306A\u308B\u306E\u3067\
+    \u89E3\u3051\u306A\u3044\n  int LIM = 10;\n  vc<int> states(LIM);\n  iota(all(states),\
+    \ 0);\n\n  auto get_options = [&](int s) -> pair<vc<int>, vc<int>> {\n    vc<int>\
+    \ left_ops, right_ops;\n    if (s % 3 == 0 && s >= 1) left_ops.eb(s - 1), right_ops.eb(s\
+    \ - 1);\n    if (s % 3 == 0 && s >= 2) left_ops.eb(s - 2), right_ops.eb(s - 2);\n\
+    \    if (s % 3 == 1 && s >= 1) left_ops.eb(s - 1);\n    if (s % 3 == 1 && s >=\
+    \ 2) left_ops.eb(s - 2);\n    if (s % 3 == 2 && s >= 1) right_ops.eb(s - 1);\n\
+    \    if (s % 3 == 2 && s >= 2) right_ops.eb(s - 2);\n    return {left_ops, right_ops};\n\
+    \  };\n\n  auto MP = solve_partizan_game<int, ll>(states, get_options);\n  assert(MP.empty());\n\
+    }\n\nvoid test_problem_5_3() {\n  int LIM = 10;\n  vc<int> states(LIM);\n  iota(all(states),\
+    \ 0);\n\n  auto get_options = [&](int s) -> pair<vc<int>, vc<int>> {\n    vc<int>\
+    \ left_ops, right_ops;\n    if (s % 2 == 0 && s >= 2) left_ops.eb(s - 2);\n  \
+    \  if (s % 2 == 0 && s >= 1) right_ops.eb(s - 1);\n    if (s % 2 == 1 && s >=\
+    \ 1) left_ops.eb(s - 1);\n    if (s % 2 == 1 && s >= 2) right_ops.eb(s - 2);\n\
+    \    return {left_ops, right_ops};\n  };\n\n  auto MP = solve_partizan_game<int,\
+    \ ll>(states, get_options);\n  assert(MP[0].to_string() == \"0/1\");\n  assert(MP[1].to_string()\
+    \ == \"1/1\");\n  assert(MP[2].to_string() == \"1/2\");\n  assert(MP[3].to_string()\
+    \ == \"3/4\");\n  assert(MP[4].to_string() == \"5/8\");\n  assert(MP[5].to_string()\
+    \ == \"11/16\");\n}\n\nint solve_cherries(string s) {\n  // LR cherries \u3092\
+    \ O(N) \u3067\u89E3\u304F\n  auto eval = [&](char c) -> int {\n    if (c == 'L')\
+    \ return 1;\n    if (c == 'R') return -1;\n    return 0;\n  };\n\n  int n = len(s);\n\
+    \  if (n == 0) return 0;\n  int res = 0;\n\n  FOR(2) {\n    reverse(all(s));\n\
+    \    if (n >= 2 && s[n - 1] == s[n - 2]) {\n      res += eval(s[n - 1]);\n   \
+    \   s.pop_back();\n      n = len(s);\n    }\n  }\n\n  char a = '.', b = '.';\n\
+    \  FOR_R(i, n - 1) if (s[i] == s[i + 1]) a = s[i];\n  FOR(i, n - 1) if (s[i] ==\
+    \ s[i + 1]) b = s[i];\n  int x = eval(s[0]) + eval(a) + eval(b) + eval(s[n - 1]);\n\
+    \  return x / 2;\n};\n\nvoid test_cherries() {\n  int MAX_LEN = 20;\n  vc<string>\
+    \ states;\n  states.eb(\"\");\n  int p = 0, q = 1;\n  FOR(MAX_LEN) {\n    FOR(i,\
+    \ p, q) {\n      states.eb(states[i] + \"L\");\n      states.eb(states[i] + \"\
+    R\");\n    }\n    p = q;\n    q = len(states);\n  }\n\n  auto get_options = [&](string\
+    \ s) -> pair<vc<string>, vc<string>> {\n    vc<string> left, right;\n    int n\
+    \ = len(s);\n\n    if (n && s[0] == 'L') left.eb(s.substr(1, n - 1));\n    if\
+    \ (n && s[0] == 'R') right.eb(s.substr(1, n - 1));\n    if (n && s[n - 1] == 'L')\
+    \ left.eb(s.substr(0, n - 1));\n    if (n && s[n - 1] == 'R') right.eb(s.substr(0,\
+    \ n - 1));\n    return {left, right};\n  };\n\n  auto MP = solve_partizan_game<string,\
+    \ int>(states, get_options);\n\n  for (auto&& [s, x]: MP) {\n    int my_ans =\
+    \ solve_cherries(s);\n    assert(x == DyRational<int>(my_ans, 0));\n  }\n}\n\n\
+    void test() {\n  test_push();\n  test_problem_5_2();\n  test_problem_5_3();\n\
+    \  test_cherries();\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\n\
+    signed main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout <<\
+    \ setprecision(15);\n\n  test();\n\n  ll T = 1;\n  FOR(T) solve();\n\n  return\
+    \ 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
+  - game/solve_partizan_game.hpp
   - game/dyrational.hpp
   isVerificationFile: true
-  path: test/mytest/dyrational.test.cpp
+  path: test/mytest/partizan.test.cpp
   requiredBy: []
-  timestamp: '2022-09-26 19:35:46+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-26 19:36:18+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/mytest/dyrational.test.cpp
+documentation_of: test/mytest/partizan.test.cpp
 layout: document
 redirect_from:
-- /verify/test/mytest/dyrational.test.cpp
-- /verify/test/mytest/dyrational.test.cpp.html
-title: test/mytest/dyrational.test.cpp
+- /verify/test/mytest/partizan.test.cpp
+- /verify/test/mytest/partizan.test.cpp.html
+title: test/mytest/partizan.test.cpp
 ---

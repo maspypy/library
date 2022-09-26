@@ -402,6 +402,9 @@ data:
     - icon: ':question:'
       path: game/dyrational.hpp
       title: game/dyrational.hpp
+    - icon: ':x:'
+      path: game/solve_partizan_game.hpp
+      title: game/solve_partizan_game.hpp
   - name: geo
     pages:
     - icon: ':heavy_check_mark:'
@@ -1870,6 +1873,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/mod_sum_of_linear.test.cpp
       title: test/mytest/mod_sum_of_linear.test.cpp
+    - icon: ':x:'
+      path: test/mytest/partizan.test.cpp
+      title: test/mytest/partizan.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/powerquery.test.cpp
       title: test/mytest/powerquery.test.cpp

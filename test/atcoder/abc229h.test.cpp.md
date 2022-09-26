@@ -4,6 +4,9 @@ data:
   - icon: ':question:'
     path: game/dyrational.hpp
     title: game/dyrational.hpp
+  - icon: ':x:'
+    path: game/solve_partizan_game.hpp
+    title: game/solve_partizan_game.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -199,17 +202,17 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 5 \"test/atcoder/abc229h.test.cpp\"\n\n#line 1 \"game/dyrational.hpp\"\
-    \n// a/2^b \u306E\u5F62\u3067\u6301\u3064\n// a \u306F i128 \u306B\u3082\u3067\
-    \u304D\u308B\u304C\u3001\u5B9F\u7528\u4E0A\u8DB3\u308A\u308B\u304B\u306F\u3001\
-    \u6F14\u7FD2\u91CF\u304C\u8DB3\u308A\u3066\u3044\u306A\u304F\u3066\u4E0D\u660E\
-    \ntemplate <typename INTEGER = ll>\nstruct DyRational {\n  using X = DyRational;\n\
-    \  INTEGER a;\n  int b;\n\n  DyRational(INTEGER _a = 0, int _b = 0) : a(_a), b(_b)\
-    \ {\n    while (b && a % 2 == 0) { a /= 2, b--; }\n  }\n\n  friend X operator+(const\
-    \ X& x, const X& y) {\n    int b = max(x.b, y.b);\n    INTEGER a = ((x.a) << (b\
-    \ - x.b)) + ((y.a) << (b - y.b));\n    return X(a, b);\n  }\n  friend X operator-(const\
-    \ X& x, const X& y) {\n    int b = max(x.b, y.b);\n    INTEGER a = ((x.a) << (b\
-    \ - x.b)) - ((y.a) << (b - y.b));\n    return X(a, b);\n  }\n  friend X operator-(const\
+    \ { yes(!t); }\r\n#line 1 \"game/dyrational.hpp\"\n// a/2^b \u306E\u5F62\u3067\
+    \u6301\u3064\n// a \u306F i128 \u306B\u3082\u3067\u304D\u308B\u304C\u3001\u5B9F\
+    \u7528\u4E0A\u8DB3\u308A\u308B\u304B\u306F\u3001\u6F14\u7FD2\u91CF\u304C\u8DB3\
+    \u308A\u3066\u3044\u306A\u304F\u3066\u4E0D\u660E\ntemplate <typename INTEGER =\
+    \ ll>\nstruct DyRational {\n  using X = DyRational;\n  INTEGER a;\n  int b;\n\n\
+    \  DyRational(INTEGER _a = 0, int _b = 0) : a(_a), b(_b) {\n    while (b && a\
+    \ % 2 == 0) { a /= 2, b--; }\n  }\n\n  friend X operator+(const X& x, const X&\
+    \ y) {\n    int b = max(x.b, y.b);\n    INTEGER a = ((x.a) << (b - x.b)) + ((y.a)\
+    \ << (b - y.b));\n    return X(a, b);\n  }\n  friend X operator-(const X& x, const\
+    \ X& y) {\n    int b = max(x.b, y.b);\n    INTEGER a = ((x.a) << (b - x.b)) -\
+    \ ((y.a) << (b - y.b));\n    return X(a, b);\n  }\n  friend X operator-(const\
     \ X& x) { return X(-x.a, x.b); }\n  X& operator+=(const X& x) { return (*this)\
     \ = (*this) + x; }\n  X& operator-=(const X& x) { return (*this) = (*this) - x;\
     \ }\n\n  friend bool operator<(const X& x, const X& y) { return (x - y).a < 0;\
@@ -229,57 +232,68 @@ data:
     \u3076\n        if (xx + 1 >= 0) return X(xx + 1, 0);\n        if (yy - 1 <= 0)\
     \ return X(yy - 1, 0);\n        return X(0, 0);\n      }\n    }\n    assert(false);\n\
     \    return X(0);\n  }\n\n  static constexpr X infinity() { return X(numeric_limits<int>::max()\
-    \ / 4, 0); }\n\n  void debug() { print(a, \"/\", INTEGER(1) << b); }\n};\n#line\
-    \ 7 \"test/atcoder/abc229h.test.cpp\"\n\nvoid solve() {\n  using X = DyRational<ll>;\n\
-    \n  map<string, X> MP;\n  auto dfs = [&](auto& dfs, string& s) -> X {\n    if\
-    \ (MP.count(s)) return MP[s];\n    X left = -X::infinity();\n    X right = X::infinity();\n\
-    \    // \u767D\u3092\u9078\u3073\u3001\u4E0A\u306B\u9032\u3081\u308B\n    FOR(i,\
-    \ len(s) - 1) {\n      if (s[i] == '.' && s[i + 1] == 'W') {\n        swap(s[i],\
-    \ s[i + 1]);\n        chmax(left, dfs(dfs, s));\n        swap(s[i], s[i + 1]);\n\
-    \      }\n    }\n    // \u9ED2\u3092\u98DF\u3079\u308B\n    FOR(i, len(s)) {\n\
-    \      if (s[i] == 'B') {\n        s[i] = '.';\n        chmax(left, dfs(dfs, s));\n\
-    \        s[i] = 'B';\n      }\n    }\n    // \u9ED2\u3092\u9078\u3073\u3001\u4E0A\
-    \u306B\u9032\u3081\u308B\n    FOR(i, len(s) - 1) {\n      if (s[i] == '.' && s[i\
-    \ + 1] == 'B') {\n        swap(s[i], s[i + 1]);\n        chmin(right, dfs(dfs,\
-    \ s));\n        swap(s[i], s[i + 1]);\n      }\n    }\n    // \u767D\u3092\u98DF\
-    \u3079\u308B\n    FOR(i, len(s)) {\n      if (s[i] == 'W') {\n        s[i] = '.';\n\
-    \        chmin(right, dfs(dfs, s));\n        s[i] = 'W';\n      }\n    }\n   \
-    \ assert(left < right);\n    MP[s] = X::find(left, right);\n    return MP[s];\n\
-    \  };\n\n  LL(N);\n  vc<string> G(N);\n  FOR(i, N) {\n    STR(S);\n    FOR(j,\
-    \ N) { G[j] += S[j]; }\n  }\n  X x(0);\n  FOR(i, N) x += dfs(dfs, G[i]);\n  print(x\
-    \ > X(0) ? \"Takahashi\" : \"Snuke\");\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ / 4, 0); }\n\n  string to_string() {\n    return std::to_string(a) + \"/\" +\
+    \ std::to_string(INTEGER(1) << b);\n  }\n};\n#line 2 \"game/solve_partizan_game.hpp\"\
+    \n\n// \u5168\u90E8 dyadic rational number \u306B\u306A\u308B\u3068\u304D\u3060\
+    \u3051\u89E3\u3051\u308B\n// \u5931\u6557\u3057\u305F\u3068\u304D\u306F\u3001\
+    empty map \u304C\u8FD4\u308B\n// \u30FBstates\uFF1A\u8208\u5473\u306E\u3042\u308B\
+    \ state \u5168\u4F53\n// \u30FBget_options\uFF1Apair<vc<STATE>, vc<STATE>>(STATE),\
+    \ left ops / right ops\ntemplate <typename STATE, typename INTEGER, typename F>\n\
+    map<STATE, DyRational<INTEGER>> solve_partizan_game(const vector<STATE>& states,\n\
+    \                                                    F get_options) {\n  using\
+    \ X = DyRational<INTEGER>;\n  map<STATE, X> MP;\n\n  bool success = 1;\n\n  auto\
+    \ dfs = [&](auto& dfs, const STATE& s) -> X {\n    if (!success) return X();\n\
+    \    if (MP.count(s)) return MP[s];\n    vc<X> left, right;\n    X xl = -X::infinity(),\
+    \ xr = X::infinity();\n    auto [left_ops, right_ops] = get_options(s);\n    for\
+    \ (auto&& t: left_ops) chmax(xl, dfs(dfs, t));\n    for (auto&& t: right_ops)\
+    \ chmin(xr, dfs(dfs, t));\n\n    if (xl >= xr) {\n      // switch\n      success\
+    \ = 0;\n      MP.clear();\n      return X();\n    }\n    return (MP[s] = X::find(xl,\
+    \ xr));\n  };\n\n  for (auto&& s: states) dfs(dfs, s);\n  return MP;\n}\n#line\
+    \ 6 \"test/atcoder/abc229h.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  VEC(string,\
+    \ G, N);\n  vc<string> states(N);\n  FOR(i, N) FOR(j, N) states[j] += G[i][j];\n\
+    \n  auto get_options = [&](string s) -> pair<vc<string>, vc<string>> {\n    int\
+    \ n = len(s);\n    vc<string> left, right;\n    FOR(i, 1, n) {\n      // \u9032\
+    \u3081\u308B\n      if (s[i - 1] == '.' && s[i] == 'W') {\n        swap(s[i -\
+    \ 1], s[i]);\n        left.eb(s);\n        swap(s[i - 1], s[i]);\n      }\n  \
+    \    if (s[i - 1] == '.' && s[i] == 'B') {\n        swap(s[i - 1], s[i]);\n  \
+    \      right.eb(s);\n        swap(s[i - 1], s[i]);\n      }\n    }\n    FOR(i,\
+    \ n) {\n      // \u98DF\u3079\u308B\n      if (s[i] == 'B') {\n        s[i] =\
+    \ '.';\n        left.eb(s);\n        s[i] = 'B';\n      }\n      if (s[i] == 'W')\
+    \ {\n        s[i] = '.';\n        right.eb(s);\n        s[i] = 'W';\n      }\n\
+    \    }\n    return {left, right};\n  };\n\n  using X = DyRational<ll>;\n  auto\
+    \ MP = solve_partizan_game<string, ll>(states, get_options);\n  X x(0, 0);\n \
+    \ // for (auto&& [k, x]: MP) { print(k, \",\", x.to_string()); }\n  for (auto&&\
+    \ s: states) { x += MP[s]; }\n  print(x.a > 0 ? \"Takahashi\" : \"Snuke\");\n\
+    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << setprecision(15);\n\n  ll T = 1;\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc229/tasks/abc229_Ex\"\n\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"game/dyrational.hpp\"\
-    \n\nvoid solve() {\n  using X = DyRational<ll>;\n\n  map<string, X> MP;\n  auto\
-    \ dfs = [&](auto& dfs, string& s) -> X {\n    if (MP.count(s)) return MP[s];\n\
-    \    X left = -X::infinity();\n    X right = X::infinity();\n    // \u767D\u3092\
-    \u9078\u3073\u3001\u4E0A\u306B\u9032\u3081\u308B\n    FOR(i, len(s) - 1) {\n \
-    \     if (s[i] == '.' && s[i + 1] == 'W') {\n        swap(s[i], s[i + 1]);\n \
-    \       chmax(left, dfs(dfs, s));\n        swap(s[i], s[i + 1]);\n      }\n  \
-    \  }\n    // \u9ED2\u3092\u98DF\u3079\u308B\n    FOR(i, len(s)) {\n      if (s[i]\
-    \ == 'B') {\n        s[i] = '.';\n        chmax(left, dfs(dfs, s));\n        s[i]\
-    \ = 'B';\n      }\n    }\n    // \u9ED2\u3092\u9078\u3073\u3001\u4E0A\u306B\u9032\
-    \u3081\u308B\n    FOR(i, len(s) - 1) {\n      if (s[i] == '.' && s[i + 1] == 'B')\
-    \ {\n        swap(s[i], s[i + 1]);\n        chmin(right, dfs(dfs, s));\n     \
-    \   swap(s[i], s[i + 1]);\n      }\n    }\n    // \u767D\u3092\u98DF\u3079\u308B\
-    \n    FOR(i, len(s)) {\n      if (s[i] == 'W') {\n        s[i] = '.';\n      \
-    \  chmin(right, dfs(dfs, s));\n        s[i] = 'W';\n      }\n    }\n    assert(left\
-    \ < right);\n    MP[s] = X::find(left, right);\n    return MP[s];\n  };\n\n  LL(N);\n\
-    \  vc<string> G(N);\n  FOR(i, N) {\n    STR(S);\n    FOR(j, N) { G[j] += S[j];\
-    \ }\n  }\n  X x(0);\n  FOR(i, N) x += dfs(dfs, G[i]);\n  print(x > X(0) ? \"Takahashi\"\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"game/solve_partizan_game.hpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  VEC(string, G, N);\n  vc<string> states(N);\n\
+    \  FOR(i, N) FOR(j, N) states[j] += G[i][j];\n\n  auto get_options = [&](string\
+    \ s) -> pair<vc<string>, vc<string>> {\n    int n = len(s);\n    vc<string> left,\
+    \ right;\n    FOR(i, 1, n) {\n      // \u9032\u3081\u308B\n      if (s[i - 1]\
+    \ == '.' && s[i] == 'W') {\n        swap(s[i - 1], s[i]);\n        left.eb(s);\n\
+    \        swap(s[i - 1], s[i]);\n      }\n      if (s[i - 1] == '.' && s[i] ==\
+    \ 'B') {\n        swap(s[i - 1], s[i]);\n        right.eb(s);\n        swap(s[i\
+    \ - 1], s[i]);\n      }\n    }\n    FOR(i, n) {\n      // \u98DF\u3079\u308B\n\
+    \      if (s[i] == 'B') {\n        s[i] = '.';\n        left.eb(s);\n        s[i]\
+    \ = 'B';\n      }\n      if (s[i] == 'W') {\n        s[i] = '.';\n        right.eb(s);\n\
+    \        s[i] = 'W';\n      }\n    }\n    return {left, right};\n  };\n\n  using\
+    \ X = DyRational<ll>;\n  auto MP = solve_partizan_game<string, ll>(states, get_options);\n\
+    \  X x(0, 0);\n  // for (auto&& [k, x]: MP) { print(k, \",\", x.to_string());\
+    \ }\n  for (auto&& s: states) { x += MP[s]; }\n  print(x.a > 0 ? \"Takahashi\"\
     \ : \"Snuke\");\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
-    \  return 0;\n}\n"
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  FOR(T) solve();\n\n  return 0;\n\
+    }"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
+  - game/solve_partizan_game.hpp
   - game/dyrational.hpp
   isVerificationFile: true
   path: test/atcoder/abc229h.test.cpp
   requiredBy: []
-  timestamp: '2022-09-24 23:41:28+09:00'
+  timestamp: '2022-09-26 19:36:06+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/atcoder/abc229h.test.cpp

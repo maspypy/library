@@ -68,8 +68,8 @@ data:
   timestamp: '2022-05-19 23:05:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1593.test.cpp
   - test/yukicoder/187.test.cpp
+  - test/yukicoder/1593.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
 documentation_of: mod/mod_pow.hpp
 layout: document
