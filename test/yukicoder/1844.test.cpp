@@ -13,8 +13,8 @@ void solve() {
     LL(p, e);
     vc<mint> A(10);
     FOR(i, 10) A[i] = mint(p).pow(i);
-    A = cumsum(A, 0);
-    A = cumsum(A, 0);
+    A = cumsum<mint>(A, 0);
+    A = cumsum<mint>(A, 0);
     mint x = interpolate_linear_rec<mint>(A, e, 0);
     ANS *= x;
   }
