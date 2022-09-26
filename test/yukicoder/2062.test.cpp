@@ -17,7 +17,7 @@ void solve() {
   */
   LL(N);
   VEC(int, A, N);
-  ll SM = SUM(A);
+  ll SM = SUM<ll>(A);
   mint ANS = mint(SM) * mint(2).pow(N - 1);
 
   // 全体集合から除く値が LIM 以下だと除外
