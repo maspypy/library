@@ -4,9 +4,8 @@ template <typename Node, int NODES>
 struct LinkCutTree_base {
   int n;
   Node *nodes;
-  int pid;
 
-  LinkCutTree_base(int n = 0) : n(n), pid(0) {
+  LinkCutTree_base(int n = 0) : n(n) {
     nodes = new Node[NODES];
     FOR(i, n) nodes[i] = Node(i);
   }
@@ -29,23 +28,23 @@ struct LinkCutTree_base {
 
   int get_root(int c) { return get_root(&nodes[c])->idx; }
 
-  void reset() { pid = 0; }
-
   // c の親を p にする。
-  void link(Node *c, Node *p) {
+  virtual void link(Node *c, Node *p) {
     evert(c);
-    assert(!c->p);
+    expose(p);
     c->p = p;
+    p->r = c;
+    p->update();
   }
 
   // c の親を p にする
-  void link(int c, int p) { return link(&nodes[c], &nodes[p]); }
+  virtual void link(int c, int p) { return link(&nodes[c], &nodes[p]); }
 
-  // c とから根方向の辺を切る
   void cut(Node *a, Node *b) {
     evert(a);
     expose(b);
-    assert(b->l);
+    assert(!b->p);
+    assert((b->l) == a);
     b->l->p = nullptr;
     b->l = nullptr;
     b->update();
@@ -70,7 +69,7 @@ struct LinkCutTree_base {
   int lca(int u, int v) { return lca(&nodes[u], &nodes[v])->idx; }
 
   // c と根までが繋がれている状態に変更して、根を return する
-  Node *expose(Node *c) {
+  virtual Node *expose(Node *c) {
     Node *now = c;
     Node *rp = nullptr; // 今まで作ったパス
     while (now) {
@@ -90,12 +89,24 @@ struct LinkCutTree_base {
     return x->idx;
   }
 
+  Node *get_parent(Node *x) {
+    expose(x);
+    if (!x->l) return nullptr;
+    x = x->l;
+    while (x->r) x = x->r;
+    return x;
+  }
+
+  int get_parent(int x) {
+    Node *p = get_parent((*this)[x]);
+    return (p ? p->idx : -1);
+  }
+
   void debug() {
     FOR(i, n) { nodes[i].debug(); }
   }
 
-private:
-  void rotate(Node *n) {
+  virtual void rotate(Node *n) {
     // n を根に近づける
     Node *pp, *p, *c;
     p = n->p;

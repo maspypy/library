@@ -30,7 +30,7 @@ vc<pair<WT, VAL>> knapsack01_gen_all(vc<WT> weight, vc<VAL> val,
 
 template <typename WT, typename VAL>
 VAL knapsack01(vc<WT> weight, vc<VAL> val, WT LIM) {
-  chmin(LIM, SUM(weight));
+  chmin(LIM, SUM<WT>(weight));
   int n = len(weight);
   assert(len(val) == n);
 
@@ -84,7 +84,7 @@ VAL knapsack01(vc<WT> weight, vc<VAL> val, WT LIM) {
 
   double t1 = log(2) * n * 0.5;
   double t2 = log((n + 1) * (LIM + 1));
-  double t3 = log((n + 1) * (SUM(val) + 1));
+  double t3 = log((n + 1) * (SUM<WT>(val) + 1));
   double t = min({t1, t2, t3});
   if (t == t1) return sol_1();
   if (t == t2) return sol_2();

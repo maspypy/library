@@ -17,7 +17,7 @@ void solve() {
     a[i] *= p;
     p *= r;
   }
-  a = cumsum(a, 0);
+  a = cumsum<mint>(a, 0);
   if (n == 0) return print(0);
   print(interpolate_poly_exp_sum(a, r, n - 1));
 }
