@@ -9,7 +9,7 @@
 void test_count() {
   vc<int> A(1000);
   for (auto&& p: primetable(1000)) { A[p]++; }
-  A = cumsum(A, 0);
+  A = cumsum<int>(A, 0);
 
   FOR(N, 1000) {
     PrimeSum<int> X(N);
@@ -42,7 +42,7 @@ void test_count() {
 void test_sum() {
   vc<int> A(1000);
   for (auto&& p: primetable(1000)) { A[p] += p; }
-  A = cumsum(A, 0);
+  A = cumsum<int>(A, 0);
 
   FOR(N, 1000) {
     PrimeSum<int> X(N);
