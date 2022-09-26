@@ -14,7 +14,7 @@ vc<int> gen(int L, int N, int R) {
   reverse(all(A));
   A = cumsum<int>(A);
   FOR(L) A.insert(A.begin(), -INF);
-  FOR(L) A.insert(A.end(), -INF);
+  FOR(R) A.insert(A.end(), -INF);
   return A;
 }
 
