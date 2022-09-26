@@ -11,9 +11,9 @@ vc<int> gen(int L, int N, int R) {
   vc<int> A(N);
   FOR(i, N) A[i] = RNG(-100, 100);
   sort(all(A));
-  A = cumsum(A);
+  A = cumsum<int>(A);
   FOR(L) A.insert(A.begin(), INF);
-  FOR(L) A.insert(A.end(), INF);
+  FOR(R) A.insert(A.end(), INF);
   return A;
 }
 
