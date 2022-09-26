@@ -7,7 +7,7 @@ void solve() {
   LL(N);
   VEC(int, A, N);
   ll S = SUM<int>(A);
-  auto I = subset_sum<ll>(A, S / 2);
+  auto I = subset_sum<int>(A, S / 2);
   bool can = (S == 0 || len(I) > 0);
   if (can && S % 2 == 0) {
     print("possible");
