@@ -27,7 +27,7 @@ void solve() {
   // 和が LIM 以下となる選び方を数える
   auto f = product_of_one_plus_xn<mint>(A, LIM + 1);
   f.resize(LIM + 1);
-  mint k = SUM(f);
+  mint k = SUM<mint>(f);
   ANS -= k * mint(P);
   print(ANS);
 }
