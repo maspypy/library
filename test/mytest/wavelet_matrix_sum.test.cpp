@@ -12,7 +12,7 @@ void test() {
     FOR(L, N) FOR(R, L, N + 1) {
       vi B = {A.begin() + L, A.begin() + R};
       sort(all(B));
-      auto Bc = cumsum(B);
+      auto Bc = cumsum<ll>(B);
 
       FOR(k, R - L + 1) { assert(Bc[k] == X.sum(L, R, k)); }
     }
