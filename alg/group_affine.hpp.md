@@ -43,6 +43,9 @@ data:
     path: test/mytest/splay.test.cpp
     title: test/mytest/splay.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1502.test.cpp
+    title: test/yukicoder/1502.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1891.test.cpp
     title: test/yukicoder/1891.test.cpp
   - icon: ':heavy_check_mark:'
@@ -80,6 +83,7 @@ data:
   - test/mytest/splay.test.cpp
   - test/yukicoder/255.test.cpp
   - test/yukicoder/1891.test.cpp
+  - test/yukicoder/1502.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/sort_segtree_1.test.cpp

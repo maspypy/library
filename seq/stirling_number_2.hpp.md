@@ -57,6 +57,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1321.test.cpp
     title: test/yukicoder/1321.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1392.test.cpp
+    title: test/yukicoder/1392.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -540,6 +543,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1321.test.cpp
+  - test/yukicoder/1392.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
 documentation_of: seq/stirling_number_2.hpp
 layout: document

@@ -9,6 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2842.test.cpp
     title: test/aoj/2842.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2003.test.cpp
+    title: test/yukicoder/2003.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -31,14 +34,17 @@ data:
     \    E neg = AbelGroup::unit();\r\n    while (ly < ry) {\r\n      pos = AbelGroup::op(pos,\
     \ dat[x][ry]);\r\n      ry -= ry & -ry;\r\n    }\r\n    while (ry < ly) {\r\n\
     \      neg = AbelGroup::op(neg, dat[x][ly]);\r\n      ly -= ly & -ly;\r\n    }\r\
-    \n    return AbelGroup::op(pos, AbelGroup::inverse(neg));\r\n  }\r\n\r\n  E sum(int\
+    \n    return AbelGroup::op(pos, AbelGroup::inverse(neg));\r\n  }\r\n\r\n  E prod(int\
     \ lx, int ly, int rx, int ry) {\r\n    E pos = AbelGroup::unit();\r\n    E neg\
     \ = AbelGroup::unit();\r\n    while (lx < rx) {\r\n      pos = AbelGroup::op(pos,\
     \ sum_x(rx, ly, ry));\r\n      rx -= rx & -rx;\r\n    }\r\n    while (rx < lx)\
     \ {\r\n      neg = AbelGroup::op(neg, sum_x(lx, ly, ry));\r\n      lx -= lx &\
     \ -lx;\r\n    }\r\n    return AbelGroup::op(pos, AbelGroup::inverse(neg));\r\n\
-    \  }\r\n\r\n  void debug() {\r\n    print(\"Fenwick2d dat\");\r\n    FOR(x, H\
-    \ + 1) print(dat[x]);\r\n  }\r\n};\r\n"
+    \  }\r\n\r\n  E sum(int lx, int ly, int rx, int ry) { return prod(lx, ly, rx,\
+    \ ry); }\r\n\r\n  E prefix_prod(int rx, int ry) { return prod(0, 0, rx, ry); }\r\
+    \n  E prefix_sum(int rx, int ry) { return prod(0, 0, rx, ry); }\r\n\r\n  void\
+    \ debug() {\r\n    print(\"Fenwick2d dat\");\r\n    FOR(x, H + 1) print(dat[x]);\r\
+    \n  }\r\n};\r\n"
   code: "#include \"alg/group_add.hpp\"\r\ntemplate <typename AbelGroup>\r\nstruct\
     \ Fenwick2D_dense {\r\n  using E = typename AbelGroup::value_type;\r\n  int H,\
     \ W;\r\n  vc<vc<E>> dat;\r\n\r\n  Fenwick2D_dense() {}\r\n  Fenwick2D_dense(int\
@@ -51,22 +57,26 @@ data:
     \n    while (ly < ry) {\r\n      pos = AbelGroup::op(pos, dat[x][ry]);\r\n   \
     \   ry -= ry & -ry;\r\n    }\r\n    while (ry < ly) {\r\n      neg = AbelGroup::op(neg,\
     \ dat[x][ly]);\r\n      ly -= ly & -ly;\r\n    }\r\n    return AbelGroup::op(pos,\
-    \ AbelGroup::inverse(neg));\r\n  }\r\n\r\n  E sum(int lx, int ly, int rx, int\
+    \ AbelGroup::inverse(neg));\r\n  }\r\n\r\n  E prod(int lx, int ly, int rx, int\
     \ ry) {\r\n    E pos = AbelGroup::unit();\r\n    E neg = AbelGroup::unit();\r\n\
     \    while (lx < rx) {\r\n      pos = AbelGroup::op(pos, sum_x(rx, ly, ry));\r\
     \n      rx -= rx & -rx;\r\n    }\r\n    while (rx < lx) {\r\n      neg = AbelGroup::op(neg,\
     \ sum_x(lx, ly, ry));\r\n      lx -= lx & -lx;\r\n    }\r\n    return AbelGroup::op(pos,\
-    \ AbelGroup::inverse(neg));\r\n  }\r\n\r\n  void debug() {\r\n    print(\"Fenwick2d\
-    \ dat\");\r\n    FOR(x, H + 1) print(dat[x]);\r\n  }\r\n};\r\n"
+    \ AbelGroup::inverse(neg));\r\n  }\r\n\r\n  E sum(int lx, int ly, int rx, int\
+    \ ry) { return prod(lx, ly, rx, ry); }\r\n\r\n  E prefix_prod(int rx, int ry)\
+    \ { return prod(0, 0, rx, ry); }\r\n  E prefix_sum(int rx, int ry) { return prod(0,\
+    \ 0, rx, ry); }\r\n\r\n  void debug() {\r\n    print(\"Fenwick2d dat\");\r\n \
+    \   FOR(x, H + 1) print(dat[x]);\r\n  }\r\n};\r\n"
   dependsOn:
   - alg/group_add.hpp
   isVerificationFile: false
   path: ds/fenwick2d_dense.hpp
   requiredBy: []
-  timestamp: '2022-06-27 16:36:33+09:00'
+  timestamp: '2022-09-27 17:56:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/2842.test.cpp
+  - test/yukicoder/2003.test.cpp
 documentation_of: ds/fenwick2d_dense.hpp
 layout: document
 redirect_from:

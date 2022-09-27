@@ -37,6 +37,9 @@ data:
     path: test/yukicoder/1321.test.cpp
     title: test/yukicoder/1321.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1392.test.cpp
+    title: test/yukicoder/1392.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1760.test.cpp
     title: test/yukicoder/1760.test.cpp
   _isVerificationFailed: false
@@ -86,6 +89,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1321.test.cpp
+  - test/yukicoder/1392.test.cpp
   - test/yukicoder/1760.test.cpp
   - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp

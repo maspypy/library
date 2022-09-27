@@ -27,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1392.test.cpp
+    title: test/yukicoder/1392.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -298,15 +301,17 @@ data:
     \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
     \ b);\r\n}\r\n#line 4 \"poly/convolution_all.hpp\"\n\r\ntemplate <typename T>\r\
-    \nvc<T> convolution_all(vc<vc<T>>& polys) {\r\n  auto deq = deque<vc<T>>(all(polys));\r\
-    \n  while (len(deq) > 1) {\r\n    auto f = deq.front();\r\n    deq.pop_front();\r\
-    \n    auto g = deq.front();\r\n    deq.pop_front();\r\n    deq.eb(convolution(f,\
-    \ g));\r\n  }\r\n  return deq.front();\r\n}\n"
+    \nvc<T> convolution_all(vc<vc<T>>& polys) {\r\n  if (len(polys) == 0) return {T(1)};\r\
+    \n  auto deq = deque<vc<T>>(all(polys));\r\n  while (len(deq) > 1) {\r\n    auto\
+    \ f = deq.front();\r\n    deq.pop_front();\r\n    auto g = deq.front();\r\n  \
+    \  deq.pop_front();\r\n    deq.eb(convolution(f, g));\r\n  }\r\n  return deq.front();\r\
+    \n}\n"
   code: "#pragma once\r\n\r\n#include \"poly/convolution.hpp\"\r\n\r\ntemplate <typename\
-    \ T>\r\nvc<T> convolution_all(vc<vc<T>>& polys) {\r\n  auto deq = deque<vc<T>>(all(polys));\r\
-    \n  while (len(deq) > 1) {\r\n    auto f = deq.front();\r\n    deq.pop_front();\r\
-    \n    auto g = deq.front();\r\n    deq.pop_front();\r\n    deq.eb(convolution(f,\
-    \ g));\r\n  }\r\n  return deq.front();\r\n}"
+    \ T>\r\nvc<T> convolution_all(vc<vc<T>>& polys) {\r\n  if (len(polys) == 0) return\
+    \ {T(1)};\r\n  auto deq = deque<vc<T>>(all(polys));\r\n  while (len(deq) > 1)\
+    \ {\r\n    auto f = deq.front();\r\n    deq.pop_front();\r\n    auto g = deq.front();\r\
+    \n    deq.pop_front();\r\n    deq.eb(convolution(f, g));\r\n  }\r\n  return deq.front();\r\
+    \n}"
   dependsOn:
   - poly/convolution.hpp
   - mod/modint.hpp
@@ -318,10 +323,11 @@ data:
   path: poly/convolution_all.hpp
   requiredBy:
   - seq/sum_of_powers.hpp
-  timestamp: '2022-09-24 23:40:40+09:00'
+  timestamp: '2022-09-27 17:56:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1145.test.cpp
+  - test/yukicoder/1392.test.cpp
 documentation_of: poly/convolution_all.hpp
 layout: document
 redirect_from:

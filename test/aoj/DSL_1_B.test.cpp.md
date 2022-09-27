@@ -216,21 +216,22 @@ data:
     \ {\r\n    E res = Group::unit();\r\n    while (v != par[v]) {\r\n      res =\
     \ Group::op(vals[v], res);\r\n      res = Group::op(vals[par[v]], res);\r\n  \
     \    vals[v] = Group::op(vals[par[v]], vals[v]);\r\n      v = par[v] = par[par[v]];\r\
-    \n    }\r\n    return {v, res};\r\n  }\r\n\r\n  bool merge(int frm, int to, E\
-    \ x) {\r\n    auto [v1, x1] = get(frm);\r\n    auto [v2, x2] = get(to);\r\n  \
-    \  if (v1 == v2) return false;\r\n    if (size[v1] < size[v2]) {\r\n      swap(v1,\
-    \ v2);\r\n      swap(x1, x2);\r\n      x = Group::inverse(x);\r\n    }\r\n   \
-    \ x = Group::op(x1, x);\r\n    x = Group::op(x, Group::inverse(x2));\r\n    vals[v2]\
-    \ = x;\r\n    par[v2] = v1;\r\n    size[v1] += size[v2];\r\n    return true;\r\
-    \n  }\r\n\r\n  void debug() {\r\n    print(\"par\", par);\r\n    print(\"vals\"\
-    , vals);\r\n    print(\"size\", size);\r\n  }\r\n};\n#line 7 \"test/aoj/DSL_1_B.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  WeightedUnionFind<Group_Add<ll>> uf(N);\n \
-    \ FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(a, b, c);\n      uf.merge(a,\
-    \ b, c);\n    } else {\n      LL(a, b);\n      auto [ra, xa] = uf.get(a);\n  \
-    \    auto [rb, xb] = uf.get(b);\n      if (ra != rb)\n        print(\"?\");\n\
-    \      else\n        print(xb - xa);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \n    }\r\n    return {v, res};\r\n  }\r\n\r\n  pair<int, E> operator[](int v)\
+    \ { return get(v); }\r\n\r\n  bool merge(int frm, int to, E x) {\r\n    auto [v1,\
+    \ x1] = get(frm);\r\n    auto [v2, x2] = get(to);\r\n    if (v1 == v2) return\
+    \ false;\r\n    if (size[v1] < size[v2]) {\r\n      swap(v1, v2);\r\n      swap(x1,\
+    \ x2);\r\n      x = Group::inverse(x);\r\n    }\r\n    x = Group::op(x1, x);\r\
+    \n    x = Group::op(x, Group::inverse(x2));\r\n    vals[v2] = x;\r\n    par[v2]\
+    \ = v1;\r\n    size[v1] += size[v2];\r\n    return true;\r\n  }\r\n\r\n  void\
+    \ debug() {\r\n    print(\"par\", par);\r\n    print(\"vals\", vals);\r\n    print(\"\
+    size\", size);\r\n  }\r\n};\n#line 7 \"test/aoj/DSL_1_B.test.cpp\"\n\nvoid solve()\
+    \ {\n  LL(N, Q);\n  WeightedUnionFind<Group_Add<ll>> uf(N);\n  FOR(Q) {\n    LL(t);\n\
+    \    if (t == 0) {\n      LL(a, b, c);\n      uf.merge(a, b, c);\n    } else {\n\
+    \      LL(a, b);\n      auto [ra, xa] = uf.get(a);\n      auto [rb, xb] = uf.get(b);\n\
+    \      if (ra != rb)\n        print(\"?\");\n      else\n        print(xb - xa);\n\
+    \    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/group_add.hpp\"\
     \n#include \"ds/weightedunionfind.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  WeightedUnionFind<Group_Add<ll>>\
@@ -248,7 +249,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2022-09-24 23:41:28+09:00'
+  timestamp: '2022-09-27 17:56:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_1_B.test.cpp

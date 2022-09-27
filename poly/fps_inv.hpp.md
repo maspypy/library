@@ -118,6 +118,9 @@ data:
     path: test/yukicoder/1321.test.cpp
     title: test/yukicoder/1321.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1392.test.cpp
+    title: test/yukicoder/1392.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1755.test.cpp
     title: test/yukicoder/1755.test.cpp
   _isVerificationFailed: false
@@ -477,6 +480,7 @@ data:
   - test/yukicoder/1321.test.cpp
   - test/yukicoder/1755.test.cpp
   - test/yukicoder/1145.test.cpp
+  - test/yukicoder/1392.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/pow_of_fps.test.cpp
   - test/library_checker/polynomial/inv_of_polynomials.test.cpp
