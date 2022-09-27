@@ -23,6 +23,8 @@ struct WeightedUnionFind {
     return {v, res};
   }
 
+  pair<int, E> operator[](int v) { return get(v); }
+
   bool merge(int frm, int to, E x) {
     auto [v1, x1] = get(frm);
     auto [v2, x2] = get(to);
