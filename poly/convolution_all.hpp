@@ -4,6 +4,7 @@
 
 template <typename T>
 vc<T> convolution_all(vc<vc<T>>& polys) {
+  if (len(polys) == 0) return {T(1)};
   auto deq = deque<vc<T>>(all(polys));
   while (len(deq) > 1) {
     auto f = deq.front();

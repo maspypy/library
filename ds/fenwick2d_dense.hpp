@@ -38,7 +38,7 @@ struct Fenwick2D_dense {
     return AbelGroup::op(pos, AbelGroup::inverse(neg));
   }
 
-  E sum(int lx, int ly, int rx, int ry) {
+  E prod(int lx, int ly, int rx, int ry) {
     E pos = AbelGroup::unit();
     E neg = AbelGroup::unit();
     while (lx < rx) {
@@ -51,6 +51,11 @@ struct Fenwick2D_dense {
     }
     return AbelGroup::op(pos, AbelGroup::inverse(neg));
   }
+
+  E sum(int lx, int ly, int rx, int ry) { return prod(lx, ly, rx, ry); }
+
+  E prefix_prod(int rx, int ry) { return prod(0, 0, rx, ry); }
+  E prefix_sum(int rx, int ry) { return prod(0, 0, rx, ry); }
 
   void debug() {
     print("Fenwick2d dat");
