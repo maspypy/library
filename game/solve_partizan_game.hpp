@@ -5,10 +5,10 @@
 // ・states：興味のある state 全体
 // ・get_options：pair<vc<STATE>, vc<STATE>>(STATE), left ops / right ops
 template <typename STATE, typename INTEGER, typename F>
-map<STATE, Dyadic_Rational<INTEGER>> solve_partizan_game(
+unordered_map<STATE, Dyadic_Rational<INTEGER>> solve_partizan_game(
     const vector<STATE>& states, F get_options) {
   using X = Dyadic_Rational<INTEGER>;
-  map<STATE, X> MP;
+  unordered_map<STATE, X> MP;
 
   bool success = 1;
 
