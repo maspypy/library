@@ -1,11 +1,10 @@
-#include "graph/degree.hpp"
 // どの点の次数も 2 以下のグラフがあるときに、
 // パスの頂点列, サイクルの頂点列
 // に分解する
 template <typename Graph>
 pair<vvc<int>, vvc<int>> path_cycle(Graph& G) {
   int N = G.N;
-  auto deg = degree(G);
+  auto deg = G.deg_array();
   assert(MAX(deg) <= 2);
 
   vc<bool> done(N);
