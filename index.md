@@ -399,10 +399,10 @@ data:
       title: flow/unbalanced_transportation.hpp
   - name: game
     pages:
-    - icon: ':heavy_check_mark:'
-      path: game/dyrational.hpp
-      title: game/dyrational.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
+      path: game/dyadic_rational.hpp
+      title: game/dyadic_rational.hpp
+    - icon: ':question:'
       path: game/solve_partizan_game.hpp
       title: game/solve_partizan_game.hpp
   - name: geo
@@ -753,7 +753,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -844,7 +844,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/integer_kth_root.hpp
       title: other/integer_kth_root.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -1330,7 +1330,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc200a.test.cpp
       title: test/atcoder/abc200a.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/atcoder/abc229h.test.cpp
       title: test/atcoder/abc229h.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1838,8 +1838,8 @@ data:
       path: test/mytest/conv_leq.test.cpp
       title: test/mytest/conv_leq.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/mytest/dyrational.test.cpp
-      title: test/mytest/dyrational.test.cpp
+      path: test/mytest/dyadic_rational.test.cpp
+      title: test/mytest/dyadic_rational.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/enum_partitions.test.cpp
       title: test/mytest/enum_partitions.test.cpp

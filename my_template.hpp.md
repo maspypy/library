@@ -195,7 +195,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc200a.test.cpp
     title: test/atcoder/abc200a.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc229h.test.cpp
     title: test/atcoder/abc229h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -679,8 +679,8 @@ data:
     path: test/mytest/conv_leq.test.cpp
     title: test/mytest/conv_leq.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/dyrational.test.cpp
-    title: test/mytest/dyrational.test.cpp
+    path: test/mytest/dyadic_rational.test.cpp
+    title: test/mytest/dyadic_rational.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
@@ -1092,9 +1092,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://trap.jp/post/1224/
@@ -1250,7 +1250,7 @@ data:
   requiredBy:
   - graph/bipartite_coloring.hpp
   timestamp: '2022-09-24 23:41:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/prime_sum.test.cpp
   - test/mytest/primesum_mod4.test.cpp
@@ -1259,6 +1259,7 @@ data:
   - test/mytest/maxplus_concave.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
   - test/mytest/run_length.test.cpp
+  - test/mytest/dyadic_rational.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/primesum_mod6.test.cpp
@@ -1268,7 +1269,6 @@ data:
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/factorial_998.test.cpp
-  - test/mytest/dyrational.test.cpp
   - test/mytest/partizan.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/incremental_ch.test.cpp
