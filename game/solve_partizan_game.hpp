@@ -1,13 +1,13 @@
-#include "game/dyrational.hpp"
+#include "game/dyadic_rational.hpp"
 
 // 全部 dyadic rational number になるときだけ解ける
 // 失敗したときは、empty map が返る
 // ・states：興味のある state 全体
 // ・get_options：pair<vc<STATE>, vc<STATE>>(STATE), left ops / right ops
 template <typename STATE, typename INTEGER, typename F>
-map<STATE, DyRational<INTEGER>> solve_partizan_game(const vector<STATE>& states,
-                                                    F get_options) {
-  using X = DyRational<INTEGER>;
+map<STATE, Dyadic_Rational<INTEGER>> solve_partizan_game(
+    const vector<STATE>& states, F get_options) {
+  using X = Dyadic_Rational<INTEGER>;
   map<STATE, X> MP;
 
   bool success = 1;
@@ -27,7 +27,7 @@ map<STATE, DyRational<INTEGER>> solve_partizan_game(const vector<STATE>& states,
       MP.clear();
       return X();
     }
-    return (MP[s] = X::find(xl, xr));
+    return (MP[s] = X::simplest(xl, xr));
   };
 
   for (auto&& s: states) dfs(dfs, s);
