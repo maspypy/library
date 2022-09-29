@@ -1,4 +1,4 @@
-#define PROBLEM "https://atcoder.jp/contests/abc266/tasks/abc266_h"
+#define PROBLEM "https://atcoder.jp/contests/abc266/tasks/abc266_Ex"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/fenwick2d.hpp"
@@ -41,8 +41,8 @@ void solve() {
     Y1[i] = t - x - y;
     Y2[i] = x - y + t;
   }
-  Fenwick2D<Mono, false> seg1(X1, Y1);
-  Fenwick2D<Mono, false> seg2(X2, Y2);
+  Fenwick2D<Mono, ll, false> seg1(X1, Y1);
+  Fenwick2D<Mono, ll, false> seg2(X2, Y2);
 
   const ll INF = 1LL << 60;
 
