@@ -133,7 +133,7 @@ void test_cherries() {
 
   for (auto&& [s, x]: MP) {
     int my_ans = solve_cherries(s);
-    assert(x == DyRational<ll>(my_ans, 0));
+    assert(x == Dyadic_Rational<ll>(my_ans, 1));
   }
 }
 
