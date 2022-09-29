@@ -1,41 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_max.hpp
     title: alg/monoid_max.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree2d.hpp
     title: ds/segtree2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    IGNORE: ''
-    IGNORE_IF_CLANG: ''
-    IGNORE_IF_GCC: ''
+    PROBLEM: https://atcoder.jp/contests/abc266/tasks/abc266_Ex
     links:
     - https://atcoder.jp/contests/abc266/tasks/abc266_Ex
-  bundledCode: "#line 1 \"test/atcoder/abc266h.test.cpp\"\n#define IGNORE\n#define\
-    \ PROBLEM \"https://atcoder.jp/contests/abc266/tasks/abc266_Ex\"\n#line 1 \"my_template.hpp\"\
-    \n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n\
-    #include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing\
-    \ pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing\
-    \ u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing\
-    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
-    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+  bundledCode: "#line 1 \"test/atcoder/abc266h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc266/tasks/abc266_Ex\"\
+    \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
+    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
+    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
+    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
+    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -254,7 +251,7 @@ data:
     \ \"alg/monoid_max.hpp\"\ntemplate <class X>\r\nstruct Monoid_Max {\r\n  using\
     \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
     \ { return max(x, y); }\r\n  static constexpr X unit() { return numeric_limits<X>::lowest();\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 7 \"test/atcoder/abc266h.test.cpp\"\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 6 \"test/atcoder/abc266h.test.cpp\"\
     \n\nusing Mono = Monoid_Max<ll>;\n\nvoid naive() {\n  LL(N);\n  using T = tuple<ll,\
     \ ll, ll, ll>;\n\n  VEC(T, dat, N);\n  dat.eb(0, 0, 0, 0);\n  ++N;\n\n  sort(all(dat),\
     \ [&](auto& a, auto& b) -> bool {\n    auto [at, ax, ay, aa] = a;\n    auto [bt,\
@@ -286,8 +283,8 @@ data:
     \    seg2.multiply(a, a - b + c, best);\n  }\n  print(ANS);\n}\n\nsigned main()\
     \ {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T)\
     \ solve();\n\n  return 0;\n}\n"
-  code: "#define IGNORE\n#define PROBLEM \"https://atcoder.jp/contests/abc266/tasks/abc266_Ex\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/segtree2d.hpp\"\
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc266/tasks/abc266_Ex\"\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/segtree2d.hpp\"\
     \n#include \"alg/monoid_max.hpp\"\n\nusing Mono = Monoid_Max<ll>;\n\nvoid naive()\
     \ {\n  LL(N);\n  using T = tuple<ll, ll, ll, ll>;\n\n  VEC(T, dat, N);\n  dat.eb(0,\
     \ 0, 0, 0);\n  ++N;\n\n  sort(all(dat), [&](auto& a, auto& b) -> bool {\n    auto\
@@ -328,8 +325,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc266h.test.cpp
   requiredBy: []
-  timestamp: '2022-09-29 13:23:35+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-29 13:45:23+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/abc266h.test.cpp
 layout: document
