@@ -2,6 +2,7 @@
 
 #include "my_template.hpp"
 #include "other/io.hpp"
+
 #include "game/solve_partizan_game.hpp"
 
 void solve() {
@@ -42,12 +43,12 @@ void solve() {
     return {left, right};
   };
 
-  using X = DyRational<ll>;
-  auto MP = solve_partizan_game<string, ll>(states, get_options);
-  X x(0, 0);
+  using X = Dyadic_Rational<int>;
+  auto MP = solve_partizan_game<string, int>(states, get_options);
+  X x(0);
   // for (auto&& [k, x]: MP) { print(k, ",", x.to_string()); }
   for (auto&& s: states) { x += MP[s]; }
-  print(x.a > 0 ? "Takahashi" : "Snuke");
+  print(x > X(0) ? "Takahashi" : "Snuke");
 }
 
 signed main() {
@@ -56,6 +57,7 @@ signed main() {
   cout << setprecision(15);
 
   ll T = 1;
+  // LL(T);
   FOR(T) solve();
 
   return 0;
