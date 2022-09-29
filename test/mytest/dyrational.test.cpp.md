@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: game/dyrational.hpp
     title: game/dyrational.hpp
   - icon: ':question:'

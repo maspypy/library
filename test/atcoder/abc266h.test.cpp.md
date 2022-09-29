@@ -24,9 +24,9 @@ data:
     IGNORE_IF_CLANG: ''
     IGNORE_IF_GCC: ''
     links:
-    - https://atcoder.jp/contests/abc266/tasks/abc266_h
+    - https://atcoder.jp/contests/abc266/tasks/abc266_Ex
   bundledCode: "#line 1 \"test/atcoder/abc266h.test.cpp\"\n#define IGNORE\n#define\
-    \ PROBLEM \"https://atcoder.jp/contests/abc266/tasks/abc266_h\"\n#line 1 \"my_template.hpp\"\
+    \ PROBLEM \"https://atcoder.jp/contests/abc266/tasks/abc266_Ex\"\n#line 1 \"my_template.hpp\"\
     \n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n\
     #include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing\
     \ pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing\
@@ -286,7 +286,7 @@ data:
     \    seg2.multiply(a, a - b + c, best);\n  }\n  print(ANS);\n}\n\nsigned main()\
     \ {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T)\
     \ solve();\n\n  return 0;\n}\n"
-  code: "#define IGNORE\n#define PROBLEM \"https://atcoder.jp/contests/abc266/tasks/abc266_h\"\
+  code: "#define IGNORE\n#define PROBLEM \"https://atcoder.jp/contests/abc266/tasks/abc266_Ex\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/segtree2d.hpp\"\
     \n#include \"alg/monoid_max.hpp\"\n\nusing Mono = Monoid_Max<ll>;\n\nvoid naive()\
     \ {\n  LL(N);\n  using T = tuple<ll, ll, ll, ll>;\n\n  VEC(T, dat, N);\n  dat.eb(0,\
@@ -328,7 +328,7 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc266h.test.cpp
   requiredBy: []
-  timestamp: '2022-09-24 23:41:28+09:00'
+  timestamp: '2022-09-29 13:23:35+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/atcoder/abc266h.test.cpp

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: game/dyrational.hpp
     title: game/dyrational.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: game/solve_partizan_game.hpp
     title: game/solve_partizan_game.hpp
   - icon: ':question:'
@@ -15,15 +15,15 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc229/tasks/abc229_Ex
+    PROBLEM: https://atcoder.jp/contests/abc229/tasks/abc229_h
     links:
-    - https://atcoder.jp/contests/abc229/tasks/abc229_Ex
-  bundledCode: "#line 1 \"test/atcoder/abc229h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc229/tasks/abc229_Ex\"\
+    - https://atcoder.jp/contests/abc229/tasks/abc229_h
+  bundledCode: "#line 1 \"test/atcoder/abc229h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc229/tasks/abc229_h\"\
     \n\n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC\
     \ optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
     \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
@@ -266,7 +266,7 @@ data:
     \ s: states) { x += MP[s]; }\n  print(x.a > 0 ? \"Takahashi\" : \"Snuke\");\n\
     }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
     \ << setprecision(15);\n\n  ll T = 1;\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc229/tasks/abc229_Ex\"\n\n\
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc229/tasks/abc229_h\"\n\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"game/solve_partizan_game.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(string, G, N);\n  vc<string> states(N);\n\
     \  FOR(i, N) FOR(j, N) states[j] += G[i][j];\n\n  auto get_options = [&](string\
@@ -284,7 +284,7 @@ data:
     \ }\n  for (auto&& s: states) { x += MP[s]; }\n  print(x.a > 0 ? \"Takahashi\"\
     \ : \"Snuke\");\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  FOR(T) solve();\n\n  return 0;\n\
-    }"
+    }\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -293,8 +293,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc229h.test.cpp
   requiredBy: []
-  timestamp: '2022-09-26 19:36:06+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-29 13:26:36+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/abc229h.test.cpp
 layout: document
