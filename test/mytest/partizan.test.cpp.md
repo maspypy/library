@@ -243,16 +243,16 @@ data:
     empty map \u304C\u8FD4\u308B\n// \u30FBstates\uFF1A\u8208\u5473\u306E\u3042\u308B\
     \ state \u5168\u4F53\n// \u30FBget_options\uFF1Apair<vc<STATE>, vc<STATE>>(STATE),\
     \ left ops / right ops\ntemplate <typename STATE, typename INTEGER, typename F>\n\
-    map<STATE, Dyadic_Rational<INTEGER>> solve_partizan_game(\n    const vector<STATE>&\
-    \ states, F get_options) {\n  using X = Dyadic_Rational<INTEGER>;\n  map<STATE,\
-    \ X> MP;\n\n  bool success = 1;\n\n  auto dfs = [&](auto& dfs, const STATE& s)\
-    \ -> X {\n    if (!success) return X();\n    if (MP.count(s)) return MP[s];\n\
-    \    vc<X> left, right;\n    X xl = -X::infinity(), xr = X::infinity();\n    auto\
-    \ [left_ops, right_ops] = get_options(s);\n    for (auto&& t: left_ops) chmax(xl,\
-    \ dfs(dfs, t));\n    for (auto&& t: right_ops) chmin(xr, dfs(dfs, t));\n\n   \
-    \ if (xl >= xr) {\n      // switch\n      success = 0;\n      MP.clear();\n  \
-    \    return X();\n    }\n    return (MP[s] = X::simplest(xl, xr));\n  };\n\n \
-    \ for (auto&& s: states) dfs(dfs, s);\n  return MP;\n}\n#line 6 \"test/mytest/partizan.test.cpp\"\
+    unordered_map<STATE, Dyadic_Rational<INTEGER>> solve_partizan_game(\n    const\
+    \ vector<STATE>& states, F get_options) {\n  using X = Dyadic_Rational<INTEGER>;\n\
+    \  unordered_map<STATE, X> MP;\n\n  bool success = 1;\n\n  auto dfs = [&](auto&\
+    \ dfs, const STATE& s) -> X {\n    if (!success) return X();\n    if (MP.count(s))\
+    \ return MP[s];\n    vc<X> left, right;\n    X xl = -X::infinity(), xr = X::infinity();\n\
+    \    auto [left_ops, right_ops] = get_options(s);\n    for (auto&& t: left_ops)\
+    \ chmax(xl, dfs(dfs, t));\n    for (auto&& t: right_ops) chmin(xr, dfs(dfs, t));\n\
+    \n    if (xl >= xr) {\n      // switch\n      success = 0;\n      MP.clear();\n\
+    \      return X();\n    }\n    return (MP[s] = X::simplest(xl, xr));\n  };\n\n\
+    \  for (auto&& s: states) dfs(dfs, s);\n  return MP;\n}\n#line 6 \"test/mytest/partizan.test.cpp\"\
     \n\nvoid test_push() {\n  // LESSONS IN PLAY p.113\n  vc<string> states = {\"\
     LR\", \".RL\", \".R\", \"RRL\"};\n  auto get_options = [&](string s) -> pair<vc<string>,\
     \ vc<string>> {\n    vc<string> left_ops, right_ops;\n    FOR(i, len(s)) {\n \
@@ -367,7 +367,7 @@ data:
   isVerificationFile: true
   path: test/mytest/partizan.test.cpp
   requiredBy: []
-  timestamp: '2022-09-29 20:05:52+09:00'
+  timestamp: '2022-09-29 20:20:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/partizan.test.cpp

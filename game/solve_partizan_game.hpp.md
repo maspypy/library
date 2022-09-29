@@ -58,37 +58,38 @@ data:
     empty map \u304C\u8FD4\u308B\n// \u30FBstates\uFF1A\u8208\u5473\u306E\u3042\u308B\
     \ state \u5168\u4F53\n// \u30FBget_options\uFF1Apair<vc<STATE>, vc<STATE>>(STATE),\
     \ left ops / right ops\ntemplate <typename STATE, typename INTEGER, typename F>\n\
-    map<STATE, Dyadic_Rational<INTEGER>> solve_partizan_game(\n    const vector<STATE>&\
-    \ states, F get_options) {\n  using X = Dyadic_Rational<INTEGER>;\n  map<STATE,\
-    \ X> MP;\n\n  bool success = 1;\n\n  auto dfs = [&](auto& dfs, const STATE& s)\
-    \ -> X {\n    if (!success) return X();\n    if (MP.count(s)) return MP[s];\n\
-    \    vc<X> left, right;\n    X xl = -X::infinity(), xr = X::infinity();\n    auto\
-    \ [left_ops, right_ops] = get_options(s);\n    for (auto&& t: left_ops) chmax(xl,\
-    \ dfs(dfs, t));\n    for (auto&& t: right_ops) chmin(xr, dfs(dfs, t));\n\n   \
-    \ if (xl >= xr) {\n      // switch\n      success = 0;\n      MP.clear();\n  \
-    \    return X();\n    }\n    return (MP[s] = X::simplest(xl, xr));\n  };\n\n \
-    \ for (auto&& s: states) dfs(dfs, s);\n  return MP;\n}\n"
+    unordered_map<STATE, Dyadic_Rational<INTEGER>> solve_partizan_game(\n    const\
+    \ vector<STATE>& states, F get_options) {\n  using X = Dyadic_Rational<INTEGER>;\n\
+    \  unordered_map<STATE, X> MP;\n\n  bool success = 1;\n\n  auto dfs = [&](auto&\
+    \ dfs, const STATE& s) -> X {\n    if (!success) return X();\n    if (MP.count(s))\
+    \ return MP[s];\n    vc<X> left, right;\n    X xl = -X::infinity(), xr = X::infinity();\n\
+    \    auto [left_ops, right_ops] = get_options(s);\n    for (auto&& t: left_ops)\
+    \ chmax(xl, dfs(dfs, t));\n    for (auto&& t: right_ops) chmin(xr, dfs(dfs, t));\n\
+    \n    if (xl >= xr) {\n      // switch\n      success = 0;\n      MP.clear();\n\
+    \      return X();\n    }\n    return (MP[s] = X::simplest(xl, xr));\n  };\n\n\
+    \  for (auto&& s: states) dfs(dfs, s);\n  return MP;\n}\n"
   code: "#include \"game/dyadic_rational.hpp\"\n\n// \u5168\u90E8 dyadic rational\
     \ number \u306B\u306A\u308B\u3068\u304D\u3060\u3051\u89E3\u3051\u308B\n// \u5931\
     \u6557\u3057\u305F\u3068\u304D\u306F\u3001empty map \u304C\u8FD4\u308B\n// \u30FB\
     states\uFF1A\u8208\u5473\u306E\u3042\u308B state \u5168\u4F53\n// \u30FBget_options\uFF1A\
     pair<vc<STATE>, vc<STATE>>(STATE), left ops / right ops\ntemplate <typename STATE,\
-    \ typename INTEGER, typename F>\nmap<STATE, Dyadic_Rational<INTEGER>> solve_partizan_game(\n\
-    \    const vector<STATE>& states, F get_options) {\n  using X = Dyadic_Rational<INTEGER>;\n\
-    \  map<STATE, X> MP;\n\n  bool success = 1;\n\n  auto dfs = [&](auto& dfs, const\
-    \ STATE& s) -> X {\n    if (!success) return X();\n    if (MP.count(s)) return\
-    \ MP[s];\n    vc<X> left, right;\n    X xl = -X::infinity(), xr = X::infinity();\n\
-    \    auto [left_ops, right_ops] = get_options(s);\n    for (auto&& t: left_ops)\
-    \ chmax(xl, dfs(dfs, t));\n    for (auto&& t: right_ops) chmin(xr, dfs(dfs, t));\n\
-    \n    if (xl >= xr) {\n      // switch\n      success = 0;\n      MP.clear();\n\
-    \      return X();\n    }\n    return (MP[s] = X::simplest(xl, xr));\n  };\n\n\
-    \  for (auto&& s: states) dfs(dfs, s);\n  return MP;\n}"
+    \ typename INTEGER, typename F>\nunordered_map<STATE, Dyadic_Rational<INTEGER>>\
+    \ solve_partizan_game(\n    const vector<STATE>& states, F get_options) {\n  using\
+    \ X = Dyadic_Rational<INTEGER>;\n  unordered_map<STATE, X> MP;\n\n  bool success\
+    \ = 1;\n\n  auto dfs = [&](auto& dfs, const STATE& s) -> X {\n    if (!success)\
+    \ return X();\n    if (MP.count(s)) return MP[s];\n    vc<X> left, right;\n  \
+    \  X xl = -X::infinity(), xr = X::infinity();\n    auto [left_ops, right_ops]\
+    \ = get_options(s);\n    for (auto&& t: left_ops) chmax(xl, dfs(dfs, t));\n  \
+    \  for (auto&& t: right_ops) chmin(xr, dfs(dfs, t));\n\n    if (xl >= xr) {\n\
+    \      // switch\n      success = 0;\n      MP.clear();\n      return X();\n \
+    \   }\n    return (MP[s] = X::simplest(xl, xr));\n  };\n\n  for (auto&& s: states)\
+    \ dfs(dfs, s);\n  return MP;\n}"
   dependsOn:
   - game/dyadic_rational.hpp
   isVerificationFile: false
   path: game/solve_partizan_game.hpp
   requiredBy: []
-  timestamp: '2022-09-29 20:05:16+09:00'
+  timestamp: '2022-09-29 20:20:34+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/partizan.test.cpp
