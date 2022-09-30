@@ -8,13 +8,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/beats_summaxmin_chminchmax.hpp
     title: ds/beats_summaxmin_chminchmax.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: ds/beats_summin_chmax.hpp
     title: ds/beats_summin_chmax.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
     title: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1526.test.cpp
+    title: test/yukicoder/1526.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -145,6 +148,7 @@ data:
   timestamp: '2022-06-19 02:52:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1526.test.cpp
   - test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
 documentation_of: ds/lazysegtree_beats.hpp
 layout: document

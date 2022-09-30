@@ -212,7 +212,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/beats_summaxmin_chminchmax.hpp
       title: ds/beats_summaxmin_chminchmax.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/beats_summin_chmax.hpp
       title: ds/beats_summin_chmax.hpp
     - icon: ':heavy_check_mark:'
@@ -1957,6 +1957,9 @@ data:
       path: test/yukicoder/1201.test.cpp
       title: test/yukicoder/1201.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1211.test.cpp
+      title: test/yukicoder/1211.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1234.test.cpp
       title: test/yukicoder/1234.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1974,6 +1977,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1269.test.cpp
       title: test/yukicoder/1269.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1276.test.cpp
+      title: test/yukicoder/1276.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1288.test.cpp
       title: test/yukicoder/1288.test.cpp
@@ -2058,6 +2064,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1516.test.cpp
       title: test/yukicoder/1516.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1526.test.cpp
+      title: test/yukicoder/1526.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1541.test.cpp
       title: test/yukicoder/1541.test.cpp

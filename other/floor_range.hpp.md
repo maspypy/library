@@ -7,6 +7,9 @@ data:
     path: test/yukicoder/1260.test.cpp
     title: test/yukicoder/1260.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1276.test.cpp
+    title: test/yukicoder/1276.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1573.test.cpp
     title: test/yukicoder/1573.test.cpp
   - icon: ':heavy_check_mark:'
@@ -34,6 +37,7 @@ data:
   - test/yukicoder/1260.test.cpp
   - test/yukicoder/1573.test.cpp
   - test/yukicoder/4954.test.cpp
+  - test/yukicoder/1276.test.cpp
 documentation_of: other/floor_range.hpp
 layout: document
 redirect_from:

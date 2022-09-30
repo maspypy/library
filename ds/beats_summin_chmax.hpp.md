@@ -5,10 +5,13 @@ data:
     path: ds/lazysegtree_beats.hpp
     title: ds/lazysegtree_beats.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1526.test.cpp
+    title: test/yukicoder/1526.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/lazysegtree_beats.hpp\"\n\ntemplate <typename Lazy>\n\
@@ -143,8 +146,9 @@ data:
   path: ds/beats_summin_chmax.hpp
   requiredBy: []
   timestamp: '2022-08-20 02:41:11+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yukicoder/1526.test.cpp
 documentation_of: ds/beats_summin_chmax.hpp
 layout: document
 redirect_from:

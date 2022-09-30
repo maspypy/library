@@ -64,6 +64,9 @@ data:
     path: test/yukicoder/1170_2.test.cpp
     title: test/yukicoder/1170_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1211.test.cpp
+    title: test/yukicoder/1211.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1242.test.cpp
     title: test/yukicoder/1242.test.cpp
   - icon: ':heavy_check_mark:'
@@ -133,6 +136,7 @@ data:
   - test/yukicoder/1392.test.cpp
   - test/yukicoder/1170_2.test.cpp
   - test/yukicoder/1242.test.cpp
+  - test/yukicoder/1211.test.cpp
   - test/yukicoder/114.test.cpp
   - test/yukicoder/1451.test.cpp
   - test/library_checker/datastructure/unionfind.test.cpp
