@@ -22,6 +22,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
+  - icon: ':heavy_check_mark:'
+    path: other/random.hpp
+    title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -100,18 +103,21 @@ data:
     \ p % fd;\r\n    p = p * p % fd;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n\
     \r\nll mod_pow_long(ll a, ll n, ll mod){\r\n  a %= mod;\r\n  ll p = a;\r\n  ll\
     \ v = 1;\r\n  while(n){\r\n    if(n & 1) v = i128(v) * p % mod;\r\n    p = i128(p)\
-    \ * p % mod;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line 5 \"mod/primitive_root.hpp\"\
-    \n// int\r\nint primitive_root(int p) {\r\n  auto pf = factor(p - 1);\r\n  auto\
-    \ is_ok = [&](int g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\n      if (mod_pow(g,\
-    \ (p - 1) / q, p) == 1) return false;\r\n    return true;\r\n  };\r\n  FOR3(x,\
-    \ 1, p) {\r\n    if (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n\r\nll\
-    \ primitive_root_long(ll p) {\r\n  auto pf = factor(p - 1);\r\n  auto is_ok =\
-    \ [&](ll g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\n      if (mod_pow_long(g,\
-    \ (p - 1) / q, p) == 1) return false;\r\n    return true;\r\n  };\r\n  FOR3(x,\
-    \ 1, p) {\r\n    if (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n#line\
-    \ 2 \"mod/mod_inv.hpp\"\n// long \u3067\u3082\u5927\u4E08\u592B\r\nll mod_inv(ll\
-    \ val, ll mod) {\r\n  val %= mod;\r\n  if (val < 0) val += mod;\r\n  ll a = val,\
-    \ b = mod, u = 1, v = 0, t;\r\n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a\
+    \ * p % mod;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line 2 \"other/random.hpp\"\
+    \n\nll RNG(ll a, ll b) {\n  static mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \  uniform_int_distribution<ll> dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll\
+    \ a) { return RNG(0, a); }\n#line 6 \"mod/primitive_root.hpp\"\n\r\n// int\r\n\
+    int primitive_root(int p) {\r\n  auto pf = factor(p - 1);\r\n  auto is_ok = [&](int\
+    \ g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\n      if (mod_pow(g, (p - 1)\
+    \ / q, p) == 1) return false;\r\n    return true;\r\n  };\r\n  FOR3(x, 1, p) {\r\
+    \n    if (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n\r\nll primitive_root_long(ll\
+    \ p) {\r\n  auto pf = factor(p - 1);\r\n  auto is_ok = [&](ll g) -> bool {\r\n\
+    \    for (auto&& [q, e]: pf)\r\n      if (mod_pow_long(g, (p - 1) / q, p) == 1)\
+    \ return false;\r\n    return true;\r\n  };\r\n  while (1) {\r\n    ll x = RNG(1,\
+    \ p);\r\n    if (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n#line 2 \"\
+    mod/mod_inv.hpp\"\n// long \u3067\u3082\u5927\u4E08\u592B\r\nll mod_inv(ll val,\
+    \ ll mod) {\r\n  val %= mod;\r\n  if (val < 0) val += mod;\r\n  ll a = val, b\
+    \ = mod, u = 1, v = 0, t;\r\n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a\
     \ -= t * b, b), swap(u -= t * v, v);\r\n  }\r\n  if (u < 0) u += mod;\r\n  return\
     \ u;\r\n}\r\n#line 2 \"ds/hashmap.hpp\"\ntemplate <typename Val, int LOG = 20>\r\
     \nstruct HashMapLL {\r\n  int N;\r\n  ll* keys;\r\n  Val* vals;\r\n  vc<int> IDS;\r\
@@ -288,12 +294,13 @@ data:
   - nt/factor.hpp
   - mod/mod_pow.hpp
   - mod/fast_div.hpp
+  - other/random.hpp
   - mod/mod_inv.hpp
   - ds/hashmap.hpp
   isVerificationFile: false
   path: mod/mod_kth_root.hpp
   requiredBy: []
-  timestamp: '2022-09-24 23:41:53+09:00'
+  timestamp: '2022-10-02 02:22:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/kth_root_mod.test.cpp

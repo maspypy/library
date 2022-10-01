@@ -21,11 +21,17 @@ data:
     path: linalg/spmat_min_poly.hpp
     title: linalg/spmat_min_poly.hpp
   - icon: ':heavy_check_mark:'
+    path: mod/mod_kth_root.hpp
+    title: mod/mod_kth_root.hpp
+  - icon: ':heavy_check_mark:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
   - icon: ':heavy_check_mark:'
     path: mod/modular_subset_sum.hpp
     title: mod/modular_subset_sum.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/primitive_root.hpp
+    title: mod/primitive_root.hpp
   - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
@@ -45,6 +51,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
     title: test/library_checker/graph/rerooting_classify_subtree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/kth_root_mod.test.cpp
+    title: test/library_checker/math/kth_root_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/primitive_root.test.cpp
+    title: test/library_checker/math/primitive_root.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sqrt_mod.test.cpp
     title: test/library_checker/math/sqrt_mod.test.cpp
@@ -133,7 +145,9 @@ data:
   path: other/random.hpp
   requiredBy:
   - string/rollinghash.hpp
+  - mod/primitive_root.hpp
   - mod/modular_subset_sum.hpp
+  - mod/mod_kth_root.hpp
   - mod/mod_sqrt.hpp
   - alg/monoid_rollinghash.hpp
   - poly/fps_sqrt.hpp
@@ -168,7 +182,9 @@ data:
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
+  - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
+  - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
   - test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp

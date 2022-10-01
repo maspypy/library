@@ -34,6 +34,9 @@ data:
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/primitive_root.test.cpp
+    title: test/library_checker/math/primitive_root.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
   - icon: ':heavy_check_mark:'
@@ -87,6 +90,7 @@ data:
   verifiedWith:
   - test/yukicoder/187.test.cpp
   - test/yukicoder/1593.test.cpp
+  - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/tetration.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/binomial_coefficient.test.cpp

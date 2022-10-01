@@ -1658,6 +1658,9 @@ data:
       path: test/library_checker/math/partition.test.cpp
       title: test/library_checker/math/partition.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library_checker/math/primitive_root.test.cpp
+      title: test/library_checker/math/primitive_root.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/sharp_p_subset_sum.test.cpp
       title: test/library_checker/math/sharp_p_subset_sum.test.cpp
     - icon: ':heavy_check_mark:'

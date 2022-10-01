@@ -13,6 +13,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
+  - icon: ':heavy_check_mark:'
+    path: other/random.hpp
+    title: other/random.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: mod/mod_kth_root.hpp
@@ -21,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/primitive_root.test.cpp
+    title: test/library_checker/math/primitive_root.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -94,36 +100,42 @@ data:
     \ p % fd;\r\n    p = p * p % fd;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n\
     \r\nll mod_pow_long(ll a, ll n, ll mod){\r\n  a %= mod;\r\n  ll p = a;\r\n  ll\
     \ v = 1;\r\n  while(n){\r\n    if(n & 1) v = i128(v) * p % mod;\r\n    p = i128(p)\
-    \ * p % mod;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line 5 \"mod/primitive_root.hpp\"\
-    \n// int\r\nint primitive_root(int p) {\r\n  auto pf = factor(p - 1);\r\n  auto\
-    \ is_ok = [&](int g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\n      if (mod_pow(g,\
-    \ (p - 1) / q, p) == 1) return false;\r\n    return true;\r\n  };\r\n  FOR3(x,\
-    \ 1, p) {\r\n    if (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n\r\nll\
-    \ primitive_root_long(ll p) {\r\n  auto pf = factor(p - 1);\r\n  auto is_ok =\
-    \ [&](ll g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\n      if (mod_pow_long(g,\
-    \ (p - 1) / q, p) == 1) return false;\r\n    return true;\r\n  };\r\n  FOR3(x,\
-    \ 1, p) {\r\n    if (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n"
+    \ * p % mod;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line 2 \"other/random.hpp\"\
+    \n\nll RNG(ll a, ll b) {\n  static mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \  uniform_int_distribution<ll> dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll\
+    \ a) { return RNG(0, a); }\n#line 6 \"mod/primitive_root.hpp\"\n\r\n// int\r\n\
+    int primitive_root(int p) {\r\n  auto pf = factor(p - 1);\r\n  auto is_ok = [&](int\
+    \ g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\n      if (mod_pow(g, (p - 1)\
+    \ / q, p) == 1) return false;\r\n    return true;\r\n  };\r\n  FOR3(x, 1, p) {\r\
+    \n    if (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n\r\nll primitive_root_long(ll\
+    \ p) {\r\n  auto pf = factor(p - 1);\r\n  auto is_ok = [&](ll g) -> bool {\r\n\
+    \    for (auto&& [q, e]: pf)\r\n      if (mod_pow_long(g, (p - 1) / q, p) == 1)\
+    \ return false;\r\n    return true;\r\n  };\r\n  while (1) {\r\n    ll x = RNG(1,\
+    \ p);\r\n    if (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n"
   code: "#pragma once\r\n\r\n#include \"nt/factor.hpp\"\r\n#include \"mod/mod_pow.hpp\"\
-    \r\n// int\r\nint primitive_root(int p) {\r\n  auto pf = factor(p - 1);\r\n  auto\
-    \ is_ok = [&](int g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\n      if (mod_pow(g,\
-    \ (p - 1) / q, p) == 1) return false;\r\n    return true;\r\n  };\r\n  FOR3(x,\
-    \ 1, p) {\r\n    if (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n\r\nll\
-    \ primitive_root_long(ll p) {\r\n  auto pf = factor(p - 1);\r\n  auto is_ok =\
-    \ [&](ll g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\n      if (mod_pow_long(g,\
-    \ (p - 1) / q, p) == 1) return false;\r\n    return true;\r\n  };\r\n  FOR3(x,\
-    \ 1, p) {\r\n    if (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n"
+    \r\n#include \"other/random.hpp\"\r\n\r\n// int\r\nint primitive_root(int p) {\r\
+    \n  auto pf = factor(p - 1);\r\n  auto is_ok = [&](int g) -> bool {\r\n    for\
+    \ (auto&& [q, e]: pf)\r\n      if (mod_pow(g, (p - 1) / q, p) == 1) return false;\r\
+    \n    return true;\r\n  };\r\n  FOR3(x, 1, p) {\r\n    if (is_ok(x)) return x;\r\
+    \n  }\r\n  return -1;\r\n}\r\n\r\nll primitive_root_long(ll p) {\r\n  auto pf\
+    \ = factor(p - 1);\r\n  auto is_ok = [&](ll g) -> bool {\r\n    for (auto&& [q,\
+    \ e]: pf)\r\n      if (mod_pow_long(g, (p - 1) / q, p) == 1) return false;\r\n\
+    \    return true;\r\n  };\r\n  while (1) {\r\n    ll x = RNG(1, p);\r\n    if\
+    \ (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n"
   dependsOn:
   - nt/factor.hpp
   - nt/primetest.hpp
   - mod/mod_pow.hpp
   - mod/fast_div.hpp
+  - other/random.hpp
   isVerificationFile: false
   path: mod/primitive_root.hpp
   requiredBy:
   - mod/mod_kth_root.hpp
-  timestamp: '2022-09-19 23:16:46+09:00'
+  timestamp: '2022-10-02 02:22:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
 documentation_of: mod/primitive_root.hpp
 layout: document

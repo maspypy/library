@@ -505,6 +505,9 @@ data:
     path: test/library_checker/math/partition.test.cpp
     title: test/library_checker/math/partition.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/primitive_root.test.cpp
+    title: test/library_checker/math/primitive_root.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sharp_p_subset_sum.test.cpp
     title: test/library_checker/math/sharp_p_subset_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1528,6 +1531,7 @@ data:
   - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
   - test/library_checker/math/partition.test.cpp
   - test/library_checker/math/sum_of_floor_of_linear.test.cpp
+  - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/min_of_mod_of_linear_2.test.cpp
   - test/library_checker/math/tetration.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
