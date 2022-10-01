@@ -679,6 +679,9 @@ data:
     path: test/mytest/conv_leq.test.cpp
     title: test/mytest/conv_leq.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/datetime.test.cpp
+    title: test/mytest/datetime.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/dyadic_rational.test.cpp
     title: test/mytest/dyadic_rational.test.cpp
   - icon: ':heavy_check_mark:'
@@ -765,7 +768,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1077.test.cpp
     title: test/yukicoder/1077.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1097.test.cpp
     title: test/yukicoder/1097.test.cpp
   - icon: ':heavy_check_mark:'
@@ -991,6 +994,9 @@ data:
     path: test/yukicoder/1810.test.cpp
     title: test/yukicoder/1810.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1818.test.cpp
+    title: test/yukicoder/1818.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1826.test.cpp
     title: test/yukicoder/1826.test.cpp
   - icon: ':heavy_check_mark:'
@@ -999,6 +1005,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1844.test.cpp
     title: test/yukicoder/1844.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1848.test.cpp
+    title: test/yukicoder/1848.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1868.test.cpp
     title: test/yukicoder/1868.test.cpp
@@ -1017,6 +1026,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1976.test.cpp
     title: test/yukicoder/1976.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1977.test.cpp
+    title: test/yukicoder/1977.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1983.test.cpp
     title: test/yukicoder/1983.test.cpp
@@ -1084,6 +1096,9 @@ data:
     path: test/yukicoder/749.test.cpp
     title: test/yukicoder/749.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/779.test.cpp
+    title: test/yukicoder/779.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/789.test.cpp
     title: test/yukicoder/789.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1101,9 +1116,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://trap.jp/post/1224/
@@ -1259,7 +1274,7 @@ data:
   requiredBy:
   - graph/bipartite_coloring.hpp
   timestamp: '2022-09-24 23:41:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/prime_sum.test.cpp
   - test/mytest/primesum_mod4.test.cpp
@@ -1267,6 +1282,7 @@ data:
   - test/mytest/powerquery.test.cpp
   - test/mytest/maxplus_concave.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
+  - test/mytest/datetime.test.cpp
   - test/mytest/run_length.test.cpp
   - test/mytest/dyadic_rational.test.cpp
   - test/mytest/all_inverse.test.cpp
@@ -1373,6 +1389,7 @@ data:
   - test/yukicoder/17.test.cpp
   - test/yukicoder/1097.test.cpp
   - test/yukicoder/1718.test.cpp
+  - test/yukicoder/779.test.cpp
   - test/yukicoder/1755.test.cpp
   - test/yukicoder/1142.test.cpp
   - test/yukicoder/1936.test.cpp
@@ -1453,7 +1470,9 @@ data:
   - test/yukicoder/1211.test.cpp
   - test/yukicoder/1919.test.cpp
   - test/yukicoder/114.test.cpp
+  - test/yukicoder/1848.test.cpp
   - test/yukicoder/1502.test.cpp
+  - test/yukicoder/1818.test.cpp
   - test/yukicoder/4_1.test.cpp
   - test/yukicoder/1666.test.cpp
   - test/yukicoder/1976.test.cpp
@@ -1463,6 +1482,7 @@ data:
   - test/yukicoder/1676.test.cpp
   - test/yukicoder/1649.test.cpp
   - test/yukicoder/1760.test.cpp
+  - test/yukicoder/1977.test.cpp
   - test/yukicoder/2012.test.cpp
   - test/yukicoder/1301.test.cpp
   - test/library_checker/string/run_enumerate_vec.test.cpp

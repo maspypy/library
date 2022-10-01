@@ -177,7 +177,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1097.test.cpp
     title: test/yukicoder/1097.test.cpp
   - icon: ':heavy_check_mark:'
@@ -217,6 +217,9 @@ data:
     path: test/yukicoder/1919.test.cpp
     title: test/yukicoder/1919.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1977.test.cpp
+    title: test/yukicoder/1977.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2003.test.cpp
     title: test/yukicoder/2003.test.cpp
   - icon: ':heavy_check_mark:'
@@ -246,9 +249,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -294,7 +297,7 @@ data:
   - graph/contoursum.hpp
   - graph/treeabelgroup.hpp
   timestamp: '2022-06-27 16:36:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
@@ -332,6 +335,7 @@ data:
   - test/yukicoder/1197.test.cpp
   - test/yukicoder/1919.test.cpp
   - test/yukicoder/2065.test.cpp
+  - test/yukicoder/1977.test.cpp
   - test/library_checker/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp

@@ -21,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/is_substring.test.cpp
     title: test/mytest/is_substring.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1848.test.cpp
+    title: test/yukicoder/1848.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -49,6 +52,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/is_substring.test.cpp
+  - test/yukicoder/1848.test.cpp
   - test/library_checker/string/run_enumerate_vec.test.cpp
   - test/library_checker/string/run_enumerate.test.cpp
   - test/library_checker/string/zalgorithm.test.cpp
