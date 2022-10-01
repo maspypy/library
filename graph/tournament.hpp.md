@@ -8,24 +8,30 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links:
-    - https://official.contest.yandex.ru/opencupXXII/contest/30766/problems/K
-  bundledCode: "#line 1 \"graph/tournament.hpp\"\n// https://official.contest.yandex.ru/opencupXXII/contest/30766/problems/K\n\
-    // a \u2192 b \u8FBA\u304C\u3042\u308B\u304B\u3069\u3046\u304B\u3092\u5224\u5B9A\
-    \u3059\u308B bool check(int, int) \u3092\u6E21\u3059\u3002\ntemplate <typename\
-    \ F>\nvc<int> hamiltonian_path_in_tournament(int n, F check) {\n  vc<int> P(n);\n\
-    \  iota(all(P), 0);\n  sort(all(P), [&](auto& x, auto& y) { return check(x, y);\
-    \ });\n  return P;\n}\n"
-  code: "// https://official.contest.yandex.ru/opencupXXII/contest/30766/problems/K\n\
-    // a \u2192 b \u8FBA\u304C\u3042\u308B\u304B\u3069\u3046\u304B\u3092\u5224\u5B9A\
-    \u3059\u308B bool check(int, int) \u3092\u6E21\u3059\u3002\ntemplate <typename\
-    \ F>\nvc<int> hamiltonian_path_in_tournament(int n, F check) {\n  vc<int> P(n);\n\
-    \  iota(all(P), 0);\n  sort(all(P), [&](auto& x, auto& y) { return check(x, y);\
-    \ });\n  return P;\n}\n"
+    - https://yukicoder.me/problems/no/2085
+  bundledCode: "#line 1 \"graph/tournament.hpp\"\n// https://yukicoder.me/problems/no/2085\n\
+    template <typename F>\nvc<int> hamiltonian_path_in_tournament(int n, F check)\
+    \ {\n  auto dfs = [&](auto& dfs, int L, int R) -> vc<int> {\n    if (R == L +\
+    \ 1) return {L};\n    int M = (L + R) / 2;\n    vc<int> X = dfs(dfs, L, M);\n\
+    \    vc<int> Y = dfs(dfs, M, R);\n    vc<int> P;\n    P.reserve(R - L);\n    int\
+    \ i = 0, j = 0;\n    while (len(P) < R - L) {\n      if (i == len(X)) { P.eb(Y[j++]);\
+    \ }\n      elif (j == len(Y)) { P.eb(X[i++]); }\n      else {\n        if (check(X[i],\
+    \ Y[j])) {\n          P.eb(X[i++]);\n        } else {\n          P.eb(Y[j++]);\n\
+    \        }\n      }\n    }\n    return P;\n  };\n  return dfs(dfs, 0, n);\n}\n"
+  code: "// https://yukicoder.me/problems/no/2085\ntemplate <typename F>\nvc<int>\
+    \ hamiltonian_path_in_tournament(int n, F check) {\n  auto dfs = [&](auto& dfs,\
+    \ int L, int R) -> vc<int> {\n    if (R == L + 1) return {L};\n    int M = (L\
+    \ + R) / 2;\n    vc<int> X = dfs(dfs, L, M);\n    vc<int> Y = dfs(dfs, M, R);\n\
+    \    vc<int> P;\n    P.reserve(R - L);\n    int i = 0, j = 0;\n    while (len(P)\
+    \ < R - L) {\n      if (i == len(X)) { P.eb(Y[j++]); }\n      elif (j == len(Y))\
+    \ { P.eb(X[i++]); }\n      else {\n        if (check(X[i], Y[j])) {\n        \
+    \  P.eb(X[i++]);\n        } else {\n          P.eb(Y[j++]);\n        }\n     \
+    \ }\n    }\n    return P;\n  };\n  return dfs(dfs, 0, n);\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/tournament.hpp
   requiredBy: []
-  timestamp: '2022-04-22 16:56:23+09:00'
+  timestamp: '2022-10-01 14:15:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tournament.hpp
