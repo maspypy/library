@@ -1,6 +1,6 @@
 // 状態 a から 1 回操作すると、状態 b に遷移し、モノイドの元 x を加える。
 // 状態数 N
-// set(i, to, x) 
+// set(i, to, x)
 // 行き先がない場合：-1 （set 不要）
 template <typename Monoid, int LOG>
 struct Doubling {
@@ -15,7 +15,7 @@ struct Doubling {
     DP.assign(LOG, vc<X>(N, Monoid::unit()));
   }
 
-  void set(int i, int to, X x) {
+  void add(int i, int to, X x) {
     assert(!is_prepared);
     assert(-1 <= to && to < N);
     TO[0][i] = to;
