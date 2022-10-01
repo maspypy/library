@@ -1,7 +1,5 @@
 // 状態 a から 1 回操作すると、状態 b に遷移し、モノイドの元 x を加える。
-// 状態数 N
-// set(i, to, x)
-// 行き先がない場合：-1 （set 不要）
+// 行き先がない場合：-1 （add 不要）
 template <typename Monoid, int LOG>
 struct Doubling {
   using X = typename Monoid::value_type;
@@ -23,7 +21,7 @@ struct Doubling {
   }
 
   void build() {
-    if (is_prepared) return;
+    assert (!is_prepared);
     is_prepared = 1;
     FOR(k, LOG - 1) {
       FOR(v, N) {
