@@ -76,6 +76,9 @@ data:
     path: test/yukicoder/1036_2.test.cpp
     title: test/yukicoder/1036_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1212.test.cpp
+    title: test/yukicoder/1212.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1435.test.cpp
     title: test/yukicoder/1435.test.cpp
   - icon: ':heavy_check_mark:'
@@ -205,6 +208,7 @@ data:
   - test/yukicoder/529.test.cpp
   - test/yukicoder/1036_2.test.cpp
   - test/yukicoder/1435.test.cpp
+  - test/yukicoder/1212.test.cpp
   - test/library_checker/datastructure/staticrmq_seg.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp

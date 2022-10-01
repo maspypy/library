@@ -670,6 +670,9 @@ data:
     path: test/library_checker/tree/tree_diameter.test.cpp
     title: test/library_checker/tree/tree_diameter.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/all_but_one_products.test.cpp
+    title: test/mytest/all_but_one_products.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/all_inverse.test.cpp
     title: test/mytest/all_inverse.test.cpp
   - icon: ':heavy_check_mark:'
@@ -801,6 +804,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1211.test.cpp
     title: test/yukicoder/1211.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1212.test.cpp
+    title: test/yukicoder/1212.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1234.test.cpp
     title: test/yukicoder/1234.test.cpp
@@ -1294,6 +1300,7 @@ data:
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/factorial_998.test.cpp
+  - test/mytest/all_but_one_products.test.cpp
   - test/mytest/partizan.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/incremental_ch.test.cpp
@@ -1485,6 +1492,7 @@ data:
   - test/yukicoder/1977.test.cpp
   - test/yukicoder/2012.test.cpp
   - test/yukicoder/1301.test.cpp
+  - test/yukicoder/1212.test.cpp
   - test/library_checker/string/run_enumerate_vec.test.cpp
   - test/library_checker/string/suffix_array_vec.test.cpp
   - test/library_checker/string/suffix_array.test.cpp

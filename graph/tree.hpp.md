@@ -112,6 +112,9 @@ data:
     path: test/yukicoder/1211.test.cpp
     title: test/yukicoder/1211.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1212.test.cpp
+    title: test/yukicoder/1212.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1242.test.cpp
     title: test/yukicoder/1242.test.cpp
   - icon: ':heavy_check_mark:'
@@ -374,6 +377,7 @@ data:
   - test/yukicoder/1211.test.cpp
   - test/yukicoder/1976.test.cpp
   - test/yukicoder/1451.test.cpp
+  - test/yukicoder/1212.test.cpp
   - test/library_checker/tree/lca.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp

@@ -826,6 +826,9 @@ data:
       title: nt/zeta.hpp
   - name: other
     pages:
+    - icon: ':heavy_check_mark:'
+      path: other/all_but_one_products.hpp
+      title: other/all_but_one_products.hpp
     - icon: ':warning:'
       path: other/ceil_range.hpp
       title: other/ceil_range.hpp
@@ -1832,6 +1835,9 @@ data:
   - name: test/mytest
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/mytest/all_but_one_products.test.cpp
+      title: test/mytest/all_but_one_products.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/mytest/all_inverse.test.cpp
       title: test/mytest/all_inverse.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1965,6 +1971,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1211.test.cpp
       title: test/yukicoder/1211.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1212.test.cpp
+      title: test/yukicoder/1212.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1234.test.cpp
       title: test/yukicoder/1234.test.cpp

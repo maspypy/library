@@ -304,6 +304,9 @@ data:
     path: test/yukicoder/1211.test.cpp
     title: test/yukicoder/1211.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1212.test.cpp
+    title: test/yukicoder/1212.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1242.test.cpp
     title: test/yukicoder/1242.test.cpp
   - icon: ':heavy_check_mark:'
@@ -564,6 +567,7 @@ data:
   - test/yukicoder/114.test.cpp
   - test/yukicoder/1976.test.cpp
   - test/yukicoder/1451.test.cpp
+  - test/yukicoder/1212.test.cpp
   - test/library_checker/string/number_of_substrings2.test.cpp
   - test/library_checker/math/twosat.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp

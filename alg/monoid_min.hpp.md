@@ -67,6 +67,9 @@ data:
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1212.test.cpp
+    title: test/yukicoder/1212.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1234.test.cpp
     title: test/yukicoder/1234.test.cpp
   - icon: ':heavy_check_mark:'
@@ -109,6 +112,7 @@ data:
   - test/aoj/GRL_2_A.test.cpp
   - test/yukicoder/913.test.cpp
   - test/yukicoder/1234.test.cpp
+  - test/yukicoder/1212.test.cpp
   - test/library_checker/string/suffix_array_vec.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp
