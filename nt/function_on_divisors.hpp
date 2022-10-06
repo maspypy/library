@@ -7,7 +7,7 @@ struct Function_on_Divisors {
   vc<T> dat;
 
   Function_on_Divisors(ll N) : Function_on_Divisors(factor(N)) {}
-  Function_on_Divisors(vc<pi> pf) : pf(pf) {
+  Function_on_Divisors(vc<pair<ll, int>> pf) : pf(pf) {
     ll n = 1;
     for (auto&& [p, e]: pf) n *= (e + 1);
     divs.reserve(n);
