@@ -55,7 +55,7 @@ struct Gaussian_Integer {
 };
 
 template <typename INT>
-vc<Gaussian_Integer<INT>> solve_norm_equation_factor(vc<pi> pfs) {
+vc<Gaussian_Integer<INT>> solve_norm_equation_factor(vc<pair<ll, int>> pfs) {
   using G = Gaussian_Integer<INT>;
   vc<G> res;
   for (auto &&[p, e]: pfs) {
