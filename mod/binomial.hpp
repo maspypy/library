@@ -4,7 +4,7 @@ struct Binomial {
   // mod を素因数分解して階乗を前計算 → 二項係数クエリ
   // O(mod) 時間前計算
   int mod;
-  vc<pi> pf;
+  vc<pair<ll, int>> pf;
   vc<int> pp;
   vc<vc<int>> fact;
   vc<int> crt_coef;
