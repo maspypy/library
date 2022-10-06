@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':question:'
@@ -72,16 +72,16 @@ data:
     \      do { n /= p, e += 1; } while (n % p == 0);\n      pf.eb(p, e);\n    }\n\
     \  }\n  while (n > 1) {\n    ll p = find_prime_factor(n);\n    ll e = 0;\n   \
     \ do { n /= p, e += 1; } while (n % p == 0);\n    pf.eb(p, e);\n  }\n  sort(all(pf));\n\
-    \  return pf;\n}\n\nvc<pair<int, int>> factor_by_lpf(ll n, vc<int>& lpf) {\n \
-    \ vc<pair<int, int>> res;\n  while (n > 1) {\n    int p = lpf[n];\n    int e =\
-    \ 0;\n    while (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n    res.eb(p,\
-    \ e);\n  }\n  return res;\n}\n#line 2 \"mod/fast_div.hpp\"\nstruct fast_div {\r\
-    \n  // Min25 https://judge.yosupo.jp/submission/46090\r\n  // \u540C\u3058\u5B9A\
-    \u6570\u3067\u4F55\u5EA6\u3082\u9664\u7B97\u3059\u308B\u3068\u304D\u306E\u9AD8\
-    \u901F\u5316\u306B\u4F7F\u3048\u308B\r\n  using i64 = long long;\r\n  using u64\
-    \ = unsigned long long;\r\n  using u128 = __uint128_t;\r\n  constexpr fast_div()\
-    \ : m(), s(), x() {}\r\n  constexpr fast_div(int n)\r\n      : m(n), s(std::__lg(n\
-    \ - 1)), x(((u128(1) << (s + 64)) + n - 1) / n) {}\r\n  constexpr friend u64 operator/(u64\
+    \  return pf;\n}\n\nvc<pair<ll, int>> factor_by_lpf(ll n, vc<int>& lpf) {\n  vc<pair<int,\
+    \ int>> res;\n  while (n > 1) {\n    int p = lpf[n];\n    int e = 0;\n    while\
+    \ (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n \
+    \ return res;\n}\n#line 2 \"mod/fast_div.hpp\"\nstruct fast_div {\r\n  // Min25\
+    \ https://judge.yosupo.jp/submission/46090\r\n  // \u540C\u3058\u5B9A\u6570\u3067\
+    \u4F55\u5EA6\u3082\u9664\u7B97\u3059\u308B\u3068\u304D\u306E\u9AD8\u901F\u5316\
+    \u306B\u4F7F\u3048\u308B\r\n  using i64 = long long;\r\n  using u64 = unsigned\
+    \ long long;\r\n  using u128 = __uint128_t;\r\n  constexpr fast_div() : m(), s(),\
+    \ x() {}\r\n  constexpr fast_div(int n)\r\n      : m(n), s(std::__lg(n - 1)),\
+    \ x(((u128(1) << (s + 64)) + n - 1) / n) {}\r\n  constexpr friend u64 operator/(u64\
     \ n, const fast_div& d) {\r\n    return (u128(n) * d.x >> d.s) >> 64;\r\n  }\r\
     \n  constexpr friend int operator%(u64 n, const fast_div& d) {\r\n    return n\
     \ - n / d * d.m;\r\n  }\r\n  constexpr std::pair<i64, int> divmod(u64 n) const\
@@ -112,7 +112,7 @@ data:
     \ G &g) { return (x == g.x && y == g.y); }\r\n\r\n  static G gcd(G a, G b) {\r\
     \n    while (b.x != 0 || b.y != 0) {\r\n      a %= b;\r\n      swap(a, b);\r\n\
     \    }\r\n    return a;\r\n  }\r\n};\r\n\r\ntemplate <typename INT>\r\nvc<Gaussian_Integer<INT>>\
-    \ solve_norm_equation_factor(vc<pi> pfs) {\r\n  using G = Gaussian_Integer<INT>;\r\
+    \ solve_norm_equation_factor(vc<pair<ll, int>> pfs) {\r\n  using G = Gaussian_Integer<INT>;\r\
     \n  vc<G> res;\r\n  for (auto &&[p, e]: pfs) {\r\n    if (p % 4 == 3 && e % 2\
     \ == 1) return {};\r\n  }\r\n  auto find = [&](INT p) -> G {\r\n    // p \u306F\
     \u7D20\u6570. \u30CE\u30EB\u30E0 p \u306E\u30AC\u30A6\u30B9\u6574\u6570\u3092\u3072\
@@ -166,15 +166,15 @@ data:
     \ %= g; }\r\n  bool operator==(const G &g) { return (x == g.x && y == g.y); }\r\
     \n\r\n  static G gcd(G a, G b) {\r\n    while (b.x != 0 || b.y != 0) {\r\n   \
     \   a %= b;\r\n      swap(a, b);\r\n    }\r\n    return a;\r\n  }\r\n};\r\n\r\n\
-    template <typename INT>\r\nvc<Gaussian_Integer<INT>> solve_norm_equation_factor(vc<pi>\
-    \ pfs) {\r\n  using G = Gaussian_Integer<INT>;\r\n  vc<G> res;\r\n  for (auto\
-    \ &&[p, e]: pfs) {\r\n    if (p % 4 == 3 && e % 2 == 1) return {};\r\n  }\r\n\
-    \  auto find = [&](INT p) -> G {\r\n    // p \u306F\u7D20\u6570. \u30CE\u30EB\u30E0\
-    \ p \u306E\u30AC\u30A6\u30B9\u6574\u6570\u3092\u3072\u3068\u3064\u898B\u3064\u3051\
-    \u308B\r\n    if (p == 2) return G(1, 1);\r\n    // x^2 = -1 mod p \u3092\u3072\
-    \u3068\u3064\u898B\u3064\u3051\u308B\r\n    INT x = [&]() -> INT {\r\n      INT\
-    \ x = 1;\r\n      while (1) {\r\n        ++x;\r\n        INT pow_x = 1;\r\n  \
-    \      if (p < (1 << 30)) {\r\n          pow_x = mod_pow(x, (p - 1) / 4, p);\r\
+    template <typename INT>\r\nvc<Gaussian_Integer<INT>> solve_norm_equation_factor(vc<pair<ll,\
+    \ int>> pfs) {\r\n  using G = Gaussian_Integer<INT>;\r\n  vc<G> res;\r\n  for\
+    \ (auto &&[p, e]: pfs) {\r\n    if (p % 4 == 3 && e % 2 == 1) return {};\r\n \
+    \ }\r\n  auto find = [&](INT p) -> G {\r\n    // p \u306F\u7D20\u6570. \u30CE\u30EB\
+    \u30E0 p \u306E\u30AC\u30A6\u30B9\u6574\u6570\u3092\u3072\u3068\u3064\u898B\u3064\
+    \u3051\u308B\r\n    if (p == 2) return G(1, 1);\r\n    // x^2 = -1 mod p \u3092\
+    \u3072\u3068\u3064\u898B\u3064\u3051\u308B\r\n    INT x = [&]() -> INT {\r\n \
+    \     INT x = 1;\r\n      while (1) {\r\n        ++x;\r\n        INT pow_x = 1;\r\
+    \n        if (p < (1 << 30)) {\r\n          pow_x = mod_pow(x, (p - 1) / 4, p);\r\
     \n          if (pow_x * pow_x % p == p - 1) return pow_x;\r\n        } else {\r\
     \n          pow_x = mod_pow_long(x, (p - 1) / 4, p);\r\n          if (i128(pow_x)\
     \ * pow_x % p == p - 1) return pow_x;\r\n        }\r\n      }\r\n      return\
@@ -210,7 +210,7 @@ data:
   isVerificationFile: false
   path: nt/gaussian_integers.hpp
   requiredBy: []
-  timestamp: '2022-10-06 23:14:10+09:00'
+  timestamp: '2022-10-06 23:30:50+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1593.test.cpp

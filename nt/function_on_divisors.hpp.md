@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':question:'
@@ -66,11 +66,11 @@ data:
     \      do { n /= p, e += 1; } while (n % p == 0);\n      pf.eb(p, e);\n    }\n\
     \  }\n  while (n > 1) {\n    ll p = find_prime_factor(n);\n    ll e = 0;\n   \
     \ do { n /= p, e += 1; } while (n % p == 0);\n    pf.eb(p, e);\n  }\n  sort(all(pf));\n\
-    \  return pf;\n}\n\nvc<pair<int, int>> factor_by_lpf(ll n, vc<int>& lpf) {\n \
-    \ vc<pair<int, int>> res;\n  while (n > 1) {\n    int p = lpf[n];\n    int e =\
-    \ 0;\n    while (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n    res.eb(p,\
-    \ e);\n  }\n  return res;\n}\n#line 2 \"nt/function_on_divisors.hpp\"\n\ntemplate\
-    \ <typename T>\nstruct Function_on_Divisors {\n  vc<pi> pf;\n  vc<ll> divs;\n\
+    \  return pf;\n}\n\nvc<pair<ll, int>> factor_by_lpf(ll n, vc<int>& lpf) {\n  vc<pair<int,\
+    \ int>> res;\n  while (n > 1) {\n    int p = lpf[n];\n    int e = 0;\n    while\
+    \ (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n \
+    \ return res;\n}\n#line 2 \"nt/function_on_divisors.hpp\"\n\ntemplate <typename\
+    \ T>\nstruct Function_on_Divisors {\n  vc<pair<ll, int>> pf;\n  vc<ll> divs;\n\
     \  vc<T> dat;\n\n  Function_on_Divisors(ll N) : Function_on_Divisors(factor(N))\
     \ {}\n  Function_on_Divisors(vc<pi> pf) : pf(pf) {\n    ll n = 1;\n    for (auto&&\
     \ [p, e]: pf) n *= (e + 1);\n    divs.reserve(n);\n    divs = {1};\n    for (auto&&\
@@ -98,9 +98,9 @@ data:
     \    vc<pair<ll, T>> res;\n    FOR(i, len(divs)) { res.eb(divs[i], dat[i]); }\n\
     \    return res;\n  }\n};\n"
   code: "#include \"nt/factor.hpp\"\n\ntemplate <typename T>\nstruct Function_on_Divisors\
-    \ {\n  vc<pi> pf;\n  vc<ll> divs;\n  vc<T> dat;\n\n  Function_on_Divisors(ll N)\
-    \ : Function_on_Divisors(factor(N)) {}\n  Function_on_Divisors(vc<pi> pf) : pf(pf)\
-    \ {\n    ll n = 1;\n    for (auto&& [p, e]: pf) n *= (e + 1);\n    divs.reserve(n);\n\
+    \ {\n  vc<pair<ll, int>> pf;\n  vc<ll> divs;\n  vc<T> dat;\n\n  Function_on_Divisors(ll\
+    \ N) : Function_on_Divisors(factor(N)) {}\n  Function_on_Divisors(vc<pi> pf) :\
+    \ pf(pf) {\n    ll n = 1;\n    for (auto&& [p, e]: pf) n *= (e + 1);\n    divs.reserve(n);\n\
     \    divs = {1};\n    for (auto&& [p, e]: pf) {\n      int n = len(divs);\n  \
     \    ll q = p;\n      FOR(e) {\n        FOR(i, n) divs.eb(divs[i] * q);\n    \
     \    q *= p;\n      }\n    }\n  }\n\n  // f(p, k) \u3092\u4E0E\u3048\u308B \u2192\
@@ -123,14 +123,14 @@ data:
     \    FOR(i, len(divs) / mod) {\n        FOR_R(j, mod - k) { dat[mod * i + j +\
     \ k] -= dat[mod * i + j]; }\n      }\n      k *= (e + 1);\n    }\n  }\n\n  vc<pair<ll,\
     \ T>> get() {\n    vc<pair<ll, T>> res;\n    FOR(i, len(divs)) { res.eb(divs[i],\
-    \ dat[i]); }\n    return res;\n  }\n};"
+    \ dat[i]); }\n    return res;\n  }\n};\n"
   dependsOn:
   - nt/factor.hpp
   - nt/primetest.hpp
   isVerificationFile: false
   path: nt/function_on_divisors.hpp
   requiredBy: []
-  timestamp: '2022-10-06 23:14:10+09:00'
+  timestamp: '2022-10-06 23:30:50+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1728.test.cpp

@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/random.hpp
     title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n  using i64 = int64_t;\r\
@@ -84,21 +84,21 @@ data:
     \      ll e = 0;\n      do { n /= p, e += 1; } while (n % p == 0);\n      pf.eb(p,\
     \ e);\n    }\n  }\n  while (n > 1) {\n    ll p = find_prime_factor(n);\n    ll\
     \ e = 0;\n    do { n /= p, e += 1; } while (n % p == 0);\n    pf.eb(p, e);\n \
-    \ }\n  sort(all(pf));\n  return pf;\n}\n\nvc<pair<int, int>> factor_by_lpf(ll\
-    \ n, vc<int>& lpf) {\n  vc<pair<int, int>> res;\n  while (n > 1) {\n    int p\
-    \ = lpf[n];\n    int e = 0;\n    while (n % p == 0) {\n      n /= p;\n      ++e;\n\
-    \    }\n    res.eb(p, e);\n  }\n  return res;\n}\n#line 2 \"mod/fast_div.hpp\"\
-    \nstruct fast_div {\r\n  // Min25 https://judge.yosupo.jp/submission/46090\r\n\
-    \  // \u540C\u3058\u5B9A\u6570\u3067\u4F55\u5EA6\u3082\u9664\u7B97\u3059\u308B\
-    \u3068\u304D\u306E\u9AD8\u901F\u5316\u306B\u4F7F\u3048\u308B\r\n  using i64 =\
-    \ long long;\r\n  using u64 = unsigned long long;\r\n  using u128 = __uint128_t;\r\
-    \n  constexpr fast_div() : m(), s(), x() {}\r\n  constexpr fast_div(int n)\r\n\
-    \      : m(n), s(std::__lg(n - 1)), x(((u128(1) << (s + 64)) + n - 1) / n) {}\r\
-    \n  constexpr friend u64 operator/(u64 n, const fast_div& d) {\r\n    return (u128(n)\
-    \ * d.x >> d.s) >> 64;\r\n  }\r\n  constexpr friend int operator%(u64 n, const\
-    \ fast_div& d) {\r\n    return n - n / d * d.m;\r\n  }\r\n  constexpr std::pair<i64,\
-    \ int> divmod(u64 n) const {\r\n    u64 q = n / *this;\r\n    return {q, n - q\
-    \ * m};\r\n  }\r\n\r\n  int m;\r\n  int s;\r\n  u64 x;\r\n};\r\n#line 3 \"mod/mod_pow.hpp\"\
+    \ }\n  sort(all(pf));\n  return pf;\n}\n\nvc<pair<ll, int>> factor_by_lpf(ll n,\
+    \ vc<int>& lpf) {\n  vc<pair<int, int>> res;\n  while (n > 1) {\n    int p = lpf[n];\n\
+    \    int e = 0;\n    while (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n\
+    \    res.eb(p, e);\n  }\n  return res;\n}\n#line 2 \"mod/fast_div.hpp\"\nstruct\
+    \ fast_div {\r\n  // Min25 https://judge.yosupo.jp/submission/46090\r\n  // \u540C\
+    \u3058\u5B9A\u6570\u3067\u4F55\u5EA6\u3082\u9664\u7B97\u3059\u308B\u3068\u304D\
+    \u306E\u9AD8\u901F\u5316\u306B\u4F7F\u3048\u308B\r\n  using i64 = long long;\r\
+    \n  using u64 = unsigned long long;\r\n  using u128 = __uint128_t;\r\n  constexpr\
+    \ fast_div() : m(), s(), x() {}\r\n  constexpr fast_div(int n)\r\n      : m(n),\
+    \ s(std::__lg(n - 1)), x(((u128(1) << (s + 64)) + n - 1) / n) {}\r\n  constexpr\
+    \ friend u64 operator/(u64 n, const fast_div& d) {\r\n    return (u128(n) * d.x\
+    \ >> d.s) >> 64;\r\n  }\r\n  constexpr friend int operator%(u64 n, const fast_div&\
+    \ d) {\r\n    return n - n / d * d.m;\r\n  }\r\n  constexpr std::pair<i64, int>\
+    \ divmod(u64 n) const {\r\n    u64 q = n / *this;\r\n    return {q, n - q * m};\r\
+    \n  }\r\n\r\n  int m;\r\n  int s;\r\n  u64 x;\r\n};\r\n#line 3 \"mod/mod_pow.hpp\"\
     \n// int\r\nll mod_pow(ll a, ll n, int mod){\r\n  fast_div fd(mod);\r\n  a = a\
     \ % fd;\r\n  ll p = a;\r\n  ll v = 1;\r\n  while(n){\r\n    if(n & 1) v = v *\
     \ p % fd;\r\n    p = p * p % fd;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n\
@@ -303,8 +303,8 @@ data:
   isVerificationFile: false
   path: mod/mod_kth_root.hpp
   requiredBy: []
-  timestamp: '2022-10-06 23:14:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-10-06 23:30:50+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/math/kth_root_mod.test.cpp
 documentation_of: mod/mod_kth_root.hpp

@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/factorize
@@ -252,10 +252,10 @@ data:
     \      ll e = 0;\n      do { n /= p, e += 1; } while (n % p == 0);\n      pf.eb(p,\
     \ e);\n    }\n  }\n  while (n > 1) {\n    ll p = find_prime_factor(n);\n    ll\
     \ e = 0;\n    do { n /= p, e += 1; } while (n % p == 0);\n    pf.eb(p, e);\n \
-    \ }\n  sort(all(pf));\n  return pf;\n}\n\nvc<pair<int, int>> factor_by_lpf(ll\
-    \ n, vc<int>& lpf) {\n  vc<pair<int, int>> res;\n  while (n > 1) {\n    int p\
-    \ = lpf[n];\n    int e = 0;\n    while (n % p == 0) {\n      n /= p;\n      ++e;\n\
-    \    }\n    res.eb(p, e);\n  }\n  return res;\n}\n#line 6 \"test/library_checker/math/factorize.test.cpp\"\
+    \ }\n  sort(all(pf));\n  return pf;\n}\n\nvc<pair<ll, int>> factor_by_lpf(ll n,\
+    \ vc<int>& lpf) {\n  vc<pair<int, int>> res;\n  while (n > 1) {\n    int p = lpf[n];\n\
+    \    int e = 0;\n    while (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n\
+    \    res.eb(p, e);\n  }\n  return res;\n}\n#line 6 \"test/library_checker/math/factorize.test.cpp\"\
     \n\nvoid solve() {\n  LL(Q);\n  FOR(_, Q) {\n    LL(x);\n    auto pf = factor(x);\n\
     \    vi ANS;\n    for (auto&& [p, e]: pf) { FOR(_, e) ANS.eb(p); }\n    if (len(ANS))\n\
     \      print(len(ANS), ANS);\n    else\n      print(0);\n  }\n}\n\nsigned main()\
@@ -276,8 +276,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/factorize.test.cpp
   requiredBy: []
-  timestamp: '2022-10-06 23:14:10+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-10-06 23:30:50+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/factorize.test.cpp
 layout: document

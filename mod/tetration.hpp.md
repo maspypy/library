@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/fast_div.hpp\"\nstruct fast_div {\r\n  // Min25 https://judge.yosupo.jp/submission/46090\r\
@@ -110,15 +110,15 @@ data:
     \      do { n /= p, e += 1; } while (n % p == 0);\n      pf.eb(p, e);\n    }\n\
     \  }\n  while (n > 1) {\n    ll p = find_prime_factor(n);\n    ll e = 0;\n   \
     \ do { n /= p, e += 1; } while (n % p == 0);\n    pf.eb(p, e);\n  }\n  sort(all(pf));\n\
-    \  return pf;\n}\n\nvc<pair<int, int>> factor_by_lpf(ll n, vc<int>& lpf) {\n \
-    \ vc<pair<int, int>> res;\n  while (n > 1) {\n    int p = lpf[n];\n    int e =\
-    \ 0;\n    while (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n    res.eb(p,\
-    \ e);\n  }\n  return res;\n}\n#line 3 \"nt/euler_phi.hpp\"\n\r\nll euler_phi(ll\
-    \ n) {\r\n  auto pf = factor(n);\r\n  for (auto&& [p, e]: pf) n -= n / p;\r\n\
-    \  return n;\r\n}\r\n\r\nvi euler_phi_table(ll n) {\r\n  vi A(n + 1);\r\n  iota(all(A),\
-    \ 0);\r\n  divisor_mobius(A);\r\n  return A;\r\n}\r\n#line 3 \"mod/tetration.hpp\"\
-    \n\r\nint tetration(vc<ll> a, int mod) {\r\n  for (auto&& x: a) assert(x > 0);\r\
-    \n\r\n  // a[0]^(a[1]^(a[2]^...))\r\n  vc<int> mod_chain = {mod};\r\n  while (mod_chain.back()\
+    \  return pf;\n}\n\nvc<pair<ll, int>> factor_by_lpf(ll n, vc<int>& lpf) {\n  vc<pair<int,\
+    \ int>> res;\n  while (n > 1) {\n    int p = lpf[n];\n    int e = 0;\n    while\
+    \ (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n \
+    \ return res;\n}\n#line 3 \"nt/euler_phi.hpp\"\n\r\nll euler_phi(ll n) {\r\n \
+    \ auto pf = factor(n);\r\n  for (auto&& [p, e]: pf) n -= n / p;\r\n  return n;\r\
+    \n}\r\n\r\nvi euler_phi_table(ll n) {\r\n  vi A(n + 1);\r\n  iota(all(A), 0);\r\
+    \n  divisor_mobius(A);\r\n  return A;\r\n}\r\n#line 3 \"mod/tetration.hpp\"\n\r\
+    \nint tetration(vc<ll> a, int mod) {\r\n  for (auto&& x: a) assert(x > 0);\r\n\
+    \r\n  // a[0]^(a[1]^(a[2]^...))\r\n  vc<int> mod_chain = {mod};\r\n  while (mod_chain.back()\
     \ > 1) mod_chain.eb(euler_phi(mod_chain.back()));\r\n  while (len(a) > len(mod_chain))\
     \ a.pop_back();\r\n  while (len(mod_chain) > len(a)) mod_chain.pop_back();\r\n\
     \r\n  auto pow = [&](ll x, int n, int mod) -> int {\r\n    fast_div fd(mod);\r\
@@ -150,8 +150,8 @@ data:
   isVerificationFile: false
   path: mod/tetration.hpp
   requiredBy: []
-  timestamp: '2022-10-06 23:14:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-10-06 23:30:50+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/math/tetration.test.cpp
 documentation_of: mod/tetration.hpp

@@ -272,7 +272,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fenwickraq.hpp
       title: ds/fenwickraq.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
     - icon: ':heavy_check_mark:'
@@ -700,7 +700,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/factorial998.hpp
       title: mod/factorial998.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: mod/fast_div.hpp
       title: mod/fast_div.hpp
     - icon: ':heavy_check_mark:'
@@ -715,16 +715,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/min_of_linear_segments.hpp
       title: mod/min_of_linear_segments.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: mod/mod_inv.hpp
       title: mod/mod_inv.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: mod/mod_kth_root.hpp
       title: mod/mod_kth_root.hpp
     - icon: ':heavy_check_mark:'
       path: mod/mod_log.hpp
       title: mod/mod_log.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: mod/mod_pow.hpp
       title: mod/mod_pow.hpp
     - icon: ':heavy_check_mark:'
@@ -745,13 +745,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/powertable.hpp
       title: mod/powertable.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: mod/primitive_root.hpp
       title: mod/primitive_root.hpp
     - icon: ':heavy_check_mark:'
       path: mod/range_freq_of_linear.hpp
       title: mod/range_freq_of_linear.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: mod/tetration.hpp
       title: mod/tetration.hpp
   - name: .
@@ -761,19 +761,19 @@ data:
       title: my_template.hpp
   - name: nt
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: nt/crt.hpp
       title: nt/crt.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: nt/divisors.hpp
       title: nt/divisors.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: nt/euler_phi.hpp
       title: nt/euler_phi.hpp
     - icon: ':heavy_check_mark:'
       path: nt/extgcd.hpp
       title: nt/extgcd.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: nt/factor.hpp
       title: nt/factor.hpp
     - icon: ':x:'
@@ -785,13 +785,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/gcd_convolution.hpp
       title: nt/gcd_convolution.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: nt/lcm.hpp
       title: nt/lcm.hpp
     - icon: ':heavy_check_mark:'
       path: nt/lcm_convolution.hpp
       title: nt/lcm_convolution.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: nt/lpf_table.hpp
       title: nt/lpf_table.hpp
     - icon: ':heavy_check_mark:'
@@ -815,13 +815,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/primesum_mod6.hpp
       title: nt/primesum_mod6.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: nt/primetable.hpp
       title: nt/primetable.hpp
     - icon: ':question:'
       path: nt/primetest.hpp
       title: nt/primetest.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: nt/zeta.hpp
       title: nt/zeta.hpp
   - name: other
@@ -865,7 +865,7 @@ data:
     - icon: ':warning:'
       path: other/kth_root_permutation.hpp
       title: other/kth_root_permutation.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/random.hpp
       title: other/random.hpp
     - icon: ':heavy_check_mark:'
@@ -1310,7 +1310,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ITP1_9_A.test.cpp
       title: test/aoj/ITP1_9_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/ITP1_D_D.test.cpp
       title: test/aoj/ITP1_D_D.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1319,7 +1319,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ITP2_3_B.test.cpp
       title: test/aoj/ITP2_3_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/NTL_1_D.test.cpp
       title: test/aoj/NTL_1_D.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1621,7 +1621,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/enumerate_primes.test.cpp
       title: test/library_checker/math/enumerate_primes.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/math/factorize.test.cpp
       title: test/library_checker/math/factorize.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1633,7 +1633,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/kth_root_integer.test.cpp
       title: test/library_checker/math/kth_root_integer.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/math/kth_root_mod.test.cpp
       title: test/library_checker/math/kth_root_mod.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1657,7 +1657,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/partition.test.cpp
       title: test/library_checker/math/partition.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/math/primitive_root.test.cpp
       title: test/library_checker/math/primitive_root.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1687,7 +1687,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/sum_of_floor_of_linear.test.cpp
       title: test/library_checker/math/sum_of_floor_of_linear.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/math/tetration.test.cpp
       title: test/library_checker/math/tetration.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1992,7 +1992,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1260.test.cpp
       title: test/yukicoder/1260.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1262.test.cpp
       title: test/yukicoder/1262.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2049,7 +2049,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1400.test.cpp
       title: test/yukicoder/1400.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1411.test.cpp
       title: test/yukicoder/1411.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2205,7 +2205,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1868.test.cpp
       title: test/yukicoder/1868.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/187.test.cpp
       title: test/yukicoder/187.test.cpp
     - icon: ':heavy_check_mark:'

@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/swag.hpp
     title: ds/swag.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'

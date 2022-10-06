@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':question:'
@@ -15,12 +15,12 @@ data:
     title: nt/primetest.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/187.test.cpp
     title: test/yukicoder/187.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/fast_div.hpp\"\nstruct fast_div {\r\n  // Min25 https://judge.yosupo.jp/submission/46090\r\
@@ -88,15 +88,15 @@ data:
     \      ll e = 0;\n      do { n /= p, e += 1; } while (n % p == 0);\n      pf.eb(p,\
     \ e);\n    }\n  }\n  while (n > 1) {\n    ll p = find_prime_factor(n);\n    ll\
     \ e = 0;\n    do { n /= p, e += 1; } while (n % p == 0);\n    pf.eb(p, e);\n \
-    \ }\n  sort(all(pf));\n  return pf;\n}\n\nvc<pair<int, int>> factor_by_lpf(ll\
-    \ n, vc<int>& lpf) {\n  vc<pair<int, int>> res;\n  while (n > 1) {\n    int p\
-    \ = lpf[n];\n    int e = 0;\n    while (n % p == 0) {\n      n /= p;\n      ++e;\n\
-    \    }\n    res.eb(p, e);\n  }\n  return res;\n}\n#line 4 \"nt/lcm.hpp\"\ntemplate\
-    \ <typename INT>\nll LCM(vc<INT> vals, int mod = -1) {\n  if (mod == -1) {\n \
-    \   ll x = 1;\n    for (auto&& v: vals) { x = x / gcd(x, v) * v; }\n    return\
-    \ x;\n  }\n  unordered_map<ll, ll> pf;\n  for (auto&& x: vals) {\n    for (auto&&\
-    \ [p, e]: factor(x)) { chmax(pf[p], e); }\n  }\n  ll x = 1;\n  for (auto&& [p,\
-    \ e]: pf) { x = x * mod_pow(p, e, mod) % mod; }\n  return x;\n}\n"
+    \ }\n  sort(all(pf));\n  return pf;\n}\n\nvc<pair<ll, int>> factor_by_lpf(ll n,\
+    \ vc<int>& lpf) {\n  vc<pair<int, int>> res;\n  while (n > 1) {\n    int p = lpf[n];\n\
+    \    int e = 0;\n    while (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n\
+    \    res.eb(p, e);\n  }\n  return res;\n}\n#line 4 \"nt/lcm.hpp\"\ntemplate <typename\
+    \ INT>\nll LCM(vc<INT> vals, int mod = -1) {\n  if (mod == -1) {\n    ll x = 1;\n\
+    \    for (auto&& v: vals) { x = x / gcd(x, v) * v; }\n    return x;\n  }\n  unordered_map<ll,\
+    \ ll> pf;\n  for (auto&& x: vals) {\n    for (auto&& [p, e]: factor(x)) { chmax(pf[p],\
+    \ e); }\n  }\n  ll x = 1;\n  for (auto&& [p, e]: pf) { x = x * mod_pow(p, e, mod)\
+    \ % mod; }\n  return x;\n}\n"
   code: "#pragma once\n#include \"mod/mod_pow.hpp\"\n#include \"nt/factor.hpp\"\n\
     template <typename INT>\nll LCM(vc<INT> vals, int mod = -1) {\n  if (mod == -1)\
     \ {\n    ll x = 1;\n    for (auto&& v: vals) { x = x / gcd(x, v) * v; }\n    return\
@@ -111,8 +111,8 @@ data:
   isVerificationFile: false
   path: nt/lcm.hpp
   requiredBy: []
-  timestamp: '2022-10-06 23:14:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-10-06 23:30:50+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/187.test.cpp
 documentation_of: nt/lcm.hpp

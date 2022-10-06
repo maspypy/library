@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/tetration.hpp
     title: mod/tetration.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL_1_D.test.cpp
     title: test/aoj/NTL_1_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1262.test.cpp
     title: test/yukicoder/1262.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\nvc<ll> primetable(int LIM) {\n  ++LIM;\n\
@@ -102,14 +102,13 @@ data:
     \      ll e = 0;\n      do { n /= p, e += 1; } while (n % p == 0);\n      pf.eb(p,\
     \ e);\n    }\n  }\n  while (n > 1) {\n    ll p = find_prime_factor(n);\n    ll\
     \ e = 0;\n    do { n /= p, e += 1; } while (n % p == 0);\n    pf.eb(p, e);\n \
-    \ }\n  sort(all(pf));\n  return pf;\n}\n\nvc<pair<int, int>> factor_by_lpf(ll\
-    \ n, vc<int>& lpf) {\n  vc<pair<int, int>> res;\n  while (n > 1) {\n    int p\
-    \ = lpf[n];\n    int e = 0;\n    while (n % p == 0) {\n      n /= p;\n      ++e;\n\
-    \    }\n    res.eb(p, e);\n  }\n  return res;\n}\n#line 3 \"nt/euler_phi.hpp\"\
-    \n\r\nll euler_phi(ll n) {\r\n  auto pf = factor(n);\r\n  for (auto&& [p, e]:\
-    \ pf) n -= n / p;\r\n  return n;\r\n}\r\n\r\nvi euler_phi_table(ll n) {\r\n  vi\
-    \ A(n + 1);\r\n  iota(all(A), 0);\r\n  divisor_mobius(A);\r\n  return A;\r\n}\r\
-    \n"
+    \ }\n  sort(all(pf));\n  return pf;\n}\n\nvc<pair<ll, int>> factor_by_lpf(ll n,\
+    \ vc<int>& lpf) {\n  vc<pair<int, int>> res;\n  while (n > 1) {\n    int p = lpf[n];\n\
+    \    int e = 0;\n    while (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n\
+    \    res.eb(p, e);\n  }\n  return res;\n}\n#line 3 \"nt/euler_phi.hpp\"\n\r\n\
+    ll euler_phi(ll n) {\r\n  auto pf = factor(n);\r\n  for (auto&& [p, e]: pf) n\
+    \ -= n / p;\r\n  return n;\r\n}\r\n\r\nvi euler_phi_table(ll n) {\r\n  vi A(n\
+    \ + 1);\r\n  iota(all(A), 0);\r\n  divisor_mobius(A);\r\n  return A;\r\n}\r\n"
   code: "#include \"nt/zeta.hpp\"\r\n#include \"nt/factor.hpp\"\r\n\r\nll euler_phi(ll\
     \ n) {\r\n  auto pf = factor(n);\r\n  for (auto&& [p, e]: pf) n -= n / p;\r\n\
     \  return n;\r\n}\r\n\r\nvi euler_phi_table(ll n) {\r\n  vi A(n + 1);\r\n  iota(all(A),\
@@ -123,8 +122,8 @@ data:
   path: nt/euler_phi.hpp
   requiredBy:
   - mod/tetration.hpp
-  timestamp: '2022-10-06 23:14:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-10-06 23:30:50+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/NTL_1_D.test.cpp
   - test/yukicoder/1262.test.cpp

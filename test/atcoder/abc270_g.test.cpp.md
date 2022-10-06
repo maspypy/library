@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/gset_affine.hpp
     title: alg/gset_affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'

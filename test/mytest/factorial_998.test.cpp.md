@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/factorial998.hpp
     title: mod/factorial998.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -25,7 +25,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/random.hpp
     title: other/random.hpp
   - icon: ':heavy_check_mark:'
