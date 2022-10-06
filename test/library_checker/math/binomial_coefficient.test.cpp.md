@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/binomial_coefficient
@@ -299,7 +299,7 @@ data:
     \  auto a = get_fact(n);\r\n      auto b = get_fact(k);\r\n      auto c = get_fact(n\
     \ - k);\r\n      ll e = a.fi - b.fi - c.fi;\r\n      ll x = a.se;\r\n      ll\
     \ y = b.se * c.se % fd_pp;\r\n      int phi = pp[s] - pp[s] / pf[s].fi;\r\n  \
-    \    x = x * mod_pow(y, phi - 1, fd_pp) % fd_pp;\r\n      FOR(min(e, pf[s].se))\
+    \    x = x * mod_pow(y, phi - 1, fd_pp) % fd_pp;\r\n      FOR(min<int>(e, pf[s].se))\
     \ x *= p;\r\n      x = x % fd_pp;\r\n      ANS += x * crt_coef[s];\r\n    }\r\n\
     \    return ANS % mod;\r\n  }\r\n};\r\n#line 5 \"test/library_checker/math/binomial_coefficient.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(Q, mod);\r\n  Binomial Bi(mod);\r\n  FOR(Q) {\r\n\
@@ -320,8 +320,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/binomial_coefficient.test.cpp
   requiredBy: []
-  timestamp: '2022-10-07 01:22:59+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-10-07 02:20:29+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/binomial_coefficient.test.cpp
 layout: document

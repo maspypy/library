@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/binomial_coefficient.test.cpp
     title: test/library_checker/math/binomial_coefficient.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n  using i64 = int64_t;\r\
@@ -110,7 +110,7 @@ data:
     \  auto a = get_fact(n);\r\n      auto b = get_fact(k);\r\n      auto c = get_fact(n\
     \ - k);\r\n      ll e = a.fi - b.fi - c.fi;\r\n      ll x = a.se;\r\n      ll\
     \ y = b.se * c.se % fd_pp;\r\n      int phi = pp[s] - pp[s] / pf[s].fi;\r\n  \
-    \    x = x * mod_pow(y, phi - 1, fd_pp) % fd_pp;\r\n      FOR(min(e, pf[s].se))\
+    \    x = x * mod_pow(y, phi - 1, fd_pp) % fd_pp;\r\n      FOR(min<int>(e, pf[s].se))\
     \ x *= p;\r\n      x = x % fd_pp;\r\n      ANS += x * crt_coef[s];\r\n    }\r\n\
     \    return ANS % mod;\r\n  }\r\n};\r\n"
   code: "#include \"nt/factor.hpp\"\r\n#include \"mod/fast_div.hpp\"\r\nstruct Binomial\
@@ -140,7 +140,7 @@ data:
     \  auto a = get_fact(n);\r\n      auto b = get_fact(k);\r\n      auto c = get_fact(n\
     \ - k);\r\n      ll e = a.fi - b.fi - c.fi;\r\n      ll x = a.se;\r\n      ll\
     \ y = b.se * c.se % fd_pp;\r\n      int phi = pp[s] - pp[s] / pf[s].fi;\r\n  \
-    \    x = x * mod_pow(y, phi - 1, fd_pp) % fd_pp;\r\n      FOR(min(e, pf[s].se))\
+    \    x = x * mod_pow(y, phi - 1, fd_pp) % fd_pp;\r\n      FOR(min<int>(e, pf[s].se))\
     \ x *= p;\r\n      x = x % fd_pp;\r\n      ANS += x * crt_coef[s];\r\n    }\r\n\
     \    return ANS % mod;\r\n  }\r\n};\r\n"
   dependsOn:
@@ -150,8 +150,8 @@ data:
   isVerificationFile: false
   path: mod/binomial.hpp
   requiredBy: []
-  timestamp: '2022-10-07 01:22:59+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-10-07 02:20:29+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/binomial_coefficient.test.cpp
 documentation_of: mod/binomial.hpp
