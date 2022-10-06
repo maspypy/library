@@ -10,45 +10,39 @@ using mint = modint107;
 
 void solve() {
   LL(N);
-  VEC(int, A, N);
   const int LIM = 1'000'000;
   auto lpf = lpf_table(LIM);
 
-  vvc<pair<int, int>> DAT(LIM);
-  FOR(i, N) {
-    for (auto&& [p, e]: factor_by_lpf(A[i], lpf)) { DAT[p].eb(e, i); }
-  }
+  vvc<pair<int, int>> F(N);
 
-  vc<mint> PROD(N, mint(1)), LCM(N, mint(1));
+  vc<pair<int, int>> MAX2(LIM);
+  auto add = [&](int p, int e) -> void {
+    if (MAX2[p].fi < e) { MAX2[p] = mp(e, MAX2[p].fi); }
+    elif (MAX2[p].se < e) { MAX2[p].se = e; }
+  };
+
   mint prod = 1;
   mint lcm = 1;
 
-  for (auto&& p: primetable(LIM)) {
-    auto& dat = DAT[p];
-    if (len(dat) == 0) continue;
-
-    int sm = 0;
-    int mx = 0, mx2 = 0;
-    for (auto&& [e, i]: dat) {
-      sm += e;
-      if (mx < e) { tie(mx, mx2) = mp(e, mx); }
-      elif (mx2 < e) { mx2 = e; }
-    }
-
-    prod *= mint(p).pow(sm);
-    for (auto&& [e, i]: dat) { PROD[i] *= inv<mint>(p).pow(e); }
-
-    lcm *= mint(p).pow(mx);
-    for (auto&& [e, i]: dat) {
-      int m = (e == mx ? mx2 : mx);
-      if (m < mx) LCM[i] *= inv<mint>(p).pow(mx - m);
-    }
+  VEC(int, A, N);
+  FOR(i, N) {
+    prod *= mint(A[i]);
+    F[i] = factor_by_lpf(A[i], lpf);
+    for (auto&& [p, e]: F[i]) { add(p, e); }
   }
 
-  for (auto&& x: PROD) x *= prod;
-  for (auto&& x: LCM) x *= lcm;
+  FOR(p, LIM) if (MAX2[p].fi) lcm *= mint(p).pow(MAX2[p].fi);
 
-  FOR(i, N) print(PROD[i] - LCM[i]);
+  FOR(i, N) {
+    mint a = prod * inv<mint>(A[i]);
+    mint b = lcm;
+    for (auto&& [p, e]: F[i]) {
+      auto& [mx, mx2] = MAX2[p];
+      int m = (e == mx ? mx2 : mx);
+      if (e > m) b *= inv<mint>(p).pow(e - m);
+    }
+    print(a - b);
+  }
 }
 
 signed main() {
