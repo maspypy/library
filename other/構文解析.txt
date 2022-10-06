@@ -23,7 +23,8 @@ ll factor(string& S, int& p) {
 ll term(string& S, int& p) {
   ll x = factor(S, p);
   while (p != S.size() && S[p] == '*') {
-    x *= term(S, ++p);
+    ll y = factor(S, ++p);
+    x *= y;
   }
   return x;
 }

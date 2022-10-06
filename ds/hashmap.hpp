@@ -28,6 +28,12 @@ struct HashMapLL {
     return vals[i];
   }
 
+  Val get(const ll& key, Val default_value) {
+    int i = index(key);
+    if (!used[i]) return default_value;
+    return vals[i];
+  }
+
   bool contain(const ll& key) {
     int i = index(key);
     return used[i] && keys[i] == key;
