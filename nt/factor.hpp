@@ -63,7 +63,7 @@ vc<pair<ll, int>> factor(ll n) {
   return pf;
 }
 
-vc<pair<int, int>> factor_by_lpf(ll n, vc<int>& lpf) {
+vc<pair<ll, int>> factor_by_lpf(ll n, vc<int>& lpf) {
   vc<pair<int, int>> res;
   while (n > 1) {
     int p = lpf[n];
