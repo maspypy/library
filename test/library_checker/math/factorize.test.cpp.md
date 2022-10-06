@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':question:'
@@ -247,18 +247,18 @@ data:
     \  if (primetest(n)) return n;\n  FOR(_, 100) {\n    ll m = rho(n, rnd(n));\n\
     \    if (primetest(m)) return m;\n    n = m;\n  }\n  cerr << \"failed\" << endl;\n\
     \  assert(false);\n  return -1;\n}\n\n// \u30BD\u30FC\u30C8\u3057\u3066\u304F\u308C\
-    \u308B\nvc<pi> factor(ll n) {\n  assert(n >= 1);\n  vc<pi> pf;\n  FOR3(p, 2, 100)\
-    \ {\n    if (p * p > n) break;\n    if (n % p == 0) {\n      ll e = 0;\n     \
-    \ do { n /= p, e += 1; } while (n % p == 0);\n      pf.eb(p, e);\n    }\n  }\n\
-    \  while (n > 1) {\n    ll p = find_prime_factor(n);\n    ll e = 0;\n    do {\
-    \ n /= p, e += 1; } while (n % p == 0);\n    pf.eb(p, e);\n  }\n  sort(all(pf));\n\
-    \  return pf;\n}\n\nvc<pi> factor_by_lpf(ll n, vc<int>& lpf) {\n  vc<pi> res;\n\
-    \  while (n > 1) {\n    int p = lpf[n];\n    int e = 0;\n    while (n % p == 0)\
-    \ {\n      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n  return res;\n\
-    }\n#line 6 \"test/library_checker/math/factorize.test.cpp\"\n\nvoid solve() {\n\
-    \  LL(Q);\n  FOR(_, Q) {\n    LL(x);\n    auto pf = factor(x);\n    vi ANS;\n\
-    \    for (auto&& [p, e]: pf) { FOR(_, e) ANS.eb(p); }\n    if (len(ANS))\n   \
-    \   print(len(ANS), ANS);\n    else\n      print(0);\n  }\n}\n\nsigned main()\
+    \u308B\nvc<pair<ll, int>> factor(ll n) {\n  assert(n >= 1);\n  vc<pair<ll, int>>\
+    \ pf;\n  FOR3(p, 2, 100) {\n    if (p * p > n) break;\n    if (n % p == 0) {\n\
+    \      ll e = 0;\n      do { n /= p, e += 1; } while (n % p == 0);\n      pf.eb(p,\
+    \ e);\n    }\n  }\n  while (n > 1) {\n    ll p = find_prime_factor(n);\n    ll\
+    \ e = 0;\n    do { n /= p, e += 1; } while (n % p == 0);\n    pf.eb(p, e);\n \
+    \ }\n  sort(all(pf));\n  return pf;\n}\n\nvc<pair<int, int>> factor_by_lpf(ll\
+    \ n, vc<int>& lpf) {\n  vc<pair<int, int>> res;\n  while (n > 1) {\n    int p\
+    \ = lpf[n];\n    int e = 0;\n    while (n % p == 0) {\n      n /= p;\n      ++e;\n\
+    \    }\n    res.eb(p, e);\n  }\n  return res;\n}\n#line 6 \"test/library_checker/math/factorize.test.cpp\"\
+    \n\nvoid solve() {\n  LL(Q);\n  FOR(_, Q) {\n    LL(x);\n    auto pf = factor(x);\n\
+    \    vi ANS;\n    for (auto&& [p, e]: pf) { FOR(_, e) ANS.eb(p); }\n    if (len(ANS))\n\
+    \      print(len(ANS), ANS);\n    else\n      print(0);\n  }\n}\n\nsigned main()\
     \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
     \n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\n#include \"\
@@ -276,7 +276,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/factorize.test.cpp
   requiredBy: []
-  timestamp: '2022-09-24 23:41:28+09:00'
+  timestamp: '2022-10-06 23:14:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/factorize.test.cpp
