@@ -2,7 +2,7 @@
 
 template <typename T>
 struct Function_on_Divisors {
-  vc<pi> pf;
+  vc<pair<ll, int>> pf;
   vc<ll> divs;
   vc<T> dat;
 
