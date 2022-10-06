@@ -13,7 +13,7 @@ void solve() {
   const int LIM = 1'000'000;
   auto lpf = lpf_table(LIM);
 
-  vvc<pair<int, int>> F(N);
+  vvc<pair<ll, int>> F(N);
 
   vc<pair<int, int>> MAX2(LIM);
   auto add = [&](int p, int e) -> void {
