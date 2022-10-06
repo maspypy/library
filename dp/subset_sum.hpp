@@ -2,9 +2,9 @@
 // 非負重み vals を使って、target を作れるかどうか？
 // 作れるならば復元、そうでないならば {} を返す
 // O(N max(vals)) 時間
-template<typename INT>
+template <typename INT>
 vc<int> subset_sum(vc<INT>& vals, int target) {
-  if (target == 0) return {};
+  if (target <= 0) return {};
   int n = len(vals);
   int mx = MAX(vals);
   int b = 0, sb = 0;
