@@ -86,10 +86,10 @@ data:
     \ m;\r\n  int s;\r\n  u64 x;\r\n};\r\n#line 3 \"mod/binomial.hpp\"\nstruct Binomial\
     \ {\r\n  // mod \u3092\u7D20\u56E0\u6570\u5206\u89E3\u3057\u3066\u968E\u4E57\u3092\
     \u524D\u8A08\u7B97 \u2192 \u4E8C\u9805\u4FC2\u6570\u30AF\u30A8\u30EA\r\n  // O(mod)\
-    \ \u6642\u9593\u524D\u8A08\u7B97\r\n  int mod;\r\n  vc<pi> pf;\r\n  vc<int> pp;\r\
-    \n  vc<vc<int>> fact;\r\n  vc<int> crt_coef;\r\n\r\n  Binomial(int mod) : mod(mod)\
-    \ {\r\n    pf = factor(mod);\r\n    int S = len(pf);\r\n    pp.resize(S);\r\n\
-    \    fact.resize(S);\r\n    crt_coef.resize(S);\r\n    FOR(s, S) {\r\n      auto\
+    \ \u6642\u9593\u524D\u8A08\u7B97\r\n  int mod;\r\n  vc<pair<ll, int>> pf;\r\n\
+    \  vc<int> pp;\r\n  vc<vc<int>> fact;\r\n  vc<int> crt_coef;\r\n\r\n  Binomial(int\
+    \ mod) : mod(mod) {\r\n    pf = factor(mod);\r\n    int S = len(pf);\r\n    pp.resize(S);\r\
+    \n    fact.resize(S);\r\n    crt_coef.resize(S);\r\n    FOR(s, S) {\r\n      auto\
     \ [p, e] = pf[s];\r\n      pp[s] = 1;\r\n      FOR(e) pp[s] *= p;\r\n      auto&\
     \ F = fact[s];\r\n      // mod pp \u3067\u306E fact \u306E\u5468\u671F\r\n   \
     \   F.resize(pp[s] * 2);\r\n      F[0] = 1;\r\n      fast_div fd_p(p);\r\n   \
@@ -116,10 +116,10 @@ data:
   code: "#include \"nt/factor.hpp\"\r\n#include \"mod/fast_div.hpp\"\r\nstruct Binomial\
     \ {\r\n  // mod \u3092\u7D20\u56E0\u6570\u5206\u89E3\u3057\u3066\u968E\u4E57\u3092\
     \u524D\u8A08\u7B97 \u2192 \u4E8C\u9805\u4FC2\u6570\u30AF\u30A8\u30EA\r\n  // O(mod)\
-    \ \u6642\u9593\u524D\u8A08\u7B97\r\n  int mod;\r\n  vc<pi> pf;\r\n  vc<int> pp;\r\
-    \n  vc<vc<int>> fact;\r\n  vc<int> crt_coef;\r\n\r\n  Binomial(int mod) : mod(mod)\
-    \ {\r\n    pf = factor(mod);\r\n    int S = len(pf);\r\n    pp.resize(S);\r\n\
-    \    fact.resize(S);\r\n    crt_coef.resize(S);\r\n    FOR(s, S) {\r\n      auto\
+    \ \u6642\u9593\u524D\u8A08\u7B97\r\n  int mod;\r\n  vc<pair<ll, int>> pf;\r\n\
+    \  vc<int> pp;\r\n  vc<vc<int>> fact;\r\n  vc<int> crt_coef;\r\n\r\n  Binomial(int\
+    \ mod) : mod(mod) {\r\n    pf = factor(mod);\r\n    int S = len(pf);\r\n    pp.resize(S);\r\
+    \n    fact.resize(S);\r\n    crt_coef.resize(S);\r\n    FOR(s, S) {\r\n      auto\
     \ [p, e] = pf[s];\r\n      pp[s] = 1;\r\n      FOR(e) pp[s] *= p;\r\n      auto&\
     \ F = fact[s];\r\n      // mod pp \u3067\u306E fact \u306E\u5468\u671F\r\n   \
     \   F.resize(pp[s] * 2);\r\n      F[0] = 1;\r\n      fast_div fd_p(p);\r\n   \
@@ -150,7 +150,7 @@ data:
   isVerificationFile: false
   path: mod/binomial.hpp
   requiredBy: []
-  timestamp: '2022-10-06 23:14:10+09:00'
+  timestamp: '2022-10-06 23:28:21+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/math/binomial_coefficient.test.cpp
