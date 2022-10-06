@@ -24,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1262.test.cpp
+    title: test/yukicoder/1262.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -123,6 +126,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/NTL_1_D.test.cpp
+  - test/yukicoder/1262.test.cpp
   - test/library_checker/math/tetration.test.cpp
 documentation_of: nt/euler_phi.hpp
 layout: document

@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/lcm_convolution.hpp
     title: nt/lcm_convolution.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: nt/lpf_table.hpp
     title: nt/lpf_table.hpp
   - icon: ':heavy_check_mark:'
@@ -97,6 +97,9 @@ data:
     path: test/mytest/primesum_mod6.test.cpp
     title: test/mytest/primesum_mod6.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1262.test.cpp
+    title: test/yukicoder/1262.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1276.test.cpp
     title: test/yukicoder/1276.test.cpp
   - icon: ':heavy_check_mark:'
@@ -105,6 +108,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1392.test.cpp
     title: test/yukicoder/1392.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1411.test.cpp
+    title: test/yukicoder/1411.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1666.test.cpp
     title: test/yukicoder/1666.test.cpp
@@ -166,6 +172,8 @@ data:
   - test/mytest/primesum_mod6.test.cpp
   - test/aoj/NTL_1_D.test.cpp
   - test/yukicoder/1321.test.cpp
+  - test/yukicoder/1262.test.cpp
+  - test/yukicoder/1411.test.cpp
   - test/yukicoder/1392.test.cpp
   - test/yukicoder/1276.test.cpp
   - test/yukicoder/1666.test.cpp

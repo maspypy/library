@@ -34,6 +34,9 @@ data:
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1262.test.cpp
+    title: test/yukicoder/1262.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1666.test.cpp
     title: test/yukicoder/1666.test.cpp
   - icon: ':heavy_check_mark:'
@@ -92,6 +95,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/NTL_1_D.test.cpp
+  - test/yukicoder/1262.test.cpp
   - test/yukicoder/1666.test.cpp
   - test/yukicoder/1760.test.cpp
   - test/library_checker/math/tetration.test.cpp

@@ -15,8 +15,8 @@ data:
     \ \u3092\u4F7F\u3063\u3066\u3001target \u3092\u4F5C\u308C\u308B\u304B\u3069\u3046\
     \u304B\uFF1F\n// \u4F5C\u308C\u308B\u306A\u3089\u3070\u5FA9\u5143\u3001\u305D\u3046\
     \u3067\u306A\u3044\u306A\u3089\u3070 {} \u3092\u8FD4\u3059\n// O(N max(vals))\
-    \ \u6642\u9593\ntemplate<typename INT>\nvc<int> subset_sum(vc<INT>& vals, int\
-    \ target) {\n  if (target == 0) return {};\n  int n = len(vals);\n  int mx = MAX(vals);\n\
+    \ \u6642\u9593\ntemplate <typename INT>\nvc<int> subset_sum(vc<INT>& vals, int\
+    \ target) {\n  if (target <= 0) return {};\n  int n = len(vals);\n  int mx = MAX(vals);\n\
     \  int b = 0, sb = 0;\n  while (b < n && sb + vals[b] <= target) { sb += vals[b++];\
     \ }\n  if (b == n && sb != target) return {};\n\n  int off = target - mx + 1;\n\
     \  vc<int> dp(2 * mx, -1);\n  vv(int, PAR, n, 2 * mx, -1);\n  dp[sb - off] = b;\n\
@@ -35,8 +35,8 @@ data:
   code: "\n// \u975E\u8CA0\u91CD\u307F vals \u3092\u4F7F\u3063\u3066\u3001target \u3092\
     \u4F5C\u308C\u308B\u304B\u3069\u3046\u304B\uFF1F\n// \u4F5C\u308C\u308B\u306A\u3089\
     \u3070\u5FA9\u5143\u3001\u305D\u3046\u3067\u306A\u3044\u306A\u3089\u3070 {} \u3092\
-    \u8FD4\u3059\n// O(N max(vals)) \u6642\u9593\ntemplate<typename INT>\nvc<int>\
-    \ subset_sum(vc<INT>& vals, int target) {\n  if (target == 0) return {};\n  int\
+    \u8FD4\u3059\n// O(N max(vals)) \u6642\u9593\ntemplate <typename INT>\nvc<int>\
+    \ subset_sum(vc<INT>& vals, int target) {\n  if (target <= 0) return {};\n  int\
     \ n = len(vals);\n  int mx = MAX(vals);\n  int b = 0, sb = 0;\n  while (b < n\
     \ && sb + vals[b] <= target) { sb += vals[b++]; }\n  if (b == n && sb != target)\
     \ return {};\n\n  int off = target - mx + 1;\n  vc<int> dp(2 * mx, -1);\n  vv(int,\
@@ -56,7 +56,7 @@ data:
   isVerificationFile: false
   path: dp/subset_sum.hpp
   requiredBy: []
-  timestamp: '2022-05-01 01:13:06+09:00'
+  timestamp: '2022-10-06 22:48:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/4_2.test.cpp

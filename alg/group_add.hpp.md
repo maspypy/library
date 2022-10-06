@@ -193,6 +193,9 @@ data:
     path: test/yukicoder/1269.test.cpp
     title: test/yukicoder/1269.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1270.test.cpp
+    title: test/yukicoder/1270.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1311.test.cpp
     title: test/yukicoder/1311.test.cpp
   - icon: ':heavy_check_mark:'
@@ -335,6 +338,7 @@ data:
   - test/yukicoder/1197.test.cpp
   - test/yukicoder/1919.test.cpp
   - test/yukicoder/2065.test.cpp
+  - test/yukicoder/1270.test.cpp
   - test/yukicoder/1977.test.cpp
   - test/library_checker/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp

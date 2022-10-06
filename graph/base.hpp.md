@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
+  - icon: ':warning:'
+    path: game/graph_game.hpp
+    title: game/graph_game.hpp
   - icon: ':heavy_check_mark:'
     path: geo/manhattan_mst.hpp
     title: geo/manhattan_mst.hpp
@@ -98,9 +101,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
-  - icon: ':warning:'
-    path: graph/solve_dag_game.hpp
-    title: graph/solve_dag_game.hpp
   - icon: ':warning:'
     path: graph/statictreemonoid.hpp
     title: graph/statictreemonoid.hpp
@@ -355,8 +355,14 @@ data:
     path: test/yukicoder/1790.test.cpp
     title: test/yukicoder/1790.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1813.test.cpp
+    title: test/yukicoder/1813.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1868.test.cpp
     title: test/yukicoder/1868.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1911.test.cpp
+    title: test/yukicoder/1911.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1976.test.cpp
     title: test/yukicoder/1976.test.cpp
@@ -473,6 +479,7 @@ data:
   requiredBy:
   - string/suffix_tree.hpp
   - string/suffix_automaton.hpp
+  - game/graph_game.hpp
   - flow/bipartite.hpp
   - geo/manhattan_mst.hpp
   - graph/rerooting_dp.hpp
@@ -487,7 +494,6 @@ data:
   - graph/check_bipartite.hpp
   - graph/dsu_on_tree.hpp
   - graph/functional.hpp
-  - graph/solve_dag_game.hpp
   - graph/lazytreemonoid.hpp
   - graph/tree_dp.hpp
   - graph/minimum_hamiltonian_cycle.hpp
@@ -553,8 +559,10 @@ data:
   - test/yukicoder/899.test.cpp
   - test/yukicoder/1002.test.cpp
   - test/yukicoder/1983.test.cpp
+  - test/yukicoder/1911.test.cpp
   - test/yukicoder/1170.test.cpp
   - test/yukicoder/1038.test.cpp
+  - test/yukicoder/1813.test.cpp
   - test/yukicoder/1601.test.cpp
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1418.test.cpp

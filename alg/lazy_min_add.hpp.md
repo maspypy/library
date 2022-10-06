@@ -15,6 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1234.test.cpp
     title: test/yukicoder/1234.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1270.test.cpp
+    title: test/yukicoder/1270.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -52,6 +55,7 @@ data:
   verifiedWith:
   - test/aoj/DSL_2_H.test.cpp
   - test/yukicoder/1234.test.cpp
+  - test/yukicoder/1270.test.cpp
 documentation_of: alg/lazy_min_add.hpp
 layout: document
 redirect_from:

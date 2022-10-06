@@ -30,6 +30,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1479.test.cpp
     title: test/yukicoder/1479.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1911.test.cpp
+    title: test/yukicoder/1911.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -128,6 +131,7 @@ data:
   - test/aoj/2251_2.test.cpp
   - test/aoj/2251_1.test.cpp
   - test/yukicoder/1479.test.cpp
+  - test/yukicoder/1911.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
 documentation_of: graph/check_bipartite.hpp
 layout: document

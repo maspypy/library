@@ -27,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1293.test.cpp
     title: test/yukicoder/1293.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1813.test.cpp
+    title: test/yukicoder/1813.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -125,6 +128,7 @@ data:
   - test/aoj/0275.test.cpp
   - test/yukicoder/1293.test.cpp
   - test/yukicoder/1170.test.cpp
+  - test/yukicoder/1813.test.cpp
   - test/library_checker/math/twosat.test.cpp
   - test/library_checker/graph/scc.test.cpp
 documentation_of: graph/strongly_connected_component.hpp

@@ -46,6 +46,9 @@ data:
     path: test/yukicoder/1234.test.cpp
     title: test/yukicoder/1234.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1270.test.cpp
+    title: test/yukicoder/1270.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1548.test.cpp
     title: test/yukicoder/1548.test.cpp
   - icon: ':heavy_check_mark:'
@@ -217,6 +220,7 @@ data:
   - test/yukicoder/1234.test.cpp
   - test/yukicoder/749.test.cpp
   - test/yukicoder/1197.test.cpp
+  - test/yukicoder/1270.test.cpp
   - test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - test/atcoder/abc270_f.test.cpp
 documentation_of: ds/lazysegtree.hpp

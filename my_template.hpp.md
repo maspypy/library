@@ -219,7 +219,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc270_g.test.cpp
     title: test/atcoder/abc270_g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -826,8 +826,14 @@ data:
     path: test/yukicoder/1260.test.cpp
     title: test/yukicoder/1260.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1262.test.cpp
+    title: test/yukicoder/1262.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1269.test.cpp
     title: test/yukicoder/1269.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1270.test.cpp
+    title: test/yukicoder/1270.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1276.test.cpp
     title: test/yukicoder/1276.test.cpp
@@ -868,11 +874,17 @@ data:
     path: test/yukicoder/1344.test.cpp
     title: test/yukicoder/1344.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1383.test.cpp
+    title: test/yukicoder/1383.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1392.test.cpp
     title: test/yukicoder/1392.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1400.test.cpp
     title: test/yukicoder/1400.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1411.test.cpp
+    title: test/yukicoder/1411.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1418.test.cpp
     title: test/yukicoder/1418.test.cpp
@@ -1003,6 +1015,9 @@ data:
     path: test/yukicoder/1810.test.cpp
     title: test/yukicoder/1810.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1813.test.cpp
+    title: test/yukicoder/1813.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1818.test.cpp
     title: test/yukicoder/1818.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1018,6 +1033,9 @@ data:
     path: test/yukicoder/1848.test.cpp
     title: test/yukicoder/1848.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1857.test.cpp
+    title: test/yukicoder/1857.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1868.test.cpp
     title: test/yukicoder/1868.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1026,6 +1044,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1891.test.cpp
     title: test/yukicoder/1891.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1911.test.cpp
+    title: test/yukicoder/1911.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1919.test.cpp
     title: test/yukicoder/1919.test.cpp
@@ -1125,9 +1146,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://trap.jp/post/1224/
@@ -1283,7 +1304,7 @@ data:
   requiredBy:
   - graph/bipartite_coloring.hpp
   timestamp: '2022-09-24 23:41:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/prime_sum.test.cpp
   - test/mytest/primesum_mod4.test.cpp
@@ -1418,26 +1439,31 @@ data:
   - test/yukicoder/686.test.cpp
   - test/yukicoder/1002.test.cpp
   - test/yukicoder/2062.test.cpp
+  - test/yukicoder/1262.test.cpp
   - test/yukicoder/1810.test.cpp
   - test/yukicoder/1989.test.cpp
   - test/yukicoder/1441.test.cpp
   - test/yukicoder/1983.test.cpp
+  - test/yukicoder/1911.test.cpp
   - test/yukicoder/1625_2.test.cpp
   - test/yukicoder/655.test.cpp
   - test/yukicoder/1493.test.cpp
   - test/yukicoder/1288.test.cpp
   - test/yukicoder/1625.test.cpp
   - test/yukicoder/1170.test.cpp
+  - test/yukicoder/1857.test.cpp
   - test/yukicoder/789.test.cpp
   - test/yukicoder/1441_2.test.cpp
   - test/yukicoder/1141.test.cpp
   - test/yukicoder/1292.test.cpp
+  - test/yukicoder/1411.test.cpp
   - test/yukicoder/1038.test.cpp
   - test/yukicoder/1319.test.cpp
   - test/yukicoder/1593.test.cpp
   - test/yukicoder/1145.test.cpp
   - test/yukicoder/1500.test.cpp
   - test/yukicoder/1392.test.cpp
+  - test/yukicoder/1813.test.cpp
   - test/yukicoder/177.test.cpp
   - test/yukicoder/4954.test.cpp
   - test/yukicoder/1036_3.test.cpp
@@ -1473,6 +1499,7 @@ data:
   - test/yukicoder/919.test.cpp
   - test/yukicoder/1643.test.cpp
   - test/yukicoder/1435.test.cpp
+  - test/yukicoder/1383.test.cpp
   - test/yukicoder/2066.test.cpp
   - test/yukicoder/1320.test.cpp
   - test/yukicoder/1269.test.cpp
@@ -1492,6 +1519,7 @@ data:
   - test/yukicoder/1676.test.cpp
   - test/yukicoder/1649.test.cpp
   - test/yukicoder/1760.test.cpp
+  - test/yukicoder/1270.test.cpp
   - test/yukicoder/1977.test.cpp
   - test/yukicoder/2012.test.cpp
   - test/yukicoder/1301.test.cpp

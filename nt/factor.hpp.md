@@ -58,6 +58,12 @@ data:
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1262.test.cpp
+    title: test/yukicoder/1262.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1411.test.cpp
+    title: test/yukicoder/1411.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1593.test.cpp
     title: test/yukicoder/1593.test.cpp
   - icon: ':heavy_check_mark:'
@@ -166,6 +172,8 @@ data:
   - test/aoj/ITP1_D_D.test.cpp
   - test/yukicoder/187.test.cpp
   - test/yukicoder/1728.test.cpp
+  - test/yukicoder/1262.test.cpp
+  - test/yukicoder/1411.test.cpp
   - test/yukicoder/1593.test.cpp
   - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/tetration.test.cpp

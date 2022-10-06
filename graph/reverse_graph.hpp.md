@@ -6,8 +6,8 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: graph/solve_dag_game.hpp
-    title: graph/solve_dag_game.hpp
+    path: game/graph_game.hpp
+    title: game/graph_game.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1601.test.cpp
@@ -62,20 +62,21 @@ data:
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
     \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/reverse_graph.hpp\"\
-    \ntemplate <typename Graph>\r\nGraph reverse_graph(Graph& G) {\r\n  assert(G.is_directed());\r\
-    \n  Graph G1(G.N);\r\n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost,\
-    \ e.id); }\r\n  G1.build();\r\n  return G1;\r\n}\r\n"
-  code: "#include \"graph/base.hpp\"\r\ntemplate <typename Graph>\r\nGraph reverse_graph(Graph&\
-    \ G) {\r\n  assert(G.is_directed());\r\n  Graph G1(G.N);\r\n  for (auto&& e: G.edges)\
+    \n\r\ntemplate <typename T>\r\nGraph<T, 1> reverse_graph(Graph<T, 1>& G) {\r\n\
+    \  assert(G.is_directed());\r\n  Graph<T, 1> G1(G.N);\r\n  for (auto&& e: G.edges)\
     \ { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.build();\r\n  return G1;\r\n\
     }\r\n"
+  code: "#include \"graph/base.hpp\"\r\n\r\ntemplate <typename T>\r\nGraph<T, 1> reverse_graph(Graph<T,\
+    \ 1>& G) {\r\n  assert(G.is_directed());\r\n  Graph<T, 1> G1(G.N);\r\n  for (auto&&\
+    \ e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.build();\r\n  return\
+    \ G1;\r\n}\r\n"
   dependsOn:
   - graph/base.hpp
   isVerificationFile: false
   path: graph/reverse_graph.hpp
   requiredBy:
-  - graph/solve_dag_game.hpp
-  timestamp: '2022-08-30 02:42:36+09:00'
+  - game/graph_game.hpp
+  timestamp: '2022-10-06 22:48:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1601.test.cpp
