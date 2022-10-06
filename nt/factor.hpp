@@ -42,9 +42,9 @@ ll find_prime_factor(ll n) {
 }
 
 // ソートしてくれる
-vc<pi> factor(ll n) {
+vc<pair<ll, int>> factor(ll n) {
   assert(n >= 1);
-  vc<pi> pf;
+  vc<pair<ll, int>> pf;
   FOR3(p, 2, 100) {
     if (p * p > n) break;
     if (n % p == 0) {
@@ -63,8 +63,8 @@ vc<pi> factor(ll n) {
   return pf;
 }
 
-vc<pi> factor_by_lpf(ll n, vc<int>& lpf) {
-  vc<pi> res;
+vc<pair<int, int>> factor_by_lpf(ll n, vc<int>& lpf) {
+  vc<pair<int, int>> res;
   while (n > 1) {
     int p = lpf[n];
     int e = 0;
