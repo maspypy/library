@@ -9,12 +9,12 @@ data:
     title: nt/primetest.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1728.test.cpp
     title: test/yukicoder/1728.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n  using i64 = int64_t;\r\
@@ -72,42 +72,15 @@ data:
     \ return res;\n}\n#line 2 \"nt/function_on_divisors.hpp\"\n\ntemplate <typename\
     \ T>\nstruct Function_on_Divisors {\n  vc<pair<ll, int>> pf;\n  vc<ll> divs;\n\
     \  vc<T> dat;\n\n  Function_on_Divisors(ll N) : Function_on_Divisors(factor(N))\
-    \ {}\n  Function_on_Divisors(vc<pi> pf) : pf(pf) {\n    ll n = 1;\n    for (auto&&\
-    \ [p, e]: pf) n *= (e + 1);\n    divs.reserve(n);\n    divs = {1};\n    for (auto&&\
-    \ [p, e]: pf) {\n      int n = len(divs);\n      ll q = p;\n      FOR(e) {\n \
-    \       FOR(i, n) divs.eb(divs[i] * q);\n        q *= p;\n      }\n    }\n  }\n\
-    \n  // f(p, k) \u3092\u4E0E\u3048\u308B \u2192 \u4E57\u6CD5\u7684\u306B\u62E1\u5F35\
-    \n  template <typename F>\n  void set_multiplicative(F f) {\n    dat.reserve(len(divs));\n\
-    \    dat = {T(1)};\n    for (auto&& [p, e]: pf) {\n      int n = len(divs);\n\
-    \      FOR(k, 1, e + 1) { FOR(i, n) dat.eb(dat[i] * f(p, k)); }\n    }\n  }\n\n\
-    \  void set_euler_phi() {\n    dat.resize(len(divs));\n    FOR(i, len(divs)) dat[i]\
-    \ = T(divs[i]);\n    divisor_mobius();\n  }\n\n  void multiplier_zeta() {\n  \
-    \  ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod = k * (e + 1);\n   \
-    \   FOR(i, len(divs) / mod) {\n        FOR_R(j, mod - k) { dat[mod * i + j] +=\
-    \ dat[mod * i + j + k]; }\n      }\n      k *= (e + 1);\n    }\n  }\n\n  void\
-    \ multiplier_mobius() {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll\
-    \ mod = k * (e + 1);\n      FOR(i, len(divs) / mod) {\n        FOR(j, mod - k)\
-    \ { dat[mod * i + j] -= dat[mod * i + j + k]; }\n      }\n      k *= (e + 1);\n\
-    \    }\n  }\n\n  void divisor_zeta() {\n    ll k = 1;\n    for (auto&& [p, e]:\
-    \ pf) {\n      ll mod = k * (e + 1);\n      FOR(i, len(divs) / mod) {\n      \
-    \  FOR(j, mod - k) { dat[mod * i + j + k] += dat[mod * i + j]; }\n      }\n  \
-    \    k *= (e + 1);\n    }\n  }\n\n  void divisor_mobius() {\n    ll k = 1;\n \
-    \   for (auto&& [p, e]: pf) {\n      ll mod = k * (e + 1);\n      FOR(i, len(divs)\
-    \ / mod) {\n        FOR_R(j, mod - k) { dat[mod * i + j + k] -= dat[mod * i +\
-    \ j]; }\n      }\n      k *= (e + 1);\n    }\n  }\n\n  vc<pair<ll, T>> get() {\n\
-    \    vc<pair<ll, T>> res;\n    FOR(i, len(divs)) { res.eb(divs[i], dat[i]); }\n\
-    \    return res;\n  }\n};\n"
-  code: "#include \"nt/factor.hpp\"\n\ntemplate <typename T>\nstruct Function_on_Divisors\
-    \ {\n  vc<pair<ll, int>> pf;\n  vc<ll> divs;\n  vc<T> dat;\n\n  Function_on_Divisors(ll\
-    \ N) : Function_on_Divisors(factor(N)) {}\n  Function_on_Divisors(vc<pi> pf) :\
-    \ pf(pf) {\n    ll n = 1;\n    for (auto&& [p, e]: pf) n *= (e + 1);\n    divs.reserve(n);\n\
-    \    divs = {1};\n    for (auto&& [p, e]: pf) {\n      int n = len(divs);\n  \
-    \    ll q = p;\n      FOR(e) {\n        FOR(i, n) divs.eb(divs[i] * q);\n    \
-    \    q *= p;\n      }\n    }\n  }\n\n  // f(p, k) \u3092\u4E0E\u3048\u308B \u2192\
-    \ \u4E57\u6CD5\u7684\u306B\u62E1\u5F35\n  template <typename F>\n  void set_multiplicative(F\
-    \ f) {\n    dat.reserve(len(divs));\n    dat = {T(1)};\n    for (auto&& [p, e]:\
-    \ pf) {\n      int n = len(divs);\n      FOR(k, 1, e + 1) { FOR(i, n) dat.eb(dat[i]\
-    \ * f(p, k)); }\n    }\n  }\n\n  void set_euler_phi() {\n    dat.resize(len(divs));\n\
+    \ {}\n  Function_on_Divisors(vc<pair<ll, int>> pf) : pf(pf) {\n    ll n = 1;\n\
+    \    for (auto&& [p, e]: pf) n *= (e + 1);\n    divs.reserve(n);\n    divs = {1};\n\
+    \    for (auto&& [p, e]: pf) {\n      int n = len(divs);\n      ll q = p;\n  \
+    \    FOR(e) {\n        FOR(i, n) divs.eb(divs[i] * q);\n        q *= p;\n    \
+    \  }\n    }\n  }\n\n  // f(p, k) \u3092\u4E0E\u3048\u308B \u2192 \u4E57\u6CD5\u7684\
+    \u306B\u62E1\u5F35\n  template <typename F>\n  void set_multiplicative(F f) {\n\
+    \    dat.reserve(len(divs));\n    dat = {T(1)};\n    for (auto&& [p, e]: pf) {\n\
+    \      int n = len(divs);\n      FOR(k, 1, e + 1) { FOR(i, n) dat.eb(dat[i] *\
+    \ f(p, k)); }\n    }\n  }\n\n  void set_euler_phi() {\n    dat.resize(len(divs));\n\
     \    FOR(i, len(divs)) dat[i] = T(divs[i]);\n    divisor_mobius();\n  }\n\n  void\
     \ multiplier_zeta() {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll\
     \ mod = k * (e + 1);\n      FOR(i, len(divs) / mod) {\n        FOR_R(j, mod -\
@@ -124,14 +97,41 @@ data:
     \ k] -= dat[mod * i + j]; }\n      }\n      k *= (e + 1);\n    }\n  }\n\n  vc<pair<ll,\
     \ T>> get() {\n    vc<pair<ll, T>> res;\n    FOR(i, len(divs)) { res.eb(divs[i],\
     \ dat[i]); }\n    return res;\n  }\n};\n"
+  code: "#include \"nt/factor.hpp\"\n\ntemplate <typename T>\nstruct Function_on_Divisors\
+    \ {\n  vc<pair<ll, int>> pf;\n  vc<ll> divs;\n  vc<T> dat;\n\n  Function_on_Divisors(ll\
+    \ N) : Function_on_Divisors(factor(N)) {}\n  Function_on_Divisors(vc<pair<ll,\
+    \ int>> pf) : pf(pf) {\n    ll n = 1;\n    for (auto&& [p, e]: pf) n *= (e + 1);\n\
+    \    divs.reserve(n);\n    divs = {1};\n    for (auto&& [p, e]: pf) {\n      int\
+    \ n = len(divs);\n      ll q = p;\n      FOR(e) {\n        FOR(i, n) divs.eb(divs[i]\
+    \ * q);\n        q *= p;\n      }\n    }\n  }\n\n  // f(p, k) \u3092\u4E0E\u3048\
+    \u308B \u2192 \u4E57\u6CD5\u7684\u306B\u62E1\u5F35\n  template <typename F>\n\
+    \  void set_multiplicative(F f) {\n    dat.reserve(len(divs));\n    dat = {T(1)};\n\
+    \    for (auto&& [p, e]: pf) {\n      int n = len(divs);\n      FOR(k, 1, e +\
+    \ 1) { FOR(i, n) dat.eb(dat[i] * f(p, k)); }\n    }\n  }\n\n  void set_euler_phi()\
+    \ {\n    dat.resize(len(divs));\n    FOR(i, len(divs)) dat[i] = T(divs[i]);\n\
+    \    divisor_mobius();\n  }\n\n  void multiplier_zeta() {\n    ll k = 1;\n   \
+    \ for (auto&& [p, e]: pf) {\n      ll mod = k * (e + 1);\n      FOR(i, len(divs)\
+    \ / mod) {\n        FOR_R(j, mod - k) { dat[mod * i + j] += dat[mod * i + j +\
+    \ k]; }\n      }\n      k *= (e + 1);\n    }\n  }\n\n  void multiplier_mobius()\
+    \ {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod = k * (e + 1);\n\
+    \      FOR(i, len(divs) / mod) {\n        FOR(j, mod - k) { dat[mod * i + j] -=\
+    \ dat[mod * i + j + k]; }\n      }\n      k *= (e + 1);\n    }\n  }\n\n  void\
+    \ divisor_zeta() {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod\
+    \ = k * (e + 1);\n      FOR(i, len(divs) / mod) {\n        FOR(j, mod - k) { dat[mod\
+    \ * i + j + k] += dat[mod * i + j]; }\n      }\n      k *= (e + 1);\n    }\n \
+    \ }\n\n  void divisor_mobius() {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n\
+    \      ll mod = k * (e + 1);\n      FOR(i, len(divs) / mod) {\n        FOR_R(j,\
+    \ mod - k) { dat[mod * i + j + k] -= dat[mod * i + j]; }\n      }\n      k *=\
+    \ (e + 1);\n    }\n  }\n\n  vc<pair<ll, T>> get() {\n    vc<pair<ll, T>> res;\n\
+    \    FOR(i, len(divs)) { res.eb(divs[i], dat[i]); }\n    return res;\n  }\n};\n"
   dependsOn:
   - nt/factor.hpp
   - nt/primetest.hpp
   isVerificationFile: false
   path: nt/function_on_divisors.hpp
   requiredBy: []
-  timestamp: '2022-10-07 01:22:59+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-10-07 01:35:23+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1728.test.cpp
 documentation_of: nt/function_on_divisors.hpp
