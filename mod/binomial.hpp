@@ -73,7 +73,7 @@ struct Binomial {
       ll y = b.se * c.se % fd_pp;
       int phi = pp[s] - pp[s] / pf[s].fi;
       x = x * mod_pow(y, phi - 1, fd_pp) % fd_pp;
-      FOR(min(e, pf[s].se)) x *= p;
+      FOR(min<int>(e, pf[s].se)) x *= p;
       x = x % fd_pp;
       ANS += x * crt_coef[s];
     }
