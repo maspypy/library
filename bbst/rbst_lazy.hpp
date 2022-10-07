@@ -101,6 +101,15 @@ struct RBST_Lazy {
     merge(root, r_root);
   }
 
+  void apply(Node *&root, const A &a) {
+    root->x = Lazy::act(root->x, a);
+    root->prod = Lazy::act(root->prod, a);
+    root->a = Monoid_A::op(root->a, a);
+    root->propagated = 0;
+    prop(root);
+    update(root);
+  }
+
   // root の k 番目に n を挿入する
   void insert(Node *&root, int k, Node *n) {
     if (!root) {

@@ -21,6 +21,8 @@ struct PowerQuery {
     return res;
   }
 
+  X operator[](ll n) { return (*this)(n); }
+
 private:
   vc<X> make_pow(X a) {
     vc<X> res = {Mono::unit()};
