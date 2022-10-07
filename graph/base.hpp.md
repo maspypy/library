@@ -65,6 +65,9 @@ data:
   - icon: ':warning:'
     path: graph/find_nontransitive_triple.hpp
     title: graph/find_nontransitive_triple.hpp
+  - icon: ':warning:'
+    path: graph/find_odd_cycle.hpp
+    title: graph/find_odd_cycle.hpp
   - icon: ':heavy_check_mark:'
     path: graph/functional.hpp
     title: graph/functional.hpp
@@ -502,6 +505,7 @@ data:
   - graph/dualtreemonoid.hpp
   - graph/maximum_independent_set.hpp
   - graph/mincostcycle.hpp
+  - graph/find_odd_cycle.hpp
   - graph/maximum_antichain.hpp
   - graph/bfs01.hpp
   - graph/twosat.hpp

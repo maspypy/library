@@ -77,6 +77,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/product_of_f_rk_x.hpp
+    title: poly/product_of_f_rk_x.hpp
   - icon: ':warning:'
     path: poly/product_of_one_minus_xn.hpp
     title: poly/product_of_one_minus_xn.hpp
@@ -457,6 +460,9 @@ data:
     path: test/yukicoder/2062.test.cpp
     title: test/yukicoder/2062.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2097.test.cpp
+    title: test/yukicoder/2097.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
   - icon: ':heavy_check_mark:'
@@ -672,6 +678,7 @@ data:
   - poly/fps_pow.hpp
   - poly/convolution.hpp
   - poly/fps_composition.hpp
+  - poly/product_of_f_rk_x.hpp
   - poly/poly_gcd.hpp
   - poly/lagrange_interpolate_iota.hpp
   - poly/product_of_one_minus_xn.hpp
@@ -705,6 +712,7 @@ data:
   - test/yukicoder/426.test.cpp
   - test/yukicoder/1260.test.cpp
   - test/yukicoder/1548.test.cpp
+  - test/yukicoder/2097.test.cpp
   - test/yukicoder/1728.test.cpp
   - test/yukicoder/1547.test.cpp
   - test/yukicoder/2003.test.cpp

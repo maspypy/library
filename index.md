@@ -532,6 +532,9 @@ data:
     - icon: ':warning:'
       path: graph/find_nontransitive_triple.hpp
       title: graph/find_nontransitive_triple.hpp
+    - icon: ':warning:'
+      path: graph/find_odd_cycle.hpp
+      title: graph/find_odd_cycle.hpp
     - icon: ':heavy_check_mark:'
       path: graph/functional.hpp
       title: graph/functional.hpp
@@ -1001,6 +1004,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/prefix_product_of_poly.hpp
       title: poly/prefix_product_of_poly.hpp
+    - icon: ':heavy_check_mark:'
+      path: poly/product_of_f_rk_x.hpp
+      title: poly/product_of_f_rk_x.hpp
     - icon: ':warning:'
       path: poly/product_of_one_minus_xn.hpp
       title: poly/product_of_one_minus_xn.hpp
@@ -2029,6 +2035,9 @@ data:
       path: test/yukicoder/1321.test.cpp
       title: test/yukicoder/1321.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1324.test.cpp
+      title: test/yukicoder/1324.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1326.test.cpp
       title: test/yukicoder/1326.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2250,6 +2259,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/2066.test.cpp
       title: test/yukicoder/2066.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/2097.test.cpp
+      title: test/yukicoder/2097.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/235.test.cpp
       title: test/yukicoder/235.test.cpp

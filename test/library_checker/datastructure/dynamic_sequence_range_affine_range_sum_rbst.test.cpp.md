@@ -351,24 +351,27 @@ data:
     \ = Lazy::act(m_root->x, a);\n    m_root->prod = Lazy::act(m_root->prod, a);\n\
     \    m_root->a = Monoid_A::op(m_root->a, a);\n    m_root->propagated = 0;\n  \
     \  prop(m_root);\n    update(m_root);\n    merge(root, m_root);\n    merge(root,\
-    \ r_root);\n  }\n\n  // root \u306E k \u756A\u76EE\u306B n \u3092\u633F\u5165\u3059\
-    \u308B\n  void insert(Node *&root, int k, Node *n) {\n    if (!root) {\n     \
-    \ assert(k == 0);\n      root = n;\n      return;\n    }\n    assert(0 <= k &&\
-    \ k <= root->size);\n    auto r_root = split(root, k);\n    merge(root, n);\n\
-    \    merge(root, r_root);\n  }\n\n  void insert(Node *&root, int k, const X &x)\
-    \ { insert(root, k, new_node(x)); }\n\n  // root \u304B\u3089 k \u756A\u76EE\u3092\
-    \u524A\u9664\u3002\u524A\u9664\u3057\u305F\u30CE\u30FC\u30C9\u3092\u304B\u3048\
-    \u3059\n  Node *erase(Node *&root, int k) {\n    assert(0 <= k && k < root->size);\n\
-    \    auto nr = split(root, k + 1);\n    auto nm = split(root, k);\n    merge(root,\
-    \ nr);\n    return nm;\n  }\n\n  void debug(Node *root) {\n    print(\"RBST\"\
-    );\n    string s;\n    auto dfs = [&](auto &dfs, Node *n) -> void {\n      if\
-    \ (!n) return;\n      s += \"l\";\n      dfs(dfs, n->l);\n      s.pop_back();\n\
-    \      print(s, \"size\", n->size, \"x\", n->x, \"prod\", n->prod, \"apply\",\
-    \ n->a);\n      s += \"r\";\n      dfs(dfs, n->r);\n      s.pop_back();\n    };\n\
-    \    dfs(dfs, root);\n  }\n\n  template <typename F>\n  int max_right(Node *&root,\
-    \ const F &check, int L) {\n    assert(check(Monoid_X::unit()));\n    Node *r_root\
-    \ = split(root, L);\n    int res = L;\n    max_right_rec(r_root, check, res, Monoid_X::unit());\n\
-    \    merge(root, r_root);\n    return res;\n  }\n\nprivate:\n  inline int xor128()\
+    \ r_root);\n  }\n\n  void apply(Node *&root, const A &a) {\n    root->x = Lazy::act(root->x,\
+    \ a);\n    root->prod = Lazy::act(root->prod, a);\n    root->a = Monoid_A::op(root->a,\
+    \ a);\n    root->propagated = 0;\n    prop(root);\n    update(root);\n  }\n\n\
+    \  // root \u306E k \u756A\u76EE\u306B n \u3092\u633F\u5165\u3059\u308B\n  void\
+    \ insert(Node *&root, int k, Node *n) {\n    if (!root) {\n      assert(k == 0);\n\
+    \      root = n;\n      return;\n    }\n    assert(0 <= k && k <= root->size);\n\
+    \    auto r_root = split(root, k);\n    merge(root, n);\n    merge(root, r_root);\n\
+    \  }\n\n  void insert(Node *&root, int k, const X &x) { insert(root, k, new_node(x));\
+    \ }\n\n  // root \u304B\u3089 k \u756A\u76EE\u3092\u524A\u9664\u3002\u524A\u9664\
+    \u3057\u305F\u30CE\u30FC\u30C9\u3092\u304B\u3048\u3059\n  Node *erase(Node *&root,\
+    \ int k) {\n    assert(0 <= k && k < root->size);\n    auto nr = split(root, k\
+    \ + 1);\n    auto nm = split(root, k);\n    merge(root, nr);\n    return nm;\n\
+    \  }\n\n  void debug(Node *root) {\n    print(\"RBST\");\n    string s;\n    auto\
+    \ dfs = [&](auto &dfs, Node *n) -> void {\n      if (!n) return;\n      s += \"\
+    l\";\n      dfs(dfs, n->l);\n      s.pop_back();\n      print(s, \"size\", n->size,\
+    \ \"x\", n->x, \"prod\", n->prod, \"apply\", n->a);\n      s += \"r\";\n     \
+    \ dfs(dfs, n->r);\n      s.pop_back();\n    };\n    dfs(dfs, root);\n  }\n\n \
+    \ template <typename F>\n  int max_right(Node *&root, const F &check, int L) {\n\
+    \    assert(check(Monoid_X::unit()));\n    Node *r_root = split(root, L);\n  \
+    \  int res = L;\n    max_right_rec(r_root, check, res, Monoid_X::unit());\n  \
+    \  merge(root, r_root);\n    return res;\n  }\n\nprivate:\n  inline int xor128()\
     \ {\n    static int x = 123456789;\n    static int y = 362436069;\n    static\
     \ int z = 521288629;\n    static int w = 88675123;\n    int t;\n\n    t = x ^\
     \ (x << 11);\n    x = y;\n    y = z;\n    z = w;\n    return w = (w ^ (w >> 19))\
@@ -437,7 +440,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   requiredBy: []
-  timestamp: '2022-09-24 23:41:28+09:00'
+  timestamp: '2022-10-08 03:06:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp

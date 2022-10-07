@@ -4,40 +4,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: graph/find_odd_cycle.hpp
-    title: graph/find_odd_cycle.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/reachability.hpp
-    title: graph/reachability.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/twosat.hpp
-    title: graph/twosat.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/0275.test.cpp
-    title: test/aoj/0275.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/scc.test.cpp
-    title: test/library_checker/graph/scc.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/twosat.test.cpp
-    title: test/library_checker/math/twosat.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1170.test.cpp
-    title: test/yukicoder/1170.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1293.test.cpp
-    title: test/yukicoder/1293.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1813.test.cpp
-    title: test/yukicoder/1813.test.cpp
+    path: graph/strongly_connected_component.hpp
+    title: graph/strongly_connected_component.hpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
+    links:
+    - https://yukicoder.me/problems/no/1436
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n  using\
@@ -99,46 +76,69 @@ data:
     \ 1> DAG(C);\n  vvc<int> edges(C);\n  for (auto&& e: G.edges) {\n    int x = comp[e.frm],\
     \ y = comp[e.to];\n    if (x == y) continue;\n    edges[x].eb(y);\n  }\n  FOR(c,\
     \ C) {\n    UNIQUE(edges[c]);\n    for (auto&& to: edges[c]) DAG.add(c, to);\n\
-    \  }\n  DAG.build();\n  return DAG;\n}\n"
-  code: "#pragma once\n#include \"graph/base.hpp\"\n\ntemplate <typename Graph>\n\
-    pair<int, vc<int>> strongly_connected_component(Graph& G) {\n  assert(G.is_directed());\n\
-    \  assert(G.is_prepared());\n  int N = G.N;\n  int C = 0;\n  vc<int> comp(N);\n\
-    \  vc<int> low(N);\n  vc<int> ord(N, -1);\n  vc<int> visited;\n  int now = 0;\n\
-    \n  auto dfs = [&](auto self, int v) -> void {\n    low[v] = now;\n    ord[v]\
-    \ = now;\n    ++now;\n    visited.eb(v);\n    for (auto&& [frm, to, cost, id]:\
-    \ G[v]) {\n      if (ord[to] == -1) {\n        self(self, to);\n        chmin(low[v],\
-    \ low[to]);\n      } else {\n        chmin(low[v], ord[to]);\n      }\n    }\n\
-    \    if (low[v] == ord[v]) {\n      while (1) {\n        int u = visited.back();\n\
-    \        visited.pop_back();\n        ord[u] = N;\n        comp[u] = C;\n    \
-    \    if (u == v) break;\n      }\n      ++C;\n    }\n  };\n  FOR(v, N) {\n   \
-    \ if (ord[v] == -1) dfs(dfs, v);\n  }\n  FOR(v, N) comp[v] = C - 1 - comp[v];\n\
-    \  return {C, comp};\n}\n\ntemplate <typename GT>\nGraph<int, 1> scc_dag(GT& G,\
-    \ int C, vc<int>& comp) {\n  Graph<int, 1> DAG(C);\n  vvc<int> edges(C);\n  for\
-    \ (auto&& e: G.edges) {\n    int x = comp[e.frm], y = comp[e.to];\n    if (x ==\
-    \ y) continue;\n    edges[x].eb(y);\n  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n\
-    \    for (auto&& to: edges[c]) DAG.add(c, to);\n  }\n  DAG.build();\n  return\
-    \ DAG;\n}"
+    \  }\n  DAG.build();\n  return DAG;\n}\n#line 2 \"graph/find_odd_cycle.hpp\"\n\
+    \n// (\u9802\u70B9\u756A\u53F7\u5217, \u8FBA\u756A\u53F7\u5217)\n// https://yukicoder.me/problems/no/1436\n\
+    template <typename GT>\npair<vc<int>, vc<int>> find_odd_cycle(GT& G) {\n  int\
+    \ N = G.N;\n  vc<int> comp(N);\n  if (G.is_directed()) {\n    comp = strongly_connected_component<decltype(G)>(G).se;\n\
+    \  }\n  // \u540C\u3058\u5F37\u9023\u7D50\u6210\u5206\u5185\u306E\u70B9\u3057\u304B\
+    \u63A2\u7D22\u3057\u306A\u3044\u3088\u3046\u306B\u3057\u3066\n  // \u3068\u308A\
+    \u3042\u3048\u305A\u5947 walk \u3092\u63A2\u3059\n  const ll INF = 1 << 30;\n\
+    \  vc<int> dist(2 * N, INF);\n  vc<int> par(2 * N, -1); // edge index\n  deque<int>\
+    \ que;\n  auto add = [&](int v, int d, int p) -> void {\n    if (chmin(dist[v],\
+    \ d)) {\n      que.eb(v);\n      par[v] = p;\n    }\n  };\n  FOR(root, N) {\n\
+    \    if (dist[2 * root] != INF || dist[2 * root + 1] != INF) continue;\n    add(2\
+    \ * root, 0, -1);\n    while (len(que)) {\n      auto v = pick(que);\n      auto\
+    \ [a, b] = divmod(v, 2);\n      for (auto&& e: G[a]) {\n        if (comp[e.frm]\
+    \ != comp[e.to]) continue;\n        int w = 2 * e.to + (b ^ 1);\n        add(w,\
+    \ dist[v] + 1, e.id);\n      }\n    }\n    if (dist[2 * root + 1] == INF) continue;\n\
+    \    // found\n    vc<int> edges;\n    vc<int> vs;\n    vs.eb(root);\n    int\
+    \ v = 2 * root + 1;\n    while (par[v] != -1) {\n      int i = par[v];\n     \
+    \ edges.eb(i);\n      auto& e = G.edges[i];\n      v = 2 * (e.frm + e.to) + 1\
+    \ - v;\n      vs.eb(v / 2);\n    }\n    reverse(all(edges));\n    reverse(all(vs));\n\
+    \    // walk -> cycle\n    vc<int> used(N, -1);\n    int l = -1, r = -1;\n   \
+    \ FOR(i, len(vs)) {\n      if (used[vs[i]] == -1) {\n        used[vs[i]] = i;\n\
+    \        continue;\n      }\n      l = used[vs[i]];\n      r = i;\n      break;\n\
+    \    }\n    assert(l != -1);\n    vs = {vs.begin() + l, vs.begin() + r};\n   \
+    \ edges = {edges.begin() + l, edges.begin() + r};\n    return {vs, edges};\n \
+    \ }\n  return {};\n}\n"
+  code: "#include \"graph/strongly_connected_component.hpp\"\n\n// (\u9802\u70B9\u756A\
+    \u53F7\u5217, \u8FBA\u756A\u53F7\u5217)\n// https://yukicoder.me/problems/no/1436\n\
+    template <typename GT>\npair<vc<int>, vc<int>> find_odd_cycle(GT& G) {\n  int\
+    \ N = G.N;\n  vc<int> comp(N);\n  if (G.is_directed()) {\n    comp = strongly_connected_component<decltype(G)>(G).se;\n\
+    \  }\n  // \u540C\u3058\u5F37\u9023\u7D50\u6210\u5206\u5185\u306E\u70B9\u3057\u304B\
+    \u63A2\u7D22\u3057\u306A\u3044\u3088\u3046\u306B\u3057\u3066\n  // \u3068\u308A\
+    \u3042\u3048\u305A\u5947 walk \u3092\u63A2\u3059\n  const ll INF = 1 << 30;\n\
+    \  vc<int> dist(2 * N, INF);\n  vc<int> par(2 * N, -1); // edge index\n  deque<int>\
+    \ que;\n  auto add = [&](int v, int d, int p) -> void {\n    if (chmin(dist[v],\
+    \ d)) {\n      que.eb(v);\n      par[v] = p;\n    }\n  };\n  FOR(root, N) {\n\
+    \    if (dist[2 * root] != INF || dist[2 * root + 1] != INF) continue;\n    add(2\
+    \ * root, 0, -1);\n    while (len(que)) {\n      auto v = pick(que);\n      auto\
+    \ [a, b] = divmod(v, 2);\n      for (auto&& e: G[a]) {\n        if (comp[e.frm]\
+    \ != comp[e.to]) continue;\n        int w = 2 * e.to + (b ^ 1);\n        add(w,\
+    \ dist[v] + 1, e.id);\n      }\n    }\n    if (dist[2 * root + 1] == INF) continue;\n\
+    \    // found\n    vc<int> edges;\n    vc<int> vs;\n    vs.eb(root);\n    int\
+    \ v = 2 * root + 1;\n    while (par[v] != -1) {\n      int i = par[v];\n     \
+    \ edges.eb(i);\n      auto& e = G.edges[i];\n      v = 2 * (e.frm + e.to) + 1\
+    \ - v;\n      vs.eb(v / 2);\n    }\n    reverse(all(edges));\n    reverse(all(vs));\n\
+    \    // walk -> cycle\n    vc<int> used(N, -1);\n    int l = -1, r = -1;\n   \
+    \ FOR(i, len(vs)) {\n      if (used[vs[i]] == -1) {\n        used[vs[i]] = i;\n\
+    \        continue;\n      }\n      l = used[vs[i]];\n      r = i;\n      break;\n\
+    \    }\n    assert(l != -1);\n    vs = {vs.begin() + l, vs.begin() + r};\n   \
+    \ edges = {edges.begin() + l, edges.begin() + r};\n    return {vs, edges};\n \
+    \ }\n  return {};\n}"
   dependsOn:
+  - graph/strongly_connected_component.hpp
   - graph/base.hpp
   isVerificationFile: false
-  path: graph/strongly_connected_component.hpp
-  requiredBy:
-  - graph/find_odd_cycle.hpp
-  - graph/twosat.hpp
-  - graph/reachability.hpp
-  timestamp: '2022-08-30 02:42:36+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/0275.test.cpp
-  - test/yukicoder/1293.test.cpp
-  - test/yukicoder/1170.test.cpp
-  - test/yukicoder/1813.test.cpp
-  - test/library_checker/math/twosat.test.cpp
-  - test/library_checker/graph/scc.test.cpp
-documentation_of: graph/strongly_connected_component.hpp
+  path: graph/find_odd_cycle.hpp
+  requiredBy: []
+  timestamp: '2022-10-08 03:06:15+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: graph/find_odd_cycle.hpp
 layout: document
 redirect_from:
-- /library/graph/strongly_connected_component.hpp
-- /library/graph/strongly_connected_component.hpp.html
-title: graph/strongly_connected_component.hpp
+- /library/graph/find_odd_cycle.hpp
+- /library/graph/find_odd_cycle.hpp.html
+title: graph/find_odd_cycle.hpp
 ---

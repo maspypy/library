@@ -26,6 +26,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/poly_gcd.hpp
     title: poly/poly_gcd.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/product_of_f_rk_x.hpp
+    title: poly/product_of_f_rk_x.hpp
   - icon: ':warning:'
     path: poly/product_of_one_minus_xn.hpp
     title: poly/product_of_one_minus_xn.hpp
@@ -129,6 +132,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2062.test.cpp
     title: test/yukicoder/2062.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2097.test.cpp
+    title: test/yukicoder/2097.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -153,6 +159,7 @@ data:
   - poly/fps_inv.hpp
   - poly/poly_divmod.hpp
   - poly/fps_pow.hpp
+  - poly/product_of_f_rk_x.hpp
   - poly/poly_gcd.hpp
   - poly/product_of_one_minus_xn.hpp
   - poly/product_of_one_plus_xn.hpp
@@ -165,6 +172,7 @@ data:
   - test/mytest/enum_partitions.test.cpp
   - test/yukicoder/1321.test.cpp
   - test/yukicoder/1755.test.cpp
+  - test/yukicoder/2097.test.cpp
   - test/yukicoder/2062.test.cpp
   - test/yukicoder/1145.test.cpp
   - test/yukicoder/1392.test.cpp

@@ -35,6 +35,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/product_of_f_rk_x.hpp
+    title: poly/product_of_f_rk_x.hpp
   - icon: ':warning:'
     path: poly/product_of_one_minus_xn.hpp
     title: poly/product_of_one_minus_xn.hpp
@@ -93,6 +96,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2062.test.cpp
     title: test/yukicoder/2062.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2097.test.cpp
+    title: test/yukicoder/2097.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -482,12 +488,14 @@ data:
   - seq/surjection.hpp
   - poly/fps_sqrt.hpp
   - poly/fps_pow.hpp
+  - poly/product_of_f_rk_x.hpp
   - poly/product_of_one_minus_xn.hpp
   - poly/product_of_one_plus_xn.hpp
   timestamp: '2022-09-24 23:40:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1321.test.cpp
+  - test/yukicoder/2097.test.cpp
   - test/yukicoder/2062.test.cpp
   - test/yukicoder/1392.test.cpp
   - test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
