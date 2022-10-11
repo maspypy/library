@@ -8,9 +8,9 @@ using mint = modint998;
 void solve() {
   LL(N);
   VV(mint, A, N, N);
-  auto B = mat_inv(A);
-  if (B.empty()) return print(-1);
-  FOR(n, N) print(B[n]);
+  auto [det, inv] = mat_inv(A);
+  if (inv.empty()) return print(-1);
+  FOR(n, N) print(inv[n]);
 }
 
 signed main() {
