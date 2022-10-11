@@ -1,15 +1,16 @@
 #include "graph/base.hpp"
 #include "graph/check_bipartite.hpp"
+#include "graph/strongly_connected_component.hpp"
 
-template <typename Graph>
+template <typename GT>
 struct BipartiteMatching {
   int N;
-  Graph& G;
+  GT& G;
   vc<int> color;
   vc<int> dist, match;
   vc<int> vis;
 
-  BipartiteMatching(Graph& G) : N(G.N), G(G), dist(G.N, -1), match(G.N, -1) {
+  BipartiteMatching(GT& G) : N(G.N), G(G), dist(G.N, -1), match(G.N, -1) {
     color = check_bipartite(G);
     assert(!color.empty());
     while (1) {
@@ -21,7 +22,7 @@ struct BipartiteMatching {
     }
   }
 
-  BipartiteMatching(Graph& G, vc<int> color)
+  BipartiteMatching(GT& G, vc<int> color)
       : N(G.N), G(G), color(color), dist(G.N, -1), match(G.N, -1) {
     while (1) {
       bfs();
@@ -99,6 +100,69 @@ struct BipartiteMatching {
     }
     sort(all(res));
     return res;
+  }
+
+  /* Dulmage–Mendelsohn decomposition
+  http://www.misojiro.t.u-tokyo.ac.jp/~murota/lect-ouyousurigaku/dm050410.pdf
+  https://hitonanode.github.io/cplib-cpp/graph/dulmage_mendelsohn_decomposition.hpp.html
+  - 最大マッチングとしてありうるもの：同じ W を持つ点のみ
+  - color=0 から 1 への辺：W(l) <= W(r)
+  - color=0 かつ W=0 の点：必ず使われる
+  - color=1 かつ W=K の点：必ず使われる
+  - 1 <= k < K：任意の最大マッチングについて、すべての点が使われる
+  - color=0 の点が必ず使われる：W=0,1,...,K-1
+  - color=1 の点が必ず使われる：W=1,2,...,K
+  - 辺uvが必ず使われる：同じ W を持つ辺が唯一
+  */
+  pair<int, vc<int>> DM_decomposition() {
+    // 非飽和点からの探索
+    vc<int> W(N, -1);
+    int INF = N + 10;
+    vc<int> que;
+    auto add = [&](int v, int x) -> void {
+      if (W[v] == -1) {
+        W[v] = x;
+        que.eb(v);
+      }
+    };
+    FOR(v, N) if (match[v] == -1 && color[v] == 0) add(v, 0);
+    FOR(v, N) if (match[v] == -1 && color[v] == 1) add(v, INF);
+    while (len(que)) {
+      auto v = pick(que);
+      if (match[v] != -1) add(match[v], W[v]);
+      if (color[v] == 0 && W[v] == 0) {
+        for (auto&& e: G[v]) { add(e.to, W[v]); }
+      }
+      if (color[v] == 1 && W[v] == INF) {
+        for (auto&& e: G[v]) { add(e.to, W[v]); }
+      }
+    }
+    // 残った点からなるグラフを作って強連結成分分解
+    vc<int> V;
+    FOR(v, N) if (W[v] == -1) V.eb(v);
+    int n = len(V);
+    Graph<bool, 1> DG(n);
+    FOR(i, n) {
+      int v = V[i];
+      if (match[v] != -1) {
+        int j = LB(V, match[v]);
+        DG.add(i, j);
+      }
+      if (color[v] == 0) {
+        for (auto&& e: G[v]) {
+          if (W[e.to] != -1 || e.to == match[v]) continue;
+          int j = LB(V, e.to);
+          DG.add(i, j);
+        }
+      }
+    }
+    DG.build();
+    auto [K, comp] = strongly_connected_component(DG);
+    K += 1;
+    // 答
+    FOR(i, n) { W[V[i]] = 1 + comp[i]; }
+    FOR(v, N) if (W[v] == INF) W[v] = K;
+    return {K, W};
   }
 
   void debug() {
