@@ -24,6 +24,7 @@ void to_Hessenberg_matrix(vc<vc<T>>& A) {
   }
 }
 
+// det(xI-A)
 template <typename T>
 vc<T> characteristic_poly(vc<vc<T>> A) {
   /*
