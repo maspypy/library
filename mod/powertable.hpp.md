@@ -6,6 +6,9 @@ data:
     title: nt/primetable.hpp
   _extendedRequiredBy:
   - icon: ':x:'
+    path: linalg/det_A_plus_xB.hpp
+    title: linalg/det_A_plus_xB.hpp
+  - icon: ':x:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   - icon: ':x:'
@@ -42,6 +45,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1760.test.cpp
     title: test/yukicoder/1760.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1907.test.cpp
+    title: test/yukicoder/1907.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -85,9 +91,11 @@ data:
   - seq/stirling_number_2.hpp
   - seq/surjection.hpp
   - poly/poly_taylor_shift.hpp
+  - linalg/det_A_plus_xB.hpp
   timestamp: '2022-08-17 05:57:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/yukicoder/1907.test.cpp
   - test/yukicoder/1321.test.cpp
   - test/yukicoder/1392.test.cpp
   - test/yukicoder/1760.test.cpp

@@ -297,16 +297,17 @@ data:
     \n      FOR(j, N) B[k][j] -= B[i][j] * c;\r\n    }\r\n  }\r\n  return {det, B};\r\
     \n}\r\n#line 6 \"test/library_checker/matrix/inverse_matrix.test.cpp\"\n\r\nusing\
     \ mint = modint998;\r\nvoid solve() {\r\n  LL(N);\r\n  VV(mint, A, N, N);\r\n\
-    \  auto B = mat_inv(A);\r\n  if (B.empty()) return print(-1);\r\n  FOR(n, N) print(B[n]);\r\
-    \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \  auto [det, inv] = mat_inv(A);\r\n  if (inv.empty()) return print(-1);\r\n \
+    \ FOR(n, N) print(inv[n]);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
+    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
+    \n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inverse_matrix\"\r\n#include\
     \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"mod/modint.hpp\"\
     \r\n#include \"linalg/mat_inv.hpp\"\r\n\r\nusing mint = modint998;\r\nvoid solve()\
-    \ {\r\n  LL(N);\r\n  VV(mint, A, N, N);\r\n  auto B = mat_inv(A);\r\n  if (B.empty())\
-    \ return print(-1);\r\n  FOR(n, N) print(B[n]);\r\n}\r\n\r\nsigned main() {\r\n\
-    \  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
-    \n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ {\r\n  LL(N);\r\n  VV(mint, A, N, N);\r\n  auto [det, inv] = mat_inv(A);\r\n\
+    \  if (inv.empty()) return print(-1);\r\n  FOR(n, N) print(inv[n]);\r\n}\r\n\r\
+    \nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n\
+    \  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -315,7 +316,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/inverse_matrix.test.cpp
   requiredBy: []
-  timestamp: '2022-10-12 08:05:37+09:00'
+  timestamp: '2022-10-12 08:19:14+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/matrix/inverse_matrix.test.cpp

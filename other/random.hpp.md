@@ -15,6 +15,9 @@ data:
     path: graph/rerooting_classify_subtree.hpp
     title: graph/rerooting_classify_subtree.hpp
   - icon: ':x:'
+    path: linalg/det_A_plus_xB.hpp
+    title: linalg/det_A_plus_xB.hpp
+  - icon: ':x:'
     path: linalg/spmat_det.hpp
     title: linalg/spmat_det.hpp
   - icon: ':x:'
@@ -126,6 +129,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/wavelet_matrix_sum.test.cpp
     title: test/mytest/wavelet_matrix_sum.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1907.test.cpp
+    title: test/yukicoder/1907.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_1.test.cpp
     title: test/yukicoder/4_1.test.cpp
@@ -153,6 +159,7 @@ data:
   - poly/fps_sqrt.hpp
   - linalg/spmat_min_poly.hpp
   - linalg/spmat_det.hpp
+  - linalg/det_A_plus_xB.hpp
   - graph/classify_subtree.hpp
   - graph/rerooting_classify_subtree.hpp
   - graph/chromatic.hpp
@@ -178,6 +185,7 @@ data:
   - test/mytest/binom.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
   - test/aoj/ALDS1_14_C.test.cpp
+  - test/yukicoder/1907.test.cpp
   - test/yukicoder/4_1.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp

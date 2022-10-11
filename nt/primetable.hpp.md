@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':x:'
+    path: linalg/det_A_plus_xB.hpp
+    title: linalg/det_A_plus_xB.hpp
+  - icon: ':x:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':heavy_check_mark:'
@@ -117,6 +120,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1760.test.cpp
     title: test/yukicoder/1760.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1907.test.cpp
+    title: test/yukicoder/1907.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -164,6 +170,7 @@ data:
   - nt/mobius_table.hpp
   - nt/lcm_convolution.hpp
   - poly/poly_taylor_shift.hpp
+  - linalg/det_A_plus_xB.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -171,6 +178,7 @@ data:
   - test/mytest/primesum_mod4.test.cpp
   - test/mytest/primesum_mod6.test.cpp
   - test/aoj/NTL_1_D.test.cpp
+  - test/yukicoder/1907.test.cpp
   - test/yukicoder/1321.test.cpp
   - test/yukicoder/1262.test.cpp
   - test/yukicoder/1411.test.cpp

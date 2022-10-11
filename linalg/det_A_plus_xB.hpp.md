@@ -1,12 +1,30 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':x:'
+    path: linalg/characteristic_poly.hpp
+    title: linalg/characteristic_poly.hpp
+  - icon: ':x:'
+    path: linalg/mat_inv.hpp
+    title: linalg/mat_inv.hpp
+  - icon: ':x:'
+    path: linalg/mat_mul.hpp
+    title: linalg/mat_mul.hpp
   - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
+  - icon: ':x:'
+    path: mod/powertable.hpp
+    title: mod/powertable.hpp
+  - icon: ':question:'
+    path: nt/primetable.hpp
+    title: nt/primetable.hpp
+  - icon: ':question:'
+    path: other/random.hpp
+    title: other/random.hpp
   - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
@@ -19,39 +37,108 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
+  - icon: ':x:'
+    path: poly/poly_taylor_shift.hpp
+    title: poly/poly_taylor_shift.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
-    title: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/1907.test.cpp
+    title: test/yukicoder/1907.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n\
-    \  static constexpr bool is_modint = true;\n  int val;\n  constexpr modint(const\
-    \ ll val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val) % mod)\
-    \ % mod) {}\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
-    \  } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
-    \ += p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator-=(const\
-    \ modint &p) {\n    if ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n\
-    \  }\n  modint &operator*=(const modint &p) {\n    val = (int)(1LL * val * p.val\
-    \ % mod);\n    return *this;\n  }\n  modint &operator/=(const modint &p) {\n \
-    \   *this *= p.inverse();\n    return *this;\n  }\n  modint operator-() const\
-    \ { return modint(-val); }\n  modint operator+(const modint &p) const { return\
-    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
-    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
-    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
-    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
-    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
-    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
-    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
-    \ return modint(u);\n  }\n  modint pow(int64_t n) const {\n    modint ret(1),\
-    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
-    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr int get_mod()\
-    \ { return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr bool is_modint\
-    \ = true;\n  int val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t\
+  bundledCode: "#line 2 \"other/random.hpp\"\n\nll RNG(ll a, ll b) {\n  static mt19937\
+    \ mt(chrono::steady_clock::now().time_since_epoch().count());\n  uniform_int_distribution<ll>\
+    \ dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll a) { return RNG(0, a); }\n\
+    #line 2 \"linalg/mat_mul.hpp\"\n\r\ntemplate <class T, is_modint_t<T>* = nullptr>\r\
+    \nvc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n  const int mod\
+    \ = T::get_mod();\r\n  auto N = len(A), M = len(B), K = len(B[0]);\r\n  vv(int,\
+    \ b, K, M);\r\n  FOR(i, M) FOR(j, K) b[j][i] = B[i][j].val;\r\n  vv(T, C, N, K);\r\
+    \n  FOR(i, N) {\r\n    FOR(j, K) {\r\n      i128 sm = 0;\r\n      FOR(m, M) {\
+    \ sm += ll(A[i][m].val) * b[j][m]; }\r\n      C[i][j] = sm % mod;\r\n    }\r\n\
+    \  }\r\n  return C;\r\n}\r\n\r\ntemplate <class T, is_not_modint_t<T>* = nullptr>\r\
+    \nvc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n  auto N = len(A),\
+    \ M = len(B), K = len(B[0]);\r\n  vv(T, C, N, K);\r\n  FOR(n, N) FOR(m, M) FOR(k,\
+    \ K) C[n][k] += A[n][m] * B[m][k];\r\n  return C;\r\n}\r\n#line 1 \"linalg/mat_inv.hpp\"\
+    \n// (det, invA) \u3092\u304B\u3048\u3059\r\ntemplate <typename T>\r\npair<T,\
+    \ vc<vc<T>>> mat_inv(vc<vc<T>> A) {\r\n  T det = 1;\r\n  int N = len(A);\r\n \
+    \ vv(T, B, N, N);\r\n  FOR(n, N) B[n][n] = 1;\r\n  FOR(i, N) {\r\n    FOR(k, i,\
+    \ N) if (A[k][i] != 0) {\r\n      if (k != i) {\r\n        swap(A[i], A[k]), swap(B[i],\
+    \ B[k]);\r\n        det = -det;\r\n      }\r\n      break;\r\n    }\r\n    if\
+    \ (A[i][i] == 0) return {T(0), {}};\r\n    T c = T(1) / A[i][i];\r\n    det *=\
+    \ A[i][i];\r\n    FOR(j, i, N) A[i][j] *= c;\r\n    FOR(j, N) B[i][j] *= c;\r\n\
+    \    FOR(k, N) if (i != k) {\r\n      T c = A[k][i];\r\n      FOR(j, i, N) A[k][j]\
+    \ -= A[i][j] * c;\r\n      FOR(j, N) B[k][j] -= B[i][j] * c;\r\n    }\r\n  }\r\
+    \n  return {det, B};\r\n}\r\n#line 1 \"linalg/characteristic_poly.hpp\"\ntemplate\
+    \ <typename T>\r\nvoid to_Hessenberg_matrix(vc<vc<T>>& A) {\r\n  /*\r\n  P^{-1}AP\
+    \ \u306E\u5F62\u306E\u5909\u63DB\u3067\u3001Hessenberg \u884C\u5217\u306B\u5909\
+    \u5F62\u3059\u308B\u3002\r\n  \u7279\u5B9A\u591A\u9805\u5F0F\u306E\u8A08\u7B97\
+    \u306B\u7528\u3044\u308B\u3053\u3068\u304C\u3067\u304D\u308B\u3002\r\n  */\r\n\
+    \  int n = len(A);\r\n  FOR(k, n - 2) {\r\n    FOR3(i, k + 1, n) if (A[i][k] !=\
+    \ 0) {\r\n      if (i != k + 1) {\r\n        swap(A[i], A[k + 1]);\r\n       \
+    \ FOR(j, n) swap(A[j][i], A[j][k + 1]);\r\n      }\r\n      break;\r\n    }\r\n\
+    \    if (A[k + 1][k] == 0) continue;\r\n    FOR3(i, k + 2, n) {\r\n      T c =\
+    \ A[i][k] / A[k + 1][k];\r\n      // i \u884C\u76EE -= k+1 \u884C\u76EE * c\r\n\
+    \      FOR(j, n) A[i][j] -= A[k + 1][j] * c;\r\n      // k+1 \u5217\u76EE += i\
+    \ \u5217\u76EE * c\r\n      FOR(j, n) A[j][k + 1] += A[j][i] * c;\r\n    }\r\n\
+    \  }\r\n}\r\n\r\n// det(xI-A)\r\ntemplate <typename T>\r\nvc<T> characteristic_poly(vc<vc<T>>\
+    \ A) {\r\n  /*\r\n  \u30FBHessenberg \u884C\u5217\u306B\u5909\u5F62\r\n  \u30FB\
+    Hessenberg \u884C\u5217\u306E\u884C\u5217\u5F0F\u306F\u3001\u6700\u5F8C\u306E\u5217\
+    \u3067\u5834\u5408\u5206\u3051\u3059\u308C\u3070 dp \u3067\u304D\u308B\r\n  */\r\
+    \n  int n = len(A);\r\n  to_Hessenberg_matrix(A);\r\n  vc<vc<T>> DP(n + 1);\r\n\
+    \  DP[0] = {1};\r\n  FOR(k, n) {\r\n    DP[k + 1].resize(k + 2);\r\n    auto&\
+    \ dp = DP[k + 1];\r\n    // (k, k) \u6210\u5206\u3092\u4F7F\u3046\u5834\u5408\r\
+    \n    FOR(i, len(DP[k])) dp[i + 1] += DP[k][i];\r\n    FOR(i, len(DP[k])) dp[i]\
+    \ -= DP[k][i] * A[k][k];\r\n    // \u4E0B\u5074\u5BFE\u89D2\u306E\u7DCF\u7A4D\u3092\
+    \u7BA1\u7406\r\n    T prod = 1;\r\n    FOR_R(i, k) {\r\n      // (i, k) \u6210\
+    \u5206\u3092\u4F7F\u3046\u5834\u5408\r\n      prod *= A[i + 1][i];\r\n      T\
+    \ c = prod * A[i][k];\r\n      // DP[i] \u306E c \u500D\u3092\u52A0\u7B97\r\n\
+    \      FOR(j, len(DP[i])) dp[j] -= DP[i][j] * c;\r\n    }\r\n  }\r\n  return DP[n];\r\
+    \n}\r\n#line 2 \"nt/primetable.hpp\"\nvc<ll> primetable(int LIM) {\n  ++LIM;\n\
+    \  const int S = 32768;\n  static int done = 2;\n  static vc<ll> primes = {2},\
+    \ sieve(S + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S\
+    \ + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM)\
+    \ * 1.1));\n    vc<pi> cp;\n    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i])\
+    \ {\n        cp.eb(i, i * i / 2);\n        for (int j = i * i; j <= S; j += 2\
+    \ * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n\
+    \      array<bool, S> block{};\n      for (auto& [p, idx]: cp)\n        for (int\
+    \ i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R\
+    \ - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes,\
+    \ LIM + 1);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 3 \"mod/powertable.hpp\"\
+    \n\r\n// a^0, ..., a^N\r\ntemplate <typename mint>\r\nvc<mint> powertable_1(mint\
+    \ a, ll N) {\r\n  // table of a^i\r\n  vc<mint> f(N + 1, 1);\r\n  FOR(i, N) f[i\
+    \ + 1] = a * f[i];\r\n  return f;\r\n}\r\n\r\n// 0^e, ..., N^e\r\ntemplate <typename\
+    \ mint>\r\nvc<mint> powertable_2(ll e, ll N) {\r\n  auto primes = primetable(N);\r\
+    \n  vc<mint> f(N + 1, 1);\r\n  f[0] = mint(0).pow(e);\r\n  for (auto&& p: primes)\
+    \ {\r\n    if (p > N) break;\r\n    mint xp = mint(p).pow(e);\r\n    ll pp = p;\r\
+    \n    while (pp <= N) {\r\n      ll i = pp;\r\n      while (i <= N) {\r\n    \
+    \    f[i] *= xp;\r\n        i += pp;\r\n      }\r\n      pp *= p;\r\n    }\r\n\
+    \  }\r\n  return f;\r\n}\r\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\n\
+    struct modint {\n  static constexpr bool is_modint = true;\n  int val;\n  constexpr\
+    \ modint(const ll val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod -\
+    \ (-val) % mod) % mod) {}\n  bool operator<(const modint &other) const {\n   \
+    \ return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
+    \ modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n\
+    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >=\
+    \ mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint\
+    \ &p) {\n    val = (int)(1LL * val * p.val % mod);\n    return *this;\n  }\n \
+    \ modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
+    \ *this;\n  }\n  modint operator-() const { return modint(-val); }\n  modint operator+(const\
+    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
+    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
+    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
+    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
+    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
+    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
+    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
+    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t n) const {\n\
+    \    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
+    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr\
+    \ int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr\
+    \ bool is_modint = true;\n  int val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t\
     \ y)\n      : val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y)\
     \ % get_mod()) % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other)\
     \ const {\n    return val < other.val;\n  } // To use std::map<ArbitraryModInt,\
@@ -292,73 +379,42 @@ data:
     \ modint998>::value, vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>&\
     \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
-    \ b);\r\n}\r\n#line 2 \"nt/multiplicative_convolution_mod2n.hpp\"\n\r\ntemplate\
-    \ <typename mint>\r\nvc<mint> multiplicative_convolution_mod2n(vc<mint>& A, vc<mint>&\
-    \ B){\r\n  int N = 0;\r\n  while((1<<N) < len(A)) ++N;\r\n  assert((1<<N) == len(A)\
-    \ && (1<<N) == len(B));\r\n  \r\n  int mask = (1 << N) - 1;\r\n\r\n  vc<vc<vc<mint>>>\
-    \ AA(N + 1);\r\n  vc<vc<vc<mint>>> BB(N + 1);\r\n  vc<vc<vc<mint>>> CC(N + 1);\r\
-    \n\r\n  auto shape = [&](int n) -> pair<int, int> {\r\n    int H = (N - n >= 2\
-    \ ? 2 : 1);\r\n    int W = 1 << max(N - n - 2, 0);\r\n    return {H, W};\r\n \
-    \ };\r\n\r\n  FOR(n, N + 1) {\r\n    // 2 \u3067 n \u56DE\u5272\u308C\u308B\u3068\
-    \u3053\u308D\r\n    auto [H, W] = shape(n);\r\n    AA[n].assign(H, vc<mint>(W));\r\
-    \n    BB[n].assign(H, vc<mint>(W));\r\n    CC[n].assign(H, vc<mint>(W));\r\n \
-    \   int x = (1 << n) & mask;\r\n    auto &a = AA[n], &b = BB[n];\r\n    FOR(j,\
-    \ W) {\r\n      a[0][j] = A[x];\r\n      b[0][j] = B[x];\r\n      if (H == 2)\
-    \ {\r\n        a[1][j] = A[(1 << N) - x];\r\n        b[1][j] = B[(1 << N) - x];\r\
-    \n      }\r\n      x = (5 * x) & mask;\r\n    }\r\n  }\r\n  // n \u3092\u56FA\u5B9A\
-    \u3057\u3066\u5404\u8EF8\u65B9\u5411\u306B fft\u3002\u5408\u8A08 O(N2^N)\r\n \
-    \ FOR(n, N + 1) {\r\n    auto &a = AA[n], &b = BB[n];\r\n    auto [H, W] = shape(n);\r\
-    \n    FOR(i, H) {\r\n      ntt(a[i], false);\r\n      ntt(b[i], false);\r\n  \
-    \  }\r\n    if (H == 2) {\r\n      FOR(j, W) {\r\n        tie(a[0][j], a[1][j])\
-    \ = mp(a[0][j] + a[1][j], a[0][j] - a[1][j]);\r\n        tie(b[0][j], b[1][j])\
-    \ = mp(b[0][j] + b[1][j], b[0][j] - b[1][j]);\r\n      }\r\n    }\r\n  }\r\n \
-    \ FOR(n1, N + 1) FOR(n2, N + 1) {\r\n    // \u5FC5\u8981\u306A\u9577\u3055\u306E\
-    \ fft \u5404\u70B9\u7A4D\u3092\u5FC5\u8981\u306A\u5834\u6240\u306B\u8DB3\u3057\
-    \u3053\u3080\u3002\u5408\u8A08 O(2^N)\r\n    int n3 = min(N, int(n1 + n2));\r\n\
-    \    auto [H, W] = shape(n3);\r\n    FOR(i, H) FOR(j, W) CC[n3][i][j] += AA[n1][i][j]\
-    \ * BB[n2][i][j];\r\n  }\r\n\r\n  FOR(n, N + 1) {\r\n    // inverse fft\r\n  \
-    \  auto &c = CC[n];\r\n    auto [H, W] = shape(n);\r\n    FOR(i, H) ntt(c[i],\
-    \ true);\r\n    if (H == 2) {\r\n      FOR(j, W) {\r\n        tie(c[0][j], c[1][j])\
-    \ = mp(c[0][j] + c[1][j], c[0][j] - c[1][j]);\r\n      }\r\n    }\r\n    mint\
-    \ coef = mint(1) / mint(H);\r\n    FOR(i, H) FOR(j, W) c[i][j] *= coef;  \r\n\
-    \  }\r\n\r\n  vc<mint> C(1 << N);\r\n  FOR(n, N + 1) {\r\n    auto [H, W] = shape(n);\r\
-    \n    int x = (1 << n) & mask;\r\n    auto &c = CC[n];\r\n    FOR(j, W) {\r\n\
-    \      C[x] = c[0][j];\r\n      if (H == 2) { C[(1 << N) - x] = c[1][j]; }\r\n\
-    \      x = (5 * x) & mask;\r\n    }\r\n  }\r\n  return C;\r\n}\n"
-  code: "#include \"poly/convolution.hpp\"\r\n\r\ntemplate <typename mint>\r\nvc<mint>\
-    \ multiplicative_convolution_mod2n(vc<mint>& A, vc<mint>& B){\r\n  int N = 0;\r\
-    \n  while((1<<N) < len(A)) ++N;\r\n  assert((1<<N) == len(A) && (1<<N) == len(B));\r\
-    \n  \r\n  int mask = (1 << N) - 1;\r\n\r\n  vc<vc<vc<mint>>> AA(N + 1);\r\n  vc<vc<vc<mint>>>\
-    \ BB(N + 1);\r\n  vc<vc<vc<mint>>> CC(N + 1);\r\n\r\n  auto shape = [&](int n)\
-    \ -> pair<int, int> {\r\n    int H = (N - n >= 2 ? 2 : 1);\r\n    int W = 1 <<\
-    \ max(N - n - 2, 0);\r\n    return {H, W};\r\n  };\r\n\r\n  FOR(n, N + 1) {\r\n\
-    \    // 2 \u3067 n \u56DE\u5272\u308C\u308B\u3068\u3053\u308D\r\n    auto [H,\
-    \ W] = shape(n);\r\n    AA[n].assign(H, vc<mint>(W));\r\n    BB[n].assign(H, vc<mint>(W));\r\
-    \n    CC[n].assign(H, vc<mint>(W));\r\n    int x = (1 << n) & mask;\r\n    auto\
-    \ &a = AA[n], &b = BB[n];\r\n    FOR(j, W) {\r\n      a[0][j] = A[x];\r\n    \
-    \  b[0][j] = B[x];\r\n      if (H == 2) {\r\n        a[1][j] = A[(1 << N) - x];\r\
-    \n        b[1][j] = B[(1 << N) - x];\r\n      }\r\n      x = (5 * x) & mask;\r\
-    \n    }\r\n  }\r\n  // n \u3092\u56FA\u5B9A\u3057\u3066\u5404\u8EF8\u65B9\u5411\
-    \u306B fft\u3002\u5408\u8A08 O(N2^N)\r\n  FOR(n, N + 1) {\r\n    auto &a = AA[n],\
-    \ &b = BB[n];\r\n    auto [H, W] = shape(n);\r\n    FOR(i, H) {\r\n      ntt(a[i],\
-    \ false);\r\n      ntt(b[i], false);\r\n    }\r\n    if (H == 2) {\r\n      FOR(j,\
-    \ W) {\r\n        tie(a[0][j], a[1][j]) = mp(a[0][j] + a[1][j], a[0][j] - a[1][j]);\r\
-    \n        tie(b[0][j], b[1][j]) = mp(b[0][j] + b[1][j], b[0][j] - b[1][j]);\r\n\
-    \      }\r\n    }\r\n  }\r\n  FOR(n1, N + 1) FOR(n2, N + 1) {\r\n    // \u5FC5\
-    \u8981\u306A\u9577\u3055\u306E fft \u5404\u70B9\u7A4D\u3092\u5FC5\u8981\u306A\u5834\
-    \u6240\u306B\u8DB3\u3057\u3053\u3080\u3002\u5408\u8A08 O(2^N)\r\n    int n3 =\
-    \ min(N, int(n1 + n2));\r\n    auto [H, W] = shape(n3);\r\n    FOR(i, H) FOR(j,\
-    \ W) CC[n3][i][j] += AA[n1][i][j] * BB[n2][i][j];\r\n  }\r\n\r\n  FOR(n, N + 1)\
-    \ {\r\n    // inverse fft\r\n    auto &c = CC[n];\r\n    auto [H, W] = shape(n);\r\
-    \n    FOR(i, H) ntt(c[i], true);\r\n    if (H == 2) {\r\n      FOR(j, W) {\r\n\
-    \        tie(c[0][j], c[1][j]) = mp(c[0][j] + c[1][j], c[0][j] - c[1][j]);\r\n\
-    \      }\r\n    }\r\n    mint coef = mint(1) / mint(H);\r\n    FOR(i, H) FOR(j,\
-    \ W) c[i][j] *= coef;  \r\n  }\r\n\r\n  vc<mint> C(1 << N);\r\n  FOR(n, N + 1)\
-    \ {\r\n    auto [H, W] = shape(n);\r\n    int x = (1 << n) & mask;\r\n    auto\
-    \ &c = CC[n];\r\n    FOR(j, W) {\r\n      C[x] = c[0][j];\r\n      if (H == 2)\
-    \ { C[(1 << N) - x] = c[1][j]; }\r\n      x = (5 * x) & mask;\r\n    }\r\n  }\r\
-    \n  return C;\r\n}"
+    \ b);\r\n}\r\n#line 3 \"poly/poly_taylor_shift.hpp\"\n\r\ntemplate <typename mint>\r\
+    \nvc<mint> poly_taylor_shift(vc<mint> a, mint c) {\r\n  ll N = len(a);\r\n  FOR(i,\
+    \ N) a[i] *= fact<mint>(i);\r\n  auto b = powertable_1<mint>(c, N);\r\n  FOR(i,\
+    \ N) b[i] *= fact_inv<mint>(i);\r\n  reverse(all(a));\r\n  auto f = convolution(a,\
+    \ b);\r\n  f.resize(N);\r\n  reverse(all(f));\r\n  FOR(i, N) f[i] *= fact_inv<mint>(i);\r\
+    \n  return f;\r\n}\r\n#line 6 \"linalg/det_A_plus_xB.hpp\"\n\n// det(A + xB) =\
+    \ f(x) \u3068\u306A\u308B N \u6B21\u591A\u9805\u5F0F f \u3092\u8FD4\u3059\n//\
+    \ \u78BA\u7387 N / mod \u3067\u6B63\u3057\u304F\u89E3\u3051\u308B\uFF08\u4E71\u6570\
+    \u306B\u4F9D\u5B58\u3057\u306A\u3044\u65B9\u6CD5\u3082\u3042\u308B\u3088\u3046\
+    \u3060\uFF09\ntemplate <typename mint>\nvc<mint> det_A_plus_xB(vvc<mint> A, vvc<mint>\
+    \ B) {\n  int N = len(A);\n  vc<mint> f(N + 1);\n  mint a = RNG(mint::get_mod());\n\
+    \  FOR(i, N) FOR(j, N) A[i][j] += a * B[i][j];\n  auto [det_A, inv_A] = mat_inv(A);\n\
+    \  if (det_A == 0) { return f; }\n  B = mat_mul(B, inv_A);\n  FOR(i, N) FOR(j,\
+    \ N) B[i][j] = -B[i][j];\n  f = characteristic_poly(B);\n  reverse(all(f));\n\
+    \  for (auto&& x: f) x *= det_A;\n  f = poly_taylor_shift(f, -a);\n  return f;\n\
+    }\n"
+  code: "#include \"other/random.hpp\"\n#include \"linalg/mat_mul.hpp\"\n#include\
+    \ \"linalg/mat_inv.hpp\"\n#include \"linalg/characteristic_poly.hpp\"\n#include\
+    \ \"poly/poly_taylor_shift.hpp\"\n\n// det(A + xB) = f(x) \u3068\u306A\u308B N\
+    \ \u6B21\u591A\u9805\u5F0F f \u3092\u8FD4\u3059\n// \u78BA\u7387 N / mod \u3067\
+    \u6B63\u3057\u304F\u89E3\u3051\u308B\uFF08\u4E71\u6570\u306B\u4F9D\u5B58\u3057\
+    \u306A\u3044\u65B9\u6CD5\u3082\u3042\u308B\u3088\u3046\u3060\uFF09\ntemplate <typename\
+    \ mint>\nvc<mint> det_A_plus_xB(vvc<mint> A, vvc<mint> B) {\n  int N = len(A);\n\
+    \  vc<mint> f(N + 1);\n  mint a = RNG(mint::get_mod());\n  FOR(i, N) FOR(j, N)\
+    \ A[i][j] += a * B[i][j];\n  auto [det_A, inv_A] = mat_inv(A);\n  if (det_A ==\
+    \ 0) { return f; }\n  B = mat_mul(B, inv_A);\n  FOR(i, N) FOR(j, N) B[i][j] =\
+    \ -B[i][j];\n  f = characteristic_poly(B);\n  reverse(all(f));\n  for (auto&&\
+    \ x: f) x *= det_A;\n  f = poly_taylor_shift(f, -a);\n  return f;\n}"
   dependsOn:
+  - other/random.hpp
+  - linalg/mat_mul.hpp
+  - linalg/mat_inv.hpp
+  - linalg/characteristic_poly.hpp
+  - poly/poly_taylor_shift.hpp
+  - mod/powertable.hpp
+  - nt/primetable.hpp
   - poly/convolution.hpp
   - mod/modint.hpp
   - mod/mod_inv.hpp
@@ -366,16 +422,16 @@ data:
   - poly/ntt.hpp
   - poly/fft.hpp
   isVerificationFile: false
-  path: nt/multiplicative_convolution_mod2n.hpp
+  path: linalg/det_A_plus_xB.hpp
   requiredBy: []
-  timestamp: '2022-10-12 08:05:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-10-12 08:19:24+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/convolution/mul_mod2n_convolution.test.cpp
-documentation_of: nt/multiplicative_convolution_mod2n.hpp
+  - test/yukicoder/1907.test.cpp
+documentation_of: linalg/det_A_plus_xB.hpp
 layout: document
 redirect_from:
-- /library/nt/multiplicative_convolution_mod2n.hpp
-- /library/nt/multiplicative_convolution_mod2n.hpp.html
-title: nt/multiplicative_convolution_mod2n.hpp
+- /library/linalg/det_A_plus_xB.hpp
+- /library/linalg/det_A_plus_xB.hpp.html
+title: linalg/det_A_plus_xB.hpp
 ---

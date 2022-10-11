@@ -27,6 +27,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy:
   - icon: ':x:'
+    path: linalg/det_A_plus_xB.hpp
+    title: linalg/det_A_plus_xB.hpp
+  - icon: ':x:'
     path: seq/stirling_number_1.hpp
     title: seq/stirling_number_1.hpp
   _extendedVerifiedWith:
@@ -36,6 +39,9 @@ data:
   - icon: ':x:'
     path: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
     title: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1907.test.cpp
+    title: test/yukicoder/1907.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -348,9 +354,11 @@ data:
   path: poly/poly_taylor_shift.hpp
   requiredBy:
   - seq/stirling_number_1.hpp
+  - linalg/det_A_plus_xB.hpp
   timestamp: '2022-10-12 08:05:37+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/yukicoder/1907.test.cpp
   - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
 documentation_of: poly/poly_taylor_shift.hpp
