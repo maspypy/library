@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/random.hpp
     title: other/random.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/is_substring.hpp
     title: string/is_substring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/zalgorithm.hpp
     title: string/zalgorithm.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -217,17 +217,19 @@ data:
     \ < n && s[k] == s[i + k]) k++;\n    if (j + z[j] < i + z[i]) j = i;\n  }\n  z[0]\
     \ = n;\n  return z;\n}\n#line 2 \"string/is_substring.hpp\"\n\n// \u9023\u7D9A\
     \u90E8\u5206\u5217\u306B\u542B\u3080\u304B\u3069\u3046\u304B\u3002z-algo \u3067\
-    \u7DDA\u5F62\u6642\u9593\ntemplate <typename STRING>\nbool is_substring(STRING\
-    \ S, STRING T) {\n  int n = len(S), m = len(T);\n  S += T;\n  auto Z = zalgorithm(S);\n\
-    \  FOR3(i, n, n + m) {\n    if (Z[i] >= n) return true;\n  }\n  return false;\n\
-    }\n#line 7 \"test/mytest/is_substring.test.cpp\"\n\nstring gen(int n) {\n  string\
-    \ s;\n  FOR(n) { s += char('a' + RNG(3)); }\n  return s;\n}\n\nbool naive(string\
-    \ S, string T) {\n  FOR(i, len(T)) if (T.substr(i, len(S)) == S) return true;\n\
-    \  return false;\n}\n\nvoid test() {\n  FOR(1000) {\n    FOR(n, 1, 10) FOR(m,\
-    \ 1, 10) {\n      string s = gen(n), t = gen(m);\n      bool a = naive(s, t);\n\
-    \      bool b = is_substring(s, t);\n      assert(a == b);\n    }\n  }\n}\n\n\
-    void solve() {\n  LL(A, B);\n  print(A + B);\n}\n\nsigned main() {\n  cout <<\
-    \ fixed << setprecision(15);\n\n  test();\n  solve();\n\n  return 0;\n}\n"
+    \u7DDA\u5F62\u6642\u9593\ntemplate <typename STRING>\nbool is_substring(STRING&\
+    \ S, STRING& T) {\n  int n = int(S.size()), m = int(T.size());\n  STRING ST;\n\
+    \  for (auto&& x: S) ST.push_back(x);\n  for (auto&& x: T) ST.push_back(x);\n\
+    \  auto Z = zalgorithm(ST);\n  for (int i = n; i < n + m; ++i) {\n    if (Z[i]\
+    \ >= n) return true;\n  }\n  return false;\n}\n#line 7 \"test/mytest/is_substring.test.cpp\"\
+    \n\nstring gen(int n) {\n  string s;\n  FOR(n) { s += char('a' + RNG(3)); }\n\
+    \  return s;\n}\n\nbool naive(string S, string T) {\n  FOR(i, len(T)) if (T.substr(i,\
+    \ len(S)) == S) return true;\n  return false;\n}\n\nvoid test() {\n  FOR(1000)\
+    \ {\n    FOR(n, 1, 10) FOR(m, 1, 10) {\n      string s = gen(n), t = gen(m);\n\
+    \      bool a = naive(s, t);\n      bool b = is_substring(s, t);\n      assert(a\
+    \ == b);\n    }\n  }\n}\n\nvoid solve() {\n  LL(A, B);\n  print(A + B);\n}\n\n\
+    signed main() {\n  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\
+    \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"other/random.hpp\"\n#include \"string/is_substring.hpp\"\
     \n\nstring gen(int n) {\n  string s;\n  FOR(n) { s += char('a' + RNG(3)); }\n\
@@ -247,8 +249,8 @@ data:
   isVerificationFile: true
   path: test/mytest/is_substring.test.cpp
   requiredBy: []
-  timestamp: '2022-09-24 23:41:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-10-12 08:06:00+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/is_substring.test.cpp
 layout: document

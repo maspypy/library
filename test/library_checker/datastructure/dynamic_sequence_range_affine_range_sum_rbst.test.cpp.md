@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_affine.hpp
     title: alg/group_affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_cntsum.hpp
     title: alg/group_cntsum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/lazy_cntsum_affine.hpp
     title: alg/lazy_cntsum_affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bbst/rbst_lazy.hpp
     title: bbst/rbst_lazy.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
@@ -231,117 +231,115 @@ data:
     \ typename X_structure::value_type;\r\n  using A = typename A_structure::value_type;\r\
     \n  static constexpr X act(const X &x, const A &a) {\r\n    return {x.fi, x.fi\
     \ * a.se + x.se * a.fi};\r\n  }\r\n};\n#line 2 \"mod/modint.hpp\"\n\ntemplate\
-    \ <unsigned int mod>\nstruct modint {\n  static constexpr bool is_modint = true;\n\
-    \  unsigned int val;\n  constexpr modint(const long long val = 0) noexcept\n \
-    \     : val(val >= 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const\
-    \ modint &other) const {\n    return val < other.val;\n  } // To use std::map\n\
-    \  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -=\
-    \ mod;\n    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if\
-    \ ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint\
-    \ &operator*=(const modint &p) {\n    val = (unsigned int)(1LL * val * p.val %\
-    \ mod);\n    return *this;\n  }\n  modint &operator/=(const modint &p) {\n   \
-    \ *this *= p.inverse();\n    return *this;\n  }\n  modint operator-() const {\
-    \ return modint(get_mod() - val); }\n  modint operator+(const modint &p) const\
-    \ { return modint(*this) += p; }\n  modint operator-(const modint &p) const {\
-    \ return modint(*this) -= p; }\n  modint operator*(const modint &p) const { return\
-    \ modint(*this) *= p; }\n  modint operator/(const modint &p) const { return modint(*this)\
-    \ /= p; }\n  bool operator==(const modint &p) const { return val == p.val; }\n\
-    \  bool operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
-    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
-    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
-    \ return modint(u);\n  }\n  modint pow(int64_t n) const {\n    modint ret(1),\
-    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
-    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr unsigned int\
-    \ get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr\
-    \ bool is_modint = true;\n  unsigned int val;\n  ArbitraryModInt() : val(0) {}\n\
-    \  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n          \
-    \         : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
-    \ ArbitraryModInt &other) const {\n    return val < other.val;\n  } // To use\
-    \ std::map<ArbitraryModInt, T>\n  static unsigned int &get_mod() {\n    static\
-    \ unsigned int mod = 0;\n    return mod;\n  }\n  static void set_mod(int md) {\
-    \ get_mod() = md; }\n  ArbitraryModInt &operator+=(const ArbitraryModInt &p) {\n\
-    \    if ((val += p.val) >= get_mod()) val -= get_mod();\n    return *this;\n \
-    \ }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p) {\n    if ((val +=\
-    \ get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return *this;\n  }\n\
-    \  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n    unsigned long\
-    \ long a = (unsigned long long)val * p.val;\n    unsigned xh = (unsigned)(a >>\
-    \ 32), xl = (unsigned)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"\
-    (m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n\
-    \  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n    *this *=\
-    \ p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-() const {\
-    \ return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) += p;\n  }\n\
-    \  ArbitraryModInt operator-(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
-    \ -= p;\n  }\n  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n\
-    \    return ArbitraryModInt(*this) *= p;\n  }\n  ArbitraryModInt operator/(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) /= p;\n  }\n\
-    \  bool operator==(const ArbitraryModInt &p) const { return val == p.val; }\n\
-    \  bool operator!=(const ArbitraryModInt &p) const { return val != p.val; }\n\
-    \  ArbitraryModInt inverse() const {\n    int a = val, b = get_mod(), u = 1, v\
-    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
-    \ -= t * v, v);\n    }\n    return ArbitraryModInt(u);\n  }\n  ArbitraryModInt\
-    \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
-    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
-    \  }\n    return ret;\n  }\n};\n\ntemplate <typename mint>\nmint inv(int n) {\n\
-    \  static const int mod = mint::get_mod();\n  static vector<mint> dat = {0, 1};\n\
-    \  assert(0 <= n);\n  if (n >= mod) n %= mod;\n  while (int(dat.size()) <= n)\
-    \ {\n    int k = dat.size();\n    auto q = (mod + k - 1) / k;\n    int r = k *\
-    \ q - mod;\n    dat.emplace_back(dat[r] * mint(q));\n  }\n  return dat[n];\n}\n\
-    \ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
-    \  static vector<mint> dat = {1, 1};\n  assert(0 <= n);\n  if (n >= mod) return\
-    \ 0;\n  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
-    \ - 1] * mint(k));\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint\
-    \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
-    \ dat = {1, 1};\n  assert(0 <= n && n < mod);\n  while (int(dat.size()) <= n)\
-    \ {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint C_dense(int n, int\
-    \ k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\n  auto calc = [&](int\
-    \ i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n\
-    \    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n\n  if (W <= k) {\n\
-    \    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j]\
-    \ = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n\
-    \ + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j]\
-    \ = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate\
-    \ <typename mint, bool large = false, bool dense = false>\nmint C(ll n, ll k)\
-    \ {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if (dense) return C_dense<mint>(n,\
-    \ k);\n  if (!large) return fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n\
-    \ - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n\
-    \  x *= fact_inv<mint>(k);\n  return x;\n}\n\ntemplate <typename mint, bool large\
-    \ = false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k\
-    \ <= n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n\
-    \ - k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\
-    \u8A08\u7B97\ntemplate <typename mint, bool large = false, bool dense = false>\n\
-    mint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
-    \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
-    \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
-    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 1 \"bbst/rbst_lazy.hpp\"\
-    \n\n// reverse \u306F\u3068\u308A\u3042\u3048\u305A\u3001Monoid_X \u306E\u53EF\
-    \u63DB\u6027\u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\uFF01\ntemplate <typename\
-    \ Lazy, int NODES = 1'000'000>\nstruct RBST_Lazy {\n  using Monoid_X = typename\
-    \ Lazy::X_structure;\n  using Monoid_A = typename Lazy::A_structure;\n  using\
-    \ X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
-    \n  struct Node {\n    Node *l, *r;\n    X x, prod;\n    A a;\n    int size;\n\
-    \    bool rev;\n    bool propagated;\n  };\n\n  Node *pool;\n  int pid;\n\n  RBST_Lazy()\
-    \ : pid(0) { pool = new Node[NODES]; }\n\n  Node *new_node(const X &x) {\n   \
-    \ pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x = x;\n    pool[pid].prod\
-    \ = x;\n    pool[pid].a = Monoid_A::unit();\n    pool[pid].size = 1;\n    pool[pid].rev\
-    \ = 0;\n    pool[pid].propagated = 1;\n    return &(pool[pid++]);\n  }\n\n  Node\
-    \ *new_node(const vc<X> &dat) {\n    auto dfs = [&](auto &dfs, int l, int r) ->\
-    \ Node * {\n      if (l == r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n\
-    \      int m = (l + r) / 2;\n      Node *l_root = dfs(dfs, l, m);\n      Node\
-    \ *r_root = dfs(dfs, m + 1, r);\n      Node *root = new_node(dat[m]);\n      root->l\
-    \ = l_root, root->r = r_root;\n      update(root);\n      return root;\n    };\n\
-    \    return dfs(dfs, 0, len(dat));\n  }\n\n  // \u5DE6\u306B\u53F3\u3092\u30DE\
-    \u30FC\u30B8\n  void merge(Node *&root, Node *r_root) {\n    root = merge_rec(root,\
-    \ r_root);\n    return;\n  }\n\n  // \u5DE6\u53F3\u306B\u5206\u3051\u3066\u3001\
-    root \u3092\u5DE6\u5074\u306B\u5909\u66F4\u3002\u53F3\u5074\u3092 return \u3059\
-    \u308B\u3002\n  Node *split(Node *&root, int k) {\n    if (!root) assert(k ==\
-    \ 0);\n    if (root) assert(0 <= k && k <= root->size);\n    auto [nl, nr] = split_rec(root,\
-    \ k);\n    root = nl;\n    return nr;\n  }\n\n  X prod(Node *&root, int l, int\
-    \ r) {\n    assert(0 <= l && l <= r && r <= root->size);\n    if (l == r) return\
-    \ Monoid_X::unit();\n    Node *r_root = split(root, r);\n    Node *m_root = split(root,\
-    \ l);\n    X res = m_root->prod;\n    merge(root, m_root);\n    merge(root, r_root);\n\
-    \    return res;\n  }\n\n  void reverse(Node *&root, int l, int r) {\n    assert(Monoid_X::commute);\n\
+    \ <int mod>\nstruct modint {\n  static constexpr bool is_modint = true;\n  int\
+    \ val;\n  constexpr modint(const ll val = 0) noexcept\n      : val(val >= 0 ?\
+    \ val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint &other)\
+    \ const {\n    return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
+    \ modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n\
+    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >=\
+    \ mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint\
+    \ &p) {\n    val = (int)(1LL * val * p.val % mod);\n    return *this;\n  }\n \
+    \ modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
+    \ *this;\n  }\n  modint operator-() const { return modint(-val); }\n  modint operator+(const\
+    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
+    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
+    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
+    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
+    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
+    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
+    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
+    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t n) const {\n\
+    \    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
+    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr\
+    \ int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr\
+    \ bool is_modint = true;\n  int val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t\
+    \ y)\n      : val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y)\
+    \ % get_mod()) % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other)\
+    \ const {\n    return val < other.val;\n  } // To use std::map<ArbitraryModInt,\
+    \ T>\n  static int &get_mod() {\n    static int mod = 0;\n    return mod;\n  }\n\
+    \  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
+    \ ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
+    \    return *this;\n  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p)\
+    \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
+    \ *this;\n  }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n   \
+    \ long long a = (long long)val * p.val;\n    int xh = (int)(a >> 32), xl = (int)a,\
+    \ d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"(m) : \"d\"(xh), \"a\"\
+    (xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n  }\n  ArbitraryModInt\
+    \ &operator/=(const ArbitraryModInt &p) {\n    *this *= p.inverse();\n    return\
+    \ *this;\n  }\n  ArbitraryModInt operator-() const { return ArbitraryModInt(get_mod()\
+    \ - val); }\n  ArbitraryModInt operator+(const ArbitraryModInt &p) const {\n \
+    \   return ArbitraryModInt(*this) += p;\n  }\n  ArbitraryModInt operator-(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) -= p;\n  }\n\
+    \  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
+    \ *= p;\n  }\n  ArbitraryModInt operator/(const ArbitraryModInt &p) const {\n\
+    \    return ArbitraryModInt(*this) /= p;\n  }\n  bool operator==(const ArbitraryModInt\
+    \ &p) const { return val == p.val; }\n  bool operator!=(const ArbitraryModInt\
+    \ &p) const { return val != p.val; }\n  ArbitraryModInt inverse() const {\n  \
+    \  int a = val, b = get_mod(), u = 1, v = 0, t;\n    while (b > 0) {\n      t\
+    \ = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return\
+    \ ArbitraryModInt(u);\n  }\n  ArbitraryModInt pow(int64_t n) const {\n    ArbitraryModInt\
+    \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
+    \ mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n};\n\ntemplate <typename\
+    \ mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n  static\
+    \ vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n \
+    \ while (int(dat.size()) <= n) {\n    int k = dat.size();\n    auto q = (mod +\
+    \ k - 1) / k;\n    int r = k * q - mod;\n    dat.emplace_back(dat[r] * mint(q));\n\
+    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
+    \ const int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  assert(0\
+    \ <= n);\n  if (n >= mod) return 0;\n  while (int(dat.size()) <= n) {\n    int\
+    \ k = dat.size();\n    dat.emplace_back(dat[k - 1] * mint(k));\n  }\n  return\
+    \ dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static const\
+    \ int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  assert(0\
+    \ <= n && n < mod);\n  while (int(dat.size()) <= n) {\n    int k = dat.size();\n\
+    \    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n  }\n  return dat[n];\n}\n\n\
+    template <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint> C;\n\
+    \  static int H = 0, W = 0;\n\n  auto calc = [&](int i, int j) -> mint {\n   \
+    \ if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j] + (j\
+    \ ? C[i - 1][j - 1] : 0);\n  };\n\n  if (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k\
+    \ + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n    W = k +\
+    \ 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n   \
+    \   C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H =\
+    \ n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool large = false,\
+    \ bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 ||\
+    \ n < k) return 0;\n  if (dense) return C_dense<mint>(n, k);\n  if (!large) return\
+    \ fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n  k = min(k, n -\
+    \ k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n\
+    \  return x;\n}\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll\
+    \ n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return\
+    \ fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint,\
+    \ 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\u8A08\u7B97\ntemplate <typename\
+    \ mint, bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n\
+    \  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d ==\
+    \ 0 ? mint(1) : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n\
+    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    using amint = ArbitraryModInt;\n#line 1 \"bbst/rbst_lazy.hpp\"\n\n// reverse \u306F\
+    \u3068\u308A\u3042\u3048\u305A\u3001Monoid_X \u306E\u53EF\u63DB\u6027\u3092\u4EEE\
+    \u5B9A\u3057\u3066\u3044\u308B\uFF01\ntemplate <typename Lazy, int NODES = 1'000'000>\n\
+    struct RBST_Lazy {\n  using Monoid_X = typename Lazy::X_structure;\n  using Monoid_A\
+    \ = typename Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n\
+    \  using A = typename Monoid_A::value_type;\n\n  struct Node {\n    Node *l, *r;\n\
+    \    X x, prod;\n    A a;\n    int size;\n    bool rev;\n    bool propagated;\n\
+    \  };\n\n  Node *pool;\n  int pid;\n\n  RBST_Lazy() : pid(0) { pool = new Node[NODES];\
+    \ }\n\n  Node *new_node(const X &x) {\n    pool[pid].l = pool[pid].r = nullptr;\n\
+    \    pool[pid].x = x;\n    pool[pid].prod = x;\n    pool[pid].a = Monoid_A::unit();\n\
+    \    pool[pid].size = 1;\n    pool[pid].rev = 0;\n    pool[pid].propagated = 1;\n\
+    \    return &(pool[pid++]);\n  }\n\n  Node *new_node(const vc<X> &dat) {\n   \
+    \ auto dfs = [&](auto &dfs, int l, int r) -> Node * {\n      if (l == r) return\
+    \ nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n      int m = (l +\
+    \ r) / 2;\n      Node *l_root = dfs(dfs, l, m);\n      Node *r_root = dfs(dfs,\
+    \ m + 1, r);\n      Node *root = new_node(dat[m]);\n      root->l = l_root, root->r\
+    \ = r_root;\n      update(root);\n      return root;\n    };\n    return dfs(dfs,\
+    \ 0, len(dat));\n  }\n\n  // \u5DE6\u306B\u53F3\u3092\u30DE\u30FC\u30B8\n  void\
+    \ merge(Node *&root, Node *r_root) {\n    root = merge_rec(root, r_root);\n  \
+    \  return;\n  }\n\n  // \u5DE6\u53F3\u306B\u5206\u3051\u3066\u3001root \u3092\u5DE6\
+    \u5074\u306B\u5909\u66F4\u3002\u53F3\u5074\u3092 return \u3059\u308B\u3002\n \
+    \ Node *split(Node *&root, int k) {\n    if (!root) assert(k == 0);\n    if (root)\
+    \ assert(0 <= k && k <= root->size);\n    auto [nl, nr] = split_rec(root, k);\n\
+    \    root = nl;\n    return nr;\n  }\n\n  X prod(Node *&root, int l, int r) {\n\
+    \    assert(0 <= l && l <= r && r <= root->size);\n    if (l == r) return Monoid_X::unit();\n\
+    \    Node *r_root = split(root, r);\n    Node *m_root = split(root, l);\n    X\
+    \ res = m_root->prod;\n    merge(root, m_root);\n    merge(root, r_root);\n  \
+    \  return res;\n  }\n\n  void reverse(Node *&root, int l, int r) {\n    assert(Monoid_X::commute);\n\
     \    assert(0 <= l && l <= r && r <= root->size);\n    if (r - l <= 1) return;\n\
     \    Node *r_root = split(root, r);\n    Node *m_root = split(root, l);\n    m_root->rev\
     \ ^= 1;\n    prop(m_root);\n    update(m_root);\n    merge(root, m_root);\n  \
@@ -440,8 +438,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   requiredBy: []
-  timestamp: '2022-10-08 03:06:15+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-10-12 08:05:37+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
 layout: document

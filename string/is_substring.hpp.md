@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/zalgorithm.hpp
     title: string/zalgorithm.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/is_substring.test.cpp
     title: test/mytest/is_substring.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/zalgorithm.hpp\"\ntemplate <typename STRING>  //\
@@ -22,22 +22,25 @@ data:
     \ < n && s[k] == s[i + k]) k++;\n    if (j + z[j] < i + z[i]) j = i;\n  }\n  z[0]\
     \ = n;\n  return z;\n}\n#line 2 \"string/is_substring.hpp\"\n\n// \u9023\u7D9A\
     \u90E8\u5206\u5217\u306B\u542B\u3080\u304B\u3069\u3046\u304B\u3002z-algo \u3067\
-    \u7DDA\u5F62\u6642\u9593\ntemplate <typename STRING>\nbool is_substring(STRING\
-    \ S, STRING T) {\n  int n = len(S), m = len(T);\n  S += T;\n  auto Z = zalgorithm(S);\n\
-    \  FOR3(i, n, n + m) {\n    if (Z[i] >= n) return true;\n  }\n  return false;\n\
-    }\n"
+    \u7DDA\u5F62\u6642\u9593\ntemplate <typename STRING>\nbool is_substring(STRING&\
+    \ S, STRING& T) {\n  int n = int(S.size()), m = int(T.size());\n  STRING ST;\n\
+    \  for (auto&& x: S) ST.push_back(x);\n  for (auto&& x: T) ST.push_back(x);\n\
+    \  auto Z = zalgorithm(ST);\n  for (int i = n; i < n + m; ++i) {\n    if (Z[i]\
+    \ >= n) return true;\n  }\n  return false;\n}\n"
   code: "#include \"string/zalgorithm.hpp\"\n\n// \u9023\u7D9A\u90E8\u5206\u5217\u306B\
     \u542B\u3080\u304B\u3069\u3046\u304B\u3002z-algo \u3067\u7DDA\u5F62\u6642\u9593\
-    \ntemplate <typename STRING>\nbool is_substring(STRING S, STRING T) {\n  int n\
-    \ = len(S), m = len(T);\n  S += T;\n  auto Z = zalgorithm(S);\n  FOR3(i, n, n\
-    \ + m) {\n    if (Z[i] >= n) return true;\n  }\n  return false;\n}"
+    \ntemplate <typename STRING>\nbool is_substring(STRING& S, STRING& T) {\n  int\
+    \ n = int(S.size()), m = int(T.size());\n  STRING ST;\n  for (auto&& x: S) ST.push_back(x);\n\
+    \  for (auto&& x: T) ST.push_back(x);\n  auto Z = zalgorithm(ST);\n  for (int\
+    \ i = n; i < n + m; ++i) {\n    if (Z[i] >= n) return true;\n  }\n  return false;\n\
+    }\n"
   dependsOn:
   - string/zalgorithm.hpp
   isVerificationFile: false
   path: string/is_substring.hpp
   requiredBy: []
-  timestamp: '2022-05-01 01:11:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-10-12 08:06:00+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/is_substring.test.cpp
 documentation_of: string/is_substring.hpp

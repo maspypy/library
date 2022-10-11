@@ -7,19 +7,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid_min_idx.hpp
     title: alg/monoid_min_idx.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/disjointsparse.hpp
     title: ds/disjointsparse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
