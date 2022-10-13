@@ -2,17 +2,20 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yukicoder/1167.test.cpp
+    title: test/yukicoder/1167.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://atcoder.jp/contests/abc223/tasks/abc223_h
     - https://codeforces.com/contest/1100/problem/F
   bundledCode: "#line 2 \"ds/range_xor_basis_query.hpp\"\n\n/*\n\u5217\u3082\u30AF\
     \u30A8\u30EA\u3082 static \u306A\u5834\u5408\u3002\u8A08\u7B97\u91CF O((N+Q)LOG)\n\
-    ----\nexample\nhttps://atcoder.jp/contests/abc223/tasks/abc223_h\nhttps://codeforces.com/contest/1100/problem/F\n\
+    example\nhttps://atcoder.jp/contests/abc223/tasks/abc223_h\nhttps://codeforces.com/contest/1100/problem/F\n\
     */\ntemplate <typename INT_TYPE, int LOG>\nstruct Range_Xor_Basis_Query {\n  int\
     \ n;\n  vc<INT_TYPE>& A;\n  vc<pair<int, int>> query;\n  vc<vi> QIDS;\n\n  Range_Xor_Basis_Query(vc<INT_TYPE>&\
     \ A) : n(len(A)), A(A) {\n    QIDS.resize(n + 1);\n  }\n\n  void add(int l, int\
@@ -29,7 +32,7 @@ data:
     \  if (p.se > dat[k].se) swap(p, dat[k]);\n          p.fi ^= dat[k].fi;\n    \
     \    }\n      }\n    }\n  }\n};\n"
   code: "#pragma once\n\n/*\n\u5217\u3082\u30AF\u30A8\u30EA\u3082 static \u306A\u5834\
-    \u5408\u3002\u8A08\u7B97\u91CF O((N+Q)LOG)\n----\nexample\nhttps://atcoder.jp/contests/abc223/tasks/abc223_h\n\
+    \u5408\u3002\u8A08\u7B97\u91CF O((N+Q)LOG)\nexample\nhttps://atcoder.jp/contests/abc223/tasks/abc223_h\n\
     https://codeforces.com/contest/1100/problem/F\n*/\ntemplate <typename INT_TYPE,\
     \ int LOG>\nstruct Range_Xor_Basis_Query {\n  int n;\n  vc<INT_TYPE>& A;\n  vc<pair<int,\
     \ int>> query;\n  vc<vi> QIDS;\n\n  Range_Xor_Basis_Query(vc<INT_TYPE>& A) : n(len(A)),\
@@ -50,9 +53,10 @@ data:
   isVerificationFile: false
   path: ds/range_xor_basis_query.hpp
   requiredBy: []
-  timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-10-13 10:38:43+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yukicoder/1167.test.cpp
 documentation_of: ds/range_xor_basis_query.hpp
 layout: document
 redirect_from:

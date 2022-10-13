@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/centroid.hpp
     title: graph/centroid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -90,45 +90,46 @@ data:
     \ {\r\n    if (N - sz[v] > M) return false;\r\n    for (auto&& e: G[v]) {\r\n\
     \      if (e.to != par[v] && sz[e.to] > M) return false;\r\n    }\r\n    return\
     \ true;\r\n  };\r\n  vc<int> ANS;\r\n  FOR(v, N) if (check(v)) ANS.eb(v);\r\n\
-    \  return ANS;\r\n}\r\n\r\ntemplate <typename Graph, typename E = int>\r\nstruct\
-    \ CentroidDecomposition {\r\n  using edge_type = typename Graph::edge_type;\r\n\
-    \  using F = function<E(E, edge_type)>;\r\n  Graph& G;\r\n  int N;\r\n  F f; //\
-    \ (E path value, edge e) -> E new_path_value\r\n  vc<int> sz;\r\n  vc<int> par;\r\
-    \n  vector<int> cdep; // depth in centroid tree\r\n  bool calculated;\r\n\r\n\
-    \  CentroidDecomposition(\r\n      Graph& G, F f = [](int x, edge_type e) { return\
-    \ x + e.cost; })\r\n      : G(G), N(G.N), f(f), sz(G.N), par(G.N), cdep(G.N, -1)\
-    \ {\r\n    calculated = 0;\r\n    build();\r\n  }\r\nprivate:\r\n  int find(int\
-    \ v) {\r\n    vc<int> V = {v};\r\n    par[v] = -1;\r\n    int p = 0;\r\n    while\
-    \ (p < len(V)) {\r\n      int v = V[p++];\r\n      sz[v] = 0;\r\n      for (auto&&\
-    \ e: G[v]) {\r\n        if (e.to == par[v] || cdep[e.to] != -1) continue;\r\n\
-    \        par[e.to] = v;\r\n        V.eb(e.to);\r\n      }\r\n    }\r\n    while\
-    \ (len(V)) {\r\n      int v = V.back();\r\n      V.pop_back();\r\n      sz[v]\
-    \ += 1;\r\n      if (p - sz[v] <= p / 2) return v;\r\n      sz[par[v]] += sz[v];\r\
-    \n    }\r\n    return -1;\r\n  }\r\n  void build() {\r\n    assert(G.is_prepared());\r\
-    \n    assert(!G.is_directed());\r\n    assert(!calculated);\r\n    calculated\
-    \ = 1;\r\n\r\n    vc<pair<int, int>> st;\r\n    st.eb(0, 0);\r\n    while (!st.empty())\
+    \  return ANS;\r\n}\r\n\r\ntemplate <typename Graph>\r\nstruct CentroidDecomposition\
+    \ {\r\n  using edge_type = typename Graph::edge_type;\r\n  Graph& G;\r\n  int\
+    \ N;\r\n  vc<int> sz;\r\n  vc<int> par;\r\n  vector<int> cdep; // depth in centroid\
+    \ tree\r\n  bool calculated;\r\n\r\n  CentroidDecomposition(Graph& G)\r\n    \
+    \  : G(G), N(G.N), sz(G.N), par(G.N), cdep(G.N, -1) {\r\n    calculated = 0;\r\
+    \n    build();\r\n  }\r\n\r\nprivate:\r\n  int find(int v) {\r\n    vc<int> V\
+    \ = {v};\r\n    par[v] = -1;\r\n    int p = 0;\r\n    while (p < len(V)) {\r\n\
+    \      int v = V[p++];\r\n      sz[v] = 0;\r\n      for (auto&& e: G[v]) {\r\n\
+    \        if (e.to == par[v] || cdep[e.to] != -1) continue;\r\n        par[e.to]\
+    \ = v;\r\n        V.eb(e.to);\r\n      }\r\n    }\r\n    while (len(V)) {\r\n\
+    \      int v = V.back();\r\n      V.pop_back();\r\n      sz[v] += 1;\r\n     \
+    \ if (p - sz[v] <= p / 2) return v;\r\n      sz[par[v]] += sz[v];\r\n    }\r\n\
+    \    return -1;\r\n  }\r\n  void build() {\r\n    assert(G.is_prepared());\r\n\
+    \    assert(!G.is_directed());\r\n    assert(!calculated);\r\n    calculated =\
+    \ 1;\r\n\r\n    vc<pair<int, int>> st;\r\n    st.eb(0, 0);\r\n    while (!st.empty())\
     \ {\r\n      auto [lv, v] = st.back();\r\n      st.pop_back();\r\n      auto c\
     \ = find(v);\r\n      cdep[c] = lv;\r\n      for (auto&& e: G[c]) {\r\n      \
     \  if (cdep[e.to] == -1) { st.eb(lv + 1, e.to); }\r\n      }\r\n    }\r\n  }\r\
-    \n\r\npublic:\r\n  vc<vc<pair<int, E>>> collect(int root, E root_val) {\r\n  \
-    \  /*\r\n    root \u3092\u91CD\u5FC3\u3068\u3059\u308B\u6728\u306B\u304A\u3044\
-    \u3066\u3001(v, path data v) \u306E vector\r\n    \u3092\u3001\u65B9\u5411\u3054\
-    \u3068\u306B\u96C6\u3081\u3066\u8FD4\u3059 \u30FB0 \u756A\u76EE\uFF1Aroot \u304B\
-    \u3089\u306E\u30D1\u30B9\u3059\u3079\u3066\uFF08root \u3092\u542B\u3080\uFF09\
-    \ \u30FBi\r\n    \u756A\u76EE\uFF1Ai \u756A\u76EE\u306E\u65B9\u5411\r\n    */\r\
-    \n    vc<vc<pair<int, E>>> res = {{{root, root_val}}};\r\n    for (auto&& e: G[root])\
-    \ {\r\n      int nxt = e.to;\r\n      if (cdep[nxt] < cdep[root]) continue;\r\n\
-    \      vc<pair<int, E>> dat;\r\n      int p = 0;\r\n      dat.eb(nxt, f(root_val,\
-    \ e));\r\n      par[nxt] = root;\r\n      while (p < len(dat)) {\r\n        auto\
-    \ [v, val] = dat[p++];\r\n        for (auto&& e: G[v]) {\r\n          if (e.to\
-    \ == par[v]) continue;\r\n          if (cdep[e.to] < cdep[root]) continue;\r\n\
-    \          par[e.to] = v;\r\n          dat.eb(e.to, f(val, e));\r\n        }\r\
-    \n      }\r\n      res.eb(dat);\r\n      res[0].insert(res[0].end(), all(dat));\r\
-    \n    }\r\n    return res;\r\n  }\r\n};\r\n#line 2 \"mod/modint.hpp\"\n\ntemplate\
-    \ <int mod>\nstruct modint {\n  static constexpr bool is_modint = true;\n  int\
-    \ val;\n  constexpr modint(const ll val = 0) noexcept\n      : val(val >= 0 ?\
-    \ val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint &other)\
-    \ const {\n    return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
+    \n\r\npublic:\r\n  /*\r\n  root \u3092\u91CD\u5FC3\u3068\u3059\u308B\u6728\u306B\
+    \u304A\u3044\u3066\u3001(v, path data v) \u306E vector\r\n  \u3092\u3001\u65B9\
+    \u5411\u3054\u3068\u306B\u96C6\u3081\u3066\u8FD4\u3059 \u30FB0 \u756A\u76EE\uFF1A\
+    root \u304B\u3089\u306E\u30D1\u30B9\u3059\u3079\u3066\uFF08root \u3092\u542B\u3080\
+    \uFF09\r\n  \u30FBi\u756A\u76EE\uFF1Ai \u756A\u76EE\u306E\u65B9\u5411\r\n  f:\
+    \ E x edge -> E\r\n  */\r\n  template <typename E, typename F>\r\n  vc<vc<pair<int,\
+    \ E>>> collect(int root, E root_val, F f) {\r\n    vc<vc<pair<int, E>>> res =\
+    \ {{{root, root_val}}};\r\n    for (auto&& e: G[root]) {\r\n      int nxt = e.to;\r\
+    \n      if (cdep[nxt] < cdep[root]) continue;\r\n      vc<pair<int, E>> dat;\r\
+    \n      int p = 0;\r\n      dat.eb(nxt, f(root_val, e));\r\n      par[nxt] = root;\r\
+    \n      while (p < len(dat)) {\r\n        auto [v, val] = dat[p++];\r\n      \
+    \  for (auto&& e: G[v]) {\r\n          if (e.to == par[v]) continue;\r\n     \
+    \     if (cdep[e.to] < cdep[root]) continue;\r\n          par[e.to] = v;\r\n \
+    \         dat.eb(e.to, f(val, e));\r\n        }\r\n      }\r\n      res.eb(dat);\r\
+    \n      res[0].insert(res[0].end(), all(dat));\r\n    }\r\n    return res;\r\n\
+    \  }\r\n\r\n  vc<vc<pair<int, int>>> collect_dist(int root) {\r\n    auto f =\
+    \ [&](int x, auto e) -> int { return x + 1; };\r\n    return collect(root, 0,\
+    \ f);\r\n  }\r\n};\r\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct\
+    \ modint {\n  static constexpr bool is_modint = true;\n  int val;\n  constexpr\
+    \ modint(const ll val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod -\
+    \ (-val) % mod) % mod) {}\n  bool operator<(const modint &other) const {\n   \
+    \ return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
     \ modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n\
     \  }\n  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >=\
     \ mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint\
@@ -419,8 +420,8 @@ data:
   isVerificationFile: false
   path: graph/tree_all_distances.hpp
   requiredBy: []
-  timestamp: '2022-10-12 08:05:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-10-13 10:42:11+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
 documentation_of: graph/tree_all_distances.hpp

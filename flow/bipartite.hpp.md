@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   _extendedRequiredBy:
@@ -30,18 +30,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1479.test.cpp
     title: test/yukicoder/1479.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1744.test.cpp
     title: test/yukicoder/1744.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/1745.test.cpp
+    title: test/yukicoder/1745.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - http://www.misojiro.t.u-tokyo.ac.jp/~murota/lect-ouyousurigaku/dm050410.pdf
+    - https://en.wikipedia.org/wiki/Dulmage%E2%80%93Mendelsohn_decomposition
     - https://hitonanode.github.io/cplib-cpp/graph/dulmage_mendelsohn_decomposition.hpp.html
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
@@ -159,20 +163,16 @@ data:
     \ {\r\n        res.eb(e.id);\r\n        done[e.frm] = 1;\r\n      }\r\n      if\
     \ (!done[e.to]) {\r\n        res.eb(e.id);\r\n        done[e.to] = 1;\r\n    \
     \  }\r\n    }\r\n    sort(all(res));\r\n    return res;\r\n  }\r\n\r\n  /* Dulmage\u2013\
-    Mendelsohn decomposition\r\n  http://www.misojiro.t.u-tokyo.ac.jp/~murota/lect-ouyousurigaku/dm050410.pdf\r\
+    Mendelsohn decomposition\r\n  https://en.wikipedia.org/wiki/Dulmage%E2%80%93Mendelsohn_decomposition\r\
+    \n  http://www.misojiro.t.u-tokyo.ac.jp/~murota/lect-ouyousurigaku/dm050410.pdf\r\
     \n  https://hitonanode.github.io/cplib-cpp/graph/dulmage_mendelsohn_decomposition.hpp.html\r\
     \n  - \u6700\u5927\u30DE\u30C3\u30C1\u30F3\u30B0\u3068\u3057\u3066\u3042\u308A\
-    \u3046\u308B\u3082\u306E\uFF1A\u540C\u3058 W \u3092\u6301\u3064\u70B9\u306E\u307F\
-    \r\n  - color=0 \u304B\u3089 1 \u3078\u306E\u8FBA\uFF1AW(l) <= W(r)\r\n  - color=0\
-    \ \u304B\u3064 W=0 \u306E\u70B9\uFF1A\u5FC5\u305A\u4F7F\u308F\u308C\u308B\r\n\
-    \  - color=1 \u304B\u3064 W=K \u306E\u70B9\uFF1A\u5FC5\u305A\u4F7F\u308F\u308C\
-    \u308B\r\n  - 1 <= k < K\uFF1A\u4EFB\u610F\u306E\u6700\u5927\u30DE\u30C3\u30C1\
-    \u30F3\u30B0\u306B\u3064\u3044\u3066\u3001\u3059\u3079\u3066\u306E\u70B9\u304C\
-    \u4F7F\u308F\u308C\u308B\r\n  - color=0 \u306E\u70B9\u304C\u5FC5\u305A\u4F7F\u308F\
-    \u308C\u308B\uFF1AW=0,1,...,K-1\r\n  - color=1 \u306E\u70B9\u304C\u5FC5\u305A\u4F7F\
-    \u308F\u308C\u308B\uFF1AW=1,2,...,K\r\n  - \u8FBAuv\u304C\u5FC5\u305A\u4F7F\u308F\
-    \u308C\u308B\uFF1A\u540C\u3058 W \u3092\u6301\u3064\u8FBA\u304C\u552F\u4E00\r\n\
-    \  */\r\n  pair<int, vc<int>> DM_decomposition() {\r\n    // \u975E\u98FD\u548C\
+    \u3046\u308B iff \u540C\u3058 W \u3092\u6301\u3064\r\n  - \u8FBA uv \u304C\u5FC5\
+    \u305A\u4F7F\u308F\u308C\u308B\uFF1A\u540C\u3058 W \u3092\u6301\u3064\u8FBA\u304C\
+    \u552F\u4E00\r\n  - color=0 \u304B\u3089 1 \u3078\u306E\u8FBA\uFF1AW[l] <= W[r]\r\
+    \n  - color=0 \u306E\u70B9\u304C\u5FC5\u305A\u4F7F\u308F\u308C\u308B\uFF1AW=0,1,...,K-1\r\
+    \n  - color=1 \u306E\u70B9\u304C\u5FC5\u305A\u4F7F\u308F\u308C\u308B\uFF1AW=1,2,...,K\r\
+    \n  */\r\n  pair<int, vc<int>> DM_decomposition() {\r\n    // \u975E\u98FD\u548C\
     \u70B9\u304B\u3089\u306E\u63A2\u7D22\r\n    vc<int> W(N, -1);\r\n    int INF =\
     \ N + 10;\r\n    vc<int> que;\r\n    auto add = [&](int v, int x) -> void {\r\n\
     \      if (W[v] == -1) {\r\n        W[v] = x;\r\n        que.eb(v);\r\n      }\r\
@@ -230,20 +230,16 @@ data:
     \ {\r\n        res.eb(e.id);\r\n        done[e.frm] = 1;\r\n      }\r\n      if\
     \ (!done[e.to]) {\r\n        res.eb(e.id);\r\n        done[e.to] = 1;\r\n    \
     \  }\r\n    }\r\n    sort(all(res));\r\n    return res;\r\n  }\r\n\r\n  /* Dulmage\u2013\
-    Mendelsohn decomposition\r\n  http://www.misojiro.t.u-tokyo.ac.jp/~murota/lect-ouyousurigaku/dm050410.pdf\r\
+    Mendelsohn decomposition\r\n  https://en.wikipedia.org/wiki/Dulmage%E2%80%93Mendelsohn_decomposition\r\
+    \n  http://www.misojiro.t.u-tokyo.ac.jp/~murota/lect-ouyousurigaku/dm050410.pdf\r\
     \n  https://hitonanode.github.io/cplib-cpp/graph/dulmage_mendelsohn_decomposition.hpp.html\r\
     \n  - \u6700\u5927\u30DE\u30C3\u30C1\u30F3\u30B0\u3068\u3057\u3066\u3042\u308A\
-    \u3046\u308B\u3082\u306E\uFF1A\u540C\u3058 W \u3092\u6301\u3064\u70B9\u306E\u307F\
-    \r\n  - color=0 \u304B\u3089 1 \u3078\u306E\u8FBA\uFF1AW(l) <= W(r)\r\n  - color=0\
-    \ \u304B\u3064 W=0 \u306E\u70B9\uFF1A\u5FC5\u305A\u4F7F\u308F\u308C\u308B\r\n\
-    \  - color=1 \u304B\u3064 W=K \u306E\u70B9\uFF1A\u5FC5\u305A\u4F7F\u308F\u308C\
-    \u308B\r\n  - 1 <= k < K\uFF1A\u4EFB\u610F\u306E\u6700\u5927\u30DE\u30C3\u30C1\
-    \u30F3\u30B0\u306B\u3064\u3044\u3066\u3001\u3059\u3079\u3066\u306E\u70B9\u304C\
-    \u4F7F\u308F\u308C\u308B\r\n  - color=0 \u306E\u70B9\u304C\u5FC5\u305A\u4F7F\u308F\
-    \u308C\u308B\uFF1AW=0,1,...,K-1\r\n  - color=1 \u306E\u70B9\u304C\u5FC5\u305A\u4F7F\
-    \u308F\u308C\u308B\uFF1AW=1,2,...,K\r\n  - \u8FBAuv\u304C\u5FC5\u305A\u4F7F\u308F\
-    \u308C\u308B\uFF1A\u540C\u3058 W \u3092\u6301\u3064\u8FBA\u304C\u552F\u4E00\r\n\
-    \  */\r\n  pair<int, vc<int>> DM_decomposition() {\r\n    // \u975E\u98FD\u548C\
+    \u3046\u308B iff \u540C\u3058 W \u3092\u6301\u3064\r\n  - \u8FBA uv \u304C\u5FC5\
+    \u305A\u4F7F\u308F\u308C\u308B\uFF1A\u540C\u3058 W \u3092\u6301\u3064\u8FBA\u304C\
+    \u552F\u4E00\r\n  - color=0 \u304B\u3089 1 \u3078\u306E\u8FBA\uFF1AW[l] <= W[r]\r\
+    \n  - color=0 \u306E\u70B9\u304C\u5FC5\u305A\u4F7F\u308F\u308C\u308B\uFF1AW=0,1,...,K-1\r\
+    \n  - color=1 \u306E\u70B9\u304C\u5FC5\u305A\u4F7F\u308F\u308C\u308B\uFF1AW=1,2,...,K\r\
+    \n  */\r\n  pair<int, vc<int>> DM_decomposition() {\r\n    // \u975E\u98FD\u548C\
     \u70B9\u304B\u3089\u306E\u63A2\u7D22\r\n    vc<int> W(N, -1);\r\n    int INF =\
     \ N + 10;\r\n    vc<int> que;\r\n    auto add = [&](int v, int x) -> void {\r\n\
     \      if (W[v] == -1) {\r\n        W[v] = x;\r\n        que.eb(v);\r\n      }\r\
@@ -277,11 +273,12 @@ data:
   requiredBy:
   - graph/dag_path_cover.hpp
   - graph/maximum_antichain.hpp
-  timestamp: '2022-10-12 08:04:04+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-10-13 10:39:03+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/2251_2.test.cpp
   - test/aoj/2251_1.test.cpp
+  - test/yukicoder/1745.test.cpp
   - test/yukicoder/1479.test.cpp
   - test/yukicoder/1744.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
