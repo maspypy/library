@@ -20,6 +20,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/composition_f_ex.hpp
+    title: poly/composition_f_ex.hpp
   - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
@@ -89,6 +92,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/product_of_one_plus_xn.hpp
     title: poly/product_of_one_plus_xn.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/product_of_pow_of_linear.hpp
+    title: poly/product_of_pow_of_linear.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/sum_of_exp_bx.hpp
+    title: poly/sum_of_exp_bx.hpp
   - icon: ':warning:'
     path: poly/sum_of_prefix_suffix_products.hpp
     title: poly/sum_of_prefix_suffix_products.hpp
@@ -460,6 +469,9 @@ data:
     path: test/yukicoder/1857.test.cpp
     title: test/yukicoder/1857.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1875.test.cpp
+    title: test/yukicoder/1875.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1891.test.cpp
     title: test/yukicoder/1891.test.cpp
   - icon: ':heavy_check_mark:'
@@ -706,11 +718,14 @@ data:
   - poly/product_of_one_plus_xn.hpp
   - poly/sum_of_rationals.hpp
   - poly/convolution2d.hpp
+  - poly/composition_f_ex.hpp
   - poly/convolution_leq.hpp
   - poly/convolution_mod_2_64.hpp
+  - poly/product_of_pow_of_linear.hpp
   - poly/multipoint.hpp
   - poly/fps_log.hpp
   - poly/fps_exp.hpp
+  - poly/sum_of_exp_bx.hpp
   - linalg/det_A_plus_xB.hpp
   - graph/tree_all_distances.hpp
   timestamp: '2022-10-12 08:05:37+09:00'
@@ -732,6 +747,7 @@ data:
   - test/yukicoder/1167.test.cpp
   - test/yukicoder/1618.test.cpp
   - test/yukicoder/1321.test.cpp
+  - test/yukicoder/1875.test.cpp
   - test/yukicoder/1720.test.cpp
   - test/yukicoder/1600.test.cpp
   - test/yukicoder/1755.test.cpp

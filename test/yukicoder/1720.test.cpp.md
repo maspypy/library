@@ -7,13 +7,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/lazy_min_add.hpp
     title: alg/lazy_min_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_min.hpp
     title: alg/monoid_min.hpp
   - icon: ':heavy_check_mark:'
     path: ds/common_interval_decomposition.hpp
     title: ds/common_interval_decomposition.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
   - icon: ':question:'

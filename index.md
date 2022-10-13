@@ -111,7 +111,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid_gcd.hpp
       title: alg/monoid_gcd.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid_max.hpp
       title: alg/monoid_max.hpp
     - icon: ':heavy_check_mark:'
@@ -120,7 +120,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid_max_xplusa_b.hpp
       title: alg/monoid_max_xplusa_b.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid_min.hpp
       title: alg/monoid_min.hpp
     - icon: ':heavy_check_mark:'
@@ -135,7 +135,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid_or.hpp
       title: alg/monoid_or.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid_reverse.hpp
       title: alg/monoid_reverse.hpp
     - icon: ':warning:'
@@ -248,7 +248,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/doubling.hpp
       title: ds/doubling.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/dualsegtree.hpp
       title: ds/dualsegtree.hpp
     - icon: ':heavy_check_mark:'
@@ -293,7 +293,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/larsch.hpp
       title: ds/larsch.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/lazysegtree.hpp
       title: ds/lazysegtree.hpp
     - icon: ':heavy_check_mark:'
@@ -341,7 +341,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/rectangleunion.hpp
       title: ds/rectangleunion.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree.hpp
       title: ds/segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -359,7 +359,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/swag.hpp
       title: ds/swag.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/unionfind.hpp
       title: ds/unionfind.hpp
     - icon: ':heavy_check_mark:'
@@ -520,7 +520,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/dsu_on_tree.hpp
       title: graph/dsu_on_tree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/dualtreemonoid.hpp
       title: graph/dualtreemonoid.hpp
     - icon: ':heavy_check_mark:'
@@ -568,7 +568,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/minimum_hamiltonian_cycle.hpp
       title: graph/minimum_hamiltonian_cycle.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/minimum_spanning_tree.hpp
       title: graph/minimum_spanning_tree.hpp
     - icon: ':warning:'
@@ -616,7 +616,7 @@ data:
     - icon: ':warning:'
       path: graph/tournament.hpp
       title: graph/tournament.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree.hpp
       title: graph/tree.hpp
     - icon: ':x:'
@@ -637,7 +637,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/treegroup.hpp
       title: graph/treegroup.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/treemonoid.hpp
       title: graph/treemonoid.hpp
     - icon: ':heavy_check_mark:'
@@ -646,7 +646,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/twosat.hpp
       title: graph/twosat.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/unicyclic.hpp
       title: graph/unicyclic.hpp
     - icon: ':heavy_check_mark:'
@@ -932,6 +932,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/coef_of_rational_fps_2d.hpp
       title: poly/coef_of_rational_fps_2d.hpp
+    - icon: ':heavy_check_mark:'
+      path: poly/composition_f_ex.hpp
+      title: poly/composition_f_ex.hpp
     - icon: ':question:'
       path: poly/convolution.hpp
       title: poly/convolution.hpp
@@ -1019,6 +1022,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/product_of_one_plus_xn.hpp
       title: poly/product_of_one_plus_xn.hpp
+    - icon: ':heavy_check_mark:'
+      path: poly/product_of_pow_of_linear.hpp
+      title: poly/product_of_pow_of_linear.hpp
+    - icon: ':heavy_check_mark:'
+      path: poly/sum_of_exp_bx.hpp
+      title: poly/sum_of_exp_bx.hpp
     - icon: ':warning:'
       path: poly/sum_of_prefix_suffix_products.hpp
       title: poly/sum_of_prefix_suffix_products.hpp
@@ -1363,7 +1372,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc266c.test.cpp
       title: test/atcoder/abc266c.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc266f.test.cpp
       title: test/atcoder/abc266f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1372,7 +1381,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc266h_2.test.cpp
       title: test/atcoder/abc266h_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc270_f.test.cpp
       title: test/atcoder/abc270_f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2253,6 +2262,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/187.test.cpp
       title: test/yukicoder/187.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1875.test.cpp
+      title: test/yukicoder/1875.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1891.test.cpp
       title: test/yukicoder/1891.test.cpp
