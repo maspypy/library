@@ -456,8 +456,8 @@ data:
   timestamp: '2022-10-12 08:05:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/factorial_998.test.cpp
   - test/yukicoder/502_2.test.cpp
+  - test/mytest/factorial_998.test.cpp
 documentation_of: poly/prefix_product_of_poly.hpp
 layout: document
 redirect_from:

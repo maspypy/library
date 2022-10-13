@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
@@ -224,8 +224,8 @@ data:
   timestamp: '2022-10-14 01:11:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1242.test.cpp
   - test/yukicoder/1211.test.cpp
+  - test/yukicoder/1242.test.cpp
 documentation_of: graph/functional.hpp
 layout: document
 redirect_from:

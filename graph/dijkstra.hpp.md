@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -126,9 +126,9 @@ data:
   - test/aoj/2251_2.test.cpp
   - test/aoj/2251_1.test.cpp
   - test/aoj/0275.test.cpp
-  - test/yukicoder/1601.test.cpp
-  - test/yukicoder/1320.test.cpp
   - test/library_checker/graph/shortest_path.test.cpp
+  - test/yukicoder/1320.test.cpp
+  - test/yukicoder/1601.test.cpp
 documentation_of: graph/dijkstra.hpp
 layout: document
 redirect_from:

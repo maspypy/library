@@ -64,17 +64,17 @@ data:
   isVerificationFile: false
   path: mod/mod_pow.hpp
   requiredBy:
-  - mod/primitive_root.hpp
   - mod/mod_kth_root.hpp
-  - nt/gaussian_integers.hpp
+  - mod/primitive_root.hpp
   - nt/lcm.hpp
+  - nt/gaussian_integers.hpp
   timestamp: '2022-05-19 23:05:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/187.test.cpp
-  - test/yukicoder/1593.test.cpp
   - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
+  - test/yukicoder/1593.test.cpp
+  - test/yukicoder/187.test.cpp
 documentation_of: mod/mod_pow.hpp
 layout: document
 redirect_from:

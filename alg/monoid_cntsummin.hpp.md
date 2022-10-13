@@ -29,8 +29,8 @@ data:
   isVerificationFile: false
   path: alg/monoid_cntsummin.hpp
   requiredBy:
-  - alg/lazy_cntsummin_add.hpp
   - alg/lazy_cntsummin_set.hpp
+  - alg/lazy_cntsummin_add.hpp
   timestamp: '2022-05-13 21:02:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
