@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':heavy_check_mark:'
@@ -24,6 +24,9 @@ data:
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc269ex.test.cpp
+    title: test/atcoder/abc269ex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
@@ -330,6 +333,7 @@ data:
   - test/yukicoder/1857.test.cpp
   - test/yukicoder/1145.test.cpp
   - test/yukicoder/1392.test.cpp
+  - test/atcoder/abc269ex.test.cpp
 documentation_of: poly/convolution_all.hpp
 layout: document
 redirect_from:

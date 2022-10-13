@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':heavy_check_mark:'
@@ -20,10 +20,13 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc269ex.test.cpp
+    title: test/atcoder/abc269ex.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://atcoder.jp/contests/nadafes2022_day1/tasks/nadafes2022_day1_p
@@ -332,8 +335,9 @@ data:
   path: poly/sum_of_prefix_suffix_products.hpp
   requiredBy: []
   timestamp: '2022-10-12 08:05:37+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/atcoder/abc269ex.test.cpp
 documentation_of: poly/sum_of_prefix_suffix_products.hpp
 layout: document
 redirect_from:

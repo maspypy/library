@@ -98,7 +98,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: poly/sum_of_prefix_suffix_products.hpp
     title: poly/sum_of_prefix_suffix_products.hpp
   - icon: ':heavy_check_mark:'
@@ -132,6 +132,9 @@ data:
     path: seq/surjection.hpp
     title: seq/surjection.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc269ex.test.cpp
+    title: test/atcoder/abc269ex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/atcoder/agc058d.test.cpp
     title: test/atcoder/agc058d.test.cpp
@@ -440,6 +443,7 @@ data:
   - test/library_checker/convolution/convolution_huge.test.cpp
   - test/library_checker/convolution/mul_mod2n_convolution.test.cpp
   - test/library_checker/convolution/convolution_mod_2_64.test.cpp
+  - test/atcoder/abc269ex.test.cpp
   - test/atcoder/agc058d.test.cpp
 documentation_of: mod/mod_inv.hpp
 layout: document
