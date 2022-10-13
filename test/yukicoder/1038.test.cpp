@@ -23,7 +23,7 @@ void solve() {
   FenwickTree<Group_Add<ll>> bit(N + 10);
 
   FOR(root, N) {
-    auto dats = CD.collect(root, 0);
+    auto dats = CD.collect_dist(root);
     FOR(i, len(dats)) {
       auto dat = dats[i];
       // qid, v, dv
