@@ -81,6 +81,21 @@ struct TREE {
     }
   }
 
+  vc<int> heavy_path_at(int v) {
+    vc<int> P = {v};
+    while (1) {
+      int a = P.back();
+      for (auto &&e: G[a]) {
+        if (e.to != parent[a] && head[e.to] == v) {
+          P.eb(e.to);
+          break;
+        }
+      }
+      if (P.back() == a) break;
+    }
+    return P;
+  }
+
   int e_to_v(int eid) {
     auto e = G.edges[eid];
     return (parent[e.frm] == e.to ? e.frm : e.to);
