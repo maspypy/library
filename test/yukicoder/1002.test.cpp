@@ -22,11 +22,11 @@ void solve() {
     return t;
   };
 
-  CentroidDecomposition<Graph<int>, T> CD(G, f);
+  CentroidDecomposition<Graph<int>> CD(G);
 
   ll ANS = 0;
   FOR(root, N) {
-    auto dats = CD.collect(root, {-1, -1});
+    auto dats = CD.collect<T>(root, {-1, -1}, f);
     FOR(i, len(dats)) {
       auto& dat = dats[i];
       ll x0 = 0, x1 = 0, x2 = 0;
