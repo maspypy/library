@@ -103,16 +103,14 @@ struct BipartiteMatching {
   }
 
   /* Dulmage–Mendelsohn decomposition
+  https://en.wikipedia.org/wiki/Dulmage%E2%80%93Mendelsohn_decomposition
   http://www.misojiro.t.u-tokyo.ac.jp/~murota/lect-ouyousurigaku/dm050410.pdf
   https://hitonanode.github.io/cplib-cpp/graph/dulmage_mendelsohn_decomposition.hpp.html
-  - 最大マッチングとしてありうるもの：同じ W を持つ点のみ
-  - color=0 から 1 への辺：W(l) <= W(r)
-  - color=0 かつ W=0 の点：必ず使われる
-  - color=1 かつ W=K の点：必ず使われる
-  - 1 <= k < K：任意の最大マッチングについて、すべての点が使われる
+  - 最大マッチングとしてありうる iff 同じ W を持つ
+  - 辺 uv が必ず使われる：同じ W を持つ辺が唯一
+  - color=0 から 1 への辺：W[l] <= W[r]
   - color=0 の点が必ず使われる：W=0,1,...,K-1
   - color=1 の点が必ず使われる：W=1,2,...,K
-  - 辺uvが必ず使われる：同じ W を持つ辺が唯一
   */
   pair<int, vc<int>> DM_decomposition() {
     // 非飽和点からの探索
