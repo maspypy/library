@@ -1,3 +1,5 @@
+#pragma once
+
 #include "poly/convolution.hpp"
 
 // 有理式の和を計算する。分割統治 O(Nlog^2N)。N は次数の和。
