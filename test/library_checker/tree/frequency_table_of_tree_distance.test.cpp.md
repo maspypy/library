@@ -7,13 +7,13 @@ data:
   - icon: ':question:'
     path: graph/centroid.hpp
     title: graph/centroid.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -22,23 +22,23 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
@@ -578,16 +578,15 @@ data:
     \ modint998>::value, vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>&\
     \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
-    \ b);\r\n}\r\n#line 3 \"graph/tree_all_distances.hpp\"\n\r\ntemplate<typename\
-    \ Graph>\r\nvi tree_all_distances(Graph& G){\r\n  // frequency table of distance\
-    \ of all directed pairs. \r\n  // sum of result array = N^2\r\n  \r\n  assert(G.is_prepared());\r\
+    \ b);\r\n}\r\n#line 3 \"graph/tree_all_distances.hpp\"\n\r\ntemplate <typename\
+    \ Graph>\r\nvi tree_all_distances(Graph& G) {\r\n  // frequency table of distance\
+    \ of all directed pairs.\r\n  // sum of result array = N^2\r\n\r\n  assert(G.is_prepared());\r\
     \n  assert(!G.is_directed());\r\n\r\n  CentroidDecomposition CD(G);\r\n\r\n  ll\
-    \ N = G.N;\r\n  vi ANS(N);\r\n  FOR(root, N) {\r\n    auto data = CD.collect(root,\
-    \ 0);\r\n    FOR(i, len(data)) {\r\n      int n = 0;\r\n      FOR(j, len(data[i]))\
-    \ chmax(n, data[i][j].se + 1);\r\n      vi A(n);\r\n      FOR(j, len(data[i]))\
-    \ A[data[i][j].se]++;\r\n      auto B = convolution(A, A);\r\n      FOR(j, min(N,\
-    \ len(B))) ANS[j] += (i == 0 ? B[j] : -B[j]);\r\n    }\r\n  }\r\n  return ANS;\r\
-    \n}\n#line 7 \"test/library_checker/tree/frequency_table_of_tree_distance.test.cpp\"\
+    \ N = G.N;\r\n  vi ANS(N);\r\n  FOR(root, N) {\r\n    auto data = CD.collect_dist(root);\r\
+    \n    FOR(i, len(data)) {\r\n      int n = 0;\r\n      FOR(j, len(data[i])) chmax(n,\
+    \ data[i][j].se + 1);\r\n      vi A(n);\r\n      FOR(j, len(data[i])) A[data[i][j].se]++;\r\
+    \n      auto B = convolution(A, A);\r\n      FOR(j, min(N, len(B))) ANS[j] +=\
+    \ (i == 0 ? B[j] : -B[j]);\r\n    }\r\n  }\r\n  return ANS;\r\n}\n#line 7 \"test/library_checker/tree/frequency_table_of_tree_distance.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N);\r\n  Graph<int> G(N);\r\n  G.read_tree(0, 0);\r\
     \n\r\n  vi ANS = tree_all_distances(G);\r\n  ANS.erase(ANS.begin());\r\n  for\
     \ (auto&& x: ANS) x /= 2;\r\n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
@@ -615,8 +614,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   requiredBy: []
-  timestamp: '2022-10-13 10:42:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-10-13 22:34:59+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
 layout: document
