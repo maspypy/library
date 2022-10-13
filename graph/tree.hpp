@@ -120,7 +120,7 @@ struct TREE {
   WT dist(int a, int b, bool weighted) {
     assert(weighted);
     int c = LCA(a, b);
-    return depth_weighted[a] + depth_weighted[b] - 2 * depth_weighted[c];
+    return depth_weighted[a] + depth_weighted[b] - WT(2) * depth_weighted[c];
   }
 
   // a is in b
