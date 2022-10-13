@@ -2,7 +2,6 @@
 
 /*
 列もクエリも static な場合。計算量 O((N+Q)LOG)
-----
 example
 https://atcoder.jp/contests/abc223/tasks/abc223_h
 https://codeforces.com/contest/1100/problem/F
