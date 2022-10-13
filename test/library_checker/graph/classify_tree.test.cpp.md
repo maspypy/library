@@ -4,16 +4,16 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/classify_subtree.hpp
     title: graph/classify_subtree.hpp
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp.hpp
     title: graph/tree_dp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -22,14 +22,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/random.hpp
     title: other/random.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification
@@ -406,7 +406,7 @@ data:
   path: test/library_checker/graph/classify_tree.test.cpp
   requiredBy: []
   timestamp: '2022-10-14 01:11:36+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/classify_tree.test.cpp
 layout: document

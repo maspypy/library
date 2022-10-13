@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_affine.hpp
     title: alg/group_affine.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_reverse.hpp
     title: alg/group_reverse.hpp
   - icon: ':question:'
@@ -16,10 +16,10 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/treegroup.hpp
     title: graph/treegroup.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
@@ -554,7 +554,7 @@ data:
   path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   requiredBy: []
   timestamp: '2022-10-14 01:11:36+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
 layout: document

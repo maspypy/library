@@ -8,10 +8,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/classify_subtree.hpp
     title: graph/classify_subtree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/rerooting_classify_subtree.hpp
     title: graph/rerooting_classify_subtree.hpp
   - icon: ':heavy_check_mark:'
@@ -48,10 +48,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/classify_tree.test.cpp
     title: test/library_checker/graph/classify_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
     title: test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -138,9 +138,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_1.test.cpp
     title: test/yukicoder/4_1.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/random.hpp\"\n\nll RNG(ll a, ll b) {\n  static mt19937\
@@ -167,7 +167,7 @@ data:
   - graph/rerooting_classify_subtree.hpp
   - graph/chromatic.hpp
   timestamp: '2022-08-25 09:50:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/max_of_linear_segments.test.cpp
   - test/mytest/powerquery.test.cpp

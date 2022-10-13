@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/lazy_cntminmincnt_add.hpp
     title: alg/lazy_cntminmincnt_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy_cntsum_add.hpp
     title: alg/lazy_cntsum_add.hpp
   - icon: ':warning:'
@@ -38,7 +38,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/cumsum2d.hpp
     title: ds/cumsum2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   - icon: ':heavy_check_mark:'
@@ -77,7 +77,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/contoursum.hpp
     title: graph/contoursum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/treeabelgroup.hpp
     title: graph/treeabelgroup.hpp
   - icon: ':heavy_check_mark:'
@@ -156,16 +156,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -192,7 +192,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1141.test.cpp
     title: test/yukicoder/1141.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
   - icon: ':heavy_check_mark:'
@@ -207,7 +207,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1311.test.cpp
     title: test/yukicoder/1311.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1326.test.cpp
     title: test/yukicoder/1326.test.cpp
   - icon: ':heavy_check_mark:'
@@ -222,7 +222,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1490.test.cpp
     title: test/yukicoder/1490.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1641.test.cpp
     title: test/yukicoder/1641.test.cpp
   - icon: ':heavy_check_mark:'
@@ -240,7 +240,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2065.test.cpp
     title: test/yukicoder/2065.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
   - icon: ':heavy_check_mark:'
@@ -264,9 +264,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -313,7 +313,7 @@ data:
   - graph/contoursum.hpp
   - graph/treeabelgroup.hpp
   timestamp: '2022-06-27 16:36:33+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp

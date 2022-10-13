@@ -22,7 +22,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/random.hpp
     title: other/random.hpp
   _extendedRequiredBy: []

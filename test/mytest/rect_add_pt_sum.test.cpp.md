@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   - icon: ':heavy_check_mark:'
     path: ds/rectangle_add_point_sum.hpp
     title: ds/rectangle_add_point_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/random.hpp
     title: other/random.hpp
   _extendedRequiredBy: []
