@@ -35,24 +35,22 @@ vc<int> find_centroids(Graph& G) {
   return ANS;
 }
 
-template <typename Graph, typename E = int>
+template <typename Graph>
 struct CentroidDecomposition {
   using edge_type = typename Graph::edge_type;
-  using F = function<E(E, edge_type)>;
   Graph& G;
   int N;
-  F f; // (E path value, edge e) -> E new_path_value
   vc<int> sz;
   vc<int> par;
   vector<int> cdep; // depth in centroid tree
   bool calculated;
 
-  CentroidDecomposition(
-      Graph& G, F f = [](int x, edge_type e) { return x + e.cost; })
-      : G(G), N(G.N), f(f), sz(G.N), par(G.N), cdep(G.N, -1) {
+  CentroidDecomposition(Graph& G)
+      : G(G), N(G.N), sz(G.N), par(G.N), cdep(G.N, -1) {
     calculated = 0;
     build();
   }
+
 private:
   int find(int v) {
     vc<int> V = {v};
@@ -96,12 +94,14 @@ private:
   }
 
 public:
-  vc<vc<pair<int, E>>> collect(int root, E root_val) {
-    /*
-    root を重心とする木において、(v, path data v) の vector
-    を、方向ごとに集めて返す ・0 番目：root からのパスすべて（root を含む） ・i
-    番目：i 番目の方向
-    */
+  /*
+  root を重心とする木において、(v, path data v) の vector
+  を、方向ごとに集めて返す ・0 番目：root からのパスすべて（root を含む）
+  ・i番目：i 番目の方向
+  f: E x edge -> E
+  */
+  template <typename E, typename F>
+  vc<vc<pair<int, E>>> collect(int root, E root_val, F f) {
     vc<vc<pair<int, E>>> res = {{{root, root_val}}};
     for (auto&& e: G[root]) {
       int nxt = e.to;
@@ -123,5 +123,10 @@ public:
       res[0].insert(res[0].end(), all(dat));
     }
     return res;
+  }
+
+  vc<vc<pair<int, int>>> collect_dist(int root) {
+    auto f = [&](int x, auto e) -> int { return x + 1; };
+    return collect(root, 0, f);
   }
 };
