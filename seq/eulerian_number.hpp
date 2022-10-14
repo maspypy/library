@@ -1,5 +1,5 @@
 // Eulerian number
-// \sum n^dx^n = A_d(x) / (1-x)^{d+1} となる d 次多項式の係数列
+// sum n^dx^n = A_d(x) / (1-x)^{d+1} となる d 次多項式の係数列
 template <typename mint>
 vvc<mint> eulerian_number_2d(int N, int K) {
   vv(mint, A, N + 1, K + 1);
