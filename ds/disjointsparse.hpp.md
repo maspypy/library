@@ -94,19 +94,19 @@ data:
   isVerificationFile: false
   path: ds/disjointsparse.hpp
   requiredBy:
-  - graph/statictreemonoid.hpp
+  - string/sort_all_substring.hpp
   - string/suffixarray.hpp
   - string/suffix_tree.hpp
-  - string/sort_all_substring.hpp
+  - graph/statictreemonoid.hpp
   timestamp: '2022-08-18 20:33:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/datastructure/staticrmq_sparse.test.cpp
+  - test/mytest/suffix_tree.test.cpp
+  - test/yukicoder/2005.test.cpp
+  - test/library_checker/string/suffix_array_vec.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp
-  - test/library_checker/string/suffix_array_vec.test.cpp
-  - test/yukicoder/2005.test.cpp
-  - test/mytest/suffix_tree.test.cpp
+  - test/library_checker/datastructure/staticrmq_sparse.test.cpp
 documentation_of: ds/disjointsparse.hpp
 layout: document
 redirect_from:

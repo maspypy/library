@@ -42,8 +42,8 @@ data:
   isVerificationFile: false
   path: pds/rollbackarray.hpp
   requiredBy:
-  - pds/rollbackunionfind.hpp
   - pds/rollbackweighteduf.hpp
+  - pds/rollbackunionfind.hpp
   timestamp: '2022-08-18 20:34:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

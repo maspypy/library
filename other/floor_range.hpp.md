@@ -36,8 +36,8 @@ data:
   verifiedWith:
   - test/yukicoder/1260.test.cpp
   - test/yukicoder/1573.test.cpp
-  - test/yukicoder/1276.test.cpp
   - test/yukicoder/4954.test.cpp
+  - test/yukicoder/1276.test.cpp
 documentation_of: other/floor_range.hpp
 layout: document
 redirect_from:

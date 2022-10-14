@@ -142,14 +142,14 @@ data:
   isVerificationFile: false
   path: ds/lazysegtree_beats.hpp
   requiredBy:
-  - ds/beats_summax_chmin.hpp
   - ds/beats_summin_chmax.hpp
+  - ds/beats_summax_chmin.hpp
   - ds/beats_summaxmin_chminchmax.hpp
   timestamp: '2022-06-19 02:52:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
   - test/yukicoder/1526.test.cpp
+  - test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
 documentation_of: ds/lazysegtree_beats.hpp
 layout: document
 redirect_from:

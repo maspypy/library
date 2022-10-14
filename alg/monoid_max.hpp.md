@@ -65,23 +65,23 @@ data:
   isVerificationFile: false
   path: alg/monoid_max.hpp
   requiredBy:
-  - graph/minimum_spanning_tree.hpp
-  - alg/lazy_max_max.hpp
   - alg/lazy_max_min.hpp
   - alg/lazy_max_add.hpp
   - alg/lazy_max_set.hpp
+  - alg/lazy_max_max.hpp
+  - graph/minimum_spanning_tree.hpp
   timestamp: '2022-06-05 12:22:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_2_A.test.cpp
-  - test/yukicoder/1625.test.cpp
   - test/yukicoder/1826.test.cpp
-  - test/yukicoder/686.test.cpp
-  - test/yukicoder/1117.test.cpp
   - test/yukicoder/1790.test.cpp
+  - test/yukicoder/1117.test.cpp
+  - test/yukicoder/686.test.cpp
   - test/yukicoder/1625_2.test.cpp
-  - test/atcoder/abc266h_2.test.cpp
+  - test/yukicoder/1625.test.cpp
   - test/atcoder/abc266h.test.cpp
+  - test/atcoder/abc266h_2.test.cpp
   - test/atcoder/abc270_f.test.cpp
 documentation_of: alg/monoid_max.hpp
 layout: document

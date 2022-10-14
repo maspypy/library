@@ -12,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1276.test.cpp
     title: test/yukicoder/1276.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1781.test.cpp
+    title: test/yukicoder/1781.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -63,8 +66,9 @@ data:
   timestamp: '2022-08-19 00:54:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/math/totient_sum.test.cpp
+  - test/yukicoder/1781.test.cpp
   - test/yukicoder/1276.test.cpp
+  - test/library_checker/math/totient_sum.test.cpp
 documentation_of: nt/multiplicative_sum.hpp
 layout: document
 redirect_from:

@@ -64,10 +64,10 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_H.test.cpp
-  - test/library_checker/graph/common_interval_decomposition.test.cpp
-  - test/yukicoder/1270.test.cpp
-  - test/yukicoder/1234.test.cpp
   - test/yukicoder/1720.test.cpp
+  - test/yukicoder/1234.test.cpp
+  - test/yukicoder/1270.test.cpp
+  - test/library_checker/graph/common_interval_decomposition.test.cpp
 documentation_of: alg/lazy_min_add.hpp
 layout: document
 redirect_from:

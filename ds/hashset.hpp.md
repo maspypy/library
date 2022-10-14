@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1292.test.cpp
     title: test/yukicoder/1292.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2102.test.cpp
+    title: test/yukicoder/2102.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -39,6 +42,7 @@ data:
   timestamp: '2022-09-14 10:36:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/2102.test.cpp
   - test/yukicoder/1292.test.cpp
 documentation_of: ds/hashset.hpp
 layout: document

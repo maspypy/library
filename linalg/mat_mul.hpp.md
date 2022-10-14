@@ -66,19 +66,19 @@ data:
   path: linalg/mat_mul.hpp
   requiredBy:
   - seq/kth_term_of_p_recursive.hpp
-  - linalg/det_A_plus_xB.hpp
-  - linalg/mat_pow.hpp
   - poly/prefix_product_of_poly.hpp
+  - linalg/mat_pow.hpp
+  - linalg/det_A_plus_xB.hpp
   timestamp: '2022-08-19 01:23:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/matrix/matrix_product.test.cpp
-  - test/yukicoder/1750.test.cpp
-  - test/yukicoder/1810.test.cpp
-  - test/yukicoder/502_2.test.cpp
+  - test/mytest/factorial_998.test.cpp
   - test/yukicoder/1907.test.cpp
   - test/yukicoder/426.test.cpp
-  - test/mytest/factorial_998.test.cpp
+  - test/yukicoder/1810.test.cpp
+  - test/yukicoder/502_2.test.cpp
+  - test/yukicoder/1750.test.cpp
+  - test/library_checker/matrix/matrix_product.test.cpp
 documentation_of: linalg/mat_mul.hpp
 layout: document
 redirect_from:

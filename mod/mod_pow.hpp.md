@@ -25,6 +25,9 @@ data:
     path: test/library_checker/math/primitive_root.test.cpp
     title: test/library_checker/math/primitive_root.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1025.test.cpp
+    title: test/yukicoder/1025.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1593.test.cpp
     title: test/yukicoder/1593.test.cpp
   - icon: ':heavy_check_mark:'
@@ -64,17 +67,18 @@ data:
   isVerificationFile: false
   path: mod/mod_pow.hpp
   requiredBy:
-  - mod/mod_kth_root.hpp
   - mod/primitive_root.hpp
-  - nt/lcm.hpp
+  - mod/mod_kth_root.hpp
   - nt/gaussian_integers.hpp
+  - nt/lcm.hpp
   timestamp: '2022-05-19 23:05:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/187.test.cpp
+  - test/yukicoder/1025.test.cpp
+  - test/yukicoder/1593.test.cpp
   - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
-  - test/yukicoder/1593.test.cpp
-  - test/yukicoder/187.test.cpp
 documentation_of: mod/mod_pow.hpp
 layout: document
 redirect_from:
