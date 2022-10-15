@@ -95,8 +95,8 @@ private:
   int max_path_edge(F &check, int u, int v) {
     assert(edge);
     if (!check(Monoid::unit())) return -1;
-    int lca = hld.lca(u, v);
-    auto pd = hld.get_path_decomposition(u, lca, edge);
+    int lca = tree.lca(u, v);
+    auto pd = tree.get_path_decomposition(u, lca, edge);
     X val = Monoid::unit();
 
     // climb
@@ -105,28 +105,28 @@ private:
       X x = (Monoid::commute ? seg.prod(b, a + 1) : seg_r.prod(b, a + 1));
       if (check(Monoid::op(val, x))) {
         val = Monoid::op(val, x);
-        u = (hld.parent[hld.V[b]]);
+        u = (tree.parent[tree.V[b]]);
         continue;
       }
       auto check_tmp = [&](X x) -> bool { return check(Monoid::op(val, x)); };
       auto i = (Monoid::commute ? seg.min_left(check_tmp, a + 1)
                                 : seg_r.min_left(check_tmp, a + 1));
       if (i == a + 1) return u;
-      return hld.parent[hld.V[i]];
+      return tree.parent[tree.V[i]];
     }
     // down
-    pd = hld.get_path_decomposition(lca, v, edge);
+    pd = tree.get_path_decomposition(lca, v, edge);
     for (auto &&[a, b]: pd) {
       assert(a <= b);
       X x = seg.prod(a, b + 1);
       if (check(Monoid::op(val, x))) {
         val = Monoid::op(val, x);
-        u = (hld.V[b]);
+        u = (tree.V[b]);
         continue;
       }
       auto check_tmp = [&](X x) -> bool { return check(Monoid::op(val, x)); };
       auto i = seg.max_right(check_tmp, a);
-      return (i == a ? u : hld.V[i - 1]);
+      return (i == a ? u : tree.V[i - 1]);
     }
     return v;
   }
