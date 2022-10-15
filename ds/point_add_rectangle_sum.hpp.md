@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
   - icon: ':heavy_check_mark:'
@@ -143,9 +143,9 @@ data:
   timestamp: '2022-09-17 09:15:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1490.test.cpp
-  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
+  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+  - test/yukicoder/1490.test.cpp
 documentation_of: ds/point_add_rectangle_sum.hpp
 layout: document
 redirect_from:

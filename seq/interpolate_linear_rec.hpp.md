@@ -352,9 +352,9 @@ data:
   timestamp: '2022-10-12 08:05:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1844.test.cpp
   - test/yukicoder/1547.test.cpp
   - test/yukicoder/1500.test.cpp
-  - test/yukicoder/1844.test.cpp
   - test/yukicoder/1516.test.cpp
 documentation_of: seq/interpolate_linear_rec.hpp
 layout: document

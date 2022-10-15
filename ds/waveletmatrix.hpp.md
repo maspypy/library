@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
   _extendedRequiredBy: []
@@ -139,12 +139,12 @@ data:
   timestamp: '2022-09-10 12:17:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/wavelet_matrix_sum.test.cpp
-  - test/yukicoder/924.test.cpp
-  - test/yukicoder/1332.test.cpp
-  - test/yukicoder/919.test.cpp
-  - test/yukicoder/2065.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
+  - test/yukicoder/2065.test.cpp
+  - test/yukicoder/919.test.cpp
+  - test/yukicoder/1332.test.cpp
+  - test/yukicoder/924.test.cpp
+  - test/mytest/wavelet_matrix_sum.test.cpp
 documentation_of: ds/waveletmatrix.hpp
 layout: document
 redirect_from:

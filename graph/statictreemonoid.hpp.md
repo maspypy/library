@@ -14,10 +14,16 @@ data:
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1216.test.cpp
+    title: test/yukicoder/1216.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1216_2.test.cpp
+    title: test/yukicoder/1216_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://atcoder.jp/contests/tkppc3/tasks/tkppc3_i
@@ -204,21 +210,22 @@ data:
     \  }\n\n  void debug() {\n    print(\"tree_monoid\");\n    tree.debug();\n   \
     \ seg.debug();\n    seg_r.debug();\n  }\n\nprivate:\n  template <class F>\n  int\
     \ max_path_edge(F &check, int u, int v) {\n    assert(edge);\n    if (!check(Monoid::unit()))\
-    \ return -1;\n    int lca = hld.lca(u, v);\n    auto pd = hld.get_path_decomposition(u,\
+    \ return -1;\n    int lca = tree.lca(u, v);\n    auto pd = tree.get_path_decomposition(u,\
     \ lca, edge);\n    X val = Monoid::unit();\n\n    // climb\n    for (auto &&[a,\
     \ b]: pd) {\n      assert(a >= b);\n      X x = (Monoid::commute ? seg.prod(b,\
     \ a + 1) : seg_r.prod(b, a + 1));\n      if (check(Monoid::op(val, x))) {\n  \
-    \      val = Monoid::op(val, x);\n        u = (hld.parent[hld.V[b]]);\n      \
-    \  continue;\n      }\n      auto check_tmp = [&](X x) -> bool { return check(Monoid::op(val,\
+    \      val = Monoid::op(val, x);\n        u = (tree.parent[tree.V[b]]);\n    \
+    \    continue;\n      }\n      auto check_tmp = [&](X x) -> bool { return check(Monoid::op(val,\
     \ x)); };\n      auto i = (Monoid::commute ? seg.min_left(check_tmp, a + 1)\n\
     \                                : seg_r.min_left(check_tmp, a + 1));\n      if\
-    \ (i == a + 1) return u;\n      return hld.parent[hld.V[i]];\n    }\n    // down\n\
-    \    pd = hld.get_path_decomposition(lca, v, edge);\n    for (auto &&[a, b]: pd)\
-    \ {\n      assert(a <= b);\n      X x = seg.prod(a, b + 1);\n      if (check(Monoid::op(val,\
-    \ x))) {\n        val = Monoid::op(val, x);\n        u = (hld.V[b]);\n       \
-    \ continue;\n      }\n      auto check_tmp = [&](X x) -> bool { return check(Monoid::op(val,\
-    \ x)); };\n      auto i = seg.max_right(check_tmp, a);\n      return (i == a ?\
-    \ u : hld.V[i - 1]);\n    }\n    return v;\n  }\n};\n"
+    \ (i == a + 1) return u;\n      return tree.parent[tree.V[i]];\n    }\n    //\
+    \ down\n    pd = tree.get_path_decomposition(lca, v, edge);\n    for (auto &&[a,\
+    \ b]: pd) {\n      assert(a <= b);\n      X x = seg.prod(a, b + 1);\n      if\
+    \ (check(Monoid::op(val, x))) {\n        val = Monoid::op(val, x);\n        u\
+    \ = (tree.V[b]);\n        continue;\n      }\n      auto check_tmp = [&](X x)\
+    \ -> bool { return check(Monoid::op(val, x)); };\n      auto i = seg.max_right(check_tmp,\
+    \ a);\n      return (i == a ? u : tree.V[i - 1]);\n    }\n    return v;\n  }\n\
+    };\n"
   code: "#include \"ds/disjointsparse.hpp\"\n#include \"graph/tree.hpp\"\n#include\
     \ \"alg/monoid_reverse.hpp\"\n\ntemplate <typename TREE, typename Monoid, bool\
     \ edge = false>\nstruct StaticTreeMonoid {\n  using RevMonoid = Monoid_Reverse<Monoid>;\n\
@@ -257,21 +264,22 @@ data:
     \  }\n\n  void debug() {\n    print(\"tree_monoid\");\n    tree.debug();\n   \
     \ seg.debug();\n    seg_r.debug();\n  }\n\nprivate:\n  template <class F>\n  int\
     \ max_path_edge(F &check, int u, int v) {\n    assert(edge);\n    if (!check(Monoid::unit()))\
-    \ return -1;\n    int lca = hld.lca(u, v);\n    auto pd = hld.get_path_decomposition(u,\
+    \ return -1;\n    int lca = tree.lca(u, v);\n    auto pd = tree.get_path_decomposition(u,\
     \ lca, edge);\n    X val = Monoid::unit();\n\n    // climb\n    for (auto &&[a,\
     \ b]: pd) {\n      assert(a >= b);\n      X x = (Monoid::commute ? seg.prod(b,\
     \ a + 1) : seg_r.prod(b, a + 1));\n      if (check(Monoid::op(val, x))) {\n  \
-    \      val = Monoid::op(val, x);\n        u = (hld.parent[hld.V[b]]);\n      \
-    \  continue;\n      }\n      auto check_tmp = [&](X x) -> bool { return check(Monoid::op(val,\
+    \      val = Monoid::op(val, x);\n        u = (tree.parent[tree.V[b]]);\n    \
+    \    continue;\n      }\n      auto check_tmp = [&](X x) -> bool { return check(Monoid::op(val,\
     \ x)); };\n      auto i = (Monoid::commute ? seg.min_left(check_tmp, a + 1)\n\
     \                                : seg_r.min_left(check_tmp, a + 1));\n      if\
-    \ (i == a + 1) return u;\n      return hld.parent[hld.V[i]];\n    }\n    // down\n\
-    \    pd = hld.get_path_decomposition(lca, v, edge);\n    for (auto &&[a, b]: pd)\
-    \ {\n      assert(a <= b);\n      X x = seg.prod(a, b + 1);\n      if (check(Monoid::op(val,\
-    \ x))) {\n        val = Monoid::op(val, x);\n        u = (hld.V[b]);\n       \
-    \ continue;\n      }\n      auto check_tmp = [&](X x) -> bool { return check(Monoid::op(val,\
-    \ x)); };\n      auto i = seg.max_right(check_tmp, a);\n      return (i == a ?\
-    \ u : hld.V[i - 1]);\n    }\n    return v;\n  }\n};\n"
+    \ (i == a + 1) return u;\n      return tree.parent[tree.V[i]];\n    }\n    //\
+    \ down\n    pd = tree.get_path_decomposition(lca, v, edge);\n    for (auto &&[a,\
+    \ b]: pd) {\n      assert(a <= b);\n      X x = seg.prod(a, b + 1);\n      if\
+    \ (check(Monoid::op(val, x))) {\n        val = Monoid::op(val, x);\n        u\
+    \ = (tree.V[b]);\n        continue;\n      }\n      auto check_tmp = [&](X x)\
+    \ -> bool { return check(Monoid::op(val, x)); };\n      auto i = seg.max_right(check_tmp,\
+    \ a);\n      return (i == a ? u : tree.V[i - 1]);\n    }\n    return v;\n  }\n\
+    };\n"
   dependsOn:
   - ds/disjointsparse.hpp
   - graph/tree.hpp
@@ -280,9 +288,11 @@ data:
   isVerificationFile: false
   path: graph/statictreemonoid.hpp
   requiredBy: []
-  timestamp: '2022-10-14 01:11:36+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-10-15 19:41:43+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yukicoder/1216_2.test.cpp
+  - test/yukicoder/1216.test.cpp
 documentation_of: graph/statictreemonoid.hpp
 layout: document
 redirect_from:

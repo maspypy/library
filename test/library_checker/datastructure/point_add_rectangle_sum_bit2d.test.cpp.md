@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group_add.hpp
     title: alg/group_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwick2d.hpp
     title: ds/fenwick2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -210,23 +210,23 @@ data:
     \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
     \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
     \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/fenwick2d.hpp\"\
-    \ntemplate <typename AbelGroup, typename XY, bool SMALL = false>\r\nstruct Fenwick2D\
+    \ntemplate <typename AbelGroup, typename XY, bool SMALL_X = false>\r\nstruct Fenwick2D\
     \ {\r\n  using E = typename AbelGroup::value_type;\r\n  int N;\r\n  vc<XY> keyX;\r\
     \n  XY min_X;\r\n  vc<int> indptr;\r\n  vc<XY> keyY;\r\n  vc<E> dat;\r\n\r\n \
     \ Fenwick2D(vc<XY>& X, vc<XY>& Y, vc<E>& wt) { build(X, Y, wt); }\r\n\r\n  Fenwick2D(vc<XY>&\
     \ X, vc<XY>& Y) {\r\n    vc<E> wt(len(X), AbelGroup::unit());\r\n    build(X,\
-    \ Y, wt);\r\n  }\r\n\r\n  inline int xtoi(XY x) {\r\n    return (SMALL ? clamp<int>(x\
+    \ Y, wt);\r\n  }\r\n\r\n  inline int xtoi(XY x) {\r\n    return (SMALL_X ? clamp<int>(x\
     \ - min_X, 0, N) : LB(keyX, x));\r\n  }\r\n\r\n  inline int nxt(int i) {\r\n \
     \   i += 1;\r\n    return i + (i & -i) - 1;\r\n  }\r\n\r\n  inline int prev(int\
     \ i) {\r\n    i += 1;\r\n    return i - (i & -i) - 1;\r\n  }\r\n\r\n  void build(vc<XY>&\
-    \ X, vc<XY>& Y, vc<E>& wt) {\r\n    if (!SMALL) {\r\n      keyX = X;\r\n     \
-    \ UNIQUE(keyX);\r\n      N = len(keyX);\r\n    } else {\r\n      min_X = (len(X)\
+    \ X, vc<XY>& Y, vc<E>& wt) {\r\n    if (!SMALL_X) {\r\n      keyX = X;\r\n   \
+    \   UNIQUE(keyX);\r\n      N = len(keyX);\r\n    } else {\r\n      min_X = (len(X)\
     \ == 0 ? 0 : MIN(X));\r\n      N = (len(X) == 0 ? 0 : MAX(X)) - min_X + 1;\r\n\
     \      keyX.resize(N);\r\n      FOR(i, N) keyX[i] = min_X + i;\r\n    }\r\n\r\n\
     \    vvc<XY> keyY_raw(N);\r\n    vc<vc<E>> dat_raw(N);\r\n\r\n    auto I = argsort(Y);\r\
-    \n    for (auto&& i: I) {\r\n      int ix = xtoi(X[i]), y = Y[i];\r\n      while\
-    \ (ix < N) {\r\n        auto& KY = keyY_raw[ix];\r\n        if (len(KY) == 0 ||\
-    \ KY.back() < y) {\r\n          KY.eb(y);\r\n          dat_raw[ix].eb(wt[i]);\r\
+    \n    for (auto&& i: I) {\r\n      int ix = xtoi(X[i]);\r\n      ll y = Y[i];\r\
+    \n      while (ix < N) {\r\n        auto& KY = keyY_raw[ix];\r\n        if (len(KY)\
+    \ == 0 || KY.back() < y) {\r\n          KY.eb(y);\r\n          dat_raw[ix].eb(wt[i]);\r\
     \n        } else {\r\n          dat_raw[ix].back() = AbelGroup::op(dat_raw[ix].back(),\
     \ wt[i]);\r\n        }\r\n        ix = nxt(ix);\r\n      }\r\n    }\r\n\r\n  \
     \  indptr.assign(N + 1, 0);\r\n    FOR(i, N) indptr[i + 1] = indptr[i] + len(keyY_raw[i]);\r\
@@ -302,7 +302,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   requiredBy: []
-  timestamp: '2022-09-24 23:41:28+09:00'
+  timestamp: '2022-10-15 19:41:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
