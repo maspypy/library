@@ -1,5 +1,5 @@
 #include "alg/group_add.hpp"
-template <typename AbelGroup, typename XY, bool SMALL = false>
+template <typename AbelGroup, typename XY, bool SMALL_X = false>
 struct Fenwick2D {
   using E = typename AbelGroup::value_type;
   int N;
@@ -17,7 +17,7 @@ struct Fenwick2D {
   }
 
   inline int xtoi(XY x) {
-    return (SMALL ? clamp<int>(x - min_X, 0, N) : LB(keyX, x));
+    return (SMALL_X ? clamp<int>(x - min_X, 0, N) : LB(keyX, x));
   }
 
   inline int nxt(int i) {
@@ -31,7 +31,7 @@ struct Fenwick2D {
   }
 
   void build(vc<XY>& X, vc<XY>& Y, vc<E>& wt) {
-    if (!SMALL) {
+    if (!SMALL_X) {
       keyX = X;
       UNIQUE(keyX);
       N = len(keyX);
@@ -47,7 +47,8 @@ struct Fenwick2D {
 
     auto I = argsort(Y);
     for (auto&& i: I) {
-      int ix = xtoi(X[i]), y = Y[i];
+      int ix = xtoi(X[i]);
+      ll y = Y[i];
       while (ix < N) {
         auto& KY = keyY_raw[ix];
         if (len(KY) == 0 || KY.back() < y) {
