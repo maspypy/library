@@ -64,21 +64,21 @@ data:
   path: alg/group_cntsum.hpp
   requiredBy:
   - alg/lazy_cntsum_set.hpp
-  - alg/lazy_cntsum_add.hpp
   - alg/lazy_cntsum_affine.hpp
+  - alg/lazy_cntsum_add.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_I.test.cpp
   - test/aoj/GRL_5_E.test.cpp
-  - test/yukicoder/255.test.cpp
-  - test/yukicoder/235.test.cpp
-  - test/yukicoder/789_2.test.cpp
-  - test/yukicoder/1197.test.cpp
-  - test/yukicoder/1919.test.cpp
-  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - test/library_checker/datastructure/range_affine_range_sum.test.cpp
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - test/yukicoder/1197.test.cpp
+  - test/yukicoder/255.test.cpp
+  - test/yukicoder/789_2.test.cpp
+  - test/yukicoder/235.test.cpp
+  - test/yukicoder/1919.test.cpp
 documentation_of: alg/group_cntsum.hpp
 layout: document
 redirect_from:

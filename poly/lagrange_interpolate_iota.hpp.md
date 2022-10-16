@@ -425,10 +425,10 @@ data:
   timestamp: '2022-10-16 14:15:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/factorial_998.test.cpp
-  - test/yukicoder/502_2.test.cpp
-  - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
+  - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - test/yukicoder/502_2.test.cpp
+  - test/mytest/factorial_998.test.cpp
 documentation_of: poly/lagrange_interpolate_iota.hpp
 layout: document
 redirect_from:

@@ -271,17 +271,17 @@ data:
   isVerificationFile: false
   path: flow/bipartite.hpp
   requiredBy:
-  - graph/dag_path_cover.hpp
   - graph/maximum_antichain.hpp
+  - graph/dag_path_cover.hpp
   timestamp: '2022-10-13 10:39:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/2251_2.test.cpp
   - test/aoj/2251_1.test.cpp
-  - test/yukicoder/1745.test.cpp
-  - test/yukicoder/1479.test.cpp
-  - test/yukicoder/1744.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
+  - test/yukicoder/1745.test.cpp
+  - test/yukicoder/1744.test.cpp
+  - test/yukicoder/1479.test.cpp
 documentation_of: flow/bipartite.hpp
 layout: document
 redirect_from:

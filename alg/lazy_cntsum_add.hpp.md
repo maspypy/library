@@ -58,9 +58,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_5_E.test.cpp
-  - test/yukicoder/235.test.cpp
-  - test/yukicoder/789_2.test.cpp
   - test/yukicoder/1197.test.cpp
+  - test/yukicoder/789_2.test.cpp
+  - test/yukicoder/235.test.cpp
 documentation_of: alg/lazy_cntsum_add.hpp
 layout: document
 redirect_from:

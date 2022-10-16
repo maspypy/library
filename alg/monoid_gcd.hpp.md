@@ -33,8 +33,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1036_3.test.cpp
-  - test/yukicoder/1036_2.test.cpp
   - test/yukicoder/1036.test.cpp
+  - test/yukicoder/1036_2.test.cpp
 documentation_of: alg/monoid_gcd.hpp
 layout: document
 redirect_from:

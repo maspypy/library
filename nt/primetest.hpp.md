@@ -166,38 +166,38 @@ data:
   path: nt/primetest.hpp
   requiredBy:
   - seq/stirling_number_query.hpp
-  - mod/primitive_root.hpp
-  - mod/mod_kth_root.hpp
-  - mod/binomial.hpp
   - mod/tetration.hpp
+  - mod/mod_kth_root.hpp
+  - mod/primitive_root.hpp
+  - mod/binomial.hpp
+  - graph/chromatic.hpp
   - nt/function_on_divisors.hpp
-  - nt/gaussian_integers.hpp
-  - nt/divisors.hpp
   - nt/euler_phi.hpp
   - nt/lcm.hpp
+  - nt/divisors.hpp
   - nt/crt.hpp
+  - nt/gaussian_integers.hpp
   - nt/factor.hpp
-  - graph/chromatic.hpp
   timestamp: '2022-04-27 05:09:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_1_C.test.cpp
-  - test/aoj/NTL_1_D.test.cpp
   - test/aoj/ITP1_D_D.test.cpp
-  - test/yukicoder/187.test.cpp
-  - test/yukicoder/1728.test.cpp
-  - test/yukicoder/1262.test.cpp
-  - test/yukicoder/1025.test.cpp
-  - test/yukicoder/1411.test.cpp
-  - test/yukicoder/1593.test.cpp
-  - test/library_checker/math/primitive_root.test.cpp
-  - test/library_checker/math/tetration.test.cpp
-  - test/library_checker/math/stirline_mod_p_1.test.cpp
-  - test/library_checker/math/kth_root_mod.test.cpp
-  - test/library_checker/math/factorize.test.cpp
-  - test/library_checker/math/stirline_mod_p_2.test.cpp
-  - test/library_checker/math/binomial_coefficient.test.cpp
+  - test/aoj/NTL_1_D.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
+  - test/library_checker/math/factorize.test.cpp
+  - test/library_checker/math/stirline_mod_p_1.test.cpp
+  - test/library_checker/math/binomial_coefficient.test.cpp
+  - test/library_checker/math/primitive_root.test.cpp
+  - test/library_checker/math/stirline_mod_p_2.test.cpp
+  - test/library_checker/math/kth_root_mod.test.cpp
+  - test/library_checker/math/tetration.test.cpp
+  - test/yukicoder/1593.test.cpp
+  - test/yukicoder/187.test.cpp
+  - test/yukicoder/1411.test.cpp
+  - test/yukicoder/1262.test.cpp
+  - test/yukicoder/1728.test.cpp
+  - test/yukicoder/1025.test.cpp
 documentation_of: nt/primetest.hpp
 layout: document
 redirect_from:

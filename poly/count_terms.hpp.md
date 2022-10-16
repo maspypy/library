@@ -168,59 +168,59 @@ data:
   isVerificationFile: false
   path: poly/count_terms.hpp
   requiredBy:
-  - seq/sum_of_powers.hpp
-  - seq/stirling_number_1.hpp
   - seq/stirling_number_2.hpp
   - seq/surjection.hpp
+  - seq/stirling_number_1.hpp
   - seq/partition_number.hpp
-  - poly/fps_sqrt.hpp
-  - poly/fps_inv.hpp
-  - poly/poly_divmod.hpp
-  - poly/fps_pow.hpp
-  - poly/product_of_f_rk_x.hpp
-  - poly/poly_gcd.hpp
-  - poly/product_of_one_minus_xn.hpp
-  - poly/product_of_one_plus_xn.hpp
+  - seq/sum_of_powers.hpp
   - poly/composition_f_ex.hpp
-  - poly/product_of_pow_of_linear.hpp
-  - poly/multipoint.hpp
-  - poly/fps_log.hpp
+  - poly/fps_sqrt.hpp
   - poly/fps_exp.hpp
+  - poly/poly_divmod.hpp
+  - poly/product_of_f_rk_x.hpp
+  - poly/product_of_one_plus_xn.hpp
+  - poly/poly_gcd.hpp
+  - poly/multipoint.hpp
   - poly/sum_of_exp_bx.hpp
+  - poly/fps_pow.hpp
+  - poly/product_of_pow_of_linear.hpp
+  - poly/product_of_one_minus_xn.hpp
+  - poly/fps_log.hpp
+  - poly/fps_inv.hpp
   timestamp: '2022-05-02 13:06:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/enum_partitions.test.cpp
-  - test/yukicoder/1080.test.cpp
-  - test/yukicoder/1321.test.cpp
-  - test/yukicoder/1875.test.cpp
-  - test/yukicoder/1755.test.cpp
-  - test/yukicoder/2097.test.cpp
-  - test/yukicoder/1549.test.cpp
-  - test/yukicoder/2062.test.cpp
-  - test/yukicoder/1145.test.cpp
-  - test/yukicoder/1392.test.cpp
-  - test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
+  - test/library_checker/math/sharp_p_subset_sum.test.cpp
+  - test/library_checker/math/partition.test.cpp
+  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/library_checker/polynomial/pow_of_fps.test.cpp
   - test/library_checker/polynomial/inv_of_polynomials.test.cpp
-  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
   - test/library_checker/polynomial/exp_of_fps.test.cpp
-  - test/library_checker/polynomial/inv_of_fps_amint.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - test/library_checker/polynomial/log_of_fps.test.cpp
   - test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/inv_of_fps.test.cpp
-  - test/library_checker/polynomial/polynomial_division.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/inv_of_fps_amint.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
   - test/library_checker/polynomial/log_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/polynomial_division.test.cpp
+  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
+  - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  - test/library_checker/math/partition.test.cpp
-  - test/library_checker/math/sharp_p_subset_sum.test.cpp
-  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
+  - test/library_checker/polynomial/log_of_fps.test.cpp
+  - test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
+  - test/yukicoder/2062.test.cpp
+  - test/yukicoder/1392.test.cpp
+  - test/yukicoder/1549.test.cpp
+  - test/yukicoder/1321.test.cpp
+  - test/yukicoder/2097.test.cpp
+  - test/yukicoder/1875.test.cpp
+  - test/yukicoder/1755.test.cpp
+  - test/yukicoder/1080.test.cpp
+  - test/yukicoder/1145.test.cpp
+  - test/mytest/enum_partitions.test.cpp
 documentation_of: poly/count_terms.hpp
 layout: document
 redirect_from:

@@ -348,13 +348,13 @@ data:
   requiredBy:
   - seq/sum_of_powers.hpp
   - poly/composition_f_ex.hpp
-  - poly/product_of_pow_of_linear.hpp
   - poly/sum_of_exp_bx.hpp
+  - poly/product_of_pow_of_linear.hpp
   timestamp: '2022-10-16 14:15:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1875.test.cpp
   - test/yukicoder/1962.test.cpp
+  - test/yukicoder/1875.test.cpp
   - test/yukicoder/1145.test.cpp
 documentation_of: poly/sum_of_rationals.hpp
 layout: document

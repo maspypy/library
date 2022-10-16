@@ -291,8 +291,8 @@ data:
   timestamp: '2022-10-15 19:41:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1216.test.cpp
   - test/yukicoder/1216_2.test.cpp
+  - test/yukicoder/1216.test.cpp
 documentation_of: graph/statictreemonoid.hpp
 layout: document
 redirect_from:

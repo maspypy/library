@@ -1128,6 +1128,9 @@ data:
       path: string/is_substring.hpp
       title: string/is_substring.hpp
     - icon: ':heavy_check_mark:'
+      path: string/longest_common_substring.hpp
+      title: string/longest_common_substring.hpp
+    - icon: ':heavy_check_mark:'
       path: string/manacher.hpp
       title: string/manacher.hpp
     - icon: ':heavy_check_mark:'
@@ -1396,6 +1399,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/agc058d.test.cpp
       title: test/atcoder/agc058d.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/atcoder/arc151_e.test.cpp
+      title: test/atcoder/arc151_e.test.cpp
   - name: test/library_checker/convolution
     pages:
     - icon: ':heavy_check_mark:'
