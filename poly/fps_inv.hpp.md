@@ -1,155 +1,155 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/poly_gcd.hpp
     title: poly/poly_gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/product_of_f_rk_x.hpp
     title: poly/product_of_f_rk_x.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/product_of_pow_of_linear.hpp
     title: poly/product_of_pow_of_linear.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/partition_number.hpp
     title: seq/partition_number.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/stirling_number_1.hpp
     title: seq/stirling_number_1.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/stirling_number_2.hpp
     title: seq/stirling_number_2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/surjection.hpp
     title: seq/surjection.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/partition.test.cpp
     title: test/library_checker/math/partition.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/inv_of_fps.test.cpp
     title: test/library_checker/polynomial/inv_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
     title: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/inv_of_polynomials.test.cpp
     title: test/library_checker/polynomial/inv_of_polynomials.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/log_of_fps.test.cpp
     title: test/library_checker/polynomial/log_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/log_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/log_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/multipoint_evaluation.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/polynomial_division.test.cpp
     title: test/library_checker/polynomial/polynomial_division.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/polynomial_interpolation.test.cpp
     title: test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/pow_of_fps.test.cpp
     title: test/library_checker/polynomial/pow_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1080.test.cpp
     title: test/yukicoder/1080.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1321.test.cpp
     title: test/yukicoder/1321.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1392.test.cpp
     title: test/yukicoder/1392.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1549.test.cpp
     title: test/yukicoder/1549.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1755.test.cpp
     title: test/yukicoder/1755.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1875.test.cpp
     title: test/yukicoder/1875.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2097.test.cpp
     title: test/yukicoder/2097.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
@@ -265,26 +265,26 @@ data:
     \        iprod *= root[i + 3];\r\n      }\r\n    }\r\n  }\r\n\r\n  constexpr int\
     \ primitive_root(int m) {\r\n    if (m == 167772161) return 3;\r\n    if (m ==\
     \ 469762049) return 3;\r\n    if (m == 754974721) return 11;\r\n    if (m == 880803841)\
-    \ return 26;\r\n    if (m == 998244353) return 3;\r\n    return -1;\r\n  }\r\n\
-    };\r\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>& a, bool inverse) {\r\
-    \n  int n = int(a.size());\r\n  int h = topbit(n);\r\n  assert(n == 1 << h);\r\
-    \n  static const ntt_info<mint> info;\r\n  if (!inverse) {\r\n    int len = 0;\
-    \ // a[i, i+(n>>len), i+2*(n>>len), ..] is transformed\r\n    while (len < h)\
-    \ {\r\n      if (h - len == 1) {\r\n        int p = 1 << (h - len - 1);\r\n  \
-    \      mint rot = 1;\r\n        FOR(s, 1 << len) {\r\n          int offset = s\
-    \ << (h - len);\r\n          FOR(i, p) {\r\n            auto l = a[i + offset];\r\
-    \n            auto r = a[i + offset + p] * rot;\r\n            a[i + offset] =\
-    \ l + r;\r\n            a[i + offset + p] = l - r;\r\n          }\r\n        \
-    \  rot *= info.rate2[topbit(~s & -~s)];\r\n        }\r\n        len++;\r\n   \
-    \   } else {\r\n        int p = 1 << (h - len - 2);\r\n        mint rot = 1, imag\
-    \ = info.root[2];\r\n        for (int s = 0; s < (1 << len); s++) {\r\n      \
-    \    mint rot2 = rot * rot;\r\n          mint rot3 = rot2 * rot;\r\n         \
-    \ int offset = s << (h - len);\r\n          for (int i = 0; i < p; i++) {\r\n\
-    \            auto mod2 = 1ULL * mint::get_mod() * mint::get_mod();\r\n       \
-    \     auto a0 = 1ULL * a[i + offset].val;\r\n            auto a1 = 1ULL * a[i\
-    \ + offset + p].val * rot.val;\r\n            auto a2 = 1ULL * a[i + offset +\
-    \ 2 * p].val * rot2.val;\r\n            auto a3 = 1ULL * a[i + offset + 3 * p].val\
-    \ * rot3.val;\r\n            auto a1na3imag = 1ULL * mint(a1 + mod2 - a3).val\
+    \ return 26;\r\n    if (m == 998244353) return 3;\r\n    if (m == 924844053) return\
+    \ 5;\r\n    return -1;\r\n  }\r\n};\r\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>&\
+    \ a, bool inverse) {\r\n  int n = int(a.size());\r\n  int h = topbit(n);\r\n \
+    \ assert(n == 1 << h);\r\n  static const ntt_info<mint> info;\r\n  if (!inverse)\
+    \ {\r\n    int len = 0; // a[i, i+(n>>len), i+2*(n>>len), ..] is transformed\r\
+    \n    while (len < h) {\r\n      if (h - len == 1) {\r\n        int p = 1 << (h\
+    \ - len - 1);\r\n        mint rot = 1;\r\n        FOR(s, 1 << len) {\r\n     \
+    \     int offset = s << (h - len);\r\n          FOR(i, p) {\r\n            auto\
+    \ l = a[i + offset];\r\n            auto r = a[i + offset + p] * rot;\r\n    \
+    \        a[i + offset] = l + r;\r\n            a[i + offset + p] = l - r;\r\n\
+    \          }\r\n          rot *= info.rate2[topbit(~s & -~s)];\r\n        }\r\n\
+    \        len++;\r\n      } else {\r\n        int p = 1 << (h - len - 2);\r\n \
+    \       mint rot = 1, imag = info.root[2];\r\n        for (int s = 0; s < (1 <<\
+    \ len); s++) {\r\n          mint rot2 = rot * rot;\r\n          mint rot3 = rot2\
+    \ * rot;\r\n          int offset = s << (h - len);\r\n          for (int i = 0;\
+    \ i < p; i++) {\r\n            auto mod2 = 1ULL * mint::get_mod() * mint::get_mod();\r\
+    \n            auto a0 = 1ULL * a[i + offset].val;\r\n            auto a1 = 1ULL\
+    \ * a[i + offset + p].val * rot.val;\r\n            auto a2 = 1ULL * a[i + offset\
+    \ + 2 * p].val * rot2.val;\r\n            auto a3 = 1ULL * a[i + offset + 3 *\
+    \ p].val * rot3.val;\r\n            auto a1na3imag = 1ULL * mint(a1 + mod2 - a3).val\
     \ * imag.val;\r\n            auto na2 = mod2 - a2;\r\n            a[i + offset]\
     \ = a0 + a2 + a1 + a3;\r\n            a[i + offset + 1 * p] = a0 + a2 + (2 * mod2\
     \ - (a1 + a3));\r\n            a[i + offset + 2 * p] = a0 + na2 + a1na3imag;\r\
@@ -485,50 +485,50 @@ data:
   isVerificationFile: false
   path: poly/fps_inv.hpp
   requiredBy:
+  - seq/sum_of_powers.hpp
+  - seq/stirling_number_1.hpp
   - seq/stirling_number_2.hpp
   - seq/surjection.hpp
-  - seq/stirling_number_1.hpp
   - seq/partition_number.hpp
-  - seq/sum_of_powers.hpp
-  - poly/composition_f_ex.hpp
   - poly/fps_sqrt.hpp
   - poly/poly_divmod.hpp
+  - poly/fps_pow.hpp
   - poly/product_of_f_rk_x.hpp
   - poly/poly_gcd.hpp
-  - poly/multipoint.hpp
-  - poly/sum_of_exp_bx.hpp
-  - poly/fps_pow.hpp
+  - poly/composition_f_ex.hpp
   - poly/product_of_pow_of_linear.hpp
+  - poly/multipoint.hpp
   - poly/fps_log.hpp
-  timestamp: '2022-10-12 08:05:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - poly/sum_of_exp_bx.hpp
+  timestamp: '2022-10-16 14:15:02+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/mytest/enum_partitions.test.cpp
+  - test/yukicoder/1080.test.cpp
+  - test/yukicoder/1321.test.cpp
+  - test/yukicoder/1875.test.cpp
+  - test/yukicoder/1755.test.cpp
+  - test/yukicoder/2097.test.cpp
+  - test/yukicoder/1549.test.cpp
+  - test/yukicoder/1145.test.cpp
+  - test/yukicoder/1392.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/pow_of_fps.test.cpp
+  - test/library_checker/polynomial/inv_of_polynomials.test.cpp
+  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
+  - test/library_checker/polynomial/inv_of_fps_amint.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
+  - test/library_checker/polynomial/log_of_fps.test.cpp
+  - test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/inv_of_fps.test.cpp
+  - test/library_checker/polynomial/polynomial_division.test.cpp
+  - test/library_checker/polynomial/log_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/partition.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - test/library_checker/polynomial/pow_of_fps.test.cpp
-  - test/library_checker/polynomial/inv_of_polynomials.test.cpp
-  - test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/inv_of_fps.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/inv_of_fps_amint.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-  - test/library_checker/polynomial/log_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/polynomial_division.test.cpp
-  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - test/library_checker/polynomial/log_of_fps.test.cpp
-  - test/yukicoder/1392.test.cpp
-  - test/yukicoder/1549.test.cpp
-  - test/yukicoder/1321.test.cpp
-  - test/yukicoder/2097.test.cpp
-  - test/yukicoder/1875.test.cpp
-  - test/yukicoder/1755.test.cpp
-  - test/yukicoder/1080.test.cpp
-  - test/yukicoder/1145.test.cpp
-  - test/mytest/enum_partitions.test.cpp
 documentation_of: poly/fps_inv.hpp
 layout: document
 redirect_from:

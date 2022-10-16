@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
   _extendedRequiredBy: []
@@ -43,8 +43,8 @@ data:
   timestamp: '2022-08-19 01:23:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1750.test.cpp
   - test/yukicoder/1810.test.cpp
+  - test/yukicoder/1750.test.cpp
 documentation_of: linalg/mat_pow.hpp
 layout: document
 redirect_from:

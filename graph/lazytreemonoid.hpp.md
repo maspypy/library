@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid_reverse.hpp
     title: alg/monoid_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -352,9 +352,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_5_E.test.cpp
-  - test/yukicoder/1197.test.cpp
-  - test/yukicoder/235.test.cpp
   - test/yukicoder/1790.test.cpp
+  - test/yukicoder/235.test.cpp
+  - test/yukicoder/1197.test.cpp
 documentation_of: graph/lazytreemonoid.hpp
 layout: document
 redirect_from:

@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/random.hpp
     title: other/random.hpp
   _extendedRequiredBy:
@@ -139,9 +139,9 @@ data:
   timestamp: '2022-10-07 01:22:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1025.test.cpp
   - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
-  - test/yukicoder/1025.test.cpp
 documentation_of: mod/primitive_root.hpp
 layout: document
 redirect_from:

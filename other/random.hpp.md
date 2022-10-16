@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/rerooting_classify_subtree.hpp
     title: graph/rerooting_classify_subtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   - icon: ':heavy_check_mark:'
@@ -26,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
   - icon: ':heavy_check_mark:'
@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
   - icon: ':heavy_check_mark:'
@@ -66,10 +66,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/sparse_matrix_det.test.cpp
     title: test/library_checker/matrix/sparse_matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - icon: ':heavy_check_mark:'
@@ -81,13 +81,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/binom.test.cpp
     title: test/mytest/binom.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/conv_leq.test.cpp
     title: test/mytest/conv_leq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
@@ -126,16 +126,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/splay.test.cpp
     title: test/mytest/splay.test.cpp
+  - icon: ':x:'
+    path: test/mytest/stern_brocot.test.cpp
+    title: test/mytest/stern_brocot.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/wavelet_matrix_sum.test.cpp
     title: test/mytest/wavelet_matrix_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1080.test.cpp
     title: test/yukicoder/1080.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
   - icon: ':heavy_check_mark:'
@@ -147,9 +150,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_1.test.cpp
     title: test/yukicoder/4_1.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/random.hpp\"\n\nll RNG(ll a, ll b) {\n  static mt19937\
@@ -162,57 +165,58 @@ data:
   isVerificationFile: false
   path: other/random.hpp
   requiredBy:
-  - mod/mod_kth_root.hpp
+  - string/rollinghash.hpp
   - mod/primitive_root.hpp
-  - mod/mod_sqrt.hpp
   - mod/modular_subset_sum.hpp
-  - graph/classify_subtree.hpp
-  - graph/rerooting_classify_subtree.hpp
-  - graph/chromatic.hpp
+  - mod/mod_kth_root.hpp
+  - mod/mod_sqrt.hpp
   - alg/monoid_rollinghash.hpp
+  - poly/fps_sqrt.hpp
   - linalg/spmat_min_poly.hpp
   - linalg/spmat_det.hpp
   - linalg/det_A_plus_xB.hpp
-  - poly/fps_sqrt.hpp
-  - string/rollinghash.hpp
+  - graph/classify_subtree.hpp
+  - graph/rerooting_classify_subtree.hpp
+  - graph/chromatic.hpp
   timestamp: '2022-08-25 09:50:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/mytest/max_of_linear_segments.test.cpp
+  - test/mytest/powerquery.test.cpp
+  - test/mytest/maxplus_concave.test.cpp
+  - test/mytest/mod_sum_of_linear.test.cpp
+  - test/mytest/run_length.test.cpp
+  - test/mytest/all_inverse.test.cpp
+  - test/mytest/enum_partitions.test.cpp
+  - test/mytest/wavelet_matrix_sum.test.cpp
+  - test/mytest/range_mex.test.cpp
+  - test/mytest/rect_add_pt_sum.test.cpp
+  - test/mytest/stern_brocot.test.cpp
+  - test/mytest/factorial_998.test.cpp
+  - test/mytest/min_of_linear_segments.test.cpp
+  - test/mytest/minplus_convex.test.cpp
+  - test/mytest/conv_leq.test.cpp
+  - test/mytest/is_substring.test.cpp
+  - test/mytest/splay.test.cpp
+  - test/mytest/binom.test.cpp
+  - test/mytest/range_freq_of_linear.test.cpp
   - test/aoj/ALDS1_14_C.test.cpp
-  - test/library_checker/matrix/sparse_matrix_det.test.cpp
-  - test/library_checker/graph/classify_tree.test.cpp
-  - test/library_checker/graph/chromatic_number.test.cpp
-  - test/library_checker/graph/rerooting_classify_subtree.test.cpp
+  - test/yukicoder/1907.test.cpp
+  - test/yukicoder/1080.test.cpp
+  - test/yukicoder/263.test.cpp
+  - test/yukicoder/2102.test.cpp
+  - test/yukicoder/1025.test.cpp
+  - test/yukicoder/4_1.test.cpp
+  - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
-  - test/yukicoder/263.test.cpp
-  - test/yukicoder/1907.test.cpp
-  - test/yukicoder/1080.test.cpp
-  - test/yukicoder/1025.test.cpp
-  - test/yukicoder/4_1.test.cpp
-  - test/yukicoder/2102.test.cpp
-  - test/mytest/powerquery.test.cpp
-  - test/mytest/minplus_convex.test.cpp
-  - test/mytest/min_of_linear_segments.test.cpp
-  - test/mytest/all_inverse.test.cpp
-  - test/mytest/is_substring.test.cpp
-  - test/mytest/enum_partitions.test.cpp
-  - test/mytest/splay.test.cpp
-  - test/mytest/rect_add_pt_sum.test.cpp
-  - test/mytest/factorial_998.test.cpp
-  - test/mytest/conv_leq.test.cpp
-  - test/mytest/mod_sum_of_linear.test.cpp
-  - test/mytest/run_length.test.cpp
-  - test/mytest/range_mex.test.cpp
-  - test/mytest/range_freq_of_linear.test.cpp
-  - test/mytest/wavelet_matrix_sum.test.cpp
-  - test/mytest/binom.test.cpp
-  - test/mytest/max_of_linear_segments.test.cpp
-  - test/mytest/maxplus_concave.test.cpp
+  - test/library_checker/matrix/sparse_matrix_det.test.cpp
+  - test/library_checker/graph/rerooting_classify_subtree.test.cpp
+  - test/library_checker/graph/classify_tree.test.cpp
+  - test/library_checker/graph/chromatic_number.test.cpp
 documentation_of: other/random.hpp
 layout: document
 redirect_from:

@@ -125,8 +125,8 @@ data:
   timestamp: '2022-10-06 22:48:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/yukicoder/1339.test.cpp
+  - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/atcoder/abc270_g.test.cpp
 documentation_of: other/discrete_log.hpp
 layout: document

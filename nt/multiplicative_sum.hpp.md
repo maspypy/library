@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   _extendedRequiredBy: []
@@ -66,9 +66,9 @@ data:
   timestamp: '2022-08-19 00:54:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/math/totient_sum.test.cpp
-  - test/yukicoder/1276.test.cpp
   - test/yukicoder/1781.test.cpp
+  - test/yukicoder/1276.test.cpp
+  - test/library_checker/math/totient_sum.test.cpp
 documentation_of: nt/multiplicative_sum.hpp
 layout: document
 redirect_from:

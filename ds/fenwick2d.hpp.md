@@ -6,7 +6,7 @@ data:
     title: alg/group_add.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc266h_2.test.cpp
     title: test/atcoder/abc266h_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -24,9 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1919.test.cpp
     title: test/yukicoder/1919.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -160,13 +160,13 @@ data:
   path: ds/fenwick2d.hpp
   requiredBy: []
   timestamp: '2022-10-15 19:41:26+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1216.test.cpp
+  - test/yukicoder/1216_2.test.cpp
+  - test/yukicoder/1919.test.cpp
   - test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
-  - test/yukicoder/1919.test.cpp
-  - test/yukicoder/1216_2.test.cpp
-  - test/yukicoder/1216.test.cpp
   - test/atcoder/abc266h_2.test.cpp
 documentation_of: ds/fenwick2d.hpp
 layout: document

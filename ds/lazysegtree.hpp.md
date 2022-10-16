@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/common_interval_decomposition.hpp
     title: ds/common_interval_decomposition.hpp
   - icon: ':heavy_check_mark:'
@@ -57,7 +57,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1548.test.cpp
     title: test/yukicoder/1548.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1720.test.cpp
     title: test/yukicoder/1720.test.cpp
   - icon: ':heavy_check_mark:'
@@ -75,9 +75,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/lazysegtree.hpp\"\n\ntemplate <typename Lazy>\nstruct\
@@ -208,32 +208,32 @@ data:
   isVerificationFile: false
   path: ds/lazysegtree.hpp
   requiredBy:
-  - graph/minimum_spanning_tree.hpp
-  - graph/dualtreemonoid.hpp
-  - graph/lazytreemonoid.hpp
   - ds/common_interval_decomposition.hpp
   - ds/rectangleunion.hpp
+  - graph/lazytreemonoid.hpp
+  - graph/dualtreemonoid.hpp
+  - graph/minimum_spanning_tree.hpp
   timestamp: '2022-08-11 02:08:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/GRL_2_A.test.cpp
-  - test/aoj/DSL_2_I.test.cpp
-  - test/aoj/GRL_5_E.test.cpp
+  - test/aoj/DSL_2_F.test.cpp
   - test/aoj/DSL_2_H.test.cpp
   - test/aoj/DSL_4_A.test.cpp
-  - test/aoj/DSL_2_F.test.cpp
-  - test/library_checker/graph/common_interval_decomposition.test.cpp
-  - test/library_checker/datastructure/range_affine_range_sum.test.cpp
-  - test/yukicoder/1197.test.cpp
+  - test/aoj/DSL_2_I.test.cpp
+  - test/aoj/GRL_5_E.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
+  - test/yukicoder/1790.test.cpp
+  - test/yukicoder/1720.test.cpp
   - test/yukicoder/255.test.cpp
+  - test/yukicoder/1548.test.cpp
   - test/yukicoder/899.test.cpp
-  - test/yukicoder/1270.test.cpp
+  - test/yukicoder/235.test.cpp
   - test/yukicoder/1234.test.cpp
   - test/yukicoder/749.test.cpp
-  - test/yukicoder/1548.test.cpp
-  - test/yukicoder/235.test.cpp
-  - test/yukicoder/1720.test.cpp
-  - test/yukicoder/1790.test.cpp
+  - test/yukicoder/1197.test.cpp
+  - test/yukicoder/1270.test.cpp
+  - test/library_checker/datastructure/range_affine_range_sum.test.cpp
+  - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/atcoder/abc270_f.test.cpp
 documentation_of: ds/lazysegtree.hpp
 layout: document

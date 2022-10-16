@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/lazy_max_add.hpp
     title: alg/lazy_max_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_max.hpp
     title: alg/monoid_max.hpp
   - icon: ':heavy_check_mark:'

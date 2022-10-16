@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/random.hpp
     title: other/random.hpp
   _extendedRequiredBy: []
@@ -87,9 +87,9 @@ data:
   timestamp: '2022-08-25 10:07:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - test/yukicoder/263.test.cpp
   - test/yukicoder/2102.test.cpp
+  - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
 documentation_of: string/rollinghash.hpp
 layout: document
 redirect_from:

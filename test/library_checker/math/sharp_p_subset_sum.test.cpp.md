@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -13,38 +13,38 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/product_of_one_plus_xn.hpp
     title: poly/product_of_one_plus_xn.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sharp_p_subset_sum
@@ -341,26 +341,26 @@ data:
     \        iprod *= root[i + 3];\r\n      }\r\n    }\r\n  }\r\n\r\n  constexpr int\
     \ primitive_root(int m) {\r\n    if (m == 167772161) return 3;\r\n    if (m ==\
     \ 469762049) return 3;\r\n    if (m == 754974721) return 11;\r\n    if (m == 880803841)\
-    \ return 26;\r\n    if (m == 998244353) return 3;\r\n    return -1;\r\n  }\r\n\
-    };\r\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>& a, bool inverse) {\r\
-    \n  int n = int(a.size());\r\n  int h = topbit(n);\r\n  assert(n == 1 << h);\r\
-    \n  static const ntt_info<mint> info;\r\n  if (!inverse) {\r\n    int len = 0;\
-    \ // a[i, i+(n>>len), i+2*(n>>len), ..] is transformed\r\n    while (len < h)\
-    \ {\r\n      if (h - len == 1) {\r\n        int p = 1 << (h - len - 1);\r\n  \
-    \      mint rot = 1;\r\n        FOR(s, 1 << len) {\r\n          int offset = s\
-    \ << (h - len);\r\n          FOR(i, p) {\r\n            auto l = a[i + offset];\r\
-    \n            auto r = a[i + offset + p] * rot;\r\n            a[i + offset] =\
-    \ l + r;\r\n            a[i + offset + p] = l - r;\r\n          }\r\n        \
-    \  rot *= info.rate2[topbit(~s & -~s)];\r\n        }\r\n        len++;\r\n   \
-    \   } else {\r\n        int p = 1 << (h - len - 2);\r\n        mint rot = 1, imag\
-    \ = info.root[2];\r\n        for (int s = 0; s < (1 << len); s++) {\r\n      \
-    \    mint rot2 = rot * rot;\r\n          mint rot3 = rot2 * rot;\r\n         \
-    \ int offset = s << (h - len);\r\n          for (int i = 0; i < p; i++) {\r\n\
-    \            auto mod2 = 1ULL * mint::get_mod() * mint::get_mod();\r\n       \
-    \     auto a0 = 1ULL * a[i + offset].val;\r\n            auto a1 = 1ULL * a[i\
-    \ + offset + p].val * rot.val;\r\n            auto a2 = 1ULL * a[i + offset +\
-    \ 2 * p].val * rot2.val;\r\n            auto a3 = 1ULL * a[i + offset + 3 * p].val\
-    \ * rot3.val;\r\n            auto a1na3imag = 1ULL * mint(a1 + mod2 - a3).val\
+    \ return 26;\r\n    if (m == 998244353) return 3;\r\n    if (m == 924844053) return\
+    \ 5;\r\n    return -1;\r\n  }\r\n};\r\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>&\
+    \ a, bool inverse) {\r\n  int n = int(a.size());\r\n  int h = topbit(n);\r\n \
+    \ assert(n == 1 << h);\r\n  static const ntt_info<mint> info;\r\n  if (!inverse)\
+    \ {\r\n    int len = 0; // a[i, i+(n>>len), i+2*(n>>len), ..] is transformed\r\
+    \n    while (len < h) {\r\n      if (h - len == 1) {\r\n        int p = 1 << (h\
+    \ - len - 1);\r\n        mint rot = 1;\r\n        FOR(s, 1 << len) {\r\n     \
+    \     int offset = s << (h - len);\r\n          FOR(i, p) {\r\n            auto\
+    \ l = a[i + offset];\r\n            auto r = a[i + offset + p] * rot;\r\n    \
+    \        a[i + offset] = l + r;\r\n            a[i + offset + p] = l - r;\r\n\
+    \          }\r\n          rot *= info.rate2[topbit(~s & -~s)];\r\n        }\r\n\
+    \        len++;\r\n      } else {\r\n        int p = 1 << (h - len - 2);\r\n \
+    \       mint rot = 1, imag = info.root[2];\r\n        for (int s = 0; s < (1 <<\
+    \ len); s++) {\r\n          mint rot2 = rot * rot;\r\n          mint rot3 = rot2\
+    \ * rot;\r\n          int offset = s << (h - len);\r\n          for (int i = 0;\
+    \ i < p; i++) {\r\n            auto mod2 = 1ULL * mint::get_mod() * mint::get_mod();\r\
+    \n            auto a0 = 1ULL * a[i + offset].val;\r\n            auto a1 = 1ULL\
+    \ * a[i + offset + p].val * rot.val;\r\n            auto a2 = 1ULL * a[i + offset\
+    \ + 2 * p].val * rot2.val;\r\n            auto a3 = 1ULL * a[i + offset + 3 *\
+    \ p].val * rot3.val;\r\n            auto a1na3imag = 1ULL * mint(a1 + mod2 - a3).val\
     \ * imag.val;\r\n            auto na2 = mod2 - a2;\r\n            a[i + offset]\
     \ = a0 + a2 + a1 + a3;\r\n            a[i + offset + 1 * p] = a0 + a2 + (2 * mod2\
     \ - (a1 + a3));\r\n            a[i + offset + 2 * p] = a0 + na2 + a1na3imag;\r\
@@ -581,8 +581,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/sharp_p_subset_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-10-12 08:05:37+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-10-16 14:15:02+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/sharp_p_subset_sum.test.cpp
 layout: document

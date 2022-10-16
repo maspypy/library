@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/online_convolution.test.cpp
     title: test/library_checker/convolution/online_convolution.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n\
@@ -140,26 +140,26 @@ data:
     \        iprod *= root[i + 3];\r\n      }\r\n    }\r\n  }\r\n\r\n  constexpr int\
     \ primitive_root(int m) {\r\n    if (m == 167772161) return 3;\r\n    if (m ==\
     \ 469762049) return 3;\r\n    if (m == 754974721) return 11;\r\n    if (m == 880803841)\
-    \ return 26;\r\n    if (m == 998244353) return 3;\r\n    return -1;\r\n  }\r\n\
-    };\r\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>& a, bool inverse) {\r\
-    \n  int n = int(a.size());\r\n  int h = topbit(n);\r\n  assert(n == 1 << h);\r\
-    \n  static const ntt_info<mint> info;\r\n  if (!inverse) {\r\n    int len = 0;\
-    \ // a[i, i+(n>>len), i+2*(n>>len), ..] is transformed\r\n    while (len < h)\
-    \ {\r\n      if (h - len == 1) {\r\n        int p = 1 << (h - len - 1);\r\n  \
-    \      mint rot = 1;\r\n        FOR(s, 1 << len) {\r\n          int offset = s\
-    \ << (h - len);\r\n          FOR(i, p) {\r\n            auto l = a[i + offset];\r\
-    \n            auto r = a[i + offset + p] * rot;\r\n            a[i + offset] =\
-    \ l + r;\r\n            a[i + offset + p] = l - r;\r\n          }\r\n        \
-    \  rot *= info.rate2[topbit(~s & -~s)];\r\n        }\r\n        len++;\r\n   \
-    \   } else {\r\n        int p = 1 << (h - len - 2);\r\n        mint rot = 1, imag\
-    \ = info.root[2];\r\n        for (int s = 0; s < (1 << len); s++) {\r\n      \
-    \    mint rot2 = rot * rot;\r\n          mint rot3 = rot2 * rot;\r\n         \
-    \ int offset = s << (h - len);\r\n          for (int i = 0; i < p; i++) {\r\n\
-    \            auto mod2 = 1ULL * mint::get_mod() * mint::get_mod();\r\n       \
-    \     auto a0 = 1ULL * a[i + offset].val;\r\n            auto a1 = 1ULL * a[i\
-    \ + offset + p].val * rot.val;\r\n            auto a2 = 1ULL * a[i + offset +\
-    \ 2 * p].val * rot2.val;\r\n            auto a3 = 1ULL * a[i + offset + 3 * p].val\
-    \ * rot3.val;\r\n            auto a1na3imag = 1ULL * mint(a1 + mod2 - a3).val\
+    \ return 26;\r\n    if (m == 998244353) return 3;\r\n    if (m == 924844053) return\
+    \ 5;\r\n    return -1;\r\n  }\r\n};\r\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>&\
+    \ a, bool inverse) {\r\n  int n = int(a.size());\r\n  int h = topbit(n);\r\n \
+    \ assert(n == 1 << h);\r\n  static const ntt_info<mint> info;\r\n  if (!inverse)\
+    \ {\r\n    int len = 0; // a[i, i+(n>>len), i+2*(n>>len), ..] is transformed\r\
+    \n    while (len < h) {\r\n      if (h - len == 1) {\r\n        int p = 1 << (h\
+    \ - len - 1);\r\n        mint rot = 1;\r\n        FOR(s, 1 << len) {\r\n     \
+    \     int offset = s << (h - len);\r\n          FOR(i, p) {\r\n            auto\
+    \ l = a[i + offset];\r\n            auto r = a[i + offset + p] * rot;\r\n    \
+    \        a[i + offset] = l + r;\r\n            a[i + offset + p] = l - r;\r\n\
+    \          }\r\n          rot *= info.rate2[topbit(~s & -~s)];\r\n        }\r\n\
+    \        len++;\r\n      } else {\r\n        int p = 1 << (h - len - 2);\r\n \
+    \       mint rot = 1, imag = info.root[2];\r\n        for (int s = 0; s < (1 <<\
+    \ len); s++) {\r\n          mint rot2 = rot * rot;\r\n          mint rot3 = rot2\
+    \ * rot;\r\n          int offset = s << (h - len);\r\n          for (int i = 0;\
+    \ i < p; i++) {\r\n            auto mod2 = 1ULL * mint::get_mod() * mint::get_mod();\r\
+    \n            auto a0 = 1ULL * a[i + offset].val;\r\n            auto a1 = 1ULL\
+    \ * a[i + offset + p].val * rot.val;\r\n            auto a2 = 1ULL * a[i + offset\
+    \ + 2 * p].val * rot2.val;\r\n            auto a3 = 1ULL * a[i + offset + 3 *\
+    \ p].val * rot3.val;\r\n            auto a1na3imag = 1ULL * mint(a1 + mod2 - a3).val\
     \ * imag.val;\r\n            auto na2 = mod2 - a2;\r\n            a[i + offset]\
     \ = a0 + a2 + a1 + a3;\r\n            a[i + offset + 1 * p] = a0 + a2 + (2 * mod2\
     \ - (a1 + a3));\r\n            a[i + offset + 2 * p] = a0 + na2 + a1na3imag;\r\
@@ -368,8 +368,8 @@ data:
   isVerificationFile: false
   path: poly/online_convolution.hpp
   requiredBy: []
-  timestamp: '2022-10-12 08:05:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-10-16 14:15:02+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/convolution/online_convolution.test.cpp
 documentation_of: poly/online_convolution.hpp

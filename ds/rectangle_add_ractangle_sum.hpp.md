@@ -200,8 +200,8 @@ data:
   timestamp: '2022-09-17 09:15:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - test/yukicoder/1490.test.cpp
+  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
 documentation_of: ds/rectangle_add_ractangle_sum.hpp
 layout: document
 redirect_from:
