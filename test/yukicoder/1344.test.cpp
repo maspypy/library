@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1344"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "graph/warshall_floyd.hpp"
+#include "graph/shortest_path/warshall_floyd.hpp"
 
 void solve() {
   LL(N, M);

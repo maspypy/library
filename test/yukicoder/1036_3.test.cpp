@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/swag.hpp"
-#include "alg/monoid_gcd.hpp"
+#include "alg/monoid/gcd.hpp"
 
 void solve() {
   LL(N);

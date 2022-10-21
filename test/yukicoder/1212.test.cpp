@@ -2,8 +2,8 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/base.hpp"
-#include "graph/treemonoid.hpp"
-#include "alg/monoid_min.hpp"
+#include "graph/ds/treemonoid.hpp"
+#include "alg/monoid/min.hpp"
 #include "ds/segtree.hpp"
 
 void solve() {

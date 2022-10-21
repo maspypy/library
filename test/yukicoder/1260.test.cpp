@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "other/integer_kth_root.hpp"
-#include "other/floor_range.hpp"
+#include "nt/floor_range.hpp"
 #include "mod/modint.hpp"
 
 using mint = modint107;

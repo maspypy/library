@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1323"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "graph/grid_bfs.hpp"
+#include "graph/shortest_path/grid_bfs.hpp"
 
 void solve() {
   LL(H, W, sx, sy, gx, gy);

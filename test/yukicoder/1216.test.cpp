@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/tree.hpp"
-#include "graph/statictreemonoid.hpp"
+#include "graph/ds/statictreemonoid.hpp"
 // #include "graph/treemonoid.hpp"
 #include "ds/fenwick2d.hpp"
 

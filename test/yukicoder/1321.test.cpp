@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"
-#include "seq/surjection.hpp"
+#include "seq/famous/surjection.hpp"
 
 using mint = modint998;
 

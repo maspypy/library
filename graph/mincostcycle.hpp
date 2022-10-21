@@ -1,5 +1,5 @@
-#include "graph/dijkstra.hpp"
-#include "graph/bfs01.hpp"
+#include "graph/shortest_path/dijkstra.hpp"
+#include "graph/shortest_path/bfs01.hpp"
 
 template <typename T, typename Graph>
 T MinCostCycle(Graph& G, T INF) {
@@ -19,7 +19,8 @@ T MinCostCycle(Graph& G, T INF) {
     }
     Gi.build();
 
-    T x = (mx <= 1 ? bfs01<decltype(Gi), T>(Gi, frm).fi[to] : dijkstra<T>(Gi, frm, INF).fi[to]);
+    T x = (mx <= 1 ? bfs01<decltype(Gi), T>(Gi, frm).fi[to]
+                   : dijkstra<T>(Gi, frm, INF).fi[to]);
     if (x == -1) x = INF;
     chmin(res, cost + x);
   }

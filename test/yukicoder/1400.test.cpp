@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "graph/bfs_bitset.hpp"
+#include "graph/shortest_path/bfs_bitset.hpp"
 
 using BS = bitset<4000>;
 
