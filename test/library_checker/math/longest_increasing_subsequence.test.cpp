@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "dp/longest_increasing_subsequence.hpp"
+#include "seq/longest_increasing_subsequence.hpp"
 
 void solve() {
   LL(N);

@@ -1,4 +1,4 @@
-#include "other/random.hpp"
+#include "random/base.hpp"
 #include "nt/primetest.hpp"
 
 // O(N2^N)
@@ -8,7 +8,7 @@ int chromatic_number(Graph& G) {
 
   int N = G.N;
   vc<int> nbd(N);
-  FOR(v, N) for (auto&& e : G[v]) nbd[v] |= 1 << e.to;
+  FOR(v, N) for (auto&& e: G[v]) nbd[v] |= 1 << e.to;
 
   // s の subset であるような独立集合の数え上げ
   vc<int> dp(1 << N);

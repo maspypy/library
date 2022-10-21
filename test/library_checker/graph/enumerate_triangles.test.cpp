@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/enumerate_triangles"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "graph/enumerate_triangles.hpp"
+#include "enumerate/triangles.hpp"
 
 void solve() {
   LL(N, M);

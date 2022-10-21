@@ -2,9 +2,9 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "alg/group_add.hpp"
+#include "alg/group/add.hpp"
 #include "ds/segtree.hpp"
-#include "graph/treegroup.hpp"
+#include "graph/ds/treegroup.hpp"
 
 void solve() {
   LL(N, Q);

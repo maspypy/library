@@ -4,7 +4,7 @@
 
 #include "graph/base.hpp"
 #include "mod/modint.hpp"
-#include "graph/enumerate_cliques.hpp"
+#include "enumerate/cliques.hpp"
 
 using mint = modint998;
 

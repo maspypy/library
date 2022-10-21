@@ -2,8 +2,8 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "graph/treemonoid.hpp"
-#include "alg/group_add.hpp"
+#include "graph/ds/treemonoid.hpp"
+#include "alg/group/add.hpp"
 
 void solve() {
   LL(N, Q);

@@ -4,7 +4,6 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/rerooting_classify_subtree.hpp"
-#include "other/random.hpp"
 
 void solve() {
   LL(N);

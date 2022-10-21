@@ -1,6 +1,6 @@
 #include "mod/modint.hpp"
 #include "other/discrete_log.hpp"
-#include "alg/group_mul.hpp"
+#include "alg/group/mul.hpp"
 
 int mod_log(int mod, ll a, ll b) {
   a = divmod(a, mod).se;

@@ -1,6 +1,6 @@
 #include "ds/segtree.hpp"
 #include "graph/tree.hpp"
-#include "alg/group_reverse.hpp"
+#include "alg/group/reverse.hpp"
 
 // 作ってみたものの、HLD(log^2N)より遅いがち？
 template <typename TREE, typename Group, bool edge = false,
@@ -83,8 +83,9 @@ struct TreeGroup {
     assert(path_query);
     int lca = tree.LCA(frm, to);
     // [frm, lca)
-    X x1 = (Group::commute ? seg.prod(tree.ELID(lca) + 1, tree.ELID(frm) + 1)
-                           : seg_r.prod(tree.ELID(lca) + 1, tree.ELID(frm) + 1));
+    X x1
+        = (Group::commute ? seg.prod(tree.ELID(lca) + 1, tree.ELID(frm) + 1)
+                          : seg_r.prod(tree.ELID(lca) + 1, tree.ELID(frm) + 1));
     // edge なら (lca, to]、vertex なら [lca, to]
     X x2 = seg.prod(tree.ELID(lca) + edge, tree.ELID(to) + 1);
     return Group::op(x1, x2);

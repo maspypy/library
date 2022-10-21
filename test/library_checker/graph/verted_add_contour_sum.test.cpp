@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/base.hpp"
-#include "graph/contoursum.hpp"
+#include "graph/ds/contoursum.hpp"
 
 void solve() {
   LL(N, Q);

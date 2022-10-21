@@ -4,14 +4,14 @@
 #include "other/io.hpp"
 
 #include "graph/base.hpp"
-#include "graph/cycle_detection.hpp"
+#include "graph/find_cycle.hpp"
 
 void solve() {
   LL(N, M);
   Graph<int, 1> G(N);
   G.read_graph(M, 0, 0);
 
-  auto C = cycle_detection(G, true);
+  auto C = find_cycle(G, true);
   if (len(C) == 0) {
     print(-1);
   } else {

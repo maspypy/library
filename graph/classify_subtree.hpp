@@ -1,7 +1,7 @@
 #include "mod/modint61.hpp"
 #include "graph/base.hpp"
 #include "graph/tree.hpp"
-#include "other/random.hpp"
+#include "random/base.hpp"
 #include "graph/tree_dp.hpp"
 
 template <typename TREE>
