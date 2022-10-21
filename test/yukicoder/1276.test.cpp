@@ -5,7 +5,7 @@
 #include "mod/modint.hpp"
 #include "nt/multiplicative_sum.hpp"
 #include "nt/primesum.hpp"
-#include "other/floor_range.hpp"
+#include "nt/floor_range.hpp"
 
 using mint = modint107;
 

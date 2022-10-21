@@ -1,6 +1,6 @@
 #include "ds/disjointsparse.hpp"
 #include "graph/tree.hpp"
-#include "alg/monoid_reverse.hpp"
+#include "alg/monoid/reverse.hpp"
 
 template <typename TREE, typename Monoid, bool edge = false>
 struct StaticTreeMonoid {

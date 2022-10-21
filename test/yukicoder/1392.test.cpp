@@ -4,7 +4,7 @@
 #include "ds/unionfind.hpp"
 #include "mod/modint.hpp"
 #include "poly/convolution_all.hpp"
-#include "seq/stirling_number_2.hpp"
+#include "seq/famous/stirling_number_2.hpp"
 
 using mint = modint998;
 

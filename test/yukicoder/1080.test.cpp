@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"
-#include "other/random.hpp"
+#include "random/base.hpp"
 #include "poly/fps_exp.hpp"
 #include "poly/fps_inv.hpp"
 

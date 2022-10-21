@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "other/discrete_log.hpp"
 #include "mod/modint.hpp"
-#include "alg/group_mul.hpp"
+#include "alg/group/mul.hpp"
 
 void solve() {
   LL(N);

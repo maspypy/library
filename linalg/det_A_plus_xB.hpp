@@ -1,4 +1,4 @@
-#include "other/random.hpp"
+#include "random/base.hpp"
 #include "linalg/mat_mul.hpp"
 #include "linalg/mat_inv.hpp"
 #include "linalg/characteristic_poly.hpp"

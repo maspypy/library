@@ -1,4 +1,4 @@
-#include "alg/group_add.hpp"
+#include "alg/group/add.hpp"
 
 // 終端ノードに value を入れる。
 // failure link を作ると、そこが終端であるような文字列の value を

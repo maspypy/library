@@ -2,7 +2,7 @@
 
 #include "nt/factor.hpp"
 #include "mod/mod_pow.hpp"
-#include "other/random.hpp"
+#include "random/base.hpp"
 
 // int
 int primitive_root(int p) {

@@ -1,4 +1,4 @@
-#include "alg/group_add.hpp"
+#include "alg/group/add.hpp"
 
 template <typename Group>
 struct Cumsum2D {

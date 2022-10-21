@@ -4,8 +4,8 @@
 #include "other/io.hpp"
 
 #include "graph/tree.hpp"
-#include "alg/lazy_cntsum_add.hpp"
-#include "graph/lazytreemonoid.hpp"
+#include "alg/lazy/cntsum_add.hpp"
+#include "graph/ds/lazytreemonoid.hpp"
 
 void solve() {
   LL(N, K, Q);
