@@ -100,9 +100,6 @@ data:
     path: test/aoj/DPL_3_C.test.cpp
     title: test/aoj/DPL_3_C.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/DPL_4_B.test.cpp
-    title: test/aoj/DPL_4_B.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_5_C.test.cpp
     title: test/aoj/DPL_5_C.test.cpp
   - icon: ':heavy_check_mark:'
@@ -225,6 +222,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc270_g.test.cpp
+    title: test/atcoder/abc270_g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/atcoder/agc058d.test.cpp
     title: test/atcoder/agc058d.test.cpp
@@ -720,6 +720,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/is_substring.test.cpp
     title: test/mytest/is_substring.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/knight_distance.test.cpp
+    title: test/mytest/knight_distance.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/max_of_linear_segments.test.cpp
     title: test/mytest/max_of_linear_segments.test.cpp
@@ -1396,6 +1399,7 @@ data:
   timestamp: '2022-09-24 23:41:28+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/mytest/knight_distance.test.cpp
   - test/mytest/prime_sum.test.cpp
   - test/mytest/stern_brocot.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
@@ -1634,7 +1638,6 @@ data:
   - test/aoj/CGL_2_B.test.cpp
   - test/aoj/2842.test.cpp
   - test/aoj/CGL_7_C.test.cpp
-  - test/aoj/DPL_4_B.test.cpp
   - test/aoj/CGL_2_A.test.cpp
   - test/aoj/DPL_2_A.test.cpp
   - test/aoj/2251_1.test.cpp
@@ -1799,6 +1802,7 @@ data:
   - test/atcoder/abc269ex.test.cpp
   - test/atcoder/abc266c.test.cpp
   - test/atcoder/abc200a.test.cpp
+  - test/atcoder/abc270_g.test.cpp
   - test/atcoder/abc270_f.test.cpp
   - test/atcoder/abc266h.test.cpp
   - test/atcoder/abc244h.test.cpp

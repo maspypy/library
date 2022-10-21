@@ -139,6 +139,9 @@ data:
     path: test/atcoder/abc269ex.test.cpp
     title: test/atcoder/abc269ex.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc270_g.test.cpp
+    title: test/atcoder/abc270_g.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/agc058d.test.cpp
     title: test/atcoder/agc058d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -875,6 +878,7 @@ data:
   - test/library_checker/datastructure/queue_operate_all_composite.test.cpp
   - test/library_checker/string/number_of_subsequences.test.cpp
   - test/atcoder/abc269ex.test.cpp
+  - test/atcoder/abc270_g.test.cpp
   - test/atcoder/agc058d.test.cpp
 documentation_of: mod/modint.hpp
 layout: document

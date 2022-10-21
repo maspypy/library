@@ -29,7 +29,7 @@ data:
       title: alg/group/xor.hpp
   - name: alg/gset
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: alg/gset/affine.hpp
       title: alg/gset/affine.hpp
     - icon: ':warning:'
@@ -687,6 +687,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: knapsack/subset_sum.hpp
       title: knapsack/subset_sum.hpp
+    - icon: ':warning:'
+      path: knapsack/subset_sum_count.hpp
+      title: knapsack/subset_sum_count.hpp
   - name: linalg
     pages:
     - icon: ':heavy_check_mark:'
@@ -809,7 +812,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/crt.hpp
       title: nt/crt.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: nt/discrete_log.hpp
       title: nt/discrete_log.hpp
     - icon: ':heavy_check_mark:'
@@ -895,15 +898,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/io2.hpp
       title: other/io2.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: other/knight_distance.hpp
       title: other/knight_distance.hpp
     - icon: ':heavy_check_mark:'
       path: other/solve_hukumenzan.hpp
       title: other/solve_hukumenzan.hpp
-    - icon: ':heavy_check_mark:'
-      path: other/subset_sum_count.hpp
-      title: other/subset_sum_count.hpp
     - icon: ':heavy_check_mark:'
       path: other/xor_range.hpp
       title: other/xor_range.hpp
@@ -1288,7 +1288,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_3_C.test.cpp
       title: test/aoj/DPL_3_C.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DPL_4_B.test.cpp
       title: test/aoj/DPL_4_B.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1416,7 +1416,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc270_f.test.cpp
       title: test/atcoder/abc270_f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc270_g.test.cpp
       title: test/atcoder/abc270_g.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1939,6 +1939,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/is_substring.test.cpp
       title: test/mytest/is_substring.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/knight_distance.test.cpp
+      title: test/mytest/knight_distance.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/max_of_linear_segments.test.cpp
       title: test/mytest/max_of_linear_segments.test.cpp

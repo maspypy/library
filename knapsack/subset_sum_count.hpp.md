@@ -2,18 +2,15 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DPL_4_B.test.cpp
-    title: test/aoj/DPL_4_B.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"other/subset_sum_count.hpp\"\n\n/*\nO(2^{N/2})\nsubset sum\
-    \ 2^N \u901A\u308A\u306E\u3046\u3061\u3001[lo, hi) \u306B\u5165\u308B\u3082\u306E\
-    \u306E\u500B\u6570\n*/\ntemplate <typename T = ll>\nll subset_sum_count(vc<T>\
+  bundledCode: "#line 2 \"knapsack/subset_sum_count.hpp\"\n\n/*\nO(2^{N/2})\nsubset\
+    \ sum 2^N \u901A\u308A\u306E\u3046\u3061\u3001[lo, hi) \u306B\u5165\u308B\u3082\
+    \u306E\u306E\u500B\u6570\n*/\ntemplate <typename T = ll>\nll subset_sum_count(vc<T>\
     \ A, T lo, T hi) {\n  int n = len(A);\n  auto gen = [&](vc<T> A) -> vc<T> {\n\
     \    vc<T> dp = {0};\n    for (auto&& a: A) {\n      vc<T> dp1(len(dp));\n   \
     \   for (auto&& t: dp1) t += a;\n      vc<T> newdp;\n      merge(all(dp), all(dp1),\
@@ -70,16 +67,15 @@ data:
     \ -= CNT2[i];\n  return CNT1;\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: other/subset_sum_count.hpp
+  path: knapsack/subset_sum_count.hpp
   requiredBy: []
-  timestamp: '2022-04-16 23:35:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/DPL_4_B.test.cpp
-documentation_of: other/subset_sum_count.hpp
+  timestamp: '2022-10-21 20:47:04+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: knapsack/subset_sum_count.hpp
 layout: document
 redirect_from:
-- /library/other/subset_sum_count.hpp
-- /library/other/subset_sum_count.hpp.html
-title: other/subset_sum_count.hpp
+- /library/knapsack/subset_sum_count.hpp
+- /library/knapsack/subset_sum_count.hpp.html
+title: knapsack/subset_sum_count.hpp
 ---
