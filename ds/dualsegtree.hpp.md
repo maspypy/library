@@ -77,10 +77,10 @@ data:
   timestamp: '2022-06-19 03:08:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/913.test.cpp
   - test/aoj/GRL_2_A.test.cpp
   - test/aoj/DSL_2_D.test.cpp
   - test/library_checker/datastructure/range_affine_point_add.test.cpp
-  - test/yukicoder/913.test.cpp
   - test/atcoder/abc270_f.test.cpp
 documentation_of: ds/dualsegtree.hpp
 layout: document

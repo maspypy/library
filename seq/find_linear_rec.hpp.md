@@ -60,19 +60,19 @@ data:
   isVerificationFile: false
   path: seq/find_linear_rec.hpp
   requiredBy:
-  - seq/interpolate_linear_rec.hpp
   - linalg/spmat_min_poly.hpp
   - linalg/spmat_det.hpp
+  - seq/interpolate_linear_rec.hpp
   timestamp: '2022-05-11 21:07:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/matrix/sparse_matrix_det.test.cpp
-  - test/library_checker/math/find_linear_recurrence.test.cpp
-  - test/yukicoder/1844.test.cpp
   - test/yukicoder/1755.test.cpp
-  - test/yukicoder/1547.test.cpp
+  - test/yukicoder/1844.test.cpp
   - test/yukicoder/1500.test.cpp
+  - test/yukicoder/1547.test.cpp
   - test/yukicoder/1516.test.cpp
+  - test/library_checker/math/find_linear_recurrence.test.cpp
+  - test/library_checker/matrix/sparse_matrix_det.test.cpp
 documentation_of: seq/find_linear_rec.hpp
 layout: document
 redirect_from:

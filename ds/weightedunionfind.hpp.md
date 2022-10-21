@@ -55,8 +55,8 @@ data:
   timestamp: '2022-09-27 17:56:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL_1_B.test.cpp
   - test/yukicoder/1502.test.cpp
+  - test/aoj/DSL_1_B.test.cpp
 documentation_of: ds/weightedunionfind.hpp
 layout: document
 redirect_from:

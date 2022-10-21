@@ -97,8 +97,8 @@ data:
   isVerificationFile: false
   path: ds/fastset.hpp
   requiredBy:
-  - ds/intervals.hpp
   - ds/sortable_segtree.hpp
+  - ds/intervals.hpp
   timestamp: '2022-07-31 10:23:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

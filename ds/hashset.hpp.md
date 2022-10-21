@@ -42,8 +42,8 @@ data:
   timestamp: '2022-09-14 10:36:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1292.test.cpp
   - test/yukicoder/2102.test.cpp
+  - test/yukicoder/1292.test.cpp
 documentation_of: ds/hashset.hpp
 layout: document
 redirect_from:

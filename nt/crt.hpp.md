@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   _extendedRequiredBy: []
@@ -18,9 +18,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/187.test.cpp
     title: test/yukicoder/187.test.cpp
-  _isVerificationFailed: false
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1956.test.cpp
+    title: test/yukicoder/1956.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/590.test.cpp
+    title: test/yukicoder/590.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/fast_div.hpp\"\nstruct fast_div {\r\n  // Min25 https://judge.yosupo.jp/submission/46090\r\
@@ -103,7 +109,7 @@ data:
     \  }\n\n  vc<int> cfs(n);\n  FOR(i, n) {\n    auto mod = fast_div(mods[i]);\n\
     \    ll a = vals[i];\n    ll prod = 1;\n    FOR(j, i) {\n      a = (a + cfs[j]\
     \ * (mods[i] - prod)) % mod;\n      prod = prod * mods[j] % mod;\n    }\n    cfs[i]\
-    \ = mod_inv(prod, mods[i]) * a % mod;\n  }\n  i128 ret = 0;\n  ll prod = 1;\n\
+    \ = mod_inv(prod, mods[i]) * a % mod;\n  }\n  i128 ret = 0;\n  i128 prod = 1;\n\
     \  FOR(i, n) {\n    ret += prod * cfs[i];\n    prod *= mods[i];\n    if (new_mod\
     \ != -1) {\n      ret %= new_mod;\n      prod %= new_mod;\n    }\n  }\n  return\
     \ ret;\n}\n"
@@ -122,7 +128,7 @@ data:
     \ {\n    auto mod = fast_div(mods[i]);\n    ll a = vals[i];\n    ll prod = 1;\n\
     \    FOR(j, i) {\n      a = (a + cfs[j] * (mods[i] - prod)) % mod;\n      prod\
     \ = prod * mods[j] % mod;\n    }\n    cfs[i] = mod_inv(prod, mods[i]) * a % mod;\n\
-    \  }\n  i128 ret = 0;\n  ll prod = 1;\n  FOR(i, n) {\n    ret += prod * cfs[i];\n\
+    \  }\n  i128 ret = 0;\n  i128 prod = 1;\n  FOR(i, n) {\n    ret += prod * cfs[i];\n\
     \    prod *= mods[i];\n    if (new_mod != -1) {\n      ret %= new_mod;\n     \
     \ prod %= new_mod;\n    }\n  }\n  return ret;\n}\n"
   dependsOn:
@@ -133,9 +139,11 @@ data:
   isVerificationFile: false
   path: nt/crt.hpp
   requiredBy: []
-  timestamp: '2022-10-07 01:22:59+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-10-21 13:43:15+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/590.test.cpp
+  - test/yukicoder/1956.test.cpp
   - test/yukicoder/187.test.cpp
 documentation_of: nt/crt.hpp
 layout: document

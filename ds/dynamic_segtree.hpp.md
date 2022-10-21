@@ -166,11 +166,11 @@ data:
   timestamp: '2022-05-21 17:43:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/datastructure/double_ended_pq.test.cpp
-  - test/yukicoder/1826.test.cpp
-  - test/yukicoder/1036.test.cpp
-  - test/yukicoder/789.test.cpp
   - test/yukicoder/1649.test.cpp
+  - test/yukicoder/1036.test.cpp
+  - test/yukicoder/1826.test.cpp
+  - test/yukicoder/789.test.cpp
+  - test/library_checker/datastructure/double_ended_pq.test.cpp
 documentation_of: ds/dynamic_segtree.hpp
 layout: document
 redirect_from:

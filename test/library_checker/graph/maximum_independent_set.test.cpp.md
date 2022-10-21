@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
     path: graph/maximum_independent_set.hpp
     title: graph/maximum_independent_set.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -250,18 +250,28 @@ data:
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
     \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/maximum_independent_set.hpp\"\
     \n\r\n// vertex id \u306E vector \u3092\u8FD4\u3059\r\ntemplate <typename Graph>\r\
-    \nvector<int> maximum_independent_set(Graph& G, int trial = 1000000) {\r\n  assert(G.is_prepared());\r\
-    \n  assert(!G.is_directed());\r\n  int N = G.N;\r\n  vector<uint64_t> bit(N);\r\
-    \n  assert(N <= 64);\r\n  FOR(a, N) for (auto&& e: G[a]) bit[a] |= uint64_t(1)\
-    \ << e.to;\r\n  vector<int> ord(N);\r\n  iota(begin(ord), end(ord), 0);\r\n  mt19937\
-    \ mt(chrono::steady_clock::now().time_since_epoch().count());\r\n  int ret = 0;\r\
-    \n  uint64_t ver;\r\n  for (int i = 0; i < trial; i++) {\r\n    shuffle(begin(ord),\
-    \ end(ord), mt);\r\n    uint64_t used = 0;\r\n    int add = 0;\r\n    for (int\
-    \ j: ord) {\r\n      if (used & bit[j]) continue;\r\n      used |= uint64_t(1)\
-    \ << j;\r\n      ++add;\r\n    }\r\n    if (ret < add) {\r\n      ret = add;\r\
-    \n      ver = used;\r\n    }\r\n  }\r\n  vector<int> ans;\r\n  for (int i = 0;\
-    \ i < N; i++) {\r\n    if ((ver >> i) & 1) ans.emplace_back(i);\r\n  }\r\n  return\
-    \ ans;\r\n}\r\n#line 6 \"test/library_checker/graph/maximum_independent_set.test.cpp\"\
+    \nvector<int> maximum_independent_set(Graph& G, int trial = 1000000) {\r\n  using\
+    \ T = i128;\r\n  assert(G.is_prepared());\r\n  assert(!G.is_directed());\r\n \
+    \ int N = G.N;\r\n  vector<T> bit(N);\r\n  FOR(a, N) for (auto&& e: G[a]) bit[a]\
+    \ |= T(1) << e.to;\r\n  vector<int> ord(N);\r\n  iota(begin(ord), end(ord), 0);\r\
+    \n  mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\r\n  pair<int,\
+    \ T> best;\r\n  for (int i = 0; i < trial; i++) {\r\n    shuffle(begin(ord), end(ord),\
+    \ mt);\r\n    T used = 0;\r\n    int add = 0;\r\n    for (int j: ord) {\r\n  \
+    \    if (used & bit[j]) continue;\r\n      used |= T(1) << j;\r\n      ++add;\r\
+    \n    }\r\n    if (chmax(best.fi, add)) best.se = used;\r\n  }\r\n  vector<int>\
+    \ ans;\r\n  for (int i = 0; i < N; i++) {\r\n    if (best.se >> i & 1) ans.emplace_back(i);\r\
+    \n  }\r\n  return ans;\r\n}\r\n\r\n// vertex id \u306E vector \u3092\u8FD4\u3059\
+    \r\ntemplate <typename Graph, int MAX_V>\r\nvector<int> _maximum_independent_set(Graph&\
+    \ G, int trial = 1000000) {\r\n  using BS = bitset<MAX_V>;\r\n  assert(G.is_prepared());\r\
+    \n  assert(!G.is_directed());\r\n  int N = G.N;\r\n  vector<BS> bit(N);\r\n  FOR(a,\
+    \ N) for (auto&& e: G[a]) bit[a][e.to] = 1;\r\n  vector<int> ord(N);\r\n  iota(begin(ord),\
+    \ end(ord), 0);\r\n  mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\r\
+    \n  pair<int, BS> best;\r\n  for (int i = 0; i < trial; i++) {\r\n    shuffle(begin(ord),\
+    \ end(ord), mt);\r\n    BS used;\r\n    int add = 0;\r\n    for (int j: ord) {\r\
+    \n      if ((used & bit[j]).any()) continue;\r\n      used[j] = 1;\r\n      ++add;\r\
+    \n    }\r\n    if (chmax(best.fi, add)) best.se = used;\r\n  }\r\n  vector<int>\
+    \ ans;\r\n  for (int i = 0; i < N; i++) {\r\n    if (best.se[i]) ans.emplace_back(i);\r\
+    \n  }\r\n  return ans;\r\n}\r\n#line 6 \"test/library_checker/graph/maximum_independent_set.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, M);\r\n  Graph<int> G(N);\r\n  G.read_graph(M,\
     \ 0, 0);\r\n  auto mis = maximum_independent_set(G);\r\n  print(len(mis));\r\n\
     \  print(mis);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
@@ -281,7 +291,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/maximum_independent_set.test.cpp
   requiredBy: []
-  timestamp: '2022-09-24 23:41:28+09:00'
+  timestamp: '2022-10-21 13:43:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/maximum_independent_set.test.cpp

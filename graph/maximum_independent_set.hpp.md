@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -60,37 +60,57 @@ data:
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
     \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/maximum_independent_set.hpp\"\
     \n\r\n// vertex id \u306E vector \u3092\u8FD4\u3059\r\ntemplate <typename Graph>\r\
-    \nvector<int> maximum_independent_set(Graph& G, int trial = 1000000) {\r\n  assert(G.is_prepared());\r\
-    \n  assert(!G.is_directed());\r\n  int N = G.N;\r\n  vector<uint64_t> bit(N);\r\
-    \n  assert(N <= 64);\r\n  FOR(a, N) for (auto&& e: G[a]) bit[a] |= uint64_t(1)\
-    \ << e.to;\r\n  vector<int> ord(N);\r\n  iota(begin(ord), end(ord), 0);\r\n  mt19937\
-    \ mt(chrono::steady_clock::now().time_since_epoch().count());\r\n  int ret = 0;\r\
-    \n  uint64_t ver;\r\n  for (int i = 0; i < trial; i++) {\r\n    shuffle(begin(ord),\
-    \ end(ord), mt);\r\n    uint64_t used = 0;\r\n    int add = 0;\r\n    for (int\
-    \ j: ord) {\r\n      if (used & bit[j]) continue;\r\n      used |= uint64_t(1)\
-    \ << j;\r\n      ++add;\r\n    }\r\n    if (ret < add) {\r\n      ret = add;\r\
-    \n      ver = used;\r\n    }\r\n  }\r\n  vector<int> ans;\r\n  for (int i = 0;\
-    \ i < N; i++) {\r\n    if ((ver >> i) & 1) ans.emplace_back(i);\r\n  }\r\n  return\
-    \ ans;\r\n}\r\n"
+    \nvector<int> maximum_independent_set(Graph& G, int trial = 1000000) {\r\n  using\
+    \ T = i128;\r\n  assert(G.is_prepared());\r\n  assert(!G.is_directed());\r\n \
+    \ int N = G.N;\r\n  vector<T> bit(N);\r\n  FOR(a, N) for (auto&& e: G[a]) bit[a]\
+    \ |= T(1) << e.to;\r\n  vector<int> ord(N);\r\n  iota(begin(ord), end(ord), 0);\r\
+    \n  mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\r\n  pair<int,\
+    \ T> best;\r\n  for (int i = 0; i < trial; i++) {\r\n    shuffle(begin(ord), end(ord),\
+    \ mt);\r\n    T used = 0;\r\n    int add = 0;\r\n    for (int j: ord) {\r\n  \
+    \    if (used & bit[j]) continue;\r\n      used |= T(1) << j;\r\n      ++add;\r\
+    \n    }\r\n    if (chmax(best.fi, add)) best.se = used;\r\n  }\r\n  vector<int>\
+    \ ans;\r\n  for (int i = 0; i < N; i++) {\r\n    if (best.se >> i & 1) ans.emplace_back(i);\r\
+    \n  }\r\n  return ans;\r\n}\r\n\r\n// vertex id \u306E vector \u3092\u8FD4\u3059\
+    \r\ntemplate <typename Graph, int MAX_V>\r\nvector<int> _maximum_independent_set(Graph&\
+    \ G, int trial = 1000000) {\r\n  using BS = bitset<MAX_V>;\r\n  assert(G.is_prepared());\r\
+    \n  assert(!G.is_directed());\r\n  int N = G.N;\r\n  vector<BS> bit(N);\r\n  FOR(a,\
+    \ N) for (auto&& e: G[a]) bit[a][e.to] = 1;\r\n  vector<int> ord(N);\r\n  iota(begin(ord),\
+    \ end(ord), 0);\r\n  mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\r\
+    \n  pair<int, BS> best;\r\n  for (int i = 0; i < trial; i++) {\r\n    shuffle(begin(ord),\
+    \ end(ord), mt);\r\n    BS used;\r\n    int add = 0;\r\n    for (int j: ord) {\r\
+    \n      if ((used & bit[j]).any()) continue;\r\n      used[j] = 1;\r\n      ++add;\r\
+    \n    }\r\n    if (chmax(best.fi, add)) best.se = used;\r\n  }\r\n  vector<int>\
+    \ ans;\r\n  for (int i = 0; i < N; i++) {\r\n    if (best.se[i]) ans.emplace_back(i);\r\
+    \n  }\r\n  return ans;\r\n}\r\n"
   code: "#include \"graph/base.hpp\"\r\n\r\n// vertex id \u306E vector \u3092\u8FD4\
     \u3059\r\ntemplate <typename Graph>\r\nvector<int> maximum_independent_set(Graph&\
-    \ G, int trial = 1000000) {\r\n  assert(G.is_prepared());\r\n  assert(!G.is_directed());\r\
-    \n  int N = G.N;\r\n  vector<uint64_t> bit(N);\r\n  assert(N <= 64);\r\n  FOR(a,\
-    \ N) for (auto&& e: G[a]) bit[a] |= uint64_t(1) << e.to;\r\n  vector<int> ord(N);\r\
-    \n  iota(begin(ord), end(ord), 0);\r\n  mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\r\
-    \n  int ret = 0;\r\n  uint64_t ver;\r\n  for (int i = 0; i < trial; i++) {\r\n\
-    \    shuffle(begin(ord), end(ord), mt);\r\n    uint64_t used = 0;\r\n    int add\
-    \ = 0;\r\n    for (int j: ord) {\r\n      if (used & bit[j]) continue;\r\n   \
-    \   used |= uint64_t(1) << j;\r\n      ++add;\r\n    }\r\n    if (ret < add) {\r\
-    \n      ret = add;\r\n      ver = used;\r\n    }\r\n  }\r\n  vector<int> ans;\r\
-    \n  for (int i = 0; i < N; i++) {\r\n    if ((ver >> i) & 1) ans.emplace_back(i);\r\
+    \ G, int trial = 1000000) {\r\n  using T = i128;\r\n  assert(G.is_prepared());\r\
+    \n  assert(!G.is_directed());\r\n  int N = G.N;\r\n  vector<T> bit(N);\r\n  FOR(a,\
+    \ N) for (auto&& e: G[a]) bit[a] |= T(1) << e.to;\r\n  vector<int> ord(N);\r\n\
+    \  iota(begin(ord), end(ord), 0);\r\n  mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\r\
+    \n  pair<int, T> best;\r\n  for (int i = 0; i < trial; i++) {\r\n    shuffle(begin(ord),\
+    \ end(ord), mt);\r\n    T used = 0;\r\n    int add = 0;\r\n    for (int j: ord)\
+    \ {\r\n      if (used & bit[j]) continue;\r\n      used |= T(1) << j;\r\n    \
+    \  ++add;\r\n    }\r\n    if (chmax(best.fi, add)) best.se = used;\r\n  }\r\n\
+    \  vector<int> ans;\r\n  for (int i = 0; i < N; i++) {\r\n    if (best.se >> i\
+    \ & 1) ans.emplace_back(i);\r\n  }\r\n  return ans;\r\n}\r\n\r\n// vertex id \u306E\
+    \ vector \u3092\u8FD4\u3059\r\ntemplate <typename Graph, int MAX_V>\r\nvector<int>\
+    \ _maximum_independent_set(Graph& G, int trial = 1000000) {\r\n  using BS = bitset<MAX_V>;\r\
+    \n  assert(G.is_prepared());\r\n  assert(!G.is_directed());\r\n  int N = G.N;\r\
+    \n  vector<BS> bit(N);\r\n  FOR(a, N) for (auto&& e: G[a]) bit[a][e.to] = 1;\r\
+    \n  vector<int> ord(N);\r\n  iota(begin(ord), end(ord), 0);\r\n  mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\r\
+    \n  pair<int, BS> best;\r\n  for (int i = 0; i < trial; i++) {\r\n    shuffle(begin(ord),\
+    \ end(ord), mt);\r\n    BS used;\r\n    int add = 0;\r\n    for (int j: ord) {\r\
+    \n      if ((used & bit[j]).any()) continue;\r\n      used[j] = 1;\r\n      ++add;\r\
+    \n    }\r\n    if (chmax(best.fi, add)) best.se = used;\r\n  }\r\n  vector<int>\
+    \ ans;\r\n  for (int i = 0; i < N; i++) {\r\n    if (best.se[i]) ans.emplace_back(i);\r\
     \n  }\r\n  return ans;\r\n}\r\n"
   dependsOn:
   - graph/base.hpp
   isVerificationFile: false
   path: graph/maximum_independent_set.hpp
   requiredBy: []
-  timestamp: '2022-08-30 02:42:36+09:00'
+  timestamp: '2022-10-21 13:43:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/graph/maximum_independent_set.test.cpp

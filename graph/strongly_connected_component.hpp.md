@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -150,27 +150,27 @@ data:
   isVerificationFile: false
   path: graph/strongly_connected_component.hpp
   requiredBy:
-  - graph/find_odd_cycle.hpp
-  - graph/twosat.hpp
-  - graph/reachability.hpp
+  - flow/bipartite.hpp
   - graph/maximum_antichain.hpp
   - graph/dag_path_cover.hpp
-  - flow/bipartite.hpp
+  - graph/reachability.hpp
+  - graph/twosat.hpp
+  - graph/find_odd_cycle.hpp
   timestamp: '2022-08-30 02:42:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/2251_2.test.cpp
-  - test/aoj/2251_1.test.cpp
-  - test/aoj/0275.test.cpp
-  - test/library_checker/graph/scc.test.cpp
-  - test/library_checker/graph/bipartitematching.test.cpp
-  - test/library_checker/math/twosat.test.cpp
+  - test/yukicoder/1293.test.cpp
+  - test/yukicoder/1479.test.cpp
+  - test/yukicoder/1744.test.cpp
   - test/yukicoder/1170.test.cpp
   - test/yukicoder/1745.test.cpp
-  - test/yukicoder/1744.test.cpp
   - test/yukicoder/1813.test.cpp
-  - test/yukicoder/1479.test.cpp
-  - test/yukicoder/1293.test.cpp
+  - test/aoj/2251_2.test.cpp
+  - test/aoj/0275.test.cpp
+  - test/aoj/2251_1.test.cpp
+  - test/library_checker/math/twosat.test.cpp
+  - test/library_checker/graph/scc.test.cpp
+  - test/library_checker/graph/bipartitematching.test.cpp
 documentation_of: graph/strongly_connected_component.hpp
 layout: document
 redirect_from:
