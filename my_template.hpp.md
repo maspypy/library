@@ -475,6 +475,9 @@ data:
     path: test/library_checker/math/counting_primes.test.cpp
     title: test/library_checker/math/counting_primes.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/discrete_logarithm_mod.test.cpp
+    title: test/library_checker/math/discrete_logarithm_mod.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/enumerate_primes.test.cpp
     title: test/library_checker/math/enumerate_primes.test.cpp
   - icon: ':heavy_check_mark:'
@@ -705,7 +708,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/enumerate_multisets.test.cpp
     title: test/mytest/enumerate_multisets.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/enumerate_products.test.cpp
     title: test/mytest/enumerate_products.test.cpp
   - icon: ':heavy_check_mark:'
@@ -889,6 +892,9 @@ data:
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1311.test.cpp
+    title: test/yukicoder/1311.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1319.test.cpp
     title: test/yukicoder/1319.test.cpp
   - icon: ':heavy_check_mark:'
@@ -909,6 +915,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1332.test.cpp
     title: test/yukicoder/1332.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1339.test.cpp
+    title: test/yukicoder/1339.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1344.test.cpp
     title: test/yukicoder/1344.test.cpp
@@ -1239,9 +1248,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://trap.jp/post/1224/
@@ -1397,7 +1406,7 @@ data:
   requiredBy:
   - graph/bipartite_coloring.hpp
   timestamp: '2022-09-24 23:41:28+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/knight_distance.test.cpp
   - test/mytest/prime_sum.test.cpp
@@ -1551,6 +1560,7 @@ data:
   - test/yukicoder/1025.test.cpp
   - test/yukicoder/177.test.cpp
   - test/yukicoder/1145.test.cpp
+  - test/yukicoder/1311.test.cpp
   - test/yukicoder/1301.test.cpp
   - test/yukicoder/1911.test.cpp
   - test/yukicoder/1493.test.cpp
@@ -1574,6 +1584,7 @@ data:
   - test/yukicoder/1494.test.cpp
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1292.test.cpp
+  - test/yukicoder/1339.test.cpp
   - test/yukicoder/1548.test.cpp
   - test/yukicoder/626.test.cpp
   - test/yukicoder/1038.test.cpp
@@ -1687,6 +1698,7 @@ data:
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/math/nim_product.test.cpp
+  - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/twosat.test.cpp
   - test/library_checker/math/totient_sum.test.cpp

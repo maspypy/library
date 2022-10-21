@@ -6,6 +6,9 @@ data:
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
   - icon: ':heavy_check_mark:'
+    path: mod/mod_log.hpp
+    title: mod/mod_log.hpp
+  - icon: ':heavy_check_mark:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   _extendedVerifiedWith:
@@ -16,8 +19,14 @@ data:
     path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
     title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/discrete_logarithm_mod.test.cpp
+    title: test/library_checker/math/discrete_logarithm_mod.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1339.test.cpp
+    title: test/yukicoder/1339.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1383.test.cpp
     title: test/yukicoder/1383.test.cpp
@@ -91,6 +100,7 @@ data:
   isVerificationFile: false
   path: ds/hashmap.hpp
   requiredBy:
+  - mod/mod_log.hpp
   - mod/mod_kth_root.hpp
   - nt/discrete_log.hpp
   timestamp: '2022-10-06 22:48:48+09:00'
@@ -100,7 +110,9 @@ data:
   - test/yukicoder/1634.test.cpp
   - test/yukicoder/1726.test.cpp
   - test/yukicoder/1383.test.cpp
+  - test/yukicoder/1339.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
+  - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/library_checker/datastructure/associative_array_hashmap.test.cpp
   - test/atcoder/abc270_g.test.cpp
 documentation_of: ds/hashmap.hpp

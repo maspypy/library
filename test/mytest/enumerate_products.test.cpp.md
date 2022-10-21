@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/products.hpp
     title: enumerate/products.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -206,8 +206,8 @@ data:
     \ { yes(!t); }\r\n#line 4 \"test/mytest/enumerate_products.test.cpp\"\n\n#line\
     \ 1 \"enumerate/products.hpp\"\n// [0, K) ^ N\ntemplate <typename F>\nvoid enumerate_products(int\
     \ K, int N, F query) {\n  assert(N >= 0);\n  auto dfs = [&](auto& dfs, vc<int>&\
-    \ p) -> void {\n    if (len(p) == K) {\n      query(p);\n      return;\n    }\n\
-    \    FOR(x, N) {\n      p.eb(x);\n      dfs(dfs, p);\n      p.pop_back();\n  \
+    \ p) -> void {\n    if (len(p) == N) {\n      query(p);\n      return;\n    }\n\
+    \    FOR(x, K) {\n      p.eb(x);\n      dfs(dfs, p);\n      p.pop_back();\n  \
     \  }\n  };\n  vc<int> p;\n  dfs(dfs, p);\n}\n#line 2 \"mod/modint.hpp\"\n\ntemplate\
     \ <int mod>\nstruct modint {\n  static constexpr bool is_modint = true;\n  int\
     \ val;\n  constexpr modint(const ll val = 0) noexcept\n      : val(val >= 0 ?\
@@ -323,8 +323,8 @@ data:
   isVerificationFile: true
   path: test/mytest/enumerate_products.test.cpp
   requiredBy: []
-  timestamp: '2022-10-21 20:37:52+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-10-21 20:59:38+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/enumerate_products.test.cpp
 layout: document

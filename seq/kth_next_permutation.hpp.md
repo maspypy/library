@@ -5,10 +5,13 @@ data:
     path: ds/pbds.hpp
     title: ds/pbds.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1311.test.cpp
+    title: test/yukicoder/1311.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/contest/1443/problem/E
@@ -46,8 +49,9 @@ data:
   path: seq/kth_next_permutation.hpp
   requiredBy: []
   timestamp: '2022-10-21 20:37:52+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yukicoder/1311.test.cpp
 documentation_of: seq/kth_next_permutation.hpp
 layout: document
 redirect_from:
