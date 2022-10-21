@@ -11,13 +11,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/famous/surjection.hpp
+    title: seq/famous/surjection.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
+    title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
+    title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
@@ -30,6 +39,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1321.test.cpp
+    title: test/yukicoder/1321.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1392.test.cpp
     title: test/yukicoder/1392.test.cpp
@@ -85,17 +97,21 @@ data:
   - linalg/det_A_plus_xB.hpp
   - seq/famous/stirling_number_1.hpp
   - seq/famous/stirling_number_2.hpp
+  - seq/famous/surjection.hpp
   timestamp: '2022-08-17 05:57:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1321.test.cpp
   - test/yukicoder/1392.test.cpp
   - test/yukicoder/1875.test.cpp
   - test/yukicoder/1303.test.cpp
   - test/yukicoder/1760.test.cpp
   - test/yukicoder/1907.test.cpp
   - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
+  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
+  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
 documentation_of: mod/powertable.hpp
 layout: document
 redirect_from:

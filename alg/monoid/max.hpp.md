@@ -25,6 +25,12 @@ data:
     path: test/yukicoder/1117.test.cpp
     title: test/yukicoder/1117.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1625.test.cpp
+    title: test/yukicoder/1625.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1625_2.test.cpp
+    title: test/yukicoder/1625_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1790.test.cpp
     title: test/yukicoder/1790.test.cpp
   - icon: ':heavy_check_mark:'
@@ -52,7 +58,9 @@ data:
   timestamp: '2022-10-21 16:22:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1625.test.cpp
   - test/yukicoder/1117.test.cpp
+  - test/yukicoder/1625_2.test.cpp
   - test/yukicoder/1826.test.cpp
   - test/yukicoder/1790.test.cpp
   - test/aoj/GRL_2_A.test.cpp

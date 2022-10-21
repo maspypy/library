@@ -38,7 +38,13 @@ data:
   - icon: ':question:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/rollinghash_2d.hpp
+    title: string/rollinghash_2d.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1_14_C.test.cpp
+    title: test/aoj/ALDS1_14_C.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
@@ -171,6 +177,7 @@ data:
   - mod/mod_sqrt.hpp
   - mod/primitive_root.hpp
   - string/rollinghash.hpp
+  - string/rollinghash_2d.hpp
   timestamp: '2022-10-21 16:42:45+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -199,6 +206,7 @@ data:
   - test/yukicoder/1303.test.cpp
   - test/yukicoder/1025.test.cpp
   - test/yukicoder/1907.test.cpp
+  - test/aoj/ALDS1_14_C.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp

@@ -46,8 +46,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: seq/famous/surjection.hpp
+    title: seq/famous/surjection.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
+    title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1321.test.cpp
+    title: test/yukicoder/1321.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1392.test.cpp
     title: test/yukicoder/1392.test.cpp
@@ -528,11 +537,14 @@ data:
   - nt/primetable.hpp
   isVerificationFile: false
   path: seq/famous/stirling_number_2.hpp
-  requiredBy: []
+  requiredBy:
+  - seq/famous/surjection.hpp
   timestamp: '2022-10-21 16:42:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1321.test.cpp
   - test/yukicoder/1392.test.cpp
+  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
 documentation_of: seq/famous/stirling_number_2.hpp
 layout: document
 redirect_from:

@@ -110,12 +110,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/partition_number.hpp
     title: seq/famous/partition_number.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/famous/surjection.hpp
+    title: seq/famous/surjection.hpp
   - icon: ':heavy_check_mark:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
@@ -202,6 +205,9 @@ data:
     path: test/library_checker/datastructure/sort_segtree_1.test.cpp
     title: test/library_checker/datastructure/sort_segtree_1.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+    title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   - icon: ':heavy_check_mark:'
@@ -234,6 +240,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sqrt_mod.test.cpp
     title: test/library_checker/math/sqrt_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
+    title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
+    title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
@@ -385,6 +397,9 @@ data:
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1321.test.cpp
+    title: test/yukicoder/1321.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
   - icon: ':heavy_check_mark:'
@@ -397,8 +412,14 @@ data:
     path: test/yukicoder/1451.test.cpp
     title: test/yukicoder/1451.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1493.test.cpp
+    title: test/yukicoder/1493.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1500.test.cpp
     title: test/yukicoder/1500.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1502.test.cpp
+    title: test/yukicoder/1502.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1516.test.cpp
     title: test/yukicoder/1516.test.cpp
@@ -406,8 +427,14 @@ data:
     path: test/yukicoder/1547.test.cpp
     title: test/yukicoder/1547.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1548.test.cpp
+    title: test/yukicoder/1548.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1549.test.cpp
     title: test/yukicoder/1549.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1600.test.cpp
+    title: test/yukicoder/1600.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1618.test.cpp
     title: test/yukicoder/1618.test.cpp
@@ -709,6 +736,7 @@ data:
   - seq/famous/partition_number.hpp
   - seq/famous/bell_number_large.hpp
   - seq/famous/stirling_number_2.hpp
+  - seq/famous/surjection.hpp
   - seq/sum_of_powers.hpp
   - seq/limit_poly_exp_sum.hpp
   - graph/tree_all_distances.hpp
@@ -732,6 +760,7 @@ data:
   - test/yukicoder/590.test.cpp
   - test/yukicoder/1549.test.cpp
   - test/yukicoder/1649.test.cpp
+  - test/yukicoder/1321.test.cpp
   - test/yukicoder/1781.test.cpp
   - test/yukicoder/2005.test.cpp
   - test/yukicoder/426.test.cpp
@@ -760,17 +789,21 @@ data:
   - test/yukicoder/1547.test.cpp
   - test/yukicoder/1303.test.cpp
   - test/yukicoder/1760.test.cpp
+  - test/yukicoder/1502.test.cpp
   - test/yukicoder/1810.test.cpp
   - test/yukicoder/1720.test.cpp
   - test/yukicoder/1025.test.cpp
   - test/yukicoder/1145.test.cpp
+  - test/yukicoder/1493.test.cpp
   - test/yukicoder/1962.test.cpp
+  - test/yukicoder/1600.test.cpp
   - test/yukicoder/1276.test.cpp
   - test/yukicoder/1796.test.cpp
   - test/yukicoder/1907.test.cpp
   - test/yukicoder/1753.test.cpp
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1339.test.cpp
+  - test/yukicoder/1548.test.cpp
   - test/yukicoder/1411.test.cpp
   - test/yukicoder/1516.test.cpp
   - test/yukicoder/2062.test.cpp
@@ -808,6 +841,7 @@ data:
   - test/library_checker/convolution/bitwise_and_convolution.test.cpp
   - test/library_checker/convolution/convolution_mod.test.cpp
   - test/library_checker/convolution/bitwise_or_convolution.test.cpp
+  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/lcm_convolution.test.cpp
   - test/library_checker/math/find_linear_recurrence.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
@@ -817,6 +851,7 @@ data:
   - test/library_checker/math/partition.test.cpp
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
+  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/gcd_convolution.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
@@ -828,6 +863,7 @@ data:
   - test/library_checker/matrix/solve_linear.test.cpp
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
   - test/library_checker/matrix/matrix_det.test.cpp
+  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - test/library_checker/datastructure/range_affine_point_add.test.cpp
   - test/library_checker/datastructure/sort_segtree_1.test.cpp

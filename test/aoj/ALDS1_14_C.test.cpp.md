@@ -10,14 +10,17 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
+    path: random/base.hpp
+    title: random/base.hpp
+  - icon: ':heavy_check_mark:'
     path: string/rollinghash_2d.hpp
     title: string/rollinghash_2d.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_C
@@ -232,9 +235,12 @@ data:
     \n    return modint61(u);\r\n  }\r\n  modint61 pow(int64_t n) const {\r\n    modint61\
     \ ret(1), mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret = ret * mul;\r\
     \n      mul = mul * mul;\r\n      n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\
-    \n  static constexpr ll get_mod() { return mod; }\r\n};\r\n#line 1 \"string/rollinghash_2d.hpp\"\
-    \n\nstruct RollingHash_2D {\n  using M61 = modint61;\n  const M61 b1, b2;\n  vc<M61>\
-    \ pow1;\n  vc<M61> pow2;\n\n  RollingHash_2D()\n      : b1(generate_base()), b2(generate_base()),\
+    \n  static constexpr ll get_mod() { return mod; }\r\n};\r\n#line 2 \"random/base.hpp\"\
+    \n\nll RNG(ll a, ll b) {\n  static mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \  uniform_int_distribution<ll> dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll\
+    \ a) { return RNG(0, a); }\n#line 2 \"string/rollinghash_2d.hpp\"\n\nstruct RollingHash_2D\
+    \ {\n  using M61 = modint61;\n  const M61 b1, b2;\n  vc<M61> pow1;\n  vc<M61>\
+    \ pow2;\n\n  RollingHash_2D()\n      : b1(generate_base()), b2(generate_base()),\
     \ pow1{M61(1)}, pow2{M61(1)} {}\n\n  template <typename STRING>\n  vvc<M61> build(const\
     \ vc<STRING>& S) {\n    int H = len(S);\n    int W = len(S[0]);\n    vv(M61, res,\
     \ H + 1, W + 1);\n    FOR(x, H) {\n      FOR(y, W) { res[x + 1][y + 1] = res[x\
@@ -245,16 +251,15 @@ data:
     \ - xl);\n    expand(pow2, b2, yr - yl);\n    M61 res = A[xr][yr];\n    res -=\
     \ A[xl][yr] * pow1[xr - xl];\n    res -= A[xr][yl] * pow2[yr - yl];\n    res +=\
     \ A[xl][yl] * pow1[xr - xl] * pow2[yr - yl];\n    return res;\n  }\n\nprivate:\n\
-    \  static inline u64 generate_base() {\n    return RNG(M61::get_mod());\n  }\n\
-    \n  void expand(vc<M61>& pow, const M61& b, int n) {\n    while (len(pow) <= n)\
-    \ pow.eb(pow.back() * b);\n  }\n};\n#line 8 \"test/aoj/ALDS1_14_C.test.cpp\"\n\
-    \nvoid solve() {\n  LL(H, W);\n  VEC(string, A, H);\n  RollingHash_2D RH;\n  auto\
-    \ AH = RH.build(A);\n  LL(H2, W2);\n  VEC(string, B, H2);\n  auto BH = RH.build(B);\n\
-    \  auto b = RH.query(BH, 0, 0, H2, W2);\n\n  FOR(x, H - H2 + 1) FOR(y, W - W2\
-    \ + 1) {\n    auto a = RH.query(AH, x, y, x + H2, y + W2);\n    if (a == b) {\
-    \ print(x, y); }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
-    \  return 0;\n}\n"
+    \  static inline u64 generate_base() { return RNG(M61::get_mod()); }\n\n  void\
+    \ expand(vc<M61>& pow, const M61& b, int n) {\n    while (len(pow) <= n) pow.eb(pow.back()\
+    \ * b);\n  }\n};\n#line 8 \"test/aoj/ALDS1_14_C.test.cpp\"\n\nvoid solve() {\n\
+    \  LL(H, W);\n  VEC(string, A, H);\n  RollingHash_2D RH;\n  auto AH = RH.build(A);\n\
+    \  LL(H2, W2);\n  VEC(string, B, H2);\n  auto BH = RH.build(B);\n  auto b = RH.query(BH,\
+    \ 0, 0, H2, W2);\n\n  FOR(x, H - H2 + 1) FOR(y, W - W2 + 1) {\n    auto a = RH.query(AH,\
+    \ x, y, x + H2, y + W2);\n    if (a == b) { print(x, y); }\n  }\n}\n\nsigned main()\
+    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_C\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint61.hpp\"\
     \n#include \"string/rollinghash_2d.hpp\"\n\nvoid solve() {\n  LL(H, W);\n  VEC(string,\
@@ -269,11 +274,12 @@ data:
   - other/io.hpp
   - mod/modint61.hpp
   - string/rollinghash_2d.hpp
+  - random/base.hpp
   isVerificationFile: true
   path: test/aoj/ALDS1_14_C.test.cpp
   requiredBy: []
-  timestamp: '2022-10-21 17:59:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-10-21 19:08:45+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_14_C.test.cpp
 layout: document

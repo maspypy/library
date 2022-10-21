@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/number_of_subsequences.test.cpp
     title: test/library_checker/string/number_of_subsequences.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1493.test.cpp
+    title: test/yukicoder/1493.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -30,6 +33,7 @@ data:
   timestamp: '2022-10-21 16:42:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1493.test.cpp
   - test/library_checker/string/number_of_subsequences.test.cpp
 documentation_of: string/count_subseq.hpp
 layout: document

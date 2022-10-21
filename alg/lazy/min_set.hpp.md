@@ -1,35 +1,51 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: alg/monoid/min.hpp
+    title: alg/monoid/min.hpp
+  - icon: ':heavy_check_mark:'
+    path: alg/monoid/set.hpp
+    title: alg/monoid/set.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL_2_F.test.cpp
+    title: test/aoj/DSL_2_F.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
-    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: alg/monoid_min.hpp:\
-    \ line -1: no such header\n"
-  code: "#include \"alg/monoid_min.hpp\"\r\n#include \"alg/monoid_set.hpp\"\r\n\r\n\
+  bundledCode: "#line 2 \"alg/monoid/min.hpp\"\ntemplate <class X>\r\nstruct Monoid_Min\
+    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
+    \ &y) noexcept { return min(x, y); }\r\n  static constexpr X unit() { return numeric_limits<X>::max();\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"alg/monoid/set.hpp\"\
+    \ntemplate <typename E, E none_val>\r\nstruct Monoid_Set {\r\n  using value_type\
+    \ = E;\r\n  using X = value_type;\r\n  static X op(X x, X y) { return (y == none_val\
+    \ ? x : y); }\r\n  static constexpr X unit() { return none_val; }\r\n  static\
+    \ constexpr bool commute = false;\r\n};\n#line 3 \"alg/lazy/min_set.hpp\"\n\r\n\
     template <typename E, E none_val>\r\nstruct Lazy_Min_Set {\r\n  using MX = Monoid_Min<E>;\r\
     \n  using MA = Monoid_Set<E, none_val>;\r\n  using X_structure = MX;\r\n  using\
     \ A_structure = MA;\r\n  using X = typename MX::value_type;\r\n  using A = typename\
     \ MA::value_type;\r\n  static constexpr X act(const X &x, const A &a) {\r\n  \
     \  return (a == none_val ? x : a);\r\n  }\r\n};\r\n"
-  dependsOn: []
+  code: "#include \"alg/monoid/min.hpp\"\r\n#include \"alg/monoid/set.hpp\"\r\n\r\n\
+    template <typename E, E none_val>\r\nstruct Lazy_Min_Set {\r\n  using MX = Monoid_Min<E>;\r\
+    \n  using MA = Monoid_Set<E, none_val>;\r\n  using X_structure = MX;\r\n  using\
+    \ A_structure = MA;\r\n  using X = typename MX::value_type;\r\n  using A = typename\
+    \ MA::value_type;\r\n  static constexpr X act(const X &x, const A &a) {\r\n  \
+    \  return (a == none_val ? x : a);\r\n  }\r\n};\r\n"
+  dependsOn:
+  - alg/monoid/min.hpp
+  - alg/monoid/set.hpp
   isVerificationFile: false
   path: alg/lazy/min_set.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-10-21 19:08:45+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj/DSL_2_F.test.cpp
 documentation_of: alg/lazy/min_set.hpp
 layout: document
 redirect_from:

@@ -38,12 +38,15 @@ data:
   - icon: ':warning:'
     path: ds/query/point_add_polygon_sum.hpp
     title: ds/query/point_add_polygon_sum.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: ds/query/point_add_rectangle_sum.hpp
     title: ds/query/point_add_rectangle_sum.hpp
   - icon: ':heavy_check_mark:'
     path: ds/query/rectangle_add_point_sum.hpp
     title: ds/query/rectangle_add_point_sum.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/query/rectangle_add_rectangle_sum.hpp
+    title: ds/query/rectangle_add_rectangle_sum.hpp
   - icon: ':heavy_check_mark:'
     path: ds/query/rectangleunion.hpp
     title: ds/query/rectangleunion.hpp
@@ -53,7 +56,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/contoursum.hpp
     title: graph/ds/contoursum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/treeabelgroup.hpp
     title: graph/ds/treeabelgroup.hpp
   - icon: ':x:'
@@ -121,6 +124,12 @@ data:
     path: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+    title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
+    title: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - icon: ':heavy_check_mark:'
@@ -183,9 +192,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1332.test.cpp
     title: test/yukicoder/1332.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1641.test.cpp
+    title: test/yukicoder/1641.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1720.test.cpp
     title: test/yukicoder/1720.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1838.test.cpp
+    title: test/yukicoder/1838.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1874.test.cpp
     title: test/yukicoder/1874.test.cpp
@@ -258,6 +273,7 @@ data:
   - ds/query/rectangleunion.hpp
   - ds/query/point_add_polygon_sum.hpp
   - ds/query/point_add_rectangle_sum.hpp
+  - ds/query/rectangle_add_rectangle_sum.hpp
   - ds/query/rectangle_add_point_sum.hpp
   - ds/fenwick.hpp
   - ds/fenwickraq.hpp
@@ -274,6 +290,7 @@ data:
   - test/yukicoder/1234.test.cpp
   - test/yukicoder/1269.test.cpp
   - test/yukicoder/1216_2.test.cpp
+  - test/yukicoder/1641.test.cpp
   - test/yukicoder/789_2.test.cpp
   - test/yukicoder/1216.test.cpp
   - test/yukicoder/1197.test.cpp
@@ -292,6 +309,7 @@ data:
   - test/yukicoder/899.test.cpp
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1038.test.cpp
+  - test/yukicoder/1838.test.cpp
   - test/yukicoder/655.test.cpp
   - test/aoj/DSL_2_H.test.cpp
   - test/aoj/ALDS1_5.test.cpp
@@ -305,6 +323,7 @@ data:
   - test/aoj/ALDS1_2_A.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/library_checker/graph/verted_add_contour_sum.test.cpp
+  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - test/library_checker/datastructure/double_ended_pq.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
@@ -315,6 +334,7 @@ data:
   - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
+  - test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
   - test/atcoder/abc190f.test.cpp

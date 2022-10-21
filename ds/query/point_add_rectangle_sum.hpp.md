@@ -7,11 +7,17 @@ data:
   - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: ds/query/rectangle_add_rectangle_sum.hpp
+    title: ds/query/rectangle_add_rectangle_sum.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+    title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -126,10 +132,12 @@ data:
   - alg/group/add.hpp
   isVerificationFile: false
   path: ds/query/point_add_rectangle_sum.hpp
-  requiredBy: []
+  requiredBy:
+  - ds/query/rectangle_add_rectangle_sum.hpp
   timestamp: '2022-10-21 17:08:40+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
 documentation_of: ds/query/point_add_rectangle_sum.hpp
 layout: document
 redirect_from:

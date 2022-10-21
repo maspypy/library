@@ -1,53 +1,59 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: random/base.hpp
+    title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_C.test.cpp
     title: test/aoj/ALDS1_14_C.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"string/rollinghash_2d.hpp\"\n\nstruct RollingHash_2D {\n\
-    \  using M61 = modint61;\n  const M61 b1, b2;\n  vc<M61> pow1;\n  vc<M61> pow2;\n\
-    \n  RollingHash_2D()\n      : b1(generate_base()), b2(generate_base()), pow1{M61(1)},\
-    \ pow2{M61(1)} {}\n\n  template <typename STRING>\n  vvc<M61> build(const vc<STRING>&\
-    \ S) {\n    int H = len(S);\n    int W = len(S[0]);\n    vv(M61, res, H + 1, W\
-    \ + 1);\n    FOR(x, H) {\n      FOR(y, W) { res[x + 1][y + 1] = res[x + 1][y]\
-    \ * b2 + M61(S[x][y] + 1); }\n      FOR(y, W + 1) res[x + 1][y] += b1 * res[x][y];\n\
-    \    }\n    return res;\n  }\n\n  M61 query(const vvc<M61>& A, int xl, int yl,\
-    \ int xr, int yr) {\n    assert(0 <= xl && xl <= xr && xr <= len(A));\n    assert(0\
-    \ <= yl && yl <= yr && yr <= len(A[0]));\n    expand(pow1, b1, xr - xl);\n   \
-    \ expand(pow2, b2, yr - yl);\n    M61 res = A[xr][yr];\n    res -= A[xl][yr] *\
-    \ pow1[xr - xl];\n    res -= A[xr][yl] * pow2[yr - yl];\n    res += A[xl][yl]\
-    \ * pow1[xr - xl] * pow2[yr - yl];\n    return res;\n  }\n\nprivate:\n  static\
-    \ inline u64 generate_base() {\n    return RNG(M61::get_mod());\n  }\n\n  void\
-    \ expand(vc<M61>& pow, const M61& b, int n) {\n    while (len(pow) <= n) pow.eb(pow.back()\
-    \ * b);\n  }\n};\n"
-  code: "\nstruct RollingHash_2D {\n  using M61 = modint61;\n  const M61 b1, b2;\n\
-    \  vc<M61> pow1;\n  vc<M61> pow2;\n\n  RollingHash_2D()\n      : b1(generate_base()),\
-    \ b2(generate_base()), pow1{M61(1)}, pow2{M61(1)} {}\n\n  template <typename STRING>\n\
-    \  vvc<M61> build(const vc<STRING>& S) {\n    int H = len(S);\n    int W = len(S[0]);\n\
-    \    vv(M61, res, H + 1, W + 1);\n    FOR(x, H) {\n      FOR(y, W) { res[x + 1][y\
-    \ + 1] = res[x + 1][y] * b2 + M61(S[x][y] + 1); }\n      FOR(y, W + 1) res[x +\
-    \ 1][y] += b1 * res[x][y];\n    }\n    return res;\n  }\n\n  M61 query(const vvc<M61>&\
-    \ A, int xl, int yl, int xr, int yr) {\n    assert(0 <= xl && xl <= xr && xr <=\
-    \ len(A));\n    assert(0 <= yl && yl <= yr && yr <= len(A[0]));\n    expand(pow1,\
-    \ b1, xr - xl);\n    expand(pow2, b2, yr - yl);\n    M61 res = A[xr][yr];\n  \
-    \  res -= A[xl][yr] * pow1[xr - xl];\n    res -= A[xr][yl] * pow2[yr - yl];\n\
-    \    res += A[xl][yl] * pow1[xr - xl] * pow2[yr - yl];\n    return res;\n  }\n\
-    \nprivate:\n  static inline u64 generate_base() {\n    return RNG(M61::get_mod());\n\
-    \  }\n\n  void expand(vc<M61>& pow, const M61& b, int n) {\n    while (len(pow)\
-    \ <= n) pow.eb(pow.back() * b);\n  }\n};\n"
-  dependsOn: []
+  bundledCode: "#line 2 \"random/base.hpp\"\n\nll RNG(ll a, ll b) {\n  static mt19937\
+    \ mt(chrono::steady_clock::now().time_since_epoch().count());\n  uniform_int_distribution<ll>\
+    \ dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll a) { return RNG(0, a); }\n\
+    #line 2 \"string/rollinghash_2d.hpp\"\n\nstruct RollingHash_2D {\n  using M61\
+    \ = modint61;\n  const M61 b1, b2;\n  vc<M61> pow1;\n  vc<M61> pow2;\n\n  RollingHash_2D()\n\
+    \      : b1(generate_base()), b2(generate_base()), pow1{M61(1)}, pow2{M61(1)}\
+    \ {}\n\n  template <typename STRING>\n  vvc<M61> build(const vc<STRING>& S) {\n\
+    \    int H = len(S);\n    int W = len(S[0]);\n    vv(M61, res, H + 1, W + 1);\n\
+    \    FOR(x, H) {\n      FOR(y, W) { res[x + 1][y + 1] = res[x + 1][y] * b2 + M61(S[x][y]\
+    \ + 1); }\n      FOR(y, W + 1) res[x + 1][y] += b1 * res[x][y];\n    }\n    return\
+    \ res;\n  }\n\n  M61 query(const vvc<M61>& A, int xl, int yl, int xr, int yr)\
+    \ {\n    assert(0 <= xl && xl <= xr && xr <= len(A));\n    assert(0 <= yl && yl\
+    \ <= yr && yr <= len(A[0]));\n    expand(pow1, b1, xr - xl);\n    expand(pow2,\
+    \ b2, yr - yl);\n    M61 res = A[xr][yr];\n    res -= A[xl][yr] * pow1[xr - xl];\n\
+    \    res -= A[xr][yl] * pow2[yr - yl];\n    res += A[xl][yl] * pow1[xr - xl] *\
+    \ pow2[yr - yl];\n    return res;\n  }\n\nprivate:\n  static inline u64 generate_base()\
+    \ { return RNG(M61::get_mod()); }\n\n  void expand(vc<M61>& pow, const M61& b,\
+    \ int n) {\n    while (len(pow) <= n) pow.eb(pow.back() * b);\n  }\n};\n"
+  code: "#include \"random/base.hpp\"\n\nstruct RollingHash_2D {\n  using M61 = modint61;\n\
+    \  const M61 b1, b2;\n  vc<M61> pow1;\n  vc<M61> pow2;\n\n  RollingHash_2D()\n\
+    \      : b1(generate_base()), b2(generate_base()), pow1{M61(1)}, pow2{M61(1)}\
+    \ {}\n\n  template <typename STRING>\n  vvc<M61> build(const vc<STRING>& S) {\n\
+    \    int H = len(S);\n    int W = len(S[0]);\n    vv(M61, res, H + 1, W + 1);\n\
+    \    FOR(x, H) {\n      FOR(y, W) { res[x + 1][y + 1] = res[x + 1][y] * b2 + M61(S[x][y]\
+    \ + 1); }\n      FOR(y, W + 1) res[x + 1][y] += b1 * res[x][y];\n    }\n    return\
+    \ res;\n  }\n\n  M61 query(const vvc<M61>& A, int xl, int yl, int xr, int yr)\
+    \ {\n    assert(0 <= xl && xl <= xr && xr <= len(A));\n    assert(0 <= yl && yl\
+    \ <= yr && yr <= len(A[0]));\n    expand(pow1, b1, xr - xl);\n    expand(pow2,\
+    \ b2, yr - yl);\n    M61 res = A[xr][yr];\n    res -= A[xl][yr] * pow1[xr - xl];\n\
+    \    res -= A[xr][yl] * pow2[yr - yl];\n    res += A[xl][yl] * pow1[xr - xl] *\
+    \ pow2[yr - yl];\n    return res;\n  }\n\nprivate:\n  static inline u64 generate_base()\
+    \ { return RNG(M61::get_mod()); }\n\n  void expand(vc<M61>& pow, const M61& b,\
+    \ int n) {\n    while (len(pow) <= n) pow.eb(pow.back() * b);\n  }\n};\n"
+  dependsOn:
+  - random/base.hpp
   isVerificationFile: false
   path: string/rollinghash_2d.hpp
   requiredBy: []
-  timestamp: '2022-08-25 10:08:18+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-10-21 19:08:45+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_14_C.test.cpp
 documentation_of: string/rollinghash_2d.hpp

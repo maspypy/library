@@ -47,7 +47,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/statictreemonoid.hpp
     title: graph/ds/statictreemonoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/treeabelgroup.hpp
     title: graph/ds/treeabelgroup.hpp
   - icon: ':heavy_check_mark:'
@@ -101,7 +101,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/rerooting_dp.hpp
     title: graph/rerooting_dp.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -113,7 +113,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path/dial.hpp
     title: graph/shortest_path/dial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
   - icon: ':heavy_check_mark:'
@@ -207,7 +207,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/arc151_e.test.cpp
     title: test/atcoder/arc151_e.test.cpp
   - icon: ':heavy_check_mark:'
@@ -351,6 +351,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1494.test.cpp
     title: test/yukicoder/1494.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1600.test.cpp
+    title: test/yukicoder/1600.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1601.test.cpp
+    title: test/yukicoder/1601.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1641.test.cpp
+    title: test/yukicoder/1641.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/17.test.cpp
     title: test/yukicoder/17.test.cpp
@@ -564,6 +573,7 @@ data:
   - test/yukicoder/1254.test.cpp
   - test/yukicoder/1216_2.test.cpp
   - test/yukicoder/1976.test.cpp
+  - test/yukicoder/1641.test.cpp
   - test/yukicoder/1479.test.cpp
   - test/yukicoder/1744.test.cpp
   - test/yukicoder/1216.test.cpp
@@ -573,6 +583,7 @@ data:
   - test/yukicoder/1868.test.cpp
   - test/yukicoder/1211.test.cpp
   - test/yukicoder/1242.test.cpp
+  - test/yukicoder/1601.test.cpp
   - test/yukicoder/1002.test.cpp
   - test/yukicoder/17.test.cpp
   - test/yukicoder/1718.test.cpp
@@ -582,6 +593,7 @@ data:
   - test/yukicoder/1344.test.cpp
   - test/yukicoder/899.test.cpp
   - test/yukicoder/1790.test.cpp
+  - test/yukicoder/1600.test.cpp
   - test/yukicoder/1796.test.cpp
   - test/yukicoder/1778.test.cpp
   - test/yukicoder/529.test.cpp

@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/statictreemonoid.hpp
     title: graph/ds/statictreemonoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/treeabelgroup.hpp
     title: graph/ds/treeabelgroup.hpp
   - icon: ':heavy_check_mark:'
@@ -138,6 +138,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1494.test.cpp
     title: test/yukicoder/1494.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1600.test.cpp
+    title: test/yukicoder/1600.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1641.test.cpp
+    title: test/yukicoder/1641.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1718.test.cpp
     title: test/yukicoder/1718.test.cpp
@@ -381,12 +387,14 @@ data:
   - test/yukicoder/1212.test.cpp
   - test/yukicoder/1216_2.test.cpp
   - test/yukicoder/1976.test.cpp
+  - test/yukicoder/1641.test.cpp
   - test/yukicoder/1216.test.cpp
   - test/yukicoder/1197.test.cpp
   - test/yukicoder/1211.test.cpp
   - test/yukicoder/1242.test.cpp
   - test/yukicoder/1718.test.cpp
   - test/yukicoder/1790.test.cpp
+  - test/yukicoder/1600.test.cpp
   - test/yukicoder/1778.test.cpp
   - test/yukicoder/529.test.cpp
   - test/yukicoder/1418.test.cpp

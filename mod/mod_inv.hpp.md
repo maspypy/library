@@ -110,12 +110,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/partition_number.hpp
     title: seq/famous/partition_number.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/famous/surjection.hpp
+    title: seq/famous/surjection.hpp
   - icon: ':heavy_check_mark:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
@@ -174,6 +177,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sharp_p_subset_sum.test.cpp
     title: test/library_checker/math/sharp_p_subset_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
+    title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
+    title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
@@ -258,6 +267,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1321.test.cpp
+    title: test/yukicoder/1321.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1392.test.cpp
     title: test/yukicoder/1392.test.cpp
@@ -374,6 +386,7 @@ data:
   - seq/famous/partition_number.hpp
   - seq/famous/bell_number_large.hpp
   - seq/famous/stirling_number_2.hpp
+  - seq/famous/surjection.hpp
   - seq/sum_of_powers.hpp
   - graph/tree_all_distances.hpp
   - mod/mod_kth_root.hpp
@@ -388,6 +401,7 @@ data:
   - test/yukicoder/1755.test.cpp
   - test/yukicoder/590.test.cpp
   - test/yukicoder/1549.test.cpp
+  - test/yukicoder/1321.test.cpp
   - test/yukicoder/1956.test.cpp
   - test/yukicoder/2097.test.cpp
   - test/yukicoder/502_2.test.cpp
@@ -437,11 +451,13 @@ data:
   - test/library_checker/convolution/mul_mod2n_convolution.test.cpp
   - test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - test/library_checker/convolution/convolution_mod.test.cpp
+  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/math/partition.test.cpp
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/atcoder/abc269ex.test.cpp
   - test/atcoder/agc058d.test.cpp

@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
+    title: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1270.test.cpp
     title: test/yukicoder/1270.test.cpp
   _isVerificationFailed: false
@@ -53,6 +56,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1270.test.cpp
+  - test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
 documentation_of: ds/query/mo.hpp
 layout: document
 redirect_from:
