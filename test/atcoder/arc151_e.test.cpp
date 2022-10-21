@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "string/longest_common_substring.hpp"
-#include "graph/dijkstra.hpp"
+#include "graph/shortest_path/dijkstra.hpp"
 
 void solve() {
   INT(N);

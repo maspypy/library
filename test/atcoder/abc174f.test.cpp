@@ -1,13 +1,13 @@
 #define PROBLEM "https://atcoder.jp/contests/abc174/tasks/abc174_f"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/uniqueproductquery.hpp"
+#include "ds/query/uniqueproductquery.hpp"
 
 void solve() {
   LL(N, Q);
   VEC(ll, C, N);
   UniqueProductQuery<Group_Add<int>> X(C);
-  
+
   FOR(Q) {
     LL(l, r);
     X.add(--l, r);

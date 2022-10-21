@@ -2,9 +2,9 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "other/discrete_log.hpp"
-#include "alg/group_affine.hpp"
+#include "alg/group/affine.hpp"
 #include "mod/modint.hpp"
-#include "alg/gset_affine.hpp"
+#include "alg/gset/affine.hpp"
 
 using mint = amint;
 
