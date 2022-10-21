@@ -1,10 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "other/random.hpp"
+#include "random/base.hpp"
 
-#include "ds/powerquery.hpp"
-#include "alg/group_mul.hpp"
+#include "ds/query/powerquery.hpp"
 #include "mod/modint.hpp"
 
 using mint = modint998;

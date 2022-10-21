@@ -1,10 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "alg/group_affine.hpp"
+#include "alg/group/affine.hpp"
 #include "mod/modint.hpp"
-#include "other/random.hpp"
-#include "bbst/splaytree_monoid.hpp"
+#include "random/base.hpp"
+#include "ds/bbst/splaytree_monoid.hpp"
 
 void test() {
   // reverse, set, prod の動作を確認

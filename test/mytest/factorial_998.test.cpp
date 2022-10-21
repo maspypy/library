@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "other/random.hpp"
+#include "random/base.hpp"
 
 #include "mod/factorial998.hpp"
 #include "poly/prefix_product_of_poly.hpp"

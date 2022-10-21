@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "seq/gray_code.hpp"
+#include "seq/famous/gray_code.hpp"
 
 void test() {
   FOR(LOG, 10) {

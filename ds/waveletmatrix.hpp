@@ -1,4 +1,4 @@
-#include "alg/group_add.hpp"
+#include "alg/group/add.hpp"
 
 // Wavelet Matrix 上でさらに累積和を管理して、
 // 矩形和がとれるようにしたもの

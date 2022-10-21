@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "other/random.hpp"
+#include "random/base.hpp"
 
-#include "ds/range_mex_query.hpp"
+#include "ds/query/range_mex_query.hpp"
 
 pair<vc<int>, vc<pi>> gen(int N, int LIM, int Q) {
   vc<int> A(N);

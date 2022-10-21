@@ -1,6 +1,6 @@
 
 #include "ds/segtree.hpp"
-#include "alg/monoid_min.hpp"
+#include "alg/monoid/min.hpp"
 
 // 配列は static
 // クエリも先読みする

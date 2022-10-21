@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "mod/modint.hpp"
 #include "poly/convolution_leq.hpp"
-#include "other/random.hpp"
+#include "random/base.hpp"
 
 using mint = modint998;
 

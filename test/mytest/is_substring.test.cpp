@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "other/random.hpp"
+#include "random/base.hpp"
 #include "string/is_substring.hpp"
 
 string gen(int n) {

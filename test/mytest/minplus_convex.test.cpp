@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "other/random.hpp"
+#include "random/base.hpp"
 
-#include "dp/minplus_convolution_convex.hpp"
+#include "seq/minplus_convolution_convex.hpp"
 
 const int INF = numeric_limits<int>::max();
 

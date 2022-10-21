@@ -1,4 +1,4 @@
-#include "alg/monoid_min.hpp"
+#include "alg/monoid/min.hpp"
 #include "ds/disjointsparse.hpp"
 
 // 辞書順 i 番目の suffix が j 文字目始まりであるとき、
