@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DPL_4_B.test.cpp
+    title: test/aoj/DPL_4_B.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"knapsack/subset_sum_count.hpp\"\n\n/*\nO(2^{N/2})\nsubset\
@@ -70,8 +73,9 @@ data:
   path: knapsack/subset_sum_count.hpp
   requiredBy: []
   timestamp: '2022-10-21 20:47:04+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj/DPL_4_B.test.cpp
 documentation_of: knapsack/subset_sum_count.hpp
 layout: document
 redirect_from:
