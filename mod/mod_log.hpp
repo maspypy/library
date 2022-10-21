@@ -1,5 +1,5 @@
 #include "mod/modint.hpp"
-#include "other/discrete_log.hpp"
+#include "nt/discrete_log.hpp"
 #include "alg/group/mul.hpp"
 
 int mod_log(int mod, ll a, ll b) {

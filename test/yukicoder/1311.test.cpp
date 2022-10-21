@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1311"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "other/kth_next_permutation.hpp"
+#include "seq/kth_next_permutation.hpp"
 #include "ds/fenwick.hpp"
 
 void solve() {
