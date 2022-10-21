@@ -7,6 +7,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc266h_2.test.cpp
+    title: test/atcoder/abc266h_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -164,6 +167,7 @@ data:
   - test/yukicoder/1919.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   - test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
+  - test/atcoder/abc266h_2.test.cpp
 documentation_of: ds/fenwick2d.hpp
 layout: document
 redirect_from:

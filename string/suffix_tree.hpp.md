@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffixarray.hpp
     title: string/suffixarray.hpp
   _extendedRequiredBy: []

@@ -23,7 +23,7 @@ data:
   - icon: ':question:'
     path: ds/cumsum2d.hpp
     title: ds/cumsum2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   - icon: ':question:'
@@ -56,7 +56,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/treeabelgroup.hpp
     title: graph/ds/treeabelgroup.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   - icon: ':heavy_check_mark:'
@@ -69,10 +69,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2842_2.test.cpp
     title: test/aoj/2842_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ALDS1_2_A.test.cpp
     title: test/aoj/ALDS1_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ALDS1_5.test.cpp
     title: test/aoj/ALDS1_5.test.cpp
   - icon: ':heavy_check_mark:'
@@ -93,6 +93,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc190f.test.cpp
+    title: test/atcoder/abc190f.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc266h_2.test.cpp
+    title: test/atcoder/abc266h_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/double_ended_pq.test.cpp
     title: test/library_checker/datastructure/double_ended_pq.test.cpp
@@ -311,6 +317,8 @@ data:
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
+  - test/atcoder/abc190f.test.cpp
+  - test/atcoder/abc266h_2.test.cpp
 documentation_of: alg/group/add.hpp
 layout: document
 redirect_from:

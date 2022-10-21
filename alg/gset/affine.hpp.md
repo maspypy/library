@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc270_g.test.cpp
+    title: test/atcoder/abc270_g.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/gset/affine.hpp\"\n// 1 \u6B21\u5143\u30D9\u30AF\u30C8\
@@ -23,8 +26,9 @@ data:
   path: alg/gset/affine.hpp
   requiredBy: []
   timestamp: '2022-10-21 16:42:45+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/atcoder/abc270_g.test.cpp
 documentation_of: alg/gset/affine.hpp
 layout: document
 redirect_from:

@@ -23,14 +23,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/treeabelgroup.hpp
     title: graph/ds/treeabelgroup.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ALDS1_2_A.test.cpp
     title: test/aoj/ALDS1_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ALDS1_5.test.cpp
     title: test/aoj/ALDS1_5.test.cpp
   - icon: ':heavy_check_mark:'
@@ -39,6 +39,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_G.test.cpp
     title: test/aoj/DSL_2_G.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc190f.test.cpp
+    title: test/atcoder/abc190f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_range_sum.test.cpp
     title: test/library_checker/datastructure/point_add_range_sum.test.cpp
@@ -72,9 +75,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -152,7 +155,7 @@ data:
   - ds/query/rectangle_add_point_sum.hpp
   - ds/fenwickraq.hpp
   timestamp: '2022-10-21 16:42:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/yukicoder/1874.test.cpp
@@ -169,6 +172,7 @@ data:
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
+  - test/atcoder/abc190f.test.cpp
 documentation_of: ds/fenwick.hpp
 layout: document
 redirect_from:

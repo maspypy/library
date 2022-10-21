@@ -25,7 +25,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffixarray.hpp
     title: string/suffixarray.hpp
   _extendedRequiredBy: []

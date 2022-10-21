@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/statictreemonoid.hpp
     title: graph/ds/statictreemonoid.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
   - icon: ':warning:'
@@ -14,10 +14,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffixarray.hpp
     title: string/suffixarray.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/atcoder/arc151_e.test.cpp
+    title: test/atcoder/arc151_e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/number_of_substrings.test.cpp
     title: test/library_checker/string/number_of_substrings.test.cpp
@@ -115,6 +118,7 @@ data:
   - test/library_checker/string/suffix_array_vec.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp
+  - test/atcoder/arc151_e.test.cpp
 documentation_of: ds/disjointsparse.hpp
 layout: document
 redirect_from:

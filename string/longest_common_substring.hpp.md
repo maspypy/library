@@ -7,14 +7,17 @@ data:
   - icon: ':question:'
     path: ds/disjointsparse.hpp
     title: ds/disjointsparse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffixarray.hpp
     title: string/suffixarray.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/atcoder/arc151_e.test.cpp
+    title: test/atcoder/arc151_e.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/min.hpp\"\ntemplate <class X>\r\nstruct Monoid_Min\
@@ -136,8 +139,9 @@ data:
   path: string/longest_common_substring.hpp
   requiredBy: []
   timestamp: '2022-10-21 17:08:40+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/atcoder/arc151_e.test.cpp
 documentation_of: string/longest_common_substring.hpp
 layout: document
 redirect_from:

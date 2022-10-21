@@ -29,7 +29,7 @@ data:
       title: alg/group/xor.hpp
   - name: alg/gset
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: alg/gset/affine.hpp
       title: alg/gset/affine.hpp
     - icon: ':warning:'
@@ -117,7 +117,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/gcd.hpp
       title: alg/monoid/gcd.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/max.hpp
       title: alg/monoid/max.hpp
     - icon: ':x:'
@@ -216,7 +216,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/fenwick.hpp
       title: ds/fenwick.hpp
     - icon: ':question:'
@@ -544,7 +544,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/minimum_hamiltonian_cycle.hpp
       title: graph/minimum_hamiltonian_cycle.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/minimum_spanning_tree.hpp
       title: graph/minimum_spanning_tree.hpp
     - icon: ':warning:'
@@ -618,7 +618,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/ds/contoursum.hpp
       title: graph/ds/contoursum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/ds/dualtreemonoid.hpp
       title: graph/ds/dualtreemonoid.hpp
     - icon: ':question:'
@@ -659,7 +659,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest_path/dial.hpp
       title: graph/shortest_path/dial.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/shortest_path/dijkstra.hpp
       title: graph/shortest_path/dijkstra.hpp
     - icon: ':heavy_check_mark:'
@@ -1074,9 +1074,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/interpolate_poly_exp_sum.hpp
       title: seq/interpolate_poly_exp_sum.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: seq/inversion.hpp
       title: seq/inversion.hpp
+    - icon: ':warning:'
+      path: seq/inversion_rotate.hpp
+      title: seq/inversion_rotate.hpp
     - icon: ':heavy_check_mark:'
       path: seq/kth_term_of_p_recursive.hpp
       title: seq/kth_term_of_p_recursive.hpp
@@ -1147,7 +1150,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/longest_common_subsequence.hpp
       title: string/longest_common_subsequence.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: string/longest_common_substring.hpp
       title: string/longest_common_substring.hpp
     - icon: ':heavy_check_mark:'
@@ -1180,7 +1183,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/suffix_tree.hpp
       title: string/suffix_tree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: string/suffixarray.hpp
       title: string/suffixarray.hpp
     - icon: ':heavy_check_mark:'
@@ -1234,10 +1237,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_1_C.test.cpp
       title: test/aoj/ALDS1_1_C.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/ALDS1_2_A.test.cpp
       title: test/aoj/ALDS1_2_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/ALDS1_5.test.cpp
       title: test/aoj/ALDS1_5.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1381,6 +1384,9 @@ data:
       path: test/atcoder/abc174f.test.cpp
       title: test/atcoder/abc174f.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/atcoder/abc190f.test.cpp
+      title: test/atcoder/abc190f.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc198d.test.cpp
       title: test/atcoder/abc198d.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1389,7 +1395,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc229h.test.cpp
       title: test/atcoder/abc229h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc244h.test.cpp
       title: test/atcoder/abc244h.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1401,19 +1407,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc266f.test.cpp
       title: test/atcoder/abc266f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc266h.test.cpp
       title: test/atcoder/abc266h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc266h_2.test.cpp
       title: test/atcoder/abc266h_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc269ex.test.cpp
       title: test/atcoder/abc269ex.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc270_f.test.cpp
       title: test/atcoder/abc270_f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc270_g.test.cpp
       title: test/atcoder/abc270_g.test.cpp
     - icon: ':heavy_check_mark:'

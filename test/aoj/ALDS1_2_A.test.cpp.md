@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/group/add.hpp
     title: alg/group/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   - icon: ':question:'
@@ -13,14 +13,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_2_A
@@ -240,11 +240,12 @@ data:
     \   k >>= 1;\n    }\n    return i;\n  }\n\n  int find_kth(E k) {\n    auto check\
     \ = [&](E x) -> bool { return x <= k; };\n    return max_right(check);\n  }\n\n\
     \  void debug() { print(\"fenwick\", dat); }\n};\n#line 2 \"seq/inversion.hpp\"\
-    \n\ntemplate <typename T>\nll inversion(vc<T>& A) {\n  auto key = A;\n  UNIQUE(key);\n\
-    \  ll ANS = 0;\n  FenwickTree<Group_Add<int>> bit(len(key));\n  for (auto&& a:\
-    \ A) {\n    ll x = LB(key, a);\n    ANS += bit.prod_all() - bit.prod(x + 1);\n\
-    \    bit.add(x, 1);\n  }\n  return ANS;\n}\n#line 6 \"test/aoj/ALDS1_2_A.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  ll x = inversion(A);\n  sort(all(A));\n\
+    \n\ntemplate <typename T>\nll inversion(vc<T>& A, bool SMALL = false) {\n  if\
+    \ (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n    for (auto&& x: A) x = LB(A,\
+    \ x);\n  }\n  ll ANS = 0;\n  ll K = MAX(A) + 1;\n  FenwickTree<Group_Add<int>>\
+    \ bit(K);\n  for (auto&& x: A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x,\
+    \ 1);\n  }\n  return ANS;\n}\n#line 6 \"test/aoj/ALDS1_2_A.test.cpp\"\n\nvoid\
+    \ solve() {\n  LL(N);\n  VEC(ll, A, N);\n  ll x = inversion(A);\n  sort(all(A));\n\
     \  print(A);\n  print(x);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
     \n  return 0;\n}\n"
@@ -263,8 +264,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_2_A.test.cpp
   requiredBy: []
-  timestamp: '2022-10-21 16:42:45+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-10-21 18:52:33+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_2_A.test.cpp
 layout: document

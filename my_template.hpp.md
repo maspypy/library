@@ -45,10 +45,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_1_C.test.cpp
     title: test/aoj/ALDS1_1_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ALDS1_2_A.test.cpp
     title: test/aoj/ALDS1_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ALDS1_5.test.cpp
     title: test/aoj/ALDS1_5.test.cpp
   - icon: ':heavy_check_mark:'
@@ -184,6 +184,9 @@ data:
     path: test/aoj/NTL_1_E.test.cpp
     title: test/aoj/NTL_1_E.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc190f.test.cpp
+    title: test/atcoder/abc190f.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc198d.test.cpp
     title: test/atcoder/abc198d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -192,6 +195,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc229h.test.cpp
     title: test/atcoder/abc229h.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc244h.test.cpp
+    title: test/atcoder/abc244h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc256d.test.cpp
     title: test/atcoder/abc256d.test.cpp
@@ -202,14 +208,26 @@ data:
     path: test/atcoder/abc266f.test.cpp
     title: test/atcoder/abc266f.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc266h.test.cpp
+    title: test/atcoder/abc266h.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc266h_2.test.cpp
+    title: test/atcoder/abc266h_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc269ex.test.cpp
     title: test/atcoder/abc269ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc270_g.test.cpp
+    title: test/atcoder/abc270_g.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/agc058d.test.cpp
     title: test/atcoder/agc058d.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/arc151_e.test.cpp
+    title: test/atcoder/arc151_e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/bitwise_and_convolution.test.cpp
     title: test/library_checker/convolution/bitwise_and_convolution.test.cpp
@@ -1656,8 +1674,14 @@ data:
   - test/atcoder/abc269ex.test.cpp
   - test/atcoder/abc266c.test.cpp
   - test/atcoder/abc200a.test.cpp
+  - test/atcoder/abc270_g.test.cpp
   - test/atcoder/abc270_f.test.cpp
+  - test/atcoder/abc266h.test.cpp
+  - test/atcoder/abc244h.test.cpp
+  - test/atcoder/arc151_e.test.cpp
+  - test/atcoder/abc190f.test.cpp
   - test/atcoder/agc058d.test.cpp
+  - test/atcoder/abc266h_2.test.cpp
 documentation_of: my_template.hpp
 layout: document
 redirect_from:

@@ -11,10 +11,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/query/range_mex_query.hpp
     title: ds/query/range_mex_query.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
   - icon: ':warning:'
@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffixarray.hpp
     title: string/suffixarray.hpp
   _extendedVerifiedWith:
@@ -36,9 +36,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/arc151_e.test.cpp
+    title: test/atcoder/arc151_e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/common_interval_decomposition.test.cpp
     title: test/library_checker/graph/common_interval_decomposition.test.cpp
@@ -115,6 +118,7 @@ data:
   - test/library_checker/string/suffix_array.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp
   - test/atcoder/abc270_f.test.cpp
+  - test/atcoder/arc151_e.test.cpp
 documentation_of: alg/monoid/min.hpp
 layout: document
 redirect_from:

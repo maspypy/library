@@ -7,9 +7,6 @@ data:
   - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/waveletmatrix.hpp
-    title: ds/waveletmatrix.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -23,10 +20,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/924
+    PROBLEM: https://atcoder.jp/contests/abc190/tasks/abc190_f
     links:
-    - https://yukicoder.me/problems/no/924
-  bundledCode: "#line 1 \"test/yukicoder/924.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/924\"\
+    - https://atcoder.jp/contests/abc190/tasks/abc190_f
+  bundledCode: "#line 1 \"test/atcoder/abc190f.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc190/tasks/abc190_f\"\
     \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
     unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
     \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
@@ -210,66 +207,18 @@ data:
     \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
     \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
     \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/waveletmatrix.hpp\"\
-    \n\r\n// Wavelet Matrix \u4E0A\u3067\u3055\u3089\u306B\u7D2F\u7A4D\u548C\u3092\
-    \u7BA1\u7406\u3057\u3066\u3001\r\n// \u77E9\u5F62\u548C\u304C\u3068\u308C\u308B\
-    \u3088\u3046\u306B\u3057\u305F\u3082\u306E\r\ntemplate <typename T, bool SUM_QUERY\
-    \ = false,\r\n          typename AbelGroup = Group_Add<ll>>\r\nstruct WaveletMatrix\
-    \ {\r\n  struct BitVector {\r\n    vector<u64> buf;\r\n    vector<int> sum;\r\n\
-    \    BitVector(const vector<char>& a = {}) {\r\n      int n = a.size();\r\n  \
-    \    buf.assign((n + 63) >> 6, 0);\r\n      sum.assign(buf.size() + 1, 0);\r\n\
-    \      FOR(i, n) if (a[i]) {\r\n        buf[i >> 6] |= 1ull << (i & 63);\r\n \
-    \       sum[(i >> 6) + 1]++;\r\n      }\r\n      FOR(i, buf.size()) sum[i + 1]\
-    \ += sum[i];\r\n    }\r\n    int rank(int k, bool f = 1) {\r\n      int ret =\
-    \ sum[k >> 6]\r\n                + __builtin_popcountll(buf[k >> 6] & ((1ull <<\
-    \ (k & 63)) - 1));\r\n      if (!f)\r\n        return k - ret;\r\n      else\r\
-    \n        return ret;\r\n    }\r\n  };\r\n\r\n  int N, lg;\r\n  vector<int> mid;\r\
-    \n  vector<BitVector> bv;\r\n  vector<vector<T>> cumsum;\r\n  vc<T> key;\r\n \
-    \ WaveletMatrix(vector<T>& dat) : N(dat.size()) {\r\n    key = dat;\r\n    UNIQUE(key);\r\
-    \n    vc<int> A(N);\r\n    FOR(i, N) A[i] = LB(key, dat[i]);\r\n    lg = __lg(max(MAX(A),\
-    \ 1)) + 1;\r\n\r\n    mid.resize(lg);\r\n    bv.resize(lg);\r\n    cumsum.resize(lg);\r\
-    \n    for (int d = lg - 1; d >= 0; d--) {\r\n      vector<char> add;\r\n     \
-    \ vector nxt(2, vector<int>());\r\n      for (auto& x: A) {\r\n        add.push_back(x\
-    \ >> d & 1);\r\n        nxt[x >> d & 1].push_back(x);\r\n      }\r\n      mid[d]\
-    \ = (int)nxt[0].size();\r\n      bv[d] = BitVector(add);\r\n      swap(A, nxt[0]);\r\
-    \n      A.insert(A.end(), all(nxt[1]));\r\n      if (SUM_QUERY) {\r\n        vc<T>\
-    \ cs(N + 1);\r\n        cs[0] = AbelGroup::unit();\r\n        FOR(i, N) cs[i +\
-    \ 1] = AbelGroup::op(cs[i], key[A[i]]);\r\n        cumsum[d] = cs;\r\n      }\r\
-    \n    }\r\n  }\r\n\r\n  // [L, R) \u5185\u306B\u3042\u308B [a, b) \u3092\u6570\
-    \u3048\u308B\r\n  int freq(int L, int R, T a, T b) {\r\n    return freq_upper(L,\
-    \ R, b) - freq_upper(L, R, a);\r\n  }\r\n  int freq_upper(int L, int R, T t) {\r\
-    \n    int x = LB(key, t);\r\n    if (x >= (1 << lg)) return R - L;\r\n    int\
-    \ ret = 0;\r\n    for (int h = lg - 1; h >= 0; --h) {\r\n      bool f = (x >>\
-    \ h) & 1;\r\n      if (f) ret += bv[h].rank(R, 0) - bv[h].rank(L, 0);\r\n    \
-    \  L = bv[h].rank(L, f) + (f ? mid[h] : 0);\r\n      R = bv[h].rank(R, f) + (f\
-    \ ? mid[h] : 0);\r\n    }\r\n    return ret;\r\n  }\r\n\r\n  // [L, R) \u306E\u4E2D\
-    \u3067 k>=0 \u756A\u76EE\r\n  T kth(int L, int R, int k) {\r\n    assert(0 <=\
-    \ k && k < R - L);\r\n    int ret = 0;\r\n    for (int h = lg - 1; h >= 0; h--)\
-    \ {\r\n      int l0 = bv[h].rank(L, 0), r0 = bv[h].rank(R, 0);\r\n      if (k\
-    \ < r0 - l0)\r\n        L = l0, R = r0;\r\n      else {\r\n        k -= r0 - l0;\r\
-    \n        ret |= 1 << h;\r\n        L += mid[h] - l0, R += mid[h] - r0;\r\n  \
-    \    }\r\n    }\r\n    return key[ret];\r\n  }\r\n\r\n  // [L, R) \u306E\u4E2D\
-    \u3067\u5C0F\u3055\u3044\u65B9\u304B\u3089 k \u500B\u306E\u7DCF\u548C\r\n  T sum(int\
-    \ L, int R, int k) {\r\n    assert(SUM_QUERY);\r\n    assert(0 <= k && k <= R\
-    \ - L);\r\n    T pos = AbelGroup::unit(), neg = AbelGroup::unit();\r\n    for\
-    \ (int h = lg - 1; h >= 0; h--) {\r\n      int l0 = bv[h].rank(L, 0), r0 = bv[h].rank(R,\
-    \ 0);\r\n      if (k < r0 - l0) {\r\n        L = l0, R = r0;\r\n      } else {\r\
-    \n        k -= r0 - l0;\r\n        pos = AbelGroup::op(pos, cumsum[h][r0]);\r\n\
-    \        neg = AbelGroup::op(neg, cumsum[h][l0]);\r\n        L += mid[h] - l0,\
-    \ R += mid[h] - r0;\r\n      }\r\n    }\r\n    if (k) {\r\n      pos = AbelGroup::op(pos,\
-    \ cumsum[0][L + k]);\r\n      neg = AbelGroup::op(neg, cumsum[0][L]);\r\n    }\r\
-    \n    return AbelGroup::op(pos, AbelGroup::inverse(neg));\r\n  }\r\n};\r\n#line\
-    \ 3 \"ds/fenwick.hpp\"\n\ntemplate <typename AbelGroup>\nstruct FenwickTree {\n\
-    \  using E = typename AbelGroup::value_type;\n  int n;\n  vector<E> dat;\n  E\
-    \ total;\n\n  FenwickTree(int n = 0) : n(n) {\n    assert(AbelGroup::commute);\n\
-    \    reset(n);\n  }\n  FenwickTree(const vector<E>& v) {\n    assert(AbelGroup::commute);\n\
-    \    build(v);\n  }\n\n  void build(const vc<E>& v) {\n    n = len(v);\n    total\
-    \ = AbelGroup::unit();\n    for (int i = 0; i < n; ++i) total = AbelGroup::op(total,\
-    \ v[i]);\n    dat = v;\n    for (int i = 1; i <= n; ++i) {\n      int j = i +\
-    \ (i & -i);\n      if (j <= n) dat[j - 1] = AbelGroup::op(dat[i - 1], dat[j -\
-    \ 1]);\n    }\n  }\n\n  void reset(int sz = 0) {\n    if (sz) n = sz;\n    total\
-    \ = AbelGroup::unit();\n    dat.assign(n, AbelGroup::unit());\n  }\n\n  E prod(int\
-    \ k) {\n    E ret = AbelGroup::unit();\n    for (; k > 0; k -= k & -k) ret = AbelGroup::op(ret,\
+    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"ds/fenwick.hpp\"\
+    \n\ntemplate <typename AbelGroup>\nstruct FenwickTree {\n  using E = typename\
+    \ AbelGroup::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree(int\
+    \ n = 0) : n(n) {\n    assert(AbelGroup::commute);\n    reset(n);\n  }\n  FenwickTree(const\
+    \ vector<E>& v) {\n    assert(AbelGroup::commute);\n    build(v);\n  }\n\n  void\
+    \ build(const vc<E>& v) {\n    n = len(v);\n    total = AbelGroup::unit();\n \
+    \   for (int i = 0; i < n; ++i) total = AbelGroup::op(total, v[i]);\n    dat =\
+    \ v;\n    for (int i = 1; i <= n; ++i) {\n      int j = i + (i & -i);\n      if\
+    \ (j <= n) dat[j - 1] = AbelGroup::op(dat[i - 1], dat[j - 1]);\n    }\n  }\n\n\
+    \  void reset(int sz = 0) {\n    if (sz) n = sz;\n    total = AbelGroup::unit();\n\
+    \    dat.assign(n, AbelGroup::unit());\n  }\n\n  E prod(int k) {\n    E ret =\
+    \ AbelGroup::unit();\n    for (; k > 0; k -= k & -k) ret = AbelGroup::op(ret,\
     \ dat[k - 1]);\n    return ret;\n  }\n\n  E prod(int L, int R) {\n    E pos =\
     \ AbelGroup::unit();\n    while (L < R) {\n      pos = AbelGroup::op(pos, dat[R\
     \ - 1]);\n      R -= R & -R;\n    }\n    E neg = AbelGroup::unit();\n    while\
@@ -286,57 +235,46 @@ data:
     \ {\n        i += k;\n        s = AbelGroup::op(s, dat[i - 1]);\n      }\n   \
     \   k >>= 1;\n    }\n    return i;\n  }\n\n  int find_kth(E k) {\n    auto check\
     \ = [&](E x) -> bool { return x <= k; };\n    return max_right(check);\n  }\n\n\
-    \  void debug() { print(\"fenwick\", dat); }\n};\n#line 6 \"test/yukicoder/924.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  auto Ac = cumsum<ll>(A);\n\
-    \  vi X = A;\n  UNIQUE(X);\n  for (auto&& a: A) a = LB(X, a);\n  WaveletMatrix<ll>\
-    \ WM(A);\n  VEC(pi, query, Q);\n  for (auto&& [l, r]: query) --l;\n  vc<int> med(Q);\n\
-    \  vi low_sum(Q), low_cnt(Q);\n  FOR(q, Q) {\n    auto [l, r] = query[q];\n  \
-    \  ll n = r - l;\n    med[q] = WM.kth(l, r, n / 2);\n  }\n\n  vvc<int> QID(N);\n\
-    \  FOR(q, Q) QID[med[q]].eb(q);\n\n  vvc<int> AID(N);\n  FOR(i, N) AID[A[i]].eb(i);\n\
-    \n  FenwickTree<Group_Add<ll>> bit_c(N), bit_s(N);\n\n  FOR(x, N) {\n    for (auto&&\
-    \ i: AID[x]) {\n      bit_c.add(i, 1);\n      bit_s.add(i, X[x]);\n    }\n   \
-    \ for (auto&& q: QID[x]) {\n      auto [l, r] = query[q];\n      low_cnt[q] =\
-    \ bit_c.sum(l, r);\n      low_sum[q] = bit_s.sum(l, r);\n    }\n  }\n\n  FOR(q,\
-    \ Q) {\n    auto [l, r] = query[q];\n    ll x = X[med[q]];\n    ll lc = low_cnt[q],\
-    \ ls = low_sum[q];\n    ll hc = r - l - lc;\n    ll hs = Ac[r] - Ac[l] - ls;\n\
-    \    ll ANS = 0;\n    ANS += x * lc - ls;\n    ANS += hs - x * hc;\n    //   \
-    \ print(x, lc, ls, hc, hs);\n    print(ANS);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/924\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"ds/waveletmatrix.hpp\"\n#include \"ds/fenwick.hpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  auto Ac = cumsum<ll>(A);\n\
-    \  vi X = A;\n  UNIQUE(X);\n  for (auto&& a: A) a = LB(X, a);\n  WaveletMatrix<ll>\
-    \ WM(A);\n  VEC(pi, query, Q);\n  for (auto&& [l, r]: query) --l;\n  vc<int> med(Q);\n\
-    \  vi low_sum(Q), low_cnt(Q);\n  FOR(q, Q) {\n    auto [l, r] = query[q];\n  \
-    \  ll n = r - l;\n    med[q] = WM.kth(l, r, n / 2);\n  }\n\n  vvc<int> QID(N);\n\
-    \  FOR(q, Q) QID[med[q]].eb(q);\n\n  vvc<int> AID(N);\n  FOR(i, N) AID[A[i]].eb(i);\n\
-    \n  FenwickTree<Group_Add<ll>> bit_c(N), bit_s(N);\n\n  FOR(x, N) {\n    for (auto&&\
-    \ i: AID[x]) {\n      bit_c.add(i, 1);\n      bit_s.add(i, X[x]);\n    }\n   \
-    \ for (auto&& q: QID[x]) {\n      auto [l, r] = query[q];\n      low_cnt[q] =\
-    \ bit_c.sum(l, r);\n      low_sum[q] = bit_s.sum(l, r);\n    }\n  }\n\n  FOR(q,\
-    \ Q) {\n    auto [l, r] = query[q];\n    ll x = X[med[q]];\n    ll lc = low_cnt[q],\
-    \ ls = low_sum[q];\n    ll hc = r - l - lc;\n    ll hs = Ac[r] - Ac[l] - ls;\n\
-    \    ll ANS = 0;\n    ANS += x * lc - ls;\n    ANS += hs - x * hc;\n    //   \
-    \ print(x, lc, ls, hc, hs);\n    print(ANS);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \  void debug() { print(\"fenwick\", dat); }\n};\n#line 5 \"test/atcoder/abc190f.test.cpp\"\
+    \n\n// i \u756A\u76EE\uFF1AA_i \u304C\u5148\u982D\u306B\u306A\u308B\u3088\u3046\
+    \u306B rotate \u3057\u305F\u3068\u304D\u306E\u8EE2\u5012\u6570\ntemplate <typename\
+    \ T>\nvi inversion_rotate(vc<T>& A, bool SMALL = false) {\n  const int N = len(A);\n\
+    \  if (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n    for (auto&& x: A) x\
+    \ = LB(key, x);\n  }\n  ll K = MAX(A) + 1;\n  ll ANS = 0;\n  FenwickTree<Group_Add<int>>\
+    \ bit(K);\n  for (auto&& x: A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x,\
+    \ 1);\n  }\n  vi res(N);\n  FOR(i, N) {\n    res[i] = ANS;\n    ll x = A[i];\n\
+    \    ANS = ANS + bit.prod(x + 1, K) - bit.sum(x);\n  }\n  return res;\n}\n\nvoid\
+    \ solve() {\n  LL(N);\n  VEC(int, A, N);\n  vi ANS = inversion_rotate(A, true);\n\
+    \  for (auto&& x: ANS) print(x);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc190/tasks/abc190_f\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/fenwick.hpp\"\n\
+    \n// i \u756A\u76EE\uFF1AA_i \u304C\u5148\u982D\u306B\u306A\u308B\u3088\u3046\u306B\
+    \ rotate \u3057\u305F\u3068\u304D\u306E\u8EE2\u5012\u6570\ntemplate <typename\
+    \ T>\nvi inversion_rotate(vc<T>& A, bool SMALL = false) {\n  const int N = len(A);\n\
+    \  if (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n    for (auto&& x: A) x\
+    \ = LB(key, x);\n  }\n  ll K = MAX(A) + 1;\n  ll ANS = 0;\n  FenwickTree<Group_Add<int>>\
+    \ bit(K);\n  for (auto&& x: A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x,\
+    \ 1);\n  }\n  vi res(N);\n  FOR(i, N) {\n    res[i] = ANS;\n    ll x = A[i];\n\
+    \    ANS = ANS + bit.prod(x + 1, K) - bit.sum(x);\n  }\n  return res;\n}\n\nvoid\
+    \ solve() {\n  LL(N);\n  VEC(int, A, N);\n  vi ANS = inversion_rotate(A, true);\n\
+    \  for (auto&& x: ANS) print(x);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/waveletmatrix.hpp
-  - alg/group/add.hpp
   - ds/fenwick.hpp
+  - alg/group/add.hpp
   isVerificationFile: true
-  path: test/yukicoder/924.test.cpp
+  path: test/atcoder/abc190f.test.cpp
   requiredBy: []
-  timestamp: '2022-10-21 17:08:40+09:00'
+  timestamp: '2022-10-21 18:52:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/924.test.cpp
+documentation_of: test/atcoder/abc190f.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/924.test.cpp
-- /verify/test/yukicoder/924.test.cpp.html
-title: test/yukicoder/924.test.cpp
+- /verify/test/atcoder/abc190f.test.cpp
+- /verify/test/atcoder/abc190f.test.cpp.html
+title: test/atcoder/abc190f.test.cpp
 ---

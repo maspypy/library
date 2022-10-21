@@ -18,15 +18,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2251_2.test.cpp
     title: test/aoj/2251_2.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/arc151_e.test.cpp
+    title: test/atcoder/arc151_e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/shortest_path.test.cpp
     title: test/library_checker/graph/shortest_path.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1320.test.cpp
     title: test/yukicoder/1320.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -118,13 +121,14 @@ data:
   requiredBy:
   - graph/mincostcycle.hpp
   timestamp: '2022-10-21 17:08:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1320.test.cpp
   - test/aoj/2251_2.test.cpp
   - test/aoj/0275.test.cpp
   - test/aoj/2251_1.test.cpp
   - test/library_checker/graph/shortest_path.test.cpp
+  - test/atcoder/arc151_e.test.cpp
 documentation_of: graph/shortest_path/dijkstra.hpp
 layout: document
 redirect_from:

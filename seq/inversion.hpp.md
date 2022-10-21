@@ -4,20 +4,20 @@ data:
   - icon: ':question:'
     path: alg/group/add.hpp
     title: alg/group/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ALDS1_2_A.test.cpp
     title: test/aoj/ALDS1_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ALDS1_5.test.cpp
     title: test/aoj/ALDS1_5.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -54,22 +54,24 @@ data:
     \   k >>= 1;\n    }\n    return i;\n  }\n\n  int find_kth(E k) {\n    auto check\
     \ = [&](E x) -> bool { return x <= k; };\n    return max_right(check);\n  }\n\n\
     \  void debug() { print(\"fenwick\", dat); }\n};\n#line 2 \"seq/inversion.hpp\"\
-    \n\ntemplate <typename T>\nll inversion(vc<T>& A) {\n  auto key = A;\n  UNIQUE(key);\n\
-    \  ll ANS = 0;\n  FenwickTree<Group_Add<int>> bit(len(key));\n  for (auto&& a:\
-    \ A) {\n    ll x = LB(key, a);\n    ANS += bit.prod_all() - bit.prod(x + 1);\n\
-    \    bit.add(x, 1);\n  }\n  return ANS;\n}\n"
+    \n\ntemplate <typename T>\nll inversion(vc<T>& A, bool SMALL = false) {\n  if\
+    \ (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n    for (auto&& x: A) x = LB(A,\
+    \ x);\n  }\n  ll ANS = 0;\n  ll K = MAX(A) + 1;\n  FenwickTree<Group_Add<int>>\
+    \ bit(K);\n  for (auto&& x: A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x,\
+    \ 1);\n  }\n  return ANS;\n}\n"
   code: "#include \"ds/fenwick.hpp\"\n\ntemplate <typename T>\nll inversion(vc<T>&\
-    \ A) {\n  auto key = A;\n  UNIQUE(key);\n  ll ANS = 0;\n  FenwickTree<Group_Add<int>>\
-    \ bit(len(key));\n  for (auto&& a: A) {\n    ll x = LB(key, a);\n    ANS += bit.prod_all()\
-    \ - bit.prod(x + 1);\n    bit.add(x, 1);\n  }\n  return ANS;\n}\n"
+    \ A, bool SMALL = false) {\n  if (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n\
+    \    for (auto&& x: A) x = LB(A, x);\n  }\n  ll ANS = 0;\n  ll K = MAX(A) + 1;\n\
+    \  FenwickTree<Group_Add<int>> bit(K);\n  for (auto&& x: A) {\n    ANS += bit.sum(x\
+    \ + 1, K);\n    bit.add(x, 1);\n  }\n  return ANS;\n}\n"
   dependsOn:
   - ds/fenwick.hpp
   - alg/group/add.hpp
   isVerificationFile: false
   path: seq/inversion.hpp
   requiredBy: []
-  timestamp: '2022-10-21 16:42:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-10-21 18:52:33+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/ALDS1_5.test.cpp
   - test/aoj/ALDS1_2_A.test.cpp
