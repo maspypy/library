@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/dynamic_lichao.hpp"
+#include "ds/cht/dynamic_lichao.hpp"
 
 void solve() {
   LL(N, Q);

@@ -4,7 +4,7 @@
 
 #include "ds/segtree.hpp"
 #include "mod/modint.hpp"
-#include "alg/group_affine.hpp"
+#include "alg/group/affine.hpp"
 
 using mint = modint998;
 

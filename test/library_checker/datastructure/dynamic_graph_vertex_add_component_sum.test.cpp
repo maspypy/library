@@ -1,9 +1,10 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum"
+#define PROBLEM \
+  "https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "pds/rollbackunionfind.hpp"
-#include "pds/rollbackarray.hpp"
-#include "ds/addremove_query.hpp"
+#include "ds/pds/rollbackunionfind.hpp"
+#include "ds/pds/rollbackarray.hpp"
+#include "ds/query/addremove_query.hpp"
 
 void solve() {
   LL(N, Q);

@@ -1,5 +1,5 @@
-#include "alg/group_cntsum.hpp"
-#include "alg/group_affine.hpp"
+#include "alg/group/cntsum.hpp"
+#include "alg/group/affine.hpp"
 
 template <typename E>
 struct Lazy_CntSum_Affine {

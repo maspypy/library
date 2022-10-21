@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "pds/array.hpp"
+#include "ds/pds/array.hpp"
 
 void solve() {
   LL(Q);
