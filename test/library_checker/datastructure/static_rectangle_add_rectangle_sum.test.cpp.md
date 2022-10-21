@@ -14,7 +14,7 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: alg/group_add.hpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ds/rectangle_add_ractangle_sum.hpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/static_rectangle_add_rectangle_sum\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/rectangle_add_ractangle_sum.hpp\"\

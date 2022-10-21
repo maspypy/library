@@ -16,6 +16,9 @@ data:
     title: seq/famous/stirling_number_2.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
+    title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
   - icon: ':heavy_check_mark:'
@@ -75,6 +78,7 @@ data:
   - test/yukicoder/1875.test.cpp
   - test/yukicoder/1760.test.cpp
   - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
+  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
 documentation_of: mod/powertable.hpp
 layout: document

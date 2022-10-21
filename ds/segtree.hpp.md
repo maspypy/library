@@ -2,10 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: ds/query/range_mex_query.hpp
+    title: ds/query/range_mex_query.hpp
   - icon: ':warning:'
     path: ds/sortable_segtree.hpp
     title: ds/sortable_segtree.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/suffix_tree.hpp
+    title: string/suffix_tree.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/range_mex.test.cpp
+    title: test/mytest/range_mex.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/suffix_tree.test.cpp
+    title: test/mytest/suffix_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1435.test.cpp
     title: test/yukicoder/1435.test.cpp
@@ -118,9 +130,13 @@ data:
   path: ds/segtree.hpp
   requiredBy:
   - ds/sortable_segtree.hpp
+  - ds/query/range_mex_query.hpp
+  - string/suffix_tree.hpp
   timestamp: '2022-08-11 02:08:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/suffix_tree.test.cpp
+  - test/mytest/range_mex.test.cpp
   - test/yukicoder/1549.test.cpp
   - test/yukicoder/426.test.cpp
   - test/yukicoder/1435.test.cpp

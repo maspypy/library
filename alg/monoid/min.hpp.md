@@ -1,11 +1,41 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: ds/query/range_mex_query.hpp
+    title: ds/query/range_mex_query.hpp
+  - icon: ':warning:'
+    path: string/longest_common_substring.hpp
+    title: string/longest_common_substring.hpp
+  - icon: ':warning:'
+    path: string/sort_all_substring.hpp
+    title: string/sort_all_substring.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/suffix_tree.hpp
+    title: string/suffix_tree.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/suffixarray.hpp
+    title: string/suffixarray.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/string/number_of_substrings.test.cpp
+    title: test/library_checker/string/number_of_substrings.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/string/suffix_array.test.cpp
+    title: test/library_checker/string/suffix_array.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/string/suffix_array_vec.test.cpp
+    title: test/library_checker/string/suffix_array_vec.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/range_mex.test.cpp
+    title: test/mytest/range_mex.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/suffix_tree.test.cpp
+    title: test/mytest/suffix_tree.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/min.hpp\"\ntemplate <class X>\r\nstruct Monoid_Min\
@@ -19,10 +49,20 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/min.hpp
-  requiredBy: []
+  requiredBy:
+  - ds/query/range_mex_query.hpp
+  - string/sort_all_substring.hpp
+  - string/suffix_tree.hpp
+  - string/longest_common_substring.hpp
+  - string/suffixarray.hpp
   timestamp: '2022-10-21 16:22:09+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/mytest/suffix_tree.test.cpp
+  - test/mytest/range_mex.test.cpp
+  - test/library_checker/string/suffix_array_vec.test.cpp
+  - test/library_checker/string/suffix_array.test.cpp
+  - test/library_checker/string/number_of_substrings.test.cpp
 documentation_of: alg/monoid/min.hpp
 layout: document
 redirect_from:

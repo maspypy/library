@@ -3,8 +3,8 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: enumerate/enumerate_triangles.hpp
-    title: enumerate/enumerate_triangles.hpp
+    path: enumerate/triangles.hpp
+    title: enumerate/triangles.hpp
   - icon: ':heavy_check_mark:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
@@ -14,15 +14,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/manhattan_mst.hpp
     title: geo/manhattan_mst.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/bellmanford.hpp
-    title: graph/bellmanford.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/bfs01.hpp
-    title: graph/bfs01.hpp
-  - icon: ':warning:'
-    path: graph/bfsnumbering.hpp
-    title: graph/bfsnumbering.hpp
   - icon: ':warning:'
     path: graph/bipartite_coloring.hpp
     title: graph/bipartite_coloring.hpp
@@ -38,27 +29,27 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/cycle_detection.hpp
-    title: graph/cycle_detection.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/dial.hpp
-    title: graph/dial.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/dijkstra.hpp
-    title: graph/dijkstra.hpp
+  - icon: ':warning:'
+    path: graph/ds/bfsnumbering.hpp
+    title: graph/ds/bfsnumbering.hpp
+  - icon: ':warning:'
+    path: graph/ds/dualtreemonoid.hpp
+    title: graph/ds/dualtreemonoid.hpp
+  - icon: ':warning:'
+    path: graph/ds/treeabelgroup.hpp
+    title: graph/ds/treeabelgroup.hpp
   - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
   - icon: ':warning:'
-    path: graph/dualtreemonoid.hpp
-    title: graph/dualtreemonoid.hpp
-  - icon: ':warning:'
     path: graph/eulerwalk.hpp
     title: graph/eulerwalk.hpp
+  - icon: ':warning:'
+    path: graph/find_cycle.hpp
+    title: graph/find_cycle.hpp
   - icon: ':warning:'
     path: graph/find_nontransitive_triple.hpp
     title: graph/find_nontransitive_triple.hpp
@@ -68,37 +59,49 @@ data:
   - icon: ':question:'
     path: graph/functional.hpp
     title: graph/functional.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
   - icon: ':heavy_check_mark:'
     path: graph/maximum_independent_set.hpp
     title: graph/maximum_independent_set.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/mincostcycle.hpp
-    title: graph/mincostcycle.hpp
-  - icon: ':heavy_check_mark:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
   - icon: ':heavy_check_mark:'
     path: graph/range_to_range_graph.hpp
     title: graph/range_to_range_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: graph/reachability.hpp
     title: graph/reachability.hpp
   - icon: ':heavy_check_mark:'
     path: graph/rerooting_dp.hpp
     title: graph/rerooting_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
+  - icon: ':warning:'
+    path: graph/shortest_path/bellmanford.hpp
+    title: graph/shortest_path/bellmanford.hpp
+  - icon: ':warning:'
+    path: graph/shortest_path/bfs01.hpp
+    title: graph/shortest_path/bfs01.hpp
+  - icon: ':warning:'
+    path: graph/shortest_path/dial.hpp
+    title: graph/shortest_path/dial.hpp
+  - icon: ':warning:'
+    path: graph/shortest_path/dijkstra.hpp
+    title: graph/shortest_path/dijkstra.hpp
+  - icon: ':warning:'
+    path: graph/shortest_path/warshall_floyd.hpp
+    title: graph/shortest_path/warshall_floyd.hpp
   - icon: ':heavy_check_mark:'
     path: graph/steiner_tree.hpp
     title: graph/steiner_tree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
   - icon: ':question:'
@@ -107,18 +110,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/tree_diameter.hpp
-    title: graph/tree_diameter.hpp
   - icon: ':warning:'
     path: graph/tree_dp.hpp
     title: graph/tree_dp.hpp
   - icon: ':heavy_check_mark:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
-  - icon: ':warning:'
-    path: graph/treeabelgroup.hpp
-    title: graph/treeabelgroup.hpp
   - icon: ':heavy_check_mark:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
@@ -129,21 +126,12 @@ data:
     path: graph/unicyclic.hpp
     title: graph/unicyclic.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/warshall_floyd.hpp
-    title: graph/warshall_floyd.hpp
-  - icon: ':heavy_check_mark:'
     path: string/suffix_automaton.hpp
     title: string/suffix_automaton.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/suffix_tree.hpp
+    title: string/suffix_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/0275.test.cpp
-    title: test/aoj/0275.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/2251_1.test.cpp
-    title: test/aoj/2251_1.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/2251_2.test.cpp
-    title: test/aoj/2251_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/2677.test.cpp
     title: test/aoj/2677.test.cpp
@@ -151,17 +139,8 @@ data:
     path: test/aoj/2995.test.cpp
     title: test/aoj/2995.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_12_B.test.cpp
-    title: test/aoj/ALDS1_12_B.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_2_A.test.cpp
     title: test/aoj/DPL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_1_B.test.cpp
-    title: test/aoj/GRL_1_B.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_1_C.test.cpp
-    title: test/aoj/GRL_1_C.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_A.test.cpp
     title: test/aoj/GRL_3_A.test.cpp
@@ -184,9 +163,6 @@ data:
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/cycle_detection.test.cpp
-    title: test/library_checker/graph/cycle_detection.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/manhattan_mst.test.cpp
     title: test/library_checker/graph/manhattan_mst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -196,14 +172,8 @@ data:
     path: test/library_checker/graph/scc.test.cpp
     title: test/library_checker/graph/scc.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/shortest_path.test.cpp
-    title: test/library_checker/graph/shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/two_edge_component.test.cpp
     title: test/library_checker/graph/two_edge_component.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/verted_add_contour_sum.test.cpp
-    title: test/library_checker/graph/verted_add_contour_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/twosat.test.cpp
     title: test/library_checker/math/twosat.test.cpp
@@ -220,8 +190,8 @@ data:
     path: test/library_checker/tree/lca_directed.test.cpp
     title: test/library_checker/tree/lca_directed.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/tree/tree_diameter.test.cpp
-    title: test/library_checker/tree/tree_diameter.test.cpp
+    path: test/mytest/suffix_tree.test.cpp
+    title: test/mytest/suffix_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1002.test.cpp
     title: test/yukicoder/1002.test.cpp
@@ -247,12 +217,6 @@ data:
     path: test/yukicoder/1293.test.cpp
     title: test/yukicoder/1293.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1320.test.cpp
-    title: test/yukicoder/1320.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1344.test.cpp
-    title: test/yukicoder/1344.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1418.test.cpp
     title: test/yukicoder/1418.test.cpp
   - icon: ':heavy_check_mark:'
@@ -264,15 +228,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1494.test.cpp
     title: test/yukicoder/1494.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1601.test.cpp
-    title: test/yukicoder/1601.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/17.test.cpp
-    title: test/yukicoder/17.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1718.test.cpp
-    title: test/yukicoder/1718.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1744.test.cpp
     title: test/yukicoder/1744.test.cpp
@@ -288,9 +243,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1813.test.cpp
     title: test/yukicoder/1813.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1868.test.cpp
-    title: test/yukicoder/1868.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1911.test.cpp
     title: test/yukicoder/1911.test.cpp
@@ -404,22 +356,22 @@ data:
   requiredBy:
   - game/graph_game.hpp
   - flow/bipartite.hpp
-  - enumerate/enumerate_triangles.hpp
-  - graph/mincostcycle.hpp
+  - enumerate/triangles.hpp
   - graph/maximum_antichain.hpp
-  - graph/tree_diameter.hpp
   - graph/toposort.hpp
+  - graph/shortest_path/dial.hpp
+  - graph/shortest_path/bellmanford.hpp
+  - graph/shortest_path/warshall_floyd.hpp
+  - graph/shortest_path/dijkstra.hpp
+  - graph/shortest_path/bfs01.hpp
   - graph/bipartite_coloring.hpp
   - graph/eulerwalk.hpp
   - graph/find_nontransitive_triple.hpp
-  - graph/dualtreemonoid.hpp
   - graph/maximum_independent_set.hpp
   - graph/reverse_graph.hpp
   - graph/minimum_hamiltonian_cycle.hpp
-  - graph/treeabelgroup.hpp
-  - graph/cycle_detection.hpp
+  - graph/find_cycle.hpp
   - graph/dsu_on_tree.hpp
-  - graph/dial.hpp
   - graph/centroid.hpp
   - graph/rerooting_dp.hpp
   - graph/tree_all_distances.hpp
@@ -432,23 +384,23 @@ data:
   - graph/bracket_graph.hpp
   - graph/reachability.hpp
   - graph/functional.hpp
+  - graph/ds/dualtreemonoid.hpp
+  - graph/ds/treeabelgroup.hpp
+  - graph/ds/bfsnumbering.hpp
   - graph/tree.hpp
   - graph/steiner_tree.hpp
-  - graph/bfsnumbering.hpp
   - graph/twosat.hpp
   - graph/tree_of_unionfind.hpp
   - graph/block_cut.hpp
-  - graph/bellmanford.hpp
-  - graph/warshall_floyd.hpp
   - graph/find_odd_cycle.hpp
   - graph/check_bipartite.hpp
-  - graph/dijkstra.hpp
-  - graph/bfs01.hpp
+  - string/suffix_tree.hpp
   - string/suffix_automaton.hpp
   - geo/manhattan_mst.hpp
   timestamp: '2022-08-30 02:42:36+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/mytest/suffix_tree.test.cpp
   - test/yukicoder/590.test.cpp
   - test/yukicoder/1293.test.cpp
   - test/yukicoder/114.test.cpp
@@ -458,49 +410,33 @@ data:
   - test/yukicoder/1976.test.cpp
   - test/yukicoder/1479.test.cpp
   - test/yukicoder/1744.test.cpp
-  - test/yukicoder/1320.test.cpp
   - test/yukicoder/1170.test.cpp
-  - test/yukicoder/1868.test.cpp
   - test/yukicoder/1211.test.cpp
   - test/yukicoder/1242.test.cpp
-  - test/yukicoder/1601.test.cpp
   - test/yukicoder/1002.test.cpp
-  - test/yukicoder/17.test.cpp
-  - test/yukicoder/1718.test.cpp
   - test/yukicoder/1745.test.cpp
   - test/yukicoder/1813.test.cpp
   - test/yukicoder/1911.test.cpp
-  - test/yukicoder/1344.test.cpp
   - test/yukicoder/1796.test.cpp
   - test/yukicoder/1778.test.cpp
   - test/yukicoder/1418.test.cpp
   - test/yukicoder/1494.test.cpp
   - test/yukicoder/1038.test.cpp
   - test/aoj/GRL_3_B.test.cpp
-  - test/aoj/GRL_1_C.test.cpp
-  - test/aoj/GRL_1_B.test.cpp
-  - test/aoj/ALDS1_12_B.test.cpp
-  - test/aoj/2251_2.test.cpp
   - test/aoj/2677.test.cpp
   - test/aoj/GRL_3_A.test.cpp
-  - test/aoj/0275.test.cpp
   - test/aoj/2995.test.cpp
   - test/aoj/DPL_2_A.test.cpp
-  - test/aoj/2251_1.test.cpp
   - test/library_checker/math/twosat.test.cpp
-  - test/library_checker/tree/tree_diameter.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/tree/lca.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
-  - test/library_checker/graph/shortest_path.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
-  - test/library_checker/graph/cycle_detection.test.cpp
   - test/library_checker/graph/maximum_independent_set.test.cpp
   - test/library_checker/graph/scc.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/biconnected_component.test.cpp
-  - test/library_checker/graph/verted_add_contour_sum.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - test/library_checker/string/number_of_substrings2.test.cpp
   - test/atcoder/abc266f.test.cpp

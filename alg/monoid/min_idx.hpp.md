@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: string/suffix_tree.hpp
+    title: string/suffix_tree.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/suffix_tree.test.cpp
+    title: test/mytest/suffix_tree.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid/min_idx.hpp\"\ntemplate <typename T, bool tie_is_left\
@@ -26,10 +32,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/min_idx.hpp
-  requiredBy: []
+  requiredBy:
+  - string/suffix_tree.hpp
   timestamp: '2022-10-21 16:22:09+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/mytest/suffix_tree.test.cpp
 documentation_of: alg/monoid/min_idx.hpp
 layout: document
 redirect_from:

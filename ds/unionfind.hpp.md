@@ -11,13 +11,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
   - icon: ':question:'
     path: graph/functional.hpp
     title: graph/functional.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
   - icon: ':warning:'
@@ -30,12 +30,6 @@ data:
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/2251_1.test.cpp
-    title: test/aoj/2251_1.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/2251_2.test.cpp
-    title: test/aoj/2251_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/2995.test.cpp
     title: test/aoj/2995.test.cpp
@@ -137,9 +131,7 @@ data:
   - test/yukicoder/1745.test.cpp
   - test/yukicoder/1170_2.test.cpp
   - test/yukicoder/1911.test.cpp
-  - test/aoj/2251_2.test.cpp
   - test/aoj/2995.test.cpp
-  - test/aoj/2251_1.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/datastructure/unionfind.test.cpp

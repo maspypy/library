@@ -64,6 +64,9 @@ data:
     path: test/library_checker/math/lcm_convolution.test.cpp
     title: test/library_checker/math/lcm_convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
+    title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
   - icon: ':heavy_check_mark:'
@@ -165,6 +168,7 @@ data:
   - test/library_checker/math/lcm_convolution.test.cpp
   - test/library_checker/math/counting_primes.test.cpp
   - test/library_checker/math/enumerate_primes.test.cpp
+  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/math/totient_sum.test.cpp
   - test/library_checker/math/tetration.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp

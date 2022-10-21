@@ -5,12 +5,15 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/ds/dualtreemonoid.hpp
+    title: graph/ds/dualtreemonoid.hpp
+  - icon: ':warning:'
+    path: graph/ds/treeabelgroup.hpp
+    title: graph/ds/treeabelgroup.hpp
   - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
-  - icon: ':warning:'
-    path: graph/dualtreemonoid.hpp
-    title: graph/dualtreemonoid.hpp
   - icon: ':question:'
     path: graph/functional.hpp
     title: graph/functional.hpp
@@ -20,9 +23,6 @@ data:
   - icon: ':warning:'
     path: graph/tree_dp.hpp
     title: graph/tree_dp.hpp
-  - icon: ':warning:'
-    path: graph/treeabelgroup.hpp
-    title: graph/treeabelgroup.hpp
   - icon: ':heavy_check_mark:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
@@ -69,9 +69,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1494.test.cpp
     title: test/yukicoder/1494.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1718.test.cpp
-    title: test/yukicoder/1718.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1778.test.cpp
     title: test/yukicoder/1778.test.cpp
@@ -279,13 +276,13 @@ data:
   isVerificationFile: false
   path: graph/tree.hpp
   requiredBy:
-  - graph/dualtreemonoid.hpp
-  - graph/treeabelgroup.hpp
   - graph/dsu_on_tree.hpp
   - graph/rerooting_dp.hpp
   - graph/two_edge_component.hpp
   - graph/tree_dp.hpp
   - graph/functional.hpp
+  - graph/ds/dualtreemonoid.hpp
+  - graph/ds/treeabelgroup.hpp
   timestamp: '2022-10-14 01:11:36+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -295,7 +292,6 @@ data:
   - test/yukicoder/1976.test.cpp
   - test/yukicoder/1211.test.cpp
   - test/yukicoder/1242.test.cpp
-  - test/yukicoder/1718.test.cpp
   - test/yukicoder/1778.test.cpp
   - test/yukicoder/1418.test.cpp
   - test/yukicoder/1494.test.cpp

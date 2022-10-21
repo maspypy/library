@@ -3,8 +3,8 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: graph/dualtreemonoid.hpp
-    title: graph/dualtreemonoid.hpp
+    path: graph/ds/dualtreemonoid.hpp
+    title: graph/ds/dualtreemonoid.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -54,7 +54,7 @@ data:
   isVerificationFile: false
   path: ds/dualsegtree.hpp
   requiredBy:
-  - graph/dualtreemonoid.hpp
+  - graph/ds/dualtreemonoid.hpp
   timestamp: '2022-06-19 03:08:14+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

@@ -1,11 +1,35 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: string/longest_common_substring.hpp
+    title: string/longest_common_substring.hpp
+  - icon: ':warning:'
+    path: string/sort_all_substring.hpp
+    title: string/sort_all_substring.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/suffix_tree.hpp
+    title: string/suffix_tree.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/suffixarray.hpp
+    title: string/suffixarray.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/string/number_of_substrings.test.cpp
+    title: test/library_checker/string/number_of_substrings.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/string/suffix_array.test.cpp
+    title: test/library_checker/string/suffix_array.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/string/suffix_array_vec.test.cpp
+    title: test/library_checker/string/suffix_array_vec.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/suffix_tree.test.cpp
+    title: test/mytest/suffix_tree.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/disjointsparse.hpp\"\n\r\ntemplate <class Monoid>\r\n\
@@ -63,10 +87,18 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: ds/disjointsparse.hpp
-  requiredBy: []
+  requiredBy:
+  - string/sort_all_substring.hpp
+  - string/suffix_tree.hpp
+  - string/longest_common_substring.hpp
+  - string/suffixarray.hpp
   timestamp: '2022-08-18 20:33:44+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/mytest/suffix_tree.test.cpp
+  - test/library_checker/string/suffix_array_vec.test.cpp
+  - test/library_checker/string/suffix_array.test.cpp
+  - test/library_checker/string/number_of_substrings.test.cpp
 documentation_of: ds/disjointsparse.hpp
 layout: document
 redirect_from:

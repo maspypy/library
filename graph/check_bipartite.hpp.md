@@ -11,19 +11,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/2251_1.test.cpp
-    title: test/aoj/2251_1.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/2251_2.test.cpp
-    title: test/aoj/2251_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
@@ -138,8 +132,6 @@ data:
   - test/yukicoder/1744.test.cpp
   - test/yukicoder/1745.test.cpp
   - test/yukicoder/1911.test.cpp
-  - test/aoj/2251_2.test.cpp
-  - test/aoj/2251_1.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
 documentation_of: graph/check_bipartite.hpp
 layout: document

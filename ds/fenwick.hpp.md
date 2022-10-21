@@ -9,23 +9,20 @@ data:
     path: ds/fenwickraq.hpp
     title: ds/fenwickraq.hpp
   - icon: ':warning:'
-    path: ds/point_add_polygon_sum.hpp
-    title: ds/point_add_polygon_sum.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/point_add_rectangle_sum.hpp
-    title: ds/point_add_rectangle_sum.hpp
+    path: ds/query/point_add_polygon_sum.hpp
+    title: ds/query/point_add_polygon_sum.hpp
   - icon: ':warning:'
-    path: ds/rectangle_add_point_sum.hpp
-    title: ds/rectangle_add_point_sum.hpp
+    path: ds/query/point_add_rectangle_sum.hpp
+    title: ds/query/point_add_rectangle_sum.hpp
   - icon: ':heavy_check_mark:'
-    path: ds/rectangle_add_ractangle_sum.hpp
-    title: ds/rectangle_add_ractangle_sum.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/contoursum.hpp
-    title: graph/contoursum.hpp
+    path: ds/query/rectangle_add_point_sum.hpp
+    title: ds/query/rectangle_add_point_sum.hpp
   - icon: ':warning:'
-    path: graph/treeabelgroup.hpp
-    title: graph/treeabelgroup.hpp
+    path: graph/ds/contoursum.hpp
+    title: graph/ds/contoursum.hpp
+  - icon: ':warning:'
+    path: graph/ds/treeabelgroup.hpp
+    title: graph/ds/treeabelgroup.hpp
   - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
@@ -43,20 +40,11 @@ data:
     path: test/library_checker/datastructure/point_add_range_sum.test.cpp
     title: test/library_checker/datastructure/point_add_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
-    title: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
-    title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
-    title: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/verted_add_contour_sum.test.cpp
-    title: test/library_checker/graph/verted_add_contour_sum.test.cpp
+    path: test/mytest/rect_add_pt_sum.test.cpp
+    title: test/mytest/rect_add_pt_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
@@ -64,11 +52,11 @@ data:
     path: test/yukicoder/1311.test.cpp
     title: test/yukicoder/1311.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1490.test.cpp
-    title: test/yukicoder/1490.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1874.test.cpp
     title: test/yukicoder/1874.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/924.test.cpp
+    title: test/yukicoder/924.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -142,28 +130,24 @@ data:
   path: ds/fenwick.hpp
   requiredBy:
   - seq/inversion.hpp
-  - graph/treeabelgroup.hpp
-  - graph/contoursum.hpp
-  - ds/point_add_polygon_sum.hpp
-  - ds/point_add_rectangle_sum.hpp
-  - ds/rectangle_add_ractangle_sum.hpp
+  - graph/ds/treeabelgroup.hpp
+  - graph/ds/contoursum.hpp
+  - ds/query/point_add_polygon_sum.hpp
+  - ds/query/point_add_rectangle_sum.hpp
+  - ds/query/rectangle_add_point_sum.hpp
   - ds/fenwickraq.hpp
-  - ds/rectangle_add_point_sum.hpp
   timestamp: '2022-10-21 16:42:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/rect_add_pt_sum.test.cpp
   - test/yukicoder/1874.test.cpp
+  - test/yukicoder/924.test.cpp
   - test/yukicoder/1311.test.cpp
   - test/yukicoder/1038.test.cpp
-  - test/yukicoder/1490.test.cpp
   - test/aoj/DSL_2_G.test.cpp
   - test/aoj/DSL_2_E.test.cpp
   - test/aoj/ALDS1_2_A.test.cpp
-  - test/library_checker/graph/verted_add_contour_sum.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-  - test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
-  - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
-  - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
 documentation_of: ds/fenwick.hpp
 layout: document

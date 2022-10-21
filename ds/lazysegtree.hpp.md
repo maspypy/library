@@ -3,8 +3,8 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: graph/dualtreemonoid.hpp
-    title: graph/dualtreemonoid.hpp
+    path: graph/ds/dualtreemonoid.hpp
+    title: graph/ds/dualtreemonoid.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/749.test.cpp
@@ -142,7 +142,7 @@ data:
   isVerificationFile: false
   path: ds/lazysegtree.hpp
   requiredBy:
-  - graph/dualtreemonoid.hpp
+  - graph/ds/dualtreemonoid.hpp
   timestamp: '2022-08-11 02:08:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

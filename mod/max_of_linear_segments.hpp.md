@@ -5,10 +5,13 @@ data:
     path: mod/min_of_linear_segments.hpp
     title: mod/min_of_linear_segments.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/max_of_linear_segments.test.cpp
+    title: test/mytest/max_of_linear_segments.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/min_of_linear_segments.hpp\"\n\n/*\nax + b (x>=0) \u304C\
@@ -54,8 +57,9 @@ data:
   path: mod/max_of_linear_segments.hpp
   requiredBy: []
   timestamp: '2022-08-16 06:06:56+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/mytest/max_of_linear_segments.test.cpp
 documentation_of: mod/max_of_linear_segments.hpp
 layout: document
 redirect_from:

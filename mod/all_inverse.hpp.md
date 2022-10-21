@@ -5,10 +5,13 @@ data:
   - icon: ':warning:'
     path: seq/famous/q_binomial.hpp
     title: seq/famous/q_binomial.hpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/all_inverse.test.cpp
+    title: test/mytest/all_inverse.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"mod/all_inverse.hpp\"\ntemplate <typename mint>\nvc<mint>\
@@ -27,8 +30,9 @@ data:
   requiredBy:
   - seq/famous/q_binomial.hpp
   timestamp: '2022-08-07 13:08:34+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/mytest/all_inverse.test.cpp
 documentation_of: mod/all_inverse.hpp
 layout: document
 redirect_from:
