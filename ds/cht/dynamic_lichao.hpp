@@ -1,4 +1,4 @@
-#include "alg/monoid_min_idx.hpp"
+#include "alg/monoid/min_idx.hpp"
 
 // x 座標は long long に限定している。
 // 直線の係数 T は double や i128 も可能。
@@ -107,8 +107,10 @@ private:
   pair<T, int> query_rec(Node *c, ll x, ll node_l, ll node_r) {
     pair<T, int> res = c->f(x);
     ll node_m = (node_l + node_r) / 2;
-    if (x < node_m && c->l) res = Mono::op(res, query_rec(c->l, x, node_l, node_m));
-    if (x >= node_m && c->r) res = Mono::op(res, query_rec(c->r, x, node_m, node_r));
+    if (x < node_m && c->l)
+      res = Mono::op(res, query_rec(c->l, x, node_l, node_m));
+    if (x >= node_m && c->r)
+      res = Mono::op(res, query_rec(c->r, x, node_m, node_r));
     return res;
   }
 };

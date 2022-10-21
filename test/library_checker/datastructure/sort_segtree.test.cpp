@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/sortable_segtree.hpp"
-#include "alg/group_affine.hpp"
+#include "alg/group/affine.hpp"
 #include "mod/modint.hpp"
 
 using mint = modint998;

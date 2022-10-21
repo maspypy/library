@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "alg/lazy_cntsum_affine.hpp"
+#include "alg/lazy/cntsum_affine.hpp"
 #include "mod/modint.hpp"
 #include "bbst/splaytree_lazy.hpp"
 

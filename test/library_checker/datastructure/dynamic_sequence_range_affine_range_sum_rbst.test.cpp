@@ -3,9 +3,9 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "alg/lazy_cntsum_affine.hpp"
+#include "alg/lazy/cntsum_affine.hpp"
 #include "mod/modint.hpp"
-#include "bbst/rbst_lazy.hpp"
+#include "ds/bbst/rbst_lazy.hpp"
 
 using mint = modint998;
 

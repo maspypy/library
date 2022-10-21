@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "pds/unionfind.hpp"
+#include "ds/pds/unionfind.hpp"
 
 void solve() {
   LL(N, Q);

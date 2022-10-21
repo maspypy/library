@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "alg/group_add.hpp"
+#include "alg/group/add.hpp"
 #include "ds/segtree2d.hpp"
 
 void solve() {
