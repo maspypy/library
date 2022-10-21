@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/4"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "dp/subset_sum.hpp"
+#include "knapsack/subset_sum.hpp"
 
 void solve() {
   LL(N);

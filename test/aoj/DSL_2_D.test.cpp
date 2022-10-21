@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/dualsegtree.hpp"
-#include "alg/monoid_set.hpp"
+#include "alg/monoid/set.hpp"
 
 void solve() {
   using Mono = Monoid_Set<ll, (1LL << 31) - 1>;

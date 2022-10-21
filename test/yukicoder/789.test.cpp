@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/dynamic_segtree.hpp"
-#include "alg/group_add.hpp"
+#include "alg/group/add.hpp"
 
 void solve() {
   Dynamic_SegTree<Group_Add<ll>> seg(0, 1LL << 30);

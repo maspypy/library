@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"
-#include "alg/group_affine.hpp"
+#include "alg/group/affine.hpp"
 #include "ds/xor_sparsetable.hpp"
 
 using mint = modint998;

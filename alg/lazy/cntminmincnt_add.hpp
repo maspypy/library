@@ -1,5 +1,5 @@
-#include "alg/monoid_cntminmincnt.hpp"
-#include "alg/group_add.hpp"
+#include "alg/monoid/cntminmincnt.hpp"
+#include "alg/group/add.hpp"
 
 struct Lazy_CntMinMincnt_Add {
   using MX = Monoid_CntMinMincnt;

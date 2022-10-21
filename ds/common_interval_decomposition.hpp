@@ -1,5 +1,5 @@
 #include "ds/lazysegtree.hpp"
-#include "alg/lazy_min_add.hpp"
+#include "alg/lazy/min_add.hpp"
 
 template <int NODES>
 struct Common_Inverval_Decomposition {

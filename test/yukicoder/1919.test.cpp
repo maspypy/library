@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "mod/modint.hpp"
 #include "ds/fenwick2d.hpp"
-#include "alg/group_cntsum.hpp"
+#include "alg/group/cntsum.hpp"
 
 using mint = modint107;
 

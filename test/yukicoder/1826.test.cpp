@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/dynamic_segtree.hpp"
-#include "alg/monoid_max.hpp"
+#include "alg/monoid/max.hpp"
 
 void solve() {
   LL(N);

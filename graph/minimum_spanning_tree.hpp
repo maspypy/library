@@ -1,10 +1,10 @@
 #include "ds/unionfind.hpp"
 #include "graph/base.hpp"
 #include "graph/tree.hpp"
-#include "graph/treemonoid.hpp"
-#include "graph/dualtreemonoid.hpp"
-#include "alg/monoid_min.hpp"
-#include "alg/monoid_max.hpp"
+#include "graph/ds/treemonoid.hpp"
+#include "graph/ds/dualtreemonoid.hpp"
+#include "alg/monoid/min.hpp"
+#include "alg/monoid/max.hpp"
 
 // return : {T mst_cost, vc<bool> in_mst, Graph MST}
 template <typename T>

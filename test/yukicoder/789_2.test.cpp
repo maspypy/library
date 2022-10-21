@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/dynamic_lazysegtree.hpp"
-#include "alg/lazy_cntsum_add.hpp"
+#include "alg/lazy/cntsum_add.hpp"
 
 void solve() {
   auto f = [&](ll L, ll R) -> pi { return {R - L, 0}; };

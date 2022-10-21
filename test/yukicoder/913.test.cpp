@@ -2,8 +2,8 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/dualsegtree.hpp"
-#include "alg/monoid_min.hpp"
-#include "ds/cht_monotone.hpp"
+#include "alg/monoid/min.hpp"
+#include "ds/cht/cht_monotone.hpp"
 
 void solve() {
   LL(N);

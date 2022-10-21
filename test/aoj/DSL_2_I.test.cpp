@@ -3,7 +3,7 @@
 
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "alg/lazy_cntsum_set.hpp"
+#include "alg/lazy/cntsum_set.hpp"
 #include "ds/lazysegtree.hpp"
 
 void solve() {

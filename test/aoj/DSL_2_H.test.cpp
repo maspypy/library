@@ -3,7 +3,7 @@
 
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "alg/lazy_min_add.hpp"
+#include "alg/lazy/min_add.hpp"
 #include "ds/lazysegtree.hpp"
 
 void solve() {

@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/segtree2d_dense.hpp"
-#include "alg/group_add.hpp"
+#include "alg/group/add.hpp"
 
 void solve() {
   LL(H, W, T, Q);

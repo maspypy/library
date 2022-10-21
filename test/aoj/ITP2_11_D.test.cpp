@@ -2,7 +2,7 @@
   "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_11_D"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "other/for_nck.hpp"
+#include "setfunc/for_nck.hpp"
 
 void solve() {
   LL(N, K);

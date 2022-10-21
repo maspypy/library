@@ -1,9 +1,9 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1790"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "alg/group_xor.hpp"
-#include "alg/monoid_max.hpp"
-#include "graph/lazytreemonoid.hpp"
+#include "alg/group/xor.hpp"
+#include "alg/monoid/max.hpp"
+#include "graph/ds/lazytreemonoid.hpp"
 
 struct Lazy {
   using MX = Group_Xor<ll>;

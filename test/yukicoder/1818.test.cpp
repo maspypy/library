@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1818"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "dp/edit_distance.hpp"
+#include "string/edit_distance.hpp"
 
 void solve() {
   LL(N, M);

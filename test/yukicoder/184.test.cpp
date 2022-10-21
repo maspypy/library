@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/184"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "alg/monoid_xor_basis.hpp"
+#include "alg/monoid/xor_basis.hpp"
 
 void solve() {
   LL(N);

@@ -1,4 +1,4 @@
-#include "other/random.hpp"
+#include "random/base.hpp"
 #include "mod/modint61.hpp"
 
 // Faster Deterministic Modular Subset Sum. arXiv preprint arXiv:2012.06062.
@@ -93,14 +93,14 @@ struct ShiftTree {
 ・restore(x) で復元。
 コンストラクタには、(mod, vals) をわたす
 */
-template<typename INT>
+template <typename INT>
 struct Modular_Subset_Sum {
   int mod;
   vc<INT>& vals;
   vc<int> par;
 
   Modular_Subset_Sum(int mod, vc<INT>& vals) : mod(mod), vals(vals) {
-    for(auto&& x : vals) assert(0 <= x && x < mod);
+    for (auto&& x: vals) assert(0 <= x && x < mod);
     par.assign(mod, -1);
 
     const ll base = RNG(0, (1LL << 61) - 1);
