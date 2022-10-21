@@ -192,9 +192,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/common_interval_decomposition.hpp
       title: ds/common_interval_decomposition.hpp
-    - icon: ':warning:'
-      path: ds/convert_addremove_query.hpp
-      title: ds/convert_addremove_query.hpp
     - icon: ':heavy_check_mark:'
       path: ds/cumsum2d.hpp
       title: ds/cumsum2d.hpp
