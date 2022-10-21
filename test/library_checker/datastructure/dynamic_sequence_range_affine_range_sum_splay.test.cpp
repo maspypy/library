@@ -5,7 +5,7 @@
 
 #include "alg/lazy/cntsum_affine.hpp"
 #include "mod/modint.hpp"
-#include "bbst/splaytree_lazy.hpp"
+#include "ds/bbst/splaytree_lazy.hpp"
 
 using mint = modint998;
 

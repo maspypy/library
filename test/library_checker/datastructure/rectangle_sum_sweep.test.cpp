@@ -4,7 +4,7 @@
 #include "other/io.hpp"
 
 #include "ds/fenwick.hpp"
-#include "ds/point_add_rectangle_sum.hpp"
+#include "ds/query/point_add_rectangle_sum.hpp"
 
 void solve() {
   LL(N, Q);
