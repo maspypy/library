@@ -1,4 +1,4 @@
-ll Knight_Distance(ll x, ll y) {
+ll knight_distance(ll x, ll y) {
   x = abs(x), y = abs(y);
   if (x + y == 0) return 0;
   if (x + y == 1) return 3;
