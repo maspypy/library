@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"
-#include "dp/count_subseq.hpp"
+#include "string/count_subseq.hpp"
 
 using mint = modint998;
 

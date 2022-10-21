@@ -1,5 +1,5 @@
 #include "mod/modint.hpp"
-#include "other/random.hpp"
+#include "random/base.hpp"
 
 template <typename mint>
 mint mod_sqrt(mint a) {

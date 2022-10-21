@@ -3,8 +3,8 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "graph/dijkstra.hpp"
-#include "graph/restore_path.hpp"
+#include "graph/shortest_path/dijkstra.hpp"
+#include "graph/shortest_path/restore_path.hpp"
 
 void solve() {
   LL(N, M, s, t);

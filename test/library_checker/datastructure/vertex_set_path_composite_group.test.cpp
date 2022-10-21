@@ -3,8 +3,8 @@
 #include "other/io.hpp"
 
 #include "mod/modint.hpp"
-#include "graph/treegroup.hpp"
-#include "alg/group_affine.hpp"
+#include "graph/ds/treegroup.hpp"
+#include "alg/group/affine.hpp"
 
 using mint = modint998;
 

@@ -1,5 +1,5 @@
 #include "seq/find_linear_rec.hpp"
-#include "other/random.hpp"
+#include "random/base.hpp"
 
 template <typename mint>
 vc<mint> spmat_min_poly(int N, vc<tuple<int, int, mint>> dat) {

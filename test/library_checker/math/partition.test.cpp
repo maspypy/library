@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "poly/fps_inv.hpp"
 #include "mod/modint.hpp"
-#include "seq/partition_number.hpp"
+#include "seq/famous/partition_number.hpp"
 
 using mint = modint998;
 

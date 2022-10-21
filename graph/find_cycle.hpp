@@ -1,11 +1,11 @@
 #include "graph/base.hpp"
 
 template <typename Graph>
-vc<int> cycle_detection_directed(Graph& G, bool is_edge = 0) {
+vc<int> find_cycle_directed(Graph& G, bool is_edge = 0) {
   assert(G.is_directed());
   assert(G.is_prepared());
   if (!is_edge) {
-    auto C = cycle_detection_directed(G, true);
+    auto C = find_cycle_directed(G, true);
     if (len(C) == 0) return C;
     vc<int> ANS(len(C));
     FOR(i, len(C)) {
@@ -46,7 +46,7 @@ vc<int> cycle_detection_directed(Graph& G, bool is_edge = 0) {
 }
 
 template <typename Graph>
-vc<int> cycle_detection_undirected(Graph& G, bool is_edge = 0) {
+vc<int> find_cycle_undirected(Graph& G, bool is_edge = 0) {
   assert(!G.is_directed());
   assert(G.is_prepared());
 
@@ -86,7 +86,7 @@ vc<int> cycle_detection_undirected(Graph& G, bool is_edge = 0) {
 // 辺の列 or 頂点列の vector を返す
 // 見つからなかった場合には、空 vector
 template <typename Graph>
-vc<int> cycle_detection(Graph& G, bool is_edge = 0) {
-  if (G.is_directed()) return cycle_detection_directed(G, is_edge);
-  return cycle_detection_undirected(G, is_edge);
+vc<int> find_cycle(Graph& G, bool is_edge = 0) {
+  if (G.is_directed()) return find_cycle_directed(G, is_edge);
+  return find_cycle_undirected(G, is_edge);
 }

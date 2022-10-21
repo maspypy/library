@@ -1,5 +1,5 @@
-#include "graph/bfs01.hpp"
-#include "graph/restore_path.hpp"
+#include "graph/shortest_path/bfs01.hpp"
+#include "graph/shortest_path/restore_path.hpp"
 
 template <typename T>
 pair<T, vc<int>> tree_diameter(Graph<T>& G) {

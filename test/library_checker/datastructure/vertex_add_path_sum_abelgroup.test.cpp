@@ -2,8 +2,8 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "graph/treeabelgroup.hpp"
-#include "alg/group_add.hpp"
+#include "graph/ds/treeabelgroup.hpp"
+#include "alg/group/add.hpp"
 
 void solve() {
   LL(N, Q);
