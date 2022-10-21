@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: ds/lichao.hpp
-    title: ds/lichao.hpp
+    path: ds/cht/lichao.hpp
+    title: ds/cht/lichao.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -200,21 +200,21 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"ds/lichao.hpp\"\ntemplate <typename T, T INF>\r\n\
-    struct LiChaoTree {\r\n  struct Line {\r\n    T a, b;\r\n    Line(T a, T b) :\
-    \ a(a), b(b) {}\r\n    inline T eval(T x) const { return a * x + b; }\r\n    inline\
-    \ bool over(const Line &other, const T &x) const {\r\n      return eval(x) < other.eval(x);\r\
-    \n    }\r\n  };\r\n\r\n  vector<T> xs;\r\n  vector<Line> seg;\r\n  int size;\r\
-    \n\r\n  // \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u3002\u30AF\u30A8\u30EA\u306E\
-    \u6765\u308B x \u5168\u4F53\u3092\u6E21\u3059\u3002\u30BD\u30FC\u30C8\u4E0D\u8981\
-    \u3002\r\n  LiChaoTree(const vector<T> &_xs) : xs(_xs) {\r\n    if (len(xs) ==\
-    \ 0) xs.eb(0);\r\n    UNIQUE(xs);\r\n    size = 1;\r\n    while (size < len(xs))\
-    \ size *= 2;\r\n    while (len(xs) < size) xs.eb(xs.back());\r\n    seg.assign(2\
-    \ * size, Line(0, INF));\r\n  }\r\n\r\n  // y = ax + b\u306A\u308B\u76F4\u7DDA\
-    \u3092\u8FFD\u52A0\r\n  void add(T a, T b) { inner_update(a, b, 0, size, 1); }\r\
-    \n\r\n  // [lx, rx) \u306B\u7DDA\u5206 y = ax + b \u3092\u8FFD\u52A0\r\n  void\
-    \ add(T lx, T rx, T a, T b) {\r\n    int l = LB(xs, lx) + size;\r\n    int r =\
-    \ LB(xs, rx) + size;\r\n    while (l < r) {\r\n      if (l & 1) inner_update(a,\
+    \ { yes(!t); }\r\n#line 2 \"ds/cht/lichao.hpp\"\ntemplate <typename T, T INF>\r\
+    \nstruct LiChaoTree {\r\n  struct Line {\r\n    T a, b;\r\n    Line(T a, T b)\
+    \ : a(a), b(b) {}\r\n    inline T eval(T x) const { return a * x + b; }\r\n  \
+    \  inline bool over(const Line &other, const T &x) const {\r\n      return eval(x)\
+    \ < other.eval(x);\r\n    }\r\n  };\r\n\r\n  vector<T> xs;\r\n  vector<Line> seg;\r\
+    \n  int size;\r\n\r\n  // \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u3002\u30AF\
+    \u30A8\u30EA\u306E\u6765\u308B x \u5168\u4F53\u3092\u6E21\u3059\u3002\u30BD\u30FC\
+    \u30C8\u4E0D\u8981\u3002\r\n  LiChaoTree(const vector<T> &_xs) : xs(_xs) {\r\n\
+    \    if (len(xs) == 0) xs.eb(0);\r\n    UNIQUE(xs);\r\n    size = 1;\r\n    while\
+    \ (size < len(xs)) size *= 2;\r\n    while (len(xs) < size) xs.eb(xs.back());\r\
+    \n    seg.assign(2 * size, Line(0, INF));\r\n  }\r\n\r\n  // y = ax + b\u306A\u308B\
+    \u76F4\u7DDA\u3092\u8FFD\u52A0\r\n  void add(T a, T b) { inner_update(a, b, 0,\
+    \ size, 1); }\r\n\r\n  // [lx, rx) \u306B\u7DDA\u5206 y = ax + b \u3092\u8FFD\u52A0\
+    \r\n  void add(T lx, T rx, T a, T b) {\r\n    int l = LB(xs, lx) + size;\r\n \
+    \   int r = LB(xs, rx) + size;\r\n    while (l < r) {\r\n      if (l & 1) inner_update(a,\
     \ b, l++);\r\n      if (r & 1) inner_update(a, b, --r);\r\n      l >>= 1, r >>=\
     \ 1;\r\n    }\r\n  }\r\n\r\n  T get_min(T x) {\r\n    int i = LB(xs, x);\r\n \
     \   assert(xs[i] == x);\r\n    return inner_query(x, i + size);\r\n  }\r\n\r\n\
@@ -245,7 +245,7 @@ data:
     );\n      else\n        print(y);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\
     \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/segment_add_get_min\"\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/lichao.hpp\"\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/cht/lichao.hpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  using T = tuple<ll, ll, ll, ll, ll>;\n  vc<T>\
     \ dat(N + Q);\n  FOR(i, N) {\n    LL(l, r, a, b);\n    dat[i] = {0, l, r, a, b};\n\
     \  }\n  vi X;\n  FOR3(i, N, N + Q) {\n    LL(t);\n    if (t == 1) {\n      LL(x);\n\
@@ -259,11 +259,11 @@ data:
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/lichao.hpp
+  - ds/cht/lichao.hpp
   isVerificationFile: true
   path: test/library_checker/datastructure/segment_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2022-09-24 23:41:28+09:00'
+  timestamp: '2022-10-21 17:24:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/segment_add_get_min.test.cpp

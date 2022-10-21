@@ -13,13 +13,15 @@ data:
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: pds/rollbackunionfind.hpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: pds/rollbackarray.hpp:\
     \ line -1: no such header\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"pds/rollbackunionfind.hpp\"\
-    \n#include \"pds/rollbackarray.hpp\"\n#include \"ds/addremove_query.hpp\"\n\n\
-    void solve() {\n  LL(N, Q);\n  VEC(ll, A0, N);\n\n  using P = pair<int, int>;\n\
+  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/pds/rollbackunionfind.hpp\"\
+    \n#include \"ds/pds/rollbackarray.hpp\"\n#include \"ds/query/addremove_query.hpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A0, N);\n\n  using P = pair<int, int>;\n\
     \  AddRemove_Query<P, 1> X;\n  RollbackArray<ll> A(A0);\n\n  vc<int> query;\n\
     \  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(u, v);\n      if (u > v)\
     \ swap(u, v);\n      X.add(len(query), {u, v});\n    }\n    if (t == 1) {\n  \

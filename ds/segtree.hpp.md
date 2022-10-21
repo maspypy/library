@@ -5,13 +5,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/query/range_mex_query.hpp
     title: ds/query/range_mex_query.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: ds/sortable_segtree.hpp
     title: ds/sortable_segtree.hpp
   - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
+    title: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/sort_segtree.test.cpp
+    title: test/library_checker/datastructure/sort_segtree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/sort_segtree_1.test.cpp
+    title: test/library_checker/datastructure/sort_segtree_1.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
@@ -140,6 +149,9 @@ data:
   - test/yukicoder/1549.test.cpp
   - test/yukicoder/426.test.cpp
   - test/yukicoder/1435.test.cpp
+  - test/library_checker/datastructure/sort_segtree_1.test.cpp
+  - test/library_checker/datastructure/sort_segtree.test.cpp
+  - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
 documentation_of: ds/segtree.hpp
 layout: document
 redirect_from:

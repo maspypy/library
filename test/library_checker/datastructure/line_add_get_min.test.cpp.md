@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: ds/cht.hpp
-    title: ds/cht.hpp
+    path: ds/cht/cht.hpp
+    title: ds/cht/cht.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -200,7 +200,7 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 1 \"ds/cht.hpp\"\n\r\ntemplate <typename T>\r\nstruct\
+    \ { yes(!t); }\r\n#line 1 \"ds/cht/cht.hpp\"\n\r\ntemplate <typename T>\r\nstruct\
     \ Line {\r\n  mutable T k, m, p;\r\n  bool operator<(const Line& o) const { return\
     \ k < o.k; }\r\n  bool operator<(T x) const { return p < x; }\r\n};\r\n\r\ntemplate\
     \ <typename T>\r\nT lc_inf() {\r\n  return numeric_limits<T>::max();\r\n}\r\n\
@@ -244,8 +244,8 @@ data:
     \      ll z = cht_max.query(x);\n      assert(y + z == 0);\n      print(y);\n\
     \    }\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/line_add_get_min\"\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/cht.hpp\"\n\n\
-    void solve() {\n  LL(N, Q);\n  CHT_min<ll> cht_min;\n  CHT_max<ll> cht_max;\n\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/cht/cht.hpp\"\n\
+    \nvoid solve() {\n  LL(N, Q);\n  CHT_min<ll> cht_min;\n  CHT_max<ll> cht_max;\n\
     \  FOR(N) {\n    LL(a, b);\n    cht_min.add(a, b);\n    cht_max.add(-a, -b);\n\
     \  }\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(a, b);\n      cht_min.add(a,\
     \ b);\n      cht_max.add(-a, -b);\n    } else {\n      LL(x);\n      ll y = cht_min.query(x);\n\
@@ -254,11 +254,11 @@ data:
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/cht.hpp
+  - ds/cht/cht.hpp
   isVerificationFile: true
   path: test/library_checker/datastructure/line_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2022-09-24 23:41:28+09:00'
+  timestamp: '2022-10-21 17:24:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/line_add_get_min.test.cpp

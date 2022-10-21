@@ -9,7 +9,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/group/affine.hpp
       title: alg/group/affine.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: alg/group/cntsum.hpp
       title: alg/group/cntsum.hpp
     - icon: ':warning:'
@@ -46,7 +46,7 @@ data:
     - icon: ':warning:'
       path: alg/lazy/cntsum_add.hpp
       title: alg/lazy/cntsum_add.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy/cntsum_affine.hpp
       title: alg/lazy/cntsum_affine.hpp
     - icon: ':warning:'
@@ -160,7 +160,7 @@ data:
       title: datetime/datetime.hpp
   - name: ds/bbst
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/bbst/rbst_lazy.hpp
       title: ds/bbst/rbst_lazy.hpp
     - icon: ':warning:'
@@ -189,12 +189,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/cartesian_tree.hpp
       title: ds/cartesian_tree.hpp
-    - icon: ':heavy_check_mark:'
-      path: ds/cht.hpp
-      title: ds/cht.hpp
-    - icon: ':warning:'
-      path: ds/cht_monotone.hpp
-      title: ds/cht_monotone.hpp
     - icon: ':warning:'
       path: ds/common_interval_decomposition.hpp
       title: ds/common_interval_decomposition.hpp
@@ -210,9 +204,15 @@ data:
     - icon: ':warning:'
       path: ds/doubling.hpp
       title: ds/doubling.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/dualsegtree.hpp
       title: ds/dualsegtree.hpp
+    - icon: ':warning:'
+      path: ds/dynamic_lazysegtree.hpp
+      title: ds/dynamic_lazysegtree.hpp
+    - icon: ':question:'
+      path: ds/dynamic_segtree.hpp
+      title: ds/dynamic_segtree.hpp
     - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
@@ -252,9 +252,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/lazysegtree_beats.hpp
       title: ds/lazysegtree_beats.hpp
-    - icon: ':heavy_check_mark:'
-      path: ds/lichao.hpp
-      title: ds/lichao.hpp
     - icon: ':warning:'
       path: ds/online_uniqueproductquery.hpp
       title: ds/online_uniqueproductquery.hpp
@@ -264,7 +261,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree.hpp
       title: ds/segtree.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree2d.hpp
       title: ds/segtree2d.hpp
     - icon: ':warning:'
@@ -273,7 +270,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/slope.hpp
       title: ds/slope.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/sortable_segtree.hpp
       title: ds/sortable_segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -291,20 +288,23 @@ data:
     - icon: ':warning:'
       path: ds/xor_sparsetable.hpp
       title: ds/xor_sparsetable.hpp
-  - name: ds/dynamic
+  - name: ds/cht
     pages:
+    - icon: ':heavy_check_mark:'
+      path: ds/cht/cht.hpp
+      title: ds/cht/cht.hpp
     - icon: ':warning:'
-      path: ds/dynamic/dynamic_lazysegtree.hpp
-      title: ds/dynamic/dynamic_lazysegtree.hpp
-    - icon: ':warning:'
-      path: ds/dynamic/dynamic_lichao.hpp
-      title: ds/dynamic/dynamic_lichao.hpp
-    - icon: ':warning:'
-      path: ds/dynamic/dynamic_segtree.hpp
-      title: ds/dynamic/dynamic_segtree.hpp
+      path: ds/cht/cht_monotone.hpp
+      title: ds/cht/cht_monotone.hpp
+    - icon: ':heavy_check_mark:'
+      path: ds/cht/dynamic_lichao.hpp
+      title: ds/cht/dynamic_lichao.hpp
+    - icon: ':heavy_check_mark:'
+      path: ds/cht/lichao.hpp
+      title: ds/cht/lichao.hpp
   - name: ds/pds
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/pds/array.hpp
       title: ds/pds/array.hpp
     - icon: ':warning:'
@@ -331,7 +331,7 @@ data:
     - icon: ':warning:'
       path: ds/pds/rollbackweighteduf.hpp
       title: ds/pds/rollbackweighteduf.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/pds/segtree.hpp
       title: ds/pds/segtree.hpp
     - icon: ':warning:'
@@ -342,6 +342,9 @@ data:
     - icon: ':warning:'
       path: ds/query/addremove_query.hpp
       title: ds/query/addremove_query.hpp
+    - icon: ':heavy_check_mark:'
+      path: ds/query/divide_conquer_range_query.hpp
+      title: ds/query/divide_conquer_range_query.hpp
     - icon: ':warning:'
       path: ds/query/mo.hpp
       title: ds/query/mo.hpp
@@ -1386,7 +1389,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc229h.test.cpp
       title: test/atcoder/abc229h.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/atcoder/abc244h.test.cpp
       title: test/atcoder/abc244h.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1471,13 +1474,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
       title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/double_ended_pq.test.cpp
       title: test/library_checker/datastructure/double_ended_pq.test.cpp
     - icon: ':x:'
       path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
       title: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
       title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     - icon: ':x:'
@@ -1486,10 +1489,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/line_add_get_min.test.cpp
       title: test/library_checker/datastructure/line_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
       title: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/persistent_queue.test.cpp
       title: test/library_checker/datastructure/persistent_queue.test.cpp
     - icon: ':x:'
@@ -1501,10 +1504,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
       title: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
       title: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
       title: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1513,10 +1516,10 @@ data:
     - icon: ':x:'
       path: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
       title: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/range_affine_point_add.test.cpp
       title: test/library_checker/datastructure/range_affine_point_add.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
       title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1525,7 +1528,7 @@ data:
     - icon: ':x:'
       path: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
       title: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
       title: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1546,10 +1549,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/set_xor_min.test.cpp
       title: test/library_checker/datastructure/set_xor_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/sort_segtree.test.cpp
       title: test/library_checker/datastructure/sort_segtree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/sort_segtree_1.test.cpp
       title: test/library_checker/datastructure/sort_segtree_1.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1561,7 +1564,7 @@ data:
     - icon: ':x:'
       path: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
       title: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/staticrmq_dc.test.cpp
       title: test/library_checker/datastructure/staticrmq_dc.test.cpp
     - icon: ':x:'
@@ -2363,7 +2366,7 @@ data:
     - icon: ':x:'
       path: test/yukicoder/2005.test.cpp
       title: test/yukicoder/2005.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/2012.test.cpp
       title: test/yukicoder/2012.test.cpp
     - icon: ':heavy_check_mark:'

@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"ds/lichao.hpp\"\ntemplate <typename T, T INF>\r\nstruct\
+  bundledCode: "#line 2 \"ds/cht/lichao.hpp\"\ntemplate <typename T, T INF>\r\nstruct\
     \ LiChaoTree {\r\n  struct Line {\r\n    T a, b;\r\n    Line(T a, T b) : a(a),\
     \ b(b) {}\r\n    inline T eval(T x) const { return a * x + b; }\r\n    inline\
     \ bool over(const Line &other, const T &x) const {\r\n      return eval(x) < other.eval(x);\r\
@@ -80,16 +80,16 @@ data:
     \    }\r\n    return ret;\r\n  }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: ds/lichao.hpp
+  path: ds/cht/lichao.hpp
   requiredBy: []
-  timestamp: '2022-04-16 04:26:49+09:00'
+  timestamp: '2022-10-21 17:24:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/segment_add_get_min.test.cpp
-documentation_of: ds/lichao.hpp
+documentation_of: ds/cht/lichao.hpp
 layout: document
 redirect_from:
-- /library/ds/lichao.hpp
-- /library/ds/lichao.hpp.html
-title: ds/lichao.hpp
+- /library/ds/cht/lichao.hpp
+- /library/ds/cht/lichao.hpp.html
+title: ds/cht/lichao.hpp
 ---

@@ -2,23 +2,29 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/double_ended_pq.test.cpp
+    title: test/library_checker/datastructure/double_ended_pq.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1649.test.cpp
+    title: test/yukicoder/1649.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"ds/dynamic/dynamic_segtree.hpp\"\n\r\n/*\r\n\u30B3\u30F3\
-    \u30B9\u30C8\u30E9\u30AF\u30BF\u306B\u6E21\u3059\u3082\u306E\r\n\u30FBL, R\uFF1A\
-    \u6700\u5927\u306E\u7BC4\u56F2\uFF08root node \u306E\u8868\u3059\u7BC4\u56F2\uFF09\
-    \r\n\u30FBfunction<X(ll,ll)> defulat_fn(l,r)\uFF1A\u521D\u671F\u5024\u3067\u306E\
-    \ [l,r) \u7A4D\u306E\u8A08\u7B97\r\n*/\r\ntemplate <class Monoid, int NODES =\
-    \ 5'000'000>\r\nstruct Dynamic_SegTree {\r\n  using X = typename Monoid::value_type;\r\
-    \n\r\n  struct Node {\r\n    X x;\r\n    Node *l, *r;\r\n    Node() {}\r\n   \
-    \ Node(const X &x) : x(x), l(nullptr), r(nullptr) {}\r\n  };\r\n\r\n  Node *pool;\r\
-    \n  int pid;\r\n  ll L, R;\r\n  Node *root;\r\n  function<X(ll, ll)> default_fn;\r\
-    \n\r\n  Dynamic_SegTree(ll L, ll R)\r\n      : Dynamic_SegTree(L, R, [](ll L,\
-    \ ll R){return Monoid::unit();}) {}\r\n\r\n  Dynamic_SegTree(ll L, ll R, function<X(ll,\
+  bundledCode: "#line 2 \"ds/dynamic_segtree.hpp\"\n\r\n/*\r\n\u30B3\u30F3\u30B9\u30C8\
+    \u30E9\u30AF\u30BF\u306B\u6E21\u3059\u3082\u306E\r\n\u30FBL, R\uFF1A\u6700\u5927\
+    \u306E\u7BC4\u56F2\uFF08root node \u306E\u8868\u3059\u7BC4\u56F2\uFF09\r\n\u30FB\
+    function<X(ll,ll)> defulat_fn(l,r)\uFF1A\u521D\u671F\u5024\u3067\u306E [l,r) \u7A4D\
+    \u306E\u8A08\u7B97\r\n*/\r\ntemplate <class Monoid, int NODES = 5'000'000>\r\n\
+    struct Dynamic_SegTree {\r\n  using X = typename Monoid::value_type;\r\n\r\n \
+    \ struct Node {\r\n    X x;\r\n    Node *l, *r;\r\n    Node() {}\r\n    Node(const\
+    \ X &x) : x(x), l(nullptr), r(nullptr) {}\r\n  };\r\n\r\n  Node *pool;\r\n  int\
+    \ pid;\r\n  ll L, R;\r\n  Node *root;\r\n  function<X(ll, ll)> default_fn;\r\n\
+    \r\n  Dynamic_SegTree(ll L, ll R)\r\n      : Dynamic_SegTree(L, R, [](ll L, ll\
+    \ R){return Monoid::unit();}) {}\r\n\r\n  Dynamic_SegTree(ll L, ll R, function<X(ll,\
     \ ll)> f)\r\n      : pid(0), L(L), R(R), default_fn(f) {\r\n    pool = new Node[NODES];\r\
     \n    root = new_node(L, R);\r\n  }\r\n\r\n  void reset() {\r\n    pid = 0;\r\n\
     \    root = new_node(L, R);\r\n  }\r\n\r\n  void set(ll i, const X &x) {\r\n \
@@ -146,15 +152,17 @@ data:
     \ min_left_rec(n->l, node_l, node_m, check, t, p);\r\n  }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: ds/dynamic/dynamic_segtree.hpp
+  path: ds/dynamic_segtree.hpp
   requiredBy: []
-  timestamp: '2022-10-21 17:08:40+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
-documentation_of: ds/dynamic/dynamic_segtree.hpp
+  timestamp: '2022-10-21 17:24:22+09:00'
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/yukicoder/1649.test.cpp
+  - test/library_checker/datastructure/double_ended_pq.test.cpp
+documentation_of: ds/dynamic_segtree.hpp
 layout: document
 redirect_from:
-- /library/ds/dynamic/dynamic_segtree.hpp
-- /library/ds/dynamic/dynamic_segtree.hpp.html
-title: ds/dynamic/dynamic_segtree.hpp
+- /library/ds/dynamic_segtree.hpp
+- /library/ds/dynamic_segtree.hpp.html
+title: ds/dynamic_segtree.hpp
 ---

@@ -4,34 +4,28 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc244h.test.cpp
-    title: test/atcoder/abc244h.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/line_add_get_min.test.cpp
     title: test/library_checker/datastructure/line_add_get_min.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2012.test.cpp
-    title: test/yukicoder/2012.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/cht.hpp\"\n\r\ntemplate <typename T>\r\nstruct Line {\r\
-    \n  mutable T k, m, p;\r\n  bool operator<(const Line& o) const { return k < o.k;\
-    \ }\r\n  bool operator<(T x) const { return p < x; }\r\n};\r\n\r\ntemplate <typename\
-    \ T>\r\nT lc_inf() {\r\n  return numeric_limits<T>::max();\r\n}\r\ntemplate <>\r\
-    \nlong double lc_inf<long double>() {\r\n  return 1 / .0;\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\nT lc_div(T a, T b) {\r\n  return a / b - ((a ^ b) < 0 and a\
-    \ % b);\r\n}\r\ntemplate <>\r\nlong double lc_div(long double a, long double b)\
-    \ {\r\n  return a / b;\r\n};\r\ntemplate <>\r\ndouble lc_div(double a, double\
-    \ b) {\r\n  return a / b;\r\n};\r\n\r\ntemplate <typename T, bool MINIMIZE = true>\r\
-    \nstruct LineContainer : multiset<Line<T>, less<>> {\r\n  using super = multiset<Line<T>,\
-    \ less<>>;\r\n  using super::begin, super::end, super::insert, super::erase;\r\
-    \n  using super::empty, super::lower_bound;\r\n  const T inf = lc_inf<T>();\r\n\
-    \  bool insect(typename super::iterator x, typename super::iterator y) {\r\n \
-    \   if (y == end()) return x->p = inf, false;\r\n    if (x->k == y->k)\r\n   \
-    \   x->p = (x->m > y->m ? inf : -inf);\r\n    else\r\n      x->p = lc_div(y->m\
+  bundledCode: "#line 1 \"ds/cht/cht.hpp\"\n\r\ntemplate <typename T>\r\nstruct Line\
+    \ {\r\n  mutable T k, m, p;\r\n  bool operator<(const Line& o) const { return\
+    \ k < o.k; }\r\n  bool operator<(T x) const { return p < x; }\r\n};\r\n\r\ntemplate\
+    \ <typename T>\r\nT lc_inf() {\r\n  return numeric_limits<T>::max();\r\n}\r\n\
+    template <>\r\nlong double lc_inf<long double>() {\r\n  return 1 / .0;\r\n}\r\n\
+    \r\ntemplate <typename T>\r\nT lc_div(T a, T b) {\r\n  return a / b - ((a ^ b)\
+    \ < 0 and a % b);\r\n}\r\ntemplate <>\r\nlong double lc_div(long double a, long\
+    \ double b) {\r\n  return a / b;\r\n};\r\ntemplate <>\r\ndouble lc_div(double\
+    \ a, double b) {\r\n  return a / b;\r\n};\r\n\r\ntemplate <typename T, bool MINIMIZE\
+    \ = true>\r\nstruct LineContainer : multiset<Line<T>, less<>> {\r\n  using super\
+    \ = multiset<Line<T>, less<>>;\r\n  using super::begin, super::end, super::insert,\
+    \ super::erase;\r\n  using super::empty, super::lower_bound;\r\n  const T inf\
+    \ = lc_inf<T>();\r\n  bool insect(typename super::iterator x, typename super::iterator\
+    \ y) {\r\n    if (y == end()) return x->p = inf, false;\r\n    if (x->k == y->k)\r\
+    \n      x->p = (x->m > y->m ? inf : -inf);\r\n    else\r\n      x->p = lc_div(y->m\
     \ - x->m, x->k - y->k);\r\n    return x->p >= y->p;\r\n  }\r\n  void add(T k,\
     \ T m) {\r\n    if (MINIMIZE) { k = -k, m = -m; }\r\n    auto z = insert({k, m,\
     \ 0}), y = z++, x = y;\r\n    while (insect(y, z)) z = erase(z);\r\n    if (x\
@@ -92,18 +86,16 @@ data:
     \  T get_min(T x, T y) { return -get_max(-x, -y); }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: ds/cht.hpp
+  path: ds/cht/cht.hpp
   requiredBy: []
-  timestamp: '2022-04-16 04:26:49+09:00'
+  timestamp: '2022-10-21 17:24:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/2012.test.cpp
   - test/library_checker/datastructure/line_add_get_min.test.cpp
-  - test/atcoder/abc244h.test.cpp
-documentation_of: ds/cht.hpp
+documentation_of: ds/cht/cht.hpp
 layout: document
 redirect_from:
-- /library/ds/cht.hpp
-- /library/ds/cht.hpp.html
-title: ds/cht.hpp
+- /library/ds/cht/cht.hpp
+- /library/ds/cht/cht.hpp.html
+title: ds/cht/cht.hpp
 ---

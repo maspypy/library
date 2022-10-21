@@ -8,18 +8,18 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"ds/dynamic/dynamic_lazysegtree.hpp\"\n\n/*\n\u30B3\u30F3\
-    \u30B9\u30C8\u30E9\u30AF\u30BF\u306B\u6E21\u3059\u3082\u306E\n\u30FBL, R\uFF1A\
-    \u6700\u5927\u306E\u7BC4\u56F2\uFF08root node \u306E\u8868\u3059\u7BC4\u56F2\uFF09\
-    \n\u30FBfunction<X(ll,ll)> defulat_fn(l,r)\uFF1A\u521D\u671F\u5024\u3067\u306E\
-    \ [l,r) \u7A4D\u306E\u8A08\u7B97\n*/\ntemplate <class Lazy, int NODES = 5'000'000>\n\
-    struct Dynamic_LazySegTree {\n  using Monoid_X = typename Lazy::X_structure;\n\
-    \  using Monoid_A = typename Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n\
-    \  using A = typename Monoid_A::value_type;\n\n  struct Node {\n    X x;\n   \
-    \ A a;\n    Node *l, *r;\n    Node() {}\n    Node(const X &x) : x(x), a(Monoid_A::unit()),\
-    \ l(nullptr), r(nullptr) {}\n    X get() { return Lazy::act(x, a); }\n  };\n\n\
-    \  Node *pool;\n  int pid;\n  ll L, R;\n  Node *root;\n  function<X(ll, ll)> default_fn;\n\
-    \n  Dynamic_LazySegTree(ll L, ll R, function<X(ll, ll)> f)\n      : pid(0), L(L),\
+  bundledCode: "#line 2 \"ds/dynamic_lazysegtree.hpp\"\n\n/*\n\u30B3\u30F3\u30B9\u30C8\
+    \u30E9\u30AF\u30BF\u306B\u6E21\u3059\u3082\u306E\n\u30FBL, R\uFF1A\u6700\u5927\
+    \u306E\u7BC4\u56F2\uFF08root node \u306E\u8868\u3059\u7BC4\u56F2\uFF09\n\u30FB\
+    function<X(ll,ll)> defulat_fn(l,r)\uFF1A\u521D\u671F\u5024\u3067\u306E [l,r) \u7A4D\
+    \u306E\u8A08\u7B97\n*/\ntemplate <class Lazy, int NODES = 5'000'000>\nstruct Dynamic_LazySegTree\
+    \ {\n  using Monoid_X = typename Lazy::X_structure;\n  using Monoid_A = typename\
+    \ Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n  using A =\
+    \ typename Monoid_A::value_type;\n\n  struct Node {\n    X x;\n    A a;\n    Node\
+    \ *l, *r;\n    Node() {}\n    Node(const X &x) : x(x), a(Monoid_A::unit()), l(nullptr),\
+    \ r(nullptr) {}\n    X get() { return Lazy::act(x, a); }\n  };\n\n  Node *pool;\n\
+    \  int pid;\n  ll L, R;\n  Node *root;\n  function<X(ll, ll)> default_fn;\n\n\
+    \  Dynamic_LazySegTree(ll L, ll R, function<X(ll, ll)> f)\n      : pid(0), L(L),\
     \ R(R), default_fn(f) {\n    pool = new Node[NODES];\n    root = new_node(L, R);\n\
     \  }\n\n  void reset() {\n    pid = 0;\n    root = new_node(L, R);\n  }\n\n  void\
     \ set(ll i, const X &x) {\n    assert(L <= i && i < R);\n    set_rec(root, L,\
@@ -156,15 +156,15 @@ data:
     \ node_l, node_m, check, t, p);\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: ds/dynamic/dynamic_lazysegtree.hpp
+  path: ds/dynamic_lazysegtree.hpp
   requiredBy: []
-  timestamp: '2022-10-21 17:08:40+09:00'
+  timestamp: '2022-10-21 17:24:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: ds/dynamic/dynamic_lazysegtree.hpp
+documentation_of: ds/dynamic_lazysegtree.hpp
 layout: document
 redirect_from:
-- /library/ds/dynamic/dynamic_lazysegtree.hpp
-- /library/ds/dynamic/dynamic_lazysegtree.hpp.html
-title: ds/dynamic/dynamic_lazysegtree.hpp
+- /library/ds/dynamic_lazysegtree.hpp
+- /library/ds/dynamic_lazysegtree.hpp.html
+title: ds/dynamic_lazysegtree.hpp
 ---

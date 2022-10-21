@@ -14,10 +14,10 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: alg/lazy_cntsum_affine.hpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: bbst/splaytree_lazy.hpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"alg/lazy_cntsum_affine.hpp\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"alg/lazy/cntsum_affine.hpp\"\
     \n#include \"mod/modint.hpp\"\n#include \"bbst/splaytree_lazy.hpp\"\n\nusing mint\
     \ = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  VEC(mint, A, N);\n  SplayTree_Lazy<Lazy_CntSum_Affine<mint>>\
     \ ST;\n  vc<pair<mint, mint>> seg_raw(N);\n  FOR(i, N) seg_raw[i] = {mint(1),\

@@ -258,13 +258,13 @@ data:
     \ cumsum[0][L + k]);\r\n      neg = AbelGroup::op(neg, cumsum[0][L]);\r\n    }\r\
     \n    return AbelGroup::op(pos, AbelGroup::inverse(neg));\r\n  }\r\n};\r\n#line\
     \ 5 \"test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  WaveletMatrix WM(A);\n \
-    \ FOR(Q) {\n    LL(l, r, k);\n    print(WM.kth(l, r, k));\n  }\n}\n\nsigned main()\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  WaveletMatrix<int> WM(A);\n\
+    \  FOR(Q) {\n    LL(l, r, k);\n    print(WM.kth(l, r, k));\n  }\n}\n\nsigned main()\
     \ {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/waveletmatrix.hpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  WaveletMatrix WM(A);\n \
-    \ FOR(Q) {\n    LL(l, r, k);\n    print(WM.kth(l, r, k));\n  }\n}\n\nsigned main()\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  WaveletMatrix<int> WM(A);\n\
+    \  FOR(Q) {\n    LL(l, r, k);\n    print(WM.kth(l, r, k));\n  }\n}\n\nsigned main()\
     \ {\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
@@ -274,7 +274,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   requiredBy: []
-  timestamp: '2022-10-21 17:08:40+09:00'
+  timestamp: '2022-10-21 17:24:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp

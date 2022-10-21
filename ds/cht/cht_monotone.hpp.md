@@ -8,7 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/cht_monotone.hpp\"\ntemplate <typename T, bool isMin>\r\
+  bundledCode: "#line 1 \"ds/cht/cht_monotone.hpp\"\ntemplate <typename T, bool isMin>\r\
     \nstruct CHT_monotone {\r\n#define F first\r\n#define S second\r\n  using P =\
     \ pair<T, T>;\r\n  deque<P> H;\r\n\r\n  CHT_monotone() = default;\r\n\r\n  bool\
     \ empty() const { return H.empty(); }\r\n\r\n  void clear() { H.clear(); }\r\n\
@@ -72,15 +72,15 @@ data:
     \ x);\r\n  }\r\n\r\n#undef F\r\n#undef S\r\n};"
   dependsOn: []
   isVerificationFile: false
-  path: ds/cht_monotone.hpp
+  path: ds/cht/cht_monotone.hpp
   requiredBy: []
-  timestamp: '2022-04-16 04:26:49+09:00'
+  timestamp: '2022-10-21 17:24:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: ds/cht_monotone.hpp
+documentation_of: ds/cht/cht_monotone.hpp
 layout: document
 redirect_from:
-- /library/ds/cht_monotone.hpp
-- /library/ds/cht_monotone.hpp.html
-title: ds/cht_monotone.hpp
+- /library/ds/cht/cht_monotone.hpp
+- /library/ds/cht/cht_monotone.hpp.html
+title: ds/cht/cht_monotone.hpp
 ---
