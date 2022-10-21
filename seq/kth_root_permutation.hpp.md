@@ -9,8 +9,8 @@ data:
   attributes:
     links:
     - https://atcoder.jp/contests/jag2013summer-warmingup/tasks/icpc2013summer_warmingUp_h
-  bundledCode: "#line 1 \"other/kth_root_permutation.hpp\"\n\n// (status, perm)\n\
-    // 0: no solution\n// 1: unique solution\n// 2: many solution (return one solution)\n\
+  bundledCode: "#line 1 \"seq/kth_root_permutation.hpp\"\n\n// (status, perm)\n//\
+    \ 0: no solution\n// 1: unique solution\n// 2: many solution (return one solution)\n\
     // https://atcoder.jp/contests/jag2013summer-warmingup/tasks/icpc2013summer_warmingUp_h\n\
     pair<int, vc<int>> kth_root_permutation(ll k, vc<int>& A) {\n  int N = len(A);\n\
     \  vc<bool> done(N);\n  // \u30B5\u30A4\u30AF\u30EB\u9577 \u2192 \u30B5\u30A4\u30AF\
@@ -44,15 +44,15 @@ data:
     \ {stat, ANS};\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: other/kth_root_permutation.hpp
+  path: seq/kth_root_permutation.hpp
   requiredBy: []
-  timestamp: '2022-06-05 12:23:30+09:00'
+  timestamp: '2022-10-21 20:37:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: other/kth_root_permutation.hpp
+documentation_of: seq/kth_root_permutation.hpp
 layout: document
 redirect_from:
-- /library/other/kth_root_permutation.hpp
-- /library/other/kth_root_permutation.hpp.html
-title: other/kth_root_permutation.hpp
+- /library/seq/kth_root_permutation.hpp
+- /library/seq/kth_root_permutation.hpp.html
+title: seq/kth_root_permutation.hpp
 ---

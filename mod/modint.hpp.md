@@ -9,9 +9,6 @@ data:
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   - icon: ':heavy_check_mark:'
-    path: mod/mod_log.hpp
-    title: mod/mod_log.hpp
-  - icon: ':heavy_check_mark:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
   - icon: ':heavy_check_mark:'
@@ -142,9 +139,6 @@ data:
     path: test/atcoder/abc269ex.test.cpp
     title: test/atcoder/abc269ex.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc270_g.test.cpp
-    title: test/atcoder/abc270_g.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/atcoder/agc058d.test.cpp
     title: test/atcoder/agc058d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -222,9 +216,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/enumerate_cliques.test.cpp
     title: test/library_checker/graph/enumerate_cliques.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/discrete_logarithm_mod.test.cpp
-    title: test/library_checker/math/discrete_logarithm_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/find_linear_recurrence.test.cpp
     title: test/library_checker/math/find_linear_recurrence.test.cpp
@@ -361,6 +352,12 @@ data:
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/enumerate_multisets.test.cpp
+    title: test/mytest/enumerate_multisets.test.cpp
+  - icon: ':x:'
+    path: test/mytest/enumerate_products.test.cpp
+    title: test/mytest/enumerate_products.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
@@ -405,9 +402,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1321.test.cpp
     title: test/yukicoder/1321.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1339.test.cpp
-    title: test/yukicoder/1339.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1392.test.cpp
     title: test/yukicoder/1392.test.cpp
@@ -531,9 +525,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/749.test.cpp
     title: test/yukicoder/749.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n\
@@ -746,20 +740,21 @@ data:
   - seq/sum_of_powers.hpp
   - seq/limit_poly_exp_sum.hpp
   - graph/tree_all_distances.hpp
-  - mod/mod_log.hpp
   - mod/mod_sqrt.hpp
   - nt/multiplicative_convolution_mod2n.hpp
   timestamp: '2022-10-12 08:05:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/prime_sum.test.cpp
   - test/mytest/conv_leq.test.cpp
   - test/mytest/binom.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/splay.test.cpp
+  - test/mytest/enumerate_products.test.cpp
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/powerquery.test.cpp
+  - test/mytest/enumerate_multisets.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/yukicoder/1755.test.cpp
   - test/yukicoder/1167.test.cpp
@@ -808,7 +803,6 @@ data:
   - test/yukicoder/1907.test.cpp
   - test/yukicoder/1753.test.cpp
   - test/yukicoder/235.test.cpp
-  - test/yukicoder/1339.test.cpp
   - test/yukicoder/1548.test.cpp
   - test/yukicoder/1411.test.cpp
   - test/yukicoder/1516.test.cpp
@@ -852,7 +846,6 @@ data:
   - test/library_checker/math/find_linear_recurrence.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
-  - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/library_checker/math/totient_sum.test.cpp
   - test/library_checker/math/partition.test.cpp
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
@@ -882,7 +875,6 @@ data:
   - test/library_checker/datastructure/queue_operate_all_composite.test.cpp
   - test/library_checker/string/number_of_subsequences.test.cpp
   - test/atcoder/abc269ex.test.cpp
-  - test/atcoder/abc270_g.test.cpp
   - test/atcoder/agc058d.test.cpp
 documentation_of: mod/modint.hpp
 layout: document

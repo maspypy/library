@@ -5,13 +5,10 @@ data:
     path: ds/pbds.hpp
     title: ds/pbds.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1311.test.cpp
-    title: test/yukicoder/1311.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links:
     - https://codeforces.com/contest/1443/problem/E
@@ -21,7 +18,7 @@ data:
     \u5727\uFF0BBIT\u3068\u304B\u306E\u65B9\u304C\u304B\u306A\u308A\u901F\u3044\u306E\
     \u3067\u6CE8\u610F\uFF01\ntemplate <typename KEY>\nusing pbds_set = tree<KEY,\
     \ null_type, less<KEY>, rb_tree_tag,\n                      tree_order_statistics_node_update>;\n\
-    #line 2 \"other/kth_next_permutation.hpp\"\n\n// P \u306E\u8981\u7D20\u306F distinct\u3002\
+    #line 2 \"seq/kth_next_permutation.hpp\"\n\n// P \u306E\u8981\u7D20\u306F distinct\u3002\
     \n// k \u500B\u5148\u304C\u306A\u3051\u308C\u3070 P \u304C empty \u306B\u306A\u308B\
     \n// \u3044\u3058\u3063\u305F\u9805\u6570\u3092\u8FD4\u3059\n// https://codeforces.com/contest/1443/problem/E\n\
     template <typename T>\nint kth_next_permutation(vc<T>& P, ll k) {\n  static vc<int>\
@@ -46,16 +43,15 @@ data:
   dependsOn:
   - ds/pbds.hpp
   isVerificationFile: false
-  path: other/kth_next_permutation.hpp
+  path: seq/kth_next_permutation.hpp
   requiredBy: []
-  timestamp: '2022-08-27 23:26:12+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yukicoder/1311.test.cpp
-documentation_of: other/kth_next_permutation.hpp
+  timestamp: '2022-10-21 20:37:52+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: seq/kth_next_permutation.hpp
 layout: document
 redirect_from:
-- /library/other/kth_next_permutation.hpp
-- /library/other/kth_next_permutation.hpp.html
-title: other/kth_next_permutation.hpp
+- /library/seq/kth_next_permutation.hpp
+- /library/seq/kth_next_permutation.hpp.html
+title: seq/kth_next_permutation.hpp
 ---

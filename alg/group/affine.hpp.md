@@ -7,9 +7,6 @@ data:
     title: alg/lazy/cntsum_affine.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc270_g.test.cpp
-    title: test/atcoder/abc270_g.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -94,7 +91,6 @@ data:
   - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - test/library_checker/datastructure/queue_operate_all_composite.test.cpp
-  - test/atcoder/abc270_g.test.cpp
 documentation_of: alg/group/affine.hpp
 layout: document
 redirect_from:

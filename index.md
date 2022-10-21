@@ -29,7 +29,7 @@ data:
       title: alg/group/xor.hpp
   - name: alg/gset
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: alg/gset/affine.hpp
       title: alg/gset/affine.hpp
     - icon: ':warning:'
@@ -384,9 +384,12 @@ data:
       path: enumerate/cliques.hpp
       title: enumerate/cliques.hpp
     - icon: ':heavy_check_mark:'
+      path: enumerate/multisets.hpp
+      title: enumerate/multisets.hpp
+    - icon: ':heavy_check_mark:'
       path: enumerate/partitions.hpp
       title: enumerate/partitions.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: enumerate/products.hpp
       title: enumerate/products.hpp
     - icon: ':heavy_check_mark:'
@@ -720,6 +723,9 @@ data:
       path: linalg/spmat_min_poly.hpp
       title: linalg/spmat_min_poly.hpp
     - icon: ':warning:'
+      path: linalg/transpose.hpp
+      title: linalg/transpose.hpp
+    - icon: ':warning:'
       path: linalg/vectorspace.hpp
       title: linalg/vectorspace.hpp
   - name: mod
@@ -757,7 +763,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_kth_root.hpp
       title: mod/mod_kth_root.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: mod/mod_log.hpp
       title: mod/mod_log.hpp
     - icon: ':heavy_check_mark:'
@@ -769,7 +775,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_sum_of_linear.hpp
       title: mod/mod_sum_of_linear.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: mod/modint.hpp
       title: mod/modint.hpp
     - icon: ':heavy_check_mark:'
@@ -792,7 +798,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -803,6 +809,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/crt.hpp
       title: nt/crt.hpp
+    - icon: ':warning:'
+      path: nt/discrete_log.hpp
+      title: nt/discrete_log.hpp
     - icon: ':heavy_check_mark:'
       path: nt/divisors.hpp
       title: nt/divisors.hpp
@@ -878,15 +887,9 @@ data:
       path: other/dice.hpp
       title: other/dice.hpp
     - icon: ':heavy_check_mark:'
-      path: other/discrete_log.hpp
-      title: other/discrete_log.hpp
-    - icon: ':warning:'
-      path: other/generate_multisets.hpp
-      title: other/generate_multisets.hpp
-    - icon: ':heavy_check_mark:'
       path: other/integer_kth_root.hpp
       title: other/integer_kth_root.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -896,20 +899,11 @@ data:
       path: other/knight_distance.hpp
       title: other/knight_distance.hpp
     - icon: ':heavy_check_mark:'
-      path: other/kth_next_permutation.hpp
-      title: other/kth_next_permutation.hpp
-    - icon: ':warning:'
-      path: other/kth_root_permutation.hpp
-      title: other/kth_root_permutation.hpp
-    - icon: ':heavy_check_mark:'
       path: other/solve_hukumenzan.hpp
       title: other/solve_hukumenzan.hpp
     - icon: ':heavy_check_mark:'
       path: other/subset_sum_count.hpp
       title: other/subset_sum_count.hpp
-    - icon: ':warning:'
-      path: other/transpose.hpp
-      title: other/transpose.hpp
     - icon: ':heavy_check_mark:'
       path: other/xor_range.hpp
       title: other/xor_range.hpp
@@ -1077,6 +1071,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/inversion_rotate.hpp
       title: seq/inversion_rotate.hpp
+    - icon: ':warning:'
+      path: seq/kth_next_permutation.hpp
+      title: seq/kth_next_permutation.hpp
+    - icon: ':warning:'
+      path: seq/kth_root_permutation.hpp
+      title: seq/kth_root_permutation.hpp
     - icon: ':heavy_check_mark:'
       path: seq/kth_term_of_p_recursive.hpp
       title: seq/kth_term_of_p_recursive.hpp
@@ -1416,7 +1416,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc270_f.test.cpp
       title: test/atcoder/abc270_f.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/atcoder/abc270_g.test.cpp
       title: test/atcoder/abc270_g.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1678,7 +1678,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/counting_primes.test.cpp
       title: test/library_checker/math/counting_primes.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/math/discrete_logarithm_mod.test.cpp
       title: test/library_checker/math/discrete_logarithm_mod.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1922,6 +1922,12 @@ data:
       path: test/mytest/enum_partitions.test.cpp
       title: test/mytest/enum_partitions.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/mytest/enumerate_multisets.test.cpp
+      title: test/mytest/enumerate_multisets.test.cpp
+    - icon: ':x:'
+      path: test/mytest/enumerate_products.test.cpp
+      title: test/mytest/enumerate_products.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/mytest/factorial_998.test.cpp
       title: test/mytest/factorial_998.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2100,7 +2106,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1303.test.cpp
       title: test/yukicoder/1303.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1311.test.cpp
       title: test/yukicoder/1311.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2124,7 +2130,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1332.test.cpp
       title: test/yukicoder/1332.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1339.test.cpp
       title: test/yukicoder/1339.test.cpp
     - icon: ':heavy_check_mark:'

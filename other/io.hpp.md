@@ -220,9 +220,6 @@ data:
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc270_g.test.cpp
-    title: test/atcoder/abc270_g.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/atcoder/agc058d.test.cpp
     title: test/atcoder/agc058d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -472,9 +469,6 @@ data:
     path: test/library_checker/math/counting_primes.test.cpp
     title: test/library_checker/math/counting_primes.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/discrete_logarithm_mod.test.cpp
-    title: test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/enumerate_primes.test.cpp
     title: test/library_checker/math/enumerate_primes.test.cpp
   - icon: ':heavy_check_mark:'
@@ -703,6 +697,12 @@ data:
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/enumerate_multisets.test.cpp
+    title: test/mytest/enumerate_multisets.test.cpp
+  - icon: ':x:'
+    path: test/mytest/enumerate_products.test.cpp
+    title: test/mytest/enumerate_products.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
@@ -880,9 +880,6 @@ data:
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1311.test.cpp
-    title: test/yukicoder/1311.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1319.test.cpp
     title: test/yukicoder/1319.test.cpp
   - icon: ':heavy_check_mark:'
@@ -903,9 +900,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1332.test.cpp
     title: test/yukicoder/1332.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1339.test.cpp
-    title: test/yukicoder/1339.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1344.test.cpp
     title: test/yukicoder/1344.test.cpp
@@ -1236,9 +1230,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include\
@@ -1457,7 +1451,7 @@ data:
   path: other/io.hpp
   requiredBy: []
   timestamp: '2022-08-20 05:21:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/prime_sum.test.cpp
   - test/mytest/stern_brocot.test.cpp
@@ -1478,12 +1472,14 @@ data:
   - test/mytest/splay.test.cpp
   - test/mytest/primesum_mod4.test.cpp
   - test/mytest/is_substring.test.cpp
+  - test/mytest/enumerate_products.test.cpp
   - test/mytest/maxplus_concave.test.cpp
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/incremental_ch.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/powerquery.test.cpp
   - test/mytest/all_but_one_products.test.cpp
+  - test/mytest/enumerate_multisets.test.cpp
   - test/mytest/run_length.test.cpp
   - test/mytest/range_mex.test.cpp
   - test/mytest/factorial_998.test.cpp
@@ -1608,7 +1604,6 @@ data:
   - test/yukicoder/1025.test.cpp
   - test/yukicoder/177.test.cpp
   - test/yukicoder/1145.test.cpp
-  - test/yukicoder/1311.test.cpp
   - test/yukicoder/1301.test.cpp
   - test/yukicoder/1911.test.cpp
   - test/yukicoder/1493.test.cpp
@@ -1632,7 +1627,6 @@ data:
   - test/yukicoder/1494.test.cpp
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1292.test.cpp
-  - test/yukicoder/1339.test.cpp
   - test/yukicoder/1548.test.cpp
   - test/yukicoder/626.test.cpp
   - test/yukicoder/1038.test.cpp
@@ -1746,7 +1740,6 @@ data:
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/math/nim_product.test.cpp
-  - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/twosat.test.cpp
   - test/library_checker/math/totient_sum.test.cpp
@@ -1862,7 +1855,6 @@ data:
   - test/atcoder/abc269ex.test.cpp
   - test/atcoder/abc266c.test.cpp
   - test/atcoder/abc200a.test.cpp
-  - test/atcoder/abc270_g.test.cpp
   - test/atcoder/abc270_f.test.cpp
   - test/atcoder/abc266h.test.cpp
   - test/atcoder/abc244h.test.cpp
