@@ -1,7 +1,7 @@
 #define PROBLEM "https://atcoder.jp/contests/abc270/tasks/abc270_g"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "other/discrete_log.hpp"
+#include "nt/discrete_log.hpp"
 #include "alg/group/affine.hpp"
 #include "mod/modint.hpp"
 #include "alg/gset/affine.hpp"
