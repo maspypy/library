@@ -1,4 +1,4 @@
-#include "pds/array.hpp"
+#include "ds/pds/array.hpp"
 
 struct PersistentUnionFind {
   using PA = PersistentArray<int>;
