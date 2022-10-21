@@ -1,4 +1,4 @@
-#include "alg/group_add.hpp"
+#include "alg/group/add.hpp"
 template <typename AbelGroup>
 struct Fenwick2D_dense {
   using E = typename AbelGroup::value_type;
