@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 
 #include "ds/fenwick.hpp"
-#include "ds/mo.hpp"
+#include "ds/query/mo.hpp"
 
 void solve() {
   LL(N, Q);

@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1625"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "alg/monoid_max.hpp"
+#include "alg/monoid/max.hpp"
 #include "ds/kdtree_monoid.hpp"
 
 void solve() {

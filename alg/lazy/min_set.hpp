@@ -1,5 +1,5 @@
-#include "alg/monoid_min.hpp"
-#include "alg/monoid_set.hpp"
+#include "alg/monoid/min.hpp"
+#include "alg/monoid/set.hpp"
 
 template <typename E, E none_val>
 struct Lazy_Min_Set {

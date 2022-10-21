@@ -1,3 +1,4 @@
+#include "random/base.hpp"
 
 struct RollingHash_2D {
   using M61 = modint61;
@@ -33,9 +34,7 @@ struct RollingHash_2D {
   }
 
 private:
-  static inline u64 generate_base() {
-    return RNG(M61::get_mod());
-  }
+  static inline u64 generate_base() { return RNG(M61::get_mod()); }
 
   void expand(vc<M61>& pow, const M61& b, int n) {
     while (len(pow) <= n) pow.eb(pow.back() * b);

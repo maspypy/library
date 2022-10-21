@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ds/point_add_rectangle_sum.hpp"
+#include "ds/query/point_add_rectangle_sum.hpp"
 
 template <typename AbelGroup, bool SMALL = false>
 struct Rectangle_Add_Rectangle_Sum {
