@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/reachability.hpp"
-#include "graph/dijkstra.hpp"
+#include "graph/shortest_path/dijkstra.hpp"
 
 void solve() {
   LL(N, M);

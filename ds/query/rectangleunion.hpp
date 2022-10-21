@@ -1,5 +1,5 @@
 #include "ds/lazysegtree.hpp"
-#include "alg/lazy_cntminmincnt_add.hpp"
+#include "alg/lazy/cntminmincnt_add.hpp"
 
 struct RectangleUnion {
   using RECT = tuple<ll, ll, ll, ll>;

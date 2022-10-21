@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2251"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "graph/dijkstra.hpp"
+#include "graph/shortest_path/dijkstra.hpp"
 #include "graph/maximum_antichain.hpp"
 
 void solve(ll N, ll M, ll L) {

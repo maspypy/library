@@ -1,9 +1,9 @@
 #define PROBLEM "https://yukicoder.me/problems/no/899"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "graph/bfsnumbering.hpp"
+#include "graph/ds/bfsnumbering.hpp"
 #include "ds/lazysegtree.hpp"
-#include "alg/lazy_add_mul.hpp"
+#include "alg/lazy/add_mul.hpp"
 
 void solve() {
   LL(N);

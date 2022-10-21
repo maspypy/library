@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/rerooting_dp.hpp"
-#include "graph/bfs01.hpp"
+#include "graph/shortest_path/bfs01.hpp"
 
 void solve() {
   LL(N, K);

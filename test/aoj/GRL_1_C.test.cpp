@@ -2,7 +2,7 @@
   "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "graph/warshall_floyd.hpp"
+#include "graph/shortest_path/warshall_floyd.hpp"
 
 void solve() {
   LL(N, M);

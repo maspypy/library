@@ -3,7 +3,6 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "other/random.hpp"
 #include "mod/modint61.hpp"
 #include "string/rollinghash_2d.hpp"
 

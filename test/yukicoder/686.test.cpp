@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/686"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "alg/lazy_max_add.hpp"
+#include "alg/lazy/max_add.hpp"
 #include "bbst/rbst_lazy.hpp"
 
 void solve() {

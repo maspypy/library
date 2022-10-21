@@ -4,8 +4,8 @@
 
 #include "mod/modint.hpp"
 #include "ds/disjointsparse.hpp"
-#include "alg/group_mul.hpp"
-#include "seq/eulerian_number.hpp"
+#include "alg/group/mul.hpp"
+#include "seq/famous/eulerian_number.hpp"
 
 using mint = modint998;
 

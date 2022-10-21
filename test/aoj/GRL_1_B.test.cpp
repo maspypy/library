@@ -2,7 +2,7 @@
   "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_B"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "graph/bellmanford.hpp"
+#include "graph/shortest_path/bellmanford.hpp"
 
 void solve() {
   LL(N, M, s);

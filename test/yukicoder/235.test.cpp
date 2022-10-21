@@ -2,8 +2,8 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/tree.hpp"
-#include "graph/lazytreemonoid.hpp"
-#include "alg/lazy_cntsum_add.hpp"
+#include "graph/ds/lazytreemonoid.hpp"
+#include "alg/lazy/cntsum_add.hpp"
 #include "mod/modint.hpp"
 
 using mint = modint107;

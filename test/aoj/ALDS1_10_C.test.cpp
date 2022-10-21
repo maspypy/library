@@ -2,7 +2,7 @@
   "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_10_C&lang=ja"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "dp/longest_common_subsequence.hpp"
+#include "string/longest_common_subsequence.hpp"
 
 void solve() {
   STR(S, T);

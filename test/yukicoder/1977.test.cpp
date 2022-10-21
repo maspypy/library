@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/doubling.hpp"
-#include "alg/group_add.hpp"
+#include "alg/group/add.hpp"
 
 using GRP = Group_Add<ll>;
 

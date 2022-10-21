@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/4954"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "other/floor_range.hpp"
+#include "nt/floor_range.hpp"
 
 void solve() {
   LL(N);

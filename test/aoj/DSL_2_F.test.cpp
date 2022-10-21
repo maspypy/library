@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/lazysegtree.hpp"
-#include "alg/lazy_min_set.hpp"
+#include "alg/lazy/min_set.hpp"
 
 void solve() {
   LL(N, Q);

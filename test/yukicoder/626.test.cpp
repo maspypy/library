@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/626"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "dp/knapsack_branch_bound.hpp"
+#include "knapsack/knapsack_branch_bound.hpp"
 
 void solve() {
   LL(N, LIM);

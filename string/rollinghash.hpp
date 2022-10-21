@@ -1,5 +1,5 @@
 #pragma once
-#include "other/random.hpp"
+#include "random/base.hpp"
 
 struct RollingHash {
   static const uint64_t mod = (1ull << 61ull) - 1;
@@ -26,9 +26,7 @@ struct RollingHash {
     return x;
   }
 
-  static inline uint64_t generate_base() {
-    return RNG(mod);
-  }
+  static inline uint64_t generate_base() { return RNG(mod); }
 
   inline void expand(size_t sz) {
     if (power.size() < sz + 1) {
@@ -43,7 +41,7 @@ struct RollingHash {
   explicit RollingHash(uint64_t base = generate_base())
       : base(base), power{1} {}
 
-  template<typename STRING>
+  template <typename STRING>
   vector<uint64_t> build(const STRING& s) const {
     int sz = s.size();
     vector<uint64_t> hashed(sz + 1);

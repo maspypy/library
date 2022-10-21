@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/lazysegtree.hpp"
-#include "alg/lazy_cntsum_affine.hpp"
+#include "alg/lazy/cntsum_affine.hpp"
 
 void solve() {
   LL(N, Q);

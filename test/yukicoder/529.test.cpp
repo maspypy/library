@@ -2,8 +2,8 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/two_edge_component.hpp"
-#include "graph/treemonoid.hpp"
-#include "alg/monoid_max_idx.hpp"
+#include "graph/ds/treemonoid.hpp"
+#include "alg/monoid/max_idx.hpp"
 
 void solve() {
   LL(N, M, Q);

@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/range_to_range_graph.hpp"
-#include "graph/bfs01.hpp"
+#include "graph/shortest_path/bfs01.hpp"
 
 void solve() {
   LL(N);
