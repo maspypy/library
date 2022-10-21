@@ -1,6 +1,6 @@
 
 #include "string/suffixarray.hpp"
-#include "alg/monoid_min_idx.hpp"
+#include "alg/monoid/min_idx.hpp"
 #include "ds/segtree.hpp"
 #include "graph/base.hpp"
 

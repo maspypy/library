@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "other/random.hpp"
+#include "random/base.hpp"
 
-#include "ds/rectangle_add_point_sum.hpp"
+#include "ds/query/rectangle_add_point_sum.hpp"
 #include "mod/modint.hpp"
 
 using mint = modint998;
