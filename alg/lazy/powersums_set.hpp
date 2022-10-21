@@ -1,7 +1,8 @@
 #pragma once
 
-#include "alg/monoid_set.hpp"
-#include "alg/group_power_sums.hpp"
+#include "alg/monoid/set.hpp"
+#include "alg/group/power_sums.hpp"
+
 template <typename mint, int K>
 struct Lazy_Power_Sums_Set {
   using MX = Group_power_sums<mint, K>;
