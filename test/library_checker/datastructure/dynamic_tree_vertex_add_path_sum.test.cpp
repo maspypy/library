@@ -3,8 +3,8 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "alg/group_add.hpp"
-#include "graph/link_cut_path.hpp"
+#include "alg/group/add.hpp"
+#include "graph/ds/link_cut_path.hpp"
 
 void solve() {
   LL(N, Q);

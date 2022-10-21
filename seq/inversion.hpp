@@ -1,7 +1,7 @@
 #include "ds/fenwick.hpp"
 
 template <typename T>
-ll inversion(vc<T>& A, bool SMALL = false) {
+ll inversion(vc<T> A, bool SMALL = false) {
   if (!SMALL) {
     auto key = A;
     UNIQUE(key);
