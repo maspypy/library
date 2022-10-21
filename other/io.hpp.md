@@ -42,7 +42,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_1_C.test.cpp
     title: test/aoj/ALDS1_1_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_2_A.test.cpp
     title: test/aoj/ALDS1_2_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -288,6 +288,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
+    title: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/line_add_get_min.test.cpp
     title: test/library_checker/datastructure/line_add_get_min.test.cpp
@@ -931,6 +934,9 @@ data:
     path: test/yukicoder/1435_2.test.cpp
     title: test/yukicoder/1435_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1441.test.cpp
+    title: test/yukicoder/1441.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1441_2.test.cpp
     title: test/yukicoder/1441_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -939,6 +945,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1479.test.cpp
     title: test/yukicoder/1479.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1490.test.cpp
+    title: test/yukicoder/1490.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1493.test.cpp
     title: test/yukicoder/1493.test.cpp
@@ -1188,7 +1197,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1227,9 +1236,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include\
@@ -1448,7 +1457,7 @@ data:
   path: other/io.hpp
   requiredBy: []
   timestamp: '2022-08-20 05:21:32+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/prime_sum.test.cpp
   - test/mytest/stern_brocot.test.cpp
@@ -1619,6 +1628,7 @@ data:
   - test/yukicoder/1421.test.cpp
   - test/yukicoder/1753.test.cpp
   - test/yukicoder/1418.test.cpp
+  - test/yukicoder/1441.test.cpp
   - test/yukicoder/1494.test.cpp
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1292.test.cpp
@@ -1630,6 +1640,7 @@ data:
   - test/yukicoder/1838.test.cpp
   - test/yukicoder/1411.test.cpp
   - test/yukicoder/1036_2.test.cpp
+  - test/yukicoder/1490.test.cpp
   - test/yukicoder/1516.test.cpp
   - test/yukicoder/2062.test.cpp
   - test/yukicoder/655.test.cpp
@@ -1823,6 +1834,7 @@ data:
   - test/library_checker/datastructure/segment_add_get_min.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
+  - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/library_checker/datastructure/persistent_queue.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - test/library_checker/datastructure/staticrmq_dc.test.cpp

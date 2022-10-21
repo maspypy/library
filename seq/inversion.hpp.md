@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group/add.hpp
     title: alg/group/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_2_A.test.cpp
     title: test/aoj/ALDS1_2_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_5.test.cpp
     title: test/aoj/ALDS1_5.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -54,12 +54,12 @@ data:
     \   k >>= 1;\n    }\n    return i;\n  }\n\n  int find_kth(E k) {\n    auto check\
     \ = [&](E x) -> bool { return x <= k; };\n    return max_right(check);\n  }\n\n\
     \  void debug() { print(\"fenwick\", dat); }\n};\n#line 2 \"seq/inversion.hpp\"\
-    \n\ntemplate <typename T>\nll inversion(vc<T>& A, bool SMALL = false) {\n  if\
-    \ (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n    for (auto&& x: A) x = LB(key,\
-    \ x);\n  }\n  ll ANS = 0;\n  ll K = MAX(A) + 1;\n  FenwickTree<Group_Add<int>>\
-    \ bit(K);\n  for (auto&& x: A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x,\
-    \ 1);\n  }\n  return ANS;\n}\n"
-  code: "#include \"ds/fenwick.hpp\"\n\ntemplate <typename T>\nll inversion(vc<T>&\
+    \n\ntemplate <typename T>\nll inversion(vc<T> A, bool SMALL = false) {\n  if (!SMALL)\
+    \ {\n    auto key = A;\n    UNIQUE(key);\n    for (auto&& x: A) x = LB(key, x);\n\
+    \  }\n  ll ANS = 0;\n  ll K = MAX(A) + 1;\n  FenwickTree<Group_Add<int>> bit(K);\n\
+    \  for (auto&& x: A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x, 1);\n  }\n\
+    \  return ANS;\n}\n"
+  code: "#include \"ds/fenwick.hpp\"\n\ntemplate <typename T>\nll inversion(vc<T>\
     \ A, bool SMALL = false) {\n  if (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n\
     \    for (auto&& x: A) x = LB(key, x);\n  }\n  ll ANS = 0;\n  ll K = MAX(A) +\
     \ 1;\n  FenwickTree<Group_Add<int>> bit(K);\n  for (auto&& x: A) {\n    ANS +=\
@@ -70,8 +70,8 @@ data:
   isVerificationFile: false
   path: seq/inversion.hpp
   requiredBy: []
-  timestamp: '2022-10-21 19:57:51+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-10-21 20:04:32+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_5.test.cpp
   - test/aoj/ALDS1_2_A.test.cpp

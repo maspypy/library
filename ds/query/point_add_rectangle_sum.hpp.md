@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group/add.hpp
     title: alg/group/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   _extendedRequiredBy:
@@ -18,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1490.test.cpp
+    title: test/yukicoder/1490.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -140,6 +143,7 @@ data:
   timestamp: '2022-10-21 17:08:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1490.test.cpp
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
 documentation_of: ds/query/point_add_rectangle_sum.hpp

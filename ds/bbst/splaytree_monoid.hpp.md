@@ -10,6 +10,9 @@ data:
     path: test/mytest/splay.test.cpp
     title: test/mytest/splay.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1441.test.cpp
+    title: test/yukicoder/1441.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1441_2.test.cpp
     title: test/yukicoder/1441_2.test.cpp
   _isVerificationFailed: false
@@ -203,6 +206,7 @@ data:
   verifiedWith:
   - test/mytest/splay.test.cpp
   - test/yukicoder/1441_2.test.cpp
+  - test/yukicoder/1441.test.cpp
   - test/aoj/1508.test.cpp
 documentation_of: ds/bbst/splaytree_monoid.hpp
 layout: document

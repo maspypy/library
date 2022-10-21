@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/cumsum2d.hpp
     title: ds/cumsum2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   - icon: ':heavy_check_mark:'
@@ -62,7 +62,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/treeabelgroup.hpp
     title: graph/ds/treeabelgroup.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   - icon: ':heavy_check_mark:'
@@ -75,7 +75,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2842_2.test.cpp
     title: test/aoj/2842_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_2_A.test.cpp
     title: test/aoj/ALDS1_2_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -111,6 +111,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/double_ended_pq.test.cpp
     title: test/library_checker/datastructure/double_ended_pq.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
+    title: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_range_sum.test.cpp
     title: test/library_checker/datastructure/point_add_range_sum.test.cpp
@@ -205,8 +208,14 @@ data:
     path: test/yukicoder/1332.test.cpp
     title: test/yukicoder/1332.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1441.test.cpp
+    title: test/yukicoder/1441.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1441_2.test.cpp
     title: test/yukicoder/1441_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1490.test.cpp
+    title: test/yukicoder/1490.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1641.test.cpp
     title: test/yukicoder/1641.test.cpp
@@ -255,9 +264,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -299,7 +308,7 @@ data:
   - ds/fenwick2d_dense.hpp
   - string/trie.hpp
   timestamp: '2022-10-21 16:42:45+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
@@ -328,9 +337,11 @@ data:
   - test/yukicoder/789.test.cpp
   - test/yukicoder/1311.test.cpp
   - test/yukicoder/899.test.cpp
+  - test/yukicoder/1441.test.cpp
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1038.test.cpp
   - test/yukicoder/1838.test.cpp
+  - test/yukicoder/1490.test.cpp
   - test/yukicoder/655.test.cpp
   - test/aoj/DSL_2_H.test.cpp
   - test/aoj/ALDS1_5.test.cpp
@@ -360,6 +371,7 @@ data:
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
+  - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/atcoder/abc174f.test.cpp
   - test/atcoder/abc190f.test.cpp
   - test/atcoder/abc266h_2.test.cpp

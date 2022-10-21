@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/crt.hpp
     title: nt/crt.hpp
   - icon: ':heavy_check_mark:'
@@ -327,12 +327,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_2.test.cpp
     title: test/yukicoder/502_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/mod_inv.hpp\"\n// long \u3067\u3082\u5927\u4E08\u592B\
@@ -393,7 +393,7 @@ data:
   - nt/crt.hpp
   - nt/multiplicative_convolution_mod2n.hpp
   timestamp: '2022-09-24 23:40:40+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/conv_leq.test.cpp
   - test/mytest/enum_partitions.test.cpp

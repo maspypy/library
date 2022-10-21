@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group/add.hpp
     title: alg/group/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_2_A
@@ -240,13 +240,13 @@ data:
     \   k >>= 1;\n    }\n    return i;\n  }\n\n  int find_kth(E k) {\n    auto check\
     \ = [&](E x) -> bool { return x <= k; };\n    return max_right(check);\n  }\n\n\
     \  void debug() { print(\"fenwick\", dat); }\n};\n#line 2 \"seq/inversion.hpp\"\
-    \n\ntemplate <typename T>\nll inversion(vc<T>& A, bool SMALL = false) {\n  if\
-    \ (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n    for (auto&& x: A) x = LB(key,\
-    \ x);\n  }\n  ll ANS = 0;\n  ll K = MAX(A) + 1;\n  FenwickTree<Group_Add<int>>\
-    \ bit(K);\n  for (auto&& x: A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x,\
-    \ 1);\n  }\n  return ANS;\n}\n#line 6 \"test/aoj/ALDS1_2_A.test.cpp\"\n\nvoid\
-    \ solve() {\n  LL(N);\n  VEC(ll, A, N);\n  ll x = inversion(A);\n  sort(all(A));\n\
-    \  print(A);\n  print(x);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \n\ntemplate <typename T>\nll inversion(vc<T> A, bool SMALL = false) {\n  if (!SMALL)\
+    \ {\n    auto key = A;\n    UNIQUE(key);\n    for (auto&& x: A) x = LB(key, x);\n\
+    \  }\n  ll ANS = 0;\n  ll K = MAX(A) + 1;\n  FenwickTree<Group_Add<int>> bit(K);\n\
+    \  for (auto&& x: A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x, 1);\n  }\n\
+    \  return ANS;\n}\n#line 6 \"test/aoj/ALDS1_2_A.test.cpp\"\n\nvoid solve() {\n\
+    \  LL(N);\n  VEC(ll, A, N);\n  ll x = inversion(A);\n  sort(all(A));\n  print(A);\n\
+    \  print(x);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
     \n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_2_A\"\
@@ -264,8 +264,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_2_A.test.cpp
   requiredBy: []
-  timestamp: '2022-10-21 19:57:51+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-10-21 20:04:32+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_2_A.test.cpp
 layout: document
