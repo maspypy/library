@@ -44,7 +44,7 @@ i128 CRT(vc<int> vals, vc<int> mods, int new_mod = -1, bool coprime = false) {
     cfs[i] = mod_inv(prod, mods[i]) * a % mod;
   }
   i128 ret = 0;
-  ll prod = 1;
+  i128 prod = 1;
   FOR(i, n) {
     ret += prod * cfs[i];
     prod *= mods[i];
