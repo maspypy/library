@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "alg/lazy/max_add.hpp"
-#include "bbst/rbst_lazy.hpp"
+#include "ds/bbst/rbst_lazy.hpp"
 
 void solve() {
   LL(N);

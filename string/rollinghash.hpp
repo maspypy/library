@@ -3,8 +3,8 @@
 
 struct RollingHash {
   static const uint64_t mod = (1ull << 61ull) - 1;
-  vector<uint64_t> power;
   const uint64_t base;
+  vector<uint64_t> power;
 
   static inline uint64_t add(uint64_t a, uint64_t b) {
     if ((a += b) >= mod) a -= mod;
