@@ -18,7 +18,7 @@ void solve() {
     for (auto&& x: TO) --x;
     FOR(r, N) {
       if (pos[r].fi != -1) continue;
-      vc<int> cyc = {r};
+      vc<int> cyc = {int(r)};
       while (1) {
         ll nxt = TO[cyc.back()];
         if (nxt == r) break;
@@ -68,7 +68,9 @@ void solve() {
       t2 -= s2;
       if (t1 < 0) t1 += n1;
       if (t2 < 0) t2 += n2;
-      ll x = CRT({t1, t2}, {n1, n2});
+      vc<int> vals = {int(t1), int(t2)};
+      vc<int> mods = {int(n1), int(n2)};
+      ll x = CRT(vals, mods);
       X.eb(x);
     }
     X.eb(n1 / gcd(n1, n2) * n2);
