@@ -13,14 +13,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_5_D
@@ -240,7 +240,7 @@ data:
     \    auto check = [&](E x) -> bool { return x <= k; };\n    return max_right(check);\n\
     \  }\n\n  void debug() { print(\"fenwick\", dat); }\n};\n#line 2 \"seq/inversion.hpp\"\
     \n\ntemplate <typename T>\nll inversion(vc<T>& A, bool SMALL = false) {\n  if\
-    \ (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n    for (auto&& x: A) x = LB(A,\
+    \ (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n    for (auto&& x: A) x = LB(key,\
     \ x);\n  }\n  ll ANS = 0;\n  ll K = MAX(A) + 1;\n  FenwickTree<Group_Add<int>>\
     \ bit(K);\n  for (auto&& x: A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x,\
     \ 1);\n  }\n  return ANS;\n}\n#line 7 \"test/aoj/ALDS1_5.test.cpp\"\n\nvoid solve()\
@@ -263,8 +263,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_5.test.cpp
   requiredBy: []
-  timestamp: '2022-10-21 18:52:33+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-10-21 19:57:51+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_5.test.cpp
 layout: document

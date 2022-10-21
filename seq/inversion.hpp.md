@@ -12,12 +12,12 @@ data:
   - icon: ':x:'
     path: test/aoj/ALDS1_2_A.test.cpp
     title: test/aoj/ALDS1_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_5.test.cpp
     title: test/aoj/ALDS1_5.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -55,23 +55,23 @@ data:
     \ = [&](E x) -> bool { return x <= k; };\n    return max_right(check);\n  }\n\n\
     \  void debug() { print(\"fenwick\", dat); }\n};\n#line 2 \"seq/inversion.hpp\"\
     \n\ntemplate <typename T>\nll inversion(vc<T>& A, bool SMALL = false) {\n  if\
-    \ (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n    for (auto&& x: A) x = LB(A,\
+    \ (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n    for (auto&& x: A) x = LB(key,\
     \ x);\n  }\n  ll ANS = 0;\n  ll K = MAX(A) + 1;\n  FenwickTree<Group_Add<int>>\
     \ bit(K);\n  for (auto&& x: A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x,\
     \ 1);\n  }\n  return ANS;\n}\n"
   code: "#include \"ds/fenwick.hpp\"\n\ntemplate <typename T>\nll inversion(vc<T>&\
     \ A, bool SMALL = false) {\n  if (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n\
-    \    for (auto&& x: A) x = LB(A, x);\n  }\n  ll ANS = 0;\n  ll K = MAX(A) + 1;\n\
-    \  FenwickTree<Group_Add<int>> bit(K);\n  for (auto&& x: A) {\n    ANS += bit.sum(x\
-    \ + 1, K);\n    bit.add(x, 1);\n  }\n  return ANS;\n}\n"
+    \    for (auto&& x: A) x = LB(key, x);\n  }\n  ll ANS = 0;\n  ll K = MAX(A) +\
+    \ 1;\n  FenwickTree<Group_Add<int>> bit(K);\n  for (auto&& x: A) {\n    ANS +=\
+    \ bit.sum(x + 1, K);\n    bit.add(x, 1);\n  }\n  return ANS;\n}\n"
   dependsOn:
   - ds/fenwick.hpp
   - alg/group/add.hpp
   isVerificationFile: false
   path: seq/inversion.hpp
   requiredBy: []
-  timestamp: '2022-10-21 18:52:33+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-10-21 19:57:51+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/ALDS1_5.test.cpp
   - test/aoj/ALDS1_2_A.test.cpp

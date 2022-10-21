@@ -62,7 +62,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/treeabelgroup.hpp
     title: graph/ds/treeabelgroup.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   - icon: ':heavy_check_mark:'
@@ -78,7 +78,7 @@ data:
   - icon: ':x:'
     path: test/aoj/ALDS1_2_A.test.cpp
     title: test/aoj/ALDS1_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_5.test.cpp
     title: test/aoj/ALDS1_5.test.cpp
   - icon: ':heavy_check_mark:'
@@ -120,6 +120,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
+    title: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
@@ -355,6 +358,7 @@ data:
   - test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
   - test/atcoder/abc174f.test.cpp
   - test/atcoder/abc190f.test.cpp

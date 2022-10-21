@@ -16,6 +16,9 @@ data:
     title: seq/kth_term_of_p_recursive.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
+    title: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - icon: ':heavy_check_mark:'
@@ -127,6 +130,7 @@ data:
   - test/yukicoder/1435_2.test.cpp
   - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
+  - test/library_checker/datastructure/queue_operate_all_composite.test.cpp
 documentation_of: ds/swag.hpp
 layout: document
 redirect_from:

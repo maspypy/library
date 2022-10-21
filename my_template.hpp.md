@@ -48,7 +48,7 @@ data:
   - icon: ':x:'
     path: test/aoj/ALDS1_2_A.test.cpp
     title: test/aoj/ALDS1_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_5.test.cpp
     title: test/aoj/ALDS1_5.test.cpp
   - icon: ':heavy_check_mark:'
@@ -322,6 +322,9 @@ data:
     path: test/library_checker/datastructure/predecessor_problem.test.cpp
     title: test/library_checker/datastructure/predecessor_problem.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
+    title: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_point_add.test.cpp
     title: test/library_checker/datastructure/range_affine_point_add.test.cpp
   - icon: ':heavy_check_mark:'
@@ -330,6 +333,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
     title: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
+    title: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
@@ -345,6 +351,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/segment_add_get_min.test.cpp
     title: test/library_checker/datastructure/segment_add_get_min.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
+    title: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/set_xor_min.test.cpp
     title: test/library_checker/datastructure/set_xor_min.test.cpp
@@ -1729,6 +1738,7 @@ data:
   - test/library_checker/datastructure/add_remove_query.test.cpp
   - test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - test/library_checker/datastructure/associative_array_hashmap.test.cpp
+  - test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   - test/library_checker/datastructure/range_affine_point_add.test.cpp
   - test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
@@ -1755,10 +1765,12 @@ data:
   - test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
   - test/library_checker/datastructure/unionfind.test.cpp
   - test/library_checker/datastructure/segment_add_get_min.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
   - test/library_checker/datastructure/persistent_queue.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - test/library_checker/datastructure/staticrmq_dc.test.cpp
+  - test/library_checker/datastructure/queue_operate_all_composite.test.cpp
   - test/library_checker/datastructure/line_add_get_min.test.cpp
   - test/library_checker/string/suffix_array_vec.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
