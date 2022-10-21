@@ -8,13 +8,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/sortable_segtree.hpp
     title: ds/sortable_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/treemonoid.hpp
     title: graph/ds/treemonoid.hpp
+  - icon: ':question:'
+    path: graph/minimum_spanning_tree.hpp
+    title: graph/minimum_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_2_A.test.cpp
+    title: test/aoj/GRL_2_A.test.cpp
+  - icon: ':x:'
+    path: test/aoj/ITP2_3_B.test.cpp
+    title: test/aoj/ITP2_3_B.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc270_f.test.cpp
+    title: test/atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
     title: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
@@ -45,9 +57,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/529.test.cpp
+    title: test/yukicoder/529.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/1401/problem/F
@@ -147,12 +162,13 @@ data:
   isVerificationFile: false
   path: ds/segtree.hpp
   requiredBy:
+  - graph/minimum_spanning_tree.hpp
   - graph/ds/treemonoid.hpp
   - ds/sortable_segtree.hpp
   - ds/query/range_mex_query.hpp
   - string/suffix_tree.hpp
   timestamp: '2022-08-11 02:08:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/range_mex.test.cpp
@@ -160,10 +176,14 @@ data:
   - test/yukicoder/426.test.cpp
   - test/yukicoder/1212.test.cpp
   - test/yukicoder/1435.test.cpp
+  - test/yukicoder/529.test.cpp
   - test/yukicoder/1036_2.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
+  - test/aoj/ITP2_3_B.test.cpp
   - test/library_checker/datastructure/sort_segtree_1.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp
   - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
+  - test/atcoder/abc270_f.test.cpp
 documentation_of: ds/segtree.hpp
 layout: document
 redirect_from:

@@ -12,9 +12,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1320.test.cpp
     title: test/yukicoder/1320.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/1718.test.cpp
+    title: test/yukicoder/1718.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1868.test.cpp
+    title: test/yukicoder/1868.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -107,9 +113,11 @@ data:
   requiredBy:
   - graph/mincostcycle.hpp
   timestamp: '2022-10-21 17:08:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1320.test.cpp
+  - test/yukicoder/1868.test.cpp
+  - test/yukicoder/1718.test.cpp
 documentation_of: graph/shortest_path/bfs01.hpp
 layout: document
 redirect_from:

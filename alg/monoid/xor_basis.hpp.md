@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yukicoder/184.test.cpp
+    title: test/yukicoder/184.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid/xor_basis.hpp\"\ntemplate <typename INT>\r\n\
@@ -37,8 +40,9 @@ data:
   path: alg/monoid/xor_basis.hpp
   requiredBy: []
   timestamp: '2022-10-21 16:22:09+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yukicoder/184.test.cpp
 documentation_of: alg/monoid/xor_basis.hpp
 layout: document
 redirect_from:

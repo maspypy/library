@@ -2,10 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DPL_1_B.test.cpp
+    title: test/aoj/DPL_1_B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DPL_1_F.test.cpp
+    title: test/aoj/DPL_1_F.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DPL_1_H.test.cpp
+    title: test/aoj/DPL_1_H.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"knapsack/knapsack01.hpp\"\n/*\nknapsack01 \u306E\u5168\u5217\
@@ -83,8 +92,11 @@ data:
   path: knapsack/knapsack01.hpp
   requiredBy: []
   timestamp: '2022-10-21 17:08:40+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj/DPL_1_B.test.cpp
+  - test/aoj/DPL_1_H.test.cpp
+  - test/aoj/DPL_1_F.test.cpp
 documentation_of: knapsack/knapsack01.hpp
 layout: document
 redirect_from:

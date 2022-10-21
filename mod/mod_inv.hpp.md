@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':warning:'
@@ -264,6 +264,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1618.test.cpp
     title: test/yukicoder/1618.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1720.test.cpp
+    title: test/yukicoder/1720.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1755.test.cpp
     title: test/yukicoder/1755.test.cpp
@@ -385,6 +388,7 @@ data:
   - test/yukicoder/1500.test.cpp
   - test/yukicoder/1547.test.cpp
   - test/yukicoder/1303.test.cpp
+  - test/yukicoder/1720.test.cpp
   - test/yukicoder/1145.test.cpp
   - test/yukicoder/1962.test.cpp
   - test/yukicoder/1796.test.cpp

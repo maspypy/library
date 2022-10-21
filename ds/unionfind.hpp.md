@@ -11,15 +11,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
   - icon: ':question:'
     path: graph/functional.hpp
     title: graph/functional.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
+  - icon: ':question:'
+    path: graph/minimum_spanning_tree.hpp
+    title: graph/minimum_spanning_tree.hpp
   - icon: ':warning:'
     path: graph/online_mst.hpp
     title: graph/online_mst.hpp
@@ -31,8 +34,20 @@ data:
     title: graph/tree_of_unionfind.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/2251_1.test.cpp
+    title: test/aoj/2251_1.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/2251_2.test.cpp
+    title: test/aoj/2251_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2995.test.cpp
     title: test/aoj/2995.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_2_A.test.cpp
+    title: test/aoj/GRL_2_A.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc270_f.test.cpp
+    title: test/atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/unionfind.test.cpp
     title: test/library_checker/datastructure/unionfind.test.cpp
@@ -116,6 +131,7 @@ data:
   requiredBy:
   - flow/bipartite.hpp
   - graph/maximum_antichain.hpp
+  - graph/minimum_spanning_tree.hpp
   - graph/online_unionfind.hpp
   - graph/online_mst.hpp
   - graph/dag_path_cover.hpp
@@ -139,10 +155,14 @@ data:
   - test/yukicoder/1745.test.cpp
   - test/yukicoder/1170_2.test.cpp
   - test/yukicoder/1911.test.cpp
+  - test/aoj/2251_2.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
   - test/aoj/2995.test.cpp
+  - test/aoj/2251_1.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/datastructure/unionfind.test.cpp
+  - test/atcoder/abc270_f.test.cpp
 documentation_of: ds/unionfind.hpp
 layout: document
 redirect_from:

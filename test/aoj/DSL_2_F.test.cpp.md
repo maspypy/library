@@ -13,12 +13,14 @@ data:
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: alg/lazy_min_set.hpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: alg/monoid_min.hpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/lazysegtree.hpp\"\
-    \r\n#include \"alg/lazy_min_set.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\n\
+    \r\n#include \"alg/lazy/min_set.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\n\
     \  using Lazy = Lazy_Min_Set<ll, -1>;\r\n  vi seg_raw(N, (1LL << 31) - 1);\r\n\
     \  LazySegTree<Lazy> seg(seg_raw);\r\n  FOR(_, Q) {\r\n    LL(t);\r\n    if (t\
     \ == 0) {\r\n      LL(L, R, x);\r\n      seg.apply(L, ++R, x);\r\n    } else {\r\

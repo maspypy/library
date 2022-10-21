@@ -8,22 +8,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
   - icon: ':warning:'
     path: graph/find_odd_cycle.hpp
     title: graph/find_odd_cycle.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/reachability.hpp
     title: graph/reachability.hpp
   - icon: ':heavy_check_mark:'
     path: graph/twosat.hpp
     title: graph/twosat.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/0275.test.cpp
+    title: test/aoj/0275.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/2251_1.test.cpp
+    title: test/aoj/2251_1.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/2251_2.test.cpp
+    title: test/aoj/2251_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
@@ -156,6 +165,9 @@ data:
   - test/yukicoder/1170.test.cpp
   - test/yukicoder/1745.test.cpp
   - test/yukicoder/1813.test.cpp
+  - test/aoj/2251_2.test.cpp
+  - test/aoj/0275.test.cpp
+  - test/aoj/2251_1.test.cpp
   - test/library_checker/math/twosat.test.cpp
   - test/library_checker/graph/scc.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp

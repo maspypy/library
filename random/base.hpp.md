@@ -8,9 +8,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
+  - icon: ':x:'
+    path: mod/modular_subset_sum.hpp
+    title: mod/modular_subset_sum.hpp
   - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
+  - icon: ':x:'
+    path: string/rollinghash.hpp
+    title: string/rollinghash.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_root_mod.test.cpp
@@ -18,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/primitive_root.test.cpp
     title: test/library_checker/math/primitive_root.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
+    title: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/all_inverse.test.cpp
     title: test/mytest/all_inverse.test.cpp
@@ -84,9 +93,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/2102.test.cpp
+    title: test/yukicoder/2102.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/263.test.cpp
+    title: test/yukicoder/263.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/4_1.test.cpp
+    title: test/yukicoder/4_1.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nll RNG(ll a, ll b) {\n  static mt19937\
@@ -100,10 +118,12 @@ data:
   path: random/base.hpp
   requiredBy:
   - linalg/det_A_plus_xB.hpp
+  - mod/modular_subset_sum.hpp
   - mod/mod_kth_root.hpp
   - mod/primitive_root.hpp
+  - string/rollinghash.hpp
   timestamp: '2022-10-21 16:42:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/stern_brocot.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
@@ -123,12 +143,16 @@ data:
   - test/mytest/range_mex.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/minplus_convex.test.cpp
+  - test/yukicoder/263.test.cpp
+  - test/yukicoder/4_1.test.cpp
+  - test/yukicoder/2102.test.cpp
   - test/yukicoder/1080.test.cpp
   - test/yukicoder/1303.test.cpp
   - test/yukicoder/1025.test.cpp
   - test/yukicoder/1907.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/primitive_root.test.cpp
+  - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
 documentation_of: random/base.hpp
 layout: document
 redirect_from:

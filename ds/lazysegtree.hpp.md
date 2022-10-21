@@ -2,19 +2,76 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
+    path: ds/common_interval_decomposition.hpp
+    title: ds/common_interval_decomposition.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/query/rectangleunion.hpp
+    title: ds/query/rectangleunion.hpp
+  - icon: ':question:'
     path: graph/ds/dualtreemonoid.hpp
     title: graph/ds/dualtreemonoid.hpp
+  - icon: ':x:'
+    path: graph/ds/lazytreemonoid.hpp
+    title: graph/ds/lazytreemonoid.hpp
+  - icon: ':question:'
+    path: graph/minimum_spanning_tree.hpp
+    title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL_2_H.test.cpp
+    title: test/aoj/DSL_2_H.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL_2_I.test.cpp
+    title: test/aoj/DSL_2_I.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL_4_A.test.cpp
+    title: test/aoj/DSL_4_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_2_A.test.cpp
+    title: test/aoj/GRL_2_A.test.cpp
+  - icon: ':x:'
+    path: test/aoj/GRL_5_E.test.cpp
+    title: test/aoj/GRL_5_E.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc270_f.test.cpp
+    title: test/atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
     title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/graph/common_interval_decomposition.test.cpp
+    title: test/library_checker/graph/common_interval_decomposition.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1197.test.cpp
+    title: test/yukicoder/1197.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1234.test.cpp
+    title: test/yukicoder/1234.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1270.test.cpp
+    title: test/yukicoder/1270.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1720.test.cpp
+    title: test/yukicoder/1720.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1790.test.cpp
+    title: test/yukicoder/1790.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/235.test.cpp
+    title: test/yukicoder/235.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/255.test.cpp
+    title: test/yukicoder/255.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/749.test.cpp
     title: test/yukicoder/749.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/899.test.cpp
+    title: test/yukicoder/899.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/lazysegtree.hpp\"\n\ntemplate <typename Lazy>\nstruct\
@@ -145,12 +202,31 @@ data:
   isVerificationFile: false
   path: ds/lazysegtree.hpp
   requiredBy:
+  - graph/minimum_spanning_tree.hpp
   - graph/ds/dualtreemonoid.hpp
+  - graph/ds/lazytreemonoid.hpp
+  - ds/common_interval_decomposition.hpp
+  - ds/query/rectangleunion.hpp
   timestamp: '2022-08-11 02:08:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/749.test.cpp
+  - test/yukicoder/1234.test.cpp
+  - test/yukicoder/255.test.cpp
+  - test/yukicoder/1197.test.cpp
+  - test/yukicoder/1270.test.cpp
+  - test/yukicoder/1720.test.cpp
+  - test/yukicoder/899.test.cpp
+  - test/yukicoder/1790.test.cpp
+  - test/yukicoder/235.test.cpp
+  - test/aoj/DSL_2_H.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
+  - test/aoj/DSL_2_I.test.cpp
+  - test/aoj/DSL_4_A.test.cpp
+  - test/aoj/GRL_5_E.test.cpp
+  - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/library_checker/datastructure/range_affine_range_sum.test.cpp
+  - test/atcoder/abc270_f.test.cpp
 documentation_of: ds/lazysegtree.hpp
 layout: document
 redirect_from:

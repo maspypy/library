@@ -1,11 +1,20 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: mod/modular_subset_sum.hpp
+    title: mod/modular_subset_sum.hpp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/ALDS1_14_C.test.cpp
+    title: test/aoj/ALDS1_14_C.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/4_1.test.cpp
+    title: test/yukicoder/4_1.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint61.hpp\"\nstruct modint61 {\r\n  static constexpr\
@@ -71,10 +80,13 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: mod/modint61.hpp
-  requiredBy: []
+  requiredBy:
+  - mod/modular_subset_sum.hpp
   timestamp: '2022-08-19 15:26:02+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yukicoder/4_1.test.cpp
+  - test/aoj/ALDS1_14_C.test.cpp
 documentation_of: mod/modint61.hpp
 layout: document
 redirect_from:

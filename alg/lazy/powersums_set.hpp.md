@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: alg/group/power_sums.hpp
     title: alg/group/power_sums.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/set.hpp
     title: alg/monoid/set.hpp
   _extendedRequiredBy: []

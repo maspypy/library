@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/1508.test.cpp
+    title: test/aoj/1508.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/splay.test.cpp
     title: test/mytest/splay.test.cpp
   _isVerificationFailed: false
@@ -196,6 +199,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/splay.test.cpp
+  - test/aoj/1508.test.cpp
 documentation_of: ds/bbst/splaytree_monoid.hpp
 layout: document
 redirect_from:

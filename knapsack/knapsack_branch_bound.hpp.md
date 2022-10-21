@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yukicoder/626.test.cpp
+    title: test/yukicoder/626.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"knapsack/knapsack_branch_bound.hpp\"\n// \u5206\u679D\u9650\
@@ -39,8 +42,9 @@ data:
   path: knapsack/knapsack_branch_bound.hpp
   requiredBy: []
   timestamp: '2022-10-21 17:08:40+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yukicoder/626.test.cpp
 documentation_of: knapsack/knapsack_branch_bound.hpp
 layout: document
 redirect_from:
