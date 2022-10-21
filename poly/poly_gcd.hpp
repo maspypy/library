@@ -1,7 +1,7 @@
 #include "poly/poly_divmod.hpp"
 
-namespace half_gcd {
 // https://people.eecs.berkeley.edu/~fateman/282/readings/yap-2.pdf
+namespace half_gcd {
 template <typename T>
 using arr = array<vc<T>, 2>;
 
@@ -89,13 +89,14 @@ mat<T> cgcd(arr<T> a) {
   return cgcd(a) * m0;
 }
 
+// gcd == f * fi + g * gi となる (gcd, fi, gi)
 template <typename T>
-tuple<vc<T>, vc<T>, vc<T>> poly_extgcd(const vc<T>& a, const vc<T>& b) {
-  mat<T> Q = step(poly_divmod(a, b).fi);
+tuple<vc<T>, vc<T>, vc<T>> poly_extgcd(const vc<T>& f, const vc<T>& g) {
+  mat<T> Q = step(poly_divmod(f, g).fi);
   auto m = Q;
-  auto ap = Q * arr<T>{a, b};
+  auto ap = Q * arr<T>{f, g};
   if (!ap[1].empty()) m = cgcd(ap) * m;
-  return {a * m[0] + b * m[1], m[0], m[1]};
+  return {f * m[0] + g * m[1], m[0], m[1]};
 }
 } // namespace half_gcd
 using half_gcd::poly_extgcd;
