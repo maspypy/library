@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_kth_smallest"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/parallel_binary_search.hpp"
+#include "ds/query/parallel_binary_search.hpp"
 #include "ds/fenwick.hpp"
 
 void solve() {

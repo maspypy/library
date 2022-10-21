@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "alg/group_affine.hpp"
+#include "alg/group/affine.hpp"
 #include "ds/swag.hpp"
 #include "mod/modint.hpp"
 
