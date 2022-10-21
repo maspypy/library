@@ -1171,9 +1171,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/run_length.hpp
       title: string/run_length.hpp
-    - icon: ':warning:'
-      path: string/sort_all_substring.hpp
-      title: string/sort_all_substring.hpp
     - icon: ':heavy_check_mark:'
       path: string/split.hpp
       title: string/split.hpp

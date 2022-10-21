@@ -11,9 +11,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
-  - icon: ':warning:'
-    path: string/sort_all_substring.hpp
-    title: string/sort_all_substring.hpp
   - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
@@ -200,7 +197,6 @@ data:
   isVerificationFile: false
   path: string/suffixarray.hpp
   requiredBy:
-  - string/sort_all_substring.hpp
   - string/suffix_tree.hpp
   - string/longest_common_substring.hpp
   timestamp: '2022-10-21 17:08:40+09:00'

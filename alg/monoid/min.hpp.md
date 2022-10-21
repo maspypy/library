@@ -20,9 +20,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
-  - icon: ':warning:'
-    path: string/sort_all_substring.hpp
-    title: string/sort_all_substring.hpp
   - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
@@ -112,7 +109,6 @@ data:
   - graph/minimum_spanning_tree.hpp
   - ds/common_interval_decomposition.hpp
   - ds/query/range_mex_query.hpp
-  - string/sort_all_substring.hpp
   - string/suffix_tree.hpp
   - string/longest_common_substring.hpp
   - string/suffixarray.hpp
