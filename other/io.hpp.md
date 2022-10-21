@@ -304,6 +304,9 @@ data:
     path: test/library_checker/math/kth_root_integer.test.cpp
     title: test/library_checker/math/kth_root_integer.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/kth_root_mod.test.cpp
+    title: test/library_checker/math/kth_root_mod.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':heavy_check_mark:'
@@ -318,6 +321,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/nim_product.test.cpp
     title: test/library_checker/math/nim_product.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/primitive_root.test.cpp
+    title: test/library_checker/math/primitive_root.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sharp_p_subset_sum.test.cpp
     title: test/library_checker/math/sharp_p_subset_sum.test.cpp
@@ -538,20 +544,47 @@ data:
     path: test/yukicoder/1002.test.cpp
     title: test/yukicoder/1002.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1025.test.cpp
+    title: test/yukicoder/1025.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1036.test.cpp
+    title: test/yukicoder/1036.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1036_2.test.cpp
+    title: test/yukicoder/1036_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1036_3.test.cpp
+    title: test/yukicoder/1036_3.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1077.test.cpp
     title: test/yukicoder/1077.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1080.test.cpp
+    title: test/yukicoder/1080.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1097.test.cpp
+    title: test/yukicoder/1097.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1117.test.cpp
+    title: test/yukicoder/1117.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/114.test.cpp
     title: test/yukicoder/114.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1141.test.cpp
+    title: test/yukicoder/1141.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1142.test.cpp
     title: test/yukicoder/1142.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1167.test.cpp
+    title: test/yukicoder/1167.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1170.test.cpp
     title: test/yukicoder/1170.test.cpp
@@ -565,6 +598,15 @@ data:
     path: test/yukicoder/1211.test.cpp
     title: test/yukicoder/1211.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1212.test.cpp
+    title: test/yukicoder/1212.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1216.test.cpp
+    title: test/yukicoder/1216.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1216_2.test.cpp
+    title: test/yukicoder/1216_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1240.test.cpp
     title: test/yukicoder/1240.test.cpp
   - icon: ':heavy_check_mark:'
@@ -574,8 +616,17 @@ data:
     path: test/yukicoder/1254.test.cpp
     title: test/yukicoder/1254.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1260.test.cpp
+    title: test/yukicoder/1260.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1262.test.cpp
     title: test/yukicoder/1262.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1269.test.cpp
+    title: test/yukicoder/1269.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1276.test.cpp
+    title: test/yukicoder/1276.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1288.test.cpp
     title: test/yukicoder/1288.test.cpp
@@ -589,20 +640,44 @@ data:
     path: test/yukicoder/1301.test.cpp
     title: test/yukicoder/1301.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1303.test.cpp
+    title: test/yukicoder/1303.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1311.test.cpp
     title: test/yukicoder/1311.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1319.test.cpp
     title: test/yukicoder/1319.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1320.test.cpp
+    title: test/yukicoder/1320.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1323.test.cpp
+    title: test/yukicoder/1323.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1324.test.cpp
     title: test/yukicoder/1324.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1326.test.cpp
+    title: test/yukicoder/1326.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1332.test.cpp
     title: test/yukicoder/1332.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1339.test.cpp
+    title: test/yukicoder/1339.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1344.test.cpp
+    title: test/yukicoder/1344.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1383.test.cpp
     title: test/yukicoder/1383.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1392.test.cpp
+    title: test/yukicoder/1392.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1400.test.cpp
+    title: test/yukicoder/1400.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1411.test.cpp
     title: test/yukicoder/1411.test.cpp
@@ -657,7 +732,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1643.test.cpp
     title: test/yukicoder/1643.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1649.test.cpp
     title: test/yukicoder/1649.test.cpp
   - icon: ':heavy_check_mark:'
@@ -733,6 +808,9 @@ data:
     path: test/yukicoder/1875.test.cpp
     title: test/yukicoder/1875.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1907.test.cpp
+    title: test/yukicoder/1907.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1911.test.cpp
     title: test/yukicoder/1911.test.cpp
   - icon: ':heavy_check_mark:'
@@ -780,6 +858,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/655.test.cpp
+    title: test/yukicoder/655.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/749.test.cpp
     title: test/yukicoder/749.test.cpp
@@ -1044,6 +1125,7 @@ data:
   - test/mytest/factorial_998.test.cpp
   - test/mytest/minplus_convex.test.cpp
   - test/yukicoder/1755.test.cpp
+  - test/yukicoder/1167.test.cpp
   - test/yukicoder/590.test.cpp
   - test/yukicoder/1549.test.cpp
   - test/yukicoder/1324.test.cpp
@@ -1057,7 +1139,9 @@ data:
   - test/yukicoder/1983.test.cpp
   - test/yukicoder/1956.test.cpp
   - test/yukicoder/1874.test.cpp
+  - test/yukicoder/1326.test.cpp
   - test/yukicoder/1666.test.cpp
+  - test/yukicoder/1117.test.cpp
   - test/yukicoder/1077.test.cpp
   - test/yukicoder/426.test.cpp
   - test/yukicoder/749.test.cpp
@@ -1066,15 +1150,23 @@ data:
   - test/yukicoder/1541.test.cpp
   - test/yukicoder/1936.test.cpp
   - test/yukicoder/1728.test.cpp
+  - test/yukicoder/1036.test.cpp
+  - test/yukicoder/1212.test.cpp
   - test/yukicoder/2097.test.cpp
+  - test/yukicoder/1269.test.cpp
   - test/yukicoder/502_2.test.cpp
   - test/yukicoder/1254.test.cpp
+  - test/yukicoder/1216_2.test.cpp
   - test/yukicoder/1976.test.cpp
   - test/yukicoder/1634.test.cpp
   - test/yukicoder/1319.test.cpp
   - test/yukicoder/1676.test.cpp
   - test/yukicoder/1479.test.cpp
   - test/yukicoder/1744.test.cpp
+  - test/yukicoder/1323.test.cpp
+  - test/yukicoder/1400.test.cpp
+  - test/yukicoder/1216.test.cpp
+  - test/yukicoder/1320.test.cpp
   - test/yukicoder/1170.test.cpp
   - test/yukicoder/1844.test.cpp
   - test/yukicoder/1857.test.cpp
@@ -1086,49 +1178,63 @@ data:
   - test/yukicoder/187.test.cpp
   - test/yukicoder/919.test.cpp
   - test/yukicoder/2065.test.cpp
+  - test/yukicoder/1392.test.cpp
   - test/yukicoder/1618.test.cpp
+  - test/yukicoder/1260.test.cpp
   - test/yukicoder/1211.test.cpp
   - test/yukicoder/1678.test.cpp
   - test/yukicoder/1875.test.cpp
   - test/yukicoder/924.test.cpp
   - test/yukicoder/1667.test.cpp
   - test/yukicoder/1593.test.cpp
+  - test/yukicoder/1141.test.cpp
   - test/yukicoder/1242.test.cpp
   - test/yukicoder/1989.test.cpp
+  - test/yukicoder/1080.test.cpp
   - test/yukicoder/1500.test.cpp
   - test/yukicoder/1643.test.cpp
   - test/yukicoder/1201.test.cpp
   - test/yukicoder/1240.test.cpp
+  - test/yukicoder/1097.test.cpp
   - test/yukicoder/1848.test.cpp
   - test/yukicoder/1288.test.cpp
   - test/yukicoder/1547.test.cpp
+  - test/yukicoder/1303.test.cpp
   - test/yukicoder/1332.test.cpp
   - test/yukicoder/1002.test.cpp
   - test/yukicoder/1760.test.cpp
   - test/yukicoder/1810.test.cpp
+  - test/yukicoder/1036_3.test.cpp
   - test/yukicoder/1745.test.cpp
   - test/yukicoder/1170_2.test.cpp
   - test/yukicoder/1435_2.test.cpp
   - test/yukicoder/1813.test.cpp
+  - test/yukicoder/1025.test.cpp
   - test/yukicoder/177.test.cpp
   - test/yukicoder/1145.test.cpp
   - test/yukicoder/1311.test.cpp
   - test/yukicoder/1301.test.cpp
   - test/yukicoder/1911.test.cpp
+  - test/yukicoder/1344.test.cpp
   - test/yukicoder/1962.test.cpp
+  - test/yukicoder/1276.test.cpp
   - test/yukicoder/1383.test.cpp
   - test/yukicoder/1796.test.cpp
   - test/yukicoder/779.test.cpp
   - test/yukicoder/1778.test.cpp
+  - test/yukicoder/1907.test.cpp
   - test/yukicoder/1421.test.cpp
   - test/yukicoder/1753.test.cpp
   - test/yukicoder/1418.test.cpp
   - test/yukicoder/1494.test.cpp
   - test/yukicoder/1292.test.cpp
+  - test/yukicoder/1339.test.cpp
   - test/yukicoder/1038.test.cpp
   - test/yukicoder/1411.test.cpp
+  - test/yukicoder/1036_2.test.cpp
   - test/yukicoder/1516.test.cpp
   - test/yukicoder/2062.test.cpp
+  - test/yukicoder/655.test.cpp
   - test/aoj/NTL_1_D.test.cpp
   - test/aoj/GRL_3_B.test.cpp
   - test/aoj/CGL_7_B.test.cpp
@@ -1194,6 +1300,7 @@ data:
   - test/library_checker/convolution/bitwise_and_convolution.test.cpp
   - test/library_checker/convolution/convolution_mod.test.cpp
   - test/library_checker/convolution/bitwise_or_convolution.test.cpp
+  - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/lcm_convolution.test.cpp
   - test/library_checker/math/counting_primes.test.cpp
   - test/library_checker/math/find_linear_recurrence.test.cpp
@@ -1201,6 +1308,7 @@ data:
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/math/nim_product.test.cpp
+  - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/twosat.test.cpp
   - test/library_checker/math/totient_sum.test.cpp
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp

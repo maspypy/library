@@ -28,6 +28,9 @@ data:
     path: test/mytest/primesum_mod6.test.cpp
     title: test/mytest/primesum_mod6.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1276.test.cpp
+    title: test/yukicoder/1276.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1781.test.cpp
     title: test/yukicoder/1781.test.cpp
   _isVerificationFailed: false
@@ -110,6 +113,7 @@ data:
   - test/mytest/primesum_mod6.test.cpp
   - test/mytest/primesum_mod4.test.cpp
   - test/yukicoder/1781.test.cpp
+  - test/yukicoder/1276.test.cpp
   - test/library_checker/math/counting_primes.test.cpp
   - test/library_checker/math/totient_sum.test.cpp
 documentation_of: nt/primesum.hpp

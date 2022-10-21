@@ -31,6 +31,9 @@ data:
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1392.test.cpp
+    title: test/yukicoder/1392.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1857.test.cpp
     title: test/yukicoder/1857.test.cpp
   _isVerificationFailed: false
@@ -328,6 +331,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1857.test.cpp
+  - test/yukicoder/1392.test.cpp
   - test/yukicoder/1145.test.cpp
   - test/atcoder/abc269ex.test.cpp
 documentation_of: poly/convolution_all.hpp

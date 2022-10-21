@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':question:'
+    path: ds/cumsum2d.hpp
+    title: ds/cumsum2d.hpp
   - icon: ':heavy_check_mark:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
@@ -29,12 +32,15 @@ data:
   - icon: ':warning:'
     path: graph/ds/contoursum.hpp
     title: graph/ds/contoursum.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/treeabelgroup.hpp
     title: graph/ds/treeabelgroup.hpp
   - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/trie.hpp
+    title: string/trie.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2842.test.cpp
@@ -82,8 +88,26 @@ data:
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1097.test.cpp
+    title: test/yukicoder/1097.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1141.test.cpp
+    title: test/yukicoder/1141.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1216.test.cpp
+    title: test/yukicoder/1216.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1216_2.test.cpp
+    title: test/yukicoder/1216_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1269.test.cpp
+    title: test/yukicoder/1269.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1311.test.cpp
     title: test/yukicoder/1311.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1326.test.cpp
+    title: test/yukicoder/1326.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1332.test.cpp
     title: test/yukicoder/1332.test.cpp
@@ -96,15 +120,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2065.test.cpp
     title: test/yukicoder/2065.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/655.test.cpp
+    title: test/yukicoder/655.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/919.test.cpp
     title: test/yukicoder/919.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -126,6 +153,7 @@ data:
   - seq/inversion.hpp
   - graph/ds/treeabelgroup.hpp
   - graph/ds/contoursum.hpp
+  - ds/cumsum2d.hpp
   - ds/waveletmatrix.hpp
   - ds/fenwick2d.hpp
   - ds/query/point_add_polygon_sum.hpp
@@ -134,19 +162,27 @@ data:
   - ds/fenwick.hpp
   - ds/fenwickraq.hpp
   - ds/fenwick2d_dense.hpp
+  - string/trie.hpp
   timestamp: '2022-10-21 16:42:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/yukicoder/1874.test.cpp
+  - test/yukicoder/1326.test.cpp
   - test/yukicoder/2003.test.cpp
+  - test/yukicoder/1269.test.cpp
+  - test/yukicoder/1216_2.test.cpp
+  - test/yukicoder/1216.test.cpp
   - test/yukicoder/919.test.cpp
   - test/yukicoder/2065.test.cpp
   - test/yukicoder/924.test.cpp
+  - test/yukicoder/1141.test.cpp
+  - test/yukicoder/1097.test.cpp
   - test/yukicoder/1332.test.cpp
   - test/yukicoder/1311.test.cpp
   - test/yukicoder/1038.test.cpp
+  - test/yukicoder/655.test.cpp
   - test/aoj/DSL_2_G.test.cpp
   - test/aoj/DSL_2_E.test.cpp
   - test/aoj/2842.test.cpp

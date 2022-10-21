@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group/add.hpp
     title: alg/group/add.hpp
   _extendedRequiredBy:
@@ -20,7 +20,7 @@ data:
   - icon: ':warning:'
     path: graph/ds/contoursum.hpp
     title: graph/ds/contoursum.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/treeabelgroup.hpp
     title: graph/ds/treeabelgroup.hpp
   - icon: ':heavy_check_mark:'
@@ -51,6 +51,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1311.test.cpp
     title: test/yukicoder/1311.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1326.test.cpp
+    title: test/yukicoder/1326.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1874.test.cpp
     title: test/yukicoder/1874.test.cpp
@@ -141,6 +144,7 @@ data:
   verifiedWith:
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/yukicoder/1874.test.cpp
+  - test/yukicoder/1326.test.cpp
   - test/yukicoder/924.test.cpp
   - test/yukicoder/1311.test.cpp
   - test/yukicoder/1038.test.cpp

@@ -9,6 +9,12 @@ data:
     path: mod/binomial.hpp
     title: mod/binomial.hpp
   - icon: ':heavy_check_mark:'
+    path: mod/mod_kth_root.hpp
+    title: mod/mod_kth_root.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/primitive_root.hpp
+    title: mod/primitive_root.hpp
+  - icon: ':heavy_check_mark:'
     path: mod/tetration.hpp
     title: mod/tetration.hpp
   - icon: ':question:'
@@ -43,8 +49,17 @@ data:
     path: test/library_checker/math/factorize.test.cpp
     title: test/library_checker/math/factorize.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/kth_root_mod.test.cpp
+    title: test/library_checker/math/kth_root_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/primitive_root.test.cpp
+    title: test/library_checker/math/primitive_root.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1025.test.cpp
+    title: test/yukicoder/1025.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1262.test.cpp
     title: test/yukicoder/1262.test.cpp
@@ -153,6 +168,8 @@ data:
   requiredBy:
   - mod/binomial.hpp
   - mod/tetration.hpp
+  - mod/mod_kth_root.hpp
+  - mod/primitive_root.hpp
   - nt/gaussian_integers.hpp
   - nt/lcm.hpp
   - nt/function_on_divisors.hpp
@@ -168,9 +185,12 @@ data:
   - test/yukicoder/1728.test.cpp
   - test/yukicoder/187.test.cpp
   - test/yukicoder/1593.test.cpp
+  - test/yukicoder/1025.test.cpp
   - test/yukicoder/1411.test.cpp
   - test/aoj/NTL_1_D.test.cpp
   - test/aoj/ITP1_D_D.test.cpp
+  - test/library_checker/math/kth_root_mod.test.cpp
+  - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/binomial_coefficient.test.cpp
   - test/library_checker/math/tetration.test.cpp
   - test/library_checker/math/factorize.test.cpp

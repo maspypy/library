@@ -9,6 +9,9 @@ data:
     path: ds/sortable_segtree.hpp
     title: ds/sortable_segtree.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/ds/treemonoid.hpp
+    title: graph/ds/treemonoid.hpp
+  - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
@@ -27,6 +30,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1036_2.test.cpp
+    title: test/yukicoder/1036_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1212.test.cpp
+    title: test/yukicoder/1212.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1435.test.cpp
     title: test/yukicoder/1435.test.cpp
@@ -138,6 +147,7 @@ data:
   isVerificationFile: false
   path: ds/segtree.hpp
   requiredBy:
+  - graph/ds/treemonoid.hpp
   - ds/sortable_segtree.hpp
   - ds/query/range_mex_query.hpp
   - string/suffix_tree.hpp
@@ -148,7 +158,9 @@ data:
   - test/mytest/range_mex.test.cpp
   - test/yukicoder/1549.test.cpp
   - test/yukicoder/426.test.cpp
+  - test/yukicoder/1212.test.cpp
   - test/yukicoder/1435.test.cpp
+  - test/yukicoder/1036_2.test.cpp
   - test/library_checker/datastructure/sort_segtree_1.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp
   - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp

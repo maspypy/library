@@ -38,9 +38,15 @@ data:
   - icon: ':warning:'
     path: graph/ds/dualtreemonoid.hpp
     title: graph/ds/dualtreemonoid.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
+    path: graph/ds/statictreemonoid.hpp
+    title: graph/ds/statictreemonoid.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/ds/treeabelgroup.hpp
     title: graph/ds/treeabelgroup.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/ds/treemonoid.hpp
+    title: graph/ds/treemonoid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
@@ -66,6 +72,9 @@ data:
     path: graph/maximum_independent_set.hpp
     title: graph/maximum_independent_set.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/mincostcycle.hpp
+    title: graph/mincostcycle.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
   - icon: ':heavy_check_mark:'
@@ -83,16 +92,16 @@ data:
   - icon: ':warning:'
     path: graph/shortest_path/bellmanford.hpp
     title: graph/shortest_path/bellmanford.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
   - icon: ':warning:'
     path: graph/shortest_path/dial.hpp
     title: graph/shortest_path/dial.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/warshall_floyd.hpp
     title: graph/shortest_path/warshall_floyd.hpp
   - icon: ':heavy_check_mark:'
@@ -208,6 +217,15 @@ data:
     path: test/yukicoder/1211.test.cpp
     title: test/yukicoder/1211.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1212.test.cpp
+    title: test/yukicoder/1212.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1216.test.cpp
+    title: test/yukicoder/1216.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1216_2.test.cpp
+    title: test/yukicoder/1216_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1242.test.cpp
     title: test/yukicoder/1242.test.cpp
   - icon: ':heavy_check_mark:'
@@ -216,6 +234,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1293.test.cpp
     title: test/yukicoder/1293.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1320.test.cpp
+    title: test/yukicoder/1320.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1326.test.cpp
+    title: test/yukicoder/1326.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1344.test.cpp
+    title: test/yukicoder/1344.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1418.test.cpp
     title: test/yukicoder/1418.test.cpp
@@ -357,6 +384,7 @@ data:
   - game/graph_game.hpp
   - flow/bipartite.hpp
   - enumerate/triangles.hpp
+  - graph/mincostcycle.hpp
   - graph/maximum_antichain.hpp
   - graph/toposort.hpp
   - graph/shortest_path/dial.hpp
@@ -386,7 +414,9 @@ data:
   - graph/functional.hpp
   - graph/ds/dualtreemonoid.hpp
   - graph/ds/treeabelgroup.hpp
+  - graph/ds/treemonoid.hpp
   - graph/ds/bfsnumbering.hpp
+  - graph/ds/statictreemonoid.hpp
   - graph/tree.hpp
   - graph/steiner_tree.hpp
   - graph/twosat.hpp
@@ -405,11 +435,16 @@ data:
   - test/yukicoder/1293.test.cpp
   - test/yukicoder/114.test.cpp
   - test/yukicoder/1983.test.cpp
+  - test/yukicoder/1326.test.cpp
   - test/yukicoder/1451.test.cpp
+  - test/yukicoder/1212.test.cpp
   - test/yukicoder/1254.test.cpp
+  - test/yukicoder/1216_2.test.cpp
   - test/yukicoder/1976.test.cpp
   - test/yukicoder/1479.test.cpp
   - test/yukicoder/1744.test.cpp
+  - test/yukicoder/1216.test.cpp
+  - test/yukicoder/1320.test.cpp
   - test/yukicoder/1170.test.cpp
   - test/yukicoder/1211.test.cpp
   - test/yukicoder/1242.test.cpp
@@ -417,6 +452,7 @@ data:
   - test/yukicoder/1745.test.cpp
   - test/yukicoder/1813.test.cpp
   - test/yukicoder/1911.test.cpp
+  - test/yukicoder/1344.test.cpp
   - test/yukicoder/1796.test.cpp
   - test/yukicoder/1778.test.cpp
   - test/yukicoder/1418.test.cpp

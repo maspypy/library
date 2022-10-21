@@ -31,6 +31,9 @@ data:
     path: test/mytest/powerquery.test.cpp
     title: test/mytest/powerquery.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1339.test.cpp
+    title: test/yukicoder/1339.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_2.test.cpp
     title: test/yukicoder/502_2.test.cpp
   _isVerificationFailed: false
@@ -63,6 +66,7 @@ data:
   - test/mytest/powerquery.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/yukicoder/502_2.test.cpp
+  - test/yukicoder/1339.test.cpp
   - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
 documentation_of: alg/group/mul.hpp

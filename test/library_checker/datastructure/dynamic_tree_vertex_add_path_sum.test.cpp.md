@@ -29,15 +29,15 @@ data:
     \ 0;\n}"
   dependsOn: []
   isVerificationFile: true
-  path: test/library_checker/dynamic_tree_vertex_add_path_sum.test.cpp
+  path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/dynamic_tree_vertex_add_path_sum.test.cpp
+documentation_of: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/dynamic_tree_vertex_add_path_sum.test.cpp
-- /verify/test/library_checker/dynamic_tree_vertex_add_path_sum.test.cpp.html
-title: test/library_checker/dynamic_tree_vertex_add_path_sum.test.cpp
+- /verify/test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
+- /verify/test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp.html
+title: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
 ---

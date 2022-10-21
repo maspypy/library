@@ -2,10 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1036.test.cpp
+    title: test/yukicoder/1036.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1036_2.test.cpp
+    title: test/yukicoder/1036_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1036_3.test.cpp
+    title: test/yukicoder/1036_3.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid/gcd.hpp\"\ntemplate <typename INT>\nstruct Monoid_Gcd\
@@ -21,8 +30,11 @@ data:
   path: alg/monoid/gcd.hpp
   requiredBy: []
   timestamp: '2022-10-21 16:22:09+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yukicoder/1036.test.cpp
+  - test/yukicoder/1036_3.test.cpp
+  - test/yukicoder/1036_2.test.cpp
 documentation_of: alg/monoid/gcd.hpp
 layout: document
 redirect_from:

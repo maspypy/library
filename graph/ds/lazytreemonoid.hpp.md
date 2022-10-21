@@ -14,11 +14,13 @@ data:
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: alg/lazy_reverse.hpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: alg/monoid_reverse.hpp:\
     \ line -1: no such header\n"
   code: "#include \"ds/lazysegtree.hpp\"\r\n#include \"graph/tree.hpp\"\r\n#include\
-    \ \"alg/lazy_reverse.hpp\"\r\n\r\ntemplate <typename TREE, typename Lazy, bool\
+    \ \"alg/lazy/reverse.hpp\"\r\n\r\ntemplate <typename TREE, typename Lazy, bool\
     \ edge = false>\r\nstruct LazyTreeMonoid {\r\n  using MonoX = typename Lazy::X_structure;\r\
     \n  using MonoA = typename Lazy::A_structure;\r\n  using X = typename MonoX::value_type;\r\
     \n  using A = typename MonoA::value_type;\r\n  using RevLazy = Lazy_Reverse<Lazy>;\r\
@@ -79,15 +81,15 @@ data:
     \ - 1]);\r\n    }\r\n    return v;\r\n  }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: graph/lazytreemonoid.hpp
+  path: graph/ds/lazytreemonoid.hpp
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: graph/lazytreemonoid.hpp
+documentation_of: graph/ds/lazytreemonoid.hpp
 layout: document
 redirect_from:
-- /library/graph/lazytreemonoid.hpp
-- /library/graph/lazytreemonoid.hpp.html
-title: graph/lazytreemonoid.hpp
+- /library/graph/ds/lazytreemonoid.hpp
+- /library/graph/ds/lazytreemonoid.hpp.html
+title: graph/ds/lazytreemonoid.hpp
 ---
