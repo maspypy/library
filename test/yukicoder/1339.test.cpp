@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1339"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "other/discrete_log.hpp"
+#include "nt/discrete_log.hpp"
 #include "mod/modint.hpp"
 #include "alg/group/mul.hpp"
 
