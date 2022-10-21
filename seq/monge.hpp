@@ -1,5 +1,5 @@
 #include "ds/larsch.hpp"
-#include "dp/monotone_minima.hpp"
+#include "seq/monotone_minima.hpp"
 
 // 定義域 [0, N] の範囲で f の monge 性を確認
 template <typename T, typename F>
@@ -27,7 +27,6 @@ vi monge_shortest_path(int N, F f) {
   }
   return dp;
 }
-
 
 template <typename T, typename F>
 vc<vc<T>> monge_shortest_path_d_edge_dense(int N, F f, T INF, int d_max) {
