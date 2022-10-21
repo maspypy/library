@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "alg/monoid_min.hpp"
+#include "alg/monoid/min.hpp"
 #include "ds/disjointsparse.hpp"
 
 void solve() {

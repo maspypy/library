@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/segtree2d.hpp"
-#include "alg/monoid_min.hpp"
+#include "alg/monoid/min.hpp"
 #include "graph/tree.hpp"
 #include "ds/unionfind.hpp"
 

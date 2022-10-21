@@ -1,8 +1,8 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1641"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "graph/treeabelgroup.hpp"
-#include "alg/group_xor.hpp"
+#include "graph/ds/treeabelgroup.hpp"
+#include "alg/group/xor.hpp"
 
 void solve() {
   LL(N, Q);

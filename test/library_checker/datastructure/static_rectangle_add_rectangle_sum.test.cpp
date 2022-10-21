@@ -3,9 +3,9 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/rectangle_add_ractangle_sum.hpp"
+#include "ds/query/rectangle_add_rectangle_sum.hpp"
 #include "mod/modint.hpp"
-#include "alg/group_add.hpp"
+#include "alg/group/add.hpp"
 
 using mint = modint998;
 

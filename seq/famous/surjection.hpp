@@ -1,4 +1,4 @@
-#include "seq/stirling_number_2.hpp"
+#include "seq/famous/stirling_number_2.hpp"
 
 // n 元集合からの全射の数え上げ
 template <typename mint>

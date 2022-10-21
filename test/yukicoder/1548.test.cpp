@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "mod/modint.hpp"
 #include "ds/lazysegtree.hpp"
-#include "alg/lazy_powersums_set.hpp"
+#include "alg/lazy/powersums_set.hpp"
 
 using mint = modint998;
 

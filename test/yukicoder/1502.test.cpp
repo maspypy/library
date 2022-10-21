@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "mod/modint.hpp"
 #include "ds/weightedunionfind.hpp"
-#include "alg/group_affine.hpp"
+#include "alg/group/affine.hpp"
 
 using mint = modint107;
 
