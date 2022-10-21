@@ -26,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution2d.hpp
     title: poly/convolution2d.hpp
   - icon: ':heavy_check_mark:'
@@ -107,7 +107,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
   - icon: ':heavy_check_mark:'
@@ -355,8 +355,14 @@ data:
     path: test/mytest/all_inverse.test.cpp
     title: test/mytest/all_inverse.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/bell.test.cpp
+    title: test/mytest/bell.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/binom.test.cpp
     title: test/mytest/binom.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/conv2d.test.cpp
+    title: test/mytest/conv2d.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/conv_leq.test.cpp
     title: test/mytest/conv_leq.test.cpp
@@ -775,7 +781,9 @@ data:
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/powerquery.test.cpp
   - test/mytest/enumerate_multisets.test.cpp
+  - test/mytest/conv2d.test.cpp
   - test/mytest/factorial_998.test.cpp
+  - test/mytest/bell.test.cpp
   - test/yukicoder/1755.test.cpp
   - test/yukicoder/1167.test.cpp
   - test/yukicoder/590.test.cpp

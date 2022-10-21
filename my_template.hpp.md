@@ -694,8 +694,14 @@ data:
     path: test/mytest/all_inverse.test.cpp
     title: test/mytest/all_inverse.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/bell.test.cpp
+    title: test/mytest/bell.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/binom.test.cpp
     title: test/mytest/binom.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/conv2d.test.cpp
+    title: test/mytest/conv2d.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/conv_leq.test.cpp
     title: test/mytest/conv_leq.test.cpp
@@ -1443,9 +1449,11 @@ data:
   - test/mytest/all_but_one_products.test.cpp
   - test/mytest/enumerate_multisets.test.cpp
   - test/mytest/run_length.test.cpp
+  - test/mytest/conv2d.test.cpp
   - test/mytest/range_mex.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/minplus_convex.test.cpp
+  - test/mytest/bell.test.cpp
   - test/yukicoder/1755.test.cpp
   - test/yukicoder/1167.test.cpp
   - test/yukicoder/590.test.cpp

@@ -91,6 +91,9 @@ data:
     path: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
     title: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/bell.test.cpp
+    title: test/mytest/bell.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/prime_sum.test.cpp
     title: test/mytest/prime_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -186,6 +189,7 @@ data:
   - test/mytest/prime_sum.test.cpp
   - test/mytest/primesum_mod6.test.cpp
   - test/mytest/primesum_mod4.test.cpp
+  - test/mytest/bell.test.cpp
   - test/yukicoder/1321.test.cpp
   - test/yukicoder/1262.test.cpp
   - test/yukicoder/1781.test.cpp

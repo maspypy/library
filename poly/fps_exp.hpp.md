@@ -91,6 +91,9 @@ data:
     path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/bell.test.cpp
+    title: test/mytest/bell.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080.test.cpp
     title: test/yukicoder/1080.test.cpp
   - icon: ':heavy_check_mark:'
@@ -506,6 +509,7 @@ data:
   timestamp: '2022-10-16 14:15:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/bell.test.cpp
   - test/yukicoder/1549.test.cpp
   - test/yukicoder/1321.test.cpp
   - test/yukicoder/2097.test.cpp

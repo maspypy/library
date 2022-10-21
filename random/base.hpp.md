@@ -82,6 +82,9 @@ data:
     path: test/mytest/binom.test.cpp
     title: test/mytest/binom.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/conv2d.test.cpp
+    title: test/mytest/conv2d.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/conv_leq.test.cpp
     title: test/mytest/conv_leq.test.cpp
   - icon: ':heavy_check_mark:'
@@ -196,6 +199,7 @@ data:
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/powerquery.test.cpp
+  - test/mytest/conv2d.test.cpp
   - test/mytest/range_mex.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/minplus_convex.test.cpp

@@ -921,7 +921,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/convolution.hpp
       title: poly/convolution.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: poly/convolution2d.hpp
       title: poly/convolution2d.hpp
     - icon: ':heavy_check_mark:'
@@ -1027,7 +1027,7 @@ data:
       title: random/base.hpp
   - name: seq/famous
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: seq/famous/bell_number_large.hpp
       title: seq/famous/bell_number_large.hpp
     - icon: ':heavy_check_mark:'
@@ -1907,8 +1907,14 @@ data:
       path: test/mytest/all_inverse.test.cpp
       title: test/mytest/all_inverse.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/mytest/bell.test.cpp
+      title: test/mytest/bell.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/mytest/binom.test.cpp
       title: test/mytest/binom.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/conv2d.test.cpp
+      title: test/mytest/conv2d.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/conv_leq.test.cpp
       title: test/mytest/conv_leq.test.cpp
