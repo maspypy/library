@@ -5,13 +5,10 @@ data:
     path: string/zalgorithm.hpp
     title: string/zalgorithm.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/is_substring.test.cpp
-    title: test/mytest/is_substring.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/zalgorithm.hpp\"\ntemplate <typename STRING>  //\
@@ -40,9 +37,8 @@ data:
   path: string/is_substring.hpp
   requiredBy: []
   timestamp: '2022-10-12 08:06:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/mytest/is_substring.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: string/is_substring.hpp
 layout: document
 redirect_from:

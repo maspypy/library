@@ -6,9 +6,6 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: graph/classify_subtree.hpp
-    title: graph/classify_subtree.hpp
-  - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
   - icon: ':warning:'
@@ -18,14 +15,14 @@ data:
     path: graph/functional.hpp
     title: graph/functional.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/rerooting_classify_subtree.hpp
-    title: graph/rerooting_classify_subtree.hpp
-  - icon: ':heavy_check_mark:'
     path: graph/rerooting_dp.hpp
     title: graph/rerooting_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: graph/tree_dp.hpp
     title: graph/tree_dp.hpp
+  - icon: ':warning:'
+    path: graph/treeabelgroup.hpp
+    title: graph/treeabelgroup.hpp
   - icon: ':heavy_check_mark:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
@@ -46,11 +43,8 @@ data:
     path: test/atcoder/abc269ex.test.cpp
     title: test/atcoder/abc269ex.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/classify_tree.test.cpp
-    title: test/library_checker/graph/classify_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
-    title: test/library_checker/graph/rerooting_classify_subtree.test.cpp
+    path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+    title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/two_edge_component.test.cpp
     title: test/library_checker/graph/two_edge_component.test.cpp
@@ -285,14 +279,13 @@ data:
   isVerificationFile: false
   path: graph/tree.hpp
   requiredBy:
-  - graph/classify_subtree.hpp
   - graph/dualtreemonoid.hpp
+  - graph/treeabelgroup.hpp
   - graph/dsu_on_tree.hpp
   - graph/rerooting_dp.hpp
   - graph/two_edge_component.hpp
   - graph/tree_dp.hpp
   - graph/functional.hpp
-  - graph/rerooting_classify_subtree.hpp
   timestamp: '2022-10-14 01:11:36+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -312,8 +305,7 @@ data:
   - test/library_checker/tree/lca_directed.test.cpp
   - test/library_checker/tree/lca.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
-  - test/library_checker/graph/rerooting_classify_subtree.test.cpp
-  - test/library_checker/graph/classify_tree.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - test/atcoder/abc266f.test.cpp
   - test/atcoder/abc269ex.test.cpp
 documentation_of: graph/tree.hpp

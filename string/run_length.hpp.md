@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/run_length.test.cpp
-    title: test/mytest/run_length.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/run_length.hpp\"\ntemplate <typename STRING = string,\
@@ -24,9 +21,8 @@ data:
   path: string/run_length.hpp
   requiredBy: []
   timestamp: '2022-07-20 17:24:59+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/mytest/run_length.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: string/run_length.hpp
 layout: document
 redirect_from:

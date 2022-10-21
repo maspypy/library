@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: enumerate/enumerate_triangles.hpp
+    title: enumerate/enumerate_triangles.hpp
   - icon: ':heavy_check_mark:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
@@ -36,9 +39,6 @@ data:
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/classify_subtree.hpp
-    title: graph/classify_subtree.hpp
-  - icon: ':heavy_check_mark:'
     path: graph/cycle_detection.hpp
     title: graph/cycle_detection.hpp
   - icon: ':heavy_check_mark:'
@@ -56,9 +56,6 @@ data:
   - icon: ':warning:'
     path: graph/dualtreemonoid.hpp
     title: graph/dualtreemonoid.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/enumerate_triangles.hpp
-    title: graph/enumerate_triangles.hpp
   - icon: ':warning:'
     path: graph/eulerwalk.hpp
     title: graph/eulerwalk.hpp
@@ -90,9 +87,6 @@ data:
     path: graph/reachability.hpp
     title: graph/reachability.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/rerooting_classify_subtree.hpp
-    title: graph/rerooting_classify_subtree.hpp
-  - icon: ':heavy_check_mark:'
     path: graph/rerooting_dp.hpp
     title: graph/rerooting_dp.hpp
   - icon: ':heavy_check_mark:'
@@ -116,12 +110,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_diameter.hpp
     title: graph/tree_diameter.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: graph/tree_dp.hpp
     title: graph/tree_dp.hpp
   - icon: ':heavy_check_mark:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
+  - icon: ':warning:'
+    path: graph/treeabelgroup.hpp
+    title: graph/treeabelgroup.hpp
   - icon: ':heavy_check_mark:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
@@ -178,35 +175,23 @@ data:
     path: test/atcoder/abc269ex.test.cpp
     title: test/atcoder/abc269ex.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+    title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/biconnected_component.test.cpp
     title: test/library_checker/graph/biconnected_component.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/chromatic_number.test.cpp
-    title: test/library_checker/graph/chromatic_number.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/classify_tree.test.cpp
-    title: test/library_checker/graph/classify_tree.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/cycle_detection.test.cpp
     title: test/library_checker/graph/cycle_detection.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/enumerate_cliques.test.cpp
-    title: test/library_checker/graph/enumerate_cliques.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/enumerate_triangles.test.cpp
-    title: test/library_checker/graph/enumerate_triangles.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/manhattan_mst.test.cpp
     title: test/library_checker/graph/manhattan_mst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/maximum_independent_set.test.cpp
     title: test/library_checker/graph/maximum_independent_set.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
-    title: test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/scc.test.cpp
     title: test/library_checker/graph/scc.test.cpp
@@ -216,6 +201,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/two_edge_component.test.cpp
     title: test/library_checker/graph/two_edge_component.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/verted_add_contour_sum.test.cpp
+    title: test/library_checker/graph/verted_add_contour_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/twosat.test.cpp
     title: test/library_checker/math/twosat.test.cpp
@@ -237,6 +225,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1002.test.cpp
     title: test/yukicoder/1002.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1038.test.cpp
+    title: test/yukicoder/1038.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/114.test.cpp
     title: test/yukicoder/114.test.cpp
@@ -413,7 +404,7 @@ data:
   requiredBy:
   - game/graph_game.hpp
   - flow/bipartite.hpp
-  - graph/classify_subtree.hpp
+  - enumerate/enumerate_triangles.hpp
   - graph/mincostcycle.hpp
   - graph/maximum_antichain.hpp
   - graph/tree_diameter.hpp
@@ -425,7 +416,7 @@ data:
   - graph/maximum_independent_set.hpp
   - graph/reverse_graph.hpp
   - graph/minimum_hamiltonian_cycle.hpp
-  - graph/enumerate_triangles.hpp
+  - graph/treeabelgroup.hpp
   - graph/cycle_detection.hpp
   - graph/dsu_on_tree.hpp
   - graph/dial.hpp
@@ -452,7 +443,6 @@ data:
   - graph/find_odd_cycle.hpp
   - graph/check_bipartite.hpp
   - graph/dijkstra.hpp
-  - graph/rerooting_classify_subtree.hpp
   - graph/bfs01.hpp
   - string/suffix_automaton.hpp
   - geo/manhattan_mst.hpp
@@ -485,6 +475,7 @@ data:
   - test/yukicoder/1778.test.cpp
   - test/yukicoder/1418.test.cpp
   - test/yukicoder/1494.test.cpp
+  - test/yukicoder/1038.test.cpp
   - test/aoj/GRL_3_B.test.cpp
   - test/aoj/GRL_1_C.test.cpp
   - test/aoj/GRL_1_B.test.cpp
@@ -503,17 +494,14 @@ data:
   - test/library_checker/tree/lca.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
   - test/library_checker/graph/shortest_path.test.cpp
-  - test/library_checker/graph/enumerate_cliques.test.cpp
-  - test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/graph/cycle_detection.test.cpp
   - test/library_checker/graph/maximum_independent_set.test.cpp
   - test/library_checker/graph/scc.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
-  - test/library_checker/graph/classify_tree.test.cpp
-  - test/library_checker/graph/chromatic_number.test.cpp
   - test/library_checker/graph/biconnected_component.test.cpp
-  - test/library_checker/graph/enumerate_triangles.test.cpp
+  - test/library_checker/graph/verted_add_contour_sum.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - test/library_checker/string/number_of_substrings2.test.cpp
   - test/atcoder/abc266f.test.cpp
   - test/atcoder/abc269ex.test.cpp

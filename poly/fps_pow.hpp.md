@@ -38,25 +38,13 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: poly/fps_sqrt.hpp
-    title: poly/fps_sqrt.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/stirling_number_1.hpp
-    title: seq/stirling_number_1.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/stirling_number_2.hpp
-    title: seq/stirling_number_2.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/surjection.hpp
-    title: seq/surjection.hpp
+  - icon: ':warning:'
+    path: seq/famous/stirling_number_1.hpp
+    title: seq/famous/stirling_number_1.hpp
+  - icon: ':warning:'
+    path: seq/famous/stirling_number_2.hpp
+    title: seq/famous/stirling_number_2.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-    title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-    title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/pow_of_fps.test.cpp
     title: test/library_checker/polynomial/pow_of_fps.test.cpp
@@ -66,18 +54,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
-    title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-    title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1321.test.cpp
-    title: test/yukicoder/1321.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1392.test.cpp
-    title: test/yukicoder/1392.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1549.test.cpp
     title: test/yukicoder/1549.test.cpp
@@ -511,23 +487,15 @@ data:
   isVerificationFile: false
   path: poly/fps_pow.hpp
   requiredBy:
-  - poly/fps_sqrt.hpp
-  - seq/stirling_number_1.hpp
-  - seq/stirling_number_2.hpp
-  - seq/surjection.hpp
+  - seq/famous/stirling_number_1.hpp
+  - seq/famous/stirling_number_2.hpp
   timestamp: '2022-10-16 14:15:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1549.test.cpp
-  - test/yukicoder/1321.test.cpp
-  - test/yukicoder/1392.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/pow_of_fps.test.cpp
   - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
 documentation_of: poly/fps_pow.hpp
 layout: document
 redirect_from:

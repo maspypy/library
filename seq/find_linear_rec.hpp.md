@@ -3,21 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: linalg/spmat_det.hpp
-    title: linalg/spmat_det.hpp
-  - icon: ':heavy_check_mark:'
-    path: linalg/spmat_min_poly.hpp
-    title: linalg/spmat_min_poly.hpp
-  - icon: ':heavy_check_mark:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/find_linear_recurrence.test.cpp
     title: test/library_checker/math/find_linear_recurrence.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/matrix/sparse_matrix_det.test.cpp
-    title: test/library_checker/matrix/sparse_matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1500.test.cpp
     title: test/yukicoder/1500.test.cpp
@@ -60,8 +51,6 @@ data:
   isVerificationFile: false
   path: seq/find_linear_rec.hpp
   requiredBy:
-  - linalg/spmat_min_poly.hpp
-  - linalg/spmat_det.hpp
   - seq/interpolate_linear_rec.hpp
   timestamp: '2022-05-11 21:07:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -72,7 +61,6 @@ data:
   - test/yukicoder/1547.test.cpp
   - test/yukicoder/1516.test.cpp
   - test/library_checker/math/find_linear_recurrence.test.cpp
-  - test/library_checker/matrix/sparse_matrix_det.test.cpp
 documentation_of: seq/find_linear_rec.hpp
 layout: document
 redirect_from:

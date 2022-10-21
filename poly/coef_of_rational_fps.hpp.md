@@ -21,8 +21,8 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: seq/bell_number_large.hpp
-    title: seq/bell_number_large.hpp
+    path: seq/famous/bell_number_large.hpp
+    title: seq/famous/bell_number_large.hpp
   - icon: ':heavy_check_mark:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
@@ -344,7 +344,7 @@ data:
   path: poly/coef_of_rational_fps.hpp
   requiredBy:
   - seq/interpolate_linear_rec.hpp
-  - seq/bell_number_large.hpp
+  - seq/famous/bell_number_large.hpp
   timestamp: '2022-10-16 14:15:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

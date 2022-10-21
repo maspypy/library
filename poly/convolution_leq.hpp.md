@@ -20,13 +20,10 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/conv_leq.test.cpp
-    title: test/mytest/conv_leq.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n\
@@ -329,9 +326,8 @@ data:
   path: poly/convolution_leq.hpp
   requiredBy: []
   timestamp: '2022-10-16 14:15:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/mytest/conv_leq.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: poly/convolution_leq.hpp
 layout: document
 redirect_from:

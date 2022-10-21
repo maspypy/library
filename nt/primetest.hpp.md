@@ -3,17 +3,8 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: graph/chromatic.hpp
-    title: graph/chromatic.hpp
-  - icon: ':heavy_check_mark:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
-  - icon: ':heavy_check_mark:'
-    path: mod/mod_kth_root.hpp
-    title: mod/mod_kth_root.hpp
-  - icon: ':heavy_check_mark:'
-    path: mod/primitive_root.hpp
-    title: mod/primitive_root.hpp
   - icon: ':heavy_check_mark:'
     path: mod/tetration.hpp
     title: mod/tetration.hpp
@@ -38,9 +29,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/lcm.hpp
     title: nt/lcm.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/stirling_number_query.hpp
-    title: seq/stirling_number_query.hpp
+  - icon: ':warning:'
+    path: seq/famous/stirling_number_query.hpp
+    title: seq/famous/stirling_number_query.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_1_C.test.cpp
@@ -52,32 +43,14 @@ data:
     path: test/aoj/NTL_1_D.test.cpp
     title: test/aoj/NTL_1_D.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/chromatic_number.test.cpp
-    title: test/library_checker/graph/chromatic_number.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/binomial_coefficient.test.cpp
     title: test/library_checker/math/binomial_coefficient.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/factorize.test.cpp
     title: test/library_checker/math/factorize.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/kth_root_mod.test.cpp
-    title: test/library_checker/math/kth_root_mod.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/primitive_root.test.cpp
-    title: test/library_checker/math/primitive_root.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/stirline_mod_p_1.test.cpp
-    title: test/library_checker/math/stirline_mod_p_1.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/stirline_mod_p_2.test.cpp
-    title: test/library_checker/math/stirline_mod_p_2.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1025.test.cpp
-    title: test/yukicoder/1025.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1262.test.cpp
     title: test/yukicoder/1262.test.cpp
@@ -171,12 +144,9 @@ data:
   isVerificationFile: false
   path: nt/primetest.hpp
   requiredBy:
-  - seq/stirling_number_query.hpp
-  - graph/chromatic.hpp
+  - seq/famous/stirling_number_query.hpp
   - mod/binomial.hpp
   - mod/tetration.hpp
-  - mod/mod_kth_root.hpp
-  - mod/primitive_root.hpp
   - nt/gaussian_integers.hpp
   - nt/lcm.hpp
   - nt/function_on_divisors.hpp
@@ -193,19 +163,13 @@ data:
   - test/yukicoder/1728.test.cpp
   - test/yukicoder/187.test.cpp
   - test/yukicoder/1593.test.cpp
-  - test/yukicoder/1025.test.cpp
   - test/yukicoder/1411.test.cpp
   - test/aoj/NTL_1_D.test.cpp
   - test/aoj/ALDS1_1_C.test.cpp
   - test/aoj/ITP1_D_D.test.cpp
-  - test/library_checker/math/stirline_mod_p_2.test.cpp
-  - test/library_checker/math/kth_root_mod.test.cpp
-  - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/binomial_coefficient.test.cpp
   - test/library_checker/math/tetration.test.cpp
-  - test/library_checker/math/stirline_mod_p_1.test.cpp
   - test/library_checker/math/factorize.test.cpp
-  - test/library_checker/graph/chromatic_number.test.cpp
 documentation_of: nt/primetest.hpp
 layout: document
 redirect_from:

@@ -18,9 +18,6 @@ data:
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
   - icon: ':heavy_check_mark:'
-    path: poly/fps_sqrt.hpp
-    title: poly/fps_sqrt.hpp
-  - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
@@ -44,34 +41,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/partition_number.hpp
-    title: seq/partition_number.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/stirling_number_1.hpp
-    title: seq/stirling_number_1.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/stirling_number_2.hpp
-    title: seq/stirling_number_2.hpp
+  - icon: ':warning:'
+    path: seq/famous/partition_number.hpp
+    title: seq/famous/partition_number.hpp
+  - icon: ':warning:'
+    path: seq/famous/stirling_number_1.hpp
+    title: seq/famous/stirling_number_1.hpp
+  - icon: ':warning:'
+    path: seq/famous/stirling_number_2.hpp
+    title: seq/famous/stirling_number_2.hpp
   - icon: ':heavy_check_mark:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/surjection.hpp
-    title: seq/surjection.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/partition.test.cpp
-    title: test/library_checker/math/partition.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sharp_p_subset_sum.test.cpp
     title: test/library_checker/math/sharp_p_subset_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-    title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-    title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/exp_of_fps.test.cpp
     title: test/library_checker/polynomial/exp_of_fps.test.cpp
@@ -118,26 +103,8 @@ data:
     path: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
-    title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-    title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/enum_partitions.test.cpp
-    title: test/mytest/enum_partitions.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1080.test.cpp
-    title: test/yukicoder/1080.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1321.test.cpp
-    title: test/yukicoder/1321.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1392.test.cpp
-    title: test/yukicoder/1392.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1549.test.cpp
     title: test/yukicoder/1549.test.cpp
@@ -179,33 +146,25 @@ data:
   - poly/multipoint.hpp
   - poly/composition_f_ex.hpp
   - poly/fps_exp.hpp
-  - poly/fps_sqrt.hpp
   - poly/product_of_one_minus_xn.hpp
   - poly/product_of_one_plus_xn.hpp
-  - seq/stirling_number_1.hpp
-  - seq/partition_number.hpp
+  - seq/famous/stirling_number_1.hpp
+  - seq/famous/partition_number.hpp
+  - seq/famous/stirling_number_2.hpp
   - seq/sum_of_powers.hpp
-  - seq/stirling_number_2.hpp
-  - seq/surjection.hpp
   timestamp: '2022-05-02 13:06:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/enum_partitions.test.cpp
   - test/yukicoder/1755.test.cpp
   - test/yukicoder/1549.test.cpp
-  - test/yukicoder/1321.test.cpp
   - test/yukicoder/2097.test.cpp
-  - test/yukicoder/1392.test.cpp
   - test/yukicoder/1875.test.cpp
-  - test/yukicoder/1080.test.cpp
   - test/yukicoder/1145.test.cpp
   - test/yukicoder/2062.test.cpp
   - test/library_checker/polynomial/log_of_fps.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/inv_of_fps_amint.test.cpp
   - test/library_checker/polynomial/polynomial_division.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/inv_of_fps.test.cpp
   - test/library_checker/polynomial/exp_of_fps.test.cpp
   - test/library_checker/polynomial/log_of_fps_sparse.test.cpp
@@ -217,10 +176,7 @@ data:
   - test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
   - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
-  - test/library_checker/math/partition.test.cpp
-  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
 documentation_of: poly/count_terms.hpp
 layout: document
 redirect_from:
