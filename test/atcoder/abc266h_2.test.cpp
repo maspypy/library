@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/fenwick2d.hpp"
-#include "alg/monoid_max.hpp"
+#include "alg/monoid/max.hpp"
 
 using Mono = Monoid_Max<ll>;
 
