@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: seq/monge.hpp
+    title: seq/monge.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/705.test.cpp
+    title: test/yukicoder/705.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"seq/monotone_minima.hpp\"\n/*\nT \u5024\u306E 2 \u5909\u6570\
@@ -36,10 +42,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: seq/monotone_minima.hpp
-  requiredBy: []
+  requiredBy:
+  - seq/monge.hpp
   timestamp: '2022-10-21 16:42:45+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yukicoder/705.test.cpp
 documentation_of: seq/monotone_minima.hpp
 layout: document
 redirect_from:

@@ -2,13 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy/add_mul.hpp
     title: alg/lazy/add_mul.hpp
   - icon: ':heavy_check_mark:'
     path: alg/lazy/cntminmincnt_add.hpp
     title: alg/lazy/cntminmincnt_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy/cntsum_add.hpp
     title: alg/lazy/cntsum_add.hpp
   - icon: ':warning:'
@@ -20,13 +20,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/common_interval_decomposition.hpp
     title: ds/common_interval_decomposition.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/cumsum2d.hpp
     title: ds/cumsum2d.hpp
   - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick2d.hpp
     title: ds/fenwick2d.hpp
   - icon: ':heavy_check_mark:'
@@ -51,12 +51,15 @@ data:
     path: ds/query/rectangleunion.hpp
     title: ds/query/rectangleunion.hpp
   - icon: ':heavy_check_mark:'
+    path: ds/query/uniqueproductquery.hpp
+    title: ds/query/uniqueproductquery.hpp
+  - icon: ':heavy_check_mark:'
     path: ds/waveletmatrix.hpp
     title: ds/waveletmatrix.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/contoursum.hpp
     title: graph/ds/contoursum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/treeabelgroup.hpp
     title: graph/ds/treeabelgroup.hpp
   - icon: ':x:'
@@ -96,6 +99,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc174f.test.cpp
+    title: test/atcoder/abc174f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc190f.test.cpp
     title: test/atcoder/abc190f.test.cpp
@@ -192,22 +198,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1332.test.cpp
     title: test/yukicoder/1332.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1641.test.cpp
     title: test/yukicoder/1641.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1720.test.cpp
     title: test/yukicoder/1720.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1838.test.cpp
     title: test/yukicoder/1838.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1874.test.cpp
     title: test/yukicoder/1874.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1919.test.cpp
     title: test/yukicoder/1919.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1977.test.cpp
     title: test/yukicoder/1977.test.cpp
   - icon: ':heavy_check_mark:'
@@ -216,19 +222,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2065.test.cpp
     title: test/yukicoder/2065.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/655.test.cpp
     title: test/yukicoder/655.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/789.test.cpp
     title: test/yukicoder/789.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/789_2.test.cpp
     title: test/yukicoder/789_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
   - icon: ':heavy_check_mark:'
@@ -274,6 +280,7 @@ data:
   - ds/query/point_add_polygon_sum.hpp
   - ds/query/point_add_rectangle_sum.hpp
   - ds/query/rectangle_add_rectangle_sum.hpp
+  - ds/query/uniqueproductquery.hpp
   - ds/query/rectangle_add_point_sum.hpp
   - ds/fenwick.hpp
   - ds/fenwickraq.hpp
@@ -337,6 +344,7 @@ data:
   - test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
+  - test/atcoder/abc174f.test.cpp
   - test/atcoder/abc190f.test.cpp
   - test/atcoder/abc266h_2.test.cpp
 documentation_of: alg/group/add.hpp

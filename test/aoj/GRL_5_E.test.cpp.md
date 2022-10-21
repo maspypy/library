@@ -4,25 +4,25 @@ data:
   - icon: ':question:'
     path: alg/group/add.hpp
     title: alg/group/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group/cntsum.hpp
     title: alg/group/cntsum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy/cntsum_add.hpp
     title: alg/lazy/cntsum_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy/reverse.hpp
     title: alg/lazy/reverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/reverse.hpp
     title: alg/monoid/reverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/lazytreemonoid.hpp
     title: graph/ds/lazytreemonoid.hpp
   - icon: ':question:'

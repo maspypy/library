@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1292.test.cpp
     title: test/yukicoder/1292.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2102.test.cpp
     title: test/yukicoder/2102.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/hashset.hpp\"\n\ntemplate <int LOG = 20>\nstruct HashSetLL\
@@ -40,7 +40,7 @@ data:
   path: ds/hashset.hpp
   requiredBy: []
   timestamp: '2022-09-14 10:36:30+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/2102.test.cpp
   - test/yukicoder/1292.test.cpp

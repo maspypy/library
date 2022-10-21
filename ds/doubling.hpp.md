@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1097.test.cpp
     title: test/yukicoder/1097.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1977.test.cpp
     title: test/yukicoder/1977.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/doubling.hpp\"\n// \u72B6\u614B a \u304B\u3089 1 \u56DE\
@@ -73,7 +73,7 @@ data:
   path: ds/doubling.hpp
   requiredBy: []
   timestamp: '2022-10-01 13:05:08+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1097.test.cpp
   - test/yukicoder/1977.test.cpp
