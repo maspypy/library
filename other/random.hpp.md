@@ -3,8 +3,8 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: alg/monoid_rollinghash.hpp
-    title: alg/monoid_rollinghash.hpp
+    path: alg/monoid/rollinghash.hpp
+    title: alg/monoid/rollinghash.hpp
   - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
@@ -88,9 +88,6 @@ data:
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/factorial_998.test.cpp
-    title: test/mytest/factorial_998.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/is_substring.test.cpp
     title: test/mytest/is_substring.test.cpp
   - icon: ':heavy_check_mark:'
@@ -109,29 +106,14 @@ data:
     path: test/mytest/mod_sum_of_linear.test.cpp
     title: test/mytest/mod_sum_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/powerquery.test.cpp
-    title: test/mytest/powerquery.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/range_freq_of_linear.test.cpp
     title: test/mytest/range_freq_of_linear.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/range_mex.test.cpp
-    title: test/mytest/range_mex.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/rect_add_pt_sum.test.cpp
-    title: test/mytest/rect_add_pt_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/run_length.test.cpp
     title: test/mytest/run_length.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/splay.test.cpp
-    title: test/mytest/splay.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/stern_brocot.test.cpp
     title: test/mytest/stern_brocot.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/wavelet_matrix_sum.test.cpp
-    title: test/mytest/wavelet_matrix_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
@@ -172,7 +154,7 @@ data:
   - linalg/spmat_min_poly.hpp
   - linalg/det_A_plus_xB.hpp
   - linalg/spmat_det.hpp
-  - alg/monoid_rollinghash.hpp
+  - alg/monoid/rollinghash.hpp
   - graph/classify_subtree.hpp
   - graph/chromatic.hpp
   - graph/rerooting_classify_subtree.hpp
@@ -186,22 +168,16 @@ data:
   verifiedWith:
   - test/mytest/stern_brocot.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
-  - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/conv_leq.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
   - test/mytest/binom.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
-  - test/mytest/splay.test.cpp
   - test/mytest/is_substring.test.cpp
   - test/mytest/maxplus_concave.test.cpp
   - test/mytest/enum_partitions.test.cpp
-  - test/mytest/rect_add_pt_sum.test.cpp
-  - test/mytest/powerquery.test.cpp
   - test/mytest/run_length.test.cpp
-  - test/mytest/range_mex.test.cpp
-  - test/mytest/factorial_998.test.cpp
   - test/mytest/minplus_convex.test.cpp
   - test/yukicoder/263.test.cpp
   - test/yukicoder/4_1.test.cpp

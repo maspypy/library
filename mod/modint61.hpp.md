@@ -3,8 +3,8 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: alg/monoid_rollinghash.hpp
-    title: alg/monoid_rollinghash.hpp
+    path: alg/monoid/rollinghash.hpp
+    title: alg/monoid/rollinghash.hpp
   - icon: ':heavy_check_mark:'
     path: graph/classify_subtree.hpp
     title: graph/classify_subtree.hpp
@@ -96,7 +96,7 @@ data:
   isVerificationFile: false
   path: mod/modint61.hpp
   requiredBy:
-  - alg/monoid_rollinghash.hpp
+  - alg/monoid/rollinghash.hpp
   - graph/classify_subtree.hpp
   - graph/rerooting_classify_subtree.hpp
   - mod/modular_subset_sum.hpp

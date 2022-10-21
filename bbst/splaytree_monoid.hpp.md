@@ -2,22 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/1508.test.cpp
-    title: test/aoj/1508.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/splay.test.cpp
-    title: test/mytest/splay.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1441.test.cpp
-    title: test/yukicoder/1441.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1441_2.test.cpp
-    title: test/yukicoder/1441_2.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"bbst/splaytree_monoid.hpp\"\n/*\n\u30FB\u3042\u308B Node\
@@ -202,12 +190,8 @@ data:
   path: bbst/splaytree_monoid.hpp
   requiredBy: []
   timestamp: '2022-09-21 01:55:13+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/mytest/splay.test.cpp
-  - test/yukicoder/1441_2.test.cpp
-  - test/yukicoder/1441.test.cpp
-  - test/aoj/1508.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: bbst/splaytree_monoid.hpp
 layout: document
 redirect_from:

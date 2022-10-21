@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2005.test.cpp
-    title: test/yukicoder/2005.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"seq/eulerian_number.hpp\"\n// Eulerian number\n// sum n^dx^n\
@@ -27,9 +24,8 @@ data:
   path: seq/eulerian_number.hpp
   requiredBy: []
   timestamp: '2022-10-15 01:57:19+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yukicoder/2005.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: seq/eulerian_number.hpp
 layout: document
 redirect_from:

@@ -1,53 +1,11 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/statictreemonoid.hpp
-    title: graph/statictreemonoid.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/longest_common_substring.hpp
-    title: string/longest_common_substring.hpp
-  - icon: ':warning:'
-    path: string/sort_all_substring.hpp
-    title: string/sort_all_substring.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/suffix_tree.hpp
-    title: string/suffix_tree.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/suffixarray.hpp
-    title: string/suffixarray.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/arc151_e.test.cpp
-    title: test/atcoder/arc151_e.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/staticrmq_sparse.test.cpp
-    title: test/library_checker/datastructure/staticrmq_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/string/number_of_substrings.test.cpp
-    title: test/library_checker/string/number_of_substrings.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/string/suffix_array.test.cpp
-    title: test/library_checker/string/suffix_array.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/string/suffix_array_vec.test.cpp
-    title: test/library_checker/string/suffix_array_vec.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/suffix_tree.test.cpp
-    title: test/mytest/suffix_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1216.test.cpp
-    title: test/yukicoder/1216.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1216_2.test.cpp
-    title: test/yukicoder/1216_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2005.test.cpp
-    title: test/yukicoder/2005.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/disjointsparse.hpp\"\n\r\ntemplate <class Monoid>\r\n\
@@ -105,24 +63,10 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: ds/disjointsparse.hpp
-  requiredBy:
-  - graph/statictreemonoid.hpp
-  - string/sort_all_substring.hpp
-  - string/suffix_tree.hpp
-  - string/longest_common_substring.hpp
-  - string/suffixarray.hpp
+  requiredBy: []
   timestamp: '2022-08-18 20:33:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/mytest/suffix_tree.test.cpp
-  - test/yukicoder/2005.test.cpp
-  - test/yukicoder/1216_2.test.cpp
-  - test/yukicoder/1216.test.cpp
-  - test/library_checker/datastructure/staticrmq_sparse.test.cpp
-  - test/library_checker/string/suffix_array_vec.test.cpp
-  - test/library_checker/string/suffix_array.test.cpp
-  - test/library_checker/string/number_of_substrings.test.cpp
-  - test/atcoder/arc151_e.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: ds/disjointsparse.hpp
 layout: document
 redirect_from:

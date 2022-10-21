@@ -2,22 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc266h.test.cpp
-    title: test/atcoder/abc266h.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
-    title: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1600.test.cpp
-    title: test/yukicoder/1600.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1625_2.test.cpp
-    title: test/yukicoder/1625_2.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/segtree2d.hpp\"\ntemplate <typename Monoid, typename\
@@ -117,12 +105,8 @@ data:
   path: ds/segtree2d.hpp
   requiredBy: []
   timestamp: '2022-08-27 23:26:04+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yukicoder/1625_2.test.cpp
-  - test/yukicoder/1600.test.cpp
-  - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
-  - test/atcoder/abc266h.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: ds/segtree2d.hpp
 layout: document
 redirect_from:

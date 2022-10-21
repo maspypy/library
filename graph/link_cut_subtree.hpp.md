@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: graph/link_cut.hpp
     title: graph/link_cut.hpp
   _extendedRequiredBy: []

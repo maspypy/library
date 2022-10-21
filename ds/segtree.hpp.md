@@ -2,82 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: ds/range_mex_query.hpp
-    title: ds/range_mex_query.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: ds/sortable_segtree.hpp
     title: ds/sortable_segtree.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/uniqueproductquery.hpp
-    title: ds/uniqueproductquery.hpp
-  - icon: ':warning:'
-    path: geo/manhattan_nns.hpp
-    title: geo/manhattan_nns.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/minimum_spanning_tree.hpp
-    title: graph/minimum_spanning_tree.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/treegroup.hpp
-    title: graph/treegroup.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/treemonoid.hpp
-    title: graph/treemonoid.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/suffix_tree.hpp
-    title: string/suffix_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_2_A.test.cpp
-    title: test/aoj/GRL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ITP2_3_B.test.cpp
-    title: test/aoj/ITP2_3_B.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc174f.test.cpp
-    title: test/atcoder/abc174f.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc270_f.test.cpp
-    title: test/atcoder/abc270_f.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
-    title: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/sort_segtree.test.cpp
-    title: test/library_checker/datastructure/sort_segtree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/sort_segtree_1.test.cpp
-    title: test/library_checker/datastructure/sort_segtree_1.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/staticrmq_seg.test.cpp
-    title: test/library_checker/datastructure/staticrmq_seg.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
-    title: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-    title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-    title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
-    title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-    title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/range_mex.test.cpp
-    title: test/mytest/range_mex.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/suffix_tree.test.cpp
-    title: test/mytest/suffix_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1036_2.test.cpp
-    title: test/yukicoder/1036_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1212.test.cpp
-    title: test/yukicoder/1212.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1435.test.cpp
     title: test/yukicoder/1435.test.cpp
@@ -87,9 +15,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/529.test.cpp
-    title: test/yukicoder/529.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -192,38 +117,13 @@ data:
   isVerificationFile: false
   path: ds/segtree.hpp
   requiredBy:
-  - graph/minimum_spanning_tree.hpp
-  - graph/treegroup.hpp
-  - graph/treemonoid.hpp
   - ds/sortable_segtree.hpp
-  - ds/range_mex_query.hpp
-  - ds/uniqueproductquery.hpp
-  - string/suffix_tree.hpp
-  - geo/manhattan_nns.hpp
   timestamp: '2022-08-11 02:08:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/suffix_tree.test.cpp
-  - test/mytest/range_mex.test.cpp
   - test/yukicoder/1549.test.cpp
   - test/yukicoder/426.test.cpp
-  - test/yukicoder/1212.test.cpp
   - test/yukicoder/1435.test.cpp
-  - test/yukicoder/529.test.cpp
-  - test/yukicoder/1036_2.test.cpp
-  - test/aoj/GRL_2_A.test.cpp
-  - test/aoj/ITP2_3_B.test.cpp
-  - test/library_checker/datastructure/staticrmq_seg.test.cpp
-  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - test/library_checker/datastructure/sort_segtree_1.test.cpp
-  - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
-  - test/library_checker/datastructure/sort_segtree.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
-  - test/atcoder/abc174f.test.cpp
-  - test/atcoder/abc270_f.test.cpp
 documentation_of: ds/segtree.hpp
 layout: document
 redirect_from:

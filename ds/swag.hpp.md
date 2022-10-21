@@ -1,44 +1,11 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: poly/lagrange_interpolate_iota.hpp
-    title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/prefix_product_of_poly.hpp
-    title: poly/prefix_product_of_poly.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/interpolate_poly_exp_sum.hpp
-    title: seq/interpolate_poly_exp_sum.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/kth_term_of_p_recursive.hpp
-    title: seq/kth_term_of_p_recursive.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
-    title: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
-    title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-    title: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/factorial_998.test.cpp
-    title: test/mytest/factorial_998.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1036_3.test.cpp
-    title: test/yukicoder/1036_3.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1117.test.cpp
-    title: test/yukicoder/1117.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1435_2.test.cpp
     title: test/yukicoder/1435_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/502_2.test.cpp
-    title: test/yukicoder/502_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -115,22 +82,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: ds/swag.hpp
-  requiredBy:
-  - poly/prefix_product_of_poly.hpp
-  - poly/lagrange_interpolate_iota.hpp
-  - seq/kth_term_of_p_recursive.hpp
-  - seq/interpolate_poly_exp_sum.hpp
+  requiredBy: []
   timestamp: '2022-09-18 01:05:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/factorial_998.test.cpp
-  - test/yukicoder/1117.test.cpp
-  - test/yukicoder/502_2.test.cpp
-  - test/yukicoder/1036_3.test.cpp
   - test/yukicoder/1435_2.test.cpp
-  - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
-  - test/library_checker/datastructure/queue_operate_all_composite.test.cpp
 documentation_of: ds/swag.hpp
 layout: document
 redirect_from:
