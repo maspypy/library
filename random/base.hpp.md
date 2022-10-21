@@ -3,11 +3,29 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: graph/chromatic.hpp
+    title: graph/chromatic.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/classify_subtree.hpp
+    title: graph/classify_subtree.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/rerooting_classify_subtree.hpp
+    title: graph/rerooting_classify_subtree.hpp
+  - icon: ':heavy_check_mark:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
+  - icon: ':x:'
+    path: linalg/spmat_det.hpp
+    title: linalg/spmat_det.hpp
+  - icon: ':x:'
+    path: linalg/spmat_min_poly.hpp
+    title: linalg/spmat_min_poly.hpp
   - icon: ':heavy_check_mark:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
+  - icon: ':x:'
+    path: mod/mod_sqrt.hpp
+    title: mod/mod_sqrt.hpp
   - icon: ':x:'
     path: mod/modular_subset_sum.hpp
     title: mod/modular_subset_sum.hpp
@@ -15,15 +33,39 @@ data:
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':x:'
+    path: poly/fps_sqrt.hpp
+    title: poly/fps_sqrt.hpp
+  - icon: ':x:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/chromatic_number.test.cpp
+    title: test/library_checker/graph/chromatic_number.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/classify_tree.test.cpp
+    title: test/library_checker/graph/classify_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
+    title: test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/primitive_root.test.cpp
     title: test/library_checker/math/primitive_root.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/math/sqrt_mod.test.cpp
+    title: test/library_checker/math/sqrt_mod.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/matrix/sparse_matrix_det.test.cpp
+    title: test/library_checker/matrix/sparse_matrix_det.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
+    title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+    title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - icon: ':x:'
     path: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
     title: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
@@ -117,9 +159,16 @@ data:
   isVerificationFile: false
   path: random/base.hpp
   requiredBy:
+  - poly/fps_sqrt.hpp
+  - linalg/spmat_min_poly.hpp
   - linalg/det_A_plus_xB.hpp
+  - linalg/spmat_det.hpp
+  - graph/classify_subtree.hpp
+  - graph/chromatic.hpp
+  - graph/rerooting_classify_subtree.hpp
   - mod/modular_subset_sum.hpp
   - mod/mod_kth_root.hpp
+  - mod/mod_sqrt.hpp
   - mod/primitive_root.hpp
   - string/rollinghash.hpp
   timestamp: '2022-10-21 16:42:45+09:00'
@@ -150,8 +199,15 @@ data:
   - test/yukicoder/1303.test.cpp
   - test/yukicoder/1025.test.cpp
   - test/yukicoder/1907.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/primitive_root.test.cpp
+  - test/library_checker/math/sqrt_mod.test.cpp
+  - test/library_checker/graph/rerooting_classify_subtree.test.cpp
+  - test/library_checker/graph/classify_tree.test.cpp
+  - test/library_checker/graph/chromatic_number.test.cpp
+  - test/library_checker/matrix/sparse_matrix_det.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
 documentation_of: random/base.hpp
 layout: document

@@ -19,6 +19,9 @@ data:
     path: test/aoj/2251_2.test.cpp
     title: test/aoj/2251_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/shortest_path.test.cpp
+    title: test/library_checker/graph/shortest_path.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1320.test.cpp
     title: test/yukicoder/1320.test.cpp
   _isVerificationFailed: false
@@ -121,6 +124,7 @@ data:
   - test/aoj/2251_2.test.cpp
   - test/aoj/0275.test.cpp
   - test/aoj/2251_1.test.cpp
+  - test/library_checker/graph/shortest_path.test.cpp
 documentation_of: graph/shortest_path/dijkstra.hpp
 layout: document
 redirect_from:

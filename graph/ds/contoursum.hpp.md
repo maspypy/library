@@ -8,10 +8,13 @@ data:
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/library_checker/graph/verted_add_contour_sum.test.cpp
+    title: test/library_checker/graph/verted_add_contour_sum.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -177,8 +180,9 @@ data:
   path: graph/ds/contoursum.hpp
   requiredBy: []
   timestamp: '2022-10-21 17:08:40+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/library_checker/graph/verted_add_contour_sum.test.cpp
 documentation_of: graph/ds/contoursum.hpp
 layout: document
 redirect_from:

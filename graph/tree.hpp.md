@@ -5,10 +5,13 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/classify_subtree.hpp
+    title: graph/classify_subtree.hpp
   - icon: ':question:'
     path: graph/ds/dualtreemonoid.hpp
     title: graph/ds/dualtreemonoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/lazytreemonoid.hpp
     title: graph/ds/lazytreemonoid.hpp
   - icon: ':heavy_check_mark:'
@@ -17,6 +20,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/treeabelgroup.hpp
     title: graph/ds/treeabelgroup.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/ds/treegroup.hpp
+    title: graph/ds/treegroup.hpp
   - icon: ':question:'
     path: graph/ds/treemonoid.hpp
     title: graph/ds/treemonoid.hpp
@@ -29,10 +35,13 @@ data:
   - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/rerooting_classify_subtree.hpp
+    title: graph/rerooting_classify_subtree.hpp
   - icon: ':question:'
     path: graph/rerooting_dp.hpp
     title: graph/rerooting_dp.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp.hpp
     title: graph/tree_dp.hpp
   - icon: ':question:'
@@ -51,7 +60,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_B.test.cpp
     title: test/aoj/GRL_3_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
   - icon: ':heavy_check_mark:'
@@ -64,8 +73,32 @@ data:
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+    title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
+    title: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+    title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+    title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+    title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+    title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/classify_tree.test.cpp
+    title: test/library_checker/graph/classify_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
+    title: test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/two_edge_component.test.cpp
     title: test/library_checker/graph/two_edge_component.test.cpp
@@ -324,6 +357,7 @@ data:
   isVerificationFile: false
   path: graph/tree.hpp
   requiredBy:
+  - graph/classify_subtree.hpp
   - graph/minimum_spanning_tree.hpp
   - graph/dsu_on_tree.hpp
   - graph/rerooting_dp.hpp
@@ -331,10 +365,12 @@ data:
   - graph/tree_dp.hpp
   - graph/functional.hpp
   - graph/ds/dualtreemonoid.hpp
+  - graph/ds/treegroup.hpp
   - graph/ds/treeabelgroup.hpp
   - graph/ds/treemonoid.hpp
   - graph/ds/statictreemonoid.hpp
   - graph/ds/lazytreemonoid.hpp
+  - graph/rerooting_classify_subtree.hpp
   timestamp: '2022-10-14 01:11:36+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -364,7 +400,15 @@ data:
   - test/library_checker/tree/lca_directed.test.cpp
   - test/library_checker/tree/lca.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
+  - test/library_checker/graph/rerooting_classify_subtree.test.cpp
+  - test/library_checker/graph/classify_tree.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/atcoder/abc266f.test.cpp
   - test/atcoder/abc269ex.test.cpp
   - test/atcoder/abc270_f.test.cpp

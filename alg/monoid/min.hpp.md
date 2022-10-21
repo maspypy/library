@@ -5,7 +5,7 @@ data:
   - icon: ':question:'
     path: alg/lazy/min_add.hpp
     title: alg/lazy/min_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/common_interval_decomposition.hpp
     title: ds/common_interval_decomposition.hpp
   - icon: ':heavy_check_mark:'
@@ -39,7 +39,7 @@ data:
   - icon: ':x:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/common_interval_decomposition.test.cpp
     title: test/library_checker/graph/common_interval_decomposition.test.cpp
   - icon: ':heavy_check_mark:'

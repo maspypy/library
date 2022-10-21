@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/query/rectangle_add_point_sum.hpp
     title: ds/query/rectangle_add_point_sum.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: graph/ds/contoursum.hpp
     title: graph/ds/contoursum.hpp
   - icon: ':heavy_check_mark:'
@@ -43,8 +43,14 @@ data:
     path: test/library_checker/datastructure/point_add_range_sum.test.cpp
     title: test/library_checker/datastructure/point_add_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+    title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/graph/verted_add_contour_sum.test.cpp
+    title: test/library_checker/graph/verted_add_contour_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
@@ -159,7 +165,9 @@ data:
   - test/aoj/DSL_2_G.test.cpp
   - test/aoj/DSL_2_E.test.cpp
   - test/aoj/ALDS1_2_A.test.cpp
+  - test/library_checker/graph/verted_add_contour_sum.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
 documentation_of: ds/fenwick.hpp
 layout: document

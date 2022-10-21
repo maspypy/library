@@ -7,11 +7,17 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/classify_subtree.hpp
+    title: graph/classify_subtree.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/classify_tree.test.cpp
+    title: test/library_checker/graph/classify_tree.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/tree_dp.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\n\
@@ -148,10 +154,12 @@ data:
   - graph/tree.hpp
   isVerificationFile: false
   path: graph/tree_dp.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/classify_subtree.hpp
   timestamp: '2022-10-14 01:11:36+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/library_checker/graph/classify_tree.test.cpp
 documentation_of: graph/tree_dp.hpp
 layout: document
 redirect_from:

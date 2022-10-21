@@ -2,23 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: alg/group/add.hpp
-    title: alg/group/add.hpp
-  - icon: ':question:'
-    path: alg/group/cntsum.hpp
-    title: alg/group/cntsum.hpp
-  - icon: ':question:'
-    path: alg/lazy/cntsum_add.hpp
-    title: alg/lazy/cntsum_add.hpp
-  - icon: ':x:'
-    path: ds/dynamic_lazysegtree.hpp
-    title: ds/dynamic_lazysegtree.hpp
-  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
+    path: nt/primetest.hpp
+    title: nt/primetest.hpp
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
+  - icon: ':x:'
+    path: seq/famous/stirling_number_query.hpp
+    title: seq/famous/stirling_number_query.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -26,10 +20,11 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/789
+    PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n
     links:
-    - https://yukicoder.me/problems/no/789
-  bundledCode: "#line 1 \"test/yukicoder/789_2.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/789\"\
+    - https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n
+  bundledCode: "#line 1 \"test/library_checker/math/stirling_mod_p_1.test.cpp\"\n\
+    #define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n\"\
     \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
     unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
     \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
@@ -208,127 +203,96 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"ds/dynamic_lazysegtree.hpp\"\n\n/*\n\u30B3\u30F3\u30B9\
-    \u30C8\u30E9\u30AF\u30BF\u306B\u6E21\u3059\u3082\u306E\n\u30FBL, R\uFF1A\u6700\
-    \u5927\u306E\u7BC4\u56F2\uFF08root node \u306E\u8868\u3059\u7BC4\u56F2\uFF09\n\
-    \u30FBfunction<X(ll,ll)> defulat_fn(l,r)\uFF1A\u521D\u671F\u5024\u3067\u306E [l,r)\
-    \ \u7A4D\u306E\u8A08\u7B97\n*/\ntemplate <class Lazy, int NODES = 5'000'000>\n\
-    struct Dynamic_LazySegTree {\n  using Monoid_X = typename Lazy::X_structure;\n\
-    \  using Monoid_A = typename Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n\
-    \  using A = typename Monoid_A::value_type;\n\n  struct Node {\n    X x;\n   \
-    \ A a;\n    Node *l, *r;\n    Node() {}\n    Node(const X &x) : x(x), a(Monoid_A::unit()),\
-    \ l(nullptr), r(nullptr) {}\n    X get() { return Lazy::act(x, a); }\n  };\n\n\
-    \  Node *pool;\n  int pid;\n  ll L, R;\n  Node *root;\n  function<X(ll, ll)> default_fn;\n\
-    \n  Dynamic_LazySegTree(ll L, ll R, function<X(ll, ll)> f)\n      : pid(0), L(L),\
-    \ R(R), default_fn(f) {\n    pool = new Node[NODES];\n    root = new_node(L, R);\n\
-    \  }\n\n  void reset() {\n    pid = 0;\n    root = new_node(L, R);\n  }\n\n  void\
-    \ set(ll i, const X &x) {\n    assert(L <= i && i < R);\n    set_rec(root, L,\
-    \ R, i, x);\n  }\n\n  void apply(ll l, ll r, const A &a) {\n    assert(L <= l\
-    \ && l <= r && r <= R);\n    apply_rec(root, L, R, l, r, a);\n  }\n\n  X prod(ll\
-    \ l, ll r) {\n    assert(L <= l && l <= r && r <= R);\n    return prod_rec(root,\
-    \ L, R, l, r);\n  }\n\n  X prod_all() { return root->get(); }\n\n  template <class\
-    \ F>\n  ll max_right(const F &check, ll s) {\n    assert(L <= s && s <= R && check(Monoid_X::unit()));\n\
-    \    X p = Monoid_X::unit();\n    return max_right_rec(root, L, R, check, s, p);\n\
-    \  }\n\n  template <class F>\n  ll min_left(const F &check, ll t) {\n    assert(L\
-    \ <= t && t <= R && check(Monoid_X::unit()));\n    X p = Monoid_X::unit();\n \
-    \   return min_left_rec(root, L, R, check, t, p);\n  }\n\n  void debug() {\n \
-    \   auto dfs = [&](auto &dfs, Node *n, ll l, ll r) -> void {\n      print(\"lr\"\
-    , l, r, \"x\", n->x, \"a\", n->a);\n      ll m = (l + r) / 2;\n      if (n->l)\
-    \ dfs(dfs, n->l, l, m);\n      if (n->r) dfs(dfs, n->r, m, r);\n    };\n    dfs(dfs,\
-    \ root, L, R);\n  }\n\nprivate:\n  Node *new_node(ll node_l, ll node_r) {\n  \
-    \  pool[pid].x = default_fn(node_l, node_r);\n    pool[pid].a = Monoid_A::unit();\n\
-    \    pool[pid].l = pool[pid].r = nullptr;\n    return &(pool[pid++]);\n  }\n\n\
-    \  void prop(Node *n, ll node_l, ll node_r) {\n    if (n->a == Monoid_A::unit())\
-    \ return;\n    ll node_m = (node_l + node_r) / 2;\n    if (!n->l) n->l = new_node(node_l,\
-    \ node_m);\n    if (!n->r) n->r = new_node(node_m, node_r);\n    (n->l)->a = Monoid_A::op((n->l)->a,\
-    \ n->a);\n    (n->r)->a = Monoid_A::op((n->r)->a, n->a);\n    n->x = Lazy::act(n->x,\
-    \ n->a);\n    n->a = Monoid_A::unit();\n  }\n\n  void set_rec(Node *n, ll node_l,\
-    \ ll node_r, ll idx, const X &x) {\n    if (node_r - node_l == 1) {\n      n->x\
-    \ = x;\n      n->a = Monoid_A::unit();\n      return;\n    }\n    ll node_m =\
-    \ (node_l + node_r) / 2;\n    prop(n, node_l, node_r);\n\n    if (idx < node_m)\
-    \ {\n      if (!(n->l)) n->l = new_node(node_l, node_m);\n      set_rec(n->l,\
-    \ node_l, node_m, idx, x);\n    } else {\n      if (!(n->r)) n->r = new_node(node_m,\
-    \ node_r);\n      set_rec(n->r, node_m, node_r, idx, x);\n    }\n    X xl = (n->l\
-    \ ? (n->l)->get() : Monoid_X::unit());\n    X xr = (n->r ? (n->r)->get() : Monoid_X::unit());\n\
-    \    n->x = Monoid_X::op(xl, xr);\n  }\n\n  void apply_rec(Node *n, ll node_l,\
-    \ ll node_r, ll l, ll r, const A &a) {\n    chmax(l, node_l);\n    chmin(r, node_r);\n\
-    \    if (l >= r) return;\n    if (l == node_l && r == node_r) {\n      n->a =\
-    \ Monoid_A::op(n->a, a);\n      return;\n    }\n    ll node_m = (node_l + node_r)\
-    \ / 2;\n    prop(n, node_l, node_r);\n    if (!(n->l)) n->l = new_node(node_l,\
-    \ node_m);\n    if (!(n->r)) n->r = new_node(node_m, node_r);\n    apply_rec(n->l,\
-    \ node_l, node_m, l, r, a);\n    apply_rec(n->r, node_m, node_r, l, r, a);\n \
-    \   n->x = Monoid_X::op((n->l)->get(), (n->r)->get());\n  }\n\n  X prod_rec(Node\
-    \ *n, ll node_l, ll node_r, ll l, ll r) {\n    chmax(l, node_l);\n    chmin(r,\
-    \ node_r);\n    if (l >= r) return Monoid_X::unit();\n    if (l == node_l && r\
-    \ == node_r) return n->get();\n    ll node_m = (node_l + node_r) / 2;\n    prop(n,\
-    \ node_l, node_r);\n    X xl = (n->l ? prod_rec(n->l, node_l, node_m, l, r) :\
-    \ Monoid_X::unit());\n    X xr = (n->r ? prod_rec(n->r, node_m, node_r, l, r)\
-    \ : Monoid_X::unit());\n    return Monoid_X::op(xl, xr);\n  }\n\n  template <typename\
-    \ F>\n  ll max_right_rec(Node *n, ll node_l, ll node_r, const F &check, ll s,\
-    \ X &p) {\n    if (node_r <= s) return R;\n    if (s <= node_l) {\n      X x =\
-    \ Monoid_X::op(p, n->get());\n      if (check(x)) {\n        p = x;\n        return\
-    \ R;\n      }\n    }\n    if (node_r - node_l == 1) return node_l;\n    ll node_m\
-    \ = (node_l + node_r) / 2;\n    if (!(n->l)) n->l = new_node(node_l, node_m);\n\
-    \    if (!(n->r)) n->r = new_node(node_m, node_r);\n    prop(n, node_l, node_r);\n\
-    \    ll res = max_right_rec(n->l, node_l, node_m, check, s, p);\n    if (res !=\
-    \ R) return res;\n    return max_right_rec(n->r, node_m, node_r, check, s, p);\n\
-    \  }\n\n  template <typename F>\n  ll min_left_rec(Node *n, ll node_l, ll node_r,\
-    \ const F &check, ll t, X &p) {\n    if (t <= node_l) return L;\n    if (node_r\
-    \ <= t) {\n      X x = Monoid_X::op(n->get(), p);\n      if (check(x)) {\n   \
-    \     p = x;\n        return L;\n      }\n    }\n    if (node_r - node_l == 1)\
-    \ return node_r;\n    ll node_m = (node_l + node_r) / 2;\n    if (!(n->l)) n->l\
-    \ = new_node(node_l, node_m);\n    if (!(n->r)) n->r = new_node(node_m, node_r);\n\
-    \    prop(n, node_l, node_r);\n    ll res = min_left_rec(n->r, node_m, node_r,\
-    \ check, t, p);\n    if (res != L) return res;\n    return min_left_rec(n->l,\
-    \ node_l, node_m, check, t, p);\n  }\n};\n#line 2 \"alg/group/add.hpp\"\n\r\n\
-    template <typename E>\r\nstruct Group_Add {\r\n  using X = E;\r\n  using value_type\
-    \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return x\
-    \ + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\
-    \n  static constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\
-    \n  static constexpr X unit() { return X(0); }\r\n  static constexpr bool commute\
-    \ = true;\r\n};\r\n#line 1 \"alg/group/cntsum.hpp\"\ntemplate <typename E = long\
-    \ long>\r\nstruct Group_CntSum {\r\n  using value_type = pair<E, E>;\r\n  using\
-    \ X = value_type;\r\n  static constexpr X op(const X &x, const X &y) {\r\n   \
-    \ return {x.fi + y.fi, x.se + y.se};\r\n  }\r\n  static constexpr X inverse(const\
-    \ X &x) { return {-x.fi, -x.se}; }\r\n  static constexpr X unit() { return {0,\
-    \ 0}; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/lazy/cntsum_add.hpp\"\
-    \n\r\ntemplate <typename E>\r\nstruct Lazy_CntSum_Add {\r\n  using MX = Group_CntSum<E>;\r\
-    \n  using MA = Group_Add<E>;\r\n  using X_structure = MX;\r\n  using A_structure\
-    \ = MA;\r\n  using X = typename MX::value_type;\r\n  using A = typename MA::value_type;\r\
-    \n  static constexpr X act(const X &x, const A &a) {\r\n    return {x.fi, x.se\
-    \ + x.fi * a};\r\n  }\r\n};\r\n#line 6 \"test/yukicoder/789_2.test.cpp\"\n\nvoid\
-    \ solve() {\n  auto f = [&](ll L, ll R) -> pi { return {R - L, 0}; };\n  Dynamic_LazySegTree<Lazy_CntSum_Add<ll>,\
-    \ 2000000> seg(0, 1LL << 30, f);\n  LL(Q);\n  ll ANS = 0;\n  FOR(Q) {\n    LL(t,\
-    \ a, b);\n    if (t == 0) { seg.apply(a, a + 1, b); }\n    if (t == 1) { ANS +=\
-    \ seg.prod(a, b + 1).se; }\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/789\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"ds/dynamic_lazysegtree.hpp\"\n#include\
-    \ \"alg/lazy/cntsum_add.hpp\"\n\nvoid solve() {\n  auto f = [&](ll L, ll R) ->\
-    \ pi { return {R - L, 0}; };\n  Dynamic_LazySegTree<Lazy_CntSum_Add<ll>, 2000000>\
-    \ seg(0, 1LL << 30, f);\n  LL(Q);\n  ll ANS = 0;\n  FOR(Q) {\n    LL(t, a, b);\n\
-    \    if (t == 0) { seg.apply(a, a + 1, b); }\n    if (t == 1) { ANS += seg.prod(a,\
-    \ b + 1).se; }\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ { yes(!t); }\r\n#line 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n  using i64 =\
+    \ int64_t;\r\n  using u64 = uint64_t;\r\n  using u128 = __uint128_t;\r\n\r\n \
+    \ inline static u64 m, r, n2; // r * m = -1 (mod 1<<64), n2 = 1<<128 (mod m)\r\
+    \n  static void set_mod(u64 m) {\r\n    assert(m < (1ull << 62));\r\n    assert((m\
+    \ & 1) == 1);\r\n    m64::m = m;\r\n    n2 = -u128(m) % m;\r\n    r = m;\r\n \
+    \   FOR(_, 5) r *= 2 - m * r;\r\n    r = -r;\r\n    assert(r * m == -1ull);\r\n\
+    \  }\r\n  static u64 reduce(u128 b) { return (b + u128(u64(b) * r) * m) >> 64;\
+    \ }\r\n\r\n  u64 x;\r\n  m64() : x(0) {}\r\n  m64(u64 x) : x(reduce(u128(x) *\
+    \ n2)){};\r\n  u64 val() const {\r\n    u64 y = reduce(x);\r\n    return y >=\
+    \ m ? y - m : y;\r\n  }\r\n  m64 &operator+=(m64 y) {\r\n    x += y.x - (m <<\
+    \ 1);\r\n    x = (i64(x) < 0 ? x + (m << 1) : x);\r\n    return *this;\r\n  }\r\
+    \n  m64 &operator-=(m64 y) {\r\n    x -= y.x;\r\n    x = (i64(x) < 0 ? x + (m\
+    \ << 1) : x);\r\n    return *this;\r\n  }\r\n  m64 &operator*=(m64 y) {\r\n  \
+    \  x = reduce(u128(x) * y.x);\r\n    return *this;\r\n  }\r\n  m64 operator+(m64\
+    \ y) const { return m64(*this) += y; }\r\n  m64 operator-(m64 y) const { return\
+    \ m64(*this) -= y; }\r\n  m64 operator*(m64 y) const { return m64(*this) *= y;\
+    \ }\r\n  bool operator==(m64 y) const {\r\n    return (x >= m ? x - m : x) ==\
+    \ (y.x >= m ? y.x - m : y.x);\r\n  }\r\n  bool operator!=(m64 y) const { return\
+    \ not operator==(y); }\r\n  m64 pow(u64 n) const {\r\n    m64 y = 1, z = *this;\r\
+    \n    for (; n; n >>= 1, z *= z)\r\n      if (n & 1) y *= z;\r\n    return y;\r\
+    \n  }\r\n};\r\n\r\nbool primetest(const uint64_t x) {\r\n  using u64 = uint64_t;\r\
+    \n  if (x == 2 or x == 3 or x == 5 or x == 7) return true;\r\n  if (x % 2 == 0\
+    \ or x % 3 == 0 or x % 5 == 0 or x % 7 == 0) return false;\r\n  if (x < 121) return\
+    \ x > 1;\r\n  const u64 d = (x - 1) >> __builtin_ctzll(x - 1);\r\n  m64::set_mod(x);\r\
+    \n  const m64 one(1), minus_one(x - 1);\r\n  auto ok = [&](u64 a) {\r\n    auto\
+    \ y = m64(a).pow(d);\r\n    u64 t = d;\r\n    while (y != one and y != minus_one\
+    \ and t != x - 1) y *= y, t <<= 1;\r\n    if (y != minus_one and t % 2 == 0) return\
+    \ false;\r\n    return true;\r\n  };\r\n  if (x < (1ull << 32)) {\r\n    for (u64\
+    \ a: {2, 7, 61})\r\n      if (not ok(a)) return false;\r\n  } else {\r\n    for\
+    \ (u64 a: {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\r\n      if (x\
+    \ <= a) return true;\r\n      if (not ok(a)) return false;\r\n    }\r\n  }\r\n\
+    \  return true;\r\n}\n#line 2 \"seq/famous/stirling_number_query.hpp\"\n\n// O(p^2)\
+    \ \u6642\u9593\u306E\u524D\u8A08\u7B97\u306E\u3082\u3068\u3001O(log n) \u6642\u9593\
+    \nstruct Stirling_Number_Query {\n  const int p;\n  vvc<int> MEMO_C;\n  vvc<int>\
+    \ MEMO_S1;\n  vvc<int> MEMO_S2;\n\n  Stirling_Number_Query(int p, bool first_kind\
+    \ = true, bool second_kind = true)\n      : p(p) {\n    assert(primetest(p));\n\
+    \    assert(p <= (1 << 15));\n    build_C();\n    if (first_kind) build_S1();\n\
+    \    if (second_kind) build_S2();\n  }\n\n  int C(ll n, ll k) {\n    if (k < 0\
+    \ || k > n) return 0;\n    int res = 1;\n    while (n) {\n      int i = n % p,\
+    \ j = k % p;\n      if (j > i) return 0;\n      res = res * MEMO_C[i][j] % p;\n\
+    \      n /= p;\n      k /= p;\n    }\n    return res;\n  }\n\n  int S1(ll n, ll\
+    \ k) {\n    if (k < 0 || k > n) return 0;\n    ll i = n / p;\n    int j = n %\
+    \ p;\n    if (i > k) return 0;\n    ll a = (k - i) / (p - 1);\n    int b = (k\
+    \ - i) % (p - 1);\n    if (b == 0 && j > 0) {\n      b += (p - 1);\n      a -=\
+    \ 1;\n    }\n    if (a < 0 || i < a || b > j) return 0;\n    int x = C(i, a);\n\
+    \    int y = MEMO_S1[j][b];\n    int res = x * y % p;\n    if ((i + a) % 2 ==\
+    \ 1 && res) { res = p - res; }\n    return res;\n  }\n\n  int S2(ll n, ll k) {\n\
+    \    if (k < 0 || k > n) return 0;\n    if (n == 0) return 1;\n    ll i = k /\
+    \ p;\n    int j = k % p;\n    if (n < i) return 0;\n    ll a = (n - i) / (p -\
+    \ 1);\n    int b = (n - i) - (p - 1) * a;\n    if (b == 0) {\n      b += p - 1;\n\
+    \      a -= 1;\n    }\n    if (a < 0 || j > b) return 0;\n    if (b < p - 1) {\
+    \ return C(a, i) * MEMO_S2[b][j] % p; }\n    if (j == 0) return C(a, i - 1);\n\
+    \    return C(a, i) * MEMO_S2[p - 1][j] % p;\n  }\n\nprivate:\n  void build_C()\
+    \ {\n    auto& A = MEMO_C;\n    A.resize(p);\n    A[0] = {1};\n    FOR(i, 1, p)\
+    \ {\n      A[i] = A[i - 1];\n      A[i].emplace_back(0);\n      FOR(j, 1, i +\
+    \ 1) {\n        A[i][j] += A[i - 1][j - 1];\n        if (A[i][j] >= p) A[i][j]\
+    \ -= p;\n      }\n    }\n  }\n\n  void build_S1() {\n    auto& A = MEMO_S1;\n\
+    \    A.resize(p);\n    A[0] = {1};\n    FOR(i, 1, p) {\n      A[i].assign(i +\
+    \ 1, 0);\n      FOR(j, i + 1) {\n        if (j) A[i][j] += A[i - 1][j - 1];\n\
+    \        if (j < i) A[i][j] += A[i - 1][j] * (p - i + 1);\n        A[i][j] %=\
+    \ p;\n      }\n    }\n  }\n\n  void build_S2() {\n    auto& A = MEMO_S2;\n   \
+    \ A.resize(p);\n    A[0] = {1};\n    FOR(i, 1, p) {\n      A[i].assign(i + 1,\
+    \ 0);\n      FOR(j, i + 1) {\n        if (j) A[i][j] += A[i - 1][j - 1];\n   \
+    \     if (j < i) A[i][j] += A[i - 1][j] * j;\n        A[i][j] %= p;\n      }\n\
+    \    }\n  }\n};\n#line 6 \"test/library_checker/math/stirling_mod_p_1.test.cpp\"\
+    \n\nvoid solve() {\n  LL(T, p);\n  Stirling_Number_Query X(p, 1, 0);\n  FOR(T)\
+    \ {\n    LL(n, k);\n    print(X.S1(n, k));\n  }\n}\n\nsigned main() {\n  cout\
+    \ << fixed << setprecision(15);\n\n  // LL(T);\n  ll T = 1;\n  FOR(T) solve();\n\
+    \n  return 0;\n}\n"
+  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"seq/famous/stirling_number_query.hpp\"\
+    \n\nvoid solve() {\n  LL(T, p);\n  Stirling_Number_Query X(p, 1, 0);\n  FOR(T)\
+    \ {\n    LL(n, k);\n    print(X.S1(n, k));\n  }\n}\n\nsigned main() {\n  cout\
+    \ << fixed << setprecision(15);\n\n  // LL(T);\n  ll T = 1;\n  FOR(T) solve();\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/dynamic_lazysegtree.hpp
-  - alg/lazy/cntsum_add.hpp
-  - alg/group/add.hpp
-  - alg/group/cntsum.hpp
+  - seq/famous/stirling_number_query.hpp
+  - nt/primetest.hpp
   isVerificationFile: true
-  path: test/yukicoder/789_2.test.cpp
+  path: test/library_checker/math/stirling_mod_p_1.test.cpp
   requiredBy: []
-  timestamp: '2022-10-21 17:59:25+09:00'
+  timestamp: '2022-10-21 18:11:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yukicoder/789_2.test.cpp
+documentation_of: test/library_checker/math/stirling_mod_p_1.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/789_2.test.cpp
-- /verify/test/yukicoder/789_2.test.cpp.html
-title: test/yukicoder/789_2.test.cpp
+- /verify/test/library_checker/math/stirling_mod_p_1.test.cpp
+- /verify/test/library_checker/math/stirling_mod_p_1.test.cpp.html
+title: test/library_checker/math/stirling_mod_p_1.test.cpp
 ---

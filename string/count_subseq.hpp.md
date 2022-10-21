@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/library_checker/string/number_of_subsequences.test.cpp
+    title: test/library_checker/string/number_of_subsequences.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/count_subseq.hpp\"\ntemplate <typename mint, typename\
@@ -25,8 +28,9 @@ data:
   path: string/count_subseq.hpp
   requiredBy: []
   timestamp: '2022-10-21 16:42:45+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/library_checker/string/number_of_subsequences.test.cpp
 documentation_of: string/count_subseq.hpp
 layout: document
 redirect_from:

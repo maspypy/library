@@ -5,18 +5,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
+  - icon: ':x:'
+    path: poly/fps_sqrt.hpp
+    title: poly/fps_sqrt.hpp
   - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
@@ -41,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/partition_number.hpp
     title: seq/famous/partition_number.hpp
   - icon: ':warning:'
@@ -54,6 +57,9 @@ data:
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/library_checker/math/partition.test.cpp
+    title: test/library_checker/math/partition.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sharp_p_subset_sum.test.cpp
     title: test/library_checker/math/sharp_p_subset_sum.test.cpp
@@ -102,6 +108,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
+    title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+    title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
@@ -129,9 +141,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2097.test.cpp
     title: test/yukicoder/2097.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
@@ -155,6 +167,7 @@ data:
   - poly/multipoint.hpp
   - poly/composition_f_ex.hpp
   - poly/fps_exp.hpp
+  - poly/fps_sqrt.hpp
   - poly/product_of_one_minus_xn.hpp
   - poly/product_of_one_plus_xn.hpp
   - seq/famous/stirling_number_1.hpp
@@ -162,7 +175,7 @@ data:
   - seq/famous/stirling_number_2.hpp
   - seq/sum_of_powers.hpp
   timestamp: '2022-05-02 13:06:30+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/enum_partitions.test.cpp
   - test/yukicoder/1755.test.cpp
@@ -174,9 +187,11 @@ data:
   - test/yukicoder/1145.test.cpp
   - test/yukicoder/2062.test.cpp
   - test/library_checker/polynomial/log_of_fps.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/inv_of_fps_amint.test.cpp
   - test/library_checker/polynomial/polynomial_division.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/inv_of_fps.test.cpp
   - test/library_checker/polynomial/exp_of_fps.test.cpp
   - test/library_checker/polynomial/log_of_fps_sparse.test.cpp
@@ -189,6 +204,7 @@ data:
   - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
   - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
+  - test/library_checker/math/partition.test.cpp
 documentation_of: poly/count_terms.hpp
 layout: document
 redirect_from:

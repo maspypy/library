@@ -8,6 +8,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/query/powerquery.hpp
     title: ds/query/powerquery.hpp
+  - icon: ':x:'
+    path: mod/mod_log.hpp
+    title: mod/mod_log.hpp
   - icon: ':heavy_check_mark:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
@@ -21,6 +24,9 @@ data:
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/library_checker/math/discrete_logarithm_mod.test.cpp
+    title: test/library_checker/math/discrete_logarithm_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
@@ -69,6 +75,7 @@ data:
   - seq/kth_term_of_p_recursive.hpp
   - seq/interpolate_poly_exp_sum.hpp
   - alg/lazy/add_mul.hpp
+  - mod/mod_log.hpp
   - ds/query/powerquery.hpp
   timestamp: '2022-10-21 16:42:45+09:00'
   verificationStatus: LIBRARY_SOME_WA
@@ -81,6 +88,7 @@ data:
   - test/yukicoder/1339.test.cpp
   - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
+  - test/library_checker/math/discrete_logarithm_mod.test.cpp
 documentation_of: alg/group/mul.hpp
 layout: document
 redirect_from:

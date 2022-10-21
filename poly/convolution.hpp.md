@@ -50,18 +50,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_composition.hpp
     title: poly/fps_composition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
+  - icon: ':x:'
+    path: poly/fps_sqrt.hpp
+    title: poly/fps_sqrt.hpp
   - icon: ':heavy_check_mark:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
@@ -110,7 +113,7 @@ data:
   - icon: ':warning:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/partition_number.hpp
     title: seq/famous/partition_number.hpp
   - icon: ':warning:'
@@ -168,6 +171,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/math/partition.test.cpp
+    title: test/library_checker/math/partition.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sharp_p_subset_sum.test.cpp
     title: test/library_checker/math/sharp_p_subset_sum.test.cpp
@@ -228,6 +234,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
+    title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+    title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
@@ -684,6 +696,7 @@ data:
   - poly/fps_exp.hpp
   - poly/convolution_mod_2_64.hpp
   - poly/lagrange_interpolate_iota.hpp
+  - poly/fps_sqrt.hpp
   - poly/product_of_one_minus_xn.hpp
   - poly/product_of_one_plus_xn.hpp
   - poly/online_convolution.hpp
@@ -725,10 +738,12 @@ data:
   - test/yukicoder/1516.test.cpp
   - test/yukicoder/2062.test.cpp
   - test/library_checker/polynomial/log_of_fps.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - test/library_checker/polynomial/inv_of_fps_amint.test.cpp
   - test/library_checker/polynomial/polynomial_division.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/inv_of_fps.test.cpp
   - test/library_checker/polynomial/exp_of_fps.test.cpp
   - test/library_checker/polynomial/log_of_fps_sparse.test.cpp
@@ -753,6 +768,7 @@ data:
   - test/library_checker/convolution/convolution_mod.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
+  - test/library_checker/math/partition.test.cpp
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/atcoder/abc269ex.test.cpp

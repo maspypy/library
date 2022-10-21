@@ -8,7 +8,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/mincostcycle.hpp
     title: graph/mincostcycle.hpp
+  - icon: ':x:'
+    path: graph/tree_diameter.hpp
+    title: graph/tree_diameter.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/library_checker/tree/tree_diameter.test.cpp
+    title: test/library_checker/tree/tree_diameter.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1320.test.cpp
     title: test/yukicoder/1320.test.cpp
@@ -112,12 +118,14 @@ data:
   path: graph/shortest_path/bfs01.hpp
   requiredBy:
   - graph/mincostcycle.hpp
+  - graph/tree_diameter.hpp
   timestamp: '2022-10-21 17:08:40+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1320.test.cpp
   - test/yukicoder/1868.test.cpp
   - test/yukicoder/1718.test.cpp
+  - test/library_checker/tree/tree_diameter.test.cpp
 documentation_of: graph/shortest_path/bfs01.hpp
 layout: document
 redirect_from:

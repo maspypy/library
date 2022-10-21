@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: alg/group/cntsum.hpp
     title: alg/group/cntsum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/lazy/cntsum_add.hpp
     title: alg/lazy/cntsum_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/lazy/reverse.hpp
     title: alg/lazy/reverse.hpp
   - icon: ':question:'
@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/lazytreemonoid.hpp
     title: graph/ds/lazytreemonoid.hpp
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_E
@@ -520,7 +520,7 @@ data:
   path: test/aoj/GRL_5_E.test.cpp
   requiredBy: []
   timestamp: '2022-10-21 17:59:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_5_E.test.cpp
 layout: document

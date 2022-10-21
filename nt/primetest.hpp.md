@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: graph/chromatic.hpp
+    title: graph/chromatic.hpp
+  - icon: ':heavy_check_mark:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
   - icon: ':heavy_check_mark:'
@@ -35,7 +38,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/lcm.hpp
     title: nt/lcm.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: seq/famous/stirling_number_query.hpp
     title: seq/famous/stirling_number_query.hpp
   _extendedVerifiedWith:
@@ -49,6 +52,9 @@ data:
     path: test/aoj/NTL_1_D.test.cpp
     title: test/aoj/NTL_1_D.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/chromatic_number.test.cpp
+    title: test/library_checker/graph/chromatic_number.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/binomial_coefficient.test.cpp
     title: test/library_checker/math/binomial_coefficient.test.cpp
   - icon: ':heavy_check_mark:'
@@ -60,6 +66,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/primitive_root.test.cpp
     title: test/library_checker/math/primitive_root.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/math/stirling_mod_p_1.test.cpp
+    title: test/library_checker/math/stirling_mod_p_1.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/math/stirling_mod_p_2.test.cpp
+    title: test/library_checker/math/stirling_mod_p_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
@@ -160,6 +172,7 @@ data:
   path: nt/primetest.hpp
   requiredBy:
   - seq/famous/stirling_number_query.hpp
+  - graph/chromatic.hpp
   - mod/binomial.hpp
   - mod/tetration.hpp
   - mod/mod_kth_root.hpp
@@ -187,9 +200,12 @@ data:
   - test/aoj/ITP1_D_D.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/primitive_root.test.cpp
+  - test/library_checker/math/stirling_mod_p_2.test.cpp
   - test/library_checker/math/binomial_coefficient.test.cpp
   - test/library_checker/math/tetration.test.cpp
+  - test/library_checker/math/stirling_mod_p_1.test.cpp
   - test/library_checker/math/factorize.test.cpp
+  - test/library_checker/graph/chromatic_number.test.cpp
 documentation_of: nt/primetest.hpp
 layout: document
 redirect_from:
