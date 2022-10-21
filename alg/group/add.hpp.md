@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/lazy/cntsum_add.hpp
     title: alg/lazy/cntsum_add.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy/max_add.hpp
     title: alg/lazy/max_add.hpp
   - icon: ':heavy_check_mark:'
@@ -130,6 +130,9 @@ data:
     path: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
+    title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -199,6 +202,9 @@ data:
     path: test/yukicoder/1332.test.cpp
     title: test/yukicoder/1332.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1441_2.test.cpp
+    title: test/yukicoder/1441_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1641.test.cpp
     title: test/yukicoder/1641.test.cpp
   - icon: ':heavy_check_mark:'
@@ -228,6 +234,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/655.test.cpp
     title: test/yukicoder/655.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/686.test.cpp
+    title: test/yukicoder/686.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/789.test.cpp
     title: test/yukicoder/789.test.cpp
@@ -303,8 +312,10 @@ data:
   - test/yukicoder/1197.test.cpp
   - test/yukicoder/919.test.cpp
   - test/yukicoder/2065.test.cpp
+  - test/yukicoder/1441_2.test.cpp
   - test/yukicoder/924.test.cpp
   - test/yukicoder/1141.test.cpp
+  - test/yukicoder/686.test.cpp
   - test/yukicoder/1097.test.cpp
   - test/yukicoder/1919.test.cpp
   - test/yukicoder/1332.test.cpp
@@ -342,6 +353,7 @@ data:
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   - test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
   - test/atcoder/abc174f.test.cpp

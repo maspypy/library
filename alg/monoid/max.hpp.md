@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy/max_add.hpp
     title: alg/lazy/max_add.hpp
   - icon: ':heavy_check_mark:'
@@ -36,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1826.test.cpp
     title: test/yukicoder/1826.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/686.test.cpp
+    title: test/yukicoder/686.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -61,6 +64,7 @@ data:
   - test/yukicoder/1625.test.cpp
   - test/yukicoder/1117.test.cpp
   - test/yukicoder/1625_2.test.cpp
+  - test/yukicoder/686.test.cpp
   - test/yukicoder/1826.test.cpp
   - test/yukicoder/1790.test.cpp
   - test/aoj/GRL_2_A.test.cpp

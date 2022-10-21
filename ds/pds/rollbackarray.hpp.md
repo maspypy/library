@@ -1,11 +1,20 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: ds/pds/rollbackunionfind.hpp
+    title: ds/pds/rollbackunionfind.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/add_remove_query.test.cpp
+    title: test/library_checker/datastructure/add_remove_query.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
+    title: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/pds/rollbackarray.hpp\"\n\r\ntemplate <typename T>\r\n\
@@ -29,10 +38,13 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: ds/pds/rollbackarray.hpp
-  requiredBy: []
+  requiredBy:
+  - ds/pds/rollbackunionfind.hpp
   timestamp: '2022-10-21 16:42:45+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/library_checker/datastructure/add_remove_query.test.cpp
+  - test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
 documentation_of: ds/pds/rollbackarray.hpp
 layout: document
 redirect_from:

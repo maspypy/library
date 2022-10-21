@@ -61,7 +61,7 @@ data:
     - icon: ':warning:'
       path: alg/lazy/cntsummin_set.hpp
       title: alg/lazy/cntsummin_set.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy/max_add.hpp
       title: alg/lazy/max_add.hpp
     - icon: ':warning:'
@@ -166,7 +166,7 @@ data:
     - icon: ':warning:'
       path: ds/bbst/rbst_monoid.hpp
       title: ds/bbst/rbst_monoid.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/bbst/splaytree_lazy.hpp
       title: ds/bbst/splaytree_lazy.hpp
     - icon: ':heavy_check_mark:'
@@ -322,10 +322,10 @@ data:
     - icon: ':warning:'
       path: ds/pds/persistent_rbst_monoid.hpp
       title: ds/pds/persistent_rbst_monoid.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/pds/rollbackarray.hpp
       title: ds/pds/rollbackarray.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/pds/rollbackunionfind.hpp
       title: ds/pds/rollbackunionfind.hpp
     - icon: ':warning:'
@@ -339,7 +339,7 @@ data:
       title: ds/pds/unionfind.hpp
   - name: ds/query
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/query/addremove_query.hpp
       title: ds/query/addremove_query.hpp
     - icon: ':heavy_check_mark:'
@@ -1471,7 +1471,7 @@ data:
       title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - name: test/library_checker/datastructure
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/add_remove_query.test.cpp
       title: test/library_checker/datastructure/add_remove_query.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1483,13 +1483,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/double_ended_pq.test.cpp
       title: test/library_checker/datastructure/double_ended_pq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
       title: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
       title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
       title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     - icon: ':x:'
@@ -1546,7 +1546,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
       title: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
       title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2160,7 +2160,7 @@ data:
     - icon: ':x:'
       path: test/yukicoder/1441.test.cpp
       title: test/yukicoder/1441.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1441_2.test.cpp
       title: test/yukicoder/1441_2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2430,7 +2430,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/655.test.cpp
       title: test/yukicoder/655.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/686.test.cpp
       title: test/yukicoder/686.test.cpp
     - icon: ':heavy_check_mark:'

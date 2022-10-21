@@ -24,7 +24,7 @@ data:
     \ mt(chrono::steady_clock::now().time_since_epoch().count());\n  uniform_int_distribution<ll>\
     \ dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll a) { return RNG(0, a); }\n\
     #line 3 \"string/rollinghash.hpp\"\n\nstruct RollingHash {\n  static const uint64_t\
-    \ mod = (1ull << 61ull) - 1;\n  vector<uint64_t> power;\n  const uint64_t base;\n\
+    \ mod = (1ull << 61ull) - 1;\n  const uint64_t base;\n  vector<uint64_t> power;\n\
     \n  static inline uint64_t add(uint64_t a, uint64_t b) {\n    if ((a += b) >=\
     \ mod) a -= mod;\n    return a;\n  }\n\n  static inline uint64_t mul(uint64_t\
     \ a, uint64_t b) {\n    const uint64_t MASK30 = (1LL << 30) - 1;\n    const uint64_t\
@@ -52,20 +52,20 @@ data:
     \        low = mid;\n      else\n        high = mid;\n    }\n    return low;\n\
     \  }\n};\n"
   code: "#pragma once\n#include \"random/base.hpp\"\n\nstruct RollingHash {\n  static\
-    \ const uint64_t mod = (1ull << 61ull) - 1;\n  vector<uint64_t> power;\n  const\
-    \ uint64_t base;\n\n  static inline uint64_t add(uint64_t a, uint64_t b) {\n \
-    \   if ((a += b) >= mod) a -= mod;\n    return a;\n  }\n\n  static inline uint64_t\
-    \ mul(uint64_t a, uint64_t b) {\n    const uint64_t MASK30 = (1LL << 30) - 1;\n\
-    \    const uint64_t MASK31 = (1LL << 31) - 1;\n    const uint64_t MASK61 = (1LL\
-    \ << 61) - 1;\n    uint64_t au = a >> 31, ad = a & MASK31;\n    uint64_t bu =\
-    \ b >> 31, bd = b & MASK31;\n    uint64_t x = ad * bu + au * bd;\n    uint64_t\
-    \ xu = x >> 30, xd = x & MASK30;\n    x = au * bu * 2 + xu + (xd << 31) + ad *\
-    \ bd;\n    xu = x >> 61, xd = x & MASK61;\n    x = xu + xd;\n    if (x >= MASK61)\
-    \ x -= MASK61;\n    return x;\n  }\n\n  static inline uint64_t generate_base()\
-    \ { return RNG(mod); }\n\n  inline void expand(size_t sz) {\n    if (power.size()\
-    \ < sz + 1) {\n      int pre_sz = (int)power.size();\n      power.resize(sz +\
-    \ 1);\n      for (int i = pre_sz - 1; i < sz; i++) {\n        power[i + 1] = mul(power[i],\
-    \ base);\n      }\n    }\n  }\n\n  explicit RollingHash(uint64_t base = generate_base())\n\
+    \ const uint64_t mod = (1ull << 61ull) - 1;\n  const uint64_t base;\n  vector<uint64_t>\
+    \ power;\n\n  static inline uint64_t add(uint64_t a, uint64_t b) {\n    if ((a\
+    \ += b) >= mod) a -= mod;\n    return a;\n  }\n\n  static inline uint64_t mul(uint64_t\
+    \ a, uint64_t b) {\n    const uint64_t MASK30 = (1LL << 30) - 1;\n    const uint64_t\
+    \ MASK31 = (1LL << 31) - 1;\n    const uint64_t MASK61 = (1LL << 61) - 1;\n  \
+    \  uint64_t au = a >> 31, ad = a & MASK31;\n    uint64_t bu = b >> 31, bd = b\
+    \ & MASK31;\n    uint64_t x = ad * bu + au * bd;\n    uint64_t xu = x >> 30, xd\
+    \ = x & MASK30;\n    x = au * bu * 2 + xu + (xd << 31) + ad * bd;\n    xu = x\
+    \ >> 61, xd = x & MASK61;\n    x = xu + xd;\n    if (x >= MASK61) x -= MASK61;\n\
+    \    return x;\n  }\n\n  static inline uint64_t generate_base() { return RNG(mod);\
+    \ }\n\n  inline void expand(size_t sz) {\n    if (power.size() < sz + 1) {\n \
+    \     int pre_sz = (int)power.size();\n      power.resize(sz + 1);\n      for\
+    \ (int i = pre_sz - 1; i < sz; i++) {\n        power[i + 1] = mul(power[i], base);\n\
+    \      }\n    }\n  }\n\n  explicit RollingHash(uint64_t base = generate_base())\n\
     \      : base(base), power{1} {}\n\n  template <typename STRING>\n  vector<uint64_t>\
     \ build(const STRING& s) const {\n    int sz = s.size();\n    vector<uint64_t>\
     \ hashed(sz + 1);\n    for (int i = 0; i < sz; i++) {\n      hashed[i + 1] = add(mul(hashed[i],\
@@ -84,7 +84,7 @@ data:
   isVerificationFile: false
   path: string/rollinghash.hpp
   requiredBy: []
-  timestamp: '2022-10-21 17:59:25+09:00'
+  timestamp: '2022-10-21 19:43:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/263.test.cpp
