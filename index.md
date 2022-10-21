@@ -725,7 +725,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/spmat_min_poly.hpp
       title: linalg/spmat_min_poly.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: linalg/transpose.hpp
       title: linalg/transpose.hpp
     - icon: ':warning:'
@@ -984,6 +984,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/online_convolution.hpp
       title: poly/online_convolution.hpp
+    - icon: ':heavy_check_mark:'
+      path: poly/pascal.hpp
+      title: poly/pascal.hpp
     - icon: ':heavy_check_mark:'
       path: poly/poly_divmod.hpp
       title: poly/poly_divmod.hpp
@@ -2397,6 +2400,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/2102.test.cpp
       title: test/yukicoder/2102.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/2108.test.cpp
+      title: test/yukicoder/2108.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/235.test.cpp
       title: test/yukicoder/235.test.cpp

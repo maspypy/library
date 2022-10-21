@@ -66,6 +66,9 @@ data:
     path: poly/online_convolution.hpp
     title: poly/online_convolution.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/pascal.hpp
+    title: poly/pascal.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
   - icon: ':heavy_check_mark:'
@@ -310,6 +313,9 @@ data:
     path: test/yukicoder/2097.test.cpp
     title: test/yukicoder/2097.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2108.test.cpp
+    title: test/yukicoder/2108.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_2.test.cpp
     title: test/yukicoder/502_2.test.cpp
   _isVerificationFailed: false
@@ -478,6 +484,7 @@ data:
   - poly/fps_pow.hpp
   - poly/sum_of_exp_bx.hpp
   - poly/multipoint.hpp
+  - poly/pascal.hpp
   - poly/sum_of_prefix_suffix_products.hpp
   - poly/convolution_all.hpp
   - poly/multivar_convolution.hpp
@@ -527,6 +534,7 @@ data:
   - test/yukicoder/1720.test.cpp
   - test/yukicoder/1145.test.cpp
   - test/yukicoder/1962.test.cpp
+  - test/yukicoder/2108.test.cpp
   - test/yukicoder/1796.test.cpp
   - test/yukicoder/1907.test.cpp
   - test/yukicoder/1516.test.cpp
