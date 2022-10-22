@@ -130,6 +130,9 @@ data:
     path: test/mytest/stern_brocot.test.cpp
     title: test/mytest/stern_brocot.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/tournament.test.cpp
+    title: test/mytest/tournament.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/wavelet_matrix_sum.test.cpp
     title: test/mytest/wavelet_matrix_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -197,6 +200,7 @@ data:
   - test/mytest/is_substring.test.cpp
   - test/mytest/maxplus_concave.test.cpp
   - test/mytest/enum_partitions.test.cpp
+  - test/mytest/tournament.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/powerquery.test.cpp
   - test/mytest/conv2d.test.cpp

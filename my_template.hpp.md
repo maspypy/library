@@ -787,6 +787,9 @@ data:
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/tournament.test.cpp
+    title: test/mytest/tournament.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/wavelet_matrix_sum.test.cpp
     title: test/mytest/wavelet_matrix_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1147,6 +1150,9 @@ data:
     path: test/yukicoder/1936.test.cpp
     title: test/yukicoder/1936.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1939.test.cpp
+    title: test/yukicoder/1939.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1956.test.cpp
     title: test/yukicoder/1956.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1443,6 +1449,7 @@ data:
   - test/mytest/enumerate_products.test.cpp
   - test/mytest/maxplus_concave.test.cpp
   - test/mytest/enum_partitions.test.cpp
+  - test/mytest/tournament.test.cpp
   - test/mytest/incremental_ch.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/powerquery.test.cpp
@@ -1597,6 +1604,7 @@ data:
   - test/yukicoder/1418.test.cpp
   - test/yukicoder/1441.test.cpp
   - test/yukicoder/1494.test.cpp
+  - test/yukicoder/1939.test.cpp
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1292.test.cpp
   - test/yukicoder/1339.test.cpp

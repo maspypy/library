@@ -583,7 +583,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/toposort.hpp
       title: graph/toposort.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/tournament.hpp
       title: graph/tournament.hpp
     - icon: ':heavy_check_mark:'
@@ -2000,6 +2000,9 @@ data:
       path: test/mytest/suffix_tree.test.cpp
       title: test/mytest/suffix_tree.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/mytest/tournament.test.cpp
+      title: test/mytest/tournament.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/mytest/wavelet_matrix_sum.test.cpp
       title: test/mytest/wavelet_matrix_sum.test.cpp
   - name: test/yukicoder
@@ -2361,6 +2364,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1936.test.cpp
       title: test/yukicoder/1936.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1939.test.cpp
+      title: test/yukicoder/1939.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1956.test.cpp
       title: test/yukicoder/1956.test.cpp
