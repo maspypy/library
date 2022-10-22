@@ -185,6 +185,7 @@
 "test/library_checker/math/twosat.test.cpp": "2022-09-24 23:41:28 +0900",
 "test/library_checker/matrix/charactereistic_poly.test.cpp": "2022-10-12 08:05:37 +0900",
 "test/library_checker/matrix/hafnian_of_matrix.test.cpp": "2022-10-12 08:05:37 +0900",
+"test/library_checker/matrix/implicit_matrix.test.cpp": "2022-10-22 14:07:01 +0900",
 "test/library_checker/matrix/inverse_matrix.test.cpp": "2022-10-12 08:19:14 +0900",
 "test/library_checker/matrix/matrix_det.test.cpp": "2022-10-12 08:05:37 +0900",
 "test/library_checker/matrix/matrix_product.test.cpp": "2022-10-12 08:05:37 +0900",
