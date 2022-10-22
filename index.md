@@ -731,6 +731,14 @@ data:
     - icon: ':warning:'
       path: linalg/vectorspace.hpp
       title: linalg/vectorspace.hpp
+  - name: linalg/implicit_matrix
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: linalg/implicit_matrix/det.hpp
+      title: linalg/implicit_matrix/det.hpp
+    - icon: ':heavy_check_mark:'
+      path: linalg/implicit_matrix/min_poly.hpp
+      title: linalg/implicit_matrix/min_poly.hpp
   - name: mod
     pages:
     - icon: ':heavy_check_mark:'
@@ -1767,6 +1775,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/matrix/hafnian_of_matrix.test.cpp
       title: test/library_checker/matrix/hafnian_of_matrix.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/matrix/implicit_matrix.test.cpp
+      title: test/library_checker/matrix/implicit_matrix.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/matrix/inverse_matrix.test.cpp
       title: test/library_checker/matrix/inverse_matrix.test.cpp

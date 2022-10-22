@@ -271,6 +271,9 @@ data:
     path: test/library_checker/matrix/hafnian_of_matrix.test.cpp
     title: test/library_checker/matrix/hafnian_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/matrix/implicit_matrix.test.cpp
+    title: test/library_checker/matrix/implicit_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/inverse_matrix.test.cpp
     title: test/library_checker/matrix/inverse_matrix.test.cpp
   - icon: ':heavy_check_mark:'
@@ -892,6 +895,7 @@ data:
   - test/library_checker/graph/enumerate_cliques.test.cpp
   - test/library_checker/matrix/inverse_matrix.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
+  - test/library_checker/matrix/implicit_matrix.test.cpp
   - test/library_checker/matrix/hafnian_of_matrix.test.cpp
   - test/library_checker/matrix/charactereistic_poly.test.cpp
   - test/library_checker/matrix/solve_linear.test.cpp

@@ -15,6 +15,12 @@ data:
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   - icon: ':heavy_check_mark:'
+    path: linalg/implicit_matrix/det.hpp
+    title: linalg/implicit_matrix/det.hpp
+  - icon: ':heavy_check_mark:'
+    path: linalg/implicit_matrix/min_poly.hpp
+    title: linalg/implicit_matrix/min_poly.hpp
+  - icon: ':heavy_check_mark:'
     path: linalg/spmat_det.hpp
     title: linalg/spmat_det.hpp
   - icon: ':heavy_check_mark:'
@@ -63,6 +69,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sqrt_mod.test.cpp
     title: test/library_checker/math/sqrt_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/matrix/implicit_matrix.test.cpp
+    title: test/library_checker/matrix/implicit_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/sparse_matrix_det.test.cpp
     title: test/library_checker/matrix/sparse_matrix_det.test.cpp
@@ -173,6 +182,8 @@ data:
   requiredBy:
   - poly/fps_sqrt.hpp
   - linalg/spmat_min_poly.hpp
+  - linalg/implicit_matrix/det.hpp
+  - linalg/implicit_matrix/min_poly.hpp
   - linalg/det_A_plus_xB.hpp
   - linalg/spmat_det.hpp
   - graph/classify_subtree.hpp
@@ -223,6 +234,7 @@ data:
   - test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
+  - test/library_checker/matrix/implicit_matrix.test.cpp
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
 documentation_of: random/base.hpp
