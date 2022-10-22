@@ -42,6 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1844.test.cpp
     title: test/yukicoder/1844.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/310.test.cpp
+    title: test/yukicoder/310.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -81,6 +84,7 @@ data:
   - test/yukicoder/1844.test.cpp
   - test/yukicoder/1500.test.cpp
   - test/yukicoder/1547.test.cpp
+  - test/yukicoder/310.test.cpp
   - test/yukicoder/1516.test.cpp
   - test/library_checker/math/find_linear_recurrence.test.cpp
   - test/library_checker/matrix/implicit_matrix.test.cpp

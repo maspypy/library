@@ -15,6 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/implicit_matrix.test.cpp
     title: test/library_checker/matrix/implicit_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/310.test.cpp
+    title: test/yukicoder/310.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -57,6 +60,7 @@ data:
   timestamp: '2022-10-22 14:07:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/310.test.cpp
   - test/library_checker/matrix/implicit_matrix.test.cpp
 documentation_of: linalg/implicit_matrix/min_poly.hpp
 layout: document
