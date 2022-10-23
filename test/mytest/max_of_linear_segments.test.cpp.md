@@ -7,13 +7,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/min_of_linear_segments.hpp
     title: mod/min_of_linear_segments.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -206,35 +206,37 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"random/base.hpp\"\n\nll RNG(ll a, ll b) {\n  static\
-    \ mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\n  uniform_int_distribution<ll>\
-    \ dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll a) { return RNG(0, a); }\n\
-    #line 2 \"mod/min_of_linear_segments.hpp\"\n\n/*\nax + b (x>=0) \u304C\u6700\u5C0F\
-    \u3068\u306A\u308B\u3068\u3053\u308D\u306E\u60C5\u5831\u3092\u8FD4\u3059\u3002\
-    \nprefix min \u3092\u66F4\u65B0\u3059\u308B x \u5168\u4F53\u304C\u3001\u7B49\u5DEE\
-    \u6570\u5217\u306E\u548C\u96C6\u5408\u3002\u6B21\u3092\u8FD4\u3059\u3002\n\u30FB\
-    \u7B49\u5DEE\u6570\u5217\u306E\u5883\u754C\u3068\u306A\u308B x_0, x_1, ..., x_n\n\
-    \u30FB\u5404\u5883\u754C\u306E\u9593\u3067\u306E\u4EA4\u5DEE dx_0, ..., dx_{n-1}\n\
-    */\npair<vc<int>, vc<int>> min_of_linear_segments(int a, int b, int mod) {\n \
-    \ assert(0 <= a && a < mod);\n  assert(0 <= b && b < mod);\n  vc<int> X = {0};\n\
-    \  vc<int> DX;\n  int g = gcd(a, mod);\n  a /= g, b /= g, mod /= g;\n  // p/q\
-    \ <= (mod-a)/mod <= r/s\n  int p = 0, q = 1, r = 1, s = 1;\n  int det_l = mod\
-    \ - a, det_r = a;\n  int x = 0, y = b;\n\n  while (y) {\n    // upd r/s\n    int\
-    \ k = det_r / det_l;\n    det_r %= det_l;\n    if (det_r == 0) {\n      --k;\n\
-    \      det_r = det_l;\n    }\n    r += k * p;\n    s += k * q;\n    while (1)\
-    \ {\n      int k = max(0, ceil(det_l - y, det_r));\n      if (det_l - k * det_r\
-    \ <= 0) break;\n      det_l -= k * det_r;\n      p += k * r;\n      q += k * s;\n\
-    \      // p/q <= a/mod\n      // (aq - pmod) = det_l \u3092 y \u304B\u3089\u5F15\
-    \u304F\n      k = y / det_l;\n      y -= k * det_l;\n      x += q * k;\n     \
-    \ X.eb(x);\n      DX.eb(q);\n    }\n    k = det_l / det_r;\n    det_l -= k * det_r;\n\
-    \    p += k * r;\n    q += k * s;\n    assert(min({p, q, r, s}) >= 0);\n  }\n\
-    \  return {X, DX};\n}\n#line 2 \"mod/max_of_linear_segments.hpp\"\n\n/*\nax +\
-    \ b (x>=0) \u304C\u6700\u5C0F\u3068\u306A\u308B\u3068\u3053\u308D\u306E\u60C5\u5831\
-    \u3092\u8FD4\u3059\u3002\nprefix max \u3092\u66F4\u65B0\u3059\u308B x \u5168\u4F53\
-    \u304C\u3001\u7B49\u5DEE\u6570\u5217\u306E\u548C\u96C6\u5408\u3002\u6B21\u3092\
-    \u8FD4\u3059\u3002\n\u30FB\u7B49\u5DEE\u6570\u5217\u306E\u5883\u754C\u3068\u306A\
-    \u308B x_0, x_1, ..., x_n\n\u30FB\u5404\u5883\u754C\u306E\u9593\u3067\u306E\u4EA4\
-    \u5DEE dx_0, ..., dx_{n-1}\n*/\npair<vc<int>, vc<int>> max_of_linear_segments(int\
+    \ { yes(!t); }\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t\
+    \ x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n         \
+    \            chrono::high_resolution_clock::now().time_since_epoch())\n      \
+    \               .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n\
+    \  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
+    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/min_of_linear_segments.hpp\"\
+    \n\n/*\nax + b (x>=0) \u304C\u6700\u5C0F\u3068\u306A\u308B\u3068\u3053\u308D\u306E\
+    \u60C5\u5831\u3092\u8FD4\u3059\u3002\nprefix min \u3092\u66F4\u65B0\u3059\u308B\
+    \ x \u5168\u4F53\u304C\u3001\u7B49\u5DEE\u6570\u5217\u306E\u548C\u96C6\u5408\u3002\
+    \u6B21\u3092\u8FD4\u3059\u3002\n\u30FB\u7B49\u5DEE\u6570\u5217\u306E\u5883\u754C\
+    \u3068\u306A\u308B x_0, x_1, ..., x_n\n\u30FB\u5404\u5883\u754C\u306E\u9593\u3067\
+    \u306E\u4EA4\u5DEE dx_0, ..., dx_{n-1}\n*/\npair<vc<int>, vc<int>> min_of_linear_segments(int\
+    \ a, int b, int mod) {\n  assert(0 <= a && a < mod);\n  assert(0 <= b && b < mod);\n\
+    \  vc<int> X = {0};\n  vc<int> DX;\n  int g = gcd(a, mod);\n  a /= g, b /= g,\
+    \ mod /= g;\n  // p/q <= (mod-a)/mod <= r/s\n  int p = 0, q = 1, r = 1, s = 1;\n\
+    \  int det_l = mod - a, det_r = a;\n  int x = 0, y = b;\n\n  while (y) {\n   \
+    \ // upd r/s\n    int k = det_r / det_l;\n    det_r %= det_l;\n    if (det_r ==\
+    \ 0) {\n      --k;\n      det_r = det_l;\n    }\n    r += k * p;\n    s += k *\
+    \ q;\n    while (1) {\n      int k = max(0, ceil(det_l - y, det_r));\n      if\
+    \ (det_l - k * det_r <= 0) break;\n      det_l -= k * det_r;\n      p += k * r;\n\
+    \      q += k * s;\n      // p/q <= a/mod\n      // (aq - pmod) = det_l \u3092\
+    \ y \u304B\u3089\u5F15\u304F\n      k = y / det_l;\n      y -= k * det_l;\n  \
+    \    x += q * k;\n      X.eb(x);\n      DX.eb(q);\n    }\n    k = det_l / det_r;\n\
+    \    det_l -= k * det_r;\n    p += k * r;\n    q += k * s;\n    assert(min({p,\
+    \ q, r, s}) >= 0);\n  }\n  return {X, DX};\n}\n#line 2 \"mod/max_of_linear_segments.hpp\"\
+    \n\n/*\nax + b (x>=0) \u304C\u6700\u5C0F\u3068\u306A\u308B\u3068\u3053\u308D\u306E\
+    \u60C5\u5831\u3092\u8FD4\u3059\u3002\nprefix max \u3092\u66F4\u65B0\u3059\u308B\
+    \ x \u5168\u4F53\u304C\u3001\u7B49\u5DEE\u6570\u5217\u306E\u548C\u96C6\u5408\u3002\
+    \u6B21\u3092\u8FD4\u3059\u3002\n\u30FB\u7B49\u5DEE\u6570\u5217\u306E\u5883\u754C\
+    \u3068\u306A\u308B x_0, x_1, ..., x_n\n\u30FB\u5404\u5883\u754C\u306E\u9593\u3067\
+    \u306E\u4EA4\u5DEE dx_0, ..., dx_{n-1}\n*/\npair<vc<int>, vc<int>> max_of_linear_segments(int\
     \ a, int b, int mod) {\n  a = (a == 0 ? 0 : mod - a);\n  b = mod - 1 - b;\n  return\
     \ min_of_linear_segments(a, b, mod);\n}\n#line 6 \"test/mytest/max_of_linear_segments.test.cpp\"\
     \n\npair<vc<int>, vc<int>> naive(int a, int b, int mod) {\n  assert(0 <= a &&\
@@ -272,7 +274,7 @@ data:
   isVerificationFile: true
   path: test/mytest/max_of_linear_segments.test.cpp
   requiredBy: []
-  timestamp: '2022-10-21 17:08:40+09:00'
+  timestamp: '2022-10-23 11:21:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/max_of_linear_segments.test.cpp

@@ -7,16 +7,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/query/powerquery.hpp
     title: ds/query/powerquery.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -208,24 +208,26 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"random/base.hpp\"\n\nll RNG(ll a, ll b) {\n  static\
-    \ mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\n  uniform_int_distribution<ll>\
-    \ dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll a) { return RNG(0, a); }\n\
-    #line 5 \"test/mytest/powerquery.test.cpp\"\n\n#line 2 \"alg/group/mul.hpp\"\n\
-    \r\ntemplate <class T>\r\nstruct Group_Mul {\r\n  using value_type = T;\r\n  using\
-    \ X = T;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return\
-    \ x * y; }\r\n  static constexpr X inverse(const X &x) noexcept { return X(1)\
-    \ / x; }\r\n  static constexpr X unit() { return X(1); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 2 \"ds/query/powerquery.hpp\"\n\n// \u5B9A\
-    \u6570\u3092\u3079\u304D\u4E57\u3059\u308B\u30AF\u30A8\u30EA\u3002 B \u4E57\u5206\
-    \u305A\u3064\u524D\u8A08\u7B97\u3002\ntemplate <typename Mono, int B = 1024>\n\
-    struct PowerQuery {\n  using X = typename Mono::value_type;\n  vvc<X> dat;\n\n\
-    \  PowerQuery(X a) { dat.eb(make_pow(a)); }\n\n  X operator()(ll n) {\n    X res\
-    \ = Mono::unit();\n    int k = 0;\n    while (n) {\n      int r = n % B;\n   \
-    \   n /= B;\n      if (len(dat) == k) { dat.eb(make_pow(dat[k - 1].back())); }\n\
-    \      res = Mono::op(res, dat[k][r]);\n      ++k;\n    }\n    return res;\n \
-    \ }\n\n  X operator[](ll n) { return (*this)(n); }\n\nprivate:\n  vc<X> make_pow(X\
-    \ a) {\n    vc<X> res = {Mono::unit()};\n    FOR(B) { res.eb(Mono::op(res.back(),\
+    \ { yes(!t); }\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t\
+    \ x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n         \
+    \            chrono::high_resolution_clock::now().time_since_epoch())\n      \
+    \               .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n\
+    \  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
+    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 5 \"test/mytest/powerquery.test.cpp\"\
+    \n\n#line 2 \"alg/group/mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Group_Mul\
+    \ {\r\n  using value_type = T;\r\n  using X = T;\r\n  static constexpr X op(const\
+    \ X &x, const X &y) noexcept { return x * y; }\r\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return X(1) / x; }\r\n  static constexpr X unit() { return\
+    \ X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/query/powerquery.hpp\"\
+    \n\n// \u5B9A\u6570\u3092\u3079\u304D\u4E57\u3059\u308B\u30AF\u30A8\u30EA\u3002\
+    \ B \u4E57\u5206\u305A\u3064\u524D\u8A08\u7B97\u3002\ntemplate <typename Mono,\
+    \ int B = 1024>\nstruct PowerQuery {\n  using X = typename Mono::value_type;\n\
+    \  vvc<X> dat;\n\n  PowerQuery(X a) { dat.eb(make_pow(a)); }\n\n  X operator()(ll\
+    \ n) {\n    X res = Mono::unit();\n    int k = 0;\n    while (n) {\n      int\
+    \ r = n % B;\n      n /= B;\n      if (len(dat) == k) { dat.eb(make_pow(dat[k\
+    \ - 1].back())); }\n      res = Mono::op(res, dat[k][r]);\n      ++k;\n    }\n\
+    \    return res;\n  }\n\n  X operator[](ll n) { return (*this)(n); }\n\nprivate:\n\
+    \  vc<X> make_pow(X a) {\n    vc<X> res = {Mono::unit()};\n    FOR(B) { res.eb(Mono::op(res.back(),\
     \ a)); }\n    return res;\n  }\n};\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int\
     \ mod>\nstruct modint {\n  static constexpr bool is_modint = true;\n  int val;\n\
     \  constexpr modint(const ll val = 0) noexcept\n      : val(val >= 0 ? val % mod\
@@ -333,7 +335,7 @@ data:
   isVerificationFile: true
   path: test/mytest/powerquery.test.cpp
   requiredBy: []
-  timestamp: '2022-10-21 17:08:40+09:00'
+  timestamp: '2022-10-23 11:21:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/powerquery.test.cpp

@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tournament.hpp
     title: graph/tournament.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -203,28 +203,30 @@ data:
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
     \ { yes(!t); }\r\n#line 4 \"test/mytest/tournament.test.cpp\"\n\n#line 2 \"random/base.hpp\"\
-    \n\nll RNG(ll a, ll b) {\n  static mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\n\
-    \  uniform_int_distribution<ll> dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll\
-    \ a) { return RNG(0, a); }\n#line 1 \"graph/tournament.hpp\"\n// https://yukicoder.me/problems/no/2085\n\
-    template <typename F>\nvc<int> hamiltonian_path_in_tournament(int n, F check)\
-    \ {\n  auto dfs = [&](auto& dfs, int L, int R) -> vc<int> {\n    if (R == L +\
-    \ 1) return {L};\n    int M = (L + R) / 2;\n    vc<int> X = dfs(dfs, L, M);\n\
-    \    vc<int> Y = dfs(dfs, M, R);\n    vc<int> P;\n    P.reserve(R - L);\n    int\
-    \ i = 0, j = 0;\n    while (len(P) < R - L) {\n      if (i == len(X)) { P.eb(Y[j++]);\
-    \ }\n      elif (j == len(Y)) { P.eb(X[i++]); }\n      else {\n        if (check(X[i],\
-    \ Y[j])) {\n          P.eb(X[i++]);\n        } else {\n          P.eb(Y[j++]);\n\
-    \        }\n      }\n    }\n    return P;\n  };\n  return dfs(dfs, 0, n);\n}\n\
-    #line 7 \"test/mytest/tournament.test.cpp\"\n\nvoid test() {\n  auto gen = [&](int\
-    \ N) -> vvc<bool> {\n    vv(bool, mat, N, N);\n    FOR(i, N) FOR(j, i) {\n   \
-    \   bool b = RNG(0, 2);\n      if (b) mat[i][j] = 1;\n      if (!b) mat[j][i]\
-    \ = 1;\n    }\n    return mat;\n  };\n\n  FOR(10) {\n    FOR(N, 1, 20) {\n   \
-    \   auto G = gen(N);\n      auto check = [&](int i, int j) -> bool { return G[i][j];\
-    \ };\n      auto P = hamiltonian_path_in_tournament(N, check);\n      vc<bool>\
-    \ use(N);\n      for (auto&& x: P) use[x] = 1;\n      assert(len(P) == N);\n \
-    \     assert(SUM<int>(use) == N);\n      FOR(i, N - 1) {\n        ll a = P[i],\
-    \ b = P[i + 1];\n        assert(G[a][b]);\n      }\n    }\n  }\n}\n\nvoid solve()\
-    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  test();\n  solve();\n\n  return 0;\n}\n"
+    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 1 \"graph/tournament.hpp\"\
+    \n// https://yukicoder.me/problems/no/2085\ntemplate <typename F>\nvc<int> hamiltonian_path_in_tournament(int\
+    \ n, F check) {\n  auto dfs = [&](auto& dfs, int L, int R) -> vc<int> {\n    if\
+    \ (R == L + 1) return {L};\n    int M = (L + R) / 2;\n    vc<int> X = dfs(dfs,\
+    \ L, M);\n    vc<int> Y = dfs(dfs, M, R);\n    vc<int> P;\n    P.reserve(R - L);\n\
+    \    int i = 0, j = 0;\n    while (len(P) < R - L) {\n      if (i == len(X)) {\
+    \ P.eb(Y[j++]); }\n      elif (j == len(Y)) { P.eb(X[i++]); }\n      else {\n\
+    \        if (check(X[i], Y[j])) {\n          P.eb(X[i++]);\n        } else {\n\
+    \          P.eb(Y[j++]);\n        }\n      }\n    }\n    return P;\n  };\n  return\
+    \ dfs(dfs, 0, n);\n}\n#line 7 \"test/mytest/tournament.test.cpp\"\n\nvoid test()\
+    \ {\n  auto gen = [&](int N) -> vvc<bool> {\n    vv(bool, mat, N, N);\n    FOR(i,\
+    \ N) FOR(j, i) {\n      bool b = RNG(0, 2);\n      if (b) mat[i][j] = 1;\n   \
+    \   if (!b) mat[j][i] = 1;\n    }\n    return mat;\n  };\n\n  FOR(10) {\n    FOR(N,\
+    \ 1, 20) {\n      auto G = gen(N);\n      auto check = [&](int i, int j) -> bool\
+    \ { return G[i][j]; };\n      auto P = hamiltonian_path_in_tournament(N, check);\n\
+    \      vc<bool> use(N);\n      for (auto&& x: P) use[x] = 1;\n      assert(len(P)\
+    \ == N);\n      assert(SUM<int>(use) == N);\n      FOR(i, N - 1) {\n        ll\
+    \ a = P[i], b = P[i + 1];\n        assert(G[a][b]);\n      }\n    }\n  }\n}\n\n\
+    void solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout <<\
+    \ fixed << setprecision(15);\n\n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"random/base.hpp\"\n#include \"graph/tournament.hpp\"\
     \n\nvoid test() {\n  auto gen = [&](int N) -> vvc<bool> {\n    vv(bool, mat, N,\
@@ -246,8 +248,8 @@ data:
   isVerificationFile: true
   path: test/mytest/tournament.test.cpp
   requiredBy: []
-  timestamp: '2022-10-22 10:07:24+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-10-23 11:21:57+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/tournament.test.cpp
 layout: document

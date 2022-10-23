@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_dp.hpp
     title: graph/tree_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -169,26 +169,28 @@ data:
     \ {\r\n    print(\"V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\",\
     \ RID);\r\n    print(\"parent\", parent);\r\n    print(\"depth\", depth);\r\n\
     \    print(\"head\", head);\r\n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"\
-    root\", root);\r\n  }\r\n};\r\n#line 2 \"random/base.hpp\"\n\nll RNG(ll a, ll\
-    \ b) {\n  static mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\n\
-    \  uniform_int_distribution<ll> dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll\
-    \ a) { return RNG(0, a); }\n#line 1 \"graph/tree_dp.hpp\"\n\r\n#line 4 \"graph/tree_dp.hpp\"\
-    \n\r\ntemplate <typename TREE, typename Data, typename F1, typename F2, typename\
-    \ F3>\r\nvc<Data> tree_dp(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)\
-    \ {\r\n  assert(!tree.G.is_directed());\r\n\r\n  int N = tree.G.N;\r\n  vc<Data>\
-    \ dp(N, unit);\r\n  FOR_R(i, 1, N) {\r\n    int v = tree.V[i];\r\n    dp[v] =\
-    \ f_ev(dp[v], v);\r\n    for (auto&& e: tree.G[v])\r\n      if (e.to == tree.parent[v])\
-    \ { dp[e.to] = f_ee(dp[e.to], f_ve(dp[v], e)); }\r\n  }\r\n  return dp;\r\n};\n\
-    #line 6 \"graph/classify_subtree.hpp\"\n\ntemplate <typename TREE>\nvc<ll> classify_subtree(TREE&\
-    \ tree) {\n  using mint = modint61;\n  static vc<mint> hash_base;\n  auto get\
-    \ = [&](int k) -> mint {\n    while (len(hash_base) <= k) hash_base.eb(RNG(mint::get_mod()));\n\
-    \    return hash_base[k];\n  };\n  int N = tree.G.N;\n  using T = pair<int, mint>;\n\
-    \  T unit = {0, mint(1)};\n\n  auto f_ee = [&](T A, T B) -> T { return {max(A.fi,\
-    \ B.fi), A.se * B.se}; };\n  auto f_ev = [&](T A, int v) -> T { return {A.fi +\
-    \ 1, A.se}; };\n  auto f_ve = [&](T A, const auto& e) -> T { return {A.fi, A.se\
-    \ + get(A.fi)}; };\n\n  auto dp = tree_dp<decltype(tree), T>(tree, f_ee, f_ev,\
-    \ f_ve, unit);\n  vc<ll> res(N);\n  FOR(v, N) res[v] = dp[v].se.val;\n  return\
-    \ res;\n}\n"
+    root\", root);\r\n  }\r\n};\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n\
+    \  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 1 \"graph/tree_dp.hpp\"\
+    \n\r\n#line 4 \"graph/tree_dp.hpp\"\n\r\ntemplate <typename TREE, typename Data,\
+    \ typename F1, typename F2, typename F3>\r\nvc<Data> tree_dp(TREE& tree, F1 f_ee,\
+    \ F2 f_ev, F3 f_ve, const Data unit) {\r\n  assert(!tree.G.is_directed());\r\n\
+    \r\n  int N = tree.G.N;\r\n  vc<Data> dp(N, unit);\r\n  FOR_R(i, 1, N) {\r\n \
+    \   int v = tree.V[i];\r\n    dp[v] = f_ev(dp[v], v);\r\n    for (auto&& e: tree.G[v])\r\
+    \n      if (e.to == tree.parent[v]) { dp[e.to] = f_ee(dp[e.to], f_ve(dp[v], e));\
+    \ }\r\n  }\r\n  return dp;\r\n};\n#line 6 \"graph/classify_subtree.hpp\"\n\ntemplate\
+    \ <typename TREE>\nvc<ll> classify_subtree(TREE& tree) {\n  using mint = modint61;\n\
+    \  static vc<mint> hash_base;\n  auto get = [&](int k) -> mint {\n    while (len(hash_base)\
+    \ <= k) hash_base.eb(RNG(mint::get_mod()));\n    return hash_base[k];\n  };\n\
+    \  int N = tree.G.N;\n  using T = pair<int, mint>;\n  T unit = {0, mint(1)};\n\
+    \n  auto f_ee = [&](T A, T B) -> T { return {max(A.fi, B.fi), A.se * B.se}; };\n\
+    \  auto f_ev = [&](T A, int v) -> T { return {A.fi + 1, A.se}; };\n  auto f_ve\
+    \ = [&](T A, const auto& e) -> T { return {A.fi, A.se + get(A.fi)}; };\n\n  auto\
+    \ dp = tree_dp<decltype(tree), T>(tree, f_ee, f_ev, f_ve, unit);\n  vc<ll> res(N);\n\
+    \  FOR(v, N) res[v] = dp[v].se.val;\n  return res;\n}\n"
   code: "#include \"mod/modint61.hpp\"\n#include \"graph/base.hpp\"\n#include \"graph/tree.hpp\"\
     \n#include \"random/base.hpp\"\n#include \"graph/tree_dp.hpp\"\n\ntemplate <typename\
     \ TREE>\nvc<ll> classify_subtree(TREE& tree) {\n  using mint = modint61;\n  static\
@@ -209,7 +211,7 @@ data:
   isVerificationFile: false
   path: graph/classify_subtree.hpp
   requiredBy: []
-  timestamp: '2022-10-21 18:11:46+09:00'
+  timestamp: '2022-10-23 11:21:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/graph/classify_tree.test.cpp

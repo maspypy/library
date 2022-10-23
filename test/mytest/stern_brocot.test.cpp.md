@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/stern_brocot_tree.hpp
     title: nt/stern_brocot_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -203,78 +203,80 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"random/base.hpp\"\n\nll RNG(ll a, ll b) {\n  static\
-    \ mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\n  uniform_int_distribution<ll>\
-    \ dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll a) { return RNG(0, a); }\n\
-    #line 1 \"nt/stern_brocot_tree.hpp\"\n\nstruct Stern_Brocot_Tree {\n  using PATH\
-    \ = vi; // \u306F\u3058\u3081\u306F R\n\n  static tuple<PATH, pi, pi> get_path_and_range(pi\
-    \ x) {\n    PATH path;\n    pi l = {0, 1}, r = {1, 0};\n    pi m = {1, 1};\n \
-    \   ll det_l = l.fi * x.se - l.se * x.fi;\n    ll det_r = r.fi * x.se - r.se *\
-    \ x.fi;\n    ll det_m = det_l + det_r;\n    while (1) {\n      if (det_m == 0)\
-    \ break;\n      ll k = ceil(-det_m, det_r);\n      path.eb(k);\n      l = {l.fi\
-    \ + k * r.fi, l.se + k * r.se};\n      m = {l.fi + r.fi, l.se + r.se};\n     \
-    \ det_l += k * det_r;\n      det_m += k * det_r;\n      if (det_m == 0) break;\n\
-    \      k = ceil(det_m, -det_l);\n      path.eb(k);\n      r = {r.fi + k * l.fi,\
-    \ r.se + k * l.se};\n      m = {l.fi + r.fi, l.se + r.se};\n      det_r += k *\
-    \ det_l;\n      det_m += k * det_l;\n    }\n    return {path, l, r};\n  }\n\n\
-    \  static PATH get_path(pi x) {\n    auto [path, l, r] = get_path_and_range(x);\n\
-    \    return path;\n  }\n\n  static pair<pi, pi> range(pi x) {\n    auto [path,\
-    \ l, r] = get_path_and_range(x);\n    return {l, r};\n  }\n\n  // x in range(y)\n\
-    \  static bool in_subtree(pi x, pi y) {\n    auto [l, r] = range(y);\n    bool\
-    \ ok_l = i128(x.fi) * l.se - i128(x.se) * l.fi > 0;\n    bool ok_r = i128(r.fi)\
-    \ * x.se - i128(r.se) * x.fi > 0;\n    return ok_l && ok_r;\n  }\n\n  template\
-    \ <typename T = ll>\n  static pair<T, T> from_path(PATH& p) {\n    using P = pair<T,\
-    \ T>;\n    P l = {0, 1}, r = {1, 0};\n    FOR(i, len(p)) {\n      ll k = p[i];\n\
-    \      if (i % 2 == 0) {\n        l.fi += T(k) * r.fi;\n        l.se += T(k) *\
-    \ r.se;\n      }\n      if (i % 2 == 1) {\n        r.fi += T(k) * l.fi;\n    \
-    \    r.se += T(k) * l.se;\n      }\n    }\n    return {l.fi + r.fi, l.se + r.se};\n\
-    \  }\n\n  static pair<pi, pi> child(pi x) {\n    auto [l, r] = range(x);\n   \
-    \ pi lc = {l.fi + x.fi, l.se + x.se};\n    pi rc = {x.fi + r.fi, x.se + r.se};\n\
-    \    return {lc, rc};\n  }\n\n  static pi LCA(pi x, pi y) {\n    auto Px = get_path(x);\n\
-    \    auto Py = get_path(y);\n    vi P;\n    FOR(i, min(len(Px), len(Py))) {\n\
-    \      ll k = min(Px[i], Py[i]);\n      P.eb(k);\n      if (k < Px[i] || k < Py[i])\
-    \ break;\n    }\n    return from_path(P);\n  }\n\n  static pi LA(pi x, ll dep)\
-    \ {\n    pi l = {0, 1}, r = {1, 0};\n    pi m = {1, 1};\n    ll det_l = l.fi *\
-    \ x.se - l.se * x.fi;\n    ll det_r = r.fi * x.se - r.se * x.fi;\n    ll det_m\
-    \ = det_l + det_r;\n    while (1) {\n      if (det_m == 0 || dep == 0) break;\n\
-    \      ll k = min(dep, ceil(-det_m, det_r));\n      l = {l.fi + k * r.fi, l.se\
-    \ + k * r.se};\n      m = {l.fi + r.fi, l.se + r.se};\n      det_l += k * det_r;\n\
-    \      det_m += k * det_r;\n      dep -= k;\n      if (det_m == 0 || dep == 0)\
-    \ break;\n      k = min(dep, ceil(det_m, -det_l));\n      r = {r.fi + k * l.fi,\
-    \ r.se + k * l.se};\n      m = {l.fi + r.fi, l.se + r.se};\n      det_r += k *\
-    \ det_l;\n      det_m += k * det_l;\n      dep -= k;\n    }\n    if (dep == 0)\
-    \ return m;\n    return {-1, -1};\n  }\n\n  static string to_string(PATH& p) {\n\
-    \    string res;\n    char c = 'L';\n    for (auto&& x: p) {\n      c = 'L' +\
-    \ 'R' - c;\n      if (x == 0) continue;\n      res += c;\n      res += \" \" +\
-    \ std::to_string(x);\n    }\n    return res;\n  }\n};\n#line 6 \"test/mytest/stern_brocot.test.cpp\"\
-    \n\nvoid test() {\n  using SBT = Stern_Brocot_Tree;\n  // get_path\n  assert(SBT::get_path({1,\
-    \ 1}) == vi());\n  assert(SBT::get_path({1, 2}) == vi({0, 1}));\n  assert(SBT::get_path({2,\
-    \ 1}) == vi({1}));\n  assert(SBT::get_path({1, 3}) == vi({0, 2}));\n  assert(SBT::get_path({2,\
-    \ 3}) == vi({0, 1, 1}));\n  assert(SBT::get_path({3, 2}) == vi({1, 1}));\n  assert(SBT::get_path({3,\
-    \ 1}) == vi({2}));\n  assert(SBT::get_path({1, 4}) == vi({0, 3}));\n  assert(SBT::get_path({2,\
-    \ 5}) == vi({0, 2, 1}));\n  assert(SBT::get_path({3, 5}) == vi({0, 1, 1, 1}));\n\
-    \  assert(SBT::get_path({3, 4}) == vi({0, 1, 2}));\n  assert(SBT::get_path({4,\
-    \ 3}) == vi({1, 2}));\n  assert(SBT::get_path({5, 3}) == vi({1, 1, 1}));\n  assert(SBT::get_path({5,\
-    \ 2}) == vi({2, 1}));\n  assert(SBT::get_path({4, 1}) == vi({3}));\n  // range\n\
-    \  assert(SBT::range({1, 1}) == mp(pi{0, 1}, pi{1, 0}));\n  assert(SBT::range({1,\
-    \ 2}) == mp(pi{0, 1}, pi{1, 1}));\n  assert(SBT::range({2, 1}) == mp(pi{1, 1},\
-    \ pi{1, 0}));\n  assert(SBT::range({1, 3}) == mp(pi{0, 1}, pi{1, 2}));\n  assert(SBT::range({2,\
-    \ 3}) == mp(pi{1, 2}, pi{1, 1}));\n  assert(SBT::range({3, 2}) == mp(pi{1, 1},\
-    \ pi{2, 1}));\n  assert(SBT::range({3, 1}) == mp(pi{2, 1}, pi{1, 0}));\n  assert(SBT::range({1,\
-    \ 4}) == mp(pi{0, 1}, pi{1, 3}));\n  assert(SBT::range({2, 5}) == mp(pi{1, 3},\
-    \ pi{1, 2}));\n  assert(SBT::range({3, 5}) == mp(pi{1, 2}, pi{2, 3}));\n  assert(SBT::range({3,\
-    \ 4}) == mp(pi{2, 3}, pi{1, 1}));\n  assert(SBT::range({4, 3}) == mp(pi{1, 1},\
-    \ pi{3, 2}));\n  assert(SBT::range({5, 3}) == mp(pi{3, 2}, pi{2, 1}));\n  assert(SBT::range({5,\
-    \ 2}) == mp(pi{2, 1}, pi{3, 1}));\n  assert(SBT::range({4, 1}) == mp(pi{3, 1},\
-    \ pi{1, 0}));\n  // child\n  assert(SBT::child({1, 1}) == mp(pi{1, 2}, pi{2, 1}));\n\
-    \  assert(SBT::child({1, 2}) == mp(pi{1, 3}, pi{2, 3}));\n  assert(SBT::child({2,\
-    \ 1}) == mp(pi{3, 2}, pi{3, 1}));\n  assert(SBT::child({1, 3}) == mp(pi{1, 4},\
-    \ pi{2, 5}));\n  assert(SBT::child({2, 3}) == mp(pi{3, 5}, pi{3, 4}));\n  assert(SBT::child({3,\
-    \ 2}) == mp(pi{4, 3}, pi{5, 3}));\n  assert(SBT::child({3, 1}) == mp(pi{5, 2},\
-    \ pi{4, 1}));\n  // la\n  pi NG = {-1, -1};\n  assert(SBT::LA({1, 1}, 0) == pi({1,\
-    \ 1}));\n  assert(SBT::LA({1, 1}, 1) == NG);\n  assert(SBT::LA({3, 4}, 0) == pi({1,\
-    \ 1}));\n  assert(SBT::LA({3, 4}, 1) == pi({1, 2}));\n  assert(SBT::LA({3, 4},\
-    \ 2) == pi({2, 3}));\n  assert(SBT::LA({3, 4}, 3) == pi({3, 4}));\n  assert(SBT::LA({3,\
+    \ { yes(!t); }\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t\
+    \ x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n         \
+    \            chrono::high_resolution_clock::now().time_since_epoch())\n      \
+    \               .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n\
+    \  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
+    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 1 \"nt/stern_brocot_tree.hpp\"\
+    \n\nstruct Stern_Brocot_Tree {\n  using PATH = vi; // \u306F\u3058\u3081\u306F\
+    \ R\n\n  static tuple<PATH, pi, pi> get_path_and_range(pi x) {\n    PATH path;\n\
+    \    pi l = {0, 1}, r = {1, 0};\n    pi m = {1, 1};\n    ll det_l = l.fi * x.se\
+    \ - l.se * x.fi;\n    ll det_r = r.fi * x.se - r.se * x.fi;\n    ll det_m = det_l\
+    \ + det_r;\n    while (1) {\n      if (det_m == 0) break;\n      ll k = ceil(-det_m,\
+    \ det_r);\n      path.eb(k);\n      l = {l.fi + k * r.fi, l.se + k * r.se};\n\
+    \      m = {l.fi + r.fi, l.se + r.se};\n      det_l += k * det_r;\n      det_m\
+    \ += k * det_r;\n      if (det_m == 0) break;\n      k = ceil(det_m, -det_l);\n\
+    \      path.eb(k);\n      r = {r.fi + k * l.fi, r.se + k * l.se};\n      m = {l.fi\
+    \ + r.fi, l.se + r.se};\n      det_r += k * det_l;\n      det_m += k * det_l;\n\
+    \    }\n    return {path, l, r};\n  }\n\n  static PATH get_path(pi x) {\n    auto\
+    \ [path, l, r] = get_path_and_range(x);\n    return path;\n  }\n\n  static pair<pi,\
+    \ pi> range(pi x) {\n    auto [path, l, r] = get_path_and_range(x);\n    return\
+    \ {l, r};\n  }\n\n  // x in range(y)\n  static bool in_subtree(pi x, pi y) {\n\
+    \    auto [l, r] = range(y);\n    bool ok_l = i128(x.fi) * l.se - i128(x.se) *\
+    \ l.fi > 0;\n    bool ok_r = i128(r.fi) * x.se - i128(r.se) * x.fi > 0;\n    return\
+    \ ok_l && ok_r;\n  }\n\n  template <typename T = ll>\n  static pair<T, T> from_path(PATH&\
+    \ p) {\n    using P = pair<T, T>;\n    P l = {0, 1}, r = {1, 0};\n    FOR(i, len(p))\
+    \ {\n      ll k = p[i];\n      if (i % 2 == 0) {\n        l.fi += T(k) * r.fi;\n\
+    \        l.se += T(k) * r.se;\n      }\n      if (i % 2 == 1) {\n        r.fi\
+    \ += T(k) * l.fi;\n        r.se += T(k) * l.se;\n      }\n    }\n    return {l.fi\
+    \ + r.fi, l.se + r.se};\n  }\n\n  static pair<pi, pi> child(pi x) {\n    auto\
+    \ [l, r] = range(x);\n    pi lc = {l.fi + x.fi, l.se + x.se};\n    pi rc = {x.fi\
+    \ + r.fi, x.se + r.se};\n    return {lc, rc};\n  }\n\n  static pi LCA(pi x, pi\
+    \ y) {\n    auto Px = get_path(x);\n    auto Py = get_path(y);\n    vi P;\n  \
+    \  FOR(i, min(len(Px), len(Py))) {\n      ll k = min(Px[i], Py[i]);\n      P.eb(k);\n\
+    \      if (k < Px[i] || k < Py[i]) break;\n    }\n    return from_path(P);\n \
+    \ }\n\n  static pi LA(pi x, ll dep) {\n    pi l = {0, 1}, r = {1, 0};\n    pi\
+    \ m = {1, 1};\n    ll det_l = l.fi * x.se - l.se * x.fi;\n    ll det_r = r.fi\
+    \ * x.se - r.se * x.fi;\n    ll det_m = det_l + det_r;\n    while (1) {\n    \
+    \  if (det_m == 0 || dep == 0) break;\n      ll k = min(dep, ceil(-det_m, det_r));\n\
+    \      l = {l.fi + k * r.fi, l.se + k * r.se};\n      m = {l.fi + r.fi, l.se +\
+    \ r.se};\n      det_l += k * det_r;\n      det_m += k * det_r;\n      dep -= k;\n\
+    \      if (det_m == 0 || dep == 0) break;\n      k = min(dep, ceil(det_m, -det_l));\n\
+    \      r = {r.fi + k * l.fi, r.se + k * l.se};\n      m = {l.fi + r.fi, l.se +\
+    \ r.se};\n      det_r += k * det_l;\n      det_m += k * det_l;\n      dep -= k;\n\
+    \    }\n    if (dep == 0) return m;\n    return {-1, -1};\n  }\n\n  static string\
+    \ to_string(PATH& p) {\n    string res;\n    char c = 'L';\n    for (auto&& x:\
+    \ p) {\n      c = 'L' + 'R' - c;\n      if (x == 0) continue;\n      res += c;\n\
+    \      res += \" \" + std::to_string(x);\n    }\n    return res;\n  }\n};\n#line\
+    \ 6 \"test/mytest/stern_brocot.test.cpp\"\n\nvoid test() {\n  using SBT = Stern_Brocot_Tree;\n\
+    \  // get_path\n  assert(SBT::get_path({1, 1}) == vi());\n  assert(SBT::get_path({1,\
+    \ 2}) == vi({0, 1}));\n  assert(SBT::get_path({2, 1}) == vi({1}));\n  assert(SBT::get_path({1,\
+    \ 3}) == vi({0, 2}));\n  assert(SBT::get_path({2, 3}) == vi({0, 1, 1}));\n  assert(SBT::get_path({3,\
+    \ 2}) == vi({1, 1}));\n  assert(SBT::get_path({3, 1}) == vi({2}));\n  assert(SBT::get_path({1,\
+    \ 4}) == vi({0, 3}));\n  assert(SBT::get_path({2, 5}) == vi({0, 2, 1}));\n  assert(SBT::get_path({3,\
+    \ 5}) == vi({0, 1, 1, 1}));\n  assert(SBT::get_path({3, 4}) == vi({0, 1, 2}));\n\
+    \  assert(SBT::get_path({4, 3}) == vi({1, 2}));\n  assert(SBT::get_path({5, 3})\
+    \ == vi({1, 1, 1}));\n  assert(SBT::get_path({5, 2}) == vi({2, 1}));\n  assert(SBT::get_path({4,\
+    \ 1}) == vi({3}));\n  // range\n  assert(SBT::range({1, 1}) == mp(pi{0, 1}, pi{1,\
+    \ 0}));\n  assert(SBT::range({1, 2}) == mp(pi{0, 1}, pi{1, 1}));\n  assert(SBT::range({2,\
+    \ 1}) == mp(pi{1, 1}, pi{1, 0}));\n  assert(SBT::range({1, 3}) == mp(pi{0, 1},\
+    \ pi{1, 2}));\n  assert(SBT::range({2, 3}) == mp(pi{1, 2}, pi{1, 1}));\n  assert(SBT::range({3,\
+    \ 2}) == mp(pi{1, 1}, pi{2, 1}));\n  assert(SBT::range({3, 1}) == mp(pi{2, 1},\
+    \ pi{1, 0}));\n  assert(SBT::range({1, 4}) == mp(pi{0, 1}, pi{1, 3}));\n  assert(SBT::range({2,\
+    \ 5}) == mp(pi{1, 3}, pi{1, 2}));\n  assert(SBT::range({3, 5}) == mp(pi{1, 2},\
+    \ pi{2, 3}));\n  assert(SBT::range({3, 4}) == mp(pi{2, 3}, pi{1, 1}));\n  assert(SBT::range({4,\
+    \ 3}) == mp(pi{1, 1}, pi{3, 2}));\n  assert(SBT::range({5, 3}) == mp(pi{3, 2},\
+    \ pi{2, 1}));\n  assert(SBT::range({5, 2}) == mp(pi{2, 1}, pi{3, 1}));\n  assert(SBT::range({4,\
+    \ 1}) == mp(pi{3, 1}, pi{1, 0}));\n  // child\n  assert(SBT::child({1, 1}) ==\
+    \ mp(pi{1, 2}, pi{2, 1}));\n  assert(SBT::child({1, 2}) == mp(pi{1, 3}, pi{2,\
+    \ 3}));\n  assert(SBT::child({2, 1}) == mp(pi{3, 2}, pi{3, 1}));\n  assert(SBT::child({1,\
+    \ 3}) == mp(pi{1, 4}, pi{2, 5}));\n  assert(SBT::child({2, 3}) == mp(pi{3, 5},\
+    \ pi{3, 4}));\n  assert(SBT::child({3, 2}) == mp(pi{4, 3}, pi{5, 3}));\n  assert(SBT::child({3,\
+    \ 1}) == mp(pi{5, 2}, pi{4, 1}));\n  // la\n  pi NG = {-1, -1};\n  assert(SBT::LA({1,\
+    \ 1}, 0) == pi({1, 1}));\n  assert(SBT::LA({1, 1}, 1) == NG);\n  assert(SBT::LA({3,\
+    \ 4}, 0) == pi({1, 1}));\n  assert(SBT::LA({3, 4}, 1) == pi({1, 2}));\n  assert(SBT::LA({3,\
+    \ 4}, 2) == pi({2, 3}));\n  assert(SBT::LA({3, 4}, 3) == pi({3, 4}));\n  assert(SBT::LA({3,\
     \ 4}, 4) == NG);\n  assert(SBT::LA({3, 5}, 0) == pi({1, 1}));\n  assert(SBT::LA({3,\
     \ 5}, 1) == pi({1, 2}));\n  assert(SBT::LA({3, 5}, 2) == pi({2, 3}));\n  assert(SBT::LA({3,\
     \ 5}, 3) == pi({3, 5}));\n  assert(SBT::LA({3, 5}, 4) == NG);\n\n  auto get_random\
@@ -345,8 +347,8 @@ data:
   isVerificationFile: true
   path: test/mytest/stern_brocot.test.cpp
   requiredBy: []
-  timestamp: '2022-10-21 17:08:40+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-10-23 11:21:57+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/stern_brocot.test.cpp
 layout: document

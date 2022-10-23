@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group/add.hpp
     title: alg/group/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/waveletmatrix.hpp
     title: ds/waveletmatrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -206,31 +206,34 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"random/base.hpp\"\n\nll RNG(ll a, ll b) {\n  static\
-    \ mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\n  uniform_int_distribution<ll>\
-    \ dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll a) { return RNG(0, a); }\n\
-    #line 2 \"alg/group/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Group_Add {\r\
-    \n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const X\
-    \ &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/waveletmatrix.hpp\"\
-    \n\r\n// Wavelet Matrix \u4E0A\u3067\u3055\u3089\u306B\u7D2F\u7A4D\u548C\u3092\
-    \u7BA1\u7406\u3057\u3066\u3001\r\n// \u77E9\u5F62\u548C\u304C\u3068\u308C\u308B\
-    \u3088\u3046\u306B\u3057\u305F\u3082\u306E\r\ntemplate <typename T, bool SUM_QUERY\
-    \ = false,\r\n          typename AbelGroup = Group_Add<ll>>\r\nstruct WaveletMatrix\
-    \ {\r\n  struct BitVector {\r\n    vector<u64> buf;\r\n    vector<int> sum;\r\n\
-    \    BitVector(const vector<char>& a = {}) {\r\n      int n = a.size();\r\n  \
-    \    buf.assign((n + 63) >> 6, 0);\r\n      sum.assign(buf.size() + 1, 0);\r\n\
-    \      FOR(i, n) if (a[i]) {\r\n        buf[i >> 6] |= 1ull << (i & 63);\r\n \
-    \       sum[(i >> 6) + 1]++;\r\n      }\r\n      FOR(i, buf.size()) sum[i + 1]\
-    \ += sum[i];\r\n    }\r\n    int rank(int k, bool f = 1) {\r\n      int ret =\
-    \ sum[k >> 6]\r\n                + __builtin_popcountll(buf[k >> 6] & ((1ull <<\
-    \ (k & 63)) - 1));\r\n      if (!f)\r\n        return k - ret;\r\n      else\r\
-    \n        return ret;\r\n    }\r\n  };\r\n\r\n  int N, lg;\r\n  vector<int> mid;\r\
-    \n  vector<BitVector> bv;\r\n  vector<vector<T>> cumsum;\r\n  vc<T> key;\r\n \
-    \ WaveletMatrix(vector<T>& dat) : N(dat.size()) {\r\n    key = dat;\r\n    UNIQUE(key);\r\
-    \n    vc<int> A(N);\r\n    FOR(i, N) A[i] = LB(key, dat[i]);\r\n    lg = __lg(max(MAX(A),\
+    \ { yes(!t); }\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t\
+    \ x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n         \
+    \            chrono::high_resolution_clock::now().time_since_epoch())\n      \
+    \               .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n\
+    \  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
+    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"alg/group/add.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct Group_Add {\r\n  using X = E;\r\n  using\
+    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
+    \ { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
+    \ -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return X(n)\
+    \ * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 2 \"ds/waveletmatrix.hpp\"\n\r\n// Wavelet\
+    \ Matrix \u4E0A\u3067\u3055\u3089\u306B\u7D2F\u7A4D\u548C\u3092\u7BA1\u7406\u3057\
+    \u3066\u3001\r\n// \u77E9\u5F62\u548C\u304C\u3068\u308C\u308B\u3088\u3046\u306B\
+    \u3057\u305F\u3082\u306E\r\ntemplate <typename T, bool SUM_QUERY = false,\r\n\
+    \          typename AbelGroup = Group_Add<ll>>\r\nstruct WaveletMatrix {\r\n \
+    \ struct BitVector {\r\n    vector<u64> buf;\r\n    vector<int> sum;\r\n    BitVector(const\
+    \ vector<char>& a = {}) {\r\n      int n = a.size();\r\n      buf.assign((n +\
+    \ 63) >> 6, 0);\r\n      sum.assign(buf.size() + 1, 0);\r\n      FOR(i, n) if\
+    \ (a[i]) {\r\n        buf[i >> 6] |= 1ull << (i & 63);\r\n        sum[(i >> 6)\
+    \ + 1]++;\r\n      }\r\n      FOR(i, buf.size()) sum[i + 1] += sum[i];\r\n   \
+    \ }\r\n    int rank(int k, bool f = 1) {\r\n      int ret = sum[k >> 6]\r\n  \
+    \              + __builtin_popcountll(buf[k >> 6] & ((1ull << (k & 63)) - 1));\r\
+    \n      if (!f)\r\n        return k - ret;\r\n      else\r\n        return ret;\r\
+    \n    }\r\n  };\r\n\r\n  int N, lg;\r\n  vector<int> mid;\r\n  vector<BitVector>\
+    \ bv;\r\n  vector<vector<T>> cumsum;\r\n  vc<T> key;\r\n  WaveletMatrix(vector<T>&\
+    \ dat) : N(dat.size()) {\r\n    key = dat;\r\n    UNIQUE(key);\r\n    vc<int>\
+    \ A(N);\r\n    FOR(i, N) A[i] = LB(key, dat[i]);\r\n    lg = __lg(max(MAX(A),\
     \ 1)) + 1;\r\n\r\n    mid.resize(lg);\r\n    bv.resize(lg);\r\n    cumsum.resize(lg);\r\
     \n    for (int d = lg - 1; d >= 0; d--) {\r\n      vector<char> add;\r\n     \
     \ vector nxt(2, vector<int>());\r\n      for (auto& x: A) {\r\n        add.push_back(x\
@@ -288,8 +291,8 @@ data:
   isVerificationFile: true
   path: test/mytest/wavelet_matrix_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-10-21 17:08:40+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-10-23 11:21:57+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/wavelet_matrix_sum.test.cpp
 layout: document

@@ -7,13 +7,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_sum_of_linear.hpp
     title: mod/mod_sum_of_linear.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -206,29 +206,31 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"random/base.hpp\"\n\nll RNG(ll a, ll b) {\n  static\
-    \ mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\n  uniform_int_distribution<ll>\
-    \ dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll a) { return RNG(0, a); }\n\
-    #line 5 \"test/mytest/mod_sum_of_linear.test.cpp\"\n\n#line 2 \"mod/floor_sum_of_linear.hpp\"\
-    \n\n// sum_{x in [L,R)} floor(ax + b, mod)\ni128 floor_sum_of_linear(ll L, ll\
-    \ R, ll a, ll b, ll mod) {\n  assert(L <= R);\n  i128 res = 0;\n  b += L * a;\n\
-    \  ll N = R - L;\n\n  if (b < 0) {\n    ll k = ceil(-b, mod);\n    b += k * mod;\n\
-    \    res -= i128(N) * k;\n  }\n\n  while (N) {\n    ll q;\n    tie(q, a) = divmod(a,\
-    \ mod);\n    res += i128(N) * (N - 1) / 2 * q;\n    if (b >= mod) {\n      tie(q,\
-    \ b) = divmod(b, mod);\n      res += i128(N) * q;\n    }\n    tie(N, b) = divmod(a\
-    \ * N + b, mod);\n    tie(a, mod) = mp(mod, a);\n  }\n  return res;\n}\n#line\
-    \ 2 \"mod/mod_sum_of_linear.hpp\"\n\ni128 mod_sum_of_linear(ll L, ll R, ll a,\
-    \ ll b, ll mod) {\n  /*\n  sum_{x in [L,R)} (ax + b mod mod)\n  */\n  i128 s =\
-    \ a * L + b;\n  i128 t = a * (R - 1) + b;\n  i128 sum = (s + t) * (R - L) / 2;\n\
-    \  i128 fsum = floor_sum_of_linear(L, R, a, b, mod);\n  return sum - fsum * mod;\n\
-    }\n#line 7 \"test/mytest/mod_sum_of_linear.test.cpp\"\n\nvoid test() {\n  FOR(100)\
-    \ {\n    int L = RNG(1000);\n    int R = RNG(1000);\n    if (L > R) swap(L, R);\n\
-    \    int a = RNG(-1000, 1000);\n    int b = RNG(-1000, 1000);\n    int mod = RNG(1,\
-    \ 1000);\n\n    ll ANS = 0;\n    FOR(x, L, R) {\n      ll v = a * x + b;\n   \
-    \   v %= mod;\n      if (v < 0) v += mod;\n      ANS += v;\n    }\n    assert(ANS\
-    \ == mod_sum_of_linear(L, R, a, b, mod));\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n\
-    \  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  test();\n  solve();\n\n  return 0;\n}\n"
+    \ { yes(!t); }\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t\
+    \ x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n         \
+    \            chrono::high_resolution_clock::now().time_since_epoch())\n      \
+    \               .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n\
+    \  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
+    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 5 \"test/mytest/mod_sum_of_linear.test.cpp\"\
+    \n\n#line 2 \"mod/floor_sum_of_linear.hpp\"\n\n// sum_{x in [L,R)} floor(ax +\
+    \ b, mod)\ni128 floor_sum_of_linear(ll L, ll R, ll a, ll b, ll mod) {\n  assert(L\
+    \ <= R);\n  i128 res = 0;\n  b += L * a;\n  ll N = R - L;\n\n  if (b < 0) {\n\
+    \    ll k = ceil(-b, mod);\n    b += k * mod;\n    res -= i128(N) * k;\n  }\n\n\
+    \  while (N) {\n    ll q;\n    tie(q, a) = divmod(a, mod);\n    res += i128(N)\
+    \ * (N - 1) / 2 * q;\n    if (b >= mod) {\n      tie(q, b) = divmod(b, mod);\n\
+    \      res += i128(N) * q;\n    }\n    tie(N, b) = divmod(a * N + b, mod);\n \
+    \   tie(a, mod) = mp(mod, a);\n  }\n  return res;\n}\n#line 2 \"mod/mod_sum_of_linear.hpp\"\
+    \n\ni128 mod_sum_of_linear(ll L, ll R, ll a, ll b, ll mod) {\n  /*\n  sum_{x in\
+    \ [L,R)} (ax + b mod mod)\n  */\n  i128 s = a * L + b;\n  i128 t = a * (R - 1)\
+    \ + b;\n  i128 sum = (s + t) * (R - L) / 2;\n  i128 fsum = floor_sum_of_linear(L,\
+    \ R, a, b, mod);\n  return sum - fsum * mod;\n}\n#line 7 \"test/mytest/mod_sum_of_linear.test.cpp\"\
+    \n\nvoid test() {\n  FOR(100) {\n    int L = RNG(1000);\n    int R = RNG(1000);\n\
+    \    if (L > R) swap(L, R);\n    int a = RNG(-1000, 1000);\n    int b = RNG(-1000,\
+    \ 1000);\n    int mod = RNG(1, 1000);\n\n    ll ANS = 0;\n    FOR(x, L, R) {\n\
+    \      ll v = a * x + b;\n      v %= mod;\n      if (v < 0) v += mod;\n      ANS\
+    \ += v;\n    }\n    assert(ANS == mod_sum_of_linear(L, R, a, b, mod));\n  }\n\
+    }\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout\
+    \ << fixed << setprecision(15);\n\n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"random/base.hpp\"\n\n#include \"mod/mod_sum_of_linear.hpp\"\
     \n\nvoid test() {\n  FOR(100) {\n    int L = RNG(1000);\n    int R = RNG(1000);\n\
@@ -247,7 +249,7 @@ data:
   isVerificationFile: true
   path: test/mytest/mod_sum_of_linear.test.cpp
   requiredBy: []
-  timestamp: '2022-10-21 17:08:40+09:00'
+  timestamp: '2022-10-23 11:21:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/mod_sum_of_linear.test.cpp

@@ -4,16 +4,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -288,20 +288,22 @@ data:
     \  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d ==\
     \ 0 ? mint(1) : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    using amint = ArbitraryModInt;\n#line 2 \"random/base.hpp\"\n\nll RNG(ll a, ll\
-    \ b) {\n  static mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\n\
-    \  uniform_int_distribution<ll> dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll\
-    \ a) { return RNG(0, a); }\n#line 3 \"mod/mod_sqrt.hpp\"\n\r\ntemplate <typename\
-    \ mint>\r\nmint mod_sqrt(mint a) {\r\n  int p = mint::get_mod();\r\n  if (p ==\
-    \ 2) return a;\r\n  if (a == 0) return 0;\r\n  int k = (p - 1) / 2;\r\n  if (a.pow(k)\
-    \ != 1) return 0;\r\n  auto find = [&]() -> pair<mint, mint> {\r\n    while (1)\
-    \ {\r\n      mint b = RNG(2, p);\r\n      mint D = b * b - a;\r\n      if (D ==\
-    \ 0) return {b, D};\r\n      if (D.pow(k) != mint(1)) return {b, D};\r\n    }\r\
-    \n  };\r\n  auto [b, D] = find();\r\n  if (D == 0) return b;\r\n  ++k;\r\n  //\
-    \ (b + sqrt(D))^k\r\n  mint f0 = b, f1 = 1;\r\n  mint g0 = 1, g1 = 0;\r\n  while\
-    \ (k) {\r\n    if (k & 1) { tie(g0, g1) = mp(f0 * g0 + D * f1 * g1, f1 * g0 +\
-    \ f0 * g1); }\r\n    tie(f0, f1) = mp(f0 * f0 + D * f1 * f1, mint(2) * f0 * f1);\r\
-    \n    k >>= 1;\r\n  }\r\n  return g0;\r\n}\r\n#line 5 \"test/library_checker/math/sqrt_mod.test.cpp\"\
+    using amint = ArbitraryModInt;\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n\
+    \  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 3 \"mod/mod_sqrt.hpp\"\
+    \n\r\ntemplate <typename mint>\r\nmint mod_sqrt(mint a) {\r\n  int p = mint::get_mod();\r\
+    \n  if (p == 2) return a;\r\n  if (a == 0) return 0;\r\n  int k = (p - 1) / 2;\r\
+    \n  if (a.pow(k) != 1) return 0;\r\n  auto find = [&]() -> pair<mint, mint> {\r\
+    \n    while (1) {\r\n      mint b = RNG(2, p);\r\n      mint D = b * b - a;\r\n\
+    \      if (D == 0) return {b, D};\r\n      if (D.pow(k) != mint(1)) return {b,\
+    \ D};\r\n    }\r\n  };\r\n  auto [b, D] = find();\r\n  if (D == 0) return b;\r\
+    \n  ++k;\r\n  // (b + sqrt(D))^k\r\n  mint f0 = b, f1 = 1;\r\n  mint g0 = 1, g1\
+    \ = 0;\r\n  while (k) {\r\n    if (k & 1) { tie(g0, g1) = mp(f0 * g0 + D * f1\
+    \ * g1, f1 * g0 + f0 * g1); }\r\n    tie(f0, f1) = mp(f0 * f0 + D * f1 * f1, mint(2)\
+    \ * f0 * f1);\r\n    k >>= 1;\r\n  }\r\n  return g0;\r\n}\r\n#line 5 \"test/library_checker/math/sqrt_mod.test.cpp\"\
     \n\r\nusing mint = amint;\r\n\r\nvoid solve() {\r\n  LL(T);\r\n  FOR(T) {\r\n\
     \    LL(y0, p);\r\n    mint::set_mod(p);\r\n    mint y = y0;\r\n    mint r = mod_sqrt(y);\r\
     \n    if (r * r == y)\r\n      print(r);\r\n    else\r\n      print(-1);\r\n \
@@ -323,7 +325,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/sqrt_mod.test.cpp
   requiredBy: []
-  timestamp: '2022-10-21 18:11:46+09:00'
+  timestamp: '2022-10-23 11:21:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/sqrt_mod.test.cpp

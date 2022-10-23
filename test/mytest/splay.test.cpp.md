@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group/affine.hpp
     title: alg/group/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/bbst/splaytree_monoid.hpp
     title: ds/bbst/splaytree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -297,21 +297,23 @@ data:
     \  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d ==\
     \ 0 ? mint(1) : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    using amint = ArbitraryModInt;\n#line 2 \"random/base.hpp\"\n\nll RNG(ll a, ll\
-    \ b) {\n  static mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\n\
-    \  uniform_int_distribution<ll> dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll\
-    \ a) { return RNG(0, a); }\n#line 1 \"ds/bbst/splaytree_monoid.hpp\"\n/*\n\u30FB\
-    \u3042\u308B Node \u306B\u30A2\u30AF\u30BB\u30B9\u3059\u308B\u3068\u304D\u306B\
-    \u306F\u3001\u305D\u306E\u5148\u7956\u306F\u4F1D\u642C\u6E08\n\u30FBprod, rev_prod\
-    \ \u306F\u3001rev \u3092\u53CD\u6620\u6E08\u306E\u3082\u306E\u3092\u6301\u3064\
-    \n\u30FBl, r \u306B\u3082 rev \u3092\u53CD\u6620\u3055\u305B\u305F\u3082\u306E\
-    \u3092\u6301\u3064\n*/\ntemplate <typename Monoid, int NODES = 1'000'000>\nstruct\
-    \ SplayTree_Monoid {\n  using X = typename Monoid::value_type;\n\n  struct Node\
-    \ {\n    Node *l, *r, *p;\n    X x, prod, rev_prod;\n    int size;\n    bool rev;\n\
-    \  };\n\n  Node *pool;\n  int pid;\n\n  SplayTree_Monoid() : pid(0) { pool = new\
-    \ Node[NODES]; }\n\n  void reset() { pid = 0; }\n\n  Node *new_node(const X &x)\
-    \ {\n    pool[pid].l = pool[pid].r = pool[pid].p = nullptr;\n    pool[pid].x =\
-    \ x;\n    pool[pid].prod = x;\n    pool[pid].rev_prod = x;\n    pool[pid].size\
+    using amint = ArbitraryModInt;\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n\
+    \  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 1 \"ds/bbst/splaytree_monoid.hpp\"\
+    \n/*\n\u30FB\u3042\u308B Node \u306B\u30A2\u30AF\u30BB\u30B9\u3059\u308B\u3068\
+    \u304D\u306B\u306F\u3001\u305D\u306E\u5148\u7956\u306F\u4F1D\u642C\u6E08\n\u30FB\
+    prod, rev_prod \u306F\u3001rev \u3092\u53CD\u6620\u6E08\u306E\u3082\u306E\u3092\
+    \u6301\u3064\n\u30FBl, r \u306B\u3082 rev \u3092\u53CD\u6620\u3055\u305B\u305F\
+    \u3082\u306E\u3092\u6301\u3064\n*/\ntemplate <typename Monoid, int NODES = 1'000'000>\n\
+    struct SplayTree_Monoid {\n  using X = typename Monoid::value_type;\n\n  struct\
+    \ Node {\n    Node *l, *r, *p;\n    X x, prod, rev_prod;\n    int size;\n    bool\
+    \ rev;\n  };\n\n  Node *pool;\n  int pid;\n\n  SplayTree_Monoid() : pid(0) { pool\
+    \ = new Node[NODES]; }\n\n  void reset() { pid = 0; }\n\n  Node *new_node(const\
+    \ X &x) {\n    pool[pid].l = pool[pid].r = pool[pid].p = nullptr;\n    pool[pid].x\
+    \ = x;\n    pool[pid].prod = x;\n    pool[pid].rev_prod = x;\n    pool[pid].size\
     \ = 1;\n    pool[pid].rev = 0;\n    return &(pool[pid++]);\n  }\n\n  Node *new_node(const\
     \ vc<X> &dat) {\n    auto dfs = [&](auto &dfs, int l, int r) -> Node * {\n   \
     \   if (l == r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n\
@@ -437,8 +439,8 @@ data:
   isVerificationFile: true
   path: test/mytest/splay.test.cpp
   requiredBy: []
-  timestamp: '2022-10-21 17:08:40+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-10-23 11:21:57+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/splay.test.cpp
 layout: document

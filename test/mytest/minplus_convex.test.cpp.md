@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
@@ -203,33 +203,35 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"random/base.hpp\"\n\nll RNG(ll a, ll b) {\n  static\
-    \ mt19937 mt(chrono::steady_clock::now().time_since_epoch().count());\n  uniform_int_distribution<ll>\
-    \ dist(a, b - 1);\n  return dist(mt);\n}\n\nll RNG(ll a) { return RNG(0, a); }\n\
-    #line 5 \"test/mytest/minplus_convex.test.cpp\"\n\n#line 1 \"seq/minplus_convolution_convex.hpp\"\
-    \ntemplate <typename T>\nvc<T> minplus_convolution_convex(const vc<T>& A, const\
-    \ vc<T>& B, const T INF) {\n  ll NA = len(A), NB = len(B);\n  ll LA = 0, RA =\
-    \ NA, LB = 0, RB = NB;\n  while (LA < RA && A[LA] == INF) ++LA;\n  while (LA <\
-    \ RA && A[RA - 1] == INF) --RA;\n  while (LB < RB && B[LB] == INF) ++LB;\n  while\
-    \ (LB < RB && B[RB - 1] == INF) --RB;\n  // check convex\n  FOR3(i, LA + 1, RA\
-    \ - 1) assert(2 * A[i] <= A[i - 1] + A[i + 1]);\n  FOR3(i, LB + 1, RB - 1) assert(2\
-    \ * B[i] <= B[i - 1] + B[i + 1]);\n\n  vc<T> C(NA + NB - 1, INF);\n  int i = LA,\
-    \ j = LB;\n  while (i < RA && j < RB) {\n    C[i + j] = A[i] + B[j];\n    if (i\
-    \ == RA - 1) ++j;\n    elif (j == RB - 1)++ i;\n    else {\n      if (A[i + 1]\
-    \ + B[j] < A[i] + B[j + 1])\n        ++i;\n      else\n        ++j;\n    }\n \
-    \ }\n  return C;\n}\n#line 7 \"test/mytest/minplus_convex.test.cpp\"\n\nconst\
-    \ int INF = numeric_limits<int>::max();\n\nvc<int> gen(int L, int N, int R) {\n\
-    \  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(-100, 100);\n  sort(all(A));\n  A = cumsum<int>(A);\n\
-    \  FOR(L) A.insert(A.begin(), INF);\n  FOR(R) A.insert(A.end(), INF);\n  return\
-    \ A;\n}\n\nvc<int> naive(vc<int> A, vc<int> B) {\n  int N = len(A), M = len(B);\n\
-    \  vc<int> C(N + M - 1, INF);\n  FOR(i, N) FOR(j, M) {\n    if (A[i] == INF ||\
-    \ B[j] == INF) continue;\n    chmin(C[i + j], A[i] + B[j]);\n  }\n  return C;\n\
-    }\n\nvoid test() {\n  FOR(a1, 5) FOR(b1, 10) FOR(c1, 5) {\n    vc<int> A = gen(a1,\
-    \ b1, c1);\n    FOR(a2, 5) FOR(b2, 10) FOR(c2, 5) {\n      vc<int> B = gen(a2,\
-    \ b2, c2);\n      assert(naive(A, B) == minplus_convolution_convex<int>(A, B,\
-    \ INF));\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\n\
-    signed main() {\n  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\
-    \n  return 0;\n}\n"
+    \ { yes(!t); }\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t\
+    \ x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n         \
+    \            chrono::high_resolution_clock::now().time_since_epoch())\n      \
+    \               .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n\
+    \  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
+    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 5 \"test/mytest/minplus_convex.test.cpp\"\
+    \n\n#line 1 \"seq/minplus_convolution_convex.hpp\"\ntemplate <typename T>\nvc<T>\
+    \ minplus_convolution_convex(const vc<T>& A, const vc<T>& B, const T INF) {\n\
+    \  ll NA = len(A), NB = len(B);\n  ll LA = 0, RA = NA, LB = 0, RB = NB;\n  while\
+    \ (LA < RA && A[LA] == INF) ++LA;\n  while (LA < RA && A[RA - 1] == INF) --RA;\n\
+    \  while (LB < RB && B[LB] == INF) ++LB;\n  while (LB < RB && B[RB - 1] == INF)\
+    \ --RB;\n  // check convex\n  FOR3(i, LA + 1, RA - 1) assert(2 * A[i] <= A[i -\
+    \ 1] + A[i + 1]);\n  FOR3(i, LB + 1, RB - 1) assert(2 * B[i] <= B[i - 1] + B[i\
+    \ + 1]);\n\n  vc<T> C(NA + NB - 1, INF);\n  int i = LA, j = LB;\n  while (i <\
+    \ RA && j < RB) {\n    C[i + j] = A[i] + B[j];\n    if (i == RA - 1) ++j;\n  \
+    \  elif (j == RB - 1)++ i;\n    else {\n      if (A[i + 1] + B[j] < A[i] + B[j\
+    \ + 1])\n        ++i;\n      else\n        ++j;\n    }\n  }\n  return C;\n}\n\
+    #line 7 \"test/mytest/minplus_convex.test.cpp\"\n\nconst int INF = numeric_limits<int>::max();\n\
+    \nvc<int> gen(int L, int N, int R) {\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(-100,\
+    \ 100);\n  sort(all(A));\n  A = cumsum<int>(A);\n  FOR(L) A.insert(A.begin(),\
+    \ INF);\n  FOR(R) A.insert(A.end(), INF);\n  return A;\n}\n\nvc<int> naive(vc<int>\
+    \ A, vc<int> B) {\n  int N = len(A), M = len(B);\n  vc<int> C(N + M - 1, INF);\n\
+    \  FOR(i, N) FOR(j, M) {\n    if (A[i] == INF || B[j] == INF) continue;\n    chmin(C[i\
+    \ + j], A[i] + B[j]);\n  }\n  return C;\n}\n\nvoid test() {\n  FOR(a1, 5) FOR(b1,\
+    \ 10) FOR(c1, 5) {\n    vc<int> A = gen(a1, b1, c1);\n    FOR(a2, 5) FOR(b2, 10)\
+    \ FOR(c2, 5) {\n      vc<int> B = gen(a2, b2, c2);\n      assert(naive(A, B) ==\
+    \ minplus_convolution_convex<int>(A, B, INF));\n    }\n  }\n}\n\nvoid solve()\
+    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"random/base.hpp\"\n\n#include \"seq/minplus_convolution_convex.hpp\"\
     \n\nconst int INF = numeric_limits<int>::max();\n\nvc<int> gen(int L, int N, int\
@@ -252,7 +254,7 @@ data:
   isVerificationFile: true
   path: test/mytest/minplus_convex.test.cpp
   requiredBy: []
-  timestamp: '2022-10-21 17:08:40+09:00'
+  timestamp: '2022-10-23 11:21:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/minplus_convex.test.cpp
