@@ -1,5 +1,4 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/cycle_detection"
-
 #include "my_template.hpp"
 #include "other/io.hpp"
 
@@ -8,22 +7,17 @@
 
 void solve() {
   LL(N, M);
-  Graph<int, 1> G(N);
+  Graph<bool, 1> G(N);
   G.read_graph(M, 0, 0);
-
-  auto C = find_cycle(G, true);
-  if (len(C) == 0) {
-    print(-1);
-  } else {
-    print(len(C));
-    for (auto&& i: C) print(i);
-  }
+  auto [vs, es] = find_cycle(G);
+  int L = len(vs);
+  if (L == 0) return print(-1);
+  print(L);
+  for (auto&& x: es) print(x);
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
+  cout << fixed << setprecision(15);
 
   solve();
 
