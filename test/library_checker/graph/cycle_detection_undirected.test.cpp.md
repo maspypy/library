@@ -20,12 +20,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/cycle_detection
+    PROBLEM: https://judge.yosupo.jp/problem/cycle_detection_undirected
     links:
-    - https://judge.yosupo.jp/problem/cycle_detection
-  bundledCode: "#line 1 \"test/library_checker/graph/cycle_detection.test.cpp\"\n\
-    #define PROBLEM \"https://judge.yosupo.jp/problem/cycle_detection\"\r\n#line 1\
-    \ \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
+    - https://judge.yosupo.jp/problem/cycle_detection_undirected
+  bundledCode: "#line 1 \"test/library_checker/graph/cycle_detection_undirected.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/cycle_detection_undirected\"\
+    \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
     unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
     \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
     \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
@@ -203,8 +203,8 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 4 \"test/library_checker/graph/cycle_detection.test.cpp\"\
-    \n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int\
+    \ { yes(!t); }\r\n#line 4 \"test/library_checker/graph/cycle_detection_undirected.test.cpp\"\
+    \n\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int\
     \ frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed\
     \ = false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n  using edge_type\
     \ = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type>\
@@ -278,34 +278,33 @@ data:
     \u5217\u3068\u9802\u70B9\u306E\u5217\u3092\u8FD4\u3059\u3002es[i] \u306F vs[i]\
     \ \u304B\u3089 vs[i+1]\u3002\r\ntemplate <typename GT>\r\npair<vc<int>, vc<int>>\
     \ find_cycle(GT& G) {\r\n  if (G.is_directed()) return find_cycle_directed(G);\r\
-    \n  return find_cycle_undirected(G);\r\n}\r\n#line 7 \"test/library_checker/graph/cycle_detection.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N, M);\r\n  Graph<bool, 1> G(N);\r\n  G.read_graph(M,\
-    \ 0, 0);\r\n  auto [vs, es] = find_cycle(G);\r\n  int L = len(vs);\r\n  if (L\
-    \ == 0) return print(-1);\r\n  print(L);\r\n  for (auto&& x: es) print(x);\r\n\
-    }\r\n\r\nsigned main() {\r\n  cout << fixed << setprecision(15);\r\n\r\n  solve();\r\
-    \n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/cycle_detection\"\r\n#include\
-    \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"graph/base.hpp\"\
-    \r\n#include \"graph/find_cycle.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, M);\r\n\
-    \  Graph<bool, 1> G(N);\r\n  G.read_graph(M, 0, 0);\r\n  auto [vs, es] = find_cycle(G);\r\
-    \n  int L = len(vs);\r\n  if (L == 0) return print(-1);\r\n  print(L);\r\n  for\
-    \ (auto&& x: es) print(x);\r\n}\r\n\r\nsigned main() {\r\n  cout << fixed << setprecision(15);\r\
-    \n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \n  return find_cycle_undirected(G);\r\n}\r\n#line 7 \"test/library_checker/graph/cycle_detection_undirected.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, M);\n  Graph<bool, 0> G(N);\n  G.read_graph(M, 0,\
+    \ 0);\n  auto [vs, es] = find_cycle(G);\n  int L = len(vs);\n  if (L == 0) return\
+    \ print(-1);\n  print(L);\n  print(vs);\n  print(es);\n}\n\nsigned main() {\n\
+    \  cout << fixed << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/cycle_detection_undirected\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/base.hpp\"\
+    \n#include \"graph/find_cycle.hpp\"\n\nvoid solve() {\n  LL(N, M);\n  Graph<bool,\
+    \ 0> G(N);\n  G.read_graph(M, 0, 0);\n  auto [vs, es] = find_cycle(G);\n  int\
+    \ L = len(vs);\n  if (L == 0) return print(-1);\n  print(L);\n  print(vs);\n \
+    \ print(es);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n \
+    \ solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - graph/base.hpp
   - graph/find_cycle.hpp
   isVerificationFile: true
-  path: test/library_checker/graph/cycle_detection.test.cpp
+  path: test/library_checker/graph/cycle_detection_undirected.test.cpp
   requiredBy: []
   timestamp: '2022-10-23 16:12:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library_checker/graph/cycle_detection.test.cpp
+documentation_of: test/library_checker/graph/cycle_detection_undirected.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/graph/cycle_detection.test.cpp
-- /verify/test/library_checker/graph/cycle_detection.test.cpp.html
-title: test/library_checker/graph/cycle_detection.test.cpp
+- /verify/test/library_checker/graph/cycle_detection_undirected.test.cpp
+- /verify/test/library_checker/graph/cycle_detection_undirected.test.cpp.html
+title: test/library_checker/graph/cycle_detection_undirected.test.cpp
 ---
