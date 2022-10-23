@@ -161,6 +161,21 @@ mint fact_inv(int n) {
 }
 
 template <typename mint>
+mint fact_invs() {
+  return mint(1);
+}
+
+template <typename mint, class Head, class... Tail>
+mint fact_invs(Head &&head, Tail &&... tail) {
+  return fact_inv<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);
+}
+
+template <typename mint, class Head, class... Tail>
+mint multinomial(Head &&head, Tail &&... tail) {
+  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);
+}
+
+template <typename mint>
 mint C_dense(int n, int k) {
   static vvc<mint> C;
   static int H = 0, W = 0;
