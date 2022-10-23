@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/max_matching_size.hpp
     title: graph/max_matching_size.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -417,11 +417,7 @@ data:
     \ == INF) W[v] = K;\r\n    return {K, W};\r\n  }\r\n\r\n  void debug() {\r\n \
     \   print(\"match\", match);\r\n    print(\"min vertex covor\", vertex_cover());\r\
     \n    print(\"max indep set\", independent_set());\r\n    print(\"min edge cover\"\
-    , edge_cover());\r\n  }\r\n};\n#line 7 \"test/mytest/tutte.test.cpp\"\n\ntemplate\
-    \ <typename GT>\nint max_matching_size(GT& G) {\n  using mint = modint61;\n  assert(!G.is_directed());\n\
-    \  int N = G.N;\n  vv(mint, tutte, N, N);\n  for (auto&& e: G.edges) {\n    mint\
-    \ x = RNG(mint::get_mod());\n    int i = e.frm, j = e.to;\n    tutte[i][j] +=\
-    \ x;\n    tutte[j][i] -= x;\n  }\n  return matrix_rank(tutte) / 2;\n}\n\nvoid\
+    , edge_cover());\r\n  }\r\n};\n#line 7 \"test/mytest/tutte.test.cpp\"\n\nvoid\
     \ test_bipartite() {\n  FOR(N, 1, 50) {\n    FOR(M, RNG(0, N * (N - 1) / 2 + 1))\
     \ {\n      Graph<bool, 0> G(N);\n      FOR(M) {\n        int a = RNG(0, N);\n\
     \        int b = RNG(0, N);\n        if (a % 2 == b % 2) continue;\n        G.add(a,\
@@ -432,19 +428,14 @@ data:
     \  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"graph/max_matching_size.hpp\"\n#include\
-    \ \"flow/bipartite.hpp\"\n\ntemplate <typename GT>\nint max_matching_size(GT&\
-    \ G) {\n  using mint = modint61;\n  assert(!G.is_directed());\n  int N = G.N;\n\
-    \  vv(mint, tutte, N, N);\n  for (auto&& e: G.edges) {\n    mint x = RNG(mint::get_mod());\n\
-    \    int i = e.frm, j = e.to;\n    tutte[i][j] += x;\n    tutte[j][i] -= x;\n\
-    \  }\n  return matrix_rank(tutte) / 2;\n}\n\nvoid test_bipartite() {\n  FOR(N,\
-    \ 1, 50) {\n    FOR(M, RNG(0, N * (N - 1) / 2 + 1)) {\n      Graph<bool, 0> G(N);\n\
-    \      FOR(M) {\n        int a = RNG(0, N);\n        int b = RNG(0, N);\n    \
-    \    if (a % 2 == b % 2) continue;\n        G.add(a, b);\n      }\n      G.build();\n\
-    \      BipartiteMatching<decltype(G)> X(G);\n      int a = len(X.matching());\n\
-    \      int b = max_matching_size(G);\n      assert(a == b);\n    }\n  }\n}\n\n\
-    void solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout <<\
-    \ fixed << setprecision(15);\n\n  test_bipartite();\n  solve();\n\n  return 0;\n\
-    }\n"
+    \ \"flow/bipartite.hpp\"\n\nvoid test_bipartite() {\n  FOR(N, 1, 50) {\n    FOR(M,\
+    \ RNG(0, N * (N - 1) / 2 + 1)) {\n      Graph<bool, 0> G(N);\n      FOR(M) {\n\
+    \        int a = RNG(0, N);\n        int b = RNG(0, N);\n        if (a % 2 ==\
+    \ b % 2) continue;\n        G.add(a, b);\n      }\n      G.build();\n      BipartiteMatching<decltype(G)>\
+    \ X(G);\n      int a = len(X.matching());\n      int b = max_matching_size(G);\n\
+    \      assert(a == b);\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a\
+    \ + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  test_bipartite();\n\
+    \  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -460,8 +451,8 @@ data:
   isVerificationFile: true
   path: test/mytest/tutte.test.cpp
   requiredBy: []
-  timestamp: '2022-10-23 11:37:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-10-23 14:22:49+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/tutte.test.cpp
 layout: document
