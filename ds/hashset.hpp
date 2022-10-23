@@ -25,6 +25,12 @@ struct HashSetLL {
     if (!used[i]) used[i] = 1, keys[i] = key, ++sz;
   }
 
+  void erase(const ll& key) {
+    int i = index(key);
+    used[i] = 0;
+    --sz;
+  }
+
   bool count(const ll& key) {
     int i = index(key);
     return used[i] && keys[i] == key;
