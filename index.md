@@ -163,7 +163,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/bbst/rbst_lazy.hpp
       title: ds/bbst/rbst_lazy.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/bbst/rbst_monoid.hpp
       title: ds/bbst/rbst_monoid.hpp
     - icon: ':heavy_check_mark:'
@@ -1227,6 +1227,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/1508.test.cpp
       title: test/aoj/1508.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/1508_2.test.cpp
+      title: test/aoj/1508_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/2251_1.test.cpp
       title: test/aoj/2251_1.test.cpp

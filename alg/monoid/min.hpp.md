@@ -31,6 +31,9 @@ data:
     path: test/aoj/1508.test.cpp
     title: test/aoj/1508.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/1508_2.test.cpp
+    title: test/aoj/1508_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_F.test.cpp
     title: test/aoj/DSL_2_F.test.cpp
   - icon: ':heavy_check_mark:'
@@ -127,6 +130,7 @@ data:
   - test/aoj/DSL_2_F.test.cpp
   - test/aoj/1508.test.cpp
   - test/aoj/GRL_2_A.test.cpp
+  - test/aoj/1508_2.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/library_checker/datastructure/staticrmq_sparse.test.cpp
   - test/library_checker/datastructure/staticrmq_seg.test.cpp

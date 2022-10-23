@@ -13,6 +13,9 @@ data:
     path: test/aoj/1508.test.cpp
     title: test/aoj/1508.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/1508_2.test.cpp
+    title: test/aoj/1508_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2251_1.test.cpp
     title: test/aoj/2251_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1749,6 +1752,7 @@ data:
   - test/aoj/CGL_2_A.test.cpp
   - test/aoj/DPL_2_A.test.cpp
   - test/aoj/2251_1.test.cpp
+  - test/aoj/1508_2.test.cpp
   - test/aoj/GRL_6_B.test.cpp
   - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/CGL_3_B.test.cpp

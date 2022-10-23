@@ -23,8 +23,9 @@ data:
     \ ll& key) {\n    int i = 0;\n    for (i = hash(key); used[i] && keys[i] != key;\
     \ (i += 1) &= (N - 1)) {}\n    return i;\n  }\n\n  void insert(const ll& key)\
     \ {\n    int i = index(key);\n    if (!used[i]) used[i] = 1, keys[i] = key, ++sz;\n\
-    \  }\n\n  bool count(const ll& key) {\n    int i = index(key);\n    return used[i]\
-    \ && keys[i] == key;\n  }\n\n  int size() { return sz; }\n};\n"
+    \  }\n\n  void erase(const ll& key) {\n    int i = index(key);\n    used[i] =\
+    \ 0;\n    --sz;\n  }\n\n  bool count(const ll& key) {\n    int i = index(key);\n\
+    \    return used[i] && keys[i] == key;\n  }\n\n  int size() { return sz; }\n};\n"
   code: "\ntemplate <int LOG = 20>\nstruct HashSetLL {\n  int N;\n  int sz;\n  ll*\
     \ keys;\n  bitset<1 << LOG> used;\n  const int shift;\n  const uint64_t r = 11995408973635179863ULL;\n\
     \  HashSetLL() : N(1 << LOG), sz(0), keys(new ll[N]), shift(64 - __lg(N)) {}\n\
@@ -33,13 +34,14 @@ data:
     \ ll& key) {\n    int i = 0;\n    for (i = hash(key); used[i] && keys[i] != key;\
     \ (i += 1) &= (N - 1)) {}\n    return i;\n  }\n\n  void insert(const ll& key)\
     \ {\n    int i = index(key);\n    if (!used[i]) used[i] = 1, keys[i] = key, ++sz;\n\
-    \  }\n\n  bool count(const ll& key) {\n    int i = index(key);\n    return used[i]\
-    \ && keys[i] == key;\n  }\n\n  int size() { return sz; }\n};"
+    \  }\n\n  void erase(const ll& key) {\n    int i = index(key);\n    used[i] =\
+    \ 0;\n    --sz;\n  }\n\n  bool count(const ll& key) {\n    int i = index(key);\n\
+    \    return used[i] && keys[i] == key;\n  }\n\n  int size() { return sz; }\n};"
   dependsOn: []
   isVerificationFile: false
   path: ds/hashset.hpp
   requiredBy: []
-  timestamp: '2022-09-14 10:36:30+09:00'
+  timestamp: '2022-10-23 22:09:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/2102.test.cpp
