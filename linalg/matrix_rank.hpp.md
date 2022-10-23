@@ -1,14 +1,20 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: graph/max_matching_size.hpp
+    title: graph/max_matching_size.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/solve_linear.test.cpp
     title: test/library_checker/matrix/solve_linear.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/mytest/tutte.test.cpp
+    title: test/mytest/tutte.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/matrix_rank.hpp\"\ntemplate <typename T>\nint matrix_rank(vc<vc<T>>\
@@ -28,10 +34,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: linalg/matrix_rank.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/max_matching_size.hpp
   timestamp: '2022-10-23 11:22:04+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/mytest/tutte.test.cpp
   - test/library_checker/matrix/solve_linear.test.cpp
 documentation_of: linalg/matrix_rank.hpp
 layout: document

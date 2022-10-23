@@ -5,10 +5,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/classify_subtree.hpp
     title: graph/classify_subtree.hpp
+  - icon: ':x:'
+    path: graph/max_matching_size.hpp
+    title: graph/max_matching_size.hpp
   - icon: ':heavy_check_mark:'
     path: graph/rerooting_classify_subtree.hpp
     title: graph/rerooting_classify_subtree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/modular_subset_sum.hpp
     title: mod/modular_subset_sum.hpp
   _extendedVerifiedWith:
@@ -22,6 +25,9 @@ data:
     path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
     title: test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - icon: ':x:'
+    path: test/mytest/tutte.test.cpp
+    title: test/mytest/tutte.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_1.test.cpp
     title: test/yukicoder/4_1.test.cpp
   _isVerificationFailed: true
@@ -94,11 +100,13 @@ data:
   path: mod/modint61.hpp
   requiredBy:
   - graph/classify_subtree.hpp
+  - graph/max_matching_size.hpp
   - graph/rerooting_classify_subtree.hpp
   - mod/modular_subset_sum.hpp
   timestamp: '2022-08-19 15:26:02+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/mytest/tutte.test.cpp
   - test/yukicoder/4_1.test.cpp
   - test/aoj/ALDS1_14_C.test.cpp
   - test/library_checker/graph/rerooting_classify_subtree.test.cpp
