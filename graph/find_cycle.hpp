@@ -1,92 +1,90 @@
 #include "graph/base.hpp"
 
-template <typename Graph>
-vc<int> find_cycle_directed(Graph& G, bool is_edge = 0) {
+template <typename GT>
+pair<vc<int>, vc<int>> find_cycle_directed(GT& G) {
   assert(G.is_directed());
   assert(G.is_prepared());
-  if (!is_edge) {
-    auto C = find_cycle_directed(G, true);
-    if (len(C) == 0) return C;
-    vc<int> ANS(len(C));
-    FOR(i, len(C)) {
-      auto e = G.edges[C[i]];
-      ANS[i] = e.frm;
-    }
-    return ANS;
-  }
 
   int N = G.N;
   vc<int> used(N);
   vc<pair<int, int>> par(N);
-  vector<int> ANS;
+  vector<int> es, vs;
 
   auto dfs = [&](auto self, int v) -> void {
     used[v] = 1;
     for (auto&& e: G[v]) {
-      if (len(ANS)) return;
+      if (len(es)) return;
       if (!used[e.to]) {
         par[e.to] = {v, e.id};
         self(self, e.to);
       }
       elif (used[e.to] == 1) {
-        ANS = {e.id};
+        es = {e.id};
         int cur = v;
         while (cur != e.to) {
-          ANS.eb(par[cur].se);
+          es.eb(par[cur].se);
           cur = par[cur].fi;
         }
-        reverse(all(ANS));
+        reverse(all(es));
         return;
       }
     }
     used[v] = 2;
   };
   FOR(v, N) if (!used[v]) dfs(dfs, v);
-  return ANS;
+  if (es.empty()) return {vs, es};
+
+  vs.resize(len(es));
+  FOR(i, len(es)) { vs[i] = G.edges[es[i]].frm; }
+  return {vs, es};
 }
 
-template <typename Graph>
-vc<int> find_cycle_undirected(Graph& G, bool is_edge = 0) {
-  assert(!G.is_directed());
-  assert(G.is_prepared());
+template <typename GT>
+pair<vc<int>, vc<int>> find_cycle_undirected(GT& G) {
+  const int N = G.N;
+  const int M = G.M;
+  vc<int> dep(N, -1);
+  vc<bool> used_e(M);
+  vc<int> par(N, -1);
 
-  int N = G.N;
-  vc<int> used_e(G.M);
-  vc<int> used_v(G.N);
-  vc<pair<int, int>> par(N);
-  vector<int> ANS;
-
-  auto dfs = [&](auto& dfs, int v) -> void {
-    used_v[v] = 1;
+  auto dfs = [&](auto& dfs, int v, int d) -> int {
+    dep[v] = d;
     for (auto&& e: G[v]) {
-      if (len(ANS)) return;
       if (used_e[e.id]) continue;
+      if (dep[e.to] != -1) return e.id;
       used_e[e.id] = 1;
-      if (!used_v[e.to]) {
-        par[e.to] = {v, e.id};
-        dfs(dfs, e.to);
-      } else {
-        if (is_edge) ANS = {e.id};
-        if (!is_edge) ANS = {v};
-        int cur = v;
-        while (cur != e.to) {
-          if (is_edge) ANS.eb(par[cur].se);
-          if (!is_edge) ANS.eb(par[cur].fi);
-          cur = par[cur].fi;
-        }
-        reverse(all(ANS));
-        return;
-      }
+      par[e.to] = e.id;
+      int res = dfs(dfs, e.to, d + 1);
+      if (res != -1) return res;
     }
+    return -1;
   };
-  FOR(v, N) if (!used_v[v]) dfs(dfs, v);
-  return ANS;
+
+  vc<int> vs, es;
+  FOR(v, N) {
+    if (dep[v] != -1) continue;
+    int e0 = dfs(dfs, v, 0);
+    if (e0 == -1) continue;
+    int a = G.edges[e0].frm, b = G.edges[e0].to;
+    if (dep[a] > dep[b]) swap(a, b);
+    es.eb(e0);
+    vs.eb(a);
+    while (1) {
+      int x = vs.back();
+      auto& e = G.edges[es.back()];
+      int y = e.frm + e.to - x;
+      if (y == a) break;
+      vs.eb(y);
+      es.eb(par[y]);
+    }
+    return {vs, es};
+  }
+  return {vs, es};
 }
 
-// 辺の列 or 頂点列の vector を返す
-// 見つからなかった場合には、空 vector
-template <typename Graph>
-vc<int> find_cycle(Graph& G, bool is_edge = 0) {
-  if (G.is_directed()) return find_cycle_directed(G, is_edge);
-  return find_cycle_undirected(G, is_edge);
+// {vs, es} ：辺の列と頂点の列を返す。es[i] は vs[i] から vs[i+1]。
+template <typename GT>
+pair<vc<int>, vc<int>> find_cycle(GT& G) {
+  if (G.is_directed()) return find_cycle_directed(G);
+  return find_cycle_undirected(G);
 }
