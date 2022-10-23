@@ -5,21 +5,6 @@
 #include "graph/max_matching_size.hpp"
 #include "flow/bipartite.hpp"
 
-template <typename GT>
-int max_matching_size(GT& G) {
-  using mint = modint61;
-  assert(!G.is_directed());
-  int N = G.N;
-  vv(mint, tutte, N, N);
-  for (auto&& e: G.edges) {
-    mint x = RNG(mint::get_mod());
-    int i = e.frm, j = e.to;
-    tutte[i][j] += x;
-    tutte[j][i] -= x;
-  }
-  return matrix_rank(tutte) / 2;
-}
-
 void test_bipartite() {
   FOR(N, 1, 50) {
     FOR(M, RNG(0, N * (N - 1) / 2 + 1)) {
