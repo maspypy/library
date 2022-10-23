@@ -160,14 +160,9 @@ mint fact_inv(int n) {
   return dat[n];
 }
 
-template <typename mint>
-mint fact_invs() {
-  return mint(1);
-}
-
-template <typename mint, class Head, class... Tail>
-mint fact_invs(Head &&head, Tail &&... tail) {
-  return fact_inv<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);
+template <class mint, class... Ts>
+mint fact_invs(Ts... xs) {
+  return (mint(1) * ... * fact_inv<mint>(xs));
 }
 
 template <typename mint, class Head, class... Tail>
