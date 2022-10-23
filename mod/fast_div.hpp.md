@@ -3,6 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: linalg/det.hpp
+    title: linalg/det.hpp
+  - icon: ':heavy_check_mark:'
+    path: linalg/det_mod.hpp
+    title: linalg/det_mod.hpp
+  - icon: ':heavy_check_mark:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
   - icon: ':heavy_check_mark:'
@@ -40,8 +46,17 @@ data:
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/matrix/det_mod.test.cpp
+    title: test/library_checker/matrix/det_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/matrix/matrix_det.test.cpp
+    title: test/library_checker/matrix/matrix_det.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1303.test.cpp
+    title: test/yukicoder/1303.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1593.test.cpp
     title: test/yukicoder/1593.test.cpp
@@ -86,6 +101,8 @@ data:
   isVerificationFile: false
   path: mod/fast_div.hpp
   requiredBy:
+  - linalg/det_mod.hpp
+  - linalg/det.hpp
   - mod/binomial.hpp
   - mod/tetration.hpp
   - mod/mod_pow.hpp
@@ -101,11 +118,14 @@ data:
   - test/yukicoder/1956.test.cpp
   - test/yukicoder/187.test.cpp
   - test/yukicoder/1593.test.cpp
+  - test/yukicoder/1303.test.cpp
   - test/yukicoder/1025.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/binomial_coefficient.test.cpp
   - test/library_checker/math/tetration.test.cpp
+  - test/library_checker/matrix/det_mod.test.cpp
+  - test/library_checker/matrix/matrix_det.test.cpp
 documentation_of: mod/fast_div.hpp
 layout: document
 redirect_from:

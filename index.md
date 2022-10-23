@@ -705,6 +705,9 @@ data:
       path: linalg/det_A_plus_xB.hpp
       title: linalg/det_A_plus_xB.hpp
     - icon: ':heavy_check_mark:'
+      path: linalg/det_mod.hpp
+      title: linalg/det_mod.hpp
+    - icon: ':heavy_check_mark:'
       path: linalg/hafnian.hpp
       title: linalg/hafnian.hpp
     - icon: ':heavy_check_mark:'
@@ -1784,6 +1787,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/matrix/charactereistic_poly.test.cpp
       title: test/library_checker/matrix/charactereistic_poly.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/matrix/det_mod.test.cpp
+      title: test/library_checker/matrix/det_mod.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/matrix/hafnian_of_matrix.test.cpp
       title: test/library_checker/matrix/hafnian_of_matrix.test.cpp

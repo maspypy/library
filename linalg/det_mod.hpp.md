@@ -2,13 +2,16 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: linalg/det_mod.hpp
-    title: linalg/det_mod.hpp
-  - icon: ':heavy_check_mark:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: linalg/det.hpp
+    title: linalg/det.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/matrix/det_mod.test.cpp
+    title: test/library_checker/matrix/det_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/matrix_det.test.cpp
     title: test/library_checker/matrix/matrix_det.test.cpp
@@ -38,27 +41,31 @@ data:
     \ / A[i][i];\n        FOR_R(k, i, n) { A[j][k] = (A[j][k] + A[i][k] * c) % mod;\
     \ }\n        swap(A[i], A[j]), det = m - det;\n      }\n      swap(A[i], A[j]),\
     \ det = m - det;\n    }\n  }\n  FOR(i, n) det = det * A[i][i] % mod;\n  return\
-    \ det;\n}\n#line 2 \"linalg/det.hpp\"\n\r\ntemplate <typename mint>\r\nmint det(vvc<mint>&\
-    \ A) {\r\n  const int n = len(A);\r\n  vv(int, B, n, n);\r\n  FOR(i, n) FOR(j,\
-    \ n) B[i][j] = A[i][j].val;\r\n  return det_mod(B, mint::get_mod());\r\n}\r\n"
-  code: "#include \"linalg/det_mod.hpp\"\r\n\r\ntemplate <typename mint>\r\nmint det(vvc<mint>&\
-    \ A) {\r\n  const int n = len(A);\r\n  vv(int, B, n, n);\r\n  FOR(i, n) FOR(j,\
-    \ n) B[i][j] = A[i][j].val;\r\n  return det_mod(B, mint::get_mod());\r\n}\r\n"
+    \ det;\n}\n"
+  code: "#include \"mod/fast_div.hpp\"\n\nint det_mod(vvc<int> A, int m) {\n  fast_div\
+    \ mod(m);\n  const int n = len(A);\n  ll det = 1;\n  FOR(i, n) {\n    FOR(j, i,\
+    \ n) {\n      if (A[j][i] == 0) continue;\n      if (i != j) { swap(A[i], A[j]),\
+    \ det = m - det; }\n      break;\n    }\n    FOR(j, i + 1, n) {\n      while (A[i][i]\
+    \ != 0) {\n        ll c = m - A[j][i] / A[i][i];\n        FOR_R(k, i, n) { A[j][k]\
+    \ = (A[j][k] + A[i][k] * c) % mod; }\n        swap(A[i], A[j]), det = m - det;\n\
+    \      }\n      swap(A[i], A[j]), det = m - det;\n    }\n  }\n  FOR(i, n) det\
+    \ = det * A[i][i] % mod;\n  return det;\n}"
   dependsOn:
-  - linalg/det_mod.hpp
   - mod/fast_div.hpp
   isVerificationFile: false
-  path: linalg/det.hpp
-  requiredBy: []
+  path: linalg/det_mod.hpp
+  requiredBy:
+  - linalg/det.hpp
   timestamp: '2022-10-23 15:28:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1303.test.cpp
+  - test/library_checker/matrix/det_mod.test.cpp
   - test/library_checker/matrix/matrix_det.test.cpp
-documentation_of: linalg/det.hpp
+documentation_of: linalg/det_mod.hpp
 layout: document
 redirect_from:
-- /library/linalg/det.hpp
-- /library/linalg/det.hpp.html
-title: linalg/det.hpp
+- /library/linalg/det_mod.hpp
+- /library/linalg/det_mod.hpp.html
+title: linalg/det_mod.hpp
 ---
