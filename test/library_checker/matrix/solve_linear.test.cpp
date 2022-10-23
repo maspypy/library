@@ -3,6 +3,7 @@
 #include "other/io.hpp"
 #include "mod/modint.hpp"
 #include "linalg/solve_linear.hpp"
+#include "linalg/matrix_rank.hpp"
 
 using mint = modint998;
 void solve() {
@@ -11,6 +12,9 @@ void solve() {
   VEC(mint, b, N);
   auto xs = solve_linear(A, b);
   if (len(xs) == 0) return print(-1);
+
+  assert(len(xs) - 1 == M - matrix_rank(A));
+
   print(len(xs) - 1);
   FOR(r, len(xs)) print(xs[r]);
 }
