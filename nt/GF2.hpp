@@ -12,6 +12,8 @@ struct GF2 {
          27, 5, 53, 63,  99, 17,  57, 9,  39,  89, 33, 27,  3, 33, 45, 113, 29,
          75, 9, 71, 125, 71, 149, 17, 99, 123, 3,  39, 105, 3, 27};
 
+  static constexpr u64 mask() { return u64(-1) >> (64 - K); }
+
   static u64 mul(u64 a, u64 b) {
     static bool prepared = 0;
     static u64 MEMO[8][65536];
@@ -23,7 +25,7 @@ struct GF2 {
         tmp[i + 1] = tmp[i] << 1;
         if (tmp[i] >> (K - 1) & 1) {
           tmp[i + 1] ^= POLY[K];
-          tmp[i + 1] &= (u64(1) << K) - 1;
+          tmp[i + 1] &= mask();
         }
       }
       FOR(k, 8) {
@@ -51,7 +53,7 @@ struct GF2 {
   }
 
   u64 val;
-  constexpr GF2(const u64 val = 0) noexcept : val(val & ((u64(1) << K) - 1)) {}
+  constexpr GF2(const u64 val = 0) noexcept : val(val & mask()) {}
   bool operator<(const GF2 &other) const {
     return val < other.val;
   } // To use std::map
