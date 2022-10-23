@@ -103,6 +103,14 @@ struct RBST_Monoid {
     return nm;
   }
 
+  void set(Node *&root, int k, const X &x) {
+    auto nr = split(root, 1 + k);
+    auto nm = split(root, k);
+    nm->x = nm->prod = x;
+    merge(nm, nr);
+    merge(root, nm);
+  }
+
   void debug(Node *root) {
     print("RBST");
     string s;
