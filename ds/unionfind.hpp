@@ -9,10 +9,7 @@ struct UnionFind {
   }
   int find(int x) {
     assert(0 <= x && x < n);
-    while (par[x] != x) {
-      par[x] = par[par[x]];
-      x = par[x];
-    }
+    while (par[x] != x) { x = par[x] = par[par[x]]; }
     return x;
   }
 
