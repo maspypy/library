@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: connected_dp/squares.hpp
     title: connected_dp/squares.hpp
   - icon: ':question:'
@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
   _extendedRequiredBy: []
@@ -365,8 +365,12 @@ data:
     mint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
     \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
     \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
-    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 1 \"connected_dp/squares.hpp\"\
-    \nnamespace connected_dp_squares {\n// pair<\u65B0\u3057\u3044\u72B6\u614B\u3001\
+    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 3 \"random/hash_vector.hpp\"\
+    \n\ntemplate <typename T>\nll hash_vector(vc<T> X) {\n  using mint = modint61;\n\
+    \  static vc<mint> hash_base;\n  int n = len(X);\n  while (len(hash_base) <= n)\
+    \ { hash_base.eb(RNG(mint::get_mod())); }\n  mint H = 0;\n  FOR(i, n) H += hash_base[i]\
+    \ * mint(X[i]);\n  H += hash_base[n];\n  return H.val;\n}\n#line 3 \"connected_dp/squares.hpp\"\
+    \n\nnamespace connected_dp_squares {\n// pair<\u65B0\u3057\u3044\u72B6\u614B\u3001\
     \u4ECA\u306E\u6210\u5206 \u2192 \u65B0\u3057\u3044\u6210\u5206>\nvc<pair<vc<int>,\
     \ vc<int>>> next_states(const vc<int>& now) {\n  int N = len(now);\n  vc<pair<vc<int>,\
     \ vc<int>>> res;\n  FOR(s, 1 << N) {\n    vc<int> par(N + N);\n    FOR(i, N) par[i]\
@@ -402,7 +406,36 @@ data:
     \  ll h = hash_vector<int>(nxt);\n      if (merge_reverse) { chmin(h, hash_vector<int>(reverse_state(nxt)));\
     \ }\n      if (!MP.count(h)) {\n        MP[h] = len(states);\n        states.eb(nxt);\n\
     \      }\n      edges.eb(p, MP[h]);\n    }\n  }\n  return {states, edges};\n}\n\
-    } // namespace connected_dp_squares\n#line 9 \"test/mytest/tdpc_grid_dp.test.cpp\"\
+    \npair<vvc<int>, vc<pair<int, int>>> polygon_dp_graph(int N) {\n  static HashMapLL<int>\
+    \ MP;\n  MP.reset();\n  vvc<int> states;\n  vc<pair<int, int>> edges;\n\n  states.eb(vc<int>(N,\
+    \ -1));\n  states.eb(vc<int>(N, -1));\n  MP[hash_vector<int>(states[0])] = 0;\n\
+    \n  int p = -1;\n  while (1) {\n    if (++p == len(states)) break;\n    if (p\
+    \ == 1) {\n      edges.eb(1, 1);\n      continue;\n    }\n    vc<int> now = states[p];\n\
+    \    for (auto&& [nxt, convert]: next_states(now)) {\n      // \u4ECA\u306E\u6210\
+    \u5206\u6570\u3001\u6D88\u3048\u308B\u6210\u5206\u6570\n      int a = 0, b = 0;\n\
+    \      FOR(v, N) if (now[v] == v) {\n        ++a;\n        if (convert[v] == -1)\
+    \ ++b;\n      }\n      // \u6D88\u3048\u308B\u6210\u5206\u304C\u3042\u3063\u3066\
+    \u3088\u3044\u306E\u306F\u3001\u7D42\u72B6\u614B\u306B\u3044\u304F\u3068\u304D\
+    \u306E\u307F\n      if (b >= 2) continue;\n      if (b == 1) {\n        if (MAX(nxt)\
+    \ != -1) continue;\n        edges.eb(p, 1);\n        continue;\n      }\n    \
+    \  bool ok = [&]() -> bool {\n        // \u9802\u70B9\u306E\u307F\u3067\u63A5\u3059\
+    \u308B\u306E\u306F\u30C0\u30E1\n        FOR(i, N - 1) {\n          bool a1 = now[i]\
+    \ != -1, a2 = now[i + 1] != -1;\n          bool b1 = nxt[i] != -1, b2 = nxt[i\
+    \ + 1] != -1;\n          if (a1 && !a2 && !b1 && b2) return false;\n         \
+    \ if (!a1 && a2 && b1 && !b2) return false;\n        }\n        // empty region\
+    \ \u3092\u9589\u3058\u308B\u3053\u3068\u3068\u3001\u7570\u306A\u308B\u9023\u7D50\
+    \u6210\u5206\u304C\u30DE\u30FC\u30B8\u3055\u308C\u308B\u3053\u3068\u304C\u540C\
+    \u5024\n        int close = 0;\n        int after = 0;\n        vc<bool> is_new(N,\
+    \ 1);\n        FOR(i, N) if (convert[i] != -1) is_new[convert[i]] = 0;\n     \
+    \   FOR(i, N) if (nxt[i] == i && !is_new[i])++ after;\n        vc<int> I;\n  \
+    \      FOR(i, N) if (now[i] != -1) I.eb(i);\n        FOR(k, len(I) - 1) {\n  \
+    \        int i = I[k], j = I[k + 1];\n          if (j == i + 1) continue;\n  \
+    \        bool cl = 1;\n          FOR(p, i + 1, j) if (nxt[p] == -1) cl = 0;\n\
+    \          if (cl) close++;\n        }\n        return a - close == after;\n \
+    \     }();\n      if (!ok) continue;\n      ll h = hash_vector<int>(nxt);\n  \
+    \    if (!MP.count(h)) {\n        MP[h] = len(states);\n        states.eb(nxt);\n\
+    \      }\n      edges.eb(p, MP[h]);\n    }\n  }\n  return {states, edges};\n}\n\
+    \n} // namespace connected_dp_squares\n#line 9 \"test/mytest/tdpc_grid_dp.test.cpp\"\
     \n\nusing mint = modint107;\n\nmint calc_tdpc_grid(int H, int W) {\n  HashMapLL<int>\
     \ MP;\n\n  using P = pair<vc<int>, int>;\n  vc<P> states;\n\n  auto get_hash =\
     \ [&](vc<int> a, int b) -> ll {\n    a.eb(b);\n    return hash_vector<int>(a);\n\
@@ -448,7 +481,7 @@ data:
   isVerificationFile: true
   path: test/mytest/tdpc_grid_dp.test.cpp
   requiredBy: []
-  timestamp: '2022-10-24 20:02:26+09:00'
+  timestamp: '2022-10-24 21:07:09+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/tdpc_grid_dp.test.cpp

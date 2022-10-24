@@ -5,6 +5,9 @@ data:
   - icon: ':warning:'
     path: alg/monoid/rollinghash.hpp
     title: alg/monoid/rollinghash.hpp
+  - icon: ':x:'
+    path: connected_dp/squares.hpp
+    title: connected_dp/squares.hpp
   - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
@@ -50,7 +53,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
   - icon: ':heavy_check_mark:'
@@ -171,7 +174,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/yukicoder/1397.test.cpp
+    title: test/yukicoder/1397.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
   - icon: ':heavy_check_mark:'
@@ -219,6 +225,7 @@ data:
   - linalg/implicit_matrix/min_poly.hpp
   - linalg/det_A_plus_xB.hpp
   - linalg/spmat_det.hpp
+  - connected_dp/squares.hpp
   - alg/monoid/rollinghash.hpp
   - graph/classify_subtree.hpp
   - graph/max_matching_size.hpp
@@ -257,6 +264,7 @@ data:
   - test/mytest/factorial_998.test.cpp
   - test/mytest/minplus_convex.test.cpp
   - test/yukicoder/263.test.cpp
+  - test/yukicoder/1397.test.cpp
   - test/yukicoder/1775.test.cpp
   - test/yukicoder/4_1.test.cpp
   - test/yukicoder/2102.test.cpp

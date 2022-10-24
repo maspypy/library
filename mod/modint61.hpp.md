@@ -5,6 +5,9 @@ data:
   - icon: ':warning:'
     path: alg/monoid/rollinghash.hpp
     title: alg/monoid/rollinghash.hpp
+  - icon: ':x:'
+    path: connected_dp/squares.hpp
+    title: connected_dp/squares.hpp
   - icon: ':heavy_check_mark:'
     path: graph/classify_subtree.hpp
     title: graph/classify_subtree.hpp
@@ -17,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modular_subset_sum.hpp
     title: mod/modular_subset_sum.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
   _extendedVerifiedWith:
@@ -36,7 +39,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/yukicoder/1397.test.cpp
+    title: test/yukicoder/1397.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
   - icon: ':heavy_check_mark:'
@@ -112,6 +118,7 @@ data:
   path: mod/modint61.hpp
   requiredBy:
   - random/hash_vector.hpp
+  - connected_dp/squares.hpp
   - alg/monoid/rollinghash.hpp
   - graph/classify_subtree.hpp
   - graph/max_matching_size.hpp
@@ -122,6 +129,7 @@ data:
   verifiedWith:
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/tutte.test.cpp
+  - test/yukicoder/1397.test.cpp
   - test/yukicoder/4_1.test.cpp
   - test/yukicoder/1561.test.cpp
   - test/aoj/ALDS1_14_C.test.cpp

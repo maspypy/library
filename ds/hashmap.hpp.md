@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':x:'
+    path: connected_dp/squares.hpp
+    title: connected_dp/squares.hpp
   - icon: ':heavy_check_mark:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
@@ -33,7 +36,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1383.test.cpp
     title: test/yukicoder/1383.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/yukicoder/1397.test.cpp
+    title: test/yukicoder/1397.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
   - icon: ':heavy_check_mark:'
@@ -106,6 +112,7 @@ data:
   isVerificationFile: false
   path: ds/hashmap.hpp
   requiredBy:
+  - connected_dp/squares.hpp
   - mod/mod_log.hpp
   - mod/mod_kth_root.hpp
   - nt/discrete_log.hpp
@@ -114,6 +121,7 @@ data:
   verifiedWith:
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/yukicoder/263.test.cpp
+  - test/yukicoder/1397.test.cpp
   - test/yukicoder/1634.test.cpp
   - test/yukicoder/1726.test.cpp
   - test/yukicoder/1561.test.cpp

@@ -7,17 +7,23 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: connected_dp/squares.hpp
+    title: connected_dp/squares.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/mytest/tdpc_grid_dp.test.cpp
     title: test/mytest/tdpc_grid_dp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/yukicoder/1397.test.cpp
+    title: test/yukicoder/1397.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -69,11 +75,13 @@ data:
   - mod/modint61.hpp
   isVerificationFile: false
   path: random/hash_vector.hpp
-  requiredBy: []
+  requiredBy:
+  - connected_dp/squares.hpp
   timestamp: '2022-10-24 17:32:57+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/tdpc_grid_dp.test.cpp
+  - test/yukicoder/1397.test.cpp
   - test/yukicoder/1561.test.cpp
 documentation_of: random/hash_vector.hpp
 layout: document
