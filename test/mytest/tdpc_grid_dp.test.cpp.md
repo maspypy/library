@@ -383,46 +383,35 @@ data:
     \ now) {\n  int N = len(now);\n  vc<int> max_i(N, -1);\n  FOR(i, N) if (now[i]\
     \ != -1) max_i[now[i]] = i;\n  vc<int> rev(N, -1);\n  FOR(i, N) {\n    if (now[i]\
     \ == -1) continue;\n    int x = max_i[now[i]];\n    rev[N - 1 - i] = N - 1 - x;\n\
-    \  }\n  return rev;\n}\n} // namespace connected_dp\n#line 9 \"test/mytest/tdpc_grid_dp.test.cpp\"\
-    \n\nusing mint = modint107;\n\nmint calc_tdpc_grid(int H, int W) {\n  HashMapLL<int>\
-    \ MP;\n\n  using P = pair<vc<int>, int>;\n  vc<P> states;\n\n  auto get_hash =\
-    \ [&](vc<int> a, int b) -> ll {\n    a.eb(b);\n    return hash_vector<int>(a);\n\
-    \  };\n\n  vc<int> init(H, -1);\n  init[0] = 0;\n  states.eb(init, 0);\n  vc<int>\
-    \ end(H, -1);\n  end[H - 1] = H - 1;\n  states.eb(end, H - 1);\n  FOR(i, 2) {\n\
-    \    auto [a, b] = states[i];\n    ll h = get_hash(a, b);\n    MP[h] = i;\n  }\n\
-    \n  vc<pi> edges;\n\n  int p = -1;\n  while (1) {\n    ++p;\n    if (p >= len(states))\
-    \ break;\n    auto [now, r] = states[p];\n    for (auto&& [nxt, convert]: connected_dp::next_states(now))\
-    \ {\n      int s = convert[r];\n      if (s == -1) continue;\n      ll h = get_hash(nxt,\
-    \ s);\n      if (!MP.count(h)) {\n        MP[h] = len(states);\n        states.eb(nxt,\
-    \ s);\n      }\n      edges.eb(p, MP[h]);\n    }\n  }\n\n  int S = len(states);\n\
-    \  vc<mint> dp(S);\n  dp[0] = mint(1);\n  FOR(W + 1) {\n    vc<mint> newdp(S);\n\
-    \    for (auto&& [a, b]: edges) newdp[b] += dp[a];\n    swap(dp, newdp);\n  }\n\
-    \  return dp[1];\n}\n\nvoid test() {\n  assert(calc_tdpc_grid(2, 2).val == 3);\n\
-    \  assert(calc_tdpc_grid(5, 8).val == 950397139);\n  assert(calc_tdpc_grid(8,\
-    \ 5).val == 950397139);\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\
+    \  }\n  return rev;\n}\n\n// 0, 1 \uFF1A\u7A7A\u306E\u5217\u3001\u9818\u57DF\u306E\
+    \u624B\u524D\u3001\u5F8C\u308D\n// \u9023\u7D50\u9818\u57DF\u3092\u3072\u3068\u3064\
+    \u4F5C\u308B\u3002\u591A\u89D2\u5F62\u3068\u306F\u9650\u3089\u306A\u3044\u3002\
+    \npair<vvc<int>, vc<pair<int, int>>> connedted_dp_graph(int N,\n             \
+    \                                         bool merge_reverse) {\n  static HashMapLL<int>\
+    \ MP;\n  MP.reset();\n  vvc<int> states;\n  vc<pair<int, int>> edges;\n\n  states.eb(vc<int>(N,\
+    \ -1));\n  states.eb(vc<int>(N, -1));\n  MP[hash_vector<int>(states[0])] = 0;\n\
+    \n  int p = -1;\n  while (1) {\n    if (++p == len(states)) break;\n    if (p\
+    \ == 1) {\n      edges.eb(1, 1);\n      continue;\n    }\n    vc<int> now = states[p];\n\
+    \    for (auto&& [nxt, convert]: connected_dp::next_states(now)) {\n      // \u4ECA\
+    \u306E\u6210\u5206\u6570\u3001\u6D88\u3048\u308B\u6210\u5206\u6570\n      int\
+    \ a = 0, b = 0;\n      FOR(v, N) if (now[v] == v) {\n        ++a;\n        if\
+    \ (convert[v] == -1) ++b;\n      }\n      // \u6D88\u3048\u308B\u6210\u5206\u304C\
+    \u3042\u3063\u3066\u3088\u3044\u306E\u306F\u3001\u7D42\u72B6\u614B\u306B\u3044\
+    \u304F\u3068\u304D\u306E\u307F\n      if (b >= 2) continue;\n      if (b == 1)\
+    \ {\n        if (MAX(nxt) != -1) continue;\n        edges.eb(p, 1);\n        continue;\n\
+    \      }\n      ll h = hash_vector<int>(nxt);\n      if (merge_reverse) {\n  \
+    \      chmin(h, hash_vector<int>(connected_dp::reverse_state(nxt)));\n      }\n\
+    \      if (!MP.count(h)) {\n        MP[h] = len(states);\n        states.eb(nxt);\n\
+    \      }\n      edges.eb(p, MP[h]);\n    }\n  }\n  return {states, edges};\n}\n\
+    \n} // namespace connected_dp\n#line 9 \"test/mytest/tdpc_grid_dp.test.cpp\"\n\
+    \nusing mint = modint107;\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\
     \nsigned main() {\n  cout << fixed << setprecision(15);\n\n  solve();\n\n  return\
     \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"ds/hashmap.hpp\"\n#include \"random/hash_vector.hpp\"\
     \n#include \"mod/modint.hpp\"\n#include \"other/connected_dp.hpp\"\n\nusing mint\
-    \ = modint107;\n\nmint calc_tdpc_grid(int H, int W) {\n  HashMapLL<int> MP;\n\n\
-    \  using P = pair<vc<int>, int>;\n  vc<P> states;\n\n  auto get_hash = [&](vc<int>\
-    \ a, int b) -> ll {\n    a.eb(b);\n    return hash_vector<int>(a);\n  };\n\n \
-    \ vc<int> init(H, -1);\n  init[0] = 0;\n  states.eb(init, 0);\n  vc<int> end(H,\
-    \ -1);\n  end[H - 1] = H - 1;\n  states.eb(end, H - 1);\n  FOR(i, 2) {\n    auto\
-    \ [a, b] = states[i];\n    ll h = get_hash(a, b);\n    MP[h] = i;\n  }\n\n  vc<pi>\
-    \ edges;\n\n  int p = -1;\n  while (1) {\n    ++p;\n    if (p >= len(states))\
-    \ break;\n    auto [now, r] = states[p];\n    for (auto&& [nxt, convert]: connected_dp::next_states(now))\
-    \ {\n      int s = convert[r];\n      if (s == -1) continue;\n      ll h = get_hash(nxt,\
-    \ s);\n      if (!MP.count(h)) {\n        MP[h] = len(states);\n        states.eb(nxt,\
-    \ s);\n      }\n      edges.eb(p, MP[h]);\n    }\n  }\n\n  int S = len(states);\n\
-    \  vc<mint> dp(S);\n  dp[0] = mint(1);\n  FOR(W + 1) {\n    vc<mint> newdp(S);\n\
-    \    for (auto&& [a, b]: edges) newdp[b] += dp[a];\n    swap(dp, newdp);\n  }\n\
-    \  return dp[1];\n}\n\nvoid test() {\n  assert(calc_tdpc_grid(2, 2).val == 3);\n\
-    \  assert(calc_tdpc_grid(5, 8).val == 950397139);\n  assert(calc_tdpc_grid(8,\
-    \ 5).val == 950397139);\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\
-    \nsigned main() {\n  cout << fixed << setprecision(15);\n\n  solve();\n\n  return\
-    \ 0;\n}"
+    \ = modint107;\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main()\
+    \ {\n  cout << fixed << setprecision(15);\n\n  solve();\n\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -435,7 +424,7 @@ data:
   isVerificationFile: true
   path: test/mytest/tdpc_grid_dp.test.cpp
   requiredBy: []
-  timestamp: '2022-10-24 18:04:56+09:00'
+  timestamp: '2022-10-24 19:49:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/tdpc_grid_dp.test.cpp
