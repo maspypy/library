@@ -1,5 +1,5 @@
 #pragma once
-#include "alg/group_gl2.hpp"
+#include "alg/group/gl2.hpp"
 
 template <typename T>
 struct GSet_GL2_Vec {

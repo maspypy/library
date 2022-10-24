@@ -1,4 +1,3 @@
-#pragma GCC target("pclmul", "sse2", "sse4.1")
 #include <emmintrin.h>
 #include <smmintrin.h>
 #include <wmmintrin.h>
@@ -14,7 +13,8 @@ struct GF2 {
 
   static constexpr u64 mask() { return u64(-1) >> (64 - K); }
 
-  static u64 mul(u64 a, u64 b) {
+  __attribute__((target("pclmul", "sse2", "sse4.1"))) static u64 mul(u64 a,
+                                                                     u64 b) {
     static bool prepared = 0;
     static u64 MEMO[8][65536];
     if (!prepared) {
