@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: alg/gset/gl2_vec.hpp
+    title: alg/gset/gl2_vec.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -33,7 +36,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: alg/group/gl2.hpp
-  requiredBy: []
+  requiredBy:
+  - alg/gset/gl2_vec.hpp
   timestamp: '2022-10-21 16:42:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
