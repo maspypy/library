@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/functional.hpp
     title: graph/functional.hpp
   - icon: ':heavy_check_mark:'
@@ -99,38 +99,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1983.test.cpp
     title: test/yukicoder/1983.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/unionfind.hpp\"\n\nstruct UnionFind {\n  int n;\n  int\
     \ n_comp;\n  std::vector<int> size, par;\n  UnionFind(int n) : n(n), n_comp(n),\
     \ size(n, 1), par(n) {\n    std::iota(par.begin(), par.end(), 0);\n  }\n  int\
-    \ find(int x) {\n    assert(0 <= x && x < n);\n    while (par[x] != x) {\n   \
-    \   par[x] = par[par[x]];\n      x = par[x];\n    }\n    return x;\n  }\n\n  int\
-    \ operator[](int x) { return find(x); }\n\n  bool merge(int x, int y) {\n    x\
-    \ = find(x);\n    y = find(y);\n    if (x == y) { return false; }\n    n_comp--;\n\
-    \    if (size[x] < size[y]) std::swap(x, y);\n    size[x] += size[y];\n    size[y]\
-    \ = 0;\n    par[y] = x;\n    return true;\n  }\n\n  std::vector<int> find_all()\
-    \ {\n    std::vector<int> A(n);\n    for (int i = 0; i < n; ++i) A[i] = find(i);\n\
-    \    return A;\n  }\n\n  void reset() {\n    n_comp = n;\n    size.assign(n, 1);\n\
-    \    std::iota(par.begin(), par.end(), 0);\n  }\n};\n"
+    \ find(int x) {\n    assert(0 <= x && x < n);\n    while (par[x] != x) { x = par[x]\
+    \ = par[par[x]]; }\n    return x;\n  }\n\n  int operator[](int x) { return find(x);\
+    \ }\n\n  bool merge(int x, int y) {\n    x = find(x);\n    y = find(y);\n    if\
+    \ (x == y) { return false; }\n    n_comp--;\n    if (size[x] < size[y]) std::swap(x,\
+    \ y);\n    size[x] += size[y];\n    size[y] = 0;\n    par[y] = x;\n    return\
+    \ true;\n  }\n\n  std::vector<int> find_all() {\n    std::vector<int> A(n);\n\
+    \    for (int i = 0; i < n; ++i) A[i] = find(i);\n    return A;\n  }\n\n  void\
+    \ reset() {\n    n_comp = n;\n    size.assign(n, 1);\n    std::iota(par.begin(),\
+    \ par.end(), 0);\n  }\n};\n"
   code: "#pragma once\n\nstruct UnionFind {\n  int n;\n  int n_comp;\n  std::vector<int>\
     \ size, par;\n  UnionFind(int n) : n(n), n_comp(n), size(n, 1), par(n) {\n   \
     \ std::iota(par.begin(), par.end(), 0);\n  }\n  int find(int x) {\n    assert(0\
-    \ <= x && x < n);\n    while (par[x] != x) {\n      par[x] = par[par[x]];\n  \
-    \    x = par[x];\n    }\n    return x;\n  }\n\n  int operator[](int x) { return\
-    \ find(x); }\n\n  bool merge(int x, int y) {\n    x = find(x);\n    y = find(y);\n\
-    \    if (x == y) { return false; }\n    n_comp--;\n    if (size[x] < size[y])\
-    \ std::swap(x, y);\n    size[x] += size[y];\n    size[y] = 0;\n    par[y] = x;\n\
-    \    return true;\n  }\n\n  std::vector<int> find_all() {\n    std::vector<int>\
-    \ A(n);\n    for (int i = 0; i < n; ++i) A[i] = find(i);\n    return A;\n  }\n\
-    \n  void reset() {\n    n_comp = n;\n    size.assign(n, 1);\n    std::iota(par.begin(),\
-    \ par.end(), 0);\n  }\n};\n"
+    \ <= x && x < n);\n    while (par[x] != x) { x = par[x] = par[par[x]]; }\n   \
+    \ return x;\n  }\n\n  int operator[](int x) { return find(x); }\n\n  bool merge(int\
+    \ x, int y) {\n    x = find(x);\n    y = find(y);\n    if (x == y) { return false;\
+    \ }\n    n_comp--;\n    if (size[x] < size[y]) std::swap(x, y);\n    size[x] +=\
+    \ size[y];\n    size[y] = 0;\n    par[y] = x;\n    return true;\n  }\n\n  std::vector<int>\
+    \ find_all() {\n    std::vector<int> A(n);\n    for (int i = 0; i < n; ++i) A[i]\
+    \ = find(i);\n    return A;\n  }\n\n  void reset() {\n    n_comp = n;\n    size.assign(n,\
+    \ 1);\n    std::iota(par.begin(), par.end(), 0);\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/unionfind.hpp
@@ -145,8 +144,8 @@ data:
   - graph/tree_of_unionfind.hpp
   - graph/check_bipartite.hpp
   - geo/manhattan_mst.hpp
-  timestamp: '2022-08-11 02:13:18+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-10-24 17:15:02+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/tutte.test.cpp
   - test/yukicoder/590.test.cpp

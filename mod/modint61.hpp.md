@@ -17,6 +17,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modular_subset_sum.hpp
     title: mod/modular_subset_sum.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/hash_vector.hpp
+    title: random/hash_vector.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_C.test.cpp
@@ -30,6 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/yuki1561_dp.test.cpp
+    title: test/mytest/yuki1561_dp.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_1.test.cpp
     title: test/yukicoder/4_1.test.cpp
@@ -102,6 +108,7 @@ data:
   isVerificationFile: false
   path: mod/modint61.hpp
   requiredBy:
+  - random/hash_vector.hpp
   - alg/monoid/rollinghash.hpp
   - graph/classify_subtree.hpp
   - graph/max_matching_size.hpp
@@ -110,6 +117,7 @@ data:
   timestamp: '2022-08-19 15:26:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/yuki1561_dp.test.cpp
   - test/mytest/tutte.test.cpp
   - test/yukicoder/4_1.test.cpp
   - test/aoj/ALDS1_14_C.test.cpp

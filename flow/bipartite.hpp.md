@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -98,14 +98,14 @@ data:
     \n\nstruct UnionFind {\n  int n;\n  int n_comp;\n  std::vector<int> size, par;\n\
     \  UnionFind(int n) : n(n), n_comp(n), size(n, 1), par(n) {\n    std::iota(par.begin(),\
     \ par.end(), 0);\n  }\n  int find(int x) {\n    assert(0 <= x && x < n);\n   \
-    \ while (par[x] != x) {\n      par[x] = par[par[x]];\n      x = par[x];\n    }\n\
-    \    return x;\n  }\n\n  int operator[](int x) { return find(x); }\n\n  bool merge(int\
-    \ x, int y) {\n    x = find(x);\n    y = find(y);\n    if (x == y) { return false;\
-    \ }\n    n_comp--;\n    if (size[x] < size[y]) std::swap(x, y);\n    size[x] +=\
-    \ size[y];\n    size[y] = 0;\n    par[y] = x;\n    return true;\n  }\n\n  std::vector<int>\
-    \ find_all() {\n    std::vector<int> A(n);\n    for (int i = 0; i < n; ++i) A[i]\
-    \ = find(i);\n    return A;\n  }\n\n  void reset() {\n    n_comp = n;\n    size.assign(n,\
-    \ 1);\n    std::iota(par.begin(), par.end(), 0);\n  }\n};\n#line 3 \"graph/check_bipartite.hpp\"\
+    \ while (par[x] != x) { x = par[x] = par[par[x]]; }\n    return x;\n  }\n\n  int\
+    \ operator[](int x) { return find(x); }\n\n  bool merge(int x, int y) {\n    x\
+    \ = find(x);\n    y = find(y);\n    if (x == y) { return false; }\n    n_comp--;\n\
+    \    if (size[x] < size[y]) std::swap(x, y);\n    size[x] += size[y];\n    size[y]\
+    \ = 0;\n    par[y] = x;\n    return true;\n  }\n\n  std::vector<int> find_all()\
+    \ {\n    std::vector<int> A(n);\n    for (int i = 0; i < n; ++i) A[i] = find(i);\n\
+    \    return A;\n  }\n\n  void reset() {\n    n_comp = n;\n    size.assign(n, 1);\n\
+    \    std::iota(par.begin(), par.end(), 0);\n  }\n};\n#line 3 \"graph/check_bipartite.hpp\"\
     \n\r\n// \u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A + \u5FA9\u5143\r\n// \u4E8C\
     \u90E8\u30B0\u30E9\u30D5\u3067\u306A\u304B\u3063\u305F\u5834\u5408\u306B\u306F\
     \ empty\r\ntemplate <typename Graph>\r\nvc<int> check_bipartite(Graph& G) {\r\n\
@@ -276,7 +276,7 @@ data:
   requiredBy:
   - graph/maximum_antichain.hpp
   - graph/dag_path_cover.hpp
-  timestamp: '2022-10-13 10:39:03+09:00'
+  timestamp: '2022-10-24 17:15:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/tutte.test.cpp

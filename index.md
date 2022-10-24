@@ -273,7 +273,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/swag.hpp
       title: ds/swag.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/unionfind.hpp
       title: ds/unionfind.hpp
     - icon: ':heavy_check_mark:'
@@ -481,7 +481,7 @@ data:
       title: geo/triangle_area.hpp
   - name: graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/base.hpp
       title: graph/base.hpp
     - icon: ':warning:'
@@ -529,7 +529,7 @@ data:
     - icon: ':warning:'
       path: graph/find_odd_cycle.hpp
       title: graph/find_odd_cycle.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/functional.hpp
       title: graph/functional.hpp
     - icon: ':heavy_check_mark:'
@@ -592,7 +592,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tournament.hpp
       title: graph/tournament.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/tree.hpp
       title: graph/tree.hpp
     - icon: ':heavy_check_mark:'
@@ -765,7 +765,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/factorial998.hpp
       title: mod/factorial998.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: mod/fast_div.hpp
       title: mod/fast_div.hpp
     - icon: ':heavy_check_mark:'
@@ -780,7 +780,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/min_of_linear_segments.hpp
       title: mod/min_of_linear_segments.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: mod/mod_inv.hpp
       title: mod/mod_inv.hpp
     - icon: ':heavy_check_mark:'
@@ -798,7 +798,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_sum_of_linear.hpp
       title: mod/mod_sum_of_linear.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: mod/modint.hpp
       title: mod/modint.hpp
     - icon: ':heavy_check_mark:'
@@ -821,7 +821,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -832,7 +832,7 @@ data:
     - icon: ':warning:'
       path: nt/ceil_range.hpp
       title: nt/ceil_range.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: nt/crt.hpp
       title: nt/crt.hpp
     - icon: ':heavy_check_mark:'
@@ -847,7 +847,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/extgcd.hpp
       title: nt/extgcd.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: nt/factor.hpp
       title: nt/factor.hpp
     - icon: ':heavy_check_mark:'
@@ -895,7 +895,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/primetable.hpp
       title: nt/primetable.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: nt/primetest.hpp
       title: nt/primetest.hpp
     - icon: ':heavy_check_mark:'
@@ -910,12 +910,15 @@ data:
       path: other/all_but_one_products.hpp
       title: other/all_but_one_products.hpp
     - icon: ':heavy_check_mark:'
+      path: other/connected_dp.hpp
+      title: other/connected_dp.hpp
+    - icon: ':heavy_check_mark:'
       path: other/dice.hpp
       title: other/dice.hpp
     - icon: ':heavy_check_mark:'
       path: other/integer_kth_root.hpp
       title: other/integer_kth_root.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -1048,6 +1051,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: random/base.hpp
       title: random/base.hpp
+    - icon: ':heavy_check_mark:'
+      path: random/hash_vector.hpp
+      title: random/hash_vector.hpp
   - name: seq/famous
     pages:
     - icon: ':heavy_check_mark:'
@@ -2049,6 +2055,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/wavelet_matrix_sum.test.cpp
       title: test/mytest/wavelet_matrix_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/yuki1561_dp.test.cpp
+      title: test/mytest/yuki1561_dp.test.cpp
   - name: test/yukicoder
     pages:
     - icon: ':heavy_check_mark:'
@@ -2495,7 +2504,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/529.test.cpp
       title: test/yukicoder/529.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/590.test.cpp
       title: test/yukicoder/590.test.cpp
     - icon: ':heavy_check_mark:'

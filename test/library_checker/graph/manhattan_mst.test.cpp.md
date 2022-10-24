@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
   - icon: ':heavy_check_mark:'
     path: geo/manhattan_mst.hpp
     title: geo/manhattan_mst.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -255,14 +255,14 @@ data:
     \n\nstruct UnionFind {\n  int n;\n  int n_comp;\n  std::vector<int> size, par;\n\
     \  UnionFind(int n) : n(n), n_comp(n), size(n, 1), par(n) {\n    std::iota(par.begin(),\
     \ par.end(), 0);\n  }\n  int find(int x) {\n    assert(0 <= x && x < n);\n   \
-    \ while (par[x] != x) {\n      par[x] = par[par[x]];\n      x = par[x];\n    }\n\
-    \    return x;\n  }\n\n  int operator[](int x) { return find(x); }\n\n  bool merge(int\
-    \ x, int y) {\n    x = find(x);\n    y = find(y);\n    if (x == y) { return false;\
-    \ }\n    n_comp--;\n    if (size[x] < size[y]) std::swap(x, y);\n    size[x] +=\
-    \ size[y];\n    size[y] = 0;\n    par[y] = x;\n    return true;\n  }\n\n  std::vector<int>\
-    \ find_all() {\n    std::vector<int> A(n);\n    for (int i = 0; i < n; ++i) A[i]\
-    \ = find(i);\n    return A;\n  }\n\n  void reset() {\n    n_comp = n;\n    size.assign(n,\
-    \ 1);\n    std::iota(par.begin(), par.end(), 0);\n  }\n};\n#line 3 \"geo/manhattan_mst.hpp\"\
+    \ while (par[x] != x) { x = par[x] = par[par[x]]; }\n    return x;\n  }\n\n  int\
+    \ operator[](int x) { return find(x); }\n\n  bool merge(int x, int y) {\n    x\
+    \ = find(x);\n    y = find(y);\n    if (x == y) { return false; }\n    n_comp--;\n\
+    \    if (size[x] < size[y]) std::swap(x, y);\n    size[x] += size[y];\n    size[y]\
+    \ = 0;\n    par[y] = x;\n    return true;\n  }\n\n  std::vector<int> find_all()\
+    \ {\n    std::vector<int> A(n);\n    for (int i = 0; i < n; ++i) A[i] = find(i);\n\
+    \    return A;\n  }\n\n  void reset() {\n    n_comp = n;\n    size.assign(n, 1);\n\
+    \    std::iota(par.begin(), par.end(), 0);\n  }\n};\n#line 3 \"geo/manhattan_mst.hpp\"\
     \n\ntemplate <typename T>\nGraph<T, 0> Manhattan_MST(vc<pair<T, T>>& XY) {\n \
     \ int N = XY.size();\n  vc<tuple<T, int, int>> dat;\n  dat.reserve(4 * N);\n \
     \ vc<int> idx(N);\n  iota(all(idx), 0);\n\n  FOR(a, 2) {\n    for (auto&& [x,\
@@ -298,7 +298,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/manhattan_mst.test.cpp
   requiredBy: []
-  timestamp: '2022-09-24 23:41:28+09:00'
+  timestamp: '2022-10-24 17:15:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/manhattan_mst.test.cpp

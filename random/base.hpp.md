@@ -51,6 +51,9 @@ data:
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
   - icon: ':heavy_check_mark:'
+    path: random/hash_vector.hpp
+    title: random/hash_vector.hpp
+  - icon: ':heavy_check_mark:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
   - icon: ':heavy_check_mark:'
@@ -157,6 +160,9 @@ data:
     path: test/mytest/wavelet_matrix_sum.test.cpp
     title: test/mytest/wavelet_matrix_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/yuki1561_dp.test.cpp
+    title: test/mytest/yuki1561_dp.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
   - icon: ':heavy_check_mark:'
@@ -203,6 +209,7 @@ data:
   isVerificationFile: false
   path: random/base.hpp
   requiredBy:
+  - random/hash_vector.hpp
   - poly/fps_sqrt.hpp
   - linalg/spmat_min_poly.hpp
   - linalg/implicit_matrix/det.hpp
@@ -233,6 +240,7 @@ data:
   - test/mytest/binom.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
+  - test/mytest/yuki1561_dp.test.cpp
   - test/mytest/splay.test.cpp
   - test/mytest/is_substring.test.cpp
   - test/mytest/maxplus_concave.test.cpp
