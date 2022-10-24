@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: alg/lazy/cntsummax_set.hpp
+    title: alg/lazy/cntsummax_set.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -22,7 +25,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/cntsummax.hpp
-  requiredBy: []
+  requiredBy:
+  - alg/lazy/cntsummax_set.hpp
   timestamp: '2022-10-21 16:22:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

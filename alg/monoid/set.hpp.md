@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/lazy/cntsum_set.hpp
     title: alg/lazy/cntsum_set.hpp
+  - icon: ':warning:'
+    path: alg/lazy/cntsummax_set.hpp
+    title: alg/lazy/cntsummax_set.hpp
   - icon: ':heavy_check_mark:'
     path: alg/lazy/min_set.hpp
     title: alg/lazy/min_set.hpp
@@ -45,6 +48,7 @@ data:
   - alg/lazy/min_set.hpp
   - alg/lazy/cntsum_set.hpp
   - alg/lazy/powersums_set.hpp
+  - alg/lazy/cntsummax_set.hpp
   timestamp: '2022-10-21 16:22:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

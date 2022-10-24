@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/pds/rollbackunionfind.hpp
     title: ds/pds/rollbackunionfind.hpp
+  - icon: ':warning:'
+    path: ds/pds/rollbackweighteduf.hpp
+    title: ds/pds/rollbackweighteduf.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/add_remove_query.test.cpp
@@ -39,6 +42,7 @@ data:
   isVerificationFile: false
   path: ds/pds/rollbackarray.hpp
   requiredBy:
+  - ds/pds/rollbackweighteduf.hpp
   - ds/pds/rollbackunionfind.hpp
   timestamp: '2022-10-21 16:42:45+09:00'
   verificationStatus: LIBRARY_ALL_AC

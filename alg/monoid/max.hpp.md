@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/lazy/max_add.hpp
     title: alg/lazy/max_add.hpp
+  - icon: ':warning:'
+    path: alg/lazy/max_max.hpp
+    title: alg/lazy/max_max.hpp
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
@@ -57,6 +60,7 @@ data:
   path: alg/monoid/max.hpp
   requiredBy:
   - alg/lazy/max_add.hpp
+  - alg/lazy/max_max.hpp
   - graph/minimum_spanning_tree.hpp
   timestamp: '2022-10-21 16:22:09+09:00'
   verificationStatus: LIBRARY_ALL_AC

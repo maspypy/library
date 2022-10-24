@@ -5,6 +5,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/cht/dynamic_lichao.hpp
     title: ds/cht/dynamic_lichao.hpp
+  - icon: ':warning:'
+    path: ds/pds/persistent_dynamic_lichao.hpp
+    title: ds/pds/persistent_dynamic_lichao.hpp
+  - icon: ':warning:'
+    path: geo/manhattan_nns.hpp
+    title: geo/manhattan_nns.hpp
   - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
@@ -43,7 +49,9 @@ data:
   path: alg/monoid/min_idx.hpp
   requiredBy:
   - ds/cht/dynamic_lichao.hpp
+  - ds/pds/persistent_dynamic_lichao.hpp
   - string/suffix_tree.hpp
+  - geo/manhattan_nns.hpp
   timestamp: '2022-10-21 16:22:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

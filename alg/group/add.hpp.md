@@ -14,6 +14,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/lazy/max_add.hpp
     title: alg/lazy/max_add.hpp
+  - icon: ':warning:'
+    path: alg/lazy/maxidx_add.hpp
+    title: alg/lazy/maxidx_add.hpp
   - icon: ':heavy_check_mark:'
     path: alg/lazy/min_add.hpp
     title: alg/lazy/min_add.hpp
@@ -35,6 +38,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fenwickraq.hpp
     title: ds/fenwickraq.hpp
+  - icon: ':warning:'
+    path: ds/online_uniqueproductquery.hpp
+    title: ds/online_uniqueproductquery.hpp
   - icon: ':warning:'
     path: ds/query/point_add_polygon_sum.hpp
     title: ds/query/point_add_polygon_sum.hpp
@@ -291,6 +297,7 @@ data:
   - alg/lazy/add_mul.hpp
   - alg/lazy/max_add.hpp
   - alg/lazy/min_add.hpp
+  - alg/lazy/maxidx_add.hpp
   - graph/ds/treeabelgroup.hpp
   - graph/ds/contoursum.hpp
   - ds/cumsum2d.hpp
@@ -303,6 +310,7 @@ data:
   - ds/query/rectangle_add_rectangle_sum.hpp
   - ds/query/uniqueproductquery.hpp
   - ds/query/rectangle_add_point_sum.hpp
+  - ds/online_uniqueproductquery.hpp
   - ds/fenwick.hpp
   - ds/fenwickraq.hpp
   - ds/fenwick2d_dense.hpp

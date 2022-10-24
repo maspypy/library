@@ -11,6 +11,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/sortable_segtree.hpp
     title: ds/sortable_segtree.hpp
+  - icon: ':warning:'
+    path: geo/manhattan_nns.hpp
+    title: geo/manhattan_nns.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/treegroup.hpp
     title: graph/ds/treegroup.hpp
@@ -196,6 +199,7 @@ data:
   - ds/query/range_mex_query.hpp
   - ds/query/uniqueproductquery.hpp
   - string/suffix_tree.hpp
+  - geo/manhattan_nns.hpp
   timestamp: '2022-08-11 02:08:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
