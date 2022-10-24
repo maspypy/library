@@ -172,6 +172,9 @@ data:
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1561.test.cpp
+    title: test/yukicoder/1561.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1775.test.cpp
     title: test/yukicoder/1775.test.cpp
   - icon: ':heavy_check_mark:'
@@ -261,6 +264,7 @@ data:
   - test/yukicoder/1303.test.cpp
   - test/yukicoder/310.test.cpp
   - test/yukicoder/1025.test.cpp
+  - test/yukicoder/1561.test.cpp
   - test/yukicoder/1907.test.cpp
   - test/aoj/ALDS1_14_C.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp

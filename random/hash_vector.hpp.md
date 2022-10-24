@@ -12,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/yuki1561_dp.test.cpp
     title: test/mytest/yuki1561_dp.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1561.test.cpp
+    title: test/yukicoder/1561.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -52,13 +55,13 @@ data:
     \ ret(1), mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret = ret * mul;\r\
     \n      mul = mul * mul;\r\n      n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\
     \n  static constexpr ll get_mod() { return mod; }\r\n};\r\n#line 3 \"random/hash_vector.hpp\"\
-    \n\ntemplate <typename T>\nll hash_vector(vc<T>& X) {\n  using mint = modint61;\n\
+    \n\ntemplate <typename T>\nll hash_vector(vc<T> X) {\n  using mint = modint61;\n\
     \  static vc<mint> hash_base;\n  int n = len(X);\n  while (len(hash_base) <= n)\
     \ { hash_base.eb(RNG(mint::get_mod())); }\n  mint H = 0;\n  FOR(i, n) H += hash_base[i]\
     \ * mint(X[i]);\n  H += hash_base[n];\n  return H.val;\n}\n"
   code: "#include \"random/base.hpp\"\n#include \"mod/modint61.hpp\"\n\ntemplate <typename\
-    \ T>\nll hash_vector(vc<T>& X) {\n  using mint = modint61;\n  static vc<mint>\
-    \ hash_base;\n  int n = len(X);\n  while (len(hash_base) <= n) { hash_base.eb(RNG(mint::get_mod()));\
+    \ T>\nll hash_vector(vc<T> X) {\n  using mint = modint61;\n  static vc<mint> hash_base;\n\
+    \  int n = len(X);\n  while (len(hash_base) <= n) { hash_base.eb(RNG(mint::get_mod()));\
     \ }\n  mint H = 0;\n  FOR(i, n) H += hash_base[i] * mint(X[i]);\n  H += hash_base[n];\n\
     \  return H.val;\n}\n"
   dependsOn:
@@ -67,10 +70,11 @@ data:
   isVerificationFile: false
   path: random/hash_vector.hpp
   requiredBy: []
-  timestamp: '2022-10-24 17:16:34+09:00'
+  timestamp: '2022-10-24 17:32:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/yuki1561_dp.test.cpp
+  - test/yukicoder/1561.test.cpp
 documentation_of: random/hash_vector.hpp
 layout: document
 redirect_from:

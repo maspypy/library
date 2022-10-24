@@ -4,19 +4,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
@@ -275,7 +275,7 @@ data:
     \ ret(1), mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret = ret * mul;\r\
     \n      mul = mul * mul;\r\n      n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\
     \n  static constexpr ll get_mod() { return mod; }\r\n};\r\n#line 3 \"random/hash_vector.hpp\"\
-    \n\ntemplate <typename T>\nll hash_vector(vc<T>& X) {\n  using mint = modint61;\n\
+    \n\ntemplate <typename T>\nll hash_vector(vc<T> X) {\n  using mint = modint61;\n\
     \  static vc<mint> hash_base;\n  int n = len(X);\n  while (len(hash_base) <= n)\
     \ { hash_base.eb(RNG(mint::get_mod())); }\n  mint H = 0;\n  FOR(i, n) H += hash_base[i]\
     \ * mint(X[i]);\n  H += hash_base[n];\n  return H.val;\n}\n#line 2 \"mod/modint.hpp\"\
@@ -365,43 +365,47 @@ data:
     \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
     \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
     \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 1 \"other/connected_dp.hpp\"\
-    \n// pair<\u65B0\u3057\u3044\u72B6\u614B\u3001\u4ECA\u306E\u6210\u5206 \u2192\
-    \ \u65B0\u3057\u3044\u6210\u5206>\nvc<pair<vc<int>, vc<int>>> connected_dp_next_states(vc<int>\
-    \ now) {\n  int N = len(now);\n  vc<pair<vc<int>, vc<int>>> res;\n  FOR(s, 1 <<\
-    \ N) {\n    vc<int> par(N + N);\n    FOR(i, N) par[i] = (s & 1 << i ? i : -1);\n\
-    \    FOR(i, N) par[N + i] = (now[i] == -1 ? -1 : now[i] + N);\n    auto find =\
-    \ [&](int x) -> int {\n      while (par[x] != x) { x = par[x] = par[par[x]]; }\n\
-    \      return x;\n    };\n    auto merge = [&](int a, int b) -> void {\n     \
-    \ a = find(a), b = find(b);\n      if (a == b) return;\n      if (a > b) swap(a,\
-    \ b);\n      par[b] = a;\n    };\n\n    FOR(i, N - 1) if (par[i] != -1 && par[i\
-    \ + 1] != -1) merge(i, i + 1);\n    FOR(i, N) if (par[i] != -1 && par[N + i] !=\
-    \ -1) merge(i, N + i);\n    FOR(i, N + N) if (par[i] != -1) par[i] = find(i);\n\
-    \    FOR(i, N, N + N) if (par[i] >= N) par[i] = -1;\n    res.eb(vc<int>(par.begin(),\
-    \ par.begin() + N),\n           vc<int>(par.begin() + N, par.end()));\n  }\n \
-    \ return res;\n}\n#line 9 \"test/mytest/yuki1561_dp.test.cpp\"\n\nusing mint =\
-    \ modint107;\n\npair<int, vc<mint>> calc_yuki1561(int N, int LIM) {\n  HashMapLL<int>\
-    \ MP;\n  vvc<int> states;\n  vc<pi> edges;\n  states.eb(vc<int>(N, -1));\n  states.eb(vc<int>(N,\
-    \ -1));\n  MP[hash_vector(states[0])] = 0;\n\n  int p = -1;\n  while (1) {\n \
-    \   if (++p == len(states)) break;\n    if (p == 1) {\n      edges.eb(1, 1);\n\
-    \      continue;\n    }\n    vc<int> now = states[p];\n    for (auto&& [nxt, convert]:\
-    \ connected_dp_next_states(now)) {\n      // \u4ECA\u306E\u6210\u5206\u6570\u3001\
-    \u6D88\u3048\u308B\u6210\u5206\u6570\n      int a = 0, b = 0;\n      FOR(v, N)\
-    \ if (now[v] == v) {\n        ++a;\n        if (convert[v] == -1) ++b;\n     \
-    \ }\n      // \u6D88\u3048\u308B\u6210\u5206\u304C\u3042\u3063\u3066\u3088\u3044\
-    \u306E\u306F\u3001\u7D42\u72B6\u614B\u306B\u3044\u304F\u3068\u304D\u306E\u307F\
-    \n      if (b >= 2) continue;\n      if (b == 1) {\n        if (MAX(nxt) != -1)\
-    \ continue;\n        edges.eb(p, 1);\n        continue;\n      }\n      ll h =\
-    \ hash_vector<int>(nxt);\n      if (!MP.count(h)) {\n        MP[h] = len(states);\n\
-    \        states.eb(nxt);\n      }\n      edges.eb(p, MP[h]);\n    }\n  }\n\n \
-    \ int S = len(states);\n  vc<mint> dp(S);\n  vc<mint> f(LIM);\n  dp[0] = 1;\n\
-    \  FOR(i, LIM) {\n    vc<mint> newdp(S);\n    for (auto&& [a, b]: edges) newdp[b]\
-    \ += dp[a];\n    swap(dp, newdp);\n    f[i] = dp[1];\n  }\n  return {S, f};\n\
-    }\n\nvoid test() {\n  assert(calc_yuki1561(2, 100).se[2] == mint(13));\n  assert(calc_yuki1561(5,\
-    \ 100).se[6] == mint(45280509));\n  assert(calc_yuki1561(6, 100).se[5] == mint(45280509));\n\
-    \  assert(calc_yuki1561(7, 100).se[77] == mint(713420418));\n  assert(calc_yuki1561(9,\
-    \ 0).fi == 2189);\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned\
-    \ main() {\n  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\n\
-    \  return 0;\n}\n"
+    \nnamespace connected_dp {\n// pair<\u65B0\u3057\u3044\u72B6\u614B\u3001\u4ECA\
+    \u306E\u6210\u5206 \u2192 \u65B0\u3057\u3044\u6210\u5206>\nvc<pair<vc<int>, vc<int>>>\
+    \ next_states(const vc<int>& now) {\n  int N = len(now);\n  vc<pair<vc<int>, vc<int>>>\
+    \ res;\n  FOR(s, 1 << N) {\n    vc<int> par(N + N);\n    FOR(i, N) par[i] = (s\
+    \ & 1 << i ? i : -1);\n    FOR(i, N) par[N + i] = (now[i] == -1 ? -1 : now[i]\
+    \ + N);\n    auto find = [&](int x) -> int {\n      while (par[x] != x) { x =\
+    \ par[x] = par[par[x]]; }\n      return x;\n    };\n    auto merge = [&](int a,\
+    \ int b) -> void {\n      a = find(a), b = find(b);\n      if (a == b) return;\n\
+    \      if (a > b) swap(a, b);\n      par[b] = a;\n    };\n\n    FOR(i, N - 1)\
+    \ if (par[i] != -1 && par[i + 1] != -1) merge(i, i + 1);\n    FOR(i, N) if (par[i]\
+    \ != -1 && par[N + i] != -1) merge(i, N + i);\n    FOR(i, N + N) if (par[i] !=\
+    \ -1) par[i] = find(i);\n    FOR(i, N, N + N) if (par[i] >= N) par[i] = -1;\n\
+    \    res.eb(vc<int>(par.begin(), par.begin() + N),\n           vc<int>(par.begin()\
+    \ + N, par.end()));\n  }\n  return res;\n}\n\nvc<int> reverse_state(const vc<int>&\
+    \ now) {\n  int N = len(now);\n  vc<int> max_i(N, -1);\n  FOR(i, N) if (now[i]\
+    \ != -1) max_i[now[i]] = i;\n  vc<int> rev(N, -1);\n  FOR(i, N) {\n    if (now[i]\
+    \ == -1) continue;\n    int x = max_i[now[i]];\n    rev[N - 1 - i] = N - 1 - x;\n\
+    \  }\n  return rev;\n}\n} // namespace connected_dp\n#line 9 \"test/mytest/yuki1561_dp.test.cpp\"\
+    \n\nusing mint = modint107;\n\npair<int, vc<mint>> calc_yuki1561(int N, int LIM)\
+    \ {\n  HashMapLL<int> MP;\n  vvc<int> states;\n  vc<pi> edges;\n  states.eb(vc<int>(N,\
+    \ -1));\n  states.eb(vc<int>(N, -1));\n  MP[hash_vector(states[0])] = 0;\n\n \
+    \ int p = -1;\n  while (1) {\n    if (++p == len(states)) break;\n    if (p ==\
+    \ 1) {\n      edges.eb(1, 1);\n      continue;\n    }\n    vc<int> now = states[p];\n\
+    \    for (auto&& [nxt, convert]: connected_dp::next_states(now)) {\n      // \u4ECA\
+    \u306E\u6210\u5206\u6570\u3001\u6D88\u3048\u308B\u6210\u5206\u6570\n      int\
+    \ a = 0, b = 0;\n      FOR(v, N) if (now[v] == v) {\n        ++a;\n        if\
+    \ (convert[v] == -1) ++b;\n      }\n      // \u6D88\u3048\u308B\u6210\u5206\u304C\
+    \u3042\u3063\u3066\u3088\u3044\u306E\u306F\u3001\u7D42\u72B6\u614B\u306B\u3044\
+    \u304F\u3068\u304D\u306E\u307F\n      if (b >= 2) continue;\n      if (b == 1)\
+    \ {\n        if (MAX(nxt) != -1) continue;\n        edges.eb(p, 1);\n        continue;\n\
+    \      }\n      ll h = hash_vector<int>(nxt);\n      if (!MP.count(h)) {\n   \
+    \     MP[h] = len(states);\n        states.eb(nxt);\n      }\n      edges.eb(p,\
+    \ MP[h]);\n    }\n  }\n\n  int S = len(states);\n  vc<mint> dp(S);\n  vc<mint>\
+    \ f(LIM);\n  dp[0] = 1;\n  FOR(i, LIM) {\n    vc<mint> newdp(S);\n    for (auto&&\
+    \ [a, b]: edges) newdp[b] += dp[a];\n    swap(dp, newdp);\n    f[i] = dp[1];\n\
+    \  }\n  return {S, f};\n}\n\nvoid test() {\n  assert(calc_yuki1561(2, 100).se[2]\
+    \ == mint(13));\n  assert(calc_yuki1561(5, 100).se[6] == mint(45280509));\n  assert(calc_yuki1561(6,\
+    \ 100).se[5] == mint(45280509));\n  assert(calc_yuki1561(7, 100).se[77] == mint(713420418));\n\
+    \  assert(calc_yuki1561(9, 0).fi == 2189);\n}\n\nvoid solve() {\n  LL(a, b);\n\
+    \  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"ds/hashmap.hpp\"\n#include \"random/hash_vector.hpp\"\
     \n#include \"mod/modint.hpp\"\n#include \"other/connected_dp.hpp\"\n\nusing mint\
@@ -410,7 +414,7 @@ data:
     \ -1));\n  MP[hash_vector(states[0])] = 0;\n\n  int p = -1;\n  while (1) {\n \
     \   if (++p == len(states)) break;\n    if (p == 1) {\n      edges.eb(1, 1);\n\
     \      continue;\n    }\n    vc<int> now = states[p];\n    for (auto&& [nxt, convert]:\
-    \ connected_dp_next_states(now)) {\n      // \u4ECA\u306E\u6210\u5206\u6570\u3001\
+    \ connected_dp::next_states(now)) {\n      // \u4ECA\u306E\u6210\u5206\u6570\u3001\
     \u6D88\u3048\u308B\u6210\u5206\u6570\n      int a = 0, b = 0;\n      FOR(v, N)\
     \ if (now[v] == v) {\n        ++a;\n        if (convert[v] == -1) ++b;\n     \
     \ }\n      // \u6D88\u3048\u308B\u6210\u5206\u304C\u3042\u3063\u3066\u3088\u3044\
@@ -440,7 +444,7 @@ data:
   isVerificationFile: true
   path: test/mytest/yuki1561_dp.test.cpp
   requiredBy: []
-  timestamp: '2022-10-24 17:16:44+09:00'
+  timestamp: '2022-10-24 17:33:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/yuki1561_dp.test.cpp
