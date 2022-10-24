@@ -11,6 +11,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/lazy/cntsum_add.hpp
     title: alg/lazy/cntsum_add.hpp
+  - icon: ':warning:'
+    path: alg/lazy/cntsummin_add.hpp
+    title: alg/lazy/cntsummin_add.hpp
   - icon: ':heavy_check_mark:'
     path: alg/lazy/max_add.hpp
     title: alg/lazy/max_add.hpp
@@ -20,6 +23,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/lazy/min_add.hpp
     title: alg/lazy/min_add.hpp
+  - icon: ':warning:'
+    path: alg/lazy/minidx_add.hpp
+    title: alg/lazy/minidx_add.hpp
+  - icon: ':warning:'
+    path: alg/lazy/minmax_add.hpp
+    title: alg/lazy/minmax_add.hpp
   - icon: ':heavy_check_mark:'
     path: ds/common_interval_decomposition.hpp
     title: ds/common_interval_decomposition.hpp
@@ -294,6 +303,9 @@ data:
   - seq/inversion.hpp
   - alg/lazy/cntsum_add.hpp
   - alg/lazy/cntminmincnt_add.hpp
+  - alg/lazy/minidx_add.hpp
+  - alg/lazy/minmax_add.hpp
+  - alg/lazy/cntsummin_add.hpp
   - alg/lazy/add_mul.hpp
   - alg/lazy/max_add.hpp
   - alg/lazy/min_add.hpp

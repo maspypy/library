@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/link_cut_path.hpp
     title: graph/ds/link_cut_path.hpp
+  - icon: ':warning:'
+    path: graph/ds/link_cut_subtree.hpp
+    title: graph/ds/link_cut_subtree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
@@ -125,6 +128,7 @@ data:
   path: graph/ds/link_cut.hpp
   requiredBy:
   - graph/ds/link_cut_path.hpp
+  - graph/ds/link_cut_subtree.hpp
   timestamp: '2022-10-21 17:08:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: alg/monoid/rollinghash.hpp
+    title: alg/monoid/rollinghash.hpp
   - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
@@ -206,6 +209,7 @@ data:
   - linalg/implicit_matrix/min_poly.hpp
   - linalg/det_A_plus_xB.hpp
   - linalg/spmat_det.hpp
+  - alg/monoid/rollinghash.hpp
   - graph/classify_subtree.hpp
   - graph/max_matching_size.hpp
   - graph/minimum_cycle_length_through_specified.hpp

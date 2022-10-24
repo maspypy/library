@@ -1,6 +1,12 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':warning:'
+    path: alg/monoid/cntsummin.hpp
+    title: alg/monoid/cntsummin.hpp
+  - icon: ':heavy_check_mark:'
+    path: alg/monoid/set.hpp
+    title: alg/monoid/set.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -8,27 +14,36 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
-    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: alg/monoid_cntsummin.hpp:\
-    \ line -1: no such header\n"
-  code: "#include \"alg/monoid_cntsummin.hpp\"\r\n#include \"alg/monoid_set.hpp\"\r\
-    \n\r\nstruct Lazy_CntSumMin_Set {\r\n  static constexpr ll INF = 1LL<<60;\r\n\
+  bundledCode: "#line 2 \"alg/monoid/cntsummin.hpp\"\n\r\nstruct Monoid_CntSumMin\
+    \ {\r\n  using value_type = tuple<ll, ll, ll>;\r\n  using X = value_type;\r\n\
+    \  static X op(X x, X y) {\r\n    auto [xc, xs, xm] = x;\r\n    auto [yc, ys,\
+    \ ym] = y;\r\n    return {xc + yc, xs + ys, min(xm, ym)};\r\n  }\r\n  static constexpr\
+    \ X unit() { return {0, 0, numeric_limits<ll>::max()}; }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 1 \"alg/monoid/set.hpp\"\ntemplate <typename\
+    \ E, E none_val>\r\nstruct Monoid_Set {\r\n  using value_type = E;\r\n  using\
+    \ X = value_type;\r\n  static X op(X x, X y) { return (y == none_val ? x : y);\
+    \ }\r\n  static constexpr X unit() { return none_val; }\r\n  static constexpr\
+    \ bool commute = false;\r\n};\n#line 3 \"alg/lazy/cntsummin_set.hpp\"\n\r\nstruct\
+    \ Lazy_CntSumMin_Set {\r\n  static constexpr ll INF = 1LL << 60;\r\n  using MX\
+    \ = Monoid_CntSumMin;\r\n  using MA = Monoid_Set<ll, INF>;\r\n  using X_structure\
+    \ = MX;\r\n  using A_structure = MA;\r\n  using X = typename MX::value_type;\r\
+    \n  using A = typename MA::value_type;\r\n  static constexpr X act(const X& x,\
+    \ const A& a) {\r\n    if (a == INF) return x;\r\n    auto [xc, xs, xm] = x;\r\
+    \n    return {xc, xc * a, a};\r\n  }\r\n};\r\n"
+  code: "#include \"alg/monoid/cntsummin.hpp\"\r\n#include \"alg/monoid/set.hpp\"\r\
+    \n\r\nstruct Lazy_CntSumMin_Set {\r\n  static constexpr ll INF = 1LL << 60;\r\n\
     \  using MX = Monoid_CntSumMin;\r\n  using MA = Monoid_Set<ll, INF>;\r\n  using\
     \ X_structure = MX;\r\n  using A_structure = MA;\r\n  using X = typename MX::value_type;\r\
     \n  using A = typename MA::value_type;\r\n  static constexpr X act(const X& x,\
     \ const A& a) {\r\n    if (a == INF) return x;\r\n    auto [xc, xs, xm] = x;\r\
     \n    return {xc, xc * a, a};\r\n  }\r\n};\r\n"
-  dependsOn: []
+  dependsOn:
+  - alg/monoid/cntsummin.hpp
+  - alg/monoid/set.hpp
   isVerificationFile: false
   path: alg/lazy/cntsummin_set.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2022-10-24 14:33:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/lazy/cntsummin_set.hpp

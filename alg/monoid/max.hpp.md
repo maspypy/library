@@ -8,6 +8,12 @@ data:
   - icon: ':warning:'
     path: alg/lazy/max_max.hpp
     title: alg/lazy/max_max.hpp
+  - icon: ':warning:'
+    path: alg/lazy/max_min.hpp
+    title: alg/lazy/max_min.hpp
+  - icon: ':warning:'
+    path: alg/lazy/max_set.hpp
+    title: alg/lazy/max_set.hpp
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
@@ -59,6 +65,8 @@ data:
   isVerificationFile: false
   path: alg/monoid/max.hpp
   requiredBy:
+  - alg/lazy/max_set.hpp
+  - alg/lazy/max_min.hpp
   - alg/lazy/max_add.hpp
   - alg/lazy/max_max.hpp
   - graph/minimum_spanning_tree.hpp

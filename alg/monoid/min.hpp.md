@@ -2,9 +2,15 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: alg/lazy/max_min.hpp
+    title: alg/lazy/max_min.hpp
   - icon: ':heavy_check_mark:'
     path: alg/lazy/min_add.hpp
     title: alg/lazy/min_add.hpp
+  - icon: ':warning:'
+    path: alg/lazy/min_min.hpp
+    title: alg/lazy/min_min.hpp
   - icon: ':heavy_check_mark:'
     path: alg/lazy/min_set.hpp
     title: alg/lazy/min_set.hpp
@@ -108,6 +114,8 @@ data:
   path: alg/monoid/min.hpp
   requiredBy:
   - alg/lazy/min_set.hpp
+  - alg/lazy/max_min.hpp
+  - alg/lazy/min_min.hpp
   - alg/lazy/min_add.hpp
   - graph/minimum_spanning_tree.hpp
   - ds/common_interval_decomposition.hpp

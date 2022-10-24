@@ -8,6 +8,12 @@ data:
   - icon: ':warning:'
     path: alg/lazy/cntsummax_set.hpp
     title: alg/lazy/cntsummax_set.hpp
+  - icon: ':warning:'
+    path: alg/lazy/cntsummin_set.hpp
+    title: alg/lazy/cntsummin_set.hpp
+  - icon: ':warning:'
+    path: alg/lazy/max_set.hpp
+    title: alg/lazy/max_set.hpp
   - icon: ':heavy_check_mark:'
     path: alg/lazy/min_set.hpp
     title: alg/lazy/min_set.hpp
@@ -47,6 +53,8 @@ data:
   requiredBy:
   - alg/lazy/min_set.hpp
   - alg/lazy/cntsum_set.hpp
+  - alg/lazy/max_set.hpp
+  - alg/lazy/cntsummin_set.hpp
   - alg/lazy/powersums_set.hpp
   - alg/lazy/cntsummax_set.hpp
   timestamp: '2022-10-21 16:22:09+09:00'

@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: alg/monoid/rollinghash.hpp
+    title: alg/monoid/rollinghash.hpp
   - icon: ':heavy_check_mark:'
     path: graph/classify_subtree.hpp
     title: graph/classify_subtree.hpp
@@ -99,6 +102,7 @@ data:
   isVerificationFile: false
   path: mod/modint61.hpp
   requiredBy:
+  - alg/monoid/rollinghash.hpp
   - graph/classify_subtree.hpp
   - graph/max_matching_size.hpp
   - graph/rerooting_classify_subtree.hpp
