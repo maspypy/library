@@ -1,3 +1,6 @@
+#include "ds/hashmap.hpp"
+#include "random/hash_vector.hpp"
+
 namespace connected_dp_squares {
 // pair<新しい状態、今の成分 → 新しい成分>
 vc<pair<vc<int>, vc<int>>> next_states(const vc<int>& now) {
@@ -87,4 +90,74 @@ pair<vvc<int>, vc<pair<int, int>>> connedted_dp_graph(int N,
   }
   return {states, edges};
 }
+
+pair<vvc<int>, vc<pair<int, int>>> polygon_dp_graph(int N) {
+  static HashMapLL<int> MP;
+  MP.reset();
+  vvc<int> states;
+  vc<pair<int, int>> edges;
+
+  states.eb(vc<int>(N, -1));
+  states.eb(vc<int>(N, -1));
+  MP[hash_vector<int>(states[0])] = 0;
+
+  int p = -1;
+  while (1) {
+    if (++p == len(states)) break;
+    if (p == 1) {
+      edges.eb(1, 1);
+      continue;
+    }
+    vc<int> now = states[p];
+    for (auto&& [nxt, convert]: next_states(now)) {
+      // 今の成分数、消える成分数
+      int a = 0, b = 0;
+      FOR(v, N) if (now[v] == v) {
+        ++a;
+        if (convert[v] == -1) ++b;
+      }
+      // 消える成分があってよいのは、終状態にいくときのみ
+      if (b >= 2) continue;
+      if (b == 1) {
+        if (MAX(nxt) != -1) continue;
+        edges.eb(p, 1);
+        continue;
+      }
+      bool ok = [&]() -> bool {
+        // 頂点のみで接するのはダメ
+        FOR(i, N - 1) {
+          bool a1 = now[i] != -1, a2 = now[i + 1] != -1;
+          bool b1 = nxt[i] != -1, b2 = nxt[i + 1] != -1;
+          if (a1 && !a2 && !b1 && b2) return false;
+          if (!a1 && a2 && b1 && !b2) return false;
+        }
+        // empty region を閉じることと、異なる連結成分がマージされることが同値
+        int close = 0;
+        int after = 0;
+        vc<bool> is_new(N, 1);
+        FOR(i, N) if (convert[i] != -1) is_new[convert[i]] = 0;
+        FOR(i, N) if (nxt[i] == i && !is_new[i])++ after;
+        vc<int> I;
+        FOR(i, N) if (now[i] != -1) I.eb(i);
+        FOR(k, len(I) - 1) {
+          int i = I[k], j = I[k + 1];
+          if (j == i + 1) continue;
+          bool cl = 1;
+          FOR(p, i + 1, j) if (nxt[p] == -1) cl = 0;
+          if (cl) close++;
+        }
+        return a - close == after;
+      }();
+      if (!ok) continue;
+      ll h = hash_vector<int>(nxt);
+      if (!MP.count(h)) {
+        MP[h] = len(states);
+        states.eb(nxt);
+      }
+      edges.eb(p, MP[h]);
+    }
+  }
+  return {states, edges};
+}
+
 } // namespace connected_dp_squares
