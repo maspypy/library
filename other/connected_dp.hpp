@@ -40,4 +40,54 @@ vc<int> reverse_state(const vc<int>& now) {
   }
   return rev;
 }
+
+// 0, 1 ：空の列、領域の手前、後ろ
+// 連結領域をひとつ作る。多角形とは限らない。
+pair<vvc<int>, vc<pair<int, int>>> connedted_dp_graph(int N,
+                                                      bool merge_reverse) {
+  static HashMapLL<int> MP;
+  MP.reset();
+  vvc<int> states;
+  vc<pair<int, int>> edges;
+
+  states.eb(vc<int>(N, -1));
+  states.eb(vc<int>(N, -1));
+  MP[hash_vector<int>(states[0])] = 0;
+
+  int p = -1;
+  while (1) {
+    if (++p == len(states)) break;
+    if (p == 1) {
+      edges.eb(1, 1);
+      continue;
+    }
+    vc<int> now = states[p];
+    for (auto&& [nxt, convert]: connected_dp::next_states(now)) {
+      // 今の成分数、消える成分数
+      int a = 0, b = 0;
+      FOR(v, N) if (now[v] == v) {
+        ++a;
+        if (convert[v] == -1) ++b;
+      }
+      // 消える成分があってよいのは、終状態にいくときのみ
+      if (b >= 2) continue;
+      if (b == 1) {
+        if (MAX(nxt) != -1) continue;
+        edges.eb(p, 1);
+        continue;
+      }
+      ll h = hash_vector<int>(nxt);
+      if (merge_reverse) {
+        chmin(h, hash_vector<int>(connected_dp::reverse_state(nxt)));
+      }
+      if (!MP.count(h)) {
+        MP[h] = len(states);
+        states.eb(nxt);
+      }
+      edges.eb(p, MP[h]);
+    }
+  }
+  return {states, edges};
+}
+
 } // namespace connected_dp
