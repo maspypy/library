@@ -1,5 +1,5 @@
 
-#include "alg/monoid_min_idx.hpp"
+#include "alg/monoid/min_idx.hpp"
 
 // https://atcoder.jp/contests/kupc2019/tasks/kupc2019_l
 template <typename T, int NODES>

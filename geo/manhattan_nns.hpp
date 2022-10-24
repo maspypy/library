@@ -1,5 +1,5 @@
 #include "ds/segtree.hpp"
-#include "alg/monoid_min_idx.hpp"
+#include "alg/monoid/min_idx.hpp"
 
 // https://codeforces.com/gym/103577/problem/K
 // 点群 FRM から点群 TO への最近点探索

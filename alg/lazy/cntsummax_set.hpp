@@ -1,8 +1,8 @@
-#include "alg/monoid_cntsummax.hpp"
-#include "alg/monoid_set.hpp"
+#include "alg/monoid/cntsummax.hpp"
+#include "alg/monoid/set.hpp"
 
 struct Lazy_CntSumMax_Set {
-  static constexpr ll INF = 1LL<<60;
+  static constexpr ll INF = 1LL << 60;
   using MX = Monoid_CntSumMax;
   using MA = Monoid_Set<ll, -INF>;
   using X_structure = MX;
