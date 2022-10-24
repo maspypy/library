@@ -198,6 +198,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_1.test.cpp
     title: test/yukicoder/4_1.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/541.test.cpp
+    title: test/yukicoder/541.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/578.test.cpp
+    title: test/yukicoder/578.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/579.test.cpp
+    title: test/yukicoder/579.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -268,12 +277,15 @@ data:
   - test/yukicoder/1775.test.cpp
   - test/yukicoder/4_1.test.cpp
   - test/yukicoder/2102.test.cpp
+  - test/yukicoder/541.test.cpp
   - test/yukicoder/1080.test.cpp
   - test/yukicoder/1303.test.cpp
+  - test/yukicoder/578.test.cpp
   - test/yukicoder/310.test.cpp
   - test/yukicoder/1025.test.cpp
   - test/yukicoder/1561.test.cpp
   - test/yukicoder/1907.test.cpp
+  - test/yukicoder/579.test.cpp
   - test/aoj/ALDS1_14_C.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp

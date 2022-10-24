@@ -48,6 +48,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_1.test.cpp
     title: test/yukicoder/4_1.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/541.test.cpp
+    title: test/yukicoder/541.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/578.test.cpp
+    title: test/yukicoder/578.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/579.test.cpp
+    title: test/yukicoder/579.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -131,7 +140,10 @@ data:
   - test/mytest/tutte.test.cpp
   - test/yukicoder/1397.test.cpp
   - test/yukicoder/4_1.test.cpp
+  - test/yukicoder/541.test.cpp
+  - test/yukicoder/578.test.cpp
   - test/yukicoder/1561.test.cpp
+  - test/yukicoder/579.test.cpp
   - test/aoj/ALDS1_14_C.test.cpp
   - test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp

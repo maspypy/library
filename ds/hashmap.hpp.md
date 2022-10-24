@@ -51,6 +51,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/263.test.cpp
     title: test/yukicoder/263.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/541.test.cpp
+    title: test/yukicoder/541.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/578.test.cpp
+    title: test/yukicoder/578.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/579.test.cpp
+    title: test/yukicoder/579.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -123,9 +132,12 @@ data:
   - test/yukicoder/263.test.cpp
   - test/yukicoder/1397.test.cpp
   - test/yukicoder/1634.test.cpp
+  - test/yukicoder/541.test.cpp
   - test/yukicoder/1726.test.cpp
+  - test/yukicoder/578.test.cpp
   - test/yukicoder/1561.test.cpp
   - test/yukicoder/1383.test.cpp
+  - test/yukicoder/579.test.cpp
   - test/yukicoder/1339.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp

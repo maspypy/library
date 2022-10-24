@@ -21,6 +21,15 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/541.test.cpp
+    title: test/yukicoder/541.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/578.test.cpp
+    title: test/yukicoder/578.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/579.test.cpp
+    title: test/yukicoder/579.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -82,7 +91,10 @@ data:
   verifiedWith:
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/yukicoder/1397.test.cpp
+  - test/yukicoder/541.test.cpp
+  - test/yukicoder/578.test.cpp
   - test/yukicoder/1561.test.cpp
+  - test/yukicoder/579.test.cpp
 documentation_of: random/hash_vector.hpp
 layout: document
 redirect_from:
