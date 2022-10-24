@@ -151,6 +151,9 @@ data:
     path: test/mytest/stern_brocot.test.cpp
     title: test/mytest/stern_brocot.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/tdpc_grid_dp.test.cpp
+    title: test/mytest/tdpc_grid_dp.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/tournament.test.cpp
     title: test/mytest/tournament.test.cpp
   - icon: ':heavy_check_mark:'
@@ -250,6 +253,7 @@ data:
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/tournament.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
+  - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/powerquery.test.cpp
   - test/mytest/tutte.test.cpp
   - test/mytest/conv2d.test.cpp

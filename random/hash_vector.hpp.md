@@ -10,6 +10,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/mytest/tdpc_grid_dp.test.cpp
+    title: test/mytest/tdpc_grid_dp.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/yuki1561_dp.test.cpp
     title: test/mytest/yuki1561_dp.test.cpp
   - icon: ':heavy_check_mark:'
@@ -74,6 +77,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/yuki1561_dp.test.cpp
+  - test/mytest/tdpc_grid_dp.test.cpp
   - test/yukicoder/1561.test.cpp
 documentation_of: random/hash_vector.hpp
 layout: document

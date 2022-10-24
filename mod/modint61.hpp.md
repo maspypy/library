@@ -31,6 +31,9 @@ data:
     path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
     title: test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/tdpc_grid_dp.test.cpp
+    title: test/mytest/tdpc_grid_dp.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
   - icon: ':heavy_check_mark:'
@@ -121,6 +124,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/yuki1561_dp.test.cpp
+  - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/tutte.test.cpp
   - test/yukicoder/4_1.test.cpp
   - test/yukicoder/1561.test.cpp

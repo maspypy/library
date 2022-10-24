@@ -397,6 +397,9 @@ data:
     path: test/mytest/splay.test.cpp
     title: test/mytest/splay.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/tdpc_grid_dp.test.cpp
+    title: test/mytest/tdpc_grid_dp.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/yuki1561_dp.test.cpp
     title: test/mytest/yuki1561_dp.test.cpp
   - icon: ':heavy_check_mark:'
@@ -808,6 +811,7 @@ data:
   - test/mytest/enumerate_products.test.cpp
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
+  - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/powerquery.test.cpp
   - test/mytest/multinomial.test.cpp
   - test/mytest/enumerate_multisets.test.cpp
