@@ -1,5 +1,5 @@
-#include "alg/monoid_max.hpp"
-#include "alg/monoid_min.hpp"
+#include "alg/monoid/max.hpp"
+#include "alg/monoid/min.hpp"
 
 template <typename E>
 struct Lazy_Max_Min {

@@ -1,8 +1,8 @@
-#include "alg/monoid_cntsummin.hpp"
-#include "alg/group_add.hpp"
+#include "alg/monoid/cntsummin.hpp"
+#include "alg/group/add.hpp"
 
 struct Lazy_CntSumMin_Add {
-  static constexpr ll INF = 1LL<<60;
+  static constexpr ll INF = 1LL << 60;
   using MX = Monoid_CntSumMin;
   using MA = Group_Add<ll>;
   using X_structure = MX;

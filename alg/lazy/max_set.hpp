@@ -1,5 +1,5 @@
-#include "alg/monoid_max.hpp"
-#include "alg/monoid_set.hpp"
+#include "alg/monoid/max.hpp"
+#include "alg/monoid/set.hpp"
 
 template <typename E, E none_val>
 struct Lazy_Max_Set {

@@ -1,4 +1,4 @@
-#include "graph/link_cut.hpp"
+#include "graph/ds/link_cut.hpp"
 
 template <typename Node, int NODES>
 struct LinkCutTree_SubTree : LinkCutTree_base<Node, NODES> {

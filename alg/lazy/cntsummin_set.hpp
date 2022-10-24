@@ -1,8 +1,8 @@
-#include "alg/monoid_cntsummin.hpp"
-#include "alg/monoid_set.hpp"
+#include "alg/monoid/cntsummin.hpp"
+#include "alg/monoid/set.hpp"
 
 struct Lazy_CntSumMin_Set {
-  static constexpr ll INF = 1LL<<60;
+  static constexpr ll INF = 1LL << 60;
   using MX = Monoid_CntSumMin;
   using MA = Monoid_Set<ll, INF>;
   using X_structure = MX;

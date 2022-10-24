@@ -1,5 +1,5 @@
-#include "alg/group_add.hpp"
-#include "alg/monoid_min_idx.hpp"
+#include "alg/group/add.hpp"
+#include "alg/monoid/min_idx.hpp"
 
 template <typename E, bool tie_is_left = true>
 struct Lazy_MinIdx_Add {

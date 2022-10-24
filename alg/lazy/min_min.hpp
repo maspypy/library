@@ -1,4 +1,4 @@
-#include "alg/monoid_min.hpp"
+#include "alg/monoid/min.hpp"
 
 template <typename E>
 struct Lazy_Min_Min {
