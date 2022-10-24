@@ -1,5 +1,6 @@
+namespace connected_dp {
 // pair<新しい状態、今の成分 → 新しい成分>
-vc<pair<vc<int>, vc<int>>> connected_dp_next_states(vc<int> now) {
+vc<pair<vc<int>, vc<int>>> next_states(const vc<int>& now) {
   int N = len(now);
   vc<pair<vc<int>, vc<int>>> res;
   FOR(s, 1 << N) {
@@ -26,3 +27,17 @@ vc<pair<vc<int>, vc<int>>> connected_dp_next_states(vc<int> now) {
   }
   return res;
 }
+
+vc<int> reverse_state(const vc<int>& now) {
+  int N = len(now);
+  vc<int> max_i(N, -1);
+  FOR(i, N) if (now[i] != -1) max_i[now[i]] = i;
+  vc<int> rev(N, -1);
+  FOR(i, N) {
+    if (now[i] == -1) continue;
+    int x = max_i[now[i]];
+    rev[N - 1 - i] = N - 1 - x;
+  }
+  return rev;
+}
+} // namespace connected_dp

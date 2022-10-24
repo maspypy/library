@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+#define PROBLEM "https://yukicoder.me/problems/no/1561"
 #include "my_template.hpp"
 #include "other/io.hpp"
 
@@ -6,6 +6,7 @@
 #include "random/hash_vector.hpp"
 #include "mod/modint.hpp"
 #include "other/connected_dp.hpp"
+#include "seq/interpolate_linear_rec.hpp"
 
 using mint = modint107;
 
@@ -39,7 +40,9 @@ pair<int, vc<mint>> calc_yuki1561(int N, int LIM) {
         edges.eb(p, 1);
         continue;
       }
-      ll h = hash_vector<int>(nxt);
+      ll h1 = hash_vector<int>(nxt);
+      ll h2 = hash_vector<int>(connected_dp::reverse_state(nxt));
+      ll h = min(h1, h2);
       if (!MP.count(h)) {
         MP[h] = len(states);
         states.eb(nxt);
@@ -61,23 +64,16 @@ pair<int, vc<mint>> calc_yuki1561(int N, int LIM) {
   return {S, f};
 }
 
-void test() {
-  assert(calc_yuki1561(2, 100).se[2] == mint(13));
-  assert(calc_yuki1561(5, 100).se[6] == mint(45280509));
-  assert(calc_yuki1561(6, 100).se[5] == mint(45280509));
-  assert(calc_yuki1561(7, 100).se[77] == mint(713420418));
-  assert(calc_yuki1561(9, 0).fi == 2189);
-}
-
 void solve() {
-  LL(a, b);
-  print(a + b);
+  LL(H, W);
+  auto [S, f] = calc_yuki1561(H, 2500);
+  mint ANS = interpolate_linear_rec<mint>(f, W, 0);
+  print(ANS);
 }
 
 signed main() {
   cout << fixed << setprecision(15);
 
-  test();
   solve();
 
   return 0;
