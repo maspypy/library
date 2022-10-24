@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/group/affine.hpp
     title: alg/group/affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/swag.hpp
     title: ds/swag.hpp
   - icon: ':question:'

@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/query/range_mex_query.hpp
     title: ds/query/range_mex_query.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
   - icon: ':question:'
