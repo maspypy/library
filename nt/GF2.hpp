@@ -1,6 +1,12 @@
 #include <emmintrin.h>
 #include <smmintrin.h>
 #include <wmmintrin.h>
+
+__attribute__((target("pclmul"))) inline __m128i myclmul(const __m128i &a,
+                                                         const __m128i &b) {
+  return _mm_clmulepi64_si128(a, b, 0);
+}
+
 // 2^n 元体
 template <int K>
 struct GF2 {
@@ -13,8 +19,7 @@ struct GF2 {
 
   static constexpr u64 mask() { return u64(-1) >> (64 - K); }
 
-  __attribute__((target("pclmul", "sse2", "sse4.1"))) static u64 mul(u64 a,
-                                                                     u64 b) {
+  __attribute__((target("sse4.2"))) static u64 mul(u64 a, u64 b) {
     static bool prepared = 0;
     static u64 MEMO[8][65536];
     if (!prepared) {
@@ -37,7 +42,7 @@ struct GF2 {
     }
     const __m128i a_ = _mm_set_epi64x(0, a);
     const __m128i b_ = _mm_set_epi64x(0, b);
-    const __m128i c_ = _mm_clmulepi64_si128(a_, b_, 0);
+    const __m128i c_ = myclmul(a_, b_);
     u64 lo = _mm_extract_epi64(c_, 0);
     u64 hi = _mm_extract_epi64(c_, 1);
     u64 x = 0;

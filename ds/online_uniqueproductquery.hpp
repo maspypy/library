@@ -1,4 +1,4 @@
-#include "alg/group_add.hpp"
+#include "alg/group/add.hpp"
 #include "pds/segtree.hpp"
 
 // sample：https://codeforces.com/contest/703/problem/D
@@ -29,7 +29,7 @@ struct OnlineUniqueProductQuery {
       times.eb(t);
     }
   }
-  
+
   X prod(int L, int R) {
     int t = times[R];
     return seg.prod(t, L, R);
