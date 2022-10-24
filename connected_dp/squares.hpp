@@ -1,4 +1,4 @@
-namespace connected_dp {
+namespace connected_dp_squares {
 // pair<新しい状態、今の成分 → 新しい成分>
 vc<pair<vc<int>, vc<int>>> next_states(const vc<int>& now) {
   int N = len(now);
@@ -62,7 +62,7 @@ pair<vvc<int>, vc<pair<int, int>>> connedted_dp_graph(int N,
       continue;
     }
     vc<int> now = states[p];
-    for (auto&& [nxt, convert]: connected_dp::next_states(now)) {
+    for (auto&& [nxt, convert]: next_states(now)) {
       // 今の成分数、消える成分数
       int a = 0, b = 0;
       FOR(v, N) if (now[v] == v) {
@@ -77,9 +77,7 @@ pair<vvc<int>, vc<pair<int, int>>> connedted_dp_graph(int N,
         continue;
       }
       ll h = hash_vector<int>(nxt);
-      if (merge_reverse) {
-        chmin(h, hash_vector<int>(connected_dp::reverse_state(nxt)));
-      }
+      if (merge_reverse) { chmin(h, hash_vector<int>(reverse_state(nxt))); }
       if (!MP.count(h)) {
         MP[h] = len(states);
         states.eb(nxt);
@@ -89,5 +87,4 @@ pair<vvc<int>, vc<pair<int, int>>> connedted_dp_graph(int N,
   }
   return {states, edges};
 }
-
-} // namespace connected_dp
+} // namespace connected_dp_squares

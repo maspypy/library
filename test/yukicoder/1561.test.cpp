@@ -5,14 +5,14 @@
 #include "ds/hashmap.hpp"
 #include "random/hash_vector.hpp"
 #include "mod/modint.hpp"
-#include "other/connected_dp.hpp"
+#include "connected_dp/squares.hpp"
 #include "seq/interpolate_linear_rec.hpp"
 
 using mint = modint107;
 
 void solve() {
   LL(H, W);
-  auto [states, edges] = connected_dp::connedted_dp_graph(H, true);
+  auto [states, edges] = connected_dp_squares::connedted_dp_graph(H, true);
   int S = len(states);
   int LIM = 2 * S + 10;
   vc<mint> f(LIM);
