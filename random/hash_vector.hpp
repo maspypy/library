@@ -2,7 +2,7 @@
 #include "mod/modint61.hpp"
 
 template <typename T>
-ll hash_vector(vc<T>& X) {
+ll hash_vector(vc<T> X) {
   using mint = modint61;
   static vc<mint> hash_base;
   int n = len(X);
