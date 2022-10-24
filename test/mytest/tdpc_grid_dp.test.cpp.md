@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: connected_dp/squares.hpp
+    title: connected_dp/squares.hpp
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
-    path: other/connected_dp.hpp
-    title: other/connected_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -365,12 +365,12 @@ data:
     mint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
     \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
     \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
-    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 1 \"other/connected_dp.hpp\"\
-    \nnamespace connected_dp {\n// pair<\u65B0\u3057\u3044\u72B6\u614B\u3001\u4ECA\
-    \u306E\u6210\u5206 \u2192 \u65B0\u3057\u3044\u6210\u5206>\nvc<pair<vc<int>, vc<int>>>\
-    \ next_states(const vc<int>& now) {\n  int N = len(now);\n  vc<pair<vc<int>, vc<int>>>\
-    \ res;\n  FOR(s, 1 << N) {\n    vc<int> par(N + N);\n    FOR(i, N) par[i] = (s\
-    \ & 1 << i ? i : -1);\n    FOR(i, N) par[N + i] = (now[i] == -1 ? -1 : now[i]\
+    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 1 \"connected_dp/squares.hpp\"\
+    \nnamespace connected_dp_squares {\n// pair<\u65B0\u3057\u3044\u72B6\u614B\u3001\
+    \u4ECA\u306E\u6210\u5206 \u2192 \u65B0\u3057\u3044\u6210\u5206>\nvc<pair<vc<int>,\
+    \ vc<int>>> next_states(const vc<int>& now) {\n  int N = len(now);\n  vc<pair<vc<int>,\
+    \ vc<int>>> res;\n  FOR(s, 1 << N) {\n    vc<int> par(N + N);\n    FOR(i, N) par[i]\
+    \ = (s & 1 << i ? i : -1);\n    FOR(i, N) par[N + i] = (now[i] == -1 ? -1 : now[i]\
     \ + N);\n    auto find = [&](int x) -> int {\n      while (par[x] != x) { x =\
     \ par[x] = par[par[x]]; }\n      return x;\n    };\n    auto merge = [&](int a,\
     \ int b) -> void {\n      a = find(a), b = find(b);\n      if (a == b) return;\n\
@@ -392,26 +392,50 @@ data:
     \ -1));\n  states.eb(vc<int>(N, -1));\n  MP[hash_vector<int>(states[0])] = 0;\n\
     \n  int p = -1;\n  while (1) {\n    if (++p == len(states)) break;\n    if (p\
     \ == 1) {\n      edges.eb(1, 1);\n      continue;\n    }\n    vc<int> now = states[p];\n\
-    \    for (auto&& [nxt, convert]: connected_dp::next_states(now)) {\n      // \u4ECA\
-    \u306E\u6210\u5206\u6570\u3001\u6D88\u3048\u308B\u6210\u5206\u6570\n      int\
-    \ a = 0, b = 0;\n      FOR(v, N) if (now[v] == v) {\n        ++a;\n        if\
-    \ (convert[v] == -1) ++b;\n      }\n      // \u6D88\u3048\u308B\u6210\u5206\u304C\
-    \u3042\u3063\u3066\u3088\u3044\u306E\u306F\u3001\u7D42\u72B6\u614B\u306B\u3044\
-    \u304F\u3068\u304D\u306E\u307F\n      if (b >= 2) continue;\n      if (b == 1)\
-    \ {\n        if (MAX(nxt) != -1) continue;\n        edges.eb(p, 1);\n        continue;\n\
-    \      }\n      ll h = hash_vector<int>(nxt);\n      if (merge_reverse) {\n  \
-    \      chmin(h, hash_vector<int>(connected_dp::reverse_state(nxt)));\n      }\n\
-    \      if (!MP.count(h)) {\n        MP[h] = len(states);\n        states.eb(nxt);\n\
+    \    for (auto&& [nxt, convert]: next_states(now)) {\n      // \u4ECA\u306E\u6210\
+    \u5206\u6570\u3001\u6D88\u3048\u308B\u6210\u5206\u6570\n      int a = 0, b = 0;\n\
+    \      FOR(v, N) if (now[v] == v) {\n        ++a;\n        if (convert[v] == -1)\
+    \ ++b;\n      }\n      // \u6D88\u3048\u308B\u6210\u5206\u304C\u3042\u3063\u3066\
+    \u3088\u3044\u306E\u306F\u3001\u7D42\u72B6\u614B\u306B\u3044\u304F\u3068\u304D\
+    \u306E\u307F\n      if (b >= 2) continue;\n      if (b == 1) {\n        if (MAX(nxt)\
+    \ != -1) continue;\n        edges.eb(p, 1);\n        continue;\n      }\n    \
+    \  ll h = hash_vector<int>(nxt);\n      if (merge_reverse) { chmin(h, hash_vector<int>(reverse_state(nxt)));\
+    \ }\n      if (!MP.count(h)) {\n        MP[h] = len(states);\n        states.eb(nxt);\n\
     \      }\n      edges.eb(p, MP[h]);\n    }\n  }\n  return {states, edges};\n}\n\
-    \n} // namespace connected_dp\n#line 9 \"test/mytest/tdpc_grid_dp.test.cpp\"\n\
-    \nusing mint = modint107;\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\
-    \nsigned main() {\n  cout << fixed << setprecision(15);\n\n  solve();\n\n  return\
-    \ 0;\n}\n"
+    } // namespace connected_dp_squares\n#line 9 \"test/mytest/tdpc_grid_dp.test.cpp\"\
+    \n\nusing mint = modint107;\n\nmint calc_tdpc_grid(int H, int W) {\n  HashMapLL<int>\
+    \ MP;\n\n  using P = pair<vc<int>, int>;\n  vc<P> states;\n\n  auto get_hash =\
+    \ [&](vc<int> a, int b) -> ll {\n    a.eb(b);\n    return hash_vector<int>(a);\n\
+    \  };\n\n  vc<int> init(H, -1);\n  init[0] = 0;\n  states.eb(init, 0);\n  vc<int>\
+    \ end(H, -1);\n  end[H - 1] = H - 1;\n  states.eb(end, H - 1);\n  FOR(i, 2) {\n\
+    \    auto [a, b] = states[i];\n    ll h = get_hash(a, b);\n    MP[h] = i;\n  }\n\
+    \n  vc<pi> edges;\n\n  int p = -1;\n  while (1) {\n    ++p;\n    if (p >= len(states))\
+    \ break;\n    auto [now, r] = states[p];\n    for (auto&& [nxt, convert]: connected_dp_squares::next_states(now))\
+    \ {\n      int s = convert[r];\n      if (s == -1) continue;\n      ll h = get_hash(nxt,\
+    \ s);\n      if (!MP.count(h)) {\n        MP[h] = len(states);\n        states.eb(nxt,\
+    \ s);\n      }\n      edges.eb(p, MP[h]);\n    }\n  }\n\n  int S = len(states);\n\
+    \  vc<mint> dp(S);\n  dp[0] = mint(1);\n  FOR(W + 1) {\n    vc<mint> newdp(S);\n\
+    \    for (auto&& [a, b]: edges) newdp[b] += dp[a];\n    swap(dp, newdp);\n  }\n\
+    \  return dp[1];\n}\n\nvoid solve() {\n  LL(H, W);\n  mint ANS = calc_tdpc_grid(H,\
+    \ W);\n  print(ANS);\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"ds/hashmap.hpp\"\n#include \"random/hash_vector.hpp\"\
-    \n#include \"mod/modint.hpp\"\n#include \"other/connected_dp.hpp\"\n\nusing mint\
-    \ = modint107;\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main()\
-    \ {\n  cout << fixed << setprecision(15);\n\n  solve();\n\n  return 0;\n}"
+    \n#include \"mod/modint.hpp\"\n#include \"connected_dp/squares.hpp\"\n\nusing\
+    \ mint = modint107;\n\nmint calc_tdpc_grid(int H, int W) {\n  HashMapLL<int> MP;\n\
+    \n  using P = pair<vc<int>, int>;\n  vc<P> states;\n\n  auto get_hash = [&](vc<int>\
+    \ a, int b) -> ll {\n    a.eb(b);\n    return hash_vector<int>(a);\n  };\n\n \
+    \ vc<int> init(H, -1);\n  init[0] = 0;\n  states.eb(init, 0);\n  vc<int> end(H,\
+    \ -1);\n  end[H - 1] = H - 1;\n  states.eb(end, H - 1);\n  FOR(i, 2) {\n    auto\
+    \ [a, b] = states[i];\n    ll h = get_hash(a, b);\n    MP[h] = i;\n  }\n\n  vc<pi>\
+    \ edges;\n\n  int p = -1;\n  while (1) {\n    ++p;\n    if (p >= len(states))\
+    \ break;\n    auto [now, r] = states[p];\n    for (auto&& [nxt, convert]: connected_dp_squares::next_states(now))\
+    \ {\n      int s = convert[r];\n      if (s == -1) continue;\n      ll h = get_hash(nxt,\
+    \ s);\n      if (!MP.count(h)) {\n        MP[h] = len(states);\n        states.eb(nxt,\
+    \ s);\n      }\n      edges.eb(p, MP[h]);\n    }\n  }\n\n  int S = len(states);\n\
+    \  vc<mint> dp(S);\n  dp[0] = mint(1);\n  FOR(W + 1) {\n    vc<mint> newdp(S);\n\
+    \    for (auto&& [a, b]: edges) newdp[b] += dp[a];\n    swap(dp, newdp);\n  }\n\
+    \  return dp[1];\n}\n\nvoid solve() {\n  LL(H, W);\n  mint ANS = calc_tdpc_grid(H,\
+    \ W);\n  print(ANS);\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -420,12 +444,12 @@ data:
   - random/base.hpp
   - mod/modint61.hpp
   - mod/modint.hpp
-  - other/connected_dp.hpp
+  - connected_dp/squares.hpp
   isVerificationFile: true
   path: test/mytest/tdpc_grid_dp.test.cpp
   requiredBy: []
-  timestamp: '2022-10-24 19:49:31+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-10-24 20:02:26+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/tdpc_grid_dp.test.cpp
 layout: document

@@ -396,12 +396,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/splay.test.cpp
     title: test/mytest/splay.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/tdpc_grid_dp.test.cpp
     title: test/mytest/tdpc_grid_dp.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/yuki1561_dp.test.cpp
-    title: test/mytest/yuki1561_dp.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
@@ -573,9 +570,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/749.test.cpp
     title: test/yukicoder/749.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n\
@@ -800,13 +797,12 @@ data:
   - mod/mod_sqrt.hpp
   - nt/multiplicative_convolution_mod2n.hpp
   timestamp: '2022-10-24 08:51:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/prime_sum.test.cpp
   - test/mytest/conv_leq.test.cpp
   - test/mytest/binom.test.cpp
   - test/mytest/all_inverse.test.cpp
-  - test/mytest/yuki1561_dp.test.cpp
   - test/mytest/splay.test.cpp
   - test/mytest/enumerate_products.test.cpp
   - test/mytest/enum_partitions.test.cpp
