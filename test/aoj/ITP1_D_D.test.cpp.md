@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/divisors.hpp
     title: nt/divisors.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_3_D
@@ -266,17 +266,17 @@ data:
     \n}\r\n\r\nvc<ll> divisors_by_lpf(ll N, vc<int>& lpf, bool SORT) {\r\n  auto pf\
     \ = factor_by_lpf(N, lpf);\r\n  return divisors_by_pf(pf, SORT);\r\n}\n#line 5\
     \ \"test/aoj/ITP1_D_D.test.cpp\"\n\nvoid solve() {\n  LL(a, b, c);\n  auto divs\
-    \ = divisors(c);\n  ll ANS = 0;\n  for (auto&& d: divs)\n    if (a <= d && d <=\
-    \ b) ++ANS;\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
+    \ = divisors(c, false);\n  ll ANS = 0;\n  for (auto&& d: divs)\n    if (a <= d\
+    \ && d <= b) ++ANS;\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_3_D\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/divisors.hpp\"\
-    \n\nvoid solve() {\n  LL(a, b, c);\n  auto divs = divisors(c);\n  ll ANS = 0;\n\
-    \  for (auto&& d: divs)\n    if (a <= d && d <= b) ++ANS;\n  print(ANS);\n}\n\n\
-    signed main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout <<\
-    \ setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return\
-    \ 0;\n}\n"
+    \n\nvoid solve() {\n  LL(a, b, c);\n  auto divs = divisors(c, false);\n  ll ANS\
+    \ = 0;\n  for (auto&& d: divs)\n    if (a <= d && d <= b) ++ANS;\n  print(ANS);\n\
+    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
+    \ return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -286,8 +286,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ITP1_D_D.test.cpp
   requiredBy: []
-  timestamp: '2022-10-24 10:54:14+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-10-24 13:22:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ITP1_D_D.test.cpp
 layout: document
