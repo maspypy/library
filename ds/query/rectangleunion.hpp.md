@@ -18,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_4_A.test.cpp
     title: test/aoj/DSL_4_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+    title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -85,13 +88,14 @@ data:
     \      }\n        }\n        return r + 1 - size;\n      }\n      sm = Monoid_X::op(dat[r],\
     \ sm);\n    } while ((r & -r) != r);\n    return 0;\n  }\n\n  void debug() { print(\"\
     lazysegtree getall:\", get_all()); }\n};\n#line 2 \"alg/monoid/cntminmincnt.hpp\"\
-    \n// \u5168\u4F53\u306E\u500B\u6570\u3001\u6700\u5C0F\u5024\u3001\u6700\u5C0F\u5024\
-    \u306E\u500B\u6570\r\nstruct Monoid_CntMinMincnt {\r\n  using value_type = tuple<ll,\
-    \ ll, ll>;\r\n  using X = value_type;\r\n  static X op(X x, X y) {\r\n    auto\
-    \ [xcnt, xmin, xmincnt] = x;\r\n    auto [ycnt, ymin, ymincnt] = y;\r\n    if\
-    \ (xmin > ymin) return {xcnt + ycnt, ymin, ymincnt};\r\n    if (xmin == ymin)\
-    \ return {xcnt + ycnt, xmin, xmincnt + ymincnt};\r\n    return {xcnt + ycnt, xmin,\
-    \ xmincnt};\r\n  }\r\n  static constexpr X unit() { return {0, numeric_limits<ll>::max(),\
+    \n\r\n// \u5168\u4F53\u306E\u500B\u6570\u3001\u6700\u5C0F\u5024\u3001\u6700\u5C0F\
+    \u5024\u306E\u500B\u6570\r\ntemplate <typename E>\r\nstruct Monoid_CntMinMincnt\
+    \ {\r\n  using value_type = tuple<E, E, E>;\r\n  using X = value_type;\r\n  static\
+    \ X from_element(E x) { return {1, x, 1}; }\r\n  static X op(X x, X y) {\r\n \
+    \   auto [xcnt, xmin, xmincnt] = x;\r\n    auto [ycnt, ymin, ymincnt] = y;\r\n\
+    \    if (xmin > ymin) return {xcnt + ycnt, ymin, ymincnt};\r\n    if (xmin ==\
+    \ ymin) return {xcnt + ycnt, xmin, xmincnt + ymincnt};\r\n    return {xcnt + ycnt,\
+    \ xmin, xmincnt};\r\n  }\r\n  static constexpr X unit() { return {0, numeric_limits<E>::max(),\
     \ 0}; }\r\n  static constexpr bool commute = true;\r\n};\n#line 2 \"alg/group/add.hpp\"\
     \n\r\ntemplate <typename E>\r\nstruct Group_Add {\r\n  using X = E;\r\n  using\
     \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
@@ -99,45 +103,47 @@ data:
     \ -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return X(n)\
     \ * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
     \ bool commute = true;\r\n};\r\n#line 3 \"alg/lazy/cntminmincnt_add.hpp\"\n\r\n\
-    struct Lazy_CntMinMincnt_Add {\r\n  using MX = Monoid_CntMinMincnt;\r\n  using\
-    \ MA = Group_Add<ll>;\r\n  using X_structure = MX;\r\n  using A_structure = MA;\r\
-    \n  using X = typename MX::value_type;\r\n  using A = typename MA::value_type;\r\
+    template <typename E>\r\nstruct Lazy_CntMinMincnt_Add {\r\n  using MX = Monoid_CntMinMincnt<E>;\r\
+    \n  using MA = Group_Add<E>;\r\n  using X_structure = MX;\r\n  using A_structure\
+    \ = MA;\r\n  using X = typename MX::value_type;\r\n  using A = typename MA::value_type;\r\
     \n  static constexpr X act(const X &x, const A &a) {\r\n    auto [xcnt, xmin,\
     \ xmincnt] = x;\r\n    if (xmin == numeric_limits<ll>::max()) return x;\r\n  \
-    \  return {xcnt, xmin + a, xmincnt};\r\n  }\r\n};\n#line 3 \"ds/query/rectangleunion.hpp\"\
-    \n\r\nstruct RectangleUnion {\r\n  using RECT = tuple<ll, ll, ll, ll>;\r\n  vc<RECT>\
-    \ rectangles;\r\n  vi X, Y;\r\n\r\n  void add_rect(ll xl, ll yl, ll xr, ll yr)\
-    \ {\r\n    assert(xl < xr && yl < yr);\r\n    X.eb(xl), X.eb(xr), Y.eb(yl), Y.eb(yr);\r\
-    \n    rectangles.eb(xl, xr, yl, yr);\r\n  }\r\n\r\n  ll calc() {\r\n    UNIQUE(X),\
-    \ UNIQUE(Y);\r\n    ll N = len(X);\r\n    vc<vc<pi>> add(N), rm(N);\r\n    for\
-    \ (auto &&[xl, xr, yl, yr]: rectangles) {\r\n      xl = LB(X, xl), xr = LB(X,\
-    \ xr);\r\n      yl = LB(Y, yl), yr = LB(Y, yr);\r\n      add[xl].eb(yl, yr);\r\
-    \n      rm[xr].eb(yl, yr);\r\n    }\r\n\r\n    using Lazy = Lazy_CntMinMincnt_Add;\r\
-    \n\r\n    vc<typename Lazy::X> seg_raw(len(Y) - 1);\r\n    FOR(i, len(Y) - 1)\
-    \ seg_raw[i] = {Y[i + 1] - Y[i], 0, Y[i + 1] - Y[i]};\r\n    LazySegTree<Lazy>\
-    \ seg(seg_raw);\r\n    ll ANS = 0;\r\n    FOR(i, len(X) - 1) {\r\n      ll dx\
-    \ = X[i + 1] - X[i];\r\n      for (auto &&[yl, yr]: add[i]) seg.apply(yl, yr,\
-    \ 1);\r\n      for (auto &&[yl, yr]: rm[i]) seg.apply(yl, yr, -1);\r\n      auto\
-    \ [cnt, min, mincnt] = seg.prod_all();\r\n      ll n = cnt;\r\n      if (min ==\
-    \ 0) n -= mincnt;\r\n      ANS += n * dx;\r\n    }\r\n    return ANS;\r\n  }\r\
-    \n};\r\n"
+    \  return {xcnt, xmin + a, xmincnt};\r\n  }\r\n};\r\n#line 3 \"ds/query/rectangleunion.hpp\"\
+    \n\r\ntemplate <typename XY = int>\r\nstruct RectangleUnion {\r\n  using RECT\
+    \ = tuple<XY, XY, XY, XY>;\r\n  vc<RECT> rectangles;\r\n  vc<XY> X, Y;\r\n\r\n\
+    \  void add_rect(int xl, int yl, int xr, int yr) {\r\n    assert(xl < xr && yl\
+    \ < yr);\r\n    X.eb(xl), X.eb(xr), Y.eb(yl), Y.eb(yr);\r\n    rectangles.eb(xl,\
+    \ xr, yl, yr);\r\n  }\r\n\r\n  template <typename ANS_TYPE = ll>\r\n  ANS_TYPE\
+    \ calc() {\r\n    UNIQUE(X), UNIQUE(Y);\r\n    int N = len(X);\r\n    vc<vc<pair<int,\
+    \ int>>> add(N), rm(N);\r\n    for (auto &&[xl, xr, yl, yr]: rectangles) {\r\n\
+    \      xl = LB(X, xl), xr = LB(X, xr);\r\n      yl = LB(Y, yl), yr = LB(Y, yr);\r\
+    \n      add[xl].eb(yl, yr);\r\n      rm[xr].eb(yl, yr);\r\n    }\r\n\r\n    using\
+    \ Lazy = Lazy_CntMinMincnt_Add<XY>;\r\n    using T = typename Lazy::X_structure::value_type;\r\
+    \n    LazySegTree<Lazy> seg(len(Y) - 1, [&](int i) -> T {\r\n      return {Y[i\
+    \ + 1] - Y[i], 0, Y[i + 1] - Y[i]};\r\n    });\r\n    ANS_TYPE ANS = 0;\r\n  \
+    \  FOR(i, len(X) - 1) {\r\n      ANS_TYPE dx = X[i + 1] - X[i];\r\n      for (auto\
+    \ &&[yl, yr]: add[i]) seg.apply(yl, yr, 1);\r\n      for (auto &&[yl, yr]: rm[i])\
+    \ seg.apply(yl, yr, -1);\r\n      auto [cnt, min, mincnt] = seg.prod_all();\r\n\
+    \      ANS_TYPE n = cnt;\r\n      if (min == 0) n -= mincnt;\r\n      ANS += n\
+    \ * dx;\r\n    }\r\n    return ANS;\r\n  }\r\n};\r\n"
   code: "#include \"ds/lazysegtree.hpp\"\r\n#include \"alg/lazy/cntminmincnt_add.hpp\"\
-    \r\n\r\nstruct RectangleUnion {\r\n  using RECT = tuple<ll, ll, ll, ll>;\r\n \
-    \ vc<RECT> rectangles;\r\n  vi X, Y;\r\n\r\n  void add_rect(ll xl, ll yl, ll xr,\
-    \ ll yr) {\r\n    assert(xl < xr && yl < yr);\r\n    X.eb(xl), X.eb(xr), Y.eb(yl),\
-    \ Y.eb(yr);\r\n    rectangles.eb(xl, xr, yl, yr);\r\n  }\r\n\r\n  ll calc() {\r\
-    \n    UNIQUE(X), UNIQUE(Y);\r\n    ll N = len(X);\r\n    vc<vc<pi>> add(N), rm(N);\r\
-    \n    for (auto &&[xl, xr, yl, yr]: rectangles) {\r\n      xl = LB(X, xl), xr\
-    \ = LB(X, xr);\r\n      yl = LB(Y, yl), yr = LB(Y, yr);\r\n      add[xl].eb(yl,\
-    \ yr);\r\n      rm[xr].eb(yl, yr);\r\n    }\r\n\r\n    using Lazy = Lazy_CntMinMincnt_Add;\r\
-    \n\r\n    vc<typename Lazy::X> seg_raw(len(Y) - 1);\r\n    FOR(i, len(Y) - 1)\
-    \ seg_raw[i] = {Y[i + 1] - Y[i], 0, Y[i + 1] - Y[i]};\r\n    LazySegTree<Lazy>\
-    \ seg(seg_raw);\r\n    ll ANS = 0;\r\n    FOR(i, len(X) - 1) {\r\n      ll dx\
-    \ = X[i + 1] - X[i];\r\n      for (auto &&[yl, yr]: add[i]) seg.apply(yl, yr,\
-    \ 1);\r\n      for (auto &&[yl, yr]: rm[i]) seg.apply(yl, yr, -1);\r\n      auto\
-    \ [cnt, min, mincnt] = seg.prod_all();\r\n      ll n = cnt;\r\n      if (min ==\
-    \ 0) n -= mincnt;\r\n      ANS += n * dx;\r\n    }\r\n    return ANS;\r\n  }\r\
-    \n};\r\n"
+    \r\n\r\ntemplate <typename XY = int>\r\nstruct RectangleUnion {\r\n  using RECT\
+    \ = tuple<XY, XY, XY, XY>;\r\n  vc<RECT> rectangles;\r\n  vc<XY> X, Y;\r\n\r\n\
+    \  void add_rect(int xl, int yl, int xr, int yr) {\r\n    assert(xl < xr && yl\
+    \ < yr);\r\n    X.eb(xl), X.eb(xr), Y.eb(yl), Y.eb(yr);\r\n    rectangles.eb(xl,\
+    \ xr, yl, yr);\r\n  }\r\n\r\n  template <typename ANS_TYPE = ll>\r\n  ANS_TYPE\
+    \ calc() {\r\n    UNIQUE(X), UNIQUE(Y);\r\n    int N = len(X);\r\n    vc<vc<pair<int,\
+    \ int>>> add(N), rm(N);\r\n    for (auto &&[xl, xr, yl, yr]: rectangles) {\r\n\
+    \      xl = LB(X, xl), xr = LB(X, xr);\r\n      yl = LB(Y, yl), yr = LB(Y, yr);\r\
+    \n      add[xl].eb(yl, yr);\r\n      rm[xr].eb(yl, yr);\r\n    }\r\n\r\n    using\
+    \ Lazy = Lazy_CntMinMincnt_Add<XY>;\r\n    using T = typename Lazy::X_structure::value_type;\r\
+    \n    LazySegTree<Lazy> seg(len(Y) - 1, [&](int i) -> T {\r\n      return {Y[i\
+    \ + 1] - Y[i], 0, Y[i + 1] - Y[i]};\r\n    });\r\n    ANS_TYPE ANS = 0;\r\n  \
+    \  FOR(i, len(X) - 1) {\r\n      ANS_TYPE dx = X[i + 1] - X[i];\r\n      for (auto\
+    \ &&[yl, yr]: add[i]) seg.apply(yl, yr, 1);\r\n      for (auto &&[yl, yr]: rm[i])\
+    \ seg.apply(yl, yr, -1);\r\n      auto [cnt, min, mincnt] = seg.prod_all();\r\n\
+    \      ANS_TYPE n = cnt;\r\n      if (min == 0) n -= mincnt;\r\n      ANS += n\
+    \ * dx;\r\n    }\r\n    return ANS;\r\n  }\r\n};\r\n"
   dependsOn:
   - ds/lazysegtree.hpp
   - alg/lazy/cntminmincnt_add.hpp
@@ -146,10 +152,11 @@ data:
   isVerificationFile: false
   path: ds/query/rectangleunion.hpp
   requiredBy: []
-  timestamp: '2022-10-21 17:59:25+09:00'
+  timestamp: '2022-10-25 12:10:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_4_A.test.cpp
+  - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
 documentation_of: ds/query/rectangleunion.hpp
 layout: document
 redirect_from:

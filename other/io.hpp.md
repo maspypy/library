@@ -274,6 +274,9 @@ data:
     path: test/library_checker/datastructure/add_remove_query.test.cpp
     title: test/library_checker/datastructure/add_remove_query.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+    title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array.test.cpp
     title: test/library_checker/datastructure/associative_array.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1009,6 +1012,9 @@ data:
     path: test/yukicoder/1526.test.cpp
     title: test/yukicoder/1526.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1533.test.cpp
+    title: test/yukicoder/1533.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1541.test.cpp
     title: test/yukicoder/1541.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1585,6 +1591,7 @@ data:
   - test/yukicoder/1685.test.cpp
   - test/yukicoder/1956.test.cpp
   - test/yukicoder/1874.test.cpp
+  - test/yukicoder/1533.test.cpp
   - test/yukicoder/1326.test.cpp
   - test/yukicoder/1666.test.cpp
   - test/yukicoder/1117.test.cpp
@@ -1909,6 +1916,7 @@ data:
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
   - test/library_checker/datastructure/set_xor_min.test.cpp
+  - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - test/library_checker/datastructure/static_range_sum.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp

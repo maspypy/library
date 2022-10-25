@@ -29,12 +29,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_4_A
+    PROBLEM: https://judge.yosupo.jp/problem/area_of_union_of_rectangles
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_4_A
-  bundledCode: "#line 1 \"test/aoj/DSL_4_A.test.cpp\"\n#define PROBLEM \\\r\n  \"\
-    https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_4_A\"\r\n#line 1\
-    \ \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
+    - https://judge.yosupo.jp/problem/area_of_union_of_rectangles
+  bundledCode: "#line 1 \"test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/area_of_union_of_rectangles\"\
+    \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
     unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
     \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
     \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
@@ -212,11 +212,12 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"ds/lazysegtree.hpp\"\n\ntemplate <typename Lazy>\n\
-    struct LazySegTree {\n  using Monoid_X = typename Lazy::X_structure;\n  using\
-    \ Monoid_A = typename Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n\
-    \  using A = typename Monoid_A::value_type;\n  int n, log, size;\n  vc<X> dat;\n\
-    \  vc<A> laz;\n\n  LazySegTree() : LazySegTree(0) {}\n  LazySegTree(int n) : LazySegTree(vc<X>(n,\
+    \ { yes(!t); }\r\n#line 4 \"test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp\"\
+    \n\n#line 2 \"ds/lazysegtree.hpp\"\n\ntemplate <typename Lazy>\nstruct LazySegTree\
+    \ {\n  using Monoid_X = typename Lazy::X_structure;\n  using Monoid_A = typename\
+    \ Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n  using A =\
+    \ typename Monoid_A::value_type;\n  int n, log, size;\n  vc<X> dat;\n  vc<A> laz;\n\
+    \n  LazySegTree() : LazySegTree(0) {}\n  LazySegTree(int n) : LazySegTree(vc<X>(n,\
     \ Monoid_X::unit())) {}\n  LazySegTree(vc<X> v) : n(len(v)) {\n    log = 1;\n\
     \    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
     \ << 1, Monoid_X::unit());\n    laz.assign(size, Monoid_A::unit());\n    FOR(i,\
@@ -311,19 +312,17 @@ data:
     \ &&[yl, yr]: add[i]) seg.apply(yl, yr, 1);\r\n      for (auto &&[yl, yr]: rm[i])\
     \ seg.apply(yl, yr, -1);\r\n      auto [cnt, min, mincnt] = seg.prod_all();\r\n\
     \      ANS_TYPE n = cnt;\r\n      if (min == 0) n -= mincnt;\r\n      ANS += n\
-    \ * dx;\r\n    }\r\n    return ANS;\r\n  }\r\n};\r\n#line 6 \"test/aoj/DSL_4_A.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N);\r\n  RectangleUnion RU;\r\n  FOR(N) {\r\n   \
-    \ LL(a, b, c, d);\r\n    RU.add_rect(a, b, c, d);\r\n  }\r\n  print(RU.calc());\r\
-    \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T)\
-    \ solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_4_A\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/query/rectangleunion.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  LL(N);\r\n  RectangleUnion RU;\r\n  FOR(N) {\r\n \
-    \   LL(a, b, c, d);\r\n    RU.add_rect(a, b, c, d);\r\n  }\r\n  print(RU.calc());\r\
-    \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T)\
-    \ solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ * dx;\r\n    }\r\n    return ANS;\r\n  }\r\n};\r\n#line 6 \"test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  RectangleUnion<int> X;\n  FOR(N) {\n    LL(a,\
+    \ b, c, d);\n    X.add_rect(a, b, c, d);\n  }\n  print(X.calc<ll>());\n}\n\nsigned\
+    \ main() {\n  cout << fixed << setprecision(15);\n\n  solve();\n\n  return 0;\n\
+    }\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/area_of_union_of_rectangles\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/query/rectangleunion.hpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  RectangleUnion<int> X;\n  FOR(N) {\n    LL(a,\
+    \ b, c, d);\n    X.add_rect(a, b, c, d);\n  }\n  print(X.calc<ll>());\n}\n\nsigned\
+    \ main() {\n  cout << fixed << setprecision(15);\n\n  solve();\n\n  return 0;\n\
+    }"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -333,15 +332,15 @@ data:
   - alg/monoid/cntminmincnt.hpp
   - alg/group/add.hpp
   isVerificationFile: true
-  path: test/aoj/DSL_4_A.test.cpp
+  path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   requiredBy: []
   timestamp: '2022-10-25 12:10:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/DSL_4_A.test.cpp
+documentation_of: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/DSL_4_A.test.cpp
-- /verify/test/aoj/DSL_4_A.test.cpp.html
-title: test/aoj/DSL_4_A.test.cpp
+- /verify/test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+- /verify/test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp.html
+title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
 ---

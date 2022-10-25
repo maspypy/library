@@ -40,6 +40,9 @@ data:
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+    title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
     title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -234,6 +237,7 @@ data:
   - test/aoj/GRL_5_E.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/library_checker/datastructure/range_affine_range_sum.test.cpp
+  - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - test/atcoder/abc270_f.test.cpp
 documentation_of: ds/lazysegtree.hpp
 layout: document

@@ -980,6 +980,9 @@ data:
       path: poly/fps_composition.hpp
       title: poly/fps_composition.hpp
     - icon: ':heavy_check_mark:'
+      path: poly/fps_div_sparse.hpp
+      title: poly/fps_div_sparse.hpp
+    - icon: ':heavy_check_mark:'
       path: poly/fps_exp.hpp
       title: poly/fps_exp.hpp
     - icon: ':heavy_check_mark:'
@@ -1508,6 +1511,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/add_remove_query.test.cpp
       title: test/library_checker/datastructure/add_remove_query.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+      title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/associative_array.test.cpp
       title: test/library_checker/datastructure/associative_array.test.cpp
@@ -2263,6 +2269,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1526.test.cpp
       title: test/yukicoder/1526.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1533.test.cpp
+      title: test/yukicoder/1533.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1541.test.cpp
       title: test/yukicoder/1541.test.cpp
