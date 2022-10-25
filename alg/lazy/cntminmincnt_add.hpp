@@ -1,9 +1,10 @@
 #include "alg/monoid/cntminmincnt.hpp"
 #include "alg/group/add.hpp"
 
+template <typename E>
 struct Lazy_CntMinMincnt_Add {
-  using MX = Monoid_CntMinMincnt;
-  using MA = Group_Add<ll>;
+  using MX = Monoid_CntMinMincnt<E>;
+  using MA = Group_Add<E>;
   using X_structure = MX;
   using A_structure = MA;
   using X = typename MX::value_type;
