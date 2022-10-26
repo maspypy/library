@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/minmax.hpp
     title: alg/monoid/minmax.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
   - icon: ':question:'

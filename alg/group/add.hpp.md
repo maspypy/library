@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/lazy/cntminmincnt_add.hpp
     title: alg/lazy/cntminmincnt_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/lazy/cntsum_add.hpp
     title: alg/lazy/cntsum_add.hpp
   - icon: ':warning:'
@@ -35,10 +35,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/cumsum2d.hpp
     title: ds/cumsum2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwick2d.hpp
     title: ds/fenwick2d.hpp
   - icon: ':heavy_check_mark:'
@@ -74,7 +74,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/contoursum.hpp
     title: graph/ds/contoursum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/treeabelgroup.hpp
     title: graph/ds/treeabelgroup.hpp
   - icon: ':heavy_check_mark:'
@@ -201,10 +201,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1216.test.cpp
     title: test/yukicoder/1216.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1216_2.test.cpp
     title: test/yukicoder/1216_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -219,7 +219,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1311.test.cpp
     title: test/yukicoder/1311.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1326.test.cpp
     title: test/yukicoder/1326.test.cpp
   - icon: ':heavy_check_mark:'
@@ -234,7 +234,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1490.test.cpp
     title: test/yukicoder/1490.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1641.test.cpp
     title: test/yukicoder/1641.test.cpp
   - icon: ':heavy_check_mark:'
@@ -258,7 +258,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2065.test.cpp
     title: test/yukicoder/2065.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
   - icon: ':heavy_check_mark:'
@@ -282,9 +282,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -331,7 +331,7 @@ data:
   - ds/fenwick2d_dense.hpp
   - string/trie.hpp
   timestamp: '2022-10-21 16:42:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp

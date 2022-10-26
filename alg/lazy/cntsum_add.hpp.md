@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group/add.hpp
     title: alg/group/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group/cntsum.hpp
     title: alg/group/cntsum.hpp
   _extendedRequiredBy: []
@@ -15,15 +15,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/789_2.test.cpp
     title: test/yukicoder/789_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -55,7 +55,7 @@ data:
   path: alg/lazy/cntsum_add.hpp
   requiredBy: []
   timestamp: '2022-10-21 17:59:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/789_2.test.cpp
   - test/yukicoder/1197.test.cpp

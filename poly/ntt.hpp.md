@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/convolution2d.hpp
     title: poly/convolution2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
   - icon: ':heavy_check_mark:'
@@ -95,7 +95,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/sum_of_prefix_suffix_products.hpp
     title: poly/sum_of_prefix_suffix_products.hpp
   - icon: ':heavy_check_mark:'
@@ -129,7 +129,7 @@ data:
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc269ex.test.cpp
     title: test/atcoder/abc269ex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -303,7 +303,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1755.test.cpp
     title: test/yukicoder/1755.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1796.test.cpp
     title: test/yukicoder/1796.test.cpp
   - icon: ':heavy_check_mark:'

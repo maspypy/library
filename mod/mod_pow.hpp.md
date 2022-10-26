@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
   _extendedRequiredBy:

@@ -241,12 +241,12 @@ data:
     \ }\r\n\r\n  VAL& operator[](const KEY& key) { return MP[f(key)]; }\r\n\r\n  bool\
     \ contain(const KEY& key) { return MP.contain(f(key)); }\r\n\r\n  bool count(const\
     \ KEY& key) { return MP.count(f(key)); }\r\n\r\n  void reset() { MP.reset(); }\r\
-    \n};\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
-    \      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n              \
-    \       chrono::high_resolution_clock::now().time_since_epoch())\n           \
-    \          .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n \
-    \ return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
-    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/modint61.hpp\"\
+    \n};\r\n#line 2 \"random/hash_vector.hpp\"\n\n#line 2 \"random/base.hpp\"\n\n\
+    u64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/modint61.hpp\"\
     \nstruct modint61 {\r\n  static constexpr bool is_modint = true;\r\n  static constexpr\
     \ ll mod = (1LL << 61) - 1;\r\n  ll val;\r\n  constexpr modint61(const ll x =\
     \ 0) : val(x) {\r\n    while(val < 0) val += mod;\r\n    while(val >= mod) val\
@@ -275,7 +275,7 @@ data:
     \n    return modint61(u);\r\n  }\r\n  modint61 pow(int64_t n) const {\r\n    modint61\
     \ ret(1), mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret = ret * mul;\r\
     \n      mul = mul * mul;\r\n      n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\
-    \n  static constexpr ll get_mod() { return mod; }\r\n};\r\n#line 3 \"random/hash_vector.hpp\"\
+    \n  static constexpr ll get_mod() { return mod; }\r\n};\r\n#line 5 \"random/hash_vector.hpp\"\
     \n\ntemplate <typename T>\nll hash_vector(vc<T> X) {\n  using mint = modint61;\n\
     \  static vc<mint> hash_base;\n  int n = len(X);\n  while (len(hash_base) <= n)\
     \ { hash_base.eb(RNG(mint::get_mod())); }\n  mint H = 0;\n  FOR(i, n) H += hash_base[i]\
@@ -365,11 +365,7 @@ data:
     mint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
     \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
     \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
-    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 3 \"random/hash_vector.hpp\"\
-    \n\ntemplate <typename T>\nll hash_vector(vc<T> X) {\n  using mint = modint61;\n\
-    \  static vc<mint> hash_base;\n  int n = len(X);\n  while (len(hash_base) <= n)\
-    \ { hash_base.eb(RNG(mint::get_mod())); }\n  mint H = 0;\n  FOR(i, n) H += hash_base[i]\
-    \ * mint(X[i]);\n  H += hash_base[n];\n  return H.val;\n}\n#line 3 \"connected_dp/squares.hpp\"\
+    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 3 \"connected_dp/squares.hpp\"\
     \n\nnamespace connected_dp_squares {\n// pair<\u65B0\u3057\u3044\u72B6\u614B\u3001\
     \u4ECA\u306E\u6210\u5206 \u2192 \u65B0\u3057\u3044\u6210\u5206>\nvc<pair<vc<int>,\
     \ vc<int>>> next_states(const vc<int>& now) {\n  int N = len(now);\n  vc<pair<vc<int>,\
@@ -481,7 +477,7 @@ data:
   isVerificationFile: true
   path: test/mytest/tdpc_grid_dp.test.cpp
   requiredBy: []
-  timestamp: '2022-10-24 21:07:09+09:00'
+  timestamp: '2022-10-26 11:17:35+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/tdpc_grid_dp.test.cpp

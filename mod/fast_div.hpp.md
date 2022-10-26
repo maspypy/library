@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/tetration.hpp
     title: mod/tetration.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/crt.hpp
     title: nt/crt.hpp
   - icon: ':heavy_check_mark:'
@@ -66,12 +66,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1956.test.cpp
     title: test/yukicoder/1956.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://judge.yosupo.jp/submission/46090
@@ -112,7 +112,7 @@ data:
   - nt/lcm.hpp
   - nt/crt.hpp
   timestamp: '2022-05-12 00:26:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/590.test.cpp
   - test/yukicoder/1956.test.cpp

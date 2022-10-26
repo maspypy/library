@@ -6,12 +6,12 @@ data:
     path: alg/lazy/maxidx_add.hpp
     title: alg/lazy/maxidx_add.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/max_idx.hpp\"\ntemplate <typename T, bool tie_is_left\
@@ -33,7 +33,7 @@ data:
   requiredBy:
   - alg/lazy/maxidx_add.hpp
   timestamp: '2022-10-21 16:22:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/529.test.cpp
 documentation_of: alg/monoid/max_idx.hpp

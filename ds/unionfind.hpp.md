@@ -14,13 +14,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/functional.hpp
     title: graph/functional.hpp
   - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':warning:'
@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/online_unionfind.hpp
     title: graph/online_unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
   _extendedVerifiedWith:
@@ -45,7 +45,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -66,10 +66,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1170_2.test.cpp
     title: test/yukicoder/1170_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1211.test.cpp
     title: test/yukicoder/1211.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1242.test.cpp
     title: test/yukicoder/1242.test.cpp
   - icon: ':heavy_check_mark:'
@@ -78,13 +78,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1392.test.cpp
     title: test/yukicoder/1392.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1451.test.cpp
     title: test/yukicoder/1451.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1479.test.cpp
     title: test/yukicoder/1479.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1600.test.cpp
     title: test/yukicoder/1600.test.cpp
   - icon: ':heavy_check_mark:'
@@ -96,15 +96,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1911.test.cpp
     title: test/yukicoder/1911.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1983.test.cpp
     title: test/yukicoder/1983.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/unionfind.hpp\"\n\nstruct UnionFind {\n  int n;\n  int\
@@ -145,7 +145,7 @@ data:
   - graph/check_bipartite.hpp
   - geo/manhattan_mst.hpp
   timestamp: '2022-10-24 17:15:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/tutte.test.cpp
   - test/yukicoder/590.test.cpp
