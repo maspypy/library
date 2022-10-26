@@ -105,6 +105,9 @@ data:
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/shortest_path/K_shortest_path.hpp
+    title: graph/shortest_path/K_shortest_path.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/bellmanford.hpp
     title: graph/shortest_path/bellmanford.hpp
   - icon: ':heavy_check_mark:'
@@ -306,6 +309,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1069.test.cpp
+    title: test/yukicoder/1069.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/114.test.cpp
     title: test/yukicoder/114.test.cpp
@@ -528,6 +534,7 @@ data:
   - graph/tree_diameter.hpp
   - graph/toposort.hpp
   - graph/minimum_spanning_tree.hpp
+  - graph/shortest_path/K_shortest_path.hpp
   - graph/shortest_path/dial.hpp
   - graph/shortest_path/bellmanford.hpp
   - graph/shortest_path/warshall_floyd.hpp
@@ -590,6 +597,7 @@ data:
   - test/yukicoder/1641.test.cpp
   - test/yukicoder/1479.test.cpp
   - test/yukicoder/1744.test.cpp
+  - test/yukicoder/1069.test.cpp
   - test/yukicoder/1216.test.cpp
   - test/yukicoder/1320.test.cpp
   - test/yukicoder/1170.test.cpp

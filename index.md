@@ -659,6 +659,9 @@ data:
   - name: graph/shortest_path
     pages:
     - icon: ':heavy_check_mark:'
+      path: graph/shortest_path/K_shortest_path.hpp
+      title: graph/shortest_path/K_shortest_path.hpp
+    - icon: ':heavy_check_mark:'
       path: graph/shortest_path/bellmanford.hpp
       title: graph/shortest_path/bellmanford.hpp
     - icon: ':heavy_check_mark:'
@@ -2089,6 +2092,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1038.test.cpp
       title: test/yukicoder/1038.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1069.test.cpp
+      title: test/yukicoder/1069.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1077.test.cpp
       title: test/yukicoder/1077.test.cpp
