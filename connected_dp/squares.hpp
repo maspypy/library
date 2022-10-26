@@ -123,7 +123,7 @@ pair<vvc<int>, vc<pair<int, int>>> polygon_dp_graph(int N) {
         edges.eb(p, 1);
         continue;
       }
-      bool ok = [&]() -> bool {
+      bool ok = [&](vc<int>& now, vc<int>& nxt, vc<int>& convert) -> bool {
         // 頂点のみで接するのはダメ
         FOR(i, N - 1) {
           bool a1 = now[i] != -1, a2 = now[i + 1] != -1;
@@ -147,7 +147,7 @@ pair<vvc<int>, vc<pair<int, int>>> polygon_dp_graph(int N) {
           if (cl) close++;
         }
         return a - close == after;
-      }();
+      }(now, nxt, convert);
       if (!ok) continue;
       ll h = hash_vector<int>(nxt);
       if (!MP.count(h)) {
