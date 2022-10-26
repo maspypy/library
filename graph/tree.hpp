@@ -3,11 +3,10 @@
 
 // HLD euler tour をとっていろいろ。
 // 木以外、非連結でも dfs 順序や親がとれる。
-template <typename Graph>
+template <typename GT>
 struct TREE {
-  Graph &G;
-  using Graph_type = Graph;
-  using WT = typename Graph::cost_type;
+  GT &G;
+  using WT = typename GT::cost_type;
   int N;
   bool hld;
   vector<int> LID, RID, head, V, parent, root;
@@ -15,7 +14,7 @@ struct TREE {
   vc<WT> depth_weighted;
   vector<bool> in_tree;
 
-  TREE(Graph &G, int r = -1, bool hld = 1)
+  TREE(GT &G, int r = -1, bool hld = 1)
       : G(G),
         N(G.N),
         hld(hld),
@@ -54,7 +53,7 @@ struct TREE {
     auto &csr = G.csr_edges;
     // 使う辺があれば先頭にする
     for (int i = r - 2; i >= l; --i) {
-      if (depth[csr[i + 1].to] == -1) swap(csr[i], csr[i + 1]);
+      if (hld && depth[csr[i + 1].to] == -1) swap(csr[i], csr[i + 1]);
     }
     int hld_sz = 0;
     for (int i = l; i < r; ++i) {
