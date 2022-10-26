@@ -1,6 +1,7 @@
 #include "graph/base.hpp"
-template <typename Graph>
-vc<int> find_centroids(Graph& G) {
+
+template <typename GT>
+vc<int> find_centroids(GT& G) {
   int N = G.N;
   vc<int> par(N, -1);
   vc<int> V(N);
@@ -35,17 +36,17 @@ vc<int> find_centroids(Graph& G) {
   return ANS;
 }
 
-template <typename Graph>
+template <typename GT>
 struct CentroidDecomposition {
-  using edge_type = typename Graph::edge_type;
-  Graph& G;
+  using edge_type = typename GT::edge_type;
+  GT& G;
   int N;
   vc<int> sz;
   vc<int> par;
   vector<int> cdep; // depth in centroid tree
   bool calculated;
 
-  CentroidDecomposition(Graph& G)
+  CentroidDecomposition(GT& G)
       : G(G), N(G.N), sz(G.N), par(G.N), cdep(G.N, -1) {
     calculated = 0;
     build();
@@ -128,5 +129,35 @@ public:
   vc<vc<pair<int, int>>> collect_dist(int root) {
     auto f = [&](int x, auto e) -> int { return x + 1; };
     return collect(root, 0, f);
+  }
+
+  // (V, H), V[i] は、H における頂点 i の G における番号
+  // 頂点は EulerTour 順に並ぶ
+  pair<vc<int>, Graph<typename GT::cost_type, true>> get_subgraph(int root) {
+    static vc<int> conv;
+    while (len(conv) < N) conv.eb(-1);
+
+    vc<int> V;
+    using cost_type = typename GT::cost_type;
+    vc<tuple<int, int, cost_type>> edges;
+
+    auto dfs = [&](auto& dfs, int v, int p) -> void {
+      conv[v] = len(V);
+      V.eb(v);
+      for (auto&& e: G[v]) {
+        int to = e.to;
+        if (to == p) continue;
+        if (cdep[to] < cdep[root]) continue;
+        dfs(dfs, to, v);
+        edges.eb(conv[v], conv[to], e.cost);
+      }
+    };
+    dfs(dfs, root, -1);
+    int n = len(V);
+    Graph<typename GT::cost_type, true> H(n);
+    for (auto&& [a, b, c]: edges) H.add(a, b, c);
+    H.build();
+    for (auto&& v: V) conv[v] = -1;
+    return {V, H};
   }
 };
