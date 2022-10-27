@@ -67,3 +67,8 @@ void solve() {
   mint ANS = calc_tdpc_grid(H, W);
   print(ANS);
 }
+
+signed main() {
+  solve();
+  return 0;
+}
