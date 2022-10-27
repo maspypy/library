@@ -1,6 +1,6 @@
 #include "poly/convolution.hpp"
 
-// g[i] = \sum binom(i, j) f[j]
+// g[i] = sum binom(i, j) f[j]
 template <typename mint>
 vc<mint> pascal_1(vc<mint> f, bool inverse) {
   int n = len(f);
@@ -14,7 +14,7 @@ vc<mint> pascal_1(vc<mint> f, bool inverse) {
   return f;
 }
 
-// g[i] = \sum binom(j, i) f[j]
+// g[i] = sum binom(j, i) f[j]
 template <typename mint>
 vc<mint> pascal_2(vc<mint> f, bool inverse) {
   int n = len(f);
