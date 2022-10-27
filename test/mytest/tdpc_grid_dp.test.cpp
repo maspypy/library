@@ -62,13 +62,19 @@ mint calc_tdpc_grid(int H, int W) {
   return dp[1];
 }
 
+void test() {
+  assert(calc_tdpc_grid(2, 2).val == 3);
+  assert(calc_tdpc_grid(5, 8).val == 950397139);
+  assert(calc_tdpc_grid(8, 5).val == 950397139);
+}
+
 void solve() {
-  LL(H, W);
-  mint ANS = calc_tdpc_grid(H, W);
-  print(ANS);
+  LL(a, b);
+  print(a + b);
 }
 
 signed main() {
+  test();
   solve();
   return 0;
 }
