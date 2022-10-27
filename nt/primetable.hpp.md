@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':heavy_check_mark:'
@@ -44,6 +44,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
+  - icon: ':question:'
+    path: seq/famous/eulerian_number.hpp
+    title: seq/famous/eulerian_number.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
@@ -94,6 +97,9 @@ data:
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/eulerian_number.test.cpp
+    title: test/mytest/eulerian_number.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/prime_sum.test.cpp
     title: test/mytest/prime_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -129,6 +135,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1781.test.cpp
     title: test/yukicoder/1781.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1821.test.cpp
+    title: test/yukicoder/1821.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1875.test.cpp
     title: test/yukicoder/1875.test.cpp
@@ -138,9 +147,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/2005.test.cpp
+    title: test/yukicoder/2005.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\nvc<ll> primetable(int LIM) {\n  ++LIM;\n\
@@ -172,6 +184,7 @@ data:
   - poly/poly_taylor_shift.hpp
   - linalg/det_A_plus_xB.hpp
   - seq/famous/stirling_number_1.hpp
+  - seq/famous/eulerian_number.hpp
   - seq/famous/stirling_number_2.hpp
   - seq/famous/surjection.hpp
   - mod/tetration.hpp
@@ -187,17 +200,20 @@ data:
   - nt/multiplicative_sum.hpp
   - nt/primesum.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/prime_sum.test.cpp
   - test/mytest/primesum_mod6.test.cpp
   - test/mytest/primesum_mod4.test.cpp
+  - test/mytest/eulerian_number.test.cpp
   - test/mytest/bell.test.cpp
   - test/yukicoder/1321.test.cpp
   - test/yukicoder/1881.test.cpp
   - test/yukicoder/1262.test.cpp
   - test/yukicoder/1781.test.cpp
+  - test/yukicoder/2005.test.cpp
   - test/yukicoder/1666.test.cpp
+  - test/yukicoder/1821.test.cpp
   - test/yukicoder/1392.test.cpp
   - test/yukicoder/1875.test.cpp
   - test/yukicoder/1303.test.cpp

@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/convolution2d.hpp
     title: poly/convolution2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
   - icon: ':heavy_check_mark:'
@@ -71,7 +71,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/online_convolution.hpp
     title: poly/online_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/pascal.hpp
     title: poly/pascal.hpp
   - icon: ':heavy_check_mark:'
@@ -101,7 +101,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/sum_of_prefix_suffix_products.hpp
     title: poly/sum_of_prefix_suffix_products.hpp
   - icon: ':heavy_check_mark:'
@@ -110,6 +110,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
+  - icon: ':question:'
+    path: seq/famous/eulerian_number.hpp
+    title: seq/famous/eulerian_number.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/partition_number.hpp
     title: seq/famous/partition_number.hpp
@@ -135,7 +138,7 @@ data:
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc269ex.test.cpp
     title: test/atcoder/abc269ex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -265,6 +268,9 @@ data:
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/eulerian_number.test.cpp
+    title: test/mytest/eulerian_number.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
@@ -315,6 +321,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1796.test.cpp
     title: test/yukicoder/1796.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1821.test.cpp
+    title: test/yukicoder/1821.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1844.test.cpp
     title: test/yukicoder/1844.test.cpp
@@ -339,13 +348,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1962.test.cpp
     title: test/yukicoder/1962.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2005.test.cpp
+    title: test/yukicoder/2005.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2062.test.cpp
     title: test/yukicoder/2062.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2097.test.cpp
     title: test/yukicoder/2097.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2108.test.cpp
     title: test/yukicoder/2108.test.cpp
   - icon: ':heavy_check_mark:'
@@ -417,6 +429,7 @@ data:
   - seq/kth_term_of_p_recursive.hpp
   - seq/interpolate_poly_exp_sum.hpp
   - seq/famous/stirling_number_1.hpp
+  - seq/famous/eulerian_number.hpp
   - seq/famous/partition_number.hpp
   - seq/famous/bell_number_large.hpp
   - seq/famous/stirling_number_2.hpp
@@ -431,6 +444,7 @@ data:
   verifiedWith:
   - test/mytest/conv_leq.test.cpp
   - test/mytest/enum_partitions.test.cpp
+  - test/mytest/eulerian_number.test.cpp
   - test/mytest/conv2d.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/bell.test.cpp
@@ -438,6 +452,7 @@ data:
   - test/yukicoder/590.test.cpp
   - test/yukicoder/1549.test.cpp
   - test/yukicoder/1321.test.cpp
+  - test/yukicoder/2005.test.cpp
   - test/yukicoder/1685.test.cpp
   - test/yukicoder/1956.test.cpp
   - test/yukicoder/1533.test.cpp
@@ -446,6 +461,7 @@ data:
   - test/yukicoder/541.test.cpp
   - test/yukicoder/1844.test.cpp
   - test/yukicoder/1857.test.cpp
+  - test/yukicoder/1821.test.cpp
   - test/yukicoder/187.test.cpp
   - test/yukicoder/1392.test.cpp
   - test/yukicoder/1618.test.cpp

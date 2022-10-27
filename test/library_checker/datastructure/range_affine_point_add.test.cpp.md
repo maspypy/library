@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/group/affine.hpp
     title: alg/group/affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/dualsegtree.hpp
     title: ds/dualsegtree.hpp
   - icon: ':question:'

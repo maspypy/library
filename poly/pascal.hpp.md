@@ -21,12 +21,12 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2108.test.cpp
     title: test/yukicoder/2108.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n\
@@ -295,23 +295,23 @@ data:
     \ modint998>::value, vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>&\
     \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
-    \ b);\r\n}\r\n#line 2 \"poly/pascal.hpp\"\n\n// g[i] = \\sum binom(i, j) f[j]\n\
+    \ b);\r\n}\r\n#line 2 \"poly/pascal.hpp\"\n\n// g[i] = sum binom(i, j) f[j]\n\
     template <typename mint>\nvc<mint> pascal_1(vc<mint> f, bool inverse) {\n  int\
     \ n = len(f);\n  vc<mint> g(n);\n  FOR(i, n) g[i] = fact_inv<mint>(i);\n  if (inverse)\
     \ FOR(i, n) if (i & 1) g[i] = -g[i];\n  FOR(i, n) f[i] *= fact_inv<mint>(i);\n\
     \  f = convolution(f, g);\n  f.resize(n);\n  FOR(i, n) f[i] *= fact<mint>(i);\n\
-    \  return f;\n}\n\n// g[i] = \\sum binom(j, i) f[j]\ntemplate <typename mint>\n\
+    \  return f;\n}\n\n// g[i] = sum binom(j, i) f[j]\ntemplate <typename mint>\n\
     vc<mint> pascal_2(vc<mint> f, bool inverse) {\n  int n = len(f);\n  FOR(i, n)\
     \ f[i] *= fact<mint>(i);\n  reverse(all(f));\n  vc<mint> g(n);\n  FOR(i, n) g[i]\
     \ = fact_inv<mint>(i);\n  if (inverse) FOR(i, n) if (i & 1) g[i] = -g[i];\n  f\
     \ = convolution(f, g);\n  f.resize(n);\n  reverse(all(f));\n  FOR(i, n) f[i] *=\
     \ fact_inv<mint>(i);\n  return f;\n}\n"
-  code: "#include \"poly/convolution.hpp\"\n\n// g[i] = \\sum binom(i, j) f[j]\ntemplate\
+  code: "#include \"poly/convolution.hpp\"\n\n// g[i] = sum binom(i, j) f[j]\ntemplate\
     \ <typename mint>\nvc<mint> pascal_1(vc<mint> f, bool inverse) {\n  int n = len(f);\n\
     \  vc<mint> g(n);\n  FOR(i, n) g[i] = fact_inv<mint>(i);\n  if (inverse) FOR(i,\
     \ n) if (i & 1) g[i] = -g[i];\n  FOR(i, n) f[i] *= fact_inv<mint>(i);\n  f = convolution(f,\
     \ g);\n  f.resize(n);\n  FOR(i, n) f[i] *= fact<mint>(i);\n  return f;\n}\n\n\
-    // g[i] = \\sum binom(j, i) f[j]\ntemplate <typename mint>\nvc<mint> pascal_2(vc<mint>\
+    // g[i] = sum binom(j, i) f[j]\ntemplate <typename mint>\nvc<mint> pascal_2(vc<mint>\
     \ f, bool inverse) {\n  int n = len(f);\n  FOR(i, n) f[i] *= fact<mint>(i);\n\
     \  reverse(all(f));\n  vc<mint> g(n);\n  FOR(i, n) g[i] = fact_inv<mint>(i);\n\
     \  if (inverse) FOR(i, n) if (i & 1) g[i] = -g[i];\n  f = convolution(f, g);\n\
@@ -327,8 +327,8 @@ data:
   isVerificationFile: false
   path: poly/pascal.hpp
   requiredBy: []
-  timestamp: '2022-10-24 08:51:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-10-27 22:49:34+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/2108.test.cpp
 documentation_of: poly/pascal.hpp

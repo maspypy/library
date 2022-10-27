@@ -207,7 +207,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc266c.test.cpp
     title: test/atcoder/abc266c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc266f.test.cpp
     title: test/atcoder/abc266f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -216,10 +216,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc266h_2.test.cpp
     title: test/atcoder/abc266h_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc269ex.test.cpp
     title: test/atcoder/abc269ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -730,6 +730,9 @@ data:
     path: test/mytest/enumerate_products.test.cpp
     title: test/mytest/enumerate_products.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/eulerian_number.test.cpp
+    title: test/mytest/eulerian_number.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1146,6 +1149,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1818.test.cpp
     title: test/yukicoder/1818.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1821.test.cpp
+    title: test/yukicoder/1821.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1826.test.cpp
     title: test/yukicoder/1826.test.cpp
@@ -1218,7 +1224,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2003.test.cpp
     title: test/yukicoder/2003.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2005.test.cpp
     title: test/yukicoder/2005.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1239,7 +1245,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2102.test.cpp
     title: test/yukicoder/2102.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2108.test.cpp
     title: test/yukicoder/2108.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1573,6 +1579,7 @@ data:
   - test/mytest/incremental_ch.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
+  - test/mytest/eulerian_number.test.cpp
   - test/mytest/powerquery.test.cpp
   - test/mytest/all_but_one_products.test.cpp
   - test/mytest/tutte.test.cpp
@@ -1655,6 +1662,7 @@ data:
   - test/yukicoder/705.test.cpp
   - test/yukicoder/1726.test.cpp
   - test/yukicoder/1750.test.cpp
+  - test/yukicoder/1821.test.cpp
   - test/yukicoder/1435.test.cpp
   - test/yukicoder/502.test.cpp
   - test/yukicoder/2066.test.cpp

@@ -2,23 +2,20 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: alg/group/mul.hpp
-    title: alg/group/mul.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/swag.hpp
-    title: ds/swag.hpp
-  - icon: ':heavy_check_mark:'
-    path: linalg/mat_mul.hpp
-    title: linalg/mat_mul.hpp
-  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
+    path: mod/powertable.hpp
+    title: mod/powertable.hpp
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
+  - icon: ':question:'
+    path: nt/primetable.hpp
+    title: nt/primetable.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
@@ -31,18 +28,12 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/lagrange_interpolate_iota.hpp
-    title: poly/lagrange_interpolate_iota.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/prefix_product_of_poly.hpp
-    title: poly/prefix_product_of_poly.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/kth_term_of_p_recursive.hpp
-    title: seq/kth_term_of_p_recursive.hpp
+  - icon: ':question:'
+    path: seq/famous/eulerian_number.hpp
+    title: seq/famous/eulerian_number.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -50,19 +41,20 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/502
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://yukicoder.me/problems/no/502
-  bundledCode: "#line 1 \"test/yukicoder/502_2.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/502\"\
-    \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
-    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
-    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
-    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
-    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/mytest/eulerian_number.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#pragma\
+    \ GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -232,150 +224,122 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"linalg/mat_mul.hpp\"\n\r\ntemplate <class T, is_modint_t<T>*\
-    \ = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n\
-    \  const int mod = T::get_mod();\r\n  auto N = len(A), M = len(B), K = len(B[0]);\r\
-    \n  vv(int, b, K, M);\r\n  FOR(i, M) FOR(j, K) b[j][i] = B[i][j].val;\r\n  vv(T,\
-    \ C, N, K);\r\n  FOR(i, N) {\r\n    FOR(j, K) {\r\n      i128 sm = 0;\r\n    \
-    \  FOR(m, M) { sm += ll(A[i][m].val) * b[j][m]; }\r\n      C[i][j] = sm % mod;\r\
-    \n    }\r\n  }\r\n  return C;\r\n}\r\n\r\ntemplate <class T, is_not_modint_t<T>*\
-    \ = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n\
-    \  auto N = len(A), M = len(B), K = len(B[0]);\r\n  vv(T, C, N, K);\r\n  FOR(n,\
-    \ N) FOR(m, M) FOR(k, K) C[n][k] += A[n][m] * B[m][k];\r\n  return C;\r\n}\r\n\
-    #line 2 \"alg/group/mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Group_Mul {\r\n\
-    \  using value_type = T;\r\n  using X = T;\r\n  static constexpr X op(const X\
-    \ &x, const X &y) noexcept { return x * y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return X(1) / x; }\r\n  static constexpr X unit() { return\
-    \ X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"ds/swag.hpp\"\
-    \ntemplate <class Monoid>\nstruct SWAG {\n  using X = typename Monoid::value_type;\n\
-    \  using value_type = X;\n  int sz = 0;\n  vc<X> dat;\n  vc<X> cum_l;\n  X cum_r;\n\
-    \n  SWAG() : cum_l({Monoid::unit()}), cum_r(Monoid::unit()) {}\n\n  int size()\
-    \ { return sz; }\n\n  void push(X x) {\n    ++sz;\n    cum_r = Monoid::op(cum_r,\
-    \ x);\n    dat.eb(x);\n  }\n\n  void pop() {\n    --sz;\n    cum_l.pop_back();\n\
-    \    if (len(cum_l) == 0) {\n      cum_l = {Monoid::unit()};\n      cum_r = Monoid::unit();\n\
-    \      while (len(dat) > 1) {\n        cum_l.eb(Monoid::op(dat.back(), cum_l.back()));\n\
-    \        dat.pop_back();\n      }\n      dat.pop_back();\n    }\n  }\n\n  X lprod()\
-    \ { return cum_l.back(); }\n  X rprod() { return cum_r; }\n\n  X prod() { return\
-    \ Monoid::op(cum_l.back(), cum_r); }\n\n  void debug() {\n    print(\"swag\");\n\
-    \    print(\"dat\", dat);\n    print(\"cum_l\", cum_l);\n    print(\"cum_r\",\
-    \ cum_r);\n  }\n};\n\n// \u5B9A\u6570\u500D\u306F\u76EE\u306B\u898B\u3048\u3066\
-    \u9045\u304F\u306A\u308B\u306E\u3067\u3001queue \u3067\u3088\u3044\u3068\u304D\
-    \u306F\u4F7F\u308F\u306A\u3044\ntemplate <class Monoid>\nstruct SWAG_deque {\n\
-    \  using X = typename Monoid::value_type;\n  using value_type = X;\n  int sz;\n\
-    \  vc<X> dat_l, dat_r;\n  vc<X> cum_l, cum_r;\n\n  SWAG_deque() : sz(0), cum_l({Monoid::unit()}),\
-    \ cum_r({Monoid::unit()}) {}\n\n  int size() { return sz; }\n\n  void push_back(X\
-    \ x) {\n    ++sz;\n    dat_r.eb(x);\n    cum_r.eb(Monoid::op(cum_r.back(), x));\n\
-    \  }\n\n  void push_front(X x) {\n    ++sz;\n    dat_l.eb(x);\n    cum_l.eb(Monoid::op(x,\
-    \ cum_l.back()));\n  }\n\n  void push(X x) { push_back(x); }\n\n  void clear()\
-    \ {\n    sz = 0;\n    dat_l.clear(), dat_r.clear();\n    cum_l = {Monoid::unit()},\
-    \ cum_r = {Monoid::unit()};\n  }\n\n  void pop_front() {\n    if (sz == 1) return\
-    \ clear();\n    if (dat_l.empty()) rebuild();\n    --sz;\n    dat_l.pop_back();\n\
-    \    cum_l.pop_back();\n  }\n\n  void pop_back() {\n    if (sz == 1) return clear();\n\
-    \    if (dat_r.empty()) rebuild();\n    --sz;\n    dat_r.pop_back();\n    cum_r.pop_back();\n\
-    \  }\n\n  void pop() { pop_front(); }\n\n  X lprod() { return cum_l.back(); }\n\
-    \  X rprod() { return cum_r.back(); }\n  X prod() { return Monoid::op(cum_l.back(),\
-    \ cum_r.back()); }\n  X prod_all() { return prod(); }\n\n  void debug() {\n  \
-    \  print(\"swag\");\n    print(\"dat_l\", dat_l);\n    print(\"dat_r\", dat_r);\n\
-    \    print(\"cum_l\", cum_l);\n    print(\"cum_r\", cum_r);\n  }\n\nprivate:\n\
-    \  void rebuild() {\n    vc<X> X;\n    FOR_R(i, len(dat_l)) X.eb(dat_l[i]);\n\
-    \    X.insert(X.end(), all(dat_r));\n    clear();\n    int m = len(X) / 2;\n \
-    \   FOR_R(i, m) push_front(X[i]);\n    FOR(i, m, len(X)) push_back(X[i]);\n  \
-    \  assert(sz == len(X));\n  }\n};\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int\
-    \ mod>\nstruct modint {\n  static constexpr bool is_modint = true;\n  int val;\n\
-    \  constexpr modint(const ll val = 0) noexcept\n      : val(val >= 0 ? val % mod\
-    \ : (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint &other) const\
-    \ {\n    return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
-    \ modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n\
-    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >=\
-    \ mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint\
-    \ &p) {\n    val = (int)(1LL * val * p.val % mod);\n    return *this;\n  }\n \
-    \ modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
-    \ *this;\n  }\n  modint operator-() const { return modint(-val); }\n  modint operator+(const\
-    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
-    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
-    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
-    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
-    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
-    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
-    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
-    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t n) const {\n\
-    \    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
-    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr\
-    \ int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr\
-    \ bool is_modint = true;\n  int val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t\
-    \ y)\n      : val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y)\
-    \ % get_mod()) % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other)\
-    \ const {\n    return val < other.val;\n  } // To use std::map<ArbitraryModInt,\
-    \ T>\n  static int &get_mod() {\n    static int mod = 0;\n    return mod;\n  }\n\
-    \  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
-    \ ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
-    \    return *this;\n  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p)\
-    \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
-    \ *this;\n  }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n   \
-    \ long long a = (long long)val * p.val;\n    int xh = (int)(a >> 32), xl = (int)a,\
-    \ d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"(m) : \"d\"(xh), \"a\"\
-    (xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n  }\n  ArbitraryModInt\
-    \ &operator/=(const ArbitraryModInt &p) {\n    *this *= p.inverse();\n    return\
-    \ *this;\n  }\n  ArbitraryModInt operator-() const { return ArbitraryModInt(get_mod()\
-    \ - val); }\n  ArbitraryModInt operator+(const ArbitraryModInt &p) const {\n \
-    \   return ArbitraryModInt(*this) += p;\n  }\n  ArbitraryModInt operator-(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) -= p;\n  }\n\
-    \  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
-    \ *= p;\n  }\n  ArbitraryModInt operator/(const ArbitraryModInt &p) const {\n\
-    \    return ArbitraryModInt(*this) /= p;\n  }\n  bool operator==(const ArbitraryModInt\
-    \ &p) const { return val == p.val; }\n  bool operator!=(const ArbitraryModInt\
-    \ &p) const { return val != p.val; }\n  ArbitraryModInt inverse() const {\n  \
-    \  int a = val, b = get_mod(), u = 1, v = 0, t;\n    while (b > 0) {\n      t\
-    \ = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return\
-    \ ArbitraryModInt(u);\n  }\n  ArbitraryModInt pow(int64_t n) const {\n    ArbitraryModInt\
-    \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
-    \ mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n};\n\ntemplate <typename\
-    \ mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n  static\
-    \ vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n \
-    \ while (int(dat.size()) <= n) {\n    int k = dat.size();\n    auto q = (mod +\
-    \ k - 1) / k;\n    int r = k * q - mod;\n    dat.emplace_back(dat[r] * mint(q));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
-    \ const int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  assert(0\
-    \ <= n);\n  if (n >= mod) return 0;\n  while (int(dat.size()) <= n) {\n    int\
-    \ k = dat.size();\n    dat.emplace_back(dat[k - 1] * mint(k));\n  }\n  return\
-    \ dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static const\
-    \ int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  assert(0\
-    \ <= n && n < mod);\n  while (int(dat.size()) <= n) {\n    int k = dat.size();\n\
-    \    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n  }\n  return dat[n];\n}\n\n\
-    template <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1)\
-    \ * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head, class...\
-    \ Tail>\nmint multinomial(Head &&head, Tail &&... tail) {\n  return fact<mint>(head)\
-    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
-    mint C_dense(int n, int k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\
-    \n  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j == 0 ?\
-    \ mint(1) : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n \
-    \ };\n\n  if (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j,\
-    \ W, k + 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <=\
-    \ n) {\n    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n\
-    \      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return\
-    \ C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool dense = false>\n\
-    mint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if\
-    \ (dense) return C_dense<mint>(n, k);\n  if (!large) return fact<mint>(n) * fact_inv<mint>(k)\
-    \ * fact_inv<mint>(n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) {\
-    \ x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n  return x;\n}\n\ntemplate <typename\
-    \ mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0\
-    \ <= k && k <= n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n\
-    \ - k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\
+    \ { yes(!t); }\r\n#line 4 \"test/mytest/eulerian_number.test.cpp\"\n\n#line 2\
+    \ \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n  static constexpr\
+    \ bool is_modint = true;\n  int val;\n  constexpr modint(const ll val = 0) noexcept\n\
+    \      : val(val >= 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const\
+    \ modint &other) const {\n    return val < other.val;\n  } // To use std::map\n\
+    \  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -=\
+    \ mod;\n    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if\
+    \ ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint\
+    \ &operator*=(const modint &p) {\n    val = (int)(1LL * val * p.val % mod);\n\
+    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
+    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint(-val);\
+    \ }\n  modint operator+(const modint &p) const { return modint(*this) += p; }\n\
+    \  modint operator-(const modint &p) const { return modint(*this) -= p; }\n  modint\
+    \ operator*(const modint &p) const { return modint(*this) *= p; }\n  modint operator/(const\
+    \ modint &p) const { return modint(*this) /= p; }\n  bool operator==(const modint\
+    \ &p) const { return val == p.val; }\n  bool operator!=(const modint &p) const\
+    \ { return val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod,\
+    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
+    \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
+    \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
+    \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
+    \  }\n  static constexpr int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
+    \ {\n  static constexpr bool is_modint = true;\n  int val;\n  ArbitraryModInt()\
+    \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
+    \                   : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
+    \ ArbitraryModInt &other) const {\n    return val < other.val;\n  } // To use\
+    \ std::map<ArbitraryModInt, T>\n  static int &get_mod() {\n    static int mod\
+    \ = 0;\n    return mod;\n  }\n  static void set_mod(int md) { get_mod() = md;\
+    \ }\n  ArbitraryModInt &operator+=(const ArbitraryModInt &p) {\n    if ((val +=\
+    \ p.val) >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt\
+    \ &operator-=(const ArbitraryModInt &p) {\n    if ((val += get_mod() - p.val)\
+    \ >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt &operator*=(const\
+    \ ArbitraryModInt &p) {\n    long long a = (long long)val * p.val;\n    int xh\
+    \ = (int)(a >> 32), xl = (int)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d),\
+    \ \"=d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return\
+    \ *this;\n  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n   \
+    \ *this *= p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-()\
+    \ const { return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) += p;\n  }\n\
+    \  ArbitraryModInt operator-(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
+    \ -= p;\n  }\n  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n\
+    \    return ArbitraryModInt(*this) *= p;\n  }\n  ArbitraryModInt operator/(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) /= p;\n  }\n\
+    \  bool operator==(const ArbitraryModInt &p) const { return val == p.val; }\n\
+    \  bool operator!=(const ArbitraryModInt &p) const { return val != p.val; }\n\
+    \  ArbitraryModInt inverse() const {\n    int a = val, b = get_mod(), u = 1, v\
+    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
+    \ -= t * v, v);\n    }\n    return ArbitraryModInt(u);\n  }\n  ArbitraryModInt\
+    \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
+    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
+    \  }\n    return ret;\n  }\n};\n\ntemplate <typename mint>\nmint inv(int n) {\n\
+    \  static const int mod = mint::get_mod();\n  static vector<mint> dat = {0, 1};\n\
+    \  assert(0 <= n);\n  if (n >= mod) n %= mod;\n  while (int(dat.size()) <= n)\
+    \ {\n    int k = dat.size();\n    auto q = (mod + k - 1) / k;\n    int r = k *\
+    \ q - mod;\n    dat.emplace_back(dat[r] * mint(q));\n  }\n  return dat[n];\n}\n\
+    \ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  static vector<mint> dat = {1, 1};\n  assert(0 <= n);\n  if (n >= mod) return\
+    \ 0;\n  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
+    \ - 1] * mint(k));\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint\
+    \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
+    \ dat = {1, 1};\n  assert(0 <= n && n < mod);\n  while (int(dat.size()) <= n)\
+    \ {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
+    \  }\n  return dat[n];\n}\n\ntemplate <class mint, class... Ts>\nmint fact_invs(Ts...\
+    \ xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename\
+    \ mint, class Head, class... Tail>\nmint multinomial(Head &&head, Tail &&... tail)\
+    \ {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint>\
+    \ C;\n  static int H = 0, W = 0;\n\n  auto calc = [&](int i, int j) -> mint {\n\
+    \    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
+    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n\n  if (W <= k) {\n    FOR(i, H) {\n   \
+    \   C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n  \
+    \  }\n    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H,\
+    \ n + 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n\
+    \    }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint,\
+    \ bool large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >=\
+    \ 0);\n  if (k < 0 || n < k) return 0;\n  if (dense) return C_dense<mint>(n, k);\n\
+    \  if (!large) return fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n\
+    \  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *=\
+    \ fact_inv<mint>(k);\n  return x;\n}\n\ntemplate <typename mint, bool large =\
+    \ false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <=\
+    \ n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n -\
+    \ k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\
     \u8A08\u7B97\ntemplate <typename mint, bool large = false, bool dense = false>\n\
     mint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
     \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
     \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
-    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 2 \"mod/mod_inv.hpp\"\
-    \n// long \u3067\u3082\u5927\u4E08\u592B\r\nll mod_inv(ll val, ll mod) {\r\n \
-    \ val %= mod;\r\n  if (val < 0) val += mod;\r\n  ll a = val, b = mod, u = 1, v\
-    \ = 0, t;\r\n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a -= t * b, b), swap(u\
-    \ -= t * v, v);\r\n  }\r\n  if (u < 0) u += mod;\r\n  return u;\r\n}\r\n#line\
-    \ 1 \"poly/convolution_naive.hpp\"\ntemplate <class T>\r\nvector<T> convolution_naive(const\
-    \ vector<T>& a, const vector<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\
-    \n  vector<T> ans(n + m - 1);\r\n  if (n < m) {\r\n    FOR(j, m) FOR(i, n) ans[i\
-    \ + j] += a[i] * b[j];\r\n  } else {\r\n    FOR(i, n) FOR(j, m) ans[i + j] +=\
-    \ a[i] * b[j];\r\n  }\r\n  return ans;\r\n}\r\n#line 2 \"poly/ntt.hpp\"\n\r\n\
-    template <class mint>\r\nstruct ntt_info {\r\n  static constexpr int bsf_constexpr(unsigned\
+    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 2 \"nt/primetable.hpp\"\
+    \nvc<ll> primetable(int LIM) {\n  ++LIM;\n  const int S = 32768;\n  static int\
+    \ done = 2;\n  static vc<ll> primes = {2}, sieve(S + 1);\n\n  if (done < LIM)\
+    \ {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S + 1, 0);\n    const int\
+    \ R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM) * 1.1));\n    vc<pi> cp;\n\
+    \    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i]) {\n        cp.eb(i,\
+    \ i * i / 2);\n        for (int j = i * i; j <= S; j += 2 * i) sieve[j] = 1;\n\
+    \      }\n    }\n    for (int L = 1; L <= R; L += S) {\n      array<bool, S> block{};\n\
+    \      for (auto& [p, idx]: cp)\n        for (int i = idx; i < S + L; idx = (i\
+    \ += p)) block[i - L] = 1;\n      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L\
+    \ + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes, LIM + 1);\n  return {primes.begin(),\
+    \ primes.begin() + k};\n}\n#line 3 \"mod/powertable.hpp\"\n\r\n// a^0, ..., a^N\r\
+    \ntemplate <typename mint>\r\nvc<mint> powertable_1(mint a, ll N) {\r\n  // table\
+    \ of a^i\r\n  vc<mint> f(N + 1, 1);\r\n  FOR(i, N) f[i + 1] = a * f[i];\r\n  return\
+    \ f;\r\n}\r\n\r\n// 0^e, ..., N^e\r\ntemplate <typename mint>\r\nvc<mint> powertable_2(ll\
+    \ e, ll N) {\r\n  auto primes = primetable(N);\r\n  vc<mint> f(N + 1, 1);\r\n\
+    \  f[0] = mint(0).pow(e);\r\n  for (auto&& p: primes) {\r\n    if (p > N) break;\r\
+    \n    mint xp = mint(p).pow(e);\r\n    ll pp = p;\r\n    while (pp <= N) {\r\n\
+    \      ll i = pp;\r\n      while (i <= N) {\r\n        f[i] *= xp;\r\n       \
+    \ i += pp;\r\n      }\r\n      pp *= p;\r\n    }\r\n  }\r\n  return f;\r\n}\r\n\
+    #line 2 \"mod/mod_inv.hpp\"\n// long \u3067\u3082\u5927\u4E08\u592B\r\nll mod_inv(ll\
+    \ val, ll mod) {\r\n  val %= mod;\r\n  if (val < 0) val += mod;\r\n  ll a = val,\
+    \ b = mod, u = 1, v = 0, t;\r\n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a\
+    \ -= t * b, b), swap(u -= t * v, v);\r\n  }\r\n  if (u < 0) u += mod;\r\n  return\
+    \ u;\r\n}\r\n#line 1 \"poly/convolution_naive.hpp\"\ntemplate <class T>\r\nvector<T>\
+    \ convolution_naive(const vector<T>& a, const vector<T>& b) {\r\n  int n = int(a.size()),\
+    \ m = int(b.size());\r\n  vector<T> ans(n + m - 1);\r\n  if (n < m) {\r\n    FOR(j,\
+    \ m) FOR(i, n) ans[i + j] += a[i] * b[j];\r\n  } else {\r\n    FOR(i, n) FOR(j,\
+    \ m) ans[i + j] += a[i] * b[j];\r\n  }\r\n  return ans;\r\n}\r\n#line 2 \"poly/ntt.hpp\"\
+    \n\r\ntemplate <class mint>\r\nstruct ntt_info {\r\n  static constexpr int bsf_constexpr(unsigned\
     \ int n) {\r\n    int x = 0;\r\n    while (!(n & (1 << x))) x++;\r\n    return\
     \ x;\r\n  }\r\n\r\n  static constexpr int rank2 = bsf_constexpr(mint::get_mod()\
     \ - 1);\r\n  array<mint, rank2 + 1> root;\r\n  array<mint, rank2 + 1> iroot;\r\
@@ -546,105 +510,49 @@ data:
     \ modint998>::value, vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>&\
     \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
-    \ b);\r\n}\r\n#line 5 \"poly/lagrange_interpolate_iota.hpp\"\n\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> lagrange_interpolate_iota(vc<mint> &f, mint c, int m) {\r\n\
-    \  /*\r\n  Input: f(0), ..., f(n-1) and c, m (1 default)\r\n  Return: f(c), f(c+1),\
-    \ ..., f(c+m-1)\r\n  Complexity: M(n, n + m)\r\n  \u2192 m \u304C\u3068\u3066\u3082\
-    \u5C0F\u3055\u3044\u306A\u3089\u3070 O(n) \u3092 m \u56DE\u3084\u308B\u65B9\u304C\
-    \u901F\u3044\u306E\u304B\r\n  */\r\n  if (m <= 60) {\r\n    vc<mint> ANS(m);\r\
-    \n    FOR(i, m) ANS[i] = lagrange_interpolate_iota(f, c + mint(i));\r\n    return\
-    \ ANS;\r\n  }\r\n  ll n = len(f);\r\n  auto a = f;\r\n  FOR(i, n) {\r\n    a[i]\
-    \ = a[i] * fact_inv<mint>(i) * fact_inv<mint>(n - 1 - i);\r\n    if ((n - 1 -\
-    \ i) & 1) a[i] = -a[i];\r\n  }\r\n  // x = c, c+1, ... \u306B\u5BFE\u3057\u3066\
-    \ a0/x + a1/(x-1) + ... \u3092\u6C42\u3081\u3066\u304A\u304F\r\n  vc<mint> b(n\
-    \ + m - 1);\r\n  FOR(i, n + m - 1) b[i] = mint(1) / (c + mint(i - n + 1));\r\n\
-    \  a = convolution(a, b);\r\n\r\n  SWAG<Group_Mul<mint>> swag;\r\n  vc<mint> ANS(m);\r\
-    \n  ll L = 0, R = 0;\r\n  FOR(i, m) {\r\n    while (L < i) { swag.pop(), ++L;\
-    \ }\r\n    while (R - L < n) { swag.push(c + mint((R++) - n + 1)); }\r\n    auto\
-    \ coef = swag.prod();\r\n    if (coef == 0) {\r\n      ANS[i] = f[(c + i).val];\r\
-    \n    } else {\r\n      ANS[i] = a[i + n - 1] * coef;\r\n    }\r\n  }\r\n  return\
-    \ ANS;\r\n}\r\n\r\ntemplate <typename mint>\r\nmint lagrange_interpolate_iota(vc<mint>\
-    \ &f, mint c) {\r\n  /*\r\n  Input: f(0), ..., f(n-1) and c\r\n  Return: f(c)\r\
-    \n  Complexity: O(n)\r\n  */\r\n  int n = len(f);\r\n  if (int(c.val) < n) return\
-    \ f[c.val];\r\n  auto a = f;\r\n  FOR(i, n) {\r\n    a[i] = a[i] * fact_inv<mint>(i)\
-    \ * fact_inv<mint>(n - 1 - i);\r\n    if ((n - 1 - i) & 1) a[i] = -a[i];\r\n \
-    \ }\r\n  vc<mint> lp(n + 1), rp(n + 1);\r\n  lp[0] = rp[n] = 1;\r\n  FOR(i, n)\
-    \ lp[i + 1] = lp[i] * (c - i);\r\n  FOR_R(i, n) rp[i] = rp[i + 1] * (c - i);\r\
-    \n  mint ANS = 0;\r\n  FOR(i, n) ANS += a[i] * lp[i] * rp[i + 1];\r\n  return\
-    \ ANS;\r\n}\r\n#line 4 \"poly/prefix_product_of_poly.hpp\"\n\n// A[k-1]...A[0]\n\
-    // \u30A2\u30EB\u30B4\u30EA\u30BA\u30E0\u53C2\u8003\uFF1Ahttps://github.com/noshi91/n91lib_rs/blob/master/src/algorithm/polynomial_matrix_prod.rs\n\
-    // \u5B9F\u88C5\u53C2\u8003\uFF1Ahttps://nyaannyaan.github.io/library/matrix/polynomial-matrix-prefix-prod.hpp\n\
-    template <typename T>\nvc<vc<T>> prefix_product_of_poly_matrix(vc<vc<vc<T>>>&\
-    \ A, ll k) {\n  int n = len(A);\n\n  using MAT = vc<vc<T>>;\n  auto shift = [&](vc<MAT>&\
-    \ G, T x) -> vc<MAT> {\n    int d = len(G);\n    vvv(T, H, d, n, n);\n    FOR(i,\
-    \ n) FOR(j, n) {\n      vc<T> g(d);\n      FOR(l, d) g[l] = G[l][i][j];\n    \
-    \  auto h = lagrange_interpolate_iota(g, x, d);\n      FOR(l, d) H[l][i][j] =\
-    \ h[l];\n    }\n    return H;\n  };\n\n  auto evaluate = [&](vc<T>& f, T x) ->\
-    \ T {\n    T res = 0;\n    T p = 1;\n    FOR(i, len(f)) {\n      res += f[i] *\
-    \ p;\n      p *= x;\n    }\n    return res;\n  };\n\n  ll deg = 1;\n  FOR(i, n)\
-    \ FOR(j, n) chmax(deg, len(A[i][j]) - 1);\n\n  vc<MAT> G(deg + 1);\n  ll v = 1;\n\
-    \  while (deg * v * v < k) v *= 2;\n  T iv = T(1) / T(v);\n\n  FOR(i, len(G))\
-    \ {\n    T x = T(v) * T(i);\n    vv(T, mat, n, n);\n    FOR(j, n) FOR(k, n) mat[j][k]\
-    \ = evaluate(A[j][k], x);\n    G[i] = mat;\n  }\n\n  for (ll w = 1; w != v; w\
-    \ *= 2) {\n    T W = w;\n    auto G1 = shift(G, W * iv);\n    auto G2 = shift(G,\
-    \ (W * T(deg) * T(v) + T(v)) * iv);\n    auto G3 = shift(G, (W * T(deg) * T(v)\
-    \ + T(v) + W) * iv);\n    FOR(i, w * deg + 1) {\n      G[i] = mat_mul(G1[i], G[i]);\n\
-    \      G2[i] = mat_mul(G3[i], G2[i]);\n    }\n    copy(G2.begin(), G2.end() -\
-    \ 1, back_inserter(G));\n  }\n\n  vv(T, res, n, n);\n  FOR(i, n) res[i][i] = 1;\n\
-    \  ll i = 0;\n  while (i + v <= k) res = mat_mul(G[i / v], res), i += v;\n  while\
-    \ (i < k) {\n    vv(T, mat, n, n);\n    FOR(j, n) FOR(k, n) mat[j][k] = evaluate(A[j][k],\
-    \ i);\n    res = mat_mul(mat, res);\n    ++i;\n  }\n  return res;\n}\n\n// A[k-1]...A[0]\n\
-    template <typename T>\nT prefix_product_of_poly(vc<T>& f, ll k) {\n  vc<vc<vc<T>>>\
-    \ A(1);\n  A[0].resize(1);\n  A[0][0] = f;\n  auto res = prefix_product_of_poly_matrix(A,\
-    \ k);\n  return res[0][0];\n}\n#line 2 \"seq/kth_term_of_p_recursive.hpp\"\n\n\
-    // a0, ..., a_{r-1} \u304A\u3088\u3073 f_0, ..., f_r \u3092\u4E0E\u3048\u308B\n\
-    // a_r f_0(0) + a_{r-1}f_1(0) + ... = 0\n// a_{r+1} f_0(1) + a_{r}f_1(1) + ...\
-    \ = 0\ntemplate <typename T>\nT kth_term_of_p_recursive(vc<T> a, vc<vc<T>>& fs,\
-    \ ll k) {\n  int r = len(a);\n  assert(len(fs) == r + 1);\n  if (k < r) return\
-    \ a[k];\n\n  vc<vc<vc<T>>> A;\n  A.resize(r);\n  FOR(i, r) A[i].resize(r);\n \
-    \ FOR(i, r) {\n    // A[0][i] = -fs[i + 1];\n    for (auto&& x: fs[i + 1]) A[0][i].eb(-x);\n\
-    \  }\n  FOR3(i, 1, r) A[i][i - 1] = fs[0];\n  vc<T> den = fs[0];\n  auto res =\
-    \ prefix_product_of_poly_matrix(A, k - r + 1);\n  reverse(all(a));\n  T ANS =\
-    \ 0;\n  FOR(j, r) ANS += res[0][j] * a[j];\n  ANS /= prefix_product_of_poly(den,\
-    \ k - r + 1);\n  return ANS;\n}\n#line 6 \"test/yukicoder/502_2.test.cpp\"\n\n\
-    using mint = modint107;\n\nvoid solve() {\n  LL(N);\n  if (N >= mint::get_mod())\
-    \ return print(0);\n  vc<mint> a = {1};\n  vc<vc<mint>> fs(2);\n  fs[0] = {1};\n\
-    \  fs[1] = {-1, -1};\n  print(kth_term_of_p_recursive(a, fs, N));\n}\n\nsigned\
-    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/502\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"seq/kth_term_of_p_recursive.hpp\"\n#include\
-    \ \"mod/modint.hpp\"\n\nusing mint = modint107;\n\nvoid solve() {\n  LL(N);\n\
-    \  if (N >= mint::get_mod()) return print(0);\n  vc<mint> a = {1};\n  vc<vc<mint>>\
-    \ fs(2);\n  fs[0] = {1};\n  fs[1] = {-1, -1};\n  print(kth_term_of_p_recursive(a,\
-    \ fs, N));\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
+    \ b);\r\n}\r\n#line 3 \"seq/famous/eulerian_number.hpp\"\n\n// Eulerian number\n\
+    // sum n^dx^n = A_d(x) / (1-x)^{d+1} \u3068\u306A\u308B d \u6B21\u591A\u9805\u5F0F\
+    \u306E\u4FC2\u6570\u5217\ntemplate <typename mint>\nvvc<mint> eulerian_number_2d(int\
+    \ N, int K) {\n  vv(mint, A, N + 1, K + 1);\n  A[0][0] = mint(1);\n  FOR(d, N)\
+    \ FOR(k, 1, K + 1) {\n    A[d + 1][k] = mint(k) * A[d][k] + mint(d - k + 2) *\
+    \ A[d][k - 1];\n  }\n  return A;\n}\n\ntemplate <typename mint>\nvc<mint> eulerian_number_n(int\
+    \ n) {\n  vc<mint> f = powertable_2<mint>(n, n);\n  vc<mint> g(n + 1);\n  FOR(k,\
+    \ n + 1) g[k] = C<mint>(n + 1, k);\n  FOR(k, 1, n + 1, 2) g[k] = -g[k];\n  f =\
+    \ convolution(f, g);\n  f.resize(n + 1);\n  return f;\n}\n#line 7 \"test/mytest/eulerian_number.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid test() {\n  const int LIM = 100;\n  auto dp\
+    \ = eulerian_number_2d<mint>(LIM, LIM);\n\n  FOR(N, LIM + 1) {\n    auto f = eulerian_number_n<mint>(N);\n\
+    \    assert(len(f) == N + 1);\n    FOR(i, N + 1) assert(f[i] == dp[N][i]);\n \
+    \ }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n\
+    \  test();\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\n#include \"seq/famous/eulerian_number.hpp\"\
+    \n\nusing mint = modint998;\n\nvoid test() {\n  const int LIM = 100;\n  auto dp\
+    \ = eulerian_number_2d<mint>(LIM, LIM);\n\n  FOR(N, LIM + 1) {\n    auto f = eulerian_number_n<mint>(N);\n\
+    \    assert(len(f) == N + 1);\n    FOR(i, N + 1) assert(f[i] == dp[N][i]);\n \
+    \ }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n\
+    \  test();\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - seq/kth_term_of_p_recursive.hpp
-  - poly/prefix_product_of_poly.hpp
-  - linalg/mat_mul.hpp
-  - poly/lagrange_interpolate_iota.hpp
-  - alg/group/mul.hpp
-  - ds/swag.hpp
-  - poly/convolution.hpp
   - mod/modint.hpp
+  - seq/famous/eulerian_number.hpp
+  - mod/powertable.hpp
+  - nt/primetable.hpp
+  - poly/convolution.hpp
   - mod/mod_inv.hpp
   - poly/convolution_naive.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
   isVerificationFile: true
-  path: test/yukicoder/502_2.test.cpp
+  path: test/mytest/eulerian_number.test.cpp
   requiredBy: []
-  timestamp: '2022-10-24 08:51:26+09:00'
+  timestamp: '2022-10-27 22:49:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/502_2.test.cpp
+documentation_of: test/mytest/eulerian_number.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/502_2.test.cpp
-- /verify/test/yukicoder/502_2.test.cpp.html
-title: test/yukicoder/502_2.test.cpp
+- /verify/test/mytest/eulerian_number.test.cpp
+- /verify/test/mytest/eulerian_number.test.cpp.html
+title: test/mytest/eulerian_number.test.cpp
 ---
