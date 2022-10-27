@@ -22,6 +22,9 @@ data:
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1881.test.cpp
+    title: test/yukicoder/1881.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/541.test.cpp
     title: test/yukicoder/541.test.cpp
   - icon: ':heavy_check_mark:'
@@ -90,6 +93,7 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/tdpc_grid_dp.test.cpp
+  - test/yukicoder/1881.test.cpp
   - test/yukicoder/1397.test.cpp
   - test/yukicoder/541.test.cpp
   - test/yukicoder/578.test.cpp

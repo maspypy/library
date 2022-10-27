@@ -447,7 +447,7 @@ data:
     \  vc<mint> dp(S);\n  dp[0] = mint(1);\n  FOR(W + 1) {\n    vc<mint> newdp(S);\n\
     \    for (auto&& [a, b]: edges) newdp[b] += dp[a];\n    swap(dp, newdp);\n  }\n\
     \  return dp[1];\n}\n\nvoid solve() {\n  LL(H, W);\n  mint ANS = calc_tdpc_grid(H,\
-    \ W);\n  print(ANS);\n}\n"
+    \ W);\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"ds/hashmap.hpp\"\n#include \"random/hash_vector.hpp\"\
     \n#include \"mod/modint.hpp\"\n#include \"connected_dp/squares.hpp\"\n\nusing\
@@ -465,7 +465,7 @@ data:
     \  vc<mint> dp(S);\n  dp[0] = mint(1);\n  FOR(W + 1) {\n    vc<mint> newdp(S);\n\
     \    for (auto&& [a, b]: edges) newdp[b] += dp[a];\n    swap(dp, newdp);\n  }\n\
     \  return dp[1];\n}\n\nvoid solve() {\n  LL(H, W);\n  mint ANS = calc_tdpc_grid(H,\
-    \ W);\n  print(ANS);\n}"
+    \ W);\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -478,7 +478,7 @@ data:
   isVerificationFile: true
   path: test/mytest/tdpc_grid_dp.test.cpp
   requiredBy: []
-  timestamp: '2022-10-26 12:54:16+09:00'
+  timestamp: '2022-10-27 12:20:57+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/tdpc_grid_dp.test.cpp

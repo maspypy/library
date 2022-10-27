@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1881.test.cpp
+    title: test/yukicoder/1881.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -47,6 +50,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/enum_partitions.test.cpp
+  - test/yukicoder/1881.test.cpp
 documentation_of: enumerate/partitions.hpp
 layout: document
 redirect_from:

@@ -133,6 +133,9 @@ data:
     path: test/yukicoder/1875.test.cpp
     title: test/yukicoder/1875.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1881.test.cpp
+    title: test/yukicoder/1881.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
   _isVerificationFailed: false
@@ -191,6 +194,7 @@ data:
   - test/mytest/primesum_mod4.test.cpp
   - test/mytest/bell.test.cpp
   - test/yukicoder/1321.test.cpp
+  - test/yukicoder/1881.test.cpp
   - test/yukicoder/1262.test.cpp
   - test/yukicoder/1781.test.cpp
   - test/yukicoder/1666.test.cpp
