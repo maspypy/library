@@ -8,12 +8,12 @@
 
 void solve() {
   LL(N, Q);
-  Point_Add_Rectangle_Sum<Group_Add<ll>> RS;
-  FOR(_, N) {
+  Point_Add_Rectangle_Sum<Group_Add<ll>, int> RS;
+  FOR(N) {
     LL(x, y, w);
     RS.add_query(x, y, w);
   }
-  FOR(_, Q) {
+  FOR(Q) {
     LL(l, d, r, u);
     RS.sum_query(l, d, r, u);
   }
