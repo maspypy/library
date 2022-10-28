@@ -16,6 +16,8 @@ struct Fenwick2D {
     build(X, Y, wt);
   }
 
+  void reset_value() { fill(all(dat), AbelGroup::unit()); }
+
   inline int xtoi(XY x) {
     return (SMALL_X ? clamp<int>(x - min_X, 0, N) : LB(keyX, x));
   }
