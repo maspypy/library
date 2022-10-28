@@ -1,0 +1,75 @@
+#define PROBLEM "https://yukicoder.me/problems/no/1524"
+#include "my_template.hpp"
+#include "other/io.hpp"
+#include "graph/tree.hpp"
+#include "ds/dualsegtree.hpp"
+#include "alg/monoid/max_xplusa_b.hpp"
+
+using Mono = Monoid_Max_xplusa_b<ll>;
+
+void solve() {
+  LL(N);
+  Graph<int, 1> G(N);
+  FOR(v, 1, N) {
+    LL(p);
+    G.add(--p, v);
+  }
+  G.build();
+  TREE<decltype(G)> tree(G);
+  auto& head = tree.head;
+
+  VEC(ll, A, N);
+  for (auto&& x: A) --x;
+  VEC(ll, B, N);
+
+  vc<DualSegTree<Mono>> dp(N);
+  vvc<int> keys(N);
+  FOR(v, N) if (head[v] == v) {
+    FOR(i, tree.LID[v], tree.RID[v]) { keys[v].eb(A[tree.V[i]]); }
+    sort(all(keys[v]));
+  }
+
+  FOR(v, N) dp[v].resize(len(keys[v]));
+  // FOR(v, N) print(v, ",", keys[v]);
+
+  auto eval_all = [&](DualSegTree<Mono>& seg) -> vi {
+    auto tmp = seg.get_all();
+    vi X(len(tmp));
+    FOR(k, len(X)) X[k] = Mono::eval(tmp[k], 0);
+    return X;
+  };
+
+  FOR_R(v, N) {
+    auto& seg = dp[head[v]];
+    auto& key = keys[head[v]];
+
+    for (auto&& e: G[v]) {
+      int to = e.to;
+      if (head[to] == head[v]) continue;
+      vc<int> X = keys[to];
+      vi Y = eval_all(dp[to]);
+      ll p = 0;
+      FOR(k, len(X)) {
+        int idx = LB(key, X[k]);
+        seg.apply(p, idx + 1, Mono::add(Y[k]));
+        p = idx + 1;
+      }
+    }
+    int idx = LB(key, A[v]);
+    ll x = Mono::eval(seg.get(idx), 0) + B[v];
+    seg.apply(0, idx + 1, Mono::chmax(x));
+  }
+
+  vi Y = eval_all(dp[0]);
+  print(MAX(Y));
+}
+
+signed main() {
+  cout << fixed << setprecision(15);
+
+  ll T = 1;
+  // LL(T);
+  FOR(T) solve();
+
+  return 0;
+}
