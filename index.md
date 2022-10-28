@@ -423,6 +423,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: flow/maxflow.hpp
       title: flow/maxflow.hpp
+    - icon: ':warning:'
+      path: flow/min_cost_matching_on_line.hpp
+      title: flow/min_cost_matching_on_line.hpp
     - icon: ':heavy_check_mark:'
       path: flow/mincostflow.hpp
       title: flow/mincostflow.hpp
@@ -1477,7 +1480,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/agc058d.test.cpp
       title: test/atcoder/agc058d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/arc123d.test.cpp
       title: test/atcoder/arc123d.test.cpp
     - icon: ':heavy_check_mark:'

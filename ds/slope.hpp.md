@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: flow/min_cost_matching_on_line.hpp
+    title: flow/min_cost_matching_on_line.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/atcoder/abc127f.test.cpp
@@ -9,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc217h.test.cpp
     title: test/atcoder/abc217h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/arc123d.test.cpp
     title: test/atcoder/arc123d.test.cpp
   - icon: ':x:'
@@ -39,15 +42,17 @@ data:
     \  void shift(const T &a) { add_l += a, add_r += a; }\r\n\r\n  // g(x) = min_{x-b\
     \ <= y <= x-a} f(y)\r\n  void sliding_window_minimum(const T &a, const T &b) {\r\
     \n    add_l += a, add_r += b;\r\n  }\r\n\r\n  // O(size)\r\n  T eval(T x) {\r\n\
-    \    T y = min_f;\r\n    for (auto &&l: que_l) { y += max<T>(0, (l + add_l) -\
-    \ x); }\r\n    for (auto &&r: que_r) { y += max<T>(0, x - (r + add_r)); }\r\n\
-    \  }\r\n\r\n  void push_R(const T &x) {\r\n    if (x != RMAX) que_r.emplace(x\
-    \ - add_r);\r\n  }\r\n  void push_L(const T &x) {\r\n    if (x != LMIN) que_l.emplace(x\
-    \ - add_l);\r\n  }\r\n  T top_R() { return (len(que_r) ? que_r.top() + add_r :\
-    \ RMAX); }\r\n  T top_L() { return (len(que_l) ? que_l.top() + add_l : LMIN);\
-    \ }\r\n  T pop_R() {\r\n    T res = top_R();\r\n    if (len(que_r)) que_r.pop();\r\
-    \n    return res;\r\n  }\r\n  T pop_L() {\r\n    T res = top_L();\r\n    if (len(que_l))\
-    \ que_l.pop();\r\n    return res;\r\n  }\r\n};\n"
+    \    T y = min_f;\r\n    pq<T> que_l_copy = que_l;\r\n    pqg<T> que_r_copy =\
+    \ que_r;\r\n    while (len(que_l_copy)) { y += max<T>(0, (pick(que_l_copy) + add_l)\
+    \ - x); }\r\n    while (len(que_r_copy)) { y += max<T>(0, x - (pick(que_r_copy)\
+    \ + add_r)); }\r\n    return y;\r\n  }\r\n\r\n  void push_R(const T &x) {\r\n\
+    \    if (x != RMAX) que_r.emplace(x - add_r);\r\n  }\r\n  void push_L(const T\
+    \ &x) {\r\n    if (x != LMIN) que_l.emplace(x - add_l);\r\n  }\r\n  T top_R()\
+    \ { return (len(que_r) ? que_r.top() + add_r : RMAX); }\r\n  T top_L() { return\
+    \ (len(que_l) ? que_l.top() + add_l : LMIN); }\r\n  T pop_R() {\r\n    T res =\
+    \ top_R();\r\n    if (len(que_r)) que_r.pop();\r\n    return res;\r\n  }\r\n \
+    \ T pop_L() {\r\n    T res = top_L();\r\n    if (len(que_l)) que_l.pop();\r\n\
+    \    return res;\r\n  }\r\n};\n"
   code: "\r\ntemplate <typename T>\r\nstruct Slope_Trick_1 {\r\n  static constexpr\
     \ T LMIN = numeric_limits<T>::lowest();\r\n  static constexpr T RMAX = numeric_limits<T>::max();\r\
     \n  pq<T> que_l;\r\n  pqg<T> que_r;\r\n  T add_l, add_r;\r\n  T min_f;\r\n\r\n\
@@ -67,20 +72,22 @@ data:
     \ T &a) { add_l += a, add_r += a; }\r\n\r\n  // g(x) = min_{x-b <= y <= x-a} f(y)\r\
     \n  void sliding_window_minimum(const T &a, const T &b) {\r\n    add_l += a, add_r\
     \ += b;\r\n  }\r\n\r\n  // O(size)\r\n  T eval(T x) {\r\n    T y = min_f;\r\n\
-    \    for (auto &&l: que_l) { y += max<T>(0, (l + add_l) - x); }\r\n    for (auto\
-    \ &&r: que_r) { y += max<T>(0, x - (r + add_r)); }\r\n  }\r\n\r\n  void push_R(const\
-    \ T &x) {\r\n    if (x != RMAX) que_r.emplace(x - add_r);\r\n  }\r\n  void push_L(const\
-    \ T &x) {\r\n    if (x != LMIN) que_l.emplace(x - add_l);\r\n  }\r\n  T top_R()\
-    \ { return (len(que_r) ? que_r.top() + add_r : RMAX); }\r\n  T top_L() { return\
-    \ (len(que_l) ? que_l.top() + add_l : LMIN); }\r\n  T pop_R() {\r\n    T res =\
-    \ top_R();\r\n    if (len(que_r)) que_r.pop();\r\n    return res;\r\n  }\r\n \
-    \ T pop_L() {\r\n    T res = top_L();\r\n    if (len(que_l)) que_l.pop();\r\n\
-    \    return res;\r\n  }\r\n};"
+    \    pq<T> que_l_copy = que_l;\r\n    pqg<T> que_r_copy = que_r;\r\n    while\
+    \ (len(que_l_copy)) { y += max<T>(0, (pick(que_l_copy) + add_l) - x); }\r\n  \
+    \  while (len(que_r_copy)) { y += max<T>(0, x - (pick(que_r_copy) + add_r)); }\r\
+    \n    return y;\r\n  }\r\n\r\n  void push_R(const T &x) {\r\n    if (x != RMAX)\
+    \ que_r.emplace(x - add_r);\r\n  }\r\n  void push_L(const T &x) {\r\n    if (x\
+    \ != LMIN) que_l.emplace(x - add_l);\r\n  }\r\n  T top_R() { return (len(que_r)\
+    \ ? que_r.top() + add_r : RMAX); }\r\n  T top_L() { return (len(que_l) ? que_l.top()\
+    \ + add_l : LMIN); }\r\n  T pop_R() {\r\n    T res = top_R();\r\n    if (len(que_r))\
+    \ que_r.pop();\r\n    return res;\r\n  }\r\n  T pop_L() {\r\n    T res = top_L();\r\
+    \n    if (len(que_l)) que_l.pop();\r\n    return res;\r\n  }\r\n};"
   dependsOn: []
   isVerificationFile: false
   path: ds/slope.hpp
-  requiredBy: []
-  timestamp: '2022-10-29 02:48:53+09:00'
+  requiredBy:
+  - flow/min_cost_matching_on_line.hpp
+  timestamp: '2022-10-29 03:23:02+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1077.test.cpp

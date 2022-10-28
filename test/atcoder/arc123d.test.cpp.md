@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/arc123/tasks/arc123_d
@@ -218,17 +218,19 @@ data:
     \ = pq<T>(); }\r\n  void shift(const T &a) { add_l += a, add_r += a; }\r\n\r\n\
     \  // g(x) = min_{x-b <= y <= x-a} f(y)\r\n  void sliding_window_minimum(const\
     \ T &a, const T &b) {\r\n    add_l += a, add_r += b;\r\n  }\r\n\r\n  // O(size)\r\
-    \n  T eval(T x) {\r\n    T y = min_f;\r\n    for (auto &&l: que_l) { y += max<T>(0,\
-    \ (l + add_l) - x); }\r\n    for (auto &&r: que_r) { y += max<T>(0, x - (r + add_r));\
-    \ }\r\n  }\r\n\r\n  void push_R(const T &x) {\r\n    if (x != RMAX) que_r.emplace(x\
-    \ - add_r);\r\n  }\r\n  void push_L(const T &x) {\r\n    if (x != LMIN) que_l.emplace(x\
-    \ - add_l);\r\n  }\r\n  T top_R() { return (len(que_r) ? que_r.top() + add_r :\
-    \ RMAX); }\r\n  T top_L() { return (len(que_l) ? que_l.top() + add_l : LMIN);\
-    \ }\r\n  T pop_R() {\r\n    T res = top_R();\r\n    if (len(que_r)) que_r.pop();\r\
-    \n    return res;\r\n  }\r\n  T pop_L() {\r\n    T res = top_L();\r\n    if (len(que_l))\
-    \ que_l.pop();\r\n    return res;\r\n  }\r\n};\n#line 5 \"test/atcoder/arc123d.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  Slope_Trick_1<ll> X;\n  FOR(i,\
-    \ N) {\n    if (i > 0) {\n      ll c = max<ll>(0, A[i] - A[i - 1]);\n      X.shift(c);\n\
+    \n  T eval(T x) {\r\n    T y = min_f;\r\n    pq<T> que_l_copy = que_l;\r\n   \
+    \ pqg<T> que_r_copy = que_r;\r\n    while (len(que_l_copy)) { y += max<T>(0, (pick(que_l_copy)\
+    \ + add_l) - x); }\r\n    while (len(que_r_copy)) { y += max<T>(0, x - (pick(que_r_copy)\
+    \ + add_r)); }\r\n    return y;\r\n  }\r\n\r\n  void push_R(const T &x) {\r\n\
+    \    if (x != RMAX) que_r.emplace(x - add_r);\r\n  }\r\n  void push_L(const T\
+    \ &x) {\r\n    if (x != LMIN) que_l.emplace(x - add_l);\r\n  }\r\n  T top_R()\
+    \ { return (len(que_r) ? que_r.top() + add_r : RMAX); }\r\n  T top_L() { return\
+    \ (len(que_l) ? que_l.top() + add_l : LMIN); }\r\n  T pop_R() {\r\n    T res =\
+    \ top_R();\r\n    if (len(que_r)) que_r.pop();\r\n    return res;\r\n  }\r\n \
+    \ T pop_L() {\r\n    T res = top_L();\r\n    if (len(que_l)) que_l.pop();\r\n\
+    \    return res;\r\n  }\r\n};\n#line 5 \"test/atcoder/arc123d.test.cpp\"\n\nvoid\
+    \ solve() {\n  LL(N);\n  VEC(ll, A, N);\n  Slope_Trick_1<ll> X;\n  FOR(i, N) {\n\
+    \    if (i > 0) {\n      ll c = max<ll>(0, A[i] - A[i - 1]);\n      X.shift(c);\n\
     \      X.clear_inc();\n    }\n    X.add_abs(0);\n    X.add_abs(A[i]);\n  }\n \
     \ auto [xl, xr, min_f] = X.get_min();\n  print(min_f);\n}\n\nsigned main() {\n\
     \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
@@ -248,8 +250,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/arc123d.test.cpp
   requiredBy: []
-  timestamp: '2022-10-29 02:49:05+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-10-29 03:23:02+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/arc123d.test.cpp
 layout: document
