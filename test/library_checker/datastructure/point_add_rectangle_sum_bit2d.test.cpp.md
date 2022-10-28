@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/group/add.hpp
     title: alg/group/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwick2d.hpp
     title: ds/fenwick2d.hpp
   - icon: ':question:'
@@ -215,10 +215,11 @@ data:
     \n  XY min_X;\r\n  vc<int> indptr;\r\n  vc<XY> keyY;\r\n  vc<E> dat;\r\n\r\n \
     \ Fenwick2D(vc<XY>& X, vc<XY>& Y, vc<E>& wt) { build(X, Y, wt); }\r\n\r\n  Fenwick2D(vc<XY>&\
     \ X, vc<XY>& Y) {\r\n    vc<E> wt(len(X), AbelGroup::unit());\r\n    build(X,\
-    \ Y, wt);\r\n  }\r\n\r\n  inline int xtoi(XY x) {\r\n    return (SMALL_X ? clamp<int>(x\
-    \ - min_X, 0, N) : LB(keyX, x));\r\n  }\r\n\r\n  inline int nxt(int i) {\r\n \
-    \   i += 1;\r\n    return i + (i & -i) - 1;\r\n  }\r\n\r\n  inline int prev(int\
-    \ i) {\r\n    i += 1;\r\n    return i - (i & -i) - 1;\r\n  }\r\n\r\n  void build(vc<XY>&\
+    \ Y, wt);\r\n  }\r\n\r\n  void reset_value() { fill(all(dat), AbelGroup::unit());\
+    \ }\r\n\r\n  inline int xtoi(XY x) {\r\n    return (SMALL_X ? clamp<int>(x - min_X,\
+    \ 0, N) : LB(keyX, x));\r\n  }\r\n\r\n  inline int nxt(int i) {\r\n    i += 1;\r\
+    \n    return i + (i & -i) - 1;\r\n  }\r\n\r\n  inline int prev(int i) {\r\n  \
+    \  i += 1;\r\n    return i - (i & -i) - 1;\r\n  }\r\n\r\n  void build(vc<XY>&\
     \ X, vc<XY>& Y, vc<E>& wt) {\r\n    if (!SMALL_X) {\r\n      keyX = X;\r\n   \
     \   UNIQUE(keyX);\r\n      N = len(keyX);\r\n    } else {\r\n      min_X = (len(X)\
     \ == 0 ? 0 : MIN(X));\r\n      N = (len(X) == 0 ? 0 : MAX(X)) - min_X + 1;\r\n\
@@ -302,7 +303,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   requiredBy: []
-  timestamp: '2022-10-21 16:42:45+09:00'
+  timestamp: '2022-10-28 17:47:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp

@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/set.hpp
     title: alg/monoid/set.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/dualsegtree.hpp
     title: ds/dualsegtree.hpp
   - icon: ':question:'
@@ -206,33 +206,34 @@ data:
     \ { yes(!t); }\r\n#line 2 \"ds/dualsegtree.hpp\"\n\ntemplate <typename Monoid>\n\
     struct DualSegTree {\n  using A = typename Monoid::value_type;\n  int n, log,\
     \ size;\n  vc<A> laz;\n\n  DualSegTree() : DualSegTree(0) {}\n  DualSegTree(int\
-    \ n) : n(n) {\n    log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 <<\
-    \ log;\n    laz.assign(size << 1, Monoid::unit());\n  }\n\n  void reset() { fill(all(laz),\
-    \ Monoid::unit()); }\n\n  void all_apply(int k, A a) { laz[k] = Monoid::op(laz[k],\
-    \ a); }\n\n  A get(int p) {\n    assert(0 <= p && p < n);\n    p += size;\n  \
-    \  for (int i = log; i >= 1; i--) push(p >> i);\n    return laz[p];\n  }\n\n \
-    \ vc<A> get_all() {\n    FOR(i, size) push(i);\n    return {laz.begin() + size,\
-    \ laz.begin() + size + n};\n  }\n\n  void apply(int l, int r, A a) {\n    assert(0\
-    \ <= l && l <= r && r <= n);\n    if (l == r) return;\n\n    l += size;\n    r\
-    \ += size;\n\n    if (!Monoid::commute) {\n      for (int i = log; i >= 1; i--)\
-    \ {\n        if (((l >> i) << i) != l) push(l >> i);\n        if (((r >> i) <<\
-    \ i) != r) push((r - 1) >> i);\n      }\n    }\n\n    {\n      int l2 = l, r2\
-    \ = r;\n      while (l < r) {\n        if (l & 1) all_apply(l++, a);\n       \
-    \ if (r & 1) all_apply(--r, a);\n        l >>= 1;\n        r >>= 1;\n      }\n\
-    \      l = l2;\n      r = r2;\n    }\n  }\n  void debug() { print(\"dualsegtree\
-    \ getall:\", get_all()); }\n\nprivate:\n  void push(int k) {\n    all_apply(2\
-    \ * k, laz[k]);\n    all_apply(2 * k + 1, laz[k]);\n    laz[k] = Monoid::unit();\n\
-    \  }\n};\n#line 1 \"alg/monoid/set.hpp\"\ntemplate <typename E, E none_val>\r\n\
-    struct Monoid_Set {\r\n  using value_type = E;\r\n  using X = value_type;\r\n\
-    \  static X op(X x, X y) { return (y == none_val ? x : y); }\r\n  static constexpr\
-    \ X unit() { return none_val; }\r\n  static constexpr bool commute = false;\r\n\
-    };\n#line 7 \"test/aoj/DSL_2_D.test.cpp\"\n\r\nvoid solve() {\r\n  using Mono\
-    \ = Monoid_Set<ll, (1LL << 31) - 1>;\r\n  LL(N, Q);\r\n  DualSegTree<Mono> seg(N);\r\
-    \n  FOR(_, Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(L, R, x);\r\n \
-    \     seg.apply(L, ++R, x);\r\n    } else {\r\n      LL(i);\r\n      print(seg.get(i));\r\
-    \n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T)\
-    \ solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ n) { resize(n); }\n\n  void reset() { fill(all(laz), Monoid::unit()); }\n  void\
+    \ resize(int n_) {\n    n = n_;\n    log = 1;\n    while ((1 << log) < n) ++log;\n\
+    \    size = 1 << log;\n    laz.assign(size << 1, Monoid::unit());\n  }\n\n  void\
+    \ all_apply(int k, A a) { laz[k] = Monoid::op(laz[k], a); }\n\n  A get(int p)\
+    \ {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i >=\
+    \ 1; i--) push(p >> i);\n    return laz[p];\n  }\n\n  vc<A> get_all() {\n    FOR(i,\
+    \ size) push(i);\n    return {laz.begin() + size, laz.begin() + size + n};\n \
+    \ }\n\n  void apply(int l, int r, A a) {\n    assert(0 <= l && l <= r && r <=\
+    \ n);\n    if (l == r) return;\n\n    l += size;\n    r += size;\n\n    if (!Monoid::commute)\
+    \ {\n      for (int i = log; i >= 1; i--) {\n        if (((l >> i) << i) != l)\
+    \ push(l >> i);\n        if (((r >> i) << i) != r) push((r - 1) >> i);\n     \
+    \ }\n    }\n\n    {\n      int l2 = l, r2 = r;\n      while (l < r) {\n      \
+    \  if (l & 1) all_apply(l++, a);\n        if (r & 1) all_apply(--r, a);\n    \
+    \    l >>= 1;\n        r >>= 1;\n      }\n      l = l2;\n      r = r2;\n    }\n\
+    \  }\n  void debug() { print(\"dualsegtree getall:\", get_all()); }\n\nprivate:\n\
+    \  void push(int k) {\n    all_apply(2 * k, laz[k]);\n    all_apply(2 * k + 1,\
+    \ laz[k]);\n    laz[k] = Monoid::unit();\n  }\n};\n#line 1 \"alg/monoid/set.hpp\"\
+    \ntemplate <typename E, E none_val>\r\nstruct Monoid_Set {\r\n  using value_type\
+    \ = E;\r\n  using X = value_type;\r\n  static X op(X x, X y) { return (y == none_val\
+    \ ? x : y); }\r\n  static constexpr X unit() { return none_val; }\r\n  static\
+    \ constexpr bool commute = false;\r\n};\n#line 7 \"test/aoj/DSL_2_D.test.cpp\"\
+    \n\r\nvoid solve() {\r\n  using Mono = Monoid_Set<ll, (1LL << 31) - 1>;\r\n  LL(N,\
+    \ Q);\r\n  DualSegTree<Mono> seg(N);\r\n  FOR(_, Q) {\r\n    LL(t);\r\n    if\
+    \ (t == 0) {\r\n      LL(L, R, x);\r\n      seg.apply(L, ++R, x);\r\n    } else\
+    \ {\r\n      LL(i);\r\n      print(seg.get(i));\r\n    }\r\n  }\r\n}\r\n\r\nsigned\
+    \ main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout\
+    \ << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\
+    \n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/dualsegtree.hpp\"\
     \r\n#include \"alg/monoid/set.hpp\"\r\n\r\nvoid solve() {\r\n  using Mono = Monoid_Set<ll,\
@@ -250,7 +251,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_D.test.cpp
   requiredBy: []
-  timestamp: '2022-10-21 17:59:25+09:00'
+  timestamp: '2022-10-28 17:48:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_D.test.cpp
