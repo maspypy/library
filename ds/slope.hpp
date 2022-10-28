@@ -19,12 +19,12 @@ struct Slope_Trick_1 {
 
   // (a-x)+
   void add_a_minus_x(T a) {
-    min_f += max(T(0), a - top_R());
+    if (len(que_r)) min_f += max(T(0), a - top_R());
     push_R(a), push_L(pop_R());
   }
   // (x-a)+
   void add_x_minus_a(T a) {
-    min_f += max(T(0), top_L() - a);
+    if (len(que_l)) min_f += max(T(0), top_L() - a);
     push_L(a), push_R(pop_L());
   }
   // |x-a|
