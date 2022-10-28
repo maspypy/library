@@ -38,7 +38,7 @@ data:
   - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick2d.hpp
     title: ds/fenwick2d.hpp
   - icon: ':heavy_check_mark:'
@@ -115,12 +115,15 @@ data:
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc127f_1.test.cpp
+    title: test/atcoder/abc127f_1.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc174f.test.cpp
     title: test/atcoder/abc174f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc190f.test.cpp
     title: test/atcoder/abc190f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc266h_2.test.cpp
     title: test/atcoder/abc266h_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -397,6 +400,7 @@ data:
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
   - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/atcoder/abc174f.test.cpp
+  - test/atcoder/abc127f_1.test.cpp
   - test/atcoder/abc190f.test.cpp
   - test/atcoder/abc266h_2.test.cpp
 documentation_of: alg/group/add.hpp

@@ -7,6 +7,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc127f_1.test.cpp
+    title: test/atcoder/abc127f_1.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   - icon: ':heavy_check_mark:'
@@ -145,6 +148,7 @@ data:
   - test/yukicoder/924.test.cpp
   - test/yukicoder/1332.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
+  - test/atcoder/abc127f_1.test.cpp
 documentation_of: ds/waveletmatrix.hpp
 layout: document
 redirect_from:

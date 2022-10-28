@@ -1,15 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: graph/base.hpp
-    title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/rerooting_dp.hpp
-    title: graph/rerooting_dp.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/tree.hpp
-    title: graph/tree.hpp
+  - icon: ':question:'
+    path: ds/slope.hpp
+    title: ds/slope.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -18,15 +12,15 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1976#
+    PROBLEM: https://atcoder.jp/contests/abc127/tasks/abc127_f
     links:
-    - https://yukicoder.me/problems/no/1976#
-  bundledCode: "#line 1 \"test/yukicoder/1976.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1976#\"\
+    - https://atcoder.jp/contests/abc127/tasks/abc127_f
+  bundledCode: "#line 1 \"test/atcoder/abc127f.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc127/tasks/abc127_f\"\
     \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
     unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
     \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
@@ -205,194 +199,62 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 1 \"graph/rerooting_dp.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\
-    \n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n\
-    };\n\ntemplate <typename T = int, bool directed = false>\nstruct Graph {\n  int\
-    \ N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
-    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg,\
-    \ vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n\
-    \    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n   \
-    \ const edge_type* begin() const {\n      if (l == r) { return 0; }\n      return\
-    \ &G->csr_edges[l];\n    }\n\n    const edge_type* end() const {\n      if (l\
-    \ == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n  private:\n \
-    \   const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared;\
-    \ }\n  constexpr bool is_directed() { return directed; }\n\n  Graph() : N(0),\
-    \ M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void\
-    \ resize(int n) { N = n; }\n\n  void add(int frm, int to, T cost = 1, int i =\
-    \ -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <= to && to < N);\n\
-    \    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n\
-    \    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool wt = false, int off = 1)\
-    \ { read_graph(N - 1, wt, off); }\n\n  void read_graph(int M, bool wt = false,\
-    \ int off = 1) {\n    for (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a\
-    \ -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n  \
-    \      T c;\n        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n\
-    \  }\n\n  void read_parent(int off = 1) {\n    for (int v = 1; v < N; ++v) {\n\
-    \      INT(p);\n      p -= off;\n      add(p, v);\n    }\n    build();\n  }\n\n\
-    \  void build() {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N\
-    \ + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if\
-    \ (!directed) indptr[e.to + 1]++;\n    }\n    for (int v = 0; v < N; ++v) { indptr[v\
-    \ + 1] += indptr[v]; }\n    auto counter = indptr;\n    csr_edges.resize(indptr.back()\
-    \ + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n\
-    \      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm,\
-    \ e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n \
-    \   assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\n \
-    \ vc<int> deg_array() {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n\
-    \  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n    if (vc_indeg.empty())\
-    \ calc_deg_inout();\n    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v)\
-    \ {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n  int\
-    \ in_deg(int v) {\n    if (vc_indeg.empty()) calc_deg_inout();\n    return vc_indeg[v];\n\
-    \  }\n\n  int out_deg(int v) {\n    if (vc_outdeg.empty()) calc_deg_inout();\n\
-    \    return vc_outdeg[v];\n  }\n\n  void debug() {\n    print(\"Graph\");\n  \
-    \  if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e: edges)\
-    \ print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\", indptr);\n\
-    \      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\nprivate:\n  void calc_deg()\
-    \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
-    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
-    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
-    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 3 \"graph/tree.hpp\"\
-    \n\r\n// HLD euler tour \u3092\u3068\u3063\u3066\u3044\u308D\u3044\u308D\u3002\
-    \r\n// \u6728\u4EE5\u5916\u3001\u975E\u9023\u7D50\u3067\u3082 dfs \u9806\u5E8F\
-    \u3084\u89AA\u304C\u3068\u308C\u308B\u3002\r\ntemplate <typename GT>\r\nstruct\
-    \ TREE {\r\n  GT &G;\r\n  using WT = typename GT::cost_type;\r\n  int N;\r\n \
-    \ bool hld;\r\n  vector<int> LID, RID, head, V, parent, root;\r\n  vc<int> depth;\r\
-    \n  vc<WT> depth_weighted;\r\n  vector<bool> in_tree;\r\n\r\n  TREE(GT &G, int\
-    \ r = -1, bool hld = 1)\r\n      : G(G),\r\n        N(G.N),\r\n        hld(hld),\r\
-    \n        LID(G.N),\r\n        RID(G.N),\r\n        head(G.N, r),\r\n        V(G.N),\r\
-    \n        parent(G.N, -1),\r\n        root(G.N, -1),\r\n        depth(G.N, -1),\r\
-    \n        depth_weighted(G.N, 0),\r\n        in_tree(G.M, 0) {\r\n    assert(G.is_prepared());\r\
-    \n    int t1 = 0;\r\n    if (r != -1) {\r\n      dfs_sz(r, -1);\r\n      dfs_hld(r,\
-    \ t1);\r\n    } else {\r\n      for (int r = 0; r < N; ++r) {\r\n        if (parent[r]\
-    \ == -1) {\r\n          head[r] = r;\r\n          dfs_sz(r, -1);\r\n         \
-    \ dfs_hld(r, t1);\r\n        }\r\n      }\r\n    }\r\n    for (auto &&v: V) root[v]\
-    \ = (parent[v] == -1 ? v : root[parent[v]]);\r\n  }\r\n\r\n  void dfs_sz(int v,\
-    \ int p) {\r\n    auto &sz = RID;\r\n    parent[v] = p;\r\n    depth[v] = (p ==\
-    \ -1 ? 0 : depth[p] + 1);\r\n    sz[v] = 1;\r\n    int l = G.indptr[v], r = G.indptr[v\
-    \ + 1];\r\n    auto &csr = G.csr_edges;\r\n    // \u4F7F\u3046\u8FBA\u304C\u3042\
-    \u308C\u3070\u5148\u982D\u306B\u3059\u308B\r\n    for (int i = r - 2; i >= l;\
-    \ --i) {\r\n      if (hld && depth[csr[i + 1].to] == -1) swap(csr[i], csr[i +\
-    \ 1]);\r\n    }\r\n    int hld_sz = 0;\r\n    for (int i = l; i < r; ++i) {\r\n\
-    \      auto e = csr[i];\r\n      if (depth[e.to] != -1) continue;\r\n      in_tree[e.id]\
-    \ = 1;\r\n      depth_weighted[e.to] = depth_weighted[v] + e.cost;\r\n      dfs_sz(e.to,\
-    \ v);\r\n      sz[v] += sz[e.to];\r\n      if (hld && chmax(hld_sz, sz[e.to])\
-    \ && l < i) { swap(csr[l], csr[i]); }\r\n    }\r\n  }\r\n\r\n  void dfs_hld(int\
-    \ v, int &times) {\r\n    LID[v] = times++;\r\n    RID[v] += LID[v];\r\n    V[LID[v]]\
-    \ = v;\r\n    bool heavy = true;\r\n    for (auto &&e: G[v]) {\r\n      if (!in_tree[e.id]\
-    \ || depth[e.to] <= depth[v]) continue;\r\n      head[e.to] = (heavy ? head[v]\
-    \ : e.to);\r\n      heavy = false;\r\n      dfs_hld(e.to, times);\r\n    }\r\n\
-    \  }\r\n\r\n  vc<int> heavy_path_at(int v) {\r\n    vc<int> P = {v};\r\n    while\
-    \ (1) {\r\n      int a = P.back();\r\n      for (auto &&e: G[a]) {\r\n       \
-    \ if (e.to != parent[a] && head[e.to] == v) {\r\n          P.eb(e.to);\r\n   \
-    \       break;\r\n        }\r\n      }\r\n      if (P.back() == a) break;\r\n\
-    \    }\r\n    return P;\r\n  }\r\n\r\n  int e_to_v(int eid) {\r\n    auto e =\
-    \ G.edges[eid];\r\n    return (parent[e.frm] == e.to ? e.frm : e.to);\r\n  }\r\
-    \n\r\n  int ELID(int v) { return 2 * LID[v] - depth[v]; }\r\n  int ERID(int v)\
-    \ { return 2 * RID[v] - depth[v] - 1; }\r\n\r\n  /* k: 0-indexed */\r\n  int LA(int\
-    \ v, int k) {\r\n    assert(k <= depth[v]);\r\n    while (1) {\r\n      int u\
-    \ = head[v];\r\n      if (LID[v] - k >= LID[u]) return V[LID[v] - k];\r\n    \
-    \  k -= LID[v] - LID[u] + 1;\r\n      v = parent[u];\r\n    }\r\n  }\r\n\r\n \
-    \ int LCA(int u, int v) {\r\n    for (;; v = parent[head[v]]) {\r\n      if (LID[u]\
-    \ > LID[v]) swap(u, v);\r\n      if (head[u] == head[v]) return u;\r\n    }\r\n\
-    \  }\r\n\r\n  int lca(int u, int v) { return LCA(u, v); }\r\n  int la(int u, int\
-    \ v) { return LA(u, v); }\r\n\r\n  int subtree_size(int v) { return RID[v] - LID[v];\
-    \ }\r\n\r\n  int dist(int a, int b) {\r\n    int c = LCA(a, b);\r\n    return\
-    \ depth[a] + depth[b] - 2 * depth[c];\r\n  }\r\n\r\n  WT dist(int a, int b, bool\
-    \ weighted) {\r\n    assert(weighted);\r\n    int c = LCA(a, b);\r\n    return\
-    \ depth_weighted[a] + depth_weighted[b] - WT(2) * depth_weighted[c];\r\n  }\r\n\
-    \r\n  // a is in b\r\n  bool in_subtree(int a, int b) { return LID[b] <= LID[a]\
-    \ && LID[a] < RID[b]; }\r\n\r\n  int jump(int a, int b, ll k = 1) {\r\n    if\
-    \ (k == 1) {\r\n      if (a == b) return -1;\r\n      return (in_subtree(b, a)\
-    \ ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\r\n    }\r\n    int c = LCA(a,\
-    \ b);\r\n    int d_ac = depth[a] - depth[c];\r\n    int d_bc = depth[b] - depth[c];\r\
-    \n    if (k > d_ac + d_bc) return -1;\r\n    if (k <= d_ac) return LA(a, k);\r\
-    \n    return LA(b, d_ac + d_bc - k);\r\n  }\r\n\r\n  vc<int> collect_child(int\
-    \ v) {\r\n    vc<int> res;\r\n    for (auto &&e: G[v])\r\n      if (e.to != parent[v])\
-    \ res.eb(e.to);\r\n    return res;\r\n  }\r\n\r\n  vc<pair<int, int>> get_path_decomposition(int\
-    \ u, int v, bool edge) {\r\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\
-    \"\u533A\u9593\u5217\u3002\r\n    vc<pair<int, int>> up, down;\r\n    while (1)\
-    \ {\r\n      if (head[u] == head[v]) break;\r\n      if (LID[u] < LID[v]) {\r\n\
-    \        down.eb(LID[head[v]], LID[v]);\r\n        v = parent[head[v]];\r\n  \
-    \    } else {\r\n        up.eb(LID[u], LID[head[u]]);\r\n        u = parent[head[u]];\r\
-    \n      }\r\n    }\r\n    if (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\r\
-    \n    elif (LID[v] + edge <= LID[u]) up.eb(LID[u], LID[v] + edge);\r\n    reverse(all(down));\r\
-    \n    up.insert(up.end(), all(down));\r\n    return up;\r\n  }\r\n\r\n  void debug()\
-    \ {\r\n    print(\"V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\",\
-    \ RID);\r\n    print(\"parent\", parent);\r\n    print(\"depth\", depth);\r\n\
-    \    print(\"head\", head);\r\n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"\
-    root\", root);\r\n  }\r\n};\r\n#line 4 \"graph/rerooting_dp.hpp\"\n\r\ntemplate\
-    \ <typename TREE, typename Data>\r\nstruct Rerooting_dp {\r\n  TREE& tree;\r\n\
-    \  vc<Data> dp_1; // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\u5206\u6728\
-    \ v\r\n  vc<Data> dp_2; // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\u5206\
-    \u6728 p\r\n  vc<Data> dp;   // \u3059\u3079\u3066\u306E v \u306B\u5BFE\u3057\u3066\
-    \u3001v \u3092\u6839\u3068\u3059\u308B\u90E8\u5206\u6728\r\n\r\n  template <typename\
-    \ F1, typename F2, typename F3>\r\n  Rerooting_dp(TREE& tree, F1 f_ee, F2 f_ev,\
-    \ F3 f_ve, const Data unit)\r\n      : tree(tree) {\r\n    assert(!tree.G.is_directed());\r\
-    \n    build(f_ee, f_ev, f_ve, unit);\r\n  }\r\n\r\n  // v \u3092\u6839\u3068\u3057\
-    \u305F\u3068\u304D\u306E full tree\r\n  Data operator[](int v) { return dp[v];\
-    \ }\r\n\r\n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\
-    \u6728 v\r\n  Data get(int root, int v) {\r\n    if (root == v) return dp[v];\r\
-    \n    if (!tree.in_subtree(root, v)) { return dp_1[v]; }\r\n    int w = tree.jump(v,\
-    \ root);\r\n    return dp_2[w];\r\n  }\r\n\r\n  template <typename F1, typename\
-    \ F2, typename F3>\r\n  void build(F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)\
-    \ {\r\n    int N = tree.G.N;\r\n    dp_1.assign(N, unit);\r\n    dp_2.assign(N,\
-    \ unit);\r\n    dp.assign(N, unit);\r\n    auto& V = tree.V;\r\n    auto& par\
-    \ = tree.parent;\r\n\r\n    FOR_R(i, N) {\r\n      int v = V[i];\r\n      auto\
-    \ ch = tree.collect_child(v);\r\n      int n = len(ch);\r\n      vc<Data> Xl(n\
-    \ + 1, unit), Xr(n + 1, unit);\r\n      FOR(i, n) Xl[i + 1] = f_ee(Xl[i], dp_2[ch[i]]);\r\
-    \n      FOR_R(i, n) Xr[i] = f_ee(dp_2[ch[i]], Xr[i + 1]);\r\n      FOR(i, n) dp_2[ch[i]]\
-    \ = f_ee(Xl[i], Xr[i + 1]);\r\n      dp[v] = Xr[0];\r\n      dp_1[v] = f_ev(dp[v],\
-    \ v);\r\n      for (auto&& e: tree.G[v]) {\r\n        if (e.to == par[v]) { dp_2[v]\
-    \ = f_ve(dp_1[v], e); }\r\n      }\r\n    }\r\n    {\r\n      int v = V[0];\r\n\
-    \      dp[v] = f_ev(dp[v], v);\r\n      for (auto&& e: tree.G[v]) dp_2[e.to] =\
-    \ f_ev(dp_2[e.to], v);\r\n    }\r\n    FOR(i, N) {\r\n      int v = V[i];\r\n\
-    \      for (auto&& e: tree.G[v]) {\r\n        if (e.to == par[v]) continue;\r\n\
-    \        Data x = f_ve(dp_2[e.to], e);\r\n        for (auto&& f: tree.G[e.to])\
-    \ {\r\n          if (f.to == par[e.to]) continue;\r\n          dp_2[f.to] = f_ee(dp_2[f.to],\
-    \ x);\r\n          dp_2[f.to] = f_ev(dp_2[f.to], e.to);\r\n        }\r\n     \
-    \   x = f_ee(dp[e.to], x);\r\n        dp[e.to] = f_ev(x, e.to);\r\n      }\r\n\
-    \    }\r\n  }\r\n};\n#line 5 \"test/yukicoder/1976.test.cpp\"\n\nvoid solve()\
-    \ {\n  LL(N);\n  Graph<int, 0> G(N);\n  G.read_tree();\n  TREE<decltype(G)> tree(G);\n\
-    \n  using Data = pair<int, int>;\n  Data unit = {0, 0};\n  auto fee = [&](Data\
-    \ x, Data y) -> Data {\n    return {max({x.fi, y.fi, x.se + y.se}), max(x.se,\
-    \ y.se)};\n  };\n  auto fev = [&](Data x, int v) -> Data { return x; };\n  //\
-    \ e \u306F v \u304B\u3089\u51FA\u308B\u6709\u5411\u8FBA\n  auto fve = [&](Data\
-    \ x, auto& e) -> Data { return {x.fi, x.se + 1}; };\n  Rerooting_dp<decltype(tree),\
-    \ Data> dp(tree, fee, fev, fve, unit);\n\n  int ANS = N;\n\n  for (auto&& e: G.edges)\
-    \ {\n    int a = e.frm, b = e.to;\n    int xa = dp.get(a, b).fi;\n    int xb =\
-    \ dp.get(b, a).fi;\n    int ra = ceil(xa, 2);\n    int rb = ceil(xb, 2);\n   \
-    \ int x = max({xa, xb, 1 + ra + rb});\n    chmin(ANS, x);\n  }\n  print(ANS);\n\
-    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  //\
-    \ LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1976#\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"graph/rerooting_dp.hpp\"\n\nvoid solve()\
-    \ {\n  LL(N);\n  Graph<int, 0> G(N);\n  G.read_tree();\n  TREE<decltype(G)> tree(G);\n\
-    \n  using Data = pair<int, int>;\n  Data unit = {0, 0};\n  auto fee = [&](Data\
-    \ x, Data y) -> Data {\n    return {max({x.fi, y.fi, x.se + y.se}), max(x.se,\
-    \ y.se)};\n  };\n  auto fev = [&](Data x, int v) -> Data { return x; };\n  //\
-    \ e \u306F v \u304B\u3089\u51FA\u308B\u6709\u5411\u8FBA\n  auto fve = [&](Data\
-    \ x, auto& e) -> Data { return {x.fi, x.se + 1}; };\n  Rerooting_dp<decltype(tree),\
-    \ Data> dp(tree, fee, fev, fve, unit);\n\n  int ANS = N;\n\n  for (auto&& e: G.edges)\
-    \ {\n    int a = e.frm, b = e.to;\n    int xa = dp.get(a, b).fi;\n    int xb =\
-    \ dp.get(b, a).fi;\n    int ra = ceil(xa, 2);\n    int rb = ceil(xb, 2);\n   \
-    \ int x = max({xa, xb, 1 + ra + rb});\n    chmin(ANS, x);\n  }\n  print(ANS);\n\
-    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  //\
-    \ LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ { yes(!t); }\r\n#line 1 \"ds/slope.hpp\"\n\r\ntemplate <typename T>\r\nstruct\
+    \ Slope_Trick_1 {\r\n  static constexpr T LMIN = numeric_limits<T>::lowest();\r\
+    \n  static constexpr T RMAX = numeric_limits<T>::max();\r\n  pq<T> que_l;\r\n\
+    \  pqg<T> que_r;\r\n  T add_l, add_r;\r\n  T min_f;\r\n\r\n  Slope_Trick_1() :\
+    \ add_l(0), add_r(0), min_f(0) {}\r\n  Slope_Trick_1(vc<T> left, vc<T> right)\r\
+    \n      : que_l(all(left)), que_r(all(right)), add_l(0), add_r(0), min_f(0) {}\r\
+    \n\r\n  int size() { return len(que_l) + len(que_r); }\r\n  tuple<T, T, T> get_min()\
+    \ { return {top_L(), top_R(), min_f}; }\r\n\r\n  void add_const(T a) { min_f +=\
+    \ a; }\r\n\r\n  // (a-x)+\r\n  void add_a_minus_x(T a) {\r\n    min_f += max(T(0),\
+    \ a - top_R());\r\n    push_R(a), push_L(pop_R());\r\n  }\r\n  // (x-a)+\r\n \
+    \ void add_x_minus_a(T a) {\r\n    min_f += max(T(0), top_L() - a);\r\n    push_L(a),\
+    \ push_R(pop_L());\r\n  }\r\n  // |x-a|\r\n  void add_abs(T a) {\r\n    add_a_minus_x(a);\r\
+    \n    add_x_minus_a(a);\r\n  }\r\n\r\n  // \u5897\u52A0\u5074\u3092\u6D88\u3057\
+    \u3066\u3001\u6E1B\u5C11\u5074\u306E\u307F\u306B\u3059\u308B\r\n  void clear_inc()\
+    \ { que_r = pqg<T>(); }\r\n  // \u6E1B\u5C11\u5074\u3092\u6D88\u3057\u3066\u3001\
+    \u5897\u52A0\u5074\u306E\u307F\u306B\u3059\u308B\r\n  void clear_dec() { que_l\
+    \ = pq<T>(); }\r\n  void shift(const T &a) { add_l += a, add_r += a; }\r\n\r\n\
+    \  // g(x) = min_{x-b <= y <= x-a} f(y)\r\n  void sliding_window_minimum(const\
+    \ T &a, const T &b) {\r\n    add_l += a, add_r += b;\r\n  }\r\n\r\n  // O(size)\r\
+    \n  T eval(T x) {\r\n    T y = min_f;\r\n    for (auto &&l: que_l) { y += max<T>(0,\
+    \ (l + add_l) - x); }\r\n    for (auto &&r: que_r) { y += max<T>(0, x - (r + add_r));\
+    \ }\r\n  }\r\n\r\n  void push_R(const T &x) {\r\n    if (x != RMAX) que_r.emplace(x\
+    \ - add_r);\r\n  }\r\n  void push_L(const T &x) {\r\n    if (x != LMIN) que_l.emplace(x\
+    \ - add_l);\r\n  }\r\n  T top_R() { return (len(que_r) ? que_r.top() + add_r :\
+    \ RMAX); }\r\n  T top_L() { return (len(que_l) ? que_l.top() + add_l : LMIN);\
+    \ }\r\n  T pop_R() {\r\n    T res = top_R();\r\n    if (len(que_r)) que_r.pop();\r\
+    \n    return res;\r\n  }\r\n  T pop_L() {\r\n    T res = top_L();\r\n    if (len(que_l))\
+    \ que_l.pop();\r\n    return res;\r\n  }\r\n};\n#line 5 \"test/atcoder/abc127f.test.cpp\"\
+    \n\nvoid solve() {\n  LL(Q);\n  Slope_Trick_1<ll> f;\n  FOR(Q) {\n    LL(t);\n\
+    \    if (t == 1) {\n      LL(a, b);\n      f.add_const(b);\n      f.add_abs(a);\n\
+    \    }\n    if (t == 2) {\n      auto [xl, xr, min_f] = f.get_min();\n      print(xl,\
+    \ min_f);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
+    \n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc127/tasks/abc127_f\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/slope.hpp\"\n\n\
+    void solve() {\n  LL(Q);\n  Slope_Trick_1<ll> f;\n  FOR(Q) {\n    LL(t);\n   \
+    \ if (t == 1) {\n      LL(a, b);\n      f.add_const(b);\n      f.add_abs(a);\n\
+    \    }\n    if (t == 2) {\n      auto [xl, xr, min_f] = f.get_min();\n      print(xl,\
+    \ min_f);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - graph/rerooting_dp.hpp
-  - graph/base.hpp
-  - graph/tree.hpp
+  - ds/slope.hpp
   isVerificationFile: true
-  path: test/yukicoder/1976.test.cpp
+  path: test/atcoder/abc127f.test.cpp
   requiredBy: []
-  timestamp: '2022-10-26 11:17:56+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-10-29 02:49:05+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yukicoder/1976.test.cpp
+documentation_of: test/atcoder/abc127f.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/1976.test.cpp
-- /verify/test/yukicoder/1976.test.cpp.html
-title: test/yukicoder/1976.test.cpp
+- /verify/test/atcoder/abc127f.test.cpp
+- /verify/test/atcoder/abc127f.test.cpp.html
+title: test/atcoder/abc127f.test.cpp
 ---

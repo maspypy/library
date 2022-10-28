@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/query/uniqueproductquery.hpp
     title: ds/query/uniqueproductquery.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
   - icon: ':question:'

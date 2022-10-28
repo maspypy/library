@@ -117,7 +117,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/gcd.hpp
       title: alg/monoid/gcd.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/max.hpp
       title: alg/monoid/max.hpp
     - icon: ':heavy_check_mark:'
@@ -126,7 +126,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/max_xplusa_b.hpp
       title: alg/monoid/max_xplusa_b.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/min.hpp
       title: alg/monoid/min.hpp
     - icon: ':heavy_check_mark:'
@@ -141,7 +141,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid/or.hpp
       title: alg/monoid/or.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/reverse.hpp
       title: alg/monoid/reverse.hpp
     - icon: ':warning:'
@@ -206,7 +206,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/doubling.hpp
       title: ds/doubling.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/dualsegtree.hpp
       title: ds/dualsegtree.hpp
     - icon: ':heavy_check_mark:'
@@ -221,7 +221,7 @@ data:
     - icon: ':question:'
       path: ds/fenwick.hpp
       title: ds/fenwick.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwick2d.hpp
       title: ds/fenwick2d.hpp
     - icon: ':heavy_check_mark:'
@@ -248,7 +248,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/larsch.hpp
       title: ds/larsch.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/lazysegtree.hpp
       title: ds/lazysegtree.hpp
     - icon: ':heavy_check_mark:'
@@ -260,7 +260,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/pbds.hpp
       title: ds/pbds.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree.hpp
       title: ds/segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -269,7 +269,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree2d_dense.hpp
       title: ds/segtree2d_dense.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/slope.hpp
       title: ds/slope.hpp
     - icon: ':heavy_check_mark:'
@@ -278,7 +278,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/swag.hpp
       title: ds/swag.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/unionfind.hpp
       title: ds/unionfind.hpp
     - icon: ':heavy_check_mark:'
@@ -486,7 +486,7 @@ data:
       title: geo/triangle_area.hpp
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/base.hpp
       title: graph/base.hpp
     - icon: ':warning:'
@@ -555,7 +555,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/minimum_hamiltonian_cycle.hpp
       title: graph/minimum_hamiltonian_cycle.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/minimum_spanning_tree.hpp
       title: graph/minimum_spanning_tree.hpp
     - icon: ':warning:'
@@ -597,7 +597,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tournament.hpp
       title: graph/tournament.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree.hpp
       title: graph/tree.hpp
     - icon: ':heavy_check_mark:'
@@ -629,7 +629,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/ds/contoursum.hpp
       title: graph/ds/contoursum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/ds/dualtreemonoid.hpp
       title: graph/ds/dualtreemonoid.hpp
     - icon: ':heavy_check_mark:'
@@ -653,7 +653,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/ds/treegroup.hpp
       title: graph/ds/treegroup.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/ds/treemonoid.hpp
       title: graph/ds/treemonoid.hpp
   - name: graph/shortest_path
@@ -1423,6 +1423,12 @@ data:
       title: test/aoj/NTL_1_E.test.cpp
   - name: test/atcoder
     pages:
+    - icon: ':x:'
+      path: test/atcoder/abc127f.test.cpp
+      title: test/atcoder/abc127f.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/atcoder/abc127f_1.test.cpp
+      title: test/atcoder/abc127f_1.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc174f.test.cpp
       title: test/atcoder/abc174f.test.cpp
@@ -1435,6 +1441,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc200a.test.cpp
       title: test/atcoder/abc200a.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/atcoder/abc217h.test.cpp
+      title: test/atcoder/abc217h.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc229h.test.cpp
       title: test/atcoder/abc229h.test.cpp
@@ -1453,13 +1462,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc266h.test.cpp
       title: test/atcoder/abc266h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc266h_2.test.cpp
       title: test/atcoder/abc266h_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc269ex.test.cpp
       title: test/atcoder/abc269ex.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc270_f.test.cpp
       title: test/atcoder/abc270_f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1468,6 +1477,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/agc058d.test.cpp
       title: test/atcoder/agc058d.test.cpp
+    - icon: ':x:'
+      path: test/atcoder/arc123d.test.cpp
+      title: test/atcoder/arc123d.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/atcoder/arc151_e.test.cpp
       title: test/atcoder/arc151_e.test.cpp
@@ -2098,7 +2110,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1069.test.cpp
       title: test/yukicoder/1069.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1077.test.cpp
       title: test/yukicoder/1077.test.cpp
     - icon: ':heavy_check_mark:'
