@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group/add.hpp
     title: alg/group/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/query/point_add_rectangle_sum.hpp
     title: ds/query/point_add_rectangle_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/query/rectangle_add_rectangle_sum.hpp
     title: ds/query/rectangle_add_rectangle_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_rectangle_add_rectangle_sum
@@ -246,44 +246,39 @@ data:
     \ dat[i + k - 1]))) {\n        i += k;\n        s = AbelGroup::op(s, dat[i - 1]);\n\
     \      }\n      k >>= 1;\n    }\n    return i;\n  }\n\n  int find_kth(E k) {\n\
     \    auto check = [&](E x) -> bool { return x <= k; };\n    return max_right(check);\n\
-    \  }\n\n  void debug() { print(\"fenwick\", dat); }\n};\n#line 3 \"ds/query/point_add_rectangle_sum.hpp\"\
-    \n\r\n\r\ntemplate <typename AbelGroup, bool SMALL = false>\r\nstruct Point_Add_Rectangle_Sum\
-    \ {\r\n  using G = typename AbelGroup::value_type;\r\n  int Q;\r\n  vector<ll>\
-    \ X, Y;\r\n  vector<G> WT;\r\n  vector<tuple<ll, ll, ll, ll>> rect;\r\n\r\n  Point_Add_Rectangle_Sum()\
-    \ {}\r\n\r\n  void add_query(ll x, ll y, G w) {\r\n    X.emplace_back(x), Y.emplace_back(y),\
-    \ WT.emplace_back(w);\r\n  }\r\n\r\n  void sum_query(ll xl, ll yl, ll xr, ll yr)\
-    \ {\r\n    rect.emplace_back(xl, yl, xr, yr);\r\n  }\r\n\r\n  vector<G> calc()\
-    \ {\r\n    int N = X.size(), Q = rect.size();\r\n    if (N == 0) return vector<G>(Q,\
-    \ AbelGroup::unit());\r\n    int NX = 0, NY = 0;\r\n    if (!SMALL) {\r\n    \
-    \  vector<ll> keyX = X, keyY = Y;\r\n      sort(all(keyX));\r\n      keyX.erase(unique(all(keyX)),\
-    \ keyX.end());\r\n      sort(all(keyY));\r\n      keyY.erase(unique(all(keyY)),\
-    \ keyY.end());\r\n      NX = keyX.size(), NY = keyY.size();\r\n      for (auto\
-    \ &&x: X) x = lower_bound(all(keyX), x) - keyX.begin();\r\n      for (auto &&y:\
-    \ Y) y = lower_bound(all(keyY), y) - keyY.begin();\r\n      for (auto &&[xl, yl,\
-    \ xr, yr]: rect) {\r\n        xl = lower_bound(all(keyX), xl) - keyX.begin();\r\
-    \n        xr = lower_bound(all(keyX), xr) - keyX.begin();\r\n        yl = lower_bound(all(keyY),\
-    \ yl) - keyY.begin();\r\n        yr = lower_bound(all(keyY), yr) - keyY.begin();\r\
-    \n      }\r\n    }\r\n    if (SMALL) {\r\n      ll mx = *(min_element(X.begin(),\
-    \ X.end()));\r\n      ll my = *(min_element(Y.begin(), Y.end()));\r\n      for\
-    \ (auto &&x: X) x -= mx;\r\n      for (auto &&y: Y) y -= my;\r\n      NX = *(max_element(X.begin(),\
-    \ X.end())) + 1;\r\n      NY = *(max_element(Y.begin(), Y.end())) + 1;\r\n   \
-    \   for (auto &&[xl, yl, xr, yr]: rect) {\r\n        xl -= mx, xr -= mx;\r\n \
-    \       yl -= my, yr -= my;\r\n        xl = max(0, min<int>(xl, NX));\r\n    \
-    \    xr = max(0, min<int>(xr, NX));\r\n        yl = max(0, min<int>(yl, NY));\r\
-    \n        yr = max(0, min<int>(yr, NY));\r\n      }\r\n    }\r\n    vector<vector<pair<int,\
-    \ G>>> ADD(NY + 1);\r\n    vector<vector<tuple<int, int, int>>> CALC_1(NY + 1);\r\
-    \n    vector<vector<tuple<int, int, int>>> CALC_2(NY + 1);\r\n    for (int n =\
-    \ 0; n < N; ++n) { ADD[Y[n]].emplace_back(X[n], WT[n]); }\r\n    for (int q =\
-    \ 0; q < Q; ++q) {\r\n      auto &[xl, yl, xr, yr] = rect[q];\r\n      CALC_1[yr].emplace_back(xl,\
-    \ xr, q);\r\n      CALC_2[yl].emplace_back(xl, xr, q);\r\n    };\r\n\r\n    vector<G>\
-    \ res(Q, AbelGroup::unit());\r\n    FenwickTree<AbelGroup> bit(NX);\r\n\r\n  \
-    \  for (int y = 0; y <= NY; ++y) {\r\n      for (auto &&[xl, xr, q]: CALC_1[y])\
-    \ {\r\n        auto x = bit.prod(xl, xr);\r\n        res[q] = AbelGroup::op(res[q],\
-    \ x);\r\n      }\r\n      for (auto &&[xl, xr, q]: CALC_2[y]) {\r\n        auto\
-    \ x = AbelGroup::inverse(bit.prod(xl, xr));\r\n        res[q] = AbelGroup::op(res[q],\
-    \ x);\r\n      }\r\n      for (auto &&[x, g]: ADD[y]) { bit.add(x, g); }\r\n \
-    \   }\r\n    return res;\r\n  }\r\n};\r\n#line 4 \"ds/query/rectangle_add_rectangle_sum.hpp\"\
-    \n\ntemplate <typename AbelGroup, bool SMALL = false>\nstruct Rectangle_Add_Rectangle_Sum\
+    \  }\n\n  void debug() { print(\"fenwick\", dat); }\n};\n#line 2 \"ds/query/point_add_rectangle_sum.hpp\"\
+    \n\r\ntemplate <typename AbelGroup, typename XY, bool SMALL_X = false>\r\nstruct\
+    \ Point_Add_Rectangle_Sum {\r\n  using G = typename AbelGroup::value_type;\r\n\
+    \  using Point = tuple<XY, XY, G>;\r\n  vector<Point> point;\r\n  vector<tuple<XY,\
+    \ XY, XY, XY>> rect;\r\n\r\n  Point_Add_Rectangle_Sum() {}\r\n\r\n  void add_query(XY\
+    \ x, XY y, G w) { point.eb(x, y, w); }\r\n  void sum_query(XY xl, XY yl, XY xr,\
+    \ XY yr) { rect.eb(xl, yl, xr, yr); }\r\n\r\n  vector<G> calc() {\r\n    int N\
+    \ = point.size(), Q = rect.size();\r\n    if (N == 0 || Q == 0) return vector<G>(Q,\
+    \ AbelGroup::unit());\r\n    // X \u65B9\u5411\u306E\u5EA7\u5727\r\n    int NX\
+    \ = 0;\r\n    if (!SMALL_X) {\r\n      sort(all(point),\r\n           [&](auto\
+    \ &x, auto &y) -> bool { return get<0>(x) < get<0>(y); });\r\n      vc<XY> keyX;\r\
+    \n      keyX.reserve(N);\r\n      for (auto &&[a, b, c]: point) {\r\n        if\
+    \ (len(keyX) == 0 || keyX.back() != a) { keyX.eb(a); }\r\n        a = len(keyX)\
+    \ - 1;\r\n      }\r\n      keyX.shrink_to_fit();\r\n      for (auto &&[xl, yl,\
+    \ xr, yr]: rect) {\r\n        xl = LB(keyX, xl);\r\n        xr = LB(keyX, xr);\r\
+    \n      }\r\n      NX = len(keyX);\r\n    }\r\n    if (SMALL_X) {\r\n      XY\
+    \ mx = numeric_limits<XY>::max();\r\n      for (auto &&[x, y, g]: point) chmin(mx,\
+    \ x);\r\n      for (auto &&[x, y, g]: point) x -= mx, chmax(NX, x + 1);\r\n  \
+    \    for (auto &&[xl, yl, xr, yr]: rect) {\r\n        xl -= mx, xr -= mx;\r\n\
+    \        xl = max(0, min<int>(xl, NX));\r\n        xr = max(0, min<int>(xr, NX));\r\
+    \n      }\r\n    }\r\n\r\n    vc<tuple<XY, int, int, int>> event(Q + Q);\r\n \
+    \   FOR(q, Q) {\r\n      auto &[xl, yl, xr, yr] = rect[q];\r\n      event[2 *\
+    \ q] = {yl, xl, xr, 2 * q};\r\n      event[2 * q + 1] = {yr, xl, xr, 2 * q + 1};\r\
+    \n    }\r\n    sort(all(point),\r\n         [&](auto &x, auto &y) -> bool { return\
+    \ get<1>(x) < get<1>(y); });\r\n    sort(all(event),\r\n         [&](auto &x,\
+    \ auto &y) -> bool { return get<0>(x) < get<0>(y); });\r\n\r\n    FenwickTree<AbelGroup>\
+    \ bit(NX);\r\n    vc<G> res(Q, AbelGroup::unit());\r\n    int j = 0;\r\n    for\
+    \ (auto &&[y, xl, xr, qq]: event) {\r\n      while (j < N && get<1>(point[j])\
+    \ < y) {\r\n        bit.add(get<0>(point[j]), get<2>(point[j]));\r\n        ++j;\r\
+    \n      }\r\n      G g = bit.sum(xl, xr);\r\n      int q = qq / 2;\r\n      if\
+    \ (qq % 2 == 0) g = AbelGroup::inverse(g);\r\n      res[q] = AbelGroup::op(res[q],\
+    \ g);\r\n    }\r\n    return res;\r\n  }\r\n};\n#line 4 \"ds/query/rectangle_add_rectangle_sum.hpp\"\
+    \n\ntemplate <typename AbelGroup, typename XY, bool SMALL_X = false>\nstruct Rectangle_Add_Rectangle_Sum\
     \ {\n  using WT = typename AbelGroup::value_type;\n  using WT4 = tuple<WT, WT,\
     \ WT, WT>;\n\n  struct G {\n    using X = WT4;\n    using value_type = X;\n  \
     \  static X op(const X &x, const X &y) {\n      auto &[ax, bx, cx, dx] = x;\n\
@@ -295,123 +290,123 @@ data:
     \    auto &[ax, bx, cx, dx] = x;\n      return {AbelGroup::power(ax, n), AbelGroup::power(bx,\
     \ n),\n              AbelGroup::power(cx, n), AbelGroup::power(dx, n)};\n    }\n\
     \    static constexpr X unit() {\n      auto u = AbelGroup::unit();\n      return\
-    \ {u, u, u, u};\n    }\n    static constexpr bool commute = true;\n  };\n\n  vector<tuple<ll,\
-    \ ll, ll, ll>> query;\n  Point_Add_Rectangle_Sum<G, SMALL> X;\n  ll min_x = 0,\
-    \ min_y = 0;\n\n  void add_query(ll xl, ll yl, ll xr, ll yr, WT w) {\n    assert(xl\
-    \ <= xr && yl <= yr);\n    min_x = min(min_x, xl);\n    min_y = min(min_y, yl);\n\
-    \    // (xl,yl) \u306B (x-xl)(y-yl) \u3092\u52A0\u7B97\n    auto nw = AbelGroup::inverse(w);\n\
+    \ {u, u, u, u};\n    }\n    static constexpr bool commute = true;\n  };\n\n  vector<tuple<XY,\
+    \ XY, XY, XY>> query;\n  Point_Add_Rectangle_Sum<G, XY, SMALL_X> X;\n  XY min_x\
+    \ = 0, min_y = 0;\n\n  void add_query(XY xl, XY yl, XY xr, XY yr, WT w) {\n  \
+    \  assert(xl <= xr && yl <= yr);\n    min_x = min(min_x, xl);\n    min_y = min(min_y,\
+    \ yl);\n    // (xl,yl) \u306B (x-xl)(y-yl) \u3092\u52A0\u7B97\n    auto nw = AbelGroup::inverse(w);\n\
     \    X.add_query(xl, yl,\n                {w, AbelGroup::power(w, -yl), AbelGroup::power(w,\
-    \ -xl),\n                 AbelGroup::power(w, +xl * yl)});\n    // (xl,yr) \u306B\
-    \ (x-xl)(y-yr) \u3092\u6E1B\u7B97\n    X.add_query(xl, yr,\n                {nw,\
-    \ AbelGroup::power(w, +yr), AbelGroup::power(w, +xl),\n                 AbelGroup::power(w,\
-    \ -xl * yr)});\n    // (xr,yl) \u306B (x-xr)(y-yl) \u3092\u6E1B\u7B97\n    X.add_query(xr,\
-    \ yl,\n                {nw, AbelGroup::power(w, +yl), AbelGroup::power(w, +xr),\n\
-    \                 AbelGroup::power(w, -xr * yl)});\n    // (xr,yr) \u306B (x-xr)(y-yr)\
-    \ \u3092\u52A0\u7B97\n    X.add_query(xr, yr,\n                {w, AbelGroup::power(w,\
-    \ -yr), AbelGroup::power(w, -xr),\n                 AbelGroup::power(w, +xr *\
-    \ yr)});\n  }\n\n  void sum_query(ll xl, ll yl, ll xr, ll yr) {\n    assert(xl\
-    \ <= xr && yl <= yr);\n    query.emplace_back(xl, yl, xr, yr);\n    X.sum_query(min_x,\
-    \ min_y, xl, yl);\n    X.sum_query(min_x, min_y, xl, yr);\n    X.sum_query(min_x,\
-    \ min_y, xr, yl);\n    X.sum_query(min_x, min_y, xr, yr);\n  }\n\n  vector<WT>\
-    \ calc() {\n    ll Q = query.size();\n    vector<WT> ANS(Q);\n    auto tmp = X.calc();\n\
-    \n    for (int q = 0; q < Q; ++q) {\n      auto [xl, yl, xr, yr] = query[q];\n\
-    \      WT p = AbelGroup::unit(), m = AbelGroup::unit();\n      {\n        auto\
-    \ [a, b, c, d] = tmp[4 * q + 0];\n        p = AbelGroup::op(p, AbelGroup::power(a,\
-    \ xl * yl));\n        p = AbelGroup::op(p, AbelGroup::power(b, xl));\n       \
-    \ p = AbelGroup::op(p, AbelGroup::power(c, yl));\n        p = AbelGroup::op(p,\
-    \ d);\n      }\n      {\n        auto [a, b, c, d] = tmp[4 * q + 1];\n       \
-    \ m = AbelGroup::op(m, AbelGroup::power(a, xl * yr));\n        m = AbelGroup::op(m,\
-    \ AbelGroup::power(b, xl));\n        m = AbelGroup::op(m, AbelGroup::power(c,\
-    \ yr));\n        m = AbelGroup::op(m, d);\n      }\n      {\n        auto [a,\
-    \ b, c, d] = tmp[4 * q + 2];\n        m = AbelGroup::op(m, AbelGroup::power(a,\
-    \ xr * yl));\n        m = AbelGroup::op(m, AbelGroup::power(b, xr));\n       \
-    \ m = AbelGroup::op(m, AbelGroup::power(c, yl));\n        m = AbelGroup::op(m,\
-    \ d);\n      }\n      {\n        auto [a, b, c, d] = tmp[4 * q + 3];\n       \
-    \ p = AbelGroup::op(p, AbelGroup::power(a, xr * yr));\n        p = AbelGroup::op(p,\
-    \ AbelGroup::power(b, xr));\n        p = AbelGroup::op(p, AbelGroup::power(c,\
-    \ yr));\n        p = AbelGroup::op(p, d);\n      }\n      ANS[q] = AbelGroup::op(p,\
-    \ AbelGroup::inverse(m));\n    }\n    return ANS;\n  }\n};\n#line 2 \"mod/modint.hpp\"\
-    \n\ntemplate <int mod>\nstruct modint {\n  static constexpr bool is_modint = true;\n\
-    \  int val;\n  constexpr modint(const ll val = 0) noexcept\n      : val(val >=\
-    \ 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint\
-    \ &other) const {\n    return val < other.val;\n  } // To use std::map\n  modint\
-    \ &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n\
-    \    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if ((val\
-    \ += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const\
-    \ modint &p) {\n    val = (int)(1LL * val * p.val % mod);\n    return *this;\n\
-    \  }\n  modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n   \
-    \ return *this;\n  }\n  modint operator-() const { return modint(-val); }\n  modint\
-    \ operator+(const modint &p) const { return modint(*this) += p; }\n  modint operator-(const\
-    \ modint &p) const { return modint(*this) -= p; }\n  modint operator*(const modint\
-    \ &p) const { return modint(*this) *= p; }\n  modint operator/(const modint &p)\
-    \ const { return modint(*this) /= p; }\n  bool operator==(const modint &p) const\
-    \ { return val == p.val; }\n  bool operator!=(const modint &p) const { return\
-    \ val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod, u = 1,\
-    \ v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b),\
-    \ swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
-    \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
-    \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n  static constexpr int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
-    \ {\n  static constexpr bool is_modint = true;\n  int val;\n  ArbitraryModInt()\
-    \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
-    \                   : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
-    \ ArbitraryModInt &other) const {\n    return val < other.val;\n  } // To use\
-    \ std::map<ArbitraryModInt, T>\n  static int &get_mod() {\n    static int mod\
-    \ = 0;\n    return mod;\n  }\n  static void set_mod(int md) { get_mod() = md;\
-    \ }\n  ArbitraryModInt &operator+=(const ArbitraryModInt &p) {\n    if ((val +=\
-    \ p.val) >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt\
-    \ &operator-=(const ArbitraryModInt &p) {\n    if ((val += get_mod() - p.val)\
-    \ >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt &operator*=(const\
-    \ ArbitraryModInt &p) {\n    long long a = (long long)val * p.val;\n    int xh\
-    \ = (int)(a >> 32), xl = (int)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d),\
-    \ \"=d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return\
-    \ *this;\n  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n   \
-    \ *this *= p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-()\
-    \ const { return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) += p;\n  }\n\
-    \  ArbitraryModInt operator-(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
-    \ -= p;\n  }\n  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n\
-    \    return ArbitraryModInt(*this) *= p;\n  }\n  ArbitraryModInt operator/(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) /= p;\n  }\n\
-    \  bool operator==(const ArbitraryModInt &p) const { return val == p.val; }\n\
-    \  bool operator!=(const ArbitraryModInt &p) const { return val != p.val; }\n\
-    \  ArbitraryModInt inverse() const {\n    int a = val, b = get_mod(), u = 1, v\
-    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
-    \ -= t * v, v);\n    }\n    return ArbitraryModInt(u);\n  }\n  ArbitraryModInt\
-    \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
-    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
-    \  }\n    return ret;\n  }\n};\n\ntemplate <typename mint>\nmint inv(int n) {\n\
-    \  static const int mod = mint::get_mod();\n  static vector<mint> dat = {0, 1};\n\
-    \  assert(0 <= n);\n  if (n >= mod) n %= mod;\n  while (int(dat.size()) <= n)\
-    \ {\n    int k = dat.size();\n    auto q = (mod + k - 1) / k;\n    int r = k *\
-    \ q - mod;\n    dat.emplace_back(dat[r] * mint(q));\n  }\n  return dat[n];\n}\n\
-    \ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
-    \  static vector<mint> dat = {1, 1};\n  assert(0 <= n);\n  if (n >= mod) return\
-    \ 0;\n  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
-    \ - 1] * mint(k));\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint\
-    \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
-    \ dat = {1, 1};\n  assert(0 <= n && n < mod);\n  while (int(dat.size()) <= n)\
-    \ {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <class mint, class... Ts>\nmint fact_invs(Ts...\
-    \ xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename\
-    \ mint, class Head, class... Tail>\nmint multinomial(Head &&head, Tail &&... tail)\
-    \ {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
-    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint>\
-    \ C;\n  static int H = 0, W = 0;\n\n  auto calc = [&](int i, int j) -> mint {\n\
-    \    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
-    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n\n  if (W <= k) {\n    FOR(i, H) {\n   \
-    \   C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n  \
-    \  }\n    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H,\
-    \ n + 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n\
-    \    }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint,\
-    \ bool large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >=\
-    \ 0);\n  if (k < 0 || n < k) return 0;\n  if (dense) return C_dense<mint>(n, k);\n\
-    \  if (!large) return fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n\
-    \  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *=\
-    \ fact_inv<mint>(k);\n  return x;\n}\n\ntemplate <typename mint, bool large =\
-    \ false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <=\
-    \ n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n -\
-    \ k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\
+    \ -xl),\n                 AbelGroup::power(w, +ll(xl) * yl)});\n    // (xl,yr)\
+    \ \u306B (x-xl)(y-yr) \u3092\u6E1B\u7B97\n    X.add_query(xl, yr,\n          \
+    \      {nw, AbelGroup::power(w, +yr), AbelGroup::power(w, +xl),\n            \
+    \     AbelGroup::power(w, -ll(xl) * yr)});\n    // (xr,yl) \u306B (x-xr)(y-yl)\
+    \ \u3092\u6E1B\u7B97\n    X.add_query(xr, yl,\n                {nw, AbelGroup::power(w,\
+    \ +yl), AbelGroup::power(w, +xr),\n                 AbelGroup::power(w, -ll(xr)\
+    \ * yl)});\n    // (xr,yr) \u306B (x-xr)(y-yr) \u3092\u52A0\u7B97\n    X.add_query(xr,\
+    \ yr,\n                {w, AbelGroup::power(w, -yr), AbelGroup::power(w, -xr),\n\
+    \                 AbelGroup::power(w, +ll(xr) * yr)});\n  }\n\n  void sum_query(XY\
+    \ xl, XY yl, XY xr, XY yr) {\n    assert(xl <= xr && yl <= yr);\n    query.emplace_back(xl,\
+    \ yl, xr, yr);\n    X.sum_query(min_x, min_y, xl, yl);\n    X.sum_query(min_x,\
+    \ min_y, xl, yr);\n    X.sum_query(min_x, min_y, xr, yl);\n    X.sum_query(min_x,\
+    \ min_y, xr, yr);\n  }\n\n  vector<WT> calc() {\n    int Q = query.size();\n \
+    \   vector<WT> ANS(Q);\n    auto tmp = X.calc();\n\n    for (int q = 0; q < Q;\
+    \ ++q) {\n      auto [xl, yl, xr, yr] = query[q];\n      WT p = AbelGroup::unit(),\
+    \ m = AbelGroup::unit();\n      {\n        auto [a, b, c, d] = tmp[4 * q + 0];\n\
+    \        p = AbelGroup::op(p, AbelGroup::power(a, ll(xl) * yl));\n        p =\
+    \ AbelGroup::op(p, AbelGroup::power(b, xl));\n        p = AbelGroup::op(p, AbelGroup::power(c,\
+    \ yl));\n        p = AbelGroup::op(p, d);\n      }\n      {\n        auto [a,\
+    \ b, c, d] = tmp[4 * q + 1];\n        m = AbelGroup::op(m, AbelGroup::power(a,\
+    \ ll(xl) * yr));\n        m = AbelGroup::op(m, AbelGroup::power(b, xl));\n   \
+    \     m = AbelGroup::op(m, AbelGroup::power(c, yr));\n        m = AbelGroup::op(m,\
+    \ d);\n      }\n      {\n        auto [a, b, c, d] = tmp[4 * q + 2];\n       \
+    \ m = AbelGroup::op(m, AbelGroup::power(a, ll(xr) * yl));\n        m = AbelGroup::op(m,\
+    \ AbelGroup::power(b, xr));\n        m = AbelGroup::op(m, AbelGroup::power(c,\
+    \ yl));\n        m = AbelGroup::op(m, d);\n      }\n      {\n        auto [a,\
+    \ b, c, d] = tmp[4 * q + 3];\n        p = AbelGroup::op(p, AbelGroup::power(a,\
+    \ ll(xr) * yr));\n        p = AbelGroup::op(p, AbelGroup::power(b, xr));\n   \
+    \     p = AbelGroup::op(p, AbelGroup::power(c, yr));\n        p = AbelGroup::op(p,\
+    \ d);\n      }\n      ANS[q] = AbelGroup::op(p, AbelGroup::inverse(m));\n    }\n\
+    \    return ANS;\n  }\n};\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\n\
+    struct modint {\n  static constexpr bool is_modint = true;\n  int val;\n  constexpr\
+    \ modint(const ll val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod -\
+    \ (-val) % mod) % mod) {}\n  bool operator<(const modint &other) const {\n   \
+    \ return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
+    \ modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n\
+    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >=\
+    \ mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint\
+    \ &p) {\n    val = (int)(1LL * val * p.val % mod);\n    return *this;\n  }\n \
+    \ modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
+    \ *this;\n  }\n  modint operator-() const { return modint(-val); }\n  modint operator+(const\
+    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
+    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
+    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
+    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
+    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
+    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
+    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
+    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t n) const {\n\
+    \    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
+    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr\
+    \ int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr\
+    \ bool is_modint = true;\n  int val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t\
+    \ y)\n      : val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y)\
+    \ % get_mod()) % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other)\
+    \ const {\n    return val < other.val;\n  } // To use std::map<ArbitraryModInt,\
+    \ T>\n  static int &get_mod() {\n    static int mod = 0;\n    return mod;\n  }\n\
+    \  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
+    \ ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
+    \    return *this;\n  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p)\
+    \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
+    \ *this;\n  }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n   \
+    \ long long a = (long long)val * p.val;\n    int xh = (int)(a >> 32), xl = (int)a,\
+    \ d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"(m) : \"d\"(xh), \"a\"\
+    (xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n  }\n  ArbitraryModInt\
+    \ &operator/=(const ArbitraryModInt &p) {\n    *this *= p.inverse();\n    return\
+    \ *this;\n  }\n  ArbitraryModInt operator-() const { return ArbitraryModInt(get_mod()\
+    \ - val); }\n  ArbitraryModInt operator+(const ArbitraryModInt &p) const {\n \
+    \   return ArbitraryModInt(*this) += p;\n  }\n  ArbitraryModInt operator-(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) -= p;\n  }\n\
+    \  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
+    \ *= p;\n  }\n  ArbitraryModInt operator/(const ArbitraryModInt &p) const {\n\
+    \    return ArbitraryModInt(*this) /= p;\n  }\n  bool operator==(const ArbitraryModInt\
+    \ &p) const { return val == p.val; }\n  bool operator!=(const ArbitraryModInt\
+    \ &p) const { return val != p.val; }\n  ArbitraryModInt inverse() const {\n  \
+    \  int a = val, b = get_mod(), u = 1, v = 0, t;\n    while (b > 0) {\n      t\
+    \ = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return\
+    \ ArbitraryModInt(u);\n  }\n  ArbitraryModInt pow(int64_t n) const {\n    ArbitraryModInt\
+    \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
+    \ mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n};\n\ntemplate <typename\
+    \ mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n  static\
+    \ vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n \
+    \ while (int(dat.size()) <= n) {\n    int k = dat.size();\n    auto q = (mod +\
+    \ k - 1) / k;\n    int r = k * q - mod;\n    dat.emplace_back(dat[r] * mint(q));\n\
+    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
+    \ const int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  assert(0\
+    \ <= n);\n  if (n >= mod) return 0;\n  while (int(dat.size()) <= n) {\n    int\
+    \ k = dat.size();\n    dat.emplace_back(dat[k - 1] * mint(k));\n  }\n  return\
+    \ dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static const\
+    \ int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  assert(0\
+    \ <= n && n < mod);\n  while (int(dat.size()) <= n) {\n    int k = dat.size();\n\
+    \    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n  }\n  return dat[n];\n}\n\n\
+    template <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1)\
+    \ * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head, class...\
+    \ Tail>\nmint multinomial(Head &&head, Tail &&... tail) {\n  return fact<mint>(head)\
+    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
+    mint C_dense(int n, int k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\
+    \n  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j == 0 ?\
+    \ mint(1) : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n \
+    \ };\n\n  if (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j,\
+    \ W, k + 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <=\
+    \ n) {\n    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n\
+    \      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return\
+    \ C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool dense = false>\n\
+    mint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if\
+    \ (dense) return C_dense<mint>(n, k);\n  if (!large) return fact<mint>(n) * fact_inv<mint>(k)\
+    \ * fact_inv<mint>(n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) {\
+    \ x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n  return x;\n}\n\ntemplate <typename\
+    \ mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0\
+    \ <= k && k <= n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n\
+    \ - k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\
     \u8A08\u7B97\ntemplate <typename mint, bool large = false, bool dense = false>\n\
     mint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
     \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
@@ -443,8 +438,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-10-24 08:51:26+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-10-28 09:10:40+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
 layout: document
