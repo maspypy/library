@@ -772,6 +772,9 @@ data:
     path: test/mytest/maxplus_concave.test.cpp
     title: test/mytest/maxplus_concave.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/min_cost_matching_on_line.test.cpp
+    title: test/mytest/min_cost_matching_on_line.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_of_linear_segments.test.cpp
     title: test/mytest/min_of_linear_segments.test.cpp
   - icon: ':heavy_check_mark:'
@@ -852,7 +855,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1069.test.cpp
     title: test/yukicoder/1069.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1077.test.cpp
     title: test/yukicoder/1077.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1524,6 +1527,7 @@ data:
   - test/mytest/range_freq_of_linear.test.cpp
   - test/mytest/binom.test.cpp
   - test/mytest/all_inverse.test.cpp
+  - test/mytest/min_cost_matching_on_line.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/partizan.test.cpp
   - test/mytest/suffix_tree.test.cpp

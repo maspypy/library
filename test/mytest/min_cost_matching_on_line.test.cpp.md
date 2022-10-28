@@ -4,6 +4,9 @@ data:
   - icon: ':question:'
     path: ds/slope.hpp
     title: ds/slope.hpp
+  - icon: ':heavy_check_mark:'
+    path: flow/min_cost_matching_on_line.hpp
+    title: flow/min_cost_matching_on_line.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -17,19 +20,21 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1077
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://yukicoder.me/problems/no/1077
-  bundledCode: "#line 1 \"test/yukicoder/1077.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1077\"\
-    \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
-    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
-    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
-    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
-    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://atcoder.jp/contests/kupc2016/tasks/kupc2016_h
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/mytest/min_cost_matching_on_line.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\
+    \n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n\
+    #include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing\
+    \ pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing\
+    \ u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing\
+    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -228,32 +233,58 @@ data:
     \ (len(que_l) ? que_l.top() + add_l : LMIN); }\r\n  T pop_R() {\r\n    T res =\
     \ top_R();\r\n    if (len(que_r)) que_r.pop();\r\n    return res;\r\n  }\r\n \
     \ T pop_L() {\r\n    T res = top_L();\r\n    if (len(que_l)) que_l.pop();\r\n\
-    \    return res;\r\n  }\r\n};\n#line 5 \"test/yukicoder/1077.test.cpp\"\n\nvoid\
-    \ solve() {\n  LL(N);\n  Slope_Trick_1<ll> X;\n  FOR(N) {\n    LL(x);\n    X.add_abs(x);\n\
-    \    X.clear_inc();\n  }\n\n  auto [lx, rx, min_f] = X.get_min();\n  print(min_f);\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
-    \ return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1077\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"ds/slope.hpp\"\n\nvoid solve() {\n  LL(N);\n\
-    \  Slope_Trick_1<ll> X;\n  FOR(N) {\n    LL(x);\n    X.add_abs(x);\n    X.clear_inc();\n\
-    \  }\n\n  auto [lx, rx, min_f] = X.get_min();\n  print(min_f);\n}\n\nsigned main()\
-    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \    return res;\r\n  }\r\n};\n#line 2 \"flow/min_cost_matching_on_line.hpp\"\n\
+    \n// \u5EA7\u6A19 0, ..., N-1 \u306B A_i \u500B\u3042\u308B\n// \u5EA7\u6A19 0,\
+    \ ..., N-1 \u3067 B_i \u500B\u307E\u3067\u53D7\u3051\u5165\u308C\u3089\u308C\u308B\
+    \nll min_cost_matching_on_line_1(vi A, vi B) {\n  assert(SUM<ll>(A) <= SUM<ll>(B));\n\
+    \  const int N = len(A);\n  Slope_Trick_1<ll> f(vi(N + N + 1, 0), vi());\n  FOR(i,\
+    \ N) {\n    ll c = A[i] - B[i];\n    f.shift(c);\n    f.clear_inc();\n    f.add_abs(0);\n\
+    \  }\n  return f.eval(0);\n}\n#line 5 \"test/mytest/min_cost_matching_on_line.test.cpp\"\
+    \n\nvoid test() {\n  // https://atcoder.jp/contests/kupc2016/tasks/kupc2016_h\n\
+    \  vi A = {3, 1}, B = {1, 5};\n  assert(min_cost_matching_on_line_1(A, B) == 2);\n\
+    \  A = {3, 3, 1, 1, 1}, B = {1, 2, 3, 4, 5};\n  assert(min_cost_matching_on_line_1(A,\
+    \ B) == 6);\n  A = {10, 2, 5, 6, 2, 6, 3,  2, 2,  5, 3, 11, 13, 2,\n       2,\
+    \  7, 7, 3, 9, 5, 13, 4, 17, 2, 2, 2,  4},\n  B = {46, 3, 4, 2, 10, 2, 5, 2, 6,\
+    \ 7,  20, 13, 9, 49,\n       3,  8, 4, 3, 19, 9, 3, 5, 4, 13, 9,  5,  7};\n  assert(min_cost_matching_on_line_1(A,\
+    \ B) == 48);\n  A = {1236501, 770807,  4003004, 131688,  1965412, 266841,\n  \
+    \     3980782, 565060,  816313,  192940,  541896,  250801,\n       217586,  3806049,\
+    \ 1220252, 1161079, 31168,   2008961},\n  B = {3878348, 423911,  8031742, 1035156,\
+    \ 24256,    10344593,\n       19379,   3867285, 4481365, 1475384, 1959412,  1383457,\n\
+    \       164869,  4633165, 6674637, 9732852, 10459147, 2810788};\n  assert(min_cost_matching_on_line_1(A,\
+    \ B) == 6302172);\n  A = {1234567891, 1}, B = {1, 99999999999};\n  assert(min_cost_matching_on_line_1(A,\
+    \ B) == 1234567890);\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\n\
+    signed main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"flow/min_cost_matching_on_line.hpp\"\n\
+    \nvoid test() {\n  // https://atcoder.jp/contests/kupc2016/tasks/kupc2016_h\n\
+    \  vi A = {3, 1}, B = {1, 5};\n  assert(min_cost_matching_on_line_1(A, B) == 2);\n\
+    \  A = {3, 3, 1, 1, 1}, B = {1, 2, 3, 4, 5};\n  assert(min_cost_matching_on_line_1(A,\
+    \ B) == 6);\n  A = {10, 2, 5, 6, 2, 6, 3,  2, 2,  5, 3, 11, 13, 2,\n       2,\
+    \  7, 7, 3, 9, 5, 13, 4, 17, 2, 2, 2,  4},\n  B = {46, 3, 4, 2, 10, 2, 5, 2, 6,\
+    \ 7,  20, 13, 9, 49,\n       3,  8, 4, 3, 19, 9, 3, 5, 4, 13, 9,  5,  7};\n  assert(min_cost_matching_on_line_1(A,\
+    \ B) == 48);\n  A = {1236501, 770807,  4003004, 131688,  1965412, 266841,\n  \
+    \     3980782, 565060,  816313,  192940,  541896,  250801,\n       217586,  3806049,\
+    \ 1220252, 1161079, 31168,   2008961},\n  B = {3878348, 423911,  8031742, 1035156,\
+    \ 24256,    10344593,\n       19379,   3867285, 4481365, 1475384, 1959412,  1383457,\n\
+    \       164869,  4633165, 6674637, 9732852, 10459147, 2810788};\n  assert(min_cost_matching_on_line_1(A,\
+    \ B) == 6302172);\n  A = {1234567891, 1}, B = {1, 99999999999};\n  assert(min_cost_matching_on_line_1(A,\
+    \ B) == 1234567890);\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\n\
+    signed main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
+  - flow/min_cost_matching_on_line.hpp
   - ds/slope.hpp
   isVerificationFile: true
-  path: test/yukicoder/1077.test.cpp
+  path: test/mytest/min_cost_matching_on_line.test.cpp
   requiredBy: []
-  timestamp: '2022-10-29 03:23:02+09:00'
+  timestamp: '2022-10-29 03:44:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/1077.test.cpp
+documentation_of: test/mytest/min_cost_matching_on_line.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/1077.test.cpp
-- /verify/test/yukicoder/1077.test.cpp.html
-title: test/yukicoder/1077.test.cpp
+- /verify/test/mytest/min_cost_matching_on_line.test.cpp
+- /verify/test/mytest/min_cost_matching_on_line.test.cpp.html
+title: test/mytest/min_cost_matching_on_line.test.cpp
 ---

@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: flow/min_cost_matching_on_line.hpp
     title: flow/min_cost_matching_on_line.hpp
   _extendedVerifiedWith:
@@ -15,7 +15,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/arc123d.test.cpp
     title: test/atcoder/arc123d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/min_cost_matching_on_line.test.cpp
+    title: test/mytest/min_cost_matching_on_line.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1077.test.cpp
     title: test/yukicoder/1077.test.cpp
   _isVerificationFailed: true
@@ -90,6 +93,7 @@ data:
   timestamp: '2022-10-29 03:23:02+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/mytest/min_cost_matching_on_line.test.cpp
   - test/yukicoder/1077.test.cpp
   - test/atcoder/abc217h.test.cpp
   - test/atcoder/abc127f.test.cpp

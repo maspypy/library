@@ -423,7 +423,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: flow/maxflow.hpp
       title: flow/maxflow.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: flow/min_cost_matching_on_line.hpp
       title: flow/min_cost_matching_on_line.hpp
     - icon: ':heavy_check_mark:'
@@ -2031,6 +2031,9 @@ data:
       path: test/mytest/maxplus_concave.test.cpp
       title: test/mytest/maxplus_concave.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/mytest/min_cost_matching_on_line.test.cpp
+      title: test/mytest/min_cost_matching_on_line.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/mytest/min_of_linear_segments.test.cpp
       title: test/mytest/min_of_linear_segments.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2113,7 +2116,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1069.test.cpp
       title: test/yukicoder/1069.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1077.test.cpp
       title: test/yukicoder/1077.test.cpp
     - icon: ':heavy_check_mark:'
