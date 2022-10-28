@@ -1,118 +1,72 @@
+
 template <typename T>
-struct SlopeTrick {
-  const T INF = numeric_limits<T>::max() / 3;
-  T min_f;
-  priority_queue<T, vector<T>, less<> > L;
-  priority_queue<T, vector<T>, greater<> > R;
+struct Slope_Trick_1 {
+  static constexpr T LMIN = numeric_limits<T>::lowest();
+  static constexpr T RMAX = numeric_limits<T>::max();
+  pq<T> que_l;
+  pqg<T> que_r;
   T add_l, add_r;
+  T min_f;
 
-private:
-  void push_R(const T &a) { R.push(a - add_r); }
+  Slope_Trick_1() : add_l(0), add_r(0), min_f(0) {}
+  Slope_Trick_1(vc<T> left, vc<T> right)
+      : que_l(all(left)), que_r(all(right)), add_l(0), add_r(0), min_f(0) {}
 
-  T top_R() const {
-    if (R.empty())
-      return INF;
-    else
-      return R.top() + add_r;
-  }
-
-  T pop_R() {
-    T val = top_R();
-    if (not R.empty()) R.pop();
-    return val;
-  }
-
-  void push_L(const T &a) { L.push(a - add_l); }
-
-  T top_L() const {
-    if (L.empty())
-      return -INF;
-    else
-      return L.top() + add_l;
-  }
-
-  T pop_L() {
-    T val = top_L();
-    if (not L.empty()) L.pop();
-    return val;
-  }
-
-  size_t size() { return L.size() + R.size(); }
-
-public:
-  SlopeTrick() : min_f(0), add_l(0), add_r(0) {}
-
-  // return [lx, rx, min_f]
+  int size() { return len(que_l) + len(que_r); }
   tuple<T, T, T> get_min() { return {top_L(), top_R(), min_f}; }
 
-  // f(x) += a
-  void add_all(const T &a) { min_f += a; }
+  void add_const(T a) { min_f += a; }
 
-  // add \_
-  // f(x) += max(a - x, 0)
-  void add_a_minus_x(const T &a) {
+  // (a-x)+
+  void add_a_minus_x(T a) {
     min_f += max(T(0), a - top_R());
-    push_R(a);
-    push_L(pop_R());
+    push_R(a), push_L(pop_R());
   }
-
-  // add _/
-  // f(x) += max(x - a, 0)
-  void add_x_minus_a(const T &a) {
+  // (x-a)+
+  void add_x_minus_a(T a) {
     min_f += max(T(0), top_L() - a);
-    push_L(a);
-    push_R(pop_L());
+    push_L(a), push_R(pop_L());
   }
-
-  // add \/
-  // f(x) += abs(x - a)
-  void add_abs(const T &a) {
+  // |x-a|
+  void add_abs(T a) {
     add_a_minus_x(a);
     add_x_minus_a(a);
   }
 
-  // \/ -> \_
-  // f_{new} (x) = min f(y) (y <= x)
-  void clear_right() {
-    while (not R.empty()) R.pop();
+  // 増加側を消して、減少側のみにする
+  void clear_inc() { que_r = pqg<T>(); }
+  // 減少側を消して、増加側のみにする
+  void clear_dec() { que_l = pq<T>(); }
+  void shift(const T &a) { add_l += a, add_r += a; }
+
+  // g(x) = min_{x-b <= y <= x-a} f(y)
+  void sliding_window_minimum(const T &a, const T &b) {
+    add_l += a, add_r += b;
   }
 
-  // \/ -> _/
-  // f_{new} (x) = min f(y) (y >= x)
-  void clear_left() {
-    while (not L.empty()) L.pop();
+  // O(size)
+  T eval(T x) {
+    T y = min_f;
+    for (auto &&l: que_l) { y += max<T>(0, (l + add_l) - x); }
+    for (auto &&r: que_r) { y += max<T>(0, x - (r + add_r)); }
   }
 
-  // \/ -> \_/
-  // f_{new} (x) = min f(y) (x-b <= y <= x-a)
-  void shift(const T &a, const T &b) {
-    assert(a <= b);
-    add_l += a;
-    add_r += b;
+  void push_R(const T &x) {
+    if (x != RMAX) que_r.emplace(x - add_r);
   }
-
-  // \/. -> .\/
-  // f_{new} (x) = f(x - a)
-  void shift(const T &a) { shift(a, a); }
-
-  // L, R を破壊する
-  T get(const T &x) {
-    T ret = min_f;
-    while (not L.empty()) { ret += max(T(0), pop_L() - x); }
-    while (not R.empty()) { ret += max(T(0), x - pop_R()); }
-    return ret;
+  void push_L(const T &x) {
+    if (x != LMIN) que_l.emplace(x - add_l);
   }
-
-  void merge(SlopeTrick &st) {
-    if (st.size() > size()) {
-      swap(st.L, L);
-      swap(st.R, R);
-      swap(st.add_l, add_l);
-      swap(st.add_r, add_r);
-      swap(st.min_f, min_f);
-    }
-    while (not st.R.empty()) { add_x_minus_a(st.pop_R()); }
-    while (not st.L.empty()) { add_a_minus_x(st.pop_L()); }
-    min_f += st.min_f;
+  T top_R() { return (len(que_r) ? que_r.top() + add_r : RMAX); }
+  T top_L() { return (len(que_l) ? que_l.top() + add_l : LMIN); }
+  T pop_R() {
+    T res = top_R();
+    if (len(que_r)) que_r.pop();
+    return res;
+  }
+  T pop_L() {
+    T res = top_L();
+    if (len(que_l)) que_l.pop();
+    return res;
   }
 };
