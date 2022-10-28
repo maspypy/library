@@ -47,8 +47,11 @@ struct Slope_Trick_1 {
   // O(size)
   T eval(T x) {
     T y = min_f;
-    for (auto &&l: que_l) { y += max<T>(0, (l + add_l) - x); }
-    for (auto &&r: que_r) { y += max<T>(0, x - (r + add_r)); }
+    pq<T> que_l_copy = que_l;
+    pqg<T> que_r_copy = que_r;
+    while (len(que_l_copy)) { y += max<T>(0, (pick(que_l_copy) + add_l) - x); }
+    while (len(que_r_copy)) { y += max<T>(0, x - (pick(que_r_copy) + add_r)); }
+    return y;
   }
 
   void push_R(const T &x) {
