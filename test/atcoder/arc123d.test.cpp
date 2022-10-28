@@ -1,18 +1,22 @@
-#define PROBLEM "https://yukicoder.me/problems/no/1077"
+#define PROBLEM "https://atcoder.jp/contests/arc123/tasks/arc123_d"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/slope.hpp"
 
 void solve() {
   LL(N);
+  VEC(ll, A, N);
   Slope_Trick_1<ll> X;
-  FOR(N) {
-    LL(x);
-    X.add_abs(x);
-    X.clear_inc();
+  FOR(i, N) {
+    if (i > 0) {
+      ll c = max<ll>(0, A[i] - A[i - 1]);
+      X.shift(c);
+      X.clear_inc();
+    }
+    X.add_abs(0);
+    X.add_abs(A[i]);
   }
-
-  auto [lx, rx, min_f] = X.get_min();
+  auto [xl, xr, min_f] = X.get_min();
   print(min_f);
 }
 
