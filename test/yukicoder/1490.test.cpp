@@ -14,7 +14,7 @@ void solve() {
     dat.eb(xl, yl, xr, yr, a);
   }
 
-  Rectangle_Add_Rectangle_Sum<Group_Add<ll>, 1> X;
+  Rectangle_Add_Rectangle_Sum<Group_Add<ll>, ll, 1> X;
   FOR(M) {
     LL(x, y, b, c);
     --x, --y;
