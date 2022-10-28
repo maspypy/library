@@ -1,23 +1,30 @@
 #pragma once
 
-// max(x+a, b) の合成
+// min(x+a, b) の合成
 template <typename T>
 struct Monoid_Min_xplusa_b {
-  using value_type = pi;
+  using value_type = pair<T, T>;
   using X = value_type;
-  static constexpr T apply(const X& a, T& x){
-    return min(x + a.fi, a.se);
-  }
-  static constexpr T add(const T& x, const T& y) {
-    if (x == numeric_limits<T>::max()) return x;
-    if (y == numeric_limits<T>::max()) return y;
+  static const T LIM = numeric_limits<T>::max();
+
+  static X add(T x) { return {x, LIM}; }
+  static X chmin(T x) { return {0, x}; }
+
+  static T op_add(T x, T y) {
+    if (x == LIM) return LIM;
+    if (y == LIM) return LIM;
     return x + y;
   }
-  static constexpr X op(const X& A, const X& B) {
-    auto& [a, b] = A;
-    auto& [c, d] = B;
-    return {add(a, c), min(add(b, c), d)};
+  static T eval(X f, T x) {
+    auto [a, b] = f;
+    return min(x + a, b);
   }
-  static constexpr X unit() { return {0, numeric_limits<T>::lowest()}; }
+
+  static X op(X A, X B) {
+    auto [a, b] = A;
+    auto [c, d] = B;
+    return {op_add(a, c), min(op_add(b, c), d)};
+  }
+  static constexpr X unit() { return {0, LIM}; }
   static constexpr bool commute = false;
 };
