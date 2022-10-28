@@ -10,10 +10,10 @@ data:
   - icon: ':question:'
     path: ds/query/point_add_rectangle_sum.hpp
     title: ds/query/point_add_rectangle_sum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/query/rectangle_add_rectangle_sum.hpp
     title: ds/query/rectangle_add_rectangle_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_rectangle_add_rectangle_sum
@@ -412,21 +412,21 @@ data:
     \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
     \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
     \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 9 \"test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  Rectangle_Add_Rectangle_Sum<Group_Add<mint>>\
-    \ X;\n\n  FOR(N) {\n    LL(l, d, r, u, w);\n    X.add_query(l, d, r, u, w);\n\
-    \  }\n  FOR(Q) {\n    LL(l, d, r, u);\n    X.sum_query(l, d, r, u);\n  }\n  auto\
-    \ ans = X.calc();\n  for (auto&& x: ans) print(x);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  Rectangle_Add_Rectangle_Sum<Group_Add<mint>,\
+    \ int, false> X;\n\n  FOR(N) {\n    LL(l, d, r, u, w);\n    X.add_query(l, d,\
+    \ r, u, w);\n  }\n  FOR(Q) {\n    LL(l, d, r, u);\n    X.sum_query(l, d, r, u);\n\
+    \  }\n  auto ans = X.calc();\n  for (auto&& x: ans) print(x);\n}\n\nsigned main()\
+    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/static_rectangle_add_rectangle_sum\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/query/rectangle_add_rectangle_sum.hpp\"\
     \n#include \"mod/modint.hpp\"\n#include \"alg/group/add.hpp\"\n\nusing mint =\
-    \ modint998;\n\nvoid solve() {\n  LL(N, Q);\n  Rectangle_Add_Rectangle_Sum<Group_Add<mint>>\
-    \ X;\n\n  FOR(N) {\n    LL(l, d, r, u, w);\n    X.add_query(l, d, r, u, w);\n\
-    \  }\n  FOR(Q) {\n    LL(l, d, r, u);\n    X.sum_query(l, d, r, u);\n  }\n  auto\
-    \ ans = X.calc();\n  for (auto&& x: ans) print(x);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \ modint998;\n\nvoid solve() {\n  LL(N, Q);\n  Rectangle_Add_Rectangle_Sum<Group_Add<mint>,\
+    \ int, false> X;\n\n  FOR(N) {\n    LL(l, d, r, u, w);\n    X.add_query(l, d,\
+    \ r, u, w);\n  }\n  FOR(Q) {\n    LL(l, d, r, u);\n    X.sum_query(l, d, r, u);\n\
+    \  }\n  auto ans = X.calc();\n  for (auto&& x: ans) print(x);\n}\n\nsigned main()\
+    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -438,8 +438,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-10-28 09:10:40+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-10-29 03:48:47+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
 layout: document

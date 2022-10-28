@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/slope.hpp
     title: ds/slope.hpp
   - icon: ':question:'
@@ -207,34 +207,35 @@ data:
     \n      : que_l(all(left)), que_r(all(right)), add_l(0), add_r(0), min_f(0) {}\r\
     \n\r\n  int size() { return len(que_l) + len(que_r); }\r\n  tuple<T, T, T> get_min()\
     \ { return {top_L(), top_R(), min_f}; }\r\n\r\n  void add_const(T a) { min_f +=\
-    \ a; }\r\n\r\n  // (a-x)+\r\n  void add_a_minus_x(T a) {\r\n    min_f += max(T(0),\
-    \ a - top_R());\r\n    push_R(a), push_L(pop_R());\r\n  }\r\n  // (x-a)+\r\n \
-    \ void add_x_minus_a(T a) {\r\n    min_f += max(T(0), top_L() - a);\r\n    push_L(a),\
-    \ push_R(pop_L());\r\n  }\r\n  // |x-a|\r\n  void add_abs(T a) {\r\n    add_a_minus_x(a);\r\
-    \n    add_x_minus_a(a);\r\n  }\r\n\r\n  // \u5897\u52A0\u5074\u3092\u6D88\u3057\
-    \u3066\u3001\u6E1B\u5C11\u5074\u306E\u307F\u306B\u3059\u308B\r\n  void clear_inc()\
-    \ { que_r = pqg<T>(); }\r\n  // \u6E1B\u5C11\u5074\u3092\u6D88\u3057\u3066\u3001\
-    \u5897\u52A0\u5074\u306E\u307F\u306B\u3059\u308B\r\n  void clear_dec() { que_l\
-    \ = pq<T>(); }\r\n  void shift(const T &a) { add_l += a, add_r += a; }\r\n\r\n\
-    \  // g(x) = min_{x-b <= y <= x-a} f(y)\r\n  void sliding_window_minimum(const\
-    \ T &a, const T &b) {\r\n    add_l += a, add_r += b;\r\n  }\r\n\r\n  // O(size)\r\
-    \n  T eval(T x) {\r\n    T y = min_f;\r\n    pq<T> que_l_copy = que_l;\r\n   \
-    \ pqg<T> que_r_copy = que_r;\r\n    while (len(que_l_copy)) { y += max<T>(0, (pick(que_l_copy)\
-    \ + add_l) - x); }\r\n    while (len(que_r_copy)) { y += max<T>(0, x - (pick(que_r_copy)\
-    \ + add_r)); }\r\n    return y;\r\n  }\r\n\r\n  void push_R(const T &x) {\r\n\
-    \    if (x != RMAX) que_r.emplace(x - add_r);\r\n  }\r\n  void push_L(const T\
-    \ &x) {\r\n    if (x != LMIN) que_l.emplace(x - add_l);\r\n  }\r\n  T top_R()\
-    \ { return (len(que_r) ? que_r.top() + add_r : RMAX); }\r\n  T top_L() { return\
-    \ (len(que_l) ? que_l.top() + add_l : LMIN); }\r\n  T pop_R() {\r\n    T res =\
-    \ top_R();\r\n    if (len(que_r)) que_r.pop();\r\n    return res;\r\n  }\r\n \
-    \ T pop_L() {\r\n    T res = top_L();\r\n    if (len(que_l)) que_l.pop();\r\n\
-    \    return res;\r\n  }\r\n};\n#line 5 \"test/atcoder/abc217h.test.cpp\"\n\nvoid\
-    \ solve() {\n  LL(N);\n  Slope_Trick_1<ll> f(vi(N, 0), vi(N, 0));\n\n  ll pt =\
-    \ 0;\n  FOR(N) {\n    LL(t, d, x);\n    ll dt = t - pt;\n    pt = t;\n    f.sliding_window_minimum(-dt,\
-    \ dt);\n    if (d == 0) f.add_a_minus_x(x);\n    if (d == 1) f.add_x_minus_a(x);\n\
-    \  }\n  auto [xl, xr, min_f] = f.get_min();\n  print(min_f);\n}\n\nsigned main()\
-    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \ a; }\r\n\r\n  // (a-x)+\r\n  void add_a_minus_x(T a) {\r\n    if (len(que_r))\
+    \ min_f += max(T(0), a - top_R());\r\n    push_R(a), push_L(pop_R());\r\n  }\r\
+    \n  // (x-a)+\r\n  void add_x_minus_a(T a) {\r\n    if (len(que_l)) min_f += max(T(0),\
+    \ top_L() - a);\r\n    push_L(a), push_R(pop_L());\r\n  }\r\n  // |x-a|\r\n  void\
+    \ add_abs(T a) {\r\n    add_a_minus_x(a);\r\n    add_x_minus_a(a);\r\n  }\r\n\r\
+    \n  // \u5897\u52A0\u5074\u3092\u6D88\u3057\u3066\u3001\u6E1B\u5C11\u5074\u306E\
+    \u307F\u306B\u3059\u308B\r\n  void clear_inc() { que_r = pqg<T>(); }\r\n  // \u6E1B\
+    \u5C11\u5074\u3092\u6D88\u3057\u3066\u3001\u5897\u52A0\u5074\u306E\u307F\u306B\
+    \u3059\u308B\r\n  void clear_dec() { que_l = pq<T>(); }\r\n  void shift(const\
+    \ T &a) { add_l += a, add_r += a; }\r\n\r\n  // g(x) = min_{x-b <= y <= x-a} f(y)\r\
+    \n  void sliding_window_minimum(const T &a, const T &b) {\r\n    add_l += a, add_r\
+    \ += b;\r\n  }\r\n\r\n  // O(size)\r\n  T eval(T x) {\r\n    T y = min_f;\r\n\
+    \    pq<T> que_l_copy = que_l;\r\n    pqg<T> que_r_copy = que_r;\r\n    while\
+    \ (len(que_l_copy)) { y += max<T>(0, (pick(que_l_copy) + add_l) - x); }\r\n  \
+    \  while (len(que_r_copy)) { y += max<T>(0, x - (pick(que_r_copy) + add_r)); }\r\
+    \n    return y;\r\n  }\r\n\r\n  void push_R(const T &x) {\r\n    if (x != RMAX)\
+    \ que_r.emplace(x - add_r);\r\n  }\r\n  void push_L(const T &x) {\r\n    if (x\
+    \ != LMIN) que_l.emplace(x - add_l);\r\n  }\r\n  T top_R() { return (len(que_r)\
+    \ ? que_r.top() + add_r : RMAX); }\r\n  T top_L() { return (len(que_l) ? que_l.top()\
+    \ + add_l : LMIN); }\r\n  T pop_R() {\r\n    T res = top_R();\r\n    if (len(que_r))\
+    \ que_r.pop();\r\n    return res;\r\n  }\r\n  T pop_L() {\r\n    T res = top_L();\r\
+    \n    if (len(que_l)) que_l.pop();\r\n    return res;\r\n  }\r\n};\n#line 5 \"\
+    test/atcoder/abc217h.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  Slope_Trick_1<ll>\
+    \ f(vi(N, 0), vi(N, 0));\n\n  ll pt = 0;\n  FOR(N) {\n    LL(t, d, x);\n    ll\
+    \ dt = t - pt;\n    pt = t;\n    f.sliding_window_minimum(-dt, dt);\n    if (d\
+    \ == 0) f.add_a_minus_x(x);\n    if (d == 1) f.add_x_minus_a(x);\n  }\n  auto\
+    \ [xl, xr, min_f] = f.get_min();\n  print(min_f);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc217/tasks/abc217_h\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/slope.hpp\"\n\n\
     void solve() {\n  LL(N);\n  Slope_Trick_1<ll> f(vi(N, 0), vi(N, 0));\n\n  ll pt\
@@ -250,7 +251,7 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc217h.test.cpp
   requiredBy: []
-  timestamp: '2022-10-29 03:23:02+09:00'
+  timestamp: '2022-10-29 03:54:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/abc217h.test.cpp
