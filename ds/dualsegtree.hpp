@@ -7,14 +7,16 @@ struct DualSegTree {
   vc<A> laz;
 
   DualSegTree() : DualSegTree(0) {}
-  DualSegTree(int n) : n(n) {
+  DualSegTree(int n) { resize(n); }
+
+  void reset() { fill(all(laz), Monoid::unit()); }
+  void resize(int n_) {
+    n = n_;
     log = 1;
     while ((1 << log) < n) ++log;
     size = 1 << log;
     laz.assign(size << 1, Monoid::unit());
   }
-
-  void reset() { fill(all(laz), Monoid::unit()); }
 
   void all_apply(int k, A a) { laz[k] = Monoid::op(laz[k], a); }
 
