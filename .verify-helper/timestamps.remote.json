@@ -125,6 +125,7 @@
 "test/library_checker/datastructure/sort_segtree.test.cpp": "2022-10-24 08:51:26 +0900",
 "test/library_checker/datastructure/sort_segtree_1.test.cpp": "2022-10-24 08:51:26 +0900",
 "test/library_checker/datastructure/static_range_sum.test.cpp": "2022-09-27 00:08:36 +0900",
+"test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp": "2022-10-29 03:48:47 +0900",
 "test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp": "2022-10-21 19:08:45 +0900",
 "test/library_checker/datastructure/staticrmq_dc.test.cpp": "2022-10-21 17:24:22 +0900",
 "test/library_checker/datastructure/staticrmq_seg.test.cpp": "2022-10-21 19:08:45 +0900",
