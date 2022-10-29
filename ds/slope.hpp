@@ -1,75 +1,103 @@
+struct Slope_Trick {
+  static constexpr ll LMIN = numeric_limits<ll>::lowest() / 2;
+  static constexpr ll RMAX = numeric_limits<ll>::max() / 2;
+  pq<ll> que_l;
+  pqg<ll> que_r;
 
-template <typename T>
-struct Slope_Trick_1 {
-  static constexpr T LMIN = numeric_limits<T>::lowest();
-  static constexpr T RMAX = numeric_limits<T>::max();
-  pq<T> que_l;
-  pqg<T> que_r;
-  T add_l, add_r;
-  T min_f;
+  ll add_l, add_r;
+  i128 min_f; // INF を足し引きしても壊れないようにする
 
-  Slope_Trick_1() : add_l(0), add_r(0), min_f(0) {}
-  Slope_Trick_1(vc<T> left, vc<T> right)
+  Slope_Trick() : add_l(0), add_r(0), min_f(0) {}
+  Slope_Trick(vc<ll> left, vc<ll> right)
       : que_l(all(left)), que_r(all(right)), add_l(0), add_r(0), min_f(0) {}
 
   int size() { return len(que_l) + len(que_r); }
-  tuple<T, T, T> get_min() { return {top_L(), top_R(), min_f}; }
+  tuple<ll, ll, i128> get_min() { return {top_L(), top_R(), min_f}; }
 
-  void add_const(T a) { min_f += a; }
+  void add_const(ll a) { min_f += a; }
+
+  // O(|a| log N)
+  void add_linear(ll a, ll b) {
+    min_f += b;
+    FOR(max<int>(a, 0)) {
+      ll x = pop_L();
+      min_f += x;
+      push_R(x);
+    }
+    FOR(max<int>(-a, 0)) {
+      ll x = pop_R();
+      min_f -= x;
+      push_L(x);
+    }
+  }
 
   // (a-x)+
-  void add_a_minus_x(T a) {
-    if (len(que_r)) min_f += max(T(0), a - top_R());
+  void add_a_minus_x(ll a) {
+    min_f += max<ll>(0, a - top_R());
     push_R(a), push_L(pop_R());
   }
   // (x-a)+
-  void add_x_minus_a(T a) {
-    if (len(que_l)) min_f += max(T(0), top_L() - a);
+  void add_x_minus_a(ll a) {
+    min_f += max<ll>(0, top_L() - a);
     push_L(a), push_R(pop_L());
   }
+
   // |x-a|
-  void add_abs(T a) {
+  void add_abs(ll a) {
     add_a_minus_x(a);
     add_x_minus_a(a);
   }
 
   // 増加側を消して、減少側のみにする
-  void clear_inc() { que_r = pqg<T>(); }
+  void clear_inc() { que_r = pqg<ll>(); }
   // 減少側を消して、増加側のみにする
-  void clear_dec() { que_l = pq<T>(); }
-  void shift(const T &a) { add_l += a, add_r += a; }
+  void clear_dec() { que_l = pq<ll>(); }
+  void shift(const ll &a) { add_l += a, add_r += a; }
 
   // g(x) = min_{x-b <= y <= x-a} f(y)
-  void sliding_window_minimum(const T &a, const T &b) {
+  void sliding_window_minimum(const ll &a, const ll &b) {
     add_l += a, add_r += b;
   }
 
   // O(size)
-  T eval(T x) {
-    T y = min_f;
-    pq<T> que_l_copy = que_l;
-    pqg<T> que_r_copy = que_r;
-    while (len(que_l_copy)) { y += max<T>(0, (pick(que_l_copy) + add_l) - x); }
-    while (len(que_r_copy)) { y += max<T>(0, x - (pick(que_r_copy) + add_r)); }
+  i128 eval(ll x) {
+    i128 y = min_f;
+    pq<ll> que_l_copy = que_l;
+    pqg<ll> que_r_copy = que_r;
+    while (len(que_l_copy)) { y += max<ll>(0, (pick(que_l_copy) + add_l) - x); }
+    while (len(que_r_copy)) { y += max<ll>(0, x - (pick(que_r_copy) + add_r)); }
     return y;
   }
 
-  void push_R(const T &x) {
-    if (x != RMAX) que_r.emplace(x - add_r);
+  void push_R(const ll &x) { que_r.emplace(x - add_r); }
+  void push_L(const ll &x) { que_l.emplace(x - add_l); }
+  ll top_R() {
+    if (que_r.empty()) que_r.emplace(RMAX);
+    return que_r.top() + add_r;
   }
-  void push_L(const T &x) {
-    if (x != LMIN) que_l.emplace(x - add_l);
+  ll top_L() {
+    if (que_l.empty()) que_l.emplace(LMIN);
+    return que_l.top() + add_l;
   }
-  T top_R() { return (len(que_r) ? que_r.top() + add_r : RMAX); }
-  T top_L() { return (len(que_l) ? que_l.top() + add_l : LMIN); }
-  T pop_R() {
-    T res = top_R();
-    if (len(que_r)) que_r.pop();
+  ll pop_R() {
+    ll res = top_R();
+    que_r.pop();
     return res;
   }
-  T pop_L() {
-    T res = top_L();
-    if (len(que_l)) que_l.pop();
+  ll pop_L() {
+    ll res = top_L();
+    que_l.pop();
     return res;
+  }
+
+  void debug() {
+    vi left, right;
+    pq<ll> que_l_copy = que_l;
+    pqg<ll> que_r_copy = que_r;
+    while (len(que_l_copy)) { left.eb(pick(que_l_copy) + add_l); }
+    while (len(que_r_copy)) { right.eb(pick(que_r_copy) + add_r); }
+    sort(all(left));
+    sort(all(right));
+    print("min_f", min_f, "left", left, "right", right);
   }
 };
