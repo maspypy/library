@@ -5,7 +5,7 @@
 ll min_cost_matching_on_line_1(vi A, vi B) {
   assert(SUM<ll>(A) <= SUM<ll>(B));
   const int N = len(A);
-  Slope_Trick_1<ll> f(vi(N + N + 1, 0), vi());
+  Slope_Trick f(vi(N + 1, 0), vi());
   FOR(i, N) {
     ll c = A[i] - B[i];
     f.shift(c);
