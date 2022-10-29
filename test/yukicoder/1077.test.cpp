@@ -5,7 +5,7 @@
 
 void solve() {
   LL(N);
-  Slope_Trick_1<ll> X;
+  Slope_Trick X;
   FOR(N) {
     LL(x);
     X.add_abs(x);
