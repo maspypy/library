@@ -238,17 +238,17 @@ data:
     \ left.eb(pick(que_l_copy) + add_l); }\r\n    while (len(que_r_copy)) { right.eb(pick(que_r_copy)\
     \ + add_r); }\r\n    sort(all(left));\r\n    sort(all(right));\r\n    print(\"\
     min_f\", min_f, \"left\", left, \"right\", right);\r\n  }\r\n};\n#line 5 \"test/atcoder/abc127f.test.cpp\"\
-    \n\nvoid solve() {\n  LL(Q);\n  Slope_Trick_1<ll> f;\n  FOR(Q) {\n    LL(t);\n\
-    \    if (t == 1) {\n      LL(a, b);\n      f.add_const(b);\n      f.add_abs(a);\n\
-    \    }\n    if (t == 2) {\n      auto [xl, xr, min_f] = f.get_min();\n      print(xl,\
+    \n\nvoid solve() {\n  LL(Q);\n  Slope_Trick f;\n  FOR(Q) {\n    LL(t);\n    if\
+    \ (t == 1) {\n      LL(a, b);\n      f.add_const(b);\n      f.add_abs(a);\n  \
+    \  }\n    if (t == 2) {\n      auto [xl, xr, min_f] = f.get_min();\n      print(xl,\
     \ min_f);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
     \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc127/tasks/abc127_f\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/slope.hpp\"\n\n\
-    void solve() {\n  LL(Q);\n  Slope_Trick_1<ll> f;\n  FOR(Q) {\n    LL(t);\n   \
-    \ if (t == 1) {\n      LL(a, b);\n      f.add_const(b);\n      f.add_abs(a);\n\
-    \    }\n    if (t == 2) {\n      auto [xl, xr, min_f] = f.get_min();\n      print(xl,\
+    void solve() {\n  LL(Q);\n  Slope_Trick f;\n  FOR(Q) {\n    LL(t);\n    if (t\
+    \ == 1) {\n      LL(a, b);\n      f.add_const(b);\n      f.add_abs(a);\n    }\n\
+    \    if (t == 2) {\n      auto [xl, xr, min_f] = f.get_min();\n      print(xl,\
     \ min_f);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
     \n  return 0;\n}\n"
@@ -259,7 +259,7 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc127f.test.cpp
   requiredBy: []
-  timestamp: '2022-10-29 12:42:46+09:00'
+  timestamp: '2022-10-29 13:57:33+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/atcoder/abc127f.test.cpp
