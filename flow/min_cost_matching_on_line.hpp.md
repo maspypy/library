@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/slope.hpp
     title: ds/slope.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_cost_matching_on_line.test.cpp
     title: test/mytest/min_cost_matching_on_line.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/slope.hpp\"\nstruct Slope_Trick {\r\n  static constexpr\
@@ -56,22 +56,22 @@ data:
     \n\n// \u5EA7\u6A19 0, ..., N-1 \u306B A_i \u500B\u3042\u308B\n// \u5EA7\u6A19\
     \ 0, ..., N-1 \u3067 B_i \u500B\u307E\u3067\u53D7\u3051\u5165\u308C\u3089\u308C\
     \u308B\nll min_cost_matching_on_line_1(vi A, vi B) {\n  assert(SUM<ll>(A) <= SUM<ll>(B));\n\
-    \  const int N = len(A);\n  Slope_Trick_1<ll> f(vi(N + N + 1, 0), vi());\n  FOR(i,\
-    \ N) {\n    ll c = A[i] - B[i];\n    f.shift(c);\n    f.clear_inc();\n    f.add_abs(0);\n\
+    \  const int N = len(A);\n  Slope_Trick f(vi(N + 1, 0), vi());\n  FOR(i, N) {\n\
+    \    ll c = A[i] - B[i];\n    f.shift(c);\n    f.clear_inc();\n    f.add_abs(0);\n\
     \  }\n  return f.eval(0);\n}\n"
   code: "#include \"ds/slope.hpp\"\n\n// \u5EA7\u6A19 0, ..., N-1 \u306B A_i \u500B\
     \u3042\u308B\n// \u5EA7\u6A19 0, ..., N-1 \u3067 B_i \u500B\u307E\u3067\u53D7\u3051\
     \u5165\u308C\u3089\u308C\u308B\nll min_cost_matching_on_line_1(vi A, vi B) {\n\
-    \  assert(SUM<ll>(A) <= SUM<ll>(B));\n  const int N = len(A);\n  Slope_Trick_1<ll>\
-    \ f(vi(N + N + 1, 0), vi());\n  FOR(i, N) {\n    ll c = A[i] - B[i];\n    f.shift(c);\n\
-    \    f.clear_inc();\n    f.add_abs(0);\n  }\n  return f.eval(0);\n}"
+    \  assert(SUM<ll>(A) <= SUM<ll>(B));\n  const int N = len(A);\n  Slope_Trick f(vi(N\
+    \ + 1, 0), vi());\n  FOR(i, N) {\n    ll c = A[i] - B[i];\n    f.shift(c);\n \
+    \   f.clear_inc();\n    f.add_abs(0);\n  }\n  return f.eval(0);\n}\n"
   dependsOn:
   - ds/slope.hpp
   isVerificationFile: false
   path: flow/min_cost_matching_on_line.hpp
   requiredBy: []
-  timestamp: '2022-10-29 12:42:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-10-29 13:59:04+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/min_cost_matching_on_line.test.cpp
 documentation_of: flow/min_cost_matching_on_line.hpp

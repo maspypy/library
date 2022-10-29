@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/slope.hpp
     title: ds/slope.hpp
   - icon: ':question:'
