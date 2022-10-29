@@ -5,7 +5,7 @@
 
 void solve() {
   LL(N);
-  Slope_Trick_1<ll> f(vi(N, 0), vi(N, 0));
+  Slope_Trick f(vi(N, 0), vi(N, 0));
 
   ll pt = 0;
   FOR(N) {
