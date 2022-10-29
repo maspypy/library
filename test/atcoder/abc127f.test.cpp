@@ -5,7 +5,7 @@
 
 void solve() {
   LL(Q);
-  Slope_Trick_1<ll> f;
+  Slope_Trick f;
   FOR(Q) {
     LL(t);
     if (t == 1) {
