@@ -6,7 +6,7 @@
 void solve() {
   LL(N);
   VEC(ll, A, N);
-  Slope_Trick_1<ll> X;
+  Slope_Trick X;
   FOR(i, N) {
     if (i > 0) {
       ll c = max<ll>(0, A[i] - A[i - 1]);
