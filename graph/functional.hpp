@@ -51,7 +51,7 @@ struct FunctionalGraph {
     int c = tree.depth[bottom];
     step %= c;
     if (step == 0) return v;
-    return tree.jump(bottom, step - 1);
+    return tree.jump(bottom, N, step - 1);
   }
 
   // functional graph に step 回進む
@@ -87,5 +87,12 @@ struct FunctionalGraph {
     };
     for (auto&& e: G[N]) { dfs(dfs, e.to); }
     return res;
+  }
+
+  template <typename TREE>
+  bool in_cycle(TREE& tree, int v) {
+    int r = root[v];
+    int bottom = TO[r];
+    return tree.in_subtree(bottom, v);
   }
 };
