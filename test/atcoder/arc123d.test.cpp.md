@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/arc123/tasks/arc123_d
@@ -240,7 +240,7 @@ data:
     \n    print(\"min_f\", min_f, \"left\", left, \"right\", right);\r\n  }\r\n};\n\
     #line 5 \"test/atcoder/arc123d.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  VEC(ll,\
     \ A, N);\n  Slope_Trick X;\n  FOR(i, N) {\n    if (i > 0) {\n      ll c = max<ll>(0,\
-    \ A[i] - A[i - 1]);\n      X.shift(c);\n      X.clear_inc();\n    }\n    X.add_abs(0);\n\
+    \ A[i] - A[i - 1]);\n      X.shift(c);\n      X.clear_right();\n    }\n    X.add_abs(0);\n\
     \    X.add_abs(A[i]);\n  }\n  auto [xl, xr, min_f] = X.get_min();\n  print(min_f);\n\
     }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
     \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
@@ -249,8 +249,8 @@ data:
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/slope.hpp\"\n\n\
     void solve() {\n  LL(N);\n  VEC(ll, A, N);\n  Slope_Trick X;\n  FOR(i, N) {\n\
     \    if (i > 0) {\n      ll c = max<ll>(0, A[i] - A[i - 1]);\n      X.shift(c);\n\
-    \      X.clear_inc();\n    }\n    X.add_abs(0);\n    X.add_abs(A[i]);\n  }\n \
-    \ auto [xl, xr, min_f] = X.get_min();\n  print(min_f);\n}\n\nsigned main() {\n\
+    \      X.clear_right();\n    }\n    X.add_abs(0);\n    X.add_abs(A[i]);\n  }\n\
+    \  auto [xl, xr, min_f] = X.get_min();\n  print(min_f);\n}\n\nsigned main() {\n\
     \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
     \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   dependsOn:
@@ -260,8 +260,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/arc123d.test.cpp
   requiredBy: []
-  timestamp: '2022-11-05 01:54:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-05 02:42:34+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/arc123d.test.cpp
 layout: document

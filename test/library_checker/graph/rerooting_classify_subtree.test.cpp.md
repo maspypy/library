@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: graph/rerooting_classify_subtree.hpp
     title: graph/rerooting_classify_subtree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/rerooting_dp.hpp
     title: graph/rerooting_dp.hpp
   - icon: ':question:'
@@ -377,7 +377,7 @@ data:
     \ }\r\n\r\n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\
     \u6728 v\r\n  Data get(int root, int v) {\r\n    if (root == v) return dp[v];\r\
     \n    if (!tree.in_subtree(root, v)) { return dp_1[v]; }\r\n    int w = tree.jump(v,\
-    \ root);\r\n    return dp_2[w];\r\n  }\r\n\r\n  template <typename F1, typename\
+    \ root, 1);\r\n    return dp_2[w];\r\n  }\r\n\r\n  template <typename F1, typename\
     \ F2, typename F3>\r\n  void build(F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)\
     \ {\r\n    int N = tree.G.N;\r\n    dp_1.assign(N, unit);\r\n    dp_2.assign(N,\
     \ unit);\r\n    dp.assign(N, unit);\r\n    auto& V = tree.V;\r\n    auto& par\
@@ -395,7 +395,7 @@ data:
     \ {\r\n          if (f.to == par[e.to]) continue;\r\n          dp_2[f.to] = f_ee(dp_2[f.to],\
     \ x);\r\n          dp_2[f.to] = f_ev(dp_2[f.to], e.to);\r\n        }\r\n     \
     \   x = f_ee(dp[e.to], x);\r\n        dp[e.to] = f_ev(x, e.to);\r\n      }\r\n\
-    \    }\r\n  }\r\n};\n#line 6 \"graph/rerooting_classify_subtree.hpp\"\n\ntemplate\
+    \    }\r\n  }\r\n};\r\n#line 6 \"graph/rerooting_classify_subtree.hpp\"\n\ntemplate\
     \ <typename TREE>\nstruct Rerooting_classify_subtree {\n  using mint = modint61;\n\
     \  TREE& tree;\n  vc<ll> dp, dp_1, dp_2;\n\n  Rerooting_classify_subtree(TREE&\
     \ tree) : tree(tree) {\n    int N = tree.G.N;\n    using T = pair<int, mint>;\n\
@@ -441,7 +441,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
   requiredBy: []
-  timestamp: '2022-11-05 01:55:39+09:00'
+  timestamp: '2022-11-05 02:40:57+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/rerooting_classify_subtree.test.cpp

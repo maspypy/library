@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: connected_dp/squares.hpp
     title: connected_dp/squares.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'
