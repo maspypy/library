@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
@@ -15,15 +15,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1211.test.cpp
     title: test/yukicoder/1211.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1242.test.cpp
     title: test/yukicoder/1242.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/yukicoder/2122.test.cpp
+    title: test/yukicoder/2122.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -120,12 +123,12 @@ data:
     \ weighted) {\r\n    assert(weighted);\r\n    int c = LCA(a, b);\r\n    return\
     \ depth_weighted[a] + depth_weighted[b] - WT(2) * depth_weighted[c];\r\n  }\r\n\
     \r\n  // a is in b\r\n  bool in_subtree(int a, int b) { return LID[b] <= LID[a]\
-    \ && LID[a] < RID[b]; }\r\n\r\n  int jump(int a, int b, ll k = 1) {\r\n    if\
-    \ (k == 1) {\r\n      if (a == b) return -1;\r\n      return (in_subtree(b, a)\
-    \ ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\r\n    }\r\n    int c = LCA(a,\
-    \ b);\r\n    int d_ac = depth[a] - depth[c];\r\n    int d_bc = depth[b] - depth[c];\r\
-    \n    if (k > d_ac + d_bc) return -1;\r\n    if (k <= d_ac) return LA(a, k);\r\
-    \n    return LA(b, d_ac + d_bc - k);\r\n  }\r\n\r\n  vc<int> collect_child(int\
+    \ && LID[a] < RID[b]; }\r\n\r\n  int jump(int a, int b, ll k) {\r\n    if (k ==\
+    \ 1) {\r\n      if (a == b) return -1;\r\n      return (in_subtree(b, a) ? LA(b,\
+    \ depth[b] - depth[a] - 1) : parent[a]);\r\n    }\r\n    int c = LCA(a, b);\r\n\
+    \    int d_ac = depth[a] - depth[c];\r\n    int d_bc = depth[b] - depth[c];\r\n\
+    \    if (k > d_ac + d_bc) return -1;\r\n    if (k <= d_ac) return LA(a, k);\r\n\
+    \    return LA(b, d_ac + d_bc - k);\r\n  }\r\n\r\n  vc<int> collect_child(int\
     \ v) {\r\n    vc<int> res;\r\n    for (auto &&e: G[v])\r\n      if (e.to != parent[v])\
     \ res.eb(e.to);\r\n    return res;\r\n  }\r\n\r\n  vc<pair<int, int>> get_path_decomposition(int\
     \ u, int v, bool edge) {\r\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\
@@ -168,7 +171,7 @@ data:
     \   if (step <= d - 1) return tree.jump(v, N, step);\r\n    v = root[v];\r\n \
     \   step -= d - 1;\r\n    int bottom = TO[v];\r\n    int c = tree.depth[bottom];\r\
     \n    step %= c;\r\n    if (step == 0) return v;\r\n    return tree.jump(bottom,\
-    \ step - 1);\r\n  }\r\n\r\n  // functional graph \u306B step \u56DE\u9032\u3080\
+    \ N, step - 1);\r\n  }\r\n\r\n  // functional graph \u306B step \u56DE\u9032\u3080\
     \r\n  template <typename TREE>\r\n  vc<int> jump_all(TREE& tree, ll step) {\r\n\
     \    auto& G = tree.G;\r\n    vc<int> res(N, -1);\r\n    // v \u306E k \u500B\u5148\
     \u3092 res[w] \u306B\u5165\u308C\u308B\r\n    vvc<pair<int, int>> query(N);\r\n\
@@ -181,7 +184,9 @@ data:
     \ dfs, int v) -> void {\r\n      path.eb(v);\r\n      for (auto&& [w, k]: query[v])\
     \ { res[w] = path[len(path) - 1 - k]; }\r\n      for (auto&& e: G[v]) dfs(dfs,\
     \ e.to);\r\n      path.pop_back();\r\n    };\r\n    for (auto&& e: G[N]) { dfs(dfs,\
-    \ e.to); }\r\n    return res;\r\n  }\r\n};\r\n"
+    \ e.to); }\r\n    return res;\r\n  }\r\n\r\n  template <typename TREE>\r\n  bool\
+    \ in_cycle(TREE& tree, int v) {\r\n    int r = root[v];\r\n    int bottom = TO[r];\r\
+    \n    return tree.in_subtree(bottom, v);\r\n  }\r\n};\r\n"
   code: "#include \"graph/tree.hpp\"\r\n#include \"ds/unionfind.hpp\"\r\n\r\n// N\
     \ \u304C\u6839\u3068\u306A\u308B\u6728\u3092\u65B0\u305F\u306B\u4F5C\u308B\r\n\
     template <typename T = int>\r\nstruct FunctionalGraph {\r\n  int N, M;\r\n  vc<int>\
@@ -200,8 +205,8 @@ data:
     \   int d = tree.depth[v];\r\n    if (step <= d - 1) return tree.jump(v, N, step);\r\
     \n    v = root[v];\r\n    step -= d - 1;\r\n    int bottom = TO[v];\r\n    int\
     \ c = tree.depth[bottom];\r\n    step %= c;\r\n    if (step == 0) return v;\r\n\
-    \    return tree.jump(bottom, step - 1);\r\n  }\r\n\r\n  // functional graph \u306B\
-    \ step \u56DE\u9032\u3080\r\n  template <typename TREE>\r\n  vc<int> jump_all(TREE&\
+    \    return tree.jump(bottom, N, step - 1);\r\n  }\r\n\r\n  // functional graph\
+    \ \u306B step \u56DE\u9032\u3080\r\n  template <typename TREE>\r\n  vc<int> jump_all(TREE&\
     \ tree, ll step) {\r\n    auto& G = tree.G;\r\n    vc<int> res(N, -1);\r\n   \
     \ // v \u306E k \u500B\u5148\u3092 res[w] \u306B\u5165\u308C\u308B\r\n    vvc<pair<int,\
     \ int>> query(N);\r\n    FOR(v, N) {\r\n      int d = tree.depth[v];\r\n     \
@@ -213,8 +218,10 @@ data:
     \n    auto dfs = [&](auto& dfs, int v) -> void {\r\n      path.eb(v);\r\n    \
     \  for (auto&& [w, k]: query[v]) { res[w] = path[len(path) - 1 - k]; }\r\n   \
     \   for (auto&& e: G[v]) dfs(dfs, e.to);\r\n      path.pop_back();\r\n    };\r\
-    \n    for (auto&& e: G[N]) { dfs(dfs, e.to); }\r\n    return res;\r\n  }\r\n};\r\
-    \n"
+    \n    for (auto&& e: G[N]) { dfs(dfs, e.to); }\r\n    return res;\r\n  }\r\n\r\
+    \n  template <typename TREE>\r\n  bool in_cycle(TREE& tree, int v) {\r\n    int\
+    \ r = root[v];\r\n    int bottom = TO[r];\r\n    return tree.in_subtree(bottom,\
+    \ v);\r\n  }\r\n};\r\n"
   dependsOn:
   - graph/tree.hpp
   - graph/base.hpp
@@ -222,10 +229,11 @@ data:
   isVerificationFile: false
   path: graph/functional.hpp
   requiredBy: []
-  timestamp: '2022-10-26 11:17:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-11-05 01:56:33+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/590.test.cpp
+  - test/yukicoder/2122.test.cpp
   - test/yukicoder/1211.test.cpp
   - test/yukicoder/1242.test.cpp
 documentation_of: graph/functional.hpp

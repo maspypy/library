@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/group/affine.hpp
     title: alg/group/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/dualsegtree.hpp
     title: ds/dualsegtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'

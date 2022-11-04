@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/gset/affine.hpp
     title: alg/gset/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
