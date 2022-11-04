@@ -49,9 +49,9 @@ struct Slope_Trick {
   }
 
   // 増加側を消して、減少側のみにする
-  void clear_inc() { que_r = pqg<ll>(); }
+  void clear_right() { que_r = pqg<ll>(); }
   // 減少側を消して、増加側のみにする
-  void clear_dec() { que_l = pq<ll>(); }
+  void clear_left() { que_l = pq<ll>(); }
   void shift(const ll &a) { add_l += a, add_r += a; }
 
   // g(x) = min_{x-b <= y <= x-a} f(y)
@@ -59,7 +59,7 @@ struct Slope_Trick {
     add_l += a, add_r += b;
   }
 
-  // O(size)
+  // O(size log(size))
   i128 eval(ll x) {
     i128 y = min_f;
     pq<ll> que_l_copy = que_l;
