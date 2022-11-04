@@ -23,7 +23,7 @@ struct Rerooting_dp {
   Data get(int root, int v) {
     if (root == v) return dp[v];
     if (!tree.in_subtree(root, v)) { return dp_1[v]; }
-    int w = tree.jump(v, root);
+    int w = tree.jump(v, root, 1);
     return dp_2[w];
   }
 
