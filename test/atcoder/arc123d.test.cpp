@@ -11,7 +11,7 @@ void solve() {
     if (i > 0) {
       ll c = max<ll>(0, A[i] - A[i - 1]);
       X.shift(c);
-      X.clear_inc();
+      X.clear_right();
     }
     X.add_abs(0);
     X.add_abs(A[i]);
