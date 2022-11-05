@@ -1054,6 +1054,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/product_of_pow_of_linear.hpp
       title: poly/product_of_pow_of_linear.hpp
+    - icon: ':warning:'
+      path: poly/sparse_FODE.hpp
+      title: poly/sparse_FODE.hpp
+    - icon: ':warning:'
+      path: poly/sparse_pow_product.hpp
+      title: poly/sparse_pow_product.hpp
     - icon: ':heavy_check_mark:'
       path: poly/sum_of_exp_bx.hpp
       title: poly/sum_of_exp_bx.hpp
