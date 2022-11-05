@@ -28,7 +28,7 @@ void solve() {
     int a = D[i], b = D[j];
     isin[a] = 1;
     while (a != b) {
-      a = tree.jump(a, b);
+      a = tree.jump(a, b, 1);
       isin[a] = 1;
     }
   }
