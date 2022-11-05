@@ -9,7 +9,7 @@ void solve() {
   FOR(N) {
     LL(x);
     X.add_abs(x);
-    X.clear_inc();
+    X.clear_right();
   }
 
   auto [lx, rx, min_f] = X.get_min();
