@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':heavy_check_mark:'
@@ -37,7 +37,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

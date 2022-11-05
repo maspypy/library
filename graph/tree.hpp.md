@@ -29,13 +29,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/functional.hpp
     title: graph/functional.hpp
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/rerooting_classify_subtree.hpp
     title: graph/rerooting_classify_subtree.hpp
   - icon: ':question:'
@@ -96,7 +96,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/classify_tree.test.cpp
     title: test/library_checker/graph/classify_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
     title: test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -174,7 +174,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
   _isVerificationFailed: true

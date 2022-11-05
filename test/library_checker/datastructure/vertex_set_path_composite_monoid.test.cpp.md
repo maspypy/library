@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'

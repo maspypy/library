@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/slope.hpp
     title: ds/slope.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: flow/min_cost_matching_on_line.hpp
     title: flow/min_cost_matching_on_line.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -248,7 +248,7 @@ data:
     \u307E\u3067\u53D7\u3051\u5165\u308C\u3089\u308C\u308B\nll min_cost_matching_on_line_1(vi\
     \ A, vi B) {\n  assert(SUM<ll>(A) <= SUM<ll>(B));\n  const int N = len(A);\n \
     \ Slope_Trick f(vi(N + 1, 0), vi());\n  FOR(i, N) {\n    ll c = A[i] - B[i];\n\
-    \    f.shift(c);\n    f.clear_inc();\n    f.add_abs(0);\n  }\n  return f.eval(0);\n\
+    \    f.shift(c);\n    f.clear_right();\n    f.add_abs(0);\n  }\n  return f.eval(0);\n\
     }\n#line 5 \"test/mytest/min_cost_matching_on_line.test.cpp\"\n\nvoid test() {\n\
     \  // https://atcoder.jp/contests/kupc2016/tasks/kupc2016_h\n  vi A = {3, 1},\
     \ B = {1, 5};\n  assert(min_cost_matching_on_line_1(A, B) == 2);\n  A = {3, 3,\
@@ -288,8 +288,8 @@ data:
   isVerificationFile: true
   path: test/mytest/min_cost_matching_on_line.test.cpp
   requiredBy: []
-  timestamp: '2022-11-05 01:54:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-05 10:01:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/min_cost_matching_on_line.test.cpp
 layout: document

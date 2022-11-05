@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_cycle_length_through_specified.hpp
     title: graph/minimum_cycle_length_through_specified.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/rerooting_classify_subtree.hpp
     title: graph/rerooting_classify_subtree.hpp
   - icon: ':heavy_check_mark:'
@@ -72,7 +72,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/classify_tree.test.cpp
     title: test/library_checker/graph/classify_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
     title: test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -210,9 +210,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -251,7 +251,7 @@ data:
   - string/rollinghash.hpp
   - string/rollinghash_2d.hpp
   timestamp: '2022-10-23 11:21:57+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/stern_brocot.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp

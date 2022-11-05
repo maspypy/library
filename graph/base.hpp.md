@@ -71,7 +71,7 @@ data:
   - icon: ':warning:'
     path: graph/find_odd_cycle.hpp
     title: graph/find_odd_cycle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/functional.hpp
     title: graph/functional.hpp
   - icon: ':heavy_check_mark:'
@@ -95,7 +95,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/reachability.hpp
     title: graph/reachability.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/rerooting_classify_subtree.hpp
     title: graph/rerooting_classify_subtree.hpp
   - icon: ':question:'
@@ -264,7 +264,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/maximum_independent_set.test.cpp
     title: test/library_checker/graph/maximum_independent_set.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
     title: test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -426,7 +426,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
   - icon: ':heavy_check_mark:'

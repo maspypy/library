@@ -8,11 +8,11 @@ data:
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/rerooting_classify_subtree.hpp
     title: graph/rerooting_classify_subtree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
     title: test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - icon: ':heavy_check_mark:'

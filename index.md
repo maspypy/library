@@ -269,7 +269,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree2d_dense.hpp
       title: ds/segtree2d_dense.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/slope.hpp
       title: ds/slope.hpp
     - icon: ':heavy_check_mark:'
@@ -278,7 +278,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/swag.hpp
       title: ds/swag.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/unionfind.hpp
       title: ds/unionfind.hpp
     - icon: ':heavy_check_mark:'
@@ -423,7 +423,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: flow/maxflow.hpp
       title: flow/maxflow.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: flow/min_cost_matching_on_line.hpp
       title: flow/min_cost_matching_on_line.hpp
     - icon: ':heavy_check_mark:'
@@ -537,7 +537,7 @@ data:
     - icon: ':warning:'
       path: graph/find_odd_cycle.hpp
       title: graph/find_odd_cycle.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/functional.hpp
       title: graph/functional.hpp
     - icon: ':heavy_check_mark:'
@@ -579,7 +579,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/reachability.hpp
       title: graph/reachability.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/rerooting_classify_subtree.hpp
       title: graph/rerooting_classify_subtree.hpp
     - icon: ':question:'
@@ -779,7 +779,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/factorial998.hpp
       title: mod/factorial998.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/fast_div.hpp
       title: mod/fast_div.hpp
     - icon: ':heavy_check_mark:'
@@ -794,7 +794,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/min_of_linear_segments.hpp
       title: mod/min_of_linear_segments.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/mod_inv.hpp
       title: mod/mod_inv.hpp
     - icon: ':heavy_check_mark:'
@@ -812,10 +812,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_sum_of_linear.hpp
       title: mod/mod_sum_of_linear.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint.hpp
       title: mod/modint.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint61.hpp
       title: mod/modint61.hpp
     - icon: ':heavy_check_mark:'
@@ -846,7 +846,7 @@ data:
     - icon: ':warning:'
       path: nt/ceil_range.hpp
       title: nt/ceil_range.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/crt.hpp
       title: nt/crt.hpp
     - icon: ':heavy_check_mark:'
@@ -861,7 +861,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/extgcd.hpp
       title: nt/extgcd.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/factor.hpp
       title: nt/factor.hpp
     - icon: ':heavy_check_mark:'
@@ -909,7 +909,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/primetable.hpp
       title: nt/primetable.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/primetest.hpp
       title: nt/primetest.hpp
     - icon: ':heavy_check_mark:'
@@ -1062,7 +1062,7 @@ data:
       title: poly/sum_of_rationals.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -1722,7 +1722,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/min_cost_b-flow.test.cpp
       title: test/library_checker/graph/min_cost_b-flow.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
       title: test/library_checker/graph/rerooting_classify_subtree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2030,7 +2030,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/maxplus_concave.test.cpp
       title: test/mytest/maxplus_concave.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/min_cost_matching_on_line.test.cpp
       title: test/mytest/min_cost_matching_on_line.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2116,7 +2116,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1069.test.cpp
       title: test/yukicoder/1069.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1077.test.cpp
       title: test/yukicoder/1077.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2590,7 +2590,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/579.test.cpp
       title: test/yukicoder/579.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/590.test.cpp
       title: test/yukicoder/590.test.cpp
     - icon: ':heavy_check_mark:'

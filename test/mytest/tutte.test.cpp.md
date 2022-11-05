@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
   - icon: ':heavy_check_mark:'
@@ -22,7 +22,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -31,7 +31,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

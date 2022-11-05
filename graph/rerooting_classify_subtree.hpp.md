@@ -10,20 +10,20 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
     title: test/library_checker/graph/rerooting_classify_subtree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint61.hpp\"\nstruct modint61 {\r\n  static constexpr\
@@ -220,7 +220,7 @@ data:
     \u305F\u3068\u304D\u306E full tree\n  ll operator[](int v) { return dp[v]; }\n\
     \n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\u6728\
     \ v\n  ll get(int root, int v) {\n    if (root == v) return dp[v];\n    if (!tree.in_subtree(root,\
-    \ v)) { return dp_1[v]; }\n    int w = tree.jump(v, root);\n    return dp_2[w];\n\
+    \ v)) { return dp_1[v]; }\n    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n\
     \  }\n\n  static mint hash_base(int k) {\n    static vc<mint> dat;\n    while\
     \ (len(dat) <= k) dat.eb(RNG(mint::get_mod()));\n    return dat[k];\n  }\n};\n"
   code: "#include \"mod/modint61.hpp\"\n#include \"graph/base.hpp\"\n#include \"graph/tree.hpp\"\
@@ -238,7 +238,7 @@ data:
     \u305F\u3068\u304D\u306E full tree\n  ll operator[](int v) { return dp[v]; }\n\
     \n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\u6728\
     \ v\n  ll get(int root, int v) {\n    if (root == v) return dp[v];\n    if (!tree.in_subtree(root,\
-    \ v)) { return dp_1[v]; }\n    int w = tree.jump(v, root);\n    return dp_2[w];\n\
+    \ v)) { return dp_1[v]; }\n    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n\
     \  }\n\n  static mint hash_base(int k) {\n    static vc<mint> dat;\n    while\
     \ (len(dat) <= k) dat.eb(RNG(mint::get_mod()));\n    return dat[k];\n  }\n};\n"
   dependsOn:
@@ -250,8 +250,8 @@ data:
   isVerificationFile: false
   path: graph/rerooting_classify_subtree.hpp
   requiredBy: []
-  timestamp: '2022-11-05 02:40:57+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-11-05 10:00:31+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/graph/rerooting_classify_subtree.test.cpp
 documentation_of: graph/rerooting_classify_subtree.hpp

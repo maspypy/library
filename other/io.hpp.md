@@ -471,7 +471,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/min_cost_b-flow.test.cpp
     title: test/library_checker/graph/min_cost_b-flow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
     title: test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -765,7 +765,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/maxplus_concave.test.cpp
     title: test/mytest/maxplus_concave.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_cost_matching_on_line.test.cpp
     title: test/mytest/min_cost_matching_on_line.test.cpp
   - icon: ':heavy_check_mark:'
@@ -849,7 +849,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1069.test.cpp
     title: test/yukicoder/1069.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1077.test.cpp
     title: test/yukicoder/1077.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1323,7 +1323,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
   - icon: ':heavy_check_mark:'
