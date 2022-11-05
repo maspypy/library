@@ -1,6 +1,5 @@
 template <typename T>
-int matrix_rank(vc<vc<T>> a) {
-  auto n = len(a), m = len(a[0]);
+int matrix_rank(const int n, const int m, vc<vc<T>> a) {
   int rk = 0;
   FOR(j, m) {
     if (a[rk][j] == 0) {

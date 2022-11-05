@@ -4,9 +4,8 @@ XOR = b を解く。
 解なし：empty、解あり：そのひとつ
 ・解空間の詳しい構造が欲しい場合には、桁ごとに F2 線形代数すること！
 */
-template <typename INTEGER>
-vc<INTEGER> solve_linear_xor(vc<vc<INTEGER>> a, vc<INTEGER> b) {
-  auto n = len(a), m = len(a[0]);
+template <typename T>
+vc<T> solve_linear_xor(const int n, const int m, vc<vc<T>> a, vc<T> b) {
   int rk = 0;
   FOR(j, m) {
     if (a[rk][j] == 0) {
@@ -26,7 +25,7 @@ vc<INTEGER> solve_linear_xor(vc<vc<INTEGER>> a, vc<INTEGER> b) {
     if (rk == n) break;
   }
   FOR3(i, rk, n) if (b[i] != 0) return {};
-  vc<INTEGER> x(m);
+  vc<T> x(m);
   int p = 0;
   FOR(i, rk) {
     while (a[i][p] == 0) ++p;
