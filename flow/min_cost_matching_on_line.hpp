@@ -9,7 +9,7 @@ ll min_cost_matching_on_line_1(vi A, vi B) {
   FOR(i, N) {
     ll c = A[i] - B[i];
     f.shift(c);
-    f.clear_inc();
+    f.clear_right();
     f.add_abs(0);
   }
   return f.eval(0);
