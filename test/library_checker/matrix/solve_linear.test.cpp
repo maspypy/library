@@ -10,7 +10,7 @@ void solve() {
   LL(N, M);
   VV(mint, A, N, M);
   VEC(mint, b, N);
-  auto xs = solve_linear(A, b);
+  auto xs = solve_linear(N, M, A, b);
   if (len(xs) == 0) return print(-1);
 
   assert(len(xs) - 1 == M - matrix_rank(A));
