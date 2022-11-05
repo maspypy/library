@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind.hpp
     title: ds/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/max_matching_size.hpp
     title: graph/max_matching_size.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -258,10 +258,10 @@ data:
     \ ret(1), mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret = ret * mul;\r\
     \n      mul = mul * mul;\r\n      n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\
     \n  static constexpr ll get_mod() { return mod; }\r\n};\r\n#line 1 \"linalg/matrix_rank.hpp\"\
-    \ntemplate <typename T>\nint matrix_rank(vc<vc<T>> a) {\n  auto n = len(a), m\
-    \ = len(a[0]);\n  int rk = 0;\n  FOR(j, m) {\n    if (a[rk][j] == 0) {\n     \
-    \ FOR3(i, rk + 1, n) if (a[i][j] != 0) {\n        swap(a[rk], a[i]);\n       \
-    \ break;\n      }\n    }\n    if (a[rk][j] == 0) continue;\n    T c = T(1) / a[rk][j];\n\
+    \ntemplate <typename T>\nint matrix_rank(const int n, const int m, vc<vc<T>> a)\
+    \ {\n  int rk = 0;\n  FOR(j, m) {\n    if (a[rk][j] == 0) {\n      FOR3(i, rk\
+    \ + 1, n) if (a[i][j] != 0) {\n        swap(a[rk], a[i]);\n        break;\n  \
+    \    }\n    }\n    if (a[rk][j] == 0) continue;\n    T c = T(1) / a[rk][j];\n\
     \    FOR(k, j, m) a[rk][k] *= c;\n    FOR(i, rk + 1, n) {\n      T c = a[i][j];\n\
     \      FOR3(k, j, m) { a[i][k] -= a[rk][k] * c; }\n    }\n    ++rk;\n    if (rk\
     \ == n) break;\n  }\n  return rk;\n}\n#line 4 \"graph/max_matching_size.hpp\"\n\
@@ -451,8 +451,8 @@ data:
   isVerificationFile: true
   path: test/mytest/tutte.test.cpp
   requiredBy: []
-  timestamp: '2022-10-24 17:15:02+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-11-06 01:50:09+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/tutte.test.cpp
 layout: document

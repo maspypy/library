@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -55,10 +55,10 @@ data:
     \ ret(1), mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret = ret * mul;\r\
     \n      mul = mul * mul;\r\n      n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\
     \n  static constexpr ll get_mod() { return mod; }\r\n};\r\n#line 1 \"linalg/matrix_rank.hpp\"\
-    \ntemplate <typename T>\nint matrix_rank(vc<vc<T>> a) {\n  auto n = len(a), m\
-    \ = len(a[0]);\n  int rk = 0;\n  FOR(j, m) {\n    if (a[rk][j] == 0) {\n     \
-    \ FOR3(i, rk + 1, n) if (a[i][j] != 0) {\n        swap(a[rk], a[i]);\n       \
-    \ break;\n      }\n    }\n    if (a[rk][j] == 0) continue;\n    T c = T(1) / a[rk][j];\n\
+    \ntemplate <typename T>\nint matrix_rank(const int n, const int m, vc<vc<T>> a)\
+    \ {\n  int rk = 0;\n  FOR(j, m) {\n    if (a[rk][j] == 0) {\n      FOR3(i, rk\
+    \ + 1, n) if (a[i][j] != 0) {\n        swap(a[rk], a[i]);\n        break;\n  \
+    \    }\n    }\n    if (a[rk][j] == 0) continue;\n    T c = T(1) / a[rk][j];\n\
     \    FOR(k, j, m) a[rk][k] *= c;\n    FOR(i, rk + 1, n) {\n      T c = a[i][j];\n\
     \      FOR3(k, j, m) { a[i][k] -= a[rk][k] * c; }\n    }\n    ++rk;\n    if (rk\
     \ == n) break;\n  }\n  return rk;\n}\n#line 4 \"graph/max_matching_size.hpp\"\n\
@@ -80,8 +80,8 @@ data:
   isVerificationFile: false
   path: graph/max_matching_size.hpp
   requiredBy: []
-  timestamp: '2022-10-23 11:37:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-11-06 01:50:09+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/tutte.test.cpp
 documentation_of: graph/max_matching_size.hpp
