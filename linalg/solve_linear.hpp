@@ -4,8 +4,7 @@
 解なし = empty
 */
 template <typename T>
-vc<vc<T>> solve_linear(vc<vc<T>> a, vc<T> b) {
-  auto n = len(a), m = len(a[0]);
+vc<vc<T>> solve_linear(const int n, const int m, vc<vc<T>> a, vc<T> b) {
   int rk = 0;
   FOR(j, m) {
     if (a[rk][j] == 0) {
