@@ -5,13 +5,19 @@ data:
   - icon: ':question:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/mat_pow.hpp
     title: linalg/mat_pow.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/from_log_differentiation.hpp
+    title: poly/from_log_differentiation.hpp
   - icon: ':question:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: poly/sparse_exp_of_div.hpp
+    title: poly/sparse_exp_of_div.hpp
+  - icon: ':question:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedVerifiedWith:
@@ -22,12 +28,15 @@ data:
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1080_2.test.cpp
+    title: test/yukicoder/1080_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1750.test.cpp
     title: test/yukicoder/1750.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1810.test.cpp
     title: test/yukicoder/1810.test.cpp
   - icon: ':x:'
@@ -69,6 +78,8 @@ data:
   path: linalg/mat_mul.hpp
   requiredBy:
   - poly/prefix_product_of_poly.hpp
+  - poly/sparse_exp_of_div.hpp
+  - poly/from_log_differentiation.hpp
   - linalg/mat_pow.hpp
   - linalg/det_A_plus_xB.hpp
   - seq/kth_term_of_p_recursive.hpp
@@ -77,6 +88,7 @@ data:
   verifiedWith:
   - test/mytest/factorial_998.test.cpp
   - test/yukicoder/426.test.cpp
+  - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/502_2.test.cpp
   - test/yukicoder/1750.test.cpp
   - test/yukicoder/1303.test.cpp
