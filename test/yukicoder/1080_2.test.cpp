@@ -30,9 +30,9 @@ void solve() {
   f.resize(N + 1);
   g.resize(N + 1);
 
-  poly F1 = sparse_exp_of_div(f, g);
+  poly F1 = sparse_exp_of_div(N, f, g);
   for (auto&& x: f) x = -x;
-  poly F2 = sparse_exp_of_div(f, g);
+  poly F2 = sparse_exp_of_div(N, f, g);
   mint cf = mint(1) / (mint(1) + I) * fact<mint>(N);
   FOR(i, 1, N + 1) {
     mint a = F1[i], b = F2[i];
