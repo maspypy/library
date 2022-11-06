@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: poly/sparse_FODE.hpp
     title: poly/sparse_FODE.hpp
   _extendedRequiredBy: []

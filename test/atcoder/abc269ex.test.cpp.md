@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':question:'
@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
   - icon: ':question:'
@@ -34,14 +34,14 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/sum_of_prefix_suffix_products.hpp
     title: poly/sum_of_prefix_suffix_products.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc269/tasks/abc269_Ex
@@ -400,12 +400,12 @@ data:
     \ 0;\n  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
     \ - 1] * mint(k));\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint\
     \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
-    \ dat = {1, 1};\n  assert(0 <= n && n < mod);\n  while (int(dat.size()) <= n)\
-    \ {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <class mint, class... Ts>\nmint fact_invs(Ts...\
-    \ xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename\
-    \ mint, class Head, class... Tail>\nmint multinomial(Head &&head, Tail &&... tail)\
-    \ {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    \ dat = {1, 1};\n  assert(-1 <= n && n < mod);\n  if (n == -1) return mint(0);\n\
+    \  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
+    \ - 1] * inv<mint>(k));\n  }\n  return dat[n];\n}\n\ntemplate <class mint, class...\
+    \ Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
+    }\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
+    \ &&head, Tail &&... tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
     }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint>\
     \ C;\n  static int H = 0, W = 0;\n\n  auto calc = [&](int i, int j) -> mint {\n\
     \    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
@@ -609,24 +609,25 @@ data:
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
     \ b);\r\n}\r\n#line 4 \"poly/convolution_all.hpp\"\n\r\ntemplate <typename T>\r\
     \nvc<T> convolution_all(vc<vc<T>>& polys) {\r\n  if (len(polys) == 0) return {T(1)};\r\
-    \n  auto deq = deque<vc<T>>(all(polys));\r\n  while (len(deq) > 1) {\r\n    auto\
-    \ f = deq.front();\r\n    deq.pop_front();\r\n    auto g = deq.front();\r\n  \
-    \  deq.pop_front();\r\n    deq.eb(convolution(f, g));\r\n  }\r\n  return deq.front();\r\
-    \n}\n#line 2 \"poly/sum_of_prefix_suffix_products.hpp\"\n\n/*\n\u591A\u9805\u5F0F\
-    \u306E\u5217 f0, f1, ..., f{N-1} \u304A\u3088\u3073 g0, g1, ..., g{N-1} \u3092\
-    \u4E0E\u3048\u308B\u3002\nf0f1f2f3 + f0f1f2g3 + f0f1g2g3 + f0g1g2g3 + g0g1g2g3\n\
-    \u306E\u3088\u3046\u306A\u7DCF\u548C\u3092\u6C42\u3081\u308B\u3002\u5206\u5272\
-    \u7D71\u6CBB\u3067 O(Nlog^2N)\u3002N \u306F\u6B21\u6570\u306E\u7DCF\u548C\u3002\
-    \nhttps://atcoder.jp/contests/nadafes2022_day1/tasks/nadafes2022_day1_p\n*/\n\
-    template <typename mint>\nvc<mint> sum_of_prefix_suffix_products(vvc<mint> F,\
-    \ vvc<mint> G) {\n  int n = len(F);\n  using poly = vc<mint>;\n  auto add = [&](poly\
-    \ f, poly g) -> poly {\n    poly h(max(len(f), len(g)));\n    FOR(i, len(f)) h[i]\
-    \ += f[i];\n    FOR(i, len(g)) h[i] += g[i];\n    return h;\n  };\n\n  auto dfs\
-    \ = [&](auto& dfs, int l, int r) -> tuple<poly, poly, poly> {\n    if (r == l\
-    \ + 1) { return {add(F[l], G[l]), F[l], G[l]}; }\n    int m = (l + r) / 2;\n \
-    \   auto [pl, fl, gl] = dfs(dfs, l, m);\n    auto [pr, fr, gr] = dfs(dfs, m, r);\n\
-    \    poly p = convolution(pl, gr);\n    FOR(i, len(gr)) pr[i] -= gr[i];\n    p\
-    \ = add(p, convolution(fl, pr));\n    return {p, convolution(fl, fr), convolution(gl,\
+    \n  while (1) {\r\n    int n = len(polys);\r\n    if (n == 1) break;\r\n    int\
+    \ m = ceil(n, 2);\r\n    FOR(i, m) {\r\n      if (2 * i + 1 == n) {\r\n      \
+    \  polys[i] = polys[2 * i];\r\n      } else {\r\n        polys[i] = convolution(polys[2\
+    \ * i], polys[2 * i + 1]);\r\n      }\r\n    }\r\n    polys.resize(m);\r\n  }\r\
+    \n  return polys[0];\r\n}\r\n#line 2 \"poly/sum_of_prefix_suffix_products.hpp\"\
+    \n\n/*\n\u591A\u9805\u5F0F\u306E\u5217 f0, f1, ..., f{N-1} \u304A\u3088\u3073\
+    \ g0, g1, ..., g{N-1} \u3092\u4E0E\u3048\u308B\u3002\nf0f1f2f3 + f0f1f2g3 + f0f1g2g3\
+    \ + f0g1g2g3 + g0g1g2g3\n\u306E\u3088\u3046\u306A\u7DCF\u548C\u3092\u6C42\u3081\
+    \u308B\u3002\u5206\u5272\u7D71\u6CBB\u3067 O(Nlog^2N)\u3002N \u306F\u6B21\u6570\
+    \u306E\u7DCF\u548C\u3002\nhttps://atcoder.jp/contests/nadafes2022_day1/tasks/nadafes2022_day1_p\n\
+    */\ntemplate <typename mint>\nvc<mint> sum_of_prefix_suffix_products(vvc<mint>\
+    \ F, vvc<mint> G) {\n  int n = len(F);\n  using poly = vc<mint>;\n  auto add =\
+    \ [&](poly f, poly g) -> poly {\n    poly h(max(len(f), len(g)));\n    FOR(i,\
+    \ len(f)) h[i] += f[i];\n    FOR(i, len(g)) h[i] += g[i];\n    return h;\n  };\n\
+    \n  auto dfs = [&](auto& dfs, int l, int r) -> tuple<poly, poly, poly> {\n   \
+    \ if (r == l + 1) { return {add(F[l], G[l]), F[l], G[l]}; }\n    int m = (l +\
+    \ r) / 2;\n    auto [pl, fl, gl] = dfs(dfs, l, m);\n    auto [pr, fr, gr] = dfs(dfs,\
+    \ m, r);\n    poly p = convolution(pl, gr);\n    FOR(i, len(gr)) pr[i] -= gr[i];\n\
+    \    p = add(p, convolution(fl, pr));\n    return {p, convolution(fl, fr), convolution(gl,\
     \ gr)};\n  };\n  auto [p, f, g] = dfs(dfs, 0, n);\n  return p;\n}\n#line 9 \"\
     test/atcoder/abc269ex.test.cpp\"\n\nusing mint = modint998;\n\nvoid solve() {\n\
     \  LL(N);\n  Graph<int, 1> G(N);\n  FOR(v, 1, N) {\n    LL(p);\n    --p;\n   \
@@ -673,8 +674,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc269ex.test.cpp
   requiredBy: []
-  timestamp: '2022-11-05 01:55:39+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-11-06 13:29:21+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/atcoder/abc269ex.test.cpp
 layout: document

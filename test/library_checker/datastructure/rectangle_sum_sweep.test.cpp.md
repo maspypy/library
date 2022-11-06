@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group/add.hpp
     title: alg/group/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/query/point_add_rectangle_sum.hpp
     title: ds/query/point_add_rectangle_sum.hpp
   - icon: ':question:'

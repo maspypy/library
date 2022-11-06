@@ -10,38 +10,38 @@ data:
   - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/convolution_all.hpp\"\n\r\n#line 2 \"mod/modint.hpp\"\
@@ -104,12 +104,12 @@ data:
     \ 0;\n  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
     \ - 1] * mint(k));\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint\
     \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
-    \ dat = {1, 1};\n  assert(0 <= n && n < mod);\n  while (int(dat.size()) <= n)\
-    \ {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <class mint, class... Ts>\nmint fact_invs(Ts...\
-    \ xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename\
-    \ mint, class Head, class... Tail>\nmint multinomial(Head &&head, Tail &&... tail)\
-    \ {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    \ dat = {1, 1};\n  assert(-1 <= n && n < mod);\n  if (n == -1) return mint(0);\n\
+    \  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
+    \ - 1] * inv<mint>(k));\n  }\n  return dat[n];\n}\n\ntemplate <class mint, class...\
+    \ Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
+    }\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
+    \ &&head, Tail &&... tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
     }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint>\
     \ C;\n  static int H = 0, W = 0;\n\n  auto calc = [&](int i, int j) -> mint {\n\
     \    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
@@ -313,18 +313,19 @@ data:
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
     \ b);\r\n}\r\n#line 4 \"poly/convolution_all.hpp\"\n\r\ntemplate <typename T>\r\
     \nvc<T> convolution_all(vc<vc<T>>& polys) {\r\n  if (len(polys) == 0) return {T(1)};\r\
-    \n  auto deq = deque<vc<T>>(all(polys));\r\n  while (len(deq) > 1) {\r\n    auto\
-    \ f = deq.front();\r\n    deq.pop_front();\r\n    auto g = deq.front();\r\n  \
-    \  deq.pop_front();\r\n    deq.eb(convolution(f, g));\r\n  }\r\n  return deq.front();\r\
-    \n}\n#line 2 \"poly/fps_log.hpp\"\n\r\n#line 2 \"poly/count_terms.hpp\"\ntemplate<typename\
-    \ mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f))\
-    \ if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 4 \"poly/fps_inv.hpp\"\n\
-    \r\ntemplate <typename mint>\r\nvc<mint> fps_inv_sparse(const vc<mint>& f) {\r\
-    \n  assert(f[0] != mint(0));\r\n  int N = len(f);\r\n  vc<pair<int, mint>> dat;\r\
-    \n  FOR3(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\n\
-    \  mint g0 = mint(1) / f[0];\r\n  g[0] = g0;\r\n  FOR3(n, 1, N) {\r\n    mint\
-    \ rhs = 0;\r\n    for (auto&& [k, fk]: dat) {\r\n      if (k > n) break;\r\n \
-    \     rhs -= fk * g[n - k];\r\n    }\r\n    g[n] = rhs * g0;\r\n  }\r\n  return\
+    \n  while (1) {\r\n    int n = len(polys);\r\n    if (n == 1) break;\r\n    int\
+    \ m = ceil(n, 2);\r\n    FOR(i, m) {\r\n      if (2 * i + 1 == n) {\r\n      \
+    \  polys[i] = polys[2 * i];\r\n      } else {\r\n        polys[i] = convolution(polys[2\
+    \ * i], polys[2 * i + 1]);\r\n      }\r\n    }\r\n    polys.resize(m);\r\n  }\r\
+    \n  return polys[0];\r\n}\r\n#line 2 \"poly/fps_log.hpp\"\n\r\n#line 2 \"poly/count_terms.hpp\"\
+    \ntemplate<typename mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t =\
+    \ 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 4\
+    \ \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_sparse(const\
+    \ vc<mint>& f) {\r\n  assert(f[0] != mint(0));\r\n  int N = len(f);\r\n  vc<pair<int,\
+    \ mint>> dat;\r\n  FOR3(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint>\
+    \ g(N);\r\n  mint g0 = mint(1) / f[0];\r\n  g[0] = g0;\r\n  FOR3(n, 1, N) {\r\n\
+    \    mint rhs = 0;\r\n    for (auto&& [k, fk]: dat) {\r\n      if (k > n) break;\r\
+    \n      rhs -= fk * g[n - k];\r\n    }\r\n    g[n] = rhs * g0;\r\n  }\r\n  return\
     \ g;\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint, modint998>::value,\
     \ vc<mint>> fps_inv_dense(\r\n    const vc<mint>& F) {\r\n  assert(F[0] != mint(0));\r\
     \n  vc<mint> G = {mint(1) / F[0]};\r\n  G.reserve(len(F));\r\n  ll N = len(F),\
@@ -411,8 +412,8 @@ data:
   isVerificationFile: false
   path: seq/sum_of_powers.hpp
   requiredBy: []
-  timestamp: '2022-10-24 08:51:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-11-06 13:29:21+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1145.test.cpp
 documentation_of: seq/sum_of_powers.hpp

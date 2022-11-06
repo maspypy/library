@@ -2,13 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':x:'
+    path: poly/sparse_exp_of_div.hpp
+    title: poly/sparse_exp_of_div.hpp
   - icon: ':warning:'
     path: poly/sparse_pow_product.hpp
     title: poly/sparse_pow_product.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yukicoder/1080_2.test.cpp
+    title: test/yukicoder/1080_2.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/sparse_FODE.hpp\"\n\n// a(x)F'(x) + b(x)F(x) = 0 \u306E\
@@ -42,9 +48,11 @@ data:
   path: poly/sparse_FODE.hpp
   requiredBy:
   - poly/sparse_pow_product.hpp
+  - poly/sparse_exp_of_div.hpp
   timestamp: '2022-11-06 03:50:43+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yukicoder/1080_2.test.cpp
 documentation_of: poly/sparse_FODE.hpp
 layout: document
 redirect_from:

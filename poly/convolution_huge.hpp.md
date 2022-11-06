@@ -88,28 +88,29 @@ data:
     \ <= n);\n  if (n >= mod) return 0;\n  while (int(dat.size()) <= n) {\n    int\
     \ k = dat.size();\n    dat.emplace_back(dat[k - 1] * mint(k));\n  }\n  return\
     \ dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static const\
-    \ int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  assert(0\
-    \ <= n && n < mod);\n  while (int(dat.size()) <= n) {\n    int k = dat.size();\n\
-    \    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n  }\n  return dat[n];\n}\n\n\
-    template <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1)\
-    \ * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head, class...\
-    \ Tail>\nmint multinomial(Head &&head, Tail &&... tail) {\n  return fact<mint>(head)\
-    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
-    mint C_dense(int n, int k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\
-    \n  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j == 0 ?\
-    \ mint(1) : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n \
-    \ };\n\n  if (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j,\
-    \ W, k + 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <=\
-    \ n) {\n    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n\
-    \      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return\
-    \ C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool dense = false>\n\
-    mint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if\
-    \ (dense) return C_dense<mint>(n, k);\n  if (!large) return fact<mint>(n) * fact_inv<mint>(k)\
-    \ * fact_inv<mint>(n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) {\
-    \ x *= mint(n - i); }\n  x *= fact_inv<mint>(k);\n  return x;\n}\n\ntemplate <typename\
-    \ mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0\
-    \ <= k && k <= n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n\
-    \ - k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\
+    \ int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  assert(-1\
+    \ <= n && n < mod);\n  if (n == -1) return mint(0);\n  while (int(dat.size())\
+    \ <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
+    \  }\n  return dat[n];\n}\n\ntemplate <class mint, class... Ts>\nmint fact_invs(Ts...\
+    \ xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename\
+    \ mint, class Head, class... Tail>\nmint multinomial(Head &&head, Tail &&... tail)\
+    \ {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint>\
+    \ C;\n  static int H = 0, W = 0;\n\n  auto calc = [&](int i, int j) -> mint {\n\
+    \    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
+    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n\n  if (W <= k) {\n    FOR(i, H) {\n   \
+    \   C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n  \
+    \  }\n    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H,\
+    \ n + 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n\
+    \    }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint,\
+    \ bool large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >=\
+    \ 0);\n  if (k < 0 || n < k) return 0;\n  if (dense) return C_dense<mint>(n, k);\n\
+    \  if (!large) return fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n\
+    \  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *=\
+    \ fact_inv<mint>(k);\n  return x;\n}\n\ntemplate <typename mint, bool large =\
+    \ false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <=\
+    \ n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n -\
+    \ k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\
     \u8A08\u7B97\ntemplate <typename mint, bool large = false, bool dense = false>\n\
     mint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
     \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
@@ -295,26 +296,26 @@ data:
     \ modint998>::value, vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>&\
     \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
-    \ b);\r\n}\r\n#line 2 \"poly/convolution_huge.hpp\"\ntemplate<typename mint>\r\
+    \ b);\r\n}\r\n#line 2 \"poly/convolution_huge.hpp\"\ntemplate <typename mint>\r\
     \nvc<mint> convolution_huge(const vc<mint>& A, const vc<mint>& B) {\r\n  int N\
-    \ = len(A), M = len(B);\r\n  if (N + M - 1 <= (1 << 23)) return convolution(A,\
+    \ = len(A), M = len(B);\r\n  if (N + M - 1 <= (1 << 22)) return convolution(A,\
     \ B);\r\n  ll L = 22;\r\n  vv(mint, C, 4, 2 << L);\r\n  vv(mint, D, 4, 2 << L);\r\
     \n  int mask = (1 << L) - 1;\r\n  FOR(i, N) C[i >> L][i & mask] = A[i];\r\n  FOR(i,\
     \ M) D[i >> L][i & mask] = B[i];\r\n  FOR(i, 4) ntt(C[i], false);\r\n  FOR(i,\
     \ 4) ntt(D[i], false);\r\n\r\n  vc<mint> ANS(8 << L);\r\n\r\n  FOR(i, 7) {\r\n\
-    \    vc<mint> E(2 << L);\r\n    FOR(c, 4) FOR(d, 4) if(c + d == i) {\r\n     \
-    \ FOR(k, 2 << L) E[k] += C[c][k] * D[d][k];\r\n    }\r\n    ntt(E, true);\r\n\
+    \    vc<mint> E(2 << L);\r\n    FOR(c, 4) FOR(d, 4) if (c + d == i) {\r\n    \
+    \  FOR(k, 2 << L) E[k] += C[c][k] * D[d][k];\r\n    }\r\n    ntt(E, true);\r\n\
     \    FOR(k, 2 << L) ANS[(i << L) + k] += E[k];\r\n  }\r\n  ANS.resize(N + M -\
     \ 1);\r\n  return ANS;\r\n}\r\n"
-  code: "#include \"poly/convolution.hpp\"\r\ntemplate<typename mint>\r\nvc<mint>\
+  code: "#include \"poly/convolution.hpp\"\r\ntemplate <typename mint>\r\nvc<mint>\
     \ convolution_huge(const vc<mint>& A, const vc<mint>& B) {\r\n  int N = len(A),\
-    \ M = len(B);\r\n  if (N + M - 1 <= (1 << 23)) return convolution(A, B);\r\n \
+    \ M = len(B);\r\n  if (N + M - 1 <= (1 << 22)) return convolution(A, B);\r\n \
     \ ll L = 22;\r\n  vv(mint, C, 4, 2 << L);\r\n  vv(mint, D, 4, 2 << L);\r\n  int\
     \ mask = (1 << L) - 1;\r\n  FOR(i, N) C[i >> L][i & mask] = A[i];\r\n  FOR(i,\
     \ M) D[i >> L][i & mask] = B[i];\r\n  FOR(i, 4) ntt(C[i], false);\r\n  FOR(i,\
     \ 4) ntt(D[i], false);\r\n\r\n  vc<mint> ANS(8 << L);\r\n\r\n  FOR(i, 7) {\r\n\
-    \    vc<mint> E(2 << L);\r\n    FOR(c, 4) FOR(d, 4) if(c + d == i) {\r\n     \
-    \ FOR(k, 2 << L) E[k] += C[c][k] * D[d][k];\r\n    }\r\n    ntt(E, true);\r\n\
+    \    vc<mint> E(2 << L);\r\n    FOR(c, 4) FOR(d, 4) if (c + d == i) {\r\n    \
+    \  FOR(k, 2 << L) E[k] += C[c][k] * D[d][k];\r\n    }\r\n    ntt(E, true);\r\n\
     \    FOR(k, 2 << L) ANS[(i << L) + k] += E[k];\r\n  }\r\n  ANS.resize(N + M -\
     \ 1);\r\n  return ANS;\r\n}\r\n"
   dependsOn:
@@ -327,7 +328,7 @@ data:
   isVerificationFile: false
   path: poly/convolution_huge.hpp
   requiredBy: []
-  timestamp: '2022-10-24 08:51:26+09:00'
+  timestamp: '2022-11-06 13:29:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/convolution/convolution_huge.test.cpp
