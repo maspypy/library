@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group/affine.hpp
     title: alg/group/affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group/cntsum.hpp
     title: alg/group/cntsum.hpp
   - icon: ':heavy_check_mark:'
     path: alg/lazy/cntsum_affine.hpp
     title: alg/lazy/cntsum_affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
   - icon: ':question:'
