@@ -18,7 +18,7 @@ void solve() {
     rhs[i] = Y;
   }
 
-  auto ANS = solve_linear_xor<int>(mat, rhs);
+  auto ANS = solve_linear_xor<int>(M, N, mat, rhs);
   if (ANS.empty()) return print(-1);
   for (auto&& x: ANS) print(x);
 }
