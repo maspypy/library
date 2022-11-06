@@ -14,5 +14,5 @@ int max_matching_size(GT& G) {
     tutte[i][j] += x;
     tutte[j][i] -= x;
   }
-  return matrix_rank(tutte) / 2;
+  return matrix_rank(N, N, tutte) / 2;
 }
