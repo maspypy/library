@@ -1,5 +1,4 @@
 #include "poly/poly_taylor_shift.hpp"
-#include "poly/fps_pow.hpp"
 
 template <typename mint>
 vc<mint> stirling_number_1_2d(int nmax, int kmax) {
