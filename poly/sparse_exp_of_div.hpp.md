@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/sparse_FODE.hpp
     title: poly/sparse_FODE.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080_2.test.cpp
     title: test/yukicoder/1080_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/sparse_FODE.hpp\"\n\n// a(x)F'(x) + b(x)F(x) = 0 \u306E\
@@ -54,7 +54,7 @@ data:
   path: poly/sparse_exp_of_div.hpp
   requiredBy: []
   timestamp: '2022-11-06 13:30:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1080_2.test.cpp
 documentation_of: poly/sparse_exp_of_div.hpp
