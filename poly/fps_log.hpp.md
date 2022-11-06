@@ -36,9 +36,6 @@ data:
     path: poly/product_of_f_rk_x.hpp
     title: poly/product_of_f_rk_x.hpp
   - icon: ':heavy_check_mark:'
-    path: seq/famous/stirling_number_1.hpp
-    title: seq/famous/stirling_number_1.hpp
-  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   - icon: ':heavy_check_mark:'
@@ -48,9 +45,6 @@ data:
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-    title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
@@ -445,7 +439,6 @@ data:
   - poly/product_of_f_rk_x.hpp
   - poly/fps_pow.hpp
   - poly/fps_sqrt.hpp
-  - seq/famous/stirling_number_1.hpp
   - seq/famous/stirling_number_2.hpp
   - seq/famous/surjection.hpp
   - seq/sum_of_powers.hpp
@@ -467,7 +460,6 @@ data:
   - test/library_checker/polynomial/log_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/pow_of_fps.test.cpp
   - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
 documentation_of: poly/fps_log.hpp
 layout: document

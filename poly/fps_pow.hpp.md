@@ -42,18 +42,12 @@ data:
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
   - icon: ':heavy_check_mark:'
-    path: seq/famous/stirling_number_1.hpp
-    title: seq/famous/stirling_number_1.hpp
-  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/surjection.hpp
     title: seq/famous/surjection.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-    title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
@@ -524,7 +518,6 @@ data:
   path: poly/fps_pow.hpp
   requiredBy:
   - poly/fps_sqrt.hpp
-  - seq/famous/stirling_number_1.hpp
   - seq/famous/stirling_number_2.hpp
   - seq/famous/surjection.hpp
   timestamp: '2022-10-24 08:51:26+09:00'
@@ -541,7 +534,6 @@ data:
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/pow_of_fps.test.cpp
   - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
 documentation_of: poly/fps_pow.hpp
 layout: document
