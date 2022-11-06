@@ -5,13 +5,18 @@
 template <typename T>
 vc<T> convolution_all(vc<vc<T>>& polys) {
   if (len(polys) == 0) return {T(1)};
-  auto deq = deque<vc<T>>(all(polys));
-  while (len(deq) > 1) {
-    auto f = deq.front();
-    deq.pop_front();
-    auto g = deq.front();
-    deq.pop_front();
-    deq.eb(convolution(f, g));
+  while (1) {
+    int n = len(polys);
+    if (n == 1) break;
+    int m = ceil(n, 2);
+    FOR(i, m) {
+      if (2 * i + 1 == n) {
+        polys[i] = polys[2 * i];
+      } else {
+        polys[i] = convolution(polys[2 * i], polys[2 * i + 1]);
+      }
+    }
+    polys.resize(m);
   }
-  return deq.front();
+  return polys[0];
 }
