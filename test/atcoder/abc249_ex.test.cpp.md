@@ -1,24 +1,21 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: alg/group/mul.hpp
-    title: alg/group/mul.hpp
-  - icon: ':question:'
-    path: ds/hashmap.hpp
-    title: ds/hashmap.hpp
   - icon: ':x:'
-    path: mod/mod_log.hpp
-    title: mod/mod_log.hpp
+    path: linalg/solve_linear_lower.hpp
+    title: linalg/solve_linear_lower.hpp
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
+  - icon: ':x:'
+    path: mod/powertable.hpp
+    title: mod/powertable.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
-    path: nt/discrete_log.hpp
-    title: nt/discrete_log.hpp
+    path: nt/primetable.hpp
+    title: nt/primetable.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
@@ -29,11 +26,10 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/discrete_logarithm_mod
+    PROBLEM: https://atcoder.jp/contests/abc249/tasks/abc249_h
     links:
-    - https://judge.yosupo.jp/problem/discrete_logarithm_mod
-  bundledCode: "#line 1 \"test/library_checker/math/discrete_logarithm_mod.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/discrete_logarithm_mod\"\r\
+    - https://atcoder.jp/contests/abc249/tasks/abc249_h
+  bundledCode: "#line 1 \"test/atcoder/abc249_ex.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc249/tasks/abc249_h\"\
     \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
     unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
     \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
@@ -212,72 +208,72 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
-    \ {\n  static constexpr bool is_modint = true;\n  int val;\n  constexpr modint(const\
-    \ ll val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val) % mod)\
-    \ % mod) {}\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
-    \  } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
-    \ += p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator-=(const\
-    \ modint &p) {\n    if ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n\
-    \  }\n  modint &operator*=(const modint &p) {\n    val = (int)(1LL * val * p.val\
-    \ % mod);\n    return *this;\n  }\n  modint &operator/=(const modint &p) {\n \
-    \   *this *= p.inverse();\n    return *this;\n  }\n  modint operator-() const\
-    \ { return modint(-val); }\n  modint operator+(const modint &p) const { return\
-    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
-    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
-    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
-    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
-    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
-    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
-    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
-    \ return modint(u);\n  }\n  modint pow(int64_t n) const {\n    modint ret(1),\
-    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
-    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr int get_mod()\
-    \ { return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr bool is_modint\
-    \ = true;\n  int val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t\
-    \ y)\n      : val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y)\
-    \ % get_mod()) % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other)\
-    \ const {\n    return val < other.val;\n  } // To use std::map<ArbitraryModInt,\
-    \ T>\n  static int &get_mod() {\n    static int mod = 0;\n    return mod;\n  }\n\
-    \  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
-    \ ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
-    \    return *this;\n  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p)\
-    \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
-    \ *this;\n  }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n   \
-    \ long long a = (long long)val * p.val;\n    int xh = (int)(a >> 32), xl = (int)a,\
-    \ d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"(m) : \"d\"(xh), \"a\"\
-    (xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n  }\n  ArbitraryModInt\
-    \ &operator/=(const ArbitraryModInt &p) {\n    *this *= p.inverse();\n    return\
-    \ *this;\n  }\n  ArbitraryModInt operator-() const { return ArbitraryModInt(get_mod()\
-    \ - val); }\n  ArbitraryModInt operator+(const ArbitraryModInt &p) const {\n \
-    \   return ArbitraryModInt(*this) += p;\n  }\n  ArbitraryModInt operator-(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) -= p;\n  }\n\
-    \  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
-    \ *= p;\n  }\n  ArbitraryModInt operator/(const ArbitraryModInt &p) const {\n\
-    \    return ArbitraryModInt(*this) /= p;\n  }\n  bool operator==(const ArbitraryModInt\
-    \ &p) const { return val == p.val; }\n  bool operator!=(const ArbitraryModInt\
-    \ &p) const { return val != p.val; }\n  ArbitraryModInt inverse() const {\n  \
-    \  int a = val, b = get_mod(), u = 1, v = 0, t;\n    while (b > 0) {\n      t\
-    \ = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return\
-    \ ArbitraryModInt(u);\n  }\n  ArbitraryModInt pow(int64_t n) const {\n    ArbitraryModInt\
-    \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
-    \ mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n};\n\ntemplate <typename\
-    \ mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n  static\
-    \ vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n \
-    \ while (int(dat.size()) <= n) {\n    int k = dat.size();\n    auto q = (mod +\
-    \ k - 1) / k;\n    int r = k * q - mod;\n    dat.emplace_back(dat[r] * mint(q));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
-    \ const int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  assert(0\
-    \ <= n);\n  if (n >= mod) return 0;\n  while (int(dat.size()) <= n) {\n    int\
-    \ k = dat.size();\n    dat.emplace_back(dat[k - 1] * mint(k));\n  }\n  return\
-    \ dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static const\
-    \ int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  assert(-1\
-    \ <= n && n < mod);\n  if (n == -1) return mint(0);\n  while (int(dat.size())\
-    \ <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <class mint, class... Ts>\nmint fact_invs(Ts...\
-    \ xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename\
-    \ mint, class Head, class... Tail>\nmint multinomial(Head &&head, Tail &&... tail)\
-    \ {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    \ { yes(!t); }\r\n#line 4 \"test/atcoder/abc249_ex.test.cpp\"\n\n#line 2 \"mod/modint.hpp\"\
+    \n\ntemplate <int mod>\nstruct modint {\n  static constexpr bool is_modint = true;\n\
+    \  int val;\n  constexpr modint(const ll val = 0) noexcept\n      : val(val >=\
+    \ 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint\
+    \ &other) const {\n    return val < other.val;\n  } // To use std::map\n  modint\
+    \ &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n\
+    \    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if ((val\
+    \ += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const\
+    \ modint &p) {\n    val = (int)(1LL * val * p.val % mod);\n    return *this;\n\
+    \  }\n  modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n   \
+    \ return *this;\n  }\n  modint operator-() const { return modint(-val); }\n  modint\
+    \ operator+(const modint &p) const { return modint(*this) += p; }\n  modint operator-(const\
+    \ modint &p) const { return modint(*this) -= p; }\n  modint operator*(const modint\
+    \ &p) const { return modint(*this) *= p; }\n  modint operator/(const modint &p)\
+    \ const { return modint(*this) /= p; }\n  bool operator==(const modint &p) const\
+    \ { return val == p.val; }\n  bool operator!=(const modint &p) const { return\
+    \ val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod, u = 1,\
+    \ v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b),\
+    \ swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
+    \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
+    \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
+    \  }\n  static constexpr int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
+    \ {\n  static constexpr bool is_modint = true;\n  int val;\n  ArbitraryModInt()\
+    \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
+    \                   : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
+    \ ArbitraryModInt &other) const {\n    return val < other.val;\n  } // To use\
+    \ std::map<ArbitraryModInt, T>\n  static int &get_mod() {\n    static int mod\
+    \ = 0;\n    return mod;\n  }\n  static void set_mod(int md) { get_mod() = md;\
+    \ }\n  ArbitraryModInt &operator+=(const ArbitraryModInt &p) {\n    if ((val +=\
+    \ p.val) >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt\
+    \ &operator-=(const ArbitraryModInt &p) {\n    if ((val += get_mod() - p.val)\
+    \ >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt &operator*=(const\
+    \ ArbitraryModInt &p) {\n    long long a = (long long)val * p.val;\n    int xh\
+    \ = (int)(a >> 32), xl = (int)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d),\
+    \ \"=d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return\
+    \ *this;\n  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n   \
+    \ *this *= p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-()\
+    \ const { return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) += p;\n  }\n\
+    \  ArbitraryModInt operator-(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
+    \ -= p;\n  }\n  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n\
+    \    return ArbitraryModInt(*this) *= p;\n  }\n  ArbitraryModInt operator/(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) /= p;\n  }\n\
+    \  bool operator==(const ArbitraryModInt &p) const { return val == p.val; }\n\
+    \  bool operator!=(const ArbitraryModInt &p) const { return val != p.val; }\n\
+    \  ArbitraryModInt inverse() const {\n    int a = val, b = get_mod(), u = 1, v\
+    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
+    \ -= t * v, v);\n    }\n    return ArbitraryModInt(u);\n  }\n  ArbitraryModInt\
+    \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
+    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
+    \  }\n    return ret;\n  }\n};\n\ntemplate <typename mint>\nmint inv(int n) {\n\
+    \  static const int mod = mint::get_mod();\n  static vector<mint> dat = {0, 1};\n\
+    \  assert(0 <= n);\n  if (n >= mod) n %= mod;\n  while (int(dat.size()) <= n)\
+    \ {\n    int k = dat.size();\n    auto q = (mod + k - 1) / k;\n    int r = k *\
+    \ q - mod;\n    dat.emplace_back(dat[r] * mint(q));\n  }\n  return dat[n];\n}\n\
+    \ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  static vector<mint> dat = {1, 1};\n  assert(0 <= n);\n  if (n >= mod) return\
+    \ 0;\n  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
+    \ - 1] * mint(k));\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint\
+    \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
+    \ dat = {1, 1};\n  assert(-1 <= n && n < mod);\n  if (n == -1) return mint(0);\n\
+    \  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
+    \ - 1] * inv<mint>(k));\n  }\n  return dat[n];\n}\n\ntemplate <class mint, class...\
+    \ Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
+    }\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
+    \ &&head, Tail &&... tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
     }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint>\
     \ C;\n  static int H = 0, W = 0;\n\n  auto calc = [&](int i, int j) -> mint {\n\
     \    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
@@ -298,106 +294,89 @@ data:
     mint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
     \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
     \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
-    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 2 \"ds/hashmap.hpp\"\
-    \ntemplate <typename Val, int LOG = 20>\r\nstruct HashMapLL {\r\n  int N;\r\n\
-    \  ll* keys;\r\n  Val* vals;\r\n  vc<int> IDS;\r\n  bitset<1 << LOG> used;\r\n\
-    \  const int shift;\r\n  const uint64_t r = 11995408973635179863ULL;\r\n  HashMapLL()\r\
-    \n      : N(1 << LOG), keys(new ll[N]), vals(new Val[N]), shift(64 - __lg(N))\
-    \ {}\r\n  int hash(ll x) {\r\n    static const uint64_t FIXED_RANDOM\r\n     \
-    \   = std::chrono::steady_clock::now().time_since_epoch().count();\r\n    return\
-    \ (uint64_t(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const ll&\
-    \ key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && keys[i] != key;\
-    \ (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
-    \ ll& key) {\r\n    int i = index(key);\r\n    if (!used[i]) IDS.eb(i), used[i]\
-    \ = 1, keys[i] = key, vals[i] = Val{};\r\n    return vals[i];\r\n  }\r\n\r\n \
-    \ Val get(const ll& key, Val default_value) {\r\n    int i = index(key);\r\n \
-    \   if (!used[i]) return default_value;\r\n    return vals[i];\r\n  }\r\n\r\n\
-    \  bool contain(const ll& key) {\r\n    int i = index(key);\r\n    return used[i]\
-    \ && keys[i] == key;\r\n  }\r\n\r\n  bool count(const ll& key) {\r\n    int i\
-    \ = index(key);\r\n    return used[i] && keys[i] == key;\r\n  }\r\n\r\n  void\
-    \ reset() {\r\n    for (auto&& i: IDS) used[i] = 0;\r\n    IDS.clear();\r\n  }\r\
-    \n\r\n  vc<pair<ll, Val>> items() {\r\n    vc<pair<ll, Val>> res;\r\n    res.reserve(len(IDS));\r\
-    \n    for (auto&& i: IDS) res.eb(keys[i], vals[i]);\r\n    return res;\r\n  }\r\
-    \n};\r\n\r\ntemplate <typename KEY, typename VAL, int LOG>\r\nstruct HashMap {\r\
-    \n  HashMapLL<VAL, LOG> MP;\r\n  function<ll(KEY)> f;\r\n  HashMap(function<ll(KEY)>\
-    \ f) : MP(), f(f) {}\r\n\r\n  int index(const KEY& key) { return MP.index(f(key));\
-    \ }\r\n\r\n  VAL& operator[](const KEY& key) { return MP[f(key)]; }\r\n\r\n  bool\
-    \ contain(const KEY& key) { return MP.contain(f(key)); }\r\n\r\n  bool count(const\
-    \ KEY& key) { return MP.count(f(key)); }\r\n\r\n  void reset() { MP.reset(); }\r\
-    \n};\r\n#line 2 \"nt/discrete_log.hpp\"\n// log_a b \u306E\u8A08\u7B97\r\n// \u30CF\
-    \u30C3\u30B7\u30E5\u95A2\u6570 H : X -> long long \u3092\u6301\u305F\u305B\u308B\
-    \r\n// [lb, ub) \u306E\u6700\u521D\u306E\u89E3\u3092\u304B\u3048\u3059\r\n// \u306A\
-    \u3051\u308C\u3070 -1\r\ntemplate <typename Group>\r\nll discrete_log(typename\
-    \ Group::X a, typename Group::X b,\r\n                function<ll(typename Group::X)>\
-    \ H, ll lb, ll ub) {\r\n  using G = typename Group::X;\r\n  if (lb >= ub) return\
-    \ -1;\r\n  {\r\n    ll n = lb;\r\n    G p = a;\r\n    G x = Group::unit();\r\n\
-    \    while (n) {\r\n      if (n & 1) x = Group::op(x, p);\r\n      p = Group::op(p,\
-    \ p);\r\n      n /= 2;\r\n    }\r\n    x = Group::inverse(x);\r\n    b = Group::op(b,\
-    \ x);\r\n  }\r\n  ll LIM = ub - lb;\r\n\r\n  ll K = 1;\r\n  while (K * K < LIM)\
-    \ ++K;\r\n\r\n  static HashMapLL<int, 20> MP;\r\n  MP.reset();\r\n\r\n  G p =\
-    \ Group::unit();\r\n  FOR(k, K + 1) {\r\n    auto key = H(p);\r\n    if (!MP.count(key))\
-    \ MP[key] = k;\r\n    if (k != K) p = Group::op(p, a);\r\n  }\r\n  p = Group::inverse(p);\r\
-    \n  FOR(k, K + 1) {\r\n    auto key = H(b);\r\n    if (MP.count(key)) {\r\n  \
-    \    ll res = k * K + MP[key] + lb;\r\n      return (res >= ub ? -1 : res);\r\n\
-    \    }\r\n    b = Group::op(b, p);\r\n  }\r\n  return -1;\r\n}\r\n\r\n// yuki1648\r\
-    \n// G \u96C6\u5408 X \u304C\u3042\u308B\u3002\r\n// a in G, x, y in X \u306B\u5BFE\
-    \u3057\u3066 a^nx=y \u3092\u89E3\u304F\r\n// \u30CF\u30C3\u30B7\u30E5\u95A2\u6570\
-    \ H : X -> long long \u3092\u6301\u305F\u305B\u308B\r\n// [lb, ub) \u306E\u6700\
-    \u521D\u306E\u89E3\u3092\u304B\u3048\u3059\r\n// \u306A\u3051\u308C\u3070 -1\r\
-    \ntemplate <typename GSet>\r\nll discrete_log_gset(typename GSet::G a, typename\
-    \ GSet::X x, typename GSet::X y,\r\n                     function<ll(typename\
-    \ GSet::X)> H, ll lb, ll ub) {\r\n  using Group = typename GSet::Group;\r\n  using\
-    \ G = typename Group::value_type;\r\n  if (lb >= ub) return -1;\r\n  auto apow\
-    \ = [&](ll n) -> G {\r\n    G p = a;\r\n    G res = Group::unit();\r\n    while\
-    \ (n) {\r\n      if (n & 1) res = Group::op(res, p);\r\n      p = Group::op(p,\
-    \ p);\r\n      n /= 2;\r\n    }\r\n    return res;\r\n  };\r\n  x = GSet::act(apow(lb),\
-    \ x);\r\n  ll LIM = ub - lb;\r\n\r\n  ll K = 1;\r\n  while (K * K < LIM) ++K;\r\
-    \n\r\n  static HashMapLL<int, 20> MP;\r\n  MP.reset();\r\n\r\n  FOR(k, K + 1)\
-    \ {\r\n    auto key = H(x);\r\n    if (!MP.count(key)) MP[key] = k;\r\n    if\
-    \ (k != K) x = GSet::act(a, x);\r\n  }\r\n\r\n  a = Group::inverse(apow(K));\r\
-    \n  FOR(k, K + 1) {\r\n    auto key = H(y);\r\n    if (MP.count(key)) {\r\n  \
-    \    ll res = k * K + MP[key] + lb;\r\n      return (res >= ub ? -1 : res);\r\n\
-    \    }\r\n    y = GSet::act(a, y);\r\n  }\r\n  return -1;\r\n}\n#line 2 \"alg/group/mul.hpp\"\
-    \n\r\ntemplate <class T>\r\nstruct Group_Mul {\r\n  using value_type = T;\r\n\
-    \  using X = T;\r\n  static constexpr X op(const X &x, const X &y) noexcept {\
-    \ return x * y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
-    \ X(1) / x; }\r\n  static constexpr X unit() { return X(1); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 4 \"mod/mod_log.hpp\"\n\r\nint mod_log(int\
-    \ mod, ll a, ll b) {\r\n  a = divmod(a, mod).se;\r\n  b = divmod(b, mod).se;\r\
-    \n  // \u307E\u305A\u7FA4\u306B\u5E30\u7740\u3059\u308B\u3002\u5C0F\u3055\u3044\
-    \u5834\u5408\u306F\u8ABF\u3079\u308B\r\n  ll p = 1 % mod;\r\n  FOR(k, 32) {\r\n\
-    \    if (p == b) return k;\r\n    p = p * a % mod;\r\n  }\r\n  if (a == 0 || b\
-    \ == 0) return -1;\r\n  ll g = gcd(mod, p);\r\n  if (b % g != 0) return -1;\r\n\
-    \  mod /= g;\r\n  a %= mod, b %= mod;\r\n  if (gcd(b, mod) > 1) return -1;\r\n\
-    \  // \u7FA4\u306B\u5E30\u7740\u3055\u308C\u305F\r\n  amint::set_mod(mod);\r\n\
-    \  return discrete_log<Group_Mul<amint>>(\r\n      amint(a), amint(b), [](auto\
-    \ x) { return x.val; }, 32, mod);\r\n}\r\n#line 5 \"test/library_checker/math/discrete_logarithm_mod.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(x, y, mod);\r\n  print(mod_log(mod, x, y));\r\n}\r\
-    \n\r\nsigned main() {\r\n  LL(T);\r\n  FOR(T) solve();\r\n\r\n  return 0;\r\n\
-    }\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/discrete_logarithm_mod\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"mod/mod_log.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  LL(x, y, mod);\r\n  print(mod_log(mod, x, y));\r\n\
-    }\r\n\r\nsigned main() {\r\n  LL(T);\r\n  FOR(T) solve();\r\n\r\n  return 0;\r\
-    \n}\r\n"
+    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 2 \"nt/primetable.hpp\"\
+    \nvc<ll> primetable(int LIM) {\n  ++LIM;\n  const int S = 32768;\n  static int\
+    \ done = 2;\n  static vc<ll> primes = {2}, sieve(S + 1);\n\n  if (done < LIM)\
+    \ {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S + 1, 0);\n    const int\
+    \ R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM) * 1.1));\n    vc<pi> cp;\n\
+    \    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i]) {\n        cp.eb(i,\
+    \ i * i / 2);\n        for (int j = i * i; j <= S; j += 2 * i) sieve[j] = 1;\n\
+    \      }\n    }\n    for (int L = 1; L <= R; L += S) {\n      array<bool, S> block{};\n\
+    \      for (auto& [p, idx]: cp)\n        for (int i = idx; i < S + L; idx = (i\
+    \ += p)) block[i - L] = 1;\n      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L\
+    \ + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes, LIM + 1);\n  return {primes.begin(),\
+    \ primes.begin() + k};\n}\n#line 3 \"mod/powertable.hpp\"\n\r\n// a^0, ..., a^N\r\
+    \ntemplate <typename mint>\r\nvc<mint> powertable_1(mint a, ll N) {\r\n  // table\
+    \ of a^i\r\n  vc<mint> f(N + 1, 1);\r\n  FOR(i, N) f[i + 1] = a * f[i];\r\n  return\
+    \ f;\r\n}\r\n\r\n// 0^e, ..., N^e\r\ntemplate <typename mint>\r\nvc<mint> powertable_2(ll\
+    \ e, ll N) {\r\n  auto primes = primetable(N);\r\n  vc<mint> f(N + 1, 1);\r\n\
+    \  f[0] = mint(0).pow(e);\r\n  for (auto&& p: primes) {\r\n    if (p > N) break;\r\
+    \n    mint xp = mint(p).pow(e);\r\n    ll pp = p;\r\n    while (pp <= N) {\r\n\
+    \      ll i = pp;\r\n      while (i <= N) {\r\n        f[i] *= xp;\r\n       \
+    \ i += pp;\r\n      }\r\n      pp *= p;\r\n    }\r\n  }\r\n  return f;\r\n}\r\n\
+    #line 1 \"linalg/solve_linear_lower.hpp\"\n// \u4E0B\u4E09\u89D2\u884C\u5217\u3092\
+    \u4EEE\u5B9A\u3002\u3068\u308A\u3042\u3048\u305A\u6B63\u5247\u3082\u4EEE\u5B9A\
+    \u3002\ntemplate <typename T>\nvc<T> solve_linear_lower(vc<vc<T>> a, vc<T> b)\
+    \ {\n  auto n = len(a);\n  FOR(i, n) assert(a[i][i] != T(0));\n  FOR(i, n) FOR(j,\
+    \ i + 1, n) assert(a[i][j] == T(0));\n  FOR(i, n) {\n    {\n      T c = T(1) /\
+    \ a[i][i];\n      a[i][i] *= c;\n      b[i] *= c;\n    }\n    FOR(j, i + 1, n)\
+    \ {\n      b[j] -= b[i] * a[j][i];\n      a[j][i] = T(0);\n    }\n  }\n  return\
+    \ b;\n}\n#line 8 \"test/atcoder/abc249_ex.test.cpp\"\n\nusing mint = modint998;\n\
+    \nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  for (auto&& x: A) --x;\n  vi CNT(N);\n\
+    \  for (auto&& x: A) CNT[x]++;\n  vc<mint> iPOW = powertable_1<mint>(mint(2).inverse(),\
+    \ N);\n\n  auto f = [&]() -> vc<mint> {\n    // \u3044\u307E x \u500B\u3067\u3042\
+    \u308B\u3082\u306E\u3092\u30B3\u30F3\u30D7\u3059\u308B\u56DE\u6570\u671F\u5F85\
+    \u5024 f(x) \u3092\u6C42\u3081\u308B\n    vv(mint, mat, N + 1, N + 1);\n    vc<mint>\
+    \ rhs(N + 1, mint(1));\n    rhs[N] = mint(0);\n    mat[N][N] = mint(1);\n    FOR(x,\
+    \ N) {\n      mat[x][x] = 1;\n      mint p = mint(x) * inv<mint>(N);\n      FOR(y,\
+    \ x) { mat[x][y + 1] -= p * iPOW[x - 1] * C<mint, 0, 1>(x - 1, y); }\n      p\
+    \ = mint(N - x) * inv<mint>(N);\n      FOR(y, x + 1) {\n        mat[x][y] -= p\
+    \ * iPOW[x + 1] * C<mint, 0, 1>(x, y);\n        mat[x][y + 1] -= p * iPOW[x +\
+    \ 1] * C<mint, 0, 1>(x, y);\n      }\n    }\n    vv(mint, sub, N, N);\n    FOR(i,\
+    \ N) FOR(j, N) sub[i][j] = mat[i][j + 1];\n    vc<mint> x = solve_linear_lower(sub,\
+    \ vc<mint>(N, mint(1)));\n    x.insert(x.begin(), mint(0));\n    mint add = -mint(x.back());\n\
+    \    for (auto&& a: x) a += add;\n    return x;\n  }();\n  mint ANS = 0;\n  FOR(i,\
+    \ N) ANS += f[CNT[i]];\n  ANS -= mint(N - 1) * f[0];\n  ANS /= mint(N);\n  print(ANS);\n\
+    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  solve();\n\n \
+    \ return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc249/tasks/abc249_h\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
+    \n#include \"mod/powertable.hpp\"\n#include \"linalg/solve_linear_lower.hpp\"\n\
+    \nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  for\
+    \ (auto&& x: A) --x;\n  vi CNT(N);\n  for (auto&& x: A) CNT[x]++;\n  vc<mint>\
+    \ iPOW = powertable_1<mint>(mint(2).inverse(), N);\n\n  auto f = [&]() -> vc<mint>\
+    \ {\n    // \u3044\u307E x \u500B\u3067\u3042\u308B\u3082\u306E\u3092\u30B3\u30F3\
+    \u30D7\u3059\u308B\u56DE\u6570\u671F\u5F85\u5024 f(x) \u3092\u6C42\u3081\u308B\
+    \n    vv(mint, mat, N + 1, N + 1);\n    vc<mint> rhs(N + 1, mint(1));\n    rhs[N]\
+    \ = mint(0);\n    mat[N][N] = mint(1);\n    FOR(x, N) {\n      mat[x][x] = 1;\n\
+    \      mint p = mint(x) * inv<mint>(N);\n      FOR(y, x) { mat[x][y + 1] -= p\
+    \ * iPOW[x - 1] * C<mint, 0, 1>(x - 1, y); }\n      p = mint(N - x) * inv<mint>(N);\n\
+    \      FOR(y, x + 1) {\n        mat[x][y] -= p * iPOW[x + 1] * C<mint, 0, 1>(x,\
+    \ y);\n        mat[x][y + 1] -= p * iPOW[x + 1] * C<mint, 0, 1>(x, y);\n     \
+    \ }\n    }\n    vv(mint, sub, N, N);\n    FOR(i, N) FOR(j, N) sub[i][j] = mat[i][j\
+    \ + 1];\n    vc<mint> x = solve_linear_lower(sub, vc<mint>(N, mint(1)));\n   \
+    \ x.insert(x.begin(), mint(0));\n    mint add = -mint(x.back());\n    for (auto&&\
+    \ a: x) a += add;\n    return x;\n  }();\n  mint ANS = 0;\n  FOR(i, N) ANS +=\
+    \ f[CNT[i]];\n  ANS -= mint(N - 1) * f[0];\n  ANS /= mint(N);\n  print(ANS);\n\
+    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  solve();\n\n \
+    \ return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - mod/mod_log.hpp
   - mod/modint.hpp
-  - nt/discrete_log.hpp
-  - ds/hashmap.hpp
-  - alg/group/mul.hpp
+  - mod/powertable.hpp
+  - nt/primetable.hpp
+  - linalg/solve_linear_lower.hpp
   isVerificationFile: true
-  path: test/library_checker/math/discrete_logarithm_mod.test.cpp
+  path: test/atcoder/abc249_ex.test.cpp
   requiredBy: []
-  timestamp: '2022-11-06 13:29:09+09:00'
+  timestamp: '2022-11-06 16:08:17+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/math/discrete_logarithm_mod.test.cpp
+documentation_of: test/atcoder/abc249_ex.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/math/discrete_logarithm_mod.test.cpp
-- /verify/test/library_checker/math/discrete_logarithm_mod.test.cpp.html
-title: test/library_checker/math/discrete_logarithm_mod.test.cpp
+- /verify/test/atcoder/abc249_ex.test.cpp
+- /verify/test/atcoder/abc249_ex.test.cpp.html
+title: test/atcoder/abc249_ex.test.cpp
 ---

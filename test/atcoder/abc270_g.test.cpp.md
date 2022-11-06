@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/group/affine.hpp
     title: alg/group/affine.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/gset/affine.hpp
     title: alg/gset/affine.hpp
   - icon: ':question:'
@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc270/tasks/abc270_g
@@ -396,7 +396,7 @@ data:
   path: test/atcoder/abc270_g.test.cpp
   requiredBy: []
   timestamp: '2022-11-06 13:29:09+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/abc270_g.test.cpp
 layout: document

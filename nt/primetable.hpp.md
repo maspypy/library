@@ -60,6 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_D.test.cpp
     title: test/aoj/NTL_1_D.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc249_ex.test.cpp
+    title: test/atcoder/abc249_ex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/counting_primes.test.cpp
     title: test/library_checker/math/counting_primes.test.cpp
@@ -233,6 +236,7 @@ data:
   - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/gcd_convolution.test.cpp
+  - test/atcoder/abc249_ex.test.cpp
 documentation_of: nt/primetable.hpp
 layout: document
 redirect_from:

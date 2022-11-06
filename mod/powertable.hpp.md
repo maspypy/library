@@ -25,6 +25,9 @@ data:
     title: seq/famous/surjection.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: test/atcoder/abc249_ex.test.cpp
+    title: test/atcoder/abc249_ex.test.cpp
+  - icon: ':x:'
     path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - icon: ':x:'
@@ -132,6 +135,7 @@ data:
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
+  - test/atcoder/abc249_ex.test.cpp
 documentation_of: mod/powertable.hpp
 layout: document
 redirect_from:
