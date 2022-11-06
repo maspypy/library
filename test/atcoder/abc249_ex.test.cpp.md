@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/solve_linear_lower.hpp
     title: linalg/solve_linear_lower.hpp
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':question:'
@@ -21,15 +21,15 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc249/tasks/abc249_h
+    PROBLEM: https://atcoder.jp/contests/abc249/tasks/abc249_Ex
     links:
-    - https://atcoder.jp/contests/abc249/tasks/abc249_h
-  bundledCode: "#line 1 \"test/atcoder/abc249_ex.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc249/tasks/abc249_h\"\
+    - https://atcoder.jp/contests/abc249/tasks/abc249_Ex
+  bundledCode: "#line 1 \"test/atcoder/abc249_ex.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc249/tasks/abc249_Ex\"\
     \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
     unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
     \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
@@ -339,8 +339,8 @@ data:
     \ N) ANS += f[CNT[i]];\n  ANS -= mint(N - 1) * f[0];\n  ANS /= mint(N);\n  print(ANS);\n\
     }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  solve();\n\n \
     \ return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc249/tasks/abc249_h\"\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc249/tasks/abc249_Ex\"\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
     \n#include \"mod/powertable.hpp\"\n#include \"linalg/solve_linear_lower.hpp\"\n\
     \nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  for\
     \ (auto&& x: A) --x;\n  vi CNT(N);\n  for (auto&& x: A) CNT[x]++;\n  vc<mint>\
@@ -359,7 +359,7 @@ data:
     \ a: x) a += add;\n    return x;\n  }();\n  mint ANS = 0;\n  FOR(i, N) ANS +=\
     \ f[CNT[i]];\n  ANS -= mint(N - 1) * f[0];\n  ANS /= mint(N);\n  print(ANS);\n\
     }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  solve();\n\n \
-    \ return 0;\n}"
+    \ return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -370,8 +370,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc249_ex.test.cpp
   requiredBy: []
-  timestamp: '2022-11-06 16:08:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-06 16:26:22+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/abc249_ex.test.cpp
 layout: document
