@@ -152,7 +152,8 @@ template <typename mint>
 mint fact_inv(int n) {
   static const int mod = mint::get_mod();
   static vector<mint> dat = {1, 1};
-  assert(0 <= n && n < mod);
+  assert(-1 <= n && n < mod);
+  if (n == -1) return mint(0);
   while (int(dat.size()) <= n) {
     int k = dat.size();
     dat.emplace_back(dat[k - 1] * inv<mint>(k));
