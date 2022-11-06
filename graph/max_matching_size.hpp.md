@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -65,14 +65,14 @@ data:
     \ntemplate <typename GT>\nint max_matching_size(GT& G) {\n  using mint = modint61;\n\
     \  assert(!G.is_directed());\n  int N = G.N;\n  vv(mint, tutte, N, N);\n  for\
     \ (auto&& e: G.edges) {\n    mint x = RNG(mint::get_mod());\n    int i = e.frm,\
-    \ j = e.to;\n    tutte[i][j] += x;\n    tutte[j][i] -= x;\n  }\n  return matrix_rank(tutte)\
-    \ / 2;\n}\n"
+    \ j = e.to;\n    tutte[i][j] += x;\n    tutte[j][i] -= x;\n  }\n  return matrix_rank(N,\
+    \ N, tutte) / 2;\n}\n"
   code: "#include \"random/base.hpp\"\n#include \"mod/modint61.hpp\"\n#include \"\
     linalg/matrix_rank.hpp\"\n\ntemplate <typename GT>\nint max_matching_size(GT&\
     \ G) {\n  using mint = modint61;\n  assert(!G.is_directed());\n  int N = G.N;\n\
     \  vv(mint, tutte, N, N);\n  for (auto&& e: G.edges) {\n    mint x = RNG(mint::get_mod());\n\
     \    int i = e.frm, j = e.to;\n    tutte[i][j] += x;\n    tutte[j][i] -= x;\n\
-    \  }\n  return matrix_rank(tutte) / 2;\n}\n"
+    \  }\n  return matrix_rank(N, N, tutte) / 2;\n}\n"
   dependsOn:
   - random/base.hpp
   - mod/modint61.hpp
@@ -80,8 +80,8 @@ data:
   isVerificationFile: false
   path: graph/max_matching_size.hpp
   requiredBy: []
-  timestamp: '2022-11-06 01:50:09+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-11-06 20:31:53+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/tutte.test.cpp
 documentation_of: graph/max_matching_size.hpp

@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/solve_linear.hpp
     title: linalg/solve_linear.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/system_of_linear_equations
@@ -318,19 +318,19 @@ data:
     \   ++rk;\n    if (rk == n) break;\n  }\n  return rk;\n}\n#line 7 \"test/library_checker/matrix/solve_linear.test.cpp\"\
     \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N, M);\r\n  VV(mint, A,\
     \ N, M);\r\n  VEC(mint, b, N);\r\n  auto xs = solve_linear(N, M, A, b);\r\n  if\
-    \ (len(xs) == 0) return print(-1);\r\n\r\n  assert(len(xs) - 1 == M - matrix_rank(A));\r\
-    \n\r\n  print(len(xs) - 1);\r\n  FOR(r, len(xs)) print(xs[r]);\r\n}\r\n\r\nsigned\
-    \ main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout\
-    \ << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ (len(xs) == 0) return print(-1);\r\n\r\n  assert(len(xs) - 1 == M - matrix_rank(N,\
+    \ M, A));\r\n\r\n  print(len(xs) - 1);\r\n  FOR(r, len(xs)) print(xs[r]);\r\n\
+    }\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/system_of_linear_equations\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"mod/modint.hpp\"\
     \r\n#include \"linalg/solve_linear.hpp\"\r\n#include \"linalg/matrix_rank.hpp\"\
     \r\n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N, M);\r\n  VV(mint,\
     \ A, N, M);\r\n  VEC(mint, b, N);\r\n  auto xs = solve_linear(N, M, A, b);\r\n\
-    \  if (len(xs) == 0) return print(-1);\r\n\r\n  assert(len(xs) - 1 == M - matrix_rank(A));\r\
-    \n\r\n  print(len(xs) - 1);\r\n  FOR(r, len(xs)) print(xs[r]);\r\n}\r\n\r\nsigned\
-    \ main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout\
-    \ << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \  if (len(xs) == 0) return print(-1);\r\n\r\n  assert(len(xs) - 1 == M - matrix_rank(N,\
+    \ M, A));\r\n\r\n  print(len(xs) - 1);\r\n  FOR(r, len(xs)) print(xs[r]);\r\n\
+    }\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -340,8 +340,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/solve_linear.test.cpp
   requiredBy: []
-  timestamp: '2022-11-06 13:29:09+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-06 20:32:36+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/matrix/solve_linear.test.cpp
 layout: document
