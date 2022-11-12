@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -13,41 +13,41 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc272/tasks/abc272_h
+    PROBLEM: https://atcoder.jp/contests/abc272/tasks/abc272_Ex
     links:
-    - https://atcoder.jp/contests/abc272/tasks/abc272_h
-  bundledCode: "#line 1 \"test/atcoder/abc272_h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc272/tasks/abc272_h\"\
+    - https://atcoder.jp/contests/abc272/tasks/abc272_Ex
+  bundledCode: "#line 1 \"test/atcoder/abc272_h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc272/tasks/abc272_Ex\"\
     \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
     unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
     \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
@@ -586,9 +586,9 @@ data:
     \ ANS = 0;\n  FOR(k, N + 1) if (k % 2 == 1) ANS += f[k];\n  ANS *= fact_inv<mint>(N)\
     \ * mint(N);\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
     \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc272/tasks/abc272_h\"\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n\
-    #include \"poly/convolution.hpp\"\n#include \"poly/convolution_all.hpp\"\n#include\
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc272/tasks/abc272_Ex\"\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\
+    \n#include \"poly/convolution.hpp\"\n#include \"poly/convolution_all.hpp\"\n#include\
     \ \"poly/multipoint.hpp\"\n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n\
     \  VEC(int, A, N);\n  sort(all(A));\n  vc<mint> f(N + 1);\n  FOR(i, N + 1) f[i]\
     \ = fact_inv<mint>(i);\n  vvc<mint> polys;\n  FOR(k, N) {\n    vc<mint> p = {mint(A[k]\
@@ -620,8 +620,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc272_h.test.cpp
   requiredBy: []
-  timestamp: '2022-11-12 15:59:35+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-12 16:39:46+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/abc272_h.test.cpp
 layout: document

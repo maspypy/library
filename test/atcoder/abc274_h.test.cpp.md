@@ -4,29 +4,29 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/GF2.hpp
     title: nt/GF2.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/rollinghash_field.hpp
     title: string/rollinghash_field.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc274/tasks/abc274_h
+    PROBLEM: https://atcoder.jp/contests/abc274/tasks/abc274_Ex
     links:
-    - https://atcoder.jp/contests/abc274/tasks/abc274_h
-  bundledCode: "#line 1 \"test/atcoder/abc274_h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc274/tasks/abc274_h\"\
+    - https://atcoder.jp/contests/abc274/tasks/abc274_Ex
+  bundledCode: "#line 1 \"test/atcoder/abc274_h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc274/tasks/abc274_Ex\"\
     \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
     unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
     \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
@@ -280,8 +280,8 @@ data:
     \ {\n      // prefix\n      Yes(n1 < n2);\n    }\n  }\n}\n\nsigned main() {\n\
     \  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
     \n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc274/tasks/abc274_h\"\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"random/base.hpp\"\
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc274/tasks/abc274_Ex\"\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"random/base.hpp\"\
     \n#include \"nt/GF2.hpp\"\n#include \"string/rollinghash_field.hpp\"\n\nvoid solve()\
     \ {\n  LL(N, Q);\n  VEC(ll, A, N);\n  using F = GF2<60>;\n  RollingHash_Field<F>\
     \ X;\n  auto HA = X.build(A);\n\n  FOR(Q) {\n    LL(a, b, c, d, e, f);\n    --a,\
@@ -303,8 +303,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc274_h.test.cpp
   requiredBy: []
-  timestamp: '2022-11-12 15:59:35+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-12 16:40:01+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/abc274_h.test.cpp
 layout: document
