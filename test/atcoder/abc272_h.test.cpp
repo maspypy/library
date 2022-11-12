@@ -1,4 +1,4 @@
-#define PROBLEM "https://atcoder.jp/contests/abc272/tasks/abc272_h"
+#define PROBLEM "https://atcoder.jp/contests/abc272/tasks/abc272_Ex"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"
