@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: alg/group
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/group/add.hpp
       title: alg/group/add.hpp
     - icon: ':heavy_check_mark:'
@@ -197,7 +197,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/common_interval_decomposition.hpp
       title: ds/common_interval_decomposition.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/cumsum2d.hpp
       title: ds/cumsum2d.hpp
     - icon: ':heavy_check_mark:'
@@ -739,7 +739,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/solve_linear.hpp
       title: linalg/solve_linear.hpp
-    - icon: ':x:'
+    - icon: ':warning:'
       path: linalg/solve_linear_F2.hpp
       title: linalg/solve_linear_F2.hpp
     - icon: ':heavy_check_mark:'
@@ -815,7 +815,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_sum_of_linear.hpp
       title: mod/mod_sum_of_linear.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint.hpp
       title: mod/modint.hpp
     - icon: ':heavy_check_mark:'
@@ -838,7 +838,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -932,7 +932,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/integer_kth_root.hpp
       title: other/integer_kth_root.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -1504,9 +1504,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc276_g_2.test.cpp
       title: test/atcoder/abc276_g_2.test.cpp
-    - icon: ':x:'
-      path: test/atcoder/abc276_h.test.cpp
-      title: test/atcoder/abc276_h.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/atcoder/agc058d.test.cpp
       title: test/atcoder/agc058d.test.cpp
