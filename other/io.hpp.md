@@ -727,6 +727,9 @@ data:
     path: test/mytest/binom.test.cpp
     title: test/mytest/binom.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/chirp_z.test.cpp
+    title: test/mytest/chirp_z.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/conv2d.test.cpp
     title: test/mytest/conv2d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -928,6 +931,9 @@ data:
     path: test/yukicoder/1262.test.cpp
     title: test/yukicoder/1262.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1263.test.cpp
+    title: test/yukicoder/1263.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1269.test.cpp
     title: test/yukicoder/1269.test.cpp
   - icon: ':heavy_check_mark:'
@@ -945,6 +951,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1293.test.cpp
     title: test/yukicoder/1293.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1295.test.cpp
+    title: test/yukicoder/1295.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1297.test.cpp
     title: test/yukicoder/1297.test.cpp
@@ -981,6 +990,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1341.test.cpp
+    title: test/yukicoder/1341.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1344.test.cpp
     title: test/yukicoder/1344.test.cpp
@@ -1596,6 +1608,7 @@ data:
   verifiedWith:
   - test/mytest/knight_distance.test.cpp
   - test/mytest/prime_sum.test.cpp
+  - test/mytest/chirp_z.test.cpp
   - test/mytest/stern_brocot.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
@@ -1681,6 +1694,7 @@ data:
   - test/yukicoder/1269.test.cpp
   - test/yukicoder/502_2.test.cpp
   - test/yukicoder/1254.test.cpp
+  - test/yukicoder/1341.test.cpp
   - test/yukicoder/1216_2.test.cpp
   - test/yukicoder/1976.test.cpp
   - test/yukicoder/1634.test.cpp
@@ -1738,6 +1752,7 @@ data:
   - test/yukicoder/1989.test.cpp
   - test/yukicoder/1080.test.cpp
   - test/yukicoder/1500.test.cpp
+  - test/yukicoder/1263.test.cpp
   - test/yukicoder/1643.test.cpp
   - test/yukicoder/1201.test.cpp
   - test/yukicoder/1240.test.cpp
@@ -1799,6 +1814,7 @@ data:
   - test/yukicoder/579.test.cpp
   - test/yukicoder/1494.test.cpp
   - test/yukicoder/1939.test.cpp
+  - test/yukicoder/1295.test.cpp
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1292.test.cpp
   - test/yukicoder/1339.test.cpp

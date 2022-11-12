@@ -33,11 +33,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/polynomial_interpolation.test.cpp
     title: test/library_checker/polynomial/polynomial_interpolation.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/chirp_z.test.cpp
+    title: test/mytest/chirp_z.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
+    links:
+    - https://noshi91.github.io/algorithm-encyclopedia/chirp-z-transform#noredirect
   bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
     \ vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\
     \n  return t;\r\n}\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
@@ -361,11 +365,22 @@ data:
     \  FOR3_R(i, 1, sz) {\r\n      t[i] = convolution(t[2 * i], T[2 * i + 1]);\r\n\
     \      auto tt = convolution(t[2 * i + 1], T[2 * i]);\r\n      FOR(k, len(t[i]))\
     \ t[i][k] += tt[k];\r\n    }\r\n    t[1].resize(m);\r\n    reverse(all(t[1]));\r\
-    \n    return t[1];\r\n  }\r\n};\r\n\r\ntemplate<typename mint>\r\nvc<mint> multipoint_eval(vc<mint>&\
-    \ f, vc<mint>& x){\r\n  SubproductTree<mint> F(x);\r\n  return F.evaluation(f);\r\
-    \n}\r\n\r\ntemplate<typename mint>\r\nvc<mint> multipoint_interpolate(vc<mint>&\
-    \ x, vc<mint>& y){\r\n  SubproductTree<mint> F(x);\r\n  return F.interpolation(y);\r\
-    \n}\r\n"
+    \n    return t[1];\r\n  }\r\n};\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_eval(vc<mint>&\
+    \ f, vc<mint>& x) {\r\n  SubproductTree<mint> F(x);\r\n  return F.evaluation(f);\r\
+    \n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_interpolate(vc<mint>&\
+    \ x, vc<mint>& y) {\r\n  SubproductTree<mint> F(x);\r\n  return F.interpolation(y);\r\
+    \n}\r\n\r\n// calculate f(ar^k) for 0 <= k < m\r\n// https://noshi91.github.io/algorithm-encyclopedia/chirp-z-transform#noredirect\r\
+    \ntemplate <typename mint>\r\nvc<mint> multipoint_eval_on_geom_seq(vc<mint> f,\
+    \ mint a, mint r, int m) {\r\n  const int n = len(f);\r\n  assert(r != mint(0));\r\
+    \n  // a == 1 \u306B\u5E30\u7740\r\n  mint pow_a = 1;\r\n  FOR(i, n) f[i] *= pow_a,\
+    \ pow_a *= a;\r\n\r\n  auto calc = [&](mint r, int m) -> vc<mint> {\r\n    //\
+    \ r^{t_i} \u306E\u8A08\u7B97\r\n    vc<mint> res(m);\r\n    mint pow = 1;\r\n\
+    \    res[0] = 1;\r\n    FOR(i, m - 1) {\r\n      res[i + 1] = res[i] * pow;\r\n\
+    \      pow *= r;\r\n    }\r\n    return res;\r\n  };\r\n\r\n  vc<mint> A = calc(r,\
+    \ n + m - 1), B = calc(r.inverse(), max(n, m));\r\n  FOR(i, n) f[i] *= B[i];\r\
+    \n  reverse(all(f));\r\n  f = convolution(f, A);\r\n  f = {f.begin() + n - 1,\
+    \ f.end()};\r\n  f.resize(m);\r\n  FOR(i, m) f[i] *= B[i];\r\n  return f;\r\n\
+    }\n"
   code: "#include \"poly/fps_inv.hpp\"\r\n\r\ntemplate <typename mint>\r\nstruct SubproductTree\
     \ {\r\n  int m;\r\n  int sz;\r\n  vc<vc<mint>> T;\r\n  SubproductTree(const vc<mint>&\
     \ x) {\r\n    m = len(x);\r\n    sz = 1;\r\n    while (sz < m) sz *= 2;\r\n  \
@@ -392,11 +407,21 @@ data:
     \  FOR3_R(i, 1, sz) {\r\n      t[i] = convolution(t[2 * i], T[2 * i + 1]);\r\n\
     \      auto tt = convolution(t[2 * i + 1], T[2 * i]);\r\n      FOR(k, len(t[i]))\
     \ t[i][k] += tt[k];\r\n    }\r\n    t[1].resize(m);\r\n    reverse(all(t[1]));\r\
-    \n    return t[1];\r\n  }\r\n};\r\n\r\ntemplate<typename mint>\r\nvc<mint> multipoint_eval(vc<mint>&\
-    \ f, vc<mint>& x){\r\n  SubproductTree<mint> F(x);\r\n  return F.evaluation(f);\r\
-    \n}\r\n\r\ntemplate<typename mint>\r\nvc<mint> multipoint_interpolate(vc<mint>&\
-    \ x, vc<mint>& y){\r\n  SubproductTree<mint> F(x);\r\n  return F.interpolation(y);\r\
-    \n}\r\n"
+    \n    return t[1];\r\n  }\r\n};\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_eval(vc<mint>&\
+    \ f, vc<mint>& x) {\r\n  SubproductTree<mint> F(x);\r\n  return F.evaluation(f);\r\
+    \n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_interpolate(vc<mint>&\
+    \ x, vc<mint>& y) {\r\n  SubproductTree<mint> F(x);\r\n  return F.interpolation(y);\r\
+    \n}\r\n\r\n// calculate f(ar^k) for 0 <= k < m\r\n// https://noshi91.github.io/algorithm-encyclopedia/chirp-z-transform#noredirect\r\
+    \ntemplate <typename mint>\r\nvc<mint> multipoint_eval_on_geom_seq(vc<mint> f,\
+    \ mint a, mint r, int m) {\r\n  const int n = len(f);\r\n  assert(r != mint(0));\r\
+    \n  // a == 1 \u306B\u5E30\u7740\r\n  mint pow_a = 1;\r\n  FOR(i, n) f[i] *= pow_a,\
+    \ pow_a *= a;\r\n\r\n  auto calc = [&](mint r, int m) -> vc<mint> {\r\n    //\
+    \ r^{t_i} \u306E\u8A08\u7B97\r\n    vc<mint> res(m);\r\n    mint pow = 1;\r\n\
+    \    res[0] = 1;\r\n    FOR(i, m - 1) {\r\n      res[i + 1] = res[i] * pow;\r\n\
+    \      pow *= r;\r\n    }\r\n    return res;\r\n  };\r\n\r\n  vc<mint> A = calc(r,\
+    \ n + m - 1), B = calc(r.inverse(), max(n, m));\r\n  FOR(i, n) f[i] *= B[i];\r\
+    \n  reverse(all(f));\r\n  f = convolution(f, A);\r\n  f = {f.begin() + n - 1,\
+    \ f.end()};\r\n  f.resize(m);\r\n  FOR(i, m) f[i] *= B[i];\r\n  return f;\r\n}"
   dependsOn:
   - poly/fps_inv.hpp
   - poly/count_terms.hpp
@@ -409,9 +434,10 @@ data:
   isVerificationFile: false
   path: poly/multipoint.hpp
   requiredBy: []
-  timestamp: '2022-11-06 13:29:09+09:00'
+  timestamp: '2022-11-12 15:28:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/chirp_z.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/library_checker/polynomial/polynomial_interpolation.test.cpp
 documentation_of: poly/multipoint.hpp

@@ -8,6 +8,12 @@ data:
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':heavy_check_mark:'
+    path: my_template.hpp
+    title: my_template.hpp
+  - icon: ':heavy_check_mark:'
+    path: other/io.hpp
+    title: other/io.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -20,147 +26,207 @@ data:
     path: poly/fft.hpp
     title: poly/fft.hpp
   - icon: ':heavy_check_mark:'
-    path: poly/ntt.hpp
-    title: poly/ntt.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: poly/composition_f_ex.hpp
-    title: poly/composition_f_ex.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/fps_log.hpp
-    title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/fps_pow.hpp
-    title: poly/fps_pow.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/fps_sqrt.hpp
-    title: poly/fps_sqrt.hpp
+    path: poly/fps_inv.hpp
+    title: poly/fps_inv.hpp
   - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
-    path: poly/poly_divmod.hpp
-    title: poly/poly_divmod.hpp
+    path: poly/ntt.hpp
+    title: poly/ntt.hpp
   - icon: ':heavy_check_mark:'
-    path: poly/poly_gcd.hpp
-    title: poly/poly_gcd.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/product_of_f_rk_x.hpp
-    title: poly/product_of_f_rk_x.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/product_of_pow_of_linear.hpp
-    title: poly/product_of_pow_of_linear.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/sum_of_exp_bx.hpp
-    title: poly/sum_of_exp_bx.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/famous/partition_number.hpp
-    title: seq/famous/partition_number.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/famous/stirling_number_2.hpp
-    title: seq/famous/stirling_number_2.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/famous/surjection.hpp
-    title: seq/famous/surjection.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/sum_of_powers.hpp
-    title: seq/sum_of_powers.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/partition.test.cpp
-    title: test/library_checker/math/partition.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-    title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/inv_of_fps.test.cpp
-    title: test/library_checker/polynomial/inv_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
-    title: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
-    title: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/inv_of_polynomials.test.cpp
-    title: test/library_checker/polynomial/inv_of_polynomials.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/log_of_fps.test.cpp
-    title: test/library_checker/polynomial/log_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/log_of_fps_sparse.test.cpp
-    title: test/library_checker/polynomial/log_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/multipoint_evaluation.test.cpp
-    title: test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/polynomial_division.test.cpp
-    title: test/library_checker/polynomial/polynomial_division.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/polynomial_interpolation.test.cpp
-    title: test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/pow_of_fps.test.cpp
-    title: test/library_checker/polynomial/pow_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-    title: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
-    title: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
-    title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-    title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/bell.test.cpp
-    title: test/mytest/bell.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/chirp_z.test.cpp
-    title: test/mytest/chirp_z.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/enum_partitions.test.cpp
-    title: test/mytest/enum_partitions.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1080.test.cpp
-    title: test/yukicoder/1080.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1145.test.cpp
-    title: test/yukicoder/1145.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1321.test.cpp
-    title: test/yukicoder/1321.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1392.test.cpp
-    title: test/yukicoder/1392.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1533.test.cpp
-    title: test/yukicoder/1533.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1549.test.cpp
-    title: test/yukicoder/1549.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1755.test.cpp
-    title: test/yukicoder/1755.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1875.test.cpp
-    title: test/yukicoder/1875.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1939.test.cpp
-    title: test/yukicoder/1939.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2097.test.cpp
-    title: test/yukicoder/2097.test.cpp
+    path: random/base.hpp
+    title: random/base.hpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
-    \ vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\
-    \n  return t;\r\n}\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
+    links:
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/mytest/chirp_z.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
+    \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
+    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
+    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
+    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
+    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
+    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
+    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
+    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
+    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
+    \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
+    \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
+    \ a, b, c) for (ll i = a; i < ll(b); i += (c))\n#define FOR1_R(a) for (ll i =\
+    \ (a)-1; i >= ll(0); --i)\n#define FOR2_R(i, a) for (ll i = (a)-1; i >= ll(0);\
+    \ --i)\n#define FOR3_R(i, a, b) for (ll i = (b)-1; i >= ll(a); --i)\n#define FOR4_R(i,\
+    \ a, b, c) for (ll i = (b)-1; i >= ll(a); i -= (c))\n#define overload4(a, b, c,\
+    \ d, e, ...) e\n#define FOR(...) overload4(__VA_ARGS__, FOR4, FOR3, FOR2, FOR1)(__VA_ARGS__)\n\
+    #define FOR_R(...) \\\n  overload4(__VA_ARGS__, FOR4_R, FOR3_R, FOR2_R, FOR1_R)(__VA_ARGS__)\n\
+    \n#define FOR_subset(t, s) for (ll t = s; t >= 0; t = (t == 0 ? -1 : (t - 1) &\
+    \ s))\n#define all(x) x.begin(), x.end()\n#define len(x) ll(x.size())\n#define\
+    \ elif else if\n\n#define eb emplace_back\n#define mp make_pair\n#define mt make_tuple\n\
+    #define fi first\n#define se second\n\n#define stoi stoll\n\ntemplate <typename\
+    \ T, typename U>\nT SUM(const vector<U> &A) {\n  T sum = 0;\n  for (auto &&a:\
+    \ A) sum += a;\n  return sum;\n}\n\n#define MIN(v) *min_element(all(v))\n#define\
+    \ MAX(v) *max_element(all(v))\n#define LB(c, x) distance((c).begin(), lower_bound(all(c),\
+    \ (x)))\n#define UB(c, x) distance((c).begin(), upper_bound(all(c), (x)))\n#define\
+    \ UNIQUE(x) sort(all(x)), x.erase(unique(all(x)), x.end())\n\nint popcnt(int x)\
+    \ { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
+    \ return __builtin_popcountll(x); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\n\
+    int topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32\
+    \ x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return\
+    \ (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64 x) { return (x ==\
+    \ 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\n\
+    int lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(u32\
+    \ x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll x) { return (x\
+    \ == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return (x == 0 ? -1\
+    \ : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT pick(deque<T> &que) {\n\
+    \  T a = que.front();\n  que.pop_front();\n  return a;\n}\n\ntemplate <typename\
+    \ T>\nT pick(pq<T> &que) {\n  T a = que.top();\n  que.pop();\n  return a;\n}\n\
+    \ntemplate <typename T>\nT pick(pqg<T> &que) {\n  assert(que.size());\n  T a =\
+    \ que.top();\n  que.pop();\n  return a;\n}\n\ntemplate <typename T>\nT pick(vc<T>\
+    \ &que) {\n  assert(que.size());\n  T a = que.back();\n  que.pop_back();\n  return\
+    \ a;\n}\n\ntemplate <typename T, typename U>\nT ceil(T x, U y) {\n  return (x\
+    \ > 0 ? (x + y - 1) / y : x / y);\n}\n\ntemplate <typename T, typename U>\nT floor(T\
+    \ x, U y) {\n  return (x > 0 ? x / y : (x - y + 1) / y);\n}\n\ntemplate <typename\
+    \ T, typename U>\npair<T, T> divmod(T x, U y) {\n  T q = floor(x, y);\n  return\
+    \ {q, x - q * y};\n}\n\ntemplate <typename F>\nll binary_search(F check, ll ok,\
+    \ ll ng) {\n  assert(check(ok));\n  while (abs(ok - ng) > 1) {\n    auto x = (ng\
+    \ + ok) / 2;\n    tie(ok, ng) = (check(x) ? mp(x, ng) : mp(ok, x));\n  }\n  return\
+    \ ok;\n}\n\ntemplate <typename F>\ndouble binary_search_real(F check, double ok,\
+    \ double ng, int iter = 100) {\n  FOR(iter) {\n    double x = (ok + ng) / 2;\n\
+    \    tie(ok, ng) = (check(x) ? mp(x, ng) : mp(ok, x));\n  }\n  return (ok + ng)\
+    \ / 2;\n}\n\ntemplate <class T, class S>\ninline bool chmax(T &a, const S &b)\
+    \ {\n  return (a < b ? a = b, 1 : 0);\n}\ntemplate <class T, class S>\ninline\
+    \ bool chmin(T &a, const S &b) {\n  return (a > b ? a = b, 1 : 0);\n}\n\nvc<int>\
+    \ s_to_vi(const string &S, char first_char) {\n  vc<int> A(S.size());\n  FOR(i,\
+    \ S.size()) { A[i] = S[i] - first_char; }\n  return A;\n}\n\ntemplate <typename\
+    \ T, typename U>\nvector<T> cumsum(vector<U> &A, int off = 1) {\n  int N = A.size();\n\
+    \  vector<T> B(N + 1);\n  FOR(i, N) { B[i + 1] = B[i] + A[i]; }\n  if (off ==\
+    \ 0) B.erase(B.begin());\n  return B;\n}\n\ntemplate <typename CNT, typename T>\n\
+    vc<CNT> bincount(const vc<T> &A, int size) {\n  vc<CNT> C(size);\n  for (auto\
+    \ &&x: A) { ++C[x]; }\n  return C;\n}\n\n// stable\ntemplate <typename T>\nvector<int>\
+    \ argsort(const vector<T> &A) {\n  vector<int> ids(A.size());\n  iota(all(ids),\
+    \ 0);\n  sort(all(ids),\n       [&](int i, int j) { return A[i] < A[j] || (A[i]\
+    \ == A[j] && i < j); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate\
+    \ <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I) {\n  int n =\
+    \ len(I);\n  vc<T> B(n);\n  FOR(i, n) B[i] = A[I[i]];\n  return B;\n}\n#line 1\
+    \ \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include <unistd.h>\r\n\r\n\
+    namespace detail {\r\ntemplate <typename T, decltype(&T::is_modint) = &T::is_modint>\r\
+    \nstd::true_type check_value(int);\r\ntemplate <typename T>\r\nstd::false_type\
+    \ check_value(long);\r\n} // namespace detail\r\n\r\ntemplate <typename T>\r\n\
+    struct is_modint : decltype(detail::check_value<T>(0)) {};\r\ntemplate <typename\
+    \ T>\r\nusing is_modint_t = enable_if_t<is_modint<T>::value>;\r\ntemplate <typename\
+    \ T>\r\nusing is_not_modint_t = enable_if_t<!is_modint<T>::value>;\r\n\r\nstruct\
+    \ Scanner {\r\n  FILE *fp;\r\n  char line[(1 << 15) + 1];\r\n  size_t st = 0,\
+    \ ed = 0;\r\n  void reread() {\r\n    memmove(line, line + st, ed - st);\r\n \
+    \   ed -= st;\r\n    st = 0;\r\n    ed += fread(line + ed, 1, (1 << 15) - ed,\
+    \ fp);\r\n    line[ed] = '\\0';\r\n  }\r\n  bool succ() {\r\n    while (true)\
+    \ {\r\n      if (st == ed) {\r\n        reread();\r\n        if (st == ed) return\
+    \ false;\r\n      }\r\n      while (st != ed && isspace(line[st])) st++;\r\n \
+    \     if (st != ed) break;\r\n    }\r\n    if (ed - st <= 50) {\r\n      bool\
+    \ sep = false;\r\n      for (size_t i = st; i < ed; i++) {\r\n        if (isspace(line[i]))\
+    \ {\r\n          sep = true;\r\n          break;\r\n        }\r\n      }\r\n \
+    \     if (!sep) reread();\r\n    }\r\n    return true;\r\n  }\r\n  template <class\
+    \ T, enable_if_t<is_same<T, string>::value, int> = 0>\r\n  bool read_single(T\
+    \ &ref) {\r\n    if (!succ()) return false;\r\n    while (true) {\r\n      size_t\
+    \ sz = 0;\r\n      while (st + sz < ed && !isspace(line[st + sz])) sz++;\r\n \
+    \     ref.append(line + st, sz);\r\n      st += sz;\r\n      if (!sz || st !=\
+    \ ed) break;\r\n      reread();\r\n    }\r\n    return true;\r\n  }\r\n  template\
+    \ <class T, enable_if_t<is_integral<T>::value, int> = 0>\r\n  bool read_single(T\
+    \ &ref) {\r\n    if (!succ()) return false;\r\n    bool neg = false;\r\n    if\
+    \ (line[st] == '-') {\r\n      neg = true;\r\n      st++;\r\n    }\r\n    ref\
+    \ = T(0);\r\n    while (isdigit(line[st])) { ref = 10 * ref + (line[st++] & 0xf);\
+    \ }\r\n    if (neg) ref = -ref;\r\n    return true;\r\n  }\r\n  template <class\
+    \ T, is_modint_t<T> * = nullptr>\r\n  bool read_single(T &ref) {\r\n    long long\
+    \ val = 0;\r\n    bool f = read_single(val);\r\n    ref = T(val);\r\n    return\
+    \ f;\r\n  }\r\n  bool read_single(double &ref) {\r\n    string s;\r\n    if (!read_single(s))\
+    \ return false;\r\n    ref = std::stod(s);\r\n    return true;\r\n  }\r\n  bool\
+    \ read_single(char &ref) {\r\n    string s;\r\n    if (!read_single(s) || s.size()\
+    \ != 1) return false;\r\n    ref = s[0];\r\n    return true;\r\n  }\r\n  template\
+    \ <class T>\r\n  bool read_single(vector<T> &ref) {\r\n    for (auto &d: ref)\
+    \ {\r\n      if (!read_single(d)) return false;\r\n    }\r\n    return true;\r\
+    \n  }\r\n  template <class T, class U>\r\n  bool read_single(pair<T, U> &p) {\r\
+    \n    return (read_single(p.first) && read_single(p.second));\r\n  }\r\n  template\
+    \ <class A, class B, class C>\r\n  bool read_single(tuple<A, B, C> &p) {\r\n \
+    \   return (read_single(get<0>(p)) && read_single(get<1>(p))\r\n            &&\
+    \ read_single(get<2>(p)));\r\n  }\r\n  template <class A, class B, class C, class\
+    \ D>\r\n  bool read_single(tuple<A, B, C, D> &p) {\r\n    return (read_single(get<0>(p))\
+    \ && read_single(get<1>(p))\r\n            && read_single(get<2>(p)) && read_single(get<3>(p)));\r\
+    \n  }\r\n  void read() {}\r\n  template <class H, class... T>\r\n  void read(H\
+    \ &h, T &... t) {\r\n    bool f = read_single(h);\r\n    assert(f);\r\n    read(t...);\r\
+    \n  }\r\n  Scanner(FILE *fp) : fp(fp) {}\r\n};\r\n\r\nstruct Printer {\r\n  Printer(FILE\
+    \ *_fp) : fp(_fp) {}\r\n  ~Printer() { flush(); }\r\n\r\n  static constexpr size_t\
+    \ SIZE = 1 << 15;\r\n  FILE *fp;\r\n  char line[SIZE], small[50];\r\n  size_t\
+    \ pos = 0;\r\n  void flush() {\r\n    fwrite(line, 1, pos, fp);\r\n    pos = 0;\r\
+    \n  }\r\n  void write(const char &val) {\r\n    if (pos == SIZE) flush();\r\n\
+    \    line[pos++] = val;\r\n  }\r\n  template <class T, enable_if_t<is_integral<T>::value,\
+    \ int> = 0>\r\n  void write(T val) {\r\n    if (pos > (1 << 15) - 50) flush();\r\
+    \n    if (val == 0) {\r\n      write('0');\r\n      return;\r\n    }\r\n    if\
+    \ (val < 0) {\r\n      write('-');\r\n      val = -val; // todo min\r\n    }\r\
+    \n    size_t len = 0;\r\n    while (val) {\r\n      small[len++] = char(0x30 |\
+    \ (val % 10));\r\n      val /= 10;\r\n    }\r\n    for (size_t i = 0; i < len;\
+    \ i++) { line[pos + i] = small[len - 1 - i]; }\r\n    pos += len;\r\n  }\r\n \
+    \ void write(const string &s) {\r\n    for (char c: s) write(c);\r\n  }\r\n  void\
+    \ write(const char *s) {\r\n    size_t len = strlen(s);\r\n    for (size_t i =\
+    \ 0; i < len; i++) write(s[i]);\r\n  }\r\n  void write(const double &x) {\r\n\
+    \    ostringstream oss;\r\n    oss << fixed << setprecision(15) << x;\r\n    string\
+    \ s = oss.str();\r\n    write(s);\r\n  }\r\n  void write(const long double &x)\
+    \ {\r\n    ostringstream oss;\r\n    oss << fixed << setprecision(15) << x;\r\n\
+    \    string s = oss.str();\r\n    write(s);\r\n  }\r\n  template <class T, is_modint_t<T>\
+    \ * = nullptr>\r\n  void write(T &ref) {\r\n    write(ref.val);\r\n  }\r\n  template\
+    \ <class T>\r\n  void write(const vector<T> &val) {\r\n    auto n = val.size();\r\
+    \n    for (size_t i = 0; i < n; i++) {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\
+    \n    }\r\n  }\r\n  template <class T, class U>\r\n  void write(const pair<T,\
+    \ U> &val) {\r\n    write(val.first);\r\n    write(' ');\r\n    write(val.second);\r\
+    \n  }\r\n  template <class A, class B, class C>\r\n  void write(const tuple<A,\
+    \ B, C> &val) {\r\n    auto &[a, b, c] = val;\r\n    write(a), write(' '), write(b),\
+    \ write(' '), write(c);\r\n  }\r\n  template <class A, class B, class C, class\
+    \ D>\r\n  void write(const tuple<A, B, C, D> &val) {\r\n    auto &[a, b, c, d]\
+    \ = val;\r\n    write(a), write(' '), write(b), write(' '), write(c), write('\
+    \ '), write(d);\r\n  }\r\n  template <class A, class B, class C, class D, class\
+    \ E>\r\n  void write(const tuple<A, B, C, D, E> &val) {\r\n    auto &[a, b, c,\
+    \ d, e] = val;\r\n    write(a), write(' '), write(b), write(' '), write(c), write('\
+    \ '), write(d), write(' '), write(e);\r\n  }\r\n  template <class A, class B,\
+    \ class C, class D, class E, class F>\r\n  void write(const tuple<A, B, C, D,\
+    \ E, F> &val) {\r\n    auto &[a, b, c, d, e, f] = val;\r\n    write(a), write('\
+    \ '), write(b), write(' '), write(c), write(' '), write(d), write(' '), write(e),\
+    \ write(' '), write(f);\r\n  }\r\n  template <class T, size_t S>\r\n  void write(const\
+    \ array<T, S> &val) {\r\n    auto n = val.size();\r\n    for (size_t i = 0; i\
+    \ < n; i++) {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\n    }\r\n\
+    \  }\r\n  void write(i128 val) {\r\n    string s;\r\n    bool negative = 0;\r\n\
+    \    if(val < 0){\r\n      negative = 1;\r\n      val = -val;\r\n    }\r\n   \
+    \ while (val) {\r\n      s += '0' + int(val % 10);\r\n      val /= 10;\r\n   \
+    \ }\r\n    if(negative) s += \"-\";\r\n    reverse(all(s));\r\n    if (len(s)\
+    \ == 0) s = \"0\";\r\n    write(s);\r\n  }\r\n};\r\n\r\nScanner scanner = Scanner(stdin);\r\
+    \nPrinter printer = Printer(stdout);\r\n\r\nvoid flush() { printer.flush(); }\r\
+    \nvoid print() { printer.write('\\n'); }\r\ntemplate <class Head, class... Tail>\r\
+    \nvoid print(Head &&head, Tail &&... tail) {\r\n  printer.write(head);\r\n  if\
+    \ (sizeof...(Tail)) printer.write(' ');\r\n  print(forward<Tail>(tail)...);\r\n\
+    }\r\n\r\nvoid read() {}\r\ntemplate <class Head, class... Tail>\r\nvoid read(Head\
+    \ &head, Tail &... tail) {\r\n  scanner.read(head);\r\n  read(tail...);\r\n}\r\
+    \n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ CHAR(...)      \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n\
+    #define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\
+    \n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
+    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
+    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
+    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
+    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
+    \ { yes(!t); }\r\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
     \ {\n  static constexpr bool is_modint = true;\n  int val;\n  constexpr modint(const\
     \ ll val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val) % mod)\
     \ % mod) {}\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
@@ -246,17 +312,24 @@ data:
     mint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
     \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
     \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
-    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 2 \"mod/mod_inv.hpp\"\
-    \n// long \u3067\u3082\u5927\u4E08\u592B\r\nll mod_inv(ll val, ll mod) {\r\n \
-    \ val %= mod;\r\n  if (val < 0) val += mod;\r\n  ll a = val, b = mod, u = 1, v\
-    \ = 0, t;\r\n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a -= t * b, b), swap(u\
-    \ -= t * v, v);\r\n  }\r\n  if (u < 0) u += mod;\r\n  return u;\r\n}\r\n#line\
-    \ 1 \"poly/convolution_naive.hpp\"\ntemplate <class T>\r\nvector<T> convolution_naive(const\
-    \ vector<T>& a, const vector<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\
-    \n  vector<T> ans(n + m - 1);\r\n  if (n < m) {\r\n    FOR(j, m) FOR(i, n) ans[i\
-    \ + j] += a[i] * b[j];\r\n  } else {\r\n    FOR(i, n) FOR(j, m) ans[i + j] +=\
-    \ a[i] * b[j];\r\n  }\r\n  return ans;\r\n}\r\n#line 2 \"poly/ntt.hpp\"\n\r\n\
-    template <class mint>\r\nstruct ntt_info {\r\n  static constexpr int bsf_constexpr(unsigned\
+    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 2 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"poly/count_terms.hpp\"\
+    \ntemplate<typename mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t =\
+    \ 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 2\
+    \ \"mod/mod_inv.hpp\"\n// long \u3067\u3082\u5927\u4E08\u592B\r\nll mod_inv(ll\
+    \ val, ll mod) {\r\n  val %= mod;\r\n  if (val < 0) val += mod;\r\n  ll a = val,\
+    \ b = mod, u = 1, v = 0, t;\r\n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a\
+    \ -= t * b, b), swap(u -= t * v, v);\r\n  }\r\n  if (u < 0) u += mod;\r\n  return\
+    \ u;\r\n}\r\n#line 1 \"poly/convolution_naive.hpp\"\ntemplate <class T>\r\nvector<T>\
+    \ convolution_naive(const vector<T>& a, const vector<T>& b) {\r\n  int n = int(a.size()),\
+    \ m = int(b.size());\r\n  vector<T> ans(n + m - 1);\r\n  if (n < m) {\r\n    FOR(j,\
+    \ m) FOR(i, n) ans[i + j] += a[i] * b[j];\r\n  } else {\r\n    FOR(i, n) FOR(j,\
+    \ m) ans[i + j] += a[i] * b[j];\r\n  }\r\n  return ans;\r\n}\r\n#line 2 \"poly/ntt.hpp\"\
+    \n\r\ntemplate <class mint>\r\nstruct ntt_info {\r\n  static constexpr int bsf_constexpr(unsigned\
     \ int n) {\r\n    int x = 0;\r\n    while (!(n & (1 << x))) x++;\r\n    return\
     \ x;\r\n  }\r\n\r\n  static constexpr int rank2 = bsf_constexpr(mint::get_mod()\
     \ - 1);\r\n  array<mint, rank2 + 1> root;\r\n  array<mint, rank2 + 1> iroot;\r\
@@ -454,97 +527,101 @@ data:
     \ <= 200) return fps_inv_sparse<mint>(f);\r\n  return fps_inv_dense<mint>(f);\r\
     \n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<!is_same<mint, modint998>::value,\
     \ vc<mint>> fps_inv(\r\n    const vc<mint>& f) {\r\n  if (count_terms(f) <= 700)\
-    \ return fps_inv_sparse<mint>(f);\r\n  return fps_inv_dense<mint>(f);\r\n}\r\n"
-  code: "#pragma once\r\n#include \"poly/count_terms.hpp\"\r\n#include \"poly/convolution.hpp\"\
-    \r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_sparse(const vc<mint>& f)\
-    \ {\r\n  assert(f[0] != mint(0));\r\n  int N = len(f);\r\n  vc<pair<int, mint>>\
-    \ dat;\r\n  FOR3(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint>\
-    \ g(N);\r\n  mint g0 = mint(1) / f[0];\r\n  g[0] = g0;\r\n  FOR3(n, 1, N) {\r\n\
-    \    mint rhs = 0;\r\n    for (auto&& [k, fk]: dat) {\r\n      if (k > n) break;\r\
-    \n      rhs -= fk * g[n - k];\r\n    }\r\n    g[n] = rhs * g0;\r\n  }\r\n  return\
-    \ g;\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint, modint998>::value,\
-    \ vc<mint>> fps_inv_dense(\r\n    const vc<mint>& F) {\r\n  assert(F[0] != mint(0));\r\
-    \n  vc<mint> G = {mint(1) / F[0]};\r\n  G.reserve(len(F));\r\n  ll N = len(F),\
-    \ n = 1;\r\n  while (n < N) {\r\n    vc<mint> f(2 * n), g(2 * n);\r\n    FOR(i,\
-    \ min(N, 2 * n)) f[i] = F[i];\r\n    FOR(i, n) g[i] = G[i];\r\n    ntt(f, false);\r\
-    \n    ntt(g, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\
-    \n    FOR(i, n) f[i] = 0;\r\n    ntt(f, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\
-    \n    ntt(f, true);\r\n    FOR3(i, n, 2 * n) G.eb(f[i] * mint(-1));\r\n    n *=\
-    \ 2;\r\n  }\r\n  G.resize(N);\r\n  return G;\r\n}\r\n\r\ntemplate <typename mint>\r\
-    \nenable_if_t<!is_same<mint, modint998>::value, vc<mint>> fps_inv_dense(\r\n \
-    \   const vc<mint>& F) {\r\n  int N = len(F);\r\n  assert(F[0] != mint(0));\r\n\
-    \  vc<mint> R = {mint(1) / F[0]};\r\n  vc<mint> p;\r\n  int m = 1;\r\n  while\
-    \ (m < N) {\r\n    p = convolution(R, R);\r\n    p.resize(m + m);\r\n    vc<mint>\
-    \ f = {F.begin(), F.begin() + min(m + m, N)};\r\n    p = convolution(p, f);\r\n\
-    \    R.resize(m + m);\r\n    FOR(i, m + m) R[i] = R[i] + R[i] - p[i];\r\n    m\
-    \ += m;\r\n  }\r\n  R.resize(N);\r\n  return R;\r\n}\r\n\r\n\r\ntemplate <typename\
-    \ mint>\r\nenable_if_t<is_same<mint, modint998>::value, vc<mint>> fps_inv(\r\n\
-    \    const vc<mint>& f) {\r\n  if (count_terms(f) <= 200) return fps_inv_sparse<mint>(f);\r\
-    \n  return fps_inv_dense<mint>(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<!is_same<mint,\
-    \ modint998>::value, vc<mint>> fps_inv(\r\n    const vc<mint>& f) {\r\n  if (count_terms(f)\
-    \ <= 700) return fps_inv_sparse<mint>(f);\r\n  return fps_inv_dense<mint>(f);\r\
-    \n}\r\n"
+    \ return fps_inv_sparse<mint>(f);\r\n  return fps_inv_dense<mint>(f);\r\n}\r\n\
+    #line 2 \"poly/multipoint.hpp\"\n\r\ntemplate <typename mint>\r\nstruct SubproductTree\
+    \ {\r\n  int m;\r\n  int sz;\r\n  vc<vc<mint>> T;\r\n  SubproductTree(const vc<mint>&\
+    \ x) {\r\n    m = len(x);\r\n    sz = 1;\r\n    while (sz < m) sz *= 2;\r\n  \
+    \  T.resize(2 * sz);\r\n    FOR(i, sz) T[sz + i] = {1, (i < m ? -x[i] : 0)};\r\
+    \n    FOR3_R(i, 1, sz) T[i] = convolution(T[2 * i], T[2 * i + 1]);\r\n  }\r\n\r\
+    \n  vc<mint> mid_prod(vc<mint>& a, vc<mint>& b) {\r\n    assert(len(a) >= len(b)\
+    \ && !b.empty());\r\n    if (min(len(b), len(a) - len(b) + 1) <= 60) {\r\n   \
+    \   vc<mint> res(len(a) - len(b) + 1);\r\n      FOR(i, len(res)) FOR(j, len(b))\
+    \ res[i] += b[j] * a[i + j];\r\n      return res;\r\n    }\r\n    int n = 1 <<\
+    \ std::__lg(2 * len(a) - 1);\r\n    vc<mint> fa(n), fb(n);\r\n    std::copy(a.begin(),\
+    \ a.end(), fa.begin());\r\n    std::copy(b.rbegin(), b.rend(), fb.begin());\r\n\
+    \    ntt(fa, 0), ntt(fb, 0);\r\n    FOR(i, n) fa[i] *= fb[i];\r\n    ntt(fa, 1);\r\
+    \n    fa.resize(len(a));\r\n    fa.erase(fa.begin(), fa.begin() + len(b) - 1);\r\
+    \n    return fa;\r\n  }\r\n\r\n  vc<mint> evaluation(vc<mint>& f) {\r\n    int\
+    \ n = len(f);\r\n    f.resize(2 * n - 1);\r\n    vc<vc<mint>> g(2 * sz);\r\n \
+    \   g[1] = T[1];\r\n    g[1].resize(n);\r\n    g[1] = fps_inv(g[1]);\r\n    g[1]\
+    \ = mid_prod(f, g[1]);\r\n    g[1].resize(sz);\r\n\r\n    FOR3(i, 1, sz) {\r\n\
+    \      g[2 * i] = mid_prod(g[i], T[2 * i + 1]);\r\n      g[2 * i + 1] = mid_prod(g[i],\
+    \ T[2 * i]);\r\n    }\r\n    vc<mint> vals(m);\r\n    FOR(i, m) vals[i] = g[sz\
+    \ + i][0];\r\n    return vals;\r\n  }\r\n\r\n  vc<mint> interpolation(vc<mint>&\
+    \ y) {\r\n    assert(len(y) == m);\r\n    vc<mint> a(m);\r\n    FOR(i, m) a[i]\
+    \ = T[1][m - i - 1] * (i + 1);\r\n\r\n    a = evaluation(a);\r\n    vc<vc<mint>>\
+    \ t(2 * sz);\r\n    FOR(i, sz) t[sz + i] = {(i < m ? y[i] / a[i] : 0)};\r\n  \
+    \  FOR3_R(i, 1, sz) {\r\n      t[i] = convolution(t[2 * i], T[2 * i + 1]);\r\n\
+    \      auto tt = convolution(t[2 * i + 1], T[2 * i]);\r\n      FOR(k, len(t[i]))\
+    \ t[i][k] += tt[k];\r\n    }\r\n    t[1].resize(m);\r\n    reverse(all(t[1]));\r\
+    \n    return t[1];\r\n  }\r\n};\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_eval(vc<mint>&\
+    \ f, vc<mint>& x) {\r\n  SubproductTree<mint> F(x);\r\n  return F.evaluation(f);\r\
+    \n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_interpolate(vc<mint>&\
+    \ x, vc<mint>& y) {\r\n  SubproductTree<mint> F(x);\r\n  return F.interpolation(y);\r\
+    \n}\r\n\r\n// calculate f(ar^k) for 0 <= k < m\r\n// https://noshi91.github.io/algorithm-encyclopedia/chirp-z-transform#noredirect\r\
+    \ntemplate <typename mint>\r\nvc<mint> multipoint_eval_on_geom_seq(vc<mint> f,\
+    \ mint a, mint r, int m) {\r\n  const int n = len(f);\r\n  assert(r != mint(0));\r\
+    \n  // a == 1 \u306B\u5E30\u7740\r\n  mint pow_a = 1;\r\n  FOR(i, n) f[i] *= pow_a,\
+    \ pow_a *= a;\r\n\r\n  auto calc = [&](mint r, int m) -> vc<mint> {\r\n    //\
+    \ r^{t_i} \u306E\u8A08\u7B97\r\n    vc<mint> res(m);\r\n    mint pow = 1;\r\n\
+    \    res[0] = 1;\r\n    FOR(i, m - 1) {\r\n      res[i + 1] = res[i] * pow;\r\n\
+    \      pow *= r;\r\n    }\r\n    return res;\r\n  };\r\n\r\n  vc<mint> A = calc(r,\
+    \ n + m - 1), B = calc(r.inverse(), max(n, m));\r\n  FOR(i, n) f[i] *= B[i];\r\
+    \n  reverse(all(f));\r\n  f = convolution(f, A);\r\n  f = {f.begin() + n - 1,\
+    \ f.end()};\r\n  f.resize(m);\r\n  FOR(i, m) f[i] *= B[i];\r\n  return f;\r\n\
+    }\n#line 7 \"test/mytest/chirp_z.test.cpp\"\n\nvoid test() {\n  using mint = modint998;\n\
+    \  const int mod = mint::get_mod();\n  auto gen = [&](int n) -> vc<mint> {\n \
+    \   vc<mint> f(n);\n    FOR(i, n) f[i] = RNG(0, mod);\n    return f;\n  };\n \
+    \ auto naive = [&](vc<mint> f, mint a, mint r, int m) -> vc<mint> {\n    vc<mint>\
+    \ g(m);\n    FOR(j, m) {\n      mint pow = 1;\n      FOR(i, len(f)) g[j] += f[i]\
+    \ * pow, pow *= a;\n      a *= r;\n    }\n    return g;\n  };\n  FOR(n, 1, 100)\
+    \ FOR(m, 1, 100) {\n    vc<mint> f = gen(n);\n    mint a = RNG(1, mod);\n    mint\
+    \ r = RNG(1, mod);\n    auto A = multipoint_eval_on_geom_seq(f, a, r, m);\n  \
+    \  auto B = naive(f, a, r, m);\n    assert(A == B);\n  }\n  FOR(n, 1, 100) FOR(m,\
+    \ 1, 100) {\n    vc<mint> f = gen(n);\n    mint a = 0;\n    mint r = RNG(1, mod);\n\
+    \    auto A = multipoint_eval_on_geom_seq(f, a, r, m);\n    auto B = naive(f,\
+    \ a, r, m);\n    assert(A == B);\n  }\n}\n\nvoid solve() {\n  test();\n  LL(a,\
+    \ b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n#include \"random/base.hpp\"\
+    \n#include \"poly/multipoint.hpp\"\n\nvoid test() {\n  using mint = modint998;\n\
+    \  const int mod = mint::get_mod();\n  auto gen = [&](int n) -> vc<mint> {\n \
+    \   vc<mint> f(n);\n    FOR(i, n) f[i] = RNG(0, mod);\n    return f;\n  };\n \
+    \ auto naive = [&](vc<mint> f, mint a, mint r, int m) -> vc<mint> {\n    vc<mint>\
+    \ g(m);\n    FOR(j, m) {\n      mint pow = 1;\n      FOR(i, len(f)) g[j] += f[i]\
+    \ * pow, pow *= a;\n      a *= r;\n    }\n    return g;\n  };\n  FOR(n, 1, 100)\
+    \ FOR(m, 1, 100) {\n    vc<mint> f = gen(n);\n    mint a = RNG(1, mod);\n    mint\
+    \ r = RNG(1, mod);\n    auto A = multipoint_eval_on_geom_seq(f, a, r, m);\n  \
+    \  auto B = naive(f, a, r, m);\n    assert(A == B);\n  }\n  FOR(n, 1, 100) FOR(m,\
+    \ 1, 100) {\n    vc<mint> f = gen(n);\n    mint a = 0;\n    mint r = RNG(1, mod);\n\
+    \    auto A = multipoint_eval_on_geom_seq(f, a, r, m);\n    auto B = naive(f,\
+    \ a, r, m);\n    assert(A == B);\n  }\n}\n\nvoid solve() {\n  test();\n  LL(a,\
+    \ b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
+  - my_template.hpp
+  - other/io.hpp
+  - mod/modint.hpp
+  - random/base.hpp
+  - poly/multipoint.hpp
+  - poly/fps_inv.hpp
   - poly/count_terms.hpp
   - poly/convolution.hpp
-  - mod/modint.hpp
   - mod/mod_inv.hpp
   - poly/convolution_naive.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
-  isVerificationFile: false
-  path: poly/fps_inv.hpp
-  requiredBy:
-  - poly/poly_divmod.hpp
-  - poly/poly_gcd.hpp
-  - poly/fps_log.hpp
-  - poly/product_of_f_rk_x.hpp
-  - poly/product_of_pow_of_linear.hpp
-  - poly/fps_pow.hpp
-  - poly/sum_of_exp_bx.hpp
-  - poly/multipoint.hpp
-  - poly/composition_f_ex.hpp
-  - poly/fps_sqrt.hpp
-  - seq/famous/partition_number.hpp
-  - seq/famous/stirling_number_2.hpp
-  - seq/famous/surjection.hpp
-  - seq/sum_of_powers.hpp
-  timestamp: '2022-11-06 13:29:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/mytest/chirp_z.test.cpp
-  - test/mytest/enum_partitions.test.cpp
-  - test/mytest/bell.test.cpp
-  - test/yukicoder/1755.test.cpp
-  - test/yukicoder/1549.test.cpp
-  - test/yukicoder/1321.test.cpp
-  - test/yukicoder/1533.test.cpp
-  - test/yukicoder/2097.test.cpp
-  - test/yukicoder/1392.test.cpp
-  - test/yukicoder/1875.test.cpp
-  - test/yukicoder/1080.test.cpp
-  - test/yukicoder/1145.test.cpp
-  - test/yukicoder/1939.test.cpp
-  - test/library_checker/polynomial/log_of_fps.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/inv_of_fps_amint.test.cpp
-  - test/library_checker/polynomial/polynomial_division.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - test/library_checker/polynomial/inv_of_fps.test.cpp
-  - test/library_checker/polynomial/log_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - test/library_checker/polynomial/pow_of_fps.test.cpp
-  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - test/library_checker/polynomial/inv_of_polynomials.test.cpp
-  - test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-  - test/library_checker/math/partition.test.cpp
-  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-documentation_of: poly/fps_inv.hpp
+  isVerificationFile: true
+  path: test/mytest/chirp_z.test.cpp
+  requiredBy: []
+  timestamp: '2022-11-12 15:28:48+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/mytest/chirp_z.test.cpp
 layout: document
 redirect_from:
-- /library/poly/fps_inv.hpp
-- /library/poly/fps_inv.hpp.html
-title: poly/fps_inv.hpp
+- /verify/test/mytest/chirp_z.test.cpp
+- /verify/test/mytest/chirp_z.test.cpp.html
+title: test/mytest/chirp_z.test.cpp
 ---

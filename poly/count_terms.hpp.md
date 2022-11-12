@@ -121,6 +121,9 @@ data:
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/chirp_z.test.cpp
+    title: test/mytest/chirp_z.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
   - icon: ':heavy_check_mark:'
@@ -192,6 +195,7 @@ data:
   timestamp: '2022-05-02 13:06:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/chirp_z.test.cpp
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/bell.test.cpp
   - test/yukicoder/1755.test.cpp

@@ -379,6 +379,9 @@ data:
     path: test/mytest/binom.test.cpp
     title: test/mytest/binom.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/chirp_z.test.cpp
+    title: test/mytest/chirp_z.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/conv2d.test.cpp
     title: test/mytest/conv2d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -438,6 +441,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1260.test.cpp
     title: test/yukicoder/1260.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1263.test.cpp
+    title: test/yukicoder/1263.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1269.test.cpp
     title: test/yukicoder/1269.test.cpp
@@ -846,6 +852,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/prime_sum.test.cpp
+  - test/mytest/chirp_z.test.cpp
   - test/mytest/conv_leq.test.cpp
   - test/mytest/binom.test.cpp
   - test/mytest/all_inverse.test.cpp
@@ -897,6 +904,7 @@ data:
   - test/yukicoder/1989.test.cpp
   - test/yukicoder/1080.test.cpp
   - test/yukicoder/1500.test.cpp
+  - test/yukicoder/1263.test.cpp
   - test/yukicoder/1848.test.cpp
   - test/yukicoder/1919.test.cpp
   - test/yukicoder/1547.test.cpp
