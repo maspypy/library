@@ -10,25 +10,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
   - icon: ':heavy_check_mark:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':heavy_check_mark:'
@@ -42,6 +42,12 @@ data:
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc276_g.test.cpp
+    title: test/atcoder/abc276_g.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc276_g_2.test.cpp
+    title: test/atcoder/abc276_g_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080_2.test.cpp
     title: test/yukicoder/1080_2.test.cpp
@@ -461,6 +467,8 @@ data:
   verifiedWith:
   - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/502_2.test.cpp
+  - test/atcoder/abc276_g_2.test.cpp
+  - test/atcoder/abc276_g.test.cpp
 documentation_of: seq/kth_term_of_p_recursive.hpp
 layout: document
 redirect_from:

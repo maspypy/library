@@ -243,6 +243,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc270_g.test.cpp
     title: test/atcoder/abc270_g.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc272_h.test.cpp
+    title: test/atcoder/abc272_h.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc273_e.test.cpp
+    title: test/atcoder/abc273_e.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc274_h.test.cpp
+    title: test/atcoder/abc274_h.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc276_g.test.cpp
+    title: test/atcoder/abc276_g.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc276_g_2.test.cpp
+    title: test/atcoder/abc276_g_2.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc276_h.test.cpp
+    title: test/atcoder/abc276_h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/atcoder/agc058d.test.cpp
     title: test/atcoder/agc058d.test.cpp
@@ -1389,9 +1407,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://trap.jp/post/1224/
@@ -1547,7 +1565,7 @@ data:
   requiredBy:
   - graph/bipartite_coloring.hpp
   timestamp: '2022-09-24 23:41:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/knight_distance.test.cpp
   - test/mytest/prime_sum.test.cpp
@@ -1996,6 +2014,7 @@ data:
   - test/atcoder/abc266f.test.cpp
   - test/atcoder/abc174f.test.cpp
   - test/atcoder/abc127f.test.cpp
+  - test/atcoder/abc276_g_2.test.cpp
   - test/atcoder/abc269ex.test.cpp
   - test/atcoder/abc127f_1.test.cpp
   - test/atcoder/arc123d.test.cpp
@@ -2004,12 +2023,17 @@ data:
   - test/atcoder/abc249_ex.test.cpp
   - test/atcoder/abc270_g.test.cpp
   - test/atcoder/abc270_f.test.cpp
+  - test/atcoder/abc272_h.test.cpp
+  - test/atcoder/abc276_h.test.cpp
   - test/atcoder/abc266h.test.cpp
   - test/atcoder/abc244h.test.cpp
   - test/atcoder/arc151_e.test.cpp
+  - test/atcoder/abc273_e.test.cpp
+  - test/atcoder/abc274_h.test.cpp
   - test/atcoder/abc190f.test.cpp
   - test/atcoder/agc058d.test.cpp
   - test/atcoder/abc266h_2.test.cpp
+  - test/atcoder/abc276_g.test.cpp
 documentation_of: my_template.hpp
 layout: document
 redirect_from:

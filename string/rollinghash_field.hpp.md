@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/atcoder/abc274_h.test.cpp
+    title: test/atcoder/abc274_h.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/rollinghash_field.hpp\"\n// +, -, * \u304C\u5B9A\u7FA9\
@@ -51,8 +54,9 @@ data:
   path: string/rollinghash_field.hpp
   requiredBy: []
   timestamp: '2022-10-23 02:20:34+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/atcoder/abc274_h.test.cpp
 documentation_of: string/rollinghash_field.hpp
 layout: document
 redirect_from:

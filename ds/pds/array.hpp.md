@@ -7,6 +7,9 @@ data:
     title: ds/pds/unionfind.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc273_e.test.cpp
+    title: test/atcoder/abc273_e.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/persistent_queue.test.cpp
     title: test/library_checker/datastructure/persistent_queue.test.cpp
   - icon: ':heavy_check_mark:'
@@ -62,6 +65,7 @@ data:
   verifiedWith:
   - test/library_checker/datastructure/persistent_unionfind.test.cpp
   - test/library_checker/datastructure/persistent_queue.test.cpp
+  - test/atcoder/abc273_e.test.cpp
 documentation_of: ds/pds/array.hpp
 layout: document
 redirect_from:

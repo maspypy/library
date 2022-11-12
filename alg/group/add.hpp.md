@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/common_interval_decomposition.hpp
     title: ds/common_interval_decomposition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/cumsum2d.hpp
     title: ds/cumsum2d.hpp
   - icon: ':heavy_check_mark:'
@@ -126,6 +126,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc266h_2.test.cpp
     title: test/atcoder/abc266h_2.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc276_h.test.cpp
+    title: test/atcoder/abc276_h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
     title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
@@ -285,9 +288,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -334,7 +337,7 @@ data:
   - ds/fenwick2d_dense.hpp
   - string/trie.hpp
   timestamp: '2022-10-21 16:42:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
@@ -401,6 +404,7 @@ data:
   - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/atcoder/abc174f.test.cpp
   - test/atcoder/abc127f_1.test.cpp
+  - test/atcoder/abc276_h.test.cpp
   - test/atcoder/abc190f.test.cpp
   - test/atcoder/abc266h_2.test.cpp
 documentation_of: alg/group/add.hpp
