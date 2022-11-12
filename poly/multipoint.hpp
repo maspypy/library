@@ -71,14 +71,46 @@ struct SubproductTree {
   }
 };
 
-template<typename mint>
-vc<mint> multipoint_eval(vc<mint>& f, vc<mint>& x){
+template <typename mint>
+vc<mint> multipoint_eval(vc<mint>& f, vc<mint>& x) {
   SubproductTree<mint> F(x);
   return F.evaluation(f);
 }
 
-template<typename mint>
-vc<mint> multipoint_interpolate(vc<mint>& x, vc<mint>& y){
+template <typename mint>
+vc<mint> multipoint_interpolate(vc<mint>& x, vc<mint>& y) {
   SubproductTree<mint> F(x);
   return F.interpolation(y);
+}
+
+// calculate f(ar^k) for 0 <= k < m
+// https://noshi91.github.io/algorithm-encyclopedia/chirp-z-transform#noredirect
+template <typename mint>
+vc<mint> multipoint_eval_on_geom_seq(vc<mint> f, mint a, mint r, int m) {
+  const int n = len(f);
+  assert(r != mint(0));
+  // a == 1 に帰着
+  mint pow_a = 1;
+  FOR(i, n) f[i] *= pow_a, pow_a *= a;
+
+  auto calc = [&](mint r, int m) -> vc<mint> {
+    // r^{t_i} の計算
+    vc<mint> res(m);
+    mint pow = 1;
+    res[0] = 1;
+    FOR(i, m - 1) {
+      res[i + 1] = res[i] * pow;
+      pow *= r;
+    }
+    return res;
+  };
+
+  vc<mint> A = calc(r, n + m - 1), B = calc(r.inverse(), max(n, m));
+  FOR(i, n) f[i] *= B[i];
+  reverse(all(f));
+  f = convolution(f, A);
+  f = {f.begin() + n - 1, f.end()};
+  f.resize(m);
+  FOR(i, m) f[i] *= B[i];
+  return f;
 }
