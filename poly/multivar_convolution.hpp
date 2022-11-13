@@ -55,8 +55,8 @@ vc<mint> multivar_convolution(vc<int> ns, vc<mint>& f, vc<mint>& g) {
 
 template <typename mint>
 vc<vc<mint>> multivar_convolution_2d(vc<vc<mint>>& f, vc<vc<mint>>& g) {
-  ll H = len(f);
-  ll W = len(f[0]);
+  int H = len(f);
+  int W = len(f[0]);
   assert(len(g) == H);
   assert(len(g[0]) == W);
   vc<mint> F(H * W), G(H * W);
