@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/multivariate_convolution.test.cpp
     title: test/library_checker/convolution/multivariate_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n\
@@ -299,17 +299,16 @@ data:
     \ modint998>::value, vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>&\
     \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
-    \ b);\r\n}\r\n#line 2 \"poly/multivar_convolution.hpp\"\ntemplate <typename mint>\r\
-    \nvc<mint> multivar_convolution(vc<int> ns, vc<mint>& f, vc<mint>& g) {\r\n  /*\r\
-    \n  (n0, n1, n2, ...) \u9032\u6CD5\u3067\u306E\u7E70\u308A\u4E0A\u304C\u308A\u306E\
-    \u306A\u3044\u8DB3\u3057\u7B97\u306B\u95A2\u3059\u308B\u7573\u307F\u8FBC\u307F\
-    \r\n\r\n  example : ns = (2, 3) \u2192 1 \u306E\u4F4D\u304B\u3089\u9806\u306B\
-    \ 2, 3 \u9032\u6CD5\r\n  [a0, a1, a2, a3, a4, a5] = [a(0,0), a(1,0), a(0,1), a(1,1),\
-    \ a(0,2), a(1,2)]\r\n  [b0, b1, b2, b3, b4, b5] = [b(0,0), b(1,0), b(0,1), b(1,1),\
-    \ b(0,2), b(1,2)]\r\n  c(0,2) = a(0,0)b(0,2) + a(0,1)b(0,1) + a(0,2)b(1,1)\r\n\
-    \  c4 = a0b4 + a2b2 + a4b0\r\n\r\n  example : ns = (2, 2, ..., 2, 2)\r\n  \u2192\
-    \ subset convolution \u304C\u3053\u308C\u306E\u7279\u6B8A\u30B1\u30FC\u30B9\r\n\
-    \  */\r\n  int K = len(ns);\r\n  int N = 1;\r\n  FOR(k, K) N *= ns[k];\r\n  assert(len(f)\
+    \ b);\r\n}\r\n#line 2 \"poly/multivar_convolution.hpp\"\n\r\n/*\r\n(n0, n1, n2,\
+    \ ...) \u9032\u6CD5\u3067\u306E\u7E70\u308A\u4E0A\u304C\u308A\u306E\u306A\u3044\
+    \u8DB3\u3057\u7B97\u306B\u95A2\u3059\u308B\u7573\u307F\u8FBC\u307F\r\n\r\nexample\
+    \ : ns = (2, 3) \u2192 1 \u306E\u4F4D\u304B\u3089\u9806\u306B 2, 3 \u9032\u6CD5\
+    \r\n[a0, a1, a2, a3, a4, a5] = [a(0,0), a(1,0), a(0,1), a(1,1), a(0,2), a(1,2)]\r\
+    \n[b0, b1, b2, b3, b4, b5] = [b(0,0), b(1,0), b(0,1), b(1,1), b(0,2), b(1,2)]\r\
+    \nc(0,2) = a(0,0)b(0,2) + a(0,1)b(0,1) + a(0,2)b(1,1)\r\nc4 = a0b4 + a2b2 + a4b0\r\
+    \n\r\nexample : ns = (2, 2, ..., 2, 2) \u2192 subset convolution\r\n*/\r\ntemplate\
+    \ <typename mint>\r\nvc<mint> multivar_convolution(vc<int> ns, vc<mint>& f, vc<mint>&\
+    \ g) {\r\n  int K = len(ns);\r\n  int N = 1;\r\n  FOR(k, K) N *= ns[k];\r\n  assert(len(f)\
     \ == N && len(g) == N);\r\n  if (N == 1) return {f[0] * g[0]};\r\n\r\n  auto chi\
     \ = [&](ll i) -> ll {\r\n    int x = 0;\r\n    for (auto&& n: ns) {\r\n      i\
     \ /= n;\r\n      x += i;\r\n    }\r\n    return x % K;\r\n  };\r\n\r\n  int sz\
@@ -323,23 +322,23 @@ data:
     \ f, vc<vc<mint>>& g) {\r\n  ll H = len(f);\r\n  ll W = len(f[0]);\r\n  assert(len(g)\
     \ == H);\r\n  assert(len(g[0]) == W);\r\n  vc<mint> F(H * W), G(H * W);\r\n  FOR(x,\
     \ H) FOR(y, W) F[x + H * y] = f[x][y];\r\n  FOR(x, H) FOR(y, W) G[x + H * y] =\
-    \ g[x][y];\r\n  F = multivar_convolution(vi({H, W}), F, G);\r\n  vv(mint, h, H,\
-    \ W);\r\n  FOR(x, H) FOR(y, W) h[x][y] = F[x + H * y];\r\n  return h;\r\n}\r\n"
-  code: "#include \"poly/convolution.hpp\"\r\ntemplate <typename mint>\r\nvc<mint>\
-    \ multivar_convolution(vc<int> ns, vc<mint>& f, vc<mint>& g) {\r\n  /*\r\n  (n0,\
-    \ n1, n2, ...) \u9032\u6CD5\u3067\u306E\u7E70\u308A\u4E0A\u304C\u308A\u306E\u306A\
-    \u3044\u8DB3\u3057\u7B97\u306B\u95A2\u3059\u308B\u7573\u307F\u8FBC\u307F\r\n\r\
-    \n  example : ns = (2, 3) \u2192 1 \u306E\u4F4D\u304B\u3089\u9806\u306B 2, 3 \u9032\
-    \u6CD5\r\n  [a0, a1, a2, a3, a4, a5] = [a(0,0), a(1,0), a(0,1), a(1,1), a(0,2),\
-    \ a(1,2)]\r\n  [b0, b1, b2, b3, b4, b5] = [b(0,0), b(1,0), b(0,1), b(1,1), b(0,2),\
-    \ b(1,2)]\r\n  c(0,2) = a(0,0)b(0,2) + a(0,1)b(0,1) + a(0,2)b(1,1)\r\n  c4 = a0b4\
-    \ + a2b2 + a4b0\r\n\r\n  example : ns = (2, 2, ..., 2, 2)\r\n  \u2192 subset convolution\
-    \ \u304C\u3053\u308C\u306E\u7279\u6B8A\u30B1\u30FC\u30B9\r\n  */\r\n  int K =\
-    \ len(ns);\r\n  int N = 1;\r\n  FOR(k, K) N *= ns[k];\r\n  assert(len(f) == N\
-    \ && len(g) == N);\r\n  if (N == 1) return {f[0] * g[0]};\r\n\r\n  auto chi =\
-    \ [&](ll i) -> ll {\r\n    int x = 0;\r\n    for (auto&& n: ns) {\r\n      i /=\
-    \ n;\r\n      x += i;\r\n    }\r\n    return x % K;\r\n  };\r\n\r\n  int sz =\
-    \ 1;\r\n  while (sz < N + N) sz *= 2;\r\n  vv(mint, ff, K, sz);\r\n  vv(mint,\
+    \ g[x][y];\r\n  F = multivar_convolution(vc<int>({H, W}), F, G);\r\n  vv(mint,\
+    \ h, H, W);\r\n  FOR(x, H) FOR(y, W) h[x][y] = F[x + H * y];\r\n  return h;\r\n\
+    }\r\n"
+  code: "#include \"poly/convolution.hpp\"\r\n\r\n/*\r\n(n0, n1, n2, ...) \u9032\u6CD5\
+    \u3067\u306E\u7E70\u308A\u4E0A\u304C\u308A\u306E\u306A\u3044\u8DB3\u3057\u7B97\
+    \u306B\u95A2\u3059\u308B\u7573\u307F\u8FBC\u307F\r\n\r\nexample : ns = (2, 3)\
+    \ \u2192 1 \u306E\u4F4D\u304B\u3089\u9806\u306B 2, 3 \u9032\u6CD5\r\n[a0, a1,\
+    \ a2, a3, a4, a5] = [a(0,0), a(1,0), a(0,1), a(1,1), a(0,2), a(1,2)]\r\n[b0, b1,\
+    \ b2, b3, b4, b5] = [b(0,0), b(1,0), b(0,1), b(1,1), b(0,2), b(1,2)]\r\nc(0,2)\
+    \ = a(0,0)b(0,2) + a(0,1)b(0,1) + a(0,2)b(1,1)\r\nc4 = a0b4 + a2b2 + a4b0\r\n\r\
+    \nexample : ns = (2, 2, ..., 2, 2) \u2192 subset convolution\r\n*/\r\ntemplate\
+    \ <typename mint>\r\nvc<mint> multivar_convolution(vc<int> ns, vc<mint>& f, vc<mint>&\
+    \ g) {\r\n  int K = len(ns);\r\n  int N = 1;\r\n  FOR(k, K) N *= ns[k];\r\n  assert(len(f)\
+    \ == N && len(g) == N);\r\n  if (N == 1) return {f[0] * g[0]};\r\n\r\n  auto chi\
+    \ = [&](ll i) -> ll {\r\n    int x = 0;\r\n    for (auto&& n: ns) {\r\n      i\
+    \ /= n;\r\n      x += i;\r\n    }\r\n    return x % K;\r\n  };\r\n\r\n  int sz\
+    \ = 1;\r\n  while (sz < N + N) sz *= 2;\r\n  vv(mint, ff, K, sz);\r\n  vv(mint,\
     \ gg, K, sz);\r\n\r\n  FOR(i, N) {\r\n    auto k = chi(i);\r\n    ff[k][i] = f[i];\r\
     \n    gg[k][i] = g[i];\r\n  }\r\n\r\n  FOR(k, K) {\r\n    ntt(ff[k], false);\r\
     \n    ntt(gg[k], false);\r\n  }\r\n\r\n  vv(mint, hh, K, sz);\r\n  FOR(a, K) FOR(b,\
@@ -349,8 +348,9 @@ data:
     \ f, vc<vc<mint>>& g) {\r\n  ll H = len(f);\r\n  ll W = len(f[0]);\r\n  assert(len(g)\
     \ == H);\r\n  assert(len(g[0]) == W);\r\n  vc<mint> F(H * W), G(H * W);\r\n  FOR(x,\
     \ H) FOR(y, W) F[x + H * y] = f[x][y];\r\n  FOR(x, H) FOR(y, W) G[x + H * y] =\
-    \ g[x][y];\r\n  F = multivar_convolution(vi({H, W}), F, G);\r\n  vv(mint, h, H,\
-    \ W);\r\n  FOR(x, H) FOR(y, W) h[x][y] = F[x + H * y];\r\n  return h;\r\n}\r\n"
+    \ g[x][y];\r\n  F = multivar_convolution(vc<int>({H, W}), F, G);\r\n  vv(mint,\
+    \ h, H, W);\r\n  FOR(x, H) FOR(y, W) h[x][y] = F[x + H * y];\r\n  return h;\r\n\
+    }\r\n"
   dependsOn:
   - poly/convolution.hpp
   - mod/modint.hpp
@@ -361,8 +361,8 @@ data:
   isVerificationFile: false
   path: poly/multivar_convolution.hpp
   requiredBy: []
-  timestamp: '2022-11-06 13:29:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-11-13 11:14:07+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/convolution/multivariate_convolution.test.cpp
   - test/library_checker/convolution/subset_convolution_multivar.test.cpp
