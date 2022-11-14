@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/kdtree_monoid.hpp
     title: ds/kdtree_monoid.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C
@@ -258,10 +258,9 @@ data:
     \ {\n  LL(N);\n  vi X, Y;\n  vvc<int> idx(N);\n  FOR(i, N) {\n    LL(x, y);\n\
     \    X.eb(x);\n    Y.eb(y);\n    idx[i].eb(i);\n  }\n  KDTree_Monoid<Mono> KDT(X,\
     \ Y, idx);\n\n  LL(Q);\n  FOR(Q) {\n    LL(xl, xr, yl, yr);\n    flush();\n  \
-    \  auto e = KDT.prod(xl, yl, xr + 1, yr + 1);\n    sort(all(e));\n    for (auto&&\
-    \ v: e) print(v);\n    print();\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << fixed << setprecision(15);\n\n  ll\
-    \ T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \  auto e = KDT.prod(xl, xr + 1, yl, yr + 1);\n    sort(all(e));\n    for (auto&&\
+    \ v: e) print(v);\n    print();\n  }\n}\n\nsigned main() {\n  solve();\n\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/kdtree_monoid.hpp\"\
     \n\nstruct Mono {\n  using value_type = vc<int>;\n  using X = value_type;\n  static\
@@ -270,10 +269,9 @@ data:
     \ {\n  LL(N);\n  vi X, Y;\n  vvc<int> idx(N);\n  FOR(i, N) {\n    LL(x, y);\n\
     \    X.eb(x);\n    Y.eb(y);\n    idx[i].eb(i);\n  }\n  KDTree_Monoid<Mono> KDT(X,\
     \ Y, idx);\n\n  LL(Q);\n  FOR(Q) {\n    LL(xl, xr, yl, yr);\n    flush();\n  \
-    \  auto e = KDT.prod(xl, yl, xr + 1, yr + 1);\n    sort(all(e));\n    for (auto&&\
-    \ v: e) print(v);\n    print();\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << fixed << setprecision(15);\n\n  ll\
-    \ T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \  auto e = KDT.prod(xl, xr + 1, yl, yr + 1);\n    sort(all(e));\n    for (auto&&\
+    \ v: e) print(v);\n    print();\n  }\n}\n\nsigned main() {\n  solve();\n\n  return\
+    \ 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -281,8 +279,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_C.test.cpp
   requiredBy: []
-  timestamp: '2022-11-14 21:12:47+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-14 22:27:21+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_C.test.cpp
 layout: document
