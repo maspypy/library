@@ -8,6 +8,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fenwickraq.hpp
     title: ds/fenwickraq.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/query/coeffient_query_2d.hpp
+    title: ds/query/coeffient_query_2d.hpp
   - icon: ':warning:'
     path: ds/query/point_add_polygon_sum.hpp
     title: ds/query/point_add_polygon_sum.hpp
@@ -57,6 +60,9 @@ data:
   - icon: ':x:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
+    title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
     title: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
@@ -178,6 +184,7 @@ data:
   - ds/query/point_add_rectangle_sum.hpp
   - ds/query/rectangle_add_rectangle_sum.hpp
   - ds/query/rectangle_add_point_sum.hpp
+  - ds/query/coeffient_query_2d.hpp
   - ds/fenwickraq.hpp
   timestamp: '2022-10-21 16:42:45+09:00'
   verificationStatus: LIBRARY_SOME_WA
@@ -198,6 +205,7 @@ data:
   - test/aoj/ALDS1_2_A.test.cpp
   - test/library_checker/graph/verted_add_contour_sum.test.cpp
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp

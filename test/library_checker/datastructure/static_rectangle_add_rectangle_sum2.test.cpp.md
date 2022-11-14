@@ -7,9 +7,9 @@ data:
   - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':x:'
-    path: ds/query/rectangle_add_point_sum.hpp
-    title: ds/query/rectangle_add_point_sum.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/query/coeffient_query_2d.hpp
+    title: ds/query/coeffient_query_2d.hpp
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
@@ -19,30 +19,27 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
-    path: random/base.hpp
-    title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/aplusb
+    PROBLEM: https://judge.yosupo.jp/problem/static_rectangle_add_rectangle_sum
     links:
-    - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/rect_add_pt_sum.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#pragma\
-    \ GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include\
-    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
-    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
-    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
-    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
-    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://judge.yosupo.jp/problem/static_rectangle_add_rectangle_sum
+  bundledCode: "#line 1 \"test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp\"\
+    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/static_rectangle_add_rectangle_sum\"\
+    \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
+    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
+    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
+    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
+    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -212,12 +209,7 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t\
-    \ x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n         \
-    \            chrono::high_resolution_clock::now().time_since_epoch())\n      \
-    \               .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n\
-    \  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
-    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 5 \"test/mytest/rect_add_pt_sum.test.cpp\"\
+    \ { yes(!t); }\r\n#line 5 \"test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp\"\
     \n\n#line 2 \"alg/group/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Group_Add\
     \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
     \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
@@ -251,98 +243,109 @@ data:
     \ {\n        i += k;\n        s = AbelGroup::op(s, dat[i - 1]);\n      }\n   \
     \   k >>= 1;\n    }\n    return i;\n  }\n\n  int find_kth(E k) {\n    auto check\
     \ = [&](E x) -> bool { return x <= k; };\n    return max_right(check);\n  }\n\n\
-    \  void debug() { print(\"fenwick\", dat); }\n};\n#line 2 \"ds/query/rectangle_add_point_sum.hpp\"\
-    \n\ntemplate <typename AbelGroup, bool SMALL>\nstruct Rectangle_Add_Point_Sum\
-    \ {\n  using G = typename AbelGroup::value_type;\n  vc<tuple<ll, ll, ll, ll>>\
-    \ rect;\n  vc<G> WT;\n  vc<pi> point;\n\n  Rectangle_Add_Point_Sum() {}\n\n  void\
-    \ add_query(ll xl, ll xr, ll yl, ll yr, G g) {\n    rect.eb(xl, xr, yl, yr);\n\
-    \    WT.eb(g);\n  }\n\n  void sum_query(ll x, ll y) { point.eb(x, y); }\n\n  vc<G>\
-    \ calc() {\n    int N = len(rect), Q = len(point);\n    if (N == 0) return vc<G>(Q,\
-    \ AbelGroup::unit());\n    vi keyX, keyY;\n    keyX.reserve(2 * N + Q);\n    keyY.reserve(2\
-    \ * N + Q);\n    for (auto&& [xl, xr, yl, yr]: rect) {\n      keyX.eb(xl), keyX.eb(xr),\
-    \ keyY.eb(yl), keyY.eb(yr);\n    }\n    for (auto&& [x, y]: point) { keyX.eb(x),\
-    \ keyY.eb(y); }\n    int NX = 0, NY = 0;\n    if (!SMALL) {\n      UNIQUE(keyX),\
-    \ UNIQUE(keyY);\n      NX = len(keyX), NY = len(keyY);\n      for (auto&& [xl,\
-    \ xr, yl, yr]: rect) {\n        xl = LB(keyX, xl), xr = LB(keyX, xr);\n      \
-    \  yl = LB(keyY, yl), yr = LB(keyY, yr);\n      }\n      for (auto&& [x, y]: point)\
-    \ {\n        x = LB(keyX, x);\n        y = LB(keyY, y);\n      }\n    } else {\n\
-    \      ll mx = MIN(keyX), my = MIN(keyY);\n      NX = MAX(keyX) - mx + 1, NY =\
-    \ MAX(keyY) - my + 1;\n      for (auto&& [xl, xr, yl, yr]: rect) {\n        xl\
-    \ = xl - mx, xr = xr - mx;\n        yl = yl - my, yr = yr - my;\n      }\n   \
-    \   for (auto&& [x, y]: point) { x = x - mx, y = y - my; }\n    }\n    vvc<tuple<int,\
-    \ int, G>> ADD(NY);\n    vvc<int> CALC(NY);\n    FOR(i, N) {\n      auto [xl,\
-    \ xr, yl, yr] = rect[i];\n      ADD[yl].eb(xl, xr, WT[i]);\n      ADD[yr].eb(xl,\
-    \ xr, AbelGroup::inverse(WT[i]));\n    }\n    FOR(q, Q) {\n      auto [x, y] =\
-    \ point[q];\n      CALC[y].eb(q);\n    }\n    vc<G> res(Q);\n    FenwickTree<AbelGroup>\
-    \ bit(NX);\n    FOR(y, NY) {\n      for (auto&& [xl, xr, g]: ADD[y]) {\n     \
-    \   bit.add(xl, g);\n        bit.add(xr, AbelGroup::inverse(g));\n      }\n  \
-    \    for (auto&& q: CALC[y]) {\n        auto [x, y] = point[q];\n        res[q]\
-    \ = bit.prod(x + 1);\n      }\n    }\n    return res;\n  }\n};\n#line 2 \"mod/modint.hpp\"\
-    \n\ntemplate <int mod>\nstruct modint {\n  static constexpr bool is_modint = true;\n\
-    \  int val;\n  constexpr modint(const ll val = 0) noexcept\n      : val(val >=\
-    \ 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint\
-    \ &other) const {\n    return val < other.val;\n  } // To use std::map\n  modint\
-    \ &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n\
-    \    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if ((val\
-    \ += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const\
-    \ modint &p) {\n    val = (int)(1LL * val * p.val % mod);\n    return *this;\n\
-    \  }\n  modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n   \
-    \ return *this;\n  }\n  modint operator-() const { return modint(-val); }\n  modint\
-    \ operator+(const modint &p) const { return modint(*this) += p; }\n  modint operator-(const\
-    \ modint &p) const { return modint(*this) -= p; }\n  modint operator*(const modint\
-    \ &p) const { return modint(*this) *= p; }\n  modint operator/(const modint &p)\
-    \ const { return modint(*this) /= p; }\n  bool operator==(const modint &p) const\
-    \ { return val == p.val; }\n  bool operator!=(const modint &p) const { return\
-    \ val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod, u = 1,\
-    \ v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b),\
-    \ swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
-    \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
-    \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n  static constexpr int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
-    \ {\n  static constexpr bool is_modint = true;\n  int val;\n  ArbitraryModInt()\
-    \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
-    \                   : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
-    \ ArbitraryModInt &other) const {\n    return val < other.val;\n  } // To use\
-    \ std::map<ArbitraryModInt, T>\n  static int &get_mod() {\n    static int mod\
-    \ = 0;\n    return mod;\n  }\n  static void set_mod(int md) { get_mod() = md;\
-    \ }\n  ArbitraryModInt &operator+=(const ArbitraryModInt &p) {\n    if ((val +=\
-    \ p.val) >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt\
-    \ &operator-=(const ArbitraryModInt &p) {\n    if ((val += get_mod() - p.val)\
-    \ >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt &operator*=(const\
-    \ ArbitraryModInt &p) {\n    long long a = (long long)val * p.val;\n    int xh\
-    \ = (int)(a >> 32), xl = (int)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d),\
-    \ \"=d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return\
-    \ *this;\n  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n   \
-    \ *this *= p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-()\
-    \ const { return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) += p;\n  }\n\
-    \  ArbitraryModInt operator-(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
-    \ -= p;\n  }\n  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n\
-    \    return ArbitraryModInt(*this) *= p;\n  }\n  ArbitraryModInt operator/(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) /= p;\n  }\n\
-    \  bool operator==(const ArbitraryModInt &p) const { return val == p.val; }\n\
-    \  bool operator!=(const ArbitraryModInt &p) const { return val != p.val; }\n\
-    \  ArbitraryModInt inverse() const {\n    int a = val, b = get_mod(), u = 1, v\
-    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
-    \ -= t * v, v);\n    }\n    return ArbitraryModInt(u);\n  }\n  ArbitraryModInt\
-    \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
-    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
-    \  }\n    return ret;\n  }\n};\n\ntemplate <typename mint>\nmint inv(int n) {\n\
-    \  static const int mod = mint::get_mod();\n  static vector<mint> dat = {0, 1};\n\
-    \  assert(0 <= n);\n  if (n >= mod) n %= mod;\n  while (int(dat.size()) <= n)\
-    \ {\n    int k = dat.size();\n    auto q = (mod + k - 1) / k;\n    int r = k *\
-    \ q - mod;\n    dat.emplace_back(dat[r] * mint(q));\n  }\n  return dat[n];\n}\n\
-    \ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
-    \  static vector<mint> dat = {1, 1};\n  assert(0 <= n);\n  if (n >= mod) return\
-    \ 0;\n  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
-    \ - 1] * mint(k));\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint\
-    \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
-    \ dat = {1, 1};\n  assert(-1 <= n && n < mod);\n  if (n == -1) return mint(0);\n\
-    \  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
-    \ - 1] * inv<mint>(k));\n  }\n  return dat[n];\n}\n\ntemplate <class mint, class...\
-    \ Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
-    }\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
-    \ &&head, Tail &&... tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    \  void debug() { print(\"fenwick\", dat); }\n};\n#line 2 \"ds/query/coeffient_query_2d.hpp\"\
+    \n\n// A, B\uFF1A\u5B9A\u6570\n// Sparse Laurent Polynomial f(x,y) \u3092\u4E0E\
+    \u3048\u308B\n// [x^py^q] f(x,y)/(1-x)^A(1-y)^B \u3092\u305F\u304F\u3055\u3093\
+    \u6C42\u3081\u308B\n// O(AB N logN) \u6642\u9593\ntemplate <int A, int B, typename\
+    \ T>\nstruct Coefficient_Query_2D {\n  struct Mono {\n    using value_type = array<T,\
+    \ A * B>;\n    using X = value_type;\n    static X op(X x, X y) {\n      FOR(i,\
+    \ A * B) x[i] += y[i];\n      return x;\n    }\n    static constexpr X unit()\
+    \ { return X{}; }\n    static constexpr bool commute = 1;\n  };\n\n  vc<tuple<ll,\
+    \ ll, T>> F;\n  vc<pi> QUERY;\n\n  Coefficient_Query_2D() {}\n  void add(ll x,\
+    \ ll y, T c) { F.eb(x, y, c); }\n  void query(ll p, ll q) { QUERY.eb(p, q); }\n\
+    \n  // \u6700\u5F8C\u306B (A-1)!(B-1)! \u3067\u5272\u308B\u304B\u3069\u3046\u304B\
+    \u3002\u3075\u3064\u3046\u306F\u5272\u308B\u3002\n  vc<T> calc(bool div_fact =\
+    \ true) {\n    // \u52A0\u7B97\u3059\u308B\u70B9\u306E x \u306B\u3064\u3044\u3066\
+    \u5EA7\u5727\n    sort(all(F),\n         [&](auto& a, auto& b) -> bool { return\
+    \ get<0>(a) < get<0>(b); });\n    vi keyX;\n    keyX.reserve(len(F));\n    for\
+    \ (auto&& [a, b, c]: F) {\n      if (keyX.empty() || keyX.back() != a) keyX.eb(a);\n\
+    \      a = len(keyX) - 1;\n    }\n    keyX.shrink_to_fit();\n\n    // y \u6607\
+    \u9806\u306B\u30AF\u30A8\u30EA\u51E6\u7406\u3059\u308B\n    const int Q = len(QUERY);\n\
+    \    vc<int> I(Q);\n    iota(all(I), 0);\n    sort(all(I),\n         [&](auto&\
+    \ a, auto& b) -> bool { return QUERY[a].se < QUERY[b].se; });\n    sort(all(F),\n\
+    \         [&](auto& a, auto& b) -> bool { return get<1>(a) < get<1>(b); });\n\n\
+    \    FenwickTree<Mono> bit(len(keyX));\n\n    vc<T> res(Q);\n    int ptr = 0;\n\
+    \    for (auto&& qid: I) {\n      auto [p, q] = QUERY[qid];\n      // y <= q \u3068\
+    \u306A\u308B F \u306E\u52A0\u7B97\n      while (ptr < len(F) && get<1>(F[ptr])\
+    \ <= q) {\n        auto& [ia, b, w] = F[ptr++];\n        ll a = keyX[ia];\n  \
+    \      // w(p-a+1)...(p-a+A-1)(q-b+1)...(q-b+B-1) \u3092 p,q \u306E\u591A\u9805\
+    \u5F0F\u3068\u3057\u3066\n        vc<T> f(A), g(B);\n        f[0] = w, g[0] =\
+    \ 1;\n        FOR(i, A - 1) { FOR_R(j, i + 1) f[j + 1] += f[j] * T(-a + 1 + i);\
+    \ }\n        FOR(i, B - 1) { FOR_R(j, i + 1) g[j + 1] += g[j] * T(-b + 1 + i);\
+    \ }\n        reverse(all(f));\n        reverse(all(g));\n        array<T, A *\
+    \ B> G{};\n        FOR(i, A) FOR(j, B) G[B * i + j] = f[i] * g[j];\n        bit.add(ia,\
+    \ G);\n      }\n      auto SM = bit.sum(UB(keyX, p));\n      T sm = 0;\n     \
+    \ T pow_p = 1;\n      FOR(i, A) {\n        T prod = pow_p;\n        FOR(j, B)\
+    \ {\n          sm += prod * SM[B * i + j];\n          prod *= T(q);\n        }\n\
+    \        pow_p *= T(p);\n      }\n      res[qid] = sm;\n    }\n    if (div_fact)\
+    \ {\n      T cf = T(1);\n      FOR(a, 1, A) cf *= T(a);\n      FOR(b, 1, B) cf\
+    \ *= T(b);\n      for (auto&& x: res) x /= cf;\n    }\n    return res;\n  }\n\
+    };\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n  static\
+    \ constexpr bool is_modint = true;\n  int val;\n  constexpr modint(const ll val\
+    \ = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val) % mod) % mod)\
+    \ {}\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
+    \  } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
+    \ += p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator-=(const\
+    \ modint &p) {\n    if ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n\
+    \  }\n  modint &operator*=(const modint &p) {\n    val = (int)(1LL * val * p.val\
+    \ % mod);\n    return *this;\n  }\n  modint &operator/=(const modint &p) {\n \
+    \   *this *= p.inverse();\n    return *this;\n  }\n  modint operator-() const\
+    \ { return modint(-val); }\n  modint operator+(const modint &p) const { return\
+    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
+    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
+    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
+    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
+    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
+    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
+    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
+    \ return modint(u);\n  }\n  modint pow(int64_t n) const {\n    modint ret(1),\
+    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
+    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr int get_mod()\
+    \ { return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr bool is_modint\
+    \ = true;\n  int val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t\
+    \ y)\n      : val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y)\
+    \ % get_mod()) % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other)\
+    \ const {\n    return val < other.val;\n  } // To use std::map<ArbitraryModInt,\
+    \ T>\n  static int &get_mod() {\n    static int mod = 0;\n    return mod;\n  }\n\
+    \  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
+    \ ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
+    \    return *this;\n  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p)\
+    \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
+    \ *this;\n  }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n   \
+    \ long long a = (long long)val * p.val;\n    int xh = (int)(a >> 32), xl = (int)a,\
+    \ d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"(m) : \"d\"(xh), \"a\"\
+    (xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n  }\n  ArbitraryModInt\
+    \ &operator/=(const ArbitraryModInt &p) {\n    *this *= p.inverse();\n    return\
+    \ *this;\n  }\n  ArbitraryModInt operator-() const { return ArbitraryModInt(get_mod()\
+    \ - val); }\n  ArbitraryModInt operator+(const ArbitraryModInt &p) const {\n \
+    \   return ArbitraryModInt(*this) += p;\n  }\n  ArbitraryModInt operator-(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) -= p;\n  }\n\
+    \  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
+    \ *= p;\n  }\n  ArbitraryModInt operator/(const ArbitraryModInt &p) const {\n\
+    \    return ArbitraryModInt(*this) /= p;\n  }\n  bool operator==(const ArbitraryModInt\
+    \ &p) const { return val == p.val; }\n  bool operator!=(const ArbitraryModInt\
+    \ &p) const { return val != p.val; }\n  ArbitraryModInt inverse() const {\n  \
+    \  int a = val, b = get_mod(), u = 1, v = 0, t;\n    while (b > 0) {\n      t\
+    \ = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return\
+    \ ArbitraryModInt(u);\n  }\n  ArbitraryModInt pow(int64_t n) const {\n    ArbitraryModInt\
+    \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
+    \ mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n};\n\ntemplate <typename\
+    \ mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n  static\
+    \ vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n \
+    \ while (int(dat.size()) <= n) {\n    int k = dat.size();\n    auto q = (mod +\
+    \ k - 1) / k;\n    int r = k * q - mod;\n    dat.emplace_back(dat[r] * mint(q));\n\
+    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
+    \ const int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  assert(0\
+    \ <= n);\n  if (n >= mod) return 0;\n  while (int(dat.size()) <= n) {\n    int\
+    \ k = dat.size();\n    dat.emplace_back(dat[k - 1] * mint(k));\n  }\n  return\
+    \ dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static const\
+    \ int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  assert(-1\
+    \ <= n && n < mod);\n  if (n == -1) return mint(0);\n  while (int(dat.size())\
+    \ <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
+    \  }\n  return dat[n];\n}\n\ntemplate <class mint, class... Ts>\nmint fact_invs(Ts...\
+    \ xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename\
+    \ mint, class Head, class... Tail>\nmint multinomial(Head &&head, Tail &&... tail)\
+    \ {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
     }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint>\
     \ C;\n  static int H = 0, W = 0;\n\n  auto calc = [&](int i, int j) -> mint {\n\
     \    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
@@ -363,86 +366,46 @@ data:
     mint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
     \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
     \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
-    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 8 \"test/mytest/rect_add_pt_sum.test.cpp\"\
-    \n\nusing mint = modint998;\nusing QT = tuple<ll, ll, ll, ll, ll>;\n\npair<vc<QT>,\
-    \ vc<pi>> gen(int H, int W, int Q) {\n  vc<tuple<ll, ll, ll, ll, ll>> add_query;\n\
-    \  FOR(Q) {\n    ll a = RNG(0, H);\n    ll b = RNG(0, W);\n    ll c = RNG(a +\
-    \ 1, H + 1);\n    ll d = RNG(b + 1, W + 1);\n    ll x = RNG(0, mint::get_mod());\n\
-    \    add_query.eb(a, b, c, d, x);\n  }\n\n  vc<pi> sum_query;\n  FOR(Q) {\n  \
-    \  ll x = RNG(0, H), y = RNG(0, W);\n    sum_query.eb(x, y);\n  }\n  return {add_query,\
-    \ sum_query};\n}\n\nvc<mint> sol_1(int H, int W, vc<QT> add_query, vc<pi> sum_query)\
-    \ {\n  vv(mint, A, H, W);\n  for (auto&& [a, b, c, d, x]: add_query) {\n    FOR(i,\
-    \ a, c) FOR(j, b, d) { A[i][j] += mint(x); }\n  }\n  vc<mint> ANS;\n  for (auto&&\
-    \ [x, y]: sum_query) ANS.eb(A[x][y]);\n  return ANS;\n}\n\nvc<mint> sol_2(int\
-    \ H, int W, vc<QT> add_query, vc<pi> sum_query) {\n  vc<mint> ANS;\n  for (auto&&\
-    \ [x, y]: sum_query) {\n    mint ans = 0;\n    for (auto&& [a, b, c, d, v]: add_query)\
-    \ {\n      if (a <= x && x < c && b <= y && y < d) ans += mint(v);\n    }\n  \
-    \  ANS.eb(ans);\n  }\n  return ANS;\n}\n\nvoid test() {\n  FOR(H, 1, 10) FOR(W,\
-    \ 1, 10) FOR(Q, 10) {\n    auto [add_query, sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Group_Add<mint>,\
-    \ 0> X;\n    for (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);\n\
-    \    for (auto&& [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc() ==\
-    \ sol_1(H, W, add_query, sum_query));\n  }\n  FOR(H, 1, 10) FOR(W, 1, 10) FOR(Q,\
-    \ 10) {\n    auto [add_query, sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Group_Add<mint>,\
-    \ 1> X;\n    for (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);\n\
-    \    for (auto&& [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc() ==\
-    \ sol_1(H, W, add_query, sum_query));\n  }\n  FOR(10) {\n    int H = RNG(1, 1'000'000'000);\n\
-    \    int W = RNG(1, 1'000'000'000);\n    int Q = 100;\n    auto [add_query, sum_query]\
-    \ = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Group_Add<mint>, 0> X;\n    for\
-    \ (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);\n    for (auto&&\
-    \ [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc() == sol_2(H, W, add_query,\
-    \ sum_query));\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\n\
-    signed main() {\n  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\
-    \n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"random/base.hpp\"\n\n#include \"ds/query/rectangle_add_point_sum.hpp\"\
-    \n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\nusing QT = tuple<ll,\
-    \ ll, ll, ll, ll>;\n\npair<vc<QT>, vc<pi>> gen(int H, int W, int Q) {\n  vc<tuple<ll,\
-    \ ll, ll, ll, ll>> add_query;\n  FOR(Q) {\n    ll a = RNG(0, H);\n    ll b = RNG(0,\
-    \ W);\n    ll c = RNG(a + 1, H + 1);\n    ll d = RNG(b + 1, W + 1);\n    ll x\
-    \ = RNG(0, mint::get_mod());\n    add_query.eb(a, b, c, d, x);\n  }\n\n  vc<pi>\
-    \ sum_query;\n  FOR(Q) {\n    ll x = RNG(0, H), y = RNG(0, W);\n    sum_query.eb(x,\
-    \ y);\n  }\n  return {add_query, sum_query};\n}\n\nvc<mint> sol_1(int H, int W,\
-    \ vc<QT> add_query, vc<pi> sum_query) {\n  vv(mint, A, H, W);\n  for (auto&& [a,\
-    \ b, c, d, x]: add_query) {\n    FOR(i, a, c) FOR(j, b, d) { A[i][j] += mint(x);\
-    \ }\n  }\n  vc<mint> ANS;\n  for (auto&& [x, y]: sum_query) ANS.eb(A[x][y]);\n\
-    \  return ANS;\n}\n\nvc<mint> sol_2(int H, int W, vc<QT> add_query, vc<pi> sum_query)\
-    \ {\n  vc<mint> ANS;\n  for (auto&& [x, y]: sum_query) {\n    mint ans = 0;\n\
-    \    for (auto&& [a, b, c, d, v]: add_query) {\n      if (a <= x && x < c && b\
-    \ <= y && y < d) ans += mint(v);\n    }\n    ANS.eb(ans);\n  }\n  return ANS;\n\
-    }\n\nvoid test() {\n  FOR(H, 1, 10) FOR(W, 1, 10) FOR(Q, 10) {\n    auto [add_query,\
-    \ sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Group_Add<mint>, 0>\
-    \ X;\n    for (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);\n\
-    \    for (auto&& [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc() ==\
-    \ sol_1(H, W, add_query, sum_query));\n  }\n  FOR(H, 1, 10) FOR(W, 1, 10) FOR(Q,\
-    \ 10) {\n    auto [add_query, sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Group_Add<mint>,\
-    \ 1> X;\n    for (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);\n\
-    \    for (auto&& [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc() ==\
-    \ sol_1(H, W, add_query, sum_query));\n  }\n  FOR(10) {\n    int H = RNG(1, 1'000'000'000);\n\
-    \    int W = RNG(1, 1'000'000'000);\n    int Q = 100;\n    auto [add_query, sum_query]\
-    \ = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Group_Add<mint>, 0> X;\n    for\
-    \ (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);\n    for (auto&&\
-    \ [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc() == sol_2(H, W, add_query,\
-    \ sum_query));\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\n\
-    signed main() {\n  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\
-    \n  return 0;\n}\n"
+    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 8 \"test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  Coefficient_Query_2D<2,\
+    \ 2, mint> X;\n  FOR(N) {\n    LL(x1, y1, x2, y2, w);\n    X.add(x1, y1, +w);\n\
+    \    X.add(x1, y2, -w);\n    X.add(x2, y1, -w);\n    X.add(x2, y2, +w);\n  }\n\
+    \  FOR(Q) {\n    LL(x1, y1, x2, y2);\n    --x1, --y1, --x2, --y2;\n    X.query(x1,\
+    \ y1);\n    X.query(x1, y2);\n    X.query(x2, y1);\n    X.query(x2, y2);\n  }\n\
+    \  auto res = X.calc();\n  FOR(q, Q) {\n    mint ANS = 0;\n    ANS += res[4 *\
+    \ q + 0];\n    ANS -= res[4 * q + 1];\n    ANS -= res[4 * q + 2];\n    ANS +=\
+    \ res[4 * q + 3];\n    print(ANS);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  solve();\n\n\
+    \  return 0;\n}\n"
+  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/static_rectangle_add_rectangle_sum\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/query/coeffient_query_2d.hpp\"\
+    \n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\n\nvoid solve() {\n \
+    \ LL(N, Q);\n  Coefficient_Query_2D<2, 2, mint> X;\n  FOR(N) {\n    LL(x1, y1,\
+    \ x2, y2, w);\n    X.add(x1, y1, +w);\n    X.add(x1, y2, -w);\n    X.add(x2, y1,\
+    \ -w);\n    X.add(x2, y2, +w);\n  }\n  FOR(Q) {\n    LL(x1, y1, x2, y2);\n   \
+    \ --x1, --y1, --x2, --y2;\n    X.query(x1, y1);\n    X.query(x1, y2);\n    X.query(x2,\
+    \ y1);\n    X.query(x2, y2);\n  }\n  auto res = X.calc();\n  FOR(q, Q) {\n   \
+    \ mint ANS = 0;\n    ANS += res[4 * q + 0];\n    ANS -= res[4 * q + 1];\n    ANS\
+    \ -= res[4 * q + 2];\n    ANS += res[4 * q + 3];\n    print(ANS);\n  }\n}\n\n\
+    signed main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout <<\
+    \ setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - random/base.hpp
-  - ds/query/rectangle_add_point_sum.hpp
+  - ds/query/coeffient_query_2d.hpp
   - ds/fenwick.hpp
   - alg/group/add.hpp
   - mod/modint.hpp
   isVerificationFile: true
-  path: test/mytest/rect_add_pt_sum.test.cpp
+  path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
   requiredBy: []
-  timestamp: '2022-11-15 03:32:36+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-15 03:33:58+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/mytest/rect_add_pt_sum.test.cpp
+documentation_of: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
 layout: document
 redirect_from:
-- /verify/test/mytest/rect_add_pt_sum.test.cpp
-- /verify/test/mytest/rect_add_pt_sum.test.cpp.html
-title: test/mytest/rect_add_pt_sum.test.cpp
+- /verify/test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
+- /verify/test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp.html
+title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
 ---

@@ -19,6 +19,9 @@ data:
     title: graph/maximum_antichain.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/1566.test.cpp
+    title: test/aoj/1566.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2251_1.test.cpp
     title: test/aoj/2251_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -144,6 +147,7 @@ data:
   - test/yukicoder/1911.test.cpp
   - test/aoj/2251_2.test.cpp
   - test/aoj/2251_1.test.cpp
+  - test/aoj/1566.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
 documentation_of: graph/check_bipartite.hpp
 layout: document

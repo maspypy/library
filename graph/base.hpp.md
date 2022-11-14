@@ -166,6 +166,9 @@ data:
     path: test/aoj/0275.test.cpp
     title: test/aoj/0275.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/1566.test.cpp
+    title: test/aoj/1566.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2251_1.test.cpp
     title: test/aoj/2251_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -649,6 +652,7 @@ data:
   - test/aoj/2995.test.cpp
   - test/aoj/DPL_2_A.test.cpp
   - test/aoj/2251_1.test.cpp
+  - test/aoj/1566.test.cpp
   - test/library_checker/math/twosat.test.cpp
   - test/library_checker/tree/tree_diameter.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp

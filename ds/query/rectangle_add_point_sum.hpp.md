@@ -58,7 +58,7 @@ data:
     \    WT.eb(g);\n  }\n\n  void sum_query(ll x, ll y) { point.eb(x, y); }\n\n  vc<G>\
     \ calc() {\n    int N = len(rect), Q = len(point);\n    if (N == 0) return vc<G>(Q,\
     \ AbelGroup::unit());\n    vi keyX, keyY;\n    keyX.reserve(2 * N + Q);\n    keyY.reserve(2\
-    \ * N + Q);\n    for (auto&& [xl, yl, xr, yr]: rect) {\n      keyX.eb(xl), keyX.eb(xr),\
+    \ * N + Q);\n    for (auto&& [xl, xr, yl, yr]: rect) {\n      keyX.eb(xl), keyX.eb(xr),\
     \ keyY.eb(yl), keyY.eb(yr);\n    }\n    for (auto&& [x, y]: point) { keyX.eb(x),\
     \ keyY.eb(y); }\n    int NX = 0, NY = 0;\n    if (!SMALL) {\n      UNIQUE(keyX),\
     \ UNIQUE(keyY);\n      NX = len(keyX), NY = len(keyY);\n      for (auto&& [xl,\
@@ -84,7 +84,7 @@ data:
     \ yl, yr);\n    WT.eb(g);\n  }\n\n  void sum_query(ll x, ll y) { point.eb(x, y);\
     \ }\n\n  vc<G> calc() {\n    int N = len(rect), Q = len(point);\n    if (N ==\
     \ 0) return vc<G>(Q, AbelGroup::unit());\n    vi keyX, keyY;\n    keyX.reserve(2\
-    \ * N + Q);\n    keyY.reserve(2 * N + Q);\n    for (auto&& [xl, yl, xr, yr]: rect)\
+    \ * N + Q);\n    keyY.reserve(2 * N + Q);\n    for (auto&& [xl, xr, yl, yr]: rect)\
     \ {\n      keyX.eb(xl), keyX.eb(xr), keyY.eb(yl), keyY.eb(yr);\n    }\n    for\
     \ (auto&& [x, y]: point) { keyX.eb(x), keyY.eb(y); }\n    int NX = 0, NY = 0;\n\
     \    if (!SMALL) {\n      UNIQUE(keyX), UNIQUE(keyY);\n      NX = len(keyX), NY\
@@ -110,7 +110,7 @@ data:
   isVerificationFile: false
   path: ds/query/rectangle_add_point_sum.hpp
   requiredBy: []
-  timestamp: '2022-11-14 21:12:47+09:00'
+  timestamp: '2022-11-15 03:32:36+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/rect_add_pt_sum.test.cpp

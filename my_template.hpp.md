@@ -19,6 +19,9 @@ data:
     path: test/aoj/1508_2.test.cpp
     title: test/aoj/1508_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/1566.test.cpp
+    title: test/aoj/1566.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2251_1.test.cpp
     title: test/aoj/2251_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -408,6 +411,9 @@ data:
   - icon: ':x:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
+    title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
     title: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
@@ -1848,6 +1854,7 @@ data:
   - test/aoj/GRL_6_B.test.cpp
   - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/CGL_3_B.test.cpp
+  - test/aoj/1566.test.cpp
   - test/library_checker/polynomial/log_of_fps.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
@@ -1948,6 +1955,7 @@ data:
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - test/library_checker/datastructure/persistent_unionfind.test.cpp
   - test/library_checker/datastructure/double_ended_pq.test.cpp
+  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
   - test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
   - test/library_checker/datastructure/associative_array.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp

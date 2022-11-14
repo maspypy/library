@@ -60,7 +60,7 @@ data:
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
     \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 3 \"graph/minimum_hamiltonian_cycle.hpp\"\
     \n\n/*\nreturn [cost, cycle]\ncycle \u306A\u3057\u306E\u5834\u5408\uFF1A{-1, {}}\n\
-    */\ntemplate <typename T, typename Graph>\npair<T, vc<int>> minimum_hamiltonian_cycle(Graph&\
+    */\ntemplate <typename T, typename GT>\npair<T, vc<int>> minimum_hamiltonian_cycle(GT&\
     \ G) {\n  assert(G.is_prepared());\n  T INF = numeric_limits<T>::max();\n  int\
     \ n = G.N;\n  vv(T, dist, n, n, INF);\n  FOR(v, n) {\n    for (auto&& e: G[v])\
     \ chmin(dist[v][e.to], e.cost);\n  }\n  n -= 1;\n  vv(T, dp, 1 << n, n, INF);\n\
@@ -78,7 +78,7 @@ data:
     \  reverse(all(C));\n  return {res, C};\n}\n"
   code: "#pragma once\n#include \"graph/base.hpp\"\n\n/*\nreturn [cost, cycle]\ncycle\
     \ \u306A\u3057\u306E\u5834\u5408\uFF1A{-1, {}}\n*/\ntemplate <typename T, typename\
-    \ Graph>\npair<T, vc<int>> minimum_hamiltonian_cycle(Graph& G) {\n  assert(G.is_prepared());\n\
+    \ GT>\npair<T, vc<int>> minimum_hamiltonian_cycle(GT& G) {\n  assert(G.is_prepared());\n\
     \  T INF = numeric_limits<T>::max();\n  int n = G.N;\n  vv(T, dist, n, n, INF);\n\
     \  FOR(v, n) {\n    for (auto&& e: G[v]) chmin(dist[v][e.to], e.cost);\n  }\n\
     \  n -= 1;\n  vv(T, dp, 1 << n, n, INF);\n  FOR(v, n) chmin(dp[1 << v][v], dist[n][v]);\n\
@@ -98,7 +98,7 @@ data:
   isVerificationFile: false
   path: graph/minimum_hamiltonian_cycle.hpp
   requiredBy: []
-  timestamp: '2022-08-30 02:42:36+09:00'
+  timestamp: '2022-11-15 03:33:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL_2_A.test.cpp

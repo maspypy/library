@@ -345,6 +345,9 @@ data:
       path: ds/query/addremove_query.hpp
       title: ds/query/addremove_query.hpp
     - icon: ':heavy_check_mark:'
+      path: ds/query/coeffient_query_2d.hpp
+      title: ds/query/coeffient_query_2d.hpp
+    - icon: ':heavy_check_mark:'
       path: ds/query/divide_conquer_range_query.hpp
       title: ds/query/divide_conquer_range_query.hpp
     - icon: ':heavy_check_mark:'
@@ -1263,6 +1266,9 @@ data:
       path: test/aoj/1508_2.test.cpp
       title: test/aoj/1508_2.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj/1566.test.cpp
+      title: test/aoj/1566.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj/2251_1.test.cpp
       title: test/aoj/2251_1.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1658,6 +1664,9 @@ data:
     - icon: ':x:'
       path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
       title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
+      title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
       title: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp

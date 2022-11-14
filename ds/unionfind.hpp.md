@@ -34,6 +34,9 @@ data:
     title: graph/tree_of_unionfind.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/1566.test.cpp
+    title: test/aoj/1566.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2251_1.test.cpp
     title: test/aoj/2251_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -170,6 +173,7 @@ data:
   - test/aoj/GRL_2_A.test.cpp
   - test/aoj/2995.test.cpp
   - test/aoj/2251_1.test.cpp
+  - test/aoj/1566.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/datastructure/unionfind.test.cpp

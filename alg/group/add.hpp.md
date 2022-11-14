@@ -50,6 +50,9 @@ data:
   - icon: ':warning:'
     path: ds/online_uniqueproductquery.hpp
     title: ds/online_uniqueproductquery.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/query/coeffient_query_2d.hpp
+    title: ds/query/coeffient_query_2d.hpp
   - icon: ':warning:'
     path: ds/query/point_add_polygon_sum.hpp
     title: ds/query/point_add_polygon_sum.hpp
@@ -162,6 +165,9 @@ data:
   - icon: ':x:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
+    title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
     title: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
@@ -328,6 +334,7 @@ data:
   - ds/query/rectangle_add_rectangle_sum.hpp
   - ds/query/uniqueproductquery.hpp
   - ds/query/rectangle_add_point_sum.hpp
+  - ds/query/coeffient_query_2d.hpp
   - ds/online_uniqueproductquery.hpp
   - ds/fenwick.hpp
   - ds/fenwickraq.hpp
@@ -383,6 +390,7 @@ data:
   - test/library_checker/graph/verted_add_contour_sum.test.cpp
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - test/library_checker/datastructure/double_ended_pq.test.cpp
+  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   - test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
