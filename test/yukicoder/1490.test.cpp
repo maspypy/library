@@ -11,7 +11,7 @@ void solve() {
   FOR(i, N) {
     LL(xl, xr, yl, yr, a);
     --xl, --yl;
-    dat.eb(xl, yl, xr, yr, a);
+    dat.eb(xl, xr, yl, yr, a);
   }
 
   Rectangle_Add_Rectangle_Sum<Group_Add<ll>, ll, 1> X;
@@ -20,16 +20,16 @@ void solve() {
     --x, --y;
     ll xl = x - b, xr = x + b + 1;
     ll yl = y - b, yr = y + b + 1;
-    X.add_query(xl, yl, xr, yr, c);
+    X.add_query(xl, xr, yl, yr, c);
   }
   FOR(i, N) {
-    auto [xl, yl, xr, yr, a] = dat[i];
-    X.sum_query(xl, yl, xr, yr);
+    auto [xl, xr, yl, yr, a] = dat[i];
+    X.sum_query(xl, xr, yl, yr);
   }
   auto res = X.calc();
   ll ANS = 0;
   FOR(i, N) {
-    auto [xl, yl, xr, yr, a] = dat[i];
+    auto [xl, xr, yl, yr, a] = dat[i];
     ll x = res[i];
     if (a > x) ++ANS;
   }

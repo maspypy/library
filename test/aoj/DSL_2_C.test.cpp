@@ -31,7 +31,7 @@ void solve() {
   FOR(Q) {
     LL(xl, xr, yl, yr);
     flush();
-    auto e = KDT.prod(xl, yl, xr + 1, yr + 1);
+    auto e = KDT.prod(xl, xr + 1, yl, yr + 1);
     sort(all(e));
     for (auto&& v: e) print(v);
     print();
@@ -39,13 +39,7 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
+  solve();
 
   return 0;
 }
