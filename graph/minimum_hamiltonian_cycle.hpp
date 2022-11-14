@@ -5,8 +5,8 @@
 return [cost, cycle]
 cycle なしの場合：{-1, {}}
 */
-template <typename T, typename Graph>
-pair<T, vc<int>> minimum_hamiltonian_cycle(Graph& G) {
+template <typename T, typename GT>
+pair<T, vc<int>> minimum_hamiltonian_cycle(GT& G) {
   assert(G.is_prepared());
   T INF = numeric_limits<T>::max();
   int n = G.N;
