@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group/add.hpp
     title: alg/group/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/lazy/cntminmincnt_add.hpp
     title: alg/lazy/cntminmincnt_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/cntminmincnt.hpp
     title: alg/monoid/cntminmincnt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL_4_A.test.cpp
     title: test/aoj/DSL_4_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
     title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/lazysegtree.hpp\"\n\ntemplate <typename Lazy>\nstruct\
@@ -111,7 +111,7 @@ data:
     \  return {xcnt, xmin + a, xmincnt};\r\n  }\r\n};\r\n#line 3 \"ds/query/rectangleunion.hpp\"\
     \n\r\ntemplate <typename XY = int>\r\nstruct RectangleUnion {\r\n  using RECT\
     \ = tuple<XY, XY, XY, XY>;\r\n  vc<RECT> rectangles;\r\n  vc<XY> X, Y;\r\n\r\n\
-    \  void add_rect(int xl, int yl, int xr, int yr) {\r\n    assert(xl < xr && yl\
+    \  void add_rect(int xl, int xr, int yl, int yr) {\r\n    assert(xl < xr && yl\
     \ < yr);\r\n    X.eb(xl), X.eb(xr), Y.eb(yl), Y.eb(yr);\r\n    rectangles.eb(xl,\
     \ xr, yl, yr);\r\n  }\r\n\r\n  template <typename ANS_TYPE = ll>\r\n  ANS_TYPE\
     \ calc() {\r\n    UNIQUE(X), UNIQUE(Y);\r\n    int N = len(X);\r\n    vc<vc<pair<int,\
@@ -129,7 +129,7 @@ data:
   code: "#include \"ds/lazysegtree.hpp\"\r\n#include \"alg/lazy/cntminmincnt_add.hpp\"\
     \r\n\r\ntemplate <typename XY = int>\r\nstruct RectangleUnion {\r\n  using RECT\
     \ = tuple<XY, XY, XY, XY>;\r\n  vc<RECT> rectangles;\r\n  vc<XY> X, Y;\r\n\r\n\
-    \  void add_rect(int xl, int yl, int xr, int yr) {\r\n    assert(xl < xr && yl\
+    \  void add_rect(int xl, int xr, int yl, int yr) {\r\n    assert(xl < xr && yl\
     \ < yr);\r\n    X.eb(xl), X.eb(xr), Y.eb(yl), Y.eb(yr);\r\n    rectangles.eb(xl,\
     \ xr, yl, yr);\r\n  }\r\n\r\n  template <typename ANS_TYPE = ll>\r\n  ANS_TYPE\
     \ calc() {\r\n    UNIQUE(X), UNIQUE(Y);\r\n    int N = len(X);\r\n    vc<vc<pair<int,\
@@ -152,8 +152,8 @@ data:
   isVerificationFile: false
   path: ds/query/rectangleunion.hpp
   requiredBy: []
-  timestamp: '2022-10-25 12:10:43+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-11-14 21:12:47+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/DSL_4_A.test.cpp
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp

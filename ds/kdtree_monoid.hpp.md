@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL_2_C.test.cpp
     title: test/aoj/DSL_2_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1625.test.cpp
     title: test/yukicoder/1625.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/kdtree_monoid.hpp\"\n// \u540C\u3058\u5EA7\u6A19\u306E\
@@ -26,7 +26,7 @@ data:
     \ (log + 1));\r\n    range.resize(1 << (log + 1));\r\n    build(1, xs, ys, vs);\r\
     \n  }\r\n\r\n  void set(XY x, XY y, const X& v) { set_rec(1, x, y, v); }\r\n\r\
     \n  void multiply(XY x, XY y, const X& v) { multiply_rec(1, x, y, v); }\r\n\r\n\
-    \  X prod(XY xl, XY yl, XY xr, XY yr) {\r\n    assert(xl <= xr && yl <= yr);\r\
+    \  X prod(XY xl, XY xr, XY yl, XY yr) {\r\n    assert(xl <= xr && yl <= yr);\r\
     \n    return prod_rec(1, xl, xr, yl, yr);\r\n  }\r\n\r\nprivate:\r\n  void build(int\
     \ idx, vc<XY>& xs, vc<XY>& ys, vc<X>& vs, bool divx = true) {\r\n    int n = len(xs);\r\
     \n    auto& [xmin, xmax, ymin, ymax] = range[idx];\r\n    xmin = numeric_limits<XY>::max();\r\
@@ -78,7 +78,7 @@ data:
     \n    range.resize(1 << (log + 1));\r\n    build(1, xs, ys, vs);\r\n  }\r\n\r\n\
     \  void set(XY x, XY y, const X& v) { set_rec(1, x, y, v); }\r\n\r\n  void multiply(XY\
     \ x, XY y, const X& v) { multiply_rec(1, x, y, v); }\r\n\r\n  X prod(XY xl, XY\
-    \ yl, XY xr, XY yr) {\r\n    assert(xl <= xr && yl <= yr);\r\n    return prod_rec(1,\
+    \ xr, XY yl, XY yr) {\r\n    assert(xl <= xr && yl <= yr);\r\n    return prod_rec(1,\
     \ xl, xr, yl, yr);\r\n  }\r\n\r\nprivate:\r\n  void build(int idx, vc<XY>& xs,\
     \ vc<XY>& ys, vc<X>& vs, bool divx = true) {\r\n    int n = len(xs);\r\n    auto&\
     \ [xmin, xmax, ymin, ymax] = range[idx];\r\n    xmin = numeric_limits<XY>::max();\r\
@@ -122,8 +122,8 @@ data:
   isVerificationFile: false
   path: ds/kdtree_monoid.hpp
   requiredBy: []
-  timestamp: '2022-05-29 02:01:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-11-14 21:12:47+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1625.test.cpp
   - test/aoj/DSL_2_C.test.cpp

@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group/add.hpp
     title: alg/group/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/fenwick2d.hpp
     title: ds/fenwick2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_rectangle_sum
@@ -240,7 +240,7 @@ data:
     \n    }\r\n  }\r\n\r\n  void multiply(XY x, XY y, E val) {\r\n    int i = xtoi(x);\r\
     \n    assert(keyX[i] == x);\r\n    while (i < N) {\r\n      multiply_i(i, y, val);\r\
     \n      i = nxt(i);\r\n    }\r\n  }\r\n\r\n  void add(XY x, XY y, E val) { multiply(x,\
-    \ y, val); }\r\n\r\n  E prod(XY lx, XY ly, XY rx, XY ry) {\r\n    E pos = AbelGroup::unit();\r\
+    \ y, val); }\r\n\r\n  E prod(XY lx, XY rx, XY ly, XY ry) {\r\n    E pos = AbelGroup::unit();\r\
     \n    E neg = AbelGroup::unit();\r\n    int L = xtoi(lx) - 1;\r\n    int R = xtoi(rx)\
     \ - 1;\r\n    while (L < R) {\r\n      pos = AbelGroup::op(pos, prod_i(R, ly,\
     \ ry));\r\n      R = prev(R);\r\n    }\r\n    while (R < L) {\r\n      neg = AbelGroup::op(neg,\
@@ -249,7 +249,7 @@ data:
     \ rx, XY ry) {\r\n    E pos = AbelGroup::unit();\r\n    int R = xtoi(rx) - 1;\r\
     \n    while (R >= 0) {\r\n      pos = AbelGroup::op(pos, prefix_prod_i(R, ry));\r\
     \n      R = prev(R);\r\n    }\r\n    return pos;\r\n  }\r\n\r\n  E sum(XY lx,\
-    \ XY ly, XY rx, XY ry) { return prod(lx, ly, rx, ry); }\r\n\r\n  E prefix_sum(XY\
+    \ XY rx, XY ly, XY ry) { return prod(lx, rx, ly, ry); }\r\n\r\n  E prefix_sum(XY\
     \ rx, XY ry) { return prefix_prod(rx, ry); }\r\n\r\n  void debug() {\r\n    print(\"\
     keyX\", keyX);\r\n    print(\"indptr\", indptr);\r\n    print(\"keyY\", keyY);\r\
     \n    print(\"dat\", dat);\r\n  }\r\n\r\nprivate:\r\n  void multiply_i(int i,\
@@ -303,8 +303,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   requiredBy: []
-  timestamp: '2022-10-28 17:47:34+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-11-14 21:12:47+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
 layout: document

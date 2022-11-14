@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree2d.hpp
     title: ds/segtree2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc266/tasks/abc266_Ex
@@ -205,7 +205,7 @@ data:
     \ { yes(!t); }\r\n#line 1 \"ds/segtree2d.hpp\"\ntemplate <typename Monoid, typename\
     \ XY, bool SMALL = false>\r\nstruct SegTree2D {\r\n  using S = typename Monoid::value_type;\r\
     \n  int N;\r\n  int full_N;\r\n  vc<XY> keyX;\r\n  int min_X;\r\n  vc<int> indptr;\r\
-    \n  vc<XY> keyY;\r\n  vc<S> dat;\r\n\r\n  inline int xtoi(XY x) {\r\n    if(SMALL)\
+    \n  vc<XY> keyY;\r\n  vc<S> dat;\r\n\r\n  inline int xtoi(XY x) {\r\n    if (SMALL)\
     \ return clamp<XY>(x - min_X, 0, N);\r\n    return LB(keyX, x);\r\n  }\r\n\r\n\
     \  SegTree2D(vc<XY>& X, vc<XY>& Y, vc<S> wt = vc<S>()) {\r\n    if (len(wt) ==\
     \ 0) wt = vc<S>(len(X), Monoid::unit());\r\n    assert(Monoid::commute); // \u53EF\
@@ -241,7 +241,7 @@ data:
     \ Monoid::unit();\r\n    while (L < R) {\r\n      if (L & 1) val = Monoid::op(val,\
     \ dat[off + (L++)]);\r\n      if (R & 1) val = Monoid::op(dat[off + (--R)], val);\r\
     \n      L >>= 1;\r\n      R >>= 1;\r\n    }\r\n    return val;\r\n  }\r\n\r\n\
-    \  S prod(XY lx, XY ly, XY rx, XY ry) {\r\n    int L = xtoi(lx);\r\n    int R\
+    \  S prod(XY lx, XY rx, XY ly, XY ry) {\r\n    int L = xtoi(lx);\r\n    int R\
     \ = xtoi(rx);\r\n    L += N;\r\n    R += N;\r\n    S val = Monoid::unit();\r\n\
     \    while (L < R) {\r\n      if (L & 1) val = Monoid::op(val, prod_i(L++, ly,\
     \ ry));\r\n      if (R & 1) val = Monoid::op(prod_i(--R, ly, ry), val);\r\n  \
@@ -325,8 +325,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc266h.test.cpp
   requiredBy: []
-  timestamp: '2022-10-21 18:52:54+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-11-14 21:12:47+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/atcoder/abc266h.test.cpp
 layout: document

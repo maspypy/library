@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group/add.hpp
     title: alg/group/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/query/rectangle_add_rectangle_sum.hpp
     title: ds/query/rectangle_add_rectangle_sum.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1490.test.cpp
     title: test/yukicoder/1490.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -64,23 +64,23 @@ data:
     \ Point_Add_Rectangle_Sum {\r\n  using G = typename AbelGroup::value_type;\r\n\
     \  using Point = tuple<XY, XY, G>;\r\n  vector<Point> point;\r\n  vector<tuple<XY,\
     \ XY, XY, XY>> rect;\r\n\r\n  Point_Add_Rectangle_Sum() {}\r\n\r\n  void add_query(XY\
-    \ x, XY y, G w) { point.eb(x, y, w); }\r\n  void sum_query(XY xl, XY yl, XY xr,\
-    \ XY yr) { rect.eb(xl, yl, xr, yr); }\r\n\r\n  vector<G> calc() {\r\n    int N\
+    \ x, XY y, G w) { point.eb(x, y, w); }\r\n  void sum_query(XY xl, XY xr, XY yl,\
+    \ XY yr) { rect.eb(xl, xr, yl, yr); }\r\n\r\n  vector<G> calc() {\r\n    int N\
     \ = point.size(), Q = rect.size();\r\n    if (N == 0 || Q == 0) return vector<G>(Q,\
     \ AbelGroup::unit());\r\n    // X \u65B9\u5411\u306E\u5EA7\u5727\r\n    int NX\
     \ = 0;\r\n    if (!SMALL_X) {\r\n      sort(all(point),\r\n           [&](auto\
     \ &x, auto &y) -> bool { return get<0>(x) < get<0>(y); });\r\n      vc<XY> keyX;\r\
     \n      keyX.reserve(N);\r\n      for (auto &&[a, b, c]: point) {\r\n        if\
     \ (len(keyX) == 0 || keyX.back() != a) { keyX.eb(a); }\r\n        a = len(keyX)\
-    \ - 1;\r\n      }\r\n      keyX.shrink_to_fit();\r\n      for (auto &&[xl, yl,\
-    \ xr, yr]: rect) {\r\n        xl = LB(keyX, xl);\r\n        xr = LB(keyX, xr);\r\
+    \ - 1;\r\n      }\r\n      keyX.shrink_to_fit();\r\n      for (auto &&[xl, xr,\
+    \ yl, yr]: rect) {\r\n        xl = LB(keyX, xl);\r\n        xr = LB(keyX, xr);\r\
     \n      }\r\n      NX = len(keyX);\r\n    }\r\n    if (SMALL_X) {\r\n      XY\
     \ mx = numeric_limits<XY>::max();\r\n      for (auto &&[x, y, g]: point) chmin(mx,\
     \ x);\r\n      for (auto &&[x, y, g]: point) x -= mx, chmax(NX, x + 1);\r\n  \
-    \    for (auto &&[xl, yl, xr, yr]: rect) {\r\n        xl -= mx, xr -= mx;\r\n\
+    \    for (auto &&[xl, xr, yl, yr]: rect) {\r\n        xl -= mx, xr -= mx;\r\n\
     \        xl = max(0, min<int>(xl, NX));\r\n        xr = max(0, min<int>(xr, NX));\r\
     \n      }\r\n    }\r\n\r\n    vc<tuple<XY, int, int, int>> event(Q + Q);\r\n \
-    \   FOR(q, Q) {\r\n      auto &[xl, yl, xr, yr] = rect[q];\r\n      event[2 *\
+    \   FOR(q, Q) {\r\n      auto &[xl, xr, yl, yr] = rect[q];\r\n      event[2 *\
     \ q] = {yl, xl, xr, 2 * q};\r\n      event[2 * q + 1] = {yr, xl, xr, 2 * q + 1};\r\
     \n    }\r\n    sort(all(point),\r\n         [&](auto &x, auto &y) -> bool { return\
     \ get<1>(x) < get<1>(y); });\r\n    sort(all(event),\r\n         [&](auto &x,\
@@ -96,7 +96,7 @@ data:
     \ typename AbelGroup::value_type;\r\n  using Point = tuple<XY, XY, G>;\r\n  vector<Point>\
     \ point;\r\n  vector<tuple<XY, XY, XY, XY>> rect;\r\n\r\n  Point_Add_Rectangle_Sum()\
     \ {}\r\n\r\n  void add_query(XY x, XY y, G w) { point.eb(x, y, w); }\r\n  void\
-    \ sum_query(XY xl, XY yl, XY xr, XY yr) { rect.eb(xl, yl, xr, yr); }\r\n\r\n \
+    \ sum_query(XY xl, XY xr, XY yl, XY yr) { rect.eb(xl, xr, yl, yr); }\r\n\r\n \
     \ vector<G> calc() {\r\n    int N = point.size(), Q = rect.size();\r\n    if (N\
     \ == 0 || Q == 0) return vector<G>(Q, AbelGroup::unit());\r\n    // X \u65B9\u5411\
     \u306E\u5EA7\u5727\r\n    int NX = 0;\r\n    if (!SMALL_X) {\r\n      sort(all(point),\r\
@@ -104,14 +104,14 @@ data:
     \n      vc<XY> keyX;\r\n      keyX.reserve(N);\r\n      for (auto &&[a, b, c]:\
     \ point) {\r\n        if (len(keyX) == 0 || keyX.back() != a) { keyX.eb(a); }\r\
     \n        a = len(keyX) - 1;\r\n      }\r\n      keyX.shrink_to_fit();\r\n   \
-    \   for (auto &&[xl, yl, xr, yr]: rect) {\r\n        xl = LB(keyX, xl);\r\n  \
+    \   for (auto &&[xl, xr, yl, yr]: rect) {\r\n        xl = LB(keyX, xl);\r\n  \
     \      xr = LB(keyX, xr);\r\n      }\r\n      NX = len(keyX);\r\n    }\r\n   \
     \ if (SMALL_X) {\r\n      XY mx = numeric_limits<XY>::max();\r\n      for (auto\
     \ &&[x, y, g]: point) chmin(mx, x);\r\n      for (auto &&[x, y, g]: point) x -=\
-    \ mx, chmax(NX, x + 1);\r\n      for (auto &&[xl, yl, xr, yr]: rect) {\r\n   \
+    \ mx, chmax(NX, x + 1);\r\n      for (auto &&[xl, xr, yl, yr]: rect) {\r\n   \
     \     xl -= mx, xr -= mx;\r\n        xl = max(0, min<int>(xl, NX));\r\n      \
     \  xr = max(0, min<int>(xr, NX));\r\n      }\r\n    }\r\n\r\n    vc<tuple<XY,\
-    \ int, int, int>> event(Q + Q);\r\n    FOR(q, Q) {\r\n      auto &[xl, yl, xr,\
+    \ int, int, int>> event(Q + Q);\r\n    FOR(q, Q) {\r\n      auto &[xl, xr, yl,\
     \ yr] = rect[q];\r\n      event[2 * q] = {yl, xl, xr, 2 * q};\r\n      event[2\
     \ * q + 1] = {yr, xl, xr, 2 * q + 1};\r\n    }\r\n    sort(all(point),\r\n   \
     \      [&](auto &x, auto &y) -> bool { return get<1>(x) < get<1>(y); });\r\n \
@@ -130,8 +130,8 @@ data:
   path: ds/query/point_add_rectangle_sum.hpp
   requiredBy:
   - ds/query/rectangle_add_rectangle_sum.hpp
-  timestamp: '2022-10-28 09:10:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-11-14 21:12:47+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1490.test.cpp
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp

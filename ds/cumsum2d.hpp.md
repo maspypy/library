@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group/add.hpp
     title: alg/group/add.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1141.test.cpp
     title: test/yukicoder/1141.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/655.test.cpp
     title: test/yukicoder/655.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -31,7 +31,7 @@ data:
     \ dat[x + 1][y + 1] = A[x][y];\r\n    FOR(x, H + 1) FOR(y, W) dat[x][y + 1] =\
     \ Group::op(dat[x][y + 1], dat[x][y]);\r\n    FOR(x, H) FOR(y, W + 1) dat[x +\
     \ 1][y] = Group::op(dat[x + 1][y], dat[x][y]);\r\n  }\r\n\r\n  X sum(int x1, int\
-    \ y1, int x2, int y2) {\r\n    X a = Group::op(dat[x1][y1], dat[x2][y2]);\r\n\
+    \ x2, int y1, int y2) {\r\n    X a = Group::op(dat[x1][y1], dat[x2][y2]);\r\n\
     \    X b = Group::op(dat[x2][y1], dat[x1][y2]);\r\n    return Group::op(a, Group::inverse(b));\r\
     \n  }\r\n};\n"
   code: "#include \"alg/group/add.hpp\"\r\n\r\ntemplate <typename Group>\r\nstruct\
@@ -42,7 +42,7 @@ data:
     \ Group::unit()));\r\n    FOR(x, H) FOR(y, W) dat[x + 1][y + 1] = A[x][y];\r\n\
     \    FOR(x, H + 1) FOR(y, W) dat[x][y + 1] = Group::op(dat[x][y + 1], dat[x][y]);\r\
     \n    FOR(x, H) FOR(y, W + 1) dat[x + 1][y] = Group::op(dat[x + 1][y], dat[x][y]);\r\
-    \n  }\r\n\r\n  X sum(int x1, int y1, int x2, int y2) {\r\n    X a = Group::op(dat[x1][y1],\
+    \n  }\r\n\r\n  X sum(int x1, int x2, int y1, int y2) {\r\n    X a = Group::op(dat[x1][y1],\
     \ dat[x2][y2]);\r\n    X b = Group::op(dat[x2][y1], dat[x1][y2]);\r\n    return\
     \ Group::op(a, Group::inverse(b));\r\n  }\r\n};"
   dependsOn:
@@ -50,8 +50,8 @@ data:
   isVerificationFile: false
   path: ds/cumsum2d.hpp
   requiredBy: []
-  timestamp: '2022-10-21 17:40:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-11-14 21:12:47+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1141.test.cpp
   - test/yukicoder/655.test.cpp

@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/group/add.hpp
     title: alg/group/add.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc266h_2.test.cpp
     title: test/atcoder/abc266h_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1216.test.cpp
     title: test/yukicoder/1216.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1216_2.test.cpp
     title: test/yukicoder/1216_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1919.test.cpp
     title: test/yukicoder/1919.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -65,7 +65,7 @@ data:
     \n    }\r\n  }\r\n\r\n  void multiply(XY x, XY y, E val) {\r\n    int i = xtoi(x);\r\
     \n    assert(keyX[i] == x);\r\n    while (i < N) {\r\n      multiply_i(i, y, val);\r\
     \n      i = nxt(i);\r\n    }\r\n  }\r\n\r\n  void add(XY x, XY y, E val) { multiply(x,\
-    \ y, val); }\r\n\r\n  E prod(XY lx, XY ly, XY rx, XY ry) {\r\n    E pos = AbelGroup::unit();\r\
+    \ y, val); }\r\n\r\n  E prod(XY lx, XY rx, XY ly, XY ry) {\r\n    E pos = AbelGroup::unit();\r\
     \n    E neg = AbelGroup::unit();\r\n    int L = xtoi(lx) - 1;\r\n    int R = xtoi(rx)\
     \ - 1;\r\n    while (L < R) {\r\n      pos = AbelGroup::op(pos, prod_i(R, ly,\
     \ ry));\r\n      R = prev(R);\r\n    }\r\n    while (R < L) {\r\n      neg = AbelGroup::op(neg,\
@@ -74,7 +74,7 @@ data:
     \ rx, XY ry) {\r\n    E pos = AbelGroup::unit();\r\n    int R = xtoi(rx) - 1;\r\
     \n    while (R >= 0) {\r\n      pos = AbelGroup::op(pos, prefix_prod_i(R, ry));\r\
     \n      R = prev(R);\r\n    }\r\n    return pos;\r\n  }\r\n\r\n  E sum(XY lx,\
-    \ XY ly, XY rx, XY ry) { return prod(lx, ly, rx, ry); }\r\n\r\n  E prefix_sum(XY\
+    \ XY rx, XY ly, XY ry) { return prod(lx, rx, ly, ry); }\r\n\r\n  E prefix_sum(XY\
     \ rx, XY ry) { return prefix_prod(rx, ry); }\r\n\r\n  void debug() {\r\n    print(\"\
     keyX\", keyX);\r\n    print(\"indptr\", indptr);\r\n    print(\"keyY\", keyY);\r\
     \n    print(\"dat\", dat);\r\n  }\r\n\r\nprivate:\r\n  void multiply_i(int i,\
@@ -126,7 +126,7 @@ data:
     \n    }\r\n  }\r\n\r\n  void multiply(XY x, XY y, E val) {\r\n    int i = xtoi(x);\r\
     \n    assert(keyX[i] == x);\r\n    while (i < N) {\r\n      multiply_i(i, y, val);\r\
     \n      i = nxt(i);\r\n    }\r\n  }\r\n\r\n  void add(XY x, XY y, E val) { multiply(x,\
-    \ y, val); }\r\n\r\n  E prod(XY lx, XY ly, XY rx, XY ry) {\r\n    E pos = AbelGroup::unit();\r\
+    \ y, val); }\r\n\r\n  E prod(XY lx, XY rx, XY ly, XY ry) {\r\n    E pos = AbelGroup::unit();\r\
     \n    E neg = AbelGroup::unit();\r\n    int L = xtoi(lx) - 1;\r\n    int R = xtoi(rx)\
     \ - 1;\r\n    while (L < R) {\r\n      pos = AbelGroup::op(pos, prod_i(R, ly,\
     \ ry));\r\n      R = prev(R);\r\n    }\r\n    while (R < L) {\r\n      neg = AbelGroup::op(neg,\
@@ -135,7 +135,7 @@ data:
     \ rx, XY ry) {\r\n    E pos = AbelGroup::unit();\r\n    int R = xtoi(rx) - 1;\r\
     \n    while (R >= 0) {\r\n      pos = AbelGroup::op(pos, prefix_prod_i(R, ry));\r\
     \n      R = prev(R);\r\n    }\r\n    return pos;\r\n  }\r\n\r\n  E sum(XY lx,\
-    \ XY ly, XY rx, XY ry) { return prod(lx, ly, rx, ry); }\r\n\r\n  E prefix_sum(XY\
+    \ XY rx, XY ly, XY ry) { return prod(lx, rx, ly, ry); }\r\n\r\n  E prefix_sum(XY\
     \ rx, XY ry) { return prefix_prod(rx, ry); }\r\n\r\n  void debug() {\r\n    print(\"\
     keyX\", keyX);\r\n    print(\"indptr\", indptr);\r\n    print(\"keyY\", keyY);\r\
     \n    print(\"dat\", dat);\r\n  }\r\n\r\nprivate:\r\n  void multiply_i(int i,\
@@ -161,8 +161,8 @@ data:
   isVerificationFile: false
   path: ds/fenwick2d.hpp
   requiredBy: []
-  timestamp: '2022-10-28 17:47:34+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-11-14 21:12:47+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1216_2.test.cpp
   - test/yukicoder/1216.test.cpp

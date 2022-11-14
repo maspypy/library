@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/kdtree_monoid.hpp
     title: ds/kdtree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C
@@ -211,7 +211,7 @@ data:
     \ < n) ++log;\r\n    dat.resize(1 << (log + 1));\r\n    range.resize(1 << (log\
     \ + 1));\r\n    build(1, xs, ys, vs);\r\n  }\r\n\r\n  void set(XY x, XY y, const\
     \ X& v) { set_rec(1, x, y, v); }\r\n\r\n  void multiply(XY x, XY y, const X& v)\
-    \ { multiply_rec(1, x, y, v); }\r\n\r\n  X prod(XY xl, XY yl, XY xr, XY yr) {\r\
+    \ { multiply_rec(1, x, y, v); }\r\n\r\n  X prod(XY xl, XY xr, XY yl, XY yr) {\r\
     \n    assert(xl <= xr && yl <= yr);\r\n    return prod_rec(1, xl, xr, yl, yr);\r\
     \n  }\r\n\r\nprivate:\r\n  void build(int idx, vc<XY>& xs, vc<XY>& ys, vc<X>&\
     \ vs, bool divx = true) {\r\n    int n = len(xs);\r\n    auto& [xmin, xmax, ymin,\
@@ -281,8 +281,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_C.test.cpp
   requiredBy: []
-  timestamp: '2022-09-24 23:41:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-11-14 21:12:47+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_C.test.cpp
 layout: document

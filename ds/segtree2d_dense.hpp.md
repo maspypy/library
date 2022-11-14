@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/2842_2.test.cpp
     title: test/aoj/2842_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/1301/problem/E
@@ -34,7 +34,7 @@ data:
     \    yl += W, yr += W;\n    while (yl < yr) {\n      if (yl & 1) res = Monoid::op(res,\
     \ dat[get_idx(x, yl++)]);\n      if (yr & 1) res = Monoid::op(res, dat[get_idx(x,\
     \ --yr)]);\n      yl >>= 1, yr >>= 1;\n    }\n    return res;\n  }\n\n  X prod(int\
-    \ xl, int yl, int xr, int yr) {\n    assert(0 <= xl && xl <= xr && xr <= H);\n\
+    \ xl, int xr, int yl, int yr) {\n    assert(0 <= xl && xl <= xr && xr <= H);\n\
     \    assert(0 <= yl && yl <= yr && yr <= W);\n    X res = Monoid::unit();\n  \
     \  xl += H, xr += H;\n    while (xl < xr) {\n      if (xl & 1) res = Monoid::op(res,\
     \ prod_at(xl++, yl, yr));\n      if (xr & 1) res = Monoid::op(res, prod_at(--xr,\
@@ -62,7 +62,7 @@ data:
     \    yl += W, yr += W;\n    while (yl < yr) {\n      if (yl & 1) res = Monoid::op(res,\
     \ dat[get_idx(x, yl++)]);\n      if (yr & 1) res = Monoid::op(res, dat[get_idx(x,\
     \ --yr)]);\n      yl >>= 1, yr >>= 1;\n    }\n    return res;\n  }\n\n  X prod(int\
-    \ xl, int yl, int xr, int yr) {\n    assert(0 <= xl && xl <= xr && xr <= H);\n\
+    \ xl, int xr, int yl, int yr) {\n    assert(0 <= xl && xl <= xr && xr <= H);\n\
     \    assert(0 <= yl && yl <= yr && yr <= W);\n    X res = Monoid::unit();\n  \
     \  xl += H, xr += H;\n    while (xl < xr) {\n      if (xl & 1) res = Monoid::op(res,\
     \ prod_at(xl++, yl, yr));\n      if (xr & 1) res = Monoid::op(res, prod_at(--xr,\
@@ -72,8 +72,8 @@ data:
   isVerificationFile: false
   path: ds/segtree2d_dense.hpp
   requiredBy: []
-  timestamp: '2022-06-25 13:37:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-11-14 21:12:47+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/2842_2.test.cpp
 documentation_of: ds/segtree2d_dense.hpp

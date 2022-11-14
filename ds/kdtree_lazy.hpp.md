@@ -20,10 +20,10 @@ data:
     \ 1));\r\n    range.resize(1 << (log + 1));\r\n    build(1, xs, ys, vs);\r\n \
     \ }\r\n\r\n  void set(XY x, XY y, const X& v) { set_rec(1, x, y, v); }\r\n\r\n\
     \  void multiply(XY x, XY y, const X& v) { multiply_rec(1, x, y, v); }\r\n\r\n\
-    \  X prod(XY xl, XY yl, XY xr, XY yr) {\r\n    assert(xl <= xr && yl <= yr);\r\
+    \  X prod(XY xl, XY xr, XY yl, XY yr) {\r\n    assert(xl <= xr && yl <= yr);\r\
     \n    return prod_rec(1, xl, xr, yl, yr);\r\n  }\r\n\r\n  X prod_all() {\r\n \
     \   auto& [xmin, xmax, ymin, ymax] = range[1];\r\n    return prod(xmin, ymin,\
-    \ xmax + 1, ymax + 1);\r\n  }\r\n\r\n  void apply(XY xl, XY yl, XY xr, XY yr,\
+    \ xmax + 1, ymax + 1);\r\n  }\r\n\r\n  void apply(XY xl, XY xr, XY yl, XY yr,\
     \ A a) {\r\n    assert(xl <= xr && yl <= yr);\r\n    return apply_rec(1, xl, xr,\
     \ yl, yr, a);\r\n  }\r\n\r\n  vc<tuple<XY, XY, X>> get_all() {\r\n    vc<tuple<XY,\
     \ XY, X>> res;\r\n    auto dfs = [&](auto& dfs, int idx) -> void {\r\n      auto&\
@@ -96,11 +96,11 @@ data:
     \n    lazy.resize(1 << (log + 1));\r\n    range.resize(1 << (log + 1));\r\n  \
     \  build(1, xs, ys, vs);\r\n  }\r\n\r\n  void set(XY x, XY y, const X& v) { set_rec(1,\
     \ x, y, v); }\r\n\r\n  void multiply(XY x, XY y, const X& v) { multiply_rec(1,\
-    \ x, y, v); }\r\n\r\n  X prod(XY xl, XY yl, XY xr, XY yr) {\r\n    assert(xl <=\
+    \ x, y, v); }\r\n\r\n  X prod(XY xl, XY xr, XY yl, XY yr) {\r\n    assert(xl <=\
     \ xr && yl <= yr);\r\n    return prod_rec(1, xl, xr, yl, yr);\r\n  }\r\n\r\n \
     \ X prod_all() {\r\n    auto& [xmin, xmax, ymin, ymax] = range[1];\r\n    return\
-    \ prod(xmin, ymin, xmax + 1, ymax + 1);\r\n  }\r\n\r\n  void apply(XY xl, XY yl,\
-    \ XY xr, XY yr, A a) {\r\n    assert(xl <= xr && yl <= yr);\r\n    return apply_rec(1,\
+    \ prod(xmin, ymin, xmax + 1, ymax + 1);\r\n  }\r\n\r\n  void apply(XY xl, XY xr,\
+    \ XY yl, XY yr, A a) {\r\n    assert(xl <= xr && yl <= yr);\r\n    return apply_rec(1,\
     \ xl, xr, yl, yr, a);\r\n  }\r\n\r\n  vc<tuple<XY, XY, X>> get_all() {\r\n   \
     \ vc<tuple<XY, XY, X>> res;\r\n    auto dfs = [&](auto& dfs, int idx) -> void\
     \ {\r\n      auto& [xmin, xmax, ymin, ymax] = range[idx];\r\n      if (xmin ==\
@@ -166,7 +166,7 @@ data:
   isVerificationFile: false
   path: ds/kdtree_lazy.hpp
   requiredBy: []
-  timestamp: '2022-05-26 00:07:16+09:00'
+  timestamp: '2022-11-14 21:12:47+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/kdtree_lazy.hpp
