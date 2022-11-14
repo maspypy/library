@@ -15,7 +15,7 @@ void solve() {
   Fenwick2D<Group_Add<ll>, ll, false> bit(X, Y, W);
   FOR(_, Q) {
     LL(l, d, r, u);
-    print(bit.sum(l, d, r, u));
+    print(bit.sum(l, r, d, u));
   }
 }
 
