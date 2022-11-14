@@ -20,7 +20,7 @@ struct KDTree_Monoid {
 
   void multiply(XY x, XY y, const X& v) { multiply_rec(1, x, y, v); }
 
-  X prod(XY xl, XY yl, XY xr, XY yr) {
+  X prod(XY xl, XY xr, XY yl, XY yr) {
     assert(xl <= xr && yl <= yr);
     return prod_rec(1, xl, xr, yl, yr);
   }

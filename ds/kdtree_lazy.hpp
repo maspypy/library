@@ -24,7 +24,7 @@ struct KDTree_Lazy {
 
   void multiply(XY x, XY y, const X& v) { multiply_rec(1, x, y, v); }
 
-  X prod(XY xl, XY yl, XY xr, XY yr) {
+  X prod(XY xl, XY xr, XY yl, XY yr) {
     assert(xl <= xr && yl <= yr);
     return prod_rec(1, xl, xr, yl, yr);
   }
@@ -34,7 +34,7 @@ struct KDTree_Lazy {
     return prod(xmin, ymin, xmax + 1, ymax + 1);
   }
 
-  void apply(XY xl, XY yl, XY xr, XY yr, A a) {
+  void apply(XY xl, XY xr, XY yl, XY yr, A a) {
     assert(xl <= xr && yl <= yr);
     return apply_rec(1, xl, xr, yl, yr, a);
   }
