@@ -22,7 +22,7 @@ struct Rectangle_Add_Point_Sum {
     vi keyX, keyY;
     keyX.reserve(2 * N + Q);
     keyY.reserve(2 * N + Q);
-    for (auto&& [xl, yl, xr, yr]: rect) {
+    for (auto&& [xl, xr, yl, yr]: rect) {
       keyX.eb(xl), keyX.eb(xr), keyY.eb(yl), keyY.eb(yr);
     }
     for (auto&& [x, y]: point) { keyX.eb(x), keyY.eb(y); }
