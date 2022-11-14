@@ -59,7 +59,7 @@ struct SegTree2D_dense {
     return res;
   }
 
-  X prod(int xl, int yl, int xr, int yr) {
+  X prod(int xl, int xr, int yl, int yr) {
     assert(0 <= xl && xl <= xr && xr <= H);
     assert(0 <= yl && yl <= yr && yr <= W);
     X res = Monoid::unit();

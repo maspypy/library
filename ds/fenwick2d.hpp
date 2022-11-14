@@ -93,7 +93,7 @@ struct Fenwick2D {
 
   void add(XY x, XY y, E val) { multiply(x, y, val); }
 
-  E prod(XY lx, XY ly, XY rx, XY ry) {
+  E prod(XY lx, XY rx, XY ly, XY ry) {
     E pos = AbelGroup::unit();
     E neg = AbelGroup::unit();
     int L = xtoi(lx) - 1;
@@ -120,7 +120,7 @@ struct Fenwick2D {
     return pos;
   }
 
-  E sum(XY lx, XY ly, XY rx, XY ry) { return prod(lx, ly, rx, ry); }
+  E sum(XY lx, XY rx, XY ly, XY ry) { return prod(lx, rx, ly, ry); }
 
   E prefix_sum(XY rx, XY ry) { return prefix_prod(rx, ry); }
 

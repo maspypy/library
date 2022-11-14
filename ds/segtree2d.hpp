@@ -10,7 +10,7 @@ struct SegTree2D {
   vc<S> dat;
 
   inline int xtoi(XY x) {
-    if(SMALL) return clamp<XY>(x - min_X, 0, N);
+    if (SMALL) return clamp<XY>(x - min_X, 0, N);
     return LB(keyX, x);
   }
 
@@ -107,7 +107,7 @@ struct SegTree2D {
     return val;
   }
 
-  S prod(XY lx, XY ly, XY rx, XY ry) {
+  S prod(XY lx, XY rx, XY ly, XY ry) {
     int L = xtoi(lx);
     int R = xtoi(rx);
     L += N;

@@ -9,8 +9,8 @@ struct Rectangle_Add_Point_Sum {
 
   Rectangle_Add_Point_Sum() {}
 
-  void add_query(ll xl, ll yl, ll xr, ll yr, G g) {
-    rect.eb(xl, yl, xr, yr);
+  void add_query(ll xl, ll xr, ll yl, ll yr, G g) {
+    rect.eb(xl, xr, yl, yr);
     WT.eb(g);
   }
 
@@ -30,7 +30,7 @@ struct Rectangle_Add_Point_Sum {
     if (!SMALL) {
       UNIQUE(keyX), UNIQUE(keyY);
       NX = len(keyX), NY = len(keyY);
-      for (auto&& [xl, yl, xr, yr]: rect) {
+      for (auto&& [xl, xr, yl, yr]: rect) {
         xl = LB(keyX, xl), xr = LB(keyX, xr);
         yl = LB(keyY, yl), yr = LB(keyY, yr);
       }
@@ -41,7 +41,7 @@ struct Rectangle_Add_Point_Sum {
     } else {
       ll mx = MIN(keyX), my = MIN(keyY);
       NX = MAX(keyX) - mx + 1, NY = MAX(keyY) - my + 1;
-      for (auto&& [xl, yl, xr, yr]: rect) {
+      for (auto&& [xl, xr, yl, yr]: rect) {
         xl = xl - mx, xr = xr - mx;
         yl = yl - my, yr = yr - my;
       }
@@ -50,7 +50,7 @@ struct Rectangle_Add_Point_Sum {
     vvc<tuple<int, int, G>> ADD(NY);
     vvc<int> CALC(NY);
     FOR(i, N) {
-      auto [xl, yl, xr, yr] = rect[i];
+      auto [xl, xr, yl, yr] = rect[i];
       ADD[yl].eb(xl, xr, WT[i]);
       ADD[yr].eb(xl, xr, AbelGroup::inverse(WT[i]));
     }

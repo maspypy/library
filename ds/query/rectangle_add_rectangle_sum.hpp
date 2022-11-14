@@ -37,7 +37,7 @@ struct Rectangle_Add_Rectangle_Sum {
   Point_Add_Rectangle_Sum<G, XY, SMALL_X> X;
   XY min_x = 0, min_y = 0;
 
-  void add_query(XY xl, XY yl, XY xr, XY yr, WT w) {
+  void add_query(XY xl, XY xr, XY yl, XY yr, WT w) {
     assert(xl <= xr && yl <= yr);
     min_x = min(min_x, xl);
     min_y = min(min_y, yl);
@@ -60,9 +60,9 @@ struct Rectangle_Add_Rectangle_Sum {
                  AbelGroup::power(w, +ll(xr) * yr)});
   }
 
-  void sum_query(XY xl, XY yl, XY xr, XY yr) {
+  void sum_query(XY xl, XY xr, XY yl, XY yr) {
     assert(xl <= xr && yl <= yr);
-    query.emplace_back(xl, yl, xr, yr);
+    query.emplace_back(xl, xr, yl, yr);
     X.sum_query(min_x, min_y, xl, yl);
     X.sum_query(min_x, min_y, xl, yr);
     X.sum_query(min_x, min_y, xr, yl);
@@ -75,7 +75,7 @@ struct Rectangle_Add_Rectangle_Sum {
     auto tmp = X.calc();
 
     for (int q = 0; q < Q; ++q) {
-      auto [xl, yl, xr, yr] = query[q];
+      auto [xl, xr, yl, yr] = query[q];
       WT p = AbelGroup::unit(), m = AbelGroup::unit();
       {
         auto [a, b, c, d] = tmp[4 * q + 0];

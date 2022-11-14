@@ -10,7 +10,7 @@ struct Point_Add_Rectangle_Sum {
   Point_Add_Rectangle_Sum() {}
 
   void add_query(XY x, XY y, G w) { point.eb(x, y, w); }
-  void sum_query(XY xl, XY yl, XY xr, XY yr) { rect.eb(xl, yl, xr, yr); }
+  void sum_query(XY xl, XY xr, XY yl, XY yr) { rect.eb(xl, xr, yl, yr); }
 
   vector<G> calc() {
     int N = point.size(), Q = rect.size();
@@ -27,7 +27,7 @@ struct Point_Add_Rectangle_Sum {
         a = len(keyX) - 1;
       }
       keyX.shrink_to_fit();
-      for (auto &&[xl, yl, xr, yr]: rect) {
+      for (auto &&[xl, xr, yl, yr]: rect) {
         xl = LB(keyX, xl);
         xr = LB(keyX, xr);
       }
@@ -37,7 +37,7 @@ struct Point_Add_Rectangle_Sum {
       XY mx = numeric_limits<XY>::max();
       for (auto &&[x, y, g]: point) chmin(mx, x);
       for (auto &&[x, y, g]: point) x -= mx, chmax(NX, x + 1);
-      for (auto &&[xl, yl, xr, yr]: rect) {
+      for (auto &&[xl, xr, yl, yr]: rect) {
         xl -= mx, xr -= mx;
         xl = max(0, min<int>(xl, NX));
         xr = max(0, min<int>(xr, NX));
@@ -46,7 +46,7 @@ struct Point_Add_Rectangle_Sum {
 
     vc<tuple<XY, int, int, int>> event(Q + Q);
     FOR(q, Q) {
-      auto &[xl, yl, xr, yr] = rect[q];
+      auto &[xl, xr, yl, yr] = rect[q];
       event[2 * q] = {yl, xl, xr, 2 * q};
       event[2 * q + 1] = {yr, xl, xr, 2 * q + 1};
     }

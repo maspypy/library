@@ -21,7 +21,7 @@ struct Cumsum2D {
     FOR(x, H) FOR(y, W + 1) dat[x + 1][y] = Group::op(dat[x + 1][y], dat[x][y]);
   }
 
-  X sum(int x1, int y1, int x2, int y2) {
+  X sum(int x1, int x2, int y1, int y2) {
     X a = Group::op(dat[x1][y1], dat[x2][y2]);
     X b = Group::op(dat[x2][y1], dat[x1][y2]);
     return Group::op(a, Group::inverse(b));

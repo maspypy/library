@@ -7,7 +7,7 @@ struct RectangleUnion {
   vc<RECT> rectangles;
   vc<XY> X, Y;
 
-  void add_rect(int xl, int yl, int xr, int yr) {
+  void add_rect(int xl, int xr, int yl, int yr) {
     assert(xl < xr && yl < yr);
     X.eb(xl), X.eb(xr), Y.eb(yl), Y.eb(yr);
     rectangles.eb(xl, xr, yl, yr);
