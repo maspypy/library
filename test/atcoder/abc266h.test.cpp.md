@@ -277,8 +277,8 @@ data:
     \ ll INF = 1LL << 60;\n\n  ll ANS = 0;\n  FOR(i, N) {\n    const auto [t, x, y,\
     \ v] = dat[i];\n    const ll a = x, b = y, c = t;\n    if (i == 0) {\n      seg1.multiply(a,\
     \ a + b - c, 0);\n      seg2.multiply(a, a - b + c, 0);\n      continue;\n   \
-    \ }\n    ll best = -INF;\n    chmax(best, seg1.prod(-INF, x + y - t, x + 1, INF));\n\
-    \    chmax(best, seg2.prod(x, -INF, INF, x - y + t + 1));\n    if (best < 0) continue;\n\
+    \ }\n    ll best = -INF;\n    chmax(best, seg1.prod(-INF, x + 1, x + y - t, INF));\n\
+    \    chmax(best, seg2.prod(x, INF, -INF, x - y + t + 1));\n    if (best < 0) continue;\n\
     \    best += v;\n    chmax(ANS, best);\n    seg1.multiply(a, a + b - c, best);\n\
     \    seg2.multiply(a, a - b + c, best);\n  }\n  print(ANS);\n}\n\nsigned main()\
     \ {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T)\
@@ -311,8 +311,8 @@ data:
     \ 60;\n\n  ll ANS = 0;\n  FOR(i, N) {\n    const auto [t, x, y, v] = dat[i];\n\
     \    const ll a = x, b = y, c = t;\n    if (i == 0) {\n      seg1.multiply(a,\
     \ a + b - c, 0);\n      seg2.multiply(a, a - b + c, 0);\n      continue;\n   \
-    \ }\n    ll best = -INF;\n    chmax(best, seg1.prod(-INF, x + y - t, x + 1, INF));\n\
-    \    chmax(best, seg2.prod(x, -INF, INF, x - y + t + 1));\n    if (best < 0) continue;\n\
+    \ }\n    ll best = -INF;\n    chmax(best, seg1.prod(-INF, x + 1, x + y - t, INF));\n\
+    \    chmax(best, seg2.prod(x, INF, -INF, x - y + t + 1));\n    if (best < 0) continue;\n\
     \    best += v;\n    chmax(ANS, best);\n    seg1.multiply(a, a + b - c, best);\n\
     \    seg2.multiply(a, a - b + c, best);\n  }\n  print(ANS);\n}\n\nsigned main()\
     \ {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T)\
@@ -325,7 +325,7 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc266h.test.cpp
   requiredBy: []
-  timestamp: '2022-11-14 21:12:47+09:00'
+  timestamp: '2022-11-15 17:05:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/atcoder/abc266h.test.cpp

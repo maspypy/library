@@ -7,20 +7,20 @@ data:
   - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/query/point_add_rectangle_sum.hpp
     title: ds/query/point_add_rectangle_sum.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1490.test.cpp
     title: test/yukicoder/1490.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/query/rectangle_add_rectangle_sum.hpp\"\n\n#line 2 \"\
@@ -116,9 +116,9 @@ data:
     \ yr,\n                {w, AbelGroup::power(w, -yr), AbelGroup::power(w, -xr),\n\
     \                 AbelGroup::power(w, +ll(xr) * yr)});\n  }\n\n  void sum_query(XY\
     \ xl, XY xr, XY yl, XY yr) {\n    assert(xl <= xr && yl <= yr);\n    query.emplace_back(xl,\
-    \ xr, yl, yr);\n    X.sum_query(min_x, min_y, xl, yl);\n    X.sum_query(min_x,\
-    \ min_y, xl, yr);\n    X.sum_query(min_x, min_y, xr, yl);\n    X.sum_query(min_x,\
-    \ min_y, xr, yr);\n  }\n\n  vector<WT> calc() {\n    int Q = query.size();\n \
+    \ xr, yl, yr);\n    X.sum_query(min_x, xl, min_y, yl);\n    X.sum_query(min_x,\
+    \ xl, min_y, yr);\n    X.sum_query(min_x, xr, min_y, yl);\n    X.sum_query(min_x,\
+    \ xr, min_y, yr);\n  }\n\n  vector<WT> calc() {\n    int Q = query.size();\n \
     \   vector<WT> ANS(Q);\n    auto tmp = X.calc();\n\n    for (int q = 0; q < Q;\
     \ ++q) {\n      auto [xl, xr, yl, yr] = query[q];\n      WT p = AbelGroup::unit(),\
     \ m = AbelGroup::unit();\n      {\n        auto [a, b, c, d] = tmp[4 * q + 0];\n\
@@ -166,9 +166,9 @@ data:
     \ yr,\n                {w, AbelGroup::power(w, -yr), AbelGroup::power(w, -xr),\n\
     \                 AbelGroup::power(w, +ll(xr) * yr)});\n  }\n\n  void sum_query(XY\
     \ xl, XY xr, XY yl, XY yr) {\n    assert(xl <= xr && yl <= yr);\n    query.emplace_back(xl,\
-    \ xr, yl, yr);\n    X.sum_query(min_x, min_y, xl, yl);\n    X.sum_query(min_x,\
-    \ min_y, xl, yr);\n    X.sum_query(min_x, min_y, xr, yl);\n    X.sum_query(min_x,\
-    \ min_y, xr, yr);\n  }\n\n  vector<WT> calc() {\n    int Q = query.size();\n \
+    \ xr, yl, yr);\n    X.sum_query(min_x, xl, min_y, yl);\n    X.sum_query(min_x,\
+    \ xl, min_y, yr);\n    X.sum_query(min_x, xr, min_y, yl);\n    X.sum_query(min_x,\
+    \ xr, min_y, yr);\n  }\n\n  vector<WT> calc() {\n    int Q = query.size();\n \
     \   vector<WT> ANS(Q);\n    auto tmp = X.calc();\n\n    for (int q = 0; q < Q;\
     \ ++q) {\n      auto [xl, xr, yl, yr] = query[q];\n      WT p = AbelGroup::unit(),\
     \ m = AbelGroup::unit();\n      {\n        auto [a, b, c, d] = tmp[4 * q + 0];\n\
@@ -194,8 +194,8 @@ data:
   isVerificationFile: false
   path: ds/query/rectangle_add_rectangle_sum.hpp
   requiredBy: []
-  timestamp: '2022-11-14 21:12:47+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-11-15 17:08:22+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1490.test.cpp
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
