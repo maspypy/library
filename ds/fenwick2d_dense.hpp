@@ -54,8 +54,8 @@ struct Fenwick2D_dense {
 
   E sum(int lx, int rx, int ly, int ry) { return prod(lx, ly, rx, ry); }
 
-  E prefix_prod(int rx, int ry) { return prod(0, 0, rx, ry); }
-  E prefix_sum(int rx, int ry) { return prod(0, 0, rx, ry); }
+  E prefix_prod(int rx, int ry) { return prod(0, rx, 0, ry); }
+  E prefix_sum(int rx, int ry) { return prod(0, rx, 0, ry); }
 
   void debug() {
     print("Fenwick2d dat");
