@@ -91,8 +91,8 @@ void solve() {
       continue;
     }
     ll best = -INF;
-    chmax(best, seg1.prod(-INF, x + y - t, x + 1, INF));
-    chmax(best, seg2.prod(x, -INF, INF, x - y + t + 1));
+    chmax(best, seg1.prod(-INF, x + 1, x + y - t, INF));
+    chmax(best, seg2.prod(x, INF, -INF, x - y + t + 1));
     if (best < 0) continue;
     best += v;
     chmax(ANS, best);
