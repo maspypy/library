@@ -48,7 +48,7 @@ void solve() {
     if (a != -1) {
       seg.multiply(a, b, c);
     } else {
-      ll ANS = seg.prod(b, b, c, c);
+      ll ANS = seg.prod(b, c, b, c);
       if (ANS == Mono::unit()) ANS = -1;
       print(ANS);
     }
