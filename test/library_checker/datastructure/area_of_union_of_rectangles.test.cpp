@@ -9,7 +9,7 @@ void solve() {
   RectangleUnion<int> X;
   FOR(N) {
     LL(a, b, c, d);
-    X.add_rect(a, b, c, d);
+    X.add_rect(a, c, b, d);
   }
   print(X.calc<ll>());
 }
