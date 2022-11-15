@@ -34,10 +34,10 @@ void solve() {
     LL(a, b);
     --a, --b;
     auto x = Group::unit();
-    x = Group::op(x, CS.sum(0, 0, a, b));
-    x = Group::op(x, CS.sum(a + 1, 0, H, b));
-    x = Group::op(x, CS.sum(0, b + 1, a, W));
-    x = Group::op(x, CS.sum(a + 1, b + 1, H, W));
+    x = Group::op(x, CS.sum(0, a, 0, b));
+    x = Group::op(x, CS.sum(a + 1, H, 0, b));
+    x = Group::op(x, CS.sum(0, a, b + 1, W));
+    x = Group::op(x, CS.sum(a + 1, H, b + 1, W));
     print(x.se ? mint(0) : x.fi);
   }
 }
