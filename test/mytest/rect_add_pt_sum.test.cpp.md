@@ -372,11 +372,11 @@ data:
     \  ll x = RNG(0, H), y = RNG(0, W);\n    sum_query.eb(x, y);\n  }\n  return {add_query,\
     \ sum_query};\n}\n\nvc<mint> sol_1(int H, int W, vc<QT> add_query, vc<pi> sum_query)\
     \ {\n  vv(mint, A, H, W);\n  for (auto&& [a, b, c, d, x]: add_query) {\n    FOR(i,\
-    \ a, c) FOR(j, b, d) { A[i][j] += mint(x); }\n  }\n  vc<mint> ANS;\n  for (auto&&\
+    \ a, b) FOR(j, c, d) { A[i][j] += mint(x); }\n  }\n  vc<mint> ANS;\n  for (auto&&\
     \ [x, y]: sum_query) ANS.eb(A[x][y]);\n  return ANS;\n}\n\nvc<mint> sol_2(int\
     \ H, int W, vc<QT> add_query, vc<pi> sum_query) {\n  vc<mint> ANS;\n  for (auto&&\
     \ [x, y]: sum_query) {\n    mint ans = 0;\n    for (auto&& [a, b, c, d, v]: add_query)\
-    \ {\n      if (a <= x && x < c && b <= y && y < d) ans += mint(v);\n    }\n  \
+    \ {\n      if (a <= x && x < b && c <= y && y < d) ans += mint(v);\n    }\n  \
     \  ANS.eb(ans);\n  }\n  return ANS;\n}\n\nvoid test() {\n  FOR(H, 1, 10) FOR(W,\
     \ 1, 10) FOR(Q, 10) {\n    auto [add_query, sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Group_Add<mint>,\
     \ 0> X;\n    for (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);\n\
@@ -403,11 +403,11 @@ data:
     \ sum_query;\n  FOR(Q) {\n    ll x = RNG(0, H), y = RNG(0, W);\n    sum_query.eb(x,\
     \ y);\n  }\n  return {add_query, sum_query};\n}\n\nvc<mint> sol_1(int H, int W,\
     \ vc<QT> add_query, vc<pi> sum_query) {\n  vv(mint, A, H, W);\n  for (auto&& [a,\
-    \ b, c, d, x]: add_query) {\n    FOR(i, a, c) FOR(j, b, d) { A[i][j] += mint(x);\
+    \ b, c, d, x]: add_query) {\n    FOR(i, a, b) FOR(j, c, d) { A[i][j] += mint(x);\
     \ }\n  }\n  vc<mint> ANS;\n  for (auto&& [x, y]: sum_query) ANS.eb(A[x][y]);\n\
     \  return ANS;\n}\n\nvc<mint> sol_2(int H, int W, vc<QT> add_query, vc<pi> sum_query)\
     \ {\n  vc<mint> ANS;\n  for (auto&& [x, y]: sum_query) {\n    mint ans = 0;\n\
-    \    for (auto&& [a, b, c, d, v]: add_query) {\n      if (a <= x && x < c && b\
+    \    for (auto&& [a, b, c, d, v]: add_query) {\n      if (a <= x && x < b && c\
     \ <= y && y < d) ans += mint(v);\n    }\n    ANS.eb(ans);\n  }\n  return ANS;\n\
     }\n\nvoid test() {\n  FOR(H, 1, 10) FOR(W, 1, 10) FOR(Q, 10) {\n    auto [add_query,\
     \ sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Group_Add<mint>, 0>\
@@ -436,7 +436,7 @@ data:
   isVerificationFile: true
   path: test/mytest/rect_add_pt_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-11-15 03:32:36+09:00'
+  timestamp: '2022-11-15 13:10:59+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/rect_add_pt_sum.test.cpp

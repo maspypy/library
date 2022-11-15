@@ -4,16 +4,16 @@ data:
   - icon: ':question:'
     path: alg/group/add.hpp
     title: alg/group/add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy/cntminmincnt_add.hpp
     title: alg/lazy/cntminmincnt_add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/cntminmincnt.hpp
     title: alg/monoid/cntminmincnt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/query/rectangleunion.hpp
     title: ds/query/rectangleunion.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/area_of_union_of_rectangles
@@ -314,15 +314,15 @@ data:
     \      ANS_TYPE n = cnt;\r\n      if (min == 0) n -= mincnt;\r\n      ANS += n\
     \ * dx;\r\n    }\r\n    return ANS;\r\n  }\r\n};\r\n#line 6 \"test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  RectangleUnion<int> X;\n  FOR(N) {\n    LL(a,\
-    \ b, c, d);\n    X.add_rect(a, b, c, d);\n  }\n  print(X.calc<ll>());\n}\n\nsigned\
+    \ b, c, d);\n    X.add_rect(a, c, b, d);\n  }\n  print(X.calc<ll>());\n}\n\nsigned\
     \ main() {\n  cout << fixed << setprecision(15);\n\n  solve();\n\n  return 0;\n\
     }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/area_of_union_of_rectangles\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/query/rectangleunion.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  RectangleUnion<int> X;\n  FOR(N) {\n    LL(a,\
-    \ b, c, d);\n    X.add_rect(a, b, c, d);\n  }\n  print(X.calc<ll>());\n}\n\nsigned\
+    \ b, c, d);\n    X.add_rect(a, c, b, d);\n  }\n  print(X.calc<ll>());\n}\n\nsigned\
     \ main() {\n  cout << fixed << setprecision(15);\n\n  solve();\n\n  return 0;\n\
-    }"
+    }\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -334,8 +334,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   requiredBy: []
-  timestamp: '2022-11-14 21:12:47+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-15 13:09:32+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
 layout: document

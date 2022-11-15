@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/group/add.hpp
     title: alg/group/add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree2d.hpp
     title: ds/segtree2d.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_rectangle_sum
@@ -262,7 +262,7 @@ data:
     \n  using QQ = tuple<ll, ll, ll, ll>;\r\n  vc<QQ> query(Q);\r\n  FOR(q, Q) {\r\
     \n    LL(t);\r\n    if (t == 0) {\r\n      LL(x, y, w);\r\n      X.eb(x);\r\n\
     \      Y.eb(y);\r\n      W.eb(0);\r\n      query[q] = mt(-1, x, y, w);\r\n   \
-    \ } else {\r\n      LL(a, b, c, d);\r\n      query[q] = mt(a, b, c, d);\r\n  \
+    \ } else {\r\n      LL(a, b, c, d);\r\n      query[q] = mt(a, c, b, d);\r\n  \
     \  }\r\n  }\r\n\r\n  using Mono = Group_Add<ll>;\r\n\r\n  SegTree2D<Mono, int,\
     \ false> seg(X, Y, W);\r\n\r\n  FOR(q, Q) {\r\n    auto [a, b, c, d] = query[q];\r\
     \n    if (a == -1) {\r\n      seg.multiply(b, c, d);\r\n    } else {\r\n     \
@@ -277,7 +277,7 @@ data:
     \ ll, ll, ll>;\r\n  vc<QQ> query(Q);\r\n  FOR(q, Q) {\r\n    LL(t);\r\n    if\
     \ (t == 0) {\r\n      LL(x, y, w);\r\n      X.eb(x);\r\n      Y.eb(y);\r\n   \
     \   W.eb(0);\r\n      query[q] = mt(-1, x, y, w);\r\n    } else {\r\n      LL(a,\
-    \ b, c, d);\r\n      query[q] = mt(a, b, c, d);\r\n    }\r\n  }\r\n\r\n  using\
+    \ b, c, d);\r\n      query[q] = mt(a, c, b, d);\r\n    }\r\n  }\r\n\r\n  using\
     \ Mono = Group_Add<ll>;\r\n\r\n  SegTree2D<Mono, int, false> seg(X, Y, W);\r\n\
     \r\n  FOR(q, Q) {\r\n    auto [a, b, c, d] = query[q];\r\n    if (a == -1) {\r\
     \n      seg.multiply(b, c, d);\r\n    } else {\r\n      print(seg.prod(a, b, c,\
@@ -292,8 +292,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
   requiredBy: []
-  timestamp: '2022-11-14 21:12:47+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-15 13:08:37+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
 layout: document
