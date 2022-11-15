@@ -1,5 +1,5 @@
 #pragma once
-template <typename T, T INF>
+template <typename T>
 struct LiChaoTree {
   struct Line {
     T a, b;
@@ -13,9 +13,9 @@ struct LiChaoTree {
   vector<T> xs;
   vector<Line> seg;
   int size;
-
+  const T INF;
   // コンストラクタ。クエリの来る x 全体を渡す。ソート不要。
-  LiChaoTree(const vector<T> &_xs) : xs(_xs) {
+  LiChaoTree(const vector<T> &_xs, T INF) : xs(_xs), INF(INF) {
     if (len(xs) == 0) xs.eb(0);
     UNIQUE(xs);
     size = 1;
@@ -43,6 +43,8 @@ struct LiChaoTree {
     assert(xs[i] == x);
     return inner_query(x, i + size);
   }
+
+  T get_min_by_idx(int i) { return inner_query(xs[i], i + size); }
 
   void debug() {
     print("xs", xs);
