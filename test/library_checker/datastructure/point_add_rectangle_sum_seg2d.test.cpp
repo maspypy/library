@@ -26,7 +26,7 @@ void solve() {
       query[q] = mt(-1, x, y, w);
     } else {
       LL(a, b, c, d);
-      query[q] = mt(a, b, c, d);
+      query[q] = mt(a, c, b, d);
     }
   }
 
