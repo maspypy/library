@@ -44,11 +44,11 @@ void solve() {
       // 上段の k-sm がある。
       // 自分のところの (k-1)-sm がとれる。
       if (k > 0) {
-        sm -= X.sum(i - 1, j - 1, i - 1 + k, j);
+        sm -= X.sum(i - 1, i - 1 + k, j - 1, j);
         --k;
       }
       while (i + k < N) {
-        ll add = X.sum(i + k, j, i + k + 1, j + k + 1);
+        ll add = X.sum(i + k, i + k + 1, j, j + k + 1);
         if (sm + add >= P) break;
         ++k;
         sm += add;
