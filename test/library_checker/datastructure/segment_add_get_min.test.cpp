@@ -25,7 +25,7 @@ void solve() {
   }
 
   const ll INF = 1LL << 60;
-  LiChaoTree<ll, INF> seg(X);
+  LiChaoTree<ll> seg(X, INF);
   FOR(i, N + Q) {
     auto [t, l, r, a, b] = dat[i];
     if (t == 0) {
