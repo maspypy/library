@@ -29,11 +29,11 @@ void solve() {
       end.eb(x, y, t + T);
     }
     elif (c == 1) {
-      if (A.prod(x, y, x + 1, y + 1)) A.set(x, y, 0);
+      if (A.prod(x, x + 1, y, y + 1)) A.set(x, y, 0);
     }
     elif (c == 2) {
       LL(x2, y2);
-      print(A.prod(x, y, x2, y2), B.prod(x, y, x2, y2));
+      print(A.prod(x, x2, y, y2), B.prod(x, x2, y, y2));
     }
   }
 }
