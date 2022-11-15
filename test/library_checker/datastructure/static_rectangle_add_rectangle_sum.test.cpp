@@ -15,11 +15,11 @@ void solve() {
 
   FOR(N) {
     LL(l, d, r, u, w);
-    X.add_query(l, d, r, u, w);
+    X.add_query(l, r, d, u, w);
   }
   FOR(Q) {
     LL(l, d, r, u);
-    X.sum_query(l, d, r, u);
+    X.sum_query(l, r, d, u);
   }
   auto ans = X.calc();
   for (auto&& x: ans) print(x);
