@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/cht/lichao.hpp
     title: ds/cht/lichao.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/segment_add_get_min
@@ -240,7 +240,7 @@ data:
     \  }\n  vi X;\n  FOR3(i, N, N + Q) {\n    LL(t);\n    if (t == 1) {\n      LL(x);\n\
     \      dat[i] = {1, x, 0, 0, 0};\n      X.eb(x);\n    } else {\n      LL(l, r,\
     \ a, b);\n      dat[i] = {0, l, r, a, b};\n    }\n  }\n\n  const ll INF = 1LL\
-    \ << 60;\n  LiChaoTree<ll, INF> seg(X);\n  FOR(i, N + Q) {\n    auto [t, l, r,\
+    \ << 60;\n  LiChaoTree<ll> seg(X, INF);\n  FOR(i, N + Q) {\n    auto [t, l, r,\
     \ a, b] = dat[i];\n    if (t == 0) {\n      seg.add(l, r, a, b);\n    } else {\n\
     \      ll y = seg.get_min(l);\n      if (y == INF)\n        print(\"INFINITY\"\
     );\n      else\n        print(y);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\
@@ -252,7 +252,7 @@ data:
     \  }\n  vi X;\n  FOR3(i, N, N + Q) {\n    LL(t);\n    if (t == 1) {\n      LL(x);\n\
     \      dat[i] = {1, x, 0, 0, 0};\n      X.eb(x);\n    } else {\n      LL(l, r,\
     \ a, b);\n      dat[i] = {0, l, r, a, b};\n    }\n  }\n\n  const ll INF = 1LL\
-    \ << 60;\n  LiChaoTree<ll, INF> seg(X);\n  FOR(i, N + Q) {\n    auto [t, l, r,\
+    \ << 60;\n  LiChaoTree<ll> seg(X, INF);\n  FOR(i, N + Q) {\n    auto [t, l, r,\
     \ a, b] = dat[i];\n    if (t == 0) {\n      seg.add(l, r, a, b);\n    } else {\n\
     \      ll y = seg.get_min(l);\n      if (y == INF)\n        print(\"INFINITY\"\
     );\n      else\n        print(y);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\
@@ -264,8 +264,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/segment_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2022-11-16 03:03:32+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-16 03:28:17+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/segment_add_get_min.test.cpp
 layout: document
