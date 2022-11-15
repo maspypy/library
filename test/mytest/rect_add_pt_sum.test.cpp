@@ -15,7 +15,7 @@ pair<vc<QT>, vc<pi>> gen(int H, int W, int Q) {
     ll a = RNG(0, H);
     ll b = RNG(a + 1, H + 1);
     ll c = RNG(0, W);
-    ll d = RNG(b + 1, W + 1);
+    ll d = RNG(c + 1, W + 1);
     ll x = RNG(0, mint::get_mod());
     add_query.eb(a, b, c, d, x);
   }
