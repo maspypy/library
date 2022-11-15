@@ -57,7 +57,7 @@ void solve() {
       int v = x;
       int l = tree.LID[v], r = tree.RID[v];
       t += dist[v];
-      ll ANS = bit.sum(l, 0, r, t + 1);
+      ll ANS = bit.sum(l, r, 0, t + 1);
       print(ANS);
     }
     if (tp == 1) { bit.add(x, t, 1); }
