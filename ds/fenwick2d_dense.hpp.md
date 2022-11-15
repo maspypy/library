@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2842.test.cpp
     title: test/aoj/2842.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2003.test.cpp
     title: test/yukicoder/2003.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/group/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -41,8 +41,8 @@ data:
     \ {\r\n      neg = AbelGroup::op(neg, sum_x(lx, ly, ry));\r\n      lx -= lx &\
     \ -lx;\r\n    }\r\n    return AbelGroup::op(pos, AbelGroup::inverse(neg));\r\n\
     \  }\r\n\r\n  E sum(int lx, int rx, int ly, int ry) { return prod(lx, ly, rx,\
-    \ ry); }\r\n\r\n  E prefix_prod(int rx, int ry) { return prod(0, 0, rx, ry); }\r\
-    \n  E prefix_sum(int rx, int ry) { return prod(0, 0, rx, ry); }\r\n\r\n  void\
+    \ ry); }\r\n\r\n  E prefix_prod(int rx, int ry) { return prod(0, rx, 0, ry); }\r\
+    \n  E prefix_sum(int rx, int ry) { return prod(0, rx, 0, ry); }\r\n\r\n  void\
     \ debug() {\r\n    print(\"Fenwick2d dat\");\r\n    FOR(x, H + 1) print(dat[x]);\r\
     \n  }\r\n};\r\n"
   code: "#include \"alg/group/add.hpp\"\r\ntemplate <typename AbelGroup>\r\nstruct\
@@ -64,16 +64,16 @@ data:
     \ sum_x(lx, ly, ry));\r\n      lx -= lx & -lx;\r\n    }\r\n    return AbelGroup::op(pos,\
     \ AbelGroup::inverse(neg));\r\n  }\r\n\r\n  E sum(int lx, int rx, int ly, int\
     \ ry) { return prod(lx, ly, rx, ry); }\r\n\r\n  E prefix_prod(int rx, int ry)\
-    \ { return prod(0, 0, rx, ry); }\r\n  E prefix_sum(int rx, int ry) { return prod(0,\
-    \ 0, rx, ry); }\r\n\r\n  void debug() {\r\n    print(\"Fenwick2d dat\");\r\n \
+    \ { return prod(0, rx, 0, ry); }\r\n  E prefix_sum(int rx, int ry) { return prod(0,\
+    \ rx, 0, ry); }\r\n\r\n  void debug() {\r\n    print(\"Fenwick2d dat\");\r\n \
     \   FOR(x, H + 1) print(dat[x]);\r\n  }\r\n};\r\n"
   dependsOn:
   - alg/group/add.hpp
   isVerificationFile: false
   path: ds/fenwick2d_dense.hpp
   requiredBy: []
-  timestamp: '2022-11-14 21:12:47+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-11-16 00:15:14+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/2003.test.cpp
   - test/aoj/2842.test.cpp

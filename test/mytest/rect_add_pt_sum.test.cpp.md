@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: alg/group/add.hpp
     title: alg/group/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/query/rectangle_add_point_sum.hpp
     title: ds/query/rectangle_add_point_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -19,14 +19,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -367,7 +367,7 @@ data:
     \n\nusing mint = modint998;\nusing QT = tuple<ll, ll, ll, ll, ll>;\n\npair<vc<QT>,\
     \ vc<pi>> gen(int H, int W, int Q) {\n  vc<tuple<ll, ll, ll, ll, ll>> add_query;\n\
     \  FOR(Q) {\n    ll a = RNG(0, H);\n    ll b = RNG(a + 1, H + 1);\n    ll c =\
-    \ RNG(0, W);\n    ll d = RNG(b + 1, W + 1);\n    ll x = RNG(0, mint::get_mod());\n\
+    \ RNG(0, W);\n    ll d = RNG(c + 1, W + 1);\n    ll x = RNG(0, mint::get_mod());\n\
     \    add_query.eb(a, b, c, d, x);\n  }\n\n  vc<pi> sum_query;\n  FOR(Q) {\n  \
     \  ll x = RNG(0, H), y = RNG(0, W);\n    sum_query.eb(x, y);\n  }\n  return {add_query,\
     \ sum_query};\n}\n\nvc<mint> sol_1(int H, int W, vc<QT> add_query, vc<pi> sum_query)\
@@ -398,7 +398,7 @@ data:
     \n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\nusing QT = tuple<ll,\
     \ ll, ll, ll, ll>;\n\npair<vc<QT>, vc<pi>> gen(int H, int W, int Q) {\n  vc<tuple<ll,\
     \ ll, ll, ll, ll>> add_query;\n  FOR(Q) {\n    ll a = RNG(0, H);\n    ll b = RNG(a\
-    \ + 1, H + 1);\n    ll c = RNG(0, W);\n    ll d = RNG(b + 1, W + 1);\n    ll x\
+    \ + 1, H + 1);\n    ll c = RNG(0, W);\n    ll d = RNG(c + 1, W + 1);\n    ll x\
     \ = RNG(0, mint::get_mod());\n    add_query.eb(a, b, c, d, x);\n  }\n\n  vc<pi>\
     \ sum_query;\n  FOR(Q) {\n    ll x = RNG(0, H), y = RNG(0, W);\n    sum_query.eb(x,\
     \ y);\n  }\n  return {add_query, sum_query};\n}\n\nvc<mint> sol_1(int H, int W,\
@@ -436,8 +436,8 @@ data:
   isVerificationFile: true
   path: test/mytest/rect_add_pt_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-11-15 17:10:38+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-16 00:15:59+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/rect_add_pt_sum.test.cpp
 layout: document
