@@ -15,7 +15,7 @@ void solve() {
   }
   FOR(Q) {
     LL(l, d, r, u);
-    RS.sum_query(l, d, r, u);
+    RS.sum_query(l, r, d, u);
   }
   auto ANS = RS.calc();
   for (auto&& x: ANS) print(x);
