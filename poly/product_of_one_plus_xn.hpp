@@ -17,5 +17,8 @@ vc<mint> product_of_one_plus_xn(vc<INT> A, int LIM) {
         logf[d * x] -= mint(CNT[x]) * inv<mint>(d);
     }
   }
-  return fps_exp(logf);
+  auto f = fps_exp(logf);
+  mint c = mint(2).pow(CNT[0]);
+  for (auto&& x: f) x *= c;
+  return f;
 }
