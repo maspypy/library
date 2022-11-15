@@ -37,6 +37,9 @@ data:
     path: test/library_checker/math/sharp_p_subset_sum.test.cpp
     title: test/library_checker/math/sharp_p_subset_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/product_of_one_pm_xn.test.cpp
+    title: test/mytest/product_of_one_pm_xn.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2062.test.cpp
     title: test/yukicoder/2062.test.cpp
   _isVerificationFailed: false
@@ -371,7 +374,8 @@ data:
     \n  }\r\n\r\n  vc<mint> logf(LIM + 1);\r\n  FOR3(x, 1, LIM + 1) {\r\n    FOR3(d,\
     \ 1, LIM / x + 1) {\r\n      if (d & 1)\r\n        logf[d * x] += mint(CNT[x])\
     \ * inv<mint>(d);\r\n      else\r\n        logf[d * x] -= mint(CNT[x]) * inv<mint>(d);\r\
-    \n    }\r\n  }\r\n  return fps_exp(logf);\r\n}\n"
+    \n    }\r\n  }\r\n  auto f = fps_exp(logf);\r\n  mint c = mint(2).pow(CNT[0]);\r\
+    \n  for (auto&& x: f) x *= c;\r\n  return f;\r\n}\n"
   code: "#include \"poly/fps_exp.hpp\"\r\n\r\n// prod (1 + x^a) \u3092 x^{LIM} \u307E\
     \u3067\u6C42\u3081\u308B\r\ntemplate <typename mint, typename INT>\r\nvc<mint>\
     \ product_of_one_plus_xn(vc<INT> A, int LIM) {\r\n  vc<int> CNT(LIM + 1);\r\n\
@@ -379,7 +383,8 @@ data:
     \ logf(LIM + 1);\r\n  FOR3(x, 1, LIM + 1) {\r\n    FOR3(d, 1, LIM / x + 1) {\r\
     \n      if (d & 1)\r\n        logf[d * x] += mint(CNT[x]) * inv<mint>(d);\r\n\
     \      else\r\n        logf[d * x] -= mint(CNT[x]) * inv<mint>(d);\r\n    }\r\n\
-    \  }\r\n  return fps_exp(logf);\r\n}"
+    \  }\r\n  auto f = fps_exp(logf);\r\n  mint c = mint(2).pow(CNT[0]);\r\n  for\
+    \ (auto&& x: f) x *= c;\r\n  return f;\r\n}"
   dependsOn:
   - poly/fps_exp.hpp
   - poly/convolution.hpp
@@ -394,9 +399,10 @@ data:
   isVerificationFile: false
   path: poly/product_of_one_plus_xn.hpp
   requiredBy: []
-  timestamp: '2022-11-06 13:29:09+09:00'
+  timestamp: '2022-11-16 04:03:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/product_of_one_pm_xn.test.cpp
   - test/yukicoder/2062.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
 documentation_of: poly/product_of_one_plus_xn.hpp

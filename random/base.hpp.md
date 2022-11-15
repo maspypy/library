@@ -145,6 +145,9 @@ data:
     path: test/mytest/powerquery.test.cpp
     title: test/mytest/powerquery.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/product_of_one_pm_xn.test.cpp
+    title: test/mytest/product_of_one_pm_xn.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/range_freq_of_linear.test.cpp
     title: test/mytest/range_freq_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
@@ -280,6 +283,7 @@ data:
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/powerquery.test.cpp
+  - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/tutte.test.cpp
   - test/mytest/conv2d.test.cpp
   - test/mytest/range_mex.test.cpp

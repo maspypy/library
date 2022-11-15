@@ -1054,7 +1054,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/product_of_f_rk_x.hpp
       title: poly/product_of_f_rk_x.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: poly/product_of_one_minus_xn.hpp
       title: poly/product_of_one_minus_xn.hpp
     - icon: ':heavy_check_mark:'
@@ -2105,6 +2105,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/primesum_mod6.test.cpp
       title: test/mytest/primesum_mod6.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/product_of_one_pm_xn.test.cpp
+      title: test/mytest/product_of_one_pm_xn.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/range_freq_of_linear.test.cpp
       title: test/mytest/range_freq_of_linear.test.cpp

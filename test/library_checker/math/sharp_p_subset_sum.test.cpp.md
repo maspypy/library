@@ -557,7 +557,8 @@ data:
     \n  }\r\n\r\n  vc<mint> logf(LIM + 1);\r\n  FOR3(x, 1, LIM + 1) {\r\n    FOR3(d,\
     \ 1, LIM / x + 1) {\r\n      if (d & 1)\r\n        logf[d * x] += mint(CNT[x])\
     \ * inv<mint>(d);\r\n      else\r\n        logf[d * x] -= mint(CNT[x]) * inv<mint>(d);\r\
-    \n    }\r\n  }\r\n  return fps_exp(logf);\r\n}\n#line 5 \"test/library_checker/math/sharp_p_subset_sum.test.cpp\"\
+    \n    }\r\n  }\r\n  auto f = fps_exp(logf);\r\n  mint c = mint(2).pow(CNT[0]);\r\
+    \n  for (auto&& x: f) x *= c;\r\n  return f;\r\n}\n#line 5 \"test/library_checker/math/sharp_p_subset_sum.test.cpp\"\
     \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N, T);\r\n  VEC(int, S,\
     \ N);\r\n  auto f = product_of_one_plus_xn<mint>(S, T);\r\n  f.erase(f.begin());\r\
     \n  print(f);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
@@ -585,7 +586,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/sharp_p_subset_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-11-06 13:29:09+09:00'
+  timestamp: '2022-11-16 04:03:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/sharp_p_subset_sum.test.cpp

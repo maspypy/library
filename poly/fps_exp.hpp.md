@@ -38,7 +38,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/product_of_f_rk_x.hpp
     title: poly/product_of_f_rk_x.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: poly/product_of_one_minus_xn.hpp
     title: poly/product_of_one_minus_xn.hpp
   - icon: ':heavy_check_mark:'
@@ -87,6 +87,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/product_of_one_pm_xn.test.cpp
+    title: test/mytest/product_of_one_pm_xn.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080.test.cpp
     title: test/yukicoder/1080.test.cpp
@@ -512,6 +515,7 @@ data:
   timestamp: '2022-11-06 13:29:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/bell.test.cpp
   - test/yukicoder/1549.test.cpp
   - test/yukicoder/1321.test.cpp

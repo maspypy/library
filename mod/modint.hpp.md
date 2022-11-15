@@ -92,7 +92,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/product_of_f_rk_x.hpp
     title: poly/product_of_f_rk_x.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: poly/product_of_one_minus_xn.hpp
     title: poly/product_of_one_minus_xn.hpp
   - icon: ':heavy_check_mark:'
@@ -423,6 +423,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/prime_sum.test.cpp
     title: test/mytest/prime_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/product_of_one_pm_xn.test.cpp
+    title: test/mytest/product_of_one_pm_xn.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
@@ -875,6 +878,7 @@ data:
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/eulerian_number.test.cpp
   - test/mytest/powerquery.test.cpp
+  - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/multinomial.test.cpp
   - test/mytest/enumerate_multisets.test.cpp
   - test/mytest/conv2d.test.cpp

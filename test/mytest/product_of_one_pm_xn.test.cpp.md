@@ -38,8 +38,14 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/product_of_one_minus_xn.hpp
+    title: poly/product_of_one_minus_xn.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/product_of_one_plus_xn.hpp
     title: poly/product_of_one_plus_xn.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/base.hpp
+    title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -47,19 +53,20 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/2062
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://yukicoder.me/problems/no/2062
-  bundledCode: "#line 1 \"test/yukicoder/2062.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/2062\"\
-    \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
-    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
-    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
-    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
-    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/mytest/product_of_one_pm_xn.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#pragma\
+    \ GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -315,7 +322,12 @@ data:
     mint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
     \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
     \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
-    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 2 \"mod/mod_inv.hpp\"\
+    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 2 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/mod_inv.hpp\"\
     \n// long \u3067\u3082\u5927\u4E08\u592B\r\nll mod_inv(ll val, ll mod) {\r\n \
     \ val %= mod;\r\n  if (val < 0) val += mod;\r\n  ll a = val, b = mod, u = 1, v\
     \ = 0, t;\r\n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a -= t * b, b), swap(u\
@@ -549,46 +561,49 @@ data:
     \n    x[0] = 0;\r\n\r\n    FOR3(i, m, min(n, m + m)) x[i] += f[i];\r\n    FOR(i,\
     \ m) x[i] = 0;\r\n    ntt(x, 0);\r\n    FOR(i, m + m) x[i] *= y[i];\r\n    ntt(x,\
     \ 1);\r\n    b.insert(b.end(), x.begin() + m, x.end());\r\n  }\r\n  b.resize(n);\r\
-    \n  return b;\r\n}\r\n#line 2 \"poly/product_of_one_plus_xn.hpp\"\n\r\n// prod\
-    \ (1 + x^a) \u3092 x^{LIM} \u307E\u3067\u6C42\u3081\u308B\r\ntemplate <typename\
-    \ mint, typename INT>\r\nvc<mint> product_of_one_plus_xn(vc<INT> A, int LIM) {\r\
-    \n  vc<int> CNT(LIM + 1);\r\n  for (auto&& x: A) {\r\n    if (x <= LIM) CNT[x]++;\r\
-    \n  }\r\n\r\n  vc<mint> logf(LIM + 1);\r\n  FOR3(x, 1, LIM + 1) {\r\n    FOR3(d,\
-    \ 1, LIM / x + 1) {\r\n      if (d & 1)\r\n        logf[d * x] += mint(CNT[x])\
-    \ * inv<mint>(d);\r\n      else\r\n        logf[d * x] -= mint(CNT[x]) * inv<mint>(d);\r\
-    \n    }\r\n  }\r\n  auto f = fps_exp(logf);\r\n  mint c = mint(2).pow(CNT[0]);\r\
-    \n  for (auto&& x: f) x *= c;\r\n  return f;\r\n}\n#line 6 \"test/yukicoder/2062.test.cpp\"\
-    \n\nusing mint = modint998;\n\nconst int P = 999630629;\n\nvoid solve() {\n  /*\n\
-    \  \u305F\u3044\u3066\u3044\u306F\u3001f(S) = sum\n  \u3068\u304D\u3069\u304D\
-    \ f(S) = sum - 999630629\n  \u30FB\u5358\u7D14\u306B sum \u306E\u548C\u3092\u3068\
-    \u308B\n  \u30FB\u9664\u5916\u56DE\u6570\u3060\u3051\u3001999630629 \u3092\u5F15\
-    \u304F\n  */\n  LL(N);\n  VEC(int, A, N);\n  ll SM = SUM<ll>(A);\n  mint ANS =\
-    \ mint(SM) * mint(2).pow(N - 1);\n\n  // \u5168\u4F53\u96C6\u5408\u304B\u3089\u9664\
-    \u304F\u5024\u304C LIM \u4EE5\u4E0B\u3060\u3068\u9664\u5916\n  ll LIM = SM - P;\n\
-    \  if (LIM < 0) return print(ANS);\n\n  // \u548C\u304C LIM \u4EE5\u4E0B\u3068\
-    \u306A\u308B\u9078\u3073\u65B9\u3092\u6570\u3048\u308B\n  auto f = product_of_one_plus_xn<mint>(A,\
-    \ LIM + 1);\n  f.resize(LIM + 1);\n  mint k = SUM<mint>(f);\n  ANS -= k * mint(P);\n\
-    \  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n\
-    \  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/2062\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n#include \"poly/product_of_one_plus_xn.hpp\"\
-    \n\nusing mint = modint998;\n\nconst int P = 999630629;\n\nvoid solve() {\n  /*\n\
-    \  \u305F\u3044\u3066\u3044\u306F\u3001f(S) = sum\n  \u3068\u304D\u3069\u304D\
-    \ f(S) = sum - 999630629\n  \u30FB\u5358\u7D14\u306B sum \u306E\u548C\u3092\u3068\
-    \u308B\n  \u30FB\u9664\u5916\u56DE\u6570\u3060\u3051\u3001999630629 \u3092\u5F15\
-    \u304F\n  */\n  LL(N);\n  VEC(int, A, N);\n  ll SM = SUM<ll>(A);\n  mint ANS =\
-    \ mint(SM) * mint(2).pow(N - 1);\n\n  // \u5168\u4F53\u96C6\u5408\u304B\u3089\u9664\
-    \u304F\u5024\u304C LIM \u4EE5\u4E0B\u3060\u3068\u9664\u5916\n  ll LIM = SM - P;\n\
-    \  if (LIM < 0) return print(ANS);\n\n  // \u548C\u304C LIM \u4EE5\u4E0B\u3068\
-    \u306A\u308B\u9078\u3073\u65B9\u3092\u6570\u3048\u308B\n  auto f = product_of_one_plus_xn<mint>(A,\
-    \ LIM + 1);\n  f.resize(LIM + 1);\n  mint k = SUM<mint>(f);\n  ANS -= k * mint(P);\n\
-    \  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n\
-    \  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \n  return b;\r\n}\r\n#line 2 \"poly/product_of_one_minus_xn.hpp\"\n\n// prod\
+    \ (1 - x^a) \u3092 x^{LIM} \u307E\u3067\u6C42\u3081\u308B\ntemplate <typename\
+    \ mint, typename INT>\nvc<mint> product_of_one_minus_xn(vc<INT> A, int LIM) {\n\
+    \  vc<int> CNT(LIM + 1);\n  for (auto&& x: A) {\n    if (x <= LIM) CNT[x]++;\n\
+    \  }\n  if (CNT[0]) { return vc<mint>(LIM + 1); }\n\n  vc<mint> logf(LIM + 1);\n\
+    \  FOR(x, 1, LIM + 1) {\n    FOR(d, 1, LIM / x + 1) { logf[d * x] -= mint(CNT[x])\
+    \ * inv<mint>(d); }\n  }\n  return fps_exp(logf);\n}\n#line 2 \"poly/product_of_one_plus_xn.hpp\"\
+    \n\r\n// prod (1 + x^a) \u3092 x^{LIM} \u307E\u3067\u6C42\u3081\u308B\r\ntemplate\
+    \ <typename mint, typename INT>\r\nvc<mint> product_of_one_plus_xn(vc<INT> A,\
+    \ int LIM) {\r\n  vc<int> CNT(LIM + 1);\r\n  for (auto&& x: A) {\r\n    if (x\
+    \ <= LIM) CNT[x]++;\r\n  }\r\n\r\n  vc<mint> logf(LIM + 1);\r\n  FOR3(x, 1, LIM\
+    \ + 1) {\r\n    FOR3(d, 1, LIM / x + 1) {\r\n      if (d & 1)\r\n        logf[d\
+    \ * x] += mint(CNT[x]) * inv<mint>(d);\r\n      else\r\n        logf[d * x] -=\
+    \ mint(CNT[x]) * inv<mint>(d);\r\n    }\r\n  }\r\n  auto f = fps_exp(logf);\r\n\
+    \  mint c = mint(2).pow(CNT[0]);\r\n  for (auto&& x: f) x *= c;\r\n  return f;\r\
+    \n}\n#line 8 \"test/mytest/product_of_one_pm_xn.test.cpp\"\n\nusing mint = modint998;\n\
+    \nvc<int> gen(int N, int M) {\n  vc<int> A(M);\n  FOR(i, M) { A[i] = RNG(0, N\
+    \ + 2); }\n  return A;\n}\n\nvoid test() {\n  FOR(N, 100) FOR(M, 100) {\n    vc<int>\
+    \ A = gen(N, M);\n    auto F = product_of_one_minus_xn<mint>(A, N);\n    auto\
+    \ G = product_of_one_plus_xn<mint>(A, N);\n\n    vc<mint> f(N + 1), g(N + 1);\n\
+    \    f[0] = 1, g[0] = 1;\n    for (auto&& a: A) {\n      FOR_R(i, N + 1) {\n \
+    \       if (i + a <= N) {\n          f[i + a] -= f[i];\n          g[i + a] +=\
+    \ g[i];\n        }\n      }\n    }\n    assert(F == f);\n    assert(G == g);\n\
+    \  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n\
+    \  test();\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n#include \"random/base.hpp\"\
+    \n#include \"poly/product_of_one_minus_xn.hpp\"\n#include \"poly/product_of_one_plus_xn.hpp\"\
+    \n\nusing mint = modint998;\n\nvc<int> gen(int N, int M) {\n  vc<int> A(M);\n\
+    \  FOR(i, M) { A[i] = RNG(0, N + 2); }\n  return A;\n}\n\nvoid test() {\n  FOR(N,\
+    \ 100) FOR(M, 100) {\n    vc<int> A = gen(N, M);\n    auto F = product_of_one_minus_xn<mint>(A,\
+    \ N);\n    auto G = product_of_one_plus_xn<mint>(A, N);\n\n    vc<mint> f(N +\
+    \ 1), g(N + 1);\n    f[0] = 1, g[0] = 1;\n    for (auto&& a: A) {\n      FOR_R(i,\
+    \ N + 1) {\n        if (i + a <= N) {\n          f[i + a] -= f[i];\n         \
+    \ g[i + a] += g[i];\n        }\n      }\n    }\n    assert(F == f);\n    assert(G\
+    \ == g);\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned\
+    \ main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - mod/modint.hpp
-  - poly/product_of_one_plus_xn.hpp
+  - random/base.hpp
+  - poly/product_of_one_minus_xn.hpp
   - poly/fps_exp.hpp
   - poly/convolution.hpp
   - mod/mod_inv.hpp
@@ -598,16 +613,17 @@ data:
   - poly/integrate.hpp
   - poly/differentiate.hpp
   - poly/count_terms.hpp
+  - poly/product_of_one_plus_xn.hpp
   isVerificationFile: true
-  path: test/yukicoder/2062.test.cpp
+  path: test/mytest/product_of_one_pm_xn.test.cpp
   requiredBy: []
   timestamp: '2022-11-16 04:03:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/2062.test.cpp
+documentation_of: test/mytest/product_of_one_pm_xn.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/2062.test.cpp
-- /verify/test/yukicoder/2062.test.cpp.html
-title: test/yukicoder/2062.test.cpp
+- /verify/test/mytest/product_of_one_pm_xn.test.cpp
+- /verify/test/mytest/product_of_one_pm_xn.test.cpp.html
+title: test/mytest/product_of_one_pm_xn.test.cpp
 ---

@@ -98,7 +98,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/product_of_f_rk_x.hpp
     title: poly/product_of_f_rk_x.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: poly/product_of_one_minus_xn.hpp
     title: poly/product_of_one_minus_xn.hpp
   - icon: ':heavy_check_mark:'
@@ -297,6 +297,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/product_of_one_pm_xn.test.cpp
+    title: test/mytest/product_of_one_pm_xn.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080.test.cpp
     title: test/yukicoder/1080.test.cpp
@@ -811,6 +814,7 @@ data:
   - test/mytest/conv_leq.test.cpp
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/eulerian_number.test.cpp
+  - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/conv2d.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/bell.test.cpp

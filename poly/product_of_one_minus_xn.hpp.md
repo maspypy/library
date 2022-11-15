@@ -32,10 +32,13 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/product_of_one_pm_xn.test.cpp
+    title: test/mytest/product_of_one_pm_xn.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n\
@@ -362,15 +365,15 @@ data:
     \ (1 - x^a) \u3092 x^{LIM} \u307E\u3067\u6C42\u3081\u308B\ntemplate <typename\
     \ mint, typename INT>\nvc<mint> product_of_one_minus_xn(vc<INT> A, int LIM) {\n\
     \  vc<int> CNT(LIM + 1);\n  for (auto&& x: A) {\n    if (x <= LIM) CNT[x]++;\n\
-    \  }\n\n  vc<mint> logf(LIM + 1);\n  FOR(x, 1, LIM + 1) {\n    FOR(d, 1, LIM /\
-    \ x + 1) { logf[d * x] -= mint(CNT[x]) * inv<mint>(d); }\n  }\n  return fps_exp(logf);\n\
-    }\n"
+    \  }\n  if (CNT[0]) { return vc<mint>(LIM + 1); }\n\n  vc<mint> logf(LIM + 1);\n\
+    \  FOR(x, 1, LIM + 1) {\n    FOR(d, 1, LIM / x + 1) { logf[d * x] -= mint(CNT[x])\
+    \ * inv<mint>(d); }\n  }\n  return fps_exp(logf);\n}\n"
   code: "#include \"poly/fps_exp.hpp\"\n\n// prod (1 - x^a) \u3092 x^{LIM} \u307E\u3067\
     \u6C42\u3081\u308B\ntemplate <typename mint, typename INT>\nvc<mint> product_of_one_minus_xn(vc<INT>\
     \ A, int LIM) {\n  vc<int> CNT(LIM + 1);\n  for (auto&& x: A) {\n    if (x <=\
-    \ LIM) CNT[x]++;\n  }\n\n  vc<mint> logf(LIM + 1);\n  FOR(x, 1, LIM + 1) {\n \
-    \   FOR(d, 1, LIM / x + 1) { logf[d * x] -= mint(CNT[x]) * inv<mint>(d); }\n \
-    \ }\n  return fps_exp(logf);\n}\n"
+    \ LIM) CNT[x]++;\n  }\n  if (CNT[0]) { return vc<mint>(LIM + 1); }\n\n  vc<mint>\
+    \ logf(LIM + 1);\n  FOR(x, 1, LIM + 1) {\n    FOR(d, 1, LIM / x + 1) { logf[d\
+    \ * x] -= mint(CNT[x]) * inv<mint>(d); }\n  }\n  return fps_exp(logf);\n}\n"
   dependsOn:
   - poly/fps_exp.hpp
   - poly/convolution.hpp
@@ -385,9 +388,10 @@ data:
   isVerificationFile: false
   path: poly/product_of_one_minus_xn.hpp
   requiredBy: []
-  timestamp: '2022-11-06 13:29:09+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-11-16 04:03:30+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/mytest/product_of_one_pm_xn.test.cpp
 documentation_of: poly/product_of_one_minus_xn.hpp
 layout: document
 redirect_from:

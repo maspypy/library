@@ -832,6 +832,9 @@ data:
     path: test/mytest/primesum_mod6.test.cpp
     title: test/mytest/primesum_mod6.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/product_of_one_pm_xn.test.cpp
+    title: test/mytest/product_of_one_pm_xn.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/range_freq_of_linear.test.cpp
     title: test/mytest/range_freq_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1602,6 +1605,7 @@ data:
   - test/mytest/eulerian_number.test.cpp
   - test/mytest/powerquery.test.cpp
   - test/mytest/all_but_one_products.test.cpp
+  - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/tutte.test.cpp
   - test/mytest/multinomial.test.cpp
   - test/mytest/enumerate_multisets.test.cpp

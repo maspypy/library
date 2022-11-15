@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/product_of_f_rk_x.hpp
     title: poly/product_of_f_rk_x.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: poly/product_of_one_minus_xn.hpp
     title: poly/product_of_one_minus_xn.hpp
   - icon: ':heavy_check_mark:'
@@ -130,6 +130,9 @@ data:
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/product_of_one_pm_xn.test.cpp
+    title: test/mytest/product_of_one_pm_xn.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080.test.cpp
     title: test/yukicoder/1080.test.cpp
   - icon: ':heavy_check_mark:'
@@ -200,6 +203,7 @@ data:
   verifiedWith:
   - test/mytest/chirp_z.test.cpp
   - test/mytest/enum_partitions.test.cpp
+  - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/bell.test.cpp
   - test/yukicoder/1755.test.cpp
   - test/yukicoder/1549.test.cpp
