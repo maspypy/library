@@ -7,6 +7,7 @@ vc<mint> product_of_one_minus_xn(vc<INT> A, int LIM) {
   for (auto&& x: A) {
     if (x <= LIM) CNT[x]++;
   }
+  if (CNT[0]) { return vc<mint>(LIM + 1); }
 
   vc<mint> logf(LIM + 1);
   FOR(x, 1, LIM + 1) {
