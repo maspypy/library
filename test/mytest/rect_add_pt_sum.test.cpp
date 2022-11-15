@@ -31,7 +31,7 @@ pair<vc<QT>, vc<pi>> gen(int H, int W, int Q) {
 vc<mint> sol_1(int H, int W, vc<QT> add_query, vc<pi> sum_query) {
   vv(mint, A, H, W);
   for (auto&& [a, b, c, d, x]: add_query) {
-    FOR(i, a, c) FOR(j, b, d) { A[i][j] += mint(x); }
+    FOR(i, a, b) FOR(j, c, d) { A[i][j] += mint(x); }
   }
   vc<mint> ANS;
   for (auto&& [x, y]: sum_query) ANS.eb(A[x][y]);
@@ -43,7 +43,7 @@ vc<mint> sol_2(int H, int W, vc<QT> add_query, vc<pi> sum_query) {
   for (auto&& [x, y]: sum_query) {
     mint ans = 0;
     for (auto&& [a, b, c, d, v]: add_query) {
-      if (a <= x && x < c && b <= y && y < d) ans += mint(v);
+      if (a <= x && x < b && c <= y && y < d) ans += mint(v);
     }
     ANS.eb(ans);
   }
