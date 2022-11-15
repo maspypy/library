@@ -63,10 +63,10 @@ struct Rectangle_Add_Rectangle_Sum {
   void sum_query(XY xl, XY xr, XY yl, XY yr) {
     assert(xl <= xr && yl <= yr);
     query.emplace_back(xl, xr, yl, yr);
-    X.sum_query(min_x, min_y, xl, yl);
-    X.sum_query(min_x, min_y, xl, yr);
-    X.sum_query(min_x, min_y, xr, yl);
-    X.sum_query(min_x, min_y, xr, yr);
+    X.sum_query(min_x, xl, min_y, yl);
+    X.sum_query(min_x, xl, min_y, yr);
+    X.sum_query(min_x, xr, min_y, yl);
+    X.sum_query(min_x, xr, min_y, yr);
   }
 
   vector<WT> calc() {
