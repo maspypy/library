@@ -85,30 +85,30 @@ data:
   isVerificationFile: false
   path: alg/group/mul.hpp
   requiredBy:
-  - poly/prefix_product_of_poly.hpp
+  - ds/query/powerquery.hpp
+  - alg/lazy/add_mul.hpp
   - poly/sparse_exp_of_div.hpp
   - poly/from_log_differentiation.hpp
+  - poly/prefix_product_of_poly.hpp
   - poly/lagrange_interpolate_iota.hpp
-  - seq/kth_term_of_p_recursive.hpp
-  - seq/interpolate_poly_exp_sum.hpp
-  - alg/lazy/add_mul.hpp
   - mod/mod_log.hpp
-  - ds/query/powerquery.hpp
+  - seq/interpolate_poly_exp_sum.hpp
+  - seq/kth_term_of_p_recursive.hpp
   timestamp: '2022-10-21 16:42:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/powerquery.test.cpp
-  - test/mytest/factorial_998.test.cpp
-  - test/yukicoder/2005.test.cpp
-  - test/yukicoder/1080_2.test.cpp
-  - test/yukicoder/502_2.test.cpp
-  - test/yukicoder/899.test.cpp
-  - test/yukicoder/1339.test.cpp
-  - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - test/atcoder/abc276_g_2.test.cpp
+  - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - test/mytest/factorial_998.test.cpp
+  - test/mytest/powerquery.test.cpp
   - test/atcoder/abc276_g.test.cpp
+  - test/atcoder/abc276_g_2.test.cpp
+  - test/yukicoder/899.test.cpp
+  - test/yukicoder/1080_2.test.cpp
+  - test/yukicoder/502_2.test.cpp
+  - test/yukicoder/2005.test.cpp
+  - test/yukicoder/1339.test.cpp
 documentation_of: alg/group/mul.hpp
 layout: document
 redirect_from:

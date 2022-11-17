@@ -83,8 +83,8 @@ data:
   timestamp: '2022-10-21 17:24:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1297.test.cpp
   - test/yukicoder/913.test.cpp
+  - test/yukicoder/1297.test.cpp
 documentation_of: ds/cht/cht_monotone.hpp
 layout: document
 redirect_from:

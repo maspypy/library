@@ -33,8 +33,8 @@ data:
   timestamp: '2022-10-21 16:42:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1641.test.cpp
   - test/yukicoder/1790.test.cpp
+  - test/yukicoder/1641.test.cpp
 documentation_of: alg/group/xor.hpp
 layout: document
 redirect_from:

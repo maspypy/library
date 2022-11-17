@@ -44,13 +44,13 @@ data:
   isVerificationFile: false
   path: alg/monoid/cntminmincnt.hpp
   requiredBy:
-  - alg/lazy/cntminmincnt_add.hpp
   - ds/query/rectangleunion.hpp
+  - alg/lazy/cntminmincnt_add.hpp
   timestamp: '2022-10-25 12:10:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL_4_A.test.cpp
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+  - test/aoj/DSL_4_A.test.cpp
 documentation_of: alg/monoid/cntminmincnt.hpp
 layout: document
 redirect_from:

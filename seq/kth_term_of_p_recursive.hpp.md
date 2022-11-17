@@ -465,10 +465,10 @@ data:
   timestamp: '2022-11-06 13:29:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/atcoder/abc276_g.test.cpp
+  - test/atcoder/abc276_g_2.test.cpp
   - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/502_2.test.cpp
-  - test/atcoder/abc276_g_2.test.cpp
-  - test/atcoder/abc276_g.test.cpp
 documentation_of: seq/kth_term_of_p_recursive.hpp
 layout: document
 redirect_from:

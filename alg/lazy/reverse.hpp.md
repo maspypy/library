@@ -51,10 +51,10 @@ data:
   timestamp: '2022-10-21 17:59:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1197.test.cpp
+  - test/aoj/GRL_5_E.test.cpp
   - test/yukicoder/1790.test.cpp
   - test/yukicoder/235.test.cpp
-  - test/aoj/GRL_5_E.test.cpp
+  - test/yukicoder/1197.test.cpp
 documentation_of: alg/lazy/reverse.hpp
 layout: document
 redirect_from:

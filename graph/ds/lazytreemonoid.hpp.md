@@ -351,10 +351,10 @@ data:
   timestamp: '2022-11-05 01:55:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1197.test.cpp
+  - test/aoj/GRL_5_E.test.cpp
   - test/yukicoder/1790.test.cpp
   - test/yukicoder/235.test.cpp
-  - test/aoj/GRL_5_E.test.cpp
+  - test/yukicoder/1197.test.cpp
 documentation_of: graph/ds/lazytreemonoid.hpp
 layout: document
 redirect_from:

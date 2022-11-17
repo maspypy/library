@@ -585,19 +585,21 @@ data:
     \  for (auto&& x: S) x = -x;\n  S[1] += mint(1);\n  FOR(i, 2, N + 1) {\n    if\
     \ (i % 2 == 0) S[i] -= 2;\n    if (i % 2 == 1) S[i] += 2;\n  }\n  return S;\n\
     }\n#line 7 \"test/mytest/simple_perm.test.cpp\"\n\nusing mint = modint998;\n\n\
-    void test() {\n  vc<mint> I = indecomposable_permutations<mint>(10);\n  assert(I\
-    \ == vc<mint>({0, 1, 1, 3, 13, 71, 461, 3447, 29093, 273343}));\n  vc<mint> S\
-    \ = indecomposable_permutations<mint>(10);\n  assert(S == vc<mint>({0, 0, 0, 0,\
-    \ 2, 6, 46, 338, 2926, 28146}));\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a\
-    \ + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
+    \nvoid test() {\n  vc<mint> I = indecomposable_permutations<mint>(10);\n  print(I);\n\
+    \  flush();\n  assert(I\n         == vc<mint>({0, 1, 1, 3, 13, 71, 461, 3447,\
+    \ 29093, 273343, 2829325}));\n  vc<mint> S = simple_permutations<mint>(10);\n\
+    \  assert(S == vc<mint>({0, 0, 0, 0, 2, 6, 46, 338, 2926, 28146, 298526}));\n\
+    }\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n\
+    \  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n#include \"seq/famous/indecomposable_permutations.hpp\"\
     \n#include \"seq/famous/simple_permutations.hpp\"\n\nusing mint = modint998;\n\
-    \nvoid test() {\n  vc<mint> I = indecomposable_permutations<mint>(10);\n  assert(I\
-    \ == vc<mint>({0, 1, 1, 3, 13, 71, 461, 3447, 29093, 273343}));\n  vc<mint> S\
-    \ = indecomposable_permutations<mint>(10);\n  assert(S == vc<mint>({0, 0, 0, 0,\
-    \ 2, 6, 46, 338, 2926, 28146}));\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a\
-    \ + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
+    \n\nvoid test() {\n  vc<mint> I = indecomposable_permutations<mint>(10);\n  print(I);\n\
+    \  flush();\n  assert(I\n         == vc<mint>({0, 1, 1, 3, 13, 71, 461, 3447,\
+    \ 29093, 273343, 2829325}));\n  vc<mint> S = simple_permutations<mint>(10);\n\
+    \  assert(S == vc<mint>({0, 0, 0, 0, 2, 6, 46, 338, 2926, 28146, 298526}));\n\
+    }\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n\
+    \  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -615,7 +617,7 @@ data:
   isVerificationFile: true
   path: test/mytest/simple_perm.test.cpp
   requiredBy: []
-  timestamp: '2022-11-18 05:27:39+09:00'
+  timestamp: '2022-11-18 07:52:21+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/simple_perm.test.cpp

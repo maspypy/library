@@ -164,12 +164,12 @@ data:
   timestamp: '2022-11-14 21:12:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1216_2.test.cpp
-  - test/yukicoder/1216.test.cpp
-  - test/yukicoder/1919.test.cpp
-  - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   - test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
+  - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   - test/atcoder/abc266h_2.test.cpp
+  - test/yukicoder/1216_2.test.cpp
+  - test/yukicoder/1919.test.cpp
+  - test/yukicoder/1216.test.cpp
 documentation_of: ds/fenwick2d.hpp
 layout: document
 redirect_from:

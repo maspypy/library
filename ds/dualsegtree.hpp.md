@@ -76,17 +76,17 @@ data:
   isVerificationFile: false
   path: ds/dualsegtree.hpp
   requiredBy:
-  - graph/minimum_spanning_tree.hpp
   - graph/ds/dualtreemonoid.hpp
+  - graph/minimum_spanning_tree.hpp
   timestamp: '2022-10-28 17:48:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/library_checker/datastructure/range_affine_point_add.test.cpp
+  - test/aoj/DSL_2_D.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
+  - test/atcoder/abc270_f.test.cpp
   - test/yukicoder/913.test.cpp
   - test/yukicoder/1524.test.cpp
-  - test/aoj/GRL_2_A.test.cpp
-  - test/aoj/DSL_2_D.test.cpp
-  - test/library_checker/datastructure/range_affine_point_add.test.cpp
-  - test/atcoder/abc270_f.test.cpp
 documentation_of: ds/dualsegtree.hpp
 layout: document
 redirect_from:

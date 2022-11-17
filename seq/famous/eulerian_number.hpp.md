@@ -362,8 +362,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/eulerian_number.test.cpp
-  - test/yukicoder/2005.test.cpp
   - test/yukicoder/1821.test.cpp
+  - test/yukicoder/2005.test.cpp
 documentation_of: seq/famous/eulerian_number.hpp
 layout: document
 redirect_from:

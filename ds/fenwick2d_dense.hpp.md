@@ -75,8 +75,8 @@ data:
   timestamp: '2022-11-16 00:15:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/2003.test.cpp
   - test/aoj/2842.test.cpp
+  - test/yukicoder/2003.test.cpp
 documentation_of: ds/fenwick2d_dense.hpp
 layout: document
 redirect_from:

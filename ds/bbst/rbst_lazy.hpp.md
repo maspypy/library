@@ -202,8 +202,8 @@ data:
   timestamp: '2022-10-21 16:42:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/686.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+  - test/yukicoder/686.test.cpp
 documentation_of: ds/bbst/rbst_lazy.hpp
 layout: document
 redirect_from:

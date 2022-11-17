@@ -73,8 +73,8 @@ data:
   timestamp: '2022-10-21 20:04:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/ALDS1_5.test.cpp
   - test/aoj/ALDS1_2_A.test.cpp
+  - test/aoj/ALDS1_5.test.cpp
 documentation_of: seq/inversion.hpp
 layout: document
 redirect_from:

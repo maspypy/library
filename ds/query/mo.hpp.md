@@ -55,8 +55,8 @@ data:
   timestamp: '2022-10-21 17:08:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1270.test.cpp
   - test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
+  - test/yukicoder/1270.test.cpp
 documentation_of: ds/query/mo.hpp
 layout: document
 redirect_from:

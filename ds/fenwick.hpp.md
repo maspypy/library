@@ -177,42 +177,42 @@ data:
   isVerificationFile: false
   path: ds/fenwick.hpp
   requiredBy:
-  - seq/inversion.hpp
-  - graph/ds/treeabelgroup.hpp
-  - graph/ds/contoursum.hpp
-  - ds/query/point_add_polygon_sum.hpp
+  - ds/fenwickraq.hpp
   - ds/query/point_add_rectangle_sum.hpp
   - ds/query/rectangle_add_rectangle_sum.hpp
+  - ds/query/point_add_polygon_sum.hpp
   - ds/query/rectangle_add_point_sum.hpp
   - ds/query/coeffient_query_2d.hpp
-  - ds/fenwickraq.hpp
+  - graph/ds/contoursum.hpp
+  - graph/ds/treeabelgroup.hpp
+  - seq/inversion.hpp
   timestamp: '2022-10-21 16:42:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/rect_add_pt_sum.test.cpp
-  - test/yukicoder/1874.test.cpp
-  - test/yukicoder/1326.test.cpp
-  - test/yukicoder/1641.test.cpp
-  - test/yukicoder/924.test.cpp
-  - test/yukicoder/1270.test.cpp
-  - test/yukicoder/1311.test.cpp
-  - test/yukicoder/1038.test.cpp
-  - test/yukicoder/1838.test.cpp
-  - test/yukicoder/1490.test.cpp
-  - test/aoj/ALDS1_5.test.cpp
-  - test/aoj/DSL_2_G.test.cpp
-  - test/aoj/DSL_2_E.test.cpp
-  - test/aoj/ALDS1_2_A.test.cpp
   - test/library_checker/graph/verted_add_contour_sum.test.cpp
-  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
-  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
-  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-  - test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
-  - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-  - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
+  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
+  - test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
+  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
+  - test/mytest/rect_add_pt_sum.test.cpp
+  - test/aoj/ALDS1_2_A.test.cpp
+  - test/aoj/DSL_2_E.test.cpp
+  - test/aoj/DSL_2_G.test.cpp
+  - test/aoj/ALDS1_5.test.cpp
   - test/atcoder/abc190f.test.cpp
+  - test/yukicoder/1874.test.cpp
+  - test/yukicoder/1038.test.cpp
+  - test/yukicoder/1326.test.cpp
+  - test/yukicoder/1270.test.cpp
+  - test/yukicoder/1641.test.cpp
+  - test/yukicoder/1490.test.cpp
+  - test/yukicoder/924.test.cpp
+  - test/yukicoder/1311.test.cpp
+  - test/yukicoder/1838.test.cpp
 documentation_of: ds/fenwick.hpp
 layout: document
 redirect_from:

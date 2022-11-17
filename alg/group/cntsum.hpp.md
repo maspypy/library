@@ -63,22 +63,22 @@ data:
   isVerificationFile: false
   path: alg/group/cntsum.hpp
   requiredBy:
-  - alg/lazy/cntsum_affine.hpp
   - alg/lazy/cntsum_add.hpp
   - alg/lazy/cntsum_set.hpp
+  - alg/lazy/cntsum_affine.hpp
   timestamp: '2022-10-21 16:42:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/789_2.test.cpp
-  - test/yukicoder/255.test.cpp
-  - test/yukicoder/1197.test.cpp
-  - test/yukicoder/1919.test.cpp
-  - test/yukicoder/235.test.cpp
+  - test/library_checker/datastructure/range_affine_range_sum.test.cpp
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/aoj/DSL_2_I.test.cpp
   - test/aoj/GRL_5_E.test.cpp
-  - test/library_checker/datastructure/range_affine_range_sum.test.cpp
-  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+  - test/yukicoder/255.test.cpp
+  - test/yukicoder/235.test.cpp
+  - test/yukicoder/1919.test.cpp
+  - test/yukicoder/789_2.test.cpp
+  - test/yukicoder/1197.test.cpp
 documentation_of: alg/group/cntsum.hpp
 layout: document
 redirect_from:
