@@ -208,6 +208,9 @@ data:
     path: test/library_checker/convolution/multivariate_convolution.test.cpp
     title: test/library_checker/convolution/multivariate_convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/convolution/online_convolution.test.cpp
+    title: test/library_checker/convolution/online_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - icon: ':heavy_check_mark:'
@@ -885,6 +888,7 @@ data:
   - test/library_checker/convolution/convolution_mod_107_amint.test.cpp
   - test/library_checker/convolution/convolution_mod_2_64.test.cpp
   - test/library_checker/convolution/mul_mod2n_convolution.test.cpp
+  - test/library_checker/convolution/online_convolution.test.cpp
   - test/library_checker/convolution/multivariate_convolution.test.cpp
   - test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - test/library_checker/convolution/convolution_mod_107.test.cpp
