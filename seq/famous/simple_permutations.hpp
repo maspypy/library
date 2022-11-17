@@ -1,6 +1,7 @@
-#include "poly/online_convolution.hpp"
+#include "poly/online/online_convolution.hpp"
 
 // https://oeis.org/A059372 sum_{n>0} n!x^n の逆関数
+template <typename mint>
 vc<mint> revert_transform_of_factorials(const int N) {
   // xQ' = Q^2 + (1+x)Q'Q
   // R = Q^2 として、xQ' = R + 1/2 (1+x)R'
@@ -28,7 +29,7 @@ vc<mint> revert_transform_of_factorials(const int N) {
 // ただし、n=1, 2 に対しては 0 を返すようにしている
 template <typename mint>
 vc<mint> simple_permutations(const int N) {
-  vc<mint> S = revert_transform_of_factorials(N);
+  vc<mint> S = revert_transform_of_factorials<mint>(N);
   for (auto&& x: S) x = -x;
   S[1] += mint(1);
   FOR(i, 2, N + 1) {
