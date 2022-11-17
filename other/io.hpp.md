@@ -852,6 +852,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/run_length.test.cpp
     title: test/mytest/run_length.test.cpp
+  - icon: ':x:'
+    path: test/mytest/simple_perm.test.cpp
+    title: test/mytest/simple_perm.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/splay.test.cpp
     title: test/mytest/splay.test.cpp
@@ -1419,9 +1422,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include\
@@ -1640,7 +1643,7 @@ data:
   path: other/io.hpp
   requiredBy: []
   timestamp: '2022-08-20 05:21:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/online_pow.test.cpp
   - test/mytest/knight_distance.test.cpp
@@ -1671,6 +1674,7 @@ data:
   - test/mytest/enumerate_products.test.cpp
   - test/mytest/maxplus_concave.test.cpp
   - test/mytest/enum_partitions.test.cpp
+  - test/mytest/simple_perm.test.cpp
   - test/mytest/tournament.test.cpp
   - test/mytest/incremental_ch.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp

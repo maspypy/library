@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -41,7 +41,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':heavy_check_mark:'
@@ -65,7 +65,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution.hpp
     title: poly/multivar_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -128,12 +128,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/eulerian_number.hpp
     title: seq/famous/eulerian_number.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: seq/famous/indecomposable_permutations.hpp
     title: seq/famous/indecomposable_permutations.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/partition_number.hpp
     title: seq/famous/partition_number.hpp
+  - icon: ':x:'
+    path: seq/famous/simple_permutations.hpp
+    title: seq/famous/simple_permutations.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
@@ -318,6 +321,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/product_of_one_pm_xn.test.cpp
     title: test/mytest/product_of_one_pm_xn.test.cpp
+  - icon: ':x:'
+    path: test/mytest/simple_perm.test.cpp
+    title: test/mytest/simple_perm.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080.test.cpp
     title: test/yukicoder/1080.test.cpp
@@ -417,9 +423,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\nstruct ntt_info\
@@ -609,6 +615,7 @@ data:
   - seq/interpolate_linear_rec.hpp
   - seq/kth_term_of_p_recursive.hpp
   - seq/interpolate_poly_exp_sum.hpp
+  - seq/famous/simple_permutations.hpp
   - seq/famous/stirling_number_1.hpp
   - seq/famous/eulerian_number.hpp
   - seq/famous/partition_number.hpp
@@ -620,7 +627,7 @@ data:
   - graph/tree_all_distances.hpp
   - nt/multiplicative_convolution_mod2n.hpp
   timestamp: '2022-10-16 14:15:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/online_pow.test.cpp
   - test/mytest/online_inv.test.cpp
@@ -629,6 +636,7 @@ data:
   - test/mytest/online_log.test.cpp
   - test/mytest/online_exp.test.cpp
   - test/mytest/enum_partitions.test.cpp
+  - test/mytest/simple_perm.test.cpp
   - test/mytest/eulerian_number.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/conv2d.test.cpp

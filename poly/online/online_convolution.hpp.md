@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -35,6 +35,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/online/online_pow.hpp
     title: poly/online/online_pow.hpp
+  - icon: ':x:'
+    path: seq/famous/simple_permutations.hpp
+    title: seq/famous/simple_permutations.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/mytest/online_division.test.cpp
@@ -51,9 +54,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/online_pow.test.cpp
     title: test/mytest/online_pow.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/mytest/simple_perm.test.cpp
+    title: test/mytest/simple_perm.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n\
@@ -406,13 +412,15 @@ data:
   - poly/online/online_log.hpp
   - poly/online/online_pow.hpp
   - poly/online/online_inv.hpp
+  - seq/famous/simple_permutations.hpp
   timestamp: '2022-11-18 03:11:12+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/online_pow.test.cpp
   - test/mytest/online_inv.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/online_exp.test.cpp
+  - test/mytest/simple_perm.test.cpp
   - test/mytest/online_division.test.cpp
 documentation_of: poly/online/online_convolution.hpp
 layout: document
