@@ -2,7 +2,7 @@
 #include "poly/convolution.hpp"
 
 /*
-f[i], g[i] を与えて fg[i] を得る。
+query(i)：a[i], b[i] を与えて ab[i] を得る。
 2^{17}：176ms
 2^{18}：370ms
 2^{19}：800ms
@@ -69,10 +69,10 @@ struct Online_Convolution {
     }
   }
 
-  mint query(int i, mint fi, mint gi) {
+  mint query(int i, mint f_i, mint g_i) {
     assert(i == len(f));
-    f.eb(fi);
-    g.eb(gi);
+    f.eb(f_i);
+    g.eb(g_i);
     FOR(k, 30) {
       // 長さ 2^k の部分を処理するかどうか？
       // i+2 が 2^k の倍数かつ i+2 >= 2^{k+1}
