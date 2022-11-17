@@ -1034,9 +1034,6 @@ data:
       path: poly/ntt.hpp
       title: poly/ntt.hpp
     - icon: ':heavy_check_mark:'
-      path: poly/online_convolution.hpp
-      title: poly/online_convolution.hpp
-    - icon: ':heavy_check_mark:'
       path: poly/pascal.hpp
       title: poly/pascal.hpp
     - icon: ':heavy_check_mark:'
@@ -1075,6 +1072,26 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/sum_of_rationals.hpp
       title: poly/sum_of_rationals.hpp
+  - name: poly/online
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: poly/online/online_convolution.hpp
+      title: poly/online/online_convolution.hpp
+    - icon: ':heavy_check_mark:'
+      path: poly/online/online_division.hpp
+      title: poly/online/online_division.hpp
+    - icon: ':heavy_check_mark:'
+      path: poly/online/online_exp.hpp
+      title: poly/online/online_exp.hpp
+    - icon: ':heavy_check_mark:'
+      path: poly/online/online_inv.hpp
+      title: poly/online/online_inv.hpp
+    - icon: ':heavy_check_mark:'
+      path: poly/online/online_log.hpp
+      title: poly/online/online_log.hpp
+    - icon: ':heavy_check_mark:'
+      path: poly/online/online_pow.hpp
+      title: poly/online/online_pow.hpp
   - name: random
     pages:
     - icon: ':heavy_check_mark:'
@@ -1094,12 +1111,18 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/famous/gray_code.hpp
       title: seq/famous/gray_code.hpp
+    - icon: ':warning:'
+      path: seq/famous/indecomposable_permutations.hpp
+      title: seq/famous/indecomposable_permutations.hpp
     - icon: ':heavy_check_mark:'
       path: seq/famous/partition_number.hpp
       title: seq/famous/partition_number.hpp
     - icon: ':warning:'
       path: seq/famous/q_binomial.hpp
       title: seq/famous/q_binomial.hpp
+    - icon: ':warning:'
+      path: seq/famous/simple_permutations.hpp
+      title: seq/famous/simple_permutations.hpp
     - icon: ':heavy_check_mark:'
       path: seq/famous/stirling_number_1.hpp
       title: seq/famous/stirling_number_1.hpp
@@ -1554,7 +1577,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/multivariate_convolution.test.cpp
       title: test/library_checker/convolution/multivariate_convolution.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/convolution/online_convolution.test.cpp
       title: test/library_checker/convolution/online_convolution.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2091,6 +2114,21 @@ data:
       path: test/mytest/multinomial.test.cpp
       title: test/mytest/multinomial.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/mytest/online_division.test.cpp
+      title: test/mytest/online_division.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/online_exp.test.cpp
+      title: test/mytest/online_exp.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/online_inv.test.cpp
+      title: test/mytest/online_inv.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/online_log.test.cpp
+      title: test/mytest/online_log.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/online_pow.test.cpp
+      title: test/mytest/online_pow.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/mytest/partizan.test.cpp
       title: test/mytest/partizan.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2120,6 +2158,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/run_length.test.cpp
       title: test/mytest/run_length.test.cpp
+    - icon: ':x:'
+      path: test/mytest/simple_perm.test.cpp
+      title: test/mytest/simple_perm.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/splay.test.cpp
       title: test/mytest/splay.test.cpp

@@ -72,8 +72,23 @@ data:
     path: poly/multivar_convolution.hpp
     title: poly/multivar_convolution.hpp
   - icon: ':heavy_check_mark:'
-    path: poly/online_convolution.hpp
-    title: poly/online_convolution.hpp
+    path: poly/online/online_convolution.hpp
+    title: poly/online/online_convolution.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/online/online_division.hpp
+    title: poly/online/online_division.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/online/online_exp.hpp
+    title: poly/online/online_exp.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/online/online_inv.hpp
+    title: poly/online/online_inv.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/online/online_log.hpp
+    title: poly/online/online_log.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/online/online_pow.hpp
+    title: poly/online/online_pow.hpp
   - icon: ':heavy_check_mark:'
     path: poly/pascal.hpp
     title: poly/pascal.hpp
@@ -119,6 +134,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/eulerian_number.hpp
     title: seq/famous/eulerian_number.hpp
+  - icon: ':warning:'
+    path: seq/famous/indecomposable_permutations.hpp
+    title: seq/famous/indecomposable_permutations.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/partition_number.hpp
     title: seq/famous/partition_number.hpp
@@ -201,9 +219,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/multivariate_convolution.test.cpp
     title: test/library_checker/convolution/multivariate_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/convolution/online_convolution.test.cpp
-    title: test/library_checker/convolution/online_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution.test.cpp
     title: test/library_checker/convolution/subset_convolution.test.cpp
@@ -417,6 +432,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/multinomial.test.cpp
     title: test/mytest/multinomial.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/online_division.test.cpp
+    title: test/mytest/online_division.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/online_exp.test.cpp
+    title: test/mytest/online_exp.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/online_inv.test.cpp
+    title: test/mytest/online_inv.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/online_log.test.cpp
+    title: test/mytest/online_log.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/online_pow.test.cpp
+    title: test/mytest/online_pow.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/powerquery.test.cpp
     title: test/mytest/powerquery.test.cpp
@@ -829,6 +859,12 @@ data:
   - poly/product_of_pow_of_linear.hpp
   - poly/fps_pow.hpp
   - poly/sum_of_exp_bx.hpp
+  - poly/online/online_exp.hpp
+  - poly/online/online_division.hpp
+  - poly/online/online_log.hpp
+  - poly/online/online_pow.hpp
+  - poly/online/online_inv.hpp
+  - poly/online/online_convolution.hpp
   - poly/multipoint.hpp
   - poly/pascal.hpp
   - poly/sparse_exp_of_div.hpp
@@ -846,7 +882,6 @@ data:
   - poly/product_of_one_minus_xn.hpp
   - poly/product_of_one_plus_xn.hpp
   - poly/convolution.hpp
-  - poly/online_convolution.hpp
   - linalg/det_A_plus_xB.hpp
   - seq/interpolate_linear_rec.hpp
   - seq/kth_term_of_p_recursive.hpp
@@ -855,6 +890,7 @@ data:
   - seq/famous/eulerian_number.hpp
   - seq/famous/partition_number.hpp
   - seq/famous/bell_number_large.hpp
+  - seq/famous/indecomposable_permutations.hpp
   - seq/famous/stirling_number_2.hpp
   - seq/famous/surjection.hpp
   - seq/sum_of_powers.hpp
@@ -866,11 +902,15 @@ data:
   timestamp: '2022-11-06 13:29:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/online_pow.test.cpp
   - test/mytest/prime_sum.test.cpp
+  - test/mytest/online_inv.test.cpp
   - test/mytest/chirp_z.test.cpp
   - test/mytest/conv_leq.test.cpp
   - test/mytest/binom.test.cpp
   - test/mytest/all_inverse.test.cpp
+  - test/mytest/online_log.test.cpp
+  - test/mytest/online_exp.test.cpp
   - test/mytest/splay.test.cpp
   - test/mytest/enumerate_products.test.cpp
   - test/mytest/enum_partitions.test.cpp
@@ -884,6 +924,7 @@ data:
   - test/mytest/conv2d.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/bell.test.cpp
+  - test/mytest/online_division.test.cpp
   - test/yukicoder/1755.test.cpp
   - test/yukicoder/1167.test.cpp
   - test/yukicoder/590.test.cpp
@@ -973,7 +1014,6 @@ data:
   - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
   - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
   - test/library_checker/convolution/convolution_huge.test.cpp
-  - test/library_checker/convolution/online_convolution.test.cpp
   - test/library_checker/convolution/bitwise_xor_convolution.test.cpp
   - test/library_checker/convolution/convolution_mod_107_amint.test.cpp
   - test/library_checker/convolution/multivariate_convolution.test.cpp

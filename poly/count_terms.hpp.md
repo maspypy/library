@@ -44,6 +44,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
+  - icon: ':warning:'
+    path: seq/famous/indecomposable_permutations.hpp
+    title: seq/famous/indecomposable_permutations.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/partition_number.hpp
     title: seq/famous/partition_number.hpp
@@ -130,6 +133,21 @@ data:
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/online_division.test.cpp
+    title: test/mytest/online_division.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/online_exp.test.cpp
+    title: test/mytest/online_exp.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/online_inv.test.cpp
+    title: test/mytest/online_inv.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/online_log.test.cpp
+    title: test/mytest/online_log.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/online_pow.test.cpp
+    title: test/mytest/online_pow.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/product_of_one_pm_xn.test.cpp
     title: test/mytest/product_of_one_pm_xn.test.cpp
   - icon: ':heavy_check_mark:'
@@ -195,16 +213,22 @@ data:
   - poly/product_of_one_minus_xn.hpp
   - poly/product_of_one_plus_xn.hpp
   - seq/famous/partition_number.hpp
+  - seq/famous/indecomposable_permutations.hpp
   - seq/famous/stirling_number_2.hpp
   - seq/famous/surjection.hpp
   - seq/sum_of_powers.hpp
   timestamp: '2022-05-02 13:06:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/online_pow.test.cpp
+  - test/mytest/online_inv.test.cpp
   - test/mytest/chirp_z.test.cpp
+  - test/mytest/online_log.test.cpp
+  - test/mytest/online_exp.test.cpp
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/bell.test.cpp
+  - test/mytest/online_division.test.cpp
   - test/yukicoder/1755.test.cpp
   - test/yukicoder/1549.test.cpp
   - test/yukicoder/1321.test.cpp

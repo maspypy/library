@@ -14,23 +14,29 @@ data:
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/count_terms.hpp
+    title: poly/count_terms.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/fft.hpp
     title: poly/fft.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/fps_inv.hpp
+    title: poly/fps_inv.hpp
   - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/convolution/online_convolution.test.cpp
-    title: test/library_checker/convolution/online_convolution.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n\
-    \  static constexpr bool is_modint = true;\n  int val;\n  constexpr modint(const\
+    links:
+    - https://oeis.org/A003319
+  bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
+    \ vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\
+    \n  return t;\r\n}\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
+    \ {\n  static constexpr bool is_modint = true;\n  int val;\n  constexpr modint(const\
     \ ll val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val) % mod)\
     \ % mod) {}\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
     \  } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
@@ -296,73 +302,50 @@ data:
     \ modint998>::value, vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>&\
     \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
-    \ b);\r\n}\r\n#line 3 \"poly/online_convolution.hpp\"\n\n/*\nf[i], g[i] \u3092\
-    \u4E0E\u3048\u3066 fg[i] \u3092\u5F97\u308B\u3002\n2^{17}\uFF1A176ms\n2^{18}\uFF1A\
-    370ms\n2^{19}\uFF1A800ms\n2^{20}\uFF1A1680ms\n*/\ntemplate <typename mint>\nstruct\
-    \ Online_Convolution {\n  const int thresh = 3;\n  vc<mint> f, g, h;\n  vc<vc<mint>>\
-    \ fft_f;\n  vc<vc<mint>> fft_g;\n\n  pair<vc<mint>, vc<mint>> calc_fft(int k)\
-    \ {\n    // \u73FE\u6642\u70B9\u3067\u306E\u672B\u5C3E 2^k \u9805\u306B\u5BFE\u3059\
-    \u308B fft \u30C7\u30FC\u30BF\u3092\u5F97\u308B\n    ll L = 1 << k;\n    if (k\
-    \ <= thresh) {\n      vc<mint> f_suff(f.end() - L, f.end());\n      vc<mint> g_suff(g.end()\
-    \ - L, g.end());\n      return {f_suff, g_suff};\n    }\n    vc<mint> f_suff(2\
-    \ * L), g_suff(2 * L);\n    FOR(i, 1 << k) { f_suff[i] = f[len(f) - L + i]; }\n\
-    \    FOR(i, 1 << k) { g_suff[i] = g[len(g) - L + i]; }\n    if (k <= thresh) return\
-    \ {f_suff, g_suff};\n    ntt(f_suff, 0);\n    ntt(g_suff, 0);\n    return {f_suff,\
-    \ g_suff};\n  }\n\n  void calc(int k) {\n    // suffix \u306E \u9577\u3055 2^k\
-    \ \u307E\u308F\u308A\u306E\u7573\u307F\u8FBC\u307F\u3092 h \u306B\u52A0\u7B97\u3059\
-    \u308B\n    auto [Ff, Fg] = calc_fft(k);\n    vc<mint> Fh(1 << (k + 1));\n   \
-    \ bool square = k >= len(fft_f);\n    if (square) {\n      // \u9577\u3055 2^k\
-    \ \u306E\u306F\u3058\u3081\u3066\u306E\u584A\u3002\n      fft_f.eb(Ff);\n    \
-    \  fft_g.eb(Fg);\n    }\n\n    if (k > thresh && square) {\n      FOR(i, 1 <<\
-    \ (k + 1)) Fh[i] += Ff[i] * Fg[i];\n      ntt(Fh, 1);\n    }\n    elif (k > thresh\
-    \ && !square) {\n      FOR(i, 1 << (k + 1)) {\n        Fh[i] += Ff[i] * fft_g[k][i];\n\
-    \        Fh[i] += Fg[i] * fft_f[k][i];\n      }\n      ntt(Fh, 1);\n    }\n  \
-    \  elif (k <= thresh && square) {\n      FOR(i, 1 << k) FOR(j, 1 << k) Fh[i +\
-    \ j] += Ff[i] * Fg[j];\n    }\n    elif (k <= thresh && !square) {\n      FOR(i,\
-    \ 1 << k) FOR(j, 1 << k) Fh[i + j] += Ff[i] * fft_g[k][j];\n      FOR(i, 1 <<\
-    \ k) FOR(j, 1 << k) Fh[i + j] += Fg[i] * fft_f[k][j];\n    }\n    // \u9069\u5207\
-    \u306A\u5834\u6240\u306B\u8DB3\u3057\u3053\u3080\n    int off = len(f) - 1;\n\
-    \    FOR(i, len(Fh) - 1) {\n      if (len(h) <= off + i) h.eb(0);\n      h[off\
-    \ + i] += Fh[i];\n    }\n  }\n\n  mint query(int i, mint fi, mint gi) {\n    assert(i\
-    \ == len(f));\n    f.eb(fi);\n    g.eb(gi);\n    FOR(k, 30) {\n      // \u9577\
-    \u3055 2^k \u306E\u90E8\u5206\u3092\u51E6\u7406\u3059\u308B\u304B\u3069\u3046\u304B\
-    \uFF1F\n      // i+2 \u304C 2^k \u306E\u500D\u6570\u304B\u3064 i+2 >= 2^{k+1}\n\
-    \      ll L = 1 << k;\n      bool bl = ((i + 2) % L == 0) && (i + 2 >= 2 * L);\n\
-    \      if (!bl) continue;\n      calc(k);\n    }\n    return h[i];\n  }\n};\n"
-  code: "#pragma once\n#include \"poly/convolution.hpp\"\n\n/*\nf[i], g[i] \u3092\u4E0E\
-    \u3048\u3066 fg[i] \u3092\u5F97\u308B\u3002\n2^{17}\uFF1A176ms\n2^{18}\uFF1A370ms\n\
-    2^{19}\uFF1A800ms\n2^{20}\uFF1A1680ms\n*/\ntemplate <typename mint>\nstruct Online_Convolution\
-    \ {\n  const int thresh = 3;\n  vc<mint> f, g, h;\n  vc<vc<mint>> fft_f;\n  vc<vc<mint>>\
-    \ fft_g;\n\n  pair<vc<mint>, vc<mint>> calc_fft(int k) {\n    // \u73FE\u6642\u70B9\
-    \u3067\u306E\u672B\u5C3E 2^k \u9805\u306B\u5BFE\u3059\u308B fft \u30C7\u30FC\u30BF\
-    \u3092\u5F97\u308B\n    ll L = 1 << k;\n    if (k <= thresh) {\n      vc<mint>\
-    \ f_suff(f.end() - L, f.end());\n      vc<mint> g_suff(g.end() - L, g.end());\n\
-    \      return {f_suff, g_suff};\n    }\n    vc<mint> f_suff(2 * L), g_suff(2 *\
-    \ L);\n    FOR(i, 1 << k) { f_suff[i] = f[len(f) - L + i]; }\n    FOR(i, 1 <<\
-    \ k) { g_suff[i] = g[len(g) - L + i]; }\n    if (k <= thresh) return {f_suff,\
-    \ g_suff};\n    ntt(f_suff, 0);\n    ntt(g_suff, 0);\n    return {f_suff, g_suff};\n\
-    \  }\n\n  void calc(int k) {\n    // suffix \u306E \u9577\u3055 2^k \u307E\u308F\
-    \u308A\u306E\u7573\u307F\u8FBC\u307F\u3092 h \u306B\u52A0\u7B97\u3059\u308B\n\
-    \    auto [Ff, Fg] = calc_fft(k);\n    vc<mint> Fh(1 << (k + 1));\n    bool square\
-    \ = k >= len(fft_f);\n    if (square) {\n      // \u9577\u3055 2^k \u306E\u306F\
-    \u3058\u3081\u3066\u306E\u584A\u3002\n      fft_f.eb(Ff);\n      fft_g.eb(Fg);\n\
-    \    }\n\n    if (k > thresh && square) {\n      FOR(i, 1 << (k + 1)) Fh[i] +=\
-    \ Ff[i] * Fg[i];\n      ntt(Fh, 1);\n    }\n    elif (k > thresh && !square) {\n\
-    \      FOR(i, 1 << (k + 1)) {\n        Fh[i] += Ff[i] * fft_g[k][i];\n       \
-    \ Fh[i] += Fg[i] * fft_f[k][i];\n      }\n      ntt(Fh, 1);\n    }\n    elif (k\
-    \ <= thresh && square) {\n      FOR(i, 1 << k) FOR(j, 1 << k) Fh[i + j] += Ff[i]\
-    \ * Fg[j];\n    }\n    elif (k <= thresh && !square) {\n      FOR(i, 1 << k) FOR(j,\
-    \ 1 << k) Fh[i + j] += Ff[i] * fft_g[k][j];\n      FOR(i, 1 << k) FOR(j, 1 <<\
-    \ k) Fh[i + j] += Fg[i] * fft_f[k][j];\n    }\n    // \u9069\u5207\u306A\u5834\
-    \u6240\u306B\u8DB3\u3057\u3053\u3080\n    int off = len(f) - 1;\n    FOR(i, len(Fh)\
-    \ - 1) {\n      if (len(h) <= off + i) h.eb(0);\n      h[off + i] += Fh[i];\n\
-    \    }\n  }\n\n  mint query(int i, mint fi, mint gi) {\n    assert(i == len(f));\n\
-    \    f.eb(fi);\n    g.eb(gi);\n    FOR(k, 30) {\n      // \u9577\u3055 2^k \u306E\
-    \u90E8\u5206\u3092\u51E6\u7406\u3059\u308B\u304B\u3069\u3046\u304B\uFF1F\n   \
-    \   // i+2 \u304C 2^k \u306E\u500D\u6570\u304B\u3064 i+2 >= 2^{k+1}\n      ll\
-    \ L = 1 << k;\n      bool bl = ((i + 2) % L == 0) && (i + 2 >= 2 * L);\n     \
-    \ if (!bl) continue;\n      calc(k);\n    }\n    return h[i];\n  }\n};"
+    \ b);\r\n}\r\n#line 4 \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\nvc<mint>\
+    \ fps_inv_sparse(const vc<mint>& f) {\r\n  assert(f[0] != mint(0));\r\n  int N\
+    \ = len(f);\r\n  vc<pair<int, mint>> dat;\r\n  FOR3(i, 1, N) if (f[i] != mint(0))\
+    \ dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\n  mint g0 = mint(1) / f[0];\r\n  g[0]\
+    \ = g0;\r\n  FOR3(n, 1, N) {\r\n    mint rhs = 0;\r\n    for (auto&& [k, fk]:\
+    \ dat) {\r\n      if (k > n) break;\r\n      rhs -= fk * g[n - k];\r\n    }\r\n\
+    \    g[n] = rhs * g0;\r\n  }\r\n  return g;\r\n}\r\n\r\ntemplate <typename mint>\r\
+    \nenable_if_t<is_same<mint, modint998>::value, vc<mint>> fps_inv_dense(\r\n  \
+    \  const vc<mint>& F) {\r\n  assert(F[0] != mint(0));\r\n  vc<mint> G = {mint(1)\
+    \ / F[0]};\r\n  G.reserve(len(F));\r\n  ll N = len(F), n = 1;\r\n  while (n <\
+    \ N) {\r\n    vc<mint> f(2 * n), g(2 * n);\r\n    FOR(i, min(N, 2 * n)) f[i] =\
+    \ F[i];\r\n    FOR(i, n) g[i] = G[i];\r\n    ntt(f, false);\r\n    ntt(g, false);\r\
+    \n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\n    FOR(i, n) f[i] =\
+    \ 0;\r\n    ntt(f, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\
+    \n    FOR3(i, n, 2 * n) G.eb(f[i] * mint(-1));\r\n    n *= 2;\r\n  }\r\n  G.resize(N);\r\
+    \n  return G;\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<!is_same<mint,\
+    \ modint998>::value, vc<mint>> fps_inv_dense(\r\n    const vc<mint>& F) {\r\n\
+    \  int N = len(F);\r\n  assert(F[0] != mint(0));\r\n  vc<mint> R = {mint(1) /\
+    \ F[0]};\r\n  vc<mint> p;\r\n  int m = 1;\r\n  while (m < N) {\r\n    p = convolution(R,\
+    \ R);\r\n    p.resize(m + m);\r\n    vc<mint> f = {F.begin(), F.begin() + min(m\
+    \ + m, N)};\r\n    p = convolution(p, f);\r\n    R.resize(m + m);\r\n    FOR(i,\
+    \ m + m) R[i] = R[i] + R[i] - p[i];\r\n    m += m;\r\n  }\r\n  R.resize(N);\r\n\
+    \  return R;\r\n}\r\n\r\n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint,\
+    \ modint998>::value, vc<mint>> fps_inv(\r\n    const vc<mint>& f) {\r\n  if (count_terms(f)\
+    \ <= 200) return fps_inv_sparse<mint>(f);\r\n  return fps_inv_dense<mint>(f);\r\
+    \n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<!is_same<mint, modint998>::value,\
+    \ vc<mint>> fps_inv(\r\n    const vc<mint>& f) {\r\n  if (count_terms(f) <= 700)\
+    \ return fps_inv_sparse<mint>(f);\r\n  return fps_inv_dense<mint>(f);\r\n}\r\n\
+    #line 2 \"seq/famous/indecomposable_permutations.hpp\"\n\n// \u975E\u7A7A\u306A\
+    \ prefix < suffix \u306B\u5206\u5272\u3067\u304D\u306A\u3044\u3082\u306E\n// ng:\
+    \ [1][2][3], [1][32], [21][3]\n// ok: [231], [312], [321]\n// https://oeis.org/A003319\
+    \  0, 1, 1, 3, 13, 71\ntemplate <typename mint>\nvc<mint> indecomposable_permutations(const\
+    \ int N) {\n  vc<mint> f(N + 1);\n  FOR(i, N + 1) f[i] = fact<mint>(i);\n  f =\
+    \ fps_inv(f);\n  for (auto&& x: f) x = -x;\n  f[0] += mint(1);\n  return f;\n\
+    }\n"
+  code: "#include \"poly/fps_inv.hpp\"\n\n// \u975E\u7A7A\u306A prefix < suffix \u306B\
+    \u5206\u5272\u3067\u304D\u306A\u3044\u3082\u306E\n// ng: [1][2][3], [1][32], [21][3]\n\
+    // ok: [231], [312], [321]\n// https://oeis.org/A003319  0, 1, 1, 3, 13, 71\n\
+    template <typename mint>\nvc<mint> indecomposable_permutations(const int N) {\n\
+    \  vc<mint> f(N + 1);\n  FOR(i, N + 1) f[i] = fact<mint>(i);\n  f = fps_inv(f);\n\
+    \  for (auto&& x: f) x = -x;\n  f[0] += mint(1);\n  return f;\n}"
   dependsOn:
+  - poly/fps_inv.hpp
+  - poly/count_terms.hpp
   - poly/convolution.hpp
   - mod/modint.hpp
   - mod/mod_inv.hpp
@@ -370,16 +353,15 @@ data:
   - poly/ntt.hpp
   - poly/fft.hpp
   isVerificationFile: false
-  path: poly/online_convolution.hpp
+  path: seq/famous/indecomposable_permutations.hpp
   requiredBy: []
-  timestamp: '2022-11-06 13:29:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/library_checker/convolution/online_convolution.test.cpp
-documentation_of: poly/online_convolution.hpp
+  timestamp: '2022-11-18 03:11:12+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: seq/famous/indecomposable_permutations.hpp
 layout: document
 redirect_from:
-- /library/poly/online_convolution.hpp
-- /library/poly/online_convolution.hpp.html
-title: poly/online_convolution.hpp
+- /library/seq/famous/indecomposable_permutations.hpp
+- /library/seq/famous/indecomposable_permutations.hpp.html
+title: seq/famous/indecomposable_permutations.hpp
 ---

@@ -142,6 +142,21 @@ data:
     path: test/mytest/mod_sum_of_linear.test.cpp
     title: test/mytest/mod_sum_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/online_division.test.cpp
+    title: test/mytest/online_division.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/online_exp.test.cpp
+    title: test/mytest/online_exp.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/online_inv.test.cpp
+    title: test/mytest/online_inv.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/online_log.test.cpp
+    title: test/mytest/online_log.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/online_pow.test.cpp
+    title: test/mytest/online_pow.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/powerquery.test.cpp
     title: test/mytest/powerquery.test.cpp
   - icon: ':heavy_check_mark:'
@@ -265,6 +280,8 @@ data:
   timestamp: '2022-10-23 11:21:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/online_pow.test.cpp
+  - test/mytest/online_inv.test.cpp
   - test/mytest/chirp_z.test.cpp
   - test/mytest/stern_brocot.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
@@ -275,6 +292,8 @@ data:
   - test/mytest/binom.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
+  - test/mytest/online_log.test.cpp
+  - test/mytest/online_exp.test.cpp
   - test/mytest/splay.test.cpp
   - test/mytest/is_substring.test.cpp
   - test/mytest/maxplus_concave.test.cpp
@@ -289,6 +308,7 @@ data:
   - test/mytest/range_mex.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/minplus_convex.test.cpp
+  - test/mytest/online_division.test.cpp
   - test/yukicoder/1881.test.cpp
   - test/yukicoder/263.test.cpp
   - test/yukicoder/1397.test.cpp

@@ -301,9 +301,6 @@ data:
     path: test/library_checker/convolution/multivariate_convolution.test.cpp
     title: test/library_checker/convolution/multivariate_convolution.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/convolution/online_convolution.test.cpp
-    title: test/library_checker/convolution/online_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution.test.cpp
     title: test/library_checker/convolution/subset_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -816,6 +813,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/multinomial.test.cpp
     title: test/mytest/multinomial.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/online_division.test.cpp
+    title: test/mytest/online_division.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/online_exp.test.cpp
+    title: test/mytest/online_exp.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/online_inv.test.cpp
+    title: test/mytest/online_inv.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/online_log.test.cpp
+    title: test/mytest/online_log.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/online_pow.test.cpp
+    title: test/mytest/online_pow.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/partizan.test.cpp
     title: test/mytest/partizan.test.cpp
@@ -1573,8 +1585,10 @@ data:
   timestamp: '2022-09-24 23:41:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/online_pow.test.cpp
   - test/mytest/knight_distance.test.cpp
   - test/mytest/prime_sum.test.cpp
+  - test/mytest/online_inv.test.cpp
   - test/mytest/chirp_z.test.cpp
   - test/mytest/stern_brocot.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
@@ -1587,9 +1601,11 @@ data:
   - test/mytest/all_inverse.test.cpp
   - test/mytest/min_cost_matching_on_line.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
+  - test/mytest/online_log.test.cpp
   - test/mytest/partizan.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/primesum_mod6.test.cpp
+  - test/mytest/online_exp.test.cpp
   - test/mytest/gray_code.test.cpp
   - test/mytest/dyadic_rational.test.cpp
   - test/mytest/splay.test.cpp
@@ -1615,6 +1631,7 @@ data:
   - test/mytest/factorial_998.test.cpp
   - test/mytest/minplus_convex.test.cpp
   - test/mytest/bell.test.cpp
+  - test/mytest/online_division.test.cpp
   - test/yukicoder/1755.test.cpp
   - test/yukicoder/1167.test.cpp
   - test/yukicoder/590.test.cpp
@@ -1881,7 +1898,6 @@ data:
   - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
   - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
   - test/library_checker/convolution/convolution_huge.test.cpp
-  - test/library_checker/convolution/online_convolution.test.cpp
   - test/library_checker/convolution/bitwise_xor_convolution.test.cpp
   - test/library_checker/convolution/convolution_mod_107_amint.test.cpp
   - test/library_checker/convolution/multivariate_convolution.test.cpp
