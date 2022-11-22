@@ -10,6 +10,9 @@ data:
     path: test/aoj/0343.test.cpp
     title: test/aoj/0343.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/0350.test.cpp
+    title: test/aoj/0350.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/1508.test.cpp
     title: test/aoj/1508.test.cpp
   - icon: ':heavy_check_mark:'
@@ -255,7 +258,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc276_g_2.test.cpp
     title: test/atcoder/abc276_g_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/agc058d.test.cpp
     title: test/atcoder/agc058d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -462,6 +465,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/biconnected_component.test.cpp
     title: test/library_checker/graph/biconnected_component.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/bipartite_edge_coloring.test.cpp
+    title: test/library_checker/graph/bipartite_edge_coloring.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
@@ -1425,9 +1431,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include\
@@ -1646,7 +1652,7 @@ data:
   path: other/io.hpp
   requiredBy: []
   timestamp: '2022-08-20 05:21:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/string/enumerate_palindromes.test.cpp
   - test/library_checker/string/suffix_array_vec.test.cpp
@@ -1700,6 +1706,7 @@ data:
   - test/library_checker/graph/two_edge_component.test.cpp
   - test/library_checker/graph/scc.test.cpp
   - test/library_checker/graph/cycle_detection_undirected.test.cpp
+  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
   - test/library_checker/graph/min_cost_b-flow.test.cpp
   - test/library_checker/graph/maximum_independent_set.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
@@ -1876,6 +1883,7 @@ data:
   - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/DSL_2_E.test.cpp
   - test/aoj/DPL_2_A.test.cpp
+  - test/aoj/0350.test.cpp
   - test/aoj/2677.test.cpp
   - test/aoj/GRL_1_B.test.cpp
   - test/aoj/ALDS1_10_C.test.cpp

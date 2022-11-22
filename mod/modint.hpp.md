@@ -20,10 +20,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
+  - icon: ':x:'
+    path: poly/coef_of_rational_fps_2d.hpp
+    title: poly/coef_of_rational_fps_2d.hpp
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -189,7 +192,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc276_g_2.test.cpp
     title: test/atcoder/abc276_g_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/agc058d.test.cpp
     title: test/atcoder/agc058d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -672,9 +675,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/749.test.cpp
     title: test/yukicoder/749.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n\
@@ -860,6 +863,7 @@ data:
   - poly/poly_divmod.hpp
   - poly/poly_gcd.hpp
   - poly/sparse_exp_of_div.hpp
+  - poly/coef_of_rational_fps_2d.hpp
   - poly/pascal.hpp
   - poly/from_log_differentiation.hpp
   - poly/convolution_mod_2_64.hpp
@@ -910,7 +914,7 @@ data:
   - seq/interpolate_linear_rec.hpp
   - nt/multiplicative_convolution_mod2n.hpp
   timestamp: '2022-11-06 13:29:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/string/number_of_subsequences.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp

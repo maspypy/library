@@ -73,31 +73,31 @@ data:
     \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
-    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"ds/unionfind.hpp\"\
-    \n\nstruct UnionFind {\n  int n;\n  int n_comp;\n  std::vector<int> size, par;\n\
-    \  UnionFind(int n) : n(n), n_comp(n), size(n, 1), par(n) {\n    std::iota(par.begin(),\
-    \ par.end(), 0);\n  }\n  int find(int x) {\n    assert(0 <= x && x < n);\n   \
-    \ while (par[x] != x) { x = par[x] = par[par[x]]; }\n    return x;\n  }\n\n  int\
-    \ operator[](int x) { return find(x); }\n\n  bool merge(int x, int y) {\n    x\
-    \ = find(x);\n    y = find(y);\n    if (x == y) { return false; }\n    n_comp--;\n\
-    \    if (size[x] < size[y]) std::swap(x, y);\n    size[x] += size[y];\n    size[y]\
-    \ = 0;\n    par[y] = x;\n    return true;\n  }\n\n  std::vector<int> find_all()\
-    \ {\n    std::vector<int> A(n);\n    for (int i = 0; i < n; ++i) A[i] = find(i);\n\
-    \    return A;\n  }\n\n  void reset() {\n    n_comp = n;\n    size.assign(n, 1);\n\
-    \    std::iota(par.begin(), par.end(), 0);\n  }\n};\n#line 3 \"graph/check_bipartite.hpp\"\
-    \n\r\n// \u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A + \u5FA9\u5143\r\n// \u4E8C\
-    \u90E8\u30B0\u30E9\u30D5\u3067\u306A\u304B\u3063\u305F\u5834\u5408\u306B\u306F\
-    \ empty\r\ntemplate <typename Graph>\r\nvc<int> check_bipartite(Graph& G) {\r\n\
-    \  assert(G.is_prepared());\r\n\r\n  int n = G.N;\r\n  UnionFind uf(2 * n);\r\n\
-    \  for (auto&& e: G.edges) {\r\n    int u = e.frm, v = e.to;\r\n    if (e.cost\
-    \ == 0) uf.merge(u, v), uf.merge(u + n, v + n);\r\n    if (e.cost != 0) uf.merge(u\
-    \ + n, v), uf.merge(u, v + n);\r\n  }\r\n\r\n  vc<int> color(2 * n, -1);\r\n \
-    \ FOR(v, n) if (uf[v] == v && color[uf[v]] < 0) {\r\n    color[uf[v]] = 0;\r\n\
-    \    color[uf[v + n]] = 1;\r\n  }\r\n  FOR(v, n) color[v] = color[uf[v]];\r\n\
-    \  color.resize(n);\r\n  FOR(v, n) if (uf[v] == uf[v + n]) return {};\r\n  return\
-    \ color;\r\n}\r\n#line 3 \"graph/strongly_connected_component.hpp\"\n\ntemplate\
-    \ <typename Graph>\npair<int, vc<int>> strongly_connected_component(Graph& G)\
-    \ {\n  assert(G.is_directed());\n  assert(G.is_prepared());\n  int N = G.N;\n\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/check_bipartite.hpp\"\
+    \n\r\n#line 2 \"ds/unionfind.hpp\"\n\nstruct UnionFind {\n  int n;\n  int n_comp;\n\
+    \  std::vector<int> size, par;\n  UnionFind(int n) : n(n), n_comp(n), size(n,\
+    \ 1), par(n) {\n    std::iota(par.begin(), par.end(), 0);\n  }\n  int find(int\
+    \ x) {\n    assert(0 <= x && x < n);\n    while (par[x] != x) { x = par[x] = par[par[x]];\
+    \ }\n    return x;\n  }\n\n  int operator[](int x) { return find(x); }\n\n  bool\
+    \ merge(int x, int y) {\n    x = find(x);\n    y = find(y);\n    if (x == y) {\
+    \ return false; }\n    n_comp--;\n    if (size[x] < size[y]) std::swap(x, y);\n\
+    \    size[x] += size[y];\n    size[y] = 0;\n    par[y] = x;\n    return true;\n\
+    \  }\n\n  std::vector<int> find_all() {\n    std::vector<int> A(n);\n    for (int\
+    \ i = 0; i < n; ++i) A[i] = find(i);\n    return A;\n  }\n\n  void reset() {\n\
+    \    n_comp = n;\n    size.assign(n, 1);\n    std::iota(par.begin(), par.end(),\
+    \ 0);\n  }\n};\n#line 5 \"graph/check_bipartite.hpp\"\n\r\n// \u4E8C\u90E8\u30B0\
+    \u30E9\u30D5\u5224\u5B9A + \u5FA9\u5143\r\n// \u4E8C\u90E8\u30B0\u30E9\u30D5\u3067\
+    \u306A\u304B\u3063\u305F\u5834\u5408\u306B\u306F empty\r\ntemplate <typename Graph>\r\
+    \nvc<int> check_bipartite(Graph& G) {\r\n  assert(G.is_prepared());\r\n\r\n  int\
+    \ n = G.N;\r\n  UnionFind uf(2 * n);\r\n  for (auto&& e: G.edges) {\r\n    int\
+    \ u = e.frm, v = e.to;\r\n    if (e.cost == 0) uf.merge(u, v), uf.merge(u + n,\
+    \ v + n);\r\n    if (e.cost != 0) uf.merge(u + n, v), uf.merge(u, v + n);\r\n\
+    \  }\r\n\r\n  vc<int> color(2 * n, -1);\r\n  FOR(v, n) if (uf[v] == v && color[uf[v]]\
+    \ < 0) {\r\n    color[uf[v]] = 0;\r\n    color[uf[v + n]] = 1;\r\n  }\r\n  FOR(v,\
+    \ n) color[v] = color[uf[v]];\r\n  color.resize(n);\r\n  FOR(v, n) if (uf[v] ==\
+    \ uf[v + n]) return {};\r\n  return color;\r\n}\r\n#line 3 \"graph/strongly_connected_component.hpp\"\
+    \n\ntemplate <typename Graph>\npair<int, vc<int>> strongly_connected_component(Graph&\
+    \ G) {\n  assert(G.is_directed());\n  assert(G.is_prepared());\n  int N = G.N;\n\
     \  int C = 0;\n  vc<int> comp(N);\n  vc<int> low(N);\n  vc<int> ord(N, -1);\n\
     \  vc<int> visited;\n  int now = 0;\n\n  auto dfs = [&](auto self, int v) -> void\
     \ {\n    low[v] = now;\n    ord[v] = now;\n    ++now;\n    visited.eb(v);\n  \
@@ -238,7 +238,7 @@ data:
   isVerificationFile: false
   path: graph/dag_path_cover.hpp
   requiredBy: []
-  timestamp: '2022-10-24 17:15:02+09:00'
+  timestamp: '2022-11-23 08:11:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/2251_1.test.cpp

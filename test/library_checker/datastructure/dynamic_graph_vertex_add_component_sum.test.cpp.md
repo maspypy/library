@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/query/addremove_query.hpp
     title: ds/query/addremove_query.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -208,47 +208,49 @@ data:
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
     \ { yes(!t); }\r\n#line 2 \"ds/pds/rollbackarray.hpp\"\n\r\ntemplate <typename\
     \ T>\r\nstruct RollbackArray {\r\n  int N;\r\n  vc<T> dat;\r\n  vc<pair<int, T>>\
-    \ history;\r\n\r\n  RollbackArray(vc<T> x) : N(len(x)), dat(x) {}\r\n\r\n  int\
-    \ time() { return len(history); }\r\n  void rollback(int t) {\r\n    FOR_R(i,\
-    \ t, time()) {\r\n      auto& [idx, v] = history[i];\r\n      dat[idx] = v;\r\n\
-    \    }\r\n    history.resize(t);\r\n  }\r\n  T get(int idx) { return dat[idx];\
-    \ }\r\n  void set(int idx, T x) {\r\n    history.eb(idx, dat[idx]);\r\n    dat[idx]\
-    \ = x;\r\n  }\r\n\r\n  vc<T> get_all() {\r\n    vc<T> res(N);\r\n    FOR(i, N)\
-    \ res[i] = get(i);\r\n    return res;\r\n  }\r\n};\r\n#line 2 \"ds/pds/rollbackunionfind.hpp\"\
-    \n\r\nstruct RollbackUnionFind {\r\n  RollbackArray<int> dat; // parent or size\r\
-    \n\r\n  RollbackUnionFind(int n) : dat(vc<int>(n, -1)) {}\r\n\r\n  int operator[](int\
-    \ v) {\r\n    while (dat.get(v) >= 0) v = dat.get(v);\r\n    return v;\r\n  }\r\
-    \n\r\n  int size(int v) { return -dat.get((*this)[v]); }\r\n  int time() { return\
-    \ dat.time(); }\r\n  void rollback(int t) { dat.rollback(t); }\r\n\r\n  bool merge(int\
-    \ a, int b) {\r\n    a = (*this)[a], b = (*this)[b];\r\n    if (a == b) return\
-    \ false;\r\n    if (dat.get(a) > dat.get(b)) swap(a, b);\r\n    dat.set(a, dat.get(a)\
-    \ + dat.get(b));\r\n    dat.set(b, a);\r\n    return true;\r\n  }\r\n};\r\n#line\
-    \ 1 \"ds/query/addremove_query.hpp\"\n/*\n\u30FB\u6642\u523B t \u306B x \u3092\
-    \u8FFD\u52A0\u3059\u308B\n\u30FB\u6642\u523B t \u306B x \u3092\u524A\u9664\u3059\
-    \u308B\n\u304C\u3042\u308B\u3068\u304D\u306B\u3001\n\u30FB\u6642\u523B [l, r)\
-    \ \u306B x \u3092\u8FFD\u52A0\u3059\u308B\n\u306B\u5909\u63DB\u3059\u308B\u3002\
-    \n\u30AF\u30A8\u30EA\u304C\u6642\u7CFB\u5217\u9806\u306B\u6765\u308B\u3053\u3068\
-    \u304C\u5206\u304B\u3063\u3066\u3044\u308B\u3068\u304D\u306F monotone = true \u306E\
-    \u65B9\u304C\u9AD8\u901F\u3002\n*/\ntemplate <typename X, bool monotone>\nstruct\
-    \ AddRemove_Query {\n  map<X, int> MP;\n  vc<tuple<int, int, X>> dat;\n  map<X,\
-    \ vc<int>> ADD;\n  map<X, vc<int>> RM;\n\n  void add(int time, X x) {\n    if\
-    \ (monotone) return add_monotone(time, x);\n    ADD[x].eb(time);\n  }\n  void\
-    \ remove(int time, X x) {\n    if (monotone) return remove_monotone(time, x);\n\
-    \    RM[x].eb(time);\n  }\n\n  // \u3059\u3079\u3066\u306E\u30AF\u30A8\u30EA\u304C\
-    \u7D42\u308F\u3063\u305F\u73FE\u5728\u6642\u523B\u3092\u6E21\u3059\n  vc<tuple<int,\
-    \ int, X>> calc(int time) {\n    if (monotone) return calc_monotone(time);\n \
-    \   vc<tuple<int, int, X>> dat;\n    for (auto&& [x, A]: ADD) {\n      vc<int>\
-    \ B;\n      if (RM.count(x)) {\n        B = RM[x];\n        RM.erase(x);\n   \
-    \   }\n      if (len(B) < len(A)) B.eb(time);\n      assert(len(A) == len(B));\n\
-    \n      sort(all(A));\n      sort(all(B));\n      FOR(i, len(A)) {\n        assert(A[i]\
-    \ <= B[i]);\n        if (A[i] < B[i]) dat.eb(A[i], B[i], x);\n      }\n    }\n\
-    \    assert(len(RM) == 0);\n    return dat;\n  }\n\nprivate:\n  void add_monotone(int\
-    \ time, X x) {\n    assert(!MP.count(x));\n    MP[x] = time;\n  }\n  void remove_monotone(int\
-    \ time, X x) {\n    auto it = MP.find(x);\n    assert(it != MP.end());\n    int\
-    \ t = (*it).se;\n    MP.erase(it);\n    if (t == time) return;\n    dat.eb(t,\
-    \ time, x);\n  }\n  vc<tuple<int, int, X>> calc_monotone(int time) {\n    for\
-    \ (auto&& [x, t]: MP) {\n      if (t == time) continue;\n      dat.eb(t, time,\
-    \ x);\n    }\n    return dat;\n  }\n};\n#line 8 \"test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp\"\
+    \ history;\r\n\r\n  RollbackArray(vc<T> x) : N(len(x)), dat(x) {}\r\n  template\
+    \ <typename F>\r\n  RollbackArray(int N, F f) : N(N) {\r\n    dat.reserve(N);\r\
+    \n    FOR(i, N) dat.eb(f(i));\r\n  }\r\n\r\n  int time() { return len(history);\
+    \ }\r\n  void rollback(int t) {\r\n    FOR_R(i, t, time()) {\r\n      auto& [idx,\
+    \ v] = history[i];\r\n      dat[idx] = v;\r\n    }\r\n    history.resize(t);\r\
+    \n  }\r\n  T get(int idx) { return dat[idx]; }\r\n  void set(int idx, T x) {\r\
+    \n    history.eb(idx, dat[idx]);\r\n    dat[idx] = x;\r\n  }\r\n\r\n  vc<T> get_all()\
+    \ {\r\n    vc<T> res(N);\r\n    FOR(i, N) res[i] = get(i);\r\n    return res;\r\
+    \n  }\r\n};\r\n#line 2 \"ds/pds/rollbackunionfind.hpp\"\n\r\nstruct RollbackUnionFind\
+    \ {\r\n  RollbackArray<int> dat; // parent or size\r\n\r\n  RollbackUnionFind(int\
+    \ n) : dat(vc<int>(n, -1)) {}\r\n\r\n  int operator[](int v) {\r\n    while (dat.get(v)\
+    \ >= 0) v = dat.get(v);\r\n    return v;\r\n  }\r\n\r\n  int size(int v) { return\
+    \ -dat.get((*this)[v]); }\r\n  int time() { return dat.time(); }\r\n  void rollback(int\
+    \ t) { dat.rollback(t); }\r\n\r\n  bool merge(int a, int b) {\r\n    a = (*this)[a],\
+    \ b = (*this)[b];\r\n    if (a == b) return false;\r\n    if (dat.get(a) > dat.get(b))\
+    \ swap(a, b);\r\n    dat.set(a, dat.get(a) + dat.get(b));\r\n    dat.set(b, a);\r\
+    \n    return true;\r\n  }\r\n};\r\n#line 1 \"ds/query/addremove_query.hpp\"\n\
+    /*\n\u30FB\u6642\u523B t \u306B x \u3092\u8FFD\u52A0\u3059\u308B\n\u30FB\u6642\
+    \u523B t \u306B x \u3092\u524A\u9664\u3059\u308B\n\u304C\u3042\u308B\u3068\u304D\
+    \u306B\u3001\n\u30FB\u6642\u523B [l, r) \u306B x \u3092\u8FFD\u52A0\u3059\u308B\
+    \n\u306B\u5909\u63DB\u3059\u308B\u3002\n\u30AF\u30A8\u30EA\u304C\u6642\u7CFB\u5217\
+    \u9806\u306B\u6765\u308B\u3053\u3068\u304C\u5206\u304B\u3063\u3066\u3044\u308B\
+    \u3068\u304D\u306F monotone = true \u306E\u65B9\u304C\u9AD8\u901F\u3002\n*/\n\
+    template <typename X, bool monotone>\nstruct AddRemove_Query {\n  map<X, int>\
+    \ MP;\n  vc<tuple<int, int, X>> dat;\n  map<X, vc<int>> ADD;\n  map<X, vc<int>>\
+    \ RM;\n\n  void add(int time, X x) {\n    if (monotone) return add_monotone(time,\
+    \ x);\n    ADD[x].eb(time);\n  }\n  void remove(int time, X x) {\n    if (monotone)\
+    \ return remove_monotone(time, x);\n    RM[x].eb(time);\n  }\n\n  // \u3059\u3079\
+    \u3066\u306E\u30AF\u30A8\u30EA\u304C\u7D42\u308F\u3063\u305F\u73FE\u5728\u6642\
+    \u523B\u3092\u6E21\u3059\n  vc<tuple<int, int, X>> calc(int time) {\n    if (monotone)\
+    \ return calc_monotone(time);\n    vc<tuple<int, int, X>> dat;\n    for (auto&&\
+    \ [x, A]: ADD) {\n      vc<int> B;\n      if (RM.count(x)) {\n        B = RM[x];\n\
+    \        RM.erase(x);\n      }\n      if (len(B) < len(A)) B.eb(time);\n     \
+    \ assert(len(A) == len(B));\n\n      sort(all(A));\n      sort(all(B));\n    \
+    \  FOR(i, len(A)) {\n        assert(A[i] <= B[i]);\n        if (A[i] < B[i]) dat.eb(A[i],\
+    \ B[i], x);\n      }\n    }\n    assert(len(RM) == 0);\n    return dat;\n  }\n\
+    \nprivate:\n  void add_monotone(int time, X x) {\n    assert(!MP.count(x));\n\
+    \    MP[x] = time;\n  }\n  void remove_monotone(int time, X x) {\n    auto it\
+    \ = MP.find(x);\n    assert(it != MP.end());\n    int t = (*it).se;\n    MP.erase(it);\n\
+    \    if (t == time) return;\n    dat.eb(t, time, x);\n  }\n  vc<tuple<int, int,\
+    \ X>> calc_monotone(int time) {\n    for (auto&& [x, t]: MP) {\n      if (t ==\
+    \ time) continue;\n      dat.eb(t, time, x);\n    }\n    return dat;\n  }\n};\n\
+    #line 8 \"test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A0, N);\n\n  using P = pair<int, int>;\n\
     \  AddRemove_Query<P, 1> X;\n  RollbackArray<ll> A(A0);\n\n  vc<int> query;\n\
     \  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(u, v);\n      if (u > v)\
@@ -313,7 +315,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-10-21 19:43:05+09:00'
+  timestamp: '2022-11-23 08:10:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp

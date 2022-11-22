@@ -14,9 +14,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/manhattan_mst.hpp
     title: geo/manhattan_mst.hpp
-  - icon: ':warning:'
-    path: graph/bipartite_coloring.hpp
-    title: graph/bipartite_coloring.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/bipartite_edge_coloring.hpp
+    title: graph/bipartite_edge_coloring.hpp
   - icon: ':heavy_check_mark:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
@@ -240,6 +240,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/biconnected_component.test.cpp
     title: test/library_checker/graph/biconnected_component.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/bipartite_edge_coloring.test.cpp
+    title: test/library_checker/graph/bipartite_edge_coloring.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
@@ -584,8 +587,8 @@ data:
   - graph/reachability.hpp
   - graph/tree.hpp
   - graph/check_bipartite.hpp
-  - graph/bipartite_coloring.hpp
   - graph/dag_path_cover.hpp
+  - graph/bipartite_edge_coloring.hpp
   - graph/unicyclic.hpp
   - graph/tree_of_unionfind.hpp
   - geo/manhattan_mst.hpp
@@ -603,6 +606,7 @@ data:
   - test/library_checker/graph/two_edge_component.test.cpp
   - test/library_checker/graph/scc.test.cpp
   - test/library_checker/graph/cycle_detection_undirected.test.cpp
+  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
   - test/library_checker/graph/maximum_independent_set.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/verted_add_contour_sum.test.cpp

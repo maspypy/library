@@ -9,6 +9,9 @@ data:
     path: geo/manhattan_mst.hpp
     title: geo/manhattan_mst.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/bipartite_edge_coloring.hpp
+    title: graph/bipartite_edge_coloring.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
   - icon: ':heavy_check_mark:'
@@ -54,6 +57,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/unionfind.test.cpp
     title: test/library_checker/datastructure/unionfind.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/bipartite_edge_coloring.test.cpp
+    title: test/library_checker/graph/bipartite_edge_coloring.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
@@ -148,11 +154,13 @@ data:
   - graph/online_mst.hpp
   - graph/check_bipartite.hpp
   - graph/dag_path_cover.hpp
+  - graph/bipartite_edge_coloring.hpp
   - graph/tree_of_unionfind.hpp
   - geo/manhattan_mst.hpp
   timestamp: '2022-10-24 17:15:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/datastructure/unionfind.test.cpp

@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/coef_of_rational_fps_2d.hpp
     title: poly/coef_of_rational_fps_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/agc058/tasks/agc058_d
@@ -484,7 +484,7 @@ data:
     \ modint998>::value, vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>&\
     \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
-    \ b);\r\n}\r\n#line 1 \"poly/coef_of_rational_fps_2d.hpp\"\n\n/*\n[x^N] F(x,y)/G(x,y)\
+    \ b);\r\n}\r\n#line 2 \"poly/coef_of_rational_fps_2d.hpp\"\n\n/*\n[x^N] F(x,y)/G(x,y)\
     \ \u306E\u8A08\u7B97\u3002\u7D50\u679C\u306F y \u306E\u591A\u9805\u5F0F\u3002\n\
     [x^0] G = 1 \u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\u3002\ndeg G = (3, 1) \u306E\
     \ N = 3\xD710^6 \u3067 500 ms \u306E\u5B9F\u7E3E\u304C\u3042\u308B\u304C\u3001\
@@ -550,8 +550,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/agc058d.test.cpp
   requiredBy: []
-  timestamp: '2022-11-06 13:29:09+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-11-23 08:12:14+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/atcoder/agc058d.test.cpp
 layout: document

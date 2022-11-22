@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/query/addremove_query.hpp
     title: ds/query/addremove_query.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -234,30 +234,32 @@ data:
     \ x);\n    }\n    return dat;\n  }\n};\n#line 2 \"ds/pds/rollbackarray.hpp\"\n\
     \r\ntemplate <typename T>\r\nstruct RollbackArray {\r\n  int N;\r\n  vc<T> dat;\r\
     \n  vc<pair<int, T>> history;\r\n\r\n  RollbackArray(vc<T> x) : N(len(x)), dat(x)\
-    \ {}\r\n\r\n  int time() { return len(history); }\r\n  void rollback(int t) {\r\
-    \n    FOR_R(i, t, time()) {\r\n      auto& [idx, v] = history[i];\r\n      dat[idx]\
-    \ = v;\r\n    }\r\n    history.resize(t);\r\n  }\r\n  T get(int idx) { return\
-    \ dat[idx]; }\r\n  void set(int idx, T x) {\r\n    history.eb(idx, dat[idx]);\r\
-    \n    dat[idx] = x;\r\n  }\r\n\r\n  vc<T> get_all() {\r\n    vc<T> res(N);\r\n\
-    \    FOR(i, N) res[i] = get(i);\r\n    return res;\r\n  }\r\n};\r\n#line 2 \"\
-    ds/pds/rollbackunionfind.hpp\"\n\r\nstruct RollbackUnionFind {\r\n  RollbackArray<int>\
-    \ dat; // parent or size\r\n\r\n  RollbackUnionFind(int n) : dat(vc<int>(n, -1))\
-    \ {}\r\n\r\n  int operator[](int v) {\r\n    while (dat.get(v) >= 0) v = dat.get(v);\r\
-    \n    return v;\r\n  }\r\n\r\n  int size(int v) { return -dat.get((*this)[v]);\
-    \ }\r\n  int time() { return dat.time(); }\r\n  void rollback(int t) { dat.rollback(t);\
-    \ }\r\n\r\n  bool merge(int a, int b) {\r\n    a = (*this)[a], b = (*this)[b];\r\
-    \n    if (a == b) return false;\r\n    if (dat.get(a) > dat.get(b)) swap(a, b);\r\
-    \n    dat.set(a, dat.get(a) + dat.get(b));\r\n    dat.set(b, a);\r\n    return\
-    \ true;\r\n  }\r\n};\r\n#line 8 \"test/library_checker/datastructure/add_remove_query.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A0, N);\n  using P = pair<int, int>;\n\
-    \n  vc<int> query;\n\n  AddRemove_Query<P, true> X;\n  FOR(Q) {\n    LL(t);\n\
-    \    if (t == 0) {\n      LL(a, b);\n      if (a > b) swap(a, b);\n      P e =\
-    \ {a, b};\n      X.add(len(query), e);\n    }\n    if (t == 1) {\n      LL(a,\
-    \ b);\n      if (a > b) swap(a, b);\n      P e = {a, b};\n      X.remove(len(query),\
-    \ e);\n    }\n    if (t == 2) {\n      LL(v, x);\n      P p = {~v, x};\n     \
-    \ X.add(len(query), p);\n    }\n    if (t == 3) {\n      LL(v);\n      query.eb(v);\n\
-    \    }\n  }\n\n  auto upd = X.calc(len(query));\n  Q = len(query);\n  vi ANS(Q);\n\
-    \  vc<int> I(len(upd));\n  iota(all(I), 0);\n\n  RollbackArray<ll> A(A0);\n  RollbackUnionFind\
+    \ {}\r\n  template <typename F>\r\n  RollbackArray(int N, F f) : N(N) {\r\n  \
+    \  dat.reserve(N);\r\n    FOR(i, N) dat.eb(f(i));\r\n  }\r\n\r\n  int time() {\
+    \ return len(history); }\r\n  void rollback(int t) {\r\n    FOR_R(i, t, time())\
+    \ {\r\n      auto& [idx, v] = history[i];\r\n      dat[idx] = v;\r\n    }\r\n\
+    \    history.resize(t);\r\n  }\r\n  T get(int idx) { return dat[idx]; }\r\n  void\
+    \ set(int idx, T x) {\r\n    history.eb(idx, dat[idx]);\r\n    dat[idx] = x;\r\
+    \n  }\r\n\r\n  vc<T> get_all() {\r\n    vc<T> res(N);\r\n    FOR(i, N) res[i]\
+    \ = get(i);\r\n    return res;\r\n  }\r\n};\r\n#line 2 \"ds/pds/rollbackunionfind.hpp\"\
+    \n\r\nstruct RollbackUnionFind {\r\n  RollbackArray<int> dat; // parent or size\r\
+    \n\r\n  RollbackUnionFind(int n) : dat(vc<int>(n, -1)) {}\r\n\r\n  int operator[](int\
+    \ v) {\r\n    while (dat.get(v) >= 0) v = dat.get(v);\r\n    return v;\r\n  }\r\
+    \n\r\n  int size(int v) { return -dat.get((*this)[v]); }\r\n  int time() { return\
+    \ dat.time(); }\r\n  void rollback(int t) { dat.rollback(t); }\r\n\r\n  bool merge(int\
+    \ a, int b) {\r\n    a = (*this)[a], b = (*this)[b];\r\n    if (a == b) return\
+    \ false;\r\n    if (dat.get(a) > dat.get(b)) swap(a, b);\r\n    dat.set(a, dat.get(a)\
+    \ + dat.get(b));\r\n    dat.set(b, a);\r\n    return true;\r\n  }\r\n};\r\n#line\
+    \ 8 \"test/library_checker/datastructure/add_remove_query.test.cpp\"\n\nvoid solve()\
+    \ {\n  LL(N, Q);\n  VEC(ll, A0, N);\n  using P = pair<int, int>;\n\n  vc<int>\
+    \ query;\n\n  AddRemove_Query<P, true> X;\n  FOR(Q) {\n    LL(t);\n    if (t ==\
+    \ 0) {\n      LL(a, b);\n      if (a > b) swap(a, b);\n      P e = {a, b};\n \
+    \     X.add(len(query), e);\n    }\n    if (t == 1) {\n      LL(a, b);\n     \
+    \ if (a > b) swap(a, b);\n      P e = {a, b};\n      X.remove(len(query), e);\n\
+    \    }\n    if (t == 2) {\n      LL(v, x);\n      P p = {~v, x};\n      X.add(len(query),\
+    \ p);\n    }\n    if (t == 3) {\n      LL(v);\n      query.eb(v);\n    }\n  }\n\
+    \n  auto upd = X.calc(len(query));\n  Q = len(query);\n  vi ANS(Q);\n  vc<int>\
+    \ I(len(upd));\n  iota(all(I), 0);\n\n  RollbackArray<ll> A(A0);\n  RollbackUnionFind\
     \ uf(N);\n\n  auto dfs = [&](auto& dfs, vc<int>& I, int begin, int end) -> void\
     \ {\n    int a_time = A.time();\n    int uf_time = uf.time();\n\n    vc<int> IL,\
     \ IR;\n    int mid = (begin + end) / 2;\n    // \u533A\u9593\u3092\u5B8C\u5168\
@@ -317,7 +319,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/add_remove_query.test.cpp
   requiredBy: []
-  timestamp: '2022-10-21 19:43:05+09:00'
+  timestamp: '2022-11-23 08:10:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/add_remove_query.test.cpp
