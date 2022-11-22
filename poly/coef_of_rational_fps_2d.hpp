@@ -1,3 +1,4 @@
+#include "poly/convolution.hpp"
 
 /*
 [x^N] F(x,y)/G(x,y) の計算。結果は y の多項式。
