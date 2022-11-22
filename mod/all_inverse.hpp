@@ -1,3 +1,4 @@
+#pragma once
 template <typename mint>
 vc<mint> all_inverse(vc<mint>& X) {
   for (auto&& x: X) assert(x != mint(0));
