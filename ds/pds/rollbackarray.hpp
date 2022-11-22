@@ -7,6 +7,11 @@ struct RollbackArray {
   vc<pair<int, T>> history;
 
   RollbackArray(vc<T> x) : N(len(x)), dat(x) {}
+  template <typename F>
+  RollbackArray(int N, F f) : N(N) {
+    dat.reserve(N);
+    FOR(i, N) dat.eb(f(i));
+  }
 
   int time() { return len(history); }
   void rollback(int t) {
