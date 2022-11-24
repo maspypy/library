@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/group/add.hpp
     title: alg/group/add.hpp
   - icon: ':heavy_check_mark:'

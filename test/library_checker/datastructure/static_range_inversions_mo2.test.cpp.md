@@ -2,20 +2,20 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: alg/monoid/min.hpp
-    title: alg/monoid/min.hpp
+    path: alg/group/add.hpp
+    title: alg/group/add.hpp
   - icon: ':heavy_check_mark:'
-    path: ds/disjointsparse.hpp
-    title: ds/disjointsparse.hpp
+    path: ds/fenwick.hpp
+    title: ds/fenwick.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/query/rollback_mo.hpp
+    title: ds/query/rollback_mo.hpp
   - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/suffixarray.hpp
-    title: string/suffixarray.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -23,20 +23,20 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/suffixarray
+    PROBLEM: https://judge.yosupo.jp/problem/static_range_inversions_query
     links:
-    - https://judge.yosupo.jp/problem/suffixarray
-  bundledCode: "#line 1 \"test/library_checker/string/suffix_array.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/suffixarray\"\r\n#line 1 \"my_template.hpp\"\
-    \n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n\
-    #include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing\
-    \ pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing\
-    \ u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing\
-    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
-    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://judge.yosupo.jp/problem/static_range_inversions_query
+  bundledCode: "#line 1 \"test/library_checker/datastructure/static_range_inversions_mo2.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_inversions_query\"\
+    \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
+    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
+    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
+    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
+    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -206,123 +206,113 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 4 \"test/library_checker/string/suffix_array.test.cpp\"\
-    \n\r\n#line 2 \"alg/monoid/min.hpp\"\ntemplate <class X>\r\nstruct Monoid_Min\
-    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
-    \ &y) noexcept { return min(x, y); }\r\n  static constexpr X unit() { return numeric_limits<X>::max();\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/disjointsparse.hpp\"\
-    \n\r\ntemplate <class Monoid>\r\nstruct DisjointSparse {\r\n  using X = typename\
-    \ Monoid::value_type;\r\n  using value_type = X;\r\n  int n, log;\r\n  vc<vc<X>>\
-    \ dat;\r\n\r\n  DisjointSparse() {}\r\n  DisjointSparse(vc<X>& A) { build(A);\
-    \ }\r\n\r\n  template <typename F>\r\n  DisjointSparse(int n, F f) {\r\n    vc<X>\
-    \ A(n);\r\n    FOR(i, n) A[i] = f(i);\r\n    build(A);\r\n  }\r\n\r\n  void build(vc<X>&\
-    \ A) {\r\n    n = len(A);\r\n    log = 1;\r\n    while ((1 << log) < n) ++log;\r\
-    \n    dat.assign(log, A);\r\n\r\n    FOR(i, log) {\r\n      auto& v = dat[i];\r\
-    \n      int b = 1 << i;\r\n      for (int m = b; m <= n; m += 2 * b) {\r\n   \
-    \     int L = m - b, R = min(n, m + b);\r\n        FOR3_R(j, L + 1, m) v[j - 1]\
-    \ = Monoid::op(v[j - 1], v[j]);\r\n        FOR3(j, m, R - 1) v[j + 1] = Monoid::op(v[j],\
-    \ v[j + 1]);\r\n      }\r\n    }\r\n  }\r\n\r\n  X prod(int L, int R) {\r\n  \
-    \  if (L == R) return Monoid::unit();\r\n    --R;\r\n    if (L == R) return dat[0][L];\r\
-    \n    int k = 31 - __builtin_clz(L ^ R);\r\n    return Monoid::op(dat[k][L], dat[k][R]);\r\
-    \n  }\r\n\r\n  template <class F>\r\n  int max_right(const F& check, int L) {\r\
-    \n    assert(0 <= L && L <= n && check(Monoid::unit()));\r\n    if (L == n) return\
-    \ n;\r\n    int ok = L, ng = n + 1;\r\n    while (ok + 1 < ng) {\r\n      int\
-    \ k = (ok + ng) / 2;\r\n      if (check(prod(L, k))) {\r\n        ok = k;\r\n\
-    \      } else {\r\n        ng = k;\r\n      }\r\n    }\r\n    return ok;\r\n \
-    \ }\r\n\r\n  template <class F>\r\n  int min_left(const F& check, int R) {\r\n\
-    \    assert(0 <= R && R <= n && check(Monoid::unit()));\r\n    if (R == 0) return\
-    \ 0;\r\n    int ok = R, ng = -1;\r\n    while (ng + 1 < ok) {\r\n      int k =\
-    \ (ok + ng) / 2;\r\n      if (check(prod(k, R))) {\r\n        ok = k;\r\n    \
-    \  } else {\r\n        ng = k;\r\n      }\r\n    }\r\n    return ok;\r\n  }\r\n\
-    \r\n  void debug() {\r\n    print(\"disjoint sparse table\");\r\n    FOR(i, log)\
-    \ print(dat[i]);\r\n  }\r\n};\n#line 3 \"string/suffixarray.hpp\"\n\n// \u8F9E\
-    \u66F8\u9806 i \u756A\u76EE\u306E suffix \u304C j \u6587\u5B57\u76EE\u59CB\u307E\
-    \u308A\u3067\u3042\u308B\u3068\u304D\u3001\n// SA[i] = j, ISA[j] = i\nstruct SuffixArray\
-    \ {\n  vector<int> SA;\n  vector<int> ISA;\n  vector<int> LCP;\n  bool build_ds;\n\
-    \  DisjointSparse<Monoid_Min<int>> seg;\n\n  SuffixArray(string& s) : build_ds(0)\
-    \ {\n    char first = 127, last = 0;\n    for (auto&& c: s) {\n      chmin(first,\
-    \ c);\n      chmax(last, c);\n    }\n    SA = calc_suffix_array(s, first, last);\n\
-    \    calc_LCP(s);\n  }\n\n  SuffixArray(vector<int>& s) : build_ds(0) {\n    SA\
-    \ = calc_suffix_array(s);\n    calc_LCP(s);\n  }\n\n  // S[i:], S[j:] \u306E lcp\
-    \ \u3092\u6C42\u3081\u308B\n  int lcp(int i, int j) {\n    int n = len(SA);\n\
-    \    if (i == j) return n - i;\n    if (!build_ds) {\n      build_ds = 1;\n  \
-    \    seg.build(LCP);\n    }\n    i = ISA[i], j = ISA[j];\n    if (i > j) swap(i,\
-    \ j);\n    return seg.prod(i, j);\n  }\n\nprivate:\n  void induced_sort(const\
-    \ std::vector<int>& vect, int val_range,\n                    std::vector<int>&\
-    \ SA, const std::vector<bool>& sl,\n                    const std::vector<int>&\
-    \ lms_idx) {\n    std::vector<int> l(val_range, 0), r(val_range, 0);\n    for\
-    \ (int c: vect) {\n      if (c + 1 < val_range) ++l[c + 1];\n      ++r[c];\n \
-    \   }\n    std::partial_sum(l.begin(), l.end(), l.begin());\n    std::partial_sum(r.begin(),\
-    \ r.end(), r.begin());\n    std::fill(SA.begin(), SA.end(), -1);\n    for (int\
-    \ i = (int)lms_idx.size() - 1; i >= 0; --i)\n      SA[--r[vect[lms_idx[i]]]] =\
-    \ lms_idx[i];\n    for (int i: SA)\n      if (i >= 1 && sl[i - 1]) SA[l[vect[i\
-    \ - 1]]++] = i - 1;\n    std::fill(r.begin(), r.end(), 0);\n    for (int c: vect)\
-    \ ++r[c];\n    std::partial_sum(r.begin(), r.end(), r.begin());\n    for (int\
-    \ k = (int)SA.size() - 1, i = SA[k]; k >= 1; --k, i = SA[k])\n      if (i >= 1\
-    \ && !sl[i - 1]) { SA[--r[vect[i - 1]]] = i - 1; }\n  }\n\n  std::vector<int>\
-    \ SA_IS(const std::vector<int>& vect, int val_range) {\n    const int n = vect.size();\n\
-    \    std::vector<int> SA(n), lms_idx;\n    std::vector<bool> sl(n);\n    sl[n\
-    \ - 1] = false;\n    for (int i = n - 2; i >= 0; --i) {\n      sl[i] = (vect[i]\
-    \ > vect[i + 1] || (vect[i] == vect[i + 1] && sl[i + 1]));\n      if (sl[i] &&\
-    \ !sl[i + 1]) lms_idx.push_back(i + 1);\n    }\n    std::reverse(lms_idx.begin(),\
-    \ lms_idx.end());\n    induced_sort(vect, val_range, SA, sl, lms_idx);\n    std::vector<int>\
-    \ new_lms_idx(lms_idx.size()), lms_vec(lms_idx.size());\n    for (int i = 0, k\
-    \ = 0; i < n; ++i)\n      if (!sl[SA[i]] && SA[i] >= 1 && sl[SA[i] - 1]) {\n \
-    \       new_lms_idx[k++] = SA[i];\n      }\n    int cur = 0;\n    SA[n - 1] =\
-    \ cur;\n    for (size_t k = 1; k < new_lms_idx.size(); ++k) {\n      int i = new_lms_idx[k\
-    \ - 1], j = new_lms_idx[k];\n      if (vect[i] != vect[j]) {\n        SA[j] =\
-    \ ++cur;\n        continue;\n      }\n      bool flag = false;\n      for (int\
-    \ a = i + 1, b = j + 1;; ++a, ++b) {\n        if (vect[a] != vect[b]) {\n    \
-    \      flag = true;\n          break;\n        }\n        if ((!sl[a] && sl[a\
-    \ - 1]) || (!sl[b] && sl[b - 1])) {\n          flag = !((!sl[a] && sl[a - 1])\
-    \ && (!sl[b] && sl[b - 1]));\n          break;\n        }\n      }\n      SA[j]\
-    \ = (flag ? ++cur : cur);\n    }\n    for (size_t i = 0; i < lms_idx.size(); ++i)\
-    \ lms_vec[i] = SA[lms_idx[i]];\n    if (cur + 1 < (int)lms_idx.size()) {\n   \
-    \   auto lms_SA = SA_IS(lms_vec, cur + 1);\n      for (size_t i = 0; i < lms_idx.size();\
-    \ ++i) {\n        new_lms_idx[i] = lms_idx[lms_SA[i]];\n      }\n    }\n    induced_sort(vect,\
-    \ val_range, SA, sl, new_lms_idx);\n    return SA;\n  }\n\n  std::vector<int>\
-    \ calc_suffix_array(const std::string& s,\n                                  \
-    \   const char first = 'a',\n                                     const char last\
-    \ = 'z') {\n    std::vector<int> vect(s.size() + 1);\n    std::copy(std::begin(s),\
-    \ std::end(s), std::begin(vect));\n    for (auto& x: vect) x -= (int)first - 1;\n\
-    \    vect.back() = 0;\n    auto ret = SA_IS(vect, (int)last - (int)first + 2);\n\
-    \    ret.erase(ret.begin());\n    return ret;\n  }\n\n  std::vector<int> calc_suffix_array(const\
-    \ vector<int>& s) {\n    vector<int> ss = s;\n    sort(ss.begin(), ss.end());\n\
-    \    ss.erase(unique(ss.begin(), ss.end()), ss.end());\n\n    std::vector<int>\
-    \ vect(s.size() + 1);\n    std::copy(std::begin(s), std::end(s), std::begin(vect));\n\
-    \    for (auto& x: vect)\n      x = lower_bound(ss.begin(), ss.end(), x) - ss.begin()\
-    \ + 1;\n    vect.back() = 0;\n    auto ret = SA_IS(vect, *max_element(vect.begin(),\
-    \ vect.end()) + 2);\n    ret.erase(ret.begin());\n    return ret;\n  }\n\n  template\
-    \ <typename STRING>\n  void calc_LCP(const STRING& s) {\n    int n = s.size(),\
-    \ k = 0;\n    ISA.resize(n);\n    LCP.resize(n);\n    for (int i = 0; i < n; i++)\
-    \ ISA[SA[i]] = i;\n    for (int i = 0; i < n; i++, k ? k-- : 0) {\n      if (ISA[i]\
-    \ == n - 1) {\n        k = 0;\n        continue;\n      }\n      int j = SA[ISA[i]\
-    \ + 1];\n      while (i + k < n && j + k < n && s[i + k] == s[j + k]) k++;\n \
-    \     LCP[ISA[i]] = k;\n    }\n    LCP.resize(n - 1);\n  }\n};\n#line 6 \"test/library_checker/string/suffix_array.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  STR(S);\r\n  SuffixArray sa(S);\r\n  print(sa.SA);\r\
-    \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/suffixarray\"\r\n#include\
-    \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"string/suffixarray.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  STR(S);\r\n  SuffixArray sa(S);\r\n  print(sa.SA);\r\
-    \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ { yes(!t); }\r\n#line 4 \"test/library_checker/datastructure/static_range_inversions_mo2.test.cpp\"\
+    \n\n#line 2 \"alg/group/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Group_Add\
+    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
+    \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
+    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"ds/fenwick.hpp\"\
+    \n\ntemplate <typename AbelGroup>\nstruct FenwickTree {\n  using E = typename\
+    \ AbelGroup::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree(int\
+    \ n = 0) : n(n) {\n    assert(AbelGroup::commute);\n    reset(n);\n  }\n  FenwickTree(const\
+    \ vector<E>& v) {\n    assert(AbelGroup::commute);\n    build(v);\n  }\n\n  void\
+    \ build(const vc<E>& v) {\n    n = len(v);\n    total = AbelGroup::unit();\n \
+    \   for (int i = 0; i < n; ++i) total = AbelGroup::op(total, v[i]);\n    dat =\
+    \ v;\n    for (int i = 1; i <= n; ++i) {\n      int j = i + (i & -i);\n      if\
+    \ (j <= n) dat[j - 1] = AbelGroup::op(dat[i - 1], dat[j - 1]);\n    }\n  }\n\n\
+    \  void reset(int sz = 0) {\n    if (sz) n = sz;\n    total = AbelGroup::unit();\n\
+    \    dat.assign(n, AbelGroup::unit());\n  }\n\n  E prod(int k) {\n    E ret =\
+    \ AbelGroup::unit();\n    for (; k > 0; k -= k & -k) ret = AbelGroup::op(ret,\
+    \ dat[k - 1]);\n    return ret;\n  }\n\n  E prod(int L, int R) {\n    E pos =\
+    \ AbelGroup::unit();\n    while (L < R) {\n      pos = AbelGroup::op(pos, dat[R\
+    \ - 1]);\n      R -= R & -R;\n    }\n    E neg = AbelGroup::unit();\n    while\
+    \ (R < L) {\n      neg = AbelGroup::op(neg, dat[L - 1]);\n      L -= L & -L;\n\
+    \    }\n    return AbelGroup::op(pos, AbelGroup::inverse(neg));\n  }\n\n  E prod_all()\
+    \ { return total; }\n\n  E sum(int k) { return prod(k); }\n\n  E sum(int L, int\
+    \ R) { return prod(L, R); }\n\n  E sum_all() { return total; }\n\n  void multiply(int\
+    \ k, E x) {\n    total = AbelGroup::op(total, x);\n    for (++k; k <= n; k +=\
+    \ k & -k) dat[k - 1] = AbelGroup::op(dat[k - 1], x);\n  }\n\n  void add(int k,\
+    \ E x) { multiply(k, x); }\n\n  template <class F>\n  int max_right(F& check)\
+    \ {\n    assert(check(E(0)));\n    ll i = 0;\n    E s = AbelGroup::unit();\n \
+    \   int k = 1;\n    int N = dat.size() + 1;\n    while (2 * k < N) k *= 2;\n \
+    \   while (k) {\n      if (i + k < N && check(AbelGroup::op(s, dat[i + k - 1])))\
+    \ {\n        i += k;\n        s = AbelGroup::op(s, dat[i - 1]);\n      }\n   \
+    \   k >>= 1;\n    }\n    return i;\n  }\n\n  int find_kth(E k) {\n    auto check\
+    \ = [&](E x) -> bool { return x <= k; };\n    return max_right(check);\n  }\n\n\
+    \  void debug() { print(\"fenwick\", dat); }\n};\n#line 1 \"ds/query/rollback_mo.hpp\"\
+    \n// https://codeforces.com/contest/620/problem/F\nstruct Rollback_Mo {\n  vc<pair<int,\
+    \ int>> LR;\n  void add(int L, int R) { LR.emplace_back(L, R); }\n\n  template\
+    \ <typename AL, typename AR, typename F1, typename F2, typename F3,\n        \
+    \    typename O>\n  void calc(AL add_left, AR add_right, F1 reset, F2 save, F3\
+    \ rollback,\n            O query) {\n    const int Q = len(LR);\n    if (Q ==\
+    \ 0) return;\n    int N = 0;\n    for (auto &&[L, R]: LR) chmax(N, R);\n    const\
+    \ int b_num = sqrt(Q);\n    const int b_sz = ceil(N, b_num);\n    vvc<int> QID((N\
+    \ - 1) / b_sz + 1);\n    // \u5DE6\u7AEF\u306E\u5C5E\u3059\u308B\u30D6\u30ED\u30C3\
+    \u30AF\u3067\u5206\u985E\n    // \u5DE6\u7AEF\u3068\u53F3\u7AEF\u304C\u540C\u3058\
+    \u30D6\u30ED\u30C3\u30AF\u306B\u5C5E\u3059\u308B\u3082\u306E\u306F\u3001\u5148\
+    \u306B\u51E6\u7406\u3057\u3066\u3057\u307E\u3046\u3002\n    auto naive = [&](int\
+    \ qid) -> void {\n      save();\n      auto [L, R] = LR[qid];\n      FOR(i, L,\
+    \ R) add_right(i);\n      query(qid);\n      rollback();\n    };\n\n    FOR(qid,\
+    \ Q) {\n      auto [L, R] = LR[qid];\n      int iL = L / b_sz, iR = R / b_sz;\n\
+    \      if (iL == iR) {\n        naive(qid);\n        continue;\n      }\n    \
+    \  QID[iL].eb(qid);\n    }\n\n    FOR(iL, len(QID)) {\n      auto &I = QID[iL];\n\
+    \      if (I.empty()) continue;\n      sort(all(I),\n           [&](auto &a, auto\
+    \ &b) -> bool { return LR[a].se < LR[b].se; });\n      int LMAX = 0;\n      for\
+    \ (auto &&qid: I) {\n        auto [L, R] = LR[qid];\n        chmax(LMAX, L);\n\
+    \      }\n      reset();\n      int l = LMAX, r = LMAX;\n      for (auto &&qid:\
+    \ I) {\n        auto [L, R] = LR[qid];\n        while (r < R) add_right(r++);\n\
+    \        save();\n        while (L < l) add_left(--l);\n        query(qid);\n\
+    \        rollback();\n        l = LMAX;\n      }\n    }\n  }\n};\n#line 7 \"test/library_checker/datastructure/static_range_inversions_mo2.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  vi key = A;\n  UNIQUE(key);\n\
+    \n  for (auto&& x: A) x = LB(key, x);\n  ll K = len(key);\n  FenwickTree<Group_Add<int>>\
+    \ bit(K);\n\n  Rollback_Mo mo;\n  vi ANS(Q);\n  FOR(Q) {\n    LL(L, R);\n    mo.add(L,\
+    \ R);\n  }\n\n  ll inv = 0;\n  ll tinv = 0;\n  ll t = 0;\n  vc<int> history;\n\
+    \  auto add_l = [&](int i) -> void {\n    int x = A[i];\n    inv += bit.sum(x);\n\
+    \    bit.add(x, +1);\n    history.eb(x);\n  };\n  auto add_r = [&](int i) -> void\
+    \ {\n    int x = A[i];\n    inv += bit.sum_all() - bit.sum(x + 1);\n    bit.add(x,\
+    \ +1);\n    history.eb(x);\n  };\n  auto rb = [&](int t) -> void {\n    while\
+    \ (len(history) > t) { bit.add(pick(history), -1); }\n  };\n  auto reset = [&]()\
+    \ -> void {\n    rb(0);\n    inv = 0;\n  };\n  auto save = [&]() -> void {\n \
+    \   t = len(history);\n    tinv = inv;\n  };\n  auto rollback = [&]() -> void\
+    \ {\n    rb(t);\n    inv = tinv;\n  };\n  auto calc = [&](int i) -> void { ANS[i]\
+    \ = inv; };\n  mo.calc(add_l, add_r, reset, save, rollback, calc);\n  for (auto&&\
+    \ x: ANS) print(x);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_inversions_query\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/fenwick.hpp\"\
+    \n#include \"ds/query/rollback_mo.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll,\
+    \ A, N);\n  vi key = A;\n  UNIQUE(key);\n\n  for (auto&& x: A) x = LB(key, x);\n\
+    \  ll K = len(key);\n  FenwickTree<Group_Add<int>> bit(K);\n\n  Rollback_Mo mo;\n\
+    \  vi ANS(Q);\n  FOR(Q) {\n    LL(L, R);\n    mo.add(L, R);\n  }\n\n  ll inv =\
+    \ 0;\n  ll tinv = 0;\n  ll t = 0;\n  vc<int> history;\n  auto add_l = [&](int\
+    \ i) -> void {\n    int x = A[i];\n    inv += bit.sum(x);\n    bit.add(x, +1);\n\
+    \    history.eb(x);\n  };\n  auto add_r = [&](int i) -> void {\n    int x = A[i];\n\
+    \    inv += bit.sum_all() - bit.sum(x + 1);\n    bit.add(x, +1);\n    history.eb(x);\n\
+    \  };\n  auto rb = [&](int t) -> void {\n    while (len(history) > t) { bit.add(pick(history),\
+    \ -1); }\n  };\n  auto reset = [&]() -> void {\n    rb(0);\n    inv = 0;\n  };\n\
+    \  auto save = [&]() -> void {\n    t = len(history);\n    tinv = inv;\n  };\n\
+    \  auto rollback = [&]() -> void {\n    rb(t);\n    inv = tinv;\n  };\n  auto\
+    \ calc = [&](int i) -> void { ANS[i] = inv; };\n  mo.calc(add_l, add_r, reset,\
+    \ save, rollback, calc);\n  for (auto&& x: ANS) print(x);\n}\n\nsigned main()\
+    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  solve();\n\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - string/suffixarray.hpp
-  - alg/monoid/min.hpp
-  - ds/disjointsparse.hpp
+  - ds/fenwick.hpp
+  - alg/group/add.hpp
+  - ds/query/rollback_mo.hpp
   isVerificationFile: true
-  path: test/library_checker/string/suffix_array.test.cpp
+  path: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   requiredBy: []
-  timestamp: '2022-10-21 17:08:40+09:00'
+  timestamp: '2022-11-24 17:32:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library_checker/string/suffix_array.test.cpp
+documentation_of: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/string/suffix_array.test.cpp
-- /verify/test/library_checker/string/suffix_array.test.cpp.html
-title: test/library_checker/string/suffix_array.test.cpp
+- /verify/test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
+- /verify/test/library_checker/datastructure/static_range_inversions_mo2.test.cpp.html
+title: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
 ---

@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: alg/group
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/group/add.hpp
       title: alg/group/add.hpp
     - icon: ':heavy_check_mark:'
@@ -76,7 +76,7 @@ data:
     - icon: ':warning:'
       path: alg/lazy/maxidx_add.hpp
       title: alg/lazy/maxidx_add.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy/min_add.hpp
       title: alg/lazy/min_add.hpp
     - icon: ':warning:'
@@ -126,7 +126,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/max_xplusa_b.hpp
       title: alg/monoid/max_xplusa_b.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/min.hpp
       title: alg/monoid/min.hpp
     - icon: ':heavy_check_mark:'
@@ -218,7 +218,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwick.hpp
       title: ds/fenwick.hpp
     - icon: ':heavy_check_mark:'
@@ -248,7 +248,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/larsch.hpp
       title: ds/larsch.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/lazysegtree.hpp
       title: ds/lazysegtree.hpp
     - icon: ':heavy_check_mark:'
@@ -356,7 +356,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/query/divide_conquer_range_query.hpp
       title: ds/query/divide_conquer_range_query.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/query/mo.hpp
       title: ds/query/mo.hpp
     - icon: ':warning:'
@@ -389,7 +389,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/query/rectangleunion.hpp
       title: ds/query/rectangleunion.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/query/rollback_mo.hpp
       title: ds/query/rollback_mo.hpp
     - icon: ':heavy_check_mark:'
@@ -853,7 +853,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -950,7 +950,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/integer_kth_root.hpp
       title: other/integer_kth_root.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -1700,6 +1700,9 @@ data:
       path: test/library_checker/datastructure/sort_segtree_1.test.cpp
       title: test/library_checker/datastructure/sort_segtree_1.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
+      title: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/static_range_sum.test.cpp
       title: test/library_checker/datastructure/static_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1708,7 +1711,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
       title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
       title: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2304,7 +2307,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1269.test.cpp
       title: test/yukicoder/1269.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1270.test.cpp
       title: test/yukicoder/1270.test.cpp
     - icon: ':heavy_check_mark:'
