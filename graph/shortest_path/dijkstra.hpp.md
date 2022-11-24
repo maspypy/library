@@ -8,6 +8,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/mincostcycle.hpp
     title: graph/mincostcycle.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/shortest_path/K_shortest_walk.hpp
+    title: graph/shortest_path/K_shortest_walk.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/0275.test.cpp
@@ -21,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/arc151_e.test.cpp
     title: test/atcoder/arc151_e.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/K_shortest_walk.test.cpp
+    title: test/library_checker/graph/K_shortest_walk.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/shortest_path.test.cpp
     title: test/library_checker/graph/shortest_path.test.cpp
@@ -123,10 +129,12 @@ data:
   path: graph/shortest_path/dijkstra.hpp
   requiredBy:
   - graph/mincostcycle.hpp
+  - graph/shortest_path/K_shortest_walk.hpp
   timestamp: '2022-10-21 17:08:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/graph/shortest_path.test.cpp
+  - test/library_checker/graph/K_shortest_walk.test.cpp
   - test/aoj/2251_2.test.cpp
   - test/aoj/2251_1.test.cpp
   - test/aoj/0275.test.cpp

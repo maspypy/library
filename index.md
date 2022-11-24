@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: alg/group
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/group/add.hpp
       title: alg/group/add.hpp
     - icon: ':heavy_check_mark:'
@@ -76,7 +76,7 @@ data:
     - icon: ':warning:'
       path: alg/lazy/maxidx_add.hpp
       title: alg/lazy/maxidx_add.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/lazy/min_add.hpp
       title: alg/lazy/min_add.hpp
     - icon: ':warning:'
@@ -126,7 +126,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/max_xplusa_b.hpp
       title: alg/monoid/max_xplusa_b.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/min.hpp
       title: alg/monoid/min.hpp
     - icon: ':heavy_check_mark:'
@@ -218,7 +218,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/fenwick.hpp
       title: ds/fenwick.hpp
     - icon: ':heavy_check_mark:'
@@ -248,7 +248,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/larsch.hpp
       title: ds/larsch.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/lazysegtree.hpp
       title: ds/lazysegtree.hpp
     - icon: ':heavy_check_mark:'
@@ -318,6 +318,9 @@ data:
     - icon: ':warning:'
       path: ds/pds/persistent_dynamic_lichao.hpp
       title: ds/pds/persistent_dynamic_lichao.hpp
+    - icon: ':heavy_check_mark:'
+      path: ds/pds/persistent_meldable_heap.hpp
+      title: ds/pds/persistent_meldable_heap.hpp
     - icon: ':warning:'
       path: ds/pds/persistent_rbst.hpp
       title: ds/pds/persistent_rbst.hpp
@@ -353,7 +356,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/query/divide_conquer_range_query.hpp
       title: ds/query/divide_conquer_range_query.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/query/mo.hpp
       title: ds/query/mo.hpp
     - icon: ':warning:'
@@ -386,6 +389,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/query/rectangleunion.hpp
       title: ds/query/rectangleunion.hpp
+    - icon: ':warning:'
+      path: ds/query/rollback_mo.hpp
+      title: ds/query/rollback_mo.hpp
     - icon: ':heavy_check_mark:'
       path: ds/query/uniqueproductquery.hpp
       title: ds/query/uniqueproductquery.hpp
@@ -670,6 +676,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest_path/K_shortest_path.hpp
       title: graph/shortest_path/K_shortest_path.hpp
+    - icon: ':heavy_check_mark:'
+      path: graph/shortest_path/K_shortest_walk.hpp
+      title: graph/shortest_path/K_shortest_walk.hpp
     - icon: ':heavy_check_mark:'
       path: graph/shortest_path/bellmanford.hpp
       title: graph/shortest_path/bellmanford.hpp
@@ -1699,7 +1708,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
       title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
       title: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1748,6 +1757,9 @@ data:
       title: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - name: test/library_checker/graph
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/graph/K_shortest_walk.test.cpp
+      title: test/library_checker/graph/K_shortest_walk.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/assignment.test.cpp
       title: test/library_checker/graph/assignment.test.cpp
@@ -2292,7 +2304,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1269.test.cpp
       title: test/yukicoder/1269.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1270.test.cpp
       title: test/yukicoder/1270.test.cpp
     - icon: ':heavy_check_mark:'

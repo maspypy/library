@@ -8,7 +8,13 @@ data:
   - icon: ':warning:'
     path: game/graph_game.hpp
     title: game/graph_game.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/shortest_path/K_shortest_walk.hpp
+    title: graph/shortest_path/K_shortest_walk.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/K_shortest_walk.test.cpp
+    title: test/library_checker/graph/K_shortest_walk.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1601.test.cpp
     title: test/yukicoder/1601.test.cpp
@@ -75,10 +81,12 @@ data:
   isVerificationFile: false
   path: graph/reverse_graph.hpp
   requiredBy:
+  - graph/shortest_path/K_shortest_walk.hpp
   - game/graph_game.hpp
   timestamp: '2022-10-06 22:48:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/library_checker/graph/K_shortest_walk.test.cpp
   - test/yukicoder/1601.test.cpp
 documentation_of: graph/reverse_graph.hpp
 layout: document

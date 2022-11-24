@@ -108,6 +108,9 @@ data:
     path: graph/shortest_path/K_shortest_path.hpp
     title: graph/shortest_path/K_shortest_path.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/shortest_path/K_shortest_walk.hpp
+    title: graph/shortest_path/K_shortest_walk.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/bellmanford.hpp
     title: graph/shortest_path/bellmanford.hpp
   - icon: ':heavy_check_mark:'
@@ -237,6 +240,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/K_shortest_walk.test.cpp
+    title: test/library_checker/graph/K_shortest_walk.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/biconnected_component.test.cpp
     title: test/library_checker/graph/biconnected_component.test.cpp
@@ -580,6 +586,7 @@ data:
   - graph/shortest_path/warshall_floyd.hpp
   - graph/shortest_path/dijkstra.hpp
   - graph/shortest_path/dial.hpp
+  - graph/shortest_path/K_shortest_walk.hpp
   - graph/shortest_path/bfs01.hpp
   - graph/shortest_path/bellmanford.hpp
   - graph/minimum_spanning_tree.hpp
@@ -611,6 +618,7 @@ data:
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/verted_add_contour_sum.test.cpp
   - test/library_checker/graph/enumerate_triangles.test.cpp
+  - test/library_checker/graph/K_shortest_walk.test.cpp
   - test/library_checker/graph/enumerate_cliques.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
   - test/library_checker/graph/cycle_detection.test.cpp

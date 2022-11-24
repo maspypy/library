@@ -1,15 +1,21 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: alg/group/add.hpp
-    title: alg/group/add.hpp
-  - icon: ':question:'
-    path: ds/fenwick.hpp
-    title: ds/fenwick.hpp
   - icon: ':heavy_check_mark:'
-    path: ds/waveletmatrix.hpp
-    title: ds/waveletmatrix.hpp
+    path: ds/pds/persistent_meldable_heap.hpp
+    title: ds/pds/persistent_meldable_heap.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/base.hpp
+    title: graph/base.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/reverse_graph.hpp
+    title: graph/reverse_graph.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/shortest_path/K_shortest_walk.hpp
+    title: graph/shortest_path/K_shortest_walk.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/shortest_path/dijkstra.hpp
+    title: graph/shortest_path/dijkstra.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -23,19 +29,20 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/924
+    PROBLEM: https://judge.yosupo.jp/problem/k_shortest_walk
     links:
-    - https://yukicoder.me/problems/no/924
-  bundledCode: "#line 1 \"test/yukicoder/924.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/924\"\
-    \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
-    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
-    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
-    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
-    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://judge.yosupo.jp/problem/k_shortest_walk
+  bundledCode: "#line 1 \"test/library_checker/graph/K_shortest_walk.test.cpp\"\n\
+    #define PROBLEM \"https://judge.yosupo.jp/problem/k_shortest_walk\"\n#line 1 \"\
+    my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
+    )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
+    using pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\n\
+    using u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\n\
+    using vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate\
+    \ <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -205,138 +212,141 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"alg/group/add.hpp\"\n\r\ntemplate <typename E>\r\n\
-    struct Group_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/waveletmatrix.hpp\"\
-    \n\r\n// Wavelet Matrix \u4E0A\u3067\u3055\u3089\u306B\u7D2F\u7A4D\u548C\u3092\
-    \u7BA1\u7406\u3057\u3066\u3001\r\n// \u77E9\u5F62\u548C\u304C\u3068\u308C\u308B\
-    \u3088\u3046\u306B\u3057\u305F\u3082\u306E\r\ntemplate <typename T, bool SUM_QUERY\
-    \ = false,\r\n          typename AbelGroup = Group_Add<ll>>\r\nstruct WaveletMatrix\
-    \ {\r\n  struct BitVector {\r\n    vector<u64> buf;\r\n    vector<int> sum;\r\n\
-    \    BitVector(const vector<char>& a = {}) {\r\n      int n = a.size();\r\n  \
-    \    buf.assign((n + 63) >> 6, 0);\r\n      sum.assign(buf.size() + 1, 0);\r\n\
-    \      FOR(i, n) if (a[i]) {\r\n        buf[i >> 6] |= 1ull << (i & 63);\r\n \
-    \       sum[(i >> 6) + 1]++;\r\n      }\r\n      FOR(i, buf.size()) sum[i + 1]\
-    \ += sum[i];\r\n    }\r\n    int rank(int k, bool f = 1) {\r\n      int ret =\
-    \ sum[k >> 6]\r\n                + __builtin_popcountll(buf[k >> 6] & ((1ull <<\
-    \ (k & 63)) - 1));\r\n      if (!f)\r\n        return k - ret;\r\n      else\r\
-    \n        return ret;\r\n    }\r\n  };\r\n\r\n  int N, lg;\r\n  vector<int> mid;\r\
-    \n  vector<BitVector> bv;\r\n  vector<vector<T>> cumsum;\r\n  vc<T> key;\r\n \
-    \ WaveletMatrix(vector<T>& dat) : N(dat.size()) {\r\n    key = dat;\r\n    UNIQUE(key);\r\
-    \n    vc<int> A(N);\r\n    FOR(i, N) A[i] = LB(key, dat[i]);\r\n    lg = __lg(max(MAX(A),\
-    \ 1)) + 1;\r\n\r\n    mid.resize(lg);\r\n    bv.resize(lg);\r\n    cumsum.resize(lg);\r\
-    \n    for (int d = lg - 1; d >= 0; d--) {\r\n      vector<char> add;\r\n     \
-    \ vector nxt(2, vector<int>());\r\n      for (auto& x: A) {\r\n        add.push_back(x\
-    \ >> d & 1);\r\n        nxt[x >> d & 1].push_back(x);\r\n      }\r\n      mid[d]\
-    \ = (int)nxt[0].size();\r\n      bv[d] = BitVector(add);\r\n      swap(A, nxt[0]);\r\
-    \n      A.insert(A.end(), all(nxt[1]));\r\n      if (SUM_QUERY) {\r\n        vc<T>\
-    \ cs(N + 1);\r\n        cs[0] = AbelGroup::unit();\r\n        FOR(i, N) cs[i +\
-    \ 1] = AbelGroup::op(cs[i], key[A[i]]);\r\n        cumsum[d] = cs;\r\n      }\r\
-    \n    }\r\n  }\r\n\r\n  // [L, R) \u5185\u306B\u3042\u308B [a, b) \u3092\u6570\
-    \u3048\u308B\r\n  int freq(int L, int R, T a, T b) {\r\n    return freq_upper(L,\
-    \ R, b) - freq_upper(L, R, a);\r\n  }\r\n  int freq_upper(int L, int R, T t) {\r\
-    \n    int x = LB(key, t);\r\n    if (x >= (1 << lg)) return R - L;\r\n    int\
-    \ ret = 0;\r\n    for (int h = lg - 1; h >= 0; --h) {\r\n      bool f = (x >>\
-    \ h) & 1;\r\n      if (f) ret += bv[h].rank(R, 0) - bv[h].rank(L, 0);\r\n    \
-    \  L = bv[h].rank(L, f) + (f ? mid[h] : 0);\r\n      R = bv[h].rank(R, f) + (f\
-    \ ? mid[h] : 0);\r\n    }\r\n    return ret;\r\n  }\r\n\r\n  // [L, R) \u306E\u4E2D\
-    \u3067 k>=0 \u756A\u76EE\r\n  T kth(int L, int R, int k) {\r\n    assert(0 <=\
-    \ k && k < R - L);\r\n    int ret = 0;\r\n    for (int h = lg - 1; h >= 0; h--)\
-    \ {\r\n      int l0 = bv[h].rank(L, 0), r0 = bv[h].rank(R, 0);\r\n      if (k\
-    \ < r0 - l0)\r\n        L = l0, R = r0;\r\n      else {\r\n        k -= r0 - l0;\r\
-    \n        ret |= 1 << h;\r\n        L += mid[h] - l0, R += mid[h] - r0;\r\n  \
-    \    }\r\n    }\r\n    return key[ret];\r\n  }\r\n\r\n  // [L, R) \u306E\u4E2D\
-    \u3067\u5C0F\u3055\u3044\u65B9\u304B\u3089 k \u500B\u306E\u7DCF\u548C\r\n  T sum(int\
-    \ L, int R, int k) {\r\n    assert(SUM_QUERY);\r\n    assert(0 <= k && k <= R\
-    \ - L);\r\n    T pos = AbelGroup::unit(), neg = AbelGroup::unit();\r\n    for\
-    \ (int h = lg - 1; h >= 0; h--) {\r\n      int l0 = bv[h].rank(L, 0), r0 = bv[h].rank(R,\
-    \ 0);\r\n      if (k < r0 - l0) {\r\n        L = l0, R = r0;\r\n      } else {\r\
-    \n        k -= r0 - l0;\r\n        pos = AbelGroup::op(pos, cumsum[h][r0]);\r\n\
-    \        neg = AbelGroup::op(neg, cumsum[h][l0]);\r\n        L += mid[h] - l0,\
-    \ R += mid[h] - r0;\r\n      }\r\n    }\r\n    if (k) {\r\n      pos = AbelGroup::op(pos,\
-    \ cumsum[0][L + k]);\r\n      neg = AbelGroup::op(neg, cumsum[0][L]);\r\n    }\r\
-    \n    return AbelGroup::op(pos, AbelGroup::inverse(neg));\r\n  }\r\n};\r\n#line\
-    \ 3 \"ds/fenwick.hpp\"\n\ntemplate <typename AbelGroup>\nstruct FenwickTree {\n\
-    \  using E = typename AbelGroup::value_type;\n  int n;\n  vector<E> dat;\n  E\
-    \ total;\n\n  FenwickTree(int n = 0) : n(n) {\n    assert(AbelGroup::commute);\n\
-    \    reset(n);\n  }\n  FenwickTree(const vector<E>& v) {\n    assert(AbelGroup::commute);\n\
-    \    build(v);\n  }\n\n  void build(const vc<E>& v) {\n    n = len(v);\n    total\
-    \ = AbelGroup::unit();\n    for (int i = 0; i < n; ++i) total = AbelGroup::op(total,\
-    \ v[i]);\n    dat = v;\n    for (int i = 1; i <= n; ++i) {\n      int j = i +\
-    \ (i & -i);\n      if (j <= n) dat[j - 1] = AbelGroup::op(dat[i - 1], dat[j -\
-    \ 1]);\n    }\n  }\n\n  void reset(int sz = 0) {\n    if (sz) n = sz;\n    total\
-    \ = AbelGroup::unit();\n    dat.assign(n, AbelGroup::unit());\n  }\n\n  E prod(int\
-    \ k) {\n    E ret = AbelGroup::unit();\n    for (; k > 0; k -= k & -k) ret = AbelGroup::op(ret,\
-    \ dat[k - 1]);\n    return ret;\n  }\n\n  E prod(int L, int R) {\n    E pos =\
-    \ AbelGroup::unit();\n    while (L < R) {\n      pos = AbelGroup::op(pos, dat[R\
-    \ - 1]);\n      R -= R & -R;\n    }\n    E neg = AbelGroup::unit();\n    while\
-    \ (R < L) {\n      neg = AbelGroup::op(neg, dat[L - 1]);\n      L -= L & -L;\n\
-    \    }\n    return AbelGroup::op(pos, AbelGroup::inverse(neg));\n  }\n\n  E prod_all()\
-    \ { return total; }\n\n  E sum(int k) { return prod(k); }\n\n  E sum(int L, int\
-    \ R) { return prod(L, R); }\n\n  E sum_all() { return total; }\n\n  void multiply(int\
-    \ k, E x) {\n    total = AbelGroup::op(total, x);\n    for (++k; k <= n; k +=\
-    \ k & -k) dat[k - 1] = AbelGroup::op(dat[k - 1], x);\n  }\n\n  void add(int k,\
-    \ E x) { multiply(k, x); }\n\n  template <class F>\n  int max_right(F& check)\
-    \ {\n    assert(check(E(0)));\n    ll i = 0;\n    E s = AbelGroup::unit();\n \
-    \   int k = 1;\n    int N = dat.size() + 1;\n    while (2 * k < N) k *= 2;\n \
-    \   while (k) {\n      if (i + k < N && check(AbelGroup::op(s, dat[i + k - 1])))\
-    \ {\n        i += k;\n        s = AbelGroup::op(s, dat[i - 1]);\n      }\n   \
-    \   k >>= 1;\n    }\n    return i;\n  }\n\n  int find_kth(E k) {\n    auto check\
-    \ = [&](E x) -> bool { return x <= k; };\n    return max_right(check);\n  }\n\n\
-    \  void debug() { print(\"fenwick\", dat); }\n};\n#line 6 \"test/yukicoder/924.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  auto Ac = cumsum<ll>(A);\n\
-    \  vi X = A;\n  UNIQUE(X);\n  for (auto&& a: A) a = LB(X, a);\n  WaveletMatrix<ll>\
-    \ WM(A);\n  VEC(pi, query, Q);\n  for (auto&& [l, r]: query) --l;\n  vc<int> med(Q);\n\
-    \  vi low_sum(Q), low_cnt(Q);\n  FOR(q, Q) {\n    auto [l, r] = query[q];\n  \
-    \  ll n = r - l;\n    med[q] = WM.kth(l, r, n / 2);\n  }\n\n  vvc<int> QID(N);\n\
-    \  FOR(q, Q) QID[med[q]].eb(q);\n\n  vvc<int> AID(N);\n  FOR(i, N) AID[A[i]].eb(i);\n\
-    \n  FenwickTree<Group_Add<ll>> bit_c(N), bit_s(N);\n\n  FOR(x, N) {\n    for (auto&&\
-    \ i: AID[x]) {\n      bit_c.add(i, 1);\n      bit_s.add(i, X[x]);\n    }\n   \
-    \ for (auto&& q: QID[x]) {\n      auto [l, r] = query[q];\n      low_cnt[q] =\
-    \ bit_c.sum(l, r);\n      low_sum[q] = bit_s.sum(l, r);\n    }\n  }\n\n  FOR(q,\
-    \ Q) {\n    auto [l, r] = query[q];\n    ll x = X[med[q]];\n    ll lc = low_cnt[q],\
-    \ ls = low_sum[q];\n    ll hc = r - l - lc;\n    ll hs = Ac[r] - Ac[l] - ls;\n\
-    \    ll ANS = 0;\n    ANS += x * lc - ls;\n    ANS += hs - x * hc;\n    //   \
-    \ print(x, lc, ls, hc, hs);\n    print(ANS);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/924\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"ds/waveletmatrix.hpp\"\n#include \"ds/fenwick.hpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  auto Ac = cumsum<ll>(A);\n\
-    \  vi X = A;\n  UNIQUE(X);\n  for (auto&& a: A) a = LB(X, a);\n  WaveletMatrix<ll>\
-    \ WM(A);\n  VEC(pi, query, Q);\n  for (auto&& [l, r]: query) --l;\n  vc<int> med(Q);\n\
-    \  vi low_sum(Q), low_cnt(Q);\n  FOR(q, Q) {\n    auto [l, r] = query[q];\n  \
-    \  ll n = r - l;\n    med[q] = WM.kth(l, r, n / 2);\n  }\n\n  vvc<int> QID(N);\n\
-    \  FOR(q, Q) QID[med[q]].eb(q);\n\n  vvc<int> AID(N);\n  FOR(i, N) AID[A[i]].eb(i);\n\
-    \n  FenwickTree<Group_Add<ll>> bit_c(N), bit_s(N);\n\n  FOR(x, N) {\n    for (auto&&\
-    \ i: AID[x]) {\n      bit_c.add(i, 1);\n      bit_s.add(i, X[x]);\n    }\n   \
-    \ for (auto&& q: QID[x]) {\n      auto [l, r] = query[q];\n      low_cnt[q] =\
-    \ bit_c.sum(l, r);\n      low_sum[q] = bit_s.sum(l, r);\n    }\n  }\n\n  FOR(q,\
-    \ Q) {\n    auto [l, r] = query[q];\n    ll x = X[med[q]];\n    ll lc = low_cnt[q],\
-    \ ls = low_sum[q];\n    ll hc = r - l - lc;\n    ll hs = Ac[r] - Ac[l] - ls;\n\
-    \    ll ANS = 0;\n    ANS += x * lc - ls;\n    ANS += hs - x * hc;\n    //   \
-    \ print(x, lc, ls, hc, hs);\n    print(ANS);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \ { yes(!t); }\r\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct\
+    \ Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int,\
+    \ bool directed = false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n\
+    \  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n\
+    \  vector<edge_type> csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  bool\
+    \ prepared;\n\n  class OutgoingEdges {\n  public:\n    OutgoingEdges(const Graph*\
+    \ G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const\
+    \ {\n      if (l == r) { return 0; }\n      return &G->csr_edges[l];\n    }\n\n\
+    \    const edge_type* end() const {\n      if (l == r) { return 0; }\n      return\
+    \ &G->csr_edges[r];\n    }\n\n  private:\n    const Graph* G;\n    int l, r;\n\
+    \  };\n\n  bool is_prepared() { return prepared; }\n  constexpr bool is_directed()\
+    \ { return directed; }\n\n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int\
+    \ N) : N(N), M(0), prepared(0) {}\n\n  void resize(int n) { N = n; }\n\n  void\
+    \ add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n   \
+    \ assert(0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto e\
+    \ = edge_type({frm, to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  // wt,\
+    \ off\n  void read_tree(bool wt = false, int off = 1) { read_graph(N - 1, wt,\
+    \ off); }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n    for\
+    \ (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a -= off, b -= off;\n   \
+    \   if (!wt) {\n        add(a, b);\n      } else {\n        T c;\n        read(c);\n\
+    \        add(a, b, c);\n      }\n    }\n    build();\n  }\n\n  void read_parent(int\
+    \ off = 1) {\n    for (int v = 1; v < N; ++v) {\n      INT(p);\n      p -= off;\n\
+    \      add(p, v);\n    }\n    build();\n  }\n\n  void build() {\n    assert(!prepared);\n\
+    \    prepared = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges)\
+    \ {\n      indptr[e.frm + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n  \
+    \  }\n    for (int v = 0; v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto\
+    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
+    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
+    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
+    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
+    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  vc<int> deg_array() {\n\
+    \    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n  }\n\n  pair<vc<int>,\
+    \ vc<int>> deg_array_inout() {\n    if (vc_indeg.empty()) calc_deg_inout();\n\
+    \    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v) {\n    if (vc_deg.empty())\
+    \ calc_deg();\n    return vc_deg[v];\n  }\n\n  int in_deg(int v) {\n    if (vc_indeg.empty())\
+    \ calc_deg_inout();\n    return vc_indeg[v];\n  }\n\n  int out_deg(int v) {\n\
+    \    if (vc_outdeg.empty()) calc_deg_inout();\n    return vc_outdeg[v];\n  }\n\
+    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
+    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
+    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
+    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
+    \    }\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n  \
+    \  vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
+    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
+    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
+    \ }\n  }\n};\n#line 1 \"ds/pds/persistent_meldable_heap.hpp\"\n\ntemplate <typename\
+    \ VAL, int NODES = 5'000'000>\nstruct Persistent_Meldable_Heap {\n  struct Node\
+    \ {\n    Node *l, *r;\n    VAL x;\n    int s;\n  };\n\n  Node *pool;\n  int pid;\n\
+    \n  Persistent_Meldable_Heap() : pid(0) { pool = new Node[NODES]; }\n\n  Node\
+    \ *new_node(const VAL &x) {\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x\
+    \ = x;\n    pool[pid].s = 1;\n    return &(pool[pid++]);\n  }\n\n  Node *copy_node(Node\
+    \ *a) {\n    if (!a) return a;\n    Node *b = new_node(a->x);\n    b->s = a->s;\n\
+    \    b->l = a->l;\n    b->r = a->r;\n    return b;\n  }\n\n  Node *meld(Node *a,\
+    \ Node *b) {\n    a = copy_node(a);\n    b = copy_node(b);\n    if (!a) return\
+    \ b;\n    if (!b) return a;\n    if ((a->x) > (b->x)) swap(a, b);\n    a->r =\
+    \ (a->r ? meld(a->r, b) : b);\n    if (!(a->l) || (a->l->s < a->r->s)) swap(a->l,\
+    \ a->r);\n    a->s = (a->r ? a->r->s : 0) + 1;\n    return a;\n  }\n\n  Node *push(Node\
+    \ *a, VAL x) { return meld(a, new_node(x)); }\n  Node *pop(Node *a) { return meld(a->l,\
+    \ a->r); }\n  VAL top(Node *a) { return a->x; }\n\n  vc<VAL> collect(Node *a)\
+    \ {\n    vc<VAL> A;\n    auto dfs = [&](auto &dfs, Node *a) -> void {\n      if\
+    \ (!a) return;\n      A.eb(a->x);\n      dfs(dfs, a->l);\n      dfs(dfs, a->r);\n\
+    \    };\n    dfs(dfs, a);\n    return A;\n  }\n};\n#line 3 \"graph/shortest_path/dijkstra.hpp\"\
+    \n\ntemplate <typename T, typename Graph>\npair<vc<T>, vc<int>> dijkstra(Graph&\
+    \ G, int v, T INF) {\n  auto N = G.N;\n  vector<T> dist(N, INF);\n  vector<int>\
+    \ par(N, -1);\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>>\
+    \ que;\n\n  dist[v] = 0;\n  que.emplace(0, v);\n  while (!que.empty()) {\n   \
+    \ auto [dv, v] = que.top();\n    que.pop();\n    if (dv > dist[v]) continue;\n\
+    \    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost))\
+    \ {\n        par[e.to] = e.frm;\n        que.emplace(dist[e.to], e.to);\n    \
+    \  }\n    }\n  }\n  return {dist, par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\
+    \u30C8\u3002[dist, par, root]\ntemplate <typename T, typename Graph>\ntuple<vc<T>,\
+    \ vc<int>, vc<int>> dijkstra(Graph& G, vc<int> vs, T INF) {\n  assert(G.is_prepared());\n\
+    \  int N = G.N;\n  vc<ll> dist(N, INF);\n  vc<int> par(N, -1);\n  vc<int> root(N,\
+    \ -1);\n\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>>\
+    \ que;\n\n  for (auto&& v: vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.emplace(T(0),\
+    \ v);\n  }\n\n  while (!que.empty()) {\n    auto [dv, v] = que.top();\n    que.pop();\n\
+    \    if (dv > dist[v]) continue;\n    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to],\
+    \ dist[e.frm] + e.cost)) {\n        root[e.to] = root[e.frm];\n        par[e.to]\
+    \ = e.frm;\n        que.push(mp(dist[e.to], e.to));\n      }\n    }\n  }\n  return\
+    \ {dist, par, root};\n}\n#line 2 \"graph/reverse_graph.hpp\"\n\r\ntemplate <typename\
+    \ T>\r\nGraph<T, 1> reverse_graph(Graph<T, 1>& G) {\r\n  assert(G.is_directed());\r\
+    \n  Graph<T, 1> G1(G.N);\r\n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost,\
+    \ e.id); }\r\n  G1.build();\r\n  return G1;\r\n}\r\n#line 4 \"graph/shortest_path/K_shortest_walk.hpp\"\
+    \n\n// INF \u57CB\u3081\u3057\u3066\u5FC5\u305A\u9577\u3055 K \u306B\u3059\u308B\
+    \ntemplate <typename T, typename GT>\nvc<T> K_shortest_walk(GT &G, int s, int\
+    \ t, int K, T INF) {\n  assert(G.is_directed());\n  int N = G.N;\n  auto RG =\
+    \ reverse_graph(G);\n  auto [dist, par] = dijkstra<ll, decltype(RG)>(RG, t, INF);\n\
+    \  if (dist[s] == INF) { return vc<T>(K, INF); }\n\n  using P = pair<T, int>;\n\
+    \  Persistent_Meldable_Heap<P> X;\n  using Node = typename Persistent_Meldable_Heap<P>::Node;\n\
+    \  vc<Node *> nodes(N, nullptr);\n\n  vc<bool> vis(N);\n  vc<int> st = {t};\n\
+    \  vis[t] = 1;\n  while (len(st)) {\n    int v = pick(st);\n    bool done = 0;\n\
+    \    for (auto &&e: G[v]) {\n      if (dist[e.to] == INF) continue;\n      if\
+    \ (!done && par[v] == e.to && dist[v] == dist[e.to] + e.cost) {\n        done\
+    \ = 1;\n        continue;\n      }\n      T cost = -dist[v] + e.cost + dist[e.to];\n\
+    \      nodes[v] = X.push(nodes[v], {cost, e.to});\n    }\n    for (auto &&e: RG[v])\
+    \ {\n      if (vis[e.to]) continue;\n      if (par[e.to] == v) {\n        nodes[e.to]\
+    \ = X.meld(nodes[e.to], nodes[v]);\n        vis[e.to] = 1;\n        st.eb(e.to);\n\
+    \      }\n    }\n  }\n\n  ll base = dist[s];\n  vc<ll> ANS = {base};\n  if (nodes[s])\
+    \ {\n    using PAIR = pair<ll, Node *>;\n    auto comp = [](auto a, auto b) {\
+    \ return a.fi > b.fi; };\n    priority_queue<PAIR, vc<PAIR>, decltype(comp)> que(comp);\n\
+    \    que.emplace(base + X.top(nodes[s]).fi, nodes[s]);\n    while (len(ANS) <\
+    \ K && len(que)) {\n      auto [d, n] = que.top();\n      que.pop();\n      ANS.eb(d);\n\
+    \      if (n->l) que.emplace(d + (n->l->x.fi) - (n->x.fi), n->l);\n      if (n->r)\
+    \ que.emplace(d + (n->r->x.fi) - (n->x.fi), n->r);\n      Node *m = nodes[n->x.se];\n\
+    \      if (m) { que.emplace(d + m->x.fi, m); }\n    }\n  }\n  while (len(ANS)\
+    \ < K) ANS.eb(INF);\n  return ANS;\n}\n#line 6 \"test/library_checker/graph/K_shortest_walk.test.cpp\"\
+    \n\nvoid solve() {\n  INT(N, M, s, t, K);\n  Graph<int, 1> G1(N);\n  G1.read_graph(M,\
+    \ 1, 0);\n  const ll INF = 1LL << 60;\n  auto ANS = K_shortest_walk<ll>(G1, s,\
+    \ t, K, INF);\n  for (auto &&x: ANS) {\n    if (x == INF) x = -1;\n    print(x);\n\
+    \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/k_shortest_walk\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/base.hpp\"\n\
+    #include \"graph/shortest_path/K_shortest_walk.hpp\"\n\nvoid solve() {\n  INT(N,\
+    \ M, s, t, K);\n  Graph<int, 1> G1(N);\n  G1.read_graph(M, 1, 0);\n  const ll\
+    \ INF = 1LL << 60;\n  auto ANS = K_shortest_walk<ll>(G1, s, t, K, INF);\n  for\
+    \ (auto &&x: ANS) {\n    if (x == INF) x = -1;\n    print(x);\n  }\n}\n\nsigned\
+    \ main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/waveletmatrix.hpp
-  - alg/group/add.hpp
-  - ds/fenwick.hpp
+  - graph/base.hpp
+  - graph/shortest_path/K_shortest_walk.hpp
+  - ds/pds/persistent_meldable_heap.hpp
+  - graph/shortest_path/dijkstra.hpp
+  - graph/reverse_graph.hpp
   isVerificationFile: true
-  path: test/yukicoder/924.test.cpp
+  path: test/library_checker/graph/K_shortest_walk.test.cpp
   requiredBy: []
-  timestamp: '2022-10-21 17:08:40+09:00'
+  timestamp: '2022-11-24 17:14:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/924.test.cpp
+documentation_of: test/library_checker/graph/K_shortest_walk.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/924.test.cpp
-- /verify/test/yukicoder/924.test.cpp.html
-title: test/yukicoder/924.test.cpp
+- /verify/test/library_checker/graph/K_shortest_walk.test.cpp
+- /verify/test/library_checker/graph/K_shortest_walk.test.cpp.html
+title: test/library_checker/graph/K_shortest_walk.test.cpp
 ---
