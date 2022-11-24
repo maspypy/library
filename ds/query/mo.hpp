@@ -1,9 +1,6 @@
 struct Mo {
-  vector<pair<int, int> > lr;
-
-  void add(int l, int r) { /* [l, r) */
-    lr.emplace_back(l, r);
-  }
+  vc<pair<int, int>> LR;
+  void add(int L, int R) { LR.emplace_back(L, R); }
 
   template <typename AL, typename AR, typename EL, typename ER, typename O>
   void calc(const AL &add_left, const AR &add_right, const EL &erase_left,
