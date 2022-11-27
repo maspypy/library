@@ -1,5 +1,5 @@
 template <typename T = long long>
-struct Group_Xor {
+struct Monoid_Xor {
   using value_type = T;
   using X = value_type;
   static X op(X x, X y) { return x ^ y; }
