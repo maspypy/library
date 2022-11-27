@@ -1,9 +1,9 @@
-#include "alg/group/add.hpp"
+#include "alg/monoid/add.hpp"
 
 // Wavelet Matrix 上でさらに累積和を管理して、
 // 矩形和がとれるようにしたもの
 template <typename T, bool SUM_QUERY = false,
-          typename AbelGroup = Group_Add<ll>>
+          typename AbelGroup = Monoid_Add<ll>>
 struct WaveletMatrix {
   struct BitVector {
     vector<u64> buf;
