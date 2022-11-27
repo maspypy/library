@@ -3,8 +3,8 @@
 
 template <typename E>
 struct Lazy_Add_Mul {
-  using MX = Group_Add<E>;
-  using MA = Group_Mul<E>;
+  using MX = Monoid_Add<E>;
+  using MA = Monoid_Mul<E>;
   using X_structure = MX;
   using A_structure = MA;
   using X = typename MX::value_type;
