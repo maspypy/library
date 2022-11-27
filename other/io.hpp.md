@@ -324,7 +324,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
     title: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -913,6 +913,9 @@ data:
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_lazy.test.cpp
+    title: test/mytest/rbst_lazy.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_test.test.cpp
     title: test/mytest/rbst_test.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1461,7 +1464,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/655.test.cpp
     title: test/yukicoder/655.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/686.test.cpp
     title: test/yukicoder/686.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1491,9 +1494,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include\
@@ -1712,7 +1715,7 @@ data:
   path: other/io.hpp
   requiredBy: []
   timestamp: '2022-08-20 05:21:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1821.test.cpp
   - test/yukicoder/2005.test.cpp
@@ -1909,6 +1912,7 @@ data:
   - test/mytest/cf702_F.test.cpp
   - test/mytest/bell.test.cpp
   - test/mytest/minidx_add.test.cpp
+  - test/mytest/rbst_lazy.test.cpp
   - test/mytest/maxidx_add.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/add_chmin.test.cpp

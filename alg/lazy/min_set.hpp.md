@@ -12,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_F.test.cpp
     title: test/aoj/DSL_2_F.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_lazy.test.cpp
+    title: test/mytest/rbst_lazy.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -45,6 +48,7 @@ data:
   timestamp: '2022-10-21 19:08:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/rbst_lazy.test.cpp
   - test/aoj/DSL_2_F.test.cpp
 documentation_of: alg/lazy/min_set.hpp
 layout: document

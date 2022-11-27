@@ -40,6 +40,9 @@ data:
     path: test/mytest/max_set.test.cpp
     title: test/mytest/max_set.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_lazy.test.cpp
+    title: test/mytest/rbst_lazy.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1548.test.cpp
     title: test/yukicoder/1548.test.cpp
   _isVerificationFailed: false
@@ -70,6 +73,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1548.test.cpp
+  - test/mytest/rbst_lazy.test.cpp
   - test/mytest/cntsummax_set.test.cpp
   - test/mytest/max_set.test.cpp
   - test/mytest/cntsummin_set.test.cpp

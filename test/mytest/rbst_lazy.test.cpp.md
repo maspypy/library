@@ -2,17 +2,26 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: alg/monoid/gcd.hpp
-    title: alg/monoid/gcd.hpp
+    path: alg/lazy/min_set.hpp
+    title: alg/lazy/min_set.hpp
   - icon: ':heavy_check_mark:'
-    path: ds/swag.hpp
-    title: ds/swag.hpp
+    path: alg/monoid/min.hpp
+    title: alg/monoid/min.hpp
+  - icon: ':heavy_check_mark:'
+    path: alg/monoid/set.hpp
+    title: alg/monoid/set.hpp
+  - icon: ':question:'
+    path: ds/bbst/rbst_lazy.hpp
+    title: ds/bbst/rbst_lazy.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/base.hpp
+    title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -20,10 +29,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1036
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://yukicoder.me/problems/no/1036
-  bundledCode: "#line 1 \"test/yukicoder/1036_3.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1036\"\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/mytest/rbst_lazy.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
     \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
     unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
     \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
@@ -202,73 +211,177 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 1 \"ds/swag.hpp\"\ntemplate <class Monoid>\nstruct SWAG\
-    \ {\n  using X = typename Monoid::value_type;\n  using value_type = X;\n  int\
-    \ sz = 0;\n  vc<X> dat;\n  vc<X> cum_l;\n  X cum_r;\n\n  SWAG() : cum_l({Monoid::unit()}),\
-    \ cum_r(Monoid::unit()) {}\n\n  int size() { return sz; }\n\n  void push(X x)\
-    \ {\n    ++sz;\n    cum_r = Monoid::op(cum_r, x);\n    dat.eb(x);\n  }\n\n  void\
-    \ pop() {\n    --sz;\n    cum_l.pop_back();\n    if (len(cum_l) == 0) {\n    \
-    \  cum_l = {Monoid::unit()};\n      cum_r = Monoid::unit();\n      while (len(dat)\
-    \ > 1) {\n        cum_l.eb(Monoid::op(dat.back(), cum_l.back()));\n        dat.pop_back();\n\
-    \      }\n      dat.pop_back();\n    }\n  }\n\n  X lprod() { return cum_l.back();\
-    \ }\n  X rprod() { return cum_r; }\n\n  X prod() { return Monoid::op(cum_l.back(),\
-    \ cum_r); }\n\n  void debug() {\n    print(\"swag\");\n    print(\"dat\", dat);\n\
-    \    print(\"cum_l\", cum_l);\n    print(\"cum_r\", cum_r);\n  }\n};\n\n// \u5B9A\
-    \u6570\u500D\u306F\u76EE\u306B\u898B\u3048\u3066\u9045\u304F\u306A\u308B\u306E\
-    \u3067\u3001queue \u3067\u3088\u3044\u3068\u304D\u306F\u4F7F\u308F\u306A\u3044\
-    \ntemplate <class Monoid>\nstruct SWAG_deque {\n  using X = typename Monoid::value_type;\n\
-    \  using value_type = X;\n  int sz;\n  vc<X> dat_l, dat_r;\n  vc<X> cum_l, cum_r;\n\
-    \n  SWAG_deque() : sz(0), cum_l({Monoid::unit()}), cum_r({Monoid::unit()}) {}\n\
-    \n  int size() { return sz; }\n\n  void push_back(X x) {\n    ++sz;\n    dat_r.eb(x);\n\
-    \    cum_r.eb(Monoid::op(cum_r.back(), x));\n  }\n\n  void push_front(X x) {\n\
-    \    ++sz;\n    dat_l.eb(x);\n    cum_l.eb(Monoid::op(x, cum_l.back()));\n  }\n\
-    \n  void push(X x) { push_back(x); }\n\n  void clear() {\n    sz = 0;\n    dat_l.clear(),\
-    \ dat_r.clear();\n    cum_l = {Monoid::unit()}, cum_r = {Monoid::unit()};\n  }\n\
-    \n  void pop_front() {\n    if (sz == 1) return clear();\n    if (dat_l.empty())\
-    \ rebuild();\n    --sz;\n    dat_l.pop_back();\n    cum_l.pop_back();\n  }\n\n\
-    \  void pop_back() {\n    if (sz == 1) return clear();\n    if (dat_r.empty())\
-    \ rebuild();\n    --sz;\n    dat_r.pop_back();\n    cum_r.pop_back();\n  }\n\n\
-    \  void pop() { pop_front(); }\n\n  X lprod() { return cum_l.back(); }\n  X rprod()\
-    \ { return cum_r.back(); }\n  X prod() { return Monoid::op(cum_l.back(), cum_r.back());\
-    \ }\n  X prod_all() { return prod(); }\n\n  void debug() {\n    print(\"swag\"\
-    );\n    print(\"dat_l\", dat_l);\n    print(\"dat_r\", dat_r);\n    print(\"cum_l\"\
-    , cum_l);\n    print(\"cum_r\", cum_r);\n  }\n\nprivate:\n  void rebuild() {\n\
-    \    vc<X> X;\n    FOR_R(i, len(dat_l)) X.eb(dat_l[i]);\n    X.insert(X.end(),\
-    \ all(dat_r));\n    clear();\n    int m = len(X) / 2;\n    FOR_R(i, m) push_front(X[i]);\n\
-    \    FOR(i, m, len(X)) push_back(X[i]);\n    assert(sz == len(X));\n  }\n};\n\
-    #line 1 \"alg/monoid/gcd.hpp\"\ntemplate <typename INT>\nstruct Monoid_Gcd {\n\
-    \  using value_type = INT;\n  using X = value_type;\n  static X op(X x, X y) {\
-    \ return gcd(x, y); }\n  static constexpr X unit() { return 0; }\n  static constexpr\
-    \ bool commute = true;\n};\n#line 6 \"test/yukicoder/1036_3.test.cpp\"\n\nvoid\
-    \ solve() {\n  LL(N);\n  VEC(ll, A, N);\n  SWAG<Monoid_Gcd<ll>> swag;\n  ll R\
-    \ = 0;\n  ll ANS = 0;\n  FOR(L, N) {\n    chmax(R, L);\n    while (R < N && gcd(swag.prod(),\
-    \ A[R]) != 1) swag.push(A[R++]);\n    ANS += N - R;\n    if (len(swag)) swag.pop();\n\
-    \  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1036\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"ds/swag.hpp\"\n#include \"alg/monoid/gcd.hpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  SWAG<Monoid_Gcd<ll>> swag;\n\
-    \  ll R = 0;\n  ll ANS = 0;\n  FOR(L, N) {\n    chmax(R, L);\n    while (R < N\
-    \ && gcd(swag.prod(), A[R]) != 1) swag.push(A[R++]);\n    ANS += N - R;\n    if\
-    \ (len(swag)) swag.pop();\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \ { yes(!t); }\r\n#line 2 \"alg/monoid/min.hpp\"\ntemplate <class X>\r\nstruct\
+    \ Monoid_Min {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x,\
+    \ const X &y) noexcept { return min(x, y); }\r\n  static constexpr X unit() {\
+    \ return numeric_limits<X>::max(); }\r\n  static constexpr bool commute = true;\r\
+    \n};\r\n#line 1 \"alg/monoid/set.hpp\"\ntemplate <typename E, E none_val>\r\n\
+    struct Monoid_Set {\r\n  using value_type = E;\r\n  using X = value_type;\r\n\
+    \  static X op(X x, X y) { return (y == none_val ? x : y); }\r\n  static constexpr\
+    \ X unit() { return none_val; }\r\n  static constexpr bool commute = false;\r\n\
+    };\n#line 3 \"alg/lazy/min_set.hpp\"\n\r\ntemplate <typename E, E none_val>\r\n\
+    struct Lazy_Min_Set {\r\n  using MX = Monoid_Min<E>;\r\n  using MA = Monoid_Set<E,\
+    \ none_val>;\r\n  using X_structure = MX;\r\n  using A_structure = MA;\r\n  using\
+    \ X = typename MX::value_type;\r\n  using A = typename MA::value_type;\r\n  static\
+    \ constexpr X act(const X &x, const A &a) {\r\n    return (a == none_val ? x :\
+    \ a);\r\n  }\r\n};\r\n#line 1 \"ds/bbst/rbst_lazy.hpp\"\n// reverse \u306F\u3068\
+    \u308A\u3042\u3048\u305A\u3001Monoid \u306E\u53EF\u63DB\u6027\u3092\u4EEE\u5B9A\
+    \u3057\u3066\u3044\u308B\uFF01\ntemplate <typename Lazy, int NODES = 1'000'000>\n\
+    struct RBST_Lazy {\n  using Monoid_X = typename Lazy::MX;\n  using Monoid_A =\
+    \ typename Lazy::MA;\n  using X = typename Monoid_X::value_type;\n  using A =\
+    \ typename Monoid_A::value_type;\n\n  struct Node {\n    Node *l, *r;\n    X x,\
+    \ prod;\n    A lazy; // lazy \u306F x, prod \u306B\u53CD\u6620\u6E08\n    u32\
+    \ size;\n    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n\n  RBST_Lazy() : pid(0)\
+    \ { pool = new Node[NODES]; }\n\n  void reset() { pid = 0; }\n\n  Node *new_node(const\
+    \ X &x) {\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x = x;\n  \
+    \  pool[pid].prod = x;\n    pool[pid].lazy = Monoid_A::unit();\n    pool[pid].size\
+    \ = 1;\n    pool[pid].rev = 0;\n    return &(pool[pid++]);\n  }\n\n  Node *new_node(const\
+    \ vc<X> &dat) {\n    auto dfs = [&](auto &dfs, u32 l, u32 r) -> Node * {\n   \
+    \   if (l == r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n\
+    \      u32 m = (l + r) / 2;\n      Node *l_root = dfs(dfs, l, m);\n      Node\
+    \ *r_root = dfs(dfs, m + 1, r);\n      Node *root = new_node(dat[m]);\n      root->l\
+    \ = l_root, root->r = r_root;\n      update(root);\n      return root;\n    };\n\
+    \    return dfs(dfs, 0, len(dat));\n  }\n\n  Node *merge(Node *root, Node *r_root)\
+    \ { return merge_rec(root, r_root); }\n  Node *merge3(Node *a, Node *b, Node *c)\
+    \ { return merge(merge(a, b), c); }\n  pair<Node *, Node *> split(Node *root,\
+    \ u32 k) {\n    if (!root) {\n      assert(k == 0);\n      return {nullptr, nullptr};\n\
+    \    }\n    assert(0 <= k && k <= root->size);\n    return split_rec(root, k);\n\
+    \  }\n  tuple<Node *, Node *, Node *> split3(Node *root, u32 l, u32 r) {\n   \
+    \ Node *nm, *nr;\n    tie(root, nr) = split(root, r);\n    tie(root, nm) = split(root,\
+    \ l);\n    return {root, nm, nr};\n  }\n\n  X prod(Node *root, u32 l, u32 r) {\n\
+    \    if (l == r) return Monoid_X::unit();\n    return prod_rec(root, l, r);\n\
+    \  }\n\n  Node *reverse(Node *root, u32 l, u32 r) {\n    assert(Monoid_X::commute);\n\
+    \    assert(0 <= l && l <= r && r <= root->size);\n    if (r - l <= 1) return\
+    \ root;\n    auto [nl, nm, nr] = split3(root, l, r);\n    nm->rev ^= 1;\n    prop(nm),\
+    \ update(nm);\n    return merge3(nl, nm, nr);\n  }\n\n  Node *apply(Node *root,\
+    \ u32 l, u32 r, const A &a) {\n    assert(0 <= l && l <= r && r <= root->size);\n\
+    \    return apply_rec(root, l, r, a);\n  }\n\n  Node *set(Node *root, u32 k, const\
+    \ X &x) { return set_rec(root, k, x); }\n  Node *multiply(Node *root, u32 k, const\
+    \ X &x) {\n    return multiply_rec(root, k, x);\n  }\n  X get(Node *root, u32\
+    \ k) { return get_rec(root, k); }\n\n  vc<X> get_all(Node *root) {\n    vc<X>\
+    \ res;\n    auto dfs = [&](auto &dfs, Node *root, bool rev, A lazy) -> void {\n\
+    \      if (!root) return;\n      rev ^= root->rev;\n      X me = Lazy::act(root->x,\
+    \ lazy);\n      lazy = Monoid_A::act(root->lazy, lazy);\n      dfs(dfs, (rev ?\
+    \ root->r : root->l), rev, lazy);\n      res.eb(me);\n      dfs(dfs, (rev ? root->l\
+    \ : root->r), rev, lazy);\n    };\n    dfs(dfs, root, 0, Monoid_A::unit());\n\
+    \    return res;\n  }\n\nprivate:\n  inline u32 xor128() {\n    static u32 x =\
+    \ 123456789;\n    static u32 y = 362436069;\n    static u32 z = 521288629;\n \
+    \   static u32 w = 88675123;\n    u32 t = x ^ (x << 11);\n    x = y;\n    y =\
+    \ z;\n    z = w;\n    return w = (w ^ (w >> 19)) ^ (t ^ (t >> 8));\n  }\n\n  void\
+    \ prop(Node *c) {\n    if (c->lazy != Monoid_A::unit()) {\n      if (c->l) {\n\
+    \        c->l->x = Lazy::act(c->l->x, c->lazy);\n        c->l->prod = Lazy::act(c->l->prod,\
+    \ c->lazy);\n        c->l->lazy = Monoid_A::op(c->l->lazy, c->lazy);\n      }\n\
+    \      if (c->r) {\n        c->r->x = Lazy::act(c->r->x, c->lazy);\n        c->r->prod\
+    \ = Lazy::act(c->r->prod, c->lazy);\n        c->r->lazy = Monoid_A::op(c->r->lazy,\
+    \ c->lazy);\n      }\n      c->lazy = Monoid_A::unit();\n    }\n    if (c->rev)\
+    \ {\n      swap(c->l, c->r);\n      if (c->l) c->l->rev ^= 1;\n      if (c->r)\
+    \ c->r->rev ^= 1;\n      c->rev = 0;\n    }\n  }\n\n  void update(Node *c) {\n\
+    \    c->size = 1;\n    c->prod = c->x;\n    if (c->l) {\n      c->size += c->l->size;\n\
+    \      c->prod = Monoid_X::op(c->l->prod, c->prod);\n    }\n    if (c->r) {\n\
+    \      c->size += c->r->size;\n      c->prod = Monoid_X::op(c->prod, c->r->prod);\n\
+    \    }\n  }\n\n  Node *merge_rec(Node *l_root, Node *r_root) {\n    if (!l_root)\
+    \ return r_root;\n    if (!r_root) return l_root;\n    u32 sl = l_root->size,\
+    \ sr = r_root->size;\n    if (xor128() % (sl + sr) < sl) {\n      prop(l_root);\n\
+    \      l_root->r = merge_rec(l_root->r, r_root);\n      update(l_root);\n    \
+    \  return l_root;\n    }\n    prop(r_root);\n    r_root->l = merge_rec(l_root,\
+    \ r_root->l);\n    update(r_root);\n    return r_root;\n  }\n\n  pair<Node *,\
+    \ Node *> split_rec(Node *root, u32 k) {\n    if (!root) return {nullptr, nullptr};\n\
+    \    prop(root);\n    u32 sl = (root->l ? root->l->size : 0);\n    if (k <= sl)\
+    \ {\n      auto [nl, nr] = split_rec(root->l, k);\n      root->l = nr;\n     \
+    \ update(root);\n      return {nl, root};\n    }\n    auto [nl, nr] = split_rec(root->r,\
+    \ k - (1 + sl));\n    root->r = nl;\n    update(root);\n    return {root, nr};\n\
+    \  }\n\n  Node *set_rec(Node *root, u32 k, const X &x) {\n    if (!root) return\
+    \ root;\n    prop(root);\n    u32 sl = (root->l ? root->l->size : 0);\n    if\
+    \ (k < sl) {\n      root->l = set_rec(root->l, k, x);\n      update(root);\n \
+    \     return root;\n    }\n    if (k == sl) {\n      root->x = x;\n      update(root);\n\
+    \      return root;\n    }\n    root->r = set_rec(root->r, k - (1 + sl), x);\n\
+    \    update(root);\n    return root;\n  }\n\n  Node *multiply_rec(Node *root,\
+    \ u32 k, const X &x) {\n    if (!root) return root;\n    prop(root);\n    u32\
+    \ sl = (root->l ? root->l->size : 0);\n    if (k < sl) {\n      root->l = multiply_rec(root->l,\
+    \ k, x);\n      update(root);\n      return root;\n    }\n    if (k == sl) {\n\
+    \      root->x = Monoid_X::op(root->x, x);\n      update(root);\n      return\
+    \ root;\n    }\n    root->r = multiply_rec(root->r, k - (1 + sl), x);\n    update(root);\n\
+    \    return root;\n  }\n\n  X prod_rec(Node *root, u32 l, u32 r) {\n    prop(root);\n\
+    \    if (l == 0 && r == root->size) return root->prod;\n    u32 sl = (root->l\
+    \ ? root->l->size : 0);\n    X res = Monoid_X::unit();\n    if (l < sl) { res\
+    \ = Monoid_X::op(res, prod_rec(root->l, l, min(r, sl))); }\n    if (l <= sl &&\
+    \ sl < r) res = Monoid_X::op(res, root->x);\n    u32 k = 1 + sl;\n    if (k <\
+    \ r) res = Monoid_X::op(res, prod_rec(root->r, max(k, l) - k, r - k));\n    return\
+    \ res;\n  }\n\n  X get_rec(Node *root, u32 k) {\n    prop(root);\n    u32 sl =\
+    \ (root->l ? root->l->size : 0);\n    if (k < sl) return get_rec(root->l, k);\n\
+    \    if (k == sl) return root->x;\n    return get_rec(root->r, k - (1 + sl));\n\
+    \  }\n\n  Node *apply_rec(Node *root, u32 l, u32 r, const A &a) {\n    prop(root);\n\
+    \    if (l == 0 && r == root->size) {\n      root->x = Lazy::act(root->x, a);\n\
+    \      root->prod = Lazy::act(root->prod, a);\n      root->lazy = Lazy::act(root->lazy,\
+    \ a);\n      return root;\n    }\n    u32 sl = (root->l ? root->l->size : 0);\n\
+    \    if (l < sl) apply_rec(root->l, l, min(r, sl), a);\n    if (l <= sl && sl\
+    \ < r) root->x = Lazy::act(root->x, a);\n    u32 k = 1 + sl;\n    if (k < r) apply_rec(root->r,\
+    \ max(k, l) - k, r - k, a);\n    update(root);\n    return root;\n  }\n};\n#line\
+    \ 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 7 \"test/mytest/rbst_lazy.test.cpp\"\
+    \n\nvoid test() {\n  using Lazy = Lazy_Min_Set<int, -1>;\n  using MonoX = typename\
+    \ Lazy::MX;\n\n  RBST_Lazy<Lazy, 100> X;\n  FOR(1000) {\n    X.reset();\n    int\
+    \ N = RNG(1, 20);\n    int Q = RNG(1, 1000);\n    vc<int> A(N);\n    FOR(i, N)\
+    \ A[i] = RNG(1, 100);\n    auto root = X.new_node(A);\n\n    FOR(Q) {\n      int\
+    \ t = RNG(0, 6);\n      if (t == 0) {\n        int i = RNG(0, N);\n        assert(A[i]\
+    \ == X.get(root, i));\n      }\n      if (t == 1) {\n        int i = RNG(0, N);\n\
+    \        int x = RNG(1, 100);\n        root = X.set(root, i, x);\n        A[i]\
+    \ = x;\n      }\n      if (t == 2) {\n        int i = RNG(0, N);\n        int\
+    \ x = RNG(1, 100);\n        root = X.multiply(root, i, x);\n        A[i] = MonoX::op(A[i],\
+    \ x);\n      }\n      if (t == 3) {\n        int L = RNG(0, N);\n        int R\
+    \ = RNG(0, N);\n        if (L > R) swap(L, R);\n        ++R;\n        vc<int>\
+    \ B = {A.begin() + L, A.begin() + R};\n        assert(X.prod(root, L, R) == MIN(B));\n\
+    \      }\n      if (t == 4) {\n        int L = RNG(0, N);\n        int R = RNG(0,\
+    \ N);\n        if (L > R) swap(L, R);\n        ++R;\n        root = X.reverse(root,\
+    \ L, R);\n        reverse(A.begin() + L, A.begin() + R);\n      }\n      if (t\
+    \ == 5) {\n        int L = RNG(0, N);\n        int R = RNG(0, N);\n        if\
+    \ (L > R) swap(L, R);\n        ++R;\n        int x = RNG(1, 100);\n        FOR(i,\
+    \ L, R) A[i] = x;\n        root = X.apply(root, L, R, x);\n      }\n    }\n  }\n\
+    }\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n\
+    \  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"alg/lazy/min_set.hpp\"\n#include \"ds/bbst/rbst_lazy.hpp\"\
+    \n#include \"random/base.hpp\"\n\nvoid test() {\n  using Lazy = Lazy_Min_Set<int,\
+    \ -1>;\n  using MonoX = typename Lazy::MX;\n\n  RBST_Lazy<Lazy, 100> X;\n  FOR(1000)\
+    \ {\n    X.reset();\n    int N = RNG(1, 20);\n    int Q = RNG(1, 1000);\n    vc<int>\
+    \ A(N);\n    FOR(i, N) A[i] = RNG(1, 100);\n    auto root = X.new_node(A);\n\n\
+    \    FOR(Q) {\n      int t = RNG(0, 6);\n      if (t == 0) {\n        int i =\
+    \ RNG(0, N);\n        assert(A[i] == X.get(root, i));\n      }\n      if (t ==\
+    \ 1) {\n        int i = RNG(0, N);\n        int x = RNG(1, 100);\n        root\
+    \ = X.set(root, i, x);\n        A[i] = x;\n      }\n      if (t == 2) {\n    \
+    \    int i = RNG(0, N);\n        int x = RNG(1, 100);\n        root = X.multiply(root,\
+    \ i, x);\n        A[i] = MonoX::op(A[i], x);\n      }\n      if (t == 3) {\n \
+    \       int L = RNG(0, N);\n        int R = RNG(0, N);\n        if (L > R) swap(L,\
+    \ R);\n        ++R;\n        vc<int> B = {A.begin() + L, A.begin() + R};\n   \
+    \     assert(X.prod(root, L, R) == MIN(B));\n      }\n      if (t == 4) {\n  \
+    \      int L = RNG(0, N);\n        int R = RNG(0, N);\n        if (L > R) swap(L,\
+    \ R);\n        ++R;\n        root = X.reverse(root, L, R);\n        reverse(A.begin()\
+    \ + L, A.begin() + R);\n      }\n      if (t == 5) {\n        int L = RNG(0, N);\n\
+    \        int R = RNG(0, N);\n        if (L > R) swap(L, R);\n        ++R;\n  \
+    \      int x = RNG(1, 100);\n        FOR(i, L, R) A[i] = x;\n        root = X.apply(root,\
+    \ L, R, x);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a\
+    \ + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/swag.hpp
-  - alg/monoid/gcd.hpp
+  - alg/lazy/min_set.hpp
+  - alg/monoid/min.hpp
+  - alg/monoid/set.hpp
+  - ds/bbst/rbst_lazy.hpp
+  - random/base.hpp
   isVerificationFile: true
-  path: test/yukicoder/1036_3.test.cpp
+  path: test/mytest/rbst_lazy.test.cpp
   requiredBy: []
-  timestamp: '2022-10-21 17:40:28+09:00'
+  timestamp: '2022-11-28 03:22:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/1036_3.test.cpp
+documentation_of: test/mytest/rbst_lazy.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/1036_3.test.cpp
-- /verify/test/yukicoder/1036_3.test.cpp.html
-title: test/yukicoder/1036_3.test.cpp
+- /verify/test/mytest/rbst_lazy.test.cpp
+- /verify/test/mytest/rbst_lazy.test.cpp.html
+title: test/mytest/rbst_lazy.test.cpp
 ---

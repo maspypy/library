@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/lazy/cntsummin_add.hpp
     title: alg/lazy/cntsummin_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/lazy/max_add.hpp
     title: alg/lazy/max_add.hpp
   - icon: ':heavy_check_mark:'
@@ -291,7 +291,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/655.test.cpp
     title: test/yukicoder/655.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/686.test.cpp
     title: test/yukicoder/686.test.cpp
   - icon: ':heavy_check_mark:'
@@ -309,9 +309,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -359,7 +359,7 @@ data:
   - graph/ds/treeabelgroup.hpp
   - graph/ds/contoursum.hpp
   timestamp: '2022-11-27 14:09:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/2065.test.cpp
   - test/yukicoder/1441.test.cpp

@@ -12,7 +12,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/lazy/cntsum_add.hpp
       title: alg/lazy/cntsum_add.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/lazy/cntsum_affine.hpp
       title: alg/lazy/cntsum_affine.hpp
     - icon: ':heavy_check_mark:'
@@ -30,7 +30,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/lazy/cntsummin_set.hpp
       title: alg/lazy/cntsummin_set.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: alg/lazy/max_add.hpp
       title: alg/lazy/max_add.hpp
     - icon: ':heavy_check_mark:'
@@ -71,7 +71,7 @@ data:
       title: alg/lazy/reverse.hpp
   - name: alg/monoid
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/add.hpp
       title: alg/monoid/add.hpp
     - icon: ':heavy_check_mark:'
@@ -86,10 +86,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/add_chmin_chmax.hpp
       title: alg/monoid/add_chmin_chmax.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/add_pair.hpp
       title: alg/monoid/add_pair.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/affine.hpp
       title: alg/monoid/affine.hpp
     - icon: ':heavy_check_mark:'
@@ -104,7 +104,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/gcd.hpp
       title: alg/monoid/gcd.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/max.hpp
       title: alg/monoid/max.hpp
     - icon: ':heavy_check_mark:'
@@ -160,7 +160,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/bbst/rbst_dual.hpp
       title: ds/bbst/rbst_dual.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/bbst/rbst_lazy.hpp
       title: ds/bbst/rbst_lazy.hpp
     - icon: ':heavy_check_mark:'
@@ -831,7 +831,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_sum_of_linear.hpp
       title: mod/mod_sum_of_linear.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: mod/modint.hpp
       title: mod/modint.hpp
     - icon: ':heavy_check_mark:'
@@ -854,7 +854,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -951,7 +951,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/integer_kth_root.hpp
       title: other/integer_kth_root.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -1622,7 +1622,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
       title: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
       title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2229,6 +2229,9 @@ data:
       path: test/mytest/range_mex.test.cpp
       title: test/mytest/range_mex.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/mytest/rbst_lazy.test.cpp
+      title: test/mytest/rbst_lazy.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/mytest/rbst_test.test.cpp
       title: test/mytest/rbst_test.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2779,7 +2782,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/655.test.cpp
       title: test/yukicoder/655.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/686.test.cpp
       title: test/yukicoder/686.test.cpp
     - icon: ':heavy_check_mark:'

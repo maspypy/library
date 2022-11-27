@@ -214,6 +214,9 @@ data:
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_lazy.test.cpp
+    title: test/mytest/rbst_lazy.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_test.test.cpp
     title: test/mytest/rbst_test.test.cpp
   - icon: ':heavy_check_mark:'
@@ -352,6 +355,7 @@ data:
   - test/mytest/online_pow.test.cpp
   - test/mytest/cntsummin_add.test.cpp
   - test/mytest/minidx_add.test.cpp
+  - test/mytest/rbst_lazy.test.cpp
   - test/mytest/maxidx_add.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/add_chmin.test.cpp

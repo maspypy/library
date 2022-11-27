@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/lazy/min_add.hpp
     title: alg/lazy/min_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':heavy_check_mark:'
