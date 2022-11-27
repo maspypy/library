@@ -181,6 +181,9 @@ data:
     path: test/atcoder/abc269ex.test.cpp
     title: test/atcoder/abc269ex.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc270_g.test.cpp
+    title: test/atcoder/abc270_g.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc272_h.test.cpp
     title: test/atcoder/abc272_h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1079,6 +1082,7 @@ data:
   - test/atcoder/abc276_g.test.cpp
   - test/atcoder/abc276_g_2.test.cpp
   - test/atcoder/abc249_ex.test.cpp
+  - test/atcoder/abc270_g.test.cpp
   - test/aoj/DPL_5_C.test.cpp
 documentation_of: mod/modint.hpp
 layout: document

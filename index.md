@@ -1,11 +1,6 @@
 ---
 data:
   libraryCategories:
-  - name: alg/XSet
-    pages:
-    - icon: ':warning:'
-      path: alg/XSet/affine.hpp
-      title: alg/XSet/affine.hpp
   - name: alg/lazy
     pages:
     - icon: ':heavy_check_mark:'
@@ -148,6 +143,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/xor_basis.hpp
       title: alg/monoid/xor_basis.hpp
+  - name: alg/xset
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: alg/xset/affine.hpp
+      title: alg/xset/affine.hpp
   - name: connected_dp
     pages:
     - icon: ':heavy_check_mark:'
@@ -258,7 +258,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/pbds.hpp
       title: ds/pbds.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree.hpp
       title: ds/segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -393,7 +393,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/query/rollback_mo.hpp
       title: ds/query/rollback_mo.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/query/uniqueproductquery.hpp
       title: ds/query/uniqueproductquery.hpp
   - name: enumerate
@@ -1492,7 +1492,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc127f_1.test.cpp
       title: test/atcoder/abc127f_1.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc174f.test.cpp
       title: test/atcoder/abc174f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1537,7 +1537,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc270_f.test.cpp
       title: test/atcoder/abc270_f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc270_g.test.cpp
       title: test/atcoder/abc270_g.test.cpp
     - icon: ':heavy_check_mark:'
