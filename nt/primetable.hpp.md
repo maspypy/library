@@ -82,6 +82,9 @@ data:
     path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
+    title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
   - icon: ':heavy_check_mark:'
@@ -225,6 +228,7 @@ data:
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/counting_primes.test.cpp
   - test/library_checker/math/totient_sum.test.cpp
+  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/math/lcm_convolution.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
   - test/atcoder/abc249_ex.test.cpp

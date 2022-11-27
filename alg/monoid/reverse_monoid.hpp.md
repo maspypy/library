@@ -9,6 +9,9 @@ data:
     path: graph/ds/lazytreemonoid.hpp
     title: graph/ds/lazytreemonoid.hpp
   - icon: ':question:'
+    path: graph/ds/statictreemonoid.hpp
+    title: graph/ds/statictreemonoid.hpp
+  - icon: ':question:'
     path: graph/ds/treemonoid.hpp
     title: graph/ds/treemonoid.hpp
   - icon: ':question:'
@@ -39,6 +42,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1212.test.cpp
     title: test/yukicoder/1212.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1216.test.cpp
+    title: test/yukicoder/1216.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1216_2.test.cpp
+    title: test/yukicoder/1216_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
@@ -67,11 +76,14 @@ data:
   - alg/lazy/reverse.hpp
   - graph/ds/lazytreemonoid.hpp
   - graph/ds/treemonoid.hpp
+  - graph/ds/statictreemonoid.hpp
   - graph/minimum_spanning_tree.hpp
   timestamp: '2022-11-27 13:06:40+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1216.test.cpp
   - test/yukicoder/235.test.cpp
+  - test/yukicoder/1216_2.test.cpp
   - test/yukicoder/529.test.cpp
   - test/yukicoder/1212.test.cpp
   - test/yukicoder/1197.test.cpp

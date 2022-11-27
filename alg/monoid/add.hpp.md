@@ -124,6 +124,9 @@ data:
     path: test/library_checker/datastructure/double_ended_pq.test.cpp
     title: test/library_checker/datastructure/double_ended_pq.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
+    title: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_range_sum.test.cpp
     title: test/library_checker/datastructure/point_add_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -132,7 +135,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   - icon: ':heavy_check_mark:'
@@ -195,6 +198,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1216.test.cpp
+    title: test/yukicoder/1216.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1216_2.test.cpp
+    title: test/yukicoder/1216_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1234.test.cpp
     title: test/yukicoder/1234.test.cpp
@@ -306,6 +315,7 @@ data:
   - test/yukicoder/899.test.cpp
   - test/yukicoder/2003.test.cpp
   - test/yukicoder/1234.test.cpp
+  - test/yukicoder/1216.test.cpp
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1720.test.cpp
   - test/yukicoder/686.test.cpp
@@ -313,6 +323,7 @@ data:
   - test/yukicoder/1874.test.cpp
   - test/yukicoder/1838.test.cpp
   - test/yukicoder/1326.test.cpp
+  - test/yukicoder/1216_2.test.cpp
   - test/yukicoder/1038.test.cpp
   - test/yukicoder/1141.test.cpp
   - test/yukicoder/1270.test.cpp
@@ -329,6 +340,7 @@ data:
   - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp

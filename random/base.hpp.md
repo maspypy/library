@@ -121,6 +121,9 @@ data:
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/factorial_998.test.cpp
+    title: test/mytest/factorial_998.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/is_substring.test.cpp
     title: test/mytest/is_substring.test.cpp
   - icon: ':heavy_check_mark:'
@@ -189,6 +192,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080.test.cpp
     title: test/yukicoder/1080.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1080_2.test.cpp
+    title: test/yukicoder/1080_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
@@ -283,10 +289,12 @@ data:
   - test/yukicoder/1303.test.cpp
   - test/yukicoder/1907.test.cpp
   - test/yukicoder/579.test.cpp
+  - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/263.test.cpp
   - test/yukicoder/1397.test.cpp
   - test/yukicoder/2102.test.cpp
   - test/mytest/minplus_convex.test.cpp
+  - test/mytest/factorial_998.test.cpp
   - test/mytest/is_substring.test.cpp
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/online_pow.test.cpp

@@ -22,8 +22,8 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/group/add.hpp\"\
     \n#include \"ds/pds/segtree.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A,\
-    \ N);\n  Persistent_SegTree<Group_Add<int>, 5'000'000> seg(N);\n  using np = decltype(seg)::Node\
-    \ *;\n  auto I = argsort(A);\n\n  vc<np> roots;\n  roots.eb(seg.new_node(vc<int>(N)));\n\
+    \ N);\n  Persistent_SegTree<Monoid_Add<int>, 5'000'000> seg(N);\n  using np =\
+    \ decltype(seg)::Node *;\n  auto I = argsort(A);\n\n  vc<np> roots;\n  roots.eb(seg.new_node(vc<int>(N)));\n\
     \  FOR(k, N) { roots.eb(seg.set(roots.back(), I[k], 1)); }\n  FOR(Q) {\n    LL(L,\
     \ R, k);\n    auto check = [&](ll t) -> bool { return seg.prod(roots[t], L, R)\
     \ <= k; };\n    ll t = binary_search(check, 0, N);\n    print(A[I[t]]);\n  }\n\

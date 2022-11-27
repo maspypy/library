@@ -14,6 +14,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/lazytreemonoid.hpp
     title: graph/ds/lazytreemonoid.hpp
+  - icon: ':question:'
+    path: graph/ds/statictreemonoid.hpp
+    title: graph/ds/statictreemonoid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/treeabelgroup.hpp
     title: graph/ds/treeabelgroup.hpp
@@ -114,6 +117,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1212.test.cpp
     title: test/yukicoder/1212.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1216.test.cpp
+    title: test/yukicoder/1216.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1216_2.test.cpp
+    title: test/yukicoder/1216_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1242.test.cpp
     title: test/yukicoder/1242.test.cpp
@@ -370,6 +379,7 @@ data:
   - graph/ds/lazytreemonoid.hpp
   - graph/ds/treegroup.hpp
   - graph/ds/treemonoid.hpp
+  - graph/ds/statictreemonoid.hpp
   - graph/ds/dualtreemonoid.hpp
   - graph/minimum_spanning_tree.hpp
   timestamp: '2022-11-05 01:55:39+09:00'
@@ -378,6 +388,7 @@ data:
   - test/yukicoder/1600.test.cpp
   - test/yukicoder/1295.test.cpp
   - test/yukicoder/1524.test.cpp
+  - test/yukicoder/1216.test.cpp
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1983.test.cpp
   - test/yukicoder/1778.test.cpp
@@ -385,6 +396,7 @@ data:
   - test/yukicoder/590.test.cpp
   - test/yukicoder/1242.test.cpp
   - test/yukicoder/1326.test.cpp
+  - test/yukicoder/1216_2.test.cpp
   - test/yukicoder/1494.test.cpp
   - test/yukicoder/1451.test.cpp
   - test/yukicoder/1211.test.cpp

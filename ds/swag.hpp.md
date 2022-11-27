@@ -1,14 +1,50 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':question:'
+    path: poly/from_log_differentiation.hpp
+    title: poly/from_log_differentiation.hpp
+  - icon: ':question:'
+    path: poly/lagrange_interpolate_iota.hpp
+    title: poly/lagrange_interpolate_iota.hpp
+  - icon: ':question:'
+    path: poly/prefix_product_of_poly.hpp
+    title: poly/prefix_product_of_poly.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/sparse_exp_of_div.hpp
+    title: poly/sparse_exp_of_div.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/interpolate_poly_exp_sum.hpp
+    title: seq/interpolate_poly_exp_sum.hpp
+  - icon: ':question:'
+    path: seq/kth_term_of_p_recursive.hpp
+    title: seq/kth_term_of_p_recursive.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/atcoder/abc276_g.test.cpp
+    title: test/atcoder/abc276_g.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc276_g_2.test.cpp
+    title: test/atcoder/abc276_g_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
     title: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
+    title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+    title: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/factorial_998.test.cpp
+    title: test/mytest/factorial_998.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036_3.test.cpp
     title: test/yukicoder/1036_3.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1080_2.test.cpp
+    title: test/yukicoder/1080_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1117.test.cpp
     title: test/yukicoder/1117.test.cpp
@@ -18,9 +54,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2026.test.cpp
     title: test/yukicoder/2026.test.cpp
-  _isVerificationFailed: false
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/502_2.test.cpp
+    title: test/yukicoder/502_2.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/swag.hpp\"\ntemplate <class Monoid>\nstruct SWAG {\n\
@@ -94,15 +133,28 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: ds/swag.hpp
-  requiredBy: []
+  requiredBy:
+  - poly/prefix_product_of_poly.hpp
+  - poly/from_log_differentiation.hpp
+  - poly/lagrange_interpolate_iota.hpp
+  - poly/sparse_exp_of_div.hpp
+  - seq/kth_term_of_p_recursive.hpp
+  - seq/interpolate_poly_exp_sum.hpp
   timestamp: '2022-09-18 01:05:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/1435_2.test.cpp
   - test/yukicoder/2026.test.cpp
+  - test/yukicoder/502_2.test.cpp
   - test/yukicoder/1117.test.cpp
   - test/yukicoder/1036_3.test.cpp
+  - test/mytest/factorial_998.test.cpp
+  - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/datastructure/queue_operate_all_composite.test.cpp
+  - test/atcoder/abc276_g.test.cpp
+  - test/atcoder/abc276_g_2.test.cpp
 documentation_of: ds/swag.hpp
 layout: document
 redirect_from:

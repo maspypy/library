@@ -8,10 +8,16 @@ data:
     path: ds/segtree.hpp
     title: ds/segtree.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/sort_segtree.test.cpp
+    title: test/library_checker/datastructure/sort_segtree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/sort_segtree_1.test.cpp
+    title: test/library_checker/datastructure/sort_segtree_1.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/fastset.hpp\"\n/* 64\u5206\u6728\u3002\r\ninsert, erase\r\
@@ -247,8 +253,10 @@ data:
   path: ds/sortable_segtree.hpp
   requiredBy: []
   timestamp: '2022-08-11 02:08:49+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/library_checker/datastructure/sort_segtree.test.cpp
+  - test/library_checker/datastructure/sort_segtree_1.test.cpp
 documentation_of: ds/sortable_segtree.hpp
 layout: document
 redirect_from:

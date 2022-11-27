@@ -124,7 +124,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/minmax.hpp
       title: alg/monoid/minmax.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/mul.hpp
       title: alg/monoid/mul.hpp
     - icon: ':warning:'
@@ -198,7 +198,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/cumsum2d.hpp
       title: ds/cumsum2d.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/disjointsparse.hpp
       title: ds/disjointsparse.hpp
     - icon: ':heavy_check_mark:'
@@ -270,10 +270,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/slope.hpp
       title: ds/slope.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/sortable_segtree.hpp
       title: ds/sortable_segtree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/swag.hpp
       title: ds/swag.hpp
     - icon: ':question:'
@@ -363,7 +363,7 @@ data:
     - icon: ':warning:'
       path: ds/query/mo_3d.hpp
       title: ds/query/mo_3d.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/query/parallel_binary_search.hpp
       title: ds/query/parallel_binary_search.hpp
     - icon: ':warning:'
@@ -654,16 +654,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/ds/lazytreemonoid.hpp
       title: graph/ds/lazytreemonoid.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/ds/link_cut.hpp
       title: graph/ds/link_cut.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/ds/link_cut_path.hpp
       title: graph/ds/link_cut_path.hpp
     - icon: ':warning:'
       path: graph/ds/link_cut_subtree.hpp
       title: graph/ds/link_cut_subtree.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: graph/ds/statictreemonoid.hpp
       title: graph/ds/statictreemonoid.hpp
     - icon: ':heavy_check_mark:'
@@ -746,7 +746,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/mat_inv.hpp
       title: linalg/mat_inv.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: linalg/mat_mul.hpp
       title: linalg/mat_mul.hpp
     - icon: ':heavy_check_mark:'
@@ -798,7 +798,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/factorial107.hpp
       title: mod/factorial107.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: mod/factorial998.hpp
       title: mod/factorial998.hpp
     - icon: ':heavy_check_mark:'
@@ -816,7 +816,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/min_of_linear_segments.hpp
       title: mod/min_of_linear_segments.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: mod/mod_inv.hpp
       title: mod/mod_inv.hpp
     - icon: ':heavy_check_mark:'
@@ -980,7 +980,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/composition_f_ex.hpp
       title: poly/composition_f_ex.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/convolution.hpp
       title: poly/convolution.hpp
     - icon: ':heavy_check_mark:'
@@ -998,7 +998,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/convolution_mod_2_64.hpp
       title: poly/convolution_mod_2_64.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/convolution_naive.hpp
       title: poly/convolution_naive.hpp
     - icon: ':heavy_check_mark:'
@@ -1007,7 +1007,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/differentiate.hpp
       title: poly/differentiate.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/fft.hpp
       title: poly/fft.hpp
     - icon: ':heavy_check_mark:'
@@ -1031,13 +1031,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/fps_sqrt.hpp
       title: poly/fps_sqrt.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: poly/from_log_differentiation.hpp
       title: poly/from_log_differentiation.hpp
     - icon: ':heavy_check_mark:'
       path: poly/integrate.hpp
       title: poly/integrate.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: poly/lagrange_interpolate_iota.hpp
       title: poly/lagrange_interpolate_iota.hpp
     - icon: ':heavy_check_mark:'
@@ -1046,7 +1046,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/multivar_convolution.hpp
       title: poly/multivar_convolution.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/ntt.hpp
       title: poly/ntt.hpp
     - icon: ':heavy_check_mark:'
@@ -1061,7 +1061,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/poly_taylor_shift.hpp
       title: poly/poly_taylor_shift.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: poly/prefix_product_of_poly.hpp
       title: poly/prefix_product_of_poly.hpp
     - icon: ':heavy_check_mark:'
@@ -1076,7 +1076,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/product_of_pow_of_linear.hpp
       title: poly/product_of_pow_of_linear.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: poly/sparse_exp_of_div.hpp
       title: poly/sparse_exp_of_div.hpp
     - icon: ':heavy_check_mark:'
@@ -1085,7 +1085,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/sum_of_prefix_suffix_products.hpp
       title: poly/sum_of_prefix_suffix_products.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/sum_of_rationals.hpp
       title: poly/sum_of_rationals.hpp
   - name: poly/online
@@ -1159,10 +1159,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/interpolate_linear_rec.hpp
       title: seq/interpolate_linear_rec.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: seq/interpolate_poly_exp.hpp
       title: seq/interpolate_poly_exp.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: seq/interpolate_poly_exp_sum.hpp
       title: seq/interpolate_poly_exp_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -1177,7 +1177,7 @@ data:
     - icon: ':warning:'
       path: seq/kth_root_permutation.hpp
       title: seq/kth_root_permutation.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: seq/kth_term_of_p_recursive.hpp
       title: seq/kth_term_of_p_recursive.hpp
     - icon: ':heavy_check_mark:'
@@ -1631,7 +1631,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
       title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
       title: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1673,7 +1673,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
       title: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
       title: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
     - icon: ':x:'
@@ -1697,10 +1697,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/set_xor_min.test.cpp
       title: test/library_checker/datastructure/set_xor_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/sort_segtree.test.cpp
       title: test/library_checker/datastructure/sort_segtree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/sort_segtree_1.test.cpp
       title: test/library_checker/datastructure/sort_segtree_1.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1898,7 +1898,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
       title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
       title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2001,7 +2001,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp
       title: test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
       title: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2108,7 +2108,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/eulerian_number.test.cpp
       title: test/mytest/eulerian_number.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/factorial_998.test.cpp
       title: test/mytest/factorial_998.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2245,7 +2245,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1080.test.cpp
       title: test/yukicoder/1080.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1080_2.test.cpp
       title: test/yukicoder/1080_2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2290,7 +2290,7 @@ data:
     - icon: ':x:'
       path: test/yukicoder/1216.test.cpp
       title: test/yukicoder/1216.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1216_2.test.cpp
       title: test/yukicoder/1216_2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2710,7 +2710,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/502.test.cpp
       title: test/yukicoder/502.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/502_2.test.cpp
       title: test/yukicoder/502_2.test.cpp
     - icon: ':heavy_check_mark:'

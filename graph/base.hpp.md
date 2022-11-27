@@ -44,6 +44,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/lazytreemonoid.hpp
     title: graph/ds/lazytreemonoid.hpp
+  - icon: ':question:'
+    path: graph/ds/statictreemonoid.hpp
+    title: graph/ds/statictreemonoid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/treeabelgroup.hpp
     title: graph/ds/treeabelgroup.hpp
@@ -336,6 +339,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1212.test.cpp
     title: test/yukicoder/1212.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1216.test.cpp
+    title: test/yukicoder/1216.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1216_2.test.cpp
+    title: test/yukicoder/1216_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1242.test.cpp
     title: test/yukicoder/1242.test.cpp
@@ -570,6 +579,7 @@ data:
   - graph/ds/treegroup.hpp
   - graph/ds/treemonoid.hpp
   - graph/ds/bfsnumbering.hpp
+  - graph/ds/statictreemonoid.hpp
   - graph/ds/dualtreemonoid.hpp
   - graph/find_odd_cycle.hpp
   - graph/tree_all_distances.hpp
@@ -597,6 +607,7 @@ data:
   - test/yukicoder/1775.test.cpp
   - test/yukicoder/17.test.cpp
   - test/yukicoder/1524.test.cpp
+  - test/yukicoder/1216.test.cpp
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1983.test.cpp
   - test/yukicoder/1778.test.cpp
@@ -608,6 +619,7 @@ data:
   - test/yukicoder/1242.test.cpp
   - test/yukicoder/1796.test.cpp
   - test/yukicoder/1326.test.cpp
+  - test/yukicoder/1216_2.test.cpp
   - test/yukicoder/1038.test.cpp
   - test/yukicoder/1911.test.cpp
   - test/yukicoder/1344.test.cpp
