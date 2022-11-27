@@ -1,11 +1,38 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: alg/lazy/cntsum_add.hpp
+    title: alg/lazy/cntsum_add.hpp
+  - icon: ':question:'
+    path: alg/lazy/cntsum_affine.hpp
+    title: alg/lazy/cntsum_affine.hpp
+  - icon: ':heavy_check_mark:'
+    path: alg/lazy/cntsum_set.hpp
+    title: alg/lazy/cntsum_set.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL_2_I.test.cpp
+    title: test/aoj/DSL_2_I.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+    title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+    title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
+    title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/255.test.cpp
+    title: test/yukicoder/255.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/789_2.test.cpp
+    title: test/yukicoder/789_2.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid/cntsum.hpp\"\ntemplate <typename E = long long>\r\
@@ -23,10 +50,19 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/cntsum.hpp
-  requiredBy: []
+  requiredBy:
+  - alg/lazy/cntsum_affine.hpp
+  - alg/lazy/cntsum_add.hpp
+  - alg/lazy/cntsum_set.hpp
   timestamp: '2022-11-27 13:06:40+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/yukicoder/789_2.test.cpp
+  - test/yukicoder/255.test.cpp
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - test/library_checker/datastructure/range_affine_range_sum.test.cpp
+  - test/aoj/DSL_2_I.test.cpp
 documentation_of: alg/monoid/cntsum.hpp
 layout: document
 redirect_from:

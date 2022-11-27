@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: alg/lazy/add_mul.hpp
+    title: alg/lazy/add_mul.hpp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yukicoder/899.test.cpp
+    title: test/yukicoder/899.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Group_Mul\
@@ -21,10 +27,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/mul.hpp
-  requiredBy: []
+  requiredBy:
+  - alg/lazy/add_mul.hpp
   timestamp: '2022-11-27 13:06:40+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yukicoder/899.test.cpp
 documentation_of: alg/monoid/mul.hpp
 layout: document
 redirect_from:
