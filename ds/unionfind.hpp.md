@@ -23,6 +23,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
+  - icon: ':question:'
+    path: graph/minimum_spanning_tree.hpp
+    title: graph/minimum_spanning_tree.hpp
   - icon: ':warning:'
     path: graph/online_mst.hpp
     title: graph/online_mst.hpp
@@ -45,6 +48,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2995.test.cpp
     title: test/aoj/2995.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_2_A.test.cpp
+    title: test/aoj/GRL_2_A.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc270_f.test.cpp
+    title: test/atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/unionfind.test.cpp
     title: test/library_checker/datastructure/unionfind.test.cpp
@@ -105,9 +114,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/unionfind.hpp\"\n\nstruct UnionFind {\n  int n;\n  int\
@@ -147,8 +156,9 @@ data:
   - graph/online_mst.hpp
   - graph/check_bipartite.hpp
   - graph/online_unionfind.hpp
+  - graph/minimum_spanning_tree.hpp
   timestamp: '2022-10-24 17:15:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1600.test.cpp
   - test/yukicoder/1392.test.cpp
@@ -170,6 +180,8 @@ data:
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/graph/bipartite_edge_coloring.test.cpp
+  - test/atcoder/abc270_f.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
   - test/aoj/2251_1.test.cpp
   - test/aoj/2251_2.test.cpp
   - test/aoj/1566.test.cpp

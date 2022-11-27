@@ -20,6 +20,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/query/range_mex_query.hpp
     title: ds/query/range_mex_query.hpp
+  - icon: ':question:'
+    path: graph/minimum_spanning_tree.hpp
+    title: graph/minimum_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
@@ -42,6 +45,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_H.test.cpp
     title: test/aoj/DSL_2_H.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_2_A.test.cpp
+    title: test/aoj/GRL_2_A.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc270_f.test.cpp
+    title: test/atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/atcoder/arc151_e.test.cpp
     title: test/atcoder/arc151_e.test.cpp
@@ -69,6 +78,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1212.test.cpp
+    title: test/yukicoder/1212.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1234.test.cpp
     title: test/yukicoder/1234.test.cpp
@@ -110,6 +122,7 @@ data:
   - string/suffixarray.hpp
   - ds/common_interval_decomposition.hpp
   - ds/query/range_mex_query.hpp
+  - graph/minimum_spanning_tree.hpp
   timestamp: '2022-10-21 16:22:09+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -118,6 +131,7 @@ data:
   - test/yukicoder/1234.test.cpp
   - test/yukicoder/1720.test.cpp
   - test/yukicoder/1270.test.cpp
+  - test/yukicoder/1212.test.cpp
   - test/mytest/range_mex.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
@@ -127,6 +141,8 @@ data:
   - test/library_checker/datastructure/staticrmq_sparse.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/atcoder/arc151_e.test.cpp
+  - test/atcoder/abc270_f.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
   - test/aoj/1508_2.test.cpp
   - test/aoj/DSL_2_F.test.cpp
   - test/aoj/1508.test.cpp

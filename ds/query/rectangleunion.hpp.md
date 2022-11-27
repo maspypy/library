@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy/cntminmincnt_add.hpp
     title: alg/lazy/cntminmincnt_add.hpp
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/cntminmincnt.hpp
     title: alg/monoid/cntminmincnt.hpp
   - icon: ':question:'
@@ -15,15 +15,15 @@ data:
     title: ds/lazysegtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_4_A.test.cpp
     title: test/aoj/DSL_4_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
     title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/lazysegtree.hpp\"\n\ntemplate <typename Lazy>\nstruct\
@@ -104,7 +104,7 @@ data:
     \ * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
     \ bool commute = true;\r\n};\r\n#line 3 \"alg/lazy/cntminmincnt_add.hpp\"\n\r\n\
     template <typename E>\r\nstruct Lazy_CntMinMincnt_Add {\r\n  using MX = Monoid_CntMinMincnt<E>;\r\
-    \n  using MA = Group_Add<E>;\r\n  using X_structure = MX;\r\n  using A_structure\
+    \n  using MA = Monoid_Add<E>;\r\n  using X_structure = MX;\r\n  using A_structure\
     \ = MA;\r\n  using X = typename MX::value_type;\r\n  using A = typename MA::value_type;\r\
     \n  static constexpr X act(const X &x, const A &a) {\r\n    auto [xcnt, xmin,\
     \ xmincnt] = x;\r\n    if (xmin == numeric_limits<ll>::max()) return x;\r\n  \
@@ -152,8 +152,8 @@ data:
   isVerificationFile: false
   path: ds/query/rectangleunion.hpp
   requiredBy: []
-  timestamp: '2022-11-27 14:09:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-11-27 15:42:25+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - test/aoj/DSL_4_A.test.cpp

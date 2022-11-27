@@ -5,7 +5,7 @@ data:
   - icon: ':x:'
     path: alg/lazy/add_mul.hpp
     title: alg/lazy/add_mul.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy/cntminmincnt_add.hpp
     title: alg/lazy/cntminmincnt_add.hpp
   - icon: ':heavy_check_mark:'
@@ -59,7 +59,7 @@ data:
   - icon: ':x:'
     path: ds/query/rectangle_add_rectangle_sum.hpp
     title: ds/query/rectangle_add_rectangle_sum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/query/rectangleunion.hpp
     title: ds/query/rectangleunion.hpp
   - icon: ':x:'
@@ -96,7 +96,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_H.test.cpp
     title: test/aoj/DSL_2_H.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_4_A.test.cpp
     title: test/aoj/DSL_4_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -108,7 +108,7 @@ data:
   - icon: ':x:'
     path: test/atcoder/abc266h_2.test.cpp
     title: test/atcoder/abc266h_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
     title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - icon: ':heavy_check_mark:'

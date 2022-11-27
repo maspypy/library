@@ -5,15 +5,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/common_interval_decomposition.hpp
     title: ds/common_interval_decomposition.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/query/rectangleunion.hpp
     title: ds/query/rectangleunion.hpp
-  - icon: ':warning:'
+  - icon: ':question:'
     path: graph/ds/dualtreemonoid.hpp
     title: graph/ds/dualtreemonoid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/lazytreemonoid.hpp
     title: graph/ds/lazytreemonoid.hpp
+  - icon: ':question:'
+    path: graph/minimum_spanning_tree.hpp
+    title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_F.test.cpp
@@ -24,13 +27,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_I.test.cpp
     title: test/aoj/DSL_2_I.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_4_A.test.cpp
     title: test/aoj/DSL_4_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_2_A.test.cpp
+    title: test/aoj/GRL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
   - icon: ':x:'
+    path: test/atcoder/abc270_f.test.cpp
+    title: test/atcoder/abc270_f.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
     title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - icon: ':heavy_check_mark:'
@@ -194,6 +203,7 @@ data:
   - ds/query/rectangleunion.hpp
   - graph/ds/lazytreemonoid.hpp
   - graph/ds/dualtreemonoid.hpp
+  - graph/minimum_spanning_tree.hpp
   timestamp: '2022-08-11 02:08:49+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -206,6 +216,8 @@ data:
   - test/yukicoder/1197.test.cpp
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp
+  - test/atcoder/abc270_f.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
   - test/aoj/DSL_4_A.test.cpp
   - test/aoj/DSL_2_I.test.cpp
   - test/aoj/GRL_5_E.test.cpp

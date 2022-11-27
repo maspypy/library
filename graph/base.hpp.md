@@ -38,7 +38,7 @@ data:
   - icon: ':x:'
     path: graph/ds/bfsnumbering.hpp
     title: graph/ds/bfsnumbering.hpp
-  - icon: ':warning:'
+  - icon: ':question:'
     path: graph/ds/dualtreemonoid.hpp
     title: graph/ds/dualtreemonoid.hpp
   - icon: ':heavy_check_mark:'
@@ -47,6 +47,9 @@ data:
   - icon: ':warning:'
     path: graph/ds/treeabelgroup.hpp
     title: graph/ds/treeabelgroup.hpp
+  - icon: ':question:'
+    path: graph/ds/treemonoid.hpp
+    title: graph/ds/treemonoid.hpp
   - icon: ':question:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
@@ -77,6 +80,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
+  - icon: ':question:'
+    path: graph/minimum_spanning_tree.hpp
+    title: graph/minimum_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/range_to_range_graph.hpp
     title: graph/range_to_range_graph.hpp
@@ -184,6 +190,9 @@ data:
     path: test/aoj/GRL_1_C.test.cpp
     title: test/aoj/GRL_1_C.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_2_A.test.cpp
+    title: test/aoj/GRL_2_A.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_A.test.cpp
     title: test/aoj/GRL_3_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -198,6 +207,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc269ex.test.cpp
     title: test/atcoder/abc269ex.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc270_f.test.cpp
+    title: test/atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/atcoder/arc151_e.test.cpp
     title: test/atcoder/arc151_e.test.cpp
@@ -301,6 +313,9 @@ data:
     path: test/yukicoder/1211.test.cpp
     title: test/yukicoder/1211.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1212.test.cpp
+    title: test/yukicoder/1212.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1242.test.cpp
     title: test/yukicoder/1242.test.cpp
   - icon: ':heavy_check_mark:'
@@ -384,6 +399,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/529.test.cpp
+    title: test/yukicoder/529.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
@@ -525,6 +543,7 @@ data:
   - graph/steiner_tree.hpp
   - graph/ds/treeabelgroup.hpp
   - graph/ds/lazytreemonoid.hpp
+  - graph/ds/treemonoid.hpp
   - graph/ds/bfsnumbering.hpp
   - graph/ds/dualtreemonoid.hpp
   - graph/find_odd_cycle.hpp
@@ -537,6 +556,7 @@ data:
   - graph/shortest_path/warshall_floyd.hpp
   - graph/shortest_path/bellmanford.hpp
   - graph/minimum_hamiltonian_cycle.hpp
+  - graph/minimum_spanning_tree.hpp
   - graph/strongly_connected_component.hpp
   - game/graph_game.hpp
   timestamp: '2022-08-30 02:42:36+09:00'
@@ -569,11 +589,13 @@ data:
   - test/yukicoder/1451.test.cpp
   - test/yukicoder/1293.test.cpp
   - test/yukicoder/1211.test.cpp
+  - test/yukicoder/529.test.cpp
   - test/yukicoder/1769.test.cpp
   - test/yukicoder/1976.test.cpp
   - test/yukicoder/1069.test.cpp
   - test/yukicoder/1002.test.cpp
   - test/yukicoder/1745.test.cpp
+  - test/yukicoder/1212.test.cpp
   - test/yukicoder/1744.test.cpp
   - test/yukicoder/1868.test.cpp
   - test/yukicoder/1418.test.cpp
@@ -607,7 +629,9 @@ data:
   - test/library_checker/graph/classify_tree.test.cpp
   - test/atcoder/arc151_e.test.cpp
   - test/atcoder/abc269ex.test.cpp
+  - test/atcoder/abc270_f.test.cpp
   - test/atcoder/abc266f.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
   - test/aoj/2251_1.test.cpp
   - test/aoj/2677.test.cpp
   - test/aoj/DPL_2_A.test.cpp

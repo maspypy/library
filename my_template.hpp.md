@@ -135,7 +135,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_I.test.cpp
     title: test/aoj/DSL_2_I.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_4_A.test.cpp
     title: test/aoj/DSL_4_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -144,6 +144,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_C.test.cpp
     title: test/aoj/GRL_1_C.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_2_A.test.cpp
+    title: test/aoj/GRL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_A.test.cpp
     title: test/aoj/GRL_3_A.test.cpp
@@ -231,6 +234,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc269ex.test.cpp
     title: test/atcoder/abc269ex.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc270_f.test.cpp
+    title: test/atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc272_h.test.cpp
     title: test/atcoder/abc272_h.test.cpp
@@ -291,7 +297,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/add_remove_query.test.cpp
     title: test/library_checker/datastructure/add_remove_query.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
     title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - icon: ':heavy_check_mark:'
@@ -871,6 +877,9 @@ data:
     path: test/yukicoder/1211.test.cpp
     title: test/yukicoder/1211.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1212.test.cpp
+    title: test/yukicoder/1212.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1234.test.cpp
     title: test/yukicoder/1234.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1237,6 +1246,9 @@ data:
     path: test/yukicoder/502.test.cpp
     title: test/yukicoder/502.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/529.test.cpp
+    title: test/yukicoder/529.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/541.test.cpp
     title: test/yukicoder/541.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1538,6 +1550,7 @@ data:
   - test/yukicoder/2026.test.cpp
   - test/yukicoder/1383.test.cpp
   - test/yukicoder/2097.test.cpp
+  - test/yukicoder/529.test.cpp
   - test/yukicoder/1526.test.cpp
   - test/yukicoder/1818.test.cpp
   - test/yukicoder/1262.test.cpp
@@ -1567,6 +1580,7 @@ data:
   - test/yukicoder/1516.test.cpp
   - test/yukicoder/1745.test.cpp
   - test/yukicoder/1321.test.cpp
+  - test/yukicoder/1212.test.cpp
   - test/yukicoder/1036.test.cpp
   - test/yukicoder/1170_2.test.cpp
   - test/yukicoder/1848.test.cpp
@@ -1780,6 +1794,7 @@ data:
   - test/atcoder/abc198d.test.cpp
   - test/atcoder/abc200a.test.cpp
   - test/atcoder/arc123d.test.cpp
+  - test/atcoder/abc270_f.test.cpp
   - test/atcoder/abc190f.test.cpp
   - test/atcoder/abc266f.test.cpp
   - test/atcoder/abc244h.test.cpp
@@ -1800,6 +1815,7 @@ data:
   - test/aoj/ITP1_11_C.test.cpp
   - test/aoj/DPL_1_B.test.cpp
   - test/aoj/2842_2.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
   - test/aoj/GRL_6_B.test.cpp
   - test/aoj/DSL_2_D.test.cpp
   - test/aoj/CGL_2_B.test.cpp

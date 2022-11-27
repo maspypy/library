@@ -11,7 +11,7 @@ data:
     - icon: ':x:'
       path: alg/lazy/add_mul.hpp
       title: alg/lazy/add_mul.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy/cntminmincnt_add.hpp
       title: alg/lazy/cntminmincnt_add.hpp
     - icon: ':heavy_check_mark:'
@@ -88,7 +88,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid/cntmaxmaxcnt.hpp
       title: alg/monoid/cntmaxmaxcnt.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/cntminmincnt.hpp
       title: alg/monoid/cntminmincnt.hpp
     - icon: ':warning:'
@@ -106,7 +106,7 @@ data:
     - icon: ':question:'
       path: alg/monoid/max.hpp
       title: alg/monoid/max.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/max_idx.hpp
       title: alg/monoid/max_idx.hpp
     - icon: ':heavy_check_mark:'
@@ -133,7 +133,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid/reverse_group.hpp
       title: alg/monoid/reverse_group.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/reverse_monoid.hpp
       title: alg/monoid/reverse_monoid.hpp
     - icon: ':warning:'
@@ -204,7 +204,7 @@ data:
     - icon: ':warning:'
       path: ds/doubling.hpp
       title: ds/doubling.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/dualsegtree.hpp
       title: ds/dualsegtree.hpp
     - icon: ':heavy_check_mark:'
@@ -258,7 +258,7 @@ data:
     - icon: ':question:'
       path: ds/pbds.hpp
       title: ds/pbds.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/segtree.hpp
       title: ds/segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -276,7 +276,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/swag.hpp
       title: ds/swag.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/unionfind.hpp
       title: ds/unionfind.hpp
     - icon: ':warning:'
@@ -387,7 +387,7 @@ data:
     - icon: ':x:'
       path: ds/query/rectangle_add_rectangle_sum.hpp
       title: ds/query/rectangle_add_rectangle_sum.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/query/rectangleunion.hpp
       title: ds/query/rectangleunion.hpp
     - icon: ':x:'
@@ -574,7 +574,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/minimum_hamiltonian_cycle.hpp
       title: graph/minimum_hamiltonian_cycle.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: graph/minimum_spanning_tree.hpp
       title: graph/minimum_spanning_tree.hpp
     - icon: ':warning:'
@@ -648,7 +648,7 @@ data:
     - icon: ':x:'
       path: graph/ds/contoursum.hpp
       title: graph/ds/contoursum.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: graph/ds/dualtreemonoid.hpp
       title: graph/ds/dualtreemonoid.hpp
     - icon: ':heavy_check_mark:'
@@ -672,7 +672,7 @@ data:
     - icon: ':warning:'
       path: graph/ds/treegroup.hpp
       title: graph/ds/treegroup.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: graph/ds/treemonoid.hpp
       title: graph/ds/treemonoid.hpp
   - name: graph/shortest_path
@@ -1424,7 +1424,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_I.test.cpp
       title: test/aoj/DSL_2_I.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_4_A.test.cpp
       title: test/aoj/DSL_4_A.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1433,7 +1433,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_1_C.test.cpp
       title: test/aoj/GRL_1_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_2_A.test.cpp
       title: test/aoj/GRL_2_A.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1607,7 +1607,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/add_remove_query.test.cpp
       title: test/library_checker/datastructure/add_remove_query.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
       title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2278,7 +2278,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1211.test.cpp
       title: test/yukicoder/1211.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1212.test.cpp
       title: test/yukicoder/1212.test.cpp
     - icon: ':x:'
@@ -2707,7 +2707,7 @@ data:
     - icon: ':x:'
       path: test/yukicoder/502_2.test.cpp
       title: test/yukicoder/502_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/529.test.cpp
       title: test/yukicoder/529.test.cpp
     - icon: ':heavy_check_mark:'

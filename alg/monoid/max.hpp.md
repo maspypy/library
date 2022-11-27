@@ -14,13 +14,22 @@ data:
   - icon: ':warning:'
     path: alg/lazy/max_set.hpp
     title: alg/lazy/max_set.hpp
+  - icon: ':question:'
+    path: graph/minimum_spanning_tree.hpp
+    title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_2_A.test.cpp
+    title: test/aoj/GRL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc266h.test.cpp
     title: test/atcoder/abc266h.test.cpp
   - icon: ':x:'
     path: test/atcoder/abc266h_2.test.cpp
     title: test/atcoder/abc266h_2.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc270_f.test.cpp
+    title: test/atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1117.test.cpp
     title: test/yukicoder/1117.test.cpp
@@ -60,6 +69,7 @@ data:
   - alg/lazy/max_add.hpp
   - alg/lazy/max_set.hpp
   - alg/lazy/max_min.hpp
+  - graph/minimum_spanning_tree.hpp
   timestamp: '2022-10-21 16:22:09+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -69,8 +79,10 @@ data:
   - test/yukicoder/1826.test.cpp
   - test/yukicoder/1625_2.test.cpp
   - test/yukicoder/1117.test.cpp
+  - test/atcoder/abc270_f.test.cpp
   - test/atcoder/abc266h_2.test.cpp
   - test/atcoder/abc266h.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
 documentation_of: alg/monoid/max.hpp
 layout: document
 redirect_from:

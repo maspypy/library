@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/lazy/reverse.hpp
     title: alg/lazy/reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/reverse_monoid.hpp
     title: alg/monoid/reverse_monoid.hpp
   - icon: ':question:'

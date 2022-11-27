@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/classify_subtree.hpp
     title: graph/classify_subtree.hpp
-  - icon: ':warning:'
+  - icon: ':question:'
     path: graph/ds/dualtreemonoid.hpp
     title: graph/ds/dualtreemonoid.hpp
   - icon: ':heavy_check_mark:'
@@ -18,11 +18,17 @@ data:
     path: graph/ds/treeabelgroup.hpp
     title: graph/ds/treeabelgroup.hpp
   - icon: ':question:'
+    path: graph/ds/treemonoid.hpp
+    title: graph/ds/treemonoid.hpp
+  - icon: ':question:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/functional.hpp
     title: graph/functional.hpp
+  - icon: ':question:'
+    path: graph/minimum_spanning_tree.hpp
+    title: graph/minimum_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/rerooting_classify_subtree.hpp
     title: graph/rerooting_classify_subtree.hpp
@@ -43,6 +49,9 @@ data:
     path: test/aoj/2995.test.cpp
     title: test/aoj/2995.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_2_A.test.cpp
+    title: test/aoj/GRL_2_A.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_B.test.cpp
     title: test/aoj/GRL_3_B.test.cpp
   - icon: ':heavy_check_mark:'
@@ -54,6 +63,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc269ex.test.cpp
     title: test/atcoder/abc269ex.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc270_f.test.cpp
+    title: test/atcoder/abc270_f.test.cpp
   - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
@@ -78,6 +90,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1211.test.cpp
     title: test/yukicoder/1211.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1212.test.cpp
+    title: test/yukicoder/1212.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1242.test.cpp
     title: test/yukicoder/1242.test.cpp
@@ -120,6 +135,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/529.test.cpp
+    title: test/yukicoder/529.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
@@ -326,7 +344,9 @@ data:
   - graph/classify_subtree.hpp
   - graph/ds/treeabelgroup.hpp
   - graph/ds/lazytreemonoid.hpp
+  - graph/ds/treemonoid.hpp
   - graph/ds/dualtreemonoid.hpp
+  - graph/minimum_spanning_tree.hpp
   timestamp: '2022-11-05 01:55:39+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -342,8 +362,10 @@ data:
   - test/yukicoder/1494.test.cpp
   - test/yukicoder/1451.test.cpp
   - test/yukicoder/1211.test.cpp
+  - test/yukicoder/529.test.cpp
   - test/yukicoder/1769.test.cpp
   - test/yukicoder/1976.test.cpp
+  - test/yukicoder/1212.test.cpp
   - test/yukicoder/1418.test.cpp
   - test/yukicoder/1718.test.cpp
   - test/yukicoder/1197.test.cpp
@@ -354,7 +376,9 @@ data:
   - test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
   - test/atcoder/abc269ex.test.cpp
+  - test/atcoder/abc270_f.test.cpp
   - test/atcoder/abc266f.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
   - test/aoj/2677.test.cpp
   - test/aoj/GRL_5_E.test.cpp
   - test/aoj/2995.test.cpp

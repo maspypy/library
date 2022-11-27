@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/reverse_monoid.hpp
     title: alg/monoid/reverse_monoid.hpp
   _extendedRequiredBy:
