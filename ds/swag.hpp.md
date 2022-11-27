@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
+    title: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036_3.test.cpp
     title: test/yukicoder/1036_3.test.cpp
   - icon: ':heavy_check_mark:'
@@ -99,6 +102,7 @@ data:
   - test/yukicoder/2026.test.cpp
   - test/yukicoder/1117.test.cpp
   - test/yukicoder/1036_3.test.cpp
+  - test/library_checker/datastructure/queue_operate_all_composite.test.cpp
 documentation_of: ds/swag.hpp
 layout: document
 redirect_from:

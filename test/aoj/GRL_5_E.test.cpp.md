@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy/cntsum_add.hpp
     title: alg/lazy/cntsum_add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy/reverse.hpp
     title: alg/lazy/reverse.hpp
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/reverse_monoid.hpp
     title: alg/monoid/reverse_monoid.hpp
   - icon: ':question:'
@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/lazytreemonoid.hpp
     title: graph/ds/lazytreemonoid.hpp
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_E
@@ -473,7 +473,7 @@ data:
     \ check_tmp = [&](X x) -> bool { return check(MonoX::op(val, x)); };\r\n     \
     \ auto i = seg.max_right(check_tmp, a);\r\n      return (i == a ? u : tree.V[i\
     \ - 1]);\r\n    }\r\n    return v;\r\n  }\r\n};\r\n#line 1 \"alg/monoid/add_pair.hpp\"\
-    \ntemplate <typename E>\r\nstruct Group_Add_Pair {\r\n  using value_type = pair<E,\
+    \ntemplate <typename E>\r\nstruct Monoid_Add_Pair {\r\n  using value_type = pair<E,\
     \ E>;\r\n  using X = value_type;\r\n  static constexpr X op(const X &x, const\
     \ X &y) {\r\n    return {x.fi + y.fi, x.se + y.se};\r\n  }\r\n  static constexpr\
     \ X inverse(const X &x) { return {-x.fi, -x.se}; }\r\n  static constexpr X unit()\
@@ -519,8 +519,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_5_E.test.cpp
   requiredBy: []
-  timestamp: '2022-11-27 15:06:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-27 15:24:24+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_5_E.test.cpp
 layout: document

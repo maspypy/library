@@ -9,6 +9,9 @@ data:
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   - icon: ':heavy_check_mark:'
+    path: mod/mod_log.hpp
+    title: mod/mod_log.hpp
+  - icon: ':heavy_check_mark:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
   - icon: ':heavy_check_mark:'
@@ -208,11 +211,20 @@ data:
     path: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
     title: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
+    title: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/range_affine_point_add.test.cpp
+    title: test/library_checker/datastructure/range_affine_point_add.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/enumerate_cliques.test.cpp
     title: test/library_checker/graph/enumerate_cliques.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/discrete_logarithm_mod.test.cpp
+    title: test/library_checker/math/discrete_logarithm_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/find_linear_recurrence.test.cpp
     title: test/library_checker/math/find_linear_recurrence.test.cpp
@@ -543,7 +555,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
   - icon: ':heavy_check_mark:'
@@ -783,6 +795,7 @@ data:
   - poly/product_of_pow_of_linear.hpp
   - poly/poly_taylor_shift.hpp
   - poly/composition_f_ex.hpp
+  - mod/mod_log.hpp
   - mod/mod_sqrt.hpp
   - nt/multiplicative_convolution_mod2n.hpp
   - seq/limit_poly_exp_sum.hpp
@@ -918,12 +931,15 @@ data:
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/library_checker/math/totient_sum.test.cpp
+  - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/library_checker/math/find_linear_recurrence.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
   - test/library_checker/math/lcm_convolution.test.cpp
   - test/library_checker/math/partition.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
   - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
+  - test/library_checker/datastructure/queue_operate_all_composite.test.cpp
+  - test/library_checker/datastructure/range_affine_point_add.test.cpp
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp

@@ -4,26 +4,26 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/789_2.test.cpp
     title: test/yukicoder/789_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -32,7 +32,7 @@ data:
     \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
     \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
     \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"alg/monoid/add_pair.hpp\"\
-    \ntemplate <typename E>\r\nstruct Group_Add_Pair {\r\n  using value_type = pair<E,\
+    \ntemplate <typename E>\r\nstruct Monoid_Add_Pair {\r\n  using value_type = pair<E,\
     \ E>;\r\n  using X = value_type;\r\n  static constexpr X op(const X &x, const\
     \ X &y) {\r\n    return {x.fi + y.fi, x.se + y.se};\r\n  }\r\n  static constexpr\
     \ X inverse(const X &x) { return {-x.fi, -x.se}; }\r\n  static constexpr X unit()\
@@ -54,8 +54,8 @@ data:
   isVerificationFile: false
   path: alg/lazy/cntsum_add.hpp
   requiredBy: []
-  timestamp: '2022-11-27 14:27:53+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-11-27 15:24:24+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/235.test.cpp
   - test/yukicoder/789_2.test.cpp

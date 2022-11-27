@@ -10,6 +10,9 @@ data:
     path: test/aoj/DSL_2_D.test.cpp
     title: test/aoj/DSL_2_D.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/range_affine_point_add.test.cpp
+    title: test/library_checker/datastructure/range_affine_point_add.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1524.test.cpp
     title: test/yukicoder/1524.test.cpp
   - icon: ':heavy_check_mark:'
@@ -70,6 +73,7 @@ data:
   verifiedWith:
   - test/yukicoder/913.test.cpp
   - test/yukicoder/1524.test.cpp
+  - test/library_checker/datastructure/range_affine_point_add.test.cpp
   - test/aoj/DSL_2_D.test.cpp
 documentation_of: ds/dualsegtree.hpp
 layout: document

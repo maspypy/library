@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy/cntsum_set.hpp
     title: alg/lazy/cntsum_set.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/set.hpp
     title: alg/monoid/set.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_I
@@ -210,16 +210,16 @@ data:
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
     \ { yes(!t); }\r\n#line 1 \"alg/monoid/add_pair.hpp\"\ntemplate <typename E>\r\
-    \nstruct Group_Add_Pair {\r\n  using value_type = pair<E, E>;\r\n  using X = value_type;\r\
-    \n  static constexpr X op(const X &x, const X &y) {\r\n    return {x.fi + y.fi,\
-    \ x.se + y.se};\r\n  }\r\n  static constexpr X inverse(const X &x) { return {-x.fi,\
-    \ -x.se}; }\r\n  static constexpr X unit() { return {0, 0}; }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 1 \"alg/monoid/set.hpp\"\ntemplate <typename\
-    \ E, E none_val>\r\nstruct Monoid_Set {\r\n  using value_type = E;\r\n  using\
-    \ X = value_type;\r\n  static X op(X x, X y) { return (y == none_val ? x : y);\
-    \ }\r\n  static constexpr X unit() { return none_val; }\r\n  static constexpr\
-    \ bool commute = false;\r\n};\n#line 3 \"alg/lazy/cntsum_set.hpp\"\n\r\ntemplate\
-    \ <typename E, E none_val>\r\nstruct Lazy_CntSum_Set {\r\n  using X_structure\
+    \nstruct Monoid_Add_Pair {\r\n  using value_type = pair<E, E>;\r\n  using X =\
+    \ value_type;\r\n  static constexpr X op(const X &x, const X &y) {\r\n    return\
+    \ {x.fi + y.fi, x.se + y.se};\r\n  }\r\n  static constexpr X inverse(const X &x)\
+    \ { return {-x.fi, -x.se}; }\r\n  static constexpr X unit() { return {0, 0}; }\r\
+    \n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"alg/monoid/set.hpp\"\
+    \ntemplate <typename E, E none_val>\r\nstruct Monoid_Set {\r\n  using value_type\
+    \ = E;\r\n  using X = value_type;\r\n  static X op(X x, X y) { return (y == none_val\
+    \ ? x : y); }\r\n  static constexpr X unit() { return none_val; }\r\n  static\
+    \ constexpr bool commute = false;\r\n};\n#line 3 \"alg/lazy/cntsum_set.hpp\"\n\
+    \r\ntemplate <typename E, E none_val>\r\nstruct Lazy_CntSum_Set {\r\n  using X_structure\
     \ = Monoid_Add_Pair<E>;\r\n  using A_structure = Monoid_Set<E, none_val>;\r\n\
     \  using X = typename X_structure::value_type;\r\n  using A = typename A_structure::value_type;\r\
     \n  static constexpr X act(const X &x, const A &a) {\r\n    if (a == A_structure::unit())\
@@ -314,8 +314,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_I.test.cpp
   requiredBy: []
-  timestamp: '2022-11-27 14:28:36+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-27 15:24:24+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_I.test.cpp
 layout: document

@@ -8,13 +8,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
+    path: mod/mod_log.hpp
+    title: mod/mod_log.hpp
+  - icon: ':heavy_check_mark:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
     title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/discrete_logarithm_mod.test.cpp
+    title: test/library_checker/math/discrete_logarithm_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
@@ -115,6 +121,7 @@ data:
   isVerificationFile: false
   path: ds/hashmap.hpp
   requiredBy:
+  - mod/mod_log.hpp
   - mod/mod_kth_root.hpp
   - nt/discrete_log.hpp
   - connected_dp/squares.hpp
@@ -134,6 +141,7 @@ data:
   - test/yukicoder/1397.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
+  - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/library_checker/datastructure/associative_array_hashmap.test.cpp
 documentation_of: ds/hashmap.hpp
 layout: document

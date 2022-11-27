@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: alg/monoid/cntsummax.hpp
     title: alg/monoid/cntsummax.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/set.hpp
     title: alg/monoid/set.hpp
   _extendedRequiredBy: []
