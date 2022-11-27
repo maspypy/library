@@ -11,7 +11,7 @@ void solve() {
   kth_next_permutation(A, i);
   vc<int> B(N);
   FOR(i, N) B[A[i]] = i;
-  FenwickTree<Group_Add<int>> X(vc<int>(N, 1));
+  FenwickTree<Monoid_Add<int>> X(vc<int>(N, 1));
   vc<int> rk(N);
   FOR(i, N) {
     rk[i] = X.sum(B[i]);
