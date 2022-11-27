@@ -19,6 +19,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: test/aoj/GRL_5_E.test.cpp
+    title: test/aoj/GRL_5_E.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
   - icon: ':x:'
@@ -347,6 +350,7 @@ data:
   verifiedWith:
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1197.test.cpp
+  - test/aoj/GRL_5_E.test.cpp
 documentation_of: graph/ds/lazytreemonoid.hpp
 layout: document
 redirect_from:

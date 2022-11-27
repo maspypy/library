@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/lazy/min_add.hpp
     title: alg/lazy/min_add.hpp
   - icon: ':question:'
@@ -15,15 +15,15 @@ data:
     title: ds/lazysegtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/common_interval_decomposition.test.cpp
     title: test/library_checker/graph/common_interval_decomposition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1720.test.cpp
     title: test/yukicoder/1720.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/lazysegtree.hpp\"\n\ntemplate <typename Lazy>\nstruct\
@@ -98,7 +98,7 @@ data:
     \ const X &y) noexcept { return min(x, y); }\r\n  static constexpr X unit() {\
     \ return numeric_limits<X>::max(); }\r\n  static constexpr bool commute = true;\r\
     \n};\r\n#line 3 \"alg/lazy/min_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
-    \ Lazy_Min_Add {\r\n  using MX = Monoid_Min<E>;\r\n  using MA = Group_Add<E>;\r\
+    \ Lazy_Min_Add {\r\n  using MX = Monoid_Min<E>;\r\n  using MA = Monoid_Add<E>;\r\
     \n  using X_structure = MX;\r\n  using A_structure = MA;\r\n  using X = typename\
     \ MX::value_type;\r\n  using A = typename MA::value_type;\r\n  static constexpr\
     \ X act(const X &x, const A &a) {\r\n    if (x == numeric_limits<E>::max()) return\
@@ -184,8 +184,8 @@ data:
   isVerificationFile: false
   path: ds/common_interval_decomposition.hpp
   requiredBy: []
-  timestamp: '2022-11-27 14:09:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-11-27 14:46:19+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1720.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp

@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwickraq.hpp
     title: ds/fenwickraq.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G
@@ -251,7 +251,7 @@ data:
     \ R), bit0.prod(R));\r\n    E prod_L = AbelGroup::op(AbelGroup::power(bit1.prod(L),\
     \ L), bit0.prod(L));\r\n    return AbelGroup::op(AbelGroup::inverse(prod_L), prod_R);\r\
     \n  }\r\n};\r\n#line 6 \"test/aoj/DSL_2_G.test.cpp\"\n\r\nvoid solve() {\r\n \
-    \ LL(N, Q);\r\n  FenwickRAQ<Group_Add<ll>> bit(N);\r\n  FOR(_, Q) {\r\n    LL(t,\
+    \ LL(N, Q);\r\n  FenwickRAQ<Monoid_Add<ll>> bit(N);\r\n  FOR(_, Q) {\r\n    LL(t,\
     \ L, R);\r\n    --L;\r\n    if (t == 0) {\r\n      LL(x);\r\n      bit.add(L,\
     \ R, x);\r\n    } else {\r\n      print(bit.prod(L, R));\r\n    }\r\n  }\r\n}\r\
     \n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
@@ -259,7 +259,7 @@ data:
     \ solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/fenwickraq.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  FenwickRAQ<Group_Add<ll>> bit(N);\r\
+    \r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  FenwickRAQ<Monoid_Add<ll>> bit(N);\r\
     \n  FOR(_, Q) {\r\n    LL(t, L, R);\r\n    --L;\r\n    if (t == 0) {\r\n     \
     \ LL(x);\r\n      bit.add(L, R, x);\r\n    } else {\r\n      print(bit.prod(L,\
     \ R));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n\
@@ -274,8 +274,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_G.test.cpp
   requiredBy: []
-  timestamp: '2022-11-27 14:09:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-27 14:45:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_G.test.cpp
 layout: document

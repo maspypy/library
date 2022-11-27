@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/double_ended_pq.test.cpp
+    title: test/library_checker/datastructure/double_ended_pq.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036.test.cpp
     title: test/yukicoder/1036.test.cpp
   - icon: ':heavy_check_mark:'
@@ -163,6 +166,7 @@ data:
   - test/yukicoder/1649.test.cpp
   - test/yukicoder/1826.test.cpp
   - test/yukicoder/1036.test.cpp
+  - test/library_checker/datastructure/double_ended_pq.test.cpp
 documentation_of: ds/dynamic_segtree.hpp
 layout: document
 redirect_from:

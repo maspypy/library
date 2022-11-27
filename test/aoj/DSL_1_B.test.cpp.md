@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/weightedunionfind.hpp
     title: ds/weightedunionfind.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B
@@ -225,16 +225,16 @@ data:
     \ = v1;\r\n    size[v1] += size[v2];\r\n    return true;\r\n  }\r\n\r\n  void\
     \ debug() {\r\n    print(\"par\", par);\r\n    print(\"vals\", vals);\r\n    print(\"\
     size\", size);\r\n  }\r\n};\n#line 7 \"test/aoj/DSL_1_B.test.cpp\"\n\nvoid solve()\
-    \ {\n  LL(N, Q);\n  WeightedUnionFind<Group_Add<ll>> uf(N);\n  FOR(Q) {\n    LL(t);\n\
-    \    if (t == 0) {\n      LL(a, b, c);\n      uf.merge(a, b, c);\n    } else {\n\
-    \      LL(a, b);\n      auto [ra, xa] = uf.get(a);\n      auto [rb, xb] = uf.get(b);\n\
-    \      if (ra != rb)\n        print(\"?\");\n      else\n        print(xb - xa);\n\
-    \    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
-    \  return 0;\n}\n"
+    \ {\n  LL(N, Q);\n  WeightedUnionFind<Monoid_Add<ll>> uf(N);\n  FOR(Q) {\n   \
+    \ LL(t);\n    if (t == 0) {\n      LL(a, b, c);\n      uf.merge(a, b, c);\n  \
+    \  } else {\n      LL(a, b);\n      auto [ra, xa] = uf.get(a);\n      auto [rb,\
+    \ xb] = uf.get(b);\n      if (ra != rb)\n        print(\"?\");\n      else\n \
+    \       print(xb - xa);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/monoid/add.hpp\"\
-    \n#include \"ds/weightedunionfind.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  WeightedUnionFind<Group_Add<ll>>\
+    \n#include \"ds/weightedunionfind.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  WeightedUnionFind<Monoid_Add<ll>>\
     \ uf(N);\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(a, b, c);\n    \
     \  uf.merge(a, b, c);\n    } else {\n      LL(a, b);\n      auto [ra, xa] = uf.get(a);\n\
     \      auto [rb, xb] = uf.get(b);\n      if (ra != rb)\n        print(\"?\");\n\
@@ -249,8 +249,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2022-11-27 14:09:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-27 14:45:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_1_B.test.cpp
 layout: document

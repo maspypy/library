@@ -13,6 +13,9 @@ data:
     path: test/aoj/DSL_2_I.test.cpp
     title: test/aoj/DSL_2_I.test.cpp
   - icon: ':x:'
+    path: test/aoj/GRL_5_E.test.cpp
+    title: test/aoj/GRL_5_E.test.cpp
+  - icon: ':x:'
     path: test/mytest/cf702_F.test.cpp
     title: test/mytest/cf702_F.test.cpp
   - icon: ':x:'
@@ -54,6 +57,7 @@ data:
   - test/yukicoder/1197.test.cpp
   - test/mytest/cf702_F.test.cpp
   - test/aoj/DSL_2_I.test.cpp
+  - test/aoj/GRL_5_E.test.cpp
 documentation_of: alg/monoid/add_pair.hpp
 layout: document
 redirect_from:
