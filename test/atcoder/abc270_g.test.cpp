@@ -4,7 +4,7 @@
 #include "nt/discrete_log.hpp"
 #include "alg/group/affine.hpp"
 #include "mod/modint.hpp"
-#include "alg/gset/affine.hpp"
+#include "alg/Xset/affine.hpp"
 
 using mint = amint;
 
@@ -21,7 +21,7 @@ void solve() {
 
   auto h = [&](mint x) -> ll { return x.val; };
 
-  ll ANS = discrete_log_gset<GSet_Affine<mint>>(g, S, G, h, 0, P);
+  ll ANS = discrete_log_gset<XSet_Affine<mint>>(g, S, G, h, 0, P);
   print(ANS);
 }
 
