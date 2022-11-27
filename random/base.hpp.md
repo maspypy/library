@@ -103,6 +103,9 @@ data:
     path: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
     title: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/add_chmin_chmax.test.cpp
+    title: test/mytest/add_chmin_chmax.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/all_inverse.test.cpp
     title: test/mytest/all_inverse.test.cpp
   - icon: ':heavy_check_mark:'
@@ -366,6 +369,7 @@ data:
   - test/mytest/maxplus_concave.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
   - test/mytest/splay.test.cpp
+  - test/mytest/add_chmin_chmax.test.cpp
   - test/mytest/stern_brocot.test.cpp
   - test/mytest/cntsummin_set.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp

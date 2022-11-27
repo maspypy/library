@@ -748,6 +748,9 @@ data:
     path: test/library_checker/tree/tree_diameter.test.cpp
     title: test/library_checker/tree/tree_diameter.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/add_chmin_chmax.test.cpp
+    title: test/mytest/add_chmin_chmax.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/all_but_one_products.test.cpp
     title: test/mytest/all_but_one_products.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1938,6 +1941,7 @@ data:
   - test/mytest/maxplus_concave.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
   - test/mytest/splay.test.cpp
+  - test/mytest/add_chmin_chmax.test.cpp
   - test/mytest/stern_brocot.test.cpp
   - test/mytest/primesum_mod4.test.cpp
   - test/mytest/cntsummin_set.test.cpp
