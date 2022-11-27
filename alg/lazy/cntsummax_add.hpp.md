@@ -8,13 +8,10 @@ data:
     path: alg/monoid/cntsummax.hpp
     title: alg/monoid/cntsummax.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/cntsummax_add.test.cpp
-    title: test/mytest/cntsummax_add.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/cntsummax.hpp\"\n\r\ntemplate <typename E>\r\n\
@@ -49,9 +46,8 @@ data:
   path: alg/lazy/cntsummax_add.hpp
   requiredBy: []
   timestamp: '2022-11-27 22:19:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/mytest/cntsummax_add.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: alg/lazy/cntsummax_add.hpp
 layout: document
 redirect_from:

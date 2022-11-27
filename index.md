@@ -18,7 +18,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/lazy/cntsum_set.hpp
       title: alg/lazy/cntsum_set.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: alg/lazy/cntsummax_add.hpp
       title: alg/lazy/cntsummax_add.hpp
     - icon: ':heavy_check_mark:'
@@ -33,10 +33,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/lazy/max_add.hpp
       title: alg/lazy/max_add.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: alg/lazy/max_max.hpp
       title: alg/lazy/max_max.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy/max_min.hpp
       title: alg/lazy/max_min.hpp
     - icon: ':warning:'
@@ -48,7 +48,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/lazy/min_add.hpp
       title: alg/lazy/min_add.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
+      path: alg/lazy/min_max.hpp
+      title: alg/lazy/min_max.hpp
+    - icon: ':heavy_check_mark:'
       path: alg/lazy/min_min.hpp
       title: alg/lazy/min_min.hpp
     - icon: ':heavy_check_mark:'
@@ -101,7 +104,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid/gl2.hpp
       title: alg/monoid/gl2.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/max.hpp
       title: alg/monoid/max.hpp
     - icon: ':heavy_check_mark:'
@@ -249,7 +252,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/larsch.hpp
       title: ds/larsch.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/lazysegtree.hpp
       title: ds/lazysegtree.hpp
     - icon: ':heavy_check_mark:'
@@ -860,7 +863,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -957,7 +960,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/integer_kth_root.hpp
       title: other/integer_kth_root.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -1113,7 +1116,7 @@ data:
       title: poly/online/online_pow.hpp
   - name: random
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -2087,7 +2090,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/chirp_z.test.cpp
       title: test/mytest/chirp_z.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/mytest/cntsummax_add.test.cpp
       title: test/mytest/cntsummax_add.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2142,6 +2145,12 @@ data:
       path: test/mytest/magic_square.test.cpp
       title: test/mytest/magic_square.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/mytest/max_max.test.cpp
+      title: test/mytest/max_max.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/max_min.test.cpp
+      title: test/mytest/max_min.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/mytest/max_of_linear_segments.test.cpp
       title: test/mytest/max_of_linear_segments.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2150,6 +2159,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/min_cost_matching_on_line.test.cpp
       title: test/mytest/min_cost_matching_on_line.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/min_max.test.cpp
+      title: test/mytest/min_max.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/min_min.test.cpp
+      title: test/mytest/min_min.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/min_of_linear_segments.test.cpp
       title: test/mytest/min_of_linear_segments.test.cpp

@@ -2,13 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy/max_min.hpp
     title: alg/lazy/max_min.hpp
   - icon: ':heavy_check_mark:'
     path: alg/lazy/min_add.hpp
     title: alg/lazy/min_add.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
+    path: alg/lazy/min_max.hpp
+    title: alg/lazy/min_max.hpp
+  - icon: ':heavy_check_mark:'
     path: alg/lazy/min_min.hpp
     title: alg/lazy/min_min.hpp
   - icon: ':heavy_check_mark:'
@@ -73,6 +76,15 @@ data:
     path: test/library_checker/string/suffix_array_vec.test.cpp
     title: test/library_checker/string/suffix_array_vec.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/max_min.test.cpp
+    title: test/mytest/max_min.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/min_max.test.cpp
+    title: test/mytest/min_max.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/min_min.test.cpp
+    title: test/mytest/min_min.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -115,6 +127,7 @@ data:
   requiredBy:
   - alg/lazy/min_add.hpp
   - alg/lazy/min_min.hpp
+  - alg/lazy/min_max.hpp
   - alg/lazy/max_min.hpp
   - alg/lazy/min_set.hpp
   - string/longest_common_substring.hpp
@@ -132,8 +145,11 @@ data:
   - test/yukicoder/1720.test.cpp
   - test/yukicoder/1270.test.cpp
   - test/yukicoder/1212.test.cpp
+  - test/mytest/min_max.test.cpp
   - test/mytest/range_mex.test.cpp
   - test/mytest/suffix_tree.test.cpp
+  - test/mytest/min_min.test.cpp
+  - test/mytest/max_min.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp
   - test/library_checker/string/suffix_array_vec.test.cpp

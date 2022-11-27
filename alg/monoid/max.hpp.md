@@ -5,15 +5,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/lazy/max_add.hpp
     title: alg/lazy/max_add.hpp
-  - icon: ':warning:'
+  - icon: ':question:'
     path: alg/lazy/max_max.hpp
     title: alg/lazy/max_max.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy/max_min.hpp
     title: alg/lazy/max_min.hpp
   - icon: ':warning:'
     path: alg/lazy/max_set.hpp
     title: alg/lazy/max_set.hpp
+  - icon: ':heavy_check_mark:'
+    path: alg/lazy/min_max.hpp
+    title: alg/lazy/min_max.hpp
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
@@ -30,6 +33,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
+  - icon: ':x:'
+    path: test/mytest/cntsummax_add.test.cpp
+    title: test/mytest/cntsummax_add.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/max_max.test.cpp
+    title: test/mytest/max_max.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/max_min.test.cpp
+    title: test/mytest/max_min.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/min_max.test.cpp
+    title: test/mytest/min_max.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1117.test.cpp
     title: test/yukicoder/1117.test.cpp
@@ -51,9 +66,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/686.test.cpp
     title: test/yukicoder/686.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/max.hpp\"\ntemplate <class X>\r\nstruct Monoid_Max\
@@ -70,11 +85,12 @@ data:
   requiredBy:
   - alg/lazy/max_max.hpp
   - alg/lazy/max_add.hpp
+  - alg/lazy/min_max.hpp
   - alg/lazy/max_set.hpp
   - alg/lazy/max_min.hpp
   - graph/minimum_spanning_tree.hpp
   timestamp: '2022-10-21 16:22:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/686.test.cpp
   - test/yukicoder/1625.test.cpp
@@ -83,6 +99,10 @@ data:
   - test/yukicoder/1826.test.cpp
   - test/yukicoder/1625_2.test.cpp
   - test/yukicoder/1117.test.cpp
+  - test/mytest/min_max.test.cpp
+  - test/mytest/max_max.test.cpp
+  - test/mytest/max_min.test.cpp
+  - test/mytest/cntsummax_add.test.cpp
   - test/atcoder/abc270_f.test.cpp
   - test/atcoder/abc266h_2.test.cpp
   - test/atcoder/abc266h.test.cpp
