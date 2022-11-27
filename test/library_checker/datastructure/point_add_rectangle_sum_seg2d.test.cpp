@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "alg/group/add.hpp"
+#include "alg/monoid/add.hpp"
 #include "ds/segtree2d.hpp"
 
 void solve() {
@@ -30,7 +30,7 @@ void solve() {
     }
   }
 
-  using Mono = Group_Add<ll>;
+  using Mono = Monoid_Add<ll>;
 
   SegTree2D<Mono, int, false> seg(X, Y, W);
 
