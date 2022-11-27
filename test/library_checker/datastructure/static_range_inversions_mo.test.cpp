@@ -13,7 +13,7 @@ void solve() {
 
   for (auto&& x: A) x = LB(key, x);
   ll K = len(key);
-  FenwickTree<Group_Add<int>> bit(K);
+  FenwickTree<Monoid_Add<int>> bit(K);
 
   Mo mo;
   vi ANS(Q);

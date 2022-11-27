@@ -3,10 +3,14 @@
 #include "mod/mod_inv.hpp"
 #include "nt/factor.hpp"
 
-// new_mod = -1 の場合：lcm が i128 範囲なら
+// 最小解を mod new_mod で返す
 // 解なしなら -1 を返す
-i128 CRT(vc<int> vals, vc<int> mods, int new_mod = -1, bool coprime = false) {
+i128 CRT(vc<int> vals, vc<int> mods, ll new_mod = -1, bool coprime = false) {
   int n = len(vals);
+  FOR(i, n) {
+    vals[i] %= mods[i];
+    if (vals[i] < 0) vals[i] += mods[i];
+  }
   if (!coprime) {
     unordered_map<ll, vc<pi>> MP;
     FOR(i, n) {

@@ -4,13 +4,13 @@
 
 #include "mod/modint.hpp"
 #include "graph/ds/treegroup.hpp"
-#include "alg/group/affine.hpp"
+#include "alg/monoid/affine.hpp"
 
 using mint = modint998;
 
 void solve() {
   LL(N, Q);
-  using Mono = Group_Affine<mint>;
+  using Mono = Monoid_Affine<mint>;
   using E = Mono::value_type;
   vc<E> A(N);
   FOR(i, N) {

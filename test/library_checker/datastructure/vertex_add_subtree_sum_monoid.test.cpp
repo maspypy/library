@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 
 #include "graph/ds/treemonoid.hpp"
-#include "alg/group/add.hpp"
+#include "alg/monoid/add.hpp"
 
 void solve() {
   LL(N, Q);
@@ -16,7 +16,7 @@ void solve() {
   G.build();
 
   TREE tree(G);
-  using Mono = Group_Add<ll>;
+  using Mono = Monoid_Add<ll>;
 
   TreeMonoid<decltype(tree), Mono, false> TM(tree, A);
 

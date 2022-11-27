@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "alg/group/add.hpp"
+#include "alg/monoid/add.hpp"
 #include "ds/segtree.hpp"
 #include "graph/ds/treegroup.hpp"
 
@@ -13,7 +13,7 @@ void solve() {
   G.read_tree(0, 0);
 
   TREE<Graph<int>> tree(G);
-  using Group = Group_Add<ll>;
+  using Group = Monoid_Add<ll>;
   TreeGroup<decltype(tree), Group, false, true, false> TG(tree, A);
 
   FOR(_, Q) {

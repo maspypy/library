@@ -8,7 +8,7 @@
 
 void solve() {
   LL(N, Q);
-  Point_Add_Rectangle_Sum<Group_Add<ll>, int> RS;
+  Point_Add_Rectangle_Sum<Monoid_Add<ll>, int> RS;
   FOR(N) {
     LL(x, y, w);
     RS.add_query(x, y, w);
