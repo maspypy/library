@@ -13,7 +13,7 @@ void solve() {
   for (auto&& x: A) --x;
 
   vi ANS(Q);
-  FenwickTree<Group_Add<int>> bit_l(N), bit_r(N);
+  FenwickTree<Monoid_Add<int>> bit_l(N), bit_r(N);
   LazySegTree<Lazy_Min_Add<int>> seg(N, [&](int i) -> int { return 0; });
   int ans = 0;
   for (auto&& x: A) {
