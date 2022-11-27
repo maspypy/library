@@ -10,7 +10,7 @@ vi inversion_rotate(vc<T>& A, bool SMALL = false) {
   }
   ll K = MAX(A) + 1;
   ll ANS = 0;
-  FenwickTree<Group_Add<int>> bit(K);
+  FenwickTree<Monoid_Add<int>> bit(K);
   for (auto&& x: A) {
     ANS += bit.sum(x + 1, K);
     bit.add(x, 1);
