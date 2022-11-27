@@ -6,7 +6,7 @@
 
 void solve() {
   LL(N, Q);
-  FenwickRAQ<Group_Add<ll>> bit(N);
+  FenwickRAQ<Monoid_Add<ll>> bit(N);
   FOR(_, Q) {
     LL(t);
     if (t == 0) {
