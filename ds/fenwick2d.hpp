@@ -1,4 +1,4 @@
-#include "alg/group/add.hpp"
+#include "alg/monoid/add.hpp"
 template <typename AbelGroup, typename XY, bool SMALL_X = false>
 struct Fenwick2D {
   using E = typename AbelGroup::value_type;
