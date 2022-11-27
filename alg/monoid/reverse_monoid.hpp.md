@@ -1,7 +1,13 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: alg/lazy/reverse.hpp
+    title: alg/lazy/reverse.hpp
+  - icon: ':warning:'
+    path: graph/ds/lazytreemonoid.hpp
+    title: graph/ds/lazytreemonoid.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -21,7 +27,9 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/reverse_monoid.hpp
-  requiredBy: []
+  requiredBy:
+  - alg/lazy/reverse.hpp
+  - graph/ds/lazytreemonoid.hpp
   timestamp: '2022-11-27 13:06:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: alg/lazy/minidx_add.hpp
+    title: alg/lazy/minidx_add.hpp
   - icon: ':heavy_check_mark:'
     path: ds/cht/dynamic_lichao.hpp
     title: ds/cht/dynamic_lichao.hpp
@@ -48,6 +51,7 @@ data:
   isVerificationFile: false
   path: alg/monoid/min_idx.hpp
   requiredBy:
+  - alg/lazy/minidx_add.hpp
   - string/suffix_tree.hpp
   - geo/manhattan_nns.hpp
   - ds/cht/dynamic_lichao.hpp

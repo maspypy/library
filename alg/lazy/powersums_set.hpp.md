@@ -18,9 +18,9 @@ data:
     \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
     \ File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: alg/group/power_sums.hpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: alg/monoid/power_sums.hpp:\
     \ line -1: no such header\n"
-  code: "#pragma once\r\n\r\n#include \"alg/monoid/set.hpp\"\r\n#include \"alg/group/power_sums.hpp\"\
+  code: "#pragma once\r\n\r\n#include \"alg/monoid/set.hpp\"\r\n#include \"alg/monoid/power_sums.hpp\"\
     \r\n\r\ntemplate <typename mint, int K>\r\nstruct Lazy_Power_Sums_Set {\r\n  using\
     \ MX = Group_power_sums<mint, K>;\r\n  using MA = Monoid_Set<int, -1>;\r\n  using\
     \ X_structure = MX;\r\n  using A_structure = MA;\r\n  using X = typename MX::value_type;\r\

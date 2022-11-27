@@ -2,9 +2,6 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: alg/lazy/cntsum_set.hpp
-    title: alg/lazy/cntsum_set.hpp
   - icon: ':warning:'
     path: alg/lazy/cntsummax_set.hpp
     title: alg/lazy/cntsummax_set.hpp
@@ -24,9 +21,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_F.test.cpp
     title: test/aoj/DSL_2_F.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_2_I.test.cpp
-    title: test/aoj/DSL_2_I.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -45,7 +39,6 @@ data:
   isVerificationFile: false
   path: alg/monoid/set.hpp
   requiredBy:
-  - alg/lazy/cntsum_set.hpp
   - alg/lazy/cntsummax_set.hpp
   - alg/lazy/max_set.hpp
   - alg/lazy/cntsummin_set.hpp
@@ -54,7 +47,6 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_D.test.cpp
-  - test/aoj/DSL_2_I.test.cpp
   - test/aoj/DSL_2_F.test.cpp
 documentation_of: alg/monoid/set.hpp
 layout: document

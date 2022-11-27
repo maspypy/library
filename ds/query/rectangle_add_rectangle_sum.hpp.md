@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/query/point_add_rectangle_sum.hpp
     title: ds/query/point_add_rectangle_sum.hpp
   _extendedRequiredBy: []
@@ -21,7 +21,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/query/rectangle_add_rectangle_sum.hpp\"\n\n#line 2 \"\
-    alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Group_Add {\r\n  using\
+    alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\n  using\
     \ X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const\
     \ X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const X &x)\
     \ noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept\
@@ -191,7 +191,7 @@ data:
   isVerificationFile: false
   path: ds/query/rectangle_add_rectangle_sum.hpp
   requiredBy: []
-  timestamp: '2022-11-27 13:32:35+09:00'
+  timestamp: '2022-11-27 14:09:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1490.test.cpp

@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: alg/lazy/maxidx_add.hpp
+    title: alg/lazy/maxidx_add.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -24,7 +27,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/max_idx.hpp
-  requiredBy: []
+  requiredBy:
+  - alg/lazy/maxidx_add.hpp
   timestamp: '2022-10-21 16:22:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':x:'
+    path: alg/lazy/max_add.hpp
+    title: alg/lazy/max_add.hpp
   - icon: ':warning:'
     path: alg/lazy/max_max.hpp
     title: alg/lazy/max_max.hpp
@@ -33,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2026.test.cpp
     title: test/yukicoder/2026.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/686.test.cpp
+    title: test/yukicoder/686.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -51,11 +57,13 @@ data:
   path: alg/monoid/max.hpp
   requiredBy:
   - alg/lazy/max_max.hpp
+  - alg/lazy/max_add.hpp
   - alg/lazy/max_set.hpp
   - alg/lazy/max_min.hpp
   timestamp: '2022-10-21 16:22:09+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/686.test.cpp
   - test/yukicoder/1625.test.cpp
   - test/yukicoder/2026.test.cpp
   - test/yukicoder/1826.test.cpp

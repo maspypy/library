@@ -1,53 +1,38 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: alg/monoid/cntsum.hpp
-    title: alg/monoid/cntsum.hpp
-  - icon: ':heavy_check_mark:'
-    path: alg/monoid/set.hpp
-    title: alg/monoid/set.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_2_I.test.cpp
-    title: test/aoj/DSL_2_I.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"alg/monoid/cntsum.hpp\"\ntemplate <typename E = long long>\r\
-    \nstruct Group_CntSum {\r\n  using value_type = pair<E, E>;\r\n  using X = value_type;\r\
-    \n  static constexpr X op(const X &x, const X &y) {\r\n    return {x.fi + y.fi,\
-    \ x.se + y.se};\r\n  }\r\n  static constexpr X inverse(const X &x) { return {-x.fi,\
-    \ -x.se}; }\r\n  static constexpr X unit() { return {0, 0}; }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 1 \"alg/monoid/set.hpp\"\ntemplate <typename\
-    \ E, E none_val>\r\nstruct Monoid_Set {\r\n  using value_type = E;\r\n  using\
-    \ X = value_type;\r\n  static X op(X x, X y) { return (y == none_val ? x : y);\
-    \ }\r\n  static constexpr X unit() { return none_val; }\r\n  static constexpr\
-    \ bool commute = false;\r\n};\n#line 3 \"alg/lazy/cntsum_set.hpp\"\n\r\ntemplate\
-    \ <typename E, E none_val>\r\nstruct Lazy_CntSum_Set {\r\n  using X_structure\
-    \ = Group_CntSum<E>;\r\n  using A_structure = Monoid_Set<E, none_val>;\r\n  using\
-    \ X = typename X_structure::value_type;\r\n  using A = typename A_structure::value_type;\r\
-    \n  static constexpr X act(const X &x, const A &a) {\r\n    if (a == A_structure::unit())\
-    \ return x;\r\n    return {x.fi, x.fi * a};\r\n  }\r\n};\r\n"
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
+    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
+    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
+    \ File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: alg/monoid/cntsum.hpp:\
+    \ line -1: no such header\n"
   code: "#include \"alg/monoid/cntsum.hpp\"\r\n#include \"alg/monoid/set.hpp\"\r\n\
     \r\ntemplate <typename E, E none_val>\r\nstruct Lazy_CntSum_Set {\r\n  using X_structure\
     \ = Group_CntSum<E>;\r\n  using A_structure = Monoid_Set<E, none_val>;\r\n  using\
     \ X = typename X_structure::value_type;\r\n  using A = typename A_structure::value_type;\r\
     \n  static constexpr X act(const X &x, const A &a) {\r\n    if (a == A_structure::unit())\
     \ return x;\r\n    return {x.fi, x.fi * a};\r\n  }\r\n};\r\n"
-  dependsOn:
-  - alg/monoid/cntsum.hpp
-  - alg/monoid/set.hpp
+  dependsOn: []
   isVerificationFile: false
   path: alg/lazy/cntsum_set.hpp
   requiredBy: []
-  timestamp: '2022-11-27 13:35:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/DSL_2_I.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: alg/lazy/cntsum_set.hpp
 layout: document
 redirect_from:
