@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/lazy/reverse.hpp
     title: alg/lazy/reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/lazytreemonoid.hpp
     title: graph/ds/lazytreemonoid.hpp
   - icon: ':heavy_check_mark:'
@@ -48,6 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1216_2.test.cpp
     title: test/yukicoder/1216_2.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1790.test.cpp
+    title: test/yukicoder/1790.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
@@ -85,6 +88,7 @@ data:
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1216_2.test.cpp
   - test/yukicoder/529.test.cpp
+  - test/yukicoder/1790.test.cpp
   - test/yukicoder/1212.test.cpp
   - test/yukicoder/1197.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp

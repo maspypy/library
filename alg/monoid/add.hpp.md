@@ -77,6 +77,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/trie.hpp
+    title: string/trie.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2842.test.cpp
@@ -138,6 +141,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
+    title: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
@@ -208,6 +214,9 @@ data:
     path: test/yukicoder/1234.test.cpp
     title: test/yukicoder/1234.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1269.test.cpp
+    title: test/yukicoder/1269.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1270.test.cpp
     title: test/yukicoder/1270.test.cpp
   - icon: ':heavy_check_mark:'
@@ -222,9 +231,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1441.test.cpp
     title: test/yukicoder/1441.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1441_2.test.cpp
+    title: test/yukicoder/1441_2.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1490.test.cpp
     title: test/yukicoder/1490.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1641.test.cpp
+    title: test/yukicoder/1641.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1720.test.cpp
     title: test/yukicoder/1720.test.cpp
@@ -234,6 +249,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1874.test.cpp
     title: test/yukicoder/1874.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1919.test.cpp
+    title: test/yukicoder/1919.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1977.test.cpp
+    title: test/yukicoder/1977.test.cpp
   - icon: ':x:'
     path: test/yukicoder/2003.test.cpp
     title: test/yukicoder/2003.test.cpp
@@ -294,6 +315,7 @@ data:
   - alg/lazy/max_add.hpp
   - alg/lazy/cntminmincnt_add.hpp
   - alg/lazy/minidx_add.hpp
+  - string/trie.hpp
   - seq/inversion.hpp
   - ds/fenwick2d_dense.hpp
   - ds/common_interval_decomposition.hpp
@@ -324,24 +346,30 @@ data:
   - test/yukicoder/1720.test.cpp
   - test/yukicoder/686.test.cpp
   - test/yukicoder/1490.test.cpp
+  - test/yukicoder/1441_2.test.cpp
   - test/yukicoder/1874.test.cpp
   - test/yukicoder/1838.test.cpp
   - test/yukicoder/1326.test.cpp
   - test/yukicoder/1216_2.test.cpp
   - test/yukicoder/1038.test.cpp
   - test/yukicoder/1141.test.cpp
+  - test/yukicoder/1269.test.cpp
   - test/yukicoder/1270.test.cpp
   - test/yukicoder/789_2.test.cpp
   - test/yukicoder/655.test.cpp
   - test/yukicoder/924.test.cpp
   - test/yukicoder/1332.test.cpp
+  - test/yukicoder/1641.test.cpp
   - test/yukicoder/789.test.cpp
+  - test/yukicoder/1919.test.cpp
   - test/yukicoder/919.test.cpp
   - test/yukicoder/1097.test.cpp
+  - test/yukicoder/1977.test.cpp
   - test/yukicoder/1197.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp

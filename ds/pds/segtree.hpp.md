@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
+    title: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/pds/segtree.hpp\"\ntemplate <typename Monoid, int NODES>\n\
@@ -85,8 +88,9 @@ data:
   path: ds/pds/segtree.hpp
   requiredBy: []
   timestamp: '2022-10-21 16:42:45+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
 documentation_of: ds/pds/segtree.hpp
 layout: document
 redirect_from:

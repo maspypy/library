@@ -157,6 +157,9 @@ data:
     path: test/mytest/online_pow.test.cpp
     title: test/mytest/online_pow.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/powerquery.test.cpp
+    title: test/mytest/powerquery.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/product_of_one_pm_xn.test.cpp
     title: test/mytest/product_of_one_pm_xn.test.cpp
   - icon: ':heavy_check_mark:'
@@ -306,6 +309,7 @@ data:
   - test/mytest/online_inv.test.cpp
   - test/mytest/conv_leq.test.cpp
   - test/mytest/chirp_z.test.cpp
+  - test/mytest/powerquery.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/online_division.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp

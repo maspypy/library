@@ -454,6 +454,9 @@ data:
     path: test/mytest/online_pow.test.cpp
     title: test/mytest/online_pow.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/powerquery.test.cpp
+    title: test/mytest/powerquery.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/prime_sum.test.cpp
     title: test/mytest/prime_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -496,6 +499,9 @@ data:
     path: test/yukicoder/1263.test.cpp
     title: test/yukicoder/1263.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1269.test.cpp
+    title: test/yukicoder/1269.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1276.test.cpp
     title: test/yukicoder/1276.test.cpp
   - icon: ':heavy_check_mark:'
@@ -525,6 +531,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1500.test.cpp
     title: test/yukicoder/1500.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1502.test.cpp
+    title: test/yukicoder/1502.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1516.test.cpp
     title: test/yukicoder/1516.test.cpp
@@ -601,8 +610,14 @@ data:
     path: test/yukicoder/1875.test.cpp
     title: test/yukicoder/1875.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1891.test.cpp
+    title: test/yukicoder/1891.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1919.test.cpp
+    title: test/yukicoder/1919.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1939.test.cpp
     title: test/yukicoder/1939.test.cpp
@@ -929,11 +944,13 @@ data:
   - test/yukicoder/1962.test.cpp
   - test/yukicoder/1080.test.cpp
   - test/yukicoder/1303.test.cpp
+  - test/yukicoder/1502.test.cpp
   - test/yukicoder/1549.test.cpp
   - test/yukicoder/1493.test.cpp
   - test/yukicoder/1141.test.cpp
   - test/yukicoder/1618.test.cpp
   - test/yukicoder/1907.test.cpp
+  - test/yukicoder/1269.test.cpp
   - test/yukicoder/579.test.cpp
   - test/yukicoder/1875.test.cpp
   - test/yukicoder/1810.test.cpp
@@ -949,6 +966,7 @@ data:
   - test/yukicoder/2062.test.cpp
   - test/yukicoder/1276.test.cpp
   - test/yukicoder/1781.test.cpp
+  - test/yukicoder/1919.test.cpp
   - test/yukicoder/1167.test.cpp
   - test/yukicoder/1145.test.cpp
   - test/yukicoder/1411.test.cpp
@@ -959,6 +977,7 @@ data:
   - test/yukicoder/1548.test.cpp
   - test/yukicoder/502_2.test.cpp
   - test/yukicoder/1755.test.cpp
+  - test/yukicoder/1891.test.cpp
   - test/yukicoder/1533.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/enumerate_multisets.test.cpp
@@ -972,6 +991,7 @@ data:
   - test/mytest/online_inv.test.cpp
   - test/mytest/conv_leq.test.cpp
   - test/mytest/chirp_z.test.cpp
+  - test/mytest/powerquery.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/enumerate_products.test.cpp
   - test/mytest/online_division.test.cpp

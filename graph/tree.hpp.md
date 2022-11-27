@@ -11,7 +11,7 @@ data:
   - icon: ':question:'
     path: graph/ds/dualtreemonoid.hpp
     title: graph/ds/dualtreemonoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/lazytreemonoid.hpp
     title: graph/ds/lazytreemonoid.hpp
   - icon: ':heavy_check_mark:'
@@ -148,6 +148,9 @@ data:
     path: test/yukicoder/1600.test.cpp
     title: test/yukicoder/1600.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1641.test.cpp
+    title: test/yukicoder/1641.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1718.test.cpp
     title: test/yukicoder/1718.test.cpp
   - icon: ':heavy_check_mark:'
@@ -156,6 +159,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1778.test.cpp
     title: test/yukicoder/1778.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1790.test.cpp
+    title: test/yukicoder/1790.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1976.test.cpp
     title: test/yukicoder/1976.test.cpp
@@ -402,7 +408,9 @@ data:
   - test/yukicoder/1211.test.cpp
   - test/yukicoder/529.test.cpp
   - test/yukicoder/1769.test.cpp
+  - test/yukicoder/1641.test.cpp
   - test/yukicoder/1976.test.cpp
+  - test/yukicoder/1790.test.cpp
   - test/yukicoder/1212.test.cpp
   - test/yukicoder/1418.test.cpp
   - test/yukicoder/1718.test.cpp

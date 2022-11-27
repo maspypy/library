@@ -12,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1441.test.cpp
     title: test/yukicoder/1441.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1441_2.test.cpp
+    title: test/yukicoder/1441_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -202,6 +205,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1441.test.cpp
+  - test/yukicoder/1441_2.test.cpp
   - test/mytest/splay.test.cpp
   - test/aoj/1508.test.cpp
 documentation_of: ds/bbst/splaytree_monoid.hpp

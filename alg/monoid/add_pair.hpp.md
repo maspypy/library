@@ -34,6 +34,9 @@ data:
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1919.test.cpp
+    title: test/yukicoder/1919.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
   - icon: ':heavy_check_mark:'
@@ -71,6 +74,7 @@ data:
   - test/yukicoder/235.test.cpp
   - test/yukicoder/789_2.test.cpp
   - test/yukicoder/255.test.cpp
+  - test/yukicoder/1919.test.cpp
   - test/yukicoder/1197.test.cpp
   - test/mytest/cf702_F.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp

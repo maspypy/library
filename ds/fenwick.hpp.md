@@ -96,6 +96,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1490.test.cpp
     title: test/yukicoder/1490.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1641.test.cpp
+    title: test/yukicoder/1641.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1838.test.cpp
     title: test/yukicoder/1838.test.cpp
@@ -197,6 +200,7 @@ data:
   - test/yukicoder/1038.test.cpp
   - test/yukicoder/1270.test.cpp
   - test/yukicoder/924.test.cpp
+  - test/yukicoder/1641.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
