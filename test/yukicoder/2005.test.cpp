@@ -4,7 +4,7 @@
 
 #include "mod/modint.hpp"
 #include "ds/disjointsparse.hpp"
-#include "alg/group/mul.hpp"
+#include "alg/monoid/mul.hpp"
 #include "seq/famous/eulerian_number.hpp"
 
 using mint = modint998;
@@ -15,8 +15,8 @@ void solve() {
   vvc<mint> A = eulerian_number_2d<mint>(LIM, LIM);
 
   // M - LIM, ... の積をとりたい
-  DisjointSparse<Group_Mul<mint>> seg(N + LIM + LIM + 100,
-                                      [&](int i) { return mint(M - LIM + i); });
+  DisjointSparse<Monoid_Mul<mint>> seg(
+      N + LIM + LIM + 100, [&](int i) { return mint(M - LIM + i); });
 
   auto prod = [&](ll l, ll r) -> mint {
     l -= (M - LIM);
