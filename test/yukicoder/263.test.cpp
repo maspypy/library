@@ -8,6 +8,7 @@
 
 void solve() {
   RollingHash RH;
+  using M61 = modint61;
 
   auto get = [&]() -> vc<pair<ll, int>> {
     vc<pair<ll, int>> res;
@@ -18,8 +19,8 @@ void solve() {
     FOR(i, len(X.nodes)) {
       if (X.nodes[i].length <= 0) continue;
       auto [l, r] = X.nodes[i].pos;
-      ll x = RH.query(SH, l, r);
-      res.eb(x, CNT[i]);
+      M61 x = RH.query(SH, l, r);
+      res.eb(x.val, CNT[i]);
     }
     return res;
   };
