@@ -1,7 +1,7 @@
 #pragma once
 
 template <typename E, int K>
-struct Group_power_sums {
+struct Group_Add_Array {
   using value_type = array<E, K>;
   using X = value_type;
   static X op(X x, X y) {
