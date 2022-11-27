@@ -2,12 +2,12 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/doubling.hpp"
-#include "alg/group/add.hpp"
+#include "alg/monoid/add.hpp"
 
 void solve() {
   LL(N);
   VEC(ll, A, N);
-  Doubling<Group_Add<ll>, 50> X(N);
+  Doubling<Monoid_Add<ll>, 50> X(N);
   FOR(i, N) { X.add(i, (i + A[i]) % N, A[i]); }
   X.build();
 
