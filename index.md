@@ -92,9 +92,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/affine.hpp
       title: alg/monoid/affine.hpp
-    - icon: ':warning:'
-      path: alg/monoid/and.hpp
-      title: alg/monoid/and.hpp
     - icon: ':heavy_check_mark:'
       path: alg/monoid/cntminmincnt.hpp
       title: alg/monoid/cntminmincnt.hpp
