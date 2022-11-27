@@ -4,7 +4,7 @@
 struct Lazy_CntSumMin_Add {
   static constexpr ll INF = 1LL << 60;
   using MX = Monoid_CntSumMin;
-  using MA = Group_Add<ll>;
+  using MA = Monoid_Add<ll>;
   using X_structure = MX;
   using A_structure = MA;
   using X = typename MX::value_type;
