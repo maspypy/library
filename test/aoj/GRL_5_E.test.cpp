@@ -2,7 +2,7 @@
   "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_E"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "alg/group/add.hpp"
+#include "alg/monoid/add.hpp"
 #include "graph/ds/lazytreemonoid.hpp"
 #include "alg/lazy/cntsum_add.hpp"
 
