@@ -77,6 +77,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
+  - icon: ':question:'
+    path: seq/inversion_rotate.hpp
+    title: seq/inversion_rotate.hpp
   - icon: ':heavy_check_mark:'
     path: string/trie.hpp
     title: string/trie.hpp
@@ -114,7 +117,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc127f_1.test.cpp
     title: test/atcoder/abc127f_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc190f.test.cpp
     title: test/atcoder/abc190f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -189,7 +192,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/wavelet_matrix_sum.test.cpp
     title: test/mytest/wavelet_matrix_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -317,6 +320,7 @@ data:
   - alg/lazy/minidx_add.hpp
   - string/trie.hpp
   - seq/inversion.hpp
+  - seq/inversion_rotate.hpp
   - ds/fenwick2d_dense.hpp
   - ds/common_interval_decomposition.hpp
   - ds/cumsum2d.hpp

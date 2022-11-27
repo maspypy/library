@@ -266,13 +266,13 @@ data:
     \   ANS[q] = seg.prod(L, R);\r\n      }\r\n    }\r\n    return ANS;\r\n  }\r\n\
     \r\n  vc<X> calc() {\r\n    auto f = [&](ll k) -> X { return 1; };\r\n    return\
     \ calc(f);\r\n  }\r\n};\r\n#line 5 \"test/atcoder/abc174f.test.cpp\"\n\nvoid solve()\
-    \ {\n  LL(N, Q);\n  VEC(ll, C, N);\n  UniqueProductQuery<Group_Add<int>> X(C);\n\
+    \ {\n  LL(N, Q);\n  VEC(ll, C, N);\n  UniqueProductQuery<Monoid_Add<int>> X(C);\n\
     \n  FOR(Q) {\n    LL(l, r);\n    X.add(--l, r);\n  }\n  for (auto&& x: X.calc())\
     \ print(x);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n  solve();\n\
     \  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc174/tasks/abc174_f\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/query/uniqueproductquery.hpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, C, N);\n  UniqueProductQuery<Group_Add<int>>\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, C, N);\n  UniqueProductQuery<Monoid_Add<int>>\
     \ X(C);\n\n  FOR(Q) {\n    LL(l, r);\n    X.add(--l, r);\n  }\n  for (auto&& x:\
     \ X.calc()) print(x);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
     \  solve();\n  return 0;\n}\n"
@@ -284,7 +284,7 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc174f.test.cpp
   requiredBy: []
-  timestamp: '2022-11-27 20:03:09+09:00'
+  timestamp: '2022-11-27 20:29:39+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/atcoder/abc174f.test.cpp

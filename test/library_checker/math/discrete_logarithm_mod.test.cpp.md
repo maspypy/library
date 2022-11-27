@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
   - icon: ':heavy_check_mark:'
@@ -344,20 +344,20 @@ data:
     \u3057\u3066 a^nx=y \u3092\u89E3\u304F\r\n// \u30CF\u30C3\u30B7\u30E5\u95A2\u6570\
     \ H : X -> long long \u3092\u6301\u305F\u305B\u308B\r\n// [lb, ub) \u306E\u6700\
     \u521D\u306E\u89E3\u3092\u304B\u3048\u3059\r\n// \u306A\u3051\u308C\u3070 -1\r\
-    \ntemplate <typename GSet>\r\nll discrete_log_gset(typename GSet::G a, typename\
-    \ GSet::X x, typename GSet::X y,\r\n                     function<ll(typename\
-    \ GSet::X)> H, ll lb, ll ub) {\r\n  using Group = typename GSet::Group;\r\n  using\
-    \ G = typename Group::value_type;\r\n  if (lb >= ub) return -1;\r\n  auto apow\
-    \ = [&](ll n) -> G {\r\n    G p = a;\r\n    G res = Group::unit();\r\n    while\
-    \ (n) {\r\n      if (n & 1) res = Group::op(res, p);\r\n      p = Group::op(p,\
-    \ p);\r\n      n /= 2;\r\n    }\r\n    return res;\r\n  };\r\n  x = GSet::act(apow(lb),\
-    \ x);\r\n  ll LIM = ub - lb;\r\n\r\n  ll K = 1;\r\n  while (K * K < LIM) ++K;\r\
-    \n\r\n  static HashMapLL<int, 20> MP;\r\n  MP.reset();\r\n\r\n  FOR(k, K + 1)\
-    \ {\r\n    auto key = H(x);\r\n    if (!MP.count(key)) MP[key] = k;\r\n    if\
-    \ (k != K) x = GSet::act(a, x);\r\n  }\r\n\r\n  a = Group::inverse(apow(K));\r\
+    \ntemplate <typename GSet>\r\nll discrete_log_gset(typename GSet::X a, typename\
+    \ GSet::S x, typename GSet::S y,\r\n                     function<ll(typename\
+    \ GSet::S)> H, ll lb, ll ub) {\r\n  using Group = typename GSet::Monoid;\r\n \
+    \ using G = typename Group::value_type;\r\n  if (lb >= ub) return -1;\r\n  auto\
+    \ apow = [&](ll n) -> G {\r\n    G p = a;\r\n    G res = Group::unit();\r\n  \
+    \  while (n) {\r\n      if (n & 1) res = Group::op(res, p);\r\n      p = Group::op(p,\
+    \ p);\r\n      n /= 2;\r\n    }\r\n    return res;\r\n  };\r\n  x = GSet::act(x,\
+    \ apow(lb));\r\n  ll LIM = ub - lb;\r\n\r\n  ll K = 1;\r\n  while (K * K < LIM)\
+    \ ++K;\r\n\r\n  static HashMapLL<int, 20> MP;\r\n  MP.reset();\r\n\r\n  FOR(k,\
+    \ K + 1) {\r\n    auto key = H(x);\r\n    if (!MP.count(key)) MP[key] = k;\r\n\
+    \    if (k != K) x = GSet::act(x, a);\r\n  }\r\n\r\n  a = Group::inverse(apow(K));\r\
     \n  FOR(k, K + 1) {\r\n    auto key = H(y);\r\n    if (MP.count(key)) {\r\n  \
     \    ll res = k * K + MP[key] + lb;\r\n      return (res >= ub ? -1 : res);\r\n\
-    \    }\r\n    y = GSet::act(a, y);\r\n  }\r\n  return -1;\r\n}\n#line 2 \"alg/monoid/mul.hpp\"\
+    \    }\r\n    y = GSet::act(y, a);\r\n  }\r\n  return -1;\r\n}\n#line 2 \"alg/monoid/mul.hpp\"\
     \n\r\ntemplate <class T>\r\nstruct Monoid_Mul {\r\n  using value_type = T;\r\n\
     \  using X = T;\r\n  static constexpr X op(const X &x, const X &y) noexcept {\
     \ return x * y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
@@ -391,7 +391,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/discrete_logarithm_mod.test.cpp
   requiredBy: []
-  timestamp: '2022-11-27 15:27:52+09:00'
+  timestamp: '2022-11-27 20:29:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/discrete_logarithm_mod.test.cpp

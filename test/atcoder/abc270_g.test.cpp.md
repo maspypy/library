@@ -17,11 +17,11 @@ data:
     \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
     \ File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: alg/group/affine.hpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: alg/Xset/affine.hpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc270/tasks/abc270_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/discrete_log.hpp\"\
-    \n#include \"alg/group/affine.hpp\"\n#include \"mod/modint.hpp\"\n#include \"\
+    \n#include \"alg/monoid/affine.hpp\"\n#include \"mod/modint.hpp\"\n#include \"\
     alg/Xset/affine.hpp\"\n\nusing mint = amint;\n\nvoid solve() {\n  LL(P, A, B,\
     \ S, G);\n  mint::set_mod(P);\n  if (A == 0) {\n    if (S == G) return print(0);\n\
     \    if (B == G) return print(1);\n    return print(-1);\n  }\n\n  pair<mint,\
