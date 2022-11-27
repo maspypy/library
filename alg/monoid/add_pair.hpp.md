@@ -1,11 +1,23 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: alg/lazy/cntsum_add.hpp
+    title: alg/lazy/cntsum_add.hpp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yukicoder/1197.test.cpp
+    title: test/yukicoder/1197.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/235.test.cpp
+    title: test/yukicoder/235.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/789_2.test.cpp
+    title: test/yukicoder/789_2.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid/add_pair.hpp\"\ntemplate <typename E>\r\nstruct\
@@ -22,10 +34,14 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/add_pair.hpp
-  requiredBy: []
+  requiredBy:
+  - alg/lazy/cntsum_add.hpp
   timestamp: '2022-11-27 13:57:38+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yukicoder/235.test.cpp
+  - test/yukicoder/789_2.test.cpp
+  - test/yukicoder/1197.test.cpp
 documentation_of: alg/monoid/add_pair.hpp
 layout: document
 redirect_from:

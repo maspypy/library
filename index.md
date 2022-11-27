@@ -14,7 +14,7 @@ data:
     - icon: ':x:'
       path: alg/lazy/cntminmincnt_add.hpp
       title: alg/lazy/cntminmincnt_add.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: alg/lazy/cntsum_add.hpp
       title: alg/lazy/cntsum_add.hpp
     - icon: ':warning:'
@@ -65,7 +65,7 @@ data:
     - icon: ':warning:'
       path: alg/lazy/powersums_set.hpp
       title: alg/lazy/powersums_set.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: alg/lazy/reverse.hpp
       title: alg/lazy/reverse.hpp
   - name: alg/monoid
@@ -76,7 +76,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid/add_array.hpp
       title: alg/monoid/add_array.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: alg/monoid/add_pair.hpp
       title: alg/monoid/add_pair.hpp
     - icon: ':warning:'
@@ -133,7 +133,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid/reverse_group.hpp
       title: alg/monoid/reverse_group.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: alg/monoid/reverse_monoid.hpp
       title: alg/monoid/reverse_monoid.hpp
     - icon: ':warning:'
@@ -207,7 +207,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/dualsegtree.hpp
       title: ds/dualsegtree.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: ds/dynamic_lazysegtree.hpp
       title: ds/dynamic_lazysegtree.hpp
     - icon: ':heavy_check_mark:'
@@ -651,7 +651,7 @@ data:
     - icon: ':warning:'
       path: graph/ds/dualtreemonoid.hpp
       title: graph/ds/dualtreemonoid.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: graph/ds/lazytreemonoid.hpp
       title: graph/ds/lazytreemonoid.hpp
     - icon: ':warning:'

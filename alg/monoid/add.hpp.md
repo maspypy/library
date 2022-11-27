@@ -8,6 +8,9 @@ data:
   - icon: ':x:'
     path: alg/lazy/cntminmincnt_add.hpp
     title: alg/lazy/cntminmincnt_add.hpp
+  - icon: ':x:'
+    path: alg/lazy/cntsum_add.hpp
+    title: alg/lazy/cntsum_add.hpp
   - icon: ':warning:'
     path: alg/lazy/cntsummin_add.hpp
     title: alg/lazy/cntsummin_add.hpp
@@ -145,6 +148,9 @@ data:
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1197.test.cpp
+    title: test/yukicoder/1197.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1234.test.cpp
     title: test/yukicoder/1234.test.cpp
   - icon: ':x:'
@@ -169,8 +175,14 @@ data:
     path: test/yukicoder/2003.test.cpp
     title: test/yukicoder/2003.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/235.test.cpp
+    title: test/yukicoder/235.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/686.test.cpp
     title: test/yukicoder/686.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/789_2.test.cpp
+    title: test/yukicoder/789_2.test.cpp
   - icon: ':x:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
@@ -196,6 +208,7 @@ data:
   path: alg/monoid/add.hpp
   requiredBy:
   - alg/lazy/min_add.hpp
+  - alg/lazy/cntsum_add.hpp
   - alg/lazy/add_mul.hpp
   - alg/lazy/minmax_add.hpp
   - alg/lazy/cntsummin_add.hpp
@@ -224,6 +237,7 @@ data:
   - test/yukicoder/899.test.cpp
   - test/yukicoder/2003.test.cpp
   - test/yukicoder/1234.test.cpp
+  - test/yukicoder/235.test.cpp
   - test/yukicoder/1720.test.cpp
   - test/yukicoder/686.test.cpp
   - test/yukicoder/1490.test.cpp
@@ -231,6 +245,8 @@ data:
   - test/yukicoder/1838.test.cpp
   - test/yukicoder/1038.test.cpp
   - test/yukicoder/1270.test.cpp
+  - test/yukicoder/789_2.test.cpp
+  - test/yukicoder/1197.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
