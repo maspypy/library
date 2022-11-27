@@ -1,10 +1,10 @@
 #include "alg/monoid/add.hpp"
-#include "alg/monoid/cntsum.hpp"
+#include "alg/monoid/add_pair.hpp"
 
 template <typename E>
 struct Lazy_CntSum_Add {
-  using MX = Group_CntSum<E>;
-  using MA = Group_Add<E>;
+  using MX = Monoid_Add_Pair<E>;
+  using MA = Monoid_Add<E>;
   using X_structure = MX;
   using A_structure = MA;
   using X = typename MX::value_type;
