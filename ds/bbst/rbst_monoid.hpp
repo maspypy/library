@@ -69,7 +69,6 @@ struct RBST_Monoid {
     if (r - l <= 1) return root;
     auto [nl, nm, nr] = split3(root, l, r);
     nm->rev ^= 1;
-    prop(nm), update(nm);
     return merge3(nl, nm, nr);
   }
 
@@ -216,4 +215,6 @@ private:
     if (k == sl) return root->x;
     return get_rec(root->r, k - (1 + sl));
   }
+
+  X reverse_rec(Node *root, u32 l, u32 r) {}
 };
