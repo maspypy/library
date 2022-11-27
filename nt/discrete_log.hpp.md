@@ -4,23 +4,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: mod/mod_log.hpp
-    title: mod/mod_log.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc270_g.test.cpp
-    title: test/atcoder/abc270_g.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/discrete_logarithm_mod.test.cpp
-    title: test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1339.test.cpp
-    title: test/yukicoder/1339.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\ntemplate <typename Val, int LOG = 20>\r\
@@ -120,14 +108,10 @@ data:
   - ds/hashmap.hpp
   isVerificationFile: false
   path: nt/discrete_log.hpp
-  requiredBy:
-  - mod/mod_log.hpp
+  requiredBy: []
   timestamp: '2022-10-21 20:37:52+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - test/atcoder/abc270_g.test.cpp
-  - test/yukicoder/1339.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: nt/discrete_log.hpp
 layout: document
 redirect_from:

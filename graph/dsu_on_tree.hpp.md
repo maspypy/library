@@ -12,9 +12,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2995.test.cpp
     title: test/aoj/2995.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-    title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -176,7 +173,6 @@ data:
   timestamp: '2022-11-05 01:55:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - test/aoj/2995.test.cpp
 documentation_of: graph/dsu_on_tree.hpp
 layout: document

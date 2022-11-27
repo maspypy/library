@@ -44,8 +44,8 @@ data:
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1411.test.cpp
   - test/yukicoder/1881.test.cpp
+  - test/yukicoder/1411.test.cpp
 documentation_of: nt/lpf_table.hpp
 layout: document
 redirect_from:

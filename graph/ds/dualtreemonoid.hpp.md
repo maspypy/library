@@ -13,20 +13,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/minimum_spanning_tree.hpp
-    title: graph/minimum_spanning_tree.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_2_A.test.cpp
-    title: test/aoj/GRL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc270_f.test.cpp
-    title: test/atcoder/abc270_f.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/lazysegtree.hpp\"\n\ntemplate <typename Lazy>\nstruct\
@@ -264,13 +255,10 @@ data:
   - ds/dualsegtree.hpp
   isVerificationFile: false
   path: graph/ds/dualtreemonoid.hpp
-  requiredBy:
-  - graph/minimum_spanning_tree.hpp
+  requiredBy: []
   timestamp: '2022-11-05 01:55:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/GRL_2_A.test.cpp
-  - test/atcoder/abc270_f.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: graph/ds/dualtreemonoid.hpp
 layout: document
 redirect_from:

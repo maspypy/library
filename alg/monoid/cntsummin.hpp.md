@@ -3,9 +3,6 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: alg/lazy/cntsummin_add.hpp
-    title: alg/lazy/cntsummin_add.hpp
-  - icon: ':warning:'
     path: alg/lazy/cntsummin_set.hpp
     title: alg/lazy/cntsummin_set.hpp
   _extendedVerifiedWith: []
@@ -30,7 +27,6 @@ data:
   path: alg/monoid/cntsummin.hpp
   requiredBy:
   - alg/lazy/cntsummin_set.hpp
-  - alg/lazy/cntsummin_add.hpp
   timestamp: '2022-10-21 16:22:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

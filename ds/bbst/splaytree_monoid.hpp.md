@@ -6,15 +6,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508.test.cpp
     title: test/aoj/1508.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/splay.test.cpp
-    title: test/mytest/splay.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1441.test.cpp
-    title: test/yukicoder/1441.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1441_2.test.cpp
-    title: test/yukicoder/1441_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -204,10 +195,7 @@ data:
   timestamp: '2022-10-21 16:42:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/splay.test.cpp
   - test/aoj/1508.test.cpp
-  - test/yukicoder/1441_2.test.cpp
-  - test/yukicoder/1441.test.cpp
 documentation_of: ds/bbst/splaytree_monoid.hpp
 layout: document
 redirect_from:

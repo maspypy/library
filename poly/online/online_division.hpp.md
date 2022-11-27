@@ -384,8 +384,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/online_pow.test.cpp
-  - test/mytest/online_inv.test.cpp
   - test/mytest/online_log.test.cpp
+  - test/mytest/online_inv.test.cpp
   - test/mytest/online_division.test.cpp
 documentation_of: poly/online/online_division.hpp
 layout: document

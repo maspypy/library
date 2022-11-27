@@ -2,16 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_1_B.test.cpp
-    title: test/aoj/DSL_1_B.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1502.test.cpp
-    title: test/yukicoder/1502.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/weightedunionfind.hpp\"\ntemplate <typename Group>\r\n\
@@ -53,10 +47,8 @@ data:
   path: ds/weightedunionfind.hpp
   requiredBy: []
   timestamp: '2022-09-27 17:56:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/DSL_1_B.test.cpp
-  - test/yukicoder/1502.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: ds/weightedunionfind.hpp
 layout: document
 redirect_from:

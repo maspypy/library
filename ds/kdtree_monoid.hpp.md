@@ -125,8 +125,8 @@ data:
   timestamp: '2022-11-14 21:12:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL_2_C.test.cpp
   - test/yukicoder/1625.test.cpp
+  - test/aoj/DSL_2_C.test.cpp
 documentation_of: ds/kdtree_monoid.hpp
 layout: document
 redirect_from:

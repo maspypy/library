@@ -16,10 +16,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -295,33 +295,37 @@ data:
     \ T>\r\nGraph<T, 1> reverse_graph(Graph<T, 1>& G) {\r\n  assert(G.is_directed());\r\
     \n  Graph<T, 1> G1(G.N);\r\n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost,\
     \ e.id); }\r\n  G1.build();\r\n  return G1;\r\n}\r\n#line 4 \"graph/shortest_path/K_shortest_walk.hpp\"\
-    \n\n// INF \u57CB\u3081\u3057\u3066\u5FC5\u305A\u9577\u3055 K \u306B\u3059\u308B\
-    \ntemplate <typename T, typename GT>\nvc<T> K_shortest_walk(GT &G, int s, int\
-    \ t, int K, T INF) {\n  assert(G.is_directed());\n  int N = G.N;\n  auto RG =\
-    \ reverse_graph(G);\n  auto [dist, par] = dijkstra<ll, decltype(RG)>(RG, t, INF);\n\
-    \  if (dist[s] == INF) { return vc<T>(K, INF); }\n\n  using P = pair<T, int>;\n\
-    \  Persistent_Meldable_Heap<P> X;\n  using Node = typename Persistent_Meldable_Heap<P>::Node;\n\
-    \  vc<Node *> nodes(N, nullptr);\n\n  vc<bool> vis(N);\n  vc<int> st = {t};\n\
-    \  vis[t] = 1;\n  while (len(st)) {\n    int v = pick(st);\n    bool done = 0;\n\
-    \    for (auto &&e: G[v]) {\n      if (dist[e.to] == INF) continue;\n      if\
-    \ (!done && par[v] == e.to && dist[v] == dist[e.to] + e.cost) {\n        done\
-    \ = 1;\n        continue;\n      }\n      T cost = -dist[v] + e.cost + dist[e.to];\n\
-    \      nodes[v] = X.push(nodes[v], {cost, e.to});\n    }\n    for (auto &&e: RG[v])\
-    \ {\n      if (vis[e.to]) continue;\n      if (par[e.to] == v) {\n        nodes[e.to]\
-    \ = X.meld(nodes[e.to], nodes[v]);\n        vis[e.to] = 1;\n        st.eb(e.to);\n\
-    \      }\n    }\n  }\n\n  ll base = dist[s];\n  vc<ll> ANS = {base};\n  if (nodes[s])\
-    \ {\n    using PAIR = pair<ll, Node *>;\n    auto comp = [](auto a, auto b) {\
-    \ return a.fi > b.fi; };\n    priority_queue<PAIR, vc<PAIR>, decltype(comp)> que(comp);\n\
-    \    que.emplace(base + X.top(nodes[s]).fi, nodes[s]);\n    while (len(ANS) <\
-    \ K && len(que)) {\n      auto [d, n] = que.top();\n      que.pop();\n      ANS.eb(d);\n\
-    \      if (n->l) que.emplace(d + (n->l->x.fi) - (n->x.fi), n->l);\n      if (n->r)\
-    \ que.emplace(d + (n->r->x.fi) - (n->x.fi), n->r);\n      Node *m = nodes[n->x.se];\n\
-    \      if (m) { que.emplace(d + m->x.fi, m); }\n    }\n  }\n  while (len(ANS)\
-    \ < K) ANS.eb(INF);\n  return ANS;\n}\n#line 6 \"test/library_checker/graph/K_shortest_walk.test.cpp\"\
-    \n\nvoid solve() {\n  INT(N, M, s, t, K);\n  Graph<int, 1> G1(N);\n  G1.read_graph(M,\
-    \ 1, 0);\n  const ll INF = 1LL << 60;\n  auto ANS = K_shortest_walk<ll>(G1, s,\
-    \ t, K, INF);\n  for (auto &&x: ANS) {\n    if (x == INF) x = -1;\n    print(x);\n\
-    \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \n\n// INF \u57CB\u3081\u3057\u3066\u5FC5\u305A\u9577\u3055 K \u306B\u3057\u305F\
+    \u3082\u306E\u3092\u304B\u3048\u3059\u3002\n// \u7121\u5411\u30B0\u30E9\u30D5\u306A\
+    \u3089 2 \u500D\u8FBA\u3092\u306F\u3063\u3066\u6709\u5411\u30B0\u30E9\u30D5\u306B\
+    \u3057\u3066\u4F7F\u3046\u3053\u3068\n// \u30FB\u30EB\u30FC\u30D7\u304C\u30E4\u30D0\
+    \u305D\u3046\u3060\u304C\u3068\u308A\u3042\u3048\u305A\ntemplate <typename T,\
+    \ typename GT>\nvc<T> K_shortest_walk(GT &G, int s, int t, int K, T INF) {\n \
+    \ int N = G.N;\n  auto RG = reverse_graph(G);\n  auto [dist, par] = dijkstra<ll,\
+    \ decltype(RG)>(RG, t, INF);\n  if (dist[s] == INF) { return vc<T>(K, INF); }\n\
+    \n  using P = pair<T, int>;\n  Persistent_Meldable_Heap<P> X;\n  using Node =\
+    \ typename Persistent_Meldable_Heap<P>::Node;\n  vc<Node *> nodes(N, nullptr);\n\
+    \n  vc<bool> vis(N);\n  vc<int> st = {t};\n  vis[t] = 1;\n  while (len(st)) {\n\
+    \    int v = pick(st);\n    bool done = 0;\n    for (auto &&e: G[v]) {\n     \
+    \ if (dist[e.to] == INF) continue;\n      if (!done && par[v] == e.to && dist[v]\
+    \ == dist[e.to] + e.cost) {\n        done = 1;\n        continue;\n      }\n \
+    \     T cost = -dist[v] + e.cost + dist[e.to];\n      nodes[v] = X.push(nodes[v],\
+    \ {cost, e.to});\n    }\n    for (auto &&e: RG[v]) {\n      if (vis[e.to]) continue;\n\
+    \      if (par[e.to] == v) {\n        nodes[e.to] = X.meld(nodes[e.to], nodes[v]);\n\
+    \        vis[e.to] = 1;\n        st.eb(e.to);\n      }\n    }\n  }\n\n  ll base\
+    \ = dist[s];\n  vc<ll> ANS = {base};\n  if (nodes[s]) {\n    using PAIR = pair<ll,\
+    \ Node *>;\n    auto comp = [](auto a, auto b) { return a.fi > b.fi; };\n    priority_queue<PAIR,\
+    \ vc<PAIR>, decltype(comp)> que(comp);\n    que.emplace(base + X.top(nodes[s]).fi,\
+    \ nodes[s]);\n    while (len(ANS) < K && len(que)) {\n      auto [d, n] = que.top();\n\
+    \      que.pop();\n      ANS.eb(d);\n      if (n->l) que.emplace(d + (n->l->x.fi)\
+    \ - (n->x.fi), n->l);\n      if (n->r) que.emplace(d + (n->r->x.fi) - (n->x.fi),\
+    \ n->r);\n      Node *m = nodes[n->x.se];\n      if (m) { que.emplace(d + m->x.fi,\
+    \ m); }\n    }\n  }\n  while (len(ANS) < K) ANS.eb(INF);\n  return ANS;\n}\n#line\
+    \ 6 \"test/library_checker/graph/K_shortest_walk.test.cpp\"\n\nvoid solve() {\n\
+    \  INT(N, M, s, t, K);\n  Graph<int, 1> G1(N);\n  G1.read_graph(M, 1, 0);\n  const\
+    \ ll INF = 1LL << 60;\n  auto ANS = K_shortest_walk<ll>(G1, s, t, K, INF);\n \
+    \ for (auto &&x: ANS) {\n    if (x == INF) x = -1;\n    print(x);\n  }\n}\n\n\
+    signed main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/k_shortest_walk\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/base.hpp\"\n\
     #include \"graph/shortest_path/K_shortest_walk.hpp\"\n\nvoid solve() {\n  INT(N,\
@@ -340,7 +344,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/K_shortest_walk.test.cpp
   requiredBy: []
-  timestamp: '2022-11-24 17:14:47+09:00'
+  timestamp: '2022-11-27 13:10:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/K_shortest_walk.test.cpp

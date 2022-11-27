@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
-    title: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links:
     - https://codeforces.com/contest/620/problem/F
@@ -64,9 +61,8 @@ data:
   path: ds/query/rollback_mo.hpp
   requiredBy: []
   timestamp: '2022-11-24 17:14:34+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: ds/query/rollback_mo.hpp
 layout: document
 redirect_from:

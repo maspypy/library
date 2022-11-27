@@ -23,9 +23,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/minimum_spanning_tree.hpp
-    title: graph/minimum_spanning_tree.hpp
   - icon: ':warning:'
     path: graph/online_mst.hpp
     title: graph/online_mst.hpp
@@ -48,12 +45,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2995.test.cpp
     title: test/aoj/2995.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_2_A.test.cpp
-    title: test/aoj/GRL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc270_f.test.cpp
-    title: test/atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/unionfind.test.cpp
     title: test/library_checker/datastructure/unionfind.test.cpp
@@ -146,46 +137,43 @@ data:
   isVerificationFile: false
   path: ds/unionfind.hpp
   requiredBy:
+  - geo/manhattan_mst.hpp
   - flow/bipartite.hpp
-  - graph/maximum_antichain.hpp
-  - graph/online_unionfind.hpp
+  - graph/tree_of_unionfind.hpp
   - graph/functional.hpp
-  - graph/minimum_spanning_tree.hpp
+  - graph/bipartite_edge_coloring.hpp
+  - graph/dag_path_cover.hpp
+  - graph/maximum_antichain.hpp
   - graph/online_mst.hpp
   - graph/check_bipartite.hpp
-  - graph/dag_path_cover.hpp
-  - graph/bipartite_edge_coloring.hpp
-  - graph/tree_of_unionfind.hpp
-  - geo/manhattan_mst.hpp
+  - graph/online_unionfind.hpp
   timestamp: '2022-10-24 17:15:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
+  - test/yukicoder/1600.test.cpp
+  - test/yukicoder/1392.test.cpp
+  - test/yukicoder/1479.test.cpp
+  - test/yukicoder/1983.test.cpp
+  - test/yukicoder/114.test.cpp
+  - test/yukicoder/2122.test.cpp
+  - test/yukicoder/590.test.cpp
+  - test/yukicoder/1242.test.cpp
+  - test/yukicoder/1303.test.cpp
+  - test/yukicoder/1911.test.cpp
+  - test/yukicoder/1451.test.cpp
+  - test/yukicoder/1211.test.cpp
+  - test/yukicoder/1745.test.cpp
+  - test/yukicoder/1170_2.test.cpp
+  - test/yukicoder/1744.test.cpp
+  - test/mytest/tutte.test.cpp
+  - test/library_checker/datastructure/unionfind.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
-  - test/library_checker/datastructure/unionfind.test.cpp
-  - test/mytest/tutte.test.cpp
+  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
+  - test/aoj/2251_1.test.cpp
+  - test/aoj/2251_2.test.cpp
   - test/aoj/1566.test.cpp
   - test/aoj/2995.test.cpp
-  - test/aoj/GRL_2_A.test.cpp
-  - test/aoj/2251_2.test.cpp
-  - test/aoj/2251_1.test.cpp
-  - test/atcoder/abc270_f.test.cpp
-  - test/yukicoder/1392.test.cpp
-  - test/yukicoder/1170_2.test.cpp
-  - test/yukicoder/1303.test.cpp
-  - test/yukicoder/590.test.cpp
-  - test/yukicoder/114.test.cpp
-  - test/yukicoder/1451.test.cpp
-  - test/yukicoder/1744.test.cpp
-  - test/yukicoder/1242.test.cpp
-  - test/yukicoder/1911.test.cpp
-  - test/yukicoder/1983.test.cpp
-  - test/yukicoder/2122.test.cpp
-  - test/yukicoder/1211.test.cpp
-  - test/yukicoder/1479.test.cpp
-  - test/yukicoder/1745.test.cpp
-  - test/yukicoder/1600.test.cpp
 documentation_of: ds/unionfind.hpp
 layout: document
 redirect_from:

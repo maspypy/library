@@ -100,8 +100,8 @@ data:
   timestamp: '2022-08-28 10:23:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/geometry/sort_points_by_argument.test.cpp
   - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
+  - test/library_checker/geometry/sort_points_by_argument.test.cpp
 documentation_of: geo/angle_sort.hpp
 layout: document
 redirect_from:

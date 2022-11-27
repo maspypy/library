@@ -1,73 +1,38 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: alg/group/add.hpp
-    title: alg/group/add.hpp
-  - icon: ':heavy_check_mark:'
-    path: alg/monoid/min.hpp
-    title: alg/monoid/min.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: ds/common_interval_decomposition.hpp
-    title: ds/common_interval_decomposition.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_2_H.test.cpp
-    title: test/aoj/DSL_2_H.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/common_interval_decomposition.test.cpp
-    title: test/library_checker/graph/common_interval_decomposition.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1234.test.cpp
-    title: test/yukicoder/1234.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1270.test.cpp
-    title: test/yukicoder/1270.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1720.test.cpp
-    title: test/yukicoder/1720.test.cpp
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"alg/group/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
-    \ Group_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/monoid/min.hpp\"\
-    \ntemplate <class X>\r\nstruct Monoid_Min {\r\n  using value_type = X;\r\n  static\
-    \ constexpr X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static\
-    \ constexpr X unit() { return numeric_limits<X>::max(); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 3 \"alg/lazy/min_add.hpp\"\n\r\ntemplate\
-    \ <typename E>\r\nstruct Lazy_Min_Add {\r\n  using MX = Monoid_Min<E>;\r\n  using\
-    \ MA = Group_Add<E>;\r\n  using X_structure = MX;\r\n  using A_structure = MA;\r\
-    \n  using X = typename MX::value_type;\r\n  using A = typename MA::value_type;\r\
-    \n  static constexpr X act(const X &x, const A &a) {\r\n    if (x == numeric_limits<E>::max())\
-    \ return x;\r\n    return x + a;\r\n  }\r\n};\n"
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
+    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
+    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
+    \ File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: alg/group/add.hpp:\
+    \ line -1: no such header\n"
   code: "#include \"alg/group/add.hpp\"\r\n#include \"alg/monoid/min.hpp\"\r\n\r\n\
     template <typename E>\r\nstruct Lazy_Min_Add {\r\n  using MX = Monoid_Min<E>;\r\
     \n  using MA = Group_Add<E>;\r\n  using X_structure = MX;\r\n  using A_structure\
     \ = MA;\r\n  using X = typename MX::value_type;\r\n  using A = typename MA::value_type;\r\
     \n  static constexpr X act(const X &x, const A &a) {\r\n    if (x == numeric_limits<E>::max())\
     \ return x;\r\n    return x + a;\r\n  }\r\n};"
-  dependsOn:
-  - alg/group/add.hpp
-  - alg/monoid/min.hpp
+  dependsOn: []
   isVerificationFile: false
   path: alg/lazy/min_add.hpp
-  requiredBy:
-  - ds/common_interval_decomposition.hpp
-  timestamp: '2022-10-21 17:59:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/library_checker/graph/common_interval_decomposition.test.cpp
-  - test/aoj/DSL_2_H.test.cpp
-  - test/yukicoder/1720.test.cpp
-  - test/yukicoder/1234.test.cpp
-  - test/yukicoder/1270.test.cpp
+  requiredBy: []
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: alg/lazy/min_add.hpp
 layout: document
 redirect_from:

@@ -88,9 +88,9 @@ data:
   timestamp: '2022-10-01 12:16:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/datetime.test.cpp
   - test/yukicoder/779.test.cpp
   - test/yukicoder/2109.test.cpp
+  - test/mytest/datetime.test.cpp
 documentation_of: datetime/datetime.hpp
 layout: document
 redirect_from:

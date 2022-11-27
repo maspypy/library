@@ -202,10 +202,10 @@ data:
   timestamp: '2022-10-21 17:08:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/string/suffix_array_vec.test.cpp
-  - test/library_checker/string/number_of_substrings.test.cpp
-  - test/library_checker/string/suffix_array.test.cpp
   - test/mytest/suffix_tree.test.cpp
+  - test/library_checker/string/suffix_array.test.cpp
+  - test/library_checker/string/number_of_substrings.test.cpp
+  - test/library_checker/string/suffix_array_vec.test.cpp
   - test/atcoder/arc151_e.test.cpp
 documentation_of: string/suffixarray.hpp
 layout: document

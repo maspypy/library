@@ -52,9 +52,9 @@ data:
   timestamp: '2022-10-21 17:08:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/enum_partitions.test.cpp
   - test/yukicoder/1263.test.cpp
   - test/yukicoder/1881.test.cpp
+  - test/mytest/enum_partitions.test.cpp
 documentation_of: enumerate/partitions.hpp
 layout: document
 redirect_from:

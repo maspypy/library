@@ -104,8 +104,8 @@ data:
   timestamp: '2022-10-24 13:59:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/atcoder/abc274_h.test.cpp
   - test/yukicoder/1775.test.cpp
+  - test/atcoder/abc274_h.test.cpp
 documentation_of: nt/GF2.hpp
 layout: document
 redirect_from:

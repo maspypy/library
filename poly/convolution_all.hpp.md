@@ -342,12 +342,12 @@ data:
   timestamp: '2022-11-06 13:29:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1392.test.cpp
+  - test/yukicoder/1857.test.cpp
+  - test/yukicoder/1145.test.cpp
   - test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp
   - test/atcoder/abc272_h.test.cpp
   - test/atcoder/abc269ex.test.cpp
-  - test/yukicoder/1392.test.cpp
-  - test/yukicoder/1145.test.cpp
-  - test/yukicoder/1857.test.cpp
 documentation_of: poly/convolution_all.hpp
 layout: document
 redirect_from:

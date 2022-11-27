@@ -232,9 +232,9 @@ data:
   timestamp: '2022-11-05 01:56:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/2122.test.cpp
   - test/yukicoder/590.test.cpp
   - test/yukicoder/1242.test.cpp
-  - test/yukicoder/2122.test.cpp
   - test/yukicoder/1211.test.cpp
 documentation_of: graph/functional.hpp
 layout: document

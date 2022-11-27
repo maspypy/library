@@ -8,31 +8,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
-  - icon: ':heavy_check_mark:'
-    path: mod/mod_log.hpp
-    title: mod/mod_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc270_g.test.cpp
-    title: test/atcoder/abc270_g.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
     title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/discrete_logarithm_mod.test.cpp
-    title: test/library_checker/math/discrete_logarithm_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/tdpc_grid_dp.test.cpp
     title: test/mytest/tdpc_grid_dp.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1339.test.cpp
-    title: test/yukicoder/1339.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1383.test.cpp
     title: test/yukicoder/1383.test.cpp
@@ -127,30 +115,26 @@ data:
   isVerificationFile: false
   path: ds/hashmap.hpp
   requiredBy:
-  - connected_dp/squares.hpp
   - mod/mod_kth_root.hpp
-  - mod/mod_log.hpp
   - nt/discrete_log.hpp
+  - connected_dp/squares.hpp
   timestamp: '2022-10-06 22:48:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/math/kth_root_mod.test.cpp
-  - test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - test/library_checker/datastructure/associative_array_hashmap.test.cpp
-  - test/mytest/tdpc_grid_dp.test.cpp
-  - test/atcoder/abc270_g.test.cpp
-  - test/yukicoder/579.test.cpp
-  - test/yukicoder/1397.test.cpp
-  - test/yukicoder/1769.test.cpp
-  - test/yukicoder/1561.test.cpp
-  - test/yukicoder/578.test.cpp
-  - test/yukicoder/263.test.cpp
-  - test/yukicoder/1383.test.cpp
-  - test/yukicoder/1726.test.cpp
-  - test/yukicoder/1881.test.cpp
-  - test/yukicoder/1634.test.cpp
-  - test/yukicoder/1339.test.cpp
   - test/yukicoder/541.test.cpp
+  - test/yukicoder/1561.test.cpp
+  - test/yukicoder/1881.test.cpp
+  - test/yukicoder/1726.test.cpp
+  - test/yukicoder/578.test.cpp
+  - test/yukicoder/579.test.cpp
+  - test/yukicoder/1634.test.cpp
+  - test/yukicoder/1383.test.cpp
+  - test/yukicoder/1769.test.cpp
+  - test/yukicoder/263.test.cpp
+  - test/yukicoder/1397.test.cpp
+  - test/mytest/tdpc_grid_dp.test.cpp
+  - test/library_checker/math/kth_root_mod.test.cpp
+  - test/library_checker/datastructure/associative_array_hashmap.test.cpp
 documentation_of: ds/hashmap.hpp
 layout: document
 redirect_from:

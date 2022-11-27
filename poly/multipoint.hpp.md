@@ -440,9 +440,9 @@ data:
   timestamp: '2022-11-12 15:28:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/chirp_z.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - test/mytest/chirp_z.test.cpp
   - test/atcoder/abc272_h.test.cpp
 documentation_of: poly/multipoint.hpp
 layout: document

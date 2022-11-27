@@ -155,32 +155,32 @@ data:
   isVerificationFile: false
   path: geo/base.hpp
   requiredBy:
-  - geo/cross_point.hpp
-  - geo/outcircle.hpp
-  - geo/incremental_convexhull.hpp
-  - geo/projection.hpp
-  - geo/reflection.hpp
-  - geo/dynamicupperhull.hpp
-  - geo/distance.hpp
   - geo/incircle.hpp
+  - geo/distance.hpp
+  - geo/incremental_convexhull.hpp
   - geo/angle_sort.hpp
+  - geo/reflection.hpp
+  - geo/projection.hpp
+  - geo/cross_point.hpp
+  - geo/dynamicupperhull.hpp
+  - geo/outcircle.hpp
   timestamp: '2022-08-28 10:23:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/incremental_ch.test.cpp
+  - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - test/library_checker/geometry/convex_layers.test.cpp
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
-  - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - test/mytest/incremental_ch.test.cpp
-  - test/aoj/CGL_2_C.test.cpp
-  - test/aoj/CGL_2_B.test.cpp
-  - test/aoj/CGL_2_D.test.cpp
-  - test/aoj/CGL_1_B.test.cpp
-  - test/aoj/CGL_1_A.test.cpp
-  - test/aoj/CGL_7_B.test.cpp
-  - test/aoj/CGL_3_B.test.cpp
-  - test/aoj/CGL_2_A.test.cpp
-  - test/aoj/CGL_7_C.test.cpp
   - test/atcoder/abc266c.test.cpp
+  - test/aoj/CGL_2_B.test.cpp
+  - test/aoj/CGL_2_A.test.cpp
+  - test/aoj/CGL_2_C.test.cpp
+  - test/aoj/CGL_1_B.test.cpp
+  - test/aoj/CGL_2_D.test.cpp
+  - test/aoj/CGL_7_B.test.cpp
+  - test/aoj/CGL_7_C.test.cpp
+  - test/aoj/CGL_1_A.test.cpp
+  - test/aoj/CGL_3_B.test.cpp
 documentation_of: geo/base.hpp
 layout: document
 redirect_from:

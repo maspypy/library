@@ -18,9 +18,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1983.test.cpp
     title: test/yukicoder/1983.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/529.test.cpp
-    title: test/yukicoder/529.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -169,10 +166,9 @@ data:
   timestamp: '2022-11-05 01:55:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1983.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
   - test/aoj/GRL_3_B.test.cpp
-  - test/yukicoder/1983.test.cpp
-  - test/yukicoder/529.test.cpp
 documentation_of: graph/two_edge_component.hpp
 layout: document
 redirect_from:

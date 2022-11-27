@@ -2,19 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: graph/ds/link_cut_path.hpp
     title: graph/ds/link_cut_path.hpp
   - icon: ':warning:'
     path: graph/ds/link_cut_subtree.hpp
     title: graph/ds/link_cut_subtree.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
-    title: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/ds/link_cut.hpp\"\n\ntemplate <typename Node, int\
@@ -127,12 +124,11 @@ data:
   isVerificationFile: false
   path: graph/ds/link_cut.hpp
   requiredBy:
-  - graph/ds/link_cut_subtree.hpp
   - graph/ds/link_cut_path.hpp
+  - graph/ds/link_cut_subtree.hpp
   timestamp: '2022-10-21 17:08:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: graph/ds/link_cut.hpp
 layout: document
 redirect_from:

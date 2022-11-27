@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1838.test.cpp
-    title: test/yukicoder/1838.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"seq/inversion_rotate.hpp\"\n\n// i \u756A\u76EE\uFF1AA_i\
@@ -33,9 +30,8 @@ data:
   path: seq/inversion_rotate.hpp
   requiredBy: []
   timestamp: '2022-10-21 18:52:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yukicoder/1838.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: seq/inversion_rotate.hpp
 layout: document
 redirect_from:

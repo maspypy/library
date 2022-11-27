@@ -34,10 +34,10 @@ data:
   timestamp: '2022-10-21 16:42:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1276.test.cpp
   - test/yukicoder/1260.test.cpp
-  - test/yukicoder/1573.test.cpp
   - test/yukicoder/4954.test.cpp
+  - test/yukicoder/1276.test.cpp
+  - test/yukicoder/1573.test.cpp
 documentation_of: nt/floor_range.hpp
 layout: document
 redirect_from:

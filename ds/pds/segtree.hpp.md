@@ -1,17 +1,11 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: ds/online_uniqueproductquery.hpp
-    title: ds/online_uniqueproductquery.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
-    title: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/pds/segtree.hpp\"\ntemplate <typename Monoid, int NODES>\n\
@@ -89,12 +83,10 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: ds/pds/segtree.hpp
-  requiredBy:
-  - ds/online_uniqueproductquery.hpp
+  requiredBy: []
   timestamp: '2022-10-21 16:42:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: ds/pds/segtree.hpp
 layout: document
 redirect_from:

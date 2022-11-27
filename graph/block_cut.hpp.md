@@ -12,9 +12,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/biconnected_component.test.cpp
     title: test/library_checker/graph/biconnected_component.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1326.test.cpp
-    title: test/yukicoder/1326.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -115,7 +112,6 @@ data:
   verifiedWith:
   - test/library_checker/graph/biconnected_component.test.cpp
   - test/aoj/GRL_3_A.test.cpp
-  - test/yukicoder/1326.test.cpp
 documentation_of: graph/block_cut.hpp
 layout: document
 redirect_from:

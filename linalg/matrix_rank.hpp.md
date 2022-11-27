@@ -39,8 +39,8 @@ data:
   timestamp: '2022-11-06 01:50:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/matrix/solve_linear.test.cpp
   - test/mytest/tutte.test.cpp
+  - test/library_checker/matrix/solve_linear.test.cpp
 documentation_of: linalg/matrix_rank.hpp
 layout: document
 redirect_from:

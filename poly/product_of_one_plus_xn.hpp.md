@@ -402,9 +402,9 @@ data:
   timestamp: '2022-11-16 04:03:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/math/sharp_p_subset_sum.test.cpp
-  - test/mytest/product_of_one_pm_xn.test.cpp
   - test/yukicoder/2062.test.cpp
+  - test/mytest/product_of_one_pm_xn.test.cpp
+  - test/library_checker/math/sharp_p_subset_sum.test.cpp
 documentation_of: poly/product_of_one_plus_xn.hpp
 layout: document
 redirect_from:

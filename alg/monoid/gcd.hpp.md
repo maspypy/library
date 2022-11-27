@@ -32,8 +32,8 @@ data:
   timestamp: '2022-10-21 16:22:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1036.test.cpp
   - test/yukicoder/1036_2.test.cpp
+  - test/yukicoder/1036.test.cpp
   - test/yukicoder/1036_3.test.cpp
 documentation_of: alg/monoid/gcd.hpp
 layout: document

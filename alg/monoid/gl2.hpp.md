@@ -1,17 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: alg/gset/gl2_vec.hpp
-    title: alg/gset/gl2_vec.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"alg/group/gl2.hpp\"\n\ntemplate <typename T, bool reversed>\n\
+  bundledCode: "#line 2 \"alg/monoid/gl2.hpp\"\n\ntemplate <typename T, bool reversed>\n\
     struct Group_GL2 {\n  using X = array<array<T, 2>, 2>;\n  using value_type = X;\n\
     \  static X op(const X &x, const X &y) {\n    X z{};\n    if (!reversed) {\n \
     \     FOR(i, 2) FOR(j, 2) FOR(k, 2) z[i][k] += x[i][j] * y[j][k];\n    }\n   \
@@ -35,16 +32,15 @@ data:
     \ x;\n  }\n  static constexpr bool commute = 0;\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: alg/group/gl2.hpp
-  requiredBy:
-  - alg/gset/gl2_vec.hpp
-  timestamp: '2022-10-21 16:42:45+09:00'
+  path: alg/monoid/gl2.hpp
+  requiredBy: []
+  timestamp: '2022-11-27 13:06:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: alg/group/gl2.hpp
+documentation_of: alg/monoid/gl2.hpp
 layout: document
 redirect_from:
-- /library/alg/group/gl2.hpp
-- /library/alg/group/gl2.hpp.html
-title: alg/group/gl2.hpp
+- /library/alg/monoid/gl2.hpp
+- /library/alg/monoid/gl2.hpp.html
+title: alg/monoid/gl2.hpp
 ---

@@ -106,8 +106,8 @@ data:
   timestamp: '2022-09-15 10:18:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/atcoder/abc266f.test.cpp
   - test/yukicoder/1254.test.cpp
+  - test/atcoder/abc266f.test.cpp
 documentation_of: graph/unicyclic.hpp
 layout: document
 redirect_from:
