@@ -243,6 +243,7 @@
 "test/library_checker/string/suffix_array_vec.test.cpp": "2022-10-21 17:08:40 +0900",
 "test/library_checker/string/zalgorithm.test.cpp": "2022-09-24 23:41:28 +0900",
 "test/library_checker/string/zalgorithm_by_rollinghash.test.cpp": "2022-11-28 00:06:01 +0900",
+"test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp": "2022-11-28 00:22:56 +0900",
 "test/library_checker/tree/cartesian_tree.test.cpp": "2022-09-24 23:41:28 +0900",
 "test/library_checker/tree/frequency_table_of_tree_distance.test.cpp": "2022-11-06 13:29:09 +0900",
 "test/library_checker/tree/lca.test.cpp": "2022-11-05 01:55:39 +0900",
