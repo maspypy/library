@@ -1,7 +1,7 @@
 #pragma once
 #include "ds/segtree.hpp"
 #include "graph/tree.hpp"
-#include "alg/monoid/reverse.hpp"
+#include "alg/monoid/reverse_monoid.hpp"
 
 template <typename TREE, typename Monoid, bool edge = false>
 struct TreeMonoid {
