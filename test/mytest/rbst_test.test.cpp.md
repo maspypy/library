@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/bbst/rbst_monoid.hpp
     title: ds/bbst/rbst_monoid.hpp
   - icon: ':question:'
@@ -13,14 +13,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -225,48 +225,55 @@ data:
     \ = new_node(dat[m]);\n      root->l = l_root, root->r = r_root;\n      update(root);\n\
     \      return root;\n    };\n    return dfs(dfs, 0, len(dat));\n  }\n\n  Node\
     \ *merge(Node *root, Node *r_root) { return merge_rec(root, r_root); }\n  Node\
-    \ *merge3(Node *a, Node *b, Node *c) { return merge(merge(a, b), c); }\n  pair<Node\
-    \ *, Node *> split(Node *root, u32 k) {\n    if (!root) {\n      assert(k == 0);\n\
-    \      return {nullptr, nullptr};\n    }\n    assert(0 <= k && k <= root->size);\n\
-    \    return split_rec(root, k);\n  }\n  tuple<Node *, Node *, Node *> split3(Node\
-    \ *root, u32 l, u32 r) {\n    Node *nm, *nr;\n    tie(root, nr) = split(root,\
-    \ r);\n    tie(root, nm) = split(root, l);\n    return {root, nm, nr};\n  }\n\n\
-    \  X prod(Node *root, u32 l, u32 r) {\n    if (l == r) return Monoid::unit();\n\
-    \    return prod_rec(root, l, r);\n  }\n\n  Node *reverse(Node *root, u32 l, u32\
-    \ r) {\n    assert(Monoid::commute);\n    assert(0 <= l && l <= r && r <= root->size);\n\
-    \    if (r - l <= 1) return root;\n    auto [nl, nm, nr] = split3(root, l, r);\n\
-    \    nm->rev ^= 1;\n    return merge3(nl, nm, nr);\n  }\n\n  Node *set(Node *root,\
-    \ u32 k, const X &x) { return set_rec(root, k, x); }\n  Node *multiply(Node *root,\
-    \ u32 k, const X &x) {\n    return multiply_rec(root, k, x);\n  }\n  X get(Node\
-    \ *root, u32 k) { return get_rec(root, k); }\n\n  vc<X> get_all(Node *root) {\n\
-    \    vc<X> res;\n    auto dfs = [&](auto &dfs, Node *root, bool rev) -> void {\n\
-    \      if (!root) return;\n      rev ^= root->rev;\n      dfs(dfs, (rev ? root->r\
-    \ : root->l), rev);\n      res.eb(root->x);\n      dfs(dfs, (rev ? root->l : root->r),\
-    \ rev);\n    };\n    dfs(dfs, root, 0);\n    return res;\n  }\n\nprivate:\n  inline\
-    \ u32 xor128() {\n    static u32 x = 123456789;\n    static u32 y = 362436069;\n\
-    \    static u32 z = 521288629;\n    static u32 w = 88675123;\n    u32 t = x ^\
-    \ (x << 11);\n    x = y;\n    y = z;\n    z = w;\n    return w = (w ^ (w >> 19))\
-    \ ^ (t ^ (t >> 8));\n  }\n\n  void prop(Node *c) {\n    if (c->rev) {\n      swap(c->l,\
-    \ c->r);\n      if (c->l) c->l->rev ^= 1;\n      if (c->r) c->r->rev ^= 1;\n \
-    \     c->rev = 0;\n    }\n  }\n\n  void update(Node *c) {\n    c->size = 1;\n\
-    \    c->prod = c->x;\n    if (c->l) {\n      c->size += c->l->size;\n      c->prod\
-    \ = Monoid::op(c->l->prod, c->prod);\n    }\n    if (c->r) {\n      c->size +=\
-    \ c->r->size;\n      c->prod = Monoid::op(c->prod, c->r->prod);\n    }\n  }\n\n\
-    \  Node *merge_rec(Node *l_root, Node *r_root) {\n    if (!l_root) return r_root;\n\
-    \    if (!r_root) return l_root;\n    u32 sl = l_root->size, sr = r_root->size;\n\
-    \    if (xor128() % (sl + sr) < sl) {\n      prop(l_root);\n      l_root->r =\
-    \ merge_rec(l_root->r, r_root);\n      update(l_root);\n      return l_root;\n\
-    \    }\n    prop(r_root);\n    r_root->l = merge_rec(l_root, r_root->l);\n   \
-    \ update(r_root);\n    return r_root;\n  }\n\n  pair<Node *, Node *> split_rec(Node\
-    \ *root, u32 k) {\n    if (!root) return {nullptr, nullptr};\n    prop(root);\n\
-    \    u32 sl = (root->l ? root->l->size : 0);\n    if (k <= sl) {\n      auto [nl,\
-    \ nr] = split_rec(root->l, k);\n      root->l = nr;\n      update(root);\n   \
-    \   return {nl, root};\n    }\n    auto [nl, nr] = split_rec(root->r, k - (1 +\
-    \ sl));\n    root->r = nl;\n    update(root);\n    return {root, nr};\n  }\n\n\
-    \  Node *set_rec(Node *root, u32 k, const X &x) {\n    if (!root) return root;\n\
-    \    prop(root);\n    u32 sl = (root->l ? root->l->size : 0);\n    if (k < sl)\
-    \ {\n      root->l = set_rec(root->l, k, x);\n      update(root);\n      return\
-    \ root;\n    }\n    if (k == sl) {\n      root->x = x;\n      update(root);\n\
+    \ *merge3(Node *a, Node *b, Node *c) { return merge(merge(a, b), c); }\n  Node\
+    \ *merge4(Node *a, Node *b, Node *c, Node *d) {\n    return merge(merge(merge(a,\
+    \ b), c), d);\n  }\n  pair<Node *, Node *> split(Node *root, u32 k) {\n    if\
+    \ (!root) {\n      assert(k == 0);\n      return {nullptr, nullptr};\n    }\n\
+    \    assert(0 <= k && k <= root->size);\n    return split_rec(root, k);\n  }\n\
+    \  tuple<Node *, Node *, Node *> split3(Node *root, u32 l, u32 r) {\n    Node\
+    \ *nm, *nr;\n    tie(root, nr) = split(root, r);\n    tie(root, nm) = split(root,\
+    \ l);\n    return {root, nm, nr};\n  }\n  tuple<Node *, Node *, Node *, Node *>\
+    \ split4(Node *root, u32 i, u32 j,\n                                         \
+    \      u32 k) {\n    Node *d;\n    tie(root, d) = split(root, k);\n    auto [a,\
+    \ b, c] = split(root, i, j);\n    return {a, b, c, d};\n  }\n\n  X prod(Node *root,\
+    \ u32 l, u32 r) {\n    if (l == r) return Monoid::unit();\n    return prod_rec(root,\
+    \ l, r);\n  }\n\n  Node *reverse(Node *root, u32 l, u32 r) {\n    assert(Monoid::commute);\n\
+    \    assert(0 <= l && l <= r && r <= root->size);\n    if (r - l <= 1) return\
+    \ root;\n    auto [nl, nm, nr] = split3(root, l, r);\n    nm->rev ^= 1;\n    return\
+    \ merge3(nl, nm, nr);\n  }\n\n  Node *set(Node *root, u32 k, const X &x) { return\
+    \ set_rec(root, k, x); }\n  Node *multiply(Node *root, u32 k, const X &x) {\n\
+    \    return multiply_rec(root, k, x);\n  }\n  X get(Node *root, u32 k) { return\
+    \ get_rec(root, k); }\n\n  vc<X> get_all(Node *root) {\n    vc<X> res;\n    auto\
+    \ dfs = [&](auto &dfs, Node *root, bool rev) -> void {\n      if (!root) return;\n\
+    \      rev ^= root->rev;\n      dfs(dfs, (rev ? root->r : root->l), rev);\n  \
+    \    res.eb(root->x);\n      dfs(dfs, (rev ? root->l : root->r), rev);\n    };\n\
+    \    dfs(dfs, root, 0);\n    return res;\n  }\n\n  template <typename F>\n  u32\
+    \ max_right(np root, const F check, u32 L) {\n    assert(check(Monoid_X::unit()));\n\
+    \    X x = Monoid_X::unit();\n    return max_right_rec(root, check, L, x);\n \
+    \ }\n\nprivate:\n  inline u32 xor128() {\n    static u32 x = 123456789;\n    static\
+    \ u32 y = 362436069;\n    static u32 z = 521288629;\n    static u32 w = 88675123;\n\
+    \    u32 t = x ^ (x << 11);\n    x = y;\n    y = z;\n    z = w;\n    return w\
+    \ = (w ^ (w >> 19)) ^ (t ^ (t >> 8));\n  }\n\n  void prop(Node *c) {\n    if (c->rev)\
+    \ {\n      swap(c->l, c->r);\n      if (c->l) c->l->rev ^= 1;\n      if (c->r)\
+    \ c->r->rev ^= 1;\n      c->rev = 0;\n    }\n  }\n\n  void update(Node *c) {\n\
+    \    c->size = 1;\n    c->prod = c->x;\n    if (c->l) {\n      c->size += c->l->size;\n\
+    \      c->prod = Monoid::op(c->l->prod, c->prod);\n    }\n    if (c->r) {\n  \
+    \    c->size += c->r->size;\n      c->prod = Monoid::op(c->prod, c->r->prod);\n\
+    \    }\n  }\n\n  Node *merge_rec(Node *l_root, Node *r_root) {\n    if (!l_root)\
+    \ return r_root;\n    if (!r_root) return l_root;\n    u32 sl = l_root->size,\
+    \ sr = r_root->size;\n    if (xor128() % (sl + sr) < sl) {\n      prop(l_root);\n\
+    \      l_root->r = merge_rec(l_root->r, r_root);\n      update(l_root);\n    \
+    \  return l_root;\n    }\n    prop(r_root);\n    r_root->l = merge_rec(l_root,\
+    \ r_root->l);\n    update(r_root);\n    return r_root;\n  }\n\n  pair<Node *,\
+    \ Node *> split_rec(Node *root, u32 k) {\n    if (!root) return {nullptr, nullptr};\n\
+    \    prop(root);\n    u32 sl = (root->l ? root->l->size : 0);\n    if (k <= sl)\
+    \ {\n      auto [nl, nr] = split_rec(root->l, k);\n      root->l = nr;\n     \
+    \ update(root);\n      return {nl, root};\n    }\n    auto [nl, nr] = split_rec(root->r,\
+    \ k - (1 + sl));\n    root->r = nl;\n    update(root);\n    return {root, nr};\n\
+    \  }\n\n  Node *set_rec(Node *root, u32 k, const X &x) {\n    if (!root) return\
+    \ root;\n    prop(root);\n    u32 sl = (root->l ? root->l->size : 0);\n    if\
+    \ (k < sl) {\n      root->l = set_rec(root->l, k, x);\n      update(root);\n \
+    \     return root;\n    }\n    if (k == sl) {\n      root->x = x;\n      update(root);\n\
     \      return root;\n    }\n    root->r = set_rec(root->r, k - (1 + sl), x);\n\
     \    update(root);\n    return root;\n  }\n\n  Node *multiply_rec(Node *root,\
     \ u32 k, const X &x) {\n    if (!root) return root;\n    prop(root);\n    u32\
@@ -283,8 +290,15 @@ data:
     \  }\n\n  X get_rec(Node *root, u32 k) {\n    prop(root);\n    u32 sl = (root->l\
     \ ? root->l->size : 0);\n    if (k < sl) return get_rec(root->l, k);\n    if (k\
     \ == sl) return root->x;\n    return get_rec(root->r, k - (1 + sl));\n  }\n\n\
-    \  X reverse_rec(Node *root, u32 l, u32 r) {}\n};\n#line 2 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \  template <typename F>\n  u32 max_right_rec(np n, const F check, u32 L, X &x)\
+    \ {\n    if (!n) return 0;\n    if (L == 0) {\n      X y = Monoid_X::op(x, n->prod);\n\
+    \      if (check(y)) {\n        x = y;\n        return n->size;\n      }\n   \
+    \ }\n    prop(n);\n    u32 sl = (n->l ? n->l->size : 0);\n    if (L < sl) {\n\
+    \      u32 k = max_right_rec(n->l, check, L, x);\n      if (k < sl) return k;\n\
+    \    }\n    if (L <= sl) {\n      X y = Monoid_X::op(x, n->x);\n      if (!check(y))\
+    \ { return sl; }\n      x = y;\n    }\n    L = (L > sl ? L - (1 + sl) : 0);\n\
+    \    return (1 + sl) + max_right_rec(n->r, check, L, x);\n  }\n};\n#line 2 \"\
+    random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
@@ -334,8 +348,8 @@ data:
   isVerificationFile: true
   path: test/mytest/rbst_test.test.cpp
   requiredBy: []
-  timestamp: '2022-11-28 05:07:44+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-11-28 06:16:37+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/rbst_test.test.cpp
 layout: document

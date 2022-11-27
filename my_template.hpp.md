@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508.test.cpp
     title: test/aoj/1508.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/1508_2.test.cpp
     title: test/aoj/1508_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -921,7 +921,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_lazy_2.test.cpp
     title: test/mytest/rbst_lazy_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/rbst_test.test.cpp
     title: test/mytest/rbst_test.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1470,7 +1470,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/655.test.cpp
     title: test/yukicoder/655.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/686.test.cpp
     title: test/yukicoder/686.test.cpp
   - icon: ':heavy_check_mark:'

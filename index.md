@@ -30,7 +30,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/lazy/cntsummin_set.hpp
       title: alg/lazy/cntsummin_set.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy/max_add.hpp
       title: alg/lazy/max_add.hpp
     - icon: ':heavy_check_mark:'
@@ -71,7 +71,7 @@ data:
       title: alg/lazy/reverse.hpp
   - name: alg/monoid
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/add.hpp
       title: alg/monoid/add.hpp
     - icon: ':heavy_check_mark:'
@@ -104,13 +104,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/gcd.hpp
       title: alg/monoid/gcd.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/max.hpp
       title: alg/monoid/max.hpp
     - icon: ':heavy_check_mark:'
       path: alg/monoid/max_idx.hpp
       title: alg/monoid/max_idx.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/min.hpp
       title: alg/monoid/min.hpp
     - icon: ':heavy_check_mark:'
@@ -160,10 +160,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/bbst/rbst_dual.hpp
       title: ds/bbst/rbst_dual.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/bbst/rbst_lazy.hpp
       title: ds/bbst/rbst_lazy.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/bbst/rbst_monoid.hpp
       title: ds/bbst/rbst_monoid.hpp
     - icon: ':heavy_check_mark:'
@@ -1107,7 +1107,7 @@ data:
       title: poly/online/online_pow.hpp
   - name: random
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -1304,7 +1304,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/1508.test.cpp
       title: test/aoj/1508.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/1508_2.test.cpp
       title: test/aoj/1508_2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2234,7 +2234,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/rbst_lazy_2.test.cpp
       title: test/mytest/rbst_lazy_2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/mytest/rbst_test.test.cpp
       title: test/mytest/rbst_test.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2785,7 +2785,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/655.test.cpp
       title: test/yukicoder/655.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/686.test.cpp
       title: test/yukicoder/686.test.cpp
     - icon: ':heavy_check_mark:'
