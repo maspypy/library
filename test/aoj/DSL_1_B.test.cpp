@@ -2,7 +2,7 @@
   "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "alg/group/add.hpp"
+#include "alg/monoid/add.hpp"
 #include "ds/weightedunionfind.hpp"
 
 void solve() {
