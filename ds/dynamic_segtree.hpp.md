@@ -15,6 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1826.test.cpp
     title: test/yukicoder/1826.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/789.test.cpp
+    title: test/yukicoder/789.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -164,6 +167,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1649.test.cpp
+  - test/yukicoder/789.test.cpp
   - test/yukicoder/1826.test.cpp
   - test/yukicoder/1036.test.cpp
   - test/library_checker/datastructure/double_ended_pq.test.cpp

@@ -6,12 +6,12 @@ data:
   - icon: ':x:'
     path: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
     title: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1270.test.cpp
     title: test/yukicoder/1270.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/query/mo.hpp\"\nstruct Mo {\r\n  vc<pair<int, int>> LR;\r\
@@ -52,7 +52,7 @@ data:
   path: ds/query/mo.hpp
   requiredBy: []
   timestamp: '2022-11-24 17:32:18+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1270.test.cpp
   - test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp

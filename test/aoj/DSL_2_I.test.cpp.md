@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/set.hpp
     title: alg/monoid/set.hpp
   - icon: ':question:'

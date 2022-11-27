@@ -17,6 +17,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/lazy/min_set.hpp
     title: alg/lazy/min_set.hpp
+  - icon: ':x:'
+    path: alg/lazy/powersums_set.hpp
+    title: alg/lazy/powersums_set.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_D.test.cpp
@@ -27,9 +30,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_I.test.cpp
     title: test/aoj/DSL_2_I.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/1548.test.cpp
+    title: test/yukicoder/1548.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid/set.hpp\"\ntemplate <typename E, E none_val>\r\
@@ -49,10 +55,12 @@ data:
   - alg/lazy/cntsummax_set.hpp
   - alg/lazy/max_set.hpp
   - alg/lazy/cntsummin_set.hpp
+  - alg/lazy/powersums_set.hpp
   - alg/lazy/min_set.hpp
   timestamp: '2022-10-21 16:22:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1548.test.cpp
   - test/aoj/DSL_2_D.test.cpp
   - test/aoj/DSL_2_I.test.cpp
   - test/aoj/DSL_2_F.test.cpp

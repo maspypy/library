@@ -27,7 +27,7 @@ data:
     \ {\r\n    return {numeric_limits<X>::max(), numeric_limits<X>::lowest()};\r\n\
     \  }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/lazy/minmax_add.hpp\"\
     \n\r\ntemplate <typename E, E INF>\r\nstruct Lazy_MinMax_Add {\r\n  using MX =\
-    \ Monoid_MinMax<E, INF>;\r\n  using MA = Group_Add<E>;\r\n  using X_structure\
+    \ Monoid_MinMax<E, INF>;\r\n  using MA = Monoid_Add<E>;\r\n  using X_structure\
     \ = MX;\r\n  using A_structure = MA;\r\n  using X = typename MX::value_type;\r\
     \n  using A = typename MA::value_type;\r\n  static constexpr X act(const X &x,\
     \ const A &a) {\r\n    X lo = (x.fi == numeric_limits<X>::max() ? x.fi : x.fi\
@@ -35,7 +35,7 @@ data:
     \n    return {lo, hi};\r\n  }\r\n};\r\n"
   code: "#include \"alg/monoid/add.hpp\"\r\n#include \"alg/monoid/minmax.hpp\"\r\n\
     \r\ntemplate <typename E, E INF>\r\nstruct Lazy_MinMax_Add {\r\n  using MX = Monoid_MinMax<E,\
-    \ INF>;\r\n  using MA = Group_Add<E>;\r\n  using X_structure = MX;\r\n  using\
+    \ INF>;\r\n  using MA = Monoid_Add<E>;\r\n  using X_structure = MX;\r\n  using\
     \ A_structure = MA;\r\n  using X = typename MX::value_type;\r\n  using A = typename\
     \ MA::value_type;\r\n  static constexpr X act(const X &x, const A &a) {\r\n  \
     \  X lo = (x.fi == numeric_limits<X>::max() ? x.fi : x.fi + a);\r\n    X hi =\
@@ -47,7 +47,7 @@ data:
   isVerificationFile: false
   path: alg/lazy/minmax_add.hpp
   requiredBy: []
-  timestamp: '2022-11-27 14:09:46+09:00'
+  timestamp: '2022-11-27 16:31:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/lazy/minmax_add.hpp

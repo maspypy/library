@@ -27,14 +27,14 @@ data:
     \n  static constexpr X unit() { return {numeric_limits<T>::lowest(), -1}; }\r\n\
     \  static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/lazy/maxidx_add.hpp\"\
     \n\r\ntemplate <typename E, bool tie_is_left = true>\r\nstruct Lazy_MaxIdx_Add\
-    \ {\r\n  using MX = Monoid_Max_Idx<E, tie_is_left>;\r\n  using MA = Group_Add<E>;\r\
+    \ {\r\n  using MX = Monoid_Max_Idx<E, tie_is_left>;\r\n  using MA = Monoid_Add<E>;\r\
     \n  using X_structure = MX;\r\n  using A_structure = MA;\r\n  using X = typename\
     \ MX::value_type;\r\n  using A = typename MA::value_type;\r\n  static constexpr\
     \ X act(const X &x, const A &a) {\r\n    if (x.fi == numeric_limits<E>::lowest())\
     \ return x;\r\n    return {x.fi + a, x.se};\r\n  }\r\n};\r\n"
   code: "#include \"alg/monoid/add.hpp\"\r\n#include \"alg/monoid/max_idx.hpp\"\r\n\
     \r\ntemplate <typename E, bool tie_is_left = true>\r\nstruct Lazy_MaxIdx_Add {\r\
-    \n  using MX = Monoid_Max_Idx<E, tie_is_left>;\r\n  using MA = Group_Add<E>;\r\
+    \n  using MX = Monoid_Max_Idx<E, tie_is_left>;\r\n  using MA = Monoid_Add<E>;\r\
     \n  using X_structure = MX;\r\n  using A_structure = MA;\r\n  using X = typename\
     \ MX::value_type;\r\n  using A = typename MA::value_type;\r\n  static constexpr\
     \ X act(const X &x, const A &a) {\r\n    if (x.fi == numeric_limits<E>::lowest())\
@@ -45,7 +45,7 @@ data:
   isVerificationFile: false
   path: alg/lazy/maxidx_add.hpp
   requiredBy: []
-  timestamp: '2022-11-27 14:09:46+09:00'
+  timestamp: '2022-11-27 16:30:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/lazy/maxidx_add.hpp
