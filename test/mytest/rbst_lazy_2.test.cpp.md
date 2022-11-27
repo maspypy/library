@@ -2,26 +2,26 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: mod/modint.hpp
-    title: mod/modint.hpp
+    path: alg/lazy/cntsum_add.hpp
+    title: alg/lazy/cntsum_add.hpp
+  - icon: ':question:'
+    path: alg/monoid/add.hpp
+    title: alg/monoid/add.hpp
+  - icon: ':heavy_check_mark:'
+    path: alg/monoid/add_pair.hpp
+    title: alg/monoid/add_pair.hpp
+  - icon: ':question:'
+    path: ds/bbst/rbst_lazy.hpp
+    title: ds/bbst/rbst_lazy.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
-    path: nt/floor_range.hpp
-    title: nt/floor_range.hpp
-  - icon: ':heavy_check_mark:'
-    path: nt/multiplicative_sum.hpp
-    title: nt/multiplicative_sum.hpp
-  - icon: ':heavy_check_mark:'
-    path: nt/primesum.hpp
-    title: nt/primesum.hpp
-  - icon: ':heavy_check_mark:'
-    path: nt/primetable.hpp
-    title: nt/primetable.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/base.hpp
+    title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -29,15 +29,15 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1276
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://yukicoder.me/problems/no/1276
-  bundledCode: "#line 1 \"test/yukicoder/1276.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1276\"\
-    \n\n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC\
-    \ optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
-    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
-    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/mytest/rbst_lazy_2.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
+    \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
+    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
+    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
+    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
+    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
     template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
     \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
     \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
@@ -211,189 +211,182 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
-    \ {\n  static constexpr bool is_modint = true;\n  int val;\n  constexpr modint(const\
-    \ ll val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val) % mod)\
-    \ % mod) {}\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
-    \  } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
-    \ += p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator-=(const\
-    \ modint &p) {\n    if ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n\
-    \  }\n  modint &operator*=(const modint &p) {\n    val = (int)(1LL * val * p.val\
-    \ % mod);\n    return *this;\n  }\n  modint &operator/=(const modint &p) {\n \
-    \   *this *= p.inverse();\n    return *this;\n  }\n  modint operator-() const\
-    \ { return modint(-val); }\n  modint operator+(const modint &p) const { return\
-    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
-    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
-    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
-    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
-    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
-    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
-    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
-    \ return modint(u);\n  }\n  modint pow(int64_t n) const {\n    modint ret(1),\
-    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
-    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr int get_mod()\
-    \ { return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr bool is_modint\
-    \ = true;\n  int val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t\
-    \ y)\n      : val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y)\
-    \ % get_mod()) % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other)\
-    \ const {\n    return val < other.val;\n  } // To use std::map<ArbitraryModInt,\
-    \ T>\n  static int &get_mod() {\n    static int mod = 0;\n    return mod;\n  }\n\
-    \  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
-    \ ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
-    \    return *this;\n  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p)\
-    \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
-    \ *this;\n  }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n   \
-    \ long long a = (long long)val * p.val;\n    int xh = (int)(a >> 32), xl = (int)a,\
-    \ d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"(m) : \"d\"(xh), \"a\"\
-    (xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n  }\n  ArbitraryModInt\
-    \ &operator/=(const ArbitraryModInt &p) {\n    *this *= p.inverse();\n    return\
-    \ *this;\n  }\n  ArbitraryModInt operator-() const { return ArbitraryModInt(get_mod()\
-    \ - val); }\n  ArbitraryModInt operator+(const ArbitraryModInt &p) const {\n \
-    \   return ArbitraryModInt(*this) += p;\n  }\n  ArbitraryModInt operator-(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) -= p;\n  }\n\
-    \  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
-    \ *= p;\n  }\n  ArbitraryModInt operator/(const ArbitraryModInt &p) const {\n\
-    \    return ArbitraryModInt(*this) /= p;\n  }\n  bool operator==(const ArbitraryModInt\
-    \ &p) const { return val == p.val; }\n  bool operator!=(const ArbitraryModInt\
-    \ &p) const { return val != p.val; }\n  ArbitraryModInt inverse() const {\n  \
-    \  int a = val, b = get_mod(), u = 1, v = 0, t;\n    while (b > 0) {\n      t\
-    \ = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return\
-    \ ArbitraryModInt(u);\n  }\n  ArbitraryModInt pow(int64_t n) const {\n    ArbitraryModInt\
-    \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
-    \ mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n};\n\ntemplate <typename\
-    \ mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n  static\
-    \ vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n \
-    \ while (int(dat.size()) <= n) {\n    int k = dat.size();\n    auto q = (mod +\
-    \ k - 1) / k;\n    int r = k * q - mod;\n    dat.emplace_back(dat[r] * mint(q));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
-    \ const int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  assert(0\
-    \ <= n);\n  if (n >= mod) return 0;\n  while (int(dat.size()) <= n) {\n    int\
-    \ k = dat.size();\n    dat.emplace_back(dat[k - 1] * mint(k));\n  }\n  return\
-    \ dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static const\
-    \ int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  assert(-1\
-    \ <= n && n < mod);\n  if (n == -1) return mint(0);\n  while (int(dat.size())\
-    \ <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <class mint, class... Ts>\nmint fact_invs(Ts...\
-    \ xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename\
-    \ mint, class Head, class... Tail>\nmint multinomial(Head &&head, Tail &&... tail)\
-    \ {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
-    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint>\
-    \ C;\n  static int H = 0, W = 0;\n\n  auto calc = [&](int i, int j) -> mint {\n\
-    \    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
-    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n\n  if (W <= k) {\n    FOR(i, H) {\n   \
-    \   C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n  \
-    \  }\n    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H,\
-    \ n + 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n\
-    \    }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint,\
-    \ bool large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >=\
-    \ 0);\n  if (k < 0 || n < k) return 0;\n  if (dense) return C_dense<mint>(n, k);\n\
-    \  if (!large) return fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n\
-    \  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *=\
-    \ fact_inv<mint>(k);\n  return x;\n}\n\ntemplate <typename mint, bool large =\
-    \ false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <=\
-    \ n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n -\
-    \ k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\
-    \u8A08\u7B97\ntemplate <typename mint, bool large = false, bool dense = false>\n\
-    mint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
-    \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
-    \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
-    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 2 \"nt/primetable.hpp\"\
-    \nvc<ll> primetable(int LIM) {\n  ++LIM;\n  const int S = 32768;\n  static int\
-    \ done = 2;\n  static vc<ll> primes = {2}, sieve(S + 1);\n\n  if (done < LIM)\
-    \ {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S + 1, 0);\n    const int\
-    \ R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM) * 1.1));\n    vc<pi> cp;\n\
-    \    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i]) {\n        cp.eb(i,\
-    \ i * i / 2);\n        for (int j = i * i; j <= S; j += 2 * i) sieve[j] = 1;\n\
-    \      }\n    }\n    for (int L = 1; L <= R; L += S) {\n      array<bool, S> block{};\n\
-    \      for (auto& [p, idx]: cp)\n        for (int i = idx; i < S + L; idx = (i\
-    \ += p)) block[i - L] = 1;\n      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L\
-    \ + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes, LIM + 1);\n  return {primes.begin(),\
-    \ primes.begin() + k};\n}\n#line 2 \"nt/multiplicative_sum.hpp\"\n\r\n// f_pe\uFF1A\
-    T(int p,int e), f(p^e)\r\n// f_psum\uFF1A[1, x] \u3067\u306E f(p) \u306E\u548C\
-    \r\ntemplate <typename T, typename F1, typename F2>\r\nT multiplicative_sum(ll\
-    \ N, F1 f_pe, F2 f_psum) {\r\n  ll sqN = sqrtl(N);\r\n  auto P = primetable(sqN);\r\
-    \n\r\n  T ANS = T(1) + f_psum(N); // 1 and prime\r\n  // t = up_i^k \u306E\u3068\
-    \u304D\u306B\u3001(t, i, k, f(t), f(u)) \u3092\u6301\u305F\u305B\u308B\r\n\r\n\
-    \  auto dfs = [&](auto self, ll t, ll i, ll k, T ft, T fu) -> void {\r\n    T\
-    \ f_nxt = fu * f_pe(P[i], k + 1);\r\n    // \u5B50\u30CE\u30FC\u30C9\u3092\u5168\
-    \u90E8\u52A0\u7B97\r\n    ANS += f_nxt;\r\n    ANS += ft * (f_psum(double(N) /\
-    \ t) - f_psum(P[i]));\r\n\r\n    ll lim = sqrtl(double(N) / t);\r\n    if (P[i]\
-    \ <= lim) { self(self, t * P[i], i, k + 1, f_nxt, fu); }\r\n    FOR3(j, i + 1,\
-    \ len(P)) {\r\n      if (P[j] > lim) break;\r\n      self(self, t * P[j], j, 1,\
-    \ ft * f_pe(P[j], 1), ft);\r\n    }\r\n  };\r\n  FOR(i, len(P)) if (P[i] <= sqN)\
-    \ dfs(dfs, P[i], i, 1, f_pe(P[i], 1), 1);\r\n  return ANS;\r\n}\n#line 2 \"nt/primesum.hpp\"\
-    \n\r\n/*\r\nN \u3068\u5B8C\u5168\u4E57\u6CD5\u7684\u95A2\u6570 f \u306E prefix\
-    \ sum \u95A2\u6570 F \u3092\u4E0E\u3048\u308B\u3002\r\nn = floor(N/d) \u3068\u306A\
-    \u308B n \u306B\u5BFE\u3059\u308B sum_{p <= n} f(p) \u3092\u8A08\u7B97\u3059\u308B\
-    \u3002\r\n\u7279\u306B\u3001\u7D20\u6570\u306E k \u4E57\u548C\u3084\u3001mod m\
-    \ \u3054\u3068\u3067\u306E\u7D20\u6570\u306E k \u4E57\u548C\u304C\u8A08\u7B97\u3067\
-    \u304D\u308B\u3002\r\nComplexity: O(N^{3/4}/logN) time, O(N^{1/2}) space.\r\n\
-    */\r\ntemplate <typename T>\r\nstruct PrimeSum {\r\n  ll N;\r\n  ll sqN;\r\n \
-    \ vc<T> sum_lo, sum_hi;\r\n  bool calculated;\r\n\r\n  PrimeSum(ll N) : N(N),\
-    \ sqN(sqrtl(N)), calculated(0) {}\r\n\r\n  // [1, x] \u305F\u3060\u3057\u3001\
-    x = floor(N, i) \u306E\u5F62\r\n  T operator[](ll x) {\r\n    assert(calculated);\r\
-    \n    return (x <= sqN ? sum_lo[x] : sum_hi[double(N) / x]);\r\n  }\r\n\r\n  template\
-    \ <typename F>\r\n  void calc(const F f) {\r\n    auto primes = primetable(sqN);\r\
-    \n    sum_lo.resize(sqN + 1);\r\n    sum_hi.resize(sqN + 1);\r\n    FOR3(i, 1,\
-    \ sqN + 1) sum_lo[i] = f(i) - 1;\r\n    FOR3(i, 1, sqN + 1) sum_hi[i] = f(double(N)\
-    \ / i) - 1;\r\n    for (auto&& p: primes) {\r\n      ll pp = p * p;\r\n      if\
-    \ (pp > N) break;\r\n      ll R = min(sqN, N / pp);\r\n      ll M = sqN / p;\r\
-    \n      T x = sum_lo[p - 1];\r\n      T fp = sum_lo[p] - sum_lo[p - 1];\r\n  \
-    \    FOR3(i, 1, M + 1) sum_hi[i] -= fp * (sum_hi[i * p] - x);\r\n      FOR3(i,\
-    \ M + 1, R + 1) sum_hi[i] -= fp * (sum_lo[double(N) / (i * p)] - x);\r\n     \
-    \ FOR3_R(n, pp, sqN + 1) sum_lo[n] -= fp * (sum_lo[double(n / p)] - x);\r\n  \
-    \  }\r\n    calculated = 1;\r\n  }\r\n\r\n  void calc_count() {\r\n    calc([](ll\
-    \ x) -> T { return x; });\r\n  }\r\n\r\n  void calc_sum() {\r\n    calc([](ll\
-    \ x) -> T {\r\n      ll a = x, b = x + 1;\r\n      if (!(x & 1)) a /= 2;\r\n \
-    \     if (x & 1) b /= 2;\r\n      return T(a) * T(b);\r\n    });\r\n  }\r\n};\r\
-    \n#line 1 \"nt/floor_range.hpp\"\n#define floor_range(q, l, r, n) \\\r\n  for\
-    \ (ll q = 1, l = (n) / (q + 1) + 1, r = (n) / q + 1;\\\r\n  q <= (n); q = (q ==\
-    \ (n) ? (n) + 1 : (n) / ((n) / (q + 1))), l = (n) / (q + 1) + 1, r = (n) / q +\
-    \ 1)\r\n#line 9 \"test/yukicoder/1276.test.cpp\"\n\nusing mint = modint107;\n\n\
-    void solve() {\n  LL(N);\n  // zeta^3\n  // p^k -> k(k+1)/2\n  PrimeSum<mint>\
-    \ X(N);\n  X.calc_count();\n  auto f_psum = [&](ll n) -> mint { return X[n] *\
-    \ mint(3); };\n  auto f_pe = [&](ll p, ll e) -> mint { return (e + 1) * (e + 2)\
-    \ / 2; };\n\n  mint ANS = 0;\n  mint x = 0; // a|b\n\n  floor_range(q, l, r, N)\
-    \ {\n    x += mint(r - l) * q;\n    // b|c \u304B\u3064 distinct\n    ANS += mint(N\
-    \ - 2) * mint(r - l) * mint(q - 1);\n    // b|a,c \u304B\u3064 distinct\n    ANS\
-    \ -= mint(r - l) * mint((q - 1) * (q - 2));\n  }\n  // a|b|c\n  mint y = multiplicative_sum<mint>(N,\
-    \ f_pe, f_psum);\n  // \u3053\u306E\u3046\u3061 distinct \u306A\u3082\u306E\u306F\
-    \uFF1F\n  y -= x;\n  y -= x;\n  y += mint(N);\n  print(ANS - y);\n}\n\nsigned\
-    \ main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n\
-    \  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1276\"\n\n#include \"\
-    my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n#include\
-    \ \"nt/multiplicative_sum.hpp\"\n#include \"nt/primesum.hpp\"\n#include \"nt/floor_range.hpp\"\
-    \n\nusing mint = modint107;\n\nvoid solve() {\n  LL(N);\n  // zeta^3\n  // p^k\
-    \ -> k(k+1)/2\n  PrimeSum<mint> X(N);\n  X.calc_count();\n  auto f_psum = [&](ll\
-    \ n) -> mint { return X[n] * mint(3); };\n  auto f_pe = [&](ll p, ll e) -> mint\
-    \ { return (e + 1) * (e + 2) / 2; };\n\n  mint ANS = 0;\n  mint x = 0; // a|b\n\
-    \n  floor_range(q, l, r, N) {\n    x += mint(r - l) * q;\n    // b|c \u304B\u3064\
-    \ distinct\n    ANS += mint(N - 2) * mint(r - l) * mint(q - 1);\n    // b|a,c\
-    \ \u304B\u3064 distinct\n    ANS -= mint(r - l) * mint((q - 1) * (q - 2));\n \
-    \ }\n  // a|b|c\n  mint y = multiplicative_sum<mint>(N, f_pe, f_psum);\n  // \u3053\
-    \u306E\u3046\u3061 distinct \u306A\u3082\u306E\u306F\uFF1F\n  y -= x;\n  y -=\
-    \ x;\n  y += mint(N);\n  print(ANS - y);\n}\n\nsigned main() {\n  cout << fixed\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
-    \ 0;\n}\n"
+    \ { yes(!t); }\r\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\n\
+    struct Monoid_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
+    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
+    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
+    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"alg/monoid/add_pair.hpp\"\
+    \ntemplate <typename E>\r\nstruct Monoid_Add_Pair {\r\n  using value_type = pair<E,\
+    \ E>;\r\n  using X = value_type;\r\n  static constexpr X op(const X &x, const\
+    \ X &y) {\r\n    return {x.fi + y.fi, x.se + y.se};\r\n  }\r\n  static constexpr\
+    \ X inverse(const X &x) { return {-x.fi, -x.se}; }\r\n  static constexpr X unit()\
+    \ { return {0, 0}; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line\
+    \ 3 \"alg/lazy/cntsum_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Lazy_CntSum_Add\
+    \ {\r\n  using MX = Monoid_Add_Pair<E>;\r\n  using MA = Monoid_Add<E>;\r\n  using\
+    \ X_structure = MX;\r\n  using A_structure = MA;\r\n  using X = typename MX::value_type;\r\
+    \n  using A = typename MA::value_type;\r\n  static constexpr X act(const X &x,\
+    \ const A &a) {\r\n    return {x.fi, x.se + x.fi * a};\r\n  }\r\n};\r\n#line 1\
+    \ \"ds/bbst/rbst_lazy.hpp\"\n// reverse \u306F\u3068\u308A\u3042\u3048\u305A\u3001\
+    Monoid \u306E\u53EF\u63DB\u6027\u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\uFF01\
+    \ntemplate <typename Lazy, int NODES = 1'000'000>\nstruct RBST_Lazy {\n  using\
+    \ Monoid_X = typename Lazy::X_structure;\n  using Monoid_A = typename Lazy::A_structure;\n\
+    \  using X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
+    \n  struct Node {\n    Node *l, *r;\n    X x, prod;\n    A lazy; // lazy \u306F\
+    \ x, prod \u306B\u53CD\u6620\u6E08\n    u32 size;\n    bool rev;\n  };\n\n  Node\
+    \ *pool;\n  int pid;\n\n  RBST_Lazy() : pid(0) { pool = new Node[NODES]; }\n\n\
+    \  void reset() { pid = 0; }\n\n  Node *new_node(const X &x) {\n    pool[pid].l\
+    \ = pool[pid].r = nullptr;\n    pool[pid].x = x;\n    pool[pid].prod = x;\n  \
+    \  pool[pid].lazy = Monoid_A::unit();\n    pool[pid].size = 1;\n    pool[pid].rev\
+    \ = 0;\n    return &(pool[pid++]);\n  }\n\n  Node *new_node(const vc<X> &dat)\
+    \ {\n    auto dfs = [&](auto &dfs, u32 l, u32 r) -> Node * {\n      if (l == r)\
+    \ return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n      u32 m\
+    \ = (l + r) / 2;\n      Node *l_root = dfs(dfs, l, m);\n      Node *r_root = dfs(dfs,\
+    \ m + 1, r);\n      Node *root = new_node(dat[m]);\n      root->l = l_root, root->r\
+    \ = r_root;\n      update(root);\n      return root;\n    };\n    return dfs(dfs,\
+    \ 0, len(dat));\n  }\n\n  Node *merge(Node *root, Node *r_root) { return merge_rec(root,\
+    \ r_root); }\n  Node *merge3(Node *a, Node *b, Node *c) { return merge(merge(a,\
+    \ b), c); }\n  pair<Node *, Node *> split(Node *root, u32 k) {\n    if (!root)\
+    \ {\n      assert(k == 0);\n      return {nullptr, nullptr};\n    }\n    assert(0\
+    \ <= k && k <= root->size);\n    return split_rec(root, k);\n  }\n  tuple<Node\
+    \ *, Node *, Node *> split3(Node *root, u32 l, u32 r) {\n    Node *nm, *nr;\n\
+    \    tie(root, nr) = split(root, r);\n    tie(root, nm) = split(root, l);\n  \
+    \  return {root, nm, nr};\n  }\n\n  X prod(Node *root, u32 l, u32 r) {\n    if\
+    \ (l == r) return Monoid_X::unit();\n    return prod_rec(root, l, r);\n  }\n\n\
+    \  Node *reverse(Node *root, u32 l, u32 r) {\n    assert(Monoid_X::commute);\n\
+    \    assert(0 <= l && l <= r && r <= root->size);\n    if (r - l <= 1) return\
+    \ root;\n    auto [nl, nm, nr] = split3(root, l, r);\n    nm->rev ^= 1;\n    return\
+    \ merge3(nl, nm, nr);\n  }\n\n  Node *apply(Node *root, u32 l, u32 r, const A\
+    \ a) {\n    assert(0 <= l && l <= r && r <= root->size);\n    return apply_rec(root,\
+    \ l, r, a);\n  }\n\n  Node *set(Node *root, u32 k, const X &x) { return set_rec(root,\
+    \ k, x); }\n  Node *multiply(Node *root, u32 k, const X &x) {\n    return multiply_rec(root,\
+    \ k, x);\n  }\n  X get(Node *root, u32 k) { return get_rec(root, k); }\n\n  vc<X>\
+    \ get_all(Node *root) {\n    vc<X> res;\n    auto dfs = [&](auto &dfs, Node *root,\
+    \ bool rev, A lazy) -> void {\n      if (!root) return;\n      rev ^= root->rev;\n\
+    \      X me = Lazy::act(root->x, lazy);\n      lazy = Monoid_A::op(root->lazy,\
+    \ lazy);\n      dfs(dfs, (rev ? root->r : root->l), rev, lazy);\n      res.eb(me);\n\
+    \      dfs(dfs, (rev ? root->l : root->r), rev, lazy);\n    };\n    dfs(dfs, root,\
+    \ 0, Monoid_A::unit());\n    return res;\n  }\n\nprivate:\n  inline u32 xor128()\
+    \ {\n    static u32 x = 123456789;\n    static u32 y = 362436069;\n    static\
+    \ u32 z = 521288629;\n    static u32 w = 88675123;\n    u32 t = x ^ (x << 11);\n\
+    \    x = y;\n    y = z;\n    z = w;\n    return w = (w ^ (w >> 19)) ^ (t ^ (t\
+    \ >> 8));\n  }\n\n  void prop(Node *c) {\n    if (c->lazy != Monoid_A::unit())\
+    \ {\n      if (c->l) {\n        c->l->x = Lazy::act(c->l->x, c->lazy);\n     \
+    \   c->l->prod = Lazy::act(c->l->prod, c->lazy);\n        c->l->lazy = Monoid_A::op(c->l->lazy,\
+    \ c->lazy);\n      }\n      if (c->r) {\n        c->r->x = Lazy::act(c->r->x,\
+    \ c->lazy);\n        c->r->prod = Lazy::act(c->r->prod, c->lazy);\n        c->r->lazy\
+    \ = Monoid_A::op(c->r->lazy, c->lazy);\n      }\n      c->lazy = Monoid_A::unit();\n\
+    \    }\n    if (c->rev) {\n      swap(c->l, c->r);\n      if (c->l) c->l->rev\
+    \ ^= 1;\n      if (c->r) c->r->rev ^= 1;\n      c->rev = 0;\n    }\n  }\n\n  void\
+    \ update(Node *c) {\n    c->size = 1;\n    c->prod = c->x;\n    if (c->l) {\n\
+    \      c->size += c->l->size;\n      c->prod = Monoid_X::op(c->l->prod, c->prod);\n\
+    \    }\n    if (c->r) {\n      c->size += c->r->size;\n      c->prod = Monoid_X::op(c->prod,\
+    \ c->r->prod);\n    }\n  }\n\n  Node *merge_rec(Node *l_root, Node *r_root) {\n\
+    \    if (!l_root) return r_root;\n    if (!r_root) return l_root;\n    u32 sl\
+    \ = l_root->size, sr = r_root->size;\n    if (xor128() % (sl + sr) < sl) {\n \
+    \     prop(l_root);\n      l_root->r = merge_rec(l_root->r, r_root);\n      update(l_root);\n\
+    \      return l_root;\n    }\n    prop(r_root);\n    r_root->l = merge_rec(l_root,\
+    \ r_root->l);\n    update(r_root);\n    return r_root;\n  }\n\n  pair<Node *,\
+    \ Node *> split_rec(Node *root, u32 k) {\n    if (!root) return {nullptr, nullptr};\n\
+    \    prop(root);\n    u32 sl = (root->l ? root->l->size : 0);\n    if (k <= sl)\
+    \ {\n      auto [nl, nr] = split_rec(root->l, k);\n      root->l = nr;\n     \
+    \ update(root);\n      return {nl, root};\n    }\n    auto [nl, nr] = split_rec(root->r,\
+    \ k - (1 + sl));\n    root->r = nl;\n    update(root);\n    return {root, nr};\n\
+    \  }\n\n  Node *set_rec(Node *root, u32 k, const X &x) {\n    if (!root) return\
+    \ root;\n    prop(root);\n    u32 sl = (root->l ? root->l->size : 0);\n    if\
+    \ (k < sl) {\n      root->l = set_rec(root->l, k, x);\n      update(root);\n \
+    \     return root;\n    }\n    if (k == sl) {\n      root->x = x;\n      update(root);\n\
+    \      return root;\n    }\n    root->r = set_rec(root->r, k - (1 + sl), x);\n\
+    \    update(root);\n    return root;\n  }\n\n  Node *multiply_rec(Node *root,\
+    \ u32 k, const X &x) {\n    if (!root) return root;\n    prop(root);\n    u32\
+    \ sl = (root->l ? root->l->size : 0);\n    if (k < sl) {\n      root->l = multiply_rec(root->l,\
+    \ k, x);\n      update(root);\n      return root;\n    }\n    if (k == sl) {\n\
+    \      root->x = Monoid_X::op(root->x, x);\n      update(root);\n      return\
+    \ root;\n    }\n    root->r = multiply_rec(root->r, k - (1 + sl), x);\n    update(root);\n\
+    \    return root;\n  }\n\n  X prod_rec(Node *root, u32 l, u32 r) {\n    if (l\
+    \ == 0 && r == root->size) { return root->prod; }\n    prop(root);\n    u32 sl\
+    \ = (root->l ? root->l->size : 0);\n    X res = Monoid_X::unit();\n    if (l <\
+    \ sl) { res = Monoid_X::op(res, prod_rec(root->l, l, min(r, sl))); }\n    if (l\
+    \ <= sl && sl < r) res = Monoid_X::op(res, root->x);\n    u32 k = 1 + sl;\n  \
+    \  if (k < r) res = Monoid_X::op(res, prod_rec(root->r, max(k, l) - k, r - k));\n\
+    \    return res;\n  }\n\n  X get_rec(Node *root, u32 k) {\n    prop(root);\n \
+    \   u32 sl = (root->l ? root->l->size : 0);\n    if (k < sl) return get_rec(root->l,\
+    \ k);\n    if (k == sl) return root->x;\n    return get_rec(root->r, k - (1 +\
+    \ sl));\n  }\n\n  Node *apply_rec(Node *root, u32 l, u32 r, const A &a) {\n  \
+    \  prop(root);\n    if (l == 0 && r == root->size) {\n      root->x = Lazy::act(root->x,\
+    \ a);\n      root->prod = Lazy::act(root->prod, a);\n      root->lazy = a;\n \
+    \     return root;\n    }\n    u32 sl = (root->l ? root->l->size : 0);\n    if\
+    \ (l < sl) apply_rec(root->l, l, min(r, sl), a);\n    if (l <= sl && sl < r) root->x\
+    \ = Lazy::act(root->x, a);\n    u32 k = 1 + sl;\n    if (k < r) apply_rec(root->r,\
+    \ max(k, l) - k, r - k, a);\n    update(root);\n    return root;\n  }\n};\n#line\
+    \ 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 7 \"test/mytest/rbst_lazy_2.test.cpp\"\
+    \n\nvoid test() {\n  using Lazy = Lazy_CntSum_Add<int>;\n  using MonoX = typename\
+    \ Lazy::X_structure;\n\n  RBST_Lazy<Lazy, 100> X;\n  FOR(1000) {\n    X.reset();\n\
+    \    int N = RNG(1, 3);\n    int Q = RNG(1, 1000);\n    vc<int> A(N);\n    FOR(i,\
+    \ N) A[i] = RNG(1, 10);\n\n    vc<pair<int, int>> seg_raw(N);\n    FOR(i, N) seg_raw[i]\
+    \ = {1, A[i]};\n    auto root = X.new_node(seg_raw);\n\n    FOR(Q) {\n      int\
+    \ t = RNG(0, 6);\n      if (t == 0) {\n        int i = RNG(0, N);\n        assert(A[i]\
+    \ == X.get(root, i).se);\n      }\n      if (t == 1) {\n        int i = RNG(0,\
+    \ N);\n        int x = RNG(1, 10);\n        root = X.set(root, i, {1, x});\n \
+    \       A[i] = x;\n      }\n      if (t == 2) {\n        int i = RNG(0, N);\n\
+    \        int x = RNG(1, 10);\n        root = X.multiply(root, i, {0, x});\n  \
+    \      A[i] += x;\n      }\n      if (t == 3) {\n        int L = RNG(0, N);\n\
+    \        int R = RNG(0, N);\n        if (L > R) swap(L, R);\n        ++R;\n  \
+    \      int sm = 0;\n        FOR(i, L, R) sm += A[i];\n        assert(X.prod(root,\
+    \ L, R).se == sm);\n      }\n      if (t == 4) {\n        int L = RNG(0, N);\n\
+    \        int R = RNG(0, N);\n        if (L > R) swap(L, R);\n        ++R;\n  \
+    \      root = X.reverse(root, L, R);\n        reverse(A.begin() + L, A.begin()\
+    \ + R);\n      }\n      if (t == 5) {\n        int L = RNG(0, N);\n        int\
+    \ R = RNG(0, N);\n        if (L > R) swap(L, R);\n        int a = RNG(1, 10);\n\
+    \        ++R;\n        FOR(i, L, R) A[i] += a;\n        root = X.apply(root, L,\
+    \ R, a);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n\
+    }\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"alg/lazy/cntsum_add.hpp\"\n#include \"\
+    ds/bbst/rbst_lazy.hpp\"\n#include \"random/base.hpp\"\n\nvoid test() {\n  using\
+    \ Lazy = Lazy_CntSum_Add<int>;\n  using MonoX = typename Lazy::X_structure;\n\n\
+    \  RBST_Lazy<Lazy, 100> X;\n  FOR(1000) {\n    X.reset();\n    int N = RNG(1,\
+    \ 3);\n    int Q = RNG(1, 1000);\n    vc<int> A(N);\n    FOR(i, N) A[i] = RNG(1,\
+    \ 10);\n\n    vc<pair<int, int>> seg_raw(N);\n    FOR(i, N) seg_raw[i] = {1, A[i]};\n\
+    \    auto root = X.new_node(seg_raw);\n\n    FOR(Q) {\n      int t = RNG(0, 6);\n\
+    \      if (t == 0) {\n        int i = RNG(0, N);\n        assert(A[i] == X.get(root,\
+    \ i).se);\n      }\n      if (t == 1) {\n        int i = RNG(0, N);\n        int\
+    \ x = RNG(1, 10);\n        root = X.set(root, i, {1, x});\n        A[i] = x;\n\
+    \      }\n      if (t == 2) {\n        int i = RNG(0, N);\n        int x = RNG(1,\
+    \ 10);\n        root = X.multiply(root, i, {0, x});\n        A[i] += x;\n    \
+    \  }\n      if (t == 3) {\n        int L = RNG(0, N);\n        int R = RNG(0,\
+    \ N);\n        if (L > R) swap(L, R);\n        ++R;\n        int sm = 0;\n   \
+    \     FOR(i, L, R) sm += A[i];\n        assert(X.prod(root, L, R).se == sm);\n\
+    \      }\n      if (t == 4) {\n        int L = RNG(0, N);\n        int R = RNG(0,\
+    \ N);\n        if (L > R) swap(L, R);\n        ++R;\n        root = X.reverse(root,\
+    \ L, R);\n        reverse(A.begin() + L, A.begin() + R);\n      }\n      if (t\
+    \ == 5) {\n        int L = RNG(0, N);\n        int R = RNG(0, N);\n        if\
+    \ (L > R) swap(L, R);\n        int a = RNG(1, 10);\n        ++R;\n        FOR(i,\
+    \ L, R) A[i] += a;\n        root = X.apply(root, L, R, a);\n      }\n    }\n \
+    \ }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n\
+    \  test();\n  solve();\n\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - mod/modint.hpp
-  - nt/multiplicative_sum.hpp
-  - nt/primetable.hpp
-  - nt/primesum.hpp
-  - nt/floor_range.hpp
+  - alg/lazy/cntsum_add.hpp
+  - alg/monoid/add.hpp
+  - alg/monoid/add_pair.hpp
+  - ds/bbst/rbst_lazy.hpp
+  - random/base.hpp
   isVerificationFile: true
-  path: test/yukicoder/1276.test.cpp
+  path: test/mytest/rbst_lazy_2.test.cpp
   requiredBy: []
-  timestamp: '2022-11-06 13:29:09+09:00'
+  timestamp: '2022-11-28 05:07:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/1276.test.cpp
+documentation_of: test/mytest/rbst_lazy_2.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/1276.test.cpp
-- /verify/test/yukicoder/1276.test.cpp.html
-title: test/yukicoder/1276.test.cpp
+- /verify/test/mytest/rbst_lazy_2.test.cpp
+- /verify/test/mytest/rbst_lazy_2.test.cpp.html
+title: test/mytest/rbst_lazy_2.test.cpp
 ---

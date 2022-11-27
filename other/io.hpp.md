@@ -324,7 +324,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
     title: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -915,6 +915,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_lazy.test.cpp
     title: test/mytest/rbst_lazy.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_lazy_2.test.cpp
+    title: test/mytest/rbst_lazy_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_test.test.cpp
     title: test/mytest/rbst_test.test.cpp
@@ -1922,6 +1925,7 @@ data:
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/eulerian_number.test.cpp
   - test/mytest/online_exp.test.cpp
+  - test/mytest/rbst_lazy_2.test.cpp
   - test/mytest/multinomial.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
   - test/mytest/online_inv.test.cpp

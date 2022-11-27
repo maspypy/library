@@ -40,38 +40,38 @@ data:
     \    return prod_rec(root, l, r);\n  }\n\n  Node *reverse(Node *root, u32 l, u32\
     \ r) {\n    assert(Monoid::commute);\n    assert(0 <= l && l <= r && r <= root->size);\n\
     \    if (r - l <= 1) return root;\n    auto [nl, nm, nr] = split3(root, l, r);\n\
-    \    nm->rev ^= 1;\n    prop(nm), update(nm);\n    return merge3(nl, nm, nr);\n\
-    \  }\n\n  Node *set(Node *root, u32 k, const X &x) { return set_rec(root, k, x);\
-    \ }\n  Node *multiply(Node *root, u32 k, const X &x) {\n    return multiply_rec(root,\
-    \ k, x);\n  }\n  X get(Node *root, u32 k) { return get_rec(root, k); }\n\n  vc<X>\
-    \ get_all(Node *root) {\n    vc<X> res;\n    auto dfs = [&](auto &dfs, Node *root,\
-    \ bool rev) -> void {\n      if (!root) return;\n      rev ^= root->rev;\n   \
-    \   dfs(dfs, (rev ? root->r : root->l), rev);\n      res.eb(root->x);\n      dfs(dfs,\
-    \ (rev ? root->l : root->r), rev);\n    };\n    dfs(dfs, root, 0);\n    return\
-    \ res;\n  }\n\nprivate:\n  inline u32 xor128() {\n    static u32 x = 123456789;\n\
-    \    static u32 y = 362436069;\n    static u32 z = 521288629;\n    static u32\
-    \ w = 88675123;\n    u32 t = x ^ (x << 11);\n    x = y;\n    y = z;\n    z = w;\n\
-    \    return w = (w ^ (w >> 19)) ^ (t ^ (t >> 8));\n  }\n\n  void prop(Node *c)\
-    \ {\n    if (c->rev) {\n      swap(c->l, c->r);\n      if (c->l) c->l->rev ^=\
-    \ 1;\n      if (c->r) c->r->rev ^= 1;\n      c->rev = 0;\n    }\n  }\n\n  void\
-    \ update(Node *c) {\n    c->size = 1;\n    c->prod = c->x;\n    if (c->l) {\n\
-    \      c->size += c->l->size;\n      c->prod = Monoid::op(c->l->prod, c->prod);\n\
-    \    }\n    if (c->r) {\n      c->size += c->r->size;\n      c->prod = Monoid::op(c->prod,\
-    \ c->r->prod);\n    }\n  }\n\n  Node *merge_rec(Node *l_root, Node *r_root) {\n\
-    \    if (!l_root) return r_root;\n    if (!r_root) return l_root;\n    u32 sl\
-    \ = l_root->size, sr = r_root->size;\n    if (xor128() % (sl + sr) < sl) {\n \
-    \     prop(l_root);\n      l_root->r = merge_rec(l_root->r, r_root);\n      update(l_root);\n\
-    \      return l_root;\n    }\n    prop(r_root);\n    r_root->l = merge_rec(l_root,\
-    \ r_root->l);\n    update(r_root);\n    return r_root;\n  }\n\n  pair<Node *,\
-    \ Node *> split_rec(Node *root, u32 k) {\n    if (!root) return {nullptr, nullptr};\n\
-    \    prop(root);\n    u32 sl = (root->l ? root->l->size : 0);\n    if (k <= sl)\
-    \ {\n      auto [nl, nr] = split_rec(root->l, k);\n      root->l = nr;\n     \
-    \ update(root);\n      return {nl, root};\n    }\n    auto [nl, nr] = split_rec(root->r,\
-    \ k - (1 + sl));\n    root->r = nl;\n    update(root);\n    return {root, nr};\n\
-    \  }\n\n  Node *set_rec(Node *root, u32 k, const X &x) {\n    if (!root) return\
-    \ root;\n    prop(root);\n    u32 sl = (root->l ? root->l->size : 0);\n    if\
-    \ (k < sl) {\n      root->l = set_rec(root->l, k, x);\n      update(root);\n \
-    \     return root;\n    }\n    if (k == sl) {\n      root->x = x;\n      update(root);\n\
+    \    nm->rev ^= 1;\n    return merge3(nl, nm, nr);\n  }\n\n  Node *set(Node *root,\
+    \ u32 k, const X &x) { return set_rec(root, k, x); }\n  Node *multiply(Node *root,\
+    \ u32 k, const X &x) {\n    return multiply_rec(root, k, x);\n  }\n  X get(Node\
+    \ *root, u32 k) { return get_rec(root, k); }\n\n  vc<X> get_all(Node *root) {\n\
+    \    vc<X> res;\n    auto dfs = [&](auto &dfs, Node *root, bool rev) -> void {\n\
+    \      if (!root) return;\n      rev ^= root->rev;\n      dfs(dfs, (rev ? root->r\
+    \ : root->l), rev);\n      res.eb(root->x);\n      dfs(dfs, (rev ? root->l : root->r),\
+    \ rev);\n    };\n    dfs(dfs, root, 0);\n    return res;\n  }\n\nprivate:\n  inline\
+    \ u32 xor128() {\n    static u32 x = 123456789;\n    static u32 y = 362436069;\n\
+    \    static u32 z = 521288629;\n    static u32 w = 88675123;\n    u32 t = x ^\
+    \ (x << 11);\n    x = y;\n    y = z;\n    z = w;\n    return w = (w ^ (w >> 19))\
+    \ ^ (t ^ (t >> 8));\n  }\n\n  void prop(Node *c) {\n    if (c->rev) {\n      swap(c->l,\
+    \ c->r);\n      if (c->l) c->l->rev ^= 1;\n      if (c->r) c->r->rev ^= 1;\n \
+    \     c->rev = 0;\n    }\n  }\n\n  void update(Node *c) {\n    c->size = 1;\n\
+    \    c->prod = c->x;\n    if (c->l) {\n      c->size += c->l->size;\n      c->prod\
+    \ = Monoid::op(c->l->prod, c->prod);\n    }\n    if (c->r) {\n      c->size +=\
+    \ c->r->size;\n      c->prod = Monoid::op(c->prod, c->r->prod);\n    }\n  }\n\n\
+    \  Node *merge_rec(Node *l_root, Node *r_root) {\n    if (!l_root) return r_root;\n\
+    \    if (!r_root) return l_root;\n    u32 sl = l_root->size, sr = r_root->size;\n\
+    \    if (xor128() % (sl + sr) < sl) {\n      prop(l_root);\n      l_root->r =\
+    \ merge_rec(l_root->r, r_root);\n      update(l_root);\n      return l_root;\n\
+    \    }\n    prop(r_root);\n    r_root->l = merge_rec(l_root, r_root->l);\n   \
+    \ update(r_root);\n    return r_root;\n  }\n\n  pair<Node *, Node *> split_rec(Node\
+    \ *root, u32 k) {\n    if (!root) return {nullptr, nullptr};\n    prop(root);\n\
+    \    u32 sl = (root->l ? root->l->size : 0);\n    if (k <= sl) {\n      auto [nl,\
+    \ nr] = split_rec(root->l, k);\n      root->l = nr;\n      update(root);\n   \
+    \   return {nl, root};\n    }\n    auto [nl, nr] = split_rec(root->r, k - (1 +\
+    \ sl));\n    root->r = nl;\n    update(root);\n    return {root, nr};\n  }\n\n\
+    \  Node *set_rec(Node *root, u32 k, const X &x) {\n    if (!root) return root;\n\
+    \    prop(root);\n    u32 sl = (root->l ? root->l->size : 0);\n    if (k < sl)\
+    \ {\n      root->l = set_rec(root->l, k, x);\n      update(root);\n      return\
+    \ root;\n    }\n    if (k == sl) {\n      root->x = x;\n      update(root);\n\
     \      return root;\n    }\n    root->r = set_rec(root->r, k - (1 + sl), x);\n\
     \    update(root);\n    return root;\n  }\n\n  Node *multiply_rec(Node *root,\
     \ u32 k, const X &x) {\n    if (!root) return root;\n    prop(root);\n    u32\
@@ -87,7 +87,8 @@ data:
     \ = Monoid::op(res, prod_rec(root->r, max(k, l) - k, r - k));\n    return res;\n\
     \  }\n\n  X get_rec(Node *root, u32 k) {\n    prop(root);\n    u32 sl = (root->l\
     \ ? root->l->size : 0);\n    if (k < sl) return get_rec(root->l, k);\n    if (k\
-    \ == sl) return root->x;\n    return get_rec(root->r, k - (1 + sl));\n  }\n};\n"
+    \ == sl) return root->x;\n    return get_rec(root->r, k - (1 + sl));\n  }\n\n\
+    \  X reverse_rec(Node *root, u32 l, u32 r) {}\n};\n"
   code: "// reverse \u306F\u3068\u308A\u3042\u3048\u305A\u3001Monoid \u306E\u53EF\u63DB\
     \u6027\u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\uFF01\ntemplate <typename Monoid,\
     \ int NODES = 1'000'000>\nstruct RBST_Monoid {\n  using X = typename Monoid::value_type;\n\
@@ -113,38 +114,38 @@ data:
     \    return prod_rec(root, l, r);\n  }\n\n  Node *reverse(Node *root, u32 l, u32\
     \ r) {\n    assert(Monoid::commute);\n    assert(0 <= l && l <= r && r <= root->size);\n\
     \    if (r - l <= 1) return root;\n    auto [nl, nm, nr] = split3(root, l, r);\n\
-    \    nm->rev ^= 1;\n    prop(nm), update(nm);\n    return merge3(nl, nm, nr);\n\
-    \  }\n\n  Node *set(Node *root, u32 k, const X &x) { return set_rec(root, k, x);\
-    \ }\n  Node *multiply(Node *root, u32 k, const X &x) {\n    return multiply_rec(root,\
-    \ k, x);\n  }\n  X get(Node *root, u32 k) { return get_rec(root, k); }\n\n  vc<X>\
-    \ get_all(Node *root) {\n    vc<X> res;\n    auto dfs = [&](auto &dfs, Node *root,\
-    \ bool rev) -> void {\n      if (!root) return;\n      rev ^= root->rev;\n   \
-    \   dfs(dfs, (rev ? root->r : root->l), rev);\n      res.eb(root->x);\n      dfs(dfs,\
-    \ (rev ? root->l : root->r), rev);\n    };\n    dfs(dfs, root, 0);\n    return\
-    \ res;\n  }\n\nprivate:\n  inline u32 xor128() {\n    static u32 x = 123456789;\n\
-    \    static u32 y = 362436069;\n    static u32 z = 521288629;\n    static u32\
-    \ w = 88675123;\n    u32 t = x ^ (x << 11);\n    x = y;\n    y = z;\n    z = w;\n\
-    \    return w = (w ^ (w >> 19)) ^ (t ^ (t >> 8));\n  }\n\n  void prop(Node *c)\
-    \ {\n    if (c->rev) {\n      swap(c->l, c->r);\n      if (c->l) c->l->rev ^=\
-    \ 1;\n      if (c->r) c->r->rev ^= 1;\n      c->rev = 0;\n    }\n  }\n\n  void\
-    \ update(Node *c) {\n    c->size = 1;\n    c->prod = c->x;\n    if (c->l) {\n\
-    \      c->size += c->l->size;\n      c->prod = Monoid::op(c->l->prod, c->prod);\n\
-    \    }\n    if (c->r) {\n      c->size += c->r->size;\n      c->prod = Monoid::op(c->prod,\
-    \ c->r->prod);\n    }\n  }\n\n  Node *merge_rec(Node *l_root, Node *r_root) {\n\
-    \    if (!l_root) return r_root;\n    if (!r_root) return l_root;\n    u32 sl\
-    \ = l_root->size, sr = r_root->size;\n    if (xor128() % (sl + sr) < sl) {\n \
-    \     prop(l_root);\n      l_root->r = merge_rec(l_root->r, r_root);\n      update(l_root);\n\
-    \      return l_root;\n    }\n    prop(r_root);\n    r_root->l = merge_rec(l_root,\
-    \ r_root->l);\n    update(r_root);\n    return r_root;\n  }\n\n  pair<Node *,\
-    \ Node *> split_rec(Node *root, u32 k) {\n    if (!root) return {nullptr, nullptr};\n\
-    \    prop(root);\n    u32 sl = (root->l ? root->l->size : 0);\n    if (k <= sl)\
-    \ {\n      auto [nl, nr] = split_rec(root->l, k);\n      root->l = nr;\n     \
-    \ update(root);\n      return {nl, root};\n    }\n    auto [nl, nr] = split_rec(root->r,\
-    \ k - (1 + sl));\n    root->r = nl;\n    update(root);\n    return {root, nr};\n\
-    \  }\n\n  Node *set_rec(Node *root, u32 k, const X &x) {\n    if (!root) return\
-    \ root;\n    prop(root);\n    u32 sl = (root->l ? root->l->size : 0);\n    if\
-    \ (k < sl) {\n      root->l = set_rec(root->l, k, x);\n      update(root);\n \
-    \     return root;\n    }\n    if (k == sl) {\n      root->x = x;\n      update(root);\n\
+    \    nm->rev ^= 1;\n    return merge3(nl, nm, nr);\n  }\n\n  Node *set(Node *root,\
+    \ u32 k, const X &x) { return set_rec(root, k, x); }\n  Node *multiply(Node *root,\
+    \ u32 k, const X &x) {\n    return multiply_rec(root, k, x);\n  }\n  X get(Node\
+    \ *root, u32 k) { return get_rec(root, k); }\n\n  vc<X> get_all(Node *root) {\n\
+    \    vc<X> res;\n    auto dfs = [&](auto &dfs, Node *root, bool rev) -> void {\n\
+    \      if (!root) return;\n      rev ^= root->rev;\n      dfs(dfs, (rev ? root->r\
+    \ : root->l), rev);\n      res.eb(root->x);\n      dfs(dfs, (rev ? root->l : root->r),\
+    \ rev);\n    };\n    dfs(dfs, root, 0);\n    return res;\n  }\n\nprivate:\n  inline\
+    \ u32 xor128() {\n    static u32 x = 123456789;\n    static u32 y = 362436069;\n\
+    \    static u32 z = 521288629;\n    static u32 w = 88675123;\n    u32 t = x ^\
+    \ (x << 11);\n    x = y;\n    y = z;\n    z = w;\n    return w = (w ^ (w >> 19))\
+    \ ^ (t ^ (t >> 8));\n  }\n\n  void prop(Node *c) {\n    if (c->rev) {\n      swap(c->l,\
+    \ c->r);\n      if (c->l) c->l->rev ^= 1;\n      if (c->r) c->r->rev ^= 1;\n \
+    \     c->rev = 0;\n    }\n  }\n\n  void update(Node *c) {\n    c->size = 1;\n\
+    \    c->prod = c->x;\n    if (c->l) {\n      c->size += c->l->size;\n      c->prod\
+    \ = Monoid::op(c->l->prod, c->prod);\n    }\n    if (c->r) {\n      c->size +=\
+    \ c->r->size;\n      c->prod = Monoid::op(c->prod, c->r->prod);\n    }\n  }\n\n\
+    \  Node *merge_rec(Node *l_root, Node *r_root) {\n    if (!l_root) return r_root;\n\
+    \    if (!r_root) return l_root;\n    u32 sl = l_root->size, sr = r_root->size;\n\
+    \    if (xor128() % (sl + sr) < sl) {\n      prop(l_root);\n      l_root->r =\
+    \ merge_rec(l_root->r, r_root);\n      update(l_root);\n      return l_root;\n\
+    \    }\n    prop(r_root);\n    r_root->l = merge_rec(l_root, r_root->l);\n   \
+    \ update(r_root);\n    return r_root;\n  }\n\n  pair<Node *, Node *> split_rec(Node\
+    \ *root, u32 k) {\n    if (!root) return {nullptr, nullptr};\n    prop(root);\n\
+    \    u32 sl = (root->l ? root->l->size : 0);\n    if (k <= sl) {\n      auto [nl,\
+    \ nr] = split_rec(root->l, k);\n      root->l = nr;\n      update(root);\n   \
+    \   return {nl, root};\n    }\n    auto [nl, nr] = split_rec(root->r, k - (1 +\
+    \ sl));\n    root->r = nl;\n    update(root);\n    return {root, nr};\n  }\n\n\
+    \  Node *set_rec(Node *root, u32 k, const X &x) {\n    if (!root) return root;\n\
+    \    prop(root);\n    u32 sl = (root->l ? root->l->size : 0);\n    if (k < sl)\
+    \ {\n      root->l = set_rec(root->l, k, x);\n      update(root);\n      return\
+    \ root;\n    }\n    if (k == sl) {\n      root->x = x;\n      update(root);\n\
     \      return root;\n    }\n    root->r = set_rec(root->r, k - (1 + sl), x);\n\
     \    update(root);\n    return root;\n  }\n\n  Node *multiply_rec(Node *root,\
     \ u32 k, const X &x) {\n    if (!root) return root;\n    prop(root);\n    u32\
@@ -160,12 +161,13 @@ data:
     \ = Monoid::op(res, prod_rec(root->r, max(k, l) - k, r - k));\n    return res;\n\
     \  }\n\n  X get_rec(Node *root, u32 k) {\n    prop(root);\n    u32 sl = (root->l\
     \ ? root->l->size : 0);\n    if (k < sl) return get_rec(root->l, k);\n    if (k\
-    \ == sl) return root->x;\n    return get_rec(root->r, k - (1 + sl));\n  }\n};\n"
+    \ == sl) return root->x;\n    return get_rec(root->r, k - (1 + sl));\n  }\n\n\
+    \  X reverse_rec(Node *root, u32 l, u32 r) {}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/bbst/rbst_monoid.hpp
   requiredBy: []
-  timestamp: '2022-11-28 02:34:48+09:00'
+  timestamp: '2022-11-28 05:07:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/rbst_test.test.cpp

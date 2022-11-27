@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy/cntsum_affine.hpp
     title: alg/lazy/cntsum_affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
   - icon: ':question:'
     path: ds/bbst/rbst_lazy.hpp
     title: ds/bbst/rbst_lazy.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
@@ -319,8 +319,8 @@ data:
     \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 1 \"ds/bbst/rbst_lazy.hpp\"\
     \n// reverse \u306F\u3068\u308A\u3042\u3048\u305A\u3001Monoid \u306E\u53EF\u63DB\
     \u6027\u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\uFF01\ntemplate <typename Lazy,\
-    \ int NODES = 1'000'000>\nstruct RBST_Lazy {\n  using Monoid_X = typename Lazy::MX;\n\
-    \  using Monoid_A = typename Lazy::MA;\n  using X = typename Monoid_X::value_type;\n\
+    \ int NODES = 1'000'000>\nstruct RBST_Lazy {\n  using Monoid_X = typename Lazy::X_structure;\n\
+    \  using Monoid_A = typename Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n\n  struct Node {\n    Node *l, *r;\n\
     \    X x, prod;\n    A lazy; // lazy \u306F x, prod \u306B\u53CD\u6620\u6E08\n\
     \    u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n\n  RBST_Lazy()\
@@ -344,38 +344,37 @@ data:
     \    if (l == r) return Monoid_X::unit();\n    return prod_rec(root, l, r);\n\
     \  }\n\n  Node *reverse(Node *root, u32 l, u32 r) {\n    assert(Monoid_X::commute);\n\
     \    assert(0 <= l && l <= r && r <= root->size);\n    if (r - l <= 1) return\
-    \ root;\n    auto [nl, nm, nr] = split3(root, l, r);\n    nm->rev ^= 1;\n    prop(nm),\
-    \ update(nm);\n    return merge3(nl, nm, nr);\n  }\n\n  Node *apply(Node *root,\
-    \ u32 l, u32 r, const A &a) {\n    assert(0 <= l && l <= r && r <= root->size);\n\
-    \    return apply_rec(root, l, r, a);\n  }\n\n  Node *set(Node *root, u32 k, const\
-    \ X &x) { return set_rec(root, k, x); }\n  Node *multiply(Node *root, u32 k, const\
-    \ X &x) {\n    return multiply_rec(root, k, x);\n  }\n  X get(Node *root, u32\
-    \ k) { return get_rec(root, k); }\n\n  vc<X> get_all(Node *root) {\n    vc<X>\
-    \ res;\n    auto dfs = [&](auto &dfs, Node *root, bool rev, A lazy) -> void {\n\
-    \      if (!root) return;\n      rev ^= root->rev;\n      X me = Lazy::act(root->x,\
-    \ lazy);\n      lazy = Monoid_A::act(root->lazy, lazy);\n      dfs(dfs, (rev ?\
-    \ root->r : root->l), rev, lazy);\n      res.eb(me);\n      dfs(dfs, (rev ? root->l\
-    \ : root->r), rev, lazy);\n    };\n    dfs(dfs, root, 0, Monoid_A::unit());\n\
-    \    return res;\n  }\n\nprivate:\n  inline u32 xor128() {\n    static u32 x =\
-    \ 123456789;\n    static u32 y = 362436069;\n    static u32 z = 521288629;\n \
-    \   static u32 w = 88675123;\n    u32 t = x ^ (x << 11);\n    x = y;\n    y =\
-    \ z;\n    z = w;\n    return w = (w ^ (w >> 19)) ^ (t ^ (t >> 8));\n  }\n\n  void\
-    \ prop(Node *c) {\n    if (c->lazy != Monoid_A::unit()) {\n      if (c->l) {\n\
-    \        c->l->x = Lazy::act(c->l->x, c->lazy);\n        c->l->prod = Lazy::act(c->l->prod,\
-    \ c->lazy);\n        c->l->lazy = Monoid_A::op(c->l->lazy, c->lazy);\n      }\n\
-    \      if (c->r) {\n        c->r->x = Lazy::act(c->r->x, c->lazy);\n        c->r->prod\
-    \ = Lazy::act(c->r->prod, c->lazy);\n        c->r->lazy = Monoid_A::op(c->r->lazy,\
-    \ c->lazy);\n      }\n      c->lazy = Monoid_A::unit();\n    }\n    if (c->rev)\
-    \ {\n      swap(c->l, c->r);\n      if (c->l) c->l->rev ^= 1;\n      if (c->r)\
-    \ c->r->rev ^= 1;\n      c->rev = 0;\n    }\n  }\n\n  void update(Node *c) {\n\
-    \    c->size = 1;\n    c->prod = c->x;\n    if (c->l) {\n      c->size += c->l->size;\n\
-    \      c->prod = Monoid_X::op(c->l->prod, c->prod);\n    }\n    if (c->r) {\n\
-    \      c->size += c->r->size;\n      c->prod = Monoid_X::op(c->prod, c->r->prod);\n\
-    \    }\n  }\n\n  Node *merge_rec(Node *l_root, Node *r_root) {\n    if (!l_root)\
-    \ return r_root;\n    if (!r_root) return l_root;\n    u32 sl = l_root->size,\
-    \ sr = r_root->size;\n    if (xor128() % (sl + sr) < sl) {\n      prop(l_root);\n\
-    \      l_root->r = merge_rec(l_root->r, r_root);\n      update(l_root);\n    \
-    \  return l_root;\n    }\n    prop(r_root);\n    r_root->l = merge_rec(l_root,\
+    \ root;\n    auto [nl, nm, nr] = split3(root, l, r);\n    nm->rev ^= 1;\n    return\
+    \ merge3(nl, nm, nr);\n  }\n\n  Node *apply(Node *root, u32 l, u32 r, const A\
+    \ a) {\n    assert(0 <= l && l <= r && r <= root->size);\n    return apply_rec(root,\
+    \ l, r, a);\n  }\n\n  Node *set(Node *root, u32 k, const X &x) { return set_rec(root,\
+    \ k, x); }\n  Node *multiply(Node *root, u32 k, const X &x) {\n    return multiply_rec(root,\
+    \ k, x);\n  }\n  X get(Node *root, u32 k) { return get_rec(root, k); }\n\n  vc<X>\
+    \ get_all(Node *root) {\n    vc<X> res;\n    auto dfs = [&](auto &dfs, Node *root,\
+    \ bool rev, A lazy) -> void {\n      if (!root) return;\n      rev ^= root->rev;\n\
+    \      X me = Lazy::act(root->x, lazy);\n      lazy = Monoid_A::op(root->lazy,\
+    \ lazy);\n      dfs(dfs, (rev ? root->r : root->l), rev, lazy);\n      res.eb(me);\n\
+    \      dfs(dfs, (rev ? root->l : root->r), rev, lazy);\n    };\n    dfs(dfs, root,\
+    \ 0, Monoid_A::unit());\n    return res;\n  }\n\nprivate:\n  inline u32 xor128()\
+    \ {\n    static u32 x = 123456789;\n    static u32 y = 362436069;\n    static\
+    \ u32 z = 521288629;\n    static u32 w = 88675123;\n    u32 t = x ^ (x << 11);\n\
+    \    x = y;\n    y = z;\n    z = w;\n    return w = (w ^ (w >> 19)) ^ (t ^ (t\
+    \ >> 8));\n  }\n\n  void prop(Node *c) {\n    if (c->lazy != Monoid_A::unit())\
+    \ {\n      if (c->l) {\n        c->l->x = Lazy::act(c->l->x, c->lazy);\n     \
+    \   c->l->prod = Lazy::act(c->l->prod, c->lazy);\n        c->l->lazy = Monoid_A::op(c->l->lazy,\
+    \ c->lazy);\n      }\n      if (c->r) {\n        c->r->x = Lazy::act(c->r->x,\
+    \ c->lazy);\n        c->r->prod = Lazy::act(c->r->prod, c->lazy);\n        c->r->lazy\
+    \ = Monoid_A::op(c->r->lazy, c->lazy);\n      }\n      c->lazy = Monoid_A::unit();\n\
+    \    }\n    if (c->rev) {\n      swap(c->l, c->r);\n      if (c->l) c->l->rev\
+    \ ^= 1;\n      if (c->r) c->r->rev ^= 1;\n      c->rev = 0;\n    }\n  }\n\n  void\
+    \ update(Node *c) {\n    c->size = 1;\n    c->prod = c->x;\n    if (c->l) {\n\
+    \      c->size += c->l->size;\n      c->prod = Monoid_X::op(c->l->prod, c->prod);\n\
+    \    }\n    if (c->r) {\n      c->size += c->r->size;\n      c->prod = Monoid_X::op(c->prod,\
+    \ c->r->prod);\n    }\n  }\n\n  Node *merge_rec(Node *l_root, Node *r_root) {\n\
+    \    if (!l_root) return r_root;\n    if (!r_root) return l_root;\n    u32 sl\
+    \ = l_root->size, sr = r_root->size;\n    if (xor128() % (sl + sr) < sl) {\n \
+    \     prop(l_root);\n      l_root->r = merge_rec(l_root->r, r_root);\n      update(l_root);\n\
+    \      return l_root;\n    }\n    prop(r_root);\n    r_root->l = merge_rec(l_root,\
     \ r_root->l);\n    update(r_root);\n    return r_root;\n  }\n\n  pair<Node *,\
     \ Node *> split_rec(Node *root, u32 k) {\n    if (!root) return {nullptr, nullptr};\n\
     \    prop(root);\n    u32 sl = (root->l ? root->l->size : 0);\n    if (k <= sl)\
@@ -393,46 +392,47 @@ data:
     \ k, x);\n      update(root);\n      return root;\n    }\n    if (k == sl) {\n\
     \      root->x = Monoid_X::op(root->x, x);\n      update(root);\n      return\
     \ root;\n    }\n    root->r = multiply_rec(root->r, k - (1 + sl), x);\n    update(root);\n\
-    \    return root;\n  }\n\n  X prod_rec(Node *root, u32 l, u32 r) {\n    prop(root);\n\
-    \    if (l == 0 && r == root->size) return root->prod;\n    u32 sl = (root->l\
-    \ ? root->l->size : 0);\n    X res = Monoid_X::unit();\n    if (l < sl) { res\
-    \ = Monoid_X::op(res, prod_rec(root->l, l, min(r, sl))); }\n    if (l <= sl &&\
-    \ sl < r) res = Monoid_X::op(res, root->x);\n    u32 k = 1 + sl;\n    if (k <\
-    \ r) res = Monoid_X::op(res, prod_rec(root->r, max(k, l) - k, r - k));\n    return\
-    \ res;\n  }\n\n  X get_rec(Node *root, u32 k) {\n    prop(root);\n    u32 sl =\
-    \ (root->l ? root->l->size : 0);\n    if (k < sl) return get_rec(root->l, k);\n\
-    \    if (k == sl) return root->x;\n    return get_rec(root->r, k - (1 + sl));\n\
-    \  }\n\n  Node *apply_rec(Node *root, u32 l, u32 r, const A &a) {\n    prop(root);\n\
-    \    if (l == 0 && r == root->size) {\n      root->x = Lazy::act(root->x, a);\n\
-    \      root->prod = Lazy::act(root->prod, a);\n      root->lazy = Lazy::act(root->lazy,\
-    \ a);\n      return root;\n    }\n    u32 sl = (root->l ? root->l->size : 0);\n\
-    \    if (l < sl) apply_rec(root->l, l, min(r, sl), a);\n    if (l <= sl && sl\
-    \ < r) root->x = Lazy::act(root->x, a);\n    u32 k = 1 + sl;\n    if (k < r) apply_rec(root->r,\
+    \    return root;\n  }\n\n  X prod_rec(Node *root, u32 l, u32 r) {\n    if (l\
+    \ == 0 && r == root->size) { return root->prod; }\n    prop(root);\n    u32 sl\
+    \ = (root->l ? root->l->size : 0);\n    X res = Monoid_X::unit();\n    if (l <\
+    \ sl) { res = Monoid_X::op(res, prod_rec(root->l, l, min(r, sl))); }\n    if (l\
+    \ <= sl && sl < r) res = Monoid_X::op(res, root->x);\n    u32 k = 1 + sl;\n  \
+    \  if (k < r) res = Monoid_X::op(res, prod_rec(root->r, max(k, l) - k, r - k));\n\
+    \    return res;\n  }\n\n  X get_rec(Node *root, u32 k) {\n    prop(root);\n \
+    \   u32 sl = (root->l ? root->l->size : 0);\n    if (k < sl) return get_rec(root->l,\
+    \ k);\n    if (k == sl) return root->x;\n    return get_rec(root->r, k - (1 +\
+    \ sl));\n  }\n\n  Node *apply_rec(Node *root, u32 l, u32 r, const A &a) {\n  \
+    \  prop(root);\n    if (l == 0 && r == root->size) {\n      root->x = Lazy::act(root->x,\
+    \ a);\n      root->prod = Lazy::act(root->prod, a);\n      root->lazy = a;\n \
+    \     return root;\n    }\n    u32 sl = (root->l ? root->l->size : 0);\n    if\
+    \ (l < sl) apply_rec(root->l, l, min(r, sl), a);\n    if (l <= sl && sl < r) root->x\
+    \ = Lazy::act(root->x, a);\n    u32 k = 1 + sl;\n    if (k < r) apply_rec(root->r,\
     \ max(k, l) - k, r - k, a);\n    update(root);\n    return root;\n  }\n};\n#line\
     \ 9 \"test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  VEC(mint, A, N);\n\
-    \  RBST_Lazy<Lazy_CntSum_Affine<mint>> RBST;\n  vc<pair<mint, mint>> seg_raw(N);\n\
-    \  FOR(i, N) seg_raw[i] = {mint(1), A[i]};\n  auto root = RBST.new_node(seg_raw);\n\
-    \n  FOR(Q) {\n    LL(t);\n    // ST.debug(root);\n    if (t == 0) {\n      LL(i,\
-    \ x);\n      RBST.insert(root, i, {mint(1), mint(x)});\n    }\n    if (t == 1)\
-    \ {\n      LL(i);\n      RBST.erase(root, i);\n    }\n    if (t == 2) {\n    \
-    \  LL(l, r);\n      RBST.reverse(root, l, r);\n    }\n    if (t == 3) {\n    \
-    \  LL(l, r, b, c);\n      RBST.apply(root, l, r, {mint(b), mint(c)});\n    }\n\
-    \    if (t == 4) {\n      LL(l, r);\n      print(RBST.prod(root, l, r).se);\n\
-    \    }\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+    \  RBST_Lazy<Lazy_CntSum_Affine<mint>> X;\n  vc<pair<mint, mint>> seg_raw(N);\n\
+    \  FOR(i, N) seg_raw[i] = {mint(1), A[i]};\n  auto root = X.new_node(seg_raw);\n\
+    \n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(i, x);\n      auto [a, b]\
+    \ = X.split(root, i);\n      root = X.merge3(a, X.new_node({mint(1), mint(x)}),\
+    \ b);\n    }\n    if (t == 1) {\n      LL(i);\n      auto [a, b, c] = X.split3(root,\
+    \ i, i + 1);\n      root = X.merge(a, c);\n    }\n    if (t == 2) {\n      LL(l,\
+    \ r);\n      root = X.reverse(root, l, r);\n    }\n    if (t == 3) {\n      LL(l,\
+    \ r, b, c);\n      root = X.apply(root, l, r, {mint(b), mint(c)});\n    }\n  \
+    \  if (t == 4) {\n      LL(l, r);\n      print(X.prod(root, l, r).se);\n    }\n\
+    \  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"alg/lazy/cntsum_affine.hpp\"\
     \n#include \"mod/modint.hpp\"\n#include \"ds/bbst/rbst_lazy.hpp\"\n\nusing mint\
     \ = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  VEC(mint, A, N);\n  RBST_Lazy<Lazy_CntSum_Affine<mint>>\
-    \ RBST;\n  vc<pair<mint, mint>> seg_raw(N);\n  FOR(i, N) seg_raw[i] = {mint(1),\
-    \ A[i]};\n  auto root = RBST.new_node(seg_raw);\n\n  FOR(Q) {\n    LL(t);\n  \
-    \  // ST.debug(root);\n    if (t == 0) {\n      LL(i, x);\n      RBST.insert(root,\
-    \ i, {mint(1), mint(x)});\n    }\n    if (t == 1) {\n      LL(i);\n      RBST.erase(root,\
-    \ i);\n    }\n    if (t == 2) {\n      LL(l, r);\n      RBST.reverse(root, l,\
-    \ r);\n    }\n    if (t == 3) {\n      LL(l, r, b, c);\n      RBST.apply(root,\
-    \ l, r, {mint(b), mint(c)});\n    }\n    if (t == 4) {\n      LL(l, r);\n    \
-    \  print(RBST.prod(root, l, r).se);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\
-    \n  return 0;\n}\n"
+    \ X;\n  vc<pair<mint, mint>> seg_raw(N);\n  FOR(i, N) seg_raw[i] = {mint(1), A[i]};\n\
+    \  auto root = X.new_node(seg_raw);\n\n  FOR(Q) {\n    LL(t);\n    if (t == 0)\
+    \ {\n      LL(i, x);\n      auto [a, b] = X.split(root, i);\n      root = X.merge3(a,\
+    \ X.new_node({mint(1), mint(x)}), b);\n    }\n    if (t == 1) {\n      LL(i);\n\
+    \      auto [a, b, c] = X.split3(root, i, i + 1);\n      root = X.merge(a, c);\n\
+    \    }\n    if (t == 2) {\n      LL(l, r);\n      root = X.reverse(root, l, r);\n\
+    \    }\n    if (t == 3) {\n      LL(l, r, b, c);\n      root = X.apply(root, l,\
+    \ r, {mint(b), mint(c)});\n    }\n    if (t == 4) {\n      LL(l, r);\n      print(X.prod(root,\
+    \ l, r).se);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -444,8 +444,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   requiredBy: []
-  timestamp: '2022-11-28 03:22:53+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-28 05:07:44+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
 layout: document

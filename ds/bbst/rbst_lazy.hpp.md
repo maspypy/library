@@ -3,12 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_lazy.test.cpp
     title: test/mytest/rbst_lazy.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_lazy_2.test.cpp
+    title: test/mytest/rbst_lazy_2.test.cpp
   - icon: ':x:'
     path: test/yukicoder/686.test.cpp
     title: test/yukicoder/686.test.cpp
@@ -20,63 +23,62 @@ data:
   bundledCode: "#line 1 \"ds/bbst/rbst_lazy.hpp\"\n// reverse \u306F\u3068\u308A\u3042\
     \u3048\u305A\u3001Monoid \u306E\u53EF\u63DB\u6027\u3092\u4EEE\u5B9A\u3057\u3066\
     \u3044\u308B\uFF01\ntemplate <typename Lazy, int NODES = 1'000'000>\nstruct RBST_Lazy\
-    \ {\n  using Monoid_X = typename Lazy::MX;\n  using Monoid_A = typename Lazy::MA;\n\
-    \  using X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
-    \n  struct Node {\n    Node *l, *r;\n    X x, prod;\n    A lazy; // lazy \u306F\
-    \ x, prod \u306B\u53CD\u6620\u6E08\n    u32 size;\n    bool rev;\n  };\n\n  Node\
-    \ *pool;\n  int pid;\n\n  RBST_Lazy() : pid(0) { pool = new Node[NODES]; }\n\n\
-    \  void reset() { pid = 0; }\n\n  Node *new_node(const X &x) {\n    pool[pid].l\
-    \ = pool[pid].r = nullptr;\n    pool[pid].x = x;\n    pool[pid].prod = x;\n  \
-    \  pool[pid].lazy = Monoid_A::unit();\n    pool[pid].size = 1;\n    pool[pid].rev\
-    \ = 0;\n    return &(pool[pid++]);\n  }\n\n  Node *new_node(const vc<X> &dat)\
-    \ {\n    auto dfs = [&](auto &dfs, u32 l, u32 r) -> Node * {\n      if (l == r)\
-    \ return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n      u32 m\
-    \ = (l + r) / 2;\n      Node *l_root = dfs(dfs, l, m);\n      Node *r_root = dfs(dfs,\
-    \ m + 1, r);\n      Node *root = new_node(dat[m]);\n      root->l = l_root, root->r\
-    \ = r_root;\n      update(root);\n      return root;\n    };\n    return dfs(dfs,\
-    \ 0, len(dat));\n  }\n\n  Node *merge(Node *root, Node *r_root) { return merge_rec(root,\
-    \ r_root); }\n  Node *merge3(Node *a, Node *b, Node *c) { return merge(merge(a,\
-    \ b), c); }\n  pair<Node *, Node *> split(Node *root, u32 k) {\n    if (!root)\
-    \ {\n      assert(k == 0);\n      return {nullptr, nullptr};\n    }\n    assert(0\
-    \ <= k && k <= root->size);\n    return split_rec(root, k);\n  }\n  tuple<Node\
-    \ *, Node *, Node *> split3(Node *root, u32 l, u32 r) {\n    Node *nm, *nr;\n\
-    \    tie(root, nr) = split(root, r);\n    tie(root, nm) = split(root, l);\n  \
-    \  return {root, nm, nr};\n  }\n\n  X prod(Node *root, u32 l, u32 r) {\n    if\
-    \ (l == r) return Monoid_X::unit();\n    return prod_rec(root, l, r);\n  }\n\n\
-    \  Node *reverse(Node *root, u32 l, u32 r) {\n    assert(Monoid_X::commute);\n\
+    \ {\n  using Monoid_X = typename Lazy::X_structure;\n  using Monoid_A = typename\
+    \ Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n  using A =\
+    \ typename Monoid_A::value_type;\n\n  struct Node {\n    Node *l, *r;\n    X x,\
+    \ prod;\n    A lazy; // lazy \u306F x, prod \u306B\u53CD\u6620\u6E08\n    u32\
+    \ size;\n    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n\n  RBST_Lazy() : pid(0)\
+    \ { pool = new Node[NODES]; }\n\n  void reset() { pid = 0; }\n\n  Node *new_node(const\
+    \ X &x) {\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x = x;\n  \
+    \  pool[pid].prod = x;\n    pool[pid].lazy = Monoid_A::unit();\n    pool[pid].size\
+    \ = 1;\n    pool[pid].rev = 0;\n    return &(pool[pid++]);\n  }\n\n  Node *new_node(const\
+    \ vc<X> &dat) {\n    auto dfs = [&](auto &dfs, u32 l, u32 r) -> Node * {\n   \
+    \   if (l == r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n\
+    \      u32 m = (l + r) / 2;\n      Node *l_root = dfs(dfs, l, m);\n      Node\
+    \ *r_root = dfs(dfs, m + 1, r);\n      Node *root = new_node(dat[m]);\n      root->l\
+    \ = l_root, root->r = r_root;\n      update(root);\n      return root;\n    };\n\
+    \    return dfs(dfs, 0, len(dat));\n  }\n\n  Node *merge(Node *root, Node *r_root)\
+    \ { return merge_rec(root, r_root); }\n  Node *merge3(Node *a, Node *b, Node *c)\
+    \ { return merge(merge(a, b), c); }\n  pair<Node *, Node *> split(Node *root,\
+    \ u32 k) {\n    if (!root) {\n      assert(k == 0);\n      return {nullptr, nullptr};\n\
+    \    }\n    assert(0 <= k && k <= root->size);\n    return split_rec(root, k);\n\
+    \  }\n  tuple<Node *, Node *, Node *> split3(Node *root, u32 l, u32 r) {\n   \
+    \ Node *nm, *nr;\n    tie(root, nr) = split(root, r);\n    tie(root, nm) = split(root,\
+    \ l);\n    return {root, nm, nr};\n  }\n\n  X prod(Node *root, u32 l, u32 r) {\n\
+    \    if (l == r) return Monoid_X::unit();\n    return prod_rec(root, l, r);\n\
+    \  }\n\n  Node *reverse(Node *root, u32 l, u32 r) {\n    assert(Monoid_X::commute);\n\
     \    assert(0 <= l && l <= r && r <= root->size);\n    if (r - l <= 1) return\
-    \ root;\n    auto [nl, nm, nr] = split3(root, l, r);\n    nm->rev ^= 1;\n    prop(nm),\
-    \ update(nm);\n    return merge3(nl, nm, nr);\n  }\n\n  Node *apply(Node *root,\
-    \ u32 l, u32 r, const A &a) {\n    assert(0 <= l && l <= r && r <= root->size);\n\
-    \    return apply_rec(root, l, r, a);\n  }\n\n  Node *set(Node *root, u32 k, const\
-    \ X &x) { return set_rec(root, k, x); }\n  Node *multiply(Node *root, u32 k, const\
-    \ X &x) {\n    return multiply_rec(root, k, x);\n  }\n  X get(Node *root, u32\
-    \ k) { return get_rec(root, k); }\n\n  vc<X> get_all(Node *root) {\n    vc<X>\
-    \ res;\n    auto dfs = [&](auto &dfs, Node *root, bool rev, A lazy) -> void {\n\
-    \      if (!root) return;\n      rev ^= root->rev;\n      X me = Lazy::act(root->x,\
-    \ lazy);\n      lazy = Monoid_A::act(root->lazy, lazy);\n      dfs(dfs, (rev ?\
-    \ root->r : root->l), rev, lazy);\n      res.eb(me);\n      dfs(dfs, (rev ? root->l\
-    \ : root->r), rev, lazy);\n    };\n    dfs(dfs, root, 0, Monoid_A::unit());\n\
-    \    return res;\n  }\n\nprivate:\n  inline u32 xor128() {\n    static u32 x =\
-    \ 123456789;\n    static u32 y = 362436069;\n    static u32 z = 521288629;\n \
-    \   static u32 w = 88675123;\n    u32 t = x ^ (x << 11);\n    x = y;\n    y =\
-    \ z;\n    z = w;\n    return w = (w ^ (w >> 19)) ^ (t ^ (t >> 8));\n  }\n\n  void\
-    \ prop(Node *c) {\n    if (c->lazy != Monoid_A::unit()) {\n      if (c->l) {\n\
-    \        c->l->x = Lazy::act(c->l->x, c->lazy);\n        c->l->prod = Lazy::act(c->l->prod,\
-    \ c->lazy);\n        c->l->lazy = Monoid_A::op(c->l->lazy, c->lazy);\n      }\n\
-    \      if (c->r) {\n        c->r->x = Lazy::act(c->r->x, c->lazy);\n        c->r->prod\
-    \ = Lazy::act(c->r->prod, c->lazy);\n        c->r->lazy = Monoid_A::op(c->r->lazy,\
-    \ c->lazy);\n      }\n      c->lazy = Monoid_A::unit();\n    }\n    if (c->rev)\
-    \ {\n      swap(c->l, c->r);\n      if (c->l) c->l->rev ^= 1;\n      if (c->r)\
-    \ c->r->rev ^= 1;\n      c->rev = 0;\n    }\n  }\n\n  void update(Node *c) {\n\
-    \    c->size = 1;\n    c->prod = c->x;\n    if (c->l) {\n      c->size += c->l->size;\n\
-    \      c->prod = Monoid_X::op(c->l->prod, c->prod);\n    }\n    if (c->r) {\n\
-    \      c->size += c->r->size;\n      c->prod = Monoid_X::op(c->prod, c->r->prod);\n\
-    \    }\n  }\n\n  Node *merge_rec(Node *l_root, Node *r_root) {\n    if (!l_root)\
-    \ return r_root;\n    if (!r_root) return l_root;\n    u32 sl = l_root->size,\
-    \ sr = r_root->size;\n    if (xor128() % (sl + sr) < sl) {\n      prop(l_root);\n\
-    \      l_root->r = merge_rec(l_root->r, r_root);\n      update(l_root);\n    \
-    \  return l_root;\n    }\n    prop(r_root);\n    r_root->l = merge_rec(l_root,\
+    \ root;\n    auto [nl, nm, nr] = split3(root, l, r);\n    nm->rev ^= 1;\n    return\
+    \ merge3(nl, nm, nr);\n  }\n\n  Node *apply(Node *root, u32 l, u32 r, const A\
+    \ a) {\n    assert(0 <= l && l <= r && r <= root->size);\n    return apply_rec(root,\
+    \ l, r, a);\n  }\n\n  Node *set(Node *root, u32 k, const X &x) { return set_rec(root,\
+    \ k, x); }\n  Node *multiply(Node *root, u32 k, const X &x) {\n    return multiply_rec(root,\
+    \ k, x);\n  }\n  X get(Node *root, u32 k) { return get_rec(root, k); }\n\n  vc<X>\
+    \ get_all(Node *root) {\n    vc<X> res;\n    auto dfs = [&](auto &dfs, Node *root,\
+    \ bool rev, A lazy) -> void {\n      if (!root) return;\n      rev ^= root->rev;\n\
+    \      X me = Lazy::act(root->x, lazy);\n      lazy = Monoid_A::op(root->lazy,\
+    \ lazy);\n      dfs(dfs, (rev ? root->r : root->l), rev, lazy);\n      res.eb(me);\n\
+    \      dfs(dfs, (rev ? root->l : root->r), rev, lazy);\n    };\n    dfs(dfs, root,\
+    \ 0, Monoid_A::unit());\n    return res;\n  }\n\nprivate:\n  inline u32 xor128()\
+    \ {\n    static u32 x = 123456789;\n    static u32 y = 362436069;\n    static\
+    \ u32 z = 521288629;\n    static u32 w = 88675123;\n    u32 t = x ^ (x << 11);\n\
+    \    x = y;\n    y = z;\n    z = w;\n    return w = (w ^ (w >> 19)) ^ (t ^ (t\
+    \ >> 8));\n  }\n\n  void prop(Node *c) {\n    if (c->lazy != Monoid_A::unit())\
+    \ {\n      if (c->l) {\n        c->l->x = Lazy::act(c->l->x, c->lazy);\n     \
+    \   c->l->prod = Lazy::act(c->l->prod, c->lazy);\n        c->l->lazy = Monoid_A::op(c->l->lazy,\
+    \ c->lazy);\n      }\n      if (c->r) {\n        c->r->x = Lazy::act(c->r->x,\
+    \ c->lazy);\n        c->r->prod = Lazy::act(c->r->prod, c->lazy);\n        c->r->lazy\
+    \ = Monoid_A::op(c->r->lazy, c->lazy);\n      }\n      c->lazy = Monoid_A::unit();\n\
+    \    }\n    if (c->rev) {\n      swap(c->l, c->r);\n      if (c->l) c->l->rev\
+    \ ^= 1;\n      if (c->r) c->r->rev ^= 1;\n      c->rev = 0;\n    }\n  }\n\n  void\
+    \ update(Node *c) {\n    c->size = 1;\n    c->prod = c->x;\n    if (c->l) {\n\
+    \      c->size += c->l->size;\n      c->prod = Monoid_X::op(c->l->prod, c->prod);\n\
+    \    }\n    if (c->r) {\n      c->size += c->r->size;\n      c->prod = Monoid_X::op(c->prod,\
+    \ c->r->prod);\n    }\n  }\n\n  Node *merge_rec(Node *l_root, Node *r_root) {\n\
+    \    if (!l_root) return r_root;\n    if (!r_root) return l_root;\n    u32 sl\
+    \ = l_root->size, sr = r_root->size;\n    if (xor128() % (sl + sr) < sl) {\n \
+    \     prop(l_root);\n      l_root->r = merge_rec(l_root->r, r_root);\n      update(l_root);\n\
+    \      return l_root;\n    }\n    prop(r_root);\n    r_root->l = merge_rec(l_root,\
     \ r_root->l);\n    update(r_root);\n    return r_root;\n  }\n\n  pair<Node *,\
     \ Node *> split_rec(Node *root, u32 k) {\n    if (!root) return {nullptr, nullptr};\n\
     \    prop(root);\n    u32 sl = (root->l ? root->l->size : 0);\n    if (k <= sl)\
@@ -94,26 +96,26 @@ data:
     \ k, x);\n      update(root);\n      return root;\n    }\n    if (k == sl) {\n\
     \      root->x = Monoid_X::op(root->x, x);\n      update(root);\n      return\
     \ root;\n    }\n    root->r = multiply_rec(root->r, k - (1 + sl), x);\n    update(root);\n\
-    \    return root;\n  }\n\n  X prod_rec(Node *root, u32 l, u32 r) {\n    prop(root);\n\
-    \    if (l == 0 && r == root->size) return root->prod;\n    u32 sl = (root->l\
-    \ ? root->l->size : 0);\n    X res = Monoid_X::unit();\n    if (l < sl) { res\
-    \ = Monoid_X::op(res, prod_rec(root->l, l, min(r, sl))); }\n    if (l <= sl &&\
-    \ sl < r) res = Monoid_X::op(res, root->x);\n    u32 k = 1 + sl;\n    if (k <\
-    \ r) res = Monoid_X::op(res, prod_rec(root->r, max(k, l) - k, r - k));\n    return\
-    \ res;\n  }\n\n  X get_rec(Node *root, u32 k) {\n    prop(root);\n    u32 sl =\
-    \ (root->l ? root->l->size : 0);\n    if (k < sl) return get_rec(root->l, k);\n\
-    \    if (k == sl) return root->x;\n    return get_rec(root->r, k - (1 + sl));\n\
-    \  }\n\n  Node *apply_rec(Node *root, u32 l, u32 r, const A &a) {\n    prop(root);\n\
-    \    if (l == 0 && r == root->size) {\n      root->x = Lazy::act(root->x, a);\n\
-    \      root->prod = Lazy::act(root->prod, a);\n      root->lazy = Lazy::act(root->lazy,\
-    \ a);\n      return root;\n    }\n    u32 sl = (root->l ? root->l->size : 0);\n\
-    \    if (l < sl) apply_rec(root->l, l, min(r, sl), a);\n    if (l <= sl && sl\
-    \ < r) root->x = Lazy::act(root->x, a);\n    u32 k = 1 + sl;\n    if (k < r) apply_rec(root->r,\
+    \    return root;\n  }\n\n  X prod_rec(Node *root, u32 l, u32 r) {\n    if (l\
+    \ == 0 && r == root->size) { return root->prod; }\n    prop(root);\n    u32 sl\
+    \ = (root->l ? root->l->size : 0);\n    X res = Monoid_X::unit();\n    if (l <\
+    \ sl) { res = Monoid_X::op(res, prod_rec(root->l, l, min(r, sl))); }\n    if (l\
+    \ <= sl && sl < r) res = Monoid_X::op(res, root->x);\n    u32 k = 1 + sl;\n  \
+    \  if (k < r) res = Monoid_X::op(res, prod_rec(root->r, max(k, l) - k, r - k));\n\
+    \    return res;\n  }\n\n  X get_rec(Node *root, u32 k) {\n    prop(root);\n \
+    \   u32 sl = (root->l ? root->l->size : 0);\n    if (k < sl) return get_rec(root->l,\
+    \ k);\n    if (k == sl) return root->x;\n    return get_rec(root->r, k - (1 +\
+    \ sl));\n  }\n\n  Node *apply_rec(Node *root, u32 l, u32 r, const A &a) {\n  \
+    \  prop(root);\n    if (l == 0 && r == root->size) {\n      root->x = Lazy::act(root->x,\
+    \ a);\n      root->prod = Lazy::act(root->prod, a);\n      root->lazy = a;\n \
+    \     return root;\n    }\n    u32 sl = (root->l ? root->l->size : 0);\n    if\
+    \ (l < sl) apply_rec(root->l, l, min(r, sl), a);\n    if (l <= sl && sl < r) root->x\
+    \ = Lazy::act(root->x, a);\n    u32 k = 1 + sl;\n    if (k < r) apply_rec(root->r,\
     \ max(k, l) - k, r - k, a);\n    update(root);\n    return root;\n  }\n};\n"
   code: "// reverse \u306F\u3068\u308A\u3042\u3048\u305A\u3001Monoid \u306E\u53EF\u63DB\
     \u6027\u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\uFF01\ntemplate <typename Lazy,\
-    \ int NODES = 1'000'000>\nstruct RBST_Lazy {\n  using Monoid_X = typename Lazy::MX;\n\
-    \  using Monoid_A = typename Lazy::MA;\n  using X = typename Monoid_X::value_type;\n\
+    \ int NODES = 1'000'000>\nstruct RBST_Lazy {\n  using Monoid_X = typename Lazy::X_structure;\n\
+    \  using Monoid_A = typename Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n\n  struct Node {\n    Node *l, *r;\n\
     \    X x, prod;\n    A lazy; // lazy \u306F x, prod \u306B\u53CD\u6620\u6E08\n\
     \    u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n\n  RBST_Lazy()\
@@ -137,38 +139,37 @@ data:
     \    if (l == r) return Monoid_X::unit();\n    return prod_rec(root, l, r);\n\
     \  }\n\n  Node *reverse(Node *root, u32 l, u32 r) {\n    assert(Monoid_X::commute);\n\
     \    assert(0 <= l && l <= r && r <= root->size);\n    if (r - l <= 1) return\
-    \ root;\n    auto [nl, nm, nr] = split3(root, l, r);\n    nm->rev ^= 1;\n    prop(nm),\
-    \ update(nm);\n    return merge3(nl, nm, nr);\n  }\n\n  Node *apply(Node *root,\
-    \ u32 l, u32 r, const A &a) {\n    assert(0 <= l && l <= r && r <= root->size);\n\
-    \    return apply_rec(root, l, r, a);\n  }\n\n  Node *set(Node *root, u32 k, const\
-    \ X &x) { return set_rec(root, k, x); }\n  Node *multiply(Node *root, u32 k, const\
-    \ X &x) {\n    return multiply_rec(root, k, x);\n  }\n  X get(Node *root, u32\
-    \ k) { return get_rec(root, k); }\n\n  vc<X> get_all(Node *root) {\n    vc<X>\
-    \ res;\n    auto dfs = [&](auto &dfs, Node *root, bool rev, A lazy) -> void {\n\
-    \      if (!root) return;\n      rev ^= root->rev;\n      X me = Lazy::act(root->x,\
-    \ lazy);\n      lazy = Monoid_A::act(root->lazy, lazy);\n      dfs(dfs, (rev ?\
-    \ root->r : root->l), rev, lazy);\n      res.eb(me);\n      dfs(dfs, (rev ? root->l\
-    \ : root->r), rev, lazy);\n    };\n    dfs(dfs, root, 0, Monoid_A::unit());\n\
-    \    return res;\n  }\n\nprivate:\n  inline u32 xor128() {\n    static u32 x =\
-    \ 123456789;\n    static u32 y = 362436069;\n    static u32 z = 521288629;\n \
-    \   static u32 w = 88675123;\n    u32 t = x ^ (x << 11);\n    x = y;\n    y =\
-    \ z;\n    z = w;\n    return w = (w ^ (w >> 19)) ^ (t ^ (t >> 8));\n  }\n\n  void\
-    \ prop(Node *c) {\n    if (c->lazy != Monoid_A::unit()) {\n      if (c->l) {\n\
-    \        c->l->x = Lazy::act(c->l->x, c->lazy);\n        c->l->prod = Lazy::act(c->l->prod,\
-    \ c->lazy);\n        c->l->lazy = Monoid_A::op(c->l->lazy, c->lazy);\n      }\n\
-    \      if (c->r) {\n        c->r->x = Lazy::act(c->r->x, c->lazy);\n        c->r->prod\
-    \ = Lazy::act(c->r->prod, c->lazy);\n        c->r->lazy = Monoid_A::op(c->r->lazy,\
-    \ c->lazy);\n      }\n      c->lazy = Monoid_A::unit();\n    }\n    if (c->rev)\
-    \ {\n      swap(c->l, c->r);\n      if (c->l) c->l->rev ^= 1;\n      if (c->r)\
-    \ c->r->rev ^= 1;\n      c->rev = 0;\n    }\n  }\n\n  void update(Node *c) {\n\
-    \    c->size = 1;\n    c->prod = c->x;\n    if (c->l) {\n      c->size += c->l->size;\n\
-    \      c->prod = Monoid_X::op(c->l->prod, c->prod);\n    }\n    if (c->r) {\n\
-    \      c->size += c->r->size;\n      c->prod = Monoid_X::op(c->prod, c->r->prod);\n\
-    \    }\n  }\n\n  Node *merge_rec(Node *l_root, Node *r_root) {\n    if (!l_root)\
-    \ return r_root;\n    if (!r_root) return l_root;\n    u32 sl = l_root->size,\
-    \ sr = r_root->size;\n    if (xor128() % (sl + sr) < sl) {\n      prop(l_root);\n\
-    \      l_root->r = merge_rec(l_root->r, r_root);\n      update(l_root);\n    \
-    \  return l_root;\n    }\n    prop(r_root);\n    r_root->l = merge_rec(l_root,\
+    \ root;\n    auto [nl, nm, nr] = split3(root, l, r);\n    nm->rev ^= 1;\n    return\
+    \ merge3(nl, nm, nr);\n  }\n\n  Node *apply(Node *root, u32 l, u32 r, const A\
+    \ a) {\n    assert(0 <= l && l <= r && r <= root->size);\n    return apply_rec(root,\
+    \ l, r, a);\n  }\n\n  Node *set(Node *root, u32 k, const X &x) { return set_rec(root,\
+    \ k, x); }\n  Node *multiply(Node *root, u32 k, const X &x) {\n    return multiply_rec(root,\
+    \ k, x);\n  }\n  X get(Node *root, u32 k) { return get_rec(root, k); }\n\n  vc<X>\
+    \ get_all(Node *root) {\n    vc<X> res;\n    auto dfs = [&](auto &dfs, Node *root,\
+    \ bool rev, A lazy) -> void {\n      if (!root) return;\n      rev ^= root->rev;\n\
+    \      X me = Lazy::act(root->x, lazy);\n      lazy = Monoid_A::op(root->lazy,\
+    \ lazy);\n      dfs(dfs, (rev ? root->r : root->l), rev, lazy);\n      res.eb(me);\n\
+    \      dfs(dfs, (rev ? root->l : root->r), rev, lazy);\n    };\n    dfs(dfs, root,\
+    \ 0, Monoid_A::unit());\n    return res;\n  }\n\nprivate:\n  inline u32 xor128()\
+    \ {\n    static u32 x = 123456789;\n    static u32 y = 362436069;\n    static\
+    \ u32 z = 521288629;\n    static u32 w = 88675123;\n    u32 t = x ^ (x << 11);\n\
+    \    x = y;\n    y = z;\n    z = w;\n    return w = (w ^ (w >> 19)) ^ (t ^ (t\
+    \ >> 8));\n  }\n\n  void prop(Node *c) {\n    if (c->lazy != Monoid_A::unit())\
+    \ {\n      if (c->l) {\n        c->l->x = Lazy::act(c->l->x, c->lazy);\n     \
+    \   c->l->prod = Lazy::act(c->l->prod, c->lazy);\n        c->l->lazy = Monoid_A::op(c->l->lazy,\
+    \ c->lazy);\n      }\n      if (c->r) {\n        c->r->x = Lazy::act(c->r->x,\
+    \ c->lazy);\n        c->r->prod = Lazy::act(c->r->prod, c->lazy);\n        c->r->lazy\
+    \ = Monoid_A::op(c->r->lazy, c->lazy);\n      }\n      c->lazy = Monoid_A::unit();\n\
+    \    }\n    if (c->rev) {\n      swap(c->l, c->r);\n      if (c->l) c->l->rev\
+    \ ^= 1;\n      if (c->r) c->r->rev ^= 1;\n      c->rev = 0;\n    }\n  }\n\n  void\
+    \ update(Node *c) {\n    c->size = 1;\n    c->prod = c->x;\n    if (c->l) {\n\
+    \      c->size += c->l->size;\n      c->prod = Monoid_X::op(c->l->prod, c->prod);\n\
+    \    }\n    if (c->r) {\n      c->size += c->r->size;\n      c->prod = Monoid_X::op(c->prod,\
+    \ c->r->prod);\n    }\n  }\n\n  Node *merge_rec(Node *l_root, Node *r_root) {\n\
+    \    if (!l_root) return r_root;\n    if (!r_root) return l_root;\n    u32 sl\
+    \ = l_root->size, sr = r_root->size;\n    if (xor128() % (sl + sr) < sl) {\n \
+    \     prop(l_root);\n      l_root->r = merge_rec(l_root->r, r_root);\n      update(l_root);\n\
+    \      return l_root;\n    }\n    prop(r_root);\n    r_root->l = merge_rec(l_root,\
     \ r_root->l);\n    update(r_root);\n    return r_root;\n  }\n\n  pair<Node *,\
     \ Node *> split_rec(Node *root, u32 k) {\n    if (!root) return {nullptr, nullptr};\n\
     \    prop(root);\n    u32 sl = (root->l ? root->l->size : 0);\n    if (k <= sl)\
@@ -186,31 +187,32 @@ data:
     \ k, x);\n      update(root);\n      return root;\n    }\n    if (k == sl) {\n\
     \      root->x = Monoid_X::op(root->x, x);\n      update(root);\n      return\
     \ root;\n    }\n    root->r = multiply_rec(root->r, k - (1 + sl), x);\n    update(root);\n\
-    \    return root;\n  }\n\n  X prod_rec(Node *root, u32 l, u32 r) {\n    prop(root);\n\
-    \    if (l == 0 && r == root->size) return root->prod;\n    u32 sl = (root->l\
-    \ ? root->l->size : 0);\n    X res = Monoid_X::unit();\n    if (l < sl) { res\
-    \ = Monoid_X::op(res, prod_rec(root->l, l, min(r, sl))); }\n    if (l <= sl &&\
-    \ sl < r) res = Monoid_X::op(res, root->x);\n    u32 k = 1 + sl;\n    if (k <\
-    \ r) res = Monoid_X::op(res, prod_rec(root->r, max(k, l) - k, r - k));\n    return\
-    \ res;\n  }\n\n  X get_rec(Node *root, u32 k) {\n    prop(root);\n    u32 sl =\
-    \ (root->l ? root->l->size : 0);\n    if (k < sl) return get_rec(root->l, k);\n\
-    \    if (k == sl) return root->x;\n    return get_rec(root->r, k - (1 + sl));\n\
-    \  }\n\n  Node *apply_rec(Node *root, u32 l, u32 r, const A &a) {\n    prop(root);\n\
-    \    if (l == 0 && r == root->size) {\n      root->x = Lazy::act(root->x, a);\n\
-    \      root->prod = Lazy::act(root->prod, a);\n      root->lazy = Lazy::act(root->lazy,\
-    \ a);\n      return root;\n    }\n    u32 sl = (root->l ? root->l->size : 0);\n\
-    \    if (l < sl) apply_rec(root->l, l, min(r, sl), a);\n    if (l <= sl && sl\
-    \ < r) root->x = Lazy::act(root->x, a);\n    u32 k = 1 + sl;\n    if (k < r) apply_rec(root->r,\
+    \    return root;\n  }\n\n  X prod_rec(Node *root, u32 l, u32 r) {\n    if (l\
+    \ == 0 && r == root->size) { return root->prod; }\n    prop(root);\n    u32 sl\
+    \ = (root->l ? root->l->size : 0);\n    X res = Monoid_X::unit();\n    if (l <\
+    \ sl) { res = Monoid_X::op(res, prod_rec(root->l, l, min(r, sl))); }\n    if (l\
+    \ <= sl && sl < r) res = Monoid_X::op(res, root->x);\n    u32 k = 1 + sl;\n  \
+    \  if (k < r) res = Monoid_X::op(res, prod_rec(root->r, max(k, l) - k, r - k));\n\
+    \    return res;\n  }\n\n  X get_rec(Node *root, u32 k) {\n    prop(root);\n \
+    \   u32 sl = (root->l ? root->l->size : 0);\n    if (k < sl) return get_rec(root->l,\
+    \ k);\n    if (k == sl) return root->x;\n    return get_rec(root->r, k - (1 +\
+    \ sl));\n  }\n\n  Node *apply_rec(Node *root, u32 l, u32 r, const A &a) {\n  \
+    \  prop(root);\n    if (l == 0 && r == root->size) {\n      root->x = Lazy::act(root->x,\
+    \ a);\n      root->prod = Lazy::act(root->prod, a);\n      root->lazy = a;\n \
+    \     return root;\n    }\n    u32 sl = (root->l ? root->l->size : 0);\n    if\
+    \ (l < sl) apply_rec(root->l, l, min(r, sl), a);\n    if (l <= sl && sl < r) root->x\
+    \ = Lazy::act(root->x, a);\n    u32 k = 1 + sl;\n    if (k < r) apply_rec(root->r,\
     \ max(k, l) - k, r - k, a);\n    update(root);\n    return root;\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/bbst/rbst_lazy.hpp
   requiredBy: []
-  timestamp: '2022-11-28 03:22:53+09:00'
+  timestamp: '2022-11-28 05:07:44+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/686.test.cpp
   - test/mytest/rbst_lazy.test.cpp
+  - test/mytest/rbst_lazy_2.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
 documentation_of: ds/bbst/rbst_lazy.hpp
 layout: document

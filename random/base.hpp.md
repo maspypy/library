@@ -217,6 +217,9 @@ data:
     path: test/mytest/rbst_lazy.test.cpp
     title: test/mytest/rbst_lazy.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_lazy_2.test.cpp
+    title: test/mytest/rbst_lazy_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_test.test.cpp
     title: test/mytest/rbst_test.test.cpp
   - icon: ':heavy_check_mark:'
@@ -364,6 +367,7 @@ data:
   - test/mytest/range_mex.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/online_exp.test.cpp
+  - test/mytest/rbst_lazy_2.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
   - test/mytest/online_inv.test.cpp
   - test/mytest/cntsummax_set.test.cpp

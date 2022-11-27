@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/lazy/cntsum_add.hpp
     title: alg/lazy/cntsum_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy/cntsum_affine.hpp
     title: alg/lazy/cntsum_affine.hpp
   - icon: ':heavy_check_mark:'
@@ -18,7 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -30,6 +30,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/cf702_F.test.cpp
     title: test/mytest/cf702_F.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_lazy_2.test.cpp
+    title: test/mytest/rbst_lazy_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
@@ -45,9 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/789_2.test.cpp
     title: test/yukicoder/789_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid/add_pair.hpp\"\ntemplate <typename E>\r\nstruct\
@@ -69,7 +72,7 @@ data:
   - alg/lazy/cntsum_add.hpp
   - alg/lazy/cntsum_set.hpp
   timestamp: '2022-11-27 15:24:24+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/235.test.cpp
   - test/yukicoder/789_2.test.cpp
@@ -77,6 +80,7 @@ data:
   - test/yukicoder/1919.test.cpp
   - test/yukicoder/1197.test.cpp
   - test/mytest/cf702_F.test.cpp
+  - test/mytest/rbst_lazy_2.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/library_checker/datastructure/range_affine_range_sum.test.cpp
