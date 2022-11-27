@@ -5,7 +5,16 @@ data:
   - icon: ':x:'
     path: alg/lazy/cntsum_add.hpp
     title: alg/lazy/cntsum_add.hpp
+  - icon: ':x:'
+    path: alg/lazy/cntsum_set.hpp
+    title: alg/lazy/cntsum_set.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/DSL_2_I.test.cpp
+    title: test/aoj/DSL_2_I.test.cpp
+  - icon: ':x:'
+    path: test/mytest/cf702_F.test.cpp
+    title: test/mytest/cf702_F.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
@@ -36,12 +45,15 @@ data:
   path: alg/monoid/add_pair.hpp
   requiredBy:
   - alg/lazy/cntsum_add.hpp
+  - alg/lazy/cntsum_set.hpp
   timestamp: '2022-11-27 13:57:38+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/235.test.cpp
   - test/yukicoder/789_2.test.cpp
   - test/yukicoder/1197.test.cpp
+  - test/mytest/cf702_F.test.cpp
+  - test/aoj/DSL_2_I.test.cpp
 documentation_of: alg/monoid/add_pair.hpp
 layout: document
 redirect_from:

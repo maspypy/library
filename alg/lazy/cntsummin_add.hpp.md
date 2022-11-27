@@ -27,13 +27,13 @@ data:
     \ constexpr X unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\
     \n};\r\n#line 3 \"alg/lazy/cntsummin_add.hpp\"\n\r\nstruct Lazy_CntSumMin_Add\
     \ {\r\n  static constexpr ll INF = 1LL << 60;\r\n  using MX = Monoid_CntSumMin;\r\
-    \n  using MA = Group_Add<ll>;\r\n  using X_structure = MX;\r\n  using A_structure\
+    \n  using MA = Monoid_Add<ll>;\r\n  using X_structure = MX;\r\n  using A_structure\
     \ = MA;\r\n  using X = typename MX::value_type;\r\n  using A = typename MA::value_type;\r\
     \n  static constexpr X act(const X& x, const A& a) {\r\n    auto [xc, xs, xm]\
     \ = x;\r\n    return {xc, xs + xc * a, xm + a};\r\n  }\r\n};\r\n"
   code: "#include \"alg/monoid/cntsummin.hpp\"\r\n#include \"alg/monoid/add.hpp\"\r\
     \n\r\nstruct Lazy_CntSumMin_Add {\r\n  static constexpr ll INF = 1LL << 60;\r\n\
-    \  using MX = Monoid_CntSumMin;\r\n  using MA = Group_Add<ll>;\r\n  using X_structure\
+    \  using MX = Monoid_CntSumMin;\r\n  using MA = Monoid_Add<ll>;\r\n  using X_structure\
     \ = MX;\r\n  using A_structure = MA;\r\n  using X = typename MX::value_type;\r\
     \n  using A = typename MA::value_type;\r\n  static constexpr X act(const X& x,\
     \ const A& a) {\r\n    auto [xc, xs, xm] = x;\r\n    return {xc, xs + xc * a,\
@@ -44,7 +44,7 @@ data:
   isVerificationFile: false
   path: alg/lazy/cntsummin_add.hpp
   requiredBy: []
-  timestamp: '2022-11-27 14:09:46+09:00'
+  timestamp: '2022-11-27 14:29:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/lazy/cntsummin_add.hpp

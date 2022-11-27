@@ -38,7 +38,7 @@ data:
   - icon: ':x:'
     path: ds/fenwick2d.hpp
     title: ds/fenwick2d.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/fenwick2d_dense.hpp
     title: ds/fenwick2d_dense.hpp
   - icon: ':x:'
@@ -68,20 +68,20 @@ data:
   - icon: ':warning:'
     path: graph/ds/treeabelgroup.hpp
     title: graph/ds/treeabelgroup.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2842.test.cpp
     title: test/aoj/2842.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2842_2.test.cpp
     title: test/aoj/2842_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_2_A.test.cpp
     title: test/aoj/ALDS1_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_5.test.cpp
     title: test/aoj/ALDS1_5.test.cpp
   - icon: ':x:'

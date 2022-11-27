@@ -9,15 +9,15 @@ data:
     title: ds/fenwick.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_2_A.test.cpp
     title: test/aoj/ALDS1_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_5.test.cpp
     title: test/aoj/ALDS1_5.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -56,13 +56,13 @@ data:
     \  void debug() { print(\"fenwick\", dat); }\n};\n#line 2 \"seq/inversion.hpp\"\
     \n\ntemplate <typename T>\nll inversion(vc<T> A, bool SMALL = false) {\n  if (!SMALL)\
     \ {\n    auto key = A;\n    UNIQUE(key);\n    for (auto&& x: A) x = LB(key, x);\n\
-    \  }\n  ll ANS = 0;\n  ll K = MAX(A) + 1;\n  FenwickTree<Group_Add<int>> bit(K);\n\
+    \  }\n  ll ANS = 0;\n  ll K = MAX(A) + 1;\n  FenwickTree<Monoid_Add<int>> bit(K);\n\
     \  for (auto&& x: A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x, 1);\n  }\n\
     \  return ANS;\n}\n"
   code: "#include \"ds/fenwick.hpp\"\n\ntemplate <typename T>\nll inversion(vc<T>\
     \ A, bool SMALL = false) {\n  if (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n\
     \    for (auto&& x: A) x = LB(key, x);\n  }\n  ll ANS = 0;\n  ll K = MAX(A) +\
-    \ 1;\n  FenwickTree<Group_Add<int>> bit(K);\n  for (auto&& x: A) {\n    ANS +=\
+    \ 1;\n  FenwickTree<Monoid_Add<int>> bit(K);\n  for (auto&& x: A) {\n    ANS +=\
     \ bit.sum(x + 1, K);\n    bit.add(x, 1);\n  }\n  return ANS;\n}\n"
   dependsOn:
   - ds/fenwick.hpp
@@ -70,8 +70,8 @@ data:
   isVerificationFile: false
   path: seq/inversion.hpp
   requiredBy: []
-  timestamp: '2022-11-27 14:09:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-11-27 14:31:44+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/ALDS1_5.test.cpp

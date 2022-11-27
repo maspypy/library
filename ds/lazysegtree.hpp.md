@@ -22,6 +22,9 @@ data:
     path: test/aoj/DSL_2_H.test.cpp
     title: test/aoj/DSL_2_H.test.cpp
   - icon: ':x:'
+    path: test/aoj/DSL_2_I.test.cpp
+    title: test/aoj/DSL_2_I.test.cpp
+  - icon: ':x:'
     path: test/aoj/DSL_4_A.test.cpp
     title: test/aoj/DSL_4_A.test.cpp
   - icon: ':x:'
@@ -201,6 +204,7 @@ data:
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/aoj/DSL_4_A.test.cpp
+  - test/aoj/DSL_2_I.test.cpp
   - test/aoj/DSL_2_F.test.cpp
   - test/aoj/DSL_2_H.test.cpp
 documentation_of: ds/lazysegtree.hpp
