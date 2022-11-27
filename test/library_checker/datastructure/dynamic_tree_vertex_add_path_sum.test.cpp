@@ -3,14 +3,14 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "alg/group/add.hpp"
+#include "alg/monoid/add.hpp"
 #include "graph/ds/link_cut_path.hpp"
 
 void solve() {
   LL(N, Q);
   VEC(ll, A, N);
 
-  LinkCutTree_Path<Group_Add<ll>, 200000> X(A);
+  LinkCutTree_Path<Monoid_Add<ll>, 200000> X(A);
 
   FOR(N - 1) {
     LL(u, v);
