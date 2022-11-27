@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "alg/lazy/max_max.hpp"
+#include "alg/lazy/min_max.hpp"
 #include "random/base.hpp"
 #include "ds/lazysegtree.hpp"
 
@@ -9,9 +9,9 @@ void test() {
   int N = RNG(1, 100);
   vc<int> A(N);
   FOR(i, N) A[i] = RNG(1, 100);
-  using Lazy = Lazy_Max_Max<int>;
+  using Lazy = Lazy_Min_Max<int>;
   using Mono = typename Lazy::MX;
-  LazySegTree<Lazy_Max_Max<int>> seg(A);
+  LazySegTree<Lazy_Min_Max<int>> seg(A);
   int Q = RNG(1, 100);
   FOR(Q) {
     ll t = RNG(0, 2);
@@ -26,10 +26,7 @@ void test() {
     }
     if (t == 2) {
       vc<int> B = {A.begin() + L, A.begin() + R};
-      auto [cnt, sm, ma] = seg.prod(L, R);
-      assert(cnt == len(B));
-      assert(sm == SUM<ll>(B));
-      assert(ma == MAX(B));
+      assert(seg.prod(L, R) == MIN(B));
     }
   }
 }
