@@ -162,9 +162,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/splay.test.cpp
+    title: test/mytest/splay.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/stern_brocot.test.cpp
     title: test/mytest/stern_brocot.test.cpp
@@ -177,6 +180,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
+  - icon: ':x:'
+    path: test/mytest/wavelet_matrix_sum.test.cpp
+    title: test/mytest/wavelet_matrix_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
@@ -294,12 +300,14 @@ data:
   - test/mytest/chirp_z.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/online_division.test.cpp
+  - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/tutte.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
   - test/mytest/conv2d.test.cpp
   - test/mytest/maxplus_concave.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
+  - test/mytest/splay.test.cpp
   - test/mytest/stern_brocot.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/binom.test.cpp

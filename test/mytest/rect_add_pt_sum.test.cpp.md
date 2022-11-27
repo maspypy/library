@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/query/rectangle_add_point_sum.hpp
     title: ds/query/rectangle_add_point_sum.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -378,16 +378,16 @@ data:
     \ [x, y]: sum_query) {\n    mint ans = 0;\n    for (auto&& [a, b, c, d, v]: add_query)\
     \ {\n      if (a <= x && x < b && c <= y && y < d) ans += mint(v);\n    }\n  \
     \  ANS.eb(ans);\n  }\n  return ANS;\n}\n\nvoid test() {\n  FOR(H, 1, 10) FOR(W,\
-    \ 1, 10) FOR(Q, 10) {\n    auto [add_query, sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Group_Add<mint>,\
+    \ 1, 10) FOR(Q, 10) {\n    auto [add_query, sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Monoid_Add<mint>,\
     \ 0> X;\n    for (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);\n\
     \    for (auto&& [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc() ==\
     \ sol_1(H, W, add_query, sum_query));\n  }\n  FOR(H, 1, 10) FOR(W, 1, 10) FOR(Q,\
-    \ 10) {\n    auto [add_query, sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Group_Add<mint>,\
+    \ 10) {\n    auto [add_query, sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Monoid_Add<mint>,\
     \ 1> X;\n    for (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);\n\
     \    for (auto&& [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc() ==\
     \ sol_1(H, W, add_query, sum_query));\n  }\n  FOR(10) {\n    int H = RNG(1, 1'000'000'000);\n\
     \    int W = RNG(1, 1'000'000'000);\n    int Q = 100;\n    auto [add_query, sum_query]\
-    \ = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Group_Add<mint>, 0> X;\n    for\
+    \ = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Monoid_Add<mint>, 0> X;\n    for\
     \ (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);\n    for (auto&&\
     \ [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc() == sol_2(H, W, add_query,\
     \ sum_query));\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\n\
@@ -410,16 +410,16 @@ data:
     \    for (auto&& [a, b, c, d, v]: add_query) {\n      if (a <= x && x < b && c\
     \ <= y && y < d) ans += mint(v);\n    }\n    ANS.eb(ans);\n  }\n  return ANS;\n\
     }\n\nvoid test() {\n  FOR(H, 1, 10) FOR(W, 1, 10) FOR(Q, 10) {\n    auto [add_query,\
-    \ sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Group_Add<mint>, 0>\
+    \ sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Monoid_Add<mint>, 0>\
     \ X;\n    for (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);\n\
     \    for (auto&& [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc() ==\
     \ sol_1(H, W, add_query, sum_query));\n  }\n  FOR(H, 1, 10) FOR(W, 1, 10) FOR(Q,\
-    \ 10) {\n    auto [add_query, sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Group_Add<mint>,\
+    \ 10) {\n    auto [add_query, sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Monoid_Add<mint>,\
     \ 1> X;\n    for (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);\n\
     \    for (auto&& [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc() ==\
     \ sol_1(H, W, add_query, sum_query));\n  }\n  FOR(10) {\n    int H = RNG(1, 1'000'000'000);\n\
     \    int W = RNG(1, 1'000'000'000);\n    int Q = 100;\n    auto [add_query, sum_query]\
-    \ = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Group_Add<mint>, 0> X;\n    for\
+    \ = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Monoid_Add<mint>, 0> X;\n    for\
     \ (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);\n    for (auto&&\
     \ [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc() == sol_2(H, W, add_query,\
     \ sum_query));\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\n\
@@ -436,8 +436,8 @@ data:
   isVerificationFile: true
   path: test/mytest/rect_add_pt_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-11-27 14:09:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-27 16:04:38+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/rect_add_pt_sum.test.cpp
 layout: document

@@ -33,6 +33,9 @@ data:
     path: ds/common_interval_decomposition.hpp
     title: ds/common_interval_decomposition.hpp
   - icon: ':question:'
+    path: ds/cumsum2d.hpp
+    title: ds/cumsum2d.hpp
+  - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
   - icon: ':question:'
@@ -53,7 +56,7 @@ data:
   - icon: ':x:'
     path: ds/query/point_add_rectangle_sum.hpp
     title: ds/query/point_add_rectangle_sum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/query/rectangle_add_point_sum.hpp
     title: ds/query/rectangle_add_point_sum.hpp
   - icon: ':x:'
@@ -62,7 +65,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/query/rectangleunion.hpp
     title: ds/query/rectangleunion.hpp
-  - icon: ':x:'
+  - icon: ':question:'
+    path: ds/waveletmatrix.hpp
+    title: ds/waveletmatrix.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/ds/contoursum.hpp
     title: graph/ds/contoursum.hpp
   - icon: ':warning:'
@@ -103,6 +109,9 @@ data:
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
   - icon: ':x:'
+    path: test/atcoder/abc127f_1.test.cpp
+    title: test/atcoder/abc127f_1.test.cpp
+  - icon: ':x:'
     path: test/atcoder/abc190f.test.cpp
     title: test/atcoder/abc190f.test.cpp
   - icon: ':x:'
@@ -127,6 +136,9 @@ data:
     path: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
+    title: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
   - icon: ':x:'
@@ -147,15 +159,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/common_interval_decomposition.test.cpp
     title: test/library_checker/graph/common_interval_decomposition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
   - icon: ':x:'
+    path: test/mytest/wavelet_matrix_sum.test.cpp
+    title: test/mytest/wavelet_matrix_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1097.test.cpp
+    title: test/yukicoder/1097.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1141.test.cpp
+    title: test/yukicoder/1141.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
@@ -168,6 +189,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1311.test.cpp
     title: test/yukicoder/1311.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1332.test.cpp
+    title: test/yukicoder/1332.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1490.test.cpp
     title: test/yukicoder/1490.test.cpp
@@ -183,9 +207,15 @@ data:
   - icon: ':x:'
     path: test/yukicoder/2003.test.cpp
     title: test/yukicoder/2003.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2065.test.cpp
+    title: test/yukicoder/2065.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/655.test.cpp
+    title: test/yukicoder/655.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/686.test.cpp
     title: test/yukicoder/686.test.cpp
@@ -195,6 +225,12 @@ data:
   - icon: ':x:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/919.test.cpp
+    title: test/yukicoder/919.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/924.test.cpp
+    title: test/yukicoder/924.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -228,6 +264,8 @@ data:
   - seq/inversion.hpp
   - ds/fenwick2d_dense.hpp
   - ds/common_interval_decomposition.hpp
+  - ds/cumsum2d.hpp
+  - ds/waveletmatrix.hpp
   - ds/fenwick2d.hpp
   - ds/fenwick.hpp
   - ds/query/coeffient_query_2d.hpp
@@ -242,6 +280,7 @@ data:
   timestamp: '2022-11-27 14:09:46+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/2065.test.cpp
   - test/yukicoder/1311.test.cpp
   - test/yukicoder/899.test.cpp
   - test/yukicoder/2003.test.cpp
@@ -253,9 +292,16 @@ data:
   - test/yukicoder/1874.test.cpp
   - test/yukicoder/1838.test.cpp
   - test/yukicoder/1038.test.cpp
+  - test/yukicoder/1141.test.cpp
   - test/yukicoder/1270.test.cpp
   - test/yukicoder/789_2.test.cpp
+  - test/yukicoder/655.test.cpp
+  - test/yukicoder/924.test.cpp
+  - test/yukicoder/1332.test.cpp
+  - test/yukicoder/919.test.cpp
+  - test/yukicoder/1097.test.cpp
   - test/yukicoder/1197.test.cpp
+  - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
@@ -269,8 +315,10 @@ data:
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
   - test/library_checker/datastructure/double_ended_pq.test.cpp
   - test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/library_checker/graph/verted_add_contour_sum.test.cpp
+  - test/atcoder/abc127f_1.test.cpp
   - test/atcoder/abc190f.test.cpp
   - test/atcoder/abc266h_2.test.cpp
   - test/aoj/DSL_2_E.test.cpp

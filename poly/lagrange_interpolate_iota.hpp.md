@@ -33,7 +33,7 @@ data:
     \ a[i] = -a[i];\r\n  }\r\n  // x = c, c+1, ... \u306B\u5BFE\u3057\u3066 a0/x +\
     \ a1/(x-1) + ... \u3092\u6C42\u3081\u3066\u304A\u304F\r\n  vc<mint> b(n + m -\
     \ 1);\r\n  FOR(i, n + m - 1) b[i] = mint(1) / (c + mint(i - n + 1));\r\n  a =\
-    \ convolution(a, b);\r\n\r\n  SWAG<Group_Mul<mint>> swag;\r\n  vc<mint> ANS(m);\r\
+    \ convolution(a, b);\r\n\r\n  SWAG<Monoid_Mul<mint>> swag;\r\n  vc<mint> ANS(m);\r\
     \n  ll L = 0, R = 0;\r\n  FOR(i, m) {\r\n    while (L < i) { swag.pop(), ++L;\
     \ }\r\n    while (R - L < n) { swag.push(c + mint((R++) - n + 1)); }\r\n    auto\
     \ coef = swag.prod();\r\n    if (coef == 0) {\r\n      ANS[i] = f[(c + i).val];\r\

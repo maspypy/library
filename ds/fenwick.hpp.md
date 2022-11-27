@@ -17,13 +17,13 @@ data:
   - icon: ':x:'
     path: ds/query/point_add_rectangle_sum.hpp
     title: ds/query/point_add_rectangle_sum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/query/rectangle_add_point_sum.hpp
     title: ds/query/rectangle_add_point_sum.hpp
   - icon: ':x:'
     path: ds/query/rectangle_add_rectangle_sum.hpp
     title: ds/query/rectangle_add_rectangle_sum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/contoursum.hpp
     title: graph/ds/contoursum.hpp
   - icon: ':warning:'
@@ -69,13 +69,13 @@ data:
   - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
   - icon: ':x:'
@@ -93,6 +93,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1874.test.cpp
     title: test/yukicoder/1874.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/924.test.cpp
+    title: test/yukicoder/924.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -183,6 +186,7 @@ data:
   - test/yukicoder/1838.test.cpp
   - test/yukicoder/1038.test.cpp
   - test/yukicoder/1270.test.cpp
+  - test/yukicoder/924.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   - test/library_checker/datastructure/point_add_range_sum.test.cpp

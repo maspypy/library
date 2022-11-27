@@ -24,8 +24,8 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"random/base.hpp\"\n\n#include \"ds/query/powerquery.hpp\"\
     \n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\n\nvoid test() {\n  mint\
-    \ base = RNG(0, mint::get_mod());\n  PowerQuery<Group_Mul<mint>> X(base);\n  FOR(1000)\
-    \ {\n    ll exp = RNG(0, 1'000'000'000'000'000'000);\n    mint a = base.pow(exp);\n\
+    \ base = RNG(0, mint::get_mod());\n  PowerQuery<Monoid_Mul<mint>> X(base);\n \
+    \ FOR(1000) {\n    ll exp = RNG(0, 1'000'000'000'000'000'000);\n    mint a = base.pow(exp);\n\
     \    mint b = X(exp);\n    assert(a == b);\n  }\n}\n\nvoid solve() {\n  LL(a,\
     \ b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
     \n  FOR(10) test();\n  solve();\n\n  return 0;\n}\n"

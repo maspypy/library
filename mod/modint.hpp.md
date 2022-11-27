@@ -402,12 +402,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/product_of_one_pm_xn.test.cpp
     title: test/mytest/product_of_one_pm_xn.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/simple_perm.test.cpp
     title: test/mytest/simple_perm.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/splay.test.cpp
+    title: test/mytest/splay.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/tdpc_grid_dp.test.cpp
     title: test/mytest/tdpc_grid_dp.test.cpp
@@ -417,6 +420,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080.test.cpp
     title: test/yukicoder/1080.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1141.test.cpp
+    title: test/yukicoder/1141.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
@@ -846,6 +852,7 @@ data:
   - test/yukicoder/1303.test.cpp
   - test/yukicoder/1549.test.cpp
   - test/yukicoder/1493.test.cpp
+  - test/yukicoder/1141.test.cpp
   - test/yukicoder/1618.test.cpp
   - test/yukicoder/1907.test.cpp
   - test/yukicoder/579.test.cpp
@@ -888,6 +895,7 @@ data:
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/prime_sum.test.cpp
   - test/mytest/conv2d.test.cpp
+  - test/mytest/splay.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/binom.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
