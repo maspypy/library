@@ -20,7 +20,7 @@ void solve() {
 
   CentroidDecomposition CD(G);
   vi ANS(Q);
-  FenwickTree<Group_Add<ll>> bit(N + 10);
+  FenwickTree<Monoid_Add<ll>> bit(N + 10);
 
   FOR(root, N) {
     auto dats = CD.collect_dist(root);
