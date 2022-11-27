@@ -9,8 +9,8 @@ void solve() {
   const ll INF = 1LL << 60;
   vv(ll, time, H, W, INF);
 
-  Fenwick2D_dense<Group_Add<ll>> A(H, W);
-  Fenwick2D_dense<Group_Add<ll>> B(H, W);
+  Fenwick2D_dense<Monoid_Add<ll>> A(H, W);
+  Fenwick2D_dense<Monoid_Add<ll>> B(H, W);
 
   deque<tuple<ll, ll, ll>> end;
 
