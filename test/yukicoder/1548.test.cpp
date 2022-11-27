@@ -33,7 +33,7 @@ void solve() {
         seg.apply(u, N, b);
       }
     } else {
-      vc<mint> e;
+      ARR e;
       if (u < v) {
         e = seg.prod(u, v + 1);
       } else {

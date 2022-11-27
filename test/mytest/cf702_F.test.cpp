@@ -18,7 +18,6 @@ struct XSet {
 };
 
 vc<int> solve_cf702F(vc<pair<int, int>> CQ, vc<int> query) {
-  const int N = len(CQ);
   const int Q = len(query);
   sort(all(CQ), [&](auto& a, auto& b) -> bool {
     if (a.se != b.se) return a.se > b.se;
