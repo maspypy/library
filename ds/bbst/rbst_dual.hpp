@@ -39,17 +39,21 @@ struct RBST_Dual {
     return dfs(dfs, 0, len(dat));
   }
 
-  Node *merge(Node *root, Node *r_root) { return merge_rec(root, r_root); }
+  Node *merge(Node *l_root, Node *r_root) { return merge_rec(l_root, r_root); }
   Node *merge3(Node *a, Node *b, Node *c) { return merge(merge(a, b), c); }
 
   pair<Node *, Node *> split(Node *root, u32 k) {
-    if (!root) assert(k == 0);
-    if (root) assert(0 <= k && k <= root->size);
+    if (!root) {
+      assert(k == 0);
+      return {nullptr, nullptr};
+    }
+    assert(0 <= k && k <= root->size);
     return split_rec(root, k);
   }
   tuple<Node *, Node *, Node *> split3(Node *root, u32 l, u32 r) {
-    auto nr = split(root, r);
-    auto nm = split(root, l);
+    Node *nm, *nr;
+    tie(root, nr) = split(root, r);
+    tie(root, nm) = split(root, l);
     return {root, nm, nr};
   }
 
@@ -128,9 +132,7 @@ private:
     static u32 y = 362436069;
     static u32 z = 521288629;
     static u32 w = 88675123;
-    int t;
-
-    t = x ^ (x << 11);
+    u32 t = x ^ (x << 11);
     x = y;
     y = z;
     z = w;
@@ -182,24 +184,24 @@ private:
   pair<Node *, Node *> split_rec(Node *root, u32 k) {
     if (!root) return {nullptr, nullptr};
     prop(root);
-    u32 ls = (root->l ? root->l->size : 0);
-    if (k <= ls) {
+    u32 sl = (root->l ? root->l->size : 0);
+    if (k <= sl) {
       auto [nl, nr] = split_rec(root->l, k);
       root->l = nr;
       update(root);
       return {nl, root};
     }
-    auto [nl, nr] = split_rec(root->r, k - (1 + ls));
+    auto [nl, nr] = split_rec(root->r, k - (1 + sl));
     root->r = nl;
     update(root);
     return {root, nr};
   }
 
   S get_rec(Node *root, u32 idx) {
-    u32 ls = (root->l ? root->l->size : 0);
-    if (idx < ls) return Mono::op(get_rec(root->l, idx), root->lazy);
-    if (idx == ls) return root->val;
-    return Mono::op(get_rec(root->r, idx - 1 - ls), root->lazy);
+    u32 sl = (root->l ? root->l->size : 0);
+    if (idx < sl) return Mono::op(get_rec(root->l, idx), root->lazy);
+    if (idx == sl) return root->val;
+    return Mono::op(get_rec(root->r, idx - 1 - sl), root->lazy);
   }
 
   template <typename F>

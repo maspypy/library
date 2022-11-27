@@ -8,23 +8,24 @@ void solve() {
   LL(N, Q);
   VEC(int, A, N);
 
-  RBST_Monoid<Monoid_Min<int>> ST;
-  auto root = ST.new_node(A);
+  RBST_Monoid<Monoid_Min<int>, 200000> X;
+  auto root = X.new_node(A);
   FOR(Q) {
     LL(t);
     if (t == 0) {
       LL(l, r);
-      auto n = ST.erase(root, r);
-      ST.insert(root, l, n);
+      auto [nl, nm, nr] = X.split3(root, l, r + 1);
+      auto [a, b] = X.split(nm, (nm->size) - 1);
+      nm = X.merge(b, a);
+      root = X.merge3(nl, nm, nr);
     }
     if (t == 1) {
       LL(l, r);
-      ++r;
-      print(ST.prod(root, l, r));
+      print(X.prod(root, l, ++r));
     }
     if (t == 2) {
       LL(idx, x);
-      ST.set(root, idx, x);
+      X.set(root, idx, x);
     }
   }
 }
