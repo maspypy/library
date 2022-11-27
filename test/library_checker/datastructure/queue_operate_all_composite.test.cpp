@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "alg/group/affine.hpp"
+#include "alg/monoid/affine.hpp"
 #include "ds/swag.hpp"
 #include "mod/modint.hpp"
 
@@ -10,7 +10,7 @@ using mint = modint998;
 
 void solve() {
   LL(Q);
-  using Mono = Group_Affine<mint>;
+  using Mono = Monoid_Affine<mint>;
   using F = Mono::value_type;
 
   SWAG<Mono> swag;
