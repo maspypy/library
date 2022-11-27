@@ -1,8 +1,8 @@
 // reverse はとりあえず、Monoid の可換性を仮定している！
 template <typename Lazy, int NODES = 1'000'000>
 struct RBST_Lazy {
-  using Monoid_X = typename Lazy::MX;
-  using Monoid_A = typename Lazy::MA;
+  using Monoid_X = typename Lazy::X_structure;
+  using Monoid_A = typename Lazy::A_structure;
   using X = typename Monoid_X::value_type;
   using A = typename Monoid_A::value_type;
 
@@ -74,11 +74,10 @@ struct RBST_Lazy {
     if (r - l <= 1) return root;
     auto [nl, nm, nr] = split3(root, l, r);
     nm->rev ^= 1;
-    prop(nm), update(nm);
     return merge3(nl, nm, nr);
   }
 
-  Node *apply(Node *root, u32 l, u32 r, const A &a) {
+  Node *apply(Node *root, u32 l, u32 r, const A a) {
     assert(0 <= l && l <= r && r <= root->size);
     return apply_rec(root, l, r, a);
   }
@@ -95,7 +94,7 @@ struct RBST_Lazy {
       if (!root) return;
       rev ^= root->rev;
       X me = Lazy::act(root->x, lazy);
-      lazy = Monoid_A::act(root->lazy, lazy);
+      lazy = Monoid_A::op(root->lazy, lazy);
       dfs(dfs, (rev ? root->r : root->l), rev, lazy);
       res.eb(me);
       dfs(dfs, (rev ? root->l : root->r), rev, lazy);
@@ -223,8 +222,8 @@ private:
   }
 
   X prod_rec(Node *root, u32 l, u32 r) {
+    if (l == 0 && r == root->size) { return root->prod; }
     prop(root);
-    if (l == 0 && r == root->size) return root->prod;
     u32 sl = (root->l ? root->l->size : 0);
     X res = Monoid_X::unit();
     if (l < sl) { res = Monoid_X::op(res, prod_rec(root->l, l, min(r, sl))); }
@@ -247,7 +246,7 @@ private:
     if (l == 0 && r == root->size) {
       root->x = Lazy::act(root->x, a);
       root->prod = Lazy::act(root->prod, a);
-      root->lazy = Lazy::act(root->lazy, a);
+      root->lazy = a;
       return root;
     }
     u32 sl = (root->l ? root->l->size : 0);
