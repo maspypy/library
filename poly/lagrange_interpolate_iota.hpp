@@ -1,5 +1,5 @@
 #pragma once
-#include "alg/group/mul.hpp"
+#include "alg/monoid/mul.hpp"
 #include "ds/swag.hpp"
 #include "poly/convolution.hpp"
 

@@ -11,7 +11,7 @@ void solve() {
   VEC(QT, query, Q);
 
   auto I = argsort(A);
-  FenwickTree<Group_Add<int>> bit(N);
+  FenwickTree<Monoid_Add<int>> bit(N);
   auto init = [&]() -> void { bit.reset(N); };
   auto upd = [&](int t) -> void { bit.add(I[t], 1); };
   auto check = [&](int q) -> bool {

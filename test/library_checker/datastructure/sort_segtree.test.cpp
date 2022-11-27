@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/sortable_segtree.hpp"
-#include "alg/group/affine.hpp"
+#include "alg/monoid/affine.hpp"
 #include "mod/modint.hpp"
 
 using mint = modint998;
@@ -11,7 +11,7 @@ using mint = modint998;
 void solve() {
   // クエリ先読みなしの方
 
-  using AFF = Group_Affine<mint>;
+  using AFF = Monoid_Affine<mint>;
   LL(N, Q);
   vc<int> key(N);
   vc<pair<mint, mint>> seg_raw(N);

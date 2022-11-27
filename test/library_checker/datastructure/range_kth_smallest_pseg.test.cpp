@@ -7,7 +7,7 @@
 void solve() {
   LL(N, Q);
   VEC(int, A, N);
-  Persistent_SegTree<Group_Add<int>, 5'000'000> seg(N);
+  Persistent_SegTree<Monoid_Add<int>, 5'000'000> seg(N);
   using np = decltype(seg)::Node *;
   auto I = argsort(A);
 
