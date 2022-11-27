@@ -14,10 +14,8 @@ void solve() {
     LL(t);
     if (t == 0) {
       LL(l, r);
-      auto [nl, nm, nr] = X.split3(root, l, r + 1);
-      auto [a, b] = X.split(nm, (nm->size) - 1);
-      nm = X.merge(b, a);
-      root = X.merge3(nl, nm, nr);
+      auto [a, b, c, d] = X.split4(0, l, r, r + 1);
+      root = X.merge4(a, c, b, d);
     }
     if (t == 1) {
       LL(l, r);
