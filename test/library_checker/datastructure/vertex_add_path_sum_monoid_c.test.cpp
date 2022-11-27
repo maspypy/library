@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 
 #include "graph/ds/treemonoid.hpp"
-#include "alg/group/add.hpp"
+#include "alg/monoid/add.hpp"
 
 void solve() {
   LL(N, Q);
@@ -13,7 +13,7 @@ void solve() {
 
   TREE tree(G);
   const bool is_edge = false;
-  using Mono = Group_Add<ll>;
+  using Mono = Monoid_Add<ll>;
   TreeMonoid<decltype(tree), Mono, is_edge> TM(tree, A);
 
   FOR(_, Q) {

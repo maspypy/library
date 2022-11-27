@@ -29,7 +29,7 @@ void solve() {
     }
   }
 
-  FenwickTree<Group_Add<ll>> bit(Q);
+  FenwickTree<Monoid_Add<ll>> bit(Q);
   vc<pair<int, int>> history;
   ll base_sum = 0;
 

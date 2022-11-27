@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 
 #include "graph/ds/treeabelgroup.hpp"
-#include "alg/group/add.hpp"
+#include "alg/monoid/add.hpp"
 
 void solve() {
   LL(N, Q);
@@ -12,7 +12,7 @@ void solve() {
   G.read_tree(0, 0);
 
   TREE tree(G);
-  TreeAbelGroup<decltype(tree), Group_Add<ll>, false, true, false> TA(tree, A);
+  TreeAbelGroup<decltype(tree), Monoid_Add<ll>, false, true, false> TA(tree, A);
 
   FOR(_, Q) {
     LL(t);

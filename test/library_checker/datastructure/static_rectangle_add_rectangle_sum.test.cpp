@@ -5,13 +5,13 @@
 
 #include "ds/query/rectangle_add_rectangle_sum.hpp"
 #include "mod/modint.hpp"
-#include "alg/group/add.hpp"
+#include "alg/monoid/add.hpp"
 
 using mint = modint998;
 
 void solve() {
   LL(N, Q);
-  Rectangle_Add_Rectangle_Sum<Group_Add<mint>, int, false> X;
+  Rectangle_Add_Rectangle_Sum<Monoid_Add<mint>, int, false> X;
 
   FOR(N) {
     LL(l, d, r, u, w);
