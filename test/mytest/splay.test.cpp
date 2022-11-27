@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "alg/group/affine.hpp"
+#include "alg/monoid/affine.hpp"
 #include "mod/modint.hpp"
 #include "random/base.hpp"
 #include "ds/bbst/splaytree_monoid.hpp"
@@ -9,7 +9,7 @@
 void test() {
   // reverse, set, prod の動作を確認
   using mint = modint998;
-  using Mono = Group_Affine<mint>;
+  using Mono = Monoid_Affine<mint>;
   using X = Mono::value_type;
   SplayTree_Monoid<Mono> ST;
 
