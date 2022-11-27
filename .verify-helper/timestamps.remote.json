@@ -254,6 +254,7 @@
 "test/mytest/binom.test.cpp": "2022-11-06 13:29:09 +0900",
 "test/mytest/cf702_F.test.cpp": "2022-11-27 21:19:11 +0900",
 "test/mytest/chirp_z.test.cpp": "2022-11-12 15:28:48 +0900",
+"test/mytest/cntsummax_add.test.cpp": "2022-11-27 22:51:52 +0900",
 "test/mytest/cntsummax_set.test.cpp": "2022-11-27 22:15:30 +0900",
 "test/mytest/cntsummin_add.test.cpp": "2022-11-27 22:19:51 +0900",
 "test/mytest/cntsummin_set.test.cpp": "2022-11-27 22:15:30 +0900",
