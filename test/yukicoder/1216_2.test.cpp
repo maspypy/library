@@ -3,7 +3,6 @@
 #include "other/io.hpp"
 #include "graph/tree.hpp"
 #include "graph/ds/statictreemonoid.hpp"
-// #include "graph/treemonoid.hpp"
 #include "ds/fenwick2d.hpp"
 
 void solve() {
@@ -13,8 +12,7 @@ void solve() {
   TREE<decltype(G)> tree(G);
   vi dat(N - 1);
   FOR(i, N - 1) dat[i] = G.edges[i].cost;
-  // TreeMonoid<decltype(tree), Group_Add<ll>, 1> TM(tree, dat);
-  StaticTreeMonoid<decltype(tree), Group_Add<ll>, 1> TM(tree, dat);
+  StaticTreeMonoid<decltype(tree), Monoid_Add<ll>, 1> TM(tree, dat);
 
   auto& dist = tree.depth_weighted;
   /*
@@ -50,7 +48,7 @@ void solve() {
     if (tp == 1) { query.eb(0, v, t); }
   }
 
-  Fenwick2D<Group_Add<int>, ll, true> bit(X, Y);
+  Fenwick2D<Monoid_Add<int>, ll, true> bit(X, Y);
 
   for (auto&& [tp, x, t]: query) {
     if (tp == 0) {
