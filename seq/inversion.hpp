@@ -9,7 +9,7 @@ ll inversion(vc<T> A, bool SMALL = false) {
   }
   ll ANS = 0;
   ll K = MAX(A) + 1;
-  FenwickTree<Group_Add<int>> bit(K);
+  FenwickTree<Monoid_Add<int>> bit(K);
   for (auto&& x: A) {
     ANS += bit.sum(x + 1, K);
     bit.add(x, 1);
