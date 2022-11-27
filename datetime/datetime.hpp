@@ -5,7 +5,6 @@ struct DateTime {
   DateTime(int y, int m, int d) : year(y), month(m), day(d) {}
 
   // 1年1月1日が 0 となるように変換
-  // https://atcoder.jp/contests/arc023/tasks/arc023_1
   int to_int() {
     int y = (month <= 2 ? year - 1 : year);
     int m = (month <= 2 ? month + 12 : month);
