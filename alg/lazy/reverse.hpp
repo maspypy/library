@@ -1,4 +1,4 @@
-#include "alg/monoid/reverse.hpp"
+#include "alg/monoid/reverse_monoid.hpp"
 
 template <typename Lazy>
 struct Lazy_Reverse {
