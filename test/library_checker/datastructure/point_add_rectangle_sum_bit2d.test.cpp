@@ -28,7 +28,7 @@ void solve() {
     }
   }
 
-  Fenwick2D<Group_Add<ll>, ll, false> bit(X, Y, W);
+  Fenwick2D<Monoid_Add<ll>, ll, false> bit(X, Y, W);
   FOR(q, Q) {
     auto [a, b, c, d] = query[q];
     if (a == -1) {
