@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1240"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "other/xor_range.hpp"
+#include "enumerate/xor_range.hpp"
 
 void solve() {
   const int K = 20;
@@ -16,13 +16,11 @@ void solve() {
 
   ll ANS = 0;
   FOR(i, N) {
-    for (auto&& [l, r]: xor_range(A[i], 0, X)) {
-      // [l, r) 内の j
+    auto f = [&](ll l, ll r) -> void {
       l = LB(A, l);
       r = LB(A, r);
       chmax(l, i + 1);
-      if (l >= r) continue;
-      // FOR(j, l, r) ANS += A[i] | A[j];
+      if (l >= r) return;
 
       FOR(k, K) {
         if (A[i] & 1 << k) {
@@ -31,7 +29,8 @@ void solve() {
         }
         ANS += ll(dp[k][r] - dp[k][l]) << k;
       }
-    }
+    };
+    xor_range(A[i], 0, X, f);
   }
   print(ANS);
 }
