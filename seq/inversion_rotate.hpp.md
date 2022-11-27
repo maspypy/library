@@ -16,7 +16,7 @@ data:
     \u304D\u306E\u8EE2\u5012\u6570\ntemplate <typename T>\nvi inversion_rotate(vc<T>&\
     \ A, bool SMALL = false) {\n  const int N = len(A);\n  if (!SMALL) {\n    auto\
     \ key = A;\n    UNIQUE(key);\n    for (auto&& x: A) x = LB(key, x);\n  }\n  ll\
-    \ K = MAX(A) + 1;\n  ll ANS = 0;\n  FenwickTree<Group_Add<int>> bit(K);\n  for\
+    \ K = MAX(A) + 1;\n  ll ANS = 0;\n  FenwickTree<Monoid_Add<int>> bit(K);\n  for\
     \ (auto&& x: A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x, 1);\n  }\n  vi\
     \ res(N);\n  FOR(i, N) {\n    res[i] = ANS;\n    ll x = A[i];\n    ANS = ANS +\
     \ bit.prod(x + 1, K) - bit.sum(x);\n  }\n  return res;\n}\n"
@@ -24,15 +24,15 @@ data:
     \u306B rotate \u3057\u305F\u3068\u304D\u306E\u8EE2\u5012\u6570\ntemplate <typename\
     \ T>\nvi inversion_rotate(vc<T>& A, bool SMALL = false) {\n  const int N = len(A);\n\
     \  if (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n    for (auto&& x: A) x\
-    \ = LB(key, x);\n  }\n  ll K = MAX(A) + 1;\n  ll ANS = 0;\n  FenwickTree<Group_Add<int>>\
+    \ = LB(key, x);\n  }\n  ll K = MAX(A) + 1;\n  ll ANS = 0;\n  FenwickTree<Monoid_Add<int>>\
     \ bit(K);\n  for (auto&& x: A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x,\
     \ 1);\n  }\n  vi res(N);\n  FOR(i, N) {\n    res[i] = ANS;\n    ll x = A[i];\n\
-    \    ANS = ANS + bit.prod(x + 1, K) - bit.sum(x);\n  }\n  return res;\n}"
+    \    ANS = ANS + bit.prod(x + 1, K) - bit.sum(x);\n  }\n  return res;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: seq/inversion_rotate.hpp
   requiredBy: []
-  timestamp: '2022-10-21 18:52:33+09:00'
+  timestamp: '2022-11-27 16:50:27+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1838.test.cpp
