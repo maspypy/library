@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/dynamic_segtree.hpp"
-#include "alg/group/add.hpp"
+#include "alg/monoid/add.hpp"
 
 void solve() {
   // 動的セグ木での二分探索
@@ -11,7 +11,7 @@ void solve() {
   VEC(int, A, N);
   const int LIM = 1'000'000'000;
 
-  Dynamic_SegTree<Group_Add<int>, 30'000'000> seg(-LIM, LIM + 1);
+  Dynamic_SegTree<Monoid_Add<int>, 30'000'000> seg(-LIM, LIM + 1);
   for (auto&& a: A) seg.multiply(a, 1);
 
   FOR(Q) {
