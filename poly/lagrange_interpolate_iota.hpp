@@ -27,7 +27,7 @@ vc<mint> lagrange_interpolate_iota(vc<mint> &f, mint c, int m) {
   FOR(i, n + m - 1) b[i] = mint(1) / (c + mint(i - n + 1));
   a = convolution(a, b);
 
-  SWAG<Group_Mul<mint>> swag;
+  SWAG<Monoid_Mul<mint>> swag;
   vc<mint> ANS(m);
   ll L = 0, R = 0;
   FOR(i, m) {
