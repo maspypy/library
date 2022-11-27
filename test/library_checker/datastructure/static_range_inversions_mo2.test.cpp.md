@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/query/rollback_mo.hpp
     title: ds/query/rollback_mo.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_inversions_query
@@ -265,7 +265,7 @@ data:
     \        save();\n        while (L < l) add_left(--l);\n        query(qid);\n\
     \        rollback();\n        l = LMAX;\n      }\n    }\n  }\n};\n#line 7 \"test/library_checker/datastructure/static_range_inversions_mo2.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  vi key = A;\n  UNIQUE(key);\n\
-    \n  for (auto&& x: A) x = LB(key, x);\n  ll K = len(key);\n  FenwickTree<Group_Add<int>>\
+    \n  for (auto&& x: A) x = LB(key, x);\n  ll K = len(key);\n  FenwickTree<Monoid_Add<int>>\
     \ bit(K);\n\n  Rollback_Mo mo;\n  vi ANS(Q);\n  FOR(Q) {\n    LL(L, R);\n    mo.add(L,\
     \ R);\n  }\n\n  ll inv = 0;\n  ll tinv = 0;\n  ll t = 0;\n  vc<int> history;\n\
     \  auto add_l = [&](int i) -> void {\n    int x = A[i];\n    inv += bit.sum(x);\n\
@@ -283,7 +283,7 @@ data:
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/fenwick.hpp\"\
     \n#include \"ds/query/rollback_mo.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll,\
     \ A, N);\n  vi key = A;\n  UNIQUE(key);\n\n  for (auto&& x: A) x = LB(key, x);\n\
-    \  ll K = len(key);\n  FenwickTree<Group_Add<int>> bit(K);\n\n  Rollback_Mo mo;\n\
+    \  ll K = len(key);\n  FenwickTree<Monoid_Add<int>> bit(K);\n\n  Rollback_Mo mo;\n\
     \  vi ANS(Q);\n  FOR(Q) {\n    LL(L, R);\n    mo.add(L, R);\n  }\n\n  ll inv =\
     \ 0;\n  ll tinv = 0;\n  ll t = 0;\n  vc<int> history;\n  auto add_l = [&](int\
     \ i) -> void {\n    int x = A[i];\n    inv += bit.sum(x);\n    bit.add(x, +1);\n\
@@ -306,8 +306,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   requiredBy: []
-  timestamp: '2022-11-27 14:09:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-27 19:00:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
 layout: document

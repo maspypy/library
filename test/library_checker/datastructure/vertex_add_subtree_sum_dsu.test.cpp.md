@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
@@ -381,7 +381,7 @@ data:
     \ 1, N) {\n    LL(p);\n    G.add(p, v);\n  }\n  G.build();\n  TREE tree(G);\n\n\
     \  vi ANS(Q, -1);\n  vvc<pair<int, int>> query(N);\n  FOR(q, Q) {\n    LL(t);\n\
     \    if (t == 0) {\n      LL(v, x);\n      query[v].eb(q, x);\n    }\n    if (t\
-    \ == 1) {\n      LL(v);\n      query[v].eb(q, -1);\n    }\n  }\n\n  FenwickTree<Group_Add<ll>>\
+    \ == 1) {\n      LL(v);\n      query[v].eb(q, -1);\n    }\n  }\n\n  FenwickTree<Monoid_Add<ll>>\
     \ bit(Q);\n  vc<pair<int, int>> history;\n  ll base_sum = 0;\n\n  auto ADD = [&](int\
     \ v) -> void {\n    base_sum += A[v];\n    for (auto&& [q, x]: query[v]) {\n \
     \     if (x != -1) {\n        bit.add(q, x);\n        history.eb(q, x);\n    \
@@ -398,7 +398,7 @@ data:
     \  G.build();\n  TREE tree(G);\n\n  vi ANS(Q, -1);\n  vvc<pair<int, int>> query(N);\n\
     \  FOR(q, Q) {\n    LL(t);\n    if (t == 0) {\n      LL(v, x);\n      query[v].eb(q,\
     \ x);\n    }\n    if (t == 1) {\n      LL(v);\n      query[v].eb(q, -1);\n   \
-    \ }\n  }\n\n  FenwickTree<Group_Add<ll>> bit(Q);\n  vc<pair<int, int>> history;\n\
+    \ }\n  }\n\n  FenwickTree<Monoid_Add<ll>> bit(Q);\n  vc<pair<int, int>> history;\n\
     \  ll base_sum = 0;\n\n  auto ADD = [&](int v) -> void {\n    base_sum += A[v];\n\
     \    for (auto&& [q, x]: query[v]) {\n      if (x != -1) {\n        bit.add(q,\
     \ x);\n        history.eb(q, x);\n      }\n    }\n  };\n  auto QUERY = [&](int\
@@ -418,8 +418,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   requiredBy: []
-  timestamp: '2022-11-27 14:09:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-27 19:00:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
 layout: document

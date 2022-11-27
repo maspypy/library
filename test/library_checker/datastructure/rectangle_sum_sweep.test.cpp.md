@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/query/point_add_rectangle_sum.hpp
     title: ds/query/point_add_rectangle_sum.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
@@ -272,7 +272,7 @@ data:
     \n      }\r\n      G g = bit.sum(xl, xr);\r\n      int q = qq / 2;\r\n      if\
     \ (qq % 2 == 0) g = AbelGroup::inverse(g);\r\n      res[q] = AbelGroup::op(res[q],\
     \ g);\r\n    }\r\n    return res;\r\n  }\r\n};\n#line 8 \"test/library_checker/datastructure/rectangle_sum_sweep.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  Point_Add_Rectangle_Sum<Group_Add<ll>, int>\
+    \n\nvoid solve() {\n  LL(N, Q);\n  Point_Add_Rectangle_Sum<Monoid_Add<ll>, int>\
     \ RS;\n  FOR(N) {\n    LL(x, y, w);\n    RS.add_query(x, y, w);\n  }\n  FOR(Q)\
     \ {\n    LL(l, d, r, u);\n    RS.sum_query(l, r, d, u);\n  }\n  auto ANS = RS.calc();\n\
     \  for (auto&& x: ANS) print(x);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
@@ -281,7 +281,7 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/fenwick.hpp\"\
     \n#include \"ds/query/point_add_rectangle_sum.hpp\"\n\nvoid solve() {\n  LL(N,\
-    \ Q);\n  Point_Add_Rectangle_Sum<Group_Add<ll>, int> RS;\n  FOR(N) {\n    LL(x,\
+    \ Q);\n  Point_Add_Rectangle_Sum<Monoid_Add<ll>, int> RS;\n  FOR(N) {\n    LL(x,\
     \ y, w);\n    RS.add_query(x, y, w);\n  }\n  FOR(Q) {\n    LL(l, d, r, u);\n \
     \   RS.sum_query(l, r, d, u);\n  }\n  auto ANS = RS.calc();\n  for (auto&& x:\
     \ ANS) print(x);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
@@ -295,8 +295,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   requiredBy: []
-  timestamp: '2022-11-27 14:09:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-27 19:00:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
 layout: document

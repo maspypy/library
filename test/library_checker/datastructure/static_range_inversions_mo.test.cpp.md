@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/fenwick.hpp
     title: ds/fenwick.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/query/mo.hpp
     title: ds/query/mo.hpp
   - icon: ':question:'
@@ -18,15 +18,15 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_inversions_query
     links:
     - https://judge.yosupo.jp/problem/static_range_inversions_query
-  bundledCode: "#line 1 \"test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp\"\
+  bundledCode: "#line 1 \"test/library_checker/datastructure/static_range_inversions_mo.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_inversions_query\"\
     \r\n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC\
     \ optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -206,7 +206,7 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 4 \"test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp\"\
+    \ { yes(!t); }\r\n#line 4 \"test/library_checker/datastructure/static_range_inversions_mo.test.cpp\"\
     \n\r\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
     \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
     \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
@@ -257,12 +257,12 @@ data:
     \ erase_right(--r);\r\n      query(idx);\r\n    }\r\n  }\r\n\r\n  template <typename\
     \ A, typename E, typename O>\r\n  void calc(const A &add, const E &erase, const\
     \ O &query) {\r\n    calc(add, add, erase, erase, query);\r\n  }\r\n};\r\n#line\
-    \ 7 \"test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp\"\
+    \ 7 \"test/library_checker/datastructure/static_range_inversions_mo.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  vi key = A;\r\n \
     \ UNIQUE(key);\r\n\r\n  for (auto&& x: A) x = LB(key, x);\r\n  ll K = len(key);\r\
-    \n  FenwickTree<Group_Add<int>> bit(K);\r\n\r\n  Mo mo;\r\n  vi ANS(Q);\r\n  FOR(Q)\
-    \ {\r\n    LL(L, R);\r\n    mo.add(L, R);\r\n  }\r\n\r\n  ll inv = 0;\r\n  auto\
-    \ add_l = [&](int i) -> void {\r\n    int x = A[i];\r\n    inv += bit.sum(x);\r\
+    \n  FenwickTree<Monoid_Add<int>> bit(K);\r\n\r\n  Mo mo;\r\n  vi ANS(Q);\r\n \
+    \ FOR(Q) {\r\n    LL(L, R);\r\n    mo.add(L, R);\r\n  }\r\n\r\n  ll inv = 0;\r\
+    \n  auto add_l = [&](int i) -> void {\r\n    int x = A[i];\r\n    inv += bit.sum(x);\r\
     \n    bit.add(x, +1);\r\n  };\r\n  auto rm_l = [&](int i) -> void {\r\n    int\
     \ x = A[i];\r\n    bit.add(x, -1);\r\n    inv -= bit.sum(x);\r\n  };\r\n  auto\
     \ add_r = [&](int i) -> void {\r\n    int x = A[i];\r\n    inv += bit.sum_all()\
@@ -276,7 +276,7 @@ data:
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
     \ \"ds/fenwick.hpp\"\r\n#include \"ds/query/mo.hpp\"\r\n\r\nvoid solve() {\r\n\
     \  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  vi key = A;\r\n  UNIQUE(key);\r\n\r\n  for\
-    \ (auto&& x: A) x = LB(key, x);\r\n  ll K = len(key);\r\n  FenwickTree<Group_Add<int>>\
+    \ (auto&& x: A) x = LB(key, x);\r\n  ll K = len(key);\r\n  FenwickTree<Monoid_Add<int>>\
     \ bit(K);\r\n\r\n  Mo mo;\r\n  vi ANS(Q);\r\n  FOR(Q) {\r\n    LL(L, R);\r\n \
     \   mo.add(L, R);\r\n  }\r\n\r\n  ll inv = 0;\r\n  auto add_l = [&](int i) ->\
     \ void {\r\n    int x = A[i];\r\n    inv += bit.sum(x);\r\n    bit.add(x, +1);\r\
@@ -296,15 +296,15 @@ data:
   - alg/monoid/add.hpp
   - ds/query/mo.hpp
   isVerificationFile: true
-  path: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
+  path: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
   requiredBy: []
-  timestamp: '2022-11-27 14:09:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-27 19:00:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
+documentation_of: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
-- /verify/test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp.html
-title: test/library_checker/datastructure/staticf_range_inversions_mo.test.cpp
+- /verify/test/library_checker/datastructure/static_range_inversions_mo.test.cpp
+- /verify/test/library_checker/datastructure/static_range_inversions_mo.test.cpp.html
+title: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
 ---
