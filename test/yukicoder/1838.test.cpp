@@ -11,7 +11,7 @@ void solve() {
   vvc<int> pos(M);
   FOR(i, N) pos[A[i]].eb(i);
   ll base = 0;
-  FenwickTree<Group_Add<int>> bit(N);
+  FenwickTree<Monoid_Add<int>> bit(N);
   FOR(j, K) {
     FOR(i, M) {
       int x = pos[i][j];

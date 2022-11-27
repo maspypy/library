@@ -14,8 +14,8 @@ struct Lazy_Power_Sums_Set {
   static X act(const X &x, const A &b) {
     if (b == -1) return x;
     mint a = b;
-    X y(K);
-    X pow(K);
+    X y;
+    X pow;
     pow[0] = mint(1);
     FOR(k, K - 1) pow[k + 1] = pow[k] * a;
     FOR(i, K) y[i] = x[0] * pow[i];
