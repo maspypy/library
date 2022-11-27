@@ -1,5 +1,5 @@
 template <typename K>
-struct Group_Affine {
+struct Monoid_Affine {
   using F = pair<K, K>;
   using value_type = F;
   static constexpr F op(const F &x, const F &y) noexcept {
