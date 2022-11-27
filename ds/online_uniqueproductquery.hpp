@@ -1,4 +1,3 @@
-#include "alg/group/add.hpp"
 #include "pds/segtree.hpp"
 
 // sample：https://codeforces.com/contest/703/problem/D
@@ -6,7 +5,7 @@
 // [L, R) 内の要素 (long long) を UNIQUE した上で、
 // f(k),の総積をとったものを計算。 f: key -> Monoid value
 // Online 化したものの、メモリ定数倍が重い
-template <typename Monoid = Group_Add<int>, int NODES = 1000000>
+template <typename Monoid, int NODES = 1000000>
 struct OnlineUniqueProductQuery {
   using X = typename Monoid::value_type;
   int N;

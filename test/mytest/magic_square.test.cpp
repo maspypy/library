@@ -29,7 +29,7 @@ void test() {
     assert(MIN(SM) == MAX(SM));
     vc<int> done(N * N + 1);
     FOR(i, N) FOR(j, N) done[A[i][j]] = 1;
-    assert(SUM<int>(done) = N * N);
+    assert(SUM<int>(done) == N * N);
   }
 }
 
