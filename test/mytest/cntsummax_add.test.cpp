@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "alg/lazy/max_max.hpp"
+#include "alg/lazy/cntsummax_add.hpp"
 #include "random/base.hpp"
 #include "ds/lazysegtree.hpp"
 
@@ -9,9 +9,10 @@ void test() {
   int N = RNG(1, 100);
   vc<int> A(N);
   FOR(i, N) A[i] = RNG(1, 100);
-  using Lazy = Lazy_Max_Max<int>;
+  using Lazy = Lazy_CntSumMax_Add<ll>;
   using Mono = typename Lazy::MX;
-  LazySegTree<Lazy_Max_Max<int>> seg(A);
+  LazySegTree<Lazy_CntSumMax_Add<ll>> seg(
+      N, [&](int i) -> Mono::value_type { return Mono::from_element(A[i]); });
   int Q = RNG(1, 100);
   FOR(Q) {
     ll t = RNG(0, 2);
@@ -21,7 +22,7 @@ void test() {
     ++R;
     if (t == 1) {
       ll x = RNG(1, 100);
-      FOR(i, L, R) chmax(A[i], x);
+      FOR(i, L, R) A[i] += x;
       seg.apply(L, R, x);
     }
     if (t == 2) {
