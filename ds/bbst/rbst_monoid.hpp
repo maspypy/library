@@ -15,6 +15,8 @@ struct RBST_Monoid {
 
   RBST_Monoid() : pid(0) { pool = new Node[NODES]; }
 
+  void reset() { pid = 0; }
+
   Node *new_node(const X &x) {
     pool[pid].l = pool[pid].r = nullptr;
     pool[pid].x = x;
@@ -79,14 +81,14 @@ struct RBST_Monoid {
 
   vc<X> get_all(Node *root) {
     vc<X> res;
-    auto dfs = [&](auto &dfs, Node *root) -> void {
+    auto dfs = [&](auto &dfs, Node *root, bool rev) -> void {
       if (!root) return;
-      prop(root);
-      dfs(dfs, root->l);
+      rev ^= root->rev;
+      dfs(dfs, (rev ? root->r : root->l), rev);
       res.eb(root->x);
-      dfs(dfs, root->r);
+      dfs(dfs, (rev ? root->l : root->r), rev);
     };
-    dfs(dfs, root);
+    dfs(dfs, root, 0);
     return res;
   }
 
@@ -208,6 +210,7 @@ private:
   }
 
   X get_rec(Node *root, u32 k) {
+    prop(root);
     u32 sl = (root->l ? root->l->size : 0);
     if (k < sl) return get_rec(root->l, k);
     if (k == sl) return root->x;
