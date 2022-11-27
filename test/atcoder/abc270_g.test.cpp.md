@@ -22,11 +22,11 @@ data:
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc270/tasks/abc270_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/discrete_log.hpp\"\
     \n#include \"alg/group/affine.hpp\"\n#include \"mod/modint.hpp\"\n#include \"\
-    alg/gset/affine.hpp\"\n\nusing mint = amint;\n\nvoid solve() {\n  LL(P, A, B,\
+    alg/Xset/affine.hpp\"\n\nusing mint = amint;\n\nvoid solve() {\n  LL(P, A, B,\
     \ S, G);\n  mint::set_mod(P);\n  if (A == 0) {\n    if (S == G) return print(0);\n\
     \    if (B == G) return print(1);\n    return print(-1);\n  }\n\n  pair<mint,\
     \ mint> g = {A, B};\n\n  auto h = [&](mint x) -> ll { return x.val; };\n\n  ll\
-    \ ANS = discrete_log_gset<GSet_Affine<mint>>(g, S, G, h, 0, P);\n  print(ANS);\n\
+    \ ANS = discrete_log_gset<XSet_Affine<mint>>(g, S, G, h, 0, P);\n  print(ANS);\n\
     }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  LL(T);\n  FOR(T)\
     \ solve();\n\n  return 0;\n}\n"
   dependsOn: []

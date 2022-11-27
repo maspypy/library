@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/query/range_mex_query.hpp
     title: ds/query/range_mex_query.hpp
+  - icon: ':x:'
+    path: ds/query/uniqueproductquery.hpp
+    title: ds/query/uniqueproductquery.hpp
   - icon: ':heavy_check_mark:'
     path: ds/sortable_segtree.hpp
     title: ds/sortable_segtree.hpp
@@ -14,10 +17,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/treegroup.hpp
     title: graph/ds/treegroup.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/treemonoid.hpp
     title: graph/ds/treemonoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -31,6 +34,9 @@ data:
     path: test/aoj/ITP2_3_B.test.cpp
     title: test/aoj/ITP2_3_B.test.cpp
   - icon: ':x:'
+    path: test/atcoder/abc174f.test.cpp
+    title: test/atcoder/abc174f.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -190,6 +196,7 @@ data:
   - geo/manhattan_nns.hpp
   - ds/sortable_segtree.hpp
   - ds/query/range_mex_query.hpp
+  - ds/query/uniqueproductquery.hpp
   - graph/ds/treegroup.hpp
   - graph/ds/treemonoid.hpp
   - graph/minimum_spanning_tree.hpp
@@ -214,6 +221,7 @@ data:
   - test/library_checker/datastructure/sort_segtree.test.cpp
   - test/library_checker/datastructure/sort_segtree_1.test.cpp
   - test/atcoder/abc270_f.test.cpp
+  - test/atcoder/abc174f.test.cpp
   - test/aoj/GRL_2_A.test.cpp
   - test/aoj/ITP2_3_B.test.cpp
 documentation_of: ds/segtree.hpp

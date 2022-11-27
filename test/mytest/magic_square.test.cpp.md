@@ -213,9 +213,9 @@ data:
     \ += A[i][j];\n      SM.eb(sm);\n    }\n    ll sm1 = 0, sm2 = 0;\n    FOR(i, N)\
     \ {\n      sm1 += A[i][i];\n      sm2 += A[i][N - 1 - i];\n    }\n    SM.eb(sm1);\n\
     \    SM.eb(sm2);\n    assert(MIN(SM) == MAX(SM));\n    vc<int> done(N * N + 1);\n\
-    \    FOR(i, N) FOR(j, N) done[A[i][j]] = 1;\n    assert(SUM<int>(done) = N * N);\n\
-    \  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n\
-    \  test();\n  solve();\n\n  return 0;\n}\n"
+    \    FOR(i, N) FOR(j, N) done[A[i][j]] = 1;\n    assert(SUM<int>(done) == N *\
+    \ N);\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main()\
+    \ {\n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"other/magic_square.hpp\"\n\nvoid test()\
     \ {\n  vc<int> ns = {1, 3, 5, 7, 9};\n\n  for (auto&& N: ns) {\n    auto A = magic_square(N);\n\
@@ -224,9 +224,9 @@ data:
     \ += A[i][j];\n      SM.eb(sm);\n    }\n    ll sm1 = 0, sm2 = 0;\n    FOR(i, N)\
     \ {\n      sm1 += A[i][i];\n      sm2 += A[i][N - 1 - i];\n    }\n    SM.eb(sm1);\n\
     \    SM.eb(sm2);\n    assert(MIN(SM) == MAX(SM));\n    vc<int> done(N * N + 1);\n\
-    \    FOR(i, N) FOR(j, N) done[A[i][j]] = 1;\n    assert(SUM<int>(done) = N * N);\n\
-    \  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n\
-    \  test();\n  solve();\n\n  return 0;\n}"
+    \    FOR(i, N) FOR(j, N) done[A[i][j]] = 1;\n    assert(SUM<int>(done) == N *\
+    \ N);\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main()\
+    \ {\n  test();\n  solve();\n\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -234,7 +234,7 @@ data:
   isVerificationFile: true
   path: test/mytest/magic_square.test.cpp
   requiredBy: []
-  timestamp: '2022-11-27 18:59:55+09:00'
+  timestamp: '2022-11-27 20:03:09+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/magic_square.test.cpp
