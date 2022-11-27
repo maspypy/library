@@ -751,6 +751,9 @@ data:
     path: test/library_checker/tree/tree_diameter.test.cpp
     title: test/library_checker/tree/tree_diameter.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/add_chmin.test.cpp
+    title: test/mytest/add_chmin.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/add_chmin_chmax.test.cpp
     title: test/mytest/add_chmin_chmax.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1841,6 +1844,7 @@ data:
   - test/mytest/minidx_add.test.cpp
   - test/mytest/maxidx_add.test.cpp
   - test/mytest/online_log.test.cpp
+  - test/mytest/add_chmin.test.cpp
   - test/mytest/minmax_add.test.cpp
   - test/mytest/max_max.test.cpp
   - test/mytest/range_mex.test.cpp

@@ -81,6 +81,9 @@ data:
       path: alg/monoid/add_chmax.hpp
       title: alg/monoid/add_chmax.hpp
     - icon: ':heavy_check_mark:'
+      path: alg/monoid/add_chmin.hpp
+      title: alg/monoid/add_chmin.hpp
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/add_chmin_chmax.hpp
       title: alg/monoid/add_chmin_chmax.hpp
     - icon: ':heavy_check_mark:'
@@ -2069,6 +2072,9 @@ data:
       title: test/library_checker/tree/tree_diameter.test.cpp
   - name: test/mytest
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/add_chmin.test.cpp
+      title: test/mytest/add_chmin.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/add_chmin_chmax.test.cpp
       title: test/mytest/add_chmin_chmax.test.cpp
