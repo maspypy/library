@@ -1,7 +1,7 @@
 #pragma once
 
 template <class T>
-struct Group_Mul {
+struct Monoid_Mul {
   using value_type = T;
   using X = T;
   static constexpr X op(const X &x, const X &y) noexcept { return x * y; }
