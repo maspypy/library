@@ -6,10 +6,10 @@
 
 void solve() {
   LL(N);
-  ll LIM = 100'010;
+  const int LIM = 100'010;
   using Lazy = Lazy_Max_Add<int>;
   vc<int> dp(LIM);
-  RBST_Lazy<Lazy> seg;
+  RBST_Lazy<Lazy, LIM> seg;
   auto root = seg.new_node(dp);
 
   FOR(N) {
@@ -26,14 +26,12 @@ void solve() {
       }
     }
     if (L > R) continue;
-    seg.apply(root, L, R, 1);
-    auto d = seg.split(root, R + 1);
-    auto c = seg.split(root, R);
-    auto b = seg.split(root, L);
-    int x = seg.prod(root, L - 1, L);
-    seg.merge(root, seg.new_node(x + 1));
-    seg.merge(root, b);
-    seg.merge(root, d);
+    root = seg.apply(root, L, R, 1);
+    int x = seg.get(root, L - 1);
+    auto [a, b, c, d] = seg.split4(root, L, R, R + 1);
+    c = seg.set(c, 0, x + 1);
+    root = seg.merge4(a, c, b, d);
+    assert(root->size == LIM);
   }
 
   print(seg.prod(root, 0, LIM));
