@@ -10,7 +10,7 @@ using mint = modint998;
 
 void test() {
   mint base = RNG(0, mint::get_mod());
-  PowerQuery<Group_Mul<mint>> X(base);
+  PowerQuery<Monoid_Mul<mint>> X(base);
   FOR(1000) {
     ll exp = RNG(0, 1'000'000'000'000'000'000);
     mint a = base.pow(exp);
