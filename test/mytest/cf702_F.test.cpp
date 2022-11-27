@@ -37,7 +37,7 @@ vc<int> solve_cf702F(vc<pair<int, int>> CQ, vc<int> query) {
   using Node = RBST_Dual<XSet, MAX>::Node;
   Node* root = X.new_node(dat);
 
-  for (auto&& [c, quality]: CQ) {
+  for (auto [c, quality]: CQ) {
     if (X.pid > MAX * 0.9) {
       auto dat = X.get_all(root);
       X.reset();
@@ -49,7 +49,7 @@ vc<int> solve_cf702F(vc<pair<int, int>> CQ, vc<int> query) {
     nr = X.apply_all(nr, {-c, 1});
     tie(nm, nr) = X.binary_search(
         nr, [&](Node* n) { return get<0>(n->val) < c; }, true);
-    for (auto&& [val, cnt, idx]: X.get_all(nm)) {
+    for (auto [val, cnt, idx]: X.get_all(nm)) {
       auto [l_root, r_root] = X.binary_search(
           root, [&](Node* n) { return get<0>(n->val) < val; }, true);
       root = X.merge(l_root, X.new_node({val, cnt, idx}));
@@ -58,7 +58,7 @@ vc<int> solve_cf702F(vc<pair<int, int>> CQ, vc<int> query) {
     root = X.merge(root, nr);
   }
   vc<int> ANS(Q);
-  for (auto&& [val, cnt, idx]: X.get_all(root)) { ANS[idx] = cnt; }
+  for (auto [val, cnt, idx]: X.get_all(root)) { ANS[idx] = cnt; }
   return ANS;
 }
 
