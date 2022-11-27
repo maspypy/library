@@ -163,7 +163,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/bbst/rbst_lazy.hpp
       title: ds/bbst/rbst_lazy.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/bbst/rbst_monoid.hpp
       title: ds/bbst/rbst_monoid.hpp
     - icon: ':heavy_check_mark:'
@@ -1107,7 +1107,7 @@ data:
       title: poly/online/online_pow.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -2234,7 +2234,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/rbst_lazy_2.test.cpp
       title: test/mytest/rbst_lazy_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/rbst_test.test.cpp
       title: test/mytest/rbst_test.test.cpp
     - icon: ':heavy_check_mark:'
