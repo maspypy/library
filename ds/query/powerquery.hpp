@@ -1,4 +1,4 @@
-#include "alg/group/mul.hpp"
+#include "alg/monoid/mul.hpp"
 
 // 定数をべき乗するクエリ。 B 乗分ずつ前計算。
 template <typename Mono, int B = 1024>

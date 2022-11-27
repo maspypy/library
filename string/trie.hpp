@@ -1,9 +1,9 @@
-#include "alg/group/add.hpp"
+#include "alg/monoid/add.hpp"
 
 // 終端ノードに value を入れる。
 // failure link を作ると、そこが終端であるような文字列の value を
 // Monoid で集約した value が入る。
-template <int sigma, typename Monoid = Group_Add<int>>
+template <int sigma, typename Monoid = Monoid_Add<int>>
 struct Trie {
   using X = typename Monoid::value_type;
   int n_node;

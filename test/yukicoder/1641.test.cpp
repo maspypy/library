@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/ds/treeabelgroup.hpp"
-#include "alg/group/xor.hpp"
+#include "alg/monoid/xor.hpp"
 
 void solve() {
   LL(N, Q);
@@ -10,7 +10,7 @@ void solve() {
   VEC(int, A, N);
   G.read_tree();
   TREE tree(G);
-  TreeAbelGroup<decltype(tree), Group_Xor<int>, 0, 0, 1> TA(tree, A);
+  TreeAbelGroup<decltype(tree), Monoid_Xor<int>, 0, 0, 1> TA(tree, A);
   FOR(Q) {
     LL(t, x, y);
     --x;

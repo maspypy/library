@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_kth_smallest"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "alg/group/add.hpp"
+#include "alg/monoid/add.hpp"
 #include "ds/pds/segtree.hpp"
 
 void solve() {

@@ -2,9 +2,9 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/doubling.hpp"
-#include "alg/group/add.hpp"
+#include "alg/monoid/add.hpp"
 
-using GRP = Group_Add<ll>;
+using GRP = Monoid_Add<ll>;
 
 void solve() {
   LL(N, M, L);
