@@ -2,6 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/query/uniqueproductquery.hpp"
+#include "alg/monoid/add.hpp"
 
 void solve() {
   LL(N, Q);
