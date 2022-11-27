@@ -913,6 +913,9 @@ data:
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_test.test.cpp
+    title: test/mytest/rbst_test.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1956,6 +1959,7 @@ data:
   - test/mytest/binom.test.cpp
   - test/mytest/cntsummax_add.test.cpp
   - test/mytest/tournament.test.cpp
+  - test/mytest/rbst_test.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/library_checker/polynomial/exp_of_fps_amint.test.cpp

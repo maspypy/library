@@ -13,6 +13,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/base.hpp
+    title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -20,10 +23,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1508
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1508
-  bundledCode: "#line 1 \"test/aoj/1508_2.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1508\"\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/mytest/rbst_test.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
     \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
     unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
     \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
@@ -280,43 +283,63 @@ data:
     \  }\n\n  X get_rec(Node *root, u32 k) {\n    prop(root);\n    u32 sl = (root->l\
     \ ? root->l->size : 0);\n    if (k < sl) return get_rec(root->l, k);\n    if (k\
     \ == sl) return root->x;\n    return get_rec(root->r, k - (1 + sl));\n  }\n};\n\
-    #line 6 \"test/aoj/1508_2.test.cpp\"\n\nvoid solve() {\n  LL(N, Q);\n  VEC(int,\
-    \ A, N);\n\n  RBST_Monoid<Monoid_Min<int>, 200000> X;\n  auto root = X.new_node(A);\n\
-    \  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(l, r);\n      auto [nl, nm,\
-    \ nr] = X.split3(root, l, r + 1);\n      auto [a, b] = X.split(nm, (nm->size)\
-    \ - 1);\n      nm = X.merge(b, a);\n      root = X.merge3(nl, nm, nr);\n    }\n\
-    \    if (t == 1) {\n      LL(l, r);\n      print(X.prod(root, l, ++r));\n    }\n\
-    \    if (t == 2) {\n      LL(idx, x);\n      X.set(root, idx, x);\n    }\n  }\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
-    \ 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1508\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/monoid/min.hpp\"\
-    \n#include \"ds/bbst/rbst_monoid.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  VEC(int,\
-    \ A, N);\n\n  RBST_Monoid<Monoid_Min<int>, 200000> X;\n  auto root = X.new_node(A);\n\
-    \  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(l, r);\n      auto [nl, nm,\
-    \ nr] = X.split3(root, l, r + 1);\n      auto [a, b] = X.split(nm, (nm->size)\
-    \ - 1);\n      nm = X.merge(b, a);\n      root = X.merge3(nl, nm, nr);\n    }\n\
-    \    if (t == 1) {\n      LL(l, r);\n      print(X.prod(root, l, ++r));\n    }\n\
-    \    if (t == 2) {\n      LL(idx, x);\n      X.set(root, idx, x);\n    }\n  }\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
-    \ 0;\n}"
+    #line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 7 \"test/mytest/rbst_test.test.cpp\"\
+    \n\nvoid test() {\n  using Mono = Monoid_Min<int>;\n  RBST_Monoid<Mono, 100> X;\n\
+    \  FOR(1000) {\n    X.reset();\n    int N = RNG(1, 20);\n    int Q = RNG(1, 1000);\n\
+    \    vc<int> A(N);\n    FOR(i, N) A[i] = RNG(1, 100);\n    auto root = X.new_node(A);\n\
+    \n    FOR(Q) {\n      int t = RNG(0, 5);\n      if (t == 0) {\n        int i =\
+    \ RNG(0, N);\n        assert(A[i] == X.get(root, i));\n      }\n      if (t ==\
+    \ 1) {\n        int i = RNG(0, N);\n        int x = RNG(1, 100);\n        root\
+    \ = X.set(root, i, x);\n        A[i] = x;\n      }\n      if (t == 2) {\n    \
+    \    int i = RNG(0, N);\n        int x = RNG(1, 100);\n        root = X.multiply(root,\
+    \ i, x);\n        A[i] = Mono::op(A[i], x);\n      }\n      if (t == 3) {\n  \
+    \      int L = RNG(0, N);\n        int R = RNG(0, N);\n        if (L > R) swap(L,\
+    \ R);\n        ++R;\n        vc<int> B = {A.begin() + L, A.begin() + R};\n   \
+    \     assert(X.prod(root, L, R) == MIN(B));\n      }\n      if (t == 4) {\n  \
+    \      int L = RNG(0, N);\n        int R = RNG(0, N);\n        if (L > R) swap(L,\
+    \ R);\n        ++R;\n        root = X.reverse(root, L, R);\n        reverse(A.begin()\
+    \ + L, A.begin() + R);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n\
+    \  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n\
+    }\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"alg/monoid/min.hpp\"\n#include \"ds/bbst/rbst_monoid.hpp\"\
+    \n#include \"random/base.hpp\"\n\nvoid test() {\n  using Mono = Monoid_Min<int>;\n\
+    \  RBST_Monoid<Mono, 100> X;\n  FOR(1000) {\n    X.reset();\n    int N = RNG(1,\
+    \ 20);\n    int Q = RNG(1, 1000);\n    vc<int> A(N);\n    FOR(i, N) A[i] = RNG(1,\
+    \ 100);\n    auto root = X.new_node(A);\n\n    FOR(Q) {\n      int t = RNG(0,\
+    \ 5);\n      if (t == 0) {\n        int i = RNG(0, N);\n        assert(A[i] ==\
+    \ X.get(root, i));\n      }\n      if (t == 1) {\n        int i = RNG(0, N);\n\
+    \        int x = RNG(1, 100);\n        root = X.set(root, i, x);\n        A[i]\
+    \ = x;\n      }\n      if (t == 2) {\n        int i = RNG(0, N);\n        int\
+    \ x = RNG(1, 100);\n        root = X.multiply(root, i, x);\n        A[i] = Mono::op(A[i],\
+    \ x);\n      }\n      if (t == 3) {\n        int L = RNG(0, N);\n        int R\
+    \ = RNG(0, N);\n        if (L > R) swap(L, R);\n        ++R;\n        vc<int>\
+    \ B = {A.begin() + L, A.begin() + R};\n        assert(X.prod(root, L, R) == MIN(B));\n\
+    \      }\n      if (t == 4) {\n        int L = RNG(0, N);\n        int R = RNG(0,\
+    \ N);\n        if (L > R) swap(L, R);\n        ++R;\n        root = X.reverse(root,\
+    \ L, R);\n        reverse(A.begin() + L, A.begin() + R);\n      }\n    }\n  }\n\
+    }\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n\
+    \  solve();\n\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - alg/monoid/min.hpp
   - ds/bbst/rbst_monoid.hpp
+  - random/base.hpp
   isVerificationFile: true
-  path: test/aoj/1508_2.test.cpp
+  path: test/mytest/rbst_test.test.cpp
   requiredBy: []
   timestamp: '2022-11-28 02:34:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/1508_2.test.cpp
+documentation_of: test/mytest/rbst_test.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/1508_2.test.cpp
-- /verify/test/aoj/1508_2.test.cpp.html
-title: test/aoj/1508_2.test.cpp
+- /verify/test/mytest/rbst_test.test.cpp
+- /verify/test/mytest/rbst_test.test.cpp.html
+title: test/mytest/rbst_test.test.cpp
 ---

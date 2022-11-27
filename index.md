@@ -2229,6 +2229,9 @@ data:
       path: test/mytest/range_mex.test.cpp
       title: test/mytest/range_mex.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/mytest/rbst_test.test.cpp
+      title: test/mytest/rbst_test.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/mytest/rect_add_pt_sum.test.cpp
       title: test/mytest/rect_add_pt_sum.test.cpp
     - icon: ':heavy_check_mark:'
