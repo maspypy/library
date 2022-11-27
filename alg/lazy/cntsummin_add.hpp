@@ -1,5 +1,5 @@
 #include "alg/monoid/cntsummin.hpp"
-#include "alg/group/add.hpp"
+#include "alg/monoid/add.hpp"
 
 struct Lazy_CntSumMin_Add {
   static constexpr ll INF = 1LL << 60;
