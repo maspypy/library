@@ -1,4 +1,4 @@
-#include "alg/group/cntsum.hpp"
+#include "alg/monoid/cntsum.hpp"
 #include "alg/monoid/set.hpp"
 
 template <typename E, E none_val>
