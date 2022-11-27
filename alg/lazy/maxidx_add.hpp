@@ -1,4 +1,4 @@
-#include "alg/group/add.hpp"
+#include "alg/monoid/add.hpp"
 #include "alg/monoid/max_idx.hpp"
 
 template <typename E, bool tie_is_left = true>
