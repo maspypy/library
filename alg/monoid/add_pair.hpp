@@ -1,5 +1,5 @@
 template <typename E>
-struct Group_Add_Pair {
+struct Monoid_Add_Pair {
   using value_type = pair<E, E>;
   using X = value_type;
   static constexpr X op(const X &x, const X &y) {
