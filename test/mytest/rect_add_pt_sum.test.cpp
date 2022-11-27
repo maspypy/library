@@ -53,14 +53,14 @@ vc<mint> sol_2(int H, int W, vc<QT> add_query, vc<pi> sum_query) {
 void test() {
   FOR(H, 1, 10) FOR(W, 1, 10) FOR(Q, 10) {
     auto [add_query, sum_query] = gen(H, W, Q);
-    Rectangle_Add_Point_Sum<Group_Add<mint>, 0> X;
+    Rectangle_Add_Point_Sum<Monoid_Add<mint>, 0> X;
     for (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);
     for (auto&& [a, b]: sum_query) X.sum_query(a, b);
     assert(X.calc() == sol_1(H, W, add_query, sum_query));
   }
   FOR(H, 1, 10) FOR(W, 1, 10) FOR(Q, 10) {
     auto [add_query, sum_query] = gen(H, W, Q);
-    Rectangle_Add_Point_Sum<Group_Add<mint>, 1> X;
+    Rectangle_Add_Point_Sum<Monoid_Add<mint>, 1> X;
     for (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);
     for (auto&& [a, b]: sum_query) X.sum_query(a, b);
     assert(X.calc() == sol_1(H, W, add_query, sum_query));
@@ -70,7 +70,7 @@ void test() {
     int W = RNG(1, 1'000'000'000);
     int Q = 100;
     auto [add_query, sum_query] = gen(H, W, Q);
-    Rectangle_Add_Point_Sum<Group_Add<mint>, 0> X;
+    Rectangle_Add_Point_Sum<Monoid_Add<mint>, 0> X;
     for (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);
     for (auto&& [a, b]: sum_query) X.sum_query(a, b);
     assert(X.calc() == sol_2(H, W, add_query, sum_query));
