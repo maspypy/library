@@ -2,10 +2,11 @@
 #include "graph/shortest_path/dijkstra.hpp"
 #include "graph/reverse_graph.hpp"
 
-// INF 埋めして必ず長さ K にする
+// INF 埋めして必ず長さ K にしたものをかえす。
+// 無向グラフなら 2 倍辺をはって有向グラフにして使うこと
+// ・ループがヤバそうだがとりあえず
 template <typename T, typename GT>
 vc<T> K_shortest_walk(GT &G, int s, int t, int K, T INF) {
-  assert(G.is_directed());
   int N = G.N;
   auto RG = reverse_graph(G);
   auto [dist, par] = dijkstra<ll, decltype(RG)>(RG, t, INF);
