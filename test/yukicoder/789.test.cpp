@@ -2,10 +2,10 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/dynamic_segtree.hpp"
-#include "alg/group/add.hpp"
+#include "alg/monoid/add.hpp"
 
 void solve() {
-  Dynamic_SegTree<Group_Add<ll>> seg(0, 1LL << 30);
+  Dynamic_SegTree<Monoid_Add<ll>> seg(0, 1LL << 30);
   LL(Q);
   ll ANS = 0;
   FOR(Q) {
