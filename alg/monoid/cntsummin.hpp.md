@@ -2,13 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy/cntsummin_add.hpp
     title: alg/lazy/cntsummin_add.hpp
   - icon: ':heavy_check_mark:'
     path: alg/lazy/cntsummin_set.hpp
     title: alg/lazy/cntsummin_set.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/cntsummin_add.test.cpp
+    title: test/mytest/cntsummin_add.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/cntsummin_set.test.cpp
     title: test/mytest/cntsummin_set.test.cpp
@@ -39,6 +42,7 @@ data:
   timestamp: '2022-11-27 22:15:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/cntsummin_add.test.cpp
   - test/mytest/cntsummin_set.test.cpp
 documentation_of: alg/monoid/cntsummin.hpp
 layout: document

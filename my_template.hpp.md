@@ -769,8 +769,14 @@ data:
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/cntsummax_add.test.cpp
+    title: test/mytest/cntsummax_add.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/cntsummax_set.test.cpp
     title: test/mytest/cntsummax_set.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/cntsummin_add.test.cpp
+    title: test/mytest/cntsummin_add.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/cntsummin_set.test.cpp
     title: test/mytest/cntsummin_set.test.cpp
@@ -1801,6 +1807,7 @@ data:
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/online_pow.test.cpp
   - test/mytest/primesum_mod6.test.cpp
+  - test/mytest/cntsummin_add.test.cpp
   - test/mytest/cf702_F.test.cpp
   - test/mytest/bell.test.cpp
   - test/mytest/online_log.test.cpp
@@ -1843,6 +1850,7 @@ data:
   - test/mytest/cntsummin_set.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/binom.test.cpp
+  - test/mytest/cntsummax_add.test.cpp
   - test/mytest/tournament.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp

@@ -19,9 +19,12 @@ data:
       path: alg/lazy/cntsum_set.hpp
       title: alg/lazy/cntsum_set.hpp
     - icon: ':heavy_check_mark:'
+      path: alg/lazy/cntsummax_add.hpp
+      title: alg/lazy/cntsummax_add.hpp
+    - icon: ':heavy_check_mark:'
       path: alg/lazy/cntsummax_set.hpp
       title: alg/lazy/cntsummax_set.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy/cntsummin_add.hpp
       title: alg/lazy/cntsummin_add.hpp
     - icon: ':heavy_check_mark:'
@@ -2085,8 +2088,14 @@ data:
       path: test/mytest/chirp_z.test.cpp
       title: test/mytest/chirp_z.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/mytest/cntsummax_add.test.cpp
+      title: test/mytest/cntsummax_add.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/mytest/cntsummax_set.test.cpp
       title: test/mytest/cntsummax_set.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/cntsummin_add.test.cpp
+      title: test/mytest/cntsummin_add.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/cntsummin_set.test.cpp
       title: test/mytest/cntsummin_set.test.cpp

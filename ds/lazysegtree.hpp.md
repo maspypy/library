@@ -49,8 +49,14 @@ data:
     path: test/library_checker/graph/common_interval_decomposition.test.cpp
     title: test/library_checker/graph/common_interval_decomposition.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/cntsummax_add.test.cpp
+    title: test/mytest/cntsummax_add.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/cntsummax_set.test.cpp
     title: test/mytest/cntsummax_set.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/cntsummin_add.test.cpp
+    title: test/mytest/cntsummin_add.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/cntsummin_set.test.cpp
     title: test/mytest/cntsummin_set.test.cpp
@@ -235,8 +241,10 @@ data:
   - test/yukicoder/1790.test.cpp
   - test/yukicoder/1548.test.cpp
   - test/yukicoder/1197.test.cpp
+  - test/mytest/cntsummin_add.test.cpp
   - test/mytest/cntsummax_set.test.cpp
   - test/mytest/cntsummin_set.test.cpp
+  - test/mytest/cntsummax_add.test.cpp
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp

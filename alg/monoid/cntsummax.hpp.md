@@ -3,9 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: alg/lazy/cntsummax_add.hpp
+    title: alg/lazy/cntsummax_add.hpp
+  - icon: ':heavy_check_mark:'
     path: alg/lazy/cntsummax_set.hpp
     title: alg/lazy/cntsummax_set.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/cntsummax_add.test.cpp
+    title: test/mytest/cntsummax_add.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/cntsummax_set.test.cpp
     title: test/mytest/cntsummax_set.test.cpp
@@ -32,10 +38,12 @@ data:
   path: alg/monoid/cntsummax.hpp
   requiredBy:
   - alg/lazy/cntsummax_set.hpp
+  - alg/lazy/cntsummax_add.hpp
   timestamp: '2022-11-27 22:15:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/cntsummax_set.test.cpp
+  - test/mytest/cntsummax_add.test.cpp
 documentation_of: alg/monoid/cntsummax.hpp
 layout: document
 redirect_from:
