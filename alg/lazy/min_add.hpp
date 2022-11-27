@@ -1,4 +1,4 @@
-#include "alg/group/add.hpp"
+#include "alg/monoid/add.hpp"
 #include "alg/monoid/min.hpp"
 
 template <typename E>
