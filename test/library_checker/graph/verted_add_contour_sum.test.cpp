@@ -10,7 +10,7 @@ void solve() {
   VEC(ll, A, N);
   Graph<int, 0> G(N);
   G.read_tree(0, 0);
-  ContourSum<decltype(G), Group_Add<ll>> X(G, A);
+  ContourSum<decltype(G), Monoid_Add<ll>> X(G, A);
 
   FOR(Q) {
     LL(t);
