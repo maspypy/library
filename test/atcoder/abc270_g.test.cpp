@@ -4,7 +4,7 @@
 #include "nt/discrete_log.hpp"
 #include "alg/monoid/affine.hpp"
 #include "mod/modint.hpp"
-#include "alg/Xset/affine.hpp"
+#include "alg/xset/affine.hpp"
 
 using mint = amint;
 
