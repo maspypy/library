@@ -4,7 +4,7 @@
 template <typename E>
 struct Lazy_Min_Add {
   using MX = Monoid_Min<E>;
-  using MA = Group_Add<E>;
+  using MA = Monoid_Add<E>;
   using X_structure = MX;
   using A_structure = MA;
   using X = typename MX::value_type;
