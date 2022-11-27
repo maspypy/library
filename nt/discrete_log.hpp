@@ -53,9 +53,9 @@ ll discrete_log(typename Group::X a, typename Group::X b,
 // [lb, ub) の最初の解をかえす
 // なければ -1
 template <typename GSet>
-ll discrete_log_gset(typename GSet::G a, typename GSet::X x, typename GSet::X y,
-                     function<ll(typename GSet::X)> H, ll lb, ll ub) {
-  using Group = typename GSet::Group;
+ll discrete_log_gset(typename GSet::X a, typename GSet::S x, typename GSet::S y,
+                     function<ll(typename GSet::S)> H, ll lb, ll ub) {
+  using Group = typename GSet::Monoid;
   using G = typename Group::value_type;
   if (lb >= ub) return -1;
   auto apow = [&](ll n) -> G {
@@ -68,7 +68,7 @@ ll discrete_log_gset(typename GSet::G a, typename GSet::X x, typename GSet::X y,
     }
     return res;
   };
-  x = GSet::act(apow(lb), x);
+  x = GSet::act(x, apow(lb));
   ll LIM = ub - lb;
 
   ll K = 1;
@@ -80,7 +80,7 @@ ll discrete_log_gset(typename GSet::G a, typename GSet::X x, typename GSet::X y,
   FOR(k, K + 1) {
     auto key = H(x);
     if (!MP.count(key)) MP[key] = k;
-    if (k != K) x = GSet::act(a, x);
+    if (k != K) x = GSet::act(x, a);
   }
 
   a = Group::inverse(apow(K));
@@ -90,7 +90,7 @@ ll discrete_log_gset(typename GSet::G a, typename GSet::X x, typename GSet::X y,
       ll res = k * K + MP[key] + lb;
       return (res >= ub ? -1 : res);
     }
-    y = GSet::act(a, y);
+    y = GSet::act(y, a);
   }
   return -1;
 }
