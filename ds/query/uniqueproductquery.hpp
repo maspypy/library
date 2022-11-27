@@ -1,11 +1,10 @@
-#include "alg/group/add.hpp"
 #include "ds/segtree.hpp"
 
 // [L, R) 内の要素 (long long)を UNIQUE した上で、f(x)の総積をとったものを計算。
 // クエリ先読みソート＋セグ木
 // クエリを全部 add(L,R) する
 // calc(f) として呼ぶ
-template <typename Mono = Group_Add<int>>
+template <typename Mono>
 struct UniqueProductQuery {
   using X = typename Mono::value_type;
   int N;
