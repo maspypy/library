@@ -31,6 +31,9 @@ data:
     path: test/library_checker/string/suffix_array_vec.test.cpp
     title: test/library_checker/string/suffix_array_vec.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
+    title: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -114,6 +117,7 @@ data:
   - test/yukicoder/1216.test.cpp
   - test/yukicoder/1216_2.test.cpp
   - test/mytest/suffix_tree.test.cpp
+  - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp
   - test/library_checker/string/suffix_array_vec.test.cpp

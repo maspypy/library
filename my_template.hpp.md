@@ -736,6 +736,9 @@ data:
     path: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
     title: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
+    title: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/cartesian_tree.test.cpp
     title: test/library_checker/tree/cartesian_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1918,6 +1921,7 @@ data:
   - test/library_checker/geometry/convex_layers.test.cpp
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
+  - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - test/library_checker/string/number_of_substrings2.test.cpp
   - test/library_checker/string/number_of_subsequences.test.cpp
   - test/library_checker/string/run_enumerate_vec.test.cpp

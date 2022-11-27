@@ -119,9 +119,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/min_idx.hpp
       title: alg/monoid/min_idx.hpp
-    - icon: ':warning:'
-      path: alg/monoid/min_xplusa_b.hpp
-      title: alg/monoid/min_xplusa_b.hpp
     - icon: ':heavy_check_mark:'
       path: alg/monoid/minmax.hpp
       title: alg/monoid/minmax.hpp
@@ -137,7 +134,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/reverse_monoid.hpp
       title: alg/monoid/reverse_monoid.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/rollinghash.hpp
       title: alg/monoid/rollinghash.hpp
     - icon: ':heavy_check_mark:'
@@ -2053,6 +2050,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
       title: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
+      title: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - name: test/library_checker/tree
     pages:
     - icon: ':heavy_check_mark:'
