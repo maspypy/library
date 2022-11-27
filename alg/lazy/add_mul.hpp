@@ -1,5 +1,5 @@
-#include "alg/group/add.hpp"
-#include "alg/group/mul.hpp"
+#include "alg/monoid/add.hpp"
+#include "alg/monoid/mul.hpp"
 
 template <typename E>
 struct Lazy_Add_Mul {
