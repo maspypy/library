@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"
-#include "alg/group/affine.hpp"
+#include "alg/monoid/affine.hpp"
 #include "ds/xor_sparsetable.hpp"
 
 using mint = modint998;
@@ -10,7 +10,7 @@ using mint = modint998;
 void solve() {
   LL(N, Q);
   ll LOG = topbit(N);
-  using Mono = Group_Affine<mint>;
+  using Mono = Monoid_Affine<mint>;
   using X = typename Mono::value_type;
   VEC(X, A, N);
   Xor_SparseTable<Mono> seg(A);

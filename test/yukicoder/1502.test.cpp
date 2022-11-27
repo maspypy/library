@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "mod/modint.hpp"
 #include "ds/weightedunionfind.hpp"
-#include "alg/group/affine.hpp"
+#include "alg/monoid/affine.hpp"
 
 using mint = modint107;
 
@@ -13,7 +13,7 @@ void solve() {
   VEC(T, dat, M);
   for (auto&& [a, b, c]: dat) --a, --b;
 
-  using GRP = Group_Affine<ll>;
+  using GRP = Monoid_Affine<ll>;
 
   WeightedUnionFind<GRP> uf(N);
   for (auto&& [a, b, c]: dat) {

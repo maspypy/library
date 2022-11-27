@@ -2,12 +2,12 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/bbst/splaytree_monoid.hpp"
-#include "alg/group/add.hpp"
+#include "alg/monoid/add.hpp"
 
 void solve() {
   LL(N, Q);
   VEC(ll, A, N);
-  SplayTree_Monoid<Group_Add<ll>> ST;
+  SplayTree_Monoid<Monoid_Add<ll>> ST;
   auto root = ST.new_node(A);
   FOR(Q) {
     LL(t, l, r);
