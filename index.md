@@ -18,13 +18,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/lazy/cntsum_set.hpp
       title: alg/lazy/cntsum_set.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy/cntsummax_set.hpp
       title: alg/lazy/cntsummax_set.hpp
     - icon: ':warning:'
       path: alg/lazy/cntsummin_add.hpp
       title: alg/lazy/cntsummin_add.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy/cntsummin_set.hpp
       title: alg/lazy/cntsummin_set.hpp
     - icon: ':heavy_check_mark:'
@@ -86,10 +86,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/cntminmincnt.hpp
       title: alg/monoid/cntminmincnt.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/cntsummax.hpp
       title: alg/monoid/cntsummax.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/cntsummin.hpp
       title: alg/monoid/cntsummin.hpp
     - icon: ':heavy_check_mark:'
@@ -2084,6 +2084,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/chirp_z.test.cpp
       title: test/mytest/chirp_z.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/cntsummax_set.test.cpp
+      title: test/mytest/cntsummax_set.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/cntsummin_set.test.cpp
+      title: test/mytest/cntsummin_set.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/conv2d.test.cpp
       title: test/mytest/conv2d.test.cpp

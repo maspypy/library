@@ -5,10 +5,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/lazy/cntsum_set.hpp
     title: alg/lazy/cntsum_set.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy/cntsummax_set.hpp
     title: alg/lazy/cntsummax_set.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy/cntsummin_set.hpp
     title: alg/lazy/cntsummin_set.hpp
   - icon: ':warning:'
@@ -30,6 +30,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_I.test.cpp
     title: test/aoj/DSL_2_I.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/cntsummax_set.test.cpp
+    title: test/mytest/cntsummax_set.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/cntsummin_set.test.cpp
+    title: test/mytest/cntsummin_set.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1548.test.cpp
     title: test/yukicoder/1548.test.cpp
@@ -61,6 +67,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1548.test.cpp
+  - test/mytest/cntsummax_set.test.cpp
+  - test/mytest/cntsummin_set.test.cpp
   - test/aoj/DSL_2_D.test.cpp
   - test/aoj/DSL_2_I.test.cpp
   - test/aoj/DSL_2_F.test.cpp

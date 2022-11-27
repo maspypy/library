@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/cntsummin.hpp
     title: alg/monoid/cntsummin.hpp
   _extendedRequiredBy: []
@@ -14,10 +14,11 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"alg/monoid/cntsummin.hpp\"\n\r\nstruct Monoid_CntSumMin\
-    \ {\r\n  using value_type = tuple<ll, ll, ll>;\r\n  using X = value_type;\r\n\
-    \  static X op(X x, X y) {\r\n    auto [xc, xs, xm] = x;\r\n    auto [yc, ys,\
-    \ ym] = y;\r\n    return {xc + yc, xs + ys, min(xm, ym)};\r\n  }\r\n  static constexpr\
+  bundledCode: "#line 2 \"alg/monoid/cntsummin.hpp\"\n\r\ntemplate <typename E>\r\n\
+    struct Monoid_CntSumMin {\r\n  using value_type = tuple<E, E, E>;\r\n  using X\
+    \ = value_type;\r\n  static X op(X x, X y) {\r\n    auto [xc, xs, xm] = x;\r\n\
+    \    auto [yc, ys, ym] = y;\r\n    return {xc + yc, xs + ys, max(xm, ym)};\r\n\
+    \  }\r\n  static X from_element(E x) { return {1, x, x}; }\r\n  static constexpr\
     \ X unit() { return {0, 0, numeric_limits<ll>::max()}; }\r\n  static constexpr\
     \ bool commute = true;\r\n};\r\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename\
     \ E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n \
@@ -44,7 +45,7 @@ data:
   isVerificationFile: false
   path: alg/lazy/cntsummin_add.hpp
   requiredBy: []
-  timestamp: '2022-11-27 14:29:35+09:00'
+  timestamp: '2022-11-27 22:15:30+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/lazy/cntsummin_add.hpp

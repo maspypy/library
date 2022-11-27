@@ -769,6 +769,12 @@ data:
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/cntsummax_set.test.cpp
+    title: test/mytest/cntsummax_set.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/cntsummin_set.test.cpp
+    title: test/mytest/cntsummin_set.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/conv2d.test.cpp
     title: test/mytest/conv2d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1806,6 +1812,7 @@ data:
   - test/mytest/mod_sum_of_linear.test.cpp
   - test/mytest/online_inv.test.cpp
   - test/mytest/all_but_one_products.test.cpp
+  - test/mytest/cntsummax_set.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/conv_leq.test.cpp
   - test/mytest/partizan.test.cpp
@@ -1833,6 +1840,7 @@ data:
   - test/mytest/splay.test.cpp
   - test/mytest/stern_brocot.test.cpp
   - test/mytest/primesum_mod4.test.cpp
+  - test/mytest/cntsummin_set.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/binom.test.cpp
   - test/mytest/tournament.test.cpp
