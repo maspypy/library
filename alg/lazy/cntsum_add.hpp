@@ -1,5 +1,5 @@
-#include "alg/group/add.hpp"
-#include "alg/group/cntsum.hpp"
+#include "alg/monoid/add.hpp"
+#include "alg/monoid/cntsum.hpp"
 
 template <typename E>
 struct Lazy_CntSum_Add {
