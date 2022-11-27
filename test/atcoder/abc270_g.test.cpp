@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "nt/discrete_log.hpp"
-#include "alg/group/affine.hpp"
+#include "alg/monoid/affine.hpp"
 #include "mod/modint.hpp"
 #include "alg/Xset/affine.hpp"
 
