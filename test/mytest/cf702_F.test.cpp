@@ -1,17 +1,12 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 #include "other/io.hpp"
+#include "alg/monoid/add_pair.hpp"
 #include "ds/bbst/rbst_dual.hpp"
 
 // (所持金, 操作回数, query index)
 struct XSet {
-  struct Monoid {
-    using value_type = pair<int, int>;
-    using X = value_type;
-    static X op(X x, X y) { return {x.fi + y.fi, x.se + y.se}; }
-    static constexpr X unit() { return {0, 0}; }
-    static constexpr bool commute = 1;
-  };
+  using Monoid = Monoid_Add_Pair<int>;
   using operator_type = typename Monoid::value_type;
   using element_type = tuple<int, int, int>;
   using X = operator_type;
