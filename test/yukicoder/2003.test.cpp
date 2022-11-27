@@ -10,7 +10,7 @@ void solve() {
   LL(H, W, K);
   VEC(string, G, H);
   vv(mint, dp, H, W);
-  Fenwick2D_dense<Group_Add<mint>> bit(H, W);
+  Fenwick2D_dense<Monoid_Add<mint>> bit(H, W);
 
   dp[0][0] = 1;
   bit.add(0, 0, 1);

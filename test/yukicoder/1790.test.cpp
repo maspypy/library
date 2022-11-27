@@ -6,7 +6,7 @@
 #include "graph/ds/lazytreemonoid.hpp"
 
 struct Lazy {
-  using MX = Group_Xor<ll>;
+  using MX = Monoid_Xor<ll>;
   using MA = Monoid_Max<int>;
   using X_structure = MX;
   using A_structure = MA;

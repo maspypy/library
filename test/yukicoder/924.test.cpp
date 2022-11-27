@@ -28,7 +28,7 @@ void solve() {
   vvc<int> AID(N);
   FOR(i, N) AID[A[i]].eb(i);
 
-  FenwickTree<Group_Add<ll>> bit_c(N), bit_s(N);
+  FenwickTree<Monoid_Add<ll>> bit_c(N), bit_s(N);
 
   FOR(x, N) {
     for (auto&& i: AID[x]) {

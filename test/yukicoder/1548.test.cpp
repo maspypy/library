@@ -9,9 +9,10 @@ using mint = modint998;
 
 void solve() {
   LL(N);
-  using Mono = Group_power_sums<mint, 5>;
+  using Mono = Monoid_Add_Array<mint, 5>;
+  using ARR = typename Mono::value_type;
   VEC(mint, A, N);
-  vv(mint, seg_raw, N, 5);
+  vc<ARR> seg_raw(N);
   FOR(i, N) {
     mint a = A[i];
     seg_raw[i] = {1, a, a * a, a * a * a, a * a * a * a};
