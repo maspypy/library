@@ -122,9 +122,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/mul.hpp
       title: alg/monoid/mul.hpp
-    - icon: ':warning:'
-      path: alg/monoid/or.hpp
-      title: alg/monoid/or.hpp
     - icon: ':heavy_check_mark:'
       path: alg/monoid/reverse_group.hpp
       title: alg/monoid/reverse_group.hpp

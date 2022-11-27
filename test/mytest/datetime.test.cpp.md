@@ -203,23 +203,23 @@ data:
     \nstruct DateTime {\n  static constexpr int month_days[13]\n      = {0, 31, 28,\
     \ 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};\n  int year, month, day;\n  DateTime(int\
     \ y, int m, int d) : year(y), month(m), day(d) {}\n\n  // 1\u5E741\u67081\u65E5\
-    \u304C 0 \u3068\u306A\u308B\u3088\u3046\u306B\u5909\u63DB\n  // https://atcoder.jp/contests/arc023/tasks/arc023_1\n\
-    \  int to_int() {\n    int y = (month <= 2 ? year - 1 : year);\n    int m = (month\
-    \ <= 2 ? month + 12 : month);\n    int d = day;\n    return 365 * y + y / 4 -\
-    \ y / 100 + y / 400 + 306 * (m + 1) / 10 + d - 429;\n  }\n\n  // to_int() \u306E\
-    \u9006\u95A2\u6570\n  static DateTime from_int(int x) {\n    int y = x * 400 /\
-    \ 146097 + 1;\n    int d = x - DateTime(y, 1, 1).to_int();\n    int m = 1;\n \
-    \   while (d >= 28) {\n      int k = month_days[m] + (m == 2 && is_leap_year(y)\
-    \ ? 1 : 0);\n      if (d < k) break;\n      ++m;\n      d -= k;\n    }\n    if\
-    \ (m == 13) {\n      ++y;\n      m = 1;\n    }\n    ++d;\n    return DateTime(y,\
-    \ m, d);\n  }\n\n  // \u65E5\u66DC\u65E5\u304C 0 \u3068\u3057\u3066\u3001\u66DC\
-    \u65E5\u3092 [0, 7) \u3067\u8FD4\u3059\n  int weekday() { return (to_int() + 1)\
-    \ % 7; }\n\n  DateTime& operator++() {\n    ++day;\n    int lim = month_days[month];\n\
-    \    if (is_leap_year(year) && month == 2) lim = 29;\n    if (day <= lim) return\
-    \ (*this);\n    day = 1;\n    ++month;\n    if (month == 13) {\n      ++year;\n\
-    \      month = 1;\n    }\n    return (*this);\n  }\n\n  bool operator==(DateTime\
-    \ const& rhs) const {\n    return to_tuple() == rhs.to_tuple();\n  }\n  bool operator!=(DateTime\
-    \ const& rhs) const {\n    return to_tuple() != rhs.to_tuple();\n  }\n  bool operator<(DateTime\
+    \u304C 0 \u3068\u306A\u308B\u3088\u3046\u306B\u5909\u63DB\n  int to_int() {\n\
+    \    int y = (month <= 2 ? year - 1 : year);\n    int m = (month <= 2 ? month\
+    \ + 12 : month);\n    int d = day;\n    return 365 * y + y / 4 - y / 100 + y /\
+    \ 400 + 306 * (m + 1) / 10 + d - 429;\n  }\n\n  // to_int() \u306E\u9006\u95A2\
+    \u6570\n  static DateTime from_int(int x) {\n    int y = x * 400 / 146097 + 1;\n\
+    \    int d = x - DateTime(y, 1, 1).to_int();\n    int m = 1;\n    while (d >=\
+    \ 28) {\n      int k = month_days[m] + (m == 2 && is_leap_year(y) ? 1 : 0);\n\
+    \      if (d < k) break;\n      ++m;\n      d -= k;\n    }\n    if (m == 13) {\n\
+    \      ++y;\n      m = 1;\n    }\n    ++d;\n    return DateTime(y, m, d);\n  }\n\
+    \n  // \u65E5\u66DC\u65E5\u304C 0 \u3068\u3057\u3066\u3001\u66DC\u65E5\u3092 [0,\
+    \ 7) \u3067\u8FD4\u3059\n  int weekday() { return (to_int() + 1) % 7; }\n\n  DateTime&\
+    \ operator++() {\n    ++day;\n    int lim = month_days[month];\n    if (is_leap_year(year)\
+    \ && month == 2) lim = 29;\n    if (day <= lim) return (*this);\n    day = 1;\n\
+    \    ++month;\n    if (month == 13) {\n      ++year;\n      month = 1;\n    }\n\
+    \    return (*this);\n  }\n\n  bool operator==(DateTime const& rhs) const {\n\
+    \    return to_tuple() == rhs.to_tuple();\n  }\n  bool operator!=(DateTime const&\
+    \ rhs) const {\n    return to_tuple() != rhs.to_tuple();\n  }\n  bool operator<(DateTime\
     \ const& rhs) const {\n    return to_tuple() < rhs.to_tuple();\n  }\n  bool operator<=(DateTime\
     \ const& rhs) const {\n    return to_tuple() <= rhs.to_tuple();\n  }\n  bool operator>(DateTime\
     \ const& rhs) const {\n    return to_tuple() > rhs.to_tuple();\n  }\n  bool operator>=(DateTime\
@@ -231,18 +231,24 @@ data:
     \n  tuple<int, int, int> to_tuple() const { return {year, month, day}; }\n\n \
     \ static bool is_leap_year(int y) {\n    if (y % 400 == 0) return true;\n    return\
     \ (y % 4 == 0 && y % 100 != 0);\n  }\n};\n#line 6 \"test/mytest/datetime.test.cpp\"\
-    \n\nusing DT = DateTime;\n\nvoid test_from_int() {\n  DT A(1, 1, 1);\n  FOR(x,\
-    \ 1000000) {\n    DT B = DT::from_int(x);\n    assert(A == B);\n    assert(A.to_int()\
-    \ == x);\n    ++A;\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\
-    \nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  test_from_int();\n  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n\n#include \"datetime/datetime.hpp\"\n\nusing DT\
-    \ = DateTime;\n\nvoid test_from_int() {\n  DT A(1, 1, 1);\n  FOR(x, 1000000) {\n\
+    \n\nusing DT = DateTime;\n\nvoid test_ARC23_A() {\n  auto f = [&](int y, int m,\
+    \ int d) -> int {\n    return DateTime(2014, 5, 17).to_int() - DateTime(y, m,\
+    \ d).to_int();\n  };\n  assert(9449 == f(1988, 7, 3));\n  assert(735369 == f(1,\
+    \ 1, 1));\n}\n\nvoid test_from_int() {\n  DT A(1, 1, 1);\n  FOR(x, 1000000) {\n\
     \    DT B = DT::from_int(x);\n    assert(A == B);\n    assert(A.to_int() == x);\n\
     \    ++A;\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned\
     \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  test_from_int();\n  solve();\n\n  return 0;\n}\n"
+    \n  test_ARC23_A();\n  test_from_int();\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n\n#include \"datetime/datetime.hpp\"\n\nusing DT\
+    \ = DateTime;\n\nvoid test_ARC23_A() {\n  auto f = [&](int y, int m, int d) ->\
+    \ int {\n    return DateTime(2014, 5, 17).to_int() - DateTime(y, m, d).to_int();\n\
+    \  };\n  assert(9449 == f(1988, 7, 3));\n  assert(735369 == f(1, 1, 1));\n}\n\n\
+    void test_from_int() {\n  DT A(1, 1, 1);\n  FOR(x, 1000000) {\n    DT B = DT::from_int(x);\n\
+    \    assert(A == B);\n    assert(A.to_int() == x);\n    ++A;\n  }\n}\n\nvoid solve()\
+    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  test_ARC23_A();\n\
+    \  test_from_int();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -250,7 +256,7 @@ data:
   isVerificationFile: true
   path: test/mytest/datetime.test.cpp
   requiredBy: []
-  timestamp: '2022-10-01 12:16:29+09:00'
+  timestamp: '2022-11-28 00:42:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/datetime.test.cpp
