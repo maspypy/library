@@ -248,6 +248,7 @@
 "test/library_checker/tree/lca.test.cpp": "2022-11-05 01:55:39 +0900",
 "test/library_checker/tree/lca_directed.test.cpp": "2022-11-05 01:55:39 +0900",
 "test/library_checker/tree/tree_diameter.test.cpp": "2022-10-21 18:11:46 +0900",
+"test/mytest/add_chmin_chmax.test.cpp": "2022-11-27 23:39:18 +0900",
 "test/mytest/all_but_one_products.test.cpp": "2022-10-01 13:28:06 +0900",
 "test/mytest/all_inverse.test.cpp": "2022-11-23 08:11:54 +0900",
 "test/mytest/bell.test.cpp": "2022-11-06 13:29:09 +0900",
