@@ -14,7 +14,7 @@ struct Monoid_Add_Chmax {
     return {a, c};
   }
 
-  static E eval(X f, E x) { return min(x + f.fi, f.se); }
+  static E eval(X f, E x) { return max(x + f.fi, f.se); }
   static X add(E a) { return {a, L_INF}; }
   static X chmax(E c) { return {0, c}; }
 
