@@ -4,13 +4,13 @@
 
 #include "ds/segtree.hpp"
 #include "mod/modint.hpp"
-#include "alg/group/affine.hpp"
+#include "alg/monoid/affine.hpp"
 
 using mint = modint998;
 
 void solve() {
   LL(N, Q);
-  using Mono = Group_Affine<mint>;
+  using Mono = Monoid_Affine<mint>;
   using F = Mono::value_type;
 
   vc<F> seg_raw(N);
