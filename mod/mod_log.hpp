@@ -1,6 +1,6 @@
 #include "mod/modint.hpp"
 #include "nt/discrete_log.hpp"
-#include "alg/group/mul.hpp"
+#include "alg/monoid/mul.hpp"
 
 int mod_log(int mod, ll a, ll b) {
   a = divmod(a, mod).se;
@@ -19,6 +19,6 @@ int mod_log(int mod, ll a, ll b) {
   if (gcd(b, mod) > 1) return -1;
   // 群に帰着された
   amint::set_mod(mod);
-  return discrete_log<Group_Mul<amint>>(
+  return discrete_log<Monoid_Mul<amint>>(
       amint(a), amint(b), [](auto x) { return x.val; }, 32, mod);
 }
