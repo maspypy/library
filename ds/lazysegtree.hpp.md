@@ -67,11 +67,23 @@ data:
     path: test/mytest/max_min.test.cpp
     title: test/mytest/max_min.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/max_set.test.cpp
+    title: test/mytest/max_set.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/maxidx_add.test.cpp
+    title: test/mytest/maxidx_add.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_max.test.cpp
     title: test/mytest/min_max.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/min_min.test.cpp
     title: test/mytest/min_min.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/minidx_add.test.cpp
+    title: test/mytest/minidx_add.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/minmax_add.test.cpp
+    title: test/mytest/minmax_add.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
@@ -255,10 +267,14 @@ data:
   - test/yukicoder/1197.test.cpp
   - test/mytest/min_max.test.cpp
   - test/mytest/cntsummin_add.test.cpp
+  - test/mytest/minidx_add.test.cpp
+  - test/mytest/maxidx_add.test.cpp
+  - test/mytest/minmax_add.test.cpp
   - test/mytest/max_max.test.cpp
   - test/mytest/cntsummax_set.test.cpp
   - test/mytest/min_min.test.cpp
   - test/mytest/max_min.test.cpp
+  - test/mytest/max_set.test.cpp
   - test/mytest/cntsummin_set.test.cpp
   - test/mytest/cntsummax_add.test.cpp
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp

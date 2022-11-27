@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/lazy/max_min.hpp
     title: alg/lazy/max_min.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy/max_set.hpp
     title: alg/lazy/max_set.hpp
   - icon: ':heavy_check_mark:'
@@ -42,6 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/max_min.test.cpp
     title: test/mytest/max_min.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/max_set.test.cpp
+    title: test/mytest/max_set.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/min_max.test.cpp
     title: test/mytest/min_max.test.cpp
@@ -102,6 +105,7 @@ data:
   - test/mytest/min_max.test.cpp
   - test/mytest/max_max.test.cpp
   - test/mytest/max_min.test.cpp
+  - test/mytest/max_set.test.cpp
   - test/mytest/cntsummax_add.test.cpp
   - test/atcoder/abc270_f.test.cpp
   - test/atcoder/abc266h_2.test.cpp

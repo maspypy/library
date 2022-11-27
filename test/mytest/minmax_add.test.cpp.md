@@ -1,12 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: alg/lazy/max_max.hpp
-    title: alg/lazy/max_max.hpp
-  - icon: ':question:'
-    path: alg/monoid/max.hpp
-    title: alg/monoid/max.hpp
+  - icon: ':heavy_check_mark:'
+    path: alg/lazy/minmax_add.hpp
+    title: alg/lazy/minmax_add.hpp
+  - icon: ':heavy_check_mark:'
+    path: alg/monoid/add.hpp
+    title: alg/monoid/add.hpp
+  - icon: ':heavy_check_mark:'
+    path: alg/monoid/minmax.hpp
+    title: alg/monoid/minmax.hpp
   - icon: ':question:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
@@ -29,7 +32,7 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/max_max.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
+  bundledCode: "#line 1 \"test/mytest/minmax_add.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
     \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
     unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
     \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
@@ -208,15 +211,24 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"alg/monoid/max.hpp\"\ntemplate <class X>\r\nstruct\
-    \ Monoid_Max {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x,\
-    \ const X &y) noexcept { return max(x, y); }\r\n  static constexpr X unit() {\
-    \ return numeric_limits<X>::lowest(); }\r\n  static constexpr bool commute = true;\r\
-    \n};\r\n#line 2 \"alg/lazy/max_max.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
-    \ Lazy_Max_Max {\r\n  using MX = Monoid_Max<E>;\r\n  using MA = Monoid_Max<E>;\r\
-    \n  using X_structure = MX;\r\n  using A_structure = MA;\r\n  using X = typename\
-    \ MX::value_type;\r\n  using A = typename MA::value_type;\r\n  static constexpr\
-    \ X act(const X &x, const A &a) { return max(x, a); }\r\n};\r\n#line 2 \"random/base.hpp\"\
+    \ { yes(!t); }\r\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\n\
+    struct Monoid_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
+    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
+    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
+    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/monoid/minmax.hpp\"\
+    \n\r\ntemplate <class X>\r\nstruct Monoid_MinMax {\r\n  using P = pair<X, X>;\r\
+    \n  using value_type = P;\r\n  static constexpr P op(const P x, const P y) noexcept\
+    \ {\r\n    return {min(x.fi, y.fi), max(x.se, y.se)};\r\n  }\r\n  static constexpr\
+    \ P from_element(const X x) { return {x, x}; }\r\n  static constexpr P unit()\
+    \ {\r\n    return {numeric_limits<X>::max(), numeric_limits<X>::lowest()};\r\n\
+    \  }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/lazy/minmax_add.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct Lazy_MinMax_Add {\r\n  using MX = Monoid_MinMax<E>;\r\
+    \n  using MA = Monoid_Add<E>;\r\n  using X_structure = MX;\r\n  using A_structure\
+    \ = MA;\r\n  using X = typename MX::value_type;\r\n  using A = typename MA::value_type;\r\
+    \n  static constexpr X act(const X &x, const A &a) {\r\n    E lo = (x.fi == numeric_limits<E>::max()\
+    \ ? x.fi : x.fi + a);\r\n    E hi = (x.se == numeric_limits<E>::lowest() ? x.se\
+    \ : x.se + a);\r\n    return {lo, hi};\r\n  }\r\n};\r\n#line 2 \"random/base.hpp\"\
     \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
@@ -283,47 +295,50 @@ data:
     \ Monoid_X::op(dat[r], sm);\n            r--;\n          }\n        }\n      \
     \  return r + 1 - size;\n      }\n      sm = Monoid_X::op(dat[r], sm);\n    }\
     \ while ((r & -r) != r);\n    return 0;\n  }\n\n  void debug() { print(\"lazysegtree\
-    \ getall:\", get_all()); }\n};\n#line 7 \"test/mytest/max_max.test.cpp\"\n\nvoid\
-    \ test() {\n  int N = RNG(1, 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1,\
-    \ 100);\n  using Lazy = Lazy_Max_Max<int>;\n  using Mono = typename Lazy::MX;\n\
-    \  LazySegTree<Lazy_Max_Max<int>> seg(A);\n  int Q = RNG(1, 100);\n  FOR(Q) {\n\
-    \    ll t = RNG(0, 2);\n    ll L = RNG(0, N);\n    ll R = RNG(0, N);\n    if (L\
-    \ > R) swap(L, R);\n    ++R;\n    if (t == 1) {\n      ll x = RNG(1, 100);\n \
-    \     FOR(i, L, R) chmax(A[i], x);\n      seg.apply(L, R, x);\n    }\n    if (t\
-    \ == 2) {\n      vc<int> B = {A.begin() + L, A.begin() + R};\n      assert(seg.prod(L,\
-    \ R) == MAX(B));\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n  FOR(100) test();\n  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"alg/lazy/max_max.hpp\"\n#include \"random/base.hpp\"\
-    \n#include \"ds/lazysegtree.hpp\"\n\nvoid test() {\n  int N = RNG(1, 100);\n \
-    \ vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1, 100);\n  using Lazy = Lazy_Max_Max<int>;\n\
-    \  using Mono = typename Lazy::MX;\n  LazySegTree<Lazy_Max_Max<int>> seg(A);\n\
+    \ getall:\", get_all()); }\n};\n#line 7 \"test/mytest/minmax_add.test.cpp\"\n\n\
+    void test() {\n  int N = RNG(1, 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1,\
+    \ 100);\n  using Lazy = Lazy_MinMax_Add<int>;\n  using Mono = typename Lazy::MX;\n\
+    \  LazySegTree<Lazy> seg(N, [&](int i) { return Mono::from_element(A[i]); });\n\
     \  int Q = RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0, 2);\n    ll L = RNG(0,\
     \ N);\n    ll R = RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n    if (t\
-    \ == 1) {\n      ll x = RNG(1, 100);\n      FOR(i, L, R) chmax(A[i], x);\n   \
-    \   seg.apply(L, R, x);\n    }\n    if (t == 2) {\n      vc<int> B = {A.begin()\
-    \ + L, A.begin() + R};\n      assert(seg.prod(L, R) == MAX(B));\n    }\n  }\n\
-    }\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \ == 1) {\n      ll x = RNG(1, 100);\n      FOR(i, L, R) A[i] += x;\n      seg.apply(L,\
+    \ R, x);\n    }\n    if (t == 2) {\n      vc<int> B = {A.begin() + L, A.begin()\
+    \ + R};\n      assert(seg.prod(L, R) == mp(MIN(B), MAX(B)));\n    }\n  }\n}\n\n\
+    void solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
     \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n  FOR(100) test();\n\
-    \  solve();\n\n  return 0;\n}"
+    \  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"alg/lazy/minmax_add.hpp\"\n#include \"\
+    random/base.hpp\"\n#include \"ds/lazysegtree.hpp\"\n\nvoid test() {\n  int N =\
+    \ RNG(1, 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1, 100);\n  using Lazy\
+    \ = Lazy_MinMax_Add<int>;\n  using Mono = typename Lazy::MX;\n  LazySegTree<Lazy>\
+    \ seg(N, [&](int i) { return Mono::from_element(A[i]); });\n  int Q = RNG(1, 100);\n\
+    \  FOR(Q) {\n    ll t = RNG(0, 2);\n    ll L = RNG(0, N);\n    ll R = RNG(0, N);\n\
+    \    if (L > R) swap(L, R);\n    ++R;\n    if (t == 1) {\n      ll x = RNG(1,\
+    \ 100);\n      FOR(i, L, R) A[i] += x;\n      seg.apply(L, R, x);\n    }\n   \
+    \ if (t == 2) {\n      vc<int> B = {A.begin() + L, A.begin() + R};\n      assert(seg.prod(L,\
+    \ R) == mp(MIN(B), MAX(B)));\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n \
+    \ print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n  FOR(100) test();\n  solve();\n\n  return 0;\n\
+    }\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - alg/lazy/max_max.hpp
-  - alg/monoid/max.hpp
+  - alg/lazy/minmax_add.hpp
+  - alg/monoid/add.hpp
+  - alg/monoid/minmax.hpp
   - random/base.hpp
   - ds/lazysegtree.hpp
   isVerificationFile: true
-  path: test/mytest/max_max.test.cpp
+  path: test/mytest/minmax_add.test.cpp
   requiredBy: []
   timestamp: '2022-11-27 22:43:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/mytest/max_max.test.cpp
+documentation_of: test/mytest/minmax_add.test.cpp
 layout: document
 redirect_from:
-- /verify/test/mytest/max_max.test.cpp
-- /verify/test/mytest/max_max.test.cpp.html
-title: test/mytest/max_max.test.cpp
+- /verify/test/mytest/minmax_add.test.cpp
+- /verify/test/mytest/minmax_add.test.cpp.html
+title: test/mytest/minmax_add.test.cpp
 ---

@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/lazy/cntsummin_set.hpp
     title: alg/lazy/cntsummin_set.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy/max_set.hpp
     title: alg/lazy/max_set.hpp
   - icon: ':heavy_check_mark:'
@@ -36,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/cntsummin_set.test.cpp
     title: test/mytest/cntsummin_set.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/max_set.test.cpp
+    title: test/mytest/max_set.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1548.test.cpp
     title: test/yukicoder/1548.test.cpp
@@ -68,6 +71,7 @@ data:
   verifiedWith:
   - test/yukicoder/1548.test.cpp
   - test/mytest/cntsummax_set.test.cpp
+  - test/mytest/max_set.test.cpp
   - test/mytest/cntsummin_set.test.cpp
   - test/aoj/DSL_2_D.test.cpp
   - test/aoj/DSL_2_I.test.cpp

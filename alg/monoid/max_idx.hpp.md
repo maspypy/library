@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy/maxidx_add.hpp
     title: alg/lazy/maxidx_add.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/maxidx_add.test.cpp
+    title: test/mytest/maxidx_add.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
@@ -36,6 +39,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/529.test.cpp
+  - test/mytest/maxidx_add.test.cpp
 documentation_of: alg/monoid/max_idx.hpp
 layout: document
 redirect_from:

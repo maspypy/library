@@ -829,6 +829,12 @@ data:
     path: test/mytest/max_of_linear_segments.test.cpp
     title: test/mytest/max_of_linear_segments.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/max_set.test.cpp
+    title: test/mytest/max_set.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/maxidx_add.test.cpp
+    title: test/mytest/maxidx_add.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/maxplus_concave.test.cpp
     title: test/mytest/maxplus_concave.test.cpp
   - icon: ':heavy_check_mark:'
@@ -843,6 +849,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/min_of_linear_segments.test.cpp
     title: test/mytest/min_of_linear_segments.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/minidx_add.test.cpp
+    title: test/mytest/minidx_add.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/minmax_add.test.cpp
+    title: test/mytest/minmax_add.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/minplus_convex.test.cpp
     title: test/mytest/minplus_convex.test.cpp
@@ -1884,7 +1896,10 @@ data:
   - test/mytest/cntsummin_add.test.cpp
   - test/mytest/cf702_F.test.cpp
   - test/mytest/bell.test.cpp
+  - test/mytest/minidx_add.test.cpp
+  - test/mytest/maxidx_add.test.cpp
   - test/mytest/online_log.test.cpp
+  - test/mytest/minmax_add.test.cpp
   - test/mytest/max_max.test.cpp
   - test/mytest/range_mex.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
@@ -1914,6 +1929,7 @@ data:
   - test/mytest/simple_perm.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/tutte.test.cpp
+  - test/mytest/max_set.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
   - test/mytest/prime_sum.test.cpp

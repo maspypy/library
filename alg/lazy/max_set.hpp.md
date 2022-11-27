@@ -8,10 +8,13 @@ data:
     path: alg/monoid/set.hpp
     title: alg/monoid/set.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/max_set.test.cpp
+    title: test/mytest/max_set.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/max.hpp\"\ntemplate <class X>\r\nstruct Monoid_Max\
@@ -40,8 +43,9 @@ data:
   path: alg/lazy/max_set.hpp
   requiredBy: []
   timestamp: '2022-10-24 14:33:15+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/mytest/max_set.test.cpp
 documentation_of: alg/lazy/max_set.hpp
 layout: document
 redirect_from:

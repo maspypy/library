@@ -39,10 +39,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/lazy/max_min.hpp
       title: alg/lazy/max_min.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy/max_set.hpp
       title: alg/lazy/max_set.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy/maxidx_add.hpp
       title: alg/lazy/maxidx_add.hpp
     - icon: ':heavy_check_mark:'
@@ -57,10 +57,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/lazy/min_set.hpp
       title: alg/lazy/min_set.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy/minidx_add.hpp
       title: alg/lazy/minidx_add.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: alg/lazy/minmax_add.hpp
       title: alg/lazy/minmax_add.hpp
     - icon: ':heavy_check_mark:'
@@ -2154,6 +2154,12 @@ data:
       path: test/mytest/max_of_linear_segments.test.cpp
       title: test/mytest/max_of_linear_segments.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/mytest/max_set.test.cpp
+      title: test/mytest/max_set.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/maxidx_add.test.cpp
+      title: test/mytest/maxidx_add.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/mytest/maxplus_concave.test.cpp
       title: test/mytest/maxplus_concave.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2168,6 +2174,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/min_of_linear_segments.test.cpp
       title: test/mytest/min_of_linear_segments.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/minidx_add.test.cpp
+      title: test/mytest/minidx_add.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/minmax_add.test.cpp
+      title: test/mytest/minmax_add.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/minplus_convex.test.cpp
       title: test/mytest/minplus_convex.test.cpp

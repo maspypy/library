@@ -20,16 +20,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/lazy/max_add.hpp
     title: alg/lazy/max_add.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy/maxidx_add.hpp
     title: alg/lazy/maxidx_add.hpp
   - icon: ':heavy_check_mark:'
     path: alg/lazy/min_add.hpp
     title: alg/lazy/min_add.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy/minidx_add.hpp
     title: alg/lazy/minidx_add.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: alg/lazy/minmax_add.hpp
     title: alg/lazy/minmax_add.hpp
   - icon: ':heavy_check_mark:'
@@ -198,6 +198,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/cntsummin_add.test.cpp
     title: test/mytest/cntsummin_add.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/maxidx_add.test.cpp
+    title: test/mytest/maxidx_add.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/minidx_add.test.cpp
+    title: test/mytest/minidx_add.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/minmax_add.test.cpp
+    title: test/mytest/minmax_add.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
@@ -381,6 +390,9 @@ data:
   - test/yukicoder/1977.test.cpp
   - test/yukicoder/1197.test.cpp
   - test/mytest/cntsummin_add.test.cpp
+  - test/mytest/minidx_add.test.cpp
+  - test/mytest/maxidx_add.test.cpp
+  - test/mytest/minmax_add.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
