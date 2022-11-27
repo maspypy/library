@@ -7,7 +7,7 @@
 void solve() {
   LL(N, Q);
   VEC(ll, A, N);
-  FenwickTree<Group_Add<ll>> bit(A);
+  FenwickTree<Monoid_Add<ll>> bit(A);
 
   FOR(_, Q) {
     LL(t, a, b);
