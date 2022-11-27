@@ -16,12 +16,13 @@ struct RBST_Lazy {
 
   Node *pool;
   int pid;
+  using np = Node *;
 
   RBST_Lazy() : pid(0) { pool = new Node[NODES]; }
 
   void reset() { pid = 0; }
 
-  Node *new_node(const X &x) {
+  np new_node(const X &x) {
     pool[pid].l = pool[pid].r = nullptr;
     pool[pid].x = x;
     pool[pid].prod = x;
@@ -31,14 +32,14 @@ struct RBST_Lazy {
     return &(pool[pid++]);
   }
 
-  Node *new_node(const vc<X> &dat) {
-    auto dfs = [&](auto &dfs, u32 l, u32 r) -> Node * {
+  np new_node(const vc<X> &dat) {
+    auto dfs = [&](auto &dfs, u32 l, u32 r) -> np {
       if (l == r) return nullptr;
       if (r == l + 1) return new_node(dat[l]);
       u32 m = (l + r) / 2;
-      Node *l_root = dfs(dfs, l, m);
-      Node *r_root = dfs(dfs, m + 1, r);
-      Node *root = new_node(dat[m]);
+      np l_root = dfs(dfs, l, m);
+      np r_root = dfs(dfs, m + 1, r);
+      np root = new_node(dat[m]);
       root->l = l_root, root->r = r_root;
       update(root);
       return root;
@@ -46,9 +47,10 @@ struct RBST_Lazy {
     return dfs(dfs, 0, len(dat));
   }
 
-  Node *merge(Node *root, Node *r_root) { return merge_rec(root, r_root); }
-  Node *merge3(Node *a, Node *b, Node *c) { return merge(merge(a, b), c); }
-  pair<Node *, Node *> split(Node *root, u32 k) {
+  np merge(np l_root, np r_root) { return merge_rec(l_root, r_root); }
+  np merge3(np a, np b, np c) { return merge(merge(a, b), c); }
+  np merge4(np a, np b, np c, np d) { return merge(merge(merge(a, b), c), d); }
+  pair<np, np> split(np root, u32 k) {
     if (!root) {
       assert(k == 0);
       return {nullptr, nullptr};
@@ -56,19 +58,25 @@ struct RBST_Lazy {
     assert(0 <= k && k <= root->size);
     return split_rec(root, k);
   }
-  tuple<Node *, Node *, Node *> split3(Node *root, u32 l, u32 r) {
-    Node *nm, *nr;
+  tuple<np, np, np> split3(np root, u32 l, u32 r) {
+    np nm, nr;
     tie(root, nr) = split(root, r);
     tie(root, nm) = split(root, l);
     return {root, nm, nr};
   }
+  tuple<np, np, np, np> split4(np root, u32 i, u32 j, u32 k) {
+    np d;
+    tie(root, d) = split(root, k);
+    auto [a, b, c] = split3(root, i, j);
+    return {a, b, c, d};
+  }
 
-  X prod(Node *root, u32 l, u32 r) {
+  X prod(np root, u32 l, u32 r) {
     if (l == r) return Monoid_X::unit();
     return prod_rec(root, l, r);
   }
 
-  Node *reverse(Node *root, u32 l, u32 r) {
+  np reverse(np root, u32 l, u32 r) {
     assert(Monoid_X::commute);
     assert(0 <= l && l <= r && r <= root->size);
     if (r - l <= 1) return root;
@@ -77,20 +85,18 @@ struct RBST_Lazy {
     return merge3(nl, nm, nr);
   }
 
-  Node *apply(Node *root, u32 l, u32 r, const A a) {
+  np apply(np root, u32 l, u32 r, const A a) {
     assert(0 <= l && l <= r && r <= root->size);
     return apply_rec(root, l, r, a);
   }
 
-  Node *set(Node *root, u32 k, const X &x) { return set_rec(root, k, x); }
-  Node *multiply(Node *root, u32 k, const X &x) {
-    return multiply_rec(root, k, x);
-  }
-  X get(Node *root, u32 k) { return get_rec(root, k); }
+  np set(np root, u32 k, const X &x) { return set_rec(root, k, x); }
+  np multiply(np root, u32 k, const X &x) { return multiply_rec(root, k, x); }
+  X get(np root, u32 k) { return get_rec(root, k); }
 
-  vc<X> get_all(Node *root) {
+  vc<X> get_all(np root) {
     vc<X> res;
-    auto dfs = [&](auto &dfs, Node *root, bool rev, A lazy) -> void {
+    auto dfs = [&](auto &dfs, np root, bool rev, A lazy) -> void {
       if (!root) return;
       rev ^= root->rev;
       X me = Lazy::act(root->x, lazy);
@@ -101,6 +107,13 @@ struct RBST_Lazy {
     };
     dfs(dfs, root, 0, Monoid_A::unit());
     return res;
+  }
+
+  template <typename F>
+  u32 max_right(np root, const F check, u32 L) {
+    assert(check(Monoid_X::unit()));
+    X x = Monoid_X::unit();
+    return max_right_rec(root, check, L, x);
   }
 
 private:
@@ -116,7 +129,7 @@ private:
     return w = (w ^ (w >> 19)) ^ (t ^ (t >> 8));
   }
 
-  void prop(Node *c) {
+  void prop(np c) {
     if (c->lazy != Monoid_A::unit()) {
       if (c->l) {
         c->l->x = Lazy::act(c->l->x, c->lazy);
@@ -138,7 +151,7 @@ private:
     }
   }
 
-  void update(Node *c) {
+  void update(np c) {
     c->size = 1;
     c->prod = c->x;
     if (c->l) {
@@ -151,7 +164,7 @@ private:
     }
   }
 
-  Node *merge_rec(Node *l_root, Node *r_root) {
+  np merge_rec(np l_root, np r_root) {
     if (!l_root) return r_root;
     if (!r_root) return l_root;
     u32 sl = l_root->size, sr = r_root->size;
@@ -167,7 +180,7 @@ private:
     return r_root;
   }
 
-  pair<Node *, Node *> split_rec(Node *root, u32 k) {
+  pair<np, np> split_rec(np root, u32 k) {
     if (!root) return {nullptr, nullptr};
     prop(root);
     u32 sl = (root->l ? root->l->size : 0);
@@ -183,7 +196,7 @@ private:
     return {root, nr};
   }
 
-  Node *set_rec(Node *root, u32 k, const X &x) {
+  np set_rec(np root, u32 k, const X &x) {
     if (!root) return root;
     prop(root);
     u32 sl = (root->l ? root->l->size : 0);
@@ -202,7 +215,7 @@ private:
     return root;
   }
 
-  Node *multiply_rec(Node *root, u32 k, const X &x) {
+  np multiply_rec(np root, u32 k, const X &x) {
     if (!root) return root;
     prop(root);
     u32 sl = (root->l ? root->l->size : 0);
@@ -221,7 +234,7 @@ private:
     return root;
   }
 
-  X prod_rec(Node *root, u32 l, u32 r) {
+  X prod_rec(np root, u32 l, u32 r) {
     if (l == 0 && r == root->size) { return root->prod; }
     prop(root);
     u32 sl = (root->l ? root->l->size : 0);
@@ -233,7 +246,7 @@ private:
     return res;
   }
 
-  X get_rec(Node *root, u32 k) {
+  X get_rec(np root, u32 k) {
     prop(root);
     u32 sl = (root->l ? root->l->size : 0);
     if (k < sl) return get_rec(root->l, k);
@@ -241,7 +254,7 @@ private:
     return get_rec(root->r, k - (1 + sl));
   }
 
-  Node *apply_rec(Node *root, u32 l, u32 r, const A &a) {
+  np apply_rec(np root, u32 l, u32 r, const A &a) {
     prop(root);
     if (l == 0 && r == root->size) {
       root->x = Lazy::act(root->x, a);
@@ -256,5 +269,30 @@ private:
     if (k < r) apply_rec(root->r, max(k, l) - k, r - k, a);
     update(root);
     return root;
+  }
+
+  template <typename F>
+  u32 max_right_rec(np n, const F check, u32 L, X &x) {
+    if (!n) return 0;
+    if (L == 0) {
+      X y = Monoid_X::op(x, n->prod);
+      if (check(y)) {
+        x = y;
+        return n->size;
+      }
+    }
+    prop(n);
+    u32 sl = (n->l ? n->l->size : 0);
+    if (L < sl) {
+      u32 k = max_right_rec(n->l, check, L, x);
+      if (k < sl) return k;
+    }
+    if (L <= sl) {
+      X y = Monoid_X::op(x, n->x);
+      if (!check(y)) { return sl; }
+      x = y;
+    }
+    L = (L > sl ? L - (1 + sl) : 0);
+    return (1 + sl) + max_right_rec(n->r, check, L, x);
   }
 };

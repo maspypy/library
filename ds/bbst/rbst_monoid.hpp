@@ -43,6 +43,9 @@ struct RBST_Monoid {
 
   Node *merge(Node *root, Node *r_root) { return merge_rec(root, r_root); }
   Node *merge3(Node *a, Node *b, Node *c) { return merge(merge(a, b), c); }
+  Node *merge4(Node *a, Node *b, Node *c, Node *d) {
+    return merge(merge(merge(a, b), c), d);
+  }
   pair<Node *, Node *> split(Node *root, u32 k) {
     if (!root) {
       assert(k == 0);
@@ -56,6 +59,13 @@ struct RBST_Monoid {
     tie(root, nr) = split(root, r);
     tie(root, nm) = split(root, l);
     return {root, nm, nr};
+  }
+  tuple<Node *, Node *, Node *, Node *> split4(Node *root, u32 i, u32 j,
+                                               u32 k) {
+    Node *d;
+    tie(root, d) = split(root, k);
+    auto [a, b, c] = split(root, i, j);
+    return {a, b, c, d};
   }
 
   X prod(Node *root, u32 l, u32 r) {
@@ -89,6 +99,13 @@ struct RBST_Monoid {
     };
     dfs(dfs, root, 0);
     return res;
+  }
+
+  template <typename F>
+  u32 max_right(np root, const F check, u32 L) {
+    assert(check(Monoid_X::unit()));
+    X x = Monoid_X::unit();
+    return max_right_rec(root, check, L, x);
   }
 
 private:
@@ -216,5 +233,28 @@ private:
     return get_rec(root->r, k - (1 + sl));
   }
 
-  X reverse_rec(Node *root, u32 l, u32 r) {}
+  template <typename F>
+  u32 max_right_rec(np n, const F check, u32 L, X &x) {
+    if (!n) return 0;
+    if (L == 0) {
+      X y = Monoid_X::op(x, n->prod);
+      if (check(y)) {
+        x = y;
+        return n->size;
+      }
+    }
+    prop(n);
+    u32 sl = (n->l ? n->l->size : 0);
+    if (L < sl) {
+      u32 k = max_right_rec(n->l, check, L, x);
+      if (k < sl) return k;
+    }
+    if (L <= sl) {
+      X y = Monoid_X::op(x, n->x);
+      if (!check(y)) { return sl; }
+      x = y;
+    }
+    L = (L > sl ? L - (1 + sl) : 0);
+    return (1 + sl) + max_right_rec(n->r, check, L, x);
+  }
 };
