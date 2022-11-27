@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "graph/block_cut.hpp"
 #include "graph/ds/treeabelgroup.hpp"
-#include "alg/group/add.hpp"
+#include "alg/monoid/add.hpp"
 
 void solve() {
   LL(N, M);
@@ -14,7 +14,7 @@ void solve() {
 
   vc<int> dat(tree.N);
   FOR(v, N) if (BCT.deg(v) > 1) dat[v] = 1;
-  TreeAbelGroup<decltype(tree), Group_Add<int>, 0, 1, 0> TA(tree, dat);
+  TreeAbelGroup<decltype(tree), Monoid_Add<int>, 0, 1, 0> TA(tree, dat);
 
   LL(Q);
   FOR(Q) {
