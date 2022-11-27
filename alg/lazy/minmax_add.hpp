@@ -1,4 +1,4 @@
-#include "alg/group/add.hpp"
+#include "alg/monoid/add.hpp"
 #include "alg/monoid/minmax.hpp"
 
 template <typename E, E INF>
