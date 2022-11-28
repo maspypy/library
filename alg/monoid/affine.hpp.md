@@ -6,7 +6,7 @@ data:
     path: alg/acted_monoid/cntsum_affine.hpp
     title: alg/acted_monoid/cntsum_affine.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc270_g.test.cpp
     title: test/atcoder/abc270_g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -51,9 +51,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/255.test.cpp
     title: test/yukicoder/255.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid/affine.hpp\"\ntemplate <typename K>\nstruct Monoid_Affine\
@@ -78,7 +78,7 @@ data:
   requiredBy:
   - alg/acted_monoid/cntsum_affine.hpp
   timestamp: '2022-11-27 15:05:49+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1502.test.cpp
   - test/yukicoder/255.test.cpp

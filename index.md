@@ -68,10 +68,10 @@ data:
       title: alg/acted_monoid/powersums_assign.hpp
   - name: alg/acted_set
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_set/affine.hpp
       title: alg/acted_set/affine.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/acted_set/from_monoid.hpp
       title: alg/acted_set/from_monoid.hpp
   - name: alg/monoid
@@ -94,7 +94,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/add_pair.hpp
       title: alg/monoid/add_pair.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/affine.hpp
       title: alg/monoid/affine.hpp
     - icon: ':heavy_check_mark:'
@@ -868,7 +868,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/crt.hpp
       title: nt/crt.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: nt/discrete_log.hpp
       title: nt/discrete_log.hpp
     - icon: ':heavy_check_mark:'
@@ -1537,7 +1537,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc270_f.test.cpp
       title: test/atcoder/abc270_f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc270_g.test.cpp
       title: test/atcoder/abc270_g.test.cpp
     - icon: ':heavy_check_mark:'
