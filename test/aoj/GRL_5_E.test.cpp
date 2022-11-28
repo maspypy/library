@@ -4,11 +4,11 @@
 #include "other/io.hpp"
 #include "alg/monoid/add.hpp"
 #include "graph/ds/lazytreemonoid.hpp"
-#include "alg/lazy/cntsum_add.hpp"
+#include "alg/acted_monoid/cntsum_add.hpp"
 
 void solve() {
   LL(N);
-  Graph G(N);
+  Graph<int, 0> G(N);
   FOR(v, N) {
     LL(k);
     FOR(k) {
@@ -17,9 +17,10 @@ void solve() {
     }
   }
   G.build();
-  TREE tree(G);
+  TREE<decltype(G)> tree(G);
   vc<pi> seg_raw(N - 1, {1, 0});
-  LazyTreeMonoid<decltype(tree), Lazy_CntSum_Add<ll>, 1> TM(tree, seg_raw);
+  using AM = ActedMonoid_CntSum_Add<ll>;
+  LazyTreeMonoid<decltype(tree), AM, 1> TM(tree, seg_raw);
   LL(Q);
   FOR(Q) {
     LL(t);

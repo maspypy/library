@@ -1,8 +1,8 @@
 // Monoid_X の可換性を仮定している
 template <typename Lazy, int NODES = 1'000'000>
 struct SplayTree_Lazy {
-  using Monoid_X = typename Lazy::X_structure;
-  using Monoid_A = typename Lazy::A_structure;
+  using Monoid_X = typename Lazy::Monoid_X;
+  using Monoid_A = typename Lazy::Monoid_A;
   using X = typename Monoid_X::value_type;
   using A = typename Monoid_A::value_type;
 
