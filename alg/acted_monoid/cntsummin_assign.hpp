@@ -5,7 +5,7 @@ template <typename E, ll none_val>
 struct ActedMonoid_CntSumMin_Assign {
   static constexpr ll INF = 1LL << 60;
   using MX = Monoid_CntSumMin<E>;
-  using MA = Monoid_Set<ll, none_val>;
+  using MA = Monoid_Assign<ll, none_val>;
   using X_structure = MX;
   using A_structure = MA;
   using X = typename MX::value_type;
