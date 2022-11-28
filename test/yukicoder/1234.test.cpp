@@ -1,13 +1,13 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1234"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "alg/lazy/min_add.hpp"
+#include "alg/acted_monoid/min_add.hpp"
 #include "ds/lazysegtree.hpp"
 
 void solve() {
   LL(N);
   VEC(ll, A, N);
-  LazySegTree<Lazy_Min_Add<ll>> seg(A);
+  LazySegTree<ActedMonoid_Min_Add<ll>> seg(A);
   LL(Q);
   FOR(Q) {
     LL(t, l, r, x);

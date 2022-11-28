@@ -5,7 +5,7 @@
 #include "ds/query/mo.hpp"
 
 #include "ds/lazysegtree.hpp"
-#include "alg/lazy/min_add.hpp"
+#include "alg/acted_monoid/min_add.hpp"
 
 void solve() {
   LL(N, Q);
@@ -14,7 +14,7 @@ void solve() {
 
   vi ANS(Q);
   FenwickTree<Monoid_Add<int>> bit_l(N), bit_r(N);
-  LazySegTree<Lazy_Min_Add<int>> seg(N, [&](int i) -> int { return 0; });
+  LazySegTree<ActedMonoid_Min_Add<int>> seg(N, [&](int i) -> int { return 0; });
   int ans = 0;
   for (auto&& x: A) {
     ans += bit_r.sum(x + 1, N);
