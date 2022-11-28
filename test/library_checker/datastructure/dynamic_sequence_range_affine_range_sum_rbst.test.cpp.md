@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/cntsum_affine.hpp
     title: alg/acted_monoid/cntsum_affine.hpp
   - icon: ':question:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/bbst/rbst_acted_monoid.hpp
     title: ds/bbst/rbst_acted_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
@@ -317,7 +317,7 @@ data:
     \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
     \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
     \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 1 \"ds/bbst/rbst_acted_monoid.hpp\"\
-    \ntemplate <typename ActedMonoid, int NODES = 1'000'000>\nstruct RBST_ActedMonoid\
+    \ntemplate <typename ActedMonoid, bool PERSISTENT, int NODES>\nstruct RBST_ActedMonoid\
     \ {\n  using Monoid_X = typename ActedMonoid::Monoid_X;\n  using Monoid_A = typename\
     \ ActedMonoid::Monoid_A;\n  using X = typename Monoid_X::value_type;\n  using\
     \ A = typename Monoid_A::value_type;\n\n  struct Node {\n    Node *l, *r;\n  \
@@ -332,7 +332,11 @@ data:
     \     u32 m = (l + r) / 2;\n      np l_root = dfs(dfs, l, m);\n      np r_root\
     \ = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n      root->l = l_root,\
     \ root->r = r_root;\n      update(root);\n      return root;\n    };\n    return\
-    \ dfs(dfs, 0, len(dat));\n  }\n\n  np merge(np l_root, np r_root) { return merge_rec(l_root,\
+    \ dfs(dfs, 0, len(dat));\n  }\n\n  np copy_node(np &n, bool COPY = PERSISTENT)\
+    \ {\n    if (!n || !COPY) return n;\n    pool[pid].l = n->l, pool[pid].r = n->r;\n\
+    \    pool[pid].x = n->x;\n    pool[pid].prod = n->prod;\n    pool[pid].lazy =\
+    \ n->lazy;\n    pool[pid].size = n->size;\n    pool[pid].rev = n->rev;\n    return\
+    \ &(pool[pid++]);\n  }\n\n  np merge(np l_root, np r_root) { return merge_rec(l_root,\
     \ r_root); }\n  np merge3(np a, np b, np c) { return merge(merge(a, b), c); }\n\
     \  np merge4(np a, np b, np c, np d) { return merge(merge(merge(a, b), c), d);\
     \ }\n  pair<np, np> split(np root, u32 k) {\n    if (!root) {\n      assert(k\
@@ -343,27 +347,35 @@ data:
     \ np> split4(np root, u32 i, u32 j, u32 k) {\n    np d;\n    tie(root, d) = split(root,\
     \ k);\n    auto [a, b, c] = split3(root, i, j);\n    return {a, b, c, d};\n  }\n\
     \n  X prod(np root, u32 l, u32 r) {\n    if (l == r) return Monoid_X::unit();\n\
-    \    return prod_rec(root, l, r);\n  }\n\n  np reverse(np root, u32 l, u32 r)\
-    \ {\n    assert(Monoid_X::commute);\n    assert(0 <= l && l <= r && r <= root->size);\n\
+    \    return prod_rec(root, l, r, false);\n  }\n  X prod(np root) { return (root\
+    \ ? root->prod : Monoid_X::unit()); }\n\n  np reverse(np root, u32 l, u32 r) {\n\
+    \    assert(Monoid_X::commute);\n    assert(0 <= l && l <= r && r <= root->size);\n\
     \    if (r - l <= 1) return root;\n    auto [nl, nm, nr] = split3(root, l, r);\n\
     \    nm->rev ^= 1;\n    swap(nm->l, nm->r);\n    return merge3(nl, nm, nr);\n\
     \  }\n\n  np apply(np root, u32 l, u32 r, const A a) {\n    assert(0 <= l && l\
-    \ <= r && r <= root->size);\n    return apply_rec(root, l, r, a);\n  }\n\n  np\
-    \ set(np root, u32 k, const X &x) { return set_rec(root, k, x); }\n  np multiply(np\
-    \ root, u32 k, const X &x) { return multiply_rec(root, k, x); }\n  X get(np root,\
-    \ u32 k) { return get_rec(root, k); }\n\n  vc<X> get_all(np root) {\n    vc<X>\
-    \ res;\n    auto dfs = [&](auto &dfs, np root, bool rev, A lazy) -> void {\n \
-    \     if (!root) return;\n      X me = ActedMonoid::act(root->x, lazy);\n    \
-    \  lazy = Monoid_A::op(root->lazy, lazy);\n      dfs(dfs, (rev ? root->r : root->l),\
-    \ rev ^ root->rev, lazy);\n      res.eb(me);\n      dfs(dfs, (rev ? root->l :\
-    \ root->r), rev ^ root->rev, lazy);\n    };\n    dfs(dfs, root, 0, Monoid_A::unit());\n\
-    \    return res;\n  }\n\n  template <typename F>\n  u32 max_right(np root, const\
-    \ F check, u32 L) {\n    assert(check(Monoid_X::unit()));\n    X x = Monoid_X::unit();\n\
-    \    return max_right_rec(root, check, L, x);\n  }\n\nprivate:\n  inline u32 xor128()\
-    \ {\n    static u32 x = 123456789;\n    static u32 y = 362436069;\n    static\
-    \ u32 z = 521288629;\n    static u32 w = 88675123;\n    u32 t = x ^ (x << 11);\n\
-    \    x = y;\n    y = z;\n    z = w;\n    return w = (w ^ (w >> 19)) ^ (t ^ (t\
-    \ >> 8));\n  }\n\n  void prop(np c) {\n    if (c->lazy != Monoid_A::unit()) {\n\
+    \ <= r && r <= root->size);\n    return apply_rec(root, l, r, a);\n  }\n  np apply(np\
+    \ root, const A a) {\n    if (!root) return root;\n    return apply_rec(root,\
+    \ 0, root->size, a);\n  }\n\n  np set(np root, u32 k, const X &x) { return set_rec(root,\
+    \ k, x); }\n  np multiply(np root, u32 k, const X &x) { return multiply_rec(root,\
+    \ k, x); }\n  X get(np root, u32 k) { return get_rec(root, k, false, Monoid_A::unit());\
+    \ }\n\n  vc<X> get_all(np root) {\n    vc<X> res;\n    auto dfs = [&](auto &dfs,\
+    \ np root, bool rev, A lazy) -> void {\n      if (!root) return;\n      X me =\
+    \ ActedMonoid::act(root->x, lazy);\n      lazy = Monoid_A::op(root->lazy, lazy);\n\
+    \      dfs(dfs, (rev ? root->r : root->l), rev ^ root->rev, lazy);\n      res.eb(me);\n\
+    \      dfs(dfs, (rev ? root->l : root->r), rev ^ root->rev, lazy);\n    };\n \
+    \   dfs(dfs, root, 0, Monoid_A::unit());\n    return res;\n  }\n\n  template <typename\
+    \ F>\n  pair<np, np> split_max_right(np root, const F check) {\n    assert(check(Monoid_X::unit()));\n\
+    \    X x = Monoid_X::unit();\n    return split_max_right_rec(root, check, x);\n\
+    \  }\n\nprivate:\n  inline u32 xor128() {\n    static u32 x = 123456789;\n   \
+    \ static u32 y = 362436069;\n    static u32 z = 521288629;\n    static u32 w =\
+    \ 88675123;\n    u32 t = x ^ (x << 11);\n    x = y;\n    y = z;\n    z = w;\n\
+    \    return w = (w ^ (w >> 19)) ^ (t ^ (t >> 8));\n  }\n\n  void prop(np c) {\n\
+    \    // \u81EA\u8EAB\u3092\u30B3\u30D4\u30FC\u3059\u308B\u5FC5\u8981\u306F\u306A\
+    \u3044\u3002\n    // \u5B50\u3092\u30B3\u30D4\u30FC\u3059\u308B\u5FC5\u8981\u304C\
+    \u3042\u308B\u3002\u8907\u6570\u306E\u89AA\u3092\u6301\u3064\u53EF\u80FD\u6027\
+    \u304C\u3042\u308B\u305F\u3081\u3002\n    bool bl_lazy = (c->lazy != Monoid_A::unit());\n\
+    \    bool bl_rev = c->rev;\n    if (bl_lazy || bl_rev) {\n      c->l = copy_node(c->l);\n\
+    \      c->r = copy_node(c->r);\n    }\n    if (c->lazy != Monoid_A::unit()) {\n\
     \      if (c->l) {\n        c->l->x = ActedMonoid::act(c->l->x, c->lazy);\n  \
     \      c->l->prod = ActedMonoid::act(c->l->prod, c->lazy);\n        c->l->lazy\
     \ = Monoid_A::op(c->l->lazy, c->lazy);\n      }\n      if (c->r) {\n        c->r->x\
@@ -372,57 +384,70 @@ data:
     \      c->lazy = Monoid_A::unit();\n    }\n    if (c->rev) {\n      if (c->l)\
     \ {\n        c->l->rev ^= 1;\n        swap(c->l->l, c->l->r);\n      }\n     \
     \ if (c->r) {\n        c->r->rev ^= 1;\n        swap(c->r->l, c->r->r);\n    \
-    \  }\n      c->rev = 0;\n    }\n  }\n\n  void update(np c) {\n    c->size = 1;\n\
+    \  }\n      c->rev = 0;\n    }\n  }\n\n  void update(np c) {\n    // \u30C7\u30FC\
+    \u30BF\u3092\u4FDD\u3063\u305F\u307E\u307E\u6B63\u5E38\u5316\u3059\u308B\u3060\
+    \u3051\u306A\u306E\u3067\u3001\u30B3\u30D4\u30FC\u4E0D\u8981\n    c->size = 1;\n\
     \    c->prod = c->x;\n    if (c->l) {\n      c->size += c->l->size;\n      c->prod\
     \ = Monoid_X::op(c->l->prod, c->prod);\n    }\n    if (c->r) {\n      c->size\
     \ += c->r->size;\n      c->prod = Monoid_X::op(c->prod, c->r->prod);\n    }\n\
     \  }\n\n  np merge_rec(np l_root, np r_root) {\n    if (!l_root) return r_root;\n\
     \    if (!r_root) return l_root;\n    u32 sl = l_root->size, sr = r_root->size;\n\
-    \    if (xor128() % (sl + sr) < sl) {\n      prop(l_root);\n      l_root->r =\
-    \ merge_rec(l_root->r, r_root);\n      update(l_root);\n      return l_root;\n\
-    \    }\n    prop(r_root);\n    r_root->l = merge_rec(l_root, r_root->l);\n   \
-    \ update(r_root);\n    return r_root;\n  }\n\n  pair<np, np> split_rec(np root,\
-    \ u32 k) {\n    if (!root) return {nullptr, nullptr};\n    prop(root);\n    u32\
-    \ sl = (root->l ? root->l->size : 0);\n    if (k <= sl) {\n      auto [nl, nr]\
-    \ = split_rec(root->l, k);\n      root->l = nr;\n      update(root);\n      return\
-    \ {nl, root};\n    }\n    auto [nl, nr] = split_rec(root->r, k - (1 + sl));\n\
-    \    root->r = nl;\n    update(root);\n    return {root, nr};\n  }\n\n  np set_rec(np\
+    \    if (xor128() % (sl + sr) < sl) {\n      prop(l_root);\n      l_root = copy_node(l_root);\n\
+    \      l_root->r = merge_rec(l_root->r, r_root);\n      update(l_root);\n    \
+    \  return l_root;\n    }\n    prop(r_root);\n    r_root = copy_node(r_root);\n\
+    \    r_root->l = merge_rec(l_root, r_root->l);\n    update(r_root);\n    return\
+    \ r_root;\n  }\n\n  pair<np, np> split_rec(np root, u32 k) {\n    if (!root) return\
+    \ {nullptr, nullptr};\n    prop(root);\n    u32 sl = (root->l ? root->l->size\
+    \ : 0);\n    if (k <= sl) {\n      auto [nl, nr] = split_rec(root->l, k);\n  \
+    \    root = copy_node(root);\n      root->l = nr;\n      update(root);\n     \
+    \ return {nl, root};\n    }\n    auto [nl, nr] = split_rec(root->r, k - (1 + sl));\n\
+    \    root = copy_node(root);\n    root->r = nl;\n    update(root);\n    return\
+    \ {root, nr};\n  }\n\n  np set_rec(np root, u32 k, const X &x) {\n    if (!root)\
+    \ return root;\n    prop(root);\n    u32 sl = (root->l ? root->l->size : 0);\n\
+    \    if (k < sl) {\n      root = copy_node(root);\n      root->l = set_rec(root->l,\
+    \ k, x);\n      update(root);\n      return root;\n    }\n    if (k == sl) {\n\
+    \      root = copy_node(root);\n      root->x = x;\n      update(root);\n    \
+    \  return root;\n    }\n    root = copy_node(root);\n    root->r = set_rec(root->r,\
+    \ k - (1 + sl), x);\n    update(root);\n    return root;\n  }\n\n  np multiply_rec(np\
     \ root, u32 k, const X &x) {\n    if (!root) return root;\n    prop(root);\n \
-    \   u32 sl = (root->l ? root->l->size : 0);\n    if (k < sl) {\n      root->l\
-    \ = set_rec(root->l, k, x);\n      update(root);\n      return root;\n    }\n\
-    \    if (k == sl) {\n      root->x = x;\n      update(root);\n      return root;\n\
-    \    }\n    root->r = set_rec(root->r, k - (1 + sl), x);\n    update(root);\n\
-    \    return root;\n  }\n\n  np multiply_rec(np root, u32 k, const X &x) {\n  \
-    \  if (!root) return root;\n    prop(root);\n    u32 sl = (root->l ? root->l->size\
-    \ : 0);\n    if (k < sl) {\n      root->l = multiply_rec(root->l, k, x);\n   \
-    \   update(root);\n      return root;\n    }\n    if (k == sl) {\n      root->x\
+    \   u32 sl = (root->l ? root->l->size : 0);\n    if (k < sl) {\n      root = copy_node(root);\n\
+    \      root->l = multiply_rec(root->l, k, x);\n      update(root);\n      return\
+    \ root;\n    }\n    if (k == sl) {\n      root = copy_node(root);\n      root->x\
     \ = Monoid_X::op(root->x, x);\n      update(root);\n      return root;\n    }\n\
-    \    root->r = multiply_rec(root->r, k - (1 + sl), x);\n    update(root);\n  \
-    \  return root;\n  }\n\n  X prod_rec(np root, u32 l, u32 r) {\n    if (l == 0\
-    \ && r == root->size) { return root->prod; }\n    prop(root);\n    u32 sl = (root->l\
-    \ ? root->l->size : 0);\n    X res = Monoid_X::unit();\n    if (l < sl) { res\
-    \ = Monoid_X::op(res, prod_rec(root->l, l, min(r, sl))); }\n    if (l <= sl &&\
-    \ sl < r) res = Monoid_X::op(res, root->x);\n    u32 k = 1 + sl;\n    if (k <\
-    \ r) res = Monoid_X::op(res, prod_rec(root->r, max(k, l) - k, r - k));\n    return\
-    \ res;\n  }\n\n  X get_rec(np root, u32 k) {\n    prop(root);\n    u32 sl = (root->l\
-    \ ? root->l->size : 0);\n    if (k < sl) return get_rec(root->l, k);\n    if (k\
-    \ == sl) return root->x;\n    return get_rec(root->r, k - (1 + sl));\n  }\n\n\
-    \  np apply_rec(np root, u32 l, u32 r, const A &a) {\n    prop(root);\n    if\
-    \ (l == 0 && r == root->size) {\n      root->x = ActedMonoid::act(root->x, a);\n\
-    \      root->prod = ActedMonoid::act(root->prod, a);\n      root->lazy = a;\n\
-    \      return root;\n    }\n    u32 sl = (root->l ? root->l->size : 0);\n    if\
-    \ (l < sl) apply_rec(root->l, l, min(r, sl), a);\n    if (l <= sl && sl < r) root->x\
-    \ = ActedMonoid::act(root->x, a);\n    u32 k = 1 + sl;\n    if (k < r) apply_rec(root->r,\
-    \ max(k, l) - k, r - k, a);\n    update(root);\n    return root;\n  }\n\n  template\
-    \ <typename F>\n  u32 max_right_rec(np n, const F check, u32 L, X &x) {\n    if\
-    \ (!n) return 0;\n    if (L == 0) {\n      X y = Monoid_X::op(x, n->prod);\n \
-    \     if (check(y)) {\n        x = y;\n        return n->size;\n      }\n    }\n\
-    \    prop(n);\n    u32 sl = (n->l ? n->l->size : 0);\n    if (L < sl) {\n    \
-    \  u32 k = max_right_rec(n->l, check, L, x);\n      if (k < sl) return k;\n  \
-    \  }\n    if (L <= sl) {\n      X y = Monoid_X::op(x, n->x);\n      if (!check(y))\
-    \ { return sl; }\n      x = y;\n    }\n    L = (L > sl ? L - (1 + sl) : 0);\n\
-    \    return (1 + sl) + max_right_rec(n->r, check, L, x);\n  }\n};\n#line 9 \"\
-    test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp\"\
+    \    root = copy_node(root);\n    root->r = multiply_rec(root->r, k - (1 + sl),\
+    \ x);\n    update(root);\n    return root;\n  }\n\n  X prod_rec(np root, u32 l,\
+    \ u32 r, bool rev) {\n    if (l == 0 && r == root->size) { return root->prod;\
+    \ }\n    np left = (rev ? root->r : root->l);\n    np right = (rev ? root->l :\
+    \ root->r);\n    u32 sl = (root->l ? root->l->size : 0);\n    X res = Monoid_X::unit();\n\
+    \    if (l < sl) {\n      X y = prod_rec(left, l, min(r, sl), rev ^ root->rev);\n\
+    \      res = Monoid_X::op(res, ActedMonoid::act(y, root->lazy));\n    }\n    if\
+    \ (l <= sl && sl < r) res = Monoid_X::op(res, root->x);\n    u32 k = 1 + sl;\n\
+    \    if (k < r) {\n      X y = prod_rec(right, max(k, l) - k, r - k, rev ^ root->rev);\n\
+    \      res = Monoid_X::op(res, ActedMonoid::act(y, root->lazy));\n    }\n    return\
+    \ res;\n  }\n\n  X get_rec(np root, u32 k, bool rev, A lazy) {\n    np left =\
+    \ (rev ? root->r : root->l);\n    np right = (rev ? root->l : root->r);\n    u32\
+    \ sl = (root->l ? root->l->size : 0);\n    if (k == sl) return ActedMonoid::act(root->x,\
+    \ lazy);\n    lazy = Monoid_A::op(root->lazy, lazy);\n    rev ^= root->rev;\n\
+    \    if (k < sl) return get_rec(left, k, rev, lazy);\n    return get_rec(root->r,\
+    \ k - (1 + sl), rev, lazy);\n  }\n\n  np apply_rec(np root, u32 l, u32 r, const\
+    \ A &a) {\n    prop(root);\n    root = copy_node(root);\n    if (l == 0 && r ==\
+    \ root->size) {\n      root->x = ActedMonoid::act(root->x, a);\n      root->prod\
+    \ = ActedMonoid::act(root->prod, a);\n      root->lazy = a;\n      return root;\n\
+    \    }\n    u32 sl = (root->l ? root->l->size : 0);\n    if (l < sl) apply_rec(root->l,\
+    \ l, min(r, sl), a);\n    if (l <= sl && sl < r) root->x = ActedMonoid::act(root->x,\
+    \ a);\n    u32 k = 1 + sl;\n    if (k < r) apply_rec(root->r, max(k, l) - k, r\
+    \ - k, a);\n    update(root);\n    return root;\n  }\n\n  template <typename F>\n\
+    \  pair<np, np> split_max_right_rec(np root, const F &check, X &x) {\n    if (!root)\
+    \ return {nullptr, nullptr};\n    prop(root);\n    root = copy_node(root);\n \
+    \   X y = Monoid_X::op(x, root->prod);\n    if (check(y)) {\n      x = y;\n  \
+    \    return {root, nullptr};\n    }\n    np left = root->l, right = root->r;\n\
+    \    if (left) {\n      X y = Monoid_X::op(x, root->l->prod);\n      if (!check(y))\
+    \ {\n        auto [n1, n2] = split_max_right_rec(left, check, x);\n        root->l\
+    \ = n2;\n        update(root);\n        return {n1, root};\n      }\n      x =\
+    \ y;\n    }\n    y = Monoid_X::op(x, root->x);\n    if (!check(y)) {\n      root->l\
+    \ = nullptr;\n      update(root);\n      return {left, root};\n    }\n    x =\
+    \ y;\n    auto [n1, n2] = split_max_right_rec(right, check, x);\n    root->r =\
+    \ n1;\n    update(root);\n    return {root, n2};\n  }\n};\n#line 9 \"test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  VEC(mint, A, N);\n\
     \  RBST_ActedMonoid<ActedMonoid_CntSum_Affine<mint>> X;\n  vc<pair<mint, mint>>\
     \ seg_raw(N);\n  FOR(i, N) seg_raw[i] = {mint(1), A[i]};\n  auto root = X.new_node(seg_raw);\n\
@@ -459,8 +484,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   requiredBy: []
-  timestamp: '2022-11-29 05:29:34+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-11-29 08:05:51+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
 layout: document
