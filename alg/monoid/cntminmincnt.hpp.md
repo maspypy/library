@@ -2,13 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: alg/acted_monoid/cntminmincnt_add.hpp
     title: alg/acted_monoid/cntminmincnt_add.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: ds/query/rectangleunion.hpp
+    title: ds/query/rectangleunion.hpp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/DSL_4_A.test.cpp
+    title: test/aoj/DSL_4_A.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+    title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/cntminmincnt.hpp\"\n\r\n// \u5168\u4F53\u306E\
@@ -36,9 +45,12 @@ data:
   path: alg/monoid/cntminmincnt.hpp
   requiredBy:
   - alg/acted_monoid/cntminmincnt_add.hpp
+  - ds/query/rectangleunion.hpp
   timestamp: '2022-10-25 12:10:43+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+  - test/aoj/DSL_4_A.test.cpp
 documentation_of: alg/monoid/cntminmincnt.hpp
 layout: document
 redirect_from:

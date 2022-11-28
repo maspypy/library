@@ -3,24 +3,36 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':x:'
+    path: alg/acted_monoid/cntsum_assign.hpp
+    title: alg/acted_monoid/cntsum_assign.hpp
+  - icon: ':x:'
     path: alg/acted_monoid/cntsummin_assign.hpp
     title: alg/acted_monoid/cntsummin_assign.hpp
   - icon: ':warning:'
     path: alg/acted_monoid/max_assign.hpp
     title: alg/acted_monoid/max_assign.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
   - icon: ':warning:'
     path: alg/acted_monoid/powersums_assign.hpp
     title: alg/acted_monoid/powersums_assign.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL_2_D.test.cpp
+    title: test/aoj/DSL_2_D.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL_2_F.test.cpp
+    title: test/aoj/DSL_2_F.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DSL_2_I.test.cpp
+    title: test/aoj/DSL_2_I.test.cpp
   - icon: ':x:'
     path: test/mytest/cntsummin_assign.test.cpp
     title: test/mytest/cntsummin_assign.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid/assign.hpp\"\ntemplate <typename X, X none_val>\r\
@@ -39,10 +51,14 @@ data:
   - alg/acted_monoid/max_assign.hpp
   - alg/acted_monoid/min_assign.hpp
   - alg/acted_monoid/powersums_assign.hpp
+  - alg/acted_monoid/cntsum_assign.hpp
   timestamp: '2022-11-28 14:51:10+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/cntsummin_assign.test.cpp
+  - test/aoj/DSL_2_D.test.cpp
+  - test/aoj/DSL_2_I.test.cpp
+  - test/aoj/DSL_2_F.test.cpp
 documentation_of: alg/monoid/assign.hpp
 layout: document
 redirect_from:

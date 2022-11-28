@@ -8,16 +8,22 @@ data:
   - icon: ':warning:'
     path: alg/acted_monoid/cntsum_affine.hpp
     title: alg/acted_monoid/cntsum_affine.hpp
+  - icon: ':x:'
+    path: alg/acted_monoid/cntsum_assign.hpp
+    title: alg/acted_monoid/cntsum_assign.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/DSL_2_I.test.cpp
+    title: test/aoj/DSL_2_I.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/cf702_F.test.cpp
     title: test/mytest/cf702_F.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1919.test.cpp
     title: test/yukicoder/1919.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid/add_pair.hpp\"\ntemplate <typename E>\r\nstruct\
@@ -37,11 +43,13 @@ data:
   requiredBy:
   - alg/acted_monoid/cntsum_affine.hpp
   - alg/acted_monoid/cntsum_add.hpp
+  - alg/acted_monoid/cntsum_assign.hpp
   timestamp: '2022-11-27 15:24:24+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1919.test.cpp
   - test/mytest/cf702_F.test.cpp
+  - test/aoj/DSL_2_I.test.cpp
 documentation_of: alg/monoid/add_pair.hpp
 layout: document
 redirect_from:
