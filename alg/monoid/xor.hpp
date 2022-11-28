@@ -1,7 +1,6 @@
-template <typename T = long long>
+template <typename X>
 struct Monoid_Xor {
-  using value_type = T;
-  using X = value_type;
+  using value_type = X;
   static X op(X x, X y) { return x ^ y; }
   static constexpr X inverse(const X &x) noexcept { return x; }
   static constexpr X power(const X &x, ll n) noexcept {

@@ -1,8 +1,10 @@
-template <typename INT>
+template <typename E>
 struct Monoid_XorBasis {
-  using value_type = vector<INT>;
+  using value_type = vector<E>;
   using X = value_type;
-  static bool add_element(X& x, INT v) {
+
+  // 破壊的に変更する
+  static bool add_element(X& x, E v) {
     for (auto&& e: x) {
       if (e == 0 || v == 0) break;
       chmin(v, v ^ e);
@@ -20,7 +22,7 @@ struct Monoid_XorBasis {
     return z;
   }
 
-  static bool isin(INT v, const X& x){
+  static bool isin(E v, const X& x){
     for(auto&& w : x){
       chmin(v, v ^ w);
     }
@@ -28,7 +30,7 @@ struct Monoid_XorBasis {
   }
 
   // x ^ v の最大値
-  static INT get_max(const X& x) {
+  static E get_max(const X& x) {
     INT res = 0;
     for (auto&& a: x) chmax(res, res ^ a);
     return res;
