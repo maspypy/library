@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "alg/lazy/cntsum_affine.hpp"
+#include "alg/acted_monoid/cntsum_affine.hpp"
 #include "ds/lazysegtree.hpp"
 #include "mod/modint.hpp"
 
@@ -10,7 +10,7 @@ using mint = modint998;
 
 void solve() {
   LL(N, Q);
-  using S = Lazy_CntSum_Affine<mint>;
+  using S = ActedMonoid_CntSum_Affine<mint>;
   using E = pair<mint, mint>;
   vc<E> seg_raw(N);
   FOR(i, N) {
