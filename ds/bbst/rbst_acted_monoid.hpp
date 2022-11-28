@@ -277,7 +277,7 @@ private:
     if (l == 0 && r == root->size) { return root->prod; }
     np left = (rev ? root->r : root->l);
     np right = (rev ? root->l : root->r);
-    u32 sl = (root->l ? root->l->size : 0);
+    u32 sl = (left ? left->size : 0);
     X res = Monoid_X::unit();
     if (l < sl) {
       X y = prod_rec(left, l, min(r, sl), rev ^ root->rev);
@@ -295,12 +295,12 @@ private:
   X get_rec(np root, u32 k, bool rev, A lazy) {
     np left = (rev ? root->r : root->l);
     np right = (rev ? root->l : root->r);
-    u32 sl = (root->l ? root->l->size : 0);
+    u32 sl = (left ? left->size : 0);
     if (k == sl) return ActedMonoid::act(root->x, lazy);
     lazy = Monoid_A::op(root->lazy, lazy);
     rev ^= root->rev;
     if (k < sl) return get_rec(left, k, rev, lazy);
-    return get_rec(root->r, k - (1 + sl), rev, lazy);
+    return get_rec(right, k - (1 + sl), rev, lazy);
   }
 
   np apply_rec(np root, u32 l, u32 r, const A &a) {
@@ -313,10 +313,10 @@ private:
       return root;
     }
     u32 sl = (root->l ? root->l->size : 0);
-    if (l < sl) apply_rec(root->l, l, min(r, sl), a);
+    if (l < sl) root->l = apply_rec(root->l, l, min(r, sl), a);
     if (l <= sl && sl < r) root->x = ActedMonoid::act(root->x, a);
     u32 k = 1 + sl;
-    if (k < r) apply_rec(root->r, max(k, l) - k, r - k, a);
+    if (k < r) root->r = apply_rec(root->r, max(k, l) - k, r - k, a);
     update(root);
     return root;
   }
