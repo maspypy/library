@@ -1,14 +1,12 @@
-// reverse はとりあえず、Monoid の可換性を仮定している！
-template <typename Lazy, int NODES = 1'000'000>
-struct RBST_Lazy {
-  using Monoid_X = typename Lazy::Monoid_X;
-  using Monoid_A = typename Lazy::Monoid_A;
-  using X = typename Monoid_X::value_type;
-  using A = typename Monoid_A::value_type;
+template <typename ActedSet, int NODES = 1'000'000>
+struct RBST_Dual {
+  using Monoid_A = typename ActedSet::Monoid_A;
+  using A = typename ActedSet::A;
+  using S = typename ActedSet::S;
 
   struct Node {
     Node *l, *r;
-    X x, prod; // lazy, rev 反映済
+    S s; // lazy, rev 反映済
     A lazy;
     u32 size;
     bool rev;
@@ -18,13 +16,13 @@ struct RBST_Lazy {
   int pid;
   using np = Node *;
 
-  RBST_Lazy() : pid(0) { pool = new Node[NODES]; }
+  RBST_Dual() : pid(0) { pool = new Node[NODES]; }
 
   void reset() { pid = 0; }
 
-  np new_node(const X &x) {
+  np new_node(const S &s) {
     pool[pid].l = pool[pid].r = nullptr;
-    pool[pid].x = x;
+    pool[pid].s = s;
     pool[pid].prod = x;
     pool[pid].lazy = Monoid_A::unit();
     pool[pid].size = 1;
@@ -32,7 +30,7 @@ struct RBST_Lazy {
     return &(pool[pid++]);
   }
 
-  np new_node(const vc<X> &dat) {
+  np new_node(const vc<S> &dat) {
     auto dfs = [&](auto &dfs, u32 l, u32 r) -> np {
       if (l == r) return nullptr;
       if (r == l + 1) return new_node(dat[l]);
@@ -71,11 +69,6 @@ struct RBST_Lazy {
     return {a, b, c, d};
   }
 
-  X prod(np root, u32 l, u32 r) {
-    if (l == r) return Monoid_X::unit();
-    return prod_rec(root, l, r);
-  }
-
   np reverse(np root, u32 l, u32 r) {
     assert(Monoid_X::commute);
     assert(0 <= l && l <= r && r <= root->size);
@@ -91,15 +84,14 @@ struct RBST_Lazy {
     return apply_rec(root, l, r, a);
   }
 
-  np set(np root, u32 k, const X &x) { return set_rec(root, k, x); }
-  np multiply(np root, u32 k, const X &x) { return multiply_rec(root, k, x); }
-  X get(np root, u32 k) { return get_rec(root, k); }
+  np set(np root, u32 k, const S &s) { return set_rec(root, k, s); }
+  S get(np root, u32 k) { return get_rec(root, k); }
 
-  vc<X> get_all(np root) {
-    vc<X> res;
+  vc<S> get_all(np root) {
+    vc<S> res;
     auto dfs = [&](auto &dfs, np root, bool rev, A lazy) -> void {
       if (!root) return;
-      X me = Lazy::act(root->x, lazy);
+      S me = ActedSet::act(root->x, lazy);
       lazy = Monoid_A::op(root->lazy, lazy);
       dfs(dfs, (rev ? root->r : root->l), rev ^ root->rev, lazy);
       res.eb(me);
@@ -107,13 +99,6 @@ struct RBST_Lazy {
     };
     dfs(dfs, root, 0, Monoid_A::unit());
     return res;
-  }
-
-  template <typename F>
-  u32 max_right(np root, const F check, u32 L) {
-    assert(check(Monoid_X::unit()));
-    X x = Monoid_X::unit();
-    return max_right_rec(root, check, L, x);
   }
 
 private:
@@ -132,13 +117,11 @@ private:
   void prop(np c) {
     if (c->lazy != Monoid_A::unit()) {
       if (c->l) {
-        c->l->x = Lazy::act(c->l->x, c->lazy);
-        c->l->prod = Lazy::act(c->l->prod, c->lazy);
+        c->l->s = Lazy::act(c->l->s, c->lazy);
         c->l->lazy = Monoid_A::op(c->l->lazy, c->lazy);
       }
       if (c->r) {
-        c->r->x = Lazy::act(c->r->x, c->lazy);
-        c->r->prod = Lazy::act(c->r->prod, c->lazy);
+        c->r->s = Lazy::act(c->r->s, c->lazy);
         c->r->lazy = Monoid_A::op(c->r->lazy, c->lazy);
       }
       c->lazy = Monoid_A::unit();
@@ -158,15 +141,8 @@ private:
 
   void update(np c) {
     c->size = 1;
-    c->prod = c->x;
-    if (c->l) {
-      c->size += c->l->size;
-      c->prod = Monoid_X::op(c->l->prod, c->prod);
-    }
-    if (c->r) {
-      c->size += c->r->size;
-      c->prod = Monoid_X::op(c->prod, c->r->prod);
-    }
+    if (c->l) { c->size += c->l->size; }
+    if (c->r) { c->size += c->r->size; }
   }
 
   np merge_rec(np l_root, np r_root) {
@@ -201,54 +177,23 @@ private:
     return {root, nr};
   }
 
-  np set_rec(np root, u32 k, const X &x) {
+  np set_rec(np root, u32 k, const S &s) {
     if (!root) return root;
     prop(root);
     u32 sl = (root->l ? root->l->size : 0);
     if (k < sl) {
-      root->l = set_rec(root->l, k, x);
+      root->l = set_rec(root->l, k, s);
       update(root);
       return root;
     }
     if (k == sl) {
-      root->x = x;
+      root->s = s;
       update(root);
       return root;
     }
-    root->r = set_rec(root->r, k - (1 + sl), x);
+    root->r = set_rec(root->r, k - (1 + sl), s);
     update(root);
     return root;
-  }
-
-  np multiply_rec(np root, u32 k, const X &x) {
-    if (!root) return root;
-    prop(root);
-    u32 sl = (root->l ? root->l->size : 0);
-    if (k < sl) {
-      root->l = multiply_rec(root->l, k, x);
-      update(root);
-      return root;
-    }
-    if (k == sl) {
-      root->x = Monoid_X::op(root->x, x);
-      update(root);
-      return root;
-    }
-    root->r = multiply_rec(root->r, k - (1 + sl), x);
-    update(root);
-    return root;
-  }
-
-  X prod_rec(np root, u32 l, u32 r) {
-    if (l == 0 && r == root->size) { return root->prod; }
-    prop(root);
-    u32 sl = (root->l ? root->l->size : 0);
-    X res = Monoid_X::unit();
-    if (l < sl) { res = Monoid_X::op(res, prod_rec(root->l, l, min(r, sl))); }
-    if (l <= sl && sl < r) res = Monoid_X::op(res, root->x);
-    u32 k = 1 + sl;
-    if (k < r) res = Monoid_X::op(res, prod_rec(root->r, max(k, l) - k, r - k));
-    return res;
   }
 
   X get_rec(np root, u32 k) {
@@ -274,30 +219,5 @@ private:
     if (k < r) apply_rec(root->r, max(k, l) - k, r - k, a);
     update(root);
     return root;
-  }
-
-  template <typename F>
-  u32 max_right_rec(np n, const F check, u32 L, X &x) {
-    if (!n) return 0;
-    if (L == 0) {
-      X y = Monoid_X::op(x, n->prod);
-      if (check(y)) {
-        x = y;
-        return n->size;
-      }
-    }
-    prop(n);
-    u32 sl = (n->l ? n->l->size : 0);
-    if (L < sl) {
-      u32 k = max_right_rec(n->l, check, L, x);
-      if (k < sl) return k;
-    }
-    if (L <= sl) {
-      X y = Monoid_X::op(x, n->x);
-      if (!check(y)) { return sl; }
-      x = y;
-    }
-    L = (L > sl ? L - (1 + sl) : 0);
-    return (1 + sl) + max_right_rec(n->r, check, L, x);
   }
 };
