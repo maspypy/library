@@ -12,7 +12,7 @@ using mint = modint998;
 void solve() {
   LL(N, Q);
   VEC(mint, A, N);
-  RBST_ActedMonoid<ActedMonoid_CntSum_Affine<mint>> X;
+  RBST_ActedMonoid<ActedMonoid_CntSum_Affine<mint>, false, 1'000'000> X;
   vc<pair<mint, mint>> seg_raw(N);
   FOR(i, N) seg_raw[i] = {mint(1), A[i]};
   auto root = X.new_node(seg_raw);
