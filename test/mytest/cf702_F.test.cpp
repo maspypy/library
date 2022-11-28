@@ -5,12 +5,10 @@
 #include "ds/bbst/rbst_acted_set.hpp"
 
 // (所持金, 操作回数, query index)
-struct XSet {
-  using Monoid = Monoid_Add_Pair<int>;
-  using operator_type = typename Monoid::value_type;
-  using element_type = tuple<int, int, int>;
-  using X = operator_type;
-  using S = element_type;
+struct AS {
+  using Monoid_A = Monoid_Add_Pair<int>;
+  using A = Monoid_A::value_type;
+  using S = tuple<int, int, int>;
   static S act(const S& s, const X& x) {
     auto [a, b, c] = s;
     return {a + x.fi, b + x.se, c};
@@ -31,9 +29,9 @@ vc<int> solve_cf702F(vc<pair<int, int>> CQ, vc<int> query) {
   }
   sort(all(query));
 
-  const int MAX = 5'000'000;
+  const int MAX = 5'00'000;
 
-  RBST_Dual<XSet, MAX> X;
+  RBST_Dual<AM, MAX> X;
   using Node = RBST_Dual<XSet, MAX>::Node;
   Node* root = X.new_node(dat);
 
