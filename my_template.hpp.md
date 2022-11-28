@@ -721,6 +721,15 @@ data:
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/cntsummax_add.test.cpp
+    title: test/mytest/cntsummax_add.test.cpp
+  - icon: ':x:'
+    path: test/mytest/cntsummin_add.test.cpp
+    title: test/mytest/cntsummin_add.test.cpp
+  - icon: ':x:'
+    path: test/mytest/cntsummin_assign.test.cpp
+    title: test/mytest/cntsummin_assign.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/conv2d.test.cpp
     title: test/mytest/conv2d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -772,8 +781,17 @@ data:
     path: test/mytest/min_cost_matching_on_line.test.cpp
     title: test/mytest/min_cost_matching_on_line.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/min_min.test.cpp
+    title: test/mytest/min_min.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_of_linear_segments.test.cpp
     title: test/mytest/min_of_linear_segments.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/minidx_add.test.cpp
+    title: test/mytest/minidx_add.test.cpp
+  - icon: ':x:'
+    path: test/mytest/minmax_add.test.cpp
+    title: test/mytest/minmax_add.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/minplus_convex.test.cpp
     title: test/mytest/minplus_convex.test.cpp
@@ -1687,13 +1705,17 @@ data:
   - test/mytest/is_substring.test.cpp
   - test/mytest/enumerate_multisets.test.cpp
   - test/mytest/knight_distance.test.cpp
+  - test/mytest/cntsummin_assign.test.cpp
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/online_pow.test.cpp
   - test/mytest/primesum_mod6.test.cpp
+  - test/mytest/cntsummin_add.test.cpp
   - test/mytest/cf702_F.test.cpp
   - test/mytest/bell.test.cpp
+  - test/mytest/minidx_add.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/add_chmin.test.cpp
+  - test/mytest/minmax_add.test.cpp
   - test/mytest/range_mex.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/eulerian_number.test.cpp
@@ -1713,6 +1735,7 @@ data:
   - test/mytest/all_inverse.test.cpp
   - test/mytest/gray_code.test.cpp
   - test/mytest/run_length.test.cpp
+  - test/mytest/min_min.test.cpp
   - test/mytest/magic_square.test.cpp
   - test/mytest/enumerate_products.test.cpp
   - test/mytest/online_division.test.cpp
@@ -1732,6 +1755,7 @@ data:
   - test/mytest/primesum_mod4.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/binom.test.cpp
+  - test/mytest/cntsummax_add.test.cpp
   - test/mytest/tournament.test.cpp
   - test/mytest/rbst_test.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp

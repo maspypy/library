@@ -18,16 +18,16 @@ data:
     - icon: ':warning:'
       path: alg/acted_monoid/cntsum_assign.hpp
       title: alg/acted_monoid/cntsum_assign.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/cntsummax_add.hpp
       title: alg/acted_monoid/cntsummax_add.hpp
     - icon: ':warning:'
       path: alg/acted_monoid/cntsummax_assign.hpp
       title: alg/acted_monoid/cntsummax_assign.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: alg/acted_monoid/cntsummin_add.hpp
       title: alg/acted_monoid/cntsummin_add.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: alg/acted_monoid/cntsummin_assign.hpp
       title: alg/acted_monoid/cntsummin_assign.hpp
     - icon: ':warning:'
@@ -54,13 +54,13 @@ data:
     - icon: ':warning:'
       path: alg/acted_monoid/min_max.hpp
       title: alg/acted_monoid/min_max.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/min_min.hpp
       title: alg/acted_monoid/min_min.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/minidx_add.hpp
       title: alg/acted_monoid/minidx_add.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: alg/acted_monoid/minmax_add.hpp
       title: alg/acted_monoid/minmax_add.hpp
     - icon: ':warning:'
@@ -97,16 +97,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/affine.hpp
       title: alg/monoid/affine.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: alg/monoid/assign.hpp
       title: alg/monoid/assign.hpp
     - icon: ':warning:'
       path: alg/monoid/cntminmincnt.hpp
       title: alg/monoid/cntminmincnt.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/cntsummax.hpp
       title: alg/monoid/cntsummax.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: alg/monoid/cntsummin.hpp
       title: alg/monoid/cntsummin.hpp
     - icon: ':heavy_check_mark:'
@@ -127,7 +127,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/min_idx.hpp
       title: alg/monoid/min_idx.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/minmax.hpp
       title: alg/monoid/minmax.hpp
     - icon: ':warning:'
@@ -243,7 +243,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/larsch.hpp
       title: ds/larsch.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/lazysegtree.hpp
       title: ds/lazysegtree.hpp
     - icon: ':heavy_check_mark:'
@@ -1107,7 +1107,7 @@ data:
       title: poly/online/online_pow.hpp
   - name: random
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -2090,18 +2090,18 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/chirp_z.test.cpp
       title: test/mytest/chirp_z.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/cntsummax_add.test.cpp
       title: test/mytest/cntsummax_add.test.cpp
     - icon: ':x:'
-      path: test/mytest/cntsummax_set.test.cpp
-      title: test/mytest/cntsummax_set.test.cpp
+      path: test/mytest/cntsummax_assign.test.cpp
+      title: test/mytest/cntsummax_assign.test.cpp
     - icon: ':x:'
       path: test/mytest/cntsummin_add.test.cpp
       title: test/mytest/cntsummin_add.test.cpp
     - icon: ':x:'
-      path: test/mytest/cntsummin_set.test.cpp
-      title: test/mytest/cntsummin_set.test.cpp
+      path: test/mytest/cntsummin_assign.test.cpp
+      title: test/mytest/cntsummin_assign.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/conv2d.test.cpp
       title: test/mytest/conv2d.test.cpp
@@ -2168,13 +2168,13 @@ data:
     - icon: ':x:'
       path: test/mytest/min_max.test.cpp
       title: test/mytest/min_max.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/min_min.test.cpp
       title: test/mytest/min_min.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/min_of_linear_segments.test.cpp
       title: test/mytest/min_of_linear_segments.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/minidx_add.test.cpp
       title: test/mytest/minidx_add.test.cpp
     - icon: ':x:'

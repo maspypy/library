@@ -6,12 +6,30 @@ data:
     path: graph/ds/dualtreemonoid.hpp
     title: graph/ds/dualtreemonoid.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/cntsummax_add.test.cpp
+    title: test/mytest/cntsummax_add.test.cpp
+  - icon: ':x:'
+    path: test/mytest/cntsummin_add.test.cpp
+    title: test/mytest/cntsummin_add.test.cpp
+  - icon: ':x:'
+    path: test/mytest/cntsummin_assign.test.cpp
+    title: test/mytest/cntsummin_assign.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/min_min.test.cpp
+    title: test/mytest/min_min.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/minidx_add.test.cpp
+    title: test/mytest/minidx_add.test.cpp
+  - icon: ':x:'
+    path: test/mytest/minmax_add.test.cpp
+    title: test/mytest/minmax_add.test.cpp
   - icon: ':x:'
     path: test/yukicoder/749.test.cpp
     title: test/yukicoder/749.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/lazysegtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -144,9 +162,15 @@ data:
   requiredBy:
   - graph/ds/dualtreemonoid.hpp
   timestamp: '2022-11-28 15:09:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/749.test.cpp
+  - test/mytest/cntsummin_assign.test.cpp
+  - test/mytest/cntsummin_add.test.cpp
+  - test/mytest/minidx_add.test.cpp
+  - test/mytest/minmax_add.test.cpp
+  - test/mytest/min_min.test.cpp
+  - test/mytest/cntsummax_add.test.cpp
 documentation_of: ds/lazysegtree.hpp
 layout: document
 redirect_from:

@@ -14,7 +14,7 @@ data:
   - icon: ':warning:'
     path: alg/acted_monoid/min_max.hpp
     title: alg/acted_monoid/min_max.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_min.hpp
     title: alg/acted_monoid/min_min.hpp
   - icon: ':heavy_check_mark:'
@@ -54,6 +54,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/suffix_array_vec.test.cpp
     title: test/library_checker/string/suffix_array_vec.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/min_min.test.cpp
+    title: test/mytest/min_min.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
@@ -102,6 +105,7 @@ data:
   - test/yukicoder/913.test.cpp
   - test/mytest/range_mex.test.cpp
   - test/mytest/suffix_tree.test.cpp
+  - test/mytest/min_min.test.cpp
   - test/mytest/rbst_test.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp

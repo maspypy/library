@@ -121,6 +121,15 @@ data:
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/cntsummax_add.test.cpp
+    title: test/mytest/cntsummax_add.test.cpp
+  - icon: ':x:'
+    path: test/mytest/cntsummin_add.test.cpp
+    title: test/mytest/cntsummin_add.test.cpp
+  - icon: ':x:'
+    path: test/mytest/cntsummin_assign.test.cpp
+    title: test/mytest/cntsummin_assign.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/conv2d.test.cpp
     title: test/mytest/conv2d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -142,8 +151,17 @@ data:
     path: test/mytest/maxplus_concave.test.cpp
     title: test/mytest/maxplus_concave.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/min_min.test.cpp
+    title: test/mytest/min_min.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_of_linear_segments.test.cpp
     title: test/mytest/min_of_linear_segments.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/minidx_add.test.cpp
+    title: test/mytest/minidx_add.test.cpp
+  - icon: ':x:'
+    path: test/mytest/minmax_add.test.cpp
+    title: test/mytest/minmax_add.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/minplus_convex.test.cpp
     title: test/mytest/minplus_convex.test.cpp
@@ -249,9 +267,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -290,7 +308,7 @@ data:
   - graph/chromatic.hpp
   - graph/minimum_cycle_length_through_specified.hpp
   timestamp: '2022-10-23 11:21:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1775.test.cpp
   - test/yukicoder/541.test.cpp
@@ -311,10 +329,14 @@ data:
   - test/mytest/minplus_convex.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/is_substring.test.cpp
+  - test/mytest/cntsummin_assign.test.cpp
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/online_pow.test.cpp
+  - test/mytest/cntsummin_add.test.cpp
+  - test/mytest/minidx_add.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/add_chmin.test.cpp
+  - test/mytest/minmax_add.test.cpp
   - test/mytest/range_mex.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/online_exp.test.cpp
@@ -324,6 +346,7 @@ data:
   - test/mytest/chirp_z.test.cpp
   - test/mytest/powerquery.test.cpp
   - test/mytest/all_inverse.test.cpp
+  - test/mytest/min_min.test.cpp
   - test/mytest/online_division.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/tutte.test.cpp
@@ -337,6 +360,7 @@ data:
   - test/mytest/stern_brocot.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/binom.test.cpp
+  - test/mytest/cntsummax_add.test.cpp
   - test/mytest/tournament.test.cpp
   - test/mytest/rbst_test.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp

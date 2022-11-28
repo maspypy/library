@@ -1,9 +1,18 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: alg/monoid/add_chmin.hpp
-    title: alg/monoid/add_chmin.hpp
+  - icon: ':x:'
+    path: alg/acted_monoid/cntsummin_assign.hpp
+    title: alg/acted_monoid/cntsummin_assign.hpp
+  - icon: ':x:'
+    path: alg/monoid/assign.hpp
+    title: alg/monoid/assign.hpp
+  - icon: ':x:'
+    path: alg/monoid/cntsummin.hpp
+    title: alg/monoid/cntsummin.hpp
+  - icon: ':question:'
+    path: ds/lazysegtree.hpp
+    title: ds/lazysegtree.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -15,24 +24,25 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/add_chmin.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
-    \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
-    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
-    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
-    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
-    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+  bundledCode: "#line 1 \"test/mytest/cntsummin_assign.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#pragma\
+    \ GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -202,58 +212,137 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t\
+    \ { yes(!t); }\r\n#line 2 \"alg/monoid/cntsummin.hpp\"\n\r\ntemplate <typename\
+    \ E>\r\nstruct Monoid_CntSumMin {\r\n  using value_type = tuple<E, E, E>;\r\n\
+    \  using X = value_type;\r\n  static X op(X x, X y) {\r\n    auto [xc, xs, xm]\
+    \ = x;\r\n    auto [yc, ys, ym] = y;\r\n    return {xc + yc, xs + ys, max(xm,\
+    \ ym)};\r\n  }\r\n  static X from_element(E x) { return {1, x, x}; }\r\n  static\
+    \ constexpr X unit() { return {0, 0, numeric_limits<ll>::max()}; }\r\n  static\
+    \ constexpr bool commute = true;\r\n};\r\n#line 1 \"alg/monoid/assign.hpp\"\n\
+    template <typename X, X none_val>\r\nstruct Monoid_Assign {\r\n  using value_type\
+    \ = X;\r\n  static X op(X x, X y) { return (y == none_val ? x : y); }\r\n  static\
+    \ constexpr X unit() { return none_val; }\r\n  static constexpr bool commute =\
+    \ false;\r\n};\r\n#line 3 \"alg/acted_monoid/cntsummin_assign.hpp\"\n\r\ntemplate\
+    \ <typename E, ll none_val>\r\nstruct ActedMonoid_CntSumMin_Assign {\r\n  static\
+    \ constexpr ll INF = 1LL << 60;\r\n  using MX = Monoid_CntSumMin<E>;\r\n  using\
+    \ MA = Monoid_Set<ll, none_val>;\r\n  using X_structure = MX;\r\n  using A_structure\
+    \ = MA;\r\n  using X = typename MX::value_type;\r\n  using A = typename MA::value_type;\r\
+    \n  static constexpr X act(const X& x, const A& a) {\r\n    if (a == MA::unit())\
+    \ return x;\r\n    auto [xc, xs, xm] = x;\r\n    return {xc, xc * a, a};\r\n \
+    \ }\r\n};\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t\
     \ x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n         \
     \            chrono::high_resolution_clock::now().time_since_epoch())\n      \
     \               .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n\
     \  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
-    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 1 \"alg/monoid/add_chmin.hpp\"\
-    \n// min(x+a,b) \u3068\u8868\u305B\u308B\u95A2\u6570\u306E\u5408\u6210\ntemplate\
-    \ <typename E>\nstruct Monoid_Add_Chmin {\n  using value_type = pair<E, E>;\n\
-    \  using X = value_type;\n  static constexpr E R_INF = numeric_limits<E>::max();\n\
-    \n  static X op(X x, X y) {\n    auto [a, b] = x;\n    auto [d, e] = y;\n    a\
-    \ = a + d;\n    b = (b == R_INF ? b : b + d);\n    b = min(b, e);\n    return\
-    \ {a, b};\n  }\n\n  static E eval(X f, E x) { return min(x + f.fi, f.se); }\n\n\
-    \  static X add(E a) { return {a, R_INF}; }\n  static X chmin(E b) { return {0,\
-    \ b}; }\n\n  static constexpr X unit() { return {0, R_INF}; }\n  static constexpr\
-    \ bool commute = 0;\n};\n#line 6 \"test/mytest/add_chmin.test.cpp\"\n\nvoid test()\
-    \ {\n  int N = RNG(1, 100);\n  vc<int> X(N);\n  FOR(i, N) X[i] = RNG(-100, 100);\n\
-    \  vc<int> Y = X;\n  int Q = RNG(0, 10);\n  using Mono = Monoid_Add_Chmin<int>;\n\
-    \  using F = typename Mono::value_type;\n  F f = Mono::unit();\n\n  FOR(Q) {\n\
-    \    int t = RNG(0, 3);\n    int a = RNG(-100, 100);\n    if (t == 0) {\n    \
-    \  FOR(i, N) Y[i] += a;\n      f = Mono::op(f, Mono::add(a));\n    }\n    if (t\
-    \ == 1) {\n      FOR(i, N) chmin(Y[i], a);\n      f = Mono::op(f, Mono::chmin(a));\n\
-    \    }\n  }\n  FOR(i, N) assert(Y[i] == Mono::eval(f, X[i]));\n}\n\nvoid solve()\
-    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  FOR(100) test();\n\
+    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"ds/lazysegtree.hpp\"\
+    \n\ntemplate <typename ActedMonoid>\nstruct LazySegTree {\n  using Monoid_X =\
+    \ typename ActedMonoid::Monoid_X;\n  using Monoid_A = typename ActedMonoid::Monoid_A;\n\
+    \  using X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
+    \  int n, log, size;\n  vc<X> dat;\n  vc<A> laz;\n\n  LazySegTree() : LazySegTree(0)\
+    \ {}\n  LazySegTree(int n) : LazySegTree(vc<X>(n, Monoid_X::unit())) {}\n  LazySegTree(vc<X>\
+    \ v) : n(len(v)) {\n    log = 1;\n    while ((1 << log) < n) ++log;\n    size\
+    \ = 1 << log;\n    dat.assign(size << 1, Monoid_X::unit());\n    laz.assign(size,\
+    \ Monoid_A::unit());\n    FOR(i, n) dat[size + i] = v[i];\n    FOR3_R(i, 1, size)\
+    \ update(i);\n  }\n\n  template <typename F>\n  LazySegTree(int n, F f) : n(n)\
+    \ {\n    log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n \
+    \   dat.assign(size << 1, Monoid_X::unit());\n    laz.assign(size, Monoid_A::unit());\n\
+    \    FOR(i, n) dat[size + i] = f(i);\n    FOR3_R(i, 1, size) update(i);\n  }\n\
+    \n  void reset() {\n    fill(all(dat), Monoid_X::unit());\n    fill(all(laz),\
+    \ Monoid_A::unit());\n  }\n\n  void reset(const vc<X>& v) {\n    assert(len(v)\
+    \ == n);\n    reset();\n    FOR(i, n) dat[size + i] = v[i];\n    FOR3_R(i, 1,\
+    \ size) update(i);\n  }\n\n  void update(int k) { dat[k] = Monoid_X::op(dat[2\
+    \ * k], dat[2 * k + 1]); }\n\n  void all_apply(int k, A a) {\n    dat[k] = ActedMonoid::act(dat[k],\
+    \ a);\n    if (k < size) laz[k] = Monoid_A::op(laz[k], a);\n  }\n\n  void push(int\
+    \ k) {\n    all_apply(2 * k, laz[k]);\n    all_apply(2 * k + 1, laz[k]);\n   \
+    \ laz[k] = Monoid_A::unit();\n  }\n\n  void set(int p, X x) {\n    assert(0 <=\
+    \ p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n\
+    \    dat[p] = x;\n    for (int i = 1; i <= log; i++) update(p >> i);\n  }\n\n\
+    \  X get(int p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int\
+    \ i = log; i >= 1; i--) push(p >> i);\n    return dat[p];\n  }\n\n  vc<X> get_all()\
+    \ {\n    FOR(i, size) push(i);\n    return {dat.begin() + size, dat.begin() +\
+    \ size + n};\n  }\n\n  X prod(int l, int r) {\n    assert(0 <= l && l <= r &&\
+    \ r <= n);\n    if (l == r) return Monoid_X::unit();\n\n    l += size;\n    r\
+    \ += size;\n\n    for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i)\
+    \ != l) push(l >> i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n \
+    \   }\n\n    X xl = Monoid_X::unit(), xr = Monoid_X::unit();\n    while (l < r)\
+    \ {\n      if (l & 1) xl = Monoid_X::op(xl, dat[l++]);\n      if (r & 1) xr =\
+    \ Monoid_X::op(dat[--r], xr);\n      l >>= 1;\n      r >>= 1;\n    }\n\n    return\
+    \ Monoid_X::op(xl, xr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  void apply(int\
+    \ p, A a) {\n    assert(0 <= p && p < n);\n    p += size;\n    dat[p] = ActedMonoid::act(dat[p],\
+    \ a);\n    for (int i = 1; i <= log; i++) update(p >> i);\n  }\n\n  void apply(int\
+    \ l, int r, A a) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n\
+    \n    l += size;\n    r += size;\n\n    for (int i = log; i >= 1; i--) {\n   \
+    \   if (((l >> i) << i) != l) push(l >> i);\n      if (((r >> i) << i) != r) push((r\
+    \ - 1) >> i);\n    }\n\n    {\n      int l2 = l, r2 = r;\n      while (l < r)\
+    \ {\n        if (l & 1) all_apply(l++, a);\n        if (r & 1) all_apply(--r,\
+    \ a);\n        l >>= 1;\n        r >>= 1;\n      }\n      l = l2;\n      r = r2;\n\
+    \    }\n\n    for (int i = 1; i <= log; i++) {\n      if (((l >> i) << i) != l)\
+    \ update(l >> i);\n      if (((r >> i) << i) != r) update((r - 1) >> i);\n   \
+    \ }\n  }\n\n  template <typename C>\n  int max_right(C& check, int l) {\n    assert(0\
+    \ <= l && l <= n);\n    assert(check(Monoid_X::unit()));\n    if (l == n) return\
+    \ n;\n    l += size;\n    for (int i = log; i >= 1; i--) push(l >> i);\n    X\
+    \ sm = Monoid_X::unit();\n    do {\n      while (l % 2 == 0) l >>= 1;\n      if\
+    \ (!check(Monoid_X::op(sm, dat[l]))) {\n        while (l < size) {\n         \
+    \ push(l);\n          l = (2 * l);\n          if (check(Monoid_X::op(sm, dat[l])))\
+    \ {\n            sm = Monoid_X::op(sm, dat[l]);\n            l++;\n          }\n\
+    \        }\n        return l - size;\n      }\n      sm = Monoid_X::op(sm, dat[l]);\n\
+    \      l++;\n    } while ((l & -l) != l);\n    return n;\n  }\n\n  template <typename\
+    \ C>\n  int min_left(C& check, int r) {\n    assert(0 <= r && r <= n);\n    assert(check(Monoid_X::unit()));\n\
+    \    if (r == 0) return 0;\n    r += size;\n    for (int i = log; i >= 1; i--)\
+    \ push((r - 1) >> i);\n    X sm = Monoid_X::unit();\n    do {\n      r--;\n  \
+    \    while (r > 1 && (r % 2)) r >>= 1;\n      if (!check(Monoid_X::op(dat[r],\
+    \ sm))) {\n        while (r < size) {\n          push(r);\n          r = (2 *\
+    \ r + 1);\n          if (check(Monoid_X::op(dat[r], sm))) {\n            sm =\
+    \ Monoid_X::op(dat[r], sm);\n            r--;\n          }\n        }\n      \
+    \  return r + 1 - size;\n      }\n      sm = Monoid_X::op(dat[r], sm);\n    }\
+    \ while ((r & -r) != r);\n    return 0;\n  }\n};\n#line 7 \"test/mytest/cntsummin_assign.test.cpp\"\
+    \n\nvoid test() {\n  int N = RNG(1, 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] =\
+    \ RNG(1, 100);\n  using AM = ActedMonoid_CntSumMin_Assign<ll, -1>;\n  using Mono\
+    \ = typename AM::Monoid_X;\n  LazySegTree<Lazy_CntSumMin_Set<ll, -1>> seg(\n \
+    \     N, [&](int i) -> Mono::value_type { return Mono::from_element(A[i]); });\n\
+    \  int Q = RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0, 2);\n    ll L = RNG(0,\
+    \ N);\n    ll R = RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n    if (t\
+    \ == 1) {\n      ll x = RNG(1, 100);\n      FOR(i, L, R) A[i] = x;\n      seg.apply(L,\
+    \ R, x);\n    }\n    if (t == 2) {\n      vc<int> B = {A.begin() + L, A.begin()\
+    \ + R};\n      auto [cnt, sm, mi] = seg.prod(L, R);\n      assert(cnt == len(B));\n\
+    \      assert(sm == SUM<ll>(B));\n      assert(mi == MIN(B));\n    }\n  }\n}\n\
+    \nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n  FOR(100) test();\n\
     \  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"random/base.hpp\"\n#include \"alg/monoid/add_chmin.hpp\"\
-    \n\nvoid test() {\n  int N = RNG(1, 100);\n  vc<int> X(N);\n  FOR(i, N) X[i] =\
-    \ RNG(-100, 100);\n  vc<int> Y = X;\n  int Q = RNG(0, 10);\n  using Mono = Monoid_Add_Chmin<int>;\n\
-    \  using F = typename Mono::value_type;\n  F f = Mono::unit();\n\n  FOR(Q) {\n\
-    \    int t = RNG(0, 3);\n    int a = RNG(-100, 100);\n    if (t == 0) {\n    \
-    \  FOR(i, N) Y[i] += a;\n      f = Mono::op(f, Mono::add(a));\n    }\n    if (t\
-    \ == 1) {\n      FOR(i, N) chmin(Y[i], a);\n      f = Mono::op(f, Mono::chmin(a));\n\
-    \    }\n  }\n  FOR(i, N) assert(Y[i] == Mono::eval(f, X[i]));\n}\n\nvoid solve()\
-    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  FOR(100) test();\n\
-    \  solve();\n\n  return 0;\n}"
+    \n#include \"other/io.hpp\"\n#include \"alg/acted_monoid/cntsummin_assign.hpp\"\
+    \n#include \"random/base.hpp\"\n#include \"ds/lazysegtree.hpp\"\n\nvoid test()\
+    \ {\n  int N = RNG(1, 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1, 100);\n\
+    \  using AM = ActedMonoid_CntSumMin_Assign<ll, -1>;\n  using Mono = typename AM::Monoid_X;\n\
+    \  LazySegTree<Lazy_CntSumMin_Set<ll, -1>> seg(\n      N, [&](int i) -> Mono::value_type\
+    \ { return Mono::from_element(A[i]); });\n  int Q = RNG(1, 100);\n  FOR(Q) {\n\
+    \    ll t = RNG(0, 2);\n    ll L = RNG(0, N);\n    ll R = RNG(0, N);\n    if (L\
+    \ > R) swap(L, R);\n    ++R;\n    if (t == 1) {\n      ll x = RNG(1, 100);\n \
+    \     FOR(i, L, R) A[i] = x;\n      seg.apply(L, R, x);\n    }\n    if (t == 2)\
+    \ {\n      vc<int> B = {A.begin() + L, A.begin() + R};\n      auto [cnt, sm, mi]\
+    \ = seg.prod(L, R);\n      assert(cnt == len(B));\n      assert(sm == SUM<ll>(B));\n\
+    \      assert(mi == MIN(B));\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n \
+    \ print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n  FOR(100) test();\n  solve();\n\n  return 0;\n\
+    }\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
+  - alg/acted_monoid/cntsummin_assign.hpp
+  - alg/monoid/cntsummin.hpp
+  - alg/monoid/assign.hpp
   - random/base.hpp
-  - alg/monoid/add_chmin.hpp
+  - ds/lazysegtree.hpp
   isVerificationFile: true
-  path: test/mytest/add_chmin.test.cpp
+  path: test/mytest/cntsummin_assign.test.cpp
   requiredBy: []
-  timestamp: '2022-11-27 23:48:23+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-11-28 15:25:25+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/mytest/add_chmin.test.cpp
+documentation_of: test/mytest/cntsummin_assign.test.cpp
 layout: document
 redirect_from:
-- /verify/test/mytest/add_chmin.test.cpp
-- /verify/test/mytest/add_chmin.test.cpp.html
-title: test/mytest/add_chmin.test.cpp
+- /verify/test/mytest/cntsummin_assign.test.cpp
+- /verify/test/mytest/cntsummin_assign.test.cpp.html
+title: test/mytest/cntsummin_assign.test.cpp
 ---

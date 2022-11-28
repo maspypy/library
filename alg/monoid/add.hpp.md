@@ -11,10 +11,10 @@ data:
   - icon: ':warning:'
     path: alg/acted_monoid/cntsum_add.hpp
     title: alg/acted_monoid/cntsum_add.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/cntsummax_add.hpp
     title: alg/acted_monoid/cntsummax_add.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: alg/acted_monoid/cntsummin_add.hpp
     title: alg/acted_monoid/cntsummin_add.hpp
   - icon: ':warning:'
@@ -26,10 +26,10 @@ data:
   - icon: ':warning:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/minidx_add.hpp
     title: alg/acted_monoid/minidx_add.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: alg/acted_monoid/minmax_add.hpp
     title: alg/acted_monoid/minmax_add.hpp
   - icon: ':heavy_check_mark:'
@@ -165,6 +165,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/cntsummax_add.test.cpp
+    title: test/mytest/cntsummax_add.test.cpp
+  - icon: ':x:'
+    path: test/mytest/cntsummin_add.test.cpp
+    title: test/mytest/cntsummin_add.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/minidx_add.test.cpp
+    title: test/mytest/minidx_add.test.cpp
+  - icon: ':x:'
+    path: test/mytest/minmax_add.test.cpp
+    title: test/mytest/minmax_add.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
@@ -305,7 +317,11 @@ data:
   - test/yukicoder/919.test.cpp
   - test/yukicoder/1097.test.cpp
   - test/yukicoder/1977.test.cpp
+  - test/mytest/cntsummin_add.test.cpp
+  - test/mytest/minidx_add.test.cpp
+  - test/mytest/minmax_add.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
+  - test/mytest/cntsummax_add.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp

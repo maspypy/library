@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: alg/acted_monoid/cntsummin_assign.hpp
     title: alg/acted_monoid/cntsummin_assign.hpp
   - icon: ':warning:'
@@ -14,10 +14,13 @@ data:
   - icon: ':warning:'
     path: alg/acted_monoid/powersums_assign.hpp
     title: alg/acted_monoid/powersums_assign.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/mytest/cntsummin_assign.test.cpp
+    title: test/mytest/cntsummin_assign.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid/assign.hpp\"\ntemplate <typename X, X none_val>\r\
@@ -37,8 +40,9 @@ data:
   - alg/acted_monoid/min_assign.hpp
   - alg/acted_monoid/powersums_assign.hpp
   timestamp: '2022-11-28 14:51:10+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/mytest/cntsummin_assign.test.cpp
 documentation_of: alg/monoid/assign.hpp
 layout: document
 redirect_from:

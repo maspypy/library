@@ -14,17 +14,19 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
     \ File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: alg/lazy/cntsummax_set.hpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: alg/monoid/set.hpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"alg/lazy/cntsummax_set.hpp\"\n#include\
-    \ \"random/base.hpp\"\n#include \"ds/lazysegtree.hpp\"\n\nvoid test() {\n  int\
-    \ N = RNG(1, 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1, 100);\n  using\
-    \ Lazy = Lazy_CntSumMax_Set<ll, -1>;\n  using Mono = typename Lazy::MX;\n  LazySegTree<Lazy_CntSumMax_Set<ll,\
-    \ -1>> seg(\n      N, [&](int i) -> Mono::value_type { return Mono::from_element(A[i]);\
+    \n#include \"other/io.hpp\"\n#include \"alg/acted_monoid/cntsummax_assign.hpp\"\
+    \n#include \"random/base.hpp\"\n#include \"ds/lazysegtree.hpp\"\n\nvoid test()\
+    \ {\n  int N = RNG(1, 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1, 100);\n\
+    \  using AM = ActedMonoid_CntSumMax_Set<ll, -1>;\n  using Mono = typename AM::Monoid_X;\n\
+    \  LazySegTree<AM> seg(\n      N, [&](int i) -> Mono::value_type { return Mono::from_element(A[i]);\
     \ });\n  int Q = RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0, 2);\n    ll L = RNG(0,\
     \ N);\n    ll R = RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n    if (t\
     \ == 1) {\n      ll x = RNG(1, 100);\n      FOR(i, L, R) A[i] = x;\n      seg.apply(L,\
@@ -36,15 +38,15 @@ data:
     \  solve();\n\n  return 0;\n}\n"
   dependsOn: []
   isVerificationFile: true
-  path: test/mytest/cntsummax_set.test.cpp
+  path: test/mytest/cntsummax_assign.test.cpp
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/mytest/cntsummax_set.test.cpp
+documentation_of: test/mytest/cntsummax_assign.test.cpp
 layout: document
 redirect_from:
-- /verify/test/mytest/cntsummax_set.test.cpp
-- /verify/test/mytest/cntsummax_set.test.cpp.html
-title: test/mytest/cntsummax_set.test.cpp
+- /verify/test/mytest/cntsummax_assign.test.cpp
+- /verify/test/mytest/cntsummax_assign.test.cpp.html
+title: test/mytest/cntsummax_assign.test.cpp
 ---
