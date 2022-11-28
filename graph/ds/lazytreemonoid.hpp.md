@@ -12,12 +12,15 @@ data:
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1790.test.cpp
     title: test/yukicoder/1790.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/235.test.cpp
+    title: test/yukicoder/235.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/lazysegtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -305,8 +308,9 @@ data:
   path: graph/ds/lazytreemonoid.hpp
   requiredBy: []
   timestamp: '2022-11-28 15:45:24+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/235.test.cpp
   - test/yukicoder/1790.test.cpp
 documentation_of: graph/ds/lazytreemonoid.hpp
 layout: document

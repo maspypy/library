@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':question:'
     path: alg/acted_monoid/cntsum_add.hpp
     title: alg/acted_monoid/cntsum_add.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/cntsum_affine.hpp
     title: alg/acted_monoid/cntsum_affine.hpp
   - icon: ':x:'
@@ -21,6 +21,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1919.test.cpp
     title: test/yukicoder/1919.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/235.test.cpp
+    title: test/yukicoder/235.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/255.test.cpp
+    title: test/yukicoder/255.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/789_2.test.cpp
+    title: test/yukicoder/789_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -47,6 +56,9 @@ data:
   timestamp: '2022-11-27 15:24:24+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/235.test.cpp
+  - test/yukicoder/789_2.test.cpp
+  - test/yukicoder/255.test.cpp
   - test/yukicoder/1919.test.cpp
   - test/mytest/cf702_F.test.cpp
   - test/aoj/DSL_2_I.test.cpp

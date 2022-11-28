@@ -7,11 +7,26 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: ds/common_interval_decomposition.hpp
+    title: ds/common_interval_decomposition.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_H.test.cpp
     title: test/aoj/DSL_2_H.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/common_interval_decomposition.test.cpp
+    title: test/library_checker/graph/common_interval_decomposition.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1234.test.cpp
+    title: test/yukicoder/1234.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1270.test.cpp
+    title: test/yukicoder/1270.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1720.test.cpp
+    title: test/yukicoder/1720.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -43,10 +58,15 @@ data:
   - alg/monoid/min.hpp
   isVerificationFile: false
   path: alg/acted_monoid/min_add.hpp
-  requiredBy: []
+  requiredBy:
+  - ds/common_interval_decomposition.hpp
   timestamp: '2022-11-28 15:05:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1234.test.cpp
+  - test/yukicoder/1720.test.cpp
+  - test/yukicoder/1270.test.cpp
+  - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/aoj/DSL_2_H.test.cpp
 documentation_of: alg/acted_monoid/min_add.hpp
 layout: document

@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/cntsum_affine.hpp
     title: alg/acted_monoid/cntsum_affine.hpp
   _extendedVerifiedWith:
@@ -36,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1891.test.cpp
     title: test/yukicoder/1891.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/255.test.cpp
+    title: test/yukicoder/255.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -66,6 +69,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1502.test.cpp
+  - test/yukicoder/255.test.cpp
   - test/yukicoder/1891.test.cpp
   - test/mytest/splay.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp

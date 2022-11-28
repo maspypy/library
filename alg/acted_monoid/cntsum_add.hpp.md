@@ -8,10 +8,16 @@ data:
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/235.test.cpp
+    title: test/yukicoder/235.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/789_2.test.cpp
+    title: test/yukicoder/789_2.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -43,8 +49,10 @@ data:
   path: alg/acted_monoid/cntsum_add.hpp
   requiredBy: []
   timestamp: '2022-11-28 15:09:50+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/yukicoder/235.test.cpp
+  - test/yukicoder/789_2.test.cpp
 documentation_of: alg/acted_monoid/cntsum_add.hpp
 layout: document
 redirect_from:
