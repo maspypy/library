@@ -5,15 +5,13 @@
 #include "alg/monoid/max.hpp"
 #include "graph/ds/lazytreemonoid.hpp"
 
-struct Lazy {
-  using MX = Monoid_Xor<ll>;
-  using MA = Monoid_Max<int>;
-  using X_structure = MX;
-  using A_structure = MA;
-  using X = typename MX::value_type;
-  using A = typename MA::value_type;
+struct ActedMonoid {
+  using Monoid_X = Monoid_Xor<ll>;
+  using Monoid_A = Monoid_Max<int>;
+  using X = typename Monoid_X::value_type;
+  using A = typename Monoid_A::value_type;
   static constexpr X act(const X &x, const A &a) {
-    if (a == MA::unit()) return x;
+    if (a == Monoid_A::unit()) return x;
     return 0;
   }
 };
@@ -31,7 +29,7 @@ void solve() {
   G.build();
   TREE<decltype(G)> tree(G);
 
-  LazyTreeMonoid<decltype(tree), Lazy, 1> X(tree, dat);
+  LazyTreeMonoid<decltype(tree), ActedMonoid, 1> X(tree, dat);
   LL(Q);
   FOR(Q) {
     LL(t, x);
