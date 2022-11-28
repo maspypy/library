@@ -23,14 +23,14 @@ data:
     \n#include \"other/io.hpp\"\n#include \"alg/acted_monoid/min_assign.hpp\"\n#include\
     \ \"ds/bbst/rbst_lazy.hpp\"\n#include \"random/base.hpp\"\n\nvoid test() {\n \
     \ using AM = ActedMonoid_Min_Assign<int, -1>;\n  using MonoX = typename AM::Monoid_X;\n\
-    \n  RBST_Lazy<AM, 100> X;\n  FOR(1000) {\n    X.reset();\n    int N = RNG(1, 20);\n\
-    \    int Q = RNG(1, 1000);\n    vc<int> A(N);\n    FOR(i, N) A[i] = RNG(1, 100);\n\
-    \    auto root = X.new_node(A);\n\n    FOR(Q) {\n      int t = RNG(0, 7);\n  \
-    \    if (t == 0) {\n        int i = RNG(0, N);\n        assert(A[i] == X.get(root,\
-    \ i));\n      }\n      if (t == 1) {\n        int i = RNG(0, N);\n        int\
-    \ x = RNG(1, 100);\n        root = X.set(root, i, x);\n        A[i] = x;\n   \
-    \   }\n      if (t == 2) {\n        int i = RNG(0, N);\n        int x = RNG(1,\
-    \ 100);\n        root = X.multiply(root, i, x);\n        A[i] = MonoX::op(A[i],\
+    \n  RBST_ActedMonoid<AM, 100> X;\n  FOR(1000) {\n    X.reset();\n    int N = RNG(1,\
+    \ 20);\n    int Q = RNG(1, 1000);\n    vc<int> A(N);\n    FOR(i, N) A[i] = RNG(1,\
+    \ 100);\n    auto root = X.new_node(A);\n\n    FOR(Q) {\n      int t = RNG(0,\
+    \ 7);\n      if (t == 0) {\n        int i = RNG(0, N);\n        assert(A[i] ==\
+    \ X.get(root, i));\n      }\n      if (t == 1) {\n        int i = RNG(0, N);\n\
+    \        int x = RNG(1, 100);\n        root = X.set(root, i, x);\n        A[i]\
+    \ = x;\n      }\n      if (t == 2) {\n        int i = RNG(0, N);\n        int\
+    \ x = RNG(1, 100);\n        root = X.multiply(root, i, x);\n        A[i] = MonoX::op(A[i],\
     \ x);\n      }\n      if (t == 3) {\n        int L = RNG(0, N);\n        int R\
     \ = RNG(0, N);\n        if (L > R) swap(L, R);\n        ++R;\n        vc<int>\
     \ B = {A.begin() + L, A.begin() + R};\n        assert(X.prod(root, L, R) == MIN(B));\n\
@@ -42,18 +42,18 @@ data:
     \ L, R) A[i] = x;\n        root = X.apply(root, L, R, x);\n      }\n      if (t\
     \ == 6) {\n        vc<int> B = X.get_all(root);\n        assert(A == B);\n   \
     \   }\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned\
-    \ main() {\n  test();\n  solve();\n\n  return 0;\n}"
+    \ main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
   dependsOn: []
   isVerificationFile: true
-  path: test/mytest/rbst_lazy.test.cpp
+  path: test/mytest/rbst_am.test.cpp
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/mytest/rbst_lazy.test.cpp
+documentation_of: test/mytest/rbst_am.test.cpp
 layout: document
 redirect_from:
-- /verify/test/mytest/rbst_lazy.test.cpp
-- /verify/test/mytest/rbst_lazy.test.cpp.html
-title: test/mytest/rbst_lazy.test.cpp
+- /verify/test/mytest/rbst_am.test.cpp
+- /verify/test/mytest/rbst_am.test.cpp.html
+title: test/mytest/rbst_am.test.cpp
 ---

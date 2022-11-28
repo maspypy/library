@@ -23,9 +23,9 @@ data:
     \n#include \"other/io.hpp\"\n#include \"alg/acted_monoid/cntsum_add.hpp\"\n#include\
     \ \"ds/bbst/rbst_lazy.hpp\"\n#include \"random/base.hpp\"\n\nvoid test() {\n \
     \ using AM = ActedMonoid_CntSum_Add<int>;\n  using MonoX = typename AM::Monoid_X;\n\
-    \n  RBST_Lazy<AM, 100> X;\n  FOR(1000) {\n    X.reset();\n    int N = RNG(1, 3);\n\
-    \    int Q = RNG(1, 1000);\n    vc<int> A(N);\n    FOR(i, N) A[i] = RNG(1, 10);\n\
-    \n    vc<pair<int, int>> seg_raw(N);\n    FOR(i, N) seg_raw[i] = {1, A[i]};\n\
+    \n  RBST_ActedMonoid<AM, 100> X;\n  FOR(1000) {\n    X.reset();\n    int N = RNG(1,\
+    \ 3);\n    int Q = RNG(1, 1000);\n    vc<int> A(N);\n    FOR(i, N) A[i] = RNG(1,\
+    \ 10);\n\n    vc<pair<int, int>> seg_raw(N);\n    FOR(i, N) seg_raw[i] = {1, A[i]};\n\
     \    auto root = X.new_node(seg_raw);\n\n    FOR(Q) {\n      int t = RNG(0, 7);\n\
     \      if (t == 0) {\n        int i = RNG(0, N);\n        assert(A[i] == X.get(root,\
     \ i).se);\n      }\n      if (t == 1) {\n        int i = RNG(0, N);\n        int\
@@ -44,18 +44,18 @@ data:
     \ (t == 6) {\n        vc<pair<int, int>> B = X.get_all(root);\n        FOR(i,\
     \ N) assert(A[i] == B[i].se);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  LL(a,\
     \ b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return\
-    \ 0;\n}"
+    \ 0;\n}\n"
   dependsOn: []
   isVerificationFile: true
-  path: test/mytest/rbst_lazy_2.test.cpp
+  path: test/mytest/rbst_am_2.test.cpp
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/mytest/rbst_lazy_2.test.cpp
+documentation_of: test/mytest/rbst_am_2.test.cpp
 layout: document
 redirect_from:
-- /verify/test/mytest/rbst_lazy_2.test.cpp
-- /verify/test/mytest/rbst_lazy_2.test.cpp.html
-title: test/mytest/rbst_lazy_2.test.cpp
+- /verify/test/mytest/rbst_am_2.test.cpp
+- /verify/test/mytest/rbst_am_2.test.cpp.html
+title: test/mytest/rbst_am_2.test.cpp
 ---
