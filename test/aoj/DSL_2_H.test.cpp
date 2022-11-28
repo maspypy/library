@@ -3,14 +3,14 @@
 
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "alg/lazy/min_add.hpp"
+#include "alg/acted_monoid/min_add.hpp"
 #include "ds/lazysegtree.hpp"
 
 void solve() {
-  using Lazy = Lazy_Min_Add<ll>;
+  using AM = ActedMonoid_Min_Add<ll>;
   LL(N, Q);
   vi A(N);
-  LazySegTree<Lazy> seg(A);
+  LazySegTree<AM> seg(A);
   FOR(Q) {
     LL(t, L, R);
     ++R;

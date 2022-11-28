@@ -3,10 +3,10 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/dualsegtree.hpp"
-#include "alg/monoid/set.hpp"
+#include "alg/monoid/assign.hpp"
 
 void solve() {
-  using Mono = Monoid_Set<ll, (1LL << 31) - 1>;
+  using Mono = Monoid_Assign<ll, (1LL << 31) - 1>;
   LL(N, Q);
   DualSegTree<Mono> seg(N);
   FOR(_, Q) {

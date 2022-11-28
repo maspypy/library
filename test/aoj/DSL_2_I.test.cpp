@@ -3,15 +3,15 @@
 
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "alg/lazy/cntsum_set.hpp"
+#include "alg/acted_monoid/cntsum_assign.hpp"
 #include "ds/lazysegtree.hpp"
 
 void solve() {
   LL(N, Q);
-  using Lazy = Lazy_CntSum_Set<ll, 12345>;
+  using AM = ActedMonoid_Assign<ll, 12345>;
   vc<pi> seg_raw(N);
   FOR(i, N) seg_raw[i] = {1, 0};
-  LazySegTree<Lazy> seg(seg_raw);
+  LazySegTree<AM> seg(seg_raw);
   FOR(_, Q) {
     LL(t, L, R);
     ++R;

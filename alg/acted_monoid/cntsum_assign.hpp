@@ -1,8 +1,8 @@
 #include "alg/monoid/add_pair.hpp"
-#include "alg/monoid/set.hpp"
+#include "alg/monoid/assign.hpp"
 
 template <typename E, E none_val>
-struct Lazy_CntSum_Set {
+struct ActedMonoid_CntSum_Assign {
   using X_structure = Monoid_Add_Pair<E>;
   using A_structure = Monoid_Set<E, none_val>;
   using X = typename X_structure::value_type;
