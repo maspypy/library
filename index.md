@@ -30,7 +30,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/cntsummin_assign.hpp
       title: alg/acted_monoid/cntsummin_assign.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: alg/acted_monoid/max_add.hpp
       title: alg/acted_monoid/max_add.hpp
     - icon: ':heavy_check_mark:'
@@ -157,12 +157,12 @@ data:
       title: datetime/datetime.hpp
   - name: ds/bbst
     pages:
+    - icon: ':warning:'
+      path: ds/bbst/rbst_acted_monoid.hpp
+      title: ds/bbst/rbst_acted_monoid.hpp
     - icon: ':heavy_check_mark:'
       path: ds/bbst/rbst_dual.hpp
       title: ds/bbst/rbst_dual.hpp
-    - icon: ':heavy_check_mark:'
-      path: ds/bbst/rbst_lazy.hpp
-      title: ds/bbst/rbst_lazy.hpp
     - icon: ':heavy_check_mark:'
       path: ds/bbst/rbst_monoid.hpp
       title: ds/bbst/rbst_monoid.hpp
@@ -1625,7 +1625,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
       title: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
       title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2231,10 +2231,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/range_mex.test.cpp
       title: test/mytest/range_mex.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/mytest/rbst_lazy.test.cpp
       title: test/mytest/rbst_lazy.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/mytest/rbst_lazy_2.test.cpp
       title: test/mytest/rbst_lazy_2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2794,7 +2794,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/655.test.cpp
       title: test/yukicoder/655.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/686.test.cpp
       title: test/yukicoder/686.test.cpp
     - icon: ':heavy_check_mark:'

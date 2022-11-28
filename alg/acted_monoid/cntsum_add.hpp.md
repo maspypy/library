@@ -13,9 +13,6 @@ data:
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_lazy_2.test.cpp
-    title: test/mytest/rbst_lazy_2.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
   - icon: ':heavy_check_mark:'
@@ -63,7 +60,6 @@ data:
   - test/yukicoder/235.test.cpp
   - test/yukicoder/789_2.test.cpp
   - test/yukicoder/1197.test.cpp
-  - test/mytest/rbst_lazy_2.test.cpp
   - test/aoj/GRL_5_E.test.cpp
 documentation_of: alg/acted_monoid/cntsum_add.hpp
 layout: document

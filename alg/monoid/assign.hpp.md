@@ -40,9 +40,6 @@ data:
     path: test/mytest/max_assign.test.cpp
     title: test/mytest/max_assign.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_lazy.test.cpp
-    title: test/mytest/rbst_lazy.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_monoid.test.cpp
     title: test/mytest/rbst_monoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -76,7 +73,6 @@ data:
   verifiedWith:
   - test/yukicoder/1548.test.cpp
   - test/mytest/cntsummin_assign.test.cpp
-  - test/mytest/rbst_lazy.test.cpp
   - test/mytest/cntsummax_assign.test.cpp
   - test/mytest/rbst_monoid.test.cpp
   - test/mytest/max_assign.test.cpp
