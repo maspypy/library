@@ -1,5 +1,5 @@
 template <typename ActedSet, int NODES = 1'000'000>
-struct RBST_Dual {
+struct RBST_ActedSet {
   using Monoid_A = typename ActedSet::Monoid_A;
   using A = typename ActedSet::A;
   using S = typename ActedSet::S;
@@ -16,14 +16,13 @@ struct RBST_Dual {
   int pid;
   using np = Node *;
 
-  RBST_Dual() : pid(0) { pool = new Node[NODES]; }
+  RBST_ActedSet() : pid(0) { pool = new Node[NODES]; }
 
   void reset() { pid = 0; }
 
   np new_node(const S &s) {
     pool[pid].l = pool[pid].r = nullptr;
     pool[pid].s = s;
-    pool[pid].prod = x;
     pool[pid].lazy = Monoid_A::unit();
     pool[pid].size = 1;
     pool[pid].rev = 0;
@@ -70,7 +69,6 @@ struct RBST_Dual {
   }
 
   np reverse(np root, u32 l, u32 r) {
-    assert(Monoid_X::commute);
     assert(0 <= l && l <= r && r <= root->size);
     if (r - l <= 1) return root;
     auto [nl, nm, nr] = split3(root, l, r);
@@ -117,11 +115,11 @@ private:
   void prop(np c) {
     if (c->lazy != Monoid_A::unit()) {
       if (c->l) {
-        c->l->s = Lazy::act(c->l->s, c->lazy);
+        c->l->s = ActedSet::act(c->l->s, c->lazy);
         c->l->lazy = Monoid_A::op(c->l->lazy, c->lazy);
       }
       if (c->r) {
-        c->r->s = Lazy::act(c->r->s, c->lazy);
+        c->r->s = ActedSet::act(c->r->s, c->lazy);
         c->r->lazy = Monoid_A::op(c->r->lazy, c->lazy);
       }
       c->lazy = Monoid_A::unit();
@@ -196,7 +194,7 @@ private:
     return root;
   }
 
-  X get_rec(np root, u32 k) {
+  S get_rec(np root, u32 k) {
     prop(root);
     u32 sl = (root->l ? root->l->size : 0);
     if (k < sl) return get_rec(root->l, k);
@@ -207,14 +205,13 @@ private:
   np apply_rec(np root, u32 l, u32 r, const A &a) {
     prop(root);
     if (l == 0 && r == root->size) {
-      root->x = Lazy::act(root->x, a);
-      root->prod = Lazy::act(root->prod, a);
+      root->x = ActedSet::act(root->x, a);
       root->lazy = a;
       return root;
     }
     u32 sl = (root->l ? root->l->size : 0);
     if (l < sl) apply_rec(root->l, l, min(r, sl), a);
-    if (l <= sl && sl < r) root->x = Lazy::act(root->x, a);
+    if (l <= sl && sl < r) root->x = ActedSet::act(root->x, a);
     u32 k = 1 + sl;
     if (k < r) apply_rec(root->r, max(k, l) - k, r - k, a);
     update(root);

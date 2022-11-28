@@ -98,7 +98,7 @@ struct RBST_ActedMonoid {
     vc<X> res;
     auto dfs = [&](auto &dfs, np root, bool rev, A lazy) -> void {
       if (!root) return;
-      X me = Lazy::act(root->x, lazy);
+      X me = ActedMonoid::act(root->x, lazy);
       lazy = Monoid_A::op(root->lazy, lazy);
       dfs(dfs, (rev ? root->r : root->l), rev ^ root->rev, lazy);
       res.eb(me);
@@ -131,13 +131,13 @@ private:
   void prop(np c) {
     if (c->lazy != Monoid_A::unit()) {
       if (c->l) {
-        c->l->x = Lazy::act(c->l->x, c->lazy);
-        c->l->prod = Lazy::act(c->l->prod, c->lazy);
+        c->l->x = ActedMonoid::act(c->l->x, c->lazy);
+        c->l->prod = ActedMonoid::act(c->l->prod, c->lazy);
         c->l->lazy = Monoid_A::op(c->l->lazy, c->lazy);
       }
       if (c->r) {
-        c->r->x = Lazy::act(c->r->x, c->lazy);
-        c->r->prod = Lazy::act(c->r->prod, c->lazy);
+        c->r->x = ActedMonoid::act(c->r->x, c->lazy);
+        c->r->prod = ActedMonoid::act(c->r->prod, c->lazy);
         c->r->lazy = Monoid_A::op(c->r->lazy, c->lazy);
       }
       c->lazy = Monoid_A::unit();
