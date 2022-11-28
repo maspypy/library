@@ -3,12 +3,10 @@
 
 template <typename E>
 struct ActedMonoid_CntMinMincnt_Add {
-  using MX = Monoid_CntMinMincnt<E>;
-  using MA = Monoid_Add<E>;
-  using X_structure = MX;
-  using A_structure = MA;
-  using X = typename MX::value_type;
-  using A = typename MA::value_type;
+  using Monoid_X = Monoid_CntMinMincnt<E>;
+  using Monoid_A = Monoid_Add<E>;
+  using X = typename Monoid_X::value_type;
+  using A = typename Monoid_A::value_type;
   static constexpr X act(const X &x, const A &a) {
     auto [xcnt, xmin, xmincnt] = x;
     if (xmin == numeric_limits<ll>::max()) return x;
