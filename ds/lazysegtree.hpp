@@ -1,9 +1,9 @@
 #pragma once
 
-template <typename Lazy>
+template <typename ActedMonoid>
 struct LazySegTree {
-  using Monoid_X = typename Lazy::X_structure;
-  using Monoid_A = typename Lazy::A_structure;
+  using Monoid_X = typename ActedMonoid::Monoid_X;
+  using Monoid_A = typename ActedMonoid::Monoid_A;
   using X = typename Monoid_X::value_type;
   using A = typename Monoid_A::value_type;
   int n, log, size;
@@ -48,7 +48,7 @@ struct LazySegTree {
   void update(int k) { dat[k] = Monoid_X::op(dat[2 * k], dat[2 * k + 1]); }
 
   void all_apply(int k, A a) {
-    dat[k] = Lazy::act(dat[k], a);
+    dat[k] = ActedMonoid::act(dat[k], a);
     if (k < size) laz[k] = Monoid_A::op(laz[k], a);
   }
 
@@ -106,7 +106,7 @@ struct LazySegTree {
   void apply(int p, A a) {
     assert(0 <= p && p < n);
     p += size;
-    dat[p] = Lazy::act(dat[p], a);
+    dat[p] = ActedMonoid::act(dat[p], a);
     for (int i = 1; i <= log; i++) update(p >> i);
   }
 
@@ -193,6 +193,4 @@ struct LazySegTree {
     } while ((r & -r) != r);
     return 0;
   }
-
-  void debug() { print("lazysegtree getall:", get_all()); }
 };
