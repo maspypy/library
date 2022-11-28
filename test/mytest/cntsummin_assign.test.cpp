@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "alg/lazy/cntsummin_set.hpp"
+#include "alg/acted_monoid/cntsummin_assign.hpp"
 #include "random/base.hpp"
 #include "ds/lazysegtree.hpp"
 
@@ -9,8 +9,8 @@ void test() {
   int N = RNG(1, 100);
   vc<int> A(N);
   FOR(i, N) A[i] = RNG(1, 100);
-  using Lazy = Lazy_CntSumMin_Set<ll, -1>;
-  using Mono = typename Lazy::MX;
+  using AM = ActedMonoid_CntSumMin_Assign<ll, -1>;
+  using Mono = typename AM::Monoid_X;
   LazySegTree<Lazy_CntSumMin_Set<ll, -1>> seg(
       N, [&](int i) -> Mono::value_type { return Mono::from_element(A[i]); });
   int Q = RNG(1, 100);

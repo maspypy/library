@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "alg/lazy/minmax_add.hpp"
+#include "alg/acted_monoid/minmax_add.hpp"
 #include "random/base.hpp"
 #include "ds/lazysegtree.hpp"
 
@@ -9,9 +9,9 @@ void test() {
   int N = RNG(1, 100);
   vc<int> A(N);
   FOR(i, N) A[i] = RNG(1, 100);
-  using Lazy = Lazy_MinMax_Add<int>;
-  using Mono = typename Lazy::MX;
-  LazySegTree<Lazy> seg(N, [&](int i) { return Mono::from_element(A[i]); });
+  using AM = ActedMonoid_MinMax_Add<int>;
+  using Mono = typename AM::Monoid_X;
+  LazySegTree<AM> seg(N, [&](int i) { return AM::from_element(A[i]); });
   int Q = RNG(1, 100);
   FOR(Q) {
     ll t = RNG(0, 2);
