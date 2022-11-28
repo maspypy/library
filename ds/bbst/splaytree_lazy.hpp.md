@@ -2,16 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+    title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/bbst/splaytree_lazy.hpp\"\n// Monoid_X \u306E\u53EF\u63DB\
     \u6027\u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\ntemplate <typename Lazy, int\
-    \ NODES = 1'000'000>\nstruct SplayTree_Lazy {\n  using Monoid_X = typename Lazy::X_structure;\n\
-    \  using Monoid_A = typename Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n\
+    \ NODES = 1'000'000>\nstruct SplayTree_Lazy {\n  using Monoid_X = typename Lazy::Monoid_X;\n\
+    \  using Monoid_A = typename Lazy::Monoid_A;\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n\n  struct Node {\n    Node *l, *r,\
     \ *p;\n    X x, prod;\n    A a;\n    int size;\n    bool rev;\n  };\n\n  Node\
     \ *pool;\n  int pid;\n\n  SplayTree_Lazy() : pid(0) { pool = new Node[NODES];\
@@ -99,7 +102,7 @@ data:
     \  }\n};\n"
   code: "// Monoid_X \u306E\u53EF\u63DB\u6027\u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\
     \ntemplate <typename Lazy, int NODES = 1'000'000>\nstruct SplayTree_Lazy {\n \
-    \ using Monoid_X = typename Lazy::X_structure;\n  using Monoid_A = typename Lazy::A_structure;\n\
+    \ using Monoid_X = typename Lazy::Monoid_X;\n  using Monoid_A = typename Lazy::Monoid_A;\n\
     \  using X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
     \n  struct Node {\n    Node *l, *r, *p;\n    X x, prod;\n    A a;\n    int size;\n\
     \    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n\n  SplayTree_Lazy() : pid(0)\
@@ -189,9 +192,10 @@ data:
   isVerificationFile: false
   path: ds/bbst/splaytree_lazy.hpp
   requiredBy: []
-  timestamp: '2022-10-21 16:42:45+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-11-28 18:54:34+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
 documentation_of: ds/bbst/splaytree_lazy.hpp
 layout: document
 redirect_from:

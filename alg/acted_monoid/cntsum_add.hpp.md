@@ -4,11 +4,14 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_5_E.test.cpp
+    title: test/aoj/GRL_5_E.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_lazy_2.test.cpp
     title: test/mytest/rbst_lazy_2.test.cpp
@@ -61,6 +64,7 @@ data:
   - test/yukicoder/789_2.test.cpp
   - test/yukicoder/1197.test.cpp
   - test/mytest/rbst_lazy_2.test.cpp
+  - test/aoj/GRL_5_E.test.cpp
 documentation_of: alg/acted_monoid/cntsum_add.hpp
 layout: document
 redirect_from:

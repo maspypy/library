@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/cntsum_assign.hpp
     title: alg/acted_monoid/cntsum_assign.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_I
@@ -219,10 +219,10 @@ data:
     \ = X;\r\n  static X op(X x, X y) { return (y == none_val ? x : y); }\r\n  static\
     \ constexpr X unit() { return none_val; }\r\n  static constexpr bool commute =\
     \ false;\r\n};\r\n#line 3 \"alg/acted_monoid/cntsum_assign.hpp\"\n\r\ntemplate\
-    \ <typename E, E none_val>\r\nstruct ActedMonoid_CntSum_Assign {\r\n  using X_structure\
-    \ = Monoid_Add_Pair<E>;\r\n  using A_structure = Monoid_Set<E, none_val>;\r\n\
-    \  using X = typename X_structure::value_type;\r\n  using A = typename A_structure::value_type;\r\
-    \n  static constexpr X act(const X &x, const A &a) {\r\n    if (a == A_structure::unit())\
+    \ <typename E, E none_val>\r\nstruct ActedMonoid_CntSum_Assign {\r\n  using Monoid_X\
+    \ = Monoid_Add_Pair<E>;\r\n  using Monoid_A = Monoid_Assign<E, none_val>;\r\n\
+    \  using X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
+    \n  static constexpr X act(const X &x, const A &a) {\r\n    if (a == Monoid_A::unit())\
     \ return x;\r\n    return {x.fi, x.fi * a};\r\n  }\r\n};\r\n#line 2 \"ds/lazysegtree.hpp\"\
     \n\ntemplate <typename ActedMonoid>\nstruct LazySegTree {\n  using Monoid_X =\
     \ typename ActedMonoid::Monoid_X;\n  using Monoid_A = typename ActedMonoid::Monoid_A;\n\
@@ -314,8 +314,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_I.test.cpp
   requiredBy: []
-  timestamp: '2022-11-28 17:53:38+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-28 18:54:34+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_I.test.cpp
 layout: document

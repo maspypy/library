@@ -114,6 +114,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_4_A.test.cpp
     title: test/aoj/DSL_4_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_5_E.test.cpp
+    title: test/aoj/GRL_5_E.test.cpp
   - icon: ':x:'
     path: test/atcoder/abc127f_1.test.cpp
     title: test/atcoder/abc127f_1.test.cpp
@@ -429,6 +432,7 @@ data:
   - test/aoj/DSL_2_E.test.cpp
   - test/aoj/2842_2.test.cpp
   - test/aoj/DSL_4_A.test.cpp
+  - test/aoj/GRL_5_E.test.cpp
   - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/DSL_1_B.test.cpp
   - test/aoj/DSL_2_G.test.cpp

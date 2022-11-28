@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+    title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_lazy.test.cpp
     title: test/mytest/rbst_lazy.test.cpp
   - icon: ':heavy_check_mark:'
@@ -235,6 +238,7 @@ data:
   - test/yukicoder/686.test.cpp
   - test/mytest/rbst_lazy.test.cpp
   - test/mytest/rbst_lazy_2.test.cpp
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
 documentation_of: ds/bbst/rbst_lazy.hpp
 layout: document
 redirect_from:
