@@ -1,4 +1,3 @@
-// reverse はとりあえず、Monoid の可換性を仮定している！
 template <typename Lazy, int NODES = 1'000'000>
 struct RBST_Lazy {
   using Monoid_X = typename Lazy::Monoid_X;
