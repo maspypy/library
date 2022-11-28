@@ -1,21 +1,18 @@
 #include "ds/lazysegtree.hpp"
 #include "graph/tree.hpp"
-#include "alg/lazy/reverse.hpp"
 
-template <typename TREE, typename Lazy, bool edge = false>
+template <typename TREE, typename ActedMonoid, bool edge = false>
 struct LazyTreeMonoid {
-  using MonoX = typename Lazy::X_structure;
-  using MonoA = typename Lazy::A_structure;
+  using MonoX = typename ActedMonoid::Monoid_X;
+  using MonoA = typename ActedMonoid::Monoid_A;
   using X = typename MonoX::value_type;
   using A = typename MonoA::value_type;
-  using RevLazy = Lazy_Reverse<Lazy>;
   TREE &tree;
   int N;
-  LazySegTree<Lazy> seg;
-  LazySegTree<RevLazy> seg_r;
+  LazySegTree<ActedMonoid> seg;
 
   LazyTreeMonoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N) {
-    if (!MonoX::commute) seg_r = LazySegTree<RevLazy>(tree.N);
+    assert(MonoX::commute);
   }
 
   LazyTreeMonoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {
@@ -28,24 +25,21 @@ struct LazyTreeMonoid {
         seg_raw[tree.LID[v]] = dat[e];
       }
     }
-    seg = LazySegTree<Lazy>(seg_raw);
-    if (!MonoX::commute) seg_r = LazySegTree<RevLazy>(seg_raw);
+    seg = LazySegTree<ActedMonoid>(seg_raw);
+    assert(MonoX::commute);
   }
 
   void set(int i, X x) {
     if (edge) i = tree.e_to_v(i);
     i = tree.LID[i];
     seg.set(i, x);
-    if (!MonoX::commute) seg_r.set(i, x);
   }
 
   X prod_path(int u, int v) {
     auto pd = tree.get_path_decomposition(u, v, edge);
     X val = MonoX::unit();
     for (auto &&[a, b]: pd) {
-      X x = (a <= b ? seg.prod(a, b + 1)
-                    : (MonoX::commute ? seg.prod(b, a + 1)
-                                      : seg_r.prod(b, a + 1)));
+      X x = (a <= b ? seg.prod(a, b + 1) : seg.prod(b, a + 1));
       val = MonoX::op(val, x);
     }
     return val;
@@ -63,20 +57,12 @@ struct LazyTreeMonoid {
     for (auto &&[x, y]: pd) {
       int l = min(x, y), r = max(x, y);
       seg.apply(l, r + 1, a);
-      if (!MonoX::commute) seg_r.apply(l, r + 1, a);
     }
   }
 
   void apply_subtree(int u, A a) {
     int l = tree.LID[u], r = tree.RID[u];
     return seg.apply(l + edge, r, a);
-  }
-
-  void debug() {
-    print("tree_monoid");
-    tree.debug();
-    seg.debug();
-    seg_r.debug();
   }
 
   template <class F>
@@ -86,9 +72,7 @@ struct LazyTreeMonoid {
     auto pd = tree.get_path_decomposition(u, v, edge);
     X val = MonoX::unit();
     for (auto &&[a, b]: pd) {
-      X x = (a <= b ? seg.prod(a, b + 1)
-                    : (MonoX::commute ? seg.prod(b, a + 1)
-                                      : seg_r.prod(b, a + 1)));
+      X x = (a <= b ? seg.prod(a, b + 1) : seg.prod(b, a + 1));
       if (check(MonoX::op(val, x))) {
         val = MonoX::op(val, x);
         u = (tree.V[b]);
@@ -101,8 +85,7 @@ struct LazyTreeMonoid {
         return (i == a ? u : tree.V[i - 1]);
       } else {
         // 上り
-        auto i = (MonoX::commute ? seg.min_left(check_tmp, a + 1)
-                                 : seg_r.min_left(check_tmp, a + 1));
+        auto i = seg.min_left(check_tmp, a + 1);
         if (i == a + 1) return u;
         return tree.V[i];
       }
@@ -122,15 +105,14 @@ private:
     // climb
     for (auto &&[a, b]: pd) {
       assert(a >= b);
-      X x = (MonoX::commute ? seg.prod(b, a + 1) : seg_r.prod(b, a + 1));
+      X x = seg.prod(b, a + 1);
       if (check(MonoX::op(val, x))) {
         val = MonoX::op(val, x);
         u = (tree.parent[tree.V[b]]);
         continue;
       }
       auto check_tmp = [&](X x) -> bool { return check(MonoX::op(val, x)); };
-      auto i = (MonoX::commute ? seg.min_left(check_tmp, a + 1)
-                               : seg_r.min_left(check_tmp, a + 1));
+      auto i = seg.min_left(check_tmp, a + 1);
       if (i == a + 1) return u;
       return tree.parent[tree.V[i]];
     }

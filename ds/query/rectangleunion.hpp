@@ -1,5 +1,5 @@
 #include "ds/lazysegtree.hpp"
-#include "alg/lazy/cntminmincnt_add.hpp"
+#include "alg/acted_monoid/cntminmincnt_add.hpp"
 
 template <typename XY = int>
 struct RectangleUnion {
@@ -25,9 +25,9 @@ struct RectangleUnion {
       rm[xr].eb(yl, yr);
     }
 
-    using Lazy = Lazy_CntMinMincnt_Add<XY>;
-    using T = typename Lazy::X_structure::value_type;
-    LazySegTree<Lazy> seg(len(Y) - 1, [&](int i) -> T {
+    using AM = ActedMonoid_CntMinMincnt_Add<XY>;
+    using T = typename AM::Monoid_X::value_type;
+    LazySegTree<AM> seg(len(Y) - 1, [&](int i) -> T {
       return {Y[i + 1] - Y[i], 0, Y[i + 1] - Y[i]};
     });
     ANS_TYPE ANS = 0;
