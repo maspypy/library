@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/max_add.hpp
     title: alg/acted_monoid/max_add.hpp
   - icon: ':heavy_check_mark:'
@@ -63,12 +63,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2026.test.cpp
     title: test/yukicoder/2026.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/686.test.cpp
     title: test/yukicoder/686.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/max.hpp\"\ntemplate <class X>\r\nstruct Monoid_Max\
@@ -90,7 +90,7 @@ data:
   - alg/acted_monoid/max_min.hpp
   - graph/minimum_spanning_tree.hpp
   timestamp: '2022-10-21 16:22:09+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/686.test.cpp
   - test/yukicoder/1625.test.cpp

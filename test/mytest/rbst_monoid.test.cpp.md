@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/bbst/rbst_monoid.hpp
     title: ds/bbst/rbst_monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'

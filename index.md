@@ -12,7 +12,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/cntsum_add.hpp
       title: alg/acted_monoid/cntsum_add.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/cntsum_affine.hpp
       title: alg/acted_monoid/cntsum_affine.hpp
     - icon: ':heavy_check_mark:'
@@ -30,7 +30,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/cntsummin_assign.hpp
       title: alg/acted_monoid/cntsummin_assign.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/max_add.hpp
       title: alg/acted_monoid/max_add.hpp
     - icon: ':heavy_check_mark:'
@@ -76,7 +76,7 @@ data:
       title: alg/acted_set/from_monoid.hpp
   - name: alg/monoid
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/add.hpp
       title: alg/monoid/add.hpp
     - icon: ':heavy_check_mark:'
@@ -94,7 +94,7 @@ data:
     - icon: ':question:'
       path: alg/monoid/add_pair.hpp
       title: alg/monoid/add_pair.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/affine.hpp
       title: alg/monoid/affine.hpp
     - icon: ':heavy_check_mark:'
@@ -115,7 +115,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/group_reverse.hpp
       title: alg/monoid/group_reverse.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/max.hpp
       title: alg/monoid/max.hpp
     - icon: ':heavy_check_mark:'
@@ -157,7 +157,7 @@ data:
       title: datetime/datetime.hpp
   - name: ds/bbst
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/bbst/rbst_acted_monoid.hpp
       title: ds/bbst/rbst_acted_monoid.hpp
     - icon: ':x:'
@@ -831,7 +831,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_sum_of_linear.hpp
       title: mod/mod_sum_of_linear.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint.hpp
       title: mod/modint.hpp
     - icon: ':heavy_check_mark:'
@@ -1625,7 +1625,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
       title: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
       title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2794,7 +2794,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/655.test.cpp
       title: test/yukicoder/655.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/686.test.cpp
       title: test/yukicoder/686.test.cpp
     - icon: ':heavy_check_mark:'
