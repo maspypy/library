@@ -19,7 +19,7 @@ void test() {
     auto root = X.new_node(A);
 
     FOR(Q) {
-      int t = RNG(0, 6);
+      int t = RNG(0, 7);
       if (t == 0) {
         int i = RNG(0, N);
         assert(A[i] == X.get(root, i));
@@ -60,6 +60,10 @@ void test() {
         int x = RNG(1, 100);
         FOR(i, L, R) A[i] = x;
         root = X.apply(root, L, R, x);
+      }
+      if (t == 6) {
+        vc<int> B = X.get_all(root);
+        assert(A == B);
       }
     }
   }

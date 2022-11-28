@@ -22,7 +22,7 @@ void test() {
     auto root = X.new_node(seg_raw);
 
     FOR(Q) {
-      int t = RNG(0, 6);
+      int t = RNG(0, 7);
       if (t == 0) {
         int i = RNG(0, N);
         assert(A[i] == X.get(root, i).se);
@@ -64,6 +64,10 @@ void test() {
         ++R;
         FOR(i, L, R) A[i] += a;
         root = X.apply(root, L, R, a);
+      }
+      if (t == 6) {
+        vc<pair<int, int>> B = X.get_all(root);
+        FOR(i, N) assert(A[i] == B[i].se);
       }
     }
   }

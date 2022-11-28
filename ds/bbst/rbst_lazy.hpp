@@ -8,8 +8,8 @@ struct RBST_Lazy {
 
   struct Node {
     Node *l, *r;
-    X x, prod;
-    A lazy; // lazy は x, prod に反映済
+    X x, prod; // lazy, rev 反映済
+    A lazy;
     u32 size;
     bool rev;
   };
@@ -82,6 +82,7 @@ struct RBST_Lazy {
     if (r - l <= 1) return root;
     auto [nl, nm, nr] = split3(root, l, r);
     nm->rev ^= 1;
+    swap(nm->l, nm->r);
     return merge3(nl, nm, nr);
   }
 
@@ -98,12 +99,11 @@ struct RBST_Lazy {
     vc<X> res;
     auto dfs = [&](auto &dfs, np root, bool rev, A lazy) -> void {
       if (!root) return;
-      rev ^= root->rev;
       X me = Lazy::act(root->x, lazy);
       lazy = Monoid_A::op(root->lazy, lazy);
-      dfs(dfs, (rev ? root->r : root->l), rev, lazy);
+      dfs(dfs, (rev ? root->r : root->l), rev ^ root->rev, lazy);
       res.eb(me);
-      dfs(dfs, (rev ? root->l : root->r), rev, lazy);
+      dfs(dfs, (rev ? root->l : root->r), rev ^ root->rev, lazy);
     };
     dfs(dfs, root, 0, Monoid_A::unit());
     return res;
@@ -144,9 +144,14 @@ private:
       c->lazy = Monoid_A::unit();
     }
     if (c->rev) {
-      swap(c->l, c->r);
-      if (c->l) c->l->rev ^= 1;
-      if (c->r) c->r->rev ^= 1;
+      if (c->l) {
+        c->l->rev ^= 1;
+        swap(c->l->l, c->l->r);
+      }
+      if (c->r) {
+        c->r->rev ^= 1;
+        swap(c->r->l, c->r->r);
+      }
       c->rev = 0;
     }
   }
