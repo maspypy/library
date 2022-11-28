@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/789_2.test.cpp
     title: test/yukicoder/789_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/dynamic_lazysegtree.hpp\"\n\n/*\n\u30B3\u30F3\u30B9\u30C8\
@@ -16,10 +16,10 @@ data:
     \u306E\u7BC4\u56F2\uFF08root node \u306E\u8868\u3059\u7BC4\u56F2\uFF09\n\u30FB\
     function<X(ll,ll)> defulat_fn(l,r)\uFF1A\u521D\u671F\u5024\u3067\u306E [l,r) \u7A4D\
     \u306E\u8A08\u7B97\n*/\ntemplate <class Lazy, int NODES = 5'000'000>\nstruct Dynamic_LazySegTree\
-    \ {\n  using Monoid_X = typename Lazy::X_structure;\n  using Monoid_A = typename\
-    \ Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n  using A =\
-    \ typename Monoid_A::value_type;\n\n  struct Node {\n    X x;\n    A a;\n    Node\
-    \ *l, *r;\n    Node() {}\n    Node(const X &x) : x(x), a(Monoid_A::unit()), l(nullptr),\
+    \ {\n  using Monoid_X = typename Lazy::Monoid_X;\n  using Monoid_A = typename\
+    \ Lazy::Monoid_A;\n  using X = typename Monoid_X::value_type;\n  using A = typename\
+    \ Monoid_A::value_type;\n\n  struct Node {\n    X x;\n    A a;\n    Node *l, *r;\n\
+    \    Node() {}\n    Node(const X &x) : x(x), a(Monoid_A::unit()), l(nullptr),\
     \ r(nullptr) {}\n    X get() { return Lazy::act(x, a); }\n  };\n\n  Node *pool;\n\
     \  int pid;\n  ll L, R;\n  Node *root;\n  function<X(ll, ll)> default_fn;\n\n\
     \  Dynamic_LazySegTree(ll L, ll R, function<X(ll, ll)> f)\n      : pid(0), L(L),\
@@ -89,8 +89,8 @@ data:
     \ \u306E\u8868\u3059\u7BC4\u56F2\uFF09\n\u30FBfunction<X(ll,ll)> defulat_fn(l,r)\uFF1A\
     \u521D\u671F\u5024\u3067\u306E [l,r) \u7A4D\u306E\u8A08\u7B97\n*/\ntemplate <class\
     \ Lazy, int NODES = 5'000'000>\nstruct Dynamic_LazySegTree {\n  using Monoid_X\
-    \ = typename Lazy::X_structure;\n  using Monoid_A = typename Lazy::A_structure;\n\
-    \  using X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
+    \ = typename Lazy::Monoid_X;\n  using Monoid_A = typename Lazy::Monoid_A;\n  using\
+    \ X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
     \n  struct Node {\n    X x;\n    A a;\n    Node *l, *r;\n    Node() {}\n    Node(const\
     \ X &x) : x(x), a(Monoid_A::unit()), l(nullptr), r(nullptr) {}\n    X get() {\
     \ return Lazy::act(x, a); }\n  };\n\n  Node *pool;\n  int pid;\n  ll L, R;\n \
@@ -161,8 +161,8 @@ data:
   isVerificationFile: false
   path: ds/dynamic_lazysegtree.hpp
   requiredBy: []
-  timestamp: '2022-10-21 17:24:22+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-11-28 18:35:13+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/789_2.test.cpp
 documentation_of: ds/dynamic_lazysegtree.hpp

@@ -213,10 +213,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_lazy.test.cpp
     title: test/mytest/rbst_lazy.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_lazy_2.test.cpp
     title: test/mytest/rbst_lazy_2.test.cpp
   - icon: ':heavy_check_mark:'

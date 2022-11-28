@@ -3,62 +3,61 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_lazy.test.cpp
     title: test/mytest/rbst_lazy.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_lazy_2.test.cpp
     title: test/mytest/rbst_lazy_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/686.test.cpp
     title: test/yukicoder/686.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/bbst/rbst_lazy.hpp\"\n// reverse \u306F\u3068\u308A\u3042\
     \u3048\u305A\u3001Monoid \u306E\u53EF\u63DB\u6027\u3092\u4EEE\u5B9A\u3057\u3066\
     \u3044\u308B\uFF01\ntemplate <typename Lazy, int NODES = 1'000'000>\nstruct RBST_Lazy\
-    \ {\n  using Monoid_X = typename Lazy::X_structure;\n  using Monoid_A = typename\
-    \ Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n  using A =\
-    \ typename Monoid_A::value_type;\n\n  struct Node {\n    Node *l, *r;\n    X x,\
-    \ prod;\n    A lazy; // lazy \u306F x, prod \u306B\u53CD\u6620\u6E08\n    u32\
-    \ size;\n    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n  using np = Node *;\n\
-    \n  RBST_Lazy() : pid(0) { pool = new Node[NODES]; }\n\n  void reset() { pid =\
-    \ 0; }\n\n  np new_node(const X &x) {\n    pool[pid].l = pool[pid].r = nullptr;\n\
-    \    pool[pid].x = x;\n    pool[pid].prod = x;\n    pool[pid].lazy = Monoid_A::unit();\n\
-    \    pool[pid].size = 1;\n    pool[pid].rev = 0;\n    return &(pool[pid++]);\n\
-    \  }\n\n  np new_node(const vc<X> &dat) {\n    auto dfs = [&](auto &dfs, u32 l,\
-    \ u32 r) -> np {\n      if (l == r) return nullptr;\n      if (r == l + 1) return\
-    \ new_node(dat[l]);\n      u32 m = (l + r) / 2;\n      np l_root = dfs(dfs, l,\
-    \ m);\n      np r_root = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n\
-    \      root->l = l_root, root->r = r_root;\n      update(root);\n      return\
-    \ root;\n    };\n    return dfs(dfs, 0, len(dat));\n  }\n\n  np merge(np l_root,\
-    \ np r_root) { return merge_rec(l_root, r_root); }\n  np merge3(np a, np b, np\
-    \ c) { return merge(merge(a, b), c); }\n  np merge4(np a, np b, np c, np d) {\
-    \ return merge(merge(merge(a, b), c), d); }\n  pair<np, np> split(np root, u32\
-    \ k) {\n    if (!root) {\n      assert(k == 0);\n      return {nullptr, nullptr};\n\
-    \    }\n    assert(0 <= k && k <= root->size);\n    return split_rec(root, k);\n\
-    \  }\n  tuple<np, np, np> split3(np root, u32 l, u32 r) {\n    np nm, nr;\n  \
-    \  tie(root, nr) = split(root, r);\n    tie(root, nm) = split(root, l);\n    return\
-    \ {root, nm, nr};\n  }\n  tuple<np, np, np, np> split4(np root, u32 i, u32 j,\
-    \ u32 k) {\n    np d;\n    tie(root, d) = split(root, k);\n    auto [a, b, c]\
-    \ = split3(root, i, j);\n    return {a, b, c, d};\n  }\n\n  X prod(np root, u32\
-    \ l, u32 r) {\n    if (l == r) return Monoid_X::unit();\n    return prod_rec(root,\
-    \ l, r);\n  }\n\n  np reverse(np root, u32 l, u32 r) {\n    assert(Monoid_X::commute);\n\
-    \    assert(0 <= l && l <= r && r <= root->size);\n    if (r - l <= 1) return\
-    \ root;\n    auto [nl, nm, nr] = split3(root, l, r);\n    nm->rev ^= 1;\n    return\
-    \ merge3(nl, nm, nr);\n  }\n\n  np apply(np root, u32 l, u32 r, const A a) {\n\
-    \    assert(0 <= l && l <= r && r <= root->size);\n    return apply_rec(root,\
-    \ l, r, a);\n  }\n\n  np set(np root, u32 k, const X &x) { return set_rec(root,\
-    \ k, x); }\n  np multiply(np root, u32 k, const X &x) { return multiply_rec(root,\
-    \ k, x); }\n  X get(np root, u32 k) { return get_rec(root, k); }\n\n  vc<X> get_all(np\
-    \ root) {\n    vc<X> res;\n    auto dfs = [&](auto &dfs, np root, bool rev, A\
-    \ lazy) -> void {\n      if (!root) return;\n      rev ^= root->rev;\n      X\
-    \ me = Lazy::act(root->x, lazy);\n      lazy = Monoid_A::op(root->lazy, lazy);\n\
-    \      dfs(dfs, (rev ? root->r : root->l), rev, lazy);\n      res.eb(me);\n  \
-    \    dfs(dfs, (rev ? root->l : root->r), rev, lazy);\n    };\n    dfs(dfs, root,\
+    \ {\n  using Monoid_X = typename Lazy::Monoid_X;\n  using Monoid_A = typename\
+    \ Lazy::Monoid_A;\n  using X = typename Monoid_X::value_type;\n  using A = typename\
+    \ Monoid_A::value_type;\n\n  struct Node {\n    Node *l, *r;\n    X x, prod;\n\
+    \    A lazy; // lazy \u306F x, prod \u306B\u53CD\u6620\u6E08\n    u32 size;\n\
+    \    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n  using np = Node *;\n\n  RBST_Lazy()\
+    \ : pid(0) { pool = new Node[NODES]; }\n\n  void reset() { pid = 0; }\n\n  np\
+    \ new_node(const X &x) {\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x\
+    \ = x;\n    pool[pid].prod = x;\n    pool[pid].lazy = Monoid_A::unit();\n    pool[pid].size\
+    \ = 1;\n    pool[pid].rev = 0;\n    return &(pool[pid++]);\n  }\n\n  np new_node(const\
+    \ vc<X> &dat) {\n    auto dfs = [&](auto &dfs, u32 l, u32 r) -> np {\n      if\
+    \ (l == r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n \
+    \     u32 m = (l + r) / 2;\n      np l_root = dfs(dfs, l, m);\n      np r_root\
+    \ = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n      root->l = l_root,\
+    \ root->r = r_root;\n      update(root);\n      return root;\n    };\n    return\
+    \ dfs(dfs, 0, len(dat));\n  }\n\n  np merge(np l_root, np r_root) { return merge_rec(l_root,\
+    \ r_root); }\n  np merge3(np a, np b, np c) { return merge(merge(a, b), c); }\n\
+    \  np merge4(np a, np b, np c, np d) { return merge(merge(merge(a, b), c), d);\
+    \ }\n  pair<np, np> split(np root, u32 k) {\n    if (!root) {\n      assert(k\
+    \ == 0);\n      return {nullptr, nullptr};\n    }\n    assert(0 <= k && k <= root->size);\n\
+    \    return split_rec(root, k);\n  }\n  tuple<np, np, np> split3(np root, u32\
+    \ l, u32 r) {\n    np nm, nr;\n    tie(root, nr) = split(root, r);\n    tie(root,\
+    \ nm) = split(root, l);\n    return {root, nm, nr};\n  }\n  tuple<np, np, np,\
+    \ np> split4(np root, u32 i, u32 j, u32 k) {\n    np d;\n    tie(root, d) = split(root,\
+    \ k);\n    auto [a, b, c] = split3(root, i, j);\n    return {a, b, c, d};\n  }\n\
+    \n  X prod(np root, u32 l, u32 r) {\n    if (l == r) return Monoid_X::unit();\n\
+    \    return prod_rec(root, l, r);\n  }\n\n  np reverse(np root, u32 l, u32 r)\
+    \ {\n    assert(Monoid_X::commute);\n    assert(0 <= l && l <= r && r <= root->size);\n\
+    \    if (r - l <= 1) return root;\n    auto [nl, nm, nr] = split3(root, l, r);\n\
+    \    nm->rev ^= 1;\n    return merge3(nl, nm, nr);\n  }\n\n  np apply(np root,\
+    \ u32 l, u32 r, const A a) {\n    assert(0 <= l && l <= r && r <= root->size);\n\
+    \    return apply_rec(root, l, r, a);\n  }\n\n  np set(np root, u32 k, const X\
+    \ &x) { return set_rec(root, k, x); }\n  np multiply(np root, u32 k, const X &x)\
+    \ { return multiply_rec(root, k, x); }\n  X get(np root, u32 k) { return get_rec(root,\
+    \ k); }\n\n  vc<X> get_all(np root) {\n    vc<X> res;\n    auto dfs = [&](auto\
+    \ &dfs, np root, bool rev, A lazy) -> void {\n      if (!root) return;\n     \
+    \ rev ^= root->rev;\n      X me = Lazy::act(root->x, lazy);\n      lazy = Monoid_A::op(root->lazy,\
+    \ lazy);\n      dfs(dfs, (rev ? root->r : root->l), rev, lazy);\n      res.eb(me);\n\
+    \      dfs(dfs, (rev ? root->l : root->r), rev, lazy);\n    };\n    dfs(dfs, root,\
     \ 0, Monoid_A::unit());\n    return res;\n  }\n\n  template <typename F>\n  u32\
     \ max_right(np root, const F check, u32 L) {\n    assert(check(Monoid_X::unit()));\n\
     \    X x = Monoid_X::unit();\n    return max_right_rec(root, check, L, x);\n \
@@ -124,8 +123,8 @@ data:
     \ check, L, x);\n  }\n};\n"
   code: "// reverse \u306F\u3068\u308A\u3042\u3048\u305A\u3001Monoid \u306E\u53EF\u63DB\
     \u6027\u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\uFF01\ntemplate <typename Lazy,\
-    \ int NODES = 1'000'000>\nstruct RBST_Lazy {\n  using Monoid_X = typename Lazy::X_structure;\n\
-    \  using Monoid_A = typename Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n\
+    \ int NODES = 1'000'000>\nstruct RBST_Lazy {\n  using Monoid_X = typename Lazy::Monoid_X;\n\
+    \  using Monoid_A = typename Lazy::Monoid_A;\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n\n  struct Node {\n    Node *l, *r;\n\
     \    X x, prod;\n    A lazy; // lazy \u306F x, prod \u306B\u53CD\u6620\u6E08\n\
     \    u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n  using np =\
@@ -230,8 +229,8 @@ data:
   isVerificationFile: false
   path: ds/bbst/rbst_lazy.hpp
   requiredBy: []
-  timestamp: '2022-11-28 06:16:37+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-11-28 18:35:13+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/686.test.cpp
   - test/mytest/rbst_lazy.test.cpp

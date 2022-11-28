@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
   - icon: ':question:'
@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/bbst/rbst_lazy.hpp
     title: ds/bbst/rbst_lazy.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -227,7 +227,7 @@ data:
     #line 1 \"ds/bbst/rbst_lazy.hpp\"\n// reverse \u306F\u3068\u308A\u3042\u3048\u305A\
     \u3001Monoid \u306E\u53EF\u63DB\u6027\u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\
     \uFF01\ntemplate <typename Lazy, int NODES = 1'000'000>\nstruct RBST_Lazy {\n\
-    \  using Monoid_X = typename Lazy::X_structure;\n  using Monoid_A = typename Lazy::A_structure;\n\
+    \  using Monoid_X = typename Lazy::Monoid_X;\n  using Monoid_A = typename Lazy::Monoid_A;\n\
     \  using X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
     \n  struct Node {\n    Node *l, *r;\n    X x, prod;\n    A lazy; // lazy \u306F\
     \ x, prod \u306B\u53CD\u6620\u6E08\n    u32 size;\n    bool rev;\n  };\n\n  Node\
@@ -387,8 +387,8 @@ data:
   isVerificationFile: true
   path: test/mytest/rbst_lazy.test.cpp
   requiredBy: []
-  timestamp: '2022-11-28 18:13:51+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-28 18:35:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/rbst_lazy.test.cpp
 layout: document
