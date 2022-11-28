@@ -6,35 +6,31 @@
 
 void solve() {
   LL(N);
-  const int LIM = 100'010;
   using AM = ActedMonoid_Max_Add<int>;
-  vc<int> dp(LIM);
-  RBST_ActedMonoid<AM, LIM> seg;
-  auto root = seg.new_node(dp);
+  RBST_ActedMonoid<AM, false, 100'010> X;
+  using np = decltype(X)::np;
+
+  const int INF = 1 << 30;
+  np root = X.new_node(INF);
 
   FOR(N) {
+    if (X.prod(root) != INF) root = X.merge(root, X.new_node(INF));
     LL(L, R);
-    {
-      int a = seg.prod(root, R, R + 1);
-      int b = seg.prod(root, R - 1, R);
-      if (a != b) {
-        --R;
-      } else {
-        auto check = [&](int e) -> bool { return e <= a; };
-        int k = seg.max_right(root, check, R);
-        R = k - 1;
-      }
-    }
-    if (L > R) continue;
-    root = seg.apply(root, L, R, 1);
-    int x = seg.get(root, L - 1);
-    auto [a, b, c, d] = seg.split4(root, L, R, R + 1);
-    c = seg.set(c, 0, x + 1);
-    root = seg.merge4(a, c, b, d);
-    assert(root->size == LIM);
+    // L未満 / R 未満
+    np a, b, c, c1, c2;
+    auto check_L = [&](int e) -> bool { return e < L; };
+    auto check_R = [&](int e) -> bool { return e < R; };
+    tie(a, root) = X.split_max_right(root, check_L);
+    tie(b, c) = X.split_max_right(root, check_R);
+    tie(c1, c2) = X.split(c, 1);
+    b = X.apply(b, 1);
+    c1 = X.set(c1, 0, L);
+    root = X.merge4(a, c1, b, c2);
   }
-
-  print(seg.prod(root, 0, LIM));
+  auto check = [&](int e) -> bool { return e < INF; };
+  auto [n1, n2] = X.split_max_right(root, check);
+  int ANS = (n1 ? n1->size : 0);
+  print(ANS);
 }
 
 signed main() {

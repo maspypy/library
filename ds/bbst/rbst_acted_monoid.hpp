@@ -1,4 +1,4 @@
-template <typename ActedMonoid, int NODES = 1'000'000>
+template <typename ActedMonoid, bool PERSISTENT, int NODES>
 struct RBST_ActedMonoid {
   using Monoid_X = typename ActedMonoid::Monoid_X;
   using Monoid_A = typename ActedMonoid::Monoid_A;
@@ -46,6 +46,17 @@ struct RBST_ActedMonoid {
     return dfs(dfs, 0, len(dat));
   }
 
+  np copy_node(np &n, bool COPY = PERSISTENT) {
+    if (!n || !COPY) return n;
+    pool[pid].l = n->l, pool[pid].r = n->r;
+    pool[pid].x = n->x;
+    pool[pid].prod = n->prod;
+    pool[pid].lazy = n->lazy;
+    pool[pid].size = n->size;
+    pool[pid].rev = n->rev;
+    return &(pool[pid++]);
+  }
+
   np merge(np l_root, np r_root) { return merge_rec(l_root, r_root); }
   np merge3(np a, np b, np c) { return merge(merge(a, b), c); }
   np merge4(np a, np b, np c, np d) { return merge(merge(merge(a, b), c), d); }
@@ -72,8 +83,9 @@ struct RBST_ActedMonoid {
 
   X prod(np root, u32 l, u32 r) {
     if (l == r) return Monoid_X::unit();
-    return prod_rec(root, l, r);
+    return prod_rec(root, l, r, false);
   }
+  X prod(np root) { return (root ? root->prod : Monoid_X::unit()); }
 
   np reverse(np root, u32 l, u32 r) {
     assert(Monoid_X::commute);
@@ -89,10 +101,14 @@ struct RBST_ActedMonoid {
     assert(0 <= l && l <= r && r <= root->size);
     return apply_rec(root, l, r, a);
   }
+  np apply(np root, const A a) {
+    if (!root) return root;
+    return apply_rec(root, 0, root->size, a);
+  }
 
   np set(np root, u32 k, const X &x) { return set_rec(root, k, x); }
   np multiply(np root, u32 k, const X &x) { return multiply_rec(root, k, x); }
-  X get(np root, u32 k) { return get_rec(root, k); }
+  X get(np root, u32 k) { return get_rec(root, k, false, Monoid_A::unit()); }
 
   vc<X> get_all(np root) {
     vc<X> res;
@@ -109,10 +125,10 @@ struct RBST_ActedMonoid {
   }
 
   template <typename F>
-  u32 max_right(np root, const F check, u32 L) {
+  pair<np, np> split_max_right(np root, const F check) {
     assert(check(Monoid_X::unit()));
     X x = Monoid_X::unit();
-    return max_right_rec(root, check, L, x);
+    return split_max_right_rec(root, check, x);
   }
 
 private:
@@ -129,6 +145,14 @@ private:
   }
 
   void prop(np c) {
+    // 自身をコピーする必要はない。
+    // 子をコピーする必要がある。複数の親を持つ可能性があるため。
+    bool bl_lazy = (c->lazy != Monoid_A::unit());
+    bool bl_rev = c->rev;
+    if (bl_lazy || bl_rev) {
+      c->l = copy_node(c->l);
+      c->r = copy_node(c->r);
+    }
     if (c->lazy != Monoid_A::unit()) {
       if (c->l) {
         c->l->x = ActedMonoid::act(c->l->x, c->lazy);
@@ -156,6 +180,7 @@ private:
   }
 
   void update(np c) {
+    // データを保ったまま正常化するだけなので、コピー不要
     c->size = 1;
     c->prod = c->x;
     if (c->l) {
@@ -174,11 +199,13 @@ private:
     u32 sl = l_root->size, sr = r_root->size;
     if (xor128() % (sl + sr) < sl) {
       prop(l_root);
+      l_root = copy_node(l_root);
       l_root->r = merge_rec(l_root->r, r_root);
       update(l_root);
       return l_root;
     }
     prop(r_root);
+    r_root = copy_node(r_root);
     r_root->l = merge_rec(l_root, r_root->l);
     update(r_root);
     return r_root;
@@ -190,11 +217,13 @@ private:
     u32 sl = (root->l ? root->l->size : 0);
     if (k <= sl) {
       auto [nl, nr] = split_rec(root->l, k);
+      root = copy_node(root);
       root->l = nr;
       update(root);
       return {nl, root};
     }
     auto [nl, nr] = split_rec(root->r, k - (1 + sl));
+    root = copy_node(root);
     root->r = nl;
     update(root);
     return {root, nr};
@@ -205,15 +234,18 @@ private:
     prop(root);
     u32 sl = (root->l ? root->l->size : 0);
     if (k < sl) {
+      root = copy_node(root);
       root->l = set_rec(root->l, k, x);
       update(root);
       return root;
     }
     if (k == sl) {
+      root = copy_node(root);
       root->x = x;
       update(root);
       return root;
     }
+    root = copy_node(root);
     root->r = set_rec(root->r, k - (1 + sl), x);
     update(root);
     return root;
@@ -224,42 +256,56 @@ private:
     prop(root);
     u32 sl = (root->l ? root->l->size : 0);
     if (k < sl) {
+      root = copy_node(root);
       root->l = multiply_rec(root->l, k, x);
       update(root);
       return root;
     }
     if (k == sl) {
+      root = copy_node(root);
       root->x = Monoid_X::op(root->x, x);
       update(root);
       return root;
     }
+    root = copy_node(root);
     root->r = multiply_rec(root->r, k - (1 + sl), x);
     update(root);
     return root;
   }
 
-  X prod_rec(np root, u32 l, u32 r) {
+  X prod_rec(np root, u32 l, u32 r, bool rev) {
     if (l == 0 && r == root->size) { return root->prod; }
-    prop(root);
+    np left = (rev ? root->r : root->l);
+    np right = (rev ? root->l : root->r);
     u32 sl = (root->l ? root->l->size : 0);
     X res = Monoid_X::unit();
-    if (l < sl) { res = Monoid_X::op(res, prod_rec(root->l, l, min(r, sl))); }
+    if (l < sl) {
+      X y = prod_rec(left, l, min(r, sl), rev ^ root->rev);
+      res = Monoid_X::op(res, ActedMonoid::act(y, root->lazy));
+    }
     if (l <= sl && sl < r) res = Monoid_X::op(res, root->x);
     u32 k = 1 + sl;
-    if (k < r) res = Monoid_X::op(res, prod_rec(root->r, max(k, l) - k, r - k));
+    if (k < r) {
+      X y = prod_rec(right, max(k, l) - k, r - k, rev ^ root->rev);
+      res = Monoid_X::op(res, ActedMonoid::act(y, root->lazy));
+    }
     return res;
   }
 
-  X get_rec(np root, u32 k) {
-    prop(root);
+  X get_rec(np root, u32 k, bool rev, A lazy) {
+    np left = (rev ? root->r : root->l);
+    np right = (rev ? root->l : root->r);
     u32 sl = (root->l ? root->l->size : 0);
-    if (k < sl) return get_rec(root->l, k);
-    if (k == sl) return root->x;
-    return get_rec(root->r, k - (1 + sl));
+    if (k == sl) return ActedMonoid::act(root->x, lazy);
+    lazy = Monoid_A::op(root->lazy, lazy);
+    rev ^= root->rev;
+    if (k < sl) return get_rec(left, k, rev, lazy);
+    return get_rec(root->r, k - (1 + sl), rev, lazy);
   }
 
   np apply_rec(np root, u32 l, u32 r, const A &a) {
     prop(root);
+    root = copy_node(root);
     if (l == 0 && r == root->size) {
       root->x = ActedMonoid::act(root->x, a);
       root->prod = ActedMonoid::act(root->prod, a);
@@ -276,27 +322,36 @@ private:
   }
 
   template <typename F>
-  u32 max_right_rec(np n, const F check, u32 L, X &x) {
-    if (!n) return 0;
-    if (L == 0) {
-      X y = Monoid_X::op(x, n->prod);
-      if (check(y)) {
-        x = y;
-        return n->size;
+  pair<np, np> split_max_right_rec(np root, const F &check, X &x) {
+    if (!root) return {nullptr, nullptr};
+    prop(root);
+    root = copy_node(root);
+    X y = Monoid_X::op(x, root->prod);
+    if (check(y)) {
+      x = y;
+      return {root, nullptr};
+    }
+    np left = root->l, right = root->r;
+    if (left) {
+      X y = Monoid_X::op(x, root->l->prod);
+      if (!check(y)) {
+        auto [n1, n2] = split_max_right_rec(left, check, x);
+        root->l = n2;
+        update(root);
+        return {n1, root};
       }
-    }
-    prop(n);
-    u32 sl = (n->l ? n->l->size : 0);
-    if (L < sl) {
-      u32 k = max_right_rec(n->l, check, L, x);
-      if (k < sl) return k;
-    }
-    if (L <= sl) {
-      X y = Monoid_X::op(x, n->x);
-      if (!check(y)) { return sl; }
       x = y;
     }
-    L = (L > sl ? L - (1 + sl) : 0);
-    return (1 + sl) + max_right_rec(n->r, check, L, x);
+    y = Monoid_X::op(x, root->x);
+    if (!check(y)) {
+      root->l = nullptr;
+      update(root);
+      return {left, root};
+    }
+    x = y;
+    auto [n1, n2] = split_max_right_rec(right, check, x);
+    root->r = n1;
+    update(root);
+    return {root, n2};
   }
 };
