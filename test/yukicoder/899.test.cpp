@@ -3,14 +3,14 @@
 #include "other/io.hpp"
 #include "graph/ds/bfsnumbering.hpp"
 #include "ds/lazysegtree.hpp"
-#include "alg/lazy/add_mul.hpp"
+#include "alg/acted_monoid/add_mul.hpp"
 
 void solve() {
   LL(N);
   Graph<int> G(N);
   G.read_tree(0, 0);
 
-  BFSNumbering BFS(G);
+  BFSNumbering<decltype(G)> BFS(G);
   auto &ID = BFS.ID;
   vi seg_raw(N);
 
@@ -19,8 +19,8 @@ void solve() {
     seg_raw[ID[v]] = a;
   }
 
-  using Lazy = Lazy_Add_Mul<ll>;
-  LazySegTree<Lazy> seg(seg_raw);
+  using AM = ActedMonoid_Add_Mul<ll>;
+  LazySegTree<AM> seg(seg_raw);
 
   LL(Q);
   FOR(_, Q) {

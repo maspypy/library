@@ -3,22 +3,22 @@
 #include "other/io.hpp"
 #include "graph/tree.hpp"
 #include "graph/ds/lazytreemonoid.hpp"
-#include "alg/lazy/cntsum_add.hpp"
+#include "alg/acted_monoid/cntsum_add.hpp"
 #include "mod/modint.hpp"
 
 using mint = modint107;
-using Lazy = Lazy_CntSum_Add<mint>;
+using AM = ActedMonoid_CntSum_Add<mint>;
 
 void solve() {
   LL(N);
   VEC(ll, S, N);
   VEC(ll, C, N);
-  Graph G(N);
+  Graph<int, 0> G(N);
   G.read_tree();
-  TREE tree(G);
+  TREE<decltype(G)> tree(G);
   vc<pair<mint, mint>> dat;
   FOR(i, N) dat.eb(C[i], S[i]);
-  LazyTreeMonoid<decltype(tree), Lazy, false> TM(tree, dat);
+  LazyTreeMonoid<decltype(tree), AM, false> TM(tree, dat);
   LL(Q);
   FOR(Q) {
     LL(t);

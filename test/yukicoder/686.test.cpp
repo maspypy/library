@@ -1,15 +1,15 @@
 #define PROBLEM "https://yukicoder.me/problems/no/686"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "alg/lazy/max_add.hpp"
+#include "alg/acted_monoid/max_add.hpp"
 #include "ds/bbst/rbst_lazy.hpp"
 
 void solve() {
   LL(N);
   const int LIM = 100'010;
-  using Lazy = Lazy_Max_Add<int>;
+  using AM = ActedMonoid_Max_Add<int>;
   vc<int> dp(LIM);
-  RBST_Lazy<Lazy, LIM> seg;
+  RBST_Lazy<AM, LIM> seg;
   auto root = seg.new_node(dp);
 
   FOR(N) {

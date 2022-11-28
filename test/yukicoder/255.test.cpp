@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/lazysegtree.hpp"
-#include "alg/lazy/cntsum_affine.hpp"
+#include "alg/acted_monoid/cntsum_affine.hpp"
 
 void solve() {
   LL(N, Q);
@@ -15,9 +15,9 @@ void solve() {
   UNIQUE(X);
   N = len(X);
 
-  using Lazy = Lazy_CntSum_Affine<ll>;
-  vc<LazySegTree<Lazy>> seg;
-  FOR(i, 5) seg.eb(LazySegTree<Lazy>(N));
+  using AM = ActedMonoid_CntSum_Affine<ll>;
+  vc<LazySegTree<AM>> seg;
+  FOR(i, 5) seg.eb(LazySegTree<AM>(N));
   FOR(i, 5) FOR(j, N - 1) { seg[i].set(j, {X[j + 1] - X[j], 0}); }
   vc<i128> ANS(5);
 
