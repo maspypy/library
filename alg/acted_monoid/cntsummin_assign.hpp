@@ -1,8 +1,8 @@
 #include "alg/monoid/cntsummin.hpp"
-#include "alg/monoid/set.hpp"
+#include "alg/monoid/assign.hpp"
 
 template <typename E, ll none_val>
-struct Lazy_CntSumMin_Set {
+struct ActedMonoid_CntSumMin_Assign {
   static constexpr ll INF = 1LL << 60;
   using MX = Monoid_CntSumMin<E>;
   using MA = Monoid_Set<ll, none_val>;

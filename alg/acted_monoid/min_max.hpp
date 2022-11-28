@@ -2,12 +2,10 @@
 #include "alg/monoid/min.hpp"
 
 template <typename E>
-struct Lazy_Min_Max {
-  using MX = Monoid_Min<E>;
-  using MA = Monoid_Max<E>;
-  using X_structure = MX;
-  using A_structure = MA;
-  using X = typename MX::value_type;
-  using A = typename MA::value_type;
+struct ActedMonoid_Min_Max {
+  using Monoid_X = Monoid_Min<E>;
+  using Monoid_A = Monoid_Max<E>;
+  using X = typename Monoid_X::value_type;
+  using A = typename Monoid_A::value_type;
   static constexpr X act(const X &x, const A &a) { return max(x, a); }
 };

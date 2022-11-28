@@ -1,12 +1,10 @@
-#include "alg/monoid/reverse_monoid.hpp"
+#include "alg/monoid/monoid_reverse.hpp"
 
-template <typename Lazy>
-struct Lazy_Reverse {
-  using MX = Monoid_Reverse<typename Lazy::X_structure>;
-  using MA = typename Lazy::A_structure;
-  using X_structure = MX;
-  using A_structure = MA;
-  using X = typename MX::value_type;
-  using A = typename MA::value_type;
+template <typename ActedMonoid>
+struct ActedMonoid_Reverse {
+  using Monoid_X = Monoid_Reverse<typename ActedMonoid::Monoid_X>;
+  using Monoid_A = typename ActedMonoid::Monoid_A;
+  using X = typename Monoid_X::value_type;
+  using A = typename Monoid_A::value_type;
   static constexpr X act(const X &x, const A &a) { return Lazy::act(x, a); }
 };

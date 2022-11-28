@@ -19,3 +19,6 @@
 　・op
 
 ・ActedMonoid への要請
+　・Monoid_A
+　・Monoid_X
+　・act
