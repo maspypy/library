@@ -2,14 +2,14 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "alg/acted_monoid/max_add.hpp"
-#include "ds/bbst/rbst_lazy.hpp"
+#include "ds/bbst/rbst_acted_monoid.hpp"
 
 void solve() {
   LL(N);
   const int LIM = 100'010;
   using AM = ActedMonoid_Max_Add<int>;
   vc<int> dp(LIM);
-  RBST_Lazy<AM, LIM> seg;
+  RBST_ActedMonoid<AM, LIM> seg;
   auto root = seg.new_node(dp);
 
   FOR(N) {
