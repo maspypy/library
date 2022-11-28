@@ -176,6 +176,7 @@
 "test/library_checker/graph/verted_add_contour_sum.test.cpp": "2022-11-28 14:51:10 +0900",
 "test/library_checker/math/binomial_coefficient.test.cpp": "2022-10-07 02:20:29 +0900",
 "test/library_checker/math/counting_primes.test.cpp": "2022-09-24 23:41:28 +0900",
+"test/library_checker/math/discrete_logarithm_mod.test.cpp": "2022-11-28 22:05:55 +0900",
 "test/library_checker/math/enumerate_primes.test.cpp": "2022-09-24 23:41:28 +0900",
 "test/library_checker/math/factorize.test.cpp": "2022-10-07 01:22:59 +0900",
 "test/library_checker/math/find_linear_recurrence.test.cpp": "2022-11-06 13:29:09 +0900",
