@@ -6,6 +6,9 @@ data:
     path: alg/acted_monoid/max_add.hpp
     title: alg/acted_monoid/max_add.hpp
   - icon: ':warning:'
+    path: alg/acted_monoid/max_assign.hpp
+    title: alg/acted_monoid/max_assign.hpp
+  - icon: ':warning:'
     path: alg/acted_monoid/max_max.hpp
     title: alg/acted_monoid/max_max.hpp
   - icon: ':warning:'
@@ -53,6 +56,7 @@ data:
   isVerificationFile: false
   path: alg/monoid/max.hpp
   requiredBy:
+  - alg/acted_monoid/max_assign.hpp
   - alg/acted_monoid/max_max.hpp
   - alg/acted_monoid/max_add.hpp
   - alg/acted_monoid/min_max.hpp

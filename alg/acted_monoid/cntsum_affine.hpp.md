@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
   - icon: ':heavy_check_mark:'
@@ -27,15 +27,15 @@ data:
     \  }\n  static constexpr K eval(const F &f, K x) noexcept {\n    return f.first\
     \ * x + f.second;\n  }\n  static constexpr F unit() { return {K(1), K(0)}; }\n\
     \  static constexpr bool commute = false;\n};\n#line 3 \"alg/acted_monoid/cntsum_affine.hpp\"\
-    \n\r\ntemplate <typename E>\r\nstruct Lazy_CntSum_Affine {\r\n  using X_structure\
-    \ = Monoid_Add_Pair<E>;\r\n  using A_structure = Monoid_Affine<E>;\r\n  using\
-    \ X = typename X_structure::value_type;\r\n  using A = typename A_structure::value_type;\r\
+    \n\r\ntemplate <typename E>\r\nstruct ActedMonoid_CntSum_Affine {\r\n  using Monoid_X\
+    \ = Monoid_Add_Pair<E>;\r\n  using Monoid_A = Monoid_Affine<E>;\r\n  using X =\
+    \ typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
     \n  static constexpr X act(const X &x, const A &a) {\r\n    return {x.fi, x.fi\
     \ * a.se + x.se * a.fi};\r\n  }\r\n};\r\n"
   code: "#include \"alg/monoid/add_pair.hpp\"\r\n#include \"alg/monoid/affine.hpp\"\
-    \r\n\r\ntemplate <typename E>\r\nstruct Lazy_CntSum_Affine {\r\n  using X_structure\
-    \ = Monoid_Add_Pair<E>;\r\n  using A_structure = Monoid_Affine<E>;\r\n  using\
-    \ X = typename X_structure::value_type;\r\n  using A = typename A_structure::value_type;\r\
+    \r\n\r\ntemplate <typename E>\r\nstruct ActedMonoid_CntSum_Affine {\r\n  using\
+    \ Monoid_X = Monoid_Add_Pair<E>;\r\n  using Monoid_A = Monoid_Affine<E>;\r\n \
+    \ using X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
     \n  static constexpr X act(const X &x, const A &a) {\r\n    return {x.fi, x.fi\
     \ * a.se + x.se * a.fi};\r\n  }\r\n};\r\n"
   dependsOn:
@@ -44,7 +44,7 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/cntsum_affine.hpp
   requiredBy: []
-  timestamp: '2022-11-28 14:50:09+09:00'
+  timestamp: '2022-11-28 15:09:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/acted_monoid/cntsum_affine.hpp

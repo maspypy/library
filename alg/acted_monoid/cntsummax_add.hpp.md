@@ -26,26 +26,26 @@ data:
     \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
     \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
     \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/cntsummax_add.hpp\"\
-    \n\ntemplate <typename E>\nstruct Lazy_CntSumMax_Add {\n  using MX = Monoid_CntSumMax<E>;\n\
-    \  using MA = Monoid_Add<E>;\n  using X_structure = MX;\n  using A_structure =\
-    \ MA;\n  using X = typename MX::value_type;\n  using A = typename MA::value_type;\n\
-    \  static constexpr X act(const X& x, const A& a) {\n    auto [xc, xs, xm] = x;\n\
-    \    xm = (xm == numeric_limits<E>::lowest() ? xm : xm + a);\n    return {xc,\
-    \ xs + xc * a, xm};\n  }\n};\n"
+    \n\ntemplate <typename E>\nstruct ActedMonoid_CntSumMax_Add {\n  using Monoid_X\
+    \ = Monoid_CntSumMax<E>;\n  using Monoid_A = Monoid_Add<E>;\n  using X = typename\
+    \ Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n  static\
+    \ constexpr X act(const X& x, const A& a) {\n    auto [xc, xs, xm] = x;\n    xm\
+    \ = (xm == numeric_limits<E>::lowest() ? xm : xm + a);\n    return {xc, xs + xc\
+    \ * a, xm};\n  }\n};\n"
   code: "#include \"alg/monoid/cntsummax.hpp\"\n#include \"alg/monoid/add.hpp\"\n\n\
-    template <typename E>\nstruct Lazy_CntSumMax_Add {\n  using MX = Monoid_CntSumMax<E>;\n\
-    \  using MA = Monoid_Add<E>;\n  using X_structure = MX;\n  using A_structure =\
-    \ MA;\n  using X = typename MX::value_type;\n  using A = typename MA::value_type;\n\
-    \  static constexpr X act(const X& x, const A& a) {\n    auto [xc, xs, xm] = x;\n\
-    \    xm = (xm == numeric_limits<E>::lowest() ? xm : xm + a);\n    return {xc,\
-    \ xs + xc * a, xm};\n  }\n};\n"
+    template <typename E>\nstruct ActedMonoid_CntSumMax_Add {\n  using Monoid_X =\
+    \ Monoid_CntSumMax<E>;\n  using Monoid_A = Monoid_Add<E>;\n  using X = typename\
+    \ Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n  static\
+    \ constexpr X act(const X& x, const A& a) {\n    auto [xc, xs, xm] = x;\n    xm\
+    \ = (xm == numeric_limits<E>::lowest() ? xm : xm + a);\n    return {xc, xs + xc\
+    \ * a, xm};\n  }\n};\n"
   dependsOn:
   - alg/monoid/cntsummax.hpp
   - alg/monoid/add.hpp
   isVerificationFile: false
   path: alg/acted_monoid/cntsummax_add.hpp
   requiredBy: []
-  timestamp: '2022-11-28 14:51:10+09:00'
+  timestamp: '2022-11-28 15:09:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/acted_monoid/cntsummax_add.hpp

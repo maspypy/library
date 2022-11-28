@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: alg/acted_monoid/reverse.hpp
+    title: alg/acted_monoid/reverse.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -21,7 +24,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/monoid_reverse.hpp
-  requiredBy: []
+  requiredBy:
+  - alg/acted_monoid/reverse.hpp
   timestamp: '2022-11-28 14:51:10+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

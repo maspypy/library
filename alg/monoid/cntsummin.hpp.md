@@ -5,6 +5,9 @@ data:
   - icon: ':warning:'
     path: alg/acted_monoid/cntsummin_add.hpp
     title: alg/acted_monoid/cntsummin_add.hpp
+  - icon: ':warning:'
+    path: alg/acted_monoid/cntsummin_assign.hpp
+    title: alg/acted_monoid/cntsummin_assign.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -28,6 +31,7 @@ data:
   isVerificationFile: false
   path: alg/monoid/cntsummin.hpp
   requiredBy:
+  - alg/acted_monoid/cntsummin_assign.hpp
   - alg/acted_monoid/cntsummin_add.hpp
   timestamp: '2022-11-27 22:15:30+09:00'
   verificationStatus: LIBRARY_NO_TESTS

@@ -1,7 +1,19 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: alg/acted_monoid/cntsummin_assign.hpp
+    title: alg/acted_monoid/cntsummin_assign.hpp
+  - icon: ':warning:'
+    path: alg/acted_monoid/max_assign.hpp
+    title: alg/acted_monoid/max_assign.hpp
+  - icon: ':warning:'
+    path: alg/acted_monoid/min_assign.hpp
+    title: alg/acted_monoid/min_assign.hpp
+  - icon: ':warning:'
+    path: alg/acted_monoid/powersums_assign.hpp
+    title: alg/acted_monoid/powersums_assign.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -19,7 +31,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/assign.hpp
-  requiredBy: []
+  requiredBy:
+  - alg/acted_monoid/cntsummin_assign.hpp
+  - alg/acted_monoid/max_assign.hpp
+  - alg/acted_monoid/min_assign.hpp
+  - alg/acted_monoid/powersums_assign.hpp
   timestamp: '2022-11-28 14:51:10+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

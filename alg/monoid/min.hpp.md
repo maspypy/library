@@ -9,6 +9,9 @@ data:
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
   - icon: ':warning:'
+    path: alg/acted_monoid/min_assign.hpp
+    title: alg/acted_monoid/min_assign.hpp
+  - icon: ':warning:'
     path: alg/acted_monoid/min_max.hpp
     title: alg/acted_monoid/min_max.hpp
   - icon: ':warning:'
@@ -84,6 +87,7 @@ data:
   path: alg/monoid/min.hpp
   requiredBy:
   - alg/acted_monoid/min_add.hpp
+  - alg/acted_monoid/min_assign.hpp
   - alg/acted_monoid/min_min.hpp
   - alg/acted_monoid/min_max.hpp
   - alg/acted_monoid/max_min.hpp
