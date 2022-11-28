@@ -1,10 +1,8 @@
 // 1 次元ベクトル空間に、アフィン変換が作用
 template <typename T>
-struct XSet_Affine {
-  using Monoid = Monoid_Affine<T>;
-  using operator_type = typename Monoid::value_type;
-  using element_type = T;
-  using X = operator_type;
-  using S = element_type;
-  static S act(const S &x, const X &g) { return g.fi * x + g.se; }
+struct ActedSet_Affine {
+  using Monoid_A = Monoid_Affine<T>;
+  using A = typename Monoid_A::value_type;
+  using S = T;
+  static S act(const S &x, const A &g) { return g.fi * x + g.se; }
 };
