@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/cntsummax.hpp
     title: alg/monoid/cntsummax.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/cntsummax_assign.test.cpp
     title: test/mytest/cntsummax_assign.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/cntsummax.hpp\"\n\r\ntemplate <typename E>\r\n\
@@ -28,27 +28,26 @@ data:
     \ X op(X x, X y) { return (y == none_val ? x : y); }\r\n  static constexpr X unit()\
     \ { return none_val; }\r\n  static constexpr bool commute = false;\r\n};\r\n#line\
     \ 3 \"alg/acted_monoid/cntsummax_assign.hpp\"\n\r\ntemplate <typename E, ll none_val>\r\
-    \nstruct ActedMonoid_CntSumMax_Assign {\r\n  static constexpr ll INF = 1LL <<\
-    \ 60;\r\n  using Monoid_X = Monoid_CntSumMax<E>;\r\n  using Monoid_A = Monoid_Set<ll,\
-    \ none_val>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A = typename\
-    \ Monoid_A::value_type;\r\n  static constexpr X act(const X& x, const A& a) {\r\
-    \n    if (a == MA::unit()) return x;\r\n    auto [xc, xs, xm] = x;\r\n    return\
-    \ {xc, xc * a, a};\r\n  }\r\n};\r\n"
+    \nstruct ActedMonoid_CntSumMax_Assign {\r\n  using Monoid_X = Monoid_CntSumMax<E>;\r\
+    \n  using Monoid_A = Monoid_Assign<ll, none_val>;\r\n  using X = typename Monoid_X::value_type;\r\
+    \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
+    \ X& x, const A& a) {\r\n    if (a == Monoid_A::unit()) return x;\r\n    auto\
+    \ [xc, xs, xm] = x;\r\n    return {xc, xc * a, a};\r\n  }\r\n};\r\n"
   code: "#include \"alg/monoid/cntsummax.hpp\"\r\n#include \"alg/monoid/assign.hpp\"\
     \r\n\r\ntemplate <typename E, ll none_val>\r\nstruct ActedMonoid_CntSumMax_Assign\
-    \ {\r\n  static constexpr ll INF = 1LL << 60;\r\n  using Monoid_X = Monoid_CntSumMax<E>;\r\
-    \n  using Monoid_A = Monoid_Set<ll, none_val>;\r\n  using X = typename Monoid_X::value_type;\r\
-    \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
-    \ X& x, const A& a) {\r\n    if (a == MA::unit()) return x;\r\n    auto [xc, xs,\
-    \ xm] = x;\r\n    return {xc, xc * a, a};\r\n  }\r\n};\r\n"
+    \ {\r\n  using Monoid_X = Monoid_CntSumMax<E>;\r\n  using Monoid_A = Monoid_Assign<ll,\
+    \ none_val>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A = typename\
+    \ Monoid_A::value_type;\r\n  static constexpr X act(const X& x, const A& a) {\r\
+    \n    if (a == Monoid_A::unit()) return x;\r\n    auto [xc, xs, xm] = x;\r\n \
+    \   return {xc, xc * a, a};\r\n  }\r\n};\r\n"
   dependsOn:
   - alg/monoid/cntsummax.hpp
   - alg/monoid/assign.hpp
   isVerificationFile: false
   path: alg/acted_monoid/cntsummax_assign.hpp
   requiredBy: []
-  timestamp: '2022-11-28 17:32:24+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-11-28 18:48:28+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/cntsummax_assign.test.cpp
 documentation_of: alg/acted_monoid/cntsummax_assign.hpp

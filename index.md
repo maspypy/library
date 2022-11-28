@@ -21,13 +21,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/cntsummax_add.hpp
       title: alg/acted_monoid/cntsummax_add.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/cntsummax_assign.hpp
       title: alg/acted_monoid/cntsummax_assign.hpp
     - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/cntsummin_add.hpp
       title: alg/acted_monoid/cntsummin_add.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/cntsummin_assign.hpp
       title: alg/acted_monoid/cntsummin_assign.hpp
     - icon: ':heavy_check_mark:'
@@ -100,10 +100,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/cntminmincnt.hpp
       title: alg/monoid/cntminmincnt.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/cntsummax.hpp
       title: alg/monoid/cntsummax.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/cntsummin.hpp
       title: alg/monoid/cntsummin.hpp
     - icon: ':heavy_check_mark:'
@@ -1104,7 +1104,7 @@ data:
       title: poly/online/online_pow.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -2090,13 +2090,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/cntsummax_add.test.cpp
       title: test/mytest/cntsummax_add.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/cntsummax_assign.test.cpp
       title: test/mytest/cntsummax_assign.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/cntsummin_add.test.cpp
       title: test/mytest/cntsummin_add.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/cntsummin_assign.test.cpp
       title: test/mytest/cntsummin_assign.test.cpp
     - icon: ':heavy_check_mark:'

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/cntsummax_assign.hpp
     title: alg/acted_monoid/cntsummax_assign.hpp
   - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/cntsummax.hpp
     title: alg/monoid/cntsummax.hpp
   - icon: ':question:'
@@ -19,14 +19,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -223,17 +223,17 @@ data:
     \ = X;\r\n  static X op(X x, X y) { return (y == none_val ? x : y); }\r\n  static\
     \ constexpr X unit() { return none_val; }\r\n  static constexpr bool commute =\
     \ false;\r\n};\r\n#line 3 \"alg/acted_monoid/cntsummax_assign.hpp\"\n\r\ntemplate\
-    \ <typename E, ll none_val>\r\nstruct ActedMonoid_CntSumMax_Assign {\r\n  static\
-    \ constexpr ll INF = 1LL << 60;\r\n  using Monoid_X = Monoid_CntSumMax<E>;\r\n\
-    \  using Monoid_A = Monoid_Set<ll, none_val>;\r\n  using X = typename Monoid_X::value_type;\r\
-    \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
-    \ X& x, const A& a) {\r\n    if (a == MA::unit()) return x;\r\n    auto [xc, xs,\
-    \ xm] = x;\r\n    return {xc, xc * a, a};\r\n  }\r\n};\r\n#line 2 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"ds/lazysegtree.hpp\"\
+    \ <typename E, ll none_val>\r\nstruct ActedMonoid_CntSumMax_Assign {\r\n  using\
+    \ Monoid_X = Monoid_CntSumMax<E>;\r\n  using Monoid_A = Monoid_Assign<ll, none_val>;\r\
+    \n  using X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
+    \n  static constexpr X act(const X& x, const A& a) {\r\n    if (a == Monoid_A::unit())\
+    \ return x;\r\n    auto [xc, xs, xm] = x;\r\n    return {xc, xc * a, a};\r\n \
+    \ }\r\n};\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t\
+    \ x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n         \
+    \            chrono::high_resolution_clock::now().time_since_epoch())\n      \
+    \               .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n\
+    \  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
+    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"ds/lazysegtree.hpp\"\
     \n\ntemplate <typename ActedMonoid>\nstruct LazySegTree {\n  using Monoid_X =\
     \ typename ActedMonoid::Monoid_X;\n  using Monoid_A = typename ActedMonoid::Monoid_A;\n\
     \  using X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
@@ -334,8 +334,8 @@ data:
   isVerificationFile: true
   path: test/mytest/cntsummax_assign.test.cpp
   requiredBy: []
-  timestamp: '2022-11-28 18:13:51+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-28 18:48:28+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/cntsummax_assign.test.cpp
 layout: document
