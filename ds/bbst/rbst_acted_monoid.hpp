@@ -261,14 +261,14 @@ private:
   np apply_rec(np root, u32 l, u32 r, const A &a) {
     prop(root);
     if (l == 0 && r == root->size) {
-      root->x = Lazy::act(root->x, a);
-      root->prod = Lazy::act(root->prod, a);
+      root->x = ActedMonoid::act(root->x, a);
+      root->prod = ActedMonoid::act(root->prod, a);
       root->lazy = a;
       return root;
     }
     u32 sl = (root->l ? root->l->size : 0);
     if (l < sl) apply_rec(root->l, l, min(r, sl), a);
-    if (l <= sl && sl < r) root->x = Lazy::act(root->x, a);
+    if (l <= sl && sl < r) root->x = ActedMonoid::act(root->x, a);
     u32 k = 1 + sl;
     if (k < r) apply_rec(root->r, max(k, l) - k, r - k, a);
     update(root);
