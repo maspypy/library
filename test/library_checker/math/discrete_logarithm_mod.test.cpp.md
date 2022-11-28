@@ -1,22 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: alg/acted_set/from_monoid.hpp
+    title: alg/acted_set/from_monoid.hpp
+  - icon: ':question:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   - icon: ':question:'
@@ -24,9 +27,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/discrete_logarithm_mod
@@ -298,7 +301,10 @@ data:
     mint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
     \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
     \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
-    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 2 \"ds/hashmap.hpp\"\
+    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 1 \"alg/acted_set/from_monoid.hpp\"\
+    \ntemplate <typename Monoid>\nstruct ActedSet_From_Monoid {\n  using Monoid_A\
+    \ = Monoid;\n  using A = typename Monoid::value_type;\n  using S = A;\n  static\
+    \ S act(const S &x, const A &g) { return Monoid::op(x, g); }\n};\n#line 2 \"ds/hashmap.hpp\"\
     \ntemplate <typename Val, int LOG = 20>\r\nstruct HashMapLL {\r\n  int N;\r\n\
     \  ll* keys;\r\n  Val* vals;\r\n  vc<int> IDS;\r\n  bitset<1 << LOG> used;\r\n\
     \  const int shift;\r\n  const uint64_t r = 11995408973635179863ULL;\r\n  HashMapLL()\r\
@@ -324,53 +330,44 @@ data:
     \ }\r\n\r\n  VAL& operator[](const KEY& key) { return MP[f(key)]; }\r\n\r\n  bool\
     \ contain(const KEY& key) { return MP.contain(f(key)); }\r\n\r\n  bool count(const\
     \ KEY& key) { return MP.count(f(key)); }\r\n\r\n  void reset() { MP.reset(); }\r\
-    \n};\r\n#line 2 \"nt/discrete_log.hpp\"\n// log_a b \u306E\u8A08\u7B97\r\n// \u30CF\
-    \u30C3\u30B7\u30E5\u95A2\u6570 H : X -> long long \u3092\u6301\u305F\u305B\u308B\
-    \r\n// [lb, ub) \u306E\u6700\u521D\u306E\u89E3\u3092\u304B\u3048\u3059\r\n// \u306A\
-    \u3051\u308C\u3070 -1\r\ntemplate <typename Group>\r\nll discrete_log(typename\
-    \ Group::X a, typename Group::X b,\r\n                function<ll(typename Group::X)>\
-    \ H, ll lb, ll ub) {\r\n  using G = typename Group::X;\r\n  if (lb >= ub) return\
-    \ -1;\r\n  {\r\n    ll n = lb;\r\n    G p = a;\r\n    G x = Group::unit();\r\n\
-    \    while (n) {\r\n      if (n & 1) x = Group::op(x, p);\r\n      p = Group::op(p,\
-    \ p);\r\n      n /= 2;\r\n    }\r\n    x = Group::inverse(x);\r\n    b = Group::op(b,\
-    \ x);\r\n  }\r\n  ll LIM = ub - lb;\r\n\r\n  ll K = 1;\r\n  while (K * K < LIM)\
-    \ ++K;\r\n\r\n  static HashMapLL<int, 20> MP;\r\n  MP.reset();\r\n\r\n  G p =\
-    \ Group::unit();\r\n  FOR(k, K + 1) {\r\n    auto key = H(p);\r\n    if (!MP.count(key))\
-    \ MP[key] = k;\r\n    if (k != K) p = Group::op(p, a);\r\n  }\r\n  p = Group::inverse(p);\r\
-    \n  FOR(k, K + 1) {\r\n    auto key = H(b);\r\n    if (MP.count(key)) {\r\n  \
-    \    ll res = k * K + MP[key] + lb;\r\n      return (res >= ub ? -1 : res);\r\n\
-    \    }\r\n    b = Group::op(b, p);\r\n  }\r\n  return -1;\r\n}\r\n\r\n// yuki1648\r\
-    \n// G \u96C6\u5408 X \u304C\u3042\u308B\u3002\r\n// a in G, x, y in X \u306B\u5BFE\
-    \u3057\u3066 a^nx=y \u3092\u89E3\u304F\r\n// \u30CF\u30C3\u30B7\u30E5\u95A2\u6570\
-    \ H : X -> long long \u3092\u6301\u305F\u305B\u308B\r\n// [lb, ub) \u306E\u6700\
-    \u521D\u306E\u89E3\u3092\u304B\u3048\u3059\r\n// \u306A\u3051\u308C\u3070 -1\r\
-    \ntemplate <typename GSet>\r\nll discrete_log_gset(typename GSet::X a, typename\
-    \ GSet::S x, typename GSet::S y,\r\n                     function<ll(typename\
-    \ GSet::S)> H, ll lb, ll ub) {\r\n  using Group = typename GSet::Monoid;\r\n \
-    \ using G = typename Group::value_type;\r\n  if (lb >= ub) return -1;\r\n  auto\
-    \ apow = [&](ll n) -> G {\r\n    G p = a;\r\n    G res = Group::unit();\r\n  \
-    \  while (n) {\r\n      if (n & 1) res = Group::op(res, p);\r\n      p = Group::op(p,\
-    \ p);\r\n      n /= 2;\r\n    }\r\n    return res;\r\n  };\r\n  x = GSet::act(x,\
-    \ apow(lb));\r\n  ll LIM = ub - lb;\r\n\r\n  ll K = 1;\r\n  while (K * K < LIM)\
-    \ ++K;\r\n\r\n  static HashMapLL<int, 20> MP;\r\n  MP.reset();\r\n\r\n  FOR(k,\
-    \ K + 1) {\r\n    auto key = H(x);\r\n    if (!MP.count(key)) MP[key] = k;\r\n\
-    \    if (k != K) x = GSet::act(x, a);\r\n  }\r\n\r\n  a = Group::inverse(apow(K));\r\
-    \n  FOR(k, K + 1) {\r\n    auto key = H(y);\r\n    if (MP.count(key)) {\r\n  \
-    \    ll res = k * K + MP[key] + lb;\r\n      return (res >= ub ? -1 : res);\r\n\
-    \    }\r\n    y = GSet::act(y, a);\r\n  }\r\n  return -1;\r\n}\n#line 2 \"alg/monoid/mul.hpp\"\
-    \n\r\ntemplate <class T>\r\nstruct Monoid_Mul {\r\n  using value_type = T;\r\n\
-    \  using X = T;\r\n  static constexpr X op(const X &x, const X &y) noexcept {\
-    \ return x * y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
-    \ X(1) / x; }\r\n  static constexpr X unit() { return X(1); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 4 \"mod/mod_log.hpp\"\n\r\nint mod_log(int\
-    \ mod, ll a, ll b) {\r\n  a = divmod(a, mod).se;\r\n  b = divmod(b, mod).se;\r\
-    \n  // \u307E\u305A\u7FA4\u306B\u5E30\u7740\u3059\u308B\u3002\u5C0F\u3055\u3044\
-    \u5834\u5408\u306F\u8ABF\u3079\u308B\r\n  ll p = 1 % mod;\r\n  FOR(k, 32) {\r\n\
-    \    if (p == b) return k;\r\n    p = p * a % mod;\r\n  }\r\n  if (a == 0 || b\
-    \ == 0) return -1;\r\n  ll g = gcd(mod, p);\r\n  if (b % g != 0) return -1;\r\n\
-    \  mod /= g;\r\n  a %= mod, b %= mod;\r\n  if (gcd(b, mod) > 1) return -1;\r\n\
-    \  // \u7FA4\u306B\u5E30\u7740\u3055\u308C\u305F\r\n  amint::set_mod(mod);\r\n\
-    \  return discrete_log<Monoid_Mul<amint>>(\r\n      amint(a), amint(b), [](auto\
+    \n};\r\n#line 3 \"nt/discrete_log.hpp\"\n\r\n// \u7FA4 X \u306E\u4F5C\u7528\u3059\
+    \u308B\u96C6\u5408 S\u3001\u30CF\u30C3\u30B7\u30E5\u95A2\u6570 H\uFF1AS -> Z\r\
+    \n// x in G, s, t in S \u306B\u5BFE\u3057\u3066 x^ns = t \u3092\u89E3\u304F\r\n\
+    // [lb, ub) \u306E\u6700\u521D\u306E\u89E3\u3092\u304B\u3048\u3059\u3002\u306A\
+    \u3051\u308C\u3070 -1 \u3092\u304B\u3048\u3059\u3002\r\ntemplate <typename ActedSet,\
+    \ typename F, int MP_SIZE = 20>\r\nll discrete_log_acted(typename ActedSet::A\
+    \ x, typename ActedSet::S s,\r\n                      typename ActedSet::S t,\
+    \ F H, ll lb, ll ub) {\r\n  static HashMapLL<int, MP_SIZE> MP;\r\n  MP.reset();\r\
+    \n  using Group = typename ActedSet::Monoid_A;\r\n  using G = typename Group::value_type;\r\
+    \n  if (lb >= ub) return -1;\r\n  auto xpow = [&](ll n) -> G {\r\n    G p = x;\r\
+    \n    G res = Group::unit();\r\n    while (n) {\r\n      if (n & 1) res = Group::op(res,\
+    \ p);\r\n      p = Group::op(p, p);\r\n      n /= 2;\r\n    }\r\n    return res;\r\
+    \n  };\r\n  s = ActedSet::act(s, xpow(lb));\r\n  u64 LIM = ub - lb;\r\n\r\n  ll\
+    \ K = sqrt(LIM) + 1;\r\n\r\n  FOR(k, K + 1) {\r\n    ll key = H(s);\r\n    if\
+    \ (!MP.count(key)) MP[key] = k;\r\n    if (k != K) s = ActedSet::act(s, x);\r\n\
+    \  }\r\n\r\n  x = Group::inverse(xpow(K));\r\n  FOR(k, K + 1) {\r\n    ll key\
+    \ = H(t);\r\n    if (MP.count(key)) {\r\n      ll res = k * K + MP[key] + lb;\r\
+    \n      return (res >= ub ? -1 : res);\r\n    }\r\n    t = ActedSet::act(t, x);\r\
+    \n  }\r\n  return -1;\r\n}\r\n\r\n// \u7FA4 X \u306B\u304A\u3051\u308B log_a b\
+    \ \u306E\u8A08\u7B97\r\n// \u30CF\u30C3\u30B7\u30E5\u95A2\u6570 H : X -> long\
+    \ long \u3092\u6301\u305F\u305B\u308B\r\n// [lb, ub) \u306E\u6700\u521D\u306E\u89E3\
+    \u3092\u304B\u3048\u3059\u3001\u306A\u3051\u308C\u3070 -1\r\ntemplate <typename\
+    \ Group, typename F>\r\nll discrete_log_group(typename Group::X a, typename Group::X\
+    \ b, F H, ll lb,\r\n                      ll ub) {\r\n  using AM = ActedSet_From_Monoid<Group>;\r\
+    \n  return discrete_log_acted<AM>(a, Group::unit(), b, H, lb, ub);\r\n}\n#line\
+    \ 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Monoid_Mul {\r\n\
+    \  using value_type = T;\r\n  using X = T;\r\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return x * y; }\r\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return X(1) / x; }\r\n  static constexpr X unit() { return\
+    \ X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 4 \"mod/mod_log.hpp\"\
+    \n\r\nint mod_log(int mod, ll a, ll b) {\r\n  a = divmod(a, mod).se;\r\n  b =\
+    \ divmod(b, mod).se;\r\n  // \u307E\u305A\u7FA4\u306B\u5E30\u7740\u3059\u308B\u3002\
+    \u5C0F\u3055\u3044\u5834\u5408\u306F\u8ABF\u3079\u308B\r\n  ll p = 1 % mod;\r\n\
+    \  FOR(k, 32) {\r\n    if (p == b) return k;\r\n    p = p * a % mod;\r\n  }\r\n\
+    \  if (a == 0 || b == 0) return -1;\r\n  ll g = gcd(mod, p);\r\n  if (b % g !=\
+    \ 0) return -1;\r\n  mod /= g;\r\n  a %= mod, b %= mod;\r\n  if (gcd(b, mod) >\
+    \ 1) return -1;\r\n  // \u7FA4\u306B\u5E30\u7740\u3055\u308C\u305F\r\n  amint::set_mod(mod);\r\
+    \n  return discrete_log<Monoid_Mul<amint>>(\r\n      amint(a), amint(b), [](auto\
     \ x) { return x.val; }, 32, mod);\r\n}\r\n#line 5 \"test/library_checker/math/discrete_logarithm_mod.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(x, y, mod);\r\n  print(mod_log(mod, x, y));\r\n}\r\
     \n\r\nsigned main() {\r\n  LL(T);\r\n  FOR(T) solve();\r\n\r\n  return 0;\r\n\
@@ -386,13 +383,14 @@ data:
   - mod/mod_log.hpp
   - mod/modint.hpp
   - nt/discrete_log.hpp
+  - alg/acted_set/from_monoid.hpp
   - ds/hashmap.hpp
   - alg/monoid/mul.hpp
   isVerificationFile: true
   path: test/library_checker/math/discrete_logarithm_mod.test.cpp
   requiredBy: []
-  timestamp: '2022-11-27 20:29:39+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-11-28 21:09:42+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/discrete_logarithm_mod.test.cpp
 layout: document

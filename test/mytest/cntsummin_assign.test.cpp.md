@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/cntsummin.hpp
     title: alg/monoid/cntsummin.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
   - icon: ':question:'

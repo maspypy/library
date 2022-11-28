@@ -195,15 +195,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc127f.test.cpp
     title: test/atcoder/abc127f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc127f_1.test.cpp
     title: test/atcoder/abc127f_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc174f.test.cpp
     title: test/atcoder/abc174f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc190f.test.cpp
     title: test/atcoder/abc190f.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc196_E.test.cpp
+    title: test/atcoder/abc196_E.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc198d.test.cpp
     title: test/atcoder/abc198d.test.cpp
@@ -234,15 +237,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc266h.test.cpp
     title: test/atcoder/abc266h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc266h_2.test.cpp
     title: test/atcoder/abc266h_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc269ex.test.cpp
     title: test/atcoder/abc269ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc270_g.test.cpp
+    title: test/atcoder/abc270_g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc272_h.test.cpp
     title: test/atcoder/abc272_h.test.cpp
@@ -528,7 +534,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/counting_primes.test.cpp
     title: test/library_checker/math/counting_primes.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1101,7 +1107,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1332.test.cpp
     title: test/yukicoder/1332.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2073,6 +2079,7 @@ data:
   - test/atcoder/abc217h.test.cpp
   - test/atcoder/abc269ex.test.cpp
   - test/atcoder/abc198d.test.cpp
+  - test/atcoder/abc196_E.test.cpp
   - test/atcoder/abc200a.test.cpp
   - test/atcoder/arc123d.test.cpp
   - test/atcoder/abc270_f.test.cpp
@@ -2089,6 +2096,7 @@ data:
   - test/atcoder/abc266h_2.test.cpp
   - test/atcoder/abc229h.test.cpp
   - test/atcoder/abc249_ex.test.cpp
+  - test/atcoder/abc270_g.test.cpp
   - test/atcoder/abc266h.test.cpp
   - test/atcoder/abc174f.test.cpp
   - test/aoj/DPL_1_F.test.cpp

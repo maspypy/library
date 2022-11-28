@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc196_E.test.cpp
+    title: test/atcoder/abc196_E.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/add_chmin_chmax.test.cpp
     title: test/mytest/add_chmin_chmax.test.cpp
   _isVerificationFailed: false
@@ -44,6 +47,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/add_chmin_chmax.test.cpp
+  - test/atcoder/abc196_E.test.cpp
 documentation_of: alg/monoid/add_chmin_chmax.hpp
 layout: document
 redirect_from:

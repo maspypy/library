@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/max_max.hpp
     title: alg/acted_monoid/max_max.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
   - icon: ':question:'
