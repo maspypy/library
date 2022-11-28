@@ -2,11 +2,11 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/dynamic_lazysegtree.hpp"
-#include "alg/lazy/cntsum_add.hpp"
+#include "alg/acted_monoid/cntsum_add.hpp"
 
 void solve() {
   auto f = [&](ll L, ll R) -> pi { return {R - L, 0}; };
-  Dynamic_LazySegTree<Lazy_CntSum_Add<ll>, 2000000> seg(0, 1LL << 30, f);
+  Dynamic_LazySegTree<ActedMonoid_CntSum_Add<ll>, 2000000> seg(0, 1LL << 30, f);
   LL(Q);
   ll ANS = 0;
   FOR(Q) {

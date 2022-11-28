@@ -32,13 +32,11 @@ struct MonoA {
   static constexpr bool commute = true;
 };
 
-struct Lazy {
-  using MX = MonoX;
-  using MA = MonoA;
-  using X_structure = MX;
-  using A_structure = MA;
-  using X = typename MX::value_type;
-  using A = typename MA::value_type;
+struct AM {
+  using Monoid_X = MonoX;
+  using Monoid_A = MonoA;
+  using X = typename Monoid_X::value_type;
+  using A = typename Monoid_A::value_type;
   static X act(const X &x, const A &a) {
     auto [sum, cnt, fsum] = x;
     auto [p, q, r] = a;
@@ -51,7 +49,7 @@ void solve() {
   vc<mint> F(N);
   F[1] = 1;
   FOR3(i, 2, N) F[i] = F[i - 2] + F[i - 1];
-  LazySegTree<Lazy> seg(N);
+  LazySegTree<AM> seg(N);
   FOR(i, N) seg.set(i, {mint(0), mint(1), F[i]});
 
   FOR(Q) {
