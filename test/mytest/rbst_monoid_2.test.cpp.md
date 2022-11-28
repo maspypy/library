@@ -2,11 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: alg/monoid/min.hpp
-    title: alg/monoid/min.hpp
+    path: alg/monoid/affine.hpp
+    title: alg/monoid/affine.hpp
   - icon: ':heavy_check_mark:'
     path: ds/bbst/rbst_monoid.hpp
     title: ds/bbst/rbst_monoid.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/modint.hpp
+    title: mod/modint.hpp
   - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
@@ -26,16 +29,17 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/rbst_test.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
-    \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
-    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
-    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
-    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
-    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+  bundledCode: "#line 1 \"test/mytest/rbst_monoid_2.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#pragma\
+    \ GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -205,27 +209,117 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"alg/monoid/min.hpp\"\ntemplate <class X>\r\nstruct\
-    \ Monoid_Min {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x,\
-    \ const X &y) noexcept { return min(x, y); }\r\n  static constexpr X unit() {\
-    \ return numeric_limits<X>::max(); }\r\n  static constexpr bool commute = true;\r\
-    \n};\r\n#line 1 \"ds/bbst/rbst_monoid.hpp\"\ntemplate <typename Monoid, int NODES\
-    \ = 1'000'000>\nstruct RBST_Monoid {\n  using X = typename Monoid::value_type;\n\
-    \n  struct Node {\n    Node *l, *r;\n    X x, prod, rev_prod; // rev \u53CD\u6620\
-    \u6E08\n    u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n  using\
-    \ np = Node *;\n\n  RBST_Monoid() : pid(0) { pool = new Node[NODES]; }\n\n  void\
-    \ reset() { pid = 0; }\n\n  np new_node(const X &x) {\n    pool[pid].l = pool[pid].r\
-    \ = nullptr;\n    pool[pid].x = x;\n    pool[pid].prod = x;\n    pool[pid].rev_prod\
-    \ = x;\n    pool[pid].size = 1;\n    pool[pid].rev = 0;\n    return &(pool[pid++]);\n\
-    \  }\n\n  np new_node(const vc<X> &dat) {\n    auto dfs = [&](auto &dfs, u32 l,\
-    \ u32 r) -> np {\n      if (l == r) return nullptr;\n      if (r == l + 1) return\
-    \ new_node(dat[l]);\n      u32 m = (l + r) / 2;\n      np root = new_node(dat[m]);\n\
-    \      root->l = dfs(dfs, l, m), root->r = dfs(dfs, m + 1, r);\n      update(root);\n\
-    \      return root;\n    };\n    return dfs(dfs, 0, len(dat));\n  }\n\n  np merge(np\
-    \ l_root, np r_root) { return merge_rec(l_root, r_root); }\n  np merge3(np a,\
-    \ np b, np c) { return merge(merge(a, b), c); }\n  np merge4(np a, np b, np c,\
-    \ np d) { return merge(merge(merge(a, b), c), d); }\n  pair<np, np> split(np root,\
-    \ u32 k) {\n    if (!root) {\n      assert(k == 0);\n      return {nullptr, nullptr};\n\
+    \ { yes(!t); }\r\n#line 1 \"alg/monoid/affine.hpp\"\ntemplate <typename K>\nstruct\
+    \ Monoid_Affine {\n  using F = pair<K, K>;\n  using value_type = F;\n  static\
+    \ constexpr F op(const F &x, const F &y) noexcept {\n    return F({x.first * y.first,\
+    \ x.second * y.first + y.second});\n  }\n  static constexpr F inverse(const F\
+    \ &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n\
+    \  }\n  static constexpr K eval(const F &f, K x) noexcept {\n    return f.first\
+    \ * x + f.second;\n  }\n  static constexpr F unit() { return {K(1), K(0)}; }\n\
+    \  static constexpr bool commute = false;\n};\n#line 2 \"mod/modint.hpp\"\n\n\
+    template <int mod>\nstruct modint {\n  static constexpr bool is_modint = true;\n\
+    \  int val;\n  constexpr modint(const ll val = 0) noexcept\n      : val(val >=\
+    \ 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint\
+    \ &other) const {\n    return val < other.val;\n  } // To use std::map\n  modint\
+    \ &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n\
+    \    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if ((val\
+    \ += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const\
+    \ modint &p) {\n    val = (int)(1LL * val * p.val % mod);\n    return *this;\n\
+    \  }\n  modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n   \
+    \ return *this;\n  }\n  modint operator-() const { return modint(-val); }\n  modint\
+    \ operator+(const modint &p) const { return modint(*this) += p; }\n  modint operator-(const\
+    \ modint &p) const { return modint(*this) -= p; }\n  modint operator*(const modint\
+    \ &p) const { return modint(*this) *= p; }\n  modint operator/(const modint &p)\
+    \ const { return modint(*this) /= p; }\n  bool operator==(const modint &p) const\
+    \ { return val == p.val; }\n  bool operator!=(const modint &p) const { return\
+    \ val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod, u = 1,\
+    \ v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b),\
+    \ swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
+    \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
+    \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
+    \  }\n  static constexpr int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
+    \ {\n  static constexpr bool is_modint = true;\n  int val;\n  ArbitraryModInt()\
+    \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
+    \                   : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
+    \ ArbitraryModInt &other) const {\n    return val < other.val;\n  } // To use\
+    \ std::map<ArbitraryModInt, T>\n  static int &get_mod() {\n    static int mod\
+    \ = 0;\n    return mod;\n  }\n  static void set_mod(int md) { get_mod() = md;\
+    \ }\n  ArbitraryModInt &operator+=(const ArbitraryModInt &p) {\n    if ((val +=\
+    \ p.val) >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt\
+    \ &operator-=(const ArbitraryModInt &p) {\n    if ((val += get_mod() - p.val)\
+    \ >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt &operator*=(const\
+    \ ArbitraryModInt &p) {\n    long long a = (long long)val * p.val;\n    int xh\
+    \ = (int)(a >> 32), xl = (int)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d),\
+    \ \"=d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return\
+    \ *this;\n  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n   \
+    \ *this *= p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-()\
+    \ const { return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) += p;\n  }\n\
+    \  ArbitraryModInt operator-(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
+    \ -= p;\n  }\n  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n\
+    \    return ArbitraryModInt(*this) *= p;\n  }\n  ArbitraryModInt operator/(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) /= p;\n  }\n\
+    \  bool operator==(const ArbitraryModInt &p) const { return val == p.val; }\n\
+    \  bool operator!=(const ArbitraryModInt &p) const { return val != p.val; }\n\
+    \  ArbitraryModInt inverse() const {\n    int a = val, b = get_mod(), u = 1, v\
+    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
+    \ -= t * v, v);\n    }\n    return ArbitraryModInt(u);\n  }\n  ArbitraryModInt\
+    \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
+    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
+    \  }\n    return ret;\n  }\n};\n\ntemplate <typename mint>\nmint inv(int n) {\n\
+    \  static const int mod = mint::get_mod();\n  static vector<mint> dat = {0, 1};\n\
+    \  assert(0 <= n);\n  if (n >= mod) n %= mod;\n  while (int(dat.size()) <= n)\
+    \ {\n    int k = dat.size();\n    auto q = (mod + k - 1) / k;\n    int r = k *\
+    \ q - mod;\n    dat.emplace_back(dat[r] * mint(q));\n  }\n  return dat[n];\n}\n\
+    \ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  static vector<mint> dat = {1, 1};\n  assert(0 <= n);\n  if (n >= mod) return\
+    \ 0;\n  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
+    \ - 1] * mint(k));\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint\
+    \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
+    \ dat = {1, 1};\n  assert(-1 <= n && n < mod);\n  if (n == -1) return mint(0);\n\
+    \  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
+    \ - 1] * inv<mint>(k));\n  }\n  return dat[n];\n}\n\ntemplate <class mint, class...\
+    \ Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
+    }\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
+    \ &&head, Tail &&... tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint>\
+    \ C;\n  static int H = 0, W = 0;\n\n  auto calc = [&](int i, int j) -> mint {\n\
+    \    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
+    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n\n  if (W <= k) {\n    FOR(i, H) {\n   \
+    \   C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n  \
+    \  }\n    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H,\
+    \ n + 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n\
+    \    }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint,\
+    \ bool large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >=\
+    \ 0);\n  if (k < 0 || n < k) return 0;\n  if (dense) return C_dense<mint>(n, k);\n\
+    \  if (!large) return fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n\
+    \  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *=\
+    \ fact_inv<mint>(k);\n  return x;\n}\n\ntemplate <typename mint, bool large =\
+    \ false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <=\
+    \ n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n -\
+    \ k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\
+    \u8A08\u7B97\ntemplate <typename mint, bool large = false, bool dense = false>\n\
+    mint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
+    \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
+    \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
+    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 1 \"ds/bbst/rbst_monoid.hpp\"\
+    \ntemplate <typename Monoid, int NODES = 1'000'000>\nstruct RBST_Monoid {\n  using\
+    \ X = typename Monoid::value_type;\n\n  struct Node {\n    Node *l, *r;\n    X\
+    \ x, prod, rev_prod; // rev \u53CD\u6620\u6E08\n    u32 size;\n    bool rev;\n\
+    \  };\n\n  Node *pool;\n  int pid;\n  using np = Node *;\n\n  RBST_Monoid() :\
+    \ pid(0) { pool = new Node[NODES]; }\n\n  void reset() { pid = 0; }\n\n  np new_node(const\
+    \ X &x) {\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x = x;\n  \
+    \  pool[pid].prod = x;\n    pool[pid].rev_prod = x;\n    pool[pid].size = 1;\n\
+    \    pool[pid].rev = 0;\n    return &(pool[pid++]);\n  }\n\n  np new_node(const\
+    \ vc<X> &dat) {\n    auto dfs = [&](auto &dfs, u32 l, u32 r) -> np {\n      if\
+    \ (l == r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n \
+    \     u32 m = (l + r) / 2;\n      np root = new_node(dat[m]);\n      root->l =\
+    \ dfs(dfs, l, m), root->r = dfs(dfs, m + 1, r);\n      update(root);\n      return\
+    \ root;\n    };\n    return dfs(dfs, 0, len(dat));\n  }\n\n  np merge(np l_root,\
+    \ np r_root) { return merge_rec(l_root, r_root); }\n  np merge3(np a, np b, np\
+    \ c) { return merge(merge(a, b), c); }\n  np merge4(np a, np b, np c, np d) {\
+    \ return merge(merge(merge(a, b), c), d); }\n  pair<np, np> split(np root, u32\
+    \ k) {\n    if (!root) {\n      assert(k == 0);\n      return {nullptr, nullptr};\n\
     \    }\n    assert(0 <= k && k <= root->size);\n    return split_rec(root, k);\n\
     \  }\n  tuple<np, np, np> split3(np root, u32 l, u32 r) {\n    np nm, nr;\n  \
     \  tie(root, nr) = split(root, r);\n    tie(root, nm) = split(root, l);\n    return\
@@ -301,59 +395,71 @@ data:
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 7 \"test/mytest/rbst_test.test.cpp\"\
-    \n\nvoid test() {\n  using Mono = Monoid_Min<int>;\n  RBST_Monoid<Mono, 100> X;\n\
-    \  FOR(1000) {\n    X.reset();\n    int N = RNG(1, 20);\n    int Q = RNG(1, 1000);\n\
-    \    vc<int> A(N);\n    FOR(i, N) A[i] = RNG(1, 100);\n    auto root = X.new_node(A);\n\
-    \n    FOR(Q) {\n      int t = RNG(0, 5);\n      if (t == 0) {\n        int i =\
-    \ RNG(0, N);\n        assert(A[i] == X.get(root, i));\n      }\n      if (t ==\
-    \ 1) {\n        int i = RNG(0, N);\n        int x = RNG(1, 100);\n        root\
-    \ = X.set(root, i, x);\n        A[i] = x;\n      }\n      if (t == 2) {\n    \
-    \    int i = RNG(0, N);\n        int x = RNG(1, 100);\n        root = X.multiply(root,\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 8 \"test/mytest/rbst_monoid_2.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid test() {\n  using Mono = Monoid_Affine<mint>;\n\
+    \  RBST_Monoid<Mono, 100> X;\n  auto rnd_affine = [&]() -> pair<mint, mint> {\n\
+    \    int a = RNG(0, 3);\n    int b = RNG(0, 3);\n    return {a, b};\n  };\n\n\
+    \  using T = typename Mono::value_type;\n\n  FOR(1000) {\n    X.reset();\n   \
+    \ int N = 2;\n    int Q = RNG(1, 1000);\n    vc<T> A(N);\n    FOR(i, N) A[i] =\
+    \ rnd_affine();\n    auto root = X.new_node(A);\n\n    FOR(Q) {\n      vc<int>\
+    \ cand = {0, 1, 2, 3, 4, 5};\n      int t = cand[RNG(0, len(cand))];\n      if\
+    \ (t == 0) {\n        int i = RNG(0, N);\n        assert(A[i] == X.get(root, i));\n\
+    \      }\n      if (t == 1) {\n        int i = RNG(0, N);\n        T x = rnd_affine();\n\
+    \        root = X.set(root, i, x);\n        A[i] = x;\n      }\n      if (t ==\
+    \ 2) {\n        int i = RNG(0, N);\n        T x = rnd_affine();\n        root\
+    \ = X.multiply(root, i, x);\n        A[i] = Mono::op(A[i], x);\n      }\n    \
+    \  if (t == 3) {\n        int L = RNG(0, N);\n        int R = RNG(0, N);\n   \
+    \     if (L > R) swap(L, R);\n        ++R;\n        vc<T> B = {A.begin() + L,\
+    \ A.begin() + R};\n        T t = Mono::unit();\n        for (auto&& b: B) t =\
+    \ Mono::op(t, b);\n        assert(X.prod(root, L, R) == t);\n      }\n      if\
+    \ (t == 4) {\n        int L = RNG(0, N);\n        int R = RNG(0, N);\n       \
+    \ if (L > R) swap(L, R);\n        ++R;\n        root = X.reverse(root, L, R);\n\
+    \        reverse(A.begin() + L, A.begin() + R);\n      }\n      if (t == 5) {\n\
+    \        vc<T> B = X.get_all(root);\n        assert(A == B);\n      }\n    }\n\
+    \  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n\
+    \  test();\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"alg/monoid/affine.hpp\"\n#include \"mod/modint.hpp\"\
+    \n#include \"ds/bbst/rbst_monoid.hpp\"\n#include \"random/base.hpp\"\n\nusing\
+    \ mint = modint998;\n\nvoid test() {\n  using Mono = Monoid_Affine<mint>;\n  RBST_Monoid<Mono,\
+    \ 100> X;\n  auto rnd_affine = [&]() -> pair<mint, mint> {\n    int a = RNG(0,\
+    \ 3);\n    int b = RNG(0, 3);\n    return {a, b};\n  };\n\n  using T = typename\
+    \ Mono::value_type;\n\n  FOR(1000) {\n    X.reset();\n    int N = 2;\n    int\
+    \ Q = RNG(1, 1000);\n    vc<T> A(N);\n    FOR(i, N) A[i] = rnd_affine();\n   \
+    \ auto root = X.new_node(A);\n\n    FOR(Q) {\n      vc<int> cand = {0, 1, 2, 3,\
+    \ 4, 5};\n      int t = cand[RNG(0, len(cand))];\n      if (t == 0) {\n      \
+    \  int i = RNG(0, N);\n        assert(A[i] == X.get(root, i));\n      }\n    \
+    \  if (t == 1) {\n        int i = RNG(0, N);\n        T x = rnd_affine();\n  \
+    \      root = X.set(root, i, x);\n        A[i] = x;\n      }\n      if (t == 2)\
+    \ {\n        int i = RNG(0, N);\n        T x = rnd_affine();\n        root = X.multiply(root,\
     \ i, x);\n        A[i] = Mono::op(A[i], x);\n      }\n      if (t == 3) {\n  \
     \      int L = RNG(0, N);\n        int R = RNG(0, N);\n        if (L > R) swap(L,\
-    \ R);\n        ++R;\n        vc<int> B = {A.begin() + L, A.begin() + R};\n   \
-    \     assert(X.prod(root, L, R) == MIN(B));\n      }\n      if (t == 4) {\n  \
-    \      int L = RNG(0, N);\n        int R = RNG(0, N);\n        if (L > R) swap(L,\
-    \ R);\n        ++R;\n        root = X.reverse(root, L, R);\n        reverse(A.begin()\
-    \ + L, A.begin() + R);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n\
+    \ R);\n        ++R;\n        vc<T> B = {A.begin() + L, A.begin() + R};\n     \
+    \   T t = Mono::unit();\n        for (auto&& b: B) t = Mono::op(t, b);\n     \
+    \   assert(X.prod(root, L, R) == t);\n      }\n      if (t == 4) {\n        int\
+    \ L = RNG(0, N);\n        int R = RNG(0, N);\n        if (L > R) swap(L, R);\n\
+    \        ++R;\n        root = X.reverse(root, L, R);\n        reverse(A.begin()\
+    \ + L, A.begin() + R);\n      }\n      if (t == 5) {\n        vc<T> B = X.get_all(root);\n\
+    \        assert(A == B);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n\
     \  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n\
-    }\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"alg/monoid/min.hpp\"\n#include \"ds/bbst/rbst_monoid.hpp\"\
-    \n#include \"random/base.hpp\"\n\nvoid test() {\n  using Mono = Monoid_Min<int>;\n\
-    \  RBST_Monoid<Mono, 100> X;\n  FOR(1000) {\n    X.reset();\n    int N = RNG(1,\
-    \ 20);\n    int Q = RNG(1, 1000);\n    vc<int> A(N);\n    FOR(i, N) A[i] = RNG(1,\
-    \ 100);\n    auto root = X.new_node(A);\n\n    FOR(Q) {\n      int t = RNG(0,\
-    \ 5);\n      if (t == 0) {\n        int i = RNG(0, N);\n        assert(A[i] ==\
-    \ X.get(root, i));\n      }\n      if (t == 1) {\n        int i = RNG(0, N);\n\
-    \        int x = RNG(1, 100);\n        root = X.set(root, i, x);\n        A[i]\
-    \ = x;\n      }\n      if (t == 2) {\n        int i = RNG(0, N);\n        int\
-    \ x = RNG(1, 100);\n        root = X.multiply(root, i, x);\n        A[i] = Mono::op(A[i],\
-    \ x);\n      }\n      if (t == 3) {\n        int L = RNG(0, N);\n        int R\
-    \ = RNG(0, N);\n        if (L > R) swap(L, R);\n        ++R;\n        vc<int>\
-    \ B = {A.begin() + L, A.begin() + R};\n        assert(X.prod(root, L, R) == MIN(B));\n\
-    \      }\n      if (t == 4) {\n        int L = RNG(0, N);\n        int R = RNG(0,\
-    \ N);\n        if (L > R) swap(L, R);\n        ++R;\n        root = X.reverse(root,\
-    \ L, R);\n        reverse(A.begin() + L, A.begin() + R);\n      }\n    }\n  }\n\
-    }\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n\
-    \  solve();\n\n  return 0;\n}"
+    }"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - alg/monoid/min.hpp
+  - alg/monoid/affine.hpp
+  - mod/modint.hpp
   - ds/bbst/rbst_monoid.hpp
   - random/base.hpp
   isVerificationFile: true
-  path: test/mytest/rbst_test.test.cpp
+  path: test/mytest/rbst_monoid_2.test.cpp
   requiredBy: []
   timestamp: '2022-11-29 04:18:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/mytest/rbst_test.test.cpp
+documentation_of: test/mytest/rbst_monoid_2.test.cpp
 layout: document
 redirect_from:
-- /verify/test/mytest/rbst_test.test.cpp
-- /verify/test/mytest/rbst_test.test.cpp.html
-title: test/mytest/rbst_test.test.cpp
+- /verify/test/mytest/rbst_monoid_2.test.cpp
+- /verify/test/mytest/rbst_monoid_2.test.cpp.html
+title: test/mytest/rbst_monoid_2.test.cpp
 ---

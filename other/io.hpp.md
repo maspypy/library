@@ -922,6 +922,12 @@ data:
     path: test/mytest/rbst_lazy_2.test.cpp
     title: test/mytest/rbst_lazy_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_monoid.test.cpp
+    title: test/mytest/rbst_monoid.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_monoid_2.test.cpp
+    title: test/mytest/rbst_monoid_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_test.test.cpp
     title: test/mytest/rbst_test.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1947,6 +1953,7 @@ data:
   - test/mytest/gray_code.test.cpp
   - test/mytest/run_length.test.cpp
   - test/mytest/min_min.test.cpp
+  - test/mytest/rbst_monoid.test.cpp
   - test/mytest/magic_square.test.cpp
   - test/mytest/max_min.test.cpp
   - test/mytest/enumerate_products.test.cpp
@@ -1955,6 +1962,7 @@ data:
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/tutte.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
+  - test/mytest/rbst_monoid_2.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
   - test/mytest/prime_sum.test.cpp
   - test/mytest/max_assign.test.cpp
