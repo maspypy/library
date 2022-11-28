@@ -1,15 +1,15 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "alg/lazy/min_set.hpp"
+#include "alg/acted_monoid/min_assign.hpp"
 #include "ds/bbst/rbst_lazy.hpp"
 #include "random/base.hpp"
 
 void test() {
-  using Lazy = Lazy_Min_Set<int, -1>;
-  using MonoX = typename Lazy::MX;
+  using AM = ActedMonoid_Min_Assign<int, -1>;
+  using MonoX = typename AM::Monoid_X;
 
-  RBST_Lazy<Lazy, 100> X;
+  RBST_Lazy<AM, 100> X;
   FOR(1000) {
     X.reset();
     int N = RNG(1, 20);

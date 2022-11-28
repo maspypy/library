@@ -1,15 +1,15 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "alg/lazy/cntsum_add.hpp"
+#include "alg/acted_monoid/cntsum_add.hpp"
 #include "ds/bbst/rbst_lazy.hpp"
 #include "random/base.hpp"
 
 void test() {
-  using Lazy = Lazy_CntSum_Add<int>;
-  using MonoX = typename Lazy::X_structure;
+  using AM = ActedMonoid_CntSum_Add<int>;
+  using MonoX = typename AM::Monoid_X;
 
-  RBST_Lazy<Lazy, 100> X;
+  RBST_Lazy<AM, 100> X;
   FOR(1000) {
     X.reset();
     int N = RNG(1, 3);
