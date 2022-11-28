@@ -7,6 +7,12 @@ data:
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_am.test.cpp
+    title: test/mytest/rbst_am.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_am_2.test.cpp
+    title: test/mytest/rbst_am_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/686.test.cpp
     title: test/yukicoder/686.test.cpp
   _isVerificationFailed: false
@@ -233,6 +239,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/686.test.cpp
+  - test/mytest/rbst_am.test.cpp
+  - test/mytest/rbst_am_2.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
 documentation_of: ds/bbst/rbst_acted_monoid.hpp
 layout: document

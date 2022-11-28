@@ -214,6 +214,12 @@ data:
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_am.test.cpp
+    title: test/mytest/rbst_am.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_am_2.test.cpp
+    title: test/mytest/rbst_am_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_monoid.test.cpp
     title: test/mytest/rbst_monoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -380,6 +386,7 @@ data:
   - test/mytest/online_division.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/tutte.test.cpp
+  - test/mytest/rbst_am.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/rbst_monoid_2.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
@@ -391,6 +398,7 @@ data:
   - test/mytest/add_chmin_chmax.test.cpp
   - test/mytest/stern_brocot.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
+  - test/mytest/rbst_am_2.test.cpp
   - test/mytest/binom.test.cpp
   - test/mytest/cntsummax_add.test.cpp
   - test/mytest/tournament.test.cpp

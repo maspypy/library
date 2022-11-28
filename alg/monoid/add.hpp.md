@@ -211,6 +211,9 @@ data:
     path: test/mytest/minmax_add.test.cpp
     title: test/mytest/minmax_add.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_am_2.test.cpp
+    title: test/mytest/rbst_am_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -397,6 +400,7 @@ data:
   - test/mytest/maxidx_add.test.cpp
   - test/mytest/minmax_add.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
+  - test/mytest/rbst_am_2.test.cpp
   - test/mytest/cntsummax_add.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp

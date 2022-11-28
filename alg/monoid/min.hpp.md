@@ -88,6 +88,9 @@ data:
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_am.test.cpp
+    title: test/mytest/rbst_am.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_test.test.cpp
     title: test/mytest/rbst_test.test.cpp
   - icon: ':heavy_check_mark:'
@@ -153,6 +156,7 @@ data:
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/min_min.test.cpp
   - test/mytest/max_min.test.cpp
+  - test/mytest/rbst_am.test.cpp
   - test/mytest/rbst_test.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp
