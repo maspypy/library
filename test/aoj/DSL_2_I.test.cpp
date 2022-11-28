@@ -8,7 +8,7 @@
 
 void solve() {
   LL(N, Q);
-  using AM = ActedMonoid_Assign<ll, 12345>;
+  using AM = ActedMonoid_CntSum_Assign<ll, 12345>;
   vc<pi> seg_raw(N);
   FOR(i, N) seg_raw[i] = {1, 0};
   LazySegTree<AM> seg(seg_raw);
