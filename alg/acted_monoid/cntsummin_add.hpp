@@ -2,7 +2,7 @@
 #include "alg/monoid/add.hpp"
 
 template <typename E>
-struct Lazy_CntSumMin_Add {
+struct ActedMonoid_CntSumMin_Add {
   using Monoid_X = Monoid_CntSumMin<E>;
   using Monoid_A = Monoid_Add<E>;
   using X = typename Monoid_X::value_type;

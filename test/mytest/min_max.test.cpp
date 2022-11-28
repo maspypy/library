@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "alg/lazy/min_max.hpp"
+#include "alg/acted_monoid/min_max.hpp"
 #include "random/base.hpp"
 #include "ds/lazysegtree.hpp"
 

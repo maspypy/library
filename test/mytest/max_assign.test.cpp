@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "alg/lazy/max_set.hpp"
+#include "alg/acted_monoid/max_assign.hpp"
 #include "random/base.hpp"
 #include "ds/lazysegtree.hpp"
 
@@ -9,7 +9,7 @@ void test() {
   int N = RNG(1, 100);
   vc<int> A(N);
   FOR(i, N) A[i] = RNG(1, 100);
-  LazySegTree<Lazy_Max_Set<int, -1>> seg(A);
+  LazySegTree<ActedMonoid_Max_Assign<int, -1>> seg(A);
   int Q = RNG(1, 100);
   FOR(Q) {
     ll t = RNG(0, 2);
