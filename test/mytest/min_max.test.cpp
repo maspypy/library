@@ -9,9 +9,9 @@ void test() {
   int N = RNG(1, 100);
   vc<int> A(N);
   FOR(i, N) A[i] = RNG(1, 100);
-  using Lazy = Lazy_Min_Max<int>;
-  using Mono = typename Lazy::MX;
-  LazySegTree<Lazy_Min_Max<int>> seg(A);
+  using AM = ActedMonoid_Min_Max<int>;
+  using Mono = typename AM::Monoid_X;
+  LazySegTree<AM> seg(A);
   int Q = RNG(1, 100);
   FOR(Q) {
     ll t = RNG(0, 2);
