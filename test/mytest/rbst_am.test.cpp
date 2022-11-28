@@ -9,7 +9,7 @@ void test() {
   using AM = ActedMonoid_Min_Assign<int, -1>;
   using MonoX = typename AM::Monoid_X;
 
-  RBST_Lazy<AM, 100> X;
+  RBST_ActedMonoid<AM, 100> X;
   FOR(1000) {
     X.reset();
     int N = RNG(1, 20);
