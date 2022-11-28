@@ -1,11 +1,10 @@
-// reverse はとりあえず、Monoid の可換性を仮定している！
 template <typename Monoid, int NODES = 1'000'000>
 struct RBST_Monoid {
   using X = typename Monoid::value_type;
 
   struct Node {
     Node *l, *r;
-    X x, prod;
+    X x, prod, rev_prod; // rev 反映済
     u32 size;
     bool rev;
   };
@@ -22,6 +21,7 @@ struct RBST_Monoid {
     pool[pid].l = pool[pid].r = nullptr;
     pool[pid].x = x;
     pool[pid].prod = x;
+    pool[pid].rev_prod = x;
     pool[pid].size = 1;
     pool[pid].rev = 0;
     return &(pool[pid++]);
@@ -70,11 +70,12 @@ struct RBST_Monoid {
   }
 
   np reverse(np root, u32 l, u32 r) {
-    assert(Monoid::commute);
     assert(0 <= l && l <= r && r <= root->size);
     if (r - l <= 1) return root;
     auto [nl, nm, nr] = split3(root, l, r);
     nm->rev ^= 1;
+    swap(nm->prod, nm->rev_prod);
+    swap(nm->l, nm->r);
     return merge3(nl, nm, nr);
   }
 
@@ -86,10 +87,9 @@ struct RBST_Monoid {
     vc<X> res;
     auto dfs = [&](auto &dfs, np root, bool rev) -> void {
       if (!root) return;
-      rev ^= root->rev;
-      dfs(dfs, (rev ? root->r : root->l), rev);
+      dfs(dfs, (rev ? root->r : root->l), root->rev ^ rev);
       res.eb(root->x);
-      dfs(dfs, (rev ? root->l : root->r), rev);
+      dfs(dfs, (rev ? root->l : root->r), root->rev ^ rev);
     };
     dfs(dfs, root, 0);
     return res;
@@ -115,25 +115,34 @@ private:
     return w = (w ^ (w >> 19)) ^ (t ^ (t >> 8));
   }
 
-  void prop(np c) {
+  void push(np c) {
     if (c->rev) {
-      swap(c->l, c->r);
-      if (c->l) c->l->rev ^= 1;
-      if (c->r) c->r->rev ^= 1;
+      if (c->l) {
+        c->l->rev ^= 1;
+        swap(c->l->prod, c->l->rev_prod);
+        swap(c->l->l, c->l->r);
+      }
+      if (c->r) {
+        c->r->rev ^= 1;
+        swap(c->r->prod, c->r->rev_prod);
+        swap(c->r->l, c->r->r);
+      }
       c->rev = 0;
     }
   }
 
   void update(np c) {
     c->size = 1;
-    c->prod = c->x;
+    c->prod = c->rev_prod = c->x;
     if (c->l) {
       c->size += c->l->size;
       c->prod = Monoid::op(c->l->prod, c->prod);
+      c->rev_prod = Monoid::op(c->rev_prod, c->l->rev_prod);
     }
     if (c->r) {
       c->size += c->r->size;
       c->prod = Monoid::op(c->prod, c->r->prod);
+      c->rev_prod = Monoid::op(c->r->rev_prod, c->rev_prod);
     }
   }
 
@@ -142,12 +151,12 @@ private:
     if (!r_root) return l_root;
     u32 sl = l_root->size, sr = r_root->size;
     if (xor128() % (sl + sr) < sl) {
-      prop(l_root);
+      push(l_root);
       l_root->r = merge_rec(l_root->r, r_root);
       update(l_root);
       return l_root;
     }
-    prop(r_root);
+    push(r_root);
     r_root->l = merge_rec(l_root, r_root->l);
     update(r_root);
     return r_root;
@@ -155,7 +164,7 @@ private:
 
   pair<np, np> split_rec(np root, u32 k) {
     if (!root) return {nullptr, nullptr};
-    prop(root);
+    push(root);
     u32 sl = (root->l ? root->l->size : 0);
     if (k <= sl) {
       auto [nl, nr] = split_rec(root->l, k);
@@ -171,7 +180,7 @@ private:
 
   np set_rec(np root, u32 k, const X &x) {
     if (!root) return root;
-    prop(root);
+    push(root);
     u32 sl = (root->l ? root->l->size : 0);
     if (k < sl) {
       root->l = set_rec(root->l, k, x);
@@ -190,7 +199,7 @@ private:
 
   np multiply_rec(np root, u32 k, const X &x) {
     if (!root) return root;
-    prop(root);
+    push(root);
     u32 sl = (root->l ? root->l->size : 0);
     if (k < sl) {
       root->l = multiply_rec(root->l, k, x);
@@ -208,7 +217,7 @@ private:
   }
 
   X prod_rec(np root, u32 l, u32 r) {
-    prop(root);
+    push(root);
     if (l == 0 && r == root->size) return root->prod;
     u32 sl = (root->l ? root->l->size : 0);
     X res = Monoid::unit();
@@ -220,7 +229,7 @@ private:
   }
 
   X get_rec(np root, u32 k) {
-    prop(root);
+    push(root);
     u32 sl = (root->l ? root->l->size : 0);
     if (k < sl) return get_rec(root->l, k);
     if (k == sl) return root->x;
@@ -230,6 +239,7 @@ private:
   template <typename F>
   u32 max_right_rec(np n, const F check, u32 L, X &x) {
     if (!n) return 0;
+    push(n);
     if (L == 0) {
       X y = Monoid::op(x, n->prod);
       if (check(y)) {
@@ -237,7 +247,6 @@ private:
         return n->size;
       }
     }
-    prop(n);
     u32 sl = (n->l ? n->l->size : 0);
     if (L < sl) {
       u32 k = max_right_rec(n->l, check, L, x);
