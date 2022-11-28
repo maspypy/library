@@ -2,13 +2,11 @@
 #include "alg/monoid/add_pair.hpp"
 
 template <typename E>
-struct Lazy_CntSum_Add {
-  using MX = Monoid_Add_Pair<E>;
-  using MA = Monoid_Add<E>;
-  using X_structure = MX;
-  using A_structure = MA;
-  using X = typename MX::value_type;
-  using A = typename MA::value_type;
+struct ActedMonoid_CntSum_Add {
+  using Monoid_X = Monoid_Add_Pair<E>;
+  using Monoid_A = Monoid_Add<E>;
+  using X = typename Monoid_X::value_type;
+  using A = typename Monoid_A::value_type;
   static constexpr X act(const X &x, const A &a) {
     return {x.fi, x.se + x.fi * a};
   }
