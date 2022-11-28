@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/cntsum_affine.hpp
     title: alg/acted_monoid/cntsum_affine.hpp
   - icon: ':question:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/bbst/rbst_acted_monoid.hpp
     title: ds/bbst/rbst_acted_monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
@@ -418,7 +418,7 @@ data:
     \ x);\n    update(root);\n    return root;\n  }\n\n  X prod_rec(np root, u32 l,\
     \ u32 r, bool rev) {\n    if (l == 0 && r == root->size) { return root->prod;\
     \ }\n    np left = (rev ? root->r : root->l);\n    np right = (rev ? root->l :\
-    \ root->r);\n    u32 sl = (root->l ? root->l->size : 0);\n    X res = Monoid_X::unit();\n\
+    \ root->r);\n    u32 sl = (left ? left->size : 0);\n    X res = Monoid_X::unit();\n\
     \    if (l < sl) {\n      X y = prod_rec(left, l, min(r, sl), rev ^ root->rev);\n\
     \      res = Monoid_X::op(res, ActedMonoid::act(y, root->lazy));\n    }\n    if\
     \ (l <= sl && sl < r) res = Monoid_X::op(res, root->x);\n    u32 k = 1 + sl;\n\
@@ -426,53 +426,54 @@ data:
     \      res = Monoid_X::op(res, ActedMonoid::act(y, root->lazy));\n    }\n    return\
     \ res;\n  }\n\n  X get_rec(np root, u32 k, bool rev, A lazy) {\n    np left =\
     \ (rev ? root->r : root->l);\n    np right = (rev ? root->l : root->r);\n    u32\
-    \ sl = (root->l ? root->l->size : 0);\n    if (k == sl) return ActedMonoid::act(root->x,\
+    \ sl = (left ? left->size : 0);\n    if (k == sl) return ActedMonoid::act(root->x,\
     \ lazy);\n    lazy = Monoid_A::op(root->lazy, lazy);\n    rev ^= root->rev;\n\
-    \    if (k < sl) return get_rec(left, k, rev, lazy);\n    return get_rec(root->r,\
+    \    if (k < sl) return get_rec(left, k, rev, lazy);\n    return get_rec(right,\
     \ k - (1 + sl), rev, lazy);\n  }\n\n  np apply_rec(np root, u32 l, u32 r, const\
     \ A &a) {\n    prop(root);\n    root = copy_node(root);\n    if (l == 0 && r ==\
     \ root->size) {\n      root->x = ActedMonoid::act(root->x, a);\n      root->prod\
     \ = ActedMonoid::act(root->prod, a);\n      root->lazy = a;\n      return root;\n\
-    \    }\n    u32 sl = (root->l ? root->l->size : 0);\n    if (l < sl) apply_rec(root->l,\
-    \ l, min(r, sl), a);\n    if (l <= sl && sl < r) root->x = ActedMonoid::act(root->x,\
-    \ a);\n    u32 k = 1 + sl;\n    if (k < r) apply_rec(root->r, max(k, l) - k, r\
-    \ - k, a);\n    update(root);\n    return root;\n  }\n\n  template <typename F>\n\
-    \  pair<np, np> split_max_right_rec(np root, const F &check, X &x) {\n    if (!root)\
-    \ return {nullptr, nullptr};\n    prop(root);\n    root = copy_node(root);\n \
-    \   X y = Monoid_X::op(x, root->prod);\n    if (check(y)) {\n      x = y;\n  \
-    \    return {root, nullptr};\n    }\n    np left = root->l, right = root->r;\n\
-    \    if (left) {\n      X y = Monoid_X::op(x, root->l->prod);\n      if (!check(y))\
-    \ {\n        auto [n1, n2] = split_max_right_rec(left, check, x);\n        root->l\
-    \ = n2;\n        update(root);\n        return {n1, root};\n      }\n      x =\
-    \ y;\n    }\n    y = Monoid_X::op(x, root->x);\n    if (!check(y)) {\n      root->l\
-    \ = nullptr;\n      update(root);\n      return {left, root};\n    }\n    x =\
-    \ y;\n    auto [n1, n2] = split_max_right_rec(right, check, x);\n    root->r =\
-    \ n1;\n    update(root);\n    return {root, n2};\n  }\n};\n#line 9 \"test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp\"\
+    \    }\n    u32 sl = (root->l ? root->l->size : 0);\n    if (l < sl) root->l =\
+    \ apply_rec(root->l, l, min(r, sl), a);\n    if (l <= sl && sl < r) root->x =\
+    \ ActedMonoid::act(root->x, a);\n    u32 k = 1 + sl;\n    if (k < r) root->r =\
+    \ apply_rec(root->r, max(k, l) - k, r - k, a);\n    update(root);\n    return\
+    \ root;\n  }\n\n  template <typename F>\n  pair<np, np> split_max_right_rec(np\
+    \ root, const F &check, X &x) {\n    if (!root) return {nullptr, nullptr};\n \
+    \   prop(root);\n    root = copy_node(root);\n    X y = Monoid_X::op(x, root->prod);\n\
+    \    if (check(y)) {\n      x = y;\n      return {root, nullptr};\n    }\n   \
+    \ np left = root->l, right = root->r;\n    if (left) {\n      X y = Monoid_X::op(x,\
+    \ root->l->prod);\n      if (!check(y)) {\n        auto [n1, n2] = split_max_right_rec(left,\
+    \ check, x);\n        root->l = n2;\n        update(root);\n        return {n1,\
+    \ root};\n      }\n      x = y;\n    }\n    y = Monoid_X::op(x, root->x);\n  \
+    \  if (!check(y)) {\n      root->l = nullptr;\n      update(root);\n      return\
+    \ {left, root};\n    }\n    x = y;\n    auto [n1, n2] = split_max_right_rec(right,\
+    \ check, x);\n    root->r = n1;\n    update(root);\n    return {root, n2};\n \
+    \ }\n};\n#line 9 \"test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  VEC(mint, A, N);\n\
-    \  RBST_ActedMonoid<ActedMonoid_CntSum_Affine<mint>> X;\n  vc<pair<mint, mint>>\
-    \ seg_raw(N);\n  FOR(i, N) seg_raw[i] = {mint(1), A[i]};\n  auto root = X.new_node(seg_raw);\n\
-    \n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(i, x);\n      auto [a, b]\
-    \ = X.split(root, i);\n      root = X.merge3(a, X.new_node({mint(1), mint(x)}),\
-    \ b);\n    }\n    if (t == 1) {\n      LL(i);\n      auto [a, b, c] = X.split3(root,\
-    \ i, i + 1);\n      root = X.merge(a, c);\n    }\n    if (t == 2) {\n      LL(l,\
-    \ r);\n      root = X.reverse(root, l, r);\n    }\n    if (t == 3) {\n      LL(l,\
-    \ r, b, c);\n      root = X.apply(root, l, r, {mint(b), mint(c)});\n    }\n  \
-    \  if (t == 4) {\n      LL(l, r);\n      print(X.prod(root, l, r).se);\n    }\n\
-    \  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+    \  RBST_ActedMonoid<ActedMonoid_CntSum_Affine<mint>, false, 1'000'000> X;\n  vc<pair<mint,\
+    \ mint>> seg_raw(N);\n  FOR(i, N) seg_raw[i] = {mint(1), A[i]};\n  auto root =\
+    \ X.new_node(seg_raw);\n\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(i,\
+    \ x);\n      auto [a, b] = X.split(root, i);\n      root = X.merge3(a, X.new_node({mint(1),\
+    \ mint(x)}), b);\n    }\n    if (t == 1) {\n      LL(i);\n      auto [a, b, c]\
+    \ = X.split3(root, i, i + 1);\n      root = X.merge(a, c);\n    }\n    if (t ==\
+    \ 2) {\n      LL(l, r);\n      root = X.reverse(root, l, r);\n    }\n    if (t\
+    \ == 3) {\n      LL(l, r, b, c);\n      root = X.apply(root, l, r, {mint(b), mint(c)});\n\
+    \    }\n    if (t == 4) {\n      LL(l, r);\n      print(X.prod(root, l, r).se);\n\
+    \    }\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"alg/acted_monoid/cntsum_affine.hpp\"\
     \n#include \"mod/modint.hpp\"\n#include \"ds/bbst/rbst_acted_monoid.hpp\"\n\n\
     using mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  VEC(mint, A, N);\n \
-    \ RBST_ActedMonoid<ActedMonoid_CntSum_Affine<mint>> X;\n  vc<pair<mint, mint>>\
-    \ seg_raw(N);\n  FOR(i, N) seg_raw[i] = {mint(1), A[i]};\n  auto root = X.new_node(seg_raw);\n\
-    \n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(i, x);\n      auto [a, b]\
-    \ = X.split(root, i);\n      root = X.merge3(a, X.new_node({mint(1), mint(x)}),\
-    \ b);\n    }\n    if (t == 1) {\n      LL(i);\n      auto [a, b, c] = X.split3(root,\
-    \ i, i + 1);\n      root = X.merge(a, c);\n    }\n    if (t == 2) {\n      LL(l,\
-    \ r);\n      root = X.reverse(root, l, r);\n    }\n    if (t == 3) {\n      LL(l,\
-    \ r, b, c);\n      root = X.apply(root, l, r, {mint(b), mint(c)});\n    }\n  \
-    \  if (t == 4) {\n      LL(l, r);\n      print(X.prod(root, l, r).se);\n    }\n\
-    \  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+    \ RBST_ActedMonoid<ActedMonoid_CntSum_Affine<mint>, false, 1'000'000> X;\n  vc<pair<mint,\
+    \ mint>> seg_raw(N);\n  FOR(i, N) seg_raw[i] = {mint(1), A[i]};\n  auto root =\
+    \ X.new_node(seg_raw);\n\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(i,\
+    \ x);\n      auto [a, b] = X.split(root, i);\n      root = X.merge3(a, X.new_node({mint(1),\
+    \ mint(x)}), b);\n    }\n    if (t == 1) {\n      LL(i);\n      auto [a, b, c]\
+    \ = X.split3(root, i, i + 1);\n      root = X.merge(a, c);\n    }\n    if (t ==\
+    \ 2) {\n      LL(l, r);\n      root = X.reverse(root, l, r);\n    }\n    if (t\
+    \ == 3) {\n      LL(l, r, b, c);\n      root = X.apply(root, l, r, {mint(b), mint(c)});\n\
+    \    }\n    if (t == 4) {\n      LL(l, r);\n      print(X.prod(root, l, r).se);\n\
+    \    }\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -484,8 +485,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   requiredBy: []
-  timestamp: '2022-11-29 08:05:51+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-29 08:23:30+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
 layout: document

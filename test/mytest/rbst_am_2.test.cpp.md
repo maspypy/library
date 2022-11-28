@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/cntsum_add.hpp
     title: alg/acted_monoid/cntsum_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':question:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/bbst/rbst_acted_monoid.hpp
     title: ds/bbst/rbst_acted_monoid.hpp
   - icon: ':question:'
@@ -19,14 +19,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -328,7 +328,7 @@ data:
     \ x);\n    update(root);\n    return root;\n  }\n\n  X prod_rec(np root, u32 l,\
     \ u32 r, bool rev) {\n    if (l == 0 && r == root->size) { return root->prod;\
     \ }\n    np left = (rev ? root->r : root->l);\n    np right = (rev ? root->l :\
-    \ root->r);\n    u32 sl = (root->l ? root->l->size : 0);\n    X res = Monoid_X::unit();\n\
+    \ root->r);\n    u32 sl = (left ? left->size : 0);\n    X res = Monoid_X::unit();\n\
     \    if (l < sl) {\n      X y = prod_rec(left, l, min(r, sl), rev ^ root->rev);\n\
     \      res = Monoid_X::op(res, ActedMonoid::act(y, root->lazy));\n    }\n    if\
     \ (l <= sl && sl < r) res = Monoid_X::op(res, root->x);\n    u32 k = 1 + sl;\n\
@@ -336,36 +336,37 @@ data:
     \      res = Monoid_X::op(res, ActedMonoid::act(y, root->lazy));\n    }\n    return\
     \ res;\n  }\n\n  X get_rec(np root, u32 k, bool rev, A lazy) {\n    np left =\
     \ (rev ? root->r : root->l);\n    np right = (rev ? root->l : root->r);\n    u32\
-    \ sl = (root->l ? root->l->size : 0);\n    if (k == sl) return ActedMonoid::act(root->x,\
+    \ sl = (left ? left->size : 0);\n    if (k == sl) return ActedMonoid::act(root->x,\
     \ lazy);\n    lazy = Monoid_A::op(root->lazy, lazy);\n    rev ^= root->rev;\n\
-    \    if (k < sl) return get_rec(left, k, rev, lazy);\n    return get_rec(root->r,\
+    \    if (k < sl) return get_rec(left, k, rev, lazy);\n    return get_rec(right,\
     \ k - (1 + sl), rev, lazy);\n  }\n\n  np apply_rec(np root, u32 l, u32 r, const\
     \ A &a) {\n    prop(root);\n    root = copy_node(root);\n    if (l == 0 && r ==\
     \ root->size) {\n      root->x = ActedMonoid::act(root->x, a);\n      root->prod\
     \ = ActedMonoid::act(root->prod, a);\n      root->lazy = a;\n      return root;\n\
-    \    }\n    u32 sl = (root->l ? root->l->size : 0);\n    if (l < sl) apply_rec(root->l,\
-    \ l, min(r, sl), a);\n    if (l <= sl && sl < r) root->x = ActedMonoid::act(root->x,\
-    \ a);\n    u32 k = 1 + sl;\n    if (k < r) apply_rec(root->r, max(k, l) - k, r\
-    \ - k, a);\n    update(root);\n    return root;\n  }\n\n  template <typename F>\n\
-    \  pair<np, np> split_max_right_rec(np root, const F &check, X &x) {\n    if (!root)\
-    \ return {nullptr, nullptr};\n    prop(root);\n    root = copy_node(root);\n \
-    \   X y = Monoid_X::op(x, root->prod);\n    if (check(y)) {\n      x = y;\n  \
-    \    return {root, nullptr};\n    }\n    np left = root->l, right = root->r;\n\
-    \    if (left) {\n      X y = Monoid_X::op(x, root->l->prod);\n      if (!check(y))\
-    \ {\n        auto [n1, n2] = split_max_right_rec(left, check, x);\n        root->l\
-    \ = n2;\n        update(root);\n        return {n1, root};\n      }\n      x =\
-    \ y;\n    }\n    y = Monoid_X::op(x, root->x);\n    if (!check(y)) {\n      root->l\
-    \ = nullptr;\n      update(root);\n      return {left, root};\n    }\n    x =\
-    \ y;\n    auto [n1, n2] = split_max_right_rec(right, check, x);\n    root->r =\
-    \ n1;\n    update(root);\n    return {root, n2};\n  }\n};\n#line 2 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 7 \"test/mytest/rbst_am_2.test.cpp\"\
+    \    }\n    u32 sl = (root->l ? root->l->size : 0);\n    if (l < sl) root->l =\
+    \ apply_rec(root->l, l, min(r, sl), a);\n    if (l <= sl && sl < r) root->x =\
+    \ ActedMonoid::act(root->x, a);\n    u32 k = 1 + sl;\n    if (k < r) root->r =\
+    \ apply_rec(root->r, max(k, l) - k, r - k, a);\n    update(root);\n    return\
+    \ root;\n  }\n\n  template <typename F>\n  pair<np, np> split_max_right_rec(np\
+    \ root, const F &check, X &x) {\n    if (!root) return {nullptr, nullptr};\n \
+    \   prop(root);\n    root = copy_node(root);\n    X y = Monoid_X::op(x, root->prod);\n\
+    \    if (check(y)) {\n      x = y;\n      return {root, nullptr};\n    }\n   \
+    \ np left = root->l, right = root->r;\n    if (left) {\n      X y = Monoid_X::op(x,\
+    \ root->l->prod);\n      if (!check(y)) {\n        auto [n1, n2] = split_max_right_rec(left,\
+    \ check, x);\n        root->l = n2;\n        update(root);\n        return {n1,\
+    \ root};\n      }\n      x = y;\n    }\n    y = Monoid_X::op(x, root->x);\n  \
+    \  if (!check(y)) {\n      root->l = nullptr;\n      update(root);\n      return\
+    \ {left, root};\n    }\n    x = y;\n    auto [n1, n2] = split_max_right_rec(right,\
+    \ check, x);\n    root->r = n1;\n    update(root);\n    return {root, n2};\n \
+    \ }\n};\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
+    \      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n              \
+    \       chrono::high_resolution_clock::now().time_since_epoch())\n           \
+    \          .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n \
+    \ return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
+    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 7 \"test/mytest/rbst_am_2.test.cpp\"\
     \n\nvoid test() {\n  using AM = ActedMonoid_CntSum_Add<int>;\n  using MonoX =\
-    \ typename AM::Monoid_X;\n\n  RBST_ActedMonoid<AM, 100> X;\n  FOR(1000) {\n  \
-    \  X.reset();\n    int N = RNG(1, 3);\n    int Q = RNG(1, 1000);\n    vc<int>\
+    \ typename AM::Monoid_X;\n\n  RBST_ActedMonoid<AM, false, 100> X;\n  FOR(1000)\
+    \ {\n    X.reset();\n    int N = RNG(1, 3);\n    int Q = RNG(1, 1000);\n    vc<int>\
     \ A(N);\n    FOR(i, N) A[i] = RNG(1, 10);\n\n    vc<pair<int, int>> seg_raw(N);\n\
     \    FOR(i, N) seg_raw[i] = {1, A[i]};\n    auto root = X.new_node(seg_raw);\n\
     \n    FOR(Q) {\n      int t = RNG(0, 7);\n      if (t == 0) {\n        int i =\
@@ -390,28 +391,28 @@ data:
     \n#include \"other/io.hpp\"\n#include \"alg/acted_monoid/cntsum_add.hpp\"\n#include\
     \ \"ds/bbst/rbst_acted_monoid.hpp\"\n#include \"random/base.hpp\"\n\nvoid test()\
     \ {\n  using AM = ActedMonoid_CntSum_Add<int>;\n  using MonoX = typename AM::Monoid_X;\n\
-    \n  RBST_ActedMonoid<AM, 100> X;\n  FOR(1000) {\n    X.reset();\n    int N = RNG(1,\
-    \ 3);\n    int Q = RNG(1, 1000);\n    vc<int> A(N);\n    FOR(i, N) A[i] = RNG(1,\
-    \ 10);\n\n    vc<pair<int, int>> seg_raw(N);\n    FOR(i, N) seg_raw[i] = {1, A[i]};\n\
-    \    auto root = X.new_node(seg_raw);\n\n    FOR(Q) {\n      int t = RNG(0, 7);\n\
-    \      if (t == 0) {\n        int i = RNG(0, N);\n        assert(A[i] == X.get(root,\
-    \ i).se);\n      }\n      if (t == 1) {\n        int i = RNG(0, N);\n        int\
-    \ x = RNG(1, 10);\n        root = X.set(root, i, {1, x});\n        A[i] = x;\n\
-    \      }\n      if (t == 2) {\n        int i = RNG(0, N);\n        int x = RNG(1,\
-    \ 10);\n        root = X.multiply(root, i, {0, x});\n        A[i] += x;\n    \
-    \  }\n      if (t == 3) {\n        int L = RNG(0, N);\n        int R = RNG(0,\
-    \ N);\n        if (L > R) swap(L, R);\n        ++R;\n        int sm = 0;\n   \
-    \     FOR(i, L, R) sm += A[i];\n        assert(X.prod(root, L, R).se == sm);\n\
-    \      }\n      if (t == 4) {\n        int L = RNG(0, N);\n        int R = RNG(0,\
-    \ N);\n        if (L > R) swap(L, R);\n        ++R;\n        root = X.reverse(root,\
-    \ L, R);\n        reverse(A.begin() + L, A.begin() + R);\n      }\n      if (t\
-    \ == 5) {\n        int L = RNG(0, N);\n        int R = RNG(0, N);\n        if\
-    \ (L > R) swap(L, R);\n        int a = RNG(1, 10);\n        ++R;\n        FOR(i,\
-    \ L, R) A[i] += a;\n        root = X.apply(root, L, R, a);\n      }\n      if\
-    \ (t == 6) {\n        vc<pair<int, int>> B = X.get_all(root);\n        FOR(i,\
-    \ N) assert(A[i] == B[i].se);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  LL(a,\
-    \ b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return\
-    \ 0;\n}\n"
+    \n  RBST_ActedMonoid<AM, false, 100> X;\n  FOR(1000) {\n    X.reset();\n    int\
+    \ N = RNG(1, 3);\n    int Q = RNG(1, 1000);\n    vc<int> A(N);\n    FOR(i, N)\
+    \ A[i] = RNG(1, 10);\n\n    vc<pair<int, int>> seg_raw(N);\n    FOR(i, N) seg_raw[i]\
+    \ = {1, A[i]};\n    auto root = X.new_node(seg_raw);\n\n    FOR(Q) {\n      int\
+    \ t = RNG(0, 7);\n      if (t == 0) {\n        int i = RNG(0, N);\n        assert(A[i]\
+    \ == X.get(root, i).se);\n      }\n      if (t == 1) {\n        int i = RNG(0,\
+    \ N);\n        int x = RNG(1, 10);\n        root = X.set(root, i, {1, x});\n \
+    \       A[i] = x;\n      }\n      if (t == 2) {\n        int i = RNG(0, N);\n\
+    \        int x = RNG(1, 10);\n        root = X.multiply(root, i, {0, x});\n  \
+    \      A[i] += x;\n      }\n      if (t == 3) {\n        int L = RNG(0, N);\n\
+    \        int R = RNG(0, N);\n        if (L > R) swap(L, R);\n        ++R;\n  \
+    \      int sm = 0;\n        FOR(i, L, R) sm += A[i];\n        assert(X.prod(root,\
+    \ L, R).se == sm);\n      }\n      if (t == 4) {\n        int L = RNG(0, N);\n\
+    \        int R = RNG(0, N);\n        if (L > R) swap(L, R);\n        ++R;\n  \
+    \      root = X.reverse(root, L, R);\n        reverse(A.begin() + L, A.begin()\
+    \ + R);\n      }\n      if (t == 5) {\n        int L = RNG(0, N);\n        int\
+    \ R = RNG(0, N);\n        if (L > R) swap(L, R);\n        int a = RNG(1, 10);\n\
+    \        ++R;\n        FOR(i, L, R) A[i] += a;\n        root = X.apply(root, L,\
+    \ R, a);\n      }\n      if (t == 6) {\n        vc<pair<int, int>> B = X.get_all(root);\n\
+    \        FOR(i, N) assert(A[i] == B[i].se);\n      }\n    }\n  }\n}\n\nvoid solve()\
+    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -423,8 +424,8 @@ data:
   isVerificationFile: true
   path: test/mytest/rbst_am_2.test.cpp
   requiredBy: []
-  timestamp: '2022-11-29 08:05:51+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-29 08:22:30+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/rbst_am_2.test.cpp
 layout: document
