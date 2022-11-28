@@ -160,6 +160,9 @@ data:
     path: test/mytest/max_of_linear_segments.test.cpp
     title: test/mytest/max_of_linear_segments.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/maxidx_add.test.cpp
+    title: test/mytest/maxidx_add.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/maxplus_concave.test.cpp
     title: test/mytest/maxplus_concave.test.cpp
   - icon: ':heavy_check_mark:'
@@ -210,6 +213,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
+  - icon: ':x:'
+    path: test/mytest/rbst_lazy.test.cpp
+    title: test/mytest/rbst_lazy.test.cpp
+  - icon: ':x:'
+    path: test/mytest/rbst_lazy_2.test.cpp
+    title: test/mytest/rbst_lazy_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_test.test.cpp
     title: test/mytest/rbst_test.test.cpp
@@ -350,6 +359,8 @@ data:
   - test/mytest/online_pow.test.cpp
   - test/mytest/cntsummin_add.test.cpp
   - test/mytest/minidx_add.test.cpp
+  - test/mytest/rbst_lazy.test.cpp
+  - test/mytest/maxidx_add.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/add_chmin.test.cpp
   - test/mytest/minmax_add.test.cpp
@@ -357,6 +368,7 @@ data:
   - test/mytest/range_mex.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/online_exp.test.cpp
+  - test/mytest/rbst_lazy_2.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
   - test/mytest/cntsummax_assign.test.cpp
   - test/mytest/online_inv.test.cpp

@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
   - icon: ':heavy_check_mark:'
@@ -87,6 +87,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
+  - icon: ':x:'
+    path: test/mytest/rbst_lazy.test.cpp
+    title: test/mytest/rbst_lazy.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_test.test.cpp
     title: test/mytest/rbst_test.test.cpp
@@ -149,6 +152,7 @@ data:
   - test/yukicoder/1270.test.cpp
   - test/yukicoder/1212.test.cpp
   - test/mytest/min_max.test.cpp
+  - test/mytest/rbst_lazy.test.cpp
   - test/mytest/range_mex.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/min_min.test.cpp

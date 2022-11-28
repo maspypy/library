@@ -13,6 +13,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1197.test.cpp
+    title: test/yukicoder/1197.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1790.test.cpp
     title: test/yukicoder/1790.test.cpp
   - icon: ':heavy_check_mark:'
@@ -312,6 +315,7 @@ data:
   verifiedWith:
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1790.test.cpp
+  - test/yukicoder/1197.test.cpp
 documentation_of: graph/ds/lazytreemonoid.hpp
 layout: document
 redirect_from:

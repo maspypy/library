@@ -826,6 +826,9 @@ data:
     path: test/mytest/max_of_linear_segments.test.cpp
     title: test/mytest/max_of_linear_segments.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/maxidx_add.test.cpp
+    title: test/mytest/maxidx_add.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/maxplus_concave.test.cpp
     title: test/mytest/maxplus_concave.test.cpp
   - icon: ':heavy_check_mark:'
@@ -894,6 +897,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
+  - icon: ':x:'
+    path: test/mytest/rbst_lazy.test.cpp
+    title: test/mytest/rbst_lazy.test.cpp
+  - icon: ':x:'
+    path: test/mytest/rbst_lazy_2.test.cpp
+    title: test/mytest/rbst_lazy_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_test.test.cpp
     title: test/mytest/rbst_test.test.cpp
@@ -984,6 +993,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1170_2.test.cpp
     title: test/yukicoder/1170_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1197.test.cpp
+    title: test/yukicoder/1197.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1201.test.cpp
     title: test/yukicoder/1201.test.cpp
@@ -1155,7 +1167,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1547.test.cpp
     title: test/yukicoder/1547.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1548.test.cpp
     title: test/yukicoder/1548.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1284,7 +1296,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1838.test.cpp
     title: test/yukicoder/1838.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/184.test.cpp
     title: test/yukicoder/184.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1873,6 +1885,7 @@ data:
   - test/yukicoder/1036_3.test.cpp
   - test/yukicoder/1718.test.cpp
   - test/yukicoder/2102.test.cpp
+  - test/yukicoder/1197.test.cpp
   - test/yukicoder/1533.test.cpp
   - test/mytest/minplus_convex.test.cpp
   - test/mytest/factorial_998.test.cpp
@@ -1888,6 +1901,8 @@ data:
   - test/mytest/cf702_F.test.cpp
   - test/mytest/bell.test.cpp
   - test/mytest/minidx_add.test.cpp
+  - test/mytest/rbst_lazy.test.cpp
+  - test/mytest/maxidx_add.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/add_chmin.test.cpp
   - test/mytest/minmax_add.test.cpp
@@ -1896,6 +1911,7 @@ data:
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/eulerian_number.test.cpp
   - test/mytest/online_exp.test.cpp
+  - test/mytest/rbst_lazy_2.test.cpp
   - test/mytest/multinomial.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
   - test/mytest/cntsummax_assign.test.cpp

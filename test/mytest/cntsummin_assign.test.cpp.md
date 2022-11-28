@@ -224,17 +224,16 @@ data:
     \ constexpr X unit() { return none_val; }\r\n  static constexpr bool commute =\
     \ false;\r\n};\r\n#line 3 \"alg/acted_monoid/cntsummin_assign.hpp\"\n\r\ntemplate\
     \ <typename E, ll none_val>\r\nstruct ActedMonoid_CntSumMin_Assign {\r\n  static\
-    \ constexpr ll INF = 1LL << 60;\r\n  using MX = Monoid_CntSumMin<E>;\r\n  using\
-    \ MA = Monoid_Assign<ll, none_val>;\r\n  using X_structure = MX;\r\n  using A_structure\
-    \ = MA;\r\n  using X = typename MX::value_type;\r\n  using A = typename MA::value_type;\r\
-    \n  static constexpr X act(const X& x, const A& a) {\r\n    if (a == MA::unit())\
-    \ return x;\r\n    auto [xc, xs, xm] = x;\r\n    return {xc, xc * a, a};\r\n \
-    \ }\r\n};\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t\
-    \ x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n         \
-    \            chrono::high_resolution_clock::now().time_since_epoch())\n      \
-    \               .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n\
-    \  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
-    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"ds/lazysegtree.hpp\"\
+    \ constexpr ll INF = 1LL << 60;\r\n  using Monoid_X = Monoid_CntSumMin<E>;\r\n\
+    \  using Monoid_A = Monoid_Assign<ll, none_val>;\r\n  using X = typename Monoid_X::value_type;\r\
+    \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
+    \ X& x, const A& a) {\r\n    if (a == MA::unit()) return x;\r\n    auto [xc, xs,\
+    \ xm] = x;\r\n    return {xc, xc * a, a};\r\n  }\r\n};\r\n#line 2 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"ds/lazysegtree.hpp\"\
     \n\ntemplate <typename ActedMonoid>\nstruct LazySegTree {\n  using Monoid_X =\
     \ typename ActedMonoid::Monoid_X;\n  using Monoid_A = typename ActedMonoid::Monoid_A;\n\
     \  using X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
@@ -298,23 +297,7 @@ data:
     \ while ((r & -r) != r);\n    return 0;\n  }\n};\n#line 7 \"test/mytest/cntsummin_assign.test.cpp\"\
     \n\nvoid test() {\n  int N = RNG(1, 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] =\
     \ RNG(1, 100);\n  using AM = ActedMonoid_CntSumMin_Assign<ll, -1>;\n  using Mono\
-    \ = typename AM::Monoid_X;\n  LazySegTree<Lazy_CntSumMin_Set<ll, -1>> seg(\n \
-    \     N, [&](int i) -> Mono::value_type { return Mono::from_element(A[i]); });\n\
-    \  int Q = RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0, 2);\n    ll L = RNG(0,\
-    \ N);\n    ll R = RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n    if (t\
-    \ == 1) {\n      ll x = RNG(1, 100);\n      FOR(i, L, R) A[i] = x;\n      seg.apply(L,\
-    \ R, x);\n    }\n    if (t == 2) {\n      vc<int> B = {A.begin() + L, A.begin()\
-    \ + R};\n      auto [cnt, sm, mi] = seg.prod(L, R);\n      assert(cnt == len(B));\n\
-    \      assert(sm == SUM<ll>(B));\n      assert(mi == MIN(B));\n    }\n  }\n}\n\
-    \nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n  FOR(100) test();\n\
-    \  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"alg/acted_monoid/cntsummin_assign.hpp\"\
-    \n#include \"random/base.hpp\"\n#include \"ds/lazysegtree.hpp\"\n\nvoid test()\
-    \ {\n  int N = RNG(1, 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1, 100);\n\
-    \  using AM = ActedMonoid_CntSumMin_Assign<ll, -1>;\n  using Mono = typename AM::Monoid_X;\n\
-    \  LazySegTree<Lazy_CntSumMin_Set<ll, -1>> seg(\n      N, [&](int i) -> Mono::value_type\
+    \ = typename AM::Monoid_X;\n  LazySegTree<AM> seg(\n      N, [&](int i) -> Mono::value_type\
     \ { return Mono::from_element(A[i]); });\n  int Q = RNG(1, 100);\n  FOR(Q) {\n\
     \    ll t = RNG(0, 2);\n    ll L = RNG(0, N);\n    ll R = RNG(0, N);\n    if (L\
     \ > R) swap(L, R);\n    ++R;\n    if (t == 1) {\n      ll x = RNG(1, 100);\n \
@@ -325,6 +308,21 @@ data:
     \ print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n  FOR(100) test();\n  solve();\n\n  return 0;\n\
     }\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"alg/acted_monoid/cntsummin_assign.hpp\"\
+    \n#include \"random/base.hpp\"\n#include \"ds/lazysegtree.hpp\"\n\nvoid test()\
+    \ {\n  int N = RNG(1, 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1, 100);\n\
+    \  using AM = ActedMonoid_CntSumMin_Assign<ll, -1>;\n  using Mono = typename AM::Monoid_X;\n\
+    \  LazySegTree<AM> seg(\n      N, [&](int i) -> Mono::value_type { return Mono::from_element(A[i]);\
+    \ });\n  int Q = RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0, 2);\n    ll L = RNG(0,\
+    \ N);\n    ll R = RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n    if (t\
+    \ == 1) {\n      ll x = RNG(1, 100);\n      FOR(i, L, R) A[i] = x;\n      seg.apply(L,\
+    \ R, x);\n    }\n    if (t == 2) {\n      vc<int> B = {A.begin() + L, A.begin()\
+    \ + R};\n      auto [cnt, sm, mi] = seg.prod(L, R);\n      assert(cnt == len(B));\n\
+    \      assert(sm == SUM<ll>(B));\n      assert(mi == MIN(B));\n    }\n  }\n}\n\
+    \nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n  FOR(100) test();\n\
+    \  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -336,7 +334,7 @@ data:
   isVerificationFile: true
   path: test/mytest/cntsummin_assign.test.cpp
   requiredBy: []
-  timestamp: '2022-11-28 17:32:24+09:00'
+  timestamp: '2022-11-28 18:13:51+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/cntsummin_assign.test.cpp

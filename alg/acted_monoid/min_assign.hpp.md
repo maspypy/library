@@ -12,9 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_F.test.cpp
     title: test/aoj/DSL_2_F.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/mytest/rbst_lazy.test.cpp
+    title: test/mytest/rbst_lazy.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/min.hpp\"\ntemplate <class X>\r\nstruct Monoid_Min\
@@ -42,8 +45,9 @@ data:
   path: alg/acted_monoid/min_assign.hpp
   requiredBy: []
   timestamp: '2022-11-28 15:05:14+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/mytest/rbst_lazy.test.cpp
   - test/aoj/DSL_2_F.test.cpp
 documentation_of: alg/acted_monoid/min_assign.hpp
 layout: document

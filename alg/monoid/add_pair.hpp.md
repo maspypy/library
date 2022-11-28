@@ -18,6 +18,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/cf702_F.test.cpp
     title: test/mytest/cf702_F.test.cpp
+  - icon: ':x:'
+    path: test/mytest/rbst_lazy_2.test.cpp
+    title: test/mytest/rbst_lazy_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1197.test.cpp
+    title: test/yukicoder/1197.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1919.test.cpp
     title: test/yukicoder/1919.test.cpp
@@ -60,7 +66,9 @@ data:
   - test/yukicoder/789_2.test.cpp
   - test/yukicoder/255.test.cpp
   - test/yukicoder/1919.test.cpp
+  - test/yukicoder/1197.test.cpp
   - test/mytest/cf702_F.test.cpp
+  - test/mytest/rbst_lazy_2.test.cpp
   - test/aoj/DSL_2_I.test.cpp
 documentation_of: alg/monoid/add_pair.hpp
 layout: document

@@ -296,7 +296,7 @@ data:
     \  return r + 1 - size;\n      }\n      sm = Monoid_X::op(dat[r], sm);\n    }\
     \ while ((r & -r) != r);\n    return 0;\n  }\n};\n#line 7 \"test/mytest/cntsummax_assign.test.cpp\"\
     \n\nvoid test() {\n  int N = RNG(1, 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] =\
-    \ RNG(1, 100);\n  using AM = ActedMonoid_CntSumMax_Set<ll, -1>;\n  using Mono\
+    \ RNG(1, 100);\n  using AM = ActedMonoid_CntSumMax_Assign<ll, -1>;\n  using Mono\
     \ = typename AM::Monoid_X;\n  LazySegTree<AM> seg(\n      N, [&](int i) -> Mono::value_type\
     \ { return Mono::from_element(A[i]); });\n  int Q = RNG(1, 100);\n  FOR(Q) {\n\
     \    ll t = RNG(0, 2);\n    ll L = RNG(0, N);\n    ll R = RNG(0, N);\n    if (L\
@@ -312,7 +312,7 @@ data:
     \n#include \"other/io.hpp\"\n#include \"alg/acted_monoid/cntsummax_assign.hpp\"\
     \n#include \"random/base.hpp\"\n#include \"ds/lazysegtree.hpp\"\n\nvoid test()\
     \ {\n  int N = RNG(1, 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1, 100);\n\
-    \  using AM = ActedMonoid_CntSumMax_Set<ll, -1>;\n  using Mono = typename AM::Monoid_X;\n\
+    \  using AM = ActedMonoid_CntSumMax_Assign<ll, -1>;\n  using Mono = typename AM::Monoid_X;\n\
     \  LazySegTree<AM> seg(\n      N, [&](int i) -> Mono::value_type { return Mono::from_element(A[i]);\
     \ });\n  int Q = RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0, 2);\n    ll L = RNG(0,\
     \ N);\n    ll R = RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n    if (t\
@@ -334,7 +334,7 @@ data:
   isVerificationFile: true
   path: test/mytest/cntsummax_assign.test.cpp
   requiredBy: []
-  timestamp: '2022-11-28 17:32:24+09:00'
+  timestamp: '2022-11-28 18:13:51+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/cntsummax_assign.test.cpp

@@ -29,26 +29,25 @@ data:
     \ { return none_val; }\r\n  static constexpr bool commute = false;\r\n};\r\n#line\
     \ 3 \"alg/acted_monoid/cntsummin_assign.hpp\"\n\r\ntemplate <typename E, ll none_val>\r\
     \nstruct ActedMonoid_CntSumMin_Assign {\r\n  static constexpr ll INF = 1LL <<\
-    \ 60;\r\n  using MX = Monoid_CntSumMin<E>;\r\n  using MA = Monoid_Assign<ll, none_val>;\r\
-    \n  using X_structure = MX;\r\n  using A_structure = MA;\r\n  using X = typename\
-    \ MX::value_type;\r\n  using A = typename MA::value_type;\r\n  static constexpr\
-    \ X act(const X& x, const A& a) {\r\n    if (a == MA::unit()) return x;\r\n  \
-    \  auto [xc, xs, xm] = x;\r\n    return {xc, xc * a, a};\r\n  }\r\n};\r\n"
+    \ 60;\r\n  using Monoid_X = Monoid_CntSumMin<E>;\r\n  using Monoid_A = Monoid_Assign<ll,\
+    \ none_val>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A = typename\
+    \ Monoid_A::value_type;\r\n  static constexpr X act(const X& x, const A& a) {\r\
+    \n    if (a == MA::unit()) return x;\r\n    auto [xc, xs, xm] = x;\r\n    return\
+    \ {xc, xc * a, a};\r\n  }\r\n};\r\n"
   code: "#include \"alg/monoid/cntsummin.hpp\"\r\n#include \"alg/monoid/assign.hpp\"\
     \r\n\r\ntemplate <typename E, ll none_val>\r\nstruct ActedMonoid_CntSumMin_Assign\
-    \ {\r\n  static constexpr ll INF = 1LL << 60;\r\n  using MX = Monoid_CntSumMin<E>;\r\
-    \n  using MA = Monoid_Assign<ll, none_val>;\r\n  using X_structure = MX;\r\n \
-    \ using A_structure = MA;\r\n  using X = typename MX::value_type;\r\n  using A\
-    \ = typename MA::value_type;\r\n  static constexpr X act(const X& x, const A&\
-    \ a) {\r\n    if (a == MA::unit()) return x;\r\n    auto [xc, xs, xm] = x;\r\n\
-    \    return {xc, xc * a, a};\r\n  }\r\n};\r\n"
+    \ {\r\n  static constexpr ll INF = 1LL << 60;\r\n  using Monoid_X = Monoid_CntSumMin<E>;\r\
+    \n  using Monoid_A = Monoid_Assign<ll, none_val>;\r\n  using X = typename Monoid_X::value_type;\r\
+    \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
+    \ X& x, const A& a) {\r\n    if (a == MA::unit()) return x;\r\n    auto [xc, xs,\
+    \ xm] = x;\r\n    return {xc, xc * a, a};\r\n  }\r\n};\r\n"
   dependsOn:
   - alg/monoid/cntsummin.hpp
   - alg/monoid/assign.hpp
   isVerificationFile: false
   path: alg/acted_monoid/cntsummin_assign.hpp
   requiredBy: []
-  timestamp: '2022-11-28 17:32:24+09:00'
+  timestamp: '2022-11-28 18:13:51+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/cntsummin_assign.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add_array.hpp
     title: alg/monoid/add_array.hpp
   - icon: ':question:'
@@ -9,12 +9,12 @@ data:
     title: alg/monoid/assign.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1548.test.cpp
     title: test/yukicoder/1548.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/acted_monoid/powersums_assign.hpp\"\n\r\n#line 1 \"\
@@ -28,14 +28,15 @@ data:
     \ X unit() { return X{}; }\r\n  static constexpr bool commute = 1;\r\n};\r\n#line\
     \ 5 \"alg/acted_monoid/powersums_assign.hpp\"\n\r\ntemplate <typename mint, int\
     \ K>\r\nstruct ActedMonoid_Power_Sums_Assign {\r\n  using Monoid_X = Monoid_Add_Array<mint,\
-    \ K>;\r\n  using Monoid_A = Monoid_Assign<int, -1>;\r\n  using X = typename MX::value_type;\r\
-    \n  using A = typename MA::value_type;\r\n  static X act(const X &x, const A &b)\
-    \ {\r\n    if (b == -1) return x;\r\n    X y;\r\n    mint pow = 1;\r\n    FOR(i,\
-    \ K) { y[i] = x[0] * pow, pow *= mint(b); }\r\n    return y;\r\n  }\r\n};\r\n"
+    \ K>;\r\n  using Monoid_A = Monoid_Assign<int, -1>;\r\n  using X = typename Monoid_X::value_type;\r\
+    \n  using A = typename Monoid_A::value_type;\r\n  static X act(const X &x, const\
+    \ A &b) {\r\n    if (b == -1) return x;\r\n    X y;\r\n    mint pow = 1;\r\n \
+    \   FOR(i, K) { y[i] = x[0] * pow, pow *= mint(b); }\r\n    return y;\r\n  }\r\
+    \n};\r\n"
   code: "#pragma once\r\n\r\n#include \"alg/monoid/assign.hpp\"\r\n#include \"alg/monoid/add_array.hpp\"\
     \r\n\r\ntemplate <typename mint, int K>\r\nstruct ActedMonoid_Power_Sums_Assign\
     \ {\r\n  using Monoid_X = Monoid_Add_Array<mint, K>;\r\n  using Monoid_A = Monoid_Assign<int,\
-    \ -1>;\r\n  using X = typename MX::value_type;\r\n  using A = typename MA::value_type;\r\
+    \ -1>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
     \n  static X act(const X &x, const A &b) {\r\n    if (b == -1) return x;\r\n \
     \   X y;\r\n    mint pow = 1;\r\n    FOR(i, K) { y[i] = x[0] * pow, pow *= mint(b);\
     \ }\r\n    return y;\r\n  }\r\n};\r\n"
@@ -45,8 +46,8 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/powersums_assign.hpp
   requiredBy: []
-  timestamp: '2022-11-28 15:05:14+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-11-28 18:13:51+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1548.test.cpp
 documentation_of: alg/acted_monoid/powersums_assign.hpp

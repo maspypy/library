@@ -4,6 +4,12 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: test/mytest/rbst_lazy.test.cpp
+    title: test/mytest/rbst_lazy.test.cpp
+  - icon: ':x:'
+    path: test/mytest/rbst_lazy_2.test.cpp
+    title: test/mytest/rbst_lazy_2.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/686.test.cpp
     title: test/yukicoder/686.test.cpp
   _isVerificationFailed: true
@@ -228,6 +234,8 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/686.test.cpp
+  - test/mytest/rbst_lazy.test.cpp
+  - test/mytest/rbst_lazy_2.test.cpp
 documentation_of: ds/bbst/rbst_lazy.hpp
 layout: document
 redirect_from:
