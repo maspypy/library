@@ -2,7 +2,7 @@
 #include "alg/monoid/add.hpp"
 
 template <typename E>
-struct Lazy_CntMinMincnt_Add {
+struct ActedMonoid_CntMinMincnt_Add {
   using MX = Monoid_CntMinMincnt<E>;
   using MA = Monoid_Add<E>;
   using X_structure = MX;

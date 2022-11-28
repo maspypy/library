@@ -2,7 +2,7 @@
 #include "alg/monoid/mul.hpp"
 
 template <typename E>
-struct Lazy_Add_Mul {
+struct ActedMonoid_Add_Mul {
   using MX = Monoid_Add<E>;
   using MA = Monoid_Mul<E>;
   using X_structure = MX;
