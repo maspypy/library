@@ -1,7 +1,7 @@
 #pragma once
 #include "ds/segtree.hpp"
 #include "graph/tree.hpp"
-#include "alg/monoid/reverse_monoid.hpp"
+#include "alg/monoid/monoid_reverse.hpp"
 
 template <typename TREE, typename Monoid, bool edge = false>
 struct TreeMonoid {
@@ -89,13 +89,6 @@ struct TreeMonoid {
   X prod_subtree(int u) {
     int l = tree.LID[u], r = tree.RID[u];
     return seg.prod(l + edge, r);
-  }
-
-  void debug() {
-    print("tree_monoid");
-    tree.debug();
-    seg.debug();
-    seg_r.debug();
   }
 
 private:

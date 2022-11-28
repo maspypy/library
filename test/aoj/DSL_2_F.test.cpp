@@ -3,13 +3,13 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/lazysegtree.hpp"
-#include "alg/lazy/min_set.hpp"
+#include "alg/acted_monoid/min_assign.hpp"
 
 void solve() {
   LL(N, Q);
-  using Lazy = Lazy_Min_Set<ll, -1>;
+  using AM = ActedMonoid_Min_Assign<ll, -1>;
   vi seg_raw(N, (1LL << 31) - 1);
-  LazySegTree<Lazy> seg(seg_raw);
+  LazySegTree<AM> seg(seg_raw);
   FOR(_, Q) {
     LL(t);
     if (t == 0) {

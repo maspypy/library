@@ -1,6 +1,6 @@
 #include "ds/segtree.hpp"
 #include "graph/tree.hpp"
-#include "alg/monoid/reverse_group.hpp"
+#include "alg/monoid/group_reverse.hpp"
 
 // 作ってみたものの、HLD(log^2N)より遅いがち？
 template <typename TREE, typename Group, bool edge = false,
