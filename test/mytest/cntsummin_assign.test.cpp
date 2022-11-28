@@ -11,7 +11,7 @@ void test() {
   FOR(i, N) A[i] = RNG(1, 100);
   using AM = ActedMonoid_CntSumMin_Assign<ll, -1>;
   using Mono = typename AM::Monoid_X;
-  LazySegTree<Lazy_CntSumMin_Set<ll, -1>> seg(
+  LazySegTree<AM> seg(
       N, [&](int i) -> Mono::value_type { return Mono::from_element(A[i]); });
   int Q = RNG(1, 100);
   FOR(Q) {

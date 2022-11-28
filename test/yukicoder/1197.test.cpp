@@ -4,7 +4,7 @@
 #include "other/io.hpp"
 
 #include "graph/tree.hpp"
-#include "alg/lazy/cntsum_add.hpp"
+#include "alg/acted_monoid/cntsum_add.hpp"
 #include "graph/ds/lazytreemonoid.hpp"
 
 void solve() {
@@ -16,11 +16,11 @@ void solve() {
   G.read_tree();
 
   TREE<decltype(G)> tree(G);
-  using Lazy = Lazy_CntSum_Add<ll>;
+  using AM = ActedMonoid_CntSum_Add<ll>;
   vc<pi> dat(N);
   FOR(i, N) dat[i] = {1, 0};
 
-  LazyTreeMonoid<decltype(tree), Lazy> X(tree, dat);
+  LazyTreeMonoid<decltype(tree), AM> X(tree, dat);
 
   FOR(i, K) { X.apply_path(0, C[i], 1); }
 
