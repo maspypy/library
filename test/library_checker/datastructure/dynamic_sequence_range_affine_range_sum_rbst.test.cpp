@@ -5,14 +5,14 @@
 
 #include "alg/acted_monoid/cntsum_affine.hpp"
 #include "mod/modint.hpp"
-#include "ds/bbst/rbst_lazy.hpp"
+#include "ds/bbst/rbst_acted_monoid.hpp"
 
 using mint = modint998;
 
 void solve() {
   LL(N, Q);
   VEC(mint, A, N);
-  RBST_Lazy<ActedMonoid_CntSum_Affine<mint>> X;
+  RBST_ActedMonoid<ActedMonoid_CntSum_Affine<mint>> X;
   vc<pair<mint, mint>> seg_raw(N);
   FOR(i, N) seg_raw[i] = {mint(1), A[i]};
   auto root = X.new_node(seg_raw);
