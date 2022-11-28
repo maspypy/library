@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/minmax_add.hpp
     title: alg/acted_monoid/minmax_add.hpp
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/minmax.hpp
     title: alg/monoid/minmax.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -297,7 +297,7 @@ data:
     \ while ((r & -r) != r);\n    return 0;\n  }\n};\n#line 7 \"test/mytest/minmax_add.test.cpp\"\
     \n\nvoid test() {\n  int N = RNG(1, 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] =\
     \ RNG(1, 100);\n  using AM = ActedMonoid_MinMax_Add<int>;\n  using Mono = typename\
-    \ AM::Monoid_X;\n  LazySegTree<AM> seg(N, [&](int i) { return AM::from_element(A[i]);\
+    \ AM::Monoid_X;\n  LazySegTree<AM> seg(N, [&](int i) { return Mono::from_element(A[i]);\
     \ });\n  int Q = RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0, 2);\n    ll L = RNG(0,\
     \ N);\n    ll R = RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n    if (t\
     \ == 1) {\n      ll x = RNG(1, 100);\n      FOR(i, L, R) A[i] += x;\n      seg.apply(L,\
@@ -311,8 +311,8 @@ data:
     \ \"random/base.hpp\"\n#include \"ds/lazysegtree.hpp\"\n\nvoid test() {\n  int\
     \ N = RNG(1, 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1, 100);\n  using\
     \ AM = ActedMonoid_MinMax_Add<int>;\n  using Mono = typename AM::Monoid_X;\n \
-    \ LazySegTree<AM> seg(N, [&](int i) { return AM::from_element(A[i]); });\n  int\
-    \ Q = RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0, 2);\n    ll L = RNG(0, N);\n\
+    \ LazySegTree<AM> seg(N, [&](int i) { return Mono::from_element(A[i]); });\n \
+    \ int Q = RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0, 2);\n    ll L = RNG(0, N);\n\
     \    ll R = RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n    if (t == 1)\
     \ {\n      ll x = RNG(1, 100);\n      FOR(i, L, R) A[i] += x;\n      seg.apply(L,\
     \ R, x);\n    }\n    if (t == 2) {\n      vc<int> B = {A.begin() + L, A.begin()\
@@ -331,8 +331,8 @@ data:
   isVerificationFile: true
   path: test/mytest/minmax_add.test.cpp
   requiredBy: []
-  timestamp: '2022-11-28 15:25:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-28 17:32:24+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/minmax_add.test.cpp
 layout: document

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/cntsummin_add.hpp
     title: alg/acted_monoid/cntsummin_add.hpp
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/cntsummin.hpp
     title: alg/monoid/cntsummin.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -225,9 +225,9 @@ data:
     \ X power(const X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr\
     \ X unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\
     \n#line 3 \"alg/acted_monoid/cntsummin_add.hpp\"\n\r\ntemplate <typename E>\r\n\
-    struct Lazy_CntSumMin_Add {\r\n  using Monoid_X = Monoid_CntSumMin<E>;\r\n  using\
-    \ Monoid_A = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\n\
-    \  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
+    struct ActedMonoid_CntSumMin_Add {\r\n  using Monoid_X = Monoid_CntSumMin<E>;\r\
+    \n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\
+    \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
     \ X& x, const A& a) {\r\n    auto [xc, xs, xm] = x;\r\n    xm = (xm == numeric_limits<E>::max()\
     \ ? xm : xm + a);\r\n    return {xc, xs + xc * a, xm};\r\n  }\r\n};\r\n#line 2\
     \ \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
@@ -335,8 +335,8 @@ data:
   isVerificationFile: true
   path: test/mytest/cntsummin_add.test.cpp
   requiredBy: []
-  timestamp: '2022-11-28 15:25:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-28 17:32:24+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/cntsummin_add.test.cpp
 layout: document

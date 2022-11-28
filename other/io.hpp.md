@@ -760,6 +760,9 @@ data:
     path: test/mytest/cntsummax_add.test.cpp
     title: test/mytest/cntsummax_add.test.cpp
   - icon: ':x:'
+    path: test/mytest/cntsummax_assign.test.cpp
+    title: test/mytest/cntsummax_assign.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/cntsummin_add.test.cpp
     title: test/mytest/cntsummin_add.test.cpp
   - icon: ':x:'
@@ -808,6 +811,15 @@ data:
     path: test/mytest/magic_square.test.cpp
     title: test/mytest/magic_square.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/max_assign.test.cpp
+    title: test/mytest/max_assign.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/max_max.test.cpp
+    title: test/mytest/max_max.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/max_min.test.cpp
+    title: test/mytest/max_min.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/max_of_linear_segments.test.cpp
     title: test/mytest/max_of_linear_segments.test.cpp
   - icon: ':heavy_check_mark:'
@@ -817,6 +829,9 @@ data:
     path: test/mytest/min_cost_matching_on_line.test.cpp
     title: test/mytest/min_cost_matching_on_line.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/min_max.test.cpp
+    title: test/mytest/min_max.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_min.test.cpp
     title: test/mytest/min_min.test.cpp
   - icon: ':heavy_check_mark:'
@@ -825,7 +840,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/minidx_add.test.cpp
     title: test/mytest/minidx_add.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/minmax_add.test.cpp
     title: test/mytest/minmax_add.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1827,6 +1842,7 @@ data:
   - test/mytest/knight_distance.test.cpp
   - test/mytest/cntsummin_assign.test.cpp
   - test/mytest/enum_partitions.test.cpp
+  - test/mytest/min_max.test.cpp
   - test/mytest/online_pow.test.cpp
   - test/mytest/primesum_mod6.test.cpp
   - test/mytest/cntsummin_add.test.cpp
@@ -1836,12 +1852,14 @@ data:
   - test/mytest/online_log.test.cpp
   - test/mytest/add_chmin.test.cpp
   - test/mytest/minmax_add.test.cpp
+  - test/mytest/max_max.test.cpp
   - test/mytest/range_mex.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/eulerian_number.test.cpp
   - test/mytest/online_exp.test.cpp
   - test/mytest/multinomial.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
+  - test/mytest/cntsummax_assign.test.cpp
   - test/mytest/online_inv.test.cpp
   - test/mytest/all_but_one_products.test.cpp
   - test/mytest/suffix_tree.test.cpp
@@ -1857,6 +1875,7 @@ data:
   - test/mytest/run_length.test.cpp
   - test/mytest/min_min.test.cpp
   - test/mytest/magic_square.test.cpp
+  - test/mytest/max_min.test.cpp
   - test/mytest/enumerate_products.test.cpp
   - test/mytest/online_division.test.cpp
   - test/mytest/simple_perm.test.cpp
@@ -1865,6 +1884,7 @@ data:
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
   - test/mytest/prime_sum.test.cpp
+  - test/mytest/max_assign.test.cpp
   - test/mytest/datetime.test.cpp
   - test/mytest/conv2d.test.cpp
   - test/mytest/maxplus_concave.test.cpp

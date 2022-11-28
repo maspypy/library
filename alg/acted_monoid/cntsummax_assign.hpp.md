@@ -1,40 +1,56 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: alg/monoid/assign.hpp
+    title: alg/monoid/assign.hpp
+  - icon: ':question:'
+    path: alg/monoid/cntsummax.hpp
+    title: alg/monoid/cntsummax.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/mytest/cntsummax_assign.test.cpp
+    title: test/mytest/cntsummax_assign.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
-    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
-    \  File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
-    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
-    \ File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: alg/monoid/set.hpp:\
-    \ line -1: no such header\n"
-  code: "#include \"alg/monoid/cntsummax.hpp\"\r\n#include \"alg/monoid/set.hpp\"\r\
-    \n\r\ntemplate <typename E, ll none_val>\r\nstruct Lazy_CntSumMax_Set {\r\n  static\
-    \ constexpr ll INF = 1LL << 60;\r\n  using MX = Monoid_CntSumMax<E>;\r\n  using\
-    \ MA = Monoid_Set<ll, none_val>;\r\n  using X_structure = MX;\r\n  using A_structure\
-    \ = MA;\r\n  using X = typename MX::value_type;\r\n  using A = typename MA::value_type;\r\
-    \n  static constexpr X act(const X& x, const A& a) {\r\n    if (a == MA::unit())\
-    \ return x;\r\n    auto [xc, xs, xm] = x;\r\n    return {xc, xc * a, a};\r\n \
-    \ }\r\n};\r\n"
-  dependsOn: []
+  bundledCode: "#line 2 \"alg/monoid/cntsummax.hpp\"\n\r\ntemplate <typename E>\r\n\
+    struct Monoid_CntSumMax {\r\n  using value_type = tuple<E, E, E>;\r\n  using X\
+    \ = value_type;\r\n  static X op(X x, X y) {\r\n    auto [xc, xs, xm] = x;\r\n\
+    \    auto [yc, ys, ym] = y;\r\n    return {xc + yc, xs + ys, max(xm, ym)};\r\n\
+    \  }\r\n  static X from_element(E x) { return {1, x, x}; }\r\n  static constexpr\
+    \ X unit() { return {0, 0, numeric_limits<ll>::lowest()}; }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 1 \"alg/monoid/assign.hpp\"\ntemplate <typename\
+    \ X, X none_val>\r\nstruct Monoid_Assign {\r\n  using value_type = X;\r\n  static\
+    \ X op(X x, X y) { return (y == none_val ? x : y); }\r\n  static constexpr X unit()\
+    \ { return none_val; }\r\n  static constexpr bool commute = false;\r\n};\r\n#line\
+    \ 3 \"alg/acted_monoid/cntsummax_assign.hpp\"\n\r\ntemplate <typename E, ll none_val>\r\
+    \nstruct ActedMonoid_CntSumMax_Assign {\r\n  static constexpr ll INF = 1LL <<\
+    \ 60;\r\n  using Monoid_X = Monoid_CntSumMax<E>;\r\n  using Monoid_A = Monoid_Set<ll,\
+    \ none_val>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A = typename\
+    \ Monoid_A::value_type;\r\n  static constexpr X act(const X& x, const A& a) {\r\
+    \n    if (a == MA::unit()) return x;\r\n    auto [xc, xs, xm] = x;\r\n    return\
+    \ {xc, xc * a, a};\r\n  }\r\n};\r\n"
+  code: "#include \"alg/monoid/cntsummax.hpp\"\r\n#include \"alg/monoid/assign.hpp\"\
+    \r\n\r\ntemplate <typename E, ll none_val>\r\nstruct ActedMonoid_CntSumMax_Assign\
+    \ {\r\n  static constexpr ll INF = 1LL << 60;\r\n  using Monoid_X = Monoid_CntSumMax<E>;\r\
+    \n  using Monoid_A = Monoid_Set<ll, none_val>;\r\n  using X = typename Monoid_X::value_type;\r\
+    \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
+    \ X& x, const A& a) {\r\n    if (a == MA::unit()) return x;\r\n    auto [xc, xs,\
+    \ xm] = x;\r\n    return {xc, xc * a, a};\r\n  }\r\n};\r\n"
+  dependsOn:
+  - alg/monoid/cntsummax.hpp
+  - alg/monoid/assign.hpp
   isVerificationFile: false
   path: alg/acted_monoid/cntsummax_assign.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-11-28 17:32:24+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/mytest/cntsummax_assign.test.cpp
 documentation_of: alg/acted_monoid/cntsummax_assign.hpp
 layout: document
 redirect_from:

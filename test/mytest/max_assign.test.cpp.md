@@ -1,15 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
-    path: alg/acted_monoid/cntsummax_assign.hpp
-    title: alg/acted_monoid/cntsummax_assign.hpp
+  - icon: ':heavy_check_mark:'
+    path: alg/acted_monoid/max_assign.hpp
+    title: alg/acted_monoid/max_assign.hpp
   - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
   - icon: ':question:'
-    path: alg/monoid/cntsummax.hpp
-    title: alg/monoid/cntsummax.hpp
+    path: alg/monoid/max.hpp
+    title: alg/monoid/max.hpp
   - icon: ':question:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
@@ -24,25 +24,24 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/cntsummax_assign.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#pragma\
-    \ GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include\
-    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
-    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
-    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
-    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
-    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+  bundledCode: "#line 1 \"test/mytest/max_assign.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
+    \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
+    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
+    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
+    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
+    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -212,24 +211,20 @@ data:
     \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"alg/monoid/cntsummax.hpp\"\n\r\ntemplate <typename\
-    \ E>\r\nstruct Monoid_CntSumMax {\r\n  using value_type = tuple<E, E, E>;\r\n\
-    \  using X = value_type;\r\n  static X op(X x, X y) {\r\n    auto [xc, xs, xm]\
-    \ = x;\r\n    auto [yc, ys, ym] = y;\r\n    return {xc + yc, xs + ys, max(xm,\
-    \ ym)};\r\n  }\r\n  static X from_element(E x) { return {1, x, x}; }\r\n  static\
-    \ constexpr X unit() { return {0, 0, numeric_limits<ll>::lowest()}; }\r\n  static\
-    \ constexpr bool commute = true;\r\n};\r\n#line 1 \"alg/monoid/assign.hpp\"\n\
-    template <typename X, X none_val>\r\nstruct Monoid_Assign {\r\n  using value_type\
-    \ = X;\r\n  static X op(X x, X y) { return (y == none_val ? x : y); }\r\n  static\
-    \ constexpr X unit() { return none_val; }\r\n  static constexpr bool commute =\
-    \ false;\r\n};\r\n#line 3 \"alg/acted_monoid/cntsummax_assign.hpp\"\n\r\ntemplate\
-    \ <typename E, ll none_val>\r\nstruct ActedMonoid_CntSumMax_Assign {\r\n  static\
-    \ constexpr ll INF = 1LL << 60;\r\n  using Monoid_X = Monoid_CntSumMax<E>;\r\n\
-    \  using Monoid_A = Monoid_Set<ll, none_val>;\r\n  using X = typename Monoid_X::value_type;\r\
+    \ { yes(!t); }\r\n#line 2 \"alg/monoid/max.hpp\"\ntemplate <class X>\r\nstruct\
+    \ Monoid_Max {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x,\
+    \ const X &y) noexcept { return max(x, y); }\r\n  static constexpr X unit() {\
+    \ return numeric_limits<X>::lowest(); }\r\n  static constexpr bool commute = true;\r\
+    \n};\r\n#line 1 \"alg/monoid/assign.hpp\"\ntemplate <typename X, X none_val>\r\
+    \nstruct Monoid_Assign {\r\n  using value_type = X;\r\n  static X op(X x, X y)\
+    \ { return (y == none_val ? x : y); }\r\n  static constexpr X unit() { return\
+    \ none_val; }\r\n  static constexpr bool commute = false;\r\n};\r\n#line 3 \"\
+    alg/acted_monoid/max_assign.hpp\"\n\r\ntemplate <typename E, E none_val>\r\nstruct\
+    \ ActedMonoid_Max_Assign {\r\n  using Monoid_X = Monoid_Max<E>;\r\n  using Monoid_A\
+    \ = Monoid_Assign<E, none_val>;\r\n  using X = typename Monoid_X::value_type;\r\
     \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
-    \ X& x, const A& a) {\r\n    if (a == MA::unit()) return x;\r\n    auto [xc, xs,\
-    \ xm] = x;\r\n    return {xc, xc * a, a};\r\n  }\r\n};\r\n#line 2 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \ X &x, const A &a) {\r\n    return (a == none_val ? x : a);\r\n  }\r\n};\r\n\
+    #line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
@@ -294,53 +289,47 @@ data:
     \ r + 1);\n          if (check(Monoid_X::op(dat[r], sm))) {\n            sm =\
     \ Monoid_X::op(dat[r], sm);\n            r--;\n          }\n        }\n      \
     \  return r + 1 - size;\n      }\n      sm = Monoid_X::op(dat[r], sm);\n    }\
-    \ while ((r & -r) != r);\n    return 0;\n  }\n};\n#line 7 \"test/mytest/cntsummax_assign.test.cpp\"\
+    \ while ((r & -r) != r);\n    return 0;\n  }\n};\n#line 7 \"test/mytest/max_assign.test.cpp\"\
     \n\nvoid test() {\n  int N = RNG(1, 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] =\
-    \ RNG(1, 100);\n  using AM = ActedMonoid_CntSumMax_Set<ll, -1>;\n  using Mono\
-    \ = typename AM::Monoid_X;\n  LazySegTree<AM> seg(\n      N, [&](int i) -> Mono::value_type\
-    \ { return Mono::from_element(A[i]); });\n  int Q = RNG(1, 100);\n  FOR(Q) {\n\
-    \    ll t = RNG(0, 2);\n    ll L = RNG(0, N);\n    ll R = RNG(0, N);\n    if (L\
-    \ > R) swap(L, R);\n    ++R;\n    if (t == 1) {\n      ll x = RNG(1, 100);\n \
-    \     FOR(i, L, R) A[i] = x;\n      seg.apply(L, R, x);\n    }\n    if (t == 2)\
-    \ {\n      vc<int> B = {A.begin() + L, A.begin() + R};\n      auto [cnt, sm, mx]\
-    \ = seg.prod(L, R);\n      assert(cnt == len(B));\n      assert(sm == SUM<ll>(B));\n\
-    \      assert(mx == MAX(B));\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n \
-    \ print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n  FOR(100) test();\n  solve();\n\n  return 0;\n\
-    }\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"alg/acted_monoid/cntsummax_assign.hpp\"\
-    \n#include \"random/base.hpp\"\n#include \"ds/lazysegtree.hpp\"\n\nvoid test()\
-    \ {\n  int N = RNG(1, 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1, 100);\n\
-    \  using AM = ActedMonoid_CntSumMax_Set<ll, -1>;\n  using Mono = typename AM::Monoid_X;\n\
-    \  LazySegTree<AM> seg(\n      N, [&](int i) -> Mono::value_type { return Mono::from_element(A[i]);\
-    \ });\n  int Q = RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0, 2);\n    ll L = RNG(0,\
-    \ N);\n    ll R = RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n    if (t\
-    \ == 1) {\n      ll x = RNG(1, 100);\n      FOR(i, L, R) A[i] = x;\n      seg.apply(L,\
+    \ RNG(1, 100);\n  LazySegTree<ActedMonoid_Max_Assign<int, -1>> seg(A);\n  int\
+    \ Q = RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0, 2);\n    ll L = RNG(0, N);\n\
+    \    ll R = RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n    if (t == 1)\
+    \ {\n      ll x = RNG(1, 100);\n      FOR(i, L, R) A[i] = x;\n      seg.apply(L,\
     \ R, x);\n    }\n    if (t == 2) {\n      vc<int> B = {A.begin() + L, A.begin()\
-    \ + R};\n      auto [cnt, sm, mx] = seg.prod(L, R);\n      assert(cnt == len(B));\n\
-    \      assert(sm == SUM<ll>(B));\n      assert(mx == MAX(B));\n    }\n  }\n}\n\
-    \nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \ + R};\n      assert(seg.prod(L, R) == MAX(B));\n    }\n  }\n}\n\nvoid solve()\
+    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n  FOR(100) test();\n\
+    \  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"alg/acted_monoid/max_assign.hpp\"\n#include\
+    \ \"random/base.hpp\"\n#include \"ds/lazysegtree.hpp\"\n\nvoid test() {\n  int\
+    \ N = RNG(1, 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1, 100);\n  LazySegTree<ActedMonoid_Max_Assign<int,\
+    \ -1>> seg(A);\n  int Q = RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0, 2);\n  \
+    \  ll L = RNG(0, N);\n    ll R = RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n\
+    \    if (t == 1) {\n      ll x = RNG(1, 100);\n      FOR(i, L, R) A[i] = x;\n\
+    \      seg.apply(L, R, x);\n    }\n    if (t == 2) {\n      vc<int> B = {A.begin()\
+    \ + L, A.begin() + R};\n      assert(seg.prod(L, R) == MAX(B));\n    }\n  }\n\
+    }\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
     \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n  FOR(100) test();\n\
     \  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - alg/acted_monoid/cntsummax_assign.hpp
-  - alg/monoid/cntsummax.hpp
+  - alg/acted_monoid/max_assign.hpp
+  - alg/monoid/max.hpp
   - alg/monoid/assign.hpp
   - random/base.hpp
   - ds/lazysegtree.hpp
   isVerificationFile: true
-  path: test/mytest/cntsummax_assign.test.cpp
+  path: test/mytest/max_assign.test.cpp
   requiredBy: []
   timestamp: '2022-11-28 17:32:24+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/mytest/cntsummax_assign.test.cpp
+documentation_of: test/mytest/max_assign.test.cpp
 layout: document
 redirect_from:
-- /verify/test/mytest/cntsummax_assign.test.cpp
-- /verify/test/mytest/cntsummax_assign.test.cpp.html
-title: test/mytest/cntsummax_assign.test.cpp
+- /verify/test/mytest/max_assign.test.cpp
+- /verify/test/mytest/max_assign.test.cpp.html
+title: test/mytest/max_assign.test.cpp
 ---

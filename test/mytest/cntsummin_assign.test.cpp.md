@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/cntsummin.hpp
     title: alg/monoid/cntsummin.hpp
   - icon: ':question:'
@@ -225,7 +225,7 @@ data:
     \ false;\r\n};\r\n#line 3 \"alg/acted_monoid/cntsummin_assign.hpp\"\n\r\ntemplate\
     \ <typename E, ll none_val>\r\nstruct ActedMonoid_CntSumMin_Assign {\r\n  static\
     \ constexpr ll INF = 1LL << 60;\r\n  using MX = Monoid_CntSumMin<E>;\r\n  using\
-    \ MA = Monoid_Set<ll, none_val>;\r\n  using X_structure = MX;\r\n  using A_structure\
+    \ MA = Monoid_Assign<ll, none_val>;\r\n  using X_structure = MX;\r\n  using A_structure\
     \ = MA;\r\n  using X = typename MX::value_type;\r\n  using A = typename MA::value_type;\r\
     \n  static constexpr X act(const X& x, const A& a) {\r\n    if (a == MA::unit())\
     \ return x;\r\n    auto [xc, xs, xm] = x;\r\n    return {xc, xc * a, a};\r\n \
@@ -336,7 +336,7 @@ data:
   isVerificationFile: true
   path: test/mytest/cntsummin_assign.test.cpp
   requiredBy: []
-  timestamp: '2022-11-28 15:25:25+09:00'
+  timestamp: '2022-11-28 17:32:24+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/cntsummin_assign.test.cpp

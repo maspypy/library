@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/cntsummax_add.hpp
     title: alg/acted_monoid/cntsummax_add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/cntsummin_add.hpp
     title: alg/acted_monoid/cntsummin_add.hpp
   - icon: ':warning:'
@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/minidx_add.hpp
     title: alg/acted_monoid/minidx_add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/minmax_add.hpp
     title: alg/acted_monoid/minmax_add.hpp
   - icon: ':heavy_check_mark:'
@@ -189,13 +189,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/cntsummax_add.test.cpp
     title: test/mytest/cntsummax_add.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/cntsummin_add.test.cpp
     title: test/mytest/cntsummin_add.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/minidx_add.test.cpp
     title: test/mytest/minidx_add.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/minmax_add.test.cpp
     title: test/mytest/minmax_add.test.cpp
   - icon: ':heavy_check_mark:'
