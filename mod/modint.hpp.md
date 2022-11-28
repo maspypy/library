@@ -181,9 +181,6 @@ data:
     path: test/atcoder/abc269ex.test.cpp
     title: test/atcoder/abc269ex.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc270_g.test.cpp
-    title: test/atcoder/abc270_g.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc272_h.test.cpp
     title: test/atcoder/abc272_h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -235,12 +232,6 @@ data:
     path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-    title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-    title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
     title: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -249,9 +240,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_point_add.test.cpp
     title: test/library_checker/datastructure/range_affine_point_add.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
-    title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/sort_segtree.test.cpp
     title: test/library_checker/datastructure/sort_segtree.test.cpp
@@ -264,12 +252,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
-    title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-    title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/enumerate_cliques.test.cpp
     title: test/library_checker/graph/enumerate_cliques.test.cpp
@@ -465,7 +447,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/product_of_one_pm_xn.test.cpp
     title: test/mytest/product_of_one_pm_xn.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -486,7 +468,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080_2.test.cpp
     title: test/yukicoder/1080_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1141.test.cpp
     title: test/yukicoder/1141.test.cpp
   - icon: ':heavy_check_mark:'
@@ -501,7 +483,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1263.test.cpp
     title: test/yukicoder/1263.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1269.test.cpp
     title: test/yukicoder/1269.test.cpp
   - icon: ':heavy_check_mark:'
@@ -547,9 +529,6 @@ data:
     path: test/yukicoder/1547.test.cpp
     title: test/yukicoder/1547.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1548.test.cpp
-    title: test/yukicoder/1548.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1549.test.cpp
     title: test/yukicoder/1549.test.cpp
   - icon: ':heavy_check_mark:'
@@ -570,9 +549,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1685.test.cpp
     title: test/yukicoder/1685.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1720.test.cpp
-    title: test/yukicoder/1720.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1728.test.cpp
     title: test/yukicoder/1728.test.cpp
@@ -618,7 +594,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1919.test.cpp
     title: test/yukicoder/1919.test.cpp
   - icon: ':heavy_check_mark:'
@@ -630,7 +606,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1989.test.cpp
     title: test/yukicoder/1989.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2003.test.cpp
     title: test/yukicoder/2003.test.cpp
   - icon: ':heavy_check_mark:'
@@ -648,9 +624,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/235.test.cpp
-    title: test/yukicoder/235.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/310.test.cpp
     title: test/yukicoder/310.test.cpp
@@ -675,9 +648,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/749.test.cpp
     title: test/yukicoder/749.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n\
@@ -914,7 +887,7 @@ data:
   - linalg/det_A_plus_xB.hpp
   - graph/tree_all_distances.hpp
   timestamp: '2022-11-06 13:29:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1821.test.cpp
   - test/yukicoder/2005.test.cpp
@@ -933,11 +906,9 @@ data:
   - test/yukicoder/1561.test.cpp
   - test/yukicoder/2003.test.cpp
   - test/yukicoder/1728.test.cpp
-  - test/yukicoder/235.test.cpp
   - test/yukicoder/1260.test.cpp
   - test/yukicoder/1760.test.cpp
   - test/yukicoder/1500.test.cpp
-  - test/yukicoder/1720.test.cpp
   - test/yukicoder/1025.test.cpp
   - test/yukicoder/1844.test.cpp
   - test/yukicoder/578.test.cpp
@@ -977,7 +948,6 @@ data:
   - test/yukicoder/1321.test.cpp
   - test/yukicoder/1848.test.cpp
   - test/yukicoder/1397.test.cpp
-  - test/yukicoder/1548.test.cpp
   - test/yukicoder/502_2.test.cpp
   - test/yukicoder/1755.test.cpp
   - test/yukicoder/1891.test.cpp
@@ -1054,10 +1024,6 @@ data:
   - test/library_checker/math/lcm_convolution.test.cpp
   - test/library_checker/math/partition.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
-  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
-  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
   - test/library_checker/datastructure/queue_operate_all_composite.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp
@@ -1065,7 +1031,6 @@ data:
   - test/library_checker/datastructure/range_affine_point_add.test.cpp
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
-  - test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
@@ -1082,7 +1047,6 @@ data:
   - test/atcoder/abc276_g.test.cpp
   - test/atcoder/abc276_g_2.test.cpp
   - test/atcoder/abc249_ex.test.cpp
-  - test/atcoder/abc270_g.test.cpp
   - test/aoj/DPL_5_C.test.cpp
 documentation_of: mod/modint.hpp
 layout: document

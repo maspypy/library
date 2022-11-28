@@ -1,17 +1,11 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: alg/lazy/powersums_set.hpp
-    title: alg/lazy/powersums_set.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1548.test.cpp
-    title: test/yukicoder/1548.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add_array.hpp\"\n\r\ntemplate <typename E, int\
@@ -27,12 +21,10 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/add_array.hpp
-  requiredBy:
-  - alg/lazy/powersums_set.hpp
+  requiredBy: []
   timestamp: '2022-11-27 20:55:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yukicoder/1548.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: alg/monoid/add_array.hpp
 layout: document
 redirect_from:

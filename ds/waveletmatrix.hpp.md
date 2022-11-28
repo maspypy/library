@@ -1,43 +1,43 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc127f_1.test.cpp
     title: test/atcoder/abc127f_1.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/wavelet_matrix_sum.test.cpp
     title: test/mytest/wavelet_matrix_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1332.test.cpp
     title: test/yukicoder/1332.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2065.test.cpp
     title: test/yukicoder/2065.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/919.test.cpp
     title: test/yukicoder/919.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
-    \ Monoid_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/waveletmatrix.hpp\"\
+  bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
+    \ Monoid_Add {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x,\
+    \ const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
+    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/waveletmatrix.hpp\"\
     \n\r\n// Wavelet Matrix \u4E0A\u3067\u3055\u3089\u306B\u7D2F\u7A4D\u548C\u3092\
     \u7BA1\u7406\u3057\u3066\u3001\r\n// \u77E9\u5F62\u548C\u304C\u3068\u308C\u308B\
     \u3088\u3046\u306B\u3057\u305F\u3082\u306E\r\ntemplate <typename T, bool SUM_QUERY\
@@ -139,8 +139,8 @@ data:
   isVerificationFile: false
   path: ds/waveletmatrix.hpp
   requiredBy: []
-  timestamp: '2022-11-27 16:00:05+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-11-28 14:51:10+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/2065.test.cpp
   - test/yukicoder/924.test.cpp

@@ -6,9 +6,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
     title: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1270.test.cpp
-    title: test/yukicoder/1270.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -54,7 +51,6 @@ data:
   timestamp: '2022-11-24 17:32:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1270.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo.test.cpp
 documentation_of: ds/query/mo.hpp
 layout: document

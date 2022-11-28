@@ -10,9 +10,6 @@ data:
     title: mod/mod_log.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc270_g.test.cpp
-    title: test/atcoder/abc270_g.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
   - icon: ':heavy_check_mark:'
@@ -127,7 +124,6 @@ data:
   verifiedWith:
   - test/yukicoder/1339.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - test/atcoder/abc270_g.test.cpp
 documentation_of: nt/discrete_log.hpp
 layout: document
 redirect_from:

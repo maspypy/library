@@ -2,9 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: alg/lazy/add_mul.hpp
-    title: alg/lazy/add_mul.hpp
+  - icon: ':warning:'
+    path: alg/acted_monoid/add_mul.hpp
+    title: alg/acted_monoid/add_mul.hpp
   - icon: ':heavy_check_mark:'
     path: ds/query/powerquery.hpp
     title: ds/query/powerquery.hpp
@@ -63,9 +63,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_2.test.cpp
     title: test/yukicoder/502_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/899.test.cpp
-    title: test/yukicoder/899.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -85,7 +82,7 @@ data:
   isVerificationFile: false
   path: alg/monoid/mul.hpp
   requiredBy:
-  - alg/lazy/add_mul.hpp
+  - alg/acted_monoid/add_mul.hpp
   - poly/prefix_product_of_poly.hpp
   - poly/from_log_differentiation.hpp
   - poly/lagrange_interpolate_iota.hpp
@@ -98,7 +95,6 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/2005.test.cpp
-  - test/yukicoder/899.test.cpp
   - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/1339.test.cpp
   - test/yukicoder/502_2.test.cpp

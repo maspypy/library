@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1269.test.cpp
     title: test/yukicoder/1269.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
-    \ Monoid_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"string/trie.hpp\"\
+  bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
+    \ Monoid_Add {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x,\
+    \ const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
+    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"string/trie.hpp\"\
     \n\r\n// \u7D42\u7AEF\u30CE\u30FC\u30C9\u306B value \u3092\u5165\u308C\u308B\u3002\
     \r\n// failure link \u3092\u4F5C\u308B\u3068\u3001\u305D\u3053\u304C\u7D42\u7AEF\
     \u3067\u3042\u308B\u3088\u3046\u306A\u6587\u5B57\u5217\u306E value \u3092\r\n\
@@ -83,8 +83,8 @@ data:
   isVerificationFile: false
   path: string/trie.hpp
   requiredBy: []
-  timestamp: '2022-11-27 19:49:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-11-28 14:51:10+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1269.test.cpp
 documentation_of: string/trie.hpp

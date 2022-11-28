@@ -2,22 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: alg/lazy/cntsummin_add.hpp
-    title: alg/lazy/cntsummin_add.hpp
-  - icon: ':heavy_check_mark:'
-    path: alg/lazy/cntsummin_set.hpp
-    title: alg/lazy/cntsummin_set.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/cntsummin_add.test.cpp
-    title: test/mytest/cntsummin_add.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/cntsummin_set.test.cpp
-    title: test/mytest/cntsummin_set.test.cpp
+  - icon: ':warning:'
+    path: alg/acted_monoid/cntsummin_add.hpp
+    title: alg/acted_monoid/cntsummin_add.hpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/cntsummin.hpp\"\n\r\ntemplate <typename E>\r\n\
@@ -37,13 +28,10 @@ data:
   isVerificationFile: false
   path: alg/monoid/cntsummin.hpp
   requiredBy:
-  - alg/lazy/cntsummin_add.hpp
-  - alg/lazy/cntsummin_set.hpp
+  - alg/acted_monoid/cntsummin_add.hpp
   timestamp: '2022-11-27 22:15:30+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/mytest/cntsummin_add.test.cpp
-  - test/mytest/cntsummin_set.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: alg/monoid/cntsummin.hpp
 layout: document
 redirect_from:

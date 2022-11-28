@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':heavy_check_mark:'
@@ -384,9 +384,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1685.test.cpp
     title: test/yukicoder/1685.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1720.test.cpp
-    title: test/yukicoder/1720.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1755.test.cpp
     title: test/yukicoder/1755.test.cpp
@@ -868,7 +865,6 @@ data:
   - test/yukicoder/541.test.cpp
   - test/yukicoder/1561.test.cpp
   - test/yukicoder/1500.test.cpp
-  - test/yukicoder/1720.test.cpp
   - test/yukicoder/1844.test.cpp
   - test/yukicoder/578.test.cpp
   - test/yukicoder/2122.test.cpp

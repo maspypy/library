@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   _extendedRequiredBy: []
@@ -9,20 +9,20 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2842.test.cpp
     title: test/aoj/2842.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2003.test.cpp
     title: test/yukicoder/2003.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
-    \ Monoid_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/fenwick2d_dense.hpp\"\
+  bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
+    \ Monoid_Add {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x,\
+    \ const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
+    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/fenwick2d_dense.hpp\"\
     \ntemplate <typename AbelGroup>\r\nstruct Fenwick2D_dense {\r\n  using E = typename\
     \ AbelGroup::value_type;\r\n  int H, W;\r\n  vc<vc<E>> dat;\r\n\r\n  Fenwick2D_dense()\
     \ {}\r\n  Fenwick2D_dense(int H, int W) : H(H), W(W), dat(H + 1, vc<E>(W + 1))\
@@ -72,8 +72,8 @@ data:
   isVerificationFile: false
   path: ds/fenwick2d_dense.hpp
   requiredBy: []
-  timestamp: '2022-11-27 14:09:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-11-28 14:51:10+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/2003.test.cpp
   - test/aoj/2842.test.cpp

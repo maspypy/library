@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/dynamic_segtree.hpp
     title: ds/dynamic_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -271,12 +271,12 @@ data:
     \ res = min_left_rec(n->r, node_m, node_r, check, t, p);\r\n    if (res != L)\
     \ return res;\r\n    if (!(n->l)) n->l = new_node(node_l, node_m);\r\n    return\
     \ min_left_rec(n->l, node_l, node_m, check, t, p);\r\n  }\r\n};\r\n#line 2 \"\
-    alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\n  using\
-    \ X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const\
-    \ X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const X &x)\
-    \ noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept\
-    \ { return X(n) * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static\
-    \ constexpr bool commute = true;\r\n};\r\n#line 7 \"test/library_checker/datastructure/double_ended_pq.test.cpp\"\
+    alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct Monoid_Add {\r\n  using\
+    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
+    \ { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
+    \ -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return X(n)\
+    \ * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 7 \"test/library_checker/datastructure/double_ended_pq.test.cpp\"\
     \n\nvoid solve() {\n  // \u52D5\u7684\u30BB\u30B0\u6728\u3067\u306E\u4E8C\u5206\
     \u63A2\u7D22\n  LL(N, Q);\n  VEC(int, A, N);\n  const int LIM = 1'000'000'000;\n\
     \n  Dynamic_SegTree<Monoid_Add<int>, 30'000'000> seg(-LIM, LIM + 1);\n  for (auto&&\
@@ -308,7 +308,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/double_ended_pq.test.cpp
   requiredBy: []
-  timestamp: '2022-11-27 15:07:01+09:00'
+  timestamp: '2022-11-28 14:51:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/double_ended_pq.test.cpp

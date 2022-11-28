@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':heavy_check_mark:'
@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/link_cut_path.hpp
     title: graph/ds/link_cut_path.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -207,30 +207,30 @@ data:
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
     \ { yes(!t); }\r\n#line 5 \"test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp\"\
-    \n\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
-    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"graph/ds/link_cut.hpp\"\
-    \n\ntemplate <typename Node, int NODES>\nstruct LinkCutTree_base {\n  int n;\n\
-    \  Node *nodes;\n\n  LinkCutTree_base(int n = 0) : n(n) {\n    nodes = new Node[NODES];\n\
-    \    FOR(i, n) nodes[i] = Node(i);\n  }\n\n  Node *operator[](int v) { return\
-    \ &nodes[v]; }\n\n  // \u30D1\u30B9\u3092\u8868\u3059 splay tree \u306E\u6839\u306B\
-    \u306A\u3063\u3066\u3044\u308B\u304B\u3069\u3046\u304B\n  bool is_root(Node *c)\
-    \ { return state(c) == 0; }\n  bool is_root(int c) { return state(&nodes[c]) ==\
-    \ 0; }\n\n  Node *get_root(Node *c) {\n    expose(c);\n    while (c->l) {\n  \
-    \    c->push();\n      c = c->l;\n    }\n    splay(c);\n    return c;\n  }\n\n\
-    \  int get_root(int c) { return get_root(&nodes[c])->idx; }\n\n  // c \u306E\u89AA\
-    \u3092 p \u306B\u3059\u308B\u3002\n  virtual void link(Node *c, Node *p) {\n \
-    \   evert(c);\n    expose(p);\n    c->p = p;\n    p->r = c;\n    p->update();\n\
-    \  }\n\n  // c \u306E\u89AA\u3092 p \u306B\u3059\u308B\n  virtual void link(int\
-    \ c, int p) { return link(&nodes[c], &nodes[p]); }\n\n  void cut(Node *a, Node\
-    \ *b) {\n    evert(a);\n    expose(b);\n    assert(!b->p);\n    assert((b->l)\
-    \ == a);\n    b->l->p = nullptr;\n    b->l = nullptr;\n    b->update();\n  }\n\
-    \n  void cut(int a, int b) { return cut(&nodes[a], &nodes[b]); }\n\n  void evert(Node\
-    \ *c) {\n    expose(c);\n    c->reverse();\n    c->push();\n  }\n\n  void evert(int\
-    \ c) { evert(&nodes[c]); }\n\n  Node *lca(Node *u, Node *v) {\n    assert(get_root(u)\
+    \n\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct Monoid_Add\
+    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
+    \ &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept\
+    \ { return -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return\
+    \ X(n) * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 2 \"graph/ds/link_cut.hpp\"\n\ntemplate\
+    \ <typename Node, int NODES>\nstruct LinkCutTree_base {\n  int n;\n  Node *nodes;\n\
+    \n  LinkCutTree_base(int n = 0) : n(n) {\n    nodes = new Node[NODES];\n    FOR(i,\
+    \ n) nodes[i] = Node(i);\n  }\n\n  Node *operator[](int v) { return &nodes[v];\
+    \ }\n\n  // \u30D1\u30B9\u3092\u8868\u3059 splay tree \u306E\u6839\u306B\u306A\
+    \u3063\u3066\u3044\u308B\u304B\u3069\u3046\u304B\n  bool is_root(Node *c) { return\
+    \ state(c) == 0; }\n  bool is_root(int c) { return state(&nodes[c]) == 0; }\n\n\
+    \  Node *get_root(Node *c) {\n    expose(c);\n    while (c->l) {\n      c->push();\n\
+    \      c = c->l;\n    }\n    splay(c);\n    return c;\n  }\n\n  int get_root(int\
+    \ c) { return get_root(&nodes[c])->idx; }\n\n  // c \u306E\u89AA\u3092 p \u306B\
+    \u3059\u308B\u3002\n  virtual void link(Node *c, Node *p) {\n    evert(c);\n \
+    \   expose(p);\n    c->p = p;\n    p->r = c;\n    p->update();\n  }\n\n  // c\
+    \ \u306E\u89AA\u3092 p \u306B\u3059\u308B\n  virtual void link(int c, int p) {\
+    \ return link(&nodes[c], &nodes[p]); }\n\n  void cut(Node *a, Node *b) {\n   \
+    \ evert(a);\n    expose(b);\n    assert(!b->p);\n    assert((b->l) == a);\n  \
+    \  b->l->p = nullptr;\n    b->l = nullptr;\n    b->update();\n  }\n\n  void cut(int\
+    \ a, int b) { return cut(&nodes[a], &nodes[b]); }\n\n  void evert(Node *c) {\n\
+    \    expose(c);\n    c->reverse();\n    c->push();\n  }\n\n  void evert(int c)\
+    \ { evert(&nodes[c]); }\n\n  Node *lca(Node *u, Node *v) {\n    assert(get_root(u)\
     \ == get_root(v));\n    expose(u);\n    return expose(v);\n  }\n\n  int lca(int\
     \ u, int v) { return lca(&nodes[u], &nodes[v])->idx; }\n\n  // c \u3068\u6839\u307E\
     \u3067\u304C\u7E4B\u304C\u308C\u3066\u3044\u308B\u72B6\u614B\u306B\u5909\u66F4\
@@ -336,7 +336,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-11-27 19:19:31+09:00'
+  timestamp: '2022-11-28 14:51:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp

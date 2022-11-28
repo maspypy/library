@@ -1,20 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: alg/monoid/cntsummin.hpp
     title: alg/monoid/cntsummin.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/cntsummin_add.test.cpp
-    title: test/mytest/cntsummin_add.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/cntsummin.hpp\"\n\r\ntemplate <typename E>\r\n\
@@ -24,15 +21,14 @@ data:
     \  }\r\n  static X from_element(E x) { return {1, x, x}; }\r\n  static constexpr\
     \ X unit() { return {0, 0, numeric_limits<ll>::max()}; }\r\n  static constexpr\
     \ bool commute = true;\r\n};\r\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename\
-    \ E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n \
-    \ static constexpr X op(const X &x, const X &y) noexcept { return x + y; }\r\n\
-    \  static constexpr X inverse(const X &x) noexcept { return -x; }\r\n  static\
-    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\n  static\
-    \ constexpr X unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\
-    \n};\r\n#line 3 \"alg/lazy/cntsummin_add.hpp\"\n\r\ntemplate <typename E>\r\n\
-    struct Lazy_CntSumMin_Add {\r\n  using MX = Monoid_CntSumMin<E>;\r\n  using MA\
-    \ = Monoid_Add<E>;\r\n  using X_structure = MX;\r\n  using A_structure = MA;\r\
-    \n  using X = typename MX::value_type;\r\n  using A = typename MA::value_type;\r\
+    \ X>\r\nstruct Monoid_Add {\r\n  using value_type = X;\r\n  static constexpr X\
+    \ op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
+    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
+    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
+    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/cntsummin_add.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct Lazy_CntSumMin_Add {\r\n  using MX = Monoid_CntSumMin<E>;\r\
+    \n  using MA = Monoid_Add<E>;\r\n  using X_structure = MX;\r\n  using A_structure\
+    \ = MA;\r\n  using X = typename MX::value_type;\r\n  using A = typename MA::value_type;\r\
     \n  static constexpr X act(const X& x, const A& a) {\r\n    auto [xc, xs, xm]\
     \ = x;\r\n    xm = (xm == numeric_limits<E>::max() ? xm : xm + a);\r\n    return\
     \ {xc, xs + xc * a, xm};\r\n  }\r\n};\r\n"
@@ -47,16 +43,15 @@ data:
   - alg/monoid/cntsummin.hpp
   - alg/monoid/add.hpp
   isVerificationFile: false
-  path: alg/lazy/cntsummin_add.hpp
+  path: alg/acted_monoid/cntsummin_add.hpp
   requiredBy: []
-  timestamp: '2022-11-27 22:19:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/mytest/cntsummin_add.test.cpp
-documentation_of: alg/lazy/cntsummin_add.hpp
+  timestamp: '2022-11-28 14:51:10+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: alg/acted_monoid/cntsummin_add.hpp
 layout: document
 redirect_from:
-- /library/alg/lazy/cntsummin_add.hpp
-- /library/alg/lazy/cntsummin_add.hpp.html
-title: alg/lazy/cntsummin_add.hpp
+- /library/alg/acted_monoid/cntsummin_add.hpp
+- /library/alg/acted_monoid/cntsummin_add.hpp.html
+title: alg/acted_monoid/cntsummin_add.hpp
 ---

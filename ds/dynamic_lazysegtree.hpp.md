@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/789_2.test.cpp
-    title: test/yukicoder/789_2.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/dynamic_lazysegtree.hpp\"\n\n/*\n\u30B3\u30F3\u30B9\u30C8\
@@ -162,9 +159,8 @@ data:
   path: ds/dynamic_lazysegtree.hpp
   requiredBy: []
   timestamp: '2022-10-21 17:24:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yukicoder/789_2.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: ds/dynamic_lazysegtree.hpp
 layout: document
 redirect_from:

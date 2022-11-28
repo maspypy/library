@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/query/uniqueproductquery.hpp
     title: ds/query/uniqueproductquery.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc174/tasks/abc174_f
@@ -269,16 +269,15 @@ data:
     \   ANS[q] = seg.prod(L, R);\r\n      }\r\n    }\r\n    return ANS;\r\n  }\r\n\
     \r\n  vc<X> calc() {\r\n    auto f = [&](ll k) -> X { return 1; };\r\n    return\
     \ calc(f);\r\n  }\r\n};\r\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename\
-    \ E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n \
-    \ static constexpr X op(const X &x, const X &y) noexcept { return x + y; }\r\n\
-    \  static constexpr X inverse(const X &x) noexcept { return -x; }\r\n  static\
-    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\n  static\
-    \ constexpr X unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\
-    \n};\r\n#line 6 \"test/atcoder/abc174f.test.cpp\"\n\nvoid solve() {\n  LL(N, Q);\n\
-    \  VEC(ll, C, N);\n  UniqueProductQuery<Monoid_Add<int>> X(C);\n\n  FOR(Q) {\n\
-    \    LL(l, r);\n    X.add(--l, r);\n  }\n  for (auto&& x: X.calc()) print(x);\n\
-    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n  solve();\n  return\
-    \ 0;\n}\n"
+    \ X>\r\nstruct Monoid_Add {\r\n  using value_type = X;\r\n  static constexpr X\
+    \ op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
+    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
+    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
+    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 6 \"test/atcoder/abc174f.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, C, N);\n  UniqueProductQuery<Monoid_Add<int>>\
+    \ X(C);\n\n  FOR(Q) {\n    LL(l, r);\n    X.add(--l, r);\n  }\n  for (auto&& x:\
+    \ X.calc()) print(x);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc174/tasks/abc174_f\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/query/uniqueproductquery.hpp\"\
     \n#include \"alg/monoid/add.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, C,\
@@ -294,8 +293,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc174f.test.cpp
   requiredBy: []
-  timestamp: '2022-11-27 20:44:19+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-11-28 14:51:10+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/atcoder/abc174f.test.cpp
 layout: document
