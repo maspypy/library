@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/discrete_logarithm_mod
@@ -367,8 +367,8 @@ data:
     \  if (a == 0 || b == 0) return -1;\r\n  ll g = gcd(mod, p);\r\n  if (b % g !=\
     \ 0) return -1;\r\n  mod /= g;\r\n  a %= mod, b %= mod;\r\n  if (gcd(b, mod) >\
     \ 1) return -1;\r\n  // \u7FA4\u306B\u5E30\u7740\u3055\u308C\u305F\r\n  amint::set_mod(mod);\r\
-    \n  return discrete_log<Monoid_Mul<amint>>(\r\n      amint(a), amint(b), [](auto\
-    \ x) { return x.val; }, 32, mod);\r\n}\r\n#line 5 \"test/library_checker/math/discrete_logarithm_mod.test.cpp\"\
+    \n  return discrete_log_group<Monoid_Mul<amint>>(\r\n      amint(a), amint(b),\
+    \ [](auto x) { return x.val; }, 32, mod);\r\n}\r\n#line 5 \"test/library_checker/math/discrete_logarithm_mod.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(x, y, mod);\r\n  print(mod_log(mod, x, y));\r\n}\r\
     \n\r\nsigned main() {\r\n  LL(T);\r\n  FOR(T) solve();\r\n\r\n  return 0;\r\n\
     }\r\n"
@@ -389,8 +389,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/discrete_logarithm_mod.test.cpp
   requiredBy: []
-  timestamp: '2022-11-28 21:09:42+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-28 22:05:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/discrete_logarithm_mod.test.cpp
 layout: document

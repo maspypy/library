@@ -18,12 +18,12 @@ data:
     title: nt/discrete_log.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n\
@@ -178,8 +178,8 @@ data:
     \  if (a == 0 || b == 0) return -1;\r\n  ll g = gcd(mod, p);\r\n  if (b % g !=\
     \ 0) return -1;\r\n  mod /= g;\r\n  a %= mod, b %= mod;\r\n  if (gcd(b, mod) >\
     \ 1) return -1;\r\n  // \u7FA4\u306B\u5E30\u7740\u3055\u308C\u305F\r\n  amint::set_mod(mod);\r\
-    \n  return discrete_log<Monoid_Mul<amint>>(\r\n      amint(a), amint(b), [](auto\
-    \ x) { return x.val; }, 32, mod);\r\n}\r\n"
+    \n  return discrete_log_group<Monoid_Mul<amint>>(\r\n      amint(a), amint(b),\
+    \ [](auto x) { return x.val; }, 32, mod);\r\n}\r\n"
   code: "#include \"mod/modint.hpp\"\r\n#include \"nt/discrete_log.hpp\"\r\n#include\
     \ \"alg/monoid/mul.hpp\"\r\n\r\nint mod_log(int mod, ll a, ll b) {\r\n  a = divmod(a,\
     \ mod).se;\r\n  b = divmod(b, mod).se;\r\n  // \u307E\u305A\u7FA4\u306B\u5E30\u7740\
@@ -188,7 +188,7 @@ data:
     \ * a % mod;\r\n  }\r\n  if (a == 0 || b == 0) return -1;\r\n  ll g = gcd(mod,\
     \ p);\r\n  if (b % g != 0) return -1;\r\n  mod /= g;\r\n  a %= mod, b %= mod;\r\
     \n  if (gcd(b, mod) > 1) return -1;\r\n  // \u7FA4\u306B\u5E30\u7740\u3055\u308C\
-    \u305F\r\n  amint::set_mod(mod);\r\n  return discrete_log<Monoid_Mul<amint>>(\r\
+    \u305F\r\n  amint::set_mod(mod);\r\n  return discrete_log_group<Monoid_Mul<amint>>(\r\
     \n      amint(a), amint(b), [](auto x) { return x.val; }, 32, mod);\r\n}\r\n"
   dependsOn:
   - mod/modint.hpp
@@ -199,8 +199,8 @@ data:
   isVerificationFile: false
   path: mod/mod_log.hpp
   requiredBy: []
-  timestamp: '2022-11-28 21:09:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-11-28 22:05:55+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
 documentation_of: mod/mod_log.hpp
