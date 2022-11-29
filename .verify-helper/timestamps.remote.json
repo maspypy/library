@@ -306,6 +306,7 @@
 "test/mytest/range_mex.test.cpp": "2022-10-23 11:21:57 +0900",
 "test/mytest/rbst_am.test.cpp": "2022-11-29 08:22:26 +0900",
 "test/mytest/rbst_am_2.test.cpp": "2022-11-29 08:22:30 +0900",
+"test/mytest/rbst_am_persistent.test.cpp": "2022-11-29 09:24:18 +0900",
 "test/mytest/rbst_monoid.test.cpp": "2022-11-29 04:18:22 +0900",
 "test/mytest/rbst_monoid_2.test.cpp": "2022-11-29 04:18:22 +0900",
 "test/mytest/rbst_test.test.cpp": "2022-11-29 04:18:22 +0900",
