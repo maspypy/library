@@ -306,6 +306,7 @@
 "test/mytest/rbst_am.test.cpp": "2022-11-29 09:31:10 +0900",
 "test/mytest/rbst_am_2.test.cpp": "2022-11-29 09:31:10 +0900",
 "test/mytest/rbst_am_persistent.test.cpp": "2022-11-29 09:31:10 +0900",
+"test/mytest/rbst_commutative_persistent.test.cpp": "2022-11-29 10:10:06 +0900",
 "test/mytest/rbst_monoid_persistent.test.cpp": "2022-11-29 10:04:11 +0900",
 "test/mytest/rect_add_pt_sum.test.cpp": "2022-11-28 14:51:10 +0900",
 "test/mytest/run_length.test.cpp": "2022-10-21 18:11:46 +0900",
