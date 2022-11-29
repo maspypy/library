@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/bbst/rbst_commutative_monoid.hpp
     title: ds/bbst/rbst_commutative_monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -305,8 +305,8 @@ data:
     \ {\n  using Monoid = CommutativeMonoid;\n  using X = typename Monoid::value_type;\n\
     \n  struct Node {\n    Node *l, *r;\n    X x, prod; // rev \u53CD\u6620\u6E08\n\
     \    u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n  using np =\
-    \ Node *;\n\n  RBST_Monoid() : pid(0) {\n    assert(Monoid::commute);\n    pool\
-    \ = new Node[NODES];\n  }\n\n  void reset() { pid = 0; }\n\n  np new_node(const\
+    \ Node *;\n\n  RBST_CommutativeMonoid() : pid(0) {\n    assert(Monoid::commute);\n\
+    \    pool = new Node[NODES];\n  }\n\n  void reset() { pid = 0; }\n\n  np new_node(const\
     \ X &x) {\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x = x;\n  \
     \  pool[pid].prod = x;\n    pool[pid].size = 1;\n    pool[pid].rev = 0;\n    return\
     \ &(pool[pid++]);\n  }\n\n  np new_node(const vc<X> &dat) {\n    auto dfs = [&](auto\
@@ -470,8 +470,8 @@ data:
   isVerificationFile: true
   path: test/mytest/rbst_commutative_persistent.test.cpp
   requiredBy: []
-  timestamp: '2022-11-29 10:56:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-29 11:44:08+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/rbst_commutative_persistent.test.cpp
 layout: document
