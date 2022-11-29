@@ -213,6 +213,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
+  - icon: ':x:'
+    path: test/mytest/rbst.test.cpp
+    title: test/mytest/rbst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_am.test.cpp
     title: test/mytest/rbst_am.test.cpp
@@ -306,9 +309,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -347,7 +350,7 @@ data:
   - graph/chromatic.hpp
   - graph/minimum_cycle_length_through_specified.hpp
   timestamp: '2022-10-23 11:21:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1775.test.cpp
   - test/yukicoder/541.test.cpp
@@ -392,6 +395,7 @@ data:
   - test/mytest/all_inverse.test.cpp
   - test/mytest/min_min.test.cpp
   - test/mytest/rbst_monoid.test.cpp
+  - test/mytest/rbst.test.cpp
   - test/mytest/max_min.test.cpp
   - test/mytest/rbst_commutative_persistent.test.cpp
   - test/mytest/online_division.test.cpp
