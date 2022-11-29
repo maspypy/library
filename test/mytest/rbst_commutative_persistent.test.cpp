@@ -3,14 +3,14 @@
 #include "other/io.hpp"
 #include "alg/monoid/add.hpp"
 #include "mod/modint.hpp"
-#include "ds/bbst/rbst_monoid.hpp"
+#include "ds/bbst/rbst_commutative_monoid.hpp"
 #include "random/base.hpp"
 
 using mint = modint998;
 
 void test() {
   using Mono = Monoid_Add<int>;
-  RBST_Monoid<Mono, true, 10000> X;
+  RBST_CommutativeMonoid<Mono, true, 10000> X;
   using np = decltype(X)::np;
 
   FOR(1000) {
