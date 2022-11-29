@@ -754,6 +754,9 @@ data:
     path: test/library_checker/tree/tree_diameter.test.cpp
     title: test/library_checker/tree/tree_diameter.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/ARC30D.test.cpp
+    title: test/mytest/ARC30D.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/add_chmin.test.cpp
     title: test/mytest/add_chmin.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1978,6 +1981,7 @@ data:
   - test/mytest/binom.test.cpp
   - test/mytest/cntsummax_add.test.cpp
   - test/mytest/tournament.test.cpp
+  - test/mytest/ARC30D.test.cpp
   - test/mytest/rbst_test.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp

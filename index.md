@@ -2070,6 +2070,9 @@ data:
   - name: test/mytest
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/mytest/ARC30D.test.cpp
+      title: test/mytest/ARC30D.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/mytest/add_chmin.test.cpp
       title: test/mytest/add_chmin.test.cpp
     - icon: ':heavy_check_mark:'
