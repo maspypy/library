@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/bbst/rbst_monoid.hpp
-    title: ds/bbst/rbst_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: ds/bbst/rbst_commutative_monoid.hpp
+    title: ds/bbst/rbst_commutative_monoid.hpp
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -300,23 +300,23 @@ data:
     mint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
     \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
     \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
-    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 1 \"ds/bbst/rbst_monoid.hpp\"\
-    \ntemplate <typename Monoid, bool PERSISTENT, int NODES>\nstruct RBST_Monoid {\n\
-    \  using X = typename Monoid::value_type;\n\n  struct Node {\n    Node *l, *r;\n\
-    \    X x, prod, rev_prod; // rev \u53CD\u6620\u6E08\n    u32 size;\n    bool rev;\n\
-    \  };\n\n  Node *pool;\n  int pid;\n  using np = Node *;\n\n  RBST_Monoid() :\
-    \ pid(0) { pool = new Node[NODES]; }\n\n  void reset() { pid = 0; }\n\n  np new_node(const\
+    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 1 \"ds/bbst/rbst_commutative_monoid.hpp\"\
+    \ntemplate <typename CommutativeMonoid, bool PERSISTENT, int NODES>\nstruct RBST_CommutativeMonoid\
+    \ {\n  using Monoid = CommutativeMonoid;\n  using X = typename Monoid::value_type;\n\
+    \n  struct Node {\n    Node *l, *r;\n    X x, prod; // rev \u53CD\u6620\u6E08\n\
+    \    u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n  using np =\
+    \ Node *;\n\n  RBST_Monoid() : pid(0) {\n    assert(Monoid::commute);\n    pool\
+    \ = new Node[NODES];\n  }\n\n  void reset() { pid = 0; }\n\n  np new_node(const\
     \ X &x) {\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x = x;\n  \
-    \  pool[pid].prod = x;\n    pool[pid].rev_prod = x;\n    pool[pid].size = 1;\n\
-    \    pool[pid].rev = 0;\n    return &(pool[pid++]);\n  }\n\n  np new_node(const\
-    \ vc<X> &dat) {\n    auto dfs = [&](auto &dfs, u32 l, u32 r) -> np {\n      if\
-    \ (l == r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n \
-    \     u32 m = (l + r) / 2;\n      np l_root = dfs(dfs, l, m);\n      np r_root\
-    \ = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n      root->l = l_root,\
-    \ root->r = r_root;\n      update(root);\n      return root;\n    };\n    return\
-    \ dfs(dfs, 0, len(dat));\n  }\n\n  np copy_node(np &n) {\n    if (!n || !PERSISTENT)\
-    \ return n;\n    pool[pid].l = n->l, pool[pid].r = n->r;\n    pool[pid].x = n->x;\n\
-    \    pool[pid].prod = n->prod;\n    pool[pid].rev_prod = n->rev_prod;\n    pool[pid].size\
+    \  pool[pid].prod = x;\n    pool[pid].size = 1;\n    pool[pid].rev = 0;\n    return\
+    \ &(pool[pid++]);\n  }\n\n  np new_node(const vc<X> &dat) {\n    auto dfs = [&](auto\
+    \ &dfs, u32 l, u32 r) -> np {\n      if (l == r) return nullptr;\n      if (r\
+    \ == l + 1) return new_node(dat[l]);\n      u32 m = (l + r) / 2;\n      np l_root\
+    \ = dfs(dfs, l, m);\n      np r_root = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n\
+    \      root->l = l_root, root->r = r_root;\n      update(root);\n      return\
+    \ root;\n    };\n    return dfs(dfs, 0, len(dat));\n  }\n\n  np copy_node(np &n)\
+    \ {\n    if (!n || !PERSISTENT) return n;\n    pool[pid].l = n->l, pool[pid].r\
+    \ = n->r;\n    pool[pid].x = n->x;\n    pool[pid].prod = n->prod;\n    pool[pid].size\
     \ = n->size;\n    pool[pid].rev = n->rev;\n    return &(pool[pid++]);\n  }\n\n\
     \  np merge(np l_root, np r_root) { return merge_rec(l_root, r_root); }\n  np\
     \ merge3(np a, np b, np c) { return merge(merge(a, b), c); }\n  np merge4(np a,\
@@ -333,50 +333,47 @@ data:
     \ ? root->prod : Monoid::unit()); }\n\n  np reverse(np root, u32 l, u32 r) {\n\
     \    assert(0 <= l && l <= r && r <= root->size);\n    if (r - l <= 1) return\
     \ root;\n    auto [nl, nm, nr] = split3(root, l, r);\n    nm->rev ^= 1;\n    swap(nm->l,\
-    \ nm->r);\n    swap(nm->prod, nm->rev_prod);\n    return merge3(nl, nm, nr);\n\
-    \  }\n\n  np set(np root, u32 k, const X &x) { return set_rec(root, k, x); }\n\
-    \  np multiply(np root, u32 k, const X &x) { return multiply_rec(root, k, x);\
-    \ }\n  X get(np root, u32 k) { return get_rec(root, k, false); }\n\n  vc<X> get_all(np\
-    \ root) {\n    vc<X> res;\n    auto dfs = [&](auto &dfs, np root, bool rev) ->\
-    \ void {\n      if (!root) return;\n      dfs(dfs, (rev ? root->r : root->l),\
-    \ rev ^ root->rev);\n      res.eb(root->x);\n      dfs(dfs, (rev ? root->l : root->r),\
-    \ rev ^ root->rev);\n    };\n    dfs(dfs, root, 0);\n    return res;\n  }\n\n\
-    \  template <typename F>\n  pair<np, np> split_max_right(np root, const F check)\
-    \ {\n    assert(check(Monoid::unit()));\n    X x = Monoid::unit();\n    return\
-    \ split_max_right_rec(root, check, x);\n  }\n\nprivate:\n  inline u32 xor128()\
-    \ {\n    static u32 x = 123456789;\n    static u32 y = 362436069;\n    static\
-    \ u32 z = 521288629;\n    static u32 w = 88675123;\n    u32 t = x ^ (x << 11);\n\
-    \    x = y;\n    y = z;\n    z = w;\n    return w = (w ^ (w >> 19)) ^ (t ^ (t\
-    \ >> 8));\n  }\n\n  void prop(np c) {\n    // \u81EA\u8EAB\u3092\u30B3\u30D4\u30FC\
-    \u3059\u308B\u5FC5\u8981\u306F\u306A\u3044\u3002\n    // \u5B50\u3092\u30B3\u30D4\
-    \u30FC\u3059\u308B\u5FC5\u8981\u304C\u3042\u308B\u3002\u8907\u6570\u306E\u89AA\
-    \u3092\u6301\u3064\u53EF\u80FD\u6027\u304C\u3042\u308B\u305F\u3081\u3002\n   \
-    \ if (c->rev) {\n      if (c->l) {\n        c->l = copy_node(c->l);\n        c->l->rev\
-    \ ^= 1;\n        swap(c->l->l, c->l->r);\n        swap(c->l->prod, c->l->rev_prod);\n\
-    \      }\n      if (c->r) {\n        c->r = copy_node(c->r);\n        c->r->rev\
-    \ ^= 1;\n        swap(c->r->l, c->r->r);\n        swap(c->r->prod, c->r->rev_prod);\n\
-    \      }\n      c->rev = 0;\n    }\n  }\n\n  void update(np c) {\n    // \u30C7\
-    \u30FC\u30BF\u3092\u4FDD\u3063\u305F\u307E\u307E\u6B63\u5E38\u5316\u3059\u308B\
-    \u3060\u3051\u306A\u306E\u3067\u3001\u30B3\u30D4\u30FC\u4E0D\u8981\n    c->size\
-    \ = 1;\n    c->prod = c->rev_prod = c->x;\n    if (c->l) {\n      c->size += c->l->size;\n\
-    \      c->prod = Monoid::op(c->l->prod, c->prod);\n      c->rev_prod = Monoid::op(c->rev_prod,\
-    \ c->l->rev_prod);\n    }\n    if (c->r) {\n      c->size += c->r->size;\n   \
-    \   c->prod = Monoid::op(c->prod, c->r->prod);\n      c->rev_prod = Monoid::op(c->r->rev_prod,\
-    \ c->rev_prod);\n    }\n  }\n\n  np merge_rec(np l_root, np r_root) {\n    if\
-    \ (!l_root) return r_root;\n    if (!r_root) return l_root;\n    u32 sl = l_root->size,\
-    \ sr = r_root->size;\n    if (xor128() % (sl + sr) < sl) {\n      prop(l_root);\n\
-    \      l_root = copy_node(l_root);\n      l_root->r = merge_rec(l_root->r, r_root);\n\
-    \      update(l_root);\n      return l_root;\n    }\n    prop(r_root);\n    r_root\
-    \ = copy_node(r_root);\n    r_root->l = merge_rec(l_root, r_root->l);\n    update(r_root);\n\
-    \    return r_root;\n  }\n\n  pair<np, np> split_rec(np root, u32 k) {\n    if\
-    \ (!root) return {nullptr, nullptr};\n    prop(root);\n    u32 sl = (root->l ?\
-    \ root->l->size : 0);\n    if (k <= sl) {\n      auto [nl, nr] = split_rec(root->l,\
-    \ k);\n      root = copy_node(root);\n      root->l = nr;\n      update(root);\n\
-    \      return {nl, root};\n    }\n    auto [nl, nr] = split_rec(root->r, k - (1\
-    \ + sl));\n    root = copy_node(root);\n    root->r = nl;\n    update(root);\n\
-    \    return {root, nr};\n  }\n\n  np set_rec(np root, u32 k, const X &x) {\n \
-    \   if (!root) return root;\n    prop(root);\n    u32 sl = (root->l ? root->l->size\
-    \ : 0);\n    if (k < sl) {\n      root = copy_node(root);\n      root->l = set_rec(root->l,\
+    \ nm->r);\n    return merge3(nl, nm, nr);\n  }\n\n  np set(np root, u32 k, const\
+    \ X &x) { return set_rec(root, k, x); }\n  np multiply(np root, u32 k, const X\
+    \ &x) { return multiply_rec(root, k, x); }\n  X get(np root, u32 k) { return get_rec(root,\
+    \ k, false); }\n\n  vc<X> get_all(np root) {\n    vc<X> res;\n    auto dfs = [&](auto\
+    \ &dfs, np root, bool rev) -> void {\n      if (!root) return;\n      dfs(dfs,\
+    \ (rev ? root->r : root->l), rev ^ root->rev);\n      res.eb(root->x);\n     \
+    \ dfs(dfs, (rev ? root->l : root->r), rev ^ root->rev);\n    };\n    dfs(dfs,\
+    \ root, 0);\n    return res;\n  }\n\n  template <typename F>\n  pair<np, np> split_max_right(np\
+    \ root, const F check) {\n    assert(check(Monoid::unit()));\n    X x = Monoid::unit();\n\
+    \    return split_max_right_rec(root, check, x);\n  }\n\nprivate:\n  inline u32\
+    \ xor128() {\n    static u32 x = 123456789;\n    static u32 y = 362436069;\n \
+    \   static u32 z = 521288629;\n    static u32 w = 88675123;\n    u32 t = x ^ (x\
+    \ << 11);\n    x = y;\n    y = z;\n    z = w;\n    return w = (w ^ (w >> 19))\
+    \ ^ (t ^ (t >> 8));\n  }\n\n  void prop(np c) {\n    // \u81EA\u8EAB\u3092\u30B3\
+    \u30D4\u30FC\u3059\u308B\u5FC5\u8981\u306F\u306A\u3044\u3002\n    // \u5B50\u3092\
+    \u30B3\u30D4\u30FC\u3059\u308B\u5FC5\u8981\u304C\u3042\u308B\u3002\u8907\u6570\
+    \u306E\u89AA\u3092\u6301\u3064\u53EF\u80FD\u6027\u304C\u3042\u308B\u305F\u3081\
+    \u3002\n    if (c->rev) {\n      if (c->l) {\n        c->l = copy_node(c->l);\n\
+    \        c->l->rev ^= 1;\n        swap(c->l->l, c->l->r);\n      }\n      if (c->r)\
+    \ {\n        c->r = copy_node(c->r);\n        c->r->rev ^= 1;\n        swap(c->r->l,\
+    \ c->r->r);\n      }\n      c->rev = 0;\n    }\n  }\n\n  void update(np c) {\n\
+    \    // \u30C7\u30FC\u30BF\u3092\u4FDD\u3063\u305F\u307E\u307E\u6B63\u5E38\u5316\
+    \u3059\u308B\u3060\u3051\u306A\u306E\u3067\u3001\u30B3\u30D4\u30FC\u4E0D\u8981\
+    \n    c->size = 1;\n    c->prod = c->x;\n    if (c->l) {\n      c->size += c->l->size;\n\
+    \      c->prod = Monoid::op(c->l->prod, c->prod);\n    }\n    if (c->r) {\n  \
+    \    c->size += c->r->size;\n      c->prod = Monoid::op(c->prod, c->r->prod);\n\
+    \    }\n  }\n\n  np merge_rec(np l_root, np r_root) {\n    if (!l_root) return\
+    \ r_root;\n    if (!r_root) return l_root;\n    u32 sl = l_root->size, sr = r_root->size;\n\
+    \    if (xor128() % (sl + sr) < sl) {\n      prop(l_root);\n      l_root = copy_node(l_root);\n\
+    \      l_root->r = merge_rec(l_root->r, r_root);\n      update(l_root);\n    \
+    \  return l_root;\n    }\n    prop(r_root);\n    r_root = copy_node(r_root);\n\
+    \    r_root->l = merge_rec(l_root, r_root->l);\n    update(r_root);\n    return\
+    \ r_root;\n  }\n\n  pair<np, np> split_rec(np root, u32 k) {\n    if (!root) return\
+    \ {nullptr, nullptr};\n    prop(root);\n    u32 sl = (root->l ? root->l->size\
+    \ : 0);\n    if (k <= sl) {\n      auto [nl, nr] = split_rec(root->l, k);\n  \
+    \    root = copy_node(root);\n      root->l = nr;\n      update(root);\n     \
+    \ return {nl, root};\n    }\n    auto [nl, nr] = split_rec(root->r, k - (1 + sl));\n\
+    \    root = copy_node(root);\n    root->r = nl;\n    update(root);\n    return\
+    \ {root, nr};\n  }\n\n  np set_rec(np root, u32 k, const X &x) {\n    if (!root)\
+    \ return root;\n    prop(root);\n    u32 sl = (root->l ? root->l->size : 0);\n\
+    \    if (k < sl) {\n      root = copy_node(root);\n      root->l = set_rec(root->l,\
     \ k, x);\n      update(root);\n      return root;\n    }\n    if (k == sl) {\n\
     \      root = copy_node(root);\n      root->x = x;\n      update(root);\n    \
     \  return root;\n    }\n    root = copy_node(root);\n    root->r = set_rec(root->r,\
@@ -388,91 +385,93 @@ data:
     \ = Monoid::op(root->x, x);\n      update(root);\n      return root;\n    }\n\
     \    root = copy_node(root);\n    root->r = multiply_rec(root->r, k - (1 + sl),\
     \ x);\n    update(root);\n    return root;\n  }\n\n  X prod_rec(np root, u32 l,\
-    \ u32 r, bool rev) {\n    if (l == 0 && r == root->size) {\n      return (rev\
-    \ ? root->rev_prod : root->prod);\n    }\n    np left = (rev ? root->r : root->l);\n\
-    \    np right = (rev ? root->l : root->r);\n    u32 sl = (left ? left->size :\
-    \ 0);\n    X res = Monoid::unit();\n    if (l < sl) {\n      X y = prod_rec(left,\
-    \ l, min(r, sl), rev ^ root->rev);\n      res = Monoid::op(res, y);\n    }\n \
-    \   if (l <= sl && sl < r) res = Monoid::op(res, root->x);\n    u32 k = 1 + sl;\n\
-    \    if (k < r) {\n      X y = prod_rec(right, max(k, l) - k, r - k, rev ^ root->rev);\n\
-    \      res = Monoid::op(res, y);\n    }\n    return res;\n  }\n\n  X get_rec(np\
-    \ root, u32 k, bool rev) {\n    np left = (rev ? root->r : root->l);\n    np right\
-    \ = (rev ? root->l : root->r);\n    u32 sl = (left ? left->size : 0);\n    if\
-    \ (k == sl) return root->x;\n    rev ^= root->rev;\n    if (k < sl) return get_rec(left,\
-    \ k, rev);\n    return get_rec(right, k - (1 + sl), rev);\n  }\n\n  template <typename\
-    \ F>\n  pair<np, np> split_max_right_rec(np root, const F &check, X &x) {\n  \
-    \  if (!root) return {nullptr, nullptr};\n    prop(root);\n    root = copy_node(root);\n\
-    \    X y = Monoid::op(x, root->prod);\n    if (check(y)) {\n      x = y;\n   \
-    \   return {root, nullptr};\n    }\n    np left = root->l, right = root->r;\n\
-    \    if (left) {\n      X y = Monoid::op(x, root->l->prod);\n      if (!check(y))\
-    \ {\n        auto [n1, n2] = split_max_right_rec(left, check, x);\n        root->l\
-    \ = n2;\n        update(root);\n        return {n1, root};\n      }\n      x =\
-    \ y;\n    }\n    y = Monoid::op(x, root->x);\n    if (!check(y)) {\n      root->l\
-    \ = nullptr;\n      update(root);\n      return {left, root};\n    }\n    x =\
-    \ y;\n    auto [n1, n2] = split_max_right_rec(right, check, x);\n    root->r =\
-    \ n1;\n    update(root);\n    return {root, n2};\n  }\n};\n#line 2 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \ u32 r, bool rev) {\n    if (l == 0 && r == root->size) return root->prod;\n\
+    \    np left = (rev ? root->r : root->l);\n    np right = (rev ? root->l : root->r);\n\
+    \    u32 sl = (left ? left->size : 0);\n    X res = Monoid::unit();\n    if (l\
+    \ < sl) {\n      X y = prod_rec(left, l, min(r, sl), rev ^ root->rev);\n     \
+    \ res = Monoid::op(res, y);\n    }\n    if (l <= sl && sl < r) res = Monoid::op(res,\
+    \ root->x);\n    u32 k = 1 + sl;\n    if (k < r) {\n      X y = prod_rec(right,\
+    \ max(k, l) - k, r - k, rev ^ root->rev);\n      res = Monoid::op(res, y);\n \
+    \   }\n    return res;\n  }\n\n  X get_rec(np root, u32 k, bool rev) {\n    np\
+    \ left = (rev ? root->r : root->l);\n    np right = (rev ? root->l : root->r);\n\
+    \    u32 sl = (left ? left->size : 0);\n    if (k == sl) return root->x;\n   \
+    \ rev ^= root->rev;\n    if (k < sl) return get_rec(left, k, rev);\n    return\
+    \ get_rec(right, k - (1 + sl), rev);\n  }\n\n  template <typename F>\n  pair<np,\
+    \ np> split_max_right_rec(np root, const F &check, X &x) {\n    if (!root) return\
+    \ {nullptr, nullptr};\n    prop(root);\n    root = copy_node(root);\n    X y =\
+    \ Monoid::op(x, root->prod);\n    if (check(y)) {\n      x = y;\n      return\
+    \ {root, nullptr};\n    }\n    np left = root->l, right = root->r;\n    if (left)\
+    \ {\n      X y = Monoid::op(x, root->l->prod);\n      if (!check(y)) {\n     \
+    \   auto [n1, n2] = split_max_right_rec(left, check, x);\n        root->l = n2;\n\
+    \        update(root);\n        return {n1, root};\n      }\n      x = y;\n  \
+    \  }\n    y = Monoid::op(x, root->x);\n    if (!check(y)) {\n      root->l = nullptr;\n\
+    \      update(root);\n      return {left, root};\n    }\n    x = y;\n    auto\
+    \ [n1, n2] = split_max_right_rec(right, check, x);\n    root->r = n1;\n    update(root);\n\
+    \    return {root, n2};\n  }\n};\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
+    \ {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
     \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 8 \"test/mytest/rbst_commutative_persistent.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid test() {\n  using Mono = Monoid_Add<int>;\n\
-    \  RBST_Monoid<Mono, true, 10000> X;\n  using np = decltype(X)::np;\n\n  FOR(1000)\
-    \ {\n    X.reset();\n    int N = RNG(1, 20);\n    int Q = RNG(1, 1000);\n    vvc<int>\
-    \ AA(1);\n    FOR(i, N) AA[0].eb(RNG(0, 100));\n    vc<np> roots = {X.new_node(AA[0])};\n\
-    \n    FOR(Q) {\n      vc<int> cand = {0, 1, 2, 3, 4, 5};\n      int t = cand[RNG(0,\
-    \ len(cand))];\n      int frm = RNG(0, len(AA));\n      vc<int> A = AA[frm];\n\
-    \      np root = roots[frm];\n      if (t == 0) {\n        int i = RNG(0, N);\n\
-    \        assert(A[i] == X.get(root, i));\n      }\n      if (t == 1) {\n     \
-    \   int i = RNG(0, N);\n        int x = RNG(0, 100);\n        root = X.set(root,\
-    \ i, x);\n        A[i] = x;\n      }\n      if (t == 2) {\n        int i = RNG(0,\
-    \ N);\n        int x = RNG(0, 100);\n        root = X.multiply(root, i, x);\n\
-    \        A[i] = Mono::op(A[i], x);\n      }\n      if (t == 3) {\n        int\
-    \ L = RNG(0, N);\n        int R = RNG(0, N);\n        if (L > R) swap(L, R);\n\
-    \        ++R;\n        vc<int> B = {A.begin() + L, A.begin() + R};\n        assert(X.prod(root,\
-    \ L, R) == SUM<int>(B));\n      }\n      if (t == 4) {\n        int L = RNG(0,\
-    \ N);\n        int R = RNG(0, N);\n        if (L > R) swap(L, R);\n        ++R;\n\
-    \        root = X.reverse(root, L, R);\n        reverse(A.begin() + L, A.begin()\
-    \ + R);\n      }\n      if (t == 5) {\n        vc<int> B = X.get_all(root);\n\
-    \        assert(A == B);\n      }\n      AA.eb(A);\n      roots.eb(root);\n  \
-    \  }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main()\
-    \ {\n  test();\n  solve();\n\n  return 0;\n}\n"
+    \  RBST_CommutativeMonoid<Mono, true, 10000> X;\n  using np = decltype(X)::np;\n\
+    \n  FOR(1000) {\n    X.reset();\n    int N = RNG(1, 20);\n    int Q = RNG(1, 1000);\n\
+    \    vvc<int> AA(1);\n    FOR(i, N) AA[0].eb(RNG(0, 100));\n    vc<np> roots =\
+    \ {X.new_node(AA[0])};\n\n    FOR(Q) {\n      vc<int> cand = {0, 1, 2, 3, 4, 5};\n\
+    \      int t = cand[RNG(0, len(cand))];\n      int frm = RNG(0, len(AA));\n  \
+    \    vc<int> A = AA[frm];\n      np root = roots[frm];\n      if (t == 0) {\n\
+    \        int i = RNG(0, N);\n        assert(A[i] == X.get(root, i));\n      }\n\
+    \      if (t == 1) {\n        int i = RNG(0, N);\n        int x = RNG(0, 100);\n\
+    \        root = X.set(root, i, x);\n        A[i] = x;\n      }\n      if (t ==\
+    \ 2) {\n        int i = RNG(0, N);\n        int x = RNG(0, 100);\n        root\
+    \ = X.multiply(root, i, x);\n        A[i] = Mono::op(A[i], x);\n      }\n    \
+    \  if (t == 3) {\n        int L = RNG(0, N);\n        int R = RNG(0, N);\n   \
+    \     if (L > R) swap(L, R);\n        ++R;\n        vc<int> B = {A.begin() + L,\
+    \ A.begin() + R};\n        assert(X.prod(root, L, R) == SUM<int>(B));\n      }\n\
+    \      if (t == 4) {\n        int L = RNG(0, N);\n        int R = RNG(0, N);\n\
+    \        if (L > R) swap(L, R);\n        ++R;\n        root = X.reverse(root,\
+    \ L, R);\n        reverse(A.begin() + L, A.begin() + R);\n      }\n      if (t\
+    \ == 5) {\n        vc<int> B = X.get_all(root);\n        assert(A == B);\n   \
+    \   }\n      AA.eb(A);\n      roots.eb(root);\n    }\n  }\n}\n\nvoid solve() {\n\
+    \  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"alg/monoid/add.hpp\"\n#include \"mod/modint.hpp\"\
-    \n#include \"ds/bbst/rbst_monoid.hpp\"\n#include \"random/base.hpp\"\n\nusing\
-    \ mint = modint998;\n\nvoid test() {\n  using Mono = Monoid_Add<int>;\n  RBST_Monoid<Mono,\
-    \ true, 10000> X;\n  using np = decltype(X)::np;\n\n  FOR(1000) {\n    X.reset();\n\
-    \    int N = RNG(1, 20);\n    int Q = RNG(1, 1000);\n    vvc<int> AA(1);\n   \
-    \ FOR(i, N) AA[0].eb(RNG(0, 100));\n    vc<np> roots = {X.new_node(AA[0])};\n\n\
-    \    FOR(Q) {\n      vc<int> cand = {0, 1, 2, 3, 4, 5};\n      int t = cand[RNG(0,\
-    \ len(cand))];\n      int frm = RNG(0, len(AA));\n      vc<int> A = AA[frm];\n\
-    \      np root = roots[frm];\n      if (t == 0) {\n        int i = RNG(0, N);\n\
-    \        assert(A[i] == X.get(root, i));\n      }\n      if (t == 1) {\n     \
-    \   int i = RNG(0, N);\n        int x = RNG(0, 100);\n        root = X.set(root,\
-    \ i, x);\n        A[i] = x;\n      }\n      if (t == 2) {\n        int i = RNG(0,\
-    \ N);\n        int x = RNG(0, 100);\n        root = X.multiply(root, i, x);\n\
-    \        A[i] = Mono::op(A[i], x);\n      }\n      if (t == 3) {\n        int\
-    \ L = RNG(0, N);\n        int R = RNG(0, N);\n        if (L > R) swap(L, R);\n\
-    \        ++R;\n        vc<int> B = {A.begin() + L, A.begin() + R};\n        assert(X.prod(root,\
-    \ L, R) == SUM<int>(B));\n      }\n      if (t == 4) {\n        int L = RNG(0,\
-    \ N);\n        int R = RNG(0, N);\n        if (L > R) swap(L, R);\n        ++R;\n\
-    \        root = X.reverse(root, L, R);\n        reverse(A.begin() + L, A.begin()\
-    \ + R);\n      }\n      if (t == 5) {\n        vc<int> B = X.get_all(root);\n\
-    \        assert(A == B);\n      }\n      AA.eb(A);\n      roots.eb(root);\n  \
-    \  }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main()\
-    \ {\n  test();\n  solve();\n\n  return 0;\n}"
+    \n#include \"ds/bbst/rbst_commutative_monoid.hpp\"\n#include \"random/base.hpp\"\
+    \n\nusing mint = modint998;\n\nvoid test() {\n  using Mono = Monoid_Add<int>;\n\
+    \  RBST_CommutativeMonoid<Mono, true, 10000> X;\n  using np = decltype(X)::np;\n\
+    \n  FOR(1000) {\n    X.reset();\n    int N = RNG(1, 20);\n    int Q = RNG(1, 1000);\n\
+    \    vvc<int> AA(1);\n    FOR(i, N) AA[0].eb(RNG(0, 100));\n    vc<np> roots =\
+    \ {X.new_node(AA[0])};\n\n    FOR(Q) {\n      vc<int> cand = {0, 1, 2, 3, 4, 5};\n\
+    \      int t = cand[RNG(0, len(cand))];\n      int frm = RNG(0, len(AA));\n  \
+    \    vc<int> A = AA[frm];\n      np root = roots[frm];\n      if (t == 0) {\n\
+    \        int i = RNG(0, N);\n        assert(A[i] == X.get(root, i));\n      }\n\
+    \      if (t == 1) {\n        int i = RNG(0, N);\n        int x = RNG(0, 100);\n\
+    \        root = X.set(root, i, x);\n        A[i] = x;\n      }\n      if (t ==\
+    \ 2) {\n        int i = RNG(0, N);\n        int x = RNG(0, 100);\n        root\
+    \ = X.multiply(root, i, x);\n        A[i] = Mono::op(A[i], x);\n      }\n    \
+    \  if (t == 3) {\n        int L = RNG(0, N);\n        int R = RNG(0, N);\n   \
+    \     if (L > R) swap(L, R);\n        ++R;\n        vc<int> B = {A.begin() + L,\
+    \ A.begin() + R};\n        assert(X.prod(root, L, R) == SUM<int>(B));\n      }\n\
+    \      if (t == 4) {\n        int L = RNG(0, N);\n        int R = RNG(0, N);\n\
+    \        if (L > R) swap(L, R);\n        ++R;\n        root = X.reverse(root,\
+    \ L, R);\n        reverse(A.begin() + L, A.begin() + R);\n      }\n      if (t\
+    \ == 5) {\n        vc<int> B = X.get_all(root);\n        assert(A == B);\n   \
+    \   }\n      AA.eb(A);\n      roots.eb(root);\n    }\n  }\n}\n\nvoid solve() {\n\
+    \  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - alg/monoid/add.hpp
   - mod/modint.hpp
-  - ds/bbst/rbst_monoid.hpp
+  - ds/bbst/rbst_commutative_monoid.hpp
   - random/base.hpp
   isVerificationFile: true
   path: test/mytest/rbst_commutative_persistent.test.cpp
   requiredBy: []
-  timestamp: '2022-11-29 10:10:06+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-11-29 10:56:54+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/rbst_commutative_persistent.test.cpp
 layout: document

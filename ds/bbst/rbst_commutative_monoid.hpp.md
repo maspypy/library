@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/mytest/rbst_commutative_persistent.test.cpp
+    title: test/mytest/rbst_commutative_persistent.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/bbst/rbst_commutative_monoid.hpp\"\ntemplate <typename\
@@ -228,8 +231,9 @@ data:
   path: ds/bbst/rbst_commutative_monoid.hpp
   requiredBy: []
   timestamp: '2022-11-29 10:10:06+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/mytest/rbst_commutative_persistent.test.cpp
 documentation_of: ds/bbst/rbst_commutative_monoid.hpp
 layout: document
 redirect_from:

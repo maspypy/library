@@ -7,9 +7,6 @@ data:
     path: test/aoj/1508_2.test.cpp
     title: test/aoj/1508_2.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_commutative_persistent.test.cpp
-    title: test/mytest/rbst_commutative_persistent.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_monoid.test.cpp
     title: test/mytest/rbst_monoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -256,7 +253,6 @@ data:
   verifiedWith:
   - test/mytest/rbst_monoid_persistent.test.cpp
   - test/mytest/rbst_monoid.test.cpp
-  - test/mytest/rbst_commutative_persistent.test.cpp
   - test/mytest/rbst_monoid_2.test.cpp
   - test/mytest/rbst_test.test.cpp
   - test/aoj/1508_2.test.cpp
