@@ -242,21 +242,21 @@ data:
     \     u32 m = (l + r) / 2;\n      np l_root = dfs(dfs, l, m);\n      np r_root\
     \ = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n      root->l = l_root,\
     \ root->r = r_root;\n      update(root);\n      return root;\n    };\n    return\
-    \ dfs(dfs, 0, len(dat));\n  }\n\n  np copy_node(np &n, bool COPY = PERSISTENT)\
-    \ {\n    if (!n || !COPY) return n;\n    pool[pid].l = n->l, pool[pid].r = n->r;\n\
-    \    pool[pid].x = n->x;\n    pool[pid].prod = n->prod;\n    pool[pid].lazy =\
-    \ n->lazy;\n    pool[pid].size = n->size;\n    pool[pid].rev = n->rev;\n    return\
-    \ &(pool[pid++]);\n  }\n\n  np merge(np l_root, np r_root) { return merge_rec(l_root,\
-    \ r_root); }\n  np merge3(np a, np b, np c) { return merge(merge(a, b), c); }\n\
-    \  np merge4(np a, np b, np c, np d) { return merge(merge(merge(a, b), c), d);\
-    \ }\n  pair<np, np> split(np root, u32 k) {\n    if (!root) {\n      assert(k\
-    \ == 0);\n      return {nullptr, nullptr};\n    }\n    assert(0 <= k && k <= root->size);\n\
-    \    return split_rec(root, k);\n  }\n  tuple<np, np, np> split3(np root, u32\
-    \ l, u32 r) {\n    np nm, nr;\n    tie(root, nr) = split(root, r);\n    tie(root,\
-    \ nm) = split(root, l);\n    return {root, nm, nr};\n  }\n  tuple<np, np, np,\
-    \ np> split4(np root, u32 i, u32 j, u32 k) {\n    np d;\n    tie(root, d) = split(root,\
-    \ k);\n    auto [a, b, c] = split3(root, i, j);\n    return {a, b, c, d};\n  }\n\
-    \n  X prod(np root, u32 l, u32 r) {\n    if (l == r) return Monoid_X::unit();\n\
+    \ dfs(dfs, 0, len(dat));\n  }\n\n  np copy_node(np &n) {\n    if (!n || !PERSISTENT)\
+    \ return n;\n    pool[pid].l = n->l, pool[pid].r = n->r;\n    pool[pid].x = n->x;\n\
+    \    pool[pid].prod = n->prod;\n    pool[pid].lazy = n->lazy;\n    pool[pid].size\
+    \ = n->size;\n    pool[pid].rev = n->rev;\n    return &(pool[pid++]);\n  }\n\n\
+    \  np merge(np l_root, np r_root) { return merge_rec(l_root, r_root); }\n  np\
+    \ merge3(np a, np b, np c) { return merge(merge(a, b), c); }\n  np merge4(np a,\
+    \ np b, np c, np d) { return merge(merge(merge(a, b), c), d); }\n  pair<np, np>\
+    \ split(np root, u32 k) {\n    if (!root) {\n      assert(k == 0);\n      return\
+    \ {nullptr, nullptr};\n    }\n    assert(0 <= k && k <= root->size);\n    return\
+    \ split_rec(root, k);\n  }\n  tuple<np, np, np> split3(np root, u32 l, u32 r)\
+    \ {\n    np nm, nr;\n    tie(root, nr) = split(root, r);\n    tie(root, nm) =\
+    \ split(root, l);\n    return {root, nm, nr};\n  }\n  tuple<np, np, np, np> split4(np\
+    \ root, u32 i, u32 j, u32 k) {\n    np d;\n    tie(root, d) = split(root, k);\n\
+    \    auto [a, b, c] = split3(root, i, j);\n    return {a, b, c, d};\n  }\n\n \
+    \ X prod(np root, u32 l, u32 r) {\n    if (l == r) return Monoid_X::unit();\n\
     \    return prod_rec(root, l, r, false);\n  }\n  X prod(np root) { return (root\
     \ ? root->prod : Monoid_X::unit()); }\n\n  np reverse(np root, u32 l, u32 r) {\n\
     \    assert(Monoid_X::commute);\n    assert(0 <= l && l <= r && r <= root->size);\n\
@@ -424,7 +424,7 @@ data:
   isVerificationFile: true
   path: test/mytest/rbst_am_2.test.cpp
   requiredBy: []
-  timestamp: '2022-11-29 08:22:30+09:00'
+  timestamp: '2022-11-29 09:31:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/rbst_am_2.test.cpp

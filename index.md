@@ -316,15 +316,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/pds/persistent_meldable_heap.hpp
       title: ds/pds/persistent_meldable_heap.hpp
-    - icon: ':warning:'
-      path: ds/pds/persistent_rbst.hpp
-      title: ds/pds/persistent_rbst.hpp
-    - icon: ':warning:'
-      path: ds/pds/persistent_rbst_lazy.hpp
-      title: ds/pds/persistent_rbst_lazy.hpp
-    - icon: ':warning:'
-      path: ds/pds/persistent_rbst_monoid.hpp
-      title: ds/pds/persistent_rbst_monoid.hpp
     - icon: ':heavy_check_mark:'
       path: ds/pds/rollbackarray.hpp
       title: ds/pds/rollbackarray.hpp
