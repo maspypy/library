@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/bbst/rbst_monoid.hpp
     title: ds/bbst/rbst_monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -325,31 +325,31 @@ data:
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
     \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 7 \"test/mytest/rbst_test.test.cpp\"\
-    \n\nvoid test() {\n  using Mono = Monoid_Min<int>;\n  RBST_Monoid<Mono, 100> X;\n\
-    \  FOR(1000) {\n    X.reset();\n    int N = RNG(1, 20);\n    int Q = RNG(1, 1000);\n\
-    \    vc<int> A(N);\n    FOR(i, N) A[i] = RNG(1, 100);\n    auto root = X.new_node(A);\n\
-    \n    FOR(Q) {\n      int t = RNG(0, 5);\n      if (t == 0) {\n        int i =\
-    \ RNG(0, N);\n        assert(A[i] == X.get(root, i));\n      }\n      if (t ==\
-    \ 1) {\n        int i = RNG(0, N);\n        int x = RNG(1, 100);\n        root\
-    \ = X.set(root, i, x);\n        A[i] = x;\n      }\n      if (t == 2) {\n    \
-    \    int i = RNG(0, N);\n        int x = RNG(1, 100);\n        root = X.multiply(root,\
-    \ i, x);\n        A[i] = Mono::op(A[i], x);\n      }\n      if (t == 3) {\n  \
-    \      int L = RNG(0, N);\n        int R = RNG(0, N);\n        if (L > R) swap(L,\
-    \ R);\n        ++R;\n        vc<int> B = {A.begin() + L, A.begin() + R};\n   \
-    \     assert(X.prod(root, L, R) == MIN(B));\n      }\n      if (t == 4) {\n  \
-    \      int L = RNG(0, N);\n        int R = RNG(0, N);\n        if (L > R) swap(L,\
-    \ R);\n        ++R;\n        root = X.reverse(root, L, R);\n        reverse(A.begin()\
-    \ + L, A.begin() + R);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n\
-    \  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n\
-    }\n"
+    \n\nvoid test() {\n  using Mono = Monoid_Min<int>;\n  RBST_Monoid<Mono, false,\
+    \ 100> X;\n  FOR(1000) {\n    X.reset();\n    int N = RNG(1, 20);\n    int Q =\
+    \ RNG(1, 1000);\n    vc<int> A(N);\n    FOR(i, N) A[i] = RNG(1, 100);\n    auto\
+    \ root = X.new_node(A);\n\n    FOR(Q) {\n      int t = RNG(0, 5);\n      if (t\
+    \ == 0) {\n        int i = RNG(0, N);\n        assert(A[i] == X.get(root, i));\n\
+    \      }\n      if (t == 1) {\n        int i = RNG(0, N);\n        int x = RNG(1,\
+    \ 100);\n        root = X.set(root, i, x);\n        A[i] = x;\n      }\n     \
+    \ if (t == 2) {\n        int i = RNG(0, N);\n        int x = RNG(1, 100);\n  \
+    \      root = X.multiply(root, i, x);\n        A[i] = Mono::op(A[i], x);\n   \
+    \   }\n      if (t == 3) {\n        int L = RNG(0, N);\n        int R = RNG(0,\
+    \ N);\n        if (L > R) swap(L, R);\n        ++R;\n        vc<int> B = {A.begin()\
+    \ + L, A.begin() + R};\n        assert(X.prod(root, L, R) == MIN(B));\n      }\n\
+    \      if (t == 4) {\n        int L = RNG(0, N);\n        int R = RNG(0, N);\n\
+    \        if (L > R) swap(L, R);\n        ++R;\n        root = X.reverse(root,\
+    \ L, R);\n        reverse(A.begin() + L, A.begin() + R);\n      }\n    }\n  }\n\
+    }\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n\
+    \  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"alg/monoid/min.hpp\"\n#include \"ds/bbst/rbst_monoid.hpp\"\
     \n#include \"random/base.hpp\"\n\nvoid test() {\n  using Mono = Monoid_Min<int>;\n\
-    \  RBST_Monoid<Mono, 100> X;\n  FOR(1000) {\n    X.reset();\n    int N = RNG(1,\
-    \ 20);\n    int Q = RNG(1, 1000);\n    vc<int> A(N);\n    FOR(i, N) A[i] = RNG(1,\
-    \ 100);\n    auto root = X.new_node(A);\n\n    FOR(Q) {\n      int t = RNG(0,\
-    \ 5);\n      if (t == 0) {\n        int i = RNG(0, N);\n        assert(A[i] ==\
-    \ X.get(root, i));\n      }\n      if (t == 1) {\n        int i = RNG(0, N);\n\
+    \  RBST_Monoid<Mono, false, 100> X;\n  FOR(1000) {\n    X.reset();\n    int N\
+    \ = RNG(1, 20);\n    int Q = RNG(1, 1000);\n    vc<int> A(N);\n    FOR(i, N) A[i]\
+    \ = RNG(1, 100);\n    auto root = X.new_node(A);\n\n    FOR(Q) {\n      int t\
+    \ = RNG(0, 5);\n      if (t == 0) {\n        int i = RNG(0, N);\n        assert(A[i]\
+    \ == X.get(root, i));\n      }\n      if (t == 1) {\n        int i = RNG(0, N);\n\
     \        int x = RNG(1, 100);\n        root = X.set(root, i, x);\n        A[i]\
     \ = x;\n      }\n      if (t == 2) {\n        int i = RNG(0, N);\n        int\
     \ x = RNG(1, 100);\n        root = X.multiply(root, i, x);\n        A[i] = Mono::op(A[i],\
@@ -360,7 +360,7 @@ data:
     \ N);\n        if (L > R) swap(L, R);\n        ++R;\n        root = X.reverse(root,\
     \ L, R);\n        reverse(A.begin() + L, A.begin() + R);\n      }\n    }\n  }\n\
     }\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n\
-    \  solve();\n\n  return 0;\n}"
+    \  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -370,8 +370,8 @@ data:
   isVerificationFile: true
   path: test/mytest/rbst_test.test.cpp
   requiredBy: []
-  timestamp: '2022-11-29 10:01:12+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-29 10:46:17+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/rbst_test.test.cpp
 layout: document
