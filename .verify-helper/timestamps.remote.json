@@ -308,6 +308,7 @@
 "test/mytest/rbst_am.test.cpp": "2022-11-29 09:31:10 +0900",
 "test/mytest/rbst_am_2.test.cpp": "2022-11-29 09:31:10 +0900",
 "test/mytest/rbst_am_persistent.test.cpp": "2022-11-29 09:31:10 +0900",
+"test/mytest/rbst_commutative_persistent.test.cpp": "2022-11-29 11:44:08 +0900",
 "test/mytest/rbst_monoid.test.cpp": "2022-11-29 10:45:46 +0900",
 "test/mytest/rbst_monoid_2.test.cpp": "2022-11-29 10:46:01 +0900",
 "test/mytest/rbst_monoid_persistent.test.cpp": "2022-11-29 10:04:11 +0900",
