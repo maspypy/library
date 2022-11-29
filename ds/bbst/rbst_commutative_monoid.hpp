@@ -14,7 +14,7 @@ struct RBST_CommutativeMonoid {
   int pid;
   using np = Node *;
 
-  RBST_Monoid() : pid(0) {
+  RBST_CommutativeMonoid() : pid(0) {
     assert(Monoid::commute);
     pool = new Node[NODES];
   }
