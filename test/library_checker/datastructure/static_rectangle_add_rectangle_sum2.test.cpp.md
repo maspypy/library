@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/query/coeffient_query_2d.hpp
     title: ds/query/coeffient_query_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'

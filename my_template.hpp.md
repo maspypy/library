@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508.test.cpp
     title: test/aoj/1508.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/1508_2.test.cpp
     title: test/aoj/1508_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -930,13 +930,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_am_persistent.test.cpp
     title: test/mytest/rbst_am_persistent.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/rbst_monoid.test.cpp
     title: test/mytest/rbst_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/rbst_monoid_2.test.cpp
     title: test/mytest/rbst_monoid_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_monoid_persistent.test.cpp
+    title: test/mytest/rbst_monoid_persistent.test.cpp
+  - icon: ':x:'
     path: test/mytest/rbst_test.test.cpp
     title: test/mytest/rbst_test.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1886,6 +1889,7 @@ data:
   - test/mytest/all_but_one_products.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/conv_leq.test.cpp
+  - test/mytest/rbst_monoid_persistent.test.cpp
   - test/mytest/partizan.test.cpp
   - test/mytest/dyadic_rational.test.cpp
   - test/mytest/chirp_z.test.cpp
