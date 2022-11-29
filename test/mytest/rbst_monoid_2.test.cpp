@@ -10,7 +10,7 @@ using mint = modint998;
 
 void test() {
   using Mono = Monoid_Affine<mint>;
-  RBST_Monoid<Mono, 100> X;
+  RBST_Monoid<Mono, false, 100> X;
   auto rnd_affine = [&]() -> pair<mint, mint> {
     int a = RNG(0, 3);
     int b = RNG(0, 3);
