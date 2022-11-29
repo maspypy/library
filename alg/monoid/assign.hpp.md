@@ -43,6 +43,9 @@ data:
     path: test/mytest/rbst_am.test.cpp
     title: test/mytest/rbst_am.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_am_persistent.test.cpp
+    title: test/mytest/rbst_am_persistent.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_monoid.test.cpp
     title: test/mytest/rbst_monoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -79,6 +82,7 @@ data:
   - test/mytest/cntsummax_assign.test.cpp
   - test/mytest/rbst_monoid.test.cpp
   - test/mytest/rbst_am.test.cpp
+  - test/mytest/rbst_am_persistent.test.cpp
   - test/mytest/max_assign.test.cpp
   - test/aoj/DSL_2_D.test.cpp
   - test/aoj/DSL_2_I.test.cpp

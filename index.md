@@ -2241,6 +2241,9 @@ data:
       path: test/mytest/rbst_am_2.test.cpp
       title: test/mytest/rbst_am_2.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/mytest/rbst_am_persistent.test.cpp
+      title: test/mytest/rbst_am_persistent.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/mytest/rbst_monoid.test.cpp
       title: test/mytest/rbst_monoid.test.cpp
     - icon: ':heavy_check_mark:'
