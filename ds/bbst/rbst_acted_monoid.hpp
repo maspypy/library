@@ -46,8 +46,8 @@ struct RBST_ActedMonoid {
     return dfs(dfs, 0, len(dat));
   }
 
-  np copy_node(np &n, bool COPY = PERSISTENT) {
-    if (!n || !COPY) return n;
+  np copy_node(np &n) {
+    if (!n || !PERSISTENT) return n;
     pool[pid].l = n->l, pool[pid].r = n->r;
     pool[pid].x = n->x;
     pool[pid].prod = n->prod;
