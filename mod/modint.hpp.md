@@ -465,6 +465,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/product_of_one_pm_xn.test.cpp
     title: test/mytest/product_of_one_pm_xn.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_commutative_persistent.test.cpp
+    title: test/mytest/rbst_commutative_persistent.test.cpp
   - icon: ':x:'
     path: test/mytest/rbst_monoid.test.cpp
     title: test/mytest/rbst_monoid.test.cpp
@@ -1007,6 +1010,7 @@ data:
   - test/mytest/powerquery.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/rbst_monoid.test.cpp
+  - test/mytest/rbst_commutative_persistent.test.cpp
   - test/mytest/enumerate_products.test.cpp
   - test/mytest/online_division.test.cpp
   - test/mytest/simple_perm.test.cpp

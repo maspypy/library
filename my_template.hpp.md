@@ -930,6 +930,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_am_persistent.test.cpp
     title: test/mytest/rbst_am_persistent.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_commutative_persistent.test.cpp
+    title: test/mytest/rbst_commutative_persistent.test.cpp
   - icon: ':x:'
     path: test/mytest/rbst_monoid.test.cpp
     title: test/mytest/rbst_monoid.test.cpp
@@ -1903,6 +1906,7 @@ data:
   - test/mytest/rbst_monoid.test.cpp
   - test/mytest/magic_square.test.cpp
   - test/mytest/max_min.test.cpp
+  - test/mytest/rbst_commutative_persistent.test.cpp
   - test/mytest/enumerate_products.test.cpp
   - test/mytest/online_division.test.cpp
   - test/mytest/simple_perm.test.cpp

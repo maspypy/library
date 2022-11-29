@@ -163,6 +163,9 @@ data:
     - icon: ':x:'
       path: ds/bbst/rbst_acted_set.hpp
       title: ds/bbst/rbst_acted_set.hpp
+    - icon: ':warning:'
+      path: ds/bbst/rbst_commutative_monoid.hpp
+      title: ds/bbst/rbst_commutative_monoid.hpp
     - icon: ':question:'
       path: ds/bbst/rbst_monoid.hpp
       title: ds/bbst/rbst_monoid.hpp
@@ -2234,6 +2237,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/rbst_am_persistent.test.cpp
       title: test/mytest/rbst_am_persistent.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/rbst_commutative_persistent.test.cpp
+      title: test/mytest/rbst_commutative_persistent.test.cpp
     - icon: ':x:'
       path: test/mytest/rbst_monoid.test.cpp
       title: test/mytest/rbst_monoid.test.cpp

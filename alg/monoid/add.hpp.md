@@ -217,6 +217,9 @@ data:
     path: test/mytest/rbst_am_2.test.cpp
     title: test/mytest/rbst_am_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_commutative_persistent.test.cpp
+    title: test/mytest/rbst_commutative_persistent.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -402,6 +405,7 @@ data:
   - test/mytest/minidx_add.test.cpp
   - test/mytest/maxidx_add.test.cpp
   - test/mytest/minmax_add.test.cpp
+  - test/mytest/rbst_commutative_persistent.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/rbst_am_2.test.cpp
   - test/mytest/cntsummax_add.test.cpp
