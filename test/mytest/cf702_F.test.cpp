@@ -9,7 +9,7 @@ struct AS {
   using Monoid_A = Monoid_Add_Pair<int>;
   using A = Monoid_A::value_type;
   using S = tuple<int, int, int>;
-  static S act(const S& s, const X& x) {
+  static S act(const S& s, const A& x) {
     auto [a, b, c] = s;
     return {a + x.fi, b + x.se, c};
   }
@@ -31,9 +31,10 @@ vc<int> solve_cf702F(vc<pair<int, int>> CQ, vc<int> query) {
 
   const int MAX = 5'00'000;
 
-  RBST_Dual<AM, MAX> X;
-  using Node = RBST_Dual<XSet, MAX>::Node;
-  Node* root = X.new_node(dat);
+  RBST_ActedSet<AS, false, MAX> X;
+  using np = decltype(X)::np;
+  using S = typename AS::S;
+  np root = X.new_node(dat);
 
   FOR(i, len(CQ)) {
     ll c = CQ[i].fi;
@@ -42,16 +43,15 @@ vc<int> solve_cf702F(vc<pair<int, int>> CQ, vc<int> query) {
       X.reset();
       root = X.new_node(dat);
     }
-    Node *nm, *nr;
-    tie(root, nr) = X.binary_search(
-        root, [&](Node* n) { return get<0>(n->val) < c; }, true);
-    nr = X.apply_all(nr, {-c, 1});
-    tie(nm, nr) = X.binary_search(
-        nr, [&](Node* n) { return get<0>(n->val) < c; }, true);
+    np nm, nr;
+    tie(root, nr)
+        = X.split_max_right(root, [&](S& s) { return get<0>(s) < c; });
+    nr = X.apply(nr, {-c, 1});
+    tie(nm, nr) = X.split_max_right(nr, [&](S& s) { return get<0>(s) < c; });
     for (auto [val, cnt, idx]: X.get_all(nm)) {
       ll t = val;
-      auto [l_root, r_root] = X.binary_search(
-          root, [&](Node* n) { return get<0>(n->val) < t; }, true);
+      auto [l_root, r_root]
+          = X.split_max_right(root, [&](S& s) { return get<0>(s) < t; });
       root = X.merge(l_root, X.new_node({val, cnt, idx}));
       root = X.merge(root, r_root);
     }
