@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/bbst/rbst.hpp
     title: ds/bbst/rbst.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -249,7 +249,7 @@ data:
     \u306E\u89AA\u3092\u6301\u3064\u53EF\u80FD\u6027\u304C\u3042\u308B\u305F\u3081\
     \u3002\n    if (c->rev) {\n      if (c->l) {\n        c->l = copy_node(c->l);\n\
     \        c->l->rev ^= 1;\n        swap(c->l->l, c->l->r);\n      }\n      if (c->r)\
-    \ {\n        c->l = copy_node(c->l);\n        c->r->rev ^= 1;\n        swap(c->r->l,\
+    \ {\n        c->r = copy_node(c->r);\n        c->r->rev ^= 1;\n        swap(c->r->l,\
     \ c->r->r);\n      }\n      c->rev = 0;\n    }\n  }\n\n  void update(np c) {\n\
     \    // \u30C7\u30FC\u30BF\u3092\u4FDD\u3063\u305F\u307E\u307E\u6B63\u5E38\u5316\
     \u3059\u308B\u3060\u3051\u306A\u306E\u3067\u3001\u30B3\u30D4\u30FC\u4E0D\u8981\
@@ -328,8 +328,8 @@ data:
   isVerificationFile: true
   path: test/mytest/rbst.test.cpp
   requiredBy: []
-  timestamp: '2022-11-30 05:03:06+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-30 18:49:50+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/rbst.test.cpp
 layout: document

@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst.test.cpp
     title: test/mytest/rbst.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/bbst/rbst.hpp\"\n// \u5358\u306B S \u306E\u5143\u306E\
@@ -58,7 +58,7 @@ data:
     \u306E\u89AA\u3092\u6301\u3064\u53EF\u80FD\u6027\u304C\u3042\u308B\u305F\u3081\
     \u3002\n    if (c->rev) {\n      if (c->l) {\n        c->l = copy_node(c->l);\n\
     \        c->l->rev ^= 1;\n        swap(c->l->l, c->l->r);\n      }\n      if (c->r)\
-    \ {\n        c->l = copy_node(c->l);\n        c->r->rev ^= 1;\n        swap(c->r->l,\
+    \ {\n        c->r = copy_node(c->r);\n        c->r->rev ^= 1;\n        swap(c->r->l,\
     \ c->r->r);\n      }\n      c->rev = 0;\n    }\n  }\n\n  void update(np c) {\n\
     \    // \u30C7\u30FC\u30BF\u3092\u4FDD\u3063\u305F\u307E\u307E\u6B63\u5E38\u5316\
     \u3059\u308B\u3060\u3051\u306A\u306E\u3067\u3001\u30B3\u30D4\u30FC\u4E0D\u8981\
@@ -138,7 +138,7 @@ data:
     \u3042\u308B\u3002\u8907\u6570\u306E\u89AA\u3092\u6301\u3064\u53EF\u80FD\u6027\
     \u304C\u3042\u308B\u305F\u3081\u3002\n    if (c->rev) {\n      if (c->l) {\n \
     \       c->l = copy_node(c->l);\n        c->l->rev ^= 1;\n        swap(c->l->l,\
-    \ c->l->r);\n      }\n      if (c->r) {\n        c->l = copy_node(c->l);\n   \
+    \ c->l->r);\n      }\n      if (c->r) {\n        c->r = copy_node(c->r);\n   \
     \     c->r->rev ^= 1;\n        swap(c->r->l, c->r->r);\n      }\n      c->rev\
     \ = 0;\n    }\n  }\n\n  void update(np c) {\n    // \u30C7\u30FC\u30BF\u3092\u4FDD\
     \u3063\u305F\u307E\u307E\u6B63\u5E38\u5316\u3059\u308B\u3060\u3051\u306A\u306E\
@@ -177,8 +177,8 @@ data:
   isVerificationFile: false
   path: ds/bbst/rbst.hpp
   requiredBy: []
-  timestamp: '2022-11-30 05:03:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-11-30 18:49:50+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/rbst.test.cpp
 documentation_of: ds/bbst/rbst.hpp
