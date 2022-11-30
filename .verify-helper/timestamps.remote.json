@@ -305,6 +305,7 @@
 "test/mytest/product_of_one_pm_xn.test.cpp": "2022-11-16 04:03:30 +0900",
 "test/mytest/range_freq_of_linear.test.cpp": "2022-10-23 11:21:57 +0900",
 "test/mytest/range_mex.test.cpp": "2022-10-23 11:21:57 +0900",
+"test/mytest/rbst.test.cpp": "2022-11-30 18:49:50 +0900",
 "test/mytest/rbst_am.test.cpp": "2022-11-29 09:31:10 +0900",
 "test/mytest/rbst_am_2.test.cpp": "2022-11-29 09:31:10 +0900",
 "test/mytest/rbst_am_persistent.test.cpp": "2022-11-29 09:31:10 +0900",
