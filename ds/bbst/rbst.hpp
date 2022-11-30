@@ -125,7 +125,7 @@ private:
         swap(c->l->l, c->l->r);
       }
       if (c->r) {
-        c->l = copy_node(c->l);
+        c->r = copy_node(c->r);
         c->r->rev ^= 1;
         swap(c->r->l, c->r->r);
       }
