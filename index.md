@@ -464,13 +464,13 @@ data:
       title: flow/unbalanced_transportation.hpp
   - name: game
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: game/dyadic_rational.hpp
       title: game/dyadic_rational.hpp
     - icon: ':warning:'
       path: game/graph_game.hpp
       title: game/graph_game.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: game/solve_partizan_game.hpp
       title: game/solve_partizan_game.hpp
   - name: geo
@@ -977,7 +977,7 @@ data:
     - icon: ':x:'
       path: other/magic_square.hpp
       title: other/magic_square.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: other/solve_hukumenzan.hpp
       title: other/solve_hukumenzan.hpp
   - name: poly
@@ -1518,16 +1518,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc196_E.test.cpp
       title: test/atcoder/abc196_E.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc198d.test.cpp
       title: test/atcoder/abc198d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc200a.test.cpp
       title: test/atcoder/abc200a.test.cpp
     - icon: ':x:'
       path: test/atcoder/abc217h.test.cpp
       title: test/atcoder/abc217h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc229h.test.cpp
       title: test/atcoder/abc229h.test.cpp
     - icon: ':x:'
