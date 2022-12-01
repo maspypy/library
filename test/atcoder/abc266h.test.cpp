@@ -1,7 +1,7 @@
 #define PROBLEM "https://atcoder.jp/contests/abc266/tasks/abc266_Ex"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/segtree2d.hpp"
+#include "ds/segtree/segtree2d.hpp"
 #include "alg/monoid/max.hpp"
 
 using Mono = Monoid_Max<ll>;

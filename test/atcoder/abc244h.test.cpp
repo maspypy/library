@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/cht/cht.hpp"
+#include "ds/func/cht.hpp"
 
 void solve() {
   LL(Q);
