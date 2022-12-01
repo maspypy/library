@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "alg/acted_monoid/max_add.hpp"
-#include "ds/bbst/rbst_acted_monoid.hpp"
+#include "ds/rbst/rbst_acted_monoid.hpp"
 
 void solve() {
   LL(N);
