@@ -18,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_am_persistent.test.cpp
     title: test/mytest/rbst_am_persistent.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/686.test.cpp
+    title: test/yukicoder/686.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -294,6 +297,7 @@ data:
   timestamp: '2022-12-01 11:07:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/686.test.cpp
   - test/mytest/rbst_am.test.cpp
   - test/mytest/rbst_am_persistent.test.cpp
   - test/mytest/rbst_am_2.test.cpp
