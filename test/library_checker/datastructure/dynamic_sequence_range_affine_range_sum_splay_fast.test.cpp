@@ -4,7 +4,7 @@
 #include "other/io.hpp"
 
 #include "alg/acted_monoid/cntsum_affine.hpp"
-#include "ds/bbst/splaytree_acted_monoid.hpp"
+#include "ds/splay/splaytree_acted_monoid.hpp"
 
 const int mod = 998244353;
 
