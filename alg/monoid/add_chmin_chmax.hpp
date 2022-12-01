@@ -1,3 +1,5 @@
+#pragma once
+
 // max(min(x+a,b),c) と表せる関数の合成
 template <typename E>
 struct Monoid_Add_Chmin_Chmax {

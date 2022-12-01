@@ -1,4 +1,5 @@
 #pragma once
+
 template <typename T, bool tie_is_left = true>
 struct Monoid_Max_Idx {
   using value_type = pair<T, int>;

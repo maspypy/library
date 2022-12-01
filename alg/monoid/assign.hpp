@@ -1,3 +1,5 @@
+#pragma once
+
 template <typename X, X none_val>
 struct Monoid_Assign {
   using value_type = X;

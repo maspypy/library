@@ -1,3 +1,5 @@
+#pragma once
+
 template <typename E>
 struct Monoid_XorBasis {
   using value_type = vector<E>;
