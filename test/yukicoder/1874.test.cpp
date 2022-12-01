@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1874"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/fenwick.hpp"
+#include "ds/fenwick/fenwick.hpp"
 
 struct Grp {
   using value_type = tuple<ll, ll, ll, ll>;

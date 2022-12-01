@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/base.hpp"
-#include "ds/unionfind.hpp"
+#include "ds/unionfind/unionfind.hpp"
 #include "graph/steiner_tree.hpp"
 
 void solve() {

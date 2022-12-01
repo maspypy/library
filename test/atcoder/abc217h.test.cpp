@@ -1,7 +1,7 @@
 #define PROBLEM "https://atcoder.jp/contests/abc217/tasks/abc217_h"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/slope.hpp"
+#include "ds/func/slope.hpp"
 
 void solve() {
   LL(N);

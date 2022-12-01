@@ -1,7 +1,7 @@
 #define PROBLEM "https://atcoder.jp/contests/abc174/tasks/abc174_f"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/query/uniqueproductquery.hpp"
+#include "ds/offline_query/uniqueproductquery.hpp"
 #include "alg/monoid/add.hpp"
 
 void solve() {
