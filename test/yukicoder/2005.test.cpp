@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 
 #include "mod/modint.hpp"
-#include "ds/disjointsparse.hpp"
+#include "ds/disjoint_sparse/disjointsparse.hpp"
 #include "alg/monoid/mul.hpp"
 #include "seq/famous/eulerian_number.hpp"
 
