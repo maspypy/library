@@ -1,11 +1,50 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':question:'
+    path: flow/bipartite.hpp
+    title: flow/bipartite.hpp
+  - icon: ':question:'
+    path: graph/check_bipartite.hpp
+    title: graph/check_bipartite.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/dag_path_cover.hpp
+    title: graph/dag_path_cover.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/maximum_antichain.hpp
+    title: graph/maximum_antichain.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/1566.test.cpp
+    title: test/aoj/1566.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/2251_1.test.cpp
+    title: test/aoj/2251_1.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/2251_2.test.cpp
+    title: test/aoj/2251_2.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/graph/bipartitematching.test.cpp
+    title: test/library_checker/graph/bipartitematching.test.cpp
+  - icon: ':x:'
+    path: test/mytest/tutte.test.cpp
+    title: test/mytest/tutte.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1479.test.cpp
+    title: test/yukicoder/1479.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1744.test.cpp
+    title: test/yukicoder/1744.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1745.test.cpp
+    title: test/yukicoder/1745.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1911.test.cpp
+    title: test/yukicoder/1911.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int\
@@ -34,10 +73,23 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: ds/unionfind/unionfind.hpp
-  requiredBy: []
+  requiredBy:
+  - flow/bipartite.hpp
+  - graph/dag_path_cover.hpp
+  - graph/maximum_antichain.hpp
+  - graph/check_bipartite.hpp
   timestamp: '2022-12-01 18:20:22+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/yukicoder/1479.test.cpp
+  - test/yukicoder/1911.test.cpp
+  - test/yukicoder/1745.test.cpp
+  - test/yukicoder/1744.test.cpp
+  - test/mytest/tutte.test.cpp
+  - test/library_checker/graph/bipartitematching.test.cpp
+  - test/aoj/2251_1.test.cpp
+  - test/aoj/2251_2.test.cpp
+  - test/aoj/1566.test.cpp
 documentation_of: ds/unionfind/unionfind.hpp
 layout: document
 redirect_from:
