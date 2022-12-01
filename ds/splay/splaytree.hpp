@@ -35,6 +35,8 @@ struct SplayTree {
     return dfs(dfs, 0, len(dat));
   }
 
+  u32 get_size(np root) { return (root ? root->size : 0); }
+
   np merge(np l_root, np r_root) {
     if (!l_root) return r_root;
     if (!r_root) return l_root;
@@ -137,12 +139,20 @@ struct SplayTree {
     root->apply(a);
     splay(root);
   }
+  void apply(np &root, const A &a) {
+    if (!root) return;
+    root->apply(a);
+  }
 
   void reverse(np &root, u32 l, u32 r) {
     assert(0 <= l && l < r && r <= root->size);
     goto_between(root, l, r);
     root->reverse();
     splay(root);
+  }
+  void reverse(np &root) {
+    if (!root) return;
+    root->reverse();
   }
 
   void rotate(Node *n) {
@@ -201,5 +211,83 @@ struct SplayTree {
       }
     }
     splay(root);
+  }
+
+  // 左側のノード全体が check を満たすように切る
+  template <typename F>
+  pair<np, np> split_max_right(np root, F check) {
+    if (!root) return {nullptr, nullptr};
+    np c = find_max_right(root, check);
+    if (!c) {
+      splay(root);
+      return {nullptr, root};
+    }
+    splay(c);
+    np right = c->r;
+    if (!right) return {c, nullptr};
+    right->p = nullptr;
+    c->r = nullptr;
+    c->update();
+    return {c, right};
+  }
+
+  // 左側のノード全体の prod が check を満たすように切る
+  template <typename F>
+  pair<np, np> split_max_right_prod(np root, F check) {
+    if (!root) return {nullptr, nullptr};
+    np c = find_max_right_prod(root, check);
+    if (!c) {
+      splay(root);
+      return {nullptr, root};
+    }
+    splay(c);
+    np right = c->r;
+    if (!right) return {c, nullptr};
+    right->p = nullptr;
+    c->r = nullptr;
+    c->update();
+    return {c, right};
+  }
+
+  template <typename F>
+  np find_max_right(np root, const F &check) {
+    // 最後に見つけた ok の点、最後に探索した点
+    np last_ok = nullptr, last = nullptr;
+    while (root) {
+      last = root;
+      root->prop();
+      if (check(root->x)) {
+        last_ok = root;
+        root = root->r;
+      } else {
+        root = root->l;
+      }
+    }
+    splay(last);
+    return last_ok;
+  }
+
+  template <typename F>
+  np find_max_right_prod(np root, const F &check) {
+    using Mono = typename Node::Monoid_X;
+    X prod = Mono::unit();
+    // 最後に見つけた ok の点、最後に探索した点
+    np last_ok = nullptr, last = nullptr;
+    while (root) {
+      last = root;
+      root->prop();
+      X lprod = prod;
+      if (root->l) lprod = Mono::op(lprod, root->l->prod);
+      lprod = Mono::op(lprod, root->x);
+      if (check(lprod)) {
+        prod = lprod;
+        last_ok = root;
+        root = root->r;
+      } else {
+        root = root->l;
+      }
+    }
+    splay(last);
+    return last_ok;
   }
 };
