@@ -11,7 +11,7 @@ void test() {
   using mint = modint998;
   using Mono = Monoid_Affine<mint>;
   using X = Mono::value_type;
-  SplayTree_Monoid<Mono> ST;
+  SplayTree_Monoid<Mono, 1000> ST;
 
   auto rnd_X = [&]() -> X {
     ll a = RNG(0, 1 << 30);
