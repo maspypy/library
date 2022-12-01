@@ -7,17 +7,18 @@
 void solve() {
   LL(N, Q);
   VEC(ll, A, N);
-  SplayTree_Monoid<Monoid_Add<ll>> ST;
+  SplayTree_Monoid<Monoid_Add<ll>, 200'000> ST;
   auto root = ST.new_node(A);
   FOR(Q) {
     LL(t, l, r);
     --l;
     if (t == 1) {
-      auto nr = ST.split(root, r);
-      auto nm = ST.split(root, l);
-      nm = ST.new_node(nm->prod);
-      ST.merge(root, nm);
-      ST.merge(root, nr);
+      ST.goto_between(root, l, r);
+      root->l = nullptr;
+      root->r = nullptr;
+      root->x = root->prod;
+      root->update();
+      ST.splay(root);
     }
     if (t == 2) { print(ST.prod(root, l, r)); }
   }
