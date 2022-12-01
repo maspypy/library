@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/common_interval_decomposition.hpp"
+#include "seq/common_interval_decomposition.hpp"
 #include "mod/modint.hpp"
 #include "poly/convolution.hpp"
 

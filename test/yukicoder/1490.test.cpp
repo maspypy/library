@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1490"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/query/rectangle_add_rectangle_sum.hpp"
+#include "ds/offline_query/rectangle_add_rectangle_sum.hpp"
 
 void solve() {
   LL(H, W, N, M);

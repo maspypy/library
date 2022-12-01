@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"
-#include "ds/fenwick2d_dense.hpp"
+#include "ds/fenwick/fenwick2d_dense.hpp"
 
 using mint = modint998;
 

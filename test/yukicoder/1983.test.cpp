@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/two_edge_component.hpp"
-#include "ds/unionfind.hpp"
+#include "ds/unionfind/unionfind.hpp"
 
 void solve() {
   LL(N, M, Q);
