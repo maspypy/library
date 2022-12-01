@@ -1,5 +1,5 @@
 #include "graph/tree.hpp"
-#include "ds/unionfind.hpp"
+#include "ds/unionfind/unionfind.hpp"
 
 // N が根となる木を新たに作る
 template <typename T = int>

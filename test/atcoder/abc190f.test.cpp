@@ -1,7 +1,6 @@
 #define PROBLEM "https://atcoder.jp/contests/abc190/tasks/abc190_f"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/fenwick.hpp"
 #include "seq/inversion_rotate.hpp"
 
 void solve() {
