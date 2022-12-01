@@ -2,16 +2,16 @@ namespace fastio {
 // https://nyaannyaan.github.io/library/misc/fastio.hpp を元に改造
 
 // クラスが read(), print() を持っているかを判定するメタ関数
-struct has_print_impl {
+struct has_write_impl {
   template <class T>
-  static auto check(T &&x) -> decltype(x.print(), std::true_type{});
+  static auto check(T &&x) -> decltype(x.write(), std::true_type{});
 
   template <class T>
   static auto check(...) -> std::false_type;
 };
 
 template <class T>
-class has_print : public decltype(has_print_impl::check<T>(std::declval<T>())) {
+class has_write : public decltype(has_write_impl::check<T>(std::declval<T>())) {
 };
 
 struct has_read_impl {
@@ -189,9 +189,9 @@ inline void write(const long double &x) {
   string s = oss.str();
   write(s);
 }
-template <typename T, typename enable_if<has_print<T>::value>::type * = nullptr>
+template <typename T, typename enable_if<has_write<T>::value>::type * = nullptr>
 inline void write(T x) {
-  x.print();
+  x.write();
 }
 template <class T>
 void write(const vector<T> &val) {

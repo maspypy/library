@@ -2,7 +2,6 @@
 
 template <int mod>
 struct modint {
-  static constexpr bool is_modint = true;
   int val;
   constexpr modint(const ll val = 0) noexcept
       : val(val >= 0 ? val % mod : (mod - (-val) % mod) % mod) {}
@@ -49,6 +48,7 @@ struct modint {
     }
     return ret;
   }
+  void write() { fastio::write(val); }
   static constexpr int get_mod() { return mod; }
 };
 
