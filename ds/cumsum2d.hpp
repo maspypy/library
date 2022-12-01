@@ -7,10 +7,7 @@ struct Cumsum2D {
   vc<vc<X>> dat;
 
   Cumsum2D() {}
-  Cumsum2D(vc<vc<X>> &A) {
-    assert(Group::commute);
-    build(A);
-  }
+  Cumsum2D(vc<vc<X>> &A) { build(A); }
 
   void build(vc<vc<X>> &A) {
     int H = len(A);
@@ -22,8 +19,11 @@ struct Cumsum2D {
   }
 
   X sum(int x1, int x2, int y1, int y2) {
+    static_assert(Group::commute);
     X a = Group::op(dat[x1][y1], dat[x2][y2]);
     X b = Group::op(dat[x2][y1], dat[x1][y2]);
     return Group::op(a, Group::inverse(b));
   }
+
+  X prefix_sum(int x, int y) { return dat[x][y]; }
 };

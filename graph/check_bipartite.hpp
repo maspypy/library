@@ -1,7 +1,7 @@
 #pragma once
 
 #include "graph/base.hpp"
-#include "ds/unionfind.hpp"
+#include "ds/unionfind/unionfind.hpp"
 
 // 二部グラフ判定 + 復元
 // 二部グラフでなかった場合には empty
