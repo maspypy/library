@@ -11,11 +11,11 @@ data:
   - icon: ':x:'
     path: ds/splay/splaytree_commutative_monoid.hpp
     title: ds/splay/splaytree_commutative_monoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/splay/splaytree_monoid.hpp
     title: ds/splay/splaytree_monoid.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/1508.test.cpp
     title: test/aoj/1508.test.cpp
   - icon: ':x:'
@@ -44,7 +44,7 @@ data:
     title: test/yukicoder/1441.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/splay/splaytree.hpp\"\n// Node \u578B\u3092\u5225\u306B\
@@ -264,7 +264,7 @@ data:
   - ds/splay/splaytree_commutative_monoid.hpp
   - ds/splay/splaytree_acted_monoid.hpp
   timestamp: '2022-12-01 12:32:02+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1441.test.cpp
   - test/mytest/cf702_F_splay.test.cpp

@@ -18,10 +18,10 @@ data:
     path: alg/acted_monoid/min_min.hpp
     title: alg/acted_monoid/min_min.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/1508.test.cpp
     title: test/aoj/1508.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/1508_2.test.cpp
     title: test/aoj/1508_2.test.cpp
   - icon: ':x:'
@@ -35,7 +35,7 @@ data:
     title: test/mytest/rbst_test.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <class X>\r\nstruct Monoid_Min\
@@ -56,7 +56,7 @@ data:
   - alg/acted_monoid/min_max.hpp
   - alg/acted_monoid/max_min.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/rbst_am.test.cpp
   - test/mytest/rbst_am_persistent.test.cpp

@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: nt/extgcd.hpp
     title: nt/extgcd.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -94,84 +94,118 @@ data:
     \ == A[j] && i < j); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate\
     \ <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I) {\n  int n =\
     \ len(I);\n  vc<T> B(n);\n  FOR(i, n) B[i] = A[I[i]];\n  return B;\n}\n#line 1\
-    \ \"other/io.hpp\"\nnamespace fastio { // https://nyaannyaan.github.io/library/misc/fastio.hpp\r\
-    \nstatic constexpr int SZ = 1 << 17;\r\nchar inbuf[SZ], outbuf[SZ];\r\nint in_left\
-    \ = 0, in_right = 0, out_right = 0;\r\n\r\nstruct Pre {\r\n  char num[40000];\r\
-    \n  constexpr Pre() : num() {\r\n    for (int i = 0; i < 10000; i++) {\r\n   \
-    \   int n = i;\r\n      for (int j = 3; j >= 0; j--) {\r\n        num[i * 4 +\
-    \ j] = n % 10 + '0';\r\n        n /= 10;\r\n      }\r\n    }\r\n  }\r\n} constexpr\
-    \ pre;\r\n\r\ninline void load() {\r\n  int len = in_right - in_left;\r\n  memmove(inbuf,\
-    \ inbuf + in_left, len);\r\n  in_right = len + fread(inbuf + len, 1, SZ - len,\
-    \ stdin);\r\n  in_left = 0;\r\n}\r\n\r\ninline void flush() {\r\n  fwrite(outbuf,\
-    \ 1, out_right, stdout);\r\n  out_right = 0;\r\n}\r\n\r\ninline void skip_space()\
-    \ {\r\n  if (in_left + 32 > in_right) load();\r\n  while (inbuf[in_left] <= '\
-    \ ') in_left++;\r\n}\r\n\r\ninline void read(char &c) {\r\n  if (in_left + 32\
-    \ > in_right) load();\r\n  c = inbuf[in_left++];\r\n}\r\ntemplate <typename T>\r\
-    \ninline void read(T &x) {\r\n  if (in_left + 32 > in_right) load();\r\n  char\
-    \ c;\r\n  do\r\n    c = inbuf[in_left++];\r\n  while (c < '-');\r\n  [[maybe_unused]]\
-    \ bool minus = false;\r\n  if constexpr (is_signed<T>::value == true) {\r\n  \
-    \  if (c == '-') minus = true, c = inbuf[in_left++];\r\n  }\r\n  x = 0;\r\n  while\
-    \ (c >= '0') {\r\n    x = x * 10 + (c & 15);\r\n    c = inbuf[in_left++];\r\n\
-    \  }\r\n  if constexpr (is_signed<T>::value == true) {\r\n    if (minus) x = -x;\r\
-    \n  }\r\n}\r\ninline void read() {}\r\ntemplate <typename Head, typename... Tail>\r\
-    \ninline void read(Head &head, Tail &... tail) {\r\n  read(head);\r\n  read(tail...);\r\
-    \n}\r\n\r\ninline void write(char c) {\r\n  if (out_right > SZ - 32) flush();\r\
-    \n  outbuf[out_right++] = c;\r\n}\r\ninline void write(bool b) {\r\n  if (out_right\
-    \ > SZ - 32) flush();\r\n  outbuf[out_right++] = b ? '1' : '0';\r\n}\r\ninline\
-    \ void write(const string &s) {\r\n  if (out_right + s.size() > SZ - 32) flush();\r\
-    \n  memcpy(outbuf + out_right, s.data(), sizeof(char) * s.size());\r\n  out_right\
-    \ += s.size();\r\n}\r\ntemplate <typename T>\r\ninline void write(T x) {\r\n \
-    \ if (out_right > SZ - 32) flush();\r\n  if (!x) {\r\n    outbuf[out_right++]\
-    \ = '0';\r\n    return;\r\n  }\r\n  if constexpr (is_signed<T>::value == true)\
-    \ {\r\n    if (x < 0) outbuf[out_right++] = '-', x = -x;\r\n  }\r\n  int i = 12;\r\
-    \n  char buf[16];\r\n  while (x >= 10000) {\r\n    memcpy(buf + i, pre.num + (x\
-    \ % 10000) * 4, 4);\r\n    x /= 10000;\r\n    i -= 4;\r\n  }\r\n  if (x < 100)\
-    \ {\r\n    if (x < 10) {\r\n      outbuf[out_right] = '0' + x;\r\n      ++out_right;\r\
-    \n    } else {\r\n      uint32_t q = (uint32_t(x) * 205) >> 11;\r\n      uint32_t\
-    \ r = uint32_t(x) - q * 10;\r\n      outbuf[out_right] = '0' + q;\r\n      outbuf[out_right\
-    \ + 1] = '0' + r;\r\n      out_right += 2;\r\n    }\r\n  } else {\r\n    if (x\
-    \ < 1000) {\r\n      memcpy(outbuf + out_right, pre.num + (x << 2) + 1, 3);\r\n\
-    \      out_right += 3;\r\n    } else {\r\n      memcpy(outbuf + out_right, pre.num\
-    \ + (x << 2), 4);\r\n      out_right += 4;\r\n    }\r\n  }\r\n  memcpy(outbuf\
-    \ + out_right, buf + i + 4, 12 - i);\r\n  out_right += 12 - i;\r\n}\r\ninline\
-    \ void write() {}\r\ntemplate <typename Head, typename... Tail>\r\ninline void\
-    \ write(Head &&head, Tail &&... tail) {\r\n  write(head);\r\n  write(forward<Tail>(tail)...);\r\
-    \n}\r\ntemplate <typename... Args>\r\ninline void writen(Args &&... x) {\r\n \
-    \ write(forward<Args>(x)...);\r\n  write('\\n');\r\n}\r\n\r\nstruct Dummy {\r\n\
-    \  Dummy() { atexit(flush); }\r\n} dummy;\r\n} // namespace fastio\r\n\r\nvoid\
-    \ print() { fastio::write('\\n'); }\r\ntemplate <class Head, class... Tail>\r\n\
-    void print(Head &&head, Tail &&... tail) {\r\n  fastio::write(head);\r\n  if (sizeof...(Tail))\
-    \ fastio::write(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\nvoid read()\
-    \ {}\r\ntemplate <class Head, class... Tail>\r\nvoid read(Head &head, Tail &...\
-    \ tail) {\r\n  fastio::read(head);\r\n  read(tail...);\r\n}\r\n\r\n#define INT(...)\
-    \   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\
-    \r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n\
-    \  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n\
-    \  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n\
-    \  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name,\
-    \ size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define VV(type,\
-    \ name, h, w)                     \\\r\n  vector<vector<type>> name(h, vector<type>(w));\
-    \ \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print<string>(t ? \"YES\" :\
-    \ \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print<string>(t\
-    \ ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool\
-    \ t = 1) { print<string>(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t);\
-    \ }\n#line 1 \"nt/extgcd.hpp\"\ntuple<ll, ll, ll, ll> Farey_lr(ll a, ll b) {\r\
-    \n  assert(a > 0 && b > 0);\r\n  /*\r\n  Farey \u6570\u5217\u3067\u3001a/b \u304C\
-    \u6700\u521D\u306B\u73FE\u308C\u308B\u3068\u304D\u306E\u3001\u5DE6\u53F3\u3092\
-    \u6C42\u3081\u308B\u3002\r\n  a/b = 19/12 \u2192 (x1/y1, x2/y2) = (11/7, 8/5)\
-    \ \u2192 (11,7,8,5) \u3092\u8FD4\u3059\u3002\r\n  */\r\n  if (a == b) return {0,\
-    \ 1, 1, 0};\r\n  ll q = (a - 1) / b;\r\n  auto [x1, y1, x2, y2] = Farey_lr(b,\
-    \ a - q * b);\r\n  return {q * x2 + y2, x2, q * x1 + y1, x1};\r\n}\r\n\r\ntuple<ll,\
-    \ ll, ll> extgcd(ll a, ll b) {\r\n  // ax + by = d \u306E\u6700\u5C0F\u89E3 (x,\
-    \ y, d) \u3092\u8FD4\u3059\u3002\r\n  // (|x|+|y|, x) \u306B\u95A2\u3059\u308B\
-    \u8F9E\u66F8\u9806\u6700\u5C0F\u3068\u3059\u308B\u3002\r\n  auto [x1, y1, x2,\
-    \ y2] = Farey_lr(a, b);\r\n  tie(x1, y1) = mp(y1, -x1);\r\n  tie(x2, y2) = mp(-y2,\
-    \ x2);\r\n  ll g = a * x1 + b * y1;\r\n\r\n  pi key1 = mp(abs(x1) + abs(y1), x1);\r\
-    \n  pi key2 = mp(abs(x2) + abs(y2), x2);\r\n  return (key1 < key2 ? mt(x1, y1,\
-    \ g) : mt(x2, y2, g));\r\n}\r\n#line 7 \"test/aoj/NTL_1_E.test.cpp\"\n\nvoid solve()\
-    \ {\n  LL(a, b);\n  auto [x, y, d] = extgcd(a, b);\n  print(x, y);\n}\n\nsigned\
-    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \ \"other/io.hpp\"\nnamespace fastio {\r\n// https://nyaannyaan.github.io/library/misc/fastio.hpp\
+    \ \u3092\u5143\u306B\u6539\u9020\r\n\r\n// \u30AF\u30E9\u30B9\u304C read(), print()\
+    \ \u3092\u6301\u3063\u3066\u3044\u308B\u304B\u3092\u5224\u5B9A\u3059\u308B\u30E1\
+    \u30BF\u95A2\u6570\r\nstruct has_print_impl {\r\n  template <class T>\r\n  static\
+    \ auto check(T &&x) -> decltype(x.print(), std::true_type{});\r\n\r\n  template\
+    \ <class T>\r\n  static auto check(...) -> std::false_type;\r\n};\r\n\r\ntemplate\
+    \ <class T>\r\nclass has_print : public decltype(has_print_impl::check<T>(std::declval<T>()))\
+    \ {\r\n};\r\n\r\nstruct has_read_impl {\r\n  template <class T>\r\n  static auto\
+    \ check(T &&x) -> decltype(x.read(), std::true_type{});\r\n\r\n  template <class\
+    \ T>\r\n  static auto check(...) -> std::false_type;\r\n};\r\n\r\ntemplate <class\
+    \ T>\r\nclass has_read : public decltype(has_read_impl::check<T>(std::declval<T>()))\
+    \ {};\r\n\r\nstatic constexpr int SZ = 1 << 17;\r\nchar inbuf[SZ], outbuf[SZ];\r\
+    \nint in_left = 0, in_right = 0, out_right = 0;\r\n\r\nstruct Pre {\r\n  char\
+    \ num[40000];\r\n  constexpr Pre() : num() {\r\n    for (int i = 0; i < 10000;\
+    \ i++) {\r\n      int n = i;\r\n      for (int j = 3; j >= 0; j--) {\r\n     \
+    \   num[i * 4 + j] = n % 10 + '0';\r\n        n /= 10;\r\n      }\r\n    }\r\n\
+    \  }\r\n} constexpr pre;\r\n\r\ninline void load() {\r\n  int len = in_right -\
+    \ in_left;\r\n  memmove(inbuf, inbuf + in_left, len);\r\n  in_right = len + fread(inbuf\
+    \ + len, 1, SZ - len, stdin);\r\n  in_left = 0;\r\n}\r\n\r\ninline void flush()\
+    \ {\r\n  fwrite(outbuf, 1, out_right, stdout);\r\n  out_right = 0;\r\n}\r\n\r\n\
+    inline void read_single(char &c) {\r\n  if (in_left + 32 > in_right) load();\r\
+    \n  c = inbuf[in_left++];\r\n}\r\n\r\ntemplate <class T, enable_if_t<is_same<T,\
+    \ string>::value, int> = 0>\r\ninline void read_single(T &x) {\r\n  char c = '\
+    \ ';\r\n  do {\r\n    if (in_left + 32 > in_right) load();\r\n    c = inbuf[in_left++];\r\
+    \n  } while (c == ' ' || c == '\\n');\r\n  x += c;\r\n  while (1) {\r\n    if\
+    \ (in_left + 32 > in_right) load();\r\n    c = inbuf[in_left++];\r\n    if (c\
+    \ == ' ' || c == '\\n') break;\r\n    x += c;\r\n  }\r\n}\r\n\r\ntemplate <class\
+    \ T, enable_if_t<is_integral<T>::value, int> = 0>\r\ninline void read_single(T\
+    \ &x) {\r\n  if (in_left + 32 > in_right) load();\r\n  char c;\r\n  do\r\n   \
+    \ c = inbuf[in_left++];\r\n  while (c < '-');\r\n  bool minus = false;\r\n  if\
+    \ constexpr (is_signed<T>::value == true) {\r\n    if (c == '-') minus = true,\
+    \ c = inbuf[in_left++];\r\n  }\r\n  x = 0;\r\n  while (c >= '0') {\r\n    x =\
+    \ x * 10 + (c & 15);\r\n    c = inbuf[in_left++];\r\n  }\r\n  if constexpr (is_signed<T>::value\
+    \ == true) {\r\n    if (minus) x = -x;\r\n  }\r\n}\r\n\r\ntemplate <typename T,\
+    \ typename enable_if<has_read<T>::value>::type * = nullptr>\r\ninline void read_single(T\
+    \ x) {\r\n  x.read();\r\n}\r\ntemplate <class T>\r\ninline void read_single(vector<T>\
+    \ &ref) {\r\n  for (auto &d: ref) read_single(d);\r\n}\r\ntemplate <class T, int\
+    \ N>\r\ninline void read_single(array<T, N> &ref) {\r\n  for (auto &d: ref) read_single(d);\r\
+    \n}\r\ntemplate <class T, class U>\r\ninline void read_single(pair<T, U> &p) {\r\
+    \n  read_single(p.first), read_single(p.second);\r\n}\r\ntemplate <class... T>\r\
+    \ninline void read_single(tuple<T...> &tpl) {\r\n  apply([&](auto... t) { (read(t),\
+    \ ...); }, tpl);\r\n}\r\n\r\ninline void read() {}\r\ntemplate <typename Head,\
+    \ typename... Tail>\r\ninline void read(Head &head, Tail &... tail) {\r\n  read_single(head);\r\
+    \n  read(tail...);\r\n}\r\n\r\ninline void write(char c) {\r\n  if (out_right\
+    \ > SZ - 32) flush();\r\n  outbuf[out_right++] = c;\r\n}\r\ninline void write(bool\
+    \ b) {\r\n  if (out_right > SZ - 32) flush();\r\n  outbuf[out_right++] = b ? '1'\
+    \ : '0';\r\n}\r\ninline void write(const string &s) {\r\n  if (out_right + s.size()\
+    \ > SZ - 32) flush();\r\n  memcpy(outbuf + out_right, s.data(), sizeof(char) *\
+    \ s.size());\r\n  out_right += s.size();\r\n}\r\ntemplate <class T, enable_if_t<is_integral<T>::value,\
+    \ int> = 0>\r\ninline void write(T x) {\r\n  if (out_right > SZ - 32) flush();\r\
+    \n  if (!x) {\r\n    outbuf[out_right++] = '0';\r\n    return;\r\n  }\r\n  if\
+    \ constexpr (is_signed<T>::value == true) {\r\n    if (x < 0) outbuf[out_right++]\
+    \ = '-', x = -x;\r\n  }\r\n  int i = 12;\r\n  char buf[16];\r\n  while (x >= 10000)\
+    \ {\r\n    memcpy(buf + i, pre.num + (x % 10000) * 4, 4);\r\n    x /= 10000;\r\
+    \n    i -= 4;\r\n  }\r\n  if (x < 100) {\r\n    if (x < 10) {\r\n      outbuf[out_right]\
+    \ = '0' + x;\r\n      ++out_right;\r\n    } else {\r\n      uint32_t q = (uint32_t(x)\
+    \ * 205) >> 11;\r\n      uint32_t r = uint32_t(x) - q * 10;\r\n      outbuf[out_right]\
+    \ = '0' + q;\r\n      outbuf[out_right + 1] = '0' + r;\r\n      out_right += 2;\r\
+    \n    }\r\n  } else {\r\n    if (x < 1000) {\r\n      memcpy(outbuf + out_right,\
+    \ pre.num + (x << 2) + 1, 3);\r\n      out_right += 3;\r\n    } else {\r\n   \
+    \   memcpy(outbuf + out_right, pre.num + (x << 2), 4);\r\n      out_right += 4;\r\
+    \n    }\r\n  }\r\n  memcpy(outbuf + out_right, buf + i + 4, 12 - i);\r\n  out_right\
+    \ += 12 - i;\r\n}\r\ninline void write(const double &x) {\r\n  ostringstream oss;\r\
+    \n  oss << fixed << setprecision(15) << x;\r\n  string s = oss.str();\r\n  write(s);\r\
+    \n}\r\ninline void write(const long double &x) {\r\n  ostringstream oss;\r\n \
+    \ oss << fixed << setprecision(15) << x;\r\n  string s = oss.str();\r\n  write(s);\r\
+    \n}\r\ntemplate <typename T, typename enable_if<has_print<T>::value>::type * =\
+    \ nullptr>\r\ninline void write(T x) {\r\n  x.print();\r\n}\r\ntemplate <class\
+    \ T>\r\nvoid write(const vector<T> &val) {\r\n  auto n = val.size();\r\n  for\
+    \ (size_t i = 0; i < n; i++) {\r\n    if (i) write(' ');\r\n    write(val[i]);\r\
+    \n  }\r\n}\r\ntemplate <class T, class U>\r\nvoid write(const pair<T, U> &val)\
+    \ {\r\n  write(val.first);\r\n  write(' ');\r\n  write(val.second);\r\n}\r\ntemplate\
+    \ <class T, size_t S>\r\ninline void write(const array<T, S> &val) {\r\n  auto\
+    \ n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n    if (i) write('\
+    \ ');\r\n    write(val[i]);\r\n  }\r\n}\r\ninline void write(i128 val) {\r\n \
+    \ string s;\r\n  bool negative = 0;\r\n  if (val < 0) {\r\n    negative = 1;\r\
+    \n    val = -val;\r\n  }\r\n  while (val) {\r\n    s += '0' + int(val % 10);\r\
+    \n    val /= 10;\r\n  }\r\n  if (negative) s += \"-\";\r\n  reverse(all(s));\r\
+    \n  if (len(s) == 0) s = \"0\";\r\n  write(s);\r\n}\r\nstruct Dummy {\r\n  Dummy()\
+    \ { atexit(flush); }\r\n} dummy;\r\n\r\nvoid print() { fastio::write('\\n'); }\r\
+    \ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head, Tail &&... tail)\
+    \ {\r\n  fastio::write(head);\r\n  if (sizeof...(Tail)) fastio::write(' ');\r\n\
+    \  print(forward<Tail>(tail)...);\r\n}\r\n} // namespace fastio\r\nusing fastio::read;\r\
+    \nusing fastio::print;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\
+    \n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
+    \n#define STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
+    \n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    #define DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    \r\n#define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n \
+    \ read(name)\r\n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
+    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print<string>(t\
+    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
+    \ t = 1) { print<string>(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t);\
+    \ }\r\nvoid yes(bool t = 1) { print<string>(t ? \"yes\" : \"no\"); }\r\nvoid no(bool\
+    \ t = 1) { yes(!t); }\r\n#line 1 \"nt/extgcd.hpp\"\ntuple<ll, ll, ll, ll> Farey_lr(ll\
+    \ a, ll b) {\r\n  assert(a > 0 && b > 0);\r\n  /*\r\n  Farey \u6570\u5217\u3067\
+    \u3001a/b \u304C\u6700\u521D\u306B\u73FE\u308C\u308B\u3068\u304D\u306E\u3001\u5DE6\
+    \u53F3\u3092\u6C42\u3081\u308B\u3002\r\n  a/b = 19/12 \u2192 (x1/y1, x2/y2) =\
+    \ (11/7, 8/5) \u2192 (11,7,8,5) \u3092\u8FD4\u3059\u3002\r\n  */\r\n  if (a ==\
+    \ b) return {0, 1, 1, 0};\r\n  ll q = (a - 1) / b;\r\n  auto [x1, y1, x2, y2]\
+    \ = Farey_lr(b, a - q * b);\r\n  return {q * x2 + y2, x2, q * x1 + y1, x1};\r\n\
+    }\r\n\r\ntuple<ll, ll, ll> extgcd(ll a, ll b) {\r\n  // ax + by = d \u306E\u6700\
+    \u5C0F\u89E3 (x, y, d) \u3092\u8FD4\u3059\u3002\r\n  // (|x|+|y|, x) \u306B\u95A2\
+    \u3059\u308B\u8F9E\u66F8\u9806\u6700\u5C0F\u3068\u3059\u308B\u3002\r\n  auto [x1,\
+    \ y1, x2, y2] = Farey_lr(a, b);\r\n  tie(x1, y1) = mp(y1, -x1);\r\n  tie(x2, y2)\
+    \ = mp(-y2, x2);\r\n  ll g = a * x1 + b * y1;\r\n\r\n  pi key1 = mp(abs(x1) +\
+    \ abs(y1), x1);\r\n  pi key2 = mp(abs(x2) + abs(y2), x2);\r\n  return (key1 <\
+    \ key2 ? mt(x1, y1, g) : mt(x2, y2, g));\r\n}\r\n#line 7 \"test/aoj/NTL_1_E.test.cpp\"\
+    \n\nvoid solve() {\n  LL(a, b);\n  auto [x, y, d] = extgcd(a, b);\n  print(x,\
+    \ y);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
+    \n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_E\"\
     \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/extgcd.hpp\"\
     \n\nvoid solve() {\n  LL(a, b);\n  auto [x, y, d] = extgcd(a, b);\n  print(x,\
@@ -185,7 +219,7 @@ data:
   isVerificationFile: true
   path: test/aoj/NTL_1_E.test.cpp
   requiredBy: []
-  timestamp: '2022-12-01 18:57:05+09:00'
+  timestamp: '2022-12-01 21:03:20+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/NTL_1_E.test.cpp

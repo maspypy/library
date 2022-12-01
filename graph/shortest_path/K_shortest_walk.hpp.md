@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: ds/pds/persistent_meldable_heap.hpp
     title: ds/pds/persistent_meldable_heap.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':x:'
