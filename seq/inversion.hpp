@@ -1,4 +1,4 @@
-#include "ds/fenwick.hpp"
+#include "ds/fenwick/fenwick.hpp"
 
 template <typename T>
 ll inversion(vc<T> A, bool SMALL = false) {

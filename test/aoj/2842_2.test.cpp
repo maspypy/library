@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2842"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/segtree2d_dense.hpp"
+#include "ds/segtree/segtree2d_dense.hpp"
 #include "alg/monoid/add.hpp"
 
 void solve() {
