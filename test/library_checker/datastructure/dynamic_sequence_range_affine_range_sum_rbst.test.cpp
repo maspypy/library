@@ -5,7 +5,7 @@
 
 #include "alg/acted_monoid/cntsum_affine.hpp"
 #include "mod/modint.hpp"
-#include "ds/bbst/rbst_acted_monoid.hpp"
+#include "ds/rbst/rbst_acted_monoid.hpp"
 
 using mint = modint998;
 
