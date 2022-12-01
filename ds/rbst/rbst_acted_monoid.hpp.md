@@ -2,31 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-    title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/ARC30D.test.cpp
-    title: test/mytest/ARC30D.test.cpp
-  - icon: ':x:'
-    path: test/mytest/rbst_am.test.cpp
-    title: test/mytest/rbst_am.test.cpp
-  - icon: ':x:'
-    path: test/mytest/rbst_am_2.test.cpp
-    title: test/mytest/rbst_am_2.test.cpp
-  - icon: ':x:'
-    path: test/mytest/rbst_am_persistent.test.cpp
-    title: test/mytest/rbst_am_persistent.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/686.test.cpp
-    title: test/yukicoder/686.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/bbst/rbst_acted_monoid.hpp\"\ntemplate <typename ActedMonoid,\
+  bundledCode: "#line 1 \"ds/rbst/rbst_acted_monoid.hpp\"\ntemplate <typename ActedMonoid,\
     \ bool PERSISTENT, int NODES>\nstruct RBST_ActedMonoid {\n  using Monoid_X = typename\
     \ ActedMonoid::Monoid_X;\n  using Monoid_A = typename ActedMonoid::Monoid_A;\n\
     \  using X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
@@ -292,21 +274,15 @@ data:
     \ }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: ds/bbst/rbst_acted_monoid.hpp
+  path: ds/rbst/rbst_acted_monoid.hpp
   requiredBy: []
-  timestamp: '2022-11-29 09:31:10+09:00'
-  verificationStatus: LIBRARY_SOME_WA
-  verifiedWith:
-  - test/yukicoder/686.test.cpp
-  - test/mytest/rbst_am.test.cpp
-  - test/mytest/rbst_am_persistent.test.cpp
-  - test/mytest/rbst_am_2.test.cpp
-  - test/mytest/ARC30D.test.cpp
-  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-documentation_of: ds/bbst/rbst_acted_monoid.hpp
+  timestamp: '2022-12-01 11:07:48+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: ds/rbst/rbst_acted_monoid.hpp
 layout: document
 redirect_from:
-- /library/ds/bbst/rbst_acted_monoid.hpp
-- /library/ds/bbst/rbst_acted_monoid.hpp.html
-title: ds/bbst/rbst_acted_monoid.hpp
+- /library/ds/rbst/rbst_acted_monoid.hpp
+- /library/ds/rbst/rbst_acted_monoid.hpp.html
+title: ds/rbst/rbst_acted_monoid.hpp
 ---

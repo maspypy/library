@@ -2,28 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/1508_2.test.cpp
-    title: test/aoj/1508_2.test.cpp
-  - icon: ':x:'
-    path: test/mytest/rbst_monoid.test.cpp
-    title: test/mytest/rbst_monoid.test.cpp
-  - icon: ':x:'
-    path: test/mytest/rbst_monoid_2.test.cpp
-    title: test/mytest/rbst_monoid_2.test.cpp
-  - icon: ':x:'
-    path: test/mytest/rbst_monoid_persistent.test.cpp
-    title: test/mytest/rbst_monoid_persistent.test.cpp
-  - icon: ':x:'
-    path: test/mytest/rbst_test.test.cpp
-    title: test/mytest/rbst_test.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/bbst/rbst_monoid.hpp\"\ntemplate <typename Monoid, bool\
+  bundledCode: "#line 1 \"ds/rbst/rbst_monoid.hpp\"\ntemplate <typename Monoid, bool\
     \ PERSISTENT, int NODES>\nstruct RBST_Monoid {\n  using X = typename Monoid::value_type;\n\
     \n  struct Node {\n    Node *l, *r;\n    X x, prod, rev_prod; // rev \u53CD\u6620\
     \u6E08\n    u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n  using\
@@ -246,20 +231,15 @@ data:
     \ n1;\n    update(root);\n    return {root, n2};\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: ds/bbst/rbst_monoid.hpp
+  path: ds/rbst/rbst_monoid.hpp
   requiredBy: []
-  timestamp: '2022-11-29 10:01:12+09:00'
-  verificationStatus: LIBRARY_SOME_WA
-  verifiedWith:
-  - test/mytest/rbst_monoid_persistent.test.cpp
-  - test/mytest/rbst_monoid.test.cpp
-  - test/mytest/rbst_monoid_2.test.cpp
-  - test/mytest/rbst_test.test.cpp
-  - test/aoj/1508_2.test.cpp
-documentation_of: ds/bbst/rbst_monoid.hpp
+  timestamp: '2022-12-01 11:07:48+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: ds/rbst/rbst_monoid.hpp
 layout: document
 redirect_from:
-- /library/ds/bbst/rbst_monoid.hpp
-- /library/ds/bbst/rbst_monoid.hpp.html
-title: ds/bbst/rbst_monoid.hpp
+- /library/ds/rbst/rbst_monoid.hpp
+- /library/ds/rbst/rbst_monoid.hpp.html
+title: ds/rbst/rbst_monoid.hpp
 ---

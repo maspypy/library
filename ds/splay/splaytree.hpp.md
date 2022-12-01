@@ -2,25 +2,28 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
-    path: ds/bbst/splaytree_acted_monoid.hpp
-    title: ds/bbst/splaytree_acted_monoid.hpp
+  - icon: ':warning:'
+    path: ds/splay/splaytree_acted_monoid.hpp
+    title: ds/splay/splaytree_acted_monoid.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/splay/splaytree_commutative_monoid.hpp
+    title: ds/splay/splaytree_commutative_monoid.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/splay/splaytree_monoid.hpp
+    title: ds/splay/splaytree_monoid.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-    title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+    path: test/mytest/splay_cm.test.cpp
+    title: test/mytest/splay_cm.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
-    title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
-  - icon: ':x:'
-    path: test/mytest/splay_am.test.cpp
-    title: test/mytest/splay_am.test.cpp
-  _isVerificationFailed: true
+    path: test/mytest/splay_monoid.test.cpp
+    title: test/mytest/splay_monoid.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"ds/bbst/splaytree.hpp\"\n// Node \u578B\u3092\u5225\u306B\
+  bundledCode: "#line 2 \"ds/splay/splaytree.hpp\"\n// Node \u578B\u3092\u5225\u306B\
     \u5B9A\u7FA9\u3057\u3066\u4F7F\u3046\ntemplate <typename Node, int NODES = 1'000'000>\n\
     struct SplayTree {\n  Node *pool;\n  int pid;\n  using np = Node *;\n  using X\
     \ = typename Node::value_type;\n  using A = typename Node::operator_type;\n\n\
@@ -168,19 +171,20 @@ data:
     \  }\n};"
   dependsOn: []
   isVerificationFile: false
-  path: ds/bbst/splaytree.hpp
+  path: ds/splay/splaytree.hpp
   requiredBy:
-  - ds/bbst/splaytree_acted_monoid.hpp
-  timestamp: '2022-12-01 10:42:48+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  - ds/splay/splaytree_monoid.hpp
+  - ds/splay/splaytree_commutative_monoid.hpp
+  - ds/splay/splaytree_acted_monoid.hpp
+  timestamp: '2022-12-01 11:07:48+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/splay_am.test.cpp
-  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
-  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-documentation_of: ds/bbst/splaytree.hpp
+  - test/mytest/splay_monoid.test.cpp
+  - test/mytest/splay_cm.test.cpp
+documentation_of: ds/splay/splaytree.hpp
 layout: document
 redirect_from:
-- /library/ds/bbst/splaytree.hpp
-- /library/ds/bbst/splaytree.hpp.html
-title: ds/bbst/splaytree.hpp
+- /library/ds/splay/splaytree.hpp
+- /library/ds/splay/splaytree.hpp.html
+title: ds/splay/splaytree.hpp
 ---

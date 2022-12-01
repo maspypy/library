@@ -2,16 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/cf702_F.test.cpp
-    title: test/mytest/cf702_F.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/bbst/rbst_acted_set.hpp\"\ntemplate <typename ActedSet,\
+  bundledCode: "#line 1 \"ds/rbst/rbst_acted_set.hpp\"\ntemplate <typename ActedSet,\
     \ bool PERSISTENT, int NODES>\nstruct RBST_ActedSet {\n  using Monoid_A = typename\
     \ ActedSet::Monoid_A;\n  using A = typename ActedSet::A;\n  using S = typename\
     \ ActedSet::S;\n\n  struct Node {\n    Node *l, *r;\n    S s;\n    A lazy;\n \
@@ -218,16 +215,15 @@ data:
     };\n"
   dependsOn: []
   isVerificationFile: false
-  path: ds/bbst/rbst_acted_set.hpp
+  path: ds/rbst/rbst_acted_set.hpp
   requiredBy: []
-  timestamp: '2022-11-29 10:28:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/mytest/cf702_F.test.cpp
-documentation_of: ds/bbst/rbst_acted_set.hpp
+  timestamp: '2022-12-01 11:07:48+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: ds/rbst/rbst_acted_set.hpp
 layout: document
 redirect_from:
-- /library/ds/bbst/rbst_acted_set.hpp
-- /library/ds/bbst/rbst_acted_set.hpp.html
-title: ds/bbst/rbst_acted_set.hpp
+- /library/ds/rbst/rbst_acted_set.hpp
+- /library/ds/rbst/rbst_acted_set.hpp.html
+title: ds/rbst/rbst_acted_set.hpp
 ---

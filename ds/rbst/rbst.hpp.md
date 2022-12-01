@@ -2,16 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst.test.cpp
-    title: test/mytest/rbst.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/bbst/rbst.hpp\"\n// \u5358\u306B S \u306E\u5143\u306E\
+  bundledCode: "#line 1 \"ds/rbst/rbst.hpp\"\n// \u5358\u306B S \u306E\u5143\u306E\
     \u5217\u3092\u7BA1\u7406\u3059\u308B\ntemplate <typename S, bool PERSISTENT, int\
     \ NODES>\nstruct RBST {\n  struct Node {\n    Node *l, *r;\n    S s;\n    u32\
     \ size;\n    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n  using np = Node *;\n\
@@ -175,16 +172,15 @@ data:
     \ = n2;\n    update(root);\n    return {n1, root};\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: ds/bbst/rbst.hpp
+  path: ds/rbst/rbst.hpp
   requiredBy: []
-  timestamp: '2022-11-30 18:49:50+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/mytest/rbst.test.cpp
-documentation_of: ds/bbst/rbst.hpp
+  timestamp: '2022-12-01 11:07:48+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: ds/rbst/rbst.hpp
 layout: document
 redirect_from:
-- /library/ds/bbst/rbst.hpp
-- /library/ds/bbst/rbst.hpp.html
-title: ds/bbst/rbst.hpp
+- /library/ds/rbst/rbst.hpp
+- /library/ds/rbst/rbst.hpp.html
+title: ds/rbst/rbst.hpp
 ---
