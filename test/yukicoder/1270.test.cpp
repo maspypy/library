@@ -1,10 +1,10 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1270"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/fenwick.hpp"
-#include "ds/query/mo.hpp"
+#include "ds/fenwick/fenwick.hpp"
+#include "ds/offline_query/mo.hpp"
 
-#include "ds/lazysegtree.hpp"
+#include "ds/segtree/lazysegtree.hpp"
 #include "alg/acted_monoid/min_add.hpp"
 
 void solve() {

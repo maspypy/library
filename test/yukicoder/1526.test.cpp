@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1526"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/beats_summin_chmax.hpp"
+#include "ds/segtree/beats_summin_chmax.hpp"
 
 void solve() {
   LL(N);

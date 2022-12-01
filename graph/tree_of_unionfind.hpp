@@ -1,5 +1,5 @@
 #include "graph/base.hpp"
-#include "ds/unionfind.hpp"
+#include "ds/unionfind/unionfind.hpp"
 
 /*
 マージ過程を表す木を構築する
