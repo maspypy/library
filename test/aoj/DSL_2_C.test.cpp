@@ -2,7 +2,7 @@
   "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/kdtree_monoid.hpp"
+#include "ds/kdtree/kdtree_monoid.hpp"
 
 struct Mono {
   using value_type = vc<int>;

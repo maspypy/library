@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/ds/bfsnumbering.hpp"
-#include "ds/lazysegtree.hpp"
+#include "ds/segtree/lazysegtree.hpp"
 #include "alg/acted_monoid/add_mul.hpp"
 
 void solve() {
