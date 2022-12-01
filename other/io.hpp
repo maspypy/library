@@ -100,6 +100,14 @@ template <typename T, typename enable_if<has_read<T>::value>::type * = nullptr>
 inline void read_single(T x) {
   x.read();
 }
+template <class T, class U>
+inline void read_single(pair<T, U> &p) {
+  read_single(p.first), read_single(p.second);
+}
+template <class... T>
+inline void read(tuple<T...> &tpl) {
+  apply([&](auto... t) { (read(t), ...); }, tpl);
+}
 template <class T>
 inline void read_single(vector<T> &ref) {
   for (auto &d: ref) read_single(d);
@@ -107,14 +115,6 @@ inline void read_single(vector<T> &ref) {
 template <class T, int N>
 inline void read_single(array<T, N> &ref) {
   for (auto &d: ref) read_single(d);
-}
-template <class T, class U>
-inline void read_single(pair<T, U> &p) {
-  read_single(p.first), read_single(p.second);
-}
-template <class... T>
-inline void read_single(tuple<T...> &tpl) {
-  apply([&](auto... t) { (read(t), ...); }, tpl);
 }
 
 inline void read() {}
