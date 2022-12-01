@@ -30,7 +30,6 @@ void solve() {
   LL(Q);
   FOR(Q) {
     LL(xl, xr, yl, yr);
-    flush();
     auto e = KDT.prod(xl, xr + 1, yl, yr + 1);
     sort(all(e));
     for (auto&& v: e) print(v);
