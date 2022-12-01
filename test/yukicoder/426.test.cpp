@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"
-#include "ds/segtree.hpp"
+#include "ds/segtree/segtree.hpp"
 #include "linalg/mat_mul.hpp"
 using mint = modint107;
 

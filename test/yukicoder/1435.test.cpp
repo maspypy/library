@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1435"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/segtree.hpp"
+#include "ds/segtree/segtree.hpp"
 
 struct Mono {
   using value_type = tuple<int, int, int>; // max, min1, min2

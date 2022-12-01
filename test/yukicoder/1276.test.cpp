@@ -5,7 +5,7 @@
 #include "mod/modint.hpp"
 #include "nt/multiplicative_sum.hpp"
 #include "nt/primesum.hpp"
-#include "nt/floor_range.hpp"
+#include "enumerate/floor_range.hpp"
 
 using mint = modint107;
 
@@ -21,13 +21,15 @@ void solve() {
   mint ANS = 0;
   mint x = 0; // a|b
 
-  floor_range(q, l, r, N) {
+  auto f = [&](ll q, ll l, ll r) -> void {
     x += mint(r - l) * q;
     // b|c かつ distinct
     ANS += mint(N - 2) * mint(r - l) * mint(q - 1);
     // b|a,c かつ distinct
     ANS -= mint(r - l) * mint((q - 1) * (q - 2));
-  }
+  };
+  floor_range(N, f);
+
   // a|b|c
   mint y = multiplicative_sum<mint>(N, f_pe, f_psum);
   // このうち distinct なものは？

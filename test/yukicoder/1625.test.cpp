@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "alg/monoid/max.hpp"
-#include "ds/kdtree_monoid.hpp"
+#include "ds/kdtree/kdtree_monoid.hpp"
 
 void solve() {
   LL(N, Q);
