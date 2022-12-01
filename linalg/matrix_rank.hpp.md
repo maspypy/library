@@ -6,12 +6,12 @@ data:
     path: graph/max_matching_size.hpp
     title: graph/max_matching_size.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/solve_linear.test.cpp
     title: test/library_checker/matrix/solve_linear.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/matrix_rank.hpp\"\ntemplate <typename T>\nint matrix_rank(const\
@@ -34,7 +34,7 @@ data:
   requiredBy:
   - graph/max_matching_size.hpp
   timestamp: '2022-11-06 01:50:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/matrix/solve_linear.test.cpp
 documentation_of: linalg/matrix_rank.hpp

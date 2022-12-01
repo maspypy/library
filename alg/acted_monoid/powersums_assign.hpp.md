@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: alg/monoid/add_array.hpp
     title: alg/monoid/add_array.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
   _extendedRequiredBy: []

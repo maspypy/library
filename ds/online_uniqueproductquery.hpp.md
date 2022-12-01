@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/pds/segtree.hpp
     title: ds/pds/segtree.hpp
   _extendedRequiredBy: []

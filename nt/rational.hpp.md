@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/0350.test.cpp
     title: test/aoj/0350.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"nt/rational.hpp\"\ntemplate <typename T = long long, bool\
@@ -79,7 +79,7 @@ data:
   path: nt/rational.hpp
   requiredBy: []
   timestamp: '2022-11-16 03:03:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/0350.test.cpp
 documentation_of: nt/rational.hpp

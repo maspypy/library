@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/rbst.test.cpp
     title: test/mytest/rbst.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/rbst/rbst.hpp\"\n// \u5358\u306B S \u306E\u5143\u306E\
@@ -178,7 +178,7 @@ data:
   path: ds/rbst/rbst.hpp
   requiredBy: []
   timestamp: '2022-12-01 11:07:48+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/rbst.test.cpp
 documentation_of: ds/rbst/rbst.hpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/pds/array.hpp
     title: ds/pds/array.hpp
   _extendedRequiredBy: []
