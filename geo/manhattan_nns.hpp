@@ -1,4 +1,4 @@
-#include "ds/segtree.hpp"
+#include "ds/segtree/segtree.hpp"
 #include "alg/monoid/min_idx.hpp"
 
 // https://codeforces.com/gym/103577/problem/K

@@ -1,10 +1,10 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1600"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/segtree2d.hpp"
+#include "ds/segtree/segtree2d.hpp"
 #include "alg/monoid/min.hpp"
 #include "graph/tree.hpp"
-#include "ds/unionfind.hpp"
+#include "ds/unionfind/unionfind.hpp"
 
 #include "mod/modint.hpp"
 using mint = modint107;

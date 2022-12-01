@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1392"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/unionfind.hpp"
+#include "ds/unionfind/unionfind.hpp"
 #include "mod/modint.hpp"
 #include "poly/convolution_all.hpp"
 #include "seq/famous/stirling_number_2.hpp"

@@ -1,9 +1,9 @@
 #define PROBLEM "https://yukicoder.me/problems/no/913"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/dualsegtree.hpp"
+#include "ds/segtree/dualsegtree.hpp"
 #include "alg/monoid/min.hpp"
-#include "ds/cht/cht_monotone.hpp"
+#include "ds/func/cht_monotone.hpp"
 
 void solve() {
   LL(N);
