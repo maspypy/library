@@ -13,7 +13,7 @@ data:
   - icon: ':x:'
     path: graph/shortest_path/K_shortest_walk.hpp
     title: graph/shortest_path/K_shortest_walk.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
   - icon: ':question:'
@@ -142,16 +142,16 @@ data:
     \ x * 10 + (c & 15);\r\n    c = inbuf[in_left++];\r\n  }\r\n  if constexpr (is_signed<T>::value\
     \ == true) {\r\n    if (minus) x = -x;\r\n  }\r\n}\r\n\r\ntemplate <typename T,\
     \ typename enable_if<has_read<T>::value>::type * = nullptr>\r\ninline void read_single(T\
-    \ x) {\r\n  x.read();\r\n}\r\ntemplate <class T>\r\ninline void read_single(vector<T>\
+    \ x) {\r\n  x.read();\r\n}\r\ntemplate <class T, class U>\r\ninline void read_single(pair<T,\
+    \ U> &p) {\r\n  read_single(p.first), read_single(p.second);\r\n}\r\ntemplate\
+    \ <class... T>\r\ninline void read(tuple<T...> &tpl) {\r\n  apply([&](auto...\
+    \ t) { (read(t), ...); }, tpl);\r\n}\r\ntemplate <class T>\r\ninline void read_single(vector<T>\
     \ &ref) {\r\n  for (auto &d: ref) read_single(d);\r\n}\r\ntemplate <class T, int\
     \ N>\r\ninline void read_single(array<T, N> &ref) {\r\n  for (auto &d: ref) read_single(d);\r\
-    \n}\r\ntemplate <class T, class U>\r\ninline void read_single(pair<T, U> &p) {\r\
-    \n  read_single(p.first), read_single(p.second);\r\n}\r\ntemplate <class... T>\r\
-    \ninline void read_single(tuple<T...> &tpl) {\r\n  apply([&](auto... t) { (read(t),\
-    \ ...); }, tpl);\r\n}\r\n\r\ninline void read() {}\r\ntemplate <typename Head,\
-    \ typename... Tail>\r\ninline void read(Head &head, Tail &... tail) {\r\n  read_single(head);\r\
-    \n  read(tail...);\r\n}\r\n\r\ninline void write(char c) {\r\n  if (out_right\
-    \ > SZ - 32) flush();\r\n  outbuf[out_right++] = c;\r\n}\r\ninline void write(bool\
+    \n}\r\n\r\ninline void read() {}\r\ntemplate <typename Head, typename... Tail>\r\
+    \ninline void read(Head &head, Tail &... tail) {\r\n  read_single(head);\r\n \
+    \ read(tail...);\r\n}\r\n\r\ninline void write(char c) {\r\n  if (out_right >\
+    \ SZ - 32) flush();\r\n  outbuf[out_right++] = c;\r\n}\r\ninline void write(bool\
     \ b) {\r\n  if (out_right > SZ - 32) flush();\r\n  outbuf[out_right++] = b ? '1'\
     \ : '0';\r\n}\r\ninline void write(const string &s) {\r\n  if (out_right + s.size()\
     \ > SZ - 32) flush();\r\n  memcpy(outbuf + out_right, s.data(), sizeof(char) *\
@@ -333,7 +333,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/K_shortest_walk.test.cpp
   requiredBy: []
-  timestamp: '2022-12-01 21:03:20+09:00'
+  timestamp: '2022-12-01 21:30:40+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/K_shortest_walk.test.cpp
