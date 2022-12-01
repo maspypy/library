@@ -7,8 +7,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/mytest/splay_cm.test.cpp
-    title: test/mytest/splay_cm.test.cpp
+    path: test/mytest/cf702_F_splay.test.cpp
+    title: test/mytest/cf702_F_splay.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -117,63 +117,68 @@ data:
     \      lprod = Mono::op(lprod, root->x);\n      if (check(lprod)) {\n        prod\
     \ = lprod;\n        last_ok = root;\n        root = root->r;\n      } else {\n\
     \        root = root->l;\n      }\n    }\n    splay(last);\n    return last_ok;\n\
-    \  }\n};\n#line 2 \"ds/splay/splaytree_commutative_monoid.hpp\"\n\nnamespace SplayTreeNodes\
-    \ {\ntemplate <typename Monoid>\nstruct Node_CM {\n  using X = typename Monoid::value_type;\n\
-    \  using value_type = X;\n  using operator_type = int; // \u5B9A\u7FA9\u3060\u3051\
-    \u3057\u3066\u304A\u304F\n  using np = Node_CM *;\n\n  np p, l, r;\n  X x, prod;\n\
-    \  u32 size;\n  bool rev;\n\n  static void new_node(np n, const X &x) {\n    n->p\
-    \ = n->l = n->r = nullptr;\n    n->x = n->prod = x;\n    n->size = 1;\n    n->rev\
-    \ = 0;\n  }\n\n  void update() {\n    size = 1;\n    prod = x;\n    if (l) {\n\
-    \      size += l->size;\n      prod = Monoid::op(l->prod, prod);\n    }\n    if\
-    \ (r) {\n      size += r->size;\n      prod = Monoid::op(prod, r->prod);\n   \
-    \ }\n  }\n\n  void prop() {\n    if (rev) {\n      if (l) {\n        l->rev ^=\
-    \ 1;\n        swap(l->l, l->r);\n      }\n      if (r) {\n        r->rev ^= 1;\n\
-    \        swap(r->l, r->r);\n      }\n      rev = 0;\n    }\n  }\n\n  // update,\
-    \ prop \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\u3082\u306E\u306F\u3001splay\
-    \ \u5F8C\u3067\u3042\u308B\u3053\u3068\u304C\u60F3\u5B9A\u3055\u308C\u3066\u3044\
-    \u308B\u3002\n  // \u3057\u305F\u304C\u3063\u3066\u305D\u306E\u6642\u70B9\u3067\
-    \ update, prop \u6E08\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\
-    \u3088\u3044\u3002\n  X get() { return x; }\n  void set(const X &xx) {\n    x\
-    \ = xx;\n    update();\n  }\n  void multiply(const X &xx) {\n    x = Monoid::op(x,\
-    \ xx);\n    update();\n  }\n  void reverse() {\n    swap(l, r);\n    rev ^= 1;\n\
-    \  }\n};\ntemplate <typename Monoid, int NODES>\nusing SplayTree_CommutativeMonoid\
-    \ = SplayTree<Node_CM<Monoid>, NODES>;\n} // namespace SplayTreeNodes\n\nusing\
-    \ SplayTreeNodes::SplayTree_CommutativeMonoid;\n"
+    \  }\n};\n#line 2 \"ds/splay/splaytree_acted_set.hpp\"\n\nnamespace SplayTreeNodes\
+    \ {\ntemplate <typename ActedSet>\nstruct Node_AM {\n  using Monoid_A = typename\
+    \ ActedSet::Monoid_A;\n  using A = typename ActedSet::A;\n  using S = typename\
+    \ ActedSet::S;\n  using value_type = S;\n  using operator_type = A;\n  using np\
+    \ = Node_AM *;\n\n  np p, l, r;\n  S x;\n  A lazy;\n  u32 size;\n  bool rev;\n\
+    \n  static void new_node(np n, const S &x) {\n    n->p = n->l = n->r = nullptr;\n\
+    \    n->x = x;\n    n->lazy = Monoid_A::unit();\n    n->size = 1;\n    n->rev\
+    \ = 0;\n  }\n\n  void update() {\n    size = 1;\n    if (l) { size += l->size;\
+    \ }\n    if (r) { size += r->size; }\n  }\n\n  void prop() {\n    if (lazy !=\
+    \ Monoid_A::unit()) {\n      if (l) {\n        l->x = ActedSet::act(l->x, lazy);\n\
+    \        l->lazy = Monoid_A::op(l->lazy, lazy);\n      }\n      if (r) {\n   \
+    \     r->x = ActedSet::act(r->x, lazy);\n        r->lazy = Monoid_A::op(r->lazy,\
+    \ lazy);\n      }\n      lazy = Monoid_A::unit();\n    }\n    if (rev) {\n   \
+    \   if (l) {\n        l->rev ^= 1;\n        swap(l->l, l->r);\n      }\n     \
+    \ if (r) {\n        r->rev ^= 1;\n        swap(r->l, r->r);\n      }\n      rev\
+    \ = 0;\n    }\n  }\n\n  // update, prop \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\
+    \u3082\u306E\u306F\u3001splay \u5F8C\u3067\u3042\u308B\u3053\u3068\u304C\u60F3\
+    \u5B9A\u3055\u308C\u3066\u3044\u308B\u3002\n  // \u3057\u305F\u304C\u3063\u3066\
+    \u305D\u306E\u6642\u70B9\u3067 update, prop \u6E08\u3067\u3042\u308B\u3053\u3068\
+    \u3092\u4EEE\u5B9A\u3057\u3066\u3088\u3044\u3002\n  S get() { return x; }\n  void\
+    \ set(const S &xx) {\n    x = xx;\n    update();\n  }\n  void apply(const A &a)\
+    \ {\n    x = ActedSet::act(x, a);\n    lazy = Monoid_A::op(lazy, a);\n  }\n  void\
+    \ reverse() {\n    swap(l, r);\n    rev ^= 1;\n  }\n};\ntemplate <typename ActedSet,\
+    \ int NODES>\nusing SplayTree_ActedSet = SplayTree<Node_AM<ActedSet>, NODES>;\n\
+    } // namespace SplayTreeNodes\n\nusing SplayTreeNodes::SplayTree_ActedSet;\n"
   code: "#include \"ds/splay/splaytree.hpp\"\n\nnamespace SplayTreeNodes {\ntemplate\
-    \ <typename Monoid>\nstruct Node_CM {\n  using X = typename Monoid::value_type;\n\
-    \  using value_type = X;\n  using operator_type = int; // \u5B9A\u7FA9\u3060\u3051\
-    \u3057\u3066\u304A\u304F\n  using np = Node_CM *;\n\n  np p, l, r;\n  X x, prod;\n\
-    \  u32 size;\n  bool rev;\n\n  static void new_node(np n, const X &x) {\n    n->p\
-    \ = n->l = n->r = nullptr;\n    n->x = n->prod = x;\n    n->size = 1;\n    n->rev\
-    \ = 0;\n  }\n\n  void update() {\n    size = 1;\n    prod = x;\n    if (l) {\n\
-    \      size += l->size;\n      prod = Monoid::op(l->prod, prod);\n    }\n    if\
-    \ (r) {\n      size += r->size;\n      prod = Monoid::op(prod, r->prod);\n   \
-    \ }\n  }\n\n  void prop() {\n    if (rev) {\n      if (l) {\n        l->rev ^=\
-    \ 1;\n        swap(l->l, l->r);\n      }\n      if (r) {\n        r->rev ^= 1;\n\
-    \        swap(r->l, r->r);\n      }\n      rev = 0;\n    }\n  }\n\n  // update,\
-    \ prop \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\u3082\u306E\u306F\u3001splay\
-    \ \u5F8C\u3067\u3042\u308B\u3053\u3068\u304C\u60F3\u5B9A\u3055\u308C\u3066\u3044\
-    \u308B\u3002\n  // \u3057\u305F\u304C\u3063\u3066\u305D\u306E\u6642\u70B9\u3067\
-    \ update, prop \u6E08\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\
-    \u3088\u3044\u3002\n  X get() { return x; }\n  void set(const X &xx) {\n    x\
-    \ = xx;\n    update();\n  }\n  void multiply(const X &xx) {\n    x = Monoid::op(x,\
-    \ xx);\n    update();\n  }\n  void reverse() {\n    swap(l, r);\n    rev ^= 1;\n\
-    \  }\n};\ntemplate <typename Monoid, int NODES>\nusing SplayTree_CommutativeMonoid\
-    \ = SplayTree<Node_CM<Monoid>, NODES>;\n} // namespace SplayTreeNodes\n\nusing\
-    \ SplayTreeNodes::SplayTree_CommutativeMonoid;"
+    \ <typename ActedSet>\nstruct Node_AM {\n  using Monoid_A = typename ActedSet::Monoid_A;\n\
+    \  using A = typename ActedSet::A;\n  using S = typename ActedSet::S;\n  using\
+    \ value_type = S;\n  using operator_type = A;\n  using np = Node_AM *;\n\n  np\
+    \ p, l, r;\n  S x;\n  A lazy;\n  u32 size;\n  bool rev;\n\n  static void new_node(np\
+    \ n, const S &x) {\n    n->p = n->l = n->r = nullptr;\n    n->x = x;\n    n->lazy\
+    \ = Monoid_A::unit();\n    n->size = 1;\n    n->rev = 0;\n  }\n\n  void update()\
+    \ {\n    size = 1;\n    if (l) { size += l->size; }\n    if (r) { size += r->size;\
+    \ }\n  }\n\n  void prop() {\n    if (lazy != Monoid_A::unit()) {\n      if (l)\
+    \ {\n        l->x = ActedSet::act(l->x, lazy);\n        l->lazy = Monoid_A::op(l->lazy,\
+    \ lazy);\n      }\n      if (r) {\n        r->x = ActedSet::act(r->x, lazy);\n\
+    \        r->lazy = Monoid_A::op(r->lazy, lazy);\n      }\n      lazy = Monoid_A::unit();\n\
+    \    }\n    if (rev) {\n      if (l) {\n        l->rev ^= 1;\n        swap(l->l,\
+    \ l->r);\n      }\n      if (r) {\n        r->rev ^= 1;\n        swap(r->l, r->r);\n\
+    \      }\n      rev = 0;\n    }\n  }\n\n  // update, prop \u4EE5\u5916\u3067\u547C\
+    \u3070\u308C\u308B\u3082\u306E\u306F\u3001splay \u5F8C\u3067\u3042\u308B\u3053\
+    \u3068\u304C\u60F3\u5B9A\u3055\u308C\u3066\u3044\u308B\u3002\n  // \u3057\u305F\
+    \u304C\u3063\u3066\u305D\u306E\u6642\u70B9\u3067 update, prop \u6E08\u3067\u3042\
+    \u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\u3088\u3044\u3002\n  S get()\
+    \ { return x; }\n  void set(const S &xx) {\n    x = xx;\n    update();\n  }\n\
+    \  void apply(const A &a) {\n    x = ActedSet::act(x, a);\n    lazy = Monoid_A::op(lazy,\
+    \ a);\n  }\n  void reverse() {\n    swap(l, r);\n    rev ^= 1;\n  }\n};\ntemplate\
+    \ <typename ActedSet, int NODES>\nusing SplayTree_ActedSet = SplayTree<Node_AM<ActedSet>,\
+    \ NODES>;\n} // namespace SplayTreeNodes\n\nusing SplayTreeNodes::SplayTree_ActedSet;"
   dependsOn:
   - ds/splay/splaytree.hpp
   isVerificationFile: false
-  path: ds/splay/splaytree_commutative_monoid.hpp
+  path: ds/splay/splaytree_acted_set.hpp
   requiredBy: []
   timestamp: '2022-12-01 12:32:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/splay_cm.test.cpp
-documentation_of: ds/splay/splaytree_commutative_monoid.hpp
+  - test/mytest/cf702_F_splay.test.cpp
+documentation_of: ds/splay/splaytree_acted_set.hpp
 layout: document
 redirect_from:
-- /library/ds/splay/splaytree_commutative_monoid.hpp
-- /library/ds/splay/splaytree_commutative_monoid.hpp.html
-title: ds/splay/splaytree_commutative_monoid.hpp
+- /library/ds/splay/splaytree_acted_set.hpp
+- /library/ds/splay/splaytree_acted_set.hpp.html
+title: ds/splay/splaytree_acted_set.hpp
 ---
