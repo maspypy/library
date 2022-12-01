@@ -10,7 +10,7 @@ data:
   - icon: ':x:'
     path: ds/disjoint_sparse/disjointsparse.hpp
     title: ds/disjoint_sparse/disjointsparse.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   - icon: ':question:'
