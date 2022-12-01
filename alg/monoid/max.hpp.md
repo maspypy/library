@@ -17,14 +17,20 @@ data:
   - icon: ':warning:'
     path: alg/acted_monoid/min_max.hpp
     title: alg/acted_monoid/min_max.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc266h.test.cpp
+    title: test/atcoder/abc266h.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc266h_2.test.cpp
+    title: test/atcoder/abc266h_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
   - icon: ':x:'
@@ -70,6 +76,8 @@ data:
   - test/yukicoder/1790.test.cpp
   - test/yukicoder/1117.test.cpp
   - test/atcoder/abc270_f.test.cpp
+  - test/atcoder/abc266h_2.test.cpp
+  - test/atcoder/abc266h.test.cpp
   - test/aoj/GRL_2_A.test.cpp
 documentation_of: alg/monoid/max.hpp
 layout: document

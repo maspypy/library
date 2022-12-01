@@ -5,7 +5,7 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/add_mul.hpp
     title: alg/acted_monoid/add_mul.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/cntminmincnt_add.hpp
     title: alg/acted_monoid/cntminmincnt_add.hpp
   - icon: ':question:'
@@ -38,7 +38,7 @@ data:
   - icon: ':question:'
     path: ds/fenwick/fenwick.hpp
     title: ds/fenwick/fenwick.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick/fenwick2d.hpp
     title: ds/fenwick/fenwick2d.hpp
   - icon: ':question:'
@@ -47,6 +47,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fenwick/fenwickraq.hpp
     title: ds/fenwick/fenwickraq.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/offline_query/rectangleunion.hpp
+    title: ds/offline_query/rectangleunion.hpp
   - icon: ':question:'
     path: ds/waveletmatrix.hpp
     title: ds/waveletmatrix.hpp
@@ -56,7 +59,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: seq/inversion_rotate.hpp
     title: seq/inversion_rotate.hpp
   - icon: ':x:'
@@ -88,11 +91,23 @@ data:
     path: test/aoj/DSL_2_H.test.cpp
     title: test/aoj/DSL_2_H.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL_4_A.test.cpp
+    title: test/aoj/DSL_4_A.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc127f_1.test.cpp
     title: test/atcoder/abc127f_1.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc174f.test.cpp
+    title: test/atcoder/abc174f.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc190f.test.cpp
+    title: test/atcoder/abc190f.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc266h_2.test.cpp
+    title: test/atcoder/abc266h_2.test.cpp
   - icon: ':x:'
     path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
     title: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
@@ -153,6 +168,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1720.test.cpp
     title: test/yukicoder/1720.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1874.test.cpp
+    title: test/yukicoder/1874.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1977.test.cpp
     title: test/yukicoder/1977.test.cpp
@@ -216,6 +234,7 @@ data:
   - seq/common_interval_decomposition.hpp
   - seq/inversion_rotate.hpp
   - ds/cumsum2d.hpp
+  - ds/offline_query/rectangleunion.hpp
   - ds/waveletmatrix.hpp
   - ds/fenwick/fenwick2d_dense.hpp
   - ds/fenwick/fenwick2d.hpp
@@ -233,6 +252,7 @@ data:
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1720.test.cpp
   - test/yukicoder/686.test.cpp
+  - test/yukicoder/1874.test.cpp
   - test/yukicoder/1141.test.cpp
   - test/yukicoder/1269.test.cpp
   - test/yukicoder/655.test.cpp
@@ -254,8 +274,12 @@ data:
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   - test/atcoder/abc127f_1.test.cpp
+  - test/atcoder/abc190f.test.cpp
+  - test/atcoder/abc266h_2.test.cpp
+  - test/atcoder/abc174f.test.cpp
   - test/aoj/DSL_2_E.test.cpp
   - test/aoj/2842_2.test.cpp
+  - test/aoj/DSL_4_A.test.cpp
   - test/aoj/GRL_5_E.test.cpp
   - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/DSL_1_B.test.cpp

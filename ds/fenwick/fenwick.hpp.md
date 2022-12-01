@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: seq/inversion_rotate.hpp
     title: seq/inversion_rotate.hpp
   _extendedVerifiedWith:
@@ -27,9 +27,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_G.test.cpp
     title: test/aoj/DSL_2_G.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc190f.test.cpp
+    title: test/atcoder/abc190f.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1311.test.cpp
     title: test/yukicoder/1311.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1874.test.cpp
+    title: test/yukicoder/1874.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -109,6 +115,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1311.test.cpp
+  - test/yukicoder/1874.test.cpp
+  - test/atcoder/abc190f.test.cpp
   - test/aoj/DSL_2_E.test.cpp
   - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/DSL_2_G.test.cpp

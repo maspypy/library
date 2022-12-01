@@ -8,7 +8,7 @@ data:
   - icon: ':x:'
     path: graph/classify_subtree.hpp
     title: graph/classify_subtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dualtreemonoid.hpp
     title: graph/ds/dualtreemonoid.hpp
   - icon: ':question:'
@@ -20,7 +20,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
+    path: graph/functional.hpp
+    title: graph/functional.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':x:'
@@ -57,7 +60,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc269ex.test.cpp
     title: test/atcoder/abc269ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
   - icon: ':x:'
@@ -87,6 +90,12 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1211.test.cpp
+    title: test/yukicoder/1211.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1242.test.cpp
+    title: test/yukicoder/1242.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1295.test.cpp
     title: test/yukicoder/1295.test.cpp
@@ -121,11 +130,17 @@ data:
     path: test/yukicoder/1983.test.cpp
     title: test/yukicoder/1983.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/2122.test.cpp
+    title: test/yukicoder/2122.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
   - icon: ':x:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/590.test.cpp
+    title: test/yukicoder/590.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -323,6 +338,7 @@ data:
   - graph/dsu_on_tree.hpp
   - graph/rerooting_classify_subtree.hpp
   - graph/tree_dp.hpp
+  - graph/functional.hpp
   - graph/rerooting_dp.hpp
   - graph/two_edge_component.hpp
   - graph/classify_subtree.hpp
@@ -339,7 +355,11 @@ data:
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1983.test.cpp
   - test/yukicoder/1778.test.cpp
+  - test/yukicoder/2122.test.cpp
+  - test/yukicoder/590.test.cpp
+  - test/yukicoder/1242.test.cpp
   - test/yukicoder/1494.test.cpp
+  - test/yukicoder/1211.test.cpp
   - test/yukicoder/529.test.cpp
   - test/yukicoder/1769.test.cpp
   - test/yukicoder/1976.test.cpp

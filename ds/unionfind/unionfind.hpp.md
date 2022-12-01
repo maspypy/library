@@ -14,10 +14,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
+  - icon: ':x:'
+    path: graph/functional.hpp
+    title: graph/functional.hpp
   - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
@@ -36,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
   - icon: ':x:'
@@ -48,6 +51,15 @@ data:
   - icon: ':x:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/114.test.cpp
+    title: test/yukicoder/114.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1211.test.cpp
+    title: test/yukicoder/1211.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1242.test.cpp
+    title: test/yukicoder/1242.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1392.test.cpp
     title: test/yukicoder/1392.test.cpp
@@ -69,6 +81,12 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1983.test.cpp
     title: test/yukicoder/1983.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2122.test.cpp
+    title: test/yukicoder/2122.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/590.test.cpp
+    title: test/yukicoder/590.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -103,6 +121,7 @@ data:
   requiredBy:
   - geo/manhattan_mst.hpp
   - flow/bipartite.hpp
+  - graph/functional.hpp
   - graph/dag_path_cover.hpp
   - graph/maximum_antichain.hpp
   - graph/check_bipartite.hpp
@@ -114,7 +133,12 @@ data:
   - test/yukicoder/1392.test.cpp
   - test/yukicoder/1479.test.cpp
   - test/yukicoder/1983.test.cpp
+  - test/yukicoder/114.test.cpp
+  - test/yukicoder/2122.test.cpp
+  - test/yukicoder/590.test.cpp
+  - test/yukicoder/1242.test.cpp
   - test/yukicoder/1911.test.cpp
+  - test/yukicoder/1211.test.cpp
   - test/yukicoder/1745.test.cpp
   - test/yukicoder/1744.test.cpp
   - test/mytest/tutte.test.cpp

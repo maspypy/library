@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: ds/offline_query/rectangleunion.hpp
+    title: ds/offline_query/rectangleunion.hpp
   - icon: ':question:'
     path: graph/ds/lazytreemonoid.hpp
     title: graph/ds/lazytreemonoid.hpp
@@ -18,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_I.test.cpp
     title: test/aoj/DSL_2_I.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL_4_A.test.cpp
+    title: test/aoj/DSL_4_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
@@ -176,6 +182,7 @@ data:
   path: ds/segtree/lazysegtree.hpp
   requiredBy:
   - seq/common_interval_decomposition.hpp
+  - ds/offline_query/rectangleunion.hpp
   - graph/ds/lazytreemonoid.hpp
   timestamp: '2022-12-01 18:20:22+09:00'
   verificationStatus: LIBRARY_SOME_WA
@@ -187,6 +194,7 @@ data:
   - test/yukicoder/1720.test.cpp
   - test/yukicoder/1790.test.cpp
   - test/yukicoder/1197.test.cpp
+  - test/aoj/DSL_4_A.test.cpp
   - test/aoj/DSL_2_I.test.cpp
   - test/aoj/GRL_5_E.test.cpp
   - test/aoj/DSL_2_F.test.cpp

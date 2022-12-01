@@ -35,7 +35,7 @@ data:
   - icon: ':x:'
     path: graph/ds/bfsnumbering.hpp
     title: graph/ds/bfsnumbering.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dualtreemonoid.hpp
     title: graph/ds/dualtreemonoid.hpp
   - icon: ':question:'
@@ -59,6 +59,9 @@ data:
   - icon: ':warning:'
     path: graph/find_odd_cycle.hpp
     title: graph/find_odd_cycle.hpp
+  - icon: ':x:'
+    path: graph/functional.hpp
+    title: graph/functional.hpp
   - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
@@ -71,7 +74,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':x:'
@@ -110,7 +113,7 @@ data:
   - icon: ':question:'
     path: graph/shortest_path/warshall_floyd.hpp
     title: graph/shortest_path/warshall_floyd.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: graph/steiner_tree.hpp
     title: graph/steiner_tree.hpp
   - icon: ':question:'
@@ -195,7 +198,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc269ex.test.cpp
     title: test/atcoder/abc269ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
   - icon: ':x:'
@@ -286,11 +289,20 @@ data:
     path: test/yukicoder/1069.test.cpp
     title: test/yukicoder/1069.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/114.test.cpp
+    title: test/yukicoder/114.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1170.test.cpp
     title: test/yukicoder/1170.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1211.test.cpp
+    title: test/yukicoder/1211.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1242.test.cpp
+    title: test/yukicoder/1242.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1254.test.cpp
     title: test/yukicoder/1254.test.cpp
@@ -367,11 +379,17 @@ data:
     path: test/yukicoder/1983.test.cpp
     title: test/yukicoder/1983.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/2122.test.cpp
+    title: test/yukicoder/2122.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
   - icon: ':x:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/590.test.cpp
+    title: test/yukicoder/590.test.cpp
   - icon: ':x:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
@@ -484,6 +502,7 @@ data:
   - graph/rerooting_classify_subtree.hpp
   - graph/tree_dp.hpp
   - graph/toposort.hpp
+  - graph/functional.hpp
   - graph/range_to_range_graph.hpp
   - graph/unicyclic.hpp
   - graph/reachability.hpp
@@ -540,11 +559,16 @@ data:
   - test/yukicoder/1778.test.cpp
   - test/yukicoder/1813.test.cpp
   - test/yukicoder/1170.test.cpp
+  - test/yukicoder/114.test.cpp
+  - test/yukicoder/2122.test.cpp
+  - test/yukicoder/590.test.cpp
+  - test/yukicoder/1242.test.cpp
   - test/yukicoder/1796.test.cpp
   - test/yukicoder/1911.test.cpp
   - test/yukicoder/1344.test.cpp
   - test/yukicoder/1494.test.cpp
   - test/yukicoder/1293.test.cpp
+  - test/yukicoder/1211.test.cpp
   - test/yukicoder/529.test.cpp
   - test/yukicoder/1769.test.cpp
   - test/yukicoder/1976.test.cpp
