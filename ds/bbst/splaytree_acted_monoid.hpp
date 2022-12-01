@@ -43,10 +43,12 @@ struct Node {
       if (l) {
         l->x = ActedMonoid::act(l->x, lazy);
         l->prod = ActedMonoid::act(l->prod, lazy);
+        l->lazy = Monoid_A::op(l->lazy, lazy);
       }
       if (r) {
         r->x = ActedMonoid::act(r->x, lazy);
         r->prod = ActedMonoid::act(r->prod, lazy);
+        r->lazy = Monoid_A::op(r->lazy, lazy);
       }
       lazy = Monoid_A::unit();
     }
