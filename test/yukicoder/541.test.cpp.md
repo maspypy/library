@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: connected_dp/squares.hpp
     title: connected_dp/squares.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'
