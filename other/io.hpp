@@ -128,10 +128,6 @@ inline void write(char c) {
   if (out_right > SZ - 32) flush();
   outbuf[out_right++] = c;
 }
-inline void write(bool b) {
-  if (out_right > SZ - 32) flush();
-  outbuf[out_right++] = b ? '1' : '0';
-}
 inline void write(const string &s) {
   if (out_right + s.size() > SZ - 32) flush();
   memcpy(outbuf + out_right, s.data(), sizeof(char) * s.size());
