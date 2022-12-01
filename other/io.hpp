@@ -1,262 +1,151 @@
-// based on yosupo's fastio
-#include <unistd.h>
+namespace fastio { // https://nyaannyaan.github.io/library/misc/fastio.hpp
+static constexpr int SZ = 1 << 17;
+char inbuf[SZ], outbuf[SZ];
+int in_left = 0, in_right = 0, out_right = 0;
 
-namespace detail {
-template <typename T, decltype(&T::is_modint) = &T::is_modint>
-std::true_type check_value(int);
-template <typename T>
-std::false_type check_value(long);
-} // namespace detail
-
-template <typename T>
-struct is_modint : decltype(detail::check_value<T>(0)) {};
-template <typename T>
-using is_modint_t = enable_if_t<is_modint<T>::value>;
-template <typename T>
-using is_not_modint_t = enable_if_t<!is_modint<T>::value>;
-
-struct Scanner {
-  FILE *fp;
-  char line[(1 << 15) + 1];
-  size_t st = 0, ed = 0;
-  void reread() {
-    memmove(line, line + st, ed - st);
-    ed -= st;
-    st = 0;
-    ed += fread(line + ed, 1, (1 << 15) - ed, fp);
-    line[ed] = '\0';
-  }
-  bool succ() {
-    while (true) {
-      if (st == ed) {
-        reread();
-        if (st == ed) return false;
+struct Pre {
+  char num[40000];
+  constexpr Pre() : num() {
+    for (int i = 0; i < 10000; i++) {
+      int n = i;
+      for (int j = 3; j >= 0; j--) {
+        num[i * 4 + j] = n % 10 + '0';
+        n /= 10;
       }
-      while (st != ed && isspace(line[st])) st++;
-      if (st != ed) break;
     }
-    if (ed - st <= 50) {
-      bool sep = false;
-      for (size_t i = st; i < ed; i++) {
-        if (isspace(line[i])) {
-          sep = true;
-          break;
-        }
-      }
-      if (!sep) reread();
-    }
-    return true;
   }
-  template <class T, enable_if_t<is_same<T, string>::value, int> = 0>
-  bool read_single(T &ref) {
-    if (!succ()) return false;
-    while (true) {
-      size_t sz = 0;
-      while (st + sz < ed && !isspace(line[st + sz])) sz++;
-      ref.append(line + st, sz);
-      st += sz;
-      if (!sz || st != ed) break;
-      reread();
-    }
-    return true;
-  }
-  template <class T, enable_if_t<is_integral<T>::value, int> = 0>
-  bool read_single(T &ref) {
-    if (!succ()) return false;
-    bool neg = false;
-    if (line[st] == '-') {
-      neg = true;
-      st++;
-    }
-    ref = T(0);
-    while (isdigit(line[st])) { ref = 10 * ref + (line[st++] & 0xf); }
-    if (neg) ref = -ref;
-    return true;
-  }
-  template <class T, is_modint_t<T> * = nullptr>
-  bool read_single(T &ref) {
-    long long val = 0;
-    bool f = read_single(val);
-    ref = T(val);
-    return f;
-  }
-  bool read_single(double &ref) {
-    string s;
-    if (!read_single(s)) return false;
-    ref = std::stod(s);
-    return true;
-  }
-  bool read_single(char &ref) {
-    string s;
-    if (!read_single(s) || s.size() != 1) return false;
-    ref = s[0];
-    return true;
-  }
-  template <class T>
-  bool read_single(vector<T> &ref) {
-    for (auto &d: ref) {
-      if (!read_single(d)) return false;
-    }
-    return true;
-  }
-  template <class T, class U>
-  bool read_single(pair<T, U> &p) {
-    return (read_single(p.first) && read_single(p.second));
-  }
-  template <class A, class B, class C>
-  bool read_single(tuple<A, B, C> &p) {
-    return (read_single(get<0>(p)) && read_single(get<1>(p))
-            && read_single(get<2>(p)));
-  }
-  template <class A, class B, class C, class D>
-  bool read_single(tuple<A, B, C, D> &p) {
-    return (read_single(get<0>(p)) && read_single(get<1>(p))
-            && read_single(get<2>(p)) && read_single(get<3>(p)));
-  }
-  void read() {}
-  template <class H, class... T>
-  void read(H &h, T &... t) {
-    bool f = read_single(h);
-    assert(f);
-    read(t...);
-  }
-  Scanner(FILE *fp) : fp(fp) {}
-};
+} constexpr pre;
 
-struct Printer {
-  Printer(FILE *_fp) : fp(_fp) {}
-  ~Printer() { flush(); }
+inline void load() {
+  int len = in_right - in_left;
+  memmove(inbuf, inbuf + in_left, len);
+  in_right = len + fread(inbuf + len, 1, SZ - len, stdin);
+  in_left = 0;
+}
 
-  static constexpr size_t SIZE = 1 << 15;
-  FILE *fp;
-  char line[SIZE], small[50];
-  size_t pos = 0;
-  void flush() {
-    fwrite(line, 1, pos, fp);
-    pos = 0;
-  }
-  void write(const char &val) {
-    if (pos == SIZE) flush();
-    line[pos++] = val;
-  }
-  template <class T, enable_if_t<is_integral<T>::value, int> = 0>
-  void write(T val) {
-    if (pos > (1 << 15) - 50) flush();
-    if (val == 0) {
-      write('0');
-      return;
-    }
-    if (val < 0) {
-      write('-');
-      val = -val; // todo min
-    }
-    size_t len = 0;
-    while (val) {
-      small[len++] = char(0x30 | (val % 10));
-      val /= 10;
-    }
-    for (size_t i = 0; i < len; i++) { line[pos + i] = small[len - 1 - i]; }
-    pos += len;
-  }
-  void write(const string &s) {
-    for (char c: s) write(c);
-  }
-  void write(const char *s) {
-    size_t len = strlen(s);
-    for (size_t i = 0; i < len; i++) write(s[i]);
-  }
-  void write(const double &x) {
-    ostringstream oss;
-    oss << fixed << setprecision(15) << x;
-    string s = oss.str();
-    write(s);
-  }
-  void write(const long double &x) {
-    ostringstream oss;
-    oss << fixed << setprecision(15) << x;
-    string s = oss.str();
-    write(s);
-  }
-  template <class T, is_modint_t<T> * = nullptr>
-  void write(T &ref) {
-    write(ref.val);
-  }
-  template <class T>
-  void write(const vector<T> &val) {
-    auto n = val.size();
-    for (size_t i = 0; i < n; i++) {
-      if (i) write(' ');
-      write(val[i]);
-    }
-  }
-  template <class T, class U>
-  void write(const pair<T, U> &val) {
-    write(val.first);
-    write(' ');
-    write(val.second);
-  }
-  template <class A, class B, class C>
-  void write(const tuple<A, B, C> &val) {
-    auto &[a, b, c] = val;
-    write(a), write(' '), write(b), write(' '), write(c);
-  }
-  template <class A, class B, class C, class D>
-  void write(const tuple<A, B, C, D> &val) {
-    auto &[a, b, c, d] = val;
-    write(a), write(' '), write(b), write(' '), write(c), write(' '), write(d);
-  }
-  template <class A, class B, class C, class D, class E>
-  void write(const tuple<A, B, C, D, E> &val) {
-    auto &[a, b, c, d, e] = val;
-    write(a), write(' '), write(b), write(' '), write(c), write(' '), write(d), write(' '), write(e);
-  }
-  template <class A, class B, class C, class D, class E, class F>
-  void write(const tuple<A, B, C, D, E, F> &val) {
-    auto &[a, b, c, d, e, f] = val;
-    write(a), write(' '), write(b), write(' '), write(c), write(' '), write(d), write(' '), write(e), write(' '), write(f);
-  }
-  template <class T, size_t S>
-  void write(const array<T, S> &val) {
-    auto n = val.size();
-    for (size_t i = 0; i < n; i++) {
-      if (i) write(' ');
-      write(val[i]);
-    }
-  }
-  void write(i128 val) {
-    string s;
-    bool negative = 0;
-    if(val < 0){
-      negative = 1;
-      val = -val;
-    }
-    while (val) {
-      s += '0' + int(val % 10);
-      val /= 10;
-    }
-    if(negative) s += "-";
-    reverse(all(s));
-    if (len(s) == 0) s = "0";
-    write(s);
-  }
-};
+inline void flush() {
+  fwrite(outbuf, 1, out_right, stdout);
+  out_right = 0;
+}
 
-Scanner scanner = Scanner(stdin);
-Printer printer = Printer(stdout);
+inline void skip_space() {
+  if (in_left + 32 > in_right) load();
+  while (inbuf[in_left] <= ' ') in_left++;
+}
 
-void flush() { printer.flush(); }
-void print() { printer.write('\n'); }
+inline void read(char &c) {
+  if (in_left + 32 > in_right) load();
+  c = inbuf[in_left++];
+}
+template <typename T>
+inline void read(T &x) {
+  if (in_left + 32 > in_right) load();
+  char c;
+  do
+    c = inbuf[in_left++];
+  while (c < '-');
+  [[maybe_unused]] bool minus = false;
+  if constexpr (is_signed<T>::value == true) {
+    if (c == '-') minus = true, c = inbuf[in_left++];
+  }
+  x = 0;
+  while (c >= '0') {
+    x = x * 10 + (c & 15);
+    c = inbuf[in_left++];
+  }
+  if constexpr (is_signed<T>::value == true) {
+    if (minus) x = -x;
+  }
+}
+inline void read() {}
+template <typename Head, typename... Tail>
+inline void read(Head &head, Tail &... tail) {
+  read(head);
+  read(tail...);
+}
+
+inline void write(char c) {
+  if (out_right > SZ - 32) flush();
+  outbuf[out_right++] = c;
+}
+inline void write(bool b) {
+  if (out_right > SZ - 32) flush();
+  outbuf[out_right++] = b ? '1' : '0';
+}
+inline void write(const string &s) {
+  if (out_right + s.size() > SZ - 32) flush();
+  memcpy(outbuf + out_right, s.data(), sizeof(char) * s.size());
+  out_right += s.size();
+}
+template <typename T>
+inline void write(T x) {
+  if (out_right > SZ - 32) flush();
+  if (!x) {
+    outbuf[out_right++] = '0';
+    return;
+  }
+  if constexpr (is_signed<T>::value == true) {
+    if (x < 0) outbuf[out_right++] = '-', x = -x;
+  }
+  int i = 12;
+  char buf[16];
+  while (x >= 10000) {
+    memcpy(buf + i, pre.num + (x % 10000) * 4, 4);
+    x /= 10000;
+    i -= 4;
+  }
+  if (x < 100) {
+    if (x < 10) {
+      outbuf[out_right] = '0' + x;
+      ++out_right;
+    } else {
+      uint32_t q = (uint32_t(x) * 205) >> 11;
+      uint32_t r = uint32_t(x) - q * 10;
+      outbuf[out_right] = '0' + q;
+      outbuf[out_right + 1] = '0' + r;
+      out_right += 2;
+    }
+  } else {
+    if (x < 1000) {
+      memcpy(outbuf + out_right, pre.num + (x << 2) + 1, 3);
+      out_right += 3;
+    } else {
+      memcpy(outbuf + out_right, pre.num + (x << 2), 4);
+      out_right += 4;
+    }
+  }
+  memcpy(outbuf + out_right, buf + i + 4, 12 - i);
+  out_right += 12 - i;
+}
+inline void write() {}
+template <typename Head, typename... Tail>
+inline void write(Head &&head, Tail &&... tail) {
+  write(head);
+  write(forward<Tail>(tail)...);
+}
+template <typename... Args>
+inline void writen(Args &&... x) {
+  write(forward<Args>(x)...);
+  write('\n');
+}
+
+struct Dummy {
+  Dummy() { atexit(flush); }
+} dummy;
+} // namespace fastio
+
+void print() { fastio::write('\n'); }
 template <class Head, class... Tail>
 void print(Head &&head, Tail &&... tail) {
-  printer.write(head);
-  if (sizeof...(Tail)) printer.write(' ');
+  fastio::write(head);
+  if (sizeof...(Tail)) fastio::write(' ');
   print(forward<Tail>(tail)...);
 }
 
 void read() {}
 template <class Head, class... Tail>
 void read(Head &head, Tail &... tail) {
-  scanner.read(head);
+  fastio::read(head);
   read(tail...);
 }
 
@@ -269,7 +158,7 @@ void read(Head &head, Tail &... tail) {
 #define STR(...)      \
   string __VA_ARGS__; \
   read(__VA_ARGS__)
-#define CHAR(...)      \
+#define CHAR(...)   \
   char __VA_ARGS__; \
   read(__VA_ARGS__)
 #define DBL(...)      \
@@ -283,9 +172,9 @@ void read(Head &head, Tail &... tail) {
   vector<vector<type>> name(h, vector<type>(w)); \
   read(name)
 
-void YES(bool t = 1) { print(t ? "YES" : "NO"); }
+void YES(bool t = 1) { print<string>(t ? "YES" : "NO"); }
 void NO(bool t = 1) { YES(!t); }
-void Yes(bool t = 1) { print(t ? "Yes" : "No"); }
+void Yes(bool t = 1) { print<string>(t ? "Yes" : "No"); }
 void No(bool t = 1) { Yes(!t); }
-void yes(bool t = 1) { print(t ? "yes" : "no"); }
+void yes(bool t = 1) { print<string>(t ? "yes" : "no"); }
 void no(bool t = 1) { yes(!t); }
