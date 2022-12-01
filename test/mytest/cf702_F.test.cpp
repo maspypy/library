@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "alg/monoid/add_pair.hpp"
-#include "ds/bbst/rbst_acted_set.hpp"
+#include "ds/rbst/rbst_acted_set.hpp"
 
 // (所持金, 操作回数, query index)
 struct AS {
