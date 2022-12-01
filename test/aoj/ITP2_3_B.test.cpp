@@ -2,7 +2,7 @@
   "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_3_B"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/segtree.hpp"
+#include "ds/segtree/segtree.hpp"
 #include "alg/monoid/minmax.hpp"
 
 void solve() {

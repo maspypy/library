@@ -1,4 +1,4 @@
-#include "ds/fenwick.hpp"
+#include "ds/fenwick/fenwick.hpp"
 template <typename AbelGroup>
 struct FenwickRAQ {
   using E = typename AbelGroup::value_type;

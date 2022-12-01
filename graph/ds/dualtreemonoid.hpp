@@ -1,6 +1,5 @@
-#include "ds/lazysegtree.hpp"
 #include "graph/tree.hpp"
-#include "ds/dualsegtree.hpp"
+#include "ds/segtree/dualsegtree.hpp"
 
 template <typename TREE, typename Monoid, bool edge = false>
 struct DualTreeMonoid {
