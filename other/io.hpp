@@ -1,4 +1,30 @@
-namespace fastio { // https://nyaannyaan.github.io/library/misc/fastio.hpp
+namespace fastio {
+// https://nyaannyaan.github.io/library/misc/fastio.hpp を元に改造
+
+// クラスが read(), print() を持っているかを判定するメタ関数
+struct has_print_impl {
+  template <class T>
+  static auto check(T &&x) -> decltype(x.print(), std::true_type{});
+
+  template <class T>
+  static auto check(...) -> std::false_type;
+};
+
+template <class T>
+class has_print : public decltype(has_print_impl::check<T>(std::declval<T>())) {
+};
+
+struct has_read_impl {
+  template <class T>
+  static auto check(T &&x) -> decltype(x.read(), std::true_type{});
+
+  template <class T>
+  static auto check(...) -> std::false_type;
+};
+
+template <class T>
+class has_read : public decltype(has_read_impl::check<T>(std::declval<T>())) {};
+
 static constexpr int SZ = 1 << 17;
 char inbuf[SZ], outbuf[SZ];
 int in_left = 0, in_right = 0, out_right = 0;
@@ -28,23 +54,35 @@ inline void flush() {
   out_right = 0;
 }
 
-inline void skip_space() {
-  if (in_left + 32 > in_right) load();
-  while (inbuf[in_left] <= ' ') in_left++;
-}
-
-inline void read(char &c) {
+inline void read_single(char &c) {
   if (in_left + 32 > in_right) load();
   c = inbuf[in_left++];
 }
-template <typename T>
-inline void read(T &x) {
+
+template <class T, enable_if_t<is_same<T, string>::value, int> = 0>
+inline void read_single(T &x) {
+  char c = ' ';
+  do {
+    if (in_left + 32 > in_right) load();
+    c = inbuf[in_left++];
+  } while (c == ' ' || c == '\n');
+  x += c;
+  while (1) {
+    if (in_left + 32 > in_right) load();
+    c = inbuf[in_left++];
+    if (c == ' ' || c == '\n') break;
+    x += c;
+  }
+}
+
+template <class T, enable_if_t<is_integral<T>::value, int> = 0>
+inline void read_single(T &x) {
   if (in_left + 32 > in_right) load();
   char c;
   do
     c = inbuf[in_left++];
   while (c < '-');
-  [[maybe_unused]] bool minus = false;
+  bool minus = false;
   if constexpr (is_signed<T>::value == true) {
     if (c == '-') minus = true, c = inbuf[in_left++];
   }
@@ -57,10 +95,32 @@ inline void read(T &x) {
     if (minus) x = -x;
   }
 }
+
+template <typename T, typename enable_if<has_read<T>::value>::type * = nullptr>
+inline void read_single(T x) {
+  x.read();
+}
+template <class T>
+inline void read_single(vector<T> &ref) {
+  for (auto &d: ref) read_single(d);
+}
+template <class T, int N>
+inline void read_single(array<T, N> &ref) {
+  for (auto &d: ref) read_single(d);
+}
+template <class T, class U>
+inline void read_single(pair<T, U> &p) {
+  read_single(p.first), read_single(p.second);
+}
+template <class... T>
+inline void read_single(tuple<T...> &tpl) {
+  apply([&](auto... t) { (read(t), ...); }, tpl);
+}
+
 inline void read() {}
 template <typename Head, typename... Tail>
 inline void read(Head &head, Tail &... tail) {
-  read(head);
+  read_single(head);
   read(tail...);
 }
 
@@ -77,7 +137,7 @@ inline void write(const string &s) {
   memcpy(outbuf + out_right, s.data(), sizeof(char) * s.size());
   out_right += s.size();
 }
-template <typename T>
+template <class T, enable_if_t<is_integral<T>::value, int> = 0>
 inline void write(T x) {
   if (out_right > SZ - 32) flush();
   if (!x) {
@@ -117,22 +177,63 @@ inline void write(T x) {
   memcpy(outbuf + out_right, buf + i + 4, 12 - i);
   out_right += 12 - i;
 }
-inline void write() {}
-template <typename Head, typename... Tail>
-inline void write(Head &&head, Tail &&... tail) {
-  write(head);
-  write(forward<Tail>(tail)...);
+inline void write(const double &x) {
+  ostringstream oss;
+  oss << fixed << setprecision(15) << x;
+  string s = oss.str();
+  write(s);
 }
-template <typename... Args>
-inline void writen(Args &&... x) {
-  write(forward<Args>(x)...);
-  write('\n');
+inline void write(const long double &x) {
+  ostringstream oss;
+  oss << fixed << setprecision(15) << x;
+  string s = oss.str();
+  write(s);
 }
-
+template <typename T, typename enable_if<has_print<T>::value>::type * = nullptr>
+inline void write(T x) {
+  x.print();
+}
+template <class T>
+void write(const vector<T> &val) {
+  auto n = val.size();
+  for (size_t i = 0; i < n; i++) {
+    if (i) write(' ');
+    write(val[i]);
+  }
+}
+template <class T, class U>
+void write(const pair<T, U> &val) {
+  write(val.first);
+  write(' ');
+  write(val.second);
+}
+template <class T, size_t S>
+inline void write(const array<T, S> &val) {
+  auto n = val.size();
+  for (size_t i = 0; i < n; i++) {
+    if (i) write(' ');
+    write(val[i]);
+  }
+}
+inline void write(i128 val) {
+  string s;
+  bool negative = 0;
+  if (val < 0) {
+    negative = 1;
+    val = -val;
+  }
+  while (val) {
+    s += '0' + int(val % 10);
+    val /= 10;
+  }
+  if (negative) s += "-";
+  reverse(all(s));
+  if (len(s) == 0) s = "0";
+  write(s);
+}
 struct Dummy {
   Dummy() { atexit(flush); }
 } dummy;
-} // namespace fastio
 
 void print() { fastio::write('\n'); }
 template <class Head, class... Tail>
@@ -141,13 +242,9 @@ void print(Head &&head, Tail &&... tail) {
   if (sizeof...(Tail)) fastio::write(' ');
   print(forward<Tail>(tail)...);
 }
-
-void read() {}
-template <class Head, class... Tail>
-void read(Head &head, Tail &... tail) {
-  fastio::read(head);
-  read(tail...);
-}
+} // namespace fastio
+using fastio::read;
+using fastio::print;
 
 #define INT(...)   \
   int __VA_ARGS__; \
