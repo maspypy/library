@@ -376,6 +376,9 @@ data:
     path: test/yukicoder/1685.test.cpp
     title: test/yukicoder/1685.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1720.test.cpp
+    title: test/yukicoder/1720.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1755.test.cpp
     title: test/yukicoder/1755.test.cpp
   - icon: ':x:'
@@ -521,6 +524,7 @@ data:
   - test/yukicoder/1561.test.cpp
   - test/yukicoder/187.test.cpp
   - test/yukicoder/1500.test.cpp
+  - test/yukicoder/1720.test.cpp
   - test/yukicoder/1844.test.cpp
   - test/yukicoder/578.test.cpp
   - test/yukicoder/1796.test.cpp

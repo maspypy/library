@@ -171,7 +171,7 @@ data:
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_5_C.test.cpp
     title: test/aoj/DPL_5_C.test.cpp
   - icon: ':x:'
@@ -535,6 +535,9 @@ data:
     path: test/yukicoder/1685.test.cpp
     title: test/yukicoder/1685.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1720.test.cpp
+    title: test/yukicoder/1720.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1728.test.cpp
     title: test/yukicoder/1728.test.cpp
   - icon: ':x:'
@@ -586,6 +589,9 @@ data:
     path: test/yukicoder/1989.test.cpp
     title: test/yukicoder/1989.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/2003.test.cpp
+    title: test/yukicoder/2003.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/2005.test.cpp
     title: test/yukicoder/2005.test.cpp
   - icon: ':x:'
@@ -597,6 +603,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/2108.test.cpp
     title: test/yukicoder/2108.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/235.test.cpp
+    title: test/yukicoder/235.test.cpp
   - icon: ':x:'
     path: test/yukicoder/310.test.cpp
     title: test/yukicoder/310.test.cpp
@@ -617,7 +626,7 @@ data:
     title: test/yukicoder/749.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n\
@@ -855,7 +864,7 @@ data:
   - linalg/det_A_plus_xB.hpp
   - graph/tree_all_distances.hpp
   timestamp: '2022-12-02 03:30:03+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1821.test.cpp
   - test/yukicoder/2005.test.cpp
@@ -872,9 +881,12 @@ data:
   - test/yukicoder/1649.test.cpp
   - test/yukicoder/1989.test.cpp
   - test/yukicoder/1561.test.cpp
+  - test/yukicoder/2003.test.cpp
   - test/yukicoder/1728.test.cpp
+  - test/yukicoder/235.test.cpp
   - test/yukicoder/1760.test.cpp
   - test/yukicoder/1500.test.cpp
+  - test/yukicoder/1720.test.cpp
   - test/yukicoder/1025.test.cpp
   - test/yukicoder/1844.test.cpp
   - test/yukicoder/578.test.cpp

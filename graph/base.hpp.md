@@ -14,7 +14,7 @@ data:
   - icon: ':x:'
     path: geo/manhattan_mst.hpp
     title: geo/manhattan_mst.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
   - icon: ':x:'
@@ -35,6 +35,9 @@ data:
   - icon: ':x:'
     path: graph/ds/bfsnumbering.hpp
     title: graph/ds/bfsnumbering.hpp
+  - icon: ':question:'
+    path: graph/ds/lazytreemonoid.hpp
+    title: graph/ds/lazytreemonoid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
@@ -59,7 +62,7 @@ data:
   - icon: ':x:'
     path: graph/mincostcycle.hpp
     title: graph/mincostcycle.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
   - icon: ':x:'
@@ -83,7 +86,7 @@ data:
   - icon: ':x:'
     path: graph/shortest_path/K_shortest_walk.hpp
     title: graph/shortest_path/K_shortest_walk.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/bellmanford.hpp
     title: graph/shortest_path/bellmanford.hpp
   - icon: ':x:'
@@ -95,7 +98,7 @@ data:
   - icon: ':question:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/shortest_path/warshall_floyd.hpp
     title: graph/shortest_path/warshall_floyd.hpp
   - icon: ':warning:'
@@ -119,7 +122,7 @@ data:
   - icon: ':x:'
     path: graph/tree_dp.hpp
     title: graph/tree_dp.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
   - icon: ':x:'
@@ -156,21 +159,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_12_B.test.cpp
     title: test/aoj/ALDS1_12_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_2_A.test.cpp
     title: test/aoj/DPL_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_B.test.cpp
     title: test/aoj/GRL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_C.test.cpp
     title: test/aoj/GRL_1_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_A.test.cpp
     title: test/aoj/GRL_3_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_B.test.cpp
     title: test/aoj/GRL_3_B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_5_E.test.cpp
+    title: test/aoj/GRL_5_E.test.cpp
   - icon: ':x:'
     path: test/atcoder/abc266f.test.cpp
     title: test/atcoder/abc266f.test.cpp
@@ -259,6 +265,9 @@ data:
     path: test/yukicoder/1170.test.cpp
     title: test/yukicoder/1170.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1197.test.cpp
+    title: test/yukicoder/1197.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1254.test.cpp
     title: test/yukicoder/1254.test.cpp
   - icon: ':x:'
@@ -313,6 +322,9 @@ data:
     path: test/yukicoder/1778.test.cpp
     title: test/yukicoder/1778.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1790.test.cpp
+    title: test/yukicoder/1790.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1796.test.cpp
     title: test/yukicoder/1796.test.cpp
   - icon: ':x:'
@@ -327,6 +339,12 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1976.test.cpp
     title: test/yukicoder/1976.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1983.test.cpp
+    title: test/yukicoder/1983.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/235.test.cpp
+    title: test/yukicoder/235.test.cpp
   - icon: ':x:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
@@ -460,6 +478,7 @@ data:
   - graph/find_cycle.hpp
   - graph/maximum_independent_set.hpp
   - graph/steiner_tree.hpp
+  - graph/ds/lazytreemonoid.hpp
   - graph/ds/bfsnumbering.hpp
   - graph/find_odd_cycle.hpp
   - graph/tree_all_distances.hpp
@@ -486,6 +505,8 @@ data:
   - test/yukicoder/1775.test.cpp
   - test/yukicoder/17.test.cpp
   - test/yukicoder/1524.test.cpp
+  - test/yukicoder/235.test.cpp
+  - test/yukicoder/1983.test.cpp
   - test/yukicoder/1778.test.cpp
   - test/yukicoder/1813.test.cpp
   - test/yukicoder/1170.test.cpp
@@ -496,6 +517,7 @@ data:
   - test/yukicoder/1293.test.cpp
   - test/yukicoder/1769.test.cpp
   - test/yukicoder/1976.test.cpp
+  - test/yukicoder/1790.test.cpp
   - test/yukicoder/1069.test.cpp
   - test/yukicoder/1002.test.cpp
   - test/yukicoder/1745.test.cpp
@@ -503,6 +525,7 @@ data:
   - test/yukicoder/1868.test.cpp
   - test/yukicoder/1418.test.cpp
   - test/yukicoder/1718.test.cpp
+  - test/yukicoder/1197.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/tutte.test.cpp
   - test/library_checker/string/number_of_substrings2.test.cpp
@@ -533,6 +556,7 @@ data:
   - test/aoj/2677.test.cpp
   - test/aoj/DPL_2_A.test.cpp
   - test/aoj/2251_2.test.cpp
+  - test/aoj/GRL_5_E.test.cpp
   - test/aoj/1566.test.cpp
   - test/aoj/GRL_1_C.test.cpp
   - test/aoj/ALDS1_12_B.test.cpp

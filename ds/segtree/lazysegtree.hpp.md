@@ -2,19 +2,40 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':question:'
+    path: graph/ds/lazytreemonoid.hpp
+    title: graph/ds/lazytreemonoid.hpp
+  - icon: ':x:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_F.test.cpp
     title: test/aoj/DSL_2_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_H.test.cpp
     title: test/aoj/DSL_2_H.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_I.test.cpp
     title: test/aoj/DSL_2_I.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_5_E.test.cpp
+    title: test/aoj/GRL_5_E.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1197.test.cpp
+    title: test/yukicoder/1197.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1234.test.cpp
+    title: test/yukicoder/1234.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1720.test.cpp
+    title: test/yukicoder/1720.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1790.test.cpp
+    title: test/yukicoder/1790.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/235.test.cpp
+    title: test/yukicoder/235.test.cpp
   - icon: ':x:'
     path: test/yukicoder/749.test.cpp
     title: test/yukicoder/749.test.cpp
@@ -23,7 +44,7 @@ data:
     title: test/yukicoder/899.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/lazysegtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -155,12 +176,19 @@ data:
   path: ds/segtree/lazysegtree.hpp
   requiredBy:
   - seq/common_interval_decomposition.hpp
+  - graph/ds/lazytreemonoid.hpp
   timestamp: '2022-12-01 18:20:22+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/899.test.cpp
   - test/yukicoder/749.test.cpp
+  - test/yukicoder/1234.test.cpp
+  - test/yukicoder/235.test.cpp
+  - test/yukicoder/1720.test.cpp
+  - test/yukicoder/1790.test.cpp
+  - test/yukicoder/1197.test.cpp
   - test/aoj/DSL_2_I.test.cpp
+  - test/aoj/GRL_5_E.test.cpp
   - test/aoj/DSL_2_F.test.cpp
   - test/aoj/DSL_2_H.test.cpp
 documentation_of: ds/segtree/lazysegtree.hpp

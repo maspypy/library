@@ -22,6 +22,9 @@ data:
     path: test/yukicoder/1117.test.cpp
     title: test/yukicoder/1117.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1790.test.cpp
+    title: test/yukicoder/1790.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/2026.test.cpp
     title: test/yukicoder/2026.test.cpp
   - icon: ':x:'
@@ -54,6 +57,7 @@ data:
   verifiedWith:
   - test/yukicoder/686.test.cpp
   - test/yukicoder/2026.test.cpp
+  - test/yukicoder/1790.test.cpp
   - test/yukicoder/1117.test.cpp
 documentation_of: alg/monoid/max.hpp
 layout: document

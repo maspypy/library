@@ -2,19 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_monoid/cntsum_add.hpp
     title: alg/acted_monoid/cntsum_add.hpp
   - icon: ':x:'
     path: alg/acted_monoid/cntsum_affine.hpp
     title: alg/acted_monoid/cntsum_affine.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/cntsum_assign.hpp
     title: alg/acted_monoid/cntsum_assign.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_I.test.cpp
     title: test/aoj/DSL_2_I.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_5_E.test.cpp
+    title: test/aoj/GRL_5_E.test.cpp
   - icon: ':x:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
@@ -39,9 +42,15 @@ data:
   - icon: ':x:'
     path: test/mytest/splay_am.test.cpp
     title: test/mytest/splay_am.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1197.test.cpp
+    title: test/yukicoder/1197.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/235.test.cpp
+    title: test/yukicoder/235.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add_pair.hpp\"\n\r\ntemplate <typename E>\r\n\
@@ -64,8 +73,10 @@ data:
   - alg/acted_monoid/cntsum_add.hpp
   - alg/acted_monoid/cntsum_assign.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/235.test.cpp
+  - test/yukicoder/1197.test.cpp
   - test/mytest/cf702_F.test.cpp
   - test/mytest/cf702_F_splay.test.cpp
   - test/mytest/splay_am.test.cpp
@@ -75,6 +86,7 @@ data:
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/aoj/DSL_2_I.test.cpp
+  - test/aoj/GRL_5_E.test.cpp
 documentation_of: alg/monoid/add_pair.hpp
 layout: document
 redirect_from:

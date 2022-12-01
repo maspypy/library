@@ -8,7 +8,7 @@ data:
   - icon: ':warning:'
     path: alg/acted_monoid/cntminmincnt_add.hpp
     title: alg/acted_monoid/cntminmincnt_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_monoid/cntsum_add.hpp
     title: alg/acted_monoid/cntsum_add.hpp
   - icon: ':warning:'
@@ -23,7 +23,7 @@ data:
   - icon: ':warning:'
     path: alg/acted_monoid/maxidx_add.hpp
     title: alg/acted_monoid/maxidx_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
   - icon: ':warning:'
@@ -41,13 +41,13 @@ data:
   - icon: ':warning:'
     path: ds/fenwick/fenwick2d.hpp
     title: ds/fenwick/fenwick2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwick/fenwick2d_dense.hpp
     title: ds/fenwick/fenwick2d_dense.hpp
   - icon: ':x:'
     path: ds/waveletmatrix.hpp
     title: ds/waveletmatrix.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
   - icon: ':heavy_check_mark:'
@@ -72,12 +72,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_5.test.cpp
     title: test/aoj/ALDS1_5.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_1_B.test.cpp
     title: test/aoj/DSL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_H.test.cpp
     title: test/aoj/DSL_2_H.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_5_E.test.cpp
+    title: test/aoj/GRL_5_E.test.cpp
   - icon: ':x:'
     path: test/atcoder/abc127f_1.test.cpp
     title: test/atcoder/abc127f_1.test.cpp
@@ -115,6 +118,12 @@ data:
     path: test/yukicoder/1141.test.cpp
     title: test/yukicoder/1141.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1197.test.cpp
+    title: test/yukicoder/1197.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1234.test.cpp
+    title: test/yukicoder/1234.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1269.test.cpp
     title: test/yukicoder/1269.test.cpp
   - icon: ':x:'
@@ -127,11 +136,20 @@ data:
     path: test/yukicoder/1441.test.cpp
     title: test/yukicoder/1441.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1720.test.cpp
+    title: test/yukicoder/1720.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1977.test.cpp
     title: test/yukicoder/1977.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/2003.test.cpp
+    title: test/yukicoder/2003.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/2065.test.cpp
     title: test/yukicoder/2065.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/235.test.cpp
+    title: test/yukicoder/235.test.cpp
   - icon: ':x:'
     path: test/yukicoder/655.test.cpp
     title: test/yukicoder/655.test.cpp
@@ -194,6 +212,10 @@ data:
   - test/yukicoder/1441.test.cpp
   - test/yukicoder/1311.test.cpp
   - test/yukicoder/899.test.cpp
+  - test/yukicoder/2003.test.cpp
+  - test/yukicoder/1234.test.cpp
+  - test/yukicoder/235.test.cpp
+  - test/yukicoder/1720.test.cpp
   - test/yukicoder/686.test.cpp
   - test/yukicoder/1141.test.cpp
   - test/yukicoder/1269.test.cpp
@@ -203,6 +225,7 @@ data:
   - test/yukicoder/919.test.cpp
   - test/yukicoder/1097.test.cpp
   - test/yukicoder/1977.test.cpp
+  - test/yukicoder/1197.test.cpp
   - test/mytest/splay_cm.test.cpp
   - test/mytest/splay_am.test.cpp
   - test/mytest/rbst_commutative_persistent.test.cpp
@@ -214,6 +237,7 @@ data:
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   - test/atcoder/abc127f_1.test.cpp
   - test/aoj/2842_2.test.cpp
+  - test/aoj/GRL_5_E.test.cpp
   - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/DSL_1_B.test.cpp
   - test/aoj/DSL_2_H.test.cpp

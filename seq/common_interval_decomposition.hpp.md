@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
   - icon: ':question:'
@@ -10,14 +10,17 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/lazysegtree.hpp
     title: ds/segtree/lazysegtree.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yukicoder/1720.test.cpp
+    title: test/yukicoder/1720.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/lazysegtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -178,8 +181,9 @@ data:
   path: seq/common_interval_decomposition.hpp
   requiredBy: []
   timestamp: '2022-12-01 22:45:39+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yukicoder/1720.test.cpp
 documentation_of: seq/common_interval_decomposition.hpp
 layout: document
 redirect_from:

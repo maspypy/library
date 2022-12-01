@@ -5,10 +5,10 @@ data:
   - icon: ':warning:'
     path: alg/acted_monoid/max_min.hpp
     title: alg/acted_monoid/max_min.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
   - icon: ':warning:'
@@ -17,7 +17,7 @@ data:
   - icon: ':warning:'
     path: alg/acted_monoid/min_min.hpp
     title: alg/acted_monoid/min_min.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
   - icon: ':x:'
@@ -36,10 +36,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508_2.test.cpp
     title: test/aoj/1508_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_F.test.cpp
     title: test/aoj/DSL_2_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_H.test.cpp
     title: test/aoj/DSL_2_H.test.cpp
   - icon: ':x:'
@@ -67,8 +67,14 @@ data:
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1234.test.cpp
+    title: test/yukicoder/1234.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1600.test.cpp
     title: test/yukicoder/1600.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1720.test.cpp
+    title: test/yukicoder/1720.test.cpp
   - icon: ':x:'
     path: test/yukicoder/913.test.cpp
     title: test/yukicoder/913.test.cpp
@@ -103,6 +109,8 @@ data:
   verifiedWith:
   - test/yukicoder/1600.test.cpp
   - test/yukicoder/913.test.cpp
+  - test/yukicoder/1234.test.cpp
+  - test/yukicoder/1720.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/rbst_am.test.cpp
   - test/mytest/rbst_am_persistent.test.cpp
