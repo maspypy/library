@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"
-#include "ds/weightedunionfind.hpp"
+#include "ds/unionfind/weightedunionfind.hpp"
 #include "alg/monoid/affine.hpp"
 
 using mint = modint107;

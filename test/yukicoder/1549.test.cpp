@@ -4,7 +4,7 @@
 #include "other/io.hpp"
 
 #include "mod/modint.hpp"
-#include "ds/segtree.hpp"
+#include "ds/segtree/segtree.hpp"
 #include "poly/convolution.hpp"
 #include "poly/fps_pow.hpp"
 

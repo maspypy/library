@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "mod/modint.hpp"
 #include "linalg/det.hpp"
-#include "ds/unionfind.hpp"
+#include "ds/unionfind/unionfind.hpp"
 #include "linalg/det_A_plus_xB.hpp"
 
 using mint = modint998;
