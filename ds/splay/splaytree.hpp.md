@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/splay/splaytree_commutative_monoid.hpp
     title: ds/splay/splaytree_commutative_monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/splay/splaytree_monoid.hpp
     title: ds/splay/splaytree_monoid.hpp
   _extendedVerifiedWith:
@@ -39,15 +39,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/splay_monoid.test.cpp
     title: test/mytest/splay_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1441.test.cpp
     title: test/yukicoder/1441.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1441_2.test.cpp
-    title: test/yukicoder/1441_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/splay/splaytree.hpp\"\n// Node \u578B\u3092\u5225\u306B\
@@ -267,10 +264,9 @@ data:
   - ds/splay/splaytree_commutative_monoid.hpp
   - ds/splay/splaytree_acted_monoid.hpp
   timestamp: '2022-12-01 12:32:02+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1441.test.cpp
-  - test/yukicoder/1441_2.test.cpp
   - test/mytest/cf702_F_splay.test.cpp
   - test/mytest/splay_monoid.test.cpp
   - test/mytest/splay_cm.test.cpp

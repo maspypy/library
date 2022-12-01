@@ -386,7 +386,7 @@ data:
       title: ds/rbst/rbst_monoid.hpp
   - name: ds/splay
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/splay/splaytree.hpp
       title: ds/splay/splaytree.hpp
     - icon: ':heavy_check_mark:'
@@ -398,7 +398,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/splay/splaytree_commutative_monoid.hpp
       title: ds/splay/splaytree_commutative_monoid.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/splay/splaytree_monoid.hpp
       title: ds/splay/splaytree_monoid.hpp
   - name: enumerate
@@ -2502,12 +2502,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1435_2.test.cpp
       title: test/yukicoder/1435_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1441.test.cpp
       title: test/yukicoder/1441.test.cpp
-    - icon: ':x:'
-      path: test/yukicoder/1441_2.test.cpp
-      title: test/yukicoder/1441_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1451.test.cpp
       title: test/yukicoder/1451.test.cpp
