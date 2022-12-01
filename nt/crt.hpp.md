@@ -24,9 +24,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2119.test.cpp
     title: test/yukicoder/2119.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/590.test.cpp
-    title: test/yukicoder/590.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -148,7 +145,6 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/187.test.cpp
-  - test/yukicoder/590.test.cpp
   - test/yukicoder/1956.test.cpp
   - test/yukicoder/2119.test.cpp
 documentation_of: nt/crt.hpp

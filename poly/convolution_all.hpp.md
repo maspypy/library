@@ -37,9 +37,6 @@ data:
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1392.test.cpp
-    title: test/yukicoder/1392.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1857.test.cpp
     title: test/yukicoder/1857.test.cpp
   _isVerificationFailed: false
@@ -342,7 +339,6 @@ data:
   timestamp: '2022-11-06 13:29:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1392.test.cpp
   - test/yukicoder/1857.test.cpp
   - test/yukicoder/1145.test.cpp
   - test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp

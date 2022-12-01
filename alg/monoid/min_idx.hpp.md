@@ -2,37 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: alg/acted_monoid/minidx_add.hpp
     title: alg/acted_monoid/minidx_add.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/cht/dynamic_lichao.hpp
-    title: ds/cht/dynamic_lichao.hpp
+  - icon: ':warning:'
+    path: ds/func/dynamic_lichao.hpp
+    title: ds/func/dynamic_lichao.hpp
   - icon: ':warning:'
     path: ds/pds/persistent_dynamic_lichao.hpp
     title: ds/pds/persistent_dynamic_lichao.hpp
-  - icon: ':warning:'
-    path: geo/manhattan_nns.hpp
-    title: geo/manhattan_nns.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/suffix_tree.hpp
-    title: string/suffix_tree.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
-    title: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
-    title: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/minidx_add.test.cpp
-    title: test/mytest/minidx_add.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/suffix_tree.test.cpp
-    title: test/mytest/suffix_tree.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/min_idx.hpp\"\n\r\ntemplate <typename T, bool\
@@ -55,17 +37,11 @@ data:
   path: alg/monoid/min_idx.hpp
   requiredBy:
   - alg/acted_monoid/minidx_add.hpp
-  - string/suffix_tree.hpp
-  - geo/manhattan_nns.hpp
-  - ds/cht/dynamic_lichao.hpp
+  - ds/func/dynamic_lichao.hpp
   - ds/pds/persistent_dynamic_lichao.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/mytest/minidx_add.test.cpp
-  - test/mytest/suffix_tree.test.cpp
-  - test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
-  - test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: alg/monoid/min_idx.hpp
 layout: document
 redirect_from:

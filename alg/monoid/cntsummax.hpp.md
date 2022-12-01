@@ -2,22 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: alg/acted_monoid/cntsummax_add.hpp
     title: alg/acted_monoid/cntsummax_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: alg/acted_monoid/cntsummax_assign.hpp
     title: alg/acted_monoid/cntsummax_assign.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/cntsummax_add.test.cpp
-    title: test/mytest/cntsummax_add.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/cntsummax_assign.test.cpp
-    title: test/mytest/cntsummax_assign.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/cntsummax.hpp\"\n\r\ntemplate <typename E>\r\n\
@@ -40,10 +34,8 @@ data:
   - alg/acted_monoid/cntsummax_assign.hpp
   - alg/acted_monoid/cntsummax_add.hpp
   timestamp: '2022-11-27 22:15:30+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/mytest/cntsummax_assign.test.cpp
-  - test/mytest/cntsummax_add.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: alg/monoid/cntsummax.hpp
 layout: document
 redirect_from:

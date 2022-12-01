@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -15,9 +15,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1002.test.cpp
     title: test/yukicoder/1002.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1038.test.cpp
-    title: test/yukicoder/1038.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1769.test.cpp
     title: test/yukicoder/1769.test.cpp
@@ -199,7 +196,6 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1796.test.cpp
-  - test/yukicoder/1038.test.cpp
   - test/yukicoder/1769.test.cpp
   - test/yukicoder/1002.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp

@@ -1,35 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: ds/common_interval_decomposition.hpp
-    title: ds/common_interval_decomposition.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_2_H.test.cpp
-    title: test/aoj/DSL_2_H.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/common_interval_decomposition.test.cpp
-    title: test/library_checker/graph/common_interval_decomposition.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1234.test.cpp
-    title: test/yukicoder/1234.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1270.test.cpp
-    title: test/yukicoder/1270.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1720.test.cpp
-    title: test/yukicoder/1720.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -58,16 +40,10 @@ data:
   - alg/monoid/min.hpp
   isVerificationFile: false
   path: alg/acted_monoid/min_add.hpp
-  requiredBy:
-  - ds/common_interval_decomposition.hpp
+  requiredBy: []
   timestamp: '2022-12-01 09:04:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yukicoder/1234.test.cpp
-  - test/yukicoder/1720.test.cpp
-  - test/yukicoder/1270.test.cpp
-  - test/library_checker/graph/common_interval_decomposition.test.cpp
-  - test/aoj/DSL_2_H.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: alg/acted_monoid/min_add.hpp
 layout: document
 redirect_from:
