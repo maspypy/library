@@ -1,4 +1,4 @@
-#include "ds/lazysegtree.hpp"
+#include "ds/segtree/lazysegtree.hpp"
 #include "graph/tree.hpp"
 
 template <typename TREE, typename ActedMonoid, bool edge = false>
