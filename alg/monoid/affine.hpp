@@ -1,3 +1,5 @@
+#pragma once
+
 template <typename K>
 struct Monoid_Affine {
   using F = pair<K, K>;

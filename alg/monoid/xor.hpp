@@ -1,3 +1,5 @@
+#pragma once
+
 template <typename X>
 struct Monoid_Xor {
   using value_type = X;

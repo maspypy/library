@@ -1,4 +1,5 @@
 #pragma once
+
 template <class X>
 struct Monoid_Min {
   using value_type = X;

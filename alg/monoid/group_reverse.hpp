@@ -1,3 +1,5 @@
+#pragma once
+
 template <class Group>
 struct Group_Reverse {
   using value_type = typename Group::value_type;
