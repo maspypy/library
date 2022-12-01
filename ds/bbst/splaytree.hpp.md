@@ -2,16 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/bbst/splaytree_acted_monoid.hpp
     title: ds/bbst/splaytree_acted_monoid.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+    title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
+    title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
   - icon: ':x:'
     path: test/mytest/splay_am.test.cpp
     title: test/mytest/splay_am.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/bbst/splaytree.hpp\"\n// Node \u578B\u3092\u5225\u306B\
@@ -40,43 +46,53 @@ data:
     \  tie(root, nr) = split(root, r);\n    tie(root, nm) = split(root, l);\n    return\
     \ {root, nm, nr};\n  }\n  tuple<np, np, np, np> split4(np root, u32 i, u32 j,\
     \ u32 k) {\n    np d;\n    tie(root, d) = split(root, k);\n    auto [a, b, c]\
-    \ = split3(root, i, j);\n    return {a, b, c, d};\n  }\n\n  vc<X> get_all(const\
-    \ np &root) {\n    vc<X> res;\n    auto dfs = [&](auto &dfs, np root) -> void\
-    \ {\n      if (!root) return;\n      root->prop();\n      dfs(dfs, root->l);\n\
-    \      res.eb(root->get());\n      dfs(dfs, root->r);\n    };\n    dfs(dfs, root);\n\
-    \    return res;\n  }\n\n  X get(np &root, u32 k) {\n    splay_kth(root, k);\n\
-    \    return root->get();\n  }\n\n  void set(np &root, u32 k, const X &x) {\n \
-    \   splay_kth(root, k);\n    root->set(x);\n  }\n\n  void multiply(np &root, u32\
-    \ k, const X &x) {\n    splay_kth(root, k);\n    root->multiply(x);\n  }\n\n \
-    \ X prod(np &root, u32 l, u32 r) {\n    assert(0 <= l && l < r && r <= root->size);\n\
-    \    auto [c1, c2, c3] = split3(root, l, r);\n    X res = c2->prod;\n    root\
-    \ = merge3(c1, c2, c3);\n    return res;\n  }\n\n  void apply(np &root, u32 l,\
-    \ u32 r, const A &a) {\n    assert(0 <= l && l < r && r <= root->size);\n    auto\
-    \ [c1, c2, c3] = split3(root, l, r);\n    c2->apply(a);\n    root = merge3(c1,\
-    \ c2, c3);\n  }\n\n  void reverse(np &root, u32 l, u32 r) {\n    assert(0 <= l\
-    \ && l < r && r <= root->size);\n    auto [c1, c2, c3] = split3(root, l, r);\n\
-    \    c2->reverse();\n    root = merge3(c1, c2, c3);\n  }\n\n  void rotate(Node\
-    \ *n) {\n    // n \u3092\u6839\u306B\u8FD1\u3065\u3051\u308B\u3002prop, update\
-    \ \u306F rotate \u306E\u5916\u3067\u884C\u3046\u3002\n    Node *pp, *p, *c;\n\
-    \    p = n->p;\n    pp = p->p;\n    if (p->l == n) {\n      c = n->r;\n      n->r\
-    \ = p;\n      p->l = c;\n    } else {\n      c = n->l;\n      n->l = p;\n    \
-    \  p->r = c;\n    }\n    if (pp && pp->l == p) pp->l = n;\n    if (pp && pp->r\
-    \ == p) pp->r = n;\n    n->p = pp;\n    p->p = n;\n    if (c) c->p = p;\n  }\n\
-    \n  void splay(Node *me) {\n    // \u3053\u308C\u3092\u547C\u3076\u6642\u70B9\u3067\
-    \u3001\u6839\u304B\u3089 me \u307E\u3067\u306E\u30D1\u30B9\u306F\u65E2\u306B prop\
-    \ \u6E08\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\n    // \u7279\u306B\u3001\
-    splay \u7D42\u4E86\u6642\u70B9\u3067\u3082 me \u306F prop \u6E08\u3067\u3042\u308B\
-    \u3068\u3057\u3066\u3088\u3044\n    while (me->p) {\n      np p = me->p;\n   \
-    \   np pp = p->p;\n      if (!pp) {\n        rotate(me);\n        p->update();\n\
-    \        break;\n      }\n      bool same = (p->l == me && pp->l == p) || (p->r\
-    \ == me && pp->r == p);\n      if (same) rotate(p), rotate(me);\n      if (!same)\
-    \ rotate(me), rotate(me);\n      pp->update(), p->update();\n    }\n    // me\
-    \ \u306E update \u306F\u6700\u5F8C\u3060\u3051\u3067\u3088\u3044\n    me->update();\n\
-    \  }\n\n  void splay_kth(np &root, u32 k) {\n    assert(0 <= k && k < (root->size));\n\
-    \    while (1) {\n      root->prop();\n      u32 sl = (root->l ? root->l->size\
-    \ : 0);\n      if (k < sl) root = root->l;\n      elif (k == sl) break;\n    \
-    \  else {\n        k -= sl + 1;\n        root = root->r;\n      }\n    }\n   \
-    \ splay(root);\n  }\n};\n"
+    \ = split3(root, i, j);\n    return {a, b, c, d};\n  }\n\n  // \u90E8\u5206\u6728\
+    \u304C\u533A\u9593 [l,r) \u306B\u5BFE\u5FDC\u3059\u308B\u3088\u3046\u306A\u30CE\
+    \u30FC\u30C9\u3092\u4F5C\u3063\u3066\u8FD4\u3059\n  // \u305D\u306E\u30CE\u30FC\
+    \u30C9\u304C root \u306B\u306A\u308B\u308F\u3051\u3067\u306F\u306A\u3044\u306E\
+    \u3067\u3001\n  // \u3053\u306E\u30CE\u30FC\u30C9\u3092\u53C2\u7167\u3057\u305F\
+    \u5F8C\u306B\u3059\u3050\u306B splay \u3057\u3066\u6839\u306B\u6301\u3061\u4E0A\
+    \u3052\u308B\u3053\u3068\n  void goto_between(np &root, u32 l, u32 r) {\n    if\
+    \ (l == 0 && r == root->size) return;\n    if (l == 0) {\n      splay_kth(root,\
+    \ r);\n      root = root->l;\n      return;\n    }\n    if (r == root->size) {\n\
+    \      splay_kth(root, l - 1);\n      root = root->r;\n      return;\n    }\n\
+    \    splay_kth(root, r);\n    np rp = root;\n    root = rp->l;\n    root->p =\
+    \ nullptr;\n    splay_kth(root, l - 1);\n    root->p = rp;\n    rp->l = root;\n\
+    \    rp->update();\n    root = root->r;\n  }\n\n  vc<X> get_all(const np &root)\
+    \ {\n    vc<X> res;\n    auto dfs = [&](auto &dfs, np root) -> void {\n      if\
+    \ (!root) return;\n      root->prop();\n      dfs(dfs, root->l);\n      res.eb(root->get());\n\
+    \      dfs(dfs, root->r);\n    };\n    dfs(dfs, root);\n    return res;\n  }\n\
+    \n  X get(np &root, u32 k) {\n    splay_kth(root, k);\n    return root->get();\n\
+    \  }\n\n  void set(np &root, u32 k, const X &x) {\n    splay_kth(root, k);\n \
+    \   root->set(x);\n  }\n\n  void multiply(np &root, u32 k, const X &x) {\n   \
+    \ splay_kth(root, k);\n    root->multiply(x);\n  }\n\n  X prod(np &root, u32 l,\
+    \ u32 r) {\n    assert(0 <= l && l < r && r <= root->size);\n    goto_between(root,\
+    \ l, r);\n    X res = root->prod;\n    splay(root);\n    return res;\n  }\n\n\
+    \  void apply(np &root, u32 l, u32 r, const A &a) {\n    assert(0 <= l && l <\
+    \ r && r <= root->size);\n    goto_between(root, l, r);\n    root->apply(a);\n\
+    \    splay(root);\n  }\n\n  void reverse(np &root, u32 l, u32 r) {\n    assert(0\
+    \ <= l && l < r && r <= root->size);\n    goto_between(root, l, r);\n    root->reverse();\n\
+    \    splay(root);\n  }\n\n  void rotate(Node *n) {\n    // n \u3092\u6839\u306B\
+    \u8FD1\u3065\u3051\u308B\u3002prop, update \u306F rotate \u306E\u5916\u3067\u884C\
+    \u3046\u3002\n    Node *pp, *p, *c;\n    p = n->p;\n    pp = p->p;\n    if (p->l\
+    \ == n) {\n      c = n->r;\n      n->r = p;\n      p->l = c;\n    } else {\n \
+    \     c = n->l;\n      n->l = p;\n      p->r = c;\n    }\n    if (pp && pp->l\
+    \ == p) pp->l = n;\n    if (pp && pp->r == p) pp->r = n;\n    n->p = pp;\n   \
+    \ p->p = n;\n    if (c) c->p = p;\n  }\n\n  void splay(Node *me) {\n    // \u3053\
+    \u308C\u3092\u547C\u3076\u6642\u70B9\u3067\u3001me \u306E\u7956\u5148\uFF08me\
+    \ \u3092\u9664\u304F\uFF09\u306F\u65E2\u306B prop \u6E08\u3067\u3042\u308B\u3053\
+    \u3068\u3092\u4EEE\u5B9A\n    // \u7279\u306B\u3001splay \u7D42\u4E86\u6642\u70B9\
+    \u3067 me \u306F upd / prop \u6E08\u3067\u3042\u308B\n    me->prop();\n    while\
+    \ (me->p) {\n      np p = me->p;\n      np pp = p->p;\n      if (!pp) {\n    \
+    \    rotate(me);\n        p->update();\n        break;\n      }\n      bool same\
+    \ = (p->l == me && pp->l == p) || (p->r == me && pp->r == p);\n      if (same)\
+    \ rotate(p), rotate(me);\n      if (!same) rotate(me), rotate(me);\n      pp->update(),\
+    \ p->update();\n    }\n    // me \u306E update \u306F\u6700\u5F8C\u3060\u3051\u3067\
+    \u3088\u3044\n    me->update();\n  }\n\n  void splay_kth(np &root, u32 k) {\n\
+    \    assert(0 <= k && k < (root->size));\n    while (1) {\n      u32 sl = (root->l\
+    \ ? root->l->size : 0);\n      if (k == sl) break;\n      root->prop();\n    \
+    \  if (k < sl)\n        root = root->l;\n      else {\n        k -= sl + 1;\n\
+    \        root = root->r;\n      }\n    }\n    splay(root);\n  }\n};\n"
   code: "#pragma once\n// Node \u578B\u3092\u5225\u306B\u5B9A\u7FA9\u3057\u3066\u4F7F\
     \u3046\ntemplate <typename Node, int NODES = 1'000'000>\nstruct SplayTree {\n\
     \  Node *pool;\n  int pid;\n  using np = Node *;\n  using X = typename Node::value_type;\n\
@@ -103,51 +119,64 @@ data:
     \ = split(root, l);\n    return {root, nm, nr};\n  }\n  tuple<np, np, np, np>\
     \ split4(np root, u32 i, u32 j, u32 k) {\n    np d;\n    tie(root, d) = split(root,\
     \ k);\n    auto [a, b, c] = split3(root, i, j);\n    return {a, b, c, d};\n  }\n\
-    \n  vc<X> get_all(const np &root) {\n    vc<X> res;\n    auto dfs = [&](auto &dfs,\
-    \ np root) -> void {\n      if (!root) return;\n      root->prop();\n      dfs(dfs,\
-    \ root->l);\n      res.eb(root->get());\n      dfs(dfs, root->r);\n    };\n  \
-    \  dfs(dfs, root);\n    return res;\n  }\n\n  X get(np &root, u32 k) {\n    splay_kth(root,\
-    \ k);\n    return root->get();\n  }\n\n  void set(np &root, u32 k, const X &x)\
-    \ {\n    splay_kth(root, k);\n    root->set(x);\n  }\n\n  void multiply(np &root,\
-    \ u32 k, const X &x) {\n    splay_kth(root, k);\n    root->multiply(x);\n  }\n\
-    \n  X prod(np &root, u32 l, u32 r) {\n    assert(0 <= l && l < r && r <= root->size);\n\
-    \    auto [c1, c2, c3] = split3(root, l, r);\n    X res = c2->prod;\n    root\
-    \ = merge3(c1, c2, c3);\n    return res;\n  }\n\n  void apply(np &root, u32 l,\
-    \ u32 r, const A &a) {\n    assert(0 <= l && l < r && r <= root->size);\n    auto\
-    \ [c1, c2, c3] = split3(root, l, r);\n    c2->apply(a);\n    root = merge3(c1,\
-    \ c2, c3);\n  }\n\n  void reverse(np &root, u32 l, u32 r) {\n    assert(0 <= l\
-    \ && l < r && r <= root->size);\n    auto [c1, c2, c3] = split3(root, l, r);\n\
-    \    c2->reverse();\n    root = merge3(c1, c2, c3);\n  }\n\n  void rotate(Node\
-    \ *n) {\n    // n \u3092\u6839\u306B\u8FD1\u3065\u3051\u308B\u3002prop, update\
-    \ \u306F rotate \u306E\u5916\u3067\u884C\u3046\u3002\n    Node *pp, *p, *c;\n\
-    \    p = n->p;\n    pp = p->p;\n    if (p->l == n) {\n      c = n->r;\n      n->r\
-    \ = p;\n      p->l = c;\n    } else {\n      c = n->l;\n      n->l = p;\n    \
-    \  p->r = c;\n    }\n    if (pp && pp->l == p) pp->l = n;\n    if (pp && pp->r\
-    \ == p) pp->r = n;\n    n->p = pp;\n    p->p = n;\n    if (c) c->p = p;\n  }\n\
-    \n  void splay(Node *me) {\n    // \u3053\u308C\u3092\u547C\u3076\u6642\u70B9\u3067\
-    \u3001\u6839\u304B\u3089 me \u307E\u3067\u306E\u30D1\u30B9\u306F\u65E2\u306B prop\
-    \ \u6E08\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\n    // \u7279\u306B\u3001\
-    splay \u7D42\u4E86\u6642\u70B9\u3067\u3082 me \u306F prop \u6E08\u3067\u3042\u308B\
-    \u3068\u3057\u3066\u3088\u3044\n    while (me->p) {\n      np p = me->p;\n   \
-    \   np pp = p->p;\n      if (!pp) {\n        rotate(me);\n        p->update();\n\
-    \        break;\n      }\n      bool same = (p->l == me && pp->l == p) || (p->r\
-    \ == me && pp->r == p);\n      if (same) rotate(p), rotate(me);\n      if (!same)\
-    \ rotate(me), rotate(me);\n      pp->update(), p->update();\n    }\n    // me\
-    \ \u306E update \u306F\u6700\u5F8C\u3060\u3051\u3067\u3088\u3044\n    me->update();\n\
-    \  }\n\n  void splay_kth(np &root, u32 k) {\n    assert(0 <= k && k < (root->size));\n\
-    \    while (1) {\n      root->prop();\n      u32 sl = (root->l ? root->l->size\
-    \ : 0);\n      if (k < sl) root = root->l;\n      elif (k == sl) break;\n    \
-    \  else {\n        k -= sl + 1;\n        root = root->r;\n      }\n    }\n   \
-    \ splay(root);\n  }\n};"
+    \n  // \u90E8\u5206\u6728\u304C\u533A\u9593 [l,r) \u306B\u5BFE\u5FDC\u3059\u308B\
+    \u3088\u3046\u306A\u30CE\u30FC\u30C9\u3092\u4F5C\u3063\u3066\u8FD4\u3059\n  //\
+    \ \u305D\u306E\u30CE\u30FC\u30C9\u304C root \u306B\u306A\u308B\u308F\u3051\u3067\
+    \u306F\u306A\u3044\u306E\u3067\u3001\n  // \u3053\u306E\u30CE\u30FC\u30C9\u3092\
+    \u53C2\u7167\u3057\u305F\u5F8C\u306B\u3059\u3050\u306B splay \u3057\u3066\u6839\
+    \u306B\u6301\u3061\u4E0A\u3052\u308B\u3053\u3068\n  void goto_between(np &root,\
+    \ u32 l, u32 r) {\n    if (l == 0 && r == root->size) return;\n    if (l == 0)\
+    \ {\n      splay_kth(root, r);\n      root = root->l;\n      return;\n    }\n\
+    \    if (r == root->size) {\n      splay_kth(root, l - 1);\n      root = root->r;\n\
+    \      return;\n    }\n    splay_kth(root, r);\n    np rp = root;\n    root =\
+    \ rp->l;\n    root->p = nullptr;\n    splay_kth(root, l - 1);\n    root->p = rp;\n\
+    \    rp->l = root;\n    rp->update();\n    root = root->r;\n  }\n\n  vc<X> get_all(const\
+    \ np &root) {\n    vc<X> res;\n    auto dfs = [&](auto &dfs, np root) -> void\
+    \ {\n      if (!root) return;\n      root->prop();\n      dfs(dfs, root->l);\n\
+    \      res.eb(root->get());\n      dfs(dfs, root->r);\n    };\n    dfs(dfs, root);\n\
+    \    return res;\n  }\n\n  X get(np &root, u32 k) {\n    splay_kth(root, k);\n\
+    \    return root->get();\n  }\n\n  void set(np &root, u32 k, const X &x) {\n \
+    \   splay_kth(root, k);\n    root->set(x);\n  }\n\n  void multiply(np &root, u32\
+    \ k, const X &x) {\n    splay_kth(root, k);\n    root->multiply(x);\n  }\n\n \
+    \ X prod(np &root, u32 l, u32 r) {\n    assert(0 <= l && l < r && r <= root->size);\n\
+    \    goto_between(root, l, r);\n    X res = root->prod;\n    splay(root);\n  \
+    \  return res;\n  }\n\n  void apply(np &root, u32 l, u32 r, const A &a) {\n  \
+    \  assert(0 <= l && l < r && r <= root->size);\n    goto_between(root, l, r);\n\
+    \    root->apply(a);\n    splay(root);\n  }\n\n  void reverse(np &root, u32 l,\
+    \ u32 r) {\n    assert(0 <= l && l < r && r <= root->size);\n    goto_between(root,\
+    \ l, r);\n    root->reverse();\n    splay(root);\n  }\n\n  void rotate(Node *n)\
+    \ {\n    // n \u3092\u6839\u306B\u8FD1\u3065\u3051\u308B\u3002prop, update \u306F\
+    \ rotate \u306E\u5916\u3067\u884C\u3046\u3002\n    Node *pp, *p, *c;\n    p =\
+    \ n->p;\n    pp = p->p;\n    if (p->l == n) {\n      c = n->r;\n      n->r = p;\n\
+    \      p->l = c;\n    } else {\n      c = n->l;\n      n->l = p;\n      p->r =\
+    \ c;\n    }\n    if (pp && pp->l == p) pp->l = n;\n    if (pp && pp->r == p) pp->r\
+    \ = n;\n    n->p = pp;\n    p->p = n;\n    if (c) c->p = p;\n  }\n\n  void splay(Node\
+    \ *me) {\n    // \u3053\u308C\u3092\u547C\u3076\u6642\u70B9\u3067\u3001me \u306E\
+    \u7956\u5148\uFF08me \u3092\u9664\u304F\uFF09\u306F\u65E2\u306B prop \u6E08\u3067\
+    \u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\n    // \u7279\u306B\u3001splay \u7D42\
+    \u4E86\u6642\u70B9\u3067 me \u306F upd / prop \u6E08\u3067\u3042\u308B\n    me->prop();\n\
+    \    while (me->p) {\n      np p = me->p;\n      np pp = p->p;\n      if (!pp)\
+    \ {\n        rotate(me);\n        p->update();\n        break;\n      }\n    \
+    \  bool same = (p->l == me && pp->l == p) || (p->r == me && pp->r == p);\n   \
+    \   if (same) rotate(p), rotate(me);\n      if (!same) rotate(me), rotate(me);\n\
+    \      pp->update(), p->update();\n    }\n    // me \u306E update \u306F\u6700\
+    \u5F8C\u3060\u3051\u3067\u3088\u3044\n    me->update();\n  }\n\n  void splay_kth(np\
+    \ &root, u32 k) {\n    assert(0 <= k && k < (root->size));\n    while (1) {\n\
+    \      u32 sl = (root->l ? root->l->size : 0);\n      if (k == sl) break;\n  \
+    \    root->prop();\n      if (k < sl)\n        root = root->l;\n      else {\n\
+    \        k -= sl + 1;\n        root = root->r;\n      }\n    }\n    splay(root);\n\
+    \  }\n};"
   dependsOn: []
   isVerificationFile: false
   path: ds/bbst/splaytree.hpp
   requiredBy:
   - ds/bbst/splaytree_acted_monoid.hpp
-  timestamp: '2022-12-01 09:04:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-12-01 10:42:48+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/splay_am.test.cpp
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
 documentation_of: ds/bbst/splaytree.hpp
 layout: document
 redirect_from:
