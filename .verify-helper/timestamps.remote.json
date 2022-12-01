@@ -64,5 +64,9 @@
 "test/atcoder/abc256d.test.cpp": "2022-12-01 23:08:36 +0900",
 "test/atcoder/abc266c.test.cpp": "2022-12-01 23:08:36 +0900",
 "test/atcoder/abc266f.test.cpp": "2022-12-01 23:08:36 +0900",
-"test/atcoder/abc269ex.test.cpp": "2022-12-01 23:08:36 +0900"
+"test/atcoder/abc269ex.test.cpp": "2022-12-01 23:08:36 +0900",
+"test/atcoder/abc270_g.test.cpp": "2022-12-01 23:08:36 +0900",
+"test/atcoder/abc272_h.test.cpp": "2022-12-01 23:08:36 +0900",
+"test/atcoder/abc273_e.test.cpp": "2022-12-01 23:08:36 +0900",
+"test/atcoder/abc274_h.test.cpp": "2022-12-01 23:08:36 +0900"
 }
