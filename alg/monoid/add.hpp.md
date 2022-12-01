@@ -35,22 +35,37 @@ data:
   - icon: ':x:'
     path: ds/cumsum2d.hpp
     title: ds/cumsum2d.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick/fenwick.hpp
     title: ds/fenwick/fenwick.hpp
   - icon: ':warning:'
     path: ds/fenwick/fenwick2d.hpp
     title: ds/fenwick/fenwick2d.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick/fenwick2d_dense.hpp
     title: ds/fenwick/fenwick2d_dense.hpp
   - icon: ':x:'
     path: ds/waveletmatrix.hpp
     title: ds/waveletmatrix.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/inversion.hpp
+    title: seq/inversion.hpp
   - icon: ':x:'
     path: string/trie.hpp
     title: string/trie.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/2842.test.cpp
+    title: test/aoj/2842.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/2842_2.test.cpp
+    title: test/aoj/2842_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1_2_A.test.cpp
+    title: test/aoj/ALDS1_2_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1_5.test.cpp
+    title: test/aoj/ALDS1_5.test.cpp
   - icon: ':x:'
     path: test/atcoder/abc127f_1.test.cpp
     title: test/atcoder/abc127f_1.test.cpp
@@ -113,7 +128,7 @@ data:
     title: test/yukicoder/919.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -143,13 +158,14 @@ data:
   - alg/acted_monoid/minidx_add.hpp
   - alg/acted_monoid/cntsummax_add.hpp
   - string/trie.hpp
+  - seq/inversion.hpp
   - ds/cumsum2d.hpp
   - ds/waveletmatrix.hpp
   - ds/fenwick/fenwick2d_dense.hpp
   - ds/fenwick/fenwick2d.hpp
   - ds/fenwick/fenwick.hpp
   timestamp: '2022-11-28 14:51:10+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/2065.test.cpp
   - test/yukicoder/1441.test.cpp
@@ -171,6 +187,10 @@ data:
   - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   - test/atcoder/abc127f_1.test.cpp
+  - test/aoj/2842_2.test.cpp
+  - test/aoj/ALDS1_2_A.test.cpp
+  - test/aoj/ALDS1_5.test.cpp
+  - test/aoj/2842.test.cpp
 documentation_of: alg/monoid/add.hpp
 layout: document
 redirect_from:

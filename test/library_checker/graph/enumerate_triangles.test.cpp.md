@@ -101,10 +101,10 @@ data:
     \ \"other/io.hpp\"\nnamespace fastio {\r\n// https://nyaannyaan.github.io/library/misc/fastio.hpp\
     \ \u3092\u5143\u306B\u6539\u9020\r\n\r\n// \u30AF\u30E9\u30B9\u304C read(), print()\
     \ \u3092\u6301\u3063\u3066\u3044\u308B\u304B\u3092\u5224\u5B9A\u3059\u308B\u30E1\
-    \u30BF\u95A2\u6570\r\nstruct has_print_impl {\r\n  template <class T>\r\n  static\
-    \ auto check(T &&x) -> decltype(x.print(), std::true_type{});\r\n\r\n  template\
+    \u30BF\u95A2\u6570\r\nstruct has_write_impl {\r\n  template <class T>\r\n  static\
+    \ auto check(T &&x) -> decltype(x.write(), std::true_type{});\r\n\r\n  template\
     \ <class T>\r\n  static auto check(...) -> std::false_type;\r\n};\r\n\r\ntemplate\
-    \ <class T>\r\nclass has_print : public decltype(has_print_impl::check<T>(std::declval<T>()))\
+    \ <class T>\r\nclass has_write : public decltype(has_write_impl::check<T>(std::declval<T>()))\
     \ {\r\n};\r\n\r\nstruct has_read_impl {\r\n  template <class T>\r\n  static auto\
     \ check(T &&x) -> decltype(x.read(), std::true_type{});\r\n\r\n  template <class\
     \ T>\r\n  static auto check(...) -> std::false_type;\r\n};\r\n\r\ntemplate <class\
@@ -164,8 +164,8 @@ data:
     \n  oss << fixed << setprecision(15) << x;\r\n  string s = oss.str();\r\n  write(s);\r\
     \n}\r\ninline void write(const long double &x) {\r\n  ostringstream oss;\r\n \
     \ oss << fixed << setprecision(15) << x;\r\n  string s = oss.str();\r\n  write(s);\r\
-    \n}\r\ntemplate <typename T, typename enable_if<has_print<T>::value>::type * =\
-    \ nullptr>\r\ninline void write(T x) {\r\n  x.print();\r\n}\r\ntemplate <class\
+    \n}\r\ntemplate <typename T, typename enable_if<has_write<T>::value>::type * =\
+    \ nullptr>\r\ninline void write(T x) {\r\n  x.write();\r\n}\r\ntemplate <class\
     \ T>\r\nvoid write(const vector<T> &val) {\r\n  auto n = val.size();\r\n  for\
     \ (size_t i = 0; i < n; i++) {\r\n    if (i) write(' ');\r\n    write(val[i]);\r\
     \n  }\r\n}\r\ntemplate <class T, class U>\r\nvoid write(const pair<T, U> &val)\
@@ -268,7 +268,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/enumerate_triangles.test.cpp
   requiredBy: []
-  timestamp: '2022-12-01 21:30:40+09:00'
+  timestamp: '2022-12-01 22:09:18+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/enumerate_triangles.test.cpp

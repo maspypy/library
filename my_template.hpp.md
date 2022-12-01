@@ -31,6 +31,15 @@ data:
     path: test/aoj/2677.test.cpp
     title: test/aoj/2677.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/2842.test.cpp
+    title: test/aoj/2842.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/2842_2.test.cpp
+    title: test/aoj/2842_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/2995.test.cpp
+    title: test/aoj/2995.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_10_C.test.cpp
     title: test/aoj/ALDS1_10_C.test.cpp
   - icon: ':heavy_check_mark:'
@@ -42,6 +51,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_1_C.test.cpp
     title: test/aoj/ALDS1_1_C.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1_2_A.test.cpp
+    title: test/aoj/ALDS1_2_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1_5.test.cpp
+    title: test/aoj/ALDS1_5.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_1_A.test.cpp
     title: test/aoj/CGL_1_A.test.cpp
@@ -78,13 +93,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_1_F.test.cpp
     title: test/aoj/DPL_1_F.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DPL_1_H.test.cpp
     title: test/aoj/DPL_1_H.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DPL_2_A.test.cpp
     title: test/aoj/DPL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DPL_4_B.test.cpp
     title: test/aoj/DPL_4_B.test.cpp
   - icon: ':x:'
@@ -96,43 +111,43 @@ data:
   - icon: ':x:'
     path: test/aoj/GRL_1_C.test.cpp
     title: test/aoj/GRL_1_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_3_A.test.cpp
     title: test/aoj/GRL_3_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_3_B.test.cpp
     title: test/aoj/GRL_3_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_6_A.test.cpp
     title: test/aoj/GRL_6_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_6_B.test.cpp
     title: test/aoj/GRL_6_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ITP1_11_A.test.cpp
     title: test/aoj/ITP1_11_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ITP1_11_B.test.cpp
     title: test/aoj/ITP1_11_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ITP1_11_C.test.cpp
     title: test/aoj/ITP1_11_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ITP1_11_D.test.cpp
     title: test/aoj/ITP1_11_D.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_9_A.test.cpp
     title: test/aoj/ITP1_9_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ITP1_D_D.test.cpp
     title: test/aoj/ITP1_D_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ITP2_11_D.test.cpp
     title: test/aoj/ITP2_11_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL_1_D.test.cpp
     title: test/aoj/NTL_1_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL_1_E.test.cpp
     title: test/aoj/NTL_1_E.test.cpp
   - icon: ':x:'
@@ -210,7 +225,7 @@ data:
   - icon: ':x:'
     path: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
     title: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/convolution_mod_2_64.test.cpp
     title: test/library_checker/convolution/convolution_mod_2_64.test.cpp
   - icon: ':x:'
@@ -1574,6 +1589,7 @@ data:
   - test/aoj/DPL_1_D.test.cpp
   - test/aoj/ITP1_11_C.test.cpp
   - test/aoj/DPL_1_B.test.cpp
+  - test/aoj/2842_2.test.cpp
   - test/aoj/GRL_6_B.test.cpp
   - test/aoj/CGL_2_B.test.cpp
   - test/aoj/CGL_2_A.test.cpp
@@ -1602,9 +1618,11 @@ data:
   - test/aoj/0350.test.cpp
   - test/aoj/CGL_7_B.test.cpp
   - test/aoj/CGL_7_C.test.cpp
+  - test/aoj/2995.test.cpp
   - test/aoj/DPL_5_C.test.cpp
   - test/aoj/0343.test.cpp
   - test/aoj/1508.test.cpp
+  - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/CGL_1_A.test.cpp
   - test/aoj/NTL_1_E.test.cpp
   - test/aoj/CGL_3_B.test.cpp
@@ -1614,6 +1632,8 @@ data:
   - test/aoj/0275.test.cpp
   - test/aoj/ITP2_11_D.test.cpp
   - test/aoj/GRL_3_A.test.cpp
+  - test/aoj/ALDS1_5.test.cpp
+  - test/aoj/2842.test.cpp
 documentation_of: my_template.hpp
 layout: document
 redirect_from:

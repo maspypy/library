@@ -31,6 +31,15 @@ data:
     path: test/aoj/2677.test.cpp
     title: test/aoj/2677.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/2842.test.cpp
+    title: test/aoj/2842.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/2842_2.test.cpp
+    title: test/aoj/2842_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/2995.test.cpp
+    title: test/aoj/2995.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_10_C.test.cpp
     title: test/aoj/ALDS1_10_C.test.cpp
   - icon: ':heavy_check_mark:'
@@ -42,6 +51,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_1_C.test.cpp
     title: test/aoj/ALDS1_1_C.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1_2_A.test.cpp
+    title: test/aoj/ALDS1_2_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1_5.test.cpp
+    title: test/aoj/ALDS1_5.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_1_A.test.cpp
     title: test/aoj/CGL_1_A.test.cpp
@@ -78,13 +93,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_1_F.test.cpp
     title: test/aoj/DPL_1_F.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DPL_1_H.test.cpp
     title: test/aoj/DPL_1_H.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DPL_2_A.test.cpp
     title: test/aoj/DPL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DPL_4_B.test.cpp
     title: test/aoj/DPL_4_B.test.cpp
   - icon: ':x:'
@@ -96,40 +111,40 @@ data:
   - icon: ':x:'
     path: test/aoj/GRL_1_C.test.cpp
     title: test/aoj/GRL_1_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_3_A.test.cpp
     title: test/aoj/GRL_3_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_3_B.test.cpp
     title: test/aoj/GRL_3_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_6_A.test.cpp
     title: test/aoj/GRL_6_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_6_B.test.cpp
     title: test/aoj/GRL_6_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ITP1_11_A.test.cpp
     title: test/aoj/ITP1_11_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ITP1_11_B.test.cpp
     title: test/aoj/ITP1_11_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ITP1_11_C.test.cpp
     title: test/aoj/ITP1_11_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ITP1_11_D.test.cpp
     title: test/aoj/ITP1_11_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ITP1_D_D.test.cpp
     title: test/aoj/ITP1_D_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ITP2_11_D.test.cpp
     title: test/aoj/ITP2_11_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL_1_D.test.cpp
     title: test/aoj/NTL_1_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL_1_E.test.cpp
     title: test/aoj/NTL_1_E.test.cpp
   - icon: ':x:'
@@ -207,7 +222,7 @@ data:
   - icon: ':x:'
     path: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
     title: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/convolution_mod_2_64.test.cpp
     title: test/library_checker/convolution/convolution_mod_2_64.test.cpp
   - icon: ':x:'
@@ -1098,10 +1113,10 @@ data:
   bundledCode: "#line 1 \"other/io.hpp\"\nnamespace fastio {\r\n// https://nyaannyaan.github.io/library/misc/fastio.hpp\
     \ \u3092\u5143\u306B\u6539\u9020\r\n\r\n// \u30AF\u30E9\u30B9\u304C read(), print()\
     \ \u3092\u6301\u3063\u3066\u3044\u308B\u304B\u3092\u5224\u5B9A\u3059\u308B\u30E1\
-    \u30BF\u95A2\u6570\r\nstruct has_print_impl {\r\n  template <class T>\r\n  static\
-    \ auto check(T &&x) -> decltype(x.print(), std::true_type{});\r\n\r\n  template\
+    \u30BF\u95A2\u6570\r\nstruct has_write_impl {\r\n  template <class T>\r\n  static\
+    \ auto check(T &&x) -> decltype(x.write(), std::true_type{});\r\n\r\n  template\
     \ <class T>\r\n  static auto check(...) -> std::false_type;\r\n};\r\n\r\ntemplate\
-    \ <class T>\r\nclass has_print : public decltype(has_print_impl::check<T>(std::declval<T>()))\
+    \ <class T>\r\nclass has_write : public decltype(has_write_impl::check<T>(std::declval<T>()))\
     \ {\r\n};\r\n\r\nstruct has_read_impl {\r\n  template <class T>\r\n  static auto\
     \ check(T &&x) -> decltype(x.read(), std::true_type{});\r\n\r\n  template <class\
     \ T>\r\n  static auto check(...) -> std::false_type;\r\n};\r\n\r\ntemplate <class\
@@ -1161,8 +1176,8 @@ data:
     \n  oss << fixed << setprecision(15) << x;\r\n  string s = oss.str();\r\n  write(s);\r\
     \n}\r\ninline void write(const long double &x) {\r\n  ostringstream oss;\r\n \
     \ oss << fixed << setprecision(15) << x;\r\n  string s = oss.str();\r\n  write(s);\r\
-    \n}\r\ntemplate <typename T, typename enable_if<has_print<T>::value>::type * =\
-    \ nullptr>\r\ninline void write(T x) {\r\n  x.print();\r\n}\r\ntemplate <class\
+    \n}\r\ntemplate <typename T, typename enable_if<has_write<T>::value>::type * =\
+    \ nullptr>\r\ninline void write(T x) {\r\n  x.write();\r\n}\r\ntemplate <class\
     \ T>\r\nvoid write(const vector<T> &val) {\r\n  auto n = val.size();\r\n  for\
     \ (size_t i = 0; i < n; i++) {\r\n    if (i) write(' ');\r\n    write(val[i]);\r\
     \n  }\r\n}\r\ntemplate <class T, class U>\r\nvoid write(const pair<T, U> &val)\
@@ -1193,10 +1208,10 @@ data:
   code: "namespace fastio {\r\n// https://nyaannyaan.github.io/library/misc/fastio.hpp\
     \ \u3092\u5143\u306B\u6539\u9020\r\n\r\n// \u30AF\u30E9\u30B9\u304C read(), print()\
     \ \u3092\u6301\u3063\u3066\u3044\u308B\u304B\u3092\u5224\u5B9A\u3059\u308B\u30E1\
-    \u30BF\u95A2\u6570\r\nstruct has_print_impl {\r\n  template <class T>\r\n  static\
-    \ auto check(T &&x) -> decltype(x.print(), std::true_type{});\r\n\r\n  template\
+    \u30BF\u95A2\u6570\r\nstruct has_write_impl {\r\n  template <class T>\r\n  static\
+    \ auto check(T &&x) -> decltype(x.write(), std::true_type{});\r\n\r\n  template\
     \ <class T>\r\n  static auto check(...) -> std::false_type;\r\n};\r\n\r\ntemplate\
-    \ <class T>\r\nclass has_print : public decltype(has_print_impl::check<T>(std::declval<T>()))\
+    \ <class T>\r\nclass has_write : public decltype(has_write_impl::check<T>(std::declval<T>()))\
     \ {\r\n};\r\n\r\nstruct has_read_impl {\r\n  template <class T>\r\n  static auto\
     \ check(T &&x) -> decltype(x.read(), std::true_type{});\r\n\r\n  template <class\
     \ T>\r\n  static auto check(...) -> std::false_type;\r\n};\r\n\r\ntemplate <class\
@@ -1256,8 +1271,8 @@ data:
     \n  oss << fixed << setprecision(15) << x;\r\n  string s = oss.str();\r\n  write(s);\r\
     \n}\r\ninline void write(const long double &x) {\r\n  ostringstream oss;\r\n \
     \ oss << fixed << setprecision(15) << x;\r\n  string s = oss.str();\r\n  write(s);\r\
-    \n}\r\ntemplate <typename T, typename enable_if<has_print<T>::value>::type * =\
-    \ nullptr>\r\ninline void write(T x) {\r\n  x.print();\r\n}\r\ntemplate <class\
+    \n}\r\ntemplate <typename T, typename enable_if<has_write<T>::value>::type * =\
+    \ nullptr>\r\ninline void write(T x) {\r\n  x.write();\r\n}\r\ntemplate <class\
     \ T>\r\nvoid write(const vector<T> &val) {\r\n  auto n = val.size();\r\n  for\
     \ (size_t i = 0; i < n; i++) {\r\n    if (i) write(' ');\r\n    write(val[i]);\r\
     \n  }\r\n}\r\ntemplate <class T, class U>\r\nvoid write(const pair<T, U> &val)\
@@ -1289,7 +1304,7 @@ data:
   isVerificationFile: false
   path: other/io.hpp
   requiredBy: []
-  timestamp: '2022-12-01 21:30:40+09:00'
+  timestamp: '2022-12-01 22:09:18+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1821.test.cpp
@@ -1615,6 +1630,7 @@ data:
   - test/aoj/DPL_1_D.test.cpp
   - test/aoj/ITP1_11_C.test.cpp
   - test/aoj/DPL_1_B.test.cpp
+  - test/aoj/2842_2.test.cpp
   - test/aoj/GRL_6_B.test.cpp
   - test/aoj/CGL_2_B.test.cpp
   - test/aoj/CGL_2_A.test.cpp
@@ -1642,9 +1658,11 @@ data:
   - test/aoj/0350.test.cpp
   - test/aoj/CGL_7_B.test.cpp
   - test/aoj/CGL_7_C.test.cpp
+  - test/aoj/2995.test.cpp
   - test/aoj/DPL_5_C.test.cpp
   - test/aoj/0343.test.cpp
   - test/aoj/1508.test.cpp
+  - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/CGL_1_A.test.cpp
   - test/aoj/NTL_1_E.test.cpp
   - test/aoj/CGL_3_B.test.cpp
@@ -1654,6 +1672,8 @@ data:
   - test/aoj/0275.test.cpp
   - test/aoj/ITP2_11_D.test.cpp
   - test/aoj/GRL_3_A.test.cpp
+  - test/aoj/ALDS1_5.test.cpp
+  - test/aoj/2842.test.cpp
 documentation_of: other/io.hpp
 layout: document
 redirect_from:

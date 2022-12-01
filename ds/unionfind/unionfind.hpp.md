@@ -24,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2251_2.test.cpp
     title: test/aoj/2251_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/2995.test.cpp
+    title: test/aoj/2995.test.cpp
   - icon: ':x:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
@@ -90,6 +93,7 @@ data:
   - test/aoj/2251_1.test.cpp
   - test/aoj/2251_2.test.cpp
   - test/aoj/1566.test.cpp
+  - test/aoj/2995.test.cpp
 documentation_of: ds/unionfind/unionfind.hpp
 layout: document
 redirect_from:
