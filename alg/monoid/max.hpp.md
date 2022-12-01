@@ -37,6 +37,9 @@ data:
     path: test/yukicoder/1117.test.cpp
     title: test/yukicoder/1117.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1625.test.cpp
+    title: test/yukicoder/1625.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1790.test.cpp
     title: test/yukicoder/1790.test.cpp
   - icon: ':x:'
@@ -72,6 +75,7 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/686.test.cpp
+  - test/yukicoder/1625.test.cpp
   - test/yukicoder/2026.test.cpp
   - test/yukicoder/1790.test.cpp
   - test/yukicoder/1117.test.cpp

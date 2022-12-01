@@ -140,6 +140,9 @@ data:
   - icon: ':x:'
     path: graph/tree_dp.hpp
     title: graph/tree_dp.hpp
+  - icon: ':x:'
+    path: graph/tree_of_unionfind.hpp
+    title: graph/tree_of_unionfind.hpp
   - icon: ':question:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
@@ -343,6 +346,9 @@ data:
     path: test/yukicoder/1418.test.cpp
     title: test/yukicoder/1418.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1451.test.cpp
+    title: test/yukicoder/1451.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1479.test.cpp
     title: test/yukicoder/1479.test.cpp
   - icon: ':x:'
@@ -523,6 +529,7 @@ data:
   - flow/bipartite.hpp
   - graph/dsu_on_tree.hpp
   - graph/tree_diameter.hpp
+  - graph/tree_of_unionfind.hpp
   - graph/rerooting_classify_subtree.hpp
   - graph/tree_dp.hpp
   - graph/toposort.hpp
@@ -597,6 +604,7 @@ data:
   - test/yukicoder/1911.test.cpp
   - test/yukicoder/1344.test.cpp
   - test/yukicoder/1494.test.cpp
+  - test/yukicoder/1451.test.cpp
   - test/yukicoder/1293.test.cpp
   - test/yukicoder/1211.test.cpp
   - test/yukicoder/529.test.cpp

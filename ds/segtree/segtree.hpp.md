@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/offline_query/uniqueproductquery.hpp
     title: ds/offline_query/uniqueproductquery.hpp
   - icon: ':warning:'
@@ -24,7 +24,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ITP2_3_B.test.cpp
     title: test/aoj/ITP2_3_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc174f.test.cpp
     title: test/atcoder/abc174f.test.cpp
   - icon: ':x:'
@@ -46,8 +46,14 @@ data:
     path: test/yukicoder/1036_2.test.cpp
     title: test/yukicoder/1036_2.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1435.test.cpp
+    title: test/yukicoder/1435.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1549.test.cpp
     title: test/yukicoder/1549.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/426.test.cpp
+    title: test/yukicoder/426.test.cpp
   - icon: ':x:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
@@ -163,6 +169,8 @@ data:
   verifiedWith:
   - test/yukicoder/1036_2.test.cpp
   - test/yukicoder/1549.test.cpp
+  - test/yukicoder/426.test.cpp
+  - test/yukicoder/1435.test.cpp
   - test/yukicoder/529.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp

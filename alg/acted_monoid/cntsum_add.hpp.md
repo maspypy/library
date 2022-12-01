@@ -27,6 +27,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/789_2.test.cpp
+    title: test/yukicoder/789_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -64,6 +67,7 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/235.test.cpp
+  - test/yukicoder/789_2.test.cpp
   - test/yukicoder/1197.test.cpp
   - test/mytest/splay_am.test.cpp
   - test/mytest/rbst_am_2.test.cpp

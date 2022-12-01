@@ -88,7 +88,7 @@ data:
     - icon: ':x:'
       path: alg/monoid/add_chmin.hpp
       title: alg/monoid/add_chmin.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/monoid/add_chmin_chmax.hpp
       title: alg/monoid/add_chmin_chmax.hpp
     - icon: ':question:'
@@ -195,7 +195,7 @@ data:
     - icon: ':x:'
       path: ds/swag.hpp
       title: ds/swag.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/waveletmatrix.hpp
       title: ds/waveletmatrix.hpp
   - name: ds/disjoint_sparse
@@ -234,7 +234,7 @@ data:
     - icon: ':warning:'
       path: ds/func/lichao.hpp
       title: ds/func/lichao.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/func/slope.hpp
       title: ds/func/slope.hpp
   - name: ds/kdtree
@@ -242,7 +242,7 @@ data:
     - icon: ':warning:'
       path: ds/kdtree/kdtree_lazy.hpp
       title: ds/kdtree/kdtree_lazy.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/kdtree/kdtree_monoid.hpp
       title: ds/kdtree/kdtree_monoid.hpp
   - name: ds/offline_query
@@ -259,7 +259,7 @@ data:
     - icon: ':warning:'
       path: ds/offline_query/divide_conquer_range_query.hpp
       title: ds/offline_query/divide_conquer_range_query.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: ds/offline_query/mo.hpp
       title: ds/offline_query/mo.hpp
     - icon: ':warning:'
@@ -292,7 +292,7 @@ data:
     - icon: ':warning:'
       path: ds/offline_query/rollback_mo.hpp
       title: ds/offline_query/rollback_mo.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/offline_query/uniqueproductquery.hpp
       title: ds/offline_query/uniqueproductquery.hpp
   - name: ds/pds
@@ -349,7 +349,7 @@ data:
     - icon: ':question:'
       path: ds/segtree/dualsegtree.hpp
       title: ds/segtree/dualsegtree.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: ds/segtree/dynamic_lazysegtree.hpp
       title: ds/segtree/dynamic_lazysegtree.hpp
     - icon: ':x:'
@@ -642,7 +642,7 @@ data:
     - icon: ':x:'
       path: graph/tree_dp.hpp
       title: graph/tree_dp.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: graph/tree_of_unionfind.hpp
       title: graph/tree_of_unionfind.hpp
     - icon: ':question:'
@@ -977,7 +977,7 @@ data:
     - icon: ':x:'
       path: other/magic_square.hpp
       title: other/magic_square.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: other/solve_hukumenzan.hpp
       title: other/solve_hukumenzan.hpp
   - name: poly
@@ -1150,7 +1150,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/inversion.hpp
       title: seq/inversion.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: seq/inversion_rotate.hpp
       title: seq/inversion_rotate.hpp
     - icon: ':x:'
@@ -1503,25 +1503,25 @@ data:
       title: test/aoj/NTL_1_E.test.cpp
   - name: test/atcoder
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc127f.test.cpp
       title: test/atcoder/abc127f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc127f_1.test.cpp
       title: test/atcoder/abc127f_1.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc174f.test.cpp
       title: test/atcoder/abc174f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc190f.test.cpp
       title: test/atcoder/abc190f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc196_E.test.cpp
       title: test/atcoder/abc196_E.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc198d.test.cpp
       title: test/atcoder/abc198d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc200a.test.cpp
       title: test/atcoder/abc200a.test.cpp
     - icon: ':x:'

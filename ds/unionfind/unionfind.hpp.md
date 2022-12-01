@@ -23,6 +23,9 @@ data:
   - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
+  - icon: ':x:'
+    path: graph/tree_of_unionfind.hpp
+    title: graph/tree_of_unionfind.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1566.test.cpp
@@ -66,6 +69,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1392.test.cpp
     title: test/yukicoder/1392.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1451.test.cpp
+    title: test/yukicoder/1451.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1479.test.cpp
     title: test/yukicoder/1479.test.cpp
@@ -124,6 +130,7 @@ data:
   requiredBy:
   - geo/manhattan_mst.hpp
   - flow/bipartite.hpp
+  - graph/tree_of_unionfind.hpp
   - graph/functional.hpp
   - graph/dag_path_cover.hpp
   - graph/maximum_antichain.hpp
@@ -142,6 +149,7 @@ data:
   - test/yukicoder/1242.test.cpp
   - test/yukicoder/1303.test.cpp
   - test/yukicoder/1911.test.cpp
+  - test/yukicoder/1451.test.cpp
   - test/yukicoder/1211.test.cpp
   - test/yukicoder/1745.test.cpp
   - test/yukicoder/1744.test.cpp

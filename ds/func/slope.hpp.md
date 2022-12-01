@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc127f.test.cpp
     title: test/atcoder/abc127f.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test/atcoder/arc123d.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/func/slope.hpp\"\nstruct Slope_Trick {\r\n  static constexpr\
@@ -100,7 +100,7 @@ data:
   path: ds/func/slope.hpp
   requiredBy: []
   timestamp: '2022-12-01 18:20:22+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/atcoder/abc217h.test.cpp
   - test/atcoder/arc123d.test.cpp

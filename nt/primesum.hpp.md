@@ -28,6 +28,9 @@ data:
     path: test/mytest/primesum_mod6.test.cpp
     title: test/mytest/primesum_mod6.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1276.test.cpp
+    title: test/yukicoder/1276.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1781.test.cpp
     title: test/yukicoder/1781.test.cpp
   _isVerificationFailed: true
@@ -106,6 +109,7 @@ data:
   timestamp: '2022-08-19 01:56:01+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/yukicoder/1276.test.cpp
   - test/yukicoder/1781.test.cpp
   - test/mytest/primesum_mod6.test.cpp
   - test/mytest/prime_sum.test.cpp
