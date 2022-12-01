@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/minidx_add.hpp
     title: alg/acted_monoid/minidx_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min_idx.hpp
     title: alg/monoid/min_idx.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -216,13 +216,13 @@ data:
     \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
     \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
     \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"alg/monoid/min_idx.hpp\"\
-    \ntemplate <typename T, bool tie_is_left = true>\r\nstruct Monoid_Min_Idx {\r\n\
-    \  using value_type = pair<T, int>;\r\n  using X = value_type;\r\n  static constexpr\
-    \ bool is_small(const X& x, const X& y) {\r\n    if (x.fi < y.fi) return true;\r\
-    \n    if (x.fi > y.fi) return false;\r\n    return (tie_is_left ? (x.se < y.se)\
-    \ : (x.se >= y.se));\r\n  }\r\n  static X op(X x, X y) { return (is_small(x, y)\
-    \ ? x : y); }\r\n  static constexpr X unit() { return {numeric_limits<T>::max(),\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/monoid/min_idx.hpp\"\
+    \n\r\ntemplate <typename T, bool tie_is_left = true>\r\nstruct Monoid_Min_Idx\
+    \ {\r\n  using value_type = pair<T, int>;\r\n  using X = value_type;\r\n  static\
+    \ constexpr bool is_small(const X& x, const X& y) {\r\n    if (x.fi < y.fi) return\
+    \ true;\r\n    if (x.fi > y.fi) return false;\r\n    return (tie_is_left ? (x.se\
+    \ < y.se) : (x.se >= y.se));\r\n  }\r\n  static X op(X x, X y) { return (is_small(x,\
+    \ y) ? x : y); }\r\n  static constexpr X unit() { return {numeric_limits<T>::max(),\
     \ -1}; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/minidx_add.hpp\"\
     \n\r\ntemplate <typename E, bool tie_is_left = true>\r\nstruct ActedMonoid_MinIdx_Add\
     \ {\r\n  using Monoid_X = Monoid_Min_Idx<E, tie_is_left>;\r\n  using Monoid_A\
@@ -335,8 +335,8 @@ data:
   isVerificationFile: true
   path: test/mytest/minidx_add.test.cpp
   requiredBy: []
-  timestamp: '2022-11-28 15:25:25+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-12-01 09:04:06+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/minidx_add.test.cpp
 layout: document

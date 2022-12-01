@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min_idx.hpp
     title: alg/monoid/min_idx.hpp
   - icon: ':heavy_check_mark:'
     path: ds/cht/dynamic_lichao.hpp
     title: ds/cht/dynamic_lichao.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -204,7 +204,7 @@ data:
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
     \ { yes(!t); }\r\n#line 4 \"test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp\"\
-    \n\n#line 1 \"alg/monoid/min_idx.hpp\"\ntemplate <typename T, bool tie_is_left\
+    \n\n#line 2 \"alg/monoid/min_idx.hpp\"\n\r\ntemplate <typename T, bool tie_is_left\
     \ = true>\r\nstruct Monoid_Min_Idx {\r\n  using value_type = pair<T, int>;\r\n\
     \  using X = value_type;\r\n  static constexpr bool is_small(const X& x, const\
     \ X& y) {\r\n    if (x.fi < y.fi) return true;\r\n    if (x.fi > y.fi) return\
@@ -277,7 +277,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
   requiredBy: []
-  timestamp: '2022-10-21 17:24:22+09:00'
+  timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp

@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/cntsum_affine.hpp
     title: alg/acted_monoid/cntsum_affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
   - icon: ':heavy_check_mark:'
     path: ds/bbst/splaytree_lazy.hpp
     title: ds/bbst/splaytree_lazy.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -213,12 +213,12 @@ data:
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
     \ { yes(!t); }\r\n#line 5 \"test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp\"\
-    \n\n#line 1 \"alg/monoid/add_pair.hpp\"\ntemplate <typename E>\r\nstruct Monoid_Add_Pair\
+    \n\n#line 2 \"alg/monoid/add_pair.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add_Pair\
     \ {\r\n  using value_type = pair<E, E>;\r\n  using X = value_type;\r\n  static\
     \ constexpr X op(const X &x, const X &y) {\r\n    return {x.fi + y.fi, x.se +\
     \ y.se};\r\n  }\r\n  static constexpr X inverse(const X &x) { return {-x.fi, -x.se};\
     \ }\r\n  static constexpr X unit() { return {0, 0}; }\r\n  static constexpr bool\
-    \ commute = true;\r\n};\r\n#line 1 \"alg/monoid/affine.hpp\"\ntemplate <typename\
+    \ commute = true;\r\n};\r\n#line 2 \"alg/monoid/affine.hpp\"\n\ntemplate <typename\
     \ K>\nstruct Monoid_Affine {\n  using F = pair<K, K>;\n  using value_type = F;\n\
     \  static constexpr F op(const F &x, const F &y) noexcept {\n    return F({x.first\
     \ * y.first, x.second * y.first + y.second});\n  }\n  static constexpr F inverse(const\
@@ -438,7 +438,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   requiredBy: []
-  timestamp: '2022-11-28 18:54:34+09:00'
+  timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp

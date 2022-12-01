@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/treemonoid.hpp
     title: graph/ds/treemonoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
@@ -219,7 +219,7 @@ data:
     \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
     \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
     \ { yes(!t); }\r\n#line 5 \"test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp\"\
-    \n\n#line 1 \"alg/monoid/affine.hpp\"\ntemplate <typename K>\nstruct Monoid_Affine\
+    \n\n#line 2 \"alg/monoid/affine.hpp\"\n\ntemplate <typename K>\nstruct Monoid_Affine\
     \ {\n  using F = pair<K, K>;\n  using value_type = F;\n  static constexpr F op(const\
     \ F &x, const F &y) noexcept {\n    return F({x.first * y.first, x.second * y.first\
     \ + y.second});\n  }\n  static constexpr F inverse(const F &x) {\n    auto [a,\
@@ -472,30 +472,31 @@ data:
     \ {\r\n    print(\"V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\",\
     \ RID);\r\n    print(\"parent\", parent);\r\n    print(\"depth\", depth);\r\n\
     \    print(\"head\", head);\r\n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"\
-    root\", root);\r\n  }\r\n};\r\n#line 2 \"alg/monoid/monoid_reverse.hpp\"\ntemplate\
-    \ <class Monoid>\r\nstruct Monoid_Reverse {\r\n  using value_type = typename Monoid::value_type;\r\
-    \n  using X = value_type;\r\n  static constexpr X op(const X &x, const X &y) {\
-    \ return Monoid::op(y, x); }\r\n  static constexpr X unit() { return Monoid::unit();\
-    \ }\r\n  static const bool commute = Monoid::commute;\r\n};\r\n#line 5 \"graph/ds/treemonoid.hpp\"\
-    \n\r\ntemplate <typename TREE, typename Monoid, bool edge = false>\r\nstruct TreeMonoid\
-    \ {\r\n  using RevMonoid = Monoid_Reverse<Monoid>;\r\n  using X = typename Monoid::value_type;\r\
-    \n  TREE &tree;\r\n  int N;\r\n  SegTree<Monoid> seg;\r\n  SegTree<RevMonoid>\
-    \ seg_r;\r\n\r\n  TreeMonoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N)\
-    \ {\r\n    if (!Monoid::commute) seg_r = SegTree<RevMonoid>(tree.N);\r\n  }\r\n\
-    \r\n  TreeMonoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {\r\n    vc<X>\
-    \ seg_raw(N, Monoid::unit());\r\n    if (!edge) {\r\n      FOR(v, N) seg_raw[tree.LID[v]]\
-    \ = dat[v];\r\n    } else {\r\n      FOR(e, N - 1) {\r\n        int v = tree.e_to_v(e);\r\
-    \n        seg_raw[tree.LID[v]] = dat[e];\r\n      }\r\n    }\r\n    seg = SegTree<Monoid>(seg_raw);\r\
-    \n    if (!Monoid::commute) seg_r = SegTree<RevMonoid>(seg_raw);\r\n  }\r\n\r\n\
-    \  void set(int i, X x) {\r\n    if (edge) i = tree.e_to_v(i);\r\n    i = tree.LID[i];\r\
-    \n    seg.set(i, x);\r\n    if (!Monoid::commute) seg_r.set(i, x);\r\n  }\r\n\r\
-    \n  X prod_path(int u, int v) {\r\n    auto pd = tree.get_path_decomposition(u,\
-    \ v, edge);\r\n    X val = Monoid::unit();\r\n    for (auto &&[a, b]: pd) {\r\n\
-    \      X x = (a <= b ? seg.prod(a, b + 1)\r\n                    : (Monoid::commute\
-    \ ? seg.prod(b, a + 1)\r\n                                       : seg_r.prod(b,\
-    \ a + 1)));\r\n      val = Monoid::op(val, x);\r\n    }\r\n    return val;\r\n\
-    \  }\r\n\r\n  // uv path \u4E0A\u3067 prod_path(u, x) \u304C check \u3092\u6E80\
-    \u305F\u3059\u6700\u5F8C\u306E x\r\n  // \u306A\u3051\u308C\u3070 -1\r\n  // https://codeforces.com/contest/1059/problem/E\r\
+    root\", root);\r\n  }\r\n};\r\n#line 2 \"alg/monoid/monoid_reverse.hpp\"\n\r\n\
+    template <class Monoid>\r\nstruct Monoid_Reverse {\r\n  using value_type = typename\
+    \ Monoid::value_type;\r\n  using X = value_type;\r\n  static constexpr X op(const\
+    \ X &x, const X &y) { return Monoid::op(y, x); }\r\n  static constexpr X unit()\
+    \ { return Monoid::unit(); }\r\n  static const bool commute = Monoid::commute;\r\
+    \n};\r\n#line 5 \"graph/ds/treemonoid.hpp\"\n\r\ntemplate <typename TREE, typename\
+    \ Monoid, bool edge = false>\r\nstruct TreeMonoid {\r\n  using RevMonoid = Monoid_Reverse<Monoid>;\r\
+    \n  using X = typename Monoid::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  SegTree<Monoid>\
+    \ seg;\r\n  SegTree<RevMonoid> seg_r;\r\n\r\n  TreeMonoid(TREE &tree) : tree(tree),\
+    \ N(tree.N), seg(tree.N) {\r\n    if (!Monoid::commute) seg_r = SegTree<RevMonoid>(tree.N);\r\
+    \n  }\r\n\r\n  TreeMonoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {\r\n\
+    \    vc<X> seg_raw(N, Monoid::unit());\r\n    if (!edge) {\r\n      FOR(v, N)\
+    \ seg_raw[tree.LID[v]] = dat[v];\r\n    } else {\r\n      FOR(e, N - 1) {\r\n\
+    \        int v = tree.e_to_v(e);\r\n        seg_raw[tree.LID[v]] = dat[e];\r\n\
+    \      }\r\n    }\r\n    seg = SegTree<Monoid>(seg_raw);\r\n    if (!Monoid::commute)\
+    \ seg_r = SegTree<RevMonoid>(seg_raw);\r\n  }\r\n\r\n  void set(int i, X x) {\r\
+    \n    if (edge) i = tree.e_to_v(i);\r\n    i = tree.LID[i];\r\n    seg.set(i,\
+    \ x);\r\n    if (!Monoid::commute) seg_r.set(i, x);\r\n  }\r\n\r\n  X prod_path(int\
+    \ u, int v) {\r\n    auto pd = tree.get_path_decomposition(u, v, edge);\r\n  \
+    \  X val = Monoid::unit();\r\n    for (auto &&[a, b]: pd) {\r\n      X x = (a\
+    \ <= b ? seg.prod(a, b + 1)\r\n                    : (Monoid::commute ? seg.prod(b,\
+    \ a + 1)\r\n                                       : seg_r.prod(b, a + 1)));\r\
+    \n      val = Monoid::op(val, x);\r\n    }\r\n    return val;\r\n  }\r\n\r\n \
+    \ // uv path \u4E0A\u3067 prod_path(u, x) \u304C check \u3092\u6E80\u305F\u3059\
+    \u6700\u5F8C\u306E x\r\n  // \u306A\u3051\u308C\u3070 -1\r\n  // https://codeforces.com/contest/1059/problem/E\r\
     \n  // https://codeforces.com/contest/1230/problem/E\r\n  // edge: https://atcoder.jp/contests/tkppc3/tasks/tkppc3_i\r\
     \n  // edge \u304C\u7279\u306B\u602A\u3057\u3044\u304B\u3082\r\n  template <class\
     \ F>\r\n  int max_path(F &check, int u, int v) {\r\n    if (edge) return max_path_edge(check,\
@@ -565,8 +566,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   requiredBy: []
-  timestamp: '2022-11-28 15:38:17+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-12-01 09:04:06+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
 layout: document

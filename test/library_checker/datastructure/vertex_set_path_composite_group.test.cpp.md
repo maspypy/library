@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/group_reverse.hpp
     title: alg/monoid/group_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/treegroup.hpp
     title: graph/ds/treegroup.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
@@ -465,32 +465,33 @@ data:
     \ {\r\n    print(\"V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\",\
     \ RID);\r\n    print(\"parent\", parent);\r\n    print(\"depth\", depth);\r\n\
     \    print(\"head\", head);\r\n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"\
-    root\", root);\r\n  }\r\n};\r\n#line 1 \"alg/monoid/group_reverse.hpp\"\ntemplate\
-    \ <class Group>\r\nstruct Group_Reverse {\r\n  using value_type = typename Group::value_type;\r\
-    \n  using X = value_type;\r\n  static constexpr X op(const X &x, const X &y) {\
-    \ return Group::op(y, x); }\r\n  static constexpr X inverse(const X &x) { return\
-    \ Group::inverse(x); }\r\n  static constexpr X unit() { return Group::unit();\
-    \ }\r\n  static const bool commute = Group::commute;\r\n};\r\n#line 4 \"graph/ds/treegroup.hpp\"\
-    \n\r\n// \u4F5C\u3063\u3066\u307F\u305F\u3082\u306E\u306E\u3001HLD(log^2N)\u3088\
-    \u308A\u9045\u3044\u304C\u3061\uFF1F\r\ntemplate <typename TREE, typename Group,\
-    \ bool edge = false,\r\n          bool path_query = true, bool subtree_query =\
-    \ false>\r\nstruct TreeGroup {\r\n  using RevGroup = Group_Reverse<Group>;\r\n\
-    \  using X = typename Group::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  SegTree<Group>\
-    \ seg, seg_subtree;\r\n  SegTree<RevGroup> seg_r;\r\n\r\n  TreeGroup(TREE &tree)\
-    \ : tree(tree), N(tree.N) {\r\n    if (path_query) {\r\n      seg = SegTree<Group>(2\
-    \ * N);\r\n      if (!Group::commute) seg_r = SegTree<RevGroup>(2 * N);\r\n  \
-    \  }\r\n    if (subtree_query) {\r\n      assert(Group::commute);\r\n      seg_subtree\
-    \ = SegTree<Group>(N);\r\n    }\r\n  }\r\n\r\n  TreeGroup(TREE &tree, vc<X> dat)\
-    \ : tree(tree), N(tree.N) {\r\n    if (path_query) {\r\n      vc<X> seg_raw(2\
-    \ * N);\r\n      if (!edge) {\r\n        assert(len(dat) == N);\r\n        FOR(v,\
-    \ N) {\r\n          seg_raw[tree.ELID(v)] = dat[v];\r\n          seg_raw[tree.ERID(v)]\
-    \ = Group::inverse(dat[v]);\r\n        }\r\n      } else {\r\n        assert(len(dat)\
-    \ == N - 1);\r\n        FOR(e, N - 1) {\r\n          int v = tree.e_to_v(e);\r\
-    \n          seg_raw[tree.ELID(v)] = dat[e];\r\n          seg_raw[tree.ERID(v)]\
-    \ = Group::inverse(dat[e]);\r\n        }\r\n      }\r\n      seg = SegTree<Group>(seg_raw);\r\
-    \n      if (!Group::commute) seg_r = SegTree<RevGroup>(seg_raw);\r\n    }\r\n\
-    \    if (subtree_query) {\r\n      assert(Group::commute);\r\n      vc<X> seg_raw(N);\r\
-    \n      if (!edge) {\r\n        assert(len(dat) == N);\r\n        FOR(v, N) seg_raw[tree.LID[v]]\
+    root\", root);\r\n  }\r\n};\r\n#line 2 \"alg/monoid/group_reverse.hpp\"\n\r\n\
+    template <class Group>\r\nstruct Group_Reverse {\r\n  using value_type = typename\
+    \ Group::value_type;\r\n  using X = value_type;\r\n  static constexpr X op(const\
+    \ X &x, const X &y) { return Group::op(y, x); }\r\n  static constexpr X inverse(const\
+    \ X &x) { return Group::inverse(x); }\r\n  static constexpr X unit() { return\
+    \ Group::unit(); }\r\n  static const bool commute = Group::commute;\r\n};\r\n\
+    #line 4 \"graph/ds/treegroup.hpp\"\n\r\n// \u4F5C\u3063\u3066\u307F\u305F\u3082\
+    \u306E\u306E\u3001HLD(log^2N)\u3088\u308A\u9045\u3044\u304C\u3061\uFF1F\r\ntemplate\
+    \ <typename TREE, typename Group, bool edge = false,\r\n          bool path_query\
+    \ = true, bool subtree_query = false>\r\nstruct TreeGroup {\r\n  using RevGroup\
+    \ = Group_Reverse<Group>;\r\n  using X = typename Group::value_type;\r\n  TREE\
+    \ &tree;\r\n  int N;\r\n  SegTree<Group> seg, seg_subtree;\r\n  SegTree<RevGroup>\
+    \ seg_r;\r\n\r\n  TreeGroup(TREE &tree) : tree(tree), N(tree.N) {\r\n    if (path_query)\
+    \ {\r\n      seg = SegTree<Group>(2 * N);\r\n      if (!Group::commute) seg_r\
+    \ = SegTree<RevGroup>(2 * N);\r\n    }\r\n    if (subtree_query) {\r\n      assert(Group::commute);\r\
+    \n      seg_subtree = SegTree<Group>(N);\r\n    }\r\n  }\r\n\r\n  TreeGroup(TREE\
+    \ &tree, vc<X> dat) : tree(tree), N(tree.N) {\r\n    if (path_query) {\r\n   \
+    \   vc<X> seg_raw(2 * N);\r\n      if (!edge) {\r\n        assert(len(dat) ==\
+    \ N);\r\n        FOR(v, N) {\r\n          seg_raw[tree.ELID(v)] = dat[v];\r\n\
+    \          seg_raw[tree.ERID(v)] = Group::inverse(dat[v]);\r\n        }\r\n  \
+    \    } else {\r\n        assert(len(dat) == N - 1);\r\n        FOR(e, N - 1) {\r\
+    \n          int v = tree.e_to_v(e);\r\n          seg_raw[tree.ELID(v)] = dat[e];\r\
+    \n          seg_raw[tree.ERID(v)] = Group::inverse(dat[e]);\r\n        }\r\n \
+    \     }\r\n      seg = SegTree<Group>(seg_raw);\r\n      if (!Group::commute)\
+    \ seg_r = SegTree<RevGroup>(seg_raw);\r\n    }\r\n    if (subtree_query) {\r\n\
+    \      assert(Group::commute);\r\n      vc<X> seg_raw(N);\r\n      if (!edge)\
+    \ {\r\n        assert(len(dat) == N);\r\n        FOR(v, N) seg_raw[tree.LID[v]]\
     \ = dat[v];\r\n      } else {\r\n        assert(len(dat) == N - 1);\r\n      \
     \  FOR(e, N - 1) {\r\n          int v = tree.e_to_v(e);\r\n          seg_raw[tree.LID[v]]\
     \ = dat[e];\r\n        }\r\n      }\r\n      seg_subtree = SegTree<Group>(seg_raw);\r\
@@ -515,14 +516,15 @@ data:
     \u9006\u5143\u3092\u5229\u7528\u3057\u3066\u3001\u30D1\u30B9\u30AF\u30A8\u30EA\
     \u3092 O(logN) \u6642\u9593\u3067\u884C\u3046\u3002\");\r\n    print(\"\u90E8\u5206\
     \u6728\u30AF\u30A8\u30EA O(logN) \u6642\u9593\u3001\u30D1\u30B9\u30AF\u30A8\u30EA\
-    \ O(logN) \u6642\u9593\u3002\");\r\n  }\r\n};\r\n#line 1 \"alg/monoid/affine.hpp\"\
-    \ntemplate <typename K>\nstruct Monoid_Affine {\n  using F = pair<K, K>;\n  using\
-    \ value_type = F;\n  static constexpr F op(const F &x, const F &y) noexcept {\n\
-    \    return F({x.first * y.first, x.second * y.first + y.second});\n  }\n  static\
-    \ constexpr F inverse(const F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n\
-    \    return {a, a * (-b)};\n  }\n  static constexpr K eval(const F &f, K x) noexcept\
-    \ {\n    return f.first * x + f.second;\n  }\n  static constexpr F unit() { return\
-    \ {K(1), K(0)}; }\n  static constexpr bool commute = false;\n};\n#line 8 \"test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp\"\
+    \ O(logN) \u6642\u9593\u3002\");\r\n  }\r\n};\r\n#line 2 \"alg/monoid/affine.hpp\"\
+    \n\ntemplate <typename K>\nstruct Monoid_Affine {\n  using F = pair<K, K>;\n \
+    \ using value_type = F;\n  static constexpr F op(const F &x, const F &y) noexcept\
+    \ {\n    return F({x.first * y.first, x.second * y.first + y.second});\n  }\n\
+    \  static constexpr F inverse(const F &x) {\n    auto [a, b] = x;\n    a = K(1)\
+    \ / a;\n    return {a, a * (-b)};\n  }\n  static constexpr K eval(const F &f,\
+    \ K x) noexcept {\n    return f.first * x + f.second;\n  }\n  static constexpr\
+    \ F unit() { return {K(1), K(0)}; }\n  static constexpr bool commute = false;\n\
+    };\n#line 8 \"test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  using Mono = Monoid_Affine<mint>;\n\
     \  using E = Mono::value_type;\n  vc<E> A(N);\n  FOR(i, N) {\n    LL(a, b);\n\
     \    A[i] = mp(mint(a), mint(b));\n  }\n\n  Graph<int> G(N);\n  G.read_tree(0,\
@@ -557,8 +559,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   requiredBy: []
-  timestamp: '2022-11-28 15:38:17+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-12-01 09:04:06+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
 layout: document

@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/dualsegtree.hpp
     title: ds/dualsegtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -226,7 +226,7 @@ data:
     \ 1;\n      }\n      l = l2;\n      r = r2;\n    }\n  }\n  void debug() { print(\"\
     dualsegtree getall:\", get_all()); }\n\nprivate:\n  void push(int k) {\n    all_apply(2\
     \ * k, laz[k]);\n    all_apply(2 * k + 1, laz[k]);\n    laz[k] = Monoid::unit();\n\
-    \  }\n};\n#line 1 \"alg/monoid/affine.hpp\"\ntemplate <typename K>\nstruct Monoid_Affine\
+    \  }\n};\n#line 2 \"alg/monoid/affine.hpp\"\n\ntemplate <typename K>\nstruct Monoid_Affine\
     \ {\n  using F = pair<K, K>;\n  using value_type = F;\n  static constexpr F op(const\
     \ F &x, const F &y) noexcept {\n    return F({x.first * y.first, x.second * y.first\
     \ + y.second});\n  }\n  static constexpr F inverse(const F &x) {\n    auto [a,\
@@ -346,7 +346,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_affine_point_add.test.cpp
   requiredBy: []
-  timestamp: '2022-11-27 15:26:15+09:00'
+  timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_affine_point_add.test.cpp

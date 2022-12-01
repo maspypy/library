@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/disjointsparse.hpp
     title: ds/disjointsparse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1216.test.cpp
     title: test/yukicoder/1216.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1216_2.test.cpp
     title: test/yukicoder/1216_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://atcoder.jp/contests/tkppc3/tasks/tkppc3_i
@@ -167,14 +167,15 @@ data:
     \ {\r\n    print(\"V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\",\
     \ RID);\r\n    print(\"parent\", parent);\r\n    print(\"depth\", depth);\r\n\
     \    print(\"head\", head);\r\n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"\
-    root\", root);\r\n  }\r\n};\r\n#line 2 \"alg/monoid/monoid_reverse.hpp\"\ntemplate\
-    \ <class Monoid>\r\nstruct Monoid_Reverse {\r\n  using value_type = typename Monoid::value_type;\r\
-    \n  using X = value_type;\r\n  static constexpr X op(const X &x, const X &y) {\
-    \ return Monoid::op(y, x); }\r\n  static constexpr X unit() { return Monoid::unit();\
-    \ }\r\n  static const bool commute = Monoid::commute;\r\n};\r\n#line 4 \"graph/ds/statictreemonoid.hpp\"\
-    \n\ntemplate <typename TREE, typename Monoid, bool edge = false>\nstruct StaticTreeMonoid\
-    \ {\n  using RevMonoid = Monoid_Reverse<Monoid>;\n  using X = typename Monoid::value_type;\n\
-    \  TREE &tree;\n  int N;\n  DisjointSparse<Monoid> seg;\n  DisjointSparse<RevMonoid>\
+    root\", root);\r\n  }\r\n};\r\n#line 2 \"alg/monoid/monoid_reverse.hpp\"\n\r\n\
+    template <class Monoid>\r\nstruct Monoid_Reverse {\r\n  using value_type = typename\
+    \ Monoid::value_type;\r\n  using X = value_type;\r\n  static constexpr X op(const\
+    \ X &x, const X &y) { return Monoid::op(y, x); }\r\n  static constexpr X unit()\
+    \ { return Monoid::unit(); }\r\n  static const bool commute = Monoid::commute;\r\
+    \n};\r\n#line 4 \"graph/ds/statictreemonoid.hpp\"\n\ntemplate <typename TREE,\
+    \ typename Monoid, bool edge = false>\nstruct StaticTreeMonoid {\n  using RevMonoid\
+    \ = Monoid_Reverse<Monoid>;\n  using X = typename Monoid::value_type;\n  TREE\
+    \ &tree;\n  int N;\n  DisjointSparse<Monoid> seg;\n  DisjointSparse<RevMonoid>\
     \ seg_r;\n\n  StaticTreeMonoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N)\
     \ {\n    if (!Monoid::commute) seg_r = DisjointSparse<RevMonoid>(tree.N);\n  }\n\
     \n  StaticTreeMonoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {\n    vc<X>\
@@ -287,8 +288,8 @@ data:
   isVerificationFile: false
   path: graph/ds/statictreemonoid.hpp
   requiredBy: []
-  timestamp: '2022-11-28 15:38:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-12-01 09:04:06+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1216.test.cpp
   - test/yukicoder/1216_2.test.cpp

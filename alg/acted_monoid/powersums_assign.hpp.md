@@ -1,24 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/add_array.hpp
     title: alg/monoid/add_array.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1548.test.cpp
     title: test/yukicoder/1548.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"alg/acted_monoid/powersums_assign.hpp\"\n\r\n#line 1 \"\
-    alg/monoid/assign.hpp\"\ntemplate <typename X, X none_val>\r\nstruct Monoid_Assign\
+  bundledCode: "#line 2 \"alg/acted_monoid/powersums_assign.hpp\"\n\r\n#line 2 \"\
+    alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, X none_val>\r\nstruct Monoid_Assign\
     \ {\r\n  using value_type = X;\r\n  static X op(X x, X y) { return (y == none_val\
     \ ? x : y); }\r\n  static constexpr X unit() { return none_val; }\r\n  static\
     \ constexpr bool commute = false;\r\n};\r\n#line 2 \"alg/monoid/add_array.hpp\"\
@@ -46,8 +46,8 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/powersums_assign.hpp
   requiredBy: []
-  timestamp: '2022-11-28 18:13:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-12-01 09:04:06+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1548.test.cpp
 documentation_of: alg/acted_monoid/powersums_assign.hpp

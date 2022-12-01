@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
   - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
   - icon: ':heavy_check_mark:'
     path: ds/sortable_segtree.hpp
     title: ds/sortable_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -364,7 +364,7 @@ data:
     \    }\n    int node_m = (node_l + node_r) / 2;\n    int s = (n->l ? n->l->size\
     \ : 0);\n    if (idx < s) { set_rec_idx(n->l, node_l, node_m, idx, x); }\n   \
     \ if (idx >= s) { set_rec_idx(n->r, node_m, node_r, idx - s, x); }\n    update(n);\n\
-    \  }\n};\n#line 1 \"alg/monoid/affine.hpp\"\ntemplate <typename K>\nstruct Monoid_Affine\
+    \  }\n};\n#line 2 \"alg/monoid/affine.hpp\"\n\ntemplate <typename K>\nstruct Monoid_Affine\
     \ {\n  using F = pair<K, K>;\n  using value_type = F;\n  static constexpr F op(const\
     \ F &x, const F &y) noexcept {\n    return F({x.first * y.first, x.second * y.first\
     \ + y.second});\n  }\n  static constexpr F inverse(const F &x) {\n    auto [a,\
@@ -504,7 +504,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/sort_segtree_1.test.cpp
   requiredBy: []
-  timestamp: '2022-11-27 19:19:31+09:00'
+  timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/sort_segtree_1.test.cpp

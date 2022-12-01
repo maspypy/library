@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/cntsummax_assign.hpp
     title: alg/acted_monoid/cntsummax_assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/cntsummax.hpp
     title: alg/monoid/cntsummax.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -218,8 +218,8 @@ data:
     \ = x;\r\n    auto [yc, ys, ym] = y;\r\n    return {xc + yc, xs + ys, max(xm,\
     \ ym)};\r\n  }\r\n  static X from_element(E x) { return {1, x, x}; }\r\n  static\
     \ constexpr X unit() { return {0, 0, numeric_limits<ll>::lowest()}; }\r\n  static\
-    \ constexpr bool commute = true;\r\n};\r\n#line 1 \"alg/monoid/assign.hpp\"\n\
-    template <typename X, X none_val>\r\nstruct Monoid_Assign {\r\n  using value_type\
+    \ constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/monoid/assign.hpp\"\n\r\
+    \ntemplate <typename X, X none_val>\r\nstruct Monoid_Assign {\r\n  using value_type\
     \ = X;\r\n  static X op(X x, X y) { return (y == none_val ? x : y); }\r\n  static\
     \ constexpr X unit() { return none_val; }\r\n  static constexpr bool commute =\
     \ false;\r\n};\r\n#line 3 \"alg/acted_monoid/cntsummax_assign.hpp\"\n\r\ntemplate\
@@ -334,8 +334,8 @@ data:
   isVerificationFile: true
   path: test/mytest/cntsummax_assign.test.cpp
   requiredBy: []
-  timestamp: '2022-11-28 18:48:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-12-01 09:04:06+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/cntsummax_assign.test.cpp
 layout: document

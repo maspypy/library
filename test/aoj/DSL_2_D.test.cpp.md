@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/dualsegtree.hpp
     title: ds/dualsegtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -222,8 +222,8 @@ data:
     \    l >>= 1;\n        r >>= 1;\n      }\n      l = l2;\n      r = r2;\n    }\n\
     \  }\n  void debug() { print(\"dualsegtree getall:\", get_all()); }\n\nprivate:\n\
     \  void push(int k) {\n    all_apply(2 * k, laz[k]);\n    all_apply(2 * k + 1,\
-    \ laz[k]);\n    laz[k] = Monoid::unit();\n  }\n};\n#line 1 \"alg/monoid/assign.hpp\"\
-    \ntemplate <typename X, X none_val>\r\nstruct Monoid_Assign {\r\n  using value_type\
+    \ laz[k]);\n    laz[k] = Monoid::unit();\n  }\n};\n#line 2 \"alg/monoid/assign.hpp\"\
+    \n\r\ntemplate <typename X, X none_val>\r\nstruct Monoid_Assign {\r\n  using value_type\
     \ = X;\r\n  static X op(X x, X y) { return (y == none_val ? x : y); }\r\n  static\
     \ constexpr X unit() { return none_val; }\r\n  static constexpr bool commute =\
     \ false;\r\n};\r\n#line 7 \"test/aoj/DSL_2_D.test.cpp\"\n\r\nvoid solve() {\r\n\
@@ -250,7 +250,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_D.test.cpp
   requiredBy: []
-  timestamp: '2022-11-28 15:38:17+09:00'
+  timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_D.test.cpp

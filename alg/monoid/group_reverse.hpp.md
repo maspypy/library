@@ -2,40 +2,40 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/treegroup.hpp
     title: graph/ds/treegroup.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"alg/monoid/group_reverse.hpp\"\ntemplate <class Group>\r\
+  bundledCode: "#line 2 \"alg/monoid/group_reverse.hpp\"\n\r\ntemplate <class Group>\r\
     \nstruct Group_Reverse {\r\n  using value_type = typename Group::value_type;\r\
     \n  using X = value_type;\r\n  static constexpr X op(const X &x, const X &y) {\
     \ return Group::op(y, x); }\r\n  static constexpr X inverse(const X &x) { return\
     \ Group::inverse(x); }\r\n  static constexpr X unit() { return Group::unit();\
     \ }\r\n  static const bool commute = Group::commute;\r\n};\r\n"
-  code: "template <class Group>\r\nstruct Group_Reverse {\r\n  using value_type =\
-    \ typename Group::value_type;\r\n  using X = value_type;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) { return Group::op(y, x); }\r\n  static constexpr\
-    \ X inverse(const X &x) { return Group::inverse(x); }\r\n  static constexpr X\
-    \ unit() { return Group::unit(); }\r\n  static const bool commute = Group::commute;\r\
-    \n};\r\n"
+  code: "#pragma once\r\n\r\ntemplate <class Group>\r\nstruct Group_Reverse {\r\n\
+    \  using value_type = typename Group::value_type;\r\n  using X = value_type;\r\
+    \n  static constexpr X op(const X &x, const X &y) { return Group::op(y, x); }\r\
+    \n  static constexpr X inverse(const X &x) { return Group::inverse(x); }\r\n \
+    \ static constexpr X unit() { return Group::unit(); }\r\n  static const bool commute\
+    \ = Group::commute;\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/group_reverse.hpp
   requiredBy:
   - graph/ds/treegroup.hpp
-  timestamp: '2022-11-28 14:51:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-12-01 09:04:06+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp

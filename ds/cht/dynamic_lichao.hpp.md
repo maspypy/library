@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min_idx.hpp
     title: alg/monoid/min_idx.hpp
   _extendedRequiredBy: []
@@ -17,18 +17,18 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"alg/monoid/min_idx.hpp\"\ntemplate <typename T, bool tie_is_left\
-    \ = true>\r\nstruct Monoid_Min_Idx {\r\n  using value_type = pair<T, int>;\r\n\
-    \  using X = value_type;\r\n  static constexpr bool is_small(const X& x, const\
-    \ X& y) {\r\n    if (x.fi < y.fi) return true;\r\n    if (x.fi > y.fi) return\
-    \ false;\r\n    return (tie_is_left ? (x.se < y.se) : (x.se >= y.se));\r\n  }\r\
-    \n  static X op(X x, X y) { return (is_small(x, y) ? x : y); }\r\n  static constexpr\
-    \ X unit() { return {numeric_limits<T>::max(), -1}; }\r\n  static constexpr bool\
-    \ commute = true;\r\n};\r\n#line 2 \"ds/cht/dynamic_lichao.hpp\"\n\n// x \u5EA7\
-    \u6A19\u306F long long \u306B\u9650\u5B9A\u3057\u3066\u3044\u308B\u3002\n// \u76F4\
-    \u7DDA\u306E\u4FC2\u6570 T \u306F double \u3084 i128 \u3082\u53EF\u80FD\u3002\n\
-    template <typename T, int NODES>\nstruct Dynamic_LiChaoTree {\n  using Mono =\
-    \ Monoid_Min_Idx<T>;\n  struct Line {\n    int idx;\n    T a, b;\n    Line(int\
+  bundledCode: "#line 2 \"alg/monoid/min_idx.hpp\"\n\r\ntemplate <typename T, bool\
+    \ tie_is_left = true>\r\nstruct Monoid_Min_Idx {\r\n  using value_type = pair<T,\
+    \ int>;\r\n  using X = value_type;\r\n  static constexpr bool is_small(const X&\
+    \ x, const X& y) {\r\n    if (x.fi < y.fi) return true;\r\n    if (x.fi > y.fi)\
+    \ return false;\r\n    return (tie_is_left ? (x.se < y.se) : (x.se >= y.se));\r\
+    \n  }\r\n  static X op(X x, X y) { return (is_small(x, y) ? x : y); }\r\n  static\
+    \ constexpr X unit() { return {numeric_limits<T>::max(), -1}; }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 2 \"ds/cht/dynamic_lichao.hpp\"\n\n// x\
+    \ \u5EA7\u6A19\u306F long long \u306B\u9650\u5B9A\u3057\u3066\u3044\u308B\u3002\
+    \n// \u76F4\u7DDA\u306E\u4FC2\u6570 T \u306F double \u3084 i128 \u3082\u53EF\u80FD\
+    \u3002\ntemplate <typename T, int NODES>\nstruct Dynamic_LiChaoTree {\n  using\
+    \ Mono = Monoid_Min_Idx<T>;\n  struct Line {\n    int idx;\n    T a, b;\n    Line(int\
     \ idx, T a, T b) : idx(idx), a(a), b(b) {}\n    Line() : Line(-1, 0, numeric_limits<T>::max())\
     \ {}\n    pair<T, int> operator()(T x) const { return {a * x + b, idx}; }\n  };\n\
     \n  struct Node {\n    Line f;\n    Node *l, *r;\n  };\n\n  Node *pool;\n  int\
@@ -113,7 +113,7 @@ data:
   isVerificationFile: false
   path: ds/cht/dynamic_lichao.hpp
   requiredBy: []
-  timestamp: '2022-10-21 17:24:22+09:00'
+  timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp

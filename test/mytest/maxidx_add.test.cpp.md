@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/maxidx_add.hpp
     title: alg/acted_monoid/maxidx_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/max_idx.hpp
     title: alg/monoid/max_idx.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -217,12 +217,12 @@ data:
     \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
     \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
     \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/monoid/max_idx.hpp\"\
-    \ntemplate <typename T, bool tie_is_left = true>\r\nstruct Monoid_Max_Idx {\r\n\
-    \  using value_type = pair<T, int>;\r\n  using X = value_type;\r\n  static X op(X\
-    \ x, X y) {\r\n    if (x.fi > y.fi) return x;\r\n    if (x.fi < y.fi) return y;\r\
-    \n    if (x.se > y.se) swap(x, y);\r\n    return (tie_is_left ? x : y);\r\n  }\r\
-    \n  static constexpr X unit() { return {numeric_limits<T>::lowest(), -1}; }\r\n\
-    \  static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/maxidx_add.hpp\"\
+    \n\r\ntemplate <typename T, bool tie_is_left = true>\r\nstruct Monoid_Max_Idx\
+    \ {\r\n  using value_type = pair<T, int>;\r\n  using X = value_type;\r\n  static\
+    \ X op(X x, X y) {\r\n    if (x.fi > y.fi) return x;\r\n    if (x.fi < y.fi) return\
+    \ y;\r\n    if (x.se > y.se) swap(x, y);\r\n    return (tie_is_left ? x : y);\r\
+    \n  }\r\n  static constexpr X unit() { return {numeric_limits<T>::lowest(), -1};\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/maxidx_add.hpp\"\
     \n\r\ntemplate <typename E, bool tie_is_left = true>\r\nstruct ActedMonoid_MaxIdx_Add\
     \ {\r\n  using Monoid_X = Monoid_Max_Idx<E, tie_is_left>;\r\n  using Monoid_A\
     \ = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A\
@@ -334,8 +334,8 @@ data:
   isVerificationFile: true
   path: test/mytest/maxidx_add.test.cpp
   requiredBy: []
-  timestamp: '2022-11-28 18:13:51+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-12-01 09:04:06+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/maxidx_add.test.cpp
 layout: document

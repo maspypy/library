@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree.hpp
     title: ds/segtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/1436/problem/E
@@ -65,24 +65,25 @@ data:
     \ ^ xor_val)]); }\n      if (r & 1) { x = Monoid::op(x, dat[(size >> k) + ((--r)\
     \ ^ xor_val)]); }\n      l /= 2, r /= 2, xor_val /= 2;\n    }\n    return x;\n\
     \  }\n\n  void debug() { print(\"segtree\", dat); }\n};\n#line 2 \"alg/monoid/min.hpp\"\
-    \ntemplate <class X>\r\nstruct Monoid_Min {\r\n  using value_type = X;\r\n  static\
-    \ constexpr X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static\
-    \ constexpr X unit() { return numeric_limits<X>::max(); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 4 \"ds/query/range_mex_query.hpp\"\n\r\n\
-    // \u914D\u5217\u306F static\r\n// \u30AF\u30A8\u30EA\u3082\u5148\u8AAD\u307F\u3059\
-    \u308B\r\n// example: https://codeforces.com/contest/1436/problem/E\r\ntemplate\
-    \ <int BEGIN, typename T = ll>\r\nstruct RangeMexQuery {\r\n  vc<T>& A;\r\n  vc<pair<int,\
-    \ int>> query;\r\n\r\n  RangeMexQuery(vc<T>& A) : A(A) {}\r\n  void add(int l,\
-    \ int r) { query.eb(l, r); }\r\n\r\n  vc<T> calc() {\r\n    int N = len(A);\r\n\
-    \    // segtree, value -> last idx\r\n    using Mono = Monoid_Min<int>;\r\n  \
-    \  vc<int> seg_raw(N + 2, -1);\r\n    SegTree<Mono> seg(seg_raw);\r\n\r\n    int\
-    \ Q = len(query);\r\n    vc<T> ANS(Q);\r\n    vc<vc<int>> IDS(N + 1);\r\n    FOR(q,\
-    \ Q) {\r\n      auto [L, R] = query[q];\r\n      IDS[R].eb(q);\r\n    }\r\n\r\n\
-    \    FOR(i, N + 1) {\r\n      // solve query\r\n      for (auto&& q: IDS[i]) {\r\
-    \n        int L = query[q].fi;\r\n        auto check = [&](int x) -> bool { return\
-    \ x >= L; };\r\n        int mex = seg.max_right(check, BEGIN);\r\n        ANS[q]\
-    \ = mex;\r\n      }\r\n      // update segtree\r\n      if (i < N && A[i] < N\
-    \ + 2) seg.set(A[i], i);\r\n    }\r\n    return ANS;\r\n  }\r\n};\r\n"
+    \n\r\ntemplate <class X>\r\nstruct Monoid_Min {\r\n  using value_type = X;\r\n\
+    \  static constexpr X op(const X &x, const X &y) noexcept { return min(x, y);\
+    \ }\r\n  static constexpr X unit() { return numeric_limits<X>::max(); }\r\n  static\
+    \ constexpr bool commute = true;\r\n};\r\n#line 4 \"ds/query/range_mex_query.hpp\"\
+    \n\r\n// \u914D\u5217\u306F static\r\n// \u30AF\u30A8\u30EA\u3082\u5148\u8AAD\u307F\
+    \u3059\u308B\r\n// example: https://codeforces.com/contest/1436/problem/E\r\n\
+    template <int BEGIN, typename T = ll>\r\nstruct RangeMexQuery {\r\n  vc<T>& A;\r\
+    \n  vc<pair<int, int>> query;\r\n\r\n  RangeMexQuery(vc<T>& A) : A(A) {}\r\n \
+    \ void add(int l, int r) { query.eb(l, r); }\r\n\r\n  vc<T> calc() {\r\n    int\
+    \ N = len(A);\r\n    // segtree, value -> last idx\r\n    using Mono = Monoid_Min<int>;\r\
+    \n    vc<int> seg_raw(N + 2, -1);\r\n    SegTree<Mono> seg(seg_raw);\r\n\r\n \
+    \   int Q = len(query);\r\n    vc<T> ANS(Q);\r\n    vc<vc<int>> IDS(N + 1);\r\n\
+    \    FOR(q, Q) {\r\n      auto [L, R] = query[q];\r\n      IDS[R].eb(q);\r\n \
+    \   }\r\n\r\n    FOR(i, N + 1) {\r\n      // solve query\r\n      for (auto&&\
+    \ q: IDS[i]) {\r\n        int L = query[q].fi;\r\n        auto check = [&](int\
+    \ x) -> bool { return x >= L; };\r\n        int mex = seg.max_right(check, BEGIN);\r\
+    \n        ANS[q] = mex;\r\n      }\r\n      // update segtree\r\n      if (i <\
+    \ N && A[i] < N + 2) seg.set(A[i], i);\r\n    }\r\n    return ANS;\r\n  }\r\n\
+    };\r\n"
   code: "\r\n#include \"ds/segtree.hpp\"\r\n#include \"alg/monoid/min.hpp\"\r\n\r\n\
     // \u914D\u5217\u306F static\r\n// \u30AF\u30A8\u30EA\u3082\u5148\u8AAD\u307F\u3059\
     \u308B\r\n// example: https://codeforces.com/contest/1436/problem/E\r\ntemplate\
@@ -104,8 +105,8 @@ data:
   isVerificationFile: false
   path: ds/query/range_mex_query.hpp
   requiredBy: []
-  timestamp: '2022-10-21 17:08:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-12-01 09:04:06+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/range_mex.test.cpp
 documentation_of: ds/query/range_mex_query.hpp

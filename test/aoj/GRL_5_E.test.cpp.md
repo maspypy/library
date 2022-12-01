@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/cntsum_add.hpp
     title: alg/acted_monoid/cntsum_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/lazysegtree.hpp
     title: ds/lazysegtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/lazytreemonoid.hpp
     title: graph/ds/lazytreemonoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -447,26 +447,27 @@ data:
     \ x);\r\n        u = (tree.V[b]);\r\n        continue;\r\n      }\r\n      auto\
     \ check_tmp = [&](X x) -> bool { return check(MonoX::op(val, x)); };\r\n     \
     \ auto i = seg.max_right(check_tmp, a);\r\n      return (i == a ? u : tree.V[i\
-    \ - 1]);\r\n    }\r\n    return v;\r\n  }\r\n};\r\n#line 1 \"alg/monoid/add_pair.hpp\"\
-    \ntemplate <typename E>\r\nstruct Monoid_Add_Pair {\r\n  using value_type = pair<E,\
-    \ E>;\r\n  using X = value_type;\r\n  static constexpr X op(const X &x, const\
-    \ X &y) {\r\n    return {x.fi + y.fi, x.se + y.se};\r\n  }\r\n  static constexpr\
-    \ X inverse(const X &x) { return {-x.fi, -x.se}; }\r\n  static constexpr X unit()\
-    \ { return {0, 0}; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line\
-    \ 3 \"alg/acted_monoid/cntsum_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct ActedMonoid_CntSum_Add\
-    \ {\r\n  using Monoid_X = Monoid_Add_Pair<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\
-    \n  using X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
-    \n  static constexpr X act(const X &x, const A &a) {\r\n    return {x.fi, x.se\
-    \ + x.fi * a};\r\n  }\r\n};\r\n#line 8 \"test/aoj/GRL_5_E.test.cpp\"\n\nvoid solve()\
-    \ {\n  LL(N);\n  Graph<int, 0> G(N);\n  FOR(v, N) {\n    LL(k);\n    FOR(k) {\n\
-    \      LL(to);\n      G.add(v, to);\n    }\n  }\n  G.build();\n  TREE<decltype(G)>\
-    \ tree(G);\n  vc<pi> seg_raw(N - 1, {1, 0});\n  using AM = ActedMonoid_CntSum_Add<ll>;\n\
-    \  LazyTreeMonoid<decltype(tree), AM, 1> TM(tree, seg_raw);\n  LL(Q);\n  FOR(Q)\
-    \ {\n    LL(t);\n    if (t == 0) {\n      LL(v, x);\n      TM.apply_path(0, v,\
-    \ x);\n      // TM.apply_path(tree.parent[v], v, x);\n    } else {\n      LL(v);\n\
-    \      print(TM.prod_path(0, v).se);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ - 1]);\r\n    }\r\n    return v;\r\n  }\r\n};\r\n#line 2 \"alg/monoid/add_pair.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct Monoid_Add_Pair {\r\n  using value_type\
+    \ = pair<E, E>;\r\n  using X = value_type;\r\n  static constexpr X op(const X\
+    \ &x, const X &y) {\r\n    return {x.fi + y.fi, x.se + y.se};\r\n  }\r\n  static\
+    \ constexpr X inverse(const X &x) { return {-x.fi, -x.se}; }\r\n  static constexpr\
+    \ X unit() { return {0, 0}; }\r\n  static constexpr bool commute = true;\r\n};\r\
+    \n#line 3 \"alg/acted_monoid/cntsum_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
+    \ ActedMonoid_CntSum_Add {\r\n  using Monoid_X = Monoid_Add_Pair<E>;\r\n  using\
+    \ Monoid_A = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\n\
+    \  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
+    \ X &x, const A &a) {\r\n    return {x.fi, x.se + x.fi * a};\r\n  }\r\n};\r\n\
+    #line 8 \"test/aoj/GRL_5_E.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  Graph<int,\
+    \ 0> G(N);\n  FOR(v, N) {\n    LL(k);\n    FOR(k) {\n      LL(to);\n      G.add(v,\
+    \ to);\n    }\n  }\n  G.build();\n  TREE<decltype(G)> tree(G);\n  vc<pi> seg_raw(N\
+    \ - 1, {1, 0});\n  using AM = ActedMonoid_CntSum_Add<ll>;\n  LazyTreeMonoid<decltype(tree),\
+    \ AM, 1> TM(tree, seg_raw);\n  LL(Q);\n  FOR(Q) {\n    LL(t);\n    if (t == 0)\
+    \ {\n      LL(v, x);\n      TM.apply_path(0, v, x);\n      // TM.apply_path(tree.parent[v],\
+    \ v, x);\n    } else {\n      LL(v);\n      print(TM.prod_path(0, v).se);\n  \
+    \  }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_E\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/monoid/add.hpp\"\
     \n#include \"graph/ds/lazytreemonoid.hpp\"\n#include \"alg/acted_monoid/cntsum_add.hpp\"\
@@ -493,7 +494,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_5_E.test.cpp
   requiredBy: []
-  timestamp: '2022-11-28 18:54:34+09:00'
+  timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_5_E.test.cpp
