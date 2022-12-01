@@ -1,15 +1,15 @@
-#include "ds/bbst/splaytree.hpp"
+#include "ds/splay/splaytree.hpp"
 
-namespace STAM {
+namespace SplayTreeNodes {
 template <typename ActedMonoid>
-struct Node {
+struct Node_AM {
   using Monoid_A = typename ActedMonoid::Monoid_A;
   using Monoid_X = typename ActedMonoid::Monoid_X;
   using A = typename Monoid_A::value_type;
   using X = typename Monoid_X::value_type;
   using value_type = X;
   using operator_type = A;
-  using np = Node *;
+  using np = Node_AM *;
 
   np p, l, r;
   X x, prod;
@@ -87,7 +87,7 @@ struct Node {
   }
 };
 template <typename ActedMonoid, int NODES>
-using SplayTree_ActedMonoid = SplayTree<Node<ActedMonoid>, NODES>;
-} // namespace STAM
+using SplayTree_ActedMonoid = SplayTree<Node_AM<ActedMonoid>, NODES>;
+} // namespace SplayTreeNodes
 
-using STAM::SplayTree_ActedMonoid;
+using SplayTreeNodes::SplayTree_ActedMonoid;
