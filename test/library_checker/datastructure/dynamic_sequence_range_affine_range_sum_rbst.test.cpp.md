@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_monoid/cntsum_affine.hpp
     title: alg/acted_monoid/cntsum_affine.hpp
   - icon: ':question:'

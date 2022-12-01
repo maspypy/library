@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc256d.test.cpp
     title: test/atcoder/abc256d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/predecessor_problem.test.cpp
     title: test/library_checker/datastructure/predecessor_problem.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/fastset.hpp\"\n/* 64\u5206\u6728\u3002\r\ninsert, erase\r\
@@ -90,7 +90,7 @@ data:
   requiredBy:
   - ds/intervals.hpp
   timestamp: '2022-07-31 10:23:33+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/predecessor_problem.test.cpp
   - test/atcoder/abc256d.test.cpp

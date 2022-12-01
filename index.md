@@ -12,7 +12,7 @@ data:
     - icon: ':question:'
       path: alg/acted_monoid/cntsum_add.hpp
       title: alg/acted_monoid/cntsum_add.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/acted_monoid/cntsum_affine.hpp
       title: alg/acted_monoid/cntsum_affine.hpp
     - icon: ':heavy_check_mark:'
@@ -168,7 +168,7 @@ data:
     - icon: ':x:'
       path: ds/doubling.hpp
       title: ds/doubling.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
     - icon: ':question:'
@@ -297,7 +297,7 @@ data:
       title: ds/offline_query/uniqueproductquery.hpp
   - name: ds/pds
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/pds/array.hpp
       title: ds/pds/array.hpp
     - icon: ':warning:'
@@ -378,7 +378,7 @@ data:
     - icon: ':question:'
       path: ds/splay/splaytree.hpp
       title: ds/splay/splaytree.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/splay/splaytree_acted_monoid.hpp
       title: ds/splay/splaytree_acted_monoid.hpp
     - icon: ':x:'
@@ -668,10 +668,10 @@ data:
     - icon: ':question:'
       path: graph/ds/lazytreemonoid.hpp
       title: graph/ds/lazytreemonoid.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/ds/link_cut.hpp
       title: graph/ds/link_cut.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/ds/link_cut_path.hpp
       title: graph/ds/link_cut_path.hpp
     - icon: ':warning:'
@@ -1578,7 +1578,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/agc058d.test.cpp
       title: test/atcoder/agc058d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/arc123d.test.cpp
       title: test/atcoder/arc123d.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1651,10 +1651,10 @@ data:
     - icon: ':x:'
       path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
       title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
       title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
       title: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
     - icon: ':x:'
@@ -1663,7 +1663,7 @@ data:
     - icon: ':x:'
       path: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
       title: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/persistent_queue.test.cpp
       title: test/library_checker/datastructure/persistent_queue.test.cpp
     - icon: ':x:'
@@ -1681,7 +1681,7 @@ data:
     - icon: ':x:'
       path: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
       title: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/predecessor_problem.test.cpp
       title: test/library_checker/datastructure/predecessor_problem.test.cpp
     - icon: ':x:'

@@ -268,6 +268,9 @@ data:
     path: test/atcoder/agc058d.test.cpp
     title: test/atcoder/agc058d.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/atcoder/arc123d.test.cpp
+    title: test/atcoder/arc123d.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/arc151_e.test.cpp
     title: test/atcoder/arc151_e.test.cpp
   - icon: ':x:'
@@ -321,16 +324,16 @@ data:
   - icon: ':x:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
     title: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/persistent_queue.test.cpp
     title: test/library_checker/datastructure/persistent_queue.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/predecessor_problem.test.cpp
     title: test/library_checker/datastructure/predecessor_problem.test.cpp
   - icon: ':x:'
@@ -1818,6 +1821,7 @@ data:
   - test/atcoder/abc198d.test.cpp
   - test/atcoder/abc196_E.test.cpp
   - test/atcoder/abc200a.test.cpp
+  - test/atcoder/arc123d.test.cpp
   - test/atcoder/abc270_f.test.cpp
   - test/atcoder/abc190f.test.cpp
   - test/atcoder/abc266f.test.cpp

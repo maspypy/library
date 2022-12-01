@@ -9,6 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc217h.test.cpp
     title: test/atcoder/abc217h.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/arc123d.test.cpp
+    title: test/atcoder/arc123d.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -100,6 +103,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/atcoder/abc217h.test.cpp
+  - test/atcoder/arc123d.test.cpp
   - test/atcoder/abc127f.test.cpp
 documentation_of: ds/func/slope.hpp
 layout: document
