@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/splay/splaytree.hpp
     title: ds/splay/splaytree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/splay/splaytree_monoid.hpp
     title: ds/splay/splaytree_monoid.hpp
   - icon: ':question:'
@@ -19,14 +19,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -440,41 +440,43 @@ data:
     \ SplayTreeNodes::SplayTree_Monoid;\n#line 8 \"test/mytest/splay.test.cpp\"\n\n\
     void test() {\n  // reverse, set, prod \u306E\u52D5\u4F5C\u3092\u78BA\u8A8D\n\
     \  using mint = modint998;\n  using Mono = Monoid_Affine<mint>;\n  using X = Mono::value_type;\n\
-    \  SplayTree_Monoid<Mono> ST;\n\n  auto rnd_X = [&]() -> X {\n    ll a = RNG(0,\
-    \ 1 << 30);\n    ll b = RNG(0, 1 << 30);\n    return {mint(a), mint(b)};\n  };\n\
-    \  auto get_lr = [&](int N) -> pi {\n    int l = RNG(0, N);\n    int r = RNG(0,\
-    \ N);\n    if (l > r) swap(l, r);\n    ++r;\n    return {l, r};\n  };\n\n  FOR(N,\
-    \ 1, 10) {\n    ST.reset();\n\n    vc<X> A(N);\n    FOR(i, N) { A[i] = rnd_X();\
-    \ }\n\n    auto root = ST.new_node(A);\n    FOR(100) {\n      int t = RNG(0, 3);\n\
-    \      if (t == 0) {\n        // set\n        int i = RNG(0, N);\n        X x\
-    \ = rnd_X();\n        A[i] = x;\n        ST.set(root, i, x);\n      }\n      if\
-    \ (t == 1) {\n        // reverse\n        auto [l, r] = get_lr(N);\n        reverse(A.begin()\
-    \ + l, A.begin() + r);\n        ST.reverse(root, l, r);\n      }\n      if (t\
-    \ == 2) {\n        // prod\n        auto [l, r] = get_lr(N);\n        X a = Mono::unit();\n\
-    \        FOR(i, l, r) a = Mono::op(a, A[i]);\n        X b = ST.prod(root, l, r);\n\
-    \        assert(a == b);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n\
-    \  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  test();\n\n  ll T = 1;\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \  SplayTree_Monoid<Mono, 1000> ST;\n\n  auto rnd_X = [&]() -> X {\n    ll a =\
+    \ RNG(0, 1 << 30);\n    ll b = RNG(0, 1 << 30);\n    return {mint(a), mint(b)};\n\
+    \  };\n  auto get_lr = [&](int N) -> pi {\n    int l = RNG(0, N);\n    int r =\
+    \ RNG(0, N);\n    if (l > r) swap(l, r);\n    ++r;\n    return {l, r};\n  };\n\
+    \n  FOR(N, 1, 10) {\n    ST.reset();\n\n    vc<X> A(N);\n    FOR(i, N) { A[i]\
+    \ = rnd_X(); }\n\n    auto root = ST.new_node(A);\n    FOR(100) {\n      int t\
+    \ = RNG(0, 3);\n      if (t == 0) {\n        // set\n        int i = RNG(0, N);\n\
+    \        X x = rnd_X();\n        A[i] = x;\n        ST.set(root, i, x);\n    \
+    \  }\n      if (t == 1) {\n        // reverse\n        auto [l, r] = get_lr(N);\n\
+    \        reverse(A.begin() + l, A.begin() + r);\n        ST.reverse(root, l, r);\n\
+    \      }\n      if (t == 2) {\n        // prod\n        auto [l, r] = get_lr(N);\n\
+    \        X a = Mono::unit();\n        FOR(i, l, r) a = Mono::op(a, A[i]);\n  \
+    \      X b = ST.prod(root, l, r);\n        assert(a == b);\n      }\n    }\n \
+    \ }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n\
+    \  cout << fixed << setprecision(15);\n\n  test();\n\n  ll T = 1;\n  FOR(T) solve();\n\
+    \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"alg/monoid/affine.hpp\"\n#include \"mod/modint.hpp\"\
     \n#include \"random/base.hpp\"\n#include \"ds/splay/splaytree_monoid.hpp\"\n\n\
     void test() {\n  // reverse, set, prod \u306E\u52D5\u4F5C\u3092\u78BA\u8A8D\n\
     \  using mint = modint998;\n  using Mono = Monoid_Affine<mint>;\n  using X = Mono::value_type;\n\
-    \  SplayTree_Monoid<Mono> ST;\n\n  auto rnd_X = [&]() -> X {\n    ll a = RNG(0,\
-    \ 1 << 30);\n    ll b = RNG(0, 1 << 30);\n    return {mint(a), mint(b)};\n  };\n\
-    \  auto get_lr = [&](int N) -> pi {\n    int l = RNG(0, N);\n    int r = RNG(0,\
-    \ N);\n    if (l > r) swap(l, r);\n    ++r;\n    return {l, r};\n  };\n\n  FOR(N,\
-    \ 1, 10) {\n    ST.reset();\n\n    vc<X> A(N);\n    FOR(i, N) { A[i] = rnd_X();\
-    \ }\n\n    auto root = ST.new_node(A);\n    FOR(100) {\n      int t = RNG(0, 3);\n\
-    \      if (t == 0) {\n        // set\n        int i = RNG(0, N);\n        X x\
-    \ = rnd_X();\n        A[i] = x;\n        ST.set(root, i, x);\n      }\n      if\
-    \ (t == 1) {\n        // reverse\n        auto [l, r] = get_lr(N);\n        reverse(A.begin()\
-    \ + l, A.begin() + r);\n        ST.reverse(root, l, r);\n      }\n      if (t\
-    \ == 2) {\n        // prod\n        auto [l, r] = get_lr(N);\n        X a = Mono::unit();\n\
-    \        FOR(i, l, r) a = Mono::op(a, A[i]);\n        X b = ST.prod(root, l, r);\n\
-    \        assert(a == b);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n\
-    \  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  test();\n\n  ll T = 1;\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \  SplayTree_Monoid<Mono, 1000> ST;\n\n  auto rnd_X = [&]() -> X {\n    ll a =\
+    \ RNG(0, 1 << 30);\n    ll b = RNG(0, 1 << 30);\n    return {mint(a), mint(b)};\n\
+    \  };\n  auto get_lr = [&](int N) -> pi {\n    int l = RNG(0, N);\n    int r =\
+    \ RNG(0, N);\n    if (l > r) swap(l, r);\n    ++r;\n    return {l, r};\n  };\n\
+    \n  FOR(N, 1, 10) {\n    ST.reset();\n\n    vc<X> A(N);\n    FOR(i, N) { A[i]\
+    \ = rnd_X(); }\n\n    auto root = ST.new_node(A);\n    FOR(100) {\n      int t\
+    \ = RNG(0, 3);\n      if (t == 0) {\n        // set\n        int i = RNG(0, N);\n\
+    \        X x = rnd_X();\n        A[i] = x;\n        ST.set(root, i, x);\n    \
+    \  }\n      if (t == 1) {\n        // reverse\n        auto [l, r] = get_lr(N);\n\
+    \        reverse(A.begin() + l, A.begin() + r);\n        ST.reverse(root, l, r);\n\
+    \      }\n      if (t == 2) {\n        // prod\n        auto [l, r] = get_lr(N);\n\
+    \        X a = Mono::unit();\n        FOR(i, l, r) a = Mono::op(a, A[i]);\n  \
+    \      X b = ST.prod(root, l, r);\n        assert(a == b);\n      }\n    }\n \
+    \ }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n\
+    \  cout << fixed << setprecision(15);\n\n  test();\n\n  ll T = 1;\n  FOR(T) solve();\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -486,8 +488,8 @@ data:
   isVerificationFile: true
   path: test/mytest/splay.test.cpp
   requiredBy: []
-  timestamp: '2022-12-01 12:49:06+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-01 13:11:39+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/splay.test.cpp
 layout: document
