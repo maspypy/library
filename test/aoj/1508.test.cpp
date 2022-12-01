@@ -2,20 +2,20 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "alg/monoid/min.hpp"
-#include "ds/bbst/splaytree_monoid.hpp"
+#include "ds/splay/splaytree_monoid.hpp"
 
 void solve() {
   LL(N, Q);
   VEC(int, A, N);
 
-  SplayTree_Monoid<Monoid_Min<int>> ST;
+  SplayTree_Monoid<Monoid_Min<int>, 500'000> ST;
   auto root = ST.new_node(A);
   FOR(Q) {
     LL(t);
     if (t == 0) {
       LL(l, r);
-      auto n = ST.erase(root, r);
-      ST.insert(root, l, n);
+      auto [a, b, c, d] = ST.split4(root, l, r, r + 1);
+      root = ST.merge4(a, c, b, d);
     }
     if (t == 1) {
       LL(l, r);

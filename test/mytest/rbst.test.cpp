@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/bbst/rbst.hpp"
+#include "ds/rbst/rbst.hpp"
 #include "random/base.hpp"
 
 void test() {

@@ -5,7 +5,7 @@
 #include "alg/acted_monoid/cntsum_add.hpp"
 #include "mod/modint.hpp"
 #include "random/base.hpp"
-#include "ds/bbst/splaytree_acted_monoid.hpp"
+#include "ds/splay/splaytree_acted_monoid.hpp"
 
 using mint = modint998;
 
