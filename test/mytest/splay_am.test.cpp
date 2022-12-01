@@ -16,7 +16,7 @@ void test() {
 
   FOR(1000) {
     X.reset();
-    int N = RNG(1, 3);
+    int N = RNG(1, 10);
     int Q = RNG(1, 1000);
     vc<int> A(N);
     FOR(i, N) A[i] = RNG(1, 10);

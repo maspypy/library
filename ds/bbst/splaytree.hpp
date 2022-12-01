@@ -69,6 +69,32 @@ struct SplayTree {
     return {a, b, c, d};
   }
 
+  // 部分木が区間 [l,r) に対応するようなノードを作って返す
+  // そのノードが root になるわけではないので、
+  // このノードを参照した後にすぐに splay して根に持ち上げること
+  void goto_between(np &root, u32 l, u32 r) {
+    if (l == 0 && r == root->size) return;
+    if (l == 0) {
+      splay_kth(root, r);
+      root = root->l;
+      return;
+    }
+    if (r == root->size) {
+      splay_kth(root, l - 1);
+      root = root->r;
+      return;
+    }
+    splay_kth(root, r);
+    np rp = root;
+    root = rp->l;
+    root->p = nullptr;
+    splay_kth(root, l - 1);
+    root->p = rp;
+    rp->l = root;
+    rp->update();
+    root = root->r;
+  }
+
   vc<X> get_all(const np &root) {
     vc<X> res;
     auto dfs = [&](auto &dfs, np root) -> void {
@@ -99,24 +125,24 @@ struct SplayTree {
 
   X prod(np &root, u32 l, u32 r) {
     assert(0 <= l && l < r && r <= root->size);
-    auto [c1, c2, c3] = split3(root, l, r);
-    X res = c2->prod;
-    root = merge3(c1, c2, c3);
+    goto_between(root, l, r);
+    X res = root->prod;
+    splay(root);
     return res;
   }
 
   void apply(np &root, u32 l, u32 r, const A &a) {
     assert(0 <= l && l < r && r <= root->size);
-    auto [c1, c2, c3] = split3(root, l, r);
-    c2->apply(a);
-    root = merge3(c1, c2, c3);
+    goto_between(root, l, r);
+    root->apply(a);
+    splay(root);
   }
 
   void reverse(np &root, u32 l, u32 r) {
     assert(0 <= l && l < r && r <= root->size);
-    auto [c1, c2, c3] = split3(root, l, r);
-    c2->reverse();
-    root = merge3(c1, c2, c3);
+    goto_between(root, l, r);
+    root->reverse();
+    splay(root);
   }
 
   void rotate(Node *n) {
@@ -141,8 +167,9 @@ struct SplayTree {
   }
 
   void splay(Node *me) {
-    // これを呼ぶ時点で、根から me までのパスは既に prop 済であることを仮定
-    // 特に、splay 終了時点でも me は prop 済であるとしてよい
+    // これを呼ぶ時点で、me の祖先（me を除く）は既に prop 済であることを仮定
+    // 特に、splay 終了時点で me は upd / prop 済である
+    me->prop();
     while (me->p) {
       np p = me->p;
       np pp = p->p;
@@ -163,10 +190,11 @@ struct SplayTree {
   void splay_kth(np &root, u32 k) {
     assert(0 <= k && k < (root->size));
     while (1) {
-      root->prop();
       u32 sl = (root->l ? root->l->size : 0);
-      if (k < sl) root = root->l;
-      elif (k == sl) break;
+      if (k == sl) break;
+      root->prop();
+      if (k < sl)
+        root = root->l;
       else {
         k -= sl + 1;
         root = root->r;
