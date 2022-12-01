@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "other/integer_kth_root.hpp"
-#include "nt/floor_range.hpp"
+#include "enumerate/floor_range.hpp"
 #include "mod/modint.hpp"
 
 using mint = modint107;
@@ -24,14 +24,15 @@ void solve() {
     if (i <= N) ANS += mint(f(i));
   }
 
-  floor_range(q, l, r, N) {
+  auto f = [&](ll q, ll l, ll r) -> void {
     ll lo = max(l, LIM);
     ll hi = r;
-    if (lo >= hi) continue;
+    if (lo >= hi) return;
     ANS += mint(q) * mint(hi - lo);
     ANS += mint(N) * mint(hi - lo)
            - mint(q) * mint(lo + hi - 1) * mint(hi - lo) * inv<mint>(2);
-  }
+  };
+  floor_range(N, f);
   print(ANS);
 }
 

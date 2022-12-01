@@ -1,4 +1,4 @@
-#include "ds/unionfind.hpp"
+#include "ds/unionfind/unionfind.hpp"
 #include "graph/base.hpp"
 #include "graph/tree.hpp"
 #include "graph/ds/treemonoid.hpp"

@@ -1,3 +1,12 @@
-#define floor_range(q, l, r, n) \
-  for (ll q = 1, l = (n) / (q + 1) + 1, r = (n) / q + 1;\
-  q <= (n); q = (q == (n) ? (n) + 1 : (n) / ((n) / (q + 1))), l = (n) / (q + 1) + 1, r = (n) / q + 1)
+// f(q, l, r)：商が q になる範囲が [l, r)
+template <typename F>
+void floor_range(ll N, F f) {
+  ll q = 1;
+  while (1) {
+    ll l = N / (q + 1) + 1;
+    ll r = N / q + 1;
+    f(q, l, r);
+    if (q == N) break;
+    q = N / (N / (q + 1));
+  }
+}
