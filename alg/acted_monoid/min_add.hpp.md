@@ -12,12 +12,12 @@ data:
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_H.test.cpp
     title: test/aoj/DSL_2_H.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -49,7 +49,7 @@ data:
   requiredBy:
   - seq/common_interval_decomposition.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_H.test.cpp
 documentation_of: alg/acted_monoid/min_add.hpp

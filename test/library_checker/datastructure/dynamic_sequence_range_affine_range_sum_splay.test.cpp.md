@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/cntsum_affine.hpp
     title: alg/acted_monoid/cntsum_affine.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
   - icon: ':x:'
@@ -16,7 +16,7 @@ data:
   - icon: ':x:'
     path: ds/splay/splaytree_acted_monoid.hpp
     title: ds/splay/splaytree_acted_monoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'

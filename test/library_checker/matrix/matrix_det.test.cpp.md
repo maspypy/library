@@ -10,7 +10,7 @@ data:
   - icon: ':x:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
