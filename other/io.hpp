@@ -86,8 +86,9 @@ struct Scanner {
   }
   template <typename T,
             typename enable_if<has_read<T>::value>::type * = nullptr>
-  inline void read_single(T &x) {
+  inline bool read_single(T &x) {
     x.read();
+    return true;
   }
   bool read_single(double &ref) {
     string s;
