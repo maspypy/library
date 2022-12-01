@@ -12,6 +12,9 @@ data:
   - icon: ':x:'
     path: test/library_checker/matrix/matrix_det.test.cpp
     title: test/library_checker/matrix/matrix_det.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1303.test.cpp
+    title: test/yukicoder/1303.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -50,6 +53,7 @@ data:
   timestamp: '2022-10-23 15:28:30+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/yukicoder/1303.test.cpp
   - test/library_checker/matrix/matrix_det.test.cpp
 documentation_of: linalg/det.hpp
 layout: document

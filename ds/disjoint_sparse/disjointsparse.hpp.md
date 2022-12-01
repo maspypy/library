@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':x:'
+    path: graph/ds/statictreemonoid.hpp
+    title: graph/ds/statictreemonoid.hpp
   - icon: ':heavy_check_mark:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
@@ -27,6 +30,12 @@ data:
   - icon: ':x:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1216.test.cpp
+    title: test/yukicoder/1216.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1216_2.test.cpp
+    title: test/yukicoder/1216_2.test.cpp
   - icon: ':x:'
     path: test/yukicoder/2005.test.cpp
     title: test/yukicoder/2005.test.cpp
@@ -94,10 +103,13 @@ data:
   - string/longest_common_substring.hpp
   - string/suffix_tree.hpp
   - string/suffixarray.hpp
+  - graph/ds/statictreemonoid.hpp
   timestamp: '2022-12-01 18:20:22+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/2005.test.cpp
+  - test/yukicoder/1216.test.cpp
+  - test/yukicoder/1216_2.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp

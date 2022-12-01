@@ -258,10 +258,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc274_h.test.cpp
     title: test/atcoder/abc274_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc276_g.test.cpp
     title: test/atcoder/abc276_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc276_g_2.test.cpp
     title: test/atcoder/abc276_g_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -291,7 +291,7 @@ data:
   - icon: ':x:'
     path: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
     title: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_2_64.test.cpp
     title: test/library_checker/convolution/convolution_mod_2_64.test.cpp
   - icon: ':x:'
@@ -309,10 +309,10 @@ data:
   - icon: ':x:'
     path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array.test.cpp
     title: test/library_checker/datastructure/associative_array.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
     title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
   - icon: ':x:'
@@ -345,6 +345,9 @@ data:
   - icon: ':x:'
     path: test/library_checker/datastructure/static_range_sum.test.cpp
     title: test/library_checker/datastructure/static_range_sum.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+    title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
@@ -838,6 +841,9 @@ data:
     path: test/yukicoder/1036_3.test.cpp
     title: test/yukicoder/1036_3.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1038.test.cpp
+    title: test/yukicoder/1038.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1069.test.cpp
     title: test/yukicoder/1069.test.cpp
   - icon: ':x:'
@@ -876,6 +882,12 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1211.test.cpp
     title: test/yukicoder/1211.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1216.test.cpp
+    title: test/yukicoder/1216.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1216_2.test.cpp
+    title: test/yukicoder/1216_2.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1234.test.cpp
     title: test/yukicoder/1234.test.cpp
@@ -916,6 +928,9 @@ data:
     path: test/yukicoder/1301.test.cpp
     title: test/yukicoder/1301.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1303.test.cpp
+    title: test/yukicoder/1303.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1311.test.cpp
     title: test/yukicoder/1311.test.cpp
   - icon: ':x:'
@@ -933,6 +948,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1324.test.cpp
     title: test/yukicoder/1324.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1326.test.cpp
+    title: test/yukicoder/1326.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1332.test.cpp
     title: test/yukicoder/1332.test.cpp
@@ -976,6 +994,9 @@ data:
     path: test/yukicoder/1479.test.cpp
     title: test/yukicoder/1479.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1490.test.cpp
+    title: test/yukicoder/1490.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1493.test.cpp
     title: test/yukicoder/1493.test.cpp
   - icon: ':x:'
@@ -984,6 +1005,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1500.test.cpp
     title: test/yukicoder/1500.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1502.test.cpp
+    title: test/yukicoder/1502.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1516.test.cpp
     title: test/yukicoder/1516.test.cpp
@@ -999,6 +1023,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1547.test.cpp
     title: test/yukicoder/1547.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1549.test.cpp
+    title: test/yukicoder/1549.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
@@ -1017,6 +1044,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1634.test.cpp
     title: test/yukicoder/1634.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1641.test.cpp
+    title: test/yukicoder/1641.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1643.test.cpp
     title: test/yukicoder/1643.test.cpp
@@ -1104,6 +1134,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1821.test.cpp
     title: test/yukicoder/1821.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1838.test.cpp
+    title: test/yukicoder/1838.test.cpp
   - icon: ':x:'
     path: test/yukicoder/184.test.cpp
     title: test/yukicoder/184.test.cpp
@@ -1212,6 +1245,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/310.test.cpp
     title: test/yukicoder/310.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/4954.test.cpp
+    title: test/yukicoder/4954.test.cpp
   - icon: ':x:'
     path: test/yukicoder/4_1.test.cpp
     title: test/yukicoder/4_1.test.cpp
@@ -1466,11 +1502,13 @@ data:
   - test/yukicoder/1234.test.cpp
   - test/yukicoder/1728.test.cpp
   - test/yukicoder/1881.test.cpp
+  - test/yukicoder/1216.test.cpp
   - test/yukicoder/779.test.cpp
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1036_2.test.cpp
   - test/yukicoder/1666.test.cpp
   - test/yukicoder/1260.test.cpp
+  - test/yukicoder/4954.test.cpp
   - test/yukicoder/1983.test.cpp
   - test/yukicoder/4_2.test.cpp
   - test/yukicoder/1760.test.cpp
@@ -1482,6 +1520,7 @@ data:
   - test/yukicoder/1720.test.cpp
   - test/yukicoder/1025.test.cpp
   - test/yukicoder/686.test.cpp
+  - test/yukicoder/1490.test.cpp
   - test/yukicoder/1813.test.cpp
   - test/yukicoder/1726.test.cpp
   - test/yukicoder/1170.test.cpp
@@ -1500,6 +1539,13 @@ data:
   - test/yukicoder/1874.test.cpp
   - test/yukicoder/705.test.cpp
   - test/yukicoder/1080.test.cpp
+  - test/yukicoder/1838.test.cpp
+  - test/yukicoder/1303.test.cpp
+  - test/yukicoder/1326.test.cpp
+  - test/yukicoder/1502.test.cpp
+  - test/yukicoder/1216_2.test.cpp
+  - test/yukicoder/1549.test.cpp
+  - test/yukicoder/1038.test.cpp
   - test/yukicoder/1911.test.cpp
   - test/yukicoder/1344.test.cpp
   - test/yukicoder/1493.test.cpp
@@ -1537,6 +1583,7 @@ data:
   - test/yukicoder/1769.test.cpp
   - test/yukicoder/1339.test.cpp
   - test/yukicoder/1643.test.cpp
+  - test/yukicoder/1641.test.cpp
   - test/yukicoder/1142.test.cpp
   - test/yukicoder/1976.test.cpp
   - test/yukicoder/184.test.cpp
@@ -1715,6 +1762,7 @@ data:
   - test/library_checker/math/partition.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp

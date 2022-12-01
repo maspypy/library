@@ -49,6 +49,9 @@ data:
     path: test/mytest/eulerian_number.test.cpp
     title: test/mytest/eulerian_number.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1303.test.cpp
+    title: test/yukicoder/1303.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1321.test.cpp
     title: test/yukicoder/1321.test.cpp
   - icon: ':x:'
@@ -121,6 +124,7 @@ data:
   - test/yukicoder/2005.test.cpp
   - test/yukicoder/1392.test.cpp
   - test/yukicoder/1760.test.cpp
+  - test/yukicoder/1303.test.cpp
   - test/yukicoder/1907.test.cpp
   - test/yukicoder/1875.test.cpp
   - test/yukicoder/1321.test.cpp

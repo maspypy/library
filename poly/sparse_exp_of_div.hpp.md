@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/swag.hpp
     title: ds/swag.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
   - icon: ':question:'
@@ -25,19 +25,19 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedRequiredBy: []
@@ -51,75 +51,79 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/from_log_differentiation.hpp\"\n\n#line 2 \"linalg/mat_mul.hpp\"\
-    \n\r\ntemplate <class T, is_modint_t<T>* = nullptr>\r\nvc<vc<T>> mat_mul(const\
-    \ vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n  const int mod = T::get_mod();\r\n \
-    \ auto N = len(A), M = len(B), K = len(B[0]);\r\n  vv(int, b, K, M);\r\n  FOR(i,\
-    \ M) FOR(j, K) b[j][i] = B[i][j].val;\r\n  vv(T, C, N, K);\r\n  FOR(i, N) {\r\n\
-    \    FOR(j, K) {\r\n      i128 sm = 0;\r\n      FOR(m, M) { sm += ll(A[i][m].val)\
-    \ * b[j][m]; }\r\n      C[i][j] = sm % mod;\r\n    }\r\n  }\r\n  return C;\r\n\
-    }\r\n\r\ntemplate <class T, is_not_modint_t<T>* = nullptr>\r\nvc<vc<T>> mat_mul(const\
-    \ vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n  auto N = len(A), M = len(B), K = len(B[0]);\r\
-    \n  vv(T, C, N, K);\r\n  FOR(n, N) FOR(m, M) FOR(k, K) C[n][k] += A[n][m] * B[m][k];\r\
-    \n  return C;\r\n}\r\n#line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\
-    \nstruct Monoid_Mul {\r\n  using value_type = T;\r\n  using X = T;\r\n  static\
-    \ constexpr X op(const X &x, const X &y) noexcept { return x * y; }\r\n  static\
-    \ constexpr X inverse(const X &x) noexcept { return X(1) / x; }\r\n  static constexpr\
-    \ X unit() { return X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\
-    \n#line 1 \"ds/swag.hpp\"\ntemplate <class Monoid>\nstruct SWAG {\n  using X =\
-    \ typename Monoid::value_type;\n  using value_type = X;\n  int sz = 0;\n  vc<X>\
-    \ dat;\n  vc<X> cum_l;\n  X cum_r;\n\n  SWAG() : cum_l({Monoid::unit()}), cum_r(Monoid::unit())\
-    \ {}\n\n  int size() { return sz; }\n\n  void push(X x) {\n    ++sz;\n    cum_r\
-    \ = Monoid::op(cum_r, x);\n    dat.eb(x);\n  }\n\n  void pop() {\n    --sz;\n\
-    \    cum_l.pop_back();\n    if (len(cum_l) == 0) {\n      cum_l = {Monoid::unit()};\n\
-    \      cum_r = Monoid::unit();\n      while (len(dat) > 1) {\n        cum_l.eb(Monoid::op(dat.back(),\
-    \ cum_l.back()));\n        dat.pop_back();\n      }\n      dat.pop_back();\n \
-    \   }\n  }\n\n  X lprod() { return cum_l.back(); }\n  X rprod() { return cum_r;\
-    \ }\n\n  X prod() { return Monoid::op(cum_l.back(), cum_r); }\n\n  void debug()\
-    \ {\n    print(\"swag\");\n    print(\"dat\", dat);\n    print(\"cum_l\", cum_l);\n\
-    \    print(\"cum_r\", cum_r);\n  }\n};\n\n// \u5B9A\u6570\u500D\u306F\u76EE\u306B\
-    \u898B\u3048\u3066\u9045\u304F\u306A\u308B\u306E\u3067\u3001queue \u3067\u3088\
-    \u3044\u3068\u304D\u306F\u4F7F\u308F\u306A\u3044\ntemplate <class Monoid>\nstruct\
-    \ SWAG_deque {\n  using X = typename Monoid::value_type;\n  using value_type =\
-    \ X;\n  int sz;\n  vc<X> dat_l, dat_r;\n  vc<X> cum_l, cum_r;\n\n  SWAG_deque()\
-    \ : sz(0), cum_l({Monoid::unit()}), cum_r({Monoid::unit()}) {}\n\n  int size()\
-    \ { return sz; }\n\n  void push_back(X x) {\n    ++sz;\n    dat_r.eb(x);\n   \
-    \ cum_r.eb(Monoid::op(cum_r.back(), x));\n  }\n\n  void push_front(X x) {\n  \
-    \  ++sz;\n    dat_l.eb(x);\n    cum_l.eb(Monoid::op(x, cum_l.back()));\n  }\n\n\
-    \  void push(X x) { push_back(x); }\n\n  void clear() {\n    sz = 0;\n    dat_l.clear(),\
-    \ dat_r.clear();\n    cum_l = {Monoid::unit()}, cum_r = {Monoid::unit()};\n  }\n\
-    \n  void pop_front() {\n    if (sz == 1) return clear();\n    if (dat_l.empty())\
-    \ rebuild();\n    --sz;\n    dat_l.pop_back();\n    cum_l.pop_back();\n  }\n\n\
-    \  void pop_back() {\n    if (sz == 1) return clear();\n    if (dat_r.empty())\
-    \ rebuild();\n    --sz;\n    dat_r.pop_back();\n    cum_r.pop_back();\n  }\n\n\
-    \  void pop() { pop_front(); }\n\n  X lprod() { return cum_l.back(); }\n  X rprod()\
-    \ { return cum_r.back(); }\n  X prod() { return Monoid::op(cum_l.back(), cum_r.back());\
-    \ }\n  X prod_all() { return prod(); }\n\n  void debug() {\n    print(\"swag\"\
-    );\n    print(\"dat_l\", dat_l);\n    print(\"dat_r\", dat_r);\n    print(\"cum_l\"\
-    , cum_l);\n    print(\"cum_r\", cum_r);\n  }\n\nprivate:\n  void rebuild() {\n\
-    \    vc<X> X;\n    FOR_R(i, len(dat_l)) X.eb(dat_l[i]);\n    X.insert(X.end(),\
-    \ all(dat_r));\n    clear();\n    int m = len(X) / 2;\n    FOR_R(i, m) push_front(X[i]);\n\
-    \    FOR(i, m, len(X)) push_back(X[i]);\n    assert(sz == len(X));\n  }\n};\n\
-    #line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n  int val;\n\
-    \  constexpr modint(const ll val = 0) noexcept\n      : val(val >= 0 ? val % mod\
-    \ : (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint &other) const\
-    \ {\n    return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
-    \ modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n\
-    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >=\
-    \ mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint\
-    \ &p) {\n    val = (int)(1LL * val * p.val % mod);\n    return *this;\n  }\n \
-    \ modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
-    \ *this;\n  }\n  modint operator-() const { return modint(-val); }\n  modint operator+(const\
-    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
-    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
-    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
-    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
-    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
-    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
-    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
-    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t n) const {\n\
-    \    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
-    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  void write()\
-    \ { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
+    \n\r\nstruct has_mod_impl {\r\n  template <class T>\r\n  static auto check(T&&\
+    \ x) -> decltype(x.get_mod(), std::true_type{});\r\n\r\n  template <class T>\r\
+    \n  static auto check(...) -> std::false_type;\r\n};\r\n\r\ntemplate <class T>\r\
+    \nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>())) {};\r\
+    \n\r\ntemplate <class T, typename enable_if<has_mod<T>::value>::type* = nullptr>\r\
+    \nvc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n  const int mod\
+    \ = T::get_mod();\r\n  auto N = len(A), M = len(B), K = len(B[0]);\r\n  vv(int,\
+    \ b, K, M);\r\n  FOR(i, M) FOR(j, K) b[j][i] = B[i][j].val;\r\n  vv(T, C, N, K);\r\
+    \n  FOR(i, N) {\r\n    FOR(j, K) {\r\n      i128 sm = 0;\r\n      FOR(m, M) {\
+    \ sm += ll(A[i][m].val) * b[j][m]; }\r\n      C[i][j] = sm % mod;\r\n    }\r\n\
+    \  }\r\n  return C;\r\n}\r\n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type*\
+    \ = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n\
+    \  auto N = len(A), M = len(B), K = len(B[0]);\r\n  vv(T, C, N, K);\r\n  FOR(n,\
+    \ N) FOR(m, M) FOR(k, K) C[n][k] += A[n][m] * B[m][k];\r\n  return C;\r\n}\r\n\
+    #line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Monoid_Mul {\r\
+    \n  using value_type = T;\r\n  using X = T;\r\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return x * y; }\r\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return X(1) / x; }\r\n  static constexpr X unit() { return\
+    \ X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"ds/swag.hpp\"\
+    \ntemplate <class Monoid>\nstruct SWAG {\n  using X = typename Monoid::value_type;\n\
+    \  using value_type = X;\n  int sz = 0;\n  vc<X> dat;\n  vc<X> cum_l;\n  X cum_r;\n\
+    \n  SWAG() : cum_l({Monoid::unit()}), cum_r(Monoid::unit()) {}\n\n  int size()\
+    \ { return sz; }\n\n  void push(X x) {\n    ++sz;\n    cum_r = Monoid::op(cum_r,\
+    \ x);\n    dat.eb(x);\n  }\n\n  void pop() {\n    --sz;\n    cum_l.pop_back();\n\
+    \    if (len(cum_l) == 0) {\n      cum_l = {Monoid::unit()};\n      cum_r = Monoid::unit();\n\
+    \      while (len(dat) > 1) {\n        cum_l.eb(Monoid::op(dat.back(), cum_l.back()));\n\
+    \        dat.pop_back();\n      }\n      dat.pop_back();\n    }\n  }\n\n  X lprod()\
+    \ { return cum_l.back(); }\n  X rprod() { return cum_r; }\n\n  X prod() { return\
+    \ Monoid::op(cum_l.back(), cum_r); }\n\n  void debug() {\n    print(\"swag\");\n\
+    \    print(\"dat\", dat);\n    print(\"cum_l\", cum_l);\n    print(\"cum_r\",\
+    \ cum_r);\n  }\n};\n\n// \u5B9A\u6570\u500D\u306F\u76EE\u306B\u898B\u3048\u3066\
+    \u9045\u304F\u306A\u308B\u306E\u3067\u3001queue \u3067\u3088\u3044\u3068\u304D\
+    \u306F\u4F7F\u308F\u306A\u3044\ntemplate <class Monoid>\nstruct SWAG_deque {\n\
+    \  using X = typename Monoid::value_type;\n  using value_type = X;\n  int sz;\n\
+    \  vc<X> dat_l, dat_r;\n  vc<X> cum_l, cum_r;\n\n  SWAG_deque() : sz(0), cum_l({Monoid::unit()}),\
+    \ cum_r({Monoid::unit()}) {}\n\n  int size() { return sz; }\n\n  void push_back(X\
+    \ x) {\n    ++sz;\n    dat_r.eb(x);\n    cum_r.eb(Monoid::op(cum_r.back(), x));\n\
+    \  }\n\n  void push_front(X x) {\n    ++sz;\n    dat_l.eb(x);\n    cum_l.eb(Monoid::op(x,\
+    \ cum_l.back()));\n  }\n\n  void push(X x) { push_back(x); }\n\n  void clear()\
+    \ {\n    sz = 0;\n    dat_l.clear(), dat_r.clear();\n    cum_l = {Monoid::unit()},\
+    \ cum_r = {Monoid::unit()};\n  }\n\n  void pop_front() {\n    if (sz == 1) return\
+    \ clear();\n    if (dat_l.empty()) rebuild();\n    --sz;\n    dat_l.pop_back();\n\
+    \    cum_l.pop_back();\n  }\n\n  void pop_back() {\n    if (sz == 1) return clear();\n\
+    \    if (dat_r.empty()) rebuild();\n    --sz;\n    dat_r.pop_back();\n    cum_r.pop_back();\n\
+    \  }\n\n  void pop() { pop_front(); }\n\n  X lprod() { return cum_l.back(); }\n\
+    \  X rprod() { return cum_r.back(); }\n  X prod() { return Monoid::op(cum_l.back(),\
+    \ cum_r.back()); }\n  X prod_all() { return prod(); }\n\n  void debug() {\n  \
+    \  print(\"swag\");\n    print(\"dat_l\", dat_l);\n    print(\"dat_r\", dat_r);\n\
+    \    print(\"cum_l\", cum_l);\n    print(\"cum_r\", cum_r);\n  }\n\nprivate:\n\
+    \  void rebuild() {\n    vc<X> X;\n    FOR_R(i, len(dat_l)) X.eb(dat_l[i]);\n\
+    \    X.insert(X.end(), all(dat_r));\n    clear();\n    int m = len(X) / 2;\n \
+    \   FOR_R(i, m) push_front(X[i]);\n    FOR(i, m, len(X)) push_back(X[i]);\n  \
+    \  assert(sz == len(X));\n  }\n};\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int\
+    \ mod>\nstruct modint {\n  int val;\n  constexpr modint(const ll val = 0) noexcept\n\
+    \      : val(val >= 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const\
+    \ modint &other) const {\n    return val < other.val;\n  } // To use std::map\n\
+    \  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -=\
+    \ mod;\n    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if\
+    \ ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint\
+    \ &operator*=(const modint &p) {\n    val = (int)(1LL * val * p.val % mod);\n\
+    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
+    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint(-val);\
+    \ }\n  modint operator+(const modint &p) const { return modint(*this) += p; }\n\
+    \  modint operator-(const modint &p) const { return modint(*this) -= p; }\n  modint\
+    \ operator*(const modint &p) const { return modint(*this) *= p; }\n  modint operator/(const\
+    \ modint &p) const { return modint(*this) /= p; }\n  bool operator==(const modint\
+    \ &p) const { return val == p.val; }\n  bool operator!=(const modint &p) const\
+    \ { return val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod,\
+    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
+    \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
+    \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
+    \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
+    \  }\n  void write() { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
     \ }\n  static constexpr int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
     \ {\n  static constexpr bool is_modint = true;\n  int val;\n  ArbitraryModInt()\
     \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
@@ -482,7 +486,7 @@ data:
   isVerificationFile: false
   path: poly/sparse_exp_of_div.hpp
   requiredBy: []
-  timestamp: '2022-12-02 03:30:03+09:00'
+  timestamp: '2022-12-02 06:10:25+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1080_2.test.cpp

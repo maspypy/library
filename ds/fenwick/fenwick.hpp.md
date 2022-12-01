@@ -8,10 +8,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fenwick/fenwickraq.hpp
     title: ds/fenwick/fenwickraq.hpp
+  - icon: ':x:'
+    path: ds/offline_query/point_add_rectangle_sum.hpp
+    title: ds/offline_query/point_add_rectangle_sum.hpp
+  - icon: ':x:'
+    path: ds/offline_query/rectangle_add_rectangle_sum.hpp
+    title: ds/offline_query/rectangle_add_rectangle_sum.hpp
+  - icon: ':x:'
+    path: graph/ds/treeabelgroup.hpp
+    title: graph/ds/treeabelgroup.hpp
   - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/inversion_rotate.hpp
     title: seq/inversion_rotate.hpp
   _extendedVerifiedWith:
@@ -31,8 +40,26 @@ data:
     path: test/atcoder/abc190f.test.cpp
     title: test/atcoder/abc190f.test.cpp
   - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+    title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1038.test.cpp
+    title: test/yukicoder/1038.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1311.test.cpp
     title: test/yukicoder/1311.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1326.test.cpp
+    title: test/yukicoder/1326.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1490.test.cpp
+    title: test/yukicoder/1490.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1641.test.cpp
+    title: test/yukicoder/1641.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1838.test.cpp
+    title: test/yukicoder/1838.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1874.test.cpp
     title: test/yukicoder/1874.test.cpp
@@ -110,12 +137,21 @@ data:
   requiredBy:
   - seq/inversion.hpp
   - seq/inversion_rotate.hpp
+  - ds/offline_query/rectangle_add_rectangle_sum.hpp
+  - ds/offline_query/point_add_rectangle_sum.hpp
   - ds/fenwick/fenwickraq.hpp
+  - graph/ds/treeabelgroup.hpp
   timestamp: '2022-12-01 18:20:22+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1311.test.cpp
+  - test/yukicoder/1490.test.cpp
   - test/yukicoder/1874.test.cpp
+  - test/yukicoder/1838.test.cpp
+  - test/yukicoder/1326.test.cpp
+  - test/yukicoder/1038.test.cpp
+  - test/yukicoder/1641.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/atcoder/abc190f.test.cpp
   - test/aoj/DSL_2_E.test.cpp
   - test/aoj/ALDS1_2_A.test.cpp

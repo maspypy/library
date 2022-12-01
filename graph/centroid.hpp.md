@@ -16,6 +16,9 @@ data:
     path: test/yukicoder/1002.test.cpp
     title: test/yukicoder/1002.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1038.test.cpp
+    title: test/yukicoder/1038.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1769.test.cpp
     title: test/yukicoder/1769.test.cpp
   - icon: ':x:'
@@ -196,6 +199,7 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1796.test.cpp
+  - test/yukicoder/1038.test.cpp
   - test/yukicoder/1769.test.cpp
   - test/yukicoder/1002.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp

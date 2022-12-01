@@ -14,6 +14,12 @@ data:
   - icon: ':question:'
     path: graph/ds/lazytreemonoid.hpp
     title: graph/ds/lazytreemonoid.hpp
+  - icon: ':x:'
+    path: graph/ds/statictreemonoid.hpp
+    title: graph/ds/statictreemonoid.hpp
+  - icon: ':x:'
+    path: graph/ds/treeabelgroup.hpp
+    title: graph/ds/treeabelgroup.hpp
   - icon: ':question:'
     path: graph/ds/treemonoid.hpp
     title: graph/ds/treemonoid.hpp
@@ -64,6 +70,9 @@ data:
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
   - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+    title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - icon: ':x:'
@@ -94,11 +103,20 @@ data:
     path: test/yukicoder/1211.test.cpp
     title: test/yukicoder/1211.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1216.test.cpp
+    title: test/yukicoder/1216.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1216_2.test.cpp
+    title: test/yukicoder/1216_2.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1242.test.cpp
     title: test/yukicoder/1242.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1295.test.cpp
     title: test/yukicoder/1295.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1326.test.cpp
+    title: test/yukicoder/1326.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1418.test.cpp
     title: test/yukicoder/1418.test.cpp
@@ -111,6 +129,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1600.test.cpp
     title: test/yukicoder/1600.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1641.test.cpp
+    title: test/yukicoder/1641.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1718.test.cpp
     title: test/yukicoder/1718.test.cpp
@@ -342,8 +363,10 @@ data:
   - graph/rerooting_dp.hpp
   - graph/two_edge_component.hpp
   - graph/classify_subtree.hpp
+  - graph/ds/treeabelgroup.hpp
   - graph/ds/lazytreemonoid.hpp
   - graph/ds/treemonoid.hpp
+  - graph/ds/statictreemonoid.hpp
   - graph/ds/dualtreemonoid.hpp
   - graph/minimum_spanning_tree.hpp
   timestamp: '2022-11-05 01:55:39+09:00'
@@ -352,21 +375,26 @@ data:
   - test/yukicoder/1600.test.cpp
   - test/yukicoder/1295.test.cpp
   - test/yukicoder/1524.test.cpp
+  - test/yukicoder/1216.test.cpp
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1983.test.cpp
   - test/yukicoder/1778.test.cpp
   - test/yukicoder/2122.test.cpp
   - test/yukicoder/590.test.cpp
   - test/yukicoder/1242.test.cpp
+  - test/yukicoder/1326.test.cpp
+  - test/yukicoder/1216_2.test.cpp
   - test/yukicoder/1494.test.cpp
   - test/yukicoder/1211.test.cpp
   - test/yukicoder/529.test.cpp
   - test/yukicoder/1769.test.cpp
+  - test/yukicoder/1641.test.cpp
   - test/yukicoder/1976.test.cpp
   - test/yukicoder/1790.test.cpp
   - test/yukicoder/1418.test.cpp
   - test/yukicoder/1718.test.cpp
   - test/yukicoder/1197.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp

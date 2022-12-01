@@ -133,7 +133,7 @@ data:
     - icon: ':question:'
       path: alg/monoid/monoid_reverse.hpp
       title: alg/monoid/monoid_reverse.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/monoid/mul.hpp
       title: alg/monoid/mul.hpp
     - icon: ':warning:'
@@ -192,7 +192,7 @@ data:
     - icon: ':warning:'
       path: ds/powerquery.hpp
       title: ds/powerquery.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/swag.hpp
       title: ds/swag.hpp
     - icon: ':question:'
@@ -211,7 +211,7 @@ data:
     - icon: ':question:'
       path: ds/fenwick/fenwick.hpp
       title: ds/fenwick/fenwick.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/fenwick/fenwick2d.hpp
       title: ds/fenwick/fenwick2d.hpp
     - icon: ':question:'
@@ -271,7 +271,7 @@ data:
     - icon: ':warning:'
       path: ds/offline_query/point_add_polygon_sum.hpp
       title: ds/offline_query/point_add_polygon_sum.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: ds/offline_query/point_add_rectangle_sum.hpp
       title: ds/offline_query/point_add_rectangle_sum.hpp
     - icon: ':warning:'
@@ -283,7 +283,7 @@ data:
     - icon: ':warning:'
       path: ds/offline_query/rectangle_add_point_sum.hpp
       title: ds/offline_query/rectangle_add_point_sum.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: ds/offline_query/rectangle_add_rectangle_sum.hpp
       title: ds/offline_query/rectangle_add_rectangle_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -404,7 +404,7 @@ data:
     - icon: ':question:'
       path: ds/unionfind/unionfind.hpp
       title: ds/unionfind/unionfind.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/unionfind/weightedunionfind.hpp
       title: ds/unionfind/weightedunionfind.hpp
   - name: enumerate
@@ -677,10 +677,10 @@ data:
     - icon: ':warning:'
       path: graph/ds/link_cut_subtree.hpp
       title: graph/ds/link_cut_subtree.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: graph/ds/statictreemonoid.hpp
       title: graph/ds/statictreemonoid.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: graph/ds/treeabelgroup.hpp
       title: graph/ds/treeabelgroup.hpp
     - icon: ':warning:'
@@ -760,7 +760,7 @@ data:
     - icon: ':x:'
       path: linalg/mat_inv.hpp
       title: linalg/mat_inv.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: linalg/mat_mul.hpp
       title: linalg/mat_mul.hpp
     - icon: ':x:'
@@ -1006,7 +1006,7 @@ data:
     - icon: ':x:'
       path: poly/convolution_leq.hpp
       title: poly/convolution_leq.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/convolution_mod_2_64.hpp
       title: poly/convolution_mod_2_64.hpp
     - icon: ':question:'
@@ -1042,13 +1042,13 @@ data:
     - icon: ':x:'
       path: poly/fps_sqrt.hpp
       title: poly/fps_sqrt.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/from_log_differentiation.hpp
       title: poly/from_log_differentiation.hpp
     - icon: ':x:'
       path: poly/integrate.hpp
       title: poly/integrate.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/lagrange_interpolate_iota.hpp
       title: poly/lagrange_interpolate_iota.hpp
     - icon: ':question:'
@@ -1072,7 +1072,7 @@ data:
     - icon: ':x:'
       path: poly/poly_taylor_shift.hpp
       title: poly/poly_taylor_shift.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/prefix_product_of_poly.hpp
       title: poly/prefix_product_of_poly.hpp
     - icon: ':x:'
@@ -1096,7 +1096,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/sum_of_prefix_suffix_products.hpp
       title: poly/sum_of_prefix_suffix_products.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/sum_of_rationals.hpp
       title: poly/sum_of_rationals.hpp
   - name: poly/online
@@ -1150,7 +1150,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/inversion.hpp
       title: seq/inversion.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: seq/inversion_rotate.hpp
       title: seq/inversion_rotate.hpp
     - icon: ':x:'
@@ -1159,7 +1159,7 @@ data:
     - icon: ':warning:'
       path: seq/kth_root_permutation.hpp
       title: seq/kth_root_permutation.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: seq/kth_term_of_p_recursive.hpp
       title: seq/kth_term_of_p_recursive.hpp
     - icon: ':x:'
@@ -1569,10 +1569,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc274_h.test.cpp
       title: test/atcoder/abc274_h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc276_g.test.cpp
       title: test/atcoder/abc276_g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc276_g_2.test.cpp
       title: test/atcoder/abc276_g_2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1607,7 +1607,7 @@ data:
     - icon: ':x:'
       path: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
       title: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/convolution_mod_2_64.test.cpp
       title: test/library_checker/convolution/convolution_mod_2_64.test.cpp
     - icon: ':x:'
@@ -1633,10 +1633,10 @@ data:
     - icon: ':x:'
       path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
       title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/associative_array.test.cpp
       title: test/library_checker/datastructure/associative_array.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
       title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
     - icon: ':x:'

@@ -46,6 +46,9 @@ data:
     path: test/yukicoder/1036_2.test.cpp
     title: test/yukicoder/1036_2.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1549.test.cpp
+    title: test/yukicoder/1549.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
   _isVerificationFailed: true
@@ -159,6 +162,7 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1036_2.test.cpp
+  - test/yukicoder/1549.test.cpp
   - test/yukicoder/529.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp

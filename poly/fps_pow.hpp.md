@@ -82,6 +82,9 @@ data:
     path: test/yukicoder/1533.test.cpp
     title: test/yukicoder/1533.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1549.test.cpp
+    title: test/yukicoder/1549.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1939.test.cpp
     title: test/yukicoder/1939.test.cpp
   _isVerificationFailed: true
@@ -526,6 +529,7 @@ data:
   verifiedWith:
   - test/yukicoder/1392.test.cpp
   - test/yukicoder/1939.test.cpp
+  - test/yukicoder/1549.test.cpp
   - test/yukicoder/1321.test.cpp
   - test/yukicoder/1533.test.cpp
   - test/mytest/online_pow.test.cpp

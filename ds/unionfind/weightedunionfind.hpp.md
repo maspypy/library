@@ -6,9 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_1_B.test.cpp
     title: test/aoj/DSL_1_B.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/1502.test.cpp
+    title: test/yukicoder/1502.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/unionfind/weightedunionfind.hpp\"\ntemplate <typename\
@@ -50,8 +53,9 @@ data:
   path: ds/unionfind/weightedunionfind.hpp
   requiredBy: []
   timestamp: '2022-12-01 18:20:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1502.test.cpp
   - test/aoj/DSL_1_B.test.cpp
 documentation_of: ds/unionfind/weightedunionfind.hpp
 layout: document
