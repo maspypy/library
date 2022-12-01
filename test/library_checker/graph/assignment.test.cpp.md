@@ -95,121 +95,131 @@ data:
     \ == A[j] && i < j); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate\
     \ <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I) {\n  int n =\
     \ len(I);\n  vc<T> B(n);\n  FOR(i, n) B[i] = A[I[i]];\n  return B;\n}\n#line 1\
-    \ \"other/io.hpp\"\nnamespace fastio {\r\n// https://nyaannyaan.github.io/library/misc/fastio.hpp\
-    \ \u3092\u5143\u306B\u6539\u9020\r\n\r\n// \u30AF\u30E9\u30B9\u304C read(), print()\
-    \ \u3092\u6301\u3063\u3066\u3044\u308B\u304B\u3092\u5224\u5B9A\u3059\u308B\u30E1\
-    \u30BF\u95A2\u6570\r\nstruct has_write_impl {\r\n  template <class T>\r\n  static\
-    \ auto check(T &&x) -> decltype(x.write(), std::true_type{});\r\n\r\n  template\
-    \ <class T>\r\n  static auto check(...) -> std::false_type;\r\n};\r\n\r\ntemplate\
-    \ <class T>\r\nclass has_write : public decltype(has_write_impl::check<T>(std::declval<T>()))\
+    \ \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include <unistd.h>\r\n\r\n\
+    namespace fastio {\r\n// \u30AF\u30E9\u30B9\u304C read(), print() \u3092\u6301\
+    \u3063\u3066\u3044\u308B\u304B\u3092\u5224\u5B9A\u3059\u308B\u30E1\u30BF\u95A2\
+    \u6570\r\nstruct has_write_impl {\r\n  template <class T>\r\n  static auto check(T\
+    \ &&x) -> decltype(x.write(), std::true_type{});\r\n\r\n  template <class T>\r\
+    \n  static auto check(...) -> std::false_type;\r\n};\r\n\r\ntemplate <class T>\r\
+    \nclass has_write : public decltype(has_write_impl::check<T>(std::declval<T>()))\
     \ {\r\n};\r\n\r\nstruct has_read_impl {\r\n  template <class T>\r\n  static auto\
     \ check(T &&x) -> decltype(x.read(), std::true_type{});\r\n\r\n  template <class\
     \ T>\r\n  static auto check(...) -> std::false_type;\r\n};\r\n\r\ntemplate <class\
     \ T>\r\nclass has_read : public decltype(has_read_impl::check<T>(std::declval<T>()))\
-    \ {};\r\n\r\nstatic constexpr int SZ = 1 << 17;\r\nchar inbuf[SZ], outbuf[SZ];\r\
-    \nint in_left = 0, in_right = 0, out_right = 0;\r\n\r\nstruct Pre {\r\n  char\
-    \ num[40000];\r\n  constexpr Pre() : num() {\r\n    for (int i = 0; i < 10000;\
-    \ i++) {\r\n      int n = i;\r\n      for (int j = 3; j >= 0; j--) {\r\n     \
-    \   num[i * 4 + j] = n % 10 + '0';\r\n        n /= 10;\r\n      }\r\n    }\r\n\
-    \  }\r\n} constexpr pre;\r\n\r\ninline void load() {\r\n  int len = in_right -\
-    \ in_left;\r\n  memmove(inbuf, inbuf + in_left, len);\r\n  in_right = len + fread(inbuf\
-    \ + len, 1, SZ - len, stdin);\r\n  in_left = 0;\r\n}\r\n\r\ninline void flush()\
-    \ {\r\n  fwrite(outbuf, 1, out_right, stdout);\r\n  out_right = 0;\r\n}\r\n\r\n\
-    inline void read_single(char &c) {\r\n  if (in_left + 32 > in_right) load();\r\
-    \n  c = inbuf[in_left++];\r\n}\r\n\r\ntemplate <class T, enable_if_t<is_same<T,\
-    \ string>::value, int> = 0>\r\ninline void read_single(T &x) {\r\n  char c = '\
-    \ ';\r\n  do {\r\n    if (in_left + 32 > in_right) load();\r\n    c = inbuf[in_left++];\r\
-    \n  } while (c == ' ' || c == '\\n');\r\n  x += c;\r\n  while (1) {\r\n    if\
-    \ (in_left + 32 > in_right) load();\r\n    c = inbuf[in_left++];\r\n    if (c\
-    \ == ' ' || c == '\\n') break;\r\n    x += c;\r\n  }\r\n}\r\n\r\ntemplate <class\
-    \ T, enable_if_t<is_integral<T>::value, int> = 0>\r\ninline void read_single(T\
-    \ &x) {\r\n  if (in_left + 32 > in_right) load();\r\n  char c;\r\n  do\r\n   \
-    \ c = inbuf[in_left++];\r\n  while (c < '-');\r\n  bool minus = false;\r\n  if\
-    \ constexpr (is_signed<T>::value == true) {\r\n    if (c == '-') minus = true,\
-    \ c = inbuf[in_left++];\r\n  }\r\n  x = 0;\r\n  while (c >= '0') {\r\n    x =\
-    \ x * 10 + (c & 15);\r\n    c = inbuf[in_left++];\r\n  }\r\n  if constexpr (is_signed<T>::value\
-    \ == true) {\r\n    if (minus) x = -x;\r\n  }\r\n}\r\n\r\ntemplate <typename T,\
-    \ typename enable_if<has_read<T>::value>::type * = nullptr>\r\ninline void read_single(T\
-    \ x) {\r\n  x.read();\r\n}\r\ntemplate <class T, class U>\r\ninline void read_single(pair<T,\
-    \ U> &p) {\r\n  read_single(p.first), read_single(p.second);\r\n}\r\ntemplate\
-    \ <class... T>\r\ninline void read(tuple<T...> &tpl) {\r\n  apply([&](auto...\
-    \ t) { (read(t), ...); }, tpl);\r\n}\r\ntemplate <class T>\r\ninline void read_single(vector<T>\
-    \ &ref) {\r\n  for (auto &d: ref) read_single(d);\r\n}\r\ntemplate <class T, int\
-    \ N>\r\ninline void read_single(array<T, N> &ref) {\r\n  for (auto &d: ref) read_single(d);\r\
-    \n}\r\n\r\ninline void read() {}\r\ntemplate <typename Head, typename... Tail>\r\
-    \ninline void read(Head &head, Tail &... tail) {\r\n  read_single(head);\r\n \
-    \ read(tail...);\r\n}\r\n\r\ninline void write(char c) {\r\n  if (out_right >\
-    \ SZ - 32) flush();\r\n  outbuf[out_right++] = c;\r\n}\r\ninline void write(const\
-    \ string &s) {\r\n  if (out_right + s.size() > SZ - 32) flush();\r\n  memcpy(outbuf\
-    \ + out_right, s.data(), sizeof(char) * s.size());\r\n  out_right += s.size();\r\
-    \n}\r\ntemplate <class T, enable_if_t<is_integral<T>::value, int> = 0>\r\ninline\
-    \ void write(T x) {\r\n  if (out_right > SZ - 32) flush();\r\n  if (!x) {\r\n\
-    \    outbuf[out_right++] = '0';\r\n    return;\r\n  }\r\n  if constexpr (is_signed<T>::value\
-    \ == true) {\r\n    if (x < 0) outbuf[out_right++] = '-', x = -x;\r\n  }\r\n \
-    \ int i = 12;\r\n  char buf[16];\r\n  while (x >= 10000) {\r\n    memcpy(buf +\
-    \ i, pre.num + (x % 10000) * 4, 4);\r\n    x /= 10000;\r\n    i -= 4;\r\n  }\r\
-    \n  if (x < 100) {\r\n    if (x < 10) {\r\n      outbuf[out_right] = '0' + x;\r\
-    \n      ++out_right;\r\n    } else {\r\n      uint32_t q = (uint32_t(x) * 205)\
-    \ >> 11;\r\n      uint32_t r = uint32_t(x) - q * 10;\r\n      outbuf[out_right]\
-    \ = '0' + q;\r\n      outbuf[out_right + 1] = '0' + r;\r\n      out_right += 2;\r\
-    \n    }\r\n  } else {\r\n    if (x < 1000) {\r\n      memcpy(outbuf + out_right,\
-    \ pre.num + (x << 2) + 1, 3);\r\n      out_right += 3;\r\n    } else {\r\n   \
-    \   memcpy(outbuf + out_right, pre.num + (x << 2), 4);\r\n      out_right += 4;\r\
-    \n    }\r\n  }\r\n  memcpy(outbuf + out_right, buf + i + 4, 12 - i);\r\n  out_right\
-    \ += 12 - i;\r\n}\r\ninline void write(const double &x) {\r\n  ostringstream oss;\r\
-    \n  oss << fixed << setprecision(15) << x;\r\n  string s = oss.str();\r\n  write(s);\r\
-    \n}\r\ninline void write(const long double &x) {\r\n  ostringstream oss;\r\n \
-    \ oss << fixed << setprecision(15) << x;\r\n  string s = oss.str();\r\n  write(s);\r\
-    \n}\r\ntemplate <typename T, typename enable_if<has_write<T>::value>::type * =\
-    \ nullptr>\r\ninline void write(T x) {\r\n  x.write();\r\n}\r\ntemplate <class\
-    \ T>\r\nvoid write(const vector<T> &val) {\r\n  auto n = val.size();\r\n  for\
-    \ (size_t i = 0; i < n; i++) {\r\n    if (i) write(' ');\r\n    write(val[i]);\r\
-    \n  }\r\n}\r\ntemplate <class T, class U>\r\nvoid write(const pair<T, U> &val)\
-    \ {\r\n  write(val.first);\r\n  write(' ');\r\n  write(val.second);\r\n}\r\ntemplate\
-    \ <class T, size_t S>\r\ninline void write(const array<T, S> &val) {\r\n  auto\
-    \ n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n    if (i) write('\
-    \ ');\r\n    write(val[i]);\r\n  }\r\n}\r\ninline void write(i128 val) {\r\n \
-    \ string s;\r\n  bool negative = 0;\r\n  if (val < 0) {\r\n    negative = 1;\r\
-    \n    val = -val;\r\n  }\r\n  while (val) {\r\n    s += '0' + int(val % 10);\r\
-    \n    val /= 10;\r\n  }\r\n  if (negative) s += \"-\";\r\n  reverse(all(s));\r\
-    \n  if (len(s) == 0) s = \"0\";\r\n  write(s);\r\n}\r\nstruct Dummy {\r\n  Dummy()\
-    \ { atexit(flush); }\r\n} dummy;\r\n\r\nvoid print() { fastio::write('\\n'); }\r\
-    \ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head, Tail &&... tail)\
-    \ {\r\n  fastio::write(head);\r\n  if (sizeof...(Tail)) fastio::write(' ');\r\n\
-    \  print(forward<Tail>(tail)...);\r\n}\r\n} // namespace fastio\r\nusing fastio::read;\r\
-    \nusing fastio::print;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\
-    \n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    \r\n#define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n \
-    \ read(name)\r\n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
-    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print<string>(t\
-    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
-    \ t = 1) { print<string>(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t);\
-    \ }\r\nvoid yes(bool t = 1) { print<string>(t ? \"yes\" : \"no\"); }\r\nvoid no(bool\
-    \ t = 1) { yes(!t); }\r\n#line 4 \"test/library_checker/graph/assignment.test.cpp\"\
-    \n\n#line 1 \"flow/hungarian.hpp\"\n// \u6700\u5C0F\u91CD\u307F\u6700\u5927\u30DE\
-    \u30C3\u30C1\u30F3\u30B0\u3002O(N^2M) time\u3002\n// \u30DD\u30C6\u30F3\u30B7\u30E3\
-    \u30EB\u306F\u6B21\u306E\u53CC\u5BFE\u554F\u984C\u306E\u89E3\u3067\u3042\u308B\
-    \uFF1A\n//   maximize \\sum x_i + \\sum y_j, subj to x_i + y_j\\leq C_{ij}\n//\
-    \ returns:\n//   (ans, match, X, Y)\ntemplate <typename T>\ntuple<T, vc<int>,\
-    \ vc<T>, vc<T>> hungarian(vvc<T>& C) {\n  int N = len(C);\n  int M = len(C[0]);\n\
-    \  assert(N <= M);\n  vv(T, A, N + 1, M + 1);\n  FOR(i, N) FOR(j, M) A[1 + i][1\
-    \ + j] = C[i][j];\n  ++N, ++M;\n  const T infty = numeric_limits<T>::max();\n\n\
-    \  vector<int> P(M), way(M);\n  vector<T> X(N), Y(M);\n  vc<T> minV;\n  vc<bool>\
-    \ used;\n\n  for (int i = 1; i < N; i++) {\n    P[0] = i;\n    minV.assign(M,\
-    \ infty);\n    used.assign(M, false);\n    int j0 = 0;\n    while (P[j0] != 0)\
-    \ {\n      int i0 = P[j0], j1 = 0;\n      used[j0] = true;\n      T delta = infty;\n\
-    \      for (int j = 1; j < M; j++) {\n        if (used[j]) continue;\n       \
-    \ T curr = A[i0][j] - X[i0] - Y[j];\n        if (curr < minV[j]) minV[j] = curr,\
-    \ way[j] = j0;\n        if (minV[j] < delta) delta = minV[j], j1 = j;\n      }\n\
-    \      for (int j = 0; j < M; j++) {\n        if (used[j])\n          X[P[j]]\
-    \ += delta, Y[j] -= delta;\n        else\n          minV[j] -= delta;\n      }\n\
-    \      j0 = j1;\n    }\n    do {\n      P[j0] = P[way[j0]];\n      j0 = way[j0];\n\
-    \    } while (j0 != 0);\n  }\n  T res = -Y[0];\n  X.erase(X.begin());\n  Y.erase(Y.begin());\n\
-    \  vc<int> match(N);\n  FOR(i, N) match[P[i]] = i;\n  match.erase(match.begin());\n\
-    \  for (auto&& i: match) --i;\n  return {res, match, X, Y};\n}\n#line 6 \"test/library_checker/graph/assignment.test.cpp\"\
+    \ {};\r\n\r\nstruct Scanner {\r\n  FILE *fp;\r\n  char line[(1 << 15) + 1];\r\n\
+    \  size_t st = 0, ed = 0;\r\n  void reread() {\r\n    memmove(line, line + st,\
+    \ ed - st);\r\n    ed -= st;\r\n    st = 0;\r\n    ed += fread(line + ed, 1, (1\
+    \ << 15) - ed, fp);\r\n    line[ed] = '\\0';\r\n  }\r\n  bool succ() {\r\n   \
+    \ while (true) {\r\n      if (st == ed) {\r\n        reread();\r\n        if (st\
+    \ == ed) return false;\r\n      }\r\n      while (st != ed && isspace(line[st]))\
+    \ st++;\r\n      if (st != ed) break;\r\n    }\r\n    if (ed - st <= 50) {\r\n\
+    \      bool sep = false;\r\n      for (size_t i = st; i < ed; i++) {\r\n     \
+    \   if (isspace(line[i])) {\r\n          sep = true;\r\n          break;\r\n \
+    \       }\r\n      }\r\n      if (!sep) reread();\r\n    }\r\n    return true;\r\
+    \n  }\r\n  template <class T, enable_if_t<is_same<T, string>::value, int> = 0>\r\
+    \n  bool read_single(T &ref) {\r\n    if (!succ()) return false;\r\n    while\
+    \ (true) {\r\n      size_t sz = 0;\r\n      while (st + sz < ed && !isspace(line[st\
+    \ + sz])) sz++;\r\n      ref.append(line + st, sz);\r\n      st += sz;\r\n   \
+    \   if (!sz || st != ed) break;\r\n      reread();\r\n    }\r\n    return true;\r\
+    \n  }\r\n  template <class T, enable_if_t<is_integral<T>::value, int> = 0>\r\n\
+    \  bool read_single(T &ref) {\r\n    if (!succ()) return false;\r\n    bool neg\
+    \ = false;\r\n    if (line[st] == '-') {\r\n      neg = true;\r\n      st++;\r\
+    \n    }\r\n    ref = T(0);\r\n    while (isdigit(line[st])) { ref = 10 * ref +\
+    \ (line[st++] & 0xf); }\r\n    if (neg) ref = -ref;\r\n    return true;\r\n  }\r\
+    \n  template <typename T,\r\n            typename enable_if<has_read<T>::value>::type\
+    \ * = nullptr>\r\n  inline void read_single(T &x) {\r\n    x.read();\r\n  }\r\n\
+    \  bool read_single(double &ref) {\r\n    string s;\r\n    if (!read_single(s))\
+    \ return false;\r\n    ref = std::stod(s);\r\n    return true;\r\n  }\r\n  bool\
+    \ read_single(char &ref) {\r\n    string s;\r\n    if (!read_single(s) || s.size()\
+    \ != 1) return false;\r\n    ref = s[0];\r\n    return true;\r\n  }\r\n  template\
+    \ <class T>\r\n  bool read_single(vector<T> &ref) {\r\n    for (auto &d: ref)\
+    \ {\r\n      if (!read_single(d)) return false;\r\n    }\r\n    return true;\r\
+    \n  }\r\n  template <class T, class U>\r\n  bool read_single(pair<T, U> &p) {\r\
+    \n    return (read_single(p.first) && read_single(p.second));\r\n  }\r\n  template\
+    \ <size_t N = 0, typename T>\r\n  void read_single_tuple(T &t) {\r\n    if constexpr\
+    \ (N < std::tuple_size<T>::value) {\r\n      auto &x = std::get<N>(t);\r\n   \
+    \   read_single(x);\r\n      read_single_tuple<N + 1>(t);\r\n    }\r\n  }\r\n\
+    \  template <class... T>\r\n  bool read_single(tuple<T...> &tpl) {\r\n    read_single_tuple(tpl);\r\
+    \n    return true;\r\n  }\r\n  void read() {}\r\n  template <class H, class...\
+    \ T>\r\n  void read(H &h, T &... t) {\r\n    bool f = read_single(h);\r\n    assert(f);\r\
+    \n    read(t...);\r\n  }\r\n  Scanner(FILE *fp) : fp(fp) {}\r\n};\r\n\r\nstruct\
+    \ Printer {\r\n  Printer(FILE *_fp) : fp(_fp) {}\r\n  ~Printer() { flush(); }\r\
+    \n\r\n  static constexpr size_t SIZE = 1 << 15;\r\n  FILE *fp;\r\n  char line[SIZE],\
+    \ small[50];\r\n  size_t pos = 0;\r\n  void flush() {\r\n    fwrite(line, 1, pos,\
+    \ fp);\r\n    pos = 0;\r\n  }\r\n  void write(const char &val) {\r\n    if (pos\
+    \ == SIZE) flush();\r\n    line[pos++] = val;\r\n  }\r\n  template <class T, enable_if_t<is_integral<T>::value,\
+    \ int> = 0>\r\n  void write(T val) {\r\n    if (pos > (1 << 15) - 50) flush();\r\
+    \n    if (val == 0) {\r\n      write('0');\r\n      return;\r\n    }\r\n    if\
+    \ (val < 0) {\r\n      write('-');\r\n      val = -val; // todo min\r\n    }\r\
+    \n    size_t len = 0;\r\n    while (val) {\r\n      small[len++] = char(0x30 |\
+    \ (val % 10));\r\n      val /= 10;\r\n    }\r\n    for (size_t i = 0; i < len;\
+    \ i++) { line[pos + i] = small[len - 1 - i]; }\r\n    pos += len;\r\n  }\r\n \
+    \ void write(const string &s) {\r\n    for (char c: s) write(c);\r\n  }\r\n  void\
+    \ write(const char *s) {\r\n    size_t len = strlen(s);\r\n    for (size_t i =\
+    \ 0; i < len; i++) write(s[i]);\r\n  }\r\n  void write(const double &x) {\r\n\
+    \    ostringstream oss;\r\n    oss << fixed << setprecision(15) << x;\r\n    string\
+    \ s = oss.str();\r\n    write(s);\r\n  }\r\n  void write(const long double &x)\
+    \ {\r\n    ostringstream oss;\r\n    oss << fixed << setprecision(15) << x;\r\n\
+    \    string s = oss.str();\r\n    write(s);\r\n  }\r\n  template <typename T,\r\
+    \n            typename enable_if<has_write<T>::value>::type * = nullptr>\r\n \
+    \ inline void write(T x) {\r\n    x.write();\r\n  }\r\n  template <class T>\r\n\
+    \  void write(const vector<T> &val) {\r\n    auto n = val.size();\r\n    for (size_t\
+    \ i = 0; i < n; i++) {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\n\
+    \    }\r\n  }\r\n  template <class T, class U>\r\n  void write(const pair<T, U>\
+    \ &val) {\r\n    write(val.first);\r\n    write(' ');\r\n    write(val.second);\r\
+    \n  }\r\n  template <size_t N = 0, typename T>\r\n  void write_tuple(const T &t)\
+    \ {\r\n    if constexpr (N < std::tuple_size<T>::value) {\r\n      if constexpr\
+    \ (N > 0) { write(' '); }\r\n      const auto &x = std::get<N>(t);\r\n      write(x);\r\
+    \n      write_tuple<N + 1>(t);\r\n    }\r\n  }\r\n  template <class... T>\r\n\
+    \  bool write(tuple<T...> &tpl) {\r\n    write_tuple(tpl);\r\n    return true;\r\
+    \n  }\r\n  template <class T, size_t S>\r\n  void write(const array<T, S> &val)\
+    \ {\r\n    auto n = val.size();\r\n    for (size_t i = 0; i < n; i++) {\r\n  \
+    \    if (i) write(' ');\r\n      write(val[i]);\r\n    }\r\n  }\r\n  void write(i128\
+    \ val) {\r\n    string s;\r\n    bool negative = 0;\r\n    if (val < 0) {\r\n\
+    \      negative = 1;\r\n      val = -val;\r\n    }\r\n    while (val) {\r\n  \
+    \    s += '0' + int(val % 10);\r\n      val /= 10;\r\n    }\r\n    if (negative)\
+    \ s += \"-\";\r\n    reverse(all(s));\r\n    if (len(s) == 0) s = \"0\";\r\n \
+    \   write(s);\r\n  }\r\n};\r\nScanner scanner = Scanner(stdin);\r\nPrinter printer\
+    \ = Printer(stdout);\r\nvoid flush() { printer.flush(); }\r\nvoid print() { printer.write('\\\
+    n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head, Tail\
+    \ &&... tail) {\r\n  printer.write(head);\r\n  if (sizeof...(Tail)) printer.write('\
+    \ ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\nvoid read() {}\r\ntemplate\
+    \ <class Head, class... Tail>\r\nvoid read(Head &head, Tail &... tail) {\r\n \
+    \ scanner.read(head);\r\n  read(tail...);\r\n}\r\n} // namespace fastio\r\nusing\
+    \ fastio::print;\r\nusing fastio::flush;\r\nusing fastio::read;\r\n\r\n#define\
+    \ INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)\
+    \   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)    \
+    \  \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
+    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
+    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
+    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
+    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
+    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
+    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
+    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
+    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
+    \ yes(!t); }\n#line 4 \"test/library_checker/graph/assignment.test.cpp\"\n\n#line\
+    \ 1 \"flow/hungarian.hpp\"\n// \u6700\u5C0F\u91CD\u307F\u6700\u5927\u30DE\u30C3\
+    \u30C1\u30F3\u30B0\u3002O(N^2M) time\u3002\n// \u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\
+    \u306F\u6B21\u306E\u53CC\u5BFE\u554F\u984C\u306E\u89E3\u3067\u3042\u308B\uFF1A\
+    \n//   maximize \\sum x_i + \\sum y_j, subj to x_i + y_j\\leq C_{ij}\n// returns:\n\
+    //   (ans, match, X, Y)\ntemplate <typename T>\ntuple<T, vc<int>, vc<T>, vc<T>>\
+    \ hungarian(vvc<T>& C) {\n  int N = len(C);\n  int M = len(C[0]);\n  assert(N\
+    \ <= M);\n  vv(T, A, N + 1, M + 1);\n  FOR(i, N) FOR(j, M) A[1 + i][1 + j] = C[i][j];\n\
+    \  ++N, ++M;\n  const T infty = numeric_limits<T>::max();\n\n  vector<int> P(M),\
+    \ way(M);\n  vector<T> X(N), Y(M);\n  vc<T> minV;\n  vc<bool> used;\n\n  for (int\
+    \ i = 1; i < N; i++) {\n    P[0] = i;\n    minV.assign(M, infty);\n    used.assign(M,\
+    \ false);\n    int j0 = 0;\n    while (P[j0] != 0) {\n      int i0 = P[j0], j1\
+    \ = 0;\n      used[j0] = true;\n      T delta = infty;\n      for (int j = 1;\
+    \ j < M; j++) {\n        if (used[j]) continue;\n        T curr = A[i0][j] - X[i0]\
+    \ - Y[j];\n        if (curr < minV[j]) minV[j] = curr, way[j] = j0;\n        if\
+    \ (minV[j] < delta) delta = minV[j], j1 = j;\n      }\n      for (int j = 0; j\
+    \ < M; j++) {\n        if (used[j])\n          X[P[j]] += delta, Y[j] -= delta;\n\
+    \        else\n          minV[j] -= delta;\n      }\n      j0 = j1;\n    }\n \
+    \   do {\n      P[j0] = P[way[j0]];\n      j0 = way[j0];\n    } while (j0 != 0);\n\
+    \  }\n  T res = -Y[0];\n  X.erase(X.begin());\n  Y.erase(Y.begin());\n  vc<int>\
+    \ match(N);\n  FOR(i, N) match[P[i]] = i;\n  match.erase(match.begin());\n  for\
+    \ (auto&& i: match) --i;\n  return {res, match, X, Y};\n}\n#line 6 \"test/library_checker/graph/assignment.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VV(ll, A, N, N);\n  auto [ans, match, X, Y] =\
     \ hungarian(A);\n  print(ans);\n  print(match);\n\n  assert(SUM<ll>(X) + SUM<ll>(Y)\
     \ == ans);\n  FOR(i, N) FOR(j, N) assert(X[i] + Y[j] <= A[i][j]);\n}\n\nsigned\
@@ -229,7 +239,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/assignment.test.cpp
   requiredBy: []
-  timestamp: '2022-12-01 23:08:36+09:00'
+  timestamp: '2022-12-02 03:30:03+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/assignment.test.cpp

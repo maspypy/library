@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/pds/array.hpp
     title: ds/pds/array.hpp
   _extendedRequiredBy: []

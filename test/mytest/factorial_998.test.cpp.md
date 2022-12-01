@@ -13,10 +13,10 @@ data:
   - icon: ':x:'
     path: mod/factorial998.hpp
     title: mod/factorial998.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -25,19 +25,19 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fft.hpp
     title: poly/fft.hpp
   - icon: ':x:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':x:'
@@ -131,105 +131,115 @@ data:
     \ == A[j] && i < j); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate\
     \ <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I) {\n  int n =\
     \ len(I);\n  vc<T> B(n);\n  FOR(i, n) B[i] = A[I[i]];\n  return B;\n}\n#line 1\
-    \ \"other/io.hpp\"\nnamespace fastio {\r\n// https://nyaannyaan.github.io/library/misc/fastio.hpp\
-    \ \u3092\u5143\u306B\u6539\u9020\r\n\r\n// \u30AF\u30E9\u30B9\u304C read(), print()\
-    \ \u3092\u6301\u3063\u3066\u3044\u308B\u304B\u3092\u5224\u5B9A\u3059\u308B\u30E1\
-    \u30BF\u95A2\u6570\r\nstruct has_write_impl {\r\n  template <class T>\r\n  static\
-    \ auto check(T &&x) -> decltype(x.write(), std::true_type{});\r\n\r\n  template\
-    \ <class T>\r\n  static auto check(...) -> std::false_type;\r\n};\r\n\r\ntemplate\
-    \ <class T>\r\nclass has_write : public decltype(has_write_impl::check<T>(std::declval<T>()))\
+    \ \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include <unistd.h>\r\n\r\n\
+    namespace fastio {\r\n// \u30AF\u30E9\u30B9\u304C read(), print() \u3092\u6301\
+    \u3063\u3066\u3044\u308B\u304B\u3092\u5224\u5B9A\u3059\u308B\u30E1\u30BF\u95A2\
+    \u6570\r\nstruct has_write_impl {\r\n  template <class T>\r\n  static auto check(T\
+    \ &&x) -> decltype(x.write(), std::true_type{});\r\n\r\n  template <class T>\r\
+    \n  static auto check(...) -> std::false_type;\r\n};\r\n\r\ntemplate <class T>\r\
+    \nclass has_write : public decltype(has_write_impl::check<T>(std::declval<T>()))\
     \ {\r\n};\r\n\r\nstruct has_read_impl {\r\n  template <class T>\r\n  static auto\
     \ check(T &&x) -> decltype(x.read(), std::true_type{});\r\n\r\n  template <class\
     \ T>\r\n  static auto check(...) -> std::false_type;\r\n};\r\n\r\ntemplate <class\
     \ T>\r\nclass has_read : public decltype(has_read_impl::check<T>(std::declval<T>()))\
-    \ {};\r\n\r\nstatic constexpr int SZ = 1 << 17;\r\nchar inbuf[SZ], outbuf[SZ];\r\
-    \nint in_left = 0, in_right = 0, out_right = 0;\r\n\r\nstruct Pre {\r\n  char\
-    \ num[40000];\r\n  constexpr Pre() : num() {\r\n    for (int i = 0; i < 10000;\
-    \ i++) {\r\n      int n = i;\r\n      for (int j = 3; j >= 0; j--) {\r\n     \
-    \   num[i * 4 + j] = n % 10 + '0';\r\n        n /= 10;\r\n      }\r\n    }\r\n\
-    \  }\r\n} constexpr pre;\r\n\r\ninline void load() {\r\n  int len = in_right -\
-    \ in_left;\r\n  memmove(inbuf, inbuf + in_left, len);\r\n  in_right = len + fread(inbuf\
-    \ + len, 1, SZ - len, stdin);\r\n  in_left = 0;\r\n}\r\n\r\ninline void flush()\
-    \ {\r\n  fwrite(outbuf, 1, out_right, stdout);\r\n  out_right = 0;\r\n}\r\n\r\n\
-    inline void read_single(char &c) {\r\n  if (in_left + 32 > in_right) load();\r\
-    \n  c = inbuf[in_left++];\r\n}\r\n\r\ntemplate <class T, enable_if_t<is_same<T,\
-    \ string>::value, int> = 0>\r\ninline void read_single(T &x) {\r\n  char c = '\
-    \ ';\r\n  do {\r\n    if (in_left + 32 > in_right) load();\r\n    c = inbuf[in_left++];\r\
-    \n  } while (c == ' ' || c == '\\n');\r\n  x += c;\r\n  while (1) {\r\n    if\
-    \ (in_left + 32 > in_right) load();\r\n    c = inbuf[in_left++];\r\n    if (c\
-    \ == ' ' || c == '\\n') break;\r\n    x += c;\r\n  }\r\n}\r\n\r\ntemplate <class\
-    \ T, enable_if_t<is_integral<T>::value, int> = 0>\r\ninline void read_single(T\
-    \ &x) {\r\n  if (in_left + 32 > in_right) load();\r\n  char c;\r\n  do\r\n   \
-    \ c = inbuf[in_left++];\r\n  while (c < '-');\r\n  bool minus = false;\r\n  if\
-    \ constexpr (is_signed<T>::value == true) {\r\n    if (c == '-') minus = true,\
-    \ c = inbuf[in_left++];\r\n  }\r\n  x = 0;\r\n  while (c >= '0') {\r\n    x =\
-    \ x * 10 + (c & 15);\r\n    c = inbuf[in_left++];\r\n  }\r\n  if constexpr (is_signed<T>::value\
-    \ == true) {\r\n    if (minus) x = -x;\r\n  }\r\n}\r\n\r\ntemplate <typename T,\
-    \ typename enable_if<has_read<T>::value>::type * = nullptr>\r\ninline void read_single(T\
-    \ x) {\r\n  x.read();\r\n}\r\ntemplate <class T, class U>\r\ninline void read_single(pair<T,\
-    \ U> &p) {\r\n  read_single(p.first), read_single(p.second);\r\n}\r\ntemplate\
-    \ <class... T>\r\ninline void read(tuple<T...> &tpl) {\r\n  apply([&](auto...\
-    \ t) { (read(t), ...); }, tpl);\r\n}\r\ntemplate <class T>\r\ninline void read_single(vector<T>\
-    \ &ref) {\r\n  for (auto &d: ref) read_single(d);\r\n}\r\ntemplate <class T, int\
-    \ N>\r\ninline void read_single(array<T, N> &ref) {\r\n  for (auto &d: ref) read_single(d);\r\
-    \n}\r\n\r\ninline void read() {}\r\ntemplate <typename Head, typename... Tail>\r\
-    \ninline void read(Head &head, Tail &... tail) {\r\n  read_single(head);\r\n \
-    \ read(tail...);\r\n}\r\n\r\ninline void write(char c) {\r\n  if (out_right >\
-    \ SZ - 32) flush();\r\n  outbuf[out_right++] = c;\r\n}\r\ninline void write(const\
-    \ string &s) {\r\n  if (out_right + s.size() > SZ - 32) flush();\r\n  memcpy(outbuf\
-    \ + out_right, s.data(), sizeof(char) * s.size());\r\n  out_right += s.size();\r\
-    \n}\r\ntemplate <class T, enable_if_t<is_integral<T>::value, int> = 0>\r\ninline\
-    \ void write(T x) {\r\n  if (out_right > SZ - 32) flush();\r\n  if (!x) {\r\n\
-    \    outbuf[out_right++] = '0';\r\n    return;\r\n  }\r\n  if constexpr (is_signed<T>::value\
-    \ == true) {\r\n    if (x < 0) outbuf[out_right++] = '-', x = -x;\r\n  }\r\n \
-    \ int i = 12;\r\n  char buf[16];\r\n  while (x >= 10000) {\r\n    memcpy(buf +\
-    \ i, pre.num + (x % 10000) * 4, 4);\r\n    x /= 10000;\r\n    i -= 4;\r\n  }\r\
-    \n  if (x < 100) {\r\n    if (x < 10) {\r\n      outbuf[out_right] = '0' + x;\r\
-    \n      ++out_right;\r\n    } else {\r\n      uint32_t q = (uint32_t(x) * 205)\
-    \ >> 11;\r\n      uint32_t r = uint32_t(x) - q * 10;\r\n      outbuf[out_right]\
-    \ = '0' + q;\r\n      outbuf[out_right + 1] = '0' + r;\r\n      out_right += 2;\r\
-    \n    }\r\n  } else {\r\n    if (x < 1000) {\r\n      memcpy(outbuf + out_right,\
-    \ pre.num + (x << 2) + 1, 3);\r\n      out_right += 3;\r\n    } else {\r\n   \
-    \   memcpy(outbuf + out_right, pre.num + (x << 2), 4);\r\n      out_right += 4;\r\
-    \n    }\r\n  }\r\n  memcpy(outbuf + out_right, buf + i + 4, 12 - i);\r\n  out_right\
-    \ += 12 - i;\r\n}\r\ninline void write(const double &x) {\r\n  ostringstream oss;\r\
-    \n  oss << fixed << setprecision(15) << x;\r\n  string s = oss.str();\r\n  write(s);\r\
-    \n}\r\ninline void write(const long double &x) {\r\n  ostringstream oss;\r\n \
-    \ oss << fixed << setprecision(15) << x;\r\n  string s = oss.str();\r\n  write(s);\r\
-    \n}\r\ntemplate <typename T, typename enable_if<has_write<T>::value>::type * =\
-    \ nullptr>\r\ninline void write(T x) {\r\n  x.write();\r\n}\r\ntemplate <class\
-    \ T>\r\nvoid write(const vector<T> &val) {\r\n  auto n = val.size();\r\n  for\
-    \ (size_t i = 0; i < n; i++) {\r\n    if (i) write(' ');\r\n    write(val[i]);\r\
-    \n  }\r\n}\r\ntemplate <class T, class U>\r\nvoid write(const pair<T, U> &val)\
-    \ {\r\n  write(val.first);\r\n  write(' ');\r\n  write(val.second);\r\n}\r\ntemplate\
-    \ <class T, size_t S>\r\ninline void write(const array<T, S> &val) {\r\n  auto\
-    \ n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n    if (i) write('\
-    \ ');\r\n    write(val[i]);\r\n  }\r\n}\r\ninline void write(i128 val) {\r\n \
-    \ string s;\r\n  bool negative = 0;\r\n  if (val < 0) {\r\n    negative = 1;\r\
-    \n    val = -val;\r\n  }\r\n  while (val) {\r\n    s += '0' + int(val % 10);\r\
-    \n    val /= 10;\r\n  }\r\n  if (negative) s += \"-\";\r\n  reverse(all(s));\r\
-    \n  if (len(s) == 0) s = \"0\";\r\n  write(s);\r\n}\r\nstruct Dummy {\r\n  Dummy()\
-    \ { atexit(flush); }\r\n} dummy;\r\n\r\nvoid print() { fastio::write('\\n'); }\r\
-    \ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head, Tail &&... tail)\
-    \ {\r\n  fastio::write(head);\r\n  if (sizeof...(Tail)) fastio::write(' ');\r\n\
-    \  print(forward<Tail>(tail)...);\r\n}\r\n} // namespace fastio\r\nusing fastio::read;\r\
-    \nusing fastio::print;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\
-    \n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    \r\n#define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n \
-    \ read(name)\r\n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
-    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print<string>(t\
-    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
-    \ t = 1) { print<string>(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t);\
-    \ }\r\nvoid yes(bool t = 1) { print<string>(t ? \"yes\" : \"no\"); }\r\nvoid no(bool\
-    \ t = 1) { yes(!t); }\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
-    \ uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 5 \"test/mytest/factorial_998.test.cpp\"\
+    \ {};\r\n\r\nstruct Scanner {\r\n  FILE *fp;\r\n  char line[(1 << 15) + 1];\r\n\
+    \  size_t st = 0, ed = 0;\r\n  void reread() {\r\n    memmove(line, line + st,\
+    \ ed - st);\r\n    ed -= st;\r\n    st = 0;\r\n    ed += fread(line + ed, 1, (1\
+    \ << 15) - ed, fp);\r\n    line[ed] = '\\0';\r\n  }\r\n  bool succ() {\r\n   \
+    \ while (true) {\r\n      if (st == ed) {\r\n        reread();\r\n        if (st\
+    \ == ed) return false;\r\n      }\r\n      while (st != ed && isspace(line[st]))\
+    \ st++;\r\n      if (st != ed) break;\r\n    }\r\n    if (ed - st <= 50) {\r\n\
+    \      bool sep = false;\r\n      for (size_t i = st; i < ed; i++) {\r\n     \
+    \   if (isspace(line[i])) {\r\n          sep = true;\r\n          break;\r\n \
+    \       }\r\n      }\r\n      if (!sep) reread();\r\n    }\r\n    return true;\r\
+    \n  }\r\n  template <class T, enable_if_t<is_same<T, string>::value, int> = 0>\r\
+    \n  bool read_single(T &ref) {\r\n    if (!succ()) return false;\r\n    while\
+    \ (true) {\r\n      size_t sz = 0;\r\n      while (st + sz < ed && !isspace(line[st\
+    \ + sz])) sz++;\r\n      ref.append(line + st, sz);\r\n      st += sz;\r\n   \
+    \   if (!sz || st != ed) break;\r\n      reread();\r\n    }\r\n    return true;\r\
+    \n  }\r\n  template <class T, enable_if_t<is_integral<T>::value, int> = 0>\r\n\
+    \  bool read_single(T &ref) {\r\n    if (!succ()) return false;\r\n    bool neg\
+    \ = false;\r\n    if (line[st] == '-') {\r\n      neg = true;\r\n      st++;\r\
+    \n    }\r\n    ref = T(0);\r\n    while (isdigit(line[st])) { ref = 10 * ref +\
+    \ (line[st++] & 0xf); }\r\n    if (neg) ref = -ref;\r\n    return true;\r\n  }\r\
+    \n  template <typename T,\r\n            typename enable_if<has_read<T>::value>::type\
+    \ * = nullptr>\r\n  inline void read_single(T &x) {\r\n    x.read();\r\n  }\r\n\
+    \  bool read_single(double &ref) {\r\n    string s;\r\n    if (!read_single(s))\
+    \ return false;\r\n    ref = std::stod(s);\r\n    return true;\r\n  }\r\n  bool\
+    \ read_single(char &ref) {\r\n    string s;\r\n    if (!read_single(s) || s.size()\
+    \ != 1) return false;\r\n    ref = s[0];\r\n    return true;\r\n  }\r\n  template\
+    \ <class T>\r\n  bool read_single(vector<T> &ref) {\r\n    for (auto &d: ref)\
+    \ {\r\n      if (!read_single(d)) return false;\r\n    }\r\n    return true;\r\
+    \n  }\r\n  template <class T, class U>\r\n  bool read_single(pair<T, U> &p) {\r\
+    \n    return (read_single(p.first) && read_single(p.second));\r\n  }\r\n  template\
+    \ <size_t N = 0, typename T>\r\n  void read_single_tuple(T &t) {\r\n    if constexpr\
+    \ (N < std::tuple_size<T>::value) {\r\n      auto &x = std::get<N>(t);\r\n   \
+    \   read_single(x);\r\n      read_single_tuple<N + 1>(t);\r\n    }\r\n  }\r\n\
+    \  template <class... T>\r\n  bool read_single(tuple<T...> &tpl) {\r\n    read_single_tuple(tpl);\r\
+    \n    return true;\r\n  }\r\n  void read() {}\r\n  template <class H, class...\
+    \ T>\r\n  void read(H &h, T &... t) {\r\n    bool f = read_single(h);\r\n    assert(f);\r\
+    \n    read(t...);\r\n  }\r\n  Scanner(FILE *fp) : fp(fp) {}\r\n};\r\n\r\nstruct\
+    \ Printer {\r\n  Printer(FILE *_fp) : fp(_fp) {}\r\n  ~Printer() { flush(); }\r\
+    \n\r\n  static constexpr size_t SIZE = 1 << 15;\r\n  FILE *fp;\r\n  char line[SIZE],\
+    \ small[50];\r\n  size_t pos = 0;\r\n  void flush() {\r\n    fwrite(line, 1, pos,\
+    \ fp);\r\n    pos = 0;\r\n  }\r\n  void write(const char &val) {\r\n    if (pos\
+    \ == SIZE) flush();\r\n    line[pos++] = val;\r\n  }\r\n  template <class T, enable_if_t<is_integral<T>::value,\
+    \ int> = 0>\r\n  void write(T val) {\r\n    if (pos > (1 << 15) - 50) flush();\r\
+    \n    if (val == 0) {\r\n      write('0');\r\n      return;\r\n    }\r\n    if\
+    \ (val < 0) {\r\n      write('-');\r\n      val = -val; // todo min\r\n    }\r\
+    \n    size_t len = 0;\r\n    while (val) {\r\n      small[len++] = char(0x30 |\
+    \ (val % 10));\r\n      val /= 10;\r\n    }\r\n    for (size_t i = 0; i < len;\
+    \ i++) { line[pos + i] = small[len - 1 - i]; }\r\n    pos += len;\r\n  }\r\n \
+    \ void write(const string &s) {\r\n    for (char c: s) write(c);\r\n  }\r\n  void\
+    \ write(const char *s) {\r\n    size_t len = strlen(s);\r\n    for (size_t i =\
+    \ 0; i < len; i++) write(s[i]);\r\n  }\r\n  void write(const double &x) {\r\n\
+    \    ostringstream oss;\r\n    oss << fixed << setprecision(15) << x;\r\n    string\
+    \ s = oss.str();\r\n    write(s);\r\n  }\r\n  void write(const long double &x)\
+    \ {\r\n    ostringstream oss;\r\n    oss << fixed << setprecision(15) << x;\r\n\
+    \    string s = oss.str();\r\n    write(s);\r\n  }\r\n  template <typename T,\r\
+    \n            typename enable_if<has_write<T>::value>::type * = nullptr>\r\n \
+    \ inline void write(T x) {\r\n    x.write();\r\n  }\r\n  template <class T>\r\n\
+    \  void write(const vector<T> &val) {\r\n    auto n = val.size();\r\n    for (size_t\
+    \ i = 0; i < n; i++) {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\n\
+    \    }\r\n  }\r\n  template <class T, class U>\r\n  void write(const pair<T, U>\
+    \ &val) {\r\n    write(val.first);\r\n    write(' ');\r\n    write(val.second);\r\
+    \n  }\r\n  template <size_t N = 0, typename T>\r\n  void write_tuple(const T &t)\
+    \ {\r\n    if constexpr (N < std::tuple_size<T>::value) {\r\n      if constexpr\
+    \ (N > 0) { write(' '); }\r\n      const auto &x = std::get<N>(t);\r\n      write(x);\r\
+    \n      write_tuple<N + 1>(t);\r\n    }\r\n  }\r\n  template <class... T>\r\n\
+    \  bool write(tuple<T...> &tpl) {\r\n    write_tuple(tpl);\r\n    return true;\r\
+    \n  }\r\n  template <class T, size_t S>\r\n  void write(const array<T, S> &val)\
+    \ {\r\n    auto n = val.size();\r\n    for (size_t i = 0; i < n; i++) {\r\n  \
+    \    if (i) write(' ');\r\n      write(val[i]);\r\n    }\r\n  }\r\n  void write(i128\
+    \ val) {\r\n    string s;\r\n    bool negative = 0;\r\n    if (val < 0) {\r\n\
+    \      negative = 1;\r\n      val = -val;\r\n    }\r\n    while (val) {\r\n  \
+    \    s += '0' + int(val % 10);\r\n      val /= 10;\r\n    }\r\n    if (negative)\
+    \ s += \"-\";\r\n    reverse(all(s));\r\n    if (len(s) == 0) s = \"0\";\r\n \
+    \   write(s);\r\n  }\r\n};\r\nScanner scanner = Scanner(stdin);\r\nPrinter printer\
+    \ = Printer(stdout);\r\nvoid flush() { printer.flush(); }\r\nvoid print() { printer.write('\\\
+    n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head, Tail\
+    \ &&... tail) {\r\n  printer.write(head);\r\n  if (sizeof...(Tail)) printer.write('\
+    \ ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\nvoid read() {}\r\ntemplate\
+    \ <class Head, class... Tail>\r\nvoid read(Head &head, Tail &... tail) {\r\n \
+    \ scanner.read(head);\r\n  read(tail...);\r\n}\r\n} // namespace fastio\r\nusing\
+    \ fastio::print;\r\nusing fastio::flush;\r\nusing fastio::read;\r\n\r\n#define\
+    \ INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)\
+    \   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)    \
+    \  \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
+    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
+    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
+    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
+    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
+    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
+    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
+    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
+    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
+    \ yes(!t); }\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t\
+    \ x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n         \
+    \            chrono::high_resolution_clock::now().time_since_epoch())\n      \
+    \               .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n\
+    \  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
+    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 5 \"test/mytest/factorial_998.test.cpp\"\
     \n\n#line 1 \"mod/factorial998.hpp\"\n// 1<<20\nint factorial998table[1024] =\
     \ {1,467742124,703158536,849331177,183632821,786787592,708945888,623860151,442444797,339076928,916211838,827641482,982515753,303461550,466748179,669060208,789885751,915736046,189957301,934038903,728735046,774755699,649374308,602288735,492352484,958678776,943233257,148504501,352124178,569334038,927469492,343841688,432351202,700916755,170721982,8283809,875807278,931632987,330722936,603566523,391470976,157944106,826756015,278928878,178606531,522053153,175494307,16217485,310769109,430912024,970167731,302127847,960178710,607169580,211863227,918097328,664502958,598427325,415194799,38321157,375608821,557298612,497769749,114695383,77784134,629192790,339438380,348348875,713806860,526342541,671850855,414726935,844082152,412454739,351143550,868784407,834684152,186057224,996072584,619190001,24770542,765280770,513490122,468949120,867194196,866447292,937135640,560788103,308335177,703539315,252044620,119916775,298069903,43651994,148641017,730387621,856452172,74265901,626807500,980602375,42825068,348086475,162321900,207340584,151258454,461547160,320321845,361026143,882876292,842563318,257705870,158156446,292795459,984763947,917068833,811332379,782439665,944504775,298167161,141501910,155584237,149720256,71954352,666430555,580966229,884747116,616367471,918981127,310328833,724405658,383796145,256700166,487819118,642491144,181867555,524937737,222137750,445244561,79921588,253457448,405659726,260707689,740044210,654653354,229885020,230551611,616689587,939003921,565960348,904184966,133298693,859220865,186139683,765071679,247651638,451157944,929341123,503724944,768266737,142218056,910573117,274579400,151387843,212671109,815271666,406331931,154251304,642676789,570372925,976277122,442985463,928799971,817581666,797627351,100113334,877639265,541537097,434482347,300960222,270085755,481153328,236088097,686884498,323505794,897572220,900787550,277507290,157634146,892066519,616420589,46056764,697140618,592483685,896871487,896388868,106444279,115102765,191484323,62322499,434613622,426026852,378184205,194359325,415197585,965735328,598860936,653751428,942602959,475099103,642401460,77868208,464952529,549976420,705774928,635299526,704085554,809044086,670938184,799176916,58985566,402328281,182103192,921913660,674272214,428301920,520916749,127424638,296779896,166780239,19634060,95873539,708947606,532272305,980167862,7015847,370183454,45567119,866949818,374428494,25583689,351370758,835388325,232690098,42002598,17055285,985022727,214528454,122907290,793349516,609331634,87133548,248246624,448572380,502875867,183097664,536117329,170926160,381772251,37038194,374439881,94285547,880631489,452052533,739811514,675382782,587926712,179133902,694266603,338843576,281485671,813341519,616512705,222785194,382494725,471654428,961907947,442140830,702296161,548575377,388901073,19119024,545916498,947169254,801677200,377657430,634980290,246239186,13175103,239754689,656729178,364003283,646568868,584909084,690387116,452007054,131381944,908149670,807287523,802277179,745423153,893994782,197548253,376096720,105840336,687751559,170787791,928507410,620382696,446955151,139665212,882526402,494793004,107171423,753993075,467588754,207595897,269813018,941027990,856873596,717085190,245280646,792026805,548741735,523767341,637697735,261200153,89666563,344573088,15832984,558492246,825051585,923222974,826620400,558080789,657328927,991078225,706029275,738905108,401212366,980043233,895405022,597894231,636951913,947342478,786075225,395095090,188433847,121279219,860403973,396099425,240442489,521535558,280382318,58023116,735594008,8696133,477645338,223630480,816606673,680021043,362424474,181667447,504295826,332167472,766361494,992840497,417671938,376941230,11880047,275790726,106186450,150546053,966438917,431896075,158021876,734833661,328332504,632143386,962477966,638741189,728804571,753715698,20536106,45105841,271673172,982138522,604809222,199722980,211807634,478008419,194715230,246865373,316443541,869035744,202922168,245262975,136244583,650969410,566222746,55188168,495968583,571946805,188658038,353720239,830419870,669127165,86710835,810103736,630008035,764354348,209246227,277861984,725469211,151404581,894191013,775554083,634671016,170299187,471849450,575347258,505276194,636730506,40086858,386228700,789875034,998219457,359035788,843760715,864829665,794240359,241486050,48334220,583177582,714653706,617669563,132782021,779225352,333301287,520569296,508276228,689073648,573645847,200419842,911561316,310562870,204959007,879280837,762843188,103128368,133300147,648946778,287218789,662474952,587555465,105622721,648151526,517033362,729251452,850555187,708613432,874408867,345608416,690718720,10813958,42384375,882264058,825490058,252850511,652942840,202604098,277615259,862885671,582470925,190843016,534488148,187675153,911660635,377262012,642854978,359397276,712333871,580131409,841639861,925383257,213683380,25291651,974815450,32032244,119030165,443676106,555727293,170519648,171131074,839941962,789829593,140975543,845347712,303299112,530420097,857005350,249174130,224087061,311280308,404814306,567648772,766512373,470895965,294358155,625218604,89534510,513216330,78173719,22818060,254922573,292417477,415060121,208989124,960117615,570018845,237661008,442774488,871349246,161574942,548661451,313471555,448096394,587422360,987939533,254478574,113844945,268886375,927289435,664834607,983476167,390569280,363763327,935767957,159015901,508613041,134148582,127417680,484767855,825835285,43847241,972918293,151969014,768480291,729490470,76727400,384998943,648970509,764966281,391326774,585299643,661473977,530021579,368308424,81083443,981417794,185781362,169555925,934957641,56005264,296483160,853982963,489694611,73207251,20297311,431253211,168162850,36271383,689526671,397669110,705876730,785504919,764896820,936514026,350141918,784778738,682324919,140913543,862125900,723248565,369074340,146936534,226913694,277886748,856792647,13654547,141461269,255233971,979535193,747662027,452683681,338311679,399620140,306913085,817524367,333578440,943193170,387930488,964713035,554372227,524201507,267870305,698863503,695139108,399857384,830659092,479624682,594238820,768224890,956955770,940576967,920740072,282055556,621677930,847367415,619094041,432519599,192780811,912052381,263304046,114280963,307107320,956809356,118706101,836710721,356893069,427113038,55360495,892694364,443807400,568616581,130165565,732273554,778059496,95936679,629634134,383940143,474733431,271200931,253893765,65679204,670721645,268831988,225698685,424701963,654858732,405695790,894299102,797306377,464723449,647679843,730366154,956550665,898568348,313188681,661403769,346715295,358990430,868898456,719464962,978551995,772931269,255694712,379904456,393101377,130818973,810783770,78951115,608848341,941552927,523163696,581658405,188869913,161971620,114600913,300038465,126906968,572973411,118017645,806069307,430432761,310699012,989119052,282768145,557792692,611036992,427168405,84497995,529589599,967936672,416953197,549641787,787274930,514952744,646568513,39329263,765390776,831388678,299074396,102522509,886062498,598990751,553048069,305737423,388746841,13007805,3445560,568306294,109543305,847740132,746222360,454654676,748993028,222910140,861308982,390243513,692742883,789475199,153430402,299806798,913070840,881332402,245792511,618823409,1817990,897836424,726794141,700802042,472214481,97004031,479899815,573979309,752576644,374801082,599964908,894966385,178103304,12240556,393873628,855241924,305678131,971858774,281586141,87362107,41844894,175133514,276243521,997376957,260427125,439339251,64661516,362212695,186181824,423316311,267640938,299252572,810040987,857956827,758991665,207700847,399398818,747579039,814755712,298373935,307448236,42074518,982127624,538863790,528558929,96501138,813255509,611769398,710541518,408153968,675346745,970094012,791931126,811516976,618049736,264048084,209805699,909045292,645349311,416989597,590393407,320547207,342653696,860169617,856611053,475149267,124801433,547187333,466598598,266454901,554467907,868909135,199244107,548833449,20952517,234169026,117025205,804238552,205574540,590283297,822322644,866010856,477388420,935768507,424373916,951967787,344871828,133969287,937034425,309380768,666909962,726492795,996576193,883938945,869749688,313581344,65216237,88860786,208895640,888760811,854567609,328142793,121852766,928690075,135269006,333105486,502240551,573712984,397698082,935117672,718828733,440474396,335628894,184935718,788258676,646732201,68099895,167036421,362572358,787671392,666366534,193503119,74429287,132805884,796935846,124574194,926012440,147265585,722608579,526866610,452261307,990444071,4595579,147427028,774597449,678783012,568563934,383628463,68242206,163493293,352851801,123192034,529859554,14733470,565063217,178575398,580871309,135817500,313966456,647215844,118781836,106243172,796669460,48496927,772979683,715961917,546863206,601711799,644312478,629259662,738295002,692301787,149995411,864799423,284186171,246177326,268779154,86400350,518698490,321709079,946212693,800553099,865864136,244789848,386206318,851633075,713794602,131117952,280474884,243820970,820033654,399700655,825581574,443639603,774376660,362476217,552383080,436759518,538430048,965968656,150434699,563163603,352073025,840124972,152029247,902082055,770264937,747653807,934664232,541451013,807031739,854866728,503502641,283479207,297947602,488469464,205196166,381583984,108455782,570592132,363674728,134077711,356931610,887112858,273780969,443297964,650953636,402662299,894089640,71844431,33030748,208583995,597099208,671156881,875032178,998244352,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};\n\
     \nint factorial998(ll n) {\n  constexpr int mod = 998244353;\n  if (n >= mod)\
@@ -303,52 +313,52 @@ data:
     \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t n) const {\n\
     \    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
     \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  void write()\
-    \ { fastio::write(val); }\n  static constexpr int get_mod() { return mod; }\n\
-    };\n\nstruct ArbitraryModInt {\n  static constexpr bool is_modint = true;\n  int\
-    \ val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t y)\n      :\
-    \ val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y) % get_mod())\
-    \ % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other) const {\n  \
-    \  return val < other.val;\n  } // To use std::map<ArbitraryModInt, T>\n  static\
-    \ int &get_mod() {\n    static int mod = 0;\n    return mod;\n  }\n  static void\
-    \ set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const ArbitraryModInt\
-    \ &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n    return *this;\n\
-    \  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p) {\n    if ((val\
-    \ += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return *this;\n \
-    \ }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n    long long\
-    \ a = (long long)val * p.val;\n    int xh = (int)(a >> 32), xl = (int)a, d, m;\n\
-    \    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"(m) : \"d\"(xh), \"a\"(xl), \"\
-    r\"(get_mod()));\n    val = m;\n    return *this;\n  }\n  ArbitraryModInt &operator/=(const\
-    \ ArbitraryModInt &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n \
-    \ ArbitraryModInt operator-() const { return ArbitraryModInt(get_mod() - val);\
-    \ }\n  ArbitraryModInt operator+(const ArbitraryModInt &p) const {\n    return\
-    \ ArbitraryModInt(*this) += p;\n  }\n  ArbitraryModInt operator-(const ArbitraryModInt\
-    \ &p) const {\n    return ArbitraryModInt(*this) -= p;\n  }\n  ArbitraryModInt\
-    \ operator*(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
-    \ *= p;\n  }\n  ArbitraryModInt operator/(const ArbitraryModInt &p) const {\n\
-    \    return ArbitraryModInt(*this) /= p;\n  }\n  bool operator==(const ArbitraryModInt\
-    \ &p) const { return val == p.val; }\n  bool operator!=(const ArbitraryModInt\
-    \ &p) const { return val != p.val; }\n  ArbitraryModInt inverse() const {\n  \
-    \  int a = val, b = get_mod(), u = 1, v = 0, t;\n    while (b > 0) {\n      t\
-    \ = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return\
-    \ ArbitraryModInt(u);\n  }\n  ArbitraryModInt pow(int64_t n) const {\n    ArbitraryModInt\
-    \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
-    \ mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n};\n\ntemplate <typename\
-    \ mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n  static\
-    \ vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n \
-    \ while (int(dat.size()) <= n) {\n    int k = dat.size();\n    auto q = (mod +\
-    \ k - 1) / k;\n    int r = k * q - mod;\n    dat.emplace_back(dat[r] * mint(q));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
-    \ const int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  assert(0\
-    \ <= n);\n  if (n >= mod) return 0;\n  while (int(dat.size()) <= n) {\n    int\
-    \ k = dat.size();\n    dat.emplace_back(dat[k - 1] * mint(k));\n  }\n  return\
-    \ dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static const\
-    \ int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  assert(-1\
-    \ <= n && n < mod);\n  if (n == -1) return mint(0);\n  while (int(dat.size())\
-    \ <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <class mint, class... Ts>\nmint fact_invs(Ts...\
-    \ xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename\
-    \ mint, class Head, class... Tail>\nmint multinomial(Head &&head, Tail &&... tail)\
-    \ {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    \ { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
+    \ }\n  static constexpr int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
+    \ {\n  static constexpr bool is_modint = true;\n  int val;\n  ArbitraryModInt()\
+    \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
+    \                   : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
+    \ ArbitraryModInt &other) const {\n    return val < other.val;\n  } // To use\
+    \ std::map<ArbitraryModInt, T>\n  static int &get_mod() {\n    static int mod\
+    \ = 0;\n    return mod;\n  }\n  static void set_mod(int md) { get_mod() = md;\
+    \ }\n  ArbitraryModInt &operator+=(const ArbitraryModInt &p) {\n    if ((val +=\
+    \ p.val) >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt\
+    \ &operator-=(const ArbitraryModInt &p) {\n    if ((val += get_mod() - p.val)\
+    \ >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt &operator*=(const\
+    \ ArbitraryModInt &p) {\n    long long a = (long long)val * p.val;\n    int xh\
+    \ = (int)(a >> 32), xl = (int)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d),\
+    \ \"=d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return\
+    \ *this;\n  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n   \
+    \ *this *= p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-()\
+    \ const { return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) += p;\n  }\n\
+    \  ArbitraryModInt operator-(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
+    \ -= p;\n  }\n  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n\
+    \    return ArbitraryModInt(*this) *= p;\n  }\n  ArbitraryModInt operator/(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) /= p;\n  }\n\
+    \  bool operator==(const ArbitraryModInt &p) const { return val == p.val; }\n\
+    \  bool operator!=(const ArbitraryModInt &p) const { return val != p.val; }\n\
+    \  ArbitraryModInt inverse() const {\n    int a = val, b = get_mod(), u = 1, v\
+    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
+    \ -= t * v, v);\n    }\n    return ArbitraryModInt(u);\n  }\n  ArbitraryModInt\
+    \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
+    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
+    \  }\n    return ret;\n  }\n};\n\ntemplate <typename mint>\nmint inv(int n) {\n\
+    \  static const int mod = mint::get_mod();\n  static vector<mint> dat = {0, 1};\n\
+    \  assert(0 <= n);\n  if (n >= mod) n %= mod;\n  while (int(dat.size()) <= n)\
+    \ {\n    int k = dat.size();\n    auto q = (mod + k - 1) / k;\n    int r = k *\
+    \ q - mod;\n    dat.emplace_back(dat[r] * mint(q));\n  }\n  return dat[n];\n}\n\
+    \ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  static vector<mint> dat = {1, 1};\n  assert(0 <= n);\n  if (n >= mod) return\
+    \ 0;\n  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
+    \ - 1] * mint(k));\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint\
+    \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
+    \ dat = {1, 1};\n  assert(-1 <= n && n < mod);\n  if (n == -1) return mint(0);\n\
+    \  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
+    \ - 1] * inv<mint>(k));\n  }\n  return dat[n];\n}\n\ntemplate <class mint, class...\
+    \ Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
+    }\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
+    \ &&head, Tail &&... tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
     }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint>\
     \ C;\n  static int H = 0, W = 0;\n\n  auto calc = [&](int i, int j) -> mint {\n\
     \    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
@@ -633,7 +643,7 @@ data:
   isVerificationFile: true
   path: test/mytest/factorial_998.test.cpp
   requiredBy: []
-  timestamp: '2022-12-01 23:08:36+09:00'
+  timestamp: '2022-12-02 03:30:03+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/factorial_998.test.cpp

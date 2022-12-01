@@ -94,161 +94,170 @@ data:
     \ == A[j] && i < j); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate\
     \ <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I) {\n  int n =\
     \ len(I);\n  vc<T> B(n);\n  FOR(i, n) B[i] = A[I[i]];\n  return B;\n}\n#line 1\
-    \ \"other/io.hpp\"\nnamespace fastio {\r\n// https://nyaannyaan.github.io/library/misc/fastio.hpp\
-    \ \u3092\u5143\u306B\u6539\u9020\r\n\r\n// \u30AF\u30E9\u30B9\u304C read(), print()\
-    \ \u3092\u6301\u3063\u3066\u3044\u308B\u304B\u3092\u5224\u5B9A\u3059\u308B\u30E1\
-    \u30BF\u95A2\u6570\r\nstruct has_write_impl {\r\n  template <class T>\r\n  static\
-    \ auto check(T &&x) -> decltype(x.write(), std::true_type{});\r\n\r\n  template\
-    \ <class T>\r\n  static auto check(...) -> std::false_type;\r\n};\r\n\r\ntemplate\
-    \ <class T>\r\nclass has_write : public decltype(has_write_impl::check<T>(std::declval<T>()))\
+    \ \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include <unistd.h>\r\n\r\n\
+    namespace fastio {\r\n// \u30AF\u30E9\u30B9\u304C read(), print() \u3092\u6301\
+    \u3063\u3066\u3044\u308B\u304B\u3092\u5224\u5B9A\u3059\u308B\u30E1\u30BF\u95A2\
+    \u6570\r\nstruct has_write_impl {\r\n  template <class T>\r\n  static auto check(T\
+    \ &&x) -> decltype(x.write(), std::true_type{});\r\n\r\n  template <class T>\r\
+    \n  static auto check(...) -> std::false_type;\r\n};\r\n\r\ntemplate <class T>\r\
+    \nclass has_write : public decltype(has_write_impl::check<T>(std::declval<T>()))\
     \ {\r\n};\r\n\r\nstruct has_read_impl {\r\n  template <class T>\r\n  static auto\
     \ check(T &&x) -> decltype(x.read(), std::true_type{});\r\n\r\n  template <class\
     \ T>\r\n  static auto check(...) -> std::false_type;\r\n};\r\n\r\ntemplate <class\
     \ T>\r\nclass has_read : public decltype(has_read_impl::check<T>(std::declval<T>()))\
-    \ {};\r\n\r\nstatic constexpr int SZ = 1 << 17;\r\nchar inbuf[SZ], outbuf[SZ];\r\
-    \nint in_left = 0, in_right = 0, out_right = 0;\r\n\r\nstruct Pre {\r\n  char\
-    \ num[40000];\r\n  constexpr Pre() : num() {\r\n    for (int i = 0; i < 10000;\
-    \ i++) {\r\n      int n = i;\r\n      for (int j = 3; j >= 0; j--) {\r\n     \
-    \   num[i * 4 + j] = n % 10 + '0';\r\n        n /= 10;\r\n      }\r\n    }\r\n\
-    \  }\r\n} constexpr pre;\r\n\r\ninline void load() {\r\n  int len = in_right -\
-    \ in_left;\r\n  memmove(inbuf, inbuf + in_left, len);\r\n  in_right = len + fread(inbuf\
-    \ + len, 1, SZ - len, stdin);\r\n  in_left = 0;\r\n}\r\n\r\ninline void flush()\
-    \ {\r\n  fwrite(outbuf, 1, out_right, stdout);\r\n  out_right = 0;\r\n}\r\n\r\n\
-    inline void read_single(char &c) {\r\n  if (in_left + 32 > in_right) load();\r\
-    \n  c = inbuf[in_left++];\r\n}\r\n\r\ntemplate <class T, enable_if_t<is_same<T,\
-    \ string>::value, int> = 0>\r\ninline void read_single(T &x) {\r\n  char c = '\
-    \ ';\r\n  do {\r\n    if (in_left + 32 > in_right) load();\r\n    c = inbuf[in_left++];\r\
-    \n  } while (c == ' ' || c == '\\n');\r\n  x += c;\r\n  while (1) {\r\n    if\
-    \ (in_left + 32 > in_right) load();\r\n    c = inbuf[in_left++];\r\n    if (c\
-    \ == ' ' || c == '\\n') break;\r\n    x += c;\r\n  }\r\n}\r\n\r\ntemplate <class\
-    \ T, enable_if_t<is_integral<T>::value, int> = 0>\r\ninline void read_single(T\
-    \ &x) {\r\n  if (in_left + 32 > in_right) load();\r\n  char c;\r\n  do\r\n   \
-    \ c = inbuf[in_left++];\r\n  while (c < '-');\r\n  bool minus = false;\r\n  if\
-    \ constexpr (is_signed<T>::value == true) {\r\n    if (c == '-') minus = true,\
-    \ c = inbuf[in_left++];\r\n  }\r\n  x = 0;\r\n  while (c >= '0') {\r\n    x =\
-    \ x * 10 + (c & 15);\r\n    c = inbuf[in_left++];\r\n  }\r\n  if constexpr (is_signed<T>::value\
-    \ == true) {\r\n    if (minus) x = -x;\r\n  }\r\n}\r\n\r\ntemplate <typename T,\
-    \ typename enable_if<has_read<T>::value>::type * = nullptr>\r\ninline void read_single(T\
-    \ x) {\r\n  x.read();\r\n}\r\ntemplate <class T, class U>\r\ninline void read_single(pair<T,\
-    \ U> &p) {\r\n  read_single(p.first), read_single(p.second);\r\n}\r\ntemplate\
-    \ <class... T>\r\ninline void read(tuple<T...> &tpl) {\r\n  apply([&](auto...\
-    \ t) { (read(t), ...); }, tpl);\r\n}\r\ntemplate <class T>\r\ninline void read_single(vector<T>\
-    \ &ref) {\r\n  for (auto &d: ref) read_single(d);\r\n}\r\ntemplate <class T, int\
-    \ N>\r\ninline void read_single(array<T, N> &ref) {\r\n  for (auto &d: ref) read_single(d);\r\
-    \n}\r\n\r\ninline void read() {}\r\ntemplate <typename Head, typename... Tail>\r\
-    \ninline void read(Head &head, Tail &... tail) {\r\n  read_single(head);\r\n \
-    \ read(tail...);\r\n}\r\n\r\ninline void write(char c) {\r\n  if (out_right >\
-    \ SZ - 32) flush();\r\n  outbuf[out_right++] = c;\r\n}\r\ninline void write(const\
-    \ string &s) {\r\n  if (out_right + s.size() > SZ - 32) flush();\r\n  memcpy(outbuf\
-    \ + out_right, s.data(), sizeof(char) * s.size());\r\n  out_right += s.size();\r\
-    \n}\r\ntemplate <class T, enable_if_t<is_integral<T>::value, int> = 0>\r\ninline\
-    \ void write(T x) {\r\n  if (out_right > SZ - 32) flush();\r\n  if (!x) {\r\n\
-    \    outbuf[out_right++] = '0';\r\n    return;\r\n  }\r\n  if constexpr (is_signed<T>::value\
-    \ == true) {\r\n    if (x < 0) outbuf[out_right++] = '-', x = -x;\r\n  }\r\n \
-    \ int i = 12;\r\n  char buf[16];\r\n  while (x >= 10000) {\r\n    memcpy(buf +\
-    \ i, pre.num + (x % 10000) * 4, 4);\r\n    x /= 10000;\r\n    i -= 4;\r\n  }\r\
-    \n  if (x < 100) {\r\n    if (x < 10) {\r\n      outbuf[out_right] = '0' + x;\r\
-    \n      ++out_right;\r\n    } else {\r\n      uint32_t q = (uint32_t(x) * 205)\
-    \ >> 11;\r\n      uint32_t r = uint32_t(x) - q * 10;\r\n      outbuf[out_right]\
-    \ = '0' + q;\r\n      outbuf[out_right + 1] = '0' + r;\r\n      out_right += 2;\r\
-    \n    }\r\n  } else {\r\n    if (x < 1000) {\r\n      memcpy(outbuf + out_right,\
-    \ pre.num + (x << 2) + 1, 3);\r\n      out_right += 3;\r\n    } else {\r\n   \
-    \   memcpy(outbuf + out_right, pre.num + (x << 2), 4);\r\n      out_right += 4;\r\
-    \n    }\r\n  }\r\n  memcpy(outbuf + out_right, buf + i + 4, 12 - i);\r\n  out_right\
-    \ += 12 - i;\r\n}\r\ninline void write(const double &x) {\r\n  ostringstream oss;\r\
-    \n  oss << fixed << setprecision(15) << x;\r\n  string s = oss.str();\r\n  write(s);\r\
-    \n}\r\ninline void write(const long double &x) {\r\n  ostringstream oss;\r\n \
-    \ oss << fixed << setprecision(15) << x;\r\n  string s = oss.str();\r\n  write(s);\r\
-    \n}\r\ntemplate <typename T, typename enable_if<has_write<T>::value>::type * =\
-    \ nullptr>\r\ninline void write(T x) {\r\n  x.write();\r\n}\r\ntemplate <class\
-    \ T>\r\nvoid write(const vector<T> &val) {\r\n  auto n = val.size();\r\n  for\
-    \ (size_t i = 0; i < n; i++) {\r\n    if (i) write(' ');\r\n    write(val[i]);\r\
-    \n  }\r\n}\r\ntemplate <class T, class U>\r\nvoid write(const pair<T, U> &val)\
-    \ {\r\n  write(val.first);\r\n  write(' ');\r\n  write(val.second);\r\n}\r\ntemplate\
-    \ <class T, size_t S>\r\ninline void write(const array<T, S> &val) {\r\n  auto\
-    \ n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n    if (i) write('\
-    \ ');\r\n    write(val[i]);\r\n  }\r\n}\r\ninline void write(i128 val) {\r\n \
-    \ string s;\r\n  bool negative = 0;\r\n  if (val < 0) {\r\n    negative = 1;\r\
-    \n    val = -val;\r\n  }\r\n  while (val) {\r\n    s += '0' + int(val % 10);\r\
-    \n    val /= 10;\r\n  }\r\n  if (negative) s += \"-\";\r\n  reverse(all(s));\r\
-    \n  if (len(s) == 0) s = \"0\";\r\n  write(s);\r\n}\r\nstruct Dummy {\r\n  Dummy()\
-    \ { atexit(flush); }\r\n} dummy;\r\n\r\nvoid print() { fastio::write('\\n'); }\r\
-    \ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head, Tail &&... tail)\
-    \ {\r\n  fastio::write(head);\r\n  if (sizeof...(Tail)) fastio::write(' ');\r\n\
-    \  print(forward<Tail>(tail)...);\r\n}\r\n} // namespace fastio\r\nusing fastio::read;\r\
-    \nusing fastio::print;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\
-    \n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    \r\n#define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n \
-    \ read(name)\r\n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
-    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print<string>(t\
-    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
-    \ t = 1) { print<string>(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t);\
-    \ }\r\nvoid yes(bool t = 1) { print<string>(t ? \"yes\" : \"no\"); }\r\nvoid no(bool\
-    \ t = 1) { yes(!t); }\r\n#line 1 \"ds/kdtree/kdtree_monoid.hpp\"\n// \u540C\u3058\
-    \u5EA7\u6A19\u306E\u8907\u6570\u306E\u70B9\u304C\u3069\u306E\u304F\u3089\u3044\
-    \u96C6\u7D04\u3055\u308C\u308B\u304B\u306F\u4FDD\u8A3C\u304C\u306A\u3044\u3002\
-    \r\n// \u5B50\u30CE\u30FC\u30C9\u304C 2x, 2x+1 \u306B\u306A\u308B\u3088\u3046\u306B\
-    \u3057\u3066\u3001\u914D\u5217\u3067\u4F5C\u3063\u3066\u307F\u308B\u3002\r\ntemplate\
-    \ <class Monoid, typename XY = long long>\r\nstruct KDTree_Monoid {\r\n  using\
-    \ X = typename Monoid::value_type;\r\n  vc<tuple<XY, XY, XY, XY>> range;\r\n \
-    \ vc<X> dat;\r\n  int n;\r\n\r\n  KDTree_Monoid(vc<XY> xs, vc<XY> ys, vc<X> vs)\
-    \ : n(len(xs)) {\r\n    assert(Monoid::commute);\r\n    int log = 0;\r\n    while\
-    \ ((1 << log) < n) ++log;\r\n    dat.resize(1 << (log + 1));\r\n    range.resize(1\
-    \ << (log + 1));\r\n    build(1, xs, ys, vs);\r\n  }\r\n\r\n  void set(XY x, XY\
-    \ y, const X& v) { set_rec(1, x, y, v); }\r\n\r\n  void multiply(XY x, XY y, const\
-    \ X& v) { multiply_rec(1, x, y, v); }\r\n\r\n  X prod(XY xl, XY xr, XY yl, XY\
-    \ yr) {\r\n    assert(xl <= xr && yl <= yr);\r\n    return prod_rec(1, xl, xr,\
-    \ yl, yr);\r\n  }\r\n\r\nprivate:\r\n  void build(int idx, vc<XY>& xs, vc<XY>&\
-    \ ys, vc<X>& vs, bool divx = true) {\r\n    int n = len(xs);\r\n    auto& [xmin,\
-    \ xmax, ymin, ymax] = range[idx];\r\n    xmin = numeric_limits<XY>::max();\r\n\
-    \    xmax = numeric_limits<XY>::lowest();\r\n    ymin = numeric_limits<XY>::max();\r\
-    \n    ymax = numeric_limits<XY>::lowest();\r\n\r\n    FOR(i, n) {\r\n      auto\
-    \ x = xs[i], y = ys[i];\r\n      chmin(xmin, x);\r\n      chmax(xmax, x);\r\n\
-    \      chmin(ymin, y);\r\n      chmax(ymax, y);\r\n    }\r\n    if (xmin == xmax\
-    \ && ymin == ymax) {\r\n      X x = Monoid::unit();\r\n      for (auto&& v: vs)\
-    \ x = Monoid::op(x, v);\r\n      dat[idx] = x;\r\n      return;\r\n    }\r\n\r\
-    \n    int m = n / 2;\r\n    vc<int> I(n);\r\n    iota(all(I), 0);\r\n    if (divx)\
+    \ {};\r\n\r\nstruct Scanner {\r\n  FILE *fp;\r\n  char line[(1 << 15) + 1];\r\n\
+    \  size_t st = 0, ed = 0;\r\n  void reread() {\r\n    memmove(line, line + st,\
+    \ ed - st);\r\n    ed -= st;\r\n    st = 0;\r\n    ed += fread(line + ed, 1, (1\
+    \ << 15) - ed, fp);\r\n    line[ed] = '\\0';\r\n  }\r\n  bool succ() {\r\n   \
+    \ while (true) {\r\n      if (st == ed) {\r\n        reread();\r\n        if (st\
+    \ == ed) return false;\r\n      }\r\n      while (st != ed && isspace(line[st]))\
+    \ st++;\r\n      if (st != ed) break;\r\n    }\r\n    if (ed - st <= 50) {\r\n\
+    \      bool sep = false;\r\n      for (size_t i = st; i < ed; i++) {\r\n     \
+    \   if (isspace(line[i])) {\r\n          sep = true;\r\n          break;\r\n \
+    \       }\r\n      }\r\n      if (!sep) reread();\r\n    }\r\n    return true;\r\
+    \n  }\r\n  template <class T, enable_if_t<is_same<T, string>::value, int> = 0>\r\
+    \n  bool read_single(T &ref) {\r\n    if (!succ()) return false;\r\n    while\
+    \ (true) {\r\n      size_t sz = 0;\r\n      while (st + sz < ed && !isspace(line[st\
+    \ + sz])) sz++;\r\n      ref.append(line + st, sz);\r\n      st += sz;\r\n   \
+    \   if (!sz || st != ed) break;\r\n      reread();\r\n    }\r\n    return true;\r\
+    \n  }\r\n  template <class T, enable_if_t<is_integral<T>::value, int> = 0>\r\n\
+    \  bool read_single(T &ref) {\r\n    if (!succ()) return false;\r\n    bool neg\
+    \ = false;\r\n    if (line[st] == '-') {\r\n      neg = true;\r\n      st++;\r\
+    \n    }\r\n    ref = T(0);\r\n    while (isdigit(line[st])) { ref = 10 * ref +\
+    \ (line[st++] & 0xf); }\r\n    if (neg) ref = -ref;\r\n    return true;\r\n  }\r\
+    \n  template <typename T,\r\n            typename enable_if<has_read<T>::value>::type\
+    \ * = nullptr>\r\n  inline void read_single(T &x) {\r\n    x.read();\r\n  }\r\n\
+    \  bool read_single(double &ref) {\r\n    string s;\r\n    if (!read_single(s))\
+    \ return false;\r\n    ref = std::stod(s);\r\n    return true;\r\n  }\r\n  bool\
+    \ read_single(char &ref) {\r\n    string s;\r\n    if (!read_single(s) || s.size()\
+    \ != 1) return false;\r\n    ref = s[0];\r\n    return true;\r\n  }\r\n  template\
+    \ <class T>\r\n  bool read_single(vector<T> &ref) {\r\n    for (auto &d: ref)\
+    \ {\r\n      if (!read_single(d)) return false;\r\n    }\r\n    return true;\r\
+    \n  }\r\n  template <class T, class U>\r\n  bool read_single(pair<T, U> &p) {\r\
+    \n    return (read_single(p.first) && read_single(p.second));\r\n  }\r\n  template\
+    \ <size_t N = 0, typename T>\r\n  void read_single_tuple(T &t) {\r\n    if constexpr\
+    \ (N < std::tuple_size<T>::value) {\r\n      auto &x = std::get<N>(t);\r\n   \
+    \   read_single(x);\r\n      read_single_tuple<N + 1>(t);\r\n    }\r\n  }\r\n\
+    \  template <class... T>\r\n  bool read_single(tuple<T...> &tpl) {\r\n    read_single_tuple(tpl);\r\
+    \n    return true;\r\n  }\r\n  void read() {}\r\n  template <class H, class...\
+    \ T>\r\n  void read(H &h, T &... t) {\r\n    bool f = read_single(h);\r\n    assert(f);\r\
+    \n    read(t...);\r\n  }\r\n  Scanner(FILE *fp) : fp(fp) {}\r\n};\r\n\r\nstruct\
+    \ Printer {\r\n  Printer(FILE *_fp) : fp(_fp) {}\r\n  ~Printer() { flush(); }\r\
+    \n\r\n  static constexpr size_t SIZE = 1 << 15;\r\n  FILE *fp;\r\n  char line[SIZE],\
+    \ small[50];\r\n  size_t pos = 0;\r\n  void flush() {\r\n    fwrite(line, 1, pos,\
+    \ fp);\r\n    pos = 0;\r\n  }\r\n  void write(const char &val) {\r\n    if (pos\
+    \ == SIZE) flush();\r\n    line[pos++] = val;\r\n  }\r\n  template <class T, enable_if_t<is_integral<T>::value,\
+    \ int> = 0>\r\n  void write(T val) {\r\n    if (pos > (1 << 15) - 50) flush();\r\
+    \n    if (val == 0) {\r\n      write('0');\r\n      return;\r\n    }\r\n    if\
+    \ (val < 0) {\r\n      write('-');\r\n      val = -val; // todo min\r\n    }\r\
+    \n    size_t len = 0;\r\n    while (val) {\r\n      small[len++] = char(0x30 |\
+    \ (val % 10));\r\n      val /= 10;\r\n    }\r\n    for (size_t i = 0; i < len;\
+    \ i++) { line[pos + i] = small[len - 1 - i]; }\r\n    pos += len;\r\n  }\r\n \
+    \ void write(const string &s) {\r\n    for (char c: s) write(c);\r\n  }\r\n  void\
+    \ write(const char *s) {\r\n    size_t len = strlen(s);\r\n    for (size_t i =\
+    \ 0; i < len; i++) write(s[i]);\r\n  }\r\n  void write(const double &x) {\r\n\
+    \    ostringstream oss;\r\n    oss << fixed << setprecision(15) << x;\r\n    string\
+    \ s = oss.str();\r\n    write(s);\r\n  }\r\n  void write(const long double &x)\
+    \ {\r\n    ostringstream oss;\r\n    oss << fixed << setprecision(15) << x;\r\n\
+    \    string s = oss.str();\r\n    write(s);\r\n  }\r\n  template <typename T,\r\
+    \n            typename enable_if<has_write<T>::value>::type * = nullptr>\r\n \
+    \ inline void write(T x) {\r\n    x.write();\r\n  }\r\n  template <class T>\r\n\
+    \  void write(const vector<T> &val) {\r\n    auto n = val.size();\r\n    for (size_t\
+    \ i = 0; i < n; i++) {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\n\
+    \    }\r\n  }\r\n  template <class T, class U>\r\n  void write(const pair<T, U>\
+    \ &val) {\r\n    write(val.first);\r\n    write(' ');\r\n    write(val.second);\r\
+    \n  }\r\n  template <size_t N = 0, typename T>\r\n  void write_tuple(const T &t)\
+    \ {\r\n    if constexpr (N < std::tuple_size<T>::value) {\r\n      if constexpr\
+    \ (N > 0) { write(' '); }\r\n      const auto &x = std::get<N>(t);\r\n      write(x);\r\
+    \n      write_tuple<N + 1>(t);\r\n    }\r\n  }\r\n  template <class... T>\r\n\
+    \  bool write(tuple<T...> &tpl) {\r\n    write_tuple(tpl);\r\n    return true;\r\
+    \n  }\r\n  template <class T, size_t S>\r\n  void write(const array<T, S> &val)\
+    \ {\r\n    auto n = val.size();\r\n    for (size_t i = 0; i < n; i++) {\r\n  \
+    \    if (i) write(' ');\r\n      write(val[i]);\r\n    }\r\n  }\r\n  void write(i128\
+    \ val) {\r\n    string s;\r\n    bool negative = 0;\r\n    if (val < 0) {\r\n\
+    \      negative = 1;\r\n      val = -val;\r\n    }\r\n    while (val) {\r\n  \
+    \    s += '0' + int(val % 10);\r\n      val /= 10;\r\n    }\r\n    if (negative)\
+    \ s += \"-\";\r\n    reverse(all(s));\r\n    if (len(s) == 0) s = \"0\";\r\n \
+    \   write(s);\r\n  }\r\n};\r\nScanner scanner = Scanner(stdin);\r\nPrinter printer\
+    \ = Printer(stdout);\r\nvoid flush() { printer.flush(); }\r\nvoid print() { printer.write('\\\
+    n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head, Tail\
+    \ &&... tail) {\r\n  printer.write(head);\r\n  if (sizeof...(Tail)) printer.write('\
+    \ ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\nvoid read() {}\r\ntemplate\
+    \ <class Head, class... Tail>\r\nvoid read(Head &head, Tail &... tail) {\r\n \
+    \ scanner.read(head);\r\n  read(tail...);\r\n}\r\n} // namespace fastio\r\nusing\
+    \ fastio::print;\r\nusing fastio::flush;\r\nusing fastio::read;\r\n\r\n#define\
+    \ INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)\
+    \   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)    \
+    \  \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
+    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
+    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
+    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
+    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
+    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
+    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
+    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
+    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
+    \ yes(!t); }\n#line 1 \"ds/kdtree/kdtree_monoid.hpp\"\n// \u540C\u3058\u5EA7\u6A19\
+    \u306E\u8907\u6570\u306E\u70B9\u304C\u3069\u306E\u304F\u3089\u3044\u96C6\u7D04\
+    \u3055\u308C\u308B\u304B\u306F\u4FDD\u8A3C\u304C\u306A\u3044\u3002\r\n// \u5B50\
+    \u30CE\u30FC\u30C9\u304C 2x, 2x+1 \u306B\u306A\u308B\u3088\u3046\u306B\u3057\u3066\
+    \u3001\u914D\u5217\u3067\u4F5C\u3063\u3066\u307F\u308B\u3002\r\ntemplate <class\
+    \ Monoid, typename XY = long long>\r\nstruct KDTree_Monoid {\r\n  using X = typename\
+    \ Monoid::value_type;\r\n  vc<tuple<XY, XY, XY, XY>> range;\r\n  vc<X> dat;\r\n\
+    \  int n;\r\n\r\n  KDTree_Monoid(vc<XY> xs, vc<XY> ys, vc<X> vs) : n(len(xs))\
+    \ {\r\n    assert(Monoid::commute);\r\n    int log = 0;\r\n    while ((1 << log)\
+    \ < n) ++log;\r\n    dat.resize(1 << (log + 1));\r\n    range.resize(1 << (log\
+    \ + 1));\r\n    build(1, xs, ys, vs);\r\n  }\r\n\r\n  void set(XY x, XY y, const\
+    \ X& v) { set_rec(1, x, y, v); }\r\n\r\n  void multiply(XY x, XY y, const X& v)\
+    \ { multiply_rec(1, x, y, v); }\r\n\r\n  X prod(XY xl, XY xr, XY yl, XY yr) {\r\
+    \n    assert(xl <= xr && yl <= yr);\r\n    return prod_rec(1, xl, xr, yl, yr);\r\
+    \n  }\r\n\r\nprivate:\r\n  void build(int idx, vc<XY>& xs, vc<XY>& ys, vc<X>&\
+    \ vs, bool divx = true) {\r\n    int n = len(xs);\r\n    auto& [xmin, xmax, ymin,\
+    \ ymax] = range[idx];\r\n    xmin = numeric_limits<XY>::max();\r\n    xmax = numeric_limits<XY>::lowest();\r\
+    \n    ymin = numeric_limits<XY>::max();\r\n    ymax = numeric_limits<XY>::lowest();\r\
+    \n\r\n    FOR(i, n) {\r\n      auto x = xs[i], y = ys[i];\r\n      chmin(xmin,\
+    \ x);\r\n      chmax(xmax, x);\r\n      chmin(ymin, y);\r\n      chmax(ymax, y);\r\
+    \n    }\r\n    if (xmin == xmax && ymin == ymax) {\r\n      X x = Monoid::unit();\r\
+    \n      for (auto&& v: vs) x = Monoid::op(x, v);\r\n      dat[idx] = x;\r\n  \
+    \    return;\r\n    }\r\n\r\n    int m = n / 2;\r\n    vc<int> I(n);\r\n    iota(all(I),\
+    \ 0);\r\n    if (divx) {\r\n      nth_element(I.begin(), I.begin() + m, I.end(),\r\
+    \n                  [xs](int i, int j) { return xs[i] < xs[j]; });\r\n    } else\
     \ {\r\n      nth_element(I.begin(), I.begin() + m, I.end(),\r\n              \
-    \    [xs](int i, int j) { return xs[i] < xs[j]; });\r\n    } else {\r\n      nth_element(I.begin(),\
-    \ I.begin() + m, I.end(),\r\n                  [ys](int i, int j) { return ys[i]\
-    \ < ys[j]; });\r\n    }\r\n    vc<XY> lxs, rxs, lys, rys;\r\n    vc<X> lvs, rvs;\r\
-    \n    FOR(k, m) {\r\n      int i = I[k];\r\n      lxs.eb(xs[i]);\r\n      lys.eb(ys[i]);\r\
-    \n      lvs.eb(vs[i]);\r\n    }\r\n    FOR(k, m, n) {\r\n      int i = I[k];\r\
-    \n      rxs.eb(xs[i]);\r\n      rys.eb(ys[i]);\r\n      rvs.eb(vs[i]);\r\n   \
-    \ }\r\n    build(2 * idx + 0, lxs, lys, lvs, !divx);\r\n    build(2 * idx + 1,\
-    \ rxs, rys, rvs, !divx);\r\n    dat[idx] = Monoid::op(dat[2 * idx + 0], dat[2\
-    \ * idx + 1]);\r\n  }\r\n\r\n  bool isin(const int& idx, const XY& x, const XY&\
-    \ y) {\r\n    auto& [xmin, xmax, ymin, ymax] = range[idx];\r\n    return (xmin\
-    \ <= x && x <= xmax && ymin <= y && y <= ymax);\r\n  }\r\n\r\n  void set_rec(const\
-    \ int& idx, const XY& x, const XY& y, const X& v) {\r\n    if (!isin(idx, x, y))\
-    \ return;\r\n    auto& [xmin, xmax, ymin, ymax] = range[idx];\r\n    if (xmin\
-    \ == xmax && ymin == ymax) {\r\n      dat[idx] = v;\r\n      return;\r\n    }\r\
-    \n    set_rec(2 * idx + 0, x, y, v);\r\n    set_rec(2 * idx + 1, x, y, v);\r\n\
+    \    [ys](int i, int j) { return ys[i] < ys[j]; });\r\n    }\r\n    vc<XY> lxs,\
+    \ rxs, lys, rys;\r\n    vc<X> lvs, rvs;\r\n    FOR(k, m) {\r\n      int i = I[k];\r\
+    \n      lxs.eb(xs[i]);\r\n      lys.eb(ys[i]);\r\n      lvs.eb(vs[i]);\r\n   \
+    \ }\r\n    FOR(k, m, n) {\r\n      int i = I[k];\r\n      rxs.eb(xs[i]);\r\n \
+    \     rys.eb(ys[i]);\r\n      rvs.eb(vs[i]);\r\n    }\r\n    build(2 * idx + 0,\
+    \ lxs, lys, lvs, !divx);\r\n    build(2 * idx + 1, rxs, rys, rvs, !divx);\r\n\
     \    dat[idx] = Monoid::op(dat[2 * idx + 0], dat[2 * idx + 1]);\r\n  }\r\n\r\n\
-    \  void multiply_rec(const int& idx, const XY& x, const XY& y, const X& v) {\r\
-    \n    if (!isin(idx, x, y)) return;\r\n    auto& [xmin, xmax, ymin, ymax] = range[idx];\r\
-    \n    if (xmin == xmax && ymin == ymax) {\r\n      dat[idx] = Monoid::op(dat[idx],\
-    \ v);\r\n      return;\r\n    }\r\n    multiply_rec(2 * idx + 0, x, y, v);\r\n\
-    \    multiply_rec(2 * idx + 1, x, y, v);\r\n    dat[idx] = Monoid::op(dat[2 *\
-    \ idx + 0], dat[2 * idx + 1]);\r\n  }\r\n\r\n  X prod_rec(const int& idx, const\
-    \ XY& x1, const XY& x2, const XY& y1,\r\n             const XY& y2) {\r\n    auto&\
-    \ [xmin, xmax, ymin, ymax] = range[idx];\r\n    if (x2 <= xmin || xmax < x1) return\
-    \ Monoid::unit();\r\n    if (y2 <= ymin || ymax < y1) return Monoid::unit();\r\
-    \n    if (x1 <= xmin && xmax < x2 && y1 <= ymin && ymax < y2) { return dat[idx];\
-    \ }\r\n    return Monoid::op(prod_rec(2 * idx + 0, x1, x2, y1, y2),\r\n      \
-    \                prod_rec(2 * idx + 1, x1, x2, y1, y2));\r\n  }\r\n};\n#line 6\
-    \ \"test/aoj/DSL_2_C.test.cpp\"\n\nstruct Mono {\n  using value_type = vc<int>;\n\
-    \  using X = value_type;\n  static X op(X x, X y) {\n    x.insert(x.end(), all(y));\n\
-    \    return x;\n  }\n  static X unit() { return {}; }\n  static constexpr bool\
-    \ commute = 1;\n};\n\nvoid solve() {\n  LL(N);\n  vi X, Y;\n  vvc<int> idx(N);\n\
-    \  FOR(i, N) {\n    LL(x, y);\n    X.eb(x);\n    Y.eb(y);\n    idx[i].eb(i);\n\
-    \  }\n  KDTree_Monoid<Mono> KDT(X, Y, idx);\n\n  LL(Q);\n  FOR(Q) {\n    LL(xl,\
-    \ xr, yl, yr);\n    flush();\n    auto e = KDT.prod(xl, xr + 1, yl, yr + 1);\n\
-    \    sort(all(e));\n    for (auto&& v: e) print(v);\n    print();\n  }\n}\n\n\
-    signed main() {\n  solve();\n\n  return 0;\n}\n"
+    \  bool isin(const int& idx, const XY& x, const XY& y) {\r\n    auto& [xmin, xmax,\
+    \ ymin, ymax] = range[idx];\r\n    return (xmin <= x && x <= xmax && ymin <= y\
+    \ && y <= ymax);\r\n  }\r\n\r\n  void set_rec(const int& idx, const XY& x, const\
+    \ XY& y, const X& v) {\r\n    if (!isin(idx, x, y)) return;\r\n    auto& [xmin,\
+    \ xmax, ymin, ymax] = range[idx];\r\n    if (xmin == xmax && ymin == ymax) {\r\
+    \n      dat[idx] = v;\r\n      return;\r\n    }\r\n    set_rec(2 * idx + 0, x,\
+    \ y, v);\r\n    set_rec(2 * idx + 1, x, y, v);\r\n    dat[idx] = Monoid::op(dat[2\
+    \ * idx + 0], dat[2 * idx + 1]);\r\n  }\r\n\r\n  void multiply_rec(const int&\
+    \ idx, const XY& x, const XY& y, const X& v) {\r\n    if (!isin(idx, x, y)) return;\r\
+    \n    auto& [xmin, xmax, ymin, ymax] = range[idx];\r\n    if (xmin == xmax &&\
+    \ ymin == ymax) {\r\n      dat[idx] = Monoid::op(dat[idx], v);\r\n      return;\r\
+    \n    }\r\n    multiply_rec(2 * idx + 0, x, y, v);\r\n    multiply_rec(2 * idx\
+    \ + 1, x, y, v);\r\n    dat[idx] = Monoid::op(dat[2 * idx + 0], dat[2 * idx +\
+    \ 1]);\r\n  }\r\n\r\n  X prod_rec(const int& idx, const XY& x1, const XY& x2,\
+    \ const XY& y1,\r\n             const XY& y2) {\r\n    auto& [xmin, xmax, ymin,\
+    \ ymax] = range[idx];\r\n    if (x2 <= xmin || xmax < x1) return Monoid::unit();\r\
+    \n    if (y2 <= ymin || ymax < y1) return Monoid::unit();\r\n    if (x1 <= xmin\
+    \ && xmax < x2 && y1 <= ymin && ymax < y2) { return dat[idx]; }\r\n    return\
+    \ Monoid::op(prod_rec(2 * idx + 0, x1, x2, y1, y2),\r\n                      prod_rec(2\
+    \ * idx + 1, x1, x2, y1, y2));\r\n  }\r\n};\n#line 6 \"test/aoj/DSL_2_C.test.cpp\"\
+    \n\nstruct Mono {\n  using value_type = vc<int>;\n  using X = value_type;\n  static\
+    \ X op(X x, X y) {\n    x.insert(x.end(), all(y));\n    return x;\n  }\n  static\
+    \ X unit() { return {}; }\n  static constexpr bool commute = 1;\n};\n\nvoid solve()\
+    \ {\n  LL(N);\n  vi X, Y;\n  vvc<int> idx(N);\n  FOR(i, N) {\n    LL(x, y);\n\
+    \    X.eb(x);\n    Y.eb(y);\n    idx[i].eb(i);\n  }\n  KDTree_Monoid<Mono> KDT(X,\
+    \ Y, idx);\n\n  LL(Q);\n  FOR(Q) {\n    LL(xl, xr, yl, yr);\n    auto e = KDT.prod(xl,\
+    \ xr + 1, yl, yr + 1);\n    sort(all(e));\n    for (auto&& v: e) print(v);\n \
+    \   print();\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/kdtree/kdtree_monoid.hpp\"\
     \n\nstruct Mono {\n  using value_type = vc<int>;\n  using X = value_type;\n  static\
@@ -256,10 +265,9 @@ data:
     \ X unit() { return {}; }\n  static constexpr bool commute = 1;\n};\n\nvoid solve()\
     \ {\n  LL(N);\n  vi X, Y;\n  vvc<int> idx(N);\n  FOR(i, N) {\n    LL(x, y);\n\
     \    X.eb(x);\n    Y.eb(y);\n    idx[i].eb(i);\n  }\n  KDTree_Monoid<Mono> KDT(X,\
-    \ Y, idx);\n\n  LL(Q);\n  FOR(Q) {\n    LL(xl, xr, yl, yr);\n    flush();\n  \
-    \  auto e = KDT.prod(xl, xr + 1, yl, yr + 1);\n    sort(all(e));\n    for (auto&&\
-    \ v: e) print(v);\n    print();\n  }\n}\n\nsigned main() {\n  solve();\n\n  return\
-    \ 0;\n}\n"
+    \ Y, idx);\n\n  LL(Q);\n  FOR(Q) {\n    LL(xl, xr, yl, yr);\n    auto e = KDT.prod(xl,\
+    \ xr + 1, yl, yr + 1);\n    sort(all(e));\n    for (auto&& v: e) print(v);\n \
+    \   print();\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -267,7 +275,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_C.test.cpp
   requiredBy: []
-  timestamp: '2022-12-01 23:08:36+09:00'
+  timestamp: '2022-12-02 03:30:03+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_C.test.cpp
