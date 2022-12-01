@@ -1,12 +1,13 @@
 #define PROBLEM "https://yukicoder.me/problems/4954"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "nt/floor_range.hpp"
+#include "enumerate/floor_range.hpp"
 
 void solve() {
   LL(N);
   ll ANS = 0;
-  floor_range(q, l, r, N)++ ANS;
+  auto f = [&](ll q, ll l, ll r) -> void { ++ANS; };
+  floor_range(N, f);
   print(ANS);
 }
 

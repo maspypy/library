@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/fenwick.hpp"
+#include "ds/fenwick/fenwick.hpp"
 #include "graph/centroid.hpp"
 
 void solve() {

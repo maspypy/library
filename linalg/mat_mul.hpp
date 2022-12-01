@@ -1,6 +1,17 @@
 #pragma once
 
-template <class T, is_modint_t<T>* = nullptr>
+struct has_mod_impl {
+  template <class T>
+  static auto check(T&& x) -> decltype(x.get_mod(), std::true_type{});
+
+  template <class T>
+  static auto check(...) -> std::false_type;
+};
+
+template <class T>
+class has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>())) {};
+
+template <class T, typename enable_if<has_mod<T>::value>::type* = nullptr>
 vc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {
   const int mod = T::get_mod();
   auto N = len(A), M = len(B), K = len(B[0]);
@@ -17,7 +28,7 @@ vc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {
   return C;
 }
 
-template <class T, is_not_modint_t<T>* = nullptr>
+template <class T, typename enable_if<!has_mod<T>::value>::type* = nullptr>
 vc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {
   auto N = len(A), M = len(B), K = len(B[0]);
   vv(T, C, N, K);
