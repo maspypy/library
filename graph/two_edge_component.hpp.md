@@ -18,6 +18,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1983.test.cpp
     title: test/yukicoder/1983.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/529.test.cpp
+    title: test/yukicoder/529.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -167,6 +170,7 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1983.test.cpp
+  - test/yukicoder/529.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
   - test/aoj/GRL_3_B.test.cpp
 documentation_of: graph/two_edge_component.hpp

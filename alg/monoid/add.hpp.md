@@ -44,6 +44,9 @@ data:
   - icon: ':question:'
     path: ds/fenwick/fenwick2d_dense.hpp
     title: ds/fenwick/fenwick2d_dense.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/fenwick/fenwickraq.hpp
+    title: ds/fenwick/fenwickraq.hpp
   - icon: ':question:'
     path: ds/waveletmatrix.hpp
     title: ds/waveletmatrix.hpp
@@ -76,6 +79,12 @@ data:
     path: test/aoj/DSL_1_B.test.cpp
     title: test/aoj/DSL_1_B.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL_2_E.test.cpp
+    title: test/aoj/DSL_2_E.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL_2_G.test.cpp
+    title: test/aoj/DSL_2_G.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_H.test.cpp
     title: test/aoj/DSL_2_H.test.cpp
   - icon: ':heavy_check_mark:'
@@ -93,6 +102,12 @@ data:
   - icon: ':x:'
     path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+    title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+    title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - icon: ':x:'
     path: test/mytest/ARC30D.test.cpp
     title: test/mytest/ARC30D.test.cpp
@@ -205,6 +220,7 @@ data:
   - ds/fenwick/fenwick2d_dense.hpp
   - ds/fenwick/fenwick2d.hpp
   - ds/fenwick/fenwick.hpp
+  - ds/fenwick/fenwickraq.hpp
   timestamp: '2022-11-28 14:51:10+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -234,12 +250,16 @@ data:
   - test/mytest/ARC30D.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
   - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   - test/atcoder/abc127f_1.test.cpp
+  - test/aoj/DSL_2_E.test.cpp
   - test/aoj/2842_2.test.cpp
   - test/aoj/GRL_5_E.test.cpp
   - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/DSL_1_B.test.cpp
+  - test/aoj/DSL_2_G.test.cpp
   - test/aoj/DSL_2_H.test.cpp
   - test/aoj/ALDS1_5.test.cpp
   - test/aoj/2842.test.cpp

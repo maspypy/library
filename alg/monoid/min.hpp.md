@@ -17,6 +17,9 @@ data:
   - icon: ':warning:'
     path: alg/acted_monoid/min_min.hpp
     title: alg/acted_monoid/min_min.hpp
+  - icon: ':question:'
+    path: graph/minimum_spanning_tree.hpp
+    title: graph/minimum_spanning_tree.hpp
   - icon: ':x:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
@@ -42,6 +45,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_H.test.cpp
     title: test/aoj/DSL_2_H.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_2_A.test.cpp
+    title: test/aoj/GRL_2_A.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc270_f.test.cpp
+    title: test/atcoder/abc270_f.test.cpp
   - icon: ':x:'
     path: test/atcoder/arc151_e.test.cpp
     title: test/atcoder/arc151_e.test.cpp
@@ -104,6 +113,7 @@ data:
   - string/suffix_tree.hpp
   - string/suffixarray.hpp
   - seq/common_interval_decomposition.hpp
+  - graph/minimum_spanning_tree.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -119,6 +129,8 @@ data:
   - test/library_checker/string/number_of_substrings.test.cpp
   - test/library_checker/string/suffix_array_vec.test.cpp
   - test/atcoder/arc151_e.test.cpp
+  - test/atcoder/abc270_f.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
   - test/aoj/1508_2.test.cpp
   - test/aoj/DSL_2_F.test.cpp
   - test/aoj/1508.test.cpp

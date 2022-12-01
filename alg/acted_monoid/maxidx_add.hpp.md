@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: alg/monoid/max_idx.hpp
     title: alg/monoid/max_idx.hpp
   _extendedRequiredBy: []

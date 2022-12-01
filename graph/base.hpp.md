@@ -36,8 +36,14 @@ data:
     path: graph/ds/bfsnumbering.hpp
     title: graph/ds/bfsnumbering.hpp
   - icon: ':question:'
+    path: graph/ds/dualtreemonoid.hpp
+    title: graph/ds/dualtreemonoid.hpp
+  - icon: ':question:'
     path: graph/ds/lazytreemonoid.hpp
     title: graph/ds/lazytreemonoid.hpp
+  - icon: ':question:'
+    path: graph/ds/treemonoid.hpp
+    title: graph/ds/treemonoid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
@@ -65,6 +71,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
+  - icon: ':question:'
+    path: graph/minimum_spanning_tree.hpp
+    title: graph/minimum_spanning_tree.hpp
   - icon: ':x:'
     path: graph/range_to_range_graph.hpp
     title: graph/range_to_range_graph.hpp
@@ -128,7 +137,7 @@ data:
   - icon: ':x:'
     path: graph/twosat.hpp
     title: graph/twosat.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/unicyclic.hpp
     title: graph/unicyclic.hpp
   - icon: ':x:'
@@ -169,6 +178,9 @@ data:
     path: test/aoj/GRL_1_C.test.cpp
     title: test/aoj/GRL_1_C.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_2_A.test.cpp
+    title: test/aoj/GRL_2_A.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_A.test.cpp
     title: test/aoj/GRL_3_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -177,15 +189,27 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc266f.test.cpp
     title: test/atcoder/abc266f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc269ex.test.cpp
     title: test/atcoder/abc269ex.test.cpp
   - icon: ':x:'
+    path: test/atcoder/abc270_f.test.cpp
+    title: test/atcoder/abc270_f.test.cpp
+  - icon: ':x:'
     path: test/atcoder/arc151_e.test.cpp
     title: test/atcoder/arc151_e.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+    title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+    title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+    title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - icon: ':x:'
     path: test/library_checker/graph/K_shortest_walk.test.cpp
     title: test/library_checker/graph/K_shortest_walk.test.cpp
@@ -346,6 +370,9 @@ data:
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/529.test.cpp
+    title: test/yukicoder/529.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
   _isVerificationFailed: true
@@ -479,7 +506,9 @@ data:
   - graph/maximum_independent_set.hpp
   - graph/steiner_tree.hpp
   - graph/ds/lazytreemonoid.hpp
+  - graph/ds/treemonoid.hpp
   - graph/ds/bfsnumbering.hpp
+  - graph/ds/dualtreemonoid.hpp
   - graph/find_odd_cycle.hpp
   - graph/tree_all_distances.hpp
   - graph/shortest_path/bfs01.hpp
@@ -490,6 +519,7 @@ data:
   - graph/shortest_path/warshall_floyd.hpp
   - graph/shortest_path/bellmanford.hpp
   - graph/minimum_hamiltonian_cycle.hpp
+  - graph/minimum_spanning_tree.hpp
   - graph/strongly_connected_component.hpp
   - game/graph_game.hpp
   timestamp: '2022-08-30 02:42:36+09:00'
@@ -515,6 +545,7 @@ data:
   - test/yukicoder/1344.test.cpp
   - test/yukicoder/1494.test.cpp
   - test/yukicoder/1293.test.cpp
+  - test/yukicoder/529.test.cpp
   - test/yukicoder/1769.test.cpp
   - test/yukicoder/1976.test.cpp
   - test/yukicoder/1790.test.cpp
@@ -530,6 +561,9 @@ data:
   - test/mytest/tutte.test.cpp
   - test/library_checker/string/number_of_substrings2.test.cpp
   - test/library_checker/math/twosat.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/tree/tree_diameter.test.cpp
   - test/library_checker/tree/lca.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp
@@ -551,7 +585,9 @@ data:
   - test/library_checker/graph/classify_tree.test.cpp
   - test/atcoder/arc151_e.test.cpp
   - test/atcoder/abc269ex.test.cpp
+  - test/atcoder/abc270_f.test.cpp
   - test/atcoder/abc266f.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
   - test/aoj/2251_1.test.cpp
   - test/aoj/2677.test.cpp
   - test/aoj/DPL_2_A.test.cpp

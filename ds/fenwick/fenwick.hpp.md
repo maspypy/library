@@ -6,6 +6,9 @@ data:
     title: alg/monoid/add.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: ds/fenwick/fenwickraq.hpp
+    title: ds/fenwick/fenwickraq.hpp
+  - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   - icon: ':warning:'
@@ -18,6 +21,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_5.test.cpp
     title: test/aoj/ALDS1_5.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL_2_E.test.cpp
+    title: test/aoj/DSL_2_E.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL_2_G.test.cpp
+    title: test/aoj/DSL_2_G.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1311.test.cpp
     title: test/yukicoder/1311.test.cpp
@@ -95,11 +104,14 @@ data:
   requiredBy:
   - seq/inversion.hpp
   - seq/inversion_rotate.hpp
+  - ds/fenwick/fenwickraq.hpp
   timestamp: '2022-12-01 18:20:22+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1311.test.cpp
+  - test/aoj/DSL_2_E.test.cpp
   - test/aoj/ALDS1_2_A.test.cpp
+  - test/aoj/DSL_2_G.test.cpp
   - test/aoj/ALDS1_5.test.cpp
 documentation_of: ds/fenwick/fenwick.hpp
 layout: document

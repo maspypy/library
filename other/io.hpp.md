@@ -121,8 +121,14 @@ data:
     path: test/aoj/DSL_2_D.test.cpp
     title: test/aoj/DSL_2_D.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL_2_E.test.cpp
+    title: test/aoj/DSL_2_E.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_F.test.cpp
     title: test/aoj/DSL_2_F.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL_2_G.test.cpp
+    title: test/aoj/DSL_2_G.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_H.test.cpp
     title: test/aoj/DSL_2_H.test.cpp
@@ -135,6 +141,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_C.test.cpp
     title: test/aoj/GRL_1_C.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_2_A.test.cpp
+    title: test/aoj/GRL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_A.test.cpp
     title: test/aoj/GRL_3_A.test.cpp
@@ -169,6 +178,9 @@ data:
     path: test/aoj/ITP2_11_D.test.cpp
     title: test/aoj/ITP2_11_D.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/ITP2_3_B.test.cpp
+    title: test/aoj/ITP2_3_B.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_D.test.cpp
     title: test/aoj/NTL_1_D.test.cpp
   - icon: ':heavy_check_mark:'
@@ -189,21 +201,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc229h.test.cpp
     title: test/atcoder/abc229h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc249_ex.test.cpp
     title: test/atcoder/abc249_ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc256d.test.cpp
     title: test/atcoder/abc256d.test.cpp
   - icon: ':x:'
     path: test/atcoder/abc266c.test.cpp
     title: test/atcoder/abc266c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc266f.test.cpp
     title: test/atcoder/abc266f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc269ex.test.cpp
     title: test/atcoder/abc269ex.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc270_f.test.cpp
+    title: test/atcoder/abc270_f.test.cpp
   - icon: ':x:'
     path: test/atcoder/abc270_g.test.cpp
     title: test/atcoder/abc270_g.test.cpp
@@ -303,6 +318,15 @@ data:
   - icon: ':x:'
     path: test/library_checker/datastructure/static_range_sum.test.cpp
     title: test/library_checker/datastructure/static_range_sum.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+    title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+    title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+    title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - icon: ':x:'
     path: test/library_checker/geometry/convex_layers.test.cpp
     title: test/library_checker/geometry/convex_layers.test.cpp
@@ -781,6 +805,9 @@ data:
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1036_2.test.cpp
+    title: test/yukicoder/1036_2.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1036_3.test.cpp
     title: test/yukicoder/1036_3.test.cpp
   - icon: ':x:'
@@ -825,6 +852,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1254.test.cpp
     title: test/yukicoder/1254.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1260.test.cpp
+    title: test/yukicoder/1260.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1262.test.cpp
     title: test/yukicoder/1262.test.cpp
@@ -1153,6 +1183,9 @@ data:
     path: test/yukicoder/502_2.test.cpp
     title: test/yukicoder/502_2.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/529.test.cpp
+    title: test/yukicoder/529.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/541.test.cpp
     title: test/yukicoder/541.test.cpp
   - icon: ':x:'
@@ -1450,7 +1483,9 @@ data:
   - test/yukicoder/1881.test.cpp
   - test/yukicoder/779.test.cpp
   - test/yukicoder/235.test.cpp
+  - test/yukicoder/1036_2.test.cpp
   - test/yukicoder/1666.test.cpp
+  - test/yukicoder/1260.test.cpp
   - test/yukicoder/1983.test.cpp
   - test/yukicoder/4_2.test.cpp
   - test/yukicoder/1760.test.cpp
@@ -1503,6 +1538,7 @@ data:
   - test/yukicoder/2026.test.cpp
   - test/yukicoder/1383.test.cpp
   - test/yukicoder/2097.test.cpp
+  - test/yukicoder/529.test.cpp
   - test/yukicoder/655.test.cpp
   - test/yukicoder/1818.test.cpp
   - test/yukicoder/1262.test.cpp
@@ -1690,9 +1726,12 @@ data:
   - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/persistent_queue.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/associative_array.test.cpp
   - test/library_checker/datastructure/static_range_sum.test.cpp
   - test/library_checker/datastructure/predecessor_problem.test.cpp
@@ -1739,6 +1778,7 @@ data:
   - test/atcoder/abc198d.test.cpp
   - test/atcoder/abc196_E.test.cpp
   - test/atcoder/abc200a.test.cpp
+  - test/atcoder/abc270_f.test.cpp
   - test/atcoder/abc266f.test.cpp
   - test/atcoder/abc276_g.test.cpp
   - test/atcoder/abc266c.test.cpp
@@ -1752,10 +1792,12 @@ data:
   - test/aoj/DPL_1_F.test.cpp
   - test/aoj/DPL_1_D.test.cpp
   - test/aoj/DPL_3_C.test.cpp
+  - test/aoj/DSL_2_E.test.cpp
   - test/aoj/DPL_3_B.test.cpp
   - test/aoj/ITP1_11_C.test.cpp
   - test/aoj/DPL_1_B.test.cpp
   - test/aoj/2842_2.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
   - test/aoj/GRL_6_B.test.cpp
   - test/aoj/DSL_2_D.test.cpp
   - test/aoj/CGL_2_B.test.cpp
@@ -1775,6 +1817,7 @@ data:
   - test/aoj/GRL_5_E.test.cpp
   - test/aoj/1566.test.cpp
   - test/aoj/ITP1_11_A.test.cpp
+  - test/aoj/ITP2_3_B.test.cpp
   - test/aoj/DPL_1_H.test.cpp
   - test/aoj/GRL_1_C.test.cpp
   - test/aoj/GRL_6_A.test.cpp
@@ -1795,6 +1838,7 @@ data:
   - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/CGL_1_A.test.cpp
   - test/aoj/DSL_1_B.test.cpp
+  - test/aoj/DSL_2_G.test.cpp
   - test/aoj/NTL_1_E.test.cpp
   - test/aoj/DSL_2_H.test.cpp
   - test/aoj/CGL_3_B.test.cpp

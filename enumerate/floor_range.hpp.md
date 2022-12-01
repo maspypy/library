@@ -2,26 +2,33 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yukicoder/1260.test.cpp
+    title: test/yukicoder/1260.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"enumerate/floor_range.hpp\"\n#define floor_range(q, l, r,\
-    \ n) \\\r\n  for (ll q = 1, l = (n) / (q + 1) + 1, r = (n) / q + 1;\\\r\n  q <=\
-    \ (n); q = (q == (n) ? (n) + 1 : (n) / ((n) / (q + 1))), l = (n) / (q + 1) + 1,\
-    \ r = (n) / q + 1)\r\n"
-  code: "#define floor_range(q, l, r, n) \\\r\n  for (ll q = 1, l = (n) / (q + 1)\
-    \ + 1, r = (n) / q + 1;\\\r\n  q <= (n); q = (q == (n) ? (n) + 1 : (n) / ((n)\
-    \ / (q + 1))), l = (n) / (q + 1) + 1, r = (n) / q + 1)\r\n"
+  bundledCode: "#line 1 \"enumerate/floor_range.hpp\"\n// f(q, l, r)\uFF1A\u5546\u304C\
+    \ q \u306B\u306A\u308B\u7BC4\u56F2\u304C [l, r)\r\ntemplate <typename F>\r\nvoid\
+    \ floor_range(ll N, F f) {\r\n  ll q = 1;\r\n  while (1) {\r\n    ll l = N / (q\
+    \ + 1) + 1;\r\n    ll r = N / q + 1;\r\n    f(q, l, r);\r\n    if (q == N) break;\r\
+    \n    q = N / (N / (q + 1));\r\n  }\r\n}\r\n"
+  code: "// f(q, l, r)\uFF1A\u5546\u304C q \u306B\u306A\u308B\u7BC4\u56F2\u304C [l,\
+    \ r)\r\ntemplate <typename F>\r\nvoid floor_range(ll N, F f) {\r\n  ll q = 1;\r\
+    \n  while (1) {\r\n    ll l = N / (q + 1) + 1;\r\n    ll r = N / q + 1;\r\n  \
+    \  f(q, l, r);\r\n    if (q == N) break;\r\n    q = N / (N / (q + 1));\r\n  }\r\
+    \n}\r\n"
   dependsOn: []
   isVerificationFile: false
   path: enumerate/floor_range.hpp
   requiredBy: []
-  timestamp: '2022-12-01 18:57:05+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-12-02 04:26:03+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yukicoder/1260.test.cpp
 documentation_of: enumerate/floor_range.hpp
 layout: document
 redirect_from:
