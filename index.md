@@ -386,7 +386,7 @@ data:
       title: ds/rbst/rbst_monoid.hpp
   - name: ds/splay
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/splay/splaytree.hpp
       title: ds/splay/splaytree.hpp
     - icon: ':heavy_check_mark:'
@@ -398,7 +398,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/splay/splaytree_commutative_monoid.hpp
       title: ds/splay/splaytree_commutative_monoid.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/splay/splaytree_monoid.hpp
       title: ds/splay/splaytree_monoid.hpp
   - name: enumerate
