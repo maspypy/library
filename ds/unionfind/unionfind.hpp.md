@@ -5,6 +5,9 @@ data:
   - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
+  - icon: ':x:'
+    path: geo/manhattan_mst.hpp
+    title: geo/manhattan_mst.hpp
   - icon: ':question:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
@@ -30,6 +33,9 @@ data:
   - icon: ':x:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/graph/manhattan_mst.test.cpp
+    title: test/library_checker/graph/manhattan_mst.test.cpp
   - icon: ':x:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
@@ -83,6 +89,7 @@ data:
   isVerificationFile: false
   path: ds/unionfind/unionfind.hpp
   requiredBy:
+  - geo/manhattan_mst.hpp
   - flow/bipartite.hpp
   - graph/dag_path_cover.hpp
   - graph/maximum_antichain.hpp
@@ -98,6 +105,7 @@ data:
   - test/yukicoder/1744.test.cpp
   - test/mytest/tutte.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
+  - test/library_checker/graph/manhattan_mst.test.cpp
   - test/aoj/2251_1.test.cpp
   - test/aoj/2251_2.test.cpp
   - test/aoj/1566.test.cpp

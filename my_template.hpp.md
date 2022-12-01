@@ -100,11 +100,35 @@ data:
     path: test/aoj/DPL_2_A.test.cpp
     title: test/aoj/DPL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/DPL_3_B.test.cpp
+    title: test/aoj/DPL_3_B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DPL_3_C.test.cpp
+    title: test/aoj/DPL_3_C.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_4_B.test.cpp
     title: test/aoj/DPL_4_B.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_5_C.test.cpp
     title: test/aoj/DPL_5_C.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DSL_1_B.test.cpp
+    title: test/aoj/DSL_1_B.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DSL_2_C.test.cpp
+    title: test/aoj/DSL_2_C.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL_2_D.test.cpp
+    title: test/aoj/DSL_2_D.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL_2_F.test.cpp
+    title: test/aoj/DSL_2_F.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL_2_H.test.cpp
+    title: test/aoj/DSL_2_H.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL_2_I.test.cpp
+    title: test/aoj/DSL_2_I.test.cpp
   - icon: ':x:'
     path: test/aoj/GRL_1_B.test.cpp
     title: test/aoj/GRL_1_B.test.cpp
@@ -243,10 +267,10 @@ data:
   - icon: ':x:'
     path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array.test.cpp
     title: test/library_checker/datastructure/associative_array.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
     title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
   - icon: ':x:'
@@ -321,6 +345,9 @@ data:
   - icon: ':x:'
     path: test/library_checker/graph/enumerate_triangles.test.cpp
     title: test/library_checker/graph/enumerate_triangles.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/graph/manhattan_mst.test.cpp
+    title: test/library_checker/graph/manhattan_mst.test.cpp
   - icon: ':x:'
     path: test/library_checker/graph/maximum_independent_set.test.cpp
     title: test/library_checker/graph/maximum_independent_set.test.cpp
@@ -733,6 +760,9 @@ data:
     path: test/mytest/stern_brocot.test.cpp
     title: test/mytest/stern_brocot.test.cpp
   - icon: ':x:'
+    path: test/mytest/suffix_tree.test.cpp
+    title: test/mytest/suffix_tree.test.cpp
+  - icon: ':x:'
     path: test/mytest/tdpc_grid_dp.test.cpp
     title: test/mytest/tdpc_grid_dp.test.cpp
   - icon: ':x:'
@@ -814,6 +844,9 @@ data:
     path: test/yukicoder/1301.test.cpp
     title: test/yukicoder/1301.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1311.test.cpp
+    title: test/yukicoder/1311.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1319.test.cpp
     title: test/yukicoder/1319.test.cpp
   - icon: ':x:'
@@ -883,6 +916,9 @@ data:
     path: test/yukicoder/1516.test.cpp
     title: test/yukicoder/1516.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1524.test.cpp
+    title: test/yukicoder/1524.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1533.test.cpp
     title: test/yukicoder/1533.test.cpp
   - icon: ':x:'
@@ -912,6 +948,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1643.test.cpp
     title: test/yukicoder/1643.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1649.test.cpp
+    title: test/yukicoder/1649.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1666.test.cpp
     title: test/yukicoder/1666.test.cpp
@@ -1042,6 +1081,9 @@ data:
     path: test/yukicoder/2005.test.cpp
     title: test/yukicoder/2005.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/2012.test.cpp
+    title: test/yukicoder/2012.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/2026.test.cpp
     title: test/yukicoder/2026.test.cpp
   - icon: ':x:'
@@ -1111,8 +1153,17 @@ data:
     path: test/yukicoder/705.test.cpp
     title: test/yukicoder/705.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/749.test.cpp
+    title: test/yukicoder/749.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/779.test.cpp
     title: test/yukicoder/779.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/789.test.cpp
+    title: test/yukicoder/789.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/899.test.cpp
+    title: test/yukicoder/899.test.cpp
   - icon: ':x:'
     path: test/yukicoder/913.test.cpp
     title: test/yukicoder/913.test.cpp
@@ -1290,18 +1341,24 @@ data:
   - test/yukicoder/1254.test.cpp
   - test/yukicoder/1319.test.cpp
   - test/yukicoder/1441.test.cpp
+  - test/yukicoder/1311.test.cpp
   - test/yukicoder/1479.test.cpp
   - test/yukicoder/502.test.cpp
   - test/yukicoder/1320.test.cpp
   - test/yukicoder/1295.test.cpp
   - test/yukicoder/1601.test.cpp
+  - test/yukicoder/2012.test.cpp
+  - test/yukicoder/899.test.cpp
   - test/yukicoder/1263.test.cpp
   - test/yukicoder/1775.test.cpp
+  - test/yukicoder/749.test.cpp
   - test/yukicoder/1857.test.cpp
   - test/yukicoder/541.test.cpp
   - test/yukicoder/17.test.cpp
   - test/yukicoder/1750.test.cpp
   - test/yukicoder/310.test.cpp
+  - test/yukicoder/1524.test.cpp
+  - test/yukicoder/1649.test.cpp
   - test/yukicoder/1989.test.cpp
   - test/yukicoder/1561.test.cpp
   - test/yukicoder/1324.test.cpp
@@ -1376,6 +1433,7 @@ data:
   - test/yukicoder/1781.test.cpp
   - test/yukicoder/2119.test.cpp
   - test/yukicoder/1593.test.cpp
+  - test/yukicoder/789.test.cpp
   - test/yukicoder/919.test.cpp
   - test/yukicoder/1301.test.cpp
   - test/yukicoder/1145.test.cpp
@@ -1425,6 +1483,7 @@ data:
   - test/mytest/online_inv.test.cpp
   - test/mytest/all_but_one_products.test.cpp
   - test/mytest/splay_cm.test.cpp
+  - test/mytest/suffix_tree.test.cpp
   - test/mytest/conv_leq.test.cpp
   - test/mytest/rbst_monoid_persistent.test.cpp
   - test/mytest/partizan.test.cpp
@@ -1579,6 +1638,7 @@ data:
   - test/library_checker/graph/maximum_independent_set.test.cpp
   - test/library_checker/graph/min_cost_b-flow.test.cpp
   - test/library_checker/graph/enumerate_cliques.test.cpp
+  - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/graph/shortest_path.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
@@ -1603,10 +1663,13 @@ data:
   - test/atcoder/abc270_g.test.cpp
   - test/aoj/DPL_1_F.test.cpp
   - test/aoj/DPL_1_D.test.cpp
+  - test/aoj/DPL_3_C.test.cpp
+  - test/aoj/DPL_3_B.test.cpp
   - test/aoj/ITP1_11_C.test.cpp
   - test/aoj/DPL_1_B.test.cpp
   - test/aoj/2842_2.test.cpp
   - test/aoj/GRL_6_B.test.cpp
+  - test/aoj/DSL_2_D.test.cpp
   - test/aoj/CGL_2_B.test.cpp
   - test/aoj/CGL_2_A.test.cpp
   - test/aoj/2251_1.test.cpp
@@ -1616,7 +1679,9 @@ data:
   - test/aoj/DPL_2_A.test.cpp
   - test/aoj/ALDS1_14_C.test.cpp
   - test/aoj/ITP1_9_A.test.cpp
+  - test/aoj/DSL_2_C.test.cpp
   - test/aoj/CGL_1_B.test.cpp
+  - test/aoj/DSL_2_I.test.cpp
   - test/aoj/ITP1_D_D.test.cpp
   - test/aoj/2251_2.test.cpp
   - test/aoj/DPL_4_B.test.cpp
@@ -1633,6 +1698,7 @@ data:
   - test/aoj/ALDS1_1_C.test.cpp
   - test/aoj/0350.test.cpp
   - test/aoj/CGL_7_B.test.cpp
+  - test/aoj/DSL_2_F.test.cpp
   - test/aoj/CGL_7_C.test.cpp
   - test/aoj/2995.test.cpp
   - test/aoj/DPL_5_C.test.cpp
@@ -1640,7 +1706,9 @@ data:
   - test/aoj/1508.test.cpp
   - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/CGL_1_A.test.cpp
+  - test/aoj/DSL_1_B.test.cpp
   - test/aoj/NTL_1_E.test.cpp
+  - test/aoj/DSL_2_H.test.cpp
   - test/aoj/CGL_3_B.test.cpp
   - test/aoj/ITP1_11_D.test.cpp
   - test/aoj/GRL_1_B.test.cpp

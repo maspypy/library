@@ -5,10 +5,16 @@ data:
   - icon: ':warning:'
     path: geo/manhattan_nns.hpp
     title: geo/manhattan_nns.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: string/suffix_tree.hpp
+    title: string/suffix_tree.hpp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/mytest/suffix_tree.test.cpp
+    title: test/mytest/suffix_tree.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/1401/problem/F
@@ -108,10 +114,12 @@ data:
   isVerificationFile: false
   path: ds/segtree/segtree.hpp
   requiredBy:
+  - string/suffix_tree.hpp
   - geo/manhattan_nns.hpp
   timestamp: '2022-12-01 18:20:22+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/mytest/suffix_tree.test.cpp
 documentation_of: ds/segtree/segtree.hpp
 layout: document
 redirect_from:
