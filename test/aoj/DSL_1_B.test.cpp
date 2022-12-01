@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "alg/monoid/add.hpp"
-#include "ds/weightedunionfind.hpp"
+#include "ds/unionfind/weightedunionfind.hpp"
 
 void solve() {
   LL(N, Q);

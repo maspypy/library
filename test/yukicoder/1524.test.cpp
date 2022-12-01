@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/tree.hpp"
-#include "ds/dualsegtree.hpp"
+#include "ds/segtree/dualsegtree.hpp"
 #include "alg/monoid/add_chmax.hpp"
 
 using Mono = Monoid_Add_Chmax<ll>;

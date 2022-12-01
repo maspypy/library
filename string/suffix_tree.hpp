@@ -1,7 +1,7 @@
 
 #include "string/suffixarray.hpp"
 #include "alg/monoid/min_idx.hpp"
-#include "ds/segtree.hpp"
+#include "ds/segtree/segtree.hpp"
 #include "graph/base.hpp"
 
 // https://twitter.com/maspy_stars/status/1565901414236205057?s=20&t=S2Tu6ayozHcakxai8dmh4g

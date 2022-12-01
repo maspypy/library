@@ -1,4 +1,4 @@
-#include "ds/lazysegtree.hpp"
+#include "ds/segtree/lazysegtree.hpp"
 #include "alg/acted_monoid/min_add.hpp"
 
 template <int NODES>

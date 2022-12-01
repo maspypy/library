@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1649"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/dynamic_segtree.hpp"
+#include "ds/segtree/dynamic_segtree.hpp"
 #include "mod/modint.hpp"
 
 using mint = modint998;

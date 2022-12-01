@@ -2,7 +2,7 @@
   "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_3_B"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/cartesian_tree.hpp"
+#include "seq/cartesian_tree.hpp"
 
 void solve() {
   LL(H, W);

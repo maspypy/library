@@ -4,7 +4,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "alg/acted_monoid/cntsum_assign.hpp"
-#include "ds/lazysegtree.hpp"
+#include "ds/segtree/lazysegtree.hpp"
 
 void solve() {
   LL(N, Q);

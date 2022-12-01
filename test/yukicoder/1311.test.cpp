@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "seq/kth_next_permutation.hpp"
-#include "ds/fenwick.hpp"
+#include "ds/fenwick/fenwick.hpp"
 
 void solve() {
   LL(i, N);
