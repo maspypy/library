@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/segtree/lazysegtree.hpp
     title: ds/segtree/lazysegtree.hpp
   - icon: ':question:'
@@ -12,7 +12,7 @@ data:
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
   - icon: ':x:'
@@ -26,7 +26,7 @@ data:
     title: test/yukicoder/235.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/lazysegtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -314,7 +314,7 @@ data:
   path: graph/ds/lazytreemonoid.hpp
   requiredBy: []
   timestamp: '2022-12-02 03:46:48+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1790.test.cpp

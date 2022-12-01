@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/GF2.hpp
     title: nt/GF2.hpp
   - icon: ':question:'

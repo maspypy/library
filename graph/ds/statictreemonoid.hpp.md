@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/disjoint_sparse/disjointsparse.hpp
     title: ds/disjoint_sparse/disjointsparse.hpp
   - icon: ':question:'

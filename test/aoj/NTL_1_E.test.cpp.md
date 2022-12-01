@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/extgcd.hpp
     title: nt/extgcd.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_E
@@ -126,19 +126,19 @@ data:
     \n    }\r\n    ref = T(0);\r\n    while (isdigit(line[st])) { ref = 10 * ref +\
     \ (line[st++] & 0xf); }\r\n    if (neg) ref = -ref;\r\n    return true;\r\n  }\r\
     \n  template <typename T,\r\n            typename enable_if<has_read<T>::value>::type\
-    \ * = nullptr>\r\n  inline void read_single(T &x) {\r\n    x.read();\r\n  }\r\n\
-    \  bool read_single(double &ref) {\r\n    string s;\r\n    if (!read_single(s))\
-    \ return false;\r\n    ref = std::stod(s);\r\n    return true;\r\n  }\r\n  bool\
-    \ read_single(char &ref) {\r\n    string s;\r\n    if (!read_single(s) || s.size()\
-    \ != 1) return false;\r\n    ref = s[0];\r\n    return true;\r\n  }\r\n  template\
-    \ <class T>\r\n  bool read_single(vector<T> &ref) {\r\n    for (auto &d: ref)\
-    \ {\r\n      if (!read_single(d)) return false;\r\n    }\r\n    return true;\r\
-    \n  }\r\n  template <class T, class U>\r\n  bool read_single(pair<T, U> &p) {\r\
-    \n    return (read_single(p.first) && read_single(p.second));\r\n  }\r\n  template\
-    \ <size_t N = 0, typename T>\r\n  void read_single_tuple(T &t) {\r\n    if constexpr\
-    \ (N < std::tuple_size<T>::value) {\r\n      auto &x = std::get<N>(t);\r\n   \
-    \   read_single(x);\r\n      read_single_tuple<N + 1>(t);\r\n    }\r\n  }\r\n\
-    \  template <class... T>\r\n  bool read_single(tuple<T...> &tpl) {\r\n    read_single_tuple(tpl);\r\
+    \ * = nullptr>\r\n  inline bool read_single(T &x) {\r\n    x.read();\r\n    return\
+    \ true;\r\n  }\r\n  bool read_single(double &ref) {\r\n    string s;\r\n    if\
+    \ (!read_single(s)) return false;\r\n    ref = std::stod(s);\r\n    return true;\r\
+    \n  }\r\n  bool read_single(char &ref) {\r\n    string s;\r\n    if (!read_single(s)\
+    \ || s.size() != 1) return false;\r\n    ref = s[0];\r\n    return true;\r\n \
+    \ }\r\n  template <class T>\r\n  bool read_single(vector<T> &ref) {\r\n    for\
+    \ (auto &d: ref) {\r\n      if (!read_single(d)) return false;\r\n    }\r\n  \
+    \  return true;\r\n  }\r\n  template <class T, class U>\r\n  bool read_single(pair<T,\
+    \ U> &p) {\r\n    return (read_single(p.first) && read_single(p.second));\r\n\
+    \  }\r\n  template <size_t N = 0, typename T>\r\n  void read_single_tuple(T &t)\
+    \ {\r\n    if constexpr (N < std::tuple_size<T>::value) {\r\n      auto &x = std::get<N>(t);\r\
+    \n      read_single(x);\r\n      read_single_tuple<N + 1>(t);\r\n    }\r\n  }\r\
+    \n  template <class... T>\r\n  bool read_single(tuple<T...> &tpl) {\r\n    read_single_tuple(tpl);\r\
     \n    return true;\r\n  }\r\n  void read() {}\r\n  template <class H, class...\
     \ T>\r\n  void read(H &h, T &... t) {\r\n    bool f = read_single(h);\r\n    assert(f);\r\
     \n    read(t...);\r\n  }\r\n  Scanner(FILE *fp) : fp(fp) {}\r\n};\r\n\r\nstruct\
@@ -227,8 +227,8 @@ data:
   isVerificationFile: true
   path: test/aoj/NTL_1_E.test.cpp
   requiredBy: []
-  timestamp: '2022-12-02 03:30:03+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-12-02 07:07:57+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/NTL_1_E.test.cpp
 layout: document
