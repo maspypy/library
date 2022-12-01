@@ -2,10 +2,25 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/1508_2.test.cpp
+    title: test/aoj/1508_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_monoid.test.cpp
+    title: test/mytest/rbst_monoid.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_monoid_2.test.cpp
+    title: test/mytest/rbst_monoid_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_monoid_persistent.test.cpp
+    title: test/mytest/rbst_monoid_persistent.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_test.test.cpp
+    title: test/mytest/rbst_test.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/rbst/rbst_monoid.hpp\"\ntemplate <typename Monoid, bool\
@@ -234,8 +249,13 @@ data:
   path: ds/rbst/rbst_monoid.hpp
   requiredBy: []
   timestamp: '2022-12-01 11:07:48+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/mytest/rbst_monoid_persistent.test.cpp
+  - test/mytest/rbst_monoid.test.cpp
+  - test/mytest/rbst_monoid_2.test.cpp
+  - test/mytest/rbst_test.test.cpp
+  - test/aoj/1508_2.test.cpp
 documentation_of: ds/rbst/rbst_monoid.hpp
 layout: document
 redirect_from:

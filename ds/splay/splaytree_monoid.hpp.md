@@ -1,17 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splay/splaytree.hpp
     title: ds/splay/splaytree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/1508.test.cpp
+    title: test/aoj/1508.test.cpp
+  - icon: ':x:'
+    path: test/mytest/splay.test.cpp
+    title: test/mytest/splay.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/splay_monoid.test.cpp
     title: test/mytest/splay_monoid.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/splay/splaytree.hpp\"\n// Node \u578B\u3092\u5225\u306B\
@@ -173,9 +179,11 @@ data:
   path: ds/splay/splaytree_monoid.hpp
   requiredBy: []
   timestamp: '2022-12-01 12:32:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/splay_monoid.test.cpp
+  - test/mytest/splay.test.cpp
+  - test/aoj/1508.test.cpp
 documentation_of: ds/splay/splaytree_monoid.hpp
 layout: document
 redirect_from:

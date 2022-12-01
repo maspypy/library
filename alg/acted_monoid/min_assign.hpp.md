@@ -12,6 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_F.test.cpp
     title: test/aoj/DSL_2_F.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_am.test.cpp
+    title: test/mytest/rbst_am.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_am_persistent.test.cpp
+    title: test/mytest/rbst_am_persistent.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -44,6 +50,8 @@ data:
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/rbst_am.test.cpp
+  - test/mytest/rbst_am_persistent.test.cpp
   - test/aoj/DSL_2_F.test.cpp
 documentation_of: alg/acted_monoid/min_assign.hpp
 layout: document

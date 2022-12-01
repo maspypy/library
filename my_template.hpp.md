@@ -13,6 +13,12 @@ data:
     path: test/aoj/0350.test.cpp
     title: test/aoj/0350.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/1508.test.cpp
+    title: test/aoj/1508.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/1508_2.test.cpp
+    title: test/aoj/1508_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/1566.test.cpp
     title: test/aoj/1566.test.cpp
   - icon: ':heavy_check_mark:'
@@ -907,6 +913,33 @@ data:
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst.test.cpp
+    title: test/mytest/rbst.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_am.test.cpp
+    title: test/mytest/rbst_am.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_am_2.test.cpp
+    title: test/mytest/rbst_am_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_am_persistent.test.cpp
+    title: test/mytest/rbst_am_persistent.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_commutative_persistent.test.cpp
+    title: test/mytest/rbst_commutative_persistent.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_monoid.test.cpp
+    title: test/mytest/rbst_monoid.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_monoid_2.test.cpp
+    title: test/mytest/rbst_monoid_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_monoid_persistent.test.cpp
+    title: test/mytest/rbst_monoid_persistent.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_test.test.cpp
+    title: test/mytest/rbst_test.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -915,6 +948,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/simple_perm.test.cpp
     title: test/mytest/simple_perm.test.cpp
+  - icon: ':x:'
+    path: test/mytest/splay.test.cpp
+    title: test/mytest/splay.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/splay_am.test.cpp
+    title: test/mytest/splay_am.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/splay_cm.test.cpp
     title: test/mytest/splay_cm.test.cpp
@@ -1846,6 +1885,7 @@ data:
   - test/mytest/splay_cm.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/conv_leq.test.cpp
+  - test/mytest/rbst_monoid_persistent.test.cpp
   - test/mytest/partizan.test.cpp
   - test/mytest/dyadic_rational.test.cpp
   - test/mytest/chirp_z.test.cpp
@@ -1856,14 +1896,21 @@ data:
   - test/mytest/gray_code.test.cpp
   - test/mytest/run_length.test.cpp
   - test/mytest/min_min.test.cpp
+  - test/mytest/rbst_monoid.test.cpp
+  - test/mytest/rbst.test.cpp
   - test/mytest/magic_square.test.cpp
+  - test/mytest/splay_am.test.cpp
   - test/mytest/max_min.test.cpp
+  - test/mytest/rbst_commutative_persistent.test.cpp
   - test/mytest/enumerate_products.test.cpp
   - test/mytest/online_division.test.cpp
   - test/mytest/simple_perm.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/tutte.test.cpp
+  - test/mytest/rbst_am.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
+  - test/mytest/rbst_am_persistent.test.cpp
+  - test/mytest/rbst_monoid_2.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
   - test/mytest/prime_sum.test.cpp
   - test/mytest/max_assign.test.cpp
@@ -1871,13 +1918,16 @@ data:
   - test/mytest/conv2d.test.cpp
   - test/mytest/maxplus_concave.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
+  - test/mytest/splay.test.cpp
   - test/mytest/add_chmin_chmax.test.cpp
   - test/mytest/stern_brocot.test.cpp
   - test/mytest/primesum_mod4.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
+  - test/mytest/rbst_am_2.test.cpp
   - test/mytest/binom.test.cpp
   - test/mytest/cntsummax_add.test.cpp
   - test/mytest/tournament.test.cpp
+  - test/mytest/rbst_test.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
@@ -2102,6 +2152,7 @@ data:
   - test/aoj/ALDS1_12_B.test.cpp
   - test/aoj/ALDS1_10_C.test.cpp
   - test/aoj/CGL_2_D.test.cpp
+  - test/aoj/1508_2.test.cpp
   - test/aoj/NTL_1_D.test.cpp
   - test/aoj/ALDS1_1_C.test.cpp
   - test/aoj/0350.test.cpp
@@ -2111,6 +2162,7 @@ data:
   - test/aoj/2995.test.cpp
   - test/aoj/DPL_5_C.test.cpp
   - test/aoj/0343.test.cpp
+  - test/aoj/1508.test.cpp
   - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/CGL_1_A.test.cpp
   - test/aoj/DSL_1_B.test.cpp

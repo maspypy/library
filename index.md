@@ -369,27 +369,27 @@ data:
       title: ds/query/uniqueproductquery.hpp
   - name: ds/rbst
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/rbst/rbst.hpp
       title: ds/rbst/rbst.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/rbst/rbst_acted_monoid.hpp
       title: ds/rbst/rbst_acted_monoid.hpp
     - icon: ':warning:'
       path: ds/rbst/rbst_acted_set.hpp
       title: ds/rbst/rbst_acted_set.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/rbst/rbst_commutative_monoid.hpp
       title: ds/rbst/rbst_commutative_monoid.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/rbst/rbst_monoid.hpp
       title: ds/rbst/rbst_monoid.hpp
   - name: ds/splay
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/splay/splaytree.hpp
       title: ds/splay/splaytree.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/splay/splaytree_acted_monoid.hpp
       title: ds/splay/splaytree_acted_monoid.hpp
     - icon: ':heavy_check_mark:'
@@ -398,7 +398,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/splay/splaytree_commutative_monoid.hpp
       title: ds/splay/splaytree_commutative_monoid.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/splay/splaytree_monoid.hpp
       title: ds/splay/splaytree_monoid.hpp
   - name: enumerate
@@ -1115,7 +1115,7 @@ data:
       title: poly/online/online_pow.hpp
   - name: random
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -1309,10 +1309,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/0350.test.cpp
       title: test/aoj/0350.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/1508.test.cpp
       title: test/aoj/1508.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/1508_2.test.cpp
       title: test/aoj/1508_2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2248,31 +2248,31 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/range_mex.test.cpp
       title: test/mytest/range_mex.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/rbst.test.cpp
       title: test/mytest/rbst.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/rbst_am.test.cpp
       title: test/mytest/rbst_am.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/rbst_am_2.test.cpp
       title: test/mytest/rbst_am_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/rbst_am_persistent.test.cpp
       title: test/mytest/rbst_am_persistent.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/rbst_commutative_persistent.test.cpp
       title: test/mytest/rbst_commutative_persistent.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/rbst_monoid.test.cpp
       title: test/mytest/rbst_monoid.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/rbst_monoid_2.test.cpp
       title: test/mytest/rbst_monoid_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/rbst_monoid_persistent.test.cpp
       title: test/mytest/rbst_monoid_persistent.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/rbst_test.test.cpp
       title: test/mytest/rbst_test.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2287,7 +2287,7 @@ data:
     - icon: ':x:'
       path: test/mytest/splay.test.cpp
       title: test/mytest/splay.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/splay_am.test.cpp
       title: test/mytest/splay_am.test.cpp
     - icon: ':heavy_check_mark:'

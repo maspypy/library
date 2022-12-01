@@ -37,6 +37,12 @@ data:
     title: string/suffixarray.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/1508.test.cpp
+    title: test/aoj/1508.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/1508_2.test.cpp
+    title: test/aoj/1508_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_F.test.cpp
     title: test/aoj/DSL_2_F.test.cpp
   - icon: ':heavy_check_mark:'
@@ -81,6 +87,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_am.test.cpp
+    title: test/mytest/rbst_am.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_am_persistent.test.cpp
+    title: test/mytest/rbst_am_persistent.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_test.test.cpp
+    title: test/mytest/rbst_test.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
@@ -144,6 +159,9 @@ data:
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/min_min.test.cpp
   - test/mytest/max_min.test.cpp
+  - test/mytest/rbst_am.test.cpp
+  - test/mytest/rbst_am_persistent.test.cpp
+  - test/mytest/rbst_test.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp
   - test/library_checker/string/suffix_array_vec.test.cpp
@@ -153,7 +171,9 @@ data:
   - test/atcoder/arc151_e.test.cpp
   - test/atcoder/abc270_f.test.cpp
   - test/aoj/GRL_2_A.test.cpp
+  - test/aoj/1508_2.test.cpp
   - test/aoj/DSL_2_F.test.cpp
+  - test/aoj/1508.test.cpp
   - test/aoj/DSL_2_H.test.cpp
 documentation_of: alg/monoid/min.hpp
 layout: document

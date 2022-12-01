@@ -25,6 +25,12 @@ data:
     path: test/mytest/cf702_F_splay.test.cpp
     title: test/mytest/cf702_F_splay.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_am_2.test.cpp
+    title: test/mytest/rbst_am_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/splay_am.test.cpp
+    title: test/mytest/splay_am.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
   - icon: ':heavy_check_mark:'
@@ -72,6 +78,8 @@ data:
   - test/yukicoder/1919.test.cpp
   - test/yukicoder/1197.test.cpp
   - test/mytest/cf702_F_splay.test.cpp
+  - test/mytest/splay_am.test.cpp
+  - test/mytest/rbst_am_2.test.cpp
   - test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - test/aoj/DSL_2_I.test.cpp
   - test/aoj/GRL_5_E.test.cpp
