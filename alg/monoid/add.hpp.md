@@ -50,6 +50,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
+  - icon: ':warning:'
+    path: seq/inversion_rotate.hpp
+    title: seq/inversion_rotate.hpp
   - icon: ':x:'
     path: string/trie.hpp
     title: string/trie.hpp
@@ -159,6 +162,7 @@ data:
   - alg/acted_monoid/cntsummax_add.hpp
   - string/trie.hpp
   - seq/inversion.hpp
+  - seq/inversion_rotate.hpp
   - ds/cumsum2d.hpp
   - ds/waveletmatrix.hpp
   - ds/fenwick/fenwick2d_dense.hpp

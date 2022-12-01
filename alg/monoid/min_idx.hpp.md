@@ -11,6 +11,9 @@ data:
   - icon: ':warning:'
     path: ds/pds/persistent_dynamic_lichao.hpp
     title: ds/pds/persistent_dynamic_lichao.hpp
+  - icon: ':warning:'
+    path: geo/manhattan_nns.hpp
+    title: geo/manhattan_nns.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -37,6 +40,7 @@ data:
   path: alg/monoid/min_idx.hpp
   requiredBy:
   - alg/acted_monoid/minidx_add.hpp
+  - geo/manhattan_nns.hpp
   - ds/func/dynamic_lichao.hpp
   - ds/pds/persistent_dynamic_lichao.hpp
   timestamp: '2022-12-01 09:04:06+09:00'

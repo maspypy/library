@@ -8,6 +8,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
+  - icon: ':warning:'
+    path: seq/inversion_rotate.hpp
+    title: seq/inversion_rotate.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_2_A.test.cpp
@@ -88,6 +91,7 @@ data:
   path: ds/fenwick/fenwick.hpp
   requiredBy:
   - seq/inversion.hpp
+  - seq/inversion_rotate.hpp
   timestamp: '2022-12-01 18:20:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

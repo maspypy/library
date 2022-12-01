@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   _extendedRequiredBy:
@@ -52,6 +52,9 @@ data:
     path: test/yukicoder/1321.test.cpp
     title: test/yukicoder/1321.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1392.test.cpp
+    title: test/yukicoder/1392.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1760.test.cpp
     title: test/yukicoder/1760.test.cpp
   - icon: ':x:'
@@ -63,6 +66,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2005.test.cpp
+    title: test/yukicoder/2005.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -112,6 +118,8 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1821.test.cpp
+  - test/yukicoder/2005.test.cpp
+  - test/yukicoder/1392.test.cpp
   - test/yukicoder/1760.test.cpp
   - test/yukicoder/1907.test.cpp
   - test/yukicoder/1875.test.cpp

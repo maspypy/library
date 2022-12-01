@@ -34,8 +34,14 @@ data:
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1392.test.cpp
+    title: test/yukicoder/1392.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1479.test.cpp
     title: test/yukicoder/1479.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1600.test.cpp
+    title: test/yukicoder/1600.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1744.test.cpp
     title: test/yukicoder/1744.test.cpp
@@ -84,6 +90,8 @@ data:
   timestamp: '2022-12-01 18:20:22+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1600.test.cpp
+  - test/yukicoder/1392.test.cpp
   - test/yukicoder/1479.test.cpp
   - test/yukicoder/1911.test.cpp
   - test/yukicoder/1745.test.cpp

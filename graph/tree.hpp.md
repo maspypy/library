@@ -20,7 +20,7 @@ data:
   - icon: ':x:'
     path: graph/tree_dp.hpp
     title: graph/tree_dp.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
   _extendedVerifiedWith:
@@ -30,7 +30,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2995.test.cpp
     title: test/aoj/2995.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_B.test.cpp
     title: test/aoj/GRL_3_B.test.cpp
   - icon: ':x:'
@@ -63,6 +63,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1494.test.cpp
     title: test/yukicoder/1494.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1600.test.cpp
+    title: test/yukicoder/1600.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1718.test.cpp
     title: test/yukicoder/1718.test.cpp
@@ -278,6 +281,7 @@ data:
   timestamp: '2022-11-05 01:55:39+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1600.test.cpp
   - test/yukicoder/1295.test.cpp
   - test/yukicoder/1778.test.cpp
   - test/yukicoder/1494.test.cpp

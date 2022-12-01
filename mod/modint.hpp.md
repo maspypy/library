@@ -26,7 +26,7 @@ data:
   - icon: ':x:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':x:'
@@ -41,7 +41,7 @@ data:
   - icon: ':x:'
     path: poly/convolution_leq.hpp
     title: poly/convolution_leq.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_mod_2_64.hpp
     title: poly/convolution_mod_2_64.hpp
   - icon: ':x:'
@@ -171,7 +171,7 @@ data:
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_5_C.test.cpp
     title: test/aoj/DPL_5_C.test.cpp
   - icon: ':x:'
@@ -216,7 +216,7 @@ data:
   - icon: ':x:'
     path: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
     title: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_2_64.test.cpp
     title: test/library_checker/convolution/convolution_mod_2_64.test.cpp
   - icon: ':x:'
@@ -493,6 +493,9 @@ data:
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1392.test.cpp
+    title: test/yukicoder/1392.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1397.test.cpp
     title: test/yukicoder/1397.test.cpp
   - icon: ':x:'
@@ -516,6 +519,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1600.test.cpp
+    title: test/yukicoder/1600.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1618.test.cpp
     title: test/yukicoder/1618.test.cpp
@@ -577,6 +583,9 @@ data:
     path: test/yukicoder/1989.test.cpp
     title: test/yukicoder/1989.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/2005.test.cpp
+    title: test/yukicoder/2005.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/2062.test.cpp
     title: test/yukicoder/2062.test.cpp
   - icon: ':x:'
@@ -602,7 +611,7 @@ data:
     title: test/yukicoder/579.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n\
@@ -840,9 +849,12 @@ data:
   - linalg/det_A_plus_xB.hpp
   - graph/tree_all_distances.hpp
   timestamp: '2022-12-01 22:09:18+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1821.test.cpp
+  - test/yukicoder/2005.test.cpp
+  - test/yukicoder/1600.test.cpp
+  - test/yukicoder/1392.test.cpp
   - test/yukicoder/1753.test.cpp
   - test/yukicoder/1939.test.cpp
   - test/yukicoder/1263.test.cpp

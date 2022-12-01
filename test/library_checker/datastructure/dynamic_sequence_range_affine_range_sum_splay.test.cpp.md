@@ -16,7 +16,7 @@ data:
   - icon: ':x:'
     path: ds/splay/splaytree_acted_monoid.hpp
     title: ds/splay/splaytree_acted_monoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'

@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: geo/manhattan_nns.hpp
+    title: geo/manhattan_nns.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -104,7 +107,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: ds/segtree/segtree.hpp
-  requiredBy: []
+  requiredBy:
+  - geo/manhattan_nns.hpp
   timestamp: '2022-12-01 18:20:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
