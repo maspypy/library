@@ -48,7 +48,8 @@ struct modint {
     }
     return ret;
   }
-  void write() { fastio::write(val); }
+  void write() { fastio::printer.write(val); }
+  void read() { fastio::scanner.read(val); }
   static constexpr int get_mod() { return mod; }
 };
 
