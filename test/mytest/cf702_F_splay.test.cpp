@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "alg/monoid/add_pair.hpp"
-#include "ds/bbst/rbst_acted_set.hpp"
+#include "ds/splay/splaytree_acted_set.hpp"
 
 // (所持金, 操作回数, query index)
 struct AS {
@@ -29,25 +29,22 @@ vc<int> solve_cf702F(vc<pair<int, int>> CQ, vc<int> query) {
   }
   sort(all(dat));
 
-  const int MAX = 5'00'000;
+  const int MAX = 500'000;
 
-  RBST_ActedSet<AS, false, MAX> X;
+  SplayTree_ActedSet<AS, MAX> X;
   using np = decltype(X)::np;
   using S = typename AS::S;
   np root = X.new_node(dat);
 
   FOR(i, len(CQ)) {
     ll c = CQ[i].fi;
-    if (X.pid > MAX * 0.9) {
-      auto dat = X.get_all(root);
-      X.reset();
-      root = X.new_node(dat);
-    }
     np nm, nr;
     tie(root, nr)
         = X.split_max_right(root, [&](S& s) { return get<0>(s) < c; });
-    nr = X.apply(nr, {-c, 1});
+    X.apply(nr, {-c, 1});
     tie(nm, nr) = X.split_max_right(nr, [&](S& s) { return get<0>(s) < c; });
+    for (auto&& [aa, bb, cc]: X.get_all(nm)) assert(aa < c);
+    for (auto&& [aa, bb, cc]: X.get_all(nr)) assert(aa >= c);
     for (auto [val, cnt, idx]: X.get_all(nm)) {
       ll t = val;
       auto [l_root, r_root]
