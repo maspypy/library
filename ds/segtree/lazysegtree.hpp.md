@@ -33,6 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
     title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/graph/common_interval_decomposition.test.cpp
+    title: test/library_checker/graph/common_interval_decomposition.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/cntsummax_add.test.cpp
     title: test/mytest/cntsummax_add.test.cpp
@@ -262,6 +265,7 @@ data:
   - test/mytest/cntsummax_add.test.cpp
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - test/library_checker/datastructure/range_affine_range_sum.test.cpp
+  - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/aoj/DSL_4_A.test.cpp
   - test/aoj/DSL_2_I.test.cpp
   - test/aoj/GRL_5_E.test.cpp

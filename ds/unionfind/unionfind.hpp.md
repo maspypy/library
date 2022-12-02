@@ -26,6 +26,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
+  - icon: ':warning:'
+    path: graph/online_mst.hpp
+    title: graph/online_mst.hpp
   - icon: ':heavy_check_mark:'
     path: graph/online_unionfind.hpp
     title: graph/online_unionfind.hpp
@@ -150,6 +153,7 @@ data:
   - graph/bipartite_edge_coloring.hpp
   - graph/dag_path_cover.hpp
   - graph/maximum_antichain.hpp
+  - graph/online_mst.hpp
   - graph/check_bipartite.hpp
   - graph/online_unionfind.hpp
   - graph/minimum_spanning_tree.hpp

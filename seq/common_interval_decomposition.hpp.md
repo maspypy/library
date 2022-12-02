@@ -16,6 +16,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: test/library_checker/graph/common_interval_decomposition.test.cpp
+    title: test/library_checker/graph/common_interval_decomposition.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1720.test.cpp
     title: test/yukicoder/1720.test.cpp
   _isVerificationFailed: true
@@ -184,6 +187,7 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1720.test.cpp
+  - test/library_checker/graph/common_interval_decomposition.test.cpp
 documentation_of: seq/common_interval_decomposition.hpp
 layout: document
 redirect_from:

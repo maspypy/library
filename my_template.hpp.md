@@ -222,7 +222,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc244h.test.cpp
     title: test/atcoder/abc244h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc249_ex.test.cpp
     title: test/atcoder/abc249_ex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -240,16 +240,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc266h_2.test.cpp
     title: test/atcoder/abc266h_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc269ex.test.cpp
     title: test/atcoder/abc269ex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc270_g.test.cpp
     title: test/atcoder/abc270_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc272_h.test.cpp
     title: test/atcoder/abc272_h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -258,7 +258,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc274_h.test.cpp
     title: test/atcoder/abc274_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc276_g.test.cpp
     title: test/atcoder/abc276_g.test.cpp
   - icon: ':x:'
@@ -492,6 +492,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/classify_tree.test.cpp
     title: test/library_checker/graph/classify_tree.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/graph/common_interval_decomposition.test.cpp
+    title: test/library_checker/graph/common_interval_decomposition.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/cycle_detection.test.cpp
     title: test/library_checker/graph/cycle_detection.test.cpp
@@ -741,6 +744,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
     title: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/tree/cartesian_tree.test.cpp
+    title: test/library_checker/tree/cartesian_tree.test.cpp
   - icon: ':x:'
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
@@ -2076,6 +2082,7 @@ data:
   - test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - test/library_checker/tree/tree_diameter.test.cpp
   - test/library_checker/tree/lca.test.cpp
+  - test/library_checker/tree/cartesian_tree.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
@@ -2090,6 +2097,7 @@ data:
   - test/library_checker/graph/scc.test.cpp
   - test/library_checker/graph/biconnected_component.test.cpp
   - test/library_checker/graph/enumerate_triangles.test.cpp
+  - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/library_checker/graph/assignment_mcf.test.cpp
   - test/library_checker/graph/K_shortest_walk.test.cpp
   - test/library_checker/graph/cycle_detection_undirected.test.cpp

@@ -63,6 +63,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticrmq_sparse.test.cpp
     title: test/library_checker/datastructure/staticrmq_sparse.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/graph/common_interval_decomposition.test.cpp
+    title: test/library_checker/graph/common_interval_decomposition.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/number_of_substrings.test.cpp
     title: test/library_checker/string/number_of_substrings.test.cpp
@@ -164,6 +167,7 @@ data:
   - test/library_checker/string/suffix_array_vec.test.cpp
   - test/library_checker/datastructure/staticrmq_seg.test.cpp
   - test/library_checker/datastructure/staticrmq_sparse.test.cpp
+  - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/atcoder/arc151_e.test.cpp
   - test/atcoder/abc270_f.test.cpp
   - test/aoj/GRL_2_A.test.cpp

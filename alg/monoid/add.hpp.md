@@ -50,6 +50,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/coeffient_query_2d.hpp
     title: ds/offline_query/coeffient_query_2d.hpp
+  - icon: ':warning:'
+    path: ds/offline_query/point_add_polygon_sum.hpp
+    title: ds/offline_query/point_add_polygon_sum.hpp
   - icon: ':question:'
     path: ds/offline_query/point_add_rectangle_sum.hpp
     title: ds/offline_query/point_add_rectangle_sum.hpp
@@ -186,6 +189,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/graph/common_interval_decomposition.test.cpp
+    title: test/library_checker/graph/common_interval_decomposition.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
@@ -356,6 +362,7 @@ data:
   - ds/offline_query/rectangleunion.hpp
   - ds/offline_query/rectangle_add_rectangle_sum.hpp
   - ds/offline_query/point_add_rectangle_sum.hpp
+  - ds/offline_query/point_add_polygon_sum.hpp
   - ds/waveletmatrix.hpp
   - ds/fenwick/fenwick2d_dense.hpp
   - ds/fenwick/fenwick2d.hpp
@@ -428,6 +435,7 @@ data:
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - test/library_checker/datastructure/double_ended_pq.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
+  - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/library_checker/graph/verted_add_contour_sum.test.cpp
   - test/atcoder/abc127f_1.test.cpp
   - test/atcoder/abc190f.test.cpp

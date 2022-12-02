@@ -68,10 +68,10 @@ data:
       title: alg/acted_monoid/powersums_assign.hpp
   - name: alg/acted_set
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_set/affine.hpp
       title: alg/acted_set/affine.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/acted_set/from_monoid.hpp
       title: alg/acted_set/from_monoid.hpp
   - name: alg/monoid
@@ -133,7 +133,7 @@ data:
     - icon: ':question:'
       path: alg/monoid/monoid_reverse.hpp
       title: alg/monoid/monoid_reverse.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/monoid/mul.hpp
       title: alg/monoid/mul.hpp
     - icon: ':heavy_check_mark:'
@@ -760,7 +760,7 @@ data:
     - icon: ':x:'
       path: linalg/mat_inv.hpp
       title: linalg/mat_inv.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: linalg/mat_mul.hpp
       title: linalg/mat_mul.hpp
     - icon: ':x:'
@@ -775,7 +775,7 @@ data:
     - icon: ':warning:'
       path: linalg/solve_linear_F2.hpp
       title: linalg/solve_linear_F2.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: linalg/solve_linear_lower.hpp
       title: linalg/solve_linear_lower.hpp
     - icon: ':x:'
@@ -857,7 +857,7 @@ data:
     - icon: ':x:'
       path: mod/modular_subset_sum.hpp
       title: mod/modular_subset_sum.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: mod/powertable.hpp
       title: mod/powertable.hpp
     - icon: ':question:'
@@ -885,7 +885,7 @@ data:
     - icon: ':x:'
       path: nt/crt.hpp
       title: nt/crt.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: nt/discrete_log.hpp
       title: nt/discrete_log.hpp
     - icon: ':heavy_check_mark:'
@@ -997,7 +997,7 @@ data:
     - icon: ':x:'
       path: poly/convolution2d.hpp
       title: poly/convolution2d.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/convolution_all.hpp
       title: poly/convolution_all.hpp
     - icon: ':heavy_check_mark:'
@@ -1012,7 +1012,7 @@ data:
     - icon: ':question:'
       path: poly/convolution_naive.hpp
       title: poly/convolution_naive.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/count_terms.hpp
       title: poly/count_terms.hpp
     - icon: ':x:'
@@ -1030,7 +1030,7 @@ data:
     - icon: ':x:'
       path: poly/fps_exp.hpp
       title: poly/fps_exp.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/fps_inv.hpp
       title: poly/fps_inv.hpp
     - icon: ':x:'
@@ -1042,16 +1042,16 @@ data:
     - icon: ':x:'
       path: poly/fps_sqrt.hpp
       title: poly/fps_sqrt.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/from_log_differentiation.hpp
       title: poly/from_log_differentiation.hpp
     - icon: ':x:'
       path: poly/integrate.hpp
       title: poly/integrate.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/lagrange_interpolate_iota.hpp
       title: poly/lagrange_interpolate_iota.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/multipoint.hpp
       title: poly/multipoint.hpp
     - icon: ':heavy_check_mark:'
@@ -1072,7 +1072,7 @@ data:
     - icon: ':x:'
       path: poly/poly_taylor_shift.hpp
       title: poly/poly_taylor_shift.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/prefix_product_of_poly.hpp
       title: poly/prefix_product_of_poly.hpp
     - icon: ':x:'
@@ -1093,10 +1093,10 @@ data:
     - icon: ':x:'
       path: poly/sum_of_exp_bx.hpp
       title: poly/sum_of_exp_bx.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/sum_of_prefix_suffix_products.hpp
       title: poly/sum_of_prefix_suffix_products.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/sum_of_rationals.hpp
       title: poly/sum_of_rationals.hpp
   - name: poly/online
@@ -1129,7 +1129,7 @@ data:
       title: random/hash_vector.hpp
   - name: seq
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: seq/cartesian_tree.hpp
       title: seq/cartesian_tree.hpp
     - icon: ':x:'
@@ -1159,7 +1159,7 @@ data:
     - icon: ':warning:'
       path: seq/kth_root_permutation.hpp
       title: seq/kth_root_permutation.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: seq/kth_term_of_p_recursive.hpp
       title: seq/kth_term_of_p_recursive.hpp
     - icon: ':x:'
@@ -1533,7 +1533,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc244h.test.cpp
       title: test/atcoder/abc244h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc249_ex.test.cpp
       title: test/atcoder/abc249_ex.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1551,16 +1551,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc266h_2.test.cpp
       title: test/atcoder/abc266h_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc269ex.test.cpp
       title: test/atcoder/abc269ex.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc270_f.test.cpp
       title: test/atcoder/abc270_f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc270_g.test.cpp
       title: test/atcoder/abc270_g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc272_h.test.cpp
       title: test/atcoder/abc272_h.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1569,7 +1569,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc274_h.test.cpp
       title: test/atcoder/abc274_h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc276_g.test.cpp
       title: test/atcoder/abc276_g.test.cpp
     - icon: ':x:'
