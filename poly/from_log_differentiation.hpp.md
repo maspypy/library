@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/swag.hpp
     title: ds/swag.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
   - icon: ':question:'
