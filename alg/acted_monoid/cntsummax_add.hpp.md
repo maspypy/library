@@ -4,14 +4,17 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: alg/monoid/cntsummax.hpp
     title: alg/monoid/cntsummax.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/mytest/cntsummax_add.test.cpp
+    title: test/mytest/cntsummax_add.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/cntsummax.hpp\"\n\r\ntemplate <typename E>\r\n\
@@ -46,8 +49,9 @@ data:
   path: alg/acted_monoid/cntsummax_add.hpp
   requiredBy: []
   timestamp: '2022-11-28 15:09:50+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/mytest/cntsummax_add.test.cpp
 documentation_of: alg/acted_monoid/cntsummax_add.hpp
 layout: document
 redirect_from:

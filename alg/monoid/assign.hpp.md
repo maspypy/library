@@ -5,13 +5,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/cntsum_assign.hpp
     title: alg/acted_monoid/cntsum_assign.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: alg/acted_monoid/cntsummax_assign.hpp
     title: alg/acted_monoid/cntsummax_assign.hpp
   - icon: ':x:'
     path: alg/acted_monoid/cntsummin_assign.hpp
     title: alg/acted_monoid/cntsummin_assign.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: alg/acted_monoid/max_assign.hpp
     title: alg/acted_monoid/max_assign.hpp
   - icon: ':question:'
@@ -31,8 +31,14 @@ data:
     path: test/aoj/DSL_2_I.test.cpp
     title: test/aoj/DSL_2_I.test.cpp
   - icon: ':x:'
+    path: test/mytest/cntsummax_assign.test.cpp
+    title: test/mytest/cntsummax_assign.test.cpp
+  - icon: ':x:'
     path: test/mytest/cntsummin_assign.test.cpp
     title: test/mytest/cntsummin_assign.test.cpp
+  - icon: ':x:'
+    path: test/mytest/max_assign.test.cpp
+    title: test/mytest/max_assign.test.cpp
   - icon: ':x:'
     path: test/mytest/rbst_am.test.cpp
     title: test/mytest/rbst_am.test.cpp
@@ -80,10 +86,12 @@ data:
   - test/yukicoder/1548.test.cpp
   - test/mytest/cntsummin_assign.test.cpp
   - test/mytest/splay_monoid.test.cpp
+  - test/mytest/cntsummax_assign.test.cpp
   - test/mytest/rbst_monoid_persistent.test.cpp
   - test/mytest/rbst_monoid.test.cpp
   - test/mytest/rbst_am.test.cpp
   - test/mytest/rbst_am_persistent.test.cpp
+  - test/mytest/max_assign.test.cpp
   - test/aoj/DSL_2_D.test.cpp
   - test/aoj/DSL_2_I.test.cpp
   - test/aoj/DSL_2_F.test.cpp

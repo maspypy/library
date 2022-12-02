@@ -2,13 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: alg/acted_monoid/cntsummin_add.hpp
     title: alg/acted_monoid/cntsummin_add.hpp
   - icon: ':x:'
     path: alg/acted_monoid/cntsummin_assign.hpp
     title: alg/acted_monoid/cntsummin_assign.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/mytest/cntsummin_add.test.cpp
+    title: test/mytest/cntsummin_add.test.cpp
   - icon: ':x:'
     path: test/mytest/cntsummin_assign.test.cpp
     title: test/mytest/cntsummin_assign.test.cpp
@@ -40,6 +43,7 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/cntsummin_assign.test.cpp
+  - test/mytest/cntsummin_add.test.cpp
 documentation_of: alg/monoid/cntsummin.hpp
 layout: document
 redirect_from:

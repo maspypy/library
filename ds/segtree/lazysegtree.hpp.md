@@ -31,14 +31,35 @@ data:
     path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
     title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - icon: ':x:'
+    path: test/mytest/cntsummax_add.test.cpp
+    title: test/mytest/cntsummax_add.test.cpp
+  - icon: ':x:'
+    path: test/mytest/cntsummax_assign.test.cpp
+    title: test/mytest/cntsummax_assign.test.cpp
+  - icon: ':x:'
+    path: test/mytest/cntsummin_add.test.cpp
+    title: test/mytest/cntsummin_add.test.cpp
+  - icon: ':x:'
     path: test/mytest/cntsummin_assign.test.cpp
     title: test/mytest/cntsummin_assign.test.cpp
+  - icon: ':x:'
+    path: test/mytest/max_assign.test.cpp
+    title: test/mytest/max_assign.test.cpp
   - icon: ':x:'
     path: test/mytest/max_max.test.cpp
     title: test/mytest/max_max.test.cpp
   - icon: ':x:'
+    path: test/mytest/max_min.test.cpp
+    title: test/mytest/max_min.test.cpp
+  - icon: ':x:'
     path: test/mytest/maxidx_add.test.cpp
     title: test/mytest/maxidx_add.test.cpp
+  - icon: ':x:'
+    path: test/mytest/min_max.test.cpp
+    title: test/mytest/min_max.test.cpp
+  - icon: ':x:'
+    path: test/mytest/min_min.test.cpp
+    title: test/mytest/min_min.test.cpp
   - icon: ':x:'
     path: test/mytest/minidx_add.test.cpp
     title: test/mytest/minidx_add.test.cpp
@@ -225,10 +246,17 @@ data:
   - test/yukicoder/1548.test.cpp
   - test/yukicoder/1197.test.cpp
   - test/mytest/cntsummin_assign.test.cpp
+  - test/mytest/min_max.test.cpp
+  - test/mytest/cntsummin_add.test.cpp
   - test/mytest/minidx_add.test.cpp
   - test/mytest/maxidx_add.test.cpp
   - test/mytest/minmax_add.test.cpp
   - test/mytest/max_max.test.cpp
+  - test/mytest/cntsummax_assign.test.cpp
+  - test/mytest/min_min.test.cpp
+  - test/mytest/max_min.test.cpp
+  - test/mytest/max_assign.test.cpp
+  - test/mytest/cntsummax_add.test.cpp
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - test/aoj/DSL_4_A.test.cpp
   - test/aoj/DSL_2_I.test.cpp

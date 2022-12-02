@@ -56,7 +56,7 @@ data:
   - icon: ':x:'
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
   - icon: ':heavy_check_mark:'
@@ -99,7 +99,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
     title: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - icon: ':x:'
@@ -117,6 +117,15 @@ data:
   - icon: ':x:'
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
+  - icon: ':x:'
+    path: test/mytest/cntsummax_add.test.cpp
+    title: test/mytest/cntsummax_add.test.cpp
+  - icon: ':x:'
+    path: test/mytest/cntsummax_assign.test.cpp
+    title: test/mytest/cntsummax_assign.test.cpp
+  - icon: ':x:'
+    path: test/mytest/cntsummin_add.test.cpp
+    title: test/mytest/cntsummin_add.test.cpp
   - icon: ':x:'
     path: test/mytest/cntsummin_assign.test.cpp
     title: test/mytest/cntsummin_assign.test.cpp
@@ -136,8 +145,14 @@ data:
     path: test/mytest/is_substring.test.cpp
     title: test/mytest/is_substring.test.cpp
   - icon: ':x:'
+    path: test/mytest/max_assign.test.cpp
+    title: test/mytest/max_assign.test.cpp
+  - icon: ':x:'
     path: test/mytest/max_max.test.cpp
     title: test/mytest/max_max.test.cpp
+  - icon: ':x:'
+    path: test/mytest/max_min.test.cpp
+    title: test/mytest/max_min.test.cpp
   - icon: ':x:'
     path: test/mytest/max_of_linear_segments.test.cpp
     title: test/mytest/max_of_linear_segments.test.cpp
@@ -147,6 +162,12 @@ data:
   - icon: ':x:'
     path: test/mytest/maxplus_concave.test.cpp
     title: test/mytest/maxplus_concave.test.cpp
+  - icon: ':x:'
+    path: test/mytest/min_max.test.cpp
+    title: test/mytest/min_max.test.cpp
+  - icon: ':x:'
+    path: test/mytest/min_min.test.cpp
+    title: test/mytest/min_min.test.cpp
   - icon: ':x:'
     path: test/mytest/min_of_linear_segments.test.cpp
     title: test/mytest/min_of_linear_segments.test.cpp
@@ -177,6 +198,9 @@ data:
   - icon: ':x:'
     path: test/mytest/online_pow.test.cpp
     title: test/mytest/online_pow.test.cpp
+  - icon: ':x:'
+    path: test/mytest/powerquery.test.cpp
+    title: test/mytest/powerquery.test.cpp
   - icon: ':x:'
     path: test/mytest/product_of_one_pm_xn.test.cpp
     title: test/mytest/product_of_one_pm_xn.test.cpp
@@ -349,7 +373,9 @@ data:
   - test/mytest/is_substring.test.cpp
   - test/mytest/cntsummin_assign.test.cpp
   - test/mytest/enum_partitions.test.cpp
+  - test/mytest/min_max.test.cpp
   - test/mytest/online_pow.test.cpp
+  - test/mytest/cntsummin_add.test.cpp
   - test/mytest/minidx_add.test.cpp
   - test/mytest/maxidx_add.test.cpp
   - test/mytest/online_log.test.cpp
@@ -360,15 +386,19 @@ data:
   - test/mytest/online_exp.test.cpp
   - test/mytest/splay_monoid.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
+  - test/mytest/cntsummax_assign.test.cpp
   - test/mytest/online_inv.test.cpp
   - test/mytest/splay_cm.test.cpp
   - test/mytest/conv_leq.test.cpp
   - test/mytest/rbst_monoid_persistent.test.cpp
   - test/mytest/chirp_z.test.cpp
+  - test/mytest/powerquery.test.cpp
   - test/mytest/all_inverse.test.cpp
+  - test/mytest/min_min.test.cpp
   - test/mytest/rbst_monoid.test.cpp
   - test/mytest/rbst.test.cpp
   - test/mytest/splay_am.test.cpp
+  - test/mytest/max_min.test.cpp
   - test/mytest/rbst_commutative_persistent.test.cpp
   - test/mytest/online_division.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
@@ -378,6 +408,7 @@ data:
   - test/mytest/rbst_am_persistent.test.cpp
   - test/mytest/rbst_monoid_2.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
+  - test/mytest/max_assign.test.cpp
   - test/mytest/conv2d.test.cpp
   - test/mytest/maxplus_concave.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
@@ -387,6 +418,7 @@ data:
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/rbst_am_2.test.cpp
   - test/mytest/binom.test.cpp
+  - test/mytest/cntsummax_add.test.cpp
   - test/mytest/tournament.test.cpp
   - test/mytest/rbst_test.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp

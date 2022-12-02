@@ -11,10 +11,10 @@ data:
   - icon: ':question:'
     path: alg/acted_monoid/cntsum_add.hpp
     title: alg/acted_monoid/cntsum_add.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: alg/acted_monoid/cntsummax_add.hpp
     title: alg/acted_monoid/cntsummax_add.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: alg/acted_monoid/cntsummin_add.hpp
     title: alg/acted_monoid/cntsummin_add.hpp
   - icon: ':x:'
@@ -177,9 +177,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/ARC30D.test.cpp
     title: test/mytest/ARC30D.test.cpp
+  - icon: ':x:'
+    path: test/mytest/cntsummax_add.test.cpp
+    title: test/mytest/cntsummax_add.test.cpp
+  - icon: ':x:'
+    path: test/mytest/cntsummin_add.test.cpp
+    title: test/mytest/cntsummin_add.test.cpp
   - icon: ':x:'
     path: test/mytest/maxidx_add.test.cpp
     title: test/mytest/maxidx_add.test.cpp
@@ -374,6 +380,7 @@ data:
   - test/yukicoder/1097.test.cpp
   - test/yukicoder/1977.test.cpp
   - test/yukicoder/1197.test.cpp
+  - test/mytest/cntsummin_add.test.cpp
   - test/mytest/minidx_add.test.cpp
   - test/mytest/maxidx_add.test.cpp
   - test/mytest/minmax_add.test.cpp
@@ -382,6 +389,7 @@ data:
   - test/mytest/rbst_commutative_persistent.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/rbst_am_2.test.cpp
+  - test/mytest/cntsummax_add.test.cpp
   - test/mytest/ARC30D.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp

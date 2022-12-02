@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
   - icon: ':x:'
@@ -387,10 +387,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/string/number_of_subsequences.test.cpp
     title: test/library_checker/string/number_of_subsequences.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - icon: ':x:'
@@ -444,6 +444,9 @@ data:
   - icon: ':x:'
     path: test/mytest/online_pow.test.cpp
     title: test/mytest/online_pow.test.cpp
+  - icon: ':x:'
+    path: test/mytest/powerquery.test.cpp
+    title: test/mytest/powerquery.test.cpp
   - icon: ':x:'
     path: test/mytest/prime_sum.test.cpp
     title: test/mytest/prime_sum.test.cpp
@@ -1001,6 +1004,7 @@ data:
   - test/mytest/conv_leq.test.cpp
   - test/mytest/rbst_monoid_persistent.test.cpp
   - test/mytest/chirp_z.test.cpp
+  - test/mytest/powerquery.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/rbst_monoid.test.cpp
   - test/mytest/splay_am.test.cpp

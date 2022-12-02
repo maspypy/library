@@ -18,13 +18,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/cntsum_assign.hpp
       title: alg/acted_monoid/cntsum_assign.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: alg/acted_monoid/cntsummax_add.hpp
       title: alg/acted_monoid/cntsummax_add.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: alg/acted_monoid/cntsummax_assign.hpp
       title: alg/acted_monoid/cntsummax_assign.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: alg/acted_monoid/cntsummin_add.hpp
       title: alg/acted_monoid/cntsummin_add.hpp
     - icon: ':x:'
@@ -33,13 +33,13 @@ data:
     - icon: ':x:'
       path: alg/acted_monoid/max_add.hpp
       title: alg/acted_monoid/max_add.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: alg/acted_monoid/max_assign.hpp
       title: alg/acted_monoid/max_assign.hpp
     - icon: ':x:'
       path: alg/acted_monoid/max_max.hpp
       title: alg/acted_monoid/max_max.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: alg/acted_monoid/max_min.hpp
       title: alg/acted_monoid/max_min.hpp
     - icon: ':x:'
@@ -51,10 +51,10 @@ data:
     - icon: ':question:'
       path: alg/acted_monoid/min_assign.hpp
       title: alg/acted_monoid/min_assign.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: alg/acted_monoid/min_max.hpp
       title: alg/acted_monoid/min_max.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: alg/acted_monoid/min_min.hpp
       title: alg/acted_monoid/min_min.hpp
     - icon: ':x:'
@@ -103,7 +103,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/cntminmincnt.hpp
       title: alg/monoid/cntminmincnt.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: alg/monoid/cntsummax.hpp
       title: alg/monoid/cntsummax.hpp
     - icon: ':x:'
@@ -189,7 +189,7 @@ data:
     - icon: ':question:'
       path: ds/pbds.hpp
       title: ds/pbds.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: ds/powerquery.hpp
       title: ds/powerquery.hpp
     - icon: ':question:'
@@ -453,7 +453,7 @@ data:
     - icon: ':question:'
       path: flow/maxflow.hpp
       title: flow/maxflow.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: flow/min_cost_matching_on_line.hpp
       title: flow/min_cost_matching_on_line.hpp
     - icon: ':question:'
@@ -531,7 +531,7 @@ data:
     - icon: ':x:'
       path: graph/bracket_graph.hpp
       title: graph/bracket_graph.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/centroid.hpp
       title: graph/centroid.hpp
     - icon: ':question:'
@@ -633,10 +633,10 @@ data:
     - icon: ':question:'
       path: graph/tree.hpp
       title: graph/tree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree_all_distances.hpp
       title: graph/tree_all_distances.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree_diameter.hpp
       title: graph/tree_diameter.hpp
     - icon: ':heavy_check_mark:'
@@ -700,7 +700,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest_path/bellmanford.hpp
       title: graph/shortest_path/bellmanford.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/shortest_path/bfs01.hpp
       title: graph/shortest_path/bfs01.hpp
     - icon: ':x:'
@@ -715,7 +715,7 @@ data:
     - icon: ':x:'
       path: graph/shortest_path/grid_bfs.hpp
       title: graph/shortest_path/grid_bfs.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest_path/restore_path.hpp
       title: graph/shortest_path/restore_path.hpp
     - icon: ':question:'
@@ -1249,7 +1249,7 @@ data:
       title: setfunc/zeta.hpp
   - name: string
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: string/count_subseq.hpp
       title: string/count_subseq.hpp
     - icon: ':x:'
@@ -1267,13 +1267,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/longest_common_substring.hpp
       title: string/longest_common_substring.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/manacher.hpp
       title: string/manacher.hpp
     - icon: ':x:'
       path: string/palindromic_tree.hpp
       title: string/palindromic_tree.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: string/rollinghash.hpp
       title: string/rollinghash.hpp
     - icon: ':heavy_check_mark:'
@@ -1282,7 +1282,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/rollinghash_field.hpp
       title: string/rollinghash_field.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/run_enumerate.hpp
       title: string/run_enumerate.hpp
     - icon: ':x:'
@@ -1291,7 +1291,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/split.hpp
       title: string/split.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/suffix_automaton.hpp
       title: string/suffix_automaton.hpp
     - icon: ':x:'
@@ -1306,7 +1306,7 @@ data:
     - icon: ':warning:'
       path: string/trie_map.hpp
       title: string/trie_map.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: string/zalgorithm.hpp
       title: string/zalgorithm.hpp
   verificationCategories:
@@ -2035,39 +2035,39 @@ data:
       title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - name: test/library_checker/sample
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/sample/many_aplusb.test.cpp
       title: test/library_checker/sample/many_aplusb.test.cpp
   - name: test/library_checker/string
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/string/enumerate_palindromes.test.cpp
       title: test/library_checker/string/enumerate_palindromes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/string/number_of_subsequences.test.cpp
       title: test/library_checker/string/number_of_subsequences.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/string/number_of_substrings.test.cpp
       title: test/library_checker/string/number_of_substrings.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/string/number_of_substrings2.test.cpp
       title: test/library_checker/string/number_of_substrings2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/string/run_enumerate.test.cpp
       title: test/library_checker/string/run_enumerate.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/string/run_enumerate_vec.test.cpp
       title: test/library_checker/string/run_enumerate_vec.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/string/suffix_array.test.cpp
       title: test/library_checker/string/suffix_array.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/string/suffix_array_vec.test.cpp
       title: test/library_checker/string/suffix_array_vec.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/string/zalgorithm.test.cpp
       title: test/library_checker/string/zalgorithm.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
       title: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
     - icon: ':x:'
@@ -2078,21 +2078,21 @@ data:
     - icon: ':x:'
       path: test/library_checker/tree/cartesian_tree.test.cpp
       title: test/library_checker/tree/cartesian_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
       title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/tree/lca.test.cpp
       title: test/library_checker/tree/lca.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/tree/lca_directed.test.cpp
       title: test/library_checker/tree/lca_directed.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/tree/tree_diameter.test.cpp
       title: test/library_checker/tree/tree_diameter.test.cpp
   - name: test/mytest
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/ARC30D.test.cpp
       title: test/mytest/ARC30D.test.cpp
     - icon: ':x:'

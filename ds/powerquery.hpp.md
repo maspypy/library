@@ -5,10 +5,13 @@ data:
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/mytest/powerquery.test.cpp
+    title: test/mytest/powerquery.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Monoid_Mul\
@@ -42,8 +45,9 @@ data:
   path: ds/powerquery.hpp
   requiredBy: []
   timestamp: '2022-12-01 18:20:22+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/mytest/powerquery.test.cpp
 documentation_of: ds/powerquery.hpp
 layout: document
 redirect_from:
