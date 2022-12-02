@@ -3,7 +3,6 @@
 #include "other/io.hpp"
 
 #include "alg/monoid/add.hpp"
-#include "ds/segtree.hpp"
 #include "graph/ds/treegroup.hpp"
 
 void solve() {

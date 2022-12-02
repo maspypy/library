@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 
 #include "alg/monoid/min.hpp"
-#include "ds/disjointsparse.hpp"
+#include "ds/disjoint_sparse/disjointsparse.hpp"
 
 void solve() {
   LL(N, Q);

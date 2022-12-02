@@ -1,5 +1,5 @@
 
-#include "ds/segtree.hpp"
+#include "ds/segtree/segtree.hpp"
 #include "alg/monoid/min.hpp"
 
 // 配列は static

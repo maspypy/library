@@ -3,7 +3,7 @@
 
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/beats_summaxmin_chminchmax.hpp"
+#include "ds/segtree/beats_summaxmin_chminchmax.hpp"
 
 void solve() {
   LL(N, Q);
