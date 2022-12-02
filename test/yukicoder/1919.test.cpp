@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"
-#include "ds/fenwick2d.hpp"
+#include "ds/fenwick/fenwick2d.hpp"
 #include "alg/monoid/add_pair.hpp"
 
 using mint = modint107;

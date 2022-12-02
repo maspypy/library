@@ -1,8 +1,8 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1297"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/cht/cht_monotone.hpp"
-#include "ds/cht/cht.hpp"
+#include "ds/func/cht_monotone.hpp"
+#include "ds/func/cht.hpp"
 
 void solve() {
   LL(N, C);

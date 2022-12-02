@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1077"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/slope.hpp"
+#include "ds/func/slope.hpp"
 
 void solve() {
   LL(N);

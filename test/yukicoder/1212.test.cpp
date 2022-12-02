@@ -4,7 +4,7 @@
 #include "graph/base.hpp"
 #include "graph/ds/treemonoid.hpp"
 #include "alg/monoid/min.hpp"
-#include "ds/segtree.hpp"
+#include "ds/segtree/segtree.hpp"
 
 void solve() {
   INT(N);
