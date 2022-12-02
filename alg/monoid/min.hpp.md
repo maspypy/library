@@ -2,19 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/max_min.hpp
     title: alg/acted_monoid/max_min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/min_max.hpp
     title: alg/acted_monoid/min_max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/min_min.hpp
     title: alg/acted_monoid/min_min.hpp
   - icon: ':heavy_check_mark:'
@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
   - icon: ':heavy_check_mark:'
@@ -42,10 +42,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508_2.test.cpp
     title: test/aoj/1508_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL_2_F.test.cpp
     title: test/aoj/DSL_2_F.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL_2_H.test.cpp
     title: test/aoj/DSL_2_H.test.cpp
   - icon: ':heavy_check_mark:'
@@ -63,7 +63,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticrmq_sparse.test.cpp
     title: test/library_checker/datastructure/staticrmq_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/common_interval_decomposition.test.cpp
     title: test/library_checker/graph/common_interval_decomposition.test.cpp
   - icon: ':heavy_check_mark:'
@@ -75,13 +75,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/suffix_array_vec.test.cpp
     title: test/library_checker/string/suffix_array_vec.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/max_min.test.cpp
     title: test/mytest/max_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/min_max.test.cpp
     title: test/mytest/min_max.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/min_min.test.cpp
     title: test/mytest/min_min.test.cpp
   - icon: ':heavy_check_mark:'
@@ -102,16 +102,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1212.test.cpp
     title: test/yukicoder/1212.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1234.test.cpp
     title: test/yukicoder/1234.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1270.test.cpp
     title: test/yukicoder/1270.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1600.test.cpp
     title: test/yukicoder/1600.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1720.test.cpp
     title: test/yukicoder/1720.test.cpp
   - icon: ':x:'

@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/fenwick/fenwick.hpp
     title: ds/fenwick/fenwick.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/offline_query/mo.hpp
     title: ds/offline_query/mo.hpp
   - icon: ':question:'

@@ -5,43 +5,46 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/add_mul.hpp
     title: alg/acted_monoid/add_mul.hpp
-  - icon: ':heavy_check_mark:'
-    path: alg/acted_monoid/cntminmincnt_add.hpp
-    title: alg/acted_monoid/cntminmincnt_add.hpp
-  - icon: ':heavy_check_mark:'
-    path: alg/acted_monoid/cntsummax_add.hpp
-    title: alg/acted_monoid/cntsummax_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/cntsummin_add.hpp
     title: alg/acted_monoid/cntsummin_add.hpp
   - icon: ':x:'
     path: alg/acted_monoid/max_add.hpp
     title: alg/acted_monoid/max_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/maxidx_add.hpp
     title: alg/acted_monoid/maxidx_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/minidx_add.hpp
     title: alg/acted_monoid/minidx_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/minmax_add.hpp
     title: alg/acted_monoid/minmax_add.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
+    path: alg/acted_monoid/minmincnt_add.hpp
+    title: alg/acted_monoid/minmincnt_add.hpp
+  - icon: ':x:'
     path: alg/acted_monoid/sum_add.hpp
     title: alg/acted_monoid/sum_add.hpp
+  - icon: ':warning:'
+    path: alg/acted_monoid/sum_affine.hpp
+    title: alg/acted_monoid/sum_affine.hpp
+  - icon: ':heavy_check_mark:'
+    path: alg/acted_monoid/summax_add.hpp
+    title: alg/acted_monoid/summax_add.hpp
   - icon: ':question:'
     path: ds/cumsum2d.hpp
     title: ds/cumsum2d.hpp
   - icon: ':question:'
     path: ds/fenwick/fenwick.hpp
     title: ds/fenwick/fenwick.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick/fenwick2d.hpp
     title: ds/fenwick/fenwick2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwick/fenwick2d_dense.hpp
     title: ds/fenwick/fenwick2d_dense.hpp
   - icon: ':heavy_check_mark:'
@@ -62,7 +65,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/rectangle_add_rectangle_sum.hpp
     title: ds/offline_query/rectangle_add_rectangle_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/offline_query/rectangleunion.hpp
     title: ds/offline_query/rectangleunion.hpp
   - icon: ':question:'
@@ -74,7 +77,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/treeabelgroup.hpp
     title: graph/ds/treeabelgroup.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
   - icon: ':heavy_check_mark:'
@@ -108,12 +111,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_G.test.cpp
     title: test/aoj/DSL_2_G.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL_2_H.test.cpp
     title: test/aoj/DSL_2_H.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL_4_A.test.cpp
     title: test/aoj/DSL_4_A.test.cpp
+  - icon: ':x:'
+    path: test/aoj/GRL_5_E.test.cpp
+    title: test/aoj/GRL_5_E.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc127f_1.test.cpp
     title: test/atcoder/abc127f_1.test.cpp
@@ -126,7 +132,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc266h_2.test.cpp
     title: test/atcoder/abc266h_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
     title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - icon: ':heavy_check_mark:'
@@ -186,25 +192,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/common_interval_decomposition.test.cpp
     title: test/library_checker/graph/common_interval_decomposition.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/cntsummax_add.test.cpp
-    title: test/mytest/cntsummax_add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/cntsummin_add.test.cpp
     title: test/mytest/cntsummin_add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/maxidx_add.test.cpp
     title: test/mytest/maxidx_add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/minidx_add.test.cpp
     title: test/mytest/minidx_add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/minmax_add.test.cpp
     title: test/mytest/minmax_add.test.cpp
   - icon: ':heavy_check_mark:'
@@ -216,6 +219,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/splay_cm.test.cpp
     title: test/mytest/splay_cm.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/summax_add.test.cpp
+    title: test/mytest/summax_add.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/wavelet_matrix_sum.test.cpp
     title: test/mytest/wavelet_matrix_sum.test.cpp
@@ -234,13 +240,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1216_2.test.cpp
     title: test/yukicoder/1216_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1234.test.cpp
     title: test/yukicoder/1234.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1269.test.cpp
     title: test/yukicoder/1269.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1270.test.cpp
     title: test/yukicoder/1270.test.cpp
   - icon: ':heavy_check_mark:'
@@ -261,7 +267,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1641.test.cpp
     title: test/yukicoder/1641.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1720.test.cpp
     title: test/yukicoder/1720.test.cpp
   - icon: ':heavy_check_mark:'
@@ -270,16 +276,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1874.test.cpp
     title: test/yukicoder/1874.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1919.test.cpp
     title: test/yukicoder/1919.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1977.test.cpp
     title: test/yukicoder/1977.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2003.test.cpp
     title: test/yukicoder/2003.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2065.test.cpp
     title: test/yukicoder/2065.test.cpp
   - icon: ':x:'
@@ -322,15 +328,16 @@ data:
   path: alg/monoid/add.hpp
   requiredBy:
   - alg/acted_monoid/min_add.hpp
+  - alg/acted_monoid/sum_affine.hpp
+  - alg/acted_monoid/minmincnt_add.hpp
   - alg/acted_monoid/add_mul.hpp
   - alg/acted_monoid/minmax_add.hpp
   - alg/acted_monoid/cntsummin_add.hpp
   - alg/acted_monoid/maxidx_add.hpp
   - alg/acted_monoid/max_add.hpp
-  - alg/acted_monoid/cntminmincnt_add.hpp
   - alg/acted_monoid/sum_add.hpp
+  - alg/acted_monoid/summax_add.hpp
   - alg/acted_monoid/minidx_add.hpp
-  - alg/acted_monoid/cntsummax_add.hpp
   - string/trie.hpp
   - seq/inversion.hpp
   - seq/common_interval_decomposition.hpp
@@ -379,6 +386,7 @@ data:
   - test/yukicoder/919.test.cpp
   - test/yukicoder/1097.test.cpp
   - test/yukicoder/1977.test.cpp
+  - test/mytest/summax_add.test.cpp
   - test/mytest/cntsummin_add.test.cpp
   - test/mytest/minidx_add.test.cpp
   - test/mytest/maxidx_add.test.cpp
@@ -386,7 +394,6 @@ data:
   - test/mytest/splay_cm.test.cpp
   - test/mytest/rbst_commutative_persistent.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
-  - test/mytest/cntsummax_add.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
@@ -417,6 +424,7 @@ data:
   - test/aoj/DSL_2_E.test.cpp
   - test/aoj/2842_2.test.cpp
   - test/aoj/DSL_4_A.test.cpp
+  - test/aoj/GRL_5_E.test.cpp
   - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/DSL_1_B.test.cpp
   - test/aoj/DSL_2_G.test.cpp

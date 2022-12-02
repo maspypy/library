@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/dualtreemonoid.hpp
     title: graph/ds/dualtreemonoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/lazytreemonoid.hpp
     title: graph/ds/lazytreemonoid.hpp
   - icon: ':heavy_check_mark:'
@@ -38,7 +38,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/rerooting_classify_subtree.hpp
     title: graph/rerooting_classify_subtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/rerooting_dp.hpp
     title: graph/rerooting_dp.hpp
   - icon: ':heavy_check_mark:'
@@ -60,6 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_B.test.cpp
     title: test/aoj/GRL_3_B.test.cpp
+  - icon: ':x:'
+    path: test/aoj/GRL_5_E.test.cpp
+    title: test/aoj/GRL_5_E.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc266f.test.cpp
     title: test/atcoder/abc266f.test.cpp
@@ -153,13 +156,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1778.test.cpp
     title: test/yukicoder/1778.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1790.test.cpp
     title: test/yukicoder/1790.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1976.test.cpp
     title: test/yukicoder/1976.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1983.test.cpp
     title: test/yukicoder/1983.test.cpp
   - icon: ':x:'
@@ -421,6 +424,7 @@ data:
   - test/atcoder/abc266f.test.cpp
   - test/aoj/GRL_2_A.test.cpp
   - test/aoj/2677.test.cpp
+  - test/aoj/GRL_5_E.test.cpp
   - test/aoj/2995.test.cpp
   - test/aoj/GRL_3_B.test.cpp
 documentation_of: graph/tree.hpp

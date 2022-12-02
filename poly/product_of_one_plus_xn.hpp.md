@@ -39,12 +39,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/product_of_one_pm_xn.test.cpp
     title: test/mytest/product_of_one_pm_xn.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2062.test.cpp
     title: test/yukicoder/2062.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n\
@@ -401,7 +401,7 @@ data:
   path: poly/product_of_one_plus_xn.hpp
   requiredBy: []
   timestamp: '2022-12-03 01:16:40+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/2062.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp

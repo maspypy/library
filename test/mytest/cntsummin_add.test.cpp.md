@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/cntsummin_add.hpp
     title: alg/acted_monoid/cntsummin_add.hpp
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/cntsummin.hpp
     title: alg/monoid/cntsummin.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -249,40 +249,41 @@ data:
     \ Monoid_A::unit());\n  }\n\n  void reset(const vc<X>& v) {\n    assert(len(v)\
     \ == n);\n    reset();\n    FOR(i, n) dat[size + i] = v[i];\n    FOR3_R(i, 1,\
     \ size) update(i);\n  }\n\n  void update(int k) { dat[k] = Monoid_X::op(dat[2\
-    \ * k], dat[2 * k + 1]); }\n\n  void all_apply(int k, A a) {\n    dat[k] = ActedMonoid::act(dat[k],\
-    \ a);\n    if (k < size) laz[k] = Monoid_A::op(laz[k], a);\n  }\n\n  void push(int\
-    \ k, int sz) {\n    all_apply(2 * k, laz[k]);\n    all_apply(2 * k + 1, laz[k]);\n\
-    \    laz[k] = Monoid_A::unit();\n  }\n\n  void set(int p, X x) {\n    assert(0\
-    \ <= p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--) push(p >>\
-    \ i, 1 << i);\n    dat[p] = x;\n    for (int i = 1; i <= log; i++) update(p >>\
-    \ i);\n  }\n\n  X get(int p) {\n    assert(0 <= p && p < n);\n    p += size;\n\
-    \    for (int i = log; i >= 1; i--) push(p >> i, 1 << i);\n    return dat[p];\n\
-    \  }\n\n  /*\n  vc<X> get_all() {\n    FOR(i, size) push(i);\n    return {dat.begin()\
-    \ + size, dat.begin() + size + n};\n  }\n  */\n\n  X prod(int l, int r) {\n  \
-    \  assert(0 <= l && l <= r && r <= n);\n    if (l == r) return Monoid_X::unit();\n\
-    \n    l += size;\n    r += size;\n\n    for (int i = log; i >= 1; i--) {\n   \
-    \   if (((l >> i) << i) != l) push(l >> i, 1 << i);\n      if (((r >> i) << i)\
-    \ != r) push((r - 1) >> i, 1 << i);\n    }\n\n    X xl = Monoid_X::unit(), xr\
-    \ = Monoid_X::unit();\n    while (l < r) {\n      if (l & 1) xl = Monoid_X::op(xl,\
-    \ dat[l++]);\n      if (r & 1) xr = Monoid_X::op(dat[--r], xr);\n      l >>= 1;\n\
-    \      r >>= 1;\n    }\n\n    return Monoid_X::op(xl, xr);\n  }\n\n  X prod_all()\
-    \ { return dat[1]; }\n\n  void apply(int p, A a) {\n    assert(0 <= p && p < n);\n\
-    \    p += size;\n    dat[p] = ActedMonoid::act(dat[p], a);\n    for (int i = 1;\
-    \ i <= log; i++) update(p >> i);\n  }\n\n  void apply(int l, int r, A a) {\n \
-    \   assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n\n    l += size;\n\
-    \    r += size;\n\n    for (int i = log; i >= 1; i--) {\n      if (((l >> i) <<\
-    \ i) != l) push(l >> i, 1 << i);\n      if (((r >> i) << i) != r) push((r - 1)\
-    \ >> i, 1 << i);\n    }\n\n    {\n      int l2 = l, r2 = r;\n      while (l <\
-    \ r) {\n        if (l & 1) all_apply(l++, a);\n        if (r & 1) all_apply(--r,\
-    \ a);\n        l >>= 1;\n        r >>= 1;\n      }\n      l = l2;\n      r = r2;\n\
-    \    }\n\n    for (int i = 1; i <= log; i++) {\n      if (((l >> i) << i) != l)\
-    \ update(l >> i);\n      if (((r >> i) << i) != r) update((r - 1) >> i);\n   \
-    \ }\n  }\n\n  /*\n  template <typename C>\n  int max_right(C& check, int l) {\n\
-    \    assert(0 <= l && l <= n);\n    assert(check(Monoid_X::unit()));\n    if (l\
-    \ == n) return n;\n    l += size;\n    for (int i = log; i >= 1; i--) push(l >>\
-    \ i);\n    X sm = Monoid_X::unit();\n    do {\n      while (l % 2 == 0) l >>=\
-    \ 1;\n      if (!check(Monoid_X::op(sm, dat[l]))) {\n        while (l < size)\
-    \ {\n          push(l);\n          l = (2 * l);\n          if (check(Monoid_X::op(sm,\
+    \ * k], dat[2 * k + 1]); }\n\n  void all_apply(int k, A a, int sz) {\n    dat[k]\
+    \ = ActedMonoid::act(dat[k], a, sz);\n    if (k < size) laz[k] = Monoid_A::op(laz[k],\
+    \ a);\n  }\n\n  void push(int k, int sz) {\n    all_apply(2 * k, laz[k], sz /\
+    \ 2);\n    all_apply(2 * k + 1, laz[k], sz / 2);\n    laz[k] = Monoid_A::unit();\n\
+    \  }\n\n  void set(int p, X x) {\n    assert(0 <= p && p < n);\n    p += size;\n\
+    \    for (int i = log; i >= 1; i--) push(p >> i, 1 << i);\n    dat[p] = x;\n \
+    \   for (int i = 1; i <= log; i++) update(p >> i);\n  }\n\n  X get(int p) {\n\
+    \    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--)\
+    \ push(p >> i, 1 << i);\n    return dat[p];\n  }\n\n  /*\n  vc<X> get_all() {\n\
+    \    FOR(i, size) push(i);\n    return {dat.begin() + size, dat.begin() + size\
+    \ + n};\n  }\n  */\n\n  X prod(int l, int r) {\n    assert(0 <= l && l <= r &&\
+    \ r <= n);\n    if (l == r) return Monoid_X::unit();\n\n    l += size;\n    r\
+    \ += size;\n\n    for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i)\
+    \ != l) push(l >> i, 1 << i);\n      if (((r >> i) << i) != r) push((r - 1) >>\
+    \ i, 1 << i);\n    }\n\n    X xl = Monoid_X::unit(), xr = Monoid_X::unit();\n\
+    \    while (l < r) {\n      if (l & 1) xl = Monoid_X::op(xl, dat[l++]);\n    \
+    \  if (r & 1) xr = Monoid_X::op(dat[--r], xr);\n      l >>= 1;\n      r >>= 1;\n\
+    \    }\n\n    return Monoid_X::op(xl, xr);\n  }\n\n  X prod_all() { return dat[1];\
+    \ }\n\n  void apply(int p, A a) {\n    assert(0 <= p && p < n);\n    p += size;\n\
+    \    dat[p] = ActedMonoid::act(dat[p], a);\n    for (int i = 1; i <= log; i++)\
+    \ update(p >> i);\n  }\n\n  void apply(int l, int r, A a) {\n    assert(0 <= l\
+    \ && l <= r && r <= n);\n    if (l == r) return;\n\n    l += size;\n    r += size;\n\
+    \n    for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l\
+    \ >> i, 1 << i);\n      if (((r >> i) << i) != r) push((r - 1) >> i, 1 << i);\n\
+    \    }\n\n    int sz = 1;\n    {\n      int l2 = l, r2 = r;\n      while (l <\
+    \ r) {\n        if (l & 1) all_apply(l++, a, sz);\n        if (r & 1) all_apply(--r,\
+    \ a, sz);\n        l >>= 1;\n        r >>= 1;\n        sz <<= 2;\n      }\n  \
+    \    l = l2;\n      r = r2;\n    }\n\n    for (int i = 1; i <= log; i++) {\n \
+    \     if (((l >> i) << i) != l) update(l >> i);\n      if (((r >> i) << i) !=\
+    \ r) update((r - 1) >> i);\n    }\n  }\n\n  /*\n  template <typename C>\n  int\
+    \ max_right(C& check, int l) {\n    assert(0 <= l && l <= n);\n    assert(check(Monoid_X::unit()));\n\
+    \    if (l == n) return n;\n    l += size;\n    for (int i = log; i >= 1; i--)\
+    \ push(l >> i);\n    X sm = Monoid_X::unit();\n    do {\n      while (l % 2 ==\
+    \ 0) l >>= 1;\n      if (!check(Monoid_X::op(sm, dat[l]))) {\n        while (l\
+    \ < size) {\n          push(l);\n          l = (2 * l);\n          if (check(Monoid_X::op(sm,\
     \ dat[l]))) {\n            sm = Monoid_X::op(sm, dat[l]);\n            l++;\n\
     \          }\n        }\n        return l - size;\n      }\n      sm = Monoid_X::op(sm,\
     \ dat[l]);\n      l++;\n    } while ((l & -l) != l);\n    return n;\n  }\n\n \
@@ -335,8 +336,8 @@ data:
   isVerificationFile: true
   path: test/mytest/cntsummin_add.test.cpp
   requiredBy: []
-  timestamp: '2022-12-03 06:52:03+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-12-03 07:16:30+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/cntsummin_add.test.cpp
 layout: document

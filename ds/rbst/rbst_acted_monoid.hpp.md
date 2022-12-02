@@ -4,9 +4,6 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-    title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_am.test.cpp
     title: test/mytest/rbst_am.test.cpp
   - icon: ':heavy_check_mark:'
@@ -294,7 +291,6 @@ data:
   - test/yukicoder/686.test.cpp
   - test/mytest/rbst_am.test.cpp
   - test/mytest/rbst_am_persistent.test.cpp
-  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
 documentation_of: ds/rbst/rbst_acted_monoid.hpp
 layout: document
 redirect_from:

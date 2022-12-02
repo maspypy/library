@@ -2,22 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/cntsummin_add.hpp
     title: alg/acted_monoid/cntsummin_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/cntsummin_assign.hpp
     title: alg/acted_monoid/cntsummin_assign.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/cntsummin_add.test.cpp
     title: test/mytest/cntsummin_add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/cntsummin_assign.test.cpp
     title: test/mytest/cntsummin_assign.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/cntsummin.hpp\"\n\r\ntemplate <typename E>\r\n\
@@ -40,7 +40,7 @@ data:
   - alg/acted_monoid/cntsummin_assign.hpp
   - alg/acted_monoid/cntsummin_add.hpp
   timestamp: '2022-11-27 22:15:30+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/cntsummin_assign.test.cpp
   - test/mytest/cntsummin_add.test.cpp

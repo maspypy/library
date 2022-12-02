@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/disjoint_sparse/disjointsparse.hpp
     title: ds/disjoint_sparse/disjointsparse.hpp
   - icon: ':question:'

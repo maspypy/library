@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   - icon: ':question:'
@@ -37,7 +37,7 @@ data:
   - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
   - icon: ':question:'

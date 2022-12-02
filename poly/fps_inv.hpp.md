@@ -29,7 +29,7 @@ data:
   - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -168,7 +168,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1875.test.cpp
     title: test/yukicoder/1875.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1939.test.cpp
     title: test/yukicoder/1939.test.cpp
   - icon: ':x:'

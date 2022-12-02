@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/cntsummin.hpp
     title: alg/monoid/cntsummin.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/cntsummin_assign.test.cpp
     title: test/mytest/cntsummin_assign.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/cntsummin.hpp\"\n\r\ntemplate <typename E>\r\n\
@@ -48,7 +48,7 @@ data:
   path: alg/acted_monoid/cntsummin_assign.hpp
   requiredBy: []
   timestamp: '2022-12-01 09:04:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/cntsummin_assign.test.cpp
 documentation_of: alg/acted_monoid/cntsummin_assign.hpp

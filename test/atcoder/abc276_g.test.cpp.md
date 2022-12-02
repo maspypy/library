@@ -43,7 +43,7 @@ data:
   - icon: ':question:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
   - icon: ':question:'

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/func/cht.hpp
     title: ds/func/cht.hpp
   - icon: ':question:'

@@ -6,12 +6,12 @@ data:
     title: alg/monoid/min.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/min_min.test.cpp
     title: test/mytest/min_min.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <class X>\r\nstruct Monoid_Min\
@@ -33,7 +33,7 @@ data:
   path: alg/acted_monoid/min_min.hpp
   requiredBy: []
   timestamp: '2022-12-01 09:04:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/min_min.test.cpp
 documentation_of: alg/acted_monoid/min_min.hpp

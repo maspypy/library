@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/rerooting_classify_subtree.hpp
     title: graph/rerooting_classify_subtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   - icon: ':question:'
@@ -120,16 +120,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/cntsummax_add.test.cpp
-    title: test/mytest/cntsummax_add.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/cntsummax_assign.test.cpp
-    title: test/mytest/cntsummax_assign.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/cntsummin_add.test.cpp
     title: test/mytest/cntsummin_add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/cntsummin_assign.test.cpp
     title: test/mytest/cntsummin_assign.test.cpp
   - icon: ':heavy_check_mark:'
@@ -147,37 +141,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/is_substring.test.cpp
     title: test/mytest/is_substring.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/max_assign.test.cpp
     title: test/mytest/max_assign.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/max_max.test.cpp
     title: test/mytest/max_max.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/max_min.test.cpp
     title: test/mytest/max_min.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/max_of_linear_segments.test.cpp
     title: test/mytest/max_of_linear_segments.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/maxidx_add.test.cpp
     title: test/mytest/maxidx_add.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/maxplus_concave.test.cpp
     title: test/mytest/maxplus_concave.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/min_max.test.cpp
     title: test/mytest/min_max.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/min_min.test.cpp
     title: test/mytest/min_min.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/min_of_linear_segments.test.cpp
     title: test/mytest/min_of_linear_segments.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/minidx_add.test.cpp
     title: test/mytest/minidx_add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/minmax_add.test.cpp
     title: test/mytest/minmax_add.test.cpp
   - icon: ':heavy_check_mark:'
@@ -253,6 +247,12 @@ data:
     path: test/mytest/stern_brocot.test.cpp
     title: test/mytest/stern_brocot.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/summax_add.test.cpp
+    title: test/mytest/summax_add.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/summax_assign.test.cpp
+    title: test/mytest/summax_assign.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/tdpc_grid_dp.test.cpp
     title: test/mytest/tdpc_grid_dp.test.cpp
   - icon: ':heavy_check_mark:'
@@ -288,7 +288,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1881.test.cpp
     title: test/yukicoder/1881.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
   - icon: ':x:'
@@ -377,6 +377,7 @@ data:
   - test/mytest/cntsummin_assign.test.cpp
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/min_max.test.cpp
+  - test/mytest/summax_add.test.cpp
   - test/mytest/online_pow.test.cpp
   - test/mytest/cntsummin_add.test.cpp
   - test/mytest/minidx_add.test.cpp
@@ -387,10 +388,10 @@ data:
   - test/mytest/max_max.test.cpp
   - test/mytest/range_mex.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
+  - test/mytest/summax_assign.test.cpp
   - test/mytest/online_exp.test.cpp
   - test/mytest/splay_monoid.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
-  - test/mytest/cntsummax_assign.test.cpp
   - test/mytest/online_inv.test.cpp
   - test/mytest/splay_cm.test.cpp
   - test/mytest/conv_leq.test.cpp
@@ -420,7 +421,6 @@ data:
   - test/mytest/stern_brocot.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/binom.test.cpp
-  - test/mytest/cntsummax_add.test.cpp
   - test/mytest/tournament.test.cpp
   - test/mytest/rbst_test.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
