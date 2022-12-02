@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "random/base.hpp"
 
-#include "ds/query/powerquery.hpp"
+#include "ds/powerquery.hpp"
 #include "mod/modint.hpp"
 
 using mint = modint998;
