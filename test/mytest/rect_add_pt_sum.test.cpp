@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "random/base.hpp"
 
-#include "ds/query/rectangle_add_point_sum.hpp"
+#include "ds/offline_query/rectangle_add_point_sum.hpp"
 #include "mod/modint.hpp"
 
 using mint = modint998;
