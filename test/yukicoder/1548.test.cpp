@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"
-#include "ds/lazysegtree.hpp"
+#include "ds/segtree/lazysegtree.hpp"
 #include "alg/acted_monoid/powersums_assign.hpp"
 
 using mint = modint998;
