@@ -1,7 +1,7 @@
 #pragma once
 
 template <typename E>
-struct Monoid_CntSumMin {
+struct Monoid_SumMin {
   using value_type = tuple<E, E, E>;
   using X = value_type;
   static X op(X x, X y) {
