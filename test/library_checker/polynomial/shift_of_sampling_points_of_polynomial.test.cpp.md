@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/swag.hpp
     title: ds/swag.hpp
   - icon: ':question:'

@@ -6,12 +6,12 @@ data:
     path: ds/online_uniqueproductquery.hpp
     title: ds/online_uniqueproductquery.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/pds/segtree.hpp\"\ntemplate <typename Monoid, int NODES>\n\
@@ -92,7 +92,7 @@ data:
   requiredBy:
   - ds/online_uniqueproductquery.hpp
   timestamp: '2022-10-21 16:42:45+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
 documentation_of: ds/pds/segtree.hpp
