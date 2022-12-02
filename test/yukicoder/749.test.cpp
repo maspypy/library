@@ -3,21 +3,12 @@
 #include "other/io.hpp"
 #include "mod/modint.hpp"
 #include "ds/segtree/lazysegtree.hpp"
+#include "alg/monoid/add_pair.hpp"
 
 using mint = modint107;
 
-// (a,cnt,fsum)
-struct MonoX {
-  using value_type = tuple<mint, mint, mint>;
-  using X = value_type;
-  static X op(X x, X y) {
-    auto [a, b, c] = x;
-    auto [d, e, f] = y;
-    return {a + d, b + e, c + f};
-  }
-  static constexpr X unit() { return {mint(0), mint(0), mint(0)}; }
-  static constexpr bool commute = true;
-};
+// (a, fsum)
+using MonoX = Monoid_Add_Pair<mint>;
 
 // pa + q + rf, f
 struct MonoA {
@@ -37,10 +28,10 @@ struct AM {
   using Monoid_A = MonoA;
   using X = typename Monoid_X::value_type;
   using A = typename Monoid_A::value_type;
-  static X act(const X &x, const A &a) {
-    auto [sum, cnt, fsum] = x;
+  static X act(const X &x, const A &a, const ll &size) {
+    auto [sum, fsum] = x;
     auto [p, q, r] = a;
-    return {p * sum + q * cnt + r * fsum, cnt, fsum};
+    return {p * sum + q * mint(size) + r * fsum, fsum};
   }
 };
 
@@ -49,21 +40,18 @@ void solve() {
   vc<mint> F(N);
   F[1] = 1;
   FOR3(i, 2, N) F[i] = F[i - 2] + F[i - 1];
-  LazySegTree<AM> seg(N);
-  FOR(i, N) seg.set(i, {mint(0), mint(1), F[i]});
+  LazySegTree<AM> seg(N, [&](int i) -> typename MonoX::value_type {
+    return {mint(0), F[i]};
+  });
 
   FOR(Q) {
     LL(t, L, R, k);
-    mint mk = k;
     ++R;
-    if (t == 0) {
-      auto [sum, cnt, fsum] = seg.prod(L, R);
-      print(sum * mk);
-    }
-    if (t == 1) { seg.apply(L, R, {mint(0), mk, mint(0)}); }
-    if (t == 2) { seg.apply(L, R, {mint(1), mk, mint(0)}); }
-    if (t == 3) { seg.apply(L, R, {mk, mint(0), mint(0)}); }
-    if (t == 4) { seg.apply(L, R, {mint(1), mint(0), mk}); }
+    if (t == 0) { print(seg.prod(L, R).fi * mint(k)); }
+    if (t == 1) { seg.apply(L, R, {mint(0), mint(k), mint(0)}); }
+    if (t == 2) { seg.apply(L, R, {mint(1), mint(k), mint(0)}); }
+    if (t == 3) { seg.apply(L, R, {mint(k), mint(0), mint(0)}); }
+    if (t == 4) { seg.apply(L, R, {mint(1), mint(0), mint(k)}); }
   }
 }
 

@@ -9,7 +9,7 @@ struct ActedMonoid_Power_Sums_Assign {
   using Monoid_A = Monoid_Assign<int, -1>;
   using X = typename Monoid_X::value_type;
   using A = typename Monoid_A::value_type;
-  static X act(const X &x, const A &b) {
+  static constexpr X act(const X &x, const A &a, const ll &size) {
     if (b == -1) return x;
     X y;
     mint pow = 1;
