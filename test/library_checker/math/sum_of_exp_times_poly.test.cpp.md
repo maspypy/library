@@ -40,17 +40,17 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp.hpp
     title: seq/interpolate_poly_exp.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial
@@ -605,20 +605,20 @@ data:
     \      ll i = pp;\r\n      while (i <= N) {\r\n        f[i] *= xp;\r\n       \
     \ i += pp;\r\n      }\r\n      pp *= p;\r\n    }\r\n  }\r\n  return f;\r\n}\r\n\
     #line 7 \"test/library_checker/math/sum_of_exp_times_poly.test.cpp\"\n\r\nusing\
-    \ mint = modint998;\r\nvoid solve() {\r\n  mint r;\r\n  scanner.read(r);\r\n \
-    \ LL(d, n);\r\n  int L = d + 5;\r\n  vc<mint> a = powertable_2<mint>(d, L - 1);\r\
-    \n  mint p = 1;\r\n  FOR(i, L) {\r\n    a[i] *= p;\r\n    p *= r;\r\n  }\r\n \
-    \ a = cumsum<mint>(a, 0);\r\n  if (n == 0) return print(0);\r\n  print(interpolate_poly_exp_sum(a,\
+    \ mint = modint998;\r\nvoid solve() {\r\n  mint r;\r\n  read(r);\r\n  LL(d, n);\r\
+    \n  int L = d + 5;\r\n  vc<mint> a = powertable_2<mint>(d, L - 1);\r\n  mint p\
+    \ = 1;\r\n  FOR(i, L) {\r\n    a[i] *= p;\r\n    p *= r;\r\n  }\r\n  a = cumsum<mint>(a,\
+    \ 0);\r\n  if (n == 0) return print(0);\r\n  print(interpolate_poly_exp_sum(a,\
     \ r, n - 1));\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n\
     }\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"seq/interpolate_poly_exp_sum.hpp\"\
     \r\n#include \"mod/powertable.hpp\"\r\n\r\nusing mint = modint998;\r\nvoid solve()\
-    \ {\r\n  mint r;\r\n  scanner.read(r);\r\n  LL(d, n);\r\n  int L = d + 5;\r\n\
-    \  vc<mint> a = powertable_2<mint>(d, L - 1);\r\n  mint p = 1;\r\n  FOR(i, L)\
-    \ {\r\n    a[i] *= p;\r\n    p *= r;\r\n  }\r\n  a = cumsum<mint>(a, 0);\r\n \
-    \ if (n == 0) return print(0);\r\n  print(interpolate_poly_exp_sum(a, r, n - 1));\r\
-    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ {\r\n  mint r;\r\n  read(r);\r\n  LL(d, n);\r\n  int L = d + 5;\r\n  vc<mint>\
+    \ a = powertable_2<mint>(d, L - 1);\r\n  mint p = 1;\r\n  FOR(i, L) {\r\n    a[i]\
+    \ *= p;\r\n    p *= r;\r\n  }\r\n  a = cumsum<mint>(a, 0);\r\n  if (n == 0) return\
+    \ print(0);\r\n  print(interpolate_poly_exp_sum(a, r, n - 1));\r\n}\r\n\r\nsigned\
+    \ main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -638,8 +638,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
   requiredBy: []
-  timestamp: '2022-12-03 01:16:40+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-03 05:45:34+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/sum_of_exp_times_poly.test.cpp
 layout: document

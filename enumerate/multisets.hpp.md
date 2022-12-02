@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/enumerate_multisets.test.cpp
     title: test/mytest/enumerate_multisets.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/multisets.hpp\"\ntemplate <typename F>\r\nvoid\
@@ -26,7 +26,7 @@ data:
   path: enumerate/multisets.hpp
   requiredBy: []
   timestamp: '2022-10-21 20:37:52+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/enumerate_multisets.test.cpp
 documentation_of: enumerate/multisets.hpp
