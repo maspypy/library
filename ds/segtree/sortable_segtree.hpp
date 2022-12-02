@@ -1,5 +1,5 @@
 #include "ds/fastset.hpp"
-#include "ds/segtree.hpp"
+#include "ds/segtree/segtree.hpp"
 
 template <typename Monoid, int NODES = 4'000'000>
 struct Sortable_SegTree {
