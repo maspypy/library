@@ -1,5 +1,5 @@
 #include "graph/check_bipartite.hpp"
-#include "ds/unionfind.hpp"
+#include "ds/unionfind/unionfind.hpp"
 #include "flow/bipartite.hpp"
 
 struct RegularBipartiteColoring {

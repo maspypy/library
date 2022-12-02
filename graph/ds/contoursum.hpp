@@ -1,4 +1,4 @@
-#include "ds/fenwick.hpp"
+#include "ds/fenwick/fenwick.hpp"
 
 // 点加算、距離区間での和
 template <typename GT, typename AbelGroup>

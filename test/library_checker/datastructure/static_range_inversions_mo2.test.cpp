@@ -2,8 +2,8 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/fenwick.hpp"
-#include "ds/query/rollback_mo.hpp"
+#include "ds/fenwick/fenwick.hpp"
+#include "ds/offline_query/rollback_mo.hpp"
 
 void solve() {
   LL(N, Q);
