@@ -30,10 +30,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/ARC30D.test.cpp
     title: test/mytest/ARC30D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/cf702_F.test.cpp
     title: test/mytest/cf702_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/cf702_F_splay.test.cpp
     title: test/mytest/cf702_F_splay.test.cpp
   - icon: ':x:'

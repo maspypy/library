@@ -33,7 +33,7 @@ data:
     path: poly/online/online_pow.hpp
     title: poly/online/online_pow.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/online_division.test.cpp
     title: test/mytest/online_division.test.cpp
   - icon: ':x:'
@@ -47,7 +47,7 @@ data:
     title: test/mytest/online_pow.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n\
@@ -381,7 +381,7 @@ data:
   - poly/online/online_pow.hpp
   - poly/online/online_log.hpp
   timestamp: '2022-12-02 03:30:03+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/online_pow.test.cpp
   - test/mytest/online_log.test.cpp
