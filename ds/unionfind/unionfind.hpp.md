@@ -48,6 +48,9 @@ data:
   - icon: ':x:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/persistent_unionfind.test.cpp
+    title: test/library_checker/datastructure/persistent_unionfind.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
@@ -162,6 +165,7 @@ data:
   - test/yukicoder/1170_2.test.cpp
   - test/yukicoder/1744.test.cpp
   - test/mytest/tutte.test.cpp
+  - test/library_checker/datastructure/persistent_unionfind.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
   - test/atcoder/abc270_f.test.cpp

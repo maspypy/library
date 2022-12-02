@@ -10,6 +10,12 @@ data:
     path: test/atcoder/abc266h_2.test.cpp
     title: test/atcoder/abc266h_2.test.cpp
   - icon: ':x:'
+    path: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
+    title: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
+    title: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1216.test.cpp
     title: test/yukicoder/1216.test.cpp
   - icon: ':x:'
@@ -161,6 +167,8 @@ data:
   - test/yukicoder/1216.test.cpp
   - test/yukicoder/1216_2.test.cpp
   - test/yukicoder/1919.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
+  - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   - test/atcoder/abc266h_2.test.cpp
 documentation_of: ds/fenwick/fenwick2d.hpp
 layout: document

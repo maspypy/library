@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: ds/pds/rollbackarray.hpp
     title: ds/pds/rollbackarray.hpp
   _extendedRequiredBy: []

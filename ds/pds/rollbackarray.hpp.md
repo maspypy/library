@@ -2,16 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: ds/unionfind/rollbackunionfind.hpp
     title: ds/unionfind/rollbackunionfind.hpp
   - icon: ':warning:'
     path: ds/unionfind/rollbackweighteduf.hpp
     title: ds/unionfind/rollbackweighteduf.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/library_checker/datastructure/add_remove_query.test.cpp
+    title: test/library_checker/datastructure/add_remove_query.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
+    title: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/pds/rollbackarray.hpp\"\n\r\ntemplate <typename T>\r\n\
@@ -41,8 +47,10 @@ data:
   - ds/unionfind/rollbackweighteduf.hpp
   - ds/unionfind/rollbackunionfind.hpp
   timestamp: '2022-11-23 08:10:34+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/library_checker/datastructure/add_remove_query.test.cpp
+  - test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
 documentation_of: ds/pds/rollbackarray.hpp
 layout: document
 redirect_from:

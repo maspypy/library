@@ -5,10 +5,16 @@ data:
     path: alg/monoid/min_idx.hpp
     title: alg/monoid/min_idx.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
+    title: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
+    title: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/min_idx.hpp\"\n\r\ntemplate <typename T, bool\
@@ -108,8 +114,10 @@ data:
   path: ds/func/dynamic_lichao.hpp
   requiredBy: []
   timestamp: '2022-12-01 18:20:22+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
+  - test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
 documentation_of: ds/func/dynamic_lichao.hpp
 layout: document
 redirect_from:

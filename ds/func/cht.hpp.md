@@ -3,9 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc244h.test.cpp
     title: test/atcoder/abc244h.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/line_add_get_min.test.cpp
+    title: test/library_checker/datastructure/line_add_get_min.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1297.test.cpp
     title: test/yukicoder/1297.test.cpp
@@ -14,7 +17,7 @@ data:
     title: test/yukicoder/2012.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/func/cht.hpp\"\n\r\ntemplate <typename T>\r\nstruct Line\
@@ -95,10 +98,11 @@ data:
   path: ds/func/cht.hpp
   requiredBy: []
   timestamp: '2022-12-01 18:20:22+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/2012.test.cpp
   - test/yukicoder/1297.test.cpp
+  - test/library_checker/datastructure/line_add_get_min.test.cpp
   - test/atcoder/abc244h.test.cpp
 documentation_of: ds/func/cht.hpp
 layout: document

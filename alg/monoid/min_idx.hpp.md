@@ -5,7 +5,7 @@ data:
   - icon: ':warning:'
     path: alg/acted_monoid/minidx_add.hpp
     title: alg/acted_monoid/minidx_add.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: ds/func/dynamic_lichao.hpp
     title: ds/func/dynamic_lichao.hpp
   - icon: ':warning:'
@@ -18,6 +18,12 @@ data:
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
+    title: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
+    title: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
   - icon: ':x:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
@@ -54,6 +60,8 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/suffix_tree.test.cpp
+  - test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
+  - test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
 documentation_of: alg/monoid/min_idx.hpp
 layout: document
 redirect_from:
