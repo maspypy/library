@@ -1,4 +1,4 @@
-#include "ds/unionfind.hpp"
+#include "ds/unionfind/unionfind.hpp"
 
 // Brouvka
 // 陽にグラフを作らず、何らかのデータ構造で未訪問の行き先を探す想定。

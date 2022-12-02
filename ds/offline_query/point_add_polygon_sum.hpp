@@ -1,4 +1,4 @@
-#include "ds/fenwick.hpp"
+#include "ds/fenwick/fenwick.hpp"
 
 /*
 polygon は不等式 aix + biy >= ci により渡す。
