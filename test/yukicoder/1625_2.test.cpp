@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1625"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/segtree2d.hpp"
+#include "ds/segtree/segtree2d.hpp"
 #include "alg/monoid/max.hpp"
 
 void solve() {

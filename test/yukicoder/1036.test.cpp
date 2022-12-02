@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1036"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/dynamic_segtree.hpp"
+#include "ds/segtree/dynamic_segtree.hpp"
 #include "alg/monoid/gcd.hpp"
 
 void solve() {

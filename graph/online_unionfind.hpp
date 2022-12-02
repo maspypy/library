@@ -1,4 +1,4 @@
-#include "ds/unionfind.hpp"
+#include "ds/unionfind/unionfind.hpp"
 
 // 頂点を削除しながら、適当なデータ構造により次の辺を探す。
 // 中身はただの bfs しているので、01 最短路にも流用可能
