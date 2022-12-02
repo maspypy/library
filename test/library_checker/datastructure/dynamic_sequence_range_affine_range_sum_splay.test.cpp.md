@@ -10,10 +10,10 @@ data:
   - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/splay/splaytree.hpp
     title: ds/splay/splaytree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/splay/splaytree_acted_monoid.hpp
     title: ds/splay/splaytree_acted_monoid.hpp
   - icon: ':question:'

@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/splay/splaytree.hpp
     title: ds/splay/splaytree.hpp
   - icon: ':heavy_check_mark:'
