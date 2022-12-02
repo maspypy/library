@@ -52,7 +52,7 @@ struct LazySegTree {
     if (k < size) laz[k] = Monoid_A::op(laz[k], a);
   }
 
-  void push(int k) {
+  void push(int k, int sz) {
     all_apply(2 * k, laz[k]);
     all_apply(2 * k + 1, laz[k]);
     laz[k] = Monoid_A::unit();
@@ -61,7 +61,7 @@ struct LazySegTree {
   void set(int p, X x) {
     assert(0 <= p && p < n);
     p += size;
-    for (int i = log; i >= 1; i--) push(p >> i);
+    for (int i = log; i >= 1; i--) push(p >> i, 1 << i);
     dat[p] = x;
     for (int i = 1; i <= log; i++) update(p >> i);
   }
@@ -69,14 +69,16 @@ struct LazySegTree {
   X get(int p) {
     assert(0 <= p && p < n);
     p += size;
-    for (int i = log; i >= 1; i--) push(p >> i);
+    for (int i = log; i >= 1; i--) push(p >> i, 1 << i);
     return dat[p];
   }
 
+  /*
   vc<X> get_all() {
     FOR(i, size) push(i);
     return {dat.begin() + size, dat.begin() + size + n};
   }
+  */
 
   X prod(int l, int r) {
     assert(0 <= l && l <= r && r <= n);
@@ -86,8 +88,8 @@ struct LazySegTree {
     r += size;
 
     for (int i = log; i >= 1; i--) {
-      if (((l >> i) << i) != l) push(l >> i);
-      if (((r >> i) << i) != r) push((r - 1) >> i);
+      if (((l >> i) << i) != l) push(l >> i, 1 << i);
+      if (((r >> i) << i) != r) push((r - 1) >> i, 1 << i);
     }
 
     X xl = Monoid_X::unit(), xr = Monoid_X::unit();
@@ -118,8 +120,8 @@ struct LazySegTree {
     r += size;
 
     for (int i = log; i >= 1; i--) {
-      if (((l >> i) << i) != l) push(l >> i);
-      if (((r >> i) << i) != r) push((r - 1) >> i);
+      if (((l >> i) << i) != l) push(l >> i, 1 << i);
+      if (((r >> i) << i) != r) push((r - 1) >> i, 1 << i);
     }
 
     {
@@ -140,6 +142,7 @@ struct LazySegTree {
     }
   }
 
+  /*
   template <typename C>
   int max_right(C& check, int l) {
     assert(0 <= l && l <= n);
@@ -193,4 +196,5 @@ struct LazySegTree {
     } while ((r & -r) != r);
     return 0;
   }
+  */
 };
