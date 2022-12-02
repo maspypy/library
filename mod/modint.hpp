@@ -119,6 +119,8 @@ struct ArbitraryModInt {
     }
     return ret;
   }
+  void write() { fastio::printer.write(val); }
+  void read() { fastio::scanner.read(val); }
 };
 
 template <typename mint>
