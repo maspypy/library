@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "alg/acted_monoid/max_assign.hpp"
 #include "random/base.hpp"
-#include "ds/lazysegtree.hpp"
+#include "ds/segtree/lazysegtree.hpp"
 
 void test() {
   int N = RNG(1, 100);

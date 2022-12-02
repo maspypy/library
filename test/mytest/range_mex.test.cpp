@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "random/base.hpp"
 
-#include "ds/query/range_mex_query.hpp"
+#include "ds/offline_query/range_mex_query.hpp"
 
 pair<vc<int>, vc<pi>> gen(int N, int LIM, int Q) {
   vc<int> A(N);
