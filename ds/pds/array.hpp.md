@@ -6,15 +6,15 @@ data:
     path: ds/unionfind/persistent_unionfind.hpp
     title: ds/unionfind/persistent_unionfind.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc273_e.test.cpp
     title: test/atcoder/abc273_e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/persistent_queue.test.cpp
     title: test/library_checker/datastructure/persistent_queue.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/pds/array.hpp\"\n\r\ntemplate <typename T, int shift\
@@ -58,7 +58,7 @@ data:
   requiredBy:
   - ds/unionfind/persistent_unionfind.hpp
   timestamp: '2022-10-21 16:42:45+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/persistent_queue.test.cpp
   - test/atcoder/abc273_e.test.cpp

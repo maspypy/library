@@ -34,13 +34,13 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   - icon: ':question:'

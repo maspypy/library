@@ -8,23 +8,23 @@ data:
   - icon: ':x:'
     path: linalg/mat_pow.hpp
     title: linalg/mat_pow.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   - icon: ':x:'
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc276_g.test.cpp
     title: test/atcoder/abc276_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc276_g_2.test.cpp
     title: test/atcoder/abc276_g_2.test.cpp
   - icon: ':heavy_check_mark:'

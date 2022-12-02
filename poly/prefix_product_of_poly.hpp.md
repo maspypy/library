@@ -25,27 +25,27 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
   - icon: ':x:'
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc276_g.test.cpp
     title: test/atcoder/abc276_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc276_g_2.test.cpp
     title: test/atcoder/abc276_g_2.test.cpp
   - icon: ':x:'
@@ -59,7 +59,7 @@ data:
     title: test/yukicoder/502_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/noshi91/n91lib_rs/blob/master/src/algorithm/polynomial_matrix_prod.rs
@@ -479,7 +479,7 @@ data:
   - poly/sparse_exp_of_div.hpp
   - seq/kth_term_of_p_recursive.hpp
   timestamp: '2022-12-02 06:10:25+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/502_2.test.cpp

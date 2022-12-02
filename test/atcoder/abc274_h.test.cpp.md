@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/GF2.hpp
     title: nt/GF2.hpp
   - icon: ':question:'
@@ -13,14 +13,14 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/rollinghash_field.hpp
     title: string/rollinghash_field.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc274/tasks/abc274_Ex
@@ -302,7 +302,7 @@ data:
   path: test/atcoder/abc274_h.test.cpp
   requiredBy: []
   timestamp: '2022-12-02 07:07:57+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/abc274_h.test.cpp
 layout: document
