@@ -11,17 +11,19 @@ void solve() {
   LL(N);
   mint ANS = 0;
   ll LIM = integer_kth_root(2, N) + 1;
-  auto f = [&](ll i) -> ll {
-    ll res = 0;
-    ll n = N;
-    while (n) {
-      res += n % i;
-      n /= i;
+  {
+    auto f = [&](ll i) -> ll {
+      ll res = 0;
+      ll n = N;
+      while (n) {
+        res += n % i;
+        n /= i;
+      }
+      return res;
+    };
+    FOR(i, 2, LIM) {
+      if (i <= N) ANS += mint(f(i));
     }
-    return res;
-  };
-  FOR(i, 2, LIM) {
-    if (i <= N) ANS += mint(f(i));
   }
 
   auto f = [&](ll q, ll l, ll r) -> void {
