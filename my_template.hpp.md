@@ -154,9 +154,6 @@ data:
     path: test/aoj/GRL_3_B.test.cpp
     title: test/aoj/GRL_3_B.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_5_E.test.cpp
-    title: test/aoj/GRL_5_E.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_6_A.test.cpp
     title: test/aoj/GRL_6_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -760,9 +757,6 @@ data:
     path: test/library_checker/tree/tree_diameter.test.cpp
     title: test/library_checker/tree/tree_diameter.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/ARC30D.test.cpp
-    title: test/mytest/ARC30D.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/add_chmin.test.cpp
     title: test/mytest/add_chmin.test.cpp
   - icon: ':heavy_check_mark:'
@@ -934,9 +928,6 @@ data:
     path: test/mytest/rbst_am.test.cpp
     title: test/mytest/rbst_am.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_am_2.test.cpp
-    title: test/mytest/rbst_am_2.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_am_persistent.test.cpp
     title: test/mytest/rbst_am_persistent.test.cpp
   - icon: ':heavy_check_mark:'
@@ -966,9 +957,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/splay.test.cpp
     title: test/mytest/splay.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/splay_am.test.cpp
-    title: test/mytest/splay_am.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/splay_cm.test.cpp
     title: test/mytest/splay_cm.test.cpp
@@ -1050,9 +1038,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1170_2.test.cpp
     title: test/yukicoder/1170_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1197.test.cpp
-    title: test/yukicoder/1197.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1201.test.cpp
     title: test/yukicoder/1201.test.cpp
@@ -1368,16 +1353,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/187.test.cpp
     title: test/yukicoder/187.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1874.test.cpp
     title: test/yukicoder/1874.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1875.test.cpp
     title: test/yukicoder/1875.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1881.test.cpp
     title: test/yukicoder/1881.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1891.test.cpp
     title: test/yukicoder/1891.test.cpp
   - icon: ':x:'
@@ -1456,9 +1441,6 @@ data:
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/235.test.cpp
-    title: test/yukicoder/235.test.cpp
-  - icon: ':x:'
     path: test/yukicoder/255.test.cpp
     title: test/yukicoder/255.test.cpp
   - icon: ':x:'
@@ -1521,9 +1503,6 @@ data:
   - icon: ':x:'
     path: test/yukicoder/789.test.cpp
     title: test/yukicoder/789.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/789_2.test.cpp
-    title: test/yukicoder/789_2.test.cpp
   - icon: ':x:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
@@ -1735,7 +1714,6 @@ data:
   - test/yukicoder/1881.test.cpp
   - test/yukicoder/1216.test.cpp
   - test/yukicoder/779.test.cpp
-  - test/yukicoder/235.test.cpp
   - test/yukicoder/1036_2.test.cpp
   - test/yukicoder/1666.test.cpp
   - test/yukicoder/1260.test.cpp
@@ -1797,7 +1775,6 @@ data:
   - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/1625.test.cpp
   - test/yukicoder/1293.test.cpp
-  - test/yukicoder/789_2.test.cpp
   - test/yukicoder/1676.test.cpp
   - test/yukicoder/2109.test.cpp
   - test/yukicoder/426.test.cpp
@@ -1874,7 +1851,6 @@ data:
   - test/yukicoder/1036_3.test.cpp
   - test/yukicoder/1718.test.cpp
   - test/yukicoder/2102.test.cpp
-  - test/yukicoder/1197.test.cpp
   - test/yukicoder/1533.test.cpp
   - test/mytest/minplus_convex.test.cpp
   - test/mytest/factorial_998.test.cpp
@@ -1923,7 +1899,6 @@ data:
   - test/mytest/rbst_monoid.test.cpp
   - test/mytest/rbst.test.cpp
   - test/mytest/magic_square.test.cpp
-  - test/mytest/splay_am.test.cpp
   - test/mytest/max_min.test.cpp
   - test/mytest/rbst_commutative_persistent.test.cpp
   - test/mytest/enumerate_products.test.cpp
@@ -1947,11 +1922,9 @@ data:
   - test/mytest/stern_brocot.test.cpp
   - test/mytest/primesum_mod4.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
-  - test/mytest/rbst_am_2.test.cpp
   - test/mytest/binom.test.cpp
   - test/mytest/cntsummax_add.test.cpp
   - test/mytest/tournament.test.cpp
-  - test/mytest/ARC30D.test.cpp
   - test/mytest/rbst_test.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
@@ -2170,7 +2143,6 @@ data:
   - test/aoj/ITP1_D_D.test.cpp
   - test/aoj/2251_2.test.cpp
   - test/aoj/DPL_4_B.test.cpp
-  - test/aoj/GRL_5_E.test.cpp
   - test/aoj/1566.test.cpp
   - test/aoj/ITP1_11_A.test.cpp
   - test/aoj/ITP2_3_B.test.cpp

@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/dualtreemonoid.hpp
     title: graph/ds/dualtreemonoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/lazytreemonoid.hpp
     title: graph/ds/lazytreemonoid.hpp
   - icon: ':heavy_check_mark:'
@@ -61,9 +61,6 @@ data:
     path: test/aoj/GRL_3_B.test.cpp
     title: test/aoj/GRL_3_B.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_5_E.test.cpp
-    title: test/aoj/GRL_5_E.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc266f.test.cpp
     title: test/atcoder/abc266f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -108,9 +105,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/lca_directed.test.cpp
     title: test/library_checker/tree/lca_directed.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1197.test.cpp
-    title: test/yukicoder/1197.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1211.test.cpp
     title: test/yukicoder/1211.test.cpp
@@ -171,9 +165,6 @@ data:
   - icon: ':x:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/235.test.cpp
-    title: test/yukicoder/235.test.cpp
   - icon: ':x:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
@@ -395,7 +386,6 @@ data:
   - test/yukicoder/1295.test.cpp
   - test/yukicoder/1524.test.cpp
   - test/yukicoder/1216.test.cpp
-  - test/yukicoder/235.test.cpp
   - test/yukicoder/1983.test.cpp
   - test/yukicoder/1778.test.cpp
   - test/yukicoder/2122.test.cpp
@@ -414,7 +404,6 @@ data:
   - test/yukicoder/1212.test.cpp
   - test/yukicoder/1418.test.cpp
   - test/yukicoder/1718.test.cpp
-  - test/yukicoder/1197.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
@@ -432,7 +421,6 @@ data:
   - test/atcoder/abc266f.test.cpp
   - test/aoj/GRL_2_A.test.cpp
   - test/aoj/2677.test.cpp
-  - test/aoj/GRL_5_E.test.cpp
   - test/aoj/2995.test.cpp
   - test/aoj/GRL_3_B.test.cpp
 documentation_of: graph/tree.hpp

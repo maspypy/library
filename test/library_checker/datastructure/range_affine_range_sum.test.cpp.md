@@ -247,100 +247,102 @@ data:
     \ size) update(i);\n  }\n\n  void update(int k) { dat[k] = Monoid_X::op(dat[2\
     \ * k], dat[2 * k + 1]); }\n\n  void all_apply(int k, A a) {\n    dat[k] = ActedMonoid::act(dat[k],\
     \ a);\n    if (k < size) laz[k] = Monoid_A::op(laz[k], a);\n  }\n\n  void push(int\
-    \ k) {\n    all_apply(2 * k, laz[k]);\n    all_apply(2 * k + 1, laz[k]);\n   \
-    \ laz[k] = Monoid_A::unit();\n  }\n\n  void set(int p, X x) {\n    assert(0 <=\
-    \ p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n\
-    \    dat[p] = x;\n    for (int i = 1; i <= log; i++) update(p >> i);\n  }\n\n\
-    \  X get(int p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int\
-    \ i = log; i >= 1; i--) push(p >> i);\n    return dat[p];\n  }\n\n  vc<X> get_all()\
-    \ {\n    FOR(i, size) push(i);\n    return {dat.begin() + size, dat.begin() +\
-    \ size + n};\n  }\n\n  X prod(int l, int r) {\n    assert(0 <= l && l <= r &&\
-    \ r <= n);\n    if (l == r) return Monoid_X::unit();\n\n    l += size;\n    r\
-    \ += size;\n\n    for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i)\
-    \ != l) push(l >> i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n \
-    \   }\n\n    X xl = Monoid_X::unit(), xr = Monoid_X::unit();\n    while (l < r)\
-    \ {\n      if (l & 1) xl = Monoid_X::op(xl, dat[l++]);\n      if (r & 1) xr =\
-    \ Monoid_X::op(dat[--r], xr);\n      l >>= 1;\n      r >>= 1;\n    }\n\n    return\
-    \ Monoid_X::op(xl, xr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  void apply(int\
-    \ p, A a) {\n    assert(0 <= p && p < n);\n    p += size;\n    dat[p] = ActedMonoid::act(dat[p],\
-    \ a);\n    for (int i = 1; i <= log; i++) update(p >> i);\n  }\n\n  void apply(int\
-    \ l, int r, A a) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n\
+    \ k, int sz) {\n    all_apply(2 * k, laz[k]);\n    all_apply(2 * k + 1, laz[k]);\n\
+    \    laz[k] = Monoid_A::unit();\n  }\n\n  void set(int p, X x) {\n    assert(0\
+    \ <= p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--) push(p >>\
+    \ i, 1 << i);\n    dat[p] = x;\n    for (int i = 1; i <= log; i++) update(p >>\
+    \ i);\n  }\n\n  X get(int p) {\n    assert(0 <= p && p < n);\n    p += size;\n\
+    \    for (int i = log; i >= 1; i--) push(p >> i, 1 << i);\n    return dat[p];\n\
+    \  }\n\n  /*\n  vc<X> get_all() {\n    FOR(i, size) push(i);\n    return {dat.begin()\
+    \ + size, dat.begin() + size + n};\n  }\n  */\n\n  X prod(int l, int r) {\n  \
+    \  assert(0 <= l && l <= r && r <= n);\n    if (l == r) return Monoid_X::unit();\n\
     \n    l += size;\n    r += size;\n\n    for (int i = log; i >= 1; i--) {\n   \
-    \   if (((l >> i) << i) != l) push(l >> i);\n      if (((r >> i) << i) != r) push((r\
-    \ - 1) >> i);\n    }\n\n    {\n      int l2 = l, r2 = r;\n      while (l < r)\
-    \ {\n        if (l & 1) all_apply(l++, a);\n        if (r & 1) all_apply(--r,\
+    \   if (((l >> i) << i) != l) push(l >> i, 1 << i);\n      if (((r >> i) << i)\
+    \ != r) push((r - 1) >> i, 1 << i);\n    }\n\n    X xl = Monoid_X::unit(), xr\
+    \ = Monoid_X::unit();\n    while (l < r) {\n      if (l & 1) xl = Monoid_X::op(xl,\
+    \ dat[l++]);\n      if (r & 1) xr = Monoid_X::op(dat[--r], xr);\n      l >>= 1;\n\
+    \      r >>= 1;\n    }\n\n    return Monoid_X::op(xl, xr);\n  }\n\n  X prod_all()\
+    \ { return dat[1]; }\n\n  void apply(int p, A a) {\n    assert(0 <= p && p < n);\n\
+    \    p += size;\n    dat[p] = ActedMonoid::act(dat[p], a);\n    for (int i = 1;\
+    \ i <= log; i++) update(p >> i);\n  }\n\n  void apply(int l, int r, A a) {\n \
+    \   assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n\n    l += size;\n\
+    \    r += size;\n\n    for (int i = log; i >= 1; i--) {\n      if (((l >> i) <<\
+    \ i) != l) push(l >> i, 1 << i);\n      if (((r >> i) << i) != r) push((r - 1)\
+    \ >> i, 1 << i);\n    }\n\n    {\n      int l2 = l, r2 = r;\n      while (l <\
+    \ r) {\n        if (l & 1) all_apply(l++, a);\n        if (r & 1) all_apply(--r,\
     \ a);\n        l >>= 1;\n        r >>= 1;\n      }\n      l = l2;\n      r = r2;\n\
     \    }\n\n    for (int i = 1; i <= log; i++) {\n      if (((l >> i) << i) != l)\
     \ update(l >> i);\n      if (((r >> i) << i) != r) update((r - 1) >> i);\n   \
-    \ }\n  }\n\n  template <typename C>\n  int max_right(C& check, int l) {\n    assert(0\
-    \ <= l && l <= n);\n    assert(check(Monoid_X::unit()));\n    if (l == n) return\
-    \ n;\n    l += size;\n    for (int i = log; i >= 1; i--) push(l >> i);\n    X\
-    \ sm = Monoid_X::unit();\n    do {\n      while (l % 2 == 0) l >>= 1;\n      if\
-    \ (!check(Monoid_X::op(sm, dat[l]))) {\n        while (l < size) {\n         \
-    \ push(l);\n          l = (2 * l);\n          if (check(Monoid_X::op(sm, dat[l])))\
-    \ {\n            sm = Monoid_X::op(sm, dat[l]);\n            l++;\n          }\n\
-    \        }\n        return l - size;\n      }\n      sm = Monoid_X::op(sm, dat[l]);\n\
-    \      l++;\n    } while ((l & -l) != l);\n    return n;\n  }\n\n  template <typename\
-    \ C>\n  int min_left(C& check, int r) {\n    assert(0 <= r && r <= n);\n    assert(check(Monoid_X::unit()));\n\
-    \    if (r == 0) return 0;\n    r += size;\n    for (int i = log; i >= 1; i--)\
-    \ push((r - 1) >> i);\n    X sm = Monoid_X::unit();\n    do {\n      r--;\n  \
-    \    while (r > 1 && (r % 2)) r >>= 1;\n      if (!check(Monoid_X::op(dat[r],\
-    \ sm))) {\n        while (r < size) {\n          push(r);\n          r = (2 *\
-    \ r + 1);\n          if (check(Monoid_X::op(dat[r], sm))) {\n            sm =\
-    \ Monoid_X::op(dat[r], sm);\n            r--;\n          }\n        }\n      \
-    \  return r + 1 - size;\n      }\n      sm = Monoid_X::op(dat[r], sm);\n    }\
-    \ while ((r & -r) != r);\n    return 0;\n  }\n};\n#line 2 \"mod/modint.hpp\"\n\
-    \ntemplate <int mod>\nstruct modint {\n  int val;\n  constexpr modint(const ll\
-    \ val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val) % mod) %\
-    \ mod) {}\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
-    \  } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
-    \ += p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator-=(const\
-    \ modint &p) {\n    if ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n\
-    \  }\n  modint &operator*=(const modint &p) {\n    val = (int)(1LL * val * p.val\
-    \ % mod);\n    return *this;\n  }\n  modint &operator/=(const modint &p) {\n \
-    \   *this *= p.inverse();\n    return *this;\n  }\n  modint operator-() const\
-    \ { return modint(-val); }\n  modint operator+(const modint &p) const { return\
-    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
-    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
-    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
-    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
-    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
-    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
-    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
-    \ return modint(u);\n  }\n  modint pow(int64_t n) const {\n    modint ret(1),\
-    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
-    \      n >>= 1;\n    }\n    return ret;\n  }\n  void write() { fastio::printer.write(val);\
-    \ }\n  void read() { fastio::scanner.read(val); }\n  static constexpr int get_mod()\
-    \ { return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr bool is_modint\
-    \ = true;\n  int val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t\
-    \ y)\n      : val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y)\
-    \ % get_mod()) % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other)\
-    \ const {\n    return val < other.val;\n  } // To use std::map<ArbitraryModInt,\
-    \ T>\n  static int &get_mod() {\n    static int mod = 0;\n    return mod;\n  }\n\
-    \  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
-    \ ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
-    \    return *this;\n  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p)\
-    \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
-    \ *this;\n  }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n   \
-    \ long long a = (long long)val * p.val;\n    int xh = (int)(a >> 32), xl = (int)a,\
-    \ d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"(m) : \"d\"(xh), \"a\"\
-    (xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n  }\n  ArbitraryModInt\
-    \ &operator/=(const ArbitraryModInt &p) {\n    *this *= p.inverse();\n    return\
-    \ *this;\n  }\n  ArbitraryModInt operator-() const { return ArbitraryModInt(get_mod()\
-    \ - val); }\n  ArbitraryModInt operator+(const ArbitraryModInt &p) const {\n \
-    \   return ArbitraryModInt(*this) += p;\n  }\n  ArbitraryModInt operator-(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) -= p;\n  }\n\
-    \  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
-    \ *= p;\n  }\n  ArbitraryModInt operator/(const ArbitraryModInt &p) const {\n\
-    \    return ArbitraryModInt(*this) /= p;\n  }\n  bool operator==(const ArbitraryModInt\
-    \ &p) const { return val == p.val; }\n  bool operator!=(const ArbitraryModInt\
-    \ &p) const { return val != p.val; }\n  ArbitraryModInt inverse() const {\n  \
-    \  int a = val, b = get_mod(), u = 1, v = 0, t;\n    while (b > 0) {\n      t\
-    \ = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return\
-    \ ArbitraryModInt(u);\n  }\n  ArbitraryModInt pow(int64_t n) const {\n    ArbitraryModInt\
-    \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
-    \ mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  void write() { fastio::printer.write(val);\
-    \ }\n  void read() { fastio::scanner.read(val); }\n};\n\ntemplate <typename mint>\n\
+    \ }\n  }\n\n  /*\n  template <typename C>\n  int max_right(C& check, int l) {\n\
+    \    assert(0 <= l && l <= n);\n    assert(check(Monoid_X::unit()));\n    if (l\
+    \ == n) return n;\n    l += size;\n    for (int i = log; i >= 1; i--) push(l >>\
+    \ i);\n    X sm = Monoid_X::unit();\n    do {\n      while (l % 2 == 0) l >>=\
+    \ 1;\n      if (!check(Monoid_X::op(sm, dat[l]))) {\n        while (l < size)\
+    \ {\n          push(l);\n          l = (2 * l);\n          if (check(Monoid_X::op(sm,\
+    \ dat[l]))) {\n            sm = Monoid_X::op(sm, dat[l]);\n            l++;\n\
+    \          }\n        }\n        return l - size;\n      }\n      sm = Monoid_X::op(sm,\
+    \ dat[l]);\n      l++;\n    } while ((l & -l) != l);\n    return n;\n  }\n\n \
+    \ template <typename C>\n  int min_left(C& check, int r) {\n    assert(0 <= r\
+    \ && r <= n);\n    assert(check(Monoid_X::unit()));\n    if (r == 0) return 0;\n\
+    \    r += size;\n    for (int i = log; i >= 1; i--) push((r - 1) >> i);\n    X\
+    \ sm = Monoid_X::unit();\n    do {\n      r--;\n      while (r > 1 && (r % 2))\
+    \ r >>= 1;\n      if (!check(Monoid_X::op(dat[r], sm))) {\n        while (r <\
+    \ size) {\n          push(r);\n          r = (2 * r + 1);\n          if (check(Monoid_X::op(dat[r],\
+    \ sm))) {\n            sm = Monoid_X::op(dat[r], sm);\n            r--;\n    \
+    \      }\n        }\n        return r + 1 - size;\n      }\n      sm = Monoid_X::op(dat[r],\
+    \ sm);\n    } while ((r & -r) != r);\n    return 0;\n  }\n  */\n};\n#line 2 \"\
+    mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n  int val;\n  constexpr\
+    \ modint(const ll val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod -\
+    \ (-val) % mod) % mod) {}\n  bool operator<(const modint &other) const {\n   \
+    \ return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
+    \ modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n\
+    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >=\
+    \ mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint\
+    \ &p) {\n    val = (int)(1LL * val * p.val % mod);\n    return *this;\n  }\n \
+    \ modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
+    \ *this;\n  }\n  modint operator-() const { return modint(-val); }\n  modint operator+(const\
+    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
+    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
+    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
+    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
+    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
+    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
+    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
+    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t n) const {\n\
+    \    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
+    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  void write()\
+    \ { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
+    \ }\n  static constexpr int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
+    \ {\n  static constexpr bool is_modint = true;\n  int val;\n  ArbitraryModInt()\
+    \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
+    \                   : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
+    \ ArbitraryModInt &other) const {\n    return val < other.val;\n  } // To use\
+    \ std::map<ArbitraryModInt, T>\n  static int &get_mod() {\n    static int mod\
+    \ = 0;\n    return mod;\n  }\n  static void set_mod(int md) { get_mod() = md;\
+    \ }\n  ArbitraryModInt &operator+=(const ArbitraryModInt &p) {\n    if ((val +=\
+    \ p.val) >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt\
+    \ &operator-=(const ArbitraryModInt &p) {\n    if ((val += get_mod() - p.val)\
+    \ >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt &operator*=(const\
+    \ ArbitraryModInt &p) {\n    long long a = (long long)val * p.val;\n    int xh\
+    \ = (int)(a >> 32), xl = (int)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d),\
+    \ \"=d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return\
+    \ *this;\n  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n   \
+    \ *this *= p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-()\
+    \ const { return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) += p;\n  }\n\
+    \  ArbitraryModInt operator-(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
+    \ -= p;\n  }\n  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n\
+    \    return ArbitraryModInt(*this) *= p;\n  }\n  ArbitraryModInt operator/(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) /= p;\n  }\n\
+    \  bool operator==(const ArbitraryModInt &p) const { return val == p.val; }\n\
+    \  bool operator!=(const ArbitraryModInt &p) const { return val != p.val; }\n\
+    \  ArbitraryModInt inverse() const {\n    int a = val, b = get_mod(), u = 1, v\
+    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
+    \ -= t * v, v);\n    }\n    return ArbitraryModInt(u);\n  }\n  ArbitraryModInt\
+    \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
+    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
+    \  }\n    return ret;\n  }\n  void write() { fastio::printer.write(val); }\n \
+    \ void read() { fastio::scanner.read(val); }\n};\n\ntemplate <typename mint>\n\
     mint inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
     \ dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n  while (int(dat.size())\
     \ <= n) {\n    int k = dat.size();\n    auto q = (mod + k - 1) / k;\n    int r\
@@ -407,7 +409,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-12-03 01:16:40+09:00'
+  timestamp: '2022-12-03 06:52:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_affine_range_sum.test.cpp

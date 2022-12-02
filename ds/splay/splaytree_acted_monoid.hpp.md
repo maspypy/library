@@ -12,9 +12,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/splay_am.test.cpp
-    title: test/mytest/splay_am.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -191,7 +188,6 @@ data:
   timestamp: '2022-12-01 12:32:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/splay_am.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
 documentation_of: ds/splay/splaytree_acted_monoid.hpp

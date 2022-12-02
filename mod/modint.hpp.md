@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/coef_of_rational_fps_2d.hpp
     title: poly/coef_of_rational_fps_2d.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
   - icon: ':question:'
@@ -116,13 +116,13 @@ data:
   - icon: ':question:'
     path: poly/product_of_one_plus_xn.hpp
     title: poly/product_of_one_plus_xn.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/product_of_pow_of_linear.hpp
     title: poly/product_of_pow_of_linear.hpp
   - icon: ':heavy_check_mark:'
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
   - icon: ':heavy_check_mark:'
@@ -487,9 +487,6 @@ data:
     path: test/mytest/splay.test.cpp
     title: test/mytest/splay.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/splay_am.test.cpp
-    title: test/mytest/splay_am.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/splay_cm.test.cpp
     title: test/mytest/splay_cm.test.cpp
   - icon: ':heavy_check_mark:'
@@ -630,10 +627,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1857.test.cpp
     title: test/yukicoder/1857.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1875.test.cpp
     title: test/yukicoder/1875.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1891.test.cpp
     title: test/yukicoder/1891.test.cpp
   - icon: ':x:'
@@ -669,9 +666,6 @@ data:
   - icon: ':x:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/235.test.cpp
-    title: test/yukicoder/235.test.cpp
   - icon: ':x:'
     path: test/yukicoder/310.test.cpp
     title: test/yukicoder/310.test.cpp
@@ -957,7 +951,6 @@ data:
   - test/yukicoder/1561.test.cpp
   - test/yukicoder/2003.test.cpp
   - test/yukicoder/1728.test.cpp
-  - test/yukicoder/235.test.cpp
   - test/yukicoder/1260.test.cpp
   - test/yukicoder/1760.test.cpp
   - test/yukicoder/1500.test.cpp
@@ -1024,7 +1017,6 @@ data:
   - test/mytest/powerquery.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/rbst_monoid.test.cpp
-  - test/mytest/splay_am.test.cpp
   - test/mytest/rbst_commutative_persistent.test.cpp
   - test/mytest/enumerate_products.test.cpp
   - test/mytest/online_division.test.cpp

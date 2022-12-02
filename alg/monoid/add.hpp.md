@@ -8,9 +8,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/cntminmincnt_add.hpp
     title: alg/acted_monoid/cntminmincnt_add.hpp
-  - icon: ':question:'
-    path: alg/acted_monoid/cntsum_add.hpp
-    title: alg/acted_monoid/cntsum_add.hpp
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/cntsummax_add.hpp
     title: alg/acted_monoid/cntsummax_add.hpp
@@ -32,6 +29,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/minmax_add.hpp
     title: alg/acted_monoid/minmax_add.hpp
+  - icon: ':warning:'
+    path: alg/acted_monoid/sum_add.hpp
+    title: alg/acted_monoid/sum_add.hpp
   - icon: ':question:'
     path: ds/cumsum2d.hpp
     title: ds/cumsum2d.hpp
@@ -115,9 +115,6 @@ data:
     path: test/aoj/DSL_4_A.test.cpp
     title: test/aoj/DSL_4_A.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_5_E.test.cpp
-    title: test/aoj/GRL_5_E.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc127f_1.test.cpp
     title: test/atcoder/abc127f_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -196,9 +193,6 @@ data:
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/ARC30D.test.cpp
-    title: test/mytest/ARC30D.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/cntsummax_add.test.cpp
     title: test/mytest/cntsummax_add.test.cpp
   - icon: ':heavy_check_mark:'
@@ -214,17 +208,11 @@ data:
     path: test/mytest/minmax_add.test.cpp
     title: test/mytest/minmax_add.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_am_2.test.cpp
-    title: test/mytest/rbst_am_2.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_commutative_persistent.test.cpp
     title: test/mytest/rbst_commutative_persistent.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/splay_am.test.cpp
-    title: test/mytest/splay_am.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/splay_cm.test.cpp
     title: test/mytest/splay_cm.test.cpp
@@ -240,9 +228,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1141.test.cpp
     title: test/yukicoder/1141.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1197.test.cpp
-    title: test/yukicoder/1197.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1216.test.cpp
     title: test/yukicoder/1216.test.cpp
@@ -282,7 +267,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1838.test.cpp
     title: test/yukicoder/1838.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1874.test.cpp
     title: test/yukicoder/1874.test.cpp
   - icon: ':x:'
@@ -298,9 +283,6 @@ data:
     path: test/yukicoder/2065.test.cpp
     title: test/yukicoder/2065.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/235.test.cpp
-    title: test/yukicoder/235.test.cpp
-  - icon: ':x:'
     path: test/yukicoder/655.test.cpp
     title: test/yukicoder/655.test.cpp
   - icon: ':x:'
@@ -309,9 +291,6 @@ data:
   - icon: ':x:'
     path: test/yukicoder/789.test.cpp
     title: test/yukicoder/789.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/789_2.test.cpp
-    title: test/yukicoder/789_2.test.cpp
   - icon: ':x:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
@@ -343,13 +322,13 @@ data:
   path: alg/monoid/add.hpp
   requiredBy:
   - alg/acted_monoid/min_add.hpp
-  - alg/acted_monoid/cntsum_add.hpp
   - alg/acted_monoid/add_mul.hpp
   - alg/acted_monoid/minmax_add.hpp
   - alg/acted_monoid/cntsummin_add.hpp
   - alg/acted_monoid/maxidx_add.hpp
   - alg/acted_monoid/max_add.hpp
   - alg/acted_monoid/cntminmincnt_add.hpp
+  - alg/acted_monoid/sum_add.hpp
   - alg/acted_monoid/minidx_add.hpp
   - alg/acted_monoid/cntsummax_add.hpp
   - string/trie.hpp
@@ -380,7 +359,6 @@ data:
   - test/yukicoder/2003.test.cpp
   - test/yukicoder/1234.test.cpp
   - test/yukicoder/1216.test.cpp
-  - test/yukicoder/235.test.cpp
   - test/yukicoder/1720.test.cpp
   - test/yukicoder/686.test.cpp
   - test/yukicoder/1490.test.cpp
@@ -392,7 +370,6 @@ data:
   - test/yukicoder/1141.test.cpp
   - test/yukicoder/1269.test.cpp
   - test/yukicoder/1270.test.cpp
-  - test/yukicoder/789_2.test.cpp
   - test/yukicoder/655.test.cpp
   - test/yukicoder/924.test.cpp
   - test/yukicoder/1332.test.cpp
@@ -402,18 +379,14 @@ data:
   - test/yukicoder/919.test.cpp
   - test/yukicoder/1097.test.cpp
   - test/yukicoder/1977.test.cpp
-  - test/yukicoder/1197.test.cpp
   - test/mytest/cntsummin_add.test.cpp
   - test/mytest/minidx_add.test.cpp
   - test/mytest/maxidx_add.test.cpp
   - test/mytest/minmax_add.test.cpp
   - test/mytest/splay_cm.test.cpp
-  - test/mytest/splay_am.test.cpp
   - test/mytest/rbst_commutative_persistent.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
-  - test/mytest/rbst_am_2.test.cpp
   - test/mytest/cntsummax_add.test.cpp
-  - test/mytest/ARC30D.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
@@ -444,7 +417,6 @@ data:
   - test/aoj/DSL_2_E.test.cpp
   - test/aoj/2842_2.test.cpp
   - test/aoj/DSL_4_A.test.cpp
-  - test/aoj/GRL_5_E.test.cpp
   - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/DSL_1_B.test.cpp
   - test/aoj/DSL_2_G.test.cpp

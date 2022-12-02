@@ -31,19 +31,19 @@ data:
     template <typename E>\r\nstruct ActedMonoid_Add_Mul {\r\n  using Monoid_X = Monoid_Add<E>;\r\
     \n  using Monoid_A = Monoid_Mul<E>;\r\n  using X = typename Monoid_X::value_type;\r\
     \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
-    \ X &x, const A &a) { return x * a; }\r\n};\r\n"
+    \ X &x, const A &a, const ll &size = 1) {\r\n    return x * a;\r\n  }\r\n};\r\n"
   code: "#include \"alg/monoid/add.hpp\"\r\n#include \"alg/monoid/mul.hpp\"\r\n\r\n\
     template <typename E>\r\nstruct ActedMonoid_Add_Mul {\r\n  using Monoid_X = Monoid_Add<E>;\r\
     \n  using Monoid_A = Monoid_Mul<E>;\r\n  using X = typename Monoid_X::value_type;\r\
     \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
-    \ X &x, const A &a) { return x * a; }\r\n};\r\n"
+    \ X &x, const A &a, const ll &size = 1) {\r\n    return x * a;\r\n  }\r\n};\r\n"
   dependsOn:
   - alg/monoid/add.hpp
   - alg/monoid/mul.hpp
   isVerificationFile: false
   path: alg/acted_monoid/add_mul.hpp
   requiredBy: []
-  timestamp: '2022-11-28 18:35:13+09:00'
+  timestamp: '2022-12-03 06:52:03+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/899.test.cpp

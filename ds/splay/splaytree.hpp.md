@@ -31,9 +31,6 @@ data:
     path: test/mytest/splay.test.cpp
     title: test/mytest/splay.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/splay_am.test.cpp
-    title: test/mytest/splay_am.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/splay_cm.test.cpp
     title: test/mytest/splay_cm.test.cpp
   - icon: ':heavy_check_mark:'
@@ -270,7 +267,6 @@ data:
   - test/mytest/cf702_F_splay.test.cpp
   - test/mytest/splay_monoid.test.cpp
   - test/mytest/splay_cm.test.cpp
-  - test/mytest/splay_am.test.cpp
   - test/mytest/splay.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp

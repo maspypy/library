@@ -220,9 +220,6 @@ data:
     path: test/mytest/rbst_am.test.cpp
     title: test/mytest/rbst_am.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_am_2.test.cpp
-    title: test/mytest/rbst_am_2.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_am_persistent.test.cpp
     title: test/mytest/rbst_am_persistent.test.cpp
   - icon: ':heavy_check_mark:'
@@ -246,9 +243,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/splay.test.cpp
     title: test/mytest/splay.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/splay_am.test.cpp
-    title: test/mytest/splay_am.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/splay_cm.test.cpp
     title: test/mytest/splay_cm.test.cpp
@@ -291,7 +285,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1775.test.cpp
     title: test/yukicoder/1775.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1881.test.cpp
     title: test/yukicoder/1881.test.cpp
   - icon: ':x:'
@@ -407,7 +401,6 @@ data:
   - test/mytest/min_min.test.cpp
   - test/mytest/rbst_monoid.test.cpp
   - test/mytest/rbst.test.cpp
-  - test/mytest/splay_am.test.cpp
   - test/mytest/max_min.test.cpp
   - test/mytest/rbst_commutative_persistent.test.cpp
   - test/mytest/online_division.test.cpp
@@ -426,7 +419,6 @@ data:
   - test/mytest/add_chmin_chmax.test.cpp
   - test/mytest/stern_brocot.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
-  - test/mytest/rbst_am_2.test.cpp
   - test/mytest/binom.test.cpp
   - test/mytest/cntsummax_add.test.cpp
   - test/mytest/tournament.test.cpp
