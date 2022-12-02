@@ -4,7 +4,7 @@
 #include "other/io.hpp"
 
 #include "alg/monoid/add.hpp"
-#include "ds/segtree2d.hpp"
+#include "ds/segtree/segtree2d.hpp"
 
 void solve() {
   LL(N, Q);

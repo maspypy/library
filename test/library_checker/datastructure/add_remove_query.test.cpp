@@ -2,9 +2,9 @@
   "https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/query/addremove_query.hpp"
+#include "ds/offline_query/addremove_query.hpp"
 #include "ds/pds/rollbackarray.hpp"
-#include "ds/pds/rollbackunionfind.hpp"
+#include "ds/unionfind/rollbackunionfind.hpp"
 
 void solve() {
   LL(N, Q);

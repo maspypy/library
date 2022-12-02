@@ -3,8 +3,8 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/fenwick.hpp"
-#include "ds/query/point_add_rectangle_sum.hpp"
+#include "ds/fenwick/fenwick.hpp"
+#include "ds/offline_query/point_add_rectangle_sum.hpp"
 
 void solve() {
   LL(N, Q);
