@@ -1,4 +1,4 @@
-#include "alg/monoid/cntminmincnt.hpp"
+#include "alg/monoid/minmincnt.hpp"
 #include "alg/monoid/add.hpp"
 
 template <typename E>
@@ -7,9 +7,9 @@ struct ActedMonoid_CntMinMincnt_Add {
   using Monoid_A = Monoid_Add<E>;
   using X = typename Monoid_X::value_type;
   using A = typename Monoid_A::value_type;
-  static constexpr X act(const X &x, const A &a) {
-    auto [xcnt, xmin, xmincnt] = x;
+  static constexpr X act(const X &x, const A &a, const ll &size) {
+    auto [xmin, xmincnt] = x;
     if (xmin == numeric_limits<ll>::max()) return x;
-    return {xcnt, xmin + a, xmincnt};
+    return {xmin + a, xmincnt};
   }
 };

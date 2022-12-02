@@ -1,5 +1,5 @@
 #include "ds/segtree/lazysegtree.hpp"
-#include "alg/acted_monoid/cntminmincnt_add.hpp"
+#include "alg/acted_monoid/minmincnt_add.hpp"
 
 template <typename XY = int>
 struct RectangleUnion {
@@ -35,8 +35,8 @@ struct RectangleUnion {
       ANS_TYPE dx = X[i + 1] - X[i];
       for (auto &&[yl, yr]: add[i]) seg.apply(yl, yr, 1);
       for (auto &&[yl, yr]: rm[i]) seg.apply(yl, yr, -1);
-      auto [cnt, min, mincnt] = seg.prod_all();
-      ANS_TYPE n = cnt;
+      auto [min, mincnt] = seg.prod_all();
+      ANS_TYPE n = Y.back() - Y[0];
       if (min == 0) n -= mincnt;
       ANS += n * dx;
     }
