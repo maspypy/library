@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/det_mod.hpp
     title: linalg/det_mod.hpp
   - icon: ':question:'

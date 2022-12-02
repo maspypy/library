@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwick/fenwick2d.hpp
     title: ds/fenwick/fenwick2d.hpp
   - icon: ':question:'

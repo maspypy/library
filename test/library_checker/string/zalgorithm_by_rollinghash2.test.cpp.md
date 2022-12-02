@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/rollinghash.hpp
     title: alg/monoid/rollinghash.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/disjoint_sparse/disjointsparse.hpp
     title: ds/disjoint_sparse/disjointsparse.hpp
   - icon: ':question:'

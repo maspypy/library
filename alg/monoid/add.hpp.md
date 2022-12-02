@@ -6,9 +6,6 @@ data:
     path: alg/acted_monoid/add_mul.hpp
     title: alg/acted_monoid/add_mul.hpp
   - icon: ':x:'
-    path: alg/acted_monoid/cntsummin_add.hpp
-    title: alg/acted_monoid/cntsummin_add.hpp
-  - icon: ':x:'
     path: alg/acted_monoid/max_add.hpp
     title: alg/acted_monoid/max_add.hpp
   - icon: ':x:'
@@ -32,37 +29,40 @@ data:
   - icon: ':warning:'
     path: alg/acted_monoid/sum_affine.hpp
     title: alg/acted_monoid/sum_affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
+    path: alg/acted_monoid/sum_assign.hpp
+    title: alg/acted_monoid/sum_assign.hpp
+  - icon: ':x:'
     path: alg/acted_monoid/summax_add.hpp
     title: alg/acted_monoid/summax_add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/cumsum2d.hpp
     title: ds/cumsum2d.hpp
   - icon: ':question:'
     path: ds/fenwick/fenwick.hpp
     title: ds/fenwick/fenwick.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwick/fenwick2d.hpp
     title: ds/fenwick/fenwick2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwick/fenwick2d_dense.hpp
     title: ds/fenwick/fenwick2d_dense.hpp
   - icon: ':heavy_check_mark:'
     path: ds/fenwick/fenwickraq.hpp
     title: ds/fenwick/fenwickraq.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/offline_query/coeffient_query_2d.hpp
     title: ds/offline_query/coeffient_query_2d.hpp
   - icon: ':warning:'
     path: ds/offline_query/point_add_polygon_sum.hpp
     title: ds/offline_query/point_add_polygon_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/offline_query/point_add_rectangle_sum.hpp
     title: ds/offline_query/point_add_rectangle_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/offline_query/rectangle_add_point_sum.hpp
     title: ds/offline_query/rectangle_add_point_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/offline_query/rectangle_add_rectangle_sum.hpp
     title: ds/offline_query/rectangle_add_rectangle_sum.hpp
   - icon: ':x:'
@@ -86,7 +86,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/inversion_rotate.hpp
     title: seq/inversion_rotate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/trie.hpp
     title: string/trie.hpp
   _extendedVerifiedWith:
@@ -171,10 +171,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
     title: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -199,9 +199,6 @@ data:
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
   - icon: ':x:'
-    path: test/mytest/cntsummin_add.test.cpp
-    title: test/mytest/cntsummin_add.test.cpp
-  - icon: ':x:'
     path: test/mytest/maxidx_add.test.cpp
     title: test/mytest/maxidx_add.test.cpp
   - icon: ':x:'
@@ -210,16 +207,16 @@ data:
   - icon: ':x:'
     path: test/mytest/minmax_add.test.cpp
     title: test/mytest/minmax_add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/rbst_commutative_persistent.test.cpp
     title: test/mytest/rbst_commutative_persistent.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/splay_cm.test.cpp
     title: test/mytest/splay_cm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/summax_add.test.cpp
     title: test/mytest/summax_add.test.cpp
   - icon: ':heavy_check_mark:'
@@ -231,7 +228,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1097.test.cpp
     title: test/yukicoder/1097.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1141.test.cpp
     title: test/yukicoder/1141.test.cpp
   - icon: ':heavy_check_mark:'
@@ -243,7 +240,7 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1234.test.cpp
     title: test/yukicoder/1234.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1269.test.cpp
     title: test/yukicoder/1269.test.cpp
   - icon: ':x:'
@@ -276,13 +273,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1874.test.cpp
     title: test/yukicoder/1874.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1919.test.cpp
     title: test/yukicoder/1919.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1977.test.cpp
     title: test/yukicoder/1977.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2003.test.cpp
     title: test/yukicoder/2003.test.cpp
   - icon: ':heavy_check_mark:'
@@ -332,7 +329,7 @@ data:
   - alg/acted_monoid/minmincnt_add.hpp
   - alg/acted_monoid/add_mul.hpp
   - alg/acted_monoid/minmax_add.hpp
-  - alg/acted_monoid/cntsummin_add.hpp
+  - alg/acted_monoid/sum_assign.hpp
   - alg/acted_monoid/maxidx_add.hpp
   - alg/acted_monoid/max_add.hpp
   - alg/acted_monoid/sum_add.hpp
@@ -387,7 +384,6 @@ data:
   - test/yukicoder/1097.test.cpp
   - test/yukicoder/1977.test.cpp
   - test/mytest/summax_add.test.cpp
-  - test/mytest/cntsummin_add.test.cpp
   - test/mytest/minidx_add.test.cpp
   - test/mytest/maxidx_add.test.cpp
   - test/mytest/minmax_add.test.cpp

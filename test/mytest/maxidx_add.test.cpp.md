@@ -10,7 +10,7 @@ data:
   - icon: ':x:'
     path: alg/monoid/max_idx.hpp
     title: alg/monoid/max_idx.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/segtree/lazysegtree.hpp
     title: ds/segtree/lazysegtree.hpp
   - icon: ':question:'
@@ -225,60 +225,54 @@ data:
     \ {\r\n  using Monoid_X = Monoid_Max_Idx<E, tie_is_left>;\r\n  using Monoid_A\
     \ = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A\
     \ = typename Monoid_A::value_type;\r\n  static constexpr X act(const X &x, const\
-    \ A &a) {\r\n    if (x.fi == numeric_limits<E>::lowest()) return x;\r\n    return\
-    \ {x.fi + a, x.se};\r\n  }\r\n};\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
-    \ {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \ A &a, const ll &size) {\r\n    if (x.fi == numeric_limits<E>::lowest()) return\
+    \ x;\r\n    return {x.fi + a, x.se};\r\n  }\r\n};\r\n#line 2 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
     \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"ds/segtree/lazysegtree.hpp\"\
     \n\ntemplate <typename ActedMonoid>\nstruct LazySegTree {\n  using Monoid_X =\
     \ typename ActedMonoid::Monoid_X;\n  using Monoid_A = typename ActedMonoid::Monoid_A;\n\
-    \  using X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
-    \  int n, log, size;\n  vc<X> dat;\n  vc<A> laz;\n\n  LazySegTree() : LazySegTree(0)\
-    \ {}\n  LazySegTree(int n) : LazySegTree(vc<X>(n, Monoid_X::unit())) {}\n  LazySegTree(vc<X>\
-    \ v) : n(len(v)) {\n    log = 1;\n    while ((1 << log) < n) ++log;\n    size\
-    \ = 1 << log;\n    dat.assign(size << 1, Monoid_X::unit());\n    laz.assign(size,\
-    \ Monoid_A::unit());\n    FOR(i, n) dat[size + i] = v[i];\n    FOR3_R(i, 1, size)\
-    \ update(i);\n  }\n\n  template <typename F>\n  LazySegTree(int n, F f) : n(n)\
-    \ {\n    log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n \
-    \   dat.assign(size << 1, Monoid_X::unit());\n    laz.assign(size, Monoid_A::unit());\n\
-    \    FOR(i, n) dat[size + i] = f(i);\n    FOR3_R(i, 1, size) update(i);\n  }\n\
-    \n  void reset() {\n    fill(all(dat), Monoid_X::unit());\n    fill(all(laz),\
-    \ Monoid_A::unit());\n  }\n\n  void reset(const vc<X>& v) {\n    assert(len(v)\
-    \ == n);\n    reset();\n    FOR(i, n) dat[size + i] = v[i];\n    FOR3_R(i, 1,\
-    \ size) update(i);\n  }\n\n  void update(int k) { dat[k] = Monoid_X::op(dat[2\
-    \ * k], dat[2 * k + 1]); }\n\n  void all_apply(int k, A a, int sz) {\n    dat[k]\
-    \ = ActedMonoid::act(dat[k], a, sz);\n    if (k < size) laz[k] = Monoid_A::op(laz[k],\
-    \ a);\n  }\n\n  void push(int k, int sz) {\n    all_apply(2 * k, laz[k], sz /\
-    \ 2);\n    all_apply(2 * k + 1, laz[k], sz / 2);\n    laz[k] = Monoid_A::unit();\n\
-    \  }\n\n  void set(int p, X x) {\n    assert(0 <= p && p < n);\n    p += size;\n\
-    \    for (int i = log; i >= 1; i--) push(p >> i, 1 << i);\n    dat[p] = x;\n \
-    \   for (int i = 1; i <= log; i++) update(p >> i);\n  }\n\n  X get(int p) {\n\
-    \    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--)\
-    \ push(p >> i, 1 << i);\n    return dat[p];\n  }\n\n  /*\n  vc<X> get_all() {\n\
-    \    FOR(i, size) push(i);\n    return {dat.begin() + size, dat.begin() + size\
-    \ + n};\n  }\n  */\n\n  X prod(int l, int r) {\n    assert(0 <= l && l <= r &&\
-    \ r <= n);\n    if (l == r) return Monoid_X::unit();\n\n    l += size;\n    r\
-    \ += size;\n\n    for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i)\
-    \ != l) push(l >> i, 1 << i);\n      if (((r >> i) << i) != r) push((r - 1) >>\
-    \ i, 1 << i);\n    }\n\n    X xl = Monoid_X::unit(), xr = Monoid_X::unit();\n\
-    \    while (l < r) {\n      if (l & 1) xl = Monoid_X::op(xl, dat[l++]);\n    \
-    \  if (r & 1) xr = Monoid_X::op(dat[--r], xr);\n      l >>= 1;\n      r >>= 1;\n\
-    \    }\n\n    return Monoid_X::op(xl, xr);\n  }\n\n  X prod_all() { return dat[1];\
-    \ }\n\n  void apply(int p, A a) {\n    assert(0 <= p && p < n);\n    p += size;\n\
-    \    dat[p] = ActedMonoid::act(dat[p], a);\n    for (int i = 1; i <= log; i++)\
-    \ update(p >> i);\n  }\n\n  void apply(int l, int r, A a) {\n    assert(0 <= l\
-    \ && l <= r && r <= n);\n    if (l == r) return;\n\n    l += size;\n    r += size;\n\
-    \n    for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l\
-    \ >> i, 1 << i);\n      if (((r >> i) << i) != r) push((r - 1) >> i, 1 << i);\n\
-    \    }\n\n    int sz = 1;\n    {\n      int l2 = l, r2 = r;\n      while (l <\
-    \ r) {\n        if (l & 1) all_apply(l++, a, sz);\n        if (r & 1) all_apply(--r,\
-    \ a, sz);\n        l >>= 1;\n        r >>= 1;\n        sz <<= 2;\n      }\n  \
-    \    l = l2;\n      r = r2;\n    }\n\n    for (int i = 1; i <= log; i++) {\n \
-    \     if (((l >> i) << i) != l) update(l >> i);\n      if (((r >> i) << i) !=\
-    \ r) update((r - 1) >> i);\n    }\n  }\n\n  /*\n  template <typename C>\n  int\
-    \ max_right(C& check, int l) {\n    assert(0 <= l && l <= n);\n    assert(check(Monoid_X::unit()));\n\
+    \  static_assert(Monoid_X::commute);\n  using X = typename Monoid_X::value_type;\n\
+    \  using A = typename Monoid_A::value_type;\n  int n, log, size;\n  vc<X> dat;\n\
+    \  vc<A> laz;\n\n  LazySegTree() {}\n  LazySegTree(int n) { build(n); }\n  template\
+    \ <typename F>\n  LazySegTree(int n, F f) {\n    build(n, f);\n  }\n  LazySegTree(vc<X>\
+    \ v) { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return\
+    \ Monoid_X::unit(); });\n  }\n  void build(vc<X> v) {\n    build(len(v), [&](int\
+    \ i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int m,\
+    \ F f) {\n    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1\
+    \ << log;\n    dat.assign(size << 1, Monoid_X::unit());\n    laz.assign(size,\
+    \ Monoid_A::unit());\n    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size)\
+    \ update(i);\n  }\n\n  void update(int k) { dat[k] = Monoid_X::op(dat[2 * k],\
+    \ dat[2 * k + 1]); }\n  void apply_at(int k, A a) {\n    int sz = 1 << (log -\
+    \ topbit(k));\n    dat[k] = ActedMonoid::act(dat[k], a, sz);\n    if (k < size)\
+    \ laz[k] = Monoid_A::op(laz[k], a);\n  }\n  void push(int k) {\n    apply_at(2\
+    \ * k, laz[k]);\n    apply_at(2 * k + 1, laz[k]);\n    laz[k] = Monoid_A::unit();\n\
+    \  }\n  void set(int p, X x) {\n    assert(0 <= p && p < n);\n    p += size;\n\
+    \    for (int i = log; i >= 1; i--) push(p >> i);\n    dat[p] = x;\n    for (int\
+    \ i = 1; i <= log; i++) update(p >> i);\n  }\n\n  X get(int p) {\n    assert(0\
+    \ <= p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--) push(p >>\
+    \ i);\n    return dat[p];\n  }\n\n  vc<X> get_all() {\n    for (int i = log; i\
+    \ >= 1; i--) {\n      FOR(k, size >> i, (size + size) >> i) { push(k); }\n   \
+    \ }\n    return {dat.begin() + size, dat.begin() + size + n};\n  }\n\n  X prod(int\
+    \ l, int r) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return\
+    \ Monoid_X::unit();\n\n    l += size;\n    r += size;\n\n    for (int i = log;\
+    \ i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l >> i);\n      if (((r\
+    \ >> i) << i) != r) push((r - 1) >> i);\n    }\n\n    X x = Monoid_X::unit();\n\
+    \    while (l < r) {\n      if (l & 1) x = Monoid_X::op(x, dat[l++]);\n      if\
+    \ (r & 1) x = Monoid_X::op(x, dat[--r]);\n      l >>= 1;\n      r >>= 1;\n   \
+    \ }\n\n    return x;\n  }\n\n  X prod_all() { return dat[1]; }\n\n  void apply(int\
+    \ l, int r, A a) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n\
+    \n    l += size;\n    r += size;\n\n    if (!Monoid_A::commute) {\n      for (int\
+    \ i = log; i >= 1; i--) {\n        if (((l >> i) << i) != l) push(l >> i);\n \
+    \       if (((r >> i) << i) != r) push((r - 1) >> i);\n      }\n    }\n\n    {\n\
+    \      int l2 = l, r2 = r;\n      while (l < r) {\n        if (l & 1) apply_at(l++,\
+    \ a);\n        if (r & 1) apply_at(--r, a);\n        l >>= 1;\n        r >>= 1;\n\
+    \      }\n      l = l2;\n      r = r2;\n    }\n\n    for (int i = 1; i <= log;\
+    \ i++) {\n      if (((l >> i) << i) != l) update(l >> i);\n      if (((r >> i)\
+    \ << i) != r) update((r - 1) >> i);\n    }\n  }\n\n  template <typename F>\n \
+    \ int max_right(const F& check, int l) {\n    assert(0 <= l && l <= n);\n    assert(check(Monoid_X::unit()));\n\
     \    if (l == n) return n;\n    l += size;\n    for (int i = log; i >= 1; i--)\
     \ push(l >> i);\n    X sm = Monoid_X::unit();\n    do {\n      while (l % 2 ==\
     \ 0) l >>= 1;\n      if (!check(Monoid_X::op(sm, dat[l]))) {\n        while (l\
@@ -286,28 +280,28 @@ data:
     \ dat[l]))) {\n            sm = Monoid_X::op(sm, dat[l]);\n            l++;\n\
     \          }\n        }\n        return l - size;\n      }\n      sm = Monoid_X::op(sm,\
     \ dat[l]);\n      l++;\n    } while ((l & -l) != l);\n    return n;\n  }\n\n \
-    \ template <typename C>\n  int min_left(C& check, int r) {\n    assert(0 <= r\
-    \ && r <= n);\n    assert(check(Monoid_X::unit()));\n    if (r == 0) return 0;\n\
-    \    r += size;\n    for (int i = log; i >= 1; i--) push((r - 1) >> i);\n    X\
-    \ sm = Monoid_X::unit();\n    do {\n      r--;\n      while (r > 1 && (r % 2))\
-    \ r >>= 1;\n      if (!check(Monoid_X::op(dat[r], sm))) {\n        while (r <\
-    \ size) {\n          push(r);\n          r = (2 * r + 1);\n          if (check(Monoid_X::op(dat[r],\
+    \ template <typename F>\n  int min_left(const F& check, int r) {\n    assert(0\
+    \ <= r && r <= n);\n    assert(check(Monoid_X::unit()));\n    if (r == 0) return\
+    \ 0;\n    r += size;\n    for (int i = log; i >= 1; i--) push((r - 1) >> i);\n\
+    \    X sm = Monoid_X::unit();\n    do {\n      r--;\n      while (r > 1 && (r\
+    \ % 2)) r >>= 1;\n      if (!check(Monoid_X::op(dat[r], sm))) {\n        while\
+    \ (r < size) {\n          push(r);\n          r = (2 * r + 1);\n          if (check(Monoid_X::op(dat[r],\
     \ sm))) {\n            sm = Monoid_X::op(dat[r], sm);\n            r--;\n    \
     \      }\n        }\n        return r + 1 - size;\n      }\n      sm = Monoid_X::op(dat[r],\
-    \ sm);\n    } while ((r & -r) != r);\n    return 0;\n  }\n  */\n};\n#line 7 \"\
-    test/mytest/maxidx_add.test.cpp\"\n\nvoid test() {\n  int N = RNG(1, 100);\n \
-    \ vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1, 100);\n  using AM = ActedMonoid_MaxIdx_Add<int>;\n\
-    \  using Mono = typename AM::Monoid_X;\n  LazySegTree<AM> seg(N, [&](int i) ->\
-    \ typename Mono::value_type {\n    return {A[i], i};\n  });\n  int Q = RNG(1,\
-    \ 100);\n  FOR(Q) {\n    ll t = RNG(0, 2);\n    ll L = RNG(0, N);\n    ll R =\
-    \ RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n    if (t == 1) {\n      ll\
-    \ x = RNG(1, 100);\n      FOR(i, L, R) A[i] += x;\n      seg.apply(L, R, x);\n\
-    \    }\n    if (t == 2) {\n      vc<int> B = {A.begin() + L, A.begin() + R};\n\
-    \      int mx = MAX(B);\n      int idx = -1;\n      FOR_R(i, L, R) if (A[i] ==\
-    \ mx) idx = i;\n      assert(seg.prod(L, R) == mp(mx, idx));\n    }\n  }\n}\n\n\
-    void solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n  FOR(100) test();\n\
-    \  solve();\n\n  return 0;\n}\n"
+    \ sm);\n    } while ((r & -r) != r);\n    return 0;\n  }\n};\n#line 7 \"test/mytest/maxidx_add.test.cpp\"\
+    \n\nvoid test() {\n  int N = RNG(1, 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] =\
+    \ RNG(1, 100);\n  using AM = ActedMonoid_MaxIdx_Add<int>;\n  using Mono = typename\
+    \ AM::Monoid_X;\n  LazySegTree<AM> seg(N, [&](int i) -> typename Mono::value_type\
+    \ {\n    return {A[i], i};\n  });\n  int Q = RNG(1, 100);\n  FOR(Q) {\n    ll\
+    \ t = RNG(0, 2);\n    ll L = RNG(0, N);\n    ll R = RNG(0, N);\n    if (L > R)\
+    \ swap(L, R);\n    ++R;\n    if (t == 1) {\n      ll x = RNG(1, 100);\n      FOR(i,\
+    \ L, R) A[i] += x;\n      seg.apply(L, R, x);\n    }\n    if (t == 2) {\n    \
+    \  vc<int> B = {A.begin() + L, A.begin() + R};\n      int mx = MAX(B);\n     \
+    \ int idx = -1;\n      FOR_R(i, L, R) if (A[i] == mx) idx = i;\n      assert(seg.prod(L,\
+    \ R) == mp(mx, idx));\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a\
+    \ + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n  FOR(100) test();\n  solve();\n\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"alg/acted_monoid/maxidx_add.hpp\"\n#include\
     \ \"random/base.hpp\"\n#include \"ds/segtree/lazysegtree.hpp\"\n\nvoid test()\
@@ -334,7 +328,7 @@ data:
   isVerificationFile: true
   path: test/mytest/maxidx_add.test.cpp
   requiredBy: []
-  timestamp: '2022-12-03 07:16:30+09:00'
+  timestamp: '2022-12-03 08:35:02+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/maxidx_add.test.cpp

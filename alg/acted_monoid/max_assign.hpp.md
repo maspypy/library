@@ -28,20 +28,21 @@ data:
     \ E, E none_val>\r\nstruct ActedMonoid_Max_Assign {\r\n  using Monoid_X = Monoid_Max<E>;\r\
     \n  using Monoid_A = Monoid_Assign<E, none_val>;\r\n  using X = typename Monoid_X::value_type;\r\
     \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
-    \ X &x, const A &a) {\r\n    return (a == none_val ? x : a);\r\n  }\r\n};\r\n"
+    \ X &x, const A &a, const ll &size) {\r\n    return (a == none_val ? x : a);\r\
+    \n  }\r\n};\r\n"
   code: "#include \"alg/monoid/max.hpp\"\r\n#include \"alg/monoid/assign.hpp\"\r\n\
     \r\ntemplate <typename E, E none_val>\r\nstruct ActedMonoid_Max_Assign {\r\n \
     \ using Monoid_X = Monoid_Max<E>;\r\n  using Monoid_A = Monoid_Assign<E, none_val>;\r\
     \n  using X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
-    \n  static constexpr X act(const X &x, const A &a) {\r\n    return (a == none_val\
-    \ ? x : a);\r\n  }\r\n};\r\n"
+    \n  static constexpr X act(const X &x, const A &a, const ll &size) {\r\n    return\
+    \ (a == none_val ? x : a);\r\n  }\r\n};\r\n"
   dependsOn:
   - alg/monoid/max.hpp
   - alg/monoid/assign.hpp
   isVerificationFile: false
   path: alg/acted_monoid/max_assign.hpp
   requiredBy: []
-  timestamp: '2022-12-01 09:04:06+09:00'
+  timestamp: '2022-12-03 08:35:02+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/max_assign.test.cpp

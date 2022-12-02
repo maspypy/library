@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/integer_kth_root.hpp
     title: other/integer_kth_root.hpp
   - icon: ':question:'

@@ -34,22 +34,22 @@ data:
     \ {\r\n  using Monoid_X = Monoid_Min_Idx<E, tie_is_left>;\r\n  using Monoid_A\
     \ = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A\
     \ = typename Monoid_A::value_type;\r\n  static constexpr X act(const X &x, const\
-    \ A &a) {\r\n    if (x.fi == numeric_limits<E>::max()) return x;\r\n    return\
-    \ {x.fi + a, x.se};\r\n  }\r\n};\r\n"
+    \ A &a, const ll &size) {\r\n    if (x.fi == numeric_limits<E>::max()) return\
+    \ x;\r\n    return {x.fi + a, x.se};\r\n  }\r\n};\r\n"
   code: "#include \"alg/monoid/add.hpp\"\r\n#include \"alg/monoid/min_idx.hpp\"\r\n\
     \r\ntemplate <typename E, bool tie_is_left = true>\r\nstruct ActedMonoid_MinIdx_Add\
     \ {\r\n  using Monoid_X = Monoid_Min_Idx<E, tie_is_left>;\r\n  using Monoid_A\
     \ = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A\
     \ = typename Monoid_A::value_type;\r\n  static constexpr X act(const X &x, const\
-    \ A &a) {\r\n    if (x.fi == numeric_limits<E>::max()) return x;\r\n    return\
-    \ {x.fi + a, x.se};\r\n  }\r\n};\r\n"
+    \ A &a, const ll &size) {\r\n    if (x.fi == numeric_limits<E>::max()) return\
+    \ x;\r\n    return {x.fi + a, x.se};\r\n  }\r\n};\r\n"
   dependsOn:
   - alg/monoid/add.hpp
   - alg/monoid/min_idx.hpp
   isVerificationFile: false
   path: alg/acted_monoid/minidx_add.hpp
   requiredBy: []
-  timestamp: '2022-12-01 09:04:06+09:00'
+  timestamp: '2022-12-03 08:35:02+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/minidx_add.test.cpp

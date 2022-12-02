@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/min_idx.hpp
     title: alg/monoid/min_idx.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/disjoint_sparse/disjointsparse.hpp
     title: ds/disjoint_sparse/disjointsparse.hpp
   - icon: ':question:'
