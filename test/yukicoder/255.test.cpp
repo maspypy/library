@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/255"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/lazysegtree.hpp"
+#include "ds/segtree/lazysegtree.hpp"
 #include "alg/acted_monoid/cntsum_affine.hpp"
 
 void solve() {
