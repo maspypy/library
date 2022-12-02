@@ -20,7 +20,7 @@ data:
   - icon: ':question:'
     path: graph/ds/treeabelgroup.hpp
     title: graph/ds/treeabelgroup.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/treegroup.hpp
     title: graph/ds/treegroup.hpp
   - icon: ':question:'
@@ -87,7 +87,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   - icon: ':x:'
