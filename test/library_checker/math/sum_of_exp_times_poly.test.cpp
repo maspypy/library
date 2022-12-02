@@ -8,7 +8,7 @@
 using mint = modint998;
 void solve() {
   mint r;
-  scanner.read(r);
+  read(r);
   LL(d, n);
   int L = d + 5;
   vc<mint> a = powertable_2<mint>(d, L - 1);
