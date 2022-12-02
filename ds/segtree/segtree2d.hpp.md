@@ -6,7 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc266h.test.cpp
     title: test/atcoder/abc266h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
   - icon: ':x:'

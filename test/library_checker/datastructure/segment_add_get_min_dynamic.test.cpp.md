@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/min_idx.hpp
     title: alg/monoid/min_idx.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/func/dynamic_lichao.hpp
     title: ds/func/dynamic_lichao.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/segment_add_get_min
@@ -275,7 +275,7 @@ data:
   path: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
   requiredBy: []
   timestamp: '2022-12-02 19:34:09+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
 layout: document

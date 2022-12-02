@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/min_idx.hpp
     title: alg/monoid/min_idx.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/func/dynamic_lichao.hpp
     title: ds/func/dynamic_lichao.hpp
   - icon: ':question:'

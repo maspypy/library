@@ -112,7 +112,7 @@ data:
     - icon: ':x:'
       path: alg/monoid/gcd.hpp
       title: alg/monoid/gcd.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/group_reverse.hpp
       title: alg/monoid/group_reverse.hpp
     - icon: ':question:'
@@ -157,7 +157,7 @@ data:
       title: datetime/datetime.hpp
   - name: ds/binary_trie
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/binary_trie/binarytrie.hpp
       title: ds/binary_trie/binarytrie.hpp
   - name: ds
@@ -228,10 +228,10 @@ data:
     - icon: ':x:'
       path: ds/func/cht_monotone.hpp
       title: ds/func/cht_monotone.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/func/dynamic_lichao.hpp
       title: ds/func/dynamic_lichao.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/func/lichao.hpp
       title: ds/func/lichao.hpp
     - icon: ':question:'
@@ -253,13 +253,13 @@ data:
     - icon: ':warning:'
       path: ds/offline_query/coeffient_query_1d.hpp
       title: ds/offline_query/coeffient_query_1d.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/offline_query/coeffient_query_2d.hpp
       title: ds/offline_query/coeffient_query_2d.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/offline_query/divide_conquer_range_query.hpp
       title: ds/offline_query/divide_conquer_range_query.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/offline_query/mo.hpp
       title: ds/offline_query/mo.hpp
     - icon: ':warning:'
@@ -271,7 +271,7 @@ data:
     - icon: ':warning:'
       path: ds/offline_query/point_add_polygon_sum.hpp
       title: ds/offline_query/point_add_polygon_sum.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/offline_query/point_add_rectangle_sum.hpp
       title: ds/offline_query/point_add_rectangle_sum.hpp
     - icon: ':warning:'
@@ -283,13 +283,13 @@ data:
     - icon: ':warning:'
       path: ds/offline_query/rectangle_add_point_sum.hpp
       title: ds/offline_query/rectangle_add_point_sum.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/offline_query/rectangle_add_rectangle_sum.hpp
       title: ds/offline_query/rectangle_add_rectangle_sum.hpp
     - icon: ':heavy_check_mark:'
       path: ds/offline_query/rectangleunion.hpp
       title: ds/offline_query/rectangleunion.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/offline_query/rollback_mo.hpp
       title: ds/offline_query/rollback_mo.hpp
     - icon: ':heavy_check_mark:'
@@ -522,7 +522,7 @@ data:
     - icon: ':question:'
       path: graph/base.hpp
       title: graph/base.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/bipartite_edge_coloring.hpp
       title: graph/bipartite_edge_coloring.hpp
     - icon: ':question:'
@@ -659,7 +659,7 @@ data:
     - icon: ':x:'
       path: graph/ds/bfsnumbering.hpp
       title: graph/ds/bfsnumbering.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/ds/contoursum.hpp
       title: graph/ds/contoursum.hpp
     - icon: ':heavy_check_mark:'
@@ -683,7 +683,7 @@ data:
     - icon: ':question:'
       path: graph/ds/treeabelgroup.hpp
       title: graph/ds/treeabelgroup.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/ds/treegroup.hpp
       title: graph/ds/treegroup.hpp
     - icon: ':question:'
@@ -1675,10 +1675,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
       title: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
       title: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
       title: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1705,19 +1705,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
       title: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
       title: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
       title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/segment_add_get_min.test.cpp
       title: test/library_checker/datastructure/segment_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
       title: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/set_xor_min.test.cpp
       title: test/library_checker/datastructure/set_xor_min.test.cpp
     - icon: ':x:'
@@ -1726,31 +1726,31 @@ data:
     - icon: ':x:'
       path: test/library_checker/datastructure/sort_segtree_1.test.cpp
       title: test/library_checker/datastructure/sort_segtree_1.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
       title: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
       title: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/static_range_sum.test.cpp
       title: test/library_checker/datastructure/static_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
       title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
       title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/staticrmq_dc.test.cpp
       title: test/library_checker/datastructure/staticrmq_dc.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/staticrmq_seg.test.cpp
       title: test/library_checker/datastructure/staticrmq_seg.test.cpp
     - icon: ':x:'
       path: test/library_checker/datastructure/staticrmq_sparse.test.cpp
       title: test/library_checker/datastructure/staticrmq_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/unionfind.test.cpp
       title: test/library_checker/datastructure/unionfind.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1768,7 +1768,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
       title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
       title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1799,7 +1799,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/biconnected_component.test.cpp
       title: test/library_checker/graph/biconnected_component.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/bipartite_edge_coloring.test.cpp
       title: test/library_checker/graph/bipartite_edge_coloring.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1847,7 +1847,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/two_edge_component.test.cpp
       title: test/library_checker/graph/two_edge_component.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/verted_add_contour_sum.test.cpp
       title: test/library_checker/graph/verted_add_contour_sum.test.cpp
   - name: test/library_checker/math
