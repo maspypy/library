@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/query/coeffient_query_2d.hpp"
+#include "ds/offline_query/coeffient_query_2d.hpp"
 #include "mod/modint.hpp"
 
 using mint = modint998;

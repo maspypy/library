@@ -2,7 +2,7 @@
   "https://judge.yosupo.jp/problem/point_set_range_sort_range_composite"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/sortable_segtree.hpp"
+#include "ds/segtree/sortable_segtree.hpp"
 #include "alg/monoid/affine.hpp"
 #include "mod/modint.hpp"
 

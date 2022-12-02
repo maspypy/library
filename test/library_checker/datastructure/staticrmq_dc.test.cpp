@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/query/divide_conquer_range_query.hpp"
+#include "ds/offline_query/divide_conquer_range_query.hpp"
 
 void solve() {
   LL(N, Q);

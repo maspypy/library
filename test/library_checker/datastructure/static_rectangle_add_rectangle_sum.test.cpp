@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/query/rectangle_add_rectangle_sum.hpp"
+#include "ds/offline_query/rectangle_add_rectangle_sum.hpp"
 #include "mod/modint.hpp"
 #include "alg/monoid/add.hpp"
 

@@ -5,7 +5,7 @@
 
 void solve() {
   u64 a, b;
-  scanner.read(a, b);
+  read(a, b);
   print(nim_product(a, b));
 }
 
