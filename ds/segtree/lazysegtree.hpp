@@ -47,14 +47,14 @@ struct LazySegTree {
 
   void update(int k) { dat[k] = Monoid_X::op(dat[2 * k], dat[2 * k + 1]); }
 
-  void all_apply(int k, A a) {
-    dat[k] = ActedMonoid::act(dat[k], a);
+  void all_apply(int k, A a, int sz) {
+    dat[k] = ActedMonoid::act(dat[k], a, sz);
     if (k < size) laz[k] = Monoid_A::op(laz[k], a);
   }
 
   void push(int k, int sz) {
-    all_apply(2 * k, laz[k]);
-    all_apply(2 * k + 1, laz[k]);
+    all_apply(2 * k, laz[k], sz / 2);
+    all_apply(2 * k + 1, laz[k], sz / 2);
     laz[k] = Monoid_A::unit();
   }
 
@@ -124,13 +124,15 @@ struct LazySegTree {
       if (((r >> i) << i) != r) push((r - 1) >> i, 1 << i);
     }
 
+    int sz = 1;
     {
       int l2 = l, r2 = r;
       while (l < r) {
-        if (l & 1) all_apply(l++, a);
-        if (r & 1) all_apply(--r, a);
+        if (l & 1) all_apply(l++, a, sz);
+        if (r & 1) all_apply(--r, a, sz);
         l >>= 1;
         r >>= 1;
+        sz <<= 2;
       }
       l = l2;
       r = r2;

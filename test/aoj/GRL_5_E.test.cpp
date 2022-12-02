@@ -4,7 +4,7 @@
 #include "other/io.hpp"
 #include "alg/monoid/add.hpp"
 #include "graph/ds/lazytreemonoid.hpp"
-#include "alg/acted_monoid/cntsum_add.hpp"
+#include "alg/acted_monoid/sum_add.hpp"
 
 void solve() {
   LL(N);

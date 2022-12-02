@@ -15,7 +15,7 @@ struct LazyTreeMonoid {
     assert(MonoX::commute);
   }
 
-  LazyTreeMonoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {
+  LazyTreeMonoid(TREE &tree, vc<X> dat) : tree(tree), N(tree.N) {
     vc<X> seg_raw(N, MonoX::unit());
     if (!edge) {
       FOR(v, N) seg_raw[tree.LID[v]] = dat[v];
