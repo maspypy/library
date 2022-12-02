@@ -53,6 +53,9 @@ data:
   - icon: ':question:'
     path: ds/offline_query/point_add_rectangle_sum.hpp
     title: ds/offline_query/point_add_rectangle_sum.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/offline_query/rectangle_add_point_sum.hpp
+    title: ds/offline_query/rectangle_add_point_sum.hpp
   - icon: ':question:'
     path: ds/offline_query/rectangle_add_rectangle_sum.hpp
     title: ds/offline_query/rectangle_add_rectangle_sum.hpp
@@ -77,7 +80,7 @@ data:
   - icon: ':question:'
     path: seq/inversion_rotate.hpp
     title: seq/inversion_rotate.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/trie.hpp
     title: string/trie.hpp
   _extendedVerifiedWith:
@@ -211,6 +214,9 @@ data:
     path: test/mytest/rbst_commutative_persistent.test.cpp
     title: test/mytest/rbst_commutative_persistent.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/rect_add_pt_sum.test.cpp
+    title: test/mytest/rect_add_pt_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/splay_am.test.cpp
     title: test/mytest/splay_am.test.cpp
   - icon: ':heavy_check_mark:'
@@ -240,16 +246,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1234.test.cpp
     title: test/yukicoder/1234.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1269.test.cpp
     title: test/yukicoder/1269.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1270.test.cpp
     title: test/yukicoder/1270.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1311.test.cpp
     title: test/yukicoder/1311.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1326.test.cpp
     title: test/yukicoder/1326.test.cpp
   - icon: ':x:'
@@ -346,6 +352,7 @@ data:
   - seq/inversion_rotate.hpp
   - ds/cumsum2d.hpp
   - ds/offline_query/coeffient_query_2d.hpp
+  - ds/offline_query/rectangle_add_point_sum.hpp
   - ds/offline_query/rectangleunion.hpp
   - ds/offline_query/rectangle_add_rectangle_sum.hpp
   - ds/offline_query/point_add_rectangle_sum.hpp
@@ -400,6 +407,7 @@ data:
   - test/mytest/rbst_am_2.test.cpp
   - test/mytest/cntsummax_add.test.cpp
   - test/mytest/ARC30D.test.cpp
+  - test/mytest/rect_add_pt_sum.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp

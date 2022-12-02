@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/rerooting_classify_subtree.hpp
     title: graph/rerooting_classify_subtree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   - icon: ':question:'
@@ -241,6 +241,9 @@ data:
     path: test/mytest/rbst_test.test.cpp
     title: test/mytest/rbst_test.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/rect_add_pt_sum.test.cpp
+    title: test/mytest/rect_add_pt_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/splay.test.cpp
     title: test/mytest/splay.test.cpp
   - icon: ':heavy_check_mark:'
@@ -276,7 +279,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080_2.test.cpp
     title: test/yukicoder/1080_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
   - icon: ':x:'
@@ -428,6 +431,7 @@ data:
   - test/mytest/cntsummax_add.test.cpp
   - test/mytest/tournament.test.cpp
   - test/mytest/rbst_test.test.cpp
+  - test/mytest/rect_add_pt_sum.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp

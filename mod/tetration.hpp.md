@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
   - icon: ':question:'

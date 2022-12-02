@@ -14,6 +14,9 @@ data:
   - icon: ':question:'
     path: ds/offline_query/point_add_rectangle_sum.hpp
     title: ds/offline_query/point_add_rectangle_sum.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/offline_query/rectangle_add_point_sum.hpp
+    title: ds/offline_query/rectangle_add_point_sum.hpp
   - icon: ':question:'
     path: ds/offline_query/rectangle_add_rectangle_sum.hpp
     title: ds/offline_query/rectangle_add_rectangle_sum.hpp
@@ -76,15 +79,18 @@ data:
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/rect_add_pt_sum.test.cpp
+    title: test/mytest/rect_add_pt_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1270.test.cpp
     title: test/yukicoder/1270.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1311.test.cpp
     title: test/yukicoder/1311.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1326.test.cpp
     title: test/yukicoder/1326.test.cpp
   - icon: ':x:'
@@ -177,6 +183,7 @@ data:
   - seq/inversion.hpp
   - seq/inversion_rotate.hpp
   - ds/offline_query/coeffient_query_2d.hpp
+  - ds/offline_query/rectangle_add_point_sum.hpp
   - ds/offline_query/rectangle_add_rectangle_sum.hpp
   - ds/offline_query/point_add_rectangle_sum.hpp
   - ds/fenwick/fenwickraq.hpp
@@ -194,6 +201,7 @@ data:
   - test/yukicoder/1270.test.cpp
   - test/yukicoder/924.test.cpp
   - test/yukicoder/1641.test.cpp
+  - test/mytest/rect_add_pt_sum.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo.test.cpp
