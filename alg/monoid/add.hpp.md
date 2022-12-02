@@ -38,7 +38,7 @@ data:
   - icon: ':question:'
     path: ds/fenwick/fenwick.hpp
     title: ds/fenwick/fenwick.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/fenwick/fenwick2d.hpp
     title: ds/fenwick/fenwick2d.hpp
   - icon: ':question:'
@@ -47,6 +47,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fenwick/fenwickraq.hpp
     title: ds/fenwick/fenwickraq.hpp
+  - icon: ':x:'
+    path: ds/offline_query/coeffient_query_2d.hpp
+    title: ds/offline_query/coeffient_query_2d.hpp
   - icon: ':x:'
     path: ds/offline_query/point_add_rectangle_sum.hpp
     title: ds/offline_query/point_add_rectangle_sum.hpp
@@ -59,6 +62,9 @@ data:
   - icon: ':question:'
     path: ds/waveletmatrix.hpp
     title: ds/waveletmatrix.hpp
+  - icon: ':x:'
+    path: graph/ds/contoursum.hpp
+    title: graph/ds/contoursum.hpp
   - icon: ':question:'
     path: graph/ds/treeabelgroup.hpp
     title: graph/ds/treeabelgroup.hpp
@@ -114,7 +120,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc190f.test.cpp
     title: test/atcoder/abc190f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc266h_2.test.cpp
     title: test/atcoder/abc266h_2.test.cpp
   - icon: ':x:'
@@ -147,6 +153,18 @@ data:
   - icon: ':x:'
     path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
+    title: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
+    title: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+    title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
+    title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
@@ -156,6 +174,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/graph/verted_add_contour_sum.test.cpp
+    title: test/library_checker/graph/verted_add_contour_sum.test.cpp
   - icon: ':x:'
     path: test/mytest/ARC30D.test.cpp
     title: test/mytest/ARC30D.test.cpp
@@ -300,6 +321,7 @@ data:
   - seq/common_interval_decomposition.hpp
   - seq/inversion_rotate.hpp
   - ds/cumsum2d.hpp
+  - ds/offline_query/coeffient_query_2d.hpp
   - ds/offline_query/rectangleunion.hpp
   - ds/offline_query/rectangle_add_rectangle_sum.hpp
   - ds/offline_query/point_add_rectangle_sum.hpp
@@ -309,6 +331,7 @@ data:
   - ds/fenwick/fenwick.hpp
   - ds/fenwick/fenwickraq.hpp
   - graph/ds/treeabelgroup.hpp
+  - graph/ds/contoursum.hpp
   timestamp: '2022-11-28 14:51:10+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -348,10 +371,12 @@ data:
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/rbst_am_2.test.cpp
   - test/mytest/ARC30D.test.cpp
+  - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
+  - test/library_checker/datastructure/static_range_inversions_mo.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
   - test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
@@ -359,8 +384,11 @@ data:
   - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
+  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
+  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - test/library_checker/datastructure/double_ended_pq.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
+  - test/library_checker/graph/verted_add_contour_sum.test.cpp
   - test/atcoder/abc127f_1.test.cpp
   - test/atcoder/abc190f.test.cpp
   - test/atcoder/abc266h_2.test.cpp

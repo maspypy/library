@@ -8,6 +8,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/manhattan_mst.hpp
     title: geo/manhattan_mst.hpp
+  - icon: ':x:'
+    path: graph/bipartite_edge_coloring.hpp
+    title: graph/bipartite_edge_coloring.hpp
   - icon: ':question:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
@@ -20,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':x:'
@@ -45,12 +48,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
   - icon: ':x:'
     path: test/library_checker/datastructure/persistent_unionfind.test.cpp
     title: test/library_checker/datastructure/persistent_unionfind.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/unionfind.test.cpp
+    title: test/library_checker/datastructure/unionfind.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/graph/bipartite_edge_coloring.test.cpp
+    title: test/library_checker/graph/bipartite_edge_coloring.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
@@ -141,6 +150,7 @@ data:
   - flow/bipartite.hpp
   - graph/tree_of_unionfind.hpp
   - graph/functional.hpp
+  - graph/bipartite_edge_coloring.hpp
   - graph/dag_path_cover.hpp
   - graph/maximum_antichain.hpp
   - graph/check_bipartite.hpp
@@ -166,8 +176,10 @@ data:
   - test/yukicoder/1744.test.cpp
   - test/mytest/tutte.test.cpp
   - test/library_checker/datastructure/persistent_unionfind.test.cpp
+  - test/library_checker/datastructure/unionfind.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
+  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
   - test/atcoder/abc270_f.test.cpp
   - test/aoj/GRL_2_A.test.cpp
   - test/aoj/2251_1.test.cpp

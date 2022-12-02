@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/library_checker/datastructure/staticrmq_dc.test.cpp
+    title: test/library_checker/datastructure/staticrmq_dc.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/1100/submission/153353485
@@ -75,8 +78,9 @@ data:
   path: ds/offline_query/divide_conquer_range_query.hpp
   requiredBy: []
   timestamp: '2022-12-01 18:20:22+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/library_checker/datastructure/staticrmq_dc.test.cpp
 documentation_of: ds/offline_query/divide_conquer_range_query.hpp
 layout: document
 redirect_from:

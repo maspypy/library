@@ -8,10 +8,13 @@ data:
   - icon: ':warning:'
     path: geo/manhattan_nns.hpp
     title: geo/manhattan_nns.hpp
+  - icon: ':x:'
+    path: graph/ds/treegroup.hpp
+    title: graph/ds/treegroup.hpp
   - icon: ':question:'
     path: graph/ds/treemonoid.hpp
     title: graph/ds/treemonoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':x:'
@@ -27,18 +30,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc174f.test.cpp
     title: test/atcoder/abc174f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
   - icon: ':x:'
     path: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
     title: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/staticrmq_seg.test.cpp
+    title: test/library_checker/datastructure/staticrmq_seg.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+    title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
@@ -168,6 +177,7 @@ data:
   - string/suffix_tree.hpp
   - geo/manhattan_nns.hpp
   - ds/offline_query/uniqueproductquery.hpp
+  - graph/ds/treegroup.hpp
   - graph/ds/treemonoid.hpp
   - graph/minimum_spanning_tree.hpp
   timestamp: '2022-12-01 18:20:22+09:00'
@@ -182,7 +192,9 @@ data:
   - test/mytest/suffix_tree.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+  - test/library_checker/datastructure/staticrmq_seg.test.cpp
   - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
   - test/atcoder/abc270_f.test.cpp
   - test/atcoder/abc174f.test.cpp

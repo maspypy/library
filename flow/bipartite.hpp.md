@@ -14,6 +14,9 @@ data:
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   _extendedRequiredBy:
+  - icon: ':x:'
+    path: graph/bipartite_edge_coloring.hpp
+    title: graph/bipartite_edge_coloring.hpp
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
@@ -30,6 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2251_2.test.cpp
     title: test/aoj/2251_2.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/graph/bipartite_edge_coloring.test.cpp
+    title: test/library_checker/graph/bipartite_edge_coloring.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
@@ -277,6 +283,7 @@ data:
   isVerificationFile: false
   path: flow/bipartite.hpp
   requiredBy:
+  - graph/bipartite_edge_coloring.hpp
   - graph/dag_path_cover.hpp
   - graph/maximum_antichain.hpp
   timestamp: '2022-12-01 21:48:00+09:00'
@@ -287,6 +294,7 @@ data:
   - test/yukicoder/1744.test.cpp
   - test/mytest/tutte.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
+  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
   - test/aoj/2251_1.test.cpp
   - test/aoj/2251_2.test.cpp
   - test/aoj/1566.test.cpp

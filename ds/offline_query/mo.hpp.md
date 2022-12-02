@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
+    title: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1270.test.cpp
     title: test/yukicoder/1270.test.cpp
   _isVerificationFailed: true
@@ -52,6 +55,7 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1270.test.cpp
+  - test/library_checker/datastructure/static_range_inversions_mo.test.cpp
 documentation_of: ds/offline_query/mo.hpp
 layout: document
 redirect_from:

@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/library_checker/datastructure/set_xor_min.test.cpp
+    title: test/library_checker/datastructure/set_xor_min.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/binary_trie/binarytrie.hpp\"\ntemplate <int LOG = 30>\n\
@@ -72,8 +75,9 @@ data:
   path: ds/binary_trie/binarytrie.hpp
   requiredBy: []
   timestamp: '2022-12-01 18:20:22+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/library_checker/datastructure/set_xor_min.test.cpp
 documentation_of: ds/binary_trie/binarytrie.hpp
 layout: document
 redirect_from:

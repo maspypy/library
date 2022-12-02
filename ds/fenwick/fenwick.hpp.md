@@ -9,11 +9,17 @@ data:
     path: ds/fenwick/fenwickraq.hpp
     title: ds/fenwick/fenwickraq.hpp
   - icon: ':x:'
+    path: ds/offline_query/coeffient_query_2d.hpp
+    title: ds/offline_query/coeffient_query_2d.hpp
+  - icon: ':x:'
     path: ds/offline_query/point_add_rectangle_sum.hpp
     title: ds/offline_query/point_add_rectangle_sum.hpp
   - icon: ':x:'
     path: ds/offline_query/rectangle_add_rectangle_sum.hpp
     title: ds/offline_query/rectangle_add_rectangle_sum.hpp
+  - icon: ':x:'
+    path: graph/ds/contoursum.hpp
+    title: graph/ds/contoursum.hpp
   - icon: ':question:'
     path: graph/ds/treeabelgroup.hpp
     title: graph/ds/treeabelgroup.hpp
@@ -45,9 +51,24 @@ data:
   - icon: ':x:'
     path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
+    title: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
+    title: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+    title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
+    title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/graph/verted_add_contour_sum.test.cpp
+    title: test/library_checker/graph/verted_add_contour_sum.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
@@ -149,10 +170,12 @@ data:
   requiredBy:
   - seq/inversion.hpp
   - seq/inversion_rotate.hpp
+  - ds/offline_query/coeffient_query_2d.hpp
   - ds/offline_query/rectangle_add_rectangle_sum.hpp
   - ds/offline_query/point_add_rectangle_sum.hpp
   - ds/fenwick/fenwickraq.hpp
   - graph/ds/treeabelgroup.hpp
+  - graph/ds/contoursum.hpp
   timestamp: '2022-12-01 18:20:22+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -165,9 +188,14 @@ data:
   - test/yukicoder/1270.test.cpp
   - test/yukicoder/924.test.cpp
   - test/yukicoder/1641.test.cpp
+  - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - test/library_checker/datastructure/static_range_inversions_mo.test.cpp
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
+  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
+  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+  - test/library_checker/graph/verted_add_contour_sum.test.cpp
   - test/atcoder/abc190f.test.cpp
   - test/aoj/DSL_2_E.test.cpp
   - test/aoj/ALDS1_2_A.test.cpp

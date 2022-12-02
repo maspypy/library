@@ -214,12 +214,12 @@ data:
     \ = naive_nim_product(v, x);\r\n    }\r\n  } // end prepare\r\n\r\n  u64 v = 0;\r\
     \n  FOR(a, 8) FOR(b, 8) {\r\n    v ^= memo2[a][b][memo1[(x >> (8 * a)) & 255][(y\
     \ >> (8 * b)) & 255]];\r\n  }\r\n  return v;\r\n}\n#line 5 \"test/library_checker/math/nim_product.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  u64 a, b;\r\n  scanner.read(a, b);\r\n  print(nim_product(a,\
+    \n\r\nvoid solve() {\r\n  u64 a, b;\r\n  read(a, b);\r\n  print(nim_product(a,\
     \ b));\r\n}\r\n\r\nsigned main() {\r\n  LL(T);\r\n  FOR(T) solve();\r\n\r\n  return\
     \ 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/nim_product_64\"\r\n#include\
     \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"nt/nim_product.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  u64 a, b;\r\n  scanner.read(a, b);\r\n  print(nim_product(a,\
+    \r\n\r\nvoid solve() {\r\n  u64 a, b;\r\n  read(a, b);\r\n  print(nim_product(a,\
     \ b));\r\n}\r\n\r\nsigned main() {\r\n  LL(T);\r\n  FOR(T) solve();\r\n\r\n  return\
     \ 0;\r\n}\r\n"
   dependsOn:
@@ -229,7 +229,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/nim_product.test.cpp
   requiredBy: []
-  timestamp: '2022-12-02 07:07:57+09:00'
+  timestamp: '2022-12-02 19:49:10+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/nim_product.test.cpp
