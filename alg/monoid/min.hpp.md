@@ -18,6 +18,9 @@ data:
     path: alg/acted_monoid/min_min.hpp
     title: alg/acted_monoid/min_min.hpp
   - icon: ':heavy_check_mark:'
+    path: ds/offline_query/range_mex_query.hpp
+    title: ds/offline_query/range_mex_query.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':x:'
@@ -58,6 +61,9 @@ data:
     path: test/library_checker/datastructure/staticrmq_seg.test.cpp
     title: test/library_checker/datastructure/staticrmq_seg.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/staticrmq_sparse.test.cpp
+    title: test/library_checker/datastructure/staticrmq_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/string/number_of_substrings.test.cpp
     title: test/library_checker/string/number_of_substrings.test.cpp
   - icon: ':heavy_check_mark:'
@@ -76,6 +82,9 @@ data:
     path: test/mytest/min_min.test.cpp
     title: test/mytest/min_min.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/range_mex.test.cpp
+    title: test/mytest/range_mex.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_am.test.cpp
     title: test/mytest/rbst_am.test.cpp
   - icon: ':heavy_check_mark:'
@@ -87,10 +96,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1212.test.cpp
     title: test/yukicoder/1212.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1234.test.cpp
     title: test/yukicoder/1234.test.cpp
   - icon: ':x:'
@@ -131,6 +140,7 @@ data:
   - string/suffix_tree.hpp
   - string/suffixarray.hpp
   - seq/common_interval_decomposition.hpp
+  - ds/offline_query/range_mex_query.hpp
   - graph/minimum_spanning_tree.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_SOME_WA
@@ -142,6 +152,7 @@ data:
   - test/yukicoder/1270.test.cpp
   - test/yukicoder/1212.test.cpp
   - test/mytest/min_max.test.cpp
+  - test/mytest/range_mex.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/min_min.test.cpp
   - test/mytest/max_min.test.cpp
@@ -152,6 +163,7 @@ data:
   - test/library_checker/string/number_of_substrings.test.cpp
   - test/library_checker/string/suffix_array_vec.test.cpp
   - test/library_checker/datastructure/staticrmq_seg.test.cpp
+  - test/library_checker/datastructure/staticrmq_sparse.test.cpp
   - test/atcoder/arc151_e.test.cpp
   - test/atcoder/abc270_f.test.cpp
   - test/aoj/GRL_2_A.test.cpp

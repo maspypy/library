@@ -8,10 +8,13 @@ data:
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
+    title: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/rollinghash.hpp\"\n\r\n#line 2 \"random/base.hpp\"\
@@ -73,8 +76,9 @@ data:
   path: alg/monoid/rollinghash.hpp
   requiredBy: []
   timestamp: '2022-12-01 09:04:06+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
 documentation_of: alg/monoid/rollinghash.hpp
 layout: document
 redirect_from:

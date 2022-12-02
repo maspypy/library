@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/lazysegtree_beats.hpp
     title: ds/segtree/lazysegtree_beats.hpp
   _extendedRequiredBy: []

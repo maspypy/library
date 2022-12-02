@@ -5,10 +5,13 @@ data:
     path: ds/pds/array.hpp
     title: ds/pds/array.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/persistent_unionfind.test.cpp
+    title: test/library_checker/datastructure/persistent_unionfind.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/pds/array.hpp\"\n\r\ntemplate <typename T, int shift\
@@ -61,8 +64,9 @@ data:
   path: ds/unionfind/persistent_unionfind.hpp
   requiredBy: []
   timestamp: '2022-12-01 18:20:22+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/library_checker/datastructure/persistent_unionfind.test.cpp
 documentation_of: ds/unionfind/persistent_unionfind.hpp
 layout: document
 redirect_from:

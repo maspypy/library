@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/statictreemonoid.hpp
     title: graph/ds/statictreemonoid.hpp
   - icon: ':heavy_check_mark:'
@@ -19,6 +19,9 @@ data:
     path: test/atcoder/arc151_e.test.cpp
     title: test/atcoder/arc151_e.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/staticrmq_sparse.test.cpp
+    title: test/library_checker/datastructure/staticrmq_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/string/number_of_substrings.test.cpp
     title: test/library_checker/string/number_of_substrings.test.cpp
   - icon: ':heavy_check_mark:'
@@ -28,12 +31,15 @@ data:
     path: test/library_checker/string/suffix_array_vec.test.cpp
     title: test/library_checker/string/suffix_array_vec.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
+    title: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1216.test.cpp
     title: test/yukicoder/1216.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1216_2.test.cpp
     title: test/yukicoder/1216_2.test.cpp
   - icon: ':x:'
@@ -111,9 +117,11 @@ data:
   - test/yukicoder/1216.test.cpp
   - test/yukicoder/1216_2.test.cpp
   - test/mytest/suffix_tree.test.cpp
+  - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp
   - test/library_checker/string/suffix_array_vec.test.cpp
+  - test/library_checker/datastructure/staticrmq_sparse.test.cpp
   - test/atcoder/arc151_e.test.cpp
 documentation_of: ds/disjoint_sparse/disjointsparse.hpp
 layout: document

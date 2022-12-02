@@ -1,9 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: ds/unionfind/unionfind.hpp
-    title: ds/unionfind/unionfind.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/pds/array.hpp
+    title: ds/pds/array.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/unionfind/persistent_unionfind.hpp
+    title: ds/unionfind/persistent_unionfind.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -12,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/persistent_unionfind
@@ -199,18 +202,37 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\n#line 4 \"test/library_checker/datastructure/persistent_unionfind.test.cpp\"\
-    \n\r\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n;\n\
-    \  int n_comp;\n  std::vector<int> size, par;\n  UnionFind(int n) : n(n), n_comp(n),\
-    \ size(n, 1), par(n) {\n    std::iota(par.begin(), par.end(), 0);\n  }\n  int\
-    \ find(int x) {\n    assert(0 <= x && x < n);\n    while (par[x] != x) { x = par[x]\
-    \ = par[par[x]]; }\n    return x;\n  }\n\n  int operator[](int x) { return find(x);\
-    \ }\n\n  bool merge(int x, int y) {\n    x = find(x);\n    y = find(y);\n    if\
-    \ (x == y) { return false; }\n    n_comp--;\n    if (size[x] < size[y]) std::swap(x,\
-    \ y);\n    size[x] += size[y];\n    size[y] = 0;\n    par[y] = x;\n    return\
-    \ true;\n  }\n\n  std::vector<int> find_all() {\n    std::vector<int> A(n);\n\
-    \    for (int i = 0; i < n; ++i) A[i] = find(i);\n    return A;\n  }\n\n  void\
-    \ reset() {\n    n_comp = n;\n    size.assign(n, 1);\n    std::iota(par.begin(),\
-    \ par.end(), 0);\n  }\n};\n#line 6 \"test/library_checker/datastructure/persistent_unionfind.test.cpp\"\
+    \n\r\n#line 2 \"ds/pds/array.hpp\"\n\r\ntemplate <typename T, int shift = 4>\r\
+    \nstruct PersistentArray {\r\n  struct node;\r\n  using np = node*;\r\n  struct\
+    \ node {\r\n    T data;\r\n    np ch[1 << shift] = {};\r\n  };\r\n\r\n  static\
+    \ constexpr int mask = (1 << shift) - 1;\r\n  np root = nullptr;\r\n  PersistentArray()\
+    \ {}\r\n  np get_root() { return root; }\r\n  T get(np t, int idx) {\r\n    if\
+    \ (!t) return 0;\r\n    if (idx == 0) {\r\n      return t->data;\r\n    } else\
+    \ {\r\n      return get(t->ch[idx & mask], idx >> shift);\r\n    }\r\n  }\r\n\r\
+    \n  void destructive_set(np& t, int idx, T val) {\r\n    // \u7834\u58CA\u7684\
+    \u306A\u5024\u306E\u5909\u66F4\u3002\u4E3B\u306B\u521D\u671F\u5316\u306B\u4F7F\
+    \u3046\u3002\r\n    if (!t) t = new node();\r\n    if (idx == 0)\r\n      t->data\
+    \ = val;\r\n    else {\r\n      destructive_set(t->ch[idx & mask], idx >> shift,\
+    \ val);\r\n    }\r\n  }\r\n\r\n  np set(const np& t, int idx, T val) {\r\n   \
+    \ // set \u3057\u305F\u3042\u3068\u306E\u6C38\u7D9A\u914D\u5217\u306E root node\
+    \ pointer \u3092\u8FD4\u3059\r\n    np res = new node();\r\n    if (t) {\r\n \
+    \     memcpy(res->ch, t->ch, sizeof(t->ch));\r\n      res->data = t->data;\r\n\
+    \    }\r\n    if (idx == 0) {\r\n      res->data = val;\r\n    } else {\r\n  \
+    \    res->ch[idx & mask] = set(res->ch[idx & mask], idx >> shift, val);\r\n  \
+    \  }\r\n    return res;\r\n  }\r\n};\r\n#line 2 \"ds/unionfind/persistent_unionfind.hpp\"\
+    \n\r\nstruct PersistentUnionFind {\r\n  using PA = PersistentArray<int>;\r\n \
+    \ int n;\r\n  PA data; // root OR (-size)\r\n  using np = PA::np;\r\n\r\n  PersistentUnionFind(int\
+    \ n) : n(n) {}\r\n  np init() {\r\n    np t = data.get_root();\r\n    FOR(i, n)\
+    \ data.destructive_set(t, i, -1);\r\n    return t;\r\n  }\r\n\r\n  pair<bool,\
+    \ np> merge(np t, int x, int y) {\r\n    x = root(t, x), y = root(t, y);\r\n \
+    \   if (x == y) return {0, t};\r\n    if (data.get(t, x) > data.get(t, y)) swap(x,\
+    \ y);\r\n    int new_sz = data.get(t, x) + data.get(t, y);\r\n    np set_x_sz\
+    \ = data.set(t, x, new_sz);\r\n    np set_y_par = data.set(set_x_sz, y, x);\r\n\
+    \    return {1, set_y_par};\r\n  }\r\n\r\n  int root(np t, int x) {\r\n    int\
+    \ par_or_sz = data.get(t, x);\r\n    if (par_or_sz < 0) return x;\r\n    return\
+    \ root(t, par_or_sz);\r\n  }\r\n\r\n  bool same(np t, int x, int y) { return root(t,\
+    \ x) == root(t, y); }\r\n  int size(np t, int x) { return -data.get(t, root(t,\
+    \ x)); }\r\n};\n#line 6 \"test/library_checker/datastructure/persistent_unionfind.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n\r\n  PersistentUnionFind uf(N);\r\n  using\
     \ np = PersistentUnionFind::np;\r\n  vc<np> UFS;\r\n\r\n  UFS.reserve(Q + 1);\r\
     \n  UFS.eb(uf.init());\r\n\r\n  FOR3(q, 1, Q + 1) {\r\n    LL(t, k, u, v);\r\n\
@@ -220,23 +242,24 @@ data:
     \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_unionfind\"\r\
     \n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"\
-    ds/unionfind/unionfind.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\n\r\n  PersistentUnionFind\
-    \ uf(N);\r\n  using np = PersistentUnionFind::np;\r\n  vc<np> UFS;\r\n\r\n  UFS.reserve(Q\
-    \ + 1);\r\n  UFS.eb(uf.init());\r\n\r\n  FOR3(q, 1, Q + 1) {\r\n    LL(t, k, u,\
-    \ v);\r\n    ++k;\r\n    if (t == 0) {\r\n      UFS.eb(uf.merge(UFS[k], u, v).se);\r\
-    \n    } else {\r\n      print(uf.same(UFS[k], u, v));\r\n      UFS.eb(UFS[q -\
-    \ 1]);\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n\
-    \  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
-    \n\r\n  return 0;\r\n}\r\n"
+    ds/unionfind/persistent_unionfind.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\
+    \n\r\n  PersistentUnionFind uf(N);\r\n  using np = PersistentUnionFind::np;\r\n\
+    \  vc<np> UFS;\r\n\r\n  UFS.reserve(Q + 1);\r\n  UFS.eb(uf.init());\r\n\r\n  FOR3(q,\
+    \ 1, Q + 1) {\r\n    LL(t, k, u, v);\r\n    ++k;\r\n    if (t == 0) {\r\n    \
+    \  UFS.eb(uf.merge(UFS[k], u, v).se);\r\n    } else {\r\n      print(uf.same(UFS[k],\
+    \ u, v));\r\n      UFS.eb(UFS[q - 1]);\r\n    }\r\n  }\r\n}\r\n\r\nsigned main()\
+    \ {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
+    \n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/unionfind/unionfind.hpp
+  - ds/unionfind/persistent_unionfind.hpp
+  - ds/pds/array.hpp
   isVerificationFile: true
   path: test/library_checker/datastructure/persistent_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2022-12-02 19:34:09+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-03 00:30:35+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/persistent_unionfind.test.cpp
 layout: document
