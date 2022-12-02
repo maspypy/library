@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: ds/splay/splaytree.hpp
     title: ds/splay/splaytree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splay/splaytree_acted_monoid.hpp
     title: ds/splay/splaytree_acted_monoid.hpp
   - icon: ':question:'

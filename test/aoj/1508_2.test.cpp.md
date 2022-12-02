@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/rbst/rbst_monoid.hpp
     title: ds/rbst/rbst_monoid.hpp
   - icon: ':question:'

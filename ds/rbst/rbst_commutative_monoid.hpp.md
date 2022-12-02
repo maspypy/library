@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/rbst_commutative_persistent.test.cpp
     title: test/mytest/rbst_commutative_persistent.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/rbst/rbst_commutative_monoid.hpp\"\ntemplate <typename\
@@ -232,7 +232,7 @@ data:
   path: ds/rbst/rbst_commutative_monoid.hpp
   requiredBy: []
   timestamp: '2022-12-01 11:07:48+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/rbst_commutative_persistent.test.cpp
 documentation_of: ds/rbst/rbst_commutative_monoid.hpp
