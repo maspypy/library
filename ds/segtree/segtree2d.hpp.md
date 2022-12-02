@@ -9,6 +9,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1600.test.cpp
     title: test/yukicoder/1600.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1625_2.test.cpp
+    title: test/yukicoder/1625_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -114,6 +117,7 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1600.test.cpp
+  - test/yukicoder/1625_2.test.cpp
   - test/atcoder/abc266h.test.cpp
 documentation_of: ds/segtree/segtree2d.hpp
 layout: document

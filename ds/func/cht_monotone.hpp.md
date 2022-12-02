@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: test/yukicoder/1297.test.cpp
+    title: test/yukicoder/1297.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/913.test.cpp
     title: test/yukicoder/913.test.cpp
   _isVerificationFailed: true
@@ -81,6 +84,7 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/913.test.cpp
+  - test/yukicoder/1297.test.cpp
 documentation_of: ds/func/cht_monotone.hpp
 layout: document
 redirect_from:

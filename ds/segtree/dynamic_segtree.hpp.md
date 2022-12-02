@@ -4,8 +4,14 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: test/yukicoder/1036.test.cpp
+    title: test/yukicoder/1036.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1649.test.cpp
     title: test/yukicoder/1649.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1826.test.cpp
+    title: test/yukicoder/1826.test.cpp
   - icon: ':x:'
     path: test/yukicoder/789.test.cpp
     title: test/yukicoder/789.test.cpp
@@ -159,6 +165,8 @@ data:
   verifiedWith:
   - test/yukicoder/1649.test.cpp
   - test/yukicoder/789.test.cpp
+  - test/yukicoder/1826.test.cpp
+  - test/yukicoder/1036.test.cpp
 documentation_of: ds/segtree/dynamic_segtree.hpp
 layout: document
 redirect_from:

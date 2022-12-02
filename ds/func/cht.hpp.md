@@ -7,6 +7,9 @@ data:
     path: test/atcoder/abc244h.test.cpp
     title: test/atcoder/abc244h.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1297.test.cpp
+    title: test/yukicoder/1297.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/2012.test.cpp
     title: test/yukicoder/2012.test.cpp
   _isVerificationFailed: true
@@ -95,6 +98,7 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/2012.test.cpp
+  - test/yukicoder/1297.test.cpp
   - test/atcoder/abc244h.test.cpp
 documentation_of: ds/func/cht.hpp
 layout: document

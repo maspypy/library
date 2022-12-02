@@ -24,6 +24,9 @@ data:
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':x:'
+    path: graph/online_unionfind.hpp
+    title: graph/online_unionfind.hpp
+  - icon: ':x:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
   _extendedVerifiedWith:
@@ -57,6 +60,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/114.test.cpp
     title: test/yukicoder/114.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1170_2.test.cpp
+    title: test/yukicoder/1170_2.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1211.test.cpp
     title: test/yukicoder/1211.test.cpp
@@ -135,6 +141,7 @@ data:
   - graph/dag_path_cover.hpp
   - graph/maximum_antichain.hpp
   - graph/check_bipartite.hpp
+  - graph/online_unionfind.hpp
   - graph/minimum_spanning_tree.hpp
   timestamp: '2022-12-01 18:20:22+09:00'
   verificationStatus: LIBRARY_SOME_WA
@@ -152,6 +159,7 @@ data:
   - test/yukicoder/1451.test.cpp
   - test/yukicoder/1211.test.cpp
   - test/yukicoder/1745.test.cpp
+  - test/yukicoder/1170_2.test.cpp
   - test/yukicoder/1744.test.cpp
   - test/mytest/tutte.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp

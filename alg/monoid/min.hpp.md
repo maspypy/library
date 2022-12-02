@@ -76,6 +76,9 @@ data:
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1212.test.cpp
+    title: test/yukicoder/1212.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1234.test.cpp
     title: test/yukicoder/1234.test.cpp
   - icon: ':x:'
@@ -125,6 +128,7 @@ data:
   - test/yukicoder/1234.test.cpp
   - test/yukicoder/1720.test.cpp
   - test/yukicoder/1270.test.cpp
+  - test/yukicoder/1212.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/rbst_am.test.cpp
   - test/mytest/rbst_am_persistent.test.cpp

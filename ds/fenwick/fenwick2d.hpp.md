@@ -15,6 +15,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1216_2.test.cpp
     title: test/yukicoder/1216_2.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1919.test.cpp
+    title: test/yukicoder/1919.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -157,6 +160,7 @@ data:
   verifiedWith:
   - test/yukicoder/1216.test.cpp
   - test/yukicoder/1216_2.test.cpp
+  - test/yukicoder/1919.test.cpp
   - test/atcoder/abc266h_2.test.cpp
 documentation_of: ds/fenwick/fenwick2d.hpp
 layout: document

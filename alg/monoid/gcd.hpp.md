@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: test/yukicoder/1036.test.cpp
+    title: test/yukicoder/1036.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1036_2.test.cpp
     title: test/yukicoder/1036_2.test.cpp
   - icon: ':x:'
@@ -29,6 +32,7 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1036_2.test.cpp
+  - test/yukicoder/1036.test.cpp
   - test/yukicoder/1036_3.test.cpp
 documentation_of: alg/monoid/gcd.hpp
 layout: document

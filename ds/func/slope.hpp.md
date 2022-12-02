@@ -6,12 +6,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc127f.test.cpp
     title: test/atcoder/abc127f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc217h.test.cpp
     title: test/atcoder/abc217h.test.cpp
   - icon: ':x:'
     path: test/atcoder/arc123d.test.cpp
     title: test/atcoder/arc123d.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1077.test.cpp
+    title: test/yukicoder/1077.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -102,6 +105,7 @@ data:
   timestamp: '2022-12-01 18:20:22+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1077.test.cpp
   - test/atcoder/abc217h.test.cpp
   - test/atcoder/arc123d.test.cpp
   - test/atcoder/abc127f.test.cpp

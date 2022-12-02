@@ -1,11 +1,23 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: ds/segtree/beats_summax_chmin.hpp
+    title: ds/segtree/beats_summax_chmin.hpp
+  - icon: ':warning:'
+    path: ds/segtree/beats_summaxmin_chminchmax.hpp
+    title: ds/segtree/beats_summaxmin_chminchmax.hpp
+  - icon: ':x:'
+    path: ds/segtree/beats_summin_chmax.hpp
+    title: ds/segtree/beats_summin_chmax.hpp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yukicoder/1526.test.cpp
+    title: test/yukicoder/1526.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/lazysegtree_beats.hpp\"\n\ntemplate <typename\
@@ -126,10 +138,14 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: ds/segtree/lazysegtree_beats.hpp
-  requiredBy: []
+  requiredBy:
+  - ds/segtree/beats_summin_chmax.hpp
+  - ds/segtree/beats_summaxmin_chminchmax.hpp
+  - ds/segtree/beats_summax_chmin.hpp
   timestamp: '2022-12-01 18:20:22+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yukicoder/1526.test.cpp
 documentation_of: ds/segtree/lazysegtree_beats.hpp
 layout: document
 redirect_from:

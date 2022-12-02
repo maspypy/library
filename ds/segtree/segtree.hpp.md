@@ -46,6 +46,9 @@ data:
     path: test/yukicoder/1036_2.test.cpp
     title: test/yukicoder/1036_2.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1212.test.cpp
+    title: test/yukicoder/1212.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1435.test.cpp
     title: test/yukicoder/1435.test.cpp
   - icon: ':x:'
@@ -172,6 +175,7 @@ data:
   - test/yukicoder/426.test.cpp
   - test/yukicoder/1435.test.cpp
   - test/yukicoder/529.test.cpp
+  - test/yukicoder/1212.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
