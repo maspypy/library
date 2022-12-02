@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/rbst/rbst_acted_monoid.hpp
     title: ds/rbst/rbst_acted_monoid.hpp
   - icon: ':question:'
