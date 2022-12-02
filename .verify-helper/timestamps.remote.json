@@ -153,5 +153,16 @@
 "test/library_checker/matrix/solve_linear.test.cpp": "2022-12-02 07:07:57 +0900",
 "test/library_checker/matrix/sparse_matrix_det.test.cpp": "2022-12-02 07:07:57 +0900",
 "test/library_checker/polynomial/composition_of_fps.test.cpp": "2022-12-02 07:07:57 +0900",
-"test/library_checker/polynomial/exp_of_fps.test.cpp": "2022-12-02 07:07:57 +0900"
+"test/library_checker/polynomial/exp_of_fps.test.cpp": "2022-12-02 07:07:57 +0900",
+"test/library_checker/polynomial/exp_of_fps_sparse.test.cpp": "2022-12-02 07:07:57 +0900",
+"test/library_checker/polynomial/inv_of_fps.test.cpp": "2022-12-02 07:07:57 +0900",
+"test/library_checker/polynomial/inv_of_fps_sparse.test.cpp": "2022-12-02 07:07:57 +0900",
+"test/library_checker/polynomial/inv_of_polynomials.test.cpp": "2022-12-02 07:07:57 +0900",
+"test/library_checker/polynomial/log_of_fps.test.cpp": "2022-12-02 07:07:57 +0900",
+"test/library_checker/polynomial/log_of_fps_sparse.test.cpp": "2022-12-02 07:07:57 +0900",
+"test/library_checker/polynomial/multipoint_evaluation.test.cpp": "2022-12-02 07:07:57 +0900",
+"test/library_checker/polynomial/polynomial_division.test.cpp": "2022-12-02 07:07:57 +0900",
+"test/library_checker/polynomial/polynomial_interpolation.test.cpp": "2022-12-02 07:07:57 +0900",
+"test/library_checker/polynomial/polynomial_taylor_shift.test.cpp": "2022-12-02 07:07:57 +0900",
+"test/library_checker/polynomial/pow_of_fps.test.cpp": "2022-12-02 07:07:57 +0900"
 }
