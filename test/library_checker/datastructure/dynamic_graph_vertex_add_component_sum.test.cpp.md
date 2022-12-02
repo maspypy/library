@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/offline_query/addremove_query.hpp
     title: ds/offline_query/addremove_query.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/pds/rollbackarray.hpp
     title: ds/pds/rollbackarray.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/rollbackunionfind.hpp
     title: ds/unionfind/rollbackunionfind.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum
@@ -314,7 +314,7 @@ data:
   path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
   requiredBy: []
   timestamp: '2022-12-02 19:34:09+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
 layout: document

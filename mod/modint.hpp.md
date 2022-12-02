@@ -550,6 +550,9 @@ data:
     path: test/yukicoder/1547.test.cpp
     title: test/yukicoder/1547.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1548.test.cpp
+    title: test/yukicoder/1548.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1549.test.cpp
     title: test/yukicoder/1549.test.cpp
   - icon: ':x:'
@@ -612,6 +615,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1875.test.cpp
     title: test/yukicoder/1875.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1891.test.cpp
+    title: test/yukicoder/1891.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
@@ -975,8 +981,10 @@ data:
   - test/yukicoder/1321.test.cpp
   - test/yukicoder/1848.test.cpp
   - test/yukicoder/1397.test.cpp
+  - test/yukicoder/1548.test.cpp
   - test/yukicoder/502_2.test.cpp
   - test/yukicoder/1755.test.cpp
+  - test/yukicoder/1891.test.cpp
   - test/yukicoder/1533.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/enumerate_multisets.test.cpp

@@ -5,17 +5,17 @@ data:
   - icon: ':x:'
     path: graph/ds/statictreemonoid.hpp
     title: graph/ds/statictreemonoid.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
   - icon: ':x:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/suffixarray.hpp
     title: string/suffixarray.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/arc151_e.test.cpp
     title: test/atcoder/arc151_e.test.cpp
   - icon: ':x:'
@@ -41,7 +41,7 @@ data:
     title: test/yukicoder/2005.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/disjoint_sparse/disjointsparse.hpp\"\n\r\ntemplate <class\
@@ -105,7 +105,7 @@ data:
   - string/suffixarray.hpp
   - graph/ds/statictreemonoid.hpp
   timestamp: '2022-12-01 18:20:22+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/2005.test.cpp
   - test/yukicoder/1216.test.cpp

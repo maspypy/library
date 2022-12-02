@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/offline_query/rectangleunion.hpp
     title: ds/offline_query/rectangleunion.hpp
   - icon: ':question:'
@@ -27,9 +27,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
     title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+  - icon: ':x:'
+    path: test/mytest/cntsummin_assign.test.cpp
+    title: test/mytest/cntsummin_assign.test.cpp
+  - icon: ':x:'
+    path: test/mytest/max_max.test.cpp
+    title: test/mytest/max_max.test.cpp
+  - icon: ':x:'
+    path: test/mytest/maxidx_add.test.cpp
+    title: test/mytest/maxidx_add.test.cpp
+  - icon: ':x:'
+    path: test/mytest/minidx_add.test.cpp
+    title: test/mytest/minidx_add.test.cpp
+  - icon: ':x:'
+    path: test/mytest/minmax_add.test.cpp
+    title: test/mytest/minmax_add.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
@@ -39,6 +54,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1270.test.cpp
     title: test/yukicoder/1270.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1548.test.cpp
+    title: test/yukicoder/1548.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1720.test.cpp
     title: test/yukicoder/1720.test.cpp
@@ -204,7 +222,13 @@ data:
   - test/yukicoder/1270.test.cpp
   - test/yukicoder/255.test.cpp
   - test/yukicoder/1790.test.cpp
+  - test/yukicoder/1548.test.cpp
   - test/yukicoder/1197.test.cpp
+  - test/mytest/cntsummin_assign.test.cpp
+  - test/mytest/minidx_add.test.cpp
+  - test/mytest/maxidx_add.test.cpp
+  - test/mytest/minmax_add.test.cpp
+  - test/mytest/max_max.test.cpp
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - test/aoj/DSL_4_A.test.cpp
   - test/aoj/DSL_2_I.test.cpp

@@ -118,6 +118,9 @@ data:
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
   - icon: ':x:'
+    path: test/mytest/cntsummin_assign.test.cpp
+    title: test/mytest/cntsummin_assign.test.cpp
+  - icon: ':x:'
     path: test/mytest/conv2d.test.cpp
     title: test/mytest/conv2d.test.cpp
   - icon: ':x:'
@@ -133,14 +136,26 @@ data:
     path: test/mytest/is_substring.test.cpp
     title: test/mytest/is_substring.test.cpp
   - icon: ':x:'
+    path: test/mytest/max_max.test.cpp
+    title: test/mytest/max_max.test.cpp
+  - icon: ':x:'
     path: test/mytest/max_of_linear_segments.test.cpp
     title: test/mytest/max_of_linear_segments.test.cpp
+  - icon: ':x:'
+    path: test/mytest/maxidx_add.test.cpp
+    title: test/mytest/maxidx_add.test.cpp
   - icon: ':x:'
     path: test/mytest/maxplus_concave.test.cpp
     title: test/mytest/maxplus_concave.test.cpp
   - icon: ':x:'
     path: test/mytest/min_of_linear_segments.test.cpp
     title: test/mytest/min_of_linear_segments.test.cpp
+  - icon: ':x:'
+    path: test/mytest/minidx_add.test.cpp
+    title: test/mytest/minidx_add.test.cpp
+  - icon: ':x:'
+    path: test/mytest/minmax_add.test.cpp
+    title: test/mytest/minmax_add.test.cpp
   - icon: ':x:'
     path: test/mytest/minplus_convex.test.cpp
     title: test/mytest/minplus_convex.test.cpp
@@ -332,10 +347,15 @@ data:
   - test/mytest/minplus_convex.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/is_substring.test.cpp
+  - test/mytest/cntsummin_assign.test.cpp
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/online_pow.test.cpp
+  - test/mytest/minidx_add.test.cpp
+  - test/mytest/maxidx_add.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/add_chmin.test.cpp
+  - test/mytest/minmax_add.test.cpp
+  - test/mytest/max_max.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/online_exp.test.cpp
   - test/mytest/splay_monoid.test.cpp

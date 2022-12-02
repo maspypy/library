@@ -264,10 +264,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/agc058d.test.cpp
     title: test/atcoder/agc058d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/arc123d.test.cpp
     title: test/atcoder/arc123d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/arc151_e.test.cpp
     title: test/atcoder/arc151_e.test.cpp
   - icon: ':heavy_check_mark:'
@@ -309,10 +309,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/add_remove_query.test.cpp
     title: test/library_checker/datastructure/add_remove_query.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
     title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - icon: ':heavy_check_mark:'
@@ -321,10 +321,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
     title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/double_ended_pq.test.cpp
     title: test/library_checker/datastructure/double_ended_pq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
     title: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -339,10 +339,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
     title: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/line_add_get_min.test.cpp
     title: test/library_checker/datastructure/line_add_get_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
     title: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
   - icon: ':heavy_check_mark:'
@@ -351,10 +351,10 @@ data:
   - icon: ':x:'
     path: test/library_checker/datastructure/persistent_unionfind.test.cpp
     title: test/library_checker/datastructure/persistent_unionfind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_range_sum.test.cpp
     title: test/library_checker/datastructure/point_add_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   - icon: ':x:'
@@ -751,6 +751,9 @@ data:
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
   - icon: ':x:'
+    path: test/mytest/cntsummin_assign.test.cpp
+    title: test/mytest/cntsummin_assign.test.cpp
+  - icon: ':x:'
     path: test/mytest/conv2d.test.cpp
     title: test/mytest/conv2d.test.cpp
   - icon: ':x:'
@@ -793,14 +796,26 @@ data:
     path: test/mytest/magic_square.test.cpp
     title: test/mytest/magic_square.test.cpp
   - icon: ':x:'
+    path: test/mytest/max_max.test.cpp
+    title: test/mytest/max_max.test.cpp
+  - icon: ':x:'
     path: test/mytest/max_of_linear_segments.test.cpp
     title: test/mytest/max_of_linear_segments.test.cpp
+  - icon: ':x:'
+    path: test/mytest/maxidx_add.test.cpp
+    title: test/mytest/maxidx_add.test.cpp
   - icon: ':x:'
     path: test/mytest/maxplus_concave.test.cpp
     title: test/mytest/maxplus_concave.test.cpp
   - icon: ':x:'
     path: test/mytest/min_of_linear_segments.test.cpp
     title: test/mytest/min_of_linear_segments.test.cpp
+  - icon: ':x:'
+    path: test/mytest/minidx_add.test.cpp
+    title: test/mytest/minidx_add.test.cpp
+  - icon: ':x:'
+    path: test/mytest/minmax_add.test.cpp
+    title: test/mytest/minmax_add.test.cpp
   - icon: ':x:'
     path: test/mytest/minplus_convex.test.cpp
     title: test/mytest/minplus_convex.test.cpp
@@ -1135,11 +1150,17 @@ data:
     path: test/yukicoder/1547.test.cpp
     title: test/yukicoder/1547.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1548.test.cpp
+    title: test/yukicoder/1548.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1549.test.cpp
     title: test/yukicoder/1549.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1573.test.cpp
+    title: test/yukicoder/1573.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1593.test.cpp
     title: test/yukicoder/1593.test.cpp
@@ -1284,6 +1305,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1881.test.cpp
     title: test/yukicoder/1881.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1891.test.cpp
+    title: test/yukicoder/1891.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
@@ -1826,9 +1850,12 @@ data:
   - test/yukicoder/1977.test.cpp
   - test/yukicoder/1744.test.cpp
   - test/yukicoder/1625_2.test.cpp
+  - test/yukicoder/1548.test.cpp
   - test/yukicoder/502_2.test.cpp
+  - test/yukicoder/1573.test.cpp
   - test/yukicoder/1755.test.cpp
   - test/yukicoder/1868.test.cpp
+  - test/yukicoder/1891.test.cpp
   - test/yukicoder/1240.test.cpp
   - test/yukicoder/1117.test.cpp
   - test/yukicoder/1418.test.cpp
@@ -1842,14 +1869,19 @@ data:
   - test/mytest/is_substring.test.cpp
   - test/mytest/enumerate_multisets.test.cpp
   - test/mytest/knight_distance.test.cpp
+  - test/mytest/cntsummin_assign.test.cpp
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/online_pow.test.cpp
   - test/mytest/primesum_mod6.test.cpp
   - test/mytest/cf702_F.test.cpp
   - test/mytest/bell.test.cpp
+  - test/mytest/minidx_add.test.cpp
+  - test/mytest/maxidx_add.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/add_chmin.test.cpp
+  - test/mytest/minmax_add.test.cpp
   - test/mytest/cf702_F_splay.test.cpp
+  - test/mytest/max_max.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/eulerian_number.test.cpp
   - test/mytest/online_exp.test.cpp
