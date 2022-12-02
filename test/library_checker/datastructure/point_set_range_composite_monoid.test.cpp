@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/segtree.hpp"
+#include "ds/segtree/segtree.hpp"
 #include "mod/modint.hpp"
 #include "alg/monoid/affine.hpp"
 

@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/segment_add_get_min"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/cht/dynamic_lichao.hpp"
+#include "ds/func/dynamic_lichao.hpp"
 
 void solve() {
   LL(N, Q);

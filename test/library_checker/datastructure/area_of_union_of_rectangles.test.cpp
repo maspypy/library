@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/query/rectangleunion.hpp"
+#include "ds/offline_query/rectangleunion.hpp"
 
 void solve() {
   LL(N);
