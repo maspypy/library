@@ -3,25 +3,19 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "alg/acted_monoid/cntsum_affine.hpp"
+#include "alg/acted_monoid/sum_affine.hpp"
 #include "mod/modint.hpp"
-#include "ds/splay/splaytree_acted_monoid.hpp"
+#include "ds/splaytree/splaytree_acted_monoid.hpp"
 
 using mint = modint998;
 
 void solve() {
-  using AM = ActedMonoid_CntSum_Affine<mint>;
+  using AM = ActedMonoid_Sum_Affine<mint>;
   SplayTree_ActedMonoid<AM, 1'000'000> X;
   using P = typename AM::X;
 
   INT(N, Q);
-  vc<P> dat(N);
-  FOR(i, N) {
-    mint a;
-    read(a);
-    dat[i] = {mint(1), a};
-  }
-
+  VEC(mint, dat, N);
   auto root = X.new_node(dat);
 
   FOR(Q) {
@@ -29,7 +23,7 @@ void solve() {
     if (t == 0) {
       INT(i, x);
       auto [a, b] = X.split(root, i);
-      root = X.merge3(a, X.new_node({mint(1), mint(x)}), b);
+      root = X.merge3(a, X.new_node(mint(x)), b);
     }
     if (t == 1) {
       INT(i);
@@ -46,7 +40,7 @@ void solve() {
     }
     if (t == 4) {
       INT(L, R);
-      print(X.prod(root, L, R).se);
+      print(X.prod(root, L, R));
     }
   }
 }

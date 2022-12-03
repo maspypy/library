@@ -1,4 +1,4 @@
-#include "ds/splay/splaytree.hpp"
+#include "ds/splaytree/splaytree.hpp"
 
 namespace SplayTreeNodes {
 template <typename ActedMonoid>
@@ -40,27 +40,13 @@ struct Node_AM {
 
   void prop() {
     if (lazy != Monoid_A::unit()) {
-      if (l) {
-        l->x = ActedMonoid::act(l->x, lazy);
-        l->prod = ActedMonoid::act(l->prod, lazy);
-        l->lazy = Monoid_A::op(l->lazy, lazy);
-      }
-      if (r) {
-        r->x = ActedMonoid::act(r->x, lazy);
-        r->prod = ActedMonoid::act(r->prod, lazy);
-        r->lazy = Monoid_A::op(r->lazy, lazy);
-      }
+      if (l) { l->apply(lazy); }
+      if (r) { r->apply(lazy); }
       lazy = Monoid_A::unit();
     }
     if (rev) {
-      if (l) {
-        l->rev ^= 1;
-        swap(l->l, l->r);
-      }
-      if (r) {
-        r->rev ^= 1;
-        swap(r->l, r->r);
-      }
+      if (l) { l->reverse(); }
+      if (r) { r->reverse(); }
       rev = 0;
     }
   }
@@ -77,8 +63,8 @@ struct Node_AM {
     update();
   }
   void apply(const A &a) {
-    x = ActedMonoid::act(x, a);
-    prod = ActedMonoid::act(prod, a);
+    x = ActedMonoid::act(x, a, 1);
+    prod = ActedMonoid::act(prod, a, size);
     lazy = Monoid_A::op(lazy, a);
   }
   void reverse() {
@@ -87,7 +73,7 @@ struct Node_AM {
   }
 };
 template <typename ActedMonoid, int NODES>
-using Splay_Tree_ActedMonoid = Splay_Tree<Node_AM<ActedMonoid>, NODES>;
+using SplayTree_ActedMonoid = SplayTree<Node_AM<ActedMonoid>, NODES>;
 } // namespace SplayTreeNodes
 
 using SplayTreeNodes::SplayTree_ActedMonoid;
