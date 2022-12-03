@@ -2,7 +2,7 @@
 #include "alg/monoid/add.hpp"
 
 template <typename E>
-struct ActedMonoid_CntMinMincnt_Add {
+struct ActedMonoid_MinMincnt_Add {
   using Monoid_X = Monoid_MinMincnt<E>;
   using Monoid_A = Monoid_Add<E>;
   using X = typename Monoid_X::value_type;
