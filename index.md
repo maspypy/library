@@ -147,13 +147,13 @@ data:
       title: alg/monoid/xor_basis.hpp
   - name: convex
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: convex/cht.hpp
       title: convex/cht.hpp
     - icon: ':warning:'
       path: convex/cht_monotone.hpp
       title: convex/cht_monotone.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: convex/dynamic_lichao.hpp
       title: convex/dynamic_lichao.hpp
     - icon: ':warning:'
@@ -220,10 +220,10 @@ data:
       title: ds/disjointsparse/xor_sparsetable.hpp
   - name: ds/fenwicktree
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/fenwicktree/fenwicktree.hpp
       title: ds/fenwicktree/fenwicktree.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: ds/fenwicktree/fenwicktree_2d.hpp
       title: ds/fenwicktree/fenwicktree_2d.hpp
     - icon: ':heavy_check_mark:'
@@ -257,13 +257,13 @@ data:
     - icon: ':warning:'
       path: ds/offline_query/mo_3d.hpp
       title: ds/offline_query/mo_3d.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: ds/offline_query/parallel_binary_search.hpp
       title: ds/offline_query/parallel_binary_search.hpp
     - icon: ':warning:'
       path: ds/offline_query/point_add_polygon_sum.hpp
       title: ds/offline_query/point_add_polygon_sum.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: ds/offline_query/point_add_rectangle_sum.hpp
       title: ds/offline_query/point_add_rectangle_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -275,7 +275,7 @@ data:
     - icon: ':warning:'
       path: ds/offline_query/rectangle_add_point_sum.hpp
       title: ds/offline_query/rectangle_add_point_sum.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: ds/offline_query/rectangle_add_rectangle_sum.hpp
       title: ds/offline_query/rectangle_add_rectangle_sum.hpp
     - icon: ':warning:'
@@ -309,7 +309,7 @@ data:
     - icon: ':warning:'
       path: ds/randomized_bst/rbst.hpp
       title: ds/randomized_bst/rbst.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/randomized_bst/rbst_acted_monoid.hpp
       title: ds/randomized_bst/rbst_acted_monoid.hpp
     - icon: ':warning:'
@@ -326,7 +326,7 @@ data:
     - icon: ':warning:'
       path: ds/segtree/beats_summax_chmin.hpp
       title: ds/segtree/beats_summax_chmin.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/beats_summaxmin_chminchmax.hpp
       title: ds/segtree/beats_summaxmin_chminchmax.hpp
     - icon: ':warning:'
@@ -347,13 +347,13 @@ data:
     - icon: ':question:'
       path: ds/segtree/segtree.hpp
       title: ds/segtree/segtree.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/segtree_2d.hpp
       title: ds/segtree/segtree_2d.hpp
     - icon: ':x:'
       path: ds/segtree/segtree_2d_dense.hpp
       title: ds/segtree/segtree_2d_dense.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/segtree_beats.hpp
       title: ds/segtree/segtree_beats.hpp
     - icon: ':x:'
@@ -364,7 +364,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/splaytree/splaytree.hpp
       title: ds/splaytree/splaytree.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/splaytree/splaytree_acted_monoid.hpp
       title: ds/splaytree/splaytree_acted_monoid.hpp
     - icon: ':warning:'
@@ -1637,22 +1637,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
       title: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
       title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
       title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
       title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
       title: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/line_add_get_min.test.cpp
       title: test/library_checker/datastructure/line_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
       title: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1661,13 +1661,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/persistent_unionfind.test.cpp
       title: test/library_checker/datastructure/persistent_unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/point_add_range_sum.test.cpp
       title: test/library_checker/datastructure/point_add_range_sum.test.cpp
     - icon: ':x:'
       path: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
       title: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
       title: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1685,7 +1685,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
       title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
       title: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
     - icon: ':x:'

@@ -38,15 +38,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/cumsum2d.hpp
     title: ds/cumsum2d.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: ds/fenwicktree/fenwicktree_2d.hpp
     title: ds/fenwicktree/fenwicktree_2d.hpp
   - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_2d_dense.hpp
     title: ds/fenwicktree/fenwicktree_2d_dense.hpp
+  - icon: ':x:'
+    path: ds/offline_query/point_add_rectangle_sum.hpp
+    title: ds/offline_query/point_add_rectangle_sum.hpp
+  - icon: ':x:'
+    path: ds/offline_query/rectangle_add_rectangle_sum.hpp
+    title: ds/offline_query/rectangle_add_rectangle_sum.hpp
   - icon: ':heavy_check_mark:'
     path: ds/waveletmatrix.hpp
     title: ds/waveletmatrix.hpp
@@ -103,17 +109,44 @@ data:
     path: test/library_checker/datastructure/double_ended_pq.test.cpp
     title: test/library_checker/datastructure/double_ended_pq.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+    title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+    title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
     title: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/point_add_range_sum.test.cpp
+    title: test/library_checker/datastructure/point_add_range_sum.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
+    title: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
+    title: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
     title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
+    title: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
+    title: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
+    title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+    title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/segtree_xor_prod.test.cpp
     title: test/mytest/segtree_xor_prod.test.cpp
@@ -132,6 +165,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1332.test.cpp
     title: test/yukicoder/1332.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1490.test.cpp
+    title: test/yukicoder/1490.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1977.test.cpp
     title: test/yukicoder/1977.test.cpp
@@ -186,11 +222,14 @@ data:
   - ds/fenwicktree/fenwicktree_2d_dense.hpp
   - ds/fenwicktree/fenwicktree.hpp
   - ds/cumsum2d.hpp
+  - ds/offline_query/rectangle_add_rectangle_sum.hpp
+  - ds/offline_query/point_add_rectangle_sum.hpp
   - ds/waveletmatrix.hpp
   timestamp: '2022-11-28 14:51:10+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/2065.test.cpp
+  - test/yukicoder/1490.test.cpp
   - test/yukicoder/1141.test.cpp
   - test/yukicoder/1269.test.cpp
   - test/yukicoder/655.test.cpp
@@ -203,7 +242,16 @@ data:
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
+  - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
+  - test/library_checker/datastructure/point_add_range_sum.test.cpp
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
+  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - test/library_checker/datastructure/double_ended_pq.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   - test/library_checker/datastructure/range_affine_range_sum.test.cpp

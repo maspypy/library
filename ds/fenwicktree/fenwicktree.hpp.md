@@ -6,6 +6,12 @@ data:
     title: alg/monoid/add.hpp
   _extendedRequiredBy:
   - icon: ':x:'
+    path: ds/offline_query/point_add_rectangle_sum.hpp
+    title: ds/offline_query/point_add_rectangle_sum.hpp
+  - icon: ':x:'
+    path: ds/offline_query/rectangle_add_rectangle_sum.hpp
+    title: ds/offline_query/rectangle_add_rectangle_sum.hpp
+  - icon: ':x:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   _extendedVerifiedWith:
@@ -18,9 +24,24 @@ data:
   - icon: ':x:'
     path: test/aoj/DSL_2_E.test.cpp
     title: test/aoj/DSL_2_E.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/point_add_range_sum.test.cpp
+    title: test/library_checker/datastructure/point_add_range_sum.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
+    title: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
+    title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+    title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1490.test.cpp
+    title: test/yukicoder/1490.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -88,9 +109,16 @@ data:
   path: ds/fenwicktree/fenwicktree.hpp
   requiredBy:
   - seq/inversion.hpp
+  - ds/offline_query/rectangle_add_rectangle_sum.hpp
+  - ds/offline_query/point_add_rectangle_sum.hpp
   timestamp: '2022-12-03 10:20:23+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1490.test.cpp
+  - test/library_checker/datastructure/point_add_range_sum.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
+  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - test/aoj/DSL_2_E.test.cpp
   - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/ALDS1_5.test.cpp

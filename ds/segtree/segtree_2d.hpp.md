@@ -2,18 +2,21 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
+    title: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/segtree/segtree_2d.hpp\"\ntemplate <typename Monoid,\
-    \ typename XY, bool SMALL = false>\r\nstruct SegTree2D {\r\n  using MX = Monoid;\r\
+    \ typename XY, bool SMALL = false>\r\nstruct SegTree_2D {\r\n  using MX = Monoid;\r\
     \n  using S = typename MX::value_type;\r\n  static_assert(MX::commute);\r\n  int\
     \ N, min_X;\r\n  vc<XY> keyX, keyY;\r\n  vc<int> indptr;\r\n  vc<S> dat;\r\n\r\
-    \n  SegTree2D(vc<XY>& X, vc<XY>& Y, vc<S> wt = vc<S>()) {\r\n    if (len(wt) ==\
-    \ 0) wt = vc<S>(len(X), MX::unit());\r\n    assert(len(X) == len(Y) && len(X)\
+    \n  SegTree_2D(vc<XY>& X, vc<XY>& Y, vc<S> wt = vc<S>()) {\r\n    if (len(wt)\
+    \ == 0) wt = vc<S>(len(X), MX::unit());\r\n    assert(len(X) == len(Y) && len(X)\
     \ == len(wt));\r\n    if (!SMALL) {\r\n      keyX = X;\r\n      UNIQUE(keyX);\r\
     \n      N = len(keyX);\r\n      keyX.shrink_to_fit();\r\n    } else {\r\n    \
     \  min_X = (len(X) == 0 ? 0 : MIN(X));\r\n      N = (len(X) == 0 ? 0 : MAX(X))\
@@ -51,10 +54,10 @@ data:
     \ + j] == y);\r\n    int off = 2 * LID;\r\n    j += n;\r\n    while (j) {\r\n\
     \      dat[off + j] = MX::op(dat[off + j], val);\r\n      j >>= 1;\r\n    }\r\n\
     \  }\r\n};\n"
-  code: "template <typename Monoid, typename XY, bool SMALL = false>\r\nstruct SegTree2D\
+  code: "template <typename Monoid, typename XY, bool SMALL = false>\r\nstruct SegTree_2D\
     \ {\r\n  using MX = Monoid;\r\n  using S = typename MX::value_type;\r\n  static_assert(MX::commute);\r\
     \n  int N, min_X;\r\n  vc<XY> keyX, keyY;\r\n  vc<int> indptr;\r\n  vc<S> dat;\r\
-    \n\r\n  SegTree2D(vc<XY>& X, vc<XY>& Y, vc<S> wt = vc<S>()) {\r\n    if (len(wt)\
+    \n\r\n  SegTree_2D(vc<XY>& X, vc<XY>& Y, vc<S> wt = vc<S>()) {\r\n    if (len(wt)\
     \ == 0) wt = vc<S>(len(X), MX::unit());\r\n    assert(len(X) == len(Y) && len(X)\
     \ == len(wt));\r\n    if (!SMALL) {\r\n      keyX = X;\r\n      UNIQUE(keyX);\r\
     \n      N = len(keyX);\r\n      keyX.shrink_to_fit();\r\n    } else {\r\n    \
@@ -97,9 +100,10 @@ data:
   isVerificationFile: false
   path: ds/segtree/segtree_2d.hpp
   requiredBy: []
-  timestamp: '2022-12-03 10:36:40+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-12-04 01:13:06+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
 documentation_of: ds/segtree/segtree_2d.hpp
 layout: document
 redirect_from:

@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
+    title: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/offline_query/parallel_binary_search.hpp\"\n/*\r\n\u4E26\
@@ -50,8 +53,9 @@ data:
   path: ds/offline_query/parallel_binary_search.hpp
   requiredBy: []
   timestamp: '2022-12-01 18:20:22+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
 documentation_of: ds/offline_query/parallel_binary_search.hpp
 layout: document
 redirect_from:

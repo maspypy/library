@@ -3,12 +3,21 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: ds/splaytree/splaytree_acted_monoid.hpp
+    title: ds/splaytree/splaytree_acted_monoid.hpp
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_monoid.hpp
     title: ds/splaytree/splaytree_monoid.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508.test.cpp
     title: test/aoj/1508.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+    title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
+    title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -227,9 +236,12 @@ data:
   path: ds/splaytree/splaytree.hpp
   requiredBy:
   - ds/splaytree/splaytree_monoid.hpp
+  - ds/splaytree/splaytree_acted_monoid.hpp
   timestamp: '2022-12-04 00:39:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/aoj/1508.test.cpp
 documentation_of: ds/splaytree/splaytree.hpp
 layout: document
