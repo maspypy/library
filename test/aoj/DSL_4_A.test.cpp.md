@@ -277,12 +277,12 @@ data:
     \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
     \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
     \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/minmincnt_add.hpp\"\
-    \n\r\ntemplate <typename E>\r\nstruct ActedMonoid_CntMinMincnt_Add {\r\n  using\
-    \ Monoid_X = Monoid_MinMincnt<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using\
-    \ X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
-    \n  static constexpr X act(const X &x, const A &a, const ll &size) {\r\n    auto\
-    \ [xmin, xmincnt] = x;\r\n    if (xmin == numeric_limits<ll>::max()) return x;\r\
-    \n    return {xmin + a, xmincnt};\r\n  }\r\n};\r\n#line 3 \"other/rectangle_union.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct ActedMonoid_MinMincnt_Add {\r\n  using Monoid_X\
+    \ = Monoid_MinMincnt<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename\
+    \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
+    \ constexpr X act(const X &x, const A &a, const ll &size) {\r\n    auto [xmin,\
+    \ xmincnt] = x;\r\n    if (xmin == numeric_limits<ll>::max()) return x;\r\n  \
+    \  return {xmin + a, xmincnt};\r\n  }\r\n};\r\n#line 3 \"other/rectangle_union.hpp\"\
     \n\r\ntemplate <typename XY = int>\r\nstruct Rectangle_Union {\r\n  using RECT\
     \ = tuple<XY, XY, XY, XY>;\r\n  vc<RECT> rectangles;\r\n  vc<XY> X, Y;\r\n\r\n\
     \  void add_rect(int xl, int xr, int yl, int yr) {\r\n    assert(xl < xr && yl\
@@ -323,7 +323,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_4_A.test.cpp
   requiredBy: []
-  timestamp: '2022-12-04 03:33:52+09:00'
+  timestamp: '2022-12-04 04:53:30+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DSL_4_A.test.cpp

@@ -13,6 +13,9 @@ data:
     path: test/atcoder/abc217h.test.cpp
     title: test/atcoder/abc217h.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/atcoder/arc123d.test.cpp
+    title: test/atcoder/arc123d.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_cost_matching_on_line.test.cpp
     title: test/mytest/min_cost_matching_on_line.test.cpp
   _isVerificationFailed: false
@@ -108,6 +111,7 @@ data:
   verifiedWith:
   - test/mytest/min_cost_matching_on_line.test.cpp
   - test/atcoder/abc217h.test.cpp
+  - test/atcoder/arc123d.test.cpp
   - test/atcoder/abc127f.test.cpp
 documentation_of: convex/slope.hpp
 layout: document

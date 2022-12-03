@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/sort_segtree.test.cpp
     title: test/library_checker/datastructure/sort_segtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/sort_segtree_1.test.cpp
     title: test/library_checker/datastructure/sort_segtree_1.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/fastset.hpp\"\n/* 64\u5206\u6728\u3002\r\ninsert, erase\r\
@@ -129,17 +129,17 @@ data:
     \ seg.set(x, root[x]->rev_x);\n    }\n  }\n\n  void rebuild() {\n    vector<int>\
     \ key;\n    vector<X> dat;\n    key.reserve(N);\n    dat.reserve(N);\n    auto\
     \ dfs = [&](auto& dfs, np n, int l, int r, bool rev) -> void {\n      if (!n)\
-    \ return;\n      if (r == l + 1) { key.eb(l), dat.eb(n->x), return; }\n      int\
-    \ m = (l + r) / 2;\n      if (!rev) { dfs(dfs, n->l, l, m, rev), dfs(dfs, n->r,\
-    \ m, r, rev); }\n      if (rev) { dfs(dfs, n->r, m, r, rev), dfs(dfs, n->l, l,\
-    \ m, rev); }\n    };\n    for (int i = 0; i < N; ++i) {\n      if (ss[i]) dfs(dfs,\
-    \ root[i], 0, KEY_MAX, rev[i]);\n    }\n    assert(int(key.size()) == N);\n  \
-    \  pid = 0;\n    init(key, dat);\n  }\n\n  np new_node(X x) {\n    assert(pid\
-    \ < NODES);\n    pool[pid].x = pool[pid].rev_x = x;\n    pool[pid].l = pool[pid].r\
-    \ = nullptr;\n    pool[pid].size = 1;\n    return &(pool[pid++]);\n  }\n\n  pair<np,\
-    \ np> split(np n, int k) {\n    if (k == 0) { return {nullptr, n}; }\n    if (k\
-    \ == n->size) { return {n, nullptr}; }\n    int s = (n->l ? n->l->size : 0);\n\
-    \    Node* b = new_node();\n    if (k <= s) {\n      auto [nl, nr] = split(n->l,\
+    \ return;\n      if (r == l + 1) {\n        key.eb(l), dat.eb(n->x);\n       \
+    \ return;\n      }\n      int m = (l + r) / 2;\n      if (!rev) { dfs(dfs, n->l,\
+    \ l, m, rev), dfs(dfs, n->r, m, r, rev); }\n      if (rev) { dfs(dfs, n->r, m,\
+    \ r, rev), dfs(dfs, n->l, l, m, rev); }\n    };\n    for (int i = 0; i < N; ++i)\
+    \ {\n      if (ss[i]) dfs(dfs, root[i], 0, KEY_MAX, rev[i]);\n    }\n    assert(int(key.size())\
+    \ == N);\n    pid = 0;\n    init(key, dat);\n  }\n\n  np new_node(X x = MX::unit())\
+    \ {\n    assert(pid < NODES);\n    pool[pid].x = pool[pid].rev_x = x;\n    pool[pid].l\
+    \ = pool[pid].r = nullptr;\n    pool[pid].size = 1;\n    return &(pool[pid++]);\n\
+    \  }\n\n  pair<np, np> split(np n, int k) {\n    if (k == 0) { return {nullptr,\
+    \ n}; }\n    if (k == n->size) { return {n, nullptr}; }\n    int s = (n->l ? n->l->size\
+    \ : 0);\n    Node* b = new_node();\n    if (k <= s) {\n      auto [nl, nr] = split(n->l,\
     \ k);\n      b->l = nr, b->r = n->r, n->l = nl, n->r = nullptr;\n    }\n    if\
     \ (k > s) {\n      auto [nl, nr] = split(n->r, k - s);\n      n->l = n->l, n->r\
     \ = nl, b->l = nullptr, b->r = nr;\n    }\n    update(n), update(b);\n    return\
@@ -193,17 +193,17 @@ data:
     \ seg.set(x, root[x]->rev_x);\n    }\n  }\n\n  void rebuild() {\n    vector<int>\
     \ key;\n    vector<X> dat;\n    key.reserve(N);\n    dat.reserve(N);\n    auto\
     \ dfs = [&](auto& dfs, np n, int l, int r, bool rev) -> void {\n      if (!n)\
-    \ return;\n      if (r == l + 1) { key.eb(l), dat.eb(n->x), return; }\n      int\
-    \ m = (l + r) / 2;\n      if (!rev) { dfs(dfs, n->l, l, m, rev), dfs(dfs, n->r,\
-    \ m, r, rev); }\n      if (rev) { dfs(dfs, n->r, m, r, rev), dfs(dfs, n->l, l,\
-    \ m, rev); }\n    };\n    for (int i = 0; i < N; ++i) {\n      if (ss[i]) dfs(dfs,\
-    \ root[i], 0, KEY_MAX, rev[i]);\n    }\n    assert(int(key.size()) == N);\n  \
-    \  pid = 0;\n    init(key, dat);\n  }\n\n  np new_node(X x) {\n    assert(pid\
-    \ < NODES);\n    pool[pid].x = pool[pid].rev_x = x;\n    pool[pid].l = pool[pid].r\
-    \ = nullptr;\n    pool[pid].size = 1;\n    return &(pool[pid++]);\n  }\n\n  pair<np,\
-    \ np> split(np n, int k) {\n    if (k == 0) { return {nullptr, n}; }\n    if (k\
-    \ == n->size) { return {n, nullptr}; }\n    int s = (n->l ? n->l->size : 0);\n\
-    \    Node* b = new_node();\n    if (k <= s) {\n      auto [nl, nr] = split(n->l,\
+    \ return;\n      if (r == l + 1) {\n        key.eb(l), dat.eb(n->x);\n       \
+    \ return;\n      }\n      int m = (l + r) / 2;\n      if (!rev) { dfs(dfs, n->l,\
+    \ l, m, rev), dfs(dfs, n->r, m, r, rev); }\n      if (rev) { dfs(dfs, n->r, m,\
+    \ r, rev), dfs(dfs, n->l, l, m, rev); }\n    };\n    for (int i = 0; i < N; ++i)\
+    \ {\n      if (ss[i]) dfs(dfs, root[i], 0, KEY_MAX, rev[i]);\n    }\n    assert(int(key.size())\
+    \ == N);\n    pid = 0;\n    init(key, dat);\n  }\n\n  np new_node(X x = MX::unit())\
+    \ {\n    assert(pid < NODES);\n    pool[pid].x = pool[pid].rev_x = x;\n    pool[pid].l\
+    \ = pool[pid].r = nullptr;\n    pool[pid].size = 1;\n    return &(pool[pid++]);\n\
+    \  }\n\n  pair<np, np> split(np n, int k) {\n    if (k == 0) { return {nullptr,\
+    \ n}; }\n    if (k == n->size) { return {n, nullptr}; }\n    int s = (n->l ? n->l->size\
+    \ : 0);\n    Node* b = new_node();\n    if (k <= s) {\n      auto [nl, nr] = split(n->l,\
     \ k);\n      b->l = nr, b->r = n->r, n->l = nl, n->r = nullptr;\n    }\n    if\
     \ (k > s) {\n      auto [nl, nr] = split(n->r, k - s);\n      n->l = n->l, n->r\
     \ = nl, b->l = nullptr, b->r = nr;\n    }\n    update(n), update(b);\n    return\
@@ -226,8 +226,8 @@ data:
   isVerificationFile: false
   path: ds/segtree/sortable_segtree.hpp
   requiredBy: []
-  timestamp: '2022-12-04 04:38:35+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-12-04 04:53:30+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/sort_segtree.test.cpp
   - test/library_checker/datastructure/sort_segtree_1.test.cpp

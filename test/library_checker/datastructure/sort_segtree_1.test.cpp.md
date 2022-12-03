@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_set_range_sort_range_composite
@@ -319,17 +319,17 @@ data:
     \ seg.set(x, root[x]->rev_x);\n    }\n  }\n\n  void rebuild() {\n    vector<int>\
     \ key;\n    vector<X> dat;\n    key.reserve(N);\n    dat.reserve(N);\n    auto\
     \ dfs = [&](auto& dfs, np n, int l, int r, bool rev) -> void {\n      if (!n)\
-    \ return;\n      if (r == l + 1) { key.eb(l), dat.eb(n->x), return; }\n      int\
-    \ m = (l + r) / 2;\n      if (!rev) { dfs(dfs, n->l, l, m, rev), dfs(dfs, n->r,\
-    \ m, r, rev); }\n      if (rev) { dfs(dfs, n->r, m, r, rev), dfs(dfs, n->l, l,\
-    \ m, rev); }\n    };\n    for (int i = 0; i < N; ++i) {\n      if (ss[i]) dfs(dfs,\
-    \ root[i], 0, KEY_MAX, rev[i]);\n    }\n    assert(int(key.size()) == N);\n  \
-    \  pid = 0;\n    init(key, dat);\n  }\n\n  np new_node(X x) {\n    assert(pid\
-    \ < NODES);\n    pool[pid].x = pool[pid].rev_x = x;\n    pool[pid].l = pool[pid].r\
-    \ = nullptr;\n    pool[pid].size = 1;\n    return &(pool[pid++]);\n  }\n\n  pair<np,\
-    \ np> split(np n, int k) {\n    if (k == 0) { return {nullptr, n}; }\n    if (k\
-    \ == n->size) { return {n, nullptr}; }\n    int s = (n->l ? n->l->size : 0);\n\
-    \    Node* b = new_node();\n    if (k <= s) {\n      auto [nl, nr] = split(n->l,\
+    \ return;\n      if (r == l + 1) {\n        key.eb(l), dat.eb(n->x);\n       \
+    \ return;\n      }\n      int m = (l + r) / 2;\n      if (!rev) { dfs(dfs, n->l,\
+    \ l, m, rev), dfs(dfs, n->r, m, r, rev); }\n      if (rev) { dfs(dfs, n->r, m,\
+    \ r, rev), dfs(dfs, n->l, l, m, rev); }\n    };\n    for (int i = 0; i < N; ++i)\
+    \ {\n      if (ss[i]) dfs(dfs, root[i], 0, KEY_MAX, rev[i]);\n    }\n    assert(int(key.size())\
+    \ == N);\n    pid = 0;\n    init(key, dat);\n  }\n\n  np new_node(X x = MX::unit())\
+    \ {\n    assert(pid < NODES);\n    pool[pid].x = pool[pid].rev_x = x;\n    pool[pid].l\
+    \ = pool[pid].r = nullptr;\n    pool[pid].size = 1;\n    return &(pool[pid++]);\n\
+    \  }\n\n  pair<np, np> split(np n, int k) {\n    if (k == 0) { return {nullptr,\
+    \ n}; }\n    if (k == n->size) { return {n, nullptr}; }\n    int s = (n->l ? n->l->size\
+    \ : 0);\n    Node* b = new_node();\n    if (k <= s) {\n      auto [nl, nr] = split(n->l,\
     \ k);\n      b->l = nr, b->r = n->r, n->l = nl, n->r = nullptr;\n    }\n    if\
     \ (k > s) {\n      auto [nl, nr] = split(n->r, k - s);\n      n->l = n->l, n->r\
     \ = nl, b->l = nullptr, b->r = nr;\n    }\n    update(n), update(b);\n    return\
@@ -450,13 +450,13 @@ data:
     \    }\n    if (t == 1) {\n      LL(l, r, x);\n      query[q] = {t, l, r, x, 0};\n\
     \    }\n    if (t == 2 || t == 3) {\n      LL(l, r);\n      query[q] = {t, l,\
     \ r, 0, 0};\n    }\n  }\n\n  UNIQUE(all_key);\n  for (auto&& k: key) k = LB(all_key,\
-    \ k);\n\n  Sortable_SegTree<AFF> seg(len(all_key), key, seg_raw);\n\n  for (auto&&\
-    \ [t, a, b, c, d]: query) {\n    if (t == 0) {\n      b = LB(all_key, b);\n  \
-    \    seg.set(a, b, {mint(c), mint(d)});\n    }\n    if (t == 1) {\n      auto\
-    \ f = seg.prod(a, b);\n      print(AFF::eval(f, c));\n    }\n    if (t == 2) {\
-    \ seg.sort_inc(a, b); }\n    if (t == 3) { seg.sort_dec(a, b); }\n  }\n}\n\nsigned\
-    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  FOR(T) solve();\n  return 0;\n}\n"
+    \ k);\n\n  Sortable_SegTree<AFF, 4000000> seg(len(all_key), key, seg_raw);\n\n\
+    \  for (auto&& [t, a, b, c, d]: query) {\n    if (t == 0) {\n      b = LB(all_key,\
+    \ b);\n      seg.set(a, b, {mint(c), mint(d)});\n    }\n    if (t == 1) {\n  \
+    \    auto f = seg.prod(a, b);\n      print(AFF::eval(f, c));\n    }\n    if (t\
+    \ == 2) { seg.sort_inc(a, b); }\n    if (t == 3) { seg.sort_dec(a, b); }\n  }\n\
+    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << setprecision(15);\n\n  ll T = 1;\n  FOR(T) solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/point_set_range_sort_range_composite\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/segtree/sortable_segtree.hpp\"\
     \n#include \"alg/monoid/affine.hpp\"\n#include \"mod/modint.hpp\"\n\nusing mint\
@@ -469,13 +469,13 @@ data:
     \    if (t == 1) {\n      LL(l, r, x);\n      query[q] = {t, l, r, x, 0};\n  \
     \  }\n    if (t == 2 || t == 3) {\n      LL(l, r);\n      query[q] = {t, l, r,\
     \ 0, 0};\n    }\n  }\n\n  UNIQUE(all_key);\n  for (auto&& k: key) k = LB(all_key,\
-    \ k);\n\n  Sortable_SegTree<AFF> seg(len(all_key), key, seg_raw);\n\n  for (auto&&\
-    \ [t, a, b, c, d]: query) {\n    if (t == 0) {\n      b = LB(all_key, b);\n  \
-    \    seg.set(a, b, {mint(c), mint(d)});\n    }\n    if (t == 1) {\n      auto\
-    \ f = seg.prod(a, b);\n      print(AFF::eval(f, c));\n    }\n    if (t == 2) {\
-    \ seg.sort_inc(a, b); }\n    if (t == 3) { seg.sort_dec(a, b); }\n  }\n}\n\nsigned\
-    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  FOR(T) solve();\n  return 0;\n}"
+    \ k);\n\n  Sortable_SegTree<AFF, 4000000> seg(len(all_key), key, seg_raw);\n\n\
+    \  for (auto&& [t, a, b, c, d]: query) {\n    if (t == 0) {\n      b = LB(all_key,\
+    \ b);\n      seg.set(a, b, {mint(c), mint(d)});\n    }\n    if (t == 1) {\n  \
+    \    auto f = seg.prod(a, b);\n      print(AFF::eval(f, c));\n    }\n    if (t\
+    \ == 2) { seg.sort_inc(a, b); }\n    if (t == 3) { seg.sort_dec(a, b); }\n  }\n\
+    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << setprecision(15);\n\n  ll T = 1;\n  FOR(T) solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -487,8 +487,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/sort_segtree_1.test.cpp
   requiredBy: []
-  timestamp: '2022-12-04 04:38:35+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-04 04:53:30+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/sort_segtree_1.test.cpp
 layout: document

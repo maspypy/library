@@ -28,6 +28,9 @@ data:
     path: test/atcoder/abc266h.test.cpp
     title: test/atcoder/abc266h.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc266h_2.test.cpp
+    title: test/atcoder/abc266h_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -89,6 +92,7 @@ data:
   - test/mytest/max_max.test.cpp
   - test/mytest/max_assign.test.cpp
   - test/atcoder/abc270_f.test.cpp
+  - test/atcoder/abc266h_2.test.cpp
   - test/atcoder/abc266h.test.cpp
   - test/aoj/GRL_2_A.test.cpp
 documentation_of: alg/monoid/max.hpp
