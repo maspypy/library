@@ -23,95 +23,92 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"ds/segtree/lazysegtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
-    struct LazySegTree {\n  using Monoid_X = typename ActedMonoid::Monoid_X;\n  using\
-    \ Monoid_A = typename ActedMonoid::Monoid_A;\n  static_assert(Monoid_X::commute);\n\
-    \  using X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
-    \  int n, log, size;\n  vc<X> dat;\n  vc<A> laz;\n\n  LazySegTree() {}\n  LazySegTree(int\
-    \ n) { build(n); }\n  template <typename F>\n  LazySegTree(int n, F f) {\n   \
-    \ build(n, f);\n  }\n  LazySegTree(const vc<X>& v) { build(v); }\n\n  void build(int\
-    \ m) {\n    build(m, [](int i) -> X { return Monoid_X::unit(); });\n  }\n  void\
-    \ build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n\
-    \  }\n  template <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n\
-    \    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
-    \ << 1, Monoid_X::unit());\n    laz.assign(size, Monoid_A::unit());\n    FOR(i,\
-    \ n) dat[size + i] = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n  void update(int\
-    \ k) { dat[k] = Monoid_X::op(dat[2 * k], dat[2 * k + 1]); }\n  void apply_at(int\
-    \ k, A a) {\n    int sz = 1 << (log - topbit(k));\n    dat[k] = ActedMonoid::act(dat[k],\
-    \ a, sz);\n    if (k < size) laz[k] = Monoid_A::op(laz[k], a);\n  }\n  void push(int\
+  bundledCode: "#line 2 \"ds/segtree/lazysegtree.hpp\"\n\ntemplate <typename AM>\n\
+    struct LazySegTree {\n  using AM = AM;\n  using MX = typename AM::MX;\n  using\
+    \ MA = typename AM::MA;\n  static_assert(MX::commute);\n  using X = typename MX::value_type;\n\
+    \  using A = typename MA::value_type;\n  int n, log, size;\n  vc<X> dat;\n  vc<A>\
+    \ laz;\n\n  LazySegTree() {}\n  LazySegTree(int n) { build(n); }\n  template <typename\
+    \ F>\n  LazySegTree(int n, F f) {\n    build(n, f);\n  }\n  LazySegTree(const\
+    \ vc<X>& v) { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) ->\
+    \ X { return MX::unit(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v),\
+    \ [&](int i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int\
+    \ m, F f) {\n    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    size\
+    \ = 1 << log;\n    dat.assign(size << 1, MX::unit());\n    laz.assign(size, MA::unit());\n\
+    \    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n\
+    \  void update(int k) { dat[k] = MX::op(dat[2 * k], dat[2 * k + 1]); }\n  void\
+    \ apply_at(int k, A a) {\n    int sz = 1 << (log - topbit(k));\n    dat[k] = AM::act(dat[k],\
+    \ a, sz);\n    if (k < size) laz[k] = MA::op(laz[k], a);\n  }\n  void push(int\
     \ k) {\n    apply_at(2 * k, laz[k]);\n    apply_at(2 * k + 1, laz[k]);\n    laz[k]\
-    \ = Monoid_A::unit();\n  }\n  void set(int p, X x) {\n    assert(0 <= p && p <\
-    \ n);\n    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    dat[p]\
+    \ = MA::unit();\n  }\n  void set(int p, X x) {\n    assert(0 <= p && p < n);\n\
+    \    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    dat[p]\
     \ = x;\n    for (int i = 1; i <= log; i++) update(p >> i);\n  }\n\n  X get(int\
     \ p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i\
     \ >= 1; i--) push(p >> i);\n    return dat[p];\n  }\n\n  vc<X> get_all() {\n \
     \   for (int i = log; i >= 1; i--) {\n      FOR(k, size >> i, (size + size) >>\
     \ i) { push(k); }\n    }\n    return {dat.begin() + size, dat.begin() + size +\
     \ n};\n  }\n\n  X prod(int l, int r) {\n    assert(0 <= l && l <= r && r <= n);\n\
-    \    if (l == r) return Monoid_X::unit();\n\n    l += size;\n    r += size;\n\n\
-    \    for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l\
-    \ >> i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n    }\n\n    X\
-    \ x = Monoid_X::unit();\n    while (l < r) {\n      if (l & 1) x = Monoid_X::op(x,\
-    \ dat[l++]);\n      if (r & 1) x = Monoid_X::op(x, dat[--r]);\n      l >>= 1;\n\
-    \      r >>= 1;\n    }\n\n    return x;\n  }\n\n  X prod_all() { return dat[1];\
-    \ }\n\n  void apply(int l, int r, A a) {\n    assert(0 <= l && l <= r && r <=\
-    \ n);\n    if (l == r) return;\n\n    l += size;\n    r += size;\n\n    if (!Monoid_A::commute)\
-    \ {\n      for (int i = log; i >= 1; i--) {\n        if (((l >> i) << i) != l)\
-    \ push(l >> i);\n        if (((r >> i) << i) != r) push((r - 1) >> i);\n     \
-    \ }\n    }\n\n    {\n      int l2 = l, r2 = r;\n      while (l < r) {\n      \
-    \  if (l & 1) apply_at(l++, a);\n        if (r & 1) apply_at(--r, a);\n      \
-    \  l >>= 1;\n        r >>= 1;\n      }\n      l = l2;\n      r = r2;\n    }\n\n\
-    \    for (int i = 1; i <= log; i++) {\n      if (((l >> i) << i) != l) update(l\
-    \ >> i);\n      if (((r >> i) << i) != r) update((r - 1) >> i);\n    }\n  }\n\n\
-    \  template <typename F>\n  int max_right(const F check, int l) {\n    assert(0\
-    \ <= l && l <= n);\n    assert(check(Monoid_X::unit()));\n    if (l == n) return\
-    \ n;\n    l += size;\n    for (int i = log; i >= 1; i--) push(l >> i);\n    X\
-    \ sm = Monoid_X::unit();\n    do {\n      while (l % 2 == 0) l >>= 1;\n      if\
-    \ (!check(Monoid_X::op(sm, dat[l]))) {\n        while (l < size) {\n         \
-    \ push(l);\n          l = (2 * l);\n          if (check(Monoid_X::op(sm, dat[l])))\
-    \ {\n            sm = Monoid_X::op(sm, dat[l]);\n            l++;\n          }\n\
-    \        }\n        return l - size;\n      }\n      sm = Monoid_X::op(sm, dat[l]);\n\
-    \      l++;\n    } while ((l & -l) != l);\n    return n;\n  }\n\n  template <typename\
+    \    if (l == r) return MX::unit();\n\n    l += size;\n    r += size;\n\n    for\
+    \ (int i = log; i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l >> i);\n\
+    \      if (((r >> i) << i) != r) push((r - 1) >> i);\n    }\n\n    X x = MX::unit();\n\
+    \    while (l < r) {\n      if (l & 1) x = MX::op(x, dat[l++]);\n      if (r &\
+    \ 1) x = MX::op(x, dat[--r]);\n      l >>= 1;\n      r >>= 1;\n    }\n\n    return\
+    \ x;\n  }\n\n  X prod_all() { return dat[1]; }\n\n  void apply(int l, int r, A\
+    \ a) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n\n \
+    \   l += size;\n    r += size;\n\n    if (!MA::commute) {\n      for (int i =\
+    \ log; i >= 1; i--) {\n        if (((l >> i) << i) != l) push(l >> i);\n     \
+    \   if (((r >> i) << i) != r) push((r - 1) >> i);\n      }\n    }\n\n    {\n \
+    \     int l2 = l, r2 = r;\n      while (l < r) {\n        if (l & 1) apply_at(l++,\
+    \ a);\n        if (r & 1) apply_at(--r, a);\n        l >>= 1;\n        r >>= 1;\n\
+    \      }\n      l = l2;\n      r = r2;\n    }\n\n    for (int i = 1; i <= log;\
+    \ i++) {\n      if (((l >> i) << i) != l) update(l >> i);\n      if (((r >> i)\
+    \ << i) != r) update((r - 1) >> i);\n    }\n  }\n\n  template <typename F>\n \
+    \ int max_right(const F check, int l) {\n    assert(0 <= l && l <= n);\n    assert(check(MX::unit()));\n\
+    \    if (l == n) return n;\n    l += size;\n    for (int i = log; i >= 1; i--)\
+    \ push(l >> i);\n    X sm = MX::unit();\n    do {\n      while (l % 2 == 0) l\
+    \ >>= 1;\n      if (!check(MX::op(sm, dat[l]))) {\n        while (l < size) {\n\
+    \          push(l);\n          l = (2 * l);\n          if (check(MX::op(sm, dat[l])))\
+    \ {\n            sm = MX::op(sm, dat[l]);\n            l++;\n          }\n   \
+    \     }\n        return l - size;\n      }\n      sm = MX::op(sm, dat[l]);\n \
+    \     l++;\n    } while ((l & -l) != l);\n    return n;\n  }\n\n  template <typename\
     \ F>\n  int min_left(const F check, int r) {\n    assert(0 <= r && r <= n);\n\
-    \    assert(check(Monoid_X::unit()));\n    if (r == 0) return 0;\n    r += size;\n\
-    \    for (int i = log; i >= 1; i--) push((r - 1) >> i);\n    X sm = Monoid_X::unit();\n\
-    \    do {\n      r--;\n      while (r > 1 && (r % 2)) r >>= 1;\n      if (!check(Monoid_X::op(dat[r],\
+    \    assert(check(MX::unit()));\n    if (r == 0) return 0;\n    r += size;\n \
+    \   for (int i = log; i >= 1; i--) push((r - 1) >> i);\n    X sm = MX::unit();\n\
+    \    do {\n      r--;\n      while (r > 1 && (r % 2)) r >>= 1;\n      if (!check(MX::op(dat[r],\
     \ sm))) {\n        while (r < size) {\n          push(r);\n          r = (2 *\
-    \ r + 1);\n          if (check(Monoid_X::op(dat[r], sm))) {\n            sm =\
-    \ Monoid_X::op(dat[r], sm);\n            r--;\n          }\n        }\n      \
-    \  return r + 1 - size;\n      }\n      sm = Monoid_X::op(dat[r], sm);\n    }\
-    \ while ((r & -r) != r);\n    return 0;\n  }\n};\n#line 2 \"graph/base.hpp\"\n\
-    \ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n\
-    };\n\ntemplate <typename T = int, bool directed = false>\nstruct Graph {\n  int\
-    \ N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
-    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg,\
-    \ vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n\
-    \    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n   \
-    \ const edge_type* begin() const {\n      if (l == r) { return 0; }\n      return\
-    \ &G->csr_edges[l];\n    }\n\n    const edge_type* end() const {\n      if (l\
-    \ == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n  private:\n \
-    \   const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared;\
-    \ }\n  constexpr bool is_directed() { return directed; }\n\n  Graph() : N(0),\
-    \ M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void\
-    \ resize(int n) { N = n; }\n\n  void add(int frm, int to, T cost = 1, int i =\
-    \ -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <= to && to < N);\n\
-    \    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n\
-    \    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool wt = false, int off = 1)\
-    \ { read_graph(N - 1, wt, off); }\n\n  void read_graph(int M, bool wt = false,\
-    \ int off = 1) {\n    for (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a\
-    \ -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n  \
-    \      T c;\n        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n\
-    \  }\n\n  void read_parent(int off = 1) {\n    for (int v = 1; v < N; ++v) {\n\
-    \      INT(p);\n      p -= off;\n      add(p, v);\n    }\n    build();\n  }\n\n\
-    \  void build() {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N\
-    \ + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if\
-    \ (!directed) indptr[e.to + 1]++;\n    }\n    for (int v = 0; v < N; ++v) { indptr[v\
-    \ + 1] += indptr[v]; }\n    auto counter = indptr;\n    csr_edges.resize(indptr.back()\
-    \ + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n\
-    \      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm,\
-    \ e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n \
-    \   assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\n \
-    \ vc<int> deg_array() {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n\
+    \ r + 1);\n          if (check(MX::op(dat[r], sm))) {\n            sm = MX::op(dat[r],\
+    \ sm);\n            r--;\n          }\n        }\n        return r + 1 - size;\n\
+    \      }\n      sm = MX::op(dat[r], sm);\n    } while ((r & -r) != r);\n    return\
+    \ 0;\n  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge\
+    \ {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
+    \ directed = false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n  using\
+    \ edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type>\
+    \ csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class\
+    \ OutgoingEdges {\n  public:\n    OutgoingEdges(const Graph* G, int l, int r)\
+    \ : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n      if (l ==\
+    \ r) { return 0; }\n      return &G->csr_edges[l];\n    }\n\n    const edge_type*\
+    \ end() const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n\
+    \    }\n\n  private:\n    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared()\
+    \ { return prepared; }\n  constexpr bool is_directed() { return directed; }\n\n\
+    \  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
+    \ {}\n\n  void resize(int n) { N = n; }\n\n  void add(int frm, int to, T cost\
+    \ = 1, int i = -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <= to &&\
+    \ to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n\
+    \    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool wt = false,\
+    \ int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int M, bool\
+    \ wt = false, int off = 1) {\n    for (int m = 0; m < M; ++m) {\n      INT(a,\
+    \ b);\n      a -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n     \
+    \ } else {\n        T c;\n        read(c);\n        add(a, b, c);\n      }\n \
+    \   }\n    build();\n  }\n\n  void read_parent(int off = 1) {\n    for (int v\
+    \ = 1; v < N; ++v) {\n      INT(p);\n      p -= off;\n      add(p, v);\n    }\n\
+    \    build();\n  }\n\n  void build() {\n    assert(!prepared);\n    prepared =\
+    \ true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm\
+    \ + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n    }\n    for (int v = 0;\
+    \ v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto counter = indptr;\n  \
+    \  csr_edges.resize(indptr.back() + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++]\
+    \ = e;\n      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to,\
+    \ e.frm, e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const\
+    \ {\n    assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\
+    \n  vc<int> deg_array() {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n\
     \  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n    if (vc_indeg.empty())\
     \ calc_deg_inout();\n    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v)\
     \ {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n  int\
@@ -303,7 +300,7 @@ data:
   isVerificationFile: false
   path: graph/ds/lazytreemonoid.hpp
   requiredBy: []
-  timestamp: '2022-12-03 09:00:14+09:00'
+  timestamp: '2022-12-03 09:22:09+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1790.test.cpp
