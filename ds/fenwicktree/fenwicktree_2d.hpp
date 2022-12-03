@@ -12,8 +12,8 @@ struct FenwickTree_2D {
   vc<XY> keyY;
   vc<E> dat;
 
-  FenwickTree_2D (vc<XY>& X, vc<XY>& Y, vc<E> wt) { build(X, Y, wt); }
-  FenwickTree_2D (vc<XY>& X, vc<XY>& Y) {
+  FenwickTree_2D(vc<XY>& X, vc<XY>& Y, vc<E> wt) { build(X, Y, wt); }
+  FenwickTree_2D(vc<XY>& X, vc<XY>& Y) {
     vc<E> wt(len(X), G::unit());
     build(X, Y, wt);
   }
@@ -79,8 +79,8 @@ struct FenwickTree_2D {
 
   E sum(XY lx, XY rx, XY ly, XY ry) { return prod(lx, rx, ly, ry); }
   E prod(XY lx, XY rx, XY ly, XY ry) {
-    E pos = G::unit(), E neg = G::unit();
-    int L = xtoi(lx) - 1, int R = xtoi(rx) - 1;
+    E pos = G::unit(), neg = G::unit();
+    int L = xtoi(lx) - 1, R = xtoi(rx) - 1;
     while (L < R) { pos = G::op(pos, prod_i(R, ly, ry)), R = prev(R); }
     while (R < L) { neg = G::op(neg, prod_i(L, ly, ry)), L = prev(L); }
     return G::op(pos, G::inverse(neg));
@@ -103,7 +103,7 @@ private:
   }
 
   E prod_i(int i, XY ly, XY ry) {
-    E pos = G::unit(), E neg = G::unit();
+    E pos = G::unit(), neg = G::unit();
     int LID = indptr[i], n = indptr[i + 1] - indptr[i];
     auto it = keyY.begin() + LID;
     int L = lower_bound(it, it + n, ly) - it - 1;

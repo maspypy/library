@@ -18,7 +18,7 @@ struct Sortable_SegTree {
 
   FastSet ss;      // 区間の左端全体を表す fastset
   SegTree<MX> seg; // 区間を集約した値を区間の左端にのせた segtree
-  vector<Node*> root; // 区間の左端に、dynamic segtree の node を乗せる
+  vector<np> root; // 区間の左端に、dynamic segtree の node を乗せる
   vector<bool> rev;
 
   Sortable_SegTree(int KEY_MAX, vector<int> key, vector<X> dat)
@@ -170,7 +170,7 @@ private:
       if (!(n->l)) n->l = new_node();
       set_rec(n->l, l, m, k, x);
     }
-    if (node_m <= k) {
+    if (m <= k) {
       if (!(n->r)) n->r = new_node();
       set_rec(n->r, m, r, k, x);
     }
