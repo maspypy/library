@@ -35,7 +35,7 @@ data:
   - icon: ':warning:'
     path: alg/acted_monoid/summax_add.hpp
     title: alg/acted_monoid/summax_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/cumsum2d.hpp
     title: ds/cumsum2d.hpp
   - icon: ':warning:'
@@ -50,7 +50,7 @@ data:
   - icon: ':question:'
     path: ds/waveletmatrix.hpp
     title: ds/waveletmatrix.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/trie.hpp
     title: string/trie.hpp
   _extendedVerifiedWith:
@@ -84,10 +84,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_commutative_persistent.test.cpp
     title: test/mytest/rbst_commutative_persistent.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/segtree_xor_prod.test.cpp
     title: test/mytest/segtree_xor_prod.test.cpp
   - icon: ':heavy_check_mark:'
@@ -96,10 +96,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1097.test.cpp
     title: test/yukicoder/1097.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1141.test.cpp
     title: test/yukicoder/1141.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1269.test.cpp
     title: test/yukicoder/1269.test.cpp
   - icon: ':heavy_check_mark:'

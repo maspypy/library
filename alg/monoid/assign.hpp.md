@@ -5,7 +5,7 @@ data:
   - icon: ':warning:'
     path: alg/acted_monoid/max_assign.hpp
     title: alg/acted_monoid/max_assign.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
   - icon: ':warning:'
@@ -21,21 +21,21 @@ data:
     path: alg/acted_monoid/summin_assign.hpp
     title: alg/acted_monoid/summin_assign.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_am.test.cpp
     title: test/mytest/rbst_am.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_am_persistent.test.cpp
     title: test/mytest/rbst_am_persistent.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_monoid.test.cpp
     title: test/mytest/rbst_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_monoid_persistent.test.cpp
     title: test/mytest/rbst_monoid_persistent.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, X none_val>\r\
@@ -57,7 +57,7 @@ data:
   - alg/acted_monoid/min_assign.hpp
   - alg/acted_monoid/powersums_assign.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/rbst_monoid_persistent.test.cpp
   - test/mytest/rbst_monoid.test.cpp

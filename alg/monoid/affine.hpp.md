@@ -27,7 +27,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_monoid_2.test.cpp
     title: test/mytest/rbst_monoid_2.test.cpp
   - icon: ':x:'

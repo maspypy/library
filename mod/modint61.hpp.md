@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/classify_subtree.hpp
     title: graph/classify_subtree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/max_matching_size.hpp
     title: graph/max_matching_size.hpp
   - icon: ':heavy_check_mark:'
@@ -39,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
     title: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
   - icon: ':heavy_check_mark:'

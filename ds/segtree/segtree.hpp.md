@@ -57,13 +57,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/segtree_xor_prod.test.cpp
     title: test/mytest/segtree_xor_prod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036_2.test.cpp
     title: test/yukicoder/1036_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1212.test.cpp
     title: test/yukicoder/1212.test.cpp
   - icon: ':x:'
