@@ -1,14 +1,14 @@
 #define PROBLEM "https://yukicoder.me/problems/no/913"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/segtree/dualsegtree.hpp"
+#include "ds/segtree/dual_segtree.hpp"
 #include "alg/monoid/min.hpp"
-#include "ds/func/cht_monotone.hpp"
+#include "convex/cht_monotone.hpp"
 
 void solve() {
   LL(N);
   VEC(ll, A, N);
-  DualSegTree<Monoid_Min<ll>> seg(N);
+  Dual_SegTree<Monoid_Min<ll>> seg(N);
 
   auto f = [&](ll L, ll M, ll R) -> void {
     {

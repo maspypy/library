@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1441"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/splay/splaytree_monoid.hpp"
+#include "ds/splaytree/splaytree_monoid.hpp"
 #include "alg/monoid/add.hpp"
 
 void solve() {
