@@ -1,4 +1,4 @@
-#include "ds/splay/splaytree.hpp"
+#include "ds/splaytree/splaytree.hpp"
 
 namespace SplayTreeNodes {
 template <typename Monoid>
@@ -64,7 +64,7 @@ struct Node_CM {
   }
 };
 template <typename Monoid, int NODES>
-using SplayTree_CommutativeMonoid = SplayTree<Node_CM<Monoid>, NODES>;
+using SplayTree_Commutative_Monoid = SplayTree<Node_CM<Monoid>, NODES>;
 } // namespace SplayTreeNodes
 
-using SplayTreeNodes::SplayTree_CommutativeMonoid;
+using SplayTreeNodes::SplayTree_Commutative_Monoid;

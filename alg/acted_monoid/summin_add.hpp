@@ -1,9 +1,9 @@
-#include "alg/monoid/cntsummin.hpp"
+#include "alg/monoid/summin.hpp"
 #include "alg/monoid/add.hpp"
 
 template <typename E>
-struct ActedMonoid_CntSumMin_Add {
-  using Monoid_X = Monoid_CntSumMin<E>;
+struct ActedMonoid_SumMin_Add {
+  using Monoid_X = Monoid_SumMin<E>;
   using Monoid_A = Monoid_Add<E>;
   using X = typename Monoid_X::value_type;
   using A = typename Monoid_A::value_type;

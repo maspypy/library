@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "alg/acted_monoid/minidx_add.hpp"
 #include "random/base.hpp"
-#include "ds/segtree/lazysegtree.hpp"
+#include "ds/segtree/lazy_segtree.hpp"
 
 void test() {
   int N = RNG(1, 100);
@@ -11,7 +11,7 @@ void test() {
   FOR(i, N) A[i] = RNG(1, 100);
   using AM = ActedMonoid_MinIdx_Add<int>;
   using Mono = typename AM::Monoid_X;
-  LazySegTree<AM> seg(N, [&](int i) -> typename Mono::value_type {
+  Lazy_SegTree<AM> seg(N, [&](int i) -> typename Mono::value_type {
     return {A[i], i};
   });
   int Q = RNG(1, 100);

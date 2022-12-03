@@ -1,17 +1,17 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "alg/acted_monoid/cntsummin_assign.hpp"
+#include "alg/acted_monoid/summin_add.hpp"
 #include "random/base.hpp"
-#include "ds/segtree/lazysegtree.hpp"
+#include "ds/segtree/lazy_segtree.hpp"
 
 void test() {
   int N = RNG(1, 100);
   vc<int> A(N);
   FOR(i, N) A[i] = RNG(1, 100);
-  using AM = ActedMonoid_CntSumMin_Assign<ll, -1>;
+  using AM = ActedMonoid_SumMin_Add<ll>;
   using Mono = typename AM::Monoid_X;
-  LazySegTree<AM> seg(
+  Lazy_SegTree<AM> seg(
       N, [&](int i) -> Mono::value_type { return Mono::from_element(A[i]); });
   int Q = RNG(1, 100);
   FOR(Q) {
@@ -22,13 +22,12 @@ void test() {
     ++R;
     if (t == 1) {
       ll x = RNG(1, 100);
-      FOR(i, L, R) A[i] = x;
+      FOR(i, L, R) A[i] += x;
       seg.apply(L, R, x);
     }
     if (t == 2) {
       vc<int> B = {A.begin() + L, A.begin() + R};
-      auto [cnt, sm, mi] = seg.prod(L, R);
-      assert(cnt == len(B));
+      auto [sm, mi] = seg.prod(L, R);
       assert(sm == SUM<ll>(B));
       assert(mi == MIN(B));
     }

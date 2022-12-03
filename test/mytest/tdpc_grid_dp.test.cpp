@@ -5,7 +5,7 @@
 #include "ds/hashmap.hpp"
 #include "random/hash_vector.hpp"
 #include "mod/modint.hpp"
-#include "connected_dp/squares.hpp"
+#include "other/connected_dp.hpp"
 
 using mint = modint107;
 

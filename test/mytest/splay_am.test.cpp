@@ -2,15 +2,15 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "alg/acted_monoid/cntsum_add.hpp"
+#include "alg/acted_monoid/sum_add.hpp"
 #include "mod/modint.hpp"
 #include "random/base.hpp"
-#include "ds/splay/splaytree_acted_monoid.hpp"
+#include "ds/splaytree/splaytree_acted_monoid.hpp"
 
 using mint = modint998;
 
 void test() {
-  using AM = ActedMonoid_CntSum_Add<int>;
+  using AM = ActedMonoid_Sum_Add<int>;
 
   SplayTree_ActedMonoid<AM, 100> X;
 
@@ -21,30 +21,28 @@ void test() {
     vc<int> A(N);
     FOR(i, N) A[i] = RNG(1, 10);
 
-    vc<pair<int, int>> seg_raw(N);
-    FOR(i, N) seg_raw[i] = {1, A[i]};
-    auto root = X.new_node(seg_raw);
+    auto root = X.new_node(A);
 
     FOR(Q) {
       int t = RNG(0, 7);
       if (t == 0) {
-        vc<pair<int, int>> B = X.get_all(root);
-        FOR(i, N) assert(A[i] == B[i].se);
+        vc<int> B = X.get_all(root);
+        FOR(i, N) assert(A[i] == B[i]);
       }
       if (t == 1) {
         int i = RNG(0, N);
-        assert(A[i] == X.get(root, i).se);
+        assert(A[i] == X.get(root, i));
       }
       if (t == 2) {
         int i = RNG(0, N);
         int x = RNG(1, 10);
-        X.set(root, i, {1, x});
+        X.set(root, i, x);
         A[i] = x;
       }
       if (t == 3) {
         int i = RNG(0, N);
         int x = RNG(1, 10);
-        X.multiply(root, i, {0, x});
+        X.multiply(root, i, x);
         A[i] += x;
       }
       if (t == 4) {
@@ -54,7 +52,7 @@ void test() {
         ++R;
         int sm = 0;
         FOR(i, L, R) sm += A[i];
-        assert(X.prod(root, L, R).se == sm);
+        assert(X.prod(root, L, R) == sm);
       }
       if (t == 5) {
         int L = RNG(0, N);

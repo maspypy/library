@@ -1,4 +1,4 @@
-#include "ds/func/slope.hpp"
+#include "convex/slope.hpp"
 
 // 座標 0, ..., N-1 に A_i 個ある
 // 座標 0, ..., N-1 で B_i 個まで受け入れられる

@@ -4,7 +4,7 @@
 #include "alg/monoid/affine.hpp"
 #include "mod/modint.hpp"
 #include "random/base.hpp"
-#include "ds/splay/splaytree_monoid.hpp"
+#include "ds/splaytree/splaytree_monoid.hpp"
 
 void test() {
   // reverse, set, prod の動作を確認

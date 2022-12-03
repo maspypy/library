@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "alg/monoid/add_pair.hpp"
-#include "ds/splay/splaytree_acted_set.hpp"
+#include "ds/splaytree/splaytree_acted_set.hpp"
 
 // (所持金, 操作回数, query index)
 struct AS {

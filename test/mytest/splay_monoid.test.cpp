@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "alg/monoid/assign.hpp"
 #include "mod/modint.hpp"
-#include "ds/splay/splaytree_monoid.hpp"
+#include "ds/splaytree/splaytree_monoid.hpp"
 #include "random/base.hpp"
 
 using mint = modint998;
