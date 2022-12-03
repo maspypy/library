@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min_idx.hpp
     title: alg/monoid/min_idx.hpp
   _extendedRequiredBy: []

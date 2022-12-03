@@ -1,9 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: alg/monoid/monoid_reverse.hpp
-    title: alg/monoid/monoid_reverse.hpp
+  - icon: ':warning:'
+    path: alg/monoid/group_reverse.hpp
+    title: alg/monoid/group_reverse.hpp
   - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
@@ -14,30 +14,12 @@ data:
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-    title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-    title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-    title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1212.test.cpp
-    title: test/yukicoder/1212.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/529.test.cpp
-    title: test/yukicoder/529.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    links:
-    - https://atcoder.jp/contests/tkppc3/tasks/tkppc3_i
-    - https://codeforces.com/contest/1059/problem/E
-    - https://codeforces.com/contest/1230/problem/E
+    links: []
   bundledCode: "#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
     \ SegTree {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  using\
     \ value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() {}\n  SegTree(int\
@@ -190,142 +172,110 @@ data:
     \ {\r\n    print(\"V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\",\
     \ RID);\r\n    print(\"parent\", parent);\r\n    print(\"depth\", depth);\r\n\
     \    print(\"head\", head);\r\n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"\
-    root\", root);\r\n  }\r\n};\r\n#line 2 \"alg/monoid/monoid_reverse.hpp\"\n\r\n\
-    template <class Monoid>\r\nstruct Monoid_Reverse {\r\n  using value_type = typename\
-    \ Monoid::value_type;\r\n  using X = value_type;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) { return Monoid::op(y, x); }\r\n  static constexpr X unit()\
-    \ { return Monoid::unit(); }\r\n  static const bool commute = Monoid::commute;\r\
-    \n};\r\n#line 5 \"graph/ds/treemonoid.hpp\"\n\r\ntemplate <typename TREE, typename\
-    \ Monoid, bool edge = false>\r\nstruct TreeMonoid {\r\n  using RevMonoid = Monoid_Reverse<Monoid>;\r\
-    \n  using X = typename Monoid::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  SegTree<Monoid>\
-    \ seg;\r\n  SegTree<RevMonoid> seg_r;\r\n\r\n  TreeMonoid(TREE &tree) : tree(tree),\
-    \ N(tree.N), seg(tree.N) {\r\n    if (!Monoid::commute) seg_r = SegTree<RevMonoid>(tree.N);\r\
-    \n  }\r\n\r\n  TreeMonoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {\r\n\
-    \    vc<X> seg_raw(N, Monoid::unit());\r\n    if (!edge) {\r\n      FOR(v, N)\
-    \ seg_raw[tree.LID[v]] = dat[v];\r\n    } else {\r\n      FOR(e, N - 1) {\r\n\
-    \        int v = tree.e_to_v(e);\r\n        seg_raw[tree.LID[v]] = dat[e];\r\n\
-    \      }\r\n    }\r\n    seg = SegTree<Monoid>(seg_raw);\r\n    if (!Monoid::commute)\
-    \ seg_r = SegTree<RevMonoid>(seg_raw);\r\n  }\r\n\r\n  void set(int i, X x) {\r\
-    \n    if (edge) i = tree.e_to_v(i);\r\n    i = tree.LID[i];\r\n    seg.set(i,\
-    \ x);\r\n    if (!Monoid::commute) seg_r.set(i, x);\r\n  }\r\n\r\n  X prod_path(int\
-    \ u, int v) {\r\n    auto pd = tree.get_path_decomposition(u, v, edge);\r\n  \
-    \  X val = Monoid::unit();\r\n    for (auto &&[a, b]: pd) {\r\n      X x = (a\
-    \ <= b ? seg.prod(a, b + 1)\r\n                    : (Monoid::commute ? seg.prod(b,\
-    \ a + 1)\r\n                                       : seg_r.prod(b, a + 1)));\r\
-    \n      val = Monoid::op(val, x);\r\n    }\r\n    return val;\r\n  }\r\n\r\n \
-    \ // uv path \u4E0A\u3067 prod_path(u, x) \u304C check \u3092\u6E80\u305F\u3059\
-    \u6700\u5F8C\u306E x\r\n  // \u306A\u3051\u308C\u3070 -1\r\n  // https://codeforces.com/contest/1059/problem/E\r\
-    \n  // https://codeforces.com/contest/1230/problem/E\r\n  // edge: https://atcoder.jp/contests/tkppc3/tasks/tkppc3_i\r\
-    \n  // edge \u304C\u7279\u306B\u602A\u3057\u3044\u304B\u3082\r\n  template <class\
-    \ F>\r\n  int max_path(F &check, int u, int v) {\r\n    if (edge) return max_path_edge(check,\
-    \ u, v);\r\n    if (!check(prod_path(u, u))) return -1;\r\n    auto pd = tree.get_path_decomposition(u,\
-    \ v, edge);\r\n    X val = Monoid::unit();\r\n    for (auto &&[a, b]: pd) {\r\n\
-    \      X x = (a <= b ? seg.prod(a, b + 1)\r\n                    : (Monoid::commute\
-    \ ? seg.prod(b, a + 1)\r\n                                       : seg_r.prod(b,\
-    \ a + 1)));\r\n      if (check(Monoid::op(val, x))) {\r\n        val = Monoid::op(val,\
-    \ x);\r\n        u = (tree.V[b]);\r\n        continue;\r\n      }\r\n      auto\
-    \ check_tmp = [&](X x) -> bool { return check(Monoid::op(val, x)); };\r\n    \
-    \  if (a <= b) {\r\n        // \u4E0B\u308A\r\n        auto i = seg.max_right(check_tmp,\
-    \ a);\r\n        return (i == a ? u : tree.V[i - 1]);\r\n      } else {\r\n  \
-    \      // \u4E0A\u308A\r\n        auto i = (Monoid::commute ? seg.min_left(check_tmp,\
-    \ a + 1)\r\n                                  : seg_r.min_left(check_tmp, a +\
-    \ 1));\r\n        if (i == a + 1) return u;\r\n        return tree.V[i];\r\n \
-    \     }\r\n    }\r\n    return v;\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n\
-    \    int l = tree.LID[u], r = tree.RID[u];\r\n    return seg.prod(l + edge, r);\r\
-    \n  }\r\n\r\nprivate:\r\n  template <class F>\r\n  int max_path_edge(F &check,\
-    \ int u, int v) {\r\n    assert(edge);\r\n    if (!check(Monoid::unit())) return\
-    \ -1;\r\n    int lca = tree.lca(u, v);\r\n    auto pd = tree.get_path_decomposition(u,\
-    \ lca, edge);\r\n    X val = Monoid::unit();\r\n\r\n    // climb\r\n    for (auto\
-    \ &&[a, b]: pd) {\r\n      assert(a >= b);\r\n      X x = (Monoid::commute ? seg.prod(b,\
-    \ a + 1) : seg_r.prod(b, a + 1));\r\n      if (check(Monoid::op(val, x))) {\r\n\
-    \        val = Monoid::op(val, x);\r\n        u = (tree.parent[tree.V[b]]);\r\n\
-    \        continue;\r\n      }\r\n      auto check_tmp = [&](X x) -> bool { return\
-    \ check(Monoid::op(val, x)); };\r\n      auto i = (Monoid::commute ? seg.min_left(check_tmp,\
-    \ a + 1)\r\n                                : seg_r.min_left(check_tmp, a + 1));\r\
-    \n      if (i == a + 1) return u;\r\n      return tree.parent[tree.V[i]];\r\n\
-    \    }\r\n    // down\r\n    pd = tree.get_path_decomposition(lca, v, edge);\r\
-    \n    for (auto &&[a, b]: pd) {\r\n      assert(a <= b);\r\n      X x = seg.prod(a,\
-    \ b + 1);\r\n      if (check(Monoid::op(val, x))) {\r\n        val = Monoid::op(val,\
-    \ x);\r\n        u = (tree.V[b]);\r\n        continue;\r\n      }\r\n      auto\
-    \ check_tmp = [&](X x) -> bool { return check(Monoid::op(val, x)); };\r\n    \
-    \  auto i = seg.max_right(check_tmp, a);\r\n      return (i == a ? u : tree.V[i\
-    \ - 1]);\r\n    }\r\n    return v;\r\n  }\r\n};\r\n"
-  code: "#pragma once\r\n#include \"ds/segtree/segtree.hpp\"\r\n#include \"graph/tree.hpp\"\
-    \r\n#include \"alg/monoid/monoid_reverse.hpp\"\r\n\r\ntemplate <typename TREE,\
-    \ typename Monoid, bool edge = false>\r\nstruct TreeMonoid {\r\n  using RevMonoid\
-    \ = Monoid_Reverse<Monoid>;\r\n  using X = typename Monoid::value_type;\r\n  TREE\
-    \ &tree;\r\n  int N;\r\n  SegTree<Monoid> seg;\r\n  SegTree<RevMonoid> seg_r;\r\
-    \n\r\n  TreeMonoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N) {\r\n    if\
-    \ (!Monoid::commute) seg_r = SegTree<RevMonoid>(tree.N);\r\n  }\r\n\r\n  TreeMonoid(TREE\
-    \ &tree, vc<X> &dat) : tree(tree), N(tree.N) {\r\n    vc<X> seg_raw(N, Monoid::unit());\r\
-    \n    if (!edge) {\r\n      FOR(v, N) seg_raw[tree.LID[v]] = dat[v];\r\n    }\
-    \ else {\r\n      FOR(e, N - 1) {\r\n        int v = tree.e_to_v(e);\r\n     \
-    \   seg_raw[tree.LID[v]] = dat[e];\r\n      }\r\n    }\r\n    seg = SegTree<Monoid>(seg_raw);\r\
-    \n    if (!Monoid::commute) seg_r = SegTree<RevMonoid>(seg_raw);\r\n  }\r\n\r\n\
-    \  void set(int i, X x) {\r\n    if (edge) i = tree.e_to_v(i);\r\n    i = tree.LID[i];\r\
-    \n    seg.set(i, x);\r\n    if (!Monoid::commute) seg_r.set(i, x);\r\n  }\r\n\r\
-    \n  X prod_path(int u, int v) {\r\n    auto pd = tree.get_path_decomposition(u,\
-    \ v, edge);\r\n    X val = Monoid::unit();\r\n    for (auto &&[a, b]: pd) {\r\n\
-    \      X x = (a <= b ? seg.prod(a, b + 1)\r\n                    : (Monoid::commute\
-    \ ? seg.prod(b, a + 1)\r\n                                       : seg_r.prod(b,\
-    \ a + 1)));\r\n      val = Monoid::op(val, x);\r\n    }\r\n    return val;\r\n\
-    \  }\r\n\r\n  // uv path \u4E0A\u3067 prod_path(u, x) \u304C check \u3092\u6E80\
-    \u305F\u3059\u6700\u5F8C\u306E x\r\n  // \u306A\u3051\u308C\u3070 -1\r\n  // https://codeforces.com/contest/1059/problem/E\r\
-    \n  // https://codeforces.com/contest/1230/problem/E\r\n  // edge: https://atcoder.jp/contests/tkppc3/tasks/tkppc3_i\r\
-    \n  // edge \u304C\u7279\u306B\u602A\u3057\u3044\u304B\u3082\r\n  template <class\
-    \ F>\r\n  int max_path(F &check, int u, int v) {\r\n    if (edge) return max_path_edge(check,\
-    \ u, v);\r\n    if (!check(prod_path(u, u))) return -1;\r\n    auto pd = tree.get_path_decomposition(u,\
-    \ v, edge);\r\n    X val = Monoid::unit();\r\n    for (auto &&[a, b]: pd) {\r\n\
-    \      X x = (a <= b ? seg.prod(a, b + 1)\r\n                    : (Monoid::commute\
-    \ ? seg.prod(b, a + 1)\r\n                                       : seg_r.prod(b,\
-    \ a + 1)));\r\n      if (check(Monoid::op(val, x))) {\r\n        val = Monoid::op(val,\
-    \ x);\r\n        u = (tree.V[b]);\r\n        continue;\r\n      }\r\n      auto\
-    \ check_tmp = [&](X x) -> bool { return check(Monoid::op(val, x)); };\r\n    \
-    \  if (a <= b) {\r\n        // \u4E0B\u308A\r\n        auto i = seg.max_right(check_tmp,\
-    \ a);\r\n        return (i == a ? u : tree.V[i - 1]);\r\n      } else {\r\n  \
-    \      // \u4E0A\u308A\r\n        auto i = (Monoid::commute ? seg.min_left(check_tmp,\
-    \ a + 1)\r\n                                  : seg_r.min_left(check_tmp, a +\
-    \ 1));\r\n        if (i == a + 1) return u;\r\n        return tree.V[i];\r\n \
-    \     }\r\n    }\r\n    return v;\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n\
-    \    int l = tree.LID[u], r = tree.RID[u];\r\n    return seg.prod(l + edge, r);\r\
-    \n  }\r\n\r\nprivate:\r\n  template <class F>\r\n  int max_path_edge(F &check,\
-    \ int u, int v) {\r\n    assert(edge);\r\n    if (!check(Monoid::unit())) return\
-    \ -1;\r\n    int lca = tree.lca(u, v);\r\n    auto pd = tree.get_path_decomposition(u,\
-    \ lca, edge);\r\n    X val = Monoid::unit();\r\n\r\n    // climb\r\n    for (auto\
-    \ &&[a, b]: pd) {\r\n      assert(a >= b);\r\n      X x = (Monoid::commute ? seg.prod(b,\
-    \ a + 1) : seg_r.prod(b, a + 1));\r\n      if (check(Monoid::op(val, x))) {\r\n\
-    \        val = Monoid::op(val, x);\r\n        u = (tree.parent[tree.V[b]]);\r\n\
-    \        continue;\r\n      }\r\n      auto check_tmp = [&](X x) -> bool { return\
-    \ check(Monoid::op(val, x)); };\r\n      auto i = (Monoid::commute ? seg.min_left(check_tmp,\
-    \ a + 1)\r\n                                : seg_r.min_left(check_tmp, a + 1));\r\
-    \n      if (i == a + 1) return u;\r\n      return tree.parent[tree.V[i]];\r\n\
-    \    }\r\n    // down\r\n    pd = tree.get_path_decomposition(lca, v, edge);\r\
-    \n    for (auto &&[a, b]: pd) {\r\n      assert(a <= b);\r\n      X x = seg.prod(a,\
-    \ b + 1);\r\n      if (check(Monoid::op(val, x))) {\r\n        val = Monoid::op(val,\
-    \ x);\r\n        u = (tree.V[b]);\r\n        continue;\r\n      }\r\n      auto\
-    \ check_tmp = [&](X x) -> bool { return check(Monoid::op(val, x)); };\r\n    \
-    \  auto i = seg.max_right(check_tmp, a);\r\n      return (i == a ? u : tree.V[i\
-    \ - 1]);\r\n    }\r\n    return v;\r\n  }\r\n};\r\n"
+    root\", root);\r\n  }\r\n};\r\n#line 2 \"alg/monoid/group_reverse.hpp\"\n\r\n\
+    template <class Group>\r\nstruct Group_Reverse {\r\n  using value_type = typename\
+    \ Group::value_type;\r\n  using X = value_type;\r\n  static constexpr X op(const\
+    \ X &x, const X &y) { return Group::op(y, x); }\r\n  static constexpr X inverse(const\
+    \ X &x) { return Group::inverse(x); }\r\n  static constexpr X unit() { return\
+    \ Group::unit(); }\r\n  static const bool commute = Group::commute;\r\n};\r\n\
+    #line 4 \"graph/ds/tree_group.hpp\"\n\r\n// \u4F5C\u3063\u3066\u307F\u305F\u3082\
+    \u306E\u306E\u3001HLD(log^2N)\u3088\u308A\u9045\u3044\u304C\u3061\uFF1F\r\n//\
+    \ EulerTour + \u30BB\u30B0\u6728\r\n// \u9006\u5143\u3092\u5229\u7528\u3057\u3066\
+    \u3001\u30D1\u30B9\u30AF\u30A8\u30EA\u3092 O(logN) \u6642\u9593\u3067\u884C\u3046\
+    \u3002\r\n\r\ntemplate <typename TREE, typename Group, bool edge = false,\r\n\
+    \          bool path_query = true, bool subtree_query = false>\r\nstruct Tree_Group\
+    \ {\r\n  using RevGroup = Group_Reverse<Group>;\r\n  using X = typename Group::value_type;\r\
+    \n  TREE &tree;\r\n  int N;\r\n  SegTree<Group> seg, seg_subtree;\r\n  SegTree<RevGroup>\
+    \ seg_r;\r\n\r\n  Tree_Group(TREE &tree) : tree(tree), N(tree.N) {\r\n    if (path_query)\
+    \ {\r\n      seg = SegTree<Group>(2 * N);\r\n      if (!Group::commute) seg_r\
+    \ = SegTree<RevGroup>(2 * N);\r\n    }\r\n    if (subtree_query) {\r\n      assert(Group::commute);\r\
+    \n      seg_subtree = SegTree<Group>(N);\r\n    }\r\n  }\r\n\r\n  Tree_Group(TREE\
+    \ &tree, vc<X> dat) : tree(tree), N(tree.N) {\r\n    if (path_query) {\r\n   \
+    \   vc<X> seg_raw(2 * N);\r\n      if (!edge) {\r\n        assert(len(dat) ==\
+    \ N);\r\n        FOR(v, N) {\r\n          seg_raw[tree.ELID(v)] = dat[v];\r\n\
+    \          seg_raw[tree.ERID(v)] = Group::inverse(dat[v]);\r\n        }\r\n  \
+    \    } else {\r\n        assert(len(dat) == N - 1);\r\n        FOR(e, N - 1) {\r\
+    \n          int v = tree.e_to_v(e);\r\n          seg_raw[tree.ELID(v)] = dat[e];\r\
+    \n          seg_raw[tree.ERID(v)] = Group::inverse(dat[e]);\r\n        }\r\n \
+    \     }\r\n      seg = SegTree<Group>(seg_raw);\r\n      if (!Group::commute)\
+    \ seg_r = SegTree<RevGroup>(seg_raw);\r\n    }\r\n    if (subtree_query) {\r\n\
+    \      assert(Group::commute);\r\n      vc<X> seg_raw(N);\r\n      if (!edge)\
+    \ {\r\n        assert(len(dat) == N);\r\n        FOR(v, N) seg_raw[tree.LID[v]]\
+    \ = dat[v];\r\n      } else {\r\n        assert(len(dat) == N - 1);\r\n      \
+    \  FOR(e, N - 1) {\r\n          int v = tree.e_to_v(e);\r\n          seg_raw[tree.LID[v]]\
+    \ = dat[e];\r\n        }\r\n      }\r\n      seg_subtree = SegTree<Group>(seg_raw);\r\
+    \n    }\r\n  }\r\n\r\n  void set_path(int v, X x) {\r\n    X inv_x = Group::inverse(x);\r\
+    \n    seg.set(tree.ELID(v), x);\r\n    seg.set(tree.ERID(v), inv_x);\r\n    if\
+    \ (!Group::commute) {\r\n      seg_r.set(tree.ELID(v), x);\r\n      seg_r.set(tree.ERID(v),\
+    \ inv_x);\r\n    }\r\n  }\r\n\r\n  void set_subtree(int v, X x) { seg_subtree.set(tree.LID[v],\
+    \ x); }\r\n\r\n  void set(int i, X x) {\r\n    int v = (edge ? tree.e_to_v(i)\
+    \ : i);\r\n    if (path_query) set_path(v, x);\r\n    if (subtree_query) set_subtree(v,\
+    \ x);\r\n  }\r\n\r\n  X prod_path(int frm, int to) {\r\n    assert(path_query);\r\
+    \n    int lca = tree.LCA(frm, to);\r\n    // [frm, lca)\r\n    X x1\r\n      \
+    \  = (Group::commute ? seg.prod(tree.ELID(lca) + 1, tree.ELID(frm) + 1)\r\n  \
+    \                        : seg_r.prod(tree.ELID(lca) + 1, tree.ELID(frm) + 1));\r\
+    \n    // edge \u306A\u3089 (lca, to]\u3001vertex \u306A\u3089 [lca, to]\r\n  \
+    \  X x2 = seg.prod(tree.ELID(lca) + edge, tree.ELID(to) + 1);\r\n    return Group::op(x1,\
+    \ x2);\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n    assert(subtree_query);\r\
+    \n    int l = tree.LID[u], r = tree.RID[u];\r\n    return seg_subtree.prod(l +\
+    \ edge, r);\r\n  }\r\n};\r\n"
+  code: "#include \"ds/segtree/segtree.hpp\"\r\n#include \"graph/tree.hpp\"\r\n#include\
+    \ \"alg/monoid/group_reverse.hpp\"\r\n\r\n// \u4F5C\u3063\u3066\u307F\u305F\u3082\
+    \u306E\u306E\u3001HLD(log^2N)\u3088\u308A\u9045\u3044\u304C\u3061\uFF1F\r\n//\
+    \ EulerTour + \u30BB\u30B0\u6728\r\n// \u9006\u5143\u3092\u5229\u7528\u3057\u3066\
+    \u3001\u30D1\u30B9\u30AF\u30A8\u30EA\u3092 O(logN) \u6642\u9593\u3067\u884C\u3046\
+    \u3002\r\n\r\ntemplate <typename TREE, typename Group, bool edge = false,\r\n\
+    \          bool path_query = true, bool subtree_query = false>\r\nstruct Tree_Group\
+    \ {\r\n  using RevGroup = Group_Reverse<Group>;\r\n  using X = typename Group::value_type;\r\
+    \n  TREE &tree;\r\n  int N;\r\n  SegTree<Group> seg, seg_subtree;\r\n  SegTree<RevGroup>\
+    \ seg_r;\r\n\r\n  Tree_Group(TREE &tree) : tree(tree), N(tree.N) {\r\n    if (path_query)\
+    \ {\r\n      seg = SegTree<Group>(2 * N);\r\n      if (!Group::commute) seg_r\
+    \ = SegTree<RevGroup>(2 * N);\r\n    }\r\n    if (subtree_query) {\r\n      assert(Group::commute);\r\
+    \n      seg_subtree = SegTree<Group>(N);\r\n    }\r\n  }\r\n\r\n  Tree_Group(TREE\
+    \ &tree, vc<X> dat) : tree(tree), N(tree.N) {\r\n    if (path_query) {\r\n   \
+    \   vc<X> seg_raw(2 * N);\r\n      if (!edge) {\r\n        assert(len(dat) ==\
+    \ N);\r\n        FOR(v, N) {\r\n          seg_raw[tree.ELID(v)] = dat[v];\r\n\
+    \          seg_raw[tree.ERID(v)] = Group::inverse(dat[v]);\r\n        }\r\n  \
+    \    } else {\r\n        assert(len(dat) == N - 1);\r\n        FOR(e, N - 1) {\r\
+    \n          int v = tree.e_to_v(e);\r\n          seg_raw[tree.ELID(v)] = dat[e];\r\
+    \n          seg_raw[tree.ERID(v)] = Group::inverse(dat[e]);\r\n        }\r\n \
+    \     }\r\n      seg = SegTree<Group>(seg_raw);\r\n      if (!Group::commute)\
+    \ seg_r = SegTree<RevGroup>(seg_raw);\r\n    }\r\n    if (subtree_query) {\r\n\
+    \      assert(Group::commute);\r\n      vc<X> seg_raw(N);\r\n      if (!edge)\
+    \ {\r\n        assert(len(dat) == N);\r\n        FOR(v, N) seg_raw[tree.LID[v]]\
+    \ = dat[v];\r\n      } else {\r\n        assert(len(dat) == N - 1);\r\n      \
+    \  FOR(e, N - 1) {\r\n          int v = tree.e_to_v(e);\r\n          seg_raw[tree.LID[v]]\
+    \ = dat[e];\r\n        }\r\n      }\r\n      seg_subtree = SegTree<Group>(seg_raw);\r\
+    \n    }\r\n  }\r\n\r\n  void set_path(int v, X x) {\r\n    X inv_x = Group::inverse(x);\r\
+    \n    seg.set(tree.ELID(v), x);\r\n    seg.set(tree.ERID(v), inv_x);\r\n    if\
+    \ (!Group::commute) {\r\n      seg_r.set(tree.ELID(v), x);\r\n      seg_r.set(tree.ERID(v),\
+    \ inv_x);\r\n    }\r\n  }\r\n\r\n  void set_subtree(int v, X x) { seg_subtree.set(tree.LID[v],\
+    \ x); }\r\n\r\n  void set(int i, X x) {\r\n    int v = (edge ? tree.e_to_v(i)\
+    \ : i);\r\n    if (path_query) set_path(v, x);\r\n    if (subtree_query) set_subtree(v,\
+    \ x);\r\n  }\r\n\r\n  X prod_path(int frm, int to) {\r\n    assert(path_query);\r\
+    \n    int lca = tree.LCA(frm, to);\r\n    // [frm, lca)\r\n    X x1\r\n      \
+    \  = (Group::commute ? seg.prod(tree.ELID(lca) + 1, tree.ELID(frm) + 1)\r\n  \
+    \                        : seg_r.prod(tree.ELID(lca) + 1, tree.ELID(frm) + 1));\r\
+    \n    // edge \u306A\u3089 (lca, to]\u3001vertex \u306A\u3089 [lca, to]\r\n  \
+    \  X x2 = seg.prod(tree.ELID(lca) + edge, tree.ELID(to) + 1);\r\n    return Group::op(x1,\
+    \ x2);\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n    assert(subtree_query);\r\
+    \n    int l = tree.LID[u], r = tree.RID[u];\r\n    return seg_subtree.prod(l +\
+    \ edge, r);\r\n  }\r\n};\r\n"
   dependsOn:
   - ds/segtree/segtree.hpp
   - graph/tree.hpp
   - graph/base.hpp
-  - alg/monoid/monoid_reverse.hpp
+  - alg/monoid/group_reverse.hpp
   isVerificationFile: false
-  path: graph/ds/treemonoid.hpp
+  path: graph/ds/tree_group.hpp
   requiredBy: []
-  timestamp: '2022-12-03 10:20:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yukicoder/529.test.cpp
-  - test/yukicoder/1212.test.cpp
-  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-documentation_of: graph/ds/treemonoid.hpp
+  timestamp: '2022-12-04 00:39:06+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: graph/ds/tree_group.hpp
 layout: document
 redirect_from:
-- /library/graph/ds/treemonoid.hpp
-- /library/graph/ds/treemonoid.hpp.html
-title: graph/ds/treemonoid.hpp
+- /library/graph/ds/tree_group.hpp
+- /library/graph/ds/tree_group.hpp.html
+title: graph/ds/tree_group.hpp
 ---

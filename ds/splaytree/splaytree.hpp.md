@@ -1,19 +1,25 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: ds/splaytree/splaytree_monoid.hpp
+    title: ds/splaytree/splaytree_monoid.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/1508.test.cpp
+    title: test/aoj/1508.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/splaytree/splaytree.hpp\"\n// Node \u578B\u3092\u5225\
     \u306B\u5B9A\u7FA9\u3057\u3066\u4F7F\u3046\ntemplate <typename Node, int NODES\
-    \ = 1'000'000>\nstruct Splay_Tree {\n  Node *pool;\n  int pid;\n  using np = Node\
+    \ = 1'000'000>\nstruct SplayTree {\n  Node *pool;\n  int pid;\n  using np = Node\
     \ *;\n  using X = typename Node::value_type;\n  using A = typename Node::operator_type;\n\
-    \n  Splay_Tree() : pid(0) { pool = new Node[NODES]; }\n\n  void reset() { pid\
-    \ = 0; }\n\n  np new_node(const X &x) {\n    np n = &(pool[pid++]);\n    Node::new_node(n,\
+    \n  SplayTree() : pid(0) { pool = new Node[NODES]; }\n\n  void reset() { pid =\
+    \ 0; }\n\n  np new_node(const X &x) {\n    np n = &(pool[pid++]);\n    Node::new_node(n,\
     \ x);\n    return n;\n  }\n\n  np new_node(const vc<X> &dat) {\n    auto dfs =\
     \ [&](auto &dfs, int l, int r) -> np {\n      if (l == r) return nullptr;\n  \
     \    if (r == l + 1) return new_node(dat[l]);\n      int m = (l + r) / 2;\n  \
@@ -113,9 +119,9 @@ data:
     \        root = root->l;\n      }\n    }\n    splay(last);\n    return last_ok;\n\
     \  }\n};\n"
   code: "#pragma once\n// Node \u578B\u3092\u5225\u306B\u5B9A\u7FA9\u3057\u3066\u4F7F\
-    \u3046\ntemplate <typename Node, int NODES = 1'000'000>\nstruct Splay_Tree {\n\
+    \u3046\ntemplate <typename Node, int NODES = 1'000'000>\nstruct SplayTree {\n\
     \  Node *pool;\n  int pid;\n  using np = Node *;\n  using X = typename Node::value_type;\n\
-    \  using A = typename Node::operator_type;\n\n  Splay_Tree() : pid(0) { pool =\
+    \  using A = typename Node::operator_type;\n\n  SplayTree() : pid(0) { pool =\
     \ new Node[NODES]; }\n\n  void reset() { pid = 0; }\n\n  np new_node(const X &x)\
     \ {\n    np n = &(pool[pid++]);\n    Node::new_node(n, x);\n    return n;\n  }\n\
     \n  np new_node(const vc<X> &dat) {\n    auto dfs = [&](auto &dfs, int l, int\
@@ -219,10 +225,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: ds/splaytree/splaytree.hpp
-  requiredBy: []
-  timestamp: '2022-12-03 10:20:23+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy:
+  - ds/splaytree/splaytree_monoid.hpp
+  timestamp: '2022-12-04 00:39:06+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj/1508.test.cpp
 documentation_of: ds/splaytree/splaytree.hpp
 layout: document
 redirect_from:

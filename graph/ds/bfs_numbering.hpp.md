@@ -55,7 +55,7 @@ data:
     \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
-    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/ds/bfsnumbering.hpp\"\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/ds/bfs_numbering.hpp\"\
     \n\r\n\r\n// ID[v]\uFF1A\u9802\u70B9\u306E\u65B0\u3057\u3044\u756A\u53F7\r\n//\
     \ calc_range(v, dep)\uFF1Av \u306E\u90E8\u5206\u6728\u3067\u3001\u6DF1\u3055 dep\
     \ \u306E\u3082\u306E\u305F\u3061\u306E\u7BC4\u56F2\r\n// \u6DF1\u3055\u306F\u7D76\
@@ -119,15 +119,15 @@ data:
   dependsOn:
   - graph/base.hpp
   isVerificationFile: false
-  path: graph/ds/bfsnumbering.hpp
+  path: graph/ds/bfs_numbering.hpp
   requiredBy: []
-  timestamp: '2022-10-21 17:08:40+09:00'
+  timestamp: '2022-12-04 00:39:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: graph/ds/bfsnumbering.hpp
+documentation_of: graph/ds/bfs_numbering.hpp
 layout: document
 redirect_from:
-- /library/graph/ds/bfsnumbering.hpp
-- /library/graph/ds/bfsnumbering.hpp.html
-title: graph/ds/bfsnumbering.hpp
+- /library/graph/ds/bfs_numbering.hpp
+- /library/graph/ds/bfs_numbering.hpp.html
+title: graph/ds/bfs_numbering.hpp
 ---

@@ -14,12 +14,15 @@ data:
   - icon: ':warning:'
     path: geo/manhattan_nns.hpp
     title: geo/manhattan_nns.hpp
+  - icon: ':warning:'
+    path: graph/ds/tree_group.hpp
+    title: graph/ds/tree_group.hpp
+  - icon: ':warning:'
+    path: graph/ds/tree_monoid.hpp
+    title: graph/ds/tree_monoid.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/ds/treegroup.hpp
-    title: graph/ds/treegroup.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/ds/treemonoid.hpp
-    title: graph/ds/treemonoid.hpp
+    path: string/suffix_tree.hpp
+    title: string/suffix_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ITP2_3_B.test.cpp
@@ -40,32 +43,17 @@ data:
     path: test/library_checker/datastructure/staticrmq_seg.test.cpp
     title: test/library_checker/datastructure/staticrmq_seg.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
-    title: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-    title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-    title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
-    title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-    title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/segtree_xor_prod.test.cpp
     title: test/mytest/segtree_xor_prod.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/suffix_tree.test.cpp
+    title: test/mytest/suffix_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036_2.test.cpp
     title: test/yukicoder/1036_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1212.test.cpp
-    title: test/yukicoder/1212.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1435.test.cpp
     title: test/yukicoder/1435.test.cpp
@@ -75,9 +63,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/529.test.cpp
-    title: test/yukicoder/529.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -167,12 +152,13 @@ data:
   isVerificationFile: false
   path: ds/segtree/segtree.hpp
   requiredBy:
+  - string/suffix_tree.hpp
   - geo/manhattan_nns.hpp
   - ds/offline_query/range_mex_query.hpp
   - ds/offline_query/uniqueproductquery.hpp
   - ds/segtree/sortable_segtree.hpp
-  - graph/ds/treegroup.hpp
-  - graph/ds/treemonoid.hpp
+  - graph/ds/tree_group.hpp
+  - graph/ds/tree_monoid.hpp
   timestamp: '2022-12-03 10:20:23+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -180,15 +166,9 @@ data:
   - test/yukicoder/1549.test.cpp
   - test/yukicoder/426.test.cpp
   - test/yukicoder/1435.test.cpp
-  - test/yukicoder/529.test.cpp
-  - test/yukicoder/1212.test.cpp
   - test/mytest/range_mex.test.cpp
+  - test/mytest/suffix_tree.test.cpp
   - test/mytest/segtree_xor_prod.test.cpp
-  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/staticrmq_seg.test.cpp
   - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp

@@ -2,17 +2,20 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/2842_2.test.cpp
+    title: test/aoj/2842_2.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree_2d_dense.hpp\"\n\ntemplate <class Monoid>\n\
-    struct SegTree2D_Dense {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
+    struct SegTree_2D_Dense {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
     \  using value_type = X;\n  static_assert(MX::commute);\n  vc<X> dat;\n  int H,\
-    \ W;\n\n  SegTree2D_Dense() : SegTree2D_Dense(0, 0) {}\n  SegTree2D_Dense(int\
-    \ H, int W) : H(H), W(W), dat(4 * H * W, MX::unit()) {}\n  SegTree2D_Dense(vc<vc<X>>\
+    \ W;\n\n  SegTree_2D_Dense() : SegTree2D_Dense(0, 0) {}\n  SegTree_2D_Dense(int\
+    \ H, int W) : H(H), W(W), dat(4 * H * W, MX::unit()) {}\n  SegTree_2D_Dense(vc<vc<X>>\
     \ &v) {\n    H = len(v), W = (H == 0 ? 0 : len(v[0]));\n    dat.assign(4 * H *\
     \ W, MX::unit());\n    FOR(x, H) FOR(y, W) { dat[idx(H + x, W + y)] = v[x][y];\
     \ }\n    FOR(y, W, W + W) FOR_R(x, H) {\n      dat[idx(x, y)] = MX::op(dat[idx(2\
@@ -33,11 +36,11 @@ data:
     \ < yr) {\n      if (yl & 1) res = MX::op(res, dat[idx(x, yl++)]);\n      if (yr\
     \ & 1) res = MX::op(res, dat[idx(x, --yr)]);\n      yl >>= 1, yr >>= 1;\n    }\n\
     \    return res;\n  }\n};\n"
-  code: "#pragma once\n\ntemplate <class Monoid>\nstruct SegTree2D_Dense {\n  using\
+  code: "#pragma once\n\ntemplate <class Monoid>\nstruct SegTree_2D_Dense {\n  using\
     \ MX = Monoid;\n  using X = typename MX::value_type;\n  using value_type = X;\n\
-    \  static_assert(MX::commute);\n  vc<X> dat;\n  int H, W;\n\n  SegTree2D_Dense()\
-    \ : SegTree2D_Dense(0, 0) {}\n  SegTree2D_Dense(int H, int W) : H(H), W(W), dat(4\
-    \ * H * W, MX::unit()) {}\n  SegTree2D_Dense(vc<vc<X>> &v) {\n    H = len(v),\
+    \  static_assert(MX::commute);\n  vc<X> dat;\n  int H, W;\n\n  SegTree_2D_Dense()\
+    \ : SegTree2D_Dense(0, 0) {}\n  SegTree_2D_Dense(int H, int W) : H(H), W(W), dat(4\
+    \ * H * W, MX::unit()) {}\n  SegTree_2D_Dense(vc<vc<X>> &v) {\n    H = len(v),\
     \ W = (H == 0 ? 0 : len(v[0]));\n    dat.assign(4 * H * W, MX::unit());\n    FOR(x,\
     \ H) FOR(y, W) { dat[idx(H + x, W + y)] = v[x][y]; }\n    FOR(y, W, W + W) FOR_R(x,\
     \ H) {\n      dat[idx(x, y)] = MX::op(dat[idx(2 * x + 0, y)], dat[idx(2 * x +\
@@ -62,9 +65,10 @@ data:
   isVerificationFile: false
   path: ds/segtree/segtree_2d_dense.hpp
   requiredBy: []
-  timestamp: '2022-12-03 10:36:40+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-12-04 00:39:06+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/aoj/2842_2.test.cpp
 documentation_of: ds/segtree/segtree_2d_dense.hpp
 layout: document
 redirect_from:

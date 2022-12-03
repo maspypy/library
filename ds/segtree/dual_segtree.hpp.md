@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/DSL_2_D.test.cpp
+    title: test/aoj/DSL_2_D.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/dual_segtree.hpp\"\n\ntemplate <typename Monoid>\n\
@@ -48,8 +51,9 @@ data:
   path: ds/segtree/dual_segtree.hpp
   requiredBy: []
   timestamp: '2022-12-03 10:58:25+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/aoj/DSL_2_D.test.cpp
 documentation_of: ds/segtree/dual_segtree.hpp
 layout: document
 redirect_from:

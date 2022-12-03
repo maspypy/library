@@ -73,15 +73,15 @@ data:
     \ - 1]);\r\n    }\r\n    return v;\r\n  }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: graph/ds/lazytreemonoid.hpp
+  path: graph/ds/lazy_tree_monoid.hpp
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: graph/ds/lazytreemonoid.hpp
+documentation_of: graph/ds/lazy_tree_monoid.hpp
 layout: document
 redirect_from:
-- /library/graph/ds/lazytreemonoid.hpp
-- /library/graph/ds/lazytreemonoid.hpp.html
-title: graph/ds/lazytreemonoid.hpp
+- /library/graph/ds/lazy_tree_monoid.hpp
+- /library/graph/ds/lazy_tree_monoid.hpp.html
+title: graph/ds/lazy_tree_monoid.hpp
 ---

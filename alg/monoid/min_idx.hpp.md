@@ -14,10 +14,16 @@ data:
   - icon: ':warning:'
     path: geo/manhattan_nns.hpp
     title: geo/manhattan_nns.hpp
-  _extendedVerifiedWith: []
+  - icon: ':heavy_check_mark:'
+    path: string/suffix_tree.hpp
+    title: string/suffix_tree.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/suffix_tree.test.cpp
+    title: test/mytest/suffix_tree.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/min_idx.hpp\"\n\r\ntemplate <typename T, bool\
@@ -40,12 +46,14 @@ data:
   path: alg/monoid/min_idx.hpp
   requiredBy:
   - alg/acted_monoid/minidx_add.hpp
+  - string/suffix_tree.hpp
   - convex/dynamic_lichao.hpp
   - geo/manhattan_nns.hpp
   - ds/pds/persistent_dynamic_lichao.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/mytest/suffix_tree.test.cpp
 documentation_of: alg/monoid/min_idx.hpp
 layout: document
 redirect_from:

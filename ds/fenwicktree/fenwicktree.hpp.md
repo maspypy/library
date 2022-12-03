@@ -4,11 +4,23 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: seq/inversion.hpp
+    title: seq/inversion.hpp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/ALDS1_2_A.test.cpp
+    title: test/aoj/ALDS1_2_A.test.cpp
+  - icon: ':x:'
+    path: test/aoj/ALDS1_5.test.cpp
+    title: test/aoj/ALDS1_5.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DSL_2_E.test.cpp
+    title: test/aoj/DSL_2_E.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -74,10 +86,14 @@ data:
   - alg/monoid/add.hpp
   isVerificationFile: false
   path: ds/fenwicktree/fenwicktree.hpp
-  requiredBy: []
+  requiredBy:
+  - seq/inversion.hpp
   timestamp: '2022-12-03 10:20:23+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/aoj/DSL_2_E.test.cpp
+  - test/aoj/ALDS1_2_A.test.cpp
+  - test/aoj/ALDS1_5.test.cpp
 documentation_of: ds/fenwicktree/fenwicktree.hpp
 layout: document
 redirect_from:

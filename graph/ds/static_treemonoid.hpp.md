@@ -79,15 +79,15 @@ data:
     };\n"
   dependsOn: []
   isVerificationFile: false
-  path: graph/ds/statictreemonoid.hpp
+  path: graph/ds/static_treemonoid.hpp
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: graph/ds/statictreemonoid.hpp
+documentation_of: graph/ds/static_treemonoid.hpp
 layout: document
 redirect_from:
-- /library/graph/ds/statictreemonoid.hpp
-- /library/graph/ds/statictreemonoid.hpp.html
-title: graph/ds/statictreemonoid.hpp
+- /library/graph/ds/static_treemonoid.hpp
+- /library/graph/ds/static_treemonoid.hpp.html
+title: graph/ds/static_treemonoid.hpp
 ---

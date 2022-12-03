@@ -55,15 +55,15 @@ data:
     };\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: graph/ds/treeabelgroup.hpp
+  path: graph/ds/tree_abelgroup.hpp
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: graph/ds/treeabelgroup.hpp
+documentation_of: graph/ds/tree_abelgroup.hpp
 layout: document
 redirect_from:
-- /library/graph/ds/treeabelgroup.hpp
-- /library/graph/ds/treeabelgroup.hpp.html
-title: graph/ds/treeabelgroup.hpp
+- /library/graph/ds/tree_abelgroup.hpp
+- /library/graph/ds/tree_abelgroup.hpp.html
+title: graph/ds/tree_abelgroup.hpp
 ---

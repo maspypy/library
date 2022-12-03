@@ -1,11 +1,35 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: string/longest_common_substring.hpp
+    title: string/longest_common_substring.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/suffix_tree.hpp
+    title: string/suffix_tree.hpp
+  - icon: ':question:'
+    path: string/suffixarray.hpp
+    title: string/suffixarray.hpp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/atcoder/arc151_e.test.cpp
+    title: test/atcoder/arc151_e.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/string/number_of_substrings.test.cpp
+    title: test/library_checker/string/number_of_substrings.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/string/suffix_array.test.cpp
+    title: test/library_checker/string/suffix_array.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/string/suffix_array_vec.test.cpp
+    title: test/library_checker/string/suffix_array_vec.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/suffix_tree.test.cpp
+    title: test/mytest/suffix_tree.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/disjointsparse/disjointsparse.hpp\"\n\r\ntemplate <class\
@@ -63,10 +87,18 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: ds/disjointsparse/disjointsparse.hpp
-  requiredBy: []
+  requiredBy:
+  - string/longest_common_substring.hpp
+  - string/suffix_tree.hpp
+  - string/suffixarray.hpp
   timestamp: '2022-12-03 10:20:23+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/mytest/suffix_tree.test.cpp
+  - test/library_checker/string/suffix_array.test.cpp
+  - test/library_checker/string/number_of_substrings.test.cpp
+  - test/library_checker/string/suffix_array_vec.test.cpp
+  - test/atcoder/arc151_e.test.cpp
 documentation_of: ds/disjointsparse/disjointsparse.hpp
 layout: document
 redirect_from:

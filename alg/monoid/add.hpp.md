@@ -11,7 +11,7 @@ data:
   - icon: ':warning:'
     path: alg/acted_monoid/maxidx_add.hpp
     title: alg/acted_monoid/maxidx_add.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
   - icon: ':warning:'
@@ -20,16 +20,16 @@ data:
   - icon: ':warning:'
     path: alg/acted_monoid/minmax_add.hpp
     title: alg/acted_monoid/minmax_add.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: alg/acted_monoid/minmincnt_add.hpp
     title: alg/acted_monoid/minmincnt_add.hpp
   - icon: ':warning:'
     path: alg/acted_monoid/sum_add.hpp
     title: alg/acted_monoid/sum_add.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_affine.hpp
     title: alg/acted_monoid/sum_affine.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: alg/acted_monoid/sum_assign.hpp
     title: alg/acted_monoid/sum_assign.hpp
   - icon: ':warning:'
@@ -38,52 +38,76 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/cumsum2d.hpp
     title: ds/cumsum2d.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':warning:'
     path: ds/fenwicktree/fenwicktree_2d.hpp
     title: ds/fenwicktree/fenwicktree_2d.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_2d_dense.hpp
     title: ds/fenwicktree/fenwicktree_2d_dense.hpp
   - icon: ':heavy_check_mark:'
     path: ds/waveletmatrix.hpp
     title: ds/waveletmatrix.hpp
+  - icon: ':x:'
+    path: other/rectangle_union.hpp
+    title: other/rectangle_union.hpp
+  - icon: ':x:'
+    path: seq/inversion.hpp
+    title: seq/inversion.hpp
   - icon: ':heavy_check_mark:'
     path: string/trie.hpp
     title: string/trie.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/2842.test.cpp
+    title: test/aoj/2842.test.cpp
+  - icon: ':x:'
+    path: test/aoj/2842_2.test.cpp
+    title: test/aoj/2842_2.test.cpp
+  - icon: ':x:'
+    path: test/aoj/ALDS1_2_A.test.cpp
+    title: test/aoj/ALDS1_2_A.test.cpp
+  - icon: ':x:'
+    path: test/aoj/ALDS1_5.test.cpp
+    title: test/aoj/ALDS1_5.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_1_B.test.cpp
     title: test/aoj/DSL_1_B.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DSL_2_E.test.cpp
+    title: test/aoj/DSL_2_E.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DSL_2_H.test.cpp
+    title: test/aoj/DSL_2_H.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DSL_2_I.test.cpp
+    title: test/aoj/DSL_2_I.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DSL_4_A.test.cpp
+    title: test/aoj/DSL_4_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc127f_1.test.cpp
     title: test/atcoder/abc127f_1.test.cpp
   - icon: ':x:'
     path: test/atcoder/abc174f.test.cpp
     title: test/atcoder/abc174f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/double_ended_pq.test.cpp
     title: test/library_checker/datastructure/double_ended_pq.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
     title: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
+    title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
-    title: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-    title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-    title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_commutative_persistent.test.cpp
     title: test/mytest/rbst_commutative_persistent.test.cpp
@@ -117,7 +141,7 @@ data:
   - icon: ':x:'
     path: test/yukicoder/686.test.cpp
     title: test/yukicoder/686.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/789.test.cpp
     title: test/yukicoder/789.test.cpp
   - icon: ':heavy_check_mark:'
@@ -144,6 +168,7 @@ data:
   isVerificationFile: false
   path: alg/monoid/add.hpp
   requiredBy:
+  - other/rectangle_union.hpp
   - alg/acted_monoid/min_add.hpp
   - alg/acted_monoid/sum_affine.hpp
   - alg/acted_monoid/minmincnt_add.hpp
@@ -156,6 +181,7 @@ data:
   - alg/acted_monoid/summax_add.hpp
   - alg/acted_monoid/minidx_add.hpp
   - string/trie.hpp
+  - seq/inversion.hpp
   - ds/fenwicktree/fenwicktree_2d.hpp
   - ds/fenwicktree/fenwicktree_2d_dense.hpp
   - ds/fenwicktree/fenwicktree.hpp
@@ -179,14 +205,20 @@ data:
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
   - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
-  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/double_ended_pq.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
+  - test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - test/atcoder/abc127f_1.test.cpp
   - test/atcoder/abc174f.test.cpp
+  - test/aoj/DSL_2_E.test.cpp
+  - test/aoj/2842_2.test.cpp
+  - test/aoj/DSL_4_A.test.cpp
+  - test/aoj/DSL_2_I.test.cpp
+  - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/DSL_1_B.test.cpp
+  - test/aoj/DSL_2_H.test.cpp
+  - test/aoj/ALDS1_5.test.cpp
+  - test/aoj/2842.test.cpp
 documentation_of: alg/monoid/add.hpp
 layout: document
 redirect_from:

@@ -39,15 +39,15 @@ data:
     \ x);\r\n  }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: graph/ds/dualtreemonoid.hpp
+  path: graph/ds/dual_tree_monoid.hpp
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: graph/ds/dualtreemonoid.hpp
+documentation_of: graph/ds/dual_tree_monoid.hpp
 layout: document
 redirect_from:
-- /library/graph/ds/dualtreemonoid.hpp
-- /library/graph/ds/dualtreemonoid.hpp.html
-title: graph/ds/dualtreemonoid.hpp
+- /library/graph/ds/dual_tree_monoid.hpp
+- /library/graph/ds/dual_tree_monoid.hpp.html
+title: graph/ds/dual_tree_monoid.hpp
 ---

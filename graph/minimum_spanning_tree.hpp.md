@@ -16,16 +16,14 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
     \ File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ds/segtree/dualsegtree.hpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: graph/ds/dual_treemonoid.hpp:\
     \ line -1: no such header\n"
   code: "#include \"ds/unionfind/unionfind.hpp\"\r\n#include \"graph/base.hpp\"\r\n\
-    #include \"graph/tree.hpp\"\r\n#include \"graph/ds/treemonoid.hpp\"\r\n#include\
-    \ \"graph/ds/dualtreemonoid.hpp\"\r\n#include \"alg/monoid/min.hpp\"\r\n#include\
+    #include \"graph/tree.hpp\"\r\n#include \"graph/ds/tree_monoid.hpp\"\r\n#include\
+    \ \"graph/ds/dual_treemonoid.hpp\"\r\n#include \"alg/monoid/min.hpp\"\r\n#include\
     \ \"alg/monoid/max.hpp\"\r\n\r\n// return : {T mst_cost, vc<bool> in_mst, Graph\
     \ MST}\r\ntemplate <typename T>\r\ntuple<T, vc<bool>, Graph<T>> minimum_spanning_tree(Graph<T>&\
     \ G) {\r\n  int N = G.N;\r\n  int M = len(G.edges);\r\n  vc<pair<T, int>> edges;\r\
@@ -42,8 +40,8 @@ data:
     \ <typename T>\r\ntuple<T, vc<bool>, Graph<T>, vc<T>> minimum_spanning_tree_cycle_data(\r\
     \n    Graph<T>& G) {\r\n  int N = G.N;\r\n  int M = len(G.edges);\r\n  auto [mst_cost,\
     \ in_mst, MST] = minimum_spanning_tree(G);\r\n  TREE tree(MST);\r\n  vc<T> dat;\r\
-    \n  FOR(i, M) if (in_mst[i]) dat.eb(G.edges[i].cost);\r\n  TreeMonoid<decltype(tree),\
-    \ Monoid_Max<T>, 1> TM1(tree, dat);\r\n  DualTreeMonoid<decltype(tree), Monoid_Min<T>,\
+    \n  FOR(i, M) if (in_mst[i]) dat.eb(G.edges[i].cost);\r\n  Tree_Monoid<decltype(tree),\
+    \ Monoid_Max<T>, 1> TM1(tree, dat);\r\n  Dual_TreeMonoid<decltype(tree), Monoid_Min<T>,\
     \ 1> TM2(tree);\r\n  FOR(i, M) {\r\n    if (!in_mst[i]) {\r\n      auto& e = G.edges[i];\r\
     \n      TM2.apply_path(e.frm, e.to, e.cost);\r\n    }\r\n  }\r\n  vc<T> ANS(M);\r\
     \n  int m = 0;\r\n  FOR(i, M) {\r\n    auto& e = G.edges[i];\r\n    if (in_mst[i])\r\

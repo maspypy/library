@@ -2,13 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: alg/acted_monoid/minmincnt_add.hpp
     title: alg/acted_monoid/minmincnt_add.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: other/rectangle_union.hpp
+    title: other/rectangle_union.hpp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/DSL_4_A.test.cpp
+    title: test/aoj/DSL_4_A.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/minmincnt.hpp\"\n\r\n// \u6700\u5C0F\u5024\u3001\
@@ -31,10 +37,12 @@ data:
   isVerificationFile: false
   path: alg/monoid/minmincnt.hpp
   requiredBy:
+  - other/rectangle_union.hpp
   - alg/acted_monoid/minmincnt_add.hpp
   timestamp: '2022-12-03 07:16:30+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/aoj/DSL_4_A.test.cpp
 documentation_of: alg/monoid/minmincnt.hpp
 layout: document
 redirect_from:

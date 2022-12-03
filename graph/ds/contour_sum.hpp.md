@@ -84,15 +84,15 @@ data:
     \ }\n    bit.build(bit_raw);\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: graph/ds/contoursum.hpp
+  path: graph/ds/contour_sum.hpp
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: graph/ds/contoursum.hpp
+documentation_of: graph/ds/contour_sum.hpp
 layout: document
 redirect_from:
-- /library/graph/ds/contoursum.hpp
-- /library/graph/ds/contoursum.hpp.html
-title: graph/ds/contoursum.hpp
+- /library/graph/ds/contour_sum.hpp
+- /library/graph/ds/contour_sum.hpp.html
+title: graph/ds/contour_sum.hpp
 ---
