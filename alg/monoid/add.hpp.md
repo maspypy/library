@@ -8,16 +8,16 @@ data:
   - icon: ':warning:'
     path: alg/acted_monoid/max_add.hpp
     title: alg/acted_monoid/max_add.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: alg/acted_monoid/maxidx_add.hpp
     title: alg/acted_monoid/maxidx_add.hpp
   - icon: ':x:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: alg/acted_monoid/minidx_add.hpp
     title: alg/acted_monoid/minidx_add.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: alg/acted_monoid/minmax_add.hpp
     title: alg/acted_monoid/minmax_add.hpp
   - icon: ':x:'
@@ -35,6 +35,9 @@ data:
   - icon: ':warning:'
     path: alg/acted_monoid/summax_add.hpp
     title: alg/acted_monoid/summax_add.hpp
+  - icon: ':x:'
+    path: alg/acted_monoid/summin_add.hpp
+    title: alg/acted_monoid/summin_add.hpp
   - icon: ':heavy_check_mark:'
     path: ds/cumsum2d.hpp
     title: ds/cumsum2d.hpp
@@ -50,6 +53,9 @@ data:
   - icon: ':x:'
     path: ds/offline_query/point_add_rectangle_sum.hpp
     title: ds/offline_query/point_add_rectangle_sum.hpp
+  - icon: ':x:'
+    path: ds/offline_query/rectangle_add_point_sum.hpp
+    title: ds/offline_query/rectangle_add_point_sum.hpp
   - icon: ':x:'
     path: ds/offline_query/rectangle_add_rectangle_sum.hpp
     title: ds/offline_query/rectangle_add_rectangle_sum.hpp
@@ -177,9 +183,33 @@ data:
   - icon: ':x:'
     path: test/mytest/ARC30D.test.cpp
     title: test/mytest/ARC30D.test.cpp
+  - icon: ':x:'
+    path: test/mytest/maxidx_add.test.cpp
+    title: test/mytest/maxidx_add.test.cpp
+  - icon: ':x:'
+    path: test/mytest/minidx_add.test.cpp
+    title: test/mytest/minidx_add.test.cpp
+  - icon: ':x:'
+    path: test/mytest/minmax_add.test.cpp
+    title: test/mytest/minmax_add.test.cpp
+  - icon: ':x:'
+    path: test/mytest/rbst_am_2.test.cpp
+    title: test/mytest/rbst_am_2.test.cpp
+  - icon: ':x:'
+    path: test/mytest/rect_add_pt_sum.test.cpp
+    title: test/mytest/rect_add_pt_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/segtree_xor_prod.test.cpp
     title: test/mytest/segtree_xor_prod.test.cpp
+  - icon: ':x:'
+    path: test/mytest/splay_am.test.cpp
+    title: test/mytest/splay_am.test.cpp
+  - icon: ':x:'
+    path: test/mytest/splay_cm.test.cpp
+    title: test/mytest/splay_cm.test.cpp
+  - icon: ':x:'
+    path: test/mytest/summin_add.test.cpp
+    title: test/mytest/summin_add.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/wavelet_matrix_sum.test.cpp
     title: test/mytest/wavelet_matrix_sum.test.cpp
@@ -242,6 +272,7 @@ data:
   - alg/acted_monoid/sum_affine.hpp
   - alg/acted_monoid/minmincnt_add.hpp
   - alg/acted_monoid/add_mul.hpp
+  - alg/acted_monoid/summin_add.hpp
   - alg/acted_monoid/minmax_add.hpp
   - alg/acted_monoid/sum_assign.hpp
   - alg/acted_monoid/maxidx_add.hpp
@@ -256,6 +287,7 @@ data:
   - ds/fenwicktree/fenwicktree_2d_dense.hpp
   - ds/fenwicktree/fenwicktree.hpp
   - ds/cumsum2d.hpp
+  - ds/offline_query/rectangle_add_point_sum.hpp
   - ds/offline_query/rectangle_add_rectangle_sum.hpp
   - ds/offline_query/point_add_rectangle_sum.hpp
   - ds/waveletmatrix.hpp
@@ -275,9 +307,17 @@ data:
   - test/yukicoder/919.test.cpp
   - test/yukicoder/1097.test.cpp
   - test/yukicoder/1977.test.cpp
+  - test/mytest/minidx_add.test.cpp
+  - test/mytest/maxidx_add.test.cpp
+  - test/mytest/summin_add.test.cpp
+  - test/mytest/minmax_add.test.cpp
+  - test/mytest/splay_cm.test.cpp
   - test/mytest/segtree_xor_prod.test.cpp
+  - test/mytest/splay_am.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
+  - test/mytest/rbst_am_2.test.cpp
   - test/mytest/ARC30D.test.cpp
+  - test/mytest/rect_add_pt_sum.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp

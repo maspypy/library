@@ -462,9 +462,27 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/product_of_one_pm_xn.test.cpp
     title: test/mytest/product_of_one_pm_xn.test.cpp
+  - icon: ':x:'
+    path: test/mytest/rect_add_pt_sum.test.cpp
+    title: test/mytest/rect_add_pt_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/simple_perm.test.cpp
     title: test/mytest/simple_perm.test.cpp
+  - icon: ':x:'
+    path: test/mytest/splay.test.cpp
+    title: test/mytest/splay.test.cpp
+  - icon: ':x:'
+    path: test/mytest/splay_am.test.cpp
+    title: test/mytest/splay_am.test.cpp
+  - icon: ':x:'
+    path: test/mytest/splay_cm.test.cpp
+    title: test/mytest/splay_cm.test.cpp
+  - icon: ':x:'
+    path: test/mytest/splay_monoid.test.cpp
+    title: test/mytest/splay_monoid.test.cpp
+  - icon: ':x:'
+    path: test/mytest/tdpc_grid_dp.test.cpp
+    title: test/mytest/tdpc_grid_dp.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
@@ -929,19 +947,25 @@ data:
   - test/mytest/online_log.test.cpp
   - test/mytest/eulerian_number.test.cpp
   - test/mytest/online_exp.test.cpp
+  - test/mytest/splay_monoid.test.cpp
   - test/mytest/multinomial.test.cpp
   - test/mytest/online_inv.test.cpp
+  - test/mytest/splay_cm.test.cpp
   - test/mytest/conv_leq.test.cpp
   - test/mytest/chirp_z.test.cpp
   - test/mytest/powerquery.test.cpp
   - test/mytest/all_inverse.test.cpp
+  - test/mytest/splay_am.test.cpp
   - test/mytest/enumerate_products.test.cpp
   - test/mytest/online_division.test.cpp
   - test/mytest/simple_perm.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/prime_sum.test.cpp
   - test/mytest/conv2d.test.cpp
+  - test/mytest/splay.test.cpp
+  - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/binom.test.cpp
+  - test/mytest/rect_add_pt_sum.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
   - test/library_checker/polynomial/pow_of_fps_mint.test.cpp

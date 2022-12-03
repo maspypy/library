@@ -12,6 +12,12 @@ data:
   - icon: ':x:'
     path: test/mytest/ARC30D.test.cpp
     title: test/mytest/ARC30D.test.cpp
+  - icon: ':x:'
+    path: test/mytest/rbst_am_2.test.cpp
+    title: test/mytest/rbst_am_2.test.cpp
+  - icon: ':x:'
+    path: test/mytest/splay_am.test.cpp
+    title: test/mytest/splay_am.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -41,6 +47,8 @@ data:
   timestamp: '2022-12-03 07:16:30+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/mytest/splay_am.test.cpp
+  - test/mytest/rbst_am_2.test.cpp
   - test/mytest/ARC30D.test.cpp
   - test/aoj/GRL_5_E.test.cpp
 documentation_of: alg/acted_monoid/sum_add.hpp

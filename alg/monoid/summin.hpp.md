@@ -2,13 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
+    path: alg/acted_monoid/summin_add.hpp
+    title: alg/acted_monoid/summin_add.hpp
+  - icon: ':x:'
     path: alg/acted_monoid/summin_assign.hpp
     title: alg/acted_monoid/summin_assign.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/mytest/summin_add.test.cpp
+    title: test/mytest/summin_add.test.cpp
+  - icon: ':x:'
+    path: test/mytest/summin_assign.test.cpp
+    title: test/mytest/summin_assign.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/summin.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -28,10 +37,13 @@ data:
   isVerificationFile: false
   path: alg/monoid/summin.hpp
   requiredBy:
+  - alg/acted_monoid/summin_add.hpp
   - alg/acted_monoid/summin_assign.hpp
   timestamp: '2022-12-03 08:35:02+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/mytest/summin_add.test.cpp
+  - test/mytest/summin_assign.test.cpp
 documentation_of: alg/monoid/summin.hpp
 layout: document
 redirect_from:
