@@ -1,19 +1,17 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "alg/acted_monoid/cntsum_add.hpp"
-#include "ds/rbst/rbst_acted_monoid.hpp"
+#include "alg/acted_monoid/sum_add.hpp"
+#include "ds/randomized_bst/rbst_acted_monoid.hpp"
 
 void test_ARC30D_case1() {
-  using AM = ActedMonoid_CntSum_Add<ll>;
+  using AM = ActedMonoid_Sum_Add<ll>;
   const int MAX = 1000;
 
   const int N = 5;
   const int Q = 5;
-  vi A = {1, 2, 3, 4, 5};
+  vi dat = {1, 2, 3, 4, 5};
 
-  vc<pi> dat(N);
-  FOR(i, N) dat[i] = {1, A[i]};
   RBST_ActedMonoid<AM, true, MAX> RBST;
   auto root = RBST.new_node(dat);
 
@@ -26,7 +24,7 @@ void test_ARC30D_case1() {
     root = RBST.merge3(xl, ym, xr);
   };
   auto query_3 = [&](int L, int R, int ANS) -> void {
-    assert(RBST.prod(root, --L, R).se == ANS);
+    assert(RBST.prod(root, --L, R) == ANS);
   };
 
   query_3(1, 5, 15);
@@ -37,15 +35,13 @@ void test_ARC30D_case1() {
 }
 
 void test_ARC30D_case2() {
-  using AM = ActedMonoid_CntSum_Add<ll>;
+  using AM = ActedMonoid_Sum_Add<ll>;
   const int MAX = 1000;
 
   const int N = 10;
   const int Q = 30;
-  vi A = {-5, -5, -2, -1, 2, -2, 0, -4, 2, 5};
+  vi dat = {-5, -5, -2, -1, 2, -2, 0, -4, 2, 5};
 
-  vc<pi> dat(N);
-  FOR(i, N) dat[i] = {1, A[i]};
   RBST_ActedMonoid<AM, true, MAX> RBST;
   auto root = RBST.new_node(dat);
 
@@ -58,7 +54,7 @@ void test_ARC30D_case2() {
     root = RBST.merge3(xl, ym, xr);
   };
   auto query_3 = [&](int L, int R, int ANS) -> void {
-    assert(RBST.prod(root, --L, R).se == ANS);
+    assert(RBST.prod(root, --L, R) == ANS);
   };
 
   query_2(9, 10, 9, 10);

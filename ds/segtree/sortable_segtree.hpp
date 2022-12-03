@@ -148,10 +148,12 @@ private:
   void update(np n) {
     if (!(n->l) && !(n->r)) { return; }
     if (!(n->l)) {
-      n->x = n->r->x, n->rev_x = n->r->rev_x, n->size = n->r->size, return;
+      n->x = n->r->x, n->rev_x = n->r->rev_x, n->size = n->r->size;
+      return;
     }
     if (!(n->r)) {
-      n->x = n->l->x, n->rev_x = n->l->rev_x, n->size = n->l->size, return;
+      n->x = n->l->x, n->rev_x = n->l->rev_x, n->size = n->l->size;
+      return;
     }
     n->x = MX::op(n->l->x, n->r->x);
     n->rev_x = MX::op(n->r->rev_x, n->l->rev_x);
@@ -159,7 +161,10 @@ private:
   }
 
   void set_rec(np n, int l, int r, int k, const X& x) {
-    if (r == l + 1) { n->x = n->rev_x = x, return; }
+    if (r == l + 1) {
+      n->x = n->rev_x = x;
+      return;
+    }
     int m = (l + r) / 2;
     if (k < m) {
       if (!(n->l)) n->l = new_node();

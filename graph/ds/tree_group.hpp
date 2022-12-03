@@ -5,7 +5,6 @@
 // 作ってみたものの、HLD(log^2N)より遅いがち？
 // EulerTour + セグ木
 // 逆元を利用して、パスクエリを O(logN) 時間で行う。
-
 template <typename TREE, typename Group, bool edge = false,
           bool path_query = true, bool subtree_query = false>
 struct Tree_Group {

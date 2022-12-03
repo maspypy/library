@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 
 #include "mod/modint.hpp"
-#include "graph/ds/treegroup.hpp"
+#include "graph/ds/tree_group.hpp"
 #include "alg/monoid/affine.hpp"
 
 using mint = modint998;
@@ -22,7 +22,7 @@ void solve() {
   G.read_tree(0, 0);
 
   TREE tree(G);
-  TreeGroup<decltype(tree), Mono, false, true, false> TG(tree, A);
+  Tree_Group<decltype(tree), Mono, false, true, false> TG(tree, A);
 
   FOR(_, Q) {
     LL(t);

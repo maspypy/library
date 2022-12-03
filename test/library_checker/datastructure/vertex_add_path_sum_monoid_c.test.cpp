@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "graph/ds/treemonoid.hpp"
+#include "graph/ds/tree_monoid.hpp"
 #include "alg/monoid/add.hpp"
 
 void solve() {
@@ -14,7 +14,7 @@ void solve() {
   TREE tree(G);
   const bool is_edge = false;
   using Mono = Monoid_Add<ll>;
-  TreeMonoid<decltype(tree), Mono, is_edge> TM(tree, A);
+  Tree_Monoid<decltype(tree), Mono, is_edge> TM(tree, A);
 
   FOR(_, Q) {
     LL(t);

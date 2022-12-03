@@ -1,4 +1,4 @@
-#include "ds/segtree/lazysegtree.hpp"
+#include "ds/segtree/lazy_segtree.hpp"
 #include "alg/acted_monoid/min_add.hpp"
 
 template <int NODES>
@@ -30,7 +30,7 @@ struct Common_Inverval_Decomposition {
 
   void build(vc<int>& P) {
     int N = len(P);
-    LazySegTree<ActedMonoid_Min_Add<int>> seg(vc<int>(N, 0));
+    Lazy_SegTree<ActedMonoid_Min_Add<int>> seg(vc<int>(N, 0));
 
     vc<Node*> st;
     vc<int> mi = {-1}, ma = {-1};
