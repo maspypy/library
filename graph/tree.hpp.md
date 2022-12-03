@@ -108,6 +108,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1494.test.cpp
     title: test/yukicoder/1494.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1600.test.cpp
+    title: test/yukicoder/1600.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1718.test.cpp
     title: test/yukicoder/1718.test.cpp
@@ -337,6 +340,7 @@ data:
   timestamp: '2022-11-05 01:55:39+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1600.test.cpp
   - test/yukicoder/1295.test.cpp
   - test/yukicoder/1983.test.cpp
   - test/yukicoder/1778.test.cpp

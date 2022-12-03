@@ -9,6 +9,9 @@ data:
   - icon: ':x:'
     path: test/library_checker/datastructure/range_affine_point_add.test.cpp
     title: test/library_checker/datastructure/range_affine_point_add.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/913.test.cpp
+    title: test/yukicoder/913.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -56,6 +59,7 @@ data:
   timestamp: '2022-12-03 10:58:25+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/yukicoder/913.test.cpp
   - test/library_checker/datastructure/range_affine_point_add.test.cpp
   - test/aoj/DSL_2_D.test.cpp
 documentation_of: ds/segtree/dual_segtree.hpp

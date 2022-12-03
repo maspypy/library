@@ -58,6 +58,9 @@ data:
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1311.test.cpp
+    title: test/yukicoder/1311.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1490.test.cpp
     title: test/yukicoder/1490.test.cpp
   _isVerificationFailed: true
@@ -138,6 +141,7 @@ data:
   timestamp: '2022-12-03 10:20:23+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1311.test.cpp
   - test/yukicoder/1490.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp

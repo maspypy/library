@@ -16,6 +16,9 @@ data:
     path: test/aoj/1508.test.cpp
     title: test/aoj/1508.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/1508_2.test.cpp
+    title: test/aoj/1508_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/1566.test.cpp
     title: test/aoj/1566.test.cpp
   - icon: ':heavy_check_mark:'
@@ -30,7 +33,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2842.test.cpp
     title: test/aoj/2842.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2842_2.test.cpp
     title: test/aoj/2842_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1008,6 +1011,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1311.test.cpp
+    title: test/yukicoder/1311.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1319.test.cpp
     title: test/yukicoder/1319.test.cpp
@@ -1059,6 +1065,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1435_2.test.cpp
     title: test/yukicoder/1435_2.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1441.test.cpp
+    title: test/yukicoder/1441.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1451.test.cpp
     title: test/yukicoder/1451.test.cpp
@@ -1101,6 +1110,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1593.test.cpp
     title: test/yukicoder/1593.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1600.test.cpp
+    title: test/yukicoder/1600.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1601.test.cpp
     title: test/yukicoder/1601.test.cpp
@@ -1254,6 +1266,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1989.test.cpp
     title: test/yukicoder/1989.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2005.test.cpp
+    title: test/yukicoder/2005.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2012.test.cpp
+    title: test/yukicoder/2012.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2026.test.cpp
     title: test/yukicoder/2026.test.cpp
@@ -1320,12 +1338,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/655.test.cpp
     title: test/yukicoder/655.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/705.test.cpp
+    title: test/yukicoder/705.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/779.test.cpp
     title: test/yukicoder/779.test.cpp
   - icon: ':x:'
     path: test/yukicoder/789.test.cpp
     title: test/yukicoder/789.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/899.test.cpp
+    title: test/yukicoder/899.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/913.test.cpp
+    title: test/yukicoder/913.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/919.test.cpp
     title: test/yukicoder/919.test.cpp
@@ -1549,18 +1576,25 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1821.test.cpp
+  - test/yukicoder/2005.test.cpp
   - test/yukicoder/1292.test.cpp
+  - test/yukicoder/1600.test.cpp
   - test/yukicoder/2065.test.cpp
   - test/yukicoder/1392.test.cpp
   - test/yukicoder/1753.test.cpp
   - test/yukicoder/1939.test.cpp
+  - test/yukicoder/913.test.cpp
   - test/yukicoder/1254.test.cpp
   - test/yukicoder/1319.test.cpp
+  - test/yukicoder/1441.test.cpp
+  - test/yukicoder/1311.test.cpp
   - test/yukicoder/1479.test.cpp
   - test/yukicoder/502.test.cpp
   - test/yukicoder/1320.test.cpp
   - test/yukicoder/1295.test.cpp
   - test/yukicoder/1601.test.cpp
+  - test/yukicoder/2012.test.cpp
+  - test/yukicoder/899.test.cpp
   - test/yukicoder/1263.test.cpp
   - test/yukicoder/1775.test.cpp
   - test/yukicoder/1857.test.cpp
@@ -1603,6 +1637,7 @@ data:
   - test/yukicoder/1796.test.cpp
   - test/yukicoder/1962.test.cpp
   - test/yukicoder/1956.test.cpp
+  - test/yukicoder/705.test.cpp
   - test/yukicoder/1080.test.cpp
   - test/yukicoder/1303.test.cpp
   - test/yukicoder/1502.test.cpp
@@ -1966,6 +2001,7 @@ data:
   - test/aoj/ALDS1_12_B.test.cpp
   - test/aoj/ALDS1_10_C.test.cpp
   - test/aoj/CGL_2_D.test.cpp
+  - test/aoj/1508_2.test.cpp
   - test/aoj/NTL_1_D.test.cpp
   - test/aoj/ALDS1_1_C.test.cpp
   - test/aoj/0350.test.cpp

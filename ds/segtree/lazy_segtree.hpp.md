@@ -66,6 +66,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1720.test.cpp
     title: test/yukicoder/1720.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/899.test.cpp
+    title: test/yukicoder/899.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -191,6 +194,7 @@ data:
   timestamp: '2022-12-04 00:39:06+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/899.test.cpp
   - test/yukicoder/1720.test.cpp
   - test/mytest/min_max.test.cpp
   - test/mytest/minidx_add.test.cpp

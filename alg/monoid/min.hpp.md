@@ -36,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508.test.cpp
     title: test/aoj/1508.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/1508_2.test.cpp
+    title: test/aoj/1508_2.test.cpp
   - icon: ':x:'
     path: test/aoj/DSL_2_F.test.cpp
     title: test/aoj/DSL_2_F.test.cpp
@@ -76,8 +79,14 @@ data:
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1600.test.cpp
+    title: test/yukicoder/1600.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1720.test.cpp
     title: test/yukicoder/1720.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/913.test.cpp
+    title: test/yukicoder/913.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -108,6 +117,8 @@ data:
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1600.test.cpp
+  - test/yukicoder/913.test.cpp
   - test/yukicoder/1720.test.cpp
   - test/mytest/min_max.test.cpp
   - test/mytest/range_mex.test.cpp
@@ -120,6 +131,7 @@ data:
   - test/library_checker/datastructure/staticrmq_sparse.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/atcoder/arc151_e.test.cpp
+  - test/aoj/1508_2.test.cpp
   - test/aoj/DSL_2_F.test.cpp
   - test/aoj/1508.test.cpp
   - test/aoj/DSL_2_H.test.cpp

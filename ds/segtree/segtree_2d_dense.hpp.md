@@ -3,18 +3,18 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2842_2.test.cpp
     title: test/aoj/2842_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree_2d_dense.hpp\"\n\ntemplate <class Monoid>\n\
     struct SegTree_2D_Dense {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
-    \  using value_type = X;\n  static_assert(MX::commute);\n  vc<X> dat;\n  int H,\
-    \ W;\n\n  SegTree_2D_Dense() : SegTree2D_Dense(0, 0) {}\n  SegTree_2D_Dense(int\
+    \  using value_type = X;\n  static_assert(MX::commute);\n  int H, W;\n  vc<X>\
+    \ dat;\n\n  SegTree_2D_Dense() : SegTree_2D_Dense(0, 0) {}\n  SegTree_2D_Dense(int\
     \ H, int W) : H(H), W(W), dat(4 * H * W, MX::unit()) {}\n  SegTree_2D_Dense(vc<vc<X>>\
     \ &v) {\n    H = len(v), W = (H == 0 ? 0 : len(v[0]));\n    dat.assign(4 * H *\
     \ W, MX::unit());\n    FOR(x, H) FOR(y, W) { dat[idx(H + x, W + y)] = v[x][y];\
@@ -38,9 +38,9 @@ data:
     \    return res;\n  }\n};\n"
   code: "#pragma once\n\ntemplate <class Monoid>\nstruct SegTree_2D_Dense {\n  using\
     \ MX = Monoid;\n  using X = typename MX::value_type;\n  using value_type = X;\n\
-    \  static_assert(MX::commute);\n  vc<X> dat;\n  int H, W;\n\n  SegTree_2D_Dense()\
-    \ : SegTree2D_Dense(0, 0) {}\n  SegTree_2D_Dense(int H, int W) : H(H), W(W), dat(4\
-    \ * H * W, MX::unit()) {}\n  SegTree_2D_Dense(vc<vc<X>> &v) {\n    H = len(v),\
+    \  static_assert(MX::commute);\n  int H, W;\n  vc<X> dat;\n\n  SegTree_2D_Dense()\
+    \ : SegTree_2D_Dense(0, 0) {}\n  SegTree_2D_Dense(int H, int W) : H(H), W(W),\
+    \ dat(4 * H * W, MX::unit()) {}\n  SegTree_2D_Dense(vc<vc<X>> &v) {\n    H = len(v),\
     \ W = (H == 0 ? 0 : len(v[0]));\n    dat.assign(4 * H * W, MX::unit());\n    FOR(x,\
     \ H) FOR(y, W) { dat[idx(H + x, W + y)] = v[x][y]; }\n    FOR(y, W, W + W) FOR_R(x,\
     \ H) {\n      dat[idx(x, y)] = MX::op(dat[idx(2 * x + 0, y)], dat[idx(2 * x +\
@@ -65,8 +65,8 @@ data:
   isVerificationFile: false
   path: ds/segtree/segtree_2d_dense.hpp
   requiredBy: []
-  timestamp: '2022-12-04 00:39:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-12-04 02:02:59+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/2842_2.test.cpp
 documentation_of: ds/segtree/segtree_2d_dense.hpp
