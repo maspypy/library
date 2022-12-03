@@ -2,7 +2,7 @@
 #include "graph/base.hpp"
 #include "graph/tree.hpp"
 #include "graph/ds/tree_monoid.hpp"
-#include "graph/ds/dual_treemonoid.hpp"
+#include "graph/ds/dual_tree_monoid.hpp"
 #include "alg/monoid/min.hpp"
 #include "alg/monoid/max.hpp"
 
@@ -49,7 +49,7 @@ tuple<T, vc<bool>, Graph<T>, vc<T>> minimum_spanning_tree_cycle_data(
   vc<T> dat;
   FOR(i, M) if (in_mst[i]) dat.eb(G.edges[i].cost);
   Tree_Monoid<decltype(tree), Monoid_Max<T>, 1> TM1(tree, dat);
-  Dual_TreeMonoid<decltype(tree), Monoid_Min<T>, 1> TM2(tree);
+  Dual_Tree_Monoid<decltype(tree), Monoid_Min<T>, 1> TM2(tree);
   FOR(i, M) {
     if (!in_mst[i]) {
       auto& e = G.edges[i];

@@ -9,6 +9,6 @@ struct ActedMonoid_Sum_Assign {
   using A = typename Monoid_A::value_type;
   static constexpr X act(const X &x, const A &a, const ll &size) {
     if (a == Monoid_A::unit()) return x;
-    return x * E(size);
+    return a * E(size);
   }
 };

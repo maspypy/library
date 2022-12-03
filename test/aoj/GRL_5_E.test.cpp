@@ -18,8 +18,8 @@ void solve() {
   }
   G.build();
   TREE<decltype(G)> tree(G);
-  vc<pi> seg_raw(N - 1, {1, 0});
-  using AM = ActedMonoid_CntSum_Add<ll>;
+  vi seg_raw(N);
+  using AM = ActedMonoid_Sum_Add<ll>;
   Lazy_Tree_Monoid<decltype(tree), AM, 1> TM(tree, seg_raw);
   LL(Q);
   FOR(Q) {
@@ -30,7 +30,7 @@ void solve() {
       // TM.apply_path(tree.parent[v], v, x);
     } else {
       LL(v);
-      print(TM.prod_path(0, v).se);
+      print(TM.prod_path(0, v));
     }
   }
 }
