@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: flow/min_cost_matching_on_line.hpp
     title: flow/min_cost_matching_on_line.hpp
   _extendedVerifiedWith:
@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc217h.test.cpp
     title: test/atcoder/abc217h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_cost_matching_on_line.test.cpp
     title: test/mytest/min_cost_matching_on_line.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/slope.hpp\"\nstruct Slope_Trick {\r\n  static constexpr\
@@ -104,7 +104,7 @@ data:
   requiredBy:
   - flow/min_cost_matching_on_line.hpp
   timestamp: '2022-12-03 09:41:32+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/min_cost_matching_on_line.test.cpp
   - test/atcoder/abc217h.test.cpp

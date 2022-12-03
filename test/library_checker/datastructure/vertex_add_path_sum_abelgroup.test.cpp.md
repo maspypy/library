@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_path_sum
@@ -359,12 +359,12 @@ data:
     \    print(\"head\", head);\r\n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"\
     root\", root);\r\n  }\r\n};\r\n#line 3 \"graph/ds/tree_abelgroup.hpp\"\n\r\ntemplate\
     \ <typename TREE, typename AbelGroup, bool edge = false,\r\n          bool path_query\
-    \ = true, bool subtree_query = false>\r\nstruct TreeAbelGroup {\r\n  using X =\
-    \ typename AbelGroup::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  FenwickTree<AbelGroup>\
-    \ bit, bit_subtree;\r\n\r\n  TreeAbelGroup(TREE &tree) : tree(tree), N(tree.N)\
+    \ = true, bool subtree_query = false>\r\nstruct Tree_AbelGroup {\r\n  using X\
+    \ = typename AbelGroup::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  FenwickTree<AbelGroup>\
+    \ bit, bit_subtree;\r\n\r\n  Tree_AbelGroup(TREE &tree) : tree(tree), N(tree.N)\
     \ {\r\n    if (path_query) { bit = FenwickTree<AbelGroup>(2 * N); }\r\n    if\
     \ (subtree_query) { bit_subtree = FenwickTree<AbelGroup>(N); }\r\n  }\r\n\r\n\
-    \  TreeAbelGroup(TREE &tree, vc<X> dat) : tree(tree), N(tree.N) {\r\n    if (path_query)\
+    \  Tree_AbelGroup(TREE &tree, vc<X> dat) : tree(tree), N(tree.N) {\r\n    if (path_query)\
     \ {\r\n      vc<X> bit_raw(2 * N);\r\n      if (!edge) {\r\n        assert(len(dat)\
     \ == N);\r\n        FOR(v, N) {\r\n          bit_raw[tree.ELID(v)] = dat[v];\r\
     \n          bit_raw[tree.ERID(v)] = AbelGroup::inverse(dat[v]);\r\n        }\r\
@@ -418,8 +418,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   requiredBy: []
-  timestamp: '2022-12-04 02:25:39+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-04 04:23:24+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
 layout: document

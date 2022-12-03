@@ -15,12 +15,15 @@ data:
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1326.test.cpp
+    title: test/yukicoder/1326.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -171,12 +174,12 @@ data:
     \    print(\"head\", head);\r\n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"\
     root\", root);\r\n  }\r\n};\r\n#line 3 \"graph/ds/tree_abelgroup.hpp\"\n\r\ntemplate\
     \ <typename TREE, typename AbelGroup, bool edge = false,\r\n          bool path_query\
-    \ = true, bool subtree_query = false>\r\nstruct TreeAbelGroup {\r\n  using X =\
-    \ typename AbelGroup::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  FenwickTree<AbelGroup>\
-    \ bit, bit_subtree;\r\n\r\n  TreeAbelGroup(TREE &tree) : tree(tree), N(tree.N)\
+    \ = true, bool subtree_query = false>\r\nstruct Tree_AbelGroup {\r\n  using X\
+    \ = typename AbelGroup::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  FenwickTree<AbelGroup>\
+    \ bit, bit_subtree;\r\n\r\n  Tree_AbelGroup(TREE &tree) : tree(tree), N(tree.N)\
     \ {\r\n    if (path_query) { bit = FenwickTree<AbelGroup>(2 * N); }\r\n    if\
     \ (subtree_query) { bit_subtree = FenwickTree<AbelGroup>(N); }\r\n  }\r\n\r\n\
-    \  TreeAbelGroup(TREE &tree, vc<X> dat) : tree(tree), N(tree.N) {\r\n    if (path_query)\
+    \  Tree_AbelGroup(TREE &tree, vc<X> dat) : tree(tree), N(tree.N) {\r\n    if (path_query)\
     \ {\r\n      vc<X> bit_raw(2 * N);\r\n      if (!edge) {\r\n        assert(len(dat)\
     \ == N);\r\n        FOR(v, N) {\r\n          bit_raw[tree.ELID(v)] = dat[v];\r\
     \n          bit_raw[tree.ERID(v)] = AbelGroup::inverse(dat[v]);\r\n        }\r\
@@ -204,12 +207,12 @@ data:
     };\r\n"
   code: "#include \"ds/fenwicktree/fenwicktree.hpp\"\r\n#include \"graph/tree.hpp\"\
     \r\n\r\ntemplate <typename TREE, typename AbelGroup, bool edge = false,\r\n  \
-    \        bool path_query = true, bool subtree_query = false>\r\nstruct TreeAbelGroup\
+    \        bool path_query = true, bool subtree_query = false>\r\nstruct Tree_AbelGroup\
     \ {\r\n  using X = typename AbelGroup::value_type;\r\n  TREE &tree;\r\n  int N;\r\
-    \n  FenwickTree<AbelGroup> bit, bit_subtree;\r\n\r\n  TreeAbelGroup(TREE &tree)\
+    \n  FenwickTree<AbelGroup> bit, bit_subtree;\r\n\r\n  Tree_AbelGroup(TREE &tree)\
     \ : tree(tree), N(tree.N) {\r\n    if (path_query) { bit = FenwickTree<AbelGroup>(2\
     \ * N); }\r\n    if (subtree_query) { bit_subtree = FenwickTree<AbelGroup>(N);\
-    \ }\r\n  }\r\n\r\n  TreeAbelGroup(TREE &tree, vc<X> dat) : tree(tree), N(tree.N)\
+    \ }\r\n  }\r\n\r\n  Tree_AbelGroup(TREE &tree, vc<X> dat) : tree(tree), N(tree.N)\
     \ {\r\n    if (path_query) {\r\n      vc<X> bit_raw(2 * N);\r\n      if (!edge)\
     \ {\r\n        assert(len(dat) == N);\r\n        FOR(v, N) {\r\n          bit_raw[tree.ELID(v)]\
     \ = dat[v];\r\n          bit_raw[tree.ERID(v)] = AbelGroup::inverse(dat[v]);\r\
@@ -243,9 +246,10 @@ data:
   isVerificationFile: false
   path: graph/ds/tree_abelgroup.hpp
   requiredBy: []
-  timestamp: '2022-12-04 02:25:39+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-12-04 04:23:24+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1326.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
 documentation_of: graph/ds/tree_abelgroup.hpp
 layout: document

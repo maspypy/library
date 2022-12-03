@@ -15,6 +15,9 @@ data:
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
   - icon: ':x:'
+    path: graph/ds/static_tree_monoid.hpp
+    title: graph/ds/static_tree_monoid.hpp
+  - icon: ':question:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
   - icon: ':heavy_check_mark:'
@@ -69,7 +72,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - icon: ':heavy_check_mark:'
@@ -105,12 +108,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1211.test.cpp
     title: test/yukicoder/1211.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1216.test.cpp
+    title: test/yukicoder/1216.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1216_2.test.cpp
+    title: test/yukicoder/1216_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1242.test.cpp
     title: test/yukicoder/1242.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1295.test.cpp
     title: test/yukicoder/1295.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1326.test.cpp
+    title: test/yukicoder/1326.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1418.test.cpp
     title: test/yukicoder/1418.test.cpp
@@ -348,6 +360,7 @@ data:
   - graph/rerooting_dp.hpp
   - graph/two_edge_component.hpp
   - graph/classify_subtree.hpp
+  - graph/ds/static_tree_monoid.hpp
   - graph/ds/lazy_tree_monoid.hpp
   - graph/ds/tree_group.hpp
   - graph/ds/tree_abelgroup.hpp
@@ -360,11 +373,14 @@ data:
   - test/yukicoder/1600.test.cpp
   - test/yukicoder/1295.test.cpp
   - test/yukicoder/1524.test.cpp
+  - test/yukicoder/1216.test.cpp
   - test/yukicoder/1983.test.cpp
   - test/yukicoder/1778.test.cpp
   - test/yukicoder/2122.test.cpp
   - test/yukicoder/590.test.cpp
   - test/yukicoder/1242.test.cpp
+  - test/yukicoder/1326.test.cpp
+  - test/yukicoder/1216_2.test.cpp
   - test/yukicoder/1494.test.cpp
   - test/yukicoder/1451.test.cpp
   - test/yukicoder/1211.test.cpp

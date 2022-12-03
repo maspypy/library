@@ -17,13 +17,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
   - icon: ':heavy_check_mark:'
     path: graph/bracket_graph.hpp
     title: graph/bracket_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/centroid.hpp
     title: graph/centroid.hpp
   - icon: ':heavy_check_mark:'
@@ -45,6 +45,9 @@ data:
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
   - icon: ':x:'
+    path: graph/ds/static_tree_monoid.hpp
+    title: graph/ds/static_tree_monoid.hpp
+  - icon: ':question:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
   - icon: ':heavy_check_mark:'
@@ -216,7 +219,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/arc151_e.test.cpp
     title: test/atcoder/arc151_e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - icon: ':heavy_check_mark:'
@@ -282,7 +285,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/two_edge_component.test.cpp
     title: test/library_checker/graph/two_edge_component.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -312,6 +315,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1002.test.cpp
     title: test/yukicoder/1002.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1038.test.cpp
+    title: test/yukicoder/1038.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1069.test.cpp
     title: test/yukicoder/1069.test.cpp
@@ -324,6 +330,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1211.test.cpp
     title: test/yukicoder/1211.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1216.test.cpp
+    title: test/yukicoder/1216.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1216_2.test.cpp
+    title: test/yukicoder/1216_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1242.test.cpp
     title: test/yukicoder/1242.test.cpp
@@ -339,6 +351,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1320.test.cpp
     title: test/yukicoder/1320.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1326.test.cpp
+    title: test/yukicoder/1326.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1344.test.cpp
     title: test/yukicoder/1344.test.cpp
@@ -544,6 +559,7 @@ data:
   - graph/find_cycle.hpp
   - graph/maximum_independent_set.hpp
   - graph/steiner_tree.hpp
+  - graph/ds/static_tree_monoid.hpp
   - graph/ds/lazy_tree_monoid.hpp
   - graph/ds/tree_group.hpp
   - graph/ds/bfs_numbering.hpp
@@ -576,6 +592,7 @@ data:
   - test/yukicoder/1775.test.cpp
   - test/yukicoder/17.test.cpp
   - test/yukicoder/1524.test.cpp
+  - test/yukicoder/1216.test.cpp
   - test/yukicoder/1983.test.cpp
   - test/yukicoder/1778.test.cpp
   - test/yukicoder/1813.test.cpp
@@ -585,6 +602,9 @@ data:
   - test/yukicoder/590.test.cpp
   - test/yukicoder/1242.test.cpp
   - test/yukicoder/1796.test.cpp
+  - test/yukicoder/1326.test.cpp
+  - test/yukicoder/1216_2.test.cpp
+  - test/yukicoder/1038.test.cpp
   - test/yukicoder/1911.test.cpp
   - test/yukicoder/1344.test.cpp
   - test/yukicoder/1494.test.cpp

@@ -249,7 +249,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_point_add.test.cpp
     title: test/library_checker/datastructure/range_affine_point_add.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
     title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - icon: ':x:'
@@ -468,19 +468,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/simple_perm.test.cpp
     title: test/mytest/simple_perm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/splay.test.cpp
     title: test/mytest/splay.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/splay_am.test.cpp
     title: test/mytest/splay_am.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/splay_cm.test.cpp
     title: test/mytest/splay_cm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/splay_monoid.test.cpp
     title: test/mytest/splay_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/tdpc_grid_dp.test.cpp
     title: test/mytest/tdpc_grid_dp.test.cpp
   - icon: ':heavy_check_mark:'
@@ -654,6 +654,12 @@ data:
   - icon: ':x:'
     path: test/yukicoder/541.test.cpp
     title: test/yukicoder/541.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/578.test.cpp
+    title: test/yukicoder/578.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/579.test.cpp
+    title: test/yukicoder/579.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
@@ -927,6 +933,7 @@ data:
   - test/yukicoder/1720.test.cpp
   - test/yukicoder/1025.test.cpp
   - test/yukicoder/1844.test.cpp
+  - test/yukicoder/578.test.cpp
   - test/yukicoder/2122.test.cpp
   - test/yukicoder/590.test.cpp
   - test/yukicoder/1796.test.cpp
@@ -940,6 +947,7 @@ data:
   - test/yukicoder/1618.test.cpp
   - test/yukicoder/1907.test.cpp
   - test/yukicoder/1269.test.cpp
+  - test/yukicoder/579.test.cpp
   - test/yukicoder/1875.test.cpp
   - test/yukicoder/1810.test.cpp
   - test/yukicoder/1451.test.cpp

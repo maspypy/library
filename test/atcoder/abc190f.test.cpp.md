@@ -13,14 +13,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/inversion_rotate.hpp
     title: seq/inversion_rotate.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc190/tasks/abc190_f
@@ -243,8 +243,8 @@ data:
     \ = LB(key, x);\n  }\n  ll K = MAX(A) + 1;\n  ll ANS = 0;\n  FenwickTree<Monoid_Add<int>>\
     \ bit(K);\n  for (auto&& x: A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x,\
     \ 1);\n  }\n  vi res(N);\n  FOR(i, N) {\n    res[i] = ANS;\n    ll x = A[i];\n\
-    \    ANS = ANS + bit.prod(x + 1, K) - bit.sum(x);\n  }\n  return res;\n}\n#line\
-    \ 5 \"test/atcoder/abc190f.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  VEC(int,\
+    \    ANS = ANS + bit.sum(x + 1, K) - bit.prefix_sum(x);\n  }\n  return res;\n\
+    }\n#line 5 \"test/atcoder/abc190f.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  VEC(int,\
     \ A, N);\n  vi ANS = inversion_rotate(A, true);\n  for (auto&& x: ANS) print(x);\n\
     }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  //\
     \ LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
@@ -263,8 +263,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc190f.test.cpp
   requiredBy: []
-  timestamp: '2022-12-04 03:55:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-04 04:23:24+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/abc190f.test.cpp
 layout: document

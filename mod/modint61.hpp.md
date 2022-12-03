@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/rollinghash.hpp
     title: alg/monoid/rollinghash.hpp
   - icon: ':heavy_check_mark:'
@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modular_subset_sum.hpp
     title: mod/modular_subset_sum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
   - icon: ':question:'
@@ -39,10 +39,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
     title: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
     title: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/tdpc_grid_dp.test.cpp
     title: test/mytest/tdpc_grid_dp.test.cpp
   - icon: ':heavy_check_mark:'
@@ -66,6 +66,12 @@ data:
   - icon: ':x:'
     path: test/yukicoder/541.test.cpp
     title: test/yukicoder/541.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/578.test.cpp
+    title: test/yukicoder/578.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/579.test.cpp
+    title: test/yukicoder/579.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -150,6 +156,8 @@ data:
   - test/yukicoder/1561.test.cpp
   - test/yukicoder/1881.test.cpp
   - test/yukicoder/4_1.test.cpp
+  - test/yukicoder/578.test.cpp
+  - test/yukicoder/579.test.cpp
   - test/yukicoder/263.test.cpp
   - test/yukicoder/2102.test.cpp
   - test/mytest/tutte.test.cpp

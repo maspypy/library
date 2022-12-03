@@ -45,6 +45,12 @@ data:
   - icon: ':x:'
     path: test/yukicoder/541.test.cpp
     title: test/yukicoder/541.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/578.test.cpp
+    title: test/yukicoder/578.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/579.test.cpp
+    title: test/yukicoder/579.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -368,6 +374,8 @@ data:
   - test/yukicoder/1561.test.cpp
   - test/yukicoder/1500.test.cpp
   - test/yukicoder/1844.test.cpp
+  - test/yukicoder/578.test.cpp
+  - test/yukicoder/579.test.cpp
   - test/yukicoder/1547.test.cpp
   - test/yukicoder/1516.test.cpp
 documentation_of: seq/interpolate_linear_rec.hpp

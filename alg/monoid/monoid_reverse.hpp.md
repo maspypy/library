@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':x:'
+    path: graph/ds/static_tree_monoid.hpp
+    title: graph/ds/static_tree_monoid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
@@ -24,9 +27,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/1216.test.cpp
+    title: test/yukicoder/1216.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1216_2.test.cpp
+    title: test/yukicoder/1216_2.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/monoid_reverse.hpp\"\n\r\ntemplate <class Monoid>\r\
@@ -43,11 +52,14 @@ data:
   isVerificationFile: false
   path: alg/monoid/monoid_reverse.hpp
   requiredBy:
+  - graph/ds/static_tree_monoid.hpp
   - graph/ds/tree_monoid.hpp
   - graph/minimum_spanning_tree.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1216.test.cpp
+  - test/yukicoder/1216_2.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp

@@ -12,9 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/biconnected_component.test.cpp
     title: test/library_checker/graph/biconnected_component.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/1326.test.cpp
+    title: test/yukicoder/1326.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://twitter.com/noshi91/status/1529858538650374144?s=20&t=eznpFbuD9BDhfTb4PplFUg
@@ -108,8 +111,9 @@ data:
   path: graph/block_cut.hpp
   requiredBy: []
   timestamp: '2022-08-31 00:37:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1326.test.cpp
   - test/library_checker/graph/biconnected_component.test.cpp
   - test/aoj/GRL_3_A.test.cpp
 documentation_of: graph/block_cut.hpp

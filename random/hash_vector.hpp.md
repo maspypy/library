@@ -8,11 +8,11 @@ data:
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/tdpc_grid_dp.test.cpp
     title: test/mytest/tdpc_grid_dp.test.cpp
   - icon: ':x:'
@@ -24,6 +24,12 @@ data:
   - icon: ':x:'
     path: test/yukicoder/541.test.cpp
     title: test/yukicoder/541.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/578.test.cpp
+    title: test/yukicoder/578.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/579.test.cpp
+    title: test/yukicoder/579.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -86,6 +92,8 @@ data:
   - test/yukicoder/541.test.cpp
   - test/yukicoder/1561.test.cpp
   - test/yukicoder/1881.test.cpp
+  - test/yukicoder/578.test.cpp
+  - test/yukicoder/579.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
 documentation_of: random/hash_vector.hpp
 layout: document
