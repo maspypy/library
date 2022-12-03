@@ -2,17 +2,14 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/set_xor_min.test.cpp
-    title: test/library_checker/datastructure/set_xor_min.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/binary_trie/binarytrie.hpp\"\ntemplate <int LOG = 30>\n\
-    struct BinaryTrie {\n  struct Node {\n    ll cnt = 0;\n    int ch[2] = {-1, -1};\n\
+  bundledCode: "#line 1 \"ds/binary_trie/binary_trie.hpp\"\ntemplate <int LOG = 30>\n\
+    struct Binary_Trie {\n  struct Node {\n    ll cnt = 0;\n    int ch[2] = {-1, -1};\n\
     \  };\n  vector<Node> ns;\n\n  BinaryTrie() : ns(1) {}\n\n  ll size() const {\
     \ return ns[0].cnt; }\n  ll operator[](int k) const { return find_kth(k, 0); }\n\
     \  ll find_kth(ll k, ll xor_add = 0) const {\n    assert(0 <= k && k < size());\n\
@@ -41,7 +38,7 @@ data:
     \ xor_add = 0) { return find_kth(size() - 1, xor_add); }\n\n  void debug() {\n\
     \    FOR(i, len(ns)) print(i, \"cnt\", ns[i].cnt, \"ch\", ns[i].ch[0], ns[i].ch[1]);\n\
     \  }\n};\n"
-  code: "template <int LOG = 30>\nstruct BinaryTrie {\n  struct Node {\n    ll cnt\
+  code: "template <int LOG = 30>\nstruct Binary_Trie {\n  struct Node {\n    ll cnt\
     \ = 0;\n    int ch[2] = {-1, -1};\n  };\n  vector<Node> ns;\n\n  BinaryTrie()\
     \ : ns(1) {}\n\n  ll size() const { return ns[0].cnt; }\n  ll operator[](int k)\
     \ const { return find_kth(k, 0); }\n  ll find_kth(ll k, ll xor_add = 0) const\
@@ -72,16 +69,15 @@ data:
     \ ns[i].ch[1]);\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: ds/binary_trie/binarytrie.hpp
+  path: ds/binary_trie/binary_trie.hpp
   requiredBy: []
-  timestamp: '2022-12-01 18:20:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/library_checker/datastructure/set_xor_min.test.cpp
-documentation_of: ds/binary_trie/binarytrie.hpp
+  timestamp: '2022-12-03 09:00:14+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: ds/binary_trie/binary_trie.hpp
 layout: document
 redirect_from:
-- /library/ds/binary_trie/binarytrie.hpp
-- /library/ds/binary_trie/binarytrie.hpp.html
-title: ds/binary_trie/binarytrie.hpp
+- /library/ds/binary_trie/binary_trie.hpp
+- /library/ds/binary_trie/binary_trie.hpp.html
+title: ds/binary_trie/binary_trie.hpp
 ---

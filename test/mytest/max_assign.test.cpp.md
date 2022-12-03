@@ -233,12 +233,12 @@ data:
     \  static_assert(Monoid_X::commute);\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n  int n, log, size;\n  vc<X> dat;\n\
     \  vc<A> laz;\n\n  LazySegTree() {}\n  LazySegTree(int n) { build(n); }\n  template\
-    \ <typename F>\n  LazySegTree(int n, F f) {\n    build(n, f);\n  }\n  LazySegTree(vc<X>\
-    \ v) { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return\
-    \ Monoid_X::unit(); });\n  }\n  void build(vc<X> v) {\n    build(len(v), [&](int\
-    \ i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int m,\
-    \ F f) {\n    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1\
-    \ << log;\n    dat.assign(size << 1, Monoid_X::unit());\n    laz.assign(size,\
+    \ <typename F>\n  LazySegTree(int n, F f) {\n    build(n, f);\n  }\n  LazySegTree(const\
+    \ vc<X>& v) { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) ->\
+    \ X { return Monoid_X::unit(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v),\
+    \ [&](int i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int\
+    \ m, F f) {\n    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    size\
+    \ = 1 << log;\n    dat.assign(size << 1, Monoid_X::unit());\n    laz.assign(size,\
     \ Monoid_A::unit());\n    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size)\
     \ update(i);\n  }\n\n  void update(int k) { dat[k] = Monoid_X::op(dat[2 * k],\
     \ dat[2 * k + 1]); }\n  void apply_at(int k, A a) {\n    int sz = 1 << (log -\
@@ -268,7 +268,7 @@ data:
     \      }\n      l = l2;\n      r = r2;\n    }\n\n    for (int i = 1; i <= log;\
     \ i++) {\n      if (((l >> i) << i) != l) update(l >> i);\n      if (((r >> i)\
     \ << i) != r) update((r - 1) >> i);\n    }\n  }\n\n  template <typename F>\n \
-    \ int max_right(const F& check, int l) {\n    assert(0 <= l && l <= n);\n    assert(check(Monoid_X::unit()));\n\
+    \ int max_right(const F check, int l) {\n    assert(0 <= l && l <= n);\n    assert(check(Monoid_X::unit()));\n\
     \    if (l == n) return n;\n    l += size;\n    for (int i = log; i >= 1; i--)\
     \ push(l >> i);\n    X sm = Monoid_X::unit();\n    do {\n      while (l % 2 ==\
     \ 0) l >>= 1;\n      if (!check(Monoid_X::op(sm, dat[l]))) {\n        while (l\
@@ -276,7 +276,7 @@ data:
     \ dat[l]))) {\n            sm = Monoid_X::op(sm, dat[l]);\n            l++;\n\
     \          }\n        }\n        return l - size;\n      }\n      sm = Monoid_X::op(sm,\
     \ dat[l]);\n      l++;\n    } while ((l & -l) != l);\n    return n;\n  }\n\n \
-    \ template <typename F>\n  int min_left(const F& check, int r) {\n    assert(0\
+    \ template <typename F>\n  int min_left(const F check, int r) {\n    assert(0\
     \ <= r && r <= n);\n    assert(check(Monoid_X::unit()));\n    if (r == 0) return\
     \ 0;\n    r += size;\n    for (int i = log; i >= 1; i--) push((r - 1) >> i);\n\
     \    X sm = Monoid_X::unit();\n    do {\n      r--;\n      while (r > 1 && (r\
@@ -318,7 +318,7 @@ data:
   isVerificationFile: true
   path: test/mytest/max_assign.test.cpp
   requiredBy: []
-  timestamp: '2022-12-03 08:35:02+09:00'
+  timestamp: '2022-12-03 09:00:14+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/max_assign.test.cpp

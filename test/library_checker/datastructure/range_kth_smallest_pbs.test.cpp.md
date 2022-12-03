@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/fenwick/fenwick.hpp
     title: ds/fenwick/fenwick.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/offline_query/parallel_binary_search.hpp
     title: ds/offline_query/parallel_binary_search.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
@@ -228,33 +228,32 @@ data:
     \ { return -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return\
     \ X(n) * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
     \ bool commute = true;\r\n};\r\n#line 3 \"ds/fenwick/fenwick.hpp\"\n\ntemplate\
-    \ <typename AbelGroup>\nstruct FenwickTree {\n  using E = typename AbelGroup::value_type;\n\
-    \  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree(int n = 0) : n(n) {\n\
-    \    assert(AbelGroup::commute);\n    reset(n);\n  }\n  FenwickTree(const vector<E>&\
-    \ v) {\n    assert(AbelGroup::commute);\n    build(v);\n  }\n\n  void build(const\
-    \ vc<E>& v) {\n    n = len(v);\n    total = AbelGroup::unit();\n    for (int i\
-    \ = 0; i < n; ++i) total = AbelGroup::op(total, v[i]);\n    dat = v;\n    for\
-    \ (int i = 1; i <= n; ++i) {\n      int j = i + (i & -i);\n      if (j <= n) dat[j\
-    \ - 1] = AbelGroup::op(dat[i - 1], dat[j - 1]);\n    }\n  }\n\n  void reset(int\
-    \ sz = 0) {\n    if (sz) n = sz;\n    total = AbelGroup::unit();\n    dat.assign(n,\
-    \ AbelGroup::unit());\n  }\n\n  E prod(int k) {\n    E ret = AbelGroup::unit();\n\
-    \    for (; k > 0; k -= k & -k) ret = AbelGroup::op(ret, dat[k - 1]);\n    return\
-    \ ret;\n  }\n\n  E prod(int L, int R) {\n    E pos = AbelGroup::unit();\n    while\
-    \ (L < R) {\n      pos = AbelGroup::op(pos, dat[R - 1]);\n      R -= R & -R;\n\
-    \    }\n    E neg = AbelGroup::unit();\n    while (R < L) {\n      neg = AbelGroup::op(neg,\
-    \ dat[L - 1]);\n      L -= L & -L;\n    }\n    return AbelGroup::op(pos, AbelGroup::inverse(neg));\n\
-    \  }\n\n  E prod_all() { return total; }\n\n  E sum(int k) { return prod(k); }\n\
-    \n  E sum(int L, int R) { return prod(L, R); }\n\n  E sum_all() { return total;\
-    \ }\n\n  void multiply(int k, E x) {\n    total = AbelGroup::op(total, x);\n \
-    \   for (++k; k <= n; k += k & -k) dat[k - 1] = AbelGroup::op(dat[k - 1], x);\n\
-    \  }\n\n  void add(int k, E x) { multiply(k, x); }\n\n  template <class F>\n \
-    \ int max_right(F& check) {\n    assert(check(E(0)));\n    ll i = 0;\n    E s\
-    \ = AbelGroup::unit();\n    int k = 1;\n    int N = dat.size() + 1;\n    while\
-    \ (2 * k < N) k *= 2;\n    while (k) {\n      if (i + k < N && check(AbelGroup::op(s,\
-    \ dat[i + k - 1]))) {\n        i += k;\n        s = AbelGroup::op(s, dat[i - 1]);\n\
-    \      }\n      k >>= 1;\n    }\n    return i;\n  }\n\n  int find_kth(E k) {\n\
-    \    auto check = [&](E x) -> bool { return x <= k; };\n    return max_right(check);\n\
-    \  }\n\n  void debug() { print(\"fenwick\", dat); }\n};\n#line 6 \"test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp\"\
+    \ <typename Monoid>\nstruct Fenwick_Tree {\n  static_assert(G::commute);\n  using\
+    \ G = Monoid;\n  using E = typename G::value_type;\n  int n;\n  vector<E> dat;\n\
+    \  E total;\n\n  Fenwick_Tree() {}\n  Fenwick_Tree(int n) { build(n); }\n  template\
+    \ <typename F>\n  Fenwick_Tree(int n, F f) {\n    build(n, f);\n  }\n  Fenwick_Tree(const\
+    \ vc<X>& v) { build(v); }\n\n  void build(int m) {\n    dat.assign(m, G::unit());\n\
+    \    total = G::unit();\n  }\n  void build(const vc<X>& v) {\n    build(len(v),\
+    \ [&](int i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int\
+    \ m, F f) {\n    n = m;\n    dat.clear();\n    dat.reserve(n);\n    total = G::unit();\n\
+    \    FOR(i, n) { dat.eb(f(i)); }\n    for (int i = 1; i <= n; ++i) {\n      int\
+    \ j = i + (i & -i);\n      if (j <= n) dat[j - 1] = G::op(dat[i - 1], dat[j -\
+    \ 1]);\n    }\n    total = sum(m);\n  }\n\n  E prod_all() { return total; }\n\
+    \  E sum_all() { return total; }\n  E prefix_sum(int k) { return prefix_prod(k);\
+    \ }\n  E prefix_prod(int k) {\n    E ret = G::unit();\n    for (; k > 0; k -=\
+    \ k & -k) ret = G::op(ret, dat[k - 1]);\n    return ret;\n  }\n  E sum(int L,\
+    \ int R) { return prod(L, R); }\n  E prod(int L, int R) {\n    if (L == 0) return\
+    \ prod(R);\n    E pos = G::unit(), neg = G::unit();\n    while (L < R) { pos =\
+    \ G::op(pos, dat[R - 1]), R -= R & -R; }\n    while (R < L) { neg = G::op(neg,\
+    \ dat[L - 1]), L -= L & -L; }\n    return G::op(pos, G::inverse(neg));\n  }\n\n\
+    \  void add(int k, E x) { multiply(k, x); }\n  void multiply(int k, E x) {\n \
+    \   total = G::op(total, x);\n    for (++k; k <= n; k += k & -k) dat[k - 1] =\
+    \ G::op(dat[k - 1], x);\n  }\n\n  template <class F>\n  int max_right(const F\
+    \ check) {\n    assert(check(G::unit()));\n    int i = 0;\n    E s = G::unit();\n\
+    \    int k = 1;\n    while (2 * k <= n) k *= 2;\n    while (k) {\n      E t =\
+    \ G::op(s, dat[i + k - 1]);\n      if (check(t)) { i += k, s = t; }\n      k >>=\
+    \ 1;\n    }\n    return i;\n  }\n\n  int find_kth(E k) {\n    return max_right([](E\
+    \ x) -> bool { return x <= k; });\n  }\n};\n#line 6 \"test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  using QT = tuple<ll, ll,\
     \ ll>;\n  VEC(QT, query, Q);\n\n  auto I = argsort(A);\n  FenwickTree<Monoid_Add<int>>\
     \ bit(N);\n  auto init = [&]() -> void { bit.reset(N); };\n  auto upd = [&](int\
@@ -282,8 +281,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   requiredBy: []
-  timestamp: '2022-12-03 00:30:35+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-12-03 09:00:14+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
 layout: document
