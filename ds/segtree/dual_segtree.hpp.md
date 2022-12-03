@@ -1,11 +1,23 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':question:'
+    path: graph/ds/dual_tree_monoid.hpp
+    title: graph/ds/dual_tree_monoid.hpp
+  - icon: ':question:'
+    path: graph/minimum_spanning_tree.hpp
+    title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_D.test.cpp
     title: test/aoj/DSL_2_D.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_2_A.test.cpp
+    title: test/aoj/GRL_2_A.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc270_f.test.cpp
+    title: test/atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_point_add.test.cpp
     title: test/library_checker/datastructure/range_affine_point_add.test.cpp
@@ -55,12 +67,16 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: ds/segtree/dual_segtree.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/ds/dual_tree_monoid.hpp
+  - graph/minimum_spanning_tree.hpp
   timestamp: '2022-12-04 02:25:39+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/913.test.cpp
   - test/library_checker/datastructure/range_affine_point_add.test.cpp
+  - test/atcoder/abc270_f.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
   - test/aoj/DSL_2_D.test.cpp
 documentation_of: ds/segtree/dual_segtree.hpp
 layout: document

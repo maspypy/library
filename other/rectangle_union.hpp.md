@@ -95,7 +95,7 @@ data:
     \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\n  static\
     \ constexpr X unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\
     \n};\r\n#line 3 \"alg/acted_monoid/minmincnt_add.hpp\"\n\r\ntemplate <typename\
-    \ E>\r\nstruct ActedMonoid_CntMinMincnt_Add {\r\n  using Monoid_X = Monoid_CntMinMincnt<E>;\r\
+    \ E>\r\nstruct ActedMonoid_CntMinMincnt_Add {\r\n  using Monoid_X = Monoid_MinMincnt<E>;\r\
     \n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\
     \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
     \ X &x, const A &a, const ll &size) {\r\n    auto [xmin, xmincnt] = x;\r\n   \
@@ -109,7 +109,7 @@ data:
     \n    int N = len(X);\r\n    vc<vc<pair<int, int>>> add(N), rm(N);\r\n    for\
     \ (auto &&[xl, xr, yl, yr]: rectangles) {\r\n      xl = LB(X, xl), xr = LB(X,\
     \ xr);\r\n      yl = LB(Y, yl), yr = LB(Y, yr);\r\n      add[xl].eb(yl, yr);\r\
-    \n      rm[xr].eb(yl, yr);\r\n    }\r\n\r\n    using AM = ActedMonoid_CntMinMincnt_Add<XY>;\r\
+    \n      rm[xr].eb(yl, yr);\r\n    }\r\n\r\n    using AM = ActedMonoid_MinMincnt_Add<XY>;\r\
     \n    using T = typename AM::Monoid_X::value_type;\r\n    Lazy_SegTree<AM> seg(len(Y)\
     \ - 1, [&](int i) -> T {\r\n      return {Y[i + 1] - Y[i], 0, Y[i + 1] - Y[i]};\r\
     \n    });\r\n    ANS_TYPE ANS = 0;\r\n    FOR(i, len(X) - 1) {\r\n      ANS_TYPE\
@@ -128,7 +128,7 @@ data:
     \ int>>> add(N), rm(N);\r\n    for (auto &&[xl, xr, yl, yr]: rectangles) {\r\n\
     \      xl = LB(X, xl), xr = LB(X, xr);\r\n      yl = LB(Y, yl), yr = LB(Y, yr);\r\
     \n      add[xl].eb(yl, yr);\r\n      rm[xr].eb(yl, yr);\r\n    }\r\n\r\n    using\
-    \ AM = ActedMonoid_CntMinMincnt_Add<XY>;\r\n    using T = typename AM::Monoid_X::value_type;\r\
+    \ AM = ActedMonoid_MinMincnt_Add<XY>;\r\n    using T = typename AM::Monoid_X::value_type;\r\
     \n    Lazy_SegTree<AM> seg(len(Y) - 1, [&](int i) -> T {\r\n      return {Y[i\
     \ + 1] - Y[i], 0, Y[i + 1] - Y[i]};\r\n    });\r\n    ANS_TYPE ANS = 0;\r\n  \
     \  FOR(i, len(X) - 1) {\r\n      ANS_TYPE dx = X[i + 1] - X[i];\r\n      for (auto\
@@ -144,7 +144,7 @@ data:
   isVerificationFile: false
   path: other/rectangle_union.hpp
   requiredBy: []
-  timestamp: '2022-12-04 00:39:06+09:00'
+  timestamp: '2022-12-04 02:49:41+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp

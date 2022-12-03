@@ -443,26 +443,25 @@ data:
     \ a * E(size);\r\n  }\r\n};\r\n#line 8 \"test/aoj/GRL_5_E.test.cpp\"\n\nvoid solve()\
     \ {\n  LL(N);\n  Graph<int, 0> G(N);\n  FOR(v, N) {\n    LL(k);\n    FOR(k) {\n\
     \      LL(to);\n      G.add(v, to);\n    }\n  }\n  G.build();\n  TREE<decltype(G)>\
-    \ tree(G);\n  vc<pi> seg_raw(N - 1, {1, 0});\n  using AM = ActedMonoid_CntSum_Add<ll>;\n\
-    \  Lazy_Tree_Monoid<decltype(tree), AM, 1> TM(tree, seg_raw);\n  LL(Q);\n  FOR(Q)\
-    \ {\n    LL(t);\n    if (t == 0) {\n      LL(v, x);\n      TM.apply_path(0, v,\
-    \ x);\n      // TM.apply_path(tree.parent[v], v, x);\n    } else {\n      LL(v);\n\
-    \      print(TM.prod_path(0, v).se);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ tree(G);\n  vi seg_raw(N);\n  using AM = ActedMonoid_Sum_Add<ll>;\n  Lazy_Tree_Monoid<decltype(tree),\
+    \ AM, 1> TM(tree, seg_raw);\n  LL(Q);\n  FOR(Q) {\n    LL(t);\n    if (t == 0)\
+    \ {\n      LL(v, x);\n      TM.apply_path(0, v, x);\n      // TM.apply_path(tree.parent[v],\
+    \ v, x);\n    } else {\n      LL(v);\n      print(TM.prod_path(0, v));\n    }\n\
+    \  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_E\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/monoid/add.hpp\"\
     \n#include \"graph/ds/lazy_tree_monoid.hpp\"\n#include \"alg/acted_monoid/sum_add.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n  FOR(v, N) {\n    LL(k);\n\
     \    FOR(k) {\n      LL(to);\n      G.add(v, to);\n    }\n  }\n  G.build();\n\
-    \  TREE<decltype(G)> tree(G);\n  vc<pi> seg_raw(N - 1, {1, 0});\n  using AM =\
-    \ ActedMonoid_CntSum_Add<ll>;\n  Lazy_Tree_Monoid<decltype(tree), AM, 1> TM(tree,\
-    \ seg_raw);\n  LL(Q);\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(v,\
-    \ x);\n      TM.apply_path(0, v, x);\n      // TM.apply_path(tree.parent[v], v,\
-    \ x);\n    } else {\n      LL(v);\n      print(TM.prod_path(0, v).se);\n    }\n\
-    \  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
-    \  return 0;\n}\n"
+    \  TREE<decltype(G)> tree(G);\n  vi seg_raw(N);\n  using AM = ActedMonoid_Sum_Add<ll>;\n\
+    \  Lazy_Tree_Monoid<decltype(tree), AM, 1> TM(tree, seg_raw);\n  LL(Q);\n  FOR(Q)\
+    \ {\n    LL(t);\n    if (t == 0) {\n      LL(v, x);\n      TM.apply_path(0, v,\
+    \ x);\n      // TM.apply_path(tree.parent[v], v, x);\n    } else {\n      LL(v);\n\
+    \      print(TM.prod_path(0, v));\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -475,7 +474,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_5_E.test.cpp
   requiredBy: []
-  timestamp: '2022-12-04 00:54:54+09:00'
+  timestamp: '2022-12-04 02:49:41+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/GRL_5_E.test.cpp

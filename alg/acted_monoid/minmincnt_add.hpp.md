@@ -37,7 +37,7 @@ data:
     \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\n  static\
     \ constexpr X unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\
     \n};\r\n#line 3 \"alg/acted_monoid/minmincnt_add.hpp\"\n\r\ntemplate <typename\
-    \ E>\r\nstruct ActedMonoid_CntMinMincnt_Add {\r\n  using Monoid_X = Monoid_CntMinMincnt<E>;\r\
+    \ E>\r\nstruct ActedMonoid_CntMinMincnt_Add {\r\n  using Monoid_X = Monoid_MinMincnt<E>;\r\
     \n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\
     \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
     \ X &x, const A &a, const ll &size) {\r\n    auto [xmin, xmincnt] = x;\r\n   \
@@ -45,8 +45,8 @@ data:
     \n  }\r\n};\r\n"
   code: "#include \"alg/monoid/minmincnt.hpp\"\r\n#include \"alg/monoid/add.hpp\"\r\
     \n\r\ntemplate <typename E>\r\nstruct ActedMonoid_CntMinMincnt_Add {\r\n  using\
-    \ Monoid_X = Monoid_CntMinMincnt<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n\
-    \  using X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
+    \ Monoid_X = Monoid_MinMincnt<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using\
+    \ X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
     \n  static constexpr X act(const X &x, const A &a, const ll &size) {\r\n    auto\
     \ [xmin, xmincnt] = x;\r\n    if (xmin == numeric_limits<ll>::max()) return x;\r\
     \n    return {xmin + a, xmincnt};\r\n  }\r\n};\r\n"
@@ -57,7 +57,7 @@ data:
   path: alg/acted_monoid/minmincnt_add.hpp
   requiredBy:
   - other/rectangle_union.hpp
-  timestamp: '2022-12-03 07:16:30+09:00'
+  timestamp: '2022-12-04 02:49:41+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
