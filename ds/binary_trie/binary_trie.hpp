@@ -6,7 +6,7 @@ struct Binary_Trie {
   };
   vector<Node> ns;
 
-  BinaryTrie() : ns(1) {}
+  Binary_Trie() : ns(1) {}
 
   ll size() const { return ns[0].cnt; }
   ll operator[](int k) const { return find_kth(k, 0); }

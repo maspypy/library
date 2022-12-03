@@ -1,7 +1,7 @@
 #include "alg/monoid/add.hpp"
 
 template <typename Monoid, typename XY, bool SMALL_X = false>
-struct Fenwick2D {
+struct Fenwick_Tree_2D {
   using G = Monoid;
   using E = typename G::value_type;
   static_assert(G::commute);
@@ -12,8 +12,8 @@ struct Fenwick2D {
   vc<XY> keyY;
   vc<E> dat;
 
-  Fenwick2D(vc<XY>& X, vc<XY>& Y, vc<E> wt) { build(X, Y, wt); }
-  Fenwick2D(vc<XY>& X, vc<XY>& Y) {
+  Fenwick_Tree_2D (vc<XY>& X, vc<XY>& Y, vc<E> wt) { build(X, Y, wt); }
+  Fenwick_Tree_2D (vc<XY>& X, vc<XY>& Y) {
     vc<E> wt(len(X), G::unit());
     build(X, Y, wt);
   }
