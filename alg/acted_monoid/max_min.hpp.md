@@ -8,13 +8,10 @@ data:
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/mytest/max_min.test.cpp
-    title: test/mytest/max_min.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/max.hpp\"\n\r\ntemplate <class X>\r\nstruct Monoid_Max\
@@ -42,9 +39,8 @@ data:
   path: alg/acted_monoid/max_min.hpp
   requiredBy: []
   timestamp: '2022-12-03 08:35:02+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/mytest/max_min.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: alg/acted_monoid/max_min.hpp
 layout: document
 redirect_from:

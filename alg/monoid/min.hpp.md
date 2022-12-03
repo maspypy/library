@@ -2,61 +2,46 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':warning:'
     path: alg/acted_monoid/max_min.hpp
     title: alg/acted_monoid/max_min.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
   - icon: ':x:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: alg/acted_monoid/min_max.hpp
     title: alg/acted_monoid/min_max.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: alg/acted_monoid/min_min.hpp
     title: alg/acted_monoid/min_min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/offline_query/range_mex_query.hpp
     title: ds/offline_query/range_mex_query.hpp
-  - icon: ':x:'
-    path: seq/common_interval_decomposition.hpp
-    title: seq/common_interval_decomposition.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/aoj/DSL_2_F.test.cpp
-    title: test/aoj/DSL_2_F.test.cpp
-  - icon: ':x:'
-    path: test/aoj/DSL_2_H.test.cpp
-    title: test/aoj/DSL_2_H.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/1508_2.test.cpp
+    title: test/aoj/1508_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticrmq_seg.test.cpp
     title: test/library_checker/datastructure/staticrmq_seg.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/common_interval_decomposition.test.cpp
-    title: test/library_checker/graph/common_interval_decomposition.test.cpp
-  - icon: ':x:'
-    path: test/mytest/max_min.test.cpp
-    title: test/mytest/max_min.test.cpp
-  - icon: ':x:'
-    path: test/mytest/min_max.test.cpp
-    title: test/mytest/min_max.test.cpp
-  - icon: ':x:'
-    path: test/mytest/min_min.test.cpp
-    title: test/mytest/min_min.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/mytest/rbst_am.test.cpp
+    title: test/mytest/rbst_am.test.cpp
+  - icon: ':x:'
+    path: test/mytest/rbst_am_persistent.test.cpp
+    title: test/mytest/rbst_am_persistent.test.cpp
+  - icon: ':x:'
+    path: test/mytest/rbst_test.test.cpp
+    title: test/mytest/rbst_test.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1212.test.cpp
     title: test/yukicoder/1212.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1234.test.cpp
-    title: test/yukicoder/1234.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1720.test.cpp
-    title: test/yukicoder/1720.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -79,22 +64,17 @@ data:
   - alg/acted_monoid/min_min.hpp
   - alg/acted_monoid/min_max.hpp
   - alg/acted_monoid/max_min.hpp
-  - seq/common_interval_decomposition.hpp
   - ds/offline_query/range_mex_query.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1234.test.cpp
-  - test/yukicoder/1720.test.cpp
   - test/yukicoder/1212.test.cpp
-  - test/mytest/min_max.test.cpp
   - test/mytest/range_mex.test.cpp
-  - test/mytest/min_min.test.cpp
-  - test/mytest/max_min.test.cpp
+  - test/mytest/rbst_am.test.cpp
+  - test/mytest/rbst_am_persistent.test.cpp
+  - test/mytest/rbst_test.test.cpp
   - test/library_checker/datastructure/staticrmq_seg.test.cpp
-  - test/library_checker/graph/common_interval_decomposition.test.cpp
-  - test/aoj/DSL_2_F.test.cpp
-  - test/aoj/DSL_2_H.test.cpp
+  - test/aoj/1508_2.test.cpp
 documentation_of: alg/monoid/min.hpp
 layout: document
 redirect_from:

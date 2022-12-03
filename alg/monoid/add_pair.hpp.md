@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yukicoder/749.test.cpp
-    title: test/yukicoder/749.test.cpp
+    path: test/mytest/cf702_F.test.cpp
+    title: test/mytest/cf702_F.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -30,7 +30,7 @@ data:
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/749.test.cpp
+  - test/mytest/cf702_F.test.cpp
 documentation_of: alg/monoid/add_pair.hpp
 layout: document
 redirect_from:

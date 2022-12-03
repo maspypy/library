@@ -7,10 +7,7 @@ data:
   - icon: ':warning:'
     path: alg/monoid/minmincnt.hpp
     title: alg/monoid/minmincnt.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: other/rectangleunion.hpp
-    title: other/rectangleunion.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -49,8 +46,7 @@ data:
   - alg/monoid/add.hpp
   isVerificationFile: false
   path: alg/acted_monoid/minmincnt_add.hpp
-  requiredBy:
-  - other/rectangleunion.hpp
+  requiredBy: []
   timestamp: '2022-12-03 07:16:30+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

@@ -5,16 +5,13 @@ data:
   - icon: ':warning:'
     path: alg/monoid/rollinghash.hpp
     title: alg/monoid/rollinghash.hpp
-  - icon: ':x:'
-    path: connected_dp/squares.hpp
-    title: connected_dp/squares.hpp
   - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   - icon: ':heavy_check_mark:'
     path: graph/classify_subtree.hpp
     title: graph/classify_subtree.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: graph/max_matching_size.hpp
     title: graph/max_matching_size.hpp
   - icon: ':heavy_check_mark:'
@@ -50,10 +47,13 @@ data:
   - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
+  - icon: ':warning:'
+    path: other/connected_dp.hpp
+    title: other/connected_dp.hpp
   - icon: ':x:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
   - icon: ':question:'
@@ -132,39 +132,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/is_substring.test.cpp
     title: test/mytest/is_substring.test.cpp
-  - icon: ':x:'
-    path: test/mytest/max_assign.test.cpp
-    title: test/mytest/max_assign.test.cpp
-  - icon: ':x:'
-    path: test/mytest/max_max.test.cpp
-    title: test/mytest/max_max.test.cpp
-  - icon: ':x:'
-    path: test/mytest/max_min.test.cpp
-    title: test/mytest/max_min.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/max_of_linear_segments.test.cpp
     title: test/mytest/max_of_linear_segments.test.cpp
-  - icon: ':x:'
-    path: test/mytest/maxidx_add.test.cpp
-    title: test/mytest/maxidx_add.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/maxplus_concave.test.cpp
     title: test/mytest/maxplus_concave.test.cpp
-  - icon: ':x:'
-    path: test/mytest/min_max.test.cpp
-    title: test/mytest/min_max.test.cpp
-  - icon: ':x:'
-    path: test/mytest/min_min.test.cpp
-    title: test/mytest/min_min.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/min_of_linear_segments.test.cpp
     title: test/mytest/min_of_linear_segments.test.cpp
-  - icon: ':x:'
-    path: test/mytest/minidx_add.test.cpp
-    title: test/mytest/minidx_add.test.cpp
-  - icon: ':x:'
-    path: test/mytest/minmax_add.test.cpp
-    title: test/mytest/minmax_add.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/minplus_convex.test.cpp
     title: test/mytest/minplus_convex.test.cpp
@@ -195,24 +171,45 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_freq_of_linear.test.cpp
     title: test/mytest/range_freq_of_linear.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
+  - icon: ':x:'
+    path: test/mytest/rbst.test.cpp
+    title: test/mytest/rbst.test.cpp
+  - icon: ':x:'
+    path: test/mytest/rbst_am.test.cpp
+    title: test/mytest/rbst_am.test.cpp
+  - icon: ':x:'
+    path: test/mytest/rbst_am_persistent.test.cpp
+    title: test/mytest/rbst_am_persistent.test.cpp
+  - icon: ':x:'
+    path: test/mytest/rbst_commutative_persistent.test.cpp
+    title: test/mytest/rbst_commutative_persistent.test.cpp
+  - icon: ':x:'
+    path: test/mytest/rbst_monoid.test.cpp
+    title: test/mytest/rbst_monoid.test.cpp
+  - icon: ':x:'
+    path: test/mytest/rbst_monoid_2.test.cpp
+    title: test/mytest/rbst_monoid_2.test.cpp
+  - icon: ':x:'
+    path: test/mytest/rbst_monoid_persistent.test.cpp
+    title: test/mytest/rbst_monoid_persistent.test.cpp
+  - icon: ':x:'
+    path: test/mytest/rbst_test.test.cpp
+    title: test/mytest/rbst_test.test.cpp
+  - icon: ':x:'
+    path: test/mytest/segtree_xor_prod.test.cpp
+    title: test/mytest/segtree_xor_prod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/stern_brocot.test.cpp
     title: test/mytest/stern_brocot.test.cpp
-  - icon: ':x:'
-    path: test/mytest/summax_add.test.cpp
-    title: test/mytest/summax_add.test.cpp
-  - icon: ':x:'
-    path: test/mytest/summax_assign.test.cpp
-    title: test/mytest/summax_assign.test.cpp
-  - icon: ':x:'
-    path: test/mytest/tdpc_grid_dp.test.cpp
-    title: test/mytest/tdpc_grid_dp.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/tournament.test.cpp
     title: test/mytest/tournament.test.cpp
+  - icon: ':x:'
+    path: test/mytest/tutte.test.cpp
+    title: test/mytest/tutte.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/wavelet_matrix_sum.test.cpp
     title: test/mytest/wavelet_matrix_sum.test.cpp
@@ -226,11 +223,8 @@ data:
     path: test/yukicoder/1080_2.test.cpp
     title: test/yukicoder/1080_2.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1397.test.cpp
-    title: test/yukicoder/1397.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1561.test.cpp
-    title: test/yukicoder/1561.test.cpp
+    path: test/yukicoder/1303.test.cpp
+    title: test/yukicoder/1303.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1775.test.cpp
     title: test/yukicoder/1775.test.cpp
@@ -252,15 +246,6 @@ data:
   - icon: ':x:'
     path: test/yukicoder/4_1.test.cpp
     title: test/yukicoder/4_1.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/541.test.cpp
-    title: test/yukicoder/541.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/578.test.cpp
-    title: test/yukicoder/578.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/579.test.cpp
-    title: test/yukicoder/579.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -281,6 +266,7 @@ data:
   isVerificationFile: false
   path: random/base.hpp
   requiredBy:
+  - other/connected_dp.hpp
   - alg/monoid/rollinghash.hpp
   - poly/fps_sqrt.hpp
   - string/rollinghash_2d.hpp
@@ -290,7 +276,6 @@ data:
   - mod/mod_sqrt.hpp
   - mod/primitive_root.hpp
   - random/hash_vector.hpp
-  - connected_dp/squares.hpp
   - linalg/det_A_plus_xB.hpp
   - linalg/spmat_det.hpp
   - linalg/spmat_min_poly.hpp
@@ -305,58 +290,53 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1775.test.cpp
-  - test/yukicoder/541.test.cpp
   - test/yukicoder/310.test.cpp
-  - test/yukicoder/1561.test.cpp
   - test/yukicoder/1881.test.cpp
   - test/yukicoder/4_1.test.cpp
   - test/yukicoder/1025.test.cpp
-  - test/yukicoder/578.test.cpp
   - test/yukicoder/1080.test.cpp
+  - test/yukicoder/1303.test.cpp
   - test/yukicoder/1907.test.cpp
-  - test/yukicoder/579.test.cpp
   - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/263.test.cpp
-  - test/yukicoder/1397.test.cpp
   - test/yukicoder/2102.test.cpp
   - test/mytest/minplus_convex.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/is_substring.test.cpp
   - test/mytest/enum_partitions.test.cpp
-  - test/mytest/min_max.test.cpp
-  - test/mytest/summax_add.test.cpp
   - test/mytest/online_pow.test.cpp
-  - test/mytest/minidx_add.test.cpp
-  - test/mytest/maxidx_add.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/add_chmin.test.cpp
-  - test/mytest/minmax_add.test.cpp
-  - test/mytest/max_max.test.cpp
   - test/mytest/range_mex.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
-  - test/mytest/summax_assign.test.cpp
   - test/mytest/online_exp.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
   - test/mytest/online_inv.test.cpp
   - test/mytest/conv_leq.test.cpp
+  - test/mytest/rbst_monoid_persistent.test.cpp
   - test/mytest/chirp_z.test.cpp
   - test/mytest/powerquery.test.cpp
   - test/mytest/all_inverse.test.cpp
-  - test/mytest/min_min.test.cpp
-  - test/mytest/max_min.test.cpp
+  - test/mytest/segtree_xor_prod.test.cpp
+  - test/mytest/rbst_monoid.test.cpp
+  - test/mytest/rbst.test.cpp
+  - test/mytest/rbst_commutative_persistent.test.cpp
   - test/mytest/online_division.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
+  - test/mytest/tutte.test.cpp
+  - test/mytest/rbst_am.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
+  - test/mytest/rbst_am_persistent.test.cpp
+  - test/mytest/rbst_monoid_2.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
-  - test/mytest/max_assign.test.cpp
   - test/mytest/conv2d.test.cpp
   - test/mytest/maxplus_concave.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
   - test/mytest/add_chmin_chmax.test.cpp
   - test/mytest/stern_brocot.test.cpp
-  - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/binom.test.cpp
   - test/mytest/tournament.test.cpp
+  - test/mytest/rbst_test.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp

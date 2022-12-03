@@ -1,0 +1,177 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy:
+  - icon: ':question:'
+    path: flow/bipartite.hpp
+    title: flow/bipartite.hpp
+  - icon: ':heavy_check_mark:'
+    path: geo/manhattan_mst.hpp
+    title: geo/manhattan_mst.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/bipartite_edge_coloring.hpp
+    title: graph/bipartite_edge_coloring.hpp
+  - icon: ':question:'
+    path: graph/check_bipartite.hpp
+    title: graph/check_bipartite.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/dag_path_cover.hpp
+    title: graph/dag_path_cover.hpp
+  - icon: ':x:'
+    path: graph/functional.hpp
+    title: graph/functional.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/maximum_antichain.hpp
+    title: graph/maximum_antichain.hpp
+  - icon: ':warning:'
+    path: graph/online_mst.hpp
+    title: graph/online_mst.hpp
+  - icon: ':x:'
+    path: graph/online_unionfind.hpp
+    title: graph/online_unionfind.hpp
+  - icon: ':x:'
+    path: graph/tree_of_unionfind.hpp
+    title: graph/tree_of_unionfind.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/1566.test.cpp
+    title: test/aoj/1566.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/2251_1.test.cpp
+    title: test/aoj/2251_1.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/2251_2.test.cpp
+    title: test/aoj/2251_2.test.cpp
+  - icon: ':x:'
+    path: test/aoj/2995.test.cpp
+    title: test/aoj/2995.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/unionfind.test.cpp
+    title: test/library_checker/datastructure/unionfind.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/bipartite_edge_coloring.test.cpp
+    title: test/library_checker/graph/bipartite_edge_coloring.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/bipartitematching.test.cpp
+    title: test/library_checker/graph/bipartitematching.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/manhattan_mst.test.cpp
+    title: test/library_checker/graph/manhattan_mst.test.cpp
+  - icon: ':x:'
+    path: test/mytest/tutte.test.cpp
+    title: test/mytest/tutte.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/114.test.cpp
+    title: test/yukicoder/114.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1170_2.test.cpp
+    title: test/yukicoder/1170_2.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1211.test.cpp
+    title: test/yukicoder/1211.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1242.test.cpp
+    title: test/yukicoder/1242.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1303.test.cpp
+    title: test/yukicoder/1303.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1392.test.cpp
+    title: test/yukicoder/1392.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1451.test.cpp
+    title: test/yukicoder/1451.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1479.test.cpp
+    title: test/yukicoder/1479.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1744.test.cpp
+    title: test/yukicoder/1744.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1745.test.cpp
+    title: test/yukicoder/1745.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1911.test.cpp
+    title: test/yukicoder/1911.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1983.test.cpp
+    title: test/yukicoder/1983.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2122.test.cpp
+    title: test/yukicoder/2122.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/590.test.cpp
+    title: test/yukicoder/590.test.cpp
+  _isVerificationFailed: true
+  _pathExtension: hpp
+  _verificationStatusIcon: ':question:'
+  attributes:
+    links: []
+  bundledCode: "#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int\
+    \ n;\n  int n_comp;\n  vector<int> dat; // par or (-size)\n  UnionFind(int n)\
+    \ : n(n), n_comp(n), dat(n, -1) {}\n\n  int operator[](int x) {\n    while (dat[x]\
+    \ >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n\
+    \      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  int size(int x) {\n  \
+    \  assert(dat[x] < 0);\n    return -dat[x];\n  }\n\n  bool merge(int x, int y)\
+    \ {\n    x = (*this)[x];\n    y = (*this)[y];\n    if (x == y) { return false;\
+    \ }\n    n_comp--;\n    if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y],\
+    \ dat[y] = x;\n    return true;\n  }\n\n  vector<int> get_all() {\n    vector<int>\
+    \ A(n);\n    for (int i = 0; i < n; ++i) A[i] = (*this)[i];\n    return A;\n \
+    \ }\n};\n"
+  code: "#pragma once\n\nstruct UnionFind {\n  int n;\n  int n_comp;\n  vector<int>\
+    \ dat; // par or (-size)\n  UnionFind(int n) : n(n), n_comp(n), dat(n, -1) {}\n\
+    \n  int operator[](int x) {\n    while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n\
+    \      if (pp < 0) { return dat[x]; }\n      x = dat[x] = pp;\n    }\n    return\
+    \ x;\n  }\n\n  int size(int x) {\n    assert(dat[x] < 0);\n    return -dat[x];\n\
+    \  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x];\n    y = (*this)[y];\n\
+    \    if (x == y) { return false; }\n    n_comp--;\n    if (-dat[x] < -dat[y])\
+    \ swap(x, y);\n    dat[x] += dat[y], dat[y] = x;\n    return true;\n  }\n\n  vector<int>\
+    \ get_all() {\n    vector<int> A(n);\n    for (int i = 0; i < n; ++i) A[i] = (*this)[i];\n\
+    \    return A;\n  }\n};\n"
+  dependsOn: []
+  isVerificationFile: false
+  path: ds/unionfind/unionfind.hpp
+  requiredBy:
+  - geo/manhattan_mst.hpp
+  - flow/bipartite.hpp
+  - graph/tree_of_unionfind.hpp
+  - graph/functional.hpp
+  - graph/bipartite_edge_coloring.hpp
+  - graph/dag_path_cover.hpp
+  - graph/maximum_antichain.hpp
+  - graph/online_mst.hpp
+  - graph/check_bipartite.hpp
+  - graph/online_unionfind.hpp
+  timestamp: '2022-12-03 10:20:23+09:00'
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/yukicoder/1392.test.cpp
+  - test/yukicoder/1479.test.cpp
+  - test/yukicoder/1983.test.cpp
+  - test/yukicoder/114.test.cpp
+  - test/yukicoder/2122.test.cpp
+  - test/yukicoder/590.test.cpp
+  - test/yukicoder/1242.test.cpp
+  - test/yukicoder/1303.test.cpp
+  - test/yukicoder/1911.test.cpp
+  - test/yukicoder/1451.test.cpp
+  - test/yukicoder/1211.test.cpp
+  - test/yukicoder/1745.test.cpp
+  - test/yukicoder/1170_2.test.cpp
+  - test/yukicoder/1744.test.cpp
+  - test/mytest/tutte.test.cpp
+  - test/library_checker/datastructure/unionfind.test.cpp
+  - test/library_checker/graph/bipartitematching.test.cpp
+  - test/library_checker/graph/manhattan_mst.test.cpp
+  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
+  - test/aoj/2251_1.test.cpp
+  - test/aoj/2251_2.test.cpp
+  - test/aoj/1566.test.cpp
+  - test/aoj/2995.test.cpp
+documentation_of: ds/unionfind/unionfind.hpp
+layout: document
+redirect_from:
+- /library/ds/unionfind/unionfind.hpp
+- /library/ds/unionfind/unionfind.hpp.html
+title: ds/unionfind/unionfind.hpp
+---

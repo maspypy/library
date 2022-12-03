@@ -4,17 +4,14 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: alg/monoid/summax.hpp
     title: alg/monoid/summax.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/mytest/summax_add.test.cpp
-    title: test/mytest/summax_add.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/summax.hpp\"\n\ntemplate <typename E>\nstruct\
@@ -46,9 +43,8 @@ data:
   path: alg/acted_monoid/summax_add.hpp
   requiredBy: []
   timestamp: '2022-12-03 07:16:30+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/mytest/summax_add.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: alg/acted_monoid/summax_add.hpp
 layout: document
 redirect_from:

@@ -8,13 +8,10 @@ data:
     path: alg/monoid/max_idx.hpp
     title: alg/monoid/max_idx.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/mytest/maxidx_add.test.cpp
-    title: test/mytest/maxidx_add.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -49,9 +46,8 @@ data:
   path: alg/acted_monoid/maxidx_add.hpp
   requiredBy: []
   timestamp: '2022-12-03 08:35:02+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/mytest/maxidx_add.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: alg/acted_monoid/maxidx_add.hpp
 layout: document
 redirect_from:

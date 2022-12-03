@@ -2,9 +2,6 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
-    path: connected_dp/squares.hpp
-    title: connected_dp/squares.hpp
   - icon: ':heavy_check_mark:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
@@ -14,6 +11,9 @@ data:
   - icon: ':question:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
+  - icon: ':warning:'
+    path: other/connected_dp.hpp
+    title: other/connected_dp.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/atcoder/abc270_g.test.cpp
@@ -28,20 +28,11 @@ data:
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
   - icon: ':x:'
-    path: test/mytest/tdpc_grid_dp.test.cpp
-    title: test/mytest/tdpc_grid_dp.test.cpp
-  - icon: ':x:'
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1383.test.cpp
     title: test/yukicoder/1383.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1397.test.cpp
-    title: test/yukicoder/1397.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1561.test.cpp
-    title: test/yukicoder/1561.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1634.test.cpp
     title: test/yukicoder/1634.test.cpp
@@ -57,15 +48,6 @@ data:
   - icon: ':x:'
     path: test/yukicoder/263.test.cpp
     title: test/yukicoder/263.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/541.test.cpp
-    title: test/yukicoder/541.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/578.test.cpp
-    title: test/yukicoder/578.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/579.test.cpp
-    title: test/yukicoder/579.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -127,26 +109,20 @@ data:
   isVerificationFile: false
   path: ds/hashmap.hpp
   requiredBy:
+  - other/connected_dp.hpp
   - mod/mod_log.hpp
   - mod/mod_kth_root.hpp
   - nt/discrete_log.hpp
-  - connected_dp/squares.hpp
   timestamp: '2022-10-06 22:48:48+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/541.test.cpp
-  - test/yukicoder/1561.test.cpp
   - test/yukicoder/1881.test.cpp
   - test/yukicoder/1726.test.cpp
-  - test/yukicoder/578.test.cpp
-  - test/yukicoder/579.test.cpp
   - test/yukicoder/1634.test.cpp
   - test/yukicoder/1383.test.cpp
   - test/yukicoder/1769.test.cpp
   - test/yukicoder/1339.test.cpp
   - test/yukicoder/263.test.cpp
-  - test/yukicoder/1397.test.cpp
-  - test/mytest/tdpc_grid_dp.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/library_checker/datastructure/associative_array_hashmap.test.cpp

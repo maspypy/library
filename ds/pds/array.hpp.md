@@ -2,9 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
-    path: ds/union_find/persistent_unionfind.hpp
-    title: ds/union_find/persistent_unionfind.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/unionfind/persistent_unionfind.hpp
+    title: ds/unionfind/persistent_unionfind.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc273_e.test.cpp
@@ -12,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/persistent_queue.test.cpp
     title: test/library_checker/datastructure/persistent_queue.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/persistent_unionfind.test.cpp
+    title: test/library_checker/datastructure/persistent_unionfind.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -56,10 +59,11 @@ data:
   isVerificationFile: false
   path: ds/pds/array.hpp
   requiredBy:
-  - ds/union_find/persistent_unionfind.hpp
+  - ds/unionfind/persistent_unionfind.hpp
   timestamp: '2022-10-21 16:42:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/library_checker/datastructure/persistent_unionfind.test.cpp
   - test/library_checker/datastructure/persistent_queue.test.cpp
   - test/atcoder/abc273_e.test.cpp
 documentation_of: ds/pds/array.hpp

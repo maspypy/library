@@ -43,6 +43,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: test/yukicoder/1303.test.cpp
+    title: test/yukicoder/1303.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
   _isVerificationFailed: true
@@ -440,6 +443,7 @@ data:
   timestamp: '2022-12-03 08:35:02+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/yukicoder/1303.test.cpp
   - test/yukicoder/1907.test.cpp
 documentation_of: linalg/det_A_plus_xB.hpp
 layout: document
