@@ -1,4 +1,4 @@
-#include "ds/splay/splaytree.hpp"
+#include "ds/splaytree/splaytree.hpp"
 
 namespace SplayTreeNodes {
 template <typename Monoid>

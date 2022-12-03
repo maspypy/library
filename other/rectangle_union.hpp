@@ -1,8 +1,8 @@
-#include "ds/segtree/lazysegtree.hpp"
+#include "ds/segtree/lazy_segtree.hpp"
 #include "alg/acted_monoid/minmincnt_add.hpp"
 
 template <typename XY = int>
-struct RectangleUnion {
+struct Rectangle_Union {
   using RECT = tuple<XY, XY, XY, XY>;
   vc<RECT> rectangles;
   vc<XY> X, Y;
@@ -27,7 +27,7 @@ struct RectangleUnion {
 
     using AM = ActedMonoid_CntMinMincnt_Add<XY>;
     using T = typename AM::Monoid_X::value_type;
-    LazySegTree<AM> seg(len(Y) - 1, [&](int i) -> T {
+    Lazy_SegTree<AM> seg(len(Y) - 1, [&](int i) -> T {
       return {Y[i + 1] - Y[i], 0, Y[i + 1] - Y[i]};
     });
     ANS_TYPE ANS = 0;

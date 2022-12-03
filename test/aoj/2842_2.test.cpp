@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2842"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/segtree/segtree2d_dense.hpp"
+#include "ds/segtree/segtree_2d_dense.hpp"
 #include "alg/monoid/add.hpp"
 
 void solve() {
@@ -10,8 +10,8 @@ void solve() {
   const ll INF = 1LL << 60;
   vv(ll, time, H, W, INF);
 
-  SegTree2D_dense<Monoid_Add<ll>> A(H, W);
-  SegTree2D_dense<Monoid_Add<ll>> B(H, W);
+  SegTree_2D_Dense<Monoid_Add<ll>> A(H, W);
+  SegTree_2D_Dense<Monoid_Add<ll>> B(H, W);
 
   deque<tuple<ll, ll, ll>> end;
 

@@ -1,5 +1,5 @@
 #include "alg/monoid/min.hpp"
-#include "ds/disjoint_sparse/disjointsparse.hpp"
+#include "ds/disjointsparse/disjointsparse.hpp"
 
 // 辞書順 i 番目の suffix が j 文字目始まりであるとき、
 // SA[i] = j, ISA[j] = i

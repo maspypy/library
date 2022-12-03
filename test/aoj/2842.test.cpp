@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2842"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/fenwick/fenwick2d_dense.hpp"
+#include "ds/fenwicktree/fenwicktree_2d_dense.hpp"
 
 void solve() {
   LL(H, W, T, Q);
@@ -9,8 +9,8 @@ void solve() {
   const ll INF = 1LL << 60;
   vv(ll, time, H, W, INF);
 
-  Fenwick2D_dense<Monoid_Add<ll>> A(H, W);
-  Fenwick2D_dense<Monoid_Add<ll>> B(H, W);
+  FenwickTree_2D_Dense<Monoid_Add<ll>> A(H, W);
+  FenwickTree_2D_Dense<Monoid_Add<ll>> B(H, W);
 
   deque<tuple<ll, ll, ll>> end;
 

@@ -8,77 +8,54 @@
 template <class Monoid, int NODES = 5'000'000>
 struct Dynamic_SegTree {
   using X = typename Monoid::value_type;
-
   struct Node {
     X x;
     Node *l, *r;
-    Node() {}
-    Node(const X &x) : x(x), l(nullptr), r(nullptr) {}
   };
 
   Node *pool;
   int pid;
+  using np = Node *;
+
   ll L, R;
-  Node *root;
   function<X(ll, ll)> default_fn;
 
   Dynamic_SegTree(ll L, ll R)
-      : Dynamic_SegTree(L, R, [](ll L, ll R){return Monoid::unit();}) {}
-
+      : Dynamic_SegTree(L, R, [](ll L, ll R) { return Monoid::unit(); }) {}
   Dynamic_SegTree(ll L, ll R, function<X(ll, ll)> f)
       : pid(0), L(L), R(R), default_fn(f) {
     pool = new Node[NODES];
-    root = new_node(L, R);
   }
-
-  void reset() {
-    pid = 0;
-    root = new_node(L, R);
-  }
-
-  void set(ll i, const X &x) {
+  np set(np root, ll i, const X &x) {
     assert(L <= i && i < R);
-    set_rec(root, L, R, i, x);
+    return set_rec(root, L, R, i, x);
   }
-
-  void multiply(ll i, const X &x) {
+  np multiply(np root, ll i, const X &x) {
     assert(L <= i && i < R);
-    multiply_rec(root, L, R, i, x);
+    return multiply_rec(root, L, R, i, x);
   }
-
-  X prod(ll l, ll r) {
+  X prod(np root, ll l, ll r) {
     assert(L <= l && l <= r && r <= R);
     return prod_rec(root, L, R, l, r);
   }
-
-  X prod_all() { return root->x; }
-
-  void debug() {
-    auto dfs = [&](auto &dfs, Node *n, ll l, ll r) -> void {
-      print("lr", l, r, "x", n->x, "a", n->a);
-      ll m = (l + r) / 2;
-      if (n->l) dfs(dfs, n->l, l, m);
-      if (n->r) dfs(dfs, n->r, m, r);
-    };
-    dfs(dfs, root, L, R);
-  }
+  X prod_all(np root) { return root->x; }
 
   template <class F>
-  ll max_right(const F &check, ll s) {
+  ll max_right(np root, const F &check, ll s) {
     assert(L <= s && s <= R && check(Monoid::unit()));
     X p = Monoid::unit();
     return max_right_rec(root, L, R, check, s, p);
   }
 
   template <class F>
-  ll min_left(const F &check, ll t) {
+  ll min_left(np root, const F &check, ll t) {
     assert(L <= t && t <= R && check(Monoid::unit()));
     X p = Monoid::unit();
     return min_left_rec(root, L, R, check, t, p);
   }
 
 private:
-  Node *new_node(ll node_l, ll node_r) {
+  np new_node(ll node_l, ll node_r) {
     pool[pid].x = default_fn(node_l, node_r);
     pool[pid].l = pool[pid].r = nullptr;
     return &(pool[pid++]);

@@ -2,11 +2,11 @@
   "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_4_A"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/offline_query/rectangleunion.hpp"
+#include "other/rectangle_union.hpp"
 
 void solve() {
   LL(N);
-  RectangleUnion<int> RU;
+  Rectangle_Union<int> RU;
   FOR(N) {
     LL(a, b, c, d);
     RU.add_rect(a, c, b, d);
