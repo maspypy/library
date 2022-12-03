@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/offline_query/parallel_binary_search.hpp"
-#include "ds/fenwick/fenwick.hpp"
+#include "ds/fenwicktree/fenwicktree.hpp"
 
 void solve() {
   LL(N, Q);
@@ -12,7 +12,7 @@ void solve() {
 
   auto I = argsort(A);
   FenwickTree<Monoid_Add<int>> bit(N);
-  auto init = [&]() -> void { bit.reset(N); };
+  auto init = [&]() -> void { bit.build(N); };
   auto upd = [&](int t) -> void { bit.add(I[t], 1); };
   auto check = [&](int q) -> bool {
     auto [l, r, k] = query[q];
