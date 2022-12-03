@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 
 #include "alg/monoid/rollinghash.hpp"
-#include "ds/disjoint_sparse/disjointsparse.hpp"
+#include "ds/disjointsparse/disjointsparse.hpp"
 
 void solve() {
   STR(S);

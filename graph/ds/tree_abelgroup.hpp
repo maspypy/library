@@ -1,4 +1,4 @@
-#include "ds/fenwick/fenwick.hpp"
+#include "ds/fenwicktree/fenwicktree.hpp"
 #include "graph/tree.hpp"
 
 template <typename TREE, typename AbelGroup, bool edge = false,

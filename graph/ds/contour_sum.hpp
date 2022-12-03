@@ -1,8 +1,8 @@
-#include "ds/fenwick/fenwick.hpp"
+#include "ds/fenwicktree/fenwicktree.hpp"
 
 // 点加算、距離区間での和
 template <typename GT, typename AbelGroup>
-struct ContourSum {
+struct Contour_Sum {
   int N;
   GT& G;
   using X = typename AbelGroup::value_type;
@@ -12,12 +12,12 @@ struct ContourSum {
   // 方向ラベル、重心からの距離、bit でのindex
   vvc<tuple<int, int, int>> dat;
 
-  ContourSum(GT& G) : N(G.N), G(G) {
+  Contour_Sum(GT& G) : N(G.N), G(G) {
     assert(!G.is_directed());
     vc<X> v_vals(N, AbelGroup::unit());
     build(v_vals);
   }
-  ContourSum(GT& G, const vc<X>& v_vals) : N(G.N), G(G) {
+  Contour_Sum(GT& G, const vc<X>& v_vals) : N(G.N), G(G) {
     assert(!G.is_directed());
     build(v_vals);
   }

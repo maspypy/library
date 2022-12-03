@@ -3,14 +3,14 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/base.hpp"
-#include "graph/ds/contoursum.hpp"
+#include "graph/ds/contour_sum.hpp"
 
 void solve() {
   LL(N, Q);
   VEC(ll, A, N);
   Graph<int, 0> G(N);
   G.read_tree(0, 0);
-  ContourSum<decltype(G), Monoid_Add<ll>> X(G, A);
+  Contour_Sum<decltype(G), Monoid_Add<ll>> X(G, A);
 
   FOR(Q) {
     LL(t);

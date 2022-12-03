@@ -5,7 +5,7 @@
 
 #include "alg/monoid/affine.hpp"
 #include "mod/modint.hpp"
-#include "graph/ds/treemonoid.hpp"
+#include "graph/ds/tree_monoid.hpp"
 
 using mint = modint998;
 
@@ -23,9 +23,9 @@ void solve() {
   G.read_tree(0, 0);
 
   TREE tree(G);
-  TreeMonoid<decltype(tree), Mono, false> TM(tree, A);
+  Tree_Monoid<decltype(tree), Mono, false> TM(tree, A);
 
-  FOR(_, Q) {
+  FOR(Q) {
     LL(t);
     if (t == 0) {
       LL(v, c, d);
