@@ -1,7 +1,7 @@
 #define PROBLEM "https://atcoder.jp/contests/abc266/tasks/abc266_Ex"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/segtree/segtree2d.hpp"
+#include "ds/segtree/segtree_2d.hpp"
 #include "alg/monoid/max.hpp"
 
 using Mono = Monoid_Max<ll>;
@@ -76,8 +76,8 @@ void solve() {
     Y1[i] = x + y - t;
     Y2[i] = x - y + t;
   }
-  SegTree2D<Mono, ll, false> seg1(X1, Y1);
-  SegTree2D<Mono, ll, false> seg2(X2, Y2);
+  SegTree_2D<Mono, ll, false> seg1(X1, Y1);
+  SegTree_2D<Mono, ll, false> seg2(X2, Y2);
 
   const ll INF = 1LL << 60;
 

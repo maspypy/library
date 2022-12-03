@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/tree.hpp"
-#include "ds/segtree/dualsegtree.hpp"
+#include "ds/segtree/dual_segtree.hpp"
 #include "alg/monoid/add_chmax.hpp"
 
 using Mono = Monoid_Add_Chmax<ll>;
@@ -22,17 +22,17 @@ void solve() {
   for (auto&& x: A) --x;
   VEC(ll, B, N);
 
-  vc<DualSegTree<Mono>> dp(N);
+  vc<Dual_SegTree<Mono>> dp(N);
   vvc<int> keys(N);
   FOR(v, N) if (head[v] == v) {
     FOR(i, tree.LID[v], tree.RID[v]) { keys[v].eb(A[tree.V[i]]); }
     sort(all(keys[v]));
   }
 
-  FOR(v, N) dp[v].resize(len(keys[v]));
+  FOR(v, N) dp[v].build(len(keys[v]));
   // FOR(v, N) print(v, ",", keys[v]);
 
-  auto eval_all = [&](DualSegTree<Mono>& seg) -> vi {
+  auto eval_all = [&](Dual_SegTree<Mono>& seg) -> vi {
     auto tmp = seg.get_all();
     vi X(len(tmp));
     FOR(k, len(X)) X[k] = Mono::eval(tmp[k], 0);

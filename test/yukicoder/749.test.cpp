@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"
-#include "ds/segtree/lazysegtree.hpp"
+#include "ds/segtree/lazy_segtree.hpp"
 #include "alg/monoid/add_pair.hpp"
 
 using mint = modint107;
@@ -40,7 +40,7 @@ void solve() {
   vc<mint> F(N);
   F[1] = 1;
   FOR3(i, 2, N) F[i] = F[i - 2] + F[i - 1];
-  LazySegTree<AM> seg(N, [&](int i) -> typename MonoX::value_type {
+  Lazy_SegTree<AM> seg(N, [&](int i) -> typename MonoX::value_type {
     return {mint(0), F[i]};
   });
 

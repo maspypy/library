@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/541"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "connected_dp/squares.hpp"
+#include "other/connected_dp.hpp"
 #include "mod/modint.hpp"
 #include "seq/interpolate_linear_rec.hpp"
 
