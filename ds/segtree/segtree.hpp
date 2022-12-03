@@ -2,50 +2,43 @@
 
 template <class Monoid>
 struct SegTree {
-  using X = typename Monoid::value_type;
+  using MX = Monoid;
+  using X = typename MX::value_type;
   using value_type = X;
-  vector<X> dat;
+  vc<X> dat;
   int n, log, size;
 
-  SegTree() : SegTree(0) {}
-  SegTree(int n) : SegTree(vector<X>(n, Monoid::unit())) {}
-  SegTree(vector<X> v) : n(v.size()) {
-    log = 1;
-    while ((1 << log) < n) ++log;
-    size = 1 << log;
-    dat.assign(size << 1, Monoid::unit());
-    for (int i = 0; i < n; ++i) dat[size + i] = v[i];
-    for (int i = size - 1; i >= 1; --i) update(i);
-  }
-
+  SegTree() {}
+  SegTree(int n) { build(n); }
   template <typename F>
-  SegTree(int n, F f) : n(n) {
-    log = 1;
+  SegTree(int n, F f) {
+    build(n, f);
+  }
+  SegTree(const vc<X>& v) { build(v); }
+
+  void build(int m) {
+    build(m, [](int i) -> X { return MX::unit(); });
+  }
+  void build(const vc<X>& v) {
+    build(len(v), [&](int i) -> X { return v[i]; });
+  }
+  template <typename F>
+  void build(int m, F f) {
+    n = m, log = 1;
     while ((1 << log) < n) ++log;
     size = 1 << log;
-    dat.assign(size << 1, Monoid::unit());
-    for (int i = 0; i < n; ++i) dat[size + i] = f(i);
-    for (int i = size - 1; i >= 1; --i) update(i);
+    dat.assign(size << 1, MX::unit());
+    FOR(i, n) dat[size + i] = f(i);
+    FOR_R(i, 1, size) update(i);
   }
 
-  void reset() { fill(all(dat), Monoid::unit()); }
-
-  void set_all(const vector<X>& v) {
-    dat.assign(size << 1, Monoid::unit());
-    for (int i = 0; i < n; ++i) dat[size + i] = v[i];
-    for (int i = size - 1; i >= 1; --i) update(i);
-  }
-
-  X operator[](int i) { return dat[size + i]; }
-
+  X get(int i) { return dat[size + i]; }
   void update(int i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i + 1]); }
-
   void set(int i, const X& x) {
     assert(i < n);
     dat[i += size] = x;
     while (i >>= 1) update(i);
   }
-
   void multiply(int i, const X& x) {
     assert(i < n);
     i += size;
@@ -54,8 +47,7 @@ struct SegTree {
   }
 
   X prod(int L, int R) {
-    assert(L <= R);
-    assert(R <= n);
+    assert(0 <= L && L <= R && R <= n);
     X vl = Monoid::unit(), vr = Monoid::unit();
     L += size, R += size;
     while (L < R) {
@@ -79,15 +71,11 @@ struct SegTree {
       if (!check(Monoid::op(sm, dat[L]))) {
         while (L < size) {
           L = 2 * L;
-          if (check(Monoid::op(sm, dat[L]))) {
-            sm = Monoid::op(sm, dat[L]);
-            L++;
-          }
+          if (check(Monoid::op(sm, dat[L]))) { sm = Monoid::op(sm, dat[L++]); }
         }
         return L - size;
       }
-      sm = Monoid::op(sm, dat[L]);
-      L++;
+      sm = Monoid::op(sm, dat[L++]);
     } while ((L & -L) != L);
     return n;
   }
@@ -104,10 +92,7 @@ struct SegTree {
       if (!check(Monoid::op(dat[R], sm))) {
         while (R < size) {
           R = 2 * R + 1;
-          if (check(Monoid::op(dat[R], sm))) {
-            sm = Monoid::op(dat[R], sm);
-            R--;
-          }
+          if (check(Monoid::op(dat[R], sm))) { sm = Monoid::op(dat[R--], sm); }
         }
         return R + 1 - size;
       }
@@ -116,10 +101,9 @@ struct SegTree {
     return 0;
   }
 
-  // モノイドが可換なら、prod_{l<=i<r}A[i^x] が計算可能
-  // https://codeforces.com/contest/1401/problem/F
-  X Xor_prod(int l, int r, int xor_val) {
-    assert(Monoid::commute);
+  // モノイドが可換なら、prod_{l<=i<r} A[i xor x] が計算可能
+  X xor_prod(int l, int r, int xor_val) {
+    static_assert(Monoid::commute);
     X x = Monoid::unit();
     for (int k = 0; k < log + 1; ++k) {
       if (l >= r) break;
@@ -129,6 +113,4 @@ struct SegTree {
     }
     return x;
   }
-
-  void debug() { print("segtree", dat); }
 };

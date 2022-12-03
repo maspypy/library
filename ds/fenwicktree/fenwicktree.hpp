@@ -2,7 +2,7 @@
 #include "alg/monoid/add.hpp"
 
 template <typename Monoid>
-struct Fenwick_Tree {
+struct FenwickTree {
   using G = Monoid;
   using E = typename G::value_type;
   static_assert(G::commute);
@@ -10,13 +10,13 @@ struct Fenwick_Tree {
   vector<E> dat;
   E total;
 
-  Fenwick_Tree() {}
-  Fenwick_Tree(int n) { build(n); }
+  FenwickTree() {}
+  FenwickTree(int n) { build(n); }
   template <typename F>
-  Fenwick_Tree(int n, F f) {
+  FenwickTree(int n, F f) {
     build(n, f);
   }
-  Fenwick_Tree(const vc<E>& v) { build(v); }
+  FenwickTree(const vc<E>& v) { build(v); }
 
   void build(int m) {
     dat.assign(m, G::unit());

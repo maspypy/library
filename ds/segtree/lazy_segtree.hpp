@@ -1,7 +1,7 @@
 #pragma once
 
 template <typename AM>
-struct LazySegTree {
+struct Lazy_SegTree {
   using AM = AM;
   using MX = typename AM::MX;
   using MA = typename AM::MA;
@@ -141,15 +141,11 @@ struct LazySegTree {
         while (l < size) {
           push(l);
           l = (2 * l);
-          if (check(MX::op(sm, dat[l]))) {
-            sm = MX::op(sm, dat[l]);
-            l++;
-          }
+          if (check(MX::op(sm, dat[l]))) { sm = MX::op(sm, dat[l++]); }
         }
         return l - size;
       }
-      sm = MX::op(sm, dat[l]);
-      l++;
+      sm = MX::op(sm, dat[l++]);
     } while ((l & -l) != l);
     return n;
   }
@@ -169,10 +165,7 @@ struct LazySegTree {
         while (r < size) {
           push(r);
           r = (2 * r + 1);
-          if (check(MX::op(dat[r], sm))) {
-            sm = MX::op(dat[r], sm);
-            r--;
-          }
+          if (check(MX::op(dat[r], sm))) { sm = MX::op(dat[r--], sm); }
         }
         return r + 1 - size;
       }

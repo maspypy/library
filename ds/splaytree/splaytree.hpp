@@ -1,14 +1,14 @@
 #pragma once
 // Node 型を別に定義して使う
 template <typename Node, int NODES = 1'000'000>
-struct SplayTree {
+struct Splay_Tree {
   Node *pool;
   int pid;
   using np = Node *;
   using X = typename Node::value_type;
   using A = typename Node::operator_type;
 
-  SplayTree() : pid(0) { pool = new Node[NODES]; }
+  Splay_Tree() : pid(0) { pool = new Node[NODES]; }
 
   void reset() { pid = 0; }
 

@@ -1,12 +1,12 @@
 template <int LOG = 30>
-struct Binary_Trie {
+struct BinaryTrie {
   struct Node {
     ll cnt = 0;
     int ch[2] = {-1, -1};
   };
   vector<Node> ns;
 
-  Binary_Trie() : ns(1) {}
+  BinaryTrie() : ns(1) {}
 
   ll size() const { return ns[0].cnt; }
   ll operator[](int k) const { return find_kth(k, 0); }
