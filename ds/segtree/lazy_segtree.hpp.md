@@ -64,8 +64,14 @@ data:
     path: test/mytest/summin_assign.test.cpp
     title: test/mytest/summin_assign.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1234.test.cpp
+    title: test/yukicoder/1234.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1720.test.cpp
     title: test/yukicoder/1720.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/749.test.cpp
+    title: test/yukicoder/749.test.cpp
   - icon: ':x:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
@@ -193,6 +199,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/899.test.cpp
+  - test/yukicoder/749.test.cpp
+  - test/yukicoder/1234.test.cpp
   - test/yukicoder/1720.test.cpp
   - test/mytest/min_max.test.cpp
   - test/mytest/minidx_add.test.cpp

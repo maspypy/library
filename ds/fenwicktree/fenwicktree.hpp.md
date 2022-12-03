@@ -23,6 +23,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
+  - icon: ':x:'
+    path: seq/inversion_rotate.hpp
+    title: seq/inversion_rotate.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_2_A.test.cpp
@@ -30,6 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_5.test.cpp
     title: test/aoj/ALDS1_5.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc190f.test.cpp
+    title: test/atcoder/abc190f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_range_sum.test.cpp
     title: test/library_checker/datastructure/point_add_range_sum.test.cpp
@@ -60,6 +66,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1490.test.cpp
     title: test/yukicoder/1490.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1838.test.cpp
+    title: test/yukicoder/1838.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -131,6 +140,7 @@ data:
   path: ds/fenwicktree/fenwicktree.hpp
   requiredBy:
   - seq/inversion.hpp
+  - seq/inversion_rotate.hpp
   - ds/offline_query/rectangle_add_point_sum.hpp
   - ds/offline_query/rectangle_add_rectangle_sum.hpp
   - ds/offline_query/point_add_rectangle_sum.hpp
@@ -141,6 +151,7 @@ data:
   verifiedWith:
   - test/yukicoder/1311.test.cpp
   - test/yukicoder/1490.test.cpp
+  - test/yukicoder/1838.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
@@ -149,6 +160,7 @@ data:
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - test/library_checker/graph/verted_add_contour_sum.test.cpp
+  - test/atcoder/abc190f.test.cpp
   - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/ALDS1_5.test.cpp
 documentation_of: ds/fenwicktree/fenwicktree.hpp

@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc244h.test.cpp
+    title: test/atcoder/abc244h.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/line_add_get_min.test.cpp
     title: test/library_checker/datastructure/line_add_get_min.test.cpp
   - icon: ':x:'
@@ -96,6 +99,7 @@ data:
   verifiedWith:
   - test/yukicoder/2012.test.cpp
   - test/library_checker/datastructure/line_add_get_min.test.cpp
+  - test/atcoder/abc244h.test.cpp
 documentation_of: convex/cht.hpp
 layout: document
 redirect_from:

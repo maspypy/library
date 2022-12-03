@@ -22,6 +22,9 @@ data:
     path: test/library_checker/datastructure/range_affine_point_add.test.cpp
     title: test/library_checker/datastructure/range_affine_point_add.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1524.test.cpp
+    title: test/yukicoder/1524.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/913.test.cpp
     title: test/yukicoder/913.test.cpp
   _isVerificationFailed: true
@@ -74,6 +77,7 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/913.test.cpp
+  - test/yukicoder/1524.test.cpp
   - test/library_checker/datastructure/range_affine_point_add.test.cpp
   - test/atcoder/abc270_f.test.cpp
   - test/aoj/GRL_2_A.test.cpp

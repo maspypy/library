@@ -25,12 +25,13 @@ data:
     \ line -1: no such header\n"
   code: "#include \"ds/disjoint_sparse/disjointsparse.hpp\"\n#include \"graph/tree.hpp\"\
     \n#include \"alg/monoid/monoid_reverse.hpp\"\n\ntemplate <typename TREE, typename\
-    \ Monoid, bool edge = false>\nstruct StaticTreeMonoid {\n  using RevMonoid = Monoid_Reverse<Monoid>;\n\
-    \  using X = typename Monoid::value_type;\n  TREE &tree;\n  int N;\n  DisjointSparse<Monoid>\
-    \ seg;\n  DisjointSparse<RevMonoid> seg_r;\n\n  StaticTreeMonoid(TREE &tree) :\
-    \ tree(tree), N(tree.N), seg(tree.N) {\n    if (!Monoid::commute) seg_r = DisjointSparse<RevMonoid>(tree.N);\n\
-    \  }\n\n  StaticTreeMonoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {\n\
-    \    vc<X> seg_raw(N, Monoid::unit());\n    if (!edge) {\n      FOR(v, N) seg_raw[tree.LID[v]]\
+    \ Monoid, bool edge = false>\nstruct Static_Tree_Monoid {\n  using RevMonoid =\
+    \ Monoid_Reverse<Monoid>;\n  using X = typename Monoid::value_type;\n  TREE &tree;\n\
+    \  int N;\n  DisjointSparse<Monoid> seg;\n  DisjointSparse<RevMonoid> seg_r;\n\
+    \n  Static_Tree_Monoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N) {\n  \
+    \  if (!Monoid::commute) seg_r = DisjointSparse<RevMonoid>(tree.N);\n  }\n\n \
+    \ Static_Tree_Monoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {\n    vc<X>\
+    \ seg_raw(N, Monoid::unit());\n    if (!edge) {\n      FOR(v, N) seg_raw[tree.LID[v]]\
     \ = dat[v];\n    } else {\n      FOR(e, N - 1) {\n        int v = tree.e_to_v(e);\n\
     \        seg_raw[tree.LID[v]] = dat[e];\n      }\n    }\n    seg = DisjointSparse<Monoid>(seg_raw);\n\
     \    if (!Monoid::commute) seg_r = DisjointSparse<RevMonoid>(seg_raw);\n  }\n\n\
@@ -79,15 +80,15 @@ data:
     };\n"
   dependsOn: []
   isVerificationFile: false
-  path: graph/ds/static_treemonoid.hpp
+  path: graph/ds/static_tree_monoid.hpp
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: graph/ds/static_treemonoid.hpp
+documentation_of: graph/ds/static_tree_monoid.hpp
 layout: document
 redirect_from:
-- /library/graph/ds/static_treemonoid.hpp
-- /library/graph/ds/static_treemonoid.hpp.html
-title: graph/ds/static_treemonoid.hpp
+- /library/graph/ds/static_tree_monoid.hpp
+- /library/graph/ds/static_tree_monoid.hpp.html
+title: graph/ds/static_tree_monoid.hpp
 ---

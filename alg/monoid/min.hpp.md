@@ -88,6 +88,9 @@ data:
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1234.test.cpp
+    title: test/yukicoder/1234.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1600.test.cpp
     title: test/yukicoder/1600.test.cpp
   - icon: ':x:'
@@ -129,6 +132,7 @@ data:
   verifiedWith:
   - test/yukicoder/1600.test.cpp
   - test/yukicoder/913.test.cpp
+  - test/yukicoder/1234.test.cpp
   - test/yukicoder/1720.test.cpp
   - test/mytest/min_max.test.cpp
   - test/mytest/range_mex.test.cpp

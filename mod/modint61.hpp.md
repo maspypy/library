@@ -48,6 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1561.test.cpp
+    title: test/yukicoder/1561.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1881.test.cpp
     title: test/yukicoder/1881.test.cpp
@@ -60,6 +63,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_1.test.cpp
     title: test/yukicoder/4_1.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/541.test.cpp
+    title: test/yukicoder/541.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -140,6 +146,8 @@ data:
   timestamp: '2022-08-19 15:26:02+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/541.test.cpp
+  - test/yukicoder/1561.test.cpp
   - test/yukicoder/1881.test.cpp
   - test/yukicoder/4_1.test.cpp
   - test/yukicoder/263.test.cpp
