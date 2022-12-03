@@ -1,21 +1,21 @@
-#include "ds/segtree/lazysegtree.hpp"
+#include "ds/segtree/lazy_segtree.hpp"
 #include "graph/tree.hpp"
 
 template <typename TREE, typename ActedMonoid, bool edge = false>
-struct LazyTreeMonoid {
+struct Lazy_Tree_Monoid {
   using MonoX = typename ActedMonoid::Monoid_X;
   using MonoA = typename ActedMonoid::Monoid_A;
   using X = typename MonoX::value_type;
   using A = typename MonoA::value_type;
   TREE &tree;
   int N;
-  LazySegTree<ActedMonoid> seg;
+  Lazy_SegTree<ActedMonoid> seg;
 
-  LazyTreeMonoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N) {
+  Lazy_Tree_Monoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N) {
     assert(MonoX::commute);
   }
 
-  LazyTreeMonoid(TREE &tree, vc<X> dat) : tree(tree), N(tree.N) {
+  Lazy_Tree_Monoid(TREE &tree, vc<X> dat) : tree(tree), N(tree.N) {
     vc<X> seg_raw(N, MonoX::unit());
     if (!edge) {
       FOR(v, N) seg_raw[tree.LID[v]] = dat[v];
@@ -25,7 +25,7 @@ struct LazyTreeMonoid {
         seg_raw[tree.LID[v]] = dat[e];
       }
     }
-    seg = LazySegTree<ActedMonoid>(seg_raw);
+    seg = Lazy_SegTree<ActedMonoid>(seg_raw);
     assert(MonoX::commute);
   }
 

@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "alg/monoid/add.hpp"
-#include "graph/ds/lazytreemonoid.hpp"
+#include "graph/ds/lazy_tree_monoid.hpp"
 #include "alg/acted_monoid/sum_add.hpp"
 
 void solve() {
@@ -20,7 +20,7 @@ void solve() {
   TREE<decltype(G)> tree(G);
   vc<pi> seg_raw(N - 1, {1, 0});
   using AM = ActedMonoid_CntSum_Add<ll>;
-  LazyTreeMonoid<decltype(tree), AM, 1> TM(tree, seg_raw);
+  Lazy_Tree_Monoid<decltype(tree), AM, 1> TM(tree, seg_raw);
   LL(Q);
   FOR(Q) {
     LL(t);

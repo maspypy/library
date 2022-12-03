@@ -2,11 +2,11 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/offline_query/rectangleunion.hpp"
+#include "other/rectangle_union.hpp"
 
 void solve() {
   LL(N);
-  RectangleUnion<int> X;
+  Rectangle_Union<int> X;
   FOR(N) {
     LL(a, b, c, d);
     X.add_rect(a, c, b, d);

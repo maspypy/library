@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "alg/acted_monoid/cntsum_affine.hpp"
+#include "alg/acted_monoid/sum_affine.hpp"
 #include "mod/modint.hpp"
 #include "ds/rbst/rbst_acted_monoid.hpp"
 
@@ -12,17 +12,15 @@ using mint = modint998;
 void solve() {
   LL(N, Q);
   VEC(mint, A, N);
-  RBST_ActedMonoid<ActedMonoid_CntSum_Affine<mint>, false, 1'000'000> X;
-  vc<pair<mint, mint>> seg_raw(N);
-  FOR(i, N) seg_raw[i] = {mint(1), A[i]};
-  auto root = X.new_node(seg_raw);
+  RBST_ActedMonoid<ActedMonoid_Sum_Affine<mint>, false, 1'000'000> X;
+  auto root = X.new_node(A);
 
   FOR(Q) {
     LL(t);
     if (t == 0) {
       LL(i, x);
       auto [a, b] = X.split(root, i);
-      root = X.merge3(a, X.new_node({mint(1), mint(x)}), b);
+      root = X.merge3(a, X.new_node(mint(x)), b);
     }
     if (t == 1) {
       LL(i);
@@ -39,7 +37,7 @@ void solve() {
     }
     if (t == 4) {
       LL(l, r);
-      print(X.prod(root, l, r).se);
+      print(X.prod(root, l, r));
     }
   }
 }

@@ -114,7 +114,7 @@ struct RBST_ActedMonoid {
     vc<X> res;
     auto dfs = [&](auto &dfs, np root, bool rev, A lazy) -> void {
       if (!root) return;
-      X me = ActedMonoid::act(root->x, lazy);
+      X me = ActedMonoid::act(root->x, lazy, 1);
       lazy = Monoid_A::op(root->lazy, lazy);
       dfs(dfs, (rev ? root->r : root->l), rev ^ root->rev, lazy);
       res.eb(me);
@@ -155,13 +155,13 @@ private:
     }
     if (c->lazy != Monoid_A::unit()) {
       if (c->l) {
-        c->l->x = ActedMonoid::act(c->l->x, c->lazy);
-        c->l->prod = ActedMonoid::act(c->l->prod, c->lazy);
+        c->l->x = ActedMonoid::act(c->l->x, c->lazy, 1);
+        c->l->prod = ActedMonoid::act(c->l->prod, c->lazy, c->l->size);
         c->l->lazy = Monoid_A::op(c->l->lazy, c->lazy);
       }
       if (c->r) {
-        c->r->x = ActedMonoid::act(c->r->x, c->lazy);
-        c->r->prod = ActedMonoid::act(c->r->prod, c->lazy);
+        c->r->x = ActedMonoid::act(c->r->x, c->lazy, 1);
+        c->r->prod = ActedMonoid::act(c->r->prod, c->lazy, c->r->size);
         c->r->lazy = Monoid_A::op(c->r->lazy, c->lazy);
       }
       c->lazy = Monoid_A::unit();
@@ -281,13 +281,13 @@ private:
     X res = Monoid_X::unit();
     if (l < sl) {
       X y = prod_rec(left, l, min(r, sl), rev ^ root->rev);
-      res = Monoid_X::op(res, ActedMonoid::act(y, root->lazy));
+      res = Monoid_X::op(res, ActedMonoid::act(y, root->lazy, min(r, sl) - l));
     }
     if (l <= sl && sl < r) res = Monoid_X::op(res, root->x);
     u32 k = 1 + sl;
     if (k < r) {
       X y = prod_rec(right, max(k, l) - k, r - k, rev ^ root->rev);
-      res = Monoid_X::op(res, ActedMonoid::act(y, root->lazy));
+      res = Monoid_X::op(res, ActedMonoid::act(y, root->lazy, r - max(k, l)));
     }
     return res;
   }
@@ -296,7 +296,7 @@ private:
     np left = (rev ? root->r : root->l);
     np right = (rev ? root->l : root->r);
     u32 sl = (left ? left->size : 0);
-    if (k == sl) return ActedMonoid::act(root->x, lazy);
+    if (k == sl) return ActedMonoid::act(root->x, lazy, 1);
     lazy = Monoid_A::op(root->lazy, lazy);
     rev ^= root->rev;
     if (k < sl) return get_rec(left, k, rev, lazy);
@@ -307,14 +307,14 @@ private:
     prop(root);
     root = copy_node(root);
     if (l == 0 && r == root->size) {
-      root->x = ActedMonoid::act(root->x, a);
-      root->prod = ActedMonoid::act(root->prod, a);
+      root->x = ActedMonoid::act(root->x, a, 1);
+      root->prod = ActedMonoid::act(root->prod, a, root->size);
       root->lazy = a;
       return root;
     }
     u32 sl = (root->l ? root->l->size : 0);
     if (l < sl) root->l = apply_rec(root->l, l, min(r, sl), a);
-    if (l <= sl && sl < r) root->x = ActedMonoid::act(root->x, a);
+    if (l <= sl && sl < r) root->x = ActedMonoid::act(root->x, a, 1);
     u32 k = 1 + sl;
     if (k < r) root->r = apply_rec(root->r, max(k, l) - k, r - k, a);
     update(root);
