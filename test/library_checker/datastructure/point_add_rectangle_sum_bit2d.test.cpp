@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/fenwick/fenwick2d.hpp"
+#include "ds/fenwicktree/fenwicktree_2d.hpp"
 
 void solve() {
   LL(N, Q);
@@ -28,7 +28,7 @@ void solve() {
     }
   }
 
-  Fenwick2D<Monoid_Add<ll>, ll, false> bit(X, Y, W);
+  FenwickTree_2D<Monoid_Add<ll>, ll, false> bit(X, Y, W);
   FOR(q, Q) {
     auto [a, b, c, d] = query[q];
     if (a == -1) {

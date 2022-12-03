@@ -1,4 +1,4 @@
-#include "ds/fenwick/fenwick.hpp"
+#include "ds/fenwicktree/fenwicktree.hpp"
 
 template <typename AbelGroup, typename XY, bool SMALL_X = false>
 struct Point_Add_Rectangle_Sum {

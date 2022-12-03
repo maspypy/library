@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/fenwick/fenwick2d.hpp"
+#include "ds/fenwicktree/fenwicktree_2d.hpp"
 
 void solve() {
   LL(N, Q);
@@ -12,8 +12,8 @@ void solve() {
     LL(x, y, w);
     X[i] = x, Y[i] = y, W[i] = w;
   }
-  Fenwick2D<Monoid_Add<ll>, ll, false> bit(X, Y, W);
-  FOR(_, Q) {
+  FenwickTree_2D<Monoid_Add<ll>, ll, false> bit(X, Y, W);
+  FOR(Q) {
     LL(l, d, r, u);
     print(bit.sum(l, r, d, u));
   }

@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/segtree/dualsegtree.hpp"
+#include "ds/segtree/dual_segtree.hpp"
 #include "alg/monoid/affine.hpp"
 #include "mod/modint.hpp"
 
@@ -11,7 +11,7 @@ using mint = modint998;
 void solve() {
   LL(N, Q);
   VEC(mint, A, N);
-  DualSegTree<Monoid_Affine<mint>> seg(N);
+  Dual_SegTree<Monoid_Affine<mint>> seg(N);
   FOR(Q) {
     LL(t);
     if (t == 0) {

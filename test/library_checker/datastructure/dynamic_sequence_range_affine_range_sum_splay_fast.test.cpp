@@ -3,8 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "alg/acted_monoid/cntsum_affine.hpp"
-#include "ds/splay/splaytree_acted_monoid.hpp"
+#include "ds/splaytree/splaytree.hpp"
 
 const int mod = 998244353;
 

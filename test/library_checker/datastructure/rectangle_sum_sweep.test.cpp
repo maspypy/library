@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/fenwick/fenwick.hpp"
+#include "ds/fenwicktree/fenwicktree.hpp"
 #include "ds/offline_query/point_add_rectangle_sum.hpp"
 
 void solve() {

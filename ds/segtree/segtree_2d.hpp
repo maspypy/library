@@ -1,5 +1,5 @@
 template <typename Monoid, typename XY, bool SMALL = false>
-struct SegTree2D {
+struct SegTree_2D {
   using MX = Monoid;
   using S = typename MX::value_type;
   static_assert(MX::commute);
@@ -8,7 +8,7 @@ struct SegTree2D {
   vc<int> indptr;
   vc<S> dat;
 
-  SegTree2D(vc<XY>& X, vc<XY>& Y, vc<S> wt = vc<S>()) {
+  SegTree_2D(vc<XY>& X, vc<XY>& Y, vc<S> wt = vc<S>()) {
     if (len(wt) == 0) wt = vc<S>(len(X), MX::unit());
     assert(len(X) == len(Y) && len(X) == len(wt));
     if (!SMALL) {
