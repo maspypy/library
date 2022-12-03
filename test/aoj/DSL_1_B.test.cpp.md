@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/weightedunionfind.hpp
     title: ds/unionfind/weightedunionfind.hpp
   - icon: ':question:'
