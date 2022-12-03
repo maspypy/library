@@ -1,15 +1,15 @@
 #include "alg/monoid/add.hpp"
 
 template <typename Monoid>
-struct Fenwick2D_dense {
+struct Fenwick_Tree_2D_Dense {
   using G = Monoid;
   using E = typename G::value_type;
   static_assert(G::commute);
   int H, W;
-  vc<E> > dat;
+  vc<E> dat;
 
-  Fenwick2D_dense() {}
-  Fenwick2D_dense(int H, int W) : H(H), W(W), dat(H * W) {}
+  Fenwick_Tree_2D_Dense() {}
+  Fenwick_Tree_2D_Dense(int H, int W) : H(H), W(W), dat(H * W) {}
 
   void add(int x, int y, E val) {
     ++x;
@@ -18,7 +18,7 @@ struct Fenwick2D_dense {
 
   E sum(int lx, int rx, int ly, int ry) { return prod(lx, ly, rx, ry); }
   E prod(int lx, int rx, int ly, int ry) {
-    E pos = G::unit(), E neg = G::unit();
+    E pos = G::unit(), neg = G::unit();
     while (lx < rx) { pos = G::op(pos, sum_x(rx, ly, ry)), rx -= rx & -rx; }
     while (rx < lx) { neg = G::op(neg, sum_x(lx, ly, ry)), lx -= lx & -lx; }
     return G::op(pos, G::inverse(neg));
@@ -39,7 +39,7 @@ private:
     while (y <= W) { dat[idx(x, y)] = G::op(dat[idx(x, y)], val), y += y & -y; }
   }
   E sum_x(int x, int ly, int ry) {
-    E pos = G::unit(), E neg = G::unit();
+    E pos = G::unit(), neg = G::unit();
     while (ly < ry) { pos = G::op(pos, dat[idx(x, ry)]), ry -= ry & -ry; }
     while (ry < ly) { neg = G::op(neg, dat[idx(x, ly)]), ly -= ly & -ly; }
     return G::op(pos, G::inverse(neg));

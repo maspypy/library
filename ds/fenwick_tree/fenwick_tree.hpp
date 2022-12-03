@@ -3,9 +3,9 @@
 
 template <typename Monoid>
 struct Fenwick_Tree {
-  static_assert(G::commute);
   using G = Monoid;
   using E = typename G::value_type;
+  static_assert(G::commute);
   int n;
   vector<E> dat;
   E total;
@@ -16,14 +16,14 @@ struct Fenwick_Tree {
   Fenwick_Tree(int n, F f) {
     build(n, f);
   }
-  Fenwick_Tree(const vc<X>& v) { build(v); }
+  Fenwick_Tree(const vc<E>& v) { build(v); }
 
   void build(int m) {
     dat.assign(m, G::unit());
     total = G::unit();
   }
-  void build(const vc<X>& v) {
-    build(len(v), [&](int i) -> X { return v[i]; });
+  void build(const vc<E>& v) {
+    build(len(v), [&](int i) -> E { return v[i]; });
   }
   template <typename F>
   void build(int m, F f) {
@@ -36,7 +36,7 @@ struct Fenwick_Tree {
       int j = i + (i & -i);
       if (j <= n) dat[j - 1] = G::op(dat[i - 1], dat[j - 1]);
     }
-    total = sum(m);
+    total = prefix_sum(m);
   }
 
   E prod_all() { return total; }
@@ -49,7 +49,7 @@ struct Fenwick_Tree {
   }
   E sum(int L, int R) { return prod(L, R); }
   E prod(int L, int R) {
-    if (L == 0) return prod(R);
+    if (L == 0) return prefix_prod(R);
     E pos = G::unit(), neg = G::unit();
     while (L < R) { pos = G::op(pos, dat[R - 1]), R -= R & -R; }
     while (R < L) { neg = G::op(neg, dat[L - 1]), L -= L & -L; }
@@ -78,6 +78,6 @@ struct Fenwick_Tree {
   }
 
   int find_kth(E k) {
-    return max_right([](E x) -> bool { return x <= k; });
+    return max_right([&k](E x) -> bool { return x <= k; });
   }
 };
