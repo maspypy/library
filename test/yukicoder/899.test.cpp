@@ -1,8 +1,8 @@
 #define PROBLEM "https://yukicoder.me/problems/no/899"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "graph/ds/bfsnumbering.hpp"
-#include "ds/segtree/lazysegtree.hpp"
+#include "graph/ds/bfs_numbering.hpp"
+#include "ds/segtree/lazy_segtree.hpp"
 #include "alg/acted_monoid/add_mul.hpp"
 
 void solve() {
@@ -10,7 +10,7 @@ void solve() {
   Graph<int> G(N);
   G.read_tree(0, 0);
 
-  BFSNumbering<decltype(G)> BFS(G);
+  BFS_Numbering<decltype(G)> BFS(G);
   auto &ID = BFS.ID;
   vi seg_raw(N);
 
@@ -20,7 +20,7 @@ void solve() {
   }
 
   using AM = ActedMonoid_Add_Mul<ll>;
-  LazySegTree<AM> seg(seg_raw);
+  Lazy_SegTree<AM> seg(seg_raw);
 
   LL(Q);
   FOR(_, Q) {

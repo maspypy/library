@@ -1,11 +1,10 @@
 #include "graph/base.hpp"
 
-
 // ID[v]：頂点の新しい番号
 // calc_range(v, dep)：v の部分木で、深さ dep のものたちの範囲
 // 深さは絶対的なものであることに注意せよ
 template <typename Graph>
-struct BFSNumbering {
+struct BFS_Numbering {
   Graph& G;
   int root;
   vector<int> V;
@@ -17,7 +16,7 @@ struct BFSNumbering {
   vector<int> dep_ids;
   int cnt;
 
-  BFSNumbering(Graph& G, int root = 0) : G(G), root(root), cnt(0) { build(); }
+  BFS_Numbering(Graph& G, int root = 0) : G(G), root(root), cnt(0) { build(); }
 
   void bfs() {
     deque<int> que = {root};
@@ -26,7 +25,7 @@ struct BFSNumbering {
       que.pop_front();
       ID[v] = V.size();
       V.eb(v);
-      for(auto&& [frm,to,cost,id] : G[v]) {
+      for (auto&& [frm, to, cost, id]: G[v]) {
         if (to == parent[v]) continue;
         que.emplace_back(to);
         parent[to] = v;
@@ -37,7 +36,7 @@ struct BFSNumbering {
 
   void dfs(int v) {
     LID[v] = cnt++;
-    for(auto&& [frm,to,cost,id] : G[v]) {
+    for (auto&& [frm, to, cost, id]: G[v]) {
       if (to == parent[v]) continue;
       dfs(to);
     }

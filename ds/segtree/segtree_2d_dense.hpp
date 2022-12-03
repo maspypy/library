@@ -6,10 +6,10 @@ struct SegTree_2D_Dense {
   using X = typename MX::value_type;
   using value_type = X;
   static_assert(MX::commute);
-  vc<X> dat;
   int H, W;
+  vc<X> dat;
 
-  SegTree_2D_Dense() : SegTree2D_Dense(0, 0) {}
+  SegTree_2D_Dense() : SegTree_2D_Dense(0, 0) {}
   SegTree_2D_Dense(int H, int W) : H(H), W(W), dat(4 * H * W, MX::unit()) {}
   SegTree_2D_Dense(vc<vc<X>> &v) {
     H = len(v), W = (H == 0 ? 0 : len(v[0]));

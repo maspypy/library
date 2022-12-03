@@ -1,4 +1,4 @@
-#include "ds/larsch.hpp"
+#include "convex/larsch.hpp"
 #include "seq/monotone_minima.hpp"
 
 // 定義域 [0, N] の範囲で f の monge 性を確認

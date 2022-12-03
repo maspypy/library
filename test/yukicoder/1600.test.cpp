@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1600"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/segtree/segtree2d.hpp"
+#include "ds/segtree/segtree_2d.hpp"
 #include "alg/monoid/min.hpp"
 #include "graph/tree.hpp"
 #include "ds/unionfind/unionfind.hpp"
@@ -40,7 +40,7 @@ void solve() {
   }
 
   using Mono = Monoid_Min<int>;
-  SegTree2D<Mono, int, true> seg(X, Y, W);
+  SegTree_2D<Mono, int, true> seg(X, Y, W);
 
   LL(Q);
   FOR(Q) {
