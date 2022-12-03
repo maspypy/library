@@ -3,18 +3,18 @@
 
 template <typename TREE, typename AbelGroup, bool edge = false,
           bool path_query = true, bool subtree_query = false>
-struct TreeAbelGroup {
+struct Tree_AbelGroup {
   using X = typename AbelGroup::value_type;
   TREE &tree;
   int N;
   FenwickTree<AbelGroup> bit, bit_subtree;
 
-  TreeAbelGroup(TREE &tree) : tree(tree), N(tree.N) {
+  Tree_AbelGroup(TREE &tree) : tree(tree), N(tree.N) {
     if (path_query) { bit = FenwickTree<AbelGroup>(2 * N); }
     if (subtree_query) { bit_subtree = FenwickTree<AbelGroup>(N); }
   }
 
-  TreeAbelGroup(TREE &tree, vc<X> dat) : tree(tree), N(tree.N) {
+  Tree_AbelGroup(TREE &tree, vc<X> dat) : tree(tree), N(tree.N) {
     if (path_query) {
       vc<X> bit_raw(2 * N);
       if (!edge) {

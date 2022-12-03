@@ -1,10 +1,10 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1270"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/fenwick/fenwick.hpp"
+#include "ds/fenwicktree/fenwicktree.hpp"
 #include "ds/offline_query/mo.hpp"
 
-#include "ds/segtree/lazysegtree.hpp"
+#include "ds/segtree/lazy_segtree.hpp"
 #include "alg/acted_monoid/min_add.hpp"
 
 void solve() {
@@ -14,7 +14,8 @@ void solve() {
 
   vi ANS(Q);
   FenwickTree<Monoid_Add<int>> bit_l(N), bit_r(N);
-  LazySegTree<ActedMonoid_Min_Add<int>> seg(N, [&](int i) -> int { return 0; });
+  using AM = ActedMonoid_Min_Add<int>;
+  Lazy_SegTree<AM> seg(N, [&](int i) -> int { return 0; });
   int ans = 0;
   for (auto&& x: A) {
     ans += bit_r.sum(x + 1, N);
@@ -32,14 +33,14 @@ void solve() {
   auto ADD_L = [&](int i) -> void {
     int x = A[i];
     ans -= bit_l.sum(x + 1, N);
-    ans -= bit_r.sum(x);
+    ans -= bit_r.sum(0, x);
     bit_l.add(x, -1);
     seg.apply(0, x, -1);
     ++sz;
   };
   auto ADD_R = [&](int i) -> void {
     int x = A[i];
-    ans -= bit_r.sum(x);
+    ans -= bit_r.sum(0, x);
     ans -= bit_l.sum(x + 1, N);
     bit_r.add(x, -1);
     seg.apply(x + 1, N, -1);
@@ -48,14 +49,14 @@ void solve() {
   auto RM_L = [&](int i) -> void {
     int x = A[i];
     ans += bit_l.sum(x + 1, N);
-    ans += bit_r.sum(x);
+    ans += bit_r.sum(0, x);
     bit_l.add(x, 1);
     seg.apply(0, x, 1);
     --sz;
   };
   auto RM_R = [&](int i) -> void {
     int x = A[i];
-    ans += bit_r.sum(x);
+    ans += bit_r.sum(0, x);
     ans += bit_l.sum(x + 1, N);
     bit_r.add(x, 1);
     seg.apply(x + 1, N, 1);
