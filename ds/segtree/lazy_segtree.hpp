@@ -54,9 +54,7 @@ struct Lazy_SegTree {
   }
 
   vc<X> get_all() {
-    for (int i = log; i >= 1; i--) {
-      FOR(k, size >> i, (size + size) >> i) { push(k); }
-    }
+    FOR(k, 1, size) { push(k); }
     return {dat.begin() + size, dat.begin() + size + n};
   }
 
@@ -83,11 +81,9 @@ struct Lazy_SegTree {
     assert(0 <= l && l <= r && r <= n);
     if (l == r) return;
     l += size, r += size;
-    if (!MA::commute) {
-      for (int i = log; i >= 1; i--) {
-        if (((l >> i) << i) != l) push(l >> i);
-        if (((r >> i) << i) != r) push((r - 1) >> i);
-      }
+    for (int i = log; i >= 1; i--) {
+      if (((l >> i) << i) != l) push(l >> i);
+      if (((r >> i) << i) != r) push((r - 1) >> i);
     }
     int l2 = l, r2 = r;
     while (l < r) {

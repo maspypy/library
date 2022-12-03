@@ -2,7 +2,7 @@
   "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/fenwicktree/fenwicktree.hpp"
+#include "ds/fenwicktree/fenwicktree_raq.hpp"
 
 void solve() {
   LL(N, Q);
