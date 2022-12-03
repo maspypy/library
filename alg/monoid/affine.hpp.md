@@ -33,6 +33,12 @@ data:
   - icon: ':x:'
     path: test/library_checker/datastructure/sort_segtree_1.test.cpp
     title: test/library_checker/datastructure/sort_segtree_1.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+    title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+    title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1502.test.cpp
     title: test/yukicoder/1502.test.cpp
@@ -67,6 +73,8 @@ data:
   verifiedWith:
   - test/yukicoder/1502.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
   - test/library_checker/datastructure/queue_operate_all_composite.test.cpp

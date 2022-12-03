@@ -9,6 +9,9 @@ data:
   - icon: ':x:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
+  - icon: ':x:'
+    path: test/mytest/ARC30D.test.cpp
+    title: test/mytest/ARC30D.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -38,6 +41,7 @@ data:
   timestamp: '2022-12-03 07:16:30+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/mytest/ARC30D.test.cpp
   - test/aoj/GRL_5_E.test.cpp
 documentation_of: alg/acted_monoid/sum_add.hpp
 layout: document

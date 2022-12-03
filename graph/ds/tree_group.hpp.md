@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: alg/monoid/group_reverse.hpp
     title: alg/monoid/group_reverse.hpp
   - icon: ':question:'
@@ -14,10 +14,13 @@ data:
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+    title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
@@ -182,8 +185,8 @@ data:
     \u306E\u306E\u3001HLD(log^2N)\u3088\u308A\u9045\u3044\u304C\u3061\uFF1F\r\n//\
     \ EulerTour + \u30BB\u30B0\u6728\r\n// \u9006\u5143\u3092\u5229\u7528\u3057\u3066\
     \u3001\u30D1\u30B9\u30AF\u30A8\u30EA\u3092 O(logN) \u6642\u9593\u3067\u884C\u3046\
-    \u3002\r\n\r\ntemplate <typename TREE, typename Group, bool edge = false,\r\n\
-    \          bool path_query = true, bool subtree_query = false>\r\nstruct Tree_Group\
+    \u3002\r\ntemplate <typename TREE, typename Group, bool edge = false,\r\n    \
+    \      bool path_query = true, bool subtree_query = false>\r\nstruct Tree_Group\
     \ {\r\n  using RevGroup = Group_Reverse<Group>;\r\n  using X = typename Group::value_type;\r\
     \n  TREE &tree;\r\n  int N;\r\n  SegTree<Group> seg, seg_subtree;\r\n  SegTree<RevGroup>\
     \ seg_r;\r\n\r\n  Tree_Group(TREE &tree) : tree(tree), N(tree.N) {\r\n    if (path_query)\
@@ -224,8 +227,8 @@ data:
     \u306E\u306E\u3001HLD(log^2N)\u3088\u308A\u9045\u3044\u304C\u3061\uFF1F\r\n//\
     \ EulerTour + \u30BB\u30B0\u6728\r\n// \u9006\u5143\u3092\u5229\u7528\u3057\u3066\
     \u3001\u30D1\u30B9\u30AF\u30A8\u30EA\u3092 O(logN) \u6642\u9593\u3067\u884C\u3046\
-    \u3002\r\n\r\ntemplate <typename TREE, typename Group, bool edge = false,\r\n\
-    \          bool path_query = true, bool subtree_query = false>\r\nstruct Tree_Group\
+    \u3002\r\ntemplate <typename TREE, typename Group, bool edge = false,\r\n    \
+    \      bool path_query = true, bool subtree_query = false>\r\nstruct Tree_Group\
     \ {\r\n  using RevGroup = Group_Reverse<Group>;\r\n  using X = typename Group::value_type;\r\
     \n  TREE &tree;\r\n  int N;\r\n  SegTree<Group> seg, seg_subtree;\r\n  SegTree<RevGroup>\
     \ seg_r;\r\n\r\n  Tree_Group(TREE &tree) : tree(tree), N(tree.N) {\r\n    if (path_query)\
@@ -269,9 +272,10 @@ data:
   isVerificationFile: false
   path: graph/ds/tree_group.hpp
   requiredBy: []
-  timestamp: '2022-12-04 00:39:06+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-12-04 01:27:27+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
 documentation_of: graph/ds/tree_group.hpp
 layout: document
 redirect_from:

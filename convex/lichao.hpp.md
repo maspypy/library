@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/segment_add_get_min.test.cpp
+    title: test/library_checker/datastructure/segment_add_get_min.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"convex/lichao.hpp\"\ntemplate <typename T>\r\nstruct LiChaoTree\
@@ -83,8 +86,9 @@ data:
   path: convex/lichao.hpp
   requiredBy: []
   timestamp: '2022-12-03 09:41:32+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/library_checker/datastructure/segment_add_get_min.test.cpp
 documentation_of: convex/lichao.hpp
 layout: document
 redirect_from:

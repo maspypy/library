@@ -41,13 +41,16 @@ data:
   - icon: ':x:'
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
+    path: graph/ds/tree_abelgroup.hpp
+    title: graph/ds/tree_abelgroup.hpp
+  - icon: ':x:'
     path: graph/ds/tree_group.hpp
     title: graph/ds/tree_group.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
   - icon: ':warning:'
@@ -201,6 +204,24 @@ data:
   - icon: ':x:'
     path: test/atcoder/arc151_e.test.cpp
     title: test/atcoder/arc151_e.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+    title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+    title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+    title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+    title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+    title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+    title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/K_shortest_walk.test.cpp
     title: test/library_checker/graph/K_shortest_walk.test.cpp
@@ -249,6 +270,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/two_edge_component.test.cpp
     title: test/library_checker/graph/two_edge_component.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/graph/verted_add_contour_sum.test.cpp
+    title: test/library_checker/graph/verted_add_contour_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/twosat.test.cpp
     title: test/library_checker/math/twosat.test.cpp
@@ -502,6 +526,7 @@ data:
   - graph/ds/lazy_tree_monoid.hpp
   - graph/ds/tree_group.hpp
   - graph/ds/bfs_numbering.hpp
+  - graph/ds/tree_abelgroup.hpp
   - graph/ds/tree_monoid.hpp
   - graph/find_odd_cycle.hpp
   - graph/tree_all_distances.hpp
@@ -553,6 +578,12 @@ data:
   - test/mytest/tutte.test.cpp
   - test/library_checker/string/number_of_substrings2.test.cpp
   - test/library_checker/math/twosat.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - test/library_checker/tree/tree_diameter.test.cpp
   - test/library_checker/tree/lca.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp
@@ -569,6 +600,7 @@ data:
   - test/library_checker/graph/maximum_independent_set.test.cpp
   - test/library_checker/graph/enumerate_cliques.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
+  - test/library_checker/graph/verted_add_contour_sum.test.cpp
   - test/library_checker/graph/shortest_path.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
   - test/library_checker/graph/bipartite_edge_coloring.test.cpp

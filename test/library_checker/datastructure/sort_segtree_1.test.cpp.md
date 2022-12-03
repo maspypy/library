@@ -337,43 +337,43 @@ data:
     \ return a;\n    a->l = merge(a->l, b->l), a->r = merge(a->r, b->r);\n    update(a);\n\
     \    return a;\n  }\n\n  void update(np n) {\n    if (!(n->l) && !(n->r)) { return;\
     \ }\n    if (!(n->l)) {\n      n->x = n->r->x, n->rev_x = n->r->rev_x, n->size\
-    \ = n->r->size, return;\n    }\n    if (!(n->r)) {\n      n->x = n->l->x, n->rev_x\
-    \ = n->l->rev_x, n->size = n->l->size, return;\n    }\n    n->x = MX::op(n->l->x,\
-    \ n->r->x);\n    n->rev_x = MX::op(n->r->rev_x, n->l->rev_x);\n    n->size = n->l->size\
-    \ + n->r->size;\n  }\n\n  void set_rec(np n, int l, int r, int k, const X& x)\
-    \ {\n    if (r == l + 1) { n->x = n->rev_x = x, return; }\n    int m = (l + r)\
-    \ / 2;\n    if (k < m) {\n      if (!(n->l)) n->l = new_node();\n      set_rec(n->l,\
-    \ l, m, k, x);\n    }\n    if (node_m <= k) {\n      if (!(n->r)) n->r = new_node();\n\
-    \      set_rec(n->r, m, r, k, x);\n    }\n    update(n);\n  }\n};\n#line 2 \"\
-    alg/monoid/affine.hpp\"\n\ntemplate <typename K>\nstruct Monoid_Affine {\n  using\
-    \ F = pair<K, K>;\n  using value_type = F;\n  static constexpr F op(const F &x,\
-    \ const F &y) noexcept {\n    return F({x.first * y.first, x.second * y.first\
-    \ + y.second});\n  }\n  static constexpr F inverse(const F &x) {\n    auto [a,\
-    \ b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n  }\n  static constexpr\
-    \ K eval(const F &f, K x) noexcept {\n    return f.first * x + f.second;\n  }\n\
-    \  static constexpr F unit() { return {K(1), K(0)}; }\n  static constexpr bool\
-    \ commute = false;\n};\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct\
-    \ modint {\n  int val;\n  constexpr modint(ll x = 0) noexcept {\n    if (0 <=\
-    \ x && x < mod)\n      val = x;\n    else {\n      x %= mod;\n      val = (x <\
-    \ 0 ? x + mod : x);\n    }\n  }\n  bool operator<(const modint &other) const {\n\
-    \    return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
-    \ modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n\
-    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >=\
-    \ mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint\
-    \ &p) {\n    val = (int)(1LL * val * p.val % mod);\n    return *this;\n  }\n \
-    \ modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
-    \ *this;\n  }\n  modint operator-() const { return modint(-val); }\n  modint operator+(const\
-    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
-    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
-    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
-    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
-    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
-    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
-    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
-    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t n) const {\n\
-    \    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
-    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  void write()\
-    \ { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
+    \ = n->r->size;\n      return;\n    }\n    if (!(n->r)) {\n      n->x = n->l->x,\
+    \ n->rev_x = n->l->rev_x, n->size = n->l->size;\n      return;\n    }\n    n->x\
+    \ = MX::op(n->l->x, n->r->x);\n    n->rev_x = MX::op(n->r->rev_x, n->l->rev_x);\n\
+    \    n->size = n->l->size + n->r->size;\n  }\n\n  void set_rec(np n, int l, int\
+    \ r, int k, const X& x) {\n    if (r == l + 1) {\n      n->x = n->rev_x = x;\n\
+    \      return;\n    }\n    int m = (l + r) / 2;\n    if (k < m) {\n      if (!(n->l))\
+    \ n->l = new_node();\n      set_rec(n->l, l, m, k, x);\n    }\n    if (node_m\
+    \ <= k) {\n      if (!(n->r)) n->r = new_node();\n      set_rec(n->r, m, r, k,\
+    \ x);\n    }\n    update(n);\n  }\n};\n#line 2 \"alg/monoid/affine.hpp\"\n\ntemplate\
+    \ <typename K>\nstruct Monoid_Affine {\n  using F = pair<K, K>;\n  using value_type\
+    \ = F;\n  static constexpr F op(const F &x, const F &y) noexcept {\n    return\
+    \ F({x.first * y.first, x.second * y.first + y.second});\n  }\n  static constexpr\
+    \ F inverse(const F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n    return\
+    \ {a, a * (-b)};\n  }\n  static constexpr K eval(const F &f, K x) noexcept {\n\
+    \    return f.first * x + f.second;\n  }\n  static constexpr F unit() { return\
+    \ {K(1), K(0)}; }\n  static constexpr bool commute = false;\n};\n#line 2 \"mod/modint.hpp\"\
+    \n\ntemplate <int mod>\nstruct modint {\n  int val;\n  constexpr modint(ll x =\
+    \ 0) noexcept {\n    if (0 <= x && x < mod)\n      val = x;\n    else {\n    \
+    \  x %= mod;\n      val = (x < 0 ? x + mod : x);\n    }\n  }\n  bool operator<(const\
+    \ modint &other) const {\n    return val < other.val;\n  } // To use std::map\n\
+    \  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -=\
+    \ mod;\n    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if\
+    \ ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint\
+    \ &operator*=(const modint &p) {\n    val = (int)(1LL * val * p.val % mod);\n\
+    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
+    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint(-val);\
+    \ }\n  modint operator+(const modint &p) const { return modint(*this) += p; }\n\
+    \  modint operator-(const modint &p) const { return modint(*this) -= p; }\n  modint\
+    \ operator*(const modint &p) const { return modint(*this) *= p; }\n  modint operator/(const\
+    \ modint &p) const { return modint(*this) /= p; }\n  bool operator==(const modint\
+    \ &p) const { return val == p.val; }\n  bool operator!=(const modint &p) const\
+    \ { return val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod,\
+    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
+    \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
+    \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
+    \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
+    \  }\n  void write() { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
     \ }\n  static constexpr int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
     \ {\n  static constexpr bool is_modint = true;\n  int val;\n  ArbitraryModInt()\
     \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
@@ -487,7 +487,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/sort_segtree_1.test.cpp
   requiredBy: []
-  timestamp: '2022-12-03 10:58:25+09:00'
+  timestamp: '2022-12-04 01:27:27+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/sort_segtree_1.test.cpp

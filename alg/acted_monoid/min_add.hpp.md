@@ -7,11 +7,20 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: seq/common_interval_decomposition.hpp
+    title: seq/common_interval_decomposition.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/aoj/DSL_2_H.test.cpp
     title: test/aoj/DSL_2_H.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/graph/common_interval_decomposition.test.cpp
+    title: test/library_checker/graph/common_interval_decomposition.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1720.test.cpp
+    title: test/yukicoder/1720.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -43,10 +52,13 @@ data:
   - alg/monoid/min.hpp
   isVerificationFile: false
   path: alg/acted_monoid/min_add.hpp
-  requiredBy: []
+  requiredBy:
+  - seq/common_interval_decomposition.hpp
   timestamp: '2022-12-03 08:35:02+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/yukicoder/1720.test.cpp
+  - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/aoj/DSL_2_H.test.cpp
 documentation_of: alg/acted_monoid/min_add.hpp
 layout: document

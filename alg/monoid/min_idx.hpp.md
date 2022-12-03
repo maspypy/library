@@ -22,6 +22,9 @@ data:
     path: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
     title: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
+    title: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
   _isVerificationFailed: false
@@ -58,6 +61,7 @@ data:
   verifiedWith:
   - test/mytest/suffix_tree.test.cpp
   - test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
+  - test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
 documentation_of: alg/monoid/min_idx.hpp
 layout: document
 redirect_from:

@@ -147,14 +147,15 @@ data:
     \ return a;\n    a->l = merge(a->l, b->l), a->r = merge(a->r, b->r);\n    update(a);\n\
     \    return a;\n  }\n\n  void update(np n) {\n    if (!(n->l) && !(n->r)) { return;\
     \ }\n    if (!(n->l)) {\n      n->x = n->r->x, n->rev_x = n->r->rev_x, n->size\
-    \ = n->r->size, return;\n    }\n    if (!(n->r)) {\n      n->x = n->l->x, n->rev_x\
-    \ = n->l->rev_x, n->size = n->l->size, return;\n    }\n    n->x = MX::op(n->l->x,\
-    \ n->r->x);\n    n->rev_x = MX::op(n->r->rev_x, n->l->rev_x);\n    n->size = n->l->size\
-    \ + n->r->size;\n  }\n\n  void set_rec(np n, int l, int r, int k, const X& x)\
-    \ {\n    if (r == l + 1) { n->x = n->rev_x = x, return; }\n    int m = (l + r)\
-    \ / 2;\n    if (k < m) {\n      if (!(n->l)) n->l = new_node();\n      set_rec(n->l,\
-    \ l, m, k, x);\n    }\n    if (node_m <= k) {\n      if (!(n->r)) n->r = new_node();\n\
-    \      set_rec(n->r, m, r, k, x);\n    }\n    update(n);\n  }\n};\n"
+    \ = n->r->size;\n      return;\n    }\n    if (!(n->r)) {\n      n->x = n->l->x,\
+    \ n->rev_x = n->l->rev_x, n->size = n->l->size;\n      return;\n    }\n    n->x\
+    \ = MX::op(n->l->x, n->r->x);\n    n->rev_x = MX::op(n->r->rev_x, n->l->rev_x);\n\
+    \    n->size = n->l->size + n->r->size;\n  }\n\n  void set_rec(np n, int l, int\
+    \ r, int k, const X& x) {\n    if (r == l + 1) {\n      n->x = n->rev_x = x;\n\
+    \      return;\n    }\n    int m = (l + r) / 2;\n    if (k < m) {\n      if (!(n->l))\
+    \ n->l = new_node();\n      set_rec(n->l, l, m, k, x);\n    }\n    if (node_m\
+    \ <= k) {\n      if (!(n->r)) n->r = new_node();\n      set_rec(n->r, m, r, k,\
+    \ x);\n    }\n    update(n);\n  }\n};\n"
   code: "#include \"ds/fastset.hpp\"\n#include \"ds/segtree/segtree.hpp\"\n\ntemplate\
     \ <typename Monoid, int NODES>\nstruct Sortable_SegTree {\n  using MX = Monoid;\n\
     \  using X = typename MX::value_type;\n  const int N, KEY_MAX;\n\n  struct Node\
@@ -210,21 +211,22 @@ data:
     \ return a;\n    a->l = merge(a->l, b->l), a->r = merge(a->r, b->r);\n    update(a);\n\
     \    return a;\n  }\n\n  void update(np n) {\n    if (!(n->l) && !(n->r)) { return;\
     \ }\n    if (!(n->l)) {\n      n->x = n->r->x, n->rev_x = n->r->rev_x, n->size\
-    \ = n->r->size, return;\n    }\n    if (!(n->r)) {\n      n->x = n->l->x, n->rev_x\
-    \ = n->l->rev_x, n->size = n->l->size, return;\n    }\n    n->x = MX::op(n->l->x,\
-    \ n->r->x);\n    n->rev_x = MX::op(n->r->rev_x, n->l->rev_x);\n    n->size = n->l->size\
-    \ + n->r->size;\n  }\n\n  void set_rec(np n, int l, int r, int k, const X& x)\
-    \ {\n    if (r == l + 1) { n->x = n->rev_x = x, return; }\n    int m = (l + r)\
-    \ / 2;\n    if (k < m) {\n      if (!(n->l)) n->l = new_node();\n      set_rec(n->l,\
-    \ l, m, k, x);\n    }\n    if (node_m <= k) {\n      if (!(n->r)) n->r = new_node();\n\
-    \      set_rec(n->r, m, r, k, x);\n    }\n    update(n);\n  }\n};"
+    \ = n->r->size;\n      return;\n    }\n    if (!(n->r)) {\n      n->x = n->l->x,\
+    \ n->rev_x = n->l->rev_x, n->size = n->l->size;\n      return;\n    }\n    n->x\
+    \ = MX::op(n->l->x, n->r->x);\n    n->rev_x = MX::op(n->r->rev_x, n->l->rev_x);\n\
+    \    n->size = n->l->size + n->r->size;\n  }\n\n  void set_rec(np n, int l, int\
+    \ r, int k, const X& x) {\n    if (r == l + 1) {\n      n->x = n->rev_x = x;\n\
+    \      return;\n    }\n    int m = (l + r) / 2;\n    if (k < m) {\n      if (!(n->l))\
+    \ n->l = new_node();\n      set_rec(n->l, l, m, k, x);\n    }\n    if (node_m\
+    \ <= k) {\n      if (!(n->r)) n->r = new_node();\n      set_rec(n->r, m, r, k,\
+    \ x);\n    }\n    update(n);\n  }\n};"
   dependsOn:
   - ds/fastset.hpp
   - ds/segtree/segtree.hpp
   isVerificationFile: false
   path: ds/segtree/sortable_segtree.hpp
   requiredBy: []
-  timestamp: '2022-12-03 10:58:25+09:00'
+  timestamp: '2022-12-04 01:27:27+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/datastructure/sort_segtree.test.cpp

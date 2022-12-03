@@ -21,6 +21,9 @@ data:
     path: ds/offline_query/range_mex_query.hpp
     title: ds/offline_query/range_mex_query.hpp
   - icon: ':x:'
+    path: seq/common_interval_decomposition.hpp
+    title: seq/common_interval_decomposition.hpp
+  - icon: ':x:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
   - icon: ':heavy_check_mark:'
@@ -45,6 +48,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticrmq_seg.test.cpp
     title: test/library_checker/datastructure/staticrmq_seg.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/staticrmq_sparse.test.cpp
+    title: test/library_checker/datastructure/staticrmq_sparse.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/graph/common_interval_decomposition.test.cpp
+    title: test/library_checker/graph/common_interval_decomposition.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/number_of_substrings.test.cpp
     title: test/library_checker/string/number_of_substrings.test.cpp
@@ -60,6 +69,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1720.test.cpp
+    title: test/yukicoder/1720.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -85,16 +97,20 @@ data:
   - string/longest_common_substring.hpp
   - string/suffix_tree.hpp
   - string/suffixarray.hpp
+  - seq/common_interval_decomposition.hpp
   - ds/offline_query/range_mex_query.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1720.test.cpp
   - test/mytest/range_mex.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp
   - test/library_checker/string/suffix_array_vec.test.cpp
   - test/library_checker/datastructure/staticrmq_seg.test.cpp
+  - test/library_checker/datastructure/staticrmq_sparse.test.cpp
+  - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/atcoder/arc151_e.test.cpp
   - test/aoj/DSL_2_F.test.cpp
   - test/aoj/1508.test.cpp

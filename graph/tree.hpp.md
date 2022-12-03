@@ -11,13 +11,16 @@ data:
   - icon: ':x:'
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
+    path: graph/ds/tree_abelgroup.hpp
+    title: graph/ds/tree_abelgroup.hpp
+  - icon: ':x:'
     path: graph/ds/tree_group.hpp
     title: graph/ds/tree_group.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -54,6 +57,24 @@ data:
   - icon: ':x:'
     path: test/atcoder/abc269ex.test.cpp
     title: test/atcoder/abc269ex.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+    title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+    title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+    title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+    title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+    title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+    title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/classify_tree.test.cpp
     title: test/library_checker/graph/classify_tree.test.cpp
@@ -311,6 +332,7 @@ data:
   - graph/classify_subtree.hpp
   - graph/ds/lazy_tree_monoid.hpp
   - graph/ds/tree_group.hpp
+  - graph/ds/tree_abelgroup.hpp
   - graph/ds/tree_monoid.hpp
   timestamp: '2022-11-05 01:55:39+09:00'
   verificationStatus: LIBRARY_SOME_WA
@@ -328,6 +350,12 @@ data:
   - test/yukicoder/1976.test.cpp
   - test/yukicoder/1418.test.cpp
   - test/yukicoder/1718.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - test/library_checker/tree/lca.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp

@@ -15,6 +15,9 @@ data:
   - icon: ':x:'
     path: test/atcoder/arc151_e.test.cpp
     title: test/atcoder/arc151_e.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/staticrmq_sparse.test.cpp
+    title: test/library_checker/datastructure/staticrmq_sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/number_of_substrings.test.cpp
     title: test/library_checker/string/number_of_substrings.test.cpp
@@ -24,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/suffix_array_vec.test.cpp
     title: test/library_checker/string/suffix_array_vec.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
+    title: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
@@ -95,9 +101,11 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/suffix_tree.test.cpp
+  - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp
   - test/library_checker/string/suffix_array_vec.test.cpp
+  - test/library_checker/datastructure/staticrmq_sparse.test.cpp
   - test/atcoder/arc151_e.test.cpp
 documentation_of: ds/disjointsparse/disjointsparse.hpp
 layout: document

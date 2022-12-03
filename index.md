@@ -103,7 +103,7 @@ data:
     - icon: ':question:'
       path: alg/monoid/gcd.hpp
       title: alg/monoid/gcd.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: alg/monoid/group_reverse.hpp
       title: alg/monoid/group_reverse.hpp
     - icon: ':question:'
@@ -124,13 +124,13 @@ data:
     - icon: ':x:'
       path: alg/monoid/minmincnt.hpp
       title: alg/monoid/minmincnt.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: alg/monoid/monoid_reverse.hpp
       title: alg/monoid/monoid_reverse.hpp
     - icon: ':question:'
       path: alg/monoid/mul.hpp
       title: alg/monoid/mul.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: alg/monoid/rollinghash.hpp
       title: alg/monoid/rollinghash.hpp
     - icon: ':warning:'
@@ -159,7 +159,7 @@ data:
     - icon: ':warning:'
       path: convex/larsch.hpp
       title: convex/larsch.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: convex/lichao.hpp
       title: convex/lichao.hpp
     - icon: ':warning:'
@@ -172,7 +172,7 @@ data:
       title: datetime/datetime.hpp
   - name: ds/binarytrie
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/binarytrie/binarytrie.hpp
       title: ds/binarytrie/binarytrie.hpp
   - name: ds
@@ -309,7 +309,7 @@ data:
     - icon: ':warning:'
       path: ds/randomized_bst/rbst.hpp
       title: ds/randomized_bst/rbst.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/randomized_bst/rbst_acted_monoid.hpp
       title: ds/randomized_bst/rbst_acted_monoid.hpp
     - icon: ':warning:'
@@ -538,7 +538,7 @@ data:
     - icon: ':warning:'
       path: graph/decompose_complete.hpp
       title: graph/decompose_complete.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/dsu_on_tree.hpp
       title: graph/dsu_on_tree.hpp
     - icon: ':warning:'
@@ -645,7 +645,7 @@ data:
     - icon: ':warning:'
       path: graph/ds/bfs_numbering.hpp
       title: graph/ds/bfs_numbering.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: graph/ds/contour_sum.hpp
       title: graph/ds/contour_sum.hpp
     - icon: ':warning:'
@@ -666,13 +666,13 @@ data:
     - icon: ':warning:'
       path: graph/ds/static_treemonoid.hpp
       title: graph/ds/static_treemonoid.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: graph/ds/tree_abelgroup.hpp
       title: graph/ds/tree_abelgroup.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: graph/ds/tree_group.hpp
       title: graph/ds/tree_group.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: graph/ds/tree_monoid.hpp
       title: graph/ds/tree_monoid.hpp
   - name: graph/shortest_path
@@ -837,7 +837,7 @@ data:
     - icon: ':question:'
       path: mod/modint.hpp
       title: mod/modint.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: mod/modint61.hpp
       title: mod/modint61.hpp
     - icon: ':heavy_check_mark:'
@@ -1113,7 +1113,7 @@ data:
       title: poly/online/online_pow.hpp
   - name: random
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -1124,7 +1124,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/cartesian_tree.hpp
       title: seq/cartesian_tree.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: seq/common_interval_decomposition.hpp
       title: seq/common_interval_decomposition.hpp
     - icon: ':heavy_check_mark:'
@@ -1703,13 +1703,13 @@ data:
     - icon: ':x:'
       path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
       title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/segment_add_get_min.test.cpp
       title: test/library_checker/datastructure/segment_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
       title: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/set_xor_min.test.cpp
       title: test/library_checker/datastructure/set_xor_min.test.cpp
     - icon: ':x:'

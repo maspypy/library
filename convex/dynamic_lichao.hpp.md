@@ -9,6 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
     title: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
+    title: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -114,6 +117,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
+  - test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
 documentation_of: convex/dynamic_lichao.hpp
 layout: document
 redirect_from:

@@ -8,6 +8,9 @@ data:
   - icon: ':x:'
     path: other/rectangle_union.hpp
     title: other/rectangle_union.hpp
+  - icon: ':x:'
+    path: seq/common_interval_decomposition.hpp
+    title: seq/common_interval_decomposition.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/aoj/DSL_2_F.test.cpp
@@ -30,6 +33,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
     title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/graph/common_interval_decomposition.test.cpp
+    title: test/library_checker/graph/common_interval_decomposition.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1720.test.cpp
+    title: test/yukicoder/1720.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -150,12 +159,15 @@ data:
   path: ds/segtree/lazy_segtree.hpp
   requiredBy:
   - other/rectangle_union.hpp
+  - seq/common_interval_decomposition.hpp
   - graph/ds/lazy_tree_monoid.hpp
   timestamp: '2022-12-04 00:39:06+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1720.test.cpp
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - test/library_checker/datastructure/range_affine_range_sum.test.cpp
+  - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/aoj/DSL_4_A.test.cpp
   - test/aoj/DSL_2_I.test.cpp
   - test/aoj/GRL_5_E.test.cpp
