@@ -1,7 +1,7 @@
 #define PROBLEM "https://atcoder.jp/contests/arc123/tasks/arc123_d"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/func/slope.hpp"
+#include "convex/slope.hpp"
 
 void solve() {
   LL(N);

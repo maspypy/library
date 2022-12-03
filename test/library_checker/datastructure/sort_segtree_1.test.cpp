@@ -40,7 +40,7 @@ void solve() {
   UNIQUE(all_key);
   for (auto&& k: key) k = LB(all_key, k);
 
-  Sortable_SegTree<AFF> seg(len(all_key), key, seg_raw);
+  Sortable_SegTree<AFF, 4000000> seg(len(all_key), key, seg_raw);
 
   for (auto&& [t, a, b, c, d]: query) {
     if (t == 0) {

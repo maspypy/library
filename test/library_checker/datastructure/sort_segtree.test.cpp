@@ -9,7 +9,7 @@
 using mint = modint998;
 
 void solve() {
-  // クエリ先読みなしの方
+  // クエリ先読みする方
 
   using AFF = Monoid_Affine<mint>;
   LL(N, Q);
@@ -17,31 +17,42 @@ void solve() {
   vc<pair<mint, mint>> seg_raw(N);
   FOR(i, N) { read(key[i]), read(seg_raw[i]); }
 
-  Sortable_SegTree<AFF> seg(1LL << 30, key, seg_raw);
-
-  int i, p, l, r;
-  pair<mint, mint> f;
-  mint x;
-
-  FOR(Q) {
+  vc<int> all_key = key;
+  using QT = tuple<int, int, int, int, int>;
+  vc<QT> query(Q);
+  FOR(q, Q) {
     LL(t);
     if (t == 0) {
-      read(i), read(p), read(f);
-      seg.set(i, p, f);
+      LL(i, p, a, b);
+      query[q] = {t, i, p, a, b};
+      all_key.eb(p);
     }
     if (t == 1) {
-      read(l), read(r), read(x);
-      auto f = seg.prod(l, r);
-      print(AFF::eval(f, x));
+      LL(l, r, x);
+      query[q] = {t, l, r, x, 0};
     }
-    if (t == 2) {
-      read(l), read(r);
-      seg.sort_inc(l, r);
+    if (t == 2 || t == 3) {
+      LL(l, r);
+      query[q] = {t, l, r, 0, 0};
     }
-    if (t == 3) {
-      read(l), read(r);
-      seg.sort_dec(l, r);
+  }
+
+  UNIQUE(all_key);
+  for (auto&& k: key) k = LB(all_key, k);
+
+  Sortable_SegTree<AFF, 4000000> seg(len(all_key), key, seg_raw);
+
+  for (auto&& [t, a, b, c, d]: query) {
+    if (t == 0) {
+      b = LB(all_key, b);
+      seg.set(a, b, {mint(c), mint(d)});
     }
+    if (t == 1) {
+      auto f = seg.prod(a, b);
+      print(AFF::eval(f, c));
+    }
+    if (t == 2) { seg.sort_inc(a, b); }
+    if (t == 3) { seg.sort_dec(a, b); }
   }
 }
 

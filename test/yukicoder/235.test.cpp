@@ -2,12 +2,12 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/tree.hpp"
-#include "graph/ds/lazytreemonoid.hpp"
-#include "alg/acted_monoid/cntsum_add.hpp"
+#include "graph/ds/lazy_tree_monoid.hpp"
+#include "alg/acted_monoid/sum_add.hpp"
 #include "mod/modint.hpp"
 
 using mint = modint107;
-using AM = ActedMonoid_CntSum_Add<mint>;
+using AM = ActedMonoid_Sum_Add<mint>;
 
 void solve() {
   LL(N);
@@ -18,7 +18,7 @@ void solve() {
   TREE<decltype(G)> tree(G);
   vc<pair<mint, mint>> dat;
   FOR(i, N) dat.eb(C[i], S[i]);
-  LazyTreeMonoid<decltype(tree), AM, false> TM(tree, dat);
+  Lazy_Tree_Monoid<decltype(tree), AM, false> TM(tree, dat);
   LL(Q);
   FOR(Q) {
     LL(t);

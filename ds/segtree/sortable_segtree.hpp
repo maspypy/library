@@ -99,7 +99,10 @@ private:
     dat.reserve(N);
     auto dfs = [&](auto& dfs, np n, int l, int r, bool rev) -> void {
       if (!n) return;
-      if (r == l + 1) { key.eb(l), dat.eb(n->x), return; }
+      if (r == l + 1) {
+        key.eb(l), dat.eb(n->x);
+        return;
+      }
       int m = (l + r) / 2;
       if (!rev) { dfs(dfs, n->l, l, m, rev), dfs(dfs, n->r, m, r, rev); }
       if (rev) { dfs(dfs, n->r, m, r, rev), dfs(dfs, n->l, l, m, rev); }
@@ -112,7 +115,7 @@ private:
     init(key, dat);
   }
 
-  np new_node(X x) {
+  np new_node(X x = MX::unit()) {
     assert(pid < NODES);
     pool[pid].x = pool[pid].rev_x = x;
     pool[pid].l = pool[pid].r = nullptr;
