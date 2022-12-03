@@ -7,7 +7,7 @@ struct Dual_SegTree {
   int n, log, size;
   vc<A> laz;
 
-  Dual_SegTree() : DualSegTree(0) {}
+  Dual_SegTree() : Dual_SegTree(0) {}
   Dual_SegTree(int n) { build(n); }
 
   void build(int m) {

@@ -19,6 +19,7 @@ struct FenwickTree {
   FenwickTree(const vc<E>& v) { build(v); }
 
   void build(int m) {
+    n = m;
     dat.assign(m, G::unit());
     total = G::unit();
   }
@@ -50,6 +51,7 @@ struct FenwickTree {
   E sum(int L, int R) { return prod(L, R); }
   E prod(int L, int R) {
     if (L == 0) return prefix_prod(R);
+    assert(0 <= L && L <= R && R <= n);
     E pos = G::unit(), neg = G::unit();
     while (L < R) { pos = G::op(pos, dat[R - 1]), R -= R & -R; }
     while (R < L) { neg = G::op(neg, dat[L - 1]), L -= L & -L; }
