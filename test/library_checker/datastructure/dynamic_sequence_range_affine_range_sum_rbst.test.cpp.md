@@ -17,22 +17,21 @@ data:
     \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
     \ File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: alg/acted_monoid/cntsum_affine.hpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ds/rbst/rbst_acted_monoid.hpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"alg/acted_monoid/cntsum_affine.hpp\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"alg/acted_monoid/sum_affine.hpp\"\
     \n#include \"mod/modint.hpp\"\n#include \"ds/rbst/rbst_acted_monoid.hpp\"\n\n\
     using mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  VEC(mint, A, N);\n \
-    \ RBST_ActedMonoid<ActedMonoid_CntSum_Affine<mint>, false, 1'000'000> X;\n  vc<pair<mint,\
-    \ mint>> seg_raw(N);\n  FOR(i, N) seg_raw[i] = {mint(1), A[i]};\n  auto root =\
-    \ X.new_node(seg_raw);\n\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(i,\
-    \ x);\n      auto [a, b] = X.split(root, i);\n      root = X.merge3(a, X.new_node({mint(1),\
-    \ mint(x)}), b);\n    }\n    if (t == 1) {\n      LL(i);\n      auto [a, b, c]\
-    \ = X.split3(root, i, i + 1);\n      root = X.merge(a, c);\n    }\n    if (t ==\
-    \ 2) {\n      LL(l, r);\n      root = X.reverse(root, l, r);\n    }\n    if (t\
-    \ == 3) {\n      LL(l, r, b, c);\n      root = X.apply(root, l, r, {mint(b), mint(c)});\n\
-    \    }\n    if (t == 4) {\n      LL(l, r);\n      print(X.prod(root, l, r).se);\n\
-    \    }\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+    \ RBST_ActedMonoid<ActedMonoid_Sum_Affine<mint>, false, 1'000'000> X;\n  auto\
+    \ root = X.new_node(A);\n\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(i,\
+    \ x);\n      auto [a, b] = X.split(root, i);\n      root = X.merge3(a, X.new_node(mint(x)),\
+    \ b);\n    }\n    if (t == 1) {\n      LL(i);\n      auto [a, b, c] = X.split3(root,\
+    \ i, i + 1);\n      root = X.merge(a, c);\n    }\n    if (t == 2) {\n      LL(l,\
+    \ r);\n      root = X.reverse(root, l, r);\n    }\n    if (t == 3) {\n      LL(l,\
+    \ r, b, c);\n      root = X.apply(root, l, r, {mint(b), mint(c)});\n    }\n  \
+    \  if (t == 4) {\n      LL(l, r);\n      print(X.prod(root, l, r));\n    }\n \
+    \ }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   dependsOn: []
   isVerificationFile: true
   path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp

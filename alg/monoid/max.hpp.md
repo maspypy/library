@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':warning:'
     path: alg/acted_monoid/max_add.hpp
     title: alg/acted_monoid/max_add.hpp
   - icon: ':warning:'
@@ -30,9 +30,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2026.test.cpp
     title: test/yukicoder/2026.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/686.test.cpp
-    title: test/yukicoder/686.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -58,7 +55,6 @@ data:
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/686.test.cpp
   - test/yukicoder/1625.test.cpp
   - test/yukicoder/2026.test.cpp
   - test/yukicoder/1826.test.cpp

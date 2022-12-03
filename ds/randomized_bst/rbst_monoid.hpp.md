@@ -2,47 +2,32 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/1508_2.test.cpp
-    title: test/aoj/1508_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_monoid.test.cpp
-    title: test/mytest/rbst_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_monoid_2.test.cpp
-    title: test/mytest/rbst_monoid_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_monoid_persistent.test.cpp
-    title: test/mytest/rbst_monoid_persistent.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_test.test.cpp
-    title: test/mytest/rbst_test.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/rbst/rbst_monoid.hpp\"\ntemplate <typename Monoid, bool\
-    \ PERSISTENT, int NODES>\nstruct RBST_Monoid {\n  using X = typename Monoid::value_type;\n\
-    \n  struct Node {\n    Node *l, *r;\n    X x, prod, rev_prod; // rev \u53CD\u6620\
-    \u6E08\n    u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n  using\
-    \ np = Node *;\n\n  RBST_Monoid() : pid(0) { pool = new Node[NODES]; }\n\n  void\
-    \ reset() { pid = 0; }\n\n  np new_node(const X &x) {\n    pool[pid].l = pool[pid].r\
-    \ = nullptr;\n    pool[pid].x = x;\n    pool[pid].prod = x;\n    pool[pid].rev_prod\
-    \ = x;\n    pool[pid].size = 1;\n    pool[pid].rev = 0;\n    return &(pool[pid++]);\n\
-    \  }\n\n  np new_node(const vc<X> &dat) {\n    auto dfs = [&](auto &dfs, u32 l,\
-    \ u32 r) -> np {\n      if (l == r) return nullptr;\n      if (r == l + 1) return\
-    \ new_node(dat[l]);\n      u32 m = (l + r) / 2;\n      np l_root = dfs(dfs, l,\
-    \ m);\n      np r_root = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n\
-    \      root->l = l_root, root->r = r_root;\n      update(root);\n      return\
-    \ root;\n    };\n    return dfs(dfs, 0, len(dat));\n  }\n\n  np copy_node(np &n)\
-    \ {\n    if (!n || !PERSISTENT) return n;\n    pool[pid].l = n->l, pool[pid].r\
-    \ = n->r;\n    pool[pid].x = n->x;\n    pool[pid].prod = n->prod;\n    pool[pid].rev_prod\
-    \ = n->rev_prod;\n    pool[pid].size = n->size;\n    pool[pid].rev = n->rev;\n\
-    \    return &(pool[pid++]);\n  }\n\n  np merge(np l_root, np r_root) { return\
-    \ merge_rec(l_root, r_root); }\n  np merge3(np a, np b, np c) { return merge(merge(a,\
-    \ b), c); }\n  np merge4(np a, np b, np c, np d) { return merge(merge(merge(a,\
+  bundledCode: "#line 1 \"ds/randomized_bst/rbst_monoid.hpp\"\ntemplate <typename\
+    \ Monoid, bool PERSISTENT, int NODES>\nstruct RBST_Monoid {\n  using X = typename\
+    \ Monoid::value_type;\n\n  struct Node {\n    Node *l, *r;\n    X x, prod, rev_prod;\
+    \ // rev \u53CD\u6620\u6E08\n    u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n\
+    \  int pid;\n  using np = Node *;\n\n  RBST_Monoid() : pid(0) { pool = new Node[NODES];\
+    \ }\n\n  void reset() { pid = 0; }\n\n  np new_node(const X &x) {\n    pool[pid].l\
+    \ = pool[pid].r = nullptr;\n    pool[pid].x = x;\n    pool[pid].prod = x;\n  \
+    \  pool[pid].rev_prod = x;\n    pool[pid].size = 1;\n    pool[pid].rev = 0;\n\
+    \    return &(pool[pid++]);\n  }\n\n  np new_node(const vc<X> &dat) {\n    auto\
+    \ dfs = [&](auto &dfs, u32 l, u32 r) -> np {\n      if (l == r) return nullptr;\n\
+    \      if (r == l + 1) return new_node(dat[l]);\n      u32 m = (l + r) / 2;\n\
+    \      np l_root = dfs(dfs, l, m);\n      np r_root = dfs(dfs, m + 1, r);\n  \
+    \    np root = new_node(dat[m]);\n      root->l = l_root, root->r = r_root;\n\
+    \      update(root);\n      return root;\n    };\n    return dfs(dfs, 0, len(dat));\n\
+    \  }\n\n  np copy_node(np &n) {\n    if (!n || !PERSISTENT) return n;\n    pool[pid].l\
+    \ = n->l, pool[pid].r = n->r;\n    pool[pid].x = n->x;\n    pool[pid].prod = n->prod;\n\
+    \    pool[pid].rev_prod = n->rev_prod;\n    pool[pid].size = n->size;\n    pool[pid].rev\
+    \ = n->rev;\n    return &(pool[pid++]);\n  }\n\n  np merge(np l_root, np r_root)\
+    \ { return merge_rec(l_root, r_root); }\n  np merge3(np a, np b, np c) { return\
+    \ merge(merge(a, b), c); }\n  np merge4(np a, np b, np c, np d) { return merge(merge(merge(a,\
     \ b), c), d); }\n  pair<np, np> split(np root, u32 k) {\n    if (!root) {\n  \
     \    assert(k == 0);\n      return {nullptr, nullptr};\n    }\n    assert(0 <=\
     \ k && k <= root->size);\n    return split_rec(root, k);\n  }\n  tuple<np, np,\
@@ -246,20 +231,15 @@ data:
     \ n1;\n    update(root);\n    return {root, n2};\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: ds/rbst/rbst_monoid.hpp
+  path: ds/randomized_bst/rbst_monoid.hpp
   requiredBy: []
-  timestamp: '2022-12-03 10:20:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/mytest/rbst_monoid_persistent.test.cpp
-  - test/mytest/rbst_monoid.test.cpp
-  - test/mytest/rbst_monoid_2.test.cpp
-  - test/mytest/rbst_test.test.cpp
-  - test/aoj/1508_2.test.cpp
-documentation_of: ds/rbst/rbst_monoid.hpp
+  timestamp: '2022-12-04 00:54:54+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: ds/randomized_bst/rbst_monoid.hpp
 layout: document
 redirect_from:
-- /library/ds/rbst/rbst_monoid.hpp
-- /library/ds/rbst/rbst_monoid.hpp.html
-title: ds/rbst/rbst_monoid.hpp
+- /library/ds/randomized_bst/rbst_monoid.hpp
+- /library/ds/randomized_bst/rbst_monoid.hpp.html
+title: ds/randomized_bst/rbst_monoid.hpp
 ---

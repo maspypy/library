@@ -8,6 +8,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/classify_subtree.hpp
     title: graph/classify_subtree.hpp
+  - icon: ':x:'
+    path: graph/ds/lazy_tree_monoid.hpp
+    title: graph/ds/lazy_tree_monoid.hpp
   - icon: ':warning:'
     path: graph/ds/tree_group.hpp
     title: graph/ds/tree_group.hpp
@@ -42,6 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_B.test.cpp
     title: test/aoj/GRL_3_B.test.cpp
+  - icon: ':x:'
+    path: test/aoj/GRL_5_E.test.cpp
+    title: test/aoj/GRL_5_E.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc266f.test.cpp
     title: test/atcoder/abc266f.test.cpp
@@ -303,6 +309,7 @@ data:
   - graph/rerooting_dp.hpp
   - graph/two_edge_component.hpp
   - graph/classify_subtree.hpp
+  - graph/ds/lazy_tree_monoid.hpp
   - graph/ds/tree_group.hpp
   - graph/ds/tree_monoid.hpp
   timestamp: '2022-11-05 01:55:39+09:00'
@@ -329,6 +336,7 @@ data:
   - test/atcoder/abc269ex.test.cpp
   - test/atcoder/abc266f.test.cpp
   - test/aoj/2677.test.cpp
+  - test/aoj/GRL_5_E.test.cpp
   - test/aoj/2995.test.cpp
   - test/aoj/GRL_3_B.test.cpp
 documentation_of: graph/tree.hpp

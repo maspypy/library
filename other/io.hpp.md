@@ -16,9 +16,6 @@ data:
     path: test/aoj/1508.test.cpp
     title: test/aoj/1508.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/1508_2.test.cpp
-    title: test/aoj/1508_2.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/aoj/1566.test.cpp
     title: test/aoj/1566.test.cpp
   - icon: ':heavy_check_mark:'
@@ -147,6 +144,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_B.test.cpp
     title: test/aoj/GRL_3_B.test.cpp
+  - icon: ':x:'
+    path: test/aoj/GRL_5_E.test.cpp
+    title: test/aoj/GRL_5_E.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_6_A.test.cpp
     title: test/aoj/GRL_6_A.test.cpp
@@ -279,6 +279,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/add_remove_query.test.cpp
     title: test/library_checker/datastructure/add_remove_query.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+    title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array.test.cpp
     title: test/library_checker/datastructure/associative_array.test.cpp
@@ -646,9 +649,6 @@ data:
     path: test/mytest/binom.test.cpp
     title: test/mytest/binom.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/cf702_F.test.cpp
-    title: test/mytest/cf702_F.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
   - icon: ':heavy_check_mark:'
@@ -750,30 +750,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst.test.cpp
-    title: test/mytest/rbst.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_am.test.cpp
-    title: test/mytest/rbst_am.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_am_persistent.test.cpp
-    title: test/mytest/rbst_am_persistent.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_commutative_persistent.test.cpp
-    title: test/mytest/rbst_commutative_persistent.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_monoid.test.cpp
-    title: test/mytest/rbst_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_monoid_2.test.cpp
-    title: test/mytest/rbst_monoid_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_monoid_persistent.test.cpp
-    title: test/mytest/rbst_monoid_persistent.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_test.test.cpp
-    title: test/mytest/rbst_test.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/run_length.test.cpp
     title: test/mytest/run_length.test.cpp
@@ -1203,9 +1179,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/655.test.cpp
     title: test/yukicoder/655.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/686.test.cpp
-    title: test/yukicoder/686.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/779.test.cpp
     title: test/yukicoder/779.test.cpp
@@ -1473,7 +1446,6 @@ data:
   - test/yukicoder/177.test.cpp
   - test/yukicoder/4_1.test.cpp
   - test/yukicoder/1025.test.cpp
-  - test/yukicoder/686.test.cpp
   - test/yukicoder/1813.test.cpp
   - test/yukicoder/1726.test.cpp
   - test/yukicoder/1170.test.cpp
@@ -1581,7 +1553,6 @@ data:
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/online_pow.test.cpp
   - test/mytest/primesum_mod6.test.cpp
-  - test/mytest/cf702_F.test.cpp
   - test/mytest/bell.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/add_chmin.test.cpp
@@ -1595,7 +1566,6 @@ data:
   - test/mytest/all_but_one_products.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/conv_leq.test.cpp
-  - test/mytest/rbst_monoid_persistent.test.cpp
   - test/mytest/partizan.test.cpp
   - test/mytest/dyadic_rational.test.cpp
   - test/mytest/chirp_z.test.cpp
@@ -1605,19 +1575,13 @@ data:
   - test/mytest/segtree_xor_prod.test.cpp
   - test/mytest/gray_code.test.cpp
   - test/mytest/run_length.test.cpp
-  - test/mytest/rbst_monoid.test.cpp
-  - test/mytest/rbst.test.cpp
   - test/mytest/magic_square.test.cpp
-  - test/mytest/rbst_commutative_persistent.test.cpp
   - test/mytest/enumerate_products.test.cpp
   - test/mytest/online_division.test.cpp
   - test/mytest/simple_perm.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/tutte.test.cpp
-  - test/mytest/rbst_am.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
-  - test/mytest/rbst_am_persistent.test.cpp
-  - test/mytest/rbst_monoid_2.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
   - test/mytest/prime_sum.test.cpp
   - test/mytest/datetime.test.cpp
@@ -1629,7 +1593,6 @@ data:
   - test/mytest/primesum_mod4.test.cpp
   - test/mytest/binom.test.cpp
   - test/mytest/tournament.test.cpp
-  - test/mytest/rbst_test.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
   - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
@@ -1707,6 +1670,7 @@ data:
   - test/library_checker/math/partition.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
+  - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - test/library_checker/datastructure/persistent_unionfind.test.cpp
   - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/library_checker/datastructure/persistent_queue.test.cpp
@@ -1804,6 +1768,7 @@ data:
   - test/aoj/ITP1_D_D.test.cpp
   - test/aoj/2251_2.test.cpp
   - test/aoj/DPL_4_B.test.cpp
+  - test/aoj/GRL_5_E.test.cpp
   - test/aoj/1566.test.cpp
   - test/aoj/ITP1_11_A.test.cpp
   - test/aoj/ITP2_3_B.test.cpp
@@ -1813,7 +1778,6 @@ data:
   - test/aoj/ALDS1_12_B.test.cpp
   - test/aoj/ALDS1_10_C.test.cpp
   - test/aoj/CGL_2_D.test.cpp
-  - test/aoj/1508_2.test.cpp
   - test/aoj/NTL_1_D.test.cpp
   - test/aoj/ALDS1_1_C.test.cpp
   - test/aoj/0350.test.cpp

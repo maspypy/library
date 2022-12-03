@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':x:'
+    path: graph/ds/lazy_tree_monoid.hpp
+    title: graph/ds/lazy_tree_monoid.hpp
+  - icon: ':x:'
     path: other/rectangle_union.hpp
     title: other/rectangle_union.hpp
   _extendedVerifiedWith:
@@ -18,6 +21,12 @@ data:
   - icon: ':x:'
     path: test/aoj/DSL_4_A.test.cpp
     title: test/aoj/DSL_4_A.test.cpp
+  - icon: ':x:'
+    path: test/aoj/GRL_5_E.test.cpp
+    title: test/aoj/GRL_5_E.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+    title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
     title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
@@ -141,12 +150,15 @@ data:
   path: ds/segtree/lazy_segtree.hpp
   requiredBy:
   - other/rectangle_union.hpp
+  - graph/ds/lazy_tree_monoid.hpp
   timestamp: '2022-12-04 00:39:06+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - test/aoj/DSL_4_A.test.cpp
   - test/aoj/DSL_2_I.test.cpp
+  - test/aoj/GRL_5_E.test.cpp
   - test/aoj/DSL_2_F.test.cpp
   - test/aoj/DSL_2_H.test.cpp
 documentation_of: ds/segtree/lazy_segtree.hpp

@@ -2,17 +2,14 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_commutative_persistent.test.cpp
-    title: test/mytest/rbst_commutative_persistent.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/rbst/rbst_commutative_monoid.hpp\"\ntemplate <typename\
-    \ CommutativeMonoid, bool PERSISTENT, int NODES>\nstruct RBST_CommutativeMonoid\
+  bundledCode: "#line 1 \"ds/randomized_bst/rbst_commutative_monoid.hpp\"\ntemplate\
+    \ <typename CommutativeMonoid, bool PERSISTENT, int NODES>\nstruct RBST_CommutativeMonoid\
     \ {\n  using Monoid = CommutativeMonoid;\n  using X = typename Monoid::value_type;\n\
     \n  struct Node {\n    Node *l, *r;\n    X x, prod; // rev \u53CD\u6620\u6E08\n\
     \    u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n  using np =\
@@ -229,16 +226,15 @@ data:
     \    return {root, n2};\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: ds/rbst/rbst_commutative_monoid.hpp
+  path: ds/randomized_bst/rbst_commutative_monoid.hpp
   requiredBy: []
-  timestamp: '2022-12-03 10:20:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/mytest/rbst_commutative_persistent.test.cpp
-documentation_of: ds/rbst/rbst_commutative_monoid.hpp
+  timestamp: '2022-12-04 00:54:54+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: ds/randomized_bst/rbst_commutative_monoid.hpp
 layout: document
 redirect_from:
-- /library/ds/rbst/rbst_commutative_monoid.hpp
-- /library/ds/rbst/rbst_commutative_monoid.hpp.html
-title: ds/rbst/rbst_commutative_monoid.hpp
+- /library/ds/randomized_bst/rbst_commutative_monoid.hpp
+- /library/ds/randomized_bst/rbst_commutative_monoid.hpp.html
+title: ds/randomized_bst/rbst_commutative_monoid.hpp
 ---

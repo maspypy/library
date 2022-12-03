@@ -2,26 +2,23 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst.test.cpp
-    title: test/mytest/rbst.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/rbst/rbst.hpp\"\n// \u5358\u306B S \u306E\u5143\u306E\
-    \u5217\u3092\u7BA1\u7406\u3059\u308B\ntemplate <typename S, bool PERSISTENT, int\
-    \ NODES>\nstruct RBST {\n  struct Node {\n    Node *l, *r;\n    S s;\n    u32\
-    \ size;\n    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n  using np = Node *;\n\
-    \n  RBST() : pid(0) { pool = new Node[NODES]; }\n\n  void reset() { pid = 0; }\n\
-    \n  np new_node(const S &s) {\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].s\
-    \ = s;\n    pool[pid].size = 1;\n    pool[pid].rev = 0;\n    return &(pool[pid++]);\n\
-    \  }\n\n  np new_node(const vc<S> &dat) {\n    auto dfs = [&](auto &dfs, u32 l,\
-    \ u32 r) -> np {\n      if (l == r) return nullptr;\n      if (r == l + 1) return\
-    \ new_node(dat[l]);\n      u32 m = (l + r) / 2;\n      np l_root = dfs(dfs, l,\
-    \ m);\n      np r_root = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n\
+  bundledCode: "#line 1 \"ds/randomized_bst/rbst.hpp\"\n// \u5358\u306B S \u306E\u5143\
+    \u306E\u5217\u3092\u7BA1\u7406\u3059\u308B\ntemplate <typename S, bool PERSISTENT,\
+    \ int NODES>\nstruct RBST {\n  struct Node {\n    Node *l, *r;\n    S s;\n   \
+    \ u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n  using np = Node\
+    \ *;\n\n  RBST() : pid(0) { pool = new Node[NODES]; }\n\n  void reset() { pid\
+    \ = 0; }\n\n  np new_node(const S &s) {\n    pool[pid].l = pool[pid].r = nullptr;\n\
+    \    pool[pid].s = s;\n    pool[pid].size = 1;\n    pool[pid].rev = 0;\n    return\
+    \ &(pool[pid++]);\n  }\n\n  np new_node(const vc<S> &dat) {\n    auto dfs = [&](auto\
+    \ &dfs, u32 l, u32 r) -> np {\n      if (l == r) return nullptr;\n      if (r\
+    \ == l + 1) return new_node(dat[l]);\n      u32 m = (l + r) / 2;\n      np l_root\
+    \ = dfs(dfs, l, m);\n      np r_root = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n\
     \      root->l = l_root, root->r = r_root;\n      update(root);\n      return\
     \ root;\n    };\n    return dfs(dfs, 0, len(dat));\n  }\n\n  np copy_node(np &n)\
     \ {\n    if (!n || !PERSISTENT) return n;\n    pool[pid].l = n->l, pool[pid].r\
@@ -175,16 +172,15 @@ data:
     \ = n2;\n    update(root);\n    return {n1, root};\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: ds/rbst/rbst.hpp
+  path: ds/randomized_bst/rbst.hpp
   requiredBy: []
-  timestamp: '2022-12-03 10:20:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/mytest/rbst.test.cpp
-documentation_of: ds/rbst/rbst.hpp
+  timestamp: '2022-12-04 00:54:54+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: ds/randomized_bst/rbst.hpp
 layout: document
 redirect_from:
-- /library/ds/rbst/rbst.hpp
-- /library/ds/rbst/rbst.hpp.html
-title: ds/rbst/rbst.hpp
+- /library/ds/randomized_bst/rbst.hpp
+- /library/ds/randomized_bst/rbst.hpp.html
+title: ds/randomized_bst/rbst.hpp
 ---

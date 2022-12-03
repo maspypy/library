@@ -8,7 +8,7 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
   - icon: ':warning:'
@@ -33,9 +33,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508.test.cpp
     title: test/aoj/1508.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/1508_2.test.cpp
-    title: test/aoj/1508_2.test.cpp
   - icon: ':x:'
     path: test/aoj/DSL_2_F.test.cpp
     title: test/aoj/DSL_2_F.test.cpp
@@ -60,15 +57,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_am.test.cpp
-    title: test/mytest/rbst_am.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_am_persistent.test.cpp
-    title: test/mytest/rbst_am_persistent.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_test.test.cpp
-    title: test/mytest/rbst_test.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
@@ -103,15 +91,11 @@ data:
   verifiedWith:
   - test/mytest/range_mex.test.cpp
   - test/mytest/suffix_tree.test.cpp
-  - test/mytest/rbst_am.test.cpp
-  - test/mytest/rbst_am_persistent.test.cpp
-  - test/mytest/rbst_test.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp
   - test/library_checker/string/suffix_array_vec.test.cpp
   - test/library_checker/datastructure/staticrmq_seg.test.cpp
   - test/atcoder/arc151_e.test.cpp
-  - test/aoj/1508_2.test.cpp
   - test/aoj/DSL_2_F.test.cpp
   - test/aoj/1508.test.cpp
   - test/aoj/DSL_2_H.test.cpp

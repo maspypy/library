@@ -5,7 +5,7 @@ data:
   - icon: ':warning:'
     path: alg/acted_monoid/add_mul.hpp
     title: alg/acted_monoid/add_mul.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: alg/acted_monoid/max_add.hpp
     title: alg/acted_monoid/max_add.hpp
   - icon: ':warning:'
@@ -23,7 +23,7 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/minmincnt_add.hpp
     title: alg/acted_monoid/minmincnt_add.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: alg/acted_monoid/sum_add.hpp
     title: alg/acted_monoid/sum_add.hpp
   - icon: ':heavy_check_mark:'
@@ -87,12 +87,18 @@ data:
   - icon: ':x:'
     path: test/aoj/DSL_4_A.test.cpp
     title: test/aoj/DSL_4_A.test.cpp
+  - icon: ':x:'
+    path: test/aoj/GRL_5_E.test.cpp
+    title: test/aoj/GRL_5_E.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc127f_1.test.cpp
     title: test/atcoder/abc127f_1.test.cpp
   - icon: ':x:'
     path: test/atcoder/abc174f.test.cpp
     title: test/atcoder/abc174f.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+    title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - icon: ':x:'
     path: test/library_checker/datastructure/double_ended_pq.test.cpp
     title: test/library_checker/datastructure/double_ended_pq.test.cpp
@@ -108,9 +114,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_commutative_persistent.test.cpp
-    title: test/mytest/rbst_commutative_persistent.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/segtree_xor_prod.test.cpp
     title: test/mytest/segtree_xor_prod.test.cpp
@@ -138,9 +141,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/655.test.cpp
     title: test/yukicoder/655.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/686.test.cpp
-    title: test/yukicoder/686.test.cpp
   - icon: ':x:'
     path: test/yukicoder/789.test.cpp
     title: test/yukicoder/789.test.cpp
@@ -191,7 +191,6 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/2065.test.cpp
-  - test/yukicoder/686.test.cpp
   - test/yukicoder/1141.test.cpp
   - test/yukicoder/1269.test.cpp
   - test/yukicoder/655.test.cpp
@@ -201,9 +200,9 @@ data:
   - test/yukicoder/1097.test.cpp
   - test/yukicoder/1977.test.cpp
   - test/mytest/segtree_xor_prod.test.cpp
-  - test/mytest/rbst_commutative_persistent.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
+  - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/library_checker/datastructure/double_ended_pq.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
@@ -214,6 +213,7 @@ data:
   - test/aoj/2842_2.test.cpp
   - test/aoj/DSL_4_A.test.cpp
   - test/aoj/DSL_2_I.test.cpp
+  - test/aoj/GRL_5_E.test.cpp
   - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/DSL_1_B.test.cpp
   - test/aoj/DSL_2_H.test.cpp

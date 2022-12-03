@@ -175,30 +175,6 @@ data:
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst.test.cpp
-    title: test/mytest/rbst.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_am.test.cpp
-    title: test/mytest/rbst_am.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_am_persistent.test.cpp
-    title: test/mytest/rbst_am_persistent.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_commutative_persistent.test.cpp
-    title: test/mytest/rbst_commutative_persistent.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_monoid.test.cpp
-    title: test/mytest/rbst_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_monoid_2.test.cpp
-    title: test/mytest/rbst_monoid_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_monoid_persistent.test.cpp
-    title: test/mytest/rbst_monoid_persistent.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_test.test.cpp
-    title: test/mytest/rbst_test.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/segtree_xor_prod.test.cpp
     title: test/mytest/segtree_xor_prod.test.cpp
   - icon: ':heavy_check_mark:'
@@ -313,21 +289,14 @@ data:
   - test/mytest/mod_sum_of_linear.test.cpp
   - test/mytest/online_inv.test.cpp
   - test/mytest/conv_leq.test.cpp
-  - test/mytest/rbst_monoid_persistent.test.cpp
   - test/mytest/chirp_z.test.cpp
   - test/mytest/powerquery.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/segtree_xor_prod.test.cpp
-  - test/mytest/rbst_monoid.test.cpp
-  - test/mytest/rbst.test.cpp
-  - test/mytest/rbst_commutative_persistent.test.cpp
   - test/mytest/online_division.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/tutte.test.cpp
-  - test/mytest/rbst_am.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
-  - test/mytest/rbst_am_persistent.test.cpp
-  - test/mytest/rbst_monoid_2.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
   - test/mytest/conv2d.test.cpp
   - test/mytest/maxplus_concave.test.cpp
@@ -336,7 +305,6 @@ data:
   - test/mytest/stern_brocot.test.cpp
   - test/mytest/binom.test.cpp
   - test/mytest/tournament.test.cpp
-  - test/mytest/rbst_test.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp

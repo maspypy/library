@@ -18,6 +18,9 @@ data:
   - icon: ':x:'
     path: test/aoj/DSL_4_A.test.cpp
     title: test/aoj/DSL_4_A.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+    title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -144,6 +147,7 @@ data:
   timestamp: '2022-12-04 00:39:06+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - test/aoj/DSL_4_A.test.cpp
 documentation_of: other/rectangle_union.hpp
 layout: document

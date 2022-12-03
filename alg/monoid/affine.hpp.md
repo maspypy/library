@@ -25,9 +25,6 @@ data:
     path: test/library_checker/datastructure/sort_segtree_1.test.cpp
     title: test/library_checker/datastructure/sort_segtree_1.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/rbst_monoid_2.test.cpp
-    title: test/mytest/rbst_monoid_2.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1502.test.cpp
     title: test/yukicoder/1502.test.cpp
   _isVerificationFailed: true
@@ -60,7 +57,6 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1502.test.cpp
-  - test/mytest/rbst_monoid_2.test.cpp
   - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
   - test/library_checker/datastructure/queue_operate_all_composite.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp
