@@ -1,5 +1,5 @@
 template <int LOG = 30>
-struct BinaryTrie {
+struct Binary_Trie {
   struct Node {
     ll cnt = 0;
     int ch[2] = {-1, -1};

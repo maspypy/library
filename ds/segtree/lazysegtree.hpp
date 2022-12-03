@@ -17,12 +17,12 @@ struct LazySegTree {
   LazySegTree(int n, F f) {
     build(n, f);
   }
-  LazySegTree(vc<X> v) { build(v); }
+  LazySegTree(const vc<X>& v) { build(v); }
 
   void build(int m) {
     build(m, [](int i) -> X { return Monoid_X::unit(); });
   }
-  void build(vc<X> v) {
+  void build(const vc<X>& v) {
     build(len(v), [&](int i) -> X { return v[i]; });
   }
   template <typename F>
@@ -127,7 +127,7 @@ struct LazySegTree {
   }
 
   template <typename F>
-  int max_right(const F& check, int l) {
+  int max_right(const F check, int l) {
     assert(0 <= l && l <= n);
     assert(check(Monoid_X::unit()));
     if (l == n) return n;
@@ -154,7 +154,7 @@ struct LazySegTree {
   }
 
   template <typename F>
-  int min_left(const F& check, int r) {
+  int min_left(const F check, int r) {
     assert(0 <= r && r <= n);
     assert(check(Monoid_X::unit()));
     if (r == 0) return 0;
