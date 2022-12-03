@@ -3,23 +3,21 @@
 
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "alg/acted_monoid/cntsum_assign.hpp"
-#include "ds/segtree/lazysegtree.hpp"
+#include "alg/acted_monoid/sum_assign.hpp"
+#include "ds/segtree/lazy_segtree.hpp"
 
 void solve() {
   LL(N, Q);
-  using AM = ActedMonoid_CntSum_Assign<ll, 12345>;
-  vc<pi> seg_raw(N);
-  FOR(i, N) seg_raw[i] = {1, 0};
-  LazySegTree<AM> seg(seg_raw);
-  FOR(_, Q) {
+  using AM = ActedMonoid_Sum_Assign<ll, 12345>;
+  Lazy_SegTree<AM> seg(N);
+  FOR(Q) {
     LL(t, L, R);
     ++R;
     if (t == 0) {
       LL(x);
       seg.apply(L, R, x);
     } else {
-      print(seg.prod(L, R).se);
+      print(seg.prod(L, R));
     }
   }
 }

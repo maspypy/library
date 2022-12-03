@@ -22,7 +22,7 @@ void solve() {
   UnionFind uf(K);
 
   auto eval
-      = [&](int v) -> int { return (tree[v] ? uf.size[v] - 1 : uf.size[v]); };
+      = [&](int v) -> int { return (tree[v] ? uf.size(v) - 1 : uf.size(v)); };
 
   auto ADD = [&](int v) -> void {
     auto [c, d] = CD[v];
@@ -41,8 +41,7 @@ void solve() {
   auto QUERY = [&](int v) -> void { ANS[v] = ans; };
   auto RESET = [&]() -> void {
     for (auto&& v: history) {
-      uf.size[v] = 1;
-      uf.par[v] = v;
+      uf.dat[v] = -1;
       tree[v] = 1;
     }
     ans = 0;

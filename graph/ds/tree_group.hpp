@@ -3,9 +3,12 @@
 #include "alg/monoid/group_reverse.hpp"
 
 // 作ってみたものの、HLD(log^2N)より遅いがち？
+// EulerTour + セグ木
+// 逆元を利用して、パスクエリを O(logN) 時間で行う。
+
 template <typename TREE, typename Group, bool edge = false,
           bool path_query = true, bool subtree_query = false>
-struct TreeGroup {
+struct Tree_Group {
   using RevGroup = Group_Reverse<Group>;
   using X = typename Group::value_type;
   TREE &tree;
@@ -13,7 +16,7 @@ struct TreeGroup {
   SegTree<Group> seg, seg_subtree;
   SegTree<RevGroup> seg_r;
 
-  TreeGroup(TREE &tree) : tree(tree), N(tree.N) {
+  Tree_Group(TREE &tree) : tree(tree), N(tree.N) {
     if (path_query) {
       seg = SegTree<Group>(2 * N);
       if (!Group::commute) seg_r = SegTree<RevGroup>(2 * N);
@@ -24,7 +27,7 @@ struct TreeGroup {
     }
   }
 
-  TreeGroup(TREE &tree, vc<X> dat) : tree(tree), N(tree.N) {
+  Tree_Group(TREE &tree, vc<X> dat) : tree(tree), N(tree.N) {
     if (path_query) {
       vc<X> seg_raw(2 * N);
       if (!edge) {
@@ -95,22 +98,5 @@ struct TreeGroup {
     assert(subtree_query);
     int l = tree.LID[u], r = tree.RID[u];
     return seg_subtree.prod(l + edge, r);
-  }
-
-  void debug() {
-    print("tree");
-    tree.debug();
-    print("seg");
-    seg.debug();
-    print("seg_r");
-    seg_r.debug();
-    print("seg_subtree");
-    seg_subtree.debug();
-  }
-
-  void doc() {
-    print("EulerTour + セグ木。");
-    print("逆元を利用して、パスクエリを O(logN) 時間で行う。");
-    print("部分木クエリ O(logN) 時間、パスクエリ O(logN) 時間。");
   }
 };

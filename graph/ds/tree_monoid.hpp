@@ -1,10 +1,11 @@
 #pragma once
+
 #include "ds/segtree/segtree.hpp"
 #include "graph/tree.hpp"
 #include "alg/monoid/monoid_reverse.hpp"
 
 template <typename TREE, typename Monoid, bool edge = false>
-struct TreeMonoid {
+struct Tree_Monoid {
   using RevMonoid = Monoid_Reverse<Monoid>;
   using X = typename Monoid::value_type;
   TREE &tree;
@@ -12,11 +13,11 @@ struct TreeMonoid {
   SegTree<Monoid> seg;
   SegTree<RevMonoid> seg_r;
 
-  TreeMonoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N) {
+  Tree_Monoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N) {
     if (!Monoid::commute) seg_r = SegTree<RevMonoid>(tree.N);
   }
 
-  TreeMonoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {
+  Tree_Monoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {
     vc<X> seg_raw(N, Monoid::unit());
     if (!edge) {
       FOR(v, N) seg_raw[tree.LID[v]] = dat[v];

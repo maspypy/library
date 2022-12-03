@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "alg/monoid/min.hpp"
-#include "ds/splay/splaytree_monoid.hpp"
+#include "ds/splaytree/splaytree_monoid.hpp"
 
 void solve() {
   LL(N, Q);

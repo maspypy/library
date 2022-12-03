@@ -1,190 +1,149 @@
 #pragma once
 
-/*
-コンストラクタに渡すもの
-・L, R：最大の範囲（root node の表す範囲）
-・function<X(ll,ll)> defulat_fn(l,r)：初期値での [l,r) 積の計算
-*/
-template <class Lazy, int NODES = 5'000'000>
+template <typename ActedMonoid, bool PERSISTENT, int NODES>
 struct Dynamic_LazySegTree {
-  using Monoid_X = typename Lazy::Monoid_X;
-  using Monoid_A = typename Lazy::Monoid_A;
-  using X = typename Monoid_X::value_type;
-  using A = typename Monoid_A::value_type;
+  using AM = ActedMonoid;
+  using MX = typename AM::MX;
+  using MA = typename AM::MA;
+  using X = typename AM::X;
+  using A = typename AM::A;
 
   struct Node {
+    Node *l, *r;
     X x;
     A a;
-    Node *l, *r;
-    Node() {}
-    Node(const X &x) : x(x), a(Monoid_A::unit()), l(nullptr), r(nullptr) {}
-    X get() { return Lazy::act(x, a); }
   };
 
+  const ll n;
   Node *pool;
   int pid;
-  ll L, R;
-  Node *root;
-  function<X(ll, ll)> default_fn;
+  using np = Node *;
 
-  Dynamic_LazySegTree(ll L, ll R, function<X(ll, ll)> f)
-      : pid(0), L(L), R(R), default_fn(f) {
-    pool = new Node[NODES];
-    root = new_node(L, R);
-  }
+  Persistent_LazySegTree(int n) : n(n), pid(0) { pool = new Node[NODES]; }
 
-  void reset() {
-    pid = 0;
-    root = new_node(L, R);
-  }
-
-  void set(ll i, const X &x) {
-    assert(L <= i && i < R);
-    set_rec(root, L, R, i, x);
-  }
-
-  void apply(ll l, ll r, const A &a) {
-    assert(L <= l && l <= r && r <= R);
-    apply_rec(root, L, R, l, r, a);
-  }
-
-  X prod(ll l, ll r) {
-    assert(L <= l && l <= r && r <= R);
-    return prod_rec(root, L, R, l, r);
-  }
-
-  X prod_all() { return root->get(); }
-
-  template <class F>
-  ll max_right(const F &check, ll s) {
-    assert(L <= s && s <= R && check(Monoid_X::unit()));
-    X p = Monoid_X::unit();
-    return max_right_rec(root, L, R, check, s, p);
-  }
-
-  template <class F>
-  ll min_left(const F &check, ll t) {
-    assert(L <= t && t <= R && check(Monoid_X::unit()));
-    X p = Monoid_X::unit();
-    return min_left_rec(root, L, R, check, t, p);
-  }
-
-  void debug() {
-    auto dfs = [&](auto &dfs, Node *n, ll l, ll r) -> void {
-      print("lr", l, r, "x", n->x, "a", n->a);
-      ll m = (l + r) / 2;
-      if (n->l) dfs(dfs, n->l, l, m);
-      if (n->r) dfs(dfs, n->r, m, r);
-    };
-    dfs(dfs, root, L, R);
-  }
-
-private:
-  Node *new_node(ll node_l, ll node_r) {
-    pool[pid].x = default_fn(node_l, node_r);
-    pool[pid].a = Monoid_A::unit();
+  np new_node(const X &x) {
     pool[pid].l = pool[pid].r = nullptr;
+    pool[pid].x = x;
+    pool[pid].a = Monoid_A::unit();
     return &(pool[pid++]);
   }
 
-  void prop(Node *n, ll node_l, ll node_r) {
-    if (n->a == Monoid_A::unit()) return;
-    ll node_m = (node_l + node_r) / 2;
-    if (!n->l) n->l = new_node(node_l, node_m);
-    if (!n->r) n->r = new_node(node_m, node_r);
-    (n->l)->a = Monoid_A::op((n->l)->a, n->a);
-    (n->r)->a = Monoid_A::op((n->r)->a, n->a);
-    n->x = Lazy::act(n->x, n->a);
-    n->a = Monoid_A::unit();
+  np new_node(const vc<X> &dat) {
+    assert(len(dat) == n);
+    auto dfs = [&](auto &dfs, ll l, ll r) -> Node * {
+      if (l == r) return nullptr;
+      if (r == l + 1) return new_node(dat[l]);
+      ll m = (l + r) / 2;
+      np l_root = dfs(dfs, l, m), r_root = dfs(dfs, m, r);
+      X x = Monoid_X::op(l_root->x, r_root->x);
+      np root = new_node(x);
+      root->l = l_root, root->r = r_root;
+      return root;
+    };
+    return dfs(dfs, 0, len(dat));
   }
 
-  void set_rec(Node *n, ll node_l, ll node_r, ll idx, const X &x) {
-    if (node_r - node_l == 1) {
-      n->x = x;
-      n->a = Monoid_A::unit();
-      return;
-    }
-    ll node_m = (node_l + node_r) / 2;
-    prop(n, node_l, node_r);
+  X prod(np, ll l, ll r) {
+    assert(0 <= l && l < r && r <= n);
+    X x = Monoid_X::unit();
+    prod_rec(root, 0, n, l, r, x);
+    return x;
+  }
 
-    if (idx < node_m) {
-      if (!(n->l)) n->l = new_node(node_l, node_m);
-      set_rec(n->l, node_l, node_m, idx, x);
+  np set(np root, ll i, const X &x) {
+    assert(0 <= i && i < n);
+    return set_rec(root, 0, n, i, x);
+  }
+
+  np apply(Node *root, ll l, ll r, const A &a) {
+    assert(0 <= l && l < r && r <= n);
+    return apply_rec(root, 0, n, l, r, a);
+  }
+
+  vc<X> restore(np root) {
+    vc<X> res;
+    res.reserve(n);
+    auto dfs = [&](auto &dfs, Node *c, ll l, ll r, A a) -> void {
+      if (r - l == 1) { res.eb(AM::act(c->x, a)), return; }
+      ll m = (l + r) / 2;
+      a = MA::op(c->a, a);
+      dfs(dfs, c->l, l, m, a);
+      dfs(dfs, c->r, m, r, a);
+    };
+    dfs(dfs, root, 0, n, MA::unit());
+    return res;
+  }
+
+  void reset() { pid = 0; }
+
+private:
+  np copy_node(np n) {
+    if (!n || !PRESISTENT) return nullptr;
+    pool[pid].l = n->l, pool[pid].r = n->r;
+    pool[pid].x = n->x;
+    pool[pid].a = n->a;
+    return &(pool[pid++]);
+  }
+
+  void prop(np c) {
+    if (c->a == MA::unit()) return;
+    if (c->l) {
+      c->l = copy_node(c->l);
+      c->l->x = AM::act(c->l->x, c->a);
+      c->l->a = MA::op(c->l->a, c->a);
+    }
+    if (c->r) {
+      c->r = copy_node(c->r);
+      c->r->x = AM::act(c->r->x, c->a);
+      c->r->a = MA::op(c->r->a, c->a);
+    }
+    c->a = MA::unit();
+  }
+
+  np set_rec(np c, ll l, ll r, ll i, const X &x) {
+    if (node_r == node_l + 1) { return new_node(x); }
+    c = copy_node(c);
+    prop(c);
+    int node_m = (node_l + node_r) / 2;
+    if (i < node_m) {
+      c->l = set_rec(c->l, node_l, node_m, i, x);
     } else {
-      if (!(n->r)) n->r = new_node(node_m, node_r);
-      set_rec(n->r, node_m, node_r, idx, x);
+      c->r = set_rec(c->r, node_m, node_r, i, x);
     }
-    X xl = (n->l ? (n->l)->get() : Monoid_X::unit());
-    X xr = (n->r ? (n->r)->get() : Monoid_X::unit());
-    n->x = Monoid_X::op(xl, xr);
+    c->x = Monoid_X::op(c->l->x, c->r->x);
+    return c;
   }
 
-  void apply_rec(Node *n, ll node_l, ll node_r, ll l, ll r, const A &a) {
+  void prod_rec(Node *c, int node_l, int node_r, int l, int r, X &x) {
     chmax(l, node_l);
     chmin(r, node_r);
     if (l >= r) return;
     if (l == node_l && r == node_r) {
-      n->a = Monoid_A::op(n->a, a);
+      x = Monoid_X::op(x, c->x);
       return;
     }
-    ll node_m = (node_l + node_r) / 2;
-    prop(n, node_l, node_r);
-    if (!(n->l)) n->l = new_node(node_l, node_m);
-    if (!(n->r)) n->r = new_node(node_m, node_r);
-    apply_rec(n->l, node_l, node_m, l, r, a);
-    apply_rec(n->r, node_m, node_r, l, r, a);
-    n->x = Monoid_X::op((n->l)->get(), (n->r)->get());
+    prop(c);
+    int node_m = (node_l + node_r) / 2;
+    prod_rec(c->l, node_l, node_m, l, r, x);
+    prod_rec(c->r, node_m, node_r, l, r, x);
   }
 
-  X prod_rec(Node *n, ll node_l, ll node_r, ll l, ll r) {
+  Node *apply_rec(Node *c, int node_l, int node_r, int l, int r, const A &a) {
     chmax(l, node_l);
     chmin(r, node_r);
-    if (l >= r) return Monoid_X::unit();
-    if (l == node_l && r == node_r) return n->get();
-    ll node_m = (node_l + node_r) / 2;
-    prop(n, node_l, node_r);
-    X xl = (n->l ? prod_rec(n->l, node_l, node_m, l, r) : Monoid_X::unit());
-    X xr = (n->r ? prod_rec(n->r, node_m, node_r, l, r) : Monoid_X::unit());
-    return Monoid_X::op(xl, xr);
-  }
-
-  template <typename F>
-  ll max_right_rec(Node *n, ll node_l, ll node_r, const F &check, ll s, X &p) {
-    if (node_r <= s) return R;
-    if (s <= node_l) {
-      X x = Monoid_X::op(p, n->get());
-      if (check(x)) {
-        p = x;
-        return R;
-      }
+    if (l >= r) return c;
+    if (l == node_l && r == node_r) {
+      c = copy_node(c);
+      c->x = Lazy::act(c->x, a);
+      c->a = Monoid_A::op(c->a, a);
+      return c;
     }
-    if (node_r - node_l == 1) return node_l;
-    ll node_m = (node_l + node_r) / 2;
-    if (!(n->l)) n->l = new_node(node_l, node_m);
-    if (!(n->r)) n->r = new_node(node_m, node_r);
-    prop(n, node_l, node_r);
-    ll res = max_right_rec(n->l, node_l, node_m, check, s, p);
-    if (res != R) return res;
-    return max_right_rec(n->r, node_m, node_r, check, s, p);
-  }
-
-  template <typename F>
-  ll min_left_rec(Node *n, ll node_l, ll node_r, const F &check, ll t, X &p) {
-    if (t <= node_l) return L;
-    if (node_r <= t) {
-      X x = Monoid_X::op(n->get(), p);
-      if (check(x)) {
-        p = x;
-        return L;
-      }
-    }
-    if (node_r - node_l == 1) return node_r;
-    ll node_m = (node_l + node_r) / 2;
-    if (!(n->l)) n->l = new_node(node_l, node_m);
-    if (!(n->r)) n->r = new_node(node_m, node_r);
-    prop(n, node_l, node_r);
-    ll res = min_left_rec(n->r, node_m, node_r, check, t, p);
-    if (res != L) return res;
-    return min_left_rec(n->l, node_l, node_m, check, t, p);
+    c = copy_node(c);
+    prop(c);
+    int node_m = (node_l + node_r) / 2;
+    c->l = apply_rec(c->l, node_l, node_m, l, r, a);
+    c->r = apply_rec(c->r, node_m, node_r, l, r, a);
+    c->x = Monoid_X::op(c->l->x, c->r->x);
+    return c;
   }
 };

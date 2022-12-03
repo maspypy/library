@@ -1,10 +1,10 @@
 #pragma once
 
-template <typename AM>
+template <typename ActedMonoid>
 struct Lazy_SegTree {
-  using AM = AM;
-  using MX = typename AM::MX;
-  using MA = typename AM::MA;
+  using AM = ActedMonoid;
+  using MX = typename AM::Monoid_X;
+  using MA = typename AM::Monoid_A;
   static_assert(MX::commute);
   using X = typename MX::value_type;
   using A = typename MA::value_type;
@@ -12,13 +12,13 @@ struct Lazy_SegTree {
   vc<X> dat;
   vc<A> laz;
 
-  LazySegTree() {}
-  LazySegTree(int n) { build(n); }
+  Lazy_SegTree() {}
+  Lazy_SegTree(int n) { build(n); }
   template <typename F>
-  LazySegTree(int n, F f) {
+  Lazy_SegTree(int n, F f) {
     build(n, f);
   }
-  LazySegTree(const vc<X>& v) { build(v); }
+  Lazy_SegTree(const vc<X>& v) { build(v); }
 
   void build(int m) {
     build(m, [](int i) -> X { return MX::unit(); });

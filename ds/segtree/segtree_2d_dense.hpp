@@ -1,7 +1,7 @@
 #pragma once
 
 template <class Monoid>
-struct SegTree2D_Dense {
+struct SegTree_2D_Dense {
   using MX = Monoid;
   using X = typename MX::value_type;
   using value_type = X;
@@ -9,9 +9,9 @@ struct SegTree2D_Dense {
   vc<X> dat;
   int H, W;
 
-  SegTree2D_Dense() : SegTree2D_Dense(0, 0) {}
-  SegTree2D_Dense(int H, int W) : H(H), W(W), dat(4 * H * W, MX::unit()) {}
-  SegTree2D_Dense(vc<vc<X>> &v) {
+  SegTree_2D_Dense() : SegTree2D_Dense(0, 0) {}
+  SegTree_2D_Dense(int H, int W) : H(H), W(W), dat(4 * H * W, MX::unit()) {}
+  SegTree_2D_Dense(vc<vc<X>> &v) {
     H = len(v), W = (H == 0 ? 0 : len(v[0]));
     dat.assign(4 * H * W, MX::unit());
     FOR(x, H) FOR(y, W) { dat[idx(H + x, W + y)] = v[x][y]; }
