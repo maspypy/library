@@ -1,15 +1,15 @@
 #include "alg/monoid/add.hpp"
 
 template <typename Monoid>
-struct Fenwick_Tree_2D_Dense {
+struct FenwickTree_2D_Dense {
   using G = Monoid;
   using E = typename G::value_type;
   static_assert(G::commute);
   int H, W;
   vc<E> dat;
 
-  Fenwick_Tree_2D_Dense() {}
-  Fenwick_Tree_2D_Dense(int H, int W) : H(H), W(W), dat(H * W) {}
+  FenwickTree_2D_Dense() {}
+  FenwickTree_2D_Dense(int H, int W) : H(H), W(W), dat(H * W) {}
 
   void add(int x, int y, E val) {
     ++x;

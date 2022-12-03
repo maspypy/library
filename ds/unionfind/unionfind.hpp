@@ -1,10 +1,10 @@
 #pragma once
 
-struct Union_Find {
+struct UnionFind {
   int n;
   int n_comp;
   vector<int> dat; // par or (-size)
-  Union_Find(int n) : n(n), n_comp(n), dat(n, -1) {}
+  UnionFind(int n) : n(n), n_comp(n), dat(n, -1) {}
 
   int operator[](int x) {
     while (dat[x] >= 0) {

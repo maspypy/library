@@ -1,17 +1,17 @@
 #pragma once
 
 template <class Monoid>
-struct Disjoint_Sparse {
+struct DisjointSparse {
   using X = typename Monoid::value_type;
   using value_type = X;
   int n, log;
   vc<vc<X>> dat;
 
-  Disjoint_Sparse() {}
-  Disjoint_Sparse(vc<X>& A) { build(A); }
+  DisjointSparse() {}
+  DisjointSparse(vc<X>& A) { build(A); }
 
   template <typename F>
-  Disjoint_Sparse(int n, F f) {
+  DisjointSparse(int n, F f) {
     vc<X> A(n);
     FOR(i, n) A[i] = f(i);
     build(A);
