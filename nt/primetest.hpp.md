@@ -105,9 +105,6 @@ data:
   - icon: ':x:'
     path: test/yukicoder/2120.test.cpp
     title: test/yukicoder/2120.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/590.test.cpp
-    title: test/yukicoder/590.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -200,7 +197,6 @@ data:
   - test/yukicoder/1728.test.cpp
   - test/yukicoder/1881.test.cpp
   - test/yukicoder/1025.test.cpp
-  - test/yukicoder/590.test.cpp
   - test/yukicoder/1956.test.cpp
   - test/yukicoder/1262.test.cpp
   - test/yukicoder/2119.test.cpp

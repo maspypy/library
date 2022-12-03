@@ -1,20 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: ds/pds/rollbackarray.hpp
     title: ds/pds/rollbackarray.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/add_remove_query.test.cpp
-    title: test/library_checker/datastructure/add_remove_query.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
-    title: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/pds/rollbackarray.hpp\"\n\r\ntemplate <typename T>\r\n\
@@ -27,9 +21,9 @@ data:
     \ idx) { return dat[idx]; }\r\n  void set(int idx, T x) {\r\n    history.eb(idx,\
     \ dat[idx]);\r\n    dat[idx] = x;\r\n  }\r\n\r\n  vc<T> get_all() {\r\n    vc<T>\
     \ res(N);\r\n    FOR(i, N) res[i] = get(i);\r\n    return res;\r\n  }\r\n};\r\n\
-    #line 2 \"ds/unionfind/rollbackunionfind.hpp\"\n\r\nstruct RollbackUnionFind {\r\
-    \n  RollbackArray<int> dat; // parent or size\r\n\r\n  RollbackUnionFind(int n)\
-    \ : dat(vc<int>(n, -1)) {}\r\n\r\n  int operator[](int v) {\r\n    while (dat.get(v)\
+    #line 2 \"ds/union_find/rollbackunionfind.hpp\"\n\r\nstruct RollbackUnionFind\
+    \ {\r\n  RollbackArray<int> dat; // parent or size\r\n\r\n  RollbackUnionFind(int\
+    \ n) : dat(vc<int>(n, -1)) {}\r\n\r\n  int operator[](int v) {\r\n    while (dat.get(v)\
     \ >= 0) v = dat.get(v);\r\n    return v;\r\n  }\r\n\r\n  int size(int v) { return\
     \ -dat.get((*this)[v]); }\r\n  int time() { return dat.time(); }\r\n  void rollback(int\
     \ t) { dat.rollback(t); }\r\n\r\n  bool merge(int a, int b) {\r\n    a = (*this)[a],\
@@ -48,17 +42,15 @@ data:
   dependsOn:
   - ds/pds/rollbackarray.hpp
   isVerificationFile: false
-  path: ds/unionfind/rollbackunionfind.hpp
+  path: ds/union_find/rollbackunionfind.hpp
   requiredBy: []
-  timestamp: '2022-12-01 18:20:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/library_checker/datastructure/add_remove_query.test.cpp
-  - test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
-documentation_of: ds/unionfind/rollbackunionfind.hpp
+  timestamp: '2022-12-03 09:59:53+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: ds/union_find/rollbackunionfind.hpp
 layout: document
 redirect_from:
-- /library/ds/unionfind/rollbackunionfind.hpp
-- /library/ds/unionfind/rollbackunionfind.hpp.html
-title: ds/unionfind/rollbackunionfind.hpp
+- /library/ds/union_find/rollbackunionfind.hpp
+- /library/ds/union_find/rollbackunionfind.hpp.html
+title: ds/union_find/rollbackunionfind.hpp
 ---

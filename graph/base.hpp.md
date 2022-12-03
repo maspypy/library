@@ -5,18 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: enumerate/triangles.hpp
     title: enumerate/triangles.hpp
-  - icon: ':heavy_check_mark:'
-    path: flow/bipartite.hpp
-    title: flow/bipartite.hpp
   - icon: ':warning:'
     path: game/graph_game.hpp
     title: game/graph_game.hpp
-  - icon: ':heavy_check_mark:'
-    path: geo/manhattan_mst.hpp
-    title: geo/manhattan_mst.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/bipartite_edge_coloring.hpp
-    title: graph/bipartite_edge_coloring.hpp
   - icon: ':heavy_check_mark:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
@@ -27,18 +18,12 @@ data:
     path: graph/centroid.hpp
     title: graph/centroid.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/check_bipartite.hpp
-    title: graph/check_bipartite.hpp
-  - icon: ':heavy_check_mark:'
     path: graph/classify_subtree.hpp
     title: graph/classify_subtree.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/dag_path_cover.hpp
-    title: graph/dag_path_cover.hpp
   - icon: ':x:'
     path: graph/ds/bfsnumbering.hpp
     title: graph/ds/bfsnumbering.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: graph/ds/dualtreemonoid.hpp
     title: graph/ds/dualtreemonoid.hpp
   - icon: ':x:'
@@ -50,7 +35,7 @@ data:
   - icon: ':question:'
     path: graph/ds/treemonoid.hpp
     title: graph/ds/treemonoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
   - icon: ':warning:'
@@ -65,12 +50,6 @@ data:
   - icon: ':warning:'
     path: graph/find_odd_cycle.hpp
     title: graph/find_odd_cycle.hpp
-  - icon: ':question:'
-    path: graph/functional.hpp
-    title: graph/functional.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/maximum_antichain.hpp
-    title: graph/maximum_antichain.hpp
   - icon: ':heavy_check_mark:'
     path: graph/maximum_independent_set.hpp
     title: graph/maximum_independent_set.hpp
@@ -80,9 +59,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/minimum_spanning_tree.hpp
-    title: graph/minimum_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/range_to_range_graph.hpp
     title: graph/range_to_range_graph.hpp
@@ -119,13 +95,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path/warshall_floyd.hpp
     title: graph/shortest_path/warshall_floyd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: graph/steiner_tree.hpp
     title: graph/steiner_tree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
   - icon: ':question:'
@@ -140,9 +116,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_dp.hpp
     title: graph/tree_dp.hpp
-  - icon: ':x:'
-    path: graph/tree_of_unionfind.hpp
-    title: graph/tree_of_unionfind.hpp
   - icon: ':question:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
@@ -160,20 +133,8 @@ data:
     path: test/aoj/0275.test.cpp
     title: test/aoj/0275.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/1566.test.cpp
-    title: test/aoj/1566.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/2251_1.test.cpp
-    title: test/aoj/2251_1.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/2251_2.test.cpp
-    title: test/aoj/2251_2.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/aoj/2677.test.cpp
     title: test/aoj/2677.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/2995.test.cpp
-    title: test/aoj/2995.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_12_B.test.cpp
     title: test/aoj/ALDS1_12_B.test.cpp
@@ -186,9 +147,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_C.test.cpp
     title: test/aoj/GRL_1_C.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_2_A.test.cpp
-    title: test/aoj/GRL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_A.test.cpp
     title: test/aoj/GRL_3_A.test.cpp
@@ -204,9 +162,6 @@ data:
   - icon: ':x:'
     path: test/atcoder/abc269ex.test.cpp
     title: test/atcoder/abc269ex.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc270_f.test.cpp
-    title: test/atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
@@ -229,12 +184,6 @@ data:
     path: test/library_checker/graph/biconnected_component.test.cpp
     title: test/library_checker/graph/biconnected_component.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/bipartite_edge_coloring.test.cpp
-    title: test/library_checker/graph/bipartite_edge_coloring.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/bipartitematching.test.cpp
-    title: test/library_checker/graph/bipartitematching.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -252,9 +201,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/enumerate_triangles.test.cpp
     title: test/library_checker/graph/enumerate_triangles.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/manhattan_mst.test.cpp
-    title: test/library_checker/graph/manhattan_mst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/maximum_independent_set.test.cpp
     title: test/library_checker/graph/maximum_independent_set.test.cpp
@@ -289,29 +235,17 @@ data:
     path: test/library_checker/tree/tree_diameter.test.cpp
     title: test/library_checker/tree/tree_diameter.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/tutte.test.cpp
-    title: test/mytest/tutte.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1002.test.cpp
     title: test/yukicoder/1002.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1069.test.cpp
     title: test/yukicoder/1069.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/114.test.cpp
-    title: test/yukicoder/114.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1170.test.cpp
     title: test/yukicoder/1170.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1211.test.cpp
-    title: test/yukicoder/1211.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1212.test.cpp
     title: test/yukicoder/1212.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1242.test.cpp
-    title: test/yukicoder/1242.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1254.test.cpp
     title: test/yukicoder/1254.test.cpp
@@ -330,21 +264,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1418.test.cpp
     title: test/yukicoder/1418.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1451.test.cpp
-    title: test/yukicoder/1451.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1479.test.cpp
-    title: test/yukicoder/1479.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1494.test.cpp
     title: test/yukicoder/1494.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1524.test.cpp
     title: test/yukicoder/1524.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1600.test.cpp
-    title: test/yukicoder/1600.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1601.test.cpp
     title: test/yukicoder/1601.test.cpp
@@ -354,12 +279,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1718.test.cpp
     title: test/yukicoder/1718.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1744.test.cpp
-    title: test/yukicoder/1744.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1745.test.cpp
-    title: test/yukicoder/1745.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1769.test.cpp
     title: test/yukicoder/1769.test.cpp
@@ -382,23 +301,11 @@ data:
     path: test/yukicoder/1868.test.cpp
     title: test/yukicoder/1868.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1911.test.cpp
-    title: test/yukicoder/1911.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1976.test.cpp
     title: test/yukicoder/1976.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1983.test.cpp
-    title: test/yukicoder/1983.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/2122.test.cpp
-    title: test/yukicoder/2122.test.cpp
   - icon: ':x:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/590.test.cpp
-    title: test/yukicoder/590.test.cpp
   - icon: ':x:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
@@ -503,16 +410,11 @@ data:
   requiredBy:
   - enumerate/triangles.hpp
   - string/suffix_automaton.hpp
-  - geo/manhattan_mst.hpp
-  - flow/bipartite.hpp
   - graph/dsu_on_tree.hpp
   - graph/tree_diameter.hpp
-  - graph/tree_of_unionfind.hpp
   - graph/rerooting_classify_subtree.hpp
   - graph/tree_dp.hpp
   - graph/toposort.hpp
-  - graph/functional.hpp
-  - graph/bipartite_edge_coloring.hpp
   - graph/range_to_range_graph.hpp
   - graph/unicyclic.hpp
   - graph/reachability.hpp
@@ -520,8 +422,6 @@ data:
   - graph/mincostcycle.hpp
   - graph/tree.hpp
   - graph/bracket_graph.hpp
-  - graph/dag_path_cover.hpp
-  - graph/maximum_antichain.hpp
   - graph/reverse_graph.hpp
   - graph/eulerwalk.hpp
   - graph/two_edge_component.hpp
@@ -529,7 +429,6 @@ data:
   - graph/classify_subtree.hpp
   - graph/block_cut.hpp
   - graph/find_nontransitive_triple.hpp
-  - graph/check_bipartite.hpp
   - graph/centroid.hpp
   - graph/find_cycle.hpp
   - graph/maximum_independent_set.hpp
@@ -549,15 +448,12 @@ data:
   - graph/shortest_path/warshall_floyd.hpp
   - graph/shortest_path/bellmanford.hpp
   - graph/minimum_hamiltonian_cycle.hpp
-  - graph/minimum_spanning_tree.hpp
   - graph/strongly_connected_component.hpp
   - game/graph_game.hpp
   timestamp: '2022-08-30 02:42:36+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1600.test.cpp
   - test/yukicoder/1254.test.cpp
-  - test/yukicoder/1479.test.cpp
   - test/yukicoder/1320.test.cpp
   - test/yukicoder/1295.test.cpp
   - test/yukicoder/1601.test.cpp
@@ -565,34 +461,23 @@ data:
   - test/yukicoder/1775.test.cpp
   - test/yukicoder/17.test.cpp
   - test/yukicoder/1524.test.cpp
-  - test/yukicoder/1983.test.cpp
   - test/yukicoder/1778.test.cpp
   - test/yukicoder/1813.test.cpp
   - test/yukicoder/1170.test.cpp
-  - test/yukicoder/114.test.cpp
-  - test/yukicoder/2122.test.cpp
-  - test/yukicoder/590.test.cpp
-  - test/yukicoder/1242.test.cpp
   - test/yukicoder/1796.test.cpp
-  - test/yukicoder/1911.test.cpp
   - test/yukicoder/1344.test.cpp
   - test/yukicoder/1494.test.cpp
-  - test/yukicoder/1451.test.cpp
   - test/yukicoder/1293.test.cpp
-  - test/yukicoder/1211.test.cpp
   - test/yukicoder/529.test.cpp
   - test/yukicoder/1769.test.cpp
   - test/yukicoder/1976.test.cpp
   - test/yukicoder/1790.test.cpp
   - test/yukicoder/1069.test.cpp
   - test/yukicoder/1002.test.cpp
-  - test/yukicoder/1745.test.cpp
   - test/yukicoder/1212.test.cpp
-  - test/yukicoder/1744.test.cpp
   - test/yukicoder/1868.test.cpp
   - test/yukicoder/1418.test.cpp
   - test/yukicoder/1718.test.cpp
-  - test/mytest/tutte.test.cpp
   - test/library_checker/string/number_of_substrings2.test.cpp
   - test/library_checker/math/twosat.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
@@ -609,30 +494,21 @@ data:
   - test/library_checker/graph/enumerate_triangles.test.cpp
   - test/library_checker/graph/K_shortest_walk.test.cpp
   - test/library_checker/graph/cycle_detection_undirected.test.cpp
-  - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/cycle_detection.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
   - test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - test/library_checker/graph/maximum_independent_set.test.cpp
   - test/library_checker/graph/enumerate_cliques.test.cpp
-  - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/graph/shortest_path.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
-  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
   - test/atcoder/abc269ex.test.cpp
-  - test/atcoder/abc270_f.test.cpp
   - test/atcoder/abc266f.test.cpp
-  - test/aoj/GRL_2_A.test.cpp
-  - test/aoj/2251_1.test.cpp
   - test/aoj/2677.test.cpp
   - test/aoj/DPL_2_A.test.cpp
-  - test/aoj/2251_2.test.cpp
   - test/aoj/GRL_5_E.test.cpp
-  - test/aoj/1566.test.cpp
   - test/aoj/GRL_1_C.test.cpp
   - test/aoj/ALDS1_12_B.test.cpp
-  - test/aoj/2995.test.cpp
   - test/aoj/GRL_1_B.test.cpp
   - test/aoj/GRL_3_B.test.cpp
   - test/aoj/0275.test.cpp

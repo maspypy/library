@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':warning:'
     path: alg/acted_monoid/max_add.hpp
     title: alg/acted_monoid/max_add.hpp
   - icon: ':x:'
@@ -17,19 +17,10 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/min_max.hpp
     title: alg/acted_monoid/min_max.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/minimum_spanning_tree.hpp
-    title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_2_A.test.cpp
-    title: test/aoj/GRL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc266h.test.cpp
     title: test/atcoder/abc266h.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc270_f.test.cpp
-    title: test/atcoder/abc270_f.test.cpp
   - icon: ':x:'
     path: test/mytest/max_assign.test.cpp
     title: test/mytest/max_assign.test.cpp
@@ -57,9 +48,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2026.test.cpp
     title: test/yukicoder/2026.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/686.test.cpp
-    title: test/yukicoder/686.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -82,11 +70,9 @@ data:
   - alg/acted_monoid/max_add.hpp
   - alg/acted_monoid/min_max.hpp
   - alg/acted_monoid/max_min.hpp
-  - graph/minimum_spanning_tree.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/686.test.cpp
   - test/yukicoder/2026.test.cpp
   - test/yukicoder/1790.test.cpp
   - test/yukicoder/1826.test.cpp
@@ -96,9 +82,7 @@ data:
   - test/mytest/max_max.test.cpp
   - test/mytest/max_min.test.cpp
   - test/mytest/max_assign.test.cpp
-  - test/atcoder/abc270_f.test.cpp
   - test/atcoder/abc266h.test.cpp
-  - test/aoj/GRL_2_A.test.cpp
 documentation_of: alg/monoid/max.hpp
 layout: document
 redirect_from:

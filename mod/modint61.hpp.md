@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/classify_subtree.hpp
     title: graph/classify_subtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: graph/max_matching_size.hpp
     title: graph/max_matching_size.hpp
   - icon: ':heavy_check_mark:'
@@ -42,9 +42,6 @@ data:
   - icon: ':x:'
     path: test/mytest/tdpc_grid_dp.test.cpp
     title: test/mytest/tdpc_grid_dp.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/tutte.test.cpp
-    title: test/mytest/tutte.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1397.test.cpp
     title: test/yukicoder/1397.test.cpp
@@ -161,7 +158,6 @@ data:
   - test/yukicoder/263.test.cpp
   - test/yukicoder/1397.test.cpp
   - test/yukicoder/2102.test.cpp
-  - test/mytest/tutte.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - test/library_checker/graph/rerooting_classify_subtree.test.cpp

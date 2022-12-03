@@ -1,48 +1,18 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: ds/splay/splaytree_acted_monoid.hpp
-    title: ds/splay/splaytree_acted_monoid.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/splay/splaytree_acted_set.hpp
-    title: ds/splay/splaytree_acted_set.hpp
-  - icon: ':x:'
-    path: ds/splay/splaytree_commutative_monoid.hpp
-    title: ds/splay/splaytree_commutative_monoid.hpp
-  - icon: ':question:'
-    path: ds/splay/splaytree_monoid.hpp
-    title: ds/splay/splaytree_monoid.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/1508.test.cpp
-    title: test/aoj/1508.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/cf702_F_splay.test.cpp
-    title: test/mytest/cf702_F_splay.test.cpp
-  - icon: ':x:'
-    path: test/mytest/splay.test.cpp
-    title: test/mytest/splay.test.cpp
-  - icon: ':x:'
-    path: test/mytest/splay_cm.test.cpp
-    title: test/mytest/splay_cm.test.cpp
-  - icon: ':x:'
-    path: test/mytest/splay_monoid.test.cpp
-    title: test/mytest/splay_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1441.test.cpp
-    title: test/yukicoder/1441.test.cpp
-  _isVerificationFailed: true
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"ds/splay/splaytree.hpp\"\n// Node \u578B\u3092\u5225\u306B\
-    \u5B9A\u7FA9\u3057\u3066\u4F7F\u3046\ntemplate <typename Node, int NODES = 1'000'000>\n\
-    struct SplayTree {\n  Node *pool;\n  int pid;\n  using np = Node *;\n  using X\
-    \ = typename Node::value_type;\n  using A = typename Node::operator_type;\n\n\
-    \  SplayTree() : pid(0) { pool = new Node[NODES]; }\n\n  void reset() { pid =\
+  bundledCode: "#line 2 \"ds/splay_tree/splaytree.hpp\"\n// Node \u578B\u3092\u5225\
+    \u306B\u5B9A\u7FA9\u3057\u3066\u4F7F\u3046\ntemplate <typename Node, int NODES\
+    \ = 1'000'000>\nstruct SplayTree {\n  Node *pool;\n  int pid;\n  using np = Node\
+    \ *;\n  using X = typename Node::value_type;\n  using A = typename Node::operator_type;\n\
+    \n  SplayTree() : pid(0) { pool = new Node[NODES]; }\n\n  void reset() { pid =\
     \ 0; }\n\n  np new_node(const X &x) {\n    np n = &(pool[pid++]);\n    Node::new_node(n,\
     \ x);\n    return n;\n  }\n\n  np new_node(const vc<X> &dat) {\n    auto dfs =\
     \ [&](auto &dfs, int l, int r) -> np {\n      if (l == r) return nullptr;\n  \
@@ -248,25 +218,15 @@ data:
     \  }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: ds/splay/splaytree.hpp
-  requiredBy:
-  - ds/splay/splaytree_acted_set.hpp
-  - ds/splay/splaytree_monoid.hpp
-  - ds/splay/splaytree_commutative_monoid.hpp
-  - ds/splay/splaytree_acted_monoid.hpp
-  timestamp: '2022-12-01 12:32:02+09:00'
-  verificationStatus: LIBRARY_SOME_WA
-  verifiedWith:
-  - test/yukicoder/1441.test.cpp
-  - test/mytest/cf702_F_splay.test.cpp
-  - test/mytest/splay_monoid.test.cpp
-  - test/mytest/splay_cm.test.cpp
-  - test/mytest/splay.test.cpp
-  - test/aoj/1508.test.cpp
-documentation_of: ds/splay/splaytree.hpp
+  path: ds/splay_tree/splaytree.hpp
+  requiredBy: []
+  timestamp: '2022-12-03 09:59:53+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: ds/splay_tree/splaytree.hpp
 layout: document
 redirect_from:
-- /library/ds/splay/splaytree.hpp
-- /library/ds/splay/splaytree.hpp.html
-title: ds/splay/splaytree.hpp
+- /library/ds/splay_tree/splaytree.hpp
+- /library/ds/splay_tree/splaytree.hpp.html
+title: ds/splay_tree/splaytree.hpp
 ---

@@ -5,13 +5,10 @@ data:
     path: ds/pds/array.hpp
     title: ds/pds/array.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/persistent_unionfind.test.cpp
-    title: test/library_checker/datastructure/persistent_unionfind.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/pds/array.hpp\"\n\r\ntemplate <typename T, int shift\
@@ -31,7 +28,7 @@ data:
     \ {\r\n      memcpy(res->ch, t->ch, sizeof(t->ch));\r\n      res->data = t->data;\r\
     \n    }\r\n    if (idx == 0) {\r\n      res->data = val;\r\n    } else {\r\n \
     \     res->ch[idx & mask] = set(res->ch[idx & mask], idx >> shift, val);\r\n \
-    \   }\r\n    return res;\r\n  }\r\n};\r\n#line 2 \"ds/unionfind/persistent_unionfind.hpp\"\
+    \   }\r\n    return res;\r\n  }\r\n};\r\n#line 2 \"ds/union_find/persistent_unionfind.hpp\"\
     \n\r\nstruct PersistentUnionFind {\r\n  using PA = PersistentArray<int>;\r\n \
     \ int n;\r\n  PA data; // root OR (-size)\r\n  using np = PA::np;\r\n\r\n  PersistentUnionFind(int\
     \ n) : n(n) {}\r\n  np init() {\r\n    np t = data.get_root();\r\n    FOR(i, n)\
@@ -61,16 +58,15 @@ data:
   dependsOn:
   - ds/pds/array.hpp
   isVerificationFile: false
-  path: ds/unionfind/persistent_unionfind.hpp
+  path: ds/union_find/persistent_unionfind.hpp
   requiredBy: []
-  timestamp: '2022-12-01 18:20:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/library_checker/datastructure/persistent_unionfind.test.cpp
-documentation_of: ds/unionfind/persistent_unionfind.hpp
+  timestamp: '2022-12-03 09:59:53+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: ds/union_find/persistent_unionfind.hpp
 layout: document
 redirect_from:
-- /library/ds/unionfind/persistent_unionfind.hpp
-- /library/ds/unionfind/persistent_unionfind.hpp.html
-title: ds/unionfind/persistent_unionfind.hpp
+- /library/ds/union_find/persistent_unionfind.hpp
+- /library/ds/union_find/persistent_unionfind.hpp.html
+title: ds/union_find/persistent_unionfind.hpp
 ---

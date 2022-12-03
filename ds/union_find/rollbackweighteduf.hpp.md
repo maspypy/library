@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: ds/pds/rollbackarray.hpp
     title: ds/pds/rollbackarray.hpp
   _extendedRequiredBy: []
@@ -21,7 +21,7 @@ data:
     \ idx) { return dat[idx]; }\r\n  void set(int idx, T x) {\r\n    history.eb(idx,\
     \ dat[idx]);\r\n    dat[idx] = x;\r\n  }\r\n\r\n  vc<T> get_all() {\r\n    vc<T>\
     \ res(N);\r\n    FOR(i, N) res[i] = get(i);\r\n    return res;\r\n  }\r\n};\r\n\
-    #line 2 \"ds/unionfind/rollbackweighteduf.hpp\"\n\ntemplate <typename Group>\n\
+    #line 2 \"ds/union_find/rollbackweighteduf.hpp\"\n\ntemplate <typename Group>\n\
     struct RollbackWeightedUF {\n  using E = typename Group::value_type;\n  using\
     \ P = pair<int, E>;\n  RollbackArray<P> dat; // parent or size\n\n  RollbackWeightedUF(int\
     \ n) : dat(vc<P>(n, P(-1, Group::unit()))) {}\n\n  P get(int v) {\n    // \u7D4C\
@@ -54,15 +54,15 @@ data:
   dependsOn:
   - ds/pds/rollbackarray.hpp
   isVerificationFile: false
-  path: ds/unionfind/rollbackweighteduf.hpp
+  path: ds/union_find/rollbackweighteduf.hpp
   requiredBy: []
-  timestamp: '2022-12-01 18:20:22+09:00'
+  timestamp: '2022-12-03 09:59:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: ds/unionfind/rollbackweighteduf.hpp
+documentation_of: ds/union_find/rollbackweighteduf.hpp
 layout: document
 redirect_from:
-- /library/ds/unionfind/rollbackweighteduf.hpp
-- /library/ds/unionfind/rollbackweighteduf.hpp.html
-title: ds/unionfind/rollbackweighteduf.hpp
+- /library/ds/union_find/rollbackweighteduf.hpp
+- /library/ds/union_find/rollbackweighteduf.hpp.html
+title: ds/union_find/rollbackweighteduf.hpp
 ---

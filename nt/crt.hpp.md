@@ -24,9 +24,6 @@ data:
   - icon: ':x:'
     path: test/yukicoder/2119.test.cpp
     title: test/yukicoder/2119.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/590.test.cpp
-    title: test/yukicoder/590.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -148,7 +145,6 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/187.test.cpp
-  - test/yukicoder/590.test.cpp
   - test/yukicoder/1956.test.cpp
   - test/yukicoder/2119.test.cpp
 documentation_of: nt/crt.hpp

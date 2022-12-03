@@ -60,9 +60,6 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1321.test.cpp
     title: test/yukicoder/1321.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1392.test.cpp
-    title: test/yukicoder/1392.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -550,7 +547,6 @@ data:
   timestamp: '2022-12-03 08:35:02+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1392.test.cpp
   - test/yukicoder/1321.test.cpp
   - test/mytest/bell.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
