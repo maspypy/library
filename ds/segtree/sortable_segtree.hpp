@@ -1,28 +1,26 @@
 #include "ds/fastset.hpp"
 #include "ds/segtree/segtree.hpp"
 
-template <typename Monoid, int NODES = 4'000'000>
+template <typename Monoid, int NODES>
 struct Sortable_SegTree {
-  using X = typename Monoid::value_type;
+  using MX = Monoid;
+  using X = typename MX::value_type;
   const int N, KEY_MAX;
 
   struct Node {
     X x, rev_x;
     int size;
     Node *l, *r;
-    Node() {}
   };
-
   Node* pool;
   int pid;
+  using np = Node*;
 
-  // 区間の左端全体を表す fastset
-  FastSet ss;
-  // 区間を集約した値を区間の左端にのせた segtree
-  SegTree<Monoid> seg;
-  // 区間の左端に、dynamic segtree の node を乗せる
+  FastSet ss;      // 区間の左端全体を表す fastset
+  SegTree<MX> seg; // 区間を集約した値を区間の左端にのせた segtree
+  vector<Node*> root; // 区間の左端に、dynamic segtree の node を乗せる
   vector<bool> rev;
-  vector<Node*> root;
+
   Sortable_SegTree(int KEY_MAX, vector<int> key, vector<X> dat)
       : N(key.size()), KEY_MAX(KEY_MAX), pid(0), ss(key.size()), seg(dat) {
     pool = new Node[NODES];
@@ -31,11 +29,9 @@ struct Sortable_SegTree {
 
   void set(int i, int key, const X& x) {
     assert(key < KEY_MAX);
-    split_at(i);
-    split_at(i + 1);
-    rev[i] = 0;
-    root[i] = new_node();
-    set_rec_key(root[i], 0, KEY_MAX, key, x);
+    split_at(i), split_at(i + 1);
+    rev[i] = 0, root[i] = new_node();
+    set_rec(root[i], 0, KEY_MAX, key, x);
     seg.set(i, x);
   }
 
@@ -51,56 +47,48 @@ struct Sortable_SegTree {
     split_at(l), split_at(r);
     while (1) {
       if (pid > NODES * 0.9) rebuild();
-      Node* n = root[l];
+      np c = root[l];
       int i = ss.next(l + 1);
       if (i == r) break;
-      root[l] = merge(n, root[i]);
-      ss.erase(i);
-      seg.set(i, Monoid::unit());
+      root[l] = merge(c, root[i]);
+      ss.erase(i), seg.set(i, MX::unit());
     }
-    rev[l] = 0;
-    seg.set(l, root[l]->x);
+    rev[l] = 0, seg.set(l, root[l]->x);
   };
 
   void sort_dec(int l, int r) {
     if (pid > NODES * 0.9) rebuild();
-    sort_inc(l, r);
-    rev[l] = 1;
+    sort_inc(l, r), rev[l] = 1;
     seg.set(l, root[l]->rev_x);
   };
 
 private:
   void init(vector<int>& key, vector<X>& dat) {
-    rev.assign(N, 0);
-    root.clear();
-    seg.set_all(dat);
-    for (int i = 0; i < N; ++i) ss.insert(i);
-    for (int i = 0; i < N; ++i) root.emplace_back(new_node(Monoid::unit()));
+    rev.assign(N, 0), root.clear(), root.reserve(N);
+    seg.build(N, [&](int i) -> X { return dat[i]; });
     for (int i = 0; i < N; ++i) {
+      ss.insert(i);
+      root.eb(new_node(MX::unit()));
       assert(key[i] < KEY_MAX);
-      set_rec_key(root[i], 0, KEY_MAX, key[i], dat[i]);
+      set_rec(root[i], 0, KEY_MAX, key[i], dat[i]);
     }
   }
 
+  // x が左端になるようにする
   void split_at(int x) {
     if (x == N || ss[x]) return;
-    int a = ss.prev(x);
-    int b = ss.next(a + 1);
+    int a = ss.prev(x), b = ss.next(a + 1);
     ss.insert(x);
     if (!rev[a]) {
       auto [nl, nr] = split(root[a], x - a);
-      root[a] = nl;
-      root[x] = nr;
+      root[a] = nl, root[x] = nr;
       rev[a] = rev[x] = 0;
-      seg.set(a, root[a]->x);
-      seg.set(x, root[x]->x);
+      seg.set(a, root[a]->x), seg.set(x, root[x]->x);
     } else {
       auto [nl, nr] = split(root[a], b - x);
-      root[a] = nr;
-      root[x] = nl;
+      root[a] = nr, root[x] = nl;
       rev[a] = rev[x] = 1;
-      seg.set(a, root[a]->rev_x);
-      seg.set(x, root[x]->rev_x);
+      seg.set(a, root[a]->rev_x), seg.set(x, root[x]->rev_x);
     }
   }
 
@@ -109,34 +97,22 @@ private:
     vector<X> dat;
     key.reserve(N);
     dat.reserve(N);
-    auto dfs
-        = [&](auto& dfs, Node* n, int node_l, int node_r, bool rev) -> void {
+    auto dfs = [&](auto& dfs, np n, int l, int r, bool rev) -> void {
       if (!n) return;
-      if (node_r == node_l + 1) {
-        key.emplace_back(node_l);
-        dat.emplace_back(n->x);
-        return;
-      }
-      int node_m = (node_l + node_r) / 2;
-      if (!rev) {
-        dfs(dfs, n->l, node_l, node_m, rev);
-        dfs(dfs, n->r, node_m, node_r, rev);
-      }
-      if (rev) {
-        dfs(dfs, n->r, node_m, node_r, rev);
-        dfs(dfs, n->l, node_l, node_m, rev);
-      }
+      if (r == l + 1) { key.eb(l), dat.eb(n->x), return; }
+      int m = (l + r) / 2;
+      if (!rev) { dfs(dfs, n->l, l, m, rev), dfs(dfs, n->r, m, r, rev); }
+      if (rev) { dfs(dfs, n->r, m, r, rev), dfs(dfs, n->l, l, m, rev); }
     };
     for (int i = 0; i < N; ++i) {
       if (ss[i]) dfs(dfs, root[i], 0, KEY_MAX, rev[i]);
     }
     assert(int(key.size()) == N);
-
     pid = 0;
     init(key, dat);
   }
 
-  Node* new_node(X x = Monoid::unit()) {
+  np new_node(X x) {
     assert(pid < NODES);
     pool[pid].x = pool[pid].rev_x = x;
     pool[pid].l = pool[pid].r = nullptr;
@@ -144,82 +120,55 @@ private:
     return &(pool[pid++]);
   }
 
-  pair<Node*, Node*> split(Node* n, int k) {
+  pair<np, np> split(np n, int k) {
     if (k == 0) { return {nullptr, n}; }
     if (k == n->size) { return {n, nullptr}; }
     int s = (n->l ? n->l->size : 0);
     Node* b = new_node();
     if (k <= s) {
       auto [nl, nr] = split(n->l, k);
-      b->l = nr;
-      b->r = n->r;
-      n->l = nl;
-      n->r = nullptr;
+      b->l = nr, b->r = n->r, n->l = nl, n->r = nullptr;
     }
     if (k > s) {
       auto [nl, nr] = split(n->r, k - s);
-      n->l = n->l;
-      n->r = nl;
-      b->l = nullptr;
-      b->r = nr;
+      n->l = n->l, n->r = nl, b->l = nullptr, b->r = nr;
     }
-    update(n);
-    update(b);
+    update(n), update(b);
     return {n, b};
   }
 
-  Node* merge(Node* a, Node* b) {
+  np merge(np a, np b) {
     if (!a) return b;
     if (!b) return a;
-    a->l = merge(a->l, b->l);
-    a->r = merge(a->r, b->r);
+    a->l = merge(a->l, b->l), a->r = merge(a->r, b->r);
     update(a);
     return a;
   }
 
-  void update(Node* n) {
+  void update(np n) {
     if (!(n->l) && !(n->r)) { return; }
     if (!(n->l)) {
-      n->x = n->r->x, n->rev_x = n->r->rev_x;
-      n->size = n->r->size;
-      return;
+      n->x = n->r->x, n->rev_x = n->r->rev_x, n->size = n->r->size, return;
     }
     if (!(n->r)) {
-      n->x = n->l->x, n->rev_x = n->l->rev_x;
-      n->size = n->l->size;
-      return;
+      n->x = n->l->x, n->rev_x = n->l->rev_x, n->size = n->l->size, return;
     }
-    n->x = Monoid::op(n->l->x, n->r->x);
-    n->rev_x = Monoid::op(n->r->rev_x, n->l->rev_x);
+    n->x = MX::op(n->l->x, n->r->x);
+    n->rev_x = MX::op(n->r->rev_x, n->l->rev_x);
     n->size = n->l->size + n->r->size;
   }
 
-  void set_rec_key(Node* n, int node_l, int node_r, int k, const X& x) {
-    if (node_r == node_l + 1) {
-      n->x = n->rev_x = x;
-      return;
-    }
-    int node_m = (node_l + node_r) / 2;
-    if (k < node_m) {
+  void set_rec(np n, int l, int r, int k, const X& x) {
+    if (r == l + 1) { n->x = n->rev_x = x, return; }
+    int m = (l + r) / 2;
+    if (k < m) {
       if (!(n->l)) n->l = new_node();
-      set_rec_key(n->l, node_l, node_m, k, x);
+      set_rec(n->l, l, m, k, x);
     }
     if (node_m <= k) {
       if (!(n->r)) n->r = new_node();
-      set_rec_key(n->r, node_m, node_r, k, x);
+      set_rec(n->r, m, r, k, x);
     }
-    update(n);
-  }
-
-  void set_rec_idx(Node* n, int node_l, int node_r, int idx, const X& x) {
-    if (node_r == node_l + 1) {
-      n->x = n->rev_x = x;
-      return;
-    }
-    int node_m = (node_l + node_r) / 2;
-    int s = (n->l ? n->l->size : 0);
-    if (idx < s) { set_rec_idx(n->l, node_l, node_m, idx, x); }
-    if (idx >= s) { set_rec_idx(n->r, node_m, node_r, idx - s, x); }
     update(n);
   }
 };

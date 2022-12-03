@@ -38,16 +38,6 @@ struct Lazy_SegTree {
   }
 
   void update(int k) { dat[k] = MX::op(dat[2 * k], dat[2 * k + 1]); }
-  void apply_at(int k, A a) {
-    int sz = 1 << (log - topbit(k));
-    dat[k] = AM::act(dat[k], a, sz);
-    if (k < size) laz[k] = MA::op(laz[k], a);
-  }
-  void push(int k) {
-    apply_at(2 * k, laz[k]);
-    apply_at(2 * k + 1, laz[k]);
-    laz[k] = MA::unit();
-  }
   void set(int p, X x) {
     assert(0 <= p && p < n);
     p += size;
@@ -73,23 +63,17 @@ struct Lazy_SegTree {
   X prod(int l, int r) {
     assert(0 <= l && l <= r && r <= n);
     if (l == r) return MX::unit();
-
-    l += size;
-    r += size;
-
+    l += size, r += size;
     for (int i = log; i >= 1; i--) {
       if (((l >> i) << i) != l) push(l >> i);
       if (((r >> i) << i) != r) push((r - 1) >> i);
     }
-
     X x = MX::unit();
     while (l < r) {
       if (l & 1) x = MX::op(x, dat[l++]);
       if (r & 1) x = MX::op(x, dat[--r]);
-      l >>= 1;
-      r >>= 1;
+      l >>= 1, r >>= 1;
     }
-
     return x;
   }
 
@@ -98,29 +82,20 @@ struct Lazy_SegTree {
   void apply(int l, int r, A a) {
     assert(0 <= l && l <= r && r <= n);
     if (l == r) return;
-
-    l += size;
-    r += size;
-
+    l += size, r += size;
     if (!MA::commute) {
       for (int i = log; i >= 1; i--) {
         if (((l >> i) << i) != l) push(l >> i);
         if (((r >> i) << i) != r) push((r - 1) >> i);
       }
     }
-
-    {
-      int l2 = l, r2 = r;
-      while (l < r) {
-        if (l & 1) apply_at(l++, a);
-        if (r & 1) apply_at(--r, a);
-        l >>= 1;
-        r >>= 1;
-      }
-      l = l2;
-      r = r2;
+    int l2 = l, r2 = r;
+    while (l < r) {
+      if (l & 1) apply_at(l++, a);
+      if (r & 1) apply_at(--r, a);
+      l >>= 1, r >>= 1;
     }
-
+    l = l2, r = r2;
     for (int i = 1; i <= log; i++) {
       if (((l >> i) << i) != l) update(l >> i);
       if (((r >> i) << i) != r) update((r - 1) >> i);
@@ -172,5 +147,17 @@ struct Lazy_SegTree {
       sm = MX::op(dat[r], sm);
     } while ((r & -r) != r);
     return 0;
+  }
+
+private:
+  void apply_at(int k, A a) {
+    int sz = 1 << (log - topbit(k));
+    dat[k] = AM::act(dat[k], a, sz);
+    if (k < size) laz[k] = MA::op(laz[k], a);
+  }
+  void push(int k) {
+    if (laz[k] == MA::unit()) return;
+    apply_at(2 * k, laz[k]), apply_at(2 * k + 1, laz[k]);
+    laz[k] = MA::unit();
   }
 };
