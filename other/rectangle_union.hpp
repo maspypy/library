@@ -25,7 +25,7 @@ struct Rectangle_Union {
       rm[xr].eb(yl, yr);
     }
 
-    using AM = ActedMonoid_CntMinMincnt_Add<XY>;
+    using AM = ActedMonoid_MinMincnt_Add<XY>;
     using T = typename AM::Monoid_X::value_type;
     Lazy_SegTree<AM> seg(len(Y) - 1, [&](int i) -> T {
       return {Y[i + 1] - Y[i], 0, Y[i + 1] - Y[i]};

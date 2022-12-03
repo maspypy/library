@@ -1,14 +1,14 @@
 #include "graph/tree.hpp"
-#include "ds/segtree/dualsegtree.hpp"
+#include "ds/segtree/dual_segtree.hpp"
 
 template <typename TREE, typename Monoid, bool edge = false>
-struct DualTreeMonoid {
+struct Dual_Tree_Monoid {
   using X = typename Monoid::value_type;
   TREE &tree;
   int N;
-  DualSegTree<Monoid> seg;
+  Dual_SegTree<Monoid> seg;
 
-  DualTreeMonoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N) {}
+  Dual_Tree_Monoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N) {}
 
   X get(int i) {
     int v = i;

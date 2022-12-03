@@ -3,7 +3,7 @@
 
 template <typename E>
 struct ActedMonoid_CntMinMincnt_Add {
-  using Monoid_X = Monoid_CntMinMincnt<E>;
+  using Monoid_X = Monoid_MinMincnt<E>;
   using Monoid_A = Monoid_Add<E>;
   using X = typename Monoid_X::value_type;
   using A = typename Monoid_A::value_type;
