@@ -1,21 +1,15 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':x:'
-    path: seq/monge.hpp
-    title: seq/monge.hpp
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/yukicoder/705.test.cpp
-    title: test/yukicoder/705.test.cpp
-  _isVerificationFailed: true
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links:
     - https://noshi91.github.io/Library/algorithm/larsch.cpp.html
-  bundledCode: "#line 2 \"ds/larsch.hpp\"\n\n// https://noshi91.github.io/Library/algorithm/larsch.cpp.html\n\
+  bundledCode: "#line 2 \"convex/larsch.hpp\"\n\n// https://noshi91.github.io/Library/algorithm/larsch.cpp.html\n\
     template <class T>\nclass LARSCH {\n  struct reduce_row;\n  struct reduce_col;\n\
     \n  struct reduce_row {\n    int n;\n    std::function<T(int, int)> f;\n    int\
     \ cur_row;\n    int state;\n    std::unique_ptr<reduce_col> rec;\n\n    reduce_row(int\
@@ -83,17 +77,15 @@ data:
     \ }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: ds/larsch.hpp
-  requiredBy:
-  - seq/monge.hpp
-  timestamp: '2022-04-22 16:55:52+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/yukicoder/705.test.cpp
-documentation_of: ds/larsch.hpp
+  path: convex/larsch.hpp
+  requiredBy: []
+  timestamp: '2022-12-03 09:41:32+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: convex/larsch.hpp
 layout: document
 redirect_from:
-- /library/ds/larsch.hpp
-- /library/ds/larsch.hpp.html
-title: ds/larsch.hpp
+- /library/convex/larsch.hpp
+- /library/convex/larsch.hpp.html
+title: convex/larsch.hpp
 ---

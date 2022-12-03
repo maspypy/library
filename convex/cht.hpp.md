@@ -2,25 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc244h.test.cpp
-    title: test/atcoder/abc244h.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/line_add_get_min.test.cpp
-    title: test/library_checker/datastructure/line_add_get_min.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1297.test.cpp
-    title: test/yukicoder/1297.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2012.test.cpp
-    title: test/yukicoder/2012.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/func/cht.hpp\"\n\r\ntemplate <typename T>\r\nstruct Line\
+  bundledCode: "#line 1 \"convex/cht.hpp\"\n\r\ntemplate <typename T>\r\nstruct Line\
     \ {\r\n  mutable T k, m, p;\r\n  bool operator<(const Line& o) const { return\
     \ k < o.k; }\r\n  bool operator<(T x) const { return p < x; }\r\n};\r\n\r\ntemplate\
     \ <typename T>\r\nT lc_inf() {\r\n  return numeric_limits<T>::max();\r\n}\r\n\
@@ -95,19 +83,15 @@ data:
     \  T get_min(T x, T y) { return -get_max(-x, -y); }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: ds/func/cht.hpp
+  path: convex/cht.hpp
   requiredBy: []
-  timestamp: '2022-12-01 18:20:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yukicoder/2012.test.cpp
-  - test/yukicoder/1297.test.cpp
-  - test/library_checker/datastructure/line_add_get_min.test.cpp
-  - test/atcoder/abc244h.test.cpp
-documentation_of: ds/func/cht.hpp
+  timestamp: '2022-12-03 09:41:32+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: convex/cht.hpp
 layout: document
 redirect_from:
-- /library/ds/func/cht.hpp
-- /library/ds/func/cht.hpp.html
-title: ds/func/cht.hpp
+- /library/convex/cht.hpp
+- /library/convex/cht.hpp.html
+title: convex/cht.hpp
 ---

@@ -10,7 +10,7 @@ data:
     links: []
   bundledCode: "#line 1 \"ds/binary_trie/binary_trie.hpp\"\ntemplate <int LOG = 30>\n\
     struct Binary_Trie {\n  struct Node {\n    ll cnt = 0;\n    int ch[2] = {-1, -1};\n\
-    \  };\n  vector<Node> ns;\n\n  BinaryTrie() : ns(1) {}\n\n  ll size() const {\
+    \  };\n  vector<Node> ns;\n\n  Binary_Trie() : ns(1) {}\n\n  ll size() const {\
     \ return ns[0].cnt; }\n  ll operator[](int k) const { return find_kth(k, 0); }\n\
     \  ll find_kth(ll k, ll xor_add = 0) const {\n    assert(0 <= k && k < size());\n\
     \    ll idx = 0;\n    ll val = 0;\n    FOR_R(i, LOG) {\n      ll c = xor_add >>\
@@ -39,7 +39,7 @@ data:
     \    FOR(i, len(ns)) print(i, \"cnt\", ns[i].cnt, \"ch\", ns[i].ch[0], ns[i].ch[1]);\n\
     \  }\n};\n"
   code: "template <int LOG = 30>\nstruct Binary_Trie {\n  struct Node {\n    ll cnt\
-    \ = 0;\n    int ch[2] = {-1, -1};\n  };\n  vector<Node> ns;\n\n  BinaryTrie()\
+    \ = 0;\n    int ch[2] = {-1, -1};\n  };\n  vector<Node> ns;\n\n  Binary_Trie()\
     \ : ns(1) {}\n\n  ll size() const { return ns[0].cnt; }\n  ll operator[](int k)\
     \ const { return find_kth(k, 0); }\n  ll find_kth(ll k, ll xor_add = 0) const\
     \ {\n    assert(0 <= k && k < size());\n    ll idx = 0;\n    ll val = 0;\n   \
@@ -71,7 +71,7 @@ data:
   isVerificationFile: false
   path: ds/binary_trie/binary_trie.hpp
   requiredBy: []
-  timestamp: '2022-12-03 09:00:14+09:00'
+  timestamp: '2022-12-03 09:41:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/binary_trie/binary_trie.hpp

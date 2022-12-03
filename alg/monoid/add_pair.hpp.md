@@ -10,9 +10,6 @@ data:
     path: test/mytest/cf702_F_splay.test.cpp
     title: test/mytest/cf702_F_splay.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1919.test.cpp
-    title: test/yukicoder/1919.test.cpp
-  - icon: ':x:'
     path: test/yukicoder/749.test.cpp
     title: test/yukicoder/749.test.cpp
   _isVerificationFailed: true
@@ -40,7 +37,6 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/749.test.cpp
-  - test/yukicoder/1919.test.cpp
   - test/mytest/cf702_F.test.cpp
   - test/mytest/cf702_F_splay.test.cpp
 documentation_of: alg/monoid/add_pair.hpp

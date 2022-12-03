@@ -1,20 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/min_idx.hpp
     title: alg/monoid/min_idx.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
-    title: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
-    title: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/min_idx.hpp\"\n\r\ntemplate <typename T, bool\
@@ -24,7 +18,7 @@ data:
     \ return false;\r\n    return (tie_is_left ? (x.se < y.se) : (x.se >= y.se));\r\
     \n  }\r\n  static X op(X x, X y) { return (is_small(x, y) ? x : y); }\r\n  static\
     \ constexpr X unit() { return {numeric_limits<T>::max(), -1}; }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 2 \"ds/func/dynamic_lichao.hpp\"\n\n// x\
+    \ bool commute = true;\r\n};\r\n#line 2 \"convex/dynamic_lichao.hpp\"\n\n// x\
     \ \u5EA7\u6A19\u306F long long \u306B\u9650\u5B9A\u3057\u3066\u3044\u308B\u3002\
     \n// \u76F4\u7DDA\u306E\u4FC2\u6570 T \u306F double \u3084 i128 \u3082\u53EF\u80FD\
     \u3002\ntemplate <typename T, int NODES>\nstruct Dynamic_LiChaoTree {\n  using\
@@ -111,17 +105,15 @@ data:
   dependsOn:
   - alg/monoid/min_idx.hpp
   isVerificationFile: false
-  path: ds/func/dynamic_lichao.hpp
+  path: convex/dynamic_lichao.hpp
   requiredBy: []
-  timestamp: '2022-12-01 18:20:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
-  - test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
-documentation_of: ds/func/dynamic_lichao.hpp
+  timestamp: '2022-12-03 09:41:32+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: convex/dynamic_lichao.hpp
 layout: document
 redirect_from:
-- /library/ds/func/dynamic_lichao.hpp
-- /library/ds/func/dynamic_lichao.hpp.html
-title: ds/func/dynamic_lichao.hpp
+- /library/convex/dynamic_lichao.hpp
+- /library/convex/dynamic_lichao.hpp.html
+title: convex/dynamic_lichao.hpp
 ---

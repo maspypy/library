@@ -2,16 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/segment_add_get_min.test.cpp
-    title: test/library_checker/datastructure/segment_add_get_min.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"ds/func/lichao.hpp\"\ntemplate <typename T>\r\nstruct LiChaoTree\
+  bundledCode: "#line 2 \"convex/lichao.hpp\"\ntemplate <typename T>\r\nstruct LiChaoTree\
     \ {\r\n  struct Line {\r\n    T a, b;\r\n    Line(T a, T b) : a(a), b(b) {}\r\n\
     \    inline T eval(T x) const { return a * x + b; }\r\n    inline bool over(const\
     \ Line &other, const T &x) const {\r\n      return eval(x) < other.eval(x);\r\n\
@@ -83,16 +80,15 @@ data:
     };\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: ds/func/lichao.hpp
+  path: convex/lichao.hpp
   requiredBy: []
-  timestamp: '2022-12-01 18:20:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/library_checker/datastructure/segment_add_get_min.test.cpp
-documentation_of: ds/func/lichao.hpp
+  timestamp: '2022-12-03 09:41:32+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: convex/lichao.hpp
 layout: document
 redirect_from:
-- /library/ds/func/lichao.hpp
-- /library/ds/func/lichao.hpp.html
-title: ds/func/lichao.hpp
+- /library/convex/lichao.hpp
+- /library/convex/lichao.hpp.html
+title: convex/lichao.hpp
 ---

@@ -22,9 +22,6 @@ data:
     path: test/yukicoder/1234.test.cpp
     title: test/yukicoder/1234.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1270.test.cpp
-    title: test/yukicoder/1270.test.cpp
-  - icon: ':x:'
     path: test/yukicoder/1720.test.cpp
     title: test/yukicoder/1720.test.cpp
   _isVerificationFailed: true
@@ -65,7 +62,6 @@ data:
   verifiedWith:
   - test/yukicoder/1234.test.cpp
   - test/yukicoder/1720.test.cpp
-  - test/yukicoder/1270.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/aoj/DSL_2_H.test.cpp
 documentation_of: alg/acted_monoid/min_add.hpp

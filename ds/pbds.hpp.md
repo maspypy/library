@@ -2,19 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':warning:'
     path: seq/kth_next_permutation.hpp
     title: seq/kth_next_permutation.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/0343.test.cpp
     title: test/aoj/0343.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1311.test.cpp
-    title: test/yukicoder/1311.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/pbds.hpp\"\n#include <ext/pb_ds/assoc_container.hpp>\n\
@@ -35,9 +32,8 @@ data:
   requiredBy:
   - seq/kth_next_permutation.hpp
   timestamp: '2022-08-27 23:26:12+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1311.test.cpp
   - test/aoj/0343.test.cpp
 documentation_of: ds/pbds.hpp
 layout: document

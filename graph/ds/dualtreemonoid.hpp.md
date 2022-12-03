@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/dualsegtree.hpp
     title: ds/segtree/dualsegtree.hpp
   - icon: ':question:'

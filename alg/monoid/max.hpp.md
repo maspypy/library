@@ -27,9 +27,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc266h.test.cpp
     title: test/atcoder/abc266h.test.cpp
-  - icon: ':x:'
-    path: test/atcoder/abc266h_2.test.cpp
-    title: test/atcoder/abc266h_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
@@ -48,9 +45,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1117.test.cpp
     title: test/yukicoder/1117.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1625.test.cpp
-    title: test/yukicoder/1625.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1625_2.test.cpp
     title: test/yukicoder/1625_2.test.cpp
@@ -93,7 +87,6 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/686.test.cpp
-  - test/yukicoder/1625.test.cpp
   - test/yukicoder/2026.test.cpp
   - test/yukicoder/1790.test.cpp
   - test/yukicoder/1826.test.cpp
@@ -104,7 +97,6 @@ data:
   - test/mytest/max_min.test.cpp
   - test/mytest/max_assign.test.cpp
   - test/atcoder/abc270_f.test.cpp
-  - test/atcoder/abc266h_2.test.cpp
   - test/atcoder/abc266h.test.cpp
   - test/aoj/GRL_2_A.test.cpp
 documentation_of: alg/monoid/max.hpp

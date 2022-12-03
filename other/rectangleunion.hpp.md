@@ -1,29 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':warning:'
     path: alg/acted_monoid/minmincnt_add.hpp
     title: alg/acted_monoid/minmincnt_add.hpp
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: alg/monoid/minmincnt.hpp
     title: alg/monoid/minmincnt.hpp
   - icon: ':x:'
     path: ds/segtree/lazysegtree.hpp
     title: ds/segtree/lazysegtree.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/aoj/DSL_4_A.test.cpp
-    title: test/aoj/DSL_4_A.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-    title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/lazysegtree.hpp\"\n\ntemplate <typename AM>\n\
@@ -100,7 +94,7 @@ data:
     \  using X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
     \n  static constexpr X act(const X &x, const A &a, const ll &size) {\r\n    auto\
     \ [xmin, xmincnt] = x;\r\n    if (xmin == numeric_limits<ll>::max()) return x;\r\
-    \n    return {xmin + a, xmincnt};\r\n  }\r\n};\r\n#line 3 \"ds/offline_query/rectangleunion.hpp\"\
+    \n    return {xmin + a, xmincnt};\r\n  }\r\n};\r\n#line 3 \"other/rectangleunion.hpp\"\
     \n\r\ntemplate <typename XY = int>\r\nstruct RectangleUnion {\r\n  using RECT\
     \ = tuple<XY, XY, XY, XY>;\r\n  vc<RECT> rectangles;\r\n  vc<XY> X, Y;\r\n\r\n\
     \  void add_rect(int xl, int xr, int yl, int yr) {\r\n    assert(xl < xr && yl\
@@ -142,17 +136,15 @@ data:
   - alg/monoid/minmincnt.hpp
   - alg/monoid/add.hpp
   isVerificationFile: false
-  path: ds/offline_query/rectangleunion.hpp
+  path: other/rectangleunion.hpp
   requiredBy: []
-  timestamp: '2022-12-03 09:22:09+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-  - test/aoj/DSL_4_A.test.cpp
-documentation_of: ds/offline_query/rectangleunion.hpp
+  timestamp: '2022-12-03 09:41:32+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: other/rectangleunion.hpp
 layout: document
 redirect_from:
-- /library/ds/offline_query/rectangleunion.hpp
-- /library/ds/offline_query/rectangleunion.hpp.html
-title: ds/offline_query/rectangleunion.hpp
+- /library/other/rectangleunion.hpp
+- /library/other/rectangleunion.hpp.html
+title: other/rectangleunion.hpp
 ---

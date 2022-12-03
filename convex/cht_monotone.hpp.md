@@ -2,19 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1297.test.cpp
-    title: test/yukicoder/1297.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/913.test.cpp
-    title: test/yukicoder/913.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/func/cht_monotone.hpp\"\ntemplate <typename T, bool isMin>\r\
+  bundledCode: "#line 1 \"convex/cht_monotone.hpp\"\ntemplate <typename T, bool isMin>\r\
     \nstruct CHT_monotone {\r\n#define F first\r\n#define S second\r\n  using P =\
     \ pair<T, T>;\r\n  deque<P> H;\r\n\r\n  CHT_monotone() = default;\r\n\r\n  bool\
     \ empty() const { return H.empty(); }\r\n\r\n  void clear() { H.clear(); }\r\n\
@@ -78,17 +72,15 @@ data:
     \ x);\r\n  }\r\n\r\n#undef F\r\n#undef S\r\n};"
   dependsOn: []
   isVerificationFile: false
-  path: ds/func/cht_monotone.hpp
+  path: convex/cht_monotone.hpp
   requiredBy: []
-  timestamp: '2022-12-01 18:20:22+09:00'
-  verificationStatus: LIBRARY_SOME_WA
-  verifiedWith:
-  - test/yukicoder/913.test.cpp
-  - test/yukicoder/1297.test.cpp
-documentation_of: ds/func/cht_monotone.hpp
+  timestamp: '2022-12-03 09:41:32+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: convex/cht_monotone.hpp
 layout: document
 redirect_from:
-- /library/ds/func/cht_monotone.hpp
-- /library/ds/func/cht_monotone.hpp.html
-title: ds/func/cht_monotone.hpp
+- /library/convex/cht_monotone.hpp
+- /library/convex/cht_monotone.hpp.html
+title: convex/cht_monotone.hpp
 ---

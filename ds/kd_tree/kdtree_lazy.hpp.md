@@ -9,7 +9,7 @@ data:
   attributes:
     links:
     - https://atcoder.jp/contests/s8pc-4/tasks/s8pc_4_g
-  bundledCode: "#line 1 \"ds/kdtree/kdtree_lazy.hpp\"\n// https://atcoder.jp/contests/s8pc-4/tasks/s8pc_4_g\r\
+  bundledCode: "#line 1 \"ds/kd_tree/kdtree_lazy.hpp\"\n// https://atcoder.jp/contests/s8pc-4/tasks/s8pc_4_g\r\
     \ntemplate <class Lazy, typename XY>\r\nstruct KDTree_Lazy {\r\n  using Monoid_X\
     \ = typename Lazy::X_structure;\r\n  using Monoid_A = typename Lazy::A_structure;\r\
     \n  using X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
@@ -164,15 +164,15 @@ data:
     \ * idx + 0], dat[2 * idx + 1]);\r\n  }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: ds/kdtree/kdtree_lazy.hpp
+  path: ds/kd_tree/kdtree_lazy.hpp
   requiredBy: []
-  timestamp: '2022-12-01 18:20:22+09:00'
+  timestamp: '2022-12-03 09:41:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: ds/kdtree/kdtree_lazy.hpp
+documentation_of: ds/kd_tree/kdtree_lazy.hpp
 layout: document
 redirect_from:
-- /library/ds/kdtree/kdtree_lazy.hpp
-- /library/ds/kdtree/kdtree_lazy.hpp.html
-title: ds/kdtree/kdtree_lazy.hpp
+- /library/ds/kd_tree/kdtree_lazy.hpp
+- /library/ds/kd_tree/kdtree_lazy.hpp.html
+title: ds/kd_tree/kdtree_lazy.hpp
 ---

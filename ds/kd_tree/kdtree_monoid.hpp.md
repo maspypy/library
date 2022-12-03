@@ -2,19 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_2_C.test.cpp
-    title: test/aoj/DSL_2_C.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1625.test.cpp
-    title: test/yukicoder/1625.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/kdtree/kdtree_monoid.hpp\"\n// \u540C\u3058\u5EA7\u6A19\
+  bundledCode: "#line 1 \"ds/kd_tree/kdtree_monoid.hpp\"\n// \u540C\u3058\u5EA7\u6A19\
     \u306E\u8907\u6570\u306E\u70B9\u304C\u3069\u306E\u304F\u3089\u3044\u96C6\u7D04\
     \u3055\u308C\u308B\u304B\u306F\u4FDD\u8A3C\u304C\u306A\u3044\u3002\r\n// \u5B50\
     \u30CE\u30FC\u30C9\u304C 2x, 2x+1 \u306B\u306A\u308B\u3088\u3046\u306B\u3057\u3066\
@@ -121,17 +115,15 @@ data:
     \                prod_rec(2 * idx + 1, x1, x2, y1, y2));\r\n  }\r\n};"
   dependsOn: []
   isVerificationFile: false
-  path: ds/kdtree/kdtree_monoid.hpp
+  path: ds/kd_tree/kdtree_monoid.hpp
   requiredBy: []
-  timestamp: '2022-12-01 18:20:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yukicoder/1625.test.cpp
-  - test/aoj/DSL_2_C.test.cpp
-documentation_of: ds/kdtree/kdtree_monoid.hpp
+  timestamp: '2022-12-03 09:41:32+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: ds/kd_tree/kdtree_monoid.hpp
 layout: document
 redirect_from:
-- /library/ds/kdtree/kdtree_monoid.hpp
-- /library/ds/kdtree/kdtree_monoid.hpp.html
-title: ds/kdtree/kdtree_monoid.hpp
+- /library/ds/kd_tree/kdtree_monoid.hpp
+- /library/ds/kd_tree/kdtree_monoid.hpp.html
+title: ds/kd_tree/kdtree_monoid.hpp
 ---

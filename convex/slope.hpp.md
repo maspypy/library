@@ -1,32 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: flow/min_cost_matching_on_line.hpp
-    title: flow/min_cost_matching_on_line.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc127f.test.cpp
-    title: test/atcoder/abc127f.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc217h.test.cpp
-    title: test/atcoder/abc217h.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/arc123d.test.cpp
-    title: test/atcoder/arc123d.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/min_cost_matching_on_line.test.cpp
-    title: test/mytest/min_cost_matching_on_line.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1077.test.cpp
-    title: test/yukicoder/1077.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/func/slope.hpp\"\nstruct Slope_Trick {\r\n  static constexpr\
+  bundledCode: "#line 1 \"convex/slope.hpp\"\nstruct Slope_Trick {\r\n  static constexpr\
     \ ll LMIN = numeric_limits<ll>::lowest() / 2;\r\n  static constexpr ll RMAX =\
     \ numeric_limits<ll>::max() / 2;\r\n  pq<ll> que_l;\r\n  pqg<ll> que_r;\r\n\r\n\
     \  ll add_l, add_r;\r\n  i128 min_f; // INF \u3092\u8DB3\u3057\u5F15\u304D\u3057\
@@ -106,21 +88,15 @@ data:
     \ \"left\", left, \"right\", right);\r\n  }\r\n};"
   dependsOn: []
   isVerificationFile: false
-  path: ds/func/slope.hpp
-  requiredBy:
-  - flow/min_cost_matching_on_line.hpp
-  timestamp: '2022-12-01 18:20:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yukicoder/1077.test.cpp
-  - test/mytest/min_cost_matching_on_line.test.cpp
-  - test/atcoder/abc217h.test.cpp
-  - test/atcoder/arc123d.test.cpp
-  - test/atcoder/abc127f.test.cpp
-documentation_of: ds/func/slope.hpp
+  path: convex/slope.hpp
+  requiredBy: []
+  timestamp: '2022-12-03 09:41:32+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: convex/slope.hpp
 layout: document
 redirect_from:
-- /library/ds/func/slope.hpp
-- /library/ds/func/slope.hpp.html
-title: ds/func/slope.hpp
+- /library/convex/slope.hpp
+- /library/convex/slope.hpp.html
+title: convex/slope.hpp
 ---

@@ -5,9 +5,9 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/minidx_add.hpp
     title: alg/acted_monoid/minidx_add.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/func/dynamic_lichao.hpp
-    title: ds/func/dynamic_lichao.hpp
+  - icon: ':warning:'
+    path: convex/dynamic_lichao.hpp
+    title: convex/dynamic_lichao.hpp
   - icon: ':warning:'
     path: ds/pds/persistent_dynamic_lichao.hpp
     title: ds/pds/persistent_dynamic_lichao.hpp
@@ -15,18 +15,12 @@ data:
     path: geo/manhattan_nns.hpp
     title: geo/manhattan_nns.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
-    title: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
-    title: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
   - icon: ':x:'
     path: test/mytest/minidx_add.test.cpp
     title: test/mytest/minidx_add.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/min_idx.hpp\"\n\r\ntemplate <typename T, bool\
@@ -49,15 +43,13 @@ data:
   path: alg/monoid/min_idx.hpp
   requiredBy:
   - alg/acted_monoid/minidx_add.hpp
+  - convex/dynamic_lichao.hpp
   - geo/manhattan_nns.hpp
-  - ds/func/dynamic_lichao.hpp
   - ds/pds/persistent_dynamic_lichao.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/minidx_add.test.cpp
-  - test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
-  - test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
 documentation_of: alg/monoid/min_idx.hpp
 layout: document
 redirect_from:
