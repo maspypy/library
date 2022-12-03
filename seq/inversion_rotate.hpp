@@ -20,7 +20,7 @@ vi inversion_rotate(vc<T>& A, bool SMALL = false) {
   FOR(i, N) {
     res[i] = ANS;
     ll x = A[i];
-    ANS = ANS + bit.prod(x + 1, K) - bit.sum(x);
+    ANS = ANS + bit.sum(x + 1, K) - bit.prefix_sum(x);
   }
   return res;
 }

@@ -1,4 +1,4 @@
-#include "ds/disjoint_sparse/disjointsparse.hpp"
+#include "ds/disjointsparse/disjointsparse.hpp"
 #include "graph/tree.hpp"
 #include "alg/monoid/monoid_reverse.hpp"
 

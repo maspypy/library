@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 
 #include "mod/modint.hpp"
-#include "connected_dp/squares.hpp"
+#include "other/connected_dp.hpp"
 #include "seq/interpolate_linear_rec.hpp"
 
 using mint = modint107;
