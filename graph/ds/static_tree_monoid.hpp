@@ -3,7 +3,7 @@
 #include "alg/monoid/monoid_reverse.hpp"
 
 template <typename TREE, typename Monoid, bool edge = false>
-struct StaticTreeMonoid {
+struct Static_Tree_Monoid {
   using RevMonoid = Monoid_Reverse<Monoid>;
   using X = typename Monoid::value_type;
   TREE &tree;
@@ -11,11 +11,11 @@ struct StaticTreeMonoid {
   DisjointSparse<Monoid> seg;
   DisjointSparse<RevMonoid> seg_r;
 
-  StaticTreeMonoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N) {
+  Static_Tree_Monoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N) {
     if (!Monoid::commute) seg_r = DisjointSparse<RevMonoid>(tree.N);
   }
 
-  StaticTreeMonoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {
+  Static_Tree_Monoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {
     vc<X> seg_raw(N, Monoid::unit());
     if (!edge) {
       FOR(v, N) seg_raw[tree.LID[v]] = dat[v];

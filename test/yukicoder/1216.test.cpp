@@ -2,9 +2,8 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/tree.hpp"
-#include "graph/ds/statictreemonoid.hpp"
-// #include "graph/treemonoid.hpp"
-#include "ds/fenwick/fenwick2d.hpp"
+#include "graph/ds/static_tree_monoid.hpp"
+#include "ds/fenwicktree/fenwicktree_2d.hpp"
 
 void solve() {
   LL(N, Q);
@@ -13,7 +12,7 @@ void solve() {
   TREE<decltype(G)> tree(G);
   vi dat(N - 1);
   FOR(i, N - 1) dat[i] = G.edges[i].cost;
-  StaticTreeMonoid<decltype(tree), Monoid_Add<ll>, 1> TM(tree, dat);
+  Static_Tree_Monoid<decltype(tree), Monoid_Add<ll>, 1> TM(tree, dat);
 
   auto& dist = tree.depth_weighted;
   /*

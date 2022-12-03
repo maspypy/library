@@ -1,7 +1,7 @@
 #define PROBLEM "https://atcoder.jp/contests/abc127/tasks/abc127_f"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/func/slope.hpp"
+#include "convex/slope.hpp"
 
 void solve() {
   LL(Q);

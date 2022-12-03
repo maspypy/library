@@ -1,4 +1,4 @@
-#include "ds/fenwick/fenwick.hpp"
+#include "ds/fenwicktree/fenwicktree.hpp"
 
 // i 番目：A_i が先頭になるように rotate したときの転倒数
 template <typename T>

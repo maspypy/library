@@ -2,12 +2,12 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "alg/acted_monoid/min_add.hpp"
-#include "ds/segtree/lazysegtree.hpp"
+#include "ds/segtree/lazy_segtree.hpp"
 
 void solve() {
   LL(N);
   VEC(ll, A, N);
-  LazySegTree<ActedMonoid_Min_Add<ll>> seg(A);
+  Lazy_SegTree<ActedMonoid_Min_Add<ll>> seg(A);
   LL(Q);
   FOR(Q) {
     LL(t, l, r, x);
