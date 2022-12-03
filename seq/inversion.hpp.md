@@ -9,15 +9,15 @@ data:
     title: ds/fenwicktree/fenwicktree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_2_A.test.cpp
     title: test/aoj/ALDS1_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_5.test.cpp
     title: test/aoj/ALDS1_5.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -30,20 +30,21 @@ data:
     \ E = typename G::value_type;\n  static_assert(G::commute);\n  int n;\n  vector<E>\
     \ dat;\n  E total;\n\n  FenwickTree() {}\n  FenwickTree(int n) { build(n); }\n\
     \  template <typename F>\n  FenwickTree(int n, F f) {\n    build(n, f);\n  }\n\
-    \  FenwickTree(const vc<E>& v) { build(v); }\n\n  void build(int m) {\n    dat.assign(m,\
-    \ G::unit());\n    total = G::unit();\n  }\n  void build(const vc<E>& v) {\n \
-    \   build(len(v), [&](int i) -> E { return v[i]; });\n  }\n  template <typename\
-    \ F>\n  void build(int m, F f) {\n    n = m;\n    dat.clear();\n    dat.reserve(n);\n\
-    \    total = G::unit();\n    FOR(i, n) { dat.eb(f(i)); }\n    for (int i = 1;\
-    \ i <= n; ++i) {\n      int j = i + (i & -i);\n      if (j <= n) dat[j - 1] =\
-    \ G::op(dat[i - 1], dat[j - 1]);\n    }\n    total = prefix_sum(m);\n  }\n\n \
-    \ E prod_all() { return total; }\n  E sum_all() { return total; }\n  E prefix_sum(int\
-    \ k) { return prefix_prod(k); }\n  E prefix_prod(int k) {\n    E ret = G::unit();\n\
-    \    for (; k > 0; k -= k & -k) ret = G::op(ret, dat[k - 1]);\n    return ret;\n\
-    \  }\n  E sum(int L, int R) { return prod(L, R); }\n  E prod(int L, int R) {\n\
-    \    if (L == 0) return prefix_prod(R);\n    E pos = G::unit(), neg = G::unit();\n\
-    \    while (L < R) { pos = G::op(pos, dat[R - 1]), R -= R & -R; }\n    while (R\
-    \ < L) { neg = G::op(neg, dat[L - 1]), L -= L & -L; }\n    return G::op(pos, G::inverse(neg));\n\
+    \  FenwickTree(const vc<E>& v) { build(v); }\n\n  void build(int m) {\n    n =\
+    \ m;\n    dat.assign(m, G::unit());\n    total = G::unit();\n  }\n  void build(const\
+    \ vc<E>& v) {\n    build(len(v), [&](int i) -> E { return v[i]; });\n  }\n  template\
+    \ <typename F>\n  void build(int m, F f) {\n    n = m;\n    dat.clear();\n   \
+    \ dat.reserve(n);\n    total = G::unit();\n    FOR(i, n) { dat.eb(f(i)); }\n \
+    \   for (int i = 1; i <= n; ++i) {\n      int j = i + (i & -i);\n      if (j <=\
+    \ n) dat[j - 1] = G::op(dat[i - 1], dat[j - 1]);\n    }\n    total = prefix_sum(m);\n\
+    \  }\n\n  E prod_all() { return total; }\n  E sum_all() { return total; }\n  E\
+    \ prefix_sum(int k) { return prefix_prod(k); }\n  E prefix_prod(int k) {\n   \
+    \ E ret = G::unit();\n    for (; k > 0; k -= k & -k) ret = G::op(ret, dat[k -\
+    \ 1]);\n    return ret;\n  }\n  E sum(int L, int R) { return prod(L, R); }\n \
+    \ E prod(int L, int R) {\n    if (L == 0) return prefix_prod(R);\n    assert(0\
+    \ <= L && L <= R && R <= n);\n    E pos = G::unit(), neg = G::unit();\n    while\
+    \ (L < R) { pos = G::op(pos, dat[R - 1]), R -= R & -R; }\n    while (R < L) {\
+    \ neg = G::op(neg, dat[L - 1]), L -= L & -L; }\n    return G::op(pos, G::inverse(neg));\n\
     \  }\n\n  void add(int k, E x) { multiply(k, x); }\n  void multiply(int k, E x)\
     \ {\n    total = G::op(total, x);\n    for (++k; k <= n; k += k & -k) dat[k -\
     \ 1] = G::op(dat[k - 1], x);\n  }\n\n  template <class F>\n  int max_right(const\
@@ -69,8 +70,8 @@ data:
   isVerificationFile: false
   path: seq/inversion.hpp
   requiredBy: []
-  timestamp: '2022-12-04 00:39:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-12-04 02:25:39+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/ALDS1_5.test.cpp

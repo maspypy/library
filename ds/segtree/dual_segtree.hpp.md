@@ -3,10 +3,10 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_D.test.cpp
     title: test/aoj/DSL_2_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_point_add.test.cpp
     title: test/library_checker/datastructure/range_affine_point_add.test.cpp
   - icon: ':x:'
@@ -14,14 +14,14 @@ data:
     title: test/yukicoder/913.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/dual_segtree.hpp\"\n\ntemplate <typename Monoid>\n\
     struct Dual_SegTree {\n  using MA = Monoid;\n  using A = typename MA::value_type;\n\
-    \  int n, log, size;\n  vc<A> laz;\n\n  Dual_SegTree() : DualSegTree(0) {}\n \
-    \ Dual_SegTree(int n) { build(n); }\n\n  void build(int m) {\n    n = m;\n   \
-    \ log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    laz.assign(size\
+    \  int n, log, size;\n  vc<A> laz;\n\n  Dual_SegTree() : Dual_SegTree(0) {}\n\
+    \  Dual_SegTree(int n) { build(n); }\n\n  void build(int m) {\n    n = m;\n  \
+    \  log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    laz.assign(size\
     \ << 1, MA::unit());\n  }\n\n  A get(int p) {\n    assert(0 <= p && p < n);\n\
     \    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    return\
     \ laz[p];\n  }\n\n  vc<A> get_all() {\n    FOR(i, size) push(i);\n    return {laz.begin()\
@@ -37,7 +37,7 @@ data:
     \ a); }\n};\n"
   code: "#pragma once\n\ntemplate <typename Monoid>\nstruct Dual_SegTree {\n  using\
     \ MA = Monoid;\n  using A = typename MA::value_type;\n  int n, log, size;\n  vc<A>\
-    \ laz;\n\n  Dual_SegTree() : DualSegTree(0) {}\n  Dual_SegTree(int n) { build(n);\
+    \ laz;\n\n  Dual_SegTree() : Dual_SegTree(0) {}\n  Dual_SegTree(int n) { build(n);\
     \ }\n\n  void build(int m) {\n    n = m;\n    log = 1;\n    while ((1 << log)\
     \ < n) ++log;\n    size = 1 << log;\n    laz.assign(size << 1, MA::unit());\n\
     \  }\n\n  A get(int p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for\
@@ -56,8 +56,8 @@ data:
   isVerificationFile: false
   path: ds/segtree/dual_segtree.hpp
   requiredBy: []
-  timestamp: '2022-12-03 10:58:25+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-12-04 02:25:39+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/913.test.cpp
   - test/library_checker/datastructure/range_affine_point_add.test.cpp
