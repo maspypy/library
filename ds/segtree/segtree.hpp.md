@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/treegroup.hpp
     title: graph/ds/treegroup.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/treemonoid.hpp
     title: graph/ds/treemonoid.hpp
   _extendedVerifiedWith:
@@ -75,7 +75,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
   _isVerificationFailed: true

@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/502.test.cpp
     title: test/yukicoder/502.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"mod/factorial107.hpp\"\n// 1<<20\nint factorial107table[1024]\
@@ -25,7 +25,7 @@ data:
   path: mod/factorial107.hpp
   requiredBy: []
   timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/502.test.cpp
 documentation_of: mod/factorial107.hpp
