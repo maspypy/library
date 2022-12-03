@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H
@@ -239,50 +239,49 @@ data:
     \ = x;\n    for (int i = 1; i <= log; i++) update(p >> i);\n  }\n\n  X get(int\
     \ p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i\
     \ >= 1; i--) push(p >> i);\n    return dat[p];\n  }\n\n  vc<X> get_all() {\n \
-    \   for (int i = log; i >= 1; i--) {\n      FOR(k, size >> i, (size + size) >>\
-    \ i) { push(k); }\n    }\n    return {dat.begin() + size, dat.begin() + size +\
-    \ n};\n  }\n\n  X prod(int l, int r) {\n    assert(0 <= l && l <= r && r <= n);\n\
-    \    if (l == r) return MX::unit();\n    l += size, r += size;\n    for (int i\
-    \ = log; i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l >> i);\n     \
-    \ if (((r >> i) << i) != r) push((r - 1) >> i);\n    }\n    X x = MX::unit();\n\
+    \   FOR(k, 1, size) { push(k); }\n    return {dat.begin() + size, dat.begin()\
+    \ + size + n};\n  }\n\n  X prod(int l, int r) {\n    assert(0 <= l && l <= r &&\
+    \ r <= n);\n    if (l == r) return MX::unit();\n    l += size, r += size;\n  \
+    \  for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l >>\
+    \ i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n    }\n    X x = MX::unit();\n\
     \    while (l < r) {\n      if (l & 1) x = MX::op(x, dat[l++]);\n      if (r &\
     \ 1) x = MX::op(x, dat[--r]);\n      l >>= 1, r >>= 1;\n    }\n    return x;\n\
     \  }\n\n  X prod_all() { return dat[1]; }\n\n  void apply(int l, int r, A a) {\n\
     \    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n    l += size,\
-    \ r += size;\n    if (!MA::commute) {\n      for (int i = log; i >= 1; i--) {\n\
-    \        if (((l >> i) << i) != l) push(l >> i);\n        if (((r >> i) << i)\
-    \ != r) push((r - 1) >> i);\n      }\n    }\n    int l2 = l, r2 = r;\n    while\
-    \ (l < r) {\n      if (l & 1) apply_at(l++, a);\n      if (r & 1) apply_at(--r,\
-    \ a);\n      l >>= 1, r >>= 1;\n    }\n    l = l2, r = r2;\n    for (int i = 1;\
-    \ i <= log; i++) {\n      if (((l >> i) << i) != l) update(l >> i);\n      if\
-    \ (((r >> i) << i) != r) update((r - 1) >> i);\n    }\n  }\n\n  template <typename\
-    \ F>\n  int max_right(const F check, int l) {\n    assert(0 <= l && l <= n);\n\
-    \    assert(check(MX::unit()));\n    if (l == n) return n;\n    l += size;\n \
-    \   for (int i = log; i >= 1; i--) push(l >> i);\n    X sm = MX::unit();\n   \
-    \ do {\n      while (l % 2 == 0) l >>= 1;\n      if (!check(MX::op(sm, dat[l])))\
-    \ {\n        while (l < size) {\n          push(l);\n          l = (2 * l);\n\
-    \          if (check(MX::op(sm, dat[l]))) { sm = MX::op(sm, dat[l++]); }\n   \
-    \     }\n        return l - size;\n      }\n      sm = MX::op(sm, dat[l++]);\n\
-    \    } while ((l & -l) != l);\n    return n;\n  }\n\n  template <typename F>\n\
-    \  int min_left(const F check, int r) {\n    assert(0 <= r && r <= n);\n    assert(check(MX::unit()));\n\
-    \    if (r == 0) return 0;\n    r += size;\n    for (int i = log; i >= 1; i--)\
-    \ push((r - 1) >> i);\n    X sm = MX::unit();\n    do {\n      r--;\n      while\
-    \ (r > 1 && (r % 2)) r >>= 1;\n      if (!check(MX::op(dat[r], sm))) {\n     \
-    \   while (r < size) {\n          push(r);\n          r = (2 * r + 1);\n     \
-    \     if (check(MX::op(dat[r], sm))) { sm = MX::op(dat[r--], sm); }\n        }\n\
-    \        return r + 1 - size;\n      }\n      sm = MX::op(dat[r], sm);\n    }\
-    \ while ((r & -r) != r);\n    return 0;\n  }\n\nprivate:\n  void apply_at(int\
-    \ k, A a) {\n    int sz = 1 << (log - topbit(k));\n    dat[k] = AM::act(dat[k],\
-    \ a, sz);\n    if (k < size) laz[k] = MA::op(laz[k], a);\n  }\n  void push(int\
-    \ k) {\n    if (laz[k] == MA::unit()) return;\n    apply_at(2 * k, laz[k]), apply_at(2\
-    \ * k + 1, laz[k]);\n    laz[k] = MA::unit();\n  }\n};\n#line 8 \"test/aoj/DSL_2_H.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  using AM = ActedMonoid_Min_Add<ll>;\r\n  LL(N, Q);\r\
-    \n  vi A(N);\r\n  Lazy_SegTree<AM> seg(A);\r\n  FOR(Q) {\r\n    LL(t, L, R);\r\
-    \n    ++R;\r\n    if (t == 0) {\r\n      LL(x);\r\n      seg.apply(L, R, x);\r\
-    \n    } else {\r\n      print(seg.prod(L, R));\r\n    }\r\n  }\r\n}\r\n\r\nsigned\
-    \ main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout\
-    \ << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\
-    \n\r\n  return 0;\r\n}\r\n"
+    \ r += size;\n    for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i)\
+    \ != l) push(l >> i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n \
+    \   }\n    int l2 = l, r2 = r;\n    while (l < r) {\n      if (l & 1) apply_at(l++,\
+    \ a);\n      if (r & 1) apply_at(--r, a);\n      l >>= 1, r >>= 1;\n    }\n  \
+    \  l = l2, r = r2;\n    for (int i = 1; i <= log; i++) {\n      if (((l >> i)\
+    \ << i) != l) update(l >> i);\n      if (((r >> i) << i) != r) update((r - 1)\
+    \ >> i);\n    }\n  }\n\n  template <typename F>\n  int max_right(const F check,\
+    \ int l) {\n    assert(0 <= l && l <= n);\n    assert(check(MX::unit()));\n  \
+    \  if (l == n) return n;\n    l += size;\n    for (int i = log; i >= 1; i--) push(l\
+    \ >> i);\n    X sm = MX::unit();\n    do {\n      while (l % 2 == 0) l >>= 1;\n\
+    \      if (!check(MX::op(sm, dat[l]))) {\n        while (l < size) {\n       \
+    \   push(l);\n          l = (2 * l);\n          if (check(MX::op(sm, dat[l])))\
+    \ { sm = MX::op(sm, dat[l++]); }\n        }\n        return l - size;\n      }\n\
+    \      sm = MX::op(sm, dat[l++]);\n    } while ((l & -l) != l);\n    return n;\n\
+    \  }\n\n  template <typename F>\n  int min_left(const F check, int r) {\n    assert(0\
+    \ <= r && r <= n);\n    assert(check(MX::unit()));\n    if (r == 0) return 0;\n\
+    \    r += size;\n    for (int i = log; i >= 1; i--) push((r - 1) >> i);\n    X\
+    \ sm = MX::unit();\n    do {\n      r--;\n      while (r > 1 && (r % 2)) r >>=\
+    \ 1;\n      if (!check(MX::op(dat[r], sm))) {\n        while (r < size) {\n  \
+    \        push(r);\n          r = (2 * r + 1);\n          if (check(MX::op(dat[r],\
+    \ sm))) { sm = MX::op(dat[r--], sm); }\n        }\n        return r + 1 - size;\n\
+    \      }\n      sm = MX::op(dat[r], sm);\n    } while ((r & -r) != r);\n    return\
+    \ 0;\n  }\n\nprivate:\n  void apply_at(int k, A a) {\n    int sz = 1 << (log -\
+    \ topbit(k));\n    dat[k] = AM::act(dat[k], a, sz);\n    if (k < size) laz[k]\
+    \ = MA::op(laz[k], a);\n  }\n  void push(int k) {\n    if (laz[k] == MA::unit())\
+    \ return;\n    apply_at(2 * k, laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k]\
+    \ = MA::unit();\n  }\n};\n#line 8 \"test/aoj/DSL_2_H.test.cpp\"\n\r\nvoid solve()\
+    \ {\r\n  using AM = ActedMonoid_Min_Add<ll>;\r\n  LL(N, Q);\r\n  vi A(N);\r\n\
+    \  Lazy_SegTree<AM> seg(A);\r\n  FOR(Q) {\r\n    LL(t, L, R);\r\n    ++R;\r\n\
+    \    if (t == 0) {\r\n      LL(x);\r\n      seg.apply(L, R, x);\r\n    } else\
+    \ {\r\n      print(seg.prod(L, R));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main()\
+    \ {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
+    \n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\n\r\n  return 0;\r\n\
+    }\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H\"\
     \r\n\r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include\
     \ \"alg/acted_monoid/min_add.hpp\"\r\n#include \"ds/segtree/lazy_segtree.hpp\"\
@@ -303,8 +302,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_H.test.cpp
   requiredBy: []
-  timestamp: '2022-12-04 00:39:06+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-04 03:33:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_H.test.cpp
 layout: document

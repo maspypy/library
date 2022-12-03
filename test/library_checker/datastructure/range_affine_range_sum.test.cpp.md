@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/sum_affine.hpp
     title: alg/acted_monoid/sum_affine.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
@@ -246,64 +246,63 @@ data:
     \ = x;\n    for (int i = 1; i <= log; i++) update(p >> i);\n  }\n\n  X get(int\
     \ p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i\
     \ >= 1; i--) push(p >> i);\n    return dat[p];\n  }\n\n  vc<X> get_all() {\n \
-    \   for (int i = log; i >= 1; i--) {\n      FOR(k, size >> i, (size + size) >>\
-    \ i) { push(k); }\n    }\n    return {dat.begin() + size, dat.begin() + size +\
-    \ n};\n  }\n\n  X prod(int l, int r) {\n    assert(0 <= l && l <= r && r <= n);\n\
-    \    if (l == r) return MX::unit();\n    l += size, r += size;\n    for (int i\
-    \ = log; i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l >> i);\n     \
-    \ if (((r >> i) << i) != r) push((r - 1) >> i);\n    }\n    X x = MX::unit();\n\
+    \   FOR(k, 1, size) { push(k); }\n    return {dat.begin() + size, dat.begin()\
+    \ + size + n};\n  }\n\n  X prod(int l, int r) {\n    assert(0 <= l && l <= r &&\
+    \ r <= n);\n    if (l == r) return MX::unit();\n    l += size, r += size;\n  \
+    \  for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l >>\
+    \ i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n    }\n    X x = MX::unit();\n\
     \    while (l < r) {\n      if (l & 1) x = MX::op(x, dat[l++]);\n      if (r &\
     \ 1) x = MX::op(x, dat[--r]);\n      l >>= 1, r >>= 1;\n    }\n    return x;\n\
     \  }\n\n  X prod_all() { return dat[1]; }\n\n  void apply(int l, int r, A a) {\n\
     \    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n    l += size,\
-    \ r += size;\n    if (!MA::commute) {\n      for (int i = log; i >= 1; i--) {\n\
-    \        if (((l >> i) << i) != l) push(l >> i);\n        if (((r >> i) << i)\
-    \ != r) push((r - 1) >> i);\n      }\n    }\n    int l2 = l, r2 = r;\n    while\
-    \ (l < r) {\n      if (l & 1) apply_at(l++, a);\n      if (r & 1) apply_at(--r,\
-    \ a);\n      l >>= 1, r >>= 1;\n    }\n    l = l2, r = r2;\n    for (int i = 1;\
-    \ i <= log; i++) {\n      if (((l >> i) << i) != l) update(l >> i);\n      if\
-    \ (((r >> i) << i) != r) update((r - 1) >> i);\n    }\n  }\n\n  template <typename\
-    \ F>\n  int max_right(const F check, int l) {\n    assert(0 <= l && l <= n);\n\
-    \    assert(check(MX::unit()));\n    if (l == n) return n;\n    l += size;\n \
-    \   for (int i = log; i >= 1; i--) push(l >> i);\n    X sm = MX::unit();\n   \
-    \ do {\n      while (l % 2 == 0) l >>= 1;\n      if (!check(MX::op(sm, dat[l])))\
-    \ {\n        while (l < size) {\n          push(l);\n          l = (2 * l);\n\
-    \          if (check(MX::op(sm, dat[l]))) { sm = MX::op(sm, dat[l++]); }\n   \
-    \     }\n        return l - size;\n      }\n      sm = MX::op(sm, dat[l++]);\n\
-    \    } while ((l & -l) != l);\n    return n;\n  }\n\n  template <typename F>\n\
-    \  int min_left(const F check, int r) {\n    assert(0 <= r && r <= n);\n    assert(check(MX::unit()));\n\
-    \    if (r == 0) return 0;\n    r += size;\n    for (int i = log; i >= 1; i--)\
-    \ push((r - 1) >> i);\n    X sm = MX::unit();\n    do {\n      r--;\n      while\
-    \ (r > 1 && (r % 2)) r >>= 1;\n      if (!check(MX::op(dat[r], sm))) {\n     \
-    \   while (r < size) {\n          push(r);\n          r = (2 * r + 1);\n     \
-    \     if (check(MX::op(dat[r], sm))) { sm = MX::op(dat[r--], sm); }\n        }\n\
-    \        return r + 1 - size;\n      }\n      sm = MX::op(dat[r], sm);\n    }\
-    \ while ((r & -r) != r);\n    return 0;\n  }\n\nprivate:\n  void apply_at(int\
-    \ k, A a) {\n    int sz = 1 << (log - topbit(k));\n    dat[k] = AM::act(dat[k],\
-    \ a, sz);\n    if (k < size) laz[k] = MA::op(laz[k], a);\n  }\n  void push(int\
-    \ k) {\n    if (laz[k] == MA::unit()) return;\n    apply_at(2 * k, laz[k]), apply_at(2\
-    \ * k + 1, laz[k]);\n    laz[k] = MA::unit();\n  }\n};\n#line 2 \"mod/modint.hpp\"\
-    \n\ntemplate <int mod>\nstruct modint {\n  int val;\n  constexpr modint(ll x =\
-    \ 0) noexcept {\n    if (0 <= x && x < mod)\n      val = x;\n    else {\n    \
-    \  x %= mod;\n      val = (x < 0 ? x + mod : x);\n    }\n  }\n  bool operator<(const\
-    \ modint &other) const {\n    return val < other.val;\n  } // To use std::map\n\
-    \  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -=\
-    \ mod;\n    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if\
-    \ ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint\
-    \ &operator*=(const modint &p) {\n    val = (int)(1LL * val * p.val % mod);\n\
-    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
-    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint(-val);\
-    \ }\n  modint operator+(const modint &p) const { return modint(*this) += p; }\n\
-    \  modint operator-(const modint &p) const { return modint(*this) -= p; }\n  modint\
-    \ operator*(const modint &p) const { return modint(*this) *= p; }\n  modint operator/(const\
-    \ modint &p) const { return modint(*this) /= p; }\n  bool operator==(const modint\
-    \ &p) const { return val == p.val; }\n  bool operator!=(const modint &p) const\
-    \ { return val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod,\
-    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
-    \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
-    \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
-    \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n  void write() { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
+    \ r += size;\n    for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i)\
+    \ != l) push(l >> i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n \
+    \   }\n    int l2 = l, r2 = r;\n    while (l < r) {\n      if (l & 1) apply_at(l++,\
+    \ a);\n      if (r & 1) apply_at(--r, a);\n      l >>= 1, r >>= 1;\n    }\n  \
+    \  l = l2, r = r2;\n    for (int i = 1; i <= log; i++) {\n      if (((l >> i)\
+    \ << i) != l) update(l >> i);\n      if (((r >> i) << i) != r) update((r - 1)\
+    \ >> i);\n    }\n  }\n\n  template <typename F>\n  int max_right(const F check,\
+    \ int l) {\n    assert(0 <= l && l <= n);\n    assert(check(MX::unit()));\n  \
+    \  if (l == n) return n;\n    l += size;\n    for (int i = log; i >= 1; i--) push(l\
+    \ >> i);\n    X sm = MX::unit();\n    do {\n      while (l % 2 == 0) l >>= 1;\n\
+    \      if (!check(MX::op(sm, dat[l]))) {\n        while (l < size) {\n       \
+    \   push(l);\n          l = (2 * l);\n          if (check(MX::op(sm, dat[l])))\
+    \ { sm = MX::op(sm, dat[l++]); }\n        }\n        return l - size;\n      }\n\
+    \      sm = MX::op(sm, dat[l++]);\n    } while ((l & -l) != l);\n    return n;\n\
+    \  }\n\n  template <typename F>\n  int min_left(const F check, int r) {\n    assert(0\
+    \ <= r && r <= n);\n    assert(check(MX::unit()));\n    if (r == 0) return 0;\n\
+    \    r += size;\n    for (int i = log; i >= 1; i--) push((r - 1) >> i);\n    X\
+    \ sm = MX::unit();\n    do {\n      r--;\n      while (r > 1 && (r % 2)) r >>=\
+    \ 1;\n      if (!check(MX::op(dat[r], sm))) {\n        while (r < size) {\n  \
+    \        push(r);\n          r = (2 * r + 1);\n          if (check(MX::op(dat[r],\
+    \ sm))) { sm = MX::op(dat[r--], sm); }\n        }\n        return r + 1 - size;\n\
+    \      }\n      sm = MX::op(dat[r], sm);\n    } while ((r & -r) != r);\n    return\
+    \ 0;\n  }\n\nprivate:\n  void apply_at(int k, A a) {\n    int sz = 1 << (log -\
+    \ topbit(k));\n    dat[k] = AM::act(dat[k], a, sz);\n    if (k < size) laz[k]\
+    \ = MA::op(laz[k], a);\n  }\n  void push(int k) {\n    if (laz[k] == MA::unit())\
+    \ return;\n    apply_at(2 * k, laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k]\
+    \ = MA::unit();\n  }\n};\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct\
+    \ modint {\n  int val;\n  constexpr modint(ll x = 0) noexcept {\n    if (0 <=\
+    \ x && x < mod)\n      val = x;\n    else {\n      x %= mod;\n      val = (x <\
+    \ 0 ? x + mod : x);\n    }\n  }\n  bool operator<(const modint &other) const {\n\
+    \    return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
+    \ modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n\
+    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >=\
+    \ mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint\
+    \ &p) {\n    val = (int)(1LL * val * p.val % mod);\n    return *this;\n  }\n \
+    \ modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
+    \ *this;\n  }\n  modint operator-() const { return modint(-val); }\n  modint operator+(const\
+    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
+    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
+    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
+    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
+    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
+    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
+    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
+    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t n) const {\n\
+    \    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
+    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  void write()\
+    \ { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
     \ }\n  static constexpr int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
     \ {\n  static constexpr bool is_modint = true;\n  int val;\n  ArbitraryModInt()\
     \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
@@ -395,8 +394,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-12-04 00:39:06+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-12-04 03:33:52+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_affine_range_sum.test.cpp
 layout: document
