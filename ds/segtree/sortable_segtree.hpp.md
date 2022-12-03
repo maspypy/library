@@ -100,13 +100,13 @@ data:
     \ = Node*;\n\n  FastSet ss;      // \u533A\u9593\u306E\u5DE6\u7AEF\u5168\u4F53\
     \u3092\u8868\u3059 fastset\n  SegTree<MX> seg; // \u533A\u9593\u3092\u96C6\u7D04\
     \u3057\u305F\u5024\u3092\u533A\u9593\u306E\u5DE6\u7AEF\u306B\u306E\u305B\u305F\
-    \ segtree\n  vector<Node*> root; // \u533A\u9593\u306E\u5DE6\u7AEF\u306B\u3001\
-    dynamic segtree \u306E node \u3092\u4E57\u305B\u308B\n  vector<bool> rev;\n\n\
-    \  Sortable_SegTree(int KEY_MAX, vector<int> key, vector<X> dat)\n      : N(key.size()),\
-    \ KEY_MAX(KEY_MAX), pid(0), ss(key.size()), seg(dat) {\n    pool = new Node[NODES];\n\
-    \    init(key, dat);\n  }\n\n  void set(int i, int key, const X& x) {\n    assert(key\
-    \ < KEY_MAX);\n    split_at(i), split_at(i + 1);\n    rev[i] = 0, root[i] = new_node();\n\
-    \    set_rec(root[i], 0, KEY_MAX, key, x);\n    seg.set(i, x);\n  }\n\n  X prod_all()\
+    \ segtree\n  vector<np> root; // \u533A\u9593\u306E\u5DE6\u7AEF\u306B\u3001dynamic\
+    \ segtree \u306E node \u3092\u4E57\u305B\u308B\n  vector<bool> rev;\n\n  Sortable_SegTree(int\
+    \ KEY_MAX, vector<int> key, vector<X> dat)\n      : N(key.size()), KEY_MAX(KEY_MAX),\
+    \ pid(0), ss(key.size()), seg(dat) {\n    pool = new Node[NODES];\n    init(key,\
+    \ dat);\n  }\n\n  void set(int i, int key, const X& x) {\n    assert(key < KEY_MAX);\n\
+    \    split_at(i), split_at(i + 1);\n    rev[i] = 0, root[i] = new_node();\n  \
+    \  set_rec(root[i], 0, KEY_MAX, key, x);\n    seg.set(i, x);\n  }\n\n  X prod_all()\
     \ { return seg.prod_all(); }\n\n  X prod(int l, int r) {\n    if (pid > NODES\
     \ * 0.9) rebuild();\n    split_at(l), split_at(r);\n    return seg.prod(l, r);\n\
     \  }\n\n  void sort_inc(int l, int r) {\n    split_at(l), split_at(r);\n    while\
@@ -153,9 +153,9 @@ data:
     \    n->size = n->l->size + n->r->size;\n  }\n\n  void set_rec(np n, int l, int\
     \ r, int k, const X& x) {\n    if (r == l + 1) {\n      n->x = n->rev_x = x;\n\
     \      return;\n    }\n    int m = (l + r) / 2;\n    if (k < m) {\n      if (!(n->l))\
-    \ n->l = new_node();\n      set_rec(n->l, l, m, k, x);\n    }\n    if (node_m\
-    \ <= k) {\n      if (!(n->r)) n->r = new_node();\n      set_rec(n->r, m, r, k,\
-    \ x);\n    }\n    update(n);\n  }\n};\n"
+    \ n->l = new_node();\n      set_rec(n->l, l, m, k, x);\n    }\n    if (m <= k)\
+    \ {\n      if (!(n->r)) n->r = new_node();\n      set_rec(n->r, m, r, k, x);\n\
+    \    }\n    update(n);\n  }\n};\n"
   code: "#include \"ds/fastset.hpp\"\n#include \"ds/segtree/segtree.hpp\"\n\ntemplate\
     \ <typename Monoid, int NODES>\nstruct Sortable_SegTree {\n  using MX = Monoid;\n\
     \  using X = typename MX::value_type;\n  const int N, KEY_MAX;\n\n  struct Node\
@@ -163,7 +163,7 @@ data:
     \ int pid;\n  using np = Node*;\n\n  FastSet ss;      // \u533A\u9593\u306E\u5DE6\
     \u7AEF\u5168\u4F53\u3092\u8868\u3059 fastset\n  SegTree<MX> seg; // \u533A\u9593\
     \u3092\u96C6\u7D04\u3057\u305F\u5024\u3092\u533A\u9593\u306E\u5DE6\u7AEF\u306B\
-    \u306E\u305B\u305F segtree\n  vector<Node*> root; // \u533A\u9593\u306E\u5DE6\u7AEF\
+    \u306E\u305B\u305F segtree\n  vector<np> root; // \u533A\u9593\u306E\u5DE6\u7AEF\
     \u306B\u3001dynamic segtree \u306E node \u3092\u4E57\u305B\u308B\n  vector<bool>\
     \ rev;\n\n  Sortable_SegTree(int KEY_MAX, vector<int> key, vector<X> dat)\n  \
     \    : N(key.size()), KEY_MAX(KEY_MAX), pid(0), ss(key.size()), seg(dat) {\n \
@@ -217,16 +217,16 @@ data:
     \    n->size = n->l->size + n->r->size;\n  }\n\n  void set_rec(np n, int l, int\
     \ r, int k, const X& x) {\n    if (r == l + 1) {\n      n->x = n->rev_x = x;\n\
     \      return;\n    }\n    int m = (l + r) / 2;\n    if (k < m) {\n      if (!(n->l))\
-    \ n->l = new_node();\n      set_rec(n->l, l, m, k, x);\n    }\n    if (node_m\
-    \ <= k) {\n      if (!(n->r)) n->r = new_node();\n      set_rec(n->r, m, r, k,\
-    \ x);\n    }\n    update(n);\n  }\n};"
+    \ n->l = new_node();\n      set_rec(n->l, l, m, k, x);\n    }\n    if (m <= k)\
+    \ {\n      if (!(n->r)) n->r = new_node();\n      set_rec(n->r, m, r, k, x);\n\
+    \    }\n    update(n);\n  }\n};"
   dependsOn:
   - ds/fastset.hpp
   - ds/segtree/segtree.hpp
   isVerificationFile: false
   path: ds/segtree/sortable_segtree.hpp
   requiredBy: []
-  timestamp: '2022-12-04 01:27:27+09:00'
+  timestamp: '2022-12-04 04:38:35+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/datastructure/sort_segtree.test.cpp

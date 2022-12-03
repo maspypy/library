@@ -223,7 +223,7 @@ data:
     - icon: ':question:'
       path: ds/fenwicktree/fenwicktree.hpp
       title: ds/fenwicktree/fenwicktree.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/fenwicktree/fenwicktree_2d.hpp
       title: ds/fenwicktree/fenwicktree_2d.hpp
     - icon: ':question:'
@@ -272,13 +272,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/offline_query/range_xor_basis_query.hpp
       title: ds/offline_query/range_xor_basis_query.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/offline_query/rectangle_add_point_sum.hpp
       title: ds/offline_query/rectangle_add_point_sum.hpp
     - icon: ':question:'
       path: ds/offline_query/rectangle_add_rectangle_sum.hpp
       title: ds/offline_query/rectangle_add_rectangle_sum.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/offline_query/rollback_mo.hpp
       title: ds/offline_query/rollback_mo.hpp
     - icon: ':heavy_check_mark:'
@@ -517,7 +517,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/bracket_graph.hpp
       title: graph/bracket_graph.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/centroid.hpp
       title: graph/centroid.hpp
     - icon: ':heavy_check_mark:'
@@ -538,7 +538,7 @@ data:
     - icon: ':warning:'
       path: graph/decompose_complete.hpp
       title: graph/decompose_complete.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/dsu_on_tree.hpp
       title: graph/dsu_on_tree.hpp
     - icon: ':warning:'
@@ -1664,7 +1664,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/point_add_range_sum.test.cpp
       title: test/library_checker/datastructure/point_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
       title: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1697,7 +1697,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
       title: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
       title: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1721,7 +1721,7 @@ data:
     - icon: ':x:'
       path: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
       title: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
       title: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1754,7 +1754,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
       title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
       title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2267,7 +2267,7 @@ data:
     - icon: ':x:'
       path: test/mytest/rbst_test.test.cpp
       title: test/mytest/rbst_test.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/rect_add_pt_sum.test.cpp
       title: test/mytest/rect_add_pt_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2338,7 +2338,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1036_3.test.cpp
       title: test/yukicoder/1036_3.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1038.test.cpp
       title: test/yukicoder/1038.test.cpp
     - icon: ':heavy_check_mark:'

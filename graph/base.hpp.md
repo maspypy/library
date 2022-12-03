@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bracket_graph.hpp
     title: graph/bracket_graph.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/centroid.hpp
     title: graph/centroid.hpp
   - icon: ':heavy_check_mark:'
@@ -56,7 +56,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
   - icon: ':warning:'
@@ -225,7 +225,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - icon: ':heavy_check_mark:'
@@ -315,7 +315,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1002.test.cpp
     title: test/yukicoder/1002.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
   - icon: ':heavy_check_mark:'

@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree_2d.hpp
     title: ds/fenwicktree/fenwicktree_2d.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
@@ -211,8 +211,8 @@ data:
     \r\ntemplate <typename Monoid, typename XY, bool SMALL_X = false>\r\nstruct FenwickTree_2D\
     \ {\r\n  using G = Monoid;\r\n  using E = typename G::value_type;\r\n  static_assert(G::commute);\r\
     \n  int N;\r\n  vc<XY> keyX;\r\n  XY min_X;\r\n  vc<int> indptr;\r\n  vc<XY> keyY;\r\
-    \n  vc<E> dat;\r\n\r\n  FenwickTree_2D (vc<XY>& X, vc<XY>& Y, vc<E> wt) { build(X,\
-    \ Y, wt); }\r\n  FenwickTree_2D (vc<XY>& X, vc<XY>& Y) {\r\n    vc<E> wt(len(X),\
+    \n  vc<E> dat;\r\n\r\n  FenwickTree_2D(vc<XY>& X, vc<XY>& Y, vc<E> wt) { build(X,\
+    \ Y, wt); }\r\n  FenwickTree_2D(vc<XY>& X, vc<XY>& Y) {\r\n    vc<E> wt(len(X),\
     \ G::unit());\r\n    build(X, Y, wt);\r\n  }\r\n\r\n  inline int xtoi(XY x) {\r\
     \n    return (SMALL_X ? clamp<int>(x - min_X, 0, N) : LB(keyX, x));\r\n  }\r\n\
     \  inline int nxt(int i) { return i + ((i + 1) & -(i + 1)); }\r\n  inline int\
@@ -238,18 +238,18 @@ data:
     \ {\r\n    int i = xtoi(x);\r\n    assert(keyX[i] == x);\r\n    while (i < N)\
     \ { multiply_i(i, y, val), i = nxt(i); }\r\n  }\r\n\r\n  E sum(XY lx, XY rx, XY\
     \ ly, XY ry) { return prod(lx, rx, ly, ry); }\r\n  E prod(XY lx, XY rx, XY ly,\
-    \ XY ry) {\r\n    E pos = G::unit(), E neg = G::unit();\r\n    int L = xtoi(lx)\
-    \ - 1, int R = xtoi(rx) - 1;\r\n    while (L < R) { pos = G::op(pos, prod_i(R,\
-    \ ly, ry)), R = prev(R); }\r\n    while (R < L) { neg = G::op(neg, prod_i(L, ly,\
-    \ ry)), L = prev(L); }\r\n    return G::op(pos, G::inverse(neg));\r\n  }\r\n\r\
-    \n  E prefix_sum(XY rx, XY ry) { return prefix_prod(rx, ry); }\r\n  E prefix_prod(XY\
+    \ XY ry) {\r\n    E pos = G::unit(), neg = G::unit();\r\n    int L = xtoi(lx)\
+    \ - 1, R = xtoi(rx) - 1;\r\n    while (L < R) { pos = G::op(pos, prod_i(R, ly,\
+    \ ry)), R = prev(R); }\r\n    while (R < L) { neg = G::op(neg, prod_i(L, ly, ry)),\
+    \ L = prev(L); }\r\n    return G::op(pos, G::inverse(neg));\r\n  }\r\n\r\n  E\
+    \ prefix_sum(XY rx, XY ry) { return prefix_prod(rx, ry); }\r\n  E prefix_prod(XY\
     \ rx, XY ry) {\r\n    E pos = G::unit();\r\n    int R = xtoi(rx) - 1;\r\n    while\
     \ (R >= 0) { pos = G::op(pos, prefix_prod_i(R, ry)), R = prev(R); }\r\n    return\
     \ pos;\r\n  }\r\n\r\nprivate:\r\n  void multiply_i(int i, XY y, E val) {\r\n \
     \   int LID = indptr[i], n = indptr[i + 1] - indptr[i];\r\n    auto it = keyY.begin()\
     \ + LID;\r\n    int j = lower_bound(it, it + n, y) - it;\r\n    while (j < n)\
     \ { dat[LID + j] = G::op(dat[LID + j], val), j = nxt(j); }\r\n  }\r\n\r\n  E prod_i(int\
-    \ i, XY ly, XY ry) {\r\n    E pos = G::unit(), E neg = G::unit();\r\n    int LID\
+    \ i, XY ly, XY ry) {\r\n    E pos = G::unit(), neg = G::unit();\r\n    int LID\
     \ = indptr[i], n = indptr[i + 1] - indptr[i];\r\n    auto it = keyY.begin() +\
     \ LID;\r\n    int L = lower_bound(it, it + n, ly) - it - 1;\r\n    int R = lower_bound(it,\
     \ it + n, ry) - it - 1;\r\n    while (L < R) { pos = G::op(pos, dat[LID + R]),\
@@ -279,8 +279,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
   requiredBy: []
-  timestamp: '2022-12-04 01:13:06+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-04 04:38:35+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
 layout: document
