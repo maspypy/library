@@ -3,14 +3,14 @@
 #include "other/io.hpp"
 #include "alg/monoid/add.hpp"
 #include "mod/modint.hpp"
-#include "ds/splay/splaytree_commutative_monoid.hpp"
+#include "ds/splaytree/splaytree_commutative_monoid.hpp"
 #include "random/base.hpp"
 
 using mint = modint998;
 
 void test() {
   using Mono = Monoid_Add<int>;
-  SplayTree_CommutativeMonoid<Mono, 100> X;
+  SplayTree_Commutative_Monoid<Mono, 100> X;
   using np = decltype(X)::np;
 
   FOR(1000) {

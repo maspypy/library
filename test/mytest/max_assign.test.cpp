@@ -3,13 +3,13 @@
 #include "other/io.hpp"
 #include "alg/acted_monoid/max_assign.hpp"
 #include "random/base.hpp"
-#include "ds/segtree/lazysegtree.hpp"
+#include "ds/segtree/lazy_segtree.hpp"
 
 void test() {
   int N = RNG(1, 100);
   vc<int> A(N);
   FOR(i, N) A[i] = RNG(1, 100);
-  LazySegTree<ActedMonoid_Max_Assign<int, -1>> seg(A);
+  Lazy_SegTree<ActedMonoid_Max_Assign<int, -1>> seg(A);
   int Q = RNG(1, 100);
   FOR(Q) {
     ll t = RNG(0, 2);

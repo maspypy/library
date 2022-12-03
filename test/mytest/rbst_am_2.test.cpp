@@ -1,12 +1,12 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "alg/acted_monoid/cntsum_add.hpp"
-#include "ds/rbst/rbst_acted_monoid.hpp"
+#include "alg/acted_monoid/sum_add.hpp"
+#include "ds/randomized_bst/rbst_acted_monoid.hpp"
 #include "random/base.hpp"
 
 void test() {
-  using AM = ActedMonoid_CntSum_Add<int>;
+  using AM = ActedMonoid_Sum_Add<int>;
   using MonoX = typename AM::Monoid_X;
 
   RBST_ActedMonoid<AM, false, 100> X;
@@ -17,26 +17,24 @@ void test() {
     vc<int> A(N);
     FOR(i, N) A[i] = RNG(1, 10);
 
-    vc<pair<int, int>> seg_raw(N);
-    FOR(i, N) seg_raw[i] = {1, A[i]};
-    auto root = X.new_node(seg_raw);
+    auto root = X.new_node(A);
 
     FOR(Q) {
       int t = RNG(0, 7);
       if (t == 0) {
         int i = RNG(0, N);
-        assert(A[i] == X.get(root, i).se);
+        assert(A[i] == X.get(root, i));
       }
       if (t == 1) {
         int i = RNG(0, N);
         int x = RNG(1, 10);
-        root = X.set(root, i, {1, x});
+        root = X.set(root, i, x);
         A[i] = x;
       }
       if (t == 2) {
         int i = RNG(0, N);
         int x = RNG(1, 10);
-        root = X.multiply(root, i, {0, x});
+        root = X.multiply(root, i, x);
         A[i] += x;
       }
       if (t == 3) {
@@ -46,7 +44,7 @@ void test() {
         ++R;
         int sm = 0;
         FOR(i, L, R) sm += A[i];
-        assert(X.prod(root, L, R).se == sm);
+        assert(X.prod(root, L, R) == sm);
       }
       if (t == 4) {
         int L = RNG(0, N);
@@ -66,8 +64,8 @@ void test() {
         root = X.apply(root, L, R, a);
       }
       if (t == 6) {
-        vc<pair<int, int>> B = X.get_all(root);
-        FOR(i, N) assert(A[i] == B[i].se);
+        vc<int> B = X.get_all(root);
+        FOR(i, N) assert(A[i] == B[i]);
       }
     }
   }
