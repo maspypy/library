@@ -147,7 +147,7 @@ struct Lazy_SegTree {
 
 private:
   void apply_at(int k, A a) {
-    int sz = 1 << (log - topbit(k));
+    ll sz = 1 << (log - topbit(k));
     dat[k] = AM::act(dat[k], a, sz);
     if (k < size) laz[k] = MA::op(laz[k], a);
   }

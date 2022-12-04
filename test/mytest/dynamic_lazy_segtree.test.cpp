@@ -17,19 +17,15 @@ void test() {
       return {10 * (r - l), 10};
     });
 
-    auto rand_LR = [&]() -> pi {
-      int L = RNG(0, N);
-      int R = RNG(0, N);
-      if (L > R) swap(L, R);
-      return {L, R + 1};
-    };
-
     int Q = RNG(1, 1000);
     auto root = X.new_node(0, N);
 
     FOR(Q) {
       int t = RNG(0, 4);
-      auto [L, R] = rand_LR();
+      int L = RNG(0, N);
+      int R = RNG(0, N);
+      if (L > R) swap(L, R);
+      ++R;
       if (t == 0) {
         int i = RNG(0, N);
         int x = RNG(1, 100);

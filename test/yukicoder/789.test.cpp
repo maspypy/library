@@ -5,7 +5,7 @@
 #include "alg/monoid/add.hpp"
 
 void solve() {
-  Dynamic_SegTree<Monoid_Add<ll>> seg(0, 1LL << 30);
+  Dynamic_SegTree<Monoid_Add<ll>, false, 4000000> seg(0, 1LL << 30);
   LL(Q);
   ll ANS = 0;
   FOR(Q) {
