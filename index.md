@@ -6,7 +6,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/add_mul.hpp
       title: alg/acted_monoid/add_mul.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/cntsum_add.hpp
       title: alg/acted_monoid/cntsum_add.hpp
     - icon: ':heavy_check_mark:'
@@ -51,7 +51,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/powersums_assign.hpp
       title: alg/acted_monoid/powersums_assign.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/sum_add.hpp
       title: alg/acted_monoid/sum_add.hpp
     - icon: ':heavy_check_mark:'
@@ -97,7 +97,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/add_chmin_chmax.hpp
       title: alg/monoid/add_chmin_chmax.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/add_pair.hpp
       title: alg/monoid/add_pair.hpp
     - icon: ':question:'
@@ -210,7 +210,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/powerquery.hpp
       title: ds/powerquery.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/range_add_range_sum.hpp
       title: ds/range_add_range_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -229,7 +229,7 @@ data:
       title: ds/disjointsparse/xor_sparsetable.hpp
   - name: ds/fenwicktree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/fenwicktree/fenwicktree.hpp
       title: ds/fenwicktree/fenwicktree.hpp
     - icon: ':heavy_check_mark:'
@@ -344,7 +344,7 @@ data:
     - icon: ':question:'
       path: ds/segtree/dual_segtree.hpp
       title: ds/segtree/dual_segtree.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/segtree/dynamic_lazy_segtree.hpp
       title: ds/segtree/dynamic_lazy_segtree.hpp
     - icon: ':question:'
@@ -2803,7 +2803,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/2122.test.cpp
       title: test/yukicoder/2122.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/235.test.cpp
       title: test/yukicoder/235.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2869,7 +2869,7 @@ data:
     - icon: ':x:'
       path: test/yukicoder/789.test.cpp
       title: test/yukicoder/789.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/789_2.test.cpp
       title: test/yukicoder/789_2.test.cpp
     - icon: ':heavy_check_mark:'
