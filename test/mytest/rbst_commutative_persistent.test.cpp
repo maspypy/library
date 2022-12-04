@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "alg/monoid/add.hpp"
 #include "mod/modint.hpp"
-#include "ds/rbst/rbst_commutative_monoid.hpp"
+#include "ds/randomized_bst/rbst_commutative_monoid.hpp"
 #include "random/base.hpp"
 
 using mint = modint998;

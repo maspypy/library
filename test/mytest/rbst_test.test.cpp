@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "alg/monoid/min.hpp"
-#include "ds/rbst/rbst_monoid.hpp"
+#include "ds/randomized_bst/rbst_monoid.hpp"
 #include "random/base.hpp"
 
 void test() {
