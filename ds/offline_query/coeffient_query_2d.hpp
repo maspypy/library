@@ -1,4 +1,4 @@
-#include "ds/fenwick/fenwick.hpp"
+#include "ds/fenwicktree/fenwicktree.hpp"
 
 // A, B：定数
 // Sparse Laurent Polynomial f(x,y) を与える

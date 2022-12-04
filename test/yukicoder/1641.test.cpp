@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1641"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "graph/ds/treeabelgroup.hpp"
+#include "graph/ds/tree_abelgroup.hpp"
 #include "alg/monoid/xor.hpp"
 
 void solve() {
@@ -10,7 +10,7 @@ void solve() {
   VEC(int, A, N);
   G.read_tree();
   TREE tree(G);
-  TreeAbelGroup<decltype(tree), Monoid_Xor<int>, 0, 0, 1> TA(tree, A);
+  Tree_AbelGroup<decltype(tree), Monoid_Xor<int>, 0, 0, 1> TA(tree, A);
   FOR(Q) {
     LL(t, x, y);
     --x;
