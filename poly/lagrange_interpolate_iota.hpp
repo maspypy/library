@@ -1,6 +1,6 @@
 #pragma once
 #include "alg/monoid/mul.hpp"
-#include "ds/swag.hpp"
+#include "ds/sliding_window_aggregation.hpp"
 #include "poly/convolution.hpp"
 
 template <typename mint>
