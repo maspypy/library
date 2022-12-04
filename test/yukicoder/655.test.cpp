@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/655"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/cumsum2d.hpp"
+#include "ds/cumsum_2d.hpp"
 
 void solve() {
   LL(N, K, P);
@@ -32,7 +32,7 @@ void solve() {
   }
   FOR(x, N) FOR(y, N) if (A[x][y] == -1) A[x][y] = 0;
   // 2 次元累積和
-  Cumsum2D<Monoid_Add<ll>> X(A);
+  Cumsum_2D<Monoid_Add<ll>> X(A);
   ll ANS = 0;
   // 超えない最大サイズを求める
   // 対角線ごとに、上から
