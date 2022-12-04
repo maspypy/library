@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_kth_smallest"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/waveletmatrix.hpp"
+#include "ds/wavelet_matrix.hpp"
 
 void solve() {
   LL(N, Q);
