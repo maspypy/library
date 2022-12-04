@@ -358,6 +358,9 @@ data:
     path: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
+    title: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
     title: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -919,8 +922,26 @@ data:
     path: test/mytest/rbst.test.cpp
     title: test/mytest/rbst.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_am.test.cpp
+    title: test/mytest/rbst_am.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_am_2.test.cpp
     title: test/mytest/rbst_am_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_commutative_persistent.test.cpp
+    title: test/mytest/rbst_commutative_persistent.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_monoid.test.cpp
+    title: test/mytest/rbst_monoid.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_monoid_2.test.cpp
+    title: test/mytest/rbst_monoid_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_monoid_persistent.test.cpp
+    title: test/mytest/rbst_monoid_persistent.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_test.test.cpp
+    title: test/mytest/rbst_test.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
@@ -951,6 +972,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/summax_add.test.cpp
+    title: test/mytest/summax_add.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/summax_assign.test.cpp
+    title: test/mytest/summax_assign.test.cpp
   - icon: ':x:'
     path: test/mytest/summin_add.test.cpp
     title: test/mytest/summin_add.test.cpp
@@ -1823,6 +1850,7 @@ data:
   - test/mytest/knight_distance.test.cpp
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/min_max.test.cpp
+  - test/mytest/summax_add.test.cpp
   - test/mytest/online_pow.test.cpp
   - test/mytest/primesum_mod6.test.cpp
   - test/mytest/cf702_F.test.cpp
@@ -1837,6 +1865,7 @@ data:
   - test/mytest/max_max.test.cpp
   - test/mytest/range_mex.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
+  - test/mytest/summax_assign.test.cpp
   - test/mytest/eulerian_number.test.cpp
   - test/mytest/online_exp.test.cpp
   - test/mytest/splay_monoid.test.cpp
@@ -1848,6 +1877,7 @@ data:
   - test/mytest/splay_cm.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/conv_leq.test.cpp
+  - test/mytest/rbst_monoid_persistent.test.cpp
   - test/mytest/partizan.test.cpp
   - test/mytest/dyadic_rational.test.cpp
   - test/mytest/chirp_z.test.cpp
@@ -1859,17 +1889,21 @@ data:
   - test/mytest/gray_code.test.cpp
   - test/mytest/run_length.test.cpp
   - test/mytest/min_min.test.cpp
+  - test/mytest/rbst_monoid.test.cpp
   - test/mytest/rbst.test.cpp
   - test/mytest/magic_square.test.cpp
   - test/mytest/splay_am.test.cpp
   - test/mytest/max_min.test.cpp
+  - test/mytest/rbst_commutative_persistent.test.cpp
   - test/mytest/enumerate_products.test.cpp
   - test/mytest/online_division.test.cpp
   - test/mytest/simple_perm.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/tutte.test.cpp
+  - test/mytest/rbst_am.test.cpp
   - test/mytest/dynamic_lazy_segtree.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
+  - test/mytest/rbst_monoid_2.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
   - test/mytest/prime_sum.test.cpp
   - test/mytest/summin_assign.test.cpp
@@ -1887,6 +1921,7 @@ data:
   - test/mytest/binom.test.cpp
   - test/mytest/tournament.test.cpp
   - test/mytest/ARC30D.test.cpp
+  - test/mytest/rbst_test.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
@@ -2012,6 +2047,7 @@ data:
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
   - test/library_checker/datastructure/double_ended_pq.test.cpp
+  - test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   - test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - test/library_checker/tree/tree_diameter.test.cpp

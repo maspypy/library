@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/summax_add.hpp
     title: alg/acted_monoid/summax_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_monoid/summax_assign.hpp
     title: alg/acted_monoid/summax_assign.hpp
   _extendedVerifiedWith:
@@ -15,9 +15,15 @@ data:
   - icon: ':x:'
     path: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
     title: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/summax_add.test.cpp
+    title: test/mytest/summax_add.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/summax_assign.test.cpp
+    title: test/mytest/summax_assign.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/summax.hpp\"\n\ntemplate <typename E>\nstruct\
@@ -38,8 +44,10 @@ data:
   - alg/acted_monoid/summax_assign.hpp
   - alg/acted_monoid/summax_add.hpp
   timestamp: '2022-12-04 13:46:37+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/mytest/summax_add.test.cpp
+  - test/mytest/summax_assign.test.cpp
   - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
   - test/mytest/dynamic_lazy_segtree.test.cpp
 documentation_of: alg/monoid/summax.hpp

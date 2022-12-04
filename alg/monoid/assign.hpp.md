@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_assign.hpp
     title: alg/acted_monoid/sum_assign.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_monoid/summax_assign.hpp
     title: alg/acted_monoid/summax_assign.hpp
   - icon: ':x:'
@@ -40,8 +40,20 @@ data:
     path: test/mytest/max_assign.test.cpp
     title: test/mytest/max_assign.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_am.test.cpp
+    title: test/mytest/rbst_am.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_monoid.test.cpp
+    title: test/mytest/rbst_monoid.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst_monoid_persistent.test.cpp
+    title: test/mytest/rbst_monoid_persistent.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/splay_monoid.test.cpp
     title: test/mytest/splay_monoid.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/summax_assign.test.cpp
+    title: test/mytest/summax_assign.test.cpp
   - icon: ':x:'
     path: test/mytest/summin_assign.test.cpp
     title: test/mytest/summin_assign.test.cpp
@@ -71,8 +83,12 @@ data:
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/mytest/summax_assign.test.cpp
   - test/mytest/splay_monoid.test.cpp
   - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
+  - test/mytest/rbst_monoid_persistent.test.cpp
+  - test/mytest/rbst_monoid.test.cpp
+  - test/mytest/rbst_am.test.cpp
   - test/mytest/dynamic_lazy_segtree.test.cpp
   - test/mytest/summin_assign.test.cpp
   - test/mytest/max_assign.test.cpp

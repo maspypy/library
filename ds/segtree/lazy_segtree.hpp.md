@@ -60,6 +60,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/minmax_add.test.cpp
     title: test/mytest/minmax_add.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/summax_add.test.cpp
+    title: test/mytest/summax_add.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/summax_assign.test.cpp
+    title: test/mytest/summax_assign.test.cpp
   - icon: ':x:'
     path: test/mytest/summin_add.test.cpp
     title: test/mytest/summin_add.test.cpp
@@ -218,11 +224,13 @@ data:
   - test/yukicoder/1270.test.cpp
   - test/yukicoder/255.test.cpp
   - test/mytest/min_max.test.cpp
+  - test/mytest/summax_add.test.cpp
   - test/mytest/minidx_add.test.cpp
   - test/mytest/maxidx_add.test.cpp
   - test/mytest/summin_add.test.cpp
   - test/mytest/minmax_add.test.cpp
   - test/mytest/max_max.test.cpp
+  - test/mytest/summax_assign.test.cpp
   - test/mytest/min_min.test.cpp
   - test/mytest/max_min.test.cpp
   - test/mytest/summin_assign.test.cpp

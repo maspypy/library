@@ -1,6 +1,9 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: alg/monoid/affine.hpp
+    title: alg/monoid/affine.hpp
   - icon: ':question:'
     path: ds/segtree/dynamic_segtree.hpp
     title: ds/segtree/dynamic_segtree.hpp
@@ -15,15 +18,16 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1649
+    PROBLEM: https://judge.yosupo.jp/problem/point_set_range_composite
     links:
-    - https://yukicoder.me/problems/no/1649
-  bundledCode: "#line 1 \"test/yukicoder/1649.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1649\"\
+    - https://judge.yosupo.jp/problem/point_set_range_composite
+  bundledCode: "#line 1 \"test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
     \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
     unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
     \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
@@ -200,22 +204,23 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"ds/segtree/dynamic_segtree.hpp\"\n\r\ntemplate <typename\
-    \ Monoid, bool PERSISTENT, int NODES>\r\nstruct Dynamic_SegTree {\r\n  using MX\
-    \ = Monoid;\r\n  using X = typename MX::value_type;\r\n  using F = function<X(ll,\
-    \ ll)>;\r\n  F default_prod;\r\n\r\n  struct Node {\r\n    Node *l, *r;\r\n  \
-    \  X x;\r\n  };\r\n\r\n  const ll n;\r\n  Node *pool;\r\n  int pid;\r\n  using\
-    \ np = Node *;\r\n\r\n  Dynamic_SegTree(\r\n      ll n, F default_prod = [](ll\
-    \ l, ll r) -> X { return MX::unit(); })\r\n      : default_prod(default_prod),\
-    \ n(n), pid(0) {\r\n    pool = new Node[NODES];\r\n  }\r\n\r\n  np new_node(const\
-    \ X x) {\r\n    pool[pid].l = pool[pid].r = nullptr;\r\n    pool[pid].x = x;\r\
-    \n    return &(pool[pid++]);\r\n  }\r\n\r\n  np new_node(ll l, ll r) { return\
-    \ new_node(default_prod(l, r)); }\r\n\r\n  np new_node(const vc<X> &dat) {\r\n\
-    \    assert(len(dat) == n);\r\n    auto dfs = [&](auto &dfs, ll l, ll r) -> Node\
-    \ * {\r\n      if (l == r) return nullptr;\r\n      if (r == l + 1) return new_node(dat[l]);\r\
-    \n      ll m = (l + r) / 2;\r\n      np l_root = dfs(dfs, l, m), r_root = dfs(dfs,\
-    \ m, r);\r\n      X x = MX::op(l_root->x, r_root->x);\r\n      np root = new_node(x);\r\
-    \n      root->l = l_root, root->r = r_root;\r\n      return root;\r\n    };\r\n\
+    \ yes(!t); }\n#line 4 \"test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp\"\
+    \n\n#line 2 \"ds/segtree/dynamic_segtree.hpp\"\n\r\ntemplate <typename Monoid,\
+    \ bool PERSISTENT, int NODES>\r\nstruct Dynamic_SegTree {\r\n  using MX = Monoid;\r\
+    \n  using X = typename MX::value_type;\r\n  using F = function<X(ll, ll)>;\r\n\
+    \  F default_prod;\r\n\r\n  struct Node {\r\n    Node *l, *r;\r\n    X x;\r\n\
+    \  };\r\n\r\n  const ll n;\r\n  Node *pool;\r\n  int pid;\r\n  using np = Node\
+    \ *;\r\n\r\n  Dynamic_SegTree(\r\n      ll n, F default_prod = [](ll l, ll r)\
+    \ -> X { return MX::unit(); })\r\n      : default_prod(default_prod), n(n), pid(0)\
+    \ {\r\n    pool = new Node[NODES];\r\n  }\r\n\r\n  np new_node(const X x) {\r\n\
+    \    pool[pid].l = pool[pid].r = nullptr;\r\n    pool[pid].x = x;\r\n    return\
+    \ &(pool[pid++]);\r\n  }\r\n\r\n  np new_node(ll l, ll r) { return new_node(default_prod(l,\
+    \ r)); }\r\n\r\n  np new_node(const vc<X> &dat) {\r\n    assert(len(dat) == n);\r\
+    \n    auto dfs = [&](auto &dfs, ll l, ll r) -> Node * {\r\n      if (l == r) return\
+    \ nullptr;\r\n      if (r == l + 1) return new_node(dat[l]);\r\n      ll m = (l\
+    \ + r) / 2;\r\n      np l_root = dfs(dfs, l, m), r_root = dfs(dfs, m, r);\r\n\
+    \      X x = MX::op(l_root->x, r_root->x);\r\n      np root = new_node(x);\r\n\
+    \      root->l = l_root, root->r = r_root;\r\n      return root;\r\n    };\r\n\
     \    return dfs(dfs, 0, len(dat));\r\n  }\r\n\r\n  X prod(np root, ll l, ll r)\
     \ {\r\n    assert(0 <= l && l < r && r <= n);\r\n    X x = MX::unit();\r\n   \
     \ prod_rec(root, 0, n, l, r, x);\r\n    return x;\r\n  }\r\n\r\n  np set(np root,\
@@ -265,28 +270,35 @@ data:
     \ x))) {\r\n      x = MX::op(c->x, x);\r\n      return l;\r\n    }\r\n    if (r\
     \ == l + 1) return r;\r\n    ll m = (l + r) / 2;\r\n    ll k = min_left_rec(c->r,\
     \ check, m, r, qr, x);\r\n    if (m < k) return k;\r\n    return min_left_rec(c->l,\
-    \ check, l, m, qr, x);\r\n  }\r\n};\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int\
-    \ mod>\nstruct modint {\n  int val;\n  constexpr modint(ll x = 0) noexcept {\n\
-    \    if (0 <= x && x < mod)\n      val = x;\n    else {\n      x %= mod;\n   \
-    \   val = (x < 0 ? x + mod : x);\n    }\n  }\n  bool operator<(const modint &other)\
-    \ const {\n    return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
-    \ modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n\
-    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >=\
-    \ mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint\
-    \ &p) {\n    val = (int)(1LL * val * p.val % mod);\n    return *this;\n  }\n \
-    \ modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
-    \ *this;\n  }\n  modint operator-() const { return modint(-val); }\n  modint operator+(const\
-    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
-    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
-    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
-    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
-    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
-    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
-    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
-    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t n) const {\n\
-    \    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
-    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  void write()\
-    \ { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
+    \ check, l, m, qr, x);\r\n  }\r\n};\n#line 2 \"alg/monoid/affine.hpp\"\n\ntemplate\
+    \ <typename K>\nstruct Monoid_Affine {\n  using F = pair<K, K>;\n  using value_type\
+    \ = F;\n  static constexpr F op(const F &x, const F &y) noexcept {\n    return\
+    \ F({x.first * y.first, x.second * y.first + y.second});\n  }\n  static constexpr\
+    \ F inverse(const F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n    return\
+    \ {a, a * (-b)};\n  }\n  static constexpr K eval(const F &f, K x) noexcept {\n\
+    \    return f.first * x + f.second;\n  }\n  static constexpr F unit() { return\
+    \ {K(1), K(0)}; }\n  static constexpr bool commute = false;\n};\n#line 2 \"mod/modint.hpp\"\
+    \n\ntemplate <int mod>\nstruct modint {\n  int val;\n  constexpr modint(ll x =\
+    \ 0) noexcept {\n    if (0 <= x && x < mod)\n      val = x;\n    else {\n    \
+    \  x %= mod;\n      val = (x < 0 ? x + mod : x);\n    }\n  }\n  bool operator<(const\
+    \ modint &other) const {\n    return val < other.val;\n  } // To use std::map\n\
+    \  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -=\
+    \ mod;\n    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if\
+    \ ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint\
+    \ &operator*=(const modint &p) {\n    val = (int)(1LL * val * p.val % mod);\n\
+    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
+    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint(-val);\
+    \ }\n  modint operator+(const modint &p) const { return modint(*this) += p; }\n\
+    \  modint operator-(const modint &p) const { return modint(*this) -= p; }\n  modint\
+    \ operator*(const modint &p) const { return modint(*this) *= p; }\n  modint operator/(const\
+    \ modint &p) const { return modint(*this) /= p; }\n  bool operator==(const modint\
+    \ &p) const { return val == p.val; }\n  bool operator!=(const modint &p) const\
+    \ { return val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod,\
+    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
+    \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
+    \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
+    \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
+    \  }\n  void write() { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
     \ }\n  static constexpr int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
     \ {\n  static constexpr bool is_modint = true;\n  int val;\n  ArbitraryModInt()\
     \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
@@ -353,52 +365,38 @@ data:
     mint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
     \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
     \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
-    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 6 \"test/yukicoder/1649.test.cpp\"\
-    \n\nusing mint = modint998;\n\nstruct Mono {\n  using value_type = tuple<mint,\
-    \ mint, mint>;\n  using X = value_type;\n  static X op(X x, X y) {\n    auto&\
-    \ [x0, x1, x2] = x;\n    auto& [y0, y1, y2] = y;\n    return {x0 + y0, x1 + y1,\
-    \ x2 + y2};\n  }\n  static constexpr X unit() { return {mint(0), mint(0), mint(0)};\
-    \ }\n  static constexpr bool commute = true;\n};\n\nvoid solve() {\n  LL(N);\n\
-    \  VEC(pi, XY, N);\n  ll LIM = 1 << 30;\n\n  Dynamic_SegTree<Mono, 8000000> seg(-LIM,\
-    \ LIM);\n  mint ANS = 0;\n  FOR(4) {\n    for (auto&& [x, y]: XY) tie(x, y) =\
-    \ mp(-y, x);\n    seg.reset();\n    sort(all(XY));\n    for (auto&& [x, y]: XY)\
-    \ {\n      mint x2 = (x + y) * (x + y);\n      mint x1 = x + y;\n      mint x0\
-    \ = 1;\n      auto [s0, s1, s2] = seg.prod(-LIM, y);\n      ANS += x2 * s0 - mint(2)\
-    \ * x1 * s1 + x0 * s2;\n      seg.multiply(y, {x0, x1, x2});\n    }\n  }\n  ANS\
-    \ /= mint(2);\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
-    \  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1649\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"ds/segtree/dynamic_segtree.hpp\"\n#include\
-    \ \"mod/modint.hpp\"\n\nusing mint = modint998;\n\nstruct Mono {\n  using value_type\
-    \ = tuple<mint, mint, mint>;\n  using X = value_type;\n  static X op(X x, X y)\
-    \ {\n    auto& [x0, x1, x2] = x;\n    auto& [y0, y1, y2] = y;\n    return {x0\
-    \ + y0, x1 + y1, x2 + y2};\n  }\n  static constexpr X unit() { return {mint(0),\
-    \ mint(0), mint(0)}; }\n  static constexpr bool commute = true;\n};\n\nvoid solve()\
-    \ {\n  LL(N);\n  VEC(pi, XY, N);\n  ll LIM = 1 << 30;\n\n  Dynamic_SegTree<Mono,\
-    \ 8000000> seg(-LIM, LIM);\n  mint ANS = 0;\n  FOR(4) {\n    for (auto&& [x, y]:\
-    \ XY) tie(x, y) = mp(-y, x);\n    seg.reset();\n    sort(all(XY));\n    for (auto&&\
-    \ [x, y]: XY) {\n      mint x2 = (x + y) * (x + y);\n      mint x1 = x + y;\n\
-    \      mint x0 = 1;\n      auto [s0, s1, s2] = seg.prod(-LIM, y);\n      ANS +=\
-    \ x2 * s0 - mint(2) * x1 * s1 + x0 * s2;\n      seg.multiply(y, {x0, x1, x2});\n\
-    \    }\n  }\n  ANS /= mint(2);\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 8 \"test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  using Mono = Monoid_Affine<mint>;\n\
+    \  using X = Mono::value_type;\n  LL(N, Q);\n  VEC(X, dat, N);\n\n  Dynamic_SegTree<Mono,\
+    \ false, 1000000> seg(N);\n  auto root = seg.new_node(dat);\n\n  FOR(Q) {\n  \
+    \  LL(t, a, b, c);\n    if (t == 0) { seg.set(root, a, {b, c}); }\n    if (t ==\
+    \ 1) { print(Mono::eval(seg.prod(root, a, b), c)); }\n  }\n}\n\nsigned main()\
+    \ {\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/segtree/dynamic_segtree.hpp\"\
+    \n#include \"alg/monoid/affine.hpp\"\n#include \"mod/modint.hpp\"\n\nusing mint\
+    \ = modint998;\n\nvoid solve() {\n  using Mono = Monoid_Affine<mint>;\n  using\
+    \ X = Mono::value_type;\n  LL(N, Q);\n  VEC(X, dat, N);\n\n  Dynamic_SegTree<Mono,\
+    \ false, 1000000> seg(N);\n  auto root = seg.new_node(dat);\n\n  FOR(Q) {\n  \
+    \  LL(t, a, b, c);\n    if (t == 0) { seg.set(root, a, {b, c}); }\n    if (t ==\
+    \ 1) { print(Mono::eval(seg.prod(root, a, b), c)); }\n  }\n}\n\nsigned main()\
+    \ {\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - ds/segtree/dynamic_segtree.hpp
+  - alg/monoid/affine.hpp
   - mod/modint.hpp
   isVerificationFile: true
-  path: test/yukicoder/1649.test.cpp
+  path: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
   requiredBy: []
   timestamp: '2022-12-04 14:24:21+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/1649.test.cpp
+documentation_of: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/1649.test.cpp
-- /verify/test/yukicoder/1649.test.cpp.html
-title: test/yukicoder/1649.test.cpp
+- /verify/test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
+- /verify/test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp.html
+title: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
 ---
