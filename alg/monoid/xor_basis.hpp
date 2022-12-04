@@ -3,10 +3,9 @@
 template <typename E>
 struct Monoid_XorBasis {
   using value_type = vector<E>;
-  using X = value_type;
-
+  using VECT_SP = value_type;
   // 破壊的に変更する
-  static bool add_element(X& x, E v) {
+  static bool add_element(VECT_SP& x, E v) {
     for (auto&& e: x) {
       if (e == 0 || v == 0) break;
       chmin(v, v ^ e);
@@ -18,23 +17,22 @@ struct Monoid_XorBasis {
     return false;
   }
 
-  static X op(const X& x, const X& y) {
-    X z = x;
-    for (auto v: y) { add_element(z, v); }
-    return z;
+  static VECT_SP op(const VECT_SP x, const VECT_SP y) {
+    for (auto v: y) { add_element(x, v); }
+    return x;
   }
 
-  static bool isin(E v, const X& x) {
-    for (auto&& w: x) { chmin(v, v ^ w); }
+  static bool isin(E v, const VECT_SP& V) {
+    for (auto&& w: V) { chmin(v, v ^ w); }
     return v == 0;
   }
 
-  // x ^ v の最大値
-  static E get_max(const X& x) {
+  // V の元の最大値
+  static E get_max(const VECT_SP& V) {
     E res = 0;
-    for (auto&& a: x) chmax(res, res ^ a);
+    for (auto&& V: x) chmax(res, res ^ x);
     return res;
   }
-  static constexpr X unit() { return X{}; };
+  static constexpr VECT_SP unit() { return VECT_SP{}; };
   static constexpr bool commute = true;
 };
