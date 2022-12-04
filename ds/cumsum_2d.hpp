@@ -1,13 +1,14 @@
 #include "alg/monoid/add.hpp"
 
 template <typename Group>
-struct Cumsum2D {
+struct Cumsum_2D {
+  static_assert(Group::commute);
   using X = typename Group::value_type;
   int H, W;
   vc<vc<X>> dat;
 
-  Cumsum2D() {}
-  Cumsum2D(vc<vc<X>> &A) { build(A); }
+  Cumsum_2D() {}
+  Cumsum_2D(vc<vc<X>> &A) { build(A); }
 
   void build(vc<vc<X>> &A) {
     int H = len(A);
@@ -19,7 +20,6 @@ struct Cumsum2D {
   }
 
   X sum(int x1, int x2, int y1, int y2) {
-    static_assert(Group::commute);
     X a = Group::op(dat[x1][y1], dat[x2][y2]);
     X b = Group::op(dat[x2][y1], dat[x1][y2]);
     return Group::op(a, Group::inverse(b));

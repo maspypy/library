@@ -11,7 +11,7 @@ void test() {
   FOR(i, N) A[i] = RNG(1, 100);
   using AM = ActedMonoid_Min_Max<int>;
   using Mono = typename AM::Monoid_X;
-  LazySegTree<AM> seg(A);
+  Lazy_SegTree<AM> seg(A);
   int Q = RNG(1, 100);
   FOR(Q) {
     ll t = RNG(0, 2);
