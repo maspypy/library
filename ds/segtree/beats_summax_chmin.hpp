@@ -1,4 +1,4 @@
-#include "ds/segtree/lazysegtree_beats.hpp"
+#include "ds/segtree/segtree_beats.hpp"
 
 constexpr ll Beats_INF = 1LL << 40;
 
