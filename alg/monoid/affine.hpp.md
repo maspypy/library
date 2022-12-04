@@ -55,6 +55,9 @@ data:
     path: test/yukicoder/1502.test.cpp
     title: test/yukicoder/1502.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1891.test.cpp
+    title: test/yukicoder/1891.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/255.test.cpp
     title: test/yukicoder/255.test.cpp
   _isVerificationFailed: false
@@ -89,6 +92,7 @@ data:
   verifiedWith:
   - test/yukicoder/1502.test.cpp
   - test/yukicoder/255.test.cpp
+  - test/yukicoder/1891.test.cpp
   - test/mytest/rbst_monoid_2.test.cpp
   - test/mytest/splay.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp

@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1891.test.cpp
+    title: test/yukicoder/1891.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/disjointsparse/xor_disjointsparse.hpp\"\ntemplate <typename\
@@ -23,11 +26,11 @@ data:
     \ log, MX::unit());\n      FOR(i, 1 << log) {\n        dat[k + 1][i] = MX::op(dat[k][i],\
     \ dat[k][i ^ (1 << k)]);\n      }\n    }\n  }\n\n  // calculate prod_{l<=i<r}\
     \ A[x xor i], in O(log N) time.\n  X prod(int l, int r, int xor_val) {\n    X\
-    \ xl = xr = MX::unit();\n    FOR(k, log + 1) {\n      if (l >= r) break;\n   \
-    \   if (l & 1 << k) {\n        xl = MX::op(xl, dat[k][l ^ xor_val]);\n       \
-    \ l += (1 << k);\n      }\n      if (r & 1 << k) {\n        r -= (1 << k);\n \
-    \       xr = MX::op(dat[k][r ^ xor_val], xr);\n      }\n    }\n    return MX::op(xl,\
-    \ xr);\n  }\n};\n"
+    \ xl = MX::unit(), xr = MX::unit();\n    FOR(k, log + 1) {\n      if (l >= r)\
+    \ break;\n      if (l & 1 << k) {\n        xl = MX::op(xl, dat[k][l ^ xor_val]);\n\
+    \        l += (1 << k);\n      }\n      if (r & 1 << k) {\n        r -= (1 <<\
+    \ k);\n        xr = MX::op(dat[k][r ^ xor_val], xr);\n      }\n    }\n    return\
+    \ MX::op(xl, xr);\n  }\n};\n"
   code: "template <typename Monoid>\nstruct Xor_DisjointSparse {\n  using MX = Monoid;\n\
     \  using X = typename Monoid::value_type;\n  int log;\n  vvc<X> dat;\n\n  Xor_DisjointSparse()\
     \ {}\n  Xor_DisjointSparse(int n) { build(n); }\n  template <typename F>\n  Xor_DisjointSparse(int\
@@ -42,18 +45,19 @@ data:
     \ log, MX::unit());\n      FOR(i, 1 << log) {\n        dat[k + 1][i] = MX::op(dat[k][i],\
     \ dat[k][i ^ (1 << k)]);\n      }\n    }\n  }\n\n  // calculate prod_{l<=i<r}\
     \ A[x xor i], in O(log N) time.\n  X prod(int l, int r, int xor_val) {\n    X\
-    \ xl = xr = MX::unit();\n    FOR(k, log + 1) {\n      if (l >= r) break;\n   \
-    \   if (l & 1 << k) {\n        xl = MX::op(xl, dat[k][l ^ xor_val]);\n       \
-    \ l += (1 << k);\n      }\n      if (r & 1 << k) {\n        r -= (1 << k);\n \
-    \       xr = MX::op(dat[k][r ^ xor_val], xr);\n      }\n    }\n    return MX::op(xl,\
-    \ xr);\n  }\n};"
+    \ xl = MX::unit(), xr = MX::unit();\n    FOR(k, log + 1) {\n      if (l >= r)\
+    \ break;\n      if (l & 1 << k) {\n        xl = MX::op(xl, dat[k][l ^ xor_val]);\n\
+    \        l += (1 << k);\n      }\n      if (r & 1 << k) {\n        r -= (1 <<\
+    \ k);\n        xr = MX::op(dat[k][r ^ xor_val], xr);\n      }\n    }\n    return\
+    \ MX::op(xl, xr);\n  }\n};"
   dependsOn: []
   isVerificationFile: false
   path: ds/disjointsparse/xor_disjointsparse.hpp
   requiredBy: []
-  timestamp: '2022-12-04 23:06:09+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-12-05 06:46:49+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yukicoder/1891.test.cpp
 documentation_of: ds/disjointsparse/xor_disjointsparse.hpp
 layout: document
 redirect_from:

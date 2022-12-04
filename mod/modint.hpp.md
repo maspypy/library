@@ -637,6 +637,9 @@ data:
     path: test/yukicoder/1875.test.cpp
     title: test/yukicoder/1875.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1891.test.cpp
+    title: test/yukicoder/1891.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1004,6 +1007,7 @@ data:
   - test/yukicoder/1548.test.cpp
   - test/yukicoder/502_2.test.cpp
   - test/yukicoder/1755.test.cpp
+  - test/yukicoder/1891.test.cpp
   - test/yukicoder/1533.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/enumerate_multisets.test.cpp
