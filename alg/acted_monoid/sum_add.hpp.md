@@ -21,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/789_2.test.cpp
+    title: test/yukicoder/789_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -50,6 +53,7 @@ data:
   timestamp: '2022-12-03 07:16:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/789_2.test.cpp
   - test/yukicoder/1197.test.cpp
   - test/mytest/splay_am.test.cpp
   - test/mytest/rbst_am_2.test.cpp
