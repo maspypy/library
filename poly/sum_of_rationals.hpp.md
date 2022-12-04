@@ -34,6 +34,12 @@ data:
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc276_g.test.cpp
+    title: test/atcoder/abc276_g.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc276_g_2.test.cpp
+    title: test/atcoder/abc276_g_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
   - icon: ':heavy_check_mark:'
@@ -362,6 +368,8 @@ data:
   - test/yukicoder/1962.test.cpp
   - test/yukicoder/1875.test.cpp
   - test/yukicoder/1145.test.cpp
+  - test/atcoder/abc276_g.test.cpp
+  - test/atcoder/abc276_g_2.test.cpp
 documentation_of: poly/sum_of_rationals.hpp
 layout: document
 redirect_from:

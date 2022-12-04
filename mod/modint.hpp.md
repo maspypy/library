@@ -62,6 +62,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
+  - icon: ':question:'
+    path: poly/from_log_differentiation.hpp
+    title: poly/from_log_differentiation.hpp
+  - icon: ':question:'
+    path: poly/lagrange_interpolate_iota.hpp
+    title: poly/lagrange_interpolate_iota.hpp
   - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
@@ -98,6 +104,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
+  - icon: ':question:'
+    path: poly/prefix_product_of_poly.hpp
+    title: poly/prefix_product_of_poly.hpp
   - icon: ':heavy_check_mark:'
     path: poly/product_of_f_rk_x.hpp
     title: poly/product_of_f_rk_x.hpp
@@ -110,6 +119,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/product_of_pow_of_linear.hpp
     title: poly/product_of_pow_of_linear.hpp
+  - icon: ':x:'
+    path: poly/sparse_exp_of_div.hpp
+    title: poly/sparse_exp_of_div.hpp
   - icon: ':heavy_check_mark:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
@@ -146,6 +158,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
+  - icon: ':x:'
+    path: seq/interpolate_poly_exp_sum.hpp
+    title: seq/interpolate_poly_exp_sum.hpp
+  - icon: ':question:'
+    path: seq/kth_term_of_p_recursive.hpp
+    title: seq/kth_term_of_p_recursive.hpp
   - icon: ':heavy_check_mark:'
     path: seq/limit_poly_exp_sum.hpp
     title: seq/limit_poly_exp_sum.hpp
@@ -168,6 +186,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc272_h.test.cpp
     title: test/atcoder/abc272_h.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc276_g.test.cpp
+    title: test/atcoder/abc276_g.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc276_g_2.test.cpp
+    title: test/atcoder/abc276_g_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/atcoder/agc058d.test.cpp
     title: test/atcoder/agc058d.test.cpp
@@ -282,6 +306,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
+    title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
@@ -366,6 +393,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp
     title: test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+    title: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
@@ -408,6 +438,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/eulerian_number.test.cpp
     title: test/mytest/eulerian_number.test.cpp
+  - icon: ':x:'
+    path: test/mytest/factorial_998.test.cpp
+    title: test/mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/multinomial.test.cpp
     title: test/mytest/multinomial.test.cpp
@@ -471,6 +504,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080.test.cpp
     title: test/yukicoder/1080.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1080_2.test.cpp
+    title: test/yukicoder/1080_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1141.test.cpp
     title: test/yukicoder/1141.test.cpp
@@ -639,6 +675,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/502_2.test.cpp
+    title: test/yukicoder/502_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/541.test.cpp
     title: test/yukicoder/541.test.cpp
@@ -843,6 +882,7 @@ data:
   - poly/sum_of_prefix_suffix_products.hpp
   - poly/convolution2d.hpp
   - poly/poly_gcd.hpp
+  - poly/prefix_product_of_poly.hpp
   - poly/fps_composition.hpp
   - poly/online/online_inv.hpp
   - poly/online/online_pow.hpp
@@ -855,6 +895,7 @@ data:
   - poly/coef_of_rational_fps_2d.hpp
   - poly/convolution_all.hpp
   - poly/product_of_one_minus_xn.hpp
+  - poly/from_log_differentiation.hpp
   - poly/pascal.hpp
   - poly/multivar_convolution.hpp
   - poly/multipoint.hpp
@@ -863,11 +904,13 @@ data:
   - poly/fps_pow.hpp
   - poly/fps_log.hpp
   - poly/convolution_leq.hpp
+  - poly/lagrange_interpolate_iota.hpp
   - poly/convolution_huge.hpp
   - poly/product_of_f_rk_x.hpp
   - poly/fps_sqrt.hpp
   - poly/coef_of_rational_fps.hpp
   - poly/poly_divmod.hpp
+  - poly/sparse_exp_of_div.hpp
   - poly/sum_of_rationals.hpp
   - poly/product_of_one_plus_xn.hpp
   - poly/product_of_pow_of_linear.hpp
@@ -886,6 +929,8 @@ data:
   - seq/famous/bell_number_large.hpp
   - seq/famous/stirling_number_1.hpp
   - seq/interpolate_linear_rec.hpp
+  - seq/kth_term_of_p_recursive.hpp
+  - seq/interpolate_poly_exp_sum.hpp
   - seq/sum_of_powers.hpp
   - linalg/det_A_plus_xB.hpp
   - graph/tree_all_distances.hpp
@@ -934,6 +979,7 @@ data:
   - test/yukicoder/1810.test.cpp
   - test/yukicoder/1451.test.cpp
   - test/yukicoder/1685.test.cpp
+  - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/426.test.cpp
   - test/yukicoder/1547.test.cpp
   - test/yukicoder/2108.test.cpp
@@ -952,9 +998,11 @@ data:
   - test/yukicoder/1848.test.cpp
   - test/yukicoder/1397.test.cpp
   - test/yukicoder/1548.test.cpp
+  - test/yukicoder/502_2.test.cpp
   - test/yukicoder/1755.test.cpp
   - test/yukicoder/1891.test.cpp
   - test/yukicoder/1533.test.cpp
+  - test/mytest/factorial_998.test.cpp
   - test/mytest/enumerate_multisets.test.cpp
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/online_pow.test.cpp
@@ -1002,6 +1050,7 @@ data:
   - test/library_checker/polynomial/inv_of_fps_amint.test.cpp
   - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/library_checker/polynomial/log_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
   - test/library_checker/string/number_of_subsequences.test.cpp
@@ -1024,6 +1073,7 @@ data:
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/library_checker/math/totient_sum.test.cpp
+  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/library_checker/math/find_linear_recurrence.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
@@ -1056,6 +1106,8 @@ data:
   - test/atcoder/abc272_h.test.cpp
   - test/atcoder/agc058d.test.cpp
   - test/atcoder/abc269ex.test.cpp
+  - test/atcoder/abc276_g.test.cpp
+  - test/atcoder/abc276_g_2.test.cpp
   - test/atcoder/abc249_ex.test.cpp
   - test/atcoder/abc270_g.test.cpp
   - test/aoj/DPL_5_C.test.cpp

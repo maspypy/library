@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/persistent_array.hpp
     title: ds/persistent_array.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/unionfind/persistent_unionfind.hpp
     title: ds/unionfind/persistent_unionfind.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/persistent_unionfind
@@ -220,8 +220,8 @@ data:
     \n    }\r\n    if (idx == 0) {\r\n      res->data = val;\r\n    } else {\r\n \
     \     res->ch[idx & mask] = set(res->ch[idx & mask], idx >> shift, val);\r\n \
     \   }\r\n    return res;\r\n  }\r\n};\r\n#line 2 \"ds/unionfind/persistent_unionfind.hpp\"\
-    \n\r\nstruct PersistentUnionFind {\r\n  using PA = PersistentArray<int>;\r\n \
-    \ int n;\r\n  PA data; // root OR (-size)\r\n  using np = PA::np;\r\n\r\n  PersistentUnionFind(int\
+    \n\r\nstruct Persistent_UnionFind {\r\n  using PA = Persistent_Array<int>;\r\n\
+    \  int n;\r\n  PA data; // root OR (-size)\r\n  using np = PA::np;\r\n\r\n  Persistent_UnionFind(int\
     \ n) : n(n) {}\r\n  np init() {\r\n    np t = data.get_root();\r\n    FOR(i, n)\
     \ data.destructive_set(t, i, -1);\r\n    return t;\r\n  }\r\n\r\n  pair<bool,\
     \ np> merge(np t, int x, int y) {\r\n    x = root(t, x), y = root(t, y);\r\n \
@@ -232,7 +232,7 @@ data:
     \ par_or_sz = data.get(t, x);\r\n    if (par_or_sz < 0) return x;\r\n    return\
     \ root(t, par_or_sz);\r\n  }\r\n\r\n  bool same(np t, int x, int y) { return root(t,\
     \ x) == root(t, y); }\r\n  int size(np t, int x) { return -data.get(t, root(t,\
-    \ x)); }\r\n};\n#line 6 \"test/library_checker/datastructure/persistent_unionfind.test.cpp\"\
+    \ x)); }\r\n};\r\n#line 6 \"test/library_checker/datastructure/persistent_unionfind.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n\r\n  PersistentUnionFind uf(N);\r\n  using\
     \ np = PersistentUnionFind::np;\r\n  vc<np> UFS;\r\n\r\n  UFS.reserve(Q + 1);\r\
     \n  UFS.eb(uf.init());\r\n\r\n  FOR3(q, 1, Q + 1) {\r\n    LL(t, k, u, v);\r\n\
@@ -258,8 +258,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/persistent_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2022-12-05 08:01:45+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-12-05 08:18:49+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/persistent_unionfind.test.cpp
 layout: document

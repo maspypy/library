@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/persistent_array.hpp
     title: ds/persistent_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/persistent_unionfind.test.cpp
     title: test/library_checker/datastructure/persistent_unionfind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/persistent_array.hpp\"\n\r\ntemplate <typename T, int\
@@ -32,8 +32,8 @@ data:
     \n    }\r\n    if (idx == 0) {\r\n      res->data = val;\r\n    } else {\r\n \
     \     res->ch[idx & mask] = set(res->ch[idx & mask], idx >> shift, val);\r\n \
     \   }\r\n    return res;\r\n  }\r\n};\r\n#line 2 \"ds/unionfind/persistent_unionfind.hpp\"\
-    \n\r\nstruct PersistentUnionFind {\r\n  using PA = PersistentArray<int>;\r\n \
-    \ int n;\r\n  PA data; // root OR (-size)\r\n  using np = PA::np;\r\n\r\n  PersistentUnionFind(int\
+    \n\r\nstruct Persistent_UnionFind {\r\n  using PA = Persistent_Array<int>;\r\n\
+    \  int n;\r\n  PA data; // root OR (-size)\r\n  using np = PA::np;\r\n\r\n  Persistent_UnionFind(int\
     \ n) : n(n) {}\r\n  np init() {\r\n    np t = data.get_root();\r\n    FOR(i, n)\
     \ data.destructive_set(t, i, -1);\r\n    return t;\r\n  }\r\n\r\n  pair<bool,\
     \ np> merge(np t, int x, int y) {\r\n    x = root(t, x), y = root(t, y);\r\n \
@@ -44,12 +44,12 @@ data:
     \ par_or_sz = data.get(t, x);\r\n    if (par_or_sz < 0) return x;\r\n    return\
     \ root(t, par_or_sz);\r\n  }\r\n\r\n  bool same(np t, int x, int y) { return root(t,\
     \ x) == root(t, y); }\r\n  int size(np t, int x) { return -data.get(t, root(t,\
-    \ x)); }\r\n};\n"
-  code: "#include \"ds/persistent_array.hpp\"\r\n\r\nstruct PersistentUnionFind {\r\
-    \n  using PA = PersistentArray<int>;\r\n  int n;\r\n  PA data; // root OR (-size)\r\
-    \n  using np = PA::np;\r\n\r\n  PersistentUnionFind(int n) : n(n) {}\r\n  np init()\
-    \ {\r\n    np t = data.get_root();\r\n    FOR(i, n) data.destructive_set(t, i,\
-    \ -1);\r\n    return t;\r\n  }\r\n\r\n  pair<bool, np> merge(np t, int x, int\
+    \ x)); }\r\n};\r\n"
+  code: "#include \"ds/persistent_array.hpp\"\r\n\r\nstruct Persistent_UnionFind {\r\
+    \n  using PA = Persistent_Array<int>;\r\n  int n;\r\n  PA data; // root OR (-size)\r\
+    \n  using np = PA::np;\r\n\r\n  Persistent_UnionFind(int n) : n(n) {}\r\n  np\
+    \ init() {\r\n    np t = data.get_root();\r\n    FOR(i, n) data.destructive_set(t,\
+    \ i, -1);\r\n    return t;\r\n  }\r\n\r\n  pair<bool, np> merge(np t, int x, int\
     \ y) {\r\n    x = root(t, x), y = root(t, y);\r\n    if (x == y) return {0, t};\r\
     \n    if (data.get(t, x) > data.get(t, y)) swap(x, y);\r\n    int new_sz = data.get(t,\
     \ x) + data.get(t, y);\r\n    np set_x_sz = data.set(t, x, new_sz);\r\n    np\
@@ -57,14 +57,14 @@ data:
     \n\r\n  int root(np t, int x) {\r\n    int par_or_sz = data.get(t, x);\r\n   \
     \ if (par_or_sz < 0) return x;\r\n    return root(t, par_or_sz);\r\n  }\r\n\r\n\
     \  bool same(np t, int x, int y) { return root(t, x) == root(t, y); }\r\n  int\
-    \ size(np t, int x) { return -data.get(t, root(t, x)); }\r\n};"
+    \ size(np t, int x) { return -data.get(t, root(t, x)); }\r\n};\r\n"
   dependsOn:
   - ds/persistent_array.hpp
   isVerificationFile: false
   path: ds/unionfind/persistent_unionfind.hpp
   requiredBy: []
-  timestamp: '2022-12-05 08:01:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-12-05 08:18:49+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/datastructure/persistent_unionfind.test.cpp
 documentation_of: ds/unionfind/persistent_unionfind.hpp

@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/DSL_1_B.test.cpp
+    title: test/aoj/DSL_1_B.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/unionfind/weighted_unionfind.hpp\"\ntemplate <typename\
@@ -47,8 +50,9 @@ data:
   path: ds/unionfind/weighted_unionfind.hpp
   requiredBy: []
   timestamp: '2022-12-05 08:01:45+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/aoj/DSL_1_B.test.cpp
 documentation_of: ds/unionfind/weighted_unionfind.hpp
 layout: document
 redirect_from:

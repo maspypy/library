@@ -108,6 +108,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_5.test.cpp
     title: test/aoj/ALDS1_5.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DSL_1_B.test.cpp
+    title: test/aoj/DSL_1_B.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_E.test.cpp
     title: test/aoj/DSL_2_E.test.cpp
@@ -126,6 +129,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc127f_1.test.cpp
+    title: test/atcoder/abc127f_1.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc174f.test.cpp
     title: test/atcoder/abc174f.test.cpp
@@ -446,6 +452,7 @@ data:
   - test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/library_checker/graph/verted_add_contour_sum.test.cpp
+  - test/atcoder/abc127f_1.test.cpp
   - test/atcoder/abc190f.test.cpp
   - test/atcoder/abc266h_2.test.cpp
   - test/atcoder/abc174f.test.cpp
@@ -455,6 +462,7 @@ data:
   - test/aoj/DSL_2_I.test.cpp
   - test/aoj/GRL_5_E.test.cpp
   - test/aoj/ALDS1_2_A.test.cpp
+  - test/aoj/DSL_1_B.test.cpp
   - test/aoj/DSL_2_G.test.cpp
   - test/aoj/DSL_2_H.test.cpp
   - test/aoj/ALDS1_5.test.cpp
