@@ -7,7 +7,7 @@
 
 void solve() {
   LL(N, Q);
-  WeightedUnionFind<Monoid_Add<ll>> uf(N);
+  Weighted_UnionFind<Monoid_Add<ll>> uf(N);
   FOR(Q) {
     LL(t);
     if (t == 0) {
