@@ -48,7 +48,7 @@ void solve() {
     if (tp == 1) { query.eb(0, v, t); }
   }
 
-  Fenwick2D<Monoid_Add<int>, ll, true> bit(X, Y);
+  FenwickTree_2D<Monoid_Add<int>, ll, true> bit(X, Y);
 
   for (auto&& [tp, x, t]: query) {
     if (tp == 0) {

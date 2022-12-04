@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"
-#include "ds/cumsum2d.hpp"
+#include "ds/cumsum_2d.hpp"
 
 using mint = modint107;
 
@@ -28,7 +28,7 @@ void solve() {
     if (a == 0) A[x][y] = {mint(1), 1};
     if (a != 0) A[x][y] = {mint(a), 0};
   }
-  Cumsum2D<Group> CS(A);
+  Cumsum_2D<Group> CS(A);
   LL(Q);
   FOR(Q) {
     LL(a, b);

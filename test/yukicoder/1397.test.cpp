@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1397"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "connected_dp/squares.hpp"
+#include "other/connected_dp.hpp"
 #include "mod/modint.hpp"
 
 using mint = modint998;

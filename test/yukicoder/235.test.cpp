@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "graph/tree.hpp"
 #include "graph/ds/lazy_tree_monoid.hpp"
-#include "alg/acted_monoid/sum_add.hpp"
+#include "alg/acted_monoid/cntsum_add.hpp"
 #include "mod/modint.hpp"
 
 using mint = modint107;

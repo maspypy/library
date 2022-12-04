@@ -4,7 +4,13 @@ struct UnionFind {
   int n;
   int n_comp;
   vector<int> dat; // par or (-size)
-  UnionFind(int n) : n(n), n_comp(n), dat(n, -1) {}
+  UnionFind(int n = 0) { build(n); }
+
+  void build(int m) {
+    n = m;
+    n_comp = m;
+    dat.assign(n, -1);
+  }
 
   int operator[](int x) {
     while (dat[x] >= 0) {

@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/base.hpp"
-#include "graph/ds/treemonoid.hpp"
+#include "graph/ds/tree_monoid.hpp"
 #include "alg/monoid/min.hpp"
 #include "ds/segtree/segtree.hpp"
 
@@ -58,7 +58,7 @@ void solve() {
     reset_at(v);
   }
 
-  TreeMonoid<decltype(tree), Mono, true> X(tree, dat);
+  Tree_Monoid<decltype(tree), Mono, true> X(tree, dat);
   vi ANS(Q);
   FOR(lca, N) {
     build_at(lca);

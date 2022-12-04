@@ -8,19 +8,19 @@ void solve() {
   LL(N);
   VEC(ll, A, N);
   auto f = [&](ll L, ll R) -> ll { return 0; };
-  Dynamic_SegTree<Monoid_Gcd<ll>> seg(0, N, f);
-  FOR(i, N) seg.set(i, A[i]);
+  Dynamic_SegTree<Monoid_Gcd<ll>, false, 1'000'000> seg(0, N, f);
+  auto root = seg.new_node(A);
 
   ll ANS1 = 0;
   FOR(L, N) {
     auto check = [&](auto e) -> bool { return e != 1; };
-    auto R = seg.max_right(check, L);
+    auto R = seg.max_right(root, check, L);
     ANS1 += N - R;
   }
   ll ANS2 = 0;
-  FOR3(R, 1, N + 1) {
+  FOR(R, 1, N + 1) {
     auto check = [&](auto e) -> bool { return e != 1; };
-    auto L = seg.min_left(check, R);
+    auto L = seg.min_left(root, check, R);
     ANS2 += L;
   }
   assert(ANS1 == ANS2);
