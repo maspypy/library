@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_E.test.cpp
     title: test/aoj/DSL_2_E.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -66,8 +66,8 @@ data:
     \  }\n\n  void add(int L, int R, E a) {\n    E b = MX::inverse(a);\n    bit.add(L,\
     \ {MX::power(b, L), a});\n    bit.add(R, {MX::power(a, R), b});\n  }\n\n  E sum(int\
     \ L, int R) {\n    auto [x0, x1] = bit.sum(L);\n    auto [y0, y1] = bit.sum(R);\n\
-    \    E x = MX::op(MX::power(x1, L), x0);\n    E y = MX::op(MX::power(y1, L), y0);\n\
-    \    return MX::op(MX::inverse(y), x);\n  }\n};\n"
+    \    E x = MX::op(MX::power(x1, L), x0);\n    E y = MX::op(MX::power(y1, R), y0);\n\
+    \    return MX::op(MX::inverse(x), y);\n  }\n};\n"
   code: "#include \"fenwicktree/fenwicktree.hpp\"\n\ntemplate <typename Monoid>\n\
     struct Range_Add_Range_Sum {\n  using MX = Monoid;\n  using E = typename MX::value_type;\n\
     \n  struct Mono {\n    using value_type = pair<E, E>;\n    using X = value_type;\n\
@@ -83,16 +83,16 @@ data:
     \  }\n\n  void add(int L, int R, E a) {\n    E b = MX::inverse(a);\n    bit.add(L,\
     \ {MX::power(b, L), a});\n    bit.add(R, {MX::power(a, R), b});\n  }\n\n  E sum(int\
     \ L, int R) {\n    auto [x0, x1] = bit.sum(L);\n    auto [y0, y1] = bit.sum(R);\n\
-    \    E x = MX::op(MX::power(x1, L), x0);\n    E y = MX::op(MX::power(y1, L), y0);\n\
-    \    return MX::op(MX::inverse(y), x);\n  }\n};\n"
+    \    E x = MX::op(MX::power(x1, L), x0);\n    E y = MX::op(MX::power(y1, R), y0);\n\
+    \    return MX::op(MX::inverse(x), y);\n  }\n};\n"
   dependsOn:
   - ds/fenwicktree/fenwicktree.hpp
   - alg/monoid/add.hpp
   isVerificationFile: false
   path: ds/range_add_range_sum.hpp
   requiredBy: []
-  timestamp: '2022-12-04 19:48:23+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-12-04 19:59:20+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_E.test.cpp
 documentation_of: ds/range_add_range_sum.hpp
