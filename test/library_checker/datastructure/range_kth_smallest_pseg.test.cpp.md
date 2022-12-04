@@ -5,12 +5,12 @@ data:
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':heavy_check_mark:'
-    path: ds/pds/segtree.hpp
-    title: ds/pds/segtree.hpp
-  - icon: ':heavy_check_mark:'
+    path: ds/segtree/dynamic_segtree.hpp
+    title: ds/segtree/dynamic_segtree.hpp
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -206,68 +206,105 @@ data:
     \ const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
     \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
     \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"ds/pds/segtree.hpp\"\
-    \ntemplate <typename Monoid, int NODES>\nstruct Persistent_SegTree {\n  using\
-    \ X = typename Monoid::value_type;\n\n  struct Node {\n    Node *l, *r;\n    X\
-    \ x;\n  };\n\n  using np = Node *;\n\n  const int n;\n  Node *pool;\n  int pid;\n\
-    \n  Persistent_SegTree(int n) : n(n), pid(0) { pool = new Node[NODES]; }\n\n \
-    \ Node *new_node(const X x = Monoid::unit()) {\n    pool[pid].l = pool[pid].r\
-    \ = nullptr;\n    pool[pid].x = x;\n    return &(pool[pid++]);\n  }\n\n  Node\
-    \ *new_node(const vc<X> &dat) {\n    assert(len(dat) == n);\n    auto dfs = [&](auto\
-    \ &dfs, int l, int r) -> Node * {\n      if (l == r) return nullptr;\n      if\
-    \ (r == l + 1) return new_node(dat[l]);\n      int m = (l + r) / 2;\n      Node\
-    \ *l_root = dfs(dfs, l, m);\n      Node *r_root = dfs(dfs, m, r);\n      X x =\
-    \ Monoid::op(l_root->x, r_root->x);\n      Node *root = new_node(x);\n      root->l\
-    \ = l_root, root->r = r_root;\n      return root;\n    };\n    return dfs(dfs,\
-    \ 0, len(dat));\n  }\n\n  X prod(Node *root, int l, int r) {\n    assert(0 <=\
-    \ l && l <= r && r <= n);\n    X x = Monoid::unit();\n    prod_rec(root, 0, n,\
-    \ l, r, x);\n    return x;\n  }\n\n  Node *set(Node *root, int i, const X &x)\
-    \ {\n    assert(0 <= i && i < n);\n    return set_rec(root, 0, n, i, x);\n  }\n\
-    \n  vc<X> restore(Node *root) {\n    vc<X> res;\n    auto dfs = [&](auto &dfs,\
-    \ Node *c, int node_l, int node_r) -> void {\n      if (node_r - node_l == 1)\
-    \ {\n        res.eb(c->x);\n        return;\n      }\n      int node_m = (node_l\
-    \ + node_r) / 2;\n      prop(c);\n      dfs(dfs, c->l, node_l, node_m);\n    \
-    \  dfs(dfs, c->r, node_m, node_r);\n    };\n    dfs(dfs, root, 0, n);\n    return\
-    \ res;\n  }\n\n  void reset() { pid = 0; }\n\nprivate:\n  Node *copy_node(Node\
-    \ *n) {\n    if (!n) return nullptr;\n    pool[pid].l = n->l;\n    pool[pid].r\
-    \ = n->r;\n    pool[pid].x = n->x;\n    return &(pool[pid++]);\n  }\n\n  Node\
-    \ *set_rec(Node *c, int node_l, int node_r, int i, const X &x) {\n    if (node_r\
-    \ == node_l + 1) { return new_node(x); }\n    if(!c) c = new_node();\n    int\
-    \ node_m = (node_l + node_r) / 2;\n    c = copy_node(c);\n    if (i < node_m)\
-    \ {\n      c->l = set_rec(c->l, node_l, node_m, i, x);\n    } else {\n      c->r\
-    \ = set_rec(c->r, node_m, node_r, i, x);\n    }\n    X xl = (c->l ? c->l->x :\
-    \ Monoid::unit());\n    X xr = (c->r ? c->r->x : Monoid::unit());\n    c->x =\
-    \ Monoid::op(xl, xr);\n    return c;\n  }\n\n  void prod_rec(Node *c, int node_l,\
-    \ int node_r, int l, int r, X &x) {\n    if(!c) return;\n    chmax(l, node_l);\n\
-    \    chmin(r, node_r);\n    if (l >= r) return;\n    if (l == node_l && r == node_r)\
-    \ {\n      x = Monoid::op(x, c->x);\n      return;\n    }\n    int node_m = (node_l\
-    \ + node_r) / 2;\n    prod_rec(c->l, node_l, node_m, l, r, x);\n    prod_rec(c->r,\
-    \ node_m, node_r, l, r, x);\n  }\n};\n#line 6 \"test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Persistent_SegTree<Monoid_Add<int>,\
-    \ 5'000'000> seg(N);\n  using np = decltype(seg)::Node *;\n  auto I = argsort(A);\n\
-    \n  vc<np> roots;\n  roots.eb(seg.new_node(vc<int>(N)));\n  FOR(k, N) { roots.eb(seg.set(roots.back(),\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/segtree/dynamic_segtree.hpp\"\
+    \n\r\ntemplate <typename Monoid, bool PERSISTENT, int NODES>\r\nstruct Dynamic_SegTree\
+    \ {\r\n  using MX = Monoid;\r\n  using X = typename MX::value_type;\r\n  using\
+    \ F = function<X(ll, ll)>;\r\n  F default_prod;\r\n\r\n  struct Node {\r\n   \
+    \ Node *l, *r;\r\n    X x;\r\n  };\r\n\r\n  const ll L0, R0;\r\n  Node *pool;\r\
+    \n  int pid;\r\n  using np = Node *;\r\n\r\n  Dynamic_SegTree(\r\n      ll L0,\
+    \ ll R0, F default_prod = [](ll l, ll r) -> X { return MX::unit(); })\r\n    \
+    \  : default_prod(default_prod), L0(L0), R0(R0), pid(0) {\r\n    pool = new Node[NODES];\r\
+    \n  }\r\n\r\n  np new_node(const X x) {\r\n    pool[pid].l = pool[pid].r = nullptr;\r\
+    \n    pool[pid].x = x;\r\n    return &(pool[pid++]);\r\n  }\r\n\r\n  np new_node(ll\
+    \ l, ll r) { return new_node(default_prod(l, r)); }\r\n  np new_node() { return\
+    \ new_node(L0, R0); }\r\n\r\n  np new_node(const vc<X> &dat) {\r\n    assert(L0\
+    \ == 0 && R0 == len(dat));\r\n    auto dfs = [&](auto &dfs, ll l, ll r) -> Node\
+    \ * {\r\n      if (l == r) return nullptr;\r\n      if (r == l + 1) return new_node(dat[l]);\r\
+    \n      ll m = (l + r) / 2;\r\n      np l_root = dfs(dfs, l, m), r_root = dfs(dfs,\
+    \ m, r);\r\n      X x = MX::op(l_root->x, r_root->x);\r\n      np root = new_node(x);\r\
+    \n      root->l = l_root, root->r = r_root;\r\n      return root;\r\n    };\r\n\
+    \    return dfs(dfs, 0, len(dat));\r\n  }\r\n\r\n  X prod(np root, ll l, ll r)\
+    \ {\r\n    assert(pid && root && L0 <= l && l < r && r <= R0);\r\n    X x = MX::unit();\r\
+    \n    prod_rec(root, L0, R0, l, r, x);\r\n    return x;\r\n  }\r\n\r\n  np set(np\
+    \ root, ll i, const X &x) {\r\n    assert(pid && root && L0 <= i && i < R0);\r\
+    \n    return set_rec(root, L0, R0, i, x);\r\n  }\r\n\r\n  np multiply(np root,\
+    \ ll i, const X &x) {\r\n    assert(pid && root && L0 <= i && i < R0);\r\n   \
+    \ return multiply_rec(root, L0, R0, i, x);\r\n  }\r\n\r\n  template <typename\
+    \ F>\r\n  ll max_right(np root, F check, ll L) {\r\n    assert(pid && root &&\
+    \ L0 <= L && L <= R0 && check(MX::unit()));\r\n    X x = MX::unit();\r\n    return\
+    \ max_right_rec(root, check, L0, R0, L, x);\r\n  }\r\n\r\n  template <typename\
+    \ F>\r\n  ll min_left(np root, F check, ll R) {\r\n    assert(pid && L0 <= R &&\
+    \ R <= R0 && check(MX::unit()));\r\n    X x = MX::unit();\r\n    return min_left_rec(root,\
+    \ check, L0, R0, R, x);\r\n  }\r\n\r\n  vc<X> get_all(np root) {\r\n    assert(root);\r\
+    \n    vc<X> res;\r\n    res.reserve(R0 - L0);\r\n    auto dfs = [&](auto &dfs,\
+    \ np c, ll l, ll r) -> void {\r\n      if (!c) c = new_node(l, r);\r\n      if\
+    \ (r - l == 1) {\r\n        res.eb(c->x);\r\n        return;\r\n      }\r\n  \
+    \    ll m = (l + r) / 2;\r\n      dfs(dfs, c->l, l, m);\r\n      dfs(dfs, c->r,\
+    \ m, r);\r\n    };\r\n    dfs(dfs, root, L0, R0);\r\n    return res;\r\n  }\r\n\
+    \r\n  void reset() { pid = 0; }\r\n\r\nprivate:\r\n  np copy_node(np c) {\r\n\
+    \    if (!c || !PERSISTENT) return c;\r\n    pool[pid].l = c->l, pool[pid].r =\
+    \ c->r;\r\n    pool[pid].x = c->x;\r\n    return &(pool[pid++]);\r\n  }\r\n\r\n\
+    \  np set_rec(np c, ll l, ll r, ll i, const X &x) {\r\n    if (r == l + 1) {\r\
+    \n      c = copy_node(c);\r\n      c->x = x;\r\n      return c;\r\n    }\r\n \
+    \   ll m = (l + r) / 2;\r\n\r\n    c = copy_node(c);\r\n    if (i < m) {\r\n \
+    \     if (!c->l) c->l = new_node(l, m);\r\n      c->l = set_rec(c->l, l, m, i,\
+    \ x);\r\n    } else {\r\n      if (!c->r) c->r = new_node(m, r);\r\n      c->r\
+    \ = set_rec(c->r, m, r, i, x);\r\n    }\r\n    X xl = (c->l ? c->l->x : default_prod(l,\
+    \ m));\r\n    X xr = (c->r ? c->r->x : default_prod(m, r));\r\n    c->x = MX::op(xl,\
+    \ xr);\r\n    return c;\r\n  }\r\n\r\n  np multiply_rec(np c, ll l, ll r, ll i,\
+    \ const X &x) {\r\n    if (r == l + 1) {\r\n      c = copy_node(c);\r\n      c->x\
+    \ = MX::op(c->x, x);\r\n      return c;\r\n    }\r\n    ll m = (l + r) / 2;\r\n\
+    \    c = copy_node(c);\r\n\r\n    if (i < m) {\r\n      if (!c->l) c->l = new_node(l,\
+    \ m);\r\n      c->l = multiply_rec(c->l, l, m, i, x);\r\n    } else {\r\n    \
+    \  if (!c->r) c->r = new_node(m, r);\r\n      c->r = multiply_rec(c->r, m, r,\
+    \ i, x);\r\n    }\r\n    X xl = (c->l ? c->l->x : default_prod(l, m));\r\n   \
+    \ X xr = (c->r ? c->r->x : default_prod(m, r));\r\n    c->x = MX::op(xl, xr);\r\
+    \n    return c;\r\n  }\r\n\r\n  void prod_rec(np c, ll l, ll r, ll ql, ll qr,\
+    \ X &x) {\r\n    chmax(ql, l);\r\n    chmin(qr, r);\r\n    if (ql >= qr) return;\r\
+    \n    if (!c) {\r\n      x = MX::op(x, default_prod(ql, qr));\r\n      return;\r\
+    \n    }\r\n    if (l == ql && r == qr) {\r\n      x = MX::op(x, c->x);\r\n   \
+    \   return;\r\n    }\r\n    ll m = (l + r) / 2;\r\n    prod_rec(c->l, l, m, ql,\
+    \ qr, x);\r\n    prod_rec(c->r, m, r, ql, qr, x);\r\n  }\r\n\r\n  template <typename\
+    \ F>\r\n  ll max_right_rec(np c, const F &check, ll l, ll r, ll ql, X &x) {\r\n\
+    \    if (r <= ql) return R0;\r\n    if (ql <= l && check(MX::op(x, c->x))) {\r\
+    \n      x = MX::op(x, c->x);\r\n      return R0;\r\n    }\r\n    if (r == l +\
+    \ 1) return l;\r\n    ll m = (l + r) / 2;\r\n    if (!c->l) c->l = new_node(l,\
+    \ m);\r\n    ll k = max_right_rec(c->l, check, l, m, ql, x);\r\n    if (k != R0)\
+    \ return k;\r\n    if (!c->r) c->r = new_node(m, r);\r\n    return max_right_rec(c->r,\
+    \ check, m, r, ql, x);\r\n  }\r\n\r\n  template <typename F>\r\n  ll min_left_rec(np\
+    \ c, const F &check, ll l, ll r, ll qr, X &x) {\r\n    if (qr <= l) return L0;\r\
+    \n    if (r <= qr && check(MX::op(c->x, x))) {\r\n      x = MX::op(x, c->x);\r\
+    \n      return L0;\r\n    }\r\n    if (r == l + 1) return r;\r\n    ll m = (l\
+    \ + r) / 2;\r\n    if (!c->r) c->r = new_node(m, r);\r\n    ll k = min_left_rec(c->r,\
+    \ check, m, r, qr, x);\r\n    if (k != L0) return k;\r\n    if (!c->l) c->l =\
+    \ new_node(l, m);\r\n    return min_left_rec(c->l, check, l, m, qr, x);\r\n  }\r\
+    \n};\n#line 6 \"test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Dynamic_SegTree<Monoid_Add<int>,\
+    \ true, 5'000'000> seg(0, N);\n  using np = decltype(seg)::np;\n  auto I = argsort(A);\n\
+    \n  vc<np> roots;\n  roots.eb(seg.new_node(0, N));\n  FOR(k, N) { roots.eb(seg.set(roots.back(),\
     \ I[k], 1)); }\n  FOR(Q) {\n    LL(L, R, k);\n    auto check = [&](ll t) -> bool\
     \ { return seg.prod(roots[t], L, R) <= k; };\n    ll t = binary_search(check,\
     \ 0, N);\n    print(A[I[t]]);\n  }\n}\n\nsigned main() {\n  solve();\n\n  return\
     \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/monoid/add.hpp\"\
-    \n#include \"ds/pds/segtree.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A,\
-    \ N);\n  Persistent_SegTree<Monoid_Add<int>, 5'000'000> seg(N);\n  using np =\
-    \ decltype(seg)::Node *;\n  auto I = argsort(A);\n\n  vc<np> roots;\n  roots.eb(seg.new_node(vc<int>(N)));\n\
-    \  FOR(k, N) { roots.eb(seg.set(roots.back(), I[k], 1)); }\n  FOR(Q) {\n    LL(L,\
-    \ R, k);\n    auto check = [&](ll t) -> bool { return seg.prod(roots[t], L, R)\
-    \ <= k; };\n    ll t = binary_search(check, 0, N);\n    print(A[I[t]]);\n  }\n\
-    }\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+    \n#include \"ds/segtree/dynamic_segtree.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n\
+    \  VEC(int, A, N);\n  Dynamic_SegTree<Monoid_Add<int>, true, 5'000'000> seg(0,\
+    \ N);\n  using np = decltype(seg)::np;\n  auto I = argsort(A);\n\n  vc<np> roots;\n\
+    \  roots.eb(seg.new_node(0, N));\n  FOR(k, N) { roots.eb(seg.set(roots.back(),\
+    \ I[k], 1)); }\n  FOR(Q) {\n    LL(L, R, k);\n    auto check = [&](ll t) -> bool\
+    \ { return seg.prod(roots[t], L, R) <= k; };\n    ll t = binary_search(check,\
+    \ 0, N);\n    print(A[I[t]]);\n  }\n}\n\nsigned main() {\n  solve();\n\n  return\
+    \ 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - alg/monoid/add.hpp
-  - ds/pds/segtree.hpp
+  - ds/segtree/dynamic_segtree.hpp
   isVerificationFile: true
   path: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
   requiredBy: []
-  timestamp: '2022-12-02 07:07:57+09:00'
+  timestamp: '2022-12-05 07:09:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp

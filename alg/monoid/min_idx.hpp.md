@@ -9,8 +9,8 @@ data:
     path: convex/dynamic_lichao.hpp
     title: convex/dynamic_lichao.hpp
   - icon: ':warning:'
-    path: ds/pds/persistent_dynamic_lichao.hpp
-    title: ds/pds/persistent_dynamic_lichao.hpp
+    path: convex/persistent_dynamic_lichao.hpp
+    title: convex/persistent_dynamic_lichao.hpp
   - icon: ':warning:'
     path: geo/manhattan_nns.hpp
     title: geo/manhattan_nns.hpp
@@ -57,8 +57,8 @@ data:
   - alg/acted_monoid/minidx_add.hpp
   - string/suffix_tree.hpp
   - convex/dynamic_lichao.hpp
+  - convex/persistent_dynamic_lichao.hpp
   - geo/manhattan_nns.hpp
-  - ds/pds/persistent_dynamic_lichao.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

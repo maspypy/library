@@ -10,6 +10,9 @@ data:
     path: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
     title: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
+    title: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036.test.cpp
     title: test/yukicoder/1036.test.cpp
   - icon: ':heavy_check_mark:'
@@ -182,6 +185,7 @@ data:
   - test/yukicoder/789.test.cpp
   - test/yukicoder/1826.test.cpp
   - test/yukicoder/1036.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
   - test/library_checker/datastructure/double_ended_pq.test.cpp
   - test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
 documentation_of: ds/segtree/dynamic_segtree.hpp

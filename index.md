@@ -168,6 +168,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: convex/lichao.hpp
       title: convex/lichao.hpp
+    - icon: ':warning:'
+      path: convex/persistent_dynamic_lichao.hpp
+      title: convex/persistent_dynamic_lichao.hpp
     - icon: ':heavy_check_mark:'
       path: convex/slope.hpp
       title: convex/slope.hpp
@@ -201,6 +204,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/intervals.hpp
       title: ds/intervals.hpp
+    - icon: ':x:'
+      path: ds/meldable_heap.hpp
+      title: ds/meldable_heap.hpp
     - icon: ':warning:'
       path: ds/online_uniqueproductquery.hpp
       title: ds/online_uniqueproductquery.hpp
@@ -304,18 +310,9 @@ data:
     - icon: ':warning:'
       path: ds/pds/connected_component_query.hpp
       title: ds/pds/connected_component_query.hpp
-    - icon: ':warning:'
-      path: ds/pds/persistent_dynamic_lichao.hpp
-      title: ds/pds/persistent_dynamic_lichao.hpp
-    - icon: ':heavy_check_mark:'
-      path: ds/pds/persistent_meldable_heap.hpp
-      title: ds/pds/persistent_meldable_heap.hpp
     - icon: ':heavy_check_mark:'
       path: ds/pds/rollbackarray.hpp
       title: ds/pds/rollbackarray.hpp
-    - icon: ':heavy_check_mark:'
-      path: ds/pds/segtree.hpp
-      title: ds/pds/segtree.hpp
   - name: ds/randomized_bst
     pages:
     - icon: ':heavy_check_mark:'
@@ -517,7 +514,7 @@ data:
       title: geo/triangle_area.hpp
   - name: graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/base.hpp
       title: graph/base.hpp
     - icon: ':heavy_check_mark:'
@@ -613,7 +610,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/rerooting_dp.hpp
       title: graph/rerooting_dp.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/reverse_graph.hpp
       title: graph/reverse_graph.hpp
     - icon: ':heavy_check_mark:'
@@ -692,7 +689,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest_path/K_shortest_path.hpp
       title: graph/shortest_path/K_shortest_path.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/shortest_path/K_shortest_walk.hpp
       title: graph/shortest_path/K_shortest_walk.hpp
     - icon: ':heavy_check_mark:'
@@ -707,7 +704,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest_path/dial.hpp
       title: graph/shortest_path/dial.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/shortest_path/dijkstra.hpp
       title: graph/shortest_path/dijkstra.hpp
     - icon: ':heavy_check_mark:'
@@ -869,7 +866,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -966,7 +963,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/integer_kth_root.hpp
       title: other/integer_kth_root.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -1797,7 +1794,7 @@ data:
       title: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - name: test/library_checker/graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/graph/K_shortest_walk.test.cpp
       title: test/library_checker/graph/K_shortest_walk.test.cpp
     - icon: ':heavy_check_mark:'

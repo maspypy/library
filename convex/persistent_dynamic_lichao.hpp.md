@@ -12,14 +12,14 @@ data:
   attributes:
     links:
     - https://atcoder.jp/contests/kupc2019/tasks/kupc2019_l
-  bundledCode: "#line 1 \"ds/pds/persistent_dynamic_lichao.hpp\"\n\r\n#line 2 \"alg/monoid/min_idx.hpp\"\
+  bundledCode: "#line 1 \"convex/persistent_dynamic_lichao.hpp\"\n\r\n#line 2 \"alg/monoid/min_idx.hpp\"\
     \n\r\ntemplate <typename T, bool tie_is_left = true>\r\nstruct Monoid_Min_Idx\
     \ {\r\n  using value_type = pair<T, int>;\r\n  using X = value_type;\r\n  static\
     \ constexpr bool is_small(const X& x, const X& y) {\r\n    if (x.fi < y.fi) return\
     \ true;\r\n    if (x.fi > y.fi) return false;\r\n    return (tie_is_left ? (x.se\
     \ < y.se) : (x.se >= y.se));\r\n  }\r\n  static X op(X x, X y) { return (is_small(x,\
     \ y) ? x : y); }\r\n  static constexpr X unit() { return {numeric_limits<T>::max(),\
-    \ -1}; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"ds/pds/persistent_dynamic_lichao.hpp\"\
+    \ -1}; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"convex/persistent_dynamic_lichao.hpp\"\
     \n\r\n// https://atcoder.jp/contests/kupc2019/tasks/kupc2019_l\r\ntemplate <typename\
     \ T, int NODES>\r\nstruct Persistent_Dynamic_LiChaoTree {\r\n  using Mono = Monoid_Min_Idx<T>;\r\
     \n  struct Line {\r\n    int idx;\r\n    T a, b;\r\n    Line(int idx, T a, T b)\
@@ -120,15 +120,15 @@ data:
   dependsOn:
   - alg/monoid/min_idx.hpp
   isVerificationFile: false
-  path: ds/pds/persistent_dynamic_lichao.hpp
+  path: convex/persistent_dynamic_lichao.hpp
   requiredBy: []
-  timestamp: '2022-12-01 09:04:06+09:00'
+  timestamp: '2022-12-05 07:09:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: ds/pds/persistent_dynamic_lichao.hpp
+documentation_of: convex/persistent_dynamic_lichao.hpp
 layout: document
 redirect_from:
-- /library/ds/pds/persistent_dynamic_lichao.hpp
-- /library/ds/pds/persistent_dynamic_lichao.hpp.html
-title: ds/pds/persistent_dynamic_lichao.hpp
+- /library/convex/persistent_dynamic_lichao.hpp
+- /library/convex/persistent_dynamic_lichao.hpp.html
+title: convex/persistent_dynamic_lichao.hpp
 ---
