@@ -25,7 +25,7 @@ void solve() {
     Y.eb(y);
     idx[i].eb(i);
   }
-  KDTree_Monoid<Mono> KDT(X, Y, idx);
+  KDTree_Monoid<Mono, ll> KDT(X, Y, idx);
 
   LL(Q);
   FOR(Q) {
