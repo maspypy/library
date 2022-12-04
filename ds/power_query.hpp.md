@@ -1,24 +1,21 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/powerquery.test.cpp
-    title: test/mytest/powerquery.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Monoid_Mul\
     \ {\r\n  using value_type = T;\r\n  using X = T;\r\n  static constexpr X op(const\
     \ X &x, const X &y) noexcept { return x * y; }\r\n  static constexpr X inverse(const\
     \ X &x) noexcept { return X(1) / x; }\r\n  static constexpr X unit() { return\
-    \ X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/powerquery.hpp\"\
+    \ X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/power_query.hpp\"\
     \n\n// \u5B9A\u6570\u3092\u3079\u304D\u4E57\u3059\u308B\u30AF\u30A8\u30EA\u3002\
     \ B \u4E57\u5206\u305A\u3064\u524D\u8A08\u7B97\u3002\ntemplate <typename Mono,\
     \ int B = 1024>\nstruct PowerQuery {\n  using X = typename Mono::value_type;\n\
@@ -42,16 +39,15 @@ data:
   dependsOn:
   - alg/monoid/mul.hpp
   isVerificationFile: false
-  path: ds/powerquery.hpp
+  path: ds/power_query.hpp
   requiredBy: []
-  timestamp: '2022-12-01 18:20:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/mytest/powerquery.test.cpp
-documentation_of: ds/powerquery.hpp
+  timestamp: '2022-12-05 07:33:55+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: ds/power_query.hpp
 layout: document
 redirect_from:
-- /library/ds/powerquery.hpp
-- /library/ds/powerquery.hpp.html
-title: ds/powerquery.hpp
+- /library/ds/power_query.hpp
+- /library/ds/power_query.hpp.html
+title: ds/power_query.hpp
 ---

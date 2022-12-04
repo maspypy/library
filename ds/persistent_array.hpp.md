@@ -1,28 +1,16 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: ds/unionfind/persistent_unionfind.hpp
-    title: ds/unionfind/persistent_unionfind.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc273_e.test.cpp
-    title: test/atcoder/abc273_e.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/persistent_queue.test.cpp
-    title: test/library_checker/datastructure/persistent_queue.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/persistent_unionfind.test.cpp
-    title: test/library_checker/datastructure/persistent_unionfind.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"ds/pds/array.hpp\"\n\r\ntemplate <typename T, int shift\
-    \ = 4>\r\nstruct PersistentArray {\r\n  struct node;\r\n  using np = node*;\r\n\
-    \  struct node {\r\n    T data;\r\n    np ch[1 << shift] = {};\r\n  };\r\n\r\n\
+  bundledCode: "#line 2 \"ds/persistent_array.hpp\"\n\r\ntemplate <typename T, int\
+    \ shift = 4>\r\nstruct PersistentArray {\r\n  struct node;\r\n  using np = node*;\r\
+    \n  struct node {\r\n    T data;\r\n    np ch[1 << shift] = {};\r\n  };\r\n\r\n\
     \  static constexpr int mask = (1 << shift) - 1;\r\n  np root = nullptr;\r\n \
     \ PersistentArray() {}\r\n  np get_root() { return root; }\r\n  T get(np t, int\
     \ idx) {\r\n    if (!t) return 0;\r\n    if (idx == 0) {\r\n      return t->data;\r\
@@ -57,19 +45,15 @@ data:
     \ idx >> shift, val);\r\n    }\r\n    return res;\r\n  }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: ds/pds/array.hpp
-  requiredBy:
-  - ds/unionfind/persistent_unionfind.hpp
-  timestamp: '2022-10-21 16:42:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/library_checker/datastructure/persistent_unionfind.test.cpp
-  - test/library_checker/datastructure/persistent_queue.test.cpp
-  - test/atcoder/abc273_e.test.cpp
-documentation_of: ds/pds/array.hpp
+  path: ds/persistent_array.hpp
+  requiredBy: []
+  timestamp: '2022-12-05 07:33:55+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: ds/persistent_array.hpp
 layout: document
 redirect_from:
-- /library/ds/pds/array.hpp
-- /library/ds/pds/array.hpp.html
-title: ds/pds/array.hpp
+- /library/ds/persistent_array.hpp
+- /library/ds/persistent_array.hpp.html
+title: ds/persistent_array.hpp
 ---

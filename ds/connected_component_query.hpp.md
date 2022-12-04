@@ -8,8 +8,8 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/pds/connected_component_query.hpp\"\ntemplate <typename\
-    \ Lazy>\nstruct Connected_Component_Query {\n  using Monoid_X = typename Lazy::X_structure;\n\
+  bundledCode: "#line 1 \"ds/connected_component_query.hpp\"\ntemplate <typename Lazy>\n\
+    struct Connected_Component_Query {\n  using Monoid_X = typename Lazy::X_structure;\n\
     \  using Monoid_A = typename Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n\n  struct Node {\n    int l, r;\n\
     \    X prod;\n    A lazy; // \u305D\u306E\u9802\u70B9\u306B\u304A\u3051\u308B\
@@ -58,15 +58,15 @@ data:
     };"
   dependsOn: []
   isVerificationFile: false
-  path: ds/pds/connected_component_query.hpp
+  path: ds/connected_component_query.hpp
   requiredBy: []
-  timestamp: '2022-11-23 08:12:52+09:00'
+  timestamp: '2022-12-05 07:33:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: ds/pds/connected_component_query.hpp
+documentation_of: ds/connected_component_query.hpp
 layout: document
 redirect_from:
-- /library/ds/pds/connected_component_query.hpp
-- /library/ds/pds/connected_component_query.hpp.html
-title: ds/pds/connected_component_query.hpp
+- /library/ds/connected_component_query.hpp
+- /library/ds/connected_component_query.hpp.html
+title: ds/connected_component_query.hpp
 ---

@@ -1,70 +1,16 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: poly/from_log_differentiation.hpp
-    title: poly/from_log_differentiation.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/lagrange_interpolate_iota.hpp
-    title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/prefix_product_of_poly.hpp
-    title: poly/prefix_product_of_poly.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/sparse_exp_of_div.hpp
-    title: poly/sparse_exp_of_div.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/interpolate_poly_exp_sum.hpp
-    title: seq/interpolate_poly_exp_sum.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/kth_term_of_p_recursive.hpp
-    title: seq/kth_term_of_p_recursive.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc276_g.test.cpp
-    title: test/atcoder/abc276_g.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc276_g_2.test.cpp
-    title: test/atcoder/abc276_g_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
-    title: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
-    title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-    title: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/factorial_998.test.cpp
-    title: test/mytest/factorial_998.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1036_3.test.cpp
-    title: test/yukicoder/1036_3.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1080_2.test.cpp
-    title: test/yukicoder/1080_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1117.test.cpp
-    title: test/yukicoder/1117.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1435_2.test.cpp
-    title: test/yukicoder/1435_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2026.test.cpp
-    title: test/yukicoder/2026.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/502_2.test.cpp
-    title: test/yukicoder/502_2.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/swag.hpp\"\ntemplate <class Monoid>\nstruct SWAG {\n\
-    \  using X = typename Monoid::value_type;\n  using value_type = X;\n  int sz =\
-    \ 0;\n  vc<X> dat;\n  vc<X> cum_l;\n  X cum_r;\n\n  SWAG() : cum_l({Monoid::unit()}),\
+  bundledCode: "#line 1 \"ds/sliding_window_aggregation.hpp\"\ntemplate <class Monoid>\n\
+    struct SWAG {\n  using X = typename Monoid::value_type;\n  using value_type =\
+    \ X;\n  int sz = 0;\n  vc<X> dat;\n  vc<X> cum_l;\n  X cum_r;\n\n  SWAG() : cum_l({Monoid::unit()}),\
     \ cum_r(Monoid::unit()) {}\n\n  int size() { return sz; }\n\n  void push(X x)\
     \ {\n    ++sz;\n    cum_r = Monoid::op(cum_r, x);\n    dat.eb(x);\n  }\n\n  void\
     \ pop() {\n    --sz;\n    cum_l.pop_back();\n    if (len(cum_l) == 0) {\n    \
@@ -132,33 +78,15 @@ data:
     \  assert(sz == len(X));\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: ds/swag.hpp
-  requiredBy:
-  - poly/prefix_product_of_poly.hpp
-  - poly/from_log_differentiation.hpp
-  - poly/lagrange_interpolate_iota.hpp
-  - poly/sparse_exp_of_div.hpp
-  - seq/kth_term_of_p_recursive.hpp
-  - seq/interpolate_poly_exp_sum.hpp
-  timestamp: '2022-09-18 01:05:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yukicoder/1080_2.test.cpp
-  - test/yukicoder/1435_2.test.cpp
-  - test/yukicoder/2026.test.cpp
-  - test/yukicoder/502_2.test.cpp
-  - test/yukicoder/1117.test.cpp
-  - test/yukicoder/1036_3.test.cpp
-  - test/mytest/factorial_998.test.cpp
-  - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
-  - test/library_checker/datastructure/queue_operate_all_composite.test.cpp
-  - test/atcoder/abc276_g.test.cpp
-  - test/atcoder/abc276_g_2.test.cpp
-documentation_of: ds/swag.hpp
+  path: ds/sliding_window_aggregation.hpp
+  requiredBy: []
+  timestamp: '2022-12-05 07:33:55+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: ds/sliding_window_aggregation.hpp
 layout: document
 redirect_from:
-- /library/ds/swag.hpp
-- /library/ds/swag.hpp.html
-title: ds/swag.hpp
+- /library/ds/sliding_window_aggregation.hpp
+- /library/ds/sliding_window_aggregation.hpp.html
+title: ds/sliding_window_aggregation.hpp
 ---
