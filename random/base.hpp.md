@@ -148,6 +148,9 @@ data:
     path: test/mytest/kdtree_monoid.test.cpp
     title: test/mytest/kdtree_monoid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/kdtree_nns.test.cpp
+    title: test/mytest/kdtree_nns.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/max_assign.test.cpp
     title: test/mytest/max_assign.test.cpp
   - icon: ':heavy_check_mark:'
@@ -432,6 +435,7 @@ data:
   - test/mytest/online_division.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/tutte.test.cpp
+  - test/mytest/kdtree_nns.test.cpp
   - test/mytest/rbst_am.test.cpp
   - test/mytest/dynamic_lazy_segtree.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp

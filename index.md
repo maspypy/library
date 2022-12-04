@@ -240,13 +240,13 @@ data:
       title: ds/fenwicktree/fenwicktree_2d_dense.hpp
   - name: ds/kdtree
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/kdtree/kdtree.hpp
       title: ds/kdtree/kdtree.hpp
     - icon: ':heavy_check_mark:'
       path: ds/kdtree/kdtree_acted_monoid.hpp
       title: ds/kdtree/kdtree_acted_monoid.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/kdtree/kdtree_monoid.hpp
       title: ds/kdtree/kdtree_monoid.hpp
   - name: ds/offline_query
@@ -1427,7 +1427,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_1_B.test.cpp
       title: test/aoj/DSL_1_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_C.test.cpp
       title: test/aoj/DSL_2_C.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2180,6 +2180,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/kdtree_monoid.test.cpp
       title: test/mytest/kdtree_monoid.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/kdtree_nns.test.cpp
+      title: test/mytest/kdtree_nns.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/knight_distance.test.cpp
       title: test/mytest/knight_distance.test.cpp

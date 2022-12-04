@@ -114,7 +114,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_1_B.test.cpp
     title: test/aoj/DSL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_C.test.cpp
     title: test/aoj/DSL_2_C.test.cpp
   - icon: ':heavy_check_mark:'
@@ -840,6 +840,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/kdtree_monoid.test.cpp
     title: test/mytest/kdtree_monoid.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/kdtree_nns.test.cpp
+    title: test/mytest/kdtree_nns.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/knight_distance.test.cpp
     title: test/mytest/knight_distance.test.cpp
@@ -2009,6 +2012,7 @@ data:
   - test/mytest/simple_perm.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/tutte.test.cpp
+  - test/mytest/kdtree_nns.test.cpp
   - test/mytest/rbst_am.test.cpp
   - test/mytest/dynamic_lazy_segtree.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp

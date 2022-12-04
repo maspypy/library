@@ -1,15 +1,18 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: ds/kdtree/kdtree_monoid.hpp
-    title: ds/kdtree/kdtree_monoid.hpp
+  - icon: ':question:'
+    path: ds/kdtree/kdtree.hpp
+    title: ds/kdtree/kdtree.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/base.hpp
+    title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -17,15 +20,15 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C
-  bundledCode: "#line 1 \"test/aoj/DSL_2_C.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C\"\
-    \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
-    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
-    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
-    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
-    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/mytest/kdtree_nns.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
+    \n\n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC\
+    \ optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
+    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
+    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
+    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
     template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
     \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
     \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
@@ -197,86 +200,103 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 1 \"ds/kdtree/kdtree_monoid.hpp\"\ntemplate <class Monoid,\
-    \ typename XY>\r\nstruct KDTree_Monoid {\r\n  using MX = Monoid;\r\n  using X\
-    \ = typename MX::value_type;\r\n  static_assert(MX::commute);\r\n\r\n  // \u5C0F\
-    \u6570\u3082\u8003\u616E\u3059\u308B\u3068\u3001\u9589\u3067\u6301\u3064\u8A2D\
-    \u8A08\u65B9\u91DD\u306B\u306A\u308B\u3002\u305F\u3060\u3057\u3001\u30AF\u30A8\
-    \u30EA\u306F\u3044\u3064\u3082\u306E\u534A\u958B\u3092\u4F7F\u3046\r\n  vc<tuple<XY,\
-    \ XY, XY, XY>> closed_range;\r\n  vc<X> dat;\r\n  int n;\r\n\r\n  KDTree_Monoid(vc<XY>\
-    \ xs, vc<XY> ys, vc<X> vs) : n(len(xs)) {\r\n    assert(n > 0);\r\n    int log\
-    \ = 0;\r\n    while ((1 << log) < n) ++log;\r\n    dat.resize(1 << (log + 1));\r\
-    \n    closed_range.resize(1 << (log + 1));\r\n    build(1, xs, ys, vs);\r\n  }\r\
-    \n\r\n  void multiply(XY x, XY y, const X& v) { multiply_rec(1, x, y, v); }\r\n\
-    \r\n  // [xl, xr) x [yl, yr)\r\n  X prod(XY xl, XY xr, XY yl, XY yr) {\r\n   \
-    \ assert(xl <= xr && yl <= yr);\r\n    return prod_rec(1, xl, xr, yl, yr);\r\n\
-    \  }\r\n\r\n  X prod_all() { return dat[1]; }\r\n\r\nprivate:\r\n  void build(int\
-    \ idx, vc<XY> xs, vc<XY> ys, vc<X> vs, bool divx = true) {\r\n    int n = len(xs);\r\
-    \n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\n    xmin = ymin =\
-    \ numeric_limits<XY>::max();\r\n    xmax = ymax = numeric_limits<XY>::lowest();\r\
-    \n\r\n    FOR(i, n) {\r\n      auto x = xs[i], y = ys[i];\r\n      chmin(xmin,\
-    \ x), chmax(xmax, x), chmin(ymin, y), chmax(ymax, y);\r\n    }\r\n    if (xmin\
-    \ == xmax && ymin == ymax) {\r\n      X x = MX::unit();\r\n      for (auto&& v:\
-    \ vs) x = MX::op(x, v);\r\n      dat[idx] = x;\r\n      return;\r\n    }\r\n\r\
-    \n    int m = n / 2;\r\n    vc<int> I(n);\r\n    iota(all(I), 0);\r\n    if (divx)\
-    \ {\r\n      nth_element(I.begin(), I.begin() + m, I.end(),\r\n              \
-    \    [xs](int i, int j) { return xs[i] < xs[j]; });\r\n    } else {\r\n      nth_element(I.begin(),\
-    \ I.begin() + m, I.end(),\r\n                  [ys](int i, int j) { return ys[i]\
-    \ < ys[j]; });\r\n    }\r\n    xs = rearrange(xs, I), ys = rearrange(ys, I), vs\
-    \ = rearrange(vs, I);\r\n    build(2 * idx + 0, {xs.begin(), xs.begin() + m},\r\
-    \n          {ys.begin(), ys.begin() + m}, {vs.begin(), vs.begin() + m}, !divx);\r\
-    \n    build(2 * idx + 1, {xs.begin() + m, xs.end()}, {ys.begin() + m, ys.end()},\r\
-    \n          {vs.begin() + m, vs.end()}, !divx);\r\n    dat[idx] = MX::op(dat[2\
-    \ * idx + 0], dat[2 * idx + 1]);\r\n  }\r\n\r\n  inline bool is_leaf(int idx)\
-    \ {\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\n    return xmin\
-    \ == xmax && ymin == ymax;\r\n  }\r\n\r\n  inline bool isin(XY x, XY y, int idx)\
-    \ {\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\n    return (xmin\
-    \ <= x && x <= xmax && ymin <= y && y <= ymax);\r\n  }\r\n\r\n  bool multiply_rec(int\
-    \ idx, XY x, XY y, X v) {\r\n    if (!isin(x, y, idx)) return false;\r\n    if\
-    \ (is_leaf(idx)) {\r\n      dat[idx] = MX::op(dat[idx], v);\r\n      return true;\r\
-    \n    }\r\n    bool done = 0;\r\n    if (multiply_rec(2 * idx + 0, x, y, v)) done\
-    \ = 1;\r\n    if (!done && multiply_rec(2 * idx + 1, x, y, v)) done = 1;\r\n \
-    \   if (done) { dat[idx] = MX::op(dat[2 * idx + 0], dat[2 * idx + 1]); }\r\n \
-    \   return done;\r\n  }\r\n\r\n  X prod_rec(int idx, XY x1, XY x2, XY y1, XY y2)\
-    \ {\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\n    if (x2 <=\
-    \ xmin || xmax < x1) return MX::unit();\r\n    if (y2 <= ymin || ymax < y1) return\
-    \ MX::unit();\r\n    if (x1 <= xmin && xmax < x2 && y1 <= ymin && ymax < y2) {\
-    \ return dat[idx]; }\r\n    return MX::op(prod_rec(2 * idx + 0, x1, x2, y1, y2),\r\
-    \n                  prod_rec(2 * idx + 1, x1, x2, y1, y2));\r\n  }\r\n};\r\n#line\
-    \ 6 \"test/aoj/DSL_2_C.test.cpp\"\n\nstruct Mono {\n  using value_type = vc<int>;\n\
-    \  using X = value_type;\n  static X op(X x, X y) {\n    x.insert(x.end(), all(y));\n\
-    \    return x;\n  }\n  static X unit() { return {}; }\n  static constexpr bool\
-    \ commute = 1;\n};\n\nvoid solve() {\n  LL(N);\n  vi X, Y;\n  vvc<int> idx(N);\n\
-    \  FOR(i, N) {\n    LL(x, y);\n    X.eb(x);\n    Y.eb(y);\n    idx[i].eb(i);\n\
-    \  }\n  KDTree_Monoid<Mono, ll> KDT(X, Y, idx);\n\n  LL(Q);\n  FOR(Q) {\n    LL(xl,\
-    \ xr, yl, yr);\n    auto e = KDT.prod(xl, xr + 1, yl, yr + 1);\n    sort(all(e));\n\
-    \    for (auto&& v: e) print(v);\n    print();\n  }\n}\n\nsigned main() {\n  solve();\n\
-    \n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/kdtree/kdtree_monoid.hpp\"\
-    \n\nstruct Mono {\n  using value_type = vc<int>;\n  using X = value_type;\n  static\
-    \ X op(X x, X y) {\n    x.insert(x.end(), all(y));\n    return x;\n  }\n  static\
-    \ X unit() { return {}; }\n  static constexpr bool commute = 1;\n};\n\nvoid solve()\
-    \ {\n  LL(N);\n  vi X, Y;\n  vvc<int> idx(N);\n  FOR(i, N) {\n    LL(x, y);\n\
-    \    X.eb(x);\n    Y.eb(y);\n    idx[i].eb(i);\n  }\n  KDTree_Monoid<Mono, ll>\
-    \ KDT(X, Y, idx);\n\n  LL(Q);\n  FOR(Q) {\n    LL(xl, xr, yl, yr);\n    auto e\
-    \ = KDT.prod(xl, xr + 1, yl, yr + 1);\n    sort(all(e));\n    for (auto&& v: e)\
-    \ print(v);\n    print();\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n\
-    }\n"
+    \ yes(!t); }\n#line 5 \"test/mytest/kdtree_nns.test.cpp\"\n\n#line 2 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 1 \"ds/kdtree/kdtree.hpp\"\
+    \ntemplate <typename XY>\nstruct KDTree {\n  // \u5C0F\u6570\u3082\u8003\u616E\
+    \u3059\u308B\u3068\u3001\u9589\u3067\u6301\u3064\u8A2D\u8A08\u65B9\u91DD\u306B\
+    \u306A\u308B\u3002\u305F\u3060\u3057\u3001\u30AF\u30A8\u30EA\u306F\u3044\u3064\
+    \u3082\u306E\u534A\u958B\u3092\u4F7F\u3046\n  vc<tuple<XY, XY, XY, XY>> closed_range;\n\
+    \  // \u540C\u3058\u5EA7\u6A19\u306E\u70B9\u3082\u96C6\u7D04\u3057\u306A\u3044\
+    \u3088\u3046\u306B\u3057\u3066\u3001\u5EA7\u6A19\u3054\u3068\u306B unique \u306A\
+    \u30C7\u30FC\u30BF\u3092\u4F7F\u3046\n  vc<int> dat;\n  int n;\n\n  KDTree(vc<XY>\
+    \ xs, vc<XY> ys) : n(len(xs)) {\n    int log = 0;\n    while ((1 << log) < n)\
+    \ ++log;\n    dat.assign(1 << (log + 1), -1);\n    closed_range.resize(1 << (log\
+    \ + 1));\n    vc<int> vs(n);\n    iota(all(vs), 0);\n    build(1, xs, ys, vs);\n\
+    \  }\n\n  // [xl, xr) x [yl, yr)\n  vc<int> collect_rect(XY xl, XY xr, XY yl,\
+    \ XY yr, int max_size = -1) {\n    assert(xl <= xr && yl <= yr);\n    if (max_size\
+    \ == -1) max_size = n;\n    vc<int> res;\n    rect_rec(1, xl, xr, yl, yr, res,\
+    \ max_size);\n    return res;\n  }\n\n  // \u8A08\u7B97\u91CF\u4FDD\u8A3C\u306A\
+    \u3057\u3001\u70B9\u7FA4\u304C\u30E9\u30F3\u30C0\u30E0\u306A\u3089 O(logN)\n \
+    \ // N = Q = 10^5 \u3067\u3001\u7D04 1 \u79D2\n  int nearest_neighbor_search(XY\
+    \ x, XY y) {\n    pair<int, XY> res = {-1, numeric_limits<XY>::max()};\n    nns_rec(1,\
+    \ x, y, res);\n    assert(res.fi != -1);\n    return res.fi;\n  }\n\nprivate:\n\
+    \  void build(int idx, vc<XY> xs, vc<XY> ys, vc<int> vs, bool divx = true) {\n\
+    \    int n = len(xs);\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\n\
+    \    xmin = ymin = numeric_limits<XY>::max();\n    xmax = ymax = numeric_limits<XY>::lowest();\n\
+    \n    FOR(i, n) {\n      auto x = xs[i], y = ys[i];\n      chmin(xmin, x), chmax(xmax,\
+    \ x), chmin(ymin, y), chmax(ymax, y);\n    }\n    if (n == 1) {\n      dat[idx]\
+    \ = vs[0];\n      return;\n    }\n\n    int m = n / 2;\n    vc<int> I(n);\n  \
+    \  iota(all(I), 0);\n    if (divx) {\n      nth_element(I.begin(), I.begin() +\
+    \ m, I.end(),\n                  [xs](int i, int j) { return xs[i] < xs[j]; });\n\
+    \    } else {\n      nth_element(I.begin(), I.begin() + m, I.end(),\n        \
+    \          [ys](int i, int j) { return ys[i] < ys[j]; });\n    }\n    xs = rearrange(xs,\
+    \ I), ys = rearrange(ys, I), vs = rearrange(vs, I);\n    build(2 * idx + 0, {xs.begin(),\
+    \ xs.begin() + m},\n          {ys.begin(), ys.begin() + m}, {vs.begin(), vs.begin()\
+    \ + m}, !divx);\n    build(2 * idx + 1, {xs.begin() + m, xs.end()}, {ys.begin()\
+    \ + m, ys.end()},\n          {vs.begin() + m, vs.end()}, !divx);\n  }\n\n  void\
+    \ rect_rec(int i, XY x1, XY x2, XY y1, XY y2, vc<int>& res, int ms) {\n    if\
+    \ (len(res) == ms) return;\n    auto& [xmin, xmax, ymin, ymax] = closed_range[i];\n\
+    \    if (x2 <= xmin || xmax < x1) return;\n    if (y2 <= ymin || ymax < y1) return;\n\
+    \    if (dat[i] != -1) {\n      res.eb(dat[i]);\n      return;\n    }\n    rect_rec(2\
+    \ * i + 0, x1, x2, y1, y2, res, ms);\n    rect_rec(2 * i + 1, x1, x2, y1, y2,\
+    \ res, ms);\n  }\n\n  XY best_dist_squared(int i, XY x, XY y) {\n    auto& [xmin,\
+    \ xmax, ymin, ymax] = closed_range[i];\n    XY dx = x - clamp(x, xmin, xmax);\n\
+    \    XY dy = y - clamp(y, ymin, ymax);\n    return dx * dx + dy * dy;\n  }\n\n\
+    \  void nns_rec(int i, XY x, XY y, pair<int, XY>& res) {\n    XY d = best_dist_squared(i,\
+    \ x, y);\n    if (d >= res.se) return;\n    if (dat[i] != -1) {\n      res = {dat[i],\
+    \ d};\n      return;\n    }\n    XY d0 = best_dist_squared(2 * i + 0, x, y);\n\
+    \    XY d1 = best_dist_squared(2 * i + 1, x, y);\n    if (d0 < d1) {\n      nns_rec(2\
+    \ * i + 0, x, y, res), nns_rec(2 * i + 1, x, y, res);\n    } else {\n      nns_rec(2\
+    \ * i + 1, x, y, res), nns_rec(2 * i + 0, x, y, res);\n    }\n  }\n};\n#line 8\
+    \ \"test/mytest/kdtree_nns.test.cpp\"\n\nvoid test_random_points_nns_is_fast()\
+    \ {\n  ll N = 100'000, Q = 100'000;\n  vi X(N), Y(N);\n  ll LIM = 1'000'000'000;\n\
+    \  FOR(i, N) X[i] = RNG(0, LIM);\n  FOR(i, N) Y[i] = RNG(0, LIM);\n  KDTree<ll>\
+    \ KDT(X, Y);\n  FOR(Q) {\n    ll x = RNG(0, LIM);\n    ll y = RNG(0, LIM);\n \
+    \   KDT.nearest_neighbor_search(x, y);\n  }\n}\n\nvoid test_nns_is_correct() {\n\
+    \  ll LIM = RNG(10, 1000);\n  ll N = RNG(1, 100);\n  ll Q = 1000;\n  vi X(N),\
+    \ Y(N);\n  FOR(i, N) X[i] = RNG(0, LIM);\n  FOR(i, N) Y[i] = RNG(0, LIM);\n\n\
+    \  KDTree<ll> KDT(X, Y);\n  FOR(Q) {\n    ll x = RNG(0, LIM);\n    ll y = RNG(0,\
+    \ LIM);\n    ll min_d = 1'000'000'000;\n    auto dist = [&](int i) -> ll {\n \
+    \     ll dx = X[i] - x, dy = Y[i] - y;\n      return dx * dx + dy * dy;\n    };\n\
+    \    FOR(i, N) chmin(min_d, dist(i));\n    int k = KDT.nearest_neighbor_search(x,\
+    \ y);\n    assert(min_d == dist(k));\n  }\n}\n\nvoid test() {\n  test_random_points_nns_is_fast();\n\
+    \  test_nns_is_correct();\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n\
+    }\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
+    my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"random/base.hpp\"\n\
+    #include \"ds/kdtree/kdtree.hpp\"\n\nvoid test_random_points_nns_is_fast() {\n\
+    \  ll N = 100'000, Q = 100'000;\n  vi X(N), Y(N);\n  ll LIM = 1'000'000'000;\n\
+    \  FOR(i, N) X[i] = RNG(0, LIM);\n  FOR(i, N) Y[i] = RNG(0, LIM);\n  KDTree<ll>\
+    \ KDT(X, Y);\n  FOR(Q) {\n    ll x = RNG(0, LIM);\n    ll y = RNG(0, LIM);\n \
+    \   KDT.nearest_neighbor_search(x, y);\n  }\n}\n\nvoid test_nns_is_correct() {\n\
+    \  ll LIM = RNG(10, 1000);\n  ll N = RNG(1, 100);\n  ll Q = 1000;\n  vi X(N),\
+    \ Y(N);\n  FOR(i, N) X[i] = RNG(0, LIM);\n  FOR(i, N) Y[i] = RNG(0, LIM);\n\n\
+    \  KDTree<ll> KDT(X, Y);\n  FOR(Q) {\n    ll x = RNG(0, LIM);\n    ll y = RNG(0,\
+    \ LIM);\n    ll min_d = 1'000'000'000;\n    auto dist = [&](int i) -> ll {\n \
+    \     ll dx = X[i] - x, dy = Y[i] - y;\n      return dx * dx + dy * dy;\n    };\n\
+    \    FOR(i, N) chmin(min_d, dist(i));\n    int k = KDT.nearest_neighbor_search(x,\
+    \ y);\n    assert(min_d == dist(k));\n  }\n}\n\nvoid test() {\n  test_random_points_nns_is_fast();\n\
+    \  test_nns_is_correct();\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n\
+    }\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/kdtree/kdtree_monoid.hpp
+  - random/base.hpp
+  - ds/kdtree/kdtree.hpp
   isVerificationFile: true
-  path: test/aoj/DSL_2_C.test.cpp
+  path: test/mytest/kdtree_nns.test.cpp
   requiredBy: []
-  timestamp: '2022-12-05 04:45:48+09:00'
+  timestamp: '2022-12-05 05:57:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/DSL_2_C.test.cpp
+documentation_of: test/mytest/kdtree_nns.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/DSL_2_C.test.cpp
-- /verify/test/aoj/DSL_2_C.test.cpp.html
-title: test/aoj/DSL_2_C.test.cpp
+- /verify/test/mytest/kdtree_nns.test.cpp
+- /verify/test/mytest/kdtree_nns.test.cpp.html
+title: test/mytest/kdtree_nns.test.cpp
 ---
