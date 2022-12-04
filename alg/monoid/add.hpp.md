@@ -56,6 +56,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/coeffient_query_2d.hpp
     title: ds/offline_query/coeffient_query_2d.hpp
+  - icon: ':warning:'
+    path: ds/offline_query/point_add_polygon_sum.hpp
+    title: ds/offline_query/point_add_polygon_sum.hpp
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/point_add_rectangle_sum.hpp
     title: ds/offline_query/point_add_rectangle_sum.hpp
@@ -379,6 +382,7 @@ data:
   - ds/offline_query/rectangle_add_point_sum.hpp
   - ds/offline_query/rectangle_add_rectangle_sum.hpp
   - ds/offline_query/point_add_rectangle_sum.hpp
+  - ds/offline_query/point_add_polygon_sum.hpp
   - ds/cumsum_2d.hpp
   - ds/waveletmatrix.hpp
   - graph/ds/tree_abelgroup.hpp

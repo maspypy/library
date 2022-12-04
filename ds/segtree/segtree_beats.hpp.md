@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: ds/segtree/beats_summax_chmin.hpp
+    title: ds/segtree/beats_summax_chmin.hpp
   - icon: ':heavy_check_mark:'
     path: ds/segtree/beats_summaxmin_chminchmax.hpp
     title: ds/segtree/beats_summaxmin_chminchmax.hpp
@@ -141,6 +144,7 @@ data:
   requiredBy:
   - ds/segtree/beats_summin_chmax.hpp
   - ds/segtree/beats_summaxmin_chminchmax.hpp
+  - ds/segtree/beats_summax_chmin.hpp
   timestamp: '2022-12-03 10:20:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
