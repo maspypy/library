@@ -10,6 +10,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/mytest/kdtree_am.test.cpp
+    title: test/mytest/kdtree_am.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/summax_add.test.cpp
     title: test/mytest/summax_add.test.cpp
   _isVerificationFailed: false
@@ -48,6 +51,7 @@ data:
   timestamp: '2022-12-04 13:46:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/kdtree_am.test.cpp
   - test/mytest/summax_add.test.cpp
 documentation_of: alg/acted_monoid/summax_add.hpp
 layout: document

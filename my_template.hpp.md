@@ -114,7 +114,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_1_B.test.cpp
     title: test/aoj/DSL_1_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL_2_C.test.cpp
     title: test/aoj/DSL_2_C.test.cpp
   - icon: ':heavy_check_mark:'
@@ -835,6 +835,9 @@ data:
     path: test/mytest/is_substring.test.cpp
     title: test/mytest/is_substring.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/kdtree_am.test.cpp
+    title: test/mytest/kdtree_am.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/knight_distance.test.cpp
     title: test/mytest/knight_distance.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1545,9 +1548,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://trap.jp/post/1224/
@@ -1702,7 +1705,7 @@ data:
   path: my_template.hpp
   requiredBy: []
   timestamp: '2022-09-24 23:41:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1821.test.cpp
   - test/yukicoder/2005.test.cpp
@@ -1888,6 +1891,7 @@ data:
   - test/mytest/factorial_998.test.cpp
   - test/mytest/is_substring.test.cpp
   - test/mytest/enumerate_multisets.test.cpp
+  - test/mytest/kdtree_am.test.cpp
   - test/mytest/knight_distance.test.cpp
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/min_max.test.cpp

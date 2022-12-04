@@ -142,6 +142,9 @@ data:
     path: test/mytest/is_substring.test.cpp
     title: test/mytest/is_substring.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/kdtree_am.test.cpp
+    title: test/mytest/kdtree_am.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/max_assign.test.cpp
     title: test/mytest/max_assign.test.cpp
   - icon: ':heavy_check_mark:'
@@ -389,6 +392,7 @@ data:
   - test/mytest/minplus_convex.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/is_substring.test.cpp
+  - test/mytest/kdtree_am.test.cpp
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/min_max.test.cpp
   - test/mytest/summax_add.test.cpp

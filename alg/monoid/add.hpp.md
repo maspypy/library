@@ -220,6 +220,9 @@ data:
     path: test/mytest/ARC30D.test.cpp
     title: test/mytest/ARC30D.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/kdtree_am.test.cpp
+    title: test/mytest/kdtree_am.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/maxidx_add.test.cpp
     title: test/mytest/maxidx_add.test.cpp
   - icon: ':heavy_check_mark:'
@@ -430,6 +433,7 @@ data:
   - test/yukicoder/1097.test.cpp
   - test/yukicoder/1977.test.cpp
   - test/yukicoder/1197.test.cpp
+  - test/mytest/kdtree_am.test.cpp
   - test/mytest/summax_add.test.cpp
   - test/mytest/minidx_add.test.cpp
   - test/mytest/maxidx_add.test.cpp
