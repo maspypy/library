@@ -24,12 +24,13 @@ void solve() {
   ll LIM = 1 << 30;
 
   Dynamic_SegTree<Mono, false, 8000000> seg(-LIM, LIM);
-  auto root = seg.new_node(-LIM, LIM);
+  using np = decltype(seg)::np;
 
   mint ANS = 0;
   FOR(4) {
     for (auto&& [x, y]: XY) tie(x, y) = mp(-y, x);
     seg.reset();
+    np root = seg.new_node(-LIM, LIM);
     sort(all(XY));
     for (auto&& [x, y]: XY) {
       mint x2 = (x + y) * (x + y);

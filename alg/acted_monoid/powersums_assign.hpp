@@ -13,7 +13,7 @@ struct ActedMonoid_Power_Sums_Assign {
     if (a == Monoid_A::unit()) return x;
     X y;
     mint pow = 1;
-    FOR(i, K) { y[i] = x[0] * pow, pow *= mint(b); }
+    FOR(i, K) { y[i] = x[0] * pow, pow *= mint(a); }
     return y;
   }
 };
