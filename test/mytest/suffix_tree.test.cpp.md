@@ -220,43 +220,44 @@ data:
     \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
     \ &y) noexcept { return min(x, y); }\r\n  static constexpr X unit() { return numeric_limits<X>::max();\
     \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/disjointsparse/disjointsparse.hpp\"\
-    \n\r\ntemplate <class Monoid>\r\nstruct DisjointSparse {\r\n  using X = typename\
-    \ Monoid::value_type;\r\n  using value_type = X;\r\n  int n, log;\r\n  vc<vc<X>>\
-    \ dat;\r\n\r\n  DisjointSparse() {}\r\n  DisjointSparse(vc<X>& A) { build(A);\
-    \ }\r\n\r\n  template <typename F>\r\n  DisjointSparse(int n, F f) {\r\n    vc<X>\
-    \ A(n);\r\n    FOR(i, n) A[i] = f(i);\r\n    build(A);\r\n  }\r\n\r\n  void build(vc<X>&\
-    \ A) {\r\n    n = len(A);\r\n    log = 1;\r\n    while ((1 << log) < n) ++log;\r\
-    \n    dat.assign(log, A);\r\n\r\n    FOR(i, log) {\r\n      auto& v = dat[i];\r\
-    \n      int b = 1 << i;\r\n      for (int m = b; m <= n; m += 2 * b) {\r\n   \
-    \     int L = m - b, R = min(n, m + b);\r\n        FOR3_R(j, L + 1, m) v[j - 1]\
-    \ = Monoid::op(v[j - 1], v[j]);\r\n        FOR3(j, m, R - 1) v[j + 1] = Monoid::op(v[j],\
-    \ v[j + 1]);\r\n      }\r\n    }\r\n  }\r\n\r\n  X prod(int L, int R) {\r\n  \
-    \  if (L == R) return Monoid::unit();\r\n    --R;\r\n    if (L == R) return dat[0][L];\r\
-    \n    int k = 31 - __builtin_clz(L ^ R);\r\n    return Monoid::op(dat[k][L], dat[k][R]);\r\
-    \n  }\r\n\r\n  template <class F>\r\n  int max_right(const F& check, int L) {\r\
-    \n    assert(0 <= L && L <= n && check(Monoid::unit()));\r\n    if (L == n) return\
-    \ n;\r\n    int ok = L, ng = n + 1;\r\n    while (ok + 1 < ng) {\r\n      int\
-    \ k = (ok + ng) / 2;\r\n      if (check(prod(L, k))) {\r\n        ok = k;\r\n\
-    \      } else {\r\n        ng = k;\r\n      }\r\n    }\r\n    return ok;\r\n \
-    \ }\r\n\r\n  template <class F>\r\n  int min_left(const F& check, int R) {\r\n\
-    \    assert(0 <= R && R <= n && check(Monoid::unit()));\r\n    if (R == 0) return\
+    \n\r\ntemplate <class Monoid>\r\nstruct DisjointSparse {\r\n  using MX = Monoid;\r\
+    \n  using X = typename MX::value_type;\r\n  int n, log;\r\n  vvc<X> dat;\r\n\r\
+    \n  DisjointSparse() {}\r\n  DisjointSparse(int n) { build(n); }\r\n  template\
+    \ <typename F>\r\n  DisjointSparse(int n, F f) {\r\n    build(n, f);\r\n  }\r\n\
+    \  DisjointSparse(const vc<X>& v) { build(v); }\r\n\r\n  void build(int m) {\r\
+    \n    build(m, [](int i) -> X { return MX::unit(); });\r\n  }\r\n  void build(const\
+    \ vc<X>& v) {\r\n    build(len(v), [&](int i) -> X { return v[i]; });\r\n  }\r\
+    \n  template <typename F>\r\n  void build(int m, F f) {\r\n    n = m, log = 1;\r\
+    \n    while ((1 << log) < n) ++log;\r\n    dat.resize(log);\r\n    dat[0].reserve(n);\r\
+    \n    FOR(i, n) dat[0].eb(f(i));\r\n    FOR(i, 1, log) {\r\n      auto& v = dat[i];\r\
+    \n      v = dat[0];\r\n      int b = 1 << i;\r\n      for (int m = b; m <= n;\
+    \ m += 2 * b) {\r\n        int L = m - b, R = min(n, m + b);\r\n        FOR3_R(j,\
+    \ L + 1, m) v[j - 1] = MX::op(v[j - 1], v[j]);\r\n        FOR3(j, m, R - 1) v[j\
+    \ + 1] = MX::op(v[j], v[j + 1]);\r\n      }\r\n    }\r\n  }\r\n\r\n  X prod(int\
+    \ L, int R) {\r\n    if (L == R) return MX::unit();\r\n    --R;\r\n    if (L ==\
+    \ R) return dat[0][L];\r\n    int k = 31 - __builtin_clz(L ^ R);\r\n    return\
+    \ MX::op(dat[k][L], dat[k][R]);\r\n  }\r\n\r\n  template <class F>\r\n  int max_right(const\
+    \ F check, int L) {\r\n    assert(0 <= L && L <= n && check(MX::unit()));\r\n\
+    \    if (L == n) return n;\r\n    int ok = L, ng = n + 1;\r\n    while (ok + 1\
+    \ < ng) {\r\n      int k = (ok + ng) / 2;\r\n      bool bl = check(prod(L, k));\r\
+    \n      if (bl) ok = k;\r\n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\
+    \n  }\r\n\r\n  template <class F>\r\n  int min_left(const F check, int R) {\r\n\
+    \    assert(0 <= R && R <= n && check(MX::unit()));\r\n    if (R == 0) return\
     \ 0;\r\n    int ok = R, ng = -1;\r\n    while (ng + 1 < ok) {\r\n      int k =\
-    \ (ok + ng) / 2;\r\n      if (check(prod(k, R))) {\r\n        ok = k;\r\n    \
-    \  } else {\r\n        ng = k;\r\n      }\r\n    }\r\n    return ok;\r\n  }\r\n\
-    \r\n  void debug() {\r\n    print(\"disjoint sparse table\");\r\n    FOR(i, log)\
-    \ print(dat[i]);\r\n  }\r\n};\n#line 3 \"string/suffixarray.hpp\"\n\n// \u8F9E\
-    \u66F8\u9806 i \u756A\u76EE\u306E suffix \u304C j \u6587\u5B57\u76EE\u59CB\u307E\
-    \u308A\u3067\u3042\u308B\u3068\u304D\u3001\n// SA[i] = j, ISA[j] = i\nstruct SuffixArray\
-    \ {\n  vector<int> SA;\n  vector<int> ISA;\n  vector<int> LCP;\n  bool build_ds;\n\
-    \  DisjointSparse<Monoid_Min<int>> seg;\n\n  SuffixArray(string& s) : build_ds(0)\
-    \ {\n    char first = 127, last = 0;\n    for (auto&& c: s) {\n      chmin(first,\
-    \ c);\n      chmax(last, c);\n    }\n    SA = calc_suffix_array(s, first, last);\n\
-    \    calc_LCP(s);\n  }\n\n  SuffixArray(vector<int>& s) : build_ds(0) {\n    SA\
-    \ = calc_suffix_array(s);\n    calc_LCP(s);\n  }\n\n  // S[i:], S[j:] \u306E lcp\
-    \ \u3092\u6C42\u3081\u308B\n  int lcp(int i, int j) {\n    int n = len(SA);\n\
-    \    if (i == j) return n - i;\n    if (!build_ds) {\n      build_ds = 1;\n  \
-    \    seg.build(LCP);\n    }\n    i = ISA[i], j = ISA[j];\n    if (i > j) swap(i,\
-    \ j);\n    return seg.prod(i, j);\n  }\n\nprivate:\n  void induced_sort(const\
+    \ (ok + ng) / 2;\r\n      bool bl = check(prod(k, R));\r\n      if (bl) ok = k;\r\
+    \n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\n  }\r\n};\n#line 3 \"string/suffixarray.hpp\"\
+    \n\n// \u8F9E\u66F8\u9806 i \u756A\u76EE\u306E suffix \u304C j \u6587\u5B57\u76EE\
+    \u59CB\u307E\u308A\u3067\u3042\u308B\u3068\u304D\u3001\n// SA[i] = j, ISA[j] =\
+    \ i\nstruct SuffixArray {\n  vector<int> SA;\n  vector<int> ISA;\n  vector<int>\
+    \ LCP;\n  bool build_ds;\n  DisjointSparse<Monoid_Min<int>> seg;\n\n  SuffixArray(string&\
+    \ s) : build_ds(0) {\n    char first = 127, last = 0;\n    for (auto&& c: s) {\n\
+    \      chmin(first, c);\n      chmax(last, c);\n    }\n    SA = calc_suffix_array(s,\
+    \ first, last);\n    calc_LCP(s);\n  }\n\n  SuffixArray(vector<int>& s) : build_ds(0)\
+    \ {\n    SA = calc_suffix_array(s);\n    calc_LCP(s);\n  }\n\n  // S[i:], S[j:]\
+    \ \u306E lcp \u3092\u6C42\u3081\u308B\n  int lcp(int i, int j) {\n    int n =\
+    \ len(SA);\n    if (i == j) return n - i;\n    if (!build_ds) {\n      build_ds\
+    \ = 1;\n      seg.build(LCP);\n    }\n    i = ISA[i], j = ISA[j];\n    if (i >\
+    \ j) swap(i, j);\n    return seg.prod(i, j);\n  }\n\nprivate:\n  void induced_sort(const\
     \ std::vector<int>& vect, int val_range,\n                    std::vector<int>&\
     \ SA, const std::vector<bool>& sl,\n                    const std::vector<int>&\
     \ lms_idx) {\n    std::vector<int> l(val_range, 0), r(val_range, 0);\n    for\
@@ -479,7 +480,7 @@ data:
   isVerificationFile: true
   path: test/mytest/suffix_tree.test.cpp
   requiredBy: []
-  timestamp: '2022-12-04 00:39:06+09:00'
+  timestamp: '2022-12-04 23:06:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/suffix_tree.test.cpp

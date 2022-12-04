@@ -206,31 +206,32 @@ data:
     \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
     \ &y) noexcept { return min(x, y); }\r\n  static constexpr X unit() { return numeric_limits<X>::max();\
     \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/disjointsparse/disjointsparse.hpp\"\
-    \n\r\ntemplate <class Monoid>\r\nstruct DisjointSparse {\r\n  using X = typename\
-    \ Monoid::value_type;\r\n  using value_type = X;\r\n  int n, log;\r\n  vc<vc<X>>\
-    \ dat;\r\n\r\n  DisjointSparse() {}\r\n  DisjointSparse(vc<X>& A) { build(A);\
-    \ }\r\n\r\n  template <typename F>\r\n  DisjointSparse(int n, F f) {\r\n    vc<X>\
-    \ A(n);\r\n    FOR(i, n) A[i] = f(i);\r\n    build(A);\r\n  }\r\n\r\n  void build(vc<X>&\
-    \ A) {\r\n    n = len(A);\r\n    log = 1;\r\n    while ((1 << log) < n) ++log;\r\
-    \n    dat.assign(log, A);\r\n\r\n    FOR(i, log) {\r\n      auto& v = dat[i];\r\
-    \n      int b = 1 << i;\r\n      for (int m = b; m <= n; m += 2 * b) {\r\n   \
-    \     int L = m - b, R = min(n, m + b);\r\n        FOR3_R(j, L + 1, m) v[j - 1]\
-    \ = Monoid::op(v[j - 1], v[j]);\r\n        FOR3(j, m, R - 1) v[j + 1] = Monoid::op(v[j],\
-    \ v[j + 1]);\r\n      }\r\n    }\r\n  }\r\n\r\n  X prod(int L, int R) {\r\n  \
-    \  if (L == R) return Monoid::unit();\r\n    --R;\r\n    if (L == R) return dat[0][L];\r\
-    \n    int k = 31 - __builtin_clz(L ^ R);\r\n    return Monoid::op(dat[k][L], dat[k][R]);\r\
-    \n  }\r\n\r\n  template <class F>\r\n  int max_right(const F& check, int L) {\r\
-    \n    assert(0 <= L && L <= n && check(Monoid::unit()));\r\n    if (L == n) return\
-    \ n;\r\n    int ok = L, ng = n + 1;\r\n    while (ok + 1 < ng) {\r\n      int\
-    \ k = (ok + ng) / 2;\r\n      if (check(prod(L, k))) {\r\n        ok = k;\r\n\
-    \      } else {\r\n        ng = k;\r\n      }\r\n    }\r\n    return ok;\r\n \
-    \ }\r\n\r\n  template <class F>\r\n  int min_left(const F& check, int R) {\r\n\
-    \    assert(0 <= R && R <= n && check(Monoid::unit()));\r\n    if (R == 0) return\
+    \n\r\ntemplate <class Monoid>\r\nstruct DisjointSparse {\r\n  using MX = Monoid;\r\
+    \n  using X = typename MX::value_type;\r\n  int n, log;\r\n  vvc<X> dat;\r\n\r\
+    \n  DisjointSparse() {}\r\n  DisjointSparse(int n) { build(n); }\r\n  template\
+    \ <typename F>\r\n  DisjointSparse(int n, F f) {\r\n    build(n, f);\r\n  }\r\n\
+    \  DisjointSparse(const vc<X>& v) { build(v); }\r\n\r\n  void build(int m) {\r\
+    \n    build(m, [](int i) -> X { return MX::unit(); });\r\n  }\r\n  void build(const\
+    \ vc<X>& v) {\r\n    build(len(v), [&](int i) -> X { return v[i]; });\r\n  }\r\
+    \n  template <typename F>\r\n  void build(int m, F f) {\r\n    n = m, log = 1;\r\
+    \n    while ((1 << log) < n) ++log;\r\n    dat.resize(log);\r\n    dat[0].reserve(n);\r\
+    \n    FOR(i, n) dat[0].eb(f(i));\r\n    FOR(i, 1, log) {\r\n      auto& v = dat[i];\r\
+    \n      v = dat[0];\r\n      int b = 1 << i;\r\n      for (int m = b; m <= n;\
+    \ m += 2 * b) {\r\n        int L = m - b, R = min(n, m + b);\r\n        FOR3_R(j,\
+    \ L + 1, m) v[j - 1] = MX::op(v[j - 1], v[j]);\r\n        FOR3(j, m, R - 1) v[j\
+    \ + 1] = MX::op(v[j], v[j + 1]);\r\n      }\r\n    }\r\n  }\r\n\r\n  X prod(int\
+    \ L, int R) {\r\n    if (L == R) return MX::unit();\r\n    --R;\r\n    if (L ==\
+    \ R) return dat[0][L];\r\n    int k = 31 - __builtin_clz(L ^ R);\r\n    return\
+    \ MX::op(dat[k][L], dat[k][R]);\r\n  }\r\n\r\n  template <class F>\r\n  int max_right(const\
+    \ F check, int L) {\r\n    assert(0 <= L && L <= n && check(MX::unit()));\r\n\
+    \    if (L == n) return n;\r\n    int ok = L, ng = n + 1;\r\n    while (ok + 1\
+    \ < ng) {\r\n      int k = (ok + ng) / 2;\r\n      bool bl = check(prod(L, k));\r\
+    \n      if (bl) ok = k;\r\n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\
+    \n  }\r\n\r\n  template <class F>\r\n  int min_left(const F check, int R) {\r\n\
+    \    assert(0 <= R && R <= n && check(MX::unit()));\r\n    if (R == 0) return\
     \ 0;\r\n    int ok = R, ng = -1;\r\n    while (ng + 1 < ok) {\r\n      int k =\
-    \ (ok + ng) / 2;\r\n      if (check(prod(k, R))) {\r\n        ok = k;\r\n    \
-    \  } else {\r\n        ng = k;\r\n      }\r\n    }\r\n    return ok;\r\n  }\r\n\
-    \r\n  void debug() {\r\n    print(\"disjoint sparse table\");\r\n    FOR(i, log)\
-    \ print(dat[i]);\r\n  }\r\n};\n#line 7 \"test/library_checker/datastructure/staticrmq_sparse.test.cpp\"\
+    \ (ok + ng) / 2;\r\n      bool bl = check(prod(k, R));\r\n      if (bl) ok = k;\r\
+    \n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\n  }\r\n};\n#line 7 \"test/library_checker/datastructure/staticrmq_sparse.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  using Mono = Monoid_Min<int>;\n\
     \  DisjointSparse<Mono> DS(A);\n\n  FOR(_, Q) {\n    LL(L, R);\n    print(DS.prod(L,\
     \ R));\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
@@ -250,7 +251,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/staticrmq_sparse.test.cpp
   requiredBy: []
-  timestamp: '2022-12-04 01:27:27+09:00'
+  timestamp: '2022-12-04 23:06:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/staticrmq_sparse.test.cpp

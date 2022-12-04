@@ -224,9 +224,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/disjointsparse/disjointsparse.hpp
       title: ds/disjointsparse/disjointsparse.hpp
-    - icon: ':heavy_check_mark:'
-      path: ds/disjointsparse/xor_sparsetable.hpp
-      title: ds/disjointsparse/xor_sparsetable.hpp
+    - icon: ':warning:'
+      path: ds/disjointsparse/xor_disjointsparse.hpp
+      title: ds/disjointsparse/xor_disjointsparse.hpp
   - name: ds/fenwicktree
     pages:
     - icon: ':heavy_check_mark:'
@@ -2725,7 +2725,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1881.test.cpp
       title: test/yukicoder/1881.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1891.test.cpp
       title: test/yukicoder/1891.test.cpp
     - icon: ':heavy_check_mark:'
