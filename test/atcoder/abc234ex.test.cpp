@@ -7,12 +7,11 @@
 void solve() {
   LL(N, K);
   vc<int> X(N), Y(N);
-  vc<int> V(N);
   FOR(i, N) {
     INT(a, b);
-    X[i] = a, Y[i] = b, V[i] = i;
+    X[i] = a, Y[i] = b;
   }
-  KDTree<int, int> KDT(X, Y, V);
+  KDTree<int> KDT(X, Y);
 
   int x_min = MIN(X);
   int x_max = MAX(X);
