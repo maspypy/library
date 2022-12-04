@@ -2,13 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/add_remove_query.test.cpp
+    title: test/library_checker/datastructure/add_remove_query.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
+    title: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/offline_query/addremove_query.hpp\"\n/*\n\u30FB\u6642\
+  bundledCode: "#line 1 \"ds/offline_query/add_remove_query.hpp\"\n/*\n\u30FB\u6642\
     \u523B t \u306B x \u3092\u8FFD\u52A0\u3059\u308B\n\u30FB\u6642\u523B t \u306B\
     \ x \u3092\u524A\u9664\u3059\u308B\n\u304C\u3042\u308B\u3068\u304D\u306B\u3001\
     \n\u30FB\u6642\u523B [l, r) \u306B x \u3092\u8FFD\u52A0\u3059\u308B\n\u306B\u5909\
@@ -61,15 +67,17 @@ data:
     \ time) continue;\n      dat.eb(t, time, x);\n    }\n    return dat;\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: ds/offline_query/addremove_query.hpp
+  path: ds/offline_query/add_remove_query.hpp
   requiredBy: []
-  timestamp: '2022-12-01 18:20:22+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
-documentation_of: ds/offline_query/addremove_query.hpp
+  timestamp: '2022-12-05 08:01:45+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/library_checker/datastructure/add_remove_query.test.cpp
+  - test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
+documentation_of: ds/offline_query/add_remove_query.hpp
 layout: document
 redirect_from:
-- /library/ds/offline_query/addremove_query.hpp
-- /library/ds/offline_query/addremove_query.hpp.html
-title: ds/offline_query/addremove_query.hpp
+- /library/ds/offline_query/add_remove_query.hpp
+- /library/ds/offline_query/add_remove_query.hpp.html
+title: ds/offline_query/add_remove_query.hpp
 ---

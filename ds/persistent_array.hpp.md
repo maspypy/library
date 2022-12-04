@@ -1,11 +1,20 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: ds/unionfind/persistent_unionfind.hpp
+    title: ds/unionfind/persistent_unionfind.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/persistent_queue.test.cpp
+    title: test/library_checker/datastructure/persistent_queue.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/persistent_unionfind.test.cpp
+    title: test/library_checker/datastructure/persistent_unionfind.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/persistent_array.hpp\"\n\r\ntemplate <typename T, int\
@@ -46,10 +55,13 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: ds/persistent_array.hpp
-  requiredBy: []
+  requiredBy:
+  - ds/unionfind/persistent_unionfind.hpp
   timestamp: '2022-12-05 07:33:55+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/library_checker/datastructure/persistent_unionfind.test.cpp
+  - test/library_checker/datastructure/persistent_queue.test.cpp
 documentation_of: ds/persistent_array.hpp
 layout: document
 redirect_from:

@@ -2,19 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_1_B.test.cpp
-    title: test/aoj/DSL_1_B.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1502.test.cpp
-    title: test/yukicoder/1502.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/unionfind/weightedunionfind.hpp\"\ntemplate <typename\
+  bundledCode: "#line 1 \"ds/unionfind/weighted_unionfind.hpp\"\ntemplate <typename\
     \ Group>\r\nstruct WeightedUnionFind {\r\n  using E = typename Group::value_type;\r\
     \n  int N;\r\n  vc<E> vals;\r\n  vc<int> par;\r\n  vc<int> size;\r\n\r\n  WeightedUnionFind(int\
     \ N) : N(N), vals(N, Group::unit()), size(N, 1) {\r\n    par.resize(N);\r\n  \
@@ -50,17 +44,15 @@ data:
     size\", size);\r\n  }\r\n};"
   dependsOn: []
   isVerificationFile: false
-  path: ds/unionfind/weightedunionfind.hpp
+  path: ds/unionfind/weighted_unionfind.hpp
   requiredBy: []
-  timestamp: '2022-12-03 10:20:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yukicoder/1502.test.cpp
-  - test/aoj/DSL_1_B.test.cpp
-documentation_of: ds/unionfind/weightedunionfind.hpp
+  timestamp: '2022-12-05 08:01:45+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: ds/unionfind/weighted_unionfind.hpp
 layout: document
 redirect_from:
-- /library/ds/unionfind/weightedunionfind.hpp
-- /library/ds/unionfind/weightedunionfind.hpp.html
-title: ds/unionfind/weightedunionfind.hpp
+- /library/ds/unionfind/weighted_unionfind.hpp
+- /library/ds/unionfind/weighted_unionfind.hpp.html
+title: ds/unionfind/weighted_unionfind.hpp
 ---

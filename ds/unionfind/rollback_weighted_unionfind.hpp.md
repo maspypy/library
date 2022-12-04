@@ -37,15 +37,15 @@ data:
     \  }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: ds/unionfind/rollbackweighteduf.hpp
+  path: ds/unionfind/rollback_weighted_unionfind.hpp
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: ds/unionfind/rollbackweighteduf.hpp
+documentation_of: ds/unionfind/rollback_weighted_unionfind.hpp
 layout: document
 redirect_from:
-- /library/ds/unionfind/rollbackweighteduf.hpp
-- /library/ds/unionfind/rollbackweighteduf.hpp.html
-title: ds/unionfind/rollbackweighteduf.hpp
+- /library/ds/unionfind/rollback_weighted_unionfind.hpp
+- /library/ds/unionfind/rollback_weighted_unionfind.hpp.html
+title: ds/unionfind/rollback_weighted_unionfind.hpp
 ---
