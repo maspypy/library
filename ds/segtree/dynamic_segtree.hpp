@@ -33,7 +33,7 @@ struct Dynamic_SegTree {
   np new_node() { return new_node(L0, R0); }
 
   np new_node(const vc<X> &dat) {
-    assert(L0 == 0 && R0 == len(dat));
+    assert(pid && L0 == 0 && R0 == len(dat));
     auto dfs = [&](auto &dfs, ll l, ll r) -> Node * {
       if (l == r) return nullptr;
       if (r == l + 1) return new_node(dat[l]);
@@ -48,37 +48,38 @@ struct Dynamic_SegTree {
   }
 
   X prod(np root, ll l, ll r) {
-    assert(L0 <= l && l < r && r <= R0);
+    assert(pid && root && L0 <= l && l < r && r <= R0);
     X x = MX::unit();
     prod_rec(root, L0, R0, l, r, x);
     return x;
   }
 
   np set(np root, ll i, const X &x) {
-    assert(L0 <= i && i < R0);
+    assert(pid && root && L0 <= i && i < R0);
     return set_rec(root, L0, R0, i, x);
   }
 
   np multiply(np root, ll i, const X &x) {
-    assert(L0 <= i && i < R0);
+    assert(pid && root && L0 <= i && i < R0);
     return multiply_rec(root, L0, R0, i, x);
   }
 
   template <typename F>
   ll max_right(np root, F check, ll L) {
-    assert(L0 <= L && L <= R0 && check(MX::unit()));
+    assert(pid && root && L0 <= L && L <= R0 && check(MX::unit()));
     X x = MX::unit();
     return max_right_rec(root, check, L0, R0, L, x);
   }
 
   template <typename F>
   ll min_left(np root, F check, ll R) {
-    assert(L0 <= R && R <= R0 && check(MX::unit()));
+    assert(pid && L0 <= R && R <= R0 && check(MX::unit()));
     X x = MX::unit();
     return min_left_rec(root, check, L0, R0, R, x);
   }
 
   vc<X> get_all(np root) {
+    assert(root);
     vc<X> res;
     res.reserve(R0 - L0);
     auto dfs = [&](auto &dfs, np c, ll l, ll r) -> void {
