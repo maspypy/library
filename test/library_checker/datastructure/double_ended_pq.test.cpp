@@ -11,26 +11,27 @@ void solve() {
   VEC(int, A, N);
   const int LIM = 1'000'000'000;
 
-  Dynamic_SegTree<Monoid_Add<int>, 30'000'000> seg(-LIM, LIM + 1);
-  for (auto&& a: A) seg.multiply(a, 1);
+  Dynamic_SegTree<Monoid_Add<int>, false, 30'000'000> seg(-LIM, LIM + 1);
+  auto root = seg.new_node(-LIM, LIM + 1);
+  for (auto&& a: A) root = seg.multiply(root, a, 1);
 
   FOR(Q) {
     LL(t);
     if (t == 0) {
       LL(x);
-      seg.multiply(x, 1);
+      seg.multiply(root, x, 1);
     }
     if (t == 1) {
       auto check = [&](auto e) -> bool { return e == 0; };
-      int ANS = seg.max_right(check, -LIM);
+      int ANS = seg.max_right(root, check, -LIM);
       print(ANS);
-      seg.multiply(ANS, -1);
+      root = seg.multiply(root, ANS, -1);
     }
     if (t == 2) {
       auto check = [&](auto e) -> bool { return e == 0; };
-      int ANS = seg.min_left(check, LIM + 1) - 1;
+      int ANS = seg.min_left(root, check, LIM + 1) - 1;
       print(ANS);
-      seg.multiply(ANS, -1);
+      root = seg.multiply(root, ANS, -1);
     }
   }
 }
