@@ -3,9 +3,8 @@
 // 最小値、最小値の個数
 template <typename E>
 struct Monoid_MinMincnt {
-  using value_type = tuple<E, E, E>;
+  using value_type = pair<E, E>;
   using X = value_type;
-  static X from_element(E x) { return {x, 1}; }
   static X op(X x, X y) {
     auto [xmin, xmincnt] = x;
     auto [ymin, ymincnt] = y;

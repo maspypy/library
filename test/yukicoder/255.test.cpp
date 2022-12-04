@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/255"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/segtree/lazysegtree.hpp"
+#include "ds/segtree/lazy_segtree.hpp"
 #include "alg/acted_monoid/cntsum_affine.hpp"
 
 void solve() {
@@ -16,9 +16,10 @@ void solve() {
   N = len(X);
 
   using AM = ActedMonoid_CntSum_Affine<ll>;
-  vc<LazySegTree<AM>> seg;
-  FOR(i, 5) seg.eb(LazySegTree<AM>(N));
-  FOR(i, 5) FOR(j, N - 1) { seg[i].set(j, {X[j + 1] - X[j], 0}); }
+  vc<Lazy_SegTree<AM>> seg(5);
+  FOR(i, 5) {
+    seg[i].build(N - 1, [&](int j) -> pi { return {X[j + 1] - X[j], 0}; });
+  }
   vc<i128> ANS(5);
 
   FOR(q, Q) {
@@ -44,7 +45,7 @@ void solve() {
     }
   }
   ll mod = 1'000'000'000'000'000'009;
-  FOR(i, 5) ANS[i] += seg[i].prod(0, N).se;
+  FOR(i, 5) ANS[i] += seg[i].prod_all().se;
   FOR(i, 5) ANS[i] %= mod;
   print(ANS);
 }

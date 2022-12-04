@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 
 #include "alg/monoid/add.hpp"
-#include "graph/ds/treegroup.hpp"
+#include "graph/ds/tree_group.hpp"
 
 void solve() {
   LL(N, Q);
@@ -13,7 +13,7 @@ void solve() {
 
   TREE<Graph<int>> tree(G);
   using Group = Monoid_Add<ll>;
-  TreeGroup<decltype(tree), Group, false, true, false> TG(tree, A);
+  Tree_Group<decltype(tree), Group, false, true, false> TG(tree, A);
 
   FOR(_, Q) {
     LL(t);
