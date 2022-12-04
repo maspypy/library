@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "mod/modint.hpp"
 #include "alg/monoid/affine.hpp"
-#include "ds/disjoint_sparse/xor_sparsetable.hpp"
+#include "ds/disjointsparse/xor_sparsetable.hpp"
 
 using mint = modint998;
 
