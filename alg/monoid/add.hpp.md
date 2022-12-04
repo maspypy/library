@@ -44,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/cumsum_2d.hpp
     title: ds/cumsum_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':heavy_check_mark:'
@@ -68,6 +68,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/rectangle_add_rectangle_sum.hpp
     title: ds/offline_query/rectangle_add_rectangle_sum.hpp
+  - icon: ':x:'
+    path: ds/range_add_range_sum.hpp
+    title: ds/range_add_range_sum.hpp
   - icon: ':heavy_check_mark:'
     path: ds/waveletmatrix.hpp
     title: ds/waveletmatrix.hpp
@@ -108,6 +111,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_1_B.test.cpp
     title: test/aoj/DSL_1_B.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DSL_2_E.test.cpp
+    title: test/aoj/DSL_2_E.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_H.test.cpp
     title: test/aoj/DSL_2_H.test.cpp
@@ -385,6 +391,7 @@ data:
   - ds/offline_query/point_add_polygon_sum.hpp
   - ds/cumsum_2d.hpp
   - ds/waveletmatrix.hpp
+  - ds/range_add_range_sum.hpp
   - graph/ds/tree_abelgroup.hpp
   - graph/ds/contour_sum.hpp
   timestamp: '2022-11-28 14:51:10+09:00'
@@ -462,6 +469,7 @@ data:
   - test/atcoder/abc190f.test.cpp
   - test/atcoder/abc266h_2.test.cpp
   - test/atcoder/abc174f.test.cpp
+  - test/aoj/DSL_2_E.test.cpp
   - test/aoj/2842_2.test.cpp
   - test/aoj/DSL_4_A.test.cpp
   - test/aoj/DSL_2_I.test.cpp

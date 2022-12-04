@@ -120,6 +120,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_D.test.cpp
     title: test/aoj/DSL_2_D.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DSL_2_E.test.cpp
+    title: test/aoj/DSL_2_E.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_F.test.cpp
     title: test/aoj/DSL_2_F.test.cpp
@@ -2156,6 +2159,7 @@ data:
   - test/aoj/DPL_1_F.test.cpp
   - test/aoj/DPL_1_D.test.cpp
   - test/aoj/DPL_3_C.test.cpp
+  - test/aoj/DSL_2_E.test.cpp
   - test/aoj/DPL_3_B.test.cpp
   - test/aoj/ITP1_11_C.test.cpp
   - test/aoj/DPL_1_B.test.cpp

@@ -17,13 +17,13 @@ data:
     \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
     \ File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ds/fenwicktree/fenwicktree_raq.hpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ds/range_add_range.sum.hpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/fenwicktree/fenwicktree_raq.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  FenwickRAQ<Monoid_Add<ll>> bit(N);\r\
-    \n  FOR(_, Q) {\r\n    LL(t, L, R);\r\n    --L;\r\n    if (t == 0) {\r\n     \
-    \ LL(x);\r\n      bit.add(L, R, x);\r\n    } else {\r\n      print(bit.prod(L,\
+    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/range_add_range.sum.hpp\"\
+    \r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  Range_Add_Range_Sum<Monoid_Add<ll>>\
+    \ bit(N);\r\n  FOR(_, Q) {\r\n    LL(t, L, R);\r\n    --L;\r\n    if (t == 0)\
+    \ {\r\n      LL(x);\r\n      bit.add(L, R, x);\r\n    } else {\r\n      print(bit.prod(L,\
     \ R));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n\
     \  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  ll T =\
     \ 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\n\r\n  return 0;\r\n}\r\n"

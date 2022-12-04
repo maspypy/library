@@ -210,6 +210,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/powerquery.hpp
       title: ds/powerquery.hpp
+    - icon: ':x:'
+      path: ds/range_add_range_sum.hpp
+      title: ds/range_add_range_sum.hpp
     - icon: ':heavy_check_mark:'
       path: ds/swag.hpp
       title: ds/swag.hpp
@@ -226,7 +229,7 @@ data:
       title: ds/disjointsparse/xor_sparsetable.hpp
   - name: ds/fenwicktree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/fenwicktree/fenwicktree.hpp
       title: ds/fenwicktree/fenwicktree.hpp
     - icon: ':heavy_check_mark:'
