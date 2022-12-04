@@ -2,174 +2,48 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/library_checker/datastructure/double_ended_pq.test.cpp
-    title: test/library_checker/datastructure/double_ended_pq.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
-    title: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1036.test.cpp
-    title: test/yukicoder/1036.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1649.test.cpp
-    title: test/yukicoder/1649.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1826.test.cpp
-    title: test/yukicoder/1826.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/789.test.cpp
-    title: test/yukicoder/789.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"ds/segtree/dynamic_segtree.hpp\"\n\r\ntemplate <typename\
-    \ Monoid, bool PERSISTENT, int NODES>\r\nstruct Dynamic_SegTree {\r\n  using MX\
-    \ = Monoid;\r\n  using X = typename MX::value_type;\r\n  using F = function<X(ll,\
-    \ ll)>;\r\n  F default_prod;\r\n\r\n  struct Node {\r\n    Node *l, *r;\r\n  \
-    \  X x;\r\n  };\r\n\r\n  const ll n;\r\n  Node *pool;\r\n  int pid;\r\n  using\
-    \ np = Node *;\r\n\r\n  Dynamic_SegTree(\r\n      ll n, F default_prod = [](ll\
-    \ l, ll r) -> X { return MX::unit(); })\r\n      : default_prod(default_prod),\
-    \ n(n), pid(0) {\r\n    pool = new Node[NODES];\r\n  }\r\n\r\n  np new_node(const\
-    \ X x) {\r\n    pool[pid].l = pool[pid].r = nullptr;\r\n    pool[pid].x = x;\r\
-    \n    return &(pool[pid++]);\r\n  }\r\n\r\n  np new_node(ll l, ll r) { return\
-    \ new_node(default_prod(l, r)); }\r\n\r\n  np new_node(const vc<X> &dat) {\r\n\
-    \    assert(len(dat) == n);\r\n    auto dfs = [&](auto &dfs, ll l, ll r) -> Node\
-    \ * {\r\n      if (l == r) return nullptr;\r\n      if (r == l + 1) return new_node(dat[l]);\r\
-    \n      ll m = (l + r) / 2;\r\n      np l_root = dfs(dfs, l, m), r_root = dfs(dfs,\
-    \ m, r);\r\n      X x = MX::op(l_root->x, r_root->x);\r\n      np root = new_node(x);\r\
-    \n      root->l = l_root, root->r = r_root;\r\n      return root;\r\n    };\r\n\
-    \    return dfs(dfs, 0, len(dat));\r\n  }\r\n\r\n  X prod(np root, ll l, ll r)\
-    \ {\r\n    assert(0 <= l && l < r && r <= n);\r\n    X x = MX::unit();\r\n   \
-    \ prod_rec(root, 0, n, l, r, x);\r\n    return x;\r\n  }\r\n\r\n  np set(np root,\
-    \ ll i, const X &x) {\r\n    assert(0 <= i && i < n);\r\n    return set_rec(root,\
-    \ 0, n, i, x);\r\n  }\r\n\r\n  np multiply(np root, ll i, const X &x) {\r\n  \
-    \  assert(0 <= i && i < n);\r\n    return multiply_rec(root, 0, n, i, x);\r\n\
-    \  }\r\n\r\n  template <typename F>\r\n  ll max_right(np root, F check, ll L)\
-    \ {\r\n    assert(0 <= L && L <= n && check(MX::unit()));\r\n    X x = MX::unit();\r\
-    \n    return max_right_rec(root, check, 0, n, L, x);\r\n  }\r\n\r\n  template\
-    \ <typename F>\r\n  ll min_left(np root, F check, ll R) {\r\n    assert(0 <= R\
-    \ && R <= n && check(MX::unit()));\r\n    X x = MX::unit();\r\n    return min_left_rec(root,\
-    \ check, 0, n, R, x);\r\n  }\r\n\r\n  vc<X> restore(np root) {\r\n    vc<X> res;\r\
-    \n    res.reserve(n);\r\n    auto dfs = [&](auto &dfs, Node *c, ll l, ll r) ->\
-    \ void {\r\n      if (r - l == 1) {\r\n        res.eb(c->x);\r\n        return;\r\
-    \n      }\r\n      ll m = (l + r) / 2;\r\n      dfs(dfs, c->l, l, m);\r\n    \
-    \  dfs(dfs, c->r, m, r);\r\n    };\r\n    dfs(dfs, root, 0, n);\r\n    return\
-    \ res;\r\n  }\r\n\r\n  void reset() { pid = 0; }\r\n\r\nprivate:\r\n  np copy_node(np\
-    \ c) {\r\n    if (!c || !PERSISTENT) return c;\r\n    pool[pid].l = c->l, pool[pid].r\
-    \ = c->r;\r\n    pool[pid].x = c->x;\r\n    return &(pool[pid++]);\r\n  }\r\n\r\
-    \n  np set_rec(np c, ll l, ll r, ll i, const X &x) {\r\n    if (r == l + 1) {\r\
-    \n      c = copy_node(c);\r\n      c->x = x;\r\n      return c;\r\n    }\r\n \
-    \   ll m = (l + r) / 2;\r\n    if (!c->l) c->l = new_node(l, m);\r\n    if (!c->r)\
-    \ c->r = new_node(m, r);\r\n\r\n    c = copy_node(c);\r\n    if (i < m) {\r\n\
-    \      c->l = set_rec(c->l, l, m, i, x);\r\n    } else {\r\n      c->r = set_rec(c->r,\
-    \ m, r, i, x);\r\n    }\r\n    c->x = MX::op(c->l->x, c->r->x);\r\n    return\
-    \ c;\r\n  }\r\n\r\n  np multiply_rec(np c, ll l, ll r, ll i, const X &x) {\r\n\
-    \    if (r == l + 1) {\r\n      c = copy_node(c);\r\n      c->x = MX::op(c->x,\
-    \ x);\r\n      return c;\r\n    }\r\n    prop(c, l, r);\r\n    ll m = (l + r)\
-    \ / 2;\r\n    if (!c->l) c->l = new_node(l, m);\r\n    if (!c->r) c->r = new_node(m,\
-    \ r);\r\n\r\n    c = copy_node(c);\r\n    if (i < m) {\r\n      c->l = set_rec(c->l,\
-    \ l, m, i, x);\r\n    } else {\r\n      c->r = set_rec(c->r, m, r, i, x);\r\n\
-    \    }\r\n    c->x = MX::op(c->l->x, c->r->x);\r\n    return c;\r\n  }\r\n\r\n\
-    \  void prod_rec(np c, ll l, ll r, ll ql, ll qr, X &x) {\r\n    chmax(ql, l);\r\
-    \n    chmin(qr, r);\r\n    if (ql >= qr) return;\r\n    if (!c) {\r\n      x =\
-    \ MX::op(x, default_prod(ql, qr));\r\n      return;\r\n    }\r\n    if (l == ql\
-    \ && r == qr) {\r\n      x = MX::op(x, c->x);\r\n      return;\r\n    }\r\n  \
-    \  ll m = (l + r) / 2;\r\n    prod_rec(c->l, l, m, ql, qr, x);\r\n    prod_rec(c->r,\
-    \ m, r, ql, qr, x);\r\n  }\r\n\r\n  template <typename F>\r\n  ll max_right_rec(np\
-    \ c, const F &check, ll l, ll r, ll ql, X &x) {\r\n    if (r <= ql) return r;\r\
-    \n    if (!c) c = new_node(l, r);\r\n    chmax(ql, l);\r\n    if (l == ql && check(MX::op(x,\
-    \ c->x))) {\r\n      x = MX::op(x, c->x);\r\n      return r;\r\n    }\r\n    if\
-    \ (r == l + 1) return l;\r\n    ll m = (l + r) / 2;\r\n    ll k = max_right_rec(c->l,\
-    \ check, l, m, ql, x);\r\n    if (k < m) return k;\r\n    return max_right_rec(c->r,\
-    \ check, m, r, ql, x);\r\n  }\r\n\r\n  template <typename F>\r\n  ll min_left_rec(np\
-    \ c, const F &check, ll l, ll r, ll qr, X &x) {\r\n    if (qr <= l) return l;\r\
-    \n    if (!c) c = new_node(l, r);\r\n    chmin(qr, r);\r\n    if (r == qr && check(MX::op(c->x,\
-    \ x))) {\r\n      x = MX::op(c->x, x);\r\n      return l;\r\n    }\r\n    if (r\
-    \ == l + 1) return r;\r\n    ll m = (l + r) / 2;\r\n    ll k = min_left_rec(c->r,\
-    \ check, m, r, qr, x);\r\n    if (m < k) return k;\r\n    return min_left_rec(c->l,\
-    \ check, l, m, qr, x);\r\n  }\r\n};\n"
-  code: "#pragma once\r\n\r\ntemplate <typename Monoid, bool PERSISTENT, int NODES>\r\
-    \nstruct Dynamic_SegTree {\r\n  using MX = Monoid;\r\n  using X = typename MX::value_type;\r\
-    \n  using F = function<X(ll, ll)>;\r\n  F default_prod;\r\n\r\n  struct Node {\r\
-    \n    Node *l, *r;\r\n    X x;\r\n  };\r\n\r\n  const ll n;\r\n  Node *pool;\r\
-    \n  int pid;\r\n  using np = Node *;\r\n\r\n  Dynamic_SegTree(\r\n      ll n,\
-    \ F default_prod = [](ll l, ll r) -> X { return MX::unit(); })\r\n      : default_prod(default_prod),\
-    \ n(n), pid(0) {\r\n    pool = new Node[NODES];\r\n  }\r\n\r\n  np new_node(const\
-    \ X x) {\r\n    pool[pid].l = pool[pid].r = nullptr;\r\n    pool[pid].x = x;\r\
-    \n    return &(pool[pid++]);\r\n  }\r\n\r\n  np new_node(ll l, ll r) { return\
-    \ new_node(default_prod(l, r)); }\r\n\r\n  np new_node(const vc<X> &dat) {\r\n\
-    \    assert(len(dat) == n);\r\n    auto dfs = [&](auto &dfs, ll l, ll r) -> Node\
-    \ * {\r\n      if (l == r) return nullptr;\r\n      if (r == l + 1) return new_node(dat[l]);\r\
-    \n      ll m = (l + r) / 2;\r\n      np l_root = dfs(dfs, l, m), r_root = dfs(dfs,\
-    \ m, r);\r\n      X x = MX::op(l_root->x, r_root->x);\r\n      np root = new_node(x);\r\
-    \n      root->l = l_root, root->r = r_root;\r\n      return root;\r\n    };\r\n\
-    \    return dfs(dfs, 0, len(dat));\r\n  }\r\n\r\n  X prod(np root, ll l, ll r)\
-    \ {\r\n    assert(0 <= l && l < r && r <= n);\r\n    X x = MX::unit();\r\n   \
-    \ prod_rec(root, 0, n, l, r, x);\r\n    return x;\r\n  }\r\n\r\n  np set(np root,\
-    \ ll i, const X &x) {\r\n    assert(0 <= i && i < n);\r\n    return set_rec(root,\
-    \ 0, n, i, x);\r\n  }\r\n\r\n  np multiply(np root, ll i, const X &x) {\r\n  \
-    \  assert(0 <= i && i < n);\r\n    return multiply_rec(root, 0, n, i, x);\r\n\
-    \  }\r\n\r\n  template <typename F>\r\n  ll max_right(np root, F check, ll L)\
-    \ {\r\n    assert(0 <= L && L <= n && check(MX::unit()));\r\n    X x = MX::unit();\r\
-    \n    return max_right_rec(root, check, 0, n, L, x);\r\n  }\r\n\r\n  template\
-    \ <typename F>\r\n  ll min_left(np root, F check, ll R) {\r\n    assert(0 <= R\
-    \ && R <= n && check(MX::unit()));\r\n    X x = MX::unit();\r\n    return min_left_rec(root,\
-    \ check, 0, n, R, x);\r\n  }\r\n\r\n  vc<X> restore(np root) {\r\n    vc<X> res;\r\
-    \n    res.reserve(n);\r\n    auto dfs = [&](auto &dfs, Node *c, ll l, ll r) ->\
-    \ void {\r\n      if (r - l == 1) {\r\n        res.eb(c->x);\r\n        return;\r\
-    \n      }\r\n      ll m = (l + r) / 2;\r\n      dfs(dfs, c->l, l, m);\r\n    \
-    \  dfs(dfs, c->r, m, r);\r\n    };\r\n    dfs(dfs, root, 0, n);\r\n    return\
-    \ res;\r\n  }\r\n\r\n  void reset() { pid = 0; }\r\n\r\nprivate:\r\n  np copy_node(np\
-    \ c) {\r\n    if (!c || !PERSISTENT) return c;\r\n    pool[pid].l = c->l, pool[pid].r\
-    \ = c->r;\r\n    pool[pid].x = c->x;\r\n    return &(pool[pid++]);\r\n  }\r\n\r\
-    \n  np set_rec(np c, ll l, ll r, ll i, const X &x) {\r\n    if (r == l + 1) {\r\
-    \n      c = copy_node(c);\r\n      c->x = x;\r\n      return c;\r\n    }\r\n \
-    \   ll m = (l + r) / 2;\r\n    if (!c->l) c->l = new_node(l, m);\r\n    if (!c->r)\
-    \ c->r = new_node(m, r);\r\n\r\n    c = copy_node(c);\r\n    if (i < m) {\r\n\
-    \      c->l = set_rec(c->l, l, m, i, x);\r\n    } else {\r\n      c->r = set_rec(c->r,\
-    \ m, r, i, x);\r\n    }\r\n    c->x = MX::op(c->l->x, c->r->x);\r\n    return\
-    \ c;\r\n  }\r\n\r\n  np multiply_rec(np c, ll l, ll r, ll i, const X &x) {\r\n\
-    \    if (r == l + 1) {\r\n      c = copy_node(c);\r\n      c->x = MX::op(c->x,\
-    \ x);\r\n      return c;\r\n    }\r\n    prop(c, l, r);\r\n    ll m = (l + r)\
-    \ / 2;\r\n    if (!c->l) c->l = new_node(l, m);\r\n    if (!c->r) c->r = new_node(m,\
-    \ r);\r\n\r\n    c = copy_node(c);\r\n    if (i < m) {\r\n      c->l = set_rec(c->l,\
-    \ l, m, i, x);\r\n    } else {\r\n      c->r = set_rec(c->r, m, r, i, x);\r\n\
-    \    }\r\n    c->x = MX::op(c->l->x, c->r->x);\r\n    return c;\r\n  }\r\n\r\n\
-    \  void prod_rec(np c, ll l, ll r, ll ql, ll qr, X &x) {\r\n    chmax(ql, l);\r\
-    \n    chmin(qr, r);\r\n    if (ql >= qr) return;\r\n    if (!c) {\r\n      x =\
-    \ MX::op(x, default_prod(ql, qr));\r\n      return;\r\n    }\r\n    if (l == ql\
-    \ && r == qr) {\r\n      x = MX::op(x, c->x);\r\n      return;\r\n    }\r\n  \
-    \  ll m = (l + r) / 2;\r\n    prod_rec(c->l, l, m, ql, qr, x);\r\n    prod_rec(c->r,\
-    \ m, r, ql, qr, x);\r\n  }\r\n\r\n  template <typename F>\r\n  ll max_right_rec(np\
-    \ c, const F &check, ll l, ll r, ll ql, X &x) {\r\n    if (r <= ql) return r;\r\
-    \n    if (!c) c = new_node(l, r);\r\n    chmax(ql, l);\r\n    if (l == ql && check(MX::op(x,\
-    \ c->x))) {\r\n      x = MX::op(x, c->x);\r\n      return r;\r\n    }\r\n    if\
-    \ (r == l + 1) return l;\r\n    ll m = (l + r) / 2;\r\n    ll k = max_right_rec(c->l,\
-    \ check, l, m, ql, x);\r\n    if (k < m) return k;\r\n    return max_right_rec(c->r,\
-    \ check, m, r, ql, x);\r\n  }\r\n\r\n  template <typename F>\r\n  ll min_left_rec(np\
-    \ c, const F &check, ll l, ll r, ll qr, X &x) {\r\n    if (qr <= l) return l;\r\
-    \n    if (!c) c = new_node(l, r);\r\n    chmin(qr, r);\r\n    if (r == qr && check(MX::op(c->x,\
-    \ x))) {\r\n      x = MX::op(c->x, x);\r\n      return l;\r\n    }\r\n    if (r\
-    \ == l + 1) return r;\r\n    ll m = (l + r) / 2;\r\n    ll k = min_left_rec(c->r,\
-    \ check, m, r, qr, x);\r\n    if (m < k) return k;\r\n    return min_left_rec(c->l,\
-    \ check, l, m, qr, x);\r\n  }\r\n};"
+    links:
+    - https://judge.yosupo.jp/problem/double_ended_priority_queue
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
+    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
+    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 269, in update\n    raise BundleErrorAt(path, -1, \"cycle found in inclusion\
+    \ relations\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ds/segtree/dynamic_segtree.hpp:\
+    \ line -1: cycle found in inclusion relations\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/double_ended_priority_queue\"\
+    \r\n\r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include\
+    \ \"ds/segtree/dynamic_segtree.hpp\"\r\n#include \"alg/monoid/add.hpp\"\r\n\r\n\
+    void solve() {\r\n  // \u52D5\u7684\u30BB\u30B0\u6728\u3067\u306E\u4E8C\u5206\u63A2\
+    \u7D22\r\n  LL(N, Q);\r\n  VEC(int, A, N);\r\n  const int LIM = 1'000'000'000;\r\
+    \n\r\n  Dynamic_SegTree<Monoid_Add<int>, false, 30'000'000> seg(-LIM, LIM + 1);\r\
+    \n  auto root = seg.new_node(-LIM, LIM + 1);\r\n  for (auto&& a: A) root = seg.multiply(root,\
+    \ a, 1);\r\n\r\n  FOR(Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(x);\r\
+    \n      seg.multiply(root, x, 1);\r\n    }\r\n    if (t == 1) {\r\n      auto\
+    \ check = [&](auto e) -> bool { return e == 0; };\r\n      int ANS = seg.max_right(root,\
+    \ check, -LIM);\r\n      print(ANS);\r\n      root = seg.multiply(root, ANS, -1);\r\
+    \n    }\r\n    if (t == 2) {\r\n      auto check = [&](auto e) -> bool { return\
+    \ e == 0; };\r\n      int ANS = seg.min_left(root, check, LIM + 1) - 1;\r\n  \
+    \    print(ANS);\r\n      root = seg.multiply(root, ANS, -1);\r\n    }\r\n  }\r\
+    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/segtree/dynamic_segtree.hpp
   requiredBy: []
-  timestamp: '2022-12-04 14:24:21+09:00'
-  verificationStatus: LIBRARY_SOME_WA
-  verifiedWith:
-  - test/yukicoder/1649.test.cpp
-  - test/yukicoder/789.test.cpp
-  - test/yukicoder/1826.test.cpp
-  - test/yukicoder/1036.test.cpp
-  - test/library_checker/datastructure/double_ended_pq.test.cpp
-  - test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: ds/segtree/dynamic_segtree.hpp
 layout: document
 redirect_from:

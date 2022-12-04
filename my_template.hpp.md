@@ -129,7 +129,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_I.test.cpp
     title: test/aoj/DSL_2_I.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_4_A.test.cpp
     title: test/aoj/DSL_4_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -309,7 +309,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/add_remove_query.test.cpp
     title: test/library_checker/datastructure/add_remove_query.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
     title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - icon: ':heavy_check_mark:'
@@ -318,9 +318,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
     title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/datastructure/double_ended_pq.test.cpp
-    title: test/library_checker/datastructure/double_ended_pq.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
     title: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
@@ -357,9 +354,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
-    title: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
     title: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
@@ -1002,9 +996,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1036.test.cpp
-    title: test/yukicoder/1036.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036_2.test.cpp
     title: test/yukicoder/1036_2.test.cpp
@@ -1242,9 +1233,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1643.test.cpp
     title: test/yukicoder/1643.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1649.test.cpp
-    title: test/yukicoder/1649.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1666.test.cpp
     title: test/yukicoder/1666.test.cpp
@@ -1323,9 +1311,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1821.test.cpp
     title: test/yukicoder/1821.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1826.test.cpp
-    title: test/yukicoder/1826.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1838.test.cpp
     title: test/yukicoder/1838.test.cpp
@@ -1497,9 +1482,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/779.test.cpp
     title: test/yukicoder/779.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/789.test.cpp
-    title: test/yukicoder/789.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
@@ -1700,7 +1682,6 @@ data:
   - test/yukicoder/1750.test.cpp
   - test/yukicoder/310.test.cpp
   - test/yukicoder/1524.test.cpp
-  - test/yukicoder/1649.test.cpp
   - test/yukicoder/1989.test.cpp
   - test/yukicoder/1561.test.cpp
   - test/yukicoder/2003.test.cpp
@@ -1808,9 +1789,7 @@ data:
   - test/yukicoder/1781.test.cpp
   - test/yukicoder/2119.test.cpp
   - test/yukicoder/1593.test.cpp
-  - test/yukicoder/789.test.cpp
   - test/yukicoder/1919.test.cpp
-  - test/yukicoder/1826.test.cpp
   - test/yukicoder/1297.test.cpp
   - test/yukicoder/919.test.cpp
   - test/yukicoder/1167.test.cpp
@@ -1824,7 +1803,6 @@ data:
   - test/yukicoder/1516.test.cpp
   - test/yukicoder/1745.test.cpp
   - test/yukicoder/1321.test.cpp
-  - test/yukicoder/1036.test.cpp
   - test/yukicoder/1170_2.test.cpp
   - test/yukicoder/1097.test.cpp
   - test/yukicoder/1848.test.cpp
@@ -2046,8 +2024,6 @@ data:
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
-  - test/library_checker/datastructure/double_ended_pq.test.cpp
-  - test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   - test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - test/library_checker/tree/tree_diameter.test.cpp

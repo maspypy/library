@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/minmincnt_add.hpp
     title: alg/acted_monoid/minmincnt_add.hpp
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/minmincnt.hpp
     title: alg/monoid/minmincnt.hpp
   - icon: ':question:'
@@ -15,15 +15,15 @@ data:
     title: ds/segtree/lazy_segtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_4_A.test.cpp
     title: test/aoj/DSL_4_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
     title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -109,13 +109,13 @@ data:
     \ xr);\r\n      yl = LB(Y, yl), yr = LB(Y, yr);\r\n      add[xl].eb(yl, yr);\r\
     \n      rm[xr].eb(yl, yr);\r\n    }\r\n\r\n    using AM = ActedMonoid_MinMincnt_Add<XY>;\r\
     \n    using T = typename AM::Monoid_X::value_type;\r\n    Lazy_SegTree<AM> seg(len(Y)\
-    \ - 1, [&](int i) -> T {\r\n      return {Y[i + 1] - Y[i], 0, Y[i + 1] - Y[i]};\r\
-    \n    });\r\n    ANS_TYPE ANS = 0;\r\n    FOR(i, len(X) - 1) {\r\n      ANS_TYPE\
-    \ dx = X[i + 1] - X[i];\r\n      for (auto &&[yl, yr]: add[i]) seg.apply(yl, yr,\
-    \ 1);\r\n      for (auto &&[yl, yr]: rm[i]) seg.apply(yl, yr, -1);\r\n      auto\
-    \ [min, mincnt] = seg.prod_all();\r\n      ANS_TYPE n = Y.back() - Y[0];\r\n \
-    \     if (min == 0) n -= mincnt;\r\n      ANS += n * dx;\r\n    }\r\n    return\
-    \ ANS;\r\n  }\r\n};\r\n"
+    \ - 1, [&](int i) -> T {\r\n      return {0, Y[i + 1] - Y[i]};\r\n    });\r\n\
+    \    ANS_TYPE ANS = 0;\r\n    FOR(i, len(X) - 1) {\r\n      ANS_TYPE dx = X[i\
+    \ + 1] - X[i];\r\n      for (auto &&[yl, yr]: add[i]) seg.apply(yl, yr, 1);\r\n\
+    \      for (auto &&[yl, yr]: rm[i]) seg.apply(yl, yr, -1);\r\n      auto [min,\
+    \ mincnt] = seg.prod_all();\r\n      ANS_TYPE n = Y.back() - Y[0];\r\n      if\
+    \ (min == 0) n -= mincnt;\r\n      ANS += n * dx;\r\n    }\r\n    return ANS;\r\
+    \n  }\r\n};\r\n"
   code: "#include \"ds/segtree/lazy_segtree.hpp\"\r\n#include \"alg/acted_monoid/minmincnt_add.hpp\"\
     \r\n\r\ntemplate <typename XY = int>\r\nstruct Rectangle_Union {\r\n  using RECT\
     \ = tuple<XY, XY, XY, XY>;\r\n  vc<RECT> rectangles;\r\n  vc<XY> X, Y;\r\n\r\n\
@@ -127,13 +127,13 @@ data:
     \      xl = LB(X, xl), xr = LB(X, xr);\r\n      yl = LB(Y, yl), yr = LB(Y, yr);\r\
     \n      add[xl].eb(yl, yr);\r\n      rm[xr].eb(yl, yr);\r\n    }\r\n\r\n    using\
     \ AM = ActedMonoid_MinMincnt_Add<XY>;\r\n    using T = typename AM::Monoid_X::value_type;\r\
-    \n    Lazy_SegTree<AM> seg(len(Y) - 1, [&](int i) -> T {\r\n      return {Y[i\
-    \ + 1] - Y[i], 0, Y[i + 1] - Y[i]};\r\n    });\r\n    ANS_TYPE ANS = 0;\r\n  \
-    \  FOR(i, len(X) - 1) {\r\n      ANS_TYPE dx = X[i + 1] - X[i];\r\n      for (auto\
-    \ &&[yl, yr]: add[i]) seg.apply(yl, yr, 1);\r\n      for (auto &&[yl, yr]: rm[i])\
-    \ seg.apply(yl, yr, -1);\r\n      auto [min, mincnt] = seg.prod_all();\r\n   \
-    \   ANS_TYPE n = Y.back() - Y[0];\r\n      if (min == 0) n -= mincnt;\r\n    \
-    \  ANS += n * dx;\r\n    }\r\n    return ANS;\r\n  }\r\n};\r\n"
+    \n    Lazy_SegTree<AM> seg(len(Y) - 1, [&](int i) -> T {\r\n      return {0, Y[i\
+    \ + 1] - Y[i]};\r\n    });\r\n    ANS_TYPE ANS = 0;\r\n    FOR(i, len(X) - 1)\
+    \ {\r\n      ANS_TYPE dx = X[i + 1] - X[i];\r\n      for (auto &&[yl, yr]: add[i])\
+    \ seg.apply(yl, yr, 1);\r\n      for (auto &&[yl, yr]: rm[i]) seg.apply(yl, yr,\
+    \ -1);\r\n      auto [min, mincnt] = seg.prod_all();\r\n      ANS_TYPE n = Y.back()\
+    \ - Y[0];\r\n      if (min == 0) n -= mincnt;\r\n      ANS += n * dx;\r\n    }\r\
+    \n    return ANS;\r\n  }\r\n};\r\n"
   dependsOn:
   - ds/segtree/lazy_segtree.hpp
   - alg/acted_monoid/minmincnt_add.hpp
@@ -142,8 +142,8 @@ data:
   isVerificationFile: false
   path: other/rectangle_union.hpp
   requiredBy: []
-  timestamp: '2022-12-04 11:32:38+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-12-04 15:09:24+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - test/aoj/DSL_4_A.test.cpp

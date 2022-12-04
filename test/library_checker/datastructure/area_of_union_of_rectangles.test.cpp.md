@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/minmincnt_add.hpp
     title: alg/acted_monoid/minmincnt_add.hpp
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/minmincnt.hpp
     title: alg/monoid/minmincnt.hpp
   - icon: ':question:'
@@ -19,14 +19,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: other/rectangle_union.hpp
     title: other/rectangle_union.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/area_of_union_of_rectangles
@@ -294,13 +294,13 @@ data:
     \ xr);\r\n      yl = LB(Y, yl), yr = LB(Y, yr);\r\n      add[xl].eb(yl, yr);\r\
     \n      rm[xr].eb(yl, yr);\r\n    }\r\n\r\n    using AM = ActedMonoid_MinMincnt_Add<XY>;\r\
     \n    using T = typename AM::Monoid_X::value_type;\r\n    Lazy_SegTree<AM> seg(len(Y)\
-    \ - 1, [&](int i) -> T {\r\n      return {Y[i + 1] - Y[i], 0, Y[i + 1] - Y[i]};\r\
-    \n    });\r\n    ANS_TYPE ANS = 0;\r\n    FOR(i, len(X) - 1) {\r\n      ANS_TYPE\
-    \ dx = X[i + 1] - X[i];\r\n      for (auto &&[yl, yr]: add[i]) seg.apply(yl, yr,\
-    \ 1);\r\n      for (auto &&[yl, yr]: rm[i]) seg.apply(yl, yr, -1);\r\n      auto\
-    \ [min, mincnt] = seg.prod_all();\r\n      ANS_TYPE n = Y.back() - Y[0];\r\n \
-    \     if (min == 0) n -= mincnt;\r\n      ANS += n * dx;\r\n    }\r\n    return\
-    \ ANS;\r\n  }\r\n};\r\n#line 6 \"test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp\"\
+    \ - 1, [&](int i) -> T {\r\n      return {0, Y[i + 1] - Y[i]};\r\n    });\r\n\
+    \    ANS_TYPE ANS = 0;\r\n    FOR(i, len(X) - 1) {\r\n      ANS_TYPE dx = X[i\
+    \ + 1] - X[i];\r\n      for (auto &&[yl, yr]: add[i]) seg.apply(yl, yr, 1);\r\n\
+    \      for (auto &&[yl, yr]: rm[i]) seg.apply(yl, yr, -1);\r\n      auto [min,\
+    \ mincnt] = seg.prod_all();\r\n      ANS_TYPE n = Y.back() - Y[0];\r\n      if\
+    \ (min == 0) n -= mincnt;\r\n      ANS += n * dx;\r\n    }\r\n    return ANS;\r\
+    \n  }\r\n};\r\n#line 6 \"test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  Rectangle_Union<int> X;\n  FOR(N) {\n    LL(a,\
     \ b, c, d);\n    X.add_rect(a, c, b, d);\n  }\n  print(X.calc<ll>());\n}\n\nsigned\
     \ main() {\n  cout << fixed << setprecision(15);\n\n  solve();\n\n  return 0;\n\
@@ -322,8 +322,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   requiredBy: []
-  timestamp: '2022-12-04 11:32:38+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-04 15:09:24+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
 layout: document
