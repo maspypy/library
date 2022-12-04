@@ -38,7 +38,7 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/summin_add.hpp
     title: alg/acted_monoid/summin_add.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: ds/cumsum_2d.hpp
     title: ds/cumsum_2d.hpp
   - icon: ':heavy_check_mark:'
@@ -298,6 +298,9 @@ data:
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/655.test.cpp
+    title: test/yukicoder/655.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/686.test.cpp
     title: test/yukicoder/686.test.cpp
   - icon: ':x:'
@@ -382,6 +385,7 @@ data:
   - test/yukicoder/1038.test.cpp
   - test/yukicoder/1269.test.cpp
   - test/yukicoder/1270.test.cpp
+  - test/yukicoder/655.test.cpp
   - test/yukicoder/924.test.cpp
   - test/yukicoder/1332.test.cpp
   - test/yukicoder/1641.test.cpp

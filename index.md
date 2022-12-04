@@ -180,7 +180,7 @@ data:
       title: ds/binarytrie/binarytrie.hpp
   - name: ds
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/cumsum_2d.hpp
       title: ds/cumsum_2d.hpp
     - icon: ':heavy_check_mark:'
@@ -218,7 +218,7 @@ data:
     - icon: ':question:'
       path: ds/disjointsparse/disjointsparse.hpp
       title: ds/disjointsparse/disjointsparse.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/disjointsparse/xor_sparsetable.hpp
       title: ds/disjointsparse/xor_sparsetable.hpp
   - name: ds/fenwicktree
@@ -2710,7 +2710,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1881.test.cpp
       title: test/yukicoder/1881.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1891.test.cpp
       title: test/yukicoder/1891.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2836,7 +2836,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/626.test.cpp
       title: test/yukicoder/626.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/655.test.cpp
       title: test/yukicoder/655.test.cpp
     - icon: ':heavy_check_mark:'
