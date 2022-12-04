@@ -1,34 +1,28 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1891"
 #include "my_template.hpp"
 #include "other/io.hpp"
+#include "ds/disjointsparse/xor_disjointsparse.hpp"
 #include "mod/modint.hpp"
 #include "alg/monoid/affine.hpp"
-#include "ds/disjointsparse/xor_sparsetable.hpp"
 
 using mint = modint998;
 
 void solve() {
-  LL(N, Q);
-  ll LOG = topbit(N);
+  INT(N, Q);
   using Mono = Monoid_Affine<mint>;
-  using X = typename Mono::value_type;
-  VEC(X, A, N);
-  Xor_SparseTable<Mono> seg(A);
+  Xor_DisjointSparse<Mono> seg(N, [](int i) -> typename Mono::value_type {
+    INT(a, b);
+    return {a, b};
+  });
   FOR(Q) {
-    LL(l, r, p, x);
-    auto [a, b] = seg.prod(l, r, p);
-    print(a * mint(x) + b);
+    INT(l, r, p, x);
+    auto f = seg.prod(l, r, p);
+    print(Mono::eval(f, x));
   }
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
+  solve();
 
   return 0;
 }
