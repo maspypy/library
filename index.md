@@ -2172,6 +2172,9 @@ data:
       path: test/mytest/kdtree_am.test.cpp
       title: test/mytest/kdtree_am.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/mytest/kdtree_monoid.test.cpp
+      title: test/mytest/kdtree_monoid.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/mytest/knight_distance.test.cpp
       title: test/mytest/knight_distance.test.cpp
     - icon: ':heavy_check_mark:'

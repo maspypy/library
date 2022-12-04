@@ -1,6 +1,9 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: alg/monoid/summax.hpp
+    title: alg/monoid/summax.hpp
   - icon: ':question:'
     path: ds/kdtree/kdtree_monoid.hpp
     title: ds/kdtree/kdtree_monoid.hpp
@@ -10,26 +13,30 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/base.hpp
+    title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C
-  bundledCode: "#line 1 \"test/aoj/DSL_2_C.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C\"\
-    \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
-    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
-    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
-    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
-    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/mytest/kdtree_monoid.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#pragma\
+    \ GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
+    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
+    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
+    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -197,23 +204,23 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 1 \"ds/kdtree/kdtree_monoid.hpp\"\ntemplate <class Monoid,\
-    \ typename XY>\r\nstruct KDTree_Monoid {\r\n  using MX = Monoid;\r\n  using X\
-    \ = typename MX::value_type;\r\n  static_assert(MX::commute);\r\n\r\n  // \u5C0F\
-    \u6570\u3082\u8003\u616E\u3059\u308B\u3068\u3001\u9589\u3067\u6301\u3064\u8A2D\
-    \u8A08\u65B9\u91DD\u306B\u306A\u308B\u3002\u305F\u3060\u3057\u3001\u30AF\u30A8\
-    \u30EA\u306F\u3044\u3064\u3082\u306E\u534A\u958B\u3092\u4F7F\u3046\r\n  vc<tuple<XY,\
-    \ XY, XY, XY>> closed_range;\r\n  vc<X> dat;\r\n  int n;\r\n\r\n  KDTree_Monoid(vc<XY>\
-    \ xs, vc<XY> ys, vc<X> vs) : n(len(xs)) {\r\n    assert(n > 0);\r\n    int log\
-    \ = 0;\r\n    while ((1 << log) < n) ++log;\r\n    dat.resize(1 << (log + 1));\r\
-    \n    closed_range.resize(1 << (log + 1));\r\n    build(1, xs, ys, vs);\r\n  }\r\
-    \n\r\n  void multiply(XY x, XY y, const X& v) { multiply_rec(1, x, y, v); }\r\n\
-    \r\n  // [xl, xr) x [yl, yr)\r\n  X prod(XY xl, XY xr, XY yl, XY yr) {\r\n   \
-    \ assert(xl <= xr && yl <= yr);\r\n    return prod_rec(1, xl, xr, yl, yr);\r\n\
-    \  }\r\n\r\n  X prod_all() { return dat[1]; }\r\n\r\nprivate:\r\n  void build(int\
-    \ idx, vc<XY> xs, vc<XY> ys, vc<X> vs, bool divx = true) {\r\n    int n = len(xs);\r\
-    \n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\n    xmin = ymin =\
-    \ numeric_limits<XY>::max();\r\n    xmax = ymax = numeric_limits<XY>::lowest();\r\
+    \ yes(!t); }\n#line 4 \"test/mytest/kdtree_monoid.test.cpp\"\n\n#line 1 \"ds/kdtree/kdtree_monoid.hpp\"\
+    \ntemplate <class Monoid, typename XY>\r\nstruct KDTree_Monoid {\r\n  using MX\
+    \ = Monoid;\r\n  using X = typename MX::value_type;\r\n  static_assert(MX::commute);\r\
+    \n\r\n  // \u5C0F\u6570\u3082\u8003\u616E\u3059\u308B\u3068\u3001\u9589\u3067\u6301\
+    \u3064\u8A2D\u8A08\u65B9\u91DD\u306B\u306A\u308B\u3002\u305F\u3060\u3057\u3001\
+    \u30AF\u30A8\u30EA\u306F\u3044\u3064\u3082\u306E\u534A\u958B\u3092\u4F7F\u3046\
+    \r\n  vc<tuple<XY, XY, XY, XY>> closed_range;\r\n  vc<X> dat;\r\n  int n;\r\n\r\
+    \n  KDTree_Monoid(vc<XY> xs, vc<XY> ys, vc<X> vs) : n(len(xs)) {\r\n    assert(n\
+    \ > 0);\r\n    int log = 0;\r\n    while ((1 << log) < n) ++log;\r\n    dat.resize(1\
+    \ << (log + 1));\r\n    closed_range.resize(1 << (log + 1));\r\n    build(1, xs,\
+    \ ys, vs);\r\n  }\r\n\r\n  void multiply(XY x, XY y, const X& v) { multiply_rec(1,\
+    \ x, y, v); }\r\n\r\n  // [xl, xr) x [yl, yr)\r\n  X prod(XY xl, XY xr, XY yl,\
+    \ XY yr) {\r\n    assert(xl <= xr && yl <= yr);\r\n    return prod_rec(1, xl,\
+    \ xr, yl, yr);\r\n  }\r\n\r\n  X prod_all() { return dat[1]; }\r\n\r\nprivate:\r\
+    \n  void build(int idx, vc<XY> xs, vc<XY> ys, vc<X> vs, bool divx = true) {\r\n\
+    \    int n = len(xs);\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\
+    \n    xmin = ymin = numeric_limits<XY>::max();\r\n    xmax = ymax = numeric_limits<XY>::lowest();\r\
     \n\r\n    FOR(i, n) {\r\n      auto x = xs[i], y = ys[i];\r\n      chmin(xmin,\
     \ x), chmax(xmax, x), chmin(ymin, y), chmax(ymax, y);\r\n    }\r\n    if (xmin\
     \ == xmax && ymin == ymax) {\r\n      X x = MX::unit();\r\n      for (auto&& v:\
@@ -243,39 +250,72 @@ data:
     \ MX::unit();\r\n    if (x1 <= xmin && xmax < x2 && y1 <= ymin && ymax < y2) {\
     \ return dat[idx]; }\r\n    return MX::op(prod_rec(2 * idx + 0, x1, x2, y1, y2),\r\
     \n                  prod_rec(2 * idx + 1, x1, x2, y1, y2));\r\n  }\r\n};\r\n#line\
-    \ 6 \"test/aoj/DSL_2_C.test.cpp\"\n\nstruct Mono {\n  using value_type = vc<int>;\n\
-    \  using X = value_type;\n  static X op(X x, X y) {\n    x.insert(x.end(), all(y));\n\
-    \    return x;\n  }\n  static X unit() { return {}; }\n  static constexpr bool\
-    \ commute = 1;\n};\n\nvoid solve() {\n  LL(N);\n  vi X, Y;\n  vvc<int> idx(N);\n\
-    \  FOR(i, N) {\n    LL(x, y);\n    X.eb(x);\n    Y.eb(y);\n    idx[i].eb(i);\n\
-    \  }\n  KDTree_Monoid<Mono> KDT(X, Y, idx);\n\n  LL(Q);\n  FOR(Q) {\n    LL(xl,\
-    \ xr, yl, yr);\n    auto e = KDT.prod(xl, xr + 1, yl, yr + 1);\n    sort(all(e));\n\
-    \    for (auto&& v: e) print(v);\n    print();\n  }\n}\n\nsigned main() {\n  solve();\n\
+    \ 2 \"alg/monoid/summax.hpp\"\n\ntemplate <typename E>\nstruct Monoid_SumMax {\n\
+    \  using value_type = pair<E, E>;\n  using X = value_type;\n  static X op(X x,\
+    \ X y) { return {x.fi + y.fi, max(x.se, y.se)}; }\n  static X from_element(E e)\
+    \ { return {e, e}; }\n  static constexpr X unit() { return {E(0), numeric_limits<E>::lowest()};\
+    \ }\n  static constexpr bool commute = 1;\n};\n#line 2 \"random/base.hpp\"\n\n\
+    u64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 8 \"test/mytest/kdtree_monoid.test.cpp\"\
+    \n\nvoid test() {\n  ll LIM = RNG(1, 100);\n  int N = RNG(1, 100);\n  using MX\
+    \ = Monoid_SumMax<int>;\n\n  vc<int> dat[100][100];\n\n  vc<int> X, Y;\n  vc<typename\
+    \ MX::value_type> val;\n  FOR(i, N) {\n    int x = RNG(0, LIM);\n    int y = RNG(0,\
+    \ LIM);\n    int v = RNG(0, 100);\n    dat[x][y].eb(v);\n    X.eb(x), Y.eb(y),\
+    \ val.eb(v, v);\n  }\n  KDTree_Monoid<MX, int> KDT(X, Y, val);\n\n  int Q = 100;\n\
+    \  FOR(Q) {\n    int t = RNG(0, 3);\n    int xl = RNG(0, LIM), xr = RNG(0, LIM),\
+    \ yl = RNG(0, LIM), yr = RNG(0, LIM);\n    if (xl > xr) swap(xl, xr);\n    if\
+    \ (yl > yr) swap(yl, yr);\n    if (t == 0) {\n      // multiply\n      int k =\
+    \ RNG(0, N);\n      int x = X[k], y = Y[k];\n      int v = RNG(0, 100);\n    \
+    \  dat[x][y].eb(v);\n      KDT.multiply(x, y, {v, v});\n    }\n    if (t == 1)\
+    \ {\n      // prod\n      int sm = 0, mx = MX::unit().se;\n      FOR(i, xl, xr)\
+    \ FOR(j, yl, yr) {\n        for (auto&& x: dat[i][j]) sm += x, chmax(mx, x);\n\
+    \      }\n      auto res = KDT.prod(xl, xr, yl, yr);\n      assert(res.fi == sm\
+    \ && res.se == mx);\n    }\n    if (t == 2) {\n      // prod all\n      int sm\
+    \ = 0, mx = MX::unit().se;\n      FOR(i, LIM) FOR(j, LIM) {\n        for (auto&&\
+    \ x: dat[i][j]) sm += x, chmax(mx, x);\n      }\n      auto res = KDT.prod_all();\n\
+    \      assert(res.fi == sm && res.se == mx);\n    }\n  }\n}\n\nvoid solve() {\n\
+    \  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  FOR(100) test();\n  solve();\n\
     \n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/kdtree/kdtree_monoid.hpp\"\
-    \n\nstruct Mono {\n  using value_type = vc<int>;\n  using X = value_type;\n  static\
-    \ X op(X x, X y) {\n    x.insert(x.end(), all(y));\n    return x;\n  }\n  static\
-    \ X unit() { return {}; }\n  static constexpr bool commute = 1;\n};\n\nvoid solve()\
-    \ {\n  LL(N);\n  vi X, Y;\n  vvc<int> idx(N);\n  FOR(i, N) {\n    LL(x, y);\n\
-    \    X.eb(x);\n    Y.eb(y);\n    idx[i].eb(i);\n  }\n  KDTree_Monoid<Mono> KDT(X,\
-    \ Y, idx);\n\n  LL(Q);\n  FOR(Q) {\n    LL(xl, xr, yl, yr);\n    auto e = KDT.prod(xl,\
-    \ xr + 1, yl, yr + 1);\n    sort(all(e));\n    for (auto&& v: e) print(v);\n \
-    \   print();\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n\n#include \"ds/kdtree/kdtree_monoid.hpp\"\n#include\
+    \ \"alg/monoid/summax.hpp\"\n#include \"random/base.hpp\"\n\nvoid test() {\n \
+    \ ll LIM = RNG(1, 100);\n  int N = RNG(1, 100);\n  using MX = Monoid_SumMax<int>;\n\
+    \n  vc<int> dat[100][100];\n\n  vc<int> X, Y;\n  vc<typename MX::value_type> val;\n\
+    \  FOR(i, N) {\n    int x = RNG(0, LIM);\n    int y = RNG(0, LIM);\n    int v\
+    \ = RNG(0, 100);\n    dat[x][y].eb(v);\n    X.eb(x), Y.eb(y), val.eb(v, v);\n\
+    \  }\n  KDTree_Monoid<MX, int> KDT(X, Y, val);\n\n  int Q = 100;\n  FOR(Q) {\n\
+    \    int t = RNG(0, 3);\n    int xl = RNG(0, LIM), xr = RNG(0, LIM), yl = RNG(0,\
+    \ LIM), yr = RNG(0, LIM);\n    if (xl > xr) swap(xl, xr);\n    if (yl > yr) swap(yl,\
+    \ yr);\n    if (t == 0) {\n      // multiply\n      int k = RNG(0, N);\n     \
+    \ int x = X[k], y = Y[k];\n      int v = RNG(0, 100);\n      dat[x][y].eb(v);\n\
+    \      KDT.multiply(x, y, {v, v});\n    }\n    if (t == 1) {\n      // prod\n\
+    \      int sm = 0, mx = MX::unit().se;\n      FOR(i, xl, xr) FOR(j, yl, yr) {\n\
+    \        for (auto&& x: dat[i][j]) sm += x, chmax(mx, x);\n      }\n      auto\
+    \ res = KDT.prod(xl, xr, yl, yr);\n      assert(res.fi == sm && res.se == mx);\n\
+    \    }\n    if (t == 2) {\n      // prod all\n      int sm = 0, mx = MX::unit().se;\n\
+    \      FOR(i, LIM) FOR(j, LIM) {\n        for (auto&& x: dat[i][j]) sm += x, chmax(mx,\
+    \ x);\n      }\n      auto res = KDT.prod_all();\n      assert(res.fi == sm &&\
+    \ res.se == mx);\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n\
+    }\n\nsigned main() {\n  FOR(100) test();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - ds/kdtree/kdtree_monoid.hpp
+  - alg/monoid/summax.hpp
+  - random/base.hpp
   isVerificationFile: true
-  path: test/aoj/DSL_2_C.test.cpp
+  path: test/mytest/kdtree_monoid.test.cpp
   requiredBy: []
   timestamp: '2022-12-05 02:37:00+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/DSL_2_C.test.cpp
+documentation_of: test/mytest/kdtree_monoid.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/DSL_2_C.test.cpp
-- /verify/test/aoj/DSL_2_C.test.cpp.html
-title: test/aoj/DSL_2_C.test.cpp
+- /verify/test/mytest/kdtree_monoid.test.cpp
+- /verify/test/mytest/kdtree_monoid.test.cpp.html
+title: test/mytest/kdtree_monoid.test.cpp
 ---

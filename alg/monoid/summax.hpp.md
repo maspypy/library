@@ -19,6 +19,9 @@ data:
     path: test/mytest/kdtree_am.test.cpp
     title: test/mytest/kdtree_am.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/kdtree_monoid.test.cpp
+    title: test/mytest/kdtree_monoid.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/summax_add.test.cpp
     title: test/mytest/summax_add.test.cpp
   - icon: ':heavy_check_mark:'
@@ -53,6 +56,7 @@ data:
   - test/mytest/summax_add.test.cpp
   - test/mytest/summax_assign.test.cpp
   - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
+  - test/mytest/kdtree_monoid.test.cpp
   - test/mytest/dynamic_lazy_segtree.test.cpp
 documentation_of: alg/monoid/summax.hpp
 layout: document

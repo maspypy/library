@@ -145,6 +145,9 @@ data:
     path: test/mytest/kdtree_am.test.cpp
     title: test/mytest/kdtree_am.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/kdtree_monoid.test.cpp
+    title: test/mytest/kdtree_monoid.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/max_assign.test.cpp
     title: test/mytest/max_assign.test.cpp
   - icon: ':heavy_check_mark:'
@@ -421,6 +424,7 @@ data:
   - test/mytest/segtree_xor_prod.test.cpp
   - test/mytest/min_min.test.cpp
   - test/mytest/rbst_monoid.test.cpp
+  - test/mytest/kdtree_monoid.test.cpp
   - test/mytest/rbst.test.cpp
   - test/mytest/splay_am.test.cpp
   - test/mytest/max_min.test.cpp
