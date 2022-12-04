@@ -795,6 +795,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/dyadic_rational.test.cpp
     title: test/mytest/dyadic_rational.test.cpp
+  - icon: ':x:'
+    path: test/mytest/dynamic_lazy_segtree.test.cpp
+    title: test/mytest/dynamic_lazy_segtree.test.cpp
+  - icon: ':x:'
+    path: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
+    title: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
@@ -1838,6 +1844,7 @@ data:
   - test/mytest/mod_sum_of_linear.test.cpp
   - test/mytest/online_inv.test.cpp
   - test/mytest/all_but_one_products.test.cpp
+  - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
   - test/mytest/splay_cm.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/conv_leq.test.cpp
@@ -1861,6 +1868,7 @@ data:
   - test/mytest/simple_perm.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/tutte.test.cpp
+  - test/mytest/dynamic_lazy_segtree.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
   - test/mytest/prime_sum.test.cpp

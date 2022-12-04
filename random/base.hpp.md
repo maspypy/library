@@ -126,6 +126,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/conv_leq.test.cpp
     title: test/mytest/conv_leq.test.cpp
+  - icon: ':x:'
+    path: test/mytest/dynamic_lazy_segtree.test.cpp
+    title: test/mytest/dynamic_lazy_segtree.test.cpp
+  - icon: ':x:'
+    path: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
+    title: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
@@ -368,6 +374,7 @@ data:
   - test/mytest/splay_monoid.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
   - test/mytest/online_inv.test.cpp
+  - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
   - test/mytest/splay_cm.test.cpp
   - test/mytest/conv_leq.test.cpp
   - test/mytest/chirp_z.test.cpp
@@ -381,6 +388,7 @@ data:
   - test/mytest/online_division.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/tutte.test.cpp
+  - test/mytest/dynamic_lazy_segtree.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
   - test/mytest/summin_assign.test.cpp

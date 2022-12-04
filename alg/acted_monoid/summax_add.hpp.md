@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: alg/monoid/summax.hpp
     title: alg/monoid/summax.hpp
   _extendedRequiredBy: []
@@ -18,7 +18,7 @@ data:
     \ Monoid_SumMax {\n  using value_type = pair<E, E>;\n  using X = value_type;\n\
     \  static X op(X x, X y) { return {x.fi + y.fi, max(x.se, y.se)}; }\n  static\
     \ X from_element(E e) { return {e, e}; }\n  static constexpr X unit() { return\
-    \ {E(0), numeric_limits<E>::max()}; }\n  static constexpr bool commute = 1;\n\
+    \ {E(0), numeric_limits<E>::lowest()}; }\n  static constexpr bool commute = 1;\n\
     };\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct Monoid_Add\
     \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
     \ &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept\
@@ -42,7 +42,7 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/summax_add.hpp
   requiredBy: []
-  timestamp: '2022-12-03 07:16:30+09:00'
+  timestamp: '2022-12-04 13:46:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/acted_monoid/summax_add.hpp

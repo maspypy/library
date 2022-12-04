@@ -18,11 +18,10 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/summin.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
-    \ Monoid_SumMin {\r\n  using value_type = tuple<E, E, E>;\r\n  using X = value_type;\r\
-    \n  static X op(X x, X y) {\r\n    auto [xc, xs, xm] = x;\r\n    auto [yc, ys,\
-    \ ym] = y;\r\n    return {xc + yc, xs + ys, max(xm, ym)};\r\n  }\r\n  static X\
-    \ from_element(E x) { return {1, x, x}; }\r\n  static constexpr X unit() { return\
-    \ {0, 0, numeric_limits<ll>::max()}; }\r\n  static constexpr bool commute = true;\r\
+    \ Monoid_SumMin {\r\n  using value_type = pair<E, E>;\r\n  using X = value_type;\r\
+    \n  static X op(X x, X y) { return {x.fi + y.fi, min(x.se, y.se)}; }\r\n  static\
+    \ X from_element(E x) { return {1, x, x}; }\r\n  static constexpr X unit() { return\
+    \ {E(0), numeric_limits<ll>::max()}; }\r\n  static constexpr bool commute = true;\r\
     \n};\r\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct Monoid_Add\
     \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
     \ &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept\
@@ -48,7 +47,7 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/summin_add.hpp
   requiredBy: []
-  timestamp: '2022-12-04 01:39:31+09:00'
+  timestamp: '2022-12-04 13:46:37+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/summin_add.test.cpp

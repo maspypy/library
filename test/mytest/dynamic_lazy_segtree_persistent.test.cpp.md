@@ -2,17 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':x:'
-    path: alg/acted_monoid/summin_assign.hpp
-    title: alg/acted_monoid/summin_assign.hpp
+    path: alg/acted_monoid/summax_assign.hpp
+    title: alg/acted_monoid/summax_assign.hpp
   - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
   - icon: ':x:'
-    path: alg/monoid/summin.hpp
-    title: alg/monoid/summin.hpp
-  - icon: ':question:'
-    path: ds/segtree/lazy_segtree.hpp
-    title: ds/segtree/lazy_segtree.hpp
+    path: alg/monoid/summax.hpp
+    title: alg/monoid/summax.hpp
+  - icon: ':x:'
+    path: ds/segtree/dynamic_lazy_segtree.hpp
+    title: ds/segtree/dynamic_lazy_segtree.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -32,13 +32,13 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/summin_assign.test.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#pragma\
-    \ GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include\
-    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
-    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
-    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
-    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+  bundledCode: "#line 1 \"test/mytest/dynamic_lazy_segtree_persistent.test.cpp\"\n\
+    #define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\
+    \n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n\
+    #include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing\
+    \ pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing\
+    \ u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing\
+    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
     \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
     template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
     \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
@@ -210,124 +210,165 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"alg/monoid/summin.hpp\"\n\r\ntemplate <typename E>\r\n\
-    struct Monoid_SumMin {\r\n  using value_type = pair<E, E>;\r\n  using X = value_type;\r\
-    \n  static X op(X x, X y) { return {x.fi + y.fi, min(x.se, y.se)}; }\r\n  static\
-    \ X from_element(E x) { return {1, x, x}; }\r\n  static constexpr X unit() { return\
-    \ {E(0), numeric_limits<ll>::max()}; }\r\n  static constexpr bool commute = true;\r\
-    \n};\r\n#line 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, X none_val>\r\
+    \ yes(!t); }\n#line 2 \"alg/monoid/summax.hpp\"\n\ntemplate <typename E>\nstruct\
+    \ Monoid_SumMax {\n  using value_type = pair<E, E>;\n  using X = value_type;\n\
+    \  static X op(X x, X y) { return {x.fi + y.fi, max(x.se, y.se)}; }\n  static\
+    \ X from_element(E e) { return {e, e}; }\n  static constexpr X unit() { return\
+    \ {E(0), numeric_limits<E>::lowest()}; }\n  static constexpr bool commute = 1;\n\
+    };\n#line 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, X none_val>\r\
     \nstruct Monoid_Assign {\r\n  using value_type = X;\r\n  static X op(X x, X y)\
     \ { return (y == none_val ? x : y); }\r\n  static constexpr X unit() { return\
     \ none_val; }\r\n  static constexpr bool commute = false;\r\n};\r\n#line 3 \"\
-    alg/acted_monoid/summin_assign.hpp\"\n\r\ntemplate <typename E, ll none_val>\r\
-    \nstruct ActedMonoid_CntSumMin_Assign {\r\n  using Monoid_X = Monoid_SumMin<E>;\r\
-    \n  using Monoid_A = Monoid_Assign<ll, none_val>;\r\n  using X = typename Monoid_X::value_type;\r\
+    alg/acted_monoid/summax_assign.hpp\"\n\r\ntemplate <typename E, E none_val>\r\n\
+    struct ActedMonoid_SumMax_Assign {\r\n  using Monoid_X = Monoid_SumMax<E>;\r\n\
+    \  using Monoid_A = Monoid_Assign<E, none_val>;\r\n  using X = typename Monoid_X::value_type;\r\
     \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
     \ X& x, const A& a, const ll& size) {\r\n    if (a == Monoid_A::unit()) return\
-    \ x;\r\n    return {E(size) * a, a};\r\n  }\r\n};\r\n#line 2 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"ds/segtree/lazy_segtree.hpp\"\
-    \n\ntemplate <typename ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n\
-    \  using MX = typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  static_assert(MX::commute);\n\
-    \  using X = typename MX::value_type;\n  using A = typename MA::value_type;\n\
-    \  int n, log, size;\n  vc<X> dat;\n  vc<A> laz;\n\n  Lazy_SegTree() {}\n  Lazy_SegTree(int\
-    \ n) { build(n); }\n  template <typename F>\n  Lazy_SegTree(int n, F f) {\n  \
-    \  build(n, f);\n  }\n  Lazy_SegTree(const vc<X>& v) { build(v); }\n\n  void build(int\
-    \ m) {\n    build(m, [](int i) -> X { return MX::unit(); });\n  }\n  void build(const\
-    \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
-    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
-    \ << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, MX::unit());\n\
-    \    laz.assign(size, MA::unit());\n    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i,\
-    \ 1, size) update(i);\n  }\n\n  void update(int k) { dat[k] = MX::op(dat[2 * k],\
-    \ dat[2 * k + 1]); }\n  void set(int p, X x) {\n    assert(0 <= p && p < n);\n\
-    \    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    dat[p]\
-    \ = x;\n    for (int i = 1; i <= log; i++) update(p >> i);\n  }\n\n  X get(int\
-    \ p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i\
-    \ >= 1; i--) push(p >> i);\n    return dat[p];\n  }\n\n  vc<X> get_all() {\n \
-    \   FOR(k, 1, size) { push(k); }\n    return {dat.begin() + size, dat.begin()\
-    \ + size + n};\n  }\n\n  X prod(int l, int r) {\n    assert(0 <= l && l <= r &&\
-    \ r <= n);\n    if (l == r) return MX::unit();\n    l += size, r += size;\n  \
-    \  for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l >>\
-    \ i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n    }\n    X x = MX::unit();\n\
-    \    while (l < r) {\n      if (l & 1) x = MX::op(x, dat[l++]);\n      if (r &\
-    \ 1) x = MX::op(x, dat[--r]);\n      l >>= 1, r >>= 1;\n    }\n    return x;\n\
-    \  }\n\n  X prod_all() { return dat[1]; }\n\n  void apply(int l, int r, A a) {\n\
-    \    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n    l += size,\
-    \ r += size;\n    for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i)\
-    \ != l) push(l >> i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n \
-    \   }\n    int l2 = l, r2 = r;\n    while (l < r) {\n      if (l & 1) apply_at(l++,\
-    \ a);\n      if (r & 1) apply_at(--r, a);\n      l >>= 1, r >>= 1;\n    }\n  \
-    \  l = l2, r = r2;\n    for (int i = 1; i <= log; i++) {\n      if (((l >> i)\
-    \ << i) != l) update(l >> i);\n      if (((r >> i) << i) != r) update((r - 1)\
-    \ >> i);\n    }\n  }\n\n  template <typename F>\n  int max_right(const F check,\
-    \ int l) {\n    assert(0 <= l && l <= n);\n    assert(check(MX::unit()));\n  \
-    \  if (l == n) return n;\n    l += size;\n    for (int i = log; i >= 1; i--) push(l\
-    \ >> i);\n    X sm = MX::unit();\n    do {\n      while (l % 2 == 0) l >>= 1;\n\
-    \      if (!check(MX::op(sm, dat[l]))) {\n        while (l < size) {\n       \
-    \   push(l);\n          l = (2 * l);\n          if (check(MX::op(sm, dat[l])))\
-    \ { sm = MX::op(sm, dat[l++]); }\n        }\n        return l - size;\n      }\n\
-    \      sm = MX::op(sm, dat[l++]);\n    } while ((l & -l) != l);\n    return n;\n\
-    \  }\n\n  template <typename F>\n  int min_left(const F check, int r) {\n    assert(0\
-    \ <= r && r <= n);\n    assert(check(MX::unit()));\n    if (r == 0) return 0;\n\
-    \    r += size;\n    for (int i = log; i >= 1; i--) push((r - 1) >> i);\n    X\
-    \ sm = MX::unit();\n    do {\n      r--;\n      while (r > 1 && (r % 2)) r >>=\
-    \ 1;\n      if (!check(MX::op(dat[r], sm))) {\n        while (r < size) {\n  \
-    \        push(r);\n          r = (2 * r + 1);\n          if (check(MX::op(dat[r],\
-    \ sm))) { sm = MX::op(dat[r--], sm); }\n        }\n        return r + 1 - size;\n\
-    \      }\n      sm = MX::op(dat[r], sm);\n    } while ((r & -r) != r);\n    return\
-    \ 0;\n  }\n\nprivate:\n  void apply_at(int k, A a) {\n    int sz = 1 << (log -\
-    \ topbit(k));\n    dat[k] = AM::act(dat[k], a, sz);\n    if (k < size) laz[k]\
-    \ = MA::op(laz[k], a);\n  }\n  void push(int k) {\n    if (laz[k] == MA::unit())\
-    \ return;\n    apply_at(2 * k, laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k]\
-    \ = MA::unit();\n  }\n};\n#line 7 \"test/mytest/summin_assign.test.cpp\"\n\nvoid\
-    \ test() {\n  int N = RNG(1, 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1,\
-    \ 100);\n  using AM = ActedMonoid_CntSumMin_Assign<ll, -1>;\n  using Mono = typename\
-    \ AM::Monoid_X;\n  Lazy_SegTree<AM> seg(\n      N, [&](int i) -> Mono::value_type\
-    \ { return Mono::from_element(A[i]); });\n  int Q = RNG(1, 100);\n  FOR(Q) {\n\
-    \    ll t = RNG(0, 2);\n    ll L = RNG(0, N);\n    ll R = RNG(0, N);\n    if (L\
-    \ > R) swap(L, R);\n    ++R;\n    if (t == 1) {\n      ll x = RNG(1, 100);\n \
-    \     FOR(i, L, R) A[i] = x;\n      seg.apply(L, R, x);\n    }\n    if (t == 2)\
-    \ {\n      vc<int> B = {A.begin() + L, A.begin() + R};\n      auto [sm, mi] =\
-    \ seg.prod(L, R);\n      assert(sm == SUM<ll>(B));\n      assert(mi == MIN(B));\n\
+    \ x;\r\n    return {E(size) * a, a};\r\n  }\r\n};\r\n#line 2 \"ds/segtree/dynamic_lazy_segtree.hpp\"\
+    \n\ntemplate <typename ActedMonoid, bool PERSISTENT, int NODES>\nstruct Dynamic_Lazy_SegTree\
+    \ {\n  using AM = ActedMonoid;\n  using MX = typename AM::Monoid_X;\n  using MA\
+    \ = typename AM::Monoid_A;\n  using X = typename AM::X;\n  using A = typename\
+    \ AM::A;\n  using F = function<X(ll, ll)>;\n  F default_prod;\n\n  struct Node\
+    \ {\n    Node *l, *r;\n    X x;\n    A lazy;\n  };\n\n  const ll n;\n  Node *pool;\n\
+    \  int pid;\n  using np = Node *;\n\n  Dynamic_Lazy_SegTree(\n      ll n, F default_prod\
+    \ = [](ll l, ll r) -> X { return MX::unit(); })\n      : default_prod(default_prod),\
+    \ n(n), pid(0) {\n    pool = new Node[NODES];\n  }\n\n  np new_node(const X x)\
+    \ {\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x = x;\n    pool[pid].lazy\
+    \ = MA::unit();\n    return &(pool[pid++]);\n  }\n\n  np new_node(ll l, ll r)\
+    \ { return new_node(default_prod(l, r)); }\n\n  np new_node(const vc<X> &dat)\
+    \ {\n    assert(len(dat) == n);\n    auto dfs = [&](auto &dfs, ll l, ll r) ->\
+    \ Node * {\n      if (l == r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n\
+    \      ll m = (l + r) / 2;\n      np l_root = dfs(dfs, l, m), r_root = dfs(dfs,\
+    \ m, r);\n      X x = MX::op(l_root->x, r_root->x);\n      np root = new_node(x);\n\
+    \      root->l = l_root, root->r = r_root;\n      return root;\n    };\n    return\
+    \ dfs(dfs, 0, len(dat));\n  }\n\n  X prod(np root, ll l, ll r) {\n    assert(0\
+    \ <= l && l < r && r <= n);\n    X x = MX::unit();\n    prod_rec(root, 0, n, l,\
+    \ r, x, MA::unit());\n    return x;\n  }\n\n  np set(np root, ll i, const X &x)\
+    \ {\n    assert(0 <= i && i < n);\n    return set_rec(root, 0, n, i, x);\n  }\n\
+    \n  np multiply(np root, ll i, const X &x) {\n    assert(0 <= i && i < n);\n \
+    \   return multiply_rec(root, 0, n, i, x);\n  }\n\n  np apply(np root, ll l, ll\
+    \ r, const A &a) {\n    assert(0 <= l && l < r && r <= n);\n    return apply_rec(root,\
+    \ 0, n, l, r, a);\n  }\n\n  template <typename F>\n  ll max_right(np root, F check,\
+    \ ll L) {\n    assert(0 <= L && L < n && check(MX::unit()));\n    X x = MX::unit();\n\
+    \    return max_right_rec(root, check, 0, n, L, x);\n  }\n\n  vc<X> restore(np\
+    \ root) {\n    vc<X> res;\n    res.reserve(n);\n    auto dfs = [&](auto &dfs,\
+    \ Node *c, ll l, ll r, A a) -> void {\n      if (r - l == 1) {\n        res.eb(AM::act(c->x,\
+    \ a, 1));\n        return;\n      }\n      ll m = (l + r) / 2;\n      a = MA::op(c->a,\
+    \ a);\n      dfs(dfs, c->l, l, m, a);\n      dfs(dfs, c->r, m, r, a);\n    };\n\
+    \    dfs(dfs, root, 0, n, MA::unit());\n    return res;\n  }\n\n  void reset()\
+    \ { pid = 0; }\n\nprivate:\n  np copy_node(np c) {\n    if (!c || !PERSISTENT)\
+    \ return c;\n    pool[pid].l = c->l, pool[pid].r = c->r;\n    pool[pid].x = c->x;\n\
+    \    pool[pid].lazy = c->lazy;\n    return &(pool[pid++]);\n  }\n\n  void prop(np\
+    \ c, ll l, ll r) {\n    assert(r - l >= 2);\n    ll m = (l + r) / 2;\n    if (c->lazy\
+    \ == MA::unit()) return;\n    c->l = (c->l ? copy_node(c->l) : new_node(l, m));\n\
+    \    c->l->x = AM::act(c->l->x, c->lazy, m - l);\n    c->l->lazy = MA::op(c->l->lazy,\
+    \ c->lazy);\n    c->r = (c->r ? copy_node(c->r) : new_node(m, r));\n    c->r->x\
+    \ = AM::act(c->r->x, c->lazy, r - m);\n    c->r->lazy = MA::op(c->r->lazy, c->lazy);\n\
+    \    c->lazy = MA::unit();\n  }\n\n  np set_rec(np c, ll l, ll r, ll i, const\
+    \ X &x) {\n    if (r == l + 1) {\n      c = copy_node(c);\n      c->x = x;\n \
+    \     c->lazy = MA::unit();\n      return c;\n    }\n    prop(c, l, r);\n    ll\
+    \ m = (l + r) / 2;\n    if (!c->l) c->l = new_node(l, m);\n    if (!c->r) c->r\
+    \ = new_node(m, r);\n\n    c = copy_node(c);\n    if (i < m) {\n      c->l = set_rec(c->l,\
+    \ l, m, i, x);\n    } else {\n      c->r = set_rec(c->r, m, r, i, x);\n    }\n\
+    \    c->x = MX::op(c->l->x, c->r->x);\n    return c;\n  }\n\n  np multiply_rec(np\
+    \ c, ll l, ll r, ll i, const X &x) {\n    if (r == l + 1) {\n      c = copy_node(c);\n\
+    \      c->x = MX::op(c->x, x);\n      c->lazy = MA::unit();\n      return c;\n\
+    \    }\n    prop(c, l, r);\n    ll m = (l + r) / 2;\n    if (!c->l) c->l = new_node(l,\
+    \ m);\n    if (!c->r) c->r = new_node(m, r);\n\n    c = copy_node(c);\n    if\
+    \ (i < m) {\n      c->l = set_rec(c->l, l, m, i, x);\n    } else {\n      c->r\
+    \ = set_rec(c->r, m, r, i, x);\n    }\n    c->x = MX::op(c->l->x, c->r->x);\n\
+    \    return c;\n  }\n\n  void prod_rec(np c, ll l, ll r, ll ql, ll qr, X &x, A\
+    \ lazy) {\n    chmax(ql, l);\n    chmin(qr, r);\n    if (ql >= qr) return;\n \
+    \   if (!c) {\n      x = MX::op(x, AM::act(default_prod(ql, qr), lazy, qr - ql));\n\
+    \      return;\n    }\n    if (l == ql && r == qr) {\n      x = MX::op(x, AM::act(c->x,\
+    \ lazy, r - l));\n      return;\n    }\n    ll m = (l + r) / 2;\n    lazy = MA::op(c->lazy,\
+    \ lazy);\n    prod_rec(c->l, l, m, ql, qr, x, lazy);\n    prod_rec(c->r, m, r,\
+    \ ql, qr, x, lazy);\n  }\n\n  np apply_rec(np c, ll l, ll r, ll ql, ll qr, const\
+    \ A &a) {\n    if (!c) c = new_node(l, r);\n    chmax(ql, l);\n    chmin(qr, r);\n\
+    \    if (ql >= qr) return c;\n    if (l == ql && r == qr) {\n      c = copy_node(c);\n\
+    \      c->x = AM::act(c->x, a, r - l);\n      c->lazy = MA::op(c->lazy, a);\n\
+    \      return c;\n    }\n    prop(c, l, r);\n    ll m = (l + r) / 2;\n    c =\
+    \ copy_node(c);\n    c->l = apply_rec(c->l, l, m, ql, qr, a);\n    c->r = apply_rec(c->r,\
+    \ m, r, ql, qr, a);\n    c->x = MX::op(c->l->x, c->r->x);\n    return c;\n  }\n\
+    \n  template <typename F>\n  ll max_right_rec(np c, const F &check, ll l, ll r,\
+    \ ll ql, X &x) {\n    if (r <= ql) return r;\n    if (!c) c = new_node(l, r);\n\
+    \    chmax(ql, l);\n    if (l == ql && check(MX::op(x, c->x))) {\n      x = MX::op(x,\
+    \ c->x);\n      return r;\n    }\n    if (r == l + 1) return l;\n    prop(c, l,\
+    \ r);\n    ll m = (l + r) / 2;\n    ll k = max_right_rec(c->l, check, l, m, ql,\
+    \ x);\n    if (k < m) return k;\n    return max_right_rec(c->r, check, m, r, ql,\
+    \ x);\n  }\n};\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t\
+    \ x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n         \
+    \            chrono::high_resolution_clock::now().time_since_epoch())\n      \
+    \               .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n\
+    \  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
+    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 7 \"test/mytest/dynamic_lazy_segtree_persistent.test.cpp\"\
+    \n\nvoid test() {\n  using AM = ActedMonoid_SumMax_Assign<int, -1>;\n  using P\
+    \ = typename AM::X;\n\n  FOR(100) {\n    int N = RNG(1, 1000);\n\n    vvc<int>\
+    \ AA;\n    AA.eb(vc<int>(N, 10));\n    Dynamic_Lazy_SegTree<AM, true, 10000> X(N,\
+    \ [](ll l, ll r) -> P {\n      return {10 * (r - l), 10};\n    });\n    using\
+    \ np = typename decltype(X)::np;\n\n    auto rand_LR = [&]() -> pi {\n      int\
+    \ L = RNG(0, N);\n      int R = RNG(0, N);\n      if (L > R) swap(L, R);\n   \
+    \   return {L, R + 1};\n    };\n\n    int Q = RNG(1, 1000);\n    vc<np> roots;\n\
+    \    roots.eb(X.new_node(0, N));\n\n    FOR(Q) {\n      int time = RNG(0, len(roots));\n\
+    \      vc<int> A = AA[time];\n      np root = roots[time];\n\n      int t = RNG(0,\
+    \ 4);\n      auto [L, R] = rand_LR();\n      if (t == 0) {\n        int i = RNG(0,\
+    \ N);\n        int x = RNG(1, 100);\n        root = X.set(root, i, {x, x});\n\
+    \        A[i] = x;\n      }\n      if (t == 1) {\n        vc<int> B = {A.begin()\
+    \ + L, A.begin() + R};\n        assert(X.prod(root, L, R).fi == SUM<int>(B));\n\
+    \        assert(X.prod(root, L, R).se == MAX(B));\n      }\n      if (t == 2)\
+    \ {\n        int x = RNG(1, 100);\n        FOR(i, L, R) A[i] = x;\n        root\
+    \ = X.apply(root, L, R, x);\n      }\n      if (t == 3) {\n        // max_right\n\
+    \        int LIM = R;\n        auto check = [&](auto e) -> bool { return e.se\
+    \ <= LIM; };\n        int naive = [&]() -> int {\n          ll mx = 0;\n     \
+    \     FOR(i, L, N) {\n            chmax(mx, A[i]);\n            if (mx > LIM)\
+    \ return i;\n          }\n          return N;\n        }();\n\n        assert(naive\
+    \ == X.max_right(root, check, L));\n      }\n\n      AA.eb(A);\n      roots.eb(root);\n\
     \    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main()\
-    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \  FOR(100) test();\n  solve();\n\n  return 0;\n}\n"
+    \ {\n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"alg/acted_monoid/summin_assign.hpp\"\n\
-    #include \"random/base.hpp\"\n#include \"ds/segtree/lazy_segtree.hpp\"\n\nvoid\
-    \ test() {\n  int N = RNG(1, 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1,\
-    \ 100);\n  using AM = ActedMonoid_CntSumMin_Assign<ll, -1>;\n  using Mono = typename\
-    \ AM::Monoid_X;\n  Lazy_SegTree<AM> seg(\n      N, [&](int i) -> Mono::value_type\
-    \ { return Mono::from_element(A[i]); });\n  int Q = RNG(1, 100);\n  FOR(Q) {\n\
-    \    ll t = RNG(0, 2);\n    ll L = RNG(0, N);\n    ll R = RNG(0, N);\n    if (L\
-    \ > R) swap(L, R);\n    ++R;\n    if (t == 1) {\n      ll x = RNG(1, 100);\n \
-    \     FOR(i, L, R) A[i] = x;\n      seg.apply(L, R, x);\n    }\n    if (t == 2)\
-    \ {\n      vc<int> B = {A.begin() + L, A.begin() + R};\n      auto [sm, mi] =\
-    \ seg.prod(L, R);\n      assert(sm == SUM<ll>(B));\n      assert(mi == MIN(B));\n\
+    \n#include \"other/io.hpp\"\n#include \"alg/acted_monoid/summax_assign.hpp\"\n\
+    #include \"ds/segtree/dynamic_lazy_segtree.hpp\"\n#include \"random/base.hpp\"\
+    \n\nvoid test() {\n  using AM = ActedMonoid_SumMax_Assign<int, -1>;\n  using P\
+    \ = typename AM::X;\n\n  FOR(100) {\n    int N = RNG(1, 1000);\n\n    vvc<int>\
+    \ AA;\n    AA.eb(vc<int>(N, 10));\n    Dynamic_Lazy_SegTree<AM, true, 10000> X(N,\
+    \ [](ll l, ll r) -> P {\n      return {10 * (r - l), 10};\n    });\n    using\
+    \ np = typename decltype(X)::np;\n\n    auto rand_LR = [&]() -> pi {\n      int\
+    \ L = RNG(0, N);\n      int R = RNG(0, N);\n      if (L > R) swap(L, R);\n   \
+    \   return {L, R + 1};\n    };\n\n    int Q = RNG(1, 1000);\n    vc<np> roots;\n\
+    \    roots.eb(X.new_node(0, N));\n\n    FOR(Q) {\n      int time = RNG(0, len(roots));\n\
+    \      vc<int> A = AA[time];\n      np root = roots[time];\n\n      int t = RNG(0,\
+    \ 4);\n      auto [L, R] = rand_LR();\n      if (t == 0) {\n        int i = RNG(0,\
+    \ N);\n        int x = RNG(1, 100);\n        root = X.set(root, i, {x, x});\n\
+    \        A[i] = x;\n      }\n      if (t == 1) {\n        vc<int> B = {A.begin()\
+    \ + L, A.begin() + R};\n        assert(X.prod(root, L, R).fi == SUM<int>(B));\n\
+    \        assert(X.prod(root, L, R).se == MAX(B));\n      }\n      if (t == 2)\
+    \ {\n        int x = RNG(1, 100);\n        FOR(i, L, R) A[i] = x;\n        root\
+    \ = X.apply(root, L, R, x);\n      }\n      if (t == 3) {\n        // max_right\n\
+    \        int LIM = R;\n        auto check = [&](auto e) -> bool { return e.se\
+    \ <= LIM; };\n        int naive = [&]() -> int {\n          ll mx = 0;\n     \
+    \     FOR(i, L, N) {\n            chmax(mx, A[i]);\n            if (mx > LIM)\
+    \ return i;\n          }\n          return N;\n        }();\n\n        assert(naive\
+    \ == X.max_right(root, check, L));\n      }\n\n      AA.eb(A);\n      roots.eb(root);\n\
     \    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main()\
-    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \  FOR(100) test();\n  solve();\n\n  return 0;\n}\n"
+    \ {\n  test();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - alg/acted_monoid/summin_assign.hpp
-  - alg/monoid/summin.hpp
+  - alg/acted_monoid/summax_assign.hpp
+  - alg/monoid/summax.hpp
   - alg/monoid/assign.hpp
+  - ds/segtree/dynamic_lazy_segtree.hpp
   - random/base.hpp
-  - ds/segtree/lazy_segtree.hpp
   isVerificationFile: true
-  path: test/mytest/summin_assign.test.cpp
+  path: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
   requiredBy: []
   timestamp: '2022-12-04 13:46:37+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/mytest/summin_assign.test.cpp
+documentation_of: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
 layout: document
 redirect_from:
-- /verify/test/mytest/summin_assign.test.cpp
-- /verify/test/mytest/summin_assign.test.cpp.html
-title: test/mytest/summin_assign.test.cpp
+- /verify/test/mytest/dynamic_lazy_segtree_persistent.test.cpp
+- /verify/test/mytest/dynamic_lazy_segtree_persistent.test.cpp.html
+title: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
 ---

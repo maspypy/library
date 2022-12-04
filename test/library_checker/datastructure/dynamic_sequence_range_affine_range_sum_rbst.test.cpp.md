@@ -438,14 +438,14 @@ data:
     \ if (l <= sl && sl < r) root->x = ActedMonoid::act(root->x, a, 1);\n    u32 k\
     \ = 1 + sl;\n    if (k < r) root->r = apply_rec(root->r, max(k, l) - k, r - k,\
     \ a);\n    update(root);\n    return root;\n  }\n\n  template <typename F>\n \
-    \ pair<np, np> split_max_right_rec(np root, const F &check, X &x) {\n    if (!root)\
-    \ return {nullptr, nullptr};\n    prop(root);\n    root = copy_node(root);\n \
-    \   X y = Monoid_X::op(x, root->prod);\n    if (check(y)) {\n      x = y;\n  \
-    \    return {root, nullptr};\n    }\n    np left = root->l, right = root->r;\n\
-    \    if (left) {\n      X y = Monoid_X::op(x, root->l->prod);\n      if (!check(y))\
-    \ {\n        auto [n1, n2] = split_max_right_rec(left, check, x);\n        root->l\
-    \ = n2;\n        update(root);\n        return {n1, root};\n      }\n      x =\
-    \ y;\n    }\n    y = Monoid_X::op(x, root->x);\n    if (!check(y)) {\n      root->l\
+    \ pair<np, np> split_max_right_rec(np root, F check, X &x) {\n    if (!root) return\
+    \ {nullptr, nullptr};\n    prop(root);\n    root = copy_node(root);\n    X y =\
+    \ Monoid_X::op(x, root->prod);\n    if (check(y)) {\n      x = y;\n      return\
+    \ {root, nullptr};\n    }\n    np left = root->l, right = root->r;\n    if (left)\
+    \ {\n      X y = Monoid_X::op(x, root->l->prod);\n      if (!check(y)) {\n   \
+    \     auto [n1, n2] = split_max_right_rec(left, check, x);\n        root->l =\
+    \ n2;\n        update(root);\n        return {n1, root};\n      }\n      x = y;\n\
+    \    }\n    y = Monoid_X::op(x, root->x);\n    if (!check(y)) {\n      root->l\
     \ = nullptr;\n      update(root);\n      return {left, root};\n    }\n    x =\
     \ y;\n    auto [n1, n2] = split_max_right_rec(right, check, x);\n    root->r =\
     \ n1;\n    update(root);\n    return {root, n2};\n  }\n};\n#line 9 \"test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp\"\
@@ -483,7 +483,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   requiredBy: []
-  timestamp: '2022-12-04 01:04:03+09:00'
+  timestamp: '2022-12-04 13:46:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp

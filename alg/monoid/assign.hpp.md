@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_assign.hpp
     title: alg/acted_monoid/sum_assign.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: alg/acted_monoid/summax_assign.hpp
     title: alg/acted_monoid/summax_assign.hpp
   - icon: ':x:'
@@ -30,6 +30,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_I.test.cpp
     title: test/aoj/DSL_2_I.test.cpp
+  - icon: ':x:'
+    path: test/mytest/dynamic_lazy_segtree.test.cpp
+    title: test/mytest/dynamic_lazy_segtree.test.cpp
+  - icon: ':x:'
+    path: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
+    title: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/max_assign.test.cpp
     title: test/mytest/max_assign.test.cpp
@@ -66,6 +72,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/splay_monoid.test.cpp
+  - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
+  - test/mytest/dynamic_lazy_segtree.test.cpp
   - test/mytest/summin_assign.test.cpp
   - test/mytest/max_assign.test.cpp
   - test/aoj/DSL_2_D.test.cpp
