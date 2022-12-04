@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/two_edge_component.hpp"
-#include "graph/ds/treemonoid.hpp"
+#include "graph/ds/tree_monoid.hpp"
 #include "alg/monoid/max_idx.hpp"
 
 void solve() {
@@ -27,7 +27,7 @@ void solve() {
   vc<pq<ll>> wts(C);
   vc<pair<ll, int>> dat(C);
   FOR(i, C) dat[i] = {-INF, i};
-  TreeMonoid<decltype(tree), Mono> TM(tree, dat);
+  Tree_Monoid<decltype(tree), Mono> TM(tree, dat);
 
   FOR(Q) {
     LL(t);
