@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 
 #include "alg/monoid/affine.hpp"
-#include "ds/swag.hpp"
+#include "ds/sliding_window_aggregation.hpp"
 #include "mod/modint.hpp"
 
 using mint = modint998;
