@@ -38,7 +38,7 @@ struct Xor_DisjointSparse {
 
   // calculate prod_{l<=i<r} A[x xor i], in O(log N) time.
   X prod(int l, int r, int xor_val) {
-    X xl = xr = MX::unit();
+    X xl = MX::unit(), xr = MX::unit();
     FOR(k, log + 1) {
       if (l >= r) break;
       if (l & 1 << k) {
