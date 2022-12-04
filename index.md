@@ -240,6 +240,9 @@ data:
       title: ds/fenwicktree/fenwicktree_2d_dense.hpp
   - name: ds/kdtree
     pages:
+    - icon: ':x:'
+      path: ds/kdtree/kdtree.hpp
+      title: ds/kdtree/kdtree.hpp
     - icon: ':heavy_check_mark:'
       path: ds/kdtree/kdtree_acted_monoid.hpp
       title: ds/kdtree/kdtree_acted_monoid.hpp
@@ -1531,6 +1534,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc229h.test.cpp
       title: test/atcoder/abc229h.test.cpp
+    - icon: ':x:'
+      path: test/atcoder/abc234ex.test.cpp
+      title: test/atcoder/abc234ex.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc244h.test.cpp
       title: test/atcoder/abc244h.test.cpp
