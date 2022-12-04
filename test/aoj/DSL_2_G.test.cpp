@@ -2,7 +2,7 @@
   "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/range_add_range.sum.hpp"
+#include "ds/range_add_range_sum.hpp"
 
 void solve() {
   LL(N, Q);

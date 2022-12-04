@@ -7,7 +7,7 @@
 #include "mod/modint.hpp"
 
 using mint = modint107;
-using AM = ActedMonoid_Sum_Add<mint>;
+using AM = ActedMonoid_CntSum_Add<mint>;
 
 void solve() {
   LL(N);
