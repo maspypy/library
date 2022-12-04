@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/kdtree/kdtree.hpp
     title: ds/kdtree/kdtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc234/tasks/abc234_Ex
@@ -245,30 +245,29 @@ data:
     \ * i + 0, x, y, res), nns_rec(2 * i + 1, x, y, res);\n    } else {\n      nns_rec(2\
     \ * i + 1, x, y, res), nns_rec(2 * i + 0, x, y, res);\n    }\n  }\n};\n#line 6\
     \ \"test/atcoder/abc234ex.test.cpp\"\n\nvoid solve() {\n  LL(N, K);\n  vc<int>\
-    \ X(N), Y(N);\n  vc<int> V(N);\n  FOR(i, N) {\n    INT(a, b);\n    X[i] = a, Y[i]\
-    \ = b, V[i] = i;\n  }\n  KDTree<int, int> KDT(X, Y, V);\n\n  int x_min = MIN(X);\n\
-    \  int x_max = MAX(X);\n  int y_min = MIN(Y);\n  int y_max = MAX(Y);\n\n  vc<pair<int,\
-    \ int>> ANS;\n  FOR(i, N) {\n    ll a = X[i] - K, b = X[i] + K + 1, c = Y[i] -\
-    \ K, d = Y[i] + K + 1;\n    chmax(a, x_min), chmin(b, x_max + 1);\n    chmax(c,\
-    \ y_min), chmin(d, y_max + 1);\n    vc<int> I = KDT.collect_rect(a, b, c, d);\n\
-    \    sort(all(I));\n    for (auto&& j: I) {\n      if (i >= j) continue;\n   \
-    \   ll dx = X[i] - X[j], dy = Y[i] - Y[j];\n      if (dx * dx + dy * dy <= K *\
-    \ K) { ANS.eb(i, j); }\n    }\n  }\n  print(len(ANS));\n  for (auto&& [i, j]:\
-    \ ANS) print(1 + i, 1 + j);\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n\
-    }\n"
+    \ X(N), Y(N);\n  FOR(i, N) {\n    INT(a, b);\n    X[i] = a, Y[i] = b;\n  }\n \
+    \ KDTree<int> KDT(X, Y);\n\n  int x_min = MIN(X);\n  int x_max = MAX(X);\n  int\
+    \ y_min = MIN(Y);\n  int y_max = MAX(Y);\n\n  vc<pair<int, int>> ANS;\n  FOR(i,\
+    \ N) {\n    ll a = X[i] - K, b = X[i] + K + 1, c = Y[i] - K, d = Y[i] + K + 1;\n\
+    \    chmax(a, x_min), chmin(b, x_max + 1);\n    chmax(c, y_min), chmin(d, y_max\
+    \ + 1);\n    vc<int> I = KDT.collect_rect(a, b, c, d);\n    sort(all(I));\n  \
+    \  for (auto&& j: I) {\n      if (i >= j) continue;\n      ll dx = X[i] - X[j],\
+    \ dy = Y[i] - Y[j];\n      if (dx * dx + dy * dy <= K * K) { ANS.eb(i, j); }\n\
+    \    }\n  }\n  print(len(ANS));\n  for (auto&& [i, j]: ANS) print(1 + i, 1 + j);\n\
+    }\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc234/tasks/abc234_Ex\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/kdtree/kdtree.hpp\"\
-    \n\nvoid solve() {\n  LL(N, K);\n  vc<int> X(N), Y(N);\n  vc<int> V(N);\n  FOR(i,\
-    \ N) {\n    INT(a, b);\n    X[i] = a, Y[i] = b, V[i] = i;\n  }\n  KDTree<int,\
-    \ int> KDT(X, Y, V);\n\n  int x_min = MIN(X);\n  int x_max = MAX(X);\n  int y_min\
-    \ = MIN(Y);\n  int y_max = MAX(Y);\n\n  vc<pair<int, int>> ANS;\n  FOR(i, N) {\n\
-    \    ll a = X[i] - K, b = X[i] + K + 1, c = Y[i] - K, d = Y[i] + K + 1;\n    chmax(a,\
-    \ x_min), chmin(b, x_max + 1);\n    chmax(c, y_min), chmin(d, y_max + 1);\n  \
-    \  vc<int> I = KDT.collect_rect(a, b, c, d);\n    sort(all(I));\n    for (auto&&\
-    \ j: I) {\n      if (i >= j) continue;\n      ll dx = X[i] - X[j], dy = Y[i] -\
-    \ Y[j];\n      if (dx * dx + dy * dy <= K * K) { ANS.eb(i, j); }\n    }\n  }\n\
-    \  print(len(ANS));\n  for (auto&& [i, j]: ANS) print(1 + i, 1 + j);\n}\n\nsigned\
-    \ main() {\n  solve();\n\n  return 0;\n}\n"
+    \n\nvoid solve() {\n  LL(N, K);\n  vc<int> X(N), Y(N);\n  FOR(i, N) {\n    INT(a,\
+    \ b);\n    X[i] = a, Y[i] = b;\n  }\n  KDTree<int> KDT(X, Y);\n\n  int x_min =\
+    \ MIN(X);\n  int x_max = MAX(X);\n  int y_min = MIN(Y);\n  int y_max = MAX(Y);\n\
+    \n  vc<pair<int, int>> ANS;\n  FOR(i, N) {\n    ll a = X[i] - K, b = X[i] + K\
+    \ + 1, c = Y[i] - K, d = Y[i] + K + 1;\n    chmax(a, x_min), chmin(b, x_max +\
+    \ 1);\n    chmax(c, y_min), chmin(d, y_max + 1);\n    vc<int> I = KDT.collect_rect(a,\
+    \ b, c, d);\n    sort(all(I));\n    for (auto&& j: I) {\n      if (i >= j) continue;\n\
+    \      ll dx = X[i] - X[j], dy = Y[i] - Y[j];\n      if (dx * dx + dy * dy <=\
+    \ K * K) { ANS.eb(i, j); }\n    }\n  }\n  print(len(ANS));\n  for (auto&& [i,\
+    \ j]: ANS) print(1 + i, 1 + j);\n}\n\nsigned main() {\n  solve();\n\n  return\
+    \ 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -276,8 +275,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc234ex.test.cpp
   requiredBy: []
-  timestamp: '2022-12-05 05:57:24+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-05 06:21:14+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/abc234ex.test.cpp
 layout: document
