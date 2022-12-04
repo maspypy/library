@@ -14,7 +14,7 @@ void test() {
 
     vvc<int> AA;
     AA.eb(vc<int>(N, 10));
-    Dynamic_Lazy_SegTree<AM, true, 10000> X(N, [](ll l, ll r) -> P {
+    Dynamic_Lazy_SegTree<AM, true, 10000> X(0, N, [](ll l, ll r) -> P {
       return {10 * (r - l), 10};
     });
     using np = typename decltype(X)::np;

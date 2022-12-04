@@ -13,7 +13,7 @@ void test() {
     int N = RNG(1, 1000);
 
     vc<int> A(N, 10);
-    Dynamic_Lazy_SegTree<AM, false, 2000> X(N, [](ll l, ll r) -> P {
+    Dynamic_Lazy_SegTree<AM, false, 2000> X(0, N, [](ll l, ll r) -> P {
       return {10 * (r - l), 10};
     });
 
