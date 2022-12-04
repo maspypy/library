@@ -1,19 +1,19 @@
 #define PROBLEM "https://yukicoder.me/problems/no/789"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/segtree/dynamic_lazysegtree.hpp"
+#include "ds/segtree/dynamic_lazy_segtree.hpp"
 #include "alg/acted_monoid/sum_add.hpp"
 
 void solve() {
-  auto f = [&](ll L, ll R) -> pi { return {R - L, 0}; };
-  Dynamic_Lazy_SegTree<ActedMonoid_CntSum_Add<ll>, 2000000> seg(0, 1LL << 30,
-                                                                f);
+  using AM = ActedMonoid_Sum_Add<ll>;
+  Dynamic_Lazy_SegTree<AM, false, 2000000> seg(0, 1LL << 30);
+  auto root = seg.new_node();
   LL(Q);
   ll ANS = 0;
   FOR(Q) {
     LL(t, a, b);
-    if (t == 0) { seg.apply(a, a + 1, b); }
-    if (t == 1) { ANS += seg.prod(a, b + 1).se; }
+    if (t == 0) { seg.apply(root, a, a + 1, b); }
+    if (t == 1) { ANS += seg.prod(root, a, b + 1); }
   }
   print(ANS);
 }

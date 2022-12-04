@@ -10,7 +10,7 @@ struct ActedMonoid_Power_Sums_Assign {
   using X = typename Monoid_X::value_type;
   using A = typename Monoid_A::value_type;
   static constexpr X act(const X &x, const A &a, const ll &size) {
-    if (b == -1) return x;
+    if (a == Monoid_A::unit()) return x;
     X y;
     mint pow = 1;
     FOR(i, K) { y[i] = x[0] * pow, pow *= mint(b); }

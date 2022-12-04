@@ -20,14 +20,14 @@ void solve() {
   vc<int> other;
   FOR(v, N) if (!ss.count(v)) other.eb(v);
 
-  UnionFind uf(N);
+  UnionFind uf;
   ll LIM = 100;
 
   auto edges = G.edges;
   sort(all(edges), [](auto& x, auto& y) { return x.cost < y.cost; });
 
   auto f = [&](ll s) -> int {
-    uf.reset();
+    uf.build(N);
     int mst = 0, merge = 0;
     for (auto&& e: edges) {
       int i = e.frm, j = e.to;
