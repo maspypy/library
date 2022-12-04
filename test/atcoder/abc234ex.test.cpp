@@ -1,4 +1,4 @@
-#define PROBLEM "https://atcoder.jp/contests/abc234/tasks/abc234_h"
+#define PROBLEM "https://atcoder.jp/contests/abc234/tasks/abc234_Ex"
 #include "my_template.hpp"
 #include "other/io.hpp"
 
