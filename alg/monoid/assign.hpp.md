@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/powersums_assign.hpp
     title: alg/acted_monoid/powersums_assign.hpp
   - icon: ':heavy_check_mark:'
@@ -60,7 +60,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/summin_assign.test.cpp
     title: test/mytest/summin_assign.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1548.test.cpp
     title: test/yukicoder/1548.test.cpp
   _isVerificationFailed: true

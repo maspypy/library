@@ -360,7 +360,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
     title: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1008,7 +1008,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1036.test.cpp
     title: test/yukicoder/1036.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1230,7 +1230,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1547.test.cpp
     title: test/yukicoder/1547.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1548.test.cpp
     title: test/yukicoder/1548.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1269,7 +1269,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1643.test.cpp
     title: test/yukicoder/1643.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1649.test.cpp
     title: test/yukicoder/1649.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1530,7 +1530,7 @@ data:
   - icon: ':x:'
     path: test/yukicoder/789.test.cpp
     title: test/yukicoder/789.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/789_2.test.cpp
     title: test/yukicoder/789_2.test.cpp
   - icon: ':heavy_check_mark:'

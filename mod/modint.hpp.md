@@ -240,7 +240,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
     title: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
   - icon: ':heavy_check_mark:'
@@ -570,7 +570,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1547.test.cpp
     title: test/yukicoder/1547.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1548.test.cpp
     title: test/yukicoder/1548.test.cpp
   - icon: ':heavy_check_mark:'
@@ -585,7 +585,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1618.test.cpp
     title: test/yukicoder/1618.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1649.test.cpp
     title: test/yukicoder/1649.test.cpp
   - icon: ':heavy_check_mark:'
