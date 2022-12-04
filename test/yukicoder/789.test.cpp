@@ -6,12 +6,13 @@
 
 void solve() {
   Dynamic_SegTree<Monoid_Add<ll>, false, 4000000> seg(0, 1LL << 30);
+  auto root = seg.new_node();
   LL(Q);
   ll ANS = 0;
   FOR(Q) {
     LL(t, a, b);
-    if (t == 0) { seg.multiply(a, b); }
-    if (t == 1) { ANS += seg.prod(a, b + 1); }
+    if (t == 0) { seg.multiply(root, a, b); }
+    if (t == 1) { ANS += seg.prod(root, a, b + 1); }
   }
   print(ANS);
 }
