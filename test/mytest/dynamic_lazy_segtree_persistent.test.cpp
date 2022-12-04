@@ -19,13 +19,6 @@ void test() {
     });
     using np = typename decltype(X)::np;
 
-    auto rand_LR = [&]() -> pi {
-      int L = RNG(0, N);
-      int R = RNG(0, N);
-      if (L > R) swap(L, R);
-      return {L, R + 1};
-    };
-
     int Q = RNG(1, 1000);
     vc<np> roots;
     roots.eb(X.new_node(0, N));
@@ -34,9 +27,12 @@ void test() {
       int time = RNG(0, len(roots));
       vc<int> A = AA[time];
       np root = roots[time];
+      int L = RNG(0, N);
+      int R = RNG(0, N);
+      if (L > R) swap(L, R);
+      ++R;
 
       int t = RNG(0, 4);
-      auto [L, R] = rand_LR();
       if (t == 0) {
         int i = RNG(0, N);
         int x = RNG(1, 100);
