@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"
-#include "ds/segtree/lazysegtree.hpp"
+#include "ds/segtree/lazy_segtree.hpp"
 #include "alg/acted_monoid/powersums_assign.hpp"
 
 using mint = modint998;
@@ -17,7 +17,7 @@ void solve() {
     mint a = A[i];
     seg_raw[i] = {1, a, a * a, a * a * a, a * a * a * a};
   }
-  LazySegTree<ActedMonoid_Power_Sums_Assign<mint, 5>> seg(seg_raw);
+  Lazy_SegTree<ActedMonoid_Power_Sums_Assign<mint, 5>> seg(seg_raw);
   LL(Q);
   FOR(Q) {
     LL(t, u, v, w);

@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1625"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/segtree/segtree2d.hpp"
+#include "ds/segtree/segtree_2d.hpp"
 #include "alg/monoid/max.hpp"
 
 void solve() {
@@ -41,7 +41,7 @@ void solve() {
     auto&& [a, b, c] = query[i];
     if (a != -1) X.eb(a), Y.eb(b), V.eb(Mono::unit());
   }
-  SegTree2D<Mono, ll, false> seg(X, Y, V);
+  SegTree_2D<Mono, ll, false> seg(X, Y, V);
 
   FOR(q, N, N + Q) {
     auto&& [a, b, c] = query[q];

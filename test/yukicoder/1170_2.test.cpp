@@ -25,7 +25,7 @@ void solve() {
     return -1;
   };
   auto uf = online_unionfind(N, set_used, find_unused);
-  FOR(v, N) print(uf.size[uf[v]]);
+  FOR(v, N) print(uf.size(uf[v]));
 }
 
 signed main() {

@@ -16,16 +16,17 @@ void solve() {
   X = rearrange(X, I), Y = rearrange(Y, I), V = rearrange(V, I);
 
   ll LIM = 1LL << 32;
-  Dynamic_SegTree<Monoid_Max<ll>> seg(-LIM, LIM);
-  seg.set(0, 0);
+  Dynamic_SegTree<Monoid_Max<ll>, false, 8000000> seg(-LIM, LIM);
+  auto root = seg.new_node(-LIM, LIM);
+  root = seg.set(root, 0, 0);
 
   FOR(i, N) {
     ll x = X[i], y = Y[i], v = V[i];
     if (x < 0) continue;
-    ll t = seg.prod(-LIM, y + 1) + v;
-    seg.multiply(y, t);
+    ll t = seg.prod(root, -LIM, y + 1) + v;
+    root = seg.multiply(root, y, t);
   }
-  print(seg.prod_all());
+  print(root->x);
 }
 
 signed main() {

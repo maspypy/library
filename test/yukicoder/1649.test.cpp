@@ -23,7 +23,9 @@ void solve() {
   VEC(pi, XY, N);
   ll LIM = 1 << 30;
 
-  Dynamic_SegTree<Mono, 8000000> seg(-LIM, LIM);
+  Dynamic_SegTree<Mono, false, 8000000> seg(-LIM, LIM);
+  auto root = seg.new_node(-LIM, LIM);
+
   mint ANS = 0;
   FOR(4) {
     for (auto&& [x, y]: XY) tie(x, y) = mp(-y, x);
@@ -33,9 +35,9 @@ void solve() {
       mint x2 = (x + y) * (x + y);
       mint x1 = x + y;
       mint x0 = 1;
-      auto [s0, s1, s2] = seg.prod(-LIM, y);
+      auto [s0, s1, s2] = seg.prod(root, -LIM, y);
       ANS += x2 * s0 - mint(2) * x1 * s1 + x0 * s2;
-      seg.multiply(y, {x0, x1, x2});
+      seg.multiply(root, y, {x0, x1, x2});
     }
   }
   ANS /= mint(2);

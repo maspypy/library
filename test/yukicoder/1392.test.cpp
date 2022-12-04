@@ -22,7 +22,7 @@ void solve() {
 
   vvc<mint> polys;
   FOR(root, N) if (uf[root] == root) {
-    int n = uf.size[root];
+    int n = uf.size(root);
     vc<mint> f(n + 1);
     FOR(k, n + 1) {
       mint cf = (k % 2 == 0 ? 1 : -1);

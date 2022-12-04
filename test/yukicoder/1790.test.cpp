@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "alg/monoid/xor.hpp"
 #include "alg/monoid/max.hpp"
-#include "graph/ds/lazy_treemonoid.hpp"
+#include "graph/ds/lazy_tree_monoid.hpp"
 
 struct ActedMonoid {
   using Monoid_X = Monoid_Xor<ll>;
@@ -29,7 +29,7 @@ void solve() {
   G.build();
   TREE<decltype(G)> tree(G);
 
-  Lazy_TreeMonoid<decltype(tree), ActedMonoid, 1> X(tree, dat);
+  Lazy_Tree_Monoid<decltype(tree), ActedMonoid, 1> X(tree, dat);
   LL(Q);
   FOR(Q) {
     LL(t, x);
