@@ -33,7 +33,7 @@ struct Dynamic_SegTree {
   np new_node() { return new_node(L0, R0); }
 
   np new_node(const vc<X> &dat) {
-    assert(pid && L0 == 0 && R0 == len(dat));
+    assert(L0 == 0 && R0 == len(dat));
     auto dfs = [&](auto &dfs, ll l, ll r) -> Node * {
       if (l == r) return nullptr;
       if (r == l + 1) return new_node(dat[l]);
