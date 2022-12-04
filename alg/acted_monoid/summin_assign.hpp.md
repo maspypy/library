@@ -4,23 +4,23 @@ data:
   - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/summin.hpp
     title: alg/monoid/summin.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/summin_assign.test.cpp
     title: test/mytest/summin_assign.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/summin.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
     \ Monoid_SumMin {\r\n  using value_type = pair<E, E>;\r\n  using X = value_type;\r\
     \n  static X op(X x, X y) { return {x.fi + y.fi, min(x.se, y.se)}; }\r\n  static\
-    \ X from_element(E x) { return {1, x, x}; }\r\n  static constexpr X unit() { return\
+    \ X from_element(E x) { return {x, x}; }\r\n  static constexpr X unit() { return\
     \ {E(0), numeric_limits<ll>::max()}; }\r\n  static constexpr bool commute = true;\r\
     \n};\r\n#line 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, X none_val>\r\
     \nstruct Monoid_Assign {\r\n  using value_type = X;\r\n  static X op(X x, X y)\
@@ -45,8 +45,8 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/summin_assign.hpp
   requiredBy: []
-  timestamp: '2022-12-04 13:46:37+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-12-04 15:54:38+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/summin_assign.test.cpp
 documentation_of: alg/acted_monoid/summin_assign.hpp

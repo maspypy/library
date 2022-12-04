@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/summin_assign.hpp
     title: alg/acted_monoid/summin_assign.hpp
   - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/summin.hpp
     title: alg/monoid/summin.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -213,7 +213,7 @@ data:
     \ yes(!t); }\n#line 2 \"alg/monoid/summin.hpp\"\n\r\ntemplate <typename E>\r\n\
     struct Monoid_SumMin {\r\n  using value_type = pair<E, E>;\r\n  using X = value_type;\r\
     \n  static X op(X x, X y) { return {x.fi + y.fi, min(x.se, y.se)}; }\r\n  static\
-    \ X from_element(E x) { return {1, x, x}; }\r\n  static constexpr X unit() { return\
+    \ X from_element(E x) { return {x, x}; }\r\n  static constexpr X unit() { return\
     \ {E(0), numeric_limits<ll>::max()}; }\r\n  static constexpr bool commute = true;\r\
     \n};\r\n#line 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, X none_val>\r\
     \nstruct Monoid_Assign {\r\n  using value_type = X;\r\n  static X op(X x, X y)\
@@ -321,8 +321,8 @@ data:
   isVerificationFile: true
   path: test/mytest/summin_assign.test.cpp
   requiredBy: []
-  timestamp: '2022-12-04 13:46:37+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-04 15:54:38+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/summin_assign.test.cpp
 layout: document
