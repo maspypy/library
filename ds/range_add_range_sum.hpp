@@ -43,7 +43,7 @@ struct Range_Add_Range_Sum {
     auto [x0, x1] = bit.sum(L);
     auto [y0, y1] = bit.sum(R);
     E x = MX::op(MX::power(x1, L), x0);
-    E y = MX::op(MX::power(y1, L), y0);
-    return MX::op(MX::inverse(y), x);
+    E y = MX::op(MX::power(y1, R), y0);
+    return MX::op(MX::inverse(x), y);
   }
 };
