@@ -278,6 +278,7 @@
 "test/mytest/is_substring.test.cpp": "2022-12-02 07:07:57 +0900",
 "test/mytest/kdtree_am.test.cpp": "2022-12-05 02:24:16 +0900",
 "test/mytest/kdtree_monoid.test.cpp": "2022-12-05 02:37:00 +0900",
+"test/mytest/kdtree_nns.test.cpp": "2022-12-05 05:57:24 +0900",
 "test/mytest/knight_distance.test.cpp": "2022-12-02 07:07:57 +0900",
 "test/mytest/magic_square.test.cpp": "2022-12-02 07:07:57 +0900",
 "test/mytest/max_assign.test.cpp": "2022-12-04 21:11:25 +0900",
