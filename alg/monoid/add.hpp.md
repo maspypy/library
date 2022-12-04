@@ -38,9 +38,9 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/summin_add.hpp
     title: alg/acted_monoid/summin_add.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/cumsum2d.hpp
-    title: ds/cumsum2d.hpp
+  - icon: ':warning:'
+    path: ds/cumsum_2d.hpp
+    title: ds/cumsum_2d.hpp
   - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
@@ -50,6 +50,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_2d_dense.hpp
     title: ds/fenwicktree/fenwicktree_2d_dense.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/offline_query/coeffient_query_2d.hpp
+    title: ds/offline_query/coeffient_query_2d.hpp
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/point_add_rectangle_sum.hpp
     title: ds/offline_query/point_add_rectangle_sum.hpp
@@ -175,6 +178,9 @@ data:
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
+    title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - icon: ':heavy_check_mark:'
@@ -234,9 +240,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1097.test.cpp
     title: test/yukicoder/1097.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1141.test.cpp
-    title: test/yukicoder/1141.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1216.test.cpp
     title: test/yukicoder/1216.test.cpp
@@ -268,6 +271,9 @@ data:
     path: test/yukicoder/1490.test.cpp
     title: test/yukicoder/1490.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1641.test.cpp
+    title: test/yukicoder/1641.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1720.test.cpp
     title: test/yukicoder/1720.test.cpp
   - icon: ':heavy_check_mark:'
@@ -276,6 +282,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1874.test.cpp
     title: test/yukicoder/1874.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1919.test.cpp
+    title: test/yukicoder/1919.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1977.test.cpp
     title: test/yukicoder/1977.test.cpp
@@ -288,9 +297,6 @@ data:
   - icon: ':x:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/655.test.cpp
-    title: test/yukicoder/655.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/686.test.cpp
     title: test/yukicoder/686.test.cpp
@@ -347,10 +353,11 @@ data:
   - ds/fenwicktree/fenwicktree_2d.hpp
   - ds/fenwicktree/fenwicktree_2d_dense.hpp
   - ds/fenwicktree/fenwicktree.hpp
-  - ds/cumsum2d.hpp
+  - ds/offline_query/coeffient_query_2d.hpp
   - ds/offline_query/rectangle_add_point_sum.hpp
   - ds/offline_query/rectangle_add_rectangle_sum.hpp
   - ds/offline_query/point_add_rectangle_sum.hpp
+  - ds/cumsum_2d.hpp
   - ds/waveletmatrix.hpp
   - graph/ds/tree_abelgroup.hpp
   - graph/ds/contour_sum.hpp
@@ -373,13 +380,13 @@ data:
   - test/yukicoder/1326.test.cpp
   - test/yukicoder/1216_2.test.cpp
   - test/yukicoder/1038.test.cpp
-  - test/yukicoder/1141.test.cpp
   - test/yukicoder/1269.test.cpp
   - test/yukicoder/1270.test.cpp
-  - test/yukicoder/655.test.cpp
   - test/yukicoder/924.test.cpp
   - test/yukicoder/1332.test.cpp
+  - test/yukicoder/1641.test.cpp
   - test/yukicoder/789.test.cpp
+  - test/yukicoder/1919.test.cpp
   - test/yukicoder/919.test.cpp
   - test/yukicoder/1097.test.cpp
   - test/yukicoder/1977.test.cpp
@@ -412,6 +419,7 @@ data:
   - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
+  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - test/library_checker/datastructure/double_ended_pq.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp

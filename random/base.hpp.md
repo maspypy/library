@@ -142,6 +142,9 @@ data:
     path: test/mytest/max_max.test.cpp
     title: test/mytest/max_max.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/max_min.test.cpp
+    title: test/mytest/max_min.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/max_of_linear_segments.test.cpp
     title: test/mytest/max_of_linear_segments.test.cpp
   - icon: ':heavy_check_mark:'
@@ -150,10 +153,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/maxplus_concave.test.cpp
     title: test/mytest/maxplus_concave.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_max.test.cpp
     title: test/mytest/min_max.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_min.test.cpp
     title: test/mytest/min_min.test.cpp
   - icon: ':heavy_check_mark:'
@@ -198,6 +201,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/rbst.test.cpp
+    title: test/mytest/rbst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_am_2.test.cpp
     title: test/mytest/rbst_am_2.test.cpp
@@ -369,7 +375,9 @@ data:
   - test/mytest/all_inverse.test.cpp
   - test/mytest/segtree_xor_prod.test.cpp
   - test/mytest/min_min.test.cpp
+  - test/mytest/rbst.test.cpp
   - test/mytest/splay_am.test.cpp
+  - test/mytest/max_min.test.cpp
   - test/mytest/online_division.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/tutte.test.cpp

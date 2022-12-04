@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_max.test.cpp
     title: test/mytest/min_max.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/max.hpp\"\n\r\ntemplate <class X>\r\nstruct Monoid_Max\
@@ -28,20 +28,20 @@ data:
     \n\ntemplate <typename E>\nstruct ActedMonoid_Min_Max {\n  using Monoid_X = Monoid_Min<E>;\n\
     \  using Monoid_A = Monoid_Max<E>;\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X\
-    \ &x, const A &a) { return max(x, a); }\n};\n"
+    \ &x, const A &a, const ll &size) {\n    return max(x, a);\n  }\n};\n"
   code: "#include \"alg/monoid/max.hpp\"\n#include \"alg/monoid/min.hpp\"\n\ntemplate\
     \ <typename E>\nstruct ActedMonoid_Min_Max {\n  using Monoid_X = Monoid_Min<E>;\n\
     \  using Monoid_A = Monoid_Max<E>;\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X\
-    \ &x, const A &a) { return max(x, a); }\n};\n"
+    \ &x, const A &a, const ll &size) {\n    return max(x, a);\n  }\n};\n"
   dependsOn:
   - alg/monoid/max.hpp
   - alg/monoid/min.hpp
   isVerificationFile: false
   path: alg/acted_monoid/min_max.hpp
   requiredBy: []
-  timestamp: '2022-12-01 09:04:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-12-04 12:10:48+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/min_max.test.cpp
 documentation_of: alg/acted_monoid/min_max.hpp

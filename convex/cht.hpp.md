@@ -10,6 +10,9 @@ data:
     path: test/library_checker/datastructure/line_add_get_min.test.cpp
     title: test/library_checker/datastructure/line_add_get_min.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1297.test.cpp
+    title: test/yukicoder/1297.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2012.test.cpp
     title: test/yukicoder/2012.test.cpp
   _isVerificationFailed: false
@@ -98,6 +101,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/2012.test.cpp
+  - test/yukicoder/1297.test.cpp
   - test/library_checker/datastructure/line_add_get_min.test.cpp
   - test/atcoder/abc244h.test.cpp
 documentation_of: convex/cht.hpp

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_max.hpp
     title: alg/acted_monoid/min_max.hpp
   - icon: ':question:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -220,8 +220,8 @@ data:
     \n\ntemplate <typename E>\nstruct ActedMonoid_Min_Max {\n  using Monoid_X = Monoid_Min<E>;\n\
     \  using Monoid_A = Monoid_Max<E>;\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X\
-    \ &x, const A &a) { return max(x, a); }\n};\n#line 2 \"random/base.hpp\"\n\nu64\
-    \ RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \ &x, const A &a, const ll &size) {\n    return max(x, a);\n  }\n};\n#line 2 \"\
+    random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
@@ -281,7 +281,7 @@ data:
     \ = MA::unit();\n  }\n};\n#line 7 \"test/mytest/min_max.test.cpp\"\n\nvoid test()\
     \ {\n  int N = RNG(1, 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1, 100);\n\
     \  using AM = ActedMonoid_Min_Max<int>;\n  using Mono = typename AM::Monoid_X;\n\
-    \  LazySegTree<AM> seg(A);\n  int Q = RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0,\
+    \  Lazy_SegTree<AM> seg(A);\n  int Q = RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0,\
     \ 2);\n    ll L = RNG(0, N);\n    ll R = RNG(0, N);\n    if (L > R) swap(L, R);\n\
     \    ++R;\n    if (t == 1) {\n      ll x = RNG(1, 100);\n      FOR(i, L, R) chmax(A[i],\
     \ x);\n      seg.apply(L, R, x);\n    }\n    if (t == 2) {\n      vc<int> B =\
@@ -294,7 +294,7 @@ data:
     \ \"random/base.hpp\"\n#include \"ds/segtree/lazy_segtree.hpp\"\n\nvoid test()\
     \ {\n  int N = RNG(1, 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1, 100);\n\
     \  using AM = ActedMonoid_Min_Max<int>;\n  using Mono = typename AM::Monoid_X;\n\
-    \  LazySegTree<AM> seg(A);\n  int Q = RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0,\
+    \  Lazy_SegTree<AM> seg(A);\n  int Q = RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0,\
     \ 2);\n    ll L = RNG(0, N);\n    ll R = RNG(0, N);\n    if (L > R) swap(L, R);\n\
     \    ++R;\n    if (t == 1) {\n      ll x = RNG(1, 100);\n      FOR(i, L, R) chmax(A[i],\
     \ x);\n      seg.apply(L, R, x);\n    }\n    if (t == 2) {\n      vc<int> B =\
@@ -313,8 +313,8 @@ data:
   isVerificationFile: true
   path: test/mytest/min_max.test.cpp
   requiredBy: []
-  timestamp: '2022-12-04 03:33:52+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-04 12:10:48+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/min_max.test.cpp
 layout: document

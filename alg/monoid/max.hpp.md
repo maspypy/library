@@ -11,10 +11,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/max_max.hpp
     title: alg/acted_monoid/max_max.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/max_min.hpp
     title: alg/acted_monoid/max_min.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_max.hpp
     title: alg/acted_monoid/min_max.hpp
   - icon: ':heavy_check_mark:'
@@ -39,7 +39,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/max_max.test.cpp
     title: test/mytest/max_max.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/max_min.test.cpp
+    title: test/mytest/max_min.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_max.test.cpp
     title: test/mytest/min_max.test.cpp
   - icon: ':heavy_check_mark:'
@@ -90,6 +93,7 @@ data:
   - test/yukicoder/1117.test.cpp
   - test/mytest/min_max.test.cpp
   - test/mytest/max_max.test.cpp
+  - test/mytest/max_min.test.cpp
   - test/mytest/max_assign.test.cpp
   - test/atcoder/abc270_f.test.cpp
   - test/atcoder/abc266h_2.test.cpp

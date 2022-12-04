@@ -43,12 +43,15 @@ data:
     path: test/mytest/max_max.test.cpp
     title: test/mytest/max_max.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/max_min.test.cpp
+    title: test/mytest/max_min.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/maxidx_add.test.cpp
     title: test/mytest/maxidx_add.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_max.test.cpp
     title: test/mytest/min_max.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_min.test.cpp
     title: test/mytest/min_min.test.cpp
   - icon: ':heavy_check_mark:'
@@ -221,6 +224,7 @@ data:
   - test/mytest/minmax_add.test.cpp
   - test/mytest/max_max.test.cpp
   - test/mytest/min_min.test.cpp
+  - test/mytest/max_min.test.cpp
   - test/mytest/summin_assign.test.cpp
   - test/mytest/max_assign.test.cpp
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp

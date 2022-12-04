@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_min.test.cpp
     title: test/mytest/min_min.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <class X>\r\nstruct Monoid_Min\
@@ -21,19 +21,20 @@ data:
     \n\r\ntemplate <typename E>\r\nstruct ActedMonoid_Min_Min {\r\n  using Monoid_X\
     \ = Monoid_Min<E>;\r\n  using Monoid_A = Monoid_Min<E>;\r\n  using X = typename\
     \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
-    \ constexpr X act(const X &x, const A &a) { return min(x, a); }\r\n};\r\n"
+    \ constexpr X act(const X &x, const A &a, const ll &size) {\r\n    return min(x,\
+    \ a);\r\n  }\r\n};\r\n"
   code: "#include \"alg/monoid/min.hpp\"\r\n\r\ntemplate <typename E>\r\nstruct ActedMonoid_Min_Min\
     \ {\r\n  using Monoid_X = Monoid_Min<E>;\r\n  using Monoid_A = Monoid_Min<E>;\r\
     \n  using X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
-    \n  static constexpr X act(const X &x, const A &a) { return min(x, a); }\r\n};\r\
-    \n"
+    \n  static constexpr X act(const X &x, const A &a, const ll &size) {\r\n    return\
+    \ min(x, a);\r\n  }\r\n};\r\n"
   dependsOn:
   - alg/monoid/min.hpp
   isVerificationFile: false
   path: alg/acted_monoid/min_min.hpp
   requiredBy: []
-  timestamp: '2022-12-01 09:04:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-12-04 12:10:48+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/min_min.test.cpp
 documentation_of: alg/acted_monoid/min_min.hpp

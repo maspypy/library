@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_min.hpp
     title: alg/acted_monoid/min_min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -214,8 +214,8 @@ data:
     struct ActedMonoid_Min_Min {\r\n  using Monoid_X = Monoid_Min<E>;\r\n  using Monoid_A\
     \ = Monoid_Min<E>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A\
     \ = typename Monoid_A::value_type;\r\n  static constexpr X act(const X &x, const\
-    \ A &a) { return min(x, a); }\r\n};\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
-    \ {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \ A &a, const ll &size) {\r\n    return min(x, a);\r\n  }\r\n};\r\n#line 2 \"\
+    random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
@@ -306,8 +306,8 @@ data:
   isVerificationFile: true
   path: test/mytest/min_min.test.cpp
   requiredBy: []
-  timestamp: '2022-12-04 03:33:52+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-04 12:10:48+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/min_min.test.cpp
 layout: document
