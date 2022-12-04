@@ -1,12 +1,12 @@
 #include "ds/persistent_array.hpp"
 
-struct PersistentUnionFind {
-  using PA = PersistentArray<int>;
+struct Persistent_UnionFind {
+  using PA = Persistent_Array<int>;
   int n;
   PA data; // root OR (-size)
   using np = PA::np;
 
-  PersistentUnionFind(int n) : n(n) {}
+  Persistent_UnionFind(int n) : n(n) {}
   np init() {
     np t = data.get_root();
     FOR(i, n) data.destructive_set(t, i, -1);
