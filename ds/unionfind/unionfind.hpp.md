@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
   - icon: ':heavy_check_mark:'
@@ -11,28 +11,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/functional.hpp
     title: graph/functional.hpp
   - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':warning:'
     path: graph/online_mst.hpp
     title: graph/online_mst.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/online_unionfind.hpp
     title: graph/online_unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
   _extendedVerifiedWith:
@@ -51,7 +51,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -72,46 +72,46 @@ data:
   - icon: ':x:'
     path: test/yukicoder/114.test.cpp
     title: test/yukicoder/114.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1170_2.test.cpp
     title: test/yukicoder/1170_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1211.test.cpp
     title: test/yukicoder/1211.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1242.test.cpp
     title: test/yukicoder/1242.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1392.test.cpp
     title: test/yukicoder/1392.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1451.test.cpp
     title: test/yukicoder/1451.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1479.test.cpp
     title: test/yukicoder/1479.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1600.test.cpp
     title: test/yukicoder/1600.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1744.test.cpp
     title: test/yukicoder/1744.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1745.test.cpp
     title: test/yukicoder/1745.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1911.test.cpp
     title: test/yukicoder/1911.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1983.test.cpp
     title: test/yukicoder/1983.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
   _isVerificationFailed: true
@@ -120,25 +120,26 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int\
-    \ n;\n  int n_comp;\n  vector<int> dat; // par or (-size)\n  UnionFind(int n)\
-    \ : n(n), n_comp(n), dat(n, -1) {}\n\n  int operator[](int x) {\n    while (dat[x]\
-    \ >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n\
-    \      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  int size(int x) {\n  \
-    \  assert(dat[x] < 0);\n    return -dat[x];\n  }\n\n  bool merge(int x, int y)\
-    \ {\n    x = (*this)[x];\n    y = (*this)[y];\n    if (x == y) { return false;\
-    \ }\n    n_comp--;\n    if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y],\
-    \ dat[y] = x;\n    return true;\n  }\n\n  vector<int> get_all() {\n    vector<int>\
-    \ A(n);\n    for (int i = 0; i < n; ++i) A[i] = (*this)[i];\n    return A;\n \
-    \ }\n};\n"
+    \ n;\n  int n_comp;\n  vector<int> dat; // par or (-size)\n  UnionFind(int n =\
+    \ 0) { build(n); }\n\n  void build(int m) {\n    n = m;\n    n_comp = m;\n   \
+    \ dat.assign(n, -1);\n  }\n\n  int operator[](int x) {\n    while (dat[x] >= 0)\
+    \ {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n     \
+    \ x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  int size(int x) {\n    assert(dat[x]\
+    \ < 0);\n    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x];\n\
+    \    y = (*this)[y];\n    if (x == y) { return false; }\n    n_comp--;\n    if\
+    \ (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x;\n    return\
+    \ true;\n  }\n\n  vector<int> get_all() {\n    vector<int> A(n);\n    for (int\
+    \ i = 0; i < n; ++i) A[i] = (*this)[i];\n    return A;\n  }\n};\n"
   code: "#pragma once\n\nstruct UnionFind {\n  int n;\n  int n_comp;\n  vector<int>\
-    \ dat; // par or (-size)\n  UnionFind(int n) : n(n), n_comp(n), dat(n, -1) {}\n\
-    \n  int operator[](int x) {\n    while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n\
-    \      if (pp < 0) { return dat[x]; }\n      x = dat[x] = pp;\n    }\n    return\
-    \ x;\n  }\n\n  int size(int x) {\n    assert(dat[x] < 0);\n    return -dat[x];\n\
-    \  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x];\n    y = (*this)[y];\n\
-    \    if (x == y) { return false; }\n    n_comp--;\n    if (-dat[x] < -dat[y])\
-    \ swap(x, y);\n    dat[x] += dat[y], dat[y] = x;\n    return true;\n  }\n\n  vector<int>\
-    \ get_all() {\n    vector<int> A(n);\n    for (int i = 0; i < n; ++i) A[i] = (*this)[i];\n\
+    \ dat; // par or (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void build(int\
+    \ m) {\n    n = m;\n    n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  int operator[](int\
+    \ x) {\n    while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp <\
+    \ 0) { return dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n\
+    \  int size(int x) {\n    assert(dat[x] < 0);\n    return -dat[x];\n  }\n\n  bool\
+    \ merge(int x, int y) {\n    x = (*this)[x];\n    y = (*this)[y];\n    if (x ==\
+    \ y) { return false; }\n    n_comp--;\n    if (-dat[x] < -dat[y]) swap(x, y);\n\
+    \    dat[x] += dat[y], dat[y] = x;\n    return true;\n  }\n\n  vector<int> get_all()\
+    \ {\n    vector<int> A(n);\n    for (int i = 0; i < n; ++i) A[i] = (*this)[i];\n\
     \    return A;\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
@@ -155,7 +156,7 @@ data:
   - graph/check_bipartite.hpp
   - graph/online_unionfind.hpp
   - graph/minimum_spanning_tree.hpp
-  timestamp: '2022-12-03 10:20:23+09:00'
+  timestamp: '2022-12-04 15:34:04+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1600.test.cpp

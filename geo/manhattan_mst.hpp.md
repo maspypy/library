@@ -63,7 +63,8 @@ data:
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
     \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"ds/unionfind/unionfind.hpp\"\
     \n\nstruct UnionFind {\n  int n;\n  int n_comp;\n  vector<int> dat; // par or\
-    \ (-size)\n  UnionFind(int n) : n(n), n_comp(n), dat(n, -1) {}\n\n  int operator[](int\
+    \ (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void build(int m) {\n   \
+    \ n = m;\n    n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  int operator[](int\
     \ x) {\n    while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp <\
     \ 0) { return dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n\
     \  int size(int x) {\n    assert(dat[x] < 0);\n    return -dat[x];\n  }\n\n  bool\
@@ -107,7 +108,7 @@ data:
   isVerificationFile: false
   path: geo/manhattan_mst.hpp
   requiredBy: []
-  timestamp: '2022-12-03 10:20:23+09:00'
+  timestamp: '2022-12-04 15:34:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/graph/manhattan_mst.test.cpp

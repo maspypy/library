@@ -4,16 +4,16 @@ data:
   - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   _extendedRequiredBy: []
@@ -72,11 +72,12 @@ data:
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
     \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/check_bipartite.hpp\"\
     \n\r\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n;\n\
-    \  int n_comp;\n  vector<int> dat; // par or (-size)\n  UnionFind(int n) : n(n),\
-    \ n_comp(n), dat(n, -1) {}\n\n  int operator[](int x) {\n    while (dat[x] >=\
-    \ 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n  \
-    \    x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  int size(int x) {\n    assert(dat[x]\
-    \ < 0);\n    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x];\n\
+    \  int n_comp;\n  vector<int> dat; // par or (-size)\n  UnionFind(int n = 0) {\
+    \ build(n); }\n\n  void build(int m) {\n    n = m;\n    n_comp = m;\n    dat.assign(n,\
+    \ -1);\n  }\n\n  int operator[](int x) {\n    while (dat[x] >= 0) {\n      int\
+    \ pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n      x = dat[x] =\
+    \ pp;\n    }\n    return x;\n  }\n\n  int size(int x) {\n    assert(dat[x] < 0);\n\
+    \    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x];\n\
     \    y = (*this)[y];\n    if (x == y) { return false; }\n    n_comp--;\n    if\
     \ (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x;\n    return\
     \ true;\n  }\n\n  vector<int> get_all() {\n    vector<int> A(n);\n    for (int\
@@ -201,7 +202,7 @@ data:
   isVerificationFile: false
   path: graph/maximum_antichain.hpp
   requiredBy: []
-  timestamp: '2022-12-03 10:20:23+09:00'
+  timestamp: '2022-12-04 15:34:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/2251_2.test.cpp

@@ -15,18 +15,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1211.test.cpp
     title: test/yukicoder/1211.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1242.test.cpp
     title: test/yukicoder/1242.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -144,10 +144,11 @@ data:
     \    print(\"head\", head);\r\n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"\
     root\", root);\r\n  }\r\n};\r\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct\
     \ UnionFind {\n  int n;\n  int n_comp;\n  vector<int> dat; // par or (-size)\n\
-    \  UnionFind(int n) : n(n), n_comp(n), dat(n, -1) {}\n\n  int operator[](int x)\
-    \ {\n    while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0)\
-    \ { return dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  int\
-    \ size(int x) {\n    assert(dat[x] < 0);\n    return -dat[x];\n  }\n\n  bool merge(int\
+    \  UnionFind(int n = 0) { build(n); }\n\n  void build(int m) {\n    n = m;\n \
+    \   n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  int operator[](int x) {\n  \
+    \  while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
+    \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  int size(int\
+    \ x) {\n    assert(dat[x] < 0);\n    return -dat[x];\n  }\n\n  bool merge(int\
     \ x, int y) {\n    x = (*this)[x];\n    y = (*this)[y];\n    if (x == y) { return\
     \ false; }\n    n_comp--;\n    if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x]\
     \ += dat[y], dat[y] = x;\n    return true;\n  }\n\n  vector<int> get_all() {\n\
@@ -228,8 +229,8 @@ data:
   isVerificationFile: false
   path: graph/functional.hpp
   requiredBy: []
-  timestamp: '2022-12-03 10:20:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-12-04 15:34:04+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/2122.test.cpp
   - test/yukicoder/590.test.cpp

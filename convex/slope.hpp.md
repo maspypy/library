@@ -18,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/min_cost_matching_on_line.test.cpp
     title: test/mytest/min_cost_matching_on_line.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1077.test.cpp
+    title: test/yukicoder/1077.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -109,6 +112,7 @@ data:
   timestamp: '2022-12-03 09:41:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1077.test.cpp
   - test/mytest/min_cost_matching_on_line.test.cpp
   - test/atcoder/abc217h.test.cpp
   - test/atcoder/arc123d.test.cpp

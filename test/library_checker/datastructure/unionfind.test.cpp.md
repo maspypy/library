@@ -200,11 +200,12 @@ data:
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\n#line 4 \"test/library_checker/datastructure/unionfind.test.cpp\"\
     \n\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n;\n \
-    \ int n_comp;\n  vector<int> dat; // par or (-size)\n  UnionFind(int n) : n(n),\
-    \ n_comp(n), dat(n, -1) {}\n\n  int operator[](int x) {\n    while (dat[x] >=\
-    \ 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n  \
-    \    x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  int size(int x) {\n    assert(dat[x]\
-    \ < 0);\n    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x];\n\
+    \ int n_comp;\n  vector<int> dat; // par or (-size)\n  UnionFind(int n = 0) {\
+    \ build(n); }\n\n  void build(int m) {\n    n = m;\n    n_comp = m;\n    dat.assign(n,\
+    \ -1);\n  }\n\n  int operator[](int x) {\n    while (dat[x] >= 0) {\n      int\
+    \ pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n      x = dat[x] =\
+    \ pp;\n    }\n    return x;\n  }\n\n  int size(int x) {\n    assert(dat[x] < 0);\n\
+    \    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x];\n\
     \    y = (*this)[y];\n    if (x == y) { return false; }\n    n_comp--;\n    if\
     \ (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x;\n    return\
     \ true;\n  }\n\n  vector<int> get_all() {\n    vector<int> A(n);\n    for (int\
@@ -226,7 +227,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/unionfind.test.cpp
   requiredBy: []
-  timestamp: '2022-12-03 10:20:23+09:00'
+  timestamp: '2022-12-04 15:34:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/unionfind.test.cpp

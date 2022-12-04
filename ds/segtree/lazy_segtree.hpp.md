@@ -73,14 +73,23 @@ data:
     path: test/mytest/summin_assign.test.cpp
     title: test/mytest/summin_assign.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1197.test.cpp
+    title: test/yukicoder/1197.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1234.test.cpp
     title: test/yukicoder/1234.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1270.test.cpp
     title: test/yukicoder/1270.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1548.test.cpp
+    title: test/yukicoder/1548.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1720.test.cpp
     title: test/yukicoder/1720.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1790.test.cpp
+    title: test/yukicoder/1790.test.cpp
   - icon: ':x:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
@@ -223,6 +232,9 @@ data:
   - test/yukicoder/1720.test.cpp
   - test/yukicoder/1270.test.cpp
   - test/yukicoder/255.test.cpp
+  - test/yukicoder/1790.test.cpp
+  - test/yukicoder/1548.test.cpp
+  - test/yukicoder/1197.test.cpp
   - test/mytest/min_max.test.cpp
   - test/mytest/summax_add.test.cpp
   - test/mytest/minidx_add.test.cpp

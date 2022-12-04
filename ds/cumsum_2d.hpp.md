@@ -7,6 +7,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1141.test.cpp
+    title: test/yukicoder/1141.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/655.test.cpp
     title: test/yukicoder/655.test.cpp
   _isVerificationFailed: false
@@ -51,6 +54,7 @@ data:
   timestamp: '2022-12-04 12:10:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1141.test.cpp
   - test/yukicoder/655.test.cpp
 documentation_of: ds/cumsum_2d.hpp
 layout: document
