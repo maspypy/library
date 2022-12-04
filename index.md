@@ -7,6 +7,9 @@ data:
       path: alg/acted_monoid/add_mul.hpp
       title: alg/acted_monoid/add_mul.hpp
     - icon: ':heavy_check_mark:'
+      path: alg/acted_monoid/cntsum_affine.hpp
+      title: alg/acted_monoid/cntsum_affine.hpp
+    - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/max_add.hpp
       title: alg/acted_monoid/max_add.hpp
     - icon: ':heavy_check_mark:'
@@ -312,7 +315,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/randomized_bst/rbst_acted_monoid.hpp
       title: ds/randomized_bst/rbst_acted_monoid.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/randomized_bst/rbst_acted_set.hpp
       title: ds/randomized_bst/rbst_acted_set.hpp
     - icon: ':warning:'
@@ -329,7 +332,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree/beats_summaxmin_chminchmax.hpp
       title: ds/segtree/beats_summaxmin_chminchmax.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/beats_summin_chmax.hpp
       title: ds/segtree/beats_summin_chmax.hpp
     - icon: ':heavy_check_mark:'
@@ -367,7 +370,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/splaytree/splaytree_acted_monoid.hpp
       title: ds/splaytree/splaytree_acted_monoid.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/splaytree/splaytree_acted_set.hpp
       title: ds/splaytree/splaytree_acted_set.hpp
     - icon: ':heavy_check_mark:'
@@ -1718,7 +1721,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/sort_segtree_1.test.cpp
       title: test/library_checker/datastructure/sort_segtree_1.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
       title: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1748,7 +1751,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
       title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
       title: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2105,10 +2108,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/binom.test.cpp
       title: test/mytest/binom.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/cf702_F.test.cpp
       title: test/mytest/cf702_F.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/cf702_F_splay.test.cpp
       title: test/mytest/cf702_F_splay.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2539,7 +2542,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1524.test.cpp
       title: test/yukicoder/1524.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1526.test.cpp
       title: test/yukicoder/1526.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2788,7 +2791,7 @@ data:
     - icon: ':x:'
       path: test/yukicoder/235.test.cpp
       title: test/yukicoder/235.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/255.test.cpp
       title: test/yukicoder/255.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2815,7 +2818,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/502_2.test.cpp
       title: test/yukicoder/502_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/529.test.cpp
       title: test/yukicoder/529.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2863,7 +2866,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/919.test.cpp
       title: test/yukicoder/919.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/924.test.cpp
       title: test/yukicoder/924.test.cpp
 layout: toppage

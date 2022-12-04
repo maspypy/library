@@ -6,6 +6,9 @@ data:
     path: ds/splaytree/splaytree_acted_monoid.hpp
     title: ds/splaytree/splaytree_acted_monoid.hpp
   - icon: ':heavy_check_mark:'
+    path: ds/splaytree/splaytree_acted_set.hpp
+    title: ds/splaytree/splaytree_acted_set.hpp
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_commutative_monoid.hpp
     title: ds/splaytree/splaytree_commutative_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -21,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/cf702_F_splay.test.cpp
+    title: test/mytest/cf702_F_splay.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/splay.test.cpp
     title: test/mytest/splay.test.cpp
@@ -253,6 +259,7 @@ data:
   isVerificationFile: false
   path: ds/splaytree/splaytree.hpp
   requiredBy:
+  - ds/splaytree/splaytree_acted_set.hpp
   - ds/splaytree/splaytree_monoid.hpp
   - ds/splaytree/splaytree_commutative_monoid.hpp
   - ds/splaytree/splaytree_acted_monoid.hpp
@@ -260,6 +267,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1441.test.cpp
+  - test/mytest/cf702_F_splay.test.cpp
   - test/mytest/splay_monoid.test.cpp
   - test/mytest/splay_cm.test.cpp
   - test/mytest/splay_am.test.cpp

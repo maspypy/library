@@ -1,8 +1,20 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: alg/acted_monoid/cntsum_affine.hpp
+    title: alg/acted_monoid/cntsum_affine.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/cf702_F.test.cpp
+    title: test/mytest/cf702_F.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/cf702_F_splay.test.cpp
+    title: test/mytest/cf702_F_splay.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/255.test.cpp
+    title: test/yukicoder/255.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/749.test.cpp
     title: test/yukicoder/749.test.cpp
@@ -26,11 +38,15 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/add_pair.hpp
-  requiredBy: []
+  requiredBy:
+  - alg/acted_monoid/cntsum_affine.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/749.test.cpp
+  - test/yukicoder/255.test.cpp
+  - test/mytest/cf702_F.test.cpp
+  - test/mytest/cf702_F_splay.test.cpp
 documentation_of: alg/monoid/add_pair.hpp
 layout: document
 redirect_from:

@@ -166,6 +166,9 @@ data:
     path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
+    title: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
     title: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -174,6 +177,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
+    title: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
@@ -297,6 +303,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/919.test.cpp
     title: test/yukicoder/919.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/924.test.cpp
+    title: test/yukicoder/924.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -368,6 +377,7 @@ data:
   - test/yukicoder/1269.test.cpp
   - test/yukicoder/1270.test.cpp
   - test/yukicoder/655.test.cpp
+  - test/yukicoder/924.test.cpp
   - test/yukicoder/1332.test.cpp
   - test/yukicoder/789.test.cpp
   - test/yukicoder/919.test.cpp
@@ -390,12 +400,14 @@ data:
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
+  - test/library_checker/datastructure/static_range_inversions_mo.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
   - test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp

@@ -9,6 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/maxidx_add.test.cpp
     title: test/mytest/maxidx_add.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/529.test.cpp
+    title: test/yukicoder/529.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -35,6 +38,7 @@ data:
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/529.test.cpp
   - test/mytest/maxidx_add.test.cpp
 documentation_of: alg/monoid/max_idx.hpp
 layout: document

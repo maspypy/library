@@ -22,27 +22,27 @@ data:
     links: []
   bundledCode: "#line 2 \"alg/monoid/minmincnt.hpp\"\n\r\n// \u6700\u5C0F\u5024\u3001\
     \u6700\u5C0F\u5024\u306E\u500B\u6570\r\ntemplate <typename E>\r\nstruct Monoid_MinMincnt\
-    \ {\r\n  using value_type = tuple<E, E, E>;\r\n  using X = value_type;\r\n  static\
-    \ X from_element(E x) { return {x, 1}; }\r\n  static X op(X x, X y) {\r\n    auto\
-    \ [xmin, xmincnt] = x;\r\n    auto [ymin, ymincnt] = y;\r\n    if (xmin > ymin)\
-    \ return {ymin, ymincnt};\r\n    if (xmin == ymin) return {xmin, xmincnt + ymincnt};\r\
-    \n    return {xmin, xmincnt};\r\n  }\r\n  static constexpr X unit() { return {numeric_limits<E>::max(),\
-    \ 0}; }\r\n  static constexpr bool commute = true;\r\n};\n"
+    \ {\r\n  using value_type = pair<E, E>;\r\n  using X = value_type;\r\n  static\
+    \ X op(X x, X y) {\r\n    auto [xmin, xmincnt] = x;\r\n    auto [ymin, ymincnt]\
+    \ = y;\r\n    if (xmin > ymin) return {ymin, ymincnt};\r\n    if (xmin == ymin)\
+    \ return {xmin, xmincnt + ymincnt};\r\n    return {xmin, xmincnt};\r\n  }\r\n\
+    \  static constexpr X unit() { return {numeric_limits<E>::max(), 0}; }\r\n  static\
+    \ constexpr bool commute = true;\r\n};\n"
   code: "#pragma once\r\n\r\n// \u6700\u5C0F\u5024\u3001\u6700\u5C0F\u5024\u306E\u500B\
     \u6570\r\ntemplate <typename E>\r\nstruct Monoid_MinMincnt {\r\n  using value_type\
-    \ = tuple<E, E, E>;\r\n  using X = value_type;\r\n  static X from_element(E x)\
-    \ { return {x, 1}; }\r\n  static X op(X x, X y) {\r\n    auto [xmin, xmincnt]\
-    \ = x;\r\n    auto [ymin, ymincnt] = y;\r\n    if (xmin > ymin) return {ymin,\
-    \ ymincnt};\r\n    if (xmin == ymin) return {xmin, xmincnt + ymincnt};\r\n   \
-    \ return {xmin, xmincnt};\r\n  }\r\n  static constexpr X unit() { return {numeric_limits<E>::max(),\
-    \ 0}; }\r\n  static constexpr bool commute = true;\r\n};"
+    \ = pair<E, E>;\r\n  using X = value_type;\r\n  static X op(X x, X y) {\r\n  \
+    \  auto [xmin, xmincnt] = x;\r\n    auto [ymin, ymincnt] = y;\r\n    if (xmin\
+    \ > ymin) return {ymin, ymincnt};\r\n    if (xmin == ymin) return {xmin, xmincnt\
+    \ + ymincnt};\r\n    return {xmin, xmincnt};\r\n  }\r\n  static constexpr X unit()\
+    \ { return {numeric_limits<E>::max(), 0}; }\r\n  static constexpr bool commute\
+    \ = true;\r\n};"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/minmincnt.hpp
   requiredBy:
   - other/rectangle_union.hpp
   - alg/acted_monoid/minmincnt_add.hpp
-  timestamp: '2022-12-03 07:16:30+09:00'
+  timestamp: '2022-12-04 11:32:38+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp

@@ -5,10 +5,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/beats_summaxmin_chminchmax.hpp
     title: ds/segtree/beats_summaxmin_chminchmax.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/segtree/beats_summin_chmax.hpp
+    title: ds/segtree/beats_summin_chmax.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
     title: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1526.test.cpp
+    title: test/yukicoder/1526.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -133,10 +139,12 @@ data:
   isVerificationFile: false
   path: ds/segtree/segtree_beats.hpp
   requiredBy:
+  - ds/segtree/beats_summin_chmax.hpp
   - ds/segtree/beats_summaxmin_chminchmax.hpp
   timestamp: '2022-12-03 10:20:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1526.test.cpp
   - test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
 documentation_of: ds/segtree/segtree_beats.hpp
 layout: document

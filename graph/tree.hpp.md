@@ -76,6 +76,9 @@ data:
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
+    title: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - icon: ':heavy_check_mark:'
@@ -159,6 +162,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/529.test.cpp
+    title: test/yukicoder/529.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
@@ -388,6 +394,7 @@ data:
   - test/yukicoder/1494.test.cpp
   - test/yukicoder/1451.test.cpp
   - test/yukicoder/1211.test.cpp
+  - test/yukicoder/529.test.cpp
   - test/yukicoder/1769.test.cpp
   - test/yukicoder/1976.test.cpp
   - test/yukicoder/1418.test.cpp
@@ -396,6 +403,7 @@ data:
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - test/library_checker/tree/lca.test.cpp

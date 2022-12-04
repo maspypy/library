@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: alg/acted_monoid/cntsum_affine.hpp
+    title: alg/acted_monoid/cntsum_affine.hpp
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_affine.hpp
     title: alg/acted_monoid/sum_affine.hpp
   _extendedVerifiedWith:
@@ -45,6 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1502.test.cpp
     title: test/yukicoder/1502.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/255.test.cpp
+    title: test/yukicoder/255.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -70,11 +76,13 @@ data:
   isVerificationFile: false
   path: alg/monoid/affine.hpp
   requiredBy:
+  - alg/acted_monoid/cntsum_affine.hpp
   - alg/acted_monoid/sum_affine.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1502.test.cpp
+  - test/yukicoder/255.test.cpp
   - test/mytest/splay.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp

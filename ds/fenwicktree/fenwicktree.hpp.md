@@ -46,6 +46,9 @@ data:
     path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
+    title: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
     title: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -84,6 +87,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1874.test.cpp
     title: test/yukicoder/1874.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/924.test.cpp
+    title: test/yukicoder/924.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -174,9 +180,11 @@ data:
   - test/yukicoder/1326.test.cpp
   - test/yukicoder/1038.test.cpp
   - test/yukicoder/1270.test.cpp
+  - test/yukicoder/924.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - test/library_checker/datastructure/static_range_inversions_mo.test.cpp
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
