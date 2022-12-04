@@ -316,7 +316,7 @@ data:
     ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 7 \"test/mytest/dynamic_lazy_segtree_persistent.test.cpp\"\
     \n\nvoid test() {\n  using AM = ActedMonoid_SumMax_Assign<int, -1>;\n  using P\
     \ = typename AM::X;\n\n  FOR(100) {\n    int N = RNG(1, 1000);\n\n    vvc<int>\
-    \ AA;\n    AA.eb(vc<int>(N, 10));\n    Dynamic_Lazy_SegTree<AM, true, 10000> X(0,\
+    \ AA;\n    AA.eb(vc<int>(N, 10));\n    Dynamic_Lazy_SegTree<AM, true, 30000> X(0,\
     \ N, [](ll l, ll r) -> P {\n      return {10 * (r - l), 10};\n    });\n    using\
     \ np = typename decltype(X)::np;\n\n    auto rand_LR = [&]() -> pi {\n      int\
     \ L = RNG(0, N);\n      int R = RNG(0, N);\n      if (L > R) swap(L, R);\n   \
@@ -342,7 +342,7 @@ data:
     #include \"ds/segtree/dynamic_lazy_segtree.hpp\"\n#include \"random/base.hpp\"\
     \n\nvoid test() {\n  using AM = ActedMonoid_SumMax_Assign<int, -1>;\n  using P\
     \ = typename AM::X;\n\n  FOR(100) {\n    int N = RNG(1, 1000);\n\n    vvc<int>\
-    \ AA;\n    AA.eb(vc<int>(N, 10));\n    Dynamic_Lazy_SegTree<AM, true, 10000> X(0,\
+    \ AA;\n    AA.eb(vc<int>(N, 10));\n    Dynamic_Lazy_SegTree<AM, true, 30000> X(0,\
     \ N, [](ll l, ll r) -> P {\n      return {10 * (r - l), 10};\n    });\n    using\
     \ np = typename decltype(X)::np;\n\n    auto rand_LR = [&]() -> pi {\n      int\
     \ L = RNG(0, N);\n      int R = RNG(0, N);\n      if (L > R) swap(L, R);\n   \
@@ -374,7 +374,7 @@ data:
   isVerificationFile: true
   path: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
   requiredBy: []
-  timestamp: '2022-12-04 20:15:06+09:00'
+  timestamp: '2022-12-04 21:24:13+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/dynamic_lazy_segtree_persistent.test.cpp

@@ -274,28 +274,28 @@ data:
     \ return;\n    apply_at(2 * k, laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k]\
     \ = MA::unit();\n  }\n};\n#line 7 \"test/mytest/min_min.test.cpp\"\n\nvoid test()\
     \ {\n  int N = RNG(1, 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1, 100);\n\
-    \  using AM = ActedMonoid_Min_Min<int>;\n  using Mono = typename AM::Monoid_X;\n\
-    \  Lazy_SegTree<AM> seg(A);\n  int Q = RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0,\
-    \ 2);\n    ll L = RNG(0, N);\n    ll R = RNG(0, N);\n    if (L > R) swap(L, R);\n\
-    \    ++R;\n    if (t == 1) {\n      ll x = RNG(1, 100);\n      FOR(i, L, R) chmin(A[i],\
-    \ x);\n      seg.apply(L, R, x);\n    }\n    if (t == 2) {\n      vc<int> B =\
-    \ {A.begin() + L, A.begin() + R};\n      assert(seg.prod(L, R) == MIN(B));\n \
-    \   }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main()\
-    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \  FOR(100) test();\n  solve();\n\n  return 0;\n}\n"
+    \  using AM = ActedMonoid_Min_Min<int>;\n  Lazy_SegTree<AM> seg(A);\n  int Q =\
+    \ RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0, 2);\n    ll L = RNG(0, N);\n   \
+    \ ll R = RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n    if (t == 1) {\n\
+    \      ll x = RNG(1, 100);\n      FOR(i, L, R) chmin(A[i], x);\n      seg.apply(L,\
+    \ R, x);\n    }\n    if (t == 2) {\n      vc<int> B = {A.begin() + L, A.begin()\
+    \ + R};\n      assert(seg.prod(L, R) == MIN(B));\n    }\n  }\n}\n\nvoid solve()\
+    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n  FOR(100) test();\n\
+    \  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"alg/acted_monoid/min_min.hpp\"\n#include\
     \ \"random/base.hpp\"\n#include \"ds/segtree/lazy_segtree.hpp\"\n\nvoid test()\
     \ {\n  int N = RNG(1, 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1, 100);\n\
-    \  using AM = ActedMonoid_Min_Min<int>;\n  using Mono = typename AM::Monoid_X;\n\
-    \  Lazy_SegTree<AM> seg(A);\n  int Q = RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0,\
-    \ 2);\n    ll L = RNG(0, N);\n    ll R = RNG(0, N);\n    if (L > R) swap(L, R);\n\
-    \    ++R;\n    if (t == 1) {\n      ll x = RNG(1, 100);\n      FOR(i, L, R) chmin(A[i],\
-    \ x);\n      seg.apply(L, R, x);\n    }\n    if (t == 2) {\n      vc<int> B =\
-    \ {A.begin() + L, A.begin() + R};\n      assert(seg.prod(L, R) == MIN(B));\n \
-    \   }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main()\
-    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \  FOR(100) test();\n  solve();\n\n  return 0;\n}\n"
+    \  using AM = ActedMonoid_Min_Min<int>;\n  Lazy_SegTree<AM> seg(A);\n  int Q =\
+    \ RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0, 2);\n    ll L = RNG(0, N);\n   \
+    \ ll R = RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n    if (t == 1) {\n\
+    \      ll x = RNG(1, 100);\n      FOR(i, L, R) chmin(A[i], x);\n      seg.apply(L,\
+    \ R, x);\n    }\n    if (t == 2) {\n      vc<int> B = {A.begin() + L, A.begin()\
+    \ + R};\n      assert(seg.prod(L, R) == MIN(B));\n    }\n  }\n}\n\nvoid solve()\
+    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n  FOR(100) test();\n\
+    \  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -306,7 +306,7 @@ data:
   isVerificationFile: true
   path: test/mytest/min_min.test.cpp
   requiredBy: []
-  timestamp: '2022-12-04 21:11:25+09:00'
+  timestamp: '2022-12-04 21:24:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/min_min.test.cpp
