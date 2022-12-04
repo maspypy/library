@@ -8,7 +8,7 @@ data:
   - icon: ':x:'
     path: other/rectangle_union.hpp
     title: other/rectangle_union.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
   _extendedVerifiedWith:
@@ -69,16 +69,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1270.test.cpp
     title: test/yukicoder/1270.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1720.test.cpp
     title: test/yukicoder/1720.test.cpp
   - icon: ':x:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/749.test.cpp
     title: test/yukicoder/749.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
   _isVerificationFailed: true

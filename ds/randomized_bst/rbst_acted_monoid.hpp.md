@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_am_2.test.cpp
     title: test/mytest/rbst_am_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/686.test.cpp
     title: test/yukicoder/686.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/randomized_bst/rbst_acted_monoid.hpp\"\ntemplate <typename\
@@ -290,7 +290,7 @@ data:
   path: ds/randomized_bst/rbst_acted_monoid.hpp
   requiredBy: []
   timestamp: '2022-12-04 00:54:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/686.test.cpp
   - test/mytest/rbst_am_2.test.cpp

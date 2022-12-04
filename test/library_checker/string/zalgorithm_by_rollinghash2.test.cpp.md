@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/disjointsparse/disjointsparse.hpp
     title: ds/disjointsparse/disjointsparse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
