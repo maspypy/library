@@ -1,21 +1,20 @@
-#include "ds/pds/persistent_meldable_heap.hpp"
+#include "ds/meldable_heap.hpp"
 #include "graph/shortest_path/dijkstra.hpp"
 #include "graph/reverse_graph.hpp"
 
 // INF 埋めして必ず長さ K にしたものをかえす。
-// 無向グラフなら 2 倍辺をはって有向グラフにして使うこと
-// ・ループがヤバそうだがとりあえず
-template <typename T, typename GT>
+template <typename T, typename GT, int NODES>
 vc<T> K_shortest_walk(GT &G, int s, int t, int K, T INF) {
+  static_assert(G.is_directed());
   int N = G.N;
   auto RG = reverse_graph(G);
   auto [dist, par] = dijkstra<ll, decltype(RG)>(RG, t, INF);
   if (dist[s] == INF) { return vc<T>(K, INF); }
 
   using P = pair<T, int>;
-  Persistent_Meldable_Heap<P> X;
-  using Node = typename Persistent_Meldable_Heap<P>::Node;
-  vc<Node *> nodes(N, nullptr);
+  Meldable_Heap<P, true, NODES> X;
+  using np = typename decltype(X)::np;
+  vc<np> nodes(N, nullptr);
 
   vc<bool> vis(N);
   vc<int> st = {t};
@@ -42,10 +41,10 @@ vc<T> K_shortest_walk(GT &G, int s, int t, int K, T INF) {
     }
   }
 
-  ll base = dist[s];
-  vc<ll> ANS = {base};
+  T base = dist[s];
+  vc<T> ANS = {base};
   if (nodes[s]) {
-    using PAIR = pair<ll, Node *>;
+    using PAIR = pair<ll, np>;
     auto comp = [](auto a, auto b) { return a.fi > b.fi; };
     priority_queue<PAIR, vc<PAIR>, decltype(comp)> que(comp);
     que.emplace(base + X.top(nodes[s]).fi, nodes[s]);
@@ -55,7 +54,7 @@ vc<T> K_shortest_walk(GT &G, int s, int t, int K, T INF) {
       ANS.eb(d);
       if (n->l) que.emplace(d + (n->l->x.fi) - (n->x.fi), n->l);
       if (n->r) que.emplace(d + (n->r->x.fi) - (n->x.fi), n->r);
-      Node *m = nodes[n->x.se];
+      np m = nodes[n->x.se];
       if (m) { que.emplace(d + m->x.fi, m); }
     }
   }

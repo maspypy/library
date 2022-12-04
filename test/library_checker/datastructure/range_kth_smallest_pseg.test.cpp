@@ -2,17 +2,17 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "alg/monoid/add.hpp"
-#include "ds/pds/segtree.hpp"
+#include "ds/segtree/dynamic_segtree.hpp"
 
 void solve() {
   LL(N, Q);
   VEC(int, A, N);
-  Persistent_SegTree<Monoid_Add<int>, 5'000'000> seg(N);
-  using np = decltype(seg)::Node *;
+  Dynamic_SegTree<Monoid_Add<int>, true, 5'000'000> seg(0, N);
+  using np = decltype(seg)::np;
   auto I = argsort(A);
 
   vc<np> roots;
-  roots.eb(seg.new_node(vc<int>(N)));
+  roots.eb(seg.new_node(0, N));
   FOR(k, N) { roots.eb(seg.set(roots.back(), I[k], 1)); }
   FOR(Q) {
     LL(L, R, k);
