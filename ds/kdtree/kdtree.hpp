@@ -1,43 +1,42 @@
-template <class T, typename XY>
+template <typename XY>
 struct KDTree {
   // 小数も考慮すると、閉で持つ設計方針になる。ただし、クエリはいつもの半開を使う
   vc<tuple<XY, XY, XY, XY>> closed_range;
   // 同じ座標の点も集約しないようにして、座標ごとに unique なデータを使う
-  vc<T> dat;
-  vc<int> size;
+  vc<int> dat;
   int n;
 
-  KDTree(vc<XY> xs, vc<XY> ys, vc<T> vs) : n(len(xs)) {
-    assert(n > 0);
+  KDTree(vc<XY> xs, vc<XY> ys) : n(len(xs)) {
     int log = 0;
     while ((1 << log) < n) ++log;
-    dat.resize(1 << (log + 1));
-    size.resize(1 << (log + 1));
+    dat.assign(1 << (log + 1), -1);
     closed_range.resize(1 << (log + 1));
+    vc<int> vs(n);
+    iota(all(vs), 0);
     build(1, xs, ys, vs);
   }
 
   // [xl, xr) x [yl, yr)
-  vc<T> collect_rect(XY xl, XY xr, XY yl, XY yr, int max_size = -1) {
+  vc<int> collect_rect(XY xl, XY xr, XY yl, XY yr, int max_size = -1) {
     assert(xl <= xr && yl <= yr);
     if (max_size == -1) max_size = n;
-    vc<T> res;
-    collect_rect_rec(1, xl, xr, yl, yr, res, max_size);
+    vc<int> res;
+    rect_rec(1, xl, xr, yl, yr, res, max_size);
     return res;
   }
 
-  // r^2 を渡すことに気を付ける
-  vc<T> collect_circle(XY x, XY y, XY r_squared, int max_size = -1) {
-    if (max_size == -1) max_size = n;
-    vc<T> res;
-    collect_circle_rec(1, x, y, r_squared, res, max_size);
-    return res;
+  // 計算量保証なし、点群がランダムなら O(logN)
+  // N = Q = 10^5 で、約 1 秒
+  int nearest_neighbor_search(XY x, XY y) {
+    pair<int, XY> res = {-1, numeric_limits<XY>::max()};
+    nns_rec(1, x, y, res);
+    assert(res.fi != -1);
+    return res.fi;
   }
 
 private:
-  void build(int idx, vc<XY> xs, vc<XY> ys, vc<T> vs, bool divx = true) {
+  void build(int idx, vc<XY> xs, vc<XY> ys, vc<int> vs, bool divx = true) {
     int n = len(xs);
-    size[idx] = n;
     auto& [xmin, xmax, ymin, ymax] = closed_range[idx];
     xmin = ymin = numeric_limits<XY>::max();
     xmax = ymax = numeric_limits<XY>::lowest();
@@ -68,16 +67,39 @@ private:
           {vs.begin() + m, vs.end()}, !divx);
   }
 
-  void collect_rect_rec(int i, XY x1, XY x2, XY y1, XY y2, vc<T>& res, int ms) {
+  void rect_rec(int i, XY x1, XY x2, XY y1, XY y2, vc<int>& res, int ms) {
     if (len(res) == ms) return;
     auto& [xmin, xmax, ymin, ymax] = closed_range[i];
     if (x2 <= xmin || xmax < x1) return;
     if (y2 <= ymin || ymax < y1) return;
-    if (size[i] == 1) {
+    if (dat[i] != -1) {
       res.eb(dat[i]);
       return;
     }
-    collect_rect_rec(2 * i + 0, x1, x2, y1, y2, res, ms);
-    collect_rect_rec(2 * i + 1, x1, x2, y1, y2, res, ms);
+    rect_rec(2 * i + 0, x1, x2, y1, y2, res, ms);
+    rect_rec(2 * i + 1, x1, x2, y1, y2, res, ms);
+  }
+
+  XY best_dist_squared(int i, XY x, XY y) {
+    auto& [xmin, xmax, ymin, ymax] = closed_range[i];
+    XY dx = x - clamp(x, xmin, xmax);
+    XY dy = y - clamp(y, ymin, ymax);
+    return dx * dx + dy * dy;
+  }
+
+  void nns_rec(int i, XY x, XY y, pair<int, XY>& res) {
+    XY d = best_dist_squared(i, x, y);
+    if (d >= res.se) return;
+    if (dat[i] != -1) {
+      res = {dat[i], d};
+      return;
+    }
+    XY d0 = best_dist_squared(2 * i + 0, x, y);
+    XY d1 = best_dist_squared(2 * i + 1, x, y);
+    if (d0 < d1) {
+      nns_rec(2 * i + 0, x, y, res), nns_rec(2 * i + 1, x, y, res);
+    } else {
+      nns_rec(2 * i + 1, x, y, res), nns_rec(2 * i + 0, x, y, res);
+    }
   }
 };
