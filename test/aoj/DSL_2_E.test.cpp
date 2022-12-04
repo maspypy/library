@@ -2,31 +2,25 @@
   "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/fenwicktree/fenwicktree_raq.hpp"
+#include "ds/range_add_range_sum.hpp"
 
 void solve() {
   LL(N, Q);
-  FenwickRAQ<Monoid_Add<ll>> bit(N);
-  FOR(_, Q) {
+  Range_Add_Range_Sum<Monoid_Add<ll>> bit(N);
+  FOR(Q) {
     LL(t);
     if (t == 0) {
       LL(L, R, x);
       bit.add(--L, R, x);
     } else {
       LL(L);
-      print(bit.prod(L - 1, L));
+      print(bit.sum(L - 1, L));
     }
   }
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
+  solve();
 
   return 0;
 }

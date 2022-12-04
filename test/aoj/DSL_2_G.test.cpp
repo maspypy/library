@@ -2,11 +2,11 @@
   "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/fenwicktree/fenwicktree_raq.hpp"
+#include "ds/range_add_range.sum.hpp"
 
 void solve() {
   LL(N, Q);
-  FenwickRAQ<Monoid_Add<ll>> bit(N);
+  Range_Add_Range_Sum<Monoid_Add<ll>> bit(N);
   FOR(_, Q) {
     LL(t, L, R);
     --L;
