@@ -10,7 +10,6 @@ void test() {
   vc<int> A(N);
   FOR(i, N) A[i] = RNG(1, 100);
   using AM = ActedMonoid_Max_Min<int>;
-  using Mono = typename AM::Monoid_X;
   Lazy_SegTree<AM> seg(A);
   int Q = RNG(1, 100);
   FOR(Q) {
