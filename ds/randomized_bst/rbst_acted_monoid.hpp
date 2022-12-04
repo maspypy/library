@@ -322,7 +322,7 @@ private:
   }
 
   template <typename F>
-  pair<np, np> split_max_right_rec(np root, const F &check, X &x) {
+  pair<np, np> split_max_right_rec(np root, F check, X &x) {
     if (!root) return {nullptr, nullptr};
     prop(root);
     root = copy_node(root);
