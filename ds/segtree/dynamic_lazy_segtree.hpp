@@ -75,9 +75,16 @@ struct Dynamic_Lazy_SegTree {
 
   template <typename F>
   ll max_right(np root, F check, ll L) {
-    assert(0 <= L && L < n && check(MX::unit()));
+    assert(0 <= L && L <= n && check(MX::unit()));
     X x = MX::unit();
     return max_right_rec(root, check, 0, n, L, x);
+  }
+
+  template <typename F>
+  ll min_left(np root, F check, ll R) {
+    assert(0 <= R && R <= n && check(MX::unit()));
+    X x = MX::unit();
+    return min_left_rec(root, check, 0, n, R, x);
   }
 
   vc<X> restore(np root) {
@@ -218,5 +225,22 @@ private:
     ll k = max_right_rec(c->l, check, l, m, ql, x);
     if (k < m) return k;
     return max_right_rec(c->r, check, m, r, ql, x);
+  }
+
+  template <typename F>
+  ll min_left_rec(np c, const F &check, ll l, ll r, ll qr, X &x) {
+    if (qr <= l) return l;
+    if (!c) c = new_node(l, r);
+    chmin(qr, r);
+    if (r == qr && check(MX::op(c->x, x))) {
+      x = MX::op(c->x, x);
+      return l;
+    }
+    if (r == l + 1) return r;
+    prop(c, l, r);
+    ll m = (l + r) / 2;
+    ll k = min_left_rec(c->r, check, m, r, qr, x);
+    if (m < k) return k;
+    return min_left_rec(c->l, check, l, m, qr, x);
   }
 };
