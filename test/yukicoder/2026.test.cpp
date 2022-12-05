@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/2026"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/swag.hpp"
+#include "ds/sliding_window_aggregation.hpp"
 #include "alg/monoid/max.hpp"
 
 using Mono = Monoid_Max<ll>;
@@ -25,7 +25,7 @@ void solve() {
       vi A(n + 1);
       FOR(k, n + 1) A[k] = dp[i + k][j + wt * k];
 
-      SWAG<Mono> X;
+      Slinding_Window_Aggregation<Mono> X;
       FOR(k, n + 1) {
         X.push(A[k] - val * k);
         if (len(X) > cnt + 1) X.pop();
