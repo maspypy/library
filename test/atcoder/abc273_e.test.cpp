@@ -1,7 +1,7 @@
 #define PROBLEM "https://atcoder.jp/contests/abc273/tasks/abc273_e"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/pds/array.hpp"
+#include "ds/persistent_array.hpp"
 
 void solve() {
   PersistentArray<int> PA;

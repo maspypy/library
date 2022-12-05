@@ -1,7 +1,7 @@
 #define PROBLEM "https://atcoder.jp/contests/abc127/tasks/abc127_f"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/waveletmatrix.hpp"
+#include "ds/wavelet_matrix.hpp"
 
 void solve() {
   LL(Q);
