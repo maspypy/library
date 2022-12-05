@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/sum_add.hpp
     title: alg/acted_monoid/sum_add.hpp
   - icon: ':question:'
@@ -281,9 +281,9 @@ data:
     \   }\n\n    const edge_type* end() const {\n      if (l == r) { return 0; }\n\
     \      return &G->csr_edges[r];\n    }\n\n  private:\n    const Graph* G;\n  \
     \  int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n  constexpr bool\
-    \ is_directed() const { return directed; }\n\n  Graph() : N(0), M(0), prepared(0)\
-    \ {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void resize(int n) { N\
-    \ = n; }\n\n  void add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n\
+    \ is_directed() { return directed; }\n\n  Graph() : N(0), M(0), prepared(0) {}\n\
+    \  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void resize(int n) { N = n;\
+    \ }\n\n  void add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n\
     \    assert(0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto\
     \ e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  //\
     \ wt, off\n  void read_tree(bool wt = false, int off = 1) { read_graph(N - 1,\
@@ -473,7 +473,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_5_E.test.cpp
   requiredBy: []
-  timestamp: '2022-12-05 07:33:55+09:00'
+  timestamp: '2022-12-05 10:41:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_5_E.test.cpp

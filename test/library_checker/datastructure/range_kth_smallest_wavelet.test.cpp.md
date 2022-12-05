@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/wavelet_matrix.hpp
     title: ds/wavelet_matrix.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
@@ -247,20 +247,20 @@ data:
     \ - r0;\r\n      }\r\n    }\r\n    return key[ret];\r\n  }\r\n\r\n  // [L, R)\
     \ \u306E\u4E2D\u3067\u5C0F\u3055\u3044\u65B9\u304B\u3089 k \u500B\u306E\u7DCF\u548C\
     \r\n  T sum(int L, int R, int k) {\r\n    assert(SUM_QUERY);\r\n    assert(0 <=\
-    \ k && k <= R - L);\r\n    T pos = AbelGroup::unit(), neg = G::unit();\r\n   \
-    \ for (int h = lg - 1; h >= 0; h--) {\r\n      int l0 = bv[h].rank(L, 0), r0 =\
-    \ bv[h].rank(R, 0);\r\n      if (k < r0 - l0) {\r\n        L = l0, R = r0;\r\n\
-    \      } else {\r\n        k -= r0 - l0;\r\n        pos = G::op(pos, cumsum[h][r0]);\r\
-    \n        neg = G::op(neg, cumsum[h][l0]);\r\n        L += mid[h] - l0, R += mid[h]\
-    \ - r0;\r\n      }\r\n    }\r\n    if (k) {\r\n      pos = G::op(pos, cumsum[0][L\
+    \ k && k <= R - L);\r\n    T pos = G::unit(), neg = G::unit();\r\n    for (int\
+    \ h = lg - 1; h >= 0; h--) {\r\n      int l0 = bv[h].rank(L, 0), r0 = bv[h].rank(R,\
+    \ 0);\r\n      if (k < r0 - l0) {\r\n        L = l0, R = r0;\r\n      } else {\r\
+    \n        k -= r0 - l0;\r\n        pos = G::op(pos, cumsum[h][r0]);\r\n      \
+    \  neg = G::op(neg, cumsum[h][l0]);\r\n        L += mid[h] - l0, R += mid[h] -\
+    \ r0;\r\n      }\r\n    }\r\n    if (k) {\r\n      pos = G::op(pos, cumsum[0][L\
     \ + k]);\r\n      neg = G::op(neg, cumsum[0][L]);\r\n    }\r\n    return G::op(pos,\
     \ G::inverse(neg));\r\n  }\r\n};\r\n#line 5 \"test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  WaveletMatrix<int> WM(A);\n\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Wavelet_Matrix<int> WM(A);\n\
     \  FOR(Q) {\n    LL(l, r, k);\n    print(WM.kth(l, r, k));\n  }\n}\n\nsigned main()\
     \ {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/wavelet_matrix.hpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  WaveletMatrix<int> WM(A);\n\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Wavelet_Matrix<int> WM(A);\n\
     \  FOR(Q) {\n    LL(l, r, k);\n    print(WM.kth(l, r, k));\n  }\n}\n\nsigned main()\
     \ {\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
@@ -271,8 +271,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   requiredBy: []
-  timestamp: '2022-12-05 09:44:15+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-05 10:41:25+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
 layout: document

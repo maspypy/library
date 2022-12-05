@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/persistent_unionfind.test.cpp
     title: test/library_checker/datastructure/persistent_unionfind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/dynamic_array.hpp\"\n\r\ntemplate <typename T, bool PERSISTENT,\
@@ -37,7 +37,7 @@ data:
     \  np new_node() { return PA.new_node(); }\r\n\r\n  int root(np c, int x) {\r\n\
     \    while (1) {\r\n      int p = PA.get(c, x);\r\n      assert(x != p);\r\n \
     \     if (p < 0) break;\r\n      x = p;\r\n    }\r\n    return x;\r\n  }\r\n\r\
-    \n  pair<bool, np> merge(np c, int x, int y) {\r\n    x = root(c, x), y = root(c,\
+    \n  pair<np, bool> merge(np c, int x, int y) {\r\n    x = root(c, x), y = root(c,\
     \ y);\r\n    if (x == y) return {false, c};\r\n    if (-PA.get(c, x) < -PA.get(c,\
     \ y)) swap(x, y);\r\n    int new_sz = PA.get(c, x) + PA.get(c, y);\r\n    c =\
     \ PA.set(c, x, new_sz);\r\n    assert(PA.get(c, x) == new_sz);\r\n    c = PA.set(c,\
@@ -49,7 +49,7 @@ data:
     \n\r\n  Dynamic_UnionFind() : PA(-1) {}\r\n\r\n  np new_node() { return PA.new_node();\
     \ }\r\n\r\n  int root(np c, int x) {\r\n    while (1) {\r\n      int p = PA.get(c,\
     \ x);\r\n      assert(x != p);\r\n      if (p < 0) break;\r\n      x = p;\r\n\
-    \    }\r\n    return x;\r\n  }\r\n\r\n  pair<bool, np> merge(np c, int x, int\
+    \    }\r\n    return x;\r\n  }\r\n\r\n  pair<np, bool> merge(np c, int x, int\
     \ y) {\r\n    x = root(c, x), y = root(c, y);\r\n    if (x == y) return {false,\
     \ c};\r\n    if (-PA.get(c, x) < -PA.get(c, y)) swap(x, y);\r\n    int new_sz\
     \ = PA.get(c, x) + PA.get(c, y);\r\n    c = PA.set(c, x, new_sz);\r\n    assert(PA.get(c,\
@@ -61,8 +61,8 @@ data:
   isVerificationFile: false
   path: ds/unionfind/dynamic_unionfind.hpp
   requiredBy: []
-  timestamp: '2022-12-05 10:24:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-12-05 10:41:25+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/datastructure/persistent_unionfind.test.cpp
 documentation_of: ds/unionfind/dynamic_unionfind.hpp

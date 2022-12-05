@@ -13,16 +13,16 @@ data:
   - icon: ':question:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/max_matching_size.hpp
     title: graph/max_matching_size.hpp
   - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -278,7 +278,7 @@ data:
     \    const edge_type* end() const {\n      if (l == r) { return 0; }\n      return\
     \ &G->csr_edges[r];\n    }\n\n  private:\n    const Graph* G;\n    int l, r;\n\
     \  };\n\n  bool is_prepared() { return prepared; }\n  constexpr bool is_directed()\
-    \ const { return directed; }\n\n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int\
+    \ { return directed; }\n\n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int\
     \ N) : N(N), M(0), prepared(0) {}\n\n  void resize(int n) { N = n; }\n\n  void\
     \ add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n   \
     \ assert(0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto e\
@@ -449,8 +449,8 @@ data:
   isVerificationFile: true
   path: test/mytest/tutte.test.cpp
   requiredBy: []
-  timestamp: '2022-12-05 07:33:55+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-12-05 10:41:25+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/tutte.test.cpp
 layout: document

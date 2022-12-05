@@ -9,7 +9,7 @@ data:
   - icon: ':x:'
     path: test/atcoder/abc127f_1.test.cpp
     title: test/atcoder/abc127f_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test/yukicoder/2065.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -66,12 +66,12 @@ data:
     \ - r0;\r\n      }\r\n    }\r\n    return key[ret];\r\n  }\r\n\r\n  // [L, R)\
     \ \u306E\u4E2D\u3067\u5C0F\u3055\u3044\u65B9\u304B\u3089 k \u500B\u306E\u7DCF\u548C\
     \r\n  T sum(int L, int R, int k) {\r\n    assert(SUM_QUERY);\r\n    assert(0 <=\
-    \ k && k <= R - L);\r\n    T pos = AbelGroup::unit(), neg = G::unit();\r\n   \
-    \ for (int h = lg - 1; h >= 0; h--) {\r\n      int l0 = bv[h].rank(L, 0), r0 =\
-    \ bv[h].rank(R, 0);\r\n      if (k < r0 - l0) {\r\n        L = l0, R = r0;\r\n\
-    \      } else {\r\n        k -= r0 - l0;\r\n        pos = G::op(pos, cumsum[h][r0]);\r\
-    \n        neg = G::op(neg, cumsum[h][l0]);\r\n        L += mid[h] - l0, R += mid[h]\
-    \ - r0;\r\n      }\r\n    }\r\n    if (k) {\r\n      pos = G::op(pos, cumsum[0][L\
+    \ k && k <= R - L);\r\n    T pos = G::unit(), neg = G::unit();\r\n    for (int\
+    \ h = lg - 1; h >= 0; h--) {\r\n      int l0 = bv[h].rank(L, 0), r0 = bv[h].rank(R,\
+    \ 0);\r\n      if (k < r0 - l0) {\r\n        L = l0, R = r0;\r\n      } else {\r\
+    \n        k -= r0 - l0;\r\n        pos = G::op(pos, cumsum[h][r0]);\r\n      \
+    \  neg = G::op(neg, cumsum[h][l0]);\r\n        L += mid[h] - l0, R += mid[h] -\
+    \ r0;\r\n      }\r\n    }\r\n    if (k) {\r\n      pos = G::op(pos, cumsum[0][L\
     \ + k]);\r\n      neg = G::op(neg, cumsum[0][L]);\r\n    }\r\n    return G::op(pos,\
     \ G::inverse(neg));\r\n  }\r\n};\r\n"
   code: "#include \"alg/monoid/add.hpp\"\r\n\r\n// Wavelet Matrix \u4E0A\u3067\u3055\
@@ -114,7 +114,7 @@ data:
     \ += mid[h] - l0, R += mid[h] - r0;\r\n      }\r\n    }\r\n    return key[ret];\r\
     \n  }\r\n\r\n  // [L, R) \u306E\u4E2D\u3067\u5C0F\u3055\u3044\u65B9\u304B\u3089\
     \ k \u500B\u306E\u7DCF\u548C\r\n  T sum(int L, int R, int k) {\r\n    assert(SUM_QUERY);\r\
-    \n    assert(0 <= k && k <= R - L);\r\n    T pos = AbelGroup::unit(), neg = G::unit();\r\
+    \n    assert(0 <= k && k <= R - L);\r\n    T pos = G::unit(), neg = G::unit();\r\
     \n    for (int h = lg - 1; h >= 0; h--) {\r\n      int l0 = bv[h].rank(L, 0),\
     \ r0 = bv[h].rank(R, 0);\r\n      if (k < r0 - l0) {\r\n        L = l0, R = r0;\r\
     \n      } else {\r\n        k -= r0 - l0;\r\n        pos = G::op(pos, cumsum[h][r0]);\r\
@@ -127,8 +127,8 @@ data:
   isVerificationFile: false
   path: ds/wavelet_matrix.hpp
   requiredBy: []
-  timestamp: '2022-12-05 09:44:15+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-12-05 10:41:25+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/2065.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp

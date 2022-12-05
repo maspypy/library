@@ -220,8 +220,8 @@ data:
     \ r) { return 0; }\n      return &G->csr_edges[l];\n    }\n\n    const edge_type*\
     \ end() const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n\
     \    }\n\n  private:\n    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared()\
-    \ { return prepared; }\n  constexpr bool is_directed() const { return directed;\
-    \ }\n\n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
+    \ { return prepared; }\n  constexpr bool is_directed() { return directed; }\n\n\
+    \  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
     \ {}\n\n  void resize(int n) { N = n; }\n\n  void add(int frm, int to, T cost\
     \ = 1, int i = -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <= to &&\
     \ to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n\
@@ -294,7 +294,7 @@ data:
     \ e.id); }\r\n  G1.build();\r\n  return G1;\r\n}\r\n#line 4 \"graph/shortest_path/K_shortest_walk.hpp\"\
     \n\n// INF \u57CB\u3081\u3057\u3066\u5FC5\u305A\u9577\u3055 K \u306B\u3057\u305F\
     \u3082\u306E\u3092\u304B\u3048\u3059\u3002\ntemplate <typename T, typename GT,\
-    \ int NODES>\nvc<T> K_shortest_walk(GT &G, int s, int t, int K, T INF) {\n  static_assert(G.is_directed());\n\
+    \ int NODES>\nvc<T> K_shortest_walk(GT &G, int s, int t, int K, T INF) {\n  assert(G.is_directed());\n\
     \  int N = G.N;\n  auto RG = reverse_graph(G);\n  auto [dist, par] = dijkstra<ll,\
     \ decltype(RG)>(RG, t, INF);\n  if (dist[s] == INF) { return vc<T>(K, INF); }\n\
     \n  using P = pair<T, int>;\n  Meldable_Heap<P, true, NODES> X;\n  using np =\
@@ -338,7 +338,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/K_shortest_walk.test.cpp
   requiredBy: []
-  timestamp: '2022-12-05 07:33:55+09:00'
+  timestamp: '2022-12-05 10:41:25+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/K_shortest_walk.test.cpp

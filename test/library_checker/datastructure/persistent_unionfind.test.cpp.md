@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/unionfind/dynamic_unionfind.hpp
     title: ds/unionfind/dynamic_unionfind.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/persistent_unionfind
@@ -225,7 +225,7 @@ data:
     \  np new_node() { return PA.new_node(); }\r\n\r\n  int root(np c, int x) {\r\n\
     \    while (1) {\r\n      int p = PA.get(c, x);\r\n      assert(x != p);\r\n \
     \     if (p < 0) break;\r\n      x = p;\r\n    }\r\n    return x;\r\n  }\r\n\r\
-    \n  pair<bool, np> merge(np c, int x, int y) {\r\n    x = root(c, x), y = root(c,\
+    \n  pair<np, bool> merge(np c, int x, int y) {\r\n    x = root(c, x), y = root(c,\
     \ y);\r\n    if (x == y) return {false, c};\r\n    if (-PA.get(c, x) < -PA.get(c,\
     \ y)) swap(x, y);\r\n    int new_sz = PA.get(c, x) + PA.get(c, y);\r\n    c =\
     \ PA.set(c, x, new_sz);\r\n    assert(PA.get(c, x) == new_sz);\r\n    c = PA.set(c,\
@@ -235,7 +235,7 @@ data:
     void solve() {\r\n  LL(N, Q);\r\n\r\n  Dynamic_UnionFind<true, 1'500'000> uf;\r\
     \n  using np = typename decltype(uf)::np;\r\n  vc<np> roots;\r\n\r\n  roots.eb(uf.new_node());\r\
     \n\r\n  FOR(Q) {\r\n    LL(t, k, u, v);\r\n    ++k;\r\n    auto root = roots[k];\r\
-    \n    if (t == 0) {\r\n      root = uf.merge(root, u, v).se;\r\n    } else {\r\
+    \n    if (t == 0) {\r\n      root = uf.merge(root, u, v).fi;\r\n    } else {\r\
     \n      bool ok = uf.root(root, u) == uf.root(root, v);\r\n      print(ok ? 1\
     \ : 0);\r\n    }\r\n    roots.eb(root);\r\n  }\r\n}\r\n\r\nsigned main() {\r\n\
     \  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
@@ -246,7 +246,7 @@ data:
     \n  Dynamic_UnionFind<true, 1'500'000> uf;\r\n  using np = typename decltype(uf)::np;\r\
     \n  vc<np> roots;\r\n\r\n  roots.eb(uf.new_node());\r\n\r\n  FOR(Q) {\r\n    LL(t,\
     \ k, u, v);\r\n    ++k;\r\n    auto root = roots[k];\r\n    if (t == 0) {\r\n\
-    \      root = uf.merge(root, u, v).se;\r\n    } else {\r\n      bool ok = uf.root(root,\
+    \      root = uf.merge(root, u, v).fi;\r\n    } else {\r\n      bool ok = uf.root(root,\
     \ u) == uf.root(root, v);\r\n      print(ok ? 1 : 0);\r\n    }\r\n    roots.eb(root);\r\
     \n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
     \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
@@ -258,8 +258,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/persistent_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2022-12-05 10:24:00+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-12-05 10:41:25+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/persistent_unionfind.test.cpp
 layout: document
