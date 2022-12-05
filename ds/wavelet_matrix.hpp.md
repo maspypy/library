@@ -13,6 +13,12 @@ data:
     path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   - icon: ':x:'
+    path: test/mytest/wavelet_matrix_sum.test.cpp
+    title: test/mytest/wavelet_matrix_sum.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1332.test.cpp
+    title: test/yukicoder/1332.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/2065.test.cpp
     title: test/yukicoder/2065.test.cpp
   _isVerificationFailed: true
@@ -131,6 +137,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/2065.test.cpp
+  - test/yukicoder/1332.test.cpp
+  - test/mytest/wavelet_matrix_sum.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   - test/atcoder/abc127f_1.test.cpp
 documentation_of: ds/wavelet_matrix.hpp

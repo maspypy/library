@@ -5,7 +5,7 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/add_mul.hpp
     title: alg/acted_monoid/add_mul.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: ds/power_query.hpp
     title: ds/power_query.hpp
   - icon: ':heavy_check_mark:'
@@ -48,6 +48,9 @@ data:
   - icon: ':x:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
+  - icon: ':x:'
+    path: test/mytest/powerquery.test.cpp
+    title: test/mytest/powerquery.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1080_2.test.cpp
     title: test/yukicoder/1080_2.test.cpp
@@ -100,6 +103,7 @@ data:
   - test/yukicoder/1339.test.cpp
   - test/yukicoder/502_2.test.cpp
   - test/mytest/factorial_998.test.cpp
+  - test/mytest/powerquery.test.cpp
   - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp

@@ -5,10 +5,13 @@ data:
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/mytest/powerquery.test.cpp
+    title: test/mytest/powerquery.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Monoid_Mul\
@@ -19,7 +22,7 @@ data:
     \n\n// \u5B9A\u6570\u3092\u3079\u304D\u4E57\u3059\u308B\u30AF\u30A8\u30EA\u3002\
     \ B \u4E57\u5206\u305A\u3064\u524D\u8A08\u7B97\u3002\ntemplate <typename Mono,\
     \ int B = 1024>\nstruct PowerQuery {\n  using X = typename Mono::value_type;\n\
-    \  vvc<X> dat;\n\n  PowerQuery(X a) { dat.eb(make_pow(a)); }\n\n  X operator()(ll\
+    \  vvc<X> dat;\n\n  Power_Query(X a) { dat.eb(make_pow(a)); }\n\n  X operator()(ll\
     \ n) {\n    X res = Mono::unit();\n    int k = 0;\n    while (n) {\n      int\
     \ r = n % B;\n      n /= B;\n      if (len(dat) == k) { dat.eb(make_pow(dat[k\
     \ - 1].back())); }\n      res = Mono::op(res, dat[k][r]);\n      ++k;\n    }\n\
@@ -29,7 +32,7 @@ data:
   code: "#include \"alg/monoid/mul.hpp\"\n\n// \u5B9A\u6570\u3092\u3079\u304D\u4E57\
     \u3059\u308B\u30AF\u30A8\u30EA\u3002 B \u4E57\u5206\u305A\u3064\u524D\u8A08\u7B97\
     \u3002\ntemplate <typename Mono, int B = 1024>\nstruct PowerQuery {\n  using X\
-    \ = typename Mono::value_type;\n  vvc<X> dat;\n\n  PowerQuery(X a) { dat.eb(make_pow(a));\
+    \ = typename Mono::value_type;\n  vvc<X> dat;\n\n  Power_Query(X a) { dat.eb(make_pow(a));\
     \ }\n\n  X operator()(ll n) {\n    X res = Mono::unit();\n    int k = 0;\n   \
     \ while (n) {\n      int r = n % B;\n      n /= B;\n      if (len(dat) == k) {\
     \ dat.eb(make_pow(dat[k - 1].back())); }\n      res = Mono::op(res, dat[k][r]);\n\
@@ -41,9 +44,10 @@ data:
   isVerificationFile: false
   path: ds/power_query.hpp
   requiredBy: []
-  timestamp: '2022-12-05 07:33:55+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-12-05 10:58:54+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/mytest/powerquery.test.cpp
 documentation_of: ds/power_query.hpp
 layout: document
 redirect_from:

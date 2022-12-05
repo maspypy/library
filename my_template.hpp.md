@@ -372,7 +372,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/predecessor_problem.test.cpp
     title: test/library_checker/datastructure/predecessor_problem.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
     title: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -483,52 +483,52 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/biconnected_component.test.cpp
     title: test/library_checker/graph/biconnected_component.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartite_edge_coloring.test.cpp
     title: test/library_checker/graph/bipartite_edge_coloring.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/classify_tree.test.cpp
     title: test/library_checker/graph/classify_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/common_interval_decomposition.test.cpp
     title: test/library_checker/graph/common_interval_decomposition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/cycle_detection.test.cpp
     title: test/library_checker/graph/cycle_detection.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/cycle_detection_undirected.test.cpp
     title: test/library_checker/graph/cycle_detection_undirected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/enumerate_cliques.test.cpp
     title: test/library_checker/graph/enumerate_cliques.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/enumerate_triangles.test.cpp
     title: test/library_checker/graph/enumerate_triangles.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/manhattan_mst.test.cpp
     title: test/library_checker/graph/manhattan_mst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/maximum_independent_set.test.cpp
     title: test/library_checker/graph/maximum_independent_set.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/min_cost_b-flow.test.cpp
     title: test/library_checker/graph/min_cost_b-flow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
     title: test/library_checker/graph/rerooting_classify_subtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/scc.test.cpp
     title: test/library_checker/graph/scc.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/shortest_path.test.cpp
     title: test/library_checker/graph/shortest_path.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/two_edge_component.test.cpp
     title: test/library_checker/graph/two_edge_component.test.cpp
   - icon: ':x:'
@@ -912,6 +912,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/partizan.test.cpp
     title: test/mytest/partizan.test.cpp
+  - icon: ':x:'
+    path: test/mytest/powerquery.test.cpp
+    title: test/mytest/powerquery.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/prime_sum.test.cpp
     title: test/mytest/prime_sum.test.cpp
@@ -1009,6 +1012,9 @@ data:
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
   - icon: ':x:'
+    path: test/mytest/wavelet_matrix_sum.test.cpp
+    title: test/mytest/wavelet_matrix_sum.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1002.test.cpp
     title: test/yukicoder/1002.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1020,6 +1026,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036_2.test.cpp
     title: test/yukicoder/1036_2.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1036_3.test.cpp
+    title: test/yukicoder/1036_3.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
@@ -1038,6 +1047,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1097.test.cpp
     title: test/yukicoder/1097.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1117.test.cpp
+    title: test/yukicoder/1117.test.cpp
   - icon: ':x:'
     path: test/yukicoder/114.test.cpp
     title: test/yukicoder/114.test.cpp
@@ -1149,6 +1161,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1326.test.cpp
     title: test/yukicoder/1326.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1332.test.cpp
+    title: test/yukicoder/1332.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
@@ -1182,6 +1197,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1435.test.cpp
     title: test/yukicoder/1435.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1435_2.test.cpp
+    title: test/yukicoder/1435_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1441.test.cpp
     title: test/yukicoder/1441.test.cpp
@@ -1799,6 +1817,7 @@ data:
   - test/yukicoder/1288.test.cpp
   - test/yukicoder/1547.test.cpp
   - test/yukicoder/1435.test.cpp
+  - test/yukicoder/1435_2.test.cpp
   - test/yukicoder/2108.test.cpp
   - test/yukicoder/1667.test.cpp
   - test/yukicoder/1634.test.cpp
@@ -1809,6 +1828,7 @@ data:
   - test/yukicoder/1526.test.cpp
   - test/yukicoder/1818.test.cpp
   - test/yukicoder/1262.test.cpp
+  - test/yukicoder/1332.test.cpp
   - test/yukicoder/1769.test.cpp
   - test/yukicoder/255.test.cpp
   - test/yukicoder/1339.test.cpp
@@ -1858,7 +1878,9 @@ data:
   - test/yukicoder/1868.test.cpp
   - test/yukicoder/1891.test.cpp
   - test/yukicoder/1240.test.cpp
+  - test/yukicoder/1117.test.cpp
   - test/yukicoder/1418.test.cpp
+  - test/yukicoder/1036_3.test.cpp
   - test/yukicoder/1718.test.cpp
   - test/yukicoder/2102.test.cpp
   - test/yukicoder/1197.test.cpp
@@ -1903,6 +1925,7 @@ data:
   - test/mytest/dyadic_rational.test.cpp
   - test/mytest/chirp_z.test.cpp
   - test/mytest/incremental_ch.test.cpp
+  - test/mytest/powerquery.test.cpp
   - test/mytest/min_cost_matching_on_line.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/segtree_xor_prod.test.cpp
@@ -1919,6 +1942,7 @@ data:
   - test/mytest/enumerate_products.test.cpp
   - test/mytest/online_division.test.cpp
   - test/mytest/simple_perm.test.cpp
+  - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/tutte.test.cpp
   - test/mytest/kdtree_nns.test.cpp
   - test/mytest/rbst_am.test.cpp

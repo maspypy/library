@@ -256,6 +256,9 @@ data:
     path: test/mytest/summin_add.test.cpp
     title: test/mytest/summin_add.test.cpp
   - icon: ':x:'
+    path: test/mytest/wavelet_matrix_sum.test.cpp
+    title: test/mytest/wavelet_matrix_sum.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
   - icon: ':heavy_check_mark:'
@@ -288,6 +291,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1326.test.cpp
     title: test/yukicoder/1326.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1332.test.cpp
+    title: test/yukicoder/1332.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1441.test.cpp
     title: test/yukicoder/1441.test.cpp
@@ -412,6 +418,7 @@ data:
   - test/yukicoder/1270.test.cpp
   - test/yukicoder/789_2.test.cpp
   - test/yukicoder/655.test.cpp
+  - test/yukicoder/1332.test.cpp
   - test/yukicoder/1641.test.cpp
   - test/yukicoder/789.test.cpp
   - test/yukicoder/1919.test.cpp
@@ -428,6 +435,7 @@ data:
   - test/mytest/segtree_xor_prod.test.cpp
   - test/mytest/splay_am.test.cpp
   - test/mytest/rbst_commutative_persistent.test.cpp
+  - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/rbst_am_2.test.cpp
   - test/mytest/ARC30D.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
