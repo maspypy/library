@@ -1,5 +1,6 @@
 #pragma once
 
+// sparse もあるので状況によってはそっちで
 template <typename Monoid, bool PERSISTENT, int NODES>
 struct Dynamic_SegTree {
   using MX = Monoid;
