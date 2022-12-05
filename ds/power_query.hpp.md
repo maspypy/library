@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/powerquery.test.cpp
     title: test/mytest/powerquery.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Monoid_Mul\
@@ -21,7 +21,7 @@ data:
     \ X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/power_query.hpp\"\
     \n\n// \u5B9A\u6570\u3092\u3079\u304D\u4E57\u3059\u308B\u30AF\u30A8\u30EA\u3002\
     \ B \u4E57\u5206\u305A\u3064\u524D\u8A08\u7B97\u3002\ntemplate <typename Mono,\
-    \ int B = 1024>\nstruct PowerQuery {\n  using X = typename Mono::value_type;\n\
+    \ int B = 1024>\nstruct Power_Query {\n  using X = typename Mono::value_type;\n\
     \  vvc<X> dat;\n\n  Power_Query(X a) { dat.eb(make_pow(a)); }\n\n  X operator()(ll\
     \ n) {\n    X res = Mono::unit();\n    int k = 0;\n    while (n) {\n      int\
     \ r = n % B;\n      n /= B;\n      if (len(dat) == k) { dat.eb(make_pow(dat[k\
@@ -31,8 +31,8 @@ data:
     \ a)); }\n    return res;\n  }\n};\n"
   code: "#include \"alg/monoid/mul.hpp\"\n\n// \u5B9A\u6570\u3092\u3079\u304D\u4E57\
     \u3059\u308B\u30AF\u30A8\u30EA\u3002 B \u4E57\u5206\u305A\u3064\u524D\u8A08\u7B97\
-    \u3002\ntemplate <typename Mono, int B = 1024>\nstruct PowerQuery {\n  using X\
-    \ = typename Mono::value_type;\n  vvc<X> dat;\n\n  Power_Query(X a) { dat.eb(make_pow(a));\
+    \u3002\ntemplate <typename Mono, int B = 1024>\nstruct Power_Query {\n  using\
+    \ X = typename Mono::value_type;\n  vvc<X> dat;\n\n  Power_Query(X a) { dat.eb(make_pow(a));\
     \ }\n\n  X operator()(ll n) {\n    X res = Mono::unit();\n    int k = 0;\n   \
     \ while (n) {\n      int r = n % B;\n      n /= B;\n      if (len(dat) == k) {\
     \ dat.eb(make_pow(dat[k - 1].back())); }\n      res = Mono::op(res, dat[k][r]);\n\
@@ -44,8 +44,8 @@ data:
   isVerificationFile: false
   path: ds/power_query.hpp
   requiredBy: []
-  timestamp: '2022-12-05 10:58:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-12-05 18:15:30+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/powerquery.test.cpp
 documentation_of: ds/power_query.hpp
