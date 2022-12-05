@@ -2,9 +2,10 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/dynamic_array.hpp"
+#include "ds/hashmap.hpp"
 
 void solve() {
-  Dynamic_Array<int, true, 5'000'000> X(0);
+  Dynamic_Array<int, true, 3'000'000> X(0);
   using np = typename decltype(X)::np;
 
   LL(Q);
@@ -12,8 +13,7 @@ void solve() {
 
   np A = X.new_node();
   int A_size = 0;
-  map<int, np> note;
-  map<int, int> note_size;
+  HashMapLL<pair<np, int>> note;
 
   FOR(Q) {
     STR(S);
@@ -26,13 +26,11 @@ void solve() {
     }
     if (S == "SAVE") {
       INT(y);
-      note[y] = A;
-      note_size[y] = A_size;
+      note[y] = {A, A_size};
     }
     if (S == "LOAD") {
       INT(z);
-      A = MP[z];
-      A_size = note_size[z];
+      tie(A, A_size) = note[z];
     }
     ll x = -1;
     if (A_size) x = X.get(A, A_size - 1);

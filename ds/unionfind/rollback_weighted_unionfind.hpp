@@ -1,4 +1,4 @@
-#include "ds/pds/rollback_array.hpp"
+#include "ds/rollback_array.hpp"
 
 template <typename Group>
 struct Rollback_Weighted_UnionFind {
