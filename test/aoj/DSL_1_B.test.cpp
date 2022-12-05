@@ -3,11 +3,11 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "alg/monoid/add.hpp"
-#include "ds/unionfind/weightedunionfind.hpp"
+#include "ds/unionfind/weighted_unionfind.hpp"
 
 void solve() {
   LL(N, Q);
-  WeightedUnionFind<Monoid_Add<ll>> uf(N);
+  Weighted_UnionFind<Monoid_Add<ll>> uf(N);
   FOR(Q) {
     LL(t);
     if (t == 0) {
