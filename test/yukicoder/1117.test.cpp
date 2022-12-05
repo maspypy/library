@@ -12,7 +12,7 @@ void solve() {
   vi DP(N + 1, -INF);
   DP[0] = 0;
   FOR(K) {
-    Slinding_Window_Aggregation<Monoid_Max<ll>> swag1, swag2;
+    Sliding_Window_Aggregation<Monoid_Max<ll>> swag1, swag2;
     vi newDP(N + 1, -INF);
     FOR(i, N + 1) {
       chmax(newDP[i], swag1.prod() - Ac[i]);
