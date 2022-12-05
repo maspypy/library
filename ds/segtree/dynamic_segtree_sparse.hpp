@@ -2,10 +2,10 @@
 
 // 常にほとんどの要素が unit であることが保証されるような動的セグ木
 // したがって、default_prod の類は持たせられず、acted monoid も一般には扱えない
-// ノード数を O(N) に抑えることができるのが利点。永続化はなし。
+// 永続化しない場合のノード数を O(N) に抑えることができるのが利点
+// 密なものを永続化するときはかえって遅くなる可能性がある
 template <typename Monoid, bool PERSISTENT, int NODES>
 struct Dynamic_SegTree_Sparse {
-  static_assert(!PERSISTENT);
   using MX = Monoid;
   using X = typename MX::value_type;
 
@@ -55,16 +55,26 @@ struct Dynamic_SegTree_Sparse {
     return max_right_rec(root, check, L0, R0, L, x);
   }
 
-  /*
   template <typename F>
   ll min_left(np root, F check, ll R) {
     assert(L0 <= R && R <= R0 && check(MX::unit()));
     X x = MX::unit();
     return min_left_rec(root, check, L0, R0, R, x);
   }
-  */
 
   void reset() { pid = 0; }
+
+  vc<pair<ll, X>> get_all(np root) {
+    vc<pair<ll, X>> res;
+    auto dfs = [&](auto &dfs, np c) -> void {
+      if (!c) return;
+      dfs(dfs, c->l);
+      res.eb(c->idx, c->x);
+      dfs(dfs, c->r);
+    };
+    dfs(dfs, root);
+    return res;
+  }
 
 private:
   void update(np c) {
@@ -73,11 +83,22 @@ private:
     if (c->r) c->prod = MX::op(c->prod, c->r->prod);
   }
 
+  np copy_node(np c) {
+    if (!c || !PERSISTENT) return c;
+    pool[pid].idx = c->idx;
+    pool[pid].l = c->l;
+    pool[pid].r = c->r;
+    pool[pid].x = c->x;
+    pool[pid].prod = c->prod;
+    return &(pool[pid++]);
+  }
+
   np set_rec(np c, ll l, ll r, ll i, X x) {
     if (!c) {
       c = new_node(i, x);
       return c;
     }
+    c = copy_node(c);
     if (c->idx == i) {
       c->x = x;
       update(c);
@@ -101,6 +122,7 @@ private:
       c = new_node(i, x);
       return c;
     }
+    c = copy_node(c);
     if (c->idx == i) {
       c->x = MX::op(c->x, x);
       update(c);
@@ -153,8 +175,8 @@ private:
   template <typename F>
   ll min_left_rec(np c, const F &check, ll l, ll r, ll qr, X &x) {
     if (!c || qr <= l) return L0;
-    if (check(MX::op(c->x, x))) {
-      x = MX::op(x, c->x);
+    if (check(MX::op(c->prod, x))) {
+      x = MX::op(c->prod, x);
       return L0;
     }
     ll m = (l + r) / 2;
