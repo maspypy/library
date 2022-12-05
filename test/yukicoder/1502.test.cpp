@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"
-#include "ds/unionfind/weightedunionfind.hpp"
+#include "ds/unionfind/weighted_unionfind.hpp"
 #include "alg/monoid/affine.hpp"
 
 using mint = modint107;
@@ -15,7 +15,7 @@ void solve() {
 
   using GRP = Monoid_Affine<ll>;
 
-  WeightedUnionFind<GRP> uf(N);
+  Weighted_UnionFind<GRP> uf(N);
   for (auto&& [a, b, c]: dat) {
     if (uf[a].fi == uf[b].fi) continue;
     uf.merge(a, b, {-1, c});

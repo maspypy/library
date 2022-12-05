@@ -1,34 +1,33 @@
-#include "ds/persistent_array.hpp"
+#include "ds/dynamic_array.hpp"
 
-struct PersistentUnionFind {
-  using PA = PersistentArray<int>;
-  int n;
-  PA data; // root OR (-size)
-  using np = PA::np;
+template <bool PERSISTENT, int NODES>
+struct Dynamic_UnionFind {
+  Dynamic_Array<int, PERSISTENT, NODES> PA;
+  using np = typename decltype(PA)::np;
 
-  PersistentUnionFind(int n) : n(n) {}
-  np init() {
-    np t = data.get_root();
-    FOR(i, n) data.destructive_set(t, i, -1);
-    return t;
+  Dynamic_UnionFind() : PA(-1) {}
+
+  np new_node() { return PA.new_node(); }
+
+  int root(np c, int x) {
+    // 経路圧縮なしで
+    while (1) {
+      int p = PA.get(c, x);
+      if (p < 0) break;
+      x = p;
+    }
+    return x;
   }
 
-  pair<bool, np> merge(np t, int x, int y) {
-    x = root(t, x), y = root(t, y);
-    if (x == y) return {0, t};
-    if (data.get(t, x) > data.get(t, y)) swap(x, y);
-    int new_sz = data.get(t, x) + data.get(t, y);
-    np set_x_sz = data.set(t, x, new_sz);
-    np set_y_par = data.set(set_x_sz, y, x);
-    return {1, set_y_par};
+  pair<bool, np> merge(np c, int x, int y) {
+    x = root(c, x), y = root(c, y);
+    if (x == y) return {false, c};
+    if (-PA.get(c, x) < -PA.get(c, y)) swap(x, y);
+    int new_sz = PA.get(c, x) + PA.get(c, y);
+    c = PA.set(c, x, new_sz);
+    c = PA.set(c, y, x);
+    return {true, c};
   }
 
-  int root(np t, int x) {
-    int par_or_sz = data.get(t, x);
-    if (par_or_sz < 0) return x;
-    return root(t, par_or_sz);
-  }
-
-  bool same(np t, int x, int y) { return root(t, x) == root(t, y); }
-  int size(np t, int x) { return -data.get(t, root(t, x)); }
+  int size(np c, int x) { return -data.get(c, root(c, x)); }
 };

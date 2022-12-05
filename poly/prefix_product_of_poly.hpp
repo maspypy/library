@@ -2,7 +2,7 @@
 #include "linalg/mat_mul.hpp"
 #include "poly/lagrange_interpolate_iota.hpp"
 
-// A[k-1]...A[0]
+// A[k-1]...A[0] を計算する
 // アルゴリズム参考：https://github.com/noshi91/n91lib_rs/blob/master/src/algorithm/polynomial_matrix_prod.rs
 // 実装参考：https://nyaannyaan.github.io/library/matrix/polynomial-matrix-prefix-prod.hpp
 template <typename T>
@@ -72,7 +72,7 @@ vc<vc<T>> prefix_product_of_poly_matrix(vc<vc<vc<T>>>& A, ll k) {
   return res;
 }
 
-// A[k-1]...A[0]
+// f[k-1]...f[0] を計算する
 template <typename T>
 T prefix_product_of_poly(vc<T>& f, ll k) {
   vc<vc<vc<T>>> A(1);

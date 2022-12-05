@@ -3,14 +3,11 @@
 #include "ds/sliding_window_aggregation.hpp"
 #include "poly/convolution.hpp"
 
+// Input: f(0), ..., f(n-1) and c, m
+// Return: f(c), f(c+1), ..., f(c+m-1)
+// Complexity: M(n, n + m)
 template <typename mint>
 vc<mint> lagrange_interpolate_iota(vc<mint> &f, mint c, int m) {
-  /*
-  Input: f(0), ..., f(n-1) and c, m (1 default)
-  Return: f(c), f(c+1), ..., f(c+m-1)
-  Complexity: M(n, n + m)
-  → m がとても小さいならば O(n) を m 回やる方が速いのか
-  */
   if (m <= 60) {
     vc<mint> ANS(m);
     FOR(i, m) ANS[i] = lagrange_interpolate_iota(f, c + mint(i));
@@ -27,7 +24,7 @@ vc<mint> lagrange_interpolate_iota(vc<mint> &f, mint c, int m) {
   FOR(i, n + m - 1) b[i] = mint(1) / (c + mint(i - n + 1));
   a = convolution(a, b);
 
-  SWAG<Monoid_Mul<mint>> swag;
+  Sliding_Window_Aggregation<Monoid_Mul<mint>> swag;
   vc<mint> ANS(m);
   ll L = 0, R = 0;
   FOR(i, m) {
@@ -43,13 +40,11 @@ vc<mint> lagrange_interpolate_iota(vc<mint> &f, mint c, int m) {
   return ANS;
 }
 
+// Input: f(0), ..., f(n-1) and c
+// Return: f(c)
+// Complexity: O(n)
 template <typename mint>
 mint lagrange_interpolate_iota(vc<mint> &f, mint c) {
-  /*
-  Input: f(0), ..., f(n-1) and c
-  Return: f(c)
-  Complexity: O(n)
-  */
   int n = len(f);
   if (int(c.val) < n) return f[c.val];
   auto a = f;
