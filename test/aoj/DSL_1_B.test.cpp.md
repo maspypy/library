@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/unionfind/weighted_unionfind.hpp
     title: ds/unionfind/weighted_unionfind.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B
@@ -206,9 +206,9 @@ data:
     \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
     \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
     \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"ds/unionfind/weighted_unionfind.hpp\"\
-    \ntemplate <typename Group>\r\nstruct WeightedUnionFind {\r\n  using E = typename\
+    \ntemplate <typename Group>\r\nstruct Weighted_UnionFind {\r\n  using E = typename\
     \ Group::value_type;\r\n  int N;\r\n  vc<E> vals;\r\n  vc<int> par;\r\n  vc<int>\
-    \ size;\r\n\r\n  WeightedUnionFind(int N) : N(N), vals(N, Group::unit()), size(N,\
+    \ size;\r\n\r\n  Weighted_UnionFind(int N) : N(N), vals(N, Group::unit()), size(N,\
     \ 1) {\r\n    par.resize(N);\r\n    iota(all(par), 0);\r\n  }\r\n\r\n  // (root,\
     \ root=0 \u3068\u3057\u305F\u3068\u304D\u306E val)\r\n  pair<int, E> get(int v)\
     \ {\r\n    E res = Group::unit();\r\n    while (v != par[v]) {\r\n      res =\
@@ -220,14 +220,12 @@ data:
     \ false;\r\n    if (size[v1] < size[v2]) {\r\n      swap(v1, v2);\r\n      swap(x1,\
     \ x2);\r\n      x = Group::inverse(x);\r\n    }\r\n    x = Group::op(x1, x);\r\
     \n    x = Group::op(x, Group::inverse(x2));\r\n    vals[v2] = x;\r\n    par[v2]\
-    \ = v1;\r\n    size[v1] += size[v2];\r\n    return true;\r\n  }\r\n\r\n  void\
-    \ debug() {\r\n    print(\"par\", par);\r\n    print(\"vals\", vals);\r\n    print(\"\
-    size\", size);\r\n  }\r\n};\n#line 7 \"test/aoj/DSL_1_B.test.cpp\"\n\nvoid solve()\
-    \ {\n  LL(N, Q);\n  Weighted_UnionFind<Monoid_Add<ll>> uf(N);\n  FOR(Q) {\n  \
-    \  LL(t);\n    if (t == 0) {\n      LL(a, b, c);\n      uf.merge(a, b, c);\n \
-    \   } else {\n      LL(a, b);\n      auto [ra, xa] = uf.get(a);\n      auto [rb,\
-    \ xb] = uf.get(b);\n      if (ra != rb)\n        print(\"?\");\n      else\n \
-    \       print(xb - xa);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \ = v1;\r\n    size[v1] += size[v2];\r\n    return true;\r\n  }\r\n};\n#line 7\
+    \ \"test/aoj/DSL_1_B.test.cpp\"\n\nvoid solve() {\n  LL(N, Q);\n  Weighted_UnionFind<Monoid_Add<ll>>\
+    \ uf(N);\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(a, b, c);\n    \
+    \  uf.merge(a, b, c);\n    } else {\n      LL(a, b);\n      auto [ra, xa] = uf.get(a);\n\
+    \      auto [rb, xb] = uf.get(b);\n      if (ra != rb)\n        print(\"?\");\n\
+    \      else\n        print(xb - xa);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
     \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
     \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B\"\
@@ -248,8 +246,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2022-12-05 08:18:01+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-05 10:00:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_1_B.test.cpp
 layout: document

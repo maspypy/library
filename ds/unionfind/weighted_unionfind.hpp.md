@@ -3,17 +3,20 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_1_B.test.cpp
     title: test/aoj/DSL_1_B.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1502.test.cpp
+    title: test/yukicoder/1502.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/unionfind/weighted_unionfind.hpp\"\ntemplate <typename\
-    \ Group>\r\nstruct WeightedUnionFind {\r\n  using E = typename Group::value_type;\r\
-    \n  int N;\r\n  vc<E> vals;\r\n  vc<int> par;\r\n  vc<int> size;\r\n\r\n  WeightedUnionFind(int\
+    \ Group>\r\nstruct Weighted_UnionFind {\r\n  using E = typename Group::value_type;\r\
+    \n  int N;\r\n  vc<E> vals;\r\n  vc<int> par;\r\n  vc<int> size;\r\n\r\n  Weighted_UnionFind(int\
     \ N) : N(N), vals(N, Group::unit()), size(N, 1) {\r\n    par.resize(N);\r\n  \
     \  iota(all(par), 0);\r\n  }\r\n\r\n  // (root, root=0 \u3068\u3057\u305F\u3068\
     \u304D\u306E val)\r\n  pair<int, E> get(int v) {\r\n    E res = Group::unit();\r\
@@ -26,11 +29,10 @@ data:
     \ {\r\n      swap(v1, v2);\r\n      swap(x1, x2);\r\n      x = Group::inverse(x);\r\
     \n    }\r\n    x = Group::op(x1, x);\r\n    x = Group::op(x, Group::inverse(x2));\r\
     \n    vals[v2] = x;\r\n    par[v2] = v1;\r\n    size[v1] += size[v2];\r\n    return\
-    \ true;\r\n  }\r\n\r\n  void debug() {\r\n    print(\"par\", par);\r\n    print(\"\
-    vals\", vals);\r\n    print(\"size\", size);\r\n  }\r\n};\n"
-  code: "template <typename Group>\r\nstruct WeightedUnionFind {\r\n  using E = typename\
+    \ true;\r\n  }\r\n};\n"
+  code: "template <typename Group>\r\nstruct Weighted_UnionFind {\r\n  using E = typename\
     \ Group::value_type;\r\n  int N;\r\n  vc<E> vals;\r\n  vc<int> par;\r\n  vc<int>\
-    \ size;\r\n\r\n  WeightedUnionFind(int N) : N(N), vals(N, Group::unit()), size(N,\
+    \ size;\r\n\r\n  Weighted_UnionFind(int N) : N(N), vals(N, Group::unit()), size(N,\
     \ 1) {\r\n    par.resize(N);\r\n    iota(all(par), 0);\r\n  }\r\n\r\n  // (root,\
     \ root=0 \u3068\u3057\u305F\u3068\u304D\u306E val)\r\n  pair<int, E> get(int v)\
     \ {\r\n    E res = Group::unit();\r\n    while (v != par[v]) {\r\n      res =\
@@ -42,16 +44,15 @@ data:
     \ false;\r\n    if (size[v1] < size[v2]) {\r\n      swap(v1, v2);\r\n      swap(x1,\
     \ x2);\r\n      x = Group::inverse(x);\r\n    }\r\n    x = Group::op(x1, x);\r\
     \n    x = Group::op(x, Group::inverse(x2));\r\n    vals[v2] = x;\r\n    par[v2]\
-    \ = v1;\r\n    size[v1] += size[v2];\r\n    return true;\r\n  }\r\n\r\n  void\
-    \ debug() {\r\n    print(\"par\", par);\r\n    print(\"vals\", vals);\r\n    print(\"\
-    size\", size);\r\n  }\r\n};"
+    \ = v1;\r\n    size[v1] += size[v2];\r\n    return true;\r\n  }\r\n};"
   dependsOn: []
   isVerificationFile: false
   path: ds/unionfind/weighted_unionfind.hpp
   requiredBy: []
-  timestamp: '2022-12-05 08:01:45+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-12-05 09:44:15+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1502.test.cpp
   - test/aoj/DSL_1_B.test.cpp
 documentation_of: ds/unionfind/weighted_unionfind.hpp
 layout: document

@@ -31,29 +31,29 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc276/tasks/abc276_g
@@ -558,33 +558,32 @@ data:
     \ modint998>::value, vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>&\
     \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
-    \ b);\r\n}\r\n#line 5 \"poly/lagrange_interpolate_iota.hpp\"\n\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> lagrange_interpolate_iota(vc<mint> &f, mint c, int m) {\r\n\
-    \  /*\r\n  Input: f(0), ..., f(n-1) and c, m (1 default)\r\n  Return: f(c), f(c+1),\
-    \ ..., f(c+m-1)\r\n  Complexity: M(n, n + m)\r\n  \u2192 m \u304C\u3068\u3066\u3082\
-    \u5C0F\u3055\u3044\u306A\u3089\u3070 O(n) \u3092 m \u56DE\u3084\u308B\u65B9\u304C\
-    \u901F\u3044\u306E\u304B\r\n  */\r\n  if (m <= 60) {\r\n    vc<mint> ANS(m);\r\
-    \n    FOR(i, m) ANS[i] = lagrange_interpolate_iota(f, c + mint(i));\r\n    return\
-    \ ANS;\r\n  }\r\n  ll n = len(f);\r\n  auto a = f;\r\n  FOR(i, n) {\r\n    a[i]\
-    \ = a[i] * fact_inv<mint>(i) * fact_inv<mint>(n - 1 - i);\r\n    if ((n - 1 -\
-    \ i) & 1) a[i] = -a[i];\r\n  }\r\n  // x = c, c+1, ... \u306B\u5BFE\u3057\u3066\
-    \ a0/x + a1/(x-1) + ... \u3092\u6C42\u3081\u3066\u304A\u304F\r\n  vc<mint> b(n\
-    \ + m - 1);\r\n  FOR(i, n + m - 1) b[i] = mint(1) / (c + mint(i - n + 1));\r\n\
-    \  a = convolution(a, b);\r\n\r\n  SWAG<Monoid_Mul<mint>> swag;\r\n  vc<mint>\
-    \ ANS(m);\r\n  ll L = 0, R = 0;\r\n  FOR(i, m) {\r\n    while (L < i) { swag.pop(),\
-    \ ++L; }\r\n    while (R - L < n) { swag.push(c + mint((R++) - n + 1)); }\r\n\
-    \    auto coef = swag.prod();\r\n    if (coef == 0) {\r\n      ANS[i] = f[(c +\
-    \ i).val];\r\n    } else {\r\n      ANS[i] = a[i + n - 1] * coef;\r\n    }\r\n\
-    \  }\r\n  return ANS;\r\n}\r\n\r\ntemplate <typename mint>\r\nmint lagrange_interpolate_iota(vc<mint>\
-    \ &f, mint c) {\r\n  /*\r\n  Input: f(0), ..., f(n-1) and c\r\n  Return: f(c)\r\
-    \n  Complexity: O(n)\r\n  */\r\n  int n = len(f);\r\n  if (int(c.val) < n) return\
-    \ f[c.val];\r\n  auto a = f;\r\n  FOR(i, n) {\r\n    a[i] = a[i] * fact_inv<mint>(i)\
-    \ * fact_inv<mint>(n - 1 - i);\r\n    if ((n - 1 - i) & 1) a[i] = -a[i];\r\n \
-    \ }\r\n  vc<mint> lp(n + 1), rp(n + 1);\r\n  lp[0] = rp[n] = 1;\r\n  FOR(i, n)\
-    \ lp[i + 1] = lp[i] * (c - i);\r\n  FOR_R(i, n) rp[i] = rp[i + 1] * (c - i);\r\
-    \n  mint ANS = 0;\r\n  FOR(i, n) ANS += a[i] * lp[i] * rp[i + 1];\r\n  return\
-    \ ANS;\r\n}\r\n#line 4 \"poly/prefix_product_of_poly.hpp\"\n\n// A[k-1]...A[0]\n\
-    // \u30A2\u30EB\u30B4\u30EA\u30BA\u30E0\u53C2\u8003\uFF1Ahttps://github.com/noshi91/n91lib_rs/blob/master/src/algorithm/polynomial_matrix_prod.rs\n\
+    \ b);\r\n}\r\n#line 5 \"poly/lagrange_interpolate_iota.hpp\"\n\r\n// Input: f(0),\
+    \ ..., f(n-1) and c, m\r\n// Return: f(c), f(c+1), ..., f(c+m-1)\r\n// Complexity:\
+    \ M(n, n + m)\r\ntemplate <typename mint>\r\nvc<mint> lagrange_interpolate_iota(vc<mint>\
+    \ &f, mint c, int m) {\r\n  if (m <= 60) {\r\n    vc<mint> ANS(m);\r\n    FOR(i,\
+    \ m) ANS[i] = lagrange_interpolate_iota(f, c + mint(i));\r\n    return ANS;\r\n\
+    \  }\r\n  ll n = len(f);\r\n  auto a = f;\r\n  FOR(i, n) {\r\n    a[i] = a[i]\
+    \ * fact_inv<mint>(i) * fact_inv<mint>(n - 1 - i);\r\n    if ((n - 1 - i) & 1)\
+    \ a[i] = -a[i];\r\n  }\r\n  // x = c, c+1, ... \u306B\u5BFE\u3057\u3066 a0/x +\
+    \ a1/(x-1) + ... \u3092\u6C42\u3081\u3066\u304A\u304F\r\n  vc<mint> b(n + m -\
+    \ 1);\r\n  FOR(i, n + m - 1) b[i] = mint(1) / (c + mint(i - n + 1));\r\n  a =\
+    \ convolution(a, b);\r\n\r\n  Sliding_Window_Aggregation<Monoid_Mul<mint>> swag;\r\
+    \n  vc<mint> ANS(m);\r\n  ll L = 0, R = 0;\r\n  FOR(i, m) {\r\n    while (L <\
+    \ i) { swag.pop(), ++L; }\r\n    while (R - L < n) { swag.push(c + mint((R++)\
+    \ - n + 1)); }\r\n    auto coef = swag.prod();\r\n    if (coef == 0) {\r\n   \
+    \   ANS[i] = f[(c + i).val];\r\n    } else {\r\n      ANS[i] = a[i + n - 1] *\
+    \ coef;\r\n    }\r\n  }\r\n  return ANS;\r\n}\r\n\r\n// Input: f(0), ..., f(n-1)\
+    \ and c\r\n// Return: f(c)\r\n// Complexity: O(n)\r\ntemplate <typename mint>\r\
+    \nmint lagrange_interpolate_iota(vc<mint> &f, mint c) {\r\n  int n = len(f);\r\
+    \n  if (int(c.val) < n) return f[c.val];\r\n  auto a = f;\r\n  FOR(i, n) {\r\n\
+    \    a[i] = a[i] * fact_inv<mint>(i) * fact_inv<mint>(n - 1 - i);\r\n    if ((n\
+    \ - 1 - i) & 1) a[i] = -a[i];\r\n  }\r\n  vc<mint> lp(n + 1), rp(n + 1);\r\n \
+    \ lp[0] = rp[n] = 1;\r\n  FOR(i, n) lp[i + 1] = lp[i] * (c - i);\r\n  FOR_R(i,\
+    \ n) rp[i] = rp[i + 1] * (c - i);\r\n  mint ANS = 0;\r\n  FOR(i, n) ANS += a[i]\
+    \ * lp[i] * rp[i + 1];\r\n  return ANS;\r\n}\r\n#line 4 \"poly/prefix_product_of_poly.hpp\"\
+    \n\n// A[k-1]...A[0] \u3092\u8A08\u7B97\u3059\u308B\n// \u30A2\u30EB\u30B4\u30EA\
+    \u30BA\u30E0\u53C2\u8003\uFF1Ahttps://github.com/noshi91/n91lib_rs/blob/master/src/algorithm/polynomial_matrix_prod.rs\n\
     // \u5B9F\u88C5\u53C2\u8003\uFF1Ahttps://nyaannyaan.github.io/library/matrix/polynomial-matrix-prefix-prod.hpp\n\
     template <typename T>\nvc<vc<T>> prefix_product_of_poly_matrix(vc<vc<vc<T>>>&\
     \ A, ll k) {\n  int n = len(A);\n\n  using MAT = vc<vc<T>>;\n  auto shift = [&](vc<MAT>&\
@@ -605,20 +604,20 @@ data:
     \ 1, back_inserter(G));\n  }\n\n  vv(T, res, n, n);\n  FOR(i, n) res[i][i] = 1;\n\
     \  ll i = 0;\n  while (i + v <= k) res = mat_mul(G[i / v], res), i += v;\n  while\
     \ (i < k) {\n    vv(T, mat, n, n);\n    FOR(j, n) FOR(k, n) mat[j][k] = evaluate(A[j][k],\
-    \ i);\n    res = mat_mul(mat, res);\n    ++i;\n  }\n  return res;\n}\n\n// A[k-1]...A[0]\n\
-    template <typename T>\nT prefix_product_of_poly(vc<T>& f, ll k) {\n  vc<vc<vc<T>>>\
-    \ A(1);\n  A[0].resize(1);\n  A[0][0] = f;\n  auto res = prefix_product_of_poly_matrix(A,\
-    \ k);\n  return res[0][0];\n}\n#line 2 \"seq/kth_term_of_p_recursive.hpp\"\n\n\
-    // a0, ..., a_{r-1} \u304A\u3088\u3073 f_0, ..., f_r \u3092\u4E0E\u3048\u308B\n\
-    // a_r f_0(0) + a_{r-1}f_1(0) + ... = 0\n// a_{r+1} f_0(1) + a_{r}f_1(1) + ...\
-    \ = 0\ntemplate <typename T>\nT kth_term_of_p_recursive(vc<T> a, vc<vc<T>>& fs,\
-    \ ll k) {\n  int r = len(a);\n  assert(len(fs) == r + 1);\n  if (k < r) return\
-    \ a[k];\n\n  vc<vc<vc<T>>> A;\n  A.resize(r);\n  FOR(i, r) A[i].resize(r);\n \
-    \ FOR(i, r) {\n    // A[0][i] = -fs[i + 1];\n    for (auto&& x: fs[i + 1]) A[0][i].eb(-x);\n\
-    \  }\n  FOR3(i, 1, r) A[i][i - 1] = fs[0];\n  vc<T> den = fs[0];\n  auto res =\
-    \ prefix_product_of_poly_matrix(A, k - r + 1);\n  reverse(all(a));\n  T ANS =\
-    \ 0;\n  FOR(j, r) ANS += res[0][j] * a[j];\n  ANS /= prefix_product_of_poly(den,\
-    \ k - r + 1);\n  return ANS;\n}\n#line 4 \"poly/from_log_differentiation.hpp\"\
+    \ i);\n    res = mat_mul(mat, res);\n    ++i;\n  }\n  return res;\n}\n\n// f[k-1]...f[0]\
+    \ \u3092\u8A08\u7B97\u3059\u308B\ntemplate <typename T>\nT prefix_product_of_poly(vc<T>&\
+    \ f, ll k) {\n  vc<vc<vc<T>>> A(1);\n  A[0].resize(1);\n  A[0][0] = f;\n  auto\
+    \ res = prefix_product_of_poly_matrix(A, k);\n  return res[0][0];\n}\n#line 2\
+    \ \"seq/kth_term_of_p_recursive.hpp\"\n\n// a0, ..., a_{r-1} \u304A\u3088\u3073\
+    \ f_0, ..., f_r \u3092\u4E0E\u3048\u308B\n// a_r f_0(0) + a_{r-1}f_1(0) + ...\
+    \ = 0\n// a_{r+1} f_0(1) + a_{r}f_1(1) + ... = 0\ntemplate <typename T>\nT kth_term_of_p_recursive(vc<T>\
+    \ a, vc<vc<T>>& fs, ll k) {\n  int r = len(a);\n  assert(len(fs) == r + 1);\n\
+    \  if (k < r) return a[k];\n\n  vc<vc<vc<T>>> A;\n  A.resize(r);\n  FOR(i, r)\
+    \ A[i].resize(r);\n  FOR(i, r) {\n    // A[0][i] = -fs[i + 1];\n    for (auto&&\
+    \ x: fs[i + 1]) A[0][i].eb(-x);\n  }\n  FOR3(i, 1, r) A[i][i - 1] = fs[0];\n \
+    \ vc<T> den = fs[0];\n  auto res = prefix_product_of_poly_matrix(A, k - r + 1);\n\
+    \  reverse(all(a));\n  T ANS = 0;\n  FOR(j, r) ANS += res[0][j] * a[j];\n  ANS\
+    \ /= prefix_product_of_poly(den, k - r + 1);\n  return ANS;\n}\n#line 4 \"poly/from_log_differentiation.hpp\"\
     \n\n// \u5BFE\u6570\u5FAE\u5206 F'/F = a(x)/b(x) \u304B\u3089 F \u3092\u5FA9\u5143\
     \u3059\u308B\u3002\n// a, b \u304C sparse \u3067\u3042\u308C\u3070\u3001O(N(K1+K2))\
     \ \u6642\u9593\u3067\u3067\u304D\u308B\ntemplate <typename mint>\nvc<mint> from_log_differentiation(int\
@@ -694,8 +693,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc276_g.test.cpp
   requiredBy: []
-  timestamp: '2022-12-05 08:15:25+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-12-05 09:44:15+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/atcoder/abc276_g.test.cpp
 layout: document

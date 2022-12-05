@@ -28,7 +28,7 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
   - icon: ':question:'
@@ -530,32 +530,30 @@ data:
     \ modint998>::value, vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>&\
     \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
-    \ b);\r\n}\r\n#line 5 \"poly/lagrange_interpolate_iota.hpp\"\n\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> lagrange_interpolate_iota(vc<mint> &f, mint c, int m) {\r\n\
-    \  /*\r\n  Input: f(0), ..., f(n-1) and c, m (1 default)\r\n  Return: f(c), f(c+1),\
-    \ ..., f(c+m-1)\r\n  Complexity: M(n, n + m)\r\n  \u2192 m \u304C\u3068\u3066\u3082\
-    \u5C0F\u3055\u3044\u306A\u3089\u3070 O(n) \u3092 m \u56DE\u3084\u308B\u65B9\u304C\
-    \u901F\u3044\u306E\u304B\r\n  */\r\n  if (m <= 60) {\r\n    vc<mint> ANS(m);\r\
-    \n    FOR(i, m) ANS[i] = lagrange_interpolate_iota(f, c + mint(i));\r\n    return\
-    \ ANS;\r\n  }\r\n  ll n = len(f);\r\n  auto a = f;\r\n  FOR(i, n) {\r\n    a[i]\
-    \ = a[i] * fact_inv<mint>(i) * fact_inv<mint>(n - 1 - i);\r\n    if ((n - 1 -\
-    \ i) & 1) a[i] = -a[i];\r\n  }\r\n  // x = c, c+1, ... \u306B\u5BFE\u3057\u3066\
-    \ a0/x + a1/(x-1) + ... \u3092\u6C42\u3081\u3066\u304A\u304F\r\n  vc<mint> b(n\
-    \ + m - 1);\r\n  FOR(i, n + m - 1) b[i] = mint(1) / (c + mint(i - n + 1));\r\n\
-    \  a = convolution(a, b);\r\n\r\n  SWAG<Monoid_Mul<mint>> swag;\r\n  vc<mint>\
-    \ ANS(m);\r\n  ll L = 0, R = 0;\r\n  FOR(i, m) {\r\n    while (L < i) { swag.pop(),\
-    \ ++L; }\r\n    while (R - L < n) { swag.push(c + mint((R++) - n + 1)); }\r\n\
-    \    auto coef = swag.prod();\r\n    if (coef == 0) {\r\n      ANS[i] = f[(c +\
-    \ i).val];\r\n    } else {\r\n      ANS[i] = a[i + n - 1] * coef;\r\n    }\r\n\
-    \  }\r\n  return ANS;\r\n}\r\n\r\ntemplate <typename mint>\r\nmint lagrange_interpolate_iota(vc<mint>\
-    \ &f, mint c) {\r\n  /*\r\n  Input: f(0), ..., f(n-1) and c\r\n  Return: f(c)\r\
-    \n  Complexity: O(n)\r\n  */\r\n  int n = len(f);\r\n  if (int(c.val) < n) return\
-    \ f[c.val];\r\n  auto a = f;\r\n  FOR(i, n) {\r\n    a[i] = a[i] * fact_inv<mint>(i)\
-    \ * fact_inv<mint>(n - 1 - i);\r\n    if ((n - 1 - i) & 1) a[i] = -a[i];\r\n \
-    \ }\r\n  vc<mint> lp(n + 1), rp(n + 1);\r\n  lp[0] = rp[n] = 1;\r\n  FOR(i, n)\
-    \ lp[i + 1] = lp[i] * (c - i);\r\n  FOR_R(i, n) rp[i] = rp[i + 1] * (c - i);\r\
-    \n  mint ANS = 0;\r\n  FOR(i, n) ANS += a[i] * lp[i] * rp[i + 1];\r\n  return\
-    \ ANS;\r\n}\r\n#line 8 \"test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp\"\
+    \ b);\r\n}\r\n#line 5 \"poly/lagrange_interpolate_iota.hpp\"\n\r\n// Input: f(0),\
+    \ ..., f(n-1) and c, m\r\n// Return: f(c), f(c+1), ..., f(c+m-1)\r\n// Complexity:\
+    \ M(n, n + m)\r\ntemplate <typename mint>\r\nvc<mint> lagrange_interpolate_iota(vc<mint>\
+    \ &f, mint c, int m) {\r\n  if (m <= 60) {\r\n    vc<mint> ANS(m);\r\n    FOR(i,\
+    \ m) ANS[i] = lagrange_interpolate_iota(f, c + mint(i));\r\n    return ANS;\r\n\
+    \  }\r\n  ll n = len(f);\r\n  auto a = f;\r\n  FOR(i, n) {\r\n    a[i] = a[i]\
+    \ * fact_inv<mint>(i) * fact_inv<mint>(n - 1 - i);\r\n    if ((n - 1 - i) & 1)\
+    \ a[i] = -a[i];\r\n  }\r\n  // x = c, c+1, ... \u306B\u5BFE\u3057\u3066 a0/x +\
+    \ a1/(x-1) + ... \u3092\u6C42\u3081\u3066\u304A\u304F\r\n  vc<mint> b(n + m -\
+    \ 1);\r\n  FOR(i, n + m - 1) b[i] = mint(1) / (c + mint(i - n + 1));\r\n  a =\
+    \ convolution(a, b);\r\n\r\n  Sliding_Window_Aggregation<Monoid_Mul<mint>> swag;\r\
+    \n  vc<mint> ANS(m);\r\n  ll L = 0, R = 0;\r\n  FOR(i, m) {\r\n    while (L <\
+    \ i) { swag.pop(), ++L; }\r\n    while (R - L < n) { swag.push(c + mint((R++)\
+    \ - n + 1)); }\r\n    auto coef = swag.prod();\r\n    if (coef == 0) {\r\n   \
+    \   ANS[i] = f[(c + i).val];\r\n    } else {\r\n      ANS[i] = a[i + n - 1] *\
+    \ coef;\r\n    }\r\n  }\r\n  return ANS;\r\n}\r\n\r\n// Input: f(0), ..., f(n-1)\
+    \ and c\r\n// Return: f(c)\r\n// Complexity: O(n)\r\ntemplate <typename mint>\r\
+    \nmint lagrange_interpolate_iota(vc<mint> &f, mint c) {\r\n  int n = len(f);\r\
+    \n  if (int(c.val) < n) return f[c.val];\r\n  auto a = f;\r\n  FOR(i, n) {\r\n\
+    \    a[i] = a[i] * fact_inv<mint>(i) * fact_inv<mint>(n - 1 - i);\r\n    if ((n\
+    \ - 1 - i) & 1) a[i] = -a[i];\r\n  }\r\n  vc<mint> lp(n + 1), rp(n + 1);\r\n \
+    \ lp[0] = rp[n] = 1;\r\n  FOR(i, n) lp[i + 1] = lp[i] * (c - i);\r\n  FOR_R(i,\
+    \ n) rp[i] = rp[i + 1] * (c - i);\r\n  mint ANS = 0;\r\n  FOR(i, n) ANS += a[i]\
+    \ * lp[i] * rp[i + 1];\r\n  return ANS;\r\n}\r\n#line 8 \"test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp\"\
     \nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N, M, c);\r\n  VEC(mint, f,\
     \ N);\r\n  print(lagrange_interpolate_iota(f, mint(c), M));\r\n}\r\n\r\nsigned\
     \ main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout\
@@ -582,7 +580,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   requiredBy: []
-  timestamp: '2022-12-05 08:15:25+09:00'
+  timestamp: '2022-12-05 09:44:15+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
