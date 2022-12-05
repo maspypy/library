@@ -76,6 +76,9 @@ data:
     path: test/library_checker/string/suffix_array_vec.test.cpp
     title: test/library_checker/string/suffix_array_vec.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/dynamic_segtree_sparse.test.cpp
+    title: test/mytest/dynamic_segtree_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/max_min.test.cpp
     title: test/mytest/max_min.test.cpp
   - icon: ':heavy_check_mark:'
@@ -155,6 +158,7 @@ data:
   - test/yukicoder/1270.test.cpp
   - test/yukicoder/1212.test.cpp
   - test/mytest/min_max.test.cpp
+  - test/mytest/dynamic_segtree_sparse.test.cpp
   - test/mytest/range_mex.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/min_min.test.cpp

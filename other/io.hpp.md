@@ -811,6 +811,9 @@ data:
     path: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
     title: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/dynamic_segtree_sparse.test.cpp
+    title: test/mytest/dynamic_segtree_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1546,6 +1549,9 @@ data:
     path: test/yukicoder/789_2.test.cpp
     title: test/yukicoder/789_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/789_3.test.cpp
+    title: test/yukicoder/789_3.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1828,6 +1834,7 @@ data:
   - test/yukicoder/1500.test.cpp
   - test/yukicoder/1778.test.cpp
   - test/yukicoder/177.test.cpp
+  - test/yukicoder/789_3.test.cpp
   - test/yukicoder/4_1.test.cpp
   - test/yukicoder/1720.test.cpp
   - test/yukicoder/1025.test.cpp
@@ -1977,6 +1984,7 @@ data:
   - test/mytest/summin_add.test.cpp
   - test/mytest/minmax_add.test.cpp
   - test/mytest/cf702_F_splay.test.cpp
+  - test/mytest/dynamic_segtree_sparse.test.cpp
   - test/mytest/max_max.test.cpp
   - test/mytest/range_mex.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp

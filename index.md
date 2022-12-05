@@ -349,6 +349,9 @@ data:
       path: ds/segtree/dynamic_segtree.hpp
       title: ds/segtree/dynamic_segtree.hpp
     - icon: ':heavy_check_mark:'
+      path: ds/segtree/dynamic_segtree_sparse.hpp
+      title: ds/segtree/dynamic_segtree_sparse.hpp
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/lazy_segtree.hpp
       title: ds/segtree/lazy_segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -2146,6 +2149,9 @@ data:
       path: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
       title: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/mytest/dynamic_segtree_sparse.test.cpp
+      title: test/mytest/dynamic_segtree_sparse.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/mytest/enum_partitions.test.cpp
       title: test/mytest/enum_partitions.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2882,6 +2888,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/789_2.test.cpp
       title: test/yukicoder/789_2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/789_3.test.cpp
+      title: test/yukicoder/789_3.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/899.test.cpp
       title: test/yukicoder/899.test.cpp
