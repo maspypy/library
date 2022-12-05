@@ -213,9 +213,9 @@ data:
     \ K eval(const F &f, K x) noexcept {\n    return f.first * x + f.second;\n  }\n\
     \  static constexpr F unit() { return {K(1), K(0)}; }\n  static constexpr bool\
     \ commute = false;\n};\n#line 1 \"ds/sliding_window_aggregation.hpp\"\ntemplate\
-    \ <class Monoid>\nstruct Slinding_Window_Aggregation {\n  using X = typename Monoid::value_type;\n\
+    \ <class Monoid>\nstruct Sliding_Window_Aggregation {\n  using X = typename Monoid::value_type;\n\
     \  using value_type = X;\n  int sz = 0;\n  vc<X> dat;\n  vc<X> cum_l;\n  X cum_r;\n\
-    \n  Slinding_Window_Aggregation()\n      : cum_l({Monoid::unit()}), cum_r(Monoid::unit())\
+    \n  Sliding_Window_Aggregation()\n      : cum_l({Monoid::unit()}), cum_r(Monoid::unit())\
     \ {}\n\n  int size() { return sz; }\n\n  void push(X x) {\n    ++sz;\n    cum_r\
     \ = Monoid::op(cum_r, x);\n    dat.eb(x);\n  }\n\n  void pop() {\n    --sz;\n\
     \    cum_l.pop_back();\n    if (len(cum_l) == 0) {\n      cum_l = {Monoid::unit()};\n\
@@ -336,7 +336,7 @@ data:
     \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
     \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 8 \"test/library_checker/datastructure/queue_operate_all_composite.test.cpp\"\
     \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(Q);\r\n  using Mono\
-    \ = Monoid_Affine<mint>;\r\n  using F = Mono::value_type;\r\n\r\n  Slinding_Window_Aggregation<Mono>\
+    \ = Monoid_Affine<mint>;\r\n  using F = Mono::value_type;\r\n\r\n  Sliding_Window_Aggregation<Mono>\
     \ swag;\r\n\r\n  FOR(_, Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(a,\
     \ b);\r\n      swag.push(F({a, b}));\r\n    }\r\n    elif (t == 1) { swag.pop();\
     \ }\r\n    elif (t == 2) {\r\n      LL(x);\r\n      F f = swag.prod();\r\n   \
@@ -348,7 +348,7 @@ data:
     \ \"alg/monoid/affine.hpp\"\r\n#include \"ds/sliding_window_aggregation.hpp\"\r\
     \n#include \"mod/modint.hpp\"\r\n\r\nusing mint = modint998;\r\n\r\nvoid solve()\
     \ {\r\n  LL(Q);\r\n  using Mono = Monoid_Affine<mint>;\r\n  using F = Mono::value_type;\r\
-    \n\r\n  Slinding_Window_Aggregation<Mono> swag;\r\n\r\n  FOR(_, Q) {\r\n    LL(t);\r\
+    \n\r\n  Sliding_Window_Aggregation<Mono> swag;\r\n\r\n  FOR(_, Q) {\r\n    LL(t);\r\
     \n    if (t == 0) {\r\n      LL(a, b);\r\n      swag.push(F({a, b}));\r\n    }\r\
     \n    elif (t == 1) { swag.pop(); }\r\n    elif (t == 2) {\r\n      LL(x);\r\n\
     \      F f = swag.prod();\r\n      print(Mono::eval(f, x));\r\n    }\r\n  }\r\n\
@@ -363,7 +363,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-12-05 11:49:45+09:00'
+  timestamp: '2022-12-05 17:53:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
