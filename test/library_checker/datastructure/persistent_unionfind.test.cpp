@@ -2,27 +2,28 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/unionfind/persistent_unionfind.hpp"
+#include "ds/unionfind/dynamic_unionfind.hpp"
 
 void solve() {
   LL(N, Q);
 
-  PersistentUnionFind uf(N);
-  using np = PersistentUnionFind::np;
-  vc<np> UFS;
+  Dynamic_UnionFind<true, 1'500'000> uf;
+  using np = typename decltype(uf)::np;
+  vc<np> roots;
 
-  UFS.reserve(Q + 1);
-  UFS.eb(uf.init());
+  roots.eb(uf.new_node());
 
-  FOR3(q, 1, Q + 1) {
+  FOR(Q) {
     LL(t, k, u, v);
     ++k;
+    auto root = roots[k];
     if (t == 0) {
-      UFS.eb(uf.merge(UFS[k], u, v).se);
+      root = uf.merge(root, u, v).se;
     } else {
-      print(uf.same(UFS[k], u, v));
-      UFS.eb(UFS[q - 1]);
+      bool ok = uf.root(root, u) == uf.root(root, v);
+      print(ok ? 1 : 0);
     }
+    roots.eb(root);
   }
 }
 
