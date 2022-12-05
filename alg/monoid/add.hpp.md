@@ -129,7 +129,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc127f_1.test.cpp
     title: test/atcoder/abc127f_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -343,6 +343,9 @@ data:
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/919.test.cpp
+    title: test/yukicoder/919.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
   _isVerificationFailed: true
@@ -426,6 +429,7 @@ data:
   - test/yukicoder/1641.test.cpp
   - test/yukicoder/789.test.cpp
   - test/yukicoder/1919.test.cpp
+  - test/yukicoder/919.test.cpp
   - test/yukicoder/1097.test.cpp
   - test/yukicoder/1977.test.cpp
   - test/yukicoder/1197.test.cpp

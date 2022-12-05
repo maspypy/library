@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/sliding_window_aggregation.hpp
     title: ds/sliding_window_aggregation.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/queue_operate_all_composite
@@ -336,7 +336,7 @@ data:
     \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
     \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 8 \"test/library_checker/datastructure/queue_operate_all_composite.test.cpp\"\
     \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(Q);\r\n  using Mono\
-    \ = Monoid_Affine<mint>;\r\n  using F = Mono::value_type;\r\n\r\n  SWAG<Mono>\
+    \ = Monoid_Affine<mint>;\r\n  using F = Mono::value_type;\r\n\r\n  Slinding_Window_Aggregation<Mono>\
     \ swag;\r\n\r\n  FOR(_, Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(a,\
     \ b);\r\n      swag.push(F({a, b}));\r\n    }\r\n    elif (t == 1) { swag.pop();\
     \ }\r\n    elif (t == 2) {\r\n      LL(x);\r\n      F f = swag.prod();\r\n   \
@@ -348,12 +348,12 @@ data:
     \ \"alg/monoid/affine.hpp\"\r\n#include \"ds/sliding_window_aggregation.hpp\"\r\
     \n#include \"mod/modint.hpp\"\r\n\r\nusing mint = modint998;\r\n\r\nvoid solve()\
     \ {\r\n  LL(Q);\r\n  using Mono = Monoid_Affine<mint>;\r\n  using F = Mono::value_type;\r\
-    \n\r\n  SWAG<Mono> swag;\r\n\r\n  FOR(_, Q) {\r\n    LL(t);\r\n    if (t == 0)\
-    \ {\r\n      LL(a, b);\r\n      swag.push(F({a, b}));\r\n    }\r\n    elif (t\
-    \ == 1) { swag.pop(); }\r\n    elif (t == 2) {\r\n      LL(x);\r\n      F f =\
-    \ swag.prod();\r\n      print(Mono::eval(f, x));\r\n    }\r\n  }\r\n}\r\n\r\n\
-    signed main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n \
-    \ cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \n\r\n  Slinding_Window_Aggregation<Mono> swag;\r\n\r\n  FOR(_, Q) {\r\n    LL(t);\r\
+    \n    if (t == 0) {\r\n      LL(a, b);\r\n      swag.push(F({a, b}));\r\n    }\r\
+    \n    elif (t == 1) { swag.pop(); }\r\n    elif (t == 2) {\r\n      LL(x);\r\n\
+    \      F f = swag.prod();\r\n      print(Mono::eval(f, x));\r\n    }\r\n  }\r\n\
+    }\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -363,8 +363,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-12-05 10:58:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-05 11:49:45+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
 layout: document

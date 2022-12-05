@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/dynamic_unionfind.hpp
     title: ds/unionfind/dynamic_unionfind.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/persistent_unionfind
@@ -226,10 +226,10 @@ data:
     \    while (1) {\r\n      int p = PA.get(c, x);\r\n      assert(x != p);\r\n \
     \     if (p < 0) break;\r\n      x = p;\r\n    }\r\n    return x;\r\n  }\r\n\r\
     \n  pair<np, bool> merge(np c, int x, int y) {\r\n    x = root(c, x), y = root(c,\
-    \ y);\r\n    if (x == y) return {false, c};\r\n    if (-PA.get(c, x) < -PA.get(c,\
+    \ y);\r\n    if (x == y) return {c, false};\r\n    if (-PA.get(c, x) < -PA.get(c,\
     \ y)) swap(x, y);\r\n    int new_sz = PA.get(c, x) + PA.get(c, y);\r\n    c =\
     \ PA.set(c, x, new_sz);\r\n    assert(PA.get(c, x) == new_sz);\r\n    c = PA.set(c,\
-    \ y, x);\r\n    assert(PA.get(c, y) == x);\r\n    return {true, c};\r\n  }\r\n\
+    \ y, x);\r\n    assert(PA.get(c, y) == x);\r\n    return {c, true};\r\n  }\r\n\
     \r\n  int size(np c, int x) { return -PA.get(c, root(c, x)); }\r\n};\r\n#line\
     \ 6 \"test/library_checker/datastructure/persistent_unionfind.test.cpp\"\n\r\n\
     void solve() {\r\n  LL(N, Q);\r\n\r\n  Dynamic_UnionFind<true, 1'500'000> uf;\r\
@@ -258,8 +258,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/persistent_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2022-12-05 10:41:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-05 11:49:45+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/persistent_unionfind.test.cpp
 layout: document
