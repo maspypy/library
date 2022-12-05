@@ -2,7 +2,7 @@
 
 // 定数をべき乗するクエリ。 B 乗分ずつ前計算。
 template <typename Mono, int B = 1024>
-struct PowerQuery {
+struct Power_Query {
   using X = typename Mono::value_type;
   vvc<X> dat;
 
