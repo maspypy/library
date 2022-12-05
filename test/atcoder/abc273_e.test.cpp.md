@@ -1,20 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
+    path: ds/hashmap.hpp
+    title: ds/hashmap.hpp
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc273/tasks/abc273_e
@@ -213,40 +216,64 @@ data:
     \ & 15], (idx - 1) >> 4, x);\r\n    return c;\r\n  }\r\n\r\nprivate:\r\n  np copy_node(np\
     \ c, bool make_copy) {\r\n    if (!make_copy || !PERSISTENT) return c;\r\n   \
     \ pool[pid].x = c->x;\r\n    FOR(k, 16) pool[pid].ch[k] = c->ch[k];\r\n    return\
-    \ &(pool[pid++]);\r\n  }\r\n};\r\n#line 5 \"test/atcoder/abc273_e.test.cpp\"\n\
-    \nvoid solve() {\n  Dynamic_Array<int, true, 5'000'000> X(0);\n  using np = typename\
-    \ decltype(X)::np;\n\n  LL(Q);\n  vi ANS;\n\n  np A = X.new_node();\n  int A_size\
-    \ = 0;\n  map<int, np> note;\n  map<int, int> note_size;\n\n  FOR(Q) {\n    STR(S);\n\
-    \    if (S == \"ADD\") {\n      INT(x);\n      A = X.set(A, A_size++, x);\n  \
-    \  }\n    if (S == \"DELETE\") {\n      if (A_size) --A_size;\n    }\n    if (S\
-    \ == \"SAVE\") {\n      INT(y);\n      note[y] = A;\n      note_size[y] = A_size;\n\
-    \    }\n    if (S == \"LOAD\") {\n      INT(z);\n      A = MP[z];\n      A_size\
-    \ = note_size[z];\n    }\n    ll x = -1;\n    if (A_size) x = X.get(A, A_size\
+    \ &(pool[pid++]);\r\n  }\r\n};\r\n#line 2 \"ds/hashmap.hpp\"\ntemplate <typename\
+    \ Val, int LOG = 20>\r\nstruct HashMapLL {\r\n  int N;\r\n  ll* keys;\r\n  Val*\
+    \ vals;\r\n  vc<int> IDS;\r\n  bitset<1 << LOG> used;\r\n  const int shift;\r\n\
+    \  const uint64_t r = 11995408973635179863ULL;\r\n  HashMapLL()\r\n      : N(1\
+    \ << LOG), keys(new ll[N]), vals(new Val[N]), shift(64 - __lg(N)) {}\r\n  int\
+    \ hash(ll x) {\r\n    static const uint64_t FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
+    \n    return (uint64_t(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
+    \ ll& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && keys[i] !=\
+    \ key; (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
+    \ ll& key) {\r\n    int i = index(key);\r\n    if (!used[i]) IDS.eb(i), used[i]\
+    \ = 1, keys[i] = key, vals[i] = Val{};\r\n    return vals[i];\r\n  }\r\n\r\n \
+    \ Val get(const ll& key, Val default_value) {\r\n    int i = index(key);\r\n \
+    \   if (!used[i]) return default_value;\r\n    return vals[i];\r\n  }\r\n\r\n\
+    \  bool contain(const ll& key) {\r\n    int i = index(key);\r\n    return used[i]\
+    \ && keys[i] == key;\r\n  }\r\n\r\n  bool count(const ll& key) {\r\n    int i\
+    \ = index(key);\r\n    return used[i] && keys[i] == key;\r\n  }\r\n\r\n  void\
+    \ reset() {\r\n    for (auto&& i: IDS) used[i] = 0;\r\n    IDS.clear();\r\n  }\r\
+    \n\r\n  vc<pair<ll, Val>> items() {\r\n    vc<pair<ll, Val>> res;\r\n    res.reserve(len(IDS));\r\
+    \n    for (auto&& i: IDS) res.eb(keys[i], vals[i]);\r\n    return res;\r\n  }\r\
+    \n};\r\n\r\ntemplate <typename KEY, typename VAL, int LOG>\r\nstruct HashMap {\r\
+    \n  HashMapLL<VAL, LOG> MP;\r\n  function<ll(KEY)> f;\r\n  HashMap(function<ll(KEY)>\
+    \ f) : MP(), f(f) {}\r\n\r\n  int index(const KEY& key) { return MP.index(f(key));\
+    \ }\r\n\r\n  VAL& operator[](const KEY& key) { return MP[f(key)]; }\r\n\r\n  bool\
+    \ contain(const KEY& key) { return MP.contain(f(key)); }\r\n\r\n  bool count(const\
+    \ KEY& key) { return MP.count(f(key)); }\r\n\r\n  void reset() { MP.reset(); }\r\
+    \n};\r\n#line 6 \"test/atcoder/abc273_e.test.cpp\"\n\nvoid solve() {\n  Dynamic_Array<int,\
+    \ true, 3'000'000> X(0);\n  using np = typename decltype(X)::np;\n\n  LL(Q);\n\
+    \  vi ANS;\n\n  np A = X.new_node();\n  int A_size = 0;\n  HashMapLL<pair<np,\
+    \ int>> note;\n\n  FOR(Q) {\n    STR(S);\n    if (S == \"ADD\") {\n      INT(x);\n\
+    \      A = X.set(A, A_size++, x);\n    }\n    if (S == \"DELETE\") {\n      if\
+    \ (A_size) --A_size;\n    }\n    if (S == \"SAVE\") {\n      INT(y);\n      note[y]\
+    \ = {A, A_size};\n    }\n    if (S == \"LOAD\") {\n      INT(z);\n      tie(A,\
+    \ A_size) = note[z];\n    }\n    ll x = -1;\n    if (A_size) x = X.get(A, A_size\
     \ - 1);\n    ANS.eb(x);\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed\
     \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
     \ 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc273/tasks/abc273_e\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/dynamic_array.hpp\"\
-    \n\nvoid solve() {\n  Dynamic_Array<int, true, 5'000'000> X(0);\n  using np =\
-    \ typename decltype(X)::np;\n\n  LL(Q);\n  vi ANS;\n\n  np A = X.new_node();\n\
-    \  int A_size = 0;\n  map<int, np> note;\n  map<int, int> note_size;\n\n  FOR(Q)\
-    \ {\n    STR(S);\n    if (S == \"ADD\") {\n      INT(x);\n      A = X.set(A, A_size++,\
-    \ x);\n    }\n    if (S == \"DELETE\") {\n      if (A_size) --A_size;\n    }\n\
-    \    if (S == \"SAVE\") {\n      INT(y);\n      note[y] = A;\n      note_size[y]\
-    \ = A_size;\n    }\n    if (S == \"LOAD\") {\n      INT(z);\n      A = MP[z];\n\
-    \      A_size = note_size[z];\n    }\n    ll x = -1;\n    if (A_size) x = X.get(A,\
-    \ A_size - 1);\n    ANS.eb(x);\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cout\
-    \ << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
-    \n  return 0;\n}\n"
+    \n#include \"ds/hashmap.hpp\"\n\nvoid solve() {\n  Dynamic_Array<int, true, 3'000'000>\
+    \ X(0);\n  using np = typename decltype(X)::np;\n\n  LL(Q);\n  vi ANS;\n\n  np\
+    \ A = X.new_node();\n  int A_size = 0;\n  HashMapLL<pair<np, int>> note;\n\n \
+    \ FOR(Q) {\n    STR(S);\n    if (S == \"ADD\") {\n      INT(x);\n      A = X.set(A,\
+    \ A_size++, x);\n    }\n    if (S == \"DELETE\") {\n      if (A_size) --A_size;\n\
+    \    }\n    if (S == \"SAVE\") {\n      INT(y);\n      note[y] = {A, A_size};\n\
+    \    }\n    if (S == \"LOAD\") {\n      INT(z);\n      tie(A, A_size) = note[z];\n\
+    \    }\n    ll x = -1;\n    if (A_size) x = X.get(A, A_size - 1);\n    ANS.eb(x);\n\
+    \  }\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - ds/dynamic_array.hpp
+  - ds/hashmap.hpp
   isVerificationFile: true
   path: test/atcoder/abc273_e.test.cpp
   requiredBy: []
-  timestamp: '2022-12-05 11:27:24+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-05 18:48:23+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/abc273_e.test.cpp
 layout: document

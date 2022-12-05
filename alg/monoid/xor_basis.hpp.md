@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/184.test.cpp
     title: test/yukicoder/184.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/xor_basis.hpp\"\n\r\ntemplate <typename E>\r\n\
@@ -22,7 +22,7 @@ data:
     \ isin(E v, const VECT_SP& V) {\r\n    for (auto&& w: V) { chmin(v, v ^ w); }\r\
     \n    return v == 0;\r\n  }\r\n\r\n  // V \u306E\u5143\u306E\u6700\u5927\u5024\
     \r\n  static E get_max(const VECT_SP& V) {\r\n    E res = 0;\r\n    for (auto&&\
-    \ V: x) chmax(res, res ^ x);\r\n    return res;\r\n  }\r\n  static constexpr VECT_SP\
+    \ x: V) chmax(res, res ^ x);\r\n    return res;\r\n  }\r\n  static constexpr VECT_SP\
     \ unit() { return VECT_SP{}; };\r\n  static constexpr bool commute = true;\r\n\
     };\r\n"
   code: "#pragma once\r\n\r\ntemplate <typename E>\r\nstruct Monoid_XorBasis {\r\n\
@@ -35,15 +35,15 @@ data:
     \n    return x;\r\n  }\r\n\r\n  static bool isin(E v, const VECT_SP& V) {\r\n\
     \    for (auto&& w: V) { chmin(v, v ^ w); }\r\n    return v == 0;\r\n  }\r\n\r\
     \n  // V \u306E\u5143\u306E\u6700\u5927\u5024\r\n  static E get_max(const VECT_SP&\
-    \ V) {\r\n    E res = 0;\r\n    for (auto&& V: x) chmax(res, res ^ x);\r\n   \
+    \ V) {\r\n    E res = 0;\r\n    for (auto&& x: V) chmax(res, res ^ x);\r\n   \
     \ return res;\r\n  }\r\n  static constexpr VECT_SP unit() { return VECT_SP{};\
     \ };\r\n  static constexpr bool commute = true;\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/xor_basis.hpp
   requiredBy: []
-  timestamp: '2022-12-05 07:33:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-12-05 18:48:23+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/184.test.cpp
 documentation_of: alg/monoid/xor_basis.hpp

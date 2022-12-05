@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/unionfind/rollback_unionfind.hpp
     title: ds/unionfind/rollback_unionfind.hpp
+  - icon: ':warning:'
+    path: ds/unionfind/rollback_weighted_unionfind.hpp
+    title: ds/unionfind/rollback_weighted_unionfind.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/add_remove_query.test.cpp
@@ -42,6 +45,7 @@ data:
   path: ds/rollback_array.hpp
   requiredBy:
   - ds/unionfind/rollback_unionfind.hpp
+  - ds/unionfind/rollback_weighted_unionfind.hpp
   timestamp: '2022-12-05 07:33:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
