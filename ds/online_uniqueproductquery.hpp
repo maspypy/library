@@ -1,4 +1,4 @@
-#include "pds/segtree.hpp"
+#include "ds/segtree/dynamic_segtree.hpp"
 
 // sample：https://codeforces.com/contest/703/problem/D
 // key = long long
@@ -6,16 +6,16 @@
 // f(k),の総積をとったものを計算。 f: key -> Monoid value
 // Online 化したものの、メモリ定数倍が重い
 template <typename Monoid, int NODES = 1000000>
-struct OnlineUniqueProductQuery {
+struct Online_UniqueProduct_Query {
   using X = typename Monoid::value_type;
   int N;
   vc<ll> key;
   vc<pair<int, int>> query;
   vc<int> times;
-  Persistent_SegTree<Monoid, NODES> seg;
+  Dynamic_SegTree<Monoid, true, NODES> seg;
 
   template <typename F>
-  OnlineUniqueProductQuery(vc<ll>& key, F f) : N(len(key)), key(key), seg(N) {
+  Online_UniqueProduct_Query(vc<ll>& key, F f) : N(len(key)), key(key), seg(N) {
     times.eb(seg.time());
     unordered_map<ll, int> pos;
     pos.reserve(N);

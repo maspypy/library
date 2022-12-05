@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/924"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/waveletmatrix.hpp"
+#include "ds/wavelet_matrix.hpp"
 #include "ds/fenwicktree/fenwicktree.hpp"
 
 void solve() {
@@ -11,7 +11,7 @@ void solve() {
   vi X = A;
   UNIQUE(X);
   for (auto&& a: A) a = LB(X, a);
-  WaveletMatrix<ll> WM(A);
+  Wavelet_Matrix<ll> WM(A);
   VEC(pi, query, Q);
   for (auto&& [l, r]: query) --l;
   vc<int> med(Q);
