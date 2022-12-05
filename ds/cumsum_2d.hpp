@@ -1,3 +1,5 @@
+#pragma once
+
 #include "alg/monoid/add.hpp"
 
 template <typename Monoid>
@@ -9,9 +11,9 @@ struct Cumsum_2D {
   vc<X> dat;
 
   Cumsum_2D() {}
-  Cumsum_2D(vc<vc<X>> &A) { build(A); }
+  Cumsum_2D(vvc<X> &A) { build(A); }
 
-  void build(vc<vc<X>> &A) {
+  void build(vvc<X> &A) {
     H = len(A);
     W = (H == 0 ? 0 : len(A[0]));
     dat.assign(H * W, MX::unit());
@@ -36,6 +38,6 @@ struct Cumsum_2D {
   }
 
   X prefix_sum(int x, int y) {
-    return (x == 0 || y == 0) ? MX::unit() : dat[--x][--y];
+    return (x == 0 || y == 0) ? MX::unit() : dat[W * x + y - (W + 1)];
   }
 };
