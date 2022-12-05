@@ -20,15 +20,16 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/789
+    PROBLEM: https://judge.yosupo.jp/problem/double_ended_priority_queue
     links:
-    - https://yukicoder.me/problems/no/789
-  bundledCode: "#line 1 \"test/yukicoder/789_3.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/789\"\
-    \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
-    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
-    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
-    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
-    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    - https://judge.yosupo.jp/problem/double_ended_priority_queue
+  bundledCode: "#line 1 \"test/library_checker/datastructure/double_ended_pq_2.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/double_ended_priority_queue\"\
+    \n\n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC\
+    \ optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
+    \nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing\
+    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
+    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
     template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
     \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
     \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
@@ -271,39 +272,46 @@ data:
     \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
     \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
     \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 6 \"test/yukicoder/789_3.test.cpp\"\
-    \n\nvoid solve() {\n  using MX = Monoid_Add<ll>;\n  Dynamic_SegTree_Sparse<MX,\
-    \ false, 100000> seg(0, 1LL << 30);\n  using np = typename decltype(seg)::np;\n\
-    \  np root = nullptr;\n  LL(Q);\n  ll ANS = 0;\n  FOR(Q) {\n    LL(t, a, b);\n\
-    \    if (t == 0) { root = seg.multiply(root, a, b); }\n    if (t == 1) { ANS +=\
-    \ seg.prod(root, a, b + 1); }\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/789\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"ds/segtree/dynamic_segtree_sparse.hpp\"\
-    \n#include \"alg/monoid/add.hpp\"\n\nvoid solve() {\n  using MX = Monoid_Add<ll>;\n\
-    \  Dynamic_SegTree_Sparse<MX, false, 100000> seg(0, 1LL << 30);\n  using np =\
-    \ typename decltype(seg)::np;\n  np root = nullptr;\n  LL(Q);\n  ll ANS = 0;\n\
-    \  FOR(Q) {\n    LL(t, a, b);\n    if (t == 0) { root = seg.multiply(root, a,\
-    \ b); }\n    if (t == 1) { ANS += seg.prod(root, a, b + 1); }\n  }\n  print(ANS);\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
-    \ 0;\n}\n"
+    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 7 \"test/library_checker/datastructure/double_ended_pq_2.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  const int LIM = 1'000'000'000;\n\
+    \n  Dynamic_SegTree_Sparse<Monoid_Add<int>, false, 1'000'000> seg(-LIM, LIM +\
+    \ 1);\n  using np = typename decltype(seg)::np;\n  np root = nullptr;\n  for (auto&&\
+    \ a: A) root = seg.multiply(root, a, 1);\n\n  FOR(Q) {\n    LL(t);\n    if (t\
+    \ == 0) {\n      LL(x);\n      root = seg.multiply(root, x, 1);\n    }\n    if\
+    \ (t == 1) {\n      auto check = [&](auto e) -> bool { return e == 0; };\n   \
+    \   int ANS = seg.max_right(root, check, -LIM);\n      print(ANS);\n      root\
+    \ = seg.multiply(root, ANS, -1);\n    }\n    if (t == 2) {\n      auto check =\
+    \ [&](auto e) -> bool { return e == 0; };\n      int ANS = seg.min_left(root,\
+    \ check, LIM + 1) - 1;\n      print(ANS);\n      root = seg.multiply(root, ANS,\
+    \ -1);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/double_ended_priority_queue\"\
+    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/segtree/dynamic_segtree_sparse.hpp\"\
+    \n#include \"alg/monoid/add.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A,\
+    \ N);\n  const int LIM = 1'000'000'000;\n\n  Dynamic_SegTree_Sparse<Monoid_Add<int>,\
+    \ false, 1'000'000> seg(-LIM, LIM + 1);\n  using np = typename decltype(seg)::np;\n\
+    \  np root = nullptr;\n  for (auto&& a: A) root = seg.multiply(root, a, 1);\n\n\
+    \  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(x);\n      root = seg.multiply(root,\
+    \ x, 1);\n    }\n    if (t == 1) {\n      auto check = [&](auto e) -> bool { return\
+    \ e == 0; };\n      int ANS = seg.max_right(root, check, -LIM);\n      print(ANS);\n\
+    \      root = seg.multiply(root, ANS, -1);\n    }\n    if (t == 2) {\n      auto\
+    \ check = [&](auto e) -> bool { return e == 0; };\n      int ANS = seg.min_left(root,\
+    \ check, LIM + 1) - 1;\n      print(ANS);\n      root = seg.multiply(root, ANS,\
+    \ -1);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - ds/segtree/dynamic_segtree_sparse.hpp
   - alg/monoid/add.hpp
   isVerificationFile: true
-  path: test/yukicoder/789_3.test.cpp
+  path: test/library_checker/datastructure/double_ended_pq_2.test.cpp
   requiredBy: []
   timestamp: '2022-12-05 23:52:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/789_3.test.cpp
+documentation_of: test/library_checker/datastructure/double_ended_pq_2.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/789_3.test.cpp
-- /verify/test/yukicoder/789_3.test.cpp.html
-title: test/yukicoder/789_3.test.cpp
+- /verify/test/library_checker/datastructure/double_ended_pq_2.test.cpp
+- /verify/test/library_checker/datastructure/double_ended_pq_2.test.cpp.html
+title: test/library_checker/datastructure/double_ended_pq_2.test.cpp
 ---

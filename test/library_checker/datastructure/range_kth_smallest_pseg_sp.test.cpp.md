@@ -20,11 +20,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/789
+    PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
     links:
-    - https://yukicoder.me/problems/no/789
-  bundledCode: "#line 1 \"test/yukicoder/789_3.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/789\"\
-    \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
+    - https://judge.yosupo.jp/problem/range_kth_smallest
+  bundledCode: "#line 1 \"test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n#line\
+    \ 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
     unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
     \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
     \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
@@ -200,28 +201,33 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"ds/segtree/dynamic_segtree_sparse.hpp\"\n\n// \u5E38\u306B\
-    \u307B\u3068\u3093\u3069\u306E\u8981\u7D20\u304C unit \u3067\u3042\u308B\u3053\
-    \u3068\u304C\u4FDD\u8A3C\u3055\u308C\u308B\u3088\u3046\u306A\u52D5\u7684\u30BB\
-    \u30B0\u6728\n// \u3057\u305F\u304C\u3063\u3066\u3001default_prod \u306E\u985E\
-    \u306F\u6301\u305F\u305B\u3089\u308C\u305A\u3001acted monoid \u3082\u4E00\u822C\
-    \u306B\u306F\u6271\u3048\u306A\u3044\n// \u6C38\u7D9A\u5316\u3057\u306A\u3044\u5834\
-    \u5408\u306E\u30CE\u30FC\u30C9\u6570\u3092 O(N) \u306B\u6291\u3048\u308B\u3053\
-    \u3068\u304C\u3067\u304D\u308B\u306E\u304C\u5229\u70B9\n// \u5BC6\u306A\u3082\u306E\
-    \u3092\u6C38\u7D9A\u5316\u3059\u308B\u3068\u304D\u306F\u304B\u3048\u3063\u3066\
-    \u9045\u304F\u306A\u308B\u53EF\u80FD\u6027\u304C\u3042\u308B\ntemplate <typename\
-    \ Monoid, bool PERSISTENT, int NODES>\nstruct Dynamic_SegTree_Sparse {\n  using\
-    \ MX = Monoid;\n  using X = typename MX::value_type;\n\n  struct Node {\n    ll\
-    \ idx;\n    Node *l, *r;\n    X prod, x;\n  };\n\n  const ll L0, R0;\n  Node *pool;\n\
-    \  int pid;\n  using np = Node *;\n\n  Dynamic_SegTree_Sparse(ll L0, ll R0) :\
-    \ L0(L0), R0(R0), pid(0) {\n    pool = new Node[NODES];\n  }\n\n  np new_node(ll\
-    \ idx, const X x) {\n    pool[pid].idx = idx;\n    pool[pid].l = pool[pid].r =\
-    \ nullptr;\n    pool[pid].x = pool[pid].prod = x;\n    return &(pool[pid++]);\n\
-    \  }\n\n  X prod(np root, ll l, ll r) {\n    assert(L0 <= l && l < r && r <= R0);\n\
-    \    X x = MX::unit();\n    prod_rec(root, L0, R0, l, r, x);\n    return x;\n\
-    \  }\n\n  np set(np root, ll i, const X &x) {\n    assert(L0 <= i && i < R0);\n\
-    \    return set_rec(root, L0, R0, i, x);\n  }\n\n  np multiply(np root, ll i,\
-    \ const X &x) {\n    assert(L0 <= i && i < R0);\n    return multiply_rec(root,\
+    \ yes(!t); }\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
+    \ Monoid_Add {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x,\
+    \ const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
+    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/segtree/dynamic_segtree_sparse.hpp\"\
+    \n\n// \u5E38\u306B\u307B\u3068\u3093\u3069\u306E\u8981\u7D20\u304C unit \u3067\
+    \u3042\u308B\u3053\u3068\u304C\u4FDD\u8A3C\u3055\u308C\u308B\u3088\u3046\u306A\
+    \u52D5\u7684\u30BB\u30B0\u6728\n// \u3057\u305F\u304C\u3063\u3066\u3001default_prod\
+    \ \u306E\u985E\u306F\u6301\u305F\u305B\u3089\u308C\u305A\u3001acted monoid \u3082\
+    \u4E00\u822C\u306B\u306F\u6271\u3048\u306A\u3044\n// \u6C38\u7D9A\u5316\u3057\u306A\
+    \u3044\u5834\u5408\u306E\u30CE\u30FC\u30C9\u6570\u3092 O(N) \u306B\u6291\u3048\
+    \u308B\u3053\u3068\u304C\u3067\u304D\u308B\u306E\u304C\u5229\u70B9\n// \u5BC6\u306A\
+    \u3082\u306E\u3092\u6C38\u7D9A\u5316\u3059\u308B\u3068\u304D\u306F\u304B\u3048\
+    \u3063\u3066\u9045\u304F\u306A\u308B\u53EF\u80FD\u6027\u304C\u3042\u308B\ntemplate\
+    \ <typename Monoid, bool PERSISTENT, int NODES>\nstruct Dynamic_SegTree_Sparse\
+    \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\n  struct Node\
+    \ {\n    ll idx;\n    Node *l, *r;\n    X prod, x;\n  };\n\n  const ll L0, R0;\n\
+    \  Node *pool;\n  int pid;\n  using np = Node *;\n\n  Dynamic_SegTree_Sparse(ll\
+    \ L0, ll R0) : L0(L0), R0(R0), pid(0) {\n    pool = new Node[NODES];\n  }\n\n\
+    \  np new_node(ll idx, const X x) {\n    pool[pid].idx = idx;\n    pool[pid].l\
+    \ = pool[pid].r = nullptr;\n    pool[pid].x = pool[pid].prod = x;\n    return\
+    \ &(pool[pid++]);\n  }\n\n  X prod(np root, ll l, ll r) {\n    assert(L0 <= l\
+    \ && l < r && r <= R0);\n    X x = MX::unit();\n    prod_rec(root, L0, R0, l,\
+    \ r, x);\n    return x;\n  }\n\n  np set(np root, ll i, const X &x) {\n    assert(L0\
+    \ <= i && i < R0);\n    return set_rec(root, L0, R0, i, x);\n  }\n\n  np multiply(np\
+    \ root, ll i, const X &x) {\n    assert(L0 <= i && i < R0);\n    return multiply_rec(root,\
     \ L0, R0, i, x);\n  }\n\n  template <typename F>\n  ll max_right(np root, F check,\
     \ ll L) {\n    assert(L0 <= L && L <= R0 && check(MX::unit()));\n    X x = MX::unit();\n\
     \    return max_right_rec(root, check, L0, R0, L, x);\n  }\n\n  template <typename\
@@ -266,44 +272,39 @@ data:
     \ L0;\n    }\n    ll m = (l + r) / 2;\n    ll k = min_left_rec(c->r, check, m,\
     \ r, qr, x);\n    if (k != L0) return k;\n    if (c->idx < qr) {\n      x = MX::op(c->x,\
     \ x);\n      if (!check(x)) return c->idx + 1;\n    }\n    return min_left_rec(c->l,\
-    \ check, l, m, qr, x);\n  }\n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate\
-    \ <typename X>\r\nstruct Monoid_Add {\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 6 \"test/yukicoder/789_3.test.cpp\"\
-    \n\nvoid solve() {\n  using MX = Monoid_Add<ll>;\n  Dynamic_SegTree_Sparse<MX,\
-    \ false, 100000> seg(0, 1LL << 30);\n  using np = typename decltype(seg)::np;\n\
-    \  np root = nullptr;\n  LL(Q);\n  ll ANS = 0;\n  FOR(Q) {\n    LL(t, a, b);\n\
-    \    if (t == 0) { root = seg.multiply(root, a, b); }\n    if (t == 1) { ANS +=\
-    \ seg.prod(root, a, b + 1); }\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/789\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"ds/segtree/dynamic_segtree_sparse.hpp\"\
-    \n#include \"alg/monoid/add.hpp\"\n\nvoid solve() {\n  using MX = Monoid_Add<ll>;\n\
-    \  Dynamic_SegTree_Sparse<MX, false, 100000> seg(0, 1LL << 30);\n  using np =\
-    \ typename decltype(seg)::np;\n  np root = nullptr;\n  LL(Q);\n  ll ANS = 0;\n\
-    \  FOR(Q) {\n    LL(t, a, b);\n    if (t == 0) { root = seg.multiply(root, a,\
-    \ b); }\n    if (t == 1) { ANS += seg.prod(root, a, b + 1); }\n  }\n  print(ANS);\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
+    \ check, l, m, qr, x);\n  }\n};\n#line 6 \"test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Dynamic_SegTree_Sparse<Monoid_Add<int>,\
+    \ true, 5'000'000> seg(0, N);\n  using np = decltype(seg)::np;\n  auto I = argsort(A);\n\
+    \n  vc<np> roots;\n  roots.eb(np(nullptr));\n  FOR(k, N) { roots.eb(seg.set(roots.back(),\
+    \ I[k], 1)); }\n  FOR(Q) {\n    LL(L, R, k);\n    auto check = [&](ll t) -> bool\
+    \ { return seg.prod(roots[t], L, R) <= k; };\n    ll t = binary_search(check,\
+    \ 0, N);\n    print(A[I[t]]);\n  }\n}\n\nsigned main() {\n  solve();\n\n  return\
+    \ 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/monoid/add.hpp\"\
+    \n#include \"ds/segtree/dynamic_segtree_sparse.hpp\"\n\nvoid solve() {\n  LL(N,\
+    \ Q);\n  VEC(int, A, N);\n  Dynamic_SegTree_Sparse<Monoid_Add<int>, true, 5'000'000>\
+    \ seg(0, N);\n  using np = decltype(seg)::np;\n  auto I = argsort(A);\n\n  vc<np>\
+    \ roots;\n  roots.eb(np(nullptr));\n  FOR(k, N) { roots.eb(seg.set(roots.back(),\
+    \ I[k], 1)); }\n  FOR(Q) {\n    LL(L, R, k);\n    auto check = [&](ll t) -> bool\
+    \ { return seg.prod(roots[t], L, R) <= k; };\n    ll t = binary_search(check,\
+    \ 0, N);\n    print(A[I[t]]);\n  }\n}\n\nsigned main() {\n  solve();\n\n  return\
     \ 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/segtree/dynamic_segtree_sparse.hpp
   - alg/monoid/add.hpp
+  - ds/segtree/dynamic_segtree_sparse.hpp
   isVerificationFile: true
-  path: test/yukicoder/789_3.test.cpp
+  path: test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
   requiredBy: []
   timestamp: '2022-12-05 23:52:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/789_3.test.cpp
+documentation_of: test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/789_3.test.cpp
-- /verify/test/yukicoder/789_3.test.cpp.html
-title: test/yukicoder/789_3.test.cpp
+- /verify/test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
+- /verify/test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp.html
+title: test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
 ---

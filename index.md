@@ -1648,6 +1648,9 @@ data:
       path: test/library_checker/datastructure/double_ended_pq.test.cpp
       title: test/library_checker/datastructure/double_ended_pq.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library_checker/datastructure/double_ended_pq_2.test.cpp
+      title: test/library_checker/datastructure/double_ended_pq_2.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
       title: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1710,6 +1713,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
       title: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
+      title: test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
       title: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
@@ -2628,6 +2634,9 @@ data:
       path: test/yukicoder/1649.test.cpp
       title: test/yukicoder/1649.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1649_2.test.cpp
+      title: test/yukicoder/1649_2.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1666.test.cpp
       title: test/yukicoder/1666.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2711,6 +2720,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1826.test.cpp
       title: test/yukicoder/1826.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1826_2.test.cpp
+      title: test/yukicoder/1826_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1838.test.cpp
       title: test/yukicoder/1838.test.cpp
