@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1117"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/swag.hpp"
+#include "ds/sliding_window_aggregation.hpp"
 #include "alg/monoid/max.hpp"
 
 void solve() {
@@ -12,7 +12,7 @@ void solve() {
   vi DP(N + 1, -INF);
   DP[0] = 0;
   FOR(K) {
-    SWAG<Monoid_Max<ll>> swag1, swag2;
+    Slinding_Window_Aggregation<Monoid_Max<ll>> swag1, swag2;
     vi newDP(N + 1, -INF);
     FOR(i, N + 1) {
       chmax(newDP[i], swag1.prod() - Ac[i]);

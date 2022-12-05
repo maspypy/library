@@ -6,7 +6,7 @@ struct PowerQuery {
   using X = typename Mono::value_type;
   vvc<X> dat;
 
-  PowerQuery(X a) { dat.eb(make_pow(a)); }
+  Power_Query(X a) { dat.eb(make_pow(a)); }
 
   X operator()(ll n) {
     X res = Mono::unit();
