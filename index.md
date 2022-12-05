@@ -581,7 +581,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/minimum_hamiltonian_cycle.hpp
       title: graph/minimum_hamiltonian_cycle.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/minimum_spanning_tree.hpp
       title: graph/minimum_spanning_tree.hpp
     - icon: ':warning:'
@@ -644,7 +644,7 @@ data:
     - icon: ':x:'
       path: graph/twosat.hpp
       title: graph/twosat.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/unicyclic.hpp
       title: graph/unicyclic.hpp
   - name: graph/ds
@@ -655,7 +655,7 @@ data:
     - icon: ':x:'
       path: graph/ds/contour_sum.hpp
       title: graph/ds/contour_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/ds/dual_tree_monoid.hpp
       title: graph/ds/dual_tree_monoid.hpp
     - icon: ':question:'
@@ -996,7 +996,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/convolution2d.hpp
       title: poly/convolution2d.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/convolution_all.hpp
       title: poly/convolution_all.hpp
     - icon: ':heavy_check_mark:'
@@ -1092,7 +1092,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/sum_of_exp_bx.hpp
       title: poly/sum_of_exp_bx.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/sum_of_prefix_suffix_products.hpp
       title: poly/sum_of_prefix_suffix_products.hpp
     - icon: ':question:'
@@ -1544,7 +1544,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc266c.test.cpp
       title: test/atcoder/abc266c.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc266f.test.cpp
       title: test/atcoder/abc266f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1553,10 +1553,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc266h_2.test.cpp
       title: test/atcoder/abc266h_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc269ex.test.cpp
       title: test/atcoder/abc269ex.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc270_f.test.cpp
       title: test/atcoder/abc270_f.test.cpp
     - icon: ':heavy_check_mark:'

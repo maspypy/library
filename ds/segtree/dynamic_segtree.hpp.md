@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: ds/online_uniqueproductquery.hpp
+    title: ds/online_uniqueproductquery.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/double_ended_pq.test.cpp
@@ -177,7 +180,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: ds/segtree/dynamic_segtree.hpp
-  requiredBy: []
+  requiredBy:
+  - ds/online_uniqueproductquery.hpp
   timestamp: '2022-12-04 20:48:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

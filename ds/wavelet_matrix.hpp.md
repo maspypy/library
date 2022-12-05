@@ -21,6 +21,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/2065.test.cpp
     title: test/yukicoder/2065.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/924.test.cpp
+    title: test/yukicoder/924.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -137,6 +140,7 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/2065.test.cpp
+  - test/yukicoder/924.test.cpp
   - test/yukicoder/1332.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp

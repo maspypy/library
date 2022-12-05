@@ -6,6 +6,9 @@ data:
     path: ds/unionfind/dynamic_unionfind.hpp
     title: ds/unionfind/dynamic_unionfind.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/atcoder/abc273_e.test.cpp
+    title: test/atcoder/abc273_e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/persistent_queue.test.cpp
     title: test/library_checker/datastructure/persistent_queue.test.cpp
@@ -61,6 +64,7 @@ data:
   verifiedWith:
   - test/library_checker/datastructure/persistent_unionfind.test.cpp
   - test/library_checker/datastructure/persistent_queue.test.cpp
+  - test/atcoder/abc273_e.test.cpp
 documentation_of: ds/dynamic_array.hpp
 layout: document
 redirect_from:

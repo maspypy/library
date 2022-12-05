@@ -18,13 +18,13 @@ data:
     \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
     \ File \"/opt/hostedtoolcache/Python/3.11.0/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ds/pds/rollbackarray.hpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ds/pds/rollback_array.hpp:\
     \ line -1: no such header\n"
-  code: "#include \"ds/pds/rollbackarray.hpp\"\n\ntemplate <typename Group>\nstruct\
-    \ RollbackWeightedUF {\n  using E = typename Group::value_type;\n  using P = pair<int,\
-    \ E>;\n  RollbackArray<P> dat; // parent or size\n\n  RollbackWeightedUF(int n)\
-    \ : dat(vc<P>(n, P(-1, Group::unit()))) {}\n\n  P get(int v) {\n    // \u7D4C\u8DEF\
-    \u5727\u7E2E\u306F\u3057\u306A\u3044\u3088\u3046\u306B\n    E val = Group::unit();\n\
+  code: "#include \"ds/pds/rollback_array.hpp\"\n\ntemplate <typename Group>\nstruct\
+    \ Rollback_Weighted_UnionFind {\n  using E = typename Group::value_type;\n  using\
+    \ P = pair<int, E>;\n  Rollback_Array<P> dat; // parent or size\n\n  Rollback_Weighted_UnionFind(int\
+    \ n) : dat(vc<P>(n, P(-1, Group::unit()))) {}\n\n  P get(int v) {\n    // \u7D4C\
+    \u8DEF\u5727\u7E2E\u306F\u3057\u306A\u3044\u3088\u3046\u306B\n    E val = Group::unit();\n\
     \    while (1) {\n      auto [p, x] = dat.get(v);\n      if (p < 0) { break; }\n\
     \      val = Group::op(x, val);\n      v = p;\n    }\n    return {v, val};\n \
     \ }\n\n  int time() { return dat.time(); }\n  void rollback(int t) { dat.rollback(t);\
