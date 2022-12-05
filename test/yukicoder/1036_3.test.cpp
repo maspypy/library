@@ -7,7 +7,7 @@
 void solve() {
   LL(N);
   VEC(ll, A, N);
-  Slinding_Window_Aggregation<Monoid_Gcd<ll>> swag;
+  Sliding_Window_Aggregation<Monoid_Gcd<ll>> swag;
   ll R = 0;
   ll ANS = 0;
   FOR(L, N) {

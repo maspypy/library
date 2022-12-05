@@ -1,5 +1,5 @@
 template <class Monoid>
-struct Slinding_Window_Aggregation {
+struct Sliding_Window_Aggregation {
   using X = typename Monoid::value_type;
   using value_type = X;
   int sz = 0;
@@ -7,7 +7,7 @@ struct Slinding_Window_Aggregation {
   vc<X> cum_l;
   X cum_r;
 
-  Slinding_Window_Aggregation()
+  Sliding_Window_Aggregation()
       : cum_l({Monoid::unit()}), cum_r(Monoid::unit()) {}
 
   int size() { return sz; }

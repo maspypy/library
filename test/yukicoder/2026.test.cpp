@@ -25,7 +25,7 @@ void solve() {
       vi A(n + 1);
       FOR(k, n + 1) A[k] = dp[i + k][j + wt * k];
 
-      Slinding_Window_Aggregation<Mono> X;
+      Sliding_Window_Aggregation<Mono> X;
       FOR(k, n + 1) {
         X.push(A[k] - val * k);
         if (len(X) > cnt + 1) X.pop();

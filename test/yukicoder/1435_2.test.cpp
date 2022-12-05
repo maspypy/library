@@ -22,7 +22,7 @@ struct Mono {
 void solve() {
   LL(N);
   VEC(int, A, N);
-  Slinding_Window_Aggregation<Mono> seg;
+  Sliding_Window_Aggregation<Mono> seg;
 
   ll ANS = 0;
   ll R = 0;

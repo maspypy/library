@@ -13,7 +13,7 @@ void solve() {
   using Mono = Monoid_Affine<mint>;
   using F = Mono::value_type;
 
-  Slinding_Window_Aggregation<Mono> swag;
+  Sliding_Window_Aggregation<Mono> swag;
 
   FOR(_, Q) {
     LL(t);
