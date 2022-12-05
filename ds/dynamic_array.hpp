@@ -39,14 +39,15 @@ struct Dynamic_Array {
       c->x = x;
       return c;
     }
-    return set(c->ch[idx & 15], (idx - 1) >> 4, x);
+    c->ch[idx & 15] = set(c->ch[idx & 15], (idx - 1) >> 4, x);
+    return c;
   }
 
 private:
   np copy_node(np c, bool make_copy) {
     if (!make_copy || !PERSISTENT) return c;
     pool[pid].x = c->x;
-    pool[pid].ch = c->ch;
+    FOR(k, 16) pool[pid].ch[k] = c->ch[k];
     return &(pool[pid++]);
   }
 };
