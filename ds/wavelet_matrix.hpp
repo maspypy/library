@@ -101,7 +101,7 @@ struct Wavelet_Matrix {
   T sum(int L, int R, int k) {
     assert(SUM_QUERY);
     assert(0 <= k && k <= R - L);
-    T pos = AbelGroup::unit(), neg = G::unit();
+    T pos = G::unit(), neg = G::unit();
     for (int h = lg - 1; h >= 0; h--) {
       int l0 = bv[h].rank(L, 0), r0 = bv[h].rank(R, 0);
       if (k < r0 - l0) {

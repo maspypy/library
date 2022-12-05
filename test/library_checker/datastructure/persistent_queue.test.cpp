@@ -2,35 +2,32 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/persistent_array.hpp"
+#include "ds/dynamic_array.hpp"
 
 void solve() {
   LL(Q);
-  vi L(Q + 1), R(Q + 1);
+  vc<int> L, R;
 
-  using PA = PersistentArray<int>;
-  using np = PA::np;
-  vc<np> PAS(Q + 1);
-  PA array;
-  PAS[0] = array.get_root();
-  L[0] = 0, R[0] = 0;
-  FOR(q, Q) {
-    LL(t);
+  Dynamic_Array<int, true, 2'000'000> X(0);
+  using np = typename decltype(X)::np;
+  vc<np> roots;
+
+  roots.eb(X.new_node());
+  L.eb(0), R.eb(0);
+
+  FOR(Q) {
+    LL(t, k);
+    ++k;
+    np root = roots[k];
+    int l = L[k], r = R[k];
+
     if (t == 0) {
-      LL(k, x);
-      ++k;
-      PAS[q + 1] = array.set(PAS[k], R[k], x);
-      L[q + 1] = L[k];
-      R[q + 1] = R[k] + 1;
+      INT(x);
+      root = X.set(root, r++, x);
     }
-    elif (t == 1) {
-      LL(k);
-      ++k;
-      print(array.get(PAS[k], L[k]));
-      PAS[q + 1] = PAS[k];
-      L[q + 1] = L[k] + 1;
-      R[q + 1] = R[k];
-    }
+    if (t == 1) { print(X.get(root, l++)); }
+    roots.eb(root);
+    L.eb(l), R.eb(r);
   }
 }
 
