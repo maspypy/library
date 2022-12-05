@@ -1,13 +1,13 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1036"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/swag.hpp"
+#include "ds/sliding_window_aggregation.hpp"
 #include "alg/monoid/gcd.hpp"
 
 void solve() {
   LL(N);
   VEC(ll, A, N);
-  SWAG<Monoid_Gcd<ll>> swag;
+  Slinding_Window_Aggregation<Monoid_Gcd<ll>> swag;
   ll R = 0;
   ll ANS = 0;
   FOR(L, N) {

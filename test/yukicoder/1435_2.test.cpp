@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1435"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/swag.hpp"
+#include "ds/sliding_window_aggregation.hpp"
 
 struct Mono {
   using value_type = tuple<int, int, int>; // max, min1, min2
@@ -22,7 +22,7 @@ struct Mono {
 void solve() {
   LL(N);
   VEC(int, A, N);
-  SWAG<Mono> seg;
+  Slinding_Window_Aggregation<Mono> seg;
 
   ll ANS = 0;
   ll R = 0;

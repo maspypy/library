@@ -2,13 +2,13 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "random/base.hpp"
-#include "ds/waveletmatrix.hpp"
+#include "ds/wavelet_matrix.hpp"
 
 void test() {
   FOR(N, 1, 50) {
     vi A(N);
     FOR(i, N) A[i] = RNG(0, 10);
-    WaveletMatrix<ll, true, Monoid_Add<ll>> X(A);
+    Wavelet_Matrix<ll, true, Monoid_Add<ll>> X(A);
     FOR(L, N) FOR(R, L, N + 1) {
       vi B = {A.begin() + L, A.begin() + R};
       sort(all(B));
