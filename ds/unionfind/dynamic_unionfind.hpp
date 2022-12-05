@@ -20,7 +20,7 @@ struct Dynamic_UnionFind {
     return x;
   }
 
-  pair<bool, np> merge(np c, int x, int y) {
+  pair<np, bool> merge(np c, int x, int y) {
     x = root(c, x), y = root(c, y);
     if (x == y) return {false, c};
     if (-PA.get(c, x) < -PA.get(c, y)) swap(x, y);
