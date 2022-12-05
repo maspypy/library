@@ -1,12 +1,12 @@
 #define PROBLEM "https://yukicoder.me/problems/no/919"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/waveletmatrix.hpp"
+#include "ds/wavelet_matrix.hpp"
 
 void solve() {
   LL(N);
   VEC(ll, A, N);
-  WaveletMatrix<ll> WM(A);
+  Wavelet_Matrix<ll> WM(A);
   const ll INF = 1LL << 60;
   ll ANS = -INF;
 

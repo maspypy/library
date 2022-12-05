@@ -22,14 +22,14 @@ struct Dynamic_UnionFind {
 
   pair<np, bool> merge(np c, int x, int y) {
     x = root(c, x), y = root(c, y);
-    if (x == y) return {false, c};
+    if (x == y) return {c, false};
     if (-PA.get(c, x) < -PA.get(c, y)) swap(x, y);
     int new_sz = PA.get(c, x) + PA.get(c, y);
     c = PA.set(c, x, new_sz);
     assert(PA.get(c, x) == new_sz);
     c = PA.set(c, y, x);
     assert(PA.get(c, y) == x);
-    return {true, c};
+    return {c, true};
   }
 
   int size(np c, int x) { return -PA.get(c, root(c, x)); }
