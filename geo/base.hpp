@@ -21,6 +21,8 @@ struct Point {
     return y < p.y;
   }
 
+  void read() { fastio::read(x), fastio::read(y); }
+  void write() { fastio::printer.write(pair<T, T>({x, y})); }
   T dot(Point other) { return x * other.x + y * other.y; }
   T det(Point other) { return x * other.y - y * other.x; }
 };

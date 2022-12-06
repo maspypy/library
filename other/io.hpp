@@ -148,7 +148,7 @@ struct Printer {
     fwrite(line, 1, pos, fp);
     pos = 0;
   }
-  void write(const char &val) {
+  void write(const char val) {
     if (pos == SIZE) flush();
     line[pos++] = val;
   }
@@ -171,20 +171,20 @@ struct Printer {
     for (size_t i = 0; i < len; i++) { line[pos + i] = small[len - 1 - i]; }
     pos += len;
   }
-  void write(const string &s) {
+  void write(const string s) {
     for (char c: s) write(c);
   }
   void write(const char *s) {
     size_t len = strlen(s);
     for (size_t i = 0; i < len; i++) write(s[i]);
   }
-  void write(const double &x) {
+  void write(const double x) {
     ostringstream oss;
     oss << fixed << setprecision(15) << x;
     string s = oss.str();
     write(s);
   }
-  void write(const long double &x) {
+  void write(const long double x) {
     ostringstream oss;
     oss << fixed << setprecision(15) << x;
     string s = oss.str();
@@ -196,7 +196,7 @@ struct Printer {
     x.write();
   }
   template <class T>
-  void write(const vector<T> &val) {
+  void write(const vector<T> val) {
     auto n = val.size();
     for (size_t i = 0; i < n; i++) {
       if (i) write(' ');
@@ -224,7 +224,7 @@ struct Printer {
     return true;
   }
   template <class T, size_t S>
-  void write(const array<T, S> &val) {
+  void write(const array<T, S> val) {
     auto n = val.size();
     for (size_t i = 0; i < n; i++) {
       if (i) write(' ');
