@@ -7,13 +7,13 @@ data:
   - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/offline_query/point_add_rectangle_sum.hpp
     title: ds/offline_query/point_add_rectangle_sum.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/offline_query/rectangle_add_rectangle_sum.hpp
     title: ds/offline_query/rectangle_add_rectangle_sum.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_rectangle_add_rectangle_sum
@@ -158,7 +158,7 @@ data:
     \ Printer {\r\n  Printer(FILE *_fp) : fp(_fp) {}\r\n  ~Printer() { flush(); }\r\
     \n\r\n  static constexpr size_t SIZE = 1 << 15;\r\n  FILE *fp;\r\n  char line[SIZE],\
     \ small[50];\r\n  size_t pos = 0;\r\n  void flush() {\r\n    fwrite(line, 1, pos,\
-    \ fp);\r\n    pos = 0;\r\n  }\r\n  void write(const char &val) {\r\n    if (pos\
+    \ fp);\r\n    pos = 0;\r\n  }\r\n  void write(const char val) {\r\n    if (pos\
     \ == SIZE) flush();\r\n    line[pos++] = val;\r\n  }\r\n  template <class T, enable_if_t<is_integral<T>::value,\
     \ int> = 0>\r\n  void write(T val) {\r\n    if (pos > (1 << 15) - 50) flush();\r\
     \n    if (val == 0) {\r\n      write('0');\r\n      return;\r\n    }\r\n    if\
@@ -166,25 +166,25 @@ data:
     \n    size_t len = 0;\r\n    while (val) {\r\n      small[len++] = char(0x30 |\
     \ (val % 10));\r\n      val /= 10;\r\n    }\r\n    for (size_t i = 0; i < len;\
     \ i++) { line[pos + i] = small[len - 1 - i]; }\r\n    pos += len;\r\n  }\r\n \
-    \ void write(const string &s) {\r\n    for (char c: s) write(c);\r\n  }\r\n  void\
+    \ void write(const string s) {\r\n    for (char c: s) write(c);\r\n  }\r\n  void\
     \ write(const char *s) {\r\n    size_t len = strlen(s);\r\n    for (size_t i =\
-    \ 0; i < len; i++) write(s[i]);\r\n  }\r\n  void write(const double &x) {\r\n\
-    \    ostringstream oss;\r\n    oss << fixed << setprecision(15) << x;\r\n    string\
-    \ s = oss.str();\r\n    write(s);\r\n  }\r\n  void write(const long double &x)\
+    \ 0; i < len; i++) write(s[i]);\r\n  }\r\n  void write(const double x) {\r\n \
+    \   ostringstream oss;\r\n    oss << fixed << setprecision(15) << x;\r\n    string\
+    \ s = oss.str();\r\n    write(s);\r\n  }\r\n  void write(const long double x)\
     \ {\r\n    ostringstream oss;\r\n    oss << fixed << setprecision(15) << x;\r\n\
     \    string s = oss.str();\r\n    write(s);\r\n  }\r\n  template <typename T,\r\
     \n            typename enable_if<has_write<T>::value>::type * = nullptr>\r\n \
     \ inline void write(T &x) {\r\n    x.write();\r\n  }\r\n  template <class T>\r\
-    \n  void write(const vector<T> &val) {\r\n    auto n = val.size();\r\n    for\
-    \ (size_t i = 0; i < n; i++) {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\
-    \n    }\r\n  }\r\n  template <class T, class U>\r\n  void write(const pair<T,\
-    \ U> val) {\r\n    write(val.first);\r\n    write(' ');\r\n    write(val.second);\r\
+    \n  void write(const vector<T> val) {\r\n    auto n = val.size();\r\n    for (size_t\
+    \ i = 0; i < n; i++) {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\n\
+    \    }\r\n  }\r\n  template <class T, class U>\r\n  void write(const pair<T, U>\
+    \ val) {\r\n    write(val.first);\r\n    write(' ');\r\n    write(val.second);\r\
     \n  }\r\n  template <size_t N = 0, typename T>\r\n  void write_tuple(const T t)\
     \ {\r\n    if constexpr (N < std::tuple_size<T>::value) {\r\n      if constexpr\
     \ (N > 0) { write(' '); }\r\n      const auto x = std::get<N>(t);\r\n      write(x);\r\
     \n      write_tuple<N + 1>(t);\r\n    }\r\n  }\r\n  template <class... T>\r\n\
     \  bool write(tuple<T...> tpl) {\r\n    write_tuple(tpl);\r\n    return true;\r\
-    \n  }\r\n  template <class T, size_t S>\r\n  void write(const array<T, S> &val)\
+    \n  }\r\n  template <class T, size_t S>\r\n  void write(const array<T, S> val)\
     \ {\r\n    auto n = val.size();\r\n    for (size_t i = 0; i < n; i++) {\r\n  \
     \    if (i) write(' ');\r\n      write(val[i]);\r\n    }\r\n  }\r\n  void write(i128\
     \ val) {\r\n    string s;\r\n    bool negative = 0;\r\n    if (val < 0) {\r\n\
@@ -440,8 +440,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-12-07 00:33:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-12-07 07:51:43+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
 layout: document
