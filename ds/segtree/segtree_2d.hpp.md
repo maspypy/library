@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc266h.test.cpp
     title: test/atcoder/abc266h.test.cpp
   - icon: ':heavy_check_mark:'
