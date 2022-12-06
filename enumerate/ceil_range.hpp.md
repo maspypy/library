@@ -15,19 +15,18 @@ data:
     \ q \u306B\u306A\u308B\u7BC4\u56F2\u304C [l, r)\n// q == 1 \u306E\u3068\u304D\u306B\
     \u306F r == INF \u304C\u5165\u308B\u3053\u3068\u306B\u6CE8\u610F\ntemplate <typename\
     \ F>\nvoid ceil_range(ll N, F f, ll INF) {\n  ll q = 1, l = N, r = INF;\n  while\
-    \ (1) {\n    f(q, l, r);\n    if (q == N) break;\n    q = ceil(N, ceil(N, q) -\
-    \ 1);\n    l = ceil(N, q);\n    r = ceil(N, q - 1);\n  }\n}\n"
+    \ (1) {\n    f(q, l, r);\n    if (q == N) break;\n    r = l, q = ceil(N, l - 1),\
+    \ l = ceil(N, q);\n  }\n}\n"
   code: "// f(q, l, r)\uFF1Aceil \u304C q \u306B\u306A\u308B\u7BC4\u56F2\u304C [l,\
     \ r)\n// q == 1 \u306E\u3068\u304D\u306B\u306F r == INF \u304C\u5165\u308B\u3053\
     \u3068\u306B\u6CE8\u610F\ntemplate <typename F>\nvoid ceil_range(ll N, F f, ll\
     \ INF) {\n  ll q = 1, l = N, r = INF;\n  while (1) {\n    f(q, l, r);\n    if\
-    \ (q == N) break;\n    q = ceil(N, ceil(N, q) - 1);\n    l = ceil(N, q);\n   \
-    \ r = ceil(N, q - 1);\n  }\n}\n"
+    \ (q == N) break;\n    r = l, q = ceil(N, l - 1), l = ceil(N, q);\n  }\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: enumerate/ceil_range.hpp
   requiredBy: []
-  timestamp: '2022-12-06 17:59:29+09:00'
+  timestamp: '2022-12-06 21:05:59+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/floor_ceil_ranges.test.cpp

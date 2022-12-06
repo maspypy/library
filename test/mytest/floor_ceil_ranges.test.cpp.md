@@ -205,29 +205,29 @@ data:
     \ q \u306B\u306A\u308B\u7BC4\u56F2\u304C [l, r)\n// q == 1 \u306E\u3068\u304D\u306B\
     \u306F r == INF \u304C\u5165\u308B\u3053\u3068\u306B\u6CE8\u610F\ntemplate <typename\
     \ F>\nvoid ceil_range(ll N, F f, ll INF) {\n  ll q = 1, l = N, r = INF;\n  while\
-    \ (1) {\n    f(q, l, r);\n    if (q == N) break;\n    q = ceil(N, ceil(N, q) -\
-    \ 1);\n    l = ceil(N, q);\n    r = ceil(N, q - 1);\n  }\n}\n#line 1 \"enumerate/floor_range.hpp\"\
-    \n// f(q, l, r)\uFF1A\u5546\u304C q \u306B\u306A\u308B\u7BC4\u56F2\u304C [l, r)\r\
-    \ntemplate <typename F>\r\nvoid floor_range(ll N, F f) {\r\n  ll q = 1;\r\n  while\
-    \ (1) {\r\n    ll l = N / (q + 1) + 1, r = N / q + 1;\r\n    f(q, l, r);\r\n \
-    \   if (q == N) break;\r\n    q = N / (N / (q + 1));\r\n  }\r\n}\r\n#line 6 \"\
-    test/mytest/floor_ceil_ranges.test.cpp\"\n\nvoid test_floor() {\n  ll INF = 1000;\n\
-    \  using T = tuple<ll, ll, ll>;\n  auto F = [&](ll N) -> vc<T> {\n    vc<T> dat;\n\
-    \    auto f = [&](ll q, ll l, ll r) -> void { dat.eb(q, l, r); };\n    floor_range(N,\
-    \ f);\n    return dat;\n  };\n  auto G = [&](ll N) -> vc<T> {\n    vvc<ll> tmp(N\
-    \ + 1);\n    FOR(x, 1, INF) tmp[floor(N, x)].eb(x);\n    vc<T> dat;\n    FOR(x,\
-    \ 1, N + 1) {\n      if (len(tmp[x])) {\n        ll lo = tmp[x][0];\n        ll\
-    \ hi = tmp[x].back();\n        dat.eb(x, lo, hi + 1);\n      }\n    }\n    return\
-    \ dat;\n  };\n  FOR(N, 1, 100) { assert(F(N) == G(N)); }\n}\n\nvoid test_ceil()\
-    \ {\n  ll INF = 1000;\n  using T = tuple<ll, ll, ll>;\n  auto F = [&](ll N) ->\
-    \ vc<T> {\n    vc<T> dat;\n    auto f = [&](ll q, ll l, ll r) -> void { dat.eb(q,\
-    \ l, r); };\n    ceil_range(N, f, INF);\n    return dat;\n  };\n  auto G = [&](ll\
-    \ N) -> vc<T> {\n    vvc<ll> tmp(N + 1);\n    FOR(x, 1, INF) tmp[ceil(N, x)].eb(x);\n\
-    \    vc<T> dat;\n    FOR(x, 1, N + 1) {\n      if (len(tmp[x])) {\n        ll\
-    \ lo = tmp[x][0];\n        ll hi = tmp[x].back();\n        dat.eb(x, lo, hi +\
-    \ 1);\n      }\n    }\n    return dat;\n  };\n  FOR(N, 1, 100) { assert(F(N) ==\
-    \ G(N)); }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main()\
-    \ {\n  test_floor();\n  test_ceil();\n  solve();\n\n  return 0;\n}\n"
+    \ (1) {\n    f(q, l, r);\n    if (q == N) break;\n    r = l, q = ceil(N, l - 1),\
+    \ l = ceil(N, q);\n  }\n}\n#line 1 \"enumerate/floor_range.hpp\"\n// f(q, l, r)\uFF1A\
+    \u5546\u304C q \u306B\u306A\u308B\u7BC4\u56F2\u304C [l, r)\r\ntemplate <typename\
+    \ F>\r\nvoid floor_range(ll N, F f) {\r\n  ll q = 1, r = N + 1;\r\n  while (1)\
+    \ {\r\n    ll l = N / (q + 1) + 1;\r\n    f(q, l, r);\r\n    if (q == N) break;\r\
+    \n    r = l, q = N / (l - 1);\r\n  }\r\n}\r\n#line 6 \"test/mytest/floor_ceil_ranges.test.cpp\"\
+    \n\nvoid test_floor() {\n  ll INF = 1000;\n  using T = tuple<ll, ll, ll>;\n  auto\
+    \ F = [&](ll N) -> vc<T> {\n    vc<T> dat;\n    auto f = [&](ll q, ll l, ll r)\
+    \ -> void { dat.eb(q, l, r); };\n    floor_range(N, f);\n    return dat;\n  };\n\
+    \  auto G = [&](ll N) -> vc<T> {\n    vvc<ll> tmp(N + 1);\n    FOR(x, 1, INF)\
+    \ tmp[floor(N, x)].eb(x);\n    vc<T> dat;\n    FOR(x, 1, N + 1) {\n      if (len(tmp[x]))\
+    \ {\n        ll lo = tmp[x][0];\n        ll hi = tmp[x].back();\n        dat.eb(x,\
+    \ lo, hi + 1);\n      }\n    }\n    return dat;\n  };\n  FOR(N, 1, 100) { assert(F(N)\
+    \ == G(N)); }\n}\n\nvoid test_ceil() {\n  ll INF = 1000;\n  using T = tuple<ll,\
+    \ ll, ll>;\n  auto F = [&](ll N) -> vc<T> {\n    vc<T> dat;\n    auto f = [&](ll\
+    \ q, ll l, ll r) -> void { dat.eb(q, l, r); };\n    ceil_range(N, f, INF);\n \
+    \   return dat;\n  };\n  auto G = [&](ll N) -> vc<T> {\n    vvc<ll> tmp(N + 1);\n\
+    \    FOR(x, 1, INF) tmp[ceil(N, x)].eb(x);\n    vc<T> dat;\n    FOR(x, 1, N +\
+    \ 1) {\n      if (len(tmp[x])) {\n        ll lo = tmp[x][0];\n        ll hi =\
+    \ tmp[x].back();\n        dat.eb(x, lo, hi + 1);\n      }\n    }\n    return dat;\n\
+    \  };\n  FOR(N, 1, 100) { assert(F(N) == G(N)); }\n}\n\nvoid solve() {\n  LL(a,\
+    \ b);\n  print(a + b);\n}\n\nsigned main() {\n  test_floor();\n  test_ceil();\n\
+    \  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"enumerate/ceil_range.hpp\"\n#include \"\
     enumerate/floor_range.hpp\"\n\nvoid test_floor() {\n  ll INF = 1000;\n  using\
@@ -255,7 +255,7 @@ data:
   isVerificationFile: true
   path: test/mytest/floor_ceil_ranges.test.cpp
   requiredBy: []
-  timestamp: '2022-12-06 17:59:29+09:00'
+  timestamp: '2022-12-06 21:05:59+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/floor_ceil_ranges.test.cpp
