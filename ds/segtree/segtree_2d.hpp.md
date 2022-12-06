@@ -3,10 +3,10 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc266h.test.cpp
     title: test/atcoder/abc266h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test/yukicoder/1625_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/segtree/segtree_2d.hpp\"\ntemplate <typename Monoid,\
@@ -27,23 +27,22 @@ data:
     \n  SegTree_2D(vc<XY>& X, vc<XY>& Y, vc<S> wt = vc<S>()) {\r\n    if (len(wt)\
     \ == 0) wt = vc<S>(len(X), MX::unit());\r\n    assert(len(X) == len(Y) && len(X)\
     \ == len(wt));\r\n    if (!SMALL) {\r\n      keyX = X;\r\n      UNIQUE(keyX);\r\
-    \n      N = len(keyX);\r\n      keyX.shrink_to_fit();\r\n    } else {\r\n    \
-    \  min_X = (len(X) == 0 ? 0 : MIN(X));\r\n      N = (len(X) == 0 ? 0 : MAX(X))\
-    \ - min_X + 1;\r\n      keyX.resize(N);\r\n      FOR(i, N) keyX[i] = min_X + i;\r\
-    \n    }\r\n\r\n    vvc<XY> keyY_raw(N + N);\r\n    vvc<S> dat_raw(N + N);\r\n\
-    \    for (auto&& i: argsort(Y)) {\r\n      int ix = xtoi(X[i]), y = Y[i];\r\n\
-    \      ix += N;\r\n      while (ix) {\r\n        auto& KY = keyY_raw[ix];\r\n\
-    \        if (len(KY) == 0 || KY.back() < y) {\r\n          KY.eb(y);\r\n     \
-    \     dat_raw[ix].eb(wt[i]);\r\n        } else {\r\n          dat_raw[ix].back()\
-    \ = MX::op(dat_raw[ix].back(), wt[i]);\r\n        }\r\n        ix >>= 1;\r\n \
-    \     }\r\n    }\r\n\r\n    indptr.assign(N + N + 1, 0);\r\n    FOR(i, N + N)\
-    \ indptr[i + 1] = indptr[i] + len(keyY_raw[i]);\r\n    int full_N = indptr.back();\r\
-    \n    keyY.resize(full_N), dat.assign(2 * full_N, MX::unit());\r\n    FOR(i, N\
-    \ + N) {\r\n      int off = 2 * indptr[i], n = indptr[i + 1] - indptr[i];\r\n\
-    \      FOR(j, n) {\r\n        keyY[indptr[i] + j] = keyY_raw[i][j];\r\n      \
-    \  dat[off + n + j] = dat_raw[i][j];\r\n      }\r\n      FOR_R(j, 1, n) {\r\n\
-    \        dat[off + j] = MX::op(dat[off + 2 * j], dat[off + 2 * j + 1]);\r\n  \
-    \    }\r\n    }\r\n  }\r\n\r\n  void multiply(XY x, XY y, S val) {\r\n    int\
+    \n      N = len(keyX);\r\n    } else {\r\n      min_X = (len(X) == 0 ? 0 : MIN(X));\r\
+    \n      N = (len(X) == 0 ? 0 : MAX(X)) - min_X + 1;\r\n      keyX.resize(N);\r\
+    \n      FOR(i, N) keyX[i] = min_X + i;\r\n    }\r\n\r\n    vvc<XY> keyY_raw(N\
+    \ + N);\r\n    vvc<S> dat_raw(N + N);\r\n    for (auto&& i: argsort(Y)) {\r\n\
+    \      int ix = xtoi(X[i]), y = Y[i];\r\n      ix += N;\r\n      while (ix) {\r\
+    \n        auto& KY = keyY_raw[ix];\r\n        if (len(KY) == 0 || KY.back() <\
+    \ y) {\r\n          KY.eb(y);\r\n          dat_raw[ix].eb(wt[i]);\r\n        }\
+    \ else {\r\n          dat_raw[ix].back() = MX::op(dat_raw[ix].back(), wt[i]);\r\
+    \n        }\r\n        ix >>= 1;\r\n      }\r\n    }\r\n\r\n    indptr.assign(N\
+    \ + N + 1, 0);\r\n    FOR(i, N + N) indptr[i + 1] = indptr[i] + len(keyY_raw[i]);\r\
+    \n    int full_N = indptr.back();\r\n    keyY.resize(full_N), dat.assign(2 * full_N,\
+    \ MX::unit());\r\n    FOR(i, N + N) {\r\n      int off = 2 * indptr[i], n = indptr[i\
+    \ + 1] - indptr[i];\r\n      FOR(j, n) {\r\n        keyY[indptr[i] + j] = keyY_raw[i][j];\r\
+    \n        dat[off + n + j] = dat_raw[i][j];\r\n      }\r\n      FOR_R(j, 1, n)\
+    \ {\r\n        dat[off + j] = MX::op(dat[off + 2 * j], dat[off + 2 * j + 1]);\r\
+    \n      }\r\n    }\r\n  }\r\n\r\n  void multiply(XY x, XY y, S val) {\r\n    int\
     \ i = xtoi(x);\r\n    assert(keyX[i] == x);\r\n    i += N;\r\n    while (i) {\
     \ multiply_i(i, y, val), i >>= 1; }\r\n  }\r\n\r\n  S prod(XY lx, XY rx, XY ly,\
     \ XY ry) {\r\n    int L = xtoi(lx) + N, R = xtoi(rx) + N;\r\n    S val = MX::unit();\r\
@@ -69,23 +68,22 @@ data:
     \n\r\n  SegTree_2D(vc<XY>& X, vc<XY>& Y, vc<S> wt = vc<S>()) {\r\n    if (len(wt)\
     \ == 0) wt = vc<S>(len(X), MX::unit());\r\n    assert(len(X) == len(Y) && len(X)\
     \ == len(wt));\r\n    if (!SMALL) {\r\n      keyX = X;\r\n      UNIQUE(keyX);\r\
-    \n      N = len(keyX);\r\n      keyX.shrink_to_fit();\r\n    } else {\r\n    \
-    \  min_X = (len(X) == 0 ? 0 : MIN(X));\r\n      N = (len(X) == 0 ? 0 : MAX(X))\
-    \ - min_X + 1;\r\n      keyX.resize(N);\r\n      FOR(i, N) keyX[i] = min_X + i;\r\
-    \n    }\r\n\r\n    vvc<XY> keyY_raw(N + N);\r\n    vvc<S> dat_raw(N + N);\r\n\
-    \    for (auto&& i: argsort(Y)) {\r\n      int ix = xtoi(X[i]), y = Y[i];\r\n\
-    \      ix += N;\r\n      while (ix) {\r\n        auto& KY = keyY_raw[ix];\r\n\
-    \        if (len(KY) == 0 || KY.back() < y) {\r\n          KY.eb(y);\r\n     \
-    \     dat_raw[ix].eb(wt[i]);\r\n        } else {\r\n          dat_raw[ix].back()\
-    \ = MX::op(dat_raw[ix].back(), wt[i]);\r\n        }\r\n        ix >>= 1;\r\n \
-    \     }\r\n    }\r\n\r\n    indptr.assign(N + N + 1, 0);\r\n    FOR(i, N + N)\
-    \ indptr[i + 1] = indptr[i] + len(keyY_raw[i]);\r\n    int full_N = indptr.back();\r\
-    \n    keyY.resize(full_N), dat.assign(2 * full_N, MX::unit());\r\n    FOR(i, N\
-    \ + N) {\r\n      int off = 2 * indptr[i], n = indptr[i + 1] - indptr[i];\r\n\
-    \      FOR(j, n) {\r\n        keyY[indptr[i] + j] = keyY_raw[i][j];\r\n      \
-    \  dat[off + n + j] = dat_raw[i][j];\r\n      }\r\n      FOR_R(j, 1, n) {\r\n\
-    \        dat[off + j] = MX::op(dat[off + 2 * j], dat[off + 2 * j + 1]);\r\n  \
-    \    }\r\n    }\r\n  }\r\n\r\n  void multiply(XY x, XY y, S val) {\r\n    int\
+    \n      N = len(keyX);\r\n    } else {\r\n      min_X = (len(X) == 0 ? 0 : MIN(X));\r\
+    \n      N = (len(X) == 0 ? 0 : MAX(X)) - min_X + 1;\r\n      keyX.resize(N);\r\
+    \n      FOR(i, N) keyX[i] = min_X + i;\r\n    }\r\n\r\n    vvc<XY> keyY_raw(N\
+    \ + N);\r\n    vvc<S> dat_raw(N + N);\r\n    for (auto&& i: argsort(Y)) {\r\n\
+    \      int ix = xtoi(X[i]), y = Y[i];\r\n      ix += N;\r\n      while (ix) {\r\
+    \n        auto& KY = keyY_raw[ix];\r\n        if (len(KY) == 0 || KY.back() <\
+    \ y) {\r\n          KY.eb(y);\r\n          dat_raw[ix].eb(wt[i]);\r\n        }\
+    \ else {\r\n          dat_raw[ix].back() = MX::op(dat_raw[ix].back(), wt[i]);\r\
+    \n        }\r\n        ix >>= 1;\r\n      }\r\n    }\r\n\r\n    indptr.assign(N\
+    \ + N + 1, 0);\r\n    FOR(i, N + N) indptr[i + 1] = indptr[i] + len(keyY_raw[i]);\r\
+    \n    int full_N = indptr.back();\r\n    keyY.resize(full_N), dat.assign(2 * full_N,\
+    \ MX::unit());\r\n    FOR(i, N + N) {\r\n      int off = 2 * indptr[i], n = indptr[i\
+    \ + 1] - indptr[i];\r\n      FOR(j, n) {\r\n        keyY[indptr[i] + j] = keyY_raw[i][j];\r\
+    \n        dat[off + n + j] = dat_raw[i][j];\r\n      }\r\n      FOR_R(j, 1, n)\
+    \ {\r\n        dat[off + j] = MX::op(dat[off + 2 * j], dat[off + 2 * j + 1]);\r\
+    \n      }\r\n    }\r\n  }\r\n\r\n  void multiply(XY x, XY y, S val) {\r\n    int\
     \ i = xtoi(x);\r\n    assert(keyX[i] == x);\r\n    i += N;\r\n    while (i) {\
     \ multiply_i(i, y, val), i >>= 1; }\r\n  }\r\n\r\n  S prod(XY lx, XY rx, XY ly,\
     \ XY ry) {\r\n    int L = xtoi(lx) + N, R = xtoi(rx) + N;\r\n    S val = MX::unit();\r\
@@ -109,8 +107,8 @@ data:
   isVerificationFile: false
   path: ds/segtree/segtree_2d.hpp
   requiredBy: []
-  timestamp: '2022-12-04 01:13:06+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-12-07 00:33:28+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1600.test.cpp
   - test/yukicoder/1625_2.test.cpp

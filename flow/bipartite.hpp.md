@@ -104,17 +104,15 @@ data:
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
     \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/check_bipartite.hpp\"\
-    \n\r\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n;\n\
-    \  int n_comp;\n  vector<int> dat; // par or (-size)\n  UnionFind(int n = 0) {\
-    \ build(n); }\n\n  void build(int m) {\n    n = m;\n    n_comp = m;\n    dat.assign(n,\
-    \ -1);\n  }\n\n  int operator[](int x) {\n    while (dat[x] >= 0) {\n      int\
-    \ pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n      x = dat[x] =\
-    \ pp;\n    }\n    return x;\n  }\n\n  int size(int x) {\n    assert(dat[x] < 0);\n\
-    \    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x];\n\
-    \    y = (*this)[y];\n    if (x == y) { return false; }\n    n_comp--;\n    if\
-    \ (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x;\n    return\
-    \ true;\n  }\n\n  vector<int> get_all() {\n    vector<int> A(n);\n    for (int\
-    \ i = 0; i < n; ++i) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 5 \"graph/check_bipartite.hpp\"\
+    \n\r\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n, n_comp;\n\
+    \  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void\
+    \ build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  int\
+    \ operator[](int x) {\n    while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n\
+    \      if (pp < 0) { return dat[x]; }\n      x = dat[x] = pp;\n    }\n    return\
+    \ x;\n  }\n\n  int size(int x) {\n    assert(dat[x] < 0);\n    return -dat[x];\n\
+    \  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x], y = (*this)[y];\n  \
+    \  if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x]\
+    \ += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n};\n#line 5 \"graph/check_bipartite.hpp\"\
     \n\r\n// \u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A + \u5FA9\u5143\r\n// \u4E8C\
     \u90E8\u30B0\u30E9\u30D5\u3067\u306A\u304B\u3063\u305F\u5834\u5408\u306B\u306F\
     \ empty\r\ntemplate <typename Graph>\r\nvc<int> check_bipartite(Graph& G) {\r\n\
@@ -286,7 +284,7 @@ data:
   - graph/bipartite_edge_coloring.hpp
   - graph/dag_path_cover.hpp
   - graph/maximum_antichain.hpp
-  timestamp: '2022-12-05 10:41:25+09:00'
+  timestamp: '2022-12-07 00:33:28+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1479.test.cpp

@@ -12,16 +12,14 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int\
-    \ n;\n  int n_comp;\n  vector<int> dat; // par or (-size)\n  UnionFind(int n =\
-    \ 0) { build(n); }\n\n  void build(int m) {\n    n = m;\n    n_comp = m;\n   \
-    \ dat.assign(n, -1);\n  }\n\n  int operator[](int x) {\n    while (dat[x] >= 0)\
-    \ {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n     \
-    \ x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  int size(int x) {\n    assert(dat[x]\
-    \ < 0);\n    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x];\n\
-    \    y = (*this)[y];\n    if (x == y) { return false; }\n    n_comp--;\n    if\
-    \ (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x;\n    return\
-    \ true;\n  }\n\n  vector<int> get_all() {\n    vector<int> A(n);\n    for (int\
-    \ i = 0; i < n; ++i) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 2 \"graph/online_mst.hpp\"\
+    \ n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n);\
+    \ }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n\
+    \  }\n\n  int operator[](int x) {\n    while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n\
+    \      if (pp < 0) { return dat[x]; }\n      x = dat[x] = pp;\n    }\n    return\
+    \ x;\n  }\n\n  int size(int x) {\n    assert(dat[x] < 0);\n    return -dat[x];\n\
+    \  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x], y = (*this)[y];\n  \
+    \  if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x]\
+    \ += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n};\n#line 2 \"graph/online_mst.hpp\"\
     \n\n// Brouvka\n// \u967D\u306B\u30B0\u30E9\u30D5\u3092\u4F5C\u3089\u305A\u3001\
     \u4F55\u3089\u304B\u306E\u30C7\u30FC\u30BF\u69CB\u9020\u3067\u672A\u8A2A\u554F\
     \u306E\u884C\u304D\u5148\u3092\u63A2\u3059\u60F3\u5B9A\u3002\n// find_unused(v)\uFF1A\
@@ -64,7 +62,7 @@ data:
   isVerificationFile: false
   path: graph/online_mst.hpp
   requiredBy: []
-  timestamp: '2022-12-04 15:34:04+09:00'
+  timestamp: '2022-12-07 00:33:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/online_mst.hpp

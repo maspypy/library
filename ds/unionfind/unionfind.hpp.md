@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':warning:'
@@ -48,10 +48,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2995.test.cpp
     title: test/aoj/2995.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
   - icon: ':x:'
@@ -120,27 +120,23 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int\
-    \ n;\n  int n_comp;\n  vector<int> dat; // par or (-size)\n  UnionFind(int n =\
-    \ 0) { build(n); }\n\n  void build(int m) {\n    n = m;\n    n_comp = m;\n   \
-    \ dat.assign(n, -1);\n  }\n\n  int operator[](int x) {\n    while (dat[x] >= 0)\
-    \ {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n     \
-    \ x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  int size(int x) {\n    assert(dat[x]\
-    \ < 0);\n    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x];\n\
-    \    y = (*this)[y];\n    if (x == y) { return false; }\n    n_comp--;\n    if\
-    \ (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x;\n    return\
-    \ true;\n  }\n\n  vector<int> get_all() {\n    vector<int> A(n);\n    for (int\
-    \ i = 0; i < n; ++i) A[i] = (*this)[i];\n    return A;\n  }\n};\n"
-  code: "#pragma once\n\nstruct UnionFind {\n  int n;\n  int n_comp;\n  vector<int>\
-    \ dat; // par or (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void build(int\
-    \ m) {\n    n = m;\n    n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  int operator[](int\
-    \ x) {\n    while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp <\
-    \ 0) { return dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n\
-    \  int size(int x) {\n    assert(dat[x] < 0);\n    return -dat[x];\n  }\n\n  bool\
-    \ merge(int x, int y) {\n    x = (*this)[x];\n    y = (*this)[y];\n    if (x ==\
-    \ y) { return false; }\n    n_comp--;\n    if (-dat[x] < -dat[y]) swap(x, y);\n\
-    \    dat[x] += dat[y], dat[y] = x;\n    return true;\n  }\n\n  vector<int> get_all()\
-    \ {\n    vector<int> A(n);\n    for (int i = 0; i < n; ++i) A[i] = (*this)[i];\n\
-    \    return A;\n  }\n};\n"
+    \ n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n);\
+    \ }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n\
+    \  }\n\n  int operator[](int x) {\n    while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n\
+    \      if (pp < 0) { return dat[x]; }\n      x = dat[x] = pp;\n    }\n    return\
+    \ x;\n  }\n\n  int size(int x) {\n    assert(dat[x] < 0);\n    return -dat[x];\n\
+    \  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x], y = (*this)[y];\n  \
+    \  if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x]\
+    \ += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n};\n"
+  code: "#pragma once\n\nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par\
+    \ or (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void build(int m) {\n\
+    \    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  int operator[](int x)\
+    \ {\n    while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0)\
+    \ { return dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  int\
+    \ size(int x) {\n    assert(dat[x] < 0);\n    return -dat[x];\n  }\n\n  bool merge(int\
+    \ x, int y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n\
+    \    if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
+    \    return true;\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/unionfind/unionfind.hpp
@@ -156,7 +152,7 @@ data:
   - graph/check_bipartite.hpp
   - graph/online_unionfind.hpp
   - graph/minimum_spanning_tree.hpp
-  timestamp: '2022-12-04 15:34:04+09:00'
+  timestamp: '2022-12-07 00:33:28+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1600.test.cpp

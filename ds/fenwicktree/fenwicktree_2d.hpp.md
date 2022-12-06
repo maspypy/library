@@ -6,10 +6,10 @@ data:
     title: alg/monoid/add.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc266h_2.test.cpp
     title: test/atcoder/abc266h_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   - icon: ':x:'
@@ -26,7 +26,7 @@ data:
     title: test/yukicoder/1919.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -45,18 +45,18 @@ data:
     \ min_X, 0, N) : LB(keyX, x));\r\n  }\r\n  inline int nxt(int i) { return i +\
     \ ((i + 1) & -(i + 1)); }\r\n  inline int prev(int i) { return i - ((i + 1) &\
     \ -(i + 1)); }\r\n\r\n  void build(vc<XY>& X, vc<XY>& Y, vc<E> wt) {\r\n    if\
-    \ (!SMALL_X) {\r\n      keyX = X;\r\n      UNIQUE(keyX);\r\n      N = len(keyX),\
-    \ keyX.shrink_to_fit();\r\n    } else {\r\n      min_X = (len(X) == 0 ? 0 : MIN(X));\r\
-    \n      N = (len(X) == 0 ? 0 : MAX(X)) - min_X + 1;\r\n      keyX.resize(N);\r\
-    \n      FOR(i, N) keyX[i] = min_X + i;\r\n    }\r\n    vvc<XY> keyY_raw(N);\r\n\
-    \    vvc<E> dat_raw(N);\r\n    for (auto&& i: argsort(Y)) {\r\n      int ix =\
-    \ xtoi(X[i]);\r\n      XY y = Y[i];\r\n      while (ix < N) {\r\n        auto&\
-    \ KY = keyY_raw[ix];\r\n        if (len(KY) == 0 || KY.back() < y) {\r\n     \
-    \     KY.eb(y);\r\n          dat_raw[ix].eb(wt[i]);\r\n        } else {\r\n  \
-    \        dat_raw[ix].back() = G::op(dat_raw[ix].back(), wt[i]);\r\n        }\r\
-    \n        ix = nxt(ix);\r\n      }\r\n    }\r\n\r\n    indptr.assign(N + 1, 0);\r\
-    \n    FOR(i, N) indptr[i + 1] = indptr[i] + len(keyY_raw[i]);\r\n    keyY.resize(indptr.back());\r\
-    \n    dat.resize(indptr.back());\r\n    FOR(i, N) FOR(j, indptr[i + 1] - indptr[i])\
+    \ (!SMALL_X) {\r\n      keyX = X;\r\n      UNIQUE(keyX);\r\n      N = len(keyX);\r\
+    \n    } else {\r\n      min_X = (len(X) == 0 ? 0 : MIN(X));\r\n      N = (len(X)\
+    \ == 0 ? 0 : MAX(X)) - min_X + 1;\r\n      keyX.resize(N);\r\n      FOR(i, N)\
+    \ keyX[i] = min_X + i;\r\n    }\r\n    vvc<XY> keyY_raw(N);\r\n    vvc<E> dat_raw(N);\r\
+    \n    for (auto&& i: argsort(Y)) {\r\n      int ix = xtoi(X[i]);\r\n      XY y\
+    \ = Y[i];\r\n      while (ix < N) {\r\n        auto& KY = keyY_raw[ix];\r\n  \
+    \      if (len(KY) == 0 || KY.back() < y) {\r\n          KY.eb(y);\r\n       \
+    \   dat_raw[ix].eb(wt[i]);\r\n        } else {\r\n          dat_raw[ix].back()\
+    \ = G::op(dat_raw[ix].back(), wt[i]);\r\n        }\r\n        ix = nxt(ix);\r\n\
+    \      }\r\n    }\r\n\r\n    indptr.assign(N + 1, 0);\r\n    FOR(i, N) indptr[i\
+    \ + 1] = indptr[i] + len(keyY_raw[i]);\r\n    keyY.resize(indptr.back());\r\n\
+    \    dat.resize(indptr.back());\r\n    FOR(i, N) FOR(j, indptr[i + 1] - indptr[i])\
     \ {\r\n      keyY[indptr[i] + j] = keyY_raw[i][j];\r\n      dat[indptr[i] + j]\
     \ = dat_raw[i][j];\r\n    }\r\n    FOR(i, N) {\r\n      int n = indptr[i + 1]\
     \ - indptr[i];\r\n      FOR(j, n - 1) {\r\n        int k = nxt(j);\r\n       \
@@ -98,17 +98,17 @@ data:
     \  inline int nxt(int i) { return i + ((i + 1) & -(i + 1)); }\r\n  inline int\
     \ prev(int i) { return i - ((i + 1) & -(i + 1)); }\r\n\r\n  void build(vc<XY>&\
     \ X, vc<XY>& Y, vc<E> wt) {\r\n    if (!SMALL_X) {\r\n      keyX = X;\r\n    \
-    \  UNIQUE(keyX);\r\n      N = len(keyX), keyX.shrink_to_fit();\r\n    } else {\r\
-    \n      min_X = (len(X) == 0 ? 0 : MIN(X));\r\n      N = (len(X) == 0 ? 0 : MAX(X))\
-    \ - min_X + 1;\r\n      keyX.resize(N);\r\n      FOR(i, N) keyX[i] = min_X + i;\r\
-    \n    }\r\n    vvc<XY> keyY_raw(N);\r\n    vvc<E> dat_raw(N);\r\n    for (auto&&\
-    \ i: argsort(Y)) {\r\n      int ix = xtoi(X[i]);\r\n      XY y = Y[i];\r\n   \
-    \   while (ix < N) {\r\n        auto& KY = keyY_raw[ix];\r\n        if (len(KY)\
-    \ == 0 || KY.back() < y) {\r\n          KY.eb(y);\r\n          dat_raw[ix].eb(wt[i]);\r\
-    \n        } else {\r\n          dat_raw[ix].back() = G::op(dat_raw[ix].back(),\
-    \ wt[i]);\r\n        }\r\n        ix = nxt(ix);\r\n      }\r\n    }\r\n\r\n  \
-    \  indptr.assign(N + 1, 0);\r\n    FOR(i, N) indptr[i + 1] = indptr[i] + len(keyY_raw[i]);\r\
-    \n    keyY.resize(indptr.back());\r\n    dat.resize(indptr.back());\r\n    FOR(i,\
+    \  UNIQUE(keyX);\r\n      N = len(keyX);\r\n    } else {\r\n      min_X = (len(X)\
+    \ == 0 ? 0 : MIN(X));\r\n      N = (len(X) == 0 ? 0 : MAX(X)) - min_X + 1;\r\n\
+    \      keyX.resize(N);\r\n      FOR(i, N) keyX[i] = min_X + i;\r\n    }\r\n  \
+    \  vvc<XY> keyY_raw(N);\r\n    vvc<E> dat_raw(N);\r\n    for (auto&& i: argsort(Y))\
+    \ {\r\n      int ix = xtoi(X[i]);\r\n      XY y = Y[i];\r\n      while (ix < N)\
+    \ {\r\n        auto& KY = keyY_raw[ix];\r\n        if (len(KY) == 0 || KY.back()\
+    \ < y) {\r\n          KY.eb(y);\r\n          dat_raw[ix].eb(wt[i]);\r\n      \
+    \  } else {\r\n          dat_raw[ix].back() = G::op(dat_raw[ix].back(), wt[i]);\r\
+    \n        }\r\n        ix = nxt(ix);\r\n      }\r\n    }\r\n\r\n    indptr.assign(N\
+    \ + 1, 0);\r\n    FOR(i, N) indptr[i + 1] = indptr[i] + len(keyY_raw[i]);\r\n\
+    \    keyY.resize(indptr.back());\r\n    dat.resize(indptr.back());\r\n    FOR(i,\
     \ N) FOR(j, indptr[i + 1] - indptr[i]) {\r\n      keyY[indptr[i] + j] = keyY_raw[i][j];\r\
     \n      dat[indptr[i] + j] = dat_raw[i][j];\r\n    }\r\n    FOR(i, N) {\r\n  \
     \    int n = indptr[i + 1] - indptr[i];\r\n      FOR(j, n - 1) {\r\n        int\
@@ -144,8 +144,8 @@ data:
   isVerificationFile: false
   path: ds/fenwicktree/fenwicktree_2d.hpp
   requiredBy: []
-  timestamp: '2022-12-04 04:38:35+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-12-07 00:33:28+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1216.test.cpp
   - test/yukicoder/1216_2.test.cpp
