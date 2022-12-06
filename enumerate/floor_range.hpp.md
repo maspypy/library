@@ -3,44 +3,47 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/mytest/floor_ceil_ranges.test.cpp
+    title: test/mytest/floor_ceil_ranges.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1260.test.cpp
     title: test/yukicoder/1260.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1276.test.cpp
     title: test/yukicoder/1276.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1573.test.cpp
     title: test/yukicoder/1573.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/4954.test.cpp
     title: test/yukicoder/4954.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/floor_range.hpp\"\n// f(q, l, r)\uFF1A\u5546\u304C\
     \ q \u306B\u306A\u308B\u7BC4\u56F2\u304C [l, r)\r\ntemplate <typename F>\r\nvoid\
     \ floor_range(ll N, F f) {\r\n  ll q = 1;\r\n  while (1) {\r\n    ll l = N / (q\
-    \ + 1) + 1;\r\n    ll r = N / q + 1;\r\n    f(q, l, r);\r\n    if (q == N) break;\r\
-    \n    q = N / (N / (q + 1));\r\n  }\r\n}\r\n"
+    \ + 1) + 1, r = N / q + 1;\r\n    f(q, l, r);\r\n    if (q == N) break;\r\n  \
+    \  q = N / (N / (q + 1));\r\n  }\r\n}\r\n"
   code: "// f(q, l, r)\uFF1A\u5546\u304C q \u306B\u306A\u308B\u7BC4\u56F2\u304C [l,\
     \ r)\r\ntemplate <typename F>\r\nvoid floor_range(ll N, F f) {\r\n  ll q = 1;\r\
-    \n  while (1) {\r\n    ll l = N / (q + 1) + 1;\r\n    ll r = N / q + 1;\r\n  \
-    \  f(q, l, r);\r\n    if (q == N) break;\r\n    q = N / (N / (q + 1));\r\n  }\r\
-    \n}\r\n"
+    \n  while (1) {\r\n    ll l = N / (q + 1) + 1, r = N / q + 1;\r\n    f(q, l, r);\r\
+    \n    if (q == N) break;\r\n    q = N / (N / (q + 1));\r\n  }\r\n}\r\n"
   dependsOn: []
   isVerificationFile: false
   path: enumerate/floor_range.hpp
   requiredBy: []
-  timestamp: '2022-12-02 04:26:03+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-12-06 17:59:29+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1260.test.cpp
   - test/yukicoder/4954.test.cpp
   - test/yukicoder/1276.test.cpp
   - test/yukicoder/1573.test.cpp
+  - test/mytest/floor_ceil_ranges.test.cpp
 documentation_of: enumerate/floor_range.hpp
 layout: document
 redirect_from:

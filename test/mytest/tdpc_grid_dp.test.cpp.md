@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -177,16 +177,16 @@ data:
     \ {\r\n    ostringstream oss;\r\n    oss << fixed << setprecision(15) << x;\r\n\
     \    string s = oss.str();\r\n    write(s);\r\n  }\r\n  template <typename T,\r\
     \n            typename enable_if<has_write<T>::value>::type * = nullptr>\r\n \
-    \ inline void write(T x) {\r\n    x.write();\r\n  }\r\n  template <class T>\r\n\
-    \  void write(const vector<T> &val) {\r\n    auto n = val.size();\r\n    for (size_t\
-    \ i = 0; i < n; i++) {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\n\
-    \    }\r\n  }\r\n  template <class T, class U>\r\n  void write(const pair<T, U>\
-    \ &val) {\r\n    write(val.first);\r\n    write(' ');\r\n    write(val.second);\r\
-    \n  }\r\n  template <size_t N = 0, typename T>\r\n  void write_tuple(const T &t)\
+    \ inline void write(T &x) {\r\n    x.write();\r\n  }\r\n  template <class T>\r\
+    \n  void write(const vector<T> &val) {\r\n    auto n = val.size();\r\n    for\
+    \ (size_t i = 0; i < n; i++) {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\
+    \n    }\r\n  }\r\n  template <class T, class U>\r\n  void write(const pair<T,\
+    \ U> val) {\r\n    write(val.first);\r\n    write(' ');\r\n    write(val.second);\r\
+    \n  }\r\n  template <size_t N = 0, typename T>\r\n  void write_tuple(const T t)\
     \ {\r\n    if constexpr (N < std::tuple_size<T>::value) {\r\n      if constexpr\
-    \ (N > 0) { write(' '); }\r\n      const auto &x = std::get<N>(t);\r\n      write(x);\r\
+    \ (N > 0) { write(' '); }\r\n      const auto x = std::get<N>(t);\r\n      write(x);\r\
     \n      write_tuple<N + 1>(t);\r\n    }\r\n  }\r\n  template <class... T>\r\n\
-    \  bool write(tuple<T...> &tpl) {\r\n    write_tuple(tpl);\r\n    return true;\r\
+    \  bool write(tuple<T...> tpl) {\r\n    write_tuple(tpl);\r\n    return true;\r\
     \n  }\r\n  template <class T, size_t S>\r\n  void write(const array<T, S> &val)\
     \ {\r\n    auto n = val.size();\r\n    for (size_t i = 0; i < n; i++) {\r\n  \
     \    if (i) write(' ');\r\n      write(val[i]);\r\n    }\r\n  }\r\n  void write(i128\
@@ -482,8 +482,8 @@ data:
   isVerificationFile: true
   path: test/mytest/tdpc_grid_dp.test.cpp
   requiredBy: []
-  timestamp: '2022-12-04 01:39:31+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-12-06 17:59:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/tdpc_grid_dp.test.cpp
 layout: document
