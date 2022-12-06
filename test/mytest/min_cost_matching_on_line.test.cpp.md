@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: convex/slope.hpp
     title: convex/slope.hpp
   - icon: ':x:'

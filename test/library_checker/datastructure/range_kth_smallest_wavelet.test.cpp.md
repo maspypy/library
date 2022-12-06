@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/wavelet_matrix.hpp
     title: ds/wavelet_matrix.hpp
   - icon: ':question:'
