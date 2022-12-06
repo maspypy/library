@@ -15,7 +15,6 @@ struct SegTree_2D {
       keyX = X;
       UNIQUE(keyX);
       N = len(keyX);
-      keyX.shrink_to_fit();
     } else {
       min_X = (len(X) == 0 ? 0 : MIN(X));
       N = (len(X) == 0 ? 0 : MAX(X)) - min_X + 1;

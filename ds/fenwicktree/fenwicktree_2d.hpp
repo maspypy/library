@@ -28,7 +28,7 @@ struct FenwickTree_2D {
     if (!SMALL_X) {
       keyX = X;
       UNIQUE(keyX);
-      N = len(keyX), keyX.shrink_to_fit();
+      N = len(keyX);
     } else {
       min_X = (len(X) == 0 ? 0 : MIN(X));
       N = (len(X) == 0 ? 0 : MAX(X)) - min_X + 1;

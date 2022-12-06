@@ -1,14 +1,12 @@
 #pragma once
 
 struct UnionFind {
-  int n;
-  int n_comp;
-  vector<int> dat; // par or (-size)
+  int n, n_comp;
+  vc<int> dat; // par or (-size)
   UnionFind(int n = 0) { build(n); }
 
   void build(int m) {
-    n = m;
-    n_comp = m;
+    n = m, n_comp = m;
     dat.assign(n, -1);
   }
 
@@ -27,18 +25,10 @@ struct UnionFind {
   }
 
   bool merge(int x, int y) {
-    x = (*this)[x];
-    y = (*this)[y];
-    if (x == y) { return false; }
-    n_comp--;
+    x = (*this)[x], y = (*this)[y];
+    if (x == y) return false;
     if (-dat[x] < -dat[y]) swap(x, y);
-    dat[x] += dat[y], dat[y] = x;
+    dat[x] += dat[y], dat[y] = x, n_comp--;
     return true;
-  }
-
-  vector<int> get_all() {
-    vector<int> A(n);
-    for (int i = 0; i < n; ++i) A[i] = (*this)[i];
-    return A;
   }
 };
