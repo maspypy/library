@@ -6,8 +6,6 @@ void ceil_range(ll N, F f, ll INF) {
   while (1) {
     f(q, l, r);
     if (q == N) break;
-    r = l;
-    q = ceil(N, l - 1);
-    l = ceil(N, q);
+    r = l, q = ceil(N, l - 1), l = ceil(N, q);
   }
 }
