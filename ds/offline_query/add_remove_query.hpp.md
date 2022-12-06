@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/add_remove_query.test.cpp
     title: test/library_checker/datastructure/add_remove_query.test.cpp
   - icon: ':x:'
@@ -11,7 +11,7 @@ data:
     title: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/offline_query/add_remove_query.hpp\"\n/*\n\u30FB\u6642\
@@ -70,7 +70,7 @@ data:
   path: ds/offline_query/add_remove_query.hpp
   requiredBy: []
   timestamp: '2022-12-05 08:01:45+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/datastructure/add_remove_query.test.cpp
   - test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
