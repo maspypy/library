@@ -76,5 +76,15 @@
 "test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp": "2022-12-07 00:33:28 +0900",
 "test/library_checker/datastructure/associative_array.test.cpp": "2022-12-07 00:33:28 +0900",
 "test/library_checker/datastructure/associative_array_hashmap.test.cpp": "2022-12-07 00:33:28 +0900",
-"test/library_checker/datastructure/double_ended_pq.test.cpp": "2022-12-07 00:33:28 +0900"
+"test/library_checker/datastructure/double_ended_pq.test.cpp": "2022-12-07 00:33:28 +0900",
+"test/library_checker/datastructure/double_ended_pq_2.test.cpp": "2022-12-07 00:33:28 +0900",
+"test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp": "2022-12-07 00:33:28 +0900",
+"test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp": "2022-12-07 00:33:28 +0900",
+"test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp": "2022-12-07 00:33:28 +0900",
+"test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp": "2022-12-07 00:33:28 +0900",
+"test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp": "2022-12-07 00:33:28 +0900",
+"test/library_checker/datastructure/line_add_get_min.test.cpp": "2022-12-07 00:33:28 +0900",
+"test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp": "2022-12-07 00:33:28 +0900",
+"test/library_checker/datastructure/persistent_queue.test.cpp": "2022-12-07 00:33:28 +0900",
+"test/library_checker/datastructure/persistent_unionfind.test.cpp": "2022-12-07 00:33:28 +0900"
 }
