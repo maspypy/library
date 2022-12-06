@@ -727,7 +727,7 @@ data:
       title: graph_count/count_tree_by_root_degree.hpp
   - name: knapsack
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: knapsack/knapsack01.hpp
       title: knapsack/knapsack01.hpp
     - icon: ':x:'
@@ -1173,7 +1173,7 @@ data:
     - icon: ':x:'
       path: seq/limit_poly_exp_sum.hpp
       title: seq/limit_poly_exp_sum.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: seq/longest_increasing_subsequence.hpp
       title: seq/longest_increasing_subsequence.hpp
     - icon: ':x:'
@@ -1401,13 +1401,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_7_C.test.cpp
       title: test/aoj/CGL_7_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_1_B.test.cpp
       title: test/aoj/DPL_1_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_1_D.test.cpp
       title: test/aoj/DPL_1_D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_1_F.test.cpp
       title: test/aoj/DPL_1_F.test.cpp
     - icon: ':x:'

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: knapsack/knapsack01.hpp
     title: knapsack/knapsack01.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_F
@@ -161,8 +161,8 @@ data:
     \ {\r\n    ostringstream oss;\r\n    oss << fixed << setprecision(15) << x;\r\n\
     \    string s = oss.str();\r\n    write(s);\r\n  }\r\n  template <typename T,\r\
     \n            typename enable_if<has_write<T>::value>::type * = nullptr>\r\n \
-    \ inline void write(T &x) {\r\n    x.write();\r\n  }\r\n  template <class T>\r\
-    \n  void write(const vector<T> val) {\r\n    auto n = val.size();\r\n    for (size_t\
+    \ inline void write(T x) {\r\n    x.write();\r\n  }\r\n  template <class T>\r\n\
+    \  void write(const vector<T> val) {\r\n    auto n = val.size();\r\n    for (size_t\
     \ i = 0; i < n; i++) {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\n\
     \    }\r\n  }\r\n  template <class T, class U>\r\n  void write(const pair<T, U>\
     \ val) {\r\n    write(val.first);\r\n    write(' ');\r\n    write(val.second);\r\
@@ -251,8 +251,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL_1_F.test.cpp
   requiredBy: []
-  timestamp: '2022-12-07 07:51:43+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-07 08:14:15+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL_1_F.test.cpp
 layout: document
