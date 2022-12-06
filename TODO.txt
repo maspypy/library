@@ -1,13 +1,7 @@
 ・k-th term of linear rec：
 fft を節約して高速化
 
-・suffix automation
-
 ・編集距離＋復元
-
-・Rollback Mo
-
-・合成数 mod で det, inv_mat
 
 ・2sat に atmostone を追加
 
@@ -18,11 +12,8 @@ fft を節約して高速化
 
 mincostcycle：毎回グラフ作り直してて無駄、復元をつけるかどうか？
 
-・カッコ列を木にする
-
 ・sparse linear rec
 
 ・頂点属性の steiner 木
 ・steiner 木の復元
 
-遅延平方分割の抽象化。yuki880とか。

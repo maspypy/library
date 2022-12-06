@@ -26,7 +26,6 @@ struct Point_Add_Rectangle_Sum {
         if (len(keyX) == 0 || keyX.back() != a) { keyX.eb(a); }
         a = len(keyX) - 1;
       }
-      keyX.shrink_to_fit();
       for (auto &&[xl, xr, yl, yr]: rect) {
         xl = LB(keyX, xl);
         xr = LB(keyX, xr);
