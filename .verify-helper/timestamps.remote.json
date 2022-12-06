@@ -105,5 +105,14 @@
 "test/library_checker/datastructure/line_add_get_min.test.cpp": "2022-12-07 00:33:28 +0900",
 "test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp": "2022-12-07 00:33:28 +0900",
 "test/library_checker/datastructure/persistent_queue.test.cpp": "2022-12-07 00:33:28 +0900",
-"test/library_checker/datastructure/persistent_unionfind.test.cpp": "2022-12-07 00:33:28 +0900"
+"test/library_checker/datastructure/persistent_unionfind.test.cpp": "2022-12-07 00:33:28 +0900",
+"test/library_checker/datastructure/point_add_range_sum.test.cpp": "2022-12-07 00:33:28 +0900",
+"test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp": "2022-12-07 00:33:28 +0900",
+"test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp": "2022-12-07 00:33:28 +0900",
+"test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp": "2022-12-07 00:33:28 +0900",
+"test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp": "2022-12-07 00:33:28 +0900",
+"test/library_checker/datastructure/predecessor_problem.test.cpp": "2022-12-07 00:33:28 +0900",
+"test/library_checker/datastructure/queue_operate_all_composite.test.cpp": "2022-12-07 00:33:28 +0900",
+"test/library_checker/datastructure/range_affine_point_add.test.cpp": "2022-12-07 00:33:28 +0900",
+"test/library_checker/datastructure/range_affine_range_sum.test.cpp": "2022-12-07 00:33:28 +0900"
 }
