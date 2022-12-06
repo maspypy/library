@@ -192,7 +192,7 @@ struct Printer {
   }
   template <typename T,
             typename enable_if<has_write<T>::value>::type * = nullptr>
-  inline void write(T x) {
+  inline void write(T &x) {
     x.write();
   }
   template <class T>
@@ -204,22 +204,22 @@ struct Printer {
     }
   }
   template <class T, class U>
-  void write(const pair<T, U> &val) {
+  void write(const pair<T, U> val) {
     write(val.first);
     write(' ');
     write(val.second);
   }
   template <size_t N = 0, typename T>
-  void write_tuple(const T &t) {
+  void write_tuple(const T t) {
     if constexpr (N < std::tuple_size<T>::value) {
       if constexpr (N > 0) { write(' '); }
-      const auto &x = std::get<N>(t);
+      const auto x = std::get<N>(t);
       write(x);
       write_tuple<N + 1>(t);
     }
   }
   template <class... T>
-  bool write(tuple<T...> &tpl) {
+  bool write(tuple<T...> tpl) {
     write_tuple(tpl);
     return true;
   }
