@@ -61,5 +61,11 @@
 "test/aoj/ITP2_11_D.test.cpp": "2022-12-06 17:59:29 +0900",
 "test/aoj/ITP2_3_B.test.cpp": "2022-12-06 17:59:29 +0900",
 "test/aoj/NTL_1_D.test.cpp": "2022-12-06 17:59:29 +0900",
-"test/aoj/NTL_1_E.test.cpp": "2022-12-06 17:59:29 +0900"
+"test/aoj/NTL_1_E.test.cpp": "2022-12-06 17:59:29 +0900",
+"test/library_checker/convolution/convolution_mod_2_64.test.cpp": "2022-12-06 17:59:29 +0900",
+"test/library_checker/datastructure/add_remove_query.test.cpp": "2022-12-06 17:59:29 +0900",
+"test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp": "2022-12-06 17:59:29 +0900",
+"test/library_checker/datastructure/associative_array.test.cpp": "2022-12-06 17:59:29 +0900",
+"test/library_checker/datastructure/associative_array_hashmap.test.cpp": "2022-12-06 17:59:29 +0900",
+"test/library_checker/datastructure/double_ended_pq.test.cpp": "2022-12-06 17:59:29 +0900"
 }
