@@ -192,7 +192,7 @@ struct Printer {
   }
   template <typename T,
             typename enable_if<has_write<T>::value>::type * = nullptr>
-  inline void write(T &x) {
+  inline void write(T x) {
     x.write();
   }
   template <class T>
