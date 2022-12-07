@@ -31,7 +31,7 @@ data:
   - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':question:'

@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/rollinghash.hpp
     title: alg/monoid/rollinghash.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':heavy_check_mark:'
@@ -59,7 +59,7 @@ data:
   - icon: ':x:'
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
   - icon: ':heavy_check_mark:'
@@ -105,34 +105,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
     title: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
     title: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/add_chmin.test.cpp
     title: test/mytest/add_chmin.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/add_chmin_chmax.test.cpp
     title: test/mytest/add_chmin_chmax.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/all_inverse.test.cpp
     title: test/mytest/all_inverse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/binom.test.cpp
     title: test/mytest/binom.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/conv2d.test.cpp
     title: test/mytest/conv2d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/conv_leq.test.cpp
     title: test/mytest/conv_leq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_points_in_triangles.test.cpp
     title: test/mytest/count_points_in_triangles.test.cpp
   - icon: ':x:'

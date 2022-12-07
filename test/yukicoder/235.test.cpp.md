@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
   - icon: ':question:'

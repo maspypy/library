@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':heavy_check_mark:'
@@ -75,7 +75,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_points_in_triangles.test.cpp
     title: test/mytest/count_points_in_triangles.test.cpp
   - icon: ':x:'
