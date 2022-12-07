@@ -5,6 +5,9 @@ data:
   - icon: ':x:'
     path: alg/monoid/rollinghash.hpp
     title: alg/monoid/rollinghash.hpp
+  - icon: ':question:'
+    path: geo/count_points_in_triangles.hpp
+    title: geo/count_points_in_triangles.hpp
   - icon: ':x:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
@@ -66,7 +69,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_C.test.cpp
     title: test/aoj/ALDS1_14_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc202_f.test.cpp
+    title: test/atcoder/abc202_f.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc274_h.test.cpp
     title: test/atcoder/abc274_h.test.cpp
   - icon: ':x:'
@@ -126,6 +132,9 @@ data:
   - icon: ':x:'
     path: test/mytest/conv_leq.test.cpp
     title: test/mytest/conv_leq.test.cpp
+  - icon: ':x:'
+    path: test/mytest/count_points_in_triangles.test.cpp
+    title: test/mytest/count_points_in_triangles.test.cpp
   - icon: ':x:'
     path: test/mytest/dynamic_lazy_segtree.test.cpp
     title: test/mytest/dynamic_lazy_segtree.test.cpp
@@ -368,6 +377,7 @@ data:
   - mod/mod_kth_root.hpp
   - mod/mod_sqrt.hpp
   - mod/primitive_root.hpp
+  - geo/count_points_in_triangles.hpp
   - random/hash_vector.hpp
   - linalg/det_A_plus_xB.hpp
   - linalg/spmat_det.hpp
@@ -413,6 +423,7 @@ data:
   - test/mytest/summin_add.test.cpp
   - test/mytest/minmax_add.test.cpp
   - test/mytest/dynamic_segtree_sparse.test.cpp
+  - test/mytest/count_points_in_triangles.test.cpp
   - test/mytest/max_max.test.cpp
   - test/mytest/range_mex.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
@@ -472,6 +483,7 @@ data:
   - test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
+  - test/atcoder/abc202_f.test.cpp
   - test/atcoder/abc274_h.test.cpp
   - test/aoj/ALDS1_14_C.test.cpp
 documentation_of: random/base.hpp

@@ -211,6 +211,9 @@ data:
     path: test/atcoder/abc200a.test.cpp
     title: test/atcoder/abc200a.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc202_f.test.cpp
+    title: test/atcoder/abc202_f.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc217h.test.cpp
     title: test/atcoder/abc217h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -252,13 +255,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc272_h.test.cpp
     title: test/atcoder/abc272_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc273_e.test.cpp
     title: test/atcoder/abc273_e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc274_h.test.cpp
     title: test/atcoder/abc274_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc276_g.test.cpp
     title: test/atcoder/abc276_g.test.cpp
   - icon: ':x:'
@@ -804,6 +807,9 @@ data:
   - icon: ':x:'
     path: test/mytest/conv_leq.test.cpp
     title: test/mytest/conv_leq.test.cpp
+  - icon: ':x:'
+    path: test/mytest/count_points_in_triangles.test.cpp
+    title: test/mytest/count_points_in_triangles.test.cpp
   - icon: ':x:'
     path: test/mytest/datetime.test.cpp
     title: test/mytest/datetime.test.cpp
@@ -2006,6 +2012,7 @@ data:
   - test/mytest/minmax_add.test.cpp
   - test/mytest/cf702_F_splay.test.cpp
   - test/mytest/dynamic_segtree_sparse.test.cpp
+  - test/mytest/count_points_in_triangles.test.cpp
   - test/mytest/max_max.test.cpp
   - test/mytest/range_mex.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
@@ -2240,6 +2247,7 @@ data:
   - test/atcoder/abc272_h.test.cpp
   - test/atcoder/abc127f_1.test.cpp
   - test/atcoder/agc058d.test.cpp
+  - test/atcoder/abc202_f.test.cpp
   - test/atcoder/abc217h.test.cpp
   - test/atcoder/abc269ex.test.cpp
   - test/atcoder/abc198d.test.cpp

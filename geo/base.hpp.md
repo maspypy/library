@@ -2,9 +2,12 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
+  - icon: ':question:'
+    path: geo/count_points_in_triangles.hpp
+    title: geo/count_points_in_triangles.hpp
   - icon: ':heavy_check_mark:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
@@ -58,6 +61,9 @@ data:
     path: test/aoj/CGL_7_C.test.cpp
     title: test/aoj/CGL_7_C.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc202_f.test.cpp
+    title: test/atcoder/abc202_f.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc266c.test.cpp
     title: test/atcoder/abc266c.test.cpp
   - icon: ':x:'
@@ -69,6 +75,9 @@ data:
   - icon: ':x:'
     path: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
+  - icon: ':x:'
+    path: test/mytest/count_points_in_triangles.test.cpp
+    title: test/mytest/count_points_in_triangles.test.cpp
   - icon: ':x:'
     path: test/mytest/incremental_ch.test.cpp
     title: test/mytest/incremental_ch.test.cpp
@@ -165,14 +174,17 @@ data:
   - geo/projection.hpp
   - geo/cross_point.hpp
   - geo/dynamicupperhull.hpp
+  - geo/count_points_in_triangles.hpp
   - geo/outcircle.hpp
   timestamp: '2022-12-07 07:51:43+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/mytest/count_points_in_triangles.test.cpp
   - test/mytest/incremental_ch.test.cpp
   - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - test/library_checker/geometry/convex_layers.test.cpp
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
+  - test/atcoder/abc202_f.test.cpp
   - test/atcoder/abc266c.test.cpp
   - test/aoj/CGL_2_B.test.cpp
   - test/aoj/CGL_2_A.test.cpp
