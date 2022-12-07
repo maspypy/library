@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   _extendedRequiredBy: []
@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/lcm_convolution.test.cpp
     title: test/library_checker/math/lcm_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1760.test.cpp
     title: test/yukicoder/1760.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\nvc<ll> primetable(int LIM) {\n  ++LIM;\n\
@@ -55,7 +55,7 @@ data:
   path: nt/lcm_convolution.hpp
   requiredBy: []
   timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1760.test.cpp
   - test/library_checker/math/lcm_convolution.test.cpp

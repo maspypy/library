@@ -30,12 +30,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1276.test.cpp
     title: test/yukicoder/1276.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1781.test.cpp
     title: test/yukicoder/1781.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\nvc<ll> primetable(int LIM) {\n  ++LIM;\n\
@@ -107,7 +107,7 @@ data:
   - nt/primesum_mod6.hpp
   - nt/primesum_mod4.hpp
   timestamp: '2022-08-19 01:56:01+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1276.test.cpp
   - test/yukicoder/1781.test.cpp

@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/maxidx_add.hpp
     title: alg/acted_monoid/maxidx_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
   - icon: ':heavy_check_mark:'
@@ -77,19 +77,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/contour_sum.hpp
     title: graph/ds/contour_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
   - icon: ':heavy_check_mark:'
     path: other/rectangle_union.hpp
     title: other/rectangle_union.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
   - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/inversion_rotate.hpp
     title: seq/inversion_rotate.hpp
   - icon: ':heavy_check_mark:'
@@ -306,13 +306,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1490.test.cpp
     title: test/yukicoder/1490.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1641.test.cpp
     title: test/yukicoder/1641.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1720.test.cpp
     title: test/yukicoder/1720.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1838.test.cpp
     title: test/yukicoder/1838.test.cpp
   - icon: ':x:'
