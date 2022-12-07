@@ -1,3 +1,5 @@
+#pragma once
+
 #include "geo/base.hpp"
 
 // 偏角ソートに対する argsort
