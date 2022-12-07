@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/meldable_heap.hpp
     title: ds/meldable_heap.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
   - icon: ':question:'
@@ -15,12 +15,12 @@ data:
     title: graph/shortest_path/dijkstra.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/K_shortest_walk.test.cpp
     title: test/library_checker/graph/K_shortest_walk.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/meldable_heap.hpp\"\n\ntemplate <typename VAL, bool PERSISTENT,\
@@ -162,7 +162,7 @@ data:
   path: graph/shortest_path/K_shortest_walk.hpp
   requiredBy: []
   timestamp: '2022-12-05 10:41:25+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/graph/K_shortest_walk.test.cpp
 documentation_of: graph/shortest_path/K_shortest_walk.hpp
