@@ -207,29 +207,33 @@ data:
     \ = int>\nstruct Binary_Trie {\n  using T = SIZE_TYPE;\n  struct Node {\n    int\
     \ width;\n    UINT val;\n    T cnt;\n    Node *l, *r;\n  };\n\n  Node *pool;\n\
     \  int pid;\n  using np = Node *;\n\n  Binary_Trie() : pid(0) { pool = new Node[NODES];\
-    \ }\n\n  void reset() { pid = 0; }\n\n  np new_node(int width, UINT val) {\n \
-    \   pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].width = width;\n    pool[pid].val\
-    \ = val;\n    pool[pid].cnt = 0;\n    return &(pool[pid++]);\n  }\n\n  np copy_node(np\
-    \ c) {\n    if (!c || !PERSISTENT) return c;\n    np res = &(pool[pid++]);\n \
-    \   res->width = c->width, res->val = c->val;\n    res->cnt = c->cnt, res->l =\
-    \ c->l, res->r = c->r;\n    return res;\n  }\n\n  np add(np root, UINT val, T\
-    \ cnt = 1) {\n    if (!root) root = new_node(0, 0);\n    assert(0 <= val && val\
-    \ < (1LL << LOG));\n    return add_rec(root, LOG, val, cnt);\n  }\n\n  vc<pair<UINT,\
-    \ T>> get_all(np root) {\n    vc<pair<UINT, T>> res;\n    auto dfs = [&](auto\
-    \ &dfs, np root, UINT val, int ht) -> void {\n      if (ht == 0) {\n        res.eb(val,\
-    \ root->cnt);\n        return;\n      }\n      np c = root->l;\n      if (c) {\
-    \ dfs(dfs, c, val << (c->width) | (c->val), ht - (c->width)); }\n      c = root->r;\n\
-    \      if (c) { dfs(dfs, c, val << (c->width) | (c->val), ht - (c->width)); }\n\
-    \    };\n    if (root) dfs(dfs, root, 0, LOG);\n    return res;\n  }\n\n  UINT\
-    \ kth(np root, T k, UINT xor_val) {\n    assert(root && 0 <= k && k < root->cnt);\n\
-    \    return kth_rec(root, 0, k, LOG, xor_val) ^ xor_val;\n  }\n\n  UINT min(np\
-    \ root, UINT xor_val) {\n    assert(root && root->cnt);\n    return kth(root,\
-    \ 0, xor_val);\n  }\n\n  UINT max(np root, UINT xor_val) {\n    assert(root &&\
-    \ root->cnt);\n    return kth(root, (root->cnt) - 1, xor_val);\n  }\n\nprivate:\n\
-    \  inline UINT mask(int k) { return (UINT(1) << k) - 1; }\n\n  np add_rec(np root,\
-    \ int ht, UINT val, T cnt) {\n    root = copy_node(root);\n    root->cnt += cnt;\n\
-    \    if (ht == 0) return root;\n\n    bool go_r = (val >> (ht - 1)) & 1;\n   \
-    \ np c = (go_r ? root->r : root->l);\n    if (!c) {\n      c = new_node(ht, val);\n\
+    \ }\n\n  void reset() { pid = 0; }\n\n  np new_root() { return nullptr; }\n\n\
+    \  np new_node(int width, UINT val) {\n    pool[pid].l = pool[pid].r = nullptr;\n\
+    \    pool[pid].width = width;\n    pool[pid].val = val;\n    pool[pid].cnt = 0;\n\
+    \    return &(pool[pid++]);\n  }\n\n  np copy_node(np c) {\n    if (!c || !PERSISTENT)\
+    \ return c;\n    np res = &(pool[pid++]);\n    res->width = c->width, res->val\
+    \ = c->val;\n    res->cnt = c->cnt, res->l = c->l, res->r = c->r;\n    return\
+    \ res;\n  }\n\n  np add(np root, UINT val, T cnt = 1) {\n    if (!root) root =\
+    \ new_node(0, 0);\n    assert(0 <= val && val < (1LL << LOG));\n    return add_rec(root,\
+    \ LOG, val, cnt);\n  }\n\n  vc<pair<UINT, T>> get_all(np root) {\n    vc<pair<UINT,\
+    \ T>> res;\n    auto dfs = [&](auto &dfs, np root, UINT val, int ht) -> void {\n\
+    \      if (ht == 0) {\n        res.eb(val, root->cnt);\n        return;\n    \
+    \  }\n      np c = root->l;\n      if (c) { dfs(dfs, c, val << (c->width) | (c->val),\
+    \ ht - (c->width)); }\n      c = root->r;\n      if (c) { dfs(dfs, c, val << (c->width)\
+    \ | (c->val), ht - (c->width)); }\n    };\n    if (root) dfs(dfs, root, 0, LOG);\n\
+    \    return res;\n  }\n\n  UINT kth(np root, T k, UINT xor_val) {\n    assert(root\
+    \ && 0 <= k && k < root->cnt);\n    return kth_rec(root, 0, k, LOG, xor_val) ^\
+    \ xor_val;\n  }\n\n  UINT min(np root, UINT xor_val) {\n    assert(root && root->cnt);\n\
+    \    return kth(root, 0, xor_val);\n  }\n\n  UINT max(np root, UINT xor_val) {\n\
+    \    assert(root && root->cnt);\n    return kth(root, (root->cnt) - 1, xor_val);\n\
+    \  }\n\n  T freq_upper(np root, UINT upper, UINT xor_val) {\n    if (!root) return\
+    \ 0;\n    return freq_upper_rec(root, LOG, upper, xor_val, 0);\n  }\n\n  T freq(np\
+    \ root, UINT lower, UINT upper, UINT xor_val) {\n    return freq_upper(root, upper,\
+    \ xor_val) - freq_upper(root, lower, xor_val);\n  }\n\nprivate:\n  inline UINT\
+    \ mask(int k) { return (UINT(1) << k) - 1; }\n\n  np add_rec(np root, int ht,\
+    \ UINT val, T cnt) {\n    root = copy_node(root);\n    root->cnt += cnt;\n   \
+    \ if (ht == 0) return root;\n\n    bool go_r = (val >> (ht - 1)) & 1;\n    np\
+    \ c = (go_r ? root->r : root->l);\n    if (!c) {\n      c = new_node(ht, val);\n\
     \      c->cnt = cnt;\n      if (!go_r) root->l = c;\n      if (go_r) root->r =\
     \ c;\n      return root;\n    }\n    int w = c->width;\n    if ((val >> (ht -\
     \ w)) == c->val) {\n      c = add_rec(c, ht - w, val & mask(ht - w), cnt);\n \
@@ -246,16 +250,21 @@ data:
     \ = root->r;\n    if ((xor_val >> (ht - 1)) & 1) swap(left, right);\n    T sl\
     \ = (left ? left->cnt : 0);\n    np c;\n    if (k < sl) { c = left; }\n    if\
     \ (k >= sl) { c = right, k -= sl; }\n    int w = c->width;\n    return kth_rec(c,\
-    \ val << w | (c->val), k, ht - w, xor_val);\n  }\n};\n#line 2 \"ds/hashmap.hpp\"\
-    \ntemplate <typename Val, int LOG = 20>\r\nstruct HashMapLL {\r\n  int N;\r\n\
-    \  ll* keys;\r\n  Val* vals;\r\n  vc<int> IDS;\r\n  bitset<1 << LOG> used;\r\n\
-    \  const int shift;\r\n  const uint64_t r = 11995408973635179863ULL;\r\n  HashMapLL()\r\
-    \n      : N(1 << LOG), keys(new ll[N]), vals(new Val[N]), shift(64 - __lg(N))\
-    \ {}\r\n  int hash(ll x) {\r\n    static const uint64_t FIXED_RANDOM\r\n     \
-    \   = std::chrono::steady_clock::now().time_since_epoch().count();\r\n    return\
-    \ (uint64_t(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const ll&\
-    \ key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && keys[i] != key;\
-    \ (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
+    \ val << w | (c->val), k, ht - w, xor_val);\n  }\n\n  T freq_upper_rec(np root,\
+    \ int ht, UINT LIM, UINT xor_val, UINT val) {\n    UINT now = (val << ht) ^ (xor_val);\n\
+    \    if ((LIM >> ht) > (now >> ht)) return root->cnt;\n    if (ht == 0 || (LIM\
+    \ >> ht) < (now >> ht)) return 0;\n    T res = 0;\n    FOR(k, 2) {\n      np c\
+    \ = (k == 0 ? root->l : root->r);\n      if (c) {\n        int w = c->width;\n\
+    \        res += freq_upper_rec(c, ht - w, LIM, xor_val, val << w | c->val);\n\
+    \      }\n    }\n    return res;\n  }\n};\n#line 2 \"ds/hashmap.hpp\"\ntemplate\
+    \ <typename Val, int LOG = 20>\r\nstruct HashMapLL {\r\n  int N;\r\n  ll* keys;\r\
+    \n  Val* vals;\r\n  vc<int> IDS;\r\n  bitset<1 << LOG> used;\r\n  const int shift;\r\
+    \n  const uint64_t r = 11995408973635179863ULL;\r\n  HashMapLL()\r\n      : N(1\
+    \ << LOG), keys(new ll[N]), vals(new Val[N]), shift(64 - __lg(N)) {}\r\n  int\
+    \ hash(ll x) {\r\n    static const uint64_t FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
+    \n    return (uint64_t(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
+    \ ll& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && keys[i] !=\
+    \ key; (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
     \ ll& key) {\r\n    int i = index(key);\r\n    if (!used[i]) IDS.eb(i), used[i]\
     \ = 1, keys[i] = key, vals[i] = Val{};\r\n    return vals[i];\r\n  }\r\n\r\n \
     \ Val get(const ll& key, Val default_value) {\r\n    int i = index(key);\r\n \
@@ -298,7 +307,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/set_xor_min.test.cpp
   requiredBy: []
-  timestamp: '2022-12-11 12:37:25+09:00'
+  timestamp: '2022-12-12 00:25:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/set_xor_min.test.cpp

@@ -331,6 +331,9 @@ data:
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2102.test.cpp
+    title: test/yukicoder/2102.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/263.test.cpp
     title: test/yukicoder/263.test.cpp
   - icon: ':heavy_check_mark:'
@@ -407,6 +410,7 @@ data:
   - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/263.test.cpp
   - test/yukicoder/1397.test.cpp
+  - test/yukicoder/2102.test.cpp
   - test/mytest/minplus_convex.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/is_substring.test.cpp

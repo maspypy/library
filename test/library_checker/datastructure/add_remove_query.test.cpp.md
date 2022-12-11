@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/offline_query/add_remove_query.hpp
     title: ds/offline_query/add_remove_query.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/rollback_array.hpp
     title: ds/rollback_array.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/unionfind/rollback_unionfind.hpp
     title: ds/unionfind/rollback_unionfind.hpp
   - icon: ':question:'
@@ -240,8 +240,8 @@ data:
     \ set(int idx, T x) {\r\n    history.eb(idx, dat[idx]);\r\n    dat[idx] = x;\r\
     \n  }\r\n\r\n  vc<T> get_all() {\r\n    vc<T> res(N);\r\n    FOR(i, N) res[i]\
     \ = get(i);\r\n    return res;\r\n  }\r\n};\r\n#line 2 \"ds/unionfind/rollback_unionfind.hpp\"\
-    \n\r\nstruct RollbackUnionFind {\r\n  RollbackArray<int> dat; // parent or size\r\
-    \n\r\n  RollbackUnionFind(int n) : dat(vc<int>(n, -1)) {}\r\n\r\n  int operator[](int\
+    \n\r\nstruct Rollback_UnionFind {\r\n  Rollback_Array<int> dat; // parent or size\r\
+    \n\r\n  Rollback_UnionFind(int n) : dat(vc<int>(n, -1)) {}\r\n\r\n  int operator[](int\
     \ v) {\r\n    while (dat.get(v) >= 0) v = dat.get(v);\r\n    return v;\r\n  }\r\
     \n\r\n  int size(int v) { return -dat.get((*this)[v]); }\r\n  int time() { return\
     \ dat.time(); }\r\n  void rollback(int t) { dat.rollback(t); }\r\n\r\n  bool merge(int\
@@ -317,7 +317,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/add_remove_query.test.cpp
   requiredBy: []
-  timestamp: '2022-12-11 12:37:25+09:00'
+  timestamp: '2022-12-11 14:13:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/add_remove_query.test.cpp

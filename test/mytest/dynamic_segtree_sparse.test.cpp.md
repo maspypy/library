@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dynamic_segtree_sparse.hpp
     title: ds/segtree/dynamic_segtree_sparse.hpp
   - icon: ':question:'
@@ -222,16 +222,16 @@ data:
     \  using X = typename MX::value_type;\n\n  struct Node {\n    ll idx;\n    Node\
     \ *l, *r;\n    X prod, x;\n  };\n\n  const ll L0, R0;\n  Node *pool;\n  int pid;\n\
     \  using np = Node *;\n\n  Dynamic_SegTree_Sparse(ll L0, ll R0) : L0(L0), R0(R0),\
-    \ pid(0) {\n    pool = new Node[NODES];\n  }\n\n  np new_node(ll idx, const X\
-    \ x) {\n    pool[pid].idx = idx;\n    pool[pid].l = pool[pid].r = nullptr;\n \
-    \   pool[pid].x = pool[pid].prod = x;\n    return &(pool[pid++]);\n  }\n\n  X\
-    \ prod(np root, ll l, ll r) {\n    assert(L0 <= l && l < r && r <= R0);\n    X\
-    \ x = MX::unit();\n    prod_rec(root, L0, R0, l, r, x);\n    return x;\n  }\n\n\
-    \  np set(np root, ll i, const X &x) {\n    assert(L0 <= i && i < R0);\n    return\
-    \ set_rec(root, L0, R0, i, x);\n  }\n\n  np multiply(np root, ll i, const X &x)\
-    \ {\n    assert(L0 <= i && i < R0);\n    return multiply_rec(root, L0, R0, i,\
-    \ x);\n  }\n\n  template <typename F>\n  ll max_right(np root, F check, ll L)\
-    \ {\n    assert(L0 <= L && L <= R0 && check(MX::unit()));\n    X x = MX::unit();\n\
+    \ pid(0) {\n    pool = new Node[NODES];\n  }\n\n  np new_root() { return nullptr;\
+    \ }\n\n  np new_node(ll idx, const X x) {\n    pool[pid].idx = idx;\n    pool[pid].l\
+    \ = pool[pid].r = nullptr;\n    pool[pid].x = pool[pid].prod = x;\n    return\
+    \ &(pool[pid++]);\n  }\n\n  X prod(np root, ll l, ll r) {\n    assert(L0 <= l\
+    \ && l < r && r <= R0);\n    X x = MX::unit();\n    prod_rec(root, L0, R0, l,\
+    \ r, x);\n    return x;\n  }\n\n  np set(np root, ll i, const X &x) {\n    assert(L0\
+    \ <= i && i < R0);\n    return set_rec(root, L0, R0, i, x);\n  }\n\n  np multiply(np\
+    \ root, ll i, const X &x) {\n    assert(L0 <= i && i < R0);\n    return multiply_rec(root,\
+    \ L0, R0, i, x);\n  }\n\n  template <typename F>\n  ll max_right(np root, F check,\
+    \ ll L) {\n    assert(L0 <= L && L <= R0 && check(MX::unit()));\n    X x = MX::unit();\n\
     \    return max_right_rec(root, check, L0, R0, L, x);\n  }\n\n  template <typename\
     \ F>\n  ll min_left(np root, F check, ll R) {\n    assert(L0 <= R && R <= R0 &&\
     \ check(MX::unit()));\n    X x = MX::unit();\n    return min_left_rec(root, check,\
@@ -327,7 +327,7 @@ data:
   isVerificationFile: true
   path: test/mytest/dynamic_segtree_sparse.test.cpp
   requiredBy: []
-  timestamp: '2022-12-07 08:14:15+09:00'
+  timestamp: '2022-12-12 00:25:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/dynamic_segtree_sparse.test.cpp

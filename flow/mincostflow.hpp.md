@@ -21,15 +21,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1341.test.cpp
     title: test/yukicoder/1341.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1676.test.cpp
     title: test/yukicoder/1676.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1678.test.cpp
     title: test/yukicoder/1678.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"flow/mincostflow.hpp\"\n\n// atcoder library \u306E\u3082\
@@ -61,16 +61,17 @@ data:
     \ edge {\n    int frm, to;\n    Cap cap, flow;\n    Cost cost;\n  };\n\n  edge\
     \ get_edge(int i) {\n    int m = int(_edges.size());\n    assert(0 <= i && i <\
     \ m);\n    return _edges[i];\n  }\n  std::vector<edge> edges() { return _edges;\
-    \ }\n\n  std::pair<Cap, Cost> flow(int s, int t) {\n    return flow(s, t, std::numeric_limits<Cap>::max());\n\
-    \  }\n  std::pair<Cap, Cost> flow(int s, int t, Cap flow_limit) {\n    return\
-    \ slope(s, t, flow_limit).back();\n  }\n  std::vector<std::pair<Cap, Cost>> slope(int\
-    \ s, int t) {\n    return slope(s, t, std::numeric_limits<Cap>::max());\n  }\n\
-    \  std::vector<std::pair<Cap, Cost>> slope(int s, int t, Cap flow_limit) {\n \
-    \   assert(0 <= s && s < _n);\n    assert(0 <= t && t < _n);\n    assert(s !=\
-    \ t);\n\n    int m = int(_edges.size());\n    std::vector<int> edge_idx(m);\n\n\
-    \    auto g = [&]() {\n      std::vector<int> degree(_n), redge_idx(m);\n    \
-    \  std::vector<std::pair<int, _edge>> elist;\n      elist.reserve(2 * m);\n  \
-    \    for (int i = 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i]\
+    \ }\n\n  // (\u6D41\u91CF, \u8CBB\u7528)\n  std::pair<Cap, Cost> flow(int s, int\
+    \ t) {\n    return flow(s, t, std::numeric_limits<Cap>::max());\n  }\n  // (\u6D41\
+    \u91CF, \u8CBB\u7528)\n  std::pair<Cap, Cost> flow(int s, int t, Cap flow_limit)\
+    \ {\n    return slope(s, t, flow_limit).back();\n  }\n  std::vector<std::pair<Cap,\
+    \ Cost>> slope(int s, int t) {\n    return slope(s, t, std::numeric_limits<Cap>::max());\n\
+    \  }\n  std::vector<std::pair<Cap, Cost>> slope(int s, int t, Cap flow_limit)\
+    \ {\n    assert(0 <= s && s < _n);\n    assert(0 <= t && t < _n);\n    assert(s\
+    \ != t);\n\n    int m = int(_edges.size());\n    std::vector<int> edge_idx(m);\n\
+    \n    auto g = [&]() {\n      std::vector<int> degree(_n), redge_idx(m);\n   \
+    \   std::vector<std::pair<int, _edge>> elist;\n      elist.reserve(2 * m);\n \
+    \     for (int i = 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i]\
     \ = degree[e.frm]++;\n        redge_idx[i] = degree[e.to]++;\n        elist.push_back({e.frm,\
     \ {e.to, -1, e.cap - e.flow, e.cost}});\n        elist.push_back({e.to, {e.frm,\
     \ -1, e.flow, -e.cost}});\n      }\n      auto _g = internal::csr<_edge>(_n, elist);\n\
@@ -175,23 +176,23 @@ data:
     \ cost);\n    }\n  }\n\n  struct edge {\n    int frm, to;\n    Cap cap, flow;\n\
     \    Cost cost;\n  };\n\n  edge get_edge(int i) {\n    int m = int(_edges.size());\n\
     \    assert(0 <= i && i < m);\n    return _edges[i];\n  }\n  std::vector<edge>\
-    \ edges() { return _edges; }\n\n  std::pair<Cap, Cost> flow(int s, int t) {\n\
-    \    return flow(s, t, std::numeric_limits<Cap>::max());\n  }\n  std::pair<Cap,\
-    \ Cost> flow(int s, int t, Cap flow_limit) {\n    return slope(s, t, flow_limit).back();\n\
-    \  }\n  std::vector<std::pair<Cap, Cost>> slope(int s, int t) {\n    return slope(s,\
-    \ t, std::numeric_limits<Cap>::max());\n  }\n  std::vector<std::pair<Cap, Cost>>\
-    \ slope(int s, int t, Cap flow_limit) {\n    assert(0 <= s && s < _n);\n    assert(0\
-    \ <= t && t < _n);\n    assert(s != t);\n\n    int m = int(_edges.size());\n \
-    \   std::vector<int> edge_idx(m);\n\n    auto g = [&]() {\n      std::vector<int>\
-    \ degree(_n), redge_idx(m);\n      std::vector<std::pair<int, _edge>> elist;\n\
-    \      elist.reserve(2 * m);\n      for (int i = 0; i < m; i++) {\n        auto\
-    \ e = _edges[i];\n        edge_idx[i] = degree[e.frm]++;\n        redge_idx[i]\
-    \ = degree[e.to]++;\n        elist.push_back({e.frm, {e.to, -1, e.cap - e.flow,\
-    \ e.cost}});\n        elist.push_back({e.to, {e.frm, -1, e.flow, -e.cost}});\n\
-    \      }\n      auto _g = internal::csr<_edge>(_n, elist);\n      for (int i =\
-    \ 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i] += _g.start[e.frm];\n\
-    \        redge_idx[i] += _g.start[e.to];\n        _g.elist[edge_idx[i]].rev =\
-    \ redge_idx[i];\n        _g.elist[redge_idx[i]].rev = edge_idx[i];\n      }\n\
+    \ edges() { return _edges; }\n\n  // (\u6D41\u91CF, \u8CBB\u7528)\n  std::pair<Cap,\
+    \ Cost> flow(int s, int t) {\n    return flow(s, t, std::numeric_limits<Cap>::max());\n\
+    \  }\n  // (\u6D41\u91CF, \u8CBB\u7528)\n  std::pair<Cap, Cost> flow(int s, int\
+    \ t, Cap flow_limit) {\n    return slope(s, t, flow_limit).back();\n  }\n  std::vector<std::pair<Cap,\
+    \ Cost>> slope(int s, int t) {\n    return slope(s, t, std::numeric_limits<Cap>::max());\n\
+    \  }\n  std::vector<std::pair<Cap, Cost>> slope(int s, int t, Cap flow_limit)\
+    \ {\n    assert(0 <= s && s < _n);\n    assert(0 <= t && t < _n);\n    assert(s\
+    \ != t);\n\n    int m = int(_edges.size());\n    std::vector<int> edge_idx(m);\n\
+    \n    auto g = [&]() {\n      std::vector<int> degree(_n), redge_idx(m);\n   \
+    \   std::vector<std::pair<int, _edge>> elist;\n      elist.reserve(2 * m);\n \
+    \     for (int i = 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i]\
+    \ = degree[e.frm]++;\n        redge_idx[i] = degree[e.to]++;\n        elist.push_back({e.frm,\
+    \ {e.to, -1, e.cap - e.flow, e.cost}});\n        elist.push_back({e.to, {e.frm,\
+    \ -1, e.flow, -e.cost}});\n      }\n      auto _g = internal::csr<_edge>(_n, elist);\n\
+    \      for (int i = 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i]\
+    \ += _g.start[e.frm];\n        redge_idx[i] += _g.start[e.to];\n        _g.elist[edge_idx[i]].rev\
+    \ = redge_idx[i];\n        _g.elist[redge_idx[i]].rev = edge_idx[i];\n      }\n\
     \      return _g;\n    }();\n\n    auto result = slope(g, s, t, flow_limit);\n\
     \n    for (int i = 0; i < m; i++) {\n      auto e = g.elist[edge_idx[i]];\n  \
     \    _edges[i].flow = _edges[i].cap - e.cap;\n    }\n\n    return result;\n  }\n\
@@ -266,8 +267,8 @@ data:
   isVerificationFile: false
   path: flow/mincostflow.hpp
   requiredBy: []
-  timestamp: '2022-05-05 15:29:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-12-12 00:26:09+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1324.test.cpp
   - test/yukicoder/1341.test.cpp

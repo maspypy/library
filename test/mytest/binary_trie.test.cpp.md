@@ -206,29 +206,33 @@ data:
     \ = int>\nstruct Binary_Trie {\n  using T = SIZE_TYPE;\n  struct Node {\n    int\
     \ width;\n    UINT val;\n    T cnt;\n    Node *l, *r;\n  };\n\n  Node *pool;\n\
     \  int pid;\n  using np = Node *;\n\n  Binary_Trie() : pid(0) { pool = new Node[NODES];\
-    \ }\n\n  void reset() { pid = 0; }\n\n  np new_node(int width, UINT val) {\n \
-    \   pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].width = width;\n    pool[pid].val\
-    \ = val;\n    pool[pid].cnt = 0;\n    return &(pool[pid++]);\n  }\n\n  np copy_node(np\
-    \ c) {\n    if (!c || !PERSISTENT) return c;\n    np res = &(pool[pid++]);\n \
-    \   res->width = c->width, res->val = c->val;\n    res->cnt = c->cnt, res->l =\
-    \ c->l, res->r = c->r;\n    return res;\n  }\n\n  np add(np root, UINT val, T\
-    \ cnt = 1) {\n    if (!root) root = new_node(0, 0);\n    assert(0 <= val && val\
-    \ < (1LL << LOG));\n    return add_rec(root, LOG, val, cnt);\n  }\n\n  vc<pair<UINT,\
-    \ T>> get_all(np root) {\n    vc<pair<UINT, T>> res;\n    auto dfs = [&](auto\
-    \ &dfs, np root, UINT val, int ht) -> void {\n      if (ht == 0) {\n        res.eb(val,\
-    \ root->cnt);\n        return;\n      }\n      np c = root->l;\n      if (c) {\
-    \ dfs(dfs, c, val << (c->width) | (c->val), ht - (c->width)); }\n      c = root->r;\n\
-    \      if (c) { dfs(dfs, c, val << (c->width) | (c->val), ht - (c->width)); }\n\
-    \    };\n    if (root) dfs(dfs, root, 0, LOG);\n    return res;\n  }\n\n  UINT\
-    \ kth(np root, T k, UINT xor_val) {\n    assert(root && 0 <= k && k < root->cnt);\n\
-    \    return kth_rec(root, 0, k, LOG, xor_val) ^ xor_val;\n  }\n\n  UINT min(np\
-    \ root, UINT xor_val) {\n    assert(root && root->cnt);\n    return kth(root,\
-    \ 0, xor_val);\n  }\n\n  UINT max(np root, UINT xor_val) {\n    assert(root &&\
-    \ root->cnt);\n    return kth(root, (root->cnt) - 1, xor_val);\n  }\n\nprivate:\n\
-    \  inline UINT mask(int k) { return (UINT(1) << k) - 1; }\n\n  np add_rec(np root,\
-    \ int ht, UINT val, T cnt) {\n    root = copy_node(root);\n    root->cnt += cnt;\n\
-    \    if (ht == 0) return root;\n\n    bool go_r = (val >> (ht - 1)) & 1;\n   \
-    \ np c = (go_r ? root->r : root->l);\n    if (!c) {\n      c = new_node(ht, val);\n\
+    \ }\n\n  void reset() { pid = 0; }\n\n  np new_root() { return nullptr; }\n\n\
+    \  np new_node(int width, UINT val) {\n    pool[pid].l = pool[pid].r = nullptr;\n\
+    \    pool[pid].width = width;\n    pool[pid].val = val;\n    pool[pid].cnt = 0;\n\
+    \    return &(pool[pid++]);\n  }\n\n  np copy_node(np c) {\n    if (!c || !PERSISTENT)\
+    \ return c;\n    np res = &(pool[pid++]);\n    res->width = c->width, res->val\
+    \ = c->val;\n    res->cnt = c->cnt, res->l = c->l, res->r = c->r;\n    return\
+    \ res;\n  }\n\n  np add(np root, UINT val, T cnt = 1) {\n    if (!root) root =\
+    \ new_node(0, 0);\n    assert(0 <= val && val < (1LL << LOG));\n    return add_rec(root,\
+    \ LOG, val, cnt);\n  }\n\n  vc<pair<UINT, T>> get_all(np root) {\n    vc<pair<UINT,\
+    \ T>> res;\n    auto dfs = [&](auto &dfs, np root, UINT val, int ht) -> void {\n\
+    \      if (ht == 0) {\n        res.eb(val, root->cnt);\n        return;\n    \
+    \  }\n      np c = root->l;\n      if (c) { dfs(dfs, c, val << (c->width) | (c->val),\
+    \ ht - (c->width)); }\n      c = root->r;\n      if (c) { dfs(dfs, c, val << (c->width)\
+    \ | (c->val), ht - (c->width)); }\n    };\n    if (root) dfs(dfs, root, 0, LOG);\n\
+    \    return res;\n  }\n\n  UINT kth(np root, T k, UINT xor_val) {\n    assert(root\
+    \ && 0 <= k && k < root->cnt);\n    return kth_rec(root, 0, k, LOG, xor_val) ^\
+    \ xor_val;\n  }\n\n  UINT min(np root, UINT xor_val) {\n    assert(root && root->cnt);\n\
+    \    return kth(root, 0, xor_val);\n  }\n\n  UINT max(np root, UINT xor_val) {\n\
+    \    assert(root && root->cnt);\n    return kth(root, (root->cnt) - 1, xor_val);\n\
+    \  }\n\n  T freq_upper(np root, UINT upper, UINT xor_val) {\n    if (!root) return\
+    \ 0;\n    return freq_upper_rec(root, LOG, upper, xor_val, 0);\n  }\n\n  T freq(np\
+    \ root, UINT lower, UINT upper, UINT xor_val) {\n    return freq_upper(root, upper,\
+    \ xor_val) - freq_upper(root, lower, xor_val);\n  }\n\nprivate:\n  inline UINT\
+    \ mask(int k) { return (UINT(1) << k) - 1; }\n\n  np add_rec(np root, int ht,\
+    \ UINT val, T cnt) {\n    root = copy_node(root);\n    root->cnt += cnt;\n   \
+    \ if (ht == 0) return root;\n\n    bool go_r = (val >> (ht - 1)) & 1;\n    np\
+    \ c = (go_r ? root->r : root->l);\n    if (!c) {\n      c = new_node(ht, val);\n\
     \      c->cnt = cnt;\n      if (!go_r) root->l = c;\n      if (go_r) root->r =\
     \ c;\n      return root;\n    }\n    int w = c->width;\n    if ((val >> (ht -\
     \ w)) == c->val) {\n      c = add_rec(c, ht - w, val & mask(ht - w), cnt);\n \
@@ -245,40 +249,58 @@ data:
     \ = root->r;\n    if ((xor_val >> (ht - 1)) & 1) swap(left, right);\n    T sl\
     \ = (left ? left->cnt : 0);\n    np c;\n    if (k < sl) { c = left; }\n    if\
     \ (k >= sl) { c = right, k -= sl; }\n    int w = c->width;\n    return kth_rec(c,\
-    \ val << w | (c->val), k, ht - w, xor_val);\n  }\n};\n#line 2 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \ val << w | (c->val), k, ht - w, xor_val);\n  }\n\n  T freq_upper_rec(np root,\
+    \ int ht, UINT LIM, UINT xor_val, UINT val) {\n    UINT now = (val << ht) ^ (xor_val);\n\
+    \    if ((LIM >> ht) > (now >> ht)) return root->cnt;\n    if (ht == 0 || (LIM\
+    \ >> ht) < (now >> ht)) return 0;\n    T res = 0;\n    FOR(k, 2) {\n      np c\
+    \ = (k == 0 ? root->l : root->r);\n      if (c) {\n        int w = c->width;\n\
+    \        res += freq_upper_rec(c, ht - w, LIM, xor_val, val << w | c->val);\n\
+    \      }\n    }\n    return res;\n  }\n};\n#line 2 \"random/base.hpp\"\n\nu64\
+    \ RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
     \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 6 \"test/mytest/binary_trie.test.cpp\"\
-    \n\nvoid test() {\n  vector<int> A;\n  const int LOG = 5;\n  Binary_Trie<LOG,\
-    \ false, 100> X;\n  using np = decltype(X)::np;\n  np root = nullptr;\n\n  FOR(1000)\
-    \ {\n    int t = RNG(0, 4);\n    if (t == 0) { // add\n      int x = RNG(0, 1\
-    \ << LOG);\n      A.eb(x);\n      root = X.add(root, x);\n    }\n    if (t ==\
-    \ 1) { // get all\n      sort(all(A));\n      vc<int> B;\n      for (auto&& [k,\
-    \ cnt]: X.get_all(root)) { FOR(cnt) B.eb(k); }\n      assert(A == B);\n    }\n\
-    \    if (t == 2 && len(A)) { // erase\n      int k = RNG(len(A));\n      int x\
-    \ = A[k];\n      swap(A[k], A.back());\n      A.pop_back();\n      X.add(root,\
-    \ x, -1);\n    }\n    if (t == 3 && len(A)) { // kth\n      int k = RNG(len(A));\n\
-    \      int xor_val = RNG(0, 1 << LOG);\n      vc<int> B;\n      for (auto&& x:\
-    \ A) B.eb(x ^ xor_val);\n      sort(all(B));\n      assert(B[k] == int(X.kth(root,\
-    \ k, xor_val)));\n    }\n  }\n}\n\nvoid solve() {\n  INT(a, b);\n  print(a + b);\n\
-    }\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
+    \n\nvoid test() {\n  const int LOG = 5;\n  Binary_Trie<LOG, false, 100> X;\n\n\
+    \  FOR(100) {\n    vector<int> A;\n    X.reset();\n    auto root = X.new_root();\n\
+    \    FOR(1000) {\n      int t = RNG(0, 5);\n      if (t == 0) { // add\n     \
+    \   int x = RNG(0, 1 << LOG);\n        A.eb(x);\n        root = X.add(root, x);\n\
+    \      }\n      if (t == 1) { // get all\n        sort(all(A));\n        vc<int>\
+    \ B;\n        for (auto&& [k, cnt]: X.get_all(root)) { FOR(cnt) B.eb(k); }\n \
+    \       assert(A == B);\n      }\n      if (t == 2 && len(A)) { // erase\n   \
+    \     int k = RNG(len(A));\n        int x = A[k];\n        swap(A[k], A.back());\n\
+    \        A.pop_back();\n        X.add(root, x, -1);\n      }\n      if (t == 3\
+    \ && len(A)) { // kth\n        int k = RNG(len(A));\n        int xor_val = RNG(0,\
+    \ 1 << LOG);\n        vc<int> B;\n        for (auto&& x: A) B.eb(x ^ xor_val);\n\
+    \        sort(all(B));\n        assert(B[k] == int(X.kth(root, k, xor_val)));\n\
+    \      }\n      if (t == 4) { // freq\n        int lo = RNG(0, 1 << LOG);\n  \
+    \      int hi = RNG(0, 1 << LOG);\n        int xor_val = RNG(0, 1 << LOG);\n \
+    \       if (lo > hi) swap(lo, hi);\n        ++hi;\n        int cnt = 0;\n    \
+    \    for (auto&& x: A) {\n          int y = x ^ xor_val;\n          if (lo <=\
+    \ y && y < hi) ++cnt;\n        }\n        assert(cnt == X.freq(root, lo, hi, xor_val));\n\
+    \      }\n    }\n  }\n}\n\nvoid solve() {\n  INT(a, b);\n  print(a + b);\n}\n\n\
+    signed main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"ds/binary_trie.hpp\"\n#include \"random/base.hpp\"\
-    \n\nvoid test() {\n  vector<int> A;\n  const int LOG = 5;\n  Binary_Trie<LOG,\
-    \ false, 100> X;\n  using np = decltype(X)::np;\n  np root = nullptr;\n\n  FOR(1000)\
-    \ {\n    int t = RNG(0, 4);\n    if (t == 0) { // add\n      int x = RNG(0, 1\
-    \ << LOG);\n      A.eb(x);\n      root = X.add(root, x);\n    }\n    if (t ==\
-    \ 1) { // get all\n      sort(all(A));\n      vc<int> B;\n      for (auto&& [k,\
-    \ cnt]: X.get_all(root)) { FOR(cnt) B.eb(k); }\n      assert(A == B);\n    }\n\
-    \    if (t == 2 && len(A)) { // erase\n      int k = RNG(len(A));\n      int x\
-    \ = A[k];\n      swap(A[k], A.back());\n      A.pop_back();\n      X.add(root,\
-    \ x, -1);\n    }\n    if (t == 3 && len(A)) { // kth\n      int k = RNG(len(A));\n\
-    \      int xor_val = RNG(0, 1 << LOG);\n      vc<int> B;\n      for (auto&& x:\
-    \ A) B.eb(x ^ xor_val);\n      sort(all(B));\n      assert(B[k] == int(X.kth(root,\
-    \ k, xor_val)));\n    }\n  }\n}\n\nvoid solve() {\n  INT(a, b);\n  print(a + b);\n\
-    }\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
+    \n\nvoid test() {\n  const int LOG = 5;\n  Binary_Trie<LOG, false, 100> X;\n\n\
+    \  FOR(100) {\n    vector<int> A;\n    X.reset();\n    auto root = X.new_root();\n\
+    \    FOR(1000) {\n      int t = RNG(0, 5);\n      if (t == 0) { // add\n     \
+    \   int x = RNG(0, 1 << LOG);\n        A.eb(x);\n        root = X.add(root, x);\n\
+    \      }\n      if (t == 1) { // get all\n        sort(all(A));\n        vc<int>\
+    \ B;\n        for (auto&& [k, cnt]: X.get_all(root)) { FOR(cnt) B.eb(k); }\n \
+    \       assert(A == B);\n      }\n      if (t == 2 && len(A)) { // erase\n   \
+    \     int k = RNG(len(A));\n        int x = A[k];\n        swap(A[k], A.back());\n\
+    \        A.pop_back();\n        X.add(root, x, -1);\n      }\n      if (t == 3\
+    \ && len(A)) { // kth\n        int k = RNG(len(A));\n        int xor_val = RNG(0,\
+    \ 1 << LOG);\n        vc<int> B;\n        for (auto&& x: A) B.eb(x ^ xor_val);\n\
+    \        sort(all(B));\n        assert(B[k] == int(X.kth(root, k, xor_val)));\n\
+    \      }\n      if (t == 4) { // freq\n        int lo = RNG(0, 1 << LOG);\n  \
+    \      int hi = RNG(0, 1 << LOG);\n        int xor_val = RNG(0, 1 << LOG);\n \
+    \       if (lo > hi) swap(lo, hi);\n        ++hi;\n        int cnt = 0;\n    \
+    \    for (auto&& x: A) {\n          int y = x ^ xor_val;\n          if (lo <=\
+    \ y && y < hi) ++cnt;\n        }\n        assert(cnt == X.freq(root, lo, hi, xor_val));\n\
+    \      }\n    }\n  }\n}\n\nvoid solve() {\n  INT(a, b);\n  print(a + b);\n}\n\n\
+    signed main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -287,7 +309,7 @@ data:
   isVerificationFile: true
   path: test/mytest/binary_trie.test.cpp
   requiredBy: []
-  timestamp: '2022-12-11 12:37:25+09:00'
+  timestamp: '2022-12-12 00:25:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/binary_trie.test.cpp
