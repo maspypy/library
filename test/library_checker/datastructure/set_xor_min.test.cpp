@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/set_xor_min"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/binarytrie.hpp"
+#include "ds/binary_trie.hpp"
 #include "ds/hashmap.hpp"
 
 void solve() {
