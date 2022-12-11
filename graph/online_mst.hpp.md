@@ -36,7 +36,7 @@ data:
     \        auto [a, b, c] = cand[v];\n        if (a == -1 || cost < c) { cand[v]\
     \ = {x, y, cost}; }\n      }\n      for (auto&& x: comp[v]) { set_unused(x); }\n\
     \    }\n    FOR(v, N) if (uf[v] == v) {\n      auto [a, b, c] = cand[v];\n   \
-    \   if (a == -1) continue;\n      upd = 1;\n      uf.merge(a, b);\n      res.eb(a,\
+    \   if (a == -1) continue;\n      upd = 1;\n      if (uf.merge(a, b)) res.eb(a,\
     \ b, c);\n    }\n    if (!upd) break;\n  }\n  return res;\n}\n"
   code: "#include \"ds/unionfind/unionfind.hpp\"\n\n// Brouvka\n// \u967D\u306B\u30B0\
     \u30E9\u30D5\u3092\u4F5C\u3089\u305A\u3001\u4F55\u3089\u304B\u306E\u30C7\u30FC\
@@ -55,14 +55,14 @@ data:
     \ c] = cand[v];\n        if (a == -1 || cost < c) { cand[v] = {x, y, cost}; }\n\
     \      }\n      for (auto&& x: comp[v]) { set_unused(x); }\n    }\n    FOR(v,\
     \ N) if (uf[v] == v) {\n      auto [a, b, c] = cand[v];\n      if (a == -1) continue;\n\
-    \      upd = 1;\n      uf.merge(a, b);\n      res.eb(a, b, c);\n    }\n    if\
-    \ (!upd) break;\n  }\n  return res;\n}"
+    \      upd = 1;\n      if (uf.merge(a, b)) res.eb(a, b, c);\n    }\n    if (!upd)\
+    \ break;\n  }\n  return res;\n}"
   dependsOn:
   - ds/unionfind/unionfind.hpp
   isVerificationFile: false
   path: graph/online_mst.hpp
   requiredBy: []
-  timestamp: '2022-12-07 00:33:28+09:00'
+  timestamp: '2022-12-11 12:37:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/online_mst.hpp

@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: enumerate/triangles.hpp
     title: enumerate/triangles.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':question:'

@@ -198,7 +198,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc174f.test.cpp
     title: test/atcoder/abc174f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc190f.test.cpp
     title: test/atcoder/abc190f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -210,7 +210,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc200a.test.cpp
     title: test/atcoder/abc200a.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc202_f.test.cpp
     title: test/atcoder/abc202_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -231,7 +231,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc256d.test.cpp
     title: test/atcoder/abc256d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc266c.test.cpp
     title: test/atcoder/abc266c.test.cpp
   - icon: ':heavy_check_mark:'
@@ -474,10 +474,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/convex_layers.test.cpp
     title: test/library_checker/geometry/convex_layers.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/sort_points_by_argument.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - icon: ':heavy_check_mark:'
@@ -540,7 +540,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/two_edge_component.test.cpp
     title: test/library_checker/graph/two_edge_component.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -789,7 +789,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/binary_trie.test.cpp
     title: test/mytest/binary_trie.test.cpp
   - icon: ':heavy_check_mark:'
@@ -810,7 +810,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/conv_leq.test.cpp
     title: test/mytest/conv_leq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_points_in_triangles.test.cpp
     title: test/mytest/count_points_in_triangles.test.cpp
   - icon: ':heavy_check_mark:'
@@ -849,7 +849,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/gray_code.test.cpp
     title: test/mytest/gray_code.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/incremental_ch.test.cpp
     title: test/mytest/incremental_ch.test.cpp
   - icon: ':heavy_check_mark:'
@@ -981,7 +981,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_test.test.cpp
     title: test/mytest/rbst_test.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1050,7 +1050,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036_3.test.cpp
     title: test/yukicoder/1036_3.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1134,7 +1134,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1269.test.cpp
     title: test/yukicoder/1269.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1270.test.cpp
     title: test/yukicoder/1270.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1143,9 +1143,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1288.test.cpp
     title: test/yukicoder/1288.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1292.test.cpp
-    title: test/yukicoder/1292.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1293.test.cpp
     title: test/yukicoder/1293.test.cpp
@@ -1161,7 +1158,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1311.test.cpp
     title: test/yukicoder/1311.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1179,7 +1176,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1324.test.cpp
     title: test/yukicoder/1324.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1326.test.cpp
     title: test/yukicoder/1326.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1230,7 +1227,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1479.test.cpp
     title: test/yukicoder/1479.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1490.test.cpp
     title: test/yukicoder/1490.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1296,7 +1293,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1634.test.cpp
     title: test/yukicoder/1634.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1641.test.cpp
     title: test/yukicoder/1641.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1395,10 +1392,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1826_2.test.cpp
     title: test/yukicoder/1826_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1838.test.cpp
     title: test/yukicoder/1838.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/184.test.cpp
     title: test/yukicoder/184.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1416,7 +1413,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/187.test.cpp
     title: test/yukicoder/187.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1874.test.cpp
     title: test/yukicoder/1874.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1485,9 +1482,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2097.test.cpp
     title: test/yukicoder/2097.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2102.test.cpp
-    title: test/yukicoder/2102.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2108.test.cpp
     title: test/yukicoder/2108.test.cpp
@@ -1811,7 +1805,6 @@ data:
   verifiedWith:
   - test/yukicoder/1821.test.cpp
   - test/yukicoder/2005.test.cpp
-  - test/yukicoder/1292.test.cpp
   - test/yukicoder/1600.test.cpp
   - test/yukicoder/2065.test.cpp
   - test/yukicoder/1392.test.cpp
@@ -1991,7 +1984,6 @@ data:
   - test/yukicoder/1418.test.cpp
   - test/yukicoder/1036_3.test.cpp
   - test/yukicoder/1718.test.cpp
-  - test/yukicoder/2102.test.cpp
   - test/yukicoder/1197.test.cpp
   - test/yukicoder/1533.test.cpp
   - test/mytest/minplus_convex.test.cpp

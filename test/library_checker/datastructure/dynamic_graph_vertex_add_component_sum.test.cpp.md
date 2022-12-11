@@ -229,7 +229,7 @@ data:
     \n\u306B\u5909\u63DB\u3059\u308B\u3002\n\u30AF\u30A8\u30EA\u304C\u6642\u7CFB\u5217\
     \u9806\u306B\u6765\u308B\u3053\u3068\u304C\u5206\u304B\u3063\u3066\u3044\u308B\
     \u3068\u304D\u306F monotone = true \u306E\u65B9\u304C\u9AD8\u901F\u3002\n*/\n\
-    template <typename X, bool monotone>\nstruct AddRemove_Query {\n  map<X, int>\
+    template <typename X, bool monotone>\nstruct Add_Remove_Query {\n  map<X, int>\
     \ MP;\n  vc<tuple<int, int, X>> dat;\n  map<X, vc<int>> ADD;\n  map<X, vc<int>>\
     \ RM;\n\n  void add(int time, X x) {\n    if (monotone) return add_monotone(time,\
     \ x);\n    ADD[x].eb(time);\n  }\n  void remove(int time, X x) {\n    if (monotone)\
@@ -313,7 +313,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-12-11 11:11:43+09:00'
+  timestamp: '2022-12-11 12:37:25+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
