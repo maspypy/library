@@ -18,6 +18,8 @@ struct Binary_Trie {
 
   void reset() { pid = 0; }
 
+  np new_root() { return nullptr; }
+
   np new_node(int width, UINT val) {
     pool[pid].l = pool[pid].r = nullptr;
     pool[pid].width = width;
@@ -69,6 +71,15 @@ struct Binary_Trie {
   UINT max(np root, UINT xor_val) {
     assert(root && root->cnt);
     return kth(root, (root->cnt) - 1, xor_val);
+  }
+
+  T freq_upper(np root, UINT upper, UINT xor_val) {
+    if (!root) return 0;
+    return freq_upper_rec(root, LOG, upper, xor_val, 0);
+  }
+
+  T freq(np root, UINT lower, UINT upper, UINT xor_val) {
+    return freq_upper(root, upper, xor_val) - freq_upper(root, lower, xor_val);
   }
 
 private:
@@ -125,5 +136,20 @@ private:
     if (k >= sl) { c = right, k -= sl; }
     int w = c->width;
     return kth_rec(c, val << w | (c->val), k, ht - w, xor_val);
+  }
+
+  T freq_upper_rec(np root, int ht, UINT LIM, UINT xor_val, UINT val) {
+    UINT now = (val << ht) ^ (xor_val);
+    if ((LIM >> ht) > (now >> ht)) return root->cnt;
+    if (ht == 0 || (LIM >> ht) < (now >> ht)) return 0;
+    T res = 0;
+    FOR(k, 2) {
+      np c = (k == 0 ? root->l : root->r);
+      if (c) {
+        int w = c->width;
+        res += freq_upper_rec(c, ht - w, LIM, xor_val, val << w | c->val);
+      }
+    }
+    return res;
   }
 };

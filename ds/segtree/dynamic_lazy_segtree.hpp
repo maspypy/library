@@ -27,6 +27,8 @@ struct Dynamic_Lazy_SegTree {
     pool = new Node[NODES];
   }
 
+  np new_root() { return new_node(L0, R0); }
+
   np new_node(const X x) {
     pool[pid].l = pool[pid].r = nullptr;
     pool[pid].x = x;
