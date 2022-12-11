@@ -11,8 +11,8 @@ void solve() {
   VEC(ll, A0, N);
 
   using P = pair<int, int>;
-  AddRemove_Query<P, 1> X;
-  RollbackArray<ll> A(A0);
+  Add_Remove_Query<P, 1> X;
+  Rollback_Array<ll> A(A0);
 
   vc<int> query;
   FOR(Q) {
@@ -36,7 +36,7 @@ void solve() {
       query.eb(v);
     }
   }
-  RollbackUnionFind uf(N);
+  Rollback_UnionFind uf(N);
   // rollback_dfs
   auto upd = X.calc(len(query));
   vi ANS(len(query));
