@@ -79,9 +79,11 @@ public:
   }
   std::vector<edge> edges() { return _edges; }
 
+  // (流量, 費用)
   std::pair<Cap, Cost> flow(int s, int t) {
     return flow(s, t, std::numeric_limits<Cap>::max());
   }
+  // (流量, 費用)
   std::pair<Cap, Cost> flow(int s, int t, Cap flow_limit) {
     return slope(s, t, flow_limit).back();
   }
