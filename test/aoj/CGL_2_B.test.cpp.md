@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':heavy_check_mark:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -208,11 +208,11 @@ data:
     \ p) const { return {x - p.x, y - p.y}; }\n  bool operator==(Point p) const {\
     \ return x == p.x && y == p.y; }\n  Point operator-() const { return {-x, -y};\
     \ }\n\n  bool operator<(Point p) const {\n    if (x != p.x) return x < p.x;\n\
-    \    return y < p.y;\n  }\n\n  void read() { fastio::read(x), fastio::read(y);\
-    \ }\n  void write() { fastio::printer.write(pair<T, T>({x, y})); }\n  T dot(Point\
-    \ other) { return x * other.x + y * other.y; }\n  T det(Point other) { return\
-    \ x * other.y - y * other.x; }\n};\n\ntemplate <typename REAL, typename T>\nREAL\
-    \ dist(Point<T> A, Point<T> B) {\n  A -= B;\n  T p = A.dot(A);\n  return sqrt(REAL(p));\n\
+    \    return y < p.y;\n  }\n  T dot(Point other) { return x * other.x + y * other.y;\
+    \ }\n  T det(Point other) { return x * other.y - y * other.x; }\n\n  void read()\
+    \ { fastio::read(x), fastio::read(y); }\n  void write() { fastio::printer.write(pair<T,\
+    \ T>({x, y})); }\n};\n\ntemplate <typename REAL, typename T>\nREAL dist(Point<T>\
+    \ A, Point<T> B) {\n  A = A - B;\n  T p = A.dot(A);\n  return sqrt(REAL(p));\n\
     }\n\ntemplate <typename T>\nstruct Line {\n  T a, b, c;\n\n  Line(T a, T b, T\
     \ c) : a(a), b(b), c(c) {}\n  Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y;\n\
     \    b = B.x - A.x;\n    c = A.x * B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T\
@@ -292,7 +292,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_2_B.test.cpp
   requiredBy: []
-  timestamp: '2022-12-07 08:14:15+09:00'
+  timestamp: '2022-12-11 11:11:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_2_B.test.cpp

@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -49,9 +49,9 @@ data:
     \   assert(check(G::unit()));\n    int i = 0;\n    E s = G::unit();\n    int k\
     \ = 1;\n    while (2 * k <= n) k *= 2;\n    while (k) {\n      E t = G::op(s,\
     \ dat[i + k - 1]);\n      if (check(t)) { i += k, s = t; }\n      k >>= 1;\n \
-    \   }\n    return i;\n  }\n\n  int find_kth(E k) {\n    return max_right([&k](E\
-    \ x) -> bool { return x <= k; });\n  }\n};\n#line 2 \"graph/ds/contour_sum.hpp\"\
-    \n\n// \u70B9\u52A0\u7B97\u3001\u8DDD\u96E2\u533A\u9593\u3067\u306E\u548C\ntemplate\
+    \   }\n    return i;\n  }\n\n  int kth(E k) {\n    return max_right([&k](E x)\
+    \ -> bool { return x <= k; });\n  }\n};\n#line 2 \"graph/ds/contour_sum.hpp\"\n\
+    \n// \u70B9\u52A0\u7B97\u3001\u8DDD\u96E2\u533A\u9593\u3067\u306E\u548C\ntemplate\
     \ <typename GT, typename AbelGroup>\nstruct Contour_Sum {\n  int N;\n  GT& G;\n\
     \  using X = typename AbelGroup::value_type;\n  FenwickTree<AbelGroup> bit;\n\
     \  // centroid \u3054\u3068\u3001\u65B9\u5411\u3054\u3068\n  vvc<int> bit_range;\n\
@@ -180,8 +180,8 @@ data:
   isVerificationFile: false
   path: graph/ds/contour_sum.hpp
   requiredBy: []
-  timestamp: '2022-12-04 04:38:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-12-11 11:10:53+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/graph/verted_add_contour_sum.test.cpp
 documentation_of: graph/ds/contour_sum.hpp

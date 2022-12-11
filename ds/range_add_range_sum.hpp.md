@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   _extendedRequiredBy: []
@@ -52,8 +52,8 @@ data:
     \   assert(check(G::unit()));\n    int i = 0;\n    E s = G::unit();\n    int k\
     \ = 1;\n    while (2 * k <= n) k *= 2;\n    while (k) {\n      E t = G::op(s,\
     \ dat[i + k - 1]);\n      if (check(t)) { i += k, s = t; }\n      k >>= 1;\n \
-    \   }\n    return i;\n  }\n\n  int find_kth(E k) {\n    return max_right([&k](E\
-    \ x) -> bool { return x <= k; });\n  }\n};\n#line 2 \"ds/range_add_range_sum.hpp\"\
+    \   }\n    return i;\n  }\n\n  int kth(E k) {\n    return max_right([&k](E x)\
+    \ -> bool { return x <= k; });\n  }\n};\n#line 2 \"ds/range_add_range_sum.hpp\"\
     \n\ntemplate <typename Monoid>\nstruct Range_Add_Range_Sum {\n  using MX = Monoid;\n\
     \  using E = typename MX::value_type;\n\n  struct Mono {\n    using value_type\
     \ = pair<E, E>;\n    using X = value_type;\n    static X op(X x, X y) { return\
@@ -94,7 +94,7 @@ data:
   isVerificationFile: false
   path: ds/range_add_range_sum.hpp
   requiredBy: []
-  timestamp: '2022-12-04 19:59:20+09:00'
+  timestamp: '2022-12-11 11:10:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_E.test.cpp

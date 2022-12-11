@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -49,8 +49,8 @@ data:
     \   assert(check(G::unit()));\n    int i = 0;\n    E s = G::unit();\n    int k\
     \ = 1;\n    while (2 * k <= n) k *= 2;\n    while (k) {\n      E t = G::op(s,\
     \ dat[i + k - 1]);\n      if (check(t)) { i += k, s = t; }\n      k >>= 1;\n \
-    \   }\n    return i;\n  }\n\n  int find_kth(E k) {\n    return max_right([&k](E\
-    \ x) -> bool { return x <= k; });\n  }\n};\n#line 2 \"ds/offline_query/rectangle_add_point_sum.hpp\"\
+    \   }\n    return i;\n  }\n\n  int kth(E k) {\n    return max_right([&k](E x)\
+    \ -> bool { return x <= k; });\n  }\n};\n#line 2 \"ds/offline_query/rectangle_add_point_sum.hpp\"\
     \n\ntemplate <typename AbelGroup, bool SMALL>\nstruct Rectangle_Add_Point_Sum\
     \ {\n  using G = typename AbelGroup::value_type;\n  vc<tuple<ll, ll, ll, ll>>\
     \ rect;\n  vc<G> WT;\n  vc<pi> point;\n\n  Rectangle_Add_Point_Sum() {}\n\n  void\
@@ -110,8 +110,8 @@ data:
   isVerificationFile: false
   path: ds/offline_query/rectangle_add_point_sum.hpp
   requiredBy: []
-  timestamp: '2022-12-04 04:38:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-12-11 11:10:53+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/rect_add_pt_sum.test.cpp
 documentation_of: ds/offline_query/rectangle_add_point_sum.hpp

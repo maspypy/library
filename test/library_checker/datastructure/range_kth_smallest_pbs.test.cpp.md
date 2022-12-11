@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/parallel_binary_search.hpp
     title: ds/offline_query/parallel_binary_search.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -254,8 +254,8 @@ data:
     \   assert(check(G::unit()));\n    int i = 0;\n    E s = G::unit();\n    int k\
     \ = 1;\n    while (2 * k <= n) k *= 2;\n    while (k) {\n      E t = G::op(s,\
     \ dat[i + k - 1]);\n      if (check(t)) { i += k, s = t; }\n      k >>= 1;\n \
-    \   }\n    return i;\n  }\n\n  int find_kth(E k) {\n    return max_right([&k](E\
-    \ x) -> bool { return x <= k; });\n  }\n};\n#line 6 \"test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp\"\
+    \   }\n    return i;\n  }\n\n  int kth(E k) {\n    return max_right([&k](E x)\
+    \ -> bool { return x <= k; });\n  }\n};\n#line 6 \"test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  using QT = tuple<ll, ll,\
     \ ll>;\n  VEC(QT, query, Q);\n\n  auto I = argsort(A);\n  FenwickTree<Monoid_Add<int>>\
     \ bit(N);\n  auto init = [&]() -> void { bit.build(N); };\n  auto upd = [&](int\
@@ -283,7 +283,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   requiredBy: []
-  timestamp: '2022-12-07 08:14:15+09:00'
+  timestamp: '2022-12-11 11:10:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp

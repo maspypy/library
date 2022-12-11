@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy: []
@@ -22,21 +22,21 @@ data:
     \ return {x - p.x, y - p.y}; }\n  bool operator==(Point p) const { return x ==\
     \ p.x && y == p.y; }\n  Point operator-() const { return {-x, -y}; }\n\n  bool\
     \ operator<(Point p) const {\n    if (x != p.x) return x < p.x;\n    return y\
-    \ < p.y;\n  }\n\n  void read() { fastio::read(x), fastio::read(y); }\n  void write()\
-    \ { fastio::printer.write(pair<T, T>({x, y})); }\n  T dot(Point other) { return\
-    \ x * other.x + y * other.y; }\n  T det(Point other) { return x * other.y - y\
-    \ * other.x; }\n};\n\ntemplate <typename REAL, typename T>\nREAL dist(Point<T>\
-    \ A, Point<T> B) {\n  A -= B;\n  T p = A.dot(A);\n  return sqrt(REAL(p));\n}\n\
-    \ntemplate <typename T>\nstruct Line {\n  T a, b, c;\n\n  Line(T a, T b, T c)\
-    \ : a(a), b(b), c(c) {}\n  Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y;\n\
-    \    b = B.x - A.x;\n    c = A.x * B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T\
-    \ x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n  template <typename\
-    \ U>\n  U eval(Point<U> P) {\n    return a * P.x + b * P.y + c;\n  }\n\n  template\
-    \ <typename U>\n  T eval(U x, U y) {\n    return a * x + b * y + c;\n  }\n\n \
-    \ bool is_parallel(Line other) { return a * other.b - b * other.a == 0; }\n\n\
-    \  bool is_orthogonal(Line other) { return a * other.a + b * other.b == 0; }\n\
-    };\n\ntemplate <typename T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T>\
-    \ A, Point<T> B) : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
+    \ < p.y;\n  }\n  T dot(Point other) { return x * other.x + y * other.y; }\n  T\
+    \ det(Point other) { return x * other.y - y * other.x; }\n\n  void read() { fastio::read(x),\
+    \ fastio::read(y); }\n  void write() { fastio::printer.write(pair<T, T>({x, y}));\
+    \ }\n};\n\ntemplate <typename REAL, typename T>\nREAL dist(Point<T> A, Point<T>\
+    \ B) {\n  A = A - B;\n  T p = A.dot(A);\n  return sqrt(REAL(p));\n}\n\ntemplate\
+    \ <typename T>\nstruct Line {\n  T a, b, c;\n\n  Line(T a, T b, T c) : a(a), b(b),\
+    \ c(c) {}\n  Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y;\n    b = B.x -\
+    \ A.x;\n    c = A.x * B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T x2, T y2) :\
+    \ Line(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n  template <typename U>\n  U\
+    \ eval(Point<U> P) {\n    return a * P.x + b * P.y + c;\n  }\n\n  template <typename\
+    \ U>\n  T eval(U x, U y) {\n    return a * x + b * y + c;\n  }\n\n  bool is_parallel(Line\
+    \ other) { return a * other.b - b * other.a == 0; }\n\n  bool is_orthogonal(Line\
+    \ other) { return a * other.a + b * other.b == 0; }\n};\n\ntemplate <typename\
+    \ T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B)\
+    \ : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
     \ y1), Point<T>(x2, y2)) {}\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\
     \ntemplate <typename T>\nstruct Circle {\n  Point<T> O;\n  T r;\n  Circle(Point<T>\
     \ O, T r) : O(O), r(r) {}\n  Circle(T x, T y, T r) : O(Point<T>(x, y)), r(r) {}\n\
@@ -66,7 +66,7 @@ data:
   isVerificationFile: false
   path: geo/projection.hpp
   requiredBy: []
-  timestamp: '2022-12-07 07:51:43+09:00'
+  timestamp: '2022-12-11 11:11:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL_1_A.test.cpp

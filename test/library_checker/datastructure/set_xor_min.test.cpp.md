@@ -1,13 +1,16 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':question:'
+    path: ds/binarytrie.hpp
+    title: ds/binarytrie.hpp
   - icon: ':heavy_check_mark:'
-    path: ds/binarytrie/binarytrie.hpp
-    title: ds/binarytrie/binarytrie.hpp
-  - icon: ':heavy_check_mark:'
+    path: ds/hashmap.hpp
+    title: ds/hashmap.hpp
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -198,54 +201,103 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 1 \"ds/binarytrie/binarytrie.hpp\"\ntemplate <int LOG = 30>\n\
-    struct BinaryTrie {\n  struct Node {\n    ll cnt = 0;\n    int ch[2] = {-1, -1};\n\
-    \  };\n  vector<Node> ns;\n\n  BinaryTrie() : ns(1) {}\n\n  ll size() const {\
-    \ return ns[0].cnt; }\n  ll operator[](int k) const { return find_kth(k, 0); }\n\
-    \  ll find_kth(ll k, ll xor_add = 0) const {\n    assert(0 <= k && k < size());\n\
-    \    ll idx = 0;\n    ll val = 0;\n    FOR_R(i, LOG) {\n      ll c = xor_add >>\
-    \ i & 1;\n      ll low_ch = ns[idx].ch[c];\n      ll low_cnt = (low_ch >= 0 ?\
-    \ ns[low_ch].cnt : 0);\n      if (k < low_cnt) {\n        idx = low_ch;\n    \
-    \  } else {\n        k -= low_cnt;\n        idx = ns[idx].ch[c ^ 1];\n       \
-    \ val ^= 1LL << i;\n      }\n      assert(idx >= 0);\n    }\n    return val;\n\
-    \  }\n\n  void add(ll val, ll cnt = 1) {\n    assert(0 <= val && val < (1LL <<\
-    \ LOG));\n    int idx = 0;\n    FOR_R(i, LOG) {\n      ns[idx].cnt += cnt;\n \
-    \     assert(ns[idx].cnt >= 0);\n      int &nxt = ns[idx].ch[val >> i & 1];\n\
-    \      if (nxt == -1) {\n        idx = nxt = ns.size();\n        ns.emplace_back();\n\
-    \      } else {\n        idx = nxt;\n      }\n    }\n    ns[idx].cnt += cnt;\n\
-    \    assert(ns[idx].cnt >= 0);\n    return;\n  }\n\n  ll lower_bound(ll val, ll\
-    \ xor_add = 0) {\n    assert(0 <= val);\n    if (val >= (1LL << LOG)) return size();\n\
-    \    int idx = 0;\n    ll cnt = 0;\n    FOR_R(i, LOG) {\n      int b = val >>\
-    \ i & 1, c = xor_add >> i & 1;\n      int ch = ns[idx].ch[c];\n      cnt += (b\
-    \ & (ch >= 0) ? ns[ch].cnt : 0);\n      idx = ns[idx].ch[b ^ c];\n      if (idx\
-    \ < 0 or ns[idx].cnt == 0) break;\n    }\n    return cnt;\n  }\n\n  ll count(ll\
-    \ val) const {\n    assert(0 <= val && val < (1LL << LOG));\n    int idx = 0;\n\
-    \    FOR_R(i, LOG) {\n      idx = ns[idx].ch[val >> i & 1];\n      if (idx < 0\
-    \ or ns[idx].cnt == 0) return 0;\n    }\n    return ns[idx].cnt;\n  }\n\n  ll\
-    \ count(ll L, ll R, ll xor_add = 0) {\n    assert(0 <= L && L <= R && R <= (1LL\
-    \ << LOG));\n    return lower_bound(R, xor_add) - lower_bound(L, xor_add);\n \
-    \ }\n\n  ll min(ll xor_add = 0) { return find_kth(0, xor_add); }\n  ll max(ll\
-    \ xor_add = 0) { return find_kth(size() - 1, xor_add); }\n\n  void debug() {\n\
-    \    FOR(i, len(ns)) print(i, \"cnt\", ns[i].cnt, \"ch\", ns[i].ch[0], ns[i].ch[1]);\n\
-    \  }\n};\n#line 5 \"test/library_checker/datastructure/set_xor_min.test.cpp\"\n\
-    \nvoid solve() {\n  LL(Q);\n  BinaryTrie<30> trie;\n  FOR(Q) {\n    LL(t, x);\n\
-    \    if (t == 0 && trie.count(x) == 0) trie.add(x, 1);\n    if (t == 1 && trie.count(x)\
-    \ == 1) trie.add(x, -1);\n    if (t == 2) { print(trie.min(x)); }\n  }\n}\n\n\
-    signed main() {\n  solve();\n\n  return 0;\n}\n"
+    \ yes(!t); }\n#line 1 \"ds/binarytrie.hpp\"\n// \u975E\u6C38\u7D9A\u306A\u3089\
+    \u3070\u30012 * \u8981\u7D20\u6570 \u306E\u30CE\u30FC\u30C9\u6570\ntemplate <int\
+    \ LOG, bool PERSISTENT, int NODES, typename UINT = u64,\n          typename SIZE_TYPE\
+    \ = int>\nstruct Binary_Trie {\n  using T = SIZE_TYPE;\n  struct Node {\n    int\
+    \ width;\n    UINT val;\n    T cnt;\n    Node *l, *r;\n  };\n\n  Node *pool;\n\
+    \  int pid;\n  using np = Node *;\n\n  Binary_Trie() : pid(0) { pool = new Node[NODES];\
+    \ }\n\n  np new_node(int width, UINT val) {\n    pool[pid].width = width;\n  \
+    \  pool[pid].val = val;\n    pool[pid].cnt = 0;\n    return &(pool[pid++]);\n\
+    \  }\n\n  np copy_node(np c) {\n    if (!c || !PERSISTENT) return c;\n    np res\
+    \ = &(pool[pid++]);\n    res->width = c->width, res->val = c->val;\n    res->cnt\
+    \ = c->cnt, res->l = c->l, res->r = c->r;\n    return res;\n  }\n\n  np add(np\
+    \ root, UINT val, T cnt = 1) {\n    if (!root) root = new_node(0, 0);\n    assert(0\
+    \ <= val && val < (1LL << LOG));\n    return add_rec(root, LOG, val, cnt);\n \
+    \ }\n\n  vc<pair<UINT, T>> get_all(np root) {\n    vc<pair<UINT, T>> res;\n  \
+    \  auto dfs = [&](auto &dfs, np root, UINT val, int ht) -> void {\n      if (ht\
+    \ == 0) {\n        res.eb(val, root->cnt);\n        return;\n      }\n      np\
+    \ c = root->l;\n      if (c) { dfs(dfs, c, val << (c->width) | (c->val), ht -\
+    \ (c->width)); }\n      c = root->r;\n      if (c) { dfs(dfs, c, val << (c->width)\
+    \ | (c->val), ht - (c->width)); }\n    };\n    if (root) dfs(dfs, root, 0, LOG);\n\
+    \    return res;\n  }\n\n  UINT kth(np root, T k, UINT xor_val) {\n    assert(root\
+    \ && 0 <= k && k < root->cnt);\n    return kth_rec(root, 0, k, LOG, xor_val) ^\
+    \ xor_val;\n  }\n\n  UINT min(np root, UINT xor_val) {\n    assert(root && root->cnt);\n\
+    \    return kth(root, 0, xor_val);\n  }\n\n  UINT max(np root, UINT xor_val) {\n\
+    \    assert(root && root->cnt);\n    return kth(root, (root->cnt) - 1, xor_val);\n\
+    \  }\n\nprivate:\n  inline UINT mask(int k) { return (UINT(1) << k) - 1; }\n\n\
+    \  np add_rec(np root, int ht, UINT val, T cnt) {\n    root = copy_node(root);\n\
+    \    root->cnt += cnt;\n    if (ht == 0) return root;\n\n    bool go_r = (val\
+    \ >> (ht - 1)) & 1;\n    np c = (go_r ? root->r : root->l);\n    if (!c) {\n \
+    \     c = new_node(ht, val);\n      c->cnt = cnt;\n      if (!go_r) root->l =\
+    \ c;\n      if (go_r) root->r = c;\n      return root;\n    }\n    int w = c->width;\n\
+    \    if ((val >> (ht - w)) == c->val) {\n      c = add_rec(c, ht - w, val & mask(ht\
+    \ - w), cnt);\n      if (!go_r) root->l = c;\n      if (go_r) root->r = c;\n \
+    \     return root;\n    }\n    int same = w - 1 - topbit((val >> (ht - w)) ^ (c->val));\n\
+    \    np n = new_node(same, (c->val) >> (w - same));\n    n->cnt = c->cnt + cnt;\n\
+    \    c = copy_node(c);\n    c->width = w - same;\n    c->val = c->val & mask(w\
+    \ - same);\n    if ((val >> (ht - same - 1)) & 1) {\n      n->l = c;\n      n->r\
+    \ = new_node(ht - same, val & mask(ht - same));\n      n->r->cnt = cnt;\n    }\
+    \ else {\n      n->r = c;\n      n->l = new_node(ht - same, val & mask(ht - same));\n\
+    \      n->l->cnt = cnt;\n    }\n    if (!go_r) root->l = n;\n    if (go_r) root->r\
+    \ = n;\n    return root;\n  }\n\n  UINT kth_rec(np root, UINT val, T k, int ht,\
+    \ UINT xor_val) {\n    if (ht == 0) return val;\n    np left = root->l, right\
+    \ = root->r;\n    if ((xor_val >> (ht - 1)) & 1) swap(left, right);\n    T sl\
+    \ = (left ? left->cnt : 0);\n    np c;\n    if (k < sl) { c = left; }\n    if\
+    \ (k >= sl) { c = right, k -= sl; }\n    int w = c->width;\n    return kth_rec(c,\
+    \ val << w | (c->val), k, ht - w, xor_val);\n  }\n};\n#line 2 \"ds/hashmap.hpp\"\
+    \ntemplate <typename Val, int LOG = 20>\r\nstruct HashMapLL {\r\n  int N;\r\n\
+    \  ll* keys;\r\n  Val* vals;\r\n  vc<int> IDS;\r\n  bitset<1 << LOG> used;\r\n\
+    \  const int shift;\r\n  const uint64_t r = 11995408973635179863ULL;\r\n  HashMapLL()\r\
+    \n      : N(1 << LOG), keys(new ll[N]), vals(new Val[N]), shift(64 - __lg(N))\
+    \ {}\r\n  int hash(ll x) {\r\n    static const uint64_t FIXED_RANDOM\r\n     \
+    \   = std::chrono::steady_clock::now().time_since_epoch().count();\r\n    return\
+    \ (uint64_t(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const ll&\
+    \ key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && keys[i] != key;\
+    \ (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
+    \ ll& key) {\r\n    int i = index(key);\r\n    if (!used[i]) IDS.eb(i), used[i]\
+    \ = 1, keys[i] = key, vals[i] = Val{};\r\n    return vals[i];\r\n  }\r\n\r\n \
+    \ Val get(const ll& key, Val default_value) {\r\n    int i = index(key);\r\n \
+    \   if (!used[i]) return default_value;\r\n    return vals[i];\r\n  }\r\n\r\n\
+    \  bool contain(const ll& key) {\r\n    int i = index(key);\r\n    return used[i]\
+    \ && keys[i] == key;\r\n  }\r\n\r\n  bool count(const ll& key) {\r\n    int i\
+    \ = index(key);\r\n    return used[i] && keys[i] == key;\r\n  }\r\n\r\n  void\
+    \ reset() {\r\n    for (auto&& i: IDS) used[i] = 0;\r\n    IDS.clear();\r\n  }\r\
+    \n\r\n  vc<pair<ll, Val>> items() {\r\n    vc<pair<ll, Val>> res;\r\n    res.reserve(len(IDS));\r\
+    \n    for (auto&& i: IDS) res.eb(keys[i], vals[i]);\r\n    return res;\r\n  }\r\
+    \n};\r\n\r\ntemplate <typename KEY, typename VAL, int LOG>\r\nstruct HashMap {\r\
+    \n  HashMapLL<VAL, LOG> MP;\r\n  function<ll(KEY)> f;\r\n  HashMap(function<ll(KEY)>\
+    \ f) : MP(), f(f) {}\r\n\r\n  int index(const KEY& key) { return MP.index(f(key));\
+    \ }\r\n\r\n  VAL& operator[](const KEY& key) { return MP[f(key)]; }\r\n\r\n  bool\
+    \ contain(const KEY& key) { return MP.contain(f(key)); }\r\n\r\n  bool count(const\
+    \ KEY& key) { return MP.count(f(key)); }\r\n\r\n  void reset() { MP.reset(); }\r\
+    \n};\r\n#line 6 \"test/library_checker/datastructure/set_xor_min.test.cpp\"\n\n\
+    void solve() {\n  HashMapLL<bool, 20> MP;\n  Binary_Trie<30, false, 1'000'000,\
+    \ int, int> X;\n  using np = decltype(X)::np;\n  np root = nullptr;\n\n  INT(Q);\n\
+    \  FOR(Q) {\n    INT(t, x);\n    if (t == 0) {\n      if (MP[x] == 0) {\n    \
+    \    MP[x] = 1;\n        root = X.add(root, x, 1);\n      }\n    }\n    if (t\
+    \ == 1) {\n      if (MP[x] == 1) {\n        MP[x] = 0;\n        root = X.add(root,\
+    \ x, -1);\n      }\n    }\n    if (t == 2) { print(X.min(root, x)); }\n  }\n}\n\
+    \nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/set_xor_min\"\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/binarytrie/binarytrie.hpp\"\
-    \n\nvoid solve() {\n  LL(Q);\n  BinaryTrie<30> trie;\n  FOR(Q) {\n    LL(t, x);\n\
-    \    if (t == 0 && trie.count(x) == 0) trie.add(x, 1);\n    if (t == 1 && trie.count(x)\
-    \ == 1) trie.add(x, -1);\n    if (t == 2) { print(trie.min(x)); }\n  }\n}\n\n\
-    signed main() {\n  solve();\n\n  return 0;\n}\n"
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/binarytrie.hpp\"\
+    \n#include \"ds/hashmap.hpp\"\n\nvoid solve() {\n  HashMapLL<bool, 20> MP;\n \
+    \ Binary_Trie<30, false, 1'000'000, int, int> X;\n  using np = decltype(X)::np;\n\
+    \  np root = nullptr;\n\n  INT(Q);\n  FOR(Q) {\n    INT(t, x);\n    if (t == 0)\
+    \ {\n      if (MP[x] == 0) {\n        MP[x] = 1;\n        root = X.add(root, x,\
+    \ 1);\n      }\n    }\n    if (t == 1) {\n      if (MP[x] == 1) {\n        MP[x]\
+    \ = 0;\n        root = X.add(root, x, -1);\n      }\n    }\n    if (t == 2) {\
+    \ print(X.min(root, x)); }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/binarytrie/binarytrie.hpp
+  - ds/binarytrie.hpp
+  - ds/hashmap.hpp
   isVerificationFile: true
   path: test/library_checker/datastructure/set_xor_min.test.cpp
   requiredBy: []
-  timestamp: '2022-12-07 08:14:15+09:00'
+  timestamp: '2022-12-11 11:09:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/set_xor_min.test.cpp

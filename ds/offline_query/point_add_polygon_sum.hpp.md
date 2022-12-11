@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   _extendedRequiredBy: []
@@ -47,8 +47,8 @@ data:
     \   assert(check(G::unit()));\n    int i = 0;\n    E s = G::unit();\n    int k\
     \ = 1;\n    while (2 * k <= n) k *= 2;\n    while (k) {\n      E t = G::op(s,\
     \ dat[i + k - 1]);\n      if (check(t)) { i += k, s = t; }\n      k >>= 1;\n \
-    \   }\n    return i;\n  }\n\n  int find_kth(E k) {\n    return max_right([&k](E\
-    \ x) -> bool { return x <= k; });\n  }\n};\n#line 2 \"ds/offline_query/point_add_polygon_sum.hpp\"\
+    \   }\n    return i;\n  }\n\n  int kth(E k) {\n    return max_right([&k](E x)\
+    \ -> bool { return x <= k; });\n  }\n};\n#line 2 \"ds/offline_query/point_add_polygon_sum.hpp\"\
     \n\r\n/*\r\npolygon \u306F\u4E0D\u7B49\u5F0F aix + biy >= ci \u306B\u3088\u308A\
     \u6E21\u3059\u3002\r\npolygon \u306F\u51F8\u3067\u3001\u4E0D\u7B49\u5F0F\u306E\
     \u5217\u306F\u3001\u8FBA\u304C\u53CD\u6642\u8A08\u56DE\u308A\u306B\u56DE\u308B\
@@ -134,7 +134,7 @@ data:
   isVerificationFile: false
   path: ds/offline_query/point_add_polygon_sum.hpp
   requiredBy: []
-  timestamp: '2022-12-04 19:22:04+09:00'
+  timestamp: '2022-12-11 11:10:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/offline_query/point_add_polygon_sum.hpp

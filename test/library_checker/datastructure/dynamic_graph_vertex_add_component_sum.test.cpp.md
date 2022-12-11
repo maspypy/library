@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/offline_query/add_remove_query.hpp
     title: ds/offline_query/add_remove_query.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/rollback_array.hpp
     title: ds/rollback_array.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/unionfind/rollback_unionfind.hpp
     title: ds/unionfind/rollback_unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum
@@ -205,9 +205,9 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\n#line 2 \"ds/rollback_array.hpp\"\n\r\ntemplate <typename T>\r\n\
-    struct RollbackArray {\r\n  int N;\r\n  vc<T> dat;\r\n  vc<pair<int, T>> history;\r\
-    \n\r\n  RollbackArray(vc<T> x) : N(len(x)), dat(x) {}\r\n  template <typename\
-    \ F>\r\n  RollbackArray(int N, F f) : N(N) {\r\n    dat.reserve(N);\r\n    FOR(i,\
+    struct Rollback_Array {\r\n  int N;\r\n  vc<T> dat;\r\n  vc<pair<int, T>> history;\r\
+    \n\r\n  Rollback_Array(vc<T> x) : N(len(x)), dat(x) {}\r\n  template <typename\
+    \ F>\r\n  Rollback_Array(int N, F f) : N(N) {\r\n    dat.reserve(N);\r\n    FOR(i,\
     \ N) dat.eb(f(i));\r\n  }\r\n\r\n  int time() { return len(history); }\r\n  void\
     \ rollback(int t) {\r\n    FOR_R(i, t, time()) {\r\n      auto& [idx, v] = history[i];\r\
     \n      dat[idx] = v;\r\n    }\r\n    history.resize(t);\r\n  }\r\n  T get(int\
@@ -313,8 +313,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-12-07 08:14:15+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-12-11 11:11:43+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
 layout: document

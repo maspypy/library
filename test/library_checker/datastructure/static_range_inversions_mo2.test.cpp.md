@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/rollback_mo.hpp
     title: ds/offline_query/rollback_mo.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -237,8 +237,8 @@ data:
     \   assert(check(G::unit()));\n    int i = 0;\n    E s = G::unit();\n    int k\
     \ = 1;\n    while (2 * k <= n) k *= 2;\n    while (k) {\n      E t = G::op(s,\
     \ dat[i + k - 1]);\n      if (check(t)) { i += k, s = t; }\n      k >>= 1;\n \
-    \   }\n    return i;\n  }\n\n  int find_kth(E k) {\n    return max_right([&k](E\
-    \ x) -> bool { return x <= k; });\n  }\n};\n#line 1 \"ds/offline_query/rollback_mo.hpp\"\
+    \   }\n    return i;\n  }\n\n  int kth(E k) {\n    return max_right([&k](E x)\
+    \ -> bool { return x <= k; });\n  }\n};\n#line 1 \"ds/offline_query/rollback_mo.hpp\"\
     \n// https://codeforces.com/contest/620/problem/F\nstruct Rollback_Mo {\n  vc<pair<int,\
     \ int>> LR;\n  void add(int L, int R) { LR.emplace_back(L, R); }\n\n  template\
     \ <typename AL, typename AR, typename F1, typename F2, typename F3,\n        \
@@ -304,7 +304,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   requiredBy: []
-  timestamp: '2022-12-07 08:14:15+09:00'
+  timestamp: '2022-12-11 11:10:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp

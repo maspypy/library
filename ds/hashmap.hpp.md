@@ -25,6 +25,9 @@ data:
     path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
     title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/set_xor_min.test.cpp
+    title: test/library_checker/datastructure/set_xor_min.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
   - icon: ':heavy_check_mark:'
@@ -152,6 +155,7 @@ data:
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
+  - test/library_checker/datastructure/set_xor_min.test.cpp
   - test/library_checker/datastructure/associative_array_hashmap.test.cpp
   - test/atcoder/abc273_e.test.cpp
   - test/atcoder/abc270_g.test.cpp

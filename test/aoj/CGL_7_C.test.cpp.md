@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':heavy_check_mark:'
@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/triangle_area.hpp
     title: geo/triangle_area.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -212,51 +212,51 @@ data:
     \ + p.x, y + p.y}; }\n  Point operator-(Point p) const { return {x - p.x, y -\
     \ p.y}; }\n  bool operator==(Point p) const { return x == p.x && y == p.y; }\n\
     \  Point operator-() const { return {-x, -y}; }\n\n  bool operator<(Point p) const\
-    \ {\n    if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n\n  void read()\
-    \ { fastio::read(x), fastio::read(y); }\n  void write() { fastio::printer.write(pair<T,\
-    \ T>({x, y})); }\n  T dot(Point other) { return x * other.x + y * other.y; }\n\
-    \  T det(Point other) { return x * other.y - y * other.x; }\n};\n\ntemplate <typename\
-    \ REAL, typename T>\nREAL dist(Point<T> A, Point<T> B) {\n  A -= B;\n  T p = A.dot(A);\n\
-    \  return sqrt(REAL(p));\n}\n\ntemplate <typename T>\nstruct Line {\n  T a, b,\
-    \ c;\n\n  Line(T a, T b, T c) : a(a), b(b), c(c) {}\n  Line(Point<T> A, Point<T>\
-    \ B) {\n    a = A.y - B.y;\n    b = B.x - A.x;\n    c = A.x * B.y - A.y * B.x;\n\
-    \  }\n  Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2, y2))\
-    \ {}\n\n  template <typename U>\n  U eval(Point<U> P) {\n    return a * P.x +\
-    \ b * P.y + c;\n  }\n\n  template <typename U>\n  T eval(U x, U y) {\n    return\
-    \ a * x + b * y + c;\n  }\n\n  bool is_parallel(Line other) { return a * other.b\
-    \ - b * other.a == 0; }\n\n  bool is_orthogonal(Line other) { return a * other.a\
-    \ + b * other.b == 0; }\n};\n\ntemplate <typename T>\nstruct Segment {\n  Point<T>\
-    \ A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T x1,\
-    \ T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n\
-    \  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate <typename T>\nstruct\
-    \ Circle {\n  Point<T> O;\n  T r;\n  Circle(Point<T> O, T r) : O(O), r(r) {}\n\
-    \  Circle(T x, T y, T r) : O(Point<T>(x, y)), r(r) {}\n};\n\ntemplate <typename\
-    \ T>\nstruct Polygon {\n  vc<Point<T>> points;\n  T a;\n\n  template <typename\
-    \ A, typename B>\n  Polygon(vc<pair<A, B>> pairs) {\n    for (auto&& [a, b]: pairs)\
-    \ points.eb(Point<T>(a, b));\n    build();\n  }\n  Polygon(vc<Point<T>> points)\
-    \ : points(points) { build(); }\n\n  int size() { return len(points); }\n\n  template\
-    \ <typename REAL>\n  REAL area() {\n    return a * 0.5;\n  }\n\n  template <enable_if_t<is_integral<T>::value,\
-    \ int> = 0>\n  T area_2() {\n    return a;\n  }\n\n  bool is_convex() {\n    FOR(j,\
-    \ len(points)) {\n      int i = (j == 0 ? len(points) - 1 : j - 1);\n      int\
-    \ k = (j == len(points) - 1 ? 0 : j + 1);\n      if ((points[j] - points[i]).det(points[k]\
-    \ - points[j]) < 0) return false;\n    }\n    return true;\n  }\n\nprivate:\n\
-    \  void build() {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1\
-    \ == len(points) ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n\
-    \    if (a < 0) {\n      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n\
-    #line 1 \"geo/triangle_area.hpp\"\ntemplate <typename REAL, typename T>\nREAL\
-    \ triangle_area(Point<T> A, Point<T> B, Point<T> C) {\n  return abs((B - A).det(C\
-    \ - A)) * 0.5;\n}\n#line 3 \"geo/outcircle.hpp\"\n\ntemplate <typename REAL, typename\
-    \ T>\nCircle<REAL> outcircle(Point<T> A, Point<T> B, Point<T> C) {\n  REAL b1\
-    \ = B.x - A.x, b2 = B.y - A.y;\n  REAL c1 = C.x - A.x, c2 = C.y - A.y;\n  REAL\
-    \ bb = (b1 * b1 + b2 * b2) / 2;\n  REAL cc = (c1 * c1 + c2 * c2) / 2;\n\n  REAL\
-    \ det = b1 * c2 - b2 * c1;\n  REAL x = (bb * c2 - b2 * cc) / det;\n  REAL y =\
-    \ (b1 * cc - bb * c1) / det;\n  REAL r = sqrt(x * x + y * y);\n  x += A.x, y +=\
-    \ A.y;\n  return Circle<REAL>(x, y, r);\n}\n#line 8 \"test/aoj/CGL_7_C.test.cpp\"\
-    \n\nvoid solve() {\n  using Re = double;\n  LL(a, b, c, d, e, f);\n  Point<ll>\
-    \ A(a, b);\n  Point<ll> B(c, d);\n  Point<ll> C(e, f);\n  auto O = outcircle<Re>(A,\
-    \ B, C);\n  print(O.O.x, O.O.y, O.r);\n}\n\nsigned main() {\n  cout << fixed <<\
-    \ setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
-    \ 0;\n}\n"
+    \ {\n    if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T dot(Point\
+    \ other) { return x * other.x + y * other.y; }\n  T det(Point other) { return\
+    \ x * other.y - y * other.x; }\n\n  void read() { fastio::read(x), fastio::read(y);\
+    \ }\n  void write() { fastio::printer.write(pair<T, T>({x, y})); }\n};\n\ntemplate\
+    \ <typename REAL, typename T>\nREAL dist(Point<T> A, Point<T> B) {\n  A = A -\
+    \ B;\n  T p = A.dot(A);\n  return sqrt(REAL(p));\n}\n\ntemplate <typename T>\n\
+    struct Line {\n  T a, b, c;\n\n  Line(T a, T b, T c) : a(a), b(b), c(c) {}\n \
+    \ Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y;\n    b = B.x - A.x;\n   \
+    \ c = A.x * B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1,\
+    \ y1), Point<T>(x2, y2)) {}\n\n  template <typename U>\n  U eval(Point<U> P) {\n\
+    \    return a * P.x + b * P.y + c;\n  }\n\n  template <typename U>\n  T eval(U\
+    \ x, U y) {\n    return a * x + b * y + c;\n  }\n\n  bool is_parallel(Line other)\
+    \ { return a * other.b - b * other.a == 0; }\n\n  bool is_orthogonal(Line other)\
+    \ { return a * other.a + b * other.b == 0; }\n};\n\ntemplate <typename T>\nstruct\
+    \ Segment {\n  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B)\
+    \ {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2,\
+    \ y2)) {}\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate <typename\
+    \ T>\nstruct Circle {\n  Point<T> O;\n  T r;\n  Circle(Point<T> O, T r) : O(O),\
+    \ r(r) {}\n  Circle(T x, T y, T r) : O(Point<T>(x, y)), r(r) {}\n};\n\ntemplate\
+    \ <typename T>\nstruct Polygon {\n  vc<Point<T>> points;\n  T a;\n\n  template\
+    \ <typename A, typename B>\n  Polygon(vc<pair<A, B>> pairs) {\n    for (auto&&\
+    \ [a, b]: pairs) points.eb(Point<T>(a, b));\n    build();\n  }\n  Polygon(vc<Point<T>>\
+    \ points) : points(points) { build(); }\n\n  int size() { return len(points);\
+    \ }\n\n  template <typename REAL>\n  REAL area() {\n    return a * 0.5;\n  }\n\
+    \n  template <enable_if_t<is_integral<T>::value, int> = 0>\n  T area_2() {\n \
+    \   return a;\n  }\n\n  bool is_convex() {\n    FOR(j, len(points)) {\n      int\
+    \ i = (j == 0 ? len(points) - 1 : j - 1);\n      int k = (j == len(points) - 1\
+    \ ? 0 : j + 1);\n      if ((points[j] - points[i]).det(points[k] - points[j])\
+    \ < 0) return false;\n    }\n    return true;\n  }\n\nprivate:\n  void build()\
+    \ {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1 == len(points)\
+    \ ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n    if (a < 0) {\n\
+    \      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n#line 1 \"geo/triangle_area.hpp\"\
+    \ntemplate <typename REAL, typename T>\nREAL triangle_area(Point<T> A, Point<T>\
+    \ B, Point<T> C) {\n  return abs((B - A).det(C - A)) * 0.5;\n}\n#line 3 \"geo/outcircle.hpp\"\
+    \n\ntemplate <typename REAL, typename T>\nCircle<REAL> outcircle(Point<T> A, Point<T>\
+    \ B, Point<T> C) {\n  REAL b1 = B.x - A.x, b2 = B.y - A.y;\n  REAL c1 = C.x -\
+    \ A.x, c2 = C.y - A.y;\n  REAL bb = (b1 * b1 + b2 * b2) / 2;\n  REAL cc = (c1\
+    \ * c1 + c2 * c2) / 2;\n\n  REAL det = b1 * c2 - b2 * c1;\n  REAL x = (bb * c2\
+    \ - b2 * cc) / det;\n  REAL y = (b1 * cc - bb * c1) / det;\n  REAL r = sqrt(x\
+    \ * x + y * y);\n  x += A.x, y += A.y;\n  return Circle<REAL>(x, y, r);\n}\n#line\
+    \ 8 \"test/aoj/CGL_7_C.test.cpp\"\n\nvoid solve() {\n  using Re = double;\n  LL(a,\
+    \ b, c, d, e, f);\n  Point<ll> A(a, b);\n  Point<ll> B(c, d);\n  Point<ll> C(e,\
+    \ f);\n  auto O = outcircle<Re>(A, B, C);\n  print(O.O.x, O.O.y, O.r);\n}\n\n\
+    signed main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n\
+    \  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_C\"\
     \n#define ERROR 0.000001\n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\
     \n#include \"geo/outcircle.hpp\"\n\nvoid solve() {\n  using Re = double;\n  LL(a,\
@@ -273,7 +273,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_7_C.test.cpp
   requiredBy: []
-  timestamp: '2022-12-07 08:14:15+09:00'
+  timestamp: '2022-12-11 11:11:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_7_C.test.cpp

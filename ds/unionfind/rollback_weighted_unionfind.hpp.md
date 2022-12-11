@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/rollback_array.hpp
     title: ds/rollback_array.hpp
   _extendedRequiredBy: []
@@ -12,9 +12,9 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/rollback_array.hpp\"\n\r\ntemplate <typename T>\r\nstruct\
-    \ RollbackArray {\r\n  int N;\r\n  vc<T> dat;\r\n  vc<pair<int, T>> history;\r\
-    \n\r\n  RollbackArray(vc<T> x) : N(len(x)), dat(x) {}\r\n  template <typename\
-    \ F>\r\n  RollbackArray(int N, F f) : N(N) {\r\n    dat.reserve(N);\r\n    FOR(i,\
+    \ Rollback_Array {\r\n  int N;\r\n  vc<T> dat;\r\n  vc<pair<int, T>> history;\r\
+    \n\r\n  Rollback_Array(vc<T> x) : N(len(x)), dat(x) {}\r\n  template <typename\
+    \ F>\r\n  Rollback_Array(int N, F f) : N(N) {\r\n    dat.reserve(N);\r\n    FOR(i,\
     \ N) dat.eb(f(i));\r\n  }\r\n\r\n  int time() { return len(history); }\r\n  void\
     \ rollback(int t) {\r\n    FOR_R(i, t, time()) {\r\n      auto& [idx, v] = history[i];\r\
     \n      dat[idx] = v;\r\n    }\r\n    history.resize(t);\r\n  }\r\n  T get(int\
@@ -23,7 +23,7 @@ data:
     \ res(N);\r\n    FOR(i, N) res[i] = get(i);\r\n    return res;\r\n  }\r\n};\r\n\
     #line 2 \"ds/unionfind/rollback_weighted_unionfind.hpp\"\n\ntemplate <typename\
     \ Group>\nstruct Rollback_Weighted_UnionFind {\n  using E = typename Group::value_type;\n\
-    \  using P = pair<int, E>;\n  Rollback_Array<P> dat; // parent or size\n\n  Rollback_Weighted_UnionFind(int\
+    \  using P = pair<int, E>;\n  Rollback_Array<P> dat; // parent or -size\n\n  Rollback_Weighted_UnionFind(int\
     \ n) : dat(vc<P>(n, P(-1, Group::unit()))) {}\n\n  P get(int v) {\n    // \u7D4C\
     \u8DEF\u5727\u7E2E\u306F\u3057\u306A\u3044\u3088\u3046\u306B\n    E val = Group::unit();\n\
     \    while (1) {\n      auto [p, x] = dat.get(v);\n      if (p < 0) { break; }\n\
@@ -38,7 +38,7 @@ data:
     \  }\n};\n"
   code: "#include \"ds/rollback_array.hpp\"\n\ntemplate <typename Group>\nstruct Rollback_Weighted_UnionFind\
     \ {\n  using E = typename Group::value_type;\n  using P = pair<int, E>;\n  Rollback_Array<P>\
-    \ dat; // parent or size\n\n  Rollback_Weighted_UnionFind(int n) : dat(vc<P>(n,\
+    \ dat; // parent or -size\n\n  Rollback_Weighted_UnionFind(int n) : dat(vc<P>(n,\
     \ P(-1, Group::unit()))) {}\n\n  P get(int v) {\n    // \u7D4C\u8DEF\u5727\u7E2E\
     \u306F\u3057\u306A\u3044\u3088\u3046\u306B\n    E val = Group::unit();\n    while\
     \ (1) {\n      auto [p, x] = dat.get(v);\n      if (p < 0) { break; }\n      val\
@@ -56,7 +56,7 @@ data:
   isVerificationFile: false
   path: ds/unionfind/rollback_weighted_unionfind.hpp
   requiredBy: []
-  timestamp: '2022-12-05 18:48:23+09:00'
+  timestamp: '2022-12-11 11:12:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/unionfind/rollback_weighted_unionfind.hpp
