@@ -4,7 +4,7 @@ template <typename Group>
 struct Rollback_Weighted_UnionFind {
   using E = typename Group::value_type;
   using P = pair<int, E>;
-  Rollback_Array<P> dat; // parent or size
+  Rollback_Array<P> dat; // parent or -size
 
   Rollback_Weighted_UnionFind(int n) : dat(vc<P>(n, P(-1, Group::unit()))) {}
 
