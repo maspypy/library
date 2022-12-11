@@ -20,16 +20,16 @@ struct Point {
     if (x != p.x) return x < p.x;
     return y < p.y;
   }
+  T dot(Point other) { return x * other.x + y * other.y; }
+  T det(Point other) { return x * other.y - y * other.x; }
 
   void read() { fastio::read(x), fastio::read(y); }
   void write() { fastio::printer.write(pair<T, T>({x, y})); }
-  T dot(Point other) { return x * other.x + y * other.y; }
-  T det(Point other) { return x * other.y - y * other.x; }
 };
 
 template <typename REAL, typename T>
 REAL dist(Point<T> A, Point<T> B) {
-  A -= B;
+  A = A - B;
   T p = A.dot(A);
   return sqrt(REAL(p));
 }
