@@ -1,9 +1,9 @@
 #include "ds/rollback_array.hpp"
 
-struct RollbackUnionFind {
-  RollbackArray<int> dat; // parent or size
+struct Rollback_UnionFind {
+  Rollback_Array<int> dat; // parent or size
 
-  RollbackUnionFind(int n) : dat(vc<int>(n, -1)) {}
+  Rollback_UnionFind(int n) : dat(vc<int>(n, -1)) {}
 
   int operator[](int v) {
     while (dat.get(v) >= 0) v = dat.get(v);

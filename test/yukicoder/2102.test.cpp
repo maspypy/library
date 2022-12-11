@@ -3,10 +3,10 @@
 #include "other/io.hpp"
 
 #include "string/rollinghash.hpp"
-#include "ds/hashset.hpp"
+#include "ds/hashmap.hpp"
 
 void solve() {
-  HashSetLL<21> MP;
+  HashMapLL<bool, 21> MP;
 
   RollingHash RH;
 
@@ -34,7 +34,7 @@ void solve() {
       if (MP.count(x.val)) ok = 1;
     }
     Yes(ok);
-    MP.insert(X[0].val);
+    MP[X[0].val] = 1;
   }
 }
 
