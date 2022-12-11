@@ -250,12 +250,12 @@ data:
     \ time) continue;\n      dat.eb(t, time, x);\n    }\n    return dat;\n  }\n};\n\
     #line 8 \"test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A0, N);\n\n  using P = pair<int, int>;\n\
-    \  AddRemove_Query<P, 1> X;\n  RollbackArray<ll> A(A0);\n\n  vc<int> query;\n\
+    \  Add_Remove_Query<P, 1> X;\n  Rollback_Array<ll> A(A0);\n\n  vc<int> query;\n\
     \  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(u, v);\n      if (u > v)\
     \ swap(u, v);\n      X.add(len(query), {u, v});\n    }\n    if (t == 1) {\n  \
     \    LL(u, v);\n      if (u > v) swap(u, v);\n      X.remove(len(query), {u, v});\n\
     \    }\n    if (t == 2) {\n      LL(v, x);\n      X.add(len(query), {~v, x});\n\
-    \    }\n    if (t == 3) {\n      LL(v);\n      query.eb(v);\n    }\n  }\n  RollbackUnionFind\
+    \    }\n    if (t == 3) {\n      LL(v);\n      query.eb(v);\n    }\n  }\n  Rollback_UnionFind\
     \ uf(N);\n  // rollback_dfs\n  auto upd = X.calc(len(query));\n  vi ANS(len(query));\n\
     \  vc<int> I(len(upd));\n  iota(all(I), 0);\n  auto dfs = [&](auto& dfs, vc<int>&\
     \ upd_query_I, int begin, int end) -> void {\n    // snapshot\n    int a_time\
@@ -279,12 +279,12 @@ data:
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/unionfind/rollback_unionfind.hpp\"\
     \n#include \"ds/rollback_array.hpp\"\n#include \"ds/offline_query/add_remove_query.hpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A0, N);\n\n  using P = pair<int, int>;\n\
-    \  AddRemove_Query<P, 1> X;\n  RollbackArray<ll> A(A0);\n\n  vc<int> query;\n\
+    \  Add_Remove_Query<P, 1> X;\n  Rollback_Array<ll> A(A0);\n\n  vc<int> query;\n\
     \  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(u, v);\n      if (u > v)\
     \ swap(u, v);\n      X.add(len(query), {u, v});\n    }\n    if (t == 1) {\n  \
     \    LL(u, v);\n      if (u > v) swap(u, v);\n      X.remove(len(query), {u, v});\n\
     \    }\n    if (t == 2) {\n      LL(v, x);\n      X.add(len(query), {~v, x});\n\
-    \    }\n    if (t == 3) {\n      LL(v);\n      query.eb(v);\n    }\n  }\n  RollbackUnionFind\
+    \    }\n    if (t == 3) {\n      LL(v);\n      query.eb(v);\n    }\n  }\n  Rollback_UnionFind\
     \ uf(N);\n  // rollback_dfs\n  auto upd = X.calc(len(query));\n  vi ANS(len(query));\n\
     \  vc<int> I(len(upd));\n  iota(all(I), 0);\n  auto dfs = [&](auto& dfs, vc<int>&\
     \ upd_query_I, int begin, int end) -> void {\n    // snapshot\n    int a_time\
@@ -313,7 +313,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-12-11 12:37:25+09:00'
+  timestamp: '2022-12-11 14:11:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
