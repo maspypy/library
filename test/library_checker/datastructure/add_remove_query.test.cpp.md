@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/offline_query/add_remove_query.hpp
     title: ds/offline_query/add_remove_query.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/rollback_array.hpp
     title: ds/rollback_array.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/rollback_unionfind.hpp
     title: ds/unionfind/rollback_unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum
@@ -250,14 +250,14 @@ data:
     \ + dat.get(b));\r\n    dat.set(b, a);\r\n    return true;\r\n  }\r\n};\r\n#line\
     \ 8 \"test/library_checker/datastructure/add_remove_query.test.cpp\"\n\nvoid solve()\
     \ {\n  LL(N, Q);\n  VEC(ll, A0, N);\n  using P = pair<int, int>;\n\n  vc<int>\
-    \ query;\n\n  AddRemove_Query<P, true> X;\n  FOR(Q) {\n    LL(t);\n    if (t ==\
-    \ 0) {\n      LL(a, b);\n      if (a > b) swap(a, b);\n      P e = {a, b};\n \
-    \     X.add(len(query), e);\n    }\n    if (t == 1) {\n      LL(a, b);\n     \
-    \ if (a > b) swap(a, b);\n      P e = {a, b};\n      X.remove(len(query), e);\n\
+    \ query;\n\n  Add_Remove_Query<P, true> X;\n  FOR(Q) {\n    LL(t);\n    if (t\
+    \ == 0) {\n      LL(a, b);\n      if (a > b) swap(a, b);\n      P e = {a, b};\n\
+    \      X.add(len(query), e);\n    }\n    if (t == 1) {\n      LL(a, b);\n    \
+    \  if (a > b) swap(a, b);\n      P e = {a, b};\n      X.remove(len(query), e);\n\
     \    }\n    if (t == 2) {\n      LL(v, x);\n      P p = {~v, x};\n      X.add(len(query),\
     \ p);\n    }\n    if (t == 3) {\n      LL(v);\n      query.eb(v);\n    }\n  }\n\
     \n  auto upd = X.calc(len(query));\n  Q = len(query);\n  vi ANS(Q);\n  vc<int>\
-    \ I(len(upd));\n  iota(all(I), 0);\n\n  RollbackArray<ll> A(A0);\n  RollbackUnionFind\
+    \ I(len(upd));\n  iota(all(I), 0);\n\n  Rollback_Array<ll> A(A0);\n  Rollback_UnionFind\
     \ uf(N);\n\n  auto dfs = [&](auto& dfs, vc<int>& I, int begin, int end) -> void\
     \ {\n    int a_time = A.time();\n    int uf_time = uf.time();\n\n    vc<int> IL,\
     \ IR;\n    int mid = (begin + end) / 2;\n    // \u533A\u9593\u3092\u5B8C\u5168\
@@ -281,25 +281,25 @@ data:
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/offline_query/add_remove_query.hpp\"\
     \n#include \"ds/rollback_array.hpp\"\n#include \"ds/unionfind/rollback_unionfind.hpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A0, N);\n  using P = pair<int, int>;\n\
-    \n  vc<int> query;\n\n  AddRemove_Query<P, true> X;\n  FOR(Q) {\n    LL(t);\n\
+    \n  vc<int> query;\n\n  Add_Remove_Query<P, true> X;\n  FOR(Q) {\n    LL(t);\n\
     \    if (t == 0) {\n      LL(a, b);\n      if (a > b) swap(a, b);\n      P e =\
     \ {a, b};\n      X.add(len(query), e);\n    }\n    if (t == 1) {\n      LL(a,\
     \ b);\n      if (a > b) swap(a, b);\n      P e = {a, b};\n      X.remove(len(query),\
     \ e);\n    }\n    if (t == 2) {\n      LL(v, x);\n      P p = {~v, x};\n     \
     \ X.add(len(query), p);\n    }\n    if (t == 3) {\n      LL(v);\n      query.eb(v);\n\
     \    }\n  }\n\n  auto upd = X.calc(len(query));\n  Q = len(query);\n  vi ANS(Q);\n\
-    \  vc<int> I(len(upd));\n  iota(all(I), 0);\n\n  RollbackArray<ll> A(A0);\n  RollbackUnionFind\
-    \ uf(N);\n\n  auto dfs = [&](auto& dfs, vc<int>& I, int begin, int end) -> void\
-    \ {\n    int a_time = A.time();\n    int uf_time = uf.time();\n\n    vc<int> IL,\
-    \ IR;\n    int mid = (begin + end) / 2;\n    // \u533A\u9593\u3092\u5B8C\u5168\
-    \u306B\u542B\u3080\u66F4\u65B0\u30AF\u30A8\u30EA\u3092\u51E6\u7406\u3059\u308B\
-    \u3002\n    // \u90E8\u5206\u7684\u306B\u4EA4\u308F\u308B\u30AF\u30A8\u30EA\u3092\
-    \ J \u306B\u5165\u308C\u308B\n    for (auto&& i: I) {\n      auto [a, b, X] =\
-    \ upd[i];\n      if (a <= begin && end <= b) {\n        // update\n        auto\
-    \ [u, v] = X;\n        if (u < 0) {\n          int i = uf[~u];\n          A.set(i,\
-    \ A.get(i) + v);\n        } else {\n          u = uf[u], v = uf[v];\n        \
-    \  if (u != v) {\n            uf.merge(u, v);\n            int r = uf[u];\n  \
-    \          A.set(r, A.get(u) + A.get(v));\n          }\n        }\n        continue;\n\
+    \  vc<int> I(len(upd));\n  iota(all(I), 0);\n\n  Rollback_Array<ll> A(A0);\n \
+    \ Rollback_UnionFind uf(N);\n\n  auto dfs = [&](auto& dfs, vc<int>& I, int begin,\
+    \ int end) -> void {\n    int a_time = A.time();\n    int uf_time = uf.time();\n\
+    \n    vc<int> IL, IR;\n    int mid = (begin + end) / 2;\n    // \u533A\u9593\u3092\
+    \u5B8C\u5168\u306B\u542B\u3080\u66F4\u65B0\u30AF\u30A8\u30EA\u3092\u51E6\u7406\
+    \u3059\u308B\u3002\n    // \u90E8\u5206\u7684\u306B\u4EA4\u308F\u308B\u30AF\u30A8\
+    \u30EA\u3092 J \u306B\u5165\u308C\u308B\n    for (auto&& i: I) {\n      auto [a,\
+    \ b, X] = upd[i];\n      if (a <= begin && end <= b) {\n        // update\n  \
+    \      auto [u, v] = X;\n        if (u < 0) {\n          int i = uf[~u];\n   \
+    \       A.set(i, A.get(i) + v);\n        } else {\n          u = uf[u], v = uf[v];\n\
+    \          if (u != v) {\n            uf.merge(u, v);\n            int r = uf[u];\n\
+    \            A.set(r, A.get(u) + A.get(v));\n          }\n        }\n        continue;\n\
     \      }\n      if (a < mid) IL.eb(i);\n      if (mid < b) IR.eb(i);\n    }\n\
     \    if (begin + 1 == end) {\n      // \u6C42\u5024\u30AF\u30A8\u30EA\n      int\
     \ v = query[begin];\n      ANS[begin] = A.get(uf[v]);\n    } else {\n      dfs(dfs,\
@@ -317,8 +317,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/add_remove_query.test.cpp
   requiredBy: []
-  timestamp: '2022-12-11 14:13:29+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-12 03:44:44+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/add_remove_query.test.cpp
 layout: document
