@@ -1,14 +1,14 @@
 #pragma once
 
 template <typename T>
-struct RollbackArray {
+struct Rollback_Array {
   int N;
   vc<T> dat;
   vc<pair<int, T>> history;
 
-  RollbackArray(vc<T> x) : N(len(x)), dat(x) {}
+  Rollback_Array(vc<T> x) : N(len(x)), dat(x) {}
   template <typename F>
-  RollbackArray(int N, F f) : N(N) {
+  Rollback_Array(int N, F f) : N(N) {
     dat.reserve(N);
     FOR(i, N) dat.eb(f(i));
   }
