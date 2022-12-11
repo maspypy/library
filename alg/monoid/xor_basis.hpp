@@ -27,10 +27,15 @@ struct Monoid_XorBasis {
     return v == 0;
   }
 
-  // V の元の最大値
-  static E get_max(const VECT_SP& V) {
-    E res = 0;
+  static E get_max(const VECT_SP& V, E xor_val) {
+    E res = xor_val;
     for (auto&& x: V) chmax(res, res ^ x);
+    return res;
+  }
+
+  static E get_min(const VECT_SP& V, E xor_val) {
+    E res = xor_val;
+    for (auto&& x: V) chmin(res, res ^ x);
     return res;
   }
   static constexpr VECT_SP unit() { return VECT_SP{}; };
