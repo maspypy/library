@@ -29,8 +29,7 @@ vc<tuple<int, int, COST>> online_mst(int N, F0 set_used, F1 set_unused,
       auto [a, b, c] = cand[v];
       if (a == -1) continue;
       upd = 1;
-      uf.merge(a, b);
-      res.eb(a, b, c);
+      if (uf.merge(a, b)) res.eb(a, b, c);
     }
     if (!upd) break;
   }
