@@ -91,7 +91,7 @@ data:
     \ 0) return x;\n      assert(!x.fail);\n      auto [add, mi] = a;\n      x.sum\
     \ += x.cnt * add;\n      x.max += add;\n      x.max2 += add;\n\n      if (mi ==\
     \ Beats_INF) return x;\n\n      ll before_max = x.max;\n      x.max = min(x.max,\
-    \ mi);\n      if (x.maxc == x.cnt) {\n        x.min2 = x.max;\n        x.sum =\
+    \ mi);\n      if (x.maxc == x.cnt) {\n        x.max2 = x.max;\n        x.sum =\
     \ x.cnt * x.max;\n        return x;\n      }\n      if (x.max2 < x.max) {\n  \
     \      x.sum += (x.max - before_max) * x.maxc;\n      } else {\n        x.fail\
     \ = 1;\n      }\n      return x;\n    }\n  };\n  LazySegTreeBeats<Lazy> seg;\n\
@@ -128,7 +128,7 @@ data:
     \      auto [add, mi] = a;\n      x.sum += x.cnt * add;\n      x.max += add;\n\
     \      x.max2 += add;\n\n      if (mi == Beats_INF) return x;\n\n      ll before_max\
     \ = x.max;\n      x.max = min(x.max, mi);\n      if (x.maxc == x.cnt) {\n    \
-    \    x.min2 = x.max;\n        x.sum = x.cnt * x.max;\n        return x;\n    \
+    \    x.max2 = x.max;\n        x.sum = x.cnt * x.max;\n        return x;\n    \
     \  }\n      if (x.max2 < x.max) {\n        x.sum += (x.max - before_max) * x.maxc;\n\
     \      } else {\n        x.fail = 1;\n      }\n      return x;\n    }\n  };\n\
     \  LazySegTreeBeats<Lazy> seg;\n  Beats_SumMax_Chmin(vc<ll>& A) {\n    using X\
@@ -146,7 +146,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/beats_summax_chmin.hpp
   requiredBy: []
-  timestamp: '2022-12-04 19:22:04+09:00'
+  timestamp: '2022-12-11 13:51:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/segtree/beats_summax_chmin.hpp
