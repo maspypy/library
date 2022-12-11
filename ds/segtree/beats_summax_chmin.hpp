@@ -63,7 +63,7 @@ struct Beats_SumMax_Chmin {
       ll before_max = x.max;
       x.max = min(x.max, mi);
       if (x.maxc == x.cnt) {
-        x.min2 = x.max;
+        x.max2 = x.max;
         x.sum = x.cnt * x.max;
         return x;
       }
