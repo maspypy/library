@@ -7,7 +7,7 @@
 クエリが時系列順に来ることが分かっているときは monotone = true の方が高速。
 */
 template <typename X, bool monotone>
-struct AddRemove_Query {
+struct Add_Remove_Query {
   map<X, int> MP;
   vc<tuple<int, int, X>> dat;
   map<X, vc<int>> ADD;

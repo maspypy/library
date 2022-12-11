@@ -16,7 +16,10 @@ struct Binary_Trie {
 
   Binary_Trie() : pid(0) { pool = new Node[NODES]; }
 
+  void reset() { pid = 0; }
+
   np new_node(int width, UINT val) {
+    pool[pid].l = pool[pid].r = nullptr;
     pool[pid].width = width;
     pool[pid].val = val;
     pool[pid].cnt = 0;
