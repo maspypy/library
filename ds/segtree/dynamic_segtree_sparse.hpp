@@ -24,6 +24,8 @@ struct Dynamic_SegTree_Sparse {
     pool = new Node[NODES];
   }
 
+  np new_root() { return nullptr; }
+
   np new_node(ll idx, const X x) {
     pool[pid].idx = idx;
     pool[pid].l = pool[pid].r = nullptr;
