@@ -58,5 +58,12 @@
 "test/aoj/ITP1_11_D.test.cpp": "2022-12-12 09:20:37 +0900",
 "test/aoj/ITP1_9_A.test.cpp": "2022-12-12 09:20:37 +0900",
 "test/aoj/ITP1_D_D.test.cpp": "2022-12-12 09:20:37 +0900",
-"test/aoj/ITP2_11_D.test.cpp": "2022-12-12 09:20:37 +0900"
+"test/aoj/ITP2_11_D.test.cpp": "2022-12-12 09:20:37 +0900",
+"test/aoj/ITP2_3_B.test.cpp": "2022-12-12 09:20:37 +0900",
+"test/aoj/NTL_1_D.test.cpp": "2022-12-12 09:21:17 +0900",
+"test/aoj/NTL_1_E.test.cpp": "2022-12-12 09:20:37 +0900",
+"test/library_checker/convolution/bitwise_and_convolution.test.cpp": "2022-12-12 09:20:37 +0900",
+"test/library_checker/convolution/bitwise_or_convolution.test.cpp": "2022-12-12 09:20:37 +0900",
+"test/library_checker/convolution/bitwise_xor_convolution.test.cpp": "2022-12-12 09:20:37 +0900",
+"test/library_checker/convolution/convolution_huge.test.cpp": "2022-12-12 09:20:37 +0900"
 }
