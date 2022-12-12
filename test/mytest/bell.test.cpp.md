@@ -1,86 +1,87 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/mytest/bell.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
-    \n#line 1 \"my_template.hpp\"\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"\
-    unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll\
-    \ = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 =\
-    \ unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate\
-    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
+    )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
+    using pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\n\
+    using u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\n\
+    using vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate\
+    \ <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -103,7 +104,7 @@ data:
     \ A) sum += a;\n  return sum;\n}\n\n#define MIN(v) *min_element(all(v))\n#define\
     \ MAX(v) *max_element(all(v))\n#define LB(c, x) distance((c).begin(), lower_bound(all(c),\
     \ (x)))\n#define UB(c, x) distance((c).begin(), upper_bound(all(c), (x)))\n#define\
-    \ UNIQUE(x) sort(all(x)), x.erase(unique(all(x)), x.end()), x.shrink_to_fit()\n\
+    \ UNIQUE(x) \\\n  sort(all(x)), x.erase(unique(all(x)), x.end()), x.shrink_to_fit()\n\
     \nint popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return\
     \ __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
     \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\n// (0, 1, 2, 3, 4)\
@@ -145,7 +146,7 @@ data:
     \ < A[j] || (A[i] == A[j] && i < j); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]],\
     \ ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I)\
     \ {\n  int n = len(I);\n  vc<T> B(n);\n  FOR(i, n) B[i] = A[I[i]];\n  return B;\n\
-    }\n#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include <unistd.h>\r\
+    }\n#endif\n#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include <unistd.h>\r\
     \n\r\nnamespace fastio {\r\n// \u30AF\u30E9\u30B9\u304C read(), print() \u3092\
     \u6301\u3063\u3066\u3044\u308B\u304B\u3092\u5224\u5B9A\u3059\u308B\u30E1\u30BF\
     \u95A2\u6570\r\nstruct has_write_impl {\r\n  template <class T>\r\n  static auto\
@@ -636,60 +637,60 @@ data:
     \n  auto log_f = fps_log(f);\r\n  FOR(i, len(f)) log_f[i] *= K;\r\n  return fps_exp(log_f);\r\
     \n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_pow_1(const vc<mint>& f, mint\
     \ K) {\r\n  if (count_terms(f) <= 100) return fps_pow_1_sparse(f, K);\r\n  return\
-    \ fps_pow_1_dense(f, K);\r\n}\r\n#line 2 \"nt/primetable.hpp\"\nvc<ll> primetable(int\
-    \ LIM) {\n  ++LIM;\n  const int S = 32768;\n  static int done = 2;\n  static vc<ll>\
-    \ primes = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes\
-    \ = {2}, sieve.assign(S + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM\
-    \ / log(LIM) * 1.1));\n    vc<pi> cp;\n    for (int i = 3; i <= S; i += 2) {\n\
-    \      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for (int j = i\
-    \ * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1;\
-    \ L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p, idx]:\
-    \ cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n\
-    \      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n\
-    \  }\n  int k = LB(primes, LIM + 1);\n  return {primes.begin(), primes.begin()\
-    \ + k};\n}\n#line 3 \"mod/powertable.hpp\"\n\r\n// a^0, ..., a^N\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> powertable_1(mint a, ll N) {\r\n  // table of a^i\r\n  vc<mint>\
-    \ f(N + 1, 1);\r\n  FOR(i, N) f[i + 1] = a * f[i];\r\n  return f;\r\n}\r\n\r\n\
-    // 0^e, ..., N^e\r\ntemplate <typename mint>\r\nvc<mint> powertable_2(ll e, ll\
-    \ N) {\r\n  auto primes = primetable(N);\r\n  vc<mint> f(N + 1, 1);\r\n  f[0]\
-    \ = mint(0).pow(e);\r\n  for (auto&& p: primes) {\r\n    if (p > N) break;\r\n\
-    \    mint xp = mint(p).pow(e);\r\n    ll pp = p;\r\n    while (pp <= N) {\r\n\
-    \      ll i = pp;\r\n      while (i <= N) {\r\n        f[i] *= xp;\r\n       \
-    \ i += pp;\r\n      }\r\n      pp *= p;\r\n    }\r\n  }\r\n  return f;\r\n}\r\n\
-    #line 4 \"seq/famous/stirling_number_2.hpp\"\n\r\n// n \u500B\u306E\u3082\u306E\
-    \ (labeled) \u3092 k \u30B0\u30EB\u30FC\u30D7 (no label) \u306B\u5206\u3051\u308B\
-    \u65B9\u6CD5\r\n// label \u3092\u3064\u3051\u308B\u3053\u3068\u3067\u3001\u5168\
-    \u5C04\u306E\u6570\u3048\u4E0A\u3052\u306B\u5229\u7528\u3067\u304D\u308B\r\ntemplate\
-    \ <typename mint>\r\nvvc<mint> stirling_number_2_2d(int nmax, int kmax) {\r\n\
-    \  vv(mint, A, nmax + 1, kmax + 1);\r\n  A[0][0] = 1;\r\n  FOR(i, 1, nmax + 1)\
-    \ {\r\n    FOR(j, i + 1) {\r\n      if (j > kmax) break;\r\n      if (j) A[i][j]\
-    \ += A[i - 1][j - 1];\r\n      if (j < i) A[i][j] += A[i - 1][j] * mint(j);\r\n\
-    \    }\r\n  }\r\n  return A;\r\n}\r\n\r\n// n \u500B\u306E\u3082\u306E (labeled)\
-    \ \u3092 k \u30B0\u30EB\u30FC\u30D7 (no label) \u306B\u5206\u3051\u308B\u65B9\u6CD5\
-    \r\n// label \u3092\u3064\u3051\u308B\u3053\u3068\u3067\u3001\u5168\u5C04\u306E\
-    \u6570\u3048\u4E0A\u3052\u306B\u5229\u7528\u3067\u304D\u308B\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> stirling_number_2_n(int n, int k_max) {\r\n  vc<mint> a =\
-    \ powertable_2<mint>(n, k_max + 1);\r\n  FOR(i, k_max + 1) a[i] *= fact_inv<mint>(i);\r\
-    \n  vc<mint> b(k_max + 1);\r\n  FOR(i, k_max + 1) b[i] = fact_inv<mint>(i);\r\n\
-    \  FOR(i, 1, k_max + 1, 2) b[i] = -b[i];\r\n  auto f = convolution(a, b);\r\n\
-    \  f.resize(k_max + 1);\r\n  return f;\r\n}\r\n\r\n// n \u500B\u306E\u3082\u306E\
-    \ (labeled) \u3092 k \u30B0\u30EB\u30FC\u30D7 (no label) \u306B\u5206\u3051\u308B\
-    \u65B9\u6CD5\r\n// label \u3092\u3064\u3051\u308B\u3053\u3068\u3067\u3001\u5168\
-    \u5C04\u306E\u6570\u3048\u4E0A\u3052\u306B\u5229\u7528\u3067\u304D\u308B\r\ntemplate\
-    \ <typename mint>\r\nvc<mint> stirling_number_2_k(int k, int n_max) {\r\n  if\
-    \ (k > n_max) { return vc<mint>(n_max + 1); }\r\n  int LIM = n_max - k;\r\n  vc<mint>\
-    \ f(LIM + 1);\r\n  FOR(i, LIM + 1) f[i] = fact_inv<mint>(i + 1);\r\n  f = fps_pow(f,\
-    \ k);\r\n  mint cf = fact_inv<mint>(k);\r\n\r\n  vc<mint> res(n_max + 1);\r\n\
-    \  FOR(i, len(f)) res[k + i] = fact<mint>(k + i) * f[i] * cf;\r\n  return res;\r\
-    \n}\r\n#line 2 \"poly/coef_of_rational_fps.hpp\"\n\r\ntemplate <typename mint>\r\
-    \nmint coef_of_rational_fps(vector<mint> A, vector<mint> B, ll N) {\r\n  if (len(A)\
-    \ == 0) return 0;\r\n  assert(len(A) < len(B));\r\n  while (len(A) + 1 < len(B))\
-    \ A.eb(0);\r\n  assert(B[0] == mint(1));\r\n  assert(len(B) == len(A) + 1);\r\n\
-    \  while (N) {\r\n    vc<mint> B1 = B;\r\n    FOR(i, len(B1)) if (i & 1) B1[i]\
-    \ = -B1[i];\r\n    A = convolution(A, B1);\r\n    B = convolution(B, B1);\r\n\
-    \    FOR(i, len(B1)) B[i] = B[2 * i];\r\n    if (N & 1) {\r\n      FOR(i, len(B1)\
-    \ - 1) A[i] = A[2 * i | 1];\r\n    } else {\r\n      FOR(i, len(B1) - 1) A[i]\
-    \ = A[2 * i];\r\n    }\r\n    A.resize(len(B1) - 1);\r\n    B.resize(len(B1));\r\
+    \ fps_pow_1_dense(f, K);\r\n}\r\n#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename\
+    \ T = long long>\nvc<T> primetable(int LIM) {\n  ++LIM;\n  const int S = 32768;\n\
+    \  static int done = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\n  if (done\
+    \ < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S + 1, 0);\n   \
+    \ const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM) * 1.1));\n   \
+    \ vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i])\
+    \ {\n        cp.eb(i, i * i / 2);\n        for (int j = i * i; j <= S; j += 2\
+    \ * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n\
+    \      array<bool, S> block{};\n      for (auto& [p, idx]: cp)\n        for (int\
+    \ i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R\
+    \ - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes,\
+    \ LIM + 1);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 3 \"mod/powertable.hpp\"\
+    \n\r\n// a^0, ..., a^N\r\ntemplate <typename mint>\r\nvc<mint> powertable_1(mint\
+    \ a, ll N) {\r\n  // table of a^i\r\n  vc<mint> f(N + 1, 1);\r\n  FOR(i, N) f[i\
+    \ + 1] = a * f[i];\r\n  return f;\r\n}\r\n\r\n// 0^e, ..., N^e\r\ntemplate <typename\
+    \ mint>\r\nvc<mint> powertable_2(ll e, ll N) {\r\n  auto primes = primetable(N);\r\
+    \n  vc<mint> f(N + 1, 1);\r\n  f[0] = mint(0).pow(e);\r\n  for (auto&& p: primes)\
+    \ {\r\n    if (p > N) break;\r\n    mint xp = mint(p).pow(e);\r\n    ll pp = p;\r\
+    \n    while (pp <= N) {\r\n      ll i = pp;\r\n      while (i <= N) {\r\n    \
+    \    f[i] *= xp;\r\n        i += pp;\r\n      }\r\n      pp *= p;\r\n    }\r\n\
+    \  }\r\n  return f;\r\n}\r\n#line 4 \"seq/famous/stirling_number_2.hpp\"\n\r\n\
+    // n \u500B\u306E\u3082\u306E (labeled) \u3092 k \u30B0\u30EB\u30FC\u30D7 (no\
+    \ label) \u306B\u5206\u3051\u308B\u65B9\u6CD5\r\n// label \u3092\u3064\u3051\u308B\
+    \u3053\u3068\u3067\u3001\u5168\u5C04\u306E\u6570\u3048\u4E0A\u3052\u306B\u5229\
+    \u7528\u3067\u304D\u308B\r\ntemplate <typename mint>\r\nvvc<mint> stirling_number_2_2d(int\
+    \ nmax, int kmax) {\r\n  vv(mint, A, nmax + 1, kmax + 1);\r\n  A[0][0] = 1;\r\n\
+    \  FOR(i, 1, nmax + 1) {\r\n    FOR(j, i + 1) {\r\n      if (j > kmax) break;\r\
+    \n      if (j) A[i][j] += A[i - 1][j - 1];\r\n      if (j < i) A[i][j] += A[i\
+    \ - 1][j] * mint(j);\r\n    }\r\n  }\r\n  return A;\r\n}\r\n\r\n// n \u500B\u306E\
+    \u3082\u306E (labeled) \u3092 k \u30B0\u30EB\u30FC\u30D7 (no label) \u306B\u5206\
+    \u3051\u308B\u65B9\u6CD5\r\n// label \u3092\u3064\u3051\u308B\u3053\u3068\u3067\
+    \u3001\u5168\u5C04\u306E\u6570\u3048\u4E0A\u3052\u306B\u5229\u7528\u3067\u304D\
+    \u308B\r\ntemplate <typename mint>\r\nvc<mint> stirling_number_2_n(int n, int\
+    \ k_max) {\r\n  vc<mint> a = powertable_2<mint>(n, k_max + 1);\r\n  FOR(i, k_max\
+    \ + 1) a[i] *= fact_inv<mint>(i);\r\n  vc<mint> b(k_max + 1);\r\n  FOR(i, k_max\
+    \ + 1) b[i] = fact_inv<mint>(i);\r\n  FOR(i, 1, k_max + 1, 2) b[i] = -b[i];\r\n\
+    \  auto f = convolution(a, b);\r\n  f.resize(k_max + 1);\r\n  return f;\r\n}\r\
+    \n\r\n// n \u500B\u306E\u3082\u306E (labeled) \u3092 k \u30B0\u30EB\u30FC\u30D7\
+    \ (no label) \u306B\u5206\u3051\u308B\u65B9\u6CD5\r\n// label \u3092\u3064\u3051\
+    \u308B\u3053\u3068\u3067\u3001\u5168\u5C04\u306E\u6570\u3048\u4E0A\u3052\u306B\
+    \u5229\u7528\u3067\u304D\u308B\r\ntemplate <typename mint>\r\nvc<mint> stirling_number_2_k(int\
+    \ k, int n_max) {\r\n  if (k > n_max) { return vc<mint>(n_max + 1); }\r\n  int\
+    \ LIM = n_max - k;\r\n  vc<mint> f(LIM + 1);\r\n  FOR(i, LIM + 1) f[i] = fact_inv<mint>(i\
+    \ + 1);\r\n  f = fps_pow(f, k);\r\n  mint cf = fact_inv<mint>(k);\r\n\r\n  vc<mint>\
+    \ res(n_max + 1);\r\n  FOR(i, len(f)) res[k + i] = fact<mint>(k + i) * f[i] *\
+    \ cf;\r\n  return res;\r\n}\r\n#line 2 \"poly/coef_of_rational_fps.hpp\"\n\r\n\
+    template <typename mint>\r\nmint coef_of_rational_fps(vector<mint> A, vector<mint>\
+    \ B, ll N) {\r\n  if (len(A) == 0) return 0;\r\n  assert(len(A) < len(B));\r\n\
+    \  while (len(A) + 1 < len(B)) A.eb(0);\r\n  assert(B[0] == mint(1));\r\n  assert(len(B)\
+    \ == len(A) + 1);\r\n  while (N) {\r\n    vc<mint> B1 = B;\r\n    FOR(i, len(B1))\
+    \ if (i & 1) B1[i] = -B1[i];\r\n    A = convolution(A, B1);\r\n    B = convolution(B,\
+    \ B1);\r\n    FOR(i, len(B1)) B[i] = B[2 * i];\r\n    if (N & 1) {\r\n      FOR(i,\
+    \ len(B1) - 1) A[i] = A[2 * i | 1];\r\n    } else {\r\n      FOR(i, len(B1) -\
+    \ 1) A[i] = A[2 * i];\r\n    }\r\n    A.resize(len(B1) - 1);\r\n    B.resize(len(B1));\r\
     \n    N /= 2;\r\n  }\r\n  return A[0];\r\n}\n#line 2 \"seq/famous/bell_number_large.hpp\"\
     \n\n// Bell \u6570 B_n \u306E\u8A08\u7B97\u3002O(p logp logn)\ntemplate <typename\
     \ mint>\nmint Bell_Number_large(ll n) {\n  int p = mint::get_mod();\n  vc<mint>\
@@ -735,8 +736,8 @@ data:
   isVerificationFile: true
   path: test/mytest/bell.test.cpp
   requiredBy: []
-  timestamp: '2022-12-07 08:14:15+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-12-12 09:21:17+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/bell.test.cpp
 layout: document
