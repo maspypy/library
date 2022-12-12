@@ -224,41 +224,28 @@ data:
     \     FOR(i, N) {\r\n        bool f = (A[i] >> d & 1);\r\n        if (!f) A0[p0++]\
     \ = A[i];\r\n        if (f) bv[d].set(i), A1[p1++] = A[i];\r\n      }\r\n    \
     \  mid[d] = p0;\r\n      bv[d].build();\r\n      swap(A, A0);\r\n      FOR(i,\
-    \ p1) A[p0 + i] = A1[i];\r\n    }\r\n  }\r\n\r\n  // [L, R) \u5185\u306B\u3042\
-    \u308B [a, b) \u3092\u6570\u3048\u308B\r\n  int freq(int L, int R, T a, T b) {\r\
-    \n    return freq_upper(L, R, b) - freq_upper(L, R, a);\r\n  }\r\n\r\n  // [L,\
-    \ R) \u5185\u306B\u3042\u308B [-inf, t) \u3092\u6570\u3048\u308B\r\n  int freq_upper(int\
-    \ L, int R, T t) {\r\n    ll x = (COMPRESS ? LB(key, t) : t);\r\n    if (x >=\
-    \ (1 << lg)) return R - L;\r\n    int ret = 0;\r\n    FOR_R(d, lg) {\r\n     \
-    \ bool f = (x >> d) & 1;\r\n      if (f) ret += bv[d].rank(R, 0) - bv[d].rank(L,\
-    \ 0);\r\n      L = bv[d].rank(L, f) + (f ? mid[d] : 0);\r\n      R = bv[d].rank(R,\
-    \ f) + (f ? mid[d] : 0);\r\n    }\r\n    return ret;\r\n  }\r\n\r\n  // xor \u3057\
-    \u305F\u7D50\u679C\u3067 [a, b) \u306B\u53CE\u307E\u308B\u3082\u306E\u3092\u6570\
-    \u3048\u308B\r\n  int xor_freq(int L, int R, T a, T b, T xor_val) {\r\n    static_assert(!COMPRESS);\r\
-    \n    return xor_freq_upper(L, R, b, xor_val) - xor_freq_upper(L, R, a, xor_val);\r\
-    \n  }\r\n\r\n  // xor \u3057\u305F\u7D50\u679C\u3067 [0, t) \u306B\u53CE\u307E\
-    \u308B\u3082\u306E\u3092\u6570\u3048\u308B\r\n  int xor_freq_upper(int L, int\
-    \ R, T x, T xor_val) {\r\n    static_assert(!COMPRESS);\r\n    if (x >= (1 <<\
-    \ lg)) return R - L;\r\n    int ret = 0;\r\n    FOR_R(d, lg) {\r\n      bool add\
-    \ = (x >> d) & 1;\r\n      bool f = ((x ^ xor_val) >> d) & 1;\r\n      if (add)\
-    \ ret += bv[d].rank(R, !f) - bv[d].rank(L, !f);\r\n      L = bv[d].rank(L, f)\
-    \ + (f ? mid[d] : 0);\r\n      R = bv[d].rank(R, f) + (f ? mid[d] : 0);\r\n  \
-    \  }\r\n    return ret;\r\n  }\r\n\r\n  // [L, R) \u306E\u4E2D\u3067 k>=0 \u756A\
-    \u76EE\r\n  T kth(int L, int R, int k) {\r\n    assert(0 <= k && k < R - L);\r\
-    \n    T ret = 0;\r\n    for (int d = lg - 1; d >= 0; --d) {\r\n      int l0 =\
-    \ bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n      if (k < r0 - l0) L = l0, R\
-    \ = r0;\r\n      if (k >= r0 - l0)\r\n        k -= r0 - l0, ret |= T(1) << d,\
-    \ L += mid[d] - l0, R += mid[d] - r0;\r\n    }\r\n    return (COMPRESS ? key[ret]\
-    \ : ret);\r\n  }\r\n\r\n  // xor \u3057\u305F\u7D50\u679C\u3067 [L, R) \u306E\u4E2D\
-    \u3067 k>=0 \u756A\u76EE\r\n  T xor_kth(int L, int R, int k, T xor_val) {\r\n\
-    \    static_assert(!COMPRESS);\r\n    assert(0 <= k && k < R - L);\r\n    T ret\
-    \ = 0;\r\n    for (int d = lg - 1; d >= 0; --d) {\r\n      bool f = (xor_val >>\
-    \ d) & 1;\r\n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n     \
-    \ int kf = (f ? (R - L) - (r0 - l0) : (r0 - l0));\r\n      if (k < kf) {\r\n \
-    \       if (!f) L = l0, R = r0;\r\n        if (f) L += mid[d] - l0, R += mid[d]\
+    \ p1) A[p0 + i] = A1[i];\r\n    }\r\n  }\r\n\r\n  // xor \u3057\u305F\u7D50\u679C\
+    \u3067 [a, b) \u306B\u53CE\u307E\u308B\u3082\u306E\u3092\u6570\u3048\u308B\r\n\
+    \  int count(int L, int R, T a, T b, T xor_val = 0) {\r\n    return count_prefix(L,\
+    \ R, b, xor_val) - count_prefix(L, R, a, xor_val);\r\n  }\r\n\r\n  // xor \u3057\
+    \u305F\u7D50\u679C\u3067 [0, x) \u306B\u53CE\u307E\u308B\u3082\u306E\u3092\u6570\
+    \u3048\u308B\r\n  int count_prefix(int L, int R, T x, T xor_val = 0) {\r\n   \
+    \ if (xor_val != 0) assert(!COMPRESS);\r\n    x = (COMPRESS ? LB(key, x) : x);\r\
+    \n    if (x >= (1 << lg)) return R - L;\r\n    int ret = 0;\r\n    FOR_R(d, lg)\
+    \ {\r\n      bool add = (x >> d) & 1;\r\n      bool f = ((x ^ xor_val) >> d) &\
+    \ 1;\r\n      if (add) ret += bv[d].rank(R, !f) - bv[d].rank(L, !f);\r\n     \
+    \ L = bv[d].rank(L, f) + (f ? mid[d] : 0);\r\n      R = bv[d].rank(R, f) + (f\
+    \ ? mid[d] : 0);\r\n    }\r\n    return ret;\r\n  }\r\n\r\n  // [L, R) \u306E\u4E2D\
+    \u3067 k>=0 \u756A\u76EE\r\n  T kth(int L, int R, int k, T xor_val = 0) {\r\n\
+    \    if (xor_val != 0) assert(!COMPRESS);\r\n    assert(0 <= k && k < R - L);\r\
+    \n    T ret = 0;\r\n    for (int d = lg - 1; d >= 0; --d) {\r\n      bool f =\
+    \ (xor_val >> d) & 1;\r\n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\
+    \n      int kf = (f ? (R - L) - (r0 - l0) : (r0 - l0));\r\n      if (k < kf) {\r\
+    \n        if (!f) L = l0, R = r0;\r\n        if (f) L += mid[d] - l0, R += mid[d]\
     \ - r0;\r\n      } else {\r\n        k -= kf, ret |= T(1) << d;\r\n        if\
     \ (!f) L += mid[d] - l0, R += mid[d] - r0;\r\n        if (f) L = l0, R = r0;\r\
-    \n      }\r\n    }\r\n    return ret;\r\n  }\r\n};\r\n#line 5 \"test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp\"\
+    \n      }\r\n    }\r\n    return (COMPRESS ? key[ret] : ret);\r\n  }\r\n};\r\n\
+    #line 5 \"test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Wavelet_Matrix<int, true>\
     \ WM(A);\n  FOR(Q) {\n    LL(l, r, k);\n    print(WM.kth(l, r, k));\n  }\n}\n\n\
     signed main() {\n  solve();\n\n  return 0;\n}\n"
@@ -275,7 +262,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   requiredBy: []
-  timestamp: '2022-12-12 13:31:49+09:00'
+  timestamp: '2022-12-12 22:46:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp

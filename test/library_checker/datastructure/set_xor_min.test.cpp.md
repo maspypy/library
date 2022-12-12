@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/binary_trie.hpp
     title: ds/binary_trie.hpp
   - icon: ':question:'
@@ -227,10 +227,10 @@ data:
     \ xor_val;\n  }\n\n  UINT min(np root, UINT xor_val) {\n    assert(root && root->cnt);\n\
     \    return kth(root, 0, xor_val);\n  }\n\n  UINT max(np root, UINT xor_val) {\n\
     \    assert(root && root->cnt);\n    return kth(root, (root->cnt) - 1, xor_val);\n\
-    \  }\n\n  T freq_upper(np root, UINT upper, UINT xor_val) {\n    if (!root) return\
-    \ 0;\n    return freq_upper_rec(root, LOG, upper, xor_val, 0);\n  }\n\n  T freq(np\
-    \ root, UINT lower, UINT upper, UINT xor_val) {\n    return freq_upper(root, upper,\
-    \ xor_val) - freq_upper(root, lower, xor_val);\n  }\n\nprivate:\n  inline UINT\
+    \  }\n\n  T count_prefix(np root, UINT upper, UINT xor_val) {\n    if (!root)\
+    \ return 0;\n    return count_prefix_rec(root, LOG, upper, xor_val, 0);\n  }\n\
+    \n  T count(np root, UINT lo, UINT hi, UINT xor_val) {\n    return count_prefix(root,\
+    \ hi, xor_val) - count_prefix(root, lo, xor_val);\n  }\n\nprivate:\n  inline UINT\
     \ mask(int k) { return (UINT(1) << k) - 1; }\n\n  np add_rec(np root, int ht,\
     \ UINT val, T cnt) {\n    root = copy_node(root);\n    root->cnt += cnt;\n   \
     \ if (ht == 0) return root;\n\n    bool go_r = (val >> (ht - 1)) & 1;\n    np\
@@ -251,7 +251,7 @@ data:
     \ = root->r;\n    if ((xor_val >> (ht - 1)) & 1) swap(left, right);\n    T sl\
     \ = (left ? left->cnt : 0);\n    np c;\n    if (k < sl) { c = left; }\n    if\
     \ (k >= sl) { c = right, k -= sl; }\n    int w = c->width;\n    return kth_rec(c,\
-    \ val << w | (c->val), k, ht - w, xor_val);\n  }\n\n  T freq_upper_rec(np root,\
+    \ val << w | (c->val), k, ht - w, xor_val);\n  }\n\n  T count_prefix_rec(np root,\
     \ int ht, UINT LIM, UINT xor_val, UINT val) {\n    UINT now = (val << ht) ^ (xor_val);\n\
     \    if ((LIM >> ht) > (now >> ht)) return root->cnt;\n    if (ht == 0 || (LIM\
     \ >> ht) < (now >> ht)) return 0;\n    T res = 0;\n    FOR(k, 2) {\n      np c\
@@ -308,7 +308,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/set_xor_min.test.cpp
   requiredBy: []
-  timestamp: '2022-12-12 09:20:37+09:00'
+  timestamp: '2022-12-12 22:45:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/set_xor_min.test.cpp
