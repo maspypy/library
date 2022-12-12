@@ -13,7 +13,7 @@ void solve() {
 
   vc<int> query;
 
-  AddRemove_Query<P, true> X;
+  Add_Remove_Query<P, true> X;
   FOR(Q) {
     LL(t);
     if (t == 0) {
@@ -45,8 +45,8 @@ void solve() {
   vc<int> I(len(upd));
   iota(all(I), 0);
 
-  RollbackArray<ll> A(A0);
-  RollbackUnionFind uf(N);
+  Rollback_Array<ll> A(A0);
+  Rollback_UnionFind uf(N);
 
   auto dfs = [&](auto& dfs, vc<int>& I, int begin, int end) -> void {
     int a_time = A.time();
