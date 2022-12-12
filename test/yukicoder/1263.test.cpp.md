@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/partitions.hpp
     title: enumerate/partitions.hpp
   - icon: ':question:'
