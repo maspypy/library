@@ -73,13 +73,13 @@ struct Binary_Trie {
     return kth(root, (root->cnt) - 1, xor_val);
   }
 
-  T freq_upper(np root, UINT upper, UINT xor_val) {
+  T count_prefix(np root, UINT upper, UINT xor_val) {
     if (!root) return 0;
-    return freq_upper_rec(root, LOG, upper, xor_val, 0);
+    return count_prefix_rec(root, LOG, upper, xor_val, 0);
   }
 
-  T freq(np root, UINT lower, UINT upper, UINT xor_val) {
-    return freq_upper(root, upper, xor_val) - freq_upper(root, lower, xor_val);
+  T count(np root, UINT lo, UINT hi, UINT xor_val) {
+    return count_prefix(root, hi, xor_val) - count_prefix(root, lo, xor_val);
   }
 
 private:
@@ -138,7 +138,7 @@ private:
     return kth_rec(c, val << w | (c->val), k, ht - w, xor_val);
   }
 
-  T freq_upper_rec(np root, int ht, UINT LIM, UINT xor_val, UINT val) {
+  T count_prefix_rec(np root, int ht, UINT LIM, UINT xor_val, UINT val) {
     UINT now = (val << ht) ^ (xor_val);
     if ((LIM >> ht) > (now >> ht)) return root->cnt;
     if (ht == 0 || (LIM >> ht) < (now >> ht)) return 0;
