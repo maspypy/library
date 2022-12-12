@@ -1,10 +1,6 @@
-#include "alg/monoid/add.hpp"
-
 // Wavelet Matrix 上でさらに累積和を管理して、矩形和がとれるようにしたもの
-template <typename T, bool SUM_QUERY = false, typename Monoid = Monoid_Add<ll>>
+template <typename T>
 struct Wavelet_Matrix {
-  using G = Monoid;
-  static_assert(G::commute);
   struct BitVector {
     vector<u64> buf;
     vector<int> sum;
@@ -31,9 +27,12 @@ struct Wavelet_Matrix {
   int N, lg;
   vector<int> mid;
   vector<BitVector> bv;
-  vector<vector<T>> cumsum;
   vc<T> key;
-  Wavelet_Matrix(vector<T>& dat) : N(dat.size()) {
+
+  template <typename F>
+  Wavelet_Matrix(
+      vector<T>& dat, F f = [](T x) -> GT { return x; })
+      : N(dat.size()) {
     key = dat;
     UNIQUE(key);
     vc<int> A(N);
@@ -54,12 +53,6 @@ struct Wavelet_Matrix {
       bv[d] = BitVector(add);
       swap(A, nxt[0]);
       A.insert(A.end(), all(nxt[1]));
-      if (SUM_QUERY) {
-        vc<T> cs(N + 1);
-        cs[0] = G::unit();
-        FOR(i, N) cs[i + 1] = G::op(cs[i], key[A[i]]);
-        cumsum[d] = cs;
-      }
     }
   }
 
@@ -95,28 +88,5 @@ struct Wavelet_Matrix {
       }
     }
     return key[ret];
-  }
-
-  // [L, R) の中で小さい方から k 個の総和
-  T sum(int L, int R, int k) {
-    assert(SUM_QUERY);
-    assert(0 <= k && k <= R - L);
-    T pos = G::unit(), neg = G::unit();
-    for (int h = lg - 1; h >= 0; h--) {
-      int l0 = bv[h].rank(L, 0), r0 = bv[h].rank(R, 0);
-      if (k < r0 - l0) {
-        L = l0, R = r0;
-      } else {
-        k -= r0 - l0;
-        pos = G::op(pos, cumsum[h][r0]);
-        neg = G::op(neg, cumsum[h][l0]);
-        L += mid[h] - l0, R += mid[h] - r0;
-      }
-    }
-    if (k) {
-      pos = G::op(pos, cumsum[0][L + k]);
-      neg = G::op(neg, cumsum[0][L]);
-    }
-    return G::op(pos, G::inverse(neg));
   }
 };
