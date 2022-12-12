@@ -72,7 +72,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc202_f.test.cpp
     title: test/atcoder/abc202_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc274_h.test.cpp
     title: test/atcoder/abc274_h.test.cpp
   - icon: ':x:'
@@ -301,6 +301,9 @@ data:
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
   - icon: ':x:'
+    path: test/mytest/wavelet_matrix.test.cpp
+    title: test/mytest/wavelet_matrix.test.cpp
+  - icon: ':x:'
     path: test/mytest/wavelet_matrix_sum.test.cpp
     title: test/mytest/wavelet_matrix_sum.test.cpp
   - icon: ':x:'
@@ -447,6 +450,7 @@ data:
   - test/mytest/rbst_monoid.test.cpp
   - test/mytest/kdtree_monoid.test.cpp
   - test/mytest/rbst.test.cpp
+  - test/mytest/wavelet_matrix.test.cpp
   - test/mytest/splay_am.test.cpp
   - test/mytest/max_min.test.cpp
   - test/mytest/rbst_commutative_persistent.test.cpp

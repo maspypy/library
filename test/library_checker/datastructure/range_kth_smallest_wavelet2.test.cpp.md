@@ -20,11 +20,12 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/919
+    PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
     links:
-    - https://yukicoder.me/problems/no/919
-  bundledCode: "#line 1 \"test/yukicoder/919.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/919\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    - https://judge.yosupo.jp/problem/range_kth_smallest
+  bundledCode: "#line 1 \"test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n#line\
+    \ 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
     using pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\n\
@@ -257,49 +258,30 @@ data:
     \       if (!f) L = l0, R = r0;\r\n        if (f) L += mid[d] - l0, R += mid[d]\
     \ - r0;\r\n      } else {\r\n        k -= kf, ret |= T(1) << d;\r\n        if\
     \ (!f) L += mid[d] - l0, R += mid[d] - r0;\r\n        if (f) L = l0, R = r0;\r\
-    \n      }\r\n    }\r\n    return ret;\r\n  }\r\n};\r\n#line 5 \"test/yukicoder/919.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  Wavelet_Matrix<ll> WM(A);\n\
-    \  const ll INF = 1LL << 60;\n  ll ANS = -INF;\n\n  auto get = [&](ll L, ll R)\
-    \ -> ll {\n    assert(L < R);\n    ll n = R - L;\n    return WM.kth(L, R, (n -\
-    \ 1) / 2);\n  };\n\n  FOR3(K, 1, N + 1) {\n    // \u3068\u308B\u6700\u5927\u56DE\
-    \u6570\n    ll LIM = N / K;\n    vi left(LIM);\n    vi right(LIM);\n    FOR(i,\
-    \ LIM) left[i] = get(K * i, K * i + K);\n    FOR(i, LIM) right[i] = get(N - K\
-    \ * i - K, N - K * i);\n    left = cumsum<ll>(left);\n    right = cumsum<ll>(right);\n\
-    \    // x \u56DE\u4EE5\u4E0B\u3068\u308B\u3068\u304D\u306E\uFF5E\n    FOR(i, LIM)\
-    \ chmax(left[i + 1], left[i]);\n    FOR(i, LIM) chmax(right[i + 1], right[i]);\n\
-    \    FOR(i, LIM + 1) chmax(ANS, K * (left[i] + right[LIM - i]));\n  }\n  print(ANS);\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
-    \ return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/919\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"ds/wavelet_matrix.hpp\"\n\nvoid solve()\
-    \ {\n  LL(N);\n  VEC(ll, A, N);\n  Wavelet_Matrix<ll> WM(A);\n  const ll INF =\
-    \ 1LL << 60;\n  ll ANS = -INF;\n\n  auto get = [&](ll L, ll R) -> ll {\n    assert(L\
-    \ < R);\n    ll n = R - L;\n    return WM.kth(L, R, (n - 1) / 2);\n  };\n\n  FOR3(K,\
-    \ 1, N + 1) {\n    // \u3068\u308B\u6700\u5927\u56DE\u6570\n    ll LIM = N / K;\n\
-    \    vi left(LIM);\n    vi right(LIM);\n    FOR(i, LIM) left[i] = get(K * i, K\
-    \ * i + K);\n    FOR(i, LIM) right[i] = get(N - K * i - K, N - K * i);\n    left\
-    \ = cumsum<ll>(left);\n    right = cumsum<ll>(right);\n    // x \u56DE\u4EE5\u4E0B\
-    \u3068\u308B\u3068\u304D\u306E\uFF5E\n    FOR(i, LIM) chmax(left[i + 1], left[i]);\n\
-    \    FOR(i, LIM) chmax(right[i + 1], right[i]);\n    FOR(i, LIM + 1) chmax(ANS,\
-    \ K * (left[i] + right[LIM - i]));\n  }\n  print(ANS);\n}\n\nsigned main() {\n\
-    \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \n      }\r\n    }\r\n    return ret;\r\n  }\r\n};\r\n#line 5 \"test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Wavelet_Matrix<int, false>\
+    \ WM(A);\n  FOR(Q) {\n    LL(l, r, k);\n    print(WM.kth(l, r, k));\n  }\n}\n\n\
+    signed main() {\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/wavelet_matrix.hpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Wavelet_Matrix<int, false>\
+    \ WM(A);\n  FOR(Q) {\n    LL(l, r, k);\n    print(WM.kth(l, r, k));\n  }\n}\n\n\
+    signed main() {\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - ds/wavelet_matrix.hpp
   - ds/bit_vector.hpp
   isVerificationFile: true
-  path: test/yukicoder/919.test.cpp
+  path: test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
   requiredBy: []
   timestamp: '2022-12-12 13:31:49+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yukicoder/919.test.cpp
+documentation_of: test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/919.test.cpp
-- /verify/test/yukicoder/919.test.cpp.html
-title: test/yukicoder/919.test.cpp
+- /verify/test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
+- /verify/test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp.html
+title: test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
 ---

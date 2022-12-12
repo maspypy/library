@@ -13,6 +13,9 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
+  - icon: ':question:'
+    path: random/base.hpp
+    title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -20,20 +23,20 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/919
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://yukicoder.me/problems/no/919
-  bundledCode: "#line 1 \"test/yukicoder/919.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/919\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
-    )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
-    using pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\n\
-    using u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\n\
-    using vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate\
-    \ <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
-    \ greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/mytest/wavelet_matrix.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
+    #include <my_template_compiled.hpp>\n#else\n#pragma GCC optimize(\"Ofast\")\n\
+    #pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace\
+    \ std;\n\nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\n\
+    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
+    \ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vec(type, name, ...) vector<type> name(__VA_ARGS__)\n\
     #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
     \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
@@ -257,49 +260,96 @@ data:
     \       if (!f) L = l0, R = r0;\r\n        if (f) L += mid[d] - l0, R += mid[d]\
     \ - r0;\r\n      } else {\r\n        k -= kf, ret |= T(1) << d;\r\n        if\
     \ (!f) L += mid[d] - l0, R += mid[d] - r0;\r\n        if (f) L = l0, R = r0;\r\
-    \n      }\r\n    }\r\n    return ret;\r\n  }\r\n};\r\n#line 5 \"test/yukicoder/919.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  Wavelet_Matrix<ll> WM(A);\n\
-    \  const ll INF = 1LL << 60;\n  ll ANS = -INF;\n\n  auto get = [&](ll L, ll R)\
-    \ -> ll {\n    assert(L < R);\n    ll n = R - L;\n    return WM.kth(L, R, (n -\
-    \ 1) / 2);\n  };\n\n  FOR3(K, 1, N + 1) {\n    // \u3068\u308B\u6700\u5927\u56DE\
-    \u6570\n    ll LIM = N / K;\n    vi left(LIM);\n    vi right(LIM);\n    FOR(i,\
-    \ LIM) left[i] = get(K * i, K * i + K);\n    FOR(i, LIM) right[i] = get(N - K\
-    \ * i - K, N - K * i);\n    left = cumsum<ll>(left);\n    right = cumsum<ll>(right);\n\
-    \    // x \u56DE\u4EE5\u4E0B\u3068\u308B\u3068\u304D\u306E\uFF5E\n    FOR(i, LIM)\
-    \ chmax(left[i + 1], left[i]);\n    FOR(i, LIM) chmax(right[i + 1], right[i]);\n\
-    \    FOR(i, LIM + 1) chmax(ANS, K * (left[i] + right[LIM - i]));\n  }\n  print(ANS);\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
-    \ return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/919\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"ds/wavelet_matrix.hpp\"\n\nvoid solve()\
-    \ {\n  LL(N);\n  VEC(ll, A, N);\n  Wavelet_Matrix<ll> WM(A);\n  const ll INF =\
-    \ 1LL << 60;\n  ll ANS = -INF;\n\n  auto get = [&](ll L, ll R) -> ll {\n    assert(L\
-    \ < R);\n    ll n = R - L;\n    return WM.kth(L, R, (n - 1) / 2);\n  };\n\n  FOR3(K,\
-    \ 1, N + 1) {\n    // \u3068\u308B\u6700\u5927\u56DE\u6570\n    ll LIM = N / K;\n\
-    \    vi left(LIM);\n    vi right(LIM);\n    FOR(i, LIM) left[i] = get(K * i, K\
-    \ * i + K);\n    FOR(i, LIM) right[i] = get(N - K * i - K, N - K * i);\n    left\
-    \ = cumsum<ll>(left);\n    right = cumsum<ll>(right);\n    // x \u56DE\u4EE5\u4E0B\
-    \u3068\u308B\u3068\u304D\u306E\uFF5E\n    FOR(i, LIM) chmax(left[i + 1], left[i]);\n\
-    \    FOR(i, LIM) chmax(right[i + 1], right[i]);\n    FOR(i, LIM + 1) chmax(ANS,\
-    \ K * (left[i] + right[LIM - i]));\n  }\n  print(ANS);\n}\n\nsigned main() {\n\
-    \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \n      }\r\n    }\r\n    return ret;\r\n  }\r\n};\r\n#line 2 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 6 \"test/mytest/wavelet_matrix.test.cpp\"\
+    \n\nvoid test_compress() {\n  int N = RNG(1, 64);\n  int MAX = 1 << 10;\n  vc<int>\
+    \ A(N);\n  FOR(i, N) A[i] = RNG(MAX);\n  Wavelet_Matrix<int, true> WM(A);\n\n\
+    \  int Q = 100;\n  FOR(Q) {\n    int L = RNG(0, N);\n    int R = RNG(0, N);\n\
+    \    if (L > R) swap(L, R);\n    ++R;\n    int lo = RNG(0, MAX);\n    int hi =\
+    \ RNG(0, MAX);\n    if (lo > hi) swap(lo, hi);\n    ++hi;\n    int k = RNG(R -\
+    \ L);\n    vc<int> B = {A.begin() + L, A.begin() + R};\n\n    int t = RNG(0, 3);\n\
+    \    if (t == 0) { // freq\n      int cnt = 0;\n      for (auto&& x: B)\n    \
+    \    if (lo <= x && x < hi) ++cnt;\n      assert(WM.freq(L, R, lo, hi) == cnt);\n\
+    \    }\n    if (t == 1) { // freq upper\n      int cnt = 0;\n      for (auto&&\
+    \ x: B)\n        if (x < hi) ++cnt;\n      assert(WM.freq_upper(L, R, hi) == cnt);\n\
+    \    }\n    if (t == 2) { // kth\n      sort(all(B));\n      assert(WM.kth(L,\
+    \ R, k) == B[k]);\n    }\n  }\n}\n\nvoid test_not_compress() {\n  int N = RNG(1,\
+    \ 64);\n  int MAX = 64;\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(MAX);\n  Wavelet_Matrix<int,\
+    \ false> WM(A, 6);\n\n  int Q = 100;\n  FOR(Q) {\n    int L = RNG(0, N);\n   \
+    \ int R = RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n    int lo = RNG(0,\
+    \ MAX);\n    int hi = RNG(0, MAX);\n    if (lo > hi) swap(lo, hi);\n    ++hi;\n\
+    \    int k = RNG(R - L);\n    int xor_val = RNG(MAX);\n    vc<int> B = {A.begin()\
+    \ + L, A.begin() + R};\n\n    int t = RNG(0, 6);\n    if (t == 0) { // freq\n\
+    \      int cnt = 0;\n      for (auto&& x: B)\n        if (lo <= x && x < hi) ++cnt;\n\
+    \      assert(WM.freq(L, R, lo, hi) == cnt);\n    }\n    if (t == 1) { // freq\
+    \ upper\n      int cnt = 0;\n      for (auto&& x: B)\n        if (x < hi) ++cnt;\n\
+    \      assert(WM.freq_upper(L, R, hi) == cnt);\n    }\n    if (t == 2) { // kth\n\
+    \      sort(all(B));\n      assert(WM.kth(L, R, k) == B[k]);\n    }\n    if (t\
+    \ == 3) { // xor_freq\n      for (auto&& x: B) x ^= xor_val;\n      int cnt =\
+    \ 0;\n      for (auto&& x: B)\n        if (lo <= x && x < hi) ++cnt;\n      assert(WM.xor_freq(L,\
+    \ R, lo, hi, xor_val) == cnt);\n    }\n    if (t == 4) { // xor_freq_upper\n \
+    \     for (auto&& x: B) x ^= xor_val;\n      int cnt = 0;\n      for (auto&& x:\
+    \ B)\n        if (x < hi) ++cnt;\n      assert(WM.xor_freq_upper(L, R, hi, xor_val)\
+    \ == cnt);\n    }\n    if (t == 5) { // xor_kth\n      for (auto&& x: B) x ^=\
+    \ xor_val;\n      sort(all(B));\n      assert(WM.xor_kth(L, R, k, xor_val) ==\
+    \ B[k]);\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\n\
+    signed main() {\n  FOR(1000) test_compress();\n  FOR(1000) test_not_compress();\n\
+    \  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"ds/wavelet_matrix.hpp\"\n#include \"random/base.hpp\"\
+    \n\nvoid test_compress() {\n  int N = RNG(1, 64);\n  int MAX = 1 << 10;\n  vc<int>\
+    \ A(N);\n  FOR(i, N) A[i] = RNG(MAX);\n  Wavelet_Matrix<int, true> WM(A);\n\n\
+    \  int Q = 100;\n  FOR(Q) {\n    int L = RNG(0, N);\n    int R = RNG(0, N);\n\
+    \    if (L > R) swap(L, R);\n    ++R;\n    int lo = RNG(0, MAX);\n    int hi =\
+    \ RNG(0, MAX);\n    if (lo > hi) swap(lo, hi);\n    ++hi;\n    int k = RNG(R -\
+    \ L);\n    vc<int> B = {A.begin() + L, A.begin() + R};\n\n    int t = RNG(0, 3);\n\
+    \    if (t == 0) { // freq\n      int cnt = 0;\n      for (auto&& x: B)\n    \
+    \    if (lo <= x && x < hi) ++cnt;\n      assert(WM.freq(L, R, lo, hi) == cnt);\n\
+    \    }\n    if (t == 1) { // freq upper\n      int cnt = 0;\n      for (auto&&\
+    \ x: B)\n        if (x < hi) ++cnt;\n      assert(WM.freq_upper(L, R, hi) == cnt);\n\
+    \    }\n    if (t == 2) { // kth\n      sort(all(B));\n      assert(WM.kth(L,\
+    \ R, k) == B[k]);\n    }\n  }\n}\n\nvoid test_not_compress() {\n  int N = RNG(1,\
+    \ 64);\n  int MAX = 64;\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(MAX);\n  Wavelet_Matrix<int,\
+    \ false> WM(A, 6);\n\n  int Q = 100;\n  FOR(Q) {\n    int L = RNG(0, N);\n   \
+    \ int R = RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n    int lo = RNG(0,\
+    \ MAX);\n    int hi = RNG(0, MAX);\n    if (lo > hi) swap(lo, hi);\n    ++hi;\n\
+    \    int k = RNG(R - L);\n    int xor_val = RNG(MAX);\n    vc<int> B = {A.begin()\
+    \ + L, A.begin() + R};\n\n    int t = RNG(0, 6);\n    if (t == 0) { // freq\n\
+    \      int cnt = 0;\n      for (auto&& x: B)\n        if (lo <= x && x < hi) ++cnt;\n\
+    \      assert(WM.freq(L, R, lo, hi) == cnt);\n    }\n    if (t == 1) { // freq\
+    \ upper\n      int cnt = 0;\n      for (auto&& x: B)\n        if (x < hi) ++cnt;\n\
+    \      assert(WM.freq_upper(L, R, hi) == cnt);\n    }\n    if (t == 2) { // kth\n\
+    \      sort(all(B));\n      assert(WM.kth(L, R, k) == B[k]);\n    }\n    if (t\
+    \ == 3) { // xor_freq\n      for (auto&& x: B) x ^= xor_val;\n      int cnt =\
+    \ 0;\n      for (auto&& x: B)\n        if (lo <= x && x < hi) ++cnt;\n      assert(WM.xor_freq(L,\
+    \ R, lo, hi, xor_val) == cnt);\n    }\n    if (t == 4) { // xor_freq_upper\n \
+    \     for (auto&& x: B) x ^= xor_val;\n      int cnt = 0;\n      for (auto&& x:\
+    \ B)\n        if (x < hi) ++cnt;\n      assert(WM.xor_freq_upper(L, R, hi, xor_val)\
+    \ == cnt);\n    }\n    if (t == 5) { // xor_kth\n      for (auto&& x: B) x ^=\
+    \ xor_val;\n      sort(all(B));\n      assert(WM.xor_kth(L, R, k, xor_val) ==\
+    \ B[k]);\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\n\
+    signed main() {\n  FOR(1000) test_compress();\n  FOR(1000) test_not_compress();\n\
+    \  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - ds/wavelet_matrix.hpp
   - ds/bit_vector.hpp
+  - random/base.hpp
   isVerificationFile: true
-  path: test/yukicoder/919.test.cpp
+  path: test/mytest/wavelet_matrix.test.cpp
   requiredBy: []
   timestamp: '2022-12-12 13:31:49+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yukicoder/919.test.cpp
+documentation_of: test/mytest/wavelet_matrix.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/919.test.cpp
-- /verify/test/yukicoder/919.test.cpp.html
-title: test/yukicoder/919.test.cpp
+- /verify/test/mytest/wavelet_matrix.test.cpp
+- /verify/test/mytest/wavelet_matrix.test.cpp.html
+title: test/mytest/wavelet_matrix.test.cpp
 ---

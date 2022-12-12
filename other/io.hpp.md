@@ -258,19 +258,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc273_e.test.cpp
     title: test/atcoder/abc273_e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc274_h.test.cpp
     title: test/atcoder/abc274_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc276_g.test.cpp
     title: test/atcoder/abc276_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc276_g_2.test.cpp
     title: test/atcoder/abc276_g_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/agc058d.test.cpp
     title: test/atcoder/agc058d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/arc123d.test.cpp
     title: test/atcoder/arc123d.test.cpp
   - icon: ':x:'
@@ -402,6 +402,9 @@ data:
   - icon: ':x:'
     path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
+    title: test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
   - icon: ':x:'
     path: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
@@ -1032,6 +1035,9 @@ data:
   - icon: ':x:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
+  - icon: ':x:'
+    path: test/mytest/wavelet_matrix.test.cpp
+    title: test/mytest/wavelet_matrix.test.cpp
   - icon: ':x:'
     path: test/mytest/wavelet_matrix_sum.test.cpp
     title: test/mytest/wavelet_matrix_sum.test.cpp
@@ -2043,6 +2049,7 @@ data:
   - test/mytest/kdtree_monoid.test.cpp
   - test/mytest/rbst.test.cpp
   - test/mytest/magic_square.test.cpp
+  - test/mytest/wavelet_matrix.test.cpp
   - test/mytest/splay_am.test.cpp
   - test/mytest/max_min.test.cpp
   - test/mytest/rbst_commutative_persistent.test.cpp
@@ -2168,6 +2175,7 @@ data:
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/persistent_queue.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   - test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp

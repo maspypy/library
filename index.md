@@ -133,7 +133,7 @@ data:
     - icon: ':question:'
       path: alg/monoid/monoid_reverse.hpp
       title: alg/monoid/monoid_reverse.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/monoid/mul.hpp
       title: alg/monoid/mul.hpp
     - icon: ':x:'
@@ -184,6 +184,9 @@ data:
     - icon: ':x:'
       path: ds/binary_trie.hpp
       title: ds/binary_trie.hpp
+    - icon: ':x:'
+      path: ds/bit_vector.hpp
+      title: ds/bit_vector.hpp
     - icon: ':warning:'
       path: ds/connected_component_query.hpp
       title: ds/connected_component_query.hpp
@@ -223,7 +226,7 @@ data:
     - icon: ':x:'
       path: ds/rollback_array.hpp
       title: ds/rollback_array.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/sliding_window_aggregation.hpp
       title: ds/sliding_window_aggregation.hpp
     - icon: ':x:'
@@ -763,7 +766,7 @@ data:
     - icon: ':x:'
       path: linalg/mat_inv.hpp
       title: linalg/mat_inv.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: linalg/mat_mul.hpp
       title: linalg/mat_mul.hpp
     - icon: ':x:'
@@ -879,7 +882,7 @@ data:
       title: my_template.hpp
   - name: nt
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: nt/GF2.hpp
       title: nt/GF2.hpp
     - icon: ':x:'
@@ -991,7 +994,7 @@ data:
     - icon: ':x:'
       path: poly/coef_of_rational_fps.hpp
       title: poly/coef_of_rational_fps.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/coef_of_rational_fps_2d.hpp
       title: poly/coef_of_rational_fps_2d.hpp
     - icon: ':x:'
@@ -1048,13 +1051,13 @@ data:
     - icon: ':x:'
       path: poly/fps_sqrt.hpp
       title: poly/fps_sqrt.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/from_log_differentiation.hpp
       title: poly/from_log_differentiation.hpp
     - icon: ':x:'
       path: poly/integrate.hpp
       title: poly/integrate.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/lagrange_interpolate_iota.hpp
       title: poly/lagrange_interpolate_iota.hpp
     - icon: ':question:'
@@ -1078,7 +1081,7 @@ data:
     - icon: ':x:'
       path: poly/poly_taylor_shift.hpp
       title: poly/poly_taylor_shift.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/prefix_product_of_poly.hpp
       title: poly/prefix_product_of_poly.hpp
     - icon: ':x:'
@@ -1102,7 +1105,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/sum_of_prefix_suffix_products.hpp
       title: poly/sum_of_prefix_suffix_products.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/sum_of_rationals.hpp
       title: poly/sum_of_rationals.hpp
   - name: poly/online
@@ -1171,7 +1174,7 @@ data:
     - icon: ':warning:'
       path: seq/kth_root_permutation.hpp
       title: seq/kth_root_permutation.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: seq/kth_term_of_p_recursive.hpp
       title: seq/kth_term_of_p_recursive.hpp
     - icon: ':x:'
@@ -1291,7 +1294,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/rollinghash_2d.hpp
       title: string/rollinghash_2d.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/rollinghash_field.hpp
       title: string/rollinghash_field.hpp
     - icon: ':x:'
@@ -1584,19 +1587,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc273_e.test.cpp
       title: test/atcoder/abc273_e.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc274_h.test.cpp
       title: test/atcoder/abc274_h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc276_g.test.cpp
       title: test/atcoder/abc276_g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc276_g_2.test.cpp
       title: test/atcoder/abc276_g_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/agc058d.test.cpp
       title: test/atcoder/agc058d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/arc123d.test.cpp
       title: test/atcoder/arc123d.test.cpp
     - icon: ':x:'
@@ -1732,6 +1735,9 @@ data:
     - icon: ':x:'
       path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
       title: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
+    - icon: ':x:'
+      path: test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
+      title: test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
     - icon: ':x:'
       path: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
       title: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
@@ -2380,6 +2386,9 @@ data:
     - icon: ':x:'
       path: test/mytest/tutte.test.cpp
       title: test/mytest/tutte.test.cpp
+    - icon: ':x:'
+      path: test/mytest/wavelet_matrix.test.cpp
+      title: test/mytest/wavelet_matrix.test.cpp
     - icon: ':x:'
       path: test/mytest/wavelet_matrix_sum.test.cpp
       title: test/mytest/wavelet_matrix_sum.test.cpp
