@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: datetime/datetime.hpp
     title: datetime/datetime.hpp
   - icon: ':question:'
