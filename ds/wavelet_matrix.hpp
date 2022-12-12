@@ -38,34 +38,15 @@ struct Wavelet_Matrix {
     }
   }
 
-  // [L, R) 内にある [a, b) を数える
-  int freq(int L, int R, T a, T b) {
-    return freq_upper(L, R, b) - freq_upper(L, R, a);
-  }
-
-  // [L, R) 内にある [-inf, t) を数える
-  int freq_upper(int L, int R, T t) {
-    ll x = (COMPRESS ? LB(key, t) : t);
-    if (x >= (1 << lg)) return R - L;
-    int ret = 0;
-    FOR_R(d, lg) {
-      bool f = (x >> d) & 1;
-      if (f) ret += bv[d].rank(R, 0) - bv[d].rank(L, 0);
-      L = bv[d].rank(L, f) + (f ? mid[d] : 0);
-      R = bv[d].rank(R, f) + (f ? mid[d] : 0);
-    }
-    return ret;
-  }
-
   // xor した結果で [a, b) に収まるものを数える
-  int xor_freq(int L, int R, T a, T b, T xor_val) {
-    static_assert(!COMPRESS);
-    return xor_freq_upper(L, R, b, xor_val) - xor_freq_upper(L, R, a, xor_val);
+  int count(int L, int R, T a, T b, T xor_val = 0) {
+    return count_prefix(L, R, b, xor_val) - count_prefix(L, R, a, xor_val);
   }
 
-  // xor した結果で [0, t) に収まるものを数える
-  int xor_freq_upper(int L, int R, T x, T xor_val) {
-    static_assert(!COMPRESS);
+  // xor した結果で [0, x) に収まるものを数える
+  int count_prefix(int L, int R, T x, T xor_val = 0) {
+    if (xor_val != 0) assert(!COMPRESS);
+    x = (COMPRESS ? LB(key, x) : x);
     if (x >= (1 << lg)) return R - L;
     int ret = 0;
     FOR_R(d, lg) {
@@ -79,21 +60,8 @@ struct Wavelet_Matrix {
   }
 
   // [L, R) の中で k>=0 番目
-  T kth(int L, int R, int k) {
-    assert(0 <= k && k < R - L);
-    T ret = 0;
-    for (int d = lg - 1; d >= 0; --d) {
-      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
-      if (k < r0 - l0) L = l0, R = r0;
-      if (k >= r0 - l0)
-        k -= r0 - l0, ret |= T(1) << d, L += mid[d] - l0, R += mid[d] - r0;
-    }
-    return (COMPRESS ? key[ret] : ret);
-  }
-
-  // xor した結果で [L, R) の中で k>=0 番目
-  T xor_kth(int L, int R, int k, T xor_val) {
-    static_assert(!COMPRESS);
+  T kth(int L, int R, int k, T xor_val = 0) {
+    if (xor_val != 0) assert(!COMPRESS);
     assert(0 <= k && k < R - L);
     T ret = 0;
     for (int d = lg - 1; d >= 0; --d) {
@@ -109,6 +77,6 @@ struct Wavelet_Matrix {
         if (f) L = l0, R = r0;
       }
     }
-    return ret;
+    return (COMPRESS ? key[ret] : ret);
   }
 };

@@ -25,17 +25,17 @@ void test_compress() {
     vc<int> B = {A.begin() + L, A.begin() + R};
 
     int t = RNG(0, 3);
-    if (t == 0) { // freq
+    if (t == 0) { // count
       int cnt = 0;
       for (auto&& x: B)
         if (lo <= x && x < hi) ++cnt;
-      assert(WM.freq(L, R, lo, hi) == cnt);
+      assert(WM.count(L, R, lo, hi) == cnt);
     }
-    if (t == 1) { // freq upper
+    if (t == 1) { // count_prefix
       int cnt = 0;
       for (auto&& x: B)
         if (x < hi) ++cnt;
-      assert(WM.freq_upper(L, R, hi) == cnt);
+      assert(WM.count_prefix(L, R, hi) == cnt);
     }
     if (t == 2) { // kth
       sort(all(B));
@@ -65,41 +65,25 @@ void test_not_compress() {
     int xor_val = RNG(MAX);
     vc<int> B = {A.begin() + L, A.begin() + R};
 
-    int t = RNG(0, 6);
-    if (t == 0) { // freq
-      int cnt = 0;
-      for (auto&& x: B)
-        if (lo <= x && x < hi) ++cnt;
-      assert(WM.freq(L, R, lo, hi) == cnt);
-    }
-    if (t == 1) { // freq upper
-      int cnt = 0;
-      for (auto&& x: B)
-        if (x < hi) ++cnt;
-      assert(WM.freq_upper(L, R, hi) == cnt);
-    }
-    if (t == 2) { // kth
-      sort(all(B));
-      assert(WM.kth(L, R, k) == B[k]);
-    }
-    if (t == 3) { // xor_freq
+    int t = RNG(0, 3);
+    if (t == 0) { // count
       for (auto&& x: B) x ^= xor_val;
       int cnt = 0;
       for (auto&& x: B)
         if (lo <= x && x < hi) ++cnt;
-      assert(WM.xor_freq(L, R, lo, hi, xor_val) == cnt);
+      assert(WM.count(L, R, lo, hi, xor_val) == cnt);
     }
-    if (t == 4) { // xor_freq_upper
+    if (t == 1) { // count_prefix
       for (auto&& x: B) x ^= xor_val;
       int cnt = 0;
       for (auto&& x: B)
         if (x < hi) ++cnt;
-      assert(WM.xor_freq_upper(L, R, hi, xor_val) == cnt);
+      assert(WM.count_prefix(L, R, hi, xor_val) == cnt);
     }
-    if (t == 5) { // xor_kth
+    if (t == 2) { // xor_kth
       for (auto&& x: B) x ^= xor_val;
       sort(all(B));
-      assert(WM.xor_kth(L, R, k, xor_val) == B[k]);
+      assert(WM.kth(L, R, k, xor_val) == B[k]);
     }
   }
 }
