@@ -8,10 +8,12 @@ struct Wavelet_Matrix {
   vector<int> mid;
   vector<Bit_Vector> bv;
   vc<T> key;
+  const bool set_log;
 
-  Wavelet_Matrix(vector<T> A, int log = 0) : N(len(A)), lg(log) {
+  Wavelet_Matrix(vector<T> A, int log = -1)
+      : N(len(A)), lg(log), set_log(log != -1) {
     if (COMPRESS) {
-      assert(lg == 0);
+      assert(!set_log);
       key.reserve(N);
       vc<int> I = argsort(A);
       for (auto&& i: I) {
@@ -20,7 +22,7 @@ struct Wavelet_Matrix {
       }
       key.shrink_to_fit();
     }
-    if (lg == 0) lg = __lg(max(MAX(A), 1)) + 1;
+    if (lg == -1) lg = __lg(max(MAX(A), 1)) + 1;
     mid.resize(lg);
     bv.assign(lg, Bit_Vector(N));
     vc<T> A0(N), A1(N);
@@ -45,7 +47,7 @@ struct Wavelet_Matrix {
 
   // xor した結果で [0, x) に収まるものを数える
   int count_prefix(int L, int R, T x, T xor_val = 0) {
-    if (xor_val != 0) assert(!COMPRESS);
+    if (xor_val != 0) assert(set_log);
     x = (COMPRESS ? LB(key, x) : x);
     if (x >= (1 << lg)) return R - L;
     int ret = 0;
@@ -61,7 +63,7 @@ struct Wavelet_Matrix {
 
   // [L, R) の中で k>=0 番目
   T kth(int L, int R, int k, T xor_val = 0) {
-    if (xor_val != 0) assert(!COMPRESS);
+    if (xor_val != 0) assert(set_log);
     assert(0 <= k && k < R - L);
     T ret = 0;
     for (int d = lg - 1; d >= 0; --d) {
