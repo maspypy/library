@@ -51,7 +51,7 @@ void test() {
           int y = x ^ xor_val;
           if (lo <= y && y < hi) ++cnt;
         }
-        assert(cnt == X.freq(root, lo, hi, xor_val));
+        assert(cnt == X.count(root, lo, hi, xor_val));
       }
     }
   }
