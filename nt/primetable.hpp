@@ -1,9 +1,11 @@
 #pragma once
-vc<ll> primetable(int LIM) {
+
+template <typename T = long long>
+vc<T> primetable(int LIM) {
   ++LIM;
   const int S = 32768;
   static int done = 2;
-  static vc<ll> primes = {2}, sieve(S + 1);
+  static vc<T> primes = {2}, sieve(S + 1);
 
   if (done < LIM) {
     done = LIM;
@@ -11,7 +13,7 @@ vc<ll> primetable(int LIM) {
     primes = {2}, sieve.assign(S + 1, 0);
     const int R = LIM / 2;
     primes.reserve(int(LIM / log(LIM) * 1.1));
-    vc<pi> cp;
+    vc<pair<int, int>> cp;
     for (int i = 3; i <= S; i += 2) {
       if (!sieve[i]) {
         cp.eb(i, i * i / 2);
