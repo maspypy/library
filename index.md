@@ -153,7 +153,7 @@ data:
       title: alg/monoid/xor_basis.hpp
   - name: convex
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: convex/cht.hpp
       title: convex/cht.hpp
     - icon: ':x:'
@@ -253,7 +253,7 @@ data:
       title: ds/fenwicktree/fenwicktree_2d_dense.hpp
   - name: ds/kdtree
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/kdtree/kdtree.hpp
       title: ds/kdtree/kdtree.hpp
     - icon: ':x:'
@@ -778,7 +778,7 @@ data:
     - icon: ':warning:'
       path: linalg/solve_linear_F2.hpp
       title: linalg/solve_linear_F2.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: linalg/solve_linear_lower.hpp
       title: linalg/solve_linear_lower.hpp
     - icon: ':x:'
@@ -1545,13 +1545,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc229h.test.cpp
       title: test/atcoder/abc229h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc234ex.test.cpp
       title: test/atcoder/abc234ex.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc244h.test.cpp
       title: test/atcoder/abc244h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc249_ex.test.cpp
       title: test/atcoder/abc249_ex.test.cpp
     - icon: ':x:'
