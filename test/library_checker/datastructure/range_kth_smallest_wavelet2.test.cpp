@@ -6,7 +6,7 @@
 void solve() {
   LL(N, Q);
   VEC(int, A, N);
-  Wavelet_Matrix<int, true> WM(A);
+  Wavelet_Matrix<int, false> WM(A);
   FOR(Q) {
     LL(l, r, k);
     print(WM.kth(l, r, k));
