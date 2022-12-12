@@ -278,9 +278,9 @@ data:
     \      int hi = RNG(0, 1 << LOG);\n        int xor_val = RNG(0, 1 << LOG);\n \
     \       if (lo > hi) swap(lo, hi);\n        ++hi;\n        int cnt = 0;\n    \
     \    for (auto&& x: A) {\n          int y = x ^ xor_val;\n          if (lo <=\
-    \ y && y < hi) ++cnt;\n        }\n        assert(cnt == X.freq(root, lo, hi, xor_val));\n\
-    \      }\n    }\n  }\n}\n\nvoid solve() {\n  INT(a, b);\n  print(a + b);\n}\n\n\
-    signed main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
+    \ y && y < hi) ++cnt;\n        }\n        assert(cnt == X.count(root, lo, hi,\
+    \ xor_val));\n      }\n    }\n  }\n}\n\nvoid solve() {\n  INT(a, b);\n  print(a\
+    \ + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"ds/binary_trie.hpp\"\n#include \"random/base.hpp\"\
     \n\nvoid test() {\n  const int LOG = 5;\n  Binary_Trie<LOG, false, 100> X;\n\n\
@@ -299,9 +299,9 @@ data:
     \      int hi = RNG(0, 1 << LOG);\n        int xor_val = RNG(0, 1 << LOG);\n \
     \       if (lo > hi) swap(lo, hi);\n        ++hi;\n        int cnt = 0;\n    \
     \    for (auto&& x: A) {\n          int y = x ^ xor_val;\n          if (lo <=\
-    \ y && y < hi) ++cnt;\n        }\n        assert(cnt == X.freq(root, lo, hi, xor_val));\n\
-    \      }\n    }\n  }\n}\n\nvoid solve() {\n  INT(a, b);\n  print(a + b);\n}\n\n\
-    signed main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
+    \ y && y < hi) ++cnt;\n        }\n        assert(cnt == X.count(root, lo, hi,\
+    \ xor_val));\n      }\n    }\n  }\n}\n\nvoid solve() {\n  INT(a, b);\n  print(a\
+    \ + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -310,7 +310,7 @@ data:
   isVerificationFile: true
   path: test/mytest/binary_trie.test.cpp
   requiredBy: []
-  timestamp: '2022-12-12 22:45:45+09:00'
+  timestamp: '2022-12-12 22:58:40+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/binary_trie.test.cpp
