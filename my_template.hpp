@@ -1,3 +1,6 @@
+#if defined(LOCAL)
+#include <my_template_compiled.hpp>
+#else
 #pragma GCC optimize("Ofast")
 #pragma GCC optimize("unroll-loops")
 
@@ -76,7 +79,8 @@ T SUM(const vector<U> &A) {
 #define MAX(v) *max_element(all(v))
 #define LB(c, x) distance((c).begin(), lower_bound(all(c), (x)))
 #define UB(c, x) distance((c).begin(), upper_bound(all(c), (x)))
-#define UNIQUE(x) sort(all(x)), x.erase(unique(all(x)), x.end()), x.shrink_to_fit()
+#define UNIQUE(x) \
+  sort(all(x)), x.erase(unique(all(x)), x.end()), x.shrink_to_fit()
 
 int popcnt(int x) { return __builtin_popcount(x); }
 int popcnt(u32 x) { return __builtin_popcount(x); }
@@ -207,3 +211,4 @@ vc<T> rearrange(const vc<T> &A, const vc<int> &I) {
   FOR(i, n) B[i] = A[I[i]];
   return B;
 }
+#endif
