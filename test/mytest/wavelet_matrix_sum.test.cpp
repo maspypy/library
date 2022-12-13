@@ -37,7 +37,7 @@ void test_compress() {
       int cnt = 0, sm = 0;
       for (auto&& x: B)
         if (x < hi) ++cnt, sm += add_val[x];
-      assert(WM.count_prefix(L, R, hi) == P({cnt, sm}));
+      assert(WM.prefix_count(L, R, hi) == P({cnt, sm}));
     }
     if (t == 2) { // kth
       int k = RNG(R - L + 1);
@@ -51,7 +51,7 @@ void test_compress() {
       int sm = RNG(0, MAX * (R - L) + 1);
       int val = WM.max_right_value([&](int e) { return e <= sm; }, L, R);
       int val2 = binary_search(
-          [&](int val) -> bool { return WM.count_prefix(L, R, val).se <= sm; },
+          [&](int val) -> bool { return WM.prefix_count(L, R, val).se <= sm; },
           0, MAX + 1);
       if (val2 == MAX) val2 = WM.INF;
       assert(val == val2);
@@ -107,7 +107,7 @@ void test_not_compress() {
         int y = x ^ xor_val;
         if (y < hi) cnt += 1, sm += add_val[x];
       }
-      assert(WM.count_prefix(L, R, hi, xor_val) == P({cnt, sm}));
+      assert(WM.prefix_count(L, R, hi, xor_val) == P({cnt, sm}));
     }
     if (t == 2) { // kth
       int k = RNG(R - L + 1);
@@ -124,7 +124,7 @@ void test_not_compress() {
           = WM.max_right_value([&](int e) { return e <= sm; }, L, R, xor_val);
       int val2 = binary_search(
           [&](int val) -> bool {
-            return WM.count_prefix(L, R, val, xor_val).se <= sm;
+            return WM.prefix_count(L, R, val, xor_val).se <= sm;
           },
           0, MAX + 1);
       if (val2 == MAX) val2 = WM.INF;
