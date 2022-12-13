@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix.hpp
     title: ds/wavelet_matrix.hpp
   - icon: ':question:'
@@ -219,7 +219,7 @@ data:
     \ if (COMPRESS) {\r\n      assert(!set_log);\r\n      key.reserve(N);\r\n    \
     \  vc<int> I = argsort(A);\r\n      for (auto&& i: I) {\r\n        if (key.empty()\
     \ || key.back() != A[i]) key.eb(A[i]);\r\n        A[i] = len(key) - 1;\r\n   \
-    \   }\r\n      key.shrink_to_fit();\r\n    }\r\n    if (lg == -1) lg = __lg(max(MAX(A),\
+    \   }\r\n      key.shrink_to_fit();\r\n    }\r\n    if (lg == -1) lg = __lg(max<ll>(MAX(A),\
     \ 1)) + 1;\r\n    mid.resize(lg);\r\n    bv.assign(lg, Bit_Vector(N));\r\n   \
     \ vc<T> A0(N), A1(N);\r\n    FOR_R(d, lg) {\r\n      int p0 = 0, p1 = 0;\r\n \
     \     FOR(i, N) {\r\n        bool f = (A[i] >> d & 1);\r\n        if (!f) A0[p0++]\
@@ -227,10 +227,10 @@ data:
     \  mid[d] = p0;\r\n      bv[d].build();\r\n      swap(A, A0);\r\n      FOR(i,\
     \ p1) A[p0 + i] = A1[i];\r\n    }\r\n  }\r\n\r\n  // xor \u3057\u305F\u7D50\u679C\
     \u3067 [a, b) \u306B\u53CE\u307E\u308B\u3082\u306E\u3092\u6570\u3048\u308B\r\n\
-    \  int count(int L, int R, T a, T b, T xor_val = 0) {\r\n    return count_prefix(L,\
-    \ R, b, xor_val) - count_prefix(L, R, a, xor_val);\r\n  }\r\n\r\n  // xor \u3057\
+    \  int count(int L, int R, T a, T b, T xor_val = 0) {\r\n    return prefix_count(L,\
+    \ R, b, xor_val) - prefix_count(L, R, a, xor_val);\r\n  }\r\n\r\n  // xor \u3057\
     \u305F\u7D50\u679C\u3067 [0, x) \u306B\u53CE\u307E\u308B\u3082\u306E\u3092\u6570\
-    \u3048\u308B\r\n  int count_prefix(int L, int R, T x, T xor_val = 0) {\r\n   \
+    \u3048\u308B\r\n  int prefix_count(int L, int R, T x, T xor_val = 0) {\r\n   \
     \ if (xor_val != 0) assert(set_log);\r\n    x = (COMPRESS ? LB(key, x) : x);\r\
     \n    if (x >= (1 << lg)) return R - L;\r\n    int ret = 0;\r\n    FOR_R(d, lg)\
     \ {\r\n      bool add = (x >> d) & 1;\r\n      bool f = ((x ^ xor_val) >> d) &\
@@ -263,7 +263,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   requiredBy: []
-  timestamp: '2022-12-13 08:55:33+09:00'
+  timestamp: '2022-12-13 09:39:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp

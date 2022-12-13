@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix.hpp
     title: ds/wavelet_matrix.hpp
   - icon: ':question:'
@@ -221,7 +221,7 @@ data:
     \ if (COMPRESS) {\r\n      assert(!set_log);\r\n      key.reserve(N);\r\n    \
     \  vc<int> I = argsort(A);\r\n      for (auto&& i: I) {\r\n        if (key.empty()\
     \ || key.back() != A[i]) key.eb(A[i]);\r\n        A[i] = len(key) - 1;\r\n   \
-    \   }\r\n      key.shrink_to_fit();\r\n    }\r\n    if (lg == -1) lg = __lg(max(MAX(A),\
+    \   }\r\n      key.shrink_to_fit();\r\n    }\r\n    if (lg == -1) lg = __lg(max<ll>(MAX(A),\
     \ 1)) + 1;\r\n    mid.resize(lg);\r\n    bv.assign(lg, Bit_Vector(N));\r\n   \
     \ vc<T> A0(N), A1(N);\r\n    FOR_R(d, lg) {\r\n      int p0 = 0, p1 = 0;\r\n \
     \     FOR(i, N) {\r\n        bool f = (A[i] >> d & 1);\r\n        if (!f) A0[p0++]\
@@ -229,10 +229,10 @@ data:
     \  mid[d] = p0;\r\n      bv[d].build();\r\n      swap(A, A0);\r\n      FOR(i,\
     \ p1) A[p0 + i] = A1[i];\r\n    }\r\n  }\r\n\r\n  // xor \u3057\u305F\u7D50\u679C\
     \u3067 [a, b) \u306B\u53CE\u307E\u308B\u3082\u306E\u3092\u6570\u3048\u308B\r\n\
-    \  int count(int L, int R, T a, T b, T xor_val = 0) {\r\n    return count_prefix(L,\
-    \ R, b, xor_val) - count_prefix(L, R, a, xor_val);\r\n  }\r\n\r\n  // xor \u3057\
+    \  int count(int L, int R, T a, T b, T xor_val = 0) {\r\n    return prefix_count(L,\
+    \ R, b, xor_val) - prefix_count(L, R, a, xor_val);\r\n  }\r\n\r\n  // xor \u3057\
     \u305F\u7D50\u679C\u3067 [0, x) \u306B\u53CE\u307E\u308B\u3082\u306E\u3092\u6570\
-    \u3048\u308B\r\n  int count_prefix(int L, int R, T x, T xor_val = 0) {\r\n   \
+    \u3048\u308B\r\n  int prefix_count(int L, int R, T x, T xor_val = 0) {\r\n   \
     \ if (xor_val != 0) assert(set_log);\r\n    x = (COMPRESS ? LB(key, x) : x);\r\
     \n    if (x >= (1 << lg)) return R - L;\r\n    int ret = 0;\r\n    FOR_R(d, lg)\
     \ {\r\n      bool add = (x >> d) & 1;\r\n      bool f = ((x ^ xor_val) >> d) &\
@@ -262,7 +262,7 @@ data:
     \    if (t == 0) { // count\n      int cnt = 0;\n      for (auto&& x: B)\n   \
     \     if (lo <= x && x < hi) ++cnt;\n      assert(WM.count(L, R, lo, hi) == cnt);\n\
     \    }\n    if (t == 1) { // count_prefix\n      int cnt = 0;\n      for (auto&&\
-    \ x: B)\n        if (x < hi) ++cnt;\n      assert(WM.count_prefix(L, R, hi) ==\
+    \ x: B)\n        if (x < hi) ++cnt;\n      assert(WM.prefix_count(L, R, hi) ==\
     \ cnt);\n    }\n    if (t == 2) { // kth\n      sort(all(B));\n      assert(WM.kth(L,\
     \ R, k) == B[k]);\n    }\n  }\n}\n\nvoid test_not_compress() {\n  int N = RNG(1,\
     \ 64);\n  int MAX = 64;\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(MAX);\n  Wavelet_Matrix<int,\
@@ -275,7 +275,7 @@ data:
     \ x: B)\n        if (lo <= x && x < hi) ++cnt;\n      assert(WM.count(L, R, lo,\
     \ hi, xor_val) == cnt);\n    }\n    if (t == 1) { // count_prefix\n      for (auto&&\
     \ x: B) x ^= xor_val;\n      int cnt = 0;\n      for (auto&& x: B)\n        if\
-    \ (x < hi) ++cnt;\n      assert(WM.count_prefix(L, R, hi, xor_val) == cnt);\n\
+    \ (x < hi) ++cnt;\n      assert(WM.prefix_count(L, R, hi, xor_val) == cnt);\n\
     \    }\n    if (t == 2) { // xor_kth\n      for (auto&& x: B) x ^= xor_val;\n\
     \      sort(all(B));\n      assert(WM.kth(L, R, k, xor_val) == B[k]);\n    }\n\
     \  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n\
@@ -292,7 +292,7 @@ data:
     \    if (t == 0) { // count\n      int cnt = 0;\n      for (auto&& x: B)\n   \
     \     if (lo <= x && x < hi) ++cnt;\n      assert(WM.count(L, R, lo, hi) == cnt);\n\
     \    }\n    if (t == 1) { // count_prefix\n      int cnt = 0;\n      for (auto&&\
-    \ x: B)\n        if (x < hi) ++cnt;\n      assert(WM.count_prefix(L, R, hi) ==\
+    \ x: B)\n        if (x < hi) ++cnt;\n      assert(WM.prefix_count(L, R, hi) ==\
     \ cnt);\n    }\n    if (t == 2) { // kth\n      sort(all(B));\n      assert(WM.kth(L,\
     \ R, k) == B[k]);\n    }\n  }\n}\n\nvoid test_not_compress() {\n  int N = RNG(1,\
     \ 64);\n  int MAX = 64;\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(MAX);\n  Wavelet_Matrix<int,\
@@ -305,7 +305,7 @@ data:
     \ x: B)\n        if (lo <= x && x < hi) ++cnt;\n      assert(WM.count(L, R, lo,\
     \ hi, xor_val) == cnt);\n    }\n    if (t == 1) { // count_prefix\n      for (auto&&\
     \ x: B) x ^= xor_val;\n      int cnt = 0;\n      for (auto&& x: B)\n        if\
-    \ (x < hi) ++cnt;\n      assert(WM.count_prefix(L, R, hi, xor_val) == cnt);\n\
+    \ (x < hi) ++cnt;\n      assert(WM.prefix_count(L, R, hi, xor_val) == cnt);\n\
     \    }\n    if (t == 2) { // xor_kth\n      for (auto&& x: B) x ^= xor_val;\n\
     \      sort(all(B));\n      assert(WM.kth(L, R, k, xor_val) == B[k]);\n    }\n\
     \  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n\
@@ -320,7 +320,7 @@ data:
   isVerificationFile: true
   path: test/mytest/wavelet_matrix.test.cpp
   requiredBy: []
-  timestamp: '2022-12-13 08:55:33+09:00'
+  timestamp: '2022-12-13 09:39:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/wavelet_matrix.test.cpp

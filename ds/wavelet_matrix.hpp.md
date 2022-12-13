@@ -1,14 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/atcoder/abc127f_1.test.cpp
-    title: test/atcoder/abc127f_1.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
@@ -18,21 +15,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/wavelet_matrix.test.cpp
     title: test/mytest/wavelet_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1332.test.cpp
     title: test/yukicoder/1332.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/2065.test.cpp
-    title: test/yukicoder/2065.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/919.test.cpp
     title: test/yukicoder/919.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/924.test.cpp
-    title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  vc<pair<u32,\
@@ -52,7 +43,7 @@ data:
     \ if (COMPRESS) {\r\n      assert(!set_log);\r\n      key.reserve(N);\r\n    \
     \  vc<int> I = argsort(A);\r\n      for (auto&& i: I) {\r\n        if (key.empty()\
     \ || key.back() != A[i]) key.eb(A[i]);\r\n        A[i] = len(key) - 1;\r\n   \
-    \   }\r\n      key.shrink_to_fit();\r\n    }\r\n    if (lg == -1) lg = __lg(max(MAX(A),\
+    \   }\r\n      key.shrink_to_fit();\r\n    }\r\n    if (lg == -1) lg = __lg(max<ll>(MAX(A),\
     \ 1)) + 1;\r\n    mid.resize(lg);\r\n    bv.assign(lg, Bit_Vector(N));\r\n   \
     \ vc<T> A0(N), A1(N);\r\n    FOR_R(d, lg) {\r\n      int p0 = 0, p1 = 0;\r\n \
     \     FOR(i, N) {\r\n        bool f = (A[i] >> d & 1);\r\n        if (!f) A0[p0++]\
@@ -60,10 +51,10 @@ data:
     \  mid[d] = p0;\r\n      bv[d].build();\r\n      swap(A, A0);\r\n      FOR(i,\
     \ p1) A[p0 + i] = A1[i];\r\n    }\r\n  }\r\n\r\n  // xor \u3057\u305F\u7D50\u679C\
     \u3067 [a, b) \u306B\u53CE\u307E\u308B\u3082\u306E\u3092\u6570\u3048\u308B\r\n\
-    \  int count(int L, int R, T a, T b, T xor_val = 0) {\r\n    return count_prefix(L,\
-    \ R, b, xor_val) - count_prefix(L, R, a, xor_val);\r\n  }\r\n\r\n  // xor \u3057\
+    \  int count(int L, int R, T a, T b, T xor_val = 0) {\r\n    return prefix_count(L,\
+    \ R, b, xor_val) - prefix_count(L, R, a, xor_val);\r\n  }\r\n\r\n  // xor \u3057\
     \u305F\u7D50\u679C\u3067 [0, x) \u306B\u53CE\u307E\u308B\u3082\u306E\u3092\u6570\
-    \u3048\u308B\r\n  int count_prefix(int L, int R, T x, T xor_val = 0) {\r\n   \
+    \u3048\u308B\r\n  int prefix_count(int L, int R, T x, T xor_val = 0) {\r\n   \
     \ if (xor_val != 0) assert(set_log);\r\n    x = (COMPRESS ? LB(key, x) : x);\r\
     \n    if (x >= (1 << lg)) return R - L;\r\n    int ret = 0;\r\n    FOR_R(d, lg)\
     \ {\r\n      bool add = (x >> d) & 1;\r\n      bool f = ((x ^ xor_val) >> d) &\
@@ -90,7 +81,7 @@ data:
     \n      key.reserve(N);\r\n      vc<int> I = argsort(A);\r\n      for (auto&&\
     \ i: I) {\r\n        if (key.empty() || key.back() != A[i]) key.eb(A[i]);\r\n\
     \        A[i] = len(key) - 1;\r\n      }\r\n      key.shrink_to_fit();\r\n   \
-    \ }\r\n    if (lg == -1) lg = __lg(max(MAX(A), 1)) + 1;\r\n    mid.resize(lg);\r\
+    \ }\r\n    if (lg == -1) lg = __lg(max<ll>(MAX(A), 1)) + 1;\r\n    mid.resize(lg);\r\
     \n    bv.assign(lg, Bit_Vector(N));\r\n    vc<T> A0(N), A1(N);\r\n    FOR_R(d,\
     \ lg) {\r\n      int p0 = 0, p1 = 0;\r\n      FOR(i, N) {\r\n        bool f =\
     \ (A[i] >> d & 1);\r\n        if (!f) A0[p0++] = A[i];\r\n        if (f) bv[d].set(i),\
@@ -98,9 +89,9 @@ data:
     \      swap(A, A0);\r\n      FOR(i, p1) A[p0 + i] = A1[i];\r\n    }\r\n  }\r\n\
     \r\n  // xor \u3057\u305F\u7D50\u679C\u3067 [a, b) \u306B\u53CE\u307E\u308B\u3082\
     \u306E\u3092\u6570\u3048\u308B\r\n  int count(int L, int R, T a, T b, T xor_val\
-    \ = 0) {\r\n    return count_prefix(L, R, b, xor_val) - count_prefix(L, R, a,\
+    \ = 0) {\r\n    return prefix_count(L, R, b, xor_val) - prefix_count(L, R, a,\
     \ xor_val);\r\n  }\r\n\r\n  // xor \u3057\u305F\u7D50\u679C\u3067 [0, x) \u306B\
-    \u53CE\u307E\u308B\u3082\u306E\u3092\u6570\u3048\u308B\r\n  int count_prefix(int\
+    \u53CE\u307E\u308B\u3082\u306E\u3092\u6570\u3048\u308B\r\n  int prefix_count(int\
     \ L, int R, T x, T xor_val = 0) {\r\n    if (xor_val != 0) assert(set_log);\r\n\
     \    x = (COMPRESS ? LB(key, x) : x);\r\n    if (x >= (1 << lg)) return R - L;\r\
     \n    int ret = 0;\r\n    FOR_R(d, lg) {\r\n      bool add = (x >> d) & 1;\r\n\
@@ -122,17 +113,14 @@ data:
   isVerificationFile: false
   path: ds/wavelet_matrix.hpp
   requiredBy: []
-  timestamp: '2022-12-13 08:55:33+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-12-13 09:39:12+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/2065.test.cpp
-  - test/yukicoder/924.test.cpp
   - test/yukicoder/1332.test.cpp
   - test/yukicoder/919.test.cpp
   - test/mytest/wavelet_matrix.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
-  - test/atcoder/abc127f_1.test.cpp
 documentation_of: ds/wavelet_matrix.hpp
 layout: document
 redirect_from:
