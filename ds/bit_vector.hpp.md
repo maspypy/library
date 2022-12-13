@@ -5,6 +5,9 @@ data:
   - icon: ':question:'
     path: ds/wavelet_matrix.hpp
     title: ds/wavelet_matrix.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/wavelet_matrix_sum.hpp
+    title: ds/wavelet_matrix_sum.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/atcoder/abc127f_1.test.cpp
@@ -18,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/wavelet_matrix.test.cpp
     title: test/mytest/wavelet_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/wavelet_matrix_sum.test.cpp
     title: test/mytest/wavelet_matrix_sum.test.cpp
   - icon: ':x:'
@@ -57,6 +60,7 @@ data:
   path: ds/bit_vector.hpp
   requiredBy:
   - ds/wavelet_matrix.hpp
+  - ds/wavelet_matrix_sum.hpp
   timestamp: '2022-12-12 13:31:49+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

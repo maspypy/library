@@ -71,7 +71,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/range_add_range_sum.hpp
     title: ds/range_add_range_sum.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix_sum.hpp
     title: ds/wavelet_matrix_sum.hpp
   - icon: ':heavy_check_mark:'
@@ -256,6 +256,9 @@ data:
     path: test/mytest/summin_add.test.cpp
     title: test/mytest/summin_add.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/wavelet_matrix_sum.test.cpp
+    title: test/mytest/wavelet_matrix_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
   - icon: ':heavy_check_mark:'
@@ -432,6 +435,7 @@ data:
   - test/mytest/segtree_xor_prod.test.cpp
   - test/mytest/splay_am.test.cpp
   - test/mytest/rbst_commutative_persistent.test.cpp
+  - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/rbst_am_2.test.cpp
   - test/mytest/ARC30D.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
