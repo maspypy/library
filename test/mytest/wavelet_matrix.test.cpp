@@ -35,7 +35,7 @@ void test_compress() {
       int cnt = 0;
       for (auto&& x: B)
         if (x < hi) ++cnt;
-      assert(WM.count_prefix(L, R, hi) == cnt);
+      assert(WM.prefix_count(L, R, hi) == cnt);
     }
     if (t == 2) { // kth
       sort(all(B));
@@ -78,7 +78,7 @@ void test_not_compress() {
       int cnt = 0;
       for (auto&& x: B)
         if (x < hi) ++cnt;
-      assert(WM.count_prefix(L, R, hi, xor_val) == cnt);
+      assert(WM.prefix_count(L, R, hi, xor_val) == cnt);
     }
     if (t == 2) { // xor_kth
       for (auto&& x: B) x ^= xor_val;

@@ -22,7 +22,7 @@ struct Wavelet_Matrix {
       }
       key.shrink_to_fit();
     }
-    if (lg == -1) lg = __lg(max(MAX(A), 1)) + 1;
+    if (lg == -1) lg = __lg(max<ll>(MAX(A), 1)) + 1;
     mid.resize(lg);
     bv.assign(lg, Bit_Vector(N));
     vc<T> A0(N), A1(N);
@@ -42,11 +42,11 @@ struct Wavelet_Matrix {
 
   // xor した結果で [a, b) に収まるものを数える
   int count(int L, int R, T a, T b, T xor_val = 0) {
-    return count_prefix(L, R, b, xor_val) - count_prefix(L, R, a, xor_val);
+    return prefix_count(L, R, b, xor_val) - prefix_count(L, R, a, xor_val);
   }
 
   // xor した結果で [0, x) に収まるものを数える
-  int count_prefix(int L, int R, T x, T xor_val = 0) {
+  int prefix_count(int L, int R, T x, T xor_val = 0) {
     if (xor_val != 0) assert(set_log);
     x = (COMPRESS ? LB(key, x) : x);
     if (x >= (1 << lg)) return R - L;

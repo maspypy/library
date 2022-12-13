@@ -16,8 +16,7 @@ struct Wavelet_Matrix_Sum {
   vvc<X> cumsum;
 
   Wavelet_Matrix_Sum(vc<T> A, int log = -1)
-      : Wavelet_Matrix_Sum(
-          A, [](int a) -> X { return a; }, log) {}
+      : Wavelet_Matrix_Sum([](int a) -> X { return a; }, A, log) {}
 
   template <typename FUNC>
   Wavelet_Matrix_Sum(FUNC F, vector<T> A, int log = -1)
@@ -32,7 +31,7 @@ struct Wavelet_Matrix_Sum {
       }
       key.shrink_to_fit();
     }
-    if (lg == -1) lg = __lg(max(MAX(A), 1)) + 1;
+    if (lg == -1) lg = __lg(max<ll>(MAX(A), 1)) + 1;
     mid.resize(lg);
     bv.assign(lg, Bit_Vector(N));
     cumsum.assign(1 + lg, vc<X>(N + 1, MX::unit()));
@@ -59,14 +58,14 @@ struct Wavelet_Matrix_Sum {
   // xor した結果が [a, b) に収まるものを数える
   // 個数および和を返す
   pair<int, X> count(int L, int R, T a, T b, T xor_val = 0) {
-    auto [c1, s1] = count_prefix(L, R, a, xor_val);
-    auto [c2, s2] = count_prefix(L, R, b, xor_val);
+    auto [c1, s1] = prefix_count(L, R, a, xor_val);
+    auto [c2, s2] = prefix_count(L, R, b, xor_val);
     return {c2 - c1, MX::op(MX::inverse(s1), s2)};
   }
 
   // xor した結果が [0, x) に収まるものを数える
   // 個数および和を返す
-  pair<int, X> count_prefix(int L, int R, T x, T xor_val = 0) {
+  pair<int, X> prefix_count(int L, int R, T x, T xor_val = 0) {
     if (xor_val != 0) assert(set_log);
     x = (COMPRESS ? LB(key, x) : x);
     if (x >= (1 << lg)) return {R - L, get(lg, L, R)};
@@ -136,7 +135,6 @@ struct Wavelet_Matrix_Sum {
       bool f = ((xor_val) >> d) & 1;
       int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
       X lo_sm = (f ? get(d, L + mid[d] - l0, R + mid[d] - r0) : get(d, l0, r0));
-      int kf = (f ? (R - L) - (r0 - l0) : (r0 - l0));
       if (check(MX::op(sm, lo_sm))) {
         sm = MX::op(sm, lo_sm);
         ret |= 1 << d;

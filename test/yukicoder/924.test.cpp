@@ -1,57 +1,23 @@
 #define PROBLEM "https://yukicoder.me/problems/no/924"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/wavelet_matrix.hpp"
-#include "ds/fenwicktree/fenwicktree.hpp"
+#include "ds/wavelet_matrix_sum.hpp"
 
 void solve() {
   LL(N, Q);
   VEC(ll, A, N);
-  auto Ac = cumsum<ll>(A);
-  vi X = A;
-  UNIQUE(X);
-  for (auto&& a: A) a = LB(X, a);
-  Wavelet_Matrix<ll> WM(A);
-  VEC(pi, query, Q);
-  for (auto&& [l, r]: query) --l;
-  vc<int> med(Q);
-  vi low_sum(Q), low_cnt(Q);
-  FOR(q, Q) {
-    auto [l, r] = query[q];
-    ll n = r - l;
-    med[q] = WM.kth(l, r, n / 2);
-  }
-
-  vvc<int> QID(N);
-  FOR(q, Q) QID[med[q]].eb(q);
-
-  vvc<int> AID(N);
-  FOR(i, N) AID[A[i]].eb(i);
-
-  FenwickTree<Monoid_Add<ll>> bit_c(N), bit_s(N);
-
-  FOR(x, N) {
-    for (auto&& i: AID[x]) {
-      bit_c.add(i, 1);
-      bit_s.add(i, X[x]);
-    }
-    for (auto&& q: QID[x]) {
-      auto [l, r] = query[q];
-      low_cnt[q] = bit_c.sum(l, r);
-      low_sum[q] = bit_s.sum(l, r);
-    }
-  }
-
-  FOR(q, Q) {
-    auto [l, r] = query[q];
-    ll x = X[med[q]];
-    ll lc = low_cnt[q], ls = low_sum[q];
-    ll hc = r - l - lc;
-    ll hs = Ac[r] - Ac[l] - ls;
+  Wavelet_Matrix_Sum<ll, true> WM(A);
+  FOR(Q) {
+    LL(L, R);
+    --L;
+    int n = (R - L);
+    ll cnt_lo = (n - 1) / 2;
+    auto [med, sum_lo] = WM.kth(L, R, cnt_lo);
+    ll sum_hi = WM.kth(L, R, R - L).se - sum_lo;
+    ll cnt_hi = (R - L) - cnt_lo;
     ll ANS = 0;
-    ANS += x * lc - ls;
-    ANS += hs - x * hc;
-    //    print(x, lc, ls, hc, hs);
+    ANS += med * cnt_lo - sum_lo;
+    ANS += sum_hi - med * cnt_hi;
     print(ANS);
   }
 }
