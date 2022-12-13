@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/binary_trie.hpp
     title: ds/binary_trie.hpp
   - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -227,10 +227,10 @@ data:
     \ xor_val;\n  }\n\n  UINT min(np root, UINT xor_val) {\n    assert(root && root->cnt);\n\
     \    return kth(root, 0, xor_val);\n  }\n\n  UINT max(np root, UINT xor_val) {\n\
     \    assert(root && root->cnt);\n    return kth(root, (root->cnt) - 1, xor_val);\n\
-    \  }\n\n  T count_prefix(np root, UINT upper, UINT xor_val) {\n    if (!root)\
-    \ return 0;\n    return count_prefix_rec(root, LOG, upper, xor_val, 0);\n  }\n\
-    \n  T count(np root, UINT lo, UINT hi, UINT xor_val) {\n    return count_prefix(root,\
-    \ hi, xor_val) - count_prefix(root, lo, xor_val);\n  }\n\nprivate:\n  inline UINT\
+    \  }\n\n  T prefix_count(np root, UINT upper, UINT xor_val) {\n    if (!root)\
+    \ return 0;\n    return prefix_count_rec(root, LOG, upper, xor_val, 0);\n  }\n\
+    \n  T count(np root, UINT lo, UINT hi, UINT xor_val) {\n    return prefix_count(root,\
+    \ hi, xor_val) - prefix_count(root, lo, xor_val);\n  }\n\nprivate:\n  inline UINT\
     \ mask(int k) { return (UINT(1) << k) - 1; }\n\n  np add_rec(np root, int ht,\
     \ UINT val, T cnt) {\n    root = copy_node(root);\n    root->cnt += cnt;\n   \
     \ if (ht == 0) return root;\n\n    bool go_r = (val >> (ht - 1)) & 1;\n    np\
@@ -251,12 +251,12 @@ data:
     \ = root->r;\n    if ((xor_val >> (ht - 1)) & 1) swap(left, right);\n    T sl\
     \ = (left ? left->cnt : 0);\n    np c;\n    if (k < sl) { c = left; }\n    if\
     \ (k >= sl) { c = right, k -= sl; }\n    int w = c->width;\n    return kth_rec(c,\
-    \ val << w | (c->val), k, ht - w, xor_val);\n  }\n\n  T count_prefix_rec(np root,\
+    \ val << w | (c->val), k, ht - w, xor_val);\n  }\n\n  T prefix_count_rec(np root,\
     \ int ht, UINT LIM, UINT xor_val, UINT val) {\n    UINT now = (val << ht) ^ (xor_val);\n\
     \    if ((LIM >> ht) > (now >> ht)) return root->cnt;\n    if (ht == 0 || (LIM\
     \ >> ht) < (now >> ht)) return 0;\n    T res = 0;\n    FOR(k, 2) {\n      np c\
     \ = (k == 0 ? root->l : root->r);\n      if (c) {\n        int w = c->width;\n\
-    \        res += freq_upper_rec(c, ht - w, LIM, xor_val, val << w | c->val);\n\
+    \        res += prefix_count_rec(c, ht - w, LIM, xor_val, val << w | c->val);\n\
     \      }\n    }\n    return res;\n  }\n};\n#line 2 \"ds/hashmap.hpp\"\ntemplate\
     \ <typename Val, int LOG = 20>\r\nstruct HashMapLL {\r\n  int N;\r\n  ll* keys;\r\
     \n  Val* vals;\r\n  vc<int> IDS;\r\n  bitset<1 << LOG> used;\r\n  const int shift;\r\
@@ -308,7 +308,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/set_xor_min.test.cpp
   requiredBy: []
-  timestamp: '2022-12-12 22:45:45+09:00'
+  timestamp: '2022-12-13 10:08:28+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/set_xor_min.test.cpp
