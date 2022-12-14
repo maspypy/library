@@ -8,7 +8,7 @@ void solve() {
   LL(N, M);
   Graph<int> G(N);
   G.read_graph(M, 0, 0);
-  auto mis = maximum_independent_set(G);
+  auto mis = maximum_independent_set<40>(G);
   print(len(mis));
   print(mis);
 }
