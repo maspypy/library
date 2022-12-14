@@ -21,7 +21,7 @@ struct Doubling {
   }
 
   void build() {
-    assert (!is_prepared);
+    assert(!is_prepared);
     is_prepared = 1;
     FOR(k, LOG - 1) {
       FOR(v, N) {
@@ -54,7 +54,6 @@ struct Doubling {
   template <typename F>
   ll max_step(F check, int i) {
     assert(is_prepared);
-    // step数
     X x = Monoid::unit();
     ll step = 0;
     assert(check(x));
