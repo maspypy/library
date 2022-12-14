@@ -20,21 +20,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/range_mex_query.hpp
     title: ds/offline_query/range_mex_query.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/longest_common_substring.hpp
-    title: string/longest_common_substring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: string/suffix_array.hpp
+    title: string/suffix_array.hpp
+  - icon: ':x:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/suffixarray.hpp
-    title: string/suffixarray.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508.test.cpp
@@ -51,12 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/arc151_e.test.cpp
-    title: test/atcoder/arc151_e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticrmq_seg.test.cpp
     title: test/library_checker/datastructure/staticrmq_seg.test.cpp
@@ -66,15 +60,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/common_interval_decomposition.test.cpp
     title: test/library_checker/graph/common_interval_decomposition.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/string/number_of_substrings.test.cpp
-    title: test/library_checker/string/number_of_substrings.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/string/suffix_array.test.cpp
-    title: test/library_checker/string/suffix_array.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/string/suffix_array_vec.test.cpp
-    title: test/library_checker/string/suffix_array_vec.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/dynamic_segtree_sparse.test.cpp
     title: test/mytest/dynamic_segtree_sparse.test.cpp
@@ -99,7 +84,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_test.test.cpp
     title: test/mytest/rbst_test.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -120,9 +105,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/913.test.cpp
     title: test/yukicoder/913.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <class X>\r\nstruct Monoid_Min\
@@ -142,14 +127,13 @@ data:
   - alg/acted_monoid/min_min.hpp
   - alg/acted_monoid/min_max.hpp
   - alg/acted_monoid/max_min.hpp
-  - string/longest_common_substring.hpp
   - string/suffix_tree.hpp
-  - string/suffixarray.hpp
+  - string/suffix_array.hpp
   - seq/common_interval_decomposition.hpp
   - ds/offline_query/range_mex_query.hpp
   - graph/minimum_spanning_tree.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1600.test.cpp
   - test/yukicoder/913.test.cpp
@@ -166,13 +150,9 @@ data:
   - test/mytest/rbst_am.test.cpp
   - test/mytest/rbst_am_persistent.test.cpp
   - test/mytest/rbst_test.test.cpp
-  - test/library_checker/string/suffix_array.test.cpp
-  - test/library_checker/string/number_of_substrings.test.cpp
-  - test/library_checker/string/suffix_array_vec.test.cpp
   - test/library_checker/datastructure/staticrmq_seg.test.cpp
   - test/library_checker/datastructure/staticrmq_sparse.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp
-  - test/atcoder/arc151_e.test.cpp
   - test/atcoder/abc270_f.test.cpp
   - test/aoj/GRL_2_A.test.cpp
   - test/aoj/1508_2.test.cpp

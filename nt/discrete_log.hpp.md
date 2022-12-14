@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_set/from_monoid.hpp
     title: alg/acted_set/from_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   _extendedRequiredBy:

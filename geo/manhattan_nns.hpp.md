@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min_idx.hpp
     title: alg/monoid/min_idx.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
@@ -34,7 +34,7 @@ data:
     \    L += size, R += size;\n    while (L < R) {\n      if (L & 1) vl = Monoid::op(vl,\
     \ dat[L++]);\n      if (R & 1) vr = Monoid::op(dat[--R], vr);\n      L >>= 1,\
     \ R >>= 1;\n    }\n    return Monoid::op(vl, vr);\n  }\n\n  X prod_all() { return\
-    \ dat[1]; }\n\n  template <class F>\n  int max_right(F& check, int L) {\n    assert(0\
+    \ dat[1]; }\n\n  template <class F>\n  int max_right(F check, int L) {\n    assert(0\
     \ <= L && L <= n && check(Monoid::unit()));\n    if (L == n) return n;\n    L\
     \ += size;\n    X sm = Monoid::unit();\n    do {\n      while (L % 2 == 0) L >>=\
     \ 1;\n      if (!check(Monoid::op(sm, dat[L]))) {\n        while (L < size) {\n\
@@ -110,7 +110,7 @@ data:
   isVerificationFile: false
   path: geo/manhattan_nns.hpp
   requiredBy: []
-  timestamp: '2022-12-03 10:20:23+09:00'
+  timestamp: '2022-12-15 05:39:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/manhattan_nns.hpp

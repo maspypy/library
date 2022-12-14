@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bracket_graph.hpp
     title: graph/bracket_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/centroid.hpp
     title: graph/centroid.hpp
   - icon: ':heavy_check_mark:'
@@ -38,7 +38,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/bfs_numbering.hpp
     title: graph/ds/bfs_numbering.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -53,7 +53,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/tree_group.hpp
     title: graph/ds/tree_group.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -86,7 +86,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -134,10 +134,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
   - icon: ':heavy_check_mark:'
@@ -161,7 +161,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/suffix_automaton.hpp
     title: string/suffix_automaton.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
@@ -213,12 +213,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc269ex.test.cpp
     title: test/atcoder/abc269ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/arc151_e.test.cpp
-    title: test/atcoder/arc151_e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
@@ -297,7 +294,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/number_of_substrings2.test.cpp
     title: test/library_checker/string/number_of_substrings2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - icon: ':heavy_check_mark:'
@@ -309,16 +306,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/tree_diameter.test.cpp
     title: test/library_checker/tree/tree_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1002.test.cpp
     title: test/yukicoder/1002.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
   - icon: ':heavy_check_mark:'
@@ -402,7 +399,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1745.test.cpp
     title: test/yukicoder/1745.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1769.test.cpp
     title: test/yukicoder/1769.test.cpp
   - icon: ':heavy_check_mark:'
@@ -414,7 +411,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1790.test.cpp
     title: test/yukicoder/1790.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1796.test.cpp
     title: test/yukicoder/1796.test.cpp
   - icon: ':heavy_check_mark:'
@@ -447,9 +444,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -601,7 +598,7 @@ data:
   - graph/strongly_connected_component.hpp
   - game/graph_game.hpp
   timestamp: '2022-12-05 10:41:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1600.test.cpp
   - test/yukicoder/1254.test.cpp
@@ -679,7 +676,6 @@ data:
   - test/library_checker/graph/chromatic_number.test.cpp
   - test/library_checker/graph/bipartite_edge_coloring.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
-  - test/atcoder/arc151_e.test.cpp
   - test/atcoder/abc269ex.test.cpp
   - test/atcoder/abc270_f.test.cpp
   - test/atcoder/abc266f.test.cpp

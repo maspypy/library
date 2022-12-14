@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min_idx.hpp
     title: alg/monoid/min_idx.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/disjointsparse/disjointsparse.hpp
     title: ds/disjointsparse/disjointsparse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: string/suffix_array.hpp
+    title: string/suffix_array.hpp
+  - icon: ':x:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/suffixarray.hpp
-    title: string/suffixarray.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -217,10 +217,11 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\n#line 5 \"test/mytest/suffix_tree.test.cpp\"\n\n#line 1 \"string/suffix_tree.hpp\"\
-    \n\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <class X>\r\nstruct Monoid_Min\
-    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
-    \ &y) noexcept { return min(x, y); }\r\n  static constexpr X unit() { return numeric_limits<X>::max();\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/disjointsparse/disjointsparse.hpp\"\
+    \n\n#line 2 \"string/suffix_array.hpp\"\n\n#line 2 \"alg/monoid/min.hpp\"\n\r\n\
+    template <class X>\r\nstruct Monoid_Min {\r\n  using value_type = X;\r\n  static\
+    \ constexpr X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static\
+    \ constexpr X unit() { return numeric_limits<X>::max(); }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 2 \"ds/disjointsparse/disjointsparse.hpp\"\
     \n\r\ntemplate <class Monoid>\r\nstruct DisjointSparse {\r\n  using MX = Monoid;\r\
     \n  using X = typename MX::value_type;\r\n  int n, log;\r\n  vvc<X> dat;\r\n\r\
     \n  DisjointSparse() {}\r\n  DisjointSparse(int n) { build(n); }\r\n  template\
@@ -246,14 +247,14 @@ data:
     \    assert(0 <= R && R <= n && check(MX::unit()));\r\n    if (R == 0) return\
     \ 0;\r\n    int ok = R, ng = -1;\r\n    while (ng + 1 < ok) {\r\n      int k =\
     \ (ok + ng) / 2;\r\n      bool bl = check(prod(k, R));\r\n      if (bl) ok = k;\r\
-    \n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\n  }\r\n};\n#line 3 \"string/suffixarray.hpp\"\
+    \n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\n  }\r\n};\n#line 5 \"string/suffix_array.hpp\"\
     \n\n// \u8F9E\u66F8\u9806 i \u756A\u76EE\u306E suffix \u304C j \u6587\u5B57\u76EE\
     \u59CB\u307E\u308A\u3067\u3042\u308B\u3068\u304D\u3001\n// SA[i] = j, ISA[j] =\
-    \ i\nstruct SuffixArray {\n  vector<int> SA;\n  vector<int> ISA;\n  vector<int>\
-    \ LCP;\n  bool build_ds;\n  DisjointSparse<Monoid_Min<int>> seg;\n\n  SuffixArray(string&\
+    \ i\nstruct Suffix_Array {\n  vector<int> SA;\n  vector<int> ISA;\n  vector<int>\
+    \ LCP;\n  bool build_ds;\n  DisjointSparse<Monoid_Min<int>> seg;\n\n  Suffix_Array(string&\
     \ s) : build_ds(0) {\n    char first = 127, last = 0;\n    for (auto&& c: s) {\n\
     \      chmin(first, c);\n      chmax(last, c);\n    }\n    SA = calc_suffix_array(s,\
-    \ first, last);\n    calc_LCP(s);\n  }\n\n  SuffixArray(vector<int>& s) : build_ds(0)\
+    \ first, last);\n    calc_LCP(s);\n  }\n\n  Suffix_Array(vector<int>& s) : build_ds(0)\
     \ {\n    SA = calc_suffix_array(s);\n    calc_LCP(s);\n  }\n\n  // S[i:], S[j:]\
     \ \u306E lcp \u3092\u6C42\u3081\u308B\n  int lcp(int i, int j) {\n    int n =\
     \ len(SA);\n    if (i == j) return n - i;\n    if (!build_ds) {\n      build_ds\
@@ -336,7 +337,7 @@ data:
     \    L += size, R += size;\n    while (L < R) {\n      if (L & 1) vl = Monoid::op(vl,\
     \ dat[L++]);\n      if (R & 1) vr = Monoid::op(dat[--R], vr);\n      L >>= 1,\
     \ R >>= 1;\n    }\n    return Monoid::op(vl, vr);\n  }\n\n  X prod_all() { return\
-    \ dat[1]; }\n\n  template <class F>\n  int max_right(F& check, int L) {\n    assert(0\
+    \ dat[1]; }\n\n  template <class F>\n  int max_right(F check, int L) {\n    assert(0\
     \ <= L && L <= n && check(Monoid::unit()));\n    if (L == n) return n;\n    L\
     \ += size;\n    X sm = Monoid::unit();\n    do {\n      while (L % 2 == 0) L >>=\
     \ 1;\n      if (!check(Monoid::op(sm, dat[L]))) {\n        while (L < size) {\n\
@@ -406,17 +407,17 @@ data:
     \u9818\u57DF\u3068\u898B\u306A\u3057\u3066\u3001\n// \u30B0\u30E9\u30D5\u304A\u3088\
     \u3073\u3001\u9818\u57DF\u30C7\u30FC\u30BF\u3092\u4F5C\u308B\u3002\n// sample:\
     \ test/my_test/suffix_tree.test.cpp\npair<Graph<int, 1>, vc<tuple<int, int, int,\
-    \ int>>> suffix_tree(SuffixArray& X) {\n  auto SA = X.SA;\n  auto ISA = X.ISA;\n\
-    \  auto LCP = X.LCP;\n\n  int N = len(SA);\n\n  using Mono = Monoid_Min_Idx<int,\
+    \ int>>> suffix_tree(\n    Suffix_Array& X) {\n  auto SA = X.SA;\n  auto ISA =\
+    \ X.ISA;\n  auto LCP = X.LCP;\n\n  int N = len(SA);\n\n  using Mono = Monoid_Min_Idx<int,\
     \ 1>;\n\n  SegTree<Mono> seg(N - 1, [&](int i) -> Mono::X { return {LCP[i], i};\
     \ });\n\n  using T = tuple<int, int, int, int>;\n  vc<T> dat;\n  Graph<int, 1>\
-    \ G;\n  dat.eb(0, 0, N, 0);\n\n  auto dfs = [&](auto& dfs, int p, int l, int r,\
+    \ G;\n  dat.eb(0, N, 0, 0);\n\n  auto dfs = [&](auto& dfs, int p, int l, int r,\
     \ int h) -> void {\n    if (r == l + 1) {\n      int i = SA[l];\n      int sz\
     \ = N - i;\n      if (h == sz) return;\n      int k = len(dat);\n      dat.eb(l,\
-    \ h, l + 1, sz);\n      G.resize(k + 1);\n      G.add(p, k);\n      return;\n\
+    \ l + 1, h, sz);\n      G.resize(k + 1);\n      G.add(p, k);\n      return;\n\
     \    }\n    auto [lcp, i] = seg.prod(l, r - 1);\n    if (lcp == h) {\n      dfs(dfs,\
     \ p, l, i + 1, h);\n      dfs(dfs, p, i + 1, r, h);\n      return;\n    }\n  \
-    \  int k = len(dat);\n    dat.eb(l, h, r, lcp);\n    G.resize(k + 1);\n    G.add(p,\
+    \  int k = len(dat);\n    dat.eb(l, r, h, lcp);\n    G.resize(k + 1);\n    G.add(p,\
     \ k);\n    dfs(dfs, k, l, r, lcp);\n  };\n  dfs(dfs, 0, 0, N, 0);\n  G.build();\n\
     \  return {G, dat};\n}\n#line 7 \"test/mytest/suffix_tree.test.cpp\"\n\n/*\nS\
     \ = aabbabbaa\n\nsuffix array\na--------\naa-------\naabbabbaa\nabbaa----\nabbabbaa-\n\
@@ -472,7 +473,7 @@ data:
   - my_template.hpp
   - other/io.hpp
   - string/suffix_tree.hpp
-  - string/suffixarray.hpp
+  - string/suffix_array.hpp
   - alg/monoid/min.hpp
   - ds/disjointsparse/disjointsparse.hpp
   - alg/monoid/min_idx.hpp
@@ -481,8 +482,8 @@ data:
   isVerificationFile: true
   path: test/mytest/suffix_tree.test.cpp
   requiredBy: []
-  timestamp: '2022-12-12 09:20:37+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-12-15 05:40:30+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/suffix_tree.test.cpp
 layout: document

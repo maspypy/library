@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
   - icon: ':heavy_check_mark:'
@@ -26,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -408,7 +408,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/number_of_subsequences.test.cpp
     title: test/library_checker/string/number_of_subsequences.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - icon: ':heavy_check_mark:'
@@ -621,7 +621,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1781.test.cpp
     title: test/yukicoder/1781.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1796.test.cpp
     title: test/yukicoder/1796.test.cpp
   - icon: ':heavy_check_mark:'
@@ -708,9 +708,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/749.test.cpp
     title: test/yukicoder/749.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n\
@@ -950,7 +950,7 @@ data:
   - linalg/det_A_plus_xB.hpp
   - graph/tree_all_distances.hpp
   timestamp: '2022-12-03 08:35:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1821.test.cpp
   - test/yukicoder/2005.test.cpp

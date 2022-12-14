@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -21,9 +21,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2251_2.test.cpp
     title: test/aoj/2251_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/arc151_e.test.cpp
-    title: test/atcoder/arc151_e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/K_shortest_walk.test.cpp
     title: test/library_checker/graph/K_shortest_walk.test.cpp
@@ -137,7 +134,6 @@ data:
   - test/yukicoder/1601.test.cpp
   - test/library_checker/graph/K_shortest_walk.test.cpp
   - test/library_checker/graph/shortest_path.test.cpp
-  - test/atcoder/arc151_e.test.cpp
   - test/aoj/2251_1.test.cpp
   - test/aoj/2251_2.test.cpp
   - test/aoj/0275.test.cpp

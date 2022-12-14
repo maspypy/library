@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1002.test.cpp
     title: test/yukicoder/1002.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1769.test.cpp
     title: test/yukicoder/1769.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1796.test.cpp
     title: test/yukicoder/1796.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -84,10 +84,10 @@ data:
     \ (N - sz[v] > M) return false;\r\n    for (auto&& e: G[v]) {\r\n      if (e.to\
     \ != par[v] && sz[e.to] > M) return false;\r\n    }\r\n    return true;\r\n  };\r\
     \n  vc<int> ANS;\r\n  FOR(v, N) if (check(v)) ANS.eb(v);\r\n  return ANS;\r\n\
-    }\r\n\r\ntemplate <typename GT>\r\nstruct CentroidDecomposition {\r\n  using edge_type\
-    \ = typename GT::edge_type;\r\n  GT& G;\r\n  int N;\r\n  vc<int> sz;\r\n  vc<int>\
-    \ par;\r\n  vector<int> cdep; // depth in centroid tree\r\n  bool calculated;\r\
-    \n\r\n  CentroidDecomposition(GT& G)\r\n      : G(G), N(G.N), sz(G.N), par(G.N),\
+    }\r\n\r\ntemplate <typename GT>\r\nstruct Centroid_Decomposition {\r\n  using\
+    \ edge_type = typename GT::edge_type;\r\n  GT& G;\r\n  int N;\r\n  vc<int> sz;\r\
+    \n  vc<int> par;\r\n  vector<int> cdep; // depth in centroid tree\r\n  bool calculated;\r\
+    \n\r\n  Centroid_Decomposition(GT& G)\r\n      : G(G), N(G.N), sz(G.N), par(G.N),\
     \ cdep(G.N, -1) {\r\n    calculated = 0;\r\n    build();\r\n  }\r\n\r\nprivate:\r\
     \n  int find(int v) {\r\n    vc<int> V = {v};\r\n    par[v] = -1;\r\n    int p\
     \ = 0;\r\n    while (p < len(V)) {\r\n      int v = V[p++];\r\n      sz[v] = 0;\r\
@@ -141,10 +141,10 @@ data:
     \ v) -> bool {\r\n    if (N - sz[v] > M) return false;\r\n    for (auto&& e: G[v])\
     \ {\r\n      if (e.to != par[v] && sz[e.to] > M) return false;\r\n    }\r\n  \
     \  return true;\r\n  };\r\n  vc<int> ANS;\r\n  FOR(v, N) if (check(v)) ANS.eb(v);\r\
-    \n  return ANS;\r\n}\r\n\r\ntemplate <typename GT>\r\nstruct CentroidDecomposition\
+    \n  return ANS;\r\n}\r\n\r\ntemplate <typename GT>\r\nstruct Centroid_Decomposition\
     \ {\r\n  using edge_type = typename GT::edge_type;\r\n  GT& G;\r\n  int N;\r\n\
     \  vc<int> sz;\r\n  vc<int> par;\r\n  vector<int> cdep; // depth in centroid tree\r\
-    \n  bool calculated;\r\n\r\n  CentroidDecomposition(GT& G)\r\n      : G(G), N(G.N),\
+    \n  bool calculated;\r\n\r\n  Centroid_Decomposition(GT& G)\r\n      : G(G), N(G.N),\
     \ sz(G.N), par(G.N), cdep(G.N, -1) {\r\n    calculated = 0;\r\n    build();\r\n\
     \  }\r\n\r\nprivate:\r\n  int find(int v) {\r\n    vc<int> V = {v};\r\n    par[v]\
     \ = -1;\r\n    int p = 0;\r\n    while (p < len(V)) {\r\n      int v = V[p++];\r\
@@ -195,8 +195,8 @@ data:
   path: graph/centroid.hpp
   requiredBy:
   - graph/tree_all_distances.hpp
-  timestamp: '2022-12-05 10:41:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-12-15 05:40:50+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1796.test.cpp
   - test/yukicoder/1038.test.cpp

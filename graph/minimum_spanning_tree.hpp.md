@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dual_segtree.hpp
     title: ds/segtree/dual_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
@@ -36,12 +36,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/828/problem/F
@@ -187,7 +187,7 @@ data:
     \    L += size, R += size;\n    while (L < R) {\n      if (L & 1) vl = Monoid::op(vl,\
     \ dat[L++]);\n      if (R & 1) vr = Monoid::op(dat[--R], vr);\n      L >>= 1,\
     \ R >>= 1;\n    }\n    return Monoid::op(vl, vr);\n  }\n\n  X prod_all() { return\
-    \ dat[1]; }\n\n  template <class F>\n  int max_right(F& check, int L) {\n    assert(0\
+    \ dat[1]; }\n\n  template <class F>\n  int max_right(F check, int L) {\n    assert(0\
     \ <= L && L <= n && check(Monoid::unit()));\n    if (L == n) return n;\n    L\
     \ += size;\n    X sm = Monoid::unit();\n    do {\n      while (L % 2 == 0) L >>=\
     \ 1;\n      if (!check(Monoid::op(sm, dat[L]))) {\n        while (L < size) {\n\
@@ -370,8 +370,8 @@ data:
   isVerificationFile: false
   path: graph/minimum_spanning_tree.hpp
   requiredBy: []
-  timestamp: '2022-12-07 00:33:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-12-15 05:39:50+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/atcoder/abc270_f.test.cpp
   - test/aoj/GRL_2_A.test.cpp

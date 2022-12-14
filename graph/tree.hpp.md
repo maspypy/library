@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: graph/classify_subtree.hpp
     title: graph/classify_subtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/tree_group.hpp
     title: graph/ds/tree_group.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/functional.hpp
     title: graph/functional.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -69,7 +69,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc269ex.test.cpp
     title: test/atcoder/abc269ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -153,7 +153,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1718.test.cpp
     title: test/yukicoder/1718.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1769.test.cpp
     title: test/yukicoder/1769.test.cpp
   - icon: ':heavy_check_mark:'
@@ -180,9 +180,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -389,7 +389,7 @@ data:
   - graph/ds/tree_monoid.hpp
   - graph/minimum_spanning_tree.hpp
   timestamp: '2022-12-05 10:41:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1600.test.cpp
   - test/yukicoder/1295.test.cpp

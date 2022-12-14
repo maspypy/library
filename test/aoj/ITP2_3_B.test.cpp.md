@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/minmax.hpp
     title: alg/monoid/minmax.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -221,7 +221,7 @@ data:
     \ < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1) vr\
     \ = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl,\
     \ vr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  template <class F>\n  int\
-    \ max_right(F& check, int L) {\n    assert(0 <= L && L <= n && check(Monoid::unit()));\n\
+    \ max_right(F check, int L) {\n    assert(0 <= L && L <= n && check(Monoid::unit()));\n\
     \    if (L == n) return n;\n    L += size;\n    X sm = Monoid::unit();\n    do\
     \ {\n      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L])))\
     \ {\n        while (L < size) {\n          L = 2 * L;\n          if (check(Monoid::op(sm,\
@@ -269,7 +269,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ITP2_3_B.test.cpp
   requiredBy: []
-  timestamp: '2022-12-12 09:20:37+09:00'
+  timestamp: '2022-12-15 05:39:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ITP2_3_B.test.cpp

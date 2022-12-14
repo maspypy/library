@@ -26,6 +26,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/minmincnt_add.hpp
     title: alg/acted_monoid/minmincnt_add.hpp
+  - icon: ':warning:'
+    path: alg/acted_monoid/powersums_add_3.hpp
+    title: alg/acted_monoid/powersums_add_3.hpp
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_add.hpp
     title: alg/acted_monoid/sum_add.hpp
@@ -44,7 +47,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/cumsum_2d.hpp
     title: ds/cumsum_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':heavy_check_mark:'
@@ -132,7 +135,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc127f_1.test.cpp
     title: test/atcoder/abc127f_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc174f.test.cpp
     title: test/atcoder/abc174f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -261,7 +264,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/wavelet_matrix_sum.test.cpp
     title: test/mytest/wavelet_matrix_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
   - icon: ':heavy_check_mark:'
@@ -348,9 +351,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -373,6 +376,7 @@ data:
   - alg/acted_monoid/min_add.hpp
   - alg/acted_monoid/cntsum_add.hpp
   - alg/acted_monoid/sum_affine.hpp
+  - alg/acted_monoid/powersums_add_3.hpp
   - alg/acted_monoid/minmincnt_add.hpp
   - alg/acted_monoid/add_mul.hpp
   - alg/acted_monoid/summin_add.hpp
@@ -401,7 +405,7 @@ data:
   - graph/ds/tree_abelgroup.hpp
   - graph/ds/contour_sum.hpp
   timestamp: '2022-11-28 14:51:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/2065.test.cpp
   - test/yukicoder/1441.test.cpp

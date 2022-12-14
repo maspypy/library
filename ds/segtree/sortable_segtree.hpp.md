@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
@@ -73,7 +73,7 @@ data:
     \    L += size, R += size;\n    while (L < R) {\n      if (L & 1) vl = Monoid::op(vl,\
     \ dat[L++]);\n      if (R & 1) vr = Monoid::op(dat[--R], vr);\n      L >>= 1,\
     \ R >>= 1;\n    }\n    return Monoid::op(vl, vr);\n  }\n\n  X prod_all() { return\
-    \ dat[1]; }\n\n  template <class F>\n  int max_right(F& check, int L) {\n    assert(0\
+    \ dat[1]; }\n\n  template <class F>\n  int max_right(F check, int L) {\n    assert(0\
     \ <= L && L <= n && check(Monoid::unit()));\n    if (L == n) return n;\n    L\
     \ += size;\n    X sm = Monoid::unit();\n    do {\n      while (L % 2 == 0) L >>=\
     \ 1;\n      if (!check(Monoid::op(sm, dat[L]))) {\n        while (L < size) {\n\
@@ -226,7 +226,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/sortable_segtree.hpp
   requiredBy: []
-  timestamp: '2022-12-04 04:53:30+09:00'
+  timestamp: '2022-12-15 05:39:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/sort_segtree.test.cpp

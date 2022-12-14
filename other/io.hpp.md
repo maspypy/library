@@ -195,7 +195,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc127f_1.test.cpp
     title: test/atcoder/abc127f_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc174f.test.cpp
     title: test/atcoder/abc174f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -246,7 +246,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc269ex.test.cpp
     title: test/atcoder/abc269ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc270_f.test.cpp
     title: test/atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -273,9 +273,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/arc123d.test.cpp
     title: test/atcoder/arc123d.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/arc151_e.test.cpp
-    title: test/atcoder/arc151_e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/bitwise_and_convolution.test.cpp
     title: test/library_checker/convolution/bitwise_and_convolution.test.cpp
@@ -733,9 +730,6 @@ data:
     path: test/library_checker/string/number_of_subsequences.test.cpp
     title: test/library_checker/string/number_of_subsequences.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/string/number_of_substrings.test.cpp
-    title: test/library_checker/string/number_of_substrings.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/string/number_of_substrings2.test.cpp
     title: test/library_checker/string/number_of_substrings2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -744,12 +738,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/run_enumerate_vec.test.cpp
     title: test/library_checker/string/run_enumerate_vec.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/string/suffix_array.test.cpp
-    title: test/library_checker/string/suffix_array.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/string/suffix_array_vec.test.cpp
-    title: test/library_checker/string/suffix_array_vec.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/zalgorithm.test.cpp
     title: test/library_checker/string/zalgorithm.test.cpp
@@ -762,7 +750,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/cartesian_tree.test.cpp
     title: test/library_checker/tree/cartesian_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1011,7 +999,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/stern_brocot.test.cpp
     title: test/mytest/stern_brocot.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1041,7 +1029,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/wavelet_matrix_sum.test.cpp
     title: test/mytest/wavelet_matrix_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1002.test.cpp
     title: test/yukicoder/1002.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1056,7 +1044,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036_3.test.cpp
     title: test/yukicoder/1036_3.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1359,7 +1347,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1760.test.cpp
     title: test/yukicoder/1760.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1769.test.cpp
     title: test/yukicoder/1769.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1377,7 +1365,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1790.test.cpp
     title: test/yukicoder/1790.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1796.test.cpp
     title: test/yukicoder/1796.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1593,9 +1581,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include\
@@ -1810,7 +1798,7 @@ data:
   path: other/io.hpp
   requiredBy: []
   timestamp: '2022-12-07 08:14:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1821.test.cpp
   - test/yukicoder/2005.test.cpp
@@ -2114,12 +2102,9 @@ data:
   - test/library_checker/string/number_of_substrings2.test.cpp
   - test/library_checker/string/number_of_subsequences.test.cpp
   - test/library_checker/string/run_enumerate_vec.test.cpp
-  - test/library_checker/string/suffix_array.test.cpp
   - test/library_checker/string/enumerate_palindromes.test.cpp
   - test/library_checker/string/run_enumerate.test.cpp
-  - test/library_checker/string/number_of_substrings.test.cpp
   - test/library_checker/string/zalgorithm.test.cpp
-  - test/library_checker/string/suffix_array_vec.test.cpp
   - test/library_checker/convolution/convolution_mod_2_64.test.cpp
   - test/library_checker/convolution/subset_convolution.test.cpp
   - test/library_checker/convolution/convolution_mod.test.cpp
@@ -2251,7 +2236,6 @@ data:
   - test/library_checker/graph/bipartite_edge_coloring.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
   - test/library_checker/sample/many_aplusb.test.cpp
-  - test/atcoder/arc151_e.test.cpp
   - test/atcoder/abc272_h.test.cpp
   - test/atcoder/abc127f_1.test.cpp
   - test/atcoder/agc058d.test.cpp

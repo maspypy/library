@@ -1,44 +1,30 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/disjointsparse/disjointsparse.hpp
     title: ds/disjointsparse/disjointsparse.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: string/longest_common_substring.hpp
-    title: string/longest_common_substring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/arc151_e.test.cpp
-    title: test/atcoder/arc151_e.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/string/number_of_substrings.test.cpp
-    title: test/library_checker/string/number_of_substrings.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/string/suffix_array.test.cpp
-    title: test/library_checker/string/suffix_array.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/string/suffix_array_vec.test.cpp
-    title: test/library_checker/string/suffix_array_vec.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <class X>\r\nstruct Monoid_Min\
-    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
-    \ &y) noexcept { return min(x, y); }\r\n  static constexpr X unit() { return numeric_limits<X>::max();\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/disjointsparse/disjointsparse.hpp\"\
+  bundledCode: "#line 2 \"string/suffix_array.hpp\"\n\n#line 2 \"alg/monoid/min.hpp\"\
+    \n\r\ntemplate <class X>\r\nstruct Monoid_Min {\r\n  using value_type = X;\r\n\
+    \  static constexpr X op(const X &x, const X &y) noexcept { return min(x, y);\
+    \ }\r\n  static constexpr X unit() { return numeric_limits<X>::max(); }\r\n  static\
+    \ constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/disjointsparse/disjointsparse.hpp\"\
     \n\r\ntemplate <class Monoid>\r\nstruct DisjointSparse {\r\n  using MX = Monoid;\r\
     \n  using X = typename MX::value_type;\r\n  int n, log;\r\n  vvc<X> dat;\r\n\r\
     \n  DisjointSparse() {}\r\n  DisjointSparse(int n) { build(n); }\r\n  template\
@@ -64,14 +50,14 @@ data:
     \    assert(0 <= R && R <= n && check(MX::unit()));\r\n    if (R == 0) return\
     \ 0;\r\n    int ok = R, ng = -1;\r\n    while (ng + 1 < ok) {\r\n      int k =\
     \ (ok + ng) / 2;\r\n      bool bl = check(prod(k, R));\r\n      if (bl) ok = k;\r\
-    \n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\n  }\r\n};\n#line 3 \"string/suffixarray.hpp\"\
+    \n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\n  }\r\n};\n#line 5 \"string/suffix_array.hpp\"\
     \n\n// \u8F9E\u66F8\u9806 i \u756A\u76EE\u306E suffix \u304C j \u6587\u5B57\u76EE\
     \u59CB\u307E\u308A\u3067\u3042\u308B\u3068\u304D\u3001\n// SA[i] = j, ISA[j] =\
-    \ i\nstruct SuffixArray {\n  vector<int> SA;\n  vector<int> ISA;\n  vector<int>\
-    \ LCP;\n  bool build_ds;\n  DisjointSparse<Monoid_Min<int>> seg;\n\n  SuffixArray(string&\
+    \ i\nstruct Suffix_Array {\n  vector<int> SA;\n  vector<int> ISA;\n  vector<int>\
+    \ LCP;\n  bool build_ds;\n  DisjointSparse<Monoid_Min<int>> seg;\n\n  Suffix_Array(string&\
     \ s) : build_ds(0) {\n    char first = 127, last = 0;\n    for (auto&& c: s) {\n\
     \      chmin(first, c);\n      chmax(last, c);\n    }\n    SA = calc_suffix_array(s,\
-    \ first, last);\n    calc_LCP(s);\n  }\n\n  SuffixArray(vector<int>& s) : build_ds(0)\
+    \ first, last);\n    calc_LCP(s);\n  }\n\n  Suffix_Array(vector<int>& s) : build_ds(0)\
     \ {\n    SA = calc_suffix_array(s);\n    calc_LCP(s);\n  }\n\n  // S[i:], S[j:]\
     \ \u306E lcp \u3092\u6C42\u3081\u308B\n  int lcp(int i, int j) {\n    int n =\
     \ len(SA);\n    if (i == j) return n - i;\n    if (!build_ds) {\n      build_ds\
@@ -128,14 +114,14 @@ data:
     \ == n - 1) {\n        k = 0;\n        continue;\n      }\n      int j = SA[ISA[i]\
     \ + 1];\n      while (i + k < n && j + k < n && s[i + k] == s[j + k]) k++;\n \
     \     LCP[ISA[i]] = k;\n    }\n    LCP.resize(n - 1);\n  }\n};\n"
-  code: "#include \"alg/monoid/min.hpp\"\n#include \"ds/disjointsparse/disjointsparse.hpp\"\
+  code: "#pragma once\n\n#include \"alg/monoid/min.hpp\"\n#include \"ds/disjointsparse/disjointsparse.hpp\"\
     \n\n// \u8F9E\u66F8\u9806 i \u756A\u76EE\u306E suffix \u304C j \u6587\u5B57\u76EE\
     \u59CB\u307E\u308A\u3067\u3042\u308B\u3068\u304D\u3001\n// SA[i] = j, ISA[j] =\
-    \ i\nstruct SuffixArray {\n  vector<int> SA;\n  vector<int> ISA;\n  vector<int>\
-    \ LCP;\n  bool build_ds;\n  DisjointSparse<Monoid_Min<int>> seg;\n\n  SuffixArray(string&\
+    \ i\nstruct Suffix_Array {\n  vector<int> SA;\n  vector<int> ISA;\n  vector<int>\
+    \ LCP;\n  bool build_ds;\n  DisjointSparse<Monoid_Min<int>> seg;\n\n  Suffix_Array(string&\
     \ s) : build_ds(0) {\n    char first = 127, last = 0;\n    for (auto&& c: s) {\n\
     \      chmin(first, c);\n      chmax(last, c);\n    }\n    SA = calc_suffix_array(s,\
-    \ first, last);\n    calc_LCP(s);\n  }\n\n  SuffixArray(vector<int>& s) : build_ds(0)\
+    \ first, last);\n    calc_LCP(s);\n  }\n\n  Suffix_Array(vector<int>& s) : build_ds(0)\
     \ {\n    SA = calc_suffix_array(s);\n    calc_LCP(s);\n  }\n\n  // S[i:], S[j:]\
     \ \u306E lcp \u3092\u6C42\u3081\u308B\n  int lcp(int i, int j) {\n    int n =\
     \ len(SA);\n    if (i == j) return n - i;\n    if (!build_ds) {\n      build_ds\
@@ -196,22 +182,17 @@ data:
   - alg/monoid/min.hpp
   - ds/disjointsparse/disjointsparse.hpp
   isVerificationFile: false
-  path: string/suffixarray.hpp
+  path: string/suffix_array.hpp
   requiredBy:
-  - string/longest_common_substring.hpp
   - string/suffix_tree.hpp
-  timestamp: '2022-12-04 23:06:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-12-15 05:40:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/suffix_tree.test.cpp
-  - test/library_checker/string/suffix_array.test.cpp
-  - test/library_checker/string/number_of_substrings.test.cpp
-  - test/library_checker/string/suffix_array_vec.test.cpp
-  - test/atcoder/arc151_e.test.cpp
-documentation_of: string/suffixarray.hpp
+documentation_of: string/suffix_array.hpp
 layout: document
 redirect_from:
-- /library/string/suffixarray.hpp
-- /library/string/suffixarray.hpp.html
-title: string/suffixarray.hpp
+- /library/string/suffix_array.hpp
+- /library/string/suffix_array.hpp.html
+title: string/suffix_array.hpp
 ---
