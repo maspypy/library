@@ -18,7 +18,7 @@ void solve() {
   vc<vi> query_at(N);
   FOR(q, Q) query_at[get<0>(query[q])].eb(q);
 
-  CentroidDecomposition CD(G);
+  Centroid_Decomposition CD(G);
   vi ANS(Q);
   FenwickTree<Monoid_Add<ll>> bit(N + 10);
 

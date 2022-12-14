@@ -1,4 +1,4 @@
-#include "string/suffixarray.hpp"
+#include "string/suffix_array.hpp"
 
 template <typename STRING>
 tuple<int, int, int, int> longest_common_substring(STRING& S, STRING& T) {
@@ -7,7 +7,7 @@ tuple<int, int, int, int> longest_common_substring(STRING& S, STRING& T) {
   for (auto&& x: S) ST.push_back(x);
   ST.push_back(dummy);
   for (auto&& x: T) ST.push_back(x);
-  SuffixArray X(ST);
+  Suffix_Array X(ST);
   auto& SA = X.SA;
   auto& LCP = X.LCP;
 

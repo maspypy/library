@@ -22,7 +22,7 @@ void solve() {
     return t;
   };
 
-  CentroidDecomposition<Graph<int>> CD(G);
+  Centroid_Decomposition<Graph<int>> CD(G);
 
   ll ANS = 0;
   FOR(root, N) {

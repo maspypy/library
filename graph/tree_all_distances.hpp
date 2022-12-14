@@ -1,15 +1,13 @@
 #include "graph/centroid.hpp"
 #include "poly/convolution.hpp"
 
+// frequency table of distance of all directed pairs.
+// sum of result array = N^2
 template <typename Graph>
 vi tree_all_distances(Graph& G) {
-  // frequency table of distance of all directed pairs.
-  // sum of result array = N^2
-
   assert(G.is_prepared());
   assert(!G.is_directed());
-
-  CentroidDecomposition CD(G);
+  Centroid_Decomposition CD(G);
 
   ll N = G.N;
   vi ANS(N);

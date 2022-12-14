@@ -2,12 +2,12 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "string/suffixarray.hpp"
+#include "string/suffix_array.hpp"
 
 void solve() {
   STR(S);
   auto A = s_to_vi(S, 'a');
-  SuffixArray sa(S);
+  Suffix_Array sa(S);
   print(sa.SA);
 }
 

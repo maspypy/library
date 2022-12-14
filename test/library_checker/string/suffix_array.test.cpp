@@ -2,11 +2,11 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "string/suffixarray.hpp"
+#include "string/suffix_array.hpp"
 
 void solve() {
   STR(S);
-  SuffixArray sa(S);
+  Suffix_Array sa(S);
   print(sa.SA);
 }
 
