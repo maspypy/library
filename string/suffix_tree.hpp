@@ -1,5 +1,5 @@
 
-#include "string/suffixarray.hpp"
+#include "string/suffix_array.hpp"
 #include "alg/monoid/min_idx.hpp"
 #include "ds/segtree/segtree.hpp"
 #include "graph/base.hpp"
@@ -8,7 +8,8 @@
 // 各ノードは、suffix array での長方形領域と見なして、
 // グラフおよび、領域データを作る。
 // sample: test/my_test/suffix_tree.test.cpp
-pair<Graph<int, 1>, vc<tuple<int, int, int, int>>> suffix_tree(SuffixArray& X) {
+pair<Graph<int, 1>, vc<tuple<int, int, int, int>>> suffix_tree(
+    Suffix_Array& X) {
   auto SA = X.SA;
   auto ISA = X.ISA;
   auto LCP = X.LCP;
@@ -22,7 +23,7 @@ pair<Graph<int, 1>, vc<tuple<int, int, int, int>>> suffix_tree(SuffixArray& X) {
   using T = tuple<int, int, int, int>;
   vc<T> dat;
   Graph<int, 1> G;
-  dat.eb(0, 0, N, 0);
+  dat.eb(0, N, 0, 0);
 
   auto dfs = [&](auto& dfs, int p, int l, int r, int h) -> void {
     if (r == l + 1) {
@@ -30,7 +31,7 @@ pair<Graph<int, 1>, vc<tuple<int, int, int, int>>> suffix_tree(SuffixArray& X) {
       int sz = N - i;
       if (h == sz) return;
       int k = len(dat);
-      dat.eb(l, h, l + 1, sz);
+      dat.eb(l, l + 1, h, sz);
       G.resize(k + 1);
       G.add(p, k);
       return;
@@ -42,7 +43,7 @@ pair<Graph<int, 1>, vc<tuple<int, int, int, int>>> suffix_tree(SuffixArray& X) {
       return;
     }
     int k = len(dat);
-    dat.eb(l, h, r, lcp);
+    dat.eb(l, r, h, lcp);
     G.resize(k + 1);
     G.add(p, k);
     dfs(dfs, k, l, r, lcp);
