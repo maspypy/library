@@ -15,7 +15,8 @@ struct LiChaoTree {
   int size;
   const T INF;
   // コンストラクタ。クエリの来る x 全体を渡す。ソート不要。
-  LiChaoTree(const vector<T> &_xs, T INF) : xs(_xs), INF(INF) {
+  LiChaoTree(const vector<T> &_xs, T INF = numeric_limits<T>::max() / 2)
+      : xs(_xs), INF(INF) {
     if (len(xs) == 0) xs.eb(0);
     UNIQUE(xs);
     size = 1;
