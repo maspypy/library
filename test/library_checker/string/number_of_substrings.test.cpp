@@ -2,12 +2,12 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "string/suffixarray.hpp"
+#include "string/suffix_array.hpp"
 
 void solve() {
   STR(S);
   ll N = len(S);
-  SuffixArray sa(S);
+  Suffix_Array sa(S);
   ll ANS = N * (N + 1) / 2;
   ANS -= SUM<ll>(sa.LCP);
   print(ANS);

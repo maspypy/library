@@ -35,7 +35,7 @@ void test() {
   SuffixArray X(S);
   auto [G, dat] = suffix_tree(X);
   using T = tuple<int, int, int, int>;
-  auto check_dat = [&](T t, int xl, int yl, int xr, int yr) -> void {
+  auto check_dat = [&](T t, int xl, int xr, int yl, int yr) -> void {
     auto [a, b, c, d] = t;
     assert(a == xl && b == yl && c == xr && d == yr);
   };
