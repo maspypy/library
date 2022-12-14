@@ -37,7 +37,7 @@ vc<int> find_centroids(GT& G) {
 }
 
 template <typename GT>
-struct CentroidDecomposition {
+struct Centroid_Decomposition {
   using edge_type = typename GT::edge_type;
   GT& G;
   int N;
@@ -46,7 +46,7 @@ struct CentroidDecomposition {
   vector<int> cdep; // depth in centroid tree
   bool calculated;
 
-  CentroidDecomposition(GT& G)
+  Centroid_Decomposition(GT& G)
       : G(G), N(G.N), sz(G.N), par(G.N), cdep(G.N, -1) {
     calculated = 0;
     build();
