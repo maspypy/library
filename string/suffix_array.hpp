@@ -1,16 +1,18 @@
+#pragma once
+
 #include "alg/monoid/min.hpp"
 #include "ds/disjointsparse/disjointsparse.hpp"
 
 // 辞書順 i 番目の suffix が j 文字目始まりであるとき、
 // SA[i] = j, ISA[j] = i
-struct SuffixArray {
+struct Suffix_Array {
   vector<int> SA;
   vector<int> ISA;
   vector<int> LCP;
   bool build_ds;
   DisjointSparse<Monoid_Min<int>> seg;
 
-  SuffixArray(string& s) : build_ds(0) {
+  Suffix_Array(string& s) : build_ds(0) {
     char first = 127, last = 0;
     for (auto&& c: s) {
       chmin(first, c);
@@ -20,7 +22,7 @@ struct SuffixArray {
     calc_LCP(s);
   }
 
-  SuffixArray(vector<int>& s) : build_ds(0) {
+  Suffix_Array(vector<int>& s) : build_ds(0) {
     SA = calc_suffix_array(s);
     calc_LCP(s);
   }
