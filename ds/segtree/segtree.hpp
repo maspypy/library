@@ -33,12 +33,15 @@ struct SegTree {
   }
 
   X get(int i) { return dat[size + i]; }
+  vc<X> get_all() { return {dat.begin() + size, dat.begin() + size + n}; }
+
   void update(int i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i + 1]); }
   void set(int i, const X& x) {
     assert(i < n);
     dat[i += size] = x;
     while (i >>= 1) update(i);
   }
+
   void multiply(int i, const X& x) {
     assert(i < n);
     i += size;
