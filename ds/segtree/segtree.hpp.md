@@ -108,9 +108,10 @@ data:
     \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
     \ << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, MX::unit());\n\
     \    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n\
-    \  X get(int i) { return dat[size + i]; }\n  void update(int i) { dat[i] = Monoid::op(dat[2\
+    \  X get(int i) { return dat[size + i]; }\n  vc<X> get_all() { return {dat.begin()\
+    \ + size, dat.begin() + size + n}; }\n\n  void update(int i) { dat[i] = Monoid::op(dat[2\
     \ * i], dat[2 * i + 1]); }\n  void set(int i, const X& x) {\n    assert(i < n);\n\
-    \    dat[i += size] = x;\n    while (i >>= 1) update(i);\n  }\n  void multiply(int\
+    \    dat[i += size] = x;\n    while (i >>= 1) update(i);\n  }\n\n  void multiply(int\
     \ i, const X& x) {\n    assert(i < n);\n    i += size;\n    dat[i] = Monoid::op(dat[i],\
     \ x);\n    while (i >>= 1) update(i);\n  }\n\n  X prod(int L, int R) {\n    assert(0\
     \ <= L && L <= R && R <= n);\n    X vl = Monoid::unit(), vr = Monoid::unit();\n\
@@ -148,10 +149,11 @@ data:
     \ m, F f) {\n    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    size\
     \ = 1 << log;\n    dat.assign(size << 1, MX::unit());\n    FOR(i, n) dat[size\
     \ + i] = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n  X get(int i) { return\
-    \ dat[size + i]; }\n  void update(int i) { dat[i] = Monoid::op(dat[2 * i], dat[2\
+    \ dat[size + i]; }\n  vc<X> get_all() { return {dat.begin() + size, dat.begin()\
+    \ + size + n}; }\n\n  void update(int i) { dat[i] = Monoid::op(dat[2 * i], dat[2\
     \ * i + 1]); }\n  void set(int i, const X& x) {\n    assert(i < n);\n    dat[i\
-    \ += size] = x;\n    while (i >>= 1) update(i);\n  }\n  void multiply(int i, const\
-    \ X& x) {\n    assert(i < n);\n    i += size;\n    dat[i] = Monoid::op(dat[i],\
+    \ += size] = x;\n    while (i >>= 1) update(i);\n  }\n\n  void multiply(int i,\
+    \ const X& x) {\n    assert(i < n);\n    i += size;\n    dat[i] = Monoid::op(dat[i],\
     \ x);\n    while (i >>= 1) update(i);\n  }\n\n  X prod(int L, int R) {\n    assert(0\
     \ <= L && L <= R && R <= n);\n    X vl = Monoid::unit(), vr = Monoid::unit();\n\
     \    L += size, R += size;\n    while (L < R) {\n      if (L & 1) vl = Monoid::op(vl,\
@@ -190,7 +192,7 @@ data:
   - graph/ds/tree_group.hpp
   - graph/ds/tree_monoid.hpp
   - graph/minimum_spanning_tree.hpp
-  timestamp: '2022-12-15 05:39:50+09:00'
+  timestamp: '2022-12-15 08:14:55+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1036_2.test.cpp
