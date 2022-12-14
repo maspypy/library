@@ -25,6 +25,10 @@ pair<vvc<int>, vvc<int>> path_cycle(Graph& G) {
   };
   vvc<int> paths, cycs;
   FOR(v, N) {
+    if (deg[v] == 0) {
+      done[v] = 1;
+      paths.eb(vc<int>({int(v)}));
+    }
     if (done[v] || deg[v] != 1) continue;
     paths.eb(calc_frm(v));
   }
