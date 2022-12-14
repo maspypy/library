@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   - icon: ':x:'
@@ -426,7 +426,7 @@ data:
     123333333\n14445----\n14446666-\n789------\n780000---\n7112-----\n7113-----\n\
     */\nvoid test() {\n  string S = \"aabbabbaa\";\n  SuffixArray X(S);\n  auto [G,\
     \ dat] = suffix_tree(X);\n  using T = tuple<int, int, int, int>;\n  auto check_dat\
-    \ = [&](T t, int xl, int yl, int xr, int yr) -> void {\n    auto [a, b, c, d]\
+    \ = [&](T t, int xl, int xr, int yl, int yr) -> void {\n    auto [a, b, c, d]\
     \ = t;\n    assert(a == xl && b == yl && c == xr && d == yr);\n  };\n  auto check_edge\
     \ = [&](auto e, int frm, int to) -> void {\n    assert(e.frm == frm && e.to ==\
     \ to);\n  };\n  check_dat(dat[0], 0, 0, 9, 0);\n  check_dat(dat[1], 0, 0, 5, 1);\n\
@@ -451,7 +451,7 @@ data:
     12-------\n123333333\n14445----\n14446666-\n789------\n780000---\n7112-----\n\
     7113-----\n*/\nvoid test() {\n  string S = \"aabbabbaa\";\n  SuffixArray X(S);\n\
     \  auto [G, dat] = suffix_tree(X);\n  using T = tuple<int, int, int, int>;\n \
-    \ auto check_dat = [&](T t, int xl, int yl, int xr, int yr) -> void {\n    auto\
+    \ auto check_dat = [&](T t, int xl, int xr, int yl, int yr) -> void {\n    auto\
     \ [a, b, c, d] = t;\n    assert(a == xl && b == yl && c == xr && d == yr);\n \
     \ };\n  auto check_edge = [&](auto e, int frm, int to) -> void {\n    assert(e.frm\
     \ == frm && e.to == to);\n  };\n  check_dat(dat[0], 0, 0, 9, 0);\n  check_dat(dat[1],\
@@ -482,7 +482,7 @@ data:
   isVerificationFile: true
   path: test/mytest/suffix_tree.test.cpp
   requiredBy: []
-  timestamp: '2022-12-15 05:40:30+09:00'
+  timestamp: '2022-12-15 06:33:21+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/suffix_tree.test.cpp

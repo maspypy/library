@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/centroid.hpp
     title: graph/centroid.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
@@ -594,11 +594,11 @@ data:
     \ modint998>::value, vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>&\
     \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
-    \ b);\r\n}\r\n#line 3 \"graph/tree_all_distances.hpp\"\n\r\ntemplate <typename\
-    \ Graph>\r\nvi tree_all_distances(Graph& G) {\r\n  // frequency table of distance\
-    \ of all directed pairs.\r\n  // sum of result array = N^2\r\n\r\n  assert(G.is_prepared());\r\
-    \n  assert(!G.is_directed());\r\n\r\n  CentroidDecomposition CD(G);\r\n\r\n  ll\
-    \ N = G.N;\r\n  vi ANS(N);\r\n  FOR(root, N) {\r\n    auto data = CD.collect_dist(root);\r\
+    \ b);\r\n}\r\n#line 3 \"graph/tree_all_distances.hpp\"\n\r\n// frequency table\
+    \ of distance of all directed pairs.\r\n// sum of result array = N^2\r\ntemplate\
+    \ <typename Graph>\r\nvi tree_all_distances(Graph& G) {\r\n  assert(G.is_prepared());\r\
+    \n  assert(!G.is_directed());\r\n  Centroid_Decomposition CD(G);\r\n\r\n  ll N\
+    \ = G.N;\r\n  vi ANS(N);\r\n  FOR(root, N) {\r\n    auto data = CD.collect_dist(root);\r\
     \n    FOR(i, len(data)) {\r\n      int n = 0;\r\n      FOR(j, len(data[i])) chmax(n,\
     \ data[i][j].se + 1);\r\n      vi A(n);\r\n      FOR(j, len(data[i])) A[data[i][j].se]++;\r\
     \n      auto B = convolution(A, A);\r\n      FOR(j, min(N, len(B))) ANS[j] +=\
@@ -630,8 +630,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   requiredBy: []
-  timestamp: '2022-12-15 05:40:50+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-15 06:33:21+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
 layout: document
