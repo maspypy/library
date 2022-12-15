@@ -13,7 +13,7 @@ void solve() {
   G.read_tree(1);
 
   vi ANS(N);
-  CentroidDecomposition<decltype(G)> CD(G);
+  Centroid_Decomposition<decltype(G)> CD(G);
   HashMapLL<vc<int>> MP;
 
   FOR(root, N) {

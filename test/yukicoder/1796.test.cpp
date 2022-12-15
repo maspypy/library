@@ -15,7 +15,7 @@ void solve() {
   G.read_tree();
   vc<mint> ANS(N);
 
-  CentroidDecomposition<decltype(G)> X(G);
+  Centroid_Decomposition<decltype(G)> X(G);
   FOR(v, N) {
     auto dat = X.collect_dist(v);
     FOR(n, len(dat)) {
