@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min_idx.hpp
     title: alg/monoid/min_idx.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/disjointsparse/disjointsparse.hpp
     title: ds/disjointsparse/disjointsparse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -425,7 +425,7 @@ data:
     baa------\nbabbaa---\nbbaa-----\nbbabbaa--\n\nsuffix tree \u306E node \u306F\u3053\
     \u306E\u9577\u65B9\u5F62\u9818\u57DF\u3092\u8868\u3059\n1--------\n12-------\n\
     123333333\n14445----\n14446666-\n789------\n780000---\n7112-----\n7113-----\n\
-    */\nvoid test() {\n  string S = \"aabbabbaa\";\n  SuffixArray X(S);\n  auto [G,\
+    */\nvoid test() {\n  string S = \"aabbabbaa\";\n  Suffix_Array X(S);\n  auto [G,\
     \ dat] = suffix_tree(X);\n  using T = tuple<int, int, int, int>;\n  auto check_dat\
     \ = [&](T t, int xl, int xr, int yl, int yr) -> void {\n    auto [a, b, c, d]\
     \ = t;\n    assert(a == xl && b == yl && c == xr && d == yr);\n  };\n  auto check_edge\
@@ -450,7 +450,7 @@ data:
     abbabbaa-\nbaa------\nbabbaa---\nbbaa-----\nbbabbaa--\n\nsuffix tree \u306E node\
     \ \u306F\u3053\u306E\u9577\u65B9\u5F62\u9818\u57DF\u3092\u8868\u3059\n1--------\n\
     12-------\n123333333\n14445----\n14446666-\n789------\n780000---\n7112-----\n\
-    7113-----\n*/\nvoid test() {\n  string S = \"aabbabbaa\";\n  SuffixArray X(S);\n\
+    7113-----\n*/\nvoid test() {\n  string S = \"aabbabbaa\";\n  Suffix_Array X(S);\n\
     \  auto [G, dat] = suffix_tree(X);\n  using T = tuple<int, int, int, int>;\n \
     \ auto check_dat = [&](T t, int xl, int xr, int yl, int yr) -> void {\n    auto\
     \ [a, b, c, d] = t;\n    assert(a == xl && b == yl && c == xr && d == yr);\n \
@@ -483,8 +483,8 @@ data:
   isVerificationFile: true
   path: test/mytest/suffix_tree.test.cpp
   requiredBy: []
-  timestamp: '2022-12-15 08:14:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-15 09:44:21+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/suffix_tree.test.cpp
 layout: document
