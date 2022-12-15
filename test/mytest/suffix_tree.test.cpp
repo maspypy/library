@@ -32,7 +32,7 @@ suffix tree の node はこの長方形領域を表す
 */
 void test() {
   string S = "aabbabbaa";
-  SuffixArray X(S);
+  Suffix_Array X(S);
   auto [G, dat] = suffix_tree(X);
   using T = tuple<int, int, int, int>;
   auto check_dat = [&](T t, int xl, int xr, int yl, int yr) -> void {
