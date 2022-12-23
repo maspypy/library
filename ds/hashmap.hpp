@@ -1,6 +1,9 @@
 #pragma once
+#include "random/base.hpp"
+
+// long long -> Val
 template <typename Val, int LOG = 20>
-struct HashMapLL {
+struct HashMap {
   int N;
   ll* keys;
   Val* vals;
@@ -8,7 +11,7 @@ struct HashMapLL {
   bitset<1 << LOG> used;
   const int shift;
   const uint64_t r = 11995408973635179863ULL;
-  HashMapLL()
+  HashMap()
       : N(1 << LOG), keys(new ll[N]), vals(new Val[N]), shift(64 - __lg(N)) {}
   int hash(ll x) {
     static const uint64_t FIXED_RANDOM
@@ -34,11 +37,6 @@ struct HashMapLL {
     return vals[i];
   }
 
-  bool contain(const ll& key) {
-    int i = index(key);
-    return used[i] && keys[i] == key;
-  }
-
   bool count(const ll& key) {
     int i = index(key);
     return used[i] && keys[i] == key;
@@ -55,21 +53,4 @@ struct HashMapLL {
     for (auto&& i: IDS) res.eb(keys[i], vals[i]);
     return res;
   }
-};
-
-template <typename KEY, typename VAL, int LOG>
-struct HashMap {
-  HashMapLL<VAL, LOG> MP;
-  function<ll(KEY)> f;
-  HashMap(function<ll(KEY)> f) : MP(), f(f) {}
-
-  int index(const KEY& key) { return MP.index(f(key)); }
-
-  VAL& operator[](const KEY& key) { return MP[f(key)]; }
-
-  bool contain(const KEY& key) { return MP.contain(f(key)); }
-
-  bool count(const KEY& key) { return MP.count(f(key)); }
-
-  void reset() { MP.reset(); }
 };
