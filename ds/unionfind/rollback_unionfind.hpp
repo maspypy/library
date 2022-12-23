@@ -10,7 +10,7 @@ struct Rollback_UnionFind {
     return v;
   }
 
-  int size(int v) { return -dat.get((*this)[v]); }
+  ll size(int v) { return -dat.get((*this)[v]); }
   int time() { return dat.time(); }
   void rollback(int t) { dat.rollback(t); }
 

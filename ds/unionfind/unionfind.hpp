@@ -19,7 +19,7 @@ struct UnionFind {
     return x;
   }
 
-  int size(int x) {
+  ll size(int x) {
     assert(dat[x] < 0);
     return -dat[x];
   }

@@ -32,5 +32,5 @@ struct Dynamic_UnionFind {
     return {c, true};
   }
 
-  int size(np c, int x) { return -PA.get(c, root(c, x)); }
+  ll size(np c, int x) { return -PA.get(c, root(c, x)); }
 };
