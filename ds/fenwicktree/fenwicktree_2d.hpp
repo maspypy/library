@@ -25,6 +25,7 @@ struct FenwickTree_2D {
   inline int prev(int i) { return i - ((i + 1) & -(i + 1)); }
 
   void build(vc<XY>& X, vc<XY>& Y, vc<E> wt) {
+    assert(len(X) == len(Y) && len(X) == len(wt));
     if (!SMALL_X) {
       keyX = X;
       UNIQUE(keyX);
