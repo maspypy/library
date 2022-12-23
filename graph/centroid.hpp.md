@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1002.test.cpp
     title: test/yukicoder/1002.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1769.test.cpp
     title: test/yukicoder/1769.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1796.test.cpp
     title: test/yukicoder/1796.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -120,7 +120,8 @@ data:
     \ [&](int x, auto e) -> int { return x + 1; };\r\n    return collect(root, 0,\
     \ f);\r\n  }\r\n\r\n  // (V, H), V[i] \u306F\u3001H \u306B\u304A\u3051\u308B\u9802\
     \u70B9 i \u306E G \u306B\u304A\u3051\u308B\u756A\u53F7\r\n  // \u9802\u70B9\u306F\
-    \ EulerTour \u9806\u306B\u4E26\u3076\r\n  pair<vc<int>, Graph<typename GT::cost_type,\
+    \ EulerTour \u9806\u306B\u4E26\u3076\u3001V \u306F sort \u3055\u308C\u3066\u3044\
+    \u308B\u3068\u306F\u9650\u3089\u306A\u3044\r\n  pair<vc<int>, Graph<typename GT::cost_type,\
     \ true>> get_subgraph(int root) {\r\n    static vc<int> conv;\r\n    while (len(conv)\
     \ < N) conv.eb(-1);\r\n\r\n    vc<int> V;\r\n    using cost_type = typename GT::cost_type;\r\
     \n    vc<tuple<int, int, cost_type>> edges;\r\n\r\n    auto dfs = [&](auto& dfs,\
@@ -178,9 +179,10 @@ data:
     \ x + 1; };\r\n    return collect(root, 0, f);\r\n  }\r\n\r\n  // (V, H), V[i]\
     \ \u306F\u3001H \u306B\u304A\u3051\u308B\u9802\u70B9 i \u306E G \u306B\u304A\u3051\
     \u308B\u756A\u53F7\r\n  // \u9802\u70B9\u306F EulerTour \u9806\u306B\u4E26\u3076\
-    \r\n  pair<vc<int>, Graph<typename GT::cost_type, true>> get_subgraph(int root)\
-    \ {\r\n    static vc<int> conv;\r\n    while (len(conv) < N) conv.eb(-1);\r\n\r\
-    \n    vc<int> V;\r\n    using cost_type = typename GT::cost_type;\r\n    vc<tuple<int,\
+    \u3001V \u306F sort \u3055\u308C\u3066\u3044\u308B\u3068\u306F\u9650\u3089\u306A\
+    \u3044\r\n  pair<vc<int>, Graph<typename GT::cost_type, true>> get_subgraph(int\
+    \ root) {\r\n    static vc<int> conv;\r\n    while (len(conv) < N) conv.eb(-1);\r\
+    \n\r\n    vc<int> V;\r\n    using cost_type = typename GT::cost_type;\r\n    vc<tuple<int,\
     \ int, cost_type>> edges;\r\n\r\n    auto dfs = [&](auto& dfs, int v, int p) ->\
     \ void {\r\n      conv[v] = len(V);\r\n      V.eb(v);\r\n      for (auto&& e:\
     \ G[v]) {\r\n        int to = e.to;\r\n        if (to == p) continue;\r\n    \
@@ -195,13 +197,13 @@ data:
   path: graph/centroid.hpp
   requiredBy:
   - graph/tree_all_distances.hpp
-  timestamp: '2022-12-15 05:40:50+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-12-23 11:05:24+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1796.test.cpp
-  - test/yukicoder/1038.test.cpp
   - test/yukicoder/1769.test.cpp
   - test/yukicoder/1002.test.cpp
+  - test/yukicoder/1038.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
 documentation_of: graph/centroid.hpp
 layout: document

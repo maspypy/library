@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
   - icon: ':heavy_check_mark:'
     path: ds/unionfind/dynamic_unionfind.hpp
     title: ds/unionfind/dynamic_unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -231,10 +231,10 @@ data:
     \ y)) swap(x, y);\r\n    int new_sz = PA.get(c, x) + PA.get(c, y);\r\n    c =\
     \ PA.set(c, x, new_sz);\r\n    assert(PA.get(c, x) == new_sz);\r\n    c = PA.set(c,\
     \ y, x);\r\n    assert(PA.get(c, y) == x);\r\n    return {c, true};\r\n  }\r\n\
-    \r\n  int size(np c, int x) { return -PA.get(c, root(c, x)); }\r\n};\r\n#line\
-    \ 6 \"test/library_checker/datastructure/persistent_unionfind.test.cpp\"\n\r\n\
-    void solve() {\r\n  LL(N, Q);\r\n\r\n  Dynamic_UnionFind<true, 1'500'000> uf;\r\
-    \n  using np = typename decltype(uf)::np;\r\n  vc<np> roots;\r\n\r\n  roots.eb(uf.new_node());\r\
+    \r\n  ll size(np c, int x) { return -PA.get(c, root(c, x)); }\r\n};\r\n#line 6\
+    \ \"test/library_checker/datastructure/persistent_unionfind.test.cpp\"\n\r\nvoid\
+    \ solve() {\r\n  LL(N, Q);\r\n\r\n  Dynamic_UnionFind<true, 1'500'000> uf;\r\n\
+    \  using np = typename decltype(uf)::np;\r\n  vc<np> roots;\r\n\r\n  roots.eb(uf.new_node());\r\
     \n\r\n  FOR(Q) {\r\n    LL(t, k, u, v);\r\n    ++k;\r\n    auto root = roots[k];\r\
     \n    if (t == 0) {\r\n      root = uf.merge(root, u, v).fi;\r\n    } else {\r\
     \n      bool ok = uf.root(root, u) == uf.root(root, v);\r\n      print(ok ? 1\
@@ -259,7 +259,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/persistent_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2022-12-12 09:20:37+09:00'
+  timestamp: '2022-12-23 10:56:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/persistent_unionfind.test.cpp

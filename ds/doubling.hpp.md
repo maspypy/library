@@ -74,8 +74,8 @@ data:
   timestamp: '2022-12-15 05:37:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1097.test.cpp
   - test/yukicoder/1977.test.cpp
+  - test/yukicoder/1097.test.cpp
 documentation_of: ds/doubling.hpp
 layout: document
 redirect_from:

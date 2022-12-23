@@ -35,8 +35,8 @@ data:
   isVerificationFile: false
   path: alg/monoid/summin.hpp
   requiredBy:
-  - alg/acted_monoid/summin_add.hpp
   - alg/acted_monoid/summin_assign.hpp
+  - alg/acted_monoid/summin_add.hpp
   timestamp: '2022-12-04 15:54:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
   _extendedRequiredBy: []
@@ -42,7 +42,7 @@ data:
     \ y)) swap(x, y);\r\n    int new_sz = PA.get(c, x) + PA.get(c, y);\r\n    c =\
     \ PA.set(c, x, new_sz);\r\n    assert(PA.get(c, x) == new_sz);\r\n    c = PA.set(c,\
     \ y, x);\r\n    assert(PA.get(c, y) == x);\r\n    return {c, true};\r\n  }\r\n\
-    \r\n  int size(np c, int x) { return -PA.get(c, root(c, x)); }\r\n};\r\n"
+    \r\n  ll size(np c, int x) { return -PA.get(c, root(c, x)); }\r\n};\r\n"
   code: "#include \"ds/dynamic_array.hpp\"\r\n\r\ntemplate <bool PERSISTENT, int NODES>\r\
     \nstruct Dynamic_UnionFind {\r\n  // \u7D4C\u8DEF\u5727\u7E2E\u306A\u3057\r\n\
     \  Dynamic_Array<int, PERSISTENT, NODES> PA;\r\n  using np = typename decltype(PA)::np;\r\
@@ -54,14 +54,14 @@ data:
     \n    if (-PA.get(c, x) < -PA.get(c, y)) swap(x, y);\r\n    int new_sz = PA.get(c,\
     \ x) + PA.get(c, y);\r\n    c = PA.set(c, x, new_sz);\r\n    assert(PA.get(c,\
     \ x) == new_sz);\r\n    c = PA.set(c, y, x);\r\n    assert(PA.get(c, y) == x);\r\
-    \n    return {c, true};\r\n  }\r\n\r\n  int size(np c, int x) { return -PA.get(c,\
+    \n    return {c, true};\r\n  }\r\n\r\n  ll size(np c, int x) { return -PA.get(c,\
     \ root(c, x)); }\r\n};\r\n"
   dependsOn:
   - ds/dynamic_array.hpp
   isVerificationFile: false
   path: ds/unionfind/dynamic_unionfind.hpp
   requiredBy: []
-  timestamp: '2022-12-05 11:49:45+09:00'
+  timestamp: '2022-12-23 10:56:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/persistent_unionfind.test.cpp

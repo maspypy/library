@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/tdpc_grid_dp.test.cpp
     title: test/mytest/tdpc_grid_dp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1397.test.cpp
     title: test/yukicoder/1397.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1881.test.cpp
     title: test/yukicoder/1881.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/541.test.cpp
     title: test/yukicoder/541.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/578.test.cpp
     title: test/yukicoder/578.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/hash_vector.hpp\"\n\n#line 2 \"random/base.hpp\"\n\
@@ -46,7 +46,7 @@ data:
     \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/modint61.hpp\"\
     \nstruct modint61 {\r\n  static constexpr bool is_modint = true;\r\n  static constexpr\
     \ ll mod = (1LL << 61) - 1;\r\n  ll val;\r\n  constexpr modint61(const ll x =\
-    \ 0) : val(x) {\r\n    while(val < 0) val += mod;\r\n    while(val >= mod) val\
+    \ 0) : val(x) {\r\n    while (val < 0) val += mod;\r\n    while (val >= mod) val\
     \ -= mod;\r\n  }\r\n  bool operator<(const modint61 &other) const {\r\n    return\
     \ val < other.val;\r\n  } // To use std::map\r\n  bool operator==(const modint61\
     \ &p) const { return val == p.val; }\r\n  bool operator!=(const modint61 &p) const\
@@ -72,7 +72,8 @@ data:
     \n    return modint61(u);\r\n  }\r\n  modint61 pow(int64_t n) const {\r\n    modint61\
     \ ret(1), mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret = ret * mul;\r\
     \n      mul = mul * mul;\r\n      n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\
-    \n  static constexpr ll get_mod() { return mod; }\r\n};\r\n#line 5 \"random/hash_vector.hpp\"\
+    \n  static constexpr ll get_mod() { return mod; }\r\n  void write() { fastio::printer.write(val);\
+    \ }\r\n  void read() { fastio::scanner.read(val); }\r\n};\r\n#line 5 \"random/hash_vector.hpp\"\
     \n\ntemplate <typename T>\nll hash_vector(vc<T> X) {\n  using mint = modint61;\n\
     \  static vc<mint> hash_base;\n  int n = len(X);\n  while (len(hash_base) <= n)\
     \ { hash_base.eb(RNG(mint::get_mod())); }\n  mint H = 0;\n  FOR(i, n) H += hash_base[i]\
@@ -89,15 +90,15 @@ data:
   path: random/hash_vector.hpp
   requiredBy:
   - other/connected_dp.hpp
-  timestamp: '2022-10-26 11:17:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-12-23 11:05:00+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/541.test.cpp
   - test/yukicoder/1561.test.cpp
-  - test/yukicoder/1881.test.cpp
+  - test/yukicoder/1397.test.cpp
   - test/yukicoder/578.test.cpp
   - test/yukicoder/579.test.cpp
-  - test/yukicoder/1397.test.cpp
+  - test/yukicoder/1881.test.cpp
+  - test/yukicoder/541.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
 documentation_of: random/hash_vector.hpp
 layout: document

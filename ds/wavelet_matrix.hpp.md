@@ -116,8 +116,8 @@ data:
   timestamp: '2022-12-13 09:39:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1332.test.cpp
   - test/yukicoder/919.test.cpp
+  - test/yukicoder/1332.test.cpp
   - test/mytest/wavelet_matrix.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp

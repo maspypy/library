@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -28,7 +28,7 @@ data:
     ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/modint61.hpp\"\
     \nstruct modint61 {\r\n  static constexpr bool is_modint = true;\r\n  static constexpr\
     \ ll mod = (1LL << 61) - 1;\r\n  ll val;\r\n  constexpr modint61(const ll x =\
-    \ 0) : val(x) {\r\n    while(val < 0) val += mod;\r\n    while(val >= mod) val\
+    \ 0) : val(x) {\r\n    while (val < 0) val += mod;\r\n    while (val >= mod) val\
     \ -= mod;\r\n  }\r\n  bool operator<(const modint61 &other) const {\r\n    return\
     \ val < other.val;\r\n  } // To use std::map\r\n  bool operator==(const modint61\
     \ &p) const { return val == p.val; }\r\n  bool operator!=(const modint61 &p) const\
@@ -54,7 +54,8 @@ data:
     \n    return modint61(u);\r\n  }\r\n  modint61 pow(int64_t n) const {\r\n    modint61\
     \ ret(1), mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret = ret * mul;\r\
     \n      mul = mul * mul;\r\n      n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\
-    \n  static constexpr ll get_mod() { return mod; }\r\n};\r\n#line 1 \"linalg/matrix_rank.hpp\"\
+    \n  static constexpr ll get_mod() { return mod; }\r\n  void write() { fastio::printer.write(val);\
+    \ }\r\n  void read() { fastio::scanner.read(val); }\r\n};\r\n#line 1 \"linalg/matrix_rank.hpp\"\
     \ntemplate <typename T>\nint matrix_rank(const int n, const int m, vc<vc<T>> a)\
     \ {\n  int rk = 0;\n  FOR(j, m) {\n    if (a[rk][j] == 0) {\n      FOR3(i, rk\
     \ + 1, n) if (a[i][j] != 0) {\n        swap(a[rk], a[i]);\n        break;\n  \
@@ -80,8 +81,8 @@ data:
   isVerificationFile: false
   path: graph/max_matching_size.hpp
   requiredBy: []
-  timestamp: '2022-11-06 20:31:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-12-23 11:05:00+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/tutte.test.cpp
 documentation_of: graph/max_matching_size.hpp

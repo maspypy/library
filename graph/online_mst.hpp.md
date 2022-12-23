@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   _extendedRequiredBy: []
@@ -16,7 +16,7 @@ data:
     \ }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n\
     \  }\n\n  int operator[](int x) {\n    while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n\
     \      if (pp < 0) { return dat[x]; }\n      x = dat[x] = pp;\n    }\n    return\
-    \ x;\n  }\n\n  int size(int x) {\n    assert(dat[x] < 0);\n    return -dat[x];\n\
+    \ x;\n  }\n\n  ll size(int x) {\n    assert(dat[x] < 0);\n    return -dat[x];\n\
     \  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x], y = (*this)[y];\n  \
     \  if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x]\
     \ += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n};\n#line 2 \"graph/online_mst.hpp\"\
@@ -62,7 +62,7 @@ data:
   isVerificationFile: false
   path: graph/online_mst.hpp
   requiredBy: []
-  timestamp: '2022-12-11 12:37:32+09:00'
+  timestamp: '2022-12-23 10:56:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/online_mst.hpp

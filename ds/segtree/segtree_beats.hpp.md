@@ -142,9 +142,9 @@ data:
   isVerificationFile: false
   path: ds/segtree/segtree_beats.hpp
   requiredBy:
+  - ds/segtree/beats_summax_chmin.hpp
   - ds/segtree/beats_summin_chmax.hpp
   - ds/segtree/beats_summaxmin_chminchmax.hpp
-  - ds/segtree/beats_summax_chmin.hpp
   timestamp: '2022-12-03 10:20:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
@@ -15,18 +15,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1790.test.cpp
     title: test/yukicoder/1790.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -199,17 +199,24 @@ data:
     root\", root);\r\n  }\r\n};\r\n#line 3 \"graph/ds/lazy_tree_monoid.hpp\"\n\r\n\
     template <typename TREE, typename ActedMonoid, bool edge = false>\r\nstruct Lazy_Tree_Monoid\
     \ {\r\n  using MonoX = typename ActedMonoid::Monoid_X;\r\n  using MonoA = typename\
-    \ ActedMonoid::Monoid_A;\r\n  using X = typename MonoX::value_type;\r\n  using\
-    \ A = typename MonoA::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  Lazy_SegTree<ActedMonoid>\
-    \ seg;\r\n\r\n  Lazy_Tree_Monoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N)\
-    \ {\r\n    assert(MonoX::commute);\r\n  }\r\n\r\n  Lazy_Tree_Monoid(TREE &tree,\
-    \ vc<X> dat) : tree(tree), N(tree.N) {\r\n    vc<X> seg_raw(N, MonoX::unit());\r\
+    \ ActedMonoid::Monoid_A;\r\n  static_assert(MonoX::commute);\r\n  using X = typename\
+    \ MonoX::value_type;\r\n  using A = typename MonoA::value_type;\r\n  TREE &tree;\r\
+    \n  int N;\r\n  Lazy_SegTree<ActedMonoid> seg;\r\n\r\n  Lazy_Tree_Monoid(TREE\
+    \ &tree) : tree(tree), N(tree.N), seg(tree.N) {}\r\n\r\n  Lazy_Tree_Monoid(TREE\
+    \ &tree, vc<X> dat) : tree(tree), N(tree.N) {\r\n    vc<X> seg_raw(N, MonoX::unit());\r\
     \n    if (!edge) {\r\n      FOR(v, N) seg_raw[tree.LID[v]] = dat[v];\r\n    }\
     \ else {\r\n      FOR(e, N - 1) {\r\n        int v = tree.e_to_v(e);\r\n     \
     \   seg_raw[tree.LID[v]] = dat[e];\r\n      }\r\n    }\r\n    seg = Lazy_SegTree<ActedMonoid>(seg_raw);\r\
-    \n    assert(MonoX::commute);\r\n  }\r\n\r\n  void set(int i, X x) {\r\n    if\
-    \ (edge) i = tree.e_to_v(i);\r\n    i = tree.LID[i];\r\n    seg.set(i, x);\r\n\
-    \  }\r\n\r\n  X prod_path(int u, int v) {\r\n    auto pd = tree.get_path_decomposition(u,\
+    \n  }\r\n\r\n  template <typename F>\r\n  Lazy_Tree_Monoid(TREE &tree, F f) :\
+    \ tree(tree), N(tree.N) {\r\n    vc<X> seg_raw(N, MonoX::unit());\r\n    if (!edge)\
+    \ {\r\n      FOR(v, N) seg_raw[tree.LID[v]] = f(v);\r\n    } else {\r\n      FOR(e,\
+    \ N - 1) {\r\n        int v = tree.e_to_v(e);\r\n        seg_raw[tree.LID[v]]\
+    \ = f(e);\r\n      }\r\n    }\r\n    seg = Lazy_SegTree<ActedMonoid>(seg_raw);\r\
+    \n  }\r\n\r\n  void set(int i, X x) {\r\n    if (edge) i = tree.e_to_v(i);\r\n\
+    \    i = tree.LID[i];\r\n    seg.set(i, x);\r\n  }\r\n\r\n  X get(int v) { return\
+    \ seg.get(tree.LID[v]); }\r\n  vc<X> get_all() {\r\n    vc<X> dat = seg.get_all();\r\
+    \n    vc<X> res(N);\r\n    FOR(v, N) res[v] = dat[tree.LID[v]];\r\n    return\
+    \ res;\r\n  }\r\n\r\n  X prod_path(int u, int v) {\r\n    auto pd = tree.get_path_decomposition(u,\
     \ v, edge);\r\n    X val = MonoX::unit();\r\n    for (auto &&[a, b]: pd) {\r\n\
     \      X x = (a <= b ? seg.prod(a, b + 1) : seg.prod(b, a + 1));\r\n      val\
     \ = MonoX::op(val, x);\r\n    }\r\n    return val;\r\n  }\r\n\r\n  X prod_subtree(int\
@@ -250,17 +257,24 @@ data:
   code: "#include \"ds/segtree/lazy_segtree.hpp\"\r\n#include \"graph/tree.hpp\"\r\
     \n\r\ntemplate <typename TREE, typename ActedMonoid, bool edge = false>\r\nstruct\
     \ Lazy_Tree_Monoid {\r\n  using MonoX = typename ActedMonoid::Monoid_X;\r\n  using\
-    \ MonoA = typename ActedMonoid::Monoid_A;\r\n  using X = typename MonoX::value_type;\r\
-    \n  using A = typename MonoA::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  Lazy_SegTree<ActedMonoid>\
-    \ seg;\r\n\r\n  Lazy_Tree_Monoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N)\
-    \ {\r\n    assert(MonoX::commute);\r\n  }\r\n\r\n  Lazy_Tree_Monoid(TREE &tree,\
-    \ vc<X> dat) : tree(tree), N(tree.N) {\r\n    vc<X> seg_raw(N, MonoX::unit());\r\
+    \ MonoA = typename ActedMonoid::Monoid_A;\r\n  static_assert(MonoX::commute);\r\
+    \n  using X = typename MonoX::value_type;\r\n  using A = typename MonoA::value_type;\r\
+    \n  TREE &tree;\r\n  int N;\r\n  Lazy_SegTree<ActedMonoid> seg;\r\n\r\n  Lazy_Tree_Monoid(TREE\
+    \ &tree) : tree(tree), N(tree.N), seg(tree.N) {}\r\n\r\n  Lazy_Tree_Monoid(TREE\
+    \ &tree, vc<X> dat) : tree(tree), N(tree.N) {\r\n    vc<X> seg_raw(N, MonoX::unit());\r\
     \n    if (!edge) {\r\n      FOR(v, N) seg_raw[tree.LID[v]] = dat[v];\r\n    }\
     \ else {\r\n      FOR(e, N - 1) {\r\n        int v = tree.e_to_v(e);\r\n     \
     \   seg_raw[tree.LID[v]] = dat[e];\r\n      }\r\n    }\r\n    seg = Lazy_SegTree<ActedMonoid>(seg_raw);\r\
-    \n    assert(MonoX::commute);\r\n  }\r\n\r\n  void set(int i, X x) {\r\n    if\
-    \ (edge) i = tree.e_to_v(i);\r\n    i = tree.LID[i];\r\n    seg.set(i, x);\r\n\
-    \  }\r\n\r\n  X prod_path(int u, int v) {\r\n    auto pd = tree.get_path_decomposition(u,\
+    \n  }\r\n\r\n  template <typename F>\r\n  Lazy_Tree_Monoid(TREE &tree, F f) :\
+    \ tree(tree), N(tree.N) {\r\n    vc<X> seg_raw(N, MonoX::unit());\r\n    if (!edge)\
+    \ {\r\n      FOR(v, N) seg_raw[tree.LID[v]] = f(v);\r\n    } else {\r\n      FOR(e,\
+    \ N - 1) {\r\n        int v = tree.e_to_v(e);\r\n        seg_raw[tree.LID[v]]\
+    \ = f(e);\r\n      }\r\n    }\r\n    seg = Lazy_SegTree<ActedMonoid>(seg_raw);\r\
+    \n  }\r\n\r\n  void set(int i, X x) {\r\n    if (edge) i = tree.e_to_v(i);\r\n\
+    \    i = tree.LID[i];\r\n    seg.set(i, x);\r\n  }\r\n\r\n  X get(int v) { return\
+    \ seg.get(tree.LID[v]); }\r\n  vc<X> get_all() {\r\n    vc<X> dat = seg.get_all();\r\
+    \n    vc<X> res(N);\r\n    FOR(v, N) res[v] = dat[tree.LID[v]];\r\n    return\
+    \ res;\r\n  }\r\n\r\n  X prod_path(int u, int v) {\r\n    auto pd = tree.get_path_decomposition(u,\
     \ v, edge);\r\n    X val = MonoX::unit();\r\n    for (auto &&[a, b]: pd) {\r\n\
     \      X x = (a <= b ? seg.prod(a, b + 1) : seg.prod(b, a + 1));\r\n      val\
     \ = MonoX::op(val, x);\r\n    }\r\n    return val;\r\n  }\r\n\r\n  X prod_subtree(int\
@@ -305,13 +319,13 @@ data:
   isVerificationFile: false
   path: graph/ds/lazy_tree_monoid.hpp
   requiredBy: []
-  timestamp: '2022-12-05 10:41:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-12-23 11:08:26+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/235.test.cpp
-  - test/yukicoder/1790.test.cpp
-  - test/yukicoder/1197.test.cpp
   - test/aoj/GRL_5_E.test.cpp
+  - test/yukicoder/1790.test.cpp
+  - test/yukicoder/235.test.cpp
+  - test/yukicoder/1197.test.cpp
 documentation_of: graph/ds/lazy_tree_monoid.hpp
 layout: document
 redirect_from:

@@ -38,8 +38,8 @@ data:
   timestamp: '2022-10-21 16:22:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/minmax_add.test.cpp
   - test/aoj/ITP2_3_B.test.cpp
+  - test/mytest/minmax_add.test.cpp
 documentation_of: alg/monoid/minmax.hpp
 layout: document
 redirect_from:

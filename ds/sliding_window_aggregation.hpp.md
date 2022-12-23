@@ -2,13 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   - icon: ':heavy_check_mark:'
@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedVerifiedWith:
@@ -54,12 +54,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2026.test.cpp
     title: test/yukicoder/2026.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2166.test.cpp
+    title: test/yukicoder/2166.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_2.test.cpp
     title: test/yukicoder/502_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/sliding_window_aggregation.hpp\"\ntemplate <class Monoid>\n\
@@ -136,27 +139,28 @@ data:
   isVerificationFile: false
   path: ds/sliding_window_aggregation.hpp
   requiredBy:
-  - poly/prefix_product_of_poly.hpp
   - poly/from_log_differentiation.hpp
-  - poly/lagrange_interpolate_iota.hpp
+  - poly/prefix_product_of_poly.hpp
   - poly/sparse_exp_of_div.hpp
-  - seq/kth_term_of_p_recursive.hpp
+  - poly/lagrange_interpolate_iota.hpp
   - seq/interpolate_poly_exp_sum.hpp
+  - seq/kth_term_of_p_recursive.hpp
   timestamp: '2022-12-05 17:53:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1080_2.test.cpp
-  - test/yukicoder/1435_2.test.cpp
+  - test/yukicoder/1036_3.test.cpp
+  - test/yukicoder/2166.test.cpp
   - test/yukicoder/2026.test.cpp
   - test/yukicoder/502_2.test.cpp
   - test/yukicoder/1117.test.cpp
-  - test/yukicoder/1036_3.test.cpp
+  - test/yukicoder/1435_2.test.cpp
+  - test/yukicoder/1080_2.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/datastructure/queue_operate_all_composite.test.cpp
-  - test/atcoder/abc276_g.test.cpp
+  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/atcoder/abc276_g_2.test.cpp
+  - test/atcoder/abc276_g.test.cpp
 documentation_of: ds/sliding_window_aggregation.hpp
 layout: document
 redirect_from:

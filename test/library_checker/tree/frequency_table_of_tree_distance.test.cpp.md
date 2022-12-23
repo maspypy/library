@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/centroid.hpp
     title: graph/centroid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
@@ -315,7 +315,8 @@ data:
     \ [&](int x, auto e) -> int { return x + 1; };\r\n    return collect(root, 0,\
     \ f);\r\n  }\r\n\r\n  // (V, H), V[i] \u306F\u3001H \u306B\u304A\u3051\u308B\u9802\
     \u70B9 i \u306E G \u306B\u304A\u3051\u308B\u756A\u53F7\r\n  // \u9802\u70B9\u306F\
-    \ EulerTour \u9806\u306B\u4E26\u3076\r\n  pair<vc<int>, Graph<typename GT::cost_type,\
+    \ EulerTour \u9806\u306B\u4E26\u3076\u3001V \u306F sort \u3055\u308C\u3066\u3044\
+    \u308B\u3068\u306F\u9650\u3089\u306A\u3044\r\n  pair<vc<int>, Graph<typename GT::cost_type,\
     \ true>> get_subgraph(int root) {\r\n    static vc<int> conv;\r\n    while (len(conv)\
     \ < N) conv.eb(-1);\r\n\r\n    vc<int> V;\r\n    using cost_type = typename GT::cost_type;\r\
     \n    vc<tuple<int, int, cost_type>> edges;\r\n\r\n    auto dfs = [&](auto& dfs,\
@@ -630,8 +631,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   requiredBy: []
-  timestamp: '2022-12-15 06:33:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-12-23 11:05:24+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
 layout: document

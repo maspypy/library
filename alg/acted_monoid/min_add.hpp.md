@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   _extendedRequiredBy:
@@ -63,11 +63,11 @@ data:
   timestamp: '2022-12-03 08:35:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1234.test.cpp
+  - test/aoj/DSL_2_H.test.cpp
   - test/yukicoder/1720.test.cpp
+  - test/yukicoder/1234.test.cpp
   - test/yukicoder/1270.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp
-  - test/aoj/DSL_2_H.test.cpp
 documentation_of: alg/acted_monoid/min_add.hpp
 layout: document
 redirect_from:

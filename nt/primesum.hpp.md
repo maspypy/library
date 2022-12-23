@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   _extendedRequiredBy:
@@ -113,8 +113,8 @@ data:
   - test/yukicoder/1276.test.cpp
   - test/yukicoder/1781.test.cpp
   - test/mytest/primesum_mod6.test.cpp
-  - test/mytest/prime_sum.test.cpp
   - test/mytest/primesum_mod4.test.cpp
+  - test/mytest/prime_sum.test.cpp
   - test/library_checker/math/counting_primes.test.cpp
   - test/library_checker/math/totient_sum.test.cpp
 documentation_of: nt/primesum.hpp

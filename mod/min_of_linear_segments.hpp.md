@@ -66,8 +66,8 @@ data:
   isVerificationFile: false
   path: mod/min_of_linear_segments.hpp
   requiredBy:
-  - mod/min_of_linear.hpp
   - mod/max_of_linear_segments.hpp
+  - mod/min_of_linear.hpp
   timestamp: '2022-08-16 06:06:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/offline_query/rectangle_add_point_sum.hpp
     title: ds/offline_query/rectangle_add_point_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -251,53 +251,54 @@ data:
     \ dat[i + k - 1]);\n      if (check(t)) { i += k, s = t; }\n      k >>= 1;\n \
     \   }\n    return i;\n  }\n\n  int kth(E k) {\n    return max_right([&k](E x)\
     \ -> bool { return x <= k; });\n  }\n};\n#line 2 \"ds/offline_query/rectangle_add_point_sum.hpp\"\
-    \n\ntemplate <typename AbelGroup, bool SMALL>\nstruct Rectangle_Add_Point_Sum\
-    \ {\n  using G = typename AbelGroup::value_type;\n  vc<tuple<ll, ll, ll, ll>>\
+    \n\ntemplate <typename XY, typename AbelGroup, bool SMALL>\nstruct Rectangle_Add_Point_Sum\
+    \ {\n  using G = typename AbelGroup::value_type;\n  vc<tuple<XY, XY, XY, XY>>\
     \ rect;\n  vc<G> WT;\n  vc<pi> point;\n\n  Rectangle_Add_Point_Sum() {}\n\n  void\
-    \ add_query(ll xl, ll xr, ll yl, ll yr, G g) {\n    rect.eb(xl, xr, yl, yr);\n\
-    \    WT.eb(g);\n  }\n\n  void sum_query(ll x, ll y) { point.eb(x, y); }\n\n  vc<G>\
+    \ add_query(XY xl, XY xr, XY yl, XY yr, G g) {\n    rect.eb(xl, xr, yl, yr);\n\
+    \    WT.eb(g);\n  }\n\n  void sum_query(XY x, XY y) { point.eb(x, y); }\n\n  vc<G>\
     \ calc() {\n    int N = len(rect), Q = len(point);\n    if (N == 0) return vc<G>(Q,\
-    \ AbelGroup::unit());\n    vi keyX, keyY;\n    keyX.reserve(2 * N + Q);\n    keyY.reserve(2\
-    \ * N + Q);\n    for (auto&& [xl, xr, yl, yr]: rect) {\n      keyX.eb(xl), keyX.eb(xr),\
-    \ keyY.eb(yl), keyY.eb(yr);\n    }\n    for (auto&& [x, y]: point) { keyX.eb(x),\
-    \ keyY.eb(y); }\n    int NX = 0, NY = 0;\n    if (!SMALL) {\n      UNIQUE(keyX),\
-    \ UNIQUE(keyY);\n      NX = len(keyX), NY = len(keyY);\n      for (auto&& [xl,\
-    \ xr, yl, yr]: rect) {\n        xl = LB(keyX, xl), xr = LB(keyX, xr);\n      \
-    \  yl = LB(keyY, yl), yr = LB(keyY, yr);\n      }\n      for (auto&& [x, y]: point)\
-    \ {\n        x = LB(keyX, x);\n        y = LB(keyY, y);\n      }\n    } else {\n\
-    \      ll mx = MIN(keyX), my = MIN(keyY);\n      NX = MAX(keyX) - mx + 1, NY =\
-    \ MAX(keyY) - my + 1;\n      for (auto&& [xl, xr, yl, yr]: rect) {\n        xl\
-    \ = xl - mx, xr = xr - mx;\n        yl = yl - my, yr = yr - my;\n      }\n   \
-    \   for (auto&& [x, y]: point) { x = x - mx, y = y - my; }\n    }\n    vvc<tuple<int,\
-    \ int, G>> ADD(NY);\n    vvc<int> CALC(NY);\n    FOR(i, N) {\n      auto [xl,\
-    \ xr, yl, yr] = rect[i];\n      ADD[yl].eb(xl, xr, WT[i]);\n      ADD[yr].eb(xl,\
-    \ xr, AbelGroup::inverse(WT[i]));\n    }\n    FOR(q, Q) {\n      auto [x, y] =\
-    \ point[q];\n      CALC[y].eb(q);\n    }\n    vc<G> res(Q);\n    FenwickTree<AbelGroup>\
-    \ bit(NX);\n    FOR(y, NY) {\n      for (auto&& [xl, xr, g]: ADD[y]) {\n     \
-    \   bit.add(xl, g);\n        bit.add(xr, AbelGroup::inverse(g));\n      }\n  \
-    \    for (auto&& q: CALC[y]) {\n        auto [x, y] = point[q];\n        res[q]\
-    \ = bit.prod(x + 1);\n      }\n    }\n    return res;\n  }\n};\n#line 2 \"mod/modint.hpp\"\
-    \n\ntemplate <int mod>\nstruct modint {\n  int val;\n  constexpr modint(ll x =\
-    \ 0) noexcept {\n    if (0 <= x && x < mod)\n      val = x;\n    else {\n    \
-    \  x %= mod;\n      val = (x < 0 ? x + mod : x);\n    }\n  }\n  bool operator<(const\
-    \ modint &other) const {\n    return val < other.val;\n  } // To use std::map\n\
-    \  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -=\
-    \ mod;\n    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if\
-    \ ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint\
-    \ &operator*=(const modint &p) {\n    val = (int)(1LL * val * p.val % mod);\n\
-    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
-    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint(-val);\
-    \ }\n  modint operator+(const modint &p) const { return modint(*this) += p; }\n\
-    \  modint operator-(const modint &p) const { return modint(*this) -= p; }\n  modint\
-    \ operator*(const modint &p) const { return modint(*this) *= p; }\n  modint operator/(const\
-    \ modint &p) const { return modint(*this) /= p; }\n  bool operator==(const modint\
-    \ &p) const { return val == p.val; }\n  bool operator!=(const modint &p) const\
-    \ { return val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod,\
-    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
-    \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
-    \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
-    \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n  void write() { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
+    \ AbelGroup::unit());\n    vc<XY> keyX, keyY;\n    keyX.reserve(2 * N + Q);\n\
+    \    keyY.reserve(2 * N + Q);\n    for (auto&& [xl, xr, yl, yr]: rect) {\n   \
+    \   keyX.eb(xl), keyX.eb(xr), keyY.eb(yl), keyY.eb(yr);\n    }\n    for (auto&&\
+    \ [x, y]: point) { keyX.eb(x), keyY.eb(y); }\n    int NX = 0, NY = 0;\n    if\
+    \ (!SMALL) {\n      UNIQUE(keyX), UNIQUE(keyY);\n      NX = len(keyX), NY = len(keyY);\n\
+    \      for (auto&& [xl, xr, yl, yr]: rect) {\n        xl = LB(keyX, xl), xr =\
+    \ LB(keyX, xr);\n        yl = LB(keyY, yl), yr = LB(keyY, yr);\n      }\n    \
+    \  for (auto&& [x, y]: point) {\n        x = LB(keyX, x);\n        y = LB(keyY,\
+    \ y);\n      }\n    } else {\n      XY mx = MIN(keyX), my = MIN(keyY);\n     \
+    \ NX = MAX(keyX) - mx + 1, NY = MAX(keyY) - my + 1;\n      for (auto&& [xl, xr,\
+    \ yl, yr]: rect) {\n        xl = xl - mx, xr = xr - mx;\n        yl = yl - my,\
+    \ yr = yr - my;\n      }\n      for (auto&& [x, y]: point) { x = x - mx, y = y\
+    \ - my; }\n    }\n    vvc<tuple<int, int, G>> ADD(NY);\n    vvc<int> CALC(NY);\n\
+    \    FOR(i, N) {\n      auto [xl, xr, yl, yr] = rect[i];\n      ADD[yl].eb(xl,\
+    \ xr, WT[i]);\n      ADD[yr].eb(xl, xr, AbelGroup::inverse(WT[i]));\n    }\n \
+    \   FOR(q, Q) {\n      auto [x, y] = point[q];\n      CALC[y].eb(q);\n    }\n\
+    \    vc<G> res(Q);\n    FenwickTree<AbelGroup> bit(NX);\n    FOR(y, NY) {\n  \
+    \    for (auto&& [xl, xr, g]: ADD[y]) {\n        bit.add(xl, g);\n        bit.add(xr,\
+    \ AbelGroup::inverse(g));\n      }\n      for (auto&& q: CALC[y]) {\n        auto\
+    \ [x, y] = point[q];\n        res[q] = bit.prod(x + 1);\n      }\n    }\n    return\
+    \ res;\n  }\n};\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
+    \ {\n  int val;\n  constexpr modint(ll x = 0) noexcept {\n    if (0 <= x && x\
+    \ < mod)\n      val = x;\n    else {\n      x %= mod;\n      val = (x < 0 ? x\
+    \ + mod : x);\n    }\n  }\n  bool operator<(const modint &other) const {\n   \
+    \ return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
+    \ modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n\
+    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >=\
+    \ mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint\
+    \ &p) {\n    val = (int)(1LL * val * p.val % mod);\n    return *this;\n  }\n \
+    \ modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
+    \ *this;\n  }\n  modint operator-() const { return modint(-val); }\n  modint operator+(const\
+    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
+    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
+    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
+    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
+    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
+    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
+    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
+    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t n) const {\n\
+    \    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
+    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  void write()\
+    \ { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
     \ }\n  static constexpr int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
     \ {\n  static constexpr bool is_modint = true;\n  int val;\n  ArbitraryModInt()\
     \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
@@ -437,8 +438,8 @@ data:
   isVerificationFile: true
   path: test/mytest/rect_add_pt_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-12-12 09:20:37+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-12-23 11:02:13+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/rect_add_pt_sum.test.cpp
 layout: document

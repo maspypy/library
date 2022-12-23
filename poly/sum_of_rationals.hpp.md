@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -359,17 +359,17 @@ data:
   path: poly/sum_of_rationals.hpp
   requiredBy:
   - poly/sum_of_exp_bx.hpp
-  - poly/product_of_pow_of_linear.hpp
   - poly/composition_f_ex.hpp
+  - poly/product_of_pow_of_linear.hpp
   - seq/sum_of_powers.hpp
   timestamp: '2022-12-03 08:35:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1962.test.cpp
   - test/yukicoder/1875.test.cpp
   - test/yukicoder/1145.test.cpp
-  - test/atcoder/abc276_g.test.cpp
+  - test/yukicoder/1962.test.cpp
   - test/atcoder/abc276_g_2.test.cpp
+  - test/atcoder/abc276_g.test.cpp
 documentation_of: poly/sum_of_rationals.hpp
 layout: document
 redirect_from:
