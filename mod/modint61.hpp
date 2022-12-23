@@ -4,8 +4,8 @@ struct modint61 {
   static constexpr ll mod = (1LL << 61) - 1;
   ll val;
   constexpr modint61(const ll x = 0) : val(x) {
-    while(val < 0) val += mod;
-    while(val >= mod) val -= mod;
+    while (val < 0) val += mod;
+    while (val >= mod) val -= mod;
   }
   bool operator<(const modint61 &other) const {
     return val < other.val;
@@ -64,4 +64,6 @@ struct modint61 {
     return ret;
   }
   static constexpr ll get_mod() { return mod; }
+  void write() { fastio::printer.write(val); }
+  void read() { fastio::scanner.read(val); }
 };
