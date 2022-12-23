@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1260"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "other/integer_kth_root.hpp"
+#include "nt/integer_kth_root.hpp"
 #include "enumerate/floor_range.hpp"
 #include "mod/modint.hpp"
 
