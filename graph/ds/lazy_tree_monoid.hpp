@@ -5,15 +5,14 @@ template <typename TREE, typename ActedMonoid, bool edge = false>
 struct Lazy_Tree_Monoid {
   using MonoX = typename ActedMonoid::Monoid_X;
   using MonoA = typename ActedMonoid::Monoid_A;
+  static_assert(MonoX::commute);
   using X = typename MonoX::value_type;
   using A = typename MonoA::value_type;
   TREE &tree;
   int N;
   Lazy_SegTree<ActedMonoid> seg;
 
-  Lazy_Tree_Monoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N) {
-    assert(MonoX::commute);
-  }
+  Lazy_Tree_Monoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N) {}
 
   Lazy_Tree_Monoid(TREE &tree, vc<X> dat) : tree(tree), N(tree.N) {
     vc<X> seg_raw(N, MonoX::unit());
@@ -26,13 +25,34 @@ struct Lazy_Tree_Monoid {
       }
     }
     seg = Lazy_SegTree<ActedMonoid>(seg_raw);
-    assert(MonoX::commute);
+  }
+
+  template <typename F>
+  Lazy_Tree_Monoid(TREE &tree, F f) : tree(tree), N(tree.N) {
+    vc<X> seg_raw(N, MonoX::unit());
+    if (!edge) {
+      FOR(v, N) seg_raw[tree.LID[v]] = f(v);
+    } else {
+      FOR(e, N - 1) {
+        int v = tree.e_to_v(e);
+        seg_raw[tree.LID[v]] = f(e);
+      }
+    }
+    seg = Lazy_SegTree<ActedMonoid>(seg_raw);
   }
 
   void set(int i, X x) {
     if (edge) i = tree.e_to_v(i);
     i = tree.LID[i];
     seg.set(i, x);
+  }
+
+  X get(int v) { return seg.get(tree.LID[v]); }
+  vc<X> get_all() {
+    vc<X> dat = seg.get_all();
+    vc<X> res(N);
+    FOR(v, N) res[v] = dat[tree.LID[v]];
+    return res;
   }
 
   X prod_path(int u, int v) {
