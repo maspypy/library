@@ -1,3 +1,4 @@
+// 挿入しながら query_monotone を使う場合、直線の挿入順と同じ方向の単調性が必要
 template <typename T, bool isMin>
 struct CHT_monotone {
 #define F first
@@ -20,8 +21,8 @@ struct CHT_monotone {
       return sgn(b.F - a.F) * sgn(c.S - b.S) >= sgn(c.F - b.F) * sgn(b.S - a.S);
 
     // return (b.F-a.F)*(c.S-b.S) >= (b.S-a.S)*(c.F-b.F);
-    return D(b.F - a.F) * sgn(c.S - b.S) / D(abs(b.S - a.S)) >=
-           D(c.F - b.F) * sgn(b.S - a.S) / D(abs(c.S - b.S));
+    return D(b.F - a.F) * sgn(c.S - b.S) / D(abs(b.S - a.S))
+           >= D(c.F - b.F) * sgn(b.S - a.S) / D(abs(c.S - b.S));
   }
 
   void add(T a, T b) {
