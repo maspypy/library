@@ -38,7 +38,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/primesum_mod6.hpp
     title: nt/primesum_mod6.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   - icon: ':question:'
@@ -132,6 +132,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1411.test.cpp
     title: test/yukicoder/1411.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1666.test.cpp
+    title: test/yukicoder/1666.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1760.test.cpp
     title: test/yukicoder/1760.test.cpp
@@ -217,6 +220,7 @@ data:
   - test/yukicoder/1821.test.cpp
   - test/yukicoder/1907.test.cpp
   - test/yukicoder/1262.test.cpp
+  - test/yukicoder/1666.test.cpp
   - test/yukicoder/2005.test.cpp
   - test/yukicoder/1881.test.cpp
   - test/yukicoder/1411.test.cpp

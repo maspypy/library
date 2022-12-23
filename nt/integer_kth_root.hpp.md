@@ -2,10 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/kth_root_integer.test.cpp
+    title: test/library_checker/math/kth_root_integer.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1260.test.cpp
+    title: test/yukicoder/1260.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1666.test.cpp
+    title: test/yukicoder/1666.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"nt/integer_kth_root.hpp\"\nuint64_t integer_kth_root(uint64_t\
@@ -32,8 +41,11 @@ data:
   path: nt/integer_kth_root.hpp
   requiredBy: []
   timestamp: '2022-12-23 11:04:23+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/yukicoder/1260.test.cpp
+  - test/yukicoder/1666.test.cpp
+  - test/library_checker/math/kth_root_integer.test.cpp
 documentation_of: nt/integer_kth_root.hpp
 layout: document
 redirect_from:
