@@ -66,7 +66,6 @@ int count_cross(Segment<T> S1, Segment<T> S2) {
 }
 
 // 唯一の交点を持つことを仮定
-// 唯一の交点を持つことを仮定
 template <typename REAL, typename T>
 Point<REAL> cross_point(Segment<T> S1, Segment<T> S2) {
   Line<T> L1 = S1.to_Line();
