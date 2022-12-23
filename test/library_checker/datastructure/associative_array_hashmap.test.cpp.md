@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/associative_array
@@ -227,16 +227,16 @@ data:
     \n    vc<pair<ll, Val>> res;\r\n    res.reserve(len(IDS));\r\n    for (auto&&\
     \ i: IDS) res.eb(keys[i], vals[i]);\r\n    return res;\r\n  }\r\n};\r\n#line 5\
     \ \"test/library_checker/datastructure/associative_array_hashmap.test.cpp\"\n\r\
-    \nvoid solve() {\r\n  LL(Q);\r\n  HashMapLL<ll> A;\r\n  FOR(_, Q) {\r\n    LL(t);\r\
+    \nvoid solve() {\r\n  LL(Q);\r\n  HashMap<ll> A;\r\n  FOR(Q) {\r\n    LL(t);\r\
     \n    if (t == 0) {\r\n      LL(k, v);\r\n      A[k] = v;\r\n    } else {\r\n\
     \      LL(k);\r\n      print(A[k]);\r\n    }\r\n  }\r\n}\r\n\r\nsigned main()\
     \ {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/associative_array\"\r\n\
     #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/hashmap.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  LL(Q);\r\n  HashMapLL<ll> A;\r\n  FOR(_, Q) {\r\n\
-    \    LL(t);\r\n    if (t == 0) {\r\n      LL(k, v);\r\n      A[k] = v;\r\n   \
-    \ } else {\r\n      LL(k);\r\n      print(A[k]);\r\n    }\r\n  }\r\n}\r\n\r\n\
-    signed main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \r\n\r\nvoid solve() {\r\n  LL(Q);\r\n  HashMap<ll> A;\r\n  FOR(Q) {\r\n    LL(t);\r\
+    \n    if (t == 0) {\r\n      LL(k, v);\r\n      A[k] = v;\r\n    } else {\r\n\
+    \      LL(k);\r\n      print(A[k]);\r\n    }\r\n  }\r\n}\r\n\r\nsigned main()\
+    \ {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -245,8 +245,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
   requiredBy: []
-  timestamp: '2022-12-23 11:10:49+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-23 12:55:00+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/associative_array_hashmap.test.cpp
 layout: document

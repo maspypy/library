@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc273/tasks/abc273_e
@@ -246,8 +246,8 @@ data:
     \ i: IDS) res.eb(keys[i], vals[i]);\r\n    return res;\r\n  }\r\n};\r\n#line 6\
     \ \"test/atcoder/abc273_e.test.cpp\"\n\nvoid solve() {\n  Dynamic_Array<int, true,\
     \ 3'000'000> X(0);\n  using np = typename decltype(X)::np;\n\n  LL(Q);\n  vi ANS;\n\
-    \n  np A = X.new_node();\n  int A_size = 0;\n  HashMapLL<pair<np, int>> note;\n\
-    \n  FOR(Q) {\n    STR(S);\n    if (S == \"ADD\") {\n      INT(x);\n      A = X.set(A,\
+    \n  np A = X.new_node();\n  int A_size = 0;\n  HashMap<pair<np, int>> note;\n\n\
+    \  FOR(Q) {\n    STR(S);\n    if (S == \"ADD\") {\n      INT(x);\n      A = X.set(A,\
     \ A_size++, x);\n    }\n    if (S == \"DELETE\") {\n      if (A_size) --A_size;\n\
     \    }\n    if (S == \"SAVE\") {\n      INT(y);\n      note[y] = {A, A_size};\n\
     \    }\n    if (S == \"LOAD\") {\n      INT(z);\n      tie(A, A_size) = note[z];\n\
@@ -258,12 +258,12 @@ data:
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/dynamic_array.hpp\"\
     \n#include \"ds/hashmap.hpp\"\n\nvoid solve() {\n  Dynamic_Array<int, true, 3'000'000>\
     \ X(0);\n  using np = typename decltype(X)::np;\n\n  LL(Q);\n  vi ANS;\n\n  np\
-    \ A = X.new_node();\n  int A_size = 0;\n  HashMapLL<pair<np, int>> note;\n\n \
-    \ FOR(Q) {\n    STR(S);\n    if (S == \"ADD\") {\n      INT(x);\n      A = X.set(A,\
-    \ A_size++, x);\n    }\n    if (S == \"DELETE\") {\n      if (A_size) --A_size;\n\
-    \    }\n    if (S == \"SAVE\") {\n      INT(y);\n      note[y] = {A, A_size};\n\
-    \    }\n    if (S == \"LOAD\") {\n      INT(z);\n      tie(A, A_size) = note[z];\n\
-    \    }\n    ll x = -1;\n    if (A_size) x = X.get(A, A_size - 1);\n    ANS.eb(x);\n\
+    \ A = X.new_node();\n  int A_size = 0;\n  HashMap<pair<np, int>> note;\n\n  FOR(Q)\
+    \ {\n    STR(S);\n    if (S == \"ADD\") {\n      INT(x);\n      A = X.set(A, A_size++,\
+    \ x);\n    }\n    if (S == \"DELETE\") {\n      if (A_size) --A_size;\n    }\n\
+    \    if (S == \"SAVE\") {\n      INT(y);\n      note[y] = {A, A_size};\n    }\n\
+    \    if (S == \"LOAD\") {\n      INT(z);\n      tie(A, A_size) = note[z];\n  \
+    \  }\n    ll x = -1;\n    if (A_size) x = X.get(A, A_size - 1);\n    ANS.eb(x);\n\
     \  }\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
     \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
@@ -275,8 +275,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc273_e.test.cpp
   requiredBy: []
-  timestamp: '2022-12-23 11:10:49+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-23 12:55:00+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/abc273_e.test.cpp
 layout: document

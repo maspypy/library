@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_set/from_monoid.hpp
     title: alg/acted_set/from_monoid.hpp
   - icon: ':question:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
   - icon: ':question:'
@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/discrete_logarithm_mod
@@ -339,9 +339,9 @@ data:
     \u3070 -1 \u3092\u304B\u3048\u3059\u3002\r\ntemplate <typename ActedSet, typename\
     \ F, int MP_SIZE = 20>\r\nll discrete_log_acted(typename ActedSet::A x, typename\
     \ ActedSet::S s,\r\n                      typename ActedSet::S t, F H, ll lb,\
-    \ ll ub) {\r\n  static HashMapLL<int, MP_SIZE> MP;\r\n  MP.reset();\r\n  using\
-    \ Group = typename ActedSet::Monoid_A;\r\n  using G = typename Group::value_type;\r\
-    \n  if (lb >= ub) return -1;\r\n  auto xpow = [&](ll n) -> G {\r\n    G p = x;\r\
+    \ ll ub) {\r\n  static HashMap<int, MP_SIZE> MP;\r\n  MP.reset();\r\n  using Group\
+    \ = typename ActedSet::Monoid_A;\r\n  using G = typename Group::value_type;\r\n\
+    \  if (lb >= ub) return -1;\r\n  auto xpow = [&](ll n) -> G {\r\n    G p = x;\r\
     \n    G res = Group::unit();\r\n    while (n) {\r\n      if (n & 1) res = Group::op(res,\
     \ p);\r\n      p = Group::op(p, p);\r\n      n /= 2;\r\n    }\r\n    return res;\r\
     \n  };\r\n  s = ActedSet::act(s, xpow(lb));\r\n  u64 LIM = ub - lb;\r\n\r\n  ll\
@@ -392,8 +392,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/discrete_logarithm_mod.test.cpp
   requiredBy: []
-  timestamp: '2022-12-23 11:10:49+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-23 12:55:00+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/discrete_logarithm_mod.test.cpp
 layout: document
