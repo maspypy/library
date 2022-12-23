@@ -84,7 +84,7 @@ struct SegTree {
   }
 
   template <class F>
-  int min_left(F& check, int R) {
+  int min_left(F check, int R) {
     assert(0 <= R && R <= n && check(Monoid::unit()));
     if (R == 0) return 0;
     R += size;
