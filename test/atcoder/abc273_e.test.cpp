@@ -13,7 +13,7 @@ void solve() {
 
   np A = X.new_node();
   int A_size = 0;
-  HashMapLL<pair<np, int>> note;
+  HashMap<pair<np, int>> note;
 
   FOR(Q) {
     STR(S);

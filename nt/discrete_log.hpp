@@ -7,7 +7,7 @@
 template <typename ActedSet, typename F, int MP_SIZE = 20>
 ll discrete_log_acted(typename ActedSet::A x, typename ActedSet::S s,
                       typename ActedSet::S t, F H, ll lb, ll ub) {
-  static HashMapLL<int, MP_SIZE> MP;
+  static HashMap<int, MP_SIZE> MP;
   MP.reset();
   using Group = typename ActedSet::Monoid_A;
   using G = typename Group::value_type;

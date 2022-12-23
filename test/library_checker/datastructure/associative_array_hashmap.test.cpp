@@ -5,8 +5,8 @@
 
 void solve() {
   LL(Q);
-  HashMapLL<ll> A;
-  FOR(_, Q) {
+  HashMap<ll> A;
+  FOR(Q) {
     LL(t);
     if (t == 0) {
       LL(k, v);

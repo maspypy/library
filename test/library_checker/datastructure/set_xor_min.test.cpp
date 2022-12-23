@@ -5,7 +5,7 @@
 #include "ds/hashmap.hpp"
 
 void solve() {
-  HashMapLL<bool, 20> MP;
+  HashMap<bool, 20> MP;
   Binary_Trie<30, false, 1'000'000, int, int> X;
   using np = decltype(X)::np;
   np root = nullptr;
