@@ -33,8 +33,9 @@ struct SubproductTree {
     return fa;
   }
 
-  vc<mint> evaluation(vc<mint>& f) {
+  vc<mint> evaluation(vc<mint> f) {
     int n = len(f);
+    if (n == 0) return vc<mint>(m, mint(0));
     f.resize(2 * n - 1);
     vc<vc<mint>> g(2 * sz);
     g[1] = T[1];
@@ -73,12 +74,14 @@ struct SubproductTree {
 
 template <typename mint>
 vc<mint> multipoint_eval(vc<mint>& f, vc<mint>& x) {
+  if (x.empty()) return {};
   SubproductTree<mint> F(x);
   return F.evaluation(f);
 }
 
 template <typename mint>
 vc<mint> multipoint_interpolate(vc<mint>& x, vc<mint>& y) {
+  if (x.empty()) return {};
   SubproductTree<mint> F(x);
   return F.interpolation(y);
 }
