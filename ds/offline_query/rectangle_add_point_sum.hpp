@@ -1,25 +1,25 @@
 #include "ds/fenwicktree/fenwicktree.hpp"
 
-template <typename AbelGroup, bool SMALL>
+template <typename XY, typename AbelGroup, bool SMALL>
 struct Rectangle_Add_Point_Sum {
   using G = typename AbelGroup::value_type;
-  vc<tuple<ll, ll, ll, ll>> rect;
+  vc<tuple<XY, XY, XY, XY>> rect;
   vc<G> WT;
   vc<pi> point;
 
   Rectangle_Add_Point_Sum() {}
 
-  void add_query(ll xl, ll xr, ll yl, ll yr, G g) {
+  void add_query(XY xl, XY xr, XY yl, XY yr, G g) {
     rect.eb(xl, xr, yl, yr);
     WT.eb(g);
   }
 
-  void sum_query(ll x, ll y) { point.eb(x, y); }
+  void sum_query(XY x, XY y) { point.eb(x, y); }
 
   vc<G> calc() {
     int N = len(rect), Q = len(point);
     if (N == 0) return vc<G>(Q, AbelGroup::unit());
-    vi keyX, keyY;
+    vc<XY> keyX, keyY;
     keyX.reserve(2 * N + Q);
     keyY.reserve(2 * N + Q);
     for (auto&& [xl, xr, yl, yr]: rect) {
@@ -39,7 +39,7 @@ struct Rectangle_Add_Point_Sum {
         y = LB(keyY, y);
       }
     } else {
-      ll mx = MIN(keyX), my = MIN(keyY);
+      XY mx = MIN(keyX), my = MIN(keyY);
       NX = MAX(keyX) - mx + 1, NY = MAX(keyY) - my + 1;
       for (auto&& [xl, xr, yl, yr]: rect) {
         xl = xl - mx, xr = xr - mx;
