@@ -132,7 +132,7 @@ public:
   }
 
   // (V, H), V[i] は、H における頂点 i の G における番号
-  // 頂点は EulerTour 順に並ぶ
+  // 頂点は EulerTour 順に並ぶ、V は sort されているとは限らない
   pair<vc<int>, Graph<typename GT::cost_type, true>> get_subgraph(int root) {
     static vc<int> conv;
     while (len(conv) < N) conv.eb(-1);
