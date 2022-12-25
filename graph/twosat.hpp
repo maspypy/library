@@ -1,9 +1,9 @@
 #include "graph/strongly_connected_component.hpp"
 
 struct TwoSat {
+  Graph<int, 1> G;
   vc<int> values;
 
-  Graph<int, 1> G;
   TwoSat(ll n) : G(n + n), values(n, -1) {}
   void add(int a, int b) {
     a = (a >= 0 ? 2 * a + 1 : 2 * (~a));
@@ -21,14 +21,14 @@ struct TwoSat {
   }
   void implies(int a, int b) { add(~a, b); }
 
-  bool calc() {
+  pair<bool, vc<int>> calc() {
     G.build();
     ll n = len(values);
     auto [C, comp] = strongly_connected_component(G);
     FOR(i, n) {
-      if (comp[2 * i] == comp[2 * i + 1]) return false;
+      if (comp[2 * i] == comp[2 * i + 1]) return {false, values};
       values[i] = comp[2 * i] < comp[2 * i + 1];
     }
-    return true;
+    return {true, values};
   }
 };
