@@ -85,7 +85,7 @@ int mod_kth_root(ll k, ll a, int mod) {
 }
 
 ll mod_kth_root_long(ll k, ll a, ll mod) {
-  static HashMapLL<ll, 20> MP;
+  static HashMap<ll, 20> MP;
 
   assert(primetest(mod) && 0 <= a && a < mod);
   if (k == 0) return (a == 1 ? 1 : -1);
