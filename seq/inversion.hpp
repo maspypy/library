@@ -1,7 +1,7 @@
 #include "ds/fenwicktree/fenwicktree.hpp"
 
-template <typename T>
-ll inversion(vc<T> A, bool SMALL = false) {
+template <typename T, bool SMALL>
+ll inversion(vc<T> A) {
   if (!SMALL) {
     auto key = A;
     UNIQUE(key);
