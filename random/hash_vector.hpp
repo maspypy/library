@@ -14,3 +14,10 @@ ll hash_vector(vc<T> X) {
   H += hash_base[n];
   return H.val;
 }
+
+template <typename T>
+ll hash_pair(pair<T, T> X) {
+  static ll hash_base = 0;
+  if (hash_base == 0) hash_base = RNG_64();
+  return hash_base * X.fi + X.se;
+}
