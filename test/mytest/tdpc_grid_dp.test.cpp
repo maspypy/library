@@ -10,7 +10,7 @@
 using mint = modint107;
 
 mint calc_tdpc_grid(int H, int W) {
-  HashMapLL<int> MP;
+  HashMap<int> MP;
 
   using P = pair<vc<int>, int>;
   vc<P> states;

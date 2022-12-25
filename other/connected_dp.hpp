@@ -48,7 +48,7 @@ vc<int> reverse_state(const vc<int>& now) {
 // 連結領域をひとつ作る。多角形とは限らない。
 pair<vvc<int>, vc<pair<int, int>>> connedted_dp_graph(int N,
                                                       bool merge_reverse) {
-  static HashMapLL<int> MP;
+  static HashMap<int> MP;
   MP.reset();
   vvc<int> states;
   vc<pair<int, int>> edges;
@@ -92,7 +92,7 @@ pair<vvc<int>, vc<pair<int, int>>> connedted_dp_graph(int N,
 }
 
 pair<vvc<int>, vc<pair<int, int>>> polygon_dp_graph(int N) {
-  static HashMapLL<int> MP;
+  static HashMap<int> MP;
   MP.reset();
   vvc<int> states;
   vc<pair<int, int>> edges;
