@@ -8,7 +8,7 @@
 void solve() {
   LL(N);
   VEC(ll, A, N);
-  ll ANS = inversion(A);
+  ll ANS = inversion<ll, 0>(A);
   print(ANS);
 }
 

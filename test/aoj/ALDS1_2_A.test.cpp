@@ -7,7 +7,7 @@
 void solve() {
   LL(N);
   VEC(ll, A, N);
-  ll x = inversion(A);
+  ll x = inversion<ll, false>(A);
   sort(all(A));
   print(A);
   print(x);

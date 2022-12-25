@@ -13,8 +13,7 @@ void solve() {
     b = (b > 0 ? b - 1 : b);
     ts.add(a, b);
   }
-  bool ok = ts.calc();
-  auto A = ts.values;
+  auto [ok, A] = ts.calc();
   if (ok) {
     print("s SATISFIABLE");
     vc<int> ANS(N);
